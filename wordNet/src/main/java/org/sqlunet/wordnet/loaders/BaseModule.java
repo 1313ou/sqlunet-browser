@@ -591,7 +591,7 @@ abstract public class BaseModule extends Module
 			final TreeNode linksNode = TreeFactory.makeHotQueryNode("Links", R.drawable.ic_links, false, new LinksQuery(synsetId, wordId)).addTo(parent);
 			final TreeNode samplesNode = TreeFactory.makeHotQueryNode("Samples", R.drawable.sample, false, new SamplesQuery(synsetId)).addTo(parent);
 
-			changed = TreeOp.seq(parent, NEWMAIN, node, NEWEXTRA, linksNode, NEWEXTRA, samplesNode, NEWTREE);
+			changed = TreeOp.seq( NEWMAIN, node, NEWEXTRA, linksNode, NEWEXTRA, samplesNode, NEWTREE, parent);
 		}
 		else
 		{

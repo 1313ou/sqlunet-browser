@@ -5,12 +5,12 @@
 package org.sqlunet.view;
 
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 
 import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.treeview.control.CompositeValue;
 import org.sqlunet.treeview.control.Controller;
-import org.sqlunet.treeview.control.TreeController;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeOp.TreeOpCode;
@@ -53,22 +53,10 @@ public class TreeOpExecute
 		}
 		else if (n > 1)
 		{
-			for (int i = 1; i < n; i++)
+			for (final TreeOp op : ops)
 			{
-				final TreeOp op = ops[i];
 				execOp(op, treeView, -1);
 			}
-			execFirst(ops[0], treeView);
-		}
-	}
-
-	private void execFirst(final TreeOp op, final TreeView treeView)
-	{
-		final TreeNode node = op.getNode();
-		final Controller<?> controller = node.getController();
-		if (controller instanceof TreeController)
-		{
-			Log.d(TAG, "/// " + op.getCode() + " " + node.toString());
 		}
 	}
 
@@ -86,9 +74,12 @@ public class TreeOpExecute
 		switch (code)
 		{
 			case NEWTREE:
-				Log.d(TAG, "@@@ " + op.getCode() + " " + node.toString());
-				treeView.expandNode(node, -1, false, false);
-				break;
+			{
+				Log.d(TAG, "vvv " + op.getCode() + " " + node.toString());
+				final View view = treeView.expandNode(node, -1, false, false);
+				view.requestFocus();
+			}
+			break;
 
 			case NEWCHILD:
 				Log.d(TAG, "+++ " + op.getCode() + " " + node.toString());
@@ -98,24 +89,26 @@ public class TreeOpExecute
 			case NEWMAIN:
 			case NEWEXTRA:
 			case NEWUNIQUE:
+			{
 				Log.d(TAG, "... " + op.getCode() + " " + node.toString());
-				treeView.newNodeView(node, levels);
-				break;
-
-			case REMOVE:
-				Log.d(TAG, "--- " + op.getCode() + " " + node.toString());
-				treeView.remove(node);
-				break;
+				final View view = treeView.newNodeView(node, levels);
+				view.requestFocus();
+			}
+			break;
 
 			case UPDATE:
+			{
 				Log.d(TAG, "!!! " + op.getCode() + " " + node.toString());
 				treeView.update(node);
-				break;
+			}
+			break;
 
 			case DEADEND:
+			{
 				Log.d(TAG, "xxx " + op.getCode() + " " + node.toString());
 				treeView.deadend(node);
-				break;
+			}
+			break;
 
 			case COLLAPSE:
 			{
@@ -134,6 +127,13 @@ public class TreeOpExecute
 				Log.d(TAG, "||| " + op.getCode() + " " + node.toString());
 				final Controller<?> controller = node.getController();
 				controller.setBreakExpand(true);
+			}
+			break;
+
+			case REMOVE:
+			{
+				Log.d(TAG, "--- " + op.getCode() + " " + node.toString());
+				treeView.remove(node);
 			}
 			break;
 

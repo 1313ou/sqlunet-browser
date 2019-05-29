@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.ViewParent;
-import android.view.ViewTreeObserver;
 import android.view.animation.LinearInterpolator;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -80,11 +79,6 @@ public class TreeView
 	 * Root node
 	 */
 	private final TreeNode root;
-
-	/**
-	 * (Top) scroll view
-	 */
-	private View view;
 
 	/**
 	 * Context
@@ -203,10 +197,6 @@ public class TreeView
 		// root
 		final RootController rootController = (RootController) this.root.getController();
 		rootController.setContentView(contentView);
-
-		// keep reference
-		// TODO
-		this.view = view;
 
 		return view;
 	}
@@ -367,7 +357,7 @@ public class TreeView
 	 * @param node         node
 	 * @param atIndex      insert-at index
 	 */
-	synchronized public void addSubtreeView(@NonNull final ViewGroup childrenView, @NonNull final TreeNode node, int atIndex)
+	synchronized private void addSubtreeView(@NonNull final ViewGroup childrenView, @NonNull final TreeNode node, int atIndex)
 	{
 		Log.d(TAG, "Insert subtree view at index " + atIndex + " for node " + node + " count=" + childrenView.getChildCount());
 		final Controller<?> controller = node.getController();
@@ -415,8 +405,8 @@ public class TreeView
 			}
 		}
 
-		//TODO scroll when dimensions are available
 		/*
+		// scroll when dimensions are available
 		final ViewTreeObserver viewTreeObserver = childrenView.getViewTreeObserver();
 		viewTreeObserver.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener()
 		{
@@ -507,6 +497,60 @@ public class TreeView
 		}
 	}
 
+	// N E W   V I E W
+
+	/**
+	 * New node view either by expanding collapsed node or by inserting in already expanded node
+	 *
+	 * @param node   node
+	 * @param levels remaining levels to unfold
+	 * @return parent's children view == node view container
+	 */
+	public View newNodeView(final TreeNode node, final int levels)
+	{
+		final TreeNode parent = node.getParent();
+		if (TreeView.isExpanded(parent))
+		{
+			return insertNodeView(parent, node);
+		}
+		return expandNode(parent, levels, false, false);
+	}
+
+	/**
+	 * Insert new node view in parent's existing children container view
+	 *
+	 * @param parent parent node
+	 * @param node   node to insert
+	 * @return parent's children view == node view container
+	 */
+	private View insertNodeView(final TreeNode parent, final TreeNode node)
+	{
+		final Controller<?> parentController = parent.getController();
+		final ViewGroup childrenView = parentController.getChildrenView();
+		if (childrenView != null)
+		{
+			int index = parent.indexOf(node);
+			addSubtreeView(childrenView, node, index);
+
+			// display
+			if (childrenView.getChildCount() != 0)
+			{
+				if (this.useAnimation)
+				{
+					animatedContainerExpand(childrenView);
+				}
+				else
+				{
+					containerExpand(childrenView);
+				}
+
+				// fire expand event
+				parentController.onExpandEvent();
+			}
+		}
+		return childrenView;
+	}
+
 	// E X P A N D  /  C O L L A P S E
 
 	/**
@@ -561,8 +605,9 @@ public class TreeView
 	 * @param levels              expanded subnodes level (-1 == unlimited)
 	 * @param fireHotNodes        whether to fire hot nodes
 	 * @param overrideBreakExpand whether to override node break expand
+	 * @return children container view
 	 */
-	public void expandNode(@NonNull final TreeNode node, final int levels, final boolean fireHotNodes, final boolean overrideBreakExpand)
+	public View expandNode(@NonNull final TreeNode node, final int levels, final boolean fireHotNodes, final boolean overrideBreakExpand)
 	{
 		Log.d(TAG, "Expand node " + node);
 		//if (isNodeWithCompositeValueText(node, "Agent Agent"))
@@ -610,7 +655,7 @@ public class TreeView
 				{
 					continue;
 				}
-				if (/* TODO isExpanded(child) ||*/ levels < 0 || levels > 0)
+				if (levels < 0 || levels > 0)
 				{
 					expandNode(child, levels - 1, fireHotNodes, overrideBreakExpand);
 				}
@@ -638,6 +683,8 @@ public class TreeView
 		{
 			controller.fire();
 		}
+
+		return childrenView;
 	}
 
 	/**
@@ -646,7 +693,6 @@ public class TreeView
 	 * @param node            node
 	 * @param includeSubnodes whether to include subnodes
 	 */
-	@SuppressWarnings("WeakerAccess")
 	public void collapseNode(@NonNull final TreeNode node, final boolean includeSubnodes)
 	{
 		// collapsibility
@@ -1136,41 +1182,7 @@ public class TreeView
 		}
 	}
 
-	public void newNodeView(final TreeNode node, final int levels)
-	{
-		final TreeNode parent = node.getParent();
-		if (!TreeView.isExpanded(parent))
-		{
-			expandNode(parent, levels, false, false);
-		}
-		else
-		{
-			insertNodeView(parent, node);
-		}
-	}
+	// H E L P E R S
 
-	private void insertNodeView(final TreeNode parent, final TreeNode node)
-	{
-		final Controller<?> parentController = parent.getController();
-		ViewGroup childrenView = parentController.getChildrenView();
-		int index = parent.indexOf(node);
-		addSubtreeView(childrenView, node, index);
-
-		// display
-		if (childrenView.getChildCount() != 0)
-		{
-			if (this.useAnimation)
-			{
-				animatedContainerExpand(childrenView);
-			}
-			else
-			{
-				containerExpand(childrenView);
-			}
-
-			// fire expand event
-			parentController.onExpandEvent();
-		}
-	}
 }
 

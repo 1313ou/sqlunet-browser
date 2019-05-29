@@ -58,15 +58,17 @@ public class TreeOp
 			prepend(items);
 		}
 
-		public void append(Object... items)
+		/*
+		private void append(Object... items)
 		{
 			for (int i = 0; i < items.length - 1; i += 2)
 			{
 				add(new TreeOp((TreeOpCode) items[i], (TreeNode) items[i + 1]));
 			}
 		}
+		*/
 
-		public void prepend(Object... items)
+		private void prepend(Object... items)
 		{
 			for (int i = 0; i < items.length - 1; i += 2)
 			{
