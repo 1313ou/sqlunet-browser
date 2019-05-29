@@ -341,6 +341,11 @@
       <w>nand</w>
       <w>narg</w>
       <w>nargdescr</w>
+      <w>newchild</w>
+      <w>newextra</w>
+      <w>newmain</w>
+      <w>newtree</w>
+      <w>newunique</w>
       <w>nexplores</w>
       <w>ngroups</w>
       <w>nonrecursive</w>

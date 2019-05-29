@@ -819,6 +819,14 @@
       <entry_point TYPE="field" FQNAME="org.sqlunet.settings.Settings PREF_SCROLL_2D" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.provider.WordNetContract.Links CONTENT_URI_TABLE" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.provider.WordNetContract.Links TABLE" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.provider.WordNetContract.Links_Senses_Words_X CONTENT_URI_TABLE" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.selector.PosSelectorPointer CREATOR" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.provider.WordNetContract.Links_Senses_Words_X MEMBERS2" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.framenet.provider.FrameNetContract.Words_LexUnits_Frames POS" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.provider.WordNetContract.Links_Senses_Words_X RECURSES" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.provider.WordNetContract.Links_Senses_Words_X SYNSET1ID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.provider.WordNetContract.Links_Senses_Words_X SYNSET2ID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.provider.WordNetContract.Links_Senses_Words_X TABLE_BY_SYNSET" />
     </entry_points>
     <pattern value="org.sqlunet.browser.vn.Settings" method="getPropBankPref" />
     <pattern value="org.sqlunet.browser.vn.Settings" method="getWordNetPref" />
@@ -2242,6 +2250,39 @@
     <pattern value="org.sqlunet.view.TreeOp.TreeOps" method="prepend" />
     <pattern value="org.sqlunet.wordnet.provider.WordNetProvider" method="embed" />
     <pattern value="org.sqlunet.wordnet.provider.WordNetProvider" method="makeSelection" />
+    <pattern value="org.sqlunet.wordnet.provider.WordNetContract.Links_Senses_Words_X" />
+    <pattern value="org.sqlunet.wordnet.provider.WordNetContract.Links" />
+    <pattern value="org.sqlunet.wordnet.loaders.BaseModule" method="members2" />
+    <pattern value="org.sqlunet.support.OtherActivity" method="onMarketSemantikosEWn" />
+    <pattern value="org.sqlunet.browser.selector.PosSelectorPointer" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.FrameQuery" method="toString" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.RelatedQuery" method="toString" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.LexUnitsQuery" method="toString" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.FEsQuery" method="toString" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.GovernorsQuery" method="toString" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.RealizationsQuery" method="toString" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.GroupRealizationsQuery" method="toString" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.SentencesForPatternQuery" method="toString" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.SentencesForValenceUnitQuery" method="toString" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.SentencesForLexUnitQuery" method="toString" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.AnnoSetQuery" method="toString" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.AnnoSetsForGovernorQuery" method="toString" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.FnFrameLink" method="toString" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.FnLexUnitLink" method="toString" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.FnSentenceLink" method="toString" />
+    <pattern value="org.sqlunet.propbank.loaders.BaseModule.RolesQuery" method="toString" />
+    <pattern value="org.sqlunet.propbank.loaders.BaseModule.ExamplesQuery" method="toString" />
+    <pattern value="org.sqlunet.wordnet.loaders.BaseModule.SemLinksQuery" method="toString" />
+    <pattern value="org.sqlunet.wordnet.loaders.BaseModule.LexLinksQuery" method="toString" />
+    <pattern value="org.sqlunet.verbnet.loaders.BaseModule.MembersQuery" method="toString" />
+    <pattern value="org.sqlunet.verbnet.loaders.BaseModule.RolesQuery" method="toString" />
+    <pattern value="org.sqlunet.verbnet.loaders.BaseModule.FramesQuery" method="toString" />
+    <pattern value="org.sqlunet.framenet.Utils" />
+    <pattern value="org.sqlunet.browser.selector.PosSelectorPointer" method="describeContents" />
+    <pattern value="org.sqlunet.browser.selector.PosSelectorPointer" method="getPos" />
+    <pattern value="org.sqlunet.browser.selector.PosSelectorPointer" method="PosSelectorPointer" />
+    <pattern value="org.sqlunet.browser.selector.PosSelectorPointer" method="toString" />
+    <pattern value="org.sqlunet.browser.selector.PosSelectorPointer" method="writeToParcel" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />
