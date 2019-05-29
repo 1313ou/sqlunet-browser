@@ -568,6 +568,7 @@ abstract class BaseModule extends Module
 			roles((int) this.id, node);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -596,6 +597,7 @@ abstract class BaseModule extends Module
 			examples((int) this.id, node);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{

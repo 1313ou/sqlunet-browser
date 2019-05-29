@@ -628,6 +628,7 @@ abstract class BaseModule extends Module
 			vnMembers((int) this.id, node);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -656,6 +657,7 @@ abstract class BaseModule extends Module
 			vnRoles((int) this.id, node);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -684,6 +686,7 @@ abstract class BaseModule extends Module
 			vnFrames((int) this.id, node);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{

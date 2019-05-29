@@ -1881,6 +1881,7 @@ abstract public class BaseModule extends Module
 			//lexLinks(this.id, this.wordId, node, false);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -1910,6 +1911,7 @@ abstract public class BaseModule extends Module
 			semLinks(this.id, node, true);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -1946,6 +1948,7 @@ abstract public class BaseModule extends Module
 			lexLinks(this.id, this.wordId, node, true);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -1988,6 +1991,7 @@ abstract public class BaseModule extends Module
 			semLinks(this.id, this.linkId, recurseLevel, node, true);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -2016,6 +2020,7 @@ abstract public class BaseModule extends Module
 			samples(this.id, node, true);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -2052,6 +2057,7 @@ abstract public class BaseModule extends Module
 			context.startActivity(intent);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -2093,6 +2099,7 @@ abstract public class BaseModule extends Module
 			context.startActivity(intent);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -2135,6 +2142,7 @@ abstract public class BaseModule extends Module
 			context.startActivity(intent);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{

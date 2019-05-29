@@ -2266,6 +2266,7 @@ abstract public class BaseModule extends Module
 			frame((int) this.id, node);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -2294,6 +2295,7 @@ abstract public class BaseModule extends Module
 			relatedFrames((int) this.id, node);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -2322,6 +2324,7 @@ abstract public class BaseModule extends Module
 			lexUnitsForFrame((int) this.id, node, false);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -2350,6 +2353,7 @@ abstract public class BaseModule extends Module
 			fesForFrame((int) this.id, node);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -2378,6 +2382,7 @@ abstract public class BaseModule extends Module
 			governorsForLexUnit(this.id, node);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -2406,6 +2411,7 @@ abstract public class BaseModule extends Module
 			realizationsForLexicalUnit(this.id, node);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -2434,6 +2440,7 @@ abstract public class BaseModule extends Module
 			groupRealizationsForLexUnit(this.id, node);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -2462,6 +2469,7 @@ abstract public class BaseModule extends Module
 			sentencesForPattern(this.id, node);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -2490,6 +2498,7 @@ abstract public class BaseModule extends Module
 			sentencesForValenceUnit(this.id, node);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -2518,6 +2527,7 @@ abstract public class BaseModule extends Module
 			sentencesForLexUnit(this.id, node);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -2549,6 +2559,7 @@ abstract public class BaseModule extends Module
 			annoSet(this.id, node, this.withSentence);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -2577,6 +2588,7 @@ abstract public class BaseModule extends Module
 			annoSetsForGovernor(this.id, node);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -2614,6 +2626,7 @@ abstract public class BaseModule extends Module
 			context.startActivity(intent);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -2648,6 +2661,7 @@ abstract public class BaseModule extends Module
 			BaseModule.this.fragment.requireContext().startActivity(intent);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
@@ -2682,6 +2696,7 @@ abstract public class BaseModule extends Module
 			BaseModule.this.fragment.requireContext().startActivity(intent);
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{
