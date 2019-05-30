@@ -208,12 +208,14 @@ public class TreeView
 	 * Update node view leaving children unchanged
 	 *
 	 * @param node node
+	 * @return updated view
 	 */
-	public void update(@NonNull final TreeNode node)
+	@Nullable
+	public View update(@NonNull final TreeNode node)
 	{
 		final Controller controller = node.getController();
-		final View nodeView = controller.getNodeView();
 		final SubtreeView subtreeView = controller.getSubtreeView();
+		final View nodeView = controller.getNodeView();
 		if (subtreeView != null && nodeView != null)
 		{
 			// update node reference
@@ -230,7 +232,9 @@ public class TreeView
 
 			// insert new node subtreeView
 			subtreeView.insertNodeView(newNodeView);
+			return newNodeView;
 		}
+		return null;
 	}
 
 	/**
@@ -461,6 +465,7 @@ public class TreeView
 			}
 
 			// toggle node
+			node.getController().setRequestFocus();
 			toggleNode(node);
 		});
 	}

@@ -37,6 +37,12 @@ public abstract class Controller<E>
 	@SuppressWarnings("WeakerAccess")
 	protected boolean breakExpand;
 
+	/**
+	 * Request focus
+	 */
+	@SuppressWarnings("WeakerAccess")
+	protected boolean requestFocus;
+
 	// V I E W
 
 	/**
@@ -69,6 +75,7 @@ public abstract class Controller<E>
 	protected Controller(final boolean breakExpand)
 	{
 		this.breakExpand = breakExpand;
+		this.requestFocus = false;
 	}
 
 	// V I E W
@@ -167,6 +174,18 @@ public abstract class Controller<E>
 	public void setBreakExpand(final boolean breakExpand)
 	{
 		this.breakExpand = breakExpand;
+	}
+
+	public boolean takeRequestFocus()
+	{
+		boolean result = this.requestFocus;
+		this.requestFocus = false;
+		return result;
+	}
+
+	public void setRequestFocus()
+	{
+		this.requestFocus = true;
 	}
 
 	// M O D E L

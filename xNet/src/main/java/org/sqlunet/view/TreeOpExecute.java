@@ -73,11 +73,16 @@ public class TreeOpExecute
 
 		switch (code)
 		{
+			// V I E W   L A Y O U T   C H A N G I N G
+
 			case NEWTREE:
 			{
 				Log.d(TAG, "vvv " + op.getCode() + " " + node.toString());
 				final View view = treeView.expandNode(node, -1, false, false);
-				view.requestFocus();
+				if (node.getController().takeRequestFocus())
+				{
+					view.requestFocus();
+				}
 			}
 			break;
 
@@ -92,21 +97,21 @@ public class TreeOpExecute
 			{
 				Log.d(TAG, "... " + op.getCode() + " " + node.toString());
 				final View view = treeView.newNodeView(node, levels);
-				view.requestFocus();
+				if (node.getController().takeRequestFocus())
+				{
+					view.requestFocus();
+				}
 			}
 			break;
 
 			case UPDATE:
 			{
 				Log.d(TAG, "!!! " + op.getCode() + " " + node.toString());
-				treeView.update(node);
-			}
-			break;
-
-			case DEADEND:
-			{
-				Log.d(TAG, "xxx " + op.getCode() + " " + node.toString());
-				treeView.deadend(node);
+				final View view = treeView.update(node);
+				if (node.getController().takeRequestFocus() && view != null)
+				{
+					view.requestFocus();
+				}
 			}
 			break;
 
@@ -122,18 +127,19 @@ public class TreeOpExecute
 			}
 			break;
 
-			case BREAK_EXPAND_AT:
-			{
-				Log.d(TAG, "||| " + op.getCode() + " " + node.toString());
-				final Controller<?> controller = node.getController();
-				controller.setBreakExpand(true);
-			}
-			break;
-
 			case REMOVE:
 			{
 				Log.d(TAG, "--- " + op.getCode() + " " + node.toString());
 				treeView.remove(node);
+			}
+			break;
+
+			// V I E W   C H A N G I N G
+
+			case DEADEND:
+			{
+				Log.d(TAG, "xxx " + op.getCode() + " " + node.toString());
+				treeView.deadend(node);
 			}
 			break;
 
