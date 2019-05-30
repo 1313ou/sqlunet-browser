@@ -81,6 +81,11 @@ public class TreeView
 	private final TreeNode root;
 
 	/**
+	 * (Top) scroll view
+	 */
+	private View view;
+
+	/**
 	 * Context
 	 */
 	private final Context context;
@@ -147,6 +152,16 @@ public class TreeView
 	// V I E W
 
 	/**
+	 * Get view
+	 *
+	 * @return top (scrolling) view
+	 */
+	public View getView()
+	{
+		return view;
+	}
+
+	/**
 	 * View factory
 	 *
 	 * @return view
@@ -196,8 +211,11 @@ public class TreeView
 
 		// root
 		final RootController rootController = (RootController) this.root.getController();
-		rootController.setRequestFocus();
+		rootController.ensureVisible();
 		rootController.setContentView(contentView);
+
+		// keep reference
+		this.view = view;
 
 		return view;
 	}
@@ -466,7 +484,7 @@ public class TreeView
 			}
 
 			// toggle node
-			node.getController().setRequestFocus();
+			node.getController().ensureVisible();
 			toggleNode(node);
 		});
 	}
@@ -584,6 +602,7 @@ public class TreeView
 		final View view = expandNode(this.root, -1, false, false);
 		if (view != null)
 		{
+			getView().scrollTo(0, (int) view.getY());
 			view.requestFocus();
 		}
 	}

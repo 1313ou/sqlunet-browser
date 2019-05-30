@@ -79,8 +79,9 @@ public class TreeOpExecute
 			{
 				Log.d(TAG, "vvv " + op.getCode() + " " + node.toString());
 				final View view = treeView.expandNode(node, -1, false, false);
-				if (node.getController().takeRequestFocus())
+				if (node.getController().takeEnsureVisible())
 				{
+					treeView.getView().scrollTo(0, (int) view.getY());
 					view.requestFocus();
 				}
 			}
@@ -97,8 +98,9 @@ public class TreeOpExecute
 			{
 				Log.d(TAG, "... " + op.getCode() + " " + node.toString());
 				final View view = treeView.newNodeView(node, levels);
-				if (node.getController().takeRequestFocus())
+				if (node.getController().takeEnsureVisible())
 				{
+					treeView.getView().scrollTo(0, (int) view.getY());
 					view.requestFocus();
 				}
 			}
@@ -108,8 +110,9 @@ public class TreeOpExecute
 			{
 				Log.d(TAG, "!!! " + op.getCode() + " " + node.toString());
 				final View view = treeView.update(node);
-				if (node.getController().takeRequestFocus() && view != null)
+				if (node.getController().takeEnsureVisible() && view != null)
 				{
+					treeView.getView().scrollTo(0, (int) view.getY());
 					view.requestFocus();
 				}
 			}
