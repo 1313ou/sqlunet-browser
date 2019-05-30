@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.sqlunet.treeview.model.TreeNode;
+import org.sqlunet.treeview.view.SubtreeView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,6 +38,17 @@ public class RootController extends Controller<Void>
 	public ViewGroup getChildrenView()
 	{
 		return this.contentView;
+	}
+
+	@NonNull
+	@Override
+	public SubtreeView getSubtreeView()
+	{
+		if (this.contentView != null && this.contentView.getChildCount() > 0)
+		{
+			return (SubtreeView) this.contentView.getChildAt(0);
+		}
+		return null;
 	}
 
 	public void setContentView(final ViewGroup contentView)

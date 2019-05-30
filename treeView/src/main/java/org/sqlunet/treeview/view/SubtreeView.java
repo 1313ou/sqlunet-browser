@@ -138,6 +138,8 @@ public class SubtreeView extends LinearLayout
 	private void init(final Context context)
 	{
 		setOrientation(LinearLayout.VERTICAL);
+		setFocusable(true);
+		//setFocusable(View.FOCUSABLE);
 
 		// node view
 		if (this.nodeView != null)

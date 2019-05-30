@@ -80,7 +80,7 @@ public abstract class Controller<E>
 
 	// V I E W
 
-	public View createView(@NonNull final Context context, final int containerStyle)
+	public SubtreeView createView(@NonNull final Context context, final int containerStyle)
 	{
 		// node view
 		//noinspection unchecked

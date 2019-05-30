@@ -196,6 +196,7 @@ public class TreeView
 
 		// root
 		final RootController rootController = (RootController) this.root.getController();
+		rootController.setRequestFocus();
 		rootController.setContentView(contentView);
 
 		return view;
@@ -365,12 +366,12 @@ public class TreeView
 	{
 		Log.d(TAG, "Insert subtree view at index " + atIndex + " for node " + node + " count=" + childrenView.getChildCount());
 		final Controller<?> controller = node.getController();
-		View subtreeView = controller.getSubtreeView();
+		SubtreeView subtreeView = controller.getSubtreeView();
 		if (subtreeView == null)
 		{
 			subtreeView = controller.createView(this.context, this.containerStyle);
 		}
-		final View view = subtreeView;
+		final SubtreeView view = subtreeView;
 
 		// remove from parent
 		ViewParent parent = view.getParent();
@@ -580,7 +581,11 @@ public class TreeView
 	 */
 	public void expandAll()
 	{
-		expandNode(this.root, -1, false, false);
+		final View view = expandNode(this.root, -1, false, false);
+		if (view != null)
+		{
+			view.requestFocus();
+		}
 	}
 
 	/**
@@ -610,7 +615,7 @@ public class TreeView
 	 * @param levels              expanded subnodes level (-1 == unlimited)
 	 * @param fireHotNodes        whether to fire hot nodes
 	 * @param overrideBreakExpand whether to override node break expand
-	 * @return children container view
+	 * @return subtree view
 	 */
 	public View expandNode(@NonNull final TreeNode node, final int levels, final boolean fireHotNodes, final boolean overrideBreakExpand)
 	{
@@ -689,7 +694,7 @@ public class TreeView
 			controller.fire();
 		}
 
-		return childrenView;
+		return controller.getSubtreeView();
 	}
 
 	/**
