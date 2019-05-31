@@ -19,6 +19,7 @@ import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.verbnet.browser.VerbNetFragment;
 import org.sqlunet.wordnet.browser.SenseFragment;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -30,6 +31,18 @@ import androidx.fragment.app.FragmentTransaction;
  */
 public class Browse2Fragment extends BaseBrowse2Fragment
 {
+	public static final String ARG_ALT = "alt_arg";
+
+	@Override
+	public void onCreate(@Nullable final Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+
+		final Bundle args = getArguments();
+		final boolean alt = args != null && args.getBoolean(ARG_ALT);
+		this.layoutId = alt ? R.layout.fragment_browse2_multi_alt : R.layout.fragment_browse2_multi;
+	}
+
 	/**
 	 * Search
 	 */

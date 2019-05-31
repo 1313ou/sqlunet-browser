@@ -65,11 +65,14 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 		// two-pane specific set up
 		if (isTwoPane(view))
 		{
-			// detail fragment
+			// detail fragment (rigid layout)
 			Fragment browse2Fragment = manager.findFragmentByTag("browse2");
 			if (browse2Fragment == null)
 			{
 				browse2Fragment = new Browse2Fragment();
+				final Bundle args = new Bundle();
+				args.putBoolean(Browse2Fragment.ARG_ALT, false);
+				browse2Fragment.setArguments(args);
 			}
 			manager.beginTransaction() //
 					.replace(R.id.container_browse2, browse2Fragment, "browse2") //

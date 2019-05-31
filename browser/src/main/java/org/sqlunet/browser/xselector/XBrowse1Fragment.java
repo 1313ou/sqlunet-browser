@@ -65,11 +65,14 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 		// two-pane specific set up
 		if (isTwoPane(view))
 		{
-			// detail fragment
+			// detail fragment (rigid layout)
 			Fragment browse2Fragment = manager.findFragmentByTag("browse2");
 			if (browse2Fragment == null)
 			{
 				browse2Fragment = new Browse2Fragment();
+				final Bundle args = new Bundle();
+				args.putBoolean(Browse2Fragment.ARG_ALT, false);
+				browse2Fragment.setArguments(args);
 			}
 			manager.beginTransaction() //
 					.replace(R.id.container_browse2, browse2Fragment, "browse2") //
@@ -119,7 +122,7 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 			args.putString(ProviderArgs.ARG_HINTWORD, word);
 			args.putString(ProviderArgs.ARG_HINTCASED, cased);
 			args.putString(ProviderArgs.ARG_HINTPOS, pos);
-
+			args.putBoolean(Browse2Fragment.ARG_ALT, pointer.getXGroup() != 0);
 			final Intent intent = new Intent(requireContext(), Browse2Activity.class);
 			intent.putExtras(args);
 			startActivity(intent);

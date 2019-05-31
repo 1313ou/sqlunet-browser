@@ -81,7 +81,7 @@ public class TreeOpExecute
 				final View view = treeView.expandNode(node, -1, false, false);
 				if (node.getController().takeEnsureVisible())
 				{
-					treeView.getView().scrollTo(0, (int) view.getY());
+					treeView.scrollTo(view);
 					view.requestFocus();
 				}
 			}
@@ -100,7 +100,7 @@ public class TreeOpExecute
 				final View view = treeView.newNodeView(node, levels);
 				if (node.getController().takeEnsureVisible())
 				{
-					treeView.getView().scrollTo(0, (int) view.getY());
+					treeView.scrollTo(view);
 					view.requestFocus();
 				}
 			}
@@ -112,7 +112,7 @@ public class TreeOpExecute
 				final View view = treeView.update(node);
 				if (node.getController().takeEnsureVisible() && view != null)
 				{
-					treeView.getView().scrollTo(0, (int) view.getY());
+					treeView.scrollTo(view);
 					view.requestFocus();
 				}
 			}

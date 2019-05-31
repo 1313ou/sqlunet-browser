@@ -39,6 +39,17 @@ public class Browse2Activity extends AppCompatActivity
 		final ActionBar actionBar = getSupportActionBar();
 		assert actionBar != null;
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
+
+		// fragment
+		final Browse2Fragment browse2Fragment = new Browse2Fragment();
+		final boolean alt = getIntent().getBooleanExtra(Browse2Fragment.ARG_ALT, false);
+		final Bundle args = new Bundle();
+		args.putBoolean(Browse2Fragment.ARG_ALT, alt);
+		browse2Fragment.setArguments(args);
+		getSupportFragmentManager() //
+				.beginTransaction() //
+				.replace(R.id.container_browse2, browse2Fragment, "browse2") //
+				.commit();
 	}
 
 	@Override
@@ -52,7 +63,7 @@ public class Browse2Activity extends AppCompatActivity
 		//final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
 		final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 		final String pos = args.getString(ProviderArgs.ARG_HINTPOS);
-		final Browse2Fragment fragment = (Browse2Fragment) getSupportFragmentManager().findFragmentById(R.id.fragment_detail);
+		final Browse2Fragment fragment = (Browse2Fragment) getSupportFragmentManager().findFragmentByTag("browse2");
 		assert fragment != null;
 		fragment.search(pointer, pos);
 	}

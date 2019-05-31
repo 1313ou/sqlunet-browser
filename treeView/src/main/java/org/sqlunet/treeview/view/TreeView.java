@@ -575,6 +575,19 @@ public class TreeView
 		return childrenView;
 	}
 
+	// S C R O L L T O
+
+	public void scrollTo(final View view)
+	{
+		int y = (int) view.getY();
+		Log.d(TAG, "SCROLL " + y + " " + view);
+		if (y == 0)
+		{
+			return;
+		}
+		getView().scrollTo(0, y);
+	}
+
 	// E X P A N D  /  C O L L A P S E
 
 	/**
@@ -602,7 +615,7 @@ public class TreeView
 		final View view = expandNode(this.root, -1, false, false);
 		if (view != null)
 		{
-			getView().scrollTo(0, (int) view.getY());
+			scrollTo(view);
 			view.requestFocus();
 		}
 	}

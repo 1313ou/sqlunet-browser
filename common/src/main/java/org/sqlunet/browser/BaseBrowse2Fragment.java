@@ -35,6 +35,8 @@ public abstract class BaseBrowse2Fragment extends Fragment
 	@Nullable
 	String pos = null;
 
+	protected int layoutId = R.layout.fragment_browse2_multi;
+
 	// C R E A T I O N
 
 	/**
@@ -51,6 +53,7 @@ public abstract class BaseBrowse2Fragment extends Fragment
 		// retain instance
 		setRetainInstance(true);
 
+		// mode
 		final Settings.DetailViewMode mode = Settings.getDetailViewModePref(requireContext());
 
 		// view
@@ -58,7 +61,7 @@ public abstract class BaseBrowse2Fragment extends Fragment
 		switch (mode)
 		{
 			case VIEW:
-				view = inflater.inflate(R.layout.fragment_browse2_multi, container, false);
+				view = inflater.inflate(this.layoutId , container, false);
 				break;
 			case WEB:
 				view = inflater.inflate(R.layout.fragment_browse2, container, false);
