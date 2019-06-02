@@ -379,24 +379,6 @@ public class FrameNetContract
 		static public final String TEXT = "text";
 	}
 
-	static public final class Suggest_FnWords
-	{
-		static final String SEARCH_WORD_PATH = "suggest_fnword";
-		static public final String TABLE = Suggest_FnWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
-		static public final String FNWORDID = "fnwordid";
-		static public final String WORDID = "wordid";
-		static public final String WORD = "word";
-	}
-
-	static public final class Suggest_FTS_FnWords
-	{
-		static final String SEARCH_WORD_PATH = "suggest_fts_fnword";
-		static public final String TABLE = Suggest_FTS_FnWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
-		static public final String FNWORDID = "fnwordid";
-		static public final String WORDID = "wordid";
-		static public final String WORD = "word";
-	}
-
 	static public final class Lookup_FnWords
 	{
 		static public final String TABLE = "fts_fnwords";
@@ -434,5 +416,23 @@ public class FrameNetContract
 		static public final String LEXUNITS = "lexunits";
 		static public final String ANNOSETID = "annosetid";
 		static public final String ANNOSETS = "annosets";
+	}
+
+	static public final class Suggest_FnWords
+	{
+		static final String SEARCH_WORD_PATH = "suggest_fnword";
+		static public final String TABLE = Suggest_FnWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
+		static public final String FNWORDID = "fnwordid";
+		static public final String WORDID = "wordid";
+		static public final String WORD = "word";
+	}
+
+	static public final class Suggest_FTS_FnWords
+	{
+		static final String SEARCH_WORD_PATH = "suggest_fts_fnword";
+		static public final String TABLE = Suggest_FTS_FnWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
+		static public final String FNWORDID = "fnwordid";
+		static public final String WORDID = "wordid";
+		static public final String WORD = "word";
 	}
 }

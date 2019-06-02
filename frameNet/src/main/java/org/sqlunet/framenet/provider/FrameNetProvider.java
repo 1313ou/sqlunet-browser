@@ -109,6 +109,7 @@ public class FrameNetProvider extends BaseProvider
 	static private final int LOOKUP_FTS_SENTENCES_X = 512;
 	static private final int LOOKUP_FTS_SENTENCES_X_BY_SENTENCE = 513;
 
+	// suggest
 	static private final int SUGGEST_WORDS = 601;
 	static private final int SUGGEST_FTS_WORDS = 602;
 
@@ -608,6 +609,7 @@ public class FrameNetProvider extends BaseProvider
 						"word LIKE ? || '%'", //
 						new String[]{last}, null, null, null);
 			}
+
 			case SUGGEST_FTS_WORDS:
 			{
 				final String last = uri.getLastPathSegment();
@@ -620,7 +622,7 @@ public class FrameNetProvider extends BaseProvider
 								"word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
 								"word AS " + SearchManager.SUGGEST_COLUMN_QUERY}, //
 						"word MATCH ?", //
-						new String[]{last}, null, null, null);
+						new String[]{last + '*'}, null, null, null);
 			}
 
 			default:

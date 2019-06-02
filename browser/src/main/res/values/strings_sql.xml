@@ -121,7 +121,7 @@
 			DROP INDEX IF EXISTS index_senses_synsetid;
 			DROP INDEX IF EXISTS index_synsets_synsetid;
 			DROP INDEX IF EXISTS index_casedwords_wordid_casedwordid;
-			DROP INDEX IF EXISTS index_semlinks_synset1id;
+			DROP INDEX IF EXISTS index_semlinks_synset1id
 			DROP INDEX IF EXISTS index_semlinks_linkid;
 			DROP INDEX IF EXISTS index_samples_synsetid;</item>
 		<item>

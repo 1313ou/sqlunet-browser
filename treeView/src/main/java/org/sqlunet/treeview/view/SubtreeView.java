@@ -179,4 +179,11 @@ public class SubtreeView extends LinearLayout
 	{
 		removeView(nodeView);
 	}
+
+	@NonNull
+	@Override
+	public String toString()
+	{
+		return "subtreeview for " + getTag().toString();
+	}
 }

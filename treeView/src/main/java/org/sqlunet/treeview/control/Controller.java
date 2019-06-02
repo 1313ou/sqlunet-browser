@@ -183,7 +183,7 @@ public abstract class Controller<E>
 		return result;
 	}
 
-	public void ensureVisible()
+	public void flagEnsureVisible()
 	{
 		this.ensureVisible = true;
 	}

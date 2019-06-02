@@ -42,8 +42,9 @@ import org.sqlunet.wordnet.provider.WordNetContract.SemLinks_Synsets_X;
 import org.sqlunet.wordnet.provider.WordNetContract.Senses;
 import org.sqlunet.wordnet.provider.WordNetContract.Senses_Synsets_PosTypes_LexDomains;
 import org.sqlunet.wordnet.provider.WordNetContract.Senses_Words;
-import org.sqlunet.wordnet.provider.WordNetContract.Suggest_Definitions;
-import org.sqlunet.wordnet.provider.WordNetContract.Suggest_Samples;
+import org.sqlunet.wordnet.provider.WordNetContract.Suggest_FTS_Definitions;
+import org.sqlunet.wordnet.provider.WordNetContract.Suggest_FTS_Samples;
+import org.sqlunet.wordnet.provider.WordNetContract.Suggest_FTS_Words;
 import org.sqlunet.wordnet.provider.WordNetContract.Suggest_Words;
 import org.sqlunet.wordnet.provider.WordNetContract.Synsets;
 import org.sqlunet.wordnet.provider.WordNetContract.Synsets_PosTypes_LexDomains;
@@ -133,9 +134,10 @@ public class WordNetProvider extends BaseProvider
 	static private final int LOOKUP_FTS_SAMPLES = 830;
 
 	// suggest codes
-	static private final int SUGGEST_WORDS = 910;
-	static private final int SUGGEST_DEFINITIONS = 920;
-	static private final int SUGGEST_SAMPLES = 930;
+	static private final int SUGGEST_WORDS = 900;
+	static private final int SUGGEST_FTS_WORDS = 910;
+	static private final int SUGGEST_FTS_DEFINITIONS = 920;
+	static private final int SUGGEST_FTS_SAMPLES = 930;
 
 	static private void matchURIs()
 	{
@@ -193,10 +195,12 @@ public class WordNetProvider extends BaseProvider
 		// search
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_Words.TABLE + "/*", WordNetProvider.SUGGEST_WORDS);
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_Words.TABLE + "/", WordNetProvider.SUGGEST_WORDS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_Definitions.TABLE + "/*", WordNetProvider.SUGGEST_DEFINITIONS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_Definitions.TABLE + "/", WordNetProvider.SUGGEST_DEFINITIONS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_Samples.TABLE + "/*", WordNetProvider.SUGGEST_SAMPLES);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_Samples.TABLE + "/", WordNetProvider.SUGGEST_SAMPLES);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_Words.TABLE + "/*", WordNetProvider.SUGGEST_FTS_WORDS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_Words.TABLE + "/", WordNetProvider.SUGGEST_FTS_WORDS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_Definitions.TABLE + "/*", WordNetProvider.SUGGEST_FTS_DEFINITIONS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_Definitions.TABLE + "/", WordNetProvider.SUGGEST_FTS_DEFINITIONS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_Samples.TABLE + "/*", WordNetProvider.SUGGEST_FTS_SAMPLES);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_Samples.TABLE + "/", WordNetProvider.SUGGEST_FTS_SAMPLES);
 	}
 
 
@@ -311,11 +315,11 @@ public class WordNetProvider extends BaseProvider
 
 			// S E A R C H
 
-			case SUGGEST_WORDS:
+			case SUGGEST_FTS_WORDS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words.TABLE;
-			case SUGGEST_DEFINITIONS:
+			case SUGGEST_FTS_DEFINITIONS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Synsets.TABLE;
-			case SUGGEST_SAMPLES:
+			case SUGGEST_FTS_SAMPLES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Samples.TABLE;
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");
@@ -481,6 +485,49 @@ public class WordNetProvider extends BaseProvider
 						"LEFT JOIN lexdomains USING(lexdomainid)";
 				break;
 
+			case LINKS_SENSES_WORDS_X_BY_SYNSET:
+			{
+				final String table1 = "semlinks";
+				final String table2 = "lexlinks";
+				final String[] projection1 = { //
+						SemLinks.LINKID, //
+						SemLinks.SYNSETID1, //
+						SemLinks.SYNSETID2, //
+				};
+				final String[] projection2 = { //
+						LexLinks.LINKID, //
+						LexLinks.WORDID1, //
+						LexLinks.SYNSETID1, //
+						LexLinks.WORDID2, //
+						LexLinks.SYNSETID2,};
+				final String[] unionProjection = { //
+						Links.LINKID, //
+						Links.WORDID1, //
+						Links.SYNSETID1, //
+						Links.WORDID2, //
+						Links.SYNSETID2, //
+				};
+				groupBy = BaseModule.TARGET_SYNSETID + " , " + WordNetContract.TYPE + " , link, linkid, " + BaseModule.TARGET_WORDID + ',' + BaseModule.TARGET_LEMMA;
+				final String[] selections = selection.split("/\\*\\*/\\|/\\*\\*/");
+				table = "( " + makeQuery(table1, //
+						table2, //
+						projection1, //
+						projection2, //
+						unionProjection, //
+						WordNetContract.TYPE, //
+						"sem", //
+						"lex", //
+						selections[0], //
+						selections[1]) + " ) AS " + WordNetContract.LINK + ' ' + //
+						"INNER JOIN linktypes USING (linkid) " + //
+						"INNER JOIN synsets AS " + WordNetContract.DEST + " ON " + WordNetContract.LINK + ".synset2id = " + WordNetContract.DEST + ".synsetid " + //
+						"LEFT JOIN senses ON " + WordNetContract.DEST + ".synsetid = senses.synsetid " + //
+						"LEFT JOIN words AS " + WordNetContract.WORD + " USING (wordid) " + //
+						"LEFT JOIN words AS " + WordNetContract.WORD2 + " ON " + WordNetContract.LINK + ".word2id = " + WordNetContract.WORD2 + ".wordid";
+				actualSelection = null;
+			}
+			break;
+
 			case SEMLINKS_SYNSETS:
 				table = "semlinks AS " + WordNetContract.LINK + ' ' + //
 						"INNER JOIN synsets AS " + WordNetContract.DEST + " ON " + WordNetContract.LINK + ".synset2id = " + WordNetContract.DEST + ".synsetid";
@@ -578,15 +625,30 @@ public class WordNetProvider extends BaseProvider
 				{
 					return null;
 				}
+				table = "words";
+				return this.db.query(table, new String[]{"wordid AS _id", //
+								"lemma AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
+								"lemma AS " + SearchManager.SUGGEST_COLUMN_QUERY}, //
+						"lemma LIKE ? || '%'", //
+						new String[]{last}, null, null, null);
+			}
+
+			case SUGGEST_FTS_WORDS:
+			{
+				final String last = uri.getLastPathSegment();
+				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(last))
+				{
+					return null;
+				}
 				table = "words_lemma_fts4";
 				return this.db.query(table, new String[]{"wordid AS _id", //
 								"lemma AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
 								"lemma AS " + SearchManager.SUGGEST_COLUMN_QUERY}, //
 						"lemma MATCH ?", //
-						new String[]{last}, null, null, null);
+						new String[]{last + '*'}, null, null, null);
 			}
 
-			case SUGGEST_DEFINITIONS:
+			case SUGGEST_FTS_DEFINITIONS:
 			{
 				final String last = uri.getLastPathSegment();
 				table = "synsets_definition_fts4";
@@ -594,10 +656,10 @@ public class WordNetProvider extends BaseProvider
 								"definition AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
 								"definition AS " + SearchManager.SUGGEST_COLUMN_QUERY}, //
 						"definition MATCH ?", //
-						new String[]{last}, null, null, null);
+						new String[]{last + '*'}, null, null, null);
 			}
 
-			case SUGGEST_SAMPLES:
+			case SUGGEST_FTS_SAMPLES:
 			{
 				final String last = uri.getLastPathSegment();
 				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(last))
@@ -608,51 +670,8 @@ public class WordNetProvider extends BaseProvider
 				return this.db.query(table, new String[]{"sampleid AS _id", //
 								"sample AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
 								"sample AS " + SearchManager.SUGGEST_COLUMN_QUERY}, //
-						"sample MATCH ?", new String[]{last}, null, null, null);
+						"sample MATCH ?", new String[]{last + '*'}, null, null, null);
 			}
-
-			case LINKS_SENSES_WORDS_X_BY_SYNSET:
-			{
-				final String table1 = "semlinks";
-				final String table2 = "lexlinks";
-				final String[] projection1 = { //
-						SemLinks.LINKID, //
-						SemLinks.SYNSETID1, //
-						SemLinks.SYNSETID2, //
-				};
-				final String[] projection2 = { //
-						LexLinks.LINKID, //
-						LexLinks.WORDID1, //
-						LexLinks.SYNSETID1, //
-						LexLinks.WORDID2, //
-						LexLinks.SYNSETID2,};
-				final String[] unionProjection = { //
-						Links.LINKID, //
-						Links.WORDID1, //
-						Links.SYNSETID1, //
-						Links.WORDID2, //
-						Links.SYNSETID2, //
-				};
-				groupBy = BaseModule.TARGET_SYNSETID + " , " + WordNetContract.TYPE + " , link, linkid, " + BaseModule.TARGET_WORDID + ',' + BaseModule.TARGET_LEMMA;
-				final String[] selections = selection.split("/\\*\\*/\\|/\\*\\*/");
-				table = "( " + makeQuery(table1, //
-						table2, //
-						projection1, //
-						projection2, //
-						unionProjection, //
-						WordNetContract.TYPE, //
-						"sem", //
-						"lex", //
-						selections[0], //
-						selections[1]) + " ) AS " + WordNetContract.LINK + ' ' + //
-						"INNER JOIN linktypes USING (linkid) " + //
-						"INNER JOIN synsets AS " + WordNetContract.DEST + " ON " + WordNetContract.LINK + ".synset2id = " + WordNetContract.DEST + ".synsetid " + //
-						"LEFT JOIN senses ON " + WordNetContract.DEST + ".synsetid = senses.synsetid " + //
-						"LEFT JOIN words AS " + WordNetContract.WORD + " USING (wordid) " + //
-						"LEFT JOIN words AS " + WordNetContract.WORD2 + " ON " + WordNetContract.LINK + ".word2id = " + WordNetContract.WORD2 + ".wordid";
-				actualSelection = null;
-			}
-			break;
 
 			case UriMatcher.NO_MATCH:
 			default:

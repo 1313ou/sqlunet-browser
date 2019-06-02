@@ -4,6 +4,8 @@
 
 package org.sqlunet.verbnet.provider;
 
+import android.app.SearchManager;
+
 /**
  * VerbNet provider contract
  *
@@ -11,6 +13,16 @@ package org.sqlunet.verbnet.provider;
  */
 public class VerbNetContract
 {
+	@SuppressWarnings("unused")
+	static public final class VnWords
+	{
+		static public final String TABLE = "vnwords";
+		static public final String CONTENT_URI_TABLE = VnWords.TABLE;
+		static public final String VNWORDID = "vnwordid";
+		static public final String WORDID = "wordid";
+		static public final String WORD = "lemma";
+	}
+
 	@SuppressWarnings("unused")
 	static public final class VnClasses
 	{
@@ -103,5 +115,23 @@ public class VerbNetContract
 		static public final String FRAMEID = "frameid";
 		static public final String CLASSES = "classes";
 		static public final String FRAMES = "frames";
+	}
+
+	static public final class Suggest_VnWords
+	{
+		static final String SEARCH_WORD_PATH = "suggest_vnword";
+		static public final String TABLE = Suggest_VnWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
+		static public final String VNWORDID = "vnwordid";
+		static public final String WORDID = "wordid";
+		static public final String WORD = "lemma";
+	}
+
+	static public final class Suggest_FTS_VnWords
+	{
+		static final String SEARCH_WORD_PATH = "suggest_fts_vnword";
+		static public final String TABLE = Suggest_FTS_VnWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
+		static public final String VNWORDID = "vnwordid";
+		static public final String WORDID = "wordid";
+		static public final String WORD = "lemma";
 	}
 }

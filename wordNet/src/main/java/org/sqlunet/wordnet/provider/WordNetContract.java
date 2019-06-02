@@ -387,15 +387,21 @@ public class WordNetContract
 		static public final String TABLE = Suggest_Words.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 	}
 
-	static public final class Suggest_Definitions
+	static public final class Suggest_FTS_Words
 	{
-		static final String SEARCH_DEFINITION_PATH = "suggest_definition";
-		static public final String TABLE = Suggest_Definitions.SEARCH_DEFINITION_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
+		static final String SEARCH_WORD_PATH = "suggest_fts_word";
+		static public final String TABLE = Suggest_FTS_Words.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 	}
 
-	static public final class Suggest_Samples
+	static public final class Suggest_FTS_Definitions
 	{
-		static final String SEARCH_SAMPLE_PATH = "suggest_definition";
-		static public final String TABLE = Suggest_Samples.SEARCH_SAMPLE_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
+		static final String SEARCH_DEFINITION_PATH = "suggest_fts_definition";
+		static public final String TABLE = Suggest_FTS_Definitions.SEARCH_DEFINITION_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
+	}
+
+	static public final class Suggest_FTS_Samples
+	{
+		static final String SEARCH_SAMPLE_PATH = "suggest_fts_definition";
+		static public final String TABLE = Suggest_FTS_Samples.SEARCH_SAMPLE_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 	}
 }

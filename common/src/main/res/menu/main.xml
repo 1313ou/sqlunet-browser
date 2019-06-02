@@ -76,6 +76,11 @@
 		app:showAsAction="never">
 		<menu>
 			<item
+				android:id="@+id/action_searchinfo"
+				android:title="@string/action_searchinfo"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource"/>
+			<item
 				android:id="@+id/action_appsettings"
 				android:title="@string/action_appsettings"
 				app:showAsAction="never"

@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.view.ViewParent;
+import android.view.ViewTreeObserver;
 import android.view.animation.LinearInterpolator;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -34,6 +35,9 @@ import java.util.Set;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.widget.NestedScrollView;
+
+import static android.view.View.FOCUSABLES_TOUCH_MODE;
+import static android.view.ViewGroup.FOCUS_BLOCK_DESCENDANTS;
 
 /* @formatter:off */
 /*
@@ -206,12 +210,15 @@ public class TreeView
 		final LinearLayout contentView = new LinearLayout(containerContext, null, this.containerStyle);
 		contentView.setId(R.id.tree_view);
 		contentView.setOrientation(LinearLayout.VERTICAL);
+		contentView.setFocusable(true);
+		contentView.setFocusableInTouchMode(true);
+		contentView.setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
 		contentView.setVisibility(View.GONE);
 		view.addView(contentView);
 
 		// root
 		final RootController rootController = (RootController) this.root.getController();
-		rootController.ensureVisible();
+		rootController.flagEnsureVisible();
 		rootController.setContentView(contentView);
 
 		// keep reference
@@ -428,29 +435,6 @@ public class TreeView
 			}
 		}
 
-		/*
-		// scroll when dimensions are available
-		final ViewTreeObserver viewTreeObserver = childrenView.getViewTreeObserver();
-		viewTreeObserver.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener()
-		{
-			@Override
-			public boolean onPreDraw()
-			{
-				childrenView.getViewTreeObserver().removeOnPreDrawListener(this);
-
-				int h = view.getHeight();
-				if (h > 0)
-				{
-					Log.d(TAG, "Scroll by " + h);
-					TreeView.this.view.scrollBy(0, h);
-					//((NestedScrollView)TreeView.this.view).smoothScrollBy(0, h);
-					return false; // cancel the current drawing pass
-				}
-				return true; // proceed with the current drawing pass
-			}
-		});
-		*/
-
 		// add to children view
 		childrenView.addView(view, atIndex);
 
@@ -484,7 +468,7 @@ public class TreeView
 			}
 
 			// toggle node
-			node.getController().ensureVisible();
+			node.getController().flagEnsureVisible();
 			toggleNode(node);
 		});
 	}
@@ -575,17 +559,52 @@ public class TreeView
 		return childrenView;
 	}
 
-	// S C R O L L T O
+	// V I S I B I L I T Y
 
-	public void scrollTo(final View view)
+	public void ensureVisible(final View view)
 	{
-		int y = (int) view.getY();
+		view.requestFocus();
+		// scrollToDeferred(view);
+	}
+
+	public void scrollToDeferred(final View view)
+	{
+		// scroll when dimensions are available
+		final ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
+		viewTreeObserver.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener()
+		{
+			@Override
+			public boolean onPreDraw()
+			{
+				view.getViewTreeObserver().removeOnPreDrawListener(this);
+				return scrollTo(view); // false = cancel the current drawing pass
+			}
+		});
+	}
+
+	private boolean scrollTo(final View view)
+	{
+		int y = getPosition(view);
 		Log.d(TAG, "SCROLL " + y + " " + view);
 		if (y == 0)
 		{
-			return;
+			return false;
 		}
-		getView().scrollTo(0, y);
+		TreeView.this.view.scrollTo(0, y);
+		//((NestedScrollView)TreeView.this.view).smoothScrollTo(0, y);
+		return true;
+	}
+
+	private int getPosition(final View view)
+	{
+		int y = view.getTop();
+		View parent = (View) view.getParent();
+		while (parent != this.view)
+		{
+			y += parent.getTop();
+			parent = (View) parent.getParent();
+		}
+		return (int) (y + this.view.getTranslationY());
 	}
 
 	// E X P A N D  /  C O L L A P S E
@@ -615,8 +634,7 @@ public class TreeView
 		final View view = expandNode(this.root, -1, false, false);
 		if (view != null)
 		{
-			scrollTo(view);
-			view.requestFocus();
+			ensureVisible(view);
 		}
 	}
 

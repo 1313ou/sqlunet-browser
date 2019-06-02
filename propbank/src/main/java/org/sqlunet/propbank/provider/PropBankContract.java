@@ -5,6 +5,8 @@
 package org.sqlunet.propbank.provider;
 
 
+import android.app.SearchManager;
+
 /**
  * PropBank provider contract
  *
@@ -20,6 +22,16 @@ public class PropBankContract
 	static public final String ARG = "a";
 	static public final String WORD = "w";
 	static public final String MEMBER = "m";
+
+	@SuppressWarnings("unused")
+	static public final class PbWords
+	{
+		static public final String TABLE = "pbwords";
+		static public final String CONTENT_URI_TABLE = PbWords.TABLE;
+		static public final String PBWORDID = "pbwordid";
+		static public final String WORDID = "wordid";
+		static public final String WORD = "lemma";
+	}
 
 	@SuppressWarnings("unused")
 	static public final class PbRoleSets
@@ -113,5 +125,23 @@ public class PropBankContract
 		static public final String ROLESETID = "rolesetid";
 		static public final String ROLESET = "rolesetname";
 		static public final String ROLESETS = "rolesets";
+	}
+
+	static public final class Suggest_PbWords
+	{
+		static final String SEARCH_WORD_PATH = "suggest_pbword";
+		static public final String TABLE = Suggest_PbWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
+		static public final String PBWORDID = "pbwordid";
+		static public final String WORDID = "wordid";
+		static public final String WORD = "lemma";
+	}
+
+	static public final class Suggest_FTS_PbWords
+	{
+		static final String SEARCH_WORD_PATH = "suggest_fts_pbword";
+		static public final String TABLE = Suggest_FTS_PbWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
+		static public final String PBWORDID = "pbwordid";
+		static public final String WORDID = "wordid";
+		static public final String WORD = "lemma";
 	}
 }
