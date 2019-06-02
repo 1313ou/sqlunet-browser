@@ -162,5 +162,7 @@
     <orderEntry type="module" module-name="xNet" />
     <orderEntry type="module" module-name="treeView" />
     <orderEntry type="module" module-name="xNet" />
+    <orderEntry type="module" module-name="treeView" />
+    <orderEntry type="module" module-name="xNet" />
   </component>
 </module>

@@ -6,7 +6,7 @@ import android.widget.ListView;
 
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matcher;
-import org.sqlunet.browser.wn.R;
+import org.sqlunet.browser.vn.R;
 
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.action.ViewActions;

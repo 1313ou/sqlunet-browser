@@ -109,6 +109,7 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 			final String query = intent.getStringExtra(SearchManager.QUERY);
 			if (query != null && this.fragment != null)
 			{
+				this.fragment.clearQuery();
 				this.fragment.search(query);
 			}
 		}
@@ -120,6 +121,7 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 				final String query = intent.getStringExtra(Intent.EXTRA_TEXT);
 				if (query != null && this.fragment != null)
 				{
+					this.fragment.clearQuery();
 					this.fragment.search(query);
 				}
 			}

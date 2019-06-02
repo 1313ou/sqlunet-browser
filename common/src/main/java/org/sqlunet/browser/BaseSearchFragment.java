@@ -90,7 +90,6 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 		super.onCreate(savedInstanceState);
 	}
 
-	@SuppressWarnings("WeakerAccess")
 	@Nullable
 	@SuppressLint("InflateParams")
 	@Override
@@ -119,7 +118,6 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 
 	// S A V E
 
-	@SuppressWarnings("WeakerAccess")
 	@Override
 	public void onSaveInstanceState(@NonNull final Bundle outState)
 	{
@@ -153,7 +151,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 
 	// A C T I O N B A R
 
-	@SuppressWarnings({"SameReturnValue", "WeakerAccess"})
+	@SuppressWarnings({"SameReturnValue"})
 	@SuppressLint("InflateParams")
 	@Override
 	public boolean setActionBar(@NonNull final ActionBar actionBar, @NonNull final Context context)
@@ -299,10 +297,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 			@Override
 			public boolean onQueryTextSubmit(final String query)
 			{
-				BaseSearchFragment.this.searchView.clearFocus();
-				BaseSearchFragment.this.searchView.setFocusable(false);
-				BaseSearchFragment.this.searchView.setQuery("", false);
-				closeKeyboard();
+				clearQuery();
 				searchMenuItem.collapseActionView();
 				return false;
 			}
@@ -313,6 +308,17 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 				return false;
 			}
 		});
+	}
+
+	public void clearQuery()
+	{
+		if (this.searchView != null)
+		{
+			this.searchView.clearFocus();
+			this.searchView.setFocusable(false);
+			this.searchView.setQuery("", false);
+			closeKeyboard();
+		}
 	}
 
 	private void closeKeyboard()

@@ -102,19 +102,6 @@ public class MenuHandler
 				// canceled.
 			});
 			alert.show();
-
-			/*
-			SearchView searchView = null;
-			MenuItem searchItem = activity.getMenumenu.findItem(R.id.action_search);
-			if (searchItem != null)
-			{
-				searchView = (SearchView) searchItem.getActionView();
-				if (searchView != null)
-				{
-					searchView.setSearchableInfo(info);
-				}
-			}
-			*/
 			return true;
 		}
 		else if (i == R.id.action_donate)

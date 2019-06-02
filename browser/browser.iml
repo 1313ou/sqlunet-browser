@@ -340,5 +340,19 @@
     <orderEntry type="module" module-name="frameNet" />
     <orderEntry type="module" module-name="wordNet" />
     <orderEntry type="module" module-name="xNet" />
+    <orderEntry type="module" module-name="propbank" />
+    <orderEntry type="module" module-name="test" scope="TEST" />
+    <orderEntry type="module" module-name="expandableListFragment" />
+    <orderEntry type="module" module-name="deploy" />
+    <orderEntry type="module" module-name="bNC" />
+    <orderEntry type="module" module-name="common" />
+    <orderEntry type="module" module-name="verbNet" />
+    <orderEntry type="module" module-name="preference" />
+    <orderEntry type="module" module-name="support" />
+    <orderEntry type="module" module-name="predicateMatrix" />
+    <orderEntry type="module" module-name="download" />
+    <orderEntry type="module" module-name="frameNet" />
+    <orderEntry type="module" module-name="wordNet" />
+    <orderEntry type="module" module-name="xNet" />
   </component>
 </module>
