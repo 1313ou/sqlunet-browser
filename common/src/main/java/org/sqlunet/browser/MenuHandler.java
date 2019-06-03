@@ -4,9 +4,6 @@
 
 package org.sqlunet.browser;
 
-import android.app.SearchManager;
-import android.app.SearchableInfo;
-import android.content.Context;
 import android.content.Intent;
 import android.view.MenuItem;
 
@@ -22,7 +19,6 @@ import org.sqlunet.support.DonateActivity;
 import org.sqlunet.support.OtherActivity;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 /**
@@ -85,22 +81,9 @@ public class MenuHandler
 		{
 			intent = new Intent(activity, AboutActivity.class);
 		}
-		else if (i == R.id.action_searchinfo)
+		else if (i == R.id.action_provider_info)
 		{
-			final SearchManager searchManager = (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
-			final SearchableInfo info = searchManager.getSearchableInfo(activity.getComponentName());
-			final String authority = info.getSuggestAuthority();
-			final String path = info.getSuggestPath();
-			final String pack = info.getSuggestPackage();
-			final String message = pack + '\n' + authority + '/' + path;
-
-			final AlertDialog.Builder alert = new AlertDialog.Builder(activity);
-			alert.setTitle(R.string.action_searchinfo);
-			alert.setMessage(message);
-			alert.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> {
-				// canceled.
-			});
-			alert.show();
+			Providers.listProviders(activity);
 			return true;
 		}
 		else if (i == R.id.action_donate)

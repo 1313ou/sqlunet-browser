@@ -76,8 +76,8 @@
 		app:showAsAction="never">
 		<menu>
 			<item
-				android:id="@+id/action_searchinfo"
-				android:title="@string/action_searchinfo"
+				android:id="@+id/action_provider_info"
+				android:title="@string/action_provider_info"
 				app:showAsAction="never"
 				tools:ignore="AppCompatResource"/>
 			<item

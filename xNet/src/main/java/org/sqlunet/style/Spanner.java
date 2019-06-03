@@ -310,35 +310,35 @@ public class Spanner
 	 * @param text      text
 	 * @param flags     flags
 	 * @param factories span factories
+	 * @return input spannable string builder
 	 */
-	static public void append(@NonNull final SpannableStringBuilder sb, @Nullable final CharSequence text, @SuppressWarnings("SameParameterValue") final long flags, @Nullable final SpanFactory... factories)
+	static public Appendable append(@NonNull final SpannableStringBuilder sb, @Nullable final CharSequence text, @SuppressWarnings("SameParameterValue") final long flags, @Nullable final SpanFactory... factories)
 	{
-		if (text == null || text.length() == 0)
+		if (text != null && text.length() > 0)
 		{
-			return;
-		}
-
-		final int from = sb.length();
-		sb.append(text);
-		final int to = sb.length();
-		if (factories != null)
-		{
-			for (final SpanFactory spanFactory : factories)
+			final int from = sb.length();
+			sb.append(text);
+			final int to = sb.length();
+			if (factories != null)
 			{
-				final Object spans = spanFactory.makeSpans(flags);
-				if (spans instanceof Object[])
+				for (final SpanFactory spanFactory : factories)
 				{
-					for (final Object span : (Object[]) spans)
+					final Object spans = spanFactory.makeSpans(flags);
+					if (spans instanceof Object[])
 					{
-						sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+						for (final Object span : (Object[]) spans)
+						{
+							sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+						}
 					}
-				}
-				else
-				{
-					sb.setSpan(spans, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+					else
+					{
+						sb.setSpan(spans, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+					}
 				}
 			}
 		}
+		return sb;
 	}
 
 	// H E L P E R S
