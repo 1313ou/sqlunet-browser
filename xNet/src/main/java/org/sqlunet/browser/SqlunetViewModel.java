@@ -10,6 +10,8 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -24,21 +26,23 @@ public class SqlunetViewModel extends AndroidViewModel
 
 	private final MutableLiveData<Cursor> data = new MutableLiveData<>();
 
+	@NonNull
 	public LiveData<Cursor> getData()
 	{
 		return data;
 	}
 
-	public SqlunetViewModel(final Application application)
+	public SqlunetViewModel(@NonNull final Application application)
 	{
 		super(application);
 	}
 
 	@SuppressLint("StaticFieldLeak")
-	public void loadData(final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder, final PostProcessor postProcessor)
+	public void loadData(@NonNull final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder, @Nullable final PostProcessor postProcessor)
 	{
 		new AsyncTask<Void, Void, Cursor>()
 		{
+			@Nullable
 			@Override
 			protected Cursor doInBackground(Void... voids)
 			{

@@ -4,6 +4,8 @@
 
 package org.sqlunet;
 
+import androidx.annotation.Nullable;
+
 /**
  * Has sensekey interface
  *
@@ -17,5 +19,6 @@ public interface HasSenseKey
 	 *
 	 * @return sensekey
 	 */
+	@Nullable
 	String getSenseKey();
 }

@@ -162,6 +162,7 @@ class Synset extends BasicSynset
 	 *
 	 * @return synset's part-of-speech
 	 */
+	@NonNull
 	public String getPosName()
 	{
 		return Mapping.getPosName(this.lexDomainId);
@@ -172,6 +173,7 @@ class Synset extends BasicSynset
 	 *
 	 * @return synset's lexdomain name
 	 */
+	@NonNull
 	public String getLexDomainName()
 	{
 		return Mapping.getLexDomainName(this.lexDomainId);

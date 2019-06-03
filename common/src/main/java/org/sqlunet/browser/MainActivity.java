@@ -80,17 +80,24 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 	{
 		assert this.navigationDrawerFragment != null;
 		final Fragment fragment = this.navigationDrawerFragment.getActiveFragment();
-		if (fragment instanceof SearchListener)
+		if (fragment instanceof BaseSearchFragment)
 		{
 			final String action = intent.getAction();
-			if (Intent.ACTION_VIEW.equals(action) || Intent.ACTION_SEARCH.equals(action))
+			final boolean isActionView = Intent.ACTION_VIEW.equals(action);
+			if (isActionView || Intent.ACTION_SEARCH.equals(action))
 			{
-				final SearchListener listener = (SearchListener) fragment;
+				final BaseSearchFragment searchFragment = (BaseSearchFragment) fragment;
+				// search query submit (SEARCH) or suggestion selection (when a suggested item is selected) (VIEW)
 				final String query = intent.getStringExtra(SearchManager.QUERY);
+
+				if (isActionView)
+				{
+					searchFragment.clearQuery();
+				}
 
 				// search query submit or suggestion selection (when a suggested item is selected)
 				Log.d(TAG, "search " + query);
-				listener.search(query);
+				searchFragment.search(query);
 			}
 		}
 	}

@@ -49,7 +49,7 @@ public class TreeController extends Controller<CompositeValue>
 	@SuppressWarnings("WeakerAccess")
 	@NonNull
 	@Override
-	public View createNodeView(@NonNull final Context context, final TreeNode node, @NonNull final CompositeValue value)
+	public View createNodeView(@NonNull final Context context, @NonNull final TreeNode node, @NonNull final CompositeValue value)
 	{
 		final LayoutInflater inflater = LayoutInflater.from(context);
 		@SuppressLint("InflateParams") final View view = inflater.inflate(this.layoutRes, null, false);

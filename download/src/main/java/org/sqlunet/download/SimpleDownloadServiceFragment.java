@@ -351,6 +351,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	/**
 	 * Persistent notification builder
 	 */
+	@Nullable
 	private NotificationCompat.Builder builder;
 
 	/**

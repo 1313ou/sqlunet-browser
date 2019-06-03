@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Represents a block of information about in-app items.
@@ -27,6 +28,7 @@ public class Inventory
 	/**
 	 * Returns the listing details for an in-app product.
 	 */
+	@Nullable
 	@SuppressWarnings("unused")
 	public SkuDetails getSkuDetails(String sku)
 	{
@@ -36,6 +38,7 @@ public class Inventory
 	/**
 	 * Returns purchase information for a given product, or null if there is no purchase.
 	 */
+	@Nullable
 	public Purchase getPurchase(String sku)
 	{
 		return mPurchaseMap.get(sku);

@@ -34,6 +34,7 @@ import java.util.Arrays;
 import java.util.Locale;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 
 import static org.sqlunet.view.TreeOp.TreeOpCode.NEWTREE;
@@ -255,6 +256,7 @@ abstract class BaseModule extends Module
 		this.roleSetsFromWordIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> roleSetsCursorToTreeModel(cursor, parent));
 	}
 
+	@Nullable
 	private TreeOp[] roleSetsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;

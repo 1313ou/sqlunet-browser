@@ -803,6 +803,7 @@ abstract class BaseModule extends Module
 			BaseModule.this.model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> pmCursorToTreeModel(cursor, parent));
 		}
 
+		@Nullable
 		private TreeOp[] pmCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 		{
 			if (cursor.moveToFirst())

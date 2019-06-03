@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import org.w3c.dom.Document;
 
+import androidx.annotation.NonNull;
+
 /**
  * Business methods for VerbNet interface
  *
@@ -32,6 +34,7 @@ interface VerbNetInterface
 	 * @param word target word
 	 * @return VerbNet selector data as XML
 	 */
+	@NonNull
 	String querySelectorXML(final SQLiteDatabase connection, final String word);
 
 	// D E T A I L
@@ -50,6 +53,7 @@ interface VerbNetInterface
 	 * @param word target word
 	 * @return VerbNet data as XML
 	 */
+	@NonNull
 	String queryXML(final SQLiteDatabase connection, final String word);
 
 	/**
@@ -70,6 +74,7 @@ interface VerbNetInterface
 	 * @param pos      pos to build query from
 	 * @return VerbNet data as XML
 	 */
+	@NonNull
 	String queryXML(final SQLiteDatabase connection, final long wordId, final Long synsetId, final Character pos);
 
 	// I T E M S
@@ -92,5 +97,6 @@ interface VerbNetInterface
 	 * @param pos        pos to build query from
 	 * @return VerbNet class data as XML
 	 */
+	@NonNull
 	String queryClassXML(final SQLiteDatabase connection, final long classId, final Character pos);
 }

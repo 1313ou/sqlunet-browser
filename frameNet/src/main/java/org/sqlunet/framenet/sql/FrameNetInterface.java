@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import org.w3c.dom.Document;
 
+import androidx.annotation.NonNull;
+
 /**
  * Business methods for FrameNet interface
  *
@@ -34,6 +36,7 @@ interface FrameNetInterface
 	 * @param pos  target pos to build query from
 	 * @return FrameNet selector data as XML
 	 */
+	@NonNull
 	String querySelectorXML(final SQLiteDatabase connection, final String word, final Character pos);
 
 	// D E T A I L
@@ -54,6 +57,7 @@ interface FrameNetInterface
 	 * @param pos    target pos to build query from
 	 * @return FrameNet data as XML
 	 */
+	@NonNull
 	String queryXML(final SQLiteDatabase connection, final long wordId, final Character pos);
 
 	/**
@@ -72,6 +76,7 @@ interface FrameNetInterface
 	 * @param pos  target pos to build query from
 	 * @return FrameNet data as XML
 	 */
+	@NonNull
 	String queryXML(final SQLiteDatabase connection, final String word, final Character pos);
 
 	// I T E M S
@@ -94,6 +99,7 @@ interface FrameNetInterface
 	 * @param pos        target pos to build query from
 	 * @return FrameNet frame data as XML
 	 */
+	@NonNull
 	String queryFrameXML(final SQLiteDatabase connection, final long frameId, final Character pos);
 
 	/**
@@ -112,5 +118,6 @@ interface FrameNetInterface
 	 * @param luId       target lex unit id to build query from
 	 * @return FrameNet lex unit data as XML
 	 */
+	@NonNull
 	String queryLexUnitXML(final SQLiteDatabase connection, final long luId);
 }

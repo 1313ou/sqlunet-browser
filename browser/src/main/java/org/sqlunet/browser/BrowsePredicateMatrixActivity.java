@@ -105,11 +105,16 @@ public class BrowsePredicateMatrixActivity extends AppCompatActivity
 	{
 		final String action = intent.getAction();
 
-		if (Intent.ACTION_VIEW.equals(action) || Intent.ACTION_SEARCH.equals(action))
+		final boolean isActionView = Intent.ACTION_VIEW.equals(action);
+		if (isActionView || Intent.ACTION_SEARCH.equals(action))
 		{
-			// search query submit or suggestion selection (when a suggested item is selected)
+			// search query submit (SEARCH) or suggestion selection (when a suggested item is selected) (VIEW)
 			final String query = intent.getStringExtra(SearchManager.QUERY);
 			assert this.fragment != null;
+			if (isActionView)
+			{
+				this.fragment.clearQuery();
+			}
 			this.fragment.search(query);
 			return;
 		}

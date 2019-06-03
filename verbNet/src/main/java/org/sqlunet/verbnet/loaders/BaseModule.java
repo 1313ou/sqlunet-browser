@@ -280,6 +280,7 @@ abstract class BaseModule extends Module
 		this.vnMembersFromClassIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vnMembersCursorToTreeModel(cursor, parent));
 	}
 
+	@Nullable
 	private TreeOp[] vnMembersCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;

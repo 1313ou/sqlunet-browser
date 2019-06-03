@@ -59,6 +59,7 @@ public class Settings
 	 * @param context context
 	 * @return name
 	 */
+	@Nullable
 	static public String getDbName(final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);

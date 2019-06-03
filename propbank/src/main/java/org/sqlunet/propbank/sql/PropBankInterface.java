@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import org.w3c.dom.Document;
 
+import androidx.annotation.NonNull;
+
 /**
  * Business methods fro PropBank interface
  *
@@ -32,6 +34,7 @@ interface PropBankInterface
 	 * @param word target word
 	 * @return PropBank selector data as XML
 	 */
+	@NonNull
 	String querySelectorXML(final SQLiteDatabase connection, final String word);
 
 	// D E T A I L
@@ -50,6 +53,7 @@ interface PropBankInterface
 	 * @param word target word
 	 * @return PropBank selector data as XML
 	 */
+	@NonNull
 	String queryXML(final SQLiteDatabase connection, final String word);
 
 	/**
@@ -68,6 +72,7 @@ interface PropBankInterface
 	 * @param pos    the pos to build query from
 	 * @return PropBank data as XML
 	 */
+	@NonNull
 	String queryXML(final SQLiteDatabase connection, final long wordId, final Character pos);
 
 	// I T E M S
@@ -90,5 +95,6 @@ interface PropBankInterface
 	 * @param pos        the pos to build query from
 	 * @return PropBank role set data as XML
 	 */
+	@NonNull
 	String queryRoleSetXML(final SQLiteDatabase connection, final long roleSetId, final Character pos);
 }

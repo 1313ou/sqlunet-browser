@@ -12,6 +12,7 @@ import android.os.AsyncTask;
 
 import org.sqlunet.view.TreeOp;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -21,26 +22,29 @@ public class SqlunetViewTreeModel extends AndroidViewModel
 	@FunctionalInterface
 	public interface ToTreeOps
 	{
+		@NonNull
 		TreeOp[] cursorToTreeOps(final Cursor cursor);
 	}
 
 	private final MutableLiveData<TreeOp[]> data = new MutableLiveData<>();
 
+	@NonNull
 	public LiveData<TreeOp[]> getData()
 	{
 		return data;
 	}
 
-	public SqlunetViewTreeModel(final Application application)
+	public SqlunetViewTreeModel(@NonNull final Application application)
 	{
 		super(application);
 	}
 
 	@SuppressLint("StaticFieldLeak")
-	public void loadData(final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder, final ToTreeOps treeConverter)
+	public void loadData(@NonNull final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder, @NonNull final ToTreeOps treeConverter)
 	{
 		new AsyncTask<Void, Void, TreeOp[]>()
 		{
+			@NonNull
 			@Override
 			protected TreeOp[] doInBackground(Void... voids)
 			{

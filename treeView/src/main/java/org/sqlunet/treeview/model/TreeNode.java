@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Tree node
@@ -34,6 +35,7 @@ public class TreeNode
 	/**
 	 * Parent node
 	 */
+	@Nullable
 	private TreeNode parent;
 
 	/**
@@ -308,6 +310,7 @@ public class TreeNode
 	 *
 	 * @return parent
 	 */
+	@Nullable
 	public TreeNode getParent()
 	{
 		return this.parent;
@@ -318,6 +321,7 @@ public class TreeNode
 	 *
 	 * @return root
 	 */
+	@Nullable
 	@SuppressWarnings("unused")
 	public TreeNode getRoot()
 	{
@@ -601,7 +605,7 @@ public class TreeNode
 		return sb.toString();
 	}
 
-	private void toStringWithChildren(final StringBuilder sb, final int level)
+	private void toStringWithChildren(@NonNull final StringBuilder sb, final int level)
 	{
 		if (level > 0)
 		{

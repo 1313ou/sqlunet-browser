@@ -34,6 +34,7 @@ import java.util.Set;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StyleRes;
 import androidx.core.widget.NestedScrollView;
 
 import static android.view.ViewGroup.FOCUS_BLOCK_DESCENDANTS;
@@ -513,7 +514,8 @@ public class TreeView
 	 * @param levels remaining levels to unfold
 	 * @return parent's children view == node view container
 	 */
-	public View newNodeView(final TreeNode node, final int levels)
+	@Nullable
+	public View newNodeView(@NonNull final TreeNode node, final int levels)
 	{
 		final TreeNode parent = node.getParent();
 		if (TreeView.isExpanded(parent))
@@ -530,7 +532,8 @@ public class TreeView
 	 * @param node   node to insert
 	 * @return parent's children view == node view container
 	 */
-	private View insertNodeView(final TreeNode parent, final TreeNode node)
+	@Nullable
+	private View insertNodeView(final TreeNode parent, @NonNull final TreeNode node)
 	{
 		final Controller<?> parentController = parent.getController();
 		final ViewGroup childrenView = parentController.getChildrenView();
@@ -560,13 +563,13 @@ public class TreeView
 
 	// V I S I B I L I T Y
 
-	public void ensureVisible(final View view)
+	public void ensureVisible(@NonNull final View view)
 	{
 		view.requestFocus();
 		// scrollToDeferred(view);
 	}
 
-	public void scrollToDeferred(final View view)
+	public void scrollToDeferred(@NonNull final View view)
 	{
 		// scroll when dimensions are available
 		final ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
@@ -581,7 +584,7 @@ public class TreeView
 		});
 	}
 
-	private boolean scrollTo(final View view)
+	private boolean scrollTo(@NonNull final View view)
 	{
 		int y = getPosition(view);
 		Log.d(TAG, "SCROLL " + y + " " + view);
@@ -651,7 +654,7 @@ public class TreeView
 	// P R I M I T I V E S
 
 
-	private boolean isNodeWithCompositeValueText(final TreeNode node, final String text)
+	private boolean isNodeWithCompositeValueText(final TreeNode node, @NonNull final String text)
 	{
 		final Object value = node.getValue();
 		return (value instanceof CompositeValue) && text.equals(((CompositeValue) value).text.toString());
@@ -666,6 +669,7 @@ public class TreeView
 	 * @param overrideBreakExpand whether to override node break expand
 	 * @return subtree view
 	 */
+	@Nullable
 	public View expandNode(@NonNull final TreeNode node, final int levels, final boolean fireHotNodes, final boolean overrideBreakExpand)
 	{
 		Log.d(TAG, "Expand node " + node);
@@ -919,7 +923,7 @@ public class TreeView
 	 *
 	 * @param defaultStyle default container style
 	 */
-	public void setDefaultContainerStyle(final int defaultStyle)
+	public void setDefaultContainerStyle(@StyleRes @android.support.annotation.StyleRes final int defaultStyle)
 	{
 		setDefaultContainerStyle(defaultStyle, false);
 	}

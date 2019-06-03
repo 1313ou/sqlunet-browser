@@ -42,6 +42,7 @@ public class SubtreeView extends LinearLayout
 	/**
 	 * Node container
 	 */
+	@Nullable
 	public ViewGroup childrenContainer;
 
 	/**

@@ -48,6 +48,7 @@ public class BncImplementation implements BncInterface
 	 * @param word       the target word
 	 * @return BNC data as XML
 	 */
+	@NonNull
 	@Override
 	public String queryXML(final SQLiteDatabase connection, final String word)
 	{
@@ -80,6 +81,7 @@ public class BncImplementation implements BncInterface
 	 * @param pos        the target pos (null if any)
 	 * @return BNC data as XML
 	 */
+	@NonNull
 	@Override
 	public String queryXML(final SQLiteDatabase connection, final long wordId, final Character pos)
 	{

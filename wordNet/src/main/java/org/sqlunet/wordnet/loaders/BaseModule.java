@@ -401,6 +401,7 @@ abstract public class BaseModule extends Module
 		this.sensesFromWordIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> sensesCursorToTreeModel(cursor, parent));
 	}
 
+	@Nullable
 	private TreeOp[] sensesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;
@@ -785,6 +786,7 @@ abstract public class BaseModule extends Module
 		this.membersFromSynsetIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> membersCursorToTreeModel(cursor, parent));
 	}
 
+	@Nullable
 	private TreeOp[] membersCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (BaseModule.this.membersGrouped)
@@ -852,7 +854,7 @@ abstract public class BaseModule extends Module
 		this.members2FromSynsetIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> members2CursorToTreeModel(cursor, parent, addNewNode));
 	}
 
-	private TreeOp[] members2CursorToTreeModel(final Cursor cursor, @NonNull final TreeNode parent, final boolean addNewNode)
+	private TreeOp[] members2CursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean addNewNode)
 	{
 		if (BaseModule.this.membersGrouped)
 		{
@@ -1025,6 +1027,7 @@ abstract public class BaseModule extends Module
 		this.linksFromSynsetIdWordIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> linksCursorToTreeModel(cursor, parent, deadendParentIfNoResult));
 	}
 
+	@Nullable
 	private TreeOp[] linksCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
 	{
 		TreeOp[] changed;
@@ -1122,6 +1125,7 @@ abstract public class BaseModule extends Module
 		this.semLinksFromSynsetIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> semLinksCursorToTreeModel(cursor, parent, deadendParentIfNoResult));
 	}
 
+	@Nullable
 	private TreeOp[] semLinksCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
 	{
 		TreeOp[] changed;
@@ -1206,6 +1210,7 @@ abstract public class BaseModule extends Module
 		this.semLinksFromSynsetIdLinkIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> semLinksFromSynsetIdLinkIdCursorToTreeModel(cursor, linkId, recurseLevel, parent, deadendParentIfNoResult));
 	}
 
+	@Nullable
 	private TreeOp[] semLinksFromSynsetIdLinkIdCursorToTreeModel(@NonNull final Cursor cursor, final int linkId, final int recurseLevel, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
 	{
 		TreeOp[] changed;
@@ -1303,6 +1308,7 @@ abstract public class BaseModule extends Module
 		this.lexLinksFromSynsetIdWordIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> lexLinksCursorToTreeModel(cursor, parent, deadendParentIfNoResult));
 	}
 
+	@Nullable
 	private TreeOp[] lexLinksCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
 	{
 		TreeOp[] changed;
@@ -1399,6 +1405,7 @@ abstract public class BaseModule extends Module
 		this.lexLinksFromSynsetIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> lexLinksFromSynsetIdCursorToTreeModel(cursor, parent, deadendParentIfNoResult));
 	}
 
+	@Nullable
 	private TreeOp[] lexLinksFromSynsetIdCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
 	{
 		TreeOp[] changed;

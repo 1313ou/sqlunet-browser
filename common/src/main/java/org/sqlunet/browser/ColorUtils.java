@@ -10,6 +10,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.TypedValue;
 
+import androidx.annotation.ColorRes;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.core.graphics.drawable.DrawableCompat;
 
@@ -56,7 +58,7 @@ public class ColorUtils
 		return result;
 	}
 
-	static public int getColor(@NonNull final Context context, int colorRes)
+	static public int getColor(@NonNull final Context context, @ColorRes @android.support.annotation.ColorRes int colorRes)
 	{
 		final Resources res = context.getResources();
 		final Resources.Theme theme = context.getTheme();
@@ -78,7 +80,7 @@ public class ColorUtils
 	}
 
 	@SuppressWarnings("deprecation")
-	static public Drawable getDrawable(@NonNull final Context context, int drawableRes)
+	static public Drawable getDrawable(@NonNull final Context context, @DrawableRes @android.support.annotation.DrawableRes int drawableRes)
 	{
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
 		{

@@ -8,6 +8,8 @@ import org.sqlunet.treeview.model.TreeNode;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
+
 public class TreeOp
 {
 	public enum TreeOpCode
@@ -35,6 +37,7 @@ public class TreeOp
 		return node;
 	}
 
+	@NonNull
 	static public TreeOp[] seq(Object... items)
 	{
 		final TreeOp[] result = new TreeOp[items.length / 2];

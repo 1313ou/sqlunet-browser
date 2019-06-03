@@ -855,7 +855,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 	/**
 	 * Deploy
 	 */
-	private void deploy(final String destDir, final String renameFrom, final String renameTo)
+	private void deploy(final String destDir, @Nullable final String renameFrom, @Nullable final String renameTo)
 	{
 		if (this.downloadedFile == null)
 		{

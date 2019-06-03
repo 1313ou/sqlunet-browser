@@ -10,6 +10,7 @@ import android.os.Parcelable;
 import org.sqlunet.HasSenseKey;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Parcelable sensekey
@@ -18,6 +19,7 @@ import androidx.annotation.NonNull;
  */
 public class SenseKeyPointer implements Parcelable, HasSenseKey
 {
+	@Nullable
 	private final String senseKey;
 
 	/**
@@ -56,6 +58,7 @@ public class SenseKeyPointer implements Parcelable, HasSenseKey
 		this.senseKey = senseKey;
 	}
 
+	@Nullable
 	@Override
 	public String getSenseKey()
 	{

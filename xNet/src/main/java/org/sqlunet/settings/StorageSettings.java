@@ -75,6 +75,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return database name
 	 */
+	@NonNull
 	@SuppressWarnings("SameReturnValue")
 	static public String getDatabaseName(@NonNull final Context context)
 	{

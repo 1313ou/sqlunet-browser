@@ -119,7 +119,7 @@ public class FileDataDownloader extends AsyncTask<String, Void, FileData>
 		void onDone(final FileData result);
 	}
 
-	static public void start(@NonNull final Activity activity, final String name, final String downloadSourceUrl, final String downloadDest, final String cache)
+	static public void start(@NonNull final Activity activity, @Nullable final String name, @Nullable final String downloadSourceUrl, final String downloadDest, final String cache)
 	{
 		// download source data
 		if (name == null || downloadSourceUrl == null || downloadSourceUrl.isEmpty())

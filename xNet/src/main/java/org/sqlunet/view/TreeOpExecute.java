@@ -15,6 +15,8 @@ import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.view.TreeOp.TreeOpCode;
 
+import androidx.annotation.NonNull;
+
 /**
  * TreeOp executor
  *
@@ -31,7 +33,7 @@ public class TreeOpExecute
 		this.fragment = fragment;
 	}
 
-	public void exec(final TreeOp[] ops)
+	public void exec(@NonNull final TreeOp[] ops)
 	{
 		execImpl(ops);
 	}
@@ -60,7 +62,7 @@ public class TreeOpExecute
 		}
 	}
 
-	private void execOp(final TreeOp op, final TreeView treeView, final int levels)
+	private void execOp(final TreeOp op, @NonNull final TreeView treeView, final int levels)
 	{
 		final TreeOpCode code = op.getCode();
 		final TreeNode node = op.getNode();
@@ -149,7 +151,7 @@ public class TreeOpExecute
 		}
 	}
 
-	private boolean isNodeWithCompositeValueText(final TreeNode node, final String text)
+	private boolean isNodeWithCompositeValueText(final TreeNode node, @NonNull final String text)
 	{
 		final Object value = node.getValue();
 		return (value instanceof CompositeValue) && text.equals(((CompositeValue) value).text.toString());

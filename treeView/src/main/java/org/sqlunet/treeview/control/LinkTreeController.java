@@ -34,7 +34,7 @@ public class LinkTreeController extends TreeController
 
 	@NonNull
 	@Override
-	public View createNodeView(@NonNull final Context context, final TreeNode node, @NonNull final CompositeValue value)
+	public View createNodeView(@NonNull final Context context, @NonNull final TreeNode node, @NonNull final CompositeValue value)
 	{
 		final View view = super.createNodeView(context, node, value);
 

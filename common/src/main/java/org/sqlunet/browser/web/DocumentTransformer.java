@@ -12,6 +12,7 @@ import org.w3c.dom.Document;
 import java.io.InputStream;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * XSL Transformer
@@ -29,6 +30,7 @@ abstract public class DocumentTransformer
 	 * @param isSelector is selector source
 	 * @return html
 	 */
+	@NonNull
 	public String docToHtml(final Document doc, final String source, final boolean isSelector)
 	{
 		// Log.d(TAG, "to be transformed:" + DomTransformer.docToXml(doc));
@@ -50,5 +52,6 @@ abstract public class DocumentTransformer
 	 * @param isSelector is selector source
 	 * @return XSL inputstream
 	 */
+	@Nullable
 	abstract protected InputStream getXSLStream(final String from, final boolean isSelector);
 }

@@ -7,6 +7,8 @@ package org.sqlunet.browser.web;
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -19,6 +21,7 @@ public class WebModel extends ViewModel
 	 */
 	private final MutableLiveData<String> data = new MutableLiveData<>();
 
+	@NonNull
 	public LiveData<String> getData()
 	{
 		return data;
@@ -30,10 +33,11 @@ public class WebModel extends ViewModel
 	}
 
 	@SuppressLint("StaticFieldLeak")
-	public void loadData(final DocumentStringLoader loader)
+	public void loadData(@NonNull final DocumentStringLoader loader)
 	{
 		new AsyncTask<Void, Void, String>()
 		{
+			@Nullable
 			@Override
 			protected String doInBackground(Void... voids)
 			{

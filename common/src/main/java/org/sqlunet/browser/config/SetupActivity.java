@@ -127,7 +127,7 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 	{
 		private final Fragment[] fragments;
 
-		SectionsPagerAdapter(final FragmentManager fragmentManager, @NonNull final Context context)
+		SectionsPagerAdapter(@NonNull final FragmentManager fragmentManager, @NonNull final Context context)
 		{
 			super(fragmentManager);
 			final List<Fragment> listOfFragments = new ArrayList<>();
@@ -142,7 +142,7 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 
 		@Nullable
 		@SuppressWarnings("TryWithIdenticalCatches")
-		private Fragment makeFragment(final String fragmentClass)
+		private Fragment makeFragment(@Nullable final String fragmentClass)
 		{
 			if (fragmentClass != null && !fragmentClass.isEmpty())
 			{

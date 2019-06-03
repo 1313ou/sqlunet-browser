@@ -7,6 +7,7 @@ package org.sqlunet;
 import android.os.Parcel;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Parcelable word
@@ -18,6 +19,7 @@ public class Word implements IPointer
 	/**
 	 * Word
 	 */
+	@Nullable
 	private final String word;
 
 	/**
@@ -62,6 +64,7 @@ public class Word implements IPointer
 	 *
 	 * @return word
 	 */
+	@Nullable
 	public String getWord()
 	{
 		return this.word;

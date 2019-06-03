@@ -12,6 +12,7 @@ import org.sqlunet.style.Report;
 import org.sqlunet.xnet.R;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 
 /**
@@ -44,7 +45,7 @@ public class Info
 		}
 	}
 
-	static public void info(final Activity activity, final int messageId, final CharSequence... lines)
+	static public void info(@NonNull final Activity activity, @StringRes @android.support.annotation.StringRes final int messageId, final CharSequence... lines)
 	{
 		final AlertDialog.Builder alert = new AlertDialog.Builder(activity);
 		alert.setTitle(R.string.action_info);

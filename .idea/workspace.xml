@@ -37,66 +37,66 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="searchable">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_1_0_alpha05_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_core_1_2_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_2_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_2_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_web_3_2_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_ext_junit_1_1_1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_2_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_rules_1_2_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_2_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager2_viewpager2_1_0_0_alpha04_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_1_0_alpha07_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/bbou.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/bbou.xml" afterDir="false" />
+    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="lint">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bNC/bNC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/bNC/bNC.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/browser.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/browser.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/browser/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/res/layout/activity_browse2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/res/layout/activity_browse2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/browserewn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/browserewn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/browserfn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/browserfn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/browservn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/browservn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/browserwn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/browserwn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/common/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/common/common.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/BaseBrowse2Fragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/BaseBrowse2Fragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/BaseSearchFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/BaseSearchFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bNC/src/main/java/org/sqlunet/bnc/sql/BncImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/bNC/src/main/java/org/sqlunet/bnc/sql/BncImplementation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/BrowsePredicateMatrixActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/BrowsePredicateMatrixActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/web/WebFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/web/WebFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xn/DocumentTransformer.java" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xn/DocumentTransformer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XBrowse1Fragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XBrowse1Fragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorPointer.java" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorPointer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserfn/src/main/java/org/sqlunet/browser/web/WebFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/java/org/sqlunet/browser/web/WebFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/vn/DocumentTransformer.java" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/vn/DocumentTransformer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/web/WebFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/web/WebFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XSelectorPointer.java" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/xselector/XSelectorPointer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AbstractBrowseActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AbstractBrowseActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AbstractSearchTextActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AbstractSearchTextActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/ColorUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/ColorUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MenuHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MenuHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy/deploy.iml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/deploy.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/download/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/download/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/download/download.iml" beforeDir="false" afterPath="$PROJECT_DIR$/download/download.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expandableListFragment/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/expandableListFragment/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" beforeDir="false" afterPath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameNet/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameNet/frameNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/frameNet.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/libwn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/libwn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" beforeDir="false" afterPath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preference/preference.iml" beforeDir="false" afterPath="$PROJECT_DIR$/preference/preference.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/propbank/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/propbank/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/propbank/propbank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/propbank/propbank.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/support/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/support.iml" beforeDir="false" afterPath="$PROJECT_DIR$/support/support.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/test/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/test/test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/RootController.java" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/RootController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/ScrollView2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/ScrollView2D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SetupActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SetupActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/TaskObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/TaskObserver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/web/DocumentTransformer.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/web/DocumentTransformer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/web/WebModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/web/WebModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/release/install.sh" beforeDir="false" afterPath="$PROJECT_DIR$/dist/release/install.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/BaseDownloadFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/BaseDownloadFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/FileDataDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/FileDataDownloader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/Settings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/SimpleDownloadServiceFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/SimpleDownloadServiceFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/loaders/BaseModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/loaders/BaseModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FrameNetImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FrameNetImplementation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libwn/src/main/java/org/sqlunet/browser/web/WebFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/java/org/sqlunet/browser/web/WebFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libwn/src/main/java/org/sqlunet/browser/wn/DocumentTransformer.java" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/java/org/sqlunet/browser/wn/DocumentTransformer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/loaders/BaseModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/loaders/BaseModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/loaders/BaseModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/loaders/BaseModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/sql/PropBankImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/sql/PropBankImplementation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/support/src/main/java/org/sqlunet/support/util/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/support/src/main/java/org/sqlunet/support/util/Inventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/LinkQueryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/LinkQueryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/LinkTreeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/LinkTreeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/TreeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/TreeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/model/TreeNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/model/TreeNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/SubtreeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/SubtreeView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/TreeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/TreeView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treeView/treeView.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/treeView.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/verbNet/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/verbNet/verbNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/verbNet.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/wordNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/wordNet.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/xNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/xNet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/loaders/BaseModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/loaders/BaseModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/loaders/ClassFromWordModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/loaders/ClassFromWordModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/sql/VerbNetImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/sql/VerbNetImplementation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/SenseKeyPointer.java" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/SenseKeyPointer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/BaseModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/loaders/BaseModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/provider/WordNetProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/provider/WordNetProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/sql/Synset.java" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/sql/Synset.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/sql/WordNetImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/sql/WordNetImplementation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/Word.java" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/Word.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/browser/Info.java" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/browser/Info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/browser/SqlunetViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/browser/SqlunetViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/browser/SqlunetViewTreeModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/browser/SqlunetViewTreeModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/dom/DomValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/dom/DomValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/settings/StorageSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/settings/StorageSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/style/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/style/Report.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/style/Spanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/style/Spanner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/view/TreeOp.java" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/view/TreeOp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/view/TreeOpExecute.java" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/view/TreeOpExecute.java" afterDir="false" />
     </list>
     <list id="36f6b5c7-9521-46b4-bf4d-149db941bcca" name="NonPublic" comment="" />
     <ignored path="SqlUNet.iws" />
@@ -176,7 +176,13 @@
     <favorites_list name="SqlUNet" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/Annotation Inference Report">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -190,7 +196,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>focus</find>
       <find>setfocus</find>
       <find>MATCH ?</find>
       <find>CREATE VIRT</find>
@@ -220,6 +225,7 @@
       <find>userid</find>
       <find>searchableinfo</find>
       <find>this.searc</find>
+      <find>ACTION_SEARCH</find>
     </findStrings>
     <replaceStrings>
       <replace>FireEvent::live</replace>
@@ -303,8 +309,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/browserewn/src/main/resources/org/sqlunet/config.properties" />
-        <option value="$PROJECT_DIR$/browserfn/src/main/resources/org/sqlunet/config.properties" />
         <option value="$PROJECT_DIR$/browservn/src/main/resources/org/sqlunet/config.properties" />
         <option value="$PROJECT_DIR$/browserwn/src/main/resources/org/sqlunet/config.properties" />
         <option value="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/view/TreeOp.java" />
@@ -328,11 +332,9 @@
         <option value="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/TreeView.java" />
         <option value="$PROJECT_DIR$/common/src/main/res/menu/main.xml" />
         <option value="$PROJECT_DIR$/common/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MainActivity.java" />
         <option value="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/provider/WordNetProvider.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MenuHandler.java" />
         <option value="$PROJECT_DIR$/browservn/src/androidTest/java/org/sqlunet/browser/Tests.java" />
-        <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AbstractBrowseActivity.java" />
         <option value="$PROJECT_DIR$/browser/src/main/res/layout/activity_browse2.xml" />
         <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/BaseBrowse2Fragment.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/BaseSearchFragment.java" />
@@ -354,6 +356,10 @@
         <option value="$PROJECT_DIR$/wordNet/build.gradle" />
         <option value="$PROJECT_DIR$/xNet/build.gradle" />
         <option value="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/control/RootController.java" />
+        <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AbstractBrowseActivity.java" />
+        <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/BrowsePredicateMatrixActivity.java" />
+        <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AbstractSearchTextActivity.java" />
+        <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -377,10 +383,10 @@
     <scope name="Resources" pattern="file[bNC]:src/main/res//*||file[browser]:src/main/res//*||file[browserfn]:src/main/res//*||file[browserwn]:src/main/res//*||file[common]:src/main/res//*||file[expandableListFragment]:src/main/res//*||file[frameNet]:src/main/res//*||file[predicateMatrix]:src/main/res//*||file[propbank]:src/main/res//*||file[support]:src/main/res//*||file[treeView]:src/main/res//*||file[verbNet]:src/main/res//*||file[wordNet]:src/main/res//*||file[xNet]:src/main/res//*||file[browservn]:src/main/res//*" />
     <scope name="Values" pattern="(file[bNC]:src/main/res//*||file[expandableListFragment]:src/main/res//*||file[frameNet]:src/main/res//*||file[predicateMatrix]:src/main/res//*||file[propbank]:src/main/res//*||file[support]:src/main/res//*||file[treeView]:src/main/res//*||file[verbNet]:src/main/res//*||file[wordNet]:src/main/res//*||file[xNet]:src/main/res//*)&amp;&amp;!file[expandableListFragment]:*/&amp;&amp;!file[xNet]:*/&amp;&amp;!file[wordNet]:*/&amp;&amp;!file[propbank]:*/&amp;&amp;!file[predicateMatrix]:*/&amp;&amp;!file[test]:*/&amp;&amp;!file[support]:*/&amp;&amp;!file[verbNet]:*/&amp;&amp;!file[frameNet]:*/&amp;&amp;!file[treeView]:*/&amp;&amp;!file[bNC]:*/||file[browser]:src/main/res/values//*||file[browser]:src/main/res/values-land//*||file[browser]:src/main/res/values-large//*||file[browserfn]:src/main/res/values//*||file[browserfn]:src/main/res/values-land//*||file[browserfn]:src/main/res/values-large//*||file[browserwn]:src/main/res/*||file[browserwn]:src/main/res/values//*||file[browserwn]:src/main/res/values-land//*||file[browserwn]:src/main/res/values-large//*||file[common]:src/main/res/values//*||file[common]:src/main/res/values-v21//*||file[common]:src/main/res/values-w600dp//*||file[common]:src/main/res/values-w720dp//*||file[common]:src/main/res/values-w820dp//*||file[browservn]:src/main/res/values//*||file[browservn]:src/main/res/values-land//*||file[browservn]:src/main/res/values-large//*" />
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="53" />
     <option name="y" value="27" />
-    <option name="width" value="1197" />
+    <option name="width" value="1249" />
     <option name="height" value="1165" />
   </component>
   <component name="ProjectView">
@@ -415,7 +421,35 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="common" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="common" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="common" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="sqlunet" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="common" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="sqlunet" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="browser" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1237,13 +1271,6 @@
       <option name="presentableId" value="Default" />
       <updated>1487150992421</updated>
     </task>
-    <task id="LOCAL-00155" summary="wip models as members">
-      <created>1556283837505</created>
-      <option name="number" value="00155" />
-      <option name="presentableId" value="LOCAL-00155" />
-      <option name="project" value="LOCAL" />
-      <updated>1556283837506</updated>
-    </task>
     <task id="LOCAL-00156" summary="wip models as members">
       <created>1556344515387</created>
       <option name="number" value="00156" />
@@ -1580,7 +1607,14 @@
       <option name="project" value="LOCAL" />
       <updated>1559488605009</updated>
     </task>
-    <option name="localTasksCounter" value="204" />
+    <task id="LOCAL-00204" summary="lint">
+      <created>1559539602682</created>
+      <option name="number" value="00204" />
+      <option name="presentableId" value="LOCAL-00204" />
+      <option name="project" value="LOCAL" />
+      <updated>1559539602684</updated>
+    </task>
+    <option name="localTasksCounter" value="205" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1625,9 +1659,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="53" y="27" width="1197" height="1165" extended-state="0" />
+    <frame x="51" y="27" width="1869" height="1173" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6680244" visible="true" weight="0.3212121" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6680244" visible="true" weight="0.20306513" />
       <window_info id="Structure" order="1" sideWeight="0.33197555" side_tool="true" weight="0.34805194" />
       <window_info id="Captures" order="2" sideWeight="0.3319616" side_tool="true" weight="0.25447154" />
       <window_info id="Capture Tool" order="3" />
@@ -1638,25 +1672,25 @@
       <window_info id="Build Variants" order="8" sideWeight="0.50392157" side_tool="true" weight="0.18117131" />
       <window_info id="Resources Explorer" order="9" weight="0.32984716" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.36277056" weight="0.2514793" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.36124796" visible="true" weight="0.25342464" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.22824302" weight="0.33953032" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.54425144" weight="0.28895465" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.54351395" weight="0.28375733" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.30756578" weight="0.32681018" />
-      <window_info anchor="bottom" id="Android Profiler" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Logcat" order="8" sideWeight="0.6103896" side_tool="true" weight="0.5157791" />
+      <window_info anchor="bottom" id="Android Profiler" order="7" />
+      <window_info anchor="bottom" id="Logcat" order="8" sideWeight="0.63875204" side_tool="true" weight="0.25342464" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.35192782" side_tool="true" weight="0.47260273" />
       <window_info anchor="bottom" id="Build" order="10" sideWeight="0.37229437" weight="0.21893491" />
       <window_info anchor="bottom" id="Android Monitor" order="11" sideWeight="0.82428116" weight="0.39513677" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="12" sideWeight="0.4008658" visible="true" weight="0.40039447" />
+      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.40010947" weight="0.4001957" />
       <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.3136289" weight="0.32387474" />
       <window_info active="true" anchor="bottom" id="Gradle Console" order="14" sideWeight="0.4729064" side_tool="true" visible="true" weight="0.3107843" />
       <window_info anchor="bottom" id="Messages" order="15" sideWeight="0.5270936" weight="0.3107843" />
       <window_info anchor="bottom" id="Inspection Results" order="16" sideWeight="0.38961038" weight="0.5157791" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.49536178" weight="0.17618111" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.49536178" visible="true" weight="0.11603722" />
       <window_info anchor="right" id="Assistant" order="3" weight="0.32921812" />
       <window_info anchor="right" id="Module Dependencies" order="4" visible="true" weight="0.20197044" />
       <window_info anchor="right" id="Android Model" order="5" side_tool="true" />
@@ -1796,22 +1830,22 @@
     <MESSAGE value="unified link query" />
     <MESSAGE value="dev2&#10;rework treeops" />
     <MESSAGE value="focus when expanding" />
-    <MESSAGE value="lint" />
     <MESSAGE value="requestFocus flag" />
     <MESSAGE value="initial requestFocus on root node" />
     <MESSAGE value="scrollTo + requestFocus to ensure visibility" />
     <MESSAGE value="scrollTo factored out&#10;alt layout in browse2" />
     <MESSAGE value="searchable" />
-    <option name="LAST_COMMIT_MESSAGE" value="searchable" />
+    <MESSAGE value="lint" />
+    <option name="LAST_COMMIT_MESSAGE" value="lint" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/provider/VerbNetProvider.java</url>
-          <line>259</line>
+          <url>file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AbstractBrowseActivity.java</url>
+          <line>109</line>
           <properties />
-          <option name="timeStamp" value="215" />
+          <option name="timeStamp" value="222" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -1848,6 +1882,11 @@
     </expressions>
     <expressions id="evaluateExpression">
       <expression>
+        <expression-string>intent</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>BaseProvider.logSql</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
@@ -1855,26 +1894,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/propbank/src/main/res/layout/toolbar.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/support/src/main/res/layout/toolbar.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/verbNet/src/main/res/layout/toolbar.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wordNet/src/main/res/layout/toolbar.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xNet/src/main/res/layout/toolbar.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/common/src/main/res/values/navigation.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="9">
@@ -1908,17 +1927,6 @@
           <folding>
             <element signature="e#5651#5652#0" expanded="true" />
             <element signature="e#5709#5710#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-149">
-          <caret line="45" column="27" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="27" />
-          <folding>
-            <element signature="e#3041#3042#0" expanded="true" />
-            <element signature="e#3091#3092#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2154,13 +2162,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AbstractBrowseActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="526">
-          <caret line="123" column="34" selection-start-line="123" selection-start-column="34" selection-end-line="123" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/SubtreeView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
@@ -2224,17 +2225,6 @@
           <caret line="38" selection-start-line="37" selection-end-line="38" />
           <folding>
             <element signature="e#804#837#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/BaseSearchFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="158" column="19" selection-start-line="158" selection-start-column="19" selection-end-line="158" selection-end-column="19" />
-          <folding>
-            <element signature="e#1987#2020#0" expanded="true" />
-            <element signature="e#2761#2794#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2378,6 +2368,54 @@
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/captures/org.sqlunet.browser_2019.06.03_08.01.li">
+      <provider selected="true" editor-type-id="capture-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/BaseSearchFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="41" column="22" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/browser/SearchListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/BrowsePredicateMatrixActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="111" selection-start-line="110" selection-end-line="111" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AbstractSearchTextActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="109" selection-start-line="109" selection-end-line="109" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="90" selection-start-line="90" selection-end-line="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AbstractBrowseActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="109" selection-start-line="108" selection-end-line="109" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/Annotation Inference Report">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="masterDetails">

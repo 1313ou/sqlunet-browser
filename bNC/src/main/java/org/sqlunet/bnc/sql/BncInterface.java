@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import org.w3c.dom.Document;
 
+import androidx.annotation.NonNull;
+
 @SuppressWarnings("unused")
 interface BncInterface
 {
@@ -27,6 +29,7 @@ interface BncInterface
 	 * @param word       the target word
 	 * @return BNC data as XML
 	 */
+	@NonNull
 	String queryXML(final SQLiteDatabase connection, final String word);
 
 	/**
@@ -47,5 +50,6 @@ interface BncInterface
 	 * @param pos        the target pos (null if any)
 	 * @return BNC data as XML
 	 */
+	@NonNull
 	String queryXML(final SQLiteDatabase connection, final long wordId, final Character pos);
 }

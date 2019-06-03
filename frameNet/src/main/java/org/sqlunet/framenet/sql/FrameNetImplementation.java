@@ -53,6 +53,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param pos        the pos to build query from
 	 * @return FrameNet selector data as XML
 	 */
+	@NonNull
 	@Override
 	public String querySelectorXML(final SQLiteDatabase connection, final String word, final Character pos)
 	{
@@ -88,6 +89,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param pos        the pos to build query from
 	 * @return FrameNet data as XML
 	 */
+	@NonNull
 	@Override
 	public String queryXML(final SQLiteDatabase connection, final String word, final Character pos)
 	{
@@ -124,6 +126,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param pos        the pos to build query from
 	 * @return FrameNet data as XML
 	 */
+	@NonNull
 	@Override
 	public String queryXML(final SQLiteDatabase connection, final long wordId, final Character pos)
 	{
@@ -158,6 +161,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param pos        the pos to build query from
 	 * @return FrameNet frame data as XML
 	 */
+	@NonNull
 	@Override
 	public String queryFrameXML(final SQLiteDatabase connection, final long frameId, final Character pos)
 	{
@@ -190,6 +194,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param luId       the luId to build query from
 	 * @return FrameNet lexunit data as XML
 	 */
+	@NonNull
 	@Override
 	public String queryLexUnitXML(final SQLiteDatabase connection, final long luId)
 	{
@@ -221,6 +226,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param sentenceId the sentence id to build query from
 	 * @return FrameNet sentence data as XML
 	 */
+	@NonNull
 	@SuppressWarnings("unused")
 	public String querySentenceXML(final SQLiteDatabase connection, final long sentenceId)
 	{
@@ -252,6 +258,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param annoSetId  the annoSetId to build query from
 	 * @return FrameNet annoSet data as XML
 	 */
+	@NonNull
 	@SuppressWarnings("unused")
 	public String queryAnnoSetXML(final SQLiteDatabase connection, final long annoSetId)
 	{

@@ -64,6 +64,7 @@ public class WebFragment extends Fragment
 
 	static class WebDocumentStringLoader implements DocumentStringLoader
 	{
+		@NonNull
 		final Context context;
 		final private int type;
 		final private String data;

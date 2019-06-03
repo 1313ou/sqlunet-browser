@@ -349,7 +349,7 @@ public class WordNetProvider extends BaseProvider
 	@SuppressWarnings("boxing")
 	@Nullable
 	@Override
-	public Cursor query(@NonNull final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
+	public Cursor query(@NonNull final Uri uri, final String[] projection, @NonNull final String selection, final String[] selectionArgs, final String sortOrder)
 	{
 		if (this.db == null)
 		{

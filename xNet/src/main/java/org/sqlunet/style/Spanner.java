@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import org.sqlunet.xnet.R;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -371,7 +372,7 @@ public class Spanner
 	 * @param resId   resource id
 	 * @return drawable
 	 */
-	static public Drawable getDrawable(@NonNull final Context context, final int resId)
+	static public Drawable getDrawable(@NonNull final Context context, @DrawableRes @android.support.annotation.DrawableRes final int resId)
 	{
 		final Drawable drawable = context.getResources().getDrawable(resId);
 		drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());

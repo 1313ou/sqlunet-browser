@@ -103,13 +103,18 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 	private void handleSearchIntent(@NonNull final Intent intent)
 	{
 		final String action = intent.getAction();
-		if (Intent.ACTION_VIEW.equals(action) || Intent.ACTION_SEARCH.equals(action))
+		final boolean isActionView = Intent.ACTION_VIEW.equals(action);
+		if (isActionView || Intent.ACTION_SEARCH.equals(action))
 		{
-			// search query submit or suggestion selection (when a suggested item is selected)
+			// search query submit (SEARCH) or suggestion selection (when a suggested item is selected) (VIEW)
 			final String query = intent.getStringExtra(SearchManager.QUERY);
 			if (query != null && this.fragment != null)
 			{
-				this.fragment.clearQuery();
+				if (isActionView)
+				{
+					this.fragment.clearQuery();
+				}
+
 				this.fragment.search(query);
 			}
 		}
@@ -121,7 +126,7 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 				final String query = intent.getStringExtra(Intent.EXTRA_TEXT);
 				if (query != null && this.fragment != null)
 				{
-					this.fragment.clearQuery();
+					//this.fragment.clearQuery();
 					this.fragment.search(query);
 				}
 			}

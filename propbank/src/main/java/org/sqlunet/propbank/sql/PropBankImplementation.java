@@ -184,6 +184,7 @@ public class PropBankImplementation implements PropBankInterface
 	 * @param word       target word
 	 * @return PropBank selector data as XML
 	 */
+	@NonNull
 	@Override
 	public String querySelectorXML(final SQLiteDatabase connection, final String word)
 	{
@@ -216,6 +217,7 @@ public class PropBankImplementation implements PropBankInterface
 	 * @param word       target word
 	 * @return PropBank data as XML
 	 */
+	@NonNull
 	@Override
 	public String queryXML(final SQLiteDatabase connection, final String word)
 	{
@@ -248,6 +250,7 @@ public class PropBankImplementation implements PropBankInterface
 	 * @param pos        pos to build query from
 	 * @return PropBank data as XML
 	 */
+	@NonNull
 	@Override
 	public String queryXML(final SQLiteDatabase connection, final long wordId, final Character pos)
 	{
@@ -282,6 +285,7 @@ public class PropBankImplementation implements PropBankInterface
 	 * @param pos        pos to build query from
 	 * @return PropBank role set data as XML
 	 */
+	@NonNull
 	@Override
 	public String queryRoleSetXML(final SQLiteDatabase connection, final long roleSetId, final Character pos)
 	{

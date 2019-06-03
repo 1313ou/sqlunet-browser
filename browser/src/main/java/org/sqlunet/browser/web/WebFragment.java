@@ -145,6 +145,7 @@ public class WebFragment extends Fragment
 
 	static private class WebDocumentStringLoader implements DocumentStringLoader
 	{
+		@NonNull
 		final Context context;
 		final Parcelable pointer;
 		final int type;

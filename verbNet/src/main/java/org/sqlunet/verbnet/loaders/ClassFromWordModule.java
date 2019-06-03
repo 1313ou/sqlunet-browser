@@ -145,6 +145,7 @@ public class ClassFromWordModule extends BaseModule
 		this.vnClassesFromWordIdSynsetIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> vnClassesCursorToTreeModel(cursor, parent));
 	}
 
+	@Nullable
 	private TreeOp[] vnClassesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;

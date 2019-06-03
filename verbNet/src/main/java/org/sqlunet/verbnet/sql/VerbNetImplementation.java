@@ -50,6 +50,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	 * @param word       target word
 	 * @return VerbNet selector data as XML
 	 */
+	@NonNull
 	@Override
 	public String querySelectorXML(final SQLiteDatabase connection, final String word)
 	{
@@ -82,6 +83,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	 * @param word       target word
 	 * @return VerbNet data as XML
 	 */
+	@NonNull
 	@Override
 	public String queryXML(final SQLiteDatabase connection, final String word)
 	{
@@ -116,6 +118,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	 * @param pos        pos to build query from
 	 * @return VerbNet data as XML
 	 */
+	@NonNull
 	@Override
 	public String queryXML(final SQLiteDatabase connection, final long wordId, final Long synsetId, final Character pos)
 	{
@@ -142,6 +145,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	 * @param pos        pos to build query from
 	 * @return VerbNet class data as XML
 	 */
+	@NonNull
 	@Override
 	public String queryClassXML(final SQLiteDatabase connection, final long classId, final Character pos)
 	{

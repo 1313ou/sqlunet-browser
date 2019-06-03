@@ -43,5 +43,6 @@ public interface HasXId
 	 *
 	 * @return extended sources
 	 */
+	@Nullable
 	String getXSources();
 }

@@ -6,6 +6,8 @@ package org.sqlunet.browser.wn;
 
 import java.io.InputStream;
 
+import androidx.annotation.Nullable;
+
 /**
  * XSL Transformer
  *
@@ -22,6 +24,7 @@ public class DocumentTransformer extends org.sqlunet.browser.web.DocumentTransfo
 	 * @param isSelector is selector source
 	 * @return XSL inputstream
 	 */
+	@Nullable
 	protected InputStream getXSLStream(final String source, final boolean isSelector)
 	{
 		String xsl = null;

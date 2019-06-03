@@ -36,6 +36,7 @@ interface WordNetInterface
 	 * @param word       target word
 	 * @return WordNet selector data as XML
 	 */
+	@NonNull
 	String querySelectorXML(final SQLiteDatabase connection, final String word);
 
 	// D E T A I L
@@ -60,6 +61,7 @@ interface WordNetInterface
 	 * @param recurse    determines if queries are to follow links recursively
 	 * @return WordNet data as XML
 	 */
+	@NonNull
 	String queryXML(final SQLiteDatabase connection, final String word, final boolean withLinks, final boolean recurse);
 
 	/**
@@ -88,6 +90,7 @@ interface WordNetInterface
 	 * @param recurse       determines if queries are to follow links recursively
 	 * @return WordNet data as XML data
 	 */
+	@NonNull
 	String queryXML(final SQLiteDatabase connection, final String word, final String posName, final String lexDomainName, final String linkName, final boolean withLinks, final boolean recurse);
 
 	/**
@@ -120,6 +123,7 @@ interface WordNetInterface
 	 * @param wordId     target word id
 	 * @return WordNet word data as XML
 	 */
+	@NonNull
 	String queryWordXML(final SQLiteDatabase connection, final long wordId);
 
 	/**
@@ -140,6 +144,7 @@ interface WordNetInterface
 	 * @param synsetId   target synset id
 	 * @return WordNet synset data as XML
 	 */
+	@NonNull
 	String querySenseXML(final SQLiteDatabase connection, final long wordId, final long synsetId);
 
 	/**
@@ -158,6 +163,7 @@ interface WordNetInterface
 	 * @param synsetId   target synset id
 	 * @return WordNet synset data as XML
 	 */
+	@NonNull
 	String querySynsetXML(final SQLiteDatabase connection, final long synsetId);
 
 	/**

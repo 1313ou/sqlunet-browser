@@ -44,6 +44,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	/**
 	 * xSources : optional/nullable
 	 */
+	@Nullable
 	private final String xSources;
 
 	/**
@@ -169,6 +170,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	 *
 	 * @return info sources
 	 */
+	@Nullable
 	@Override
 	public String getXSources()
 	{
