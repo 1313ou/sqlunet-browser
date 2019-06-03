@@ -9,7 +9,6 @@ import android.app.SearchableInfo;
 import android.content.Context;
 import android.content.Intent;
 import android.view.MenuItem;
-import android.widget.SearchView;
 
 import org.sqlunet.browser.common.R;
 import org.sqlunet.browser.config.SettingsActivity;

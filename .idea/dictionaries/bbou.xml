@@ -405,6 +405,7 @@
       <w>pbvnrolemaps</w>
       <w>pbvnthetas</w>
       <w>pbvoices</w>
+      <w>pbword</w>
       <w>pbwordid</w>
       <w>pbwords</w>
       <w>personname</w>
@@ -500,6 +501,7 @@
       <w>sarissa</w>
       <w>scon</w>
       <w>sdcards</w>
+      <w>searchinfo</w>
       <w>searchtext</w>
       <w>sectionhead</w>
       <w>sectionheader</w>
@@ -560,6 +562,7 @@
       <w>subquery</w>
       <w>substr</w>
       <w>subtarget</w>
+      <w>subtreeview</w>
       <w>supersplash</w>
       <w>synched</w>
       <w>synitem</w>

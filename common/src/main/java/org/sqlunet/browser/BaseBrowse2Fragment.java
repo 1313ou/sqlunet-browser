@@ -35,6 +35,7 @@ public abstract class BaseBrowse2Fragment extends Fragment
 	@Nullable
 	String pos = null;
 
+	@SuppressWarnings("WeakerAccess")
 	protected int layoutId = R.layout.fragment_browse2_multi;
 
 	// C R E A T I O N

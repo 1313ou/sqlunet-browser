@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 
 public class RootController extends Controller<Void>
 {
+	@Nullable
 	private ViewGroup contentView;
 
 	/**
@@ -28,19 +29,19 @@ public class RootController extends Controller<Void>
 
 	@Nullable
 	@Override
-	public View createNodeView(@NonNull final Context context, TreeNode node, Void value)
+	public View createNodeView(@NonNull final Context context, final TreeNode node, final Void value)
 	{
 		return null;
 	}
 
-	@NonNull
+	@Nullable
 	@Override
 	public ViewGroup getChildrenView()
 	{
 		return this.contentView;
 	}
 
-	@NonNull
+	@Nullable
 	@Override
 	public SubtreeView getSubtreeView()
 	{
@@ -51,7 +52,7 @@ public class RootController extends Controller<Void>
 		return null;
 	}
 
-	public void setContentView(final ViewGroup contentView)
+	public void setContentView(@Nullable final ViewGroup contentView)
 	{
 		this.contentView = contentView;
 	}

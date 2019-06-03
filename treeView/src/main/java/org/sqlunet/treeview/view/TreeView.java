@@ -36,7 +36,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.widget.NestedScrollView;
 
-import static android.view.View.FOCUSABLES_TOUCH_MODE;
 import static android.view.ViewGroup.FOCUS_BLOCK_DESCENDANTS;
 
 /* @formatter:off */

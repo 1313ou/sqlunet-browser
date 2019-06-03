@@ -827,6 +827,18 @@
       <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.provider.WordNetContract.Links_Senses_Words_X SYNSET1ID" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.provider.WordNetContract.Links_Senses_Words_X SYNSET2ID" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.provider.WordNetContract.Links_Senses_Words_X TABLE_BY_SYNSET" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.propbank.provider.PropBankContract.Suggest_PbWords PBWORDID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.propbank.provider.PropBankContract.Suggest_FTS_PbWords PBWORDID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.verbnet.provider.VerbNetContract.Suggest_VnWords VNWORDID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.verbnet.provider.VerbNetContract.Suggest_FTS_VnWords VNWORDID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.propbank.provider.PropBankContract.Suggest_PbWords WORD" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.propbank.provider.PropBankContract.Suggest_FTS_PbWords WORD" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.verbnet.provider.VerbNetContract.Suggest_VnWords WORD" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.verbnet.provider.VerbNetContract.Suggest_FTS_VnWords WORD" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.propbank.provider.PropBankContract.Suggest_PbWords WORDID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.propbank.provider.PropBankContract.Suggest_FTS_PbWords WORDID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.verbnet.provider.VerbNetContract.Suggest_VnWords WORDID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.verbnet.provider.VerbNetContract.Suggest_FTS_VnWords WORDID" />
     </entry_points>
     <pattern value="org.sqlunet.browser.vn.Settings" method="getPropBankPref" />
     <pattern value="org.sqlunet.browser.vn.Settings" method="getWordNetPref" />
@@ -2283,6 +2295,14 @@
     <pattern value="org.sqlunet.browser.selector.PosSelectorPointer" method="PosSelectorPointer" />
     <pattern value="org.sqlunet.browser.selector.PosSelectorPointer" method="toString" />
     <pattern value="org.sqlunet.browser.selector.PosSelectorPointer" method="writeToParcel" />
+    <pattern value="org.sqlunet.treeview.view.TreeView" method="getView" />
+    <pattern value="org.sqlunet.treeview.view.TreeView" method="scrollToDeferred" />
+    <pattern value="org.sqlunet.treeview.control.Controller" method="setBreakExpand" />
+    <pattern value="org.sqlunet.treeview.view.SubtreeView" method="toString" />
+    <pattern value="org.sqlunet.propbank.provider.PropBankContract.Suggest_FTS_PbWords" />
+    <pattern value="org.sqlunet.verbnet.provider.VerbNetContract.Suggest_FTS_VnWords" />
+    <pattern value="org.sqlunet.propbank.provider.PropBankContract.Suggest_PbWords" />
+    <pattern value="org.sqlunet.verbnet.provider.VerbNetContract.Suggest_VnWords" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />

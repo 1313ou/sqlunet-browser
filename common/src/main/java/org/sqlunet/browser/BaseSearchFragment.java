@@ -90,6 +90,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 		super.onCreate(savedInstanceState);
 	}
 
+	@SuppressWarnings("WeakerAccess")
 	@Nullable
 	@SuppressLint("InflateParams")
 	@Override
@@ -118,6 +119,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 
 	// S A V E
 
+	@SuppressWarnings("WeakerAccess")
 	@Override
 	public void onSaveInstanceState(@NonNull final Bundle outState)
 	{
@@ -151,7 +153,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 
 	// A C T I O N B A R
 
-	@SuppressWarnings({"SameReturnValue"})
+	@SuppressWarnings({"SameReturnValue", "WeakerAccess"})
 	@SuppressLint("InflateParams")
 	@Override
 	public boolean setActionBar(@NonNull final ActionBar actionBar, @NonNull final Context context)
