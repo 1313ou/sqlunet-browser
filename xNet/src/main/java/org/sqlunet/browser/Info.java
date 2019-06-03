@@ -45,7 +45,7 @@ public class Info
 		}
 	}
 
-	static public void info(@NonNull final Activity activity, @StringRes @android.support.annotation.StringRes final int messageId, final CharSequence... lines)
+	static public void info(@NonNull final Activity activity, @StringRes final int messageId, final CharSequence... lines)
 	{
 		final AlertDialog.Builder alert = new AlertDialog.Builder(activity);
 		alert.setTitle(R.string.action_info);

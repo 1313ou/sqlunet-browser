@@ -46,7 +46,10 @@ public class TreeOpExecute
 	private void execImpl(final TreeOp[] ops)
 	{
 		final TreeView treeView = this.fragment.getTreeView();
-
+		if (treeView == null)
+		{
+			return;
+		}
 		int n = ops.length;
 		if (n == 1)
 		{

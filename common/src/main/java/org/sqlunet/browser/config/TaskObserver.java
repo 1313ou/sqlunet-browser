@@ -214,7 +214,7 @@ public class TaskObserver
 		 * @param unitId    unit id
 		 */
 		@SuppressWarnings("unused")
-		DialogListener(@NonNull final Activity activity, @StringRes @android.support.annotation.StringRes final int titleId, @StringRes @android.support.annotation.StringRes final int messageId, @StringRes @android.support.annotation.StringRes final int unitId)
+		DialogListener(@NonNull final Activity activity, @StringRes final int titleId, @StringRes final int messageId, @StringRes final int unitId)
 		{
 			this(activity, titleId, activity.getString(messageId), activity.getString(unitId));
 		}
@@ -227,7 +227,7 @@ public class TaskObserver
 		 * @param message  message
 		 * @param unit     unit
 		 */
-		public DialogListener(@NonNull final Activity activity, @StringRes @android.support.annotation.StringRes final int titleId, final CharSequence message, final CharSequence unit)
+		public DialogListener(@NonNull final Activity activity, @StringRes final int titleId, final CharSequence message, final CharSequence unit)
 		{
 			super(activity);
 			this.progressDialog = makeDialog(activity, titleId, message);
@@ -286,7 +286,7 @@ public class TaskObserver
 		 * @return dialog
 		 */
 		@NonNull
-		static private ProgressDialog makeDialog(@NonNull final Activity activity, @StringRes @android.support.annotation.StringRes final int titleId, final CharSequence message)
+		static private ProgressDialog makeDialog(@NonNull final Activity activity, @StringRes final int titleId, final CharSequence message)
 		{
 			final ProgressDialog progressDialog = new ProgressDialog(activity);
 			progressDialog.setTitle(titleId);

@@ -399,6 +399,7 @@ public class TreeView
 		final SubtreeView view = subtreeView;
 
 		// remove from parent
+		assert view != null;
 		ViewParent parent = view.getParent();
 		if (parent != null)
 		{
@@ -413,10 +414,17 @@ public class TreeView
 			int i = 0;
 			for (; i < n; i++)
 			{
+				// node (not view) 's index
 				View child = childrenView.getChildAt(i);
 				Object tag = child.getTag();
 				TreeNode node2 = (TreeNode) tag;
 				TreeNode parent2 = node2.getParent();
+				if (parent2 == null)
+				{
+					i = -1;
+					break;
+				}
+
 				int j = parent2.indexOf(node2);
 				if (j >= atIndex)
 				{
@@ -518,6 +526,7 @@ public class TreeView
 	public View newNodeView(@NonNull final TreeNode node, final int levels)
 	{
 		final TreeNode parent = node.getParent();
+		assert parent != null;
 		if (TreeView.isExpanded(parent))
 		{
 			return insertNodeView(parent, node);
@@ -563,10 +572,13 @@ public class TreeView
 
 	// V I S I B I L I T Y
 
-	public void ensureVisible(@NonNull final View view)
+	public void ensureVisible(@Nullable final View view)
 	{
-		view.requestFocus();
-		// scrollToDeferred(view);
+		if (view != null)
+		{
+			view.requestFocus();
+			// scrollToDeferred(view);
+		}
 	}
 
 	public void scrollToDeferred(@NonNull final View view)
@@ -923,7 +935,7 @@ public class TreeView
 	 *
 	 * @param defaultStyle default container style
 	 */
-	public void setDefaultContainerStyle(@StyleRes @android.support.annotation.StyleRes final int defaultStyle)
+	public void setDefaultContainerStyle(@StyleRes final int defaultStyle)
 	{
 		setDefaultContainerStyle(defaultStyle, false);
 	}

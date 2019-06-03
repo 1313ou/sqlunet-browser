@@ -404,6 +404,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 				contentText += ' ' + Integer.toString(percent) + '%';
 
 				ensureBuilder();
+				assert this.builder != null;
 				this.builder.setContentText(contentText);
 
 				notification = this.builder.build();

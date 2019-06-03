@@ -53,7 +53,7 @@ public class SenseKeyPointer implements Parcelable, HasSenseKey
 	 *
 	 * @param senseKey sense key
 	 */
-	public SenseKeyPointer(final String senseKey)
+	public SenseKeyPointer(@Nullable final String senseKey)
 	{
 		this.senseKey = senseKey;
 	}

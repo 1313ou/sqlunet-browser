@@ -50,7 +50,8 @@ public class RoleSetModule extends BaseModule
 		if (pointer instanceof HasXId)
 		{
 			final HasXId xIdPointer = (HasXId) pointer;
-			if (xIdPointer.getXSources().contains("pb")) //
+			final String xSources = xIdPointer.getXSources();
+			if (xSources == null || xSources.contains("pb")) //
 			{
 				this.roleSetId = xIdPointer.getXClassId();
 			}

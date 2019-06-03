@@ -72,7 +72,7 @@ public class Report
 	 * @param sb      spannable string builder
 	 * @param resId   resource id
 	 */
-	static public void appendImage(@NonNull final Context context, @NonNull final SpannableStringBuilder sb, @DrawableRes @android.support.annotation.DrawableRes final int resId)
+	static public void appendImage(@NonNull final Context context, @NonNull final SpannableStringBuilder sb, @DrawableRes final int resId)
 	{
 		append(sb, "\u0000", makeImageSpan(context, resId));
 	}
@@ -84,7 +84,7 @@ public class Report
 	 * @param resId   res id
 	 * @return image span
 	 */
-	static private Object makeImageSpan(@NonNull final Context context, @DrawableRes @android.support.annotation.DrawableRes final int resId)
+	static private Object makeImageSpan(@NonNull final Context context, @DrawableRes final int resId)
 	{
 		final Resources res = context.getResources();
 		Drawable drawable;

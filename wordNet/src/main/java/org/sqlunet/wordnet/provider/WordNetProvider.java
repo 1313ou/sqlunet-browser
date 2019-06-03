@@ -349,7 +349,7 @@ public class WordNetProvider extends BaseProvider
 	@SuppressWarnings("boxing")
 	@Nullable
 	@Override
-	public Cursor query(@NonNull final Uri uri, final String[] projection, @NonNull final String selection, final String[] selectionArgs, final String sortOrder)
+	public Cursor query(@NonNull final Uri uri, final String[] projection, @Nullable final String selection, final String[] selectionArgs, final String sortOrder)
 	{
 		if (this.db == null)
 		{
@@ -499,7 +499,8 @@ public class WordNetProvider extends BaseProvider
 						LexLinks.WORDID1, //
 						LexLinks.SYNSETID1, //
 						LexLinks.WORDID2, //
-						LexLinks.SYNSETID2,};
+						LexLinks.SYNSETID2, //
+				};
 				final String[] unionProjection = { //
 						Links.LINKID, //
 						Links.WORDID1, //
@@ -508,6 +509,7 @@ public class WordNetProvider extends BaseProvider
 						Links.SYNSETID2, //
 				};
 				groupBy = BaseModule.TARGET_SYNSETID + " , " + WordNetContract.TYPE + " , link, linkid, " + BaseModule.TARGET_WORDID + ',' + BaseModule.TARGET_LEMMA;
+				assert selection != null;
 				final String[] selections = selection.split("/\\*\\*/\\|/\\*\\*/");
 				table = "( " + makeQuery(table1, //
 						table2, //

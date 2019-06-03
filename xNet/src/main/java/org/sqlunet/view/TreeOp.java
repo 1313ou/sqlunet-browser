@@ -79,6 +79,7 @@ public class TreeOp
 			}
 		}
 
+		@NonNull
 		public TreeOp[] toArray()
 		{
 			return toArray(new TreeOp[0]);

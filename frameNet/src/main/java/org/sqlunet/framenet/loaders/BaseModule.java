@@ -417,7 +417,7 @@ abstract public class BaseModule extends Module
 		this.relatedFramesFromFrameIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> relatedFramesCursorToTreeModel(cursor, frameId, parent));
 	}
 
-	@Nullable
+	@NonNull
 	private TreeOp[] relatedFramesCursorToTreeModel(@NonNull final Cursor cursor, final long frameId, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;
@@ -547,7 +547,7 @@ abstract public class BaseModule extends Module
 		this.fesFromFrameIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> fesCursorToTreeModel(cursor, parent));
 	}
 
-	@Nullable
+	@NonNull
 	private TreeOp[] fesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;
@@ -676,7 +676,7 @@ abstract public class BaseModule extends Module
 		this.lexUnitFromLuIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> lexUnitCursorToTreeModel(cursor, luId, parent, withFrame, withFes));
 	}
 
-	@Nullable
+	@NonNull
 	private TreeOp[] lexUnitCursorToTreeModel(@NonNull final Cursor cursor, final long luId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean withFrame, @SuppressWarnings("SameParameterValue") final boolean withFes)
 	{
 		if (cursor.getCount() > 1)
@@ -826,7 +826,7 @@ abstract public class BaseModule extends Module
 		this.lexUnitsFromFrameIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> lexUnitsCursorToTreeModel(cursor, frameId, parent, withFrame));
 	}
 
-	@Nullable
+	@NonNull
 	private TreeOp[] lexUnitsCursorToTreeModel(@NonNull final Cursor cursor, final long frameId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean withFrame)
 	{
 		TreeOp[] changed;
@@ -972,7 +972,7 @@ abstract public class BaseModule extends Module
 		this.lexUnitsFromWordIdPosModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> lexUnitsFromWordIdPosCursorToTreeModel(cursor, parent));
 	}
 
-	@Nullable
+	@NonNull
 	private TreeOp[] lexUnitsFromWordIdPosCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;
@@ -1103,7 +1103,7 @@ abstract public class BaseModule extends Module
 		this.governorsFromLuIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> governorsCursorToTreeModel(cursor, parent));
 	}
 
-	@Nullable
+	@NonNull
 	private TreeOp[] governorsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;
@@ -1185,7 +1185,7 @@ abstract public class BaseModule extends Module
 		this.realizationsFromLuIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> realizationsCursorToTreeModel(cursor, parent));
 	}
 
-	@Nullable
+	@NonNull
 	private TreeOp[] realizationsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;
@@ -1296,7 +1296,7 @@ abstract public class BaseModule extends Module
 		this.groupRealizationsFromLuIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> groupRealizationsCursorToTreeModel(cursor, parent));
 	}
 
-	@Nullable
+	@NonNull
 	private TreeOp[] groupRealizationsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;
@@ -1451,7 +1451,7 @@ abstract public class BaseModule extends Module
 		this.sentencesFromLuIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> sentencesCursor1ToTreeModel(cursor, parent));
 	}
 
-	@Nullable
+	@NonNull
 	private TreeOp[] sentencesCursor1ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;
@@ -1572,7 +1572,7 @@ abstract public class BaseModule extends Module
 		this.sentencesFromPatternIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> sentencesCursor2ToTreeModel(cursor, parent));
 	}
 
-	@Nullable
+	@NonNull
 	private TreeOp[] sentencesCursor2ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;
@@ -1641,7 +1641,7 @@ abstract public class BaseModule extends Module
 		this.sentencesFromVuIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> sentencesCursor3ToTreeModel(cursor, parent));
 	}
 
-	@Nullable
+	@NonNull
 	private TreeOp[] sentencesCursor3ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;
@@ -1855,7 +1855,7 @@ abstract public class BaseModule extends Module
 		this.annoSetsFromGovernorIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> annoSetsCursor1ToTreeModel(cursor, parent));
 	}
 
-	@Nullable
+	@NonNull
 	private TreeOp[] annoSetsCursor1ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;
@@ -1930,7 +1930,7 @@ abstract public class BaseModule extends Module
 		this.annoSetsFromPatternIdModel.loadData(uri, projection, null, selectionArgs, null, cursor -> annoSetsCursor2ToTreeModel(cursor, parent));
 	}
 
-	@Nullable
+	@NonNull
 	private TreeOp[] annoSetsCursor2ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		// column indices
@@ -1969,7 +1969,7 @@ abstract public class BaseModule extends Module
 		this.annoSetsFromVuIdModel.loadData(uri, projection, null, selectionArgs, null, cursor -> annoSetsCursor3ToTreeModel(cursor, parent));
 	}
 
-	@Nullable
+	@NonNull
 	private TreeOp[] annoSetsCursor3ToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		// column indices
@@ -1998,7 +1998,7 @@ abstract public class BaseModule extends Module
 	 * @param idAnnoSetId    id of annoSet i column
 	 * @return changed nodes
 	 */
-	@Nullable
+	@NonNull
 	private TreeOp[] annoSets(@NonNull final TreeNode parent, @NonNull final Cursor cursor, //
 			@Nullable final String sentenceText, final int idSentenceText, final int idLayerType, final int idRank, final int idAnnotations, final int idAnnoSetId)
 	{
@@ -2163,7 +2163,7 @@ abstract public class BaseModule extends Module
 		this.layersFromSentenceIdModel.loadData(uri, projection, null, selectionArgs, null, cursor -> layersCursorToTreeModel(cursor, text, parent));
 	}
 
-	@Nullable
+	@NonNull
 	private TreeOp[] layersCursorToTreeModel(@NonNull final Cursor cursor, final String text, @NonNull final TreeNode parent)
 	{
 		// column indices

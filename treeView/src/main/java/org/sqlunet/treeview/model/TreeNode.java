@@ -400,9 +400,9 @@ public class TreeNode
 	@SuppressWarnings("unused")
 	public boolean isFirstChild()
 	{
-		//noinspection SimplifiableIfStatement
 		if (isNotRoot())
 		{
+			assert this.parent != null;
 			return this.parent.children.get(0).id == this.id;
 		}
 		return false;
@@ -418,6 +418,7 @@ public class TreeNode
 	{
 		if (isNotRoot())
 		{
+			assert this.parent != null;
 			int parentSize = this.parent.children.size();
 			if (parentSize > 0)
 			{

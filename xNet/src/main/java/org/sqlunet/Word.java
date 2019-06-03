@@ -54,7 +54,7 @@ public class Word implements IPointer
 	 *
 	 * @param word word
 	 */
-	public Word(final String word)
+	public Word(@Nullable final String word)
 	{
 		this.word = word;
 	}
@@ -87,6 +87,6 @@ public class Word implements IPointer
 	@Override
 	public String toString()
 	{
-		return this.word;
+		return this.word == null ? "" : this.word;
 	}
 }

@@ -57,7 +57,8 @@ public class FrameModule extends BaseModule
 		if (pointer instanceof HasXId)
 		{
 			final HasXId xIdPointer = (HasXId) pointer;
-			if (xIdPointer.getXSources().contains("fn")) //
+			final String xSources = xIdPointer.getXSources();
+			if (xSources == null || xSources.contains("fn")) //
 			{
 				this.frameId = xIdPointer.getXClassId();
 				this.luId = xIdPointer.getXMemberId();

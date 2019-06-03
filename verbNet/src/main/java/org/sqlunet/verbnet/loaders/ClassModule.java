@@ -50,7 +50,8 @@ public class ClassModule extends BaseModule
 		if (pointer instanceof HasXId)
 		{
 			final HasXId xIdPointer = (HasXId) pointer;
-			if (xIdPointer.getXSources().contains("vn")) //
+			final String xSources = xIdPointer.getXSources();
+			if (xSources == null || xSources.contains("vn")) //
 			{
 				this.classId = xIdPointer.getXClassId();
 				// Long xMemberId = pointer.getXMemberId();

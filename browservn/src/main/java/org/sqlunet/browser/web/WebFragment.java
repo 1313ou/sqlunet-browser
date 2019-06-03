@@ -215,15 +215,15 @@ public class WebFragment extends Fragment
 									// final Long xMemberId = xpointer.getXMemberId();
 									final long wordId = xPointer.getWordId();
 									final Long synsetId = xPointer.getSynsetId();
-									if (xSources.contains("wn")) //
+									if (xSources == null || xSources.contains("wn")) //
 									{
 										wnDomDoc = new WordNetImplementation().querySenseDoc(db, wordId, synsetId);
 									}
-									if (xSources.contains("vn") && xClassId != null) //
+									if ((xSources == null || xSources.contains("vn")) && xClassId != null) //
 									{
 										vnDomDoc = new VerbNetImplementation().queryClassDoc(db, xClassId, pos);
 									}
-									if (xSources.contains("pb") && xClassId != null) //
+									if ((xSources == null || xSources.contains("pb")) && xClassId != null) //
 									{
 										pbDomDoc = new PropBankImplementation().queryRoleSetDoc(db, xClassId, pos);
 									}
