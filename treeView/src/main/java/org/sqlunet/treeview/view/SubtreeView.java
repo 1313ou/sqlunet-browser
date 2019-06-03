@@ -36,7 +36,7 @@ public class SubtreeView extends LinearLayout
 	/**
 	 * Node label view
 	 */
-	@Nullable
+	@NonNull
 	public final View nodeView;
 
 	/**
@@ -143,10 +143,7 @@ public class SubtreeView extends LinearLayout
 		//setFocusable(View.FOCUSABLE);
 
 		// node view
-		if (this.nodeView != null)
-		{
-			insertNodeView(this.nodeView);
-		}
+		insertNodeView(this.nodeView);
 
 		// node container for children
 		ContextThemeWrapper containerContext = new ContextThemeWrapper(context, this.containerStyle);
