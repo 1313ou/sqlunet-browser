@@ -1,1 +1,5 @@
+/build
+/dist
+/captures
+/.gradle
 keystore.properties

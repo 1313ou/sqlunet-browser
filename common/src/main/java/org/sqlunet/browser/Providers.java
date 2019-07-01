@@ -78,35 +78,38 @@ class Providers
 			//
 		}
 
-		// suggestion
+		// suggestion (this activity may not be searchable)
 		final SearchManager searchManager = (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
 		final SearchableInfo info = searchManager.getSearchableInfo(activity.getComponentName());
-		final String suggestAuthority = info.getSuggestAuthority();
-		final String suggestPath = info.getSuggestPath();
-		final String suggestPack = info.getSuggestPackage();
+		if (info != null)
+		{
+			final String suggestAuthority = info.getSuggestAuthority();
+			final String suggestPath = info.getSuggestPath();
+			final String suggestPack = info.getSuggestPackage();
 
-		// message
-		try
-		{
-			Spanner.append(sb, activity.getString(R.string.suggestions), 0, Factories.boldFactory) //
-					.append('\n')//
-					.append('\n');
-			Spanner.append(sb, activity.getString(R.string.suggestion_provider_pack), 0, Factories.boldFactory) //
-					.append(' ') //
-					.append(suggestPack) //
-					.append('\n');
-			Spanner.append(sb, activity.getString(R.string.suggestion_provider_authority), 0, Factories.boldFactory) //
-					.append(' ') //
-					.append(suggestAuthority) //
-					.append('\n');
-			Spanner.append(sb, activity.getString(R.string.suggestion_provider_path), 0, Factories.boldFactory) //
-					.append(' ') //
-					.append(suggestPath) //
-			;
-		}
-		catch (IOException e)
-		{
-			//
+			// message
+			try
+			{
+				Spanner.append(sb, activity.getString(R.string.suggestions), 0, Factories.boldFactory) //
+						.append('\n')//
+						.append('\n');
+				Spanner.append(sb, activity.getString(R.string.suggestion_provider_pack), 0, Factories.boldFactory) //
+						.append(' ') //
+						.append(suggestPack) //
+						.append('\n');
+				Spanner.append(sb, activity.getString(R.string.suggestion_provider_authority), 0, Factories.boldFactory) //
+						.append(' ') //
+						.append(suggestAuthority) //
+						.append('\n');
+				Spanner.append(sb, activity.getString(R.string.suggestion_provider_path), 0, Factories.boldFactory) //
+						.append(' ') //
+						.append(suggestPath) //
+				;
+			}
+			catch (IOException e)
+			{
+				//
+			}
 		}
 
 		// dialog
