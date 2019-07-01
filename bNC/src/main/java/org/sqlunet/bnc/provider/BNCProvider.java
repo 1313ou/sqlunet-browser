@@ -155,7 +155,8 @@ public class BNCProvider extends BaseProvider
 		// do query
 		try
 		{
-			return this.db.query(table, projection, actualSelection, selectionArgs, null, null, sortOrder);
+			return this.db.rawQuery(sql, selectionArgs);
+			//return this.db.query(table, projection, actualSelection, selectionArgs, null, null, sortOrder);
 		}
 		catch (SQLiteException e)
 		{

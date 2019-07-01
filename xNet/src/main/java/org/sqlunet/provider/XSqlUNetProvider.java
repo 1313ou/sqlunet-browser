@@ -311,7 +311,8 @@ public class XSqlUNetProvider extends BaseProvider
 		// do query
 		try
 		{
-			return this.db.query(table, projection, selection, selectionArgs, groupBy, null, sortOrder, null);
+			return this.db.rawQuery(sql, selectionArgs);
+			//return this.db.query(table, projection, selection, selectionArgs, groupBy, null, sortOrder, null);
 		}
 		catch (@NonNull final SQLiteException e)
 		{

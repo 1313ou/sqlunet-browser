@@ -641,7 +641,8 @@ public class FrameNetProvider extends BaseProvider
 		// do query
 		try
 		{
-			return this.db.query(table, projection, actualSelection, selectionArgs, groupBy, null, sortOrder);
+			return this.db.rawQuery(sql, selectionArgs);
+			//return this.db.query(table, projection, actualSelection, selectionArgs, groupBy, null, sortOrder);
 		}
 		catch (SQLiteException e)
 		{

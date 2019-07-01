@@ -308,7 +308,8 @@ public class PropBankProvider extends BaseProvider
 		// do query
 		try
 		{
-			return this.db.query(table, projection, actualSelection, selectionArgs, groupBy, null, actualSortOrder, null);
+			return this.db.rawQuery(sql, selectionArgs);
+			//return this.db.query(table, projection, actualSelection, selectionArgs, groupBy, null, actualSortOrder, null);
 		}
 		catch (SQLiteException e)
 		{

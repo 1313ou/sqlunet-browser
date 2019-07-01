@@ -150,7 +150,8 @@ public class PredicateMatrixProvider extends BaseProvider
 		// do query
 		try
 		{
-			return this.db.query(table, projection, selection, selectionArgs, null, null, sortOrder, null);
+			return this.db.rawQuery(sql, selectionArgs);
+			//return this.db.query(table, projection, selection, selectionArgs, null, null, sortOrder, null);
 		}
 		catch (SQLiteException e)
 		{
