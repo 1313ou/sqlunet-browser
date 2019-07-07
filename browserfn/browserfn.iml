@@ -99,7 +99,6 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/javac" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/legacy_multidex_aapt_derived_proguard_rules" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/legacy_multidex_main_dex_list" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/lint_jar" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/merged_assets" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/merged_jni_libs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/merged_manifests" />
@@ -186,6 +185,14 @@
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.multidex:multidex-instrumentation:2.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.annotation:annotation:1.1.0-rc01@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-process:2.0.0@aar" level="project" />
+    <orderEntry type="module" module-name="test" scope="TEST" />
+    <orderEntry type="module" module-name="expandableListFragment" />
+    <orderEntry type="module" module-name="deploy" />
+    <orderEntry type="module" module-name="support" />
+    <orderEntry type="module" module-name="download" />
+    <orderEntry type="module" module-name="frameNet" />
+    <orderEntry type="module" module-name="common" />
+    <orderEntry type="module" module-name="xNet" />
     <orderEntry type="module" module-name="test" scope="TEST" />
     <orderEntry type="module" module-name="expandableListFragment" />
     <orderEntry type="module" module-name="deploy" />

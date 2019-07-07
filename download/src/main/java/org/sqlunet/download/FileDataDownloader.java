@@ -145,11 +145,10 @@ public class FileDataDownloader extends AsyncTask<String, Void, FileData>
 			// newer
 			final boolean newer = srcDate == null || actualDate == null || srcDate.compareTo(actualDate) > 0;
 
-			// cache
-			String downloadFromArg = downloadSourceUrl + '/' + name;
-
+			// start update activity
 			final Intent intent = new Intent(activity, UpdateActivity.class);
-			intent.putExtra(UpdateFragment.FROM_ARG, downloadSourceUrl + '/' + name);
+			// result
+			intent.putExtra(UpdateFragment.FROM_ARG, downloadSourceUrl);
 			intent.putExtra(UpdateFragment.FROM_DATE_ARG, srcDate == null ? "n/a" : srcDate.toString());
 			intent.putExtra(UpdateFragment.FROM_SIZE_ARG, srcSize == null ? "n/a" : srcSize.toString() + " bytes");
 			intent.putExtra(UpdateFragment.TO_ARG, name);
@@ -157,7 +156,8 @@ public class FileDataDownloader extends AsyncTask<String, Void, FileData>
 			intent.putExtra(UpdateFragment.TO_DATE_ARG, actualDate == null ? "n/a" : actualDate.toString());
 			intent.putExtra(UpdateFragment.TO_SIZE_ARG, actualSize == null ? "n/a" : actualSize.toString() + " bytes");
 			intent.putExtra(UpdateFragment.NEWER_ARG, newer);
-			intent.putExtra(DOWNLOAD_FROM_ARG, downloadFromArg);
+			// to do if confirmed
+			intent.putExtra(DOWNLOAD_FROM_ARG, downloadSourceUrl);
 			intent.putExtra(DOWNLOAD_TO_ARG, downloadDest);
 
 			activity.startActivity(intent);
