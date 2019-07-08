@@ -165,5 +165,7 @@
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-process:2.0.0@aar" level="project" />
     <orderEntry type="module" module-name="treeView" />
     <orderEntry type="module" module-name="treeView" />
+    <orderEntry type="module" module-name="treeView" />
+    <orderEntry type="module" module-name="treeView" />
   </component>
 </module>

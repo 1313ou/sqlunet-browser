@@ -10,6 +10,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.CancellationSignal;
 import android.util.Log;
 
 import org.sqlunet.settings.StorageSettings;
@@ -19,6 +22,7 @@ import java.io.InputStream;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Properties;
+import java.util.Set;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -48,6 +52,29 @@ public abstract class BaseProvider extends ContentProvider
 				return authority;
 			}
 			throw new RuntimeException("Null provider key=" + configKey);
+		}
+		catch (Exception e)
+		{
+			throw new RuntimeException(e);
+		}
+	}
+
+	static protected Uri[] getAuthorityUris()
+	{
+		try
+		{
+			final InputStream is = BaseProvider.class.getResourceAsStream("/org/sqlunet/config.properties");
+			final Properties properties = new Properties();
+			properties.load(is);
+
+			final Set<String> authorityKeys = properties.stringPropertyNames();
+			final Uri[] authorities = new Uri[authorityKeys.size()];
+			int i = 0;
+			for (String authorityKey : authorityKeys)
+			{
+				authorities[i++] = Uri.parse(BaseProvider.SCHEME + properties.getProperty(authorityKey));
+			}
+			return authorities;
 		}
 		catch (Exception e)
 		{
@@ -124,29 +151,6 @@ public abstract class BaseProvider extends ContentProvider
 
 	protected static final String SCHEME = "content://";
 
-/*
-	static private final class DatabaseHelper extends SQLiteOpenHelper
-	{
-		// constructor
-		DatabaseHelper(final Context context)
-		{
-			super(context, StorageSettings.getDatabasePath(context), null, 31);
-		}
-
-		@Override
-		public void onCreate(final SQLiteDatabase db)
-		{
-			// do nothing
-		}
-
-		@Override
-		public void onUpgrade(final SQLiteDatabase db, final int oldVersion, final int newVersion)
-		{
-			// do nothing
-			Log.d(BaseProvider.TAG, "Upgrade");
-		}
-	}
-*/
 
 	// D A T A B A S E
 
@@ -197,9 +201,43 @@ public abstract class BaseProvider extends ContentProvider
 		return true;
 	}
 
-
 	@Override
 	public void shutdown()
+	{
+		Log.d(BaseProvider.TAG, "Shutdown " + this.getClass());
+		close();
+		super.shutdown();
+	}
+
+	@Override
+	public boolean refresh(final Uri uri, @Nullable final Bundle args, @Nullable final CancellationSignal cancellationSignal)
+	{
+		super.refresh(uri, args, cancellationSignal);
+		Log.d(BaseProvider.TAG, "Refresh " + this.getClass());
+		close();
+		return true;
+	}
+
+	@Override
+	public Bundle call(final String method, final String arg, final Bundle extras)
+	{
+		Log.d(BaseProvider.TAG, "Called '" + method + "' on " + this.getClass());
+		if (CALLED_REFRESH_METHOD.equals(method))
+		{
+			close();
+		}
+		return null;
+	}
+
+	/**
+	 * Refresh method name
+	 */
+	static public final String CALLED_REFRESH_METHOD = "closeProvider";
+
+	/**
+	 * Close provider
+	 */
+	private void close()
 	{
 		if (this.db != null)
 		{
@@ -209,13 +247,43 @@ public abstract class BaseProvider extends ContentProvider
 				this.db.close();
 				this.db = null;
 			}
-			Log.d(BaseProvider.TAG, "Closed by " + this.getClass() + " content provider: " + path);
+			Log.d(BaseProvider.TAG, "Close " + this.getClass() + " content provider: " + path);
 		}
-		super.shutdown();
+	}
+
+	/**
+	 * Close provider
+	 *
+	 * @param context context
+	 * @param uri     provider uri
+	 */
+	static public void closeProvider(@NonNull final Context context, final Uri uri)
+	{
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+		{
+			context.getContentResolver().refresh(uri, null, null);
+		}
+		else
+		{
+			context.getContentResolver().call(uri, BaseProvider.CALLED_REFRESH_METHOD, null, null);
+		}
+	}
+
+	/**
+	 * Close all providers
+	 *
+	 * @param context context
+	 */
+	static public void closeProviders(@NonNull final Context context)
+	{
+		final Uri[] uris = getAuthorityUris();
+		for (Uri uri : uris)
+		{
+			closeProvider(context, uri);
+		}
 	}
 
 	// W R I T E O P E R A T I O N S
-
 
 	@Override
 	public int delete(@NonNull final Uri uri, final String selection, final String[] selectionArgs)

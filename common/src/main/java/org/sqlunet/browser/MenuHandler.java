@@ -61,6 +61,7 @@ public class MenuHandler
 		}
 		else if (i == R.id.action_update)
 		{
+			BaseProvider.closeProviders(activity);
 			FileDataDownloader.start(activity, activity.getResources().getString(R.string.pref_default_download_dbfile), StorageSettings.getDbDownloadSource(activity), StorageSettings.getDatabasePath(activity), StorageSettings.getCacheDir(activity));
 			return true;
 		}

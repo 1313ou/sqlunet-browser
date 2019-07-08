@@ -4,6 +4,7 @@
 
 package org.sqlunet.provider;
 
+import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteCantOpenDatabaseException;
@@ -98,6 +99,19 @@ public class XSqlUNetProvider extends BaseProvider
 	 */
 	public XSqlUNetProvider()
 	{
+	}
+
+	// C L O S E
+
+	/**
+	 * Close provider
+	 *
+	 * @param context context
+	 */
+	static public void close(@NonNull final Context context)
+	{
+		final Uri uri = Uri.parse(BaseProvider.SCHEME + AUTHORITY);
+		closeProvider(context, uri);
 	}
 
 	// M I M E

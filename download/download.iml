@@ -163,5 +163,7 @@
     <orderEntry type="library" name="Gradle: androidx.savedstate:savedstate:1.0.0-beta01@aar" level="project" />
     <orderEntry type="module" module-name="deploy" />
     <orderEntry type="module" module-name="deploy" />
+    <orderEntry type="module" module-name="deploy" />
+    <orderEntry type="module" module-name="deploy" />
   </component>
 </module>
