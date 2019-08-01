@@ -59,6 +59,7 @@ public abstract class BaseProvider extends ContentProvider
 		}
 	}
 
+	@SuppressWarnings("WeakerAccess")
 	static protected Uri[] getAuthorityUris()
 	{
 		try
@@ -209,6 +210,7 @@ public abstract class BaseProvider extends ContentProvider
 		super.shutdown();
 	}
 
+	@SuppressWarnings("SameReturnValue")
 	@Override
 	public boolean refresh(final Uri uri, @Nullable final Bundle args, @Nullable final CancellationSignal cancellationSignal)
 	{
@@ -218,8 +220,9 @@ public abstract class BaseProvider extends ContentProvider
 		return true;
 	}
 
+	@SuppressWarnings("SameReturnValue")
 	@Override
-	public Bundle call(final String method, final String arg, final Bundle extras)
+	public Bundle call(@NonNull final String method, final String arg, final Bundle extras)
 	{
 		Log.d(BaseProvider.TAG, "Called '" + method + "' on " + this.getClass());
 		if (CALLED_REFRESH_METHOD.equals(method))
@@ -232,6 +235,7 @@ public abstract class BaseProvider extends ContentProvider
 	/**
 	 * Refresh method name
 	 */
+	@SuppressWarnings("WeakerAccess")
 	static public final String CALLED_REFRESH_METHOD = "closeProvider";
 
 	/**
@@ -257,6 +261,7 @@ public abstract class BaseProvider extends ContentProvider
 	 * @param context context
 	 * @param uri     provider uri
 	 */
+	@SuppressWarnings("WeakerAccess")
 	static public void closeProvider(@NonNull final Context context, final Uri uri)
 	{
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)

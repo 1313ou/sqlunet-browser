@@ -30,15 +30,16 @@ public class Settings
 	}
 
 	/**
-	 * Get database date
+	 * Get database name
 	 *
 	 * @param context context
-	 * @return timestamp
+	 * @return name
 	 */
-	static public long getDbDate(final Context context)
+	@Nullable
+	static public String getDbName(final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		return sharedPref.getLong(Settings.PREF_DB_DATE, -1);
+		return sharedPref.getString(Settings.PREF_DB_NAME, null);
 	}
 
 	/**
@@ -54,16 +55,15 @@ public class Settings
 	}
 
 	/**
-	 * Get database name
+	 * Get database date
 	 *
 	 * @param context context
-	 * @return name
+	 * @return timestamp
 	 */
-	@Nullable
-	static public String getDbName(final Context context)
+	static public long getDbDate(final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		return sharedPref.getString(Settings.PREF_DB_NAME, null);
+		return sharedPref.getLong(Settings.PREF_DB_DATE, -1);
 	}
 
 	/**

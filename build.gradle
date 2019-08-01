@@ -8,7 +8,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.1'
+        classpath 'com.android.tools.build:gradle:3.4.2'
     }
 }
 
@@ -20,8 +20,8 @@ allprojects {
     }
 
     ext {
-        versionCode = 34
-        versionName = '1.34'
+        versionCode = 36
+        versionName = '1.36'
         minSdkVersion = 17
         targetSdkVersion = 28
         compileSdkVersion = 28

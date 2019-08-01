@@ -30,8 +30,8 @@ dependencies {
     implementation project(':treeView')
     implementation project(':xNet')
 
-    implementation 'androidx.appcompat:appcompat:1.1.0-alpha05'
+    implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
-    implementation 'androidx.annotation:annotation:1.1.0-rc01'
-    implementation 'com.google.android.material:material:1.1.0-alpha07'
+    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0-alpha09'
 }

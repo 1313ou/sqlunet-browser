@@ -771,17 +771,17 @@ public class StorageUtils
 	/**
 	 * Index of free storage value
 	 */
-	static private final int STORAGE_FREE = 0;
+	static public final int STORAGE_FREE = 0;
 
 	/**
 	 * Index of capacity value
 	 */
-	static private final int STORAGE_CAPACITY = 1;
+	static public final int STORAGE_CAPACITY = 1;
 
 	/**
 	 * Index of occupancy value
 	 */
-	static private final int STORAGE_OCCUPANCY = 2;
+	static public final int STORAGE_OCCUPANCY = 2;
 
 	/**
 	 * Storage data at path
@@ -790,7 +790,7 @@ public class StorageUtils
 	 * @return data
 	 */
 	@NonNull
-	static private float[] storageStats(final String path)
+	static public float[] storageStats(final String path)
 	{
 		float[] stats = new float[3];
 		stats[STORAGE_FREE] = storageFree(path);
@@ -896,7 +896,7 @@ public class StorageUtils
 	 * @param mb megabytes
 	 * @return string
 	 */
-	static String mbToString(final float mb)
+	static public String mbToString(final float mb)
 	{
 		if (Float.isNaN(mb))
 		{

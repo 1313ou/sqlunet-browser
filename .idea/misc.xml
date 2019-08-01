@@ -2303,6 +2303,16 @@
     <pattern value="org.sqlunet.verbnet.provider.VerbNetContract.Suggest_FTS_VnWords" />
     <pattern value="org.sqlunet.propbank.provider.PropBankContract.Suggest_PbWords" />
     <pattern value="org.sqlunet.verbnet.provider.VerbNetContract.Suggest_VnWords" />
+    <pattern value="org.sqlunet.provider.ManagerProvider" method="close" />
+    <pattern value="org.sqlunet.framenet.provider.FrameNetProvider" method="close" />
+    <pattern value="org.sqlunet.bnc.provider.BNCProvider" method="close" />
+    <pattern value="org.sqlunet.predicatematrix.provider.PredicateMatrixProvider" method="close" />
+    <pattern value="org.sqlunet.propbank.provider.PropBankProvider" method="close" />
+    <pattern value="org.sqlunet.verbnet.provider.VerbNetProvider" method="close" />
+    <pattern value="org.sqlunet.wordnet.provider.WordNetProvider" method="close" />
+    <pattern value="org.sqlunet.provider.XSqlUNetProvider" method="close" />
+    <pattern value="org.sqlunet.provider.BaseProvider" method="call" />
+    <pattern value="org.sqlunet.provider.BaseProvider" method="refresh" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="androidx.annotation.Nullable" />

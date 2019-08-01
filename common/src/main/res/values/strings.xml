@@ -19,6 +19,7 @@
 	<string name="action_status">Status</string>
 	<string name="action_refresh">Refresh</string>
 	<string name="action_update">Update database</string>
+	<string name="action_diagnostics">Diagnostics</string>
 
 	<!-- setup -->
 	<string name="action_setup">Set up</string>
@@ -43,12 +44,6 @@
 	<string name="action_help">Help</string>
 	<string name="action_about">About</string>
 	<string name="action_provider_info">Providers</string>
-	<string name="providers">content providers</string>
-	<string name="provider_authority">authority</string>
-	<string name="suggestions">suggestions</string>
-	<string name="suggestion_provider_pack">package</string>
-	<string name="suggestion_provider_authority">authority</string>
-	<string name="suggestion_provider_path">path</string>
 	<string name="action_appsettings">Application</string>
 
 	<!-- menus -->
@@ -64,6 +59,14 @@
 	<string name="action_cancel">Cancel</string>
 	<string name="action_ok">OK</string>
 	<string name="action_show">Show</string>
+
+	<!-- misc -->
+	<string name="providers">content providers</string>
+	<string name="provider_authority">authority</string>
+	<string name="suggestions">suggestions</string>
+	<string name="suggestion_provider_pack">package</string>
+	<string name="suggestion_provider_authority">authority</string>
+	<string name="suggestion_provider_path">path</string>
 
 	<!-- SETUP PAGES -->
 
@@ -89,12 +92,15 @@
 	<string name="title_activity_share_searchtext">Text search with Semantikos</string>
 
 	<string name="title_activity_selector">Select</string>
+	<string name="title_email_intent_selector">Choose an Email client</string>
 
 	<string name="title_activity_browse2">Data</string>
 	<string name="title_activity_table">Table</string>
 
 	<string name="title_dialog_sql">SQL</string>
 	<string name="title_download">SqlUNet download</string>
+
+	<string name="title_wait">Wait…</string>
 
 	<!-- send -->
 	<string name="send_activity_browse">Semantikos</string>
@@ -185,5 +191,6 @@
 	<string name="askDrop">Do you wish to drop the database ?</string>
 
 	<string name="sqlunet_blurb">SqlUNet\nunifies all</string>
+	<string name="title_activity_diagnostics">DiagnosticsActivity</string>
 
 </resources>

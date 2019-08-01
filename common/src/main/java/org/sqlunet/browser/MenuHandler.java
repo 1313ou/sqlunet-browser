@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.view.MenuItem;
 
 import org.sqlunet.browser.common.R;
+import org.sqlunet.browser.config.DiagnosticsActivity;
 import org.sqlunet.browser.config.SettingsActivity;
 import org.sqlunet.browser.config.SetupActivity;
 import org.sqlunet.browser.config.StorageActivity;
@@ -58,6 +59,10 @@ public class MenuHandler
 		else if (i == R.id.action_status)
 		{
 			intent = new Intent(activity, StatusActivity.class);
+		}
+		else if (i == R.id.action_diagnostics)
+		{
+			intent = new Intent(activity, DiagnosticsActivity.class);
 		}
 		else if (i == R.id.action_update)
 		{

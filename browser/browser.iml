@@ -111,11 +111,9 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/signing_config" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/sourceFolderJavaResources" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/symbols" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/transforms" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/validate_signing_config" />
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
-      <excludeFolder url="file://$MODULE_DIR$/build/reports" />
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 28 Platform" jdkType="Android SDK" />
@@ -187,34 +185,6 @@
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.multidex:multidex-instrumentation:2.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.annotation:annotation:1.1.0-rc01@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-process:2.0.0@aar" level="project" />
-    <orderEntry type="module" module-name="propbank" />
-    <orderEntry type="module" module-name="test" scope="TEST" />
-    <orderEntry type="module" module-name="expandableListFragment" />
-    <orderEntry type="module" module-name="deploy" />
-    <orderEntry type="module" module-name="bNC" />
-    <orderEntry type="module" module-name="common" />
-    <orderEntry type="module" module-name="verbNet" />
-    <orderEntry type="module" module-name="preference" />
-    <orderEntry type="module" module-name="support" />
-    <orderEntry type="module" module-name="predicateMatrix" />
-    <orderEntry type="module" module-name="download" />
-    <orderEntry type="module" module-name="frameNet" />
-    <orderEntry type="module" module-name="wordNet" />
-    <orderEntry type="module" module-name="xNet" />
-    <orderEntry type="module" module-name="propbank" />
-    <orderEntry type="module" module-name="test" scope="TEST" />
-    <orderEntry type="module" module-name="expandableListFragment" />
-    <orderEntry type="module" module-name="deploy" />
-    <orderEntry type="module" module-name="bNC" />
-    <orderEntry type="module" module-name="common" />
-    <orderEntry type="module" module-name="verbNet" />
-    <orderEntry type="module" module-name="preference" />
-    <orderEntry type="module" module-name="support" />
-    <orderEntry type="module" module-name="predicateMatrix" />
-    <orderEntry type="module" module-name="download" />
-    <orderEntry type="module" module-name="frameNet" />
-    <orderEntry type="module" module-name="wordNet" />
-    <orderEntry type="module" module-name="xNet" />
     <orderEntry type="module" module-name="propbank" />
     <orderEntry type="module" module-name="test" scope="TEST" />
     <orderEntry type="module" module-name="expandableListFragment" />

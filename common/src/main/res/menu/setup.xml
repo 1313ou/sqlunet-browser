@@ -11,4 +11,9 @@
 		android:orderInCategory="100"
 		android:title="@string/action_settings"
 		app:showAsAction="never"/>
+	<item
+		android:id="@+id/action_diagnostics"
+		android:title="@string/action_diagnostics"
+		app:showAsAction="never"
+		tools:ignore="AppCompatResource"/>
 </menu>

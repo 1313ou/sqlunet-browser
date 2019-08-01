@@ -843,7 +843,7 @@ public class Deploy
 	}
 
 	@SuppressWarnings("StatementWithEmptyBody")
-	static private String computeDigest(@NonNull final String path)
+	static public String computeDigest(@NonNull final String path)
 	{
 		// Log.d(TAG, "MD5 " + path);
 		MessageDigest md;
