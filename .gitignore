@@ -18,6 +18,7 @@
 /dist/pdf
 /dist/stats
 /release
+/data
 /captures
 **/keystore.properties
 **/build
