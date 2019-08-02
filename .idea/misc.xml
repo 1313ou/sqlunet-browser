@@ -2313,6 +2313,7 @@
     <pattern value="org.sqlunet.provider.XSqlUNetProvider" method="close" />
     <pattern value="org.sqlunet.provider.BaseProvider" method="call" />
     <pattern value="org.sqlunet.provider.BaseProvider" method="refresh" />
+    <pattern value="org.sqlunet.browser.config.SettingsActivity" method="onCreateOptionsMenu" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="androidx.annotation.Nullable" />

@@ -1,0 +1,18 @@
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="org.sqlunet.browser.config.SetupFragment">
+	<item
+		android:id="@+id/action_clear_settings"
+		android:title="@string/action_clear_settings"
+		app:showAsAction="never"/>
+	<item
+		android:id="@+id/action_diagnostics"
+		android:title="@string/action_diagnostics"
+		app:showAsAction="never"
+		tools:ignore="AppCompatResource"/>
+</menu>

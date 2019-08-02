@@ -5,12 +5,15 @@
 package org.sqlunet.browser.config;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
+import android.os.Build;
 
 import org.sqlunet.Deploy;
 import org.sqlunet.browser.common.R;
@@ -75,7 +78,32 @@ public class Diagnostics
 		final StringBuilder sb = new StringBuilder();
 		sb.append("DIAGNOSTICS");
 		sb.append('\n');
-		sb.append(context.getApplicationInfo().packageName);
+		sb.append('\n');
+
+		final String packageName = context.getApplicationInfo().packageName;
+		sb.append(packageName);
+		sb.append('\n');
+
+		final PackageInfo pInfo;
+		try
+		{
+			pInfo = context.getPackageManager().getPackageInfo(packageName, 0);
+			final long code = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P ? pInfo.getLongVersionCode() : pInfo.versionCode;
+			sb.append("version: ");
+			sb.append(code);
+			sb.append('\n');
+		}
+		catch (PackageManager.NameNotFoundException e)
+		{
+			sb.append("package info: ");
+			sb.append(e);
+			sb.append('\n');
+		}
+
+		sb.append("api: ");
+		sb.append(Build.VERSION.SDK_INT);
+		sb.append(' ');
+		sb.append(Build.VERSION.CODENAME);
 		sb.append('\n');
 		sb.append('\n');
 
@@ -160,7 +188,6 @@ public class Diagnostics
 						final String[] requiredTables = res.getStringArray(R.array.required_tables);
 						final String[] requiredIndexes = res.getStringArray(R.array.required_indexes);
 
-						final String packageName = context.getPackageName();
 						final int requiredPmTablesResId = res.getIdentifier("required_pm", "array", packageName);
 						final int requiredTSWnResId = res.getIdentifier("required_texts_wn", "array", packageName);
 						final int requiredTSVnResId = res.getIdentifier("required_texts_vn", "array", packageName);
@@ -329,6 +356,17 @@ public class Diagnostics
 		sb.append('\n');
 		sb.append("recorded date: ");
 		sb.append(stamp == -1 ? "null" : new Date(stamp).toString());
+		sb.append('\n');
+
+		final String dbDownloadSource = StorageSettings.getDbDownloadSource(context);
+		final String dbDownloadTarget = StorageSettings.getDbDownloadTarget(context);
+
+		sb.append('\n');
+		sb.append("download source: ");
+		sb.append(dbDownloadSource);
+		sb.append('\n');
+		sb.append("download target: ");
+		sb.append(dbDownloadTarget);
 		sb.append('\n');
 
 		return sb.toString();

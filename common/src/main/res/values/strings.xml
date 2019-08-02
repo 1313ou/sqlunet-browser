@@ -19,6 +19,7 @@
 	<string name="action_status">Status</string>
 	<string name="action_refresh">Refresh</string>
 	<string name="action_update">Update database</string>
+	<string name="action_clear_settings">Clear settings</string>
 	<string name="action_diagnostics">Diagnostics</string>
 
 	<!-- setup -->
@@ -100,7 +101,7 @@
 	<string name="title_dialog_sql">SQL</string>
 	<string name="title_download">SqlUNet download</string>
 
-	<string name="title_wait">Wait…</string>
+	<string name="title_running_diagnostics">Running diagnostics…</string>
 
 	<!-- send -->
 	<string name="send_activity_browse">Semantikos</string>

@@ -5,6 +5,7 @@
 package org.sqlunet.browser;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.MenuItem;
 
 import org.sqlunet.browser.common.R;
@@ -21,6 +22,7 @@ import org.sqlunet.support.OtherActivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 /**
  * Main activity stub
@@ -49,6 +51,14 @@ public class MenuHandler
 		}
 		else if (i == R.id.action_settings)
 		{
+			intent = new Intent(activity, SettingsActivity.class);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+		}
+		else if (i == R.id.action_clear_settings)
+		{
+			final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+			final SharedPreferences.Editor edit = prefs.edit();
+			edit.clear().apply();
 			intent = new Intent(activity, SettingsActivity.class);
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 		}

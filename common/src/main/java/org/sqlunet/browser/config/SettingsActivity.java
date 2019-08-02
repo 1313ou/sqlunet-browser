@@ -11,11 +11,13 @@ import android.content.res.XmlResourceParser;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Pair;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import org.sqlunet.browser.ColorUtils;
+import org.sqlunet.browser.MenuHandler;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.preference.Header;
 import org.sqlunet.preference.PreferenceActivityCompat;
@@ -97,6 +99,30 @@ public class SettingsActivity extends PreferenceActivityCompat
 			final Toolbar toolbar = findViewById(toolbarId);
 			setSupportActionBar(toolbar);
 		}
+	}
+
+	// M E N U
+
+	@SuppressWarnings("SameReturnValue")
+	@Override
+	public boolean onCreateOptionsMenu(final Menu menu)
+	{
+		// inflate the menu; this adds items to the type bar if it is present.
+		getMenuInflater().inflate(R.menu.settings, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
+	{
+		// Respond to the action bar's Up/Home button
+		if (item.getItemId() == android.R.id.home)
+		{
+			NavUtils.navigateUpFromSameTask(this);
+			return true;
+		}
+
+		return MenuHandler.menuDispatch(this, item);
 	}
 
 	// V A L I D A T I O N
@@ -191,7 +217,7 @@ public class SettingsActivity extends PreferenceActivityCompat
 		}
 
 		// globals
-		if(Settings.PREF_SQL_LOG.equals(key))
+		if (Settings.PREF_SQL_LOG.equals(key))
 		{
 			Settings.update(preference.getContext());
 		}
@@ -364,17 +390,5 @@ public class SettingsActivity extends PreferenceActivityCompat
 			bind(findPreference(Settings.PREF_ENTRY_INDEX));
 			bind(cachePreference);
 		}
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(@NonNull MenuItem item)
-	{
-		// Respond to the action bar's Up/Home button
-		if (item.getItemId() == android.R.id.home)
-		{
-			NavUtils.navigateUpFromSameTask(this);
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
 	}
 }

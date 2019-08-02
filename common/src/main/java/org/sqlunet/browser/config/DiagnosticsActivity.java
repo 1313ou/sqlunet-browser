@@ -13,6 +13,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.sqlunet.browser.common.R;
@@ -35,16 +37,17 @@ public class DiagnosticsActivity extends AppCompatActivity
 		assert actionBar != null;
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
 
+		// progress
+		final ProgressBar progress = findViewById(R.id.progress);
+		progress.setIndeterminate(true);
+
 		// text view
 		final TextView textView = findViewById(R.id.report);
-
-		// diagnostics
-		// final String diagnostics = Diagnostics.report(this);
-		textView.setText(R.string.title_wait);
-		new Diagnostics.AsyncDiagnostics(textView::setText).execute(this);
+		textView.setText(R.string.title_running_diagnostics);
 
 		// action button
-		FloatingActionButton fab = findViewById(R.id.send_fab);
+		final FloatingActionButton fab = findViewById(R.id.send_fab);
+		fab.setVisibility(View.GONE);
 		fab.setOnClickListener(view -> {
 
 			final Intent email = new Intent(Intent.ACTION_SEND);
@@ -55,5 +58,15 @@ public class DiagnosticsActivity extends AppCompatActivity
 
 			startActivity(Intent.createChooser(email, getString(R.string.title_email_intent_selector)));
 		});
+
+		// diagnostics
+		// final String diagnostics = Diagnostics.report(this);
+		new Diagnostics.AsyncDiagnostics(text -> {
+			progress.setIndeterminate(false);
+			progress.setVisibility(View.GONE);
+			textView.setText(text);
+			fab.setVisibility(View.VISIBLE);
+		}).execute(this);
+
 	}
 }
