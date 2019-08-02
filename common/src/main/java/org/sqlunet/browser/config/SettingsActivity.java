@@ -5,6 +5,7 @@
 package org.sqlunet.browser.config;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.sqlunet.browser.ColorUtils;
+import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.MenuHandler;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.preference.Header;
@@ -30,6 +32,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import androidx.annotation.NonNull;
@@ -188,6 +191,21 @@ public class SettingsActivity extends PreferenceActivityCompat
 			// For all other preferences, set the summary to the value's simple string representation.
 			final String stringValue = value != null ? value.toString() : "<default>";
 			preference.setSummary(stringValue);
+		}
+		String key = preference.getKey();
+		if (Settings.PREF_SELECTOR_MODE.equals(key) || Settings.PREF_DETAIL_MODE.equals(key))
+		{
+			final String prevValue = preference.getSharedPreferences().getString(key, null);
+
+			//if (Objects.equals(prevValue, value))
+			//noinspection EqualsReplaceableByObjectsCall
+			if (value == null ? prevValue != null : !value.equals(prevValue))
+			{
+				final Context context = preference.getContext();
+				final Intent intent = new Intent(context, EntryActivity.class);
+				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+				context.startActivity(intent);
+			}
 		}
 		return true;
 	};
