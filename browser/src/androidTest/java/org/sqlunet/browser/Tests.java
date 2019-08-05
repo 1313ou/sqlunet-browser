@@ -7,8 +7,6 @@ import android.widget.TextView;
 
 import org.hamcrest.Matcher;
 
-import androidx.test.espresso.contrib.ExpandableListViewProtocol;
-
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -89,9 +87,7 @@ class Tests
 					onData(anything()) //
 							.inAdapterView(list) //
 							.atPosition(k++) //
-							//.usingAdapterViewProtocol(android.support.test.espresso.action.AdapterViewProtocols.standardProtocol())
-							.usingAdapterViewProtocol(ExpandableListViewProtocol.expandableListViewProtocol()).perform(  //
-							click() //
+							.usingAdapterViewProtocol(androidx.test.espresso.action.AdapterViewProtocols.standardProtocol()).perform(click() //
 					);
 
 					// Wait.pause(2);

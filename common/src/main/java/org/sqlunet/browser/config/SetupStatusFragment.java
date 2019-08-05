@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import org.sqlunet.browser.ColorUtils;
+import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.Info;
 import org.sqlunet.browser.MainActivity;
 import org.sqlunet.browser.common.R;
@@ -239,9 +240,8 @@ public class SetupStatusFragment extends Fragment implements Updatable
 
 				Toast.makeText(context, R.string.title_download_complete, Toast.LENGTH_SHORT).show();
 
-				final Intent intent = new Intent(context, MainActivity.class);
-				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				startActivity(intent);
+				EntryActivity.reenter(context);
+
 				final Activity activity = getActivity();
 				if (activity != null)
 				{

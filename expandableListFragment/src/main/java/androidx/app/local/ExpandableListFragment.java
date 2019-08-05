@@ -2,11 +2,12 @@
  * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
-package android.support.local.app;
+package androidx.app.local;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.local.app.R;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;

@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
 
+import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.Info;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.download.DownloadActivity;
@@ -130,6 +131,7 @@ public class SetupFileFragment extends BaseTaskFragment
 							boolean success1 = SetupDatabaseTasks.deleteDatabase(activity, StorageSettings.getDatabasePath(activity));
 							SetupFileFragment.this.status.setText(success1 ? R.string.status_task_done : R.string.status_task_failed);
 							FileData.unrecordDatabase(activity);
+							EntryActivity.reenter(activity);
 						});
 						break;
 

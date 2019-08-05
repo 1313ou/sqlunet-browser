@@ -201,9 +201,7 @@ public class SettingsActivity extends PreferenceActivityCompat
 			if (value == null ? prevValue != null : !value.equals(prevValue))
 			{
 				final Context context = preference.getContext();
-				final Intent intent = new Intent(context, EntryActivity.class);
-				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-				context.startActivity(intent);
+				EntryActivity.reenter(context);
 			}
 		}
 		return true;

@@ -4,6 +4,7 @@
 
 package org.sqlunet.browser;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -71,12 +72,19 @@ public class EntryActivity extends AppCompatActivity
 		}
 	}
 
-	private static void forkOff(@NonNull final AppCompatActivity activity)
+	static public void forkOff(@NonNull final AppCompatActivity activity)
 	{
 		final Intent intent = new Intent(activity, StatusActivity.class);
 		intent.putExtra(Status.CANTRUN, true);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		activity.startActivity(intent);
 		activity.finish();
+	}
+
+	static public void reenter(@NonNull final Context context)
+	{
+		final Intent intent = new Intent(context, EntryActivity.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+		context.startActivity(intent);
 	}
 }

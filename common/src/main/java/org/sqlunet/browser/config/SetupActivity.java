@@ -236,6 +236,12 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 			startActivity(intent);
 			return true;
 		}
+		else if (id == R.id.action_diagnostics)
+		{
+			final Intent intent = new Intent(this, DiagnosticsActivity.class);
+			startActivity(intent);
+			return true;
+		}
 
 		return super.onOptionsItemSelected(item);
 	}
