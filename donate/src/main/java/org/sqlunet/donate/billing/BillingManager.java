@@ -35,6 +35,8 @@ import com.android.billingclient.api.SkuDetails;
 import com.android.billingclient.api.SkuDetailsParams;
 import com.android.billingclient.api.SkuDetailsResponseListener;
 
+import org.sqlunet.donate.R;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -75,7 +77,7 @@ public class BillingManager implements PurchasesUpdatedListener
 	@BillingResponseCode
 	private int billingClientResponseCode = BillingResponseCode.SERVICE_DISCONNECTED;
 
-	/* BASE_64_ENCODED_PUBLIC_KEY should be YOUR APPLICATION'S PUBLIC KEY
+	/* base64EncodedPublicKey should be YOUR APPLICATION'S PUBLIC KEY
 	 * (that you got from the Google Play developer console). This is not your
 	 * developer public key, it's the *app-specific* public key.
 	 *
@@ -86,7 +88,7 @@ public class BillingManager implements PurchasesUpdatedListener
 	 * want to make it easy for an attacker to replace the public key with one
 	 * of their own and then fake messages from the server.
 	 */
-	private static final String BASE_64_ENCODED_PUBLIC_KEY = "CONSTRUCT_YOUR_KEY_AND_PLACE_IT_HERE";
+	private final String base64EncodedPublicKey;
 
 	/**
 	 * Listener to the updates that happen when purchases list was updated or consumption of the item was finished
@@ -113,6 +115,7 @@ public class BillingManager implements PurchasesUpdatedListener
 		Log.d(TAG, "Creating Billing client.");
 		this.activity = activity;
 		this.updatesListener = updatesListener;
+		this.base64EncodedPublicKey = this.activity.getString(R.string.public_key);
 		this.client = BillingClient.newBuilder(this.activity) //
 				.enablePendingPurchases() //
 				.setListener(this) //
@@ -466,14 +469,14 @@ public class BillingManager implements PurchasesUpdatedListener
 	private boolean verifyValidSignature(@NonNull String signedData, String signature)
 	{
 		// Some sanity checks to see if the developer (that's you!) really followed the instructions to run this sample (don't put these checks on your app!)
-		if (BASE_64_ENCODED_PUBLIC_KEY.contains("CONSTRUCT_YOUR"))
+		if (base64EncodedPublicKey.contains("CONSTRUCT_YOUR"))
 		{
-			throw new RuntimeException("Please update your app's public key at: " + "BASE_64_ENCODED_PUBLIC_KEY");
+			throw new RuntimeException("Please update your app's public key at: " + "base64EncodedPublicKey");
 		}
 
 		try
 		{
-			return Security.verifyPurchase(BASE_64_ENCODED_PUBLIC_KEY, signedData, signature);
+			return Security.verifyPurchase(base64EncodedPublicKey, signedData, signature);
 		}
 		catch (IOException e)
 		{
