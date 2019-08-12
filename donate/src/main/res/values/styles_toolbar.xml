@@ -1,0 +1,15 @@
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+
+	<style name="MyAppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+		<!-- <item name="android:background">?attr/colorPrimary</item>item> -->
+	</style>
+
+	<style name="MyAppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark">
+		<!-- <item name="android:background">?attr/colorPrimaryDark</item>item> -->
+	</style>
+
+</resources>
