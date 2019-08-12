@@ -17,8 +17,8 @@ import org.sqlunet.download.FileDataDownloader;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
-import org.sqlunet.support.DonateActivity;
-import org.sqlunet.support.OtherActivity;
+import org.sqlunet.others.OtherActivity;
+import org.sqlunet.donate.DonateActivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

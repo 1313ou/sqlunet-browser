@@ -189,8 +189,9 @@
     <orderEntry type="module" module-name="expandableListFragment" />
     <orderEntry type="module" module-name="deploy" />
     <orderEntry type="module" module-name="bNC" />
-    <orderEntry type="module" module-name="support" />
+    <orderEntry type="module" module-name="others" />
     <orderEntry type="module" module-name="download" />
+    <orderEntry type="module" module-name="donate" />
     <orderEntry type="module" module-name="common" />
     <orderEntry type="module" module-name="wordNet" />
     <orderEntry type="module" module-name="xNet" />

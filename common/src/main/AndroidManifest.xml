@@ -279,7 +279,7 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.support.DonateActivity"
+			android:name="org.sqlunet.donate.DonateActivity"
 			android:label="@string/title_activity_donate"
 			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
@@ -289,7 +289,7 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.support.OtherActivity"
+			android:name="org.sqlunet.others.OtherActivity"
 			android:label="@string/title_activity_other"
 			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
