@@ -37,156 +37,23 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="reenter app after database deletion&#10;trimmed tests">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_billingclient_billing_2_0_3_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/donate/donate.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="iab module with billing lib">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bNC/bNC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/bNC/bNC.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browser/browser.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/browser.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/browser/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browserewn/browserewn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/browserewn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browserfn/browserfn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/browserfn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browservn/browservn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/browservn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browserwn/browserwn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/browserwn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/common/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/common/common.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MenuHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MenuHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy/deploy.iml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/deploy.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/billing/BillingConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/billing/BillingConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/billing/BillingManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/billing/BillingManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/billing/Security.java" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/billing/Security.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/download/download.iml" beforeDir="false" afterPath="$PROJECT_DIR$/download/download.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" beforeDir="false" afterPath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frameNet/frameNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/frameNet.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libwn/libwn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/libwn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/others/src/main/java/org/sqlunet/support/DonateActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/others/src/main/java/org/sqlunet/support/IABAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/others/src/main/java/org/sqlunet/support/OtherActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/others/src/main/java/org/sqlunet/support/util/IabBroadcastReceiver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/others/src/main/java/org/sqlunet/support/util/IabException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/others/src/main/java/org/sqlunet/support/util/IabHelper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/others/src/main/java/org/sqlunet/support/util/IabResult.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/others/src/main/java/org/sqlunet/support/util/Inventory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/others/src/main/java/org/sqlunet/support/util/Purchase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/others/src/main/java/org/sqlunet/support/util/Security.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/others/src/main/java/org/sqlunet/support/util/SkuDetails.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" beforeDir="false" afterPath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preference/preference.iml" beforeDir="false" afterPath="$PROJECT_DIR$/preference/preference.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/propbank/propbank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/propbank/propbank.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/others/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/artwork/ic_donate1.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/artwork/ic_donate2.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/artwork/ic_donate3.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/artwork/ic_donate4.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/artwork/ic_donate5.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/artwork/ic_googleplay.svg" beforeDir="false" afterPath="$PROJECT_DIR$/others/artwork/ic_googleplay.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/artwork/logo_grammarscope.svg" beforeDir="false" afterPath="$PROJECT_DIR$/others/artwork/logo_grammarscope.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/artwork/logo_grammarscope_udpipe.svg" beforeDir="false" afterPath="$PROJECT_DIR$/others/artwork/logo_grammarscope_udpipe.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/artwork/logo_semantikos.svg" beforeDir="false" afterPath="$PROJECT_DIR$/others/artwork/logo_semantikos.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/artwork/logo_semantikos_ewn.svg" beforeDir="false" afterPath="$PROJECT_DIR$/others/artwork/logo_semantikos_ewn.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/artwork/logo_semantikos_fn.svg" beforeDir="false" afterPath="$PROJECT_DIR$/others/artwork/logo_semantikos_fn.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/artwork/logo_semantikos_vn.svg" beforeDir="false" afterPath="$PROJECT_DIR$/others/artwork/logo_semantikos_vn.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/artwork/logo_semantikos_wn.svg" beforeDir="false" afterPath="$PROJECT_DIR$/others/artwork/logo_semantikos_wn.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/artwork/logo_treebolicwordnet.svg" beforeDir="false" afterPath="$PROJECT_DIR$/others/artwork/logo_treebolicwordnet.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/artwork/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/others/artwork/make-artwork.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/others/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/proguard-rules.pro" beforeDir="false" afterPath="$PROJECT_DIR$/others/proguard-rules.pro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/aidl/com/android/vending/billing/IInAppBillingService.aidl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-hdpi/ic_donate1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-hdpi/ic_donate2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-hdpi/ic_donate3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-hdpi/ic_donate4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-hdpi/ic_donate5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-hdpi/ic_googleplay.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-hdpi/ic_googleplay.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-hdpi/logo_grammarscope.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-hdpi/logo_grammarscope.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-hdpi/logo_grammarscope_udpipe.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-hdpi/logo_grammarscope_udpipe.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-hdpi/logo_semantikos.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-hdpi/logo_semantikos.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-hdpi/logo_semantikos_ewn.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-hdpi/logo_semantikos_ewn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-hdpi/logo_semantikos_fn.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-hdpi/logo_semantikos_fn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-hdpi/logo_semantikos_vn.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-hdpi/logo_semantikos_vn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-hdpi/logo_semantikos_wn.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-hdpi/logo_semantikos_wn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-hdpi/logo_treebolicwordnet.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-hdpi/logo_treebolicwordnet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-mdpi/ic_donate1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-mdpi/ic_donate2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-mdpi/ic_donate3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-mdpi/ic_donate4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-mdpi/ic_donate5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-mdpi/ic_googleplay.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-mdpi/ic_googleplay.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-mdpi/logo_grammarscope.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-mdpi/logo_grammarscope.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-mdpi/logo_grammarscope_udpipe.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-mdpi/logo_grammarscope_udpipe.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-mdpi/logo_semantikos.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-mdpi/logo_semantikos.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-mdpi/logo_semantikos_ewn.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-mdpi/logo_semantikos_ewn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-mdpi/logo_semantikos_fn.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-mdpi/logo_semantikos_fn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-mdpi/logo_semantikos_vn.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-mdpi/logo_semantikos_vn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-mdpi/logo_semantikos_wn.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-mdpi/logo_semantikos_wn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-mdpi/logo_treebolicwordnet.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-mdpi/logo_treebolicwordnet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xhdpi/ic_donate1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xhdpi/ic_donate2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xhdpi/ic_donate3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xhdpi/ic_donate4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xhdpi/ic_donate5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xhdpi/ic_googleplay.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-xhdpi/ic_googleplay.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xhdpi/logo_grammarscope.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-xhdpi/logo_grammarscope.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xhdpi/logo_grammarscope_udpipe.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-xhdpi/logo_grammarscope_udpipe.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xhdpi/logo_semantikos.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-xhdpi/logo_semantikos.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xhdpi/logo_semantikos_ewn.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-xhdpi/logo_semantikos_ewn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xhdpi/logo_semantikos_fn.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-xhdpi/logo_semantikos_fn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xhdpi/logo_semantikos_vn.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-xhdpi/logo_semantikos_vn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xhdpi/logo_semantikos_wn.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-xhdpi/logo_semantikos_wn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xhdpi/logo_treebolicwordnet.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-xhdpi/logo_treebolicwordnet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxhdpi/ic_donate1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxhdpi/ic_donate2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxhdpi/ic_donate3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxhdpi/ic_donate4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxhdpi/ic_donate5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxhdpi/ic_googleplay.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-xxhdpi/ic_googleplay.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxhdpi/logo_grammarscope.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-xxhdpi/logo_grammarscope.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxhdpi/logo_grammarscope_udpipe.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-xxhdpi/logo_grammarscope_udpipe.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxhdpi/logo_semantikos.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-xxhdpi/logo_semantikos.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxhdpi/logo_semantikos_ewn.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-xxhdpi/logo_semantikos_ewn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxhdpi/logo_semantikos_fn.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-xxhdpi/logo_semantikos_fn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxhdpi/logo_semantikos_vn.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-xxhdpi/logo_semantikos_vn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxhdpi/logo_semantikos_wn.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-xxhdpi/logo_semantikos_wn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxhdpi/logo_treebolicwordnet.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-xxhdpi/logo_treebolicwordnet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxxhdpi/ic_donate1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxxhdpi/ic_donate2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxxhdpi/ic_donate3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxxhdpi/ic_donate4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxxhdpi/ic_donate5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxxhdpi/ic_googleplay.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-xxxhdpi/ic_googleplay.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxxhdpi/logo_grammarscope.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-xxxhdpi/logo_grammarscope.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxxhdpi/logo_grammarscope_udpipe.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-xxxhdpi/logo_grammarscope_udpipe.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxxhdpi/logo_semantikos.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-xxxhdpi/logo_semantikos.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxxhdpi/logo_semantikos_ewn.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-xxxhdpi/logo_semantikos_ewn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxxhdpi/logo_semantikos_fn.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-xxxhdpi/logo_semantikos_fn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxxhdpi/logo_semantikos_vn.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-xxxhdpi/logo_semantikos_vn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxxhdpi/logo_semantikos_wn.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-xxxhdpi/logo_semantikos_wn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/drawable-xxxhdpi/logo_treebolicwordnet.png" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/drawable-xxxhdpi/logo_treebolicwordnet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/layout/activity_buy.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/layout/activity_other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/layout/activity_other.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/layout/toolbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/layout/toolbar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/values/strings-nontranslatable.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/values/strings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/values/strings_other-nontranslatable.xml" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/values/strings_other-nontranslatable.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/values/strings_other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/values/strings_other.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/values/strings_support.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/values/styles_other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/values/styles_other.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/src/main/res/values/styles_toolbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/res/values/styles_toolbar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/support/support.iml" beforeDir="false" afterPath="$PROJECT_DIR$/others/others.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/test/test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treeView/treeView.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/treeView.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/verbNet/verbNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/verbNet.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wordNet/wordNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/wordNet.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/xNet/xNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/xNet.iml" afterDir="false" />
@@ -270,7 +137,60 @@
     <favorites_list name="SqlUNet" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/billing/BillingManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="514">
+              <caret line="316" selection-start-line="316" selection-end-line="316" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/donate/src/test/java/org/sqlunet/donate/BillingUnitTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="468">
+              <caret line="50" column="88" selection-start-line="50" selection-start-column="83" selection-end-line="50" selection-end-column="88" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/billing/BillingConstants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="208">
+              <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+              <folding>
+                <element signature="e#1799#1800#0" expanded="true" />
+                <element signature="e#1911#1912#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/billing/BillingProvider.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="78">
+              <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/billing/Security.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-415">
+              <caret line="56" column="9" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -428,11 +348,8 @@
         <option value="$PROJECT_DIR$/others/src/main/java/org/sqlunet/others/OtherActivity.java" />
         <option value="$PROJECT_DIR$/common/build.gradle" />
         <option value="$PROJECT_DIR$/donate/src/main/res/layout/activity_buy.xml" />
-        <option value="$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/billing/Security.java" />
-        <option value="$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/billing/BillingConstants.java" />
         <option value="$PROJECT_DIR$/donate/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/billing/BillingProvider.java" />
-        <option value="$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/billing/BillingManager.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MenuHandler.java" />
         <option value="$PROJECT_DIR$/browser/build.gradle" />
         <option value="$PROJECT_DIR$/browserewn/build.gradle" />
@@ -449,6 +366,9 @@
         <option value="$PROJECT_DIR$/libwn/build.gradle" />
         <option value="$PROJECT_DIR$/donate/src/test/java/org/sqlunet/donate/BillingUnitTest.java" />
         <option value="$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/DonateActivity.java" />
+        <option value="$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/billing/Security.java" />
+        <option value="$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/billing/BillingManager.java" />
+        <option value="$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/billing/BillingConstants.java" />
       </list>
     </option>
   </component>
@@ -486,8 +406,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -510,7 +430,41 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="donate" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="donate" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="donate" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="donate" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="donate" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="donate" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="billing" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
+              <item name="donate" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="donate" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -591,7 +545,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Android App.browserewn">
+  <component name="RunManager" selected="Android JUnit.BillingUnitTest">
     <configuration name="&lt;template&gt;" type="Applet" default="true" selected="false">
       <option name="MAIN_CLASS_NAME" />
       <option name="HTML_FILE_NAME" />
@@ -613,6 +567,19 @@
     </configuration>
     <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+    </configuration>
+    <configuration name="BillingUnitTest" type="AndroidJUnit" factoryName="Android JUnit" nameIsGenerated="true">
+      <module name="donate" />
+      <option name="PACKAGE_NAME" value="org.sqlunet.donate" />
+      <option name="MAIN_CLASS_NAME" value="org.sqlunet.donate.BillingUnitTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <option name="TEST_OBJECT" value="class" />
@@ -1311,6 +1278,7 @@
       <item itemvalue="Android Instrumented Tests.RunMainTree" />
       <item itemvalue="Android Instrumented Tests.RunMainFlat" />
       <item itemvalue="Android Instrumented Tests.RunXSelectorsTree" />
+      <item itemvalue="Android JUnit.BillingUnitTest" />
       <item itemvalue="Gradle.SqlUNet::mnt:data2:devel:android-sqlunet-as:SqlUNet:common [lintRelease]" />
     </list>
     <recent_temporary>
@@ -1337,27 +1305,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1487150992421</updated>
-    </task>
-    <task id="LOCAL-00170" summary="lint">
-      <created>1557223266685</created>
-      <option name="number" value="00170" />
-      <option name="presentableId" value="LOCAL-00170" />
-      <option name="project" value="LOCAL" />
-      <updated>1557223266686</updated>
-    </task>
-    <task id="LOCAL-00171" summary="lint">
-      <created>1557403777530</created>
-      <option name="number" value="00171" />
-      <option name="presentableId" value="LOCAL-00171" />
-      <option name="project" value="LOCAL" />
-      <updated>1557403777531</updated>
-    </task>
-    <task id="LOCAL-00172" summary="ewn">
-      <created>1557403817449</created>
-      <option name="number" value="00172" />
-      <option name="presentableId" value="LOCAL-00172" />
-      <option name="project" value="LOCAL" />
-      <updated>1557403817449</updated>
     </task>
     <task id="LOCAL-00173" summary="style rename&#10;autocomplete dropdown style">
       <created>1557405673415</created>
@@ -1681,22 +1628,31 @@
       <option name="project" value="LOCAL" />
       <updated>1564997777476</updated>
     </task>
-    <option name="localTasksCounter" value="219" />
+    <task id="LOCAL-00219" summary="iab module with billing lib">
+      <created>1565604091641</created>
+      <option name="number" value="00219" />
+      <option name="presentableId" value="LOCAL-00219" />
+      <option name="project" value="LOCAL" />
+      <updated>1565604091642</updated>
+    </task>
+    <task id="LOCAL-00220" summary="iab module with billing lib">
+      <created>1565604114088</created>
+      <option name="number" value="00220" />
+      <option name="presentableId" value="LOCAL-00220" />
+      <option name="project" value="LOCAL" />
+      <updated>1565604114088</updated>
+    </task>
+    <task id="LOCAL-00221" summary="iab module with billing lib">
+      <created>1565604152098</created>
+      <option name="number" value="00221" />
+      <option name="presentableId" value="LOCAL-00221" />
+      <option name="project" value="LOCAL" />
+      <updated>1565604152098</updated>
+    </task>
+    <option name="localTasksCounter" value="222" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="RunBrowseFlat - 2019.08.05 at 09h 14m 01s.xml">
-      <configuration name="RunBrowseFlat" configurationId="AndroidTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="RunBrowseTree - 2019.08.05 at 09h 21m 42s.xml">
-      <configuration name="RunBrowseTree" configurationId="AndroidTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="RunBrowseTree - 2019.08.05 at 09h 35m 15s.xml">
-      <configuration name="RunBrowseTree" configurationId="AndroidTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="RunBrowseTree - 2019.08.05 at 10h 05m 29s.xml">
-      <configuration name="RunBrowseTree" configurationId="AndroidTestRunConfigurationType" />
-    </history-entry>
     <history-entry file="RunBrowseTree - 2019.08.05 at 10h 44m 42s.xml">
       <configuration name="RunBrowseTree" configurationId="AndroidTestRunConfigurationType" />
     </history-entry>
@@ -1715,6 +1671,18 @@
     <history-entry file="RunXSelectorsTree - 2019.08.05 at 11h 09m 21s.xml">
       <configuration name="RunXSelectorsTree" configurationId="AndroidTestRunConfigurationType" />
     </history-entry>
+    <history-entry file="BillingUnitTest - 2019.08.12 at 16h 55m 43s.xml">
+      <configuration name="BillingUnitTest" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="BillingUnitTest - 2019.08.12 at 16h 59m 41s.xml">
+      <configuration name="BillingUnitTest" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="BillingUnitTest - 2019.08.12 at 16h 59m 43s.xml">
+      <configuration name="BillingUnitTest" configurationId="AndroidJUnit" />
+    </history-entry>
+    <history-entry file="BillingUnitTest - 2019.08.12 at 16h 59m 53s.xml">
+      <configuration name="BillingUnitTest" configurationId="AndroidJUnit" />
+    </history-entry>
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -1727,6 +1695,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="51" y="27" width="1869" height="1173" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.784" visible="true" weight="0.17460318" />
       <window_info id="Structure" order="1" sideWeight="0.216" side_tool="true" weight="0.1652983" />
@@ -1740,7 +1709,7 @@
       <window_info id="Resources Explorer" order="9" weight="0.32950193" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.6897119" weight="0.33757338" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.22824302" weight="0.24141315" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.22824302" visible="true" weight="0.2407045" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.40823045" weight="0.30234835" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1750,14 +1719,14 @@
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.56759715" side_tool="true" weight="0.1741683" />
       <window_info anchor="bottom" id="Build" order="10" sideWeight="0.32839507" weight="0.18688846" />
       <window_info anchor="bottom" id="Android Monitor" order="11" sideWeight="0.82428116" weight="0.39513677" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="12" sideWeight="0.3678161" visible="true" weight="0.37181997" />
+      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.3678161" weight="0.37181997" />
       <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.3136289" weight="0.32387474" />
       <window_info active="true" anchor="bottom" id="Gradle Console" order="14" sideWeight="0.4729064" side_tool="true" visible="true" weight="0.3107843" />
       <window_info anchor="bottom" id="Messages" order="15" sideWeight="0.5270936" weight="0.3107843" />
       <window_info anchor="bottom" id="Inspection Results" order="16" sideWeight="0.6641975" weight="0.33953032" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.49367088" weight="0.25013682" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.49367088" visible="true" weight="0.24958949" />
       <window_info anchor="right" id="Assistant" order="3" visible="true" weight="0.32876712" />
       <window_info anchor="right" id="Module Dependencies" order="4" visible="true" weight="0.20197044" />
       <window_info anchor="right" id="Android Model" order="5" side_tool="true" />
@@ -1835,7 +1804,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="menus&#10;help svg" />
     <MESSAGE value="sub menus" />
     <MESSAGE value="renames&#10;sensepointer with pos" />
     <MESSAGE value="tree node factory add split into make + addTo(parent)&#10;break expansion scheme" />
@@ -1860,7 +1828,8 @@
     <MESSAGE value="diagnostics&#10;progress bar&#10;lib updates" />
     <MESSAGE value="handles view mode change" />
     <MESSAGE value="reenter app after database deletion&#10;trimmed tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="reenter app after database deletion&#10;trimmed tests" />
+    <MESSAGE value="iab module with billing lib" />
+    <option name="LAST_COMMIT_MESSAGE" value="iab module with billing lib" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1923,6 +1892,12 @@
           <line>202</line>
           <properties />
           <option name="timeStamp" value="245" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/donate/src/test/java/org/sqlunet/donate/BillingUnitTest.java</url>
+          <line>50</line>
+          <properties />
+          <option name="timeStamp" value="246" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -2020,13 +1995,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/others/src/main/java/org/sqlunet/support/util/IabBroadcastReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/others/src/main/java/org/sqlunet/support/util/IabBroadcastReceiver.java" />
     <entry file="file://$PROJECT_DIR$/others/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -2036,20 +2005,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/others/src/main/java/org/sqlunet/support/IABAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13">
-          <caret line="27" column="76" selection-start-line="27" selection-start-column="56" selection-end-line="27" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/others/src/main/java/org/sqlunet/support/util/IabHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="946">
-          <caret line="818" column="28" selection-start-line="818" selection-start-column="22" selection-end-line="818" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/others/src/main/java/org/sqlunet/support/IABAdapter.java" />
+    <entry file="file://$PROJECT_DIR$/others/src/main/java/org/sqlunet/support/util/IabHelper.java" />
     <entry file="file://$PROJECT_DIR$/settings.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="26">
@@ -2058,12 +2015,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/others/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="65">
           <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
         </state>
       </provider>
+      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/others/src/main/java/org/sqlunet/others/OtherActivity.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -2091,24 +2048,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/donate/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/donate/src/main/res/values/strings_other.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/donate/src/main/res/values/styles_other.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/donate/src/main/res/values/strings_other-nontranslatable.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/donate/src/main/res/values/strings.xml" />
+    <entry file="file://$PROJECT_DIR$/donate/src/main/res/values/strings_other.xml" />
+    <entry file="file://$PROJECT_DIR$/donate/src/main/res/values/styles_other.xml" />
+    <entry file="file://$PROJECT_DIR$/donate/src/main/res/values/strings_other-nontranslatable.xml" />
     <entry file="file://$PROJECT_DIR$/donate/src/main/res/values/strings-nontranslatable.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/donate/src/main/res/drawable-hdpi/logo_semantikos.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/donate/src/main/res/drawable-hdpi/logo_semantikos.png" />
     <entry file="file://$PROJECT_DIR$/donate/src/main/res/layout/activity_buy.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
@@ -2121,41 +2068,13 @@
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/billing/Security.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="16" column="26" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/billing/BillingConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="29" column="60" lean-forward="true" selection-start-line="29" selection-start-column="60" selection-end-line="29" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/billing/BillingProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/billing/BillingManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="296" column="91" selection-start-line="296" selection-start-column="79" selection-end-line="296" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/donate/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="65">
           <caret line="5" column="37" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
         </state>
       </provider>
+      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MenuHandler.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -2215,74 +2134,62 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/browserfn/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="494">
           <caret line="333" column="37" lean-forward="true" selection-start-line="333" selection-start-column="37" selection-end-line="333" selection-end-column="37" />
         </state>
       </provider>
+      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/browser/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="382">
           <caret line="432" column="62" lean-forward="true" selection-start-line="432" selection-start-column="62" selection-end-line="432" selection-end-column="62" />
         </state>
       </provider>
+      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/browserewn/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
           <caret line="331" column="76" selection-start-line="331" selection-start-column="76" selection-end-line="331" selection-end-column="76" />
         </state>
       </provider>
+      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/browserwn/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="329" lean-forward="true" selection-start-line="329" selection-end-line="329" />
         </state>
       </provider>
+      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/libwn/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="169">
           <caret line="298" column="19" lean-forward="true" selection-start-line="298" selection-start-column="19" selection-end-line="298" selection-end-column="19" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/donate/build/generated/source/buildConfig/androidTest/debug/org/sqlunet/support/test/BuildConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13">
-          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/donate/build/generated/source/buildConfig/debug/org/sqlunet/support/BuildConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13">
-          <caret line="3" column="12" selection-start-line="3" selection-start-column="12" selection-end-line="3" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/AndroidManifest.xml">
       <provider editor-type-id="android-manifest" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/donate/build/generated/source/buildConfig/androidTest/debug/org/sqlunet/support/test/BuildConfig.java" />
+    <entry file="file://$PROJECT_DIR$/donate/build/generated/source/buildConfig/debug/org/sqlunet/support/BuildConfig.java" />
+    <entry file="file://$PROJECT_DIR$/common/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="338">
           <caret line="291" column="44" selection-start-line="291" selection-start-column="44" selection-end-line="291" selection-end-column="44" />
         </state>
       </provider>
+      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/browservn/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
           <caret line="351" column="84" lean-forward="true" selection-start-line="351" selection-start-column="84" selection-end-line="351" selection-end-column="84" />
         </state>
       </provider>
+      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/libwn/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
@@ -2294,27 +2201,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/skulist/row/GasDelegate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/skulist/AcquireFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="53" column="13" selection-start-line="53" selection-start-column="13" selection-end-line="53" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/skulist/SkusAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/skulist/row/GasDelegate.java" />
+    <entry file="file://$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/skulist/AcquireFragment.java" />
+    <entry file="file://$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/skulist/SkusAdapter.java" />
     <entry file="file://$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/DonateActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="481">
@@ -2325,20 +2214,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/others/src/main/res/values/strings_other.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/billing/Security.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-415">
+          <caret line="56" column="9" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/billing/BillingProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/billing/BillingManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="514">
+          <caret line="316" selection-start-line="316" selection-end-line="316" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/donate/src/test/java/org/sqlunet/donate/BillingUnitTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="49" column="5" selection-start-line="49" selection-start-column="5" selection-end-line="49" selection-end-column="5" />
+        <state relative-caret-position="468">
+          <caret line="50" column="88" selection-start-line="50" selection-start-column="83" selection-end-line="50" selection-end-column="88" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/others/src/main/res/values/strings_other.xml">
+    <entry file="file://$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/billing/BillingConstants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+        <state relative-caret-position="208">
+          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+          <folding>
+            <element signature="e#1799#1800#0" expanded="true" />
+            <element signature="e#1911#1912#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

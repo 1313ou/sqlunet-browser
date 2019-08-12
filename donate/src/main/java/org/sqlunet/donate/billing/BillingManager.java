@@ -19,6 +19,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
+import com.android.billingclient.api.AcknowledgePurchaseParams;
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClient.BillingResponseCode;
 import com.android.billingclient.api.BillingClient.FeatureType;
@@ -53,6 +54,7 @@ public class BillingManager implements PurchasesUpdatedListener
 	/**
 	 * A reference to BillingClient
 	 **/
+	@Nullable
 	private BillingClient client;
 
 	private final BillingUpdatesListener updatesListener;
@@ -132,6 +134,42 @@ public class BillingManager implements PurchasesUpdatedListener
 		});
 	}
 
+	private void startServiceConnection(@Nullable final Runnable executeOnSuccess)
+	{
+		assert this.client != null;
+		this.client.startConnection(new BillingClientStateListener()
+		{
+			@Override
+			public void onBillingSetupFinished(@NonNull final BillingResult billingResult)
+			{
+				BillingManager.this.billingClientResponseCode = billingResult.getResponseCode();
+				if (BillingResponseCode.OK == BillingManager.this.billingClientResponseCode)
+				{
+					Log.d(TAG, "Setup succeeded: " + billingResult.getResponseCode());
+
+					// Flag success
+					BillingManager.this.isServiceConnected = true;
+
+					//
+					if (executeOnSuccess != null)
+					{
+						executeOnSuccess.run();
+					}
+				}
+				else
+				{
+					Log.d(TAG, "Setup failed. Response code: " + billingResult.getResponseCode());
+				}
+			}
+
+			@Override
+			public void onBillingServiceDisconnected()
+			{
+				BillingManager.this.isServiceConnected = false;
+			}
+		});
+	}
+
 	/**
 	 * Clear the resources
 	 */
@@ -144,34 +182,6 @@ public class BillingManager implements PurchasesUpdatedListener
 			this.client.endConnection();
 			this.client = null;
 		}
-	}
-
-	private void startServiceConnection(final Runnable executeOnSuccess)
-	{
-		this.client.startConnection(new BillingClientStateListener()
-		{
-			@Override
-			public void onBillingSetupFinished(final BillingResult billingResult)
-			{
-				Log.d(TAG, "Setup finished. Response code: " + billingResult.getResponseCode());
-
-				if (billingResult.getResponseCode() == BillingResponseCode.OK)
-				{
-					BillingManager.this.isServiceConnected = true;
-					if (executeOnSuccess != null)
-					{
-						executeOnSuccess.run();
-					}
-				}
-				BillingManager.this.billingClientResponseCode = billingResult.getResponseCode();
-			}
-
-			@Override
-			public void onBillingServiceDisconnected()
-			{
-				BillingManager.this.isServiceConnected = false;
-			}
-		});
 	}
 
 	// A C C E S S
@@ -187,8 +197,7 @@ public class BillingManager implements PurchasesUpdatedListener
 	}
 
 	/**
-	 * Returns the value Billing client response code or BILLING_MANAGER_NOT_INITIALIZED if the
-	 * clien connection response was not received yet.
+	 * Returns the value Billing client response code or BILLING_MANAGER_NOT_INITIALIZED if the client connection response was not received yet.
 	 */
 	public int getBillingClientResponseCode()
 	{
@@ -209,6 +218,7 @@ public class BillingManager implements PurchasesUpdatedListener
 		final SkuDetailsParams.Builder builder = SkuDetailsParams.newBuilder() //
 				.setSkusList(skuList) //
 				.setType(billingType);
+		assert this.client != null;
 		this.client.querySkuDetailsAsync(builder.build(), (billingResult, skuDetailsList) -> {
 
 			final SkuDetails skuDetails = skuDetailsList.get(0);
@@ -225,8 +235,11 @@ public class BillingManager implements PurchasesUpdatedListener
 
 			Log.d(TAG, "Launching in-app purchase flow.");
 
-			final BillingFlowParams flowParams = BillingFlowParams.newBuilder().setSkuDetails(skuDetails).build();
+			final BillingFlowParams flowParams = BillingFlowParams.newBuilder().setSkuDetails(skuDetails) //
+					.build();
+
 			/* final BillingResult billingResult = */
+			assert this.client != null;
 			this.client.launchBillingFlow(this.activity, flowParams);
 		});
 	}
@@ -236,11 +249,12 @@ public class BillingManager implements PurchasesUpdatedListener
 	/**
 	 * Handle a callback that purchases were updated from the Billing library
 	 */
+	@SuppressWarnings("WeakerAccess")
 	@Override
-	public void onPurchasesUpdated(final BillingResult billingResult, @Nullable final List<Purchase> purchases)
+	public void onPurchasesUpdated(@NonNull final BillingResult billingResult, @Nullable final List<Purchase> purchases)
 	{
 		int responseCode = billingResult.getResponseCode();
-		if (responseCode == BillingResponseCode.OK)
+		if (BillingResponseCode.OK == responseCode)
 		{
 			if (purchases != null)
 			{
@@ -271,7 +285,7 @@ public class BillingManager implements PurchasesUpdatedListener
 	 *
 	 * @param purchase Purchase to be handled
 	 */
-	private void handlePurchase(Purchase purchase)
+	private void handlePurchase(@NonNull final Purchase purchase)
 	{
 		if (!verifyValidSignature(purchase.getOriginalJson(), purchase.getSignature()))
 		{
@@ -280,8 +294,23 @@ public class BillingManager implements PurchasesUpdatedListener
 		}
 
 		Log.d(TAG, "Got a verified purchase: " + purchase);
-
 		this.purchases.add(purchase);
+
+		// Acknowledge the purchase if it hasn't already been acknowledged.
+		acknowledgePurchase(purchase);
+	}
+
+	public void acknowledgePurchase(@NonNull final Purchase purchase)
+	{
+		// Acknowledge the purchase if it hasn't already been acknowledged.
+		if (!purchase.isAcknowledged())
+		{
+			final AcknowledgePurchaseParams acknowledgePurchaseParams = AcknowledgePurchaseParams.newBuilder() //
+					.setPurchaseToken(purchase.getPurchaseToken()) //
+					.build();
+			assert this.client != null;
+			this.client.acknowledgePurchase(acknowledgePurchaseParams, (billingResult) -> Log.i(TAG, "Acknowledged purchase: " + purchase + "; result = " + billingResult.getResponseCode()));
+		}
 	}
 
 	// I N V E N T O R Y
@@ -294,6 +323,7 @@ public class BillingManager implements PurchasesUpdatedListener
 		executeServiceRequest(() -> {
 
 			long time = System.currentTimeMillis();
+			assert this.client != null;
 			final PurchasesResult purchasesResult = this.client.queryPurchases(SkuType.INAPP);
 			Log.i(TAG, "Querying purchases elapsed time: " + (System.currentTimeMillis() - time) + "ms");
 
@@ -304,7 +334,7 @@ public class BillingManager implements PurchasesUpdatedListener
 				Log.i(TAG, "Querying purchases and subscriptions elapsed time: " + (System.currentTimeMillis() - time) + "ms");
 				Log.i(TAG, "Querying subscriptions result code: " + subscriptionResult.getResponseCode() + " res: " + subscriptionResult.getPurchasesList().size());
 
-				if (subscriptionResult.getResponseCode() == BillingResponseCode.OK)
+				if (BillingResponseCode.OK == subscriptionResult.getResponseCode())
 				{
 					purchasesResult.getPurchasesList().addAll(subscriptionResult.getPurchasesList());
 				}
@@ -313,7 +343,7 @@ public class BillingManager implements PurchasesUpdatedListener
 					Log.e(TAG, "Got an error response trying to query subscription purchases");
 				}
 			}
-			else if (purchasesResult.getResponseCode() == BillingResponseCode.OK)
+			else if (BillingResponseCode.OK == purchasesResult.getResponseCode())
 			{
 				Log.i(TAG, "Skipped subscription purchases query since they are not supported");
 			}
@@ -331,7 +361,7 @@ public class BillingManager implements PurchasesUpdatedListener
 	private void onQueryPurchasesFinished(@NonNull final PurchasesResult result)
 	{
 		// Have we been disposed of in the meantime? If so, or bad result code, then quit
-		if (this.client == null || result.getResponseCode() != BillingResponseCode.OK)
+		if (this.client == null || BillingResponseCode.OK != result.getResponseCode())
 		{
 			Log.w(TAG, "Billing client was null or result code (" + result.getResponseCode() + ") was bad - quitting");
 			return;
@@ -354,18 +384,19 @@ public class BillingManager implements PurchasesUpdatedListener
 	 */
 	private boolean areSubscriptionsSupported()
 	{
+		assert this.client != null;
 		final BillingResult billingResult = this.client.isFeatureSupported(FeatureType.SUBSCRIPTIONS);
 		int responseCode = billingResult.getResponseCode();
-		if (responseCode != BillingResponseCode.OK)
+		if (BillingResponseCode.OK != responseCode)
 		{
 			Log.w(TAG, "areSubscriptionsSupported() got an error response: " + responseCode);
 		}
-		return responseCode == BillingResponseCode.OK;
+		return BillingResponseCode.OK == responseCode;
 	}
 
 	// A S Y N C  O P S
 
-	public void querySkuDetailsAsync(@SkuType final String itemType, final List<String> skuList, final SkuDetailsResponseListener listener)
+	public void querySkuDetailsAsync(@SkuType final String itemType, @NonNull final List<String> skuList, @NonNull final SkuDetailsResponseListener listener)
 	{
 		// Creating a runnable from the request to use it inside our connection retry policy below
 		executeServiceRequest(() -> {
@@ -374,6 +405,7 @@ public class BillingManager implements PurchasesUpdatedListener
 			SkuDetailsParams.Builder builder = SkuDetailsParams.newBuilder() //
 					.setSkusList(skuList) //
 					.setType(itemType);
+			assert this.client != null;
 			this.client.querySkuDetailsAsync(builder.build(), listener);
 		});
 	}
@@ -398,6 +430,7 @@ public class BillingManager implements PurchasesUpdatedListener
 
 			// Consume the purchase async
 			final ConsumeParams consumeParams = ConsumeParams.newBuilder().setPurchaseToken(purchaseToken).build();
+			assert this.client != null;
 			this.client.consumeAsync(consumeParams, (billingResult, purchaseToken1) -> {
 
 				// If billing service was disconnected, we try to reconnect 1 time (feel free to introduce your retry policy here).
@@ -408,9 +441,9 @@ public class BillingManager implements PurchasesUpdatedListener
 
 	// S E R V I C E   R E Q U E S T
 
-	private void executeServiceRequest(Runnable runnable)
+	private void executeServiceRequest(@NonNull Runnable runnable)
 	{
-		if (isServiceConnected)
+		if (this.isServiceConnected)
 		{
 			runnable.run();
 		}
@@ -430,10 +463,9 @@ public class BillingManager implements PurchasesUpdatedListener
 	 * replace this method with "constant true" if they decompile/rebuild your app.
 	 * </p>
 	 */
-	private boolean verifyValidSignature(String signedData, String signature)
+	private boolean verifyValidSignature(@NonNull String signedData, String signature)
 	{
-		// Some sanity checks to see if the developer (that's you!) really followed the
-		// instructions to run this sample (don't put these checks on your app!)
+		// Some sanity checks to see if the developer (that's you!) really followed the instructions to run this sample (don't put these checks on your app!)
 		if (BASE_64_ENCODED_PUBLIC_KEY.contains("CONSTRUCT_YOUR"))
 		{
 			throw new RuntimeException("Please update your app's public key at: " + "BASE_64_ENCODED_PUBLIC_KEY");

@@ -20,40 +20,31 @@ import com.android.billingclient.api.BillingClient.SkuType;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Static fields and methods useful for billing
  */
 public final class BillingConstants
 {
+	// SKUs for our products: the donate (consumable)
 	static public final String SKU_DONATE1 = "donate_1"; //1
 	static public final String SKU_DONATE2 = "donate_2"; //5
 	static public final String SKU_DONATE3 = "donate_3"; //10
 	static public final String SKU_DONATE4 = "donate_5"; //20
 	static public final String SKU_DONATE5 = "donate_4"; //50
-	static private final String[] SKU_DONATES = {SKU_DONATE1, SKU_DONATE2, SKU_DONATE3, SKU_DONATE4, SKU_DONATE5, /*SKU_TEST*/};
-
-	// SKUs for our products: the premium upgrade (non-consumable) and gas (consumable)
-	public static final String SKU_PREMIUM = "premium";
-	public static final String SKU_GAS = "gas";
 
 	// SKU for our subscription (infinite gas)
-	public static final String SKU_GOLD_MONTHLY = "gold_monthly";
-	public static final String SKU_GOLD_YEARLY = "gold_yearly";
 
-	private static final String[] IN_APP_SKUS = {SKU_GAS, SKU_PREMIUM};
-	private static final String[] SUBSCRIPTIONS_SKUS = {SKU_GOLD_MONTHLY, SKU_GOLD_YEARLY};
-
-	private BillingConstants()
-	{
-	}
+	private static final String[] IN_APP_SKUS = {SKU_DONATE1, SKU_DONATE2, SKU_DONATE3, SKU_DONATE4, SKU_DONATE5};
+	private static final String[] SUBSCRIPTIONS_SKUS = {};
 
 	/**
 	 * Returns the list of all SKUs for the billing type specified
 	 */
-	public static final List<String> getSkuList(@SkuType String billingType)
+	public static List<String> getSkuList(@SkuType String billingType)
 	{
-		return (billingType == SkuType.INAPP) ? Arrays.asList(IN_APP_SKUS) : Arrays.asList(SUBSCRIPTIONS_SKUS);
+		return SkuType.INAPP.equals(billingType) ? Arrays.asList(IN_APP_SKUS) : Arrays.asList(SUBSCRIPTIONS_SKUS);
 	}
 }
 
