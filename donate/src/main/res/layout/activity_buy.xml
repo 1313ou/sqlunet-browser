@@ -35,7 +35,7 @@
 				android:contentDescription="@string/title_donate"
 				android:gravity="center_horizontal"
 				android:padding="5dp"
-				android:src="@drawable/logo"
+				android:src="@drawable/ic_logo"
 				android:visibility="visible"/>
 
 			<TextView
@@ -118,6 +118,19 @@
 				android:onClick="onBuy5"
 				android:padding="10dp"
 				android:src="@drawable/ic_donate5"
+				android:visibility="visible"/>
+
+			<Button
+				android:id="@+id/consumeButton"
+				style="@style/Widget.AppCompat.Button.Borderless.Colored"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:layout_marginTop="20dp"
+				android:contentDescription="@string/title_consume"
+				android:onClick="onConsume"
+				android:padding="10dp"
+				android:text="@string/title_consume"
 				android:visibility="visible"/>
 
 		</LinearLayout>

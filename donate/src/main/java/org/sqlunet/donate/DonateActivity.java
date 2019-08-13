@@ -37,6 +37,12 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 	 */
 	private BillingManager billingManager;
 
+	/**
+	 * Purchases
+	 */
+	@Nullable
+	private List<Purchase> purchases;
+
 	// E V E N T S
 
 	@Override
@@ -86,23 +92,48 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 
 	// L I S T E N E R
 
-
 	@Override
 	public void onBillingClientSetupFinished()
 	{
-		Log.d(TAG,"onBillingClientSetupFinished()");
-	}
-
-	@Override
-	public void onConsumeFinished(final String token, final int result)
-	{
-		Log.d(TAG,"onConsumeFinished()");
+		Log.d(TAG, "onBillingClientSetupFinished()");
 	}
 
 	@Override
 	public void onPurchasesUpdated(@Nullable final List<Purchase> purchases)
 	{
-		Log.d(TAG,"onPurchasesUpdated()");
+		Log.d(TAG, "onPurchasesUpdated()");
+		this.purchases = purchases;
+		if (this.purchases != null)
+		{
+			Log.d(TAG, "purchase list size " + this.purchases.size());
+			for (Purchase purchase : this.purchases)
+			{
+				Log.d(TAG, "purchase " + purchase + " acknowledged=" + purchase.isAcknowledged() + " time=" + purchase.getPurchaseTime());
+			}
+		}
+		else
+		{
+			Log.d(TAG, "null purchase list");
+		}
+	}
+
+	@Override
+	public void onConsumeFinished(final String token, final int result)
+	{
+		Log.d(TAG, "onConsumeFinished()");
+	}
+
+	// C O N S U M E
+
+	public void onConsume(@SuppressWarnings("UnusedParameters") View v)
+	{
+		if (this.billingManager != null)
+		{
+			for (Purchase purchase : this.purchases)
+			{
+				this.billingManager.consumeAsync(purchase.getPurchaseToken());
+			}
+		}
 	}
 
 	// B U Y
