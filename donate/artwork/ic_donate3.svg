@@ -12,7 +12,7 @@
    width="600"
    id="svg2"
    sodipodi:version="0.32"
-   inkscape:version="0.91 r13725"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
    sodipodi:docname="ic_donate3.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
    inkscape:export-filename="/home/bbou/Images/svg/treebolic-logo32.png"
@@ -43,7 +43,7 @@
      id="base"
      showgrid="false"
      inkscape:zoom="0.69462777"
-     inkscape:cx="262.74456"
+     inkscape:cx="-25.899241"
      inkscape:cy="238.2571"
      inkscape:window-x="178"
      inkscape:window-y="151"
@@ -61,35 +61,28 @@
    </style>
   <defs
      id="defs10" />
-  <ellipse
-     style="opacity:0.98999999;fill:#8b0000;fill-opacity:0.99215686;fill-rule:evenodd;stroke:none;stroke-width:2.29999995;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-     id="path8145"
-     cx="302.32019"
-     cy="301.27887"
-     rx="286.48438"
-     ry="285.76456" />
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:505.95678711px;line-height:100%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      x="38.20414"
      y="474.83066"
      id="text8147"
-     sodipodi:linespacing="100%"
      transform="scale(0.95388325,1.0483463)"><tspan
        sodipodi:role="line"
        id="tspan8084"
        x="38.20414"
-       y="474.83066">1</tspan></text>
+       y="474.83066"
+       style="font-size:505.95678711px;line-height:1">1</tspan></text>
   <text
      xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:518.15966797px;line-height:100%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      x="250.29335"
      y="493.74881"
      id="text8076"
-     sodipodi:linespacing="100%"
      transform="scale(1.0068788,0.9931682)"><tspan
        sodipodi:role="line"
        id="tspan8082"
        x="250.29335"
-       y="493.74881">0</tspan></text>
+       y="493.74881"
+       style="font-size:518.15966797px;line-height:1">0</tspan></text>
 </svg>

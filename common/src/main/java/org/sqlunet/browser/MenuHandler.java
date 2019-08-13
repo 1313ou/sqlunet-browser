@@ -18,7 +18,7 @@ import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.others.OtherActivity;
-import org.sqlunet.donate.DonateActivity;
+import com.bbou.donate.DonateActivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
