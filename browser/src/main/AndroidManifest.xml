@@ -406,7 +406,7 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.donate.DonateActivity"
+			android:name="com.bbou.donate.DonateActivity"
 			android:label="@string/title_activity_donate"
 			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">

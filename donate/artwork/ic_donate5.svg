@@ -12,8 +12,8 @@
    width="600"
    id="svg2"
    sodipodi:version="0.32"
-   inkscape:version="0.92.1 r15371"
-   sodipodi:docname="ic_donate4.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="ic_donate5.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
    inkscape:export-filename="/home/bbou/Images/svg/treebolic-logo32.png"
    inkscape:export-xdpi="5.4420452"
@@ -43,7 +43,7 @@
      id="base"
      showgrid="false"
      inkscape:zoom="0.69462777"
-     inkscape:cx="-374.28727"
+     inkscape:cx="-662.93107"
      inkscape:cy="178.51287"
      inkscape:window-x="178"
      inkscape:window-y="257"
@@ -61,13 +61,6 @@
    </style>
   <defs
      id="defs10" />
-  <ellipse
-     style="opacity:0.98999999;fill:#ffcc00;fill-opacity:0.99215686;fill-rule:evenodd;stroke:none;stroke-width:2.29999995;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-     id="path8145"
-     cx="302.32019"
-     cy="301.27887"
-     rx="286.48438"
-     ry="285.76456" />
   <text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -92,4 +85,11 @@
        x="268.17035"
        y="493.992"
        style="font-size:518.15966797px;line-height:1">0</tspan></text>
+  <ellipse
+     style="opacity:0.97000002;fill:#000000;fill-opacity:0;fill-rule:nonzero;stroke:none;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+     id="path822"
+     cx="15.835819"
+     cy="270.32703"
+     rx="40.309361"
+     ry="2.8792398" />
 </svg>
