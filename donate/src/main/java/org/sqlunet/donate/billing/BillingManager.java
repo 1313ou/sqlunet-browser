@@ -59,12 +59,24 @@ public class BillingManager implements PurchasesUpdatedListener
 	@Nullable
 	private BillingClient client;
 
+	/**
+	 * Listener to fire updates to
+	 */
 	private final BillingUpdatesListener updatesListener;
 
+	/**
+	 * Activity
+	 */
 	private final Activity activity;
 
+	/**
+	 * List of purchases
+	 */
 	private final List<Purchase> purchases = new ArrayList<>();
 
+	/**
+	 * List of token to be consumed
+	 */
 	private Set<String> tokensToBeConsumed;
 
 	// status
@@ -74,6 +86,9 @@ public class BillingManager implements PurchasesUpdatedListener
 	 */
 	private boolean isServiceConnected;
 
+	/**
+	 * Service connection response code
+	 */
 	@BillingResponseCode
 	private int billingClientResponseCode = BillingResponseCode.SERVICE_DISCONNECTED;
 
@@ -112,10 +127,10 @@ public class BillingManager implements PurchasesUpdatedListener
 	 */
 	public BillingManager(final Activity activity, final BillingUpdatesListener updatesListener)
 	{
-		Log.d(TAG, "Creating Billing client.");
+		Log.d(TAG, "Creating billing client.");
 		this.activity = activity;
 		this.updatesListener = updatesListener;
-		this.base64EncodedPublicKey = this.activity.getString(R.string.public_key);
+		this.base64EncodedPublicKey = this.activity.getString(R.string.license_key);
 		this.client = BillingClient.newBuilder(this.activity) //
 				.enablePendingPurchases() //
 				.setListener(this) //
@@ -132,7 +147,7 @@ public class BillingManager implements PurchasesUpdatedListener
 			BillingManager.this.updatesListener.onBillingClientSetupFinished();
 
 			// IAB is fully set up. Now, let's get an inventory of stuff we own.
-			Log.d(TAG, "Setup successful. Querying inventory.");
+			Log.d(TAG, "Querying inventory.");
 			queryPurchases();
 		});
 	}
@@ -148,7 +163,7 @@ public class BillingManager implements PurchasesUpdatedListener
 				BillingManager.this.billingClientResponseCode = billingResult.getResponseCode();
 				if (BillingResponseCode.OK == BillingManager.this.billingClientResponseCode)
 				{
-					Log.d(TAG, "Setup succeeded: " + billingResult.getResponseCode());
+					Log.d(TAG, "Setup succeeded.");
 
 					// Flag success
 					BillingManager.this.isServiceConnected = true;
@@ -178,7 +193,7 @@ public class BillingManager implements PurchasesUpdatedListener
 	 */
 	public void destroy()
 	{
-		Log.d(TAG, "Destroying the manager.");
+		Log.d(TAG, "Destroying the billing client.");
 
 		if (this.client != null && this.client.isReady())
 		{
@@ -236,7 +251,7 @@ public class BillingManager implements PurchasesUpdatedListener
 	{
 		executeServiceRequest(() -> {
 
-			Log.d(TAG, "Launching in-app purchase flow.");
+			Log.d(TAG, "Launching inapp purchase flow.");
 
 			final BillingFlowParams flowParams = BillingFlowParams.newBuilder().setSkuDetails(skuDetails) //
 					.build();
@@ -266,16 +281,21 @@ public class BillingManager implements PurchasesUpdatedListener
 					handlePurchase(purchase);
 				}
 			}
+
 			// fire update
 			this.updatesListener.onPurchasesUpdated(this.purchases);
 		}
 		else if (responseCode == BillingResponseCode.USER_CANCELED)
 		{
-			Log.i(TAG, "onPurchasesUpdated() - user cancelled the purchase flow - skipping");
+			Log.i(TAG, "onPurchasesUpdated() user cancelled the purchase flow.");
+		}
+		else if (responseCode == BillingResponseCode.ITEM_ALREADY_OWNED)
+		{
+			Log.i(TAG, "onPurchasesUpdated() item already owned.");
 		}
 		else
 		{
-			Log.w(TAG, "onPurchasesUpdated() got unknown resultCode: " + responseCode);
+			Log.w(TAG, "onPurchasesUpdated() got unexpected resultCode: " + responseCode);
 		}
 	}
 
@@ -292,7 +312,7 @@ public class BillingManager implements PurchasesUpdatedListener
 	{
 		if (!verifyValidSignature(purchase.getOriginalJson(), purchase.getSignature()))
 		{
-			Log.i(TAG, "Got a purchase: " + purchase + "; but signature is bad. Skipping...");
+			Log.i(TAG, "Got a purchase: " + purchase + "; but signature is bad.");
 			return;
 		}
 
@@ -469,11 +489,6 @@ public class BillingManager implements PurchasesUpdatedListener
 	private boolean verifyValidSignature(@NonNull String signedData, String signature)
 	{
 		// Some sanity checks to see if the developer (that's you!) really followed the instructions to run this sample (don't put these checks on your app!)
-		if (base64EncodedPublicKey.contains("CONSTRUCT_YOUR"))
-		{
-			throw new RuntimeException("Please update your app's public key at: " + "base64EncodedPublicKey");
-		}
-
 		try
 		{
 			return Security.verifyPurchase(base64EncodedPublicKey, signedData, signature);
