@@ -15,7 +15,7 @@ public final class ProviderArgs
 	// intent type
 	static public final String ACTION_QUERY = "org.sqlunet.browser.QUERY";
 
-	// global
+	// donate
 	static public final String ARG_QUERYPOINTER = "QUERYPOINTER";
 	static public final String ARG_QUERYSTRING = "QUERYSTRING";
 	static public final String ARG_QUERYRECURSE = "QUERYRECURSE";

@@ -112,7 +112,7 @@ public class BillingManager implements PurchasesUpdatedListener
 	{
 		void onBillingClientSetupFinished();
 
-		void onConsumeFinished(String token, @BillingResponseCode int result);
+		void onConsumeFinished(String token, @BillingResponseCode int response);
 
 		void onPurchasesUpdated(@Nullable List<Purchase> purchases);
 	}
@@ -136,11 +136,10 @@ public class BillingManager implements PurchasesUpdatedListener
 				.setListener(this) //
 				.build();
 
-		Log.d(TAG, "Starting setup.");
-
 		// Start setup.
 		// This is asynchronous and the specified listener will be called once setup completes.
 		// It also starts to report all the new verifiedPurchases through onPurchasesUpdated() callback.
+		Log.d(TAG, "Starting setup.");
 		startServiceConnection(() -> {
 
 			// Notifying the listener that billing client is ready
@@ -152,6 +151,11 @@ public class BillingManager implements PurchasesUpdatedListener
 		});
 	}
 
+	/**
+	 * Start service connection
+	 *
+	 * @param executeOnSuccess runnable to be executed on success
+	 */
 	private void startServiceConnection(@Nullable final Runnable executeOnSuccess)
 	{
 		assert this.client != null;
@@ -176,7 +180,7 @@ public class BillingManager implements PurchasesUpdatedListener
 				}
 				else
 				{
-					Log.d(TAG, "Setup failed. Response code: " + billingResult.getResponseCode());
+					Log.e(TAG, "Setup failed. Response: " + billingResult.getResponseCode());
 				}
 			}
 
@@ -215,7 +219,9 @@ public class BillingManager implements PurchasesUpdatedListener
 	}
 
 	/**
-	 * Returns the value Billing client response code or BILLING_MANAGER_NOT_INITIALIZED if the client connection response was not received yet.
+	 * Returns the value Billing client response code or BillingResponseCode.SERVICE_DISCONNECTED if the client connection response was not received yet.
+	 *
+	 * @return billing client response code
 	 */
 	public int getBillingClientResponseCode()
 	{
@@ -226,6 +232,9 @@ public class BillingManager implements PurchasesUpdatedListener
 
 	/**
 	 * Start a purchase flow
+	 *
+	 * @param skuId       sku id
+	 * @param billingType billing type
 	 */
 	public void initiatePurchaseFlow(final String skuId, final @SkuType String billingType)
 	{
@@ -246,18 +255,19 @@ public class BillingManager implements PurchasesUpdatedListener
 
 	/**
 	 * Start a purchase or subscription replace flow
+	 *
+	 * @param skuDetails sku details
 	 */
 	private void initiatePurchaseFlow(final SkuDetails skuDetails)
 	{
 		executeServiceRequest(() -> {
 
-			Log.d(TAG, "Launching inapp purchase flow.");
-
 			final BillingFlowParams flowParams = BillingFlowParams.newBuilder().setSkuDetails(skuDetails) //
 					.build();
 
-			/* final BillingResult billingResult = */
 			assert this.client != null;
+			Log.d(TAG, "Launching inapp purchase flow.");
+			/* final BillingResult billingResult = */
 			this.client.launchBillingFlow(this.activity, flowParams);
 		});
 	}
@@ -295,7 +305,7 @@ public class BillingManager implements PurchasesUpdatedListener
 		}
 		else
 		{
-			Log.w(TAG, "onPurchasesUpdated() got unexpected resultCode: " + responseCode);
+			Log.w(TAG, "onPurchasesUpdated() got unexpected response: " + responseCode);
 		}
 	}
 
@@ -312,7 +322,7 @@ public class BillingManager implements PurchasesUpdatedListener
 	{
 		if (!verifyValidSignature(purchase.getOriginalJson(), purchase.getSignature()))
 		{
-			Log.i(TAG, "Got a purchase: " + purchase + "; but signature is bad.");
+			Log.e(TAG, "Got a purchase: " + purchase + " but signature is bad.");
 			return;
 		}
 
@@ -323,6 +333,11 @@ public class BillingManager implements PurchasesUpdatedListener
 		acknowledgePurchase(purchase);
 	}
 
+	/**
+	 * Acknowledge purchase
+	 *
+	 * @param purchase purchase
+	 */
 	public void acknowledgePurchase(@NonNull final Purchase purchase)
 	{
 		// Acknowledge the purchase if it hasn't already been acknowledged.
@@ -332,7 +347,7 @@ public class BillingManager implements PurchasesUpdatedListener
 					.setPurchaseToken(purchase.getPurchaseToken()) //
 					.build();
 			assert this.client != null;
-			this.client.acknowledgePurchase(acknowledgePurchaseParams, (billingResult) -> Log.i(TAG, "Acknowledged purchase: " + purchase + "; result = " + billingResult.getResponseCode()));
+			this.client.acknowledgePurchase(acknowledgePurchaseParams, (billingResult) -> Log.i(TAG, "Acknowledged purchase: " + purchase + " response: " + billingResult.getResponseCode()));
 		}
 	}
 
@@ -345,48 +360,53 @@ public class BillingManager implements PurchasesUpdatedListener
 	{
 		executeServiceRequest(() -> {
 
-			long time = System.currentTimeMillis();
 			assert this.client != null;
-			final PurchasesResult purchasesResult = this.client.queryPurchases(SkuType.INAPP);
-			Log.i(TAG, "Querying verifiedPurchases elapsed time: " + (System.currentTimeMillis() - time) + "ms");
+			long time = System.currentTimeMillis();
+			final PurchasesResult inappResult = this.client.queryPurchases(SkuType.INAPP);
+			Log.d(TAG, "Querying inapp purchases elapsed: " + (System.currentTimeMillis() - time) + "ms");
+			Log.i(TAG, "Querying inapp purchases response: " + inappResult.getResponseCode() + " count: " + inappResult.getPurchasesList().size());
 
 			// If there are subscriptions supported, we add subscription rows as well
 			if (areSubscriptionsSupported())
 			{
+				time = System.currentTimeMillis();
 				final PurchasesResult subscriptionResult = this.client.queryPurchases(SkuType.SUBS);
-				Log.i(TAG, "Querying verifiedPurchases and subscriptions elapsed time: " + (System.currentTimeMillis() - time) + "ms");
-				Log.i(TAG, "Querying subscriptions result code: " + subscriptionResult.getResponseCode() + " res: " + subscriptionResult.getPurchasesList().size());
+				Log.d(TAG, "Querying subscription purchases elapsed: " + (System.currentTimeMillis() - time) + "ms");
+				Log.i(TAG, "Querying subscription purchases response: " + subscriptionResult.getResponseCode() + " count: " + subscriptionResult.getPurchasesList().size());
 
 				if (BillingResponseCode.OK == subscriptionResult.getResponseCode())
 				{
-					purchasesResult.getPurchasesList().addAll(subscriptionResult.getPurchasesList());
+					inappResult.getPurchasesList().addAll(subscriptionResult.getPurchasesList());
 				}
 				else
 				{
-					Log.e(TAG, "Got an error response trying to query subscription verifiedPurchases");
+					Log.e(TAG, "Got an error response trying to query subscription purchases. " + subscriptionResult.getResponseCode());
 				}
 			}
-			else if (BillingResponseCode.OK == purchasesResult.getResponseCode())
+			else if (BillingResponseCode.OK == inappResult.getResponseCode())
 			{
-				Log.i(TAG, "Skipped subscription verifiedPurchases query since they are not supported");
+				Log.d(TAG, "Skipped subscription purchases query since they are not supported.");
 			}
 			else
 			{
-				Log.w(TAG, "queryPurchases() got an error response code: " + purchasesResult.getResponseCode());
+				Log.e(TAG, "Got an error response trying to query trying to query inapp purchases: " + inappResult.getResponseCode());
 			}
-			onQueryPurchasesFinished(purchasesResult);
+
+			onQueryPurchasesFinished(inappResult);
 		});
 	}
 
 	/**
 	 * Handle a result from querying of verifiedPurchases and report an updated list to the listener
+	 *
+	 * @param result purchase result
 	 */
 	private void onQueryPurchasesFinished(@NonNull final PurchasesResult result)
 	{
-		// Have we been disposed of in the meantime? If so, or bad result code, then quit
+		// Have we been disposed of in the meantime? If so, or bad response code, then quit
 		if (this.client == null || BillingResponseCode.OK != result.getResponseCode())
 		{
-			Log.w(TAG, "Billing client was null or result code (" + result.getResponseCode() + ") was bad - quitting");
+			Log.w(TAG, "Query inventory failed. Billing client was null or response: " + result.getResponseCode());
 			return;
 		}
 
@@ -398,6 +418,86 @@ public class BillingManager implements PurchasesUpdatedListener
 		// fire
 		onPurchasesUpdated(BillingResult.newBuilder().setResponseCode(BillingResponseCode.OK).build(), result.getPurchasesList());
 	}
+
+	// D E T A I L S
+
+	/**
+	 * Query details async op
+	 *
+	 * @param itemType sku type
+	 * @param skuList  sku list
+	 * @param listener response listener
+	 */
+	public void querySkuDetails(@SkuType final String itemType, @NonNull final List<String> skuList, @NonNull final SkuDetailsResponseListener listener)
+	{
+		// Creating a runnable from the request to use it inside our connection retry policy below
+		executeServiceRequest(() -> {
+
+			// Query the purchase async
+			SkuDetailsParams.Builder builder = SkuDetailsParams.newBuilder() //
+					.setSkusList(skuList) //
+					.setType(itemType);
+			assert this.client != null;
+			this.client.querySkuDetailsAsync(builder.build(), listener);
+		});
+	}
+
+	// C O N S U M E
+
+	/**
+	 * Consume purchase
+	 *
+	 * @param purchaseToken purchase token
+	 */
+	public void consume(final String purchaseToken)
+	{
+		// If we've already scheduled to consume this token - no action is needed
+		// (this could happen if you received the token when querying verifiedPurchases inside onReceive() and later from onActivityResult()
+		if (tokensToBeConsumed == null)
+		{
+			this.tokensToBeConsumed = new HashSet<>();
+		}
+		else if (this.tokensToBeConsumed.contains(purchaseToken))
+		{
+			Log.i(TAG, "Token was already scheduled to be consumed");
+			return;
+		}
+		this.tokensToBeConsumed.add(purchaseToken);
+
+		// Creating a runnable from the request to use it inside our connection retry policy below
+		executeServiceRequest(() -> {
+
+			// Consume the purchase async
+			final ConsumeParams consumeParams = ConsumeParams.newBuilder().setPurchaseToken(purchaseToken).build();
+			assert this.client != null;
+			this.client.consumeAsync(consumeParams, (billingResult, consumedPurchaseToken) -> {
+
+				// If billing service was disconnected, we try to reconnect 1 time (feel free to introduce your retry policy here).
+				this.updatesListener.onConsumeFinished(consumedPurchaseToken, billingResult.getResponseCode());
+			});
+		});
+	}
+
+	// S E R V I C E   R E Q U E S T
+
+	/**
+	 * Execute service request
+	 */
+	private void executeServiceRequest(@NonNull final Runnable runnable)
+	{
+		if (this.isServiceConnected)
+		{
+			runnable.run();
+		}
+		else
+		{
+			// If billing service was disconnected, we try to reconnect 1 time.
+			// (feel free to introduce your retry policy here).
+			startServiceConnection(runnable);
+		}
+	}
+
+	// S U P P O R T
 
 	/**
 	 * Checks if subscriptions are supported for current client
@@ -412,70 +512,9 @@ public class BillingManager implements PurchasesUpdatedListener
 		int responseCode = billingResult.getResponseCode();
 		if (BillingResponseCode.OK != responseCode)
 		{
-			Log.w(TAG, "areSubscriptionsSupported() got an error response: " + responseCode);
+			Log.w(TAG, "areSubscriptionsSupported() got response: " + responseCode);
 		}
 		return BillingResponseCode.OK == responseCode;
-	}
-
-	// A S Y N C  O P S
-
-	public void querySkuDetailsAsync(@SkuType final String itemType, @NonNull final List<String> skuList, @NonNull final SkuDetailsResponseListener listener)
-	{
-		// Creating a runnable from the request to use it inside our connection retry policy below
-		executeServiceRequest(() -> {
-
-			// Query the purchase async
-			SkuDetailsParams.Builder builder = SkuDetailsParams.newBuilder() //
-					.setSkusList(skuList) //
-					.setType(itemType);
-			assert this.client != null;
-			this.client.querySkuDetailsAsync(builder.build(), listener);
-		});
-	}
-
-	public void consumeAsync(final String purchaseToken)
-	{
-		// If we've already scheduled to consume this token - no action is needed
-		// (this could happen if you received the token when querying verifiedPurchases inside onReceive() and later from onActivityResult()
-		if (tokensToBeConsumed == null)
-		{
-			this.tokensToBeConsumed = new HashSet<>();
-		}
-		else if (this.tokensToBeConsumed.contains(purchaseToken))
-		{
-			Log.i(TAG, "Token was already scheduled to be consumed - skipping...");
-			return;
-		}
-		this.tokensToBeConsumed.add(purchaseToken);
-
-		// Creating a runnable from the request to use it inside our connection retry policy below
-		executeServiceRequest(() -> {
-
-			// Consume the purchase async
-			final ConsumeParams consumeParams = ConsumeParams.newBuilder().setPurchaseToken(purchaseToken).build();
-			assert this.client != null;
-			this.client.consumeAsync(consumeParams, (billingResult, purchaseToken1) -> {
-
-				// If billing service was disconnected, we try to reconnect 1 time (feel free to introduce your retry policy here).
-				this.updatesListener.onConsumeFinished(purchaseToken1, billingResult.getResponseCode());
-			});
-		});
-	}
-
-	// S E R V I C E   R E Q U E S T
-
-	private void executeServiceRequest(@NonNull Runnable runnable)
-	{
-		if (this.isServiceConnected)
-		{
-			runnable.run();
-		}
-		else
-		{
-			// If billing service was disconnected, we try to reconnect 1 time.
-			// (feel free to introduce your retry policy here).
-			startServiceConnection(runnable);
-		}
 	}
 
 	// V A L I D I T Y
