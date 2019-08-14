@@ -255,10 +255,10 @@ public class NavigationDrawerFragment extends Fragment
 	@Override
 	public void onCreateOptionsMenu(@NonNull final Menu menu, @NonNull final MenuInflater inflater)
 	{
-		// if the drawer is open, show the global app actions in the type bar. See also showGlobalContextActionBar, which controls the top-left area of the type bar.
+		// if the drawer is open, show the donate app actions in the type bar. See also showGlobalContextActionBar, which controls the top-left area of the type bar.
 		if (this.drawerLayout != null && isDrawerOpen())
 		{
-			inflater.inflate(R.menu.global, menu);
+			inflater.inflate(R.menu.donate, menu);
 			showGlobalContextActionBar();
 		}
 		super.onCreateOptionsMenu(menu, inflater);
@@ -408,7 +408,7 @@ public class NavigationDrawerFragment extends Fragment
 	// A C T I O N   B A R
 
 	/**
-	 * Per the navigation drawer design guidelines, updates the type bar to show the global app 'textViewId', rather than just what's in the current screen.
+	 * Per the navigation drawer design guidelines, updates the type bar to show the donate app 'textViewId', rather than just what's in the current screen.
 	 */
 	private void showGlobalContextActionBar()
 	{

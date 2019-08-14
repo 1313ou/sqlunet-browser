@@ -31,7 +31,7 @@ public final class Skus
 	static public final String SKU_DONATE3 = "donate_3"; //10
 	static public final String SKU_DONATE4 = "donate_5"; //20
 	static public final String SKU_DONATE5 = "donate_4"; //50
-	public static final String[] IN_APP_SKUS = {SKU_DONATE1, SKU_DONATE2, SKU_DONATE3, SKU_DONATE4, SKU_DONATE5};
+	public static final String[] INAPP_SKUS = {SKU_DONATE1, SKU_DONATE2, SKU_DONATE3, SKU_DONATE4, SKU_DONATE5};
 
 	// SKU for subscription
 	public static final String[] SUBSCRIPTIONS_SKUS = {};

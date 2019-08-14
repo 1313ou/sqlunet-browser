@@ -17,8 +17,6 @@ package com.bbou.donate;
 
 import static org.junit.Assert.assertTrue;
 
-import com.android.billingclient.api.BillingClient;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -49,7 +47,7 @@ public class BillingUnitTest
 	@Test
 	public void billingHelperData_isConsistent() throws Exception
 	{
-		List<String> inAppList = Arrays.asList(Skus.IN_APP_SKUS);
+		List<String> inAppList = Arrays.asList(Skus.INAPP_SKUS);
 		assertTrue(inAppList.contains(SKU_DONATE1));
 		assertTrue(inAppList.contains(SKU_DONATE2));
 		assertTrue(inAppList.contains(SKU_DONATE3));
