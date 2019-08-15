@@ -15,19 +15,39 @@
  */
 package com.bbou.donate.billing;
 
+import android.content.Context;
+import android.content.res.Resources;
+
+import com.bbou.donate.R;
+
+import androidx.annotation.NonNull;
+
 /**
  * Static fields and methods useful for billing
  */
 public final class Skus
 {
 	// SKUs for products: the donate (consumable)
-	static public final String SKU_DONATE1 = "donate_1"; //1
-	static public final String SKU_DONATE2 = "donate_2"; //5
-	static public final String SKU_DONATE3 = "donate_3"; //10
-	static public final String SKU_DONATE4 = "donate_5"; //20
-	static public final String SKU_DONATE5 = "donate_4"; //50
-	public static final String[] INAPP_SKUS = {SKU_DONATE1, SKU_DONATE2, SKU_DONATE3, SKU_DONATE4, SKU_DONATE5};
+	public static String[] inAppSkus = null;
 
-	// SKU for subscription
-	public static final String[] SUBSCRIPTIONS_SKUS = {};
+	// SKUs for subscription
+	public static String[] subscriptionSkus = null;
+
+	// SKUs for products: the donate (consumable)
+	public static String[] getInappSkus()
+	{
+		return inAppSkus;
+	}
+
+	// SKUs for subscription
+	public static String[] getSubscriptionSkus()
+	{
+		return subscriptionSkus;
+	}
+
+	static public void init(@NonNull final Context context)
+	{
+		final Resources res = context.getResources();
+		inAppSkus = res.getStringArray(R.array.skus);
+	}
 }

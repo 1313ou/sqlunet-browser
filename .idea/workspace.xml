@@ -25,7 +25,7 @@
   </component>
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
   <component name="AvailableLibraryUpdateStorage">
@@ -144,8 +144,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="wip">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="iapp buy">
+      <change afterPath="$PROJECT_DIR$/common/src/main/res/values/strings_donate.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/donate/src/main/res/values/strings_skus-nontranslatable.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bNC/bNC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/bNC/bNC.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browser/browser.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/browser.iml" afterDir="false" />
@@ -153,13 +154,15 @@
       <change beforePath="$PROJECT_DIR$/browserfn/browserfn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/browserfn.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browservn/browservn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/browservn.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browserwn/browserwn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/browserwn.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/common/common.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MenuHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MenuHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/menu/main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/menu/main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/values/strings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/DonateActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/DonateActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/billing/BillingManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/billing/BillingManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/billing/Security.java" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/billing/Security.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/billing/Skus.java" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/billing/Skus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/layout/activity_buy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/layout/activity_buy.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/donate/src/main/res/values/strings_donate.xml" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/values/strings_donate.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/donate/src/test/java/com/bbou/donate/BillingUnitTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/download/download.iml" beforeDir="false" afterPath="$PROJECT_DIR$/download/download.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frameNet/frameNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/frameNet.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libwn/libwn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/libwn.iml" afterDir="false" />
@@ -254,24 +257,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/DonateActivity.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/billing/Skus.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-390">
-              <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
+            <state relative-caret-position="351">
+              <caret line="41" column="12" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="12" />
               <folding>
-                <element signature="e#4515#4516#0" expanded="true" />
-                <element signature="e#4566#4567#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#1120#1121#0" expanded="true" />
+                <element signature="e#1143#1144#0" expanded="true" />
+                <element signature="e#1218#1219#0" expanded="true" />
+                <element signature="e#1248#1249#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/billing/Skus.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/DonateActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+            <state relative-caret-position="345">
+              <caret line="257" column="51" lean-forward="true" selection-start-line="257" selection-start-column="51" selection-end-line="257" selection-end-column="51" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#4581#4582#0" expanded="true" />
+                <element signature="e#4632#4633#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/billing/BillingManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="430">
+              <caret line="279" column="23" selection-start-line="279" selection-start-column="23" selection-end-line="279" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -290,9 +313,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>required_pm</find>
-      <find>required_texts_wn</find>
-      <find>getLongVersionCode</find>
       <find>download</find>
       <find>@+id/action_diagnostics</find>
       <find>onOptionsItemSelected</find>
@@ -320,6 +340,9 @@
       <find>onClick</find>
       <find>tag</find>
       <find>Enable</find>
+      <find>action_credits</find>
+      <find>string-arr</find>
+      <find>SKU_DONATE5</find>
     </findStrings>
     <replaceStrings>
       <replace>return changed</replace>
@@ -403,16 +426,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/settings/StorageUtils.java" />
-        <option value="$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/Settings.java" />
-        <option value="$PROJECT_DIR$/deploy/src/main/java/org/sqlunet/Deploy.java" />
         <option value="$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/provider/BaseProvider.java" />
         <option value="$PROJECT_DIR$/download/build.gradle" />
         <option value="$PROJECT_DIR$/common/src/main/res/layout/activity_diagnostics.xml" />
         <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/DiagnosticsActivity.java" />
         <option value="$PROJECT_DIR$/common/src/main/res/menu/settings.xml" />
         <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MenuHandler.java" />
-        <option value="$PROJECT_DIR$/common/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/Diagnostics.java" />
         <option value="$PROJECT_DIR$/common/src/main/res/menu/setup.xml" />
         <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SetupActivity.java" />
@@ -421,7 +440,6 @@
         <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xselector/XSelectorsFragment.java" />
         <option value="$PROJECT_DIR$/test/src/main/java/androidx/test/espresso/contrib/ExpandableListViewProtocol.java" />
         <option value="$PROJECT_DIR$/browser/src/androidTest/java/org/sqlunet/browser/Tests.java" />
-        <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/EntryActivity.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SettingsActivity.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SetupStatusFragment.java" />
@@ -449,9 +467,14 @@
         <option value="$PROJECT_DIR$/donate/src/main/res/menu/donate.xml" />
         <option value="$PROJECT_DIR$/donate/src/main/res/values/strings_license-nontranslatable.xml" />
         <option value="$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/billing/BillingManager.java" />
-        <option value="$PROJECT_DIR$/donate/src/main/res/values/strings_donate.xml" />
         <option value="$PROJECT_DIR$/donate/src/main/res/layout/activity_buy.xml" />
         <option value="$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/billing/Security.java" />
+        <option value="$PROJECT_DIR$/common/src/main/res/values/strings_donate.xml" />
+        <option value="$PROJECT_DIR$/common/src/main/res/menu/main.xml" />
+        <option value="$PROJECT_DIR$/common/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/donate/src/main/res/values/strings_donate.xml" />
+        <option value="$PROJECT_DIR$/donate/src/main/res/values/strings_skus-nontranslatable.xml" />
         <option value="$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/DonateActivity.java" />
         <option value="$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/billing/Skus.java" />
       </list>
@@ -525,7 +548,7 @@
               <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
               <item name="donate" type="feadf853:AndroidModuleNode" />
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
+              <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
           </expand>
           <select />
@@ -595,11 +618,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/donate/src/main/res/menu" />
       <recent name="$PROJECT_DIR$/donate/src/main/res/values" />
+      <recent name="$PROJECT_DIR$/common/src/main/res/values" />
+      <recent name="$PROJECT_DIR$/common/src/main/res/values-large" />
+      <recent name="$PROJECT_DIR$/donate/src/main/res/menu" />
       <recent name="$PROJECT_DIR$/browserwn/src/main/res/values" />
-      <recent name="$PROJECT_DIR$/browservn/src/main/res/values" />
-      <recent name="$PROJECT_DIR$/browserfn/src/main/res/values" />
     </key>
     <key name="android.template.packageName">
       <recent name="org.sqlunet.browser.config" />
@@ -1340,20 +1363,6 @@
       <option name="presentableId" value="Default" />
       <updated>1487150992421</updated>
     </task>
-    <task id="LOCAL-00173" summary="style rename&#10;autocomplete dropdown style">
-      <created>1557405673415</created>
-      <option name="number" value="00173" />
-      <option name="presentableId" value="LOCAL-00173" />
-      <option name="project" value="LOCAL" />
-      <updated>1557405673415</updated>
-    </task>
-    <task id="LOCAL-00174" summary="cased&#10;app customiz.">
-      <created>1557409549598</created>
-      <option name="number" value="00174" />
-      <option name="presentableId" value="LOCAL-00174" />
-      <option name="project" value="LOCAL" />
-      <updated>1557409549598</updated>
-    </task>
     <task id="LOCAL-00175" summary="lint">
       <created>1557561919636</created>
       <option name="number" value="00175" />
@@ -1683,7 +1692,21 @@
       <option name="project" value="LOCAL" />
       <updated>1565765859111</updated>
     </task>
-    <option name="localTasksCounter" value="222" />
+    <task id="LOCAL-00222" summary="iapp buy">
+      <created>1565850923027</created>
+      <option name="number" value="00222" />
+      <option name="presentableId" value="LOCAL-00222" />
+      <option name="project" value="LOCAL" />
+      <updated>1565850923027</updated>
+    </task>
+    <task id="LOCAL-00223" summary="iapp buy">
+      <created>1565850975754</created>
+      <option name="number" value="00223" />
+      <option name="presentableId" value="LOCAL-00223" />
+      <option name="project" value="LOCAL" />
+      <updated>1565850975754</updated>
+    </task>
+    <option name="localTasksCounter" value="224" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1731,9 +1754,9 @@
     <frame x="54" y="27" width="1257" height="1168" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6838906" visible="true" weight="0.22633745" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.71756756" visible="true" weight="0.19753087" />
       <window_info id="Structure" order="1" sideWeight="0.216" side_tool="true" weight="0.1652983" />
-      <window_info id="Captures" order="2" sideWeight="0.31610942" side_tool="true" visible="true" weight="0.22633745" />
+      <window_info id="Captures" order="2" sideWeight="0.28243244" side_tool="true" weight="0.2979424" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Nl-Palette" order="4" />
       <window_info id="Image Layers" order="5" />
@@ -1742,22 +1765,22 @@
       <window_info id="Build Variants" order="8" sideWeight="0.27073553" side_tool="true" weight="0.18609743" />
       <window_info id="Resources Explorer" order="9" weight="0.32950193" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.32427984" weight="0.43067846" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4930041" weight="0.25663716" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.22824302" weight="0.24141315" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4063812" weight="0.29911155" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.30756578" weight="0.32681018" />
       <window_info anchor="bottom" id="Android Profiler" order="7" />
-      <window_info anchor="bottom" id="Logcat" order="8" sideWeight="0.33909464" side_tool="true" visible="true" weight="0.35299903" />
+      <window_info anchor="bottom" id="Logcat" order="8" sideWeight="0.6296296" side_tool="true" visible="true" weight="0.2723697" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.56759715" side_tool="true" weight="0.1741683" />
-      <window_info anchor="bottom" id="Build" order="10" sideWeight="0.3718802" weight="0.2723697" />
+      <window_info active="true" anchor="bottom" id="Build" order="10" sideWeight="0.37037036" visible="true" weight="0.2723697" />
       <window_info anchor="bottom" id="Android Monitor" order="11" sideWeight="0.82428116" weight="0.39513677" />
-      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.24279836" weight="0.37758112" />
+      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.5530864" weight="0.37758112" />
       <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.3136289" weight="0.32387474" />
       <window_info active="true" anchor="bottom" id="Gradle Console" order="14" sideWeight="0.4729064" side_tool="true" visible="true" weight="0.3107843" />
       <window_info anchor="bottom" id="Messages" order="15" sideWeight="0.5270936" weight="0.3107843" />
-      <window_info anchor="bottom" id="Inspection Results" order="16" sideWeight="0.66090536" visible="true" weight="0.35299903" />
+      <window_info anchor="bottom" id="Inspection Results" order="16" sideWeight="0.66090536" weight="0.35299903" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.49367088" weight="0.24937028" />
@@ -1838,7 +1861,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="menus&#10;help svg" />
     <MESSAGE value="sub menus" />
     <MESSAGE value="renames&#10;sensepointer with pos" />
     <MESSAGE value="tree node factory add split into make + addTo(parent)&#10;break expansion scheme" />
@@ -1863,7 +1885,8 @@
     <MESSAGE value="diagnostics&#10;progress bar&#10;lib updates" />
     <MESSAGE value="handles view mode change" />
     <MESSAGE value="wip" />
-    <option name="LAST_COMMIT_MESSAGE" value="wip" />
+    <MESSAGE value="iapp buy" />
+    <option name="LAST_COMMIT_MESSAGE" value="iapp buy" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1986,40 +2009,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/NavigationFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="170" column="31" selection-start-line="170" selection-start-column="31" selection-end-line="170" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SetupActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="234" column="35" selection-start-line="234" selection-start-column="35" selection-end-line="234" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SetupDatabaseTasks.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="64" column="26" selection-start-line="64" selection-start-column="26" selection-end-line="64" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SetupFileFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="130" column="80" selection-start-line="130" selection-start-column="66" selection-end-line="130" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/support/src/main/java/org/sqlunet/support/IABAdapter.java" />
-    <entry file="file://$PROJECT_DIR$/support/src/main/java/org/sqlunet/support/util/IabHelper.java" />
-    <entry file="file://$PROJECT_DIR$/support/src/main/java/org/sqlunet/support/DonateActivity.java" />
-    <entry file="file://$PROJECT_DIR$/browser/src/main/res/drawable-hdpi/ic_logo.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/libwn/src/main/res/values/strings_backup-nontranslatable.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -2108,16 +2097,6 @@
     <entry file="file://$PROJECT_DIR$/settings.gradle">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/donate/src/test/java/com/bbou/donate/BillingUnitTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="51" column="65" selection-start-line="51" selection-start-column="65" selection-end-line="51" selection-end-column="65" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/donate/src/main/res/drawable-hdpi/ic_donate1.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -2172,17 +2151,6 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/donate/src/main/res/menu/donate.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="9" column="46" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="46" />
-          <folding>
-            <element signature="e#389#420#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
     <entry file="file:///opt/androidstudio/sdk/sources/android-28/androidx/appcompat/app/ActionBarDrawerToggle.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
@@ -2211,38 +2179,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/donate/src/main/res/values/strings_license-nontranslatable.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="7" column="56" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/billing/BillingManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="341" column="16" selection-start-line="341" selection-start-column="16" selection-end-line="341" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#9722#9755#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/donate/src/main/res/values/strings_donate.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="12" column="29" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/billing/Security.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="36" column="6" selection-start-line="36" selection-start-column="6" selection-end-line="36" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/donate/src/main/res/layout/activity_buy.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
@@ -2258,21 +2194,131 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/billing/Security.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-732">
+          <caret line="46" column="6" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/donate/src/main/res/menu/donate.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/res/values-large/strings_donate.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/res/values/strings_donate.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="54" column="12" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/res/menu/main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="59" column="14" lean-forward="true" selection-start-line="59" selection-start-column="14" selection-end-line="59" selection-end-column="14" />
+          <folding>
+            <element signature="e#1690#1712#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/donate/src/main/res/values/strings_donate.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="13" column="48" selection-start-line="13" selection-start-column="48" selection-end-line="13" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/donate/src/main/res/values/strings_license-nontranslatable.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="7" column="56" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browservn/src/main/res/values/strings_tables.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="73" column="40" selection-start-line="73" selection-start-column="24" selection-end-line="73" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/vn/Status.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="50" column="17" selection-start-line="37" selection-end-line="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/donate/src/main/res/values/strings_skus-nontranslatable.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="15" column="19" lean-forward="true" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/donate/src/test/java/com/bbou/donate/BillingUnitTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="28" column="43" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/DonateActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-390">
-          <caret line="11" column="2" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
+        <state relative-caret-position="345">
+          <caret line="257" column="51" lean-forward="true" selection-start-line="257" selection-start-column="51" selection-end-line="257" selection-end-column="51" />
           <folding>
-            <element signature="e#4515#4516#0" expanded="true" />
-            <element signature="e#4566#4567#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#4581#4582#0" expanded="true" />
+            <element signature="e#4632#4633#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/billing/BillingManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="279" column="23" selection-start-line="279" selection-start-column="23" selection-end-line="279" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/billing/Skus.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+        <state relative-caret-position="351">
+          <caret line="41" column="12" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1120#1121#0" expanded="true" />
+            <element signature="e#1143#1144#0" expanded="true" />
+            <element signature="e#1218#1219#0" expanded="true" />
+            <element signature="e#1248#1249#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
