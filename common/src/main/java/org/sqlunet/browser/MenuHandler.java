@@ -93,7 +93,7 @@ public class MenuHandler
 		{
 			intent = new Intent(activity, HelpActivity.class);
 		}
-		else if (i == R.id.action_about)
+		else if (i == R.id.action_credits)
 		{
 			intent = new Intent(activity, AboutActivity.class);
 		}

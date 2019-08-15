@@ -55,12 +55,12 @@
 		tools:ignore="AppCompatResource"/>
 
 	<item
-		android:title="@string/action_credits"
+		android:title="@string/action_about"
 		app:showAsAction="never">
 		<menu>
 			<item
-				android:id="@+id/action_about"
-				android:title="@string/action_about"
+				android:id="@+id/action_credits"
+				android:title="@string/action_credits"
 				app:showAsAction="never"
 				tools:ignore="AppCompatResource"/>
 			<item

@@ -11,8 +11,7 @@
 	<string name="title_donate_4">Donate 20</string>
 	<string name="title_donate_5">Donate 50</string>
 	<string name="title_owned">owned</string>
-	<string name="title_consume">Consume</string>
-	<string name="text_donate">SqUNet browser comes free to you. Just as simple as that. But the project took me a number of years to carry out and this really meant hard work, first building the SQL database then the Android application. I did it out of passion and do not beg for money.
-		But if you like the result and think it deserves your contribution and you can afford it, please donate to support the developer\'s work</string>
+	<string name="title_consume">Reset purchases</string>
+	<string name="text_donate">If you like the app and think it deserves your contribution and you can afford it, please donate to support the developer\'s work</string>
 	<string name="action_donate_refresh">Refresh</string>
 </resources>

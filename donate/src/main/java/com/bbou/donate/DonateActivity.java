@@ -82,12 +82,13 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_buy);
 
-		final int n = Skus.INAPP_SKUS.length;
-		/*
+		Skus.init(this);
+		final String[] inappSkus = Skus.getInappSkus();
+
+		final int n = inappSkus.length;
 		final int n1 = BUTTON_IDS.length;
-		final int n2 = OVERLAY_IDS.length;
-		assert n1 == n && n2 == n;
-		*/
+		//final int n2 = OVERLAY_IDS.length;
+		assert n1 == n /*&& n2 == n*/;
 
 		final FloatingActionButton[] buttons = new FloatingActionButton[n];
 		final ImageView[] overlays = new ImageView[n];
@@ -99,12 +100,12 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 			buttons[i].setOnClickListener((v) -> {
 				int tag = Integer.parseInt((String) v.getTag());
 				Log.d(TAG, "clicked " + tag);
-				buy(Skus.INAPP_SKUS[tag]);
+				buy(inappSkus[tag]);
 			});
 			buttons[i].setOnLongClickListener((v) -> {
 				int tag = Integer.parseInt((String) v.getTag());
 				Log.d(TAG, "long clicked " + tag);
-				final String sku = Skus.INAPP_SKUS[tag];
+				final String sku = inappSkus[tag];
 				final Purchase purchase = this.skuToPurchase.get(sku);
 				if (purchase != null)
 				{
@@ -141,7 +142,7 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 		for (int i = 0; i < n; i++)
 		{
 			// this.skuToButton.put(Skus.INAPP_SKUS[i], buttons[i]);
-			this.skuToOverlay.put(Skus.INAPP_SKUS[i], overlays[i]);
+			this.skuToOverlay.put(inappSkus[i], overlays[i]);
 		}
 
 		// toolbar
@@ -196,7 +197,7 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 		this.tokenToPurchase.clear();
 
 		// reset all buttons and overlays
-		for (String sku : Skus.INAPP_SKUS)
+		for (String sku : Skus.getInappSkus())
 		{
 			update(sku, false);
 		}
@@ -260,6 +261,9 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 		{
 			final String sku = purchase.getSku();
 			update(sku, false);
+
+			this.skuToPurchase.remove(sku);
+			this.tokenToPurchase.remove(token);
 		}
 	}
 
