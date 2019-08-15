@@ -7,11 +7,11 @@
 
 	<string-array name="skus">
 
-		<item>sku_1</item>
-		<item>sku_2</item>
-		<item>sku_3</item>
-		<item>sku_4</item>
-		<item>sku_5</item>
+		<item>donate_1e</item>
+		<item>donate_5e</item>
+		<item>donate_10e</item>
+		<item>donate_20e</item>
+		<item>donate_50e</item>
 
 	</string-array>
 
