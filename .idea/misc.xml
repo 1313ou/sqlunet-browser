@@ -2314,6 +2314,12 @@
     <pattern value="org.sqlunet.provider.BaseProvider" method="call" />
     <pattern value="org.sqlunet.provider.BaseProvider" method="refresh" />
     <pattern value="org.sqlunet.browser.config.SettingsActivity" method="onCreateOptionsMenu" />
+    <pattern value="com.bbou.donate.billing.BillingManager" />
+    <pattern value="com.bbou.donate.billing.BillingManager.BillingUpdatesListener" />
+    <pattern value="com.bbou.donate.billing.BillingManager" method="getBillingClientResponseCode" />
+    <pattern value="com.bbou.donate.billing.BillingManager" method="getContext" />
+    <pattern value="com.bbou.donate.billing.BillingManager.BillingUpdatesListener" method="onConsumeFinished" />
+    <pattern value="com.bbou.donate.billing.BillingManager" method="querySkuDetails" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="androidx.annotation.Nullable" />

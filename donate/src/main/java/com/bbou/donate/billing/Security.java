@@ -34,7 +34,7 @@ import java.security.spec.X509EncodedKeySpec;
 /**
  * Security-related methods. For a secure implementation, all of this code should be implemented on a server that communicates with the application on the device.
  */
-public class Security
+class Security
 {
 	private static final String TAG = "IABUtil/Security";
 
@@ -70,7 +70,7 @@ public class Security
 	 * @throws IOException if encoding algorithm is not supported or key specification
 	 *                     is invalid
 	 */
-	public static PublicKey generatePublicKey(String encodedPublicKey) throws IOException
+	private static PublicKey generatePublicKey(String encodedPublicKey) throws IOException
 	{
 		try
 		{
@@ -100,7 +100,7 @@ public class Security
 	 * @param signature  server signature
 	 * @return true if the data and signature match
 	 */
-	public static boolean verify(PublicKey publicKey, String signedData, String signature)
+	private static boolean verify(PublicKey publicKey, String signedData, String signature)
 	{
 		byte[] signatureBytes;
 		try
