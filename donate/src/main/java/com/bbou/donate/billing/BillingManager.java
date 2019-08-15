@@ -338,6 +338,7 @@ public class BillingManager implements PurchasesUpdatedListener
 	 *
 	 * @param purchase purchase
 	 */
+	@SuppressWarnings("WeakerAccess")
 	public void acknowledgePurchase(@NonNull final Purchase purchase)
 	{
 		// Acknowledge the purchase if it hasn't already been acknowledged.

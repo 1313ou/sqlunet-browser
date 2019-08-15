@@ -15,11 +15,6 @@
  */
 package com.bbou.donate.billing;
 
-import com.android.billingclient.api.BillingClient.SkuType;
-
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * Static fields and methods useful for billing
  */
@@ -36,4 +31,3 @@ public final class Skus
 	// SKU for subscription
 	public static final String[] SUBSCRIPTIONS_SKUS = {};
 }
-
