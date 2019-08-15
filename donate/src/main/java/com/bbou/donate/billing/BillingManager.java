@@ -248,6 +248,12 @@ public class BillingManager implements PurchasesUpdatedListener
 		assert this.client != null;
 		this.client.querySkuDetailsAsync(builder.build(), (billingResult, skuDetailsList) -> {
 
+			int response = billingResult.getResponseCode();
+			if (BillingResponseCode.OK != response || skuDetailsList == null)
+			{
+				Log.e(TAG, "Getting skuDetails failed. " + response);
+				return;
+			}
 			final SkuDetails skuDetails = skuDetailsList.get(0);
 			initiatePurchaseFlow(skuDetails);
 		});
