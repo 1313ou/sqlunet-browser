@@ -4,6 +4,7 @@
 /gradle
 /gradlew*
 /dist/releases/*.apk
+strings_license-nontranslatable.xml
 /dist/releases/publisher
 /dist/releases/androidpublisher.dat
 /dist/releases/client_secrets.json
@@ -18,6 +19,7 @@
 /dist/pdf
 /dist/stats
 /release
+/dist/release
 /data
 /captures
 **/keystore.properties
