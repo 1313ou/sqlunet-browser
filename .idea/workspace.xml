@@ -146,74 +146,13 @@
   <component name="ChangeListManager">
     <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="iapp buy">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bNC/bNC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/bNC/bNC.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/browser.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/browser.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/browser/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/browserewn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/browserewn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browserfn/browserfn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/browserfn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browservn/browservn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/browservn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browservn/src/main/res/values-v21/strings_skus-nontranslatable.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/browserwn/browserwn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/browserwn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/common/common.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MenuHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MenuHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/res/values/strings_donate.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/values/strings_donate.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deploy/deploy.iml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/deploy.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/artwork/ic_overlay.svg" beforeDir="false" afterPath="$PROJECT_DIR$/donate/artwork/ic_overlay.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/artwork/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/donate/artwork/make-artwork.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/donate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/donate/donate.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/DonateActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/DonateActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/billing/BillingManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/billing/BillingManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-hdpi/ic_donate1.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-hdpi/ic_donate1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-hdpi/ic_donate2.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-hdpi/ic_donate2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-hdpi/ic_donate3.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-hdpi/ic_donate3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-hdpi/ic_donate4.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-hdpi/ic_donate4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-hdpi/ic_donate5.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-hdpi/ic_donate5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-hdpi/ic_overlay.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-hdpi/ic_overlay.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-mdpi/ic_donate1.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-mdpi/ic_donate1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-mdpi/ic_donate2.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-mdpi/ic_donate2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-mdpi/ic_donate3.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-mdpi/ic_donate3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-mdpi/ic_donate4.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-mdpi/ic_donate4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-mdpi/ic_donate5.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-mdpi/ic_donate5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-mdpi/ic_overlay.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-mdpi/ic_overlay.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-xhdpi/ic_donate1.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-xhdpi/ic_donate1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-xhdpi/ic_donate2.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-xhdpi/ic_donate2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-xhdpi/ic_donate3.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-xhdpi/ic_donate3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-xhdpi/ic_donate4.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-xhdpi/ic_donate4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-xhdpi/ic_donate5.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-xhdpi/ic_donate5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-xhdpi/ic_overlay.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-xhdpi/ic_overlay.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-xxhdpi/ic_donate1.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-xxhdpi/ic_donate1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-xxhdpi/ic_donate2.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-xxhdpi/ic_donate2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-xxhdpi/ic_donate3.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-xxhdpi/ic_donate3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-xxhdpi/ic_donate4.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-xxhdpi/ic_donate4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-xxhdpi/ic_donate5.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-xxhdpi/ic_donate5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-xxhdpi/ic_overlay.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-xxhdpi/ic_overlay.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-xxxhdpi/ic_donate1.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-xxxhdpi/ic_donate1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-xxxhdpi/ic_donate2.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-xxxhdpi/ic_donate2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-xxxhdpi/ic_donate3.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-xxxhdpi/ic_donate3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-xxxhdpi/ic_donate4.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-xxxhdpi/ic_donate4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-xxxhdpi/ic_donate5.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-xxxhdpi/ic_donate5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/drawable-xxxhdpi/ic_overlay.png" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/drawable-xxxhdpi/ic_overlay.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/layout/activity_buy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/layout/activity_buy.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/donate/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/download/download.iml" beforeDir="false" afterPath="$PROJECT_DIR$/download/download.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" beforeDir="false" afterPath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameNet/frameNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/frameNet.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/libwn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/libwn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/others/others.iml" beforeDir="false" afterPath="$PROJECT_DIR$/others/others.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/others/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/others/src/main/java/org/sqlunet/others/OtherActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/others/src/main/java/com/bbou/others/OthersActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" beforeDir="false" afterPath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preference/preference.iml" beforeDir="false" afterPath="$PROJECT_DIR$/preference/preference.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/propbank/propbank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/propbank/propbank.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/test/test.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/treeView/treeView.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/treeView.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/verbNet/verbNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/verbNet.iml" afterDir="false" />
@@ -304,17 +243,7 @@
     <favorites_list name="SqlUNet" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/donate/src/main/res/drawable/bg_button_donate.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="16" column="37" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -328,7 +257,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>FLAG_ACTIVITY_CLEAR_TOP</find>
       <find>onPr</find>
       <find>onPurchasesUpdated()</find>
       <find>@sty</find>
@@ -358,6 +286,7 @@
       <find>floa</find>
       <find>getTag</find>
       <find>sql</find>
+      <find>getDrawa</find>
     </findStrings>
     <replaceStrings>
       <replace>data -&gt; new FireEvent2(this.fragment).live(data)</replace>
@@ -465,7 +394,6 @@
         <option value="$PROJECT_DIR$/browserewn/src/main/res/values/strings_backup-nontranslatable.xml" />
         <option value="$PROJECT_DIR$/browserfn/src/main/res/values/strings_license-nontranslatable.xml" />
         <option value="$PROJECT_DIR$/browserfn/src/main/res/values/strings_backup-nontranslatable.xml" />
-        <option value="$PROJECT_DIR$/browservn/src/main/res/values/strings_license-nontranslatable.xml" />
         <option value="$PROJECT_DIR$/browservn/src/main/res/values/strings_backup-nontranslatable.xml" />
         <option value="$PROJECT_DIR$/browserwn/src/main/res/values/strings_license-nontranslatable.xml" />
         <option value="$PROJECT_DIR$/browserwn/src/main/res/values/strings_backup-nontranslatable.xml" />
@@ -490,9 +418,10 @@
         <option value="$PROJECT_DIR$/common/src/main/res/values/strings_donate.xml" />
         <option value="$PROJECT_DIR$/donate/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/donate/src/main/res/layout/activity_buy.xml" />
-        <option value="$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/DonateActivity.java" />
         <option value="$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/billing/BillingManager.java" />
         <option value="$PROJECT_DIR$/donate/src/main/res/drawable/bg_button_donate.xml" />
+        <option value="$PROJECT_DIR$/browservn/src/main/res/values/strings_license-nontranslatable.xml" />
+        <option value="$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/DonateActivity.java" />
       </list>
     </option>
   </component>
@@ -531,32 +460,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="donate" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="donate" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="donate" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="drawable" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="xNet" type="feadf853:AndroidModuleNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -668,7 +572,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Android App.browserwn">
+  <component name="RunManager" selected="Android App.browservn">
     <configuration name="&lt;template&gt;" type="Applet" default="true" selected="false">
       <option name="MAIN_CLASS_NAME" />
       <option name="HTML_FILE_NAME" />
@@ -1365,20 +1269,6 @@
       <option name="presentableId" value="Default" />
       <updated>1487150992421</updated>
     </task>
-    <task id="LOCAL-00177" summary="extended text search&#10;hightlight result fixes">
-      <created>1557902951218</created>
-      <option name="number" value="00177" />
-      <option name="presentableId" value="LOCAL-00177" />
-      <option name="project" value="LOCAL" />
-      <updated>1557902951219</updated>
-    </task>
-    <task id="LOCAL-00178" summary="ewn cosmetics">
-      <created>1557903045897</created>
-      <option name="number" value="00178" />
-      <option name="presentableId" value="LOCAL-00178" />
-      <option name="project" value="LOCAL" />
-      <updated>1557903045897</updated>
-    </task>
     <task id="LOCAL-00179" summary="ewn cosmetics">
       <created>1557903166851</created>
       <option name="number" value="00179" />
@@ -1708,7 +1598,21 @@
       <option name="project" value="LOCAL" />
       <updated>1565879442433</updated>
     </task>
-    <option name="localTasksCounter" value="226" />
+    <task id="LOCAL-00226" summary="iapp buy">
+      <created>1565942569349</created>
+      <option name="number" value="00226" />
+      <option name="presentableId" value="LOCAL-00226" />
+      <option name="project" value="LOCAL" />
+      <updated>1565942569350</updated>
+    </task>
+    <task id="LOCAL-00227" summary="iapp buy">
+      <created>1565942595636</created>
+      <option name="number" value="00227" />
+      <option name="presentableId" value="LOCAL-00227" />
+      <option name="project" value="LOCAL" />
+      <updated>1565942595636</updated>
+    </task>
+    <option name="localTasksCounter" value="228" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1754,9 +1658,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="51" y="27" width="1309" height="1166" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.71756756" visible="true" weight="0.20520915" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.71756756" visible="true" weight="0.2667719" />
       <window_info id="Structure" order="1" sideWeight="0.216" side_tool="true" weight="0.1652983" />
       <window_info id="Captures" order="2" sideWeight="0.28243244" side_tool="true" weight="0.2979424" />
       <window_info id="Capture Tool" order="3" />
@@ -1773,12 +1676,12 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.30756578" weight="0.32681018" />
-      <window_info anchor="bottom" id="Android Profiler" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Logcat" order="8" sideWeight="0.45303866" side_tool="true" visible="true" weight="0.3763547" />
+      <window_info anchor="bottom" id="Android Profiler" order="7" />
+      <window_info anchor="bottom" id="Logcat" order="8" sideWeight="0.44356748" side_tool="true" weight="0.33399016" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.56759715" side_tool="true" weight="0.1741683" />
-      <window_info anchor="bottom" id="Build" order="10" sideWeight="0.27703235" weight="0.33399016" />
+      <window_info anchor="bottom" id="Build" order="10" sideWeight="0.55643255" weight="0.33399016" />
       <window_info anchor="bottom" id="Android Monitor" order="11" sideWeight="0.82428116" weight="0.39513677" />
-      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.5469613" visible="true" weight="0.3763547" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="12" sideWeight="0.33543804" visible="true" weight="0.3763547" />
       <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.3136289" weight="0.32387474" />
       <window_info active="true" anchor="bottom" id="Gradle Console" order="14" sideWeight="0.4729064" side_tool="true" visible="true" weight="0.3107843" />
       <window_info anchor="bottom" id="Messages" order="15" sideWeight="0.5270936" weight="0.3107843" />
@@ -1793,7 +1696,7 @@
       <window_info anchor="right" id="Gradle" order="7" weight="0.2257028" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info anchor="right" id="Palette&#9;" order="9" />
-      <window_info active="true" anchor="right" id="Preview" order="10" sideWeight="0.8778626" visible="true" weight="0.20836622" />
+      <window_info anchor="right" id="Preview" order="10" sideWeight="0.8778626" weight="0.20836622" />
       <window_info anchor="right" id="Capture Analysis" order="11" />
       <window_info anchor="right" x="0" y="0" width="417" height="973" id="Documentation" order="12" sideWeight="0.5046382" side_tool="true" weight="0.27572018" />
       <window_info anchor="right" id="Device File Explorer" order="13" sideWeight="0.5063291" side_tool="true" weight="0.2492276" />
@@ -2011,32 +1914,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/common/src/main/res/values-large/strings_donate.xml" />
-    <entry file="file://$PROJECT_DIR$/common/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="54" column="12" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/res/menu/main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="59" column="14" lean-forward="true" selection-start-line="59" selection-start-column="14" selection-end-line="59" selection-end-column="14" />
-          <folding>
-            <element signature="e#1690#1712#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/donate/src/main/res/values/strings_donate.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="169">
@@ -2093,9 +1970,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/browserfn/src/main/res/values/strings_skus-nontranslatable.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browservn/src/main/res/values-v21/strings_skus-nontranslatable.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/browserwn/src/main/res/values/strings_skus-nontranslatable.xml">
@@ -2249,49 +2123,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/DonateActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="144" column="9" lean-forward="true" selection-start-line="144" selection-start-column="9" selection-end-line="144" selection-end-column="9" />
-          <folding>
-            <element signature="docComment;class#DonateActivity#0" />
-            <element signature="docComment;field#billingManager#0;class#DonateActivity#0" />
-            <element signature="docComment;field#skuToPurchase#0;class#DonateActivity#0" />
-            <element signature="docComment;field#skuToButton#0;class#DonateActivity#0" />
-            <element signature="docComment;field#overlay#0;class#DonateActivity#0" />
-            <element signature="e#1887#1926#0" expanded="true" />
-            <element signature="e#2777#2902#0" />
-            <element signature="e#3650#3714#1" />
-            <element signature="method#onDestroy#0;class#DonateActivity#0" />
-            <element signature="e#4475#4572#1" />
-            <element signature="e#4487#4528#0" />
-            <element signature="e#4795#4796#0" expanded="true" />
-            <element signature="method#onPurchasesUpdated#0;class#DonateActivity#0" />
-            <element signature="e#5017#5045#1" />
-            <element signature="e#5129#5605#1" />
-            <element signature="e#5266#5398#1" />
-            <element signature="e#5493#5601#1" />
-            <element signature="e#5615#5657#1" />
-            <element signature="e#5790#6014#1" />
-            <element signature="e#6149#6197#1" />
-            <element signature="method#onConsume#0;class#DonateActivity#0" />
-            <element signature="e#6159#6295#1" />
-            <element signature="e#6223#6291#1" />
-            <element signature="method#onConsumeFinished#0;class#DonateActivity#0" />
-            <element signature="e#6484#6728#1" />
-            <element signature="e#6591#6723#1" />
-            <element signature="e#6606#6718#1" />
-            <element signature="method#buy#0;class#DonateActivity#0" />
-            <element signature="e#6752#6836#1" />
-            <element signature="method#inform#0;class#DonateActivity#0" />
-            <element signature="e#7122#7158#0" />
-            <element signature="method#onCreateOptionsMenu#0;class#DonateActivity#0" />
-            <element signature="method#onOptionsItemSelected#0;class#DonateActivity#0" />
-            <element signature="e#7469#7531#1" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/billing/BillingManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
@@ -2304,8 +2135,63 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/donate/src/main/res/drawable/bg_button_donate.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="16" column="37" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
+        <state relative-caret-position="104">
+          <caret line="8" column="40" lean-forward="true" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browservn/src/main/res/values-v21/strings_skus-nontranslatable.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browservn/src/main/res/values/strings_license-nontranslatable.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browservn/src/main/res/values/strings_skus-nontranslatable.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="18" column="12" lean-forward="true" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/ColorUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="88" column="12" lean-forward="true" selection-start-line="81" selection-end-line="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xn/SetupStatusFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="200" column="66" selection-start-line="200" selection-start-column="55" selection-end-line="200" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/DonateActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="77" column="5" lean-forward="true" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
+          <folding>
+            <element signature="docComment;class#DonateActivity#0" />
+            <element signature="docComment;field#billingManager#0;class#DonateActivity#0" />
+            <element signature="docComment;field#skuToPurchase#0;class#DonateActivity#0" />
+            <element signature="docComment;field#skuToButton#0;class#DonateActivity#0" />
+            <element signature="docComment;field#overlay#0;class#DonateActivity#0" />
+            <element signature="method#onDestroy#0;class#DonateActivity#0" />
+            <element signature="e#4744#4745#0" expanded="true" />
+            <element signature="e#4795#4796#0" expanded="true" />
+            <element signature="method#onPurchasesUpdated#0;class#DonateActivity#0" />
+            <element signature="method#onConsume#0;class#DonateActivity#0" />
+            <element signature="method#onConsumeFinished#0;class#DonateActivity#0" />
+            <element signature="e#7276#7308#0" expanded="true" />
+            <element signature="method#inform#0;class#DonateActivity#0" />
+            <element signature="method#onCreateOptionsMenu#0;class#DonateActivity#0" />
+            <element signature="method#onOptionsItemSelected#0;class#DonateActivity#0" />
+          </folding>
         </state>
       </provider>
     </entry>

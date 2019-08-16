@@ -4,9 +4,11 @@
 
 package com.bbou.donate;
 
+import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -25,6 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -77,7 +80,7 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 		setContentView(R.layout.activity_buy);
 
 		// overlay drawable
-		final BitmapDrawable overlay = (BitmapDrawable) getResources().getDrawable(R.drawable.ic_overlay);
+		final BitmapDrawable overlay = (BitmapDrawable) getDrawable(this, R.drawable.ic_overlay);
 		overlay.setGravity(Gravity.TOP | Gravity.END);
 		this.overlay = overlay;
 
@@ -298,6 +301,20 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 	}
 
 	// H E L P E R
+
+	@SuppressWarnings("deprecation")
+	static public Drawable getDrawable(@NonNull final Context context, @DrawableRes int drawableRes)
+	{
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+		{
+			return context.getResources().getDrawable(drawableRes, context.getTheme());
+		}
+		else
+		{
+			//noinspection deprecation
+			return context.getResources().getDrawable(drawableRes);
+		}
+	}
 
 	private void inform(@NonNull final String message)
 	{
