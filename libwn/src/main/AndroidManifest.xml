@@ -309,7 +309,7 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.others.OtherActivity"
+			android:name="com.bbou.others.OthersActivity"
 			android:label="@string/title_activity_other"
 			android:parentActivityName="org.sqlunet.browser.MainActivity"
 			tools:ignore="UnusedAttribute">

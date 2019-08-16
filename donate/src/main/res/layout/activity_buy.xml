@@ -60,169 +60,84 @@
 				android:visibility="visible"/>
 
 			<!-- 1 -->
-			<FrameLayout
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
+
+			<androidx.appcompat.widget.AppCompatImageButton
+				android:id="@+id/buyButton1"
+				android:layout_width="56dp"
+				android:layout_height="56dp"
 				android:layout_gravity="center_horizontal"
-				android:layout_marginTop="0dp">
-
-				<com.google.android.material.floatingactionbutton.FloatingActionButton
-					android:id="@+id/buyButton1"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_horizontal"
-					android:background="@null"
-					android:contentDescription="@string/title_donate_1"
-					android:src="@drawable/ic_donate1"
-					android:tag="0"
-					android:visibility="visible"
-					app:backgroundTint="@color/donate1Color"
-					app:borderWidth="0dp"
-					app:elevation="6dp"
-					app:fabSize="mini"
-					app:useCompatPadding="true"/>
-
-				<ImageView
-					android:id="@+id/overlay1"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_horizontal"
-					android:contentDescription="@string/title_owned"
-					android:src="@drawable/ic_overlay"
-					android:visibility="invisible"/>
-			</FrameLayout>
+				android:layout_marginTop="5dp"
+				android:background="@drawable/bg_button_donate"
+				android:contentDescription="@string/title_donate_1"
+				android:src="@drawable/ic_donate1"
+				android:tag="0"
+				android:visibility="visible"
+				app:backgroundTint="@color/donate1Color"
+				app:elevation="6dp"/>
 
 			<!-- 2 -->
-			<FrameLayout
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
+
+			<androidx.appcompat.widget.AppCompatImageButton
+				android:id="@+id/buyButton2"
+				android:layout_width="56dp"
+				android:layout_height="56dp"
 				android:layout_gravity="center_horizontal"
-				android:layout_marginTop="0dp">
-
-				<com.google.android.material.floatingactionbutton.FloatingActionButton
-					android:id="@+id/buyButton2"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_horizontal"
-					android:background="@null"
-					android:contentDescription="@string/title_donate_2"
-					android:src="@drawable/ic_donate2"
-					android:tag="1"
-					android:visibility="visible"
-					app:backgroundTint="@color/donate2Color"
-					app:borderWidth="0dp"
-					app:elevation="6dp"
-					app:fabSize="mini"
-					app:useCompatPadding="true"/>
-
-				<ImageView
-					android:id="@+id/overlay2"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_horizontal"
-					android:contentDescription="@string/title_owned"
-					android:src="@drawable/ic_overlay"
-					android:visibility="invisible"/>
-			</FrameLayout>
+				android:layout_marginTop="5dp"
+				android:background="@drawable/bg_button_donate"
+				android:contentDescription="@string/title_donate_2"
+				android:src="@drawable/ic_donate2"
+				android:tag="1"
+				android:visibility="visible"
+				app:backgroundTint="@color/donate2Color"
+				app:elevation="6dp"/>
 
 			<!-- 3 -->
-			<FrameLayout
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
+
+			<androidx.appcompat.widget.AppCompatImageButton
+				android:id="@+id/buyButton3"
+				android:layout_width="56dp"
+				android:layout_height="56dp"
 				android:layout_gravity="center_horizontal"
-				android:layout_marginTop="0dp">
-
-				<com.google.android.material.floatingactionbutton.FloatingActionButton
-					android:id="@+id/buyButton3"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_horizontal"
-					android:background="@null"
-					android:contentDescription="@string/title_donate_3"
-					android:src="@drawable/ic_donate3"
-					android:tag="2"
-					android:visibility="visible"
-					app:backgroundTint="@color/donate3Color"
-					app:borderWidth="0dp"
-					app:elevation="6dp"
-					app:fabSize="mini"
-					app:useCompatPadding="true"/>
-
-				<ImageView
-					android:id="@+id/overlay3"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_horizontal"
-					android:contentDescription="@string/title_owned"
-					android:src="@drawable/ic_overlay"
-					android:visibility="invisible"/>
-			</FrameLayout>
+				android:layout_marginTop="5dp"
+				android:background="@drawable/bg_button_donate"
+				android:contentDescription="@string/title_donate_3"
+				android:src="@drawable/ic_donate3"
+				android:tag="2"
+				android:visibility="visible"
+				app:backgroundTint="@color/donate3Color"
+				app:elevation="6dp"/>
 
 			<!-- 4 -->
-			<FrameLayout
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
+
+			<androidx.appcompat.widget.AppCompatImageButton
+				android:id="@+id/buyButton4"
+				android:layout_width="56dp"
+				android:layout_height="56dp"
 				android:layout_gravity="center_horizontal"
-				android:layout_marginTop="0dp">
-
-				<com.google.android.material.floatingactionbutton.FloatingActionButton
-					android:id="@+id/buyButton4"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_horizontal"
-					android:background="@null"
-					android:contentDescription="@string/title_donate_4"
-					android:src="@drawable/ic_donate4"
-					android:tag="3"
-					android:visibility="visible"
-					app:backgroundTint="@color/donate4Color"
-					app:borderWidth="0dp"
-					app:elevation="6dp"
-					app:fabSize="mini"
-					app:useCompatPadding="true"/>
-
-				<ImageView
-					android:id="@+id/overlay4"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_horizontal"
-					android:contentDescription="@string/title_owned"
-					android:src="@drawable/ic_overlay"
-					android:visibility="invisible"/>
-			</FrameLayout>
+				android:layout_marginTop="5dp"
+				android:background="@drawable/bg_button_donate"
+				android:contentDescription="@string/title_donate_4"
+				android:src="@drawable/ic_donate4"
+				android:tag="3"
+				android:visibility="visible"
+				app:backgroundTint="@color/donate4Color"
+				app:elevation="6dp"/>
 
 			<!-- 5 -->
-			<FrameLayout
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
+
+			<androidx.appcompat.widget.AppCompatImageButton
+				android:id="@+id/buyButton5"
+				android:layout_width="56dp"
+				android:layout_height="56dp"
 				android:layout_gravity="center_horizontal"
-				android:layout_marginTop="0dp">
-
-				<com.google.android.material.floatingactionbutton.FloatingActionButton
-					android:id="@+id/buyButton5"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_horizontal"
-					android:background="@null"
-					android:contentDescription="@string/title_donate_5"
-					android:src="@drawable/ic_donate5"
-					android:tag="4"
-					android:visibility="visible"
-					app:backgroundTint="@color/donate5Color"
-					app:borderWidth="0dp"
-					app:elevation="6dp"
-					app:fabSize="mini"
-					app:useCompatPadding="true"/>
-
-				<ImageView
-					android:id="@+id/overlay5"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_horizontal"
-					android:contentDescription="@string/title_owned"
-					android:src="@drawable/ic_overlay"
-					android:visibility="invisible"/>
-			</FrameLayout>
+				android:layout_marginTop="5dp"
+				android:background="@drawable/bg_button_donate"
+				android:contentDescription="@string/title_donate_5"
+				android:src="@drawable/ic_donate5"
+				android:tag="4"
+				android:visibility="visible"
+				app:backgroundTint="@color/donate5Color"
+				app:elevation="6dp"/>
 
 			<Button
 				android:id="@+id/consumeButton"

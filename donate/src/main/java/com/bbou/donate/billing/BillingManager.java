@@ -254,6 +254,11 @@ public class BillingManager implements PurchasesUpdatedListener
 				Log.e(TAG, "Getting skuDetails failed. " + response);
 				return;
 			}
+			if (skuDetailsList.isEmpty())
+			{
+				Log.e(TAG, "Getting skuDetails yielded no details for sku " + skuId);
+				return;
+			}
 			final SkuDetails skuDetails = skuDetailsList.get(0);
 			initiatePurchaseFlow(skuDetails);
 		});
@@ -283,7 +288,6 @@ public class BillingManager implements PurchasesUpdatedListener
 	/**
 	 * Handle a callback that verifiedPurchases were updated from the Billing library
 	 */
-	@SuppressWarnings("WeakerAccess")
 	@Override
 	public void onPurchasesUpdated(@NonNull final BillingResult billingResult, @Nullable final List<Purchase> purchases)
 	{
@@ -454,10 +458,12 @@ public class BillingManager implements PurchasesUpdatedListener
 	/**
 	 * Consume purchase
 	 *
-	 * @param purchaseToken purchase token
+	 * @param purchase purchase
 	 */
-	public void consume(final String purchaseToken)
+	public void consume(final Purchase purchase)
 	{
+		final String purchaseToken = purchase.getPurchaseToken();
+
 		// If we've already scheduled to consume this token - no action is needed
 		// (this could happen if you received the token when querying verifiedPurchases inside onReceive() and later from onActivityResult()
 		if (tokensToBeConsumed == null)

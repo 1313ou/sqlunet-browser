@@ -49,6 +49,9 @@ android {
             signingConfig signingConfigs.sqlunet
             versionNameSuffix 'signed'
         }
+        debug {
+            signingConfig signingConfigs.sqlunet
+        }
     }
 }
 

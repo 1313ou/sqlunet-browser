@@ -4,19 +4,21 @@
 
 package com.bbou.donate;
 
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-//import android.widget.ImageButton;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.Purchase;
 import com.bbou.donate.billing.BillingManager;
 import com.bbou.donate.billing.Skus;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -41,7 +43,7 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 
 	static private final int[] BUTTON_IDS = {R.id.buyButton1, R.id.buyButton2, R.id.buyButton3, R.id.buyButton4, R.id.buyButton5};
 
-	static private final int[] OVERLAY_IDS = {R.id.overlay1, R.id.overlay2, R.id.overlay3, R.id.overlay4, R.id.overlay5};
+	static private final int[] DRAWABLE_IDS = {R.drawable.ic_donate1, R.drawable.ic_donate2, R.drawable.ic_donate3, R.drawable.ic_donate4, R.drawable.ic_donate5};
 
 	/**
 	 * Adapter to in-app billing
@@ -49,68 +51,72 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 	private BillingManager billingManager;
 
 	/**
-	 * Purchases per token
-	 */
-	@NonNull
-	private final Map<String, Purchase> tokenToPurchase = new HashMap<>();
-
-	/**
 	 * Purchases per sku
 	 */
 	@NonNull
 	private final Map<String, Purchase> skuToPurchase = new HashMap<>();
 
-	/*
-	 * SKU to Buttons
-	 */
-	/*
-	@NonNull
-	private final Map<String, FloatingActionButton> skuToButton = new HashMap<>();
-	*/
-
 	/**
 	 * SKU to Buttons
 	 */
 	@NonNull
-	private final Map<String, ImageView> skuToOverlay = new HashMap<>();
+	private final Map<String, ImageButton> skuToButton = new HashMap<>();
+
+	/**
+	 * Overlay drawable
+	 */
+	private Drawable overlay;
 
 	// L I F E C Y C L E   A N D   S E T U P
 
+	@SuppressWarnings("ConstantConditions")
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_buy);
 
+		// overlay drawable
+		final BitmapDrawable overlay = (BitmapDrawable) getResources().getDrawable(R.drawable.ic_overlay);
+		overlay.setGravity(Gravity.TOP | Gravity.END);
+		this.overlay = overlay;
+
+		// init skus from resources
 		Skus.init(this);
 		final String[] inappSkus = Skus.getInappSkus();
-
 		final int n = inappSkus.length;
-		final int n1 = BUTTON_IDS.length;
-		//final int n2 = OVERLAY_IDS.length;
-		assert n1 == n /*&& n2 == n*/;
+		if (BuildConfig.DEBUG)
+		{
+			final int n1 = BUTTON_IDS.length;
+			final int n2 = DRAWABLE_IDS.length;
+			if (n1 != n || n2 != n)
+			{
+				throw new RuntimeException("");
+			}
+		}
 
-		final FloatingActionButton[] buttons = new FloatingActionButton[n];
-		final ImageView[] overlays = new ImageView[n];
-
+		// image buttons
+		final ImageButton[] buttons = new ImageButton[n];
 		for (int i = 0; i < n; i++)
 		{
 			// buttons
 			buttons[i] = findViewById(BUTTON_IDS[i]);
-			buttons[i].setOnClickListener((v) -> {
-				int tag = Integer.parseInt((String) v.getTag());
+			buttons[i].setOnClickListener((button) -> {
+
+				int tag = Integer.parseInt((String) button.getTag());
 				Log.d(TAG, "clicked " + tag);
-				buy(inappSkus[tag]);
+				donate(inappSkus[tag]);
 			});
-			buttons[i].setOnLongClickListener((v) -> {
-				int tag = Integer.parseInt((String) v.getTag());
+			buttons[i].setOnLongClickListener((button) -> {
+
+				int tag = Integer.parseInt((String) button.getTag());
 				Log.d(TAG, "long clicked " + tag);
 				final String sku = inappSkus[tag];
+				final StringBuilder sb = new StringBuilder();
 				final Purchase purchase = this.skuToPurchase.get(sku);
 				if (purchase != null)
 				{
 					Log.i(TAG, purchase.toString());
-					final StringBuilder sb = new StringBuilder();
 					sb.append("Order ID: ");
 					sb.append(purchase.getOrderId());
 					sb.append('\n');
@@ -127,22 +133,28 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 						sb.append('\n');
 						sb.append("Acknowledged");
 					}
-					inform(sb.toString());
 				}
+				else
+				{
+					sb.append("SKU: ");
+					sb.append(sku);
+				}
+				inform(sb.toString());
 				return true;
 			});
-
-			// overlays
-			overlays[i] = findViewById(OVERLAY_IDS[i]);
 		}
 
-		// sku maps
-		// this.skuToButton.clear();
-		this.skuToOverlay.clear();
+		// image buttons per sku
+		this.skuToButton.clear();
 		for (int i = 0; i < n; i++)
 		{
-			// this.skuToButton.put(Skus.INAPP_SKUS[i], buttons[i]);
-			this.skuToOverlay.put(inappSkus[i], overlays[i]);
+			this.skuToButton.put(Skus.getInappSkus()[i], buttons[i]);
+		}
+
+		// setup manager
+		if (this.billingManager == null)
+		{
+			this.billingManager = new BillingManager(this, this);
 		}
 
 		// toolbar
@@ -153,12 +165,6 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 		final ActionBar actionBar = getSupportActionBar();
 		assert actionBar != null;
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
-
-		// setup manager
-		if (this.billingManager == null)
-		{
-			this.billingManager = new BillingManager(this, this);
-		}
 	}
 
 	@Override
@@ -194,7 +200,6 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 
 		// reset data
 		this.skuToPurchase.clear();
-		this.tokenToPurchase.clear();
 
 		// reset all buttons and overlays
 		for (String sku : Skus.getInappSkus())
@@ -205,38 +210,47 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 		// update buttons and overlays with purchases
 		if (updatedPurchases != null)
 		{
-			Log.d(TAG, "purchase list size " + this.tokenToPurchase.size());
+			Log.d(TAG, "Purchase count " + updatedPurchases.size());
 
 			// build data
 			for (Purchase purchase : updatedPurchases)
 			{
-				this.tokenToPurchase.put(purchase.getPurchaseToken(), purchase);
 				this.skuToPurchase.put(purchase.getSku(), purchase);
 			}
 
 			// set buttons and overlays
-			for (Purchase purchase : this.tokenToPurchase.values())
+			for (Purchase purchase : this.skuToPurchase.values())
 			{
-				Log.d(TAG, purchase.toString());
+				Log.d(TAG, "Update " + purchase.toString());
 				final String sku = purchase.getSku();
 				update(sku, true);
 			}
 		}
 		else
 		{
-			Log.d(TAG, "null purchase list");
+			Log.d(TAG, "Null purchase list");
 		}
 	}
 
 	private void update(final String sku, boolean isOwned)
 	{
-		//final ImageButton imageButton = this.skuToButton.get(sku);
-		//assert imageButton != null;
-		//imageButton.setEnabled(!isOwned);
+		final ImageButton imageButton = this.skuToButton.get(sku);
+		assert imageButton != null;
+		int tag = Integer.parseInt((String) imageButton.getTag());
+		final Drawable drawable = getResources().getDrawable(DRAWABLE_IDS[tag]);
 
-		final ImageView overlay = this.skuToOverlay.get(sku);
-		assert overlay != null;
-		overlay.setVisibility(isOwned ? View.VISIBLE : View.INVISIBLE);
+		if (isOwned)
+		{
+			final Drawable[] layers = new Drawable[2];
+			layers[0] = drawable;
+			layers[1] = this.overlay;
+			final LayerDrawable layerDrawable = new LayerDrawable(layers);
+			imageButton.setImageDrawable(layerDrawable);
+		}
+		else
+		{
+			imageButton.setImageDrawable(drawable);
+		}
 	}
 
 	// C O N S U M E
@@ -245,9 +259,9 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 	{
 		if (this.billingManager != null)
 		{
-			for (Purchase purchase : this.tokenToPurchase.values())
+			for (Purchase purchase : this.skuToPurchase.values())
 			{
-				this.billingManager.consume(purchase.getPurchaseToken());
+				this.billingManager.consume(purchase);
 			}
 		}
 	}
@@ -256,26 +270,34 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 	public void onConsumeFinished(final String token, final int result)
 	{
 		Log.d(TAG, "onConsumeFinished() " + token);
-		final Purchase purchase = this.tokenToPurchase.get(token);
-		if (purchase != null)
+		if (this.billingManager != null)
 		{
-			final String sku = purchase.getSku();
-			update(sku, false);
+			// this.billingManager.queryPurchases();
 
-			this.skuToPurchase.remove(sku);
-			this.tokenToPurchase.remove(token);
+			for (Purchase purchase : this.skuToPurchase.values())
+			{
+				if (purchase.getPurchaseToken().equals(token))
+				{
+					final String sku = purchase.getSku();
+					this.skuToPurchase.remove(sku);
+					update(sku, false);
+					break;
+				}
+			}
 		}
 	}
 
-	// B U Y
+	// D O N A T E
 
-	private void buy(final String sku)
+	private void donate(final String sku)
 	{
 		if (this.billingManager != null)
 		{
 			this.billingManager.initiatePurchaseFlow(sku, BillingClient.SkuType.INAPP);
 		}
 	}
+
+	// H E L P E R
 
 	private void inform(@NonNull final String message)
 	{
@@ -284,6 +306,8 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 		alert.setMessage(message);
 		alert.show();
 	}
+
+	// M E N U
 
 	@SuppressWarnings("SameReturnValue")
 	@Override
