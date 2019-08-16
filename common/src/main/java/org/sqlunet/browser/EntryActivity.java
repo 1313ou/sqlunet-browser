@@ -72,7 +72,7 @@ public class EntryActivity extends AppCompatActivity
 		}
 	}
 
-	static public void forkOff(@NonNull final AppCompatActivity activity)
+	private static void forkOff(@NonNull final AppCompatActivity activity)
 	{
 		final Intent intent = new Intent(activity, StatusActivity.class);
 		intent.putExtra(Status.CANTRUN, true);

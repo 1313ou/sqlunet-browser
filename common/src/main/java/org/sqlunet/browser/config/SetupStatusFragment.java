@@ -23,7 +23,6 @@ import android.widget.Toast;
 import org.sqlunet.browser.ColorUtils;
 import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.Info;
-import org.sqlunet.browser.MainActivity;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.download.DownloadActivity;
 import org.sqlunet.settings.StorageSettings;
