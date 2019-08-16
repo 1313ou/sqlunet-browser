@@ -2,7 +2,7 @@
  * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
-package org.sqlunet.others;
+package com.bbou.others;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -24,7 +24,7 @@ import androidx.appcompat.widget.Toolbar;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class OtherActivity extends AppCompatActivity
+public class OthersActivity extends AppCompatActivity
 {
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState)

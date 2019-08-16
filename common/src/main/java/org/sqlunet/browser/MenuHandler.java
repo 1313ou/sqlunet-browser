@@ -17,7 +17,7 @@ import org.sqlunet.download.FileDataDownloader;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
-import org.sqlunet.others.OtherActivity;
+import com.bbou.others.OthersActivity;
 import com.bbou.donate.DonateActivity;
 
 import androidx.annotation.NonNull;
@@ -108,7 +108,7 @@ public class MenuHandler
 		}
 		else if (i == R.id.action_other)
 		{
-			intent = new Intent(activity, OtherActivity.class);
+			intent = new Intent(activity, OthersActivity.class);
 		}
 		else if (i == R.id.action_quit)
 		{
