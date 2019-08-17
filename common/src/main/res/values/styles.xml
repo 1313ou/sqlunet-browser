@@ -1,45 +1,53 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
 <resources>
 
-	<!-- BASE application theme, dependent on API level. This theme is replaced by AppBaseTheme from res/values-vXX/styles-app.xml on newer devices. -->
-	<style name="MyAppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+	<style name="MyBaseOverlay"/>
+	<!--<style name="MyBaseOverlay" parent="ThemeOverlay.AppCompat.Dark"/>-->
+	<!--<style name="MyBaseOverlay" parent="ThemeOverlay.AppCompat"/>-->
+	<style name="MyActionBarBaseOverlay" />
+	<!--<style name="MyActionBarBaseOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />-->
+	<!--<style name="MyActionBarBaseOverlay" parent="ThemeOverlay.AppCompat.ActionBar" />-->
+
+	<!-- Overlay -->
+	<style name="MyOverlay" parent="MyBaseOverlay">
+		<item name="android:background">@color/actionbar_color</item>item>
+		<item name="android:textColorPrimary">@color/actionbar_fore_color</item>item>
+		<item name="android:textColorSecondary">@color/actionbar_secondary_fore_color</item>
 	</style>
 
-	<!-- APP theme -->
-	<style name="MyAppTheme" parent="MyAppBaseTheme">
-
-		<item name="colorPrimary">@color/primaryColor</item>
-		<item name="colorPrimaryDark">@color/primaryDarkColor</item>
-		<item name="colorAccent">@color/accentColor</item>
-
-		<!-- toolbar/action bar -->
-		<item name="actionBarStyle">@style/MyAppTheme.ActionBar</item>
-
-		<!-- dropdowns -->
-		<item name="android:dropDownItemStyle">@style/MyAppTheme.DropDownItemStyle</item>
-		<item name="dropDownListViewStyle">@style/MyAppTheme.DropDownListViewStyle</item>
-
-		<!-- autocomplete -->
-		<item name="android:autoCompleteTextViewStyle">@style/MyAppTheme.AutoCompleteTextViewStyle</item>
-
-		<!-- background of activated indicator -->
-		<item name="android:activatedBackgroundIndicator">@drawable/listitem_background</item>
-
-		<!-- theme UI preference -->
-		<item name="preferenceTheme">@style/PreferenceCompatTheme</item>
-
+	<!-- ActionBar Overlay -->
+	<style name="MyActionBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+		<item name="android:textColorPrimary">@color/actionbar_fore_color</item>item>
+		<item name="android:background">?attr/colorPrimary</item>
 	</style>
 
-	<!-- Custom background theme -->
-	<style name="MyCustomBackgroundAppTheme" parent="MyAppBaseTheme">
+	<!-- Toolbar -->
+	<style name="MyToolbar" parent="Widget.AppCompat.Toolbar">
+		<item name="android:background">@color/actionbar_color</item>
+	</style>
 
-		<item name="android:windowBackground">@null</item>
-		<item name="android:background">@color/home_color</item>
+	<!-- Action bar -->
+	<style name="MyActionBar" parent="Widget.AppCompat.ActionBar">
+		<item name="android:background">@color/actionbar_color</item>
+	</style>
 
+	<!-- Dropdown list -->
+	<style name="MyDropDownListViewStyle" parent="Widget.AppCompat.ListView.DropDown">
+		<item name="android:background">@color/dropdown_color</item>
+	</style>
+
+	<!-- Dropdown item -->
+	<style name="MyDropDownItemStyle" parent="Widget.AppCompat.DropDownItem.Spinner">
+		<item name="android:textColor">@color/dropdown_fore_color</item>
+		<item name="android:textSize">14sp</item>
+	</style>
+
+	<!-- Autocomplete -->
+	<style name="MyAutoCompleteTextViewStyle" parent="Widget.AppCompat.Light.AutoCompleteTextView">
+		<item name="android:popupBackground">@color/dropdown_color</item>
 	</style>
 
 </resources>

@@ -3,17 +3,18 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-                                   xmlns:app="http://schemas.android.com/apk/res-auto"
-                                   xmlns:tools="http://schemas.android.com/tools"
-                                   android:id="@+id/toolbar"
-                                   android:layout_width="match_parent"
-                                   android:layout_height="?attr/actionBarSize"
-                                   android:theme="@style/MyAppTheme.AppBarOverlay"
-                                   app:elevation="4dp"
-                                   app:title="@string/app_name"
-                                   app:subtitle="@string/app_subname"
-                                   app:popupTheme="@style/MyAppTheme.PopupOverlay"
-                                   app:subtitleTextColor="@color/primaryAltForeColor"
-                                   app:titleTextColor="@color/primaryForeColor"
-                                   tools:ignore="UnusedAttribute"/>
+<androidx.appcompat.widget.Toolbar
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/toolbar"
+	android:layout_width="match_parent"
+	android:layout_height="?attr/actionBarSize"
+	android:theme="?attr/actionBarTheme"
+	app:elevation="4dp"
+	app:popupTheme="?attr/actionBarPopupTheme"
+	app:subtitle="@string/app_subname"
+	app:subtitleTextColor="@color/primaryAltForeColor"
+	app:title="@string/app_name"
+	app:titleTextColor="@color/primaryForeColor"
+	tools:ignore="UnusedAttribute"/>

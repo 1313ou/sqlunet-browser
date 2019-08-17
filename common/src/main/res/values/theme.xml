@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+
+	<style name="MyBaseTheme"/>
+	<!--<style name="MyBaseTheme" parent="Theme.AppCompat.Light.NoActionBar"/>-->
+	<!--<style name="MyBaseTheme" parent="Theme.AppCompat.NoActionBar"/>-->
+
+	<style name="MyXBaseTheme" parent="MyBaseTheme"/>
+
+	<style name="MyTheme" parent="MyXBaseTheme">
+
+		<item name="colorPrimary">@color/primaryColor</item>
+		<item name="colorPrimaryDark">@color/primaryDarkColor</item>
+		<item name="colorAccent">@color/accentColor</item>
+
+		<!-- toolbar/action bar -->
+		<item name="android:actionBarStyle">@style/MyActionBar</item>
+
+		<!-- dropdowns -->
+		<item name="android:dropDownListViewStyle">@style/MyDropDownListViewStyle</item>
+		<item name="android:dropDownItemStyle">@style/MyDropDownItemStyle</item>
+
+		<!-- autocomplete -->
+		<item name="android:autoCompleteTextViewStyle">@style/MyAutoCompleteTextViewStyle</item>
+
+		<!-- background of activated indicator -->
+		<item name="android:activatedBackgroundIndicator">@drawable/listitem_background</item>
+
+		<!-- theme UI preference -->
+		<item name="preferenceTheme">@style/PreferenceCompatTheme</item>
+
+		<!-- theme UI controls action bar -->
+		<item name="actionBarTheme">@style/MyActionBarOverlay</item>
+
+		<!-- theme UI controls pop ups -->
+		<item name="actionBarPopupTheme">@style/MyOverlay</item>
+	</style>
+
+	<!-- Custom background theme -->
+	<style name="MyCustomBackgroundAppTheme" parent="MyXBaseTheme">
+
+		<item name="android:windowBackground">@null</item>
+		<item name="android:background">@color/home_color</item>
+
+	</style>
+
+</resources>

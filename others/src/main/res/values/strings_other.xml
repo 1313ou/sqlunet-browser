@@ -5,8 +5,8 @@
 
 <resources>
 
-	<string name="title_other">Other</string>
-	<string name="title_activity_other">Other</string>
+	<string name="title_others">Others</string>
+	<string name="title_activity_others">Others</string>
 
 	<string name="title_grammarscope_syntaxnet">GrammarScope (SyntaxNet)</string>
 	<string name="text_grammarscope_syntaxnet">GrammarScope (SyntaxNet) is a dependency parser. It parses sentences, analyses their syntactic structures (in the form of labelled dependencies) and displays its findings. It is powered by Google\'s SyntaxNet.</string>
@@ -51,4 +51,5 @@ Touch-dragging word nodes allows the user to interact with the display and to br
 	<string name="description_googleplay_semantikos_fn">Semantikos FrameNet on GooglePlay</string>
 
 	<string name="market_fail">Failed to query Google Play for </string>
+
 </resources>

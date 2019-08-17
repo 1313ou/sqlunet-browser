@@ -65,7 +65,7 @@
 				tools:ignore="AppCompatResource"/>
 			<item
 				android:id="@+id/action_other"
-				android:title="@string/title_activity_other"
+				android:title="@string/title_activity_others"
 				app:showAsAction="never"
 				tools:ignore="AppCompatResource"/>
 			<item

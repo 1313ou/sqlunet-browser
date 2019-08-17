@@ -11,8 +11,7 @@
 
 	<com.google.android.material.appbar.AppBarLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:theme="@style/MyAppTheme.AppBarOverlay">
+		android:layout_height="wrap_content">
 
 		<include layout="@layout/toolbar"/>
 
@@ -35,7 +34,7 @@
 				android:contentDescription="@string/title_donate"
 				android:gravity="center_horizontal"
 				android:padding="5dp"
-				android:src="@drawable/ic_logo"
+				android:src="@drawable/logo_app"
 				android:visibility="visible"/>
 
 			<TextView

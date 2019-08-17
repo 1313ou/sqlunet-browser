@@ -74,10 +74,12 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 
 	@SuppressWarnings("ConstantConditions")
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
+	protected void onCreate(@Nullable Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_buy);
+
+		// content view
+		setContentView(R.layout.activity_donate);
 
 		// overlay drawable
 		final BitmapDrawable overlay = (BitmapDrawable) getDrawable(this, R.drawable.ic_overlay);
@@ -238,21 +240,23 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 	private void update(final String sku, boolean isOwned)
 	{
 		final ImageButton imageButton = this.skuToButton.get(sku);
-		assert imageButton != null;
-		int tag = Integer.parseInt((String) imageButton.getTag());
-		final Drawable drawable = getResources().getDrawable(DRAWABLE_IDS[tag]);
+		if (imageButton != null)
+		{
+			int tag = Integer.parseInt((String) imageButton.getTag());
+			final Drawable drawable = getDrawable(this, DRAWABLE_IDS[tag]);
 
-		if (isOwned)
-		{
-			final Drawable[] layers = new Drawable[2];
-			layers[0] = drawable;
-			layers[1] = this.overlay;
-			final LayerDrawable layerDrawable = new LayerDrawable(layers);
-			imageButton.setImageDrawable(layerDrawable);
-		}
-		else
-		{
-			imageButton.setImageDrawable(drawable);
+			if (isOwned)
+			{
+				final Drawable[] layers = new Drawable[2];
+				layers[0] = drawable;
+				layers[1] = this.overlay;
+				final LayerDrawable layerDrawable = new LayerDrawable(layers);
+				imageButton.setImageDrawable(layerDrawable);
+			}
+			else
+			{
+				imageButton.setImageDrawable(drawable);
+			}
 		}
 	}
 
