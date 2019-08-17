@@ -4,11 +4,11 @@
 
 <resources>
 
-	<style name="MyAppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+	<style name="MyDarkActionBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
 		<!-- <item name="android:background">?attr/colorPrimary</item>item> -->
 	</style>
 
-	<style name="MyAppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark">
+	<style name="MyDarkOverlay" parent="ThemeOverlay.AppCompat.Dark">
 		<!-- <item name="android:background">?attr/colorPrimaryDark</item>item> -->
 	</style>
 

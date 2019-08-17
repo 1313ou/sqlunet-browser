@@ -23,7 +23,7 @@
 		android:label="@string/app_name"
 		android:largeHeap="true"
 		android:supportsRtl="true"
-		android:theme="@style/MyAppTheme"
+		android:theme="@style/MyTheme"
 		android:usesCleartextTraffic="true"
 		tools:ignore="GoogleAppIndexingWarning"
 		tools:targetApi="m">
@@ -320,7 +320,7 @@
 
 		<activity
 			android:name="com.bbou.others.OthersActivity"
-			android:label="@string/title_activity_other"
+			android:label="@string/title_activity_others"
 			android:parentActivityName="org.sqlunet.browser.MainActivity"
 			tools:ignore="UnusedAttribute">
 			<meta-data

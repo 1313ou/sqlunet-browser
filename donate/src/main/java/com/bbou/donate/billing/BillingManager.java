@@ -233,15 +233,16 @@ public class BillingManager implements PurchasesUpdatedListener
 	/**
 	 * Start a purchase flow
 	 *
-	 * @param skuId       sku id
+	 * @param sku         sku id
 	 * @param billingType billing type
 	 */
-	public void initiatePurchaseFlow(final String skuId, final @SkuType String billingType)
+	public void initiatePurchaseFlow(final String sku, final @SkuType String billingType)
 	{
 		final List<String> skuList = new ArrayList<>();
-		skuList.add(skuId);
+		skuList.add(sku);
 
 		// Retrieve a value for "skuDetails" by calling querySkuDetailsAsync().
+		Log.d(TAG, "Getting skuDetails for " + sku);
 		final SkuDetailsParams.Builder builder = SkuDetailsParams.newBuilder() //
 				.setSkusList(skuList) //
 				.setType(billingType);
@@ -249,14 +250,19 @@ public class BillingManager implements PurchasesUpdatedListener
 		this.client.querySkuDetailsAsync(builder.build(), (billingResult, skuDetailsList) -> {
 
 			int response = billingResult.getResponseCode();
-			if (BillingResponseCode.OK != response || skuDetailsList == null)
+			if (BillingResponseCode.OK != response)
 			{
 				Log.e(TAG, "Getting skuDetails failed. " + response);
 				return;
 			}
+			if (skuDetailsList == null)
+			{
+				Log.e(TAG, "Getting skuDetails failed. Null list.");
+				return;
+			}
 			if (skuDetailsList.isEmpty())
 			{
-				Log.e(TAG, "Getting skuDetails yielded no details for sku " + skuId);
+				Log.e(TAG, "Getting skuDetails yielded no details for sku " + sku);
 				return;
 			}
 			final SkuDetails skuDetails = skuDetailsList.get(0);

@@ -3,5 +3,19 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<manifest package="com.bbou.donate">
+<manifest
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	package="com.bbou.donate">
+
+	<uses-permission android:name="com.android.vending.BILLING"/>
+
+	<application>
+
+		<activity
+			android:name=".DonateActivity"
+			android:label="@string/title_activity_donate">
+		</activity>
+
+	</application>
+
 </manifest>

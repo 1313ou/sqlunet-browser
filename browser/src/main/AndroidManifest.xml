@@ -23,7 +23,7 @@
 		android:largeHeap="true"
 		android:roundIcon="@mipmap/ic_launcher_round"
 		android:supportsRtl="true"
-		android:theme="@style/MyAppTheme"
+		android:theme="@style/MyTheme"
 		android:usesCleartextTraffic="true"
 		tools:ignore="GoogleAppIndexingWarning"
 		tools:targetApi="m">
@@ -417,7 +417,7 @@
 
 		<activity
 			android:name="com.bbou.others.OthersActivity"
-			android:label="@string/title_activity_other"
+			android:label="@string/title_activity_others"
 			android:parentActivityName=".MainActivity"
 			tools:ignore="UnusedAttribute">
 			<meta-data

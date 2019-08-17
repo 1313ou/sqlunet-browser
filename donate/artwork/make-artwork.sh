@@ -2,7 +2,7 @@
 
 source "../../make-artwork-lib.sh"
 
-logo_list="ic_logo.svg"
+logo_list="logo_app.svg"
 donate_list="ic_donate1.svg ic_donate2.svg ic_donate3.svg ic_donate4.svg ic_donate5.svg"
 overlay_list="ic_overlay.svg"
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+
+	<style name="MyXBaseTheme" parent="MyBaseTheme">
+
+		<item name="android:colorPrimary">@color/primaryColor</item>
+		<item name="android:colorPrimaryDark">@color/primaryDarkColor</item>
+		<item name="android:colorAccent">@color/accentColor</item>
+		<!--
+		<item name="android:textColorPrimary">@color/primaryTextColor</item>
+		<item name="android:textColorSecondary">@color/secondaryTextColor</item>
+		-->
+
+		<!-- toolbar/action bar -->
+		<item name="toolbarStyle">@style/MyToolbar</item>
+
+	</style>
+
+</resources>
