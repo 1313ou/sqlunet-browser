@@ -7,10 +7,14 @@ package com.bbou.rate;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.view.View;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import static com.bbou.rate.PreferenceHelper.setAgreeShowDialog;
 import static com.bbou.rate.PreferenceHelper.setRemindInterval;
@@ -45,7 +49,7 @@ final class DialogBuilder
 		}
 	}
 
-	static Dialog build(final Context context, final DialogOptions options)
+	static Dialog build(@NonNull final Context context, final DialogOptions options)
 	{
 		final AlertDialog.Builder builder = getDialogBuilder(context);
 
@@ -72,7 +76,14 @@ final class DialogBuilder
 		builder.setPositiveButton(options.getPositiveText(context), (dialog, which) -> {
 
 			final Intent intentToAppstore = options.getStoreType().getIntent(context);
-			context.startActivity(intentToAppstore);
+			try
+			{
+				context.startActivity(intentToAppstore);
+			}
+			catch (ActivityNotFoundException e)
+			{
+				Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+			}
 			setAgreeShowDialog(context, false);
 		});
 

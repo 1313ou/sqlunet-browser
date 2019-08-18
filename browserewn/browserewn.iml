@@ -185,6 +185,7 @@
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.multidex:multidex-instrumentation:2.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-process:2.0.0@aar" level="project" />
     <orderEntry type="module" module-name="libwn" />
+    <orderEntry type="module" module-name="rate" />
     <orderEntry type="module" module-name="test" scope="TEST" />
     <orderEntry type="module" module-name="expandableListFragment" />
     <orderEntry type="module" module-name="deploy" />

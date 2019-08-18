@@ -839,6 +839,7 @@
       <entry_point TYPE="field" FQNAME="org.sqlunet.propbank.provider.PropBankContract.Suggest_FTS_PbWords WORDID" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.verbnet.provider.VerbNetContract.Suggest_VnWords WORDID" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.verbnet.provider.VerbNetContract.Suggest_FTS_VnWords WORDID" />
+      <entry_point TYPE="field" FQNAME="com.bbou.rate.StoreType AMAZON" />
     </entry_points>
     <pattern value="org.sqlunet.browser.vn.Settings" method="getPropBankPref" />
     <pattern value="org.sqlunet.browser.vn.Settings" method="getWordNetPref" />
@@ -2320,6 +2321,29 @@
     <pattern value="com.bbou.donate.billing.BillingManager" method="getContext" />
     <pattern value="com.bbou.donate.billing.BillingManager.BillingUpdatesListener" method="onConsumeFinished" />
     <pattern value="com.bbou.donate.billing.BillingManager" method="querySkuDetails" />
+    <pattern value="com.bbou.rate.AppRate" />
+    <pattern value="com.bbou.rate.AppRate" method="AppRate" />
+    <pattern value="com.bbou.rate.AppRate" method="clearAgreeShowDialog" />
+    <pattern value="com.bbou.rate.AppRate" method="clearSettingsParam" />
+    <pattern value="com.bbou.rate.DialogOptions" />
+    <pattern value="com.bbou.rate.DialogOptions" method="getMessageResId" />
+    <pattern value="com.bbou.rate.DialogOptions" method="getTextNegativeResId" />
+    <pattern value="com.bbou.rate.DialogOptions" method="getTextNeutralResId" />
+    <pattern value="com.bbou.rate.DialogOptions" method="getTextPositiveResId" />
+    <pattern value="com.bbou.rate.DialogOptions" method="getTitleResId" />
+    <pattern value="com.bbou.rate.Invoke" />
+    <pattern value="com.bbou.rate.Invoke" method="invoke" />
+    <pattern value="com.bbou.rate.AppRate" method="isDebug" />
+    <pattern value="com.bbou.rate.AppRate" method="setAgreeShowDialog" />
+    <pattern value="com.bbou.rate.AppRate" method="setMessage" />
+    <pattern value="com.bbou.rate.AppRate" method="setShowNeverButton" />
+    <pattern value="com.bbou.rate.AppRate" method="setShowTitle" />
+    <pattern value="com.bbou.rate.AppRate" method="setTextLater" />
+    <pattern value="com.bbou.rate.AppRate" method="setTextNever" />
+    <pattern value="com.bbou.rate.AppRate" method="setTextRateNow" />
+    <pattern value="com.bbou.rate.AppRate" method="setTitle" />
+    <pattern value="com.bbou.rate.AppRate" method="setView" />
+    <pattern value="com.bbou.rate.AppRate" method="invoke" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="androidx.annotation.Nullable" />
