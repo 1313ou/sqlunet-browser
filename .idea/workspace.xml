@@ -144,35 +144,26 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="theming&#10;donate">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/bbou.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/bbou.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="rate">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bNC/bNC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/bNC/bNC.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browser/browser.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/browser.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/browser/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browserewn/browserewn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/browserewn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browserfn/browserfn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/browserfn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browservn/browservn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/browservn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/browserwn/browserwn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/browserwn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/common/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/common/common.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AboutActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AboutActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/EntryActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/EntryActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MenuHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MenuHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/res/menu/main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/menu/main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rate/rate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/rate/rate.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/download/download.iml" beforeDir="false" afterPath="$PROJECT_DIR$/download/download.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameNet/frameNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/frameNet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libwn/libwn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/libwn.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" beforeDir="false" afterPath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/propbank/propbank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/propbank/propbank.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/AppRate.java" beforeDir="false" afterPath="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/AppRate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/DialogBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/DialogBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/DialogOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/DialogOptions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/Invoke.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/PreferenceHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/PreferenceHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/StoreType.java" beforeDir="false" afterPath="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/StoreType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rate/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/rate/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/verbNet/verbNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/verbNet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wordNet/wordNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/wordNet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/xNet/xNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/xNet.iml" afterDir="false" />
     </list>
     <list id="36f6b5c7-9521-46b4-bf4d-149db941bcca" name="NonPublic" comment="" />
     <ignored path="SqlUNet.iws" />
@@ -258,119 +249,7 @@
     <favorites_list name="SqlUNet" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/AppRate.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2334">
-              <caret line="60" column="26" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="26" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1390#1428#0" expanded="true" />
-                <element signature="e#5916#5942#0" expanded="true" />
-                <element signature="e#5965#5991#0" expanded="true" />
-                <element signature="e#6014#6040#0" expanded="true" />
-                <element signature="e#6065#6088#0" expanded="true" />
-                <element signature="e#6167#6205#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/StoreType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="577">
-              <caret line="77" column="36" selection-start-line="77" selection-start-column="36" selection-end-line="77" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1223#1224#0" expanded="true" />
-                <element signature="e#1330#1331#0" expanded="true" />
-                <element signature="e#1518#1519#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///opt/androidstudio/sdk/sources/android-28/android/content/pm/PackageManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="4094" column="38" selection-start-line="4094" selection-start-column="38" selection-end-line="4094" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///opt/androidstudio/sdk/sources/android-28/android/content/pm/PackageInfo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="155" column="26" selection-start-line="155" selection-start-column="26" selection-end-line="155" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/DialogBuilder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="447">
-              <caret line="87" selection-start-line="87" selection-end-line="87" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/PreferenceHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/EntryActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-146">
-              <caret line="36" selection-start-line="36" selection-end-line="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="36" selection-start-line="36" selection-end-line="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AboutActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="32" column="12" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rate/src/main/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="13">
-              <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -384,7 +263,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>result</find>
       <find>code</find>
       <find>app:fabSize=&quot;normal&quot;</find>
       <find>scale</find>
@@ -414,6 +292,7 @@
       <find>MyLightCustomBackgroundAppTheme</find>
       <find>MyDarkCustomBackgroundAppTheme</find>
       <find>suppress AndroidElementNotAllowed</find>
+      <find>setInstallDays</find>
     </findStrings>
     <replaceStrings>
       <replace>data -&gt; new FireEvent2(this.fragment).live(data)</replace>
@@ -542,13 +421,13 @@
         <option value="$PROJECT_DIR$/rate/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MenuHandler.java" />
         <option value="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/DialogOptions.java" />
-        <option value="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/AppRate.java" />
         <option value="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/PreferenceHelper.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/EntryActivity.java" />
-        <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MainActivity.java" />
-        <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AboutActivity.java" />
         <option value="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/DialogBuilder.java" />
         <option value="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/StoreType.java" />
+        <option value="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/AppRate.java" />
+        <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AboutActivity.java" />
+        <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -588,43 +467,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="common" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="common" type="feadf853:AndroidModuleNode" />
-              <item name="manifests" type="f94875db:AndroidManifestsGroupNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="common" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="rate" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="rate" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="rate" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="rate" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -648,6 +490,8 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -669,7 +513,7 @@
     <property name="com.android.hv.first.comp.width" value="0" />
     <property name="com.android.hv.last.comp.width" value="0" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536221528755" />
-    <property name="device.picker.selection" value="avd_emu_phone_oreo" />
+    <property name="device.picker.selection" value="Samsung_S7_edge_API_28" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/common/src/main/java" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
     <property name="project.structure.last.edited" value="Build Variants" />
@@ -1433,13 +1277,6 @@
       <option name="presentableId" value="Default" />
       <updated>1487150992421</updated>
     </task>
-    <task id="LOCAL-00184" summary="sub menus">
-      <created>1557997353722</created>
-      <option name="number" value="00184" />
-      <option name="presentableId" value="LOCAL-00184" />
-      <option name="project" value="LOCAL" />
-      <updated>1557997353722</updated>
-    </task>
     <task id="LOCAL-00185" summary="renames&#10;sensepointer with pos">
       <created>1558255794425</created>
       <option name="number" value="00185" />
@@ -1776,7 +1613,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566110953339</updated>
     </task>
-    <option name="localTasksCounter" value="233" />
+    <task id="LOCAL-00233" summary="rate">
+      <created>1566122106418</created>
+      <option name="number" value="00233" />
+      <option name="presentableId" value="LOCAL-00233" />
+      <option name="project" value="LOCAL" />
+      <updated>1566122106418</updated>
+    </task>
+    <option name="localTasksCounter" value="234" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1822,9 +1666,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="51" y="27" width="1267" height="1166" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8023599" visible="true" weight="0.20816326" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8023599" visible="true" weight="0.18367347" />
       <window_info id="Structure" order="1" sideWeight="0.19764012" side_tool="true" weight="0.2410208" />
       <window_info id="Captures" order="2" sideWeight="0.28243244" side_tool="true" weight="0.2979424" />
       <window_info id="Capture Tool" order="3" />
@@ -1835,18 +1678,18 @@
       <window_info id="Build Variants" order="8" sideWeight="0.27073553" side_tool="true" weight="0.18609743" />
       <window_info id="Resources Explorer" order="9" weight="0.32950193" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.32244897" weight="0.22758621" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.32081634" weight="0.31034482" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.22661597" weight="0.2413793" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.73387754" visible="true" weight="0.20295566" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.40653062" weight="0.20295566" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.30756578" weight="0.32681018" />
       <window_info anchor="bottom" id="Android Profiler" order="7" />
-      <window_info anchor="bottom" id="Logcat" order="8" sideWeight="0.26612246" side_tool="true" visible="true" weight="0.20295566" />
+      <window_info anchor="bottom" id="Logcat" order="8" sideWeight="0.6669388" side_tool="true" visible="true" weight="0.34778324" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.56759715" side_tool="true" weight="0.1741683" />
-      <window_info anchor="bottom" id="Build" order="10" sideWeight="0.55643255" weight="0.33072406" />
+      <window_info anchor="bottom" id="Build" order="10" sideWeight="0.5559184" weight="0.33004925" />
       <window_info anchor="bottom" id="Android Monitor" order="11" sideWeight="0.82428116" weight="0.39513677" />
-      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.33497536" weight="0.21624266" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="12" sideWeight="0.33306122" visible="true" weight="0.34778324" />
       <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.3136289" weight="0.32315272" />
       <window_info active="true" anchor="bottom" id="Gradle Console" order="14" sideWeight="0.4729064" side_tool="true" visible="true" weight="0.3107843" />
       <window_info anchor="bottom" id="Messages" order="15" sideWeight="0.5270936" weight="0.3107843" />
@@ -1974,7 +1817,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="copyright" />
     <MESSAGE value="unified kinnk query" />
     <MESSAGE value="unified link query" />
     <MESSAGE value="dev2&#10;rework treeops" />
@@ -1999,7 +1841,8 @@
     <MESSAGE value="cleanup" />
     <MESSAGE value="theming&#10;donate" />
     <MESSAGE value="rating" />
-    <option name="LAST_COMMIT_MESSAGE" value="rating" />
+    <MESSAGE value="rate" />
+    <option name="LAST_COMMIT_MESSAGE" value="rate" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2129,44 +1972,44 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/browserwn/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
           <caret line="23" column="32" lean-forward="true" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
         </state>
       </provider>
+      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/browservn/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="325">
           <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
         </state>
       </provider>
+      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/browser/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="325">
           <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
         </state>
       </provider>
+      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/browserewn/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
           <caret line="23" column="32" lean-forward="true" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
         </state>
       </provider>
+      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/browserfn/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="325">
           <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
         </state>
       </provider>
+      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/browserewn/src/main/res/values/theme.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -2262,9 +2105,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/DownloadActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="39">
@@ -2303,47 +2143,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/OnClickButtonListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="9" column="22" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/IntentHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13">
-          <caret line="1" lean-forward="true" selection-end-line="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/UriHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-          <folding>
-            <element signature="e#0#1199#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/OnClickButtonListener.java" />
+    <entry file="file://$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/IntentHelper.java" />
+    <entry file="file://$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/UriHelper.java" />
+    <entry file="file://$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/Utils.java" />
     <entry file="file://$PROJECT_DIR$/rate/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="91">
           <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
+      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/rate/src/main/res/values-v21/styles.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -2433,16 +2243,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/Invoke.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="30" selection-start-line="12" selection-end-line="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/Invoke.java" />
     <entry file="file://$PROJECT_DIR$/rate/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="13">
@@ -2452,67 +2253,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/EntryActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-146">
+        <state relative-caret-position="-47">
           <caret line="36" selection-start-line="36" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AboutActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="32" column="12" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/PreferenceHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/DialogBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="447">
+        <state relative-caret-position="473">
           <caret line="87" selection-start-line="87" selection-end-line="87" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/DialogOptions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="161" column="4" selection-start-line="161" selection-start-column="4" selection-end-line="161" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/AppRate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2334">
-          <caret line="60" column="26" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1390#1428#0" expanded="true" />
-            <element signature="e#5916#5942#0" expanded="true" />
-            <element signature="e#5965#5991#0" expanded="true" />
-            <element signature="e#6014#6040#0" expanded="true" />
-            <element signature="e#6065#6088#0" expanded="true" />
-            <element signature="e#6167#6205#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2547,14 +2298,68 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/StoreType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="577">
-          <caret line="77" column="36" selection-start-line="77" selection-start-column="36" selection-end-line="77" selection-end-column="36" />
+        <state relative-caret-position="247">
+          <caret line="22" column="53" selection-start-line="22" selection-start-column="53" selection-end-line="22" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1223#1224#0" expanded="true" />
             <element signature="e#1330#1331#0" expanded="true" />
             <element signature="e#1518#1519#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/DialogOptions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13">
+          <caret line="32" column="36" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#779#802#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/PreferenceHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="18" column="53" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3101#3102#0" expanded="true" />
+            <element signature="e#3178#3179#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/AppRate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="232" column="25" selection-start-line="232" selection-start-column="12" selection-end-line="232" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AboutActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="2" column="3" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
         </state>
       </provider>
     </entry>
