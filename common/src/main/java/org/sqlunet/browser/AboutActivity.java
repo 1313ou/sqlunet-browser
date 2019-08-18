@@ -29,9 +29,6 @@ public class AboutActivity extends AppCompatActivity
 	{
 		super.onCreate(savedInstanceState);
 
-		// rate
-		AppRate.invoke(this);
-
 		// content
 		setContentView(R.layout.activity_about);
 

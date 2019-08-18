@@ -29,7 +29,7 @@ public final class AppRate
 
 	private final DialogOptions options = new DialogOptions();
 
-	private int installDate = 10;
+	private int pastInstallDateDays = 10;
 
 	private int launchTimes = 10;
 
@@ -81,9 +81,9 @@ public final class AppRate
 	}
 
 	@NonNull
-	public AppRate setInstallDays(int installDate)
+	public AppRate setPastInstallDays(int pastInstallDateDays)
 	{
-		this.installDate = installDate;
+		this.pastInstallDateDays = pastInstallDateDays;
 		return this;
 	}
 
@@ -257,7 +257,7 @@ public final class AppRate
 
 	private boolean isOverInstallDate()
 	{
-		return isOverDate(getInstallDate(context), installDate);
+		return isOverDate(getInstallDate(context), pastInstallDateDays);
 	}
 
 	private boolean isOverRemindDate()
@@ -281,15 +281,15 @@ public final class AppRate
 	static public void invoke(@NonNull final Activity activity)
 	{
 		AppRate.with(activity).setStoreType(StoreType.GOOGLE) //default is Google, other option is Amazon
-				.setInstallDays(3) // default 10, 0 means install day.
-				.setLaunchTimes(10) // default 10 times.
-				.setRemindInterval(2) // default 1 day.
-				.setShowLaterButton(true) // default true.
-				.setCancelable(false) // default false.
-				.setTitle(R.string.rate_dialog_title) //
-				.setTextLater(R.string.rate_dialog_later) //
-				.setTextNever(R.string.rate_dialog_never) //
-				.setTextRateNow(R.string.rate_dialog_ok) //
+				//.setPastInstallDays(10) // default 10, 0 means install day.
+				//.setLaunchTimes(10) // default 10 times.
+				//.setRemindInterval(1) // default 1 day.
+				//.setShowLaterButton(true) // default true.
+				//.setCancelable(false) // default false.
+				//.setTitle(R.string.rate_dialog_title) //
+				//.setTextLater(R.string.rate_dialog_later) //
+				//.setTextNever(R.string.rate_dialog_never) //
+				//.setTextRateNow(R.string.rate_dialog_ok) //
 				.setDebug(DEBUG) // default false.
 				.monitor();
 
@@ -303,6 +303,4 @@ public final class AppRate
 		AppRate.with(activity)
 				.showRateDialog(activity);
 	}
-
-
 }

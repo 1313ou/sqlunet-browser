@@ -34,6 +34,9 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 	{
 		super.onCreate(savedInstanceState);
 
+		// rate
+		AppRate.invoke(this);
+
 		// info
 		Log.d(MainActivity.TAG, "DATABASE=" + StorageSettings.getDatabasePath(getBaseContext()));
 
