@@ -20,6 +20,7 @@
       <module fileurl="file://$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" filepath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" />
       <module fileurl="file://$PROJECT_DIR$/preference/preference.iml" filepath="$PROJECT_DIR$/preference/preference.iml" />
       <module fileurl="file://$PROJECT_DIR$/propbank/propbank.iml" filepath="$PROJECT_DIR$/propbank/propbank.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rate/rate.iml" filepath="$PROJECT_DIR$/rate/rate.iml" />
       <module fileurl="file://$PROJECT_DIR$/test/test.iml" filepath="$PROJECT_DIR$/test/test.iml" />
       <module fileurl="file://$PROJECT_DIR$/treeView/treeView.iml" filepath="$PROJECT_DIR$/treeView/treeView.iml" />
       <module fileurl="file://$PROJECT_DIR$/verbNet/verbNet.iml" filepath="$PROJECT_DIR$/verbNet/verbNet.iml" />
