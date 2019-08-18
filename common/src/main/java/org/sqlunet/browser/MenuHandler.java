@@ -8,6 +8,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.MenuItem;
 
+import com.bbou.donate.DonateActivity;
+import com.bbou.others.OthersActivity;
+import com.bbou.rate.AppRate;
+
 import org.sqlunet.browser.common.R;
 import org.sqlunet.browser.config.DiagnosticsActivity;
 import org.sqlunet.browser.config.SettingsActivity;
@@ -17,8 +21,6 @@ import org.sqlunet.download.FileDataDownloader;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
-import com.bbou.others.OthersActivity;
-import com.bbou.donate.DonateActivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -109,6 +111,11 @@ public class MenuHandler
 		else if (i == R.id.action_other)
 		{
 			intent = new Intent(activity, OthersActivity.class);
+		}
+		else if (i == R.id.action_rate)
+		{
+			AppRate.rate(activity);
+			return true;
 		}
 		else if (i == R.id.action_quit)
 		{

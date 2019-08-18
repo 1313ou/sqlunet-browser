@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.bbou.rate.AppRate;
+
 import org.sqlunet.browser.common.R;
 
 import androidx.annotation.NonNull;
@@ -26,6 +28,9 @@ public class AboutActivity extends AppCompatActivity
 	protected void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+
+		// rate
+		AppRate.invoke(this);
 
 		// content
 		setContentView(R.layout.activity_about);

@@ -7,6 +7,9 @@ package com.bbou.rate;
 import android.content.Context;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 final class DialogOptions
 {
 	private boolean showNeutralButton = true;
@@ -29,14 +32,19 @@ final class DialogOptions
 
 	private int textNegativeResId = R.string.rate_dialog_no;
 
+	@Nullable
 	private String titleText = null;
 
+	@Nullable
 	private String messageText = null;
 
+	@Nullable
 	private String positiveText = null;
 
+	@Nullable
 	private String neutralText = null;
 
+	@Nullable
 	private String negativeText = null;
 
 	private View view;
@@ -151,7 +159,8 @@ final class DialogOptions
 		this.view = view;
 	}
 
-	public String getTitleText(Context context)
+	@NonNull
+	public String getTitleText(@NonNull Context context)
 	{
 		if (titleText == null)
 		{
@@ -160,12 +169,13 @@ final class DialogOptions
 		return titleText;
 	}
 
-	public void setTitleText(String titleText)
+	public void setTitleText(@Nullable String titleText)
 	{
 		this.titleText = titleText;
 	}
 
-	public String getMessageText(Context context)
+	@NonNull
+	public String getMessageText(@NonNull Context context)
 	{
 		if (messageText == null)
 		{
@@ -174,12 +184,13 @@ final class DialogOptions
 		return messageText;
 	}
 
-	public void setMessageText(String messageText)
+	public void setMessageText(@Nullable String messageText)
 	{
 		this.messageText = messageText;
 	}
 
-	public String getPositiveText(Context context)
+	@NonNull
+	public String getPositiveText(@NonNull Context context)
 	{
 		if (positiveText == null)
 		{
@@ -188,12 +199,13 @@ final class DialogOptions
 		return positiveText;
 	}
 
-	public void setPositiveText(String positiveText)
+	public void setPositiveText(@Nullable String positiveText)
 	{
 		this.positiveText = positiveText;
 	}
 
-	public String getNeutralText(Context context)
+	@NonNull
+	public String getNeutralText(@NonNull Context context)
 	{
 		if (neutralText == null)
 		{
@@ -202,12 +214,13 @@ final class DialogOptions
 		return neutralText;
 	}
 
-	public void setNeutralText(String neutralText)
+	public void setNeutralText(@Nullable String neutralText)
 	{
 		this.neutralText = neutralText;
 	}
 
-	public String getNegativeText(Context context)
+	@NonNull
+	public String getNegativeText(@NonNull Context context)
 	{
 		if (negativeText == null)
 		{
@@ -216,7 +229,7 @@ final class DialogOptions
 		return negativeText;
 	}
 
-	public void setNegativeText(String negativeText)
+	public void setNegativeText(@Nullable String negativeText)
 	{
 		this.negativeText = negativeText;
 	}

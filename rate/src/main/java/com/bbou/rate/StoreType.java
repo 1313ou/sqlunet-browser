@@ -4,10 +4,11 @@
  */
 package com.bbou.rate;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
+import android.content.pm.ActivityInfo;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 
 import java.util.List;
@@ -18,10 +19,16 @@ import androidx.annotation.Nullable;
 public enum StoreType
 {
 	GOOGLE(context -> {
+		// if GP not present on device, open web browser
+		Intent intent = getGooglePlayIntent(context);
+		if (intent != null)
+		{
+			return intent;
+		}
 		final String packageName = context.getPackageName();
-		final Intent intent = new Intent(Intent.ACTION_VIEW, getUri("https://play.google.com/store/apps/details?id=", packageName));
-		setGooglePlayPackage(intent, context);
+		intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + packageName));
 		return intent;
+
 	}), //
 	AMAZON(context -> {
 		final String packageName = context.getPackageName();
@@ -31,6 +38,7 @@ public enum StoreType
 	@FunctionalInterface
 	interface IntentBuilder
 	{
+		@NonNull
 		Intent build(@NonNull final Context context);
 	}
 
@@ -41,11 +49,13 @@ public enum StoreType
 		this.builder = builder;
 	}
 
+	@NonNull
 	public Intent getIntent(@NonNull final Context context)
 	{
 		return builder.build(context);
 	}
 
+	@Nullable
 	private static Uri getUri(@NonNull final String uriPrefix, @Nullable final String packageName)
 	{
 		return packageName == null ? null : Uri.parse(uriPrefix + packageName);
@@ -53,27 +63,24 @@ public enum StoreType
 
 	// S P E C I F I C S
 
-	static private final String GOOGLE_PLAY_PACKAGE_NAME = "com.android.vending";
-
-	static private void setGooglePlayPackage(@NonNull final Intent intent, @NonNull final Context context)
+	public static Intent getGooglePlayIntent(@NonNull final Context context)
 	{
-		if (isPackageExists(context, GOOGLE_PLAY_PACKAGE_NAME))
-		{
-			intent.setPackage(GOOGLE_PLAY_PACKAGE_NAME);
-		}
-	}
+		final String packageName = context.getPackageName();
+		final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packageName));
 
-	static private boolean isPackageExists(@NonNull final Context context, @SuppressWarnings("SameParameterValue") @NonNull final String targetPackage)
-	{
-		final PackageManager pm = context.getPackageManager();
-		final List<ApplicationInfo> packages = pm.getInstalledApplications(0);
-		for (ApplicationInfo packageInfo : packages)
+		// find all applications able to handle our rateIntent
+		final List<ResolveInfo> handlingApps = context.getPackageManager().queryIntentActivities(intent, 0);
+		for (ResolveInfo app : handlingApps)
 		{
-			if (packageInfo.packageName.equals(targetPackage))
+			// look for Google Play application
+			if (app.activityInfo.applicationInfo.packageName.equals("com.android.vending"))
 			{
-				return true;
+				final ActivityInfo activity = app.activityInfo;
+				final ComponentName componentName = new ComponentName(activity.applicationInfo.packageName, activity.name);
+				intent.setComponent(componentName);
+				return intent;
 			}
 		}
-		return false;
+		return null;
 	}
 }

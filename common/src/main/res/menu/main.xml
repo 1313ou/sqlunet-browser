@@ -64,6 +64,11 @@
 				app:showAsAction="never"
 				tools:ignore="AppCompatResource"/>
 			<item
+				android:id="@+id/action_rate"
+				android:title="@string/action_rate"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource"/>
+			<item
 				android:id="@+id/action_other"
 				android:title="@string/title_activity_others"
 				app:showAsAction="never"

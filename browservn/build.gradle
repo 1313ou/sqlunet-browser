@@ -62,6 +62,7 @@ dependencies {
     implementation project(':deploy')
     implementation project(':others')
     implementation project(':donate')
+    implementation project(':rate')
     implementation project(':xNet')
     implementation project(':wordNet')
     implementation project(':verbNet')

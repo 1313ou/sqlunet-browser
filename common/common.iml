@@ -161,6 +161,7 @@
     <orderEntry type="library" name="Gradle: androidx.arch.core:core-runtime:2.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-common:2.1.0-rc01@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-process:2.0.0@aar" level="project" />
+    <orderEntry type="module" module-name="rate" />
     <orderEntry type="module" module-name="expandableListFragment" />
     <orderEntry type="module" module-name="deploy" />
     <orderEntry type="module" module-name="preference" />

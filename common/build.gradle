@@ -34,6 +34,7 @@ dependencies {
     implementation project(':deploy')
     implementation project(':others')
     implementation project(':donate')
+    implementation project(':rate')
     implementation project(':xNet')
 
     implementation 'androidx.appcompat:appcompat:1.1.0-rc01'

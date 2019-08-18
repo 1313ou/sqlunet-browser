@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.bbou.rate.AppRate;
+
 import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.StorageSettings;
 

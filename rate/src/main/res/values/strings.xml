@@ -1,4 +1,6 @@
 <resources>
+    <string name="action_rate">Rate this app</string>
+
     <string name="rate_dialog_title">Rate this app</string>
     <string name="rate_dialog_message">If you enjoy this app, would you mind taking a moment to rate it? It won\'t take more than a minute. Thanks for your support!</string>
     <string name="rate_dialog_ok">Rate it now</string>
