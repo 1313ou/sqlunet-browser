@@ -42,6 +42,7 @@ public final class AppRate
 		this.context = context.getApplicationContext();
 	}
 
+	@SuppressWarnings("WeakerAccess")
 	public static AppRate with(@NonNull Context context)
 	{
 		if (singleton == null)
@@ -57,7 +58,7 @@ public final class AppRate
 		return singleton;
 	}
 
-	@SuppressWarnings("UnusedReturnValue")
+	@SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 	public static boolean showRateDialogIfMeetsConditions(@NonNull final Activity activity)
 	{
 		boolean isMeetsConditions = singleton.isDebug || singleton.shouldShowRateDialog();
@@ -221,6 +222,7 @@ public final class AppRate
 		return this;
 	}
 
+	@SuppressWarnings("WeakerAccess")
 	@NonNull
 	public AppRate setStoreType(final StoreType appstore)
 	{
@@ -228,6 +230,7 @@ public final class AppRate
 		return this;
 	}
 
+	@SuppressWarnings("WeakerAccess")
 	public void monitor()
 	{
 		if (isFirstLaunch(context))
@@ -270,6 +273,7 @@ public final class AppRate
 		return isDebug;
 	}
 
+	@SuppressWarnings("WeakerAccess")
 	@NonNull
 	public AppRate setDebug(boolean isDebug)
 	{

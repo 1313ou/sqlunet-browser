@@ -12,7 +12,6 @@
 	<color name="secondaryLightColor">#6effe8</color>
 	<color name="secondaryDarkColor">#00b686</color>
 	<color name="primaryForeColor">#000000</color>
-	<color name="primaryAltForeColor">#808080</color>
-	<color name="secondaryForeColor">#000000</color>
+	<color name="secondaryForeColor">#808080</color>
 
 </resources>

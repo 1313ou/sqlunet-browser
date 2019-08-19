@@ -28,10 +28,11 @@ import androidx.annotation.NonNull;
 public final class Skus
 {
 	// SKUs for products: the donate (consumable)
-	public static String[] inAppSkus = null;
+	private static String[] inAppSkus = null;
 
 	// SKUs for subscription
-	public static String[] subscriptionSkus = null;
+	@SuppressWarnings("CanBeFinal")
+	private static String[] subscriptionSkus = null;
 
 	// SKUs for products: the donate (consumable)
 	public static String[] getInappSkus()

@@ -57,7 +57,7 @@
 
 	<style name="ListItemColumn.Major">
 		<item name="android:background">@color/secondaryLightColor</item>
-		<item name="android:textColor">@color/secondaryForeColor</item>
+		<item name="android:textColor">@color/primaryForeColor</item>
 	</style>
 
 	<!-- S E A R C H -->

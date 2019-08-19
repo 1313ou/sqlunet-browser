@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.bbou.rate.AppRate;
-
 import org.sqlunet.browser.common.R;
 
 import androidx.annotation.NonNull;

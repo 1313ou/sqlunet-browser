@@ -22,11 +22,11 @@
 	</style>
 
 	<!-- ActionBar Overlay -->
-	<style name="MyActionBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+	<style name="MyActionBarOverlay" parent="MyActionBarBaseOverlay">
 		<item name="android:background">@null</item> <!-- menu overflow, search view, title, subtitle backgrounds -->
 		<item name="android:textColorPrimary">@color/actionbar_fore_color</item> <!-- search view foreground -->
 		<item name="titleTextColor">@color/primaryForeColor</item> <!-- title foreground -->
-		<item name="subtitleTextColor">@color/primaryAltForeColor</item> <!-- subtitle foreground -->
+		<item name="subtitleTextColor">@color/secondaryForeColor</item> <!-- subtitle foreground -->
 		<item name="colorControlNormal">@color/actionbar_fore_color</item> <!-- pictograms (menu overflow, search magnifying glass, navigation) -->
 	</style>
 

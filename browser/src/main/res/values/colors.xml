@@ -22,11 +22,10 @@
 	<color name="secondaryLightColor">#fdff58</color>
 	<color name="secondaryDarkColor">#90cc00</color>
 	-->
-	<color name="primaryForeColor">#ffffff</color>
-	<color name="primaryAltForeColor">#c0c0d0</color>
-	<color name="secondaryForeColor">@android:color/white</color>
+	<color name="primaryForeColor">@android:color/white</color>
+	<color name="secondaryForeColor">#c0c0d0</color>
 
 	<color name="group_color">@color/secondaryColor</color>
-	<color name="group_fore_color">@color/secondaryForeColor</color>
+	<color name="group_fore_color">@color/primaryForeColor</color>
 
 </resources>
