@@ -14,7 +14,5 @@
 	app:elevation="4dp"
 	app:popupTheme="?attr/actionBarPopupTheme"
 	app:subtitle="@string/app_subname"
-	app:subtitleTextColor="@color/primaryAltForeColor"
 	app:title="@string/app_name"
-	app:titleTextColor="@color/primaryForeColor"
 	tools:ignore="UnusedAttribute"/>

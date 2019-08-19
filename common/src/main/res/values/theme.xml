@@ -20,24 +20,25 @@
 		<!-- toolbar/action bar -->
 		<item name="android:actionBarStyle">@style/MyActionBar</item>
 
-		<!-- dropdowns -->
-		<item name="android:dropDownListViewStyle">@style/MyDropDownListViewStyle</item>
-		<item name="android:dropDownItemStyle">@style/MyDropDownItemStyle</item>
-
-		<!-- autocomplete -->
-		<item name="android:autoCompleteTextViewStyle">@style/MyAutoCompleteTextViewStyle</item>
-
-		<!-- background of activated indicator -->
-		<item name="android:activatedBackgroundIndicator">@drawable/listitem_background</item>
-
-		<!-- theme UI preference -->
-		<item name="preferenceTheme">@style/PreferenceCompatTheme</item>
-
 		<!-- theme UI controls action bar -->
 		<item name="actionBarTheme">@style/MyActionBarOverlay</item>
 
 		<!-- theme UI controls pop ups -->
 		<item name="actionBarPopupTheme">@style/MyOverlay</item>
+
+		<!-- dropdowns -->
+		<item name="android:dropDownListViewStyle">@style/MyDropDownListViewStyle</item>
+		<item name="android:dropDownItemStyle">@style/MyDropDownItemStyle</item>
+
+		<!-- background of activated indicator -->
+		<item name="android:activatedBackgroundIndicator">@drawable/listitem_background</item>
+
+		<!-- autocomplete -->
+		<item name="android:autoCompleteTextViewStyle">@style/MyAutoCompleteTextViewStyle</item>
+
+		<!-- theme UI preference -->
+		<item name="preferenceTheme">@style/PreferenceCompatTheme</item>
+
 	</style>
 
 	<!-- Custom background theme -->

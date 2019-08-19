@@ -28,7 +28,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.contrib.NavigationDrawerFragment;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -263,8 +262,8 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
 
 		// toolbar
-		final Toolbar toolbar = activity.findViewById(R.id.toolbar);
-		Log.d(TAG, "toolbar " + toolbar);
+		//final Toolbar toolbar = activity.findViewById(R.id.toolbar);
+		//Log.d(TAG, "toolbar " + toolbar);
 
 		// action bar
 		final ActionBar actionBar = activity.getSupportActionBar();
