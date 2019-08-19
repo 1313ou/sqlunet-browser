@@ -5,7 +5,7 @@
 
 <resources>
 
-	<color name="primaryColor">#c3bb97</color>
+	<color name="primaryColor">#E2DBBE</color>
 	<color name="primaryLightColor">#f4ebc7</color>
 	<color name="primaryDarkColor">#958E6E</color>
 	<color name="secondaryColor">#1de9b6</color>

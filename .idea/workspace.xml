@@ -144,35 +144,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="rate">
+    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="fixzq toolbar background to transparent">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bNC/bNC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/bNC/bNC.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/browser.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/browser.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/browserewn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/browserewn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/browserfn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/browserfn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/browservn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/browservn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/browserwn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/browserwn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/common/common.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/NavigationFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/NavigationFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/res/layout/toolbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/layout/toolbar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/values/styles.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/res/values/theme.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/values/theme.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy/deploy.iml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/deploy.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/donate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/donate/donate.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/download/download.iml" beforeDir="false" afterPath="$PROJECT_DIR$/download/download.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" beforeDir="false" afterPath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameNet/frameNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/frameNet.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/libwn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/libwn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/others/others.iml" beforeDir="false" afterPath="$PROJECT_DIR$/others/others.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" beforeDir="false" afterPath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preference/preference.iml" beforeDir="false" afterPath="$PROJECT_DIR$/preference/preference.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/propbank/propbank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/propbank/propbank.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rate/rate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/rate/rate.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/test/test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treeView/treeView.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/treeView.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/verbNet/verbNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/verbNet.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/wordNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/wordNet.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/xNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/xNet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserfn/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browservn/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/res/values/colors.xml" afterDir="false" />
     </list>
     <list id="36f6b5c7-9521-46b4-bf4d-149db941bcca" name="NonPublic" comment="" />
     <ignored path="SqlUNet.iws" />
@@ -258,81 +234,7 @@
     <favorites_list name="SqlUNet" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/BaseSearchFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1677">
-              <caret line="162" column="16" lean-forward="true" selection-start-line="162" selection-start-column="16" selection-end-line="162" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/NavigationFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/src/main/res/values/styles.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/src/main/res/values/theme.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libwn/src/main/res/values/colors.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="91">
-              <caret line="7" column="29" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/src/main/res/layout/toolbar.xml">
-          <provider selected="true" editor-type-id="android-designer2" />
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/src/main/res/values-v21/theme.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="22" column="12" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/ActionBarSetter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -346,7 +248,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>tag</find>
       <find>Enable</find>
       <find>action_credits</find>
       <find>string-arr</find>
@@ -376,6 +277,7 @@
       <find>colorId</find>
       <find>toolbar</find>
       <find>colorPrimary</find>
+      <find>Label.Group</find>
     </findStrings>
     <replaceStrings>
       <replace>data -&gt; new FireEvent2(this.fragment).live(data)</replace>
@@ -460,9 +362,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/bNC/src/main/res/values/theme.xml" />
-        <option value="$PROJECT_DIR$/browservn/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/libwn/src/main/res/values/theme.xml" />
         <option value="$PROJECT_DIR$/browserwn/src/main/res/values/theme.xml" />
         <option value="$PROJECT_DIR$/browservn/src/main/res/values-large/theme.xml" />
         <option value="$PROJECT_DIR$/browserfn/src/main/res/values/theme.xml" />
@@ -511,6 +410,9 @@
         <option value="$PROJECT_DIR$/common/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/BaseSearchFragment.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/NavigationFragment.java" />
+        <option value="$PROJECT_DIR$/browserfn/src/main/res/values/colors.xml" />
+        <option value="$PROJECT_DIR$/common/src/main/res/values/colors.xml" />
+        <option value="$PROJECT_DIR$/browservn/src/main/res/values/colors.xml" />
       </list>
     </option>
   </component>
@@ -573,56 +475,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="common" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="common" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="common" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="common" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="common" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
-              <item name="theme" type="c431d0b8:AndroidResGroupNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="libwn" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="libwn" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="libwn" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="AndroidView" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -1409,13 +1262,6 @@
       <option name="presentableId" value="Default" />
       <updated>1487150992421</updated>
     </task>
-    <task id="LOCAL-00186" summary="tree node factory add split into make + addTo(parent)&#10;break expansion scheme">
-      <created>1558344846727</created>
-      <option name="number" value="00186" />
-      <option name="presentableId" value="LOCAL-00186" />
-      <option name="project" value="LOCAL" />
-      <updated>1558344846728</updated>
-    </task>
     <task id="LOCAL-00187" summary="workspace">
       <created>1558345396958</created>
       <option name="number" value="00187" />
@@ -1752,7 +1598,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566132092040</updated>
     </task>
-    <option name="localTasksCounter" value="235" />
+    <task id="LOCAL-00235" summary="fixzq toolbar background to transparent">
+      <created>1566198231042</created>
+      <option name="number" value="00235" />
+      <option name="presentableId" value="LOCAL-00235" />
+      <option name="project" value="LOCAL" />
+      <updated>1566198231043</updated>
+    </task>
+    <option name="localTasksCounter" value="236" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1798,7 +1651,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="51" y="27" width="1222" height="1166" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8023599" visible="true" weight="0.19067797" />
       <window_info id="Structure" order="1" sideWeight="0.19764012" side_tool="true" weight="0.2410208" />
@@ -1950,7 +1802,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="unified kinnk query" />
     <MESSAGE value="unified link query" />
     <MESSAGE value="dev2&#10;rework treeops" />
     <MESSAGE value="focus when expanding" />
@@ -1975,7 +1826,8 @@
     <MESSAGE value="theming&#10;donate" />
     <MESSAGE value="rating" />
     <MESSAGE value="rate" />
-    <option name="LAST_COMMIT_MESSAGE" value="rate" />
+    <MESSAGE value="fixzq toolbar background to transparent" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixzq toolbar background to transparent" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2104,27 +1956,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/DownloadActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
-          <caret line="3" lean-forward="true" selection-end-line="3" />
-          <folding>
-            <element signature="e#0#2676#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/others/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="31" selection-start-line="29" selection-end-line="31" />
-          <folding>
-            <element signature="e#0#61#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rate/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="429">
@@ -2366,31 +2197,10 @@
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/browserfn/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="8" column="34" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/SearchTextFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
           <caret line="49" column="20" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="75" column="42" selection-start-line="75" selection-start-column="16" selection-end-line="75" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browservn/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="8" column="34" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -2437,13 +2247,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/libwn/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="7" column="29" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/captures/org.sqlunet.browser.ewn_2019.08.19_07.52.li">
       <provider selected="true" editor-type-id="capture-editor" />
     </entry>
@@ -2451,20 +2254,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="22" column="12" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/res/values/theme.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
@@ -2479,6 +2268,58 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="104">
           <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/res/values/theme.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-13">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browserfn/src/main/res/values/theme.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="37" column="47" selection-start-line="37" selection-start-column="47" selection-end-line="37" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browservn/src/main/res/values/styles-app.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browservn/src/main/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="17" column="28" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libwn/src/main/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="7" column="29" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browserfn/src/main/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
         </state>
       </provider>
     </entry>

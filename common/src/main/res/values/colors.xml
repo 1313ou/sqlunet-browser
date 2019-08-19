@@ -48,7 +48,6 @@
 	<color name="secondaryColor">@color/pink_color</color>
 	<color name="secondaryLightColor">@color/light_pink_color</color>
 	<color name="secondaryDarkColor">@color/dark_pink_color</color>
-
 	<color name="primaryForeColor">@android:color/white</color>
 	<color name="primaryAltForeColor">@android:color/darker_gray</color>
 	<color name="secondaryForeColor">@android:color/white</color>
