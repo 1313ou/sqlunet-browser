@@ -17,13 +17,13 @@
 		<item name="colorPrimaryDark">@color/primaryDarkColor</item>
 		<item name="colorAccent">@color/accentColor</item>
 
-		<!-- toolbar/action bar -->
+		<!-- action bar -->
 		<item name="android:actionBarStyle">@style/MyActionBar</item>
 
-		<!-- theme UI controls action bar -->
+		<!-- action bar theme UI -->
 		<item name="actionBarTheme">@style/MyActionBarOverlay</item>
 
-		<!-- theme UI controls pop ups -->
+		<!-- action bar popup theme UI -->
 		<item name="actionBarPopupTheme">@style/MyOverlay</item>
 
 		<!-- dropdowns -->
@@ -33,11 +33,11 @@
 		<!-- background of activated indicator -->
 		<item name="android:activatedBackgroundIndicator">@drawable/listitem_background</item>
 
+		<!-- preference theme UI -->
+		<item name="preferenceTheme">@style/PreferenceCompatTheme</item>
+
 		<!-- autocomplete -->
 		<item name="android:autoCompleteTextViewStyle">@style/MyAutoCompleteTextViewStyle</item>
-
-		<!-- theme UI preference -->
-		<item name="preferenceTheme">@style/PreferenceCompatTheme</item>
 
 	</style>
 

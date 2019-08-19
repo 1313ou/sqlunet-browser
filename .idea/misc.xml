@@ -840,6 +840,27 @@
       <entry_point TYPE="field" FQNAME="org.sqlunet.verbnet.provider.VerbNetContract.Suggest_VnWords WORDID" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.verbnet.provider.VerbNetContract.Suggest_FTS_VnWords WORDID" />
       <entry_point TYPE="field" FQNAME="com.bbou.rate.StoreType AMAZON" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.propbank.provider.PropBankContract.PbWords CONTENT_URI_TABLE" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.verbnet.provider.VerbNetContract.VnWords CONTENT_URI_TABLE" />
+      <entry_point TYPE="field" FQNAME="androidx.app.local.ExpandableListFragment mAdapter" />
+      <entry_point TYPE="field" FQNAME="androidx.app.local.ExpandableListFragment mEmptyText" />
+      <entry_point TYPE="field" FQNAME="androidx.app.local.ExpandableListFragment mEmptyView" />
+      <entry_point TYPE="field" FQNAME="androidx.app.local.ExpandableListFragment mExpandableList" />
+      <entry_point TYPE="field" FQNAME="androidx.app.local.ExpandableListFragment mExpandableListContainer" />
+      <entry_point TYPE="field" FQNAME="androidx.app.local.ExpandableListFragment mExpandableListShown" />
+      <entry_point TYPE="field" FQNAME="androidx.app.local.ExpandableListFragment mHandler" />
+      <entry_point TYPE="field" FQNAME="androidx.app.local.ExpandableListFragment mOnClickListener" />
+      <entry_point TYPE="field" FQNAME="androidx.app.local.ExpandableListFragment mProgressContainer" />
+      <entry_point TYPE="field" FQNAME="androidx.app.local.ExpandableListFragment mRequestFocus" />
+      <entry_point TYPE="field" FQNAME="androidx.app.local.ExpandableListFragment mStandardEmptyView" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.propbank.provider.PropBankContract.PbWords PBWORDID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.propbank.provider.PropBankContract.PbWords TABLE" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.verbnet.provider.VerbNetContract.VnWords TABLE" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.verbnet.provider.VerbNetContract.VnWords VNWORDID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.propbank.provider.PropBankContract.PbWords WORD" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.verbnet.provider.VerbNetContract.VnWords WORD" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.propbank.provider.PropBankContract.PbWords WORDID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.verbnet.provider.VerbNetContract.VnWords WORDID" />
     </entry_points>
     <pattern value="org.sqlunet.browser.vn.Settings" method="getPropBankPref" />
     <pattern value="org.sqlunet.browser.vn.Settings" method="getWordNetPref" />
@@ -2344,6 +2365,73 @@
     <pattern value="com.bbou.rate.AppRate" method="setTitle" />
     <pattern value="com.bbou.rate.AppRate" method="setView" />
     <pattern value="com.bbou.rate.AppRate" method="invoke" />
+    <pattern value="com.bbou.donate.billing.BillingManager" method="BillingManager" />
+    <pattern value="org.sqlunet.treeview.control.Controller" />
+    <pattern value="org.sqlunet.browser.config.DiagnosticsActivity" />
+    <pattern value="com.bbou.donate.DonateActivity" />
+    <pattern value="androidx.app.local.ExpandableListFragment" method="ensureList" />
+    <pattern value="androidx.app.local.ExpandableListFragment" />
+    <pattern value="androidx.app.local.ExpandableListFragment" method="ExpandableListFragment" />
+    <pattern value="androidx.app.local.ExpandableListFragment" method="getExpandableListAdapter" />
+    <pattern value="androidx.app.local.ExpandableListFragment" method="getExpandableListView" />
+    <pattern value="androidx.app.local.ExpandableListFragment" method="getListAdapter" />
+    <pattern value="androidx.app.local.ExpandableListFragment" method="getListView" />
+    <pattern value="androidx.app.local.ExpandableListFragment" method="getSelectedId" />
+    <pattern value="androidx.app.local.ExpandableListFragment" method="getSelectedItemId" />
+    <pattern value="androidx.app.local.ExpandableListFragment" method="getSelectedItemPosition" />
+    <pattern value="androidx.app.local.ExpandableListFragment" method="getSelectedPosition" />
+    <pattern value="com.bbou.donate.billing.Skus" method="getSubscriptionSkus" />
+    <pattern value="com.bbou.others.OthersActivity" />
+    <pattern value="org.sqlunet.propbank.provider.PropBankContract.PbWords" />
+    <pattern value="org.sqlunet.verbnet.provider.VerbNetContract.VnWords" />
+    <pattern value="com.bbou.others.OthersActivity" method="isAppInstalled" />
+    <pattern value="androidx.app.local.ExpandableListFragment" method="onChildClick" />
+    <pattern value="com.bbou.donate.DonateActivity" method="onConsume" />
+    <pattern value="androidx.app.local.ExpandableListFragment" method="onCreateContextMenu" />
+    <pattern value="androidx.app.local.ExpandableListFragment" method="onCreateView" />
+    <pattern value="androidx.app.local.ExpandableListFragment" method="onDestroyView" />
+    <pattern value="androidx.app.local.ExpandableListFragment" method="onGroupCollapse" />
+    <pattern value="androidx.app.local.ExpandableListFragment" method="onGroupExpand" />
+    <pattern value="androidx.app.local.ExpandableListFragment" method="onListItemClick" />
+    <pattern value="com.bbou.others.OthersActivity" method="onMarketGrammarScope" />
+    <pattern value="com.bbou.others.OthersActivity" method="onMarketGrammarScopeUDPipe" />
+    <pattern value="com.bbou.others.OthersActivity" method="onMarketSemantikos" />
+    <pattern value="com.bbou.others.OthersActivity" method="onMarketSemantikosEWn" />
+    <pattern value="com.bbou.others.OthersActivity" method="onMarketSemantikosFn" />
+    <pattern value="com.bbou.others.OthersActivity" method="onMarketSemantikosVn" />
+    <pattern value="com.bbou.others.OthersActivity" method="onMarketSemantikosWn" />
+    <pattern value="com.bbou.others.OthersActivity" method="onMarketTreebolicWordNet" />
+    <pattern value="androidx.app.local.ExpandableListFragment" method="onViewCreated" />
+    <pattern value="com.bbou.rate.AppRate" method="setCancelable" />
+    <pattern value="androidx.app.local.ExpandableListFragment" method="setEmptyText" />
+    <pattern value="com.bbou.rate.AppRate" method="setLaunchTimes" />
+    <pattern value="androidx.app.local.ExpandableListFragment" method="setListAdapter" />
+    <pattern value="androidx.app.local.ExpandableListFragment" method="setListShown" />
+    <pattern value="androidx.app.local.ExpandableListFragment" method="setListShownNoAnimation" />
+    <pattern value="com.bbou.rate.AppRate" method="setPastInstallDays" />
+    <pattern value="com.bbou.rate.AppRate" method="setRemindInterval" />
+    <pattern value="androidx.app.local.ExpandableListFragment" method="setSelectedChild" />
+    <pattern value="androidx.app.local.ExpandableListFragment" method="setSelectedGroup" />
+    <pattern value="androidx.app.local.ExpandableListFragment" method="setSelection" />
+    <pattern value="com.bbou.rate.AppRate" method="setShowLaterButton" />
+    <pattern value="com.bbou.donate.billing.Skus" />
+    <pattern value="com.bbou.rate.StoreType" />
+    <pattern value="org.sqlunet.browser.config.Diagnostics.AsyncDiagnostics" />
+    <pattern value="org.sqlunet.browser.config.Diagnostics.AsyncDiagnostics" method="AsyncDiagnostics" />
+    <pattern value="org.sqlunet.treeview.control.Controller" method="Controller" />
+    <pattern value="org.sqlunet.browser.config.Diagnostics" />
+    <pattern value="com.bbou.donate.DonateActivity" method="onBillingClientSetupFinished" />
+    <pattern value="com.bbou.donate.DonateActivity" method="onConsumeFinished" />
+    <pattern value="org.sqlunet.browser.config.DiagnosticsActivity" method="onCreate" />
+    <pattern value="com.bbou.donate.DonateActivity" method="onCreate" />
+    <pattern value="com.bbou.others.OthersActivity" method="onCreate" />
+    <pattern value="com.bbou.donate.DonateActivity" method="onCreateOptionsMenu" />
+    <pattern value="com.bbou.donate.DonateActivity" method="onDestroy" />
+    <pattern value="com.bbou.donate.DonateActivity" method="onOptionsItemSelected" />
+    <pattern value="com.bbou.donate.DonateActivity" method="onPurchasesUpdated" />
+    <pattern value="com.bbou.rate.StoreType" method="StoreType" />
+    <pattern value="org.sqlunet.browser.config.Diagnostics.AsyncDiagnostics" method="doInBackground" />
+    <pattern value="org.sqlunet.browser.config.Diagnostics.AsyncDiagnostics" method="onPostExecute" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="androidx.annotation.Nullable" />

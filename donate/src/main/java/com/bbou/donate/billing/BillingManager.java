@@ -294,6 +294,7 @@ public class BillingManager implements PurchasesUpdatedListener
 	/**
 	 * Handle a callback that verifiedPurchases were updated from the Billing library
 	 */
+	@SuppressWarnings("WeakerAccess")
 	@Override
 	public void onPurchasesUpdated(@NonNull final BillingResult billingResult, @Nullable final List<Purchase> purchases)
 	{

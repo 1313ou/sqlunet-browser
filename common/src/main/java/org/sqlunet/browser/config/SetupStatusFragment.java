@@ -196,7 +196,7 @@ public class SetupStatusFragment extends Fragment implements Updatable
 
 			// images
 			final Drawable okDrawable = ColorUtils.getDrawable(context, R.drawable.ic_ok);
-			ColorUtils.tint(ColorUtils.getColor(context, R.color.secondaryForeColor), okDrawable);
+			ColorUtils.tint(ColorUtils.getColor(context, R.color.primaryForeColor), okDrawable);
 			final Drawable failDrawable = ColorUtils.getDrawable(context, R.drawable.ic_fail);
 
 			final boolean existsDb = (status & Status.EXISTS) != 0;

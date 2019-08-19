@@ -56,14 +56,14 @@ public enum StoreType
 	}
 
 	@Nullable
-	private static Uri getUri(@NonNull final String uriPrefix, @Nullable final String packageName)
+	private static Uri getUri(@SuppressWarnings("SameParameterValue") @NonNull final String uriPrefix, @Nullable final String packageName)
 	{
 		return packageName == null ? null : Uri.parse(uriPrefix + packageName);
 	}
 
 	// S P E C I F I C S
 
-	public static Intent getGooglePlayIntent(@NonNull final Context context)
+	private static Intent getGooglePlayIntent(@NonNull final Context context)
 	{
 		final String packageName = context.getPackageName();
 		final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packageName));

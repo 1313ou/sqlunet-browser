@@ -8,8 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.bbou.rate.AppRate;
-
 import org.sqlunet.browser.config.Status;
 import org.sqlunet.settings.Settings;
 

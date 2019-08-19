@@ -40,7 +40,7 @@
 	<!-- green -->
 	<color name="dark_green_color">#FF008000</color>
 
-	<!-- M A I N -->
+	<!-- B A S E -->
 
 	<color name="primaryColor">@color/blue_color</color>
 	<color name="primaryLightColor">@color/light_blue_color</color>
@@ -49,35 +49,38 @@
 	<color name="secondaryLightColor">@color/light_pink_color</color>
 	<color name="secondaryDarkColor">@color/dark_pink_color</color>
 	<color name="primaryForeColor">@android:color/white</color>
-	<color name="primaryAltForeColor">@android:color/darker_gray</color>
-	<color name="secondaryForeColor">@android:color/white</color>
+	<color name="secondaryForeColor">@android:color/lighter_gray</color>
+
+	<!-- D E R I V E D -->
 
 	<color name="accentColor">@color/secondaryColor</color>
 
-	<!-- C U S T O M -->
-
-	<!-- custom -->
+	<!-- action bar -->
 	<color name="actionbar_color">@color/primaryColor</color>
 	<color name="actionbar_fore_color">@color/primaryForeColor</color>
-	<color name="actionbar_secondary_fore_color">@color/primaryAltForeColor</color>
+	<color name="actionbar_secondary_fore_color">@color/secondaryForeColor</color>
 	<color name="dropdown_color">@color/primaryColor</color>
 	<color name="dropdown_fore_color">@color/primaryForeColor</color>
 	<color name="drawer_color">@color/primaryColor</color>
-	<color name="drawer_fore_color">@color/primaryAltForeColor</color>
-	<color name="drawer_main_fore_color">@color/primaryForeColor</color>
-	<color name="activated_color">@color/secondaryLightColor</color>
-	<color name="enhance_color">@color/secondaryLightColor</color>
-	<color name="home_color">@color/primaryColor</color>
 
-	<!-- special action bars -->
-	<item name="browse_actionbar_color" type="color">@color/primaryLightColor</item>
-	<item name="predicatematrix_actionbar_color" type="color">@color/primaryLightColor</item>
-	<item name="searchtext_actionbar_color" type="color">@color/primaryLightColor</item>
+	<!-- browse action bars -->
+	<color name="browse_actionbar_color">@color/primaryLightColor</color>
+	<color name="predicatematrix_actionbar_color">@color/primaryLightColor</color>
+	<color name="searchtext_actionbar_color">@color/primaryLightColor</color>
 	<!--
 	<color name="browse_actionbar_color">@color/violet_color</color>
 	<color name="predicatematrix_actionbar_color">@color/mauve_color</color>
 	<color name="searchtext_actionbar_color">@color/dark_red_color</color>
 	-->
+
+	<!-- nav bar -->
+	<color name="drawer_fore_color">@color/secondaryForeColor</color>
+	<color name="drawer_main_fore_color">@color/primaryForeColor</color>
+
+	<!-- special -->
+	<color name="activated_color">@color/secondaryLightColor</color>
+	<color name="enhance_color">@color/secondaryLightColor</color>
+	<color name="home_color">@color/primaryColor</color>
 
 	<!-- button -->
 	<color name="action_button_color">@color/secondaryColor</color>
