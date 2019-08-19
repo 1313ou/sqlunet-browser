@@ -7,22 +7,9 @@
 	<style name="MyBaseOverlay"/>
 	<!--<style name="MyBaseOverlay" parent="ThemeOverlay.AppCompat.Dark"/>-->
 	<!--<style name="MyBaseOverlay" parent="ThemeOverlay.AppCompat"/>-->
-	<style name="MyActionBarBaseOverlay" />
+	<style name="MyActionBarBaseOverlay"/>
 	<!--<style name="MyActionBarBaseOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />-->
 	<!--<style name="MyActionBarBaseOverlay" parent="ThemeOverlay.AppCompat.ActionBar" />-->
-
-	<!-- Overlay -->
-	<style name="MyOverlay" parent="MyBaseOverlay">
-		<item name="android:background">@color/actionbar_color</item>item>
-		<item name="android:textColorPrimary">@color/actionbar_fore_color</item>item>
-		<item name="android:textColorSecondary">@color/actionbar_secondary_fore_color</item>
-	</style>
-
-	<!-- ActionBar Overlay -->
-	<style name="MyActionBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-		<item name="android:textColorPrimary">@color/actionbar_fore_color</item>item>
-		<item name="android:background">?attr/colorPrimary</item>
-	</style>
 
 	<!-- Toolbar -->
 	<style name="MyToolbar" parent="Widget.AppCompat.Toolbar">
@@ -31,7 +18,23 @@
 
 	<!-- Action bar -->
 	<style name="MyActionBar" parent="Widget.AppCompat.ActionBar">
-		<item name="android:background">@color/actionbar_color</item>
+		<item name="android:background">@color/actionbar_color</item> <!-- whole actionbar background -->
+	</style>
+
+	<!-- ActionBar Overlay -->
+	<style name="MyActionBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+		<item name="android:background">@null</item> <!-- menu overflow, search view, title, subtitle backgrounds -->
+		<item name="android:textColorPrimary">@color/actionbar_fore_color</item> <!-- search view foreground -->
+		<item name="titleTextColor">@color/primaryForeColor</item> <!-- title foreground -->
+		<item name="subtitleTextColor">@color/primaryAltForeColor</item> <!-- subtitle foreground -->
+		<item name="colorControlNormal">@color/actionbar_fore_color</item> <!-- pictograms (menu overflow, search magnifying glass, navigation) -->
+	</style>
+
+	<!-- Overlay -->
+	<style name="MyOverlay" parent="MyBaseOverlay">
+		<item name="android:background">@color/actionbar_color</item>item> <!-- submenu background -->
+		<item name="android:textColorPrimary">@color/actionbar_fore_color</item>item> <!-- item foreground -->
+		<item name="android:textColorSecondary">@color/actionbar_secondary_fore_color</item> <!-- submenu item foreground -->
 	</style>
 
 	<!-- Dropdown list -->
