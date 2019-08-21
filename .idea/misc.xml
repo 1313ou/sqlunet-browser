@@ -861,6 +861,7 @@
       <entry_point TYPE="field" FQNAME="org.sqlunet.verbnet.provider.VerbNetContract.VnWords WORD" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.propbank.provider.PropBankContract.PbWords WORDID" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.verbnet.provider.VerbNetContract.VnWords WORDID" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.preference.Header CREATOR" />
     </entry_points>
     <pattern value="org.sqlunet.browser.vn.Settings" method="getPropBankPref" />
     <pattern value="org.sqlunet.browser.vn.Settings" method="getWordNetPref" />
@@ -2432,13 +2433,68 @@
     <pattern value="com.bbou.rate.StoreType" method="StoreType" />
     <pattern value="org.sqlunet.browser.config.Diagnostics.AsyncDiagnostics" method="doInBackground" />
     <pattern value="org.sqlunet.browser.config.Diagnostics.AsyncDiagnostics" method="onPostExecute" />
+    <pattern value="androidx.test.espresso.contrib.DrawerMatchers$1" />
+    <pattern value="androidx.test.espresso.contrib.DrawerMatchers$2" />
+    <pattern value="org.sqlunet.browser.xselector.XSelectorPointer$1" />
+    <pattern value="org.sqlunet.download.BaseDownloadFragment$1" />
+    <pattern value="androidx.test.espresso.contrib.DrawerActions$1" />
+    <pattern value="androidx.test.espresso.contrib.DrawerActions$2" />
+    <pattern value="org.sqlunet.predicatematrix.loaders.BaseModule$2" />
+    <pattern value="org.sqlunet.predicatematrix.loaders.BaseModule$1" />
+    <pattern value="org.sqlunet.predicatematrix.loaders.BaseModule$3" />
+    <pattern value="org.sqlunet.browser.web.WebFragment$1" />
+    <pattern value="org.sqlunet.bnc.sql.BncImplementation" />
+    <pattern value="androidx.test.espresso.contrib.DrawerActions$1" method="checkAction" />
+    <pattern value="androidx.test.espresso.contrib.DrawerActions$2" method="checkAction" />
+    <pattern value="org.sqlunet.browser.xselector.XSelectorPointer$1" method="createFromParcel" />
+    <pattern value="androidx.test.espresso.contrib.DrawerMatchers$1" method="describeTo" />
+    <pattern value="androidx.test.espresso.contrib.DrawerMatchers$2" method="describeTo" />
+    <pattern value="androidx.test.espresso.contrib.DrawerActions$1" method="getDescription" />
+    <pattern value="androidx.test.espresso.contrib.DrawerActions$2" method="getDescription" />
+    <pattern value="org.sqlunet.wordnet.sql.WordNetImplementation" method="getLexDomainNames" />
+    <pattern value="org.sqlunet.wordnet.sql.WordNetImplementation" method="getLinkNames" />
+    <pattern value="org.sqlunet.wordnet.sql.WordNetImplementation" method="getPosNames" />
+    <pattern value="org.sqlunet.predicatematrix.loaders.BaseModule$1" method="getSelection" />
+    <pattern value="org.sqlunet.predicatematrix.loaders.BaseModule$2" method="getSelection" />
+    <pattern value="org.sqlunet.predicatematrix.loaders.BaseModule$3" method="getSelection" />
+    <pattern value="org.sqlunet.predicatematrix.loaders.BaseModule$1" method="getSelectionArgs" />
+    <pattern value="org.sqlunet.predicatematrix.loaders.BaseModule$2" method="getSelectionArgs" />
+    <pattern value="org.sqlunet.predicatematrix.loaders.BaseModule$3" method="getSelectionArgs" />
+    <pattern value="org.sqlunet.browser.web.WebFragment$1" method="handleUrl" />
+    <pattern value="androidx.test.espresso.contrib.DrawerMatchers$1" method="matchesSafely" />
+    <pattern value="androidx.test.espresso.contrib.DrawerMatchers$2" method="matchesSafely" />
+    <pattern value="org.sqlunet.browser.xselector.XSelectorPointer$1" method="newArray" />
+    <pattern value="androidx.test.espresso.contrib.DrawerActions$1" method="performAction" />
+    <pattern value="androidx.test.espresso.contrib.DrawerActions$2" method="performAction" />
+    <pattern value="org.sqlunet.propbank.sql.PropBankImplementation" />
+    <pattern value="org.sqlunet.verbnet.sql.VerbNetImplementation" method="queryClassXML" />
+    <pattern value="org.sqlunet.propbank.sql.PropBankImplementation" method="queryRoleSetXML" />
+    <pattern value="org.sqlunet.propbank.sql.PropBankImplementation" method="querySelectorXML" />
+    <pattern value="org.sqlunet.verbnet.sql.VerbNetImplementation" method="querySelectorXML" />
+    <pattern value="org.sqlunet.wordnet.sql.WordNetImplementation" method="querySelectorXML" />
+    <pattern value="org.sqlunet.wordnet.sql.WordNetImplementation" method="querySenseXML" />
+    <pattern value="org.sqlunet.wordnet.sql.WordNetImplementation" method="querySynsetXML" />
+    <pattern value="org.sqlunet.wordnet.sql.WordNetImplementation" method="queryWordXML" />
+    <pattern value="org.sqlunet.bnc.sql.BncImplementation" method="queryXML" />
+    <pattern value="org.sqlunet.propbank.sql.PropBankImplementation" method="queryXML" />
+    <pattern value="org.sqlunet.verbnet.sql.VerbNetImplementation" method="queryXML" />
+    <pattern value="org.sqlunet.wordnet.sql.WordNetImplementation" method="queryXML" />
+    <pattern value="androidx.appcompat.app.contrib.NavigationDrawerFragment" method="setUp" />
+    <pattern value="org.sqlunet.browser.web.WebFragment$1" method="shouldOverrideUrlLoading" />
+    <pattern value="org.sqlunet.browser.SqlunetViewModel" />
+    <pattern value="org.sqlunet.browser.SqlunetViewModel" method="SqlunetViewModel" />
+    <pattern value="org.sqlunet.download.BaseDownloadFragment$1" method="taskFinish" />
+    <pattern value="org.sqlunet.verbnet.sql.VerbNetImplementation" />
+    <pattern value="org.sqlunet.browser.web.WebModel" />
+    <pattern value="org.sqlunet.browser.web.WebModel" method="WebModel" />
+    <pattern value="org.sqlunet.wordnet.sql.WordNetImplementation" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="androidx.annotation.Nullable" />
     <option name="myDefaultNotNull" value="androidx.annotation.NonNull" />
     <option name="myNullables">
       <value>
-        <list size="10">
+        <list size="12">
           <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.Nullable" />
           <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nullable" />
           <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.Nullable" />
@@ -2449,12 +2505,14 @@
           <item index="7" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.qual.Nullable" />
           <item index="8" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NullableDecl" />
           <item index="9" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NullableType" />
+          <item index="10" class="java.lang.String" itemvalue="android.annotation.Nullable" />
+          <item index="11" class="java.lang.String" itemvalue="com.android.annotations.Nullable" />
         </list>
       </value>
     </option>
     <option name="myNotNulls">
       <value>
-        <list size="9">
+        <list size="11">
           <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.NotNull" />
           <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nonnull" />
           <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.NonNull" />
@@ -2464,6 +2522,8 @@
           <item index="6" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.qual.NonNull" />
           <item index="7" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NonNullDecl" />
           <item index="8" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NonNullType" />
+          <item index="9" class="java.lang.String" itemvalue="android.annotation.NonNull" />
+          <item index="10" class="java.lang.String" itemvalue="com.android.annotations.NonNull" />
         </list>
       </value>
     </option>

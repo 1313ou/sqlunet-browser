@@ -412,11 +412,10 @@ public class ScrollView2D extends FrameLayout
 		// accessibility
 		switch (event.getAction())
 		{
-			case MotionEvent.ACTION_DOWN:
-				break;
 			case MotionEvent.ACTION_UP:
 				performClick();
 				break;
+			case MotionEvent.ACTION_DOWN:
 			default:
 				break;
 		}

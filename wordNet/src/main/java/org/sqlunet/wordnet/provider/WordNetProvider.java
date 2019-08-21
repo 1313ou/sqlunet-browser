@@ -234,6 +234,7 @@ public class WordNetProvider extends BaseProvider
 
 	// M I M E
 
+	@SuppressWarnings("DuplicateBranchesInSwitch")
 	@Override
 	public String getType(@NonNull final Uri uri)
 	{
@@ -242,9 +243,7 @@ public class WordNetProvider extends BaseProvider
 			// T A B L E S
 
 			case WORDS:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words.TABLE;
 			case WORD:
-				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words.TABLE;
 			case WORD_BY_LEMMA:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words.TABLE;
 			case SENSES:
@@ -360,7 +359,7 @@ public class WordNetProvider extends BaseProvider
 	 * @param sortOrder     sort order
 	 * @return cursor
 	 */
-	@SuppressWarnings("boxing")
+	@SuppressWarnings({"boxing", "DuplicateBranchesInSwitch"})
 	@Nullable
 	@Override
 	public Cursor query(@NonNull final Uri uri, final String[] projection, @Nullable final String selection, final String[] selectionArgs, final String sortOrder)

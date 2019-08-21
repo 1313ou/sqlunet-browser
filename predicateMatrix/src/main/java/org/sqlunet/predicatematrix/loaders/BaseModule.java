@@ -745,6 +745,7 @@ abstract class BaseModule extends Module
 		 *
 		 * @return selection
 		 */
+		@SuppressWarnings({"WeakerAccess", "EmptyMethod"})
 		@NonNull
 		abstract protected String getSelection();
 
@@ -753,6 +754,7 @@ abstract class BaseModule extends Module
 		 *
 		 * @return selection arguments
 		 */
+		@SuppressWarnings({"WeakerAccess", "EmptyMethod"})
 		@NonNull
 		abstract protected String[] getSelectionArgs();
 

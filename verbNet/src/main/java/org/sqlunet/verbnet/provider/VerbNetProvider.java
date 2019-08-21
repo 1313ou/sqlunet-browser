@@ -152,7 +152,6 @@ public class VerbNetProvider extends BaseProvider
 
 			// S U G G E S T
 			case SUGGEST_WORDS:
-				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + VnWords.TABLE;
 			case SUGGEST_FTS_WORDS:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + VnWords.TABLE;
 

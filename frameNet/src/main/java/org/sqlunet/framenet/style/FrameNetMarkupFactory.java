@@ -174,18 +174,12 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 					switch (selector)
 					{
 						case "t":
-							return new HiddenSpan();
-						case "fe":
-							return new HiddenSpan();
-						case "fen":
-							return new HiddenSpan();
-						case "xfen":
-							return new HiddenSpan();
-						case "fex":
-							return new HiddenSpan();
-						case "ex":
-							return new HiddenSpan();
 						case "x":
+						case "ex":
+						case "fex":
+						case "xfen":
+						case "fen":
+						case "fe":
 							return new HiddenSpan();
 					}
 					return new BackgroundColorSpan(Color.CYAN);

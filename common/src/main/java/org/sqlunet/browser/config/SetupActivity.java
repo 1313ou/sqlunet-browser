@@ -141,7 +141,6 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 		}
 
 		@Nullable
-		@SuppressWarnings("TryWithIdenticalCatches")
 		private Fragment makeFragment(@Nullable final String fragmentClass)
 		{
 			if (fragmentClass != null && !fragmentClass.isEmpty())
@@ -176,7 +175,7 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 			return null;
 		}
 
-		@SuppressWarnings({"TryWithIdenticalCatches", "WeakerAccess"})
+		@SuppressWarnings({"WeakerAccess"})
 		@NonNull
 		@Override
 		public Fragment getItem(int position)

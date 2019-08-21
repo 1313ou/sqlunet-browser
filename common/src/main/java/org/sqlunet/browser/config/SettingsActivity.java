@@ -130,7 +130,6 @@ public class SettingsActivity extends PreferenceActivityCompat
 
 	static private Set<String> allowedFragments;
 
-	@SuppressWarnings("TryWithIdenticalCatches")
 	@Override
 	public boolean isValidFragment(final String fragmentName)
 	{
@@ -245,6 +244,7 @@ public class SettingsActivity extends PreferenceActivityCompat
 	 * @param context context
 	 * @param pref    preference
 	 */
+	@SuppressWarnings("SameReturnValue")
 	static private void populateStoragePreference(@NonNull final Context context, final Preference pref)
 	{
 		final ListPreference listPreference = (ListPreference) pref;
@@ -261,6 +261,7 @@ public class SettingsActivity extends PreferenceActivityCompat
 	 * @param context context
 	 * @param pref    preference
 	 */
+	@SuppressWarnings("SameReturnValue")
 	static private void populateCachePreference(@NonNull final Context context, final Preference pref)
 	{
 		final ListPreference listPreference = (ListPreference) pref;
@@ -277,6 +278,7 @@ public class SettingsActivity extends PreferenceActivityCompat
 	 * @param context  context
 	 * @param listPref pref
 	 */
+	@SuppressWarnings("SameReturnValue")
 	static private void populateStorageListPreference(@NonNull final Context context, @NonNull final ListPreference listPref)
 	{
 		final Pair<CharSequence[], CharSequence[]> namesValues = StorageReports.getStyledStorageDirectoriesNamesValues(context);
