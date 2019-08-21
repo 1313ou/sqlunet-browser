@@ -47,6 +47,7 @@ public class TaskObserver
 		 *
 		 * @param result progressMessage
 		 */
+		@SuppressWarnings({"EmptyMethod", "UnusedReturnValue"})
 		void taskFinish(boolean result);
 
 		/**
@@ -94,7 +95,7 @@ public class TaskObserver
 			Log.d(TAG, "Task " + progress + '/' + length);
 		}
 
-		@SuppressWarnings("WeakerAccess")
+		@SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})
 		@Override
 		public void taskFinish(boolean result)
 		{
@@ -281,6 +282,7 @@ public class TaskObserver
 			}
 		}
 
+		@SuppressWarnings("UnusedReturnValue")
 		@Override
 		public void taskFinish(boolean result)
 		{

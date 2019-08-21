@@ -121,7 +121,6 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 	 * @param position selected item number
 	 * @return true if handled
 	 */
-	@SuppressWarnings("TryWithIdenticalCatches")
 	private boolean handle(final int position)
 	{
 		final String run = handlers[position];
@@ -323,7 +322,6 @@ public class NavigationFragment extends NavigationDrawerFragment implements Navi
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_HOME_AS_UP);
 	}
 
-	@SuppressWarnings("TryWithIdenticalCatches")
 	private Fragment newFragment(final int position)
 	{
 		final String fragmentClass = this.fragmentClasses[position];

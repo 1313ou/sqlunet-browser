@@ -38,17 +38,17 @@ class HomeImageView extends AppCompatImageView
 		super(context, attrs, defStyleAttr);
 	}
 
+	@SuppressWarnings("SameReturnValue")
 	void init()
 	{
 		setOnTouchListener((v, event) -> {
 			// accessibility
 			switch (event.getAction())
 			{
-				case MotionEvent.ACTION_DOWN:
-					break;
 				case MotionEvent.ACTION_UP:
 					v.performClick();
 					break;
+				case MotionEvent.ACTION_DOWN:
 				default:
 					break;
 			}

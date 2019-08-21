@@ -730,7 +730,7 @@ public class TreeView
 				{
 					continue;
 				}
-				if (levels < 0 || levels > 0)
+				if (levels != 0)
 				{
 					expandNode(child, levels - 1, fireHotNodes, overrideBreakExpand);
 				}

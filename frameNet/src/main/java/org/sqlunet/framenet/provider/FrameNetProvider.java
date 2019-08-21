@@ -519,6 +519,7 @@ public class FrameNetProvider extends BaseProvider
 				break;
 
 			case LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE:
+				//noinspection DuplicateBranchesInSwitch
 				groupBy = FrameNetContract.SENTENCE + ".sentenceid";
 				//$FALL-THROUGH$
 				//noinspection fallthrough

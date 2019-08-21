@@ -297,10 +297,6 @@ public class DownloadFragment extends BaseDownloadFragment
 			statusCode = status == null ? 0 : status.mask;
 			switch (dmStatus)
 			{
-				case DownloadManager.STATUS_PENDING:
-				case DownloadManager.STATUS_SUCCESSFUL:
-					break;
-
 				case DownloadManager.STATUS_FAILED:
 				case DownloadManager.STATUS_PAUSED:
 					final int dmReason = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_REASON));
@@ -308,6 +304,8 @@ public class DownloadFragment extends BaseDownloadFragment
 					reasonCode = reason == null ? 0 : reason.code;
 					break;
 
+				case DownloadManager.STATUS_PENDING:
+				case DownloadManager.STATUS_SUCCESSFUL:
 				default:
 					break;
 			}
