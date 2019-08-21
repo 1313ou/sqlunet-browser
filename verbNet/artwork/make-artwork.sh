@@ -1,8 +1,13 @@
 #!/bin/bash
 
-source "../../make-artwork-lib.sh"
+source "./lib-artwork.sh"
 
-smallicon_list="*.svg"
+icon_list="vnframe.svg syntax.svg semantics.svg restr.svg"
+asset_list="vnframe.svg syntax.svg semantics.svg restr.svg synsetspecific.svg"
 
-make_res "${smallicon_list}" 16
+make_res "${icon_list}" 16
 
+rm ${dirassets}/images/verbnet/*
+make_icon "${asset_list}" 16 "${dirassets}/images/verbnet"
+
+check
