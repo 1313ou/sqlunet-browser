@@ -1,9 +1,11 @@
 #!/bin/bash
 
-source "../../make-artwork-lib.sh"
+source "./lib-artwork.sh"
 
-icon_list="*.svg"
+icon_list="open.svg closed.svg error.svg pointer.svg"
 logo_list="logo.svg"
 
-make_assets "${icon_list}" 16
-make_assets "${logo_list}" 64
+make_icon "${icon_list}" 16 ${dirassets}/images
+make_icon "${logo_list}" 64 ${dirassets}/images
+
+check

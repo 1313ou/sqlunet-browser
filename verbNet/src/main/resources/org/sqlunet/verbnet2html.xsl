@@ -300,7 +300,7 @@
 
 	<xsl:template match="text">
 		<DIV>
-			<IMG class="dataimg" src="images/definition.png"/>
+			<IMG class="dataimg" src="images/xnet/definition.png"/>
 			<SPAN class="vntext">
 				<xsl:apply-templates select="./text()"/>
 			</SPAN>

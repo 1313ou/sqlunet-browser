@@ -6,6 +6,14 @@ dirres=../src/main/res
 dirassets=../src/main/assets
 dirapp=..
 
+RED='\u001b[31m'
+GREEN='\u001b[32m'
+YELLOW='\u001b[33m'
+BLUE='\u001b[34m'
+MAGENTA='\u001b[35m'
+CYAN='\u001b[36m'
+RESET='\u001b[0m'
+
 list_fore="
 base_dom
 base_pos
@@ -94,14 +102,14 @@ mkdir -p ${bdir}
 
 # A S S E T S
 
-echo "WEBRESOLUTION $r ${webres}"
+echo -e "${MAGENTA}WEBRESOLUTION${RESET} ${BLUE}$r ${webres}${RESET}"
 
 # base
 if [ ! -z "${to_png}" ]; then
 	for svg in *.svg; do
 		echo "to png:${svg}"
 		png="_${svg%.svg}.png"
-		echo "${svg} -> ${bdir}/${png} @ resolution ${webres}"
+		echo -e "${svg} -> ${bdir}/${png} @ resolution ${BLUE}${webres}${RESET}"
 		inkscape ${svg} --export-png=${bdir}/${png} -w ${webres} -h${webres} > /dev/null 2> /dev/null
 	done
 fi
@@ -134,14 +142,14 @@ done
 # R E S O U R C E S
 
 for r in ${!res[@]}; do
-	echo "RESOLUTION $r ${res[$r]}"
+	echo -e "${MAGENTA}RESOLUTION${RESET} ${BLUE}$r ${res[$r]}${RESET}"
 
 	# base
 	if [ ! -z "${to_png}" ]; then
 		for svg in *.svg; do
 			echo "to png:${svg}"
 			png="_${svg%.svg}.png"
-			echo "${svg} -> ${bdir}/${png} @ resolution ${res[$r]}"
+			echo -e "${svg} -> ${bdir}/${png} @ resolution ${BLUE}${res[$r]}${RESET}"
 			inkscape ${svg} --export-png=${bdir}/${png} -w ${res[$r]} -h${res[$r]} > /dev/null 2> /dev/null
 		done
 	fi
