@@ -15,30 +15,30 @@ import androidx.annotation.Nullable;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-class FnLexUnitQueryFromWordId extends DBQuery
+class FnLexUnitQueryFromFnWordId extends DBQuery
 {
 	/**
 	 * <code>QUERY</code> is the SQL statement
 	 */
-	static private final String QUERY = SqLiteDialect.FrameNetLexUnitQueryFromWordId;
+	static private final String QUERY = SqLiteDialect.FrameNetLexUnitQueryFromFnWordId;
 
 	/**
 	 * <code>QUERYWITHPOS</code> is the SQL statement with Pos input
 	 */
-	static private final String QUERYWITHPOS = SqLiteDialect.FrameNetLexUnitQueryFromWordIdAndPos;
+	static private final String QUERYWITHPOS = SqLiteDialect.FrameNetLexUnitQueryFromFnWordIdAndPos;
 
 	/**
 	 * Constructor
 	 *
 	 * @param connection connection
-	 * @param wordId     target word id
+	 * @param fnWordId   target fn word id
 	 * @param pos        target pos or null
 	 */
 	@SuppressWarnings("boxing")
-	public FnLexUnitQueryFromWordId(final SQLiteDatabase connection, final long wordId, @Nullable final Character pos)
+	public FnLexUnitQueryFromFnWordId(final SQLiteDatabase connection, final long fnWordId, @Nullable final Character pos)
 	{
-		super(connection, pos != null ? FnLexUnitQueryFromWordId.QUERYWITHPOS : FnLexUnitQueryFromWordId.QUERY);
-		setParams(wordId, pos != null ? pos.toString().toUpperCase() : null);
+		super(connection, pos != null ? FnLexUnitQueryFromFnWordId.QUERYWITHPOS : FnLexUnitQueryFromFnWordId.QUERY);
+		setParams(fnWordId, pos != null ? pos.toString().toUpperCase() : null);
 	}
 
 	/**
