@@ -144,291 +144,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="fixes framenet web selector">
-      <change afterPath="$PROJECT_DIR$/browserewn/src/main/assets/images/bnc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/browserewn/src/main/assets/images/closed.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/browserewn/src/main/assets/images/error.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/browserewn/src/main/assets/images/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/browserewn/src/main/assets/images/open.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/browserewn/src/main/assets/images/pointer.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/browserewn/src/main/assets/images/wordnet" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/browserewn/src/main/assets/images/xnet" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/browserwn/src/main/assets/images/bnc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/browserwn/src/main/assets/images/closed.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/browserwn/src/main/assets/images/error.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/browserwn/src/main/assets/images/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/browserwn/src/main/assets/images/open.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/browserwn/src/main/assets/images/pointer.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/browserwn/src/main/assets/images/wordnet" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/browserwn/src/main/assets/images/xnet" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/src/main/assets/images" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/artwork-assets/logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/artwork-assets/logo.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/assets/images/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/artwork-assets/logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/artwork-assets/logo.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/assets/images/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/src/main/assets/images" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/bnc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/closed.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/closed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/error.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/error.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/open.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/open.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/pointer.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/pointer.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/wordnet" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/adjderived.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/adjderived.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/also.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/also.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/antonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/antonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/attribute.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/attribute.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/cause.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/cause.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/derivation.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/derivation.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_category.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_category.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member_category.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member_category.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member_region.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member_region.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member_term.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member_term.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member_usage.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member_usage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_region.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_region.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_term.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_term.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_usage.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_usage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/entail.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/entail.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/hypernym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/hypernym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/hyponym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/hyponym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/instance_hypernym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/instance_hypernym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/instance_hyponym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/instance_hyponym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/links.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/links.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/member_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/member_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/member_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/member_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/other.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/other.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/part_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/part_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/part_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/part_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/participle.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/participle.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pertainym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pertainym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_a.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_a.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_n.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_n.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_r.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_r.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_s.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_s.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_v.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_v.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/similar.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/similar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/substance_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/substance_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/substance_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/substance_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/synonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/synonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/verb_group.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/verb_group.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_adjderived.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_adjderived.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_also.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_also.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_antonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_antonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_attribute.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_attribute.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_cause.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_cause.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_derivation.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_derivation.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_category.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_category.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member_category.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member_category.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member_region.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member_region.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member_term.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member_term.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member_usage.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member_usage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_region.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_region.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_term.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_term.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_usage.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_usage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_entail.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_entail.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_hypernym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_hypernym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_hyponym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_hyponym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_instance_hypernym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_instance_hypernym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_instance_hyponym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_instance_hyponym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_links.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_links.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_member_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_member_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_member_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_member_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_other.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_other.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_part_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_part_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_part_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_part_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_participle.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_participle.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pertainym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pertainym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_a.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_a.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_n.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_n.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_r.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_r.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_s.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_s.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_v.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_v.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_similar.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_similar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_substance_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_substance_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_substance_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_substance_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_synonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_synonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_verb_group.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_verb_group.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_adjderived.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_adjderived.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_also.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_also.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_antonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_antonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_attribute.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_attribute.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_cause.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_cause.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_derivation.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_derivation.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_category.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_category.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member_category.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member_category.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member_region.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member_region.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member_term.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member_term.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member_usage.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member_usage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_region.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_region.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_term.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_term.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_usage.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_usage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_entail.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_entail.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_hypernym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_hypernym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_hyponym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_hyponym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_instance_hypernym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_instance_hypernym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_instance_hyponym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_instance_hyponym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_links.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_links.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_member_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_member_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_member_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_member_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_other.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_other.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_part_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_part_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_part_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_part_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_participle.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_participle.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pertainym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pertainym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_a.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_a.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_n.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_n.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_r.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_r.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_s.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_s.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_v.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_v.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_similar.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_similar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_substance_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_substance_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_substance_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_substance_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_synonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_synonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_verb_group.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_verb_group.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_adjderived.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_adjderived.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_also.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_also.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_antonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_antonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_attribute.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_attribute.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_cause.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_cause.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_derivation.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_derivation.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_category.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_category.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member_category.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member_category.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member_region.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member_region.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member_term.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member_term.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member_usage.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member_usage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_region.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_region.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_term.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_term.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_usage.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_usage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_entail.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_entail.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_hypernym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_hypernym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_hyponym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_hyponym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_instance_hypernym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_instance_hypernym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_instance_hyponym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_instance_hyponym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_links.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_links.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_member_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_member_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_member_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_member_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_other.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_other.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_part_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_part_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_part_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_part_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_participle.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_participle.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pertainym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pertainym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_a.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_a.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_n.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_n.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_r.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_r.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_s.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_s.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_v.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_v.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_similar.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_similar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_substance_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_substance_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_substance_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_substance_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_synonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_synonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_verb_group.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_verb_group.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_adjderived.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_adjderived.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_also.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_also.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_antonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_antonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_attribute.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_attribute.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_cause.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_cause.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_derivation.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_derivation.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_category.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_category.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member_category.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member_category.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member_region.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member_region.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member_term.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member_term.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member_usage.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member_usage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_region.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_region.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_term.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_term.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_usage.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_usage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_entail.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_entail.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_hypernym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_hypernym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_hyponym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_hyponym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_instance_hypernym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_instance_hypernym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_instance_hyponym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_instance_hyponym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_links.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_links.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_member_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_member_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_member_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_member_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_other.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_other.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_part_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_part_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_part_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_part_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_participle.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_participle.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pertainym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pertainym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_a.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_a.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_n.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_n.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_r.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_r.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_s.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_s.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_v.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_v.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_similar.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_similar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_substance_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_substance_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_substance_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_substance_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_synonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_synonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_verb_group.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_verb_group.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_adjderived.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_adjderived.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_also.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_also.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_antonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_antonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_attribute.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_attribute.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_cause.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_cause.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_derivation.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_derivation.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_category.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_category.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_category.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_category.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_region.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_region.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_term.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_term.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_usage.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_usage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_region.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_region.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_term.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_term.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_usage.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_usage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_entail.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_entail.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_hypernym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_hypernym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_hyponym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_hyponym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_instance_hypernym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_instance_hypernym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_instance_hyponym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_instance_hyponym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_links.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_links.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_member_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_member_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_member_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_member_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_other.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_other.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_part_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_part_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_part_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_part_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_participle.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_participle.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pertainym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pertainym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_a.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_a.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_n.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_n.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_r.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_r.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_s.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_s.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_v.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_v.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_similar.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_similar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_substance_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_substance_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_substance_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_substance_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_synonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_synonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_verb_group.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_verb_group.png" afterDir="false" />
-    </list>
+    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="regen images" />
     <list id="36f6b5c7-9521-46b4-bf4d-149db941bcca" name="NonPublic" comment="" />
     <ignored path="SqlUNet.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -486,7 +202,7 @@
   <component name="DependenciesAnalyzeManager">
     <option name="forwardDirection" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Samsung_S7_edge_API_28" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Samsung_S7_edge_API_25" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -722,7 +438,7 @@
     <scope name="Analyzed-rate" pattern="file[rate]:src/main//*||file[rate]:build.gradle" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="163" />
+    <option name="x" value="559" />
     <option name="y" value="27" />
     <option name="width" value="1266" />
     <option name="height" value="1165" />
@@ -759,43 +475,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browser" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browser" type="feadf853:AndroidModuleNode" />
-              <item name="assets" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browser" type="feadf853:AndroidModuleNode" />
-              <item name="assets" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="images" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browserfn" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browserfn" type="feadf853:AndroidModuleNode" />
-              <item name="assets" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="browserfn" type="feadf853:AndroidModuleNode" />
-              <item name="assets" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="images" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -885,7 +565,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Android App.browser">
+  <component name="RunManager" selected="Android App.browserfn">
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="INTERPRETER_PATH" value="/bin/bash" />
@@ -1579,13 +1259,6 @@
       <option name="presentableId" value="Default" />
       <updated>1487150992421</updated>
     </task>
-    <task id="LOCAL-00195" summary="focus when expanding">
-      <created>1559111110403</created>
-      <option name="number" value="00195" />
-      <option name="presentableId" value="LOCAL-00195" />
-      <option name="project" value="LOCAL" />
-      <updated>1559111110403</updated>
-    </task>
     <task id="LOCAL-00196" summary="lint">
       <created>1559113524571</created>
       <option name="number" value="00196" />
@@ -1922,7 +1595,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566457718020</updated>
     </task>
-    <option name="localTasksCounter" value="244" />
+    <task id="LOCAL-00244" summary="regen images">
+      <created>1566461807258</created>
+      <option name="number" value="00244" />
+      <option name="presentableId" value="LOCAL-00244" />
+      <option name="project" value="LOCAL" />
+      <updated>1566461807258</updated>
+    </task>
+    <option name="localTasksCounter" value="245" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1967,7 +1647,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="163" y="27" width="1266" height="1165" extended-state="0" />
+    <frame x="559" y="27" width="1266" height="1165" extended-state="0" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8023599" visible="true" weight="0.24183007" />
       <window_info id="Structure" order="1" sideWeight="0.19764012" side_tool="true" weight="0.2410208" />
@@ -1991,11 +1671,11 @@
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.56759715" side_tool="true" weight="0.1741683" />
       <window_info anchor="bottom" id="Build" order="10" sideWeight="0.53050846" weight="0.32681018" />
       <window_info anchor="bottom" id="Android Monitor" order="11" sideWeight="0.82428116" weight="0.39513677" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="12" sideWeight="0.3322449" visible="true" weight="0.3500986" />
+      <window_info anchor="bottom" id="Version Control" order="12" sideWeight="0.3322449" weight="0.3500986" />
       <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.3136289" weight="0.32315272" />
       <window_info active="true" anchor="bottom" id="Gradle Console" order="14" sideWeight="0.4729064" side_tool="true" visible="true" weight="0.3107843" />
       <window_info anchor="bottom" id="Messages" order="15" sideWeight="0.5270936" weight="0.3107843" />
-      <window_info anchor="bottom" id="Inspection Results" order="16" sideWeight="0.6962233" weight="0.44520548" />
+      <window_info active="true" anchor="bottom" id="Inspection Results" order="16" sideWeight="0.6962233" visible="true" weight="0.44477317" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.49367088" weight="0.24830508" />
@@ -2119,7 +1799,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="scrollTo + requestFocus to ensure visibility" />
     <MESSAGE value="scrollTo factored out&#10;alt layout in browse2" />
     <MESSAGE value="searchable" />
     <MESSAGE value="infer nullity" />
@@ -2144,7 +1823,8 @@
     <MESSAGE value="image regen" />
     <MESSAGE value="lint" />
     <MESSAGE value="fixes framenet web selector" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixes framenet web selector" />
+    <MESSAGE value="regen images" />
+    <option name="LAST_COMMIT_MESSAGE" value="regen images" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
