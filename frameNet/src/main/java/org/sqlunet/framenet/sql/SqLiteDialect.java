@@ -33,6 +33,16 @@ class SqLiteDialect
 					"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + //
 					"LEFT JOIN fnfetypes ON (incorporatedfetypeid = fetypeid) " + //
 					"WHERE w.lemma = ?";
+	// lex units from fn word
+	static public final String FrameNetLexUnitQueryFromFnWord = //
+			"SELECT fnwordid,luid,lexunit,pos,ludefinition,ludict,fetype AS incorporatedfe,frameid,frame,framedefinition " + //
+					"FROM fnwords AS w " + //
+					"INNER JOIN fnlexemes USING (fnwordid) " + //
+					"INNER JOIN fnlexunits AS lu USING (luid) " + //
+					"LEFT JOIN fnframes USING (frameid) " + //
+					"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + //
+					"LEFT JOIN fnfetypes ON (incorporatedfetypeid = fetypeid) " + //
+					"WHERE w.word = ?";
 	// lex units from word id
 	static public final String FrameNetLexUnitQueryFromWordId = //
 			"SELECT luid,lexunit,pos,ludefinition,ludict,fetype AS incorporatedfe,frameid,frame,framedefinition " + //
@@ -45,6 +55,17 @@ class SqLiteDialect
 					"LEFT JOIN fnfetypes ON (incorporatedfetypeid = fetypeid) " + //
 					"WHERE wordid = ? " + //
 					"ORDER BY frame;";
+	// lex units from fn word id
+	static public final String FrameNetLexUnitQueryFromFnWordId = //
+			"SELECT luid,lexunit,pos,ludefinition,ludict,fetype AS incorporatedfe,frameid,frame,framedefinition " + //
+					"FROM fnwords " + //
+					"INNER JOIN fnlexemes USING (fnwordid) " + //
+					"INNER JOIN fnlexunits AS lu USING (luid) " + //
+					"LEFT JOIN fnframes USING (frameid) " + //
+					"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + //
+					"LEFT JOIN fnfetypes ON (incorporatedfetypeid = fetypeid) " + //
+					"WHERE fnwordid = ? " + //
+					"ORDER BY frame;";
 	// lex units from word id and pos
 	static public final String FrameNetLexUnitQueryFromWordIdAndPos = //
 			"SELECT luid,lexunit,pos,ludefinition,ludict,fetype AS incorporatedfe,frameid,frame,framedefinition " + //
@@ -55,7 +76,18 @@ class SqLiteDialect
 					"LEFT JOIN fnframes USING (frameid) " + //
 					"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + //
 					"LEFT JOIN fnfetypes ON (incorporatedfetypeid = fetypeid) " + //
-					"WHERE wordid = ? AND lu.posid = ? " + //
+					"WHERE wordid = ? AND p.pos = ? " + //
+					"ORDER BY frame;";
+	// lex units from word id and pos
+	static public final String FrameNetLexUnitQueryFromFnWordIdAndPos = //
+			"SELECT luid,lexunit,pos,ludefinition,ludict,fetype AS incorporatedfe,frameid,frame,framedefinition " + //
+					"FROM fnwords " + //
+					"INNER JOIN fnlexemes USING (fnwordid) " + //
+					"INNER JOIN fnlexunits AS lu USING (luid) " + //
+					"LEFT JOIN fnframes USING (frameid) " + //
+					"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + //
+					"LEFT JOIN fnfetypes ON (incorporatedfetypeid = fetypeid) " + //
+					"WHERE fnwordid = ? AND p.pos = ? " + //
 					"ORDER BY frame;";
 	// lex units from frame id
 	static public final String FrameNetLexUnitQueryFromFrameId = //

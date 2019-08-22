@@ -144,742 +144,17 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="logo_app">
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_activity_activity_1_0_0_rc01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_activity_activity_1_0_0_rc01_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_1_0_rc01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_1_0_rc01_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_resources_1_1_0_rc01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_resources_1_1_0_rc01_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cardview_cardview_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cardview_cardview_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_1_1_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_1_1_3_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_1_0_beta01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_1_0_beta01_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_1_0_rc01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_1_0_rc01_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_1_0_rc02_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_1_0_rc02_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_customview_customview_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_customview_customview_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_1_0_rc01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_1_0_rc01_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_preference_v14_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_preference_v14_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_v13_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_v13_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_v4_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_v4_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_extensions_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_extensions_2_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_process_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_process_2_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_1_0_rc01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_1_0_rc01_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_service_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_service_2_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_1_0_rc01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_1_0_rc01_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_media_media_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_media_media_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_multidex_multidex_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_multidex_multidex_2_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_multidex_multidex_instrumentation_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_multidex_multidex_instrumentation_2_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_preference_preference_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_preference_preference_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_print_print_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_print_print_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_1_0_beta01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_1_0_beta01_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_savedstate_savedstate_1_0_0_rc01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_savedstate_savedstate_1_0_0_rc01_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_core_1_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_core_1_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_1_0_alpha4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_1_0_alpha4_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_1_0_alpha4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_1_0_alpha4_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_web_3_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_web_3_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_ext_junit_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_ext_junit_1_1_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_1_0_alpha4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_1_0_alpha4_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_rules_1_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_rules_1_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_1_0_alpha4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_1_0_alpha4_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_uiautomator_uiautomator_2_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_uiautomator_uiautomator_2_2_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_0_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_1_0_rc01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_1_0_rc01_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_1_0_rc01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_1_0_rc01_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_0_rc01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_0_rc01_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager2_viewpager2_1_0_0_beta02_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager2_viewpager2_1_0_0_beta02_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_billingclient_billing_2_0_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_billingclient_billing_2_0_3_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_1_0_alpha09_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_1_0_alpha09_aar.xml" afterDir="false" />
+    <list default="true" id="dbe7534c-3086-4b17-848a-f5676a7f84bd" name="Default" comment="lint">
+      <change afterPath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FnLexUnitQueryFromFnWord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FnLexUnitQueryFromFnWordId.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bNC/artwork/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/bNC/artwork/make-artwork.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bNC/bNC.iml" beforeDir="false" afterPath="$PROJECT_DIR$/bNC/bNC.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bNC/src/main/assets/images/convtask.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bNC/src/main/assets/images/imaginf.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bNC/src/main/assets/images/spwr.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/artwork-assets/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/browser/artwork-assets/make-artwork.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/artwork/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/browser/artwork/make-artwork.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/browser.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browser/browser.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/help/images/bnc.png" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/assets/help/images/bnc.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/help/images/framenet.png" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/assets/help/images/framenet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/help/images/predicatematrix.png" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/assets/help/images/predicatematrix.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/help/images/propbank.png" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/assets/help/images/propbank.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/help/images/verbnet.png" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/assets/help/images/verbnet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/help/images/wordnet.png" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/assets/help/images/wordnet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/bnc/convtask.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/bnc/imaginf.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/bnc/spwr.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/closed.png" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/assets/images/closed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/error.png" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/assets/images/error.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/framenet/definition.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/framenet/frame.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/framenet/lexunit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/framenet/role.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/framenet/role2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/framenet/roles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/framenet/sample.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/open.png" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/assets/images/open.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/pointer.png" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/assets/images/pointer.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/verbnet/restr.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/verbnet/semantics.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/verbnet/synsetspecific.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/verbnet/syntax.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/verbnet/vnframe.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/adjderived.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/also.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/antonym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/attribute.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/cause.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/derivation.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/domain.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/domain_category.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/domain_member.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/domain_member_category.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/domain_member_region.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/domain_member_term.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/domain_member_usage.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/domain_region.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/domain_term.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/domain_usage.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/entail.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/holonym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/hypernym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/hyponym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/instance_hypernym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/instance_hyponym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/member_holonym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/member_meronym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/meronym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/other.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/part_holonym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/part_meronym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/participle.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/pertainym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/similar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/substance_holonym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/substance_meronym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/synonym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/wordnet/verb_group.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/xnet/bnc.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/xnet/definition.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/xnet/domain.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/xnet/framenet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/xnet/item.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/xnet/member.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/xnet/members.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/xnet/pos.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/xnet/propbank.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/xnet/relation.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/xnet/role.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/xnet/roleclass.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/xnet/roles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/xnet/rolex.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/xnet/rolex2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/xnet/sample.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/xnet/sentence.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/xnet/synset.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/xnet/synsetmember.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/xnet/verbnet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browser/src/main/assets/images/xnet/wordnet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/artwork/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/artwork/make-artwork.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserewn/browserewn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserewn/browserewn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/artwork-assets/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/artwork-assets/make-artwork.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/artwork/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/artwork/make-artwork.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/browserfn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/browserfn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/help/images/bnc.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/assets/help/images/bnc.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/help/images/framenet.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/assets/help/images/framenet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/help/images/member.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/assets/help/images/member.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/help/images/predicatematrix.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/assets/help/images/predicatematrix.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/help/images/propbank.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/assets/help/images/propbank.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/help/images/roles.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/assets/help/images/roles.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/help/images/sqlunet.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/assets/help/images/sqlunet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/help/images/verbnet.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/assets/help/images/verbnet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/help/images/wordnet.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/assets/help/images/wordnet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/closed.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/assets/images/closed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/error.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/assets/images/error.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/framenet/definition.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/framenet/frame.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/framenet/lexunit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/framenet/role.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/framenet/role2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/framenet/roles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/framenet/sample.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/open.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/assets/images/open.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/pointer.png" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/assets/images/pointer.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/xnet/bnc.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/xnet/definition.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/xnet/domain.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/xnet/framenet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/xnet/item.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/xnet/member.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/xnet/members.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/xnet/pos.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/xnet/propbank.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/xnet/relation.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/xnet/role.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/xnet/roleclass.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/xnet/roles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/xnet/rolex.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/xnet/rolex2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/xnet/sample.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/xnet/sentence.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/xnet/synset.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/xnet/synsetmember.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/xnet/verbnet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserfn/src/main/assets/images/xnet/wordnet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/artwork-assets/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/artwork-assets/make-artwork.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/artwork/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/artwork/make-artwork.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/browservn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/browservn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/help/images/bnc.png" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/assets/help/images/bnc.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/help/images/member.png" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/assets/help/images/member.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/help/images/propbank.png" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/assets/help/images/propbank.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/help/images/roles.png" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/assets/help/images/roles.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/help/images/sqlunet.png" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/assets/help/images/sqlunet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/help/images/verbnet.png" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/assets/help/images/verbnet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/help/images/wordnet.png" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/assets/help/images/wordnet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/closed.png" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/assets/images/closed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/error.png" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/assets/images/error.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/open.png" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/assets/images/open.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/pointer.png" beforeDir="false" afterPath="$PROJECT_DIR$/browservn/src/main/assets/images/pointer.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/verbnet/restr.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/verbnet/semantics.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/verbnet/synsetspecific.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/verbnet/syntax.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/verbnet/vnframe.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/adjderived.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/also.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/antonym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/attribute.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/cause.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/derivation.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/domain.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/domain_category.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/domain_member.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/domain_member_category.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/domain_member_region.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/domain_member_term.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/domain_member_usage.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/domain_region.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/domain_term.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/domain_usage.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/entail.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/holonym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/hypernym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/hyponym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/instance_hypernym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/instance_hyponym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/member_holonym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/member_meronym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/meronym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/other.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/part_holonym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/part_meronym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/participle.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/pertainym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/similar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/substance_holonym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/substance_meronym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/synonym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/wordnet/verb_group.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/xnet/bnc.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/xnet/definition.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/xnet/domain.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/xnet/framenet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/xnet/item.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/xnet/member.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/xnet/members.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/xnet/pos.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/xnet/propbank.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/xnet/relation.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/xnet/role.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/xnet/roleclass.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/xnet/roles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/xnet/rolex.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/xnet/rolex2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/xnet/sample.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/xnet/sentence.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/xnet/synset.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/xnet/synsetmember.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/xnet/verbnet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browservn/src/main/assets/images/xnet/wordnet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/artwork/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/artwork/make-artwork.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/browserwn/browserwn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/browserwn/browserwn.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/web/WebFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/web/WebFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/browserfn/src/main/java/org/sqlunet/browser/web/WebFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/browserfn/src/main/java/org/sqlunet/browser/web/WebFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/artwork-assets/logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/common/artwork-assets/logo.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/artwork-assets/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/common/artwork-assets/make-artwork.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/artwork/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/common/artwork/make-artwork.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/common.iml" beforeDir="false" afterPath="$PROJECT_DIR$/common/common.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/help/images/bnc.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/assets/help/images/bnc.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/help/images/framenet.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/assets/help/images/framenet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/help/images/predicatematrix.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/assets/help/images/predicatematrix.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/help/images/propbank.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/assets/help/images/propbank.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/help/images/verbnet.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/assets/help/images/verbnet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/help/images/wordnet.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/assets/help/images/wordnet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/assets/images/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/verbnet/restr.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/verbnet/semantics.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/verbnet/synsetspecific.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/verbnet/syntax.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/verbnet/vnframe.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/adjderived.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/also.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/antonym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/attribute.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/cause.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/derivation.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/domain.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/domain_category.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/domain_member.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/domain_member_category.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/domain_member_region.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/domain_member_term.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/domain_member_usage.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/domain_region.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/domain_term.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/domain_usage.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/entail.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/holonym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/hypernym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/hyponym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/instance_hypernym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/instance_hyponym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/member_holonym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/member_meronym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/meronym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/other.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/part_holonym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/part_meronym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/participle.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/pertainym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/similar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/substance_holonym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/substance_meronym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/synonym.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/wordnet/verb_group.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/xnet/bnc.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/xnet/definition.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/xnet/domain.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/xnet/framenet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/xnet/item.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/xnet/member.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/xnet/members.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/xnet/pos.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/xnet/propbank.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/xnet/relation.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/xnet/role.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/xnet/roleclass.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/xnet/roles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/xnet/rolex.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/xnet/rolex2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/xnet/sample.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/xnet/sentence.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/xnet/synset.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/xnet/synsetmember.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/xnet/verbnet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/assets/images/xnet/wordnet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deploy/deploy.iml" beforeDir="false" afterPath="$PROJECT_DIR$/deploy/deploy.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/artwork/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/donate/artwork/make-artwork.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/donate/donate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/donate/donate.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/download/artwork/make-artwork-lib.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/download/artwork/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/download/artwork/make-artwork.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/download/download.iml" beforeDir="false" afterPath="$PROJECT_DIR$/download/download.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" beforeDir="false" afterPath="$PROJECT_DIR$/expandableListFragment/expandableListFragment.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameNet/artwork/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/artwork/make-artwork.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameNet/frameNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/frameNet.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameNet/src/main/assets/images/framenet/definition.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameNet/src/main/assets/images/framenet/frame.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameNet/src/main/assets/images/framenet/lexunit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameNet/src/main/assets/images/framenet/role.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameNet/src/main/assets/images/framenet/role2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameNet/src/main/assets/images/framenet/roles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frameNet/src/main/assets/images/framenet/sample.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/artwork-assets/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/artwork-assets/make-artwork.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/artwork/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/artwork/make-artwork.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/libwn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/libwn.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/help/images/bnc.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/images/bnc.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/help/images/framenet.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/images/framenet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/help/images/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/images/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/help/images/predicatematrix.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/images/predicatematrix.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/help/images/propbank.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/images/propbank.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/help/images/sqlunet.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/images/sqlunet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/help/images/verbnet.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/images/verbnet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/help/images/wordnet.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/help/images/wordnet.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/bnc/convtask.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/bnc/imaginf.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/bnc/spwr.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/closed.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/closed.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/error.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/error.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/open.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/open.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/pointer.png" beforeDir="false" afterPath="$PROJECT_DIR$/libwn/src/main/assets/images/pointer.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/bnc.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/definition.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/domain.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/framenet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/item.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/member.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/members.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/pos.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/propbank.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/relation.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/role.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/roleclass.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/roles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/rolex.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/rolex2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/sample.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/sentence.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/synset.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/synsetmember.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/verbnet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libwn/src/main/assets/images/xnet/wordnet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/make-artwork-all.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/make-artwork-lib.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/others/artwork/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/others/artwork/make-artwork.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/others/others.iml" beforeDir="false" afterPath="$PROJECT_DIR$/others/others.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/predicateMatrix/artwork/make-artwork.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" beforeDir="false" afterPath="$PROJECT_DIR$/predicateMatrix/predicateMatrix.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preference/preference.iml" beforeDir="false" afterPath="$PROJECT_DIR$/preference/preference.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/propbank/artwork/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/propbank/artwork/make-artwork.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/propbank/propbank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/propbank/propbank.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/propbank/src/main/assets/images/propbank/definition.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/propbank/src/main/assets/images/propbank/frame.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/propbank/src/main/assets/images/propbank/relation.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/propbank/src/main/assets/images/propbank/role.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/propbank/src/main/assets/images/propbank/roles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/propbank/src/main/assets/images/propbank/sample.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rate/rate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/rate/rate.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/test/test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treeView/artwork/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/artwork/make-artwork.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/treeView/treeView.iml" beforeDir="false" afterPath="$PROJECT_DIR$/treeView/treeView.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/verbNet/artwork/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/artwork/make-artwork.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/verbNet/src/main/assets/images/verbnet/definition.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/verbNet/src/main/assets/images/verbnet/item.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/verbNet/src/main/assets/images/verbnet/restr.png" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/src/main/assets/images/verbnet/restr.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/verbNet/src/main/assets/images/verbnet/role.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/verbNet/src/main/assets/images/verbnet/roles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/verbNet/src/main/assets/images/verbnet/sample.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/verbNet/src/main/assets/images/verbnet/semantics.png" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/src/main/assets/images/verbnet/semantics.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/verbNet/src/main/assets/images/verbnet/synsetspecific.png" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/src/main/assets/images/verbnet/synsetspecific.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/verbNet/src/main/assets/images/verbnet/syntax.png" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/src/main/assets/images/verbnet/syntax.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/verbNet/src/main/assets/images/verbnet/vnclass.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/verbNet/src/main/assets/images/verbnet/vnframe.png" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/src/main/assets/images/verbnet/vnframe.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/verbNet/src/main/resources/org/sqlunet/verbnet2html-ns.xsl" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/src/main/resources/org/sqlunet/verbnet2html-ns.xsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/verbNet/src/main/resources/org/sqlunet/verbnet2html.xsl" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/src/main/resources/org/sqlunet/verbnet2html.xsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/verbNet/verbNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/verbNet/verbNet.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/artwork-links/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/artwork-links/make-artwork.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/artwork/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/artwork/make-artwork.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/adjderived.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/adjderived.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/also.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/also.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/antonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/antonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/attribute.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/attribute.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/cause.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/cause.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/definition.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/derivation.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/derivation.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_category.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_category.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member_category.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member_category.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member_region.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member_region.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member_term.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member_term.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member_usage.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_member_usage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_region.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_region.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_term.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_term.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_usage.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/domain_usage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/entail.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/entail.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/hypernym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/hypernym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/hyponym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/hyponym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/instance_hypernym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/instance_hypernym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/instance_hyponym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/instance_hyponym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/lexdomain.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/links.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/links.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/member.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/member_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/member_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/member_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/member_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/other.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/other.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/part_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/part_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/part_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/part_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/participle.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/participle.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pertainym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pertainym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_a.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_a.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_n.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_n.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_r.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_r.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_s.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_s.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_v.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/pos_v.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/sample.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/similar.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/similar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/substance_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/substance_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/substance_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/substance_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/synonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/synonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/synset.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/verb_group.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/assets/images/wordnet/verb_group.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_adjderived.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_adjderived.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_also.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_also.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_antonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_antonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_attribute.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_attribute.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_cause.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_cause.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_derivation.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_derivation.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_category.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_category.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member_category.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member_category.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member_region.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member_region.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member_term.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member_term.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member_usage.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_member_usage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_region.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_region.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_term.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_term.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_usage.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_domain_usage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_entail.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_entail.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_hypernym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_hypernym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_hyponym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_hyponym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_instance_hypernym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_instance_hypernym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_instance_hyponym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_instance_hyponym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_links.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_links.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_member_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_member_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_member_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_member_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_other.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_other.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_part_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_part_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_part_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_part_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_participle.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_participle.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pertainym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pertainym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_a.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_a.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_n.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_n.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_r.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_r.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_s.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_s.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_v.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_pos_v.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_similar.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_similar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_substance_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_substance_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_substance_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_substance_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_synonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_synonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_verb_group.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-hdpi/ic_verb_group.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_adjderived.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_adjderived.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_also.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_also.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_antonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_antonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_attribute.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_attribute.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_cause.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_cause.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_derivation.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_derivation.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_category.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_category.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member_category.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member_category.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member_region.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member_region.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member_term.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member_term.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member_usage.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_member_usage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_region.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_region.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_term.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_term.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_usage.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_domain_usage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_entail.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_entail.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_hypernym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_hypernym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_hyponym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_hyponym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_instance_hypernym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_instance_hypernym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_instance_hyponym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_instance_hyponym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_links.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_links.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_member_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_member_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_member_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_member_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_other.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_other.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_part_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_part_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_part_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_part_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_participle.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_participle.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pertainym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pertainym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_a.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_a.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_n.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_n.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_r.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_r.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_s.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_s.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_v.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_pos_v.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_similar.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_similar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_substance_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_substance_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_substance_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_substance_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_synonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_synonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_verb_group.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-mdpi/ic_verb_group.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_adjderived.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_adjderived.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_also.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_also.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_antonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_antonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_attribute.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_attribute.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_cause.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_cause.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_derivation.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_derivation.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_category.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_category.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member_category.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member_category.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member_region.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member_region.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member_term.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member_term.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member_usage.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_member_usage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_region.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_region.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_term.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_term.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_usage.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_domain_usage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_entail.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_entail.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_hypernym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_hypernym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_hyponym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_hyponym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_instance_hypernym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_instance_hypernym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_instance_hyponym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_instance_hyponym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_links.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_links.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_member_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_member_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_member_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_member_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_other.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_other.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_part_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_part_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_part_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_part_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_participle.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_participle.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pertainym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pertainym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_a.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_a.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_n.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_n.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_r.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_r.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_s.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_s.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_v.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_pos_v.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_similar.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_similar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_substance_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_substance_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_substance_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_substance_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_synonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_synonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_verb_group.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xhdpi/ic_verb_group.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_adjderived.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_adjderived.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_also.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_also.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_antonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_antonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_attribute.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_attribute.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_cause.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_cause.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_derivation.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_derivation.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_category.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_category.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member_category.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member_category.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member_region.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member_region.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member_term.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member_term.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member_usage.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_member_usage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_region.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_region.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_term.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_term.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_usage.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_domain_usage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_entail.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_entail.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_hypernym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_hypernym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_hyponym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_hyponym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_instance_hypernym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_instance_hypernym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_instance_hyponym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_instance_hyponym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_links.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_links.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_member_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_member_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_member_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_member_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_other.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_other.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_part_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_part_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_part_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_part_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_participle.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_participle.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pertainym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pertainym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_a.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_a.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_n.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_n.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_r.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_r.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_s.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_s.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_v.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_pos_v.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_similar.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_similar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_substance_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_substance_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_substance_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_substance_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_synonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_synonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_verb_group.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxhdpi/ic_verb_group.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_adjderived.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_adjderived.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_also.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_also.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_antonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_antonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_attribute.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_attribute.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_cause.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_cause.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_derivation.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_derivation.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_category.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_category.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_category.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_category.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_region.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_region.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_term.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_term.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_usage.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_member_usage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_region.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_region.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_term.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_term.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_usage.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_domain_usage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_entail.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_entail.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_hypernym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_hypernym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_hyponym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_hyponym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_instance_hypernym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_instance_hypernym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_instance_hyponym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_instance_hyponym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_links.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_links.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_member_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_member_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_member_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_member_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_other.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_other.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_part_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_part_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_part_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_part_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_participle.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_participle.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pertainym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pertainym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_a.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_a.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_n.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_n.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_r.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_r.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_s.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_s.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_v.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_pos_v.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_similar.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_similar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_substance_holonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_substance_holonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_substance_meronym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_substance_meronym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_synonym.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_synonym.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_verb_group.png" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/src/main/res/drawable-xxxhdpi/ic_verb_group.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wordNet/wordNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/wordNet/wordNet.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/artwork/make-artwork.sh" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/artwork/make-artwork.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/artwork/role1.svg" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/artwork/role1.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/artwork/role2.svg" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/artwork/role2.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/assets/images/bnc.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/assets/images/definition.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/assets/images/domain.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/assets/images/framenet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/assets/images/item.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/assets/images/member.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/assets/images/members.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/assets/images/pos.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/assets/images/propbank.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/assets/images/relation.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/assets/images/role.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/assets/images/roleclass.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/assets/images/roles.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/assets/images/rolex.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/assets/images/rolex2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/assets/images/sample.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/assets/images/sentence.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/assets/images/synset.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/assets/images/synsetmember.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/assets/images/verbnet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/assets/images/wordnet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/res/drawable-hdpi/role1.png" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/res/drawable-hdpi/role1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/res/drawable-hdpi/role2.png" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/res/drawable-hdpi/role2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/res/drawable-mdpi/role1.png" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/res/drawable-mdpi/role1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/res/drawable-mdpi/role2.png" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/res/drawable-mdpi/role2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/res/drawable-xhdpi/role1.png" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/res/drawable-xhdpi/role1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/res/drawable-xhdpi/role2.png" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/res/drawable-xhdpi/role2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/res/drawable-xxhdpi/role1.png" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/res/drawable-xxhdpi/role1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/res/drawable-xxhdpi/role2.png" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/res/drawable-xxhdpi/role2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/res/drawable-xxxhdpi/role1.png" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/res/drawable-xxxhdpi/role1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/src/main/res/drawable-xxxhdpi/role2.png" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/src/main/res/drawable-xxxhdpi/role2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xNet/xNet.iml" beforeDir="false" afterPath="$PROJECT_DIR$/xNet/xNet.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FnLexUnit.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FnLexUnit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FnLexUnitQueryFromWordId.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FnLexUnitQueryFromWordId.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FrameNetImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FrameNetImplementation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/SqLiteDialect.java" beforeDir="false" afterPath="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/SqLiteDialect.java" afterDir="false" />
     </list>
     <list id="36f6b5c7-9521-46b4-bf4d-149db941bcca" name="NonPublic" comment="" />
     <ignored path="SqlUNet.iws" />
@@ -929,23 +204,16 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ChangesViewManager" show_ignored="true">
-    <option name="groupingKeys">
-      <option value="directory" />
-      <option value="module" />
-    </option>
-  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="testRunner" value="GRADLE" />
-    <option name="delegatedBuild" value="true" />
+    <option name="isMigrated" value="true" />
   </component>
   <component name="DependenciesAnalyzeManager">
     <option name="forwardDirection" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Samsung_S7_edge_API_25" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Samsung_S7_edge_API_28" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -975,7 +243,7 @@
     <favorites_list name="SqlUNet" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -989,11 +257,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>com.bbou.donate.DonateActivity</find>
-      <find>com.bbou.others.OtherActivity</find>
-      <find>android:layout_gravity=&quot;center_horizontal&quot;</find>
-      <find>FloatingAction</find>
-      <find>floa</find>
       <find>getTag</find>
       <find>sql</find>
       <find>getDrawa</find>
@@ -1019,6 +282,11 @@
       <find>tert</find>
       <find>secondaryForeColo</find>
       <find>AltF</find>
+      <find>fnlexunitquery</find>
+      <find>new FrameNetIm</find>
+      <find>wordId</find>
+      <find>mapPos</find>
+      <find>p.pos = ?</find>
     </findStrings>
     <replaceStrings>
       <replace>data -&gt; new FireEvent2(this.fragment).live(data)</replace>
@@ -1072,6 +340,7 @@
       <dir>$PROJECT_DIR$/browser/src/main/res</dir>
       <dir>$PROJECT_DIR$/common/src/main/res/layout</dir>
       <dir>$PROJECT_DIR$/others</dir>
+      <dir>$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql</dir>
     </dirStrings>
   </component>
   <component name="GenerateSignedApkSettings">
@@ -1103,35 +372,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/OnClickButtonListener.java" />
-        <option value="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/MainActivity.java" />
-        <option value="$PROJECT_DIR$/rate/build.gradle" />
-        <option value="$PROJECT_DIR$/rate/src/main/res/values-v21/themes.xml" />
-        <option value="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/DialogManager.java" />
-        <option value="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/Call.java" />
-        <option value="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/IntentHelper.java" />
-        <option value="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/Invoke.java" />
-        <option value="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/UriHelper.java" />
-        <option value="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/Utils.java" />
-        <option value="$PROJECT_DIR$/rate/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/browser/build.gradle" />
-        <option value="$PROJECT_DIR$/browserewn/build.gradle" />
-        <option value="$PROJECT_DIR$/browserfn/build.gradle" />
-        <option value="$PROJECT_DIR$/browservn/build.gradle" />
-        <option value="$PROJECT_DIR$/browserwn/build.gradle" />
-        <option value="$PROJECT_DIR$/common/build.gradle" />
-        <option value="$PROJECT_DIR$/common/src/main/res/menu/main.xml" />
-        <option value="$PROJECT_DIR$/rate/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MenuHandler.java" />
-        <option value="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/DialogOptions.java" />
-        <option value="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/PreferenceHelper.java" />
-        <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/EntryActivity.java" />
-        <option value="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/DialogBuilder.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AboutActivity.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MainActivity.java" />
         <option value="$PROJECT_DIR$/common/src/main/res/layout/toolbar.xml" />
         <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/BaseSearchFragment.java" />
-        <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/NavigationFragment.java" />
         <option value="$PROJECT_DIR$/common/src/main/res/values-v21/theme.xml" />
         <option value="$PROJECT_DIR$/common/src/main/res/values/theme.xml" />
         <option value="$PROJECT_DIR$/common/src/main/res/values/styles.xml" />
@@ -1154,6 +398,31 @@
         <option value="$PROJECT_DIR$/donate/src/main/java/com/bbou/donate/billing/Skus.java" />
         <option value="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/AppRate.java" />
         <option value="$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/StoreType.java" />
+        <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/NavigationFragment.java" />
+        <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SetupActivity.java" />
+        <option value="$PROJECT_DIR$/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/loaders/BaseModule.java" />
+        <option value="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/model/TreeNode.java" />
+        <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xn/HomeImageView.java" />
+        <option value="$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/DownloadFragment.java" />
+        <option value="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/provider/FrameNetProvider.java" />
+        <option value="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/style/FrameNetMarkupFactory.java" />
+        <option value="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/ScrollView2D.java" />
+        <option value="$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/provider/PropBankProvider.java" />
+        <option value="$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/provider/VerbNetProvider.java" />
+        <option value="$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/TreeView.java" />
+        <option value="$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/provider/WordNetProvider.java" />
+        <option value="$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SettingsActivity.java" />
+        <option value="$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/TaskObserver.java" />
+        <option value="$PROJECT_DIR$/browser/src/main/res/xml/pref_filter.xml" />
+        <option value="$PROJECT_DIR$/libwn/src/main/res/xml/pref_filter.xml" />
+        <option value="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FnLexUnitQueryFromFnWord.java" />
+        <option value="$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/web/WebFragment.java" />
+        <option value="$PROJECT_DIR$/browserfn/src/main/java/org/sqlunet/browser/web/WebFragment.java" />
+        <option value="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FrameNetImplementation.java" />
+        <option value="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FnLexUnit.java" />
+        <option value="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/SqLiteDialect.java" />
+        <option value="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FnLexUnitQueryFromWordId.java" />
+        <option value="$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FnLexUnitQueryFromFnWordId.java" />
       </list>
     </option>
   </component>
@@ -1179,10 +448,10 @@
     <scope name="Analyzed-others" pattern="file[others]:src/main//*||file[others]:build.gradle" />
     <scope name="Analyzed-rate" pattern="file[rate]:src/main//*||file[rate]:build.gradle" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="311" />
-    <option name="y" value="35" />
-    <option name="width" value="1229" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="163" />
+    <option name="y" value="27" />
+    <option name="width" value="1266" />
     <option name="height" value="1165" />
   </component>
   <component name="ProjectView">
@@ -1193,8 +462,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -1217,17 +486,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="SqlUNet" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1294,11 +553,11 @@
       <recent name="org.sqlunet.support" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.sqlunet.framenet.sql" />
       <recent name="org.sqlunet.browser" />
       <recent name="org.sqlunet.browser.selector" />
       <recent name="org.sqlunet.view" />
       <recent name="org.sqlunet.treeview.control" />
-      <recent name="org.sqlunet.model" />
     </key>
     <key name="android.template.parentActivityClass">
       <recent name="org.sqlunet.browser.MainActivity" />
@@ -1317,7 +576,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Android App.browservn">
+  <component name="RunManager" selected="Android App.browser">
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="INTERPRETER_PATH" value="/bin/bash" />
@@ -2011,27 +1270,6 @@
       <option name="presentableId" value="Default" />
       <updated>1487150992421</updated>
     </task>
-    <task id="LOCAL-00191" summary="unified link query">
-      <created>1558720752823</created>
-      <option name="number" value="00191" />
-      <option name="presentableId" value="LOCAL-00191" />
-      <option name="project" value="LOCAL" />
-      <updated>1558720752824</updated>
-    </task>
-    <task id="LOCAL-00192" summary="unified link query">
-      <created>1558768145492</created>
-      <option name="number" value="00192" />
-      <option name="presentableId" value="LOCAL-00192" />
-      <option name="project" value="LOCAL" />
-      <updated>1558768145493</updated>
-    </task>
-    <task id="LOCAL-00193" summary="lint">
-      <created>1558775258517</created>
-      <option name="number" value="00193" />
-      <option name="presentableId" value="LOCAL-00193" />
-      <option name="project" value="LOCAL" />
-      <updated>1558775258518</updated>
-    </task>
     <task id="LOCAL-00194" summary="dev2&#10;rework treeops">
       <created>1559030734731</created>
       <option name="number" value="00194" />
@@ -2354,7 +1592,28 @@
       <option name="project" value="LOCAL" />
       <updated>1566220755405</updated>
     </task>
-    <option name="localTasksCounter" value="240" />
+    <task id="LOCAL-00240" summary="image regen">
+      <created>1566381141252</created>
+      <option name="number" value="00240" />
+      <option name="presentableId" value="LOCAL-00240" />
+      <option name="project" value="LOCAL" />
+      <updated>1566381141252</updated>
+    </task>
+    <task id="LOCAL-00241" summary="image regen">
+      <created>1566381259584</created>
+      <option name="number" value="00241" />
+      <option name="presentableId" value="LOCAL-00241" />
+      <option name="project" value="LOCAL" />
+      <updated>1566381259584</updated>
+    </task>
+    <task id="LOCAL-00242" summary="lint">
+      <created>1566384225050</created>
+      <option name="number" value="00242" />
+      <option name="presentableId" value="LOCAL-00242" />
+      <option name="project" value="LOCAL" />
+      <updated>1566384225050</updated>
+    </task>
+    <option name="localTasksCounter" value="243" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2399,9 +1658,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="51" y="27" width="1869" height="1173" extended-state="6" />
+    <frame x="163" y="27" width="1266" height="1165" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8023599" visible="true" weight="0.12370005" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8023599" visible="true" weight="0.24183007" />
       <window_info id="Structure" order="1" sideWeight="0.19764012" side_tool="true" weight="0.2410208" />
       <window_info id="Captures" order="2" sideWeight="0.28243244" side_tool="true" weight="0.2979424" />
       <window_info id="Capture Tool" order="3" />
@@ -2412,22 +1671,22 @@
       <window_info id="Build Variants" order="8" sideWeight="0.27073553" side_tool="true" weight="0.18609743" />
       <window_info id="Resources Explorer" order="9" weight="0.32950193" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.35677966" weight="0.31034482" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.22661597" weight="0.2413793" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.40653062" weight="0.20295566" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.35677966" weight="0.3096647" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.22661597" weight="0.24063116" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.40653062" weight="0.26824456" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.30756578" weight="0.32681018" />
-      <window_info anchor="bottom" id="Android Profiler" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Android Profiler" order="7" />
       <window_info anchor="bottom" id="Logcat" order="8" sideWeight="0.4694915" side_tool="true" weight="0.33004925" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.56759715" side_tool="true" weight="0.1741683" />
       <window_info anchor="bottom" id="Build" order="10" sideWeight="0.53050846" weight="0.32681018" />
       <window_info anchor="bottom" id="Android Monitor" order="11" sideWeight="0.82428116" weight="0.39513677" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="12" sideWeight="0.3322449" visible="true" weight="0.3473581" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="12" sideWeight="0.3322449" visible="true" weight="0.3500986" />
       <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.3136289" weight="0.32315272" />
       <window_info active="true" anchor="bottom" id="Gradle Console" order="14" sideWeight="0.4729064" side_tool="true" visible="true" weight="0.3107843" />
       <window_info anchor="bottom" id="Messages" order="15" sideWeight="0.5270936" weight="0.3107843" />
-      <window_info anchor="bottom" id="Inspection Results" order="16" sideWeight="0.6962233" weight="0.4453202" />
+      <window_info anchor="bottom" id="Inspection Results" order="16" sideWeight="0.6962233" weight="0.44520548" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" sideWeight="0.49367088" weight="0.24830508" />
@@ -2551,14 +1810,12 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="requestFocus flag" />
     <MESSAGE value="initial requestFocus on root node" />
     <MESSAGE value="scrollTo + requestFocus to ensure visibility" />
     <MESSAGE value="scrollTo factored out&#10;alt layout in browse2" />
     <MESSAGE value="searchable" />
     <MESSAGE value="infer nullity" />
     <MESSAGE value="providers" />
-    <MESSAGE value="lint" />
     <MESSAGE value="raw queries" />
     <MESSAGE value="fix update bug" />
     <MESSAGE value="close providers on update" />
@@ -2576,87 +1833,30 @@
     <MESSAGE value="theming&#10;rating" />
     <MESSAGE value="lighter colors" />
     <MESSAGE value="logo_app" />
-    <option name="LAST_COMMIT_MESSAGE" value="logo_app" />
+    <MESSAGE value="image regen" />
+    <MESSAGE value="lint" />
+    <option name="LAST_COMMIT_MESSAGE" value="lint" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AbstractBrowseActivity.java</url>
-          <line>109</line>
+          <url>file://$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FrameNetImplementation.java</url>
+          <line>48</line>
           <properties />
-          <option name="timeStamp" value="222" />
+          <option name="timeStamp" value="254" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/FileDataDownloader.java</url>
-          <line>145</line>
+          <url>file://$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FrameNetImplementation.java</url>
+          <line>66</line>
           <properties />
-          <option name="timeStamp" value="223" />
+          <option name="timeStamp" value="255" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/UpdateFragment.java</url>
-          <line>110</line>
+          <url>file://$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FnLexUnit.java</url>
+          <line>141</line>
           <properties />
-          <option name="timeStamp" value="225" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/BaseDownloadFragment.java</url>
-          <line>301</line>
-          <properties />
-          <option name="timeStamp" value="226" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/BaseDownloadFragment.java</url>
-          <line>373</line>
-          <properties />
-          <option name="timeStamp" value="227" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/UpdateFragment.java</url>
-          <line>73</line>
-          <properties />
-          <option name="timeStamp" value="230" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file:///opt/androidstudio/sdk/sources/android-28/android/content/ContentResolver.java</url>
-          <line>1747</line>
-          <properties />
-          <option name="timeStamp" value="236" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/provider/BaseProvider.java</url>
-          <line>283</line>
-          <properties />
-          <option name="timeStamp" value="242" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/DiagnosticsActivity.java</url>
-          <properties />
-          <option name="timeStamp" value="243" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SettingsActivity.java</url>
-          <line>201</line>
-          <properties />
-          <option name="timeStamp" value="245" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/donate/src/test/java/org/sqlunet/donate/BillingUnitTest.java</url>
-          <line>50</line>
-          <properties />
-          <option name="timeStamp" value="246" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/donate/src/main/java/org/sqlunet/donate/billing/BillingManager.java</url>
-          <line>276</line>
-          <properties />
-          <option name="timeStamp" value="247" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/StoreType.java</url>
-          <line>22</line>
-          <properties />
-          <option name="timeStamp" value="252" />
+          <option name="timeStamp" value="256" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -2705,247 +1905,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/Invoke.java" />
-    <entry file="file://$PROJECT_DIR$/rate/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13">
-          <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/EntryActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-47">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/DialogBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="473">
-          <caret line="87" selection-start-line="87" selection-end-line="87" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/androidstudio/sdk/sources/android-28/android/content/pm/ActivityInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2223">
-          <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/androidstudio/sdk/sources/android-28/android/os/Looper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="195" selection-start-line="195" selection-end-line="195" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/androidstudio/sdk/sources/android-28/android/content/pm/PackageInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="155" column="26" selection-start-line="155" selection-start-column="26" selection-end-line="155" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/androidstudio/sdk/sources/android-28/android/content/pm/PackageManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="4094" column="38" selection-start-line="4094" selection-start-column="38" selection-end-line="4094" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/DialogOptions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13">
-          <caret line="32" column="36" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#779#802#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rate/src/main/java/com/bbou/rate/PreferenceHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="18" column="53" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3101#3102#0" expanded="true" />
-            <element signature="e#3178#3179#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/AboutActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browservn/src/main/res/layout/activity_browse.xml">
-      <provider editor-type-id="text-editor" />
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/SearchTextFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="49" column="20" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/BrowseFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="55">
-          <caret line="65" column="54" selection-start-line="65" selection-start-column="36" selection-end-line="65" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/Browse2Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/BaseBrowse2Fragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/ActionBarSetter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/res/layout/toolbar.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/captures/org.sqlunet.browser.ewn_2019.08.19_07.52.li">
-      <provider selected="true" editor-type-id="capture-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/BaseSearchFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1677">
-          <caret line="162" column="16" lean-forward="true" selection-start-line="162" selection-start-column="16" selection-end-line="162" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/NavigationFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browserfn/src/main/res/values/theme.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browservn/src/main/res/values/styles-app.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="32" column="60" lean-forward="true" selection-start-line="32" selection-start-column="60" selection-end-line="32" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libwn/src/main/res/values/theme.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="9" column="12" selection-start-line="1" selection-end-line="9" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/res/values-v21/theme.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/preference/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="7" column="38" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/res/values/theme.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xn/SetupSqlFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="126" column="65" selection-start-line="126" selection-start-column="65" selection-end-line="126" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SetupSqlFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="297" column="68" selection-start-line="297" selection-start-column="68" selection-end-line="297" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xn/SetupStatusFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="536">
-          <caret line="225" column="65" lean-forward="true" selection-start-line="225" selection-start-column="65" selection-end-line="225" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browserfn/src/main/java/org/sqlunet/browser/fn/SetupStatusFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="126" column="54" lean-forward="true" selection-start-line="126" selection-start-column="54" selection-end-line="126" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/browservn/src/main/java/org/sqlunet/browser/vn/SetupStatusFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="140" column="54" lean-forward="true" selection-start-line="140" selection-start-column="54" selection-end-line="140" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SetupStatusFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="198" column="70" selection-start-line="198" selection-start-column="70" selection-end-line="198" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/libwn/src/main/java/org/sqlunet/browser/wn/SetupStatusFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
@@ -2961,12 +1920,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/common/src/main/res/layout/spinner_item_task.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/browser/src/main/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -3055,13 +2014,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="613">
           <caret line="65" column="26" selection-start-line="65" selection-start-column="26" selection-end-line="65" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1194#1195#0" expanded="true" />
-            <element signature="e#1223#1224#0" expanded="true" />
-            <element signature="e#1294#1295#0" expanded="true" />
-            <element signature="e#1330#1331#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3074,6 +2026,283 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/browser/src/main/res/drawable-hdpi/ic_logo.png">
       <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/NavigationFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="123" column="20" selection-start-line="123" selection-start-column="20" selection-end-line="123" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SetupActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="143" column="25" selection-start-line="143" selection-start-column="25" selection-end-line="143" selection-end-column="25" />
+          <folding>
+            <element signature="e#5071#5072#0" expanded="true" />
+            <element signature="e#5111#5112#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/sql/VerbNetImplementation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/sql/PropBankImplementation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/predicateMatrix/src/main/java/org/sqlunet/predicatematrix/loaders/BaseModule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="758" column="36" selection-start-line="758" selection-start-column="36" selection-end-line="758" selection-end-column="36" />
+          <folding>
+            <element signature="e#14821#14871#0" expanded="true" />
+            <element signature="e#15005#15055#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/model/TreeNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="415" column="19" selection-start-line="415" selection-start-column="19" selection-end-line="415" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/xn/HomeImageView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-790">
+          <caret line="41" column="9" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
+          <folding>
+            <element signature="e#934#970#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/DownloadFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="307" column="55" selection-start-line="307" selection-start-column="55" selection-end-line="307" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/provider/FrameNetProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="521" column="16" selection-start-line="521" selection-start-column="16" selection-end-line="521" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/style/FrameNetMarkupFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-296">
+          <caret line="133" column="18" selection-start-line="133" selection-start-column="18" selection-end-line="133" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/ScrollView2D.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="409" column="19" selection-start-line="409" selection-start-column="19" selection-end-line="409" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/propbank/src/main/java/org/sqlunet/propbank/provider/PropBankProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="160" column="131" selection-start-line="160" selection-start-column="131" selection-end-line="160" selection-end-column="131" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/verbNet/src/main/java/org/sqlunet/verbnet/provider/VerbNetProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="155" column="131" selection-start-line="155" selection-start-column="131" selection-end-line="155" selection-end-column="131" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/treeView/src/main/java/org/sqlunet/treeview/view/TreeView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="730" column="29" lean-forward="true" selection-start-line="730" selection-start-column="29" selection-end-line="730" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wordNet/src/main/java/org/sqlunet/wordnet/provider/WordNetProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="333" column="16" selection-start-line="333" selection-start-column="16" selection-end-line="333" selection-end-column="16" />
+          <folding>
+            <element signature="e#11854#11900#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/config/SettingsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="52" column="13" selection-start-line="52" selection-start-column="13" selection-end-line="52" selection-end-column="13" />
+          <folding>
+            <element signature="e#7462#7498#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/download/src/main/java/org/sqlunet/download/TaskObserver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+          <folding>
+            <element signature="e#6438#6476#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/res/xml/pref_filter.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="35" column="33" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="33" />
+          <folding>
+            <element signature="e#1316#1357#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libwn/src/main/res/xml/pref_filter.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FnSentenceQueryFromLexUnitId.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="15" column="6" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FnLexUnitQueryFromFrameId.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="15" column="6" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/org/sqlunet/browser/web/WebModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="43" column="29" selection-start-line="43" selection-start-column="23" selection-end-line="43" selection-end-column="29" />
+          <folding>
+            <element signature="e#857#858#0" expanded="true" />
+            <element signature="e#890#891#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FnNodeFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="65" selection-start-line="65" selection-end-line="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FnLexUnitQueryFromWord.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FrameNetInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="29" column="29" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FnLexUnit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="258" column="7" lean-forward="true" selection-start-line="258" selection-start-column="7" selection-end-line="258" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xNet/src/main/java/org/sqlunet/sql/DBQuery.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="910">
+          <caret line="86" column="18" lean-forward="true" selection-start-line="86" selection-start-column="18" selection-end-line="86" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FrameNetImplementation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="344" column="148" selection-start-line="344" selection-start-column="134" selection-end-line="344" selection-end-column="148" />
+          <folding>
+            <element signature="e#757#758#0" expanded="true" />
+            <element signature="e#802#803#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browser/src/main/java/org/sqlunet/browser/web/WebFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="212" column="61" selection-start-line="212" selection-start-column="39" selection-end-line="212" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/browserfn/src/main/java/org/sqlunet/browser/web/WebFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="194" column="57" selection-start-line="194" selection-start-column="57" selection-end-line="194" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FnLexUnitQueryFromFnWord.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1149">
+          <caret line="11" column="35" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/SqLiteDialect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="78" column="51" selection-start-line="78" selection-start-column="42" selection-end-line="78" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FnLexUnitQueryFromWordId.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="40" column="75" selection-start-line="40" selection-start-column="75" selection-end-line="40" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frameNet/src/main/java/org/sqlunet/framenet/sql/FnLexUnitQueryFromFnWordId.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="32" column="35" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">
@@ -3104,7 +2333,7 @@
       </state>
       <state key="ScopeChooserConfigurable.UI">
         <settings>
-          <last-edited>Analyzed-rate</last-edited>
+          <last-edited>Analyzed-all</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

@@ -176,7 +176,7 @@ public class WebFragment extends Fragment
 					// this is a selector query
 					if (Settings.Source.FRAMENET.test(sources))
 					{
-						fnDomDoc = new FrameNetImplementation().querySelectorDoc(db, data, null);
+						fnDomDoc = new FrameNetImplementation(true).querySelectorDoc(db, data, null);
 					}
 				}
 				else
@@ -192,7 +192,7 @@ public class WebFragment extends Fragment
 									final Pointer xPointer = (Pointer) this.pointer;
 									final long id = xPointer.getId();
 									final boolean isFrame = xPointer instanceof FnFramePointer;
-									fnDomDoc = isFrame ? new FrameNetImplementation().queryFrameDoc(db, id, null) : new FrameNetImplementation().queryLexUnitDoc(db, id);
+									fnDomDoc = isFrame ? new FrameNetImplementation(true).queryFrameDoc(db, id, null) : new FrameNetImplementation(true).queryLexUnitDoc(db, id);
 								}
 							}
 							break;
@@ -202,7 +202,7 @@ public class WebFragment extends Fragment
 							Log.d(WebFragment.TAG, "ARG_POSITION fnlexunit=" + lexunitPointer);
 							if (lexunitPointer != null && Settings.Source.FRAMENET.test(this.sources))
 							{
-								fnDomDoc = new FrameNetImplementation().queryLexUnitDoc(db, lexunitPointer.getId());
+								fnDomDoc = new FrameNetImplementation(true).queryLexUnitDoc(db, lexunitPointer.getId());
 							}
 							break;
 
@@ -211,7 +211,7 @@ public class WebFragment extends Fragment
 							Log.d(WebFragment.TAG, "ARG_POSITION fnframe=" + framePointer);
 							if (framePointer != null && Settings.Source.FRAMENET.test(this.sources))
 							{
-								fnDomDoc = new FrameNetImplementation().queryFrameDoc(db, framePointer.getId(), null);
+								fnDomDoc = new FrameNetImplementation(true).queryFrameDoc(db, framePointer.getId(), null);
 							}
 							break;
 
@@ -220,7 +220,7 @@ public class WebFragment extends Fragment
 							Log.d(WebFragment.TAG, "ARG_POSITION fnsentence=" + sentencePointer);
 							if (sentencePointer != null && Settings.Source.FRAMENET.test(this.sources))
 							{
-								fnDomDoc = new FrameNetImplementation().querySentenceDoc(db, sentencePointer.getId());
+								fnDomDoc = new FrameNetImplementation(true).querySentenceDoc(db, sentencePointer.getId());
 							}
 							break;
 
@@ -229,7 +229,7 @@ public class WebFragment extends Fragment
 							Log.d(WebFragment.TAG, "ARG_POSITION fnannoset=" + annoSetPointer);
 							if (annoSetPointer != null && Settings.Source.FRAMENET.test(this.sources))
 							{
-								fnDomDoc = new FrameNetImplementation().queryAnnoSetDoc(db, annoSetPointer.getId());
+								fnDomDoc = new FrameNetImplementation(true).queryAnnoSetDoc(db, annoSetPointer.getId());
 							}
 							break;
 					}

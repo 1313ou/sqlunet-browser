@@ -26,13 +26,20 @@ public class FrameNetImplementation implements FrameNetInterface
 {
 	static public final String FN_NS = "http://org.sqlunet/fn";
 
+	private final boolean queryFromFnWord;
+
+	public FrameNetImplementation(final boolean queryFromFnWord)
+	{
+		this.queryFromFnWord = queryFromFnWord;
+	}
+
 	// S E L E C T O R
 
 	/**
 	 * Business method that returns FrameNet selector data as DOM document
 	 *
 	 * @param connection connection
-	 * @param word       the target word
+	 * @param word       the target (fn) word
 	 * @param pos        the pos to build query from
 	 * @return FrameNet selector data as DOM document
 	 */
@@ -41,7 +48,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	{
 		final Document doc = DomFactory.makeDocument();
 		final Node rootNode = FnNodeFactory.makeFnRootNode(doc, word, pos);
-		FrameNetImplementation.walkSelector(connection, doc, rootNode, word);
+		walkSelector(connection, doc, rootNode, word);
 		return doc;
 	}
 
@@ -49,7 +56,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * Business method that returns FrameNet selector data as XML
 	 *
 	 * @param connection connection
-	 * @param word       the target word
+	 * @param word       the target (fn) word
 	 * @param pos        the pos to build query from
 	 * @return FrameNet selector data as XML
 	 */
@@ -67,7 +74,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * Business method that returns FrameNet data as DOM document
 	 *
 	 * @param connection connection
-	 * @param word       the target word
+	 * @param word       the target (fn) word
 	 * @param pos        the pos to build query from
 	 * @return FrameNet data as DOM document
 	 */
@@ -77,7 +84,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	{
 		final Document doc = DomFactory.makeDocument();
 		final Node rootNode = FnNodeFactory.makeFnRootNode(doc, word, pos);
-		FrameNetImplementation.walk(connection, doc, rootNode, word);
+		walk(connection, doc, rootNode, word);
 		return doc;
 	}
 
@@ -85,7 +92,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * Business method that returns FrameNet data as XML
 	 *
 	 * @param connection connection
-	 * @param word       the target word
+	 * @param word       the target (fn) word
 	 * @param pos        the pos to build query from
 	 * @return FrameNet data as XML
 	 */
@@ -105,7 +112,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * Business method that returns FrameNet data as DOM document
 	 *
 	 * @param connection connection
-	 * @param wordId     the word id to build query from
+	 * @param wordId     the target (fn) word id to build query from
 	 * @param pos        the pos to build query from
 	 * @return FrameNet data as DOM document
 	 */
@@ -114,7 +121,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	{
 		final Document doc = DomFactory.makeDocument();
 		final Node rootNode = FnNodeFactory.makeFnRootNode(doc, wordId, pos);
-		FrameNetImplementation.walkWord(connection, doc, rootNode, wordId, pos);
+		walkWord(connection, doc, rootNode, wordId, pos);
 		return doc;
 	}
 
@@ -122,7 +129,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * Business method that returns FrameNet data as XML
 	 *
 	 * @param connection connection
-	 * @param wordId     the target word id
+	 * @param wordId     the target (fn) word id
 	 * @param pos        the pos to build query from
 	 * @return FrameNet data as XML
 	 */
@@ -274,11 +281,11 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param connection connection
 	 * @param doc        the org.w3c.dom.Document being built
 	 * @param parent     the org.w3c.dom.Node the walk will attach results to
-	 * @param targetWord the target word
+	 * @param targetWord the target (fn) word
 	 */
-	static private void walkSelector(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final String targetWord)
+	private void walkSelector(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final String targetWord)
 	{
-		final Pair<Long, List<FnLexUnit>> result = FnLexUnit.makeFromWord(connection, targetWord);
+		final Pair<Long, List<FnLexUnit>> result = this.queryFromFnWord ? FnLexUnit.makeFromFnWord(connection, targetWord) : FnLexUnit.makeFromWord(connection, targetWord);
 		final List<FnLexUnit> lexUnits = result.second;
 		if (lexUnits == null)
 		{
@@ -295,11 +302,11 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param connection connection
 	 * @param doc        the org.w3c.dom.Document being built
 	 * @param parent     the org.w3c.dom.Node the walk will attach results to
-	 * @param targetWord the target word
+	 * @param targetWord the target (fn) word
 	 */
-	static private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final String targetWord)
+	private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final String targetWord)
 	{
-		final Pair<Long, List<FnLexUnit>> result = FnLexUnit.makeFromWord(connection, targetWord);
+		final Pair<Long, List<FnLexUnit>> result = this.queryFromFnWord ? FnLexUnit.makeFromFnWord(connection, targetWord) : FnLexUnit.makeFromWord(connection, targetWord);
 		final Long wordId = result.first;
 		final List<FnLexUnit> lexUnits = result.second;
 		if (lexUnits == null)
@@ -324,18 +331,18 @@ public class FrameNetImplementation implements FrameNetInterface
 	}
 
 	/**
-	 * Perform queries for FrameNet data from word id
+	 * Perform queries for FrameNet data from (fn) word id
 	 *
 	 * @param connection   data source
 	 * @param doc          the org.w3c.dom.Document being built
 	 * @param parent       the org.w3c.dom.Node the walk will attach results to
-	 * @param targetWordId the target word id
+	 * @param targetWordId the target (fn) word id
 	 * @param pos          the target pos
 	 */
-	static private void walkWord(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long targetWordId, final Character pos)
+	private void walkWord(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long targetWordId, final Character pos)
 	{
 		// lexunits
-		final List<FnLexUnit> lexUnits = FnLexUnit.makeFromWordId(connection, targetWordId, pos);
+		final List<FnLexUnit> lexUnits = this.queryFromFnWord ? FnLexUnit.makeFromFnWordId(connection, targetWordId, pos) : FnLexUnit.makeFromWordId(connection, targetWordId, pos);
 		for (final FnLexUnit lexUnit : lexUnits)
 		{
 			// frame
