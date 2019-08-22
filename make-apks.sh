@@ -12,10 +12,7 @@ case "$1" in
 esac
 
 if ./gradlew assemble; then
-	dir=dist/releases
-	pushd $dir > /dev/null
 	./apk-version.sh
-	popd > /dev/null
 else
 	echo "failed"
 fi
