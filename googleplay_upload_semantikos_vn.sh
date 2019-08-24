@@ -2,7 +2,7 @@
 
 RELEASE_NAME="$1"
 if [ -z "${RELEASE_NAME}" ]; then
-	RELEASE_NAME="xxx"
+	RELEASE_NAME="Anew"
 	echo "Version name ${RELEASE_NAME}"
 fi
 RECENT_CHANGES="$2"
@@ -13,10 +13,9 @@ DIR=dist/releases
 PACKAGE=org.sqlunet.browser.vn
 APK=browservn
 
-python my_upload_apks.py \
+python googleplay_upload_apks.py \
 	${PACKAGE} \
 	"${RELEASE_NAME}" \
 	"${RECENT_CHANGES}" \
 	${DIR}/${APK}-release.apk \
-
 
