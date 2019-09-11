@@ -21,20 +21,43 @@ import sys
 from apiclient import sample_tools
 from oauth2client import client
 
-TRACK = 'alpha'  # Can be 'alpha', beta', 'production' or 'rollout'
+TRACK=u'alpha'
+VERSION_NAME=u'Anew'
 RECENT_CHANGES=u'Fixes and enhancements'
 
 # Declare command-line flags.
 argparser = argparse.ArgumentParser(add_help=False)
 argparser.add_argument('package_name',
                        help='The package name.')
+argparser.add_argument('track',
+                       default=TRACK,
+                       help='The track to move to. Can be alpha, beta, production or rollout')
 argparser.add_argument('release_name',
+                       default=VERSION_NAME,
                        help='The release name.')
-argparser.add_argument('recent_changes',
+argparser.add_argument('recent_changes', 
+                       default=RECENT_CHANGES,
                        help='The recent changes.')
-argparser.add_argument('apk_files',
+argparser.add_argument('version_codes',
                        nargs='*',
-                       help='The path to the APK files to upload.')
+                       help='The version codes of the APK files to move to the track.')
+
+def test(argv):
+    # Authenticate and construct service.
+    flags = argparser.parse_args()
+
+    # Process flags and read their values.
+    package_name = flags.package_name
+    release_name = flags.release_name
+    recent_changes=flags.recent_changes
+    track = flags.track
+    version_codes = flags.version_codes
+
+    print 'PACKAGE        %s' % package_name
+    print 'RELEASE NAME   %s' % release_name
+    print 'RECENT CHANGES %s' % recent_changes
+    print 'TRACK          %s' % track
+    print 'CODES          %s' % version_codes
 
 def main(argv):
     # Authenticate and construct service.
@@ -48,49 +71,41 @@ def main(argv):
 
     # Process flags and read their values.
     package_name = flags.package_name
-    apk_files = flags.apk_files
     release_name=flags.release_name
     recent_changes=flags.recent_changes
+    track = flags.track
+    version_codes = flags.version_codes
+    print 'PACKAGE %s' % package_name
 
     try:
+        # get edit id
         edit_request = service.edits().insert(body={}, packageName=package_name)
         result = edit_request.execute()
         edit_id = result['id']
-    
-        versionCodes=[]
-        for apk_file in apk_files:
-            print 'Uploading %s' % apk_file
-            apk_response = service.edits().apks().upload(
-                editId=edit_id,
-                packageName=package_name,
-                media_body=apk_file).execute()
-            versionCodes.append(apk_response['versionCode'])
-            print 'Version code %d has been uploaded' % apk_response['versionCode']
-    
+        
+        # update tracks
         track_response = service.edits().tracks().update(
             editId=edit_id,
-            track=TRACK,
             packageName=package_name,
+            track=track,
             body={u'releases': [{
                 u'name': release_name,
-                u'versionCodes': versionCodes,
+                u'versionCodes': version_codes,
                 u'releaseNotes': [
-                #    {u'recentChanges': recent_changes},
+                    {u'language': 'en-US', u'text': recent_changes},
+                    {u'language': 'en-GB', u'text': recent_changes},
                 ],
                 u'status': u'completed',
-            }]}).execute()
-    
+            }]}).execute()    
         print 'Track %s is set with releases: %s' % (
             track_response['track'], str(track_response['releases']))
     
         commit_request = service.edits().commit(
             editId=edit_id, packageName=package_name).execute()
-    
         print 'Edit "%s" has been committed' % (commit_request['id'])
 
     except client.AccessTokenRefreshError:
-        print ('The credentials have been revoked or expired, please re-run the '
-           'application to re-authorize')
+        print ('The credentials have been revoked or expired, please re-run the application to re-authorize')
     
 if __name__ == '__main__':
     main(sys.argv)
