@@ -6,6 +6,4 @@
     <string name="rate_dialog_ok">Rate it now</string>
     <string name="rate_dialog_cancel">Remind me later</string>
     <string name="rate_dialog_no">No, thanks</string>
-    <string name="rate_dialog_later">Later</string>
-    <string name="rate_dialog_never">Never</string>
 </resources>

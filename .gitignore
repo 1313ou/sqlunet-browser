@@ -1,5 +1,5 @@
 /build
-/.idea/caches
+/.idea
 /.gradle
 /gradle
 /gradlew*
@@ -24,3 +24,4 @@
 **/androidpublisher.dat
 **/client_secrets.json
 
+**.iml

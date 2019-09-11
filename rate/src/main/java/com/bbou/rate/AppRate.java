@@ -222,9 +222,8 @@ public final class AppRate
 		return this;
 	}
 
-	@SuppressWarnings("WeakerAccess")
 	@NonNull
-	public AppRate setStoreType(final StoreType appstore)
+	private AppRate setStoreType(@SuppressWarnings("SameParameterValue") final StoreType appstore)
 	{
 		options.setStoreType(appstore);
 		return this;
