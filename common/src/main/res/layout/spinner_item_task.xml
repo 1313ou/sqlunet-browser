@@ -15,7 +15,7 @@
           android:drawableBottom="?android:attr/listDivider"
           android:ellipsize="marquee"
           android:gravity="center"
-          android:textColor="@color/primaryForeColor"
+          android:textColor="@color/tertiaryForeColor"
           android:textIsSelectable="false"
           android:singleLine="true"/>
 

@@ -50,6 +50,7 @@
 	<color name="secondaryDarkColor">@color/dark_pink_color</color>
 	<color name="primaryForeColor">@android:color/white</color>
 	<color name="secondaryForeColor">@color/middle_gray_color</color>
+	<color name="tertiaryForeColor">@android:color/white</color>
 
 	<!-- D E R I V E D -->
 

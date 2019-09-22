@@ -2,7 +2,7 @@
  * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
-package org.sqlunet.browser;
+package org.sqlunet.browser.config;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -25,7 +25,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
-public abstract class AppCompatCommonPreferenceActivity extends AppCompatActivity implements PreferenceFragmentCompat.OnPreferenceStartFragmentCallback
+public abstract class BaseSettingsActivity extends AppCompatActivity implements PreferenceFragmentCompat.OnPreferenceStartFragmentCallback
 {
 	private static final String TITLE_TAG = "settingsActivityTitle";
 
@@ -132,12 +132,6 @@ public abstract class AppCompatCommonPreferenceActivity extends AppCompatActivit
 			return true;
 		}
 		return super.onSupportNavigateUp();
-	}
-
-	@Override
-	protected void onTitleChanged(final CharSequence title, final int color)
-	{
-		super.onTitleChanged(title, color);
 	}
 
 	// U T I L S
