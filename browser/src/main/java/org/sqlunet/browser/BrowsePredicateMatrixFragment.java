@@ -68,7 +68,6 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		this.colorId = R.color.predicatematrix_actionbar_color;
 		this.spinnerLabels = R.array.predicatematrix_modes;
 		this.spinnerIcons = R.array.predicatematrix_icons;
-		this.titleId = R.string.title_predicatematrix_section;
 	}
 
 	// R E S T O R E

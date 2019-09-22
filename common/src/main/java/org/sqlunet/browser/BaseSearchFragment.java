@@ -161,7 +161,6 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 		Log.d(BaseSearchFragment.TAG, "set up specific action bar " + this);
 
 		// title
-		actionBar.setTitle(this.titleId);
 		actionBar.setSubtitle(R.string.app_subname);
 
 		// background

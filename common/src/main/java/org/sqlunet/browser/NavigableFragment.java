@@ -22,25 +22,10 @@ import androidx.fragment.app.Fragment;
 
 abstract public class NavigableFragment extends Fragment implements ActionBarSetter
 {
-	// static private final String TAG = "NavigableF";
-
-	protected int titleId;
-
-	@SuppressWarnings("WeakerAccess")
-	@Override
-	public void onCreate(@Nullable Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-
-		// retain instance
-		setRetainInstance(true);
-	}
-
 	@SuppressWarnings("SameReturnValue")
 	@Override
 	public boolean setActionBar(@NonNull final ActionBar actionBar, final Context context)
 	{
-		actionBar.setTitle(this.titleId);
 		actionBar.setSubtitle(R.string.app_subname);
 		return false;
 	}

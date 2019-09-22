@@ -26,7 +26,6 @@ public class AboutFragment extends NavigableFragment
 	 */
 	public AboutFragment()
 	{
-		this.titleId = R.string.title_about_section;
 	}
 
 	@Override

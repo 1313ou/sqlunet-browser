@@ -3,61 +3,27 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/drawer_layout"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	android:fitsSystemWindows="true"
+	tools:openDrawer="start">
 
-	<com.google.android.material.appbar.AppBarLayout
+	<include
+		layout="@layout/main"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="match_parent" />
 
-		<include layout="@layout/toolbar"/>
-
-	</com.google.android.material.appbar.AppBarLayout>
-
-	<!-- A DrawerLayout is intended to be used as the top-level content view using match_parent for both width and height to consume the full space available. -->
-	<androidx.drawerlayout.widget.DrawerLayout
-		android:id="@+id/drawer_layout"
-		android:layout_width="match_parent"
+	<com.google.android.material.navigation.NavigationView
+		android:id="@+id/nav_view"
+		android:layout_width="wrap_content"
 		android:layout_height="match_parent"
-		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+		android:layout_gravity="start"
+		android:fitsSystemWindows="true"
+		app:headerLayout="@layout/nav_header_main"
+		app:menu="@menu/main_drawer" />
 
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:orientation="vertical">
-
-			<!-- As the browse content view, the view below consumes the entire space available using match_parent in both dimensions. -->
-			<FrameLayout
-				android:id="@+id/container_content"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent">
-
-				<!--
-				<ImageView
-					android:id="@+id/splash"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center"
-					android:contentDescription="@string/app_name"
-					android:src="@drawable/ic_splash"/>
-				-->
-			</FrameLayout>
-		</LinearLayout>
-
-		<!-- The drawer is given a fixed width in dp and extends the full height of the container. -->
-		<fragment
-			android:id="@+id/navigation_drawer"
-			android:name="org.sqlunet.browser.NavigationFragment"
-			class="org.sqlunet.browser.NavigationFragment"
-			android:layout_width="@dimen/navigation_drawer_width"
-			android:layout_height="match_parent"
-			android:layout_gravity="start"
-			tools:layout="@layout/drawer_main"/>
-
-	</androidx.drawerlayout.widget.DrawerLayout>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -40,7 +40,6 @@ public class StorageFragment extends NavigableFragment
 	 */
 	public StorageFragment()
 	{
-		this.titleId = R.string.title_storage_section;
 	}
 
 	@Override

@@ -26,7 +26,6 @@ public class HomeFragment extends NavigableFragment
 	 */
 	public HomeFragment()
 	{
-		this.titleId = R.string.title_home_section;
 	}
 
 	@Nullable
