@@ -43,7 +43,6 @@ public class SearchTextFragment extends BaseSearchFragment
 		this.colorId = R.color.searchtext_actionbar_color;
 		this.spinnerLabels = R.array.searchtext_modes;
 		this.spinnerIcons = R.array.searchtext_icons;
-		this.titleId = R.string.title_searchtext_section;
 	}
 
 	@Override

@@ -61,7 +61,6 @@ public class BrowseFragment extends BaseSearchFragment
 		this.colorId = R.color.browse_actionbar_color;
 		this.spinnerLabels = R.array.selectors_names;
 		this.spinnerIcons = R.array.selectors_icons;
-		this.titleId = R.string.title_browse_section;
 	}
 
 	@Override

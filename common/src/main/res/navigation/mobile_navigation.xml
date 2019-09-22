@@ -12,47 +12,47 @@
 	<fragment
 		android:id="@+id/nav_home"
 		android:name="org.sqlunet.browser.HomeFragment"
-		android:label="@string/menu_home"
+		android:label="@string/nav_home"
 		tools:layout="@layout/fragment_home" />
 
 	<fragment
 		android:id="@+id/nav_status"
 		android:name="org.sqlunet.browser.StatusFragment"
-		android:label="@string/menu_status"
+		android:label="@string/nav_status"
 		tools:layout="@layout/fragment_status" />
 
 	<activity
 		android:id="@+id/nav_setup"
 		android:name="org.sqlunet.browser.config.SetupActivity"
-		android:label="@string/menu_setup" />
+		android:label="@string/nav_setup" />
 
 	<fragment
 		android:id="@+id/nav_storage"
 		android:name="org.sqlunet.browser.config.StorageFragment"
-		android:label="@string/menu_storage"
+		android:label="@string/nav_storage"
 		tools:layout="@layout/fragment_storage" />
 
 	<activity
 		android:id="@+id/nav_settings"
 		android:name="org.sqlunet.browser.config.SettingsActivity"
-		android:label="@string/menu_settings" />
+		android:label="@string/nav_settings" />
 
 	<fragment
 		android:id="@+id/nav_sql"
 		android:name="org.sqlunet.browser.SqlFragment"
-		android:label="@string/menu_sql"
+		android:label="@string/nav_sql"
 		tools:layout="@layout/fragment_sql" />
 
 	<fragment
 		android:id="@+id/nav_help"
 		android:name="org.sqlunet.browser.HelpFragment"
-		android:label="@string/menu_sql"
+		android:label="@string/nav_help"
 		tools:layout="@layout/fragment_help" />
 
 	<fragment
 		android:id="@+id/nav_about"
 		android:name="org.sqlunet.browser.AboutFragment"
-		android:label="@string/menu_about"
+		android:label="@string/nav_about"
 		tools:layout="@layout/fragment_about" />
 
 </navigation>

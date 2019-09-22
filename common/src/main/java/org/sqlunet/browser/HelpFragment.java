@@ -41,7 +41,6 @@ public class HelpFragment extends NavigableFragment
 	 */
 	public HelpFragment()
 	{
-		this.titleId = R.string.title_help_section;
 	}
 
 	@Override
