@@ -24,7 +24,6 @@
 	<string name="action_status">Status</string>
 	<string name="action_refresh">Refresh</string>
 	<string name="action_update">Update database</string>
-	<string name="action_clear_settings">Clear settings</string>
 	<string name="action_diagnostics">Diagnostics</string>
 
 	<!-- setup -->
