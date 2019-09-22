@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+
+	<string name="menu_home">Home</string>
+	<string name="menu_search_predicatematrix">PredicateMatrix</string>
+
+	<string name="nav_header_title">Semantikos</string>
+	<string name="nav_header_subtitle">sqlunet</string>
+
+</resources>

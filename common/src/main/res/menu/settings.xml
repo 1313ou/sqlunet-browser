@@ -8,7 +8,7 @@
       tools:context="org.sqlunet.browser.config.SetupFragment">
 	<item
 		android:id="@+id/action_clear_settings"
-		android:title="@string/action_clear_settings"
+		android:title="@string/title_reset_settings"
 		app:showAsAction="never"/>
 	<item
 		android:id="@+id/action_diagnostics"

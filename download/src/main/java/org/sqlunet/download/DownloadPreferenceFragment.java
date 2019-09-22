@@ -92,9 +92,17 @@ public class DownloadPreferenceFragment extends PreferenceFragmentCompat
 		setHasOptionsMenu(true);
 
 		// Bind the summaries of preferences to their values. When their values change, their summaries are updated to reflect the new value, per the Android Design guidelines.
-		bindPreferenceSummaryToValue(findPreference(Settings.PREF_DB_NAME));
-		bindDatePreferenceSummaryToValue(findPreference(Settings.PREF_DB_DATE));
-		bindLongPreferenceSummaryToValue(findPreference(Settings.PREF_DB_SIZE));
+		final Preference namePreference = findPreference(Settings.PREF_DB_NAME);
+		assert namePreference != null;
+		bindPreferenceSummaryToValue(namePreference);
+
+		final Preference datePreference = findPreference(Settings.PREF_DB_DATE);
+		assert datePreference != null;
+		bindDatePreferenceSummaryToValue(datePreference);
+
+		final Preference sizePreference = findPreference(Settings.PREF_DB_SIZE);
+		assert sizePreference != null;
+		bindLongPreferenceSummaryToValue(sizePreference);
 	}
 
 	@SuppressWarnings("SameReturnValue")

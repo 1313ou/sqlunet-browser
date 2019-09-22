@@ -7,7 +7,9 @@
 
 	<!-- Strings related to Settings -->
 
-	<string name="title_activity_settings" tools:ignore="UnusedResources">Settings</string>
+	<string name="title_activity_settings">Settings</string>
+	<string name="title_settings">Settings</string>
+	<string name="title_reset_settings">Reset settings</string>
 
 	<!-- GENERAL -->
 	<string name="pref_header_general">General</string>
