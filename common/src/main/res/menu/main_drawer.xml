@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	tools:showIn="navigation_view">
+
+	<group android:checkableBehavior="single">
+		<item
+			android:id="@+id/nav_home"
+			android:icon="@drawable/ic_home"
+			android:title="@string/menu_home" />
+		<item
+			android:id="@+id/nav_search_browse"
+			android:icon="@drawable/ic_search_browse"
+			android:title="@string/menu_search_browse" />
+		<item
+			android:id="@+id/nav_search_text"
+			android:icon="@drawable/ic_search_text"
+			android:title="@string/menu_search_text" />
+	</group>
+
+	<item android:title="@string/nav_utils">
+		<menu>
+			<item
+				android:id="@+id/nav_status"
+				android:icon="@drawable/ic_status"
+				android:title="@string/menu_status" />
+			<item
+				android:id="@+id/nav_setup"
+				android:icon="@drawable/ic_setup"
+				android:title="@string/menu_setup" />
+			<item
+				android:id="@+id/nav_storage"
+				android:icon="@drawable/ic_storage"
+				android:title="@string/menu_storage" />
+			<item
+				android:id="@+id/nav_settings"
+				android:icon="@drawable/ic_settings"
+				android:title="@string/menu_settings" />
+			<item
+				android:id="@+id/nav_sql"
+				android:icon="@drawable/ic_sql"
+				android:title="@string/menu_sql" />
+			<item
+				android:id="@+id/nav_help"
+				android:icon="@drawable/ic_help"
+				android:title="@string/menu_help" />
+			<item
+				android:id="@+id/nav_about"
+				android:icon="@drawable/ic_about"
+				android:title="@string/menu_about" />
+		</menu>
+	</item>
+
+</menu>

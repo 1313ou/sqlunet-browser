@@ -9,6 +9,7 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.1.0"
     }
 }
 
@@ -25,10 +26,15 @@ allprojects {
         minSdkVersion = 17
         targetSdkVersion = 28
         compileSdkVersion = 28
-        lifecycleVersion = '2.0.0'
+        lifecycleVersion = '2.1.0'
+        navVersion = '2.1.0'
     }
 
     tasks.withType(JavaCompile) {
         options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
     }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }

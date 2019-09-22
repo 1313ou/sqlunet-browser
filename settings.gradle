@@ -1,7 +1,6 @@
 include ':expandableListFragment', ':rate'
 include ':others'
 include ':donate'
-include ':preference'
 include ':treeView'
 include ':deploy'
 include ':download'

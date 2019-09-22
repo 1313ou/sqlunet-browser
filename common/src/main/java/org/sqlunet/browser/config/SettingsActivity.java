@@ -6,38 +6,24 @@ package org.sqlunet.browser.config;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
-import android.content.res.XmlResourceParser;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Pair;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.sqlunet.browser.AppCompatCommonPreferenceActivity;
 import org.sqlunet.browser.ColorUtils;
 import org.sqlunet.browser.EntryActivity;
-import org.sqlunet.browser.MenuHandler;
 import org.sqlunet.browser.common.R;
-import org.sqlunet.preference.Header;
-import org.sqlunet.preference.PreferenceActivityCompat;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageReports;
 import org.sqlunet.settings.StorageUtils;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.NavUtils;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
@@ -50,7 +36,7 @@ import androidx.preference.PreferenceManager;
  * See <a href="http://developer.android.com/design/patterns/settings.html"> Android Design: Settings</a> for design guidelines and the
  * <a href="http://developer.android.com/guide/topics/ui/settings.html">Settings API Guide</a> for more information on developing a Settings UI.
  */
-public class SettingsActivity extends PreferenceActivityCompat
+public class SettingsActivity extends AppCompatCommonPreferenceActivity
 {
 	// L I F E C Y C L E
 
@@ -61,10 +47,10 @@ public class SettingsActivity extends PreferenceActivityCompat
 		super.onCreate(savedInstanceState);
 
 		// toolbar
-		setupToolbar(R.layout.toolbar, R.id.toolbar);
+		//setupToolbar(R.layout.toolbar, R.id.toolbar);
 
 		// action bar
-		setupActionBar();
+		//setupActionBar();
 	}
 
 	// T O O L B A R
@@ -101,71 +87,7 @@ public class SettingsActivity extends PreferenceActivityCompat
 			setSupportActionBar(toolbar);
 		}
 	}
-
-	// M E N U
-
-	@SuppressWarnings("SameReturnValue")
-	@Override
-	public boolean onCreateOptionsMenu(final Menu menu)
-	{
-		// inflate the menu; this adds items to the type bar if it is present.
-		getMenuInflater().inflate(R.menu.settings, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
-	{
-		// Respond to the action bar's Up/Home button
-		if (item.getItemId() == android.R.id.home)
-		{
-			NavUtils.navigateUpFromSameTask(this);
-			return true;
-		}
-
-		return MenuHandler.menuDispatch(this, item);
-	}
-
-	// V A L I D A T I O N
-
-	static private Set<String> allowedFragments;
-
-	@Override
-	public boolean isValidFragment(final String fragmentName)
-	{
-		if (allowedFragments == null)
-		{
-			allowedFragments = new HashSet<>();
-			final Resources res = getResources();
-			final XmlResourceParser xrp = res.getXml(R.xml.pref_headers);
-			try
-			{
-				while (xrp.next() != XmlPullParser.END_DOCUMENT)
-				{
-					if (xrp.getEventType() != XmlPullParser.START_TAG)
-					{
-						continue;
-					}
-					if ("header".equals(xrp.getName()))
-					{
-						final String attr = xrp.getAttributeValue("http://schemas.android.com/apk/res-auto", "fragment");
-						allowedFragments.add(attr);
-					}
-				}
-			}
-			catch (XmlPullParserException e)
-			{
-				//
-			}
-			catch (IOException e)
-			{
-				//
-			}
-		}
-
-		return allowedFragments.contains(fragmentName);
-	}
-
+	
 	// L I S T E N E R
 
 	/**
@@ -319,17 +241,6 @@ public class SettingsActivity extends PreferenceActivityCompat
 		listPref.setDefaultValue(values[0]);
 	}
 
-	// H E A D E R S
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void onBuildHeaders(@NonNull final List<Header> target)
-	{
-		loadHeadersFromResource(R.xml.pref_headers, target);
-	}
-
 	// F R A G M E N T S
 
 	/**
@@ -344,8 +255,13 @@ public class SettingsActivity extends PreferenceActivityCompat
 			addPreferencesFromResource(R.xml.pref_general);
 
 			// bind the summaries to their values.
-			bind(findPreference(Settings.PREF_SELECTOR_MODE));
-			bind(findPreference(Settings.PREF_DETAIL_MODE));
+			final Preference selectorPreference = findPreference(Settings.PREF_SELECTOR_MODE);
+			assert selectorPreference != null;
+			bind(selectorPreference);
+
+			final Preference detailPreference = findPreference(Settings.PREF_DETAIL_MODE);
+			assert detailPreference != null;
+			bind(detailPreference);
 		}
 	}
 
@@ -375,6 +291,7 @@ public class SettingsActivity extends PreferenceActivityCompat
 
 			// required if no 'entries' and 'entryValues' in XML
 			final Preference storagePreference = findPreference(Settings.PREF_STORAGE);
+			assert storagePreference != null;
 			populateStoragePreference(requireContext(), storagePreference);
 
 			// bind the summaries to their values.
@@ -395,15 +312,34 @@ public class SettingsActivity extends PreferenceActivityCompat
 
 			// required if no 'entries' and 'entryValues' in XML
 			final Preference cachePreference = findPreference(Settings.PREF_CACHE);
+			assert cachePreference != null;
 			populateCachePreference(requireContext(), cachePreference);
 
 			// bind the summaries to their values.
-			bind(findPreference(Settings.PREF_DOWNLOADER));
-			bind(findPreference(Settings.PREF_DOWNLOAD_SITE));
-			bind(findPreference(Settings.PREF_DOWNLOAD_DBFILE));
-			bind(findPreference(Settings.PREF_DOWNLOAD_SQLFILE));
-			bind(findPreference(Settings.PREF_ENTRY_IMPORT));
-			bind(findPreference(Settings.PREF_ENTRY_INDEX));
+			final Preference downloaderPreference = findPreference(Settings.PREF_DOWNLOADER);
+			assert downloaderPreference != null;
+			bind(downloaderPreference);
+
+			final Preference sitePreference = findPreference(Settings.PREF_DOWNLOAD_SITE);
+			assert sitePreference != null;
+			bind(sitePreference);
+
+			final Preference dbFilePreference = findPreference(Settings.PREF_DOWNLOAD_DBFILE);
+			assert dbFilePreference != null;
+			bind(dbFilePreference);
+
+			final Preference sqlFilePreference = findPreference(Settings.PREF_DOWNLOAD_SQLFILE);
+			assert sqlFilePreference != null;
+			bind(sqlFilePreference);
+
+			final Preference entryImportPreference = findPreference(Settings.PREF_ENTRY_IMPORT);
+			assert entryImportPreference != null;
+			bind(entryImportPreference);
+
+			final Preference entryIndexPreference = findPreference(Settings.PREF_ENTRY_INDEX);
+			assert entryIndexPreference != null;
+			bind(entryIndexPreference);
+
 			bind(cachePreference);
 		}
 	}

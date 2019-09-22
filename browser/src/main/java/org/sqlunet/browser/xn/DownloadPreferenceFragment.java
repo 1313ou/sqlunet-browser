@@ -8,6 +8,8 @@ import android.os.Bundle;
 
 import org.sqlunet.browser.config.SettingsActivity;
 
+import androidx.preference.Preference;
+
 /**
  * Download Preferences
  *
@@ -20,6 +22,8 @@ public class DownloadPreferenceFragment extends org.sqlunet.browser.config.Setti
 	public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey)
 	{
 		super.onCreatePreferences(savedInstanceState, rootKey);
-		SettingsActivity.bind(findPreference(Settings.PREF_ENTRY_PM));
+		final Preference preference = findPreference(Settings.PREF_ENTRY_PM);
+		assert preference != null;
+		SettingsActivity.bind(preference);
 	}
 }
