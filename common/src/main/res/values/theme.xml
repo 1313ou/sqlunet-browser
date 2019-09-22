@@ -33,9 +33,6 @@
 		<!-- background of activated indicator -->
 		<item name="android:activatedBackgroundIndicator">@drawable/listitem_background</item>
 
-		<!-- preference theme UI -->
-		<item name="preferenceTheme">@style/PreferenceCompatTheme</item>
-
 		<!-- autocomplete -->
 		<item name="android:autoCompleteTextViewStyle">@style/MyAutoCompleteTextViewStyle</item>
 
