@@ -11,6 +11,7 @@
 	<color name="secondaryColor">#d500f9</color>
 	<color name="secondaryLightColor">#ff5bff</color>
 	<color name="secondaryDarkColor">#9e00c5</color>
+	<color name="tertiaryForeColor">@android:color/white</color>
 	<!--
 	<color name="secondaryColor">#ff9800</color>
 	<color name="secondaryLightColor">#ffc947</color>
