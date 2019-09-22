@@ -13,6 +13,7 @@
 	<color name="secondaryDarkColor">#00b686</color>
 	<color name="primaryForeColor">#000000</color>
 	<color name="secondaryForeColor">#808080</color>
+	<color name="tertiaryForeColor">@android:color/white</color>
 
 	<color name="group_color">@color/secondaryColor</color>
 	<color name="group_fore_color">@color/primaryForeColor</color>
