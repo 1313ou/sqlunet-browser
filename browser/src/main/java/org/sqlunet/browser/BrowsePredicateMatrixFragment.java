@@ -120,12 +120,15 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 	// S P I N N E R
 
 	@Override
-	protected void setupSpinner(@NonNull final Context context)
+	protected void setupSpinner()
 	{
-		super.setupSpinner(context);
+		this.spinner.setVisibility(View.VISIBLE);
+
+		// apply spinner adapter
+		this.spinner.setAdapter(getSpinnerAdapter());
 
 		// saved mode
-		final Settings.PMMode mode = Settings.PMMode.getPref(context);
+		final Settings.PMMode mode = Settings.PMMode.getPref(requireContext());
 		if (mode != null)
 		{
 			// no listener yet
@@ -140,7 +143,7 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 			public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
 			{
 				final Settings.PMMode mode = Settings.PMMode.values()[position];
-				final boolean hasChanged = mode.setPref(context);
+				final boolean hasChanged = mode.setPref(requireContext());
 				Log.d(BrowsePredicateMatrixFragment.TAG, "mode=" + mode.name() + " has changed=" + hasChanged);
 
 				// restart
