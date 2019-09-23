@@ -12,6 +12,7 @@ import org.sqlunet.browser.common.R;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 /**
@@ -20,13 +21,16 @@ import androidx.fragment.app.Fragment;
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 
-abstract public class NavigableFragment extends Fragment implements ActionBarSetter
+abstract public class NavigableFragment extends Fragment
 {
-	@SuppressWarnings("SameReturnValue")
 	@Override
-	public boolean setActionBar(@NonNull final ActionBar actionBar, final Context context)
+	public void onPause()
 	{
-		actionBar.setSubtitle(R.string.app_subname);
-		return false;
+		super.onPause();
+
+		final AppCompatActivity activity = (AppCompatActivity)requireActivity();
+		final ActionBar actionBar = activity.getSupportActionBar();
+		actionBar.setCustomView(null);
+		actionBar.setBackgroundDrawable(null);
 	}
 }

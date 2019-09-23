@@ -49,11 +49,6 @@ public abstract class AbstractSearchTextActivity<F extends BaseSearchFragment> e
 		{
 			this.fragment = (F) getSupportFragmentManager().findFragmentById(R.id.fragment_searchtext);
 			assert this.fragment != null;
-
-			// set up the action bar
-			final ActionBar actionBar = getSupportActionBar();
-			assert actionBar != null;
-			this.fragment.setActionBarUpDisabled(actionBar, this);
 		}
 	}
 

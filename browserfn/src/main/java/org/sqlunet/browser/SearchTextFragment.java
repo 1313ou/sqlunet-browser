@@ -63,37 +63,6 @@ public class SearchTextFragment extends BaseSearchFragment
 		return view;
 	}
 
-	// S P I N N E R
-
-	@Override
-	protected void setupSpinner(@NonNull final Context context)
-	{
-		super.setupSpinner(context);
-		this.spinner.setVisibility(View.GONE);
-
-		/*
-		// spinner listener
-		this.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-		{
-			@Override
-			public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
-			{
-				Settings.setSearchModePref(context, position);
-			}
-
-			@Override
-			public void onNothingSelected(final AdapterView<?> parentView)
-			{
-				//
-			}
-		});
-
-		// spinner position
-		final int position = Settings.getSearchModePref(context);
-		this.spinner.setSelection(position);
-		*/
-	}
-
 	// S E A R C H
 
 	/**

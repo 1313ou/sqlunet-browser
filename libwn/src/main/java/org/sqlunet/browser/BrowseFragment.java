@@ -81,42 +81,6 @@ public class BrowseFragment extends BaseSearchFragment
 		return view;
 	}
 
-	// S P I N N E R
-
-	@Override
-	protected void setupSpinner(@NonNull final Context context)
-	{
-		super.setupSpinner(context);
-		this.spinner.setVisibility(View.GONE);
-
-		/*
-		// spinner listener
-		this.spinner.setOnItemSelectedListener( //
-				new OnItemSelectedListener()
-				{
-					@Override
-					public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
-					{
-						final Settings.Selector selectorMode = Settings.Selector.values()[position];
-						selectorMode.setPref(context);
-					}
-
-					@Override
-					public void onNothingSelected(final AdapterView<?> parentView)
-					{
-						//
-					}
-				});
-
-		// saved selector mode
-		final Settings.Selector selectorMode = Settings.Selector.getPref(context);
-		if (selectorMode != null)
-		{
-			this.spinner.setSelection(selectorMode.ordinal());
-		}
-		*/
-	}
-
 	// M E N U
 
 	@Override

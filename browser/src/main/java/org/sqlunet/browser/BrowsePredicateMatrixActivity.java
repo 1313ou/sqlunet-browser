@@ -49,12 +49,6 @@ public class BrowsePredicateMatrixActivity extends AppCompatActivity
 		if (savedInstanceState == null)
 		{
 			this.fragment = (BrowsePredicateMatrixFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_predicatematrix);
-
-			// set up the action bar
-			final ActionBar actionBar = getSupportActionBar();
-			assert actionBar != null;
-			assert this.fragment != null;
-			this.fragment.setActionBarUpDisabled(actionBar, this);
 		}
 	}
 

@@ -102,9 +102,12 @@ public class BrowseFragment extends BaseSearchFragment
 	// S P I N N E R
 
 	@Override
-	protected void setupSpinner(@NonNull final Context context)
+	protected void setupSpinner()
 	{
-		super.setupSpinner(context);
+		this.spinner.setVisibility(View.VISIBLE);
+
+		// apply spinner adapter
+		this.spinner.setAdapter(getSpinnerAdapter());
 
 		// spinner listener
 		this.spinner.setOnItemSelectedListener( //
@@ -114,7 +117,7 @@ public class BrowseFragment extends BaseSearchFragment
 					public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
 					{
 						final Settings.Selector selectorMode = Settings.Selector.values()[position];
-						selectorMode.setPref(context);
+						selectorMode.setPref(requireContext());
 					}
 
 					@Override
@@ -125,7 +128,7 @@ public class BrowseFragment extends BaseSearchFragment
 				});
 
 		// saved selector mode
-		final Settings.Selector selectorMode = Settings.Selector.getPref(context);
+		final Settings.Selector selectorMode = Settings.Selector.getPref(requireContext());
 		if (selectorMode != null)
 		{
 			this.spinner.setSelection(selectorMode.ordinal());
