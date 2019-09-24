@@ -23,13 +23,16 @@ import android.widget.Toast;
 import org.sqlunet.browser.common.R;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 /**
  * Help fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class HelpFragment extends NavigableFragment
+public class HelpFragment extends Fragment
 {
 	/**
 	 * Log tag
@@ -46,8 +49,6 @@ public class HelpFragment extends NavigableFragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		setHasOptionsMenu(true);
-
 		// view
 		final View view = inflater.inflate(R.layout.fragment_help, container, false);
 
@@ -116,6 +117,18 @@ public class HelpFragment extends NavigableFragment
 		webview.loadUrl(url);
 
 		return view;
+	}
+
+	@Override
+	public void onResume()
+	{
+		super.onResume();
+
+		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
+		final ActionBar actionBar = activity.getSupportActionBar();
+		assert actionBar != null;
+		actionBar.setCustomView(null);
+		actionBar.setBackgroundDrawable(null);
 	}
 
 	private boolean handleUri(final Uri uri, @SuppressWarnings("SameParameterValue") final String mime)

@@ -90,8 +90,8 @@ public class BrowseFragment extends BaseSearchFragment
 		Intent intent;
 
 		// handle item selection
-		int i = item.getItemId();
-		if (i == R.id.action_table_lexdomains)
+		final int itemId = item.getItemId();
+		if (itemId == R.id.action_table_lexdomains)
 		{
 			intent = new Intent(requireContext(), TableActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(LexDomains.CONTENT_URI_TABLE));
@@ -99,7 +99,7 @@ public class BrowseFragment extends BaseSearchFragment
 			intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{LexDomains.LEXDOMAINID, LexDomains.LEXDOMAIN, LexDomains.POS});
 			intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table3);
 		}
-		else if (i == R.id.action_table_postypes)
+		else if (itemId == R.id.action_table_postypes)
 		{
 			intent = new Intent(requireContext(), TableActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(PosTypes.CONTENT_URI_TABLE));
@@ -107,7 +107,7 @@ public class BrowseFragment extends BaseSearchFragment
 			intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{PosTypes.POS, PosTypes.POSNAME});
 			intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table2);
 		}
-		else if (i == R.id.action_table_adjpositiontypes)
+		else if (itemId == R.id.action_table_adjpositiontypes)
 		{
 			intent = new Intent(requireContext(), TableActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(AdjPositionTypes.CONTENT_URI_TABLE));
@@ -115,7 +115,7 @@ public class BrowseFragment extends BaseSearchFragment
 			intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{AdjPositionTypes.POSITION, AdjPositionTypes.POSITIONNAME});
 			intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table2);
 		}
-		else if (i == R.id.action_table_linktypes)
+		else if (itemId == R.id.action_table_linktypes)
 		{
 			intent = new Intent(requireContext(), TableActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(LinkTypes.CONTENT_URI_TABLE));

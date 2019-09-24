@@ -35,13 +35,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.fragment.app.Fragment;
 
 /**
  * Base search fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-abstract public class BaseSearchFragment extends NavigableFragment implements SearchListener
+abstract public class BaseSearchFragment extends Fragment implements SearchListener
 {
 	static private final String TAG = "BaseSearchF";
 
@@ -83,6 +84,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 	public BaseSearchFragment()
 	{
 		Log.d(BaseSearchFragment.TAG, "constructor " + this);
+		setHasOptionsMenu(true);
 	}
 
 	@Override
@@ -100,8 +102,6 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 	{
 		Log.d(BaseSearchFragment.TAG, "on create view " + this + " from " + savedInstanceState);
 
-		setHasOptionsMenu(true);
-
 		// view
 		return inflater.inflate(this.layoutId, container, false);
 	}
@@ -113,18 +113,6 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 		super.onResume();
 
 		setupActionBar();
-	}
-
-	@Override
-	public void onPause()
-	{
-		Log.d(BaseSearchFragment.TAG, "on pause " + this);
-		super.onPause();
-
-		final AppCompatActivity activity = (AppCompatActivity)requireActivity();
-		final ActionBar actionBar = activity.getSupportActionBar();
-		actionBar.setCustomView(null);
-		actionBar.setBackgroundDrawable(null);
 	}
 
 	// S A V E / R E S T O R E
@@ -184,6 +172,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 
 		final AppCompatActivity activity = (AppCompatActivity)requireActivity();
 		final ActionBar actionBar = activity.getSupportActionBar();
+		assert actionBar != null;
 
 		// title
 		actionBar.setSubtitle(R.string.app_subname);

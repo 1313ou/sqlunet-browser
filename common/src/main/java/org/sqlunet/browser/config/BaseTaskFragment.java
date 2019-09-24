@@ -63,8 +63,6 @@ abstract public class BaseTaskFragment extends Fragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		setHasOptionsMenu(true);
-
 		// view
 		final View view = inflater.inflate(this.layoutId, container, false);
 

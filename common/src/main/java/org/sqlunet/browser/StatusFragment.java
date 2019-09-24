@@ -6,6 +6,9 @@ package org.sqlunet.browser;
 
 import org.sqlunet.browser.config.SetupStatusFragment;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 /**
  * Status fragment
  *
@@ -13,4 +16,15 @@ import org.sqlunet.browser.config.SetupStatusFragment;
  */
 public class StatusFragment extends SetupStatusFragment
 {
+	@Override
+	public void onResume()
+	{
+		super.onResume();
+
+		final AppCompatActivity activity = (AppCompatActivity)requireActivity();
+		final ActionBar actionBar = activity.getSupportActionBar();
+		assert actionBar != null;
+		actionBar.setCustomView(null);
+		actionBar.setBackgroundDrawable(null);
+	}
 }

@@ -65,15 +65,9 @@ public class SearchTextFragment extends BaseSearchFragment
 		return view;
 	}
 
-	@Override
-	public void onResume()
-	{
-		super.onResume();
-		setupSpinner();
-	}
-
 	// S P I N N E R
 
+	@Override
 	protected void setupSpinner()
 	{
 		this.spinner.setVisibility(View.VISIBLE);

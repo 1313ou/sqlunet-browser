@@ -6,6 +6,7 @@ package org.sqlunet.browser;
 
 import android.app.SearchManager;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -52,15 +53,21 @@ public class MainActivity extends AppCompatActivity
 		final Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 
+		// navigation top dests
+		TypedArray array = getResources().obtainTypedArray(R.array.top_dest);
+		int len = array.length();
+		int[] topDest = new int[len];
+		for (int i = 0; i < len; i++)
+			topDest[i] = array.getResourceId(i, 0);
+		array.recycle();
+
 		// navigation
 		final DrawerLayout drawer = findViewById(R.id.drawer_layout);
-		final NavigationView navigationView = findViewById(R.id.nav_view);
+		final NavigationView navView = findViewById(R.id.nav_view);
 		final NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-
-		// passing each menu ID as a set of Ids because each menu should be considered as top level destinations.
-		this.appBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home, R.id.nav_search_browse, R.id.nav_search_text, R.id.nav_status, R.id.nav_setup, R.id.nav_settings).setDrawerLayout(drawer).build();
+		this.appBarConfiguration = new AppBarConfiguration.Builder(topDest).setDrawerLayout(drawer).build();
 		NavigationUI.setupActionBarWithNavController(this, navController, this.appBarConfiguration);
-		NavigationUI.setupWithNavController(navigationView, navController);
+		NavigationUI.setupWithNavController(navView, navController);
 	}
 
 	@Override

@@ -14,13 +14,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.sqlunet.browser.NavigableFragment;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.Storage;
 import org.sqlunet.settings.StorageReports;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 /**
@@ -28,7 +30,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class StorageFragment extends NavigableFragment
+public class StorageFragment extends Fragment
 {
 	/**
 	 * Swipe refresh layout
@@ -40,13 +42,12 @@ public class StorageFragment extends NavigableFragment
 	 */
 	public StorageFragment()
 	{
+		setHasOptionsMenu(true);
 	}
 
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		setHasOptionsMenu(true);
-
 		// inflate
 		final View view = inflater.inflate(R.layout.fragment_storage, container, false);
 
@@ -66,6 +67,13 @@ public class StorageFragment extends NavigableFragment
 	public void onResume()
 	{
 		super.onResume();
+
+		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
+		final ActionBar actionBar = activity.getSupportActionBar();
+		assert actionBar != null;
+		actionBar.setCustomView(null);
+		actionBar.setBackgroundDrawable(null);
+
 		update();
 	}
 
@@ -109,8 +117,8 @@ public class StorageFragment extends NavigableFragment
 		final Context context = requireContext();
 
 		// handle item selection
-		int i = item.getItemId();
-		if (i == R.id.action_storage_dirs)
+		final int itemId = item.getItemId();
+		if (itemId == R.id.action_storage_dirs)
 		{
 			final CharSequence message = StorageReports.reportStyledDirs(context);
 			final AlertDialog.Builder alert = new AlertDialog.Builder(context);
@@ -121,7 +129,7 @@ public class StorageFragment extends NavigableFragment
 			});
 			alert.show();
 		}
-		else if (i == R.id.action_refresh)
+		else if (itemId == R.id.action_refresh)
 		{
 			// make sure that the SwipeRefreshLayout is displaying its refreshing indicator
 			if (!this.swipeRefreshLayout.isRefreshing())

@@ -42,6 +42,7 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 	 */
 	public SetupDatabaseFragment()
 	{
+		setHasOptionsMenu(true);
 		this.layoutId = R.layout.fragment_setup_database;
 	}
 
@@ -86,6 +87,15 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 		return view;
 	}
 
+	// U P D A T E
+
+	@SuppressWarnings("EmptyMethod")
+	private void update()
+	{
+	}
+
+	// S P I N N E R
+
 	@NonNull
 	@Override
 	protected SpinnerAdapter makeAdapter()
@@ -99,6 +109,8 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 		return adapter;
 	}
 
+	// M E NU
+
 	@Override
 	public void onCreateOptionsMenu(@NonNull final Menu menu, @NonNull final MenuInflater inflater)
 	{
@@ -107,13 +119,13 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(@NonNull MenuItem item)
+	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
 	{
 		Intent intent;
 
 		// handle item selection
-		int i = item.getItemId();
-		if (i == R.id.action_tables_and_indices)
+		final int itemId = item.getItemId();
+		if (itemId == R.id.action_tables_and_indices)
 		{
 			intent = ManagerContract.makeTablesAndIndexesIntent(requireContext());
 			intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_dbobject);
@@ -125,10 +137,5 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 
 		startActivity(intent);
 		return true;
-	}
-
-	@SuppressWarnings("EmptyMethod")
-	private void update()
-	{
 	}
 }
