@@ -109,9 +109,22 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 	@Override
 	public void onResume()
 	{
+		Log.d(BaseSearchFragment.TAG, "on resume " + this);
 		super.onResume();
 
 		setupActionBar();
+	}
+
+	@Override
+	public void onPause()
+	{
+		Log.d(BaseSearchFragment.TAG, "on pause " + this);
+		super.onPause();
+
+		final AppCompatActivity activity = (AppCompatActivity)requireActivity();
+		final ActionBar actionBar = activity.getSupportActionBar();
+		actionBar.setCustomView(null);
+		actionBar.setBackgroundDrawable(null);
 	}
 
 	// S A V E / R E S T O R E
