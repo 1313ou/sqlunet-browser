@@ -1,9 +1,13 @@
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
 	android:shape="rectangle">
 	<gradient
 		android:angle="135"
-		android:centerColor="#FF4251bd"
-		android:endColor="#FF293073"
-		android:startColor="#FF4251dd"
+		android:centerdColor="#C8DDB7"
+		android:endColor="#7d956e"
+		android:startColor="#dbf4c7"
 		android:type="linear" />
 </shape>
