@@ -4,14 +4,23 @@
 
 package org.sqlunet.browser;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import org.sqlunet.browser.common.R;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.sql.SqlFormatter;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.ListFragment;
 
 /**
@@ -22,6 +31,22 @@ import androidx.fragment.app.ListFragment;
 public class BaseSqlFragment extends ListFragment
 {
 	// static private final String TAG = "SqlF";
+
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
+		final ListView listView = this.getListView();
+		listView.setOnItemLongClickListener((av, v, pos, id) -> {
+
+			final CharSequence statement = (CharSequence) av.getAdapter().getItem(pos);
+			final ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
+			final ClipData clipData = ClipData.newPlainText("text", statement);
+			clipboard.setPrimaryClip(clipData);
+			Toast.makeText(requireContext(), R.string.copy_copied, Toast.LENGTH_SHORT).show();
+			return true;
+		});
+	}
 
 	@Override
 	public void onResume()
