@@ -57,15 +57,15 @@ public class SqlFragment extends BaseSqlFragment
 	{
 		if (item.getItemId() == R.id.action_copy)
 		{
-			StringBuilder sb = new StringBuilder();
-			CharSequence[] sqls = BaseProvider.buffer.reverseItems();
+			final StringBuilder sb = new StringBuilder();
+			final CharSequence[] sqls = BaseProvider.buffer.reverseItems();
 			for (int i = 0; i < sqls.length; i++)
 			{
 				sb.append(SqlFormatter.styledFormat(sqls[i]));
-				sb.append('\n');
+				sb.append(";\n");
 			}
-			ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
-			ClipData clip = ClipData.newPlainText("SQL", sb);
+			final ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
+			final ClipData clip = ClipData.newPlainText("SQL", sb);
 			clipboard.setPrimaryClip(clip);
 		}
 		return false;
