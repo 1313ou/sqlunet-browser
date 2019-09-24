@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity
 		setSupportActionBar(toolbar);
 
 		// navigation top dests
-		TypedArray array = getResources().obtainTypedArray(R.array.top_dest);
+		TypedArray array = getResources().obtainTypedArray(R.array.drawer_top_dest);
 		int len = array.length();
 		int[] topDest = new int[len];
 		for (int i = 0; i < len; i++)
