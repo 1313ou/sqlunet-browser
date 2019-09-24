@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools">
+	<item
+		android:id="@+id/action_copy"
+		android:title="@string/action_copy"
+		app:showAsAction="ifRoom"
+		tools:ignore="AppCompatResource"/>
+</menu>

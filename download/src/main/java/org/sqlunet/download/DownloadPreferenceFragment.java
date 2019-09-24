@@ -24,6 +24,11 @@ import androidx.preference.PreferenceManager;
  */
 public class DownloadPreferenceFragment extends PreferenceFragmentCompat
 {
+	public DownloadPreferenceFragment()
+	{
+		setHasOptionsMenu(true);
+	}
+
 	/**
 	 * A preference value change listener that updates the preference's summary to reflect its new value.
 	 */
@@ -89,7 +94,6 @@ public class DownloadPreferenceFragment extends PreferenceFragmentCompat
 	public void onCreatePreferences(Bundle savedInstanceState, String rootKey)
 	{
 		addPreferencesFromResource(R.xml.pref_downloaded);
-		setHasOptionsMenu(true);
 
 		// Bind the summaries of preferences to their values. When their values change, their summaries are updated to reflect the new value, per the Android Design guidelines.
 		final Preference namePreference = findPreference(Settings.PREF_DB_NAME);
@@ -109,8 +113,8 @@ public class DownloadPreferenceFragment extends PreferenceFragmentCompat
 	@Override
 	public boolean onOptionsItemSelected(@NonNull MenuItem item)
 	{
-		int id = item.getItemId();
-		if (id == android.R.id.home)
+		final int itemId = item.getItemId();
+		if (itemId == android.R.id.home)
 		{
 			final Activity activity = getActivity();
 			if (activity != null)

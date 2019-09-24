@@ -147,7 +147,8 @@ public class BrowseFragment extends BaseSearchFragment
 		Intent intent;
 
 		// handle item selection
-		switch (item.getItemId())
+		final int itemId = item.getItemId();
+		switch (itemId)
 		{
 			case R.id.action_table_lexdomains:
 				intent = new Intent(context, TableActivity.class);
