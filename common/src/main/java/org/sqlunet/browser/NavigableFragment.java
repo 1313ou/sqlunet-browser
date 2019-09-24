@@ -23,14 +23,4 @@ import androidx.fragment.app.Fragment;
 
 abstract public class NavigableFragment extends Fragment
 {
-	@Override
-	public void onPause()
-	{
-		super.onPause();
-
-		final AppCompatActivity activity = (AppCompatActivity)requireActivity();
-		final ActionBar actionBar = activity.getSupportActionBar();
-		actionBar.setCustomView(null);
-		actionBar.setBackgroundDrawable(null);
-	}
 }
