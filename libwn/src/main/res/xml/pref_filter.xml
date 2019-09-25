@@ -2,8 +2,10 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<androidx.preference.PreferenceScreen
-	xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	app:title="@string/pref_header_filter">
 
 	<SwitchPreferenceCompat
 		android:defaultValue="true"
@@ -22,4 +24,4 @@
 		android:summary="@string/pref_description_link_recursion"
 		android:title="@string/pref_title_link_recursion"/>
 
-</androidx.preference.PreferenceScreen>
+</PreferenceScreen>

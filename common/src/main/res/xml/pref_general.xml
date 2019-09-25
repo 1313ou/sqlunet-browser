@@ -2,9 +2,10 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<androidx.preference.PreferenceScreen
+<PreferenceScreen
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto">
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	app:title="@string/pref_header_general">
 
 	<ListPreference
 		android:defaultValue="@string/pref_default_launch"
@@ -64,4 +65,4 @@
 		android:title="@string/pref_title_sql_log"
 		app:singleLineTitle="false"/>
 
-</androidx.preference.PreferenceScreen>
+</PreferenceScreen>

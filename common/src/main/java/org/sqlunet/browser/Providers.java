@@ -113,12 +113,10 @@ class Providers
 		}
 
 		// dialog
-		final AlertDialog.Builder alert = new AlertDialog.Builder(activity);
-		alert.setTitle(R.string.action_provider_info);
-		alert.setMessage(sb);
-		alert.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> {
-			// canceled.
-		});
-		alert.show();
+		new AlertDialog.Builder(activity) //
+				.setTitle(R.string.action_provider_info) //
+				.setMessage(sb) //
+				.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /* canceled */ }) //
+				.show();
 	}
 }

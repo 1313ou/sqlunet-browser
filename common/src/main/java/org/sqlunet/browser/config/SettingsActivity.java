@@ -37,56 +37,6 @@ import androidx.preference.PreferenceManager;
  */
 public class SettingsActivity extends BaseSettingsActivity
 {
-	// L I F E C Y C L E
-
-	@Override
-	protected void onCreate(final Bundle savedInstanceState)
-	{
-		// super
-		super.onCreate(savedInstanceState);
-
-		// toolbar
-		//setupToolbar(R.layout.toolbar, R.id.toolbar);
-
-		// action bar
-		//setupActionBar();
-	}
-
-	// T O O L B A R
-
-	/**
-	 * Set up the {@link android.app.ActionBar}, if the API is available.
-	 */
-	private void setupActionBar()
-	{
-		final ActionBar actionBar = getSupportActionBar();
-		if (actionBar != null)
-		{
-			// Show the Up button in the action bar.
-			// actionBar.setDisplayHomeAsUpEnabled(true);
-			actionBar.setDisplayOptions(ActionBar.DISPLAY_USE_LOGO | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
-
-			// background
-			final int color = ColorUtils.getColor(this, R.color.primaryColor);
-			actionBar.setBackgroundDrawable(new ColorDrawable(color));
-		}
-	}
-
-	@SuppressWarnings({"SameParameterValue", "WeakerAccess"})
-	protected void setupToolbar(int toolbarLayout, int toolbarId)
-	{
-		// TODO hacked dependency on R.id.action_bar_root
-		final ViewGroup rootView = findViewById(R.id.action_bar_root); //id from appcompat
-		if (rootView != null)
-		{
-			final View view = getLayoutInflater().inflate(toolbarLayout, rootView, false);
-			rootView.addView(view, 0);
-
-			final Toolbar toolbar = findViewById(toolbarId);
-			setSupportActionBar(toolbar);
-		}
-	}
-	
 	// L I S T E N E R
 
 	/**
