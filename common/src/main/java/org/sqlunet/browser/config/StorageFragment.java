@@ -121,13 +121,11 @@ public class StorageFragment extends Fragment
 		if (itemId == R.id.action_storage_dirs)
 		{
 			final CharSequence message = StorageReports.reportStyledDirs(context);
-			final AlertDialog.Builder alert = new AlertDialog.Builder(context);
-			alert.setTitle(R.string.action_storage_dirs);
-			alert.setMessage(message);
-			alert.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> {
-				// canceled.
-			});
-			alert.show();
+			new AlertDialog.Builder(context) //
+					.setTitle(R.string.action_storage_dirs) //
+					.setMessage(message) //
+					.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
+					.show();
 		}
 		else if (itemId == R.id.action_refresh)
 		{

@@ -713,8 +713,8 @@ public class FileAsyncTask
 								resultView.setPadding(35, 20, 35, 20);
 								resultView.setTextIsSelectable(true);
 
-								final AlertDialog.Builder alert2 = new AlertDialog.Builder(activity); // guarded, level 2
-								alert2.setTitle(activity.getString(R.string.action_md5_of) + ' ' + sourceFile) //
+								new AlertDialog.Builder(activity) // guarded, level 2
+										.setTitle(activity.getString(R.string.action_md5_of) + ' ' + sourceFile) //
 										.setView(resultView)
 										//.setMessage(sb)
 										.show();

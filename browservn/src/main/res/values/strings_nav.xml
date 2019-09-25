@@ -8,4 +8,6 @@
 	<string name="nav_header_title">Semantikos</string>
 	<string name="nav_header_subtitle">VerbNet/PropBank</string>
 
+	<string name="nav_home">Semantikos</string>
+
 </resources>

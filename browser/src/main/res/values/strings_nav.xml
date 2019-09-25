@@ -8,7 +8,7 @@
 	<string name="nav_header_title">Semantikos</string>
 	<string name="nav_header_subtitle">SqlUNet</string>
 
-	<string name="nav_home">SqlUNet</string>
+	<string name="nav_home">Semantikos</string>
 	<string name="nav_search_predicatematrix">PredicateMatrix</string>
 
 </resources>
