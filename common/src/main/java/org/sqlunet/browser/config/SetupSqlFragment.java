@@ -241,7 +241,7 @@ public class SetupSqlFragment extends Fragment implements Updatable
 			final boolean dbExists = new File(database).exists();
 			final boolean sqlzipExists = new File(source).exists();
 			Info.info(activity, R.string.title_indexes, //
-					getString(R.string.title_operation), getString(R.string.info_op_execute_import), //
+					getString(R.string.title_operation), getString(R.string.info_op_execute_indexes), //
 					getString(R.string.title_database), database, //
 					getString(R.string.title_status), getString(dbExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
 					getString(R.string.title_free), free, //

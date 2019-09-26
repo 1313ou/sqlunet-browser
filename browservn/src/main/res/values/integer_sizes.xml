@@ -3,15 +3,15 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-	<integer name="size_sqlunet_db">75468800</integer> <!-- sqlunet-vn.db -->
-	<integer name="size_sqlunet_db_zip">32243849</integer> <!-- sqlunet-vn.db.zip -->
-	<integer name="size_sqlunet_sql_zip">15337919</integer> <!-- sqlunet-vn.sql.zip -->
+	<integer name="size_sqlunet_db" tools:keep="@integer/size_sqlunet_db">75468800</integer> <!-- sqlunet-vn.db -->
+	<integer name="size_sqlunet_db_zip" tools:keep="@integer/size_sqlunet_db_zip">32243849</integer> <!-- sqlunet-vn.db.zip -->
+	<integer name="size_sqlunet_sql_zip" tools:keep="@integer/size_sqlunet_sql_zip">15337919</integer> <!-- sqlunet-vn.sql.zip -->
 
-	<integer name="size_searchtext_vn">339968</integer>
-	<integer name="size_searchtext_pb">6291456</integer>
-	<integer name="size_searchtext">6631424</integer>
+	<integer name="size_searchtext_vn" tools:keep="@integer/size_searchtext_vn">339968</integer>
+	<integer name="size_searchtext_pb" tools:keep="@integer/size_searchtext_pb">6291456</integer>
+	<integer name="size_searchtext" tools:keep="@integer/size_searchtext">6631424</integer>
 
 	<integer name="size_db_working_total">82100224</integer>
 

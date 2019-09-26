@@ -96,7 +96,7 @@
 
 	</string-array>
 
-	<string-array name="required_texts_wn">
+	<string-array name="required_texts_wn" tools:keep="@array/required_texts_wn">
 		<item>words_lemma_fts4</item>
 		<item>synsets_definition_fts4</item>
 		<item>samples_sample_fts4</item>

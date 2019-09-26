@@ -16,8 +16,6 @@
 	<string name="nav_help">Help</string>
 	<string name="nav_about">About</string>
 
-	<string name="navigation_drawer_open">Open navigation drawer</string>
-	<string name="navigation_drawer_close">Close navigation drawer</string>
 	<string name="nav_header_title">Semantikos</string>
 	<string name="nav_header_subtitle">common</string>
 	<string name="nav_header_desc">Navigation header</string>

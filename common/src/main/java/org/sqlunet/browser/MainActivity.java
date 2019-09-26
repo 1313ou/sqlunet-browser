@@ -18,11 +18,14 @@ import com.google.android.material.navigation.NavigationView;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.StorageSettings;
 
+import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -53,7 +56,7 @@ public class MainActivity extends AppCompatActivity
 		final Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 
-		// navigation top dests
+		// navigation top destinations
 		TypedArray array = getResources().obtainTypedArray(R.array.drawer_top_dest);
 		int len = array.length();
 		int[] topDest = new int[len];
@@ -99,7 +102,10 @@ public class MainActivity extends AppCompatActivity
 	private void handleSearchIntent(@NonNull final Intent intent)
 	{
 		final NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
-		final Fragment fragment = navHostFragment.getChildFragmentManager().getFragments().get(0);
+		assert navHostFragment != null;
+		final FragmentManager manager = navHostFragment.getChildFragmentManager();
+		final List<Fragment> fragments = manager.getFragments();
+		final Fragment fragment = fragments.get(0);
 		if (fragment instanceof BaseSearchFragment)
 		{
 			final String action = intent.getAction();

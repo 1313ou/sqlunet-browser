@@ -7,14 +7,14 @@
 
 	<!--S E L E C T O R S -->
 
-	<style name="Label.Source"/>
+<!--	<style name="Label.Source"/>-->
 
-	<style name="Data.WordId">
-		<item name="android:textColor">#808080</item>
-		<item name="android:textSize">10sp</item>
-	</style>
+<!--	<style name="Data.WordId">-->
+<!--		<item name="android:textColor">#808080</item>-->
+<!--		<item name="android:textSize">10sp</item>-->
+<!--	</style>-->
 
-	<style name="Data.Icon">
+	<style name="Data.Icon" tools:keep="@style/Data_Icon">
 	</style>
 
 	<!-- L I S T -->

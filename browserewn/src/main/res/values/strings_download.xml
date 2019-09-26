@@ -6,7 +6,7 @@
 <resources>
 
 	<string name="pref_default_download_dbfile">sqlunet-ewn.db</string>
-	<string name="pref_default_download_dbfile_zipped">sqlunet-ewn.db.zip</string>
+	<!--<string name="pref_default_download_dbfile_zipped">sqlunet-ewn.db.zip</string>-->
 	<string name="pref_default_download_sqlfile">sqlunet-ewn.sql.zip</string>
 	<string name="pref_default_entry_import">sqlunet-ewn.sql</string>
 	<string name="pref_default_entry_index">sqlunet-ewn-index.sql</string>

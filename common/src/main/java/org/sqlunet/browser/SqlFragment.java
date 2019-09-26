@@ -59,9 +59,9 @@ public class SqlFragment extends BaseSqlFragment
 		{
 			final StringBuilder sb = new StringBuilder();
 			final CharSequence[] sqls = BaseProvider.buffer.reverseItems();
-			for (int i = 0; i < sqls.length; i++)
+			for (CharSequence sql : sqls)
 			{
-				sb.append(SqlFormatter.styledFormat(sqls[i]));
+				sb.append(SqlFormatter.styledFormat(sql));
 				sb.append(";\n");
 			}
 			final ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(Context.CLIPBOARD_SERVICE);

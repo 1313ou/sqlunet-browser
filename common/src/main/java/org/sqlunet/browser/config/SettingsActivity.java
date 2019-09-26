@@ -6,13 +6,9 @@ package org.sqlunet.browser.config;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Pair;
-import android.view.View;
-import android.view.ViewGroup;
 
-import org.sqlunet.browser.ColorUtils;
 import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.Settings;
@@ -21,8 +17,6 @@ import org.sqlunet.settings.StorageUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.Toolbar;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
