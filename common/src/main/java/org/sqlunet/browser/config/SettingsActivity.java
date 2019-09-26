@@ -5,7 +5,6 @@
 package org.sqlunet.browser.config;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Pair;
 
@@ -16,11 +15,10 @@ import org.sqlunet.settings.StorageReports;
 import org.sqlunet.settings.StorageUtils;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.preference.EditTextPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
-import androidx.preference.PreferenceManager;
 
 /**
  * A PreferenceActivity that presents a set of application settings. On handset devices, settings are presented as a single list. On tablets, settings
@@ -31,76 +29,6 @@ import androidx.preference.PreferenceManager;
  */
 public class SettingsActivity extends BaseSettingsActivity
 {
-	// L I S T E N E R
-
-	/**
-	 * A preference value change listener that updates the preference's summary to reflect its new value.
-	 */
-	@Nullable
-	static private final Preference.OnPreferenceChangeListener listener = (preference, value) -> {
-		if (preference instanceof ListPreference && value != null)
-		{
-			// For list preferences, look up the correct display value in the preference's 'entries' list.
-			final ListPreference listPreference = (ListPreference) preference;
-			final String stringValue = value.toString();
-			final int index = listPreference.findIndexOfValue(stringValue);
-
-			// Set the summary to reflect the new value.
-			preference.setSummary(index >= 0 ? listPreference.getEntries()[index].toString().trim() : null);
-		}
-		else
-		{
-			// For all other preferences, set the summary to the value's simple string representation.
-			final String stringValue = value != null ? value.toString() : "<default>";
-			preference.setSummary(stringValue);
-		}
-		String key = preference.getKey();
-		if (Settings.PREF_SELECTOR_MODE.equals(key) || Settings.PREF_DETAIL_MODE.equals(key))
-		{
-			final String prevValue = preference.getSharedPreferences().getString(key, null);
-
-			//if (Objects.equals(prevValue, value))
-			//noinspection EqualsReplaceableByObjectsCall
-			if (value == null ? prevValue != null : !value.equals(prevValue))
-			{
-				final Context context = preference.getContext();
-				EntryActivity.reenter(context);
-			}
-		}
-		return true;
-	};
-
-	// B I N D
-
-	/**
-	 * Binds a preference's summary to its value. More specifically, when the preference's value is changed, its summary (line of text below the preference
-	 * titleId) is updated to reflect the value. The summary is also immediately updated upon calling this method. The exact display format is dependent on the
-	 * type of preference.
-	 *
-	 * @see #listener
-	 */
-	static public void bind(@NonNull final Preference preference)
-	{
-		// set the listener to watch for value changes.
-		preference.setOnPreferenceChangeListener(SettingsActivity.listener);
-
-		// trigger the listener immediately with the preference's current value.
-		final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(preference.getContext());
-		final String key = preference.getKey();
-		if (sharedPreferences.contains(key))
-		{
-			final Object val = sharedPreferences.getAll().get(key);
-			assert listener != null;
-			listener.onPreferenceChange(preference, val);
-		}
-
-		// globals
-		if (Settings.PREF_SQL_LOG.equals(key))
-		{
-			Settings.update(preference.getContext());
-		}
-	}
-
 	// P O P U L A T E    L I S T S
 
 	/**
@@ -191,6 +119,19 @@ public class SettingsActivity extends BaseSettingsActivity
 	 */
 	static public class GeneralPreferenceFragment extends PreferenceFragmentCompat
 	{
+		static private final Preference.OnPreferenceChangeListener listener = (preference, value) -> {
+
+			final String key = preference.getKey();
+			final String prevValue = preference.getSharedPreferences().getString(key, null);
+			//noinspection EqualsReplaceableByObjectsCall
+			if (value == null ? prevValue != null : !value.equals(prevValue))
+			{
+				final Context context = preference.getContext();
+				EntryActivity.reenter(context);
+			}
+			return true;
+		};
+
 		@Override
 		public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey)
 		{
@@ -198,13 +139,26 @@ public class SettingsActivity extends BaseSettingsActivity
 			addPreferencesFromResource(R.xml.pref_general);
 
 			// bind the summaries to their values.
+			final Preference launchPreference = findPreference(Settings.PREF_LAUNCH);
+			assert launchPreference != null;
+			launchPreference.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
+
 			final Preference selectorPreference = findPreference(Settings.PREF_SELECTOR_MODE);
 			assert selectorPreference != null;
-			bind(selectorPreference);
+			selectorPreference.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
+			selectorPreference.setOnPreferenceChangeListener(listener);
 
 			final Preference detailPreference = findPreference(Settings.PREF_DETAIL_MODE);
 			assert detailPreference != null;
-			bind(detailPreference);
+			detailPreference.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
+			selectorPreference.setOnPreferenceChangeListener(listener);
+
+			final Preference logPreference = findPreference(Settings.PREF_DETAIL_MODE);
+			assert logPreference != null;
+			logPreference.setOnPreferenceChangeListener((preference, value) -> {
+				Settings.update(preference.getContext());
+				return true;
+			});
 		}
 	}
 
@@ -238,7 +192,7 @@ public class SettingsActivity extends BaseSettingsActivity
 			populateStoragePreference(requireContext(), storagePreference);
 
 			// bind the summaries to their values.
-			bind(storagePreference);
+			storagePreference.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
 		}
 	}
 
@@ -257,33 +211,32 @@ public class SettingsActivity extends BaseSettingsActivity
 			final Preference cachePreference = findPreference(Settings.PREF_CACHE);
 			assert cachePreference != null;
 			populateCachePreference(requireContext(), cachePreference);
+			cachePreference.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
 
 			// bind the summaries to their values.
 			final Preference downloaderPreference = findPreference(Settings.PREF_DOWNLOADER);
 			assert downloaderPreference != null;
-			bind(downloaderPreference);
+			downloaderPreference.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
 
 			final Preference sitePreference = findPreference(Settings.PREF_DOWNLOAD_SITE);
 			assert sitePreference != null;
-			bind(sitePreference);
+			sitePreference.setSummaryProvider(EditTextPreference.SimpleSummaryProvider.getInstance());
 
 			final Preference dbFilePreference = findPreference(Settings.PREF_DOWNLOAD_DBFILE);
 			assert dbFilePreference != null;
-			bind(dbFilePreference);
+			dbFilePreference.setSummaryProvider(EditTextPreference.SimpleSummaryProvider.getInstance());
 
 			final Preference sqlFilePreference = findPreference(Settings.PREF_DOWNLOAD_SQLFILE);
 			assert sqlFilePreference != null;
-			bind(sqlFilePreference);
+			sqlFilePreference.setSummaryProvider(EditTextPreference.SimpleSummaryProvider.getInstance());
 
 			final Preference entryImportPreference = findPreference(Settings.PREF_ENTRY_IMPORT);
 			assert entryImportPreference != null;
-			bind(entryImportPreference);
+			entryImportPreference.setSummaryProvider(EditTextPreference.SimpleSummaryProvider.getInstance());
 
 			final Preference entryIndexPreference = findPreference(Settings.PREF_ENTRY_INDEX);
 			assert entryIndexPreference != null;
-			bind(entryIndexPreference);
-
-			bind(cachePreference);
+			entryIndexPreference.setSummaryProvider(EditTextPreference.SimpleSummaryProvider.getInstance());
 		}
 	}
 }
