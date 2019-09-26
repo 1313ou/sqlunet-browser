@@ -9,7 +9,6 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -28,6 +27,7 @@ import androidx.fragment.app.ListFragment;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
+@SuppressWarnings("WeakerAccess")
 public class BaseSqlFragment extends ListFragment
 {
 	// static private final String TAG = "SqlF";

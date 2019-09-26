@@ -9,6 +9,6 @@
 	<string name="hint_leaf">Leaf</string>
 	<string name="hint_icon">Icon</string>
 	<string name="hint_link">Link</string>
-	<string name="hint_more">More</string>
+	<!--<string name="hint_more">More</string>-->
 
 </resources>

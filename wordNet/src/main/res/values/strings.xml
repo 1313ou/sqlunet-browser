@@ -3,24 +3,24 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="wordnet">WordNet</string>
-	<string name="wordnet_blurb">WordNet\ngroups English words into sets of synonyms called synsets,\nand records relations among these synonym sets or their members</string>
+	<string name="wordnet" tools:keep="@string/wordnet">WordNet</string>
+	<string name="wordnet_blurb" tools:keep="@string/wordnet_blurb">WordNet\ngroups English words into sets of synonyms called synsets,\nand records relations among these synonym sets or their members</string>
 
-	<string name="title_activity_senses">Senses</string>
+	<!--<string name="title_activity_senses">Senses</string>-->
 	<string name="title_activity_sense">Sense</string>
 	<string name="title_activity_synset">Synset</string>
 	<string name="title_activity_word">Word</string>
 
-	<string name="label_members">Members</string>
-	<string name="label_definition">Definition</string>
-	<string name="label_samples">Samples</string>
-	<string name="label_semlinks">Semantic Links</string>
-	<string name="label_lexlinks">Lexical Links</string>
-	<string name="label_vframes">Verb Frames</string>
-	<string name="label_vframesentences">Verb Frame Sentences</string>
-	<string name="label_adjposition">Adjective Position</string>
-	<string name="label_morphology">Morphology</string>
+	<!--<string name="label_members">Members</string>-->
+	<!--<string name="label_definition">Definition</string>-->
+	<!--<string name="label_samples">Samples</string>-->
+	<!--<string name="label_semlinks">Semantic Links</string>-->
+	<!--<string name="label_lexlinks">Lexical Links</string>-->
+	<!--<string name="label_vframes">Verb Frames</string>-->
+	<!--<string name="label_vframesentences">Verb Frame Sentences</string>-->
+	<!--<string name="label_adjposition">Adjective Position</string>-->
+	<!--<string name="label_morphology">Morphology</string>-->
 
 </resources>

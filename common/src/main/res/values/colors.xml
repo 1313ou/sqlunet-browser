@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
@@ -8,12 +7,12 @@
 	<!-- R A W -->
 
 	<!-- grays -->
-	<color name="light_gray_color">#FFe0e0e0</color>
+	<!--<color name="light_gray_color">#FFe0e0e0</color>-->
 	<color name="middle_gray_color">#FF707070</color>
 	<color name="dark_gray_color">#FF303030</color>
 
 	<!-- light yellow -->
-	<color name="light_yellow_color">#FFffff99</color>
+	<!--<color name="light_yellow_color">#FFffff99</color>-->
 
 	<!-- pink -->
 	<color name="pink_color">#FFef2063</color>
@@ -21,8 +20,8 @@
 	<color name="dark_pink_color">#FFcb0020</color>
 
 	<!-- red -->
-	<color name="dark_red_color">#FFb32400</color>
-	<color name="darker_red_color">#FF800000</color>
+	<!--<color name="dark_red_color">#FFb32400</color>-->
+	<!--<color name="darker_red_color">#FF800000</color>-->
 
 	<!-- blue -->
 	<color name="blue_color">#FF4251bd</color>
@@ -30,12 +29,12 @@
 	<color name="light_blue_color">#FF4251dd</color>
 
 	<!-- orange -->
-	<color name="orange_color">#FFffa500</color>
+	<!--<color name="orange_color">#FFffa500</color>-->
 
 	<!-- violet -->
-	<color name="violet_color">#FF990073</color>
-	<color name="dark_violet_color">#FF400020</color>
-	<color name="mauve_color">#FF806678</color>
+	<!--<color name="violet_color">#FF990073</color>-->
+	<!--<color name="dark_violet_color">#FF400020</color>-->
+	<!--<color name="mauve_color">#FF806678</color>-->
 
 	<!-- green -->
 	<color name="dark_green_color">#FF008000</color>
@@ -62,21 +61,15 @@
 	<color name="actionbar_secondary_fore_color">@color/secondaryForeColor</color>
 	<color name="dropdown_color">@color/primaryColor</color>
 	<color name="dropdown_fore_color">@color/primaryForeColor</color>
-	<color name="drawer_color">@color/primaryColor</color>
 
 	<!-- browse action bars -->
 	<color name="browse_actionbar_color">@color/primaryLightColor</color>
-	<color name="predicatematrix_actionbar_color">@color/primaryLightColor</color>
 	<color name="searchtext_actionbar_color">@color/primaryLightColor</color>
 	<!--
 	<color name="browse_actionbar_color">@color/violet_color</color>
 	<color name="predicatematrix_actionbar_color">@color/mauve_color</color>
 	<color name="searchtext_actionbar_color">@color/dark_red_color</color>
 	-->
-
-	<!-- nav bar -->
-	<color name="drawer_fore_color">@color/secondaryForeColor</color>
-	<color name="drawer_main_fore_color">@color/primaryForeColor</color>
 
 	<!-- special -->
 	<color name="activated_color">@color/secondaryLightColor</color>

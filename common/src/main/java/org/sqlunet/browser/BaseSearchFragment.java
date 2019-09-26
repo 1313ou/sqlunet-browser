@@ -166,7 +166,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 
 	@SuppressWarnings({"SameReturnValue", "WeakerAccess"})
 	@SuppressLint("InflateParams")
-	public boolean setupActionBar()
+	public void setupActionBar()
 	{
 		Log.d(BaseSearchFragment.TAG, "set up specific action bar " + this);
 
@@ -200,7 +200,6 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		// actionBar.setDisplayHomeAsUpEnabled(true);
 		// actionBar.setDisplayShowTitleEnabled(false);
 
-		return true;
 	}
 
 	// S P I N N E R
@@ -208,6 +207,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	/**
 	 * Set up spinner
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected void setupSpinner()
 	{
 		this.spinner.setVisibility(View.GONE);
@@ -216,6 +216,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	/**
 	 * Set up spinner
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected BaseAdapter getSpinnerAdapter()
 	{
 		final Context context = requireContext();
