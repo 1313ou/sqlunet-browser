@@ -8,5 +8,6 @@
 	<string name="pref_title_db_name">Database name</string>
 	<string name="pref_title_db_date">Database date</string>
 	<string name="pref_title_db_size">Database size</string>
+	<string name="pref_value_unrecorded">Unrecorded</string>
 
 </resources>
