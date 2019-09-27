@@ -68,7 +68,7 @@ public class TextFragment extends AbstractTableFragment
 	/**
 	 * Factories
 	 */
-	static private final SpanFactory[][] factories = {new SpanFactory[]{boldFactory,}};
+	static private final SpanFactory[] factories = new SpanFactory[]{boldFactory,};
 
 	/**
 	 * Query argument

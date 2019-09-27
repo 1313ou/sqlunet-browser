@@ -32,8 +32,9 @@ public class RegExprSpanner extends Spanner
 	 */
 	public RegExprSpanner(@NonNull final String[] regexprs, final SpanFactory[][] factories)
 	{
-		this.spanReplacers = new SpanReplacer[regexprs.length];
-		for (int i = 0; i < regexprs.length; i++)
+		int n = regexprs.length < factories.length ? regexprs.length : factories.length;
+		this.spanReplacers = new SpanReplacer[n];
+		for (int i = 0; i < n; i++)
 		{
 			this.spanReplacers[i] = new SpanReplacer(regexprs[i], factories[i]);
 		}
@@ -47,8 +48,9 @@ public class RegExprSpanner extends Spanner
 	 */
 	public RegExprSpanner(@NonNull final String[] regexprs, final SpanFactory[] factories)
 	{
-		this.spanReplacers = new SpanReplacer[regexprs.length];
-		for (int i = 0; i < regexprs.length; i++)
+		int n = regexprs.length;
+		this.spanReplacers = new SpanReplacer[n];
+		for (int i = 0; i < n; i++)
 		{
 			this.spanReplacers[i] = new SpanReplacer(regexprs[i], factories);
 		}
