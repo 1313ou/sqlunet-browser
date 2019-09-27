@@ -6,6 +6,7 @@ package org.sqlunet.browser.xn;
 
 import android.os.Bundle;
 
+import androidx.preference.EditTextPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 
@@ -22,6 +23,6 @@ public class DownloadPreferenceFragment extends org.sqlunet.browser.config.Setti
 		super.onCreatePreferences(savedInstanceState, rootKey);
 		final Preference entryPmPreference = findPreference(Settings.PREF_ENTRY_PM);
 		assert entryPmPreference != null;
-		entryPmPreference.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
+		entryPmPreference.setSummaryProvider(EditTextPreference.SimpleSummaryProvider.getInstance());
 	}
 }
