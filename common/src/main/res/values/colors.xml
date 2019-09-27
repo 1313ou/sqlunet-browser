@@ -8,6 +8,7 @@
 
 	<!-- grays -->
 	<!--<color name="light_gray_color">#FFe0e0e0</color>-->
+	<color name="light_gray_color">#FFC0C0C0</color>
 	<color name="middle_gray_color">#FF707070</color>
 	<color name="dark_gray_color">#FF303030</color>
 
