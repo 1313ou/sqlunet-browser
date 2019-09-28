@@ -11,7 +11,7 @@
 
 	<fragment
 		android:id="@+id/nav_home"
-		android:name="org.sqlunet.browser.HomeFragment"
+		android:name="org.sqlunet.browser.xn.HomeFragment"
 		android:label="@string/nav_home"
 		tools:layout="@layout/fragment_home" />
 

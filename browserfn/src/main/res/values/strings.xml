@@ -24,6 +24,5 @@
 
 	<!-- databases -->
 	<string name="framenet" tools:keep="@string/framenet">FrameNet</string>
-	<string name="framenet_blurb" tools:keep="@string/framenet_blurb">FrameNet\nexplores semantic roles</string>
 
 </resources>
