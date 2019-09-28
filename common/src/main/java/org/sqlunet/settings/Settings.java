@@ -34,9 +34,8 @@ public class Settings
 	static public final String PREF_SELECTOR = "pref_selector_mode";
 	static public final String PREF_SELECTOR_MODE = "pref_viewweb_mode";
 	static public final String PREF_DETAIL_MODE = "pref_detail_mode";
-	static private final String PREF_XML = "pref_xml";
-	static private final String PREF_TEXTSEARCH_MODE = "pref_searchtext_mode";
-	static public final String PREF_SQL_LOG = "pref_sql_log";
+	static public final String PREF_XML = "pref_xml";
+	static public final String PREF_TEXTSEARCH_MODE = "pref_searchtext_mode";
 	static public final String PREF_STORAGE = StorageSettings.PREF_STORAGE;
 	static public final String PREF_DOWNLOADER = StorageSettings.PREF_DOWNLOADER;
 	static public final String PREF_DOWNLOAD_SITE = StorageSettings.PREF_DOWNLOAD_SITE;
@@ -54,7 +53,8 @@ public class Settings
 	 * Selector view modes
 	 */
 	public enum SelectorViewMode
-	{VIEW, WEB;
+	{
+		VIEW, WEB;
 
 		/**
 		 * Get selector preferred view mode
@@ -77,13 +77,15 @@ public class Settings
 				sharedPref.edit().putString(Settings.PREF_SELECTOR_MODE, mode.name()).apply();
 			}
 			return mode;
-		}}
+		}
+	}
 
 	/**
 	 * Detail detail view modes
 	 */
 	public enum DetailViewMode
-	{VIEW, WEB;
+	{
+		VIEW, WEB;
 
 		/**
 		 * Get preferred view mode
@@ -106,7 +108,8 @@ public class Settings
 				sharedPref.edit().putString(Settings.PREF_DETAIL_MODE, mode.name()).apply();
 			}
 			return mode;
-		}}
+		}
+	}
 
 	// S E L E C T O R   T Y P E
 
@@ -114,7 +117,8 @@ public class Settings
 	 * Selectors
 	 */
 	public enum Selector
-	{SELECTOR;
+	{
+		SELECTOR;
 
 		/**
 		 * Set this selector as preferred selector
@@ -148,7 +152,8 @@ public class Settings
 				sharedPref.edit().putString(Settings.PREF_SELECTOR, mode.name()).apply();
 			}
 			return mode;
-		}}
+		}
+	}
 
 	// P R E F E R E N C E   S H O R T C U T S
 
@@ -237,19 +242,6 @@ public class Settings
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		sharedPref.edit().putInt(Settings.PREF_TEXTSEARCH_MODE, value).apply();
-	}
-
-	/**
-	 * Get preferred XML output flag when view mode is WEB
-	 *
-	 * @param context context
-	 * @return preferred XML output flag when view mode is WEB
-	 */
-	@SuppressWarnings("unused")
-	static public boolean getSqlLogPref(final Context context)
-	{
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		return sharedPref.getBoolean(Settings.PREF_SQL_LOG, false);
 	}
 
 	/**
@@ -359,13 +351,35 @@ public class Settings
 		editor.commit();
 	}
 
-	static public void update(final Context context)
+	static public void updateGlobals(final Context context)
 	{
 		// globals
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		final boolean logSql = sharedPref.getBoolean(Settings.PREF_SQL_LOG, false);
+
+		final boolean logSql = sharedPref.getBoolean(BaseProvider.CircularBuffer.PREF_SQL_LOG, false);
 		PreparedStatement.logSql = logSql;
 		BaseProvider.logSql = logSql;
+
+		final String sqlBufferCapacity = sharedPref.getString(BaseProvider.CircularBuffer.PREF_SQL_BUFFER_CAPACITY, null);
+		if (sqlBufferCapacity != null)
+		{
+			try
+			{
+				int capacity = Integer.parseInt(sqlBufferCapacity);
+				if (capacity >= 1 && capacity <= 64)
+				{
+					BaseProvider.resizeSql(capacity);
+				}
+				else
+				{
+					sharedPref.edit().remove(BaseProvider.CircularBuffer.PREF_SQL_BUFFER_CAPACITY).apply();
+				}
+			}
+			catch (Exception e)
+			{
+				//
+			}
+		}
 	}
 
 	/**

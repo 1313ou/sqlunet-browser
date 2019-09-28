@@ -58,7 +58,7 @@ public class SqlFragment extends BaseSqlFragment
 		if (item.getItemId() == R.id.action_copy)
 		{
 			final StringBuilder sb = new StringBuilder();
-			final CharSequence[] sqls = BaseProvider.buffer.reverseItems();
+			final CharSequence[] sqls = BaseProvider.sqlBuffer.reverseItems();
 			for (CharSequence sql : sqls)
 			{
 				sb.append(SqlFormatter.styledFormat(sql));

@@ -6,13 +6,16 @@ package org.sqlunet.browser.config;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Pair;
 
 import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.common.R;
+import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageReports;
 import org.sqlunet.settings.StorageUtils;
+import org.sqlunet.sql.PreparedStatement;
 
 import androidx.annotation.NonNull;
 import androidx.preference.EditTextPreference;
@@ -151,12 +154,41 @@ public class SettingsActivity extends BaseSettingsActivity
 			final Preference detailPreference = findPreference(Settings.PREF_DETAIL_MODE);
 			assert detailPreference != null;
 			detailPreference.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
-			selectorPreference.setOnPreferenceChangeListener(listener);
+			detailPreference.setOnPreferenceChangeListener(listener);
 
-			final Preference logPreference = findPreference(Settings.PREF_DETAIL_MODE);
-			assert logPreference != null;
-			logPreference.setOnPreferenceChangeListener((preference, value) -> {
-				Settings.update(preference.getContext());
+			final EditTextPreference sqlBufferCapacityPreference = getPreferenceManager().findPreference(BaseProvider.CircularBuffer.PREF_SQL_BUFFER_CAPACITY);
+			assert sqlBufferCapacityPreference != null;
+			sqlBufferCapacityPreference.setOnBindEditTextListener((editText) -> editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_SIGNED));
+			sqlBufferCapacityPreference.setSummaryProvider(EditTextPreference.SimpleSummaryProvider.getInstance());
+			sqlBufferCapacityPreference.setOnPreferenceChangeListener((preference, value) -> {
+
+				final String sqlBufferCapacity = (String) value;
+				if (sqlBufferCapacity != null)
+				{
+					try
+					{
+						int capacity = Integer.parseInt(sqlBufferCapacity);
+						if (capacity >= 1 && capacity <= 64)
+						{
+							BaseProvider.resizeSql(capacity);
+							return true;
+						}
+					}
+					catch (Exception e)
+					{
+						//
+					}
+				}
+				return false;
+			});
+
+			final Preference sqlLogPreference = findPreference(BaseProvider.CircularBuffer.PREF_SQL_LOG);
+			assert sqlLogPreference != null;
+			sqlLogPreference.setOnPreferenceChangeListener((preference, value) -> {
+
+				boolean flag = (Boolean) value;
+				PreparedStatement.logSql = flag;
+				BaseProvider.logSql = flag;
 				return true;
 			});
 		}

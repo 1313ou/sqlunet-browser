@@ -163,13 +163,17 @@ public class Utils
 			{
 				result[i] = "NULL";
 			}
-			else */ if (args[i].matches("-?\\d+(\\.\\d+)?"))
+			else */
+
+			// A single quote within the string can be encoded by putting two single quotes in a row
+			final String arg = args[i].replaceAll("'","''");
+			if (arg.matches("-?\\d+(\\.\\d+)?"))
 			{
-				result[i] = args[i];
+				result[i] = arg;
 			}
 			else
 			{
-				result[i] = '\'' + args[i] + '\'';
+				result[i] = '\'' + arg + '\'';
 			}
 		}
 		return result;

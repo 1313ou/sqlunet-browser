@@ -65,9 +65,11 @@
 	<string name="pref_title_xml">XML output</string>
 	<string name="pref_description_xml">Output data in XML format</string>
 
-	<!-- Log -->
+	<!-- Sql buffer -->
 	<string name="pref_title_sql_log">Log SQL</string>
 	<string name="pref_description_sql_log">Log SQL statements to logs</string>
+	<string name="pref_title_sql_buffer_capacity">SQL buffer capacity [1 … 64]</string>
+	<string name="pref_description_sql_buffer_capacity">SQL circular buffer capacity</string>
 
 	<!-- FILTER -->
 

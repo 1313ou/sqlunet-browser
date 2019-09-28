@@ -85,17 +85,23 @@ public abstract class BaseProvider extends ContentProvider
 
 	// S Q L   B U F F E R
 
+	static public final int DEFAULT_SQL_BUFFER_CAPACITY = 15;
+
 	/**
 	 * SQL statement buffer
 	 */
 	@SuppressWarnings("StaticVariableOfConcreteClass")
-	static public final CircularBuffer buffer = new CircularBuffer(15);
+	static public CircularBuffer sqlBuffer = new CircularBuffer(DEFAULT_SQL_BUFFER_CAPACITY);
 
 	/**
 	 * Circular buffer
 	 */
 	static public class CircularBuffer extends LinkedList<CharSequence>
 	{
+		static public final String PREF_SQL_BUFFER_CAPACITY = "pref_sql_buffer_capacity";
+
+		static public final String PREF_SQL_LOG = "pref_sql_log";
+
 		private int limit;
 
 		CircularBuffer(@SuppressWarnings("SameParameterValue") final int number)
@@ -130,17 +136,58 @@ public abstract class BaseProvider extends ContentProvider
 			return array;
 		}
 
+		/*
 		@SuppressWarnings("unused")
 		public int getLimit()
 		{
 			return this.limit;
 		}
+		*/
 
+		/*
 		@SuppressWarnings("unused")
 		public void setLimit(int limit)
 		{
 			this.limit = limit;
 		}
+		*/
+
+		/*
+		 * Get sql circular buffer capacity
+		 *
+		 * @param context context
+		 * @return preferred sql circular buffer capacity
+		 */
+		/*
+		static public int getSqlBufferCapacityPref(final Context context)
+		{
+			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+			final String capacityStr = sharedPref.getString(PREF_SQL_BUFFER_CAPACITY, null);
+			try
+			{
+				return Integer.parseInt(capacityStr);
+			}
+			catch (Exception e)
+			{
+				//
+			}
+			return -1;
+		}
+		*/
+
+		/*
+		 * Get preferred sql log preference
+		 *
+		 * @param context context
+		 * @return preferred sql log preference
+		 */
+		/*
+		static public boolean getSqlLogPref(final Context context)
+		{
+			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+			return sharedPref.getBoolean(CircularBuffer.PREF_SQL_LOG, false);
+		}
+		*/
 	}
 
 	/**
@@ -404,6 +451,32 @@ public abstract class BaseProvider extends ContentProvider
 		return sb.toString();
 	}
 
+	/*
+	 * Resize sql buffer
+	 */
+	/*
+	public void resizeSql()
+	{
+		final Context context = getContext();
+		int capacity = CircularBuffer.getSqlBufferCapacityPref(context);
+		if (capacity != -1)
+		{
+			BaseProvider.resizeSql(capacity);
+		}
+	}
+	*/
+
+	/**
+	 * Resize sql buffer
+	 *
+	 * @param capacity capacity
+	 */
+	static public void resizeSql(final int capacity)
+	{
+		Log.d(TAG, "Sql buffer capacity " + capacity);
+		sqlBuffer = new CircularBuffer(capacity);
+	}
+
 	/**
 	 * Log query
 	 *
@@ -415,7 +488,7 @@ public abstract class BaseProvider extends ContentProvider
 		final String sql2 = Utils.replaceArgs(sql, Utils.toArgs(args));
 		if (sql2 != null)
 		{
-			buffer.addItem(sql2);
+			sqlBuffer.addItem(sql2);
 		}
 	}
 }

@@ -88,7 +88,7 @@ public class MenuHandler
 		}
 		else if (itemId == R.id.action_clear_sql)
 		{
-			BaseProvider.buffer.clear();
+			BaseProvider.sqlBuffer.clear();
 			return true;
 		}
 		else if (itemId == R.id.action_help)

@@ -104,7 +104,7 @@ public class TextFragment extends AbstractTableFragment
 	@Override
 	protected ViewBinder makeViewBinder()
 	{
-		// pattern (case-insensitive)
+		// patterns (case-insensitive)
 		final String[] patterns = toPatterns(this.query);
 
 		// spanner

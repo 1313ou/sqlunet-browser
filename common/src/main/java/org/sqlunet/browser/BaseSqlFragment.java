@@ -60,7 +60,7 @@ public class BaseSqlFragment extends ListFragment
 		final Context context = getContext();
 		if (context != null)
 		{
-			CharSequence[] sqls = BaseProvider.buffer.reverseItems();
+			CharSequence[] sqls = BaseProvider.sqlBuffer.reverseItems();
 			for (int i = 0; i < sqls.length; i++)
 			{
 				sqls[i] = SqlFormatter.styledFormat(sqls[i]);
