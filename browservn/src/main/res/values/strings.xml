@@ -28,7 +28,4 @@
 	<string name="verbnet" tools:keep="@string/verbnet">VerbNet</string>
 	<string name="propbank" tools:keep="@string/propbank">PropBank</string>
 
-	<string name="verbnet_blurb" tools:keep="@string/verbnet_blurb">VerbNet\nexplores semantic roles</string>
-	<string name="propbank_blurb" tools:keep="@string/propbank_blurb">PropBank\nexplores semantic roles</string>
-
 </resources>

@@ -26,7 +26,6 @@
 	<string name="hint_splash_browse">Exploring senses and relations</string>
 
 	<!-- databases -->
-	<string name="wordnet" tools:keep="@string/wordnet_blurb">WordNet</string>
-	<string name="wordnet_blurb" tools:keep="@string/wordnet_blurb">WordNet\nexplores senses and relations</string>
+	<string name="wordnet" tools:keep="@string/wordnet">WordNet</string>
 
 </resources>

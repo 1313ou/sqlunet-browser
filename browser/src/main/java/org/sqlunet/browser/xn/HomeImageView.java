@@ -7,6 +7,7 @@ package org.sqlunet.browser.xn;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.text.Html;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -130,8 +131,10 @@ class HomeImageView extends AppCompatImageView
 			}
 			if (messageId != 0)
 			{
-				Log.i("PICK ", getContext().getString(messageId));
-				final Toast toast = Toast.makeText(getContext(), messageId, Toast.LENGTH_LONG);
+				final Context context = getContext();
+				final String message = context.getString(messageId);
+				//Log.i("Pick ", message);
+				final Toast toast = Toast.makeText(getContext(), Html.fromHtml(message), Toast.LENGTH_LONG);
 				final View view = toast.getView();
 				view.setBackgroundResource(android.R.drawable.toast_frame);
 				final TextView textView = view.findViewById(android.R.id.message);

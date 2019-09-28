@@ -6,7 +6,7 @@
 <resources>
 
 	<string name="verbnet">VerbNet</string>
-	<string name="verbnet_blurb">VerbNet\nexplores semantic roles</string>
+	<string name="verbnet_blurb">&lt;b&gt;VerbNet&lt;/b&gt;\nexplores semantic roles</string>
 
 	<string name="title_activity_vnclass">VerbNet Class</string>
 
