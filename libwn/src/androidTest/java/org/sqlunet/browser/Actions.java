@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser;
 
 import android.view.View;
@@ -5,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import org.hamcrest.Matcher;
+import org.sqlunet.browser.wn.lib.R;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
