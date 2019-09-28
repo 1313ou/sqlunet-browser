@@ -30,7 +30,7 @@ public class EntryActivity extends AppCompatActivity
 
 		// settings
 		Settings.initialize(this);
-		Settings.update(this);
+		Settings.updateGlobals(this);
 
 		// check hook
 		boolean canRun = Status.canRun(getBaseContext());

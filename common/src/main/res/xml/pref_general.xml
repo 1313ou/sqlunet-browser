@@ -58,6 +58,14 @@
 		android:title="@string/pref_title_xml"
 		app:singleLineTitle="false"/>
 
+	<EditTextPreference
+		android:defaultValue="16"
+		android:inputType="numberDecimal"
+		android:key="pref_sql_buffer_capacity"
+		android:summary="@string/pref_description_sql_buffer_capacity"
+		android:title="@string/pref_title_sql_buffer_capacity"
+		app:singleLineTitle="false" />
+
 	<SwitchPreferenceCompat
 		android:defaultValue="false"
 		android:key="pref_sql_log"
