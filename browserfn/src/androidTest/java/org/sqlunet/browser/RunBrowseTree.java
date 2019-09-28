@@ -22,7 +22,7 @@ public class RunBrowseTree extends TestCase
 	@Before
 	public void before()
 	{
-		TestActions.spinner("per base", R.id.spinner);
+		Actions.do_choose(R.id.spinner, "per base");
 	}
 
 	@Test

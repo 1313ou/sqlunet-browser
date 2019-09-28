@@ -293,7 +293,7 @@ public final class AppRate
 				//.setTextLater(R.string.rate_dialog_later) //
 				//.setTextNever(R.string.rate_dialog_never) //
 				//.setTextRateNow(R.string.rate_dialog_ok) //
-				.setDebug(DEBUG) // default false.
+				.setDebug(false) // default false.
 				.monitor();
 
 		AppRate.showRateDialogIfMeetsConditions(activity);
