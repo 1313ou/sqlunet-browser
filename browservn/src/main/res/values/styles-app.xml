@@ -24,48 +24,48 @@
 		<item name="android:paddingStart">2dp</item>
 	</style>
 
-	<style name="Data.VnName">
-		<item name="android:textColor">#FF000000</item>
-		<item name="android:textSize">24sp</item>
-	</style>
+<!--	<style name="Data.VnName">-->
+<!--		<item name="android:textColor">#FF000000</item>-->
+<!--		<item name="android:textSize">24sp</item>-->
+<!--	</style>-->
 
-	<style name="Data.VnClassName">
-		<item name="android:textColor">#FF800000</item>
-		<item name="android:textSize">24sp</item>
-	</style>
+<!--	<style name="Data.VnClassName">-->
+<!--		<item name="android:textColor">#FF800000</item>-->
+<!--		<item name="android:textSize">24sp</item>-->
+<!--	</style>-->
 
-	<style name="Data.VnWord">
-		<item name="android:textColor">#FF808080</item>
-		<item name="android:textSize">16sp</item>
-	</style>
+<!--	<style name="Data.VnWord">-->
+<!--		<item name="android:textColor">#FF808080</item>-->
+<!--		<item name="android:textSize">16sp</item>-->
+<!--	</style>-->
 
-	<style name="Data.VnId">
-		<item name="android:textColor">#FFa0a0a0</item>
-		<item name="android:textSize">12sp</item>
-	</style>
+<!--	<style name="Data.VnId">-->
+<!--		<item name="android:textColor">#FFa0a0a0</item>-->
+<!--		<item name="android:textSize">12sp</item>-->
+<!--	</style>-->
 
-	<style name="Data.VnWordId">
-		<item name="android:textColor">#FFc0c0c0</item>
-		<item name="android:textSize">12sp</item>
-	</style>
+<!--	<style name="Data.VnWordId">-->
+<!--		<item name="android:textColor">#FFc0c0c0</item>-->
+<!--		<item name="android:textSize">12sp</item>-->
+<!--	</style>-->
 
-	<style name="Data.WordId">
-		<item name="android:textColor">#FFc0c0c0</item>
-		<item name="android:textSize">12sp</item>
-	</style>
+<!--	<style name="Data.WordId">-->
+<!--		<item name="android:textColor">#FFc0c0c0</item>-->
+<!--		<item name="android:textSize">12sp</item>-->
+<!--	</style>-->
 
-	<style name="Data.VnClassId">
-		<item name="android:textColor">#FFa0a0a0</item>
-		<item name="android:textSize">12sp</item>
-	</style>
+<!--	<style name="Data.VnClassId">-->
+<!--		<item name="android:textColor">#FFa0a0a0</item>-->
+<!--		<item name="android:textSize">12sp</item>-->
+<!--	</style>-->
 
-	<style name="Data.XSources">
-		<item name="android:textColor">#FF202020</item>
-		<item name="android:textSize">12sp</item>
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_gravity">end</item>
-		<item name="android:gravity">end</item>
-	</style>
+<!--	<style name="Data.XSources">-->
+<!--		<item name="android:textColor">#FF202020</item>-->
+<!--		<item name="android:textSize">12sp</item>-->
+<!--		<item name="android:layout_width">match_parent</item>-->
+<!--		<item name="android:layout_gravity">end</item>-->
+<!--		<item name="android:gravity">end</item>-->
+<!--	</style>-->
 
 	<style name="Data.XIcon">
 	</style>

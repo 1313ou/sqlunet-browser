@@ -14,7 +14,6 @@ import org.sqlunet.browser.common.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -48,12 +47,6 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 		if (savedInstanceState == null)
 		{
 			this.fragment = (F) getSupportFragmentManager().findFragmentById(R.id.fragment_browse);
-
-			// set up the action bar
-			final ActionBar actionBar = getSupportActionBar();
-			assert actionBar != null;
-			assert this.fragment != null;
-			this.fragment.setActionBarUpDisabled(actionBar, this);
 		}
 	}
 

@@ -322,10 +322,10 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 
 	private void inform(@NonNull final String message)
 	{
-		final AlertDialog.Builder alert = new AlertDialog.Builder(this);
-		alert.setTitle(R.string.title_donate);
-		alert.setMessage(message);
-		alert.show();
+		new AlertDialog.Builder(this) //
+				.setTitle(R.string.title_donate) //
+				.setMessage(message) //
+				.show();
 	}
 
 	// M E N U

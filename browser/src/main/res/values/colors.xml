@@ -29,4 +29,7 @@
 	<color name="group_color">@color/secondaryColor</color>
 	<color name="group_fore_color">@color/primaryForeColor</color>
 
+	<!-- browse action bars -->
+	<color name="predicatematrix_actionbar_color">@color/primaryLightColor</color>
+
 </resources>

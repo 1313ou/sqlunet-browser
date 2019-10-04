@@ -87,15 +87,13 @@ public class SetupSqlFragment extends Fragment implements Updatable
 	 */
 	public SetupSqlFragment()
 	{
-		// Required empty public constructor
+		setHasOptionsMenu(true);
 	}
 
 	@Nullable
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		setHasOptionsMenu(true);
-
 		// view
 		final View view = inflater.inflate(R.layout.fragment_setup_sql, container, false);
 
@@ -243,7 +241,7 @@ public class SetupSqlFragment extends Fragment implements Updatable
 			final boolean dbExists = new File(database).exists();
 			final boolean sqlzipExists = new File(source).exists();
 			Info.info(activity, R.string.title_indexes, //
-					getString(R.string.title_operation), getString(R.string.info_op_execute_import), //
+					getString(R.string.title_operation), getString(R.string.info_op_execute_indexes), //
 					getString(R.string.title_database), database, //
 					getString(R.string.title_status), getString(dbExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
 					getString(R.string.title_free), free, //
@@ -283,9 +281,8 @@ public class SetupSqlFragment extends Fragment implements Updatable
 		}
 	}
 
-	/**
-	 * Update status
-	 */
+	// U P D A T E
+
 	@Override
 	public void update()
 	{
@@ -350,8 +347,8 @@ public class SetupSqlFragment extends Fragment implements Updatable
 	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
 	{
 		// handle item selection
-		int i = item.getItemId();
-		if (i == R.id.action_refresh)
+		final int itemId = item.getItemId();
+		if (itemId == R.id.action_refresh)
 		{
 			// make sure that the SwipeRefreshLayout is displaying its refreshing indicator
 			if (!this.swipeRefreshLayout.isRefreshing())

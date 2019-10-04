@@ -62,64 +62,64 @@
 
 	<style name="Data.Definition"/>
 
-	<style name="Data.Samples"/>
+<!--	<style name="Data.Samples"/>-->
 
-	<style name="Data.SemLinks"/>
+<!--	<style name="Data.SemLinks"/>-->
 
-	<style name="Data.LexLinks"/>
+<!--	<style name="Data.LexLinks"/>-->
 
-	<style name="Data.VerbFrames"/>
+<!--	<style name="Data.VerbFrames"/>-->
 
-	<style name="Data.VerbSentenceFrames"/>
+<!--	<style name="Data.VerbSentenceFrames"/>-->
 
-	<style name="Data.Morphology"/>
+<!--	<style name="Data.Morphology"/>-->
 
-	<style name="Data.AdjPosition"/>
+<!--	<style name="Data.AdjPosition"/>-->
 
 	<style name="Data.XIcon">
 		<item name="android:layout_gravity">center_vertical</item>
 	</style>
 
-	<style name="Data.XName">
-		<item name="android:textColor">#FF000000</item>
-		<item name="android:textSize">20sp</item>
-		<item name="android:textStyle">bold</item>
-	</style>
+<!--	<style name="Data.XName">-->
+<!--		<item name="android:textColor">#FF000000</item>-->
+<!--		<item name="android:textSize">20sp</item>-->
+<!--		<item name="android:textStyle">bold</item>-->
+<!--	</style>-->
 
-	<style name="Data.XHeader">
-		<item name="android:textColor">#FF808080</item>
-		<item name="android:textSize">15sp</item>
-		<item name="android:textStyle">bold</item>
-	</style>
+<!--	<style name="Data.XHeader">-->
+<!--		<item name="android:textColor">#FF808080</item>-->
+<!--		<item name="android:textSize">15sp</item>-->
+<!--		<item name="android:textStyle">bold</item>-->
+<!--	</style>-->
 
-	<style name="Data.XInfo">
-		<item name="android:textColor">#FF404040</item>
-		<item name="android:textSize">15sp</item>
-	</style>
+<!--	<style name="Data.XInfo">-->
+<!--		<item name="android:textColor">#FF404040</item>-->
+<!--		<item name="android:textSize">15sp</item>-->
+<!--	</style>-->
 
-	<style name="Data.XDefinition">
-		<item name="android:textColor">#FF4682B4</item>
-		<item name="android:textSize">15sp</item>
-	</style>
+<!--	<style name="Data.XDefinition">-->
+<!--		<item name="android:textColor">#FF4682B4</item>-->
+<!--		<item name="android:textSize">15sp</item>-->
+<!--	</style>-->
 
-	<style name="Data.XWordId">
-		<item name="android:textColor">#FF404040</item>
-		<item name="android:textSize">12sp</item>
-	</style>
+<!--	<style name="Data.XWordId">-->
+<!--		<item name="android:textColor">#FF404040</item>-->
+<!--		<item name="android:textSize">12sp</item>-->
+<!--	</style>-->
 
-	<style name="Data.XSynsetId">
-		<item name="android:textColor">#FF404040</item>
-		<item name="android:textSize">12sp</item>
-	</style>
+<!--	<style name="Data.XSynsetId">-->
+<!--		<item name="android:textColor">#FF404040</item>-->
+<!--		<item name="android:textSize">12sp</item>-->
+<!--	</style>-->
 
-	<style name="Data.XId">
-		<item name="android:textColor">#FFD08080</item>
-		<item name="android:textSize">12sp</item>
-	</style>
+<!--	<style name="Data.XId">-->
+<!--		<item name="android:textColor">#FFD08080</item>-->
+<!--		<item name="android:textSize">12sp</item>-->
+<!--	</style>-->
 
-	<style name="Data.XMemberId">
-		<item name="android:textColor">#FF8080D0</item>
-		<item name="android:textSize">12sp</item>
-	</style>
+<!--	<style name="Data.XMemberId">-->
+<!--		<item name="android:textColor">#FF8080D0</item>-->
+<!--		<item name="android:textSize">12sp</item>-->
+<!--	</style>-->
 
 </resources>

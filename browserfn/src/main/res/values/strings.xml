@@ -23,8 +23,6 @@
 	<string name="hint_splash_browse">Exploring semantic roles</string>
 
 	<!-- databases -->
-	<string name="framenet">FrameNet</string>
-
-	<string name="framenet_blurb">FrameNet\nexplores semantic roles</string>
+	<string name="framenet" tools:keep="@string/framenet">FrameNet</string>
 
 </resources>

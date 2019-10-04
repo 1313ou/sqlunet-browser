@@ -16,7 +16,6 @@ import org.sqlunet.provider.ProviderArgs;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -49,12 +48,6 @@ public class BrowsePredicateMatrixActivity extends AppCompatActivity
 		if (savedInstanceState == null)
 		{
 			this.fragment = (BrowsePredicateMatrixFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_predicatematrix);
-
-			// set up the action bar
-			final ActionBar actionBar = getSupportActionBar();
-			assert actionBar != null;
-			assert this.fragment != null;
-			this.fragment.setActionBarUpDisabled(actionBar, this);
 		}
 	}
 

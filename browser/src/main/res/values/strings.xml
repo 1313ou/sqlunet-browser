@@ -50,7 +50,4 @@
 	<string name="source">Source database</string>
 	<string name="sqlunet">SqlUNet</string>
 
-	<!-- blurbs -->
-	<string name="sqlunet_blurb">SqlUNet\nunifies all</string>
-
 </resources>

@@ -21,10 +21,12 @@ import static com.bbou.rate.PreferenceHelper.setRemindInterval;
 
 final class DialogBuilder
 {
+	/*
 	static private boolean underHoneyComb()
 	{
 		return Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB;
 	}
+	*/
 
 	static private boolean isLollipop()
 	{
@@ -39,14 +41,18 @@ final class DialogBuilder
 	@SuppressLint("NewApi")
 	static private AlertDialog.Builder getDialogBuilder(Context context)
 	{
+		/*
 		if (underHoneyComb())
 		{
 			return new AlertDialog.Builder(context);
 		}
 		else
 		{
+		 */
 			return new AlertDialog.Builder(context, getDialogTheme());
+		/*
 		}
+		 */
 	}
 
 	static Dialog build(@NonNull final Context context, final DialogOptions options)

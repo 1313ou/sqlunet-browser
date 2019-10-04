@@ -7,25 +7,25 @@
 
 	<!--S E L E C T O R S -->
 
-	<style name="Label.Members"/>
+<!--	<style name="Label.Members"/>-->
 
-	<style name="Label.Definition"/>
+<!--	<style name="Label.Definition"/>-->
 
-	<style name="Label.Samples"/>
+<!--	<style name="Label.Samples"/>-->
 
-	<style name="Label.SemLinks"/>
+<!--	<style name="Label.SemLinks"/>-->
 
-	<style name="Label.LexLinks"/>
+<!--	<style name="Label.LexLinks"/>-->
 
-	<style name="Label.VerbFrames"/>
+<!--	<style name="Label.VerbFrames"/>-->
 
-	<style name="Label.VerbSentenceFrames"/>
+<!--	<style name="Label.VerbSentenceFrames"/>-->
 
-	<style name="Label.Morphology"/>
+<!--	<style name="Label.Morphology"/>-->
 
-	<style name="Label.AdjPosition"/>
+<!--	<style name="Label.AdjPosition"/>-->
 
-	<style name="Label.Source"/>
+<!--	<style name="Label.Source"/>-->
 
 	<style name="Label.Group">
 		<item name="android:padding">8dp</item>
@@ -98,19 +98,19 @@
 
 	<style name="Data.Definition"/>
 
-	<style name="Data.Samples"/>
+<!--	<style name="Data.Samples"/>-->
 
-	<style name="Data.SemLinks"/>
+<!--	<style name="Data.SemLinks"/>-->
 
-	<style name="Data.LexLinks"/>
+<!--	<style name="Data.LexLinks"/>-->
 
-	<style name="Data.VerbFrames"/>
+<!--	<style name="Data.VerbFrames"/>-->
 
-	<style name="Data.VerbSentenceFrames"/>
+<!--	<style name="Data.VerbSentenceFrames"/>-->
 
-	<style name="Data.Morphology"/>
+<!--	<style name="Data.Morphology"/>-->
 
-	<style name="Data.AdjPosition"/>
+<!--	<style name="Data.AdjPosition"/>-->
 
 	<style name="Data.XSources">
 		<item name="android:textColor">#FF202020</item>

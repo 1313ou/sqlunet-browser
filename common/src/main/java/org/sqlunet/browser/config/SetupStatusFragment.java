@@ -75,14 +75,13 @@ public class SetupStatusFragment extends Fragment implements Updatable
 	 */
 	public SetupStatusFragment()
 	{
+		setHasOptionsMenu(true);
 	}
 
 	@Nullable
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		setHasOptionsMenu(true);
-
 		// view
 		final View view = inflater.inflate(R.layout.fragment_status, container, false);
 
@@ -182,9 +181,6 @@ public class SetupStatusFragment extends Fragment implements Updatable
 
 	// U P D A T E
 
-	/**
-	 * Update status
-	 */
 	@Override
 	public void update()
 	{
@@ -264,8 +260,8 @@ public class SetupStatusFragment extends Fragment implements Updatable
 	public boolean onOptionsItemSelected(@NonNull MenuItem item)
 	{
 		// handle item selection
-		int i = item.getItemId();
-		if (i == R.id.action_refresh)
+		final int itemId = item.getItemId();
+		if (itemId == R.id.action_refresh)
 		{
 			// make sure that the SwipeRefreshLayout is displaying its refreshing indicator
 			if (!this.swipeRefreshLayout.isRefreshing())

@@ -45,18 +45,18 @@ public class MenuHandler
 		Intent intent;
 
 		// handle item selection
-		int i = item.getItemId();
-		if (i == R.id.action_main)
+		final int itemId = item.getItemId();
+		if (itemId == R.id.action_main)
 		{
 			intent = new Intent(activity, MainActivity.class);
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 		}
-		else if (i == R.id.action_settings)
+		else if (itemId == R.id.action_settings)
 		{
 			intent = new Intent(activity, SettingsActivity.class);
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 		}
-		else if (i == R.id.action_clear_settings)
+		else if (itemId == R.id.action_clear_settings)
 		{
 			final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
 			final SharedPreferences.Editor edit = prefs.edit();
@@ -64,65 +64,65 @@ public class MenuHandler
 			intent = new Intent(activity, SettingsActivity.class);
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 		}
-		else if (i == R.id.action_storage)
+		else if (itemId == R.id.action_storage)
 		{
 			intent = new Intent(activity, StorageActivity.class);
 		}
-		else if (i == R.id.action_status)
+		else if (itemId == R.id.action_status)
 		{
 			intent = new Intent(activity, StatusActivity.class);
 		}
-		else if (i == R.id.action_diagnostics)
+		else if (itemId == R.id.action_diagnostics)
 		{
 			intent = new Intent(activity, DiagnosticsActivity.class);
 		}
-		else if (i == R.id.action_update)
+		else if (itemId == R.id.action_update)
 		{
 			BaseProvider.closeProviders(activity);
 			FileDataDownloader.start(activity, activity.getResources().getString(R.string.pref_default_download_dbfile), StorageSettings.getDbDownloadSource(activity), StorageSettings.getDatabasePath(activity), StorageSettings.getCacheDir(activity));
 			return true;
 		}
-		else if (i == R.id.action_setup)
+		else if (itemId == R.id.action_setup)
 		{
 			intent = new Intent(activity, SetupActivity.class);
 		}
-		else if (i == R.id.action_clear_sql)
+		else if (itemId == R.id.action_clear_sql)
 		{
-			BaseProvider.buffer.clear();
+			BaseProvider.sqlBuffer.clear();
 			return true;
 		}
-		else if (i == R.id.action_help)
+		else if (itemId == R.id.action_help)
 		{
 			intent = new Intent(activity, HelpActivity.class);
 		}
-		else if (i == R.id.action_credits)
+		else if (itemId == R.id.action_credits)
 		{
 			intent = new Intent(activity, AboutActivity.class);
 		}
-		else if (i == R.id.action_provider_info)
+		else if (itemId == R.id.action_provider_info)
 		{
 			Providers.listProviders(activity);
 			return true;
 		}
-		else if (i == R.id.action_donate)
+		else if (itemId == R.id.action_donate)
 		{
 			intent = new Intent(activity, DonateActivity.class);
 		}
-		else if (i == R.id.action_other)
+		else if (itemId == R.id.action_other)
 		{
 			intent = new Intent(activity, OthersActivity.class);
 		}
-		else if (i == R.id.action_rate)
+		else if (itemId == R.id.action_rate)
 		{
 			AppRate.rate(activity);
 			return true;
 		}
-		else if (i == R.id.action_quit)
+		else if (itemId == R.id.action_quit)
 		{
 			activity.finish();
 			return true;
 		}
-		else if (i == R.id.action_appsettings)
+		else if (itemId == R.id.action_appsettings)
 		{
 			final String appId = activity.getPackageName();
 			Settings.applicationSettings(activity, appId);

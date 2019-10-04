@@ -6,7 +6,7 @@ import android.widget.ListView;
 
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matcher;
-import org.sqlunet.browser.wn.R;
+import org.sqlunet.browser.wn.lib.R;
 
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.action.ViewActions;
@@ -19,7 +19,7 @@ class Tests
 	{
 		for (String word : TestUtils.getWordList())
 		{
-			TestActions.typeSearch(word, R.id.search);
+			Actions.do_typeSearch(R.id.search, word);
 
 			// progressMessage list
 			final Matcher<View> list = CoreMatchers.allOf(ViewMatchers.withId(android.R.id.list), CoreMatchers.instanceOf(ListView.class));
@@ -40,7 +40,7 @@ class Tests
 
 				// TestUtils.pause();
 
-				// TestActions.swipeUp(R.id.container_browse2);
+				// TestActions.do_swipeUp(R.id.container_browse2);
 			}
 		}
 	}

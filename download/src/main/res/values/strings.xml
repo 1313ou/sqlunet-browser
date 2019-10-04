@@ -93,7 +93,7 @@
 	<string name="status_task_start_toast">Task started</string>
 	<string name="status_task_done_toast">Task done</string>
 
-	<string name="status_download_downloadable_content">Now downloading available content. Be patient.</string>
+	<!--<string name="status_download_downloadable_content">Now downloading available content. Be patient.</string>-->
 
 	<string name="format_storage_data" formatted="true">%1$s\nfree: %2$s capacity: %3$s (%4$.1f percent)</string>
 

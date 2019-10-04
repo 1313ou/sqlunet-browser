@@ -66,7 +66,7 @@ public class TextFragment extends AbstractTableFragment
 	/**
 	 * Factories
 	 */
-	static private final SpanFactory[][] factories = {new SpanFactory[]{boldFactory,}};
+	static private final SpanFactory[] factories = new SpanFactory[]{boldFactory,};
 
 	/**
 	 * Query argument
@@ -104,7 +104,7 @@ public class TextFragment extends AbstractTableFragment
 	@Override
 	protected ViewBinder makeViewBinder()
 	{
-		// pattern (case-insensitive)
+		// patterns (case-insensitive)
 		final String[] patterns = toPatterns(this.query);
 
 		// spanner
@@ -344,16 +344,10 @@ public class TextFragment extends AbstractTableFragment
 	 */
 	private AlertDialog makeDialog(final DialogInterface.OnClickListener listener, final CharSequence... choices)
 	{
-		AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-
-		// set the dialog characteristics
-		builder.setTitle(R.string.title_activity_searchtext);
-
-		// data and listener
-		builder.setItems(choices, listener);
-
-		// get the dialog
-		return builder.create();
+		return new AlertDialog.Builder(requireContext()) //
+				.setTitle(R.string.title_activity_searchtext) //
+				.setItems(choices, listener) //
+				.create();
 	}
 
 	/**

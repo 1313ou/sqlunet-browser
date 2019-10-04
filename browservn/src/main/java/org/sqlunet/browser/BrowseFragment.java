@@ -58,7 +58,6 @@ public class BrowseFragment extends BaseSearchFragment
 		this.colorId = R.color.browse_actionbar_color;
 		this.spinnerLabels = R.array.selectors_names;
 		this.spinnerIcons = R.array.selectors_icons;
-		this.titleId = R.string.title_browse_section;
 	}
 
 	@Override
@@ -77,42 +76,6 @@ public class BrowseFragment extends BaseSearchFragment
 		}
 
 		return view;
-	}
-
-	// S P I N N E R
-
-	@Override
-	protected void setupSpinner(@NonNull final Context context)
-	{
-		super.setupSpinner(context);
-		this.spinner.setVisibility(View.GONE);
-
-		/*
-		// spinner listener
-		this.spinner.setOnItemSelectedListener( //
-				new OnItemSelectedListener()
-				{
-					@Override
-					public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
-					{
-						final Selector selectorMode = Selector.values()[position];
-						selectorMode.setPref(context);
-					}
-
-					@Override
-					public void onNothingSelected(final AdapterView<?> parentView)
-					{
-						//
-					}
-				});
-
-		// saved selector mode
-		final Selector selectorMode = Selector.getPref(context);
-		if (selectorMode != null)
-		{
-			this.spinner.setSelection(selectorMode.ordinal());
-		}
-		*/
 	}
 
 	// M E N U

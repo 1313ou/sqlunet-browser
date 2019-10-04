@@ -38,7 +38,6 @@ public class PropBankSpanner extends RegExprSpanner
 		super(PropBankSpanner.patterns, new SpanFactory[][]{ //
 				new SpanFactory[]{ //
 						flags -> new ImageSpan(context, R.drawable.trace), //
-
 						flags -> new HiddenSpan(),},});
 	}
 }
