@@ -226,16 +226,15 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-
-		if (id == R.id.action_settings)
+		final int itemId = item.getItemId();
+		if (itemId == R.id.action_settings)
 		{
 			final Intent intent = new Intent(this, SettingsActivity.class);
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(intent);
 			return true;
 		}
-		else if (id == R.id.action_diagnostics)
+		else if (itemId == R.id.action_diagnostics)
 		{
 			final Intent intent = new Intent(this, DiagnosticsActivity.class);
 			startActivity(intent);

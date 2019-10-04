@@ -3,6 +3,7 @@
  */
 
 apply plugin: 'com.android.application'
+apply plugin: 'androidx.navigation.safeargs'
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
 def keystoreProperties = new Properties()
@@ -69,6 +70,8 @@ dependencies {
     implementation project(':propbank')
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    implementation "androidx.navigation:navigation-fragment:$navVersion"
+    implementation "androidx.navigation:navigation-ui:$navVersion"
     implementation 'androidx.legacy:legacy-support-v13:1.0.0'
     implementation 'androidx.preference:preference:1.1.0'
     implementation 'androidx.annotation:annotation:1.1.0'

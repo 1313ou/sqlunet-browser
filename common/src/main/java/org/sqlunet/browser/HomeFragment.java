@@ -13,28 +13,41 @@ import org.sqlunet.browser.common.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 /**
  * Home fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class HomeFragment extends NavigableFragment
+public class HomeFragment extends Fragment
 {
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */
 	public HomeFragment()
 	{
-		this.titleId = R.string.title_home_section;
 	}
 
 	@Nullable
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		setHasOptionsMenu(true);
 		return inflater.inflate(R.layout.fragment_home, container, false);
+	}
+
+	@Override
+	public void onResume()
+	{
+		super.onResume();
+
+		final AppCompatActivity activity = (AppCompatActivity)requireActivity();
+		final ActionBar actionBar = activity.getSupportActionBar();
+		assert actionBar != null;
+		actionBar.setCustomView(null);
+		actionBar.setBackgroundDrawable(null);
 	}
 }
 

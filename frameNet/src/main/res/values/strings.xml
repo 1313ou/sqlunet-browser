@@ -3,10 +3,10 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="framenet">FrameNet</string>
-	<string name="framenet_blurb">FrameNet\nexplores semantic roles</string>
+	<string name="framenet" tools:keep="@string/framenet">FrameNet</string>
+	<string name="framenet_blurb" tools:keep="@string/framenet_blurb">&lt;b&gt;FrameNet&lt;/b&gt;\nexplores semantic roles</string>
 
 	<string name="title_activity_fnframe">FrameNet Frame</string>
 	<string name="title_activity_fnlexunit">FrameNet LexUnit</string>

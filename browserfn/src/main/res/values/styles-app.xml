@@ -32,10 +32,10 @@
 		<item name="android:textSize">12sp</item>
 	</style>
 
-	<style name="Data.WordId">
-		<item name="android:textColor">#FFc0c0c0</item>
-		<item name="android:textSize">12sp</item>
-	</style>
+<!--	<style name="Data.WordId">-->
+<!--		<item name="android:textColor">#FFc0c0c0</item>-->
+<!--		<item name="android:textSize">12sp</item>-->
+<!--	</style>-->
 
 	<style name="Data.FnFrameId">
 		<item name="android:textColor">#FFa0a0a0</item>

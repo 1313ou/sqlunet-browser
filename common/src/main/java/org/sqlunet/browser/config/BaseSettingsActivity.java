@@ -45,6 +45,7 @@ public abstract class BaseSettingsActivity extends AppCompatActivity implements 
 		if (savedInstanceState == null)
 		{
 			fm.beginTransaction().replace(R.id.settings, new HeaderFragment()).commit();
+			setTitle(R.string.title_settings);
 		}
 		else
 		{
@@ -60,7 +61,7 @@ public abstract class BaseSettingsActivity extends AppCompatActivity implements 
 			{
 				CharSequence title = null;
 				final List<Fragment> fragments = fm.getFragments();
-				if(fragments.size() > 0)
+				if (fragments.size() > 0)
 				{
 					final Fragment fragment = fragments.get(0); // only one at a time
 					final PreferenceFragmentCompat preferenceFragment = (PreferenceFragmentCompat) fragment;
@@ -75,6 +76,11 @@ public abstract class BaseSettingsActivity extends AppCompatActivity implements 
 					setTitle(title);
 				}
 			}
+			final ActionBar actionBar = getSupportActionBar();
+			if (actionBar != null)
+			{
+				actionBar.setSubtitle(getTitle());
+			}
 		});
 
 		// toolbar
@@ -85,6 +91,8 @@ public abstract class BaseSettingsActivity extends AppCompatActivity implements 
 		final ActionBar actionBar = getSupportActionBar();
 		if (actionBar != null)
 		{
+			actionBar.setTitle(R.string.app_name);
+			actionBar.setSubtitle(getTitle());
 			actionBar.setDisplayOptions(ActionBar.DISPLAY_USE_LOGO | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
 		}
 	}

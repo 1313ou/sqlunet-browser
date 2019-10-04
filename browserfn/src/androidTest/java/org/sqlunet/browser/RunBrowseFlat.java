@@ -22,7 +22,7 @@ public class RunBrowseFlat extends TestCase
 	@Before
 	public void before()
 	{
-		TestActions.spinner("senses", R.id.spinner);
+		Actions.do_choose(R.id.spinner, "senses");
 	}
 
 	@Test

@@ -4,7 +4,6 @@
 
 package org.sqlunet.browser;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
@@ -68,7 +67,6 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		this.colorId = R.color.predicatematrix_actionbar_color;
 		this.spinnerLabels = R.array.predicatematrix_modes;
 		this.spinnerIcons = R.array.predicatematrix_icons;
-		this.titleId = R.string.title_predicatematrix_section;
 	}
 
 	// R E S T O R E
@@ -121,12 +119,15 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 	// S P I N N E R
 
 	@Override
-	protected void setupSpinner(@NonNull final Context context)
+	protected void setupSpinner()
 	{
-		super.setupSpinner(context);
+		this.spinner.setVisibility(View.VISIBLE);
+
+		// apply spinner adapter
+		this.spinner.setAdapter(getSpinnerAdapter());
 
 		// saved mode
-		final Settings.PMMode mode = Settings.PMMode.getPref(context);
+		final Settings.PMMode mode = Settings.PMMode.getPref(requireContext());
 		if (mode != null)
 		{
 			// no listener yet
@@ -141,7 +142,7 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 			public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
 			{
 				final Settings.PMMode mode = Settings.PMMode.values()[position];
-				final boolean hasChanged = mode.setPref(context);
+				final boolean hasChanged = mode.setPref(requireContext());
 				Log.d(BrowsePredicateMatrixFragment.TAG, "mode=" + mode.name() + " has changed=" + hasChanged);
 
 				// restart

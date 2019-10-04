@@ -61,7 +61,6 @@ public class BrowseFragment extends BaseSearchFragment
 		this.colorId = R.color.browse_actionbar_color;
 		this.spinnerLabels = R.array.selectors_names;
 		this.spinnerIcons = R.array.selectors_icons;
-		this.titleId = R.string.title_browse_section;
 	}
 
 	@Override
@@ -82,42 +81,6 @@ public class BrowseFragment extends BaseSearchFragment
 		return view;
 	}
 
-	// S P I N N E R
-
-	@Override
-	protected void setupSpinner(@NonNull final Context context)
-	{
-		super.setupSpinner(context);
-		this.spinner.setVisibility(View.GONE);
-
-		/*
-		// spinner listener
-		this.spinner.setOnItemSelectedListener( //
-				new OnItemSelectedListener()
-				{
-					@Override
-					public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
-					{
-						final Settings.Selector selectorMode = Settings.Selector.values()[position];
-						selectorMode.setPref(context);
-					}
-
-					@Override
-					public void onNothingSelected(final AdapterView<?> parentView)
-					{
-						//
-					}
-				});
-
-		// saved selector mode
-		final Settings.Selector selectorMode = Settings.Selector.getPref(context);
-		if (selectorMode != null)
-		{
-			this.spinner.setSelection(selectorMode.ordinal());
-		}
-		*/
-	}
-
 	// M E N U
 
 	@Override
@@ -127,8 +90,8 @@ public class BrowseFragment extends BaseSearchFragment
 		Intent intent;
 
 		// handle item selection
-		int i = item.getItemId();
-		if (i == R.id.action_table_lexdomains)
+		final int itemId = item.getItemId();
+		if (itemId == R.id.action_table_lexdomains)
 		{
 			intent = new Intent(requireContext(), TableActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(LexDomains.CONTENT_URI_TABLE));
@@ -136,7 +99,7 @@ public class BrowseFragment extends BaseSearchFragment
 			intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{LexDomains.LEXDOMAINID, LexDomains.LEXDOMAIN, LexDomains.POS});
 			intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table3);
 		}
-		else if (i == R.id.action_table_postypes)
+		else if (itemId == R.id.action_table_postypes)
 		{
 			intent = new Intent(requireContext(), TableActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(PosTypes.CONTENT_URI_TABLE));
@@ -144,7 +107,7 @@ public class BrowseFragment extends BaseSearchFragment
 			intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{PosTypes.POS, PosTypes.POSNAME});
 			intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table2);
 		}
-		else if (i == R.id.action_table_adjpositiontypes)
+		else if (itemId == R.id.action_table_adjpositiontypes)
 		{
 			intent = new Intent(requireContext(), TableActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(AdjPositionTypes.CONTENT_URI_TABLE));
@@ -152,7 +115,7 @@ public class BrowseFragment extends BaseSearchFragment
 			intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{AdjPositionTypes.POSITION, AdjPositionTypes.POSITIONNAME});
 			intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table2);
 		}
-		else if (i == R.id.action_table_linktypes)
+		else if (itemId == R.id.action_table_linktypes)
 		{
 			intent = new Intent(requireContext(), TableActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(LinkTypes.CONTENT_URI_TABLE));

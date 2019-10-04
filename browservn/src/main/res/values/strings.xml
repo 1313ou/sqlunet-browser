@@ -25,10 +25,7 @@
 
 	<!-- databases -->
 	<string name="source">Source database</string>
-	<string name="verbnet">VerbNet</string>
-	<string name="propbank">PropBank</string>
-
-	<string name="verbnet_blurb">VerbNet\nexplores semantic roles</string>
-	<string name="propbank_blurb">PropBank\nexplores semantic roles</string>
+	<string name="verbnet" tools:keep="@string/verbnet">VerbNet</string>
+	<string name="propbank" tools:keep="@string/propbank">PropBank</string>
 
 </resources>

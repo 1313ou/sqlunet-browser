@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.sqlunet.browser.wn.R;
+import org.sqlunet.browser.vn.R;
 
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
@@ -22,7 +22,7 @@ public class RunBrowseTree extends TestCase
 	@Before
 	public void before()
 	{
-		TestActions.spinner("per base", R.id.spinner);
+		Actions.do_choose(R.id.spinner, "per base");
 	}
 
 	@Test

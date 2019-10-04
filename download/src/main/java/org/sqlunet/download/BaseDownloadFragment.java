@@ -116,7 +116,8 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 	 * Status
 	 */
 	enum Status
-	{STATUS_PENDING(0x01, R.string.status_download_pending), // 1
+	{
+		STATUS_PENDING(0x01, R.string.status_download_pending), // 1
 		STATUS_RUNNING(0x02, R.string.status_download_running), // 2
 		STATUS_PAUSED(0x04, R.string.status_download_paused), // 4
 		STATUS_SUCCESSFUL(0x08, R.string.status_download_successful), // 8
@@ -166,7 +167,8 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		static boolean isSuccess(long status)
 		{
 			return STATUS_SUCCESSFUL.test(status);
-		}}
+		}
+	}
 
 	class Progress
 	{
@@ -935,10 +937,10 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 
 			if (downloadedResult == null)
 			{
-				final AlertDialog.Builder alert = new AlertDialog.Builder(activity); // guarded, level 2
-				alert.setTitle(getString(R.string.action_md5) + " of " + targetFile);
-				alert.setMessage(R.string.status_task_failed);
-				alert.show();
+				new AlertDialog.Builder(activity) // guarded, level 2
+						.setTitle(getString(R.string.action_md5) + " of " + targetFile) //
+						.setMessage(R.string.status_task_failed) //
+						.show();
 			}
 			else
 			{
@@ -965,10 +967,10 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 						sb.append('\n');
 						sb.append(getString(success ? R.string.status_task_success : R.string.status_task_failed));
 
-						final AlertDialog.Builder alert = new AlertDialog.Builder(activity2); // guarded, level 3
-						alert.setTitle(getString(R.string.action_md5_of) + ' ' + targetFile);
-						alert.setMessage(sb);
-						alert.show();
+						new AlertDialog.Builder(activity2) // guarded, level 3
+								.setTitle(getString(R.string.action_md5_of) + ' ' + targetFile) //
+								.setMessage(sb) //
+								.show();
 					}
 				});
 			}

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser;
 
 import android.view.View;
@@ -45,24 +49,25 @@ class Actions
 	{
 		onView(withId(editTextViewId)) //
 				.check(matches(isDisplayed())) //
-				.perform(typeText(text))  //
-		;
+				.perform(typeText(text) //
+				);
 	}
 
-	static void do_typeSearch(final int searchViewId, final String word)
+	static void do_typeSearch(final int searchViewId, final String text)
 	{
 		final Matcher<View> searchView = withId(searchViewId);
 
 		// open search view
 		onView(searchView) //
 				.check(matches(isDisplayed())) //
-				.perform(click());
+				.perform(click() //
+				);
 
 		// type search
 		onView(allOf(isDescendantOfA(searchView), isAssignableFrom(EditText.class))) //
 				.check(matches(isDisplayed())) //
 				.perform( //
-						typeText(word),  //
+						typeText(text),  //
 						pressImeActionButton() //
 				);
 	}
@@ -75,12 +80,12 @@ class Actions
 		;
 	}
 
-	static void do_menu(@SuppressWarnings("SameParameterValue") @IdRes int menuId, @StringRes int menuText)
+	static void do_menu(final @IdRes int menuId, @StringRes int menuText)
 	{
 		onView(Matchers.withMenuIdOrText(menuId, menuText)).perform(click());
 	}
 
-	static void do_options_menu(@StringRes int menuText)
+	static void do_options_menu(final @StringRes int menuText)
 	{
 		openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getInstrumentation().getTargetContext());
 		onView(withText(menuText)).perform(click());
@@ -114,7 +119,7 @@ class Actions
 		*/
 
 		onView(allOf( //
-				isDescendantOfA(withId(R.id.navigation_drawer)), //
+				isDescendantOfA(withId(R.id.nav_view)), //
 				withText(targetText))) //
 				.perform(click());
 

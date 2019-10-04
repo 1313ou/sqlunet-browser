@@ -3,9 +3,8 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="bnc">BNC</string>
-	<string name="bnc_blurb">BNC\nprovides word statistics</string>
+	<string name="bnc" tools:keep="@string/bnc">BNC</string>
 
 </resources>

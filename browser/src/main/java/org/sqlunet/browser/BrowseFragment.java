@@ -79,7 +79,6 @@ public class BrowseFragment extends BaseSearchFragment
 		this.colorId = R.color.browse_actionbar_color;
 		this.spinnerLabels = R.array.selectors_names;
 		this.spinnerIcons = R.array.selectors_icons;
-		this.titleId = R.string.title_browse_section;
 	}
 
 	@Override
@@ -103,9 +102,12 @@ public class BrowseFragment extends BaseSearchFragment
 	// S P I N N E R
 
 	@Override
-	protected void setupSpinner(@NonNull final Context context)
+	protected void setupSpinner()
 	{
-		super.setupSpinner(context);
+		this.spinner.setVisibility(View.VISIBLE);
+
+		// apply spinner adapter
+		this.spinner.setAdapter(getSpinnerAdapter());
 
 		// spinner listener
 		this.spinner.setOnItemSelectedListener( //
@@ -115,7 +117,7 @@ public class BrowseFragment extends BaseSearchFragment
 					public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
 					{
 						final Settings.Selector selectorMode = Settings.Selector.values()[position];
-						selectorMode.setPref(context);
+						selectorMode.setPref(requireContext());
 					}
 
 					@Override
@@ -126,7 +128,7 @@ public class BrowseFragment extends BaseSearchFragment
 				});
 
 		// saved selector mode
-		final Settings.Selector selectorMode = Settings.Selector.getPref(context);
+		final Settings.Selector selectorMode = Settings.Selector.getPref(requireContext());
 		if (selectorMode != null)
 		{
 			this.spinner.setSelection(selectorMode.ordinal());
@@ -145,7 +147,8 @@ public class BrowseFragment extends BaseSearchFragment
 		Intent intent;
 
 		// handle item selection
-		switch (item.getItemId())
+		final int itemId = item.getItemId();
+		switch (itemId)
 		{
 			case R.id.action_table_lexdomains:
 				intent = new Intent(context, TableActivity.class);

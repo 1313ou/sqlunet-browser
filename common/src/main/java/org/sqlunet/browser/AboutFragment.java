@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import org.sqlunet.browser.common.R;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 /**
@@ -19,20 +21,18 @@ import androidx.fragment.app.Fragment;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class AboutFragment extends NavigableFragment
+public class AboutFragment extends Fragment
 {
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */
 	public AboutFragment()
 	{
-		this.titleId = R.string.title_about_section;
 	}
 
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		setHasOptionsMenu(true);
 		final View view = inflater.inflate(R.layout.fragment_about, container, false);
 
 		// fragment
@@ -43,5 +43,17 @@ public class AboutFragment extends NavigableFragment
 				.commit();
 
 		return view;
+	}
+
+	@Override
+	public void onResume()
+	{
+		super.onResume();
+
+		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
+		final ActionBar actionBar = activity.getSupportActionBar();
+		assert actionBar != null;
+		actionBar.setCustomView(null);
+		actionBar.setBackgroundDrawable(null);
 	}
 }

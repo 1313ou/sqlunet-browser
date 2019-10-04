@@ -4,7 +4,6 @@
 
 package org.sqlunet.browser;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -43,7 +42,6 @@ public class SearchTextFragment extends BaseSearchFragment
 		this.colorId = R.color.searchtext_actionbar_color;
 		this.spinnerLabels = R.array.searchtext_modes;
 		this.spinnerIcons = R.array.searchtext_icons;
-		this.titleId = R.string.title_searchtext_section;
 	}
 
 	@Override
@@ -62,37 +60,6 @@ public class SearchTextFragment extends BaseSearchFragment
 		}
 
 		return view;
-	}
-
-	// S P I N N E R
-
-	@Override
-	protected void setupSpinner(@NonNull final Context context)
-	{
-		super.setupSpinner(context);
-		this.spinner.setVisibility(View.GONE);
-
-		/*
-		// spinner listener
-		this.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-		{
-			@Override
-			public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
-			{
-				Settings.setSearchModePref(context, position);
-			}
-
-			@Override
-			public void onNothingSelected(final AdapterView<?> parentView)
-			{
-				//
-			}
-		});
-
-		// spinner position
-		final int position = Settings.getSearchModePref(context);
-		this.spinner.setSelection(position);
-		*/
 	}
 
 	// S E A R C H

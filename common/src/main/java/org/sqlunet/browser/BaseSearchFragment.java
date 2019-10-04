@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -32,14 +33,16 @@ import org.sqlunet.browser.common.R;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.fragment.app.Fragment;
 
 /**
  * Base search fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-abstract public class BaseSearchFragment extends NavigableFragment implements SearchListener
+abstract public class BaseSearchFragment extends Fragment implements SearchListener
 {
 	static private final String TAG = "BaseSearchF";
 
@@ -81,6 +84,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 	public BaseSearchFragment()
 	{
 		Log.d(BaseSearchFragment.TAG, "constructor " + this);
+		setHasOptionsMenu(true);
 	}
 
 	@Override
@@ -98,26 +102,20 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 	{
 		Log.d(BaseSearchFragment.TAG, "on create view " + this + " from " + savedInstanceState);
 
-		setHasOptionsMenu(true);
-
 		// view
 		return inflater.inflate(this.layoutId, container, false);
 	}
 
 	@Override
-	public void onViewStateRestored(@Nullable final Bundle savedInstanceState)
+	public void onResume()
 	{
-		super.onViewStateRestored(savedInstanceState);
+		Log.d(BaseSearchFragment.TAG, "on resume " + this);
+		super.onResume();
 
-		// restore from saved instance
-		if (savedInstanceState != null && this.spinner != null)
-		{
-			final int selected = savedInstanceState.getInt(STATE_SPINNER);
-			this.spinner.setSelection(selected);
-		}
+		setupActionBar();
 	}
 
-	// S A V E
+	// S A V E / R E S T O R E
 
 	@SuppressWarnings("WeakerAccess")
 	@Override
@@ -134,6 +132,19 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 			// serialize the current dropdown position
 			final int position = this.spinner.getSelectedItemPosition();
 			outState.putInt(BaseSearchFragment.STATE_SPINNER, position);
+		}
+	}
+
+	@Override
+	public void onViewStateRestored(@Nullable final Bundle savedInstanceState)
+	{
+		super.onViewStateRestored(savedInstanceState);
+
+		// restore from saved instance
+		if (savedInstanceState != null && this.spinner != null)
+		{
+			final int selected = savedInstanceState.getInt(STATE_SPINNER);
+			this.spinner.setSelection(selected);
 		}
 	}
 
@@ -155,30 +166,32 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 
 	@SuppressWarnings({"SameReturnValue", "WeakerAccess"})
 	@SuppressLint("InflateParams")
-	@Override
-	public boolean setActionBar(@NonNull final ActionBar actionBar, @NonNull final Context context)
+	public void setupActionBar()
 	{
 		Log.d(BaseSearchFragment.TAG, "set up specific action bar " + this);
 
+		final AppCompatActivity activity = (AppCompatActivity)requireActivity();
+		final ActionBar actionBar = activity.getSupportActionBar();
+		assert actionBar != null;
+
 		// title
-		actionBar.setTitle(this.titleId);
 		actionBar.setSubtitle(R.string.app_subname);
 
 		// background
-		final int color = ColorUtils.getColor(context, this.colorId);
+		final int color = ColorUtils.getColor(activity, this.colorId);
 		actionBar.setBackgroundDrawable(new ColorDrawable(color));
 
 		// action bar customized view
 		View customView = actionBar.getCustomView();
 		if (customView == null)
 		{
-			customView = LayoutInflater.from(context).inflate(R.layout.actionbar_custom, null);
+			customView = LayoutInflater.from(activity).inflate(R.layout.actionbar_custom, null);
 			actionBar.setCustomView(customView);
 		}
-		this.spinner = customView.findViewById(R.id.spinner);
 
 		// spinner
-		setupSpinner(context);
+		this.spinner = customView.findViewById(R.id.spinner);
+		setupSpinner();
 
 		// set up the action bar to show a custom layout
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
@@ -187,15 +200,6 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 		// actionBar.setDisplayHomeAsUpEnabled(true);
 		// actionBar.setDisplayShowTitleEnabled(false);
 
-		return true;
-	}
-
-	@SuppressWarnings("UnusedReturnValue")
-	public boolean setActionBarUpDisabled(@NonNull final ActionBar actionBar, @NonNull final Context context)
-	{
-		boolean result = setActionBar(actionBar, context);
-		actionBar.setDisplayHomeAsUpEnabled(false);
-		return result;
 	}
 
 	// S P I N N E R
@@ -203,8 +207,20 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 	/**
 	 * Set up spinner
 	 */
-	void setupSpinner(@NonNull final Context context)
+	@SuppressWarnings("WeakerAccess")
+	protected void setupSpinner()
 	{
+		this.spinner.setVisibility(View.GONE);
+	}
+
+	/**
+	 * Set up spinner
+	 */
+	@SuppressWarnings("WeakerAccess")
+	protected BaseAdapter getSpinnerAdapter()
+	{
+		final Context context = requireContext();
+
 		// resources
 		final Resources resources = context.getResources();
 
@@ -265,8 +281,7 @@ abstract public class BaseSearchFragment extends NavigableFragment implements Se
 		};
 		adapter.setDropDownViewResource(R.layout.spinner_item_actionbar_dropdown);
 
-		// apply spinner adapter
-		this.spinner.setAdapter(adapter);
+		return adapter;
 	}
 
 	// S E A R C H V I E W

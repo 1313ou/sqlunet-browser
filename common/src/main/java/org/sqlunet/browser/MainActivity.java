@@ -6,28 +6,37 @@ package org.sqlunet.browser;
 
 import android.app.SearchManager;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.bbou.rate.AppRate;
+import com.google.android.material.navigation.NavigationView;
 
 import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.StorageSettings;
 
+import java.util.List;
+
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
-public class MainActivity extends AppCompatActivity // implements NavigationFragment.Listener
+public class MainActivity extends AppCompatActivity
 {
 	static private final String TAG = "MainA";
 
-	@Nullable
-	private NavigationFragment navigationDrawerFragment;
+	private AppBarConfiguration appBarConfiguration;
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
@@ -38,7 +47,7 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 		AppRate.invoke(this);
 
 		// info
-		Log.d(MainActivity.TAG, "DATABASE=" + StorageSettings.getDatabasePath(getBaseContext()));
+		Log.d(TAG, "DATABASE=" + StorageSettings.getDatabasePath(getBaseContext()));
 
 		// content view
 		setContentView(R.layout.activity_main);
@@ -47,12 +56,21 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 		final Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 
-		// get fragment
-		this.navigationDrawerFragment = (NavigationFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
+		// navigation top destinations
+		TypedArray array = getResources().obtainTypedArray(R.array.drawer_top_dest);
+		int len = array.length();
+		int[] topDest = new int[len];
+		for (int i = 0; i < len; i++)
+			topDest[i] = array.getResourceId(i, 0);
+		array.recycle();
 
-		// set up the drawer
-		assert this.navigationDrawerFragment != null;
-		this.navigationDrawerFragment.setUp(R.id.navigation_drawer, findViewById(R.id.drawer_layout));
+		// navigation
+		final DrawerLayout drawer = findViewById(R.id.drawer_layout);
+		final NavigationView navView = findViewById(R.id.nav_view);
+		final NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+		this.appBarConfiguration = new AppBarConfiguration.Builder(topDest).setDrawerLayout(drawer).build();
+		NavigationUI.setupActionBarWithNavController(this, navController, this.appBarConfiguration);
+		NavigationUI.setupWithNavController(navView, navController);
 	}
 
 	@Override
@@ -83,8 +101,11 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 	 */
 	private void handleSearchIntent(@NonNull final Intent intent)
 	{
-		assert this.navigationDrawerFragment != null;
-		final Fragment fragment = this.navigationDrawerFragment.getActiveFragment();
+		final NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+		assert navHostFragment != null;
+		final FragmentManager manager = navHostFragment.getChildFragmentManager();
+		final List<Fragment> fragments = manager.getFragments();
+		final Fragment fragment = fragments.get(0);
 		if (fragment instanceof BaseSearchFragment)
 		{
 			final String action = intent.getAction();
@@ -122,5 +143,14 @@ public class MainActivity extends AppCompatActivity // implements NavigationFrag
 	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
 	{
 		return MenuHandler.menuDispatch(this, item);
+	}
+
+	// N A V
+
+	@Override
+	public boolean onSupportNavigateUp()
+	{
+		NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+		return NavigationUI.navigateUp(navController, this.appBarConfiguration) || super.onSupportNavigateUp();
 	}
 }
