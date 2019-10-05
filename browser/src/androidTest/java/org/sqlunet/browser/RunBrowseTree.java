@@ -7,14 +7,16 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import androidx.annotation.NonNull;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
-import androidx.test.runner.AndroidJUnit4;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class RunBrowseTree extends TestCase
 {
+	@NonNull
 	@Rule
 	public ActivityTestRule<BrowseActivity> testRule = new ActivityTestRule<>(BrowseActivity.class, true, true);
 
@@ -32,6 +34,6 @@ public class RunBrowseTree extends TestCase
 	@Test
 	public void searchRun()
 	{
-		Tests.searchRunTree();
+		Do.searchRunTree();
 	}
 }

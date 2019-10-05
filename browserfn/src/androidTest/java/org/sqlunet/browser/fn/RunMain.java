@@ -1,4 +1,4 @@
-package org.sqlunet.browser;
+package org.sqlunet.browser.fn;
 
 import junit.framework.TestCase;
 
@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.sqlunet.browser.Actions;
+import org.sqlunet.browser.MainActivity;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
@@ -13,7 +15,7 @@ import androidx.test.rule.ActivityTestRule;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class RunMainTree extends TestCase
+public class RunMain extends TestCase
 {
 	@Rule
 	public ActivityTestRule<MainActivity> testRule = new ActivityTestRule<>(MainActivity.class, true, true);
@@ -23,7 +25,6 @@ public class RunMainTree extends TestCase
 	{
 		Do.ensureDownloaded();
 		Actions.do_navigate(R.id.drawer_layout, R.id.nav_view, "Browse");
-		Actions.do_choose(R.id.spinner, "grouped by source");
 	}
 
 	@Test
@@ -34,6 +35,6 @@ public class RunMainTree extends TestCase
 	@Test
 	public void searchRun()
 	{
-		Do.searchRunTree();
+		Do.searchRunFlat();
 	}
 }

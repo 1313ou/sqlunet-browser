@@ -390,7 +390,7 @@ public class DownloadFragment extends BaseDownloadFragment
 	}
 
 	/**
-	 * Get _status progressMessage as per _status returned by cursor
+	 * Get _status result as per _status returned by cursor
 	 *
 	 * @param status _status
 	 * @return string resource id

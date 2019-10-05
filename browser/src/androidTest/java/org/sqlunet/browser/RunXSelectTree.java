@@ -7,22 +7,22 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import androidx.annotation.NonNull;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class RunMainTree extends TestCase
+public class RunXSelectTree extends TestCase
 {
+	@NonNull
 	@Rule
-	public ActivityTestRule<MainActivity> testRule = new ActivityTestRule<>(MainActivity.class, true, true);
+	public ActivityTestRule<BrowseActivity> testRule = new ActivityTestRule<>(BrowseActivity.class, true, true);
 
 	@Before
 	public void before()
 	{
-		Do.ensureDownloaded();
-		Actions.do_navigate(R.id.drawer_layout, R.id.nav_view, "Browse");
 		Actions.do_choose(R.id.spinner, "grouped by source");
 	}
 
@@ -34,6 +34,6 @@ public class RunMainTree extends TestCase
 	@Test
 	public void searchRun()
 	{
-		Do.searchRunTree();
+		Do.xselectorsRunTree();
 	}
 }
