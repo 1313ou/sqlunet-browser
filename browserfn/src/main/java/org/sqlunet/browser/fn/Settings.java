@@ -47,7 +47,7 @@ public class Settings extends org.sqlunet.settings.Settings
 		 * Set this source in sources
 		 *
 		 * @param sources sources to set
-		 * @return progressMessage
+		 * @return result
 		 */
 		public int set(final int sources)
 		{

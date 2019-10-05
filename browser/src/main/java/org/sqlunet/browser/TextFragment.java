@@ -58,7 +58,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
 /**
- * TextSearch progressMessage fragment
+ * Text result fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */

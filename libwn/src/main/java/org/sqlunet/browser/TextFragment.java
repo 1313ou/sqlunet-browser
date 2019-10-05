@@ -34,7 +34,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /**
- * TextSearch progressMessage fragment
+ * Text result fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */

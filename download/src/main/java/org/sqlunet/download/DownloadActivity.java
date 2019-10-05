@@ -98,7 +98,7 @@ public class DownloadActivity extends AppCompatActivity implements DownloadFragm
 	@Override
 	public void onDone(boolean result)
 	{
-		// return progressMessage
+		// return result
 		final Intent resultIntent = new Intent();
 		resultIntent.putExtra(DownloadActivity.RESULT_DOWNLOAD_DATA_AVAILABLE, result);
 		setResult(result ? Activity.RESULT_OK : Activity.RESULT_CANCELED, resultIntent);

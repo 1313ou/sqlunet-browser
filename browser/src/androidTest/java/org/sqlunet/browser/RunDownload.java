@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser;
 
 import junit.framework.TestCase;
@@ -13,7 +17,7 @@ import androidx.test.rule.ActivityTestRule;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class RunMainTree extends TestCase
+public class RunDownload extends TestCase
 {
 	@Rule
 	public ActivityTestRule<MainActivity> testRule = new ActivityTestRule<>(MainActivity.class, true, true);
@@ -21,19 +25,11 @@ public class RunMainTree extends TestCase
 	@Before
 	public void before()
 	{
+	}
+
+	@Test
+	public void download()
+	{
 		Do.ensureDownloaded();
-		Actions.do_navigate(R.id.drawer_layout, R.id.nav_view, "Browse");
-		Actions.do_choose(R.id.spinner, "grouped by source");
-	}
-
-	@Test
-	public void dummy()
-	{
-	}
-
-	@Test
-	public void searchRun()
-	{
-		Do.searchRunTree();
 	}
 }

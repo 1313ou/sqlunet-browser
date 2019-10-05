@@ -20,7 +20,7 @@ import org.sqlunet.treeview.model.TreeNode;
 import androidx.annotation.Nullable;
 
 /**
- * PredicateMatrix progressMessage fragment
+ * PredicateMatrix result fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */

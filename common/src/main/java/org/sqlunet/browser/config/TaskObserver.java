@@ -45,7 +45,7 @@ public class TaskObserver
 		/**
 		 * Finish event
 		 *
-		 * @param result progressMessage
+		 * @param result result
 		 */
 		void taskFinish(boolean result);
 
