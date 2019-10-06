@@ -34,19 +34,21 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 
 class Do
 {
-	static void ensureDownloaded()
+	static boolean ensureDownloaded()
 	{
 		boolean notMain = ToBoolean.testAssertion(withId(R.id.drawer_layout), doesNotExist()) || !ToBoolean.test(withId(R.id.drawer_layout), isDisplayed());
 		if (notMain)
 		{
 			download();
-			Actions.do_pressBack();
+			return true;
 		}
+		return false;
 	}
 
 	static private void download()
 	{
 		Actions.do_click(R.id.databaseButton);
+		// download activity
 		Actions.do_click(R.id.downloadButton);
 		Wait.until_not_text(R.id.status, Actions.getResourceString(R.string.status_task_running), 100);
 	}
