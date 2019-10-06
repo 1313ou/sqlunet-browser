@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
 package org.sqlunet.browser.fn;
 
 import junit.framework.TestCase;
@@ -15,7 +19,7 @@ import androidx.test.filters.LargeTest;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class RunMain extends TestCase
+public class RunTextSearch extends TestCase
 {
 	@Rule
 	public ActivityScenarioRule<MainActivity> activityScenarioRule = new ActivityScenarioRule<>(MainActivity.class);
@@ -25,8 +29,11 @@ public class RunMain extends TestCase
 	{
 		Do.ensureDownloaded();
 
-		//Actions.do_navigate(R.id.drawer_layout, R.id.nav_view, "Browse");
-		Actions.do_navigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_search_browse);
+		Actions.do_navigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_status);
+		Do.ensureTextSearchSetup(R.id.searchtextFnButton);
+		Actions.do_pressBack();
+
+		Actions.do_navigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_search_text);
 	}
 
 	@Test
@@ -35,8 +42,8 @@ public class RunMain extends TestCase
 	}
 
 	@Test
-	public void searchRun()
+	public void searchVnRun()
 	{
-		Do.searchRunFlat();
+		Do.textSearchRun(-1);
 	}
 }

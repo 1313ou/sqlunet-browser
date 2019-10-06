@@ -4,6 +4,7 @@
 
 package org.sqlunet.browser;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -11,9 +12,12 @@ import android.widget.Spinner;
 import org.hamcrest.Matcher;
 
 import androidx.annotation.IdRes;
+import androidx.annotation.MenuRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
+import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.contrib.DrawerActions;
+import androidx.test.espresso.contrib.NavigationViewActions;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import static androidx.test.espresso.Espresso.onData;
@@ -37,9 +41,16 @@ import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.anything;
 
 public class Actions
 {
+	static public String getResourceString(@StringRes int id)
+	{
+		final Context targetContext = ApplicationProvider.getApplicationContext();
+		return targetContext.getResources().getString(id);
+	}
+
 	/**
 	 * Press back control
 	 */
@@ -151,6 +162,24 @@ public class Actions
 	}
 
 	/**
+	 * Click spinner (by text)
+	 *
+	 * @param spinnerId Spinner id
+	 * @param position  Text in spinner item to click
+	 */
+	@SuppressWarnings("Unused")
+	static public void do_choose(@IdRes int spinnerId, final int position)
+	{
+		// expand spinner
+		onView(allOf(withId(spinnerId), instanceOf(Spinner.class))) //
+				.perform(click());
+
+		// do_click view matching position
+		onData(anything()).atPosition(position) //
+				.perform(click());
+	}
+
+	/**
 	 * Click navigation drawer item (by text)
 	 *
 	 * @param drawerLayoutId DrawerLayout id
@@ -164,16 +193,43 @@ public class Actions
 				.perform(DrawerActions.open());
 
 		/*
-		boolean t = !Utils.testAssertion(withId(R.id.navigation_drawer), doesNotExist());
-		t = Utils.test(withId(R.id.navigation_drawer), isDisplayed());
-		t = !Utils.testAssertion(allOf(isDescendantOfA(withId(R.id.navigation_drawer)), withText(targetText)), doesNotExist());
-		t = Utils.test(allOf(isDescendantOfA(withId(R.id.navigation_drawer)), withText(targetText)), isDisplayed());
+		boolean t = !Utils.testAssertion(withId(drawer_layout), doesNotExist());
+		t = Utils.test(withId(drawer_layout), isDisplayed());
+		t = !Utils.testAssertion(allOf(isDescendantOfA(withId(drawer_layout)), withText(targetText)), doesNotExist());
+		t = Utils.test(allOf(isDescendantOfA(withId(drawer_layout)), withText(targetText)), isDisplayed());
 		*/
 
 		onView(allOf( //
 				isDescendantOfA(withId(navViewId)), //
 				withText(targetText))) //
 				.perform(click());
+
+		onView(withId(drawerLayoutId)) //
+				.perform(DrawerActions.close());
+	}
+
+	/**
+	 * Click navigation drawer item (by text)
+	 *
+	 * @param drawerLayoutId DrawerLayout id
+	 * @param navViewId      NavigationView id
+	 * @param targetId       Menu item id in nav item to click
+	 */
+	@SuppressWarnings("unused")
+	static public void do_navigate(@IdRes int drawerLayoutId, @IdRes int navViewId, @MenuRes final int targetId)
+	{
+		onView(withId(drawerLayoutId)) //
+				.perform(DrawerActions.open());
+
+		/*
+		boolean t = !Utils.testAssertion(withId(drawer_layout), doesNotExist());
+		t = Utils.test(withId(drawer_layout), isDisplayed());
+		t = !Utils.testAssertion(allOf(isDescendantOfA(withId(drawer_layout)), withText(targetText)), doesNotExist());
+		t = Utils.test(allOf(isDescendantOfA(withId(drawer_layout)), withText(targetText)), isDisplayed());
+		*/
+
+		onView(withId(navViewId)) //
+				.perform(NavigationViewActions.navigateTo(targetId));
 
 		onView(withId(drawerLayoutId)) //
 				.perform(DrawerActions.close());

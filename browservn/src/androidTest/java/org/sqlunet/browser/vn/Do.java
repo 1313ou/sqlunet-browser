@@ -4,12 +4,12 @@
 
 package org.sqlunet.browser.vn;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matcher;
 import org.sqlunet.browser.Actions;
 import org.sqlunet.browser.ContainerUtils;
@@ -17,10 +17,7 @@ import org.sqlunet.browser.DataUtils;
 import org.sqlunet.browser.ToBoolean;
 import org.sqlunet.browser.Wait;
 
-import androidx.test.espresso.Espresso;
-import androidx.test.espresso.action.ViewActions;
-import androidx.test.espresso.assertion.ViewAssertions;
-import androidx.test.espresso.matcher.ViewMatchers;
+import androidx.annotation.IdRes;
 
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
@@ -37,7 +34,7 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 
 class Do
 {
-	static public void ensureDownloaded()
+	static void ensureDownloaded()
 	{
 		boolean notMain = ToBoolean.testAssertion(withId(R.id.drawer_layout), doesNotExist()) || !ToBoolean.test(withId(R.id.drawer_layout), isDisplayed());
 		if (notMain)
@@ -47,11 +44,28 @@ class Do
 		}
 	}
 
-	static public void download()
+	static private void download()
 	{
 		Actions.do_click(R.id.databaseButton);
 		Actions.do_click(R.id.downloadButton);
-		Wait.until_not_text(R.id.status, "running", 100);
+		Wait.until_not_text(R.id.status, Actions.getResourceString(R.string.status_task_running), 100);
+	}
+
+	static void ensureTextSearchSetup(@IdRes int buttonId)
+	{
+		boolean notSet = ToBoolean.testAssertion(withId(buttonId), doesNotExist()) || ToBoolean.test(withId(buttonId), isDisplayed());
+		if (notSet)
+		{
+			textSearchSetup(buttonId);
+			Actions.do_pressBack();
+		}
+	}
+
+	static private void textSearchSetup(@IdRes int buttonId)
+	{
+		Actions.do_click(buttonId);
+		Actions.do_click(R.id.task_run);
+		Wait.until_not_text(R.id.task_status, Actions.getResourceString(R.string.status_task_running), 100);
 	}
 
 	static void searchRunTree()
@@ -93,6 +107,16 @@ class Do
 					Actions.do_pressBack();
 				}
 			}
+		}
+	}
+
+	static void textSearchRun(int position)
+	{
+		Actions.do_choose(R.id.spinner, position);
+
+		for (String word : DataUtils.getWordList())
+		{
+			Actions.do_typeSearch(R.id.search, word);
 		}
 	}
 }
