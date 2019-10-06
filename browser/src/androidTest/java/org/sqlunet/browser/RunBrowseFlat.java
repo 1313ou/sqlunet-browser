@@ -23,7 +23,8 @@ public class RunBrowseFlat extends TestCase
 	@Before
 	public void before()
 	{
-		Do.ensureDownloaded();
+		if (Do.ensureDownloaded())
+			activityScenarioRule.getScenario().launch(MainActivity.class);
 
 		//Actions.do_choose(R.id.spinner, "senses");
 		Actions.do_choose(R.id.spinner, 0);
