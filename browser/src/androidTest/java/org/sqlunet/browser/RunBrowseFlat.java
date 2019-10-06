@@ -8,9 +8,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import androidx.annotation.NonNull;
+import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
-import androidx.test.rule.ActivityTestRule;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
@@ -18,13 +18,15 @@ public class RunBrowseFlat extends TestCase
 {
 	@NonNull
 	@Rule
-	public ActivityTestRule<BrowseActivity> testRule = new ActivityTestRule<>(BrowseActivity.class, true, true);
+	public ActivityScenarioRule<BrowseActivity> activityScenarioRule = new ActivityScenarioRule<>(BrowseActivity.class);
 
 	@Before
 	public void before()
 	{
 		Do.ensureDownloaded();
-		Actions.do_choose(R.id.spinner, "senses");
+
+		//Actions.do_choose(R.id.spinner, "senses");
+		Actions.do_choose(R.id.spinner, 0);
 	}
 
 	@Test

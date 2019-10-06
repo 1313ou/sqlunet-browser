@@ -12,16 +12,16 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.sqlunet.browser.MainActivity;
 
+import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
-import androidx.test.rule.ActivityTestRule;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class RunDownload extends TestCase
 {
 	@Rule
-	public ActivityTestRule<MainActivity> testRule = new ActivityTestRule<>(MainActivity.class, true, true);
+	public ActivityScenarioRule<MainActivity> activityScenarioRule = new ActivityScenarioRule<>(MainActivity.class);
 
 	@Before
 	public void before()
