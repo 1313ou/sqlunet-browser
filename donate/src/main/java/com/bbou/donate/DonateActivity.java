@@ -207,9 +207,13 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 		this.skuToPurchase.clear();
 
 		// reset all buttons and overlays
-		for (String sku : Skus.getInappSkus())
+		final String[] skus = Skus.getInappSkus();
+		if (skus != null)
 		{
-			update(sku, false);
+			for (String sku : skus)
+			{
+				update(sku, false);
+			}
 		}
 
 		// update buttons and overlays with purchases

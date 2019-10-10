@@ -28,12 +28,14 @@ public class SensePointer extends SynsetPointer implements HasWordId
 	 */
 	static public final Parcelable.Creator<SensePointer> CREATOR = new Parcelable.Creator<SensePointer>()
 	{
+		@NonNull
 		@Override
 		public SensePointer createFromParcel(@NonNull final Parcel parcel)
 		{
 			return new SensePointer(parcel);
 		}
 
+		@NonNull
 		@Override
 		public SensePointer[] newArray(final int size)
 		{

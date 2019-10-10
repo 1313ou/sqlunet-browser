@@ -113,6 +113,7 @@ public class ExecAsyncTask
 			this.publishRate = publishRate;
 		}
 
+		@NonNull
 		@SafeVarargs
 		@Override
 		protected final Boolean doInBackground(final Pair<String, String[]>... params)

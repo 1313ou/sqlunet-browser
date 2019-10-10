@@ -52,6 +52,7 @@ public class BNCProvider extends BaseProvider
 		BNCProvider.uriMatcher.addURI(AUTHORITY, BNCContract.Words_BNCs.TABLE, BNCProvider.WORDS_BNC);
 	}
 
+	@NonNull
 	static public String makeUri(@SuppressWarnings("SameParameterValue") final String table)
 	{
 		return BaseProvider.SCHEME + AUTHORITY + '/' + table;

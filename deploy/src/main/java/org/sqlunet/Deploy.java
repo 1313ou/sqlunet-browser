@@ -144,6 +144,7 @@ public class Deploy
 	 * @param getter   input stream getter
 	 * @return uri of dest dir
 	 */
+	@Nullable
 	@SuppressWarnings({"UnusedReturnValue"})
 	static private Uri expandZipFile(final String fromPath, @NonNull final File toDir, @SuppressWarnings("SameParameterValue") final boolean flatten, @NonNull final InputStreamGetter getter)
 	{
@@ -545,6 +546,7 @@ public class Deploy
 	 * @param publishRate publish rate
 	 * @return true if successful
 	 */
+	@Nullable
 	static synchronized public String md5FromFile(final String srcFile, @NonNull final AsyncTask<String, Long, String> task, @NonNull final Publisher publisher, final int publishRate)
 	{
 		Log.d(TAG, "Md5 " + srcFile);
@@ -842,6 +844,7 @@ public class Deploy
 		}
 	}
 
+	@Nullable
 	@SuppressWarnings("StatementWithEmptyBody")
 	static public String computeDigest(@NonNull final String path)
 	{

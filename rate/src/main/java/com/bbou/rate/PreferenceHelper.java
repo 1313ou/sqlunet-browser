@@ -28,7 +28,7 @@ final class PreferenceHelper
 	{
 	}
 
-	private static SharedPreferences getPreferences(Context context)
+	private static SharedPreferences getPreferences(@NonNull Context context)
 	{
 		return context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
 	}

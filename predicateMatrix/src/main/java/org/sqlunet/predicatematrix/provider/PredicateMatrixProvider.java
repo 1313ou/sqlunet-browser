@@ -53,6 +53,7 @@ public class PredicateMatrixProvider extends BaseProvider
 		PredicateMatrixProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrixContract.Pm_X.TABLE, PredicateMatrixProvider.PM_X);
 	}
 
+	@NonNull
 	static public String makeUri(@SuppressWarnings("SameParameterValue") final String table)
 	{
 		return BaseProvider.SCHEME + AUTHORITY + '/' + table;

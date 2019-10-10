@@ -87,6 +87,7 @@ public class XSqlUNetProvider extends BaseProvider
 		XSqlUNetProvider.uriMatcher.addURI(AUTHORITY, XSqlUNetContract.Sources.TABLE, XSqlUNetProvider.SOURCES);
 	}
 
+	@NonNull
 	static public String makeUri(final String table)
 	{
 		return BaseProvider.SCHEME + AUTHORITY + '/' + table;
@@ -417,6 +418,7 @@ public class XSqlUNetProvider extends BaseProvider
 	 * @param selectionArgs selection arguments
 	 * @return cursor
 	 */
+	@Nullable
 	private Cursor raw(@NonNull final String sql, @NonNull final String... selectionArgs)
 	{
 		final String[] selectionArgs2 = new String[2 * selectionArgs.length];

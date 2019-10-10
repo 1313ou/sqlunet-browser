@@ -43,6 +43,7 @@ public class FileData
 		return null;
 	}
 
+	@Nullable
 	static public FileData getCurrent(final Context context)
 	{
 		final String name = Settings.getDbName(context);

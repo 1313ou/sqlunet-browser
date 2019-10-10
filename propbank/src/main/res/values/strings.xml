@@ -3,10 +3,10 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
 	<string name="propbank">PropBank</string>
-	<string name="propbank_blurb">&lt;b&gt;PropBank&lt;/b&gt;\nexplores semantic roles</string>
+	<string name="propbank_blurb" tools:keep="@string/propbank_blurb">&lt;b&gt;PropBank&lt;/b&gt;\nexplores semantic roles</string>
 
 	<string name="title_activity_pbroleset">PropBank RoleSet</string>
 

@@ -132,6 +132,7 @@ public class FnLexUnit
 	 * @param word       target word
 	 * @return paris of (word id-list of lex units)
 	 */
+	@NonNull
 	static public Pair<Long, List<FnLexUnit>> makeFromWord(final SQLiteDatabase connection, final String word)
 	{
 		final List<FnLexUnit> result = new ArrayList<>();
@@ -176,6 +177,7 @@ public class FnLexUnit
 	 * @param fnWord     target fn word
 	 * @return pairs of (fn word id-list of lex units)
 	 */
+	@NonNull
 	static public Pair<Long, List<FnLexUnit>> makeFromFnWord(final SQLiteDatabase connection, final String fnWord)
 	{
 		final List<FnLexUnit> result = new ArrayList<>();

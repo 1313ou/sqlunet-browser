@@ -30,6 +30,7 @@ public class DownloadedPreferenceFragment extends PreferenceFragmentCompat
 
 	// S U M M A R Y
 
+	@NonNull
 	private static String unrecorded = "";
 
 	private static final Preference.SummaryProvider<Preference> STRING_SUMMARY_PROVIDER = (preference) -> PreferenceManager.getDefaultSharedPreferences(preference.getContext()).getString(preference.getKey(), unrecorded);

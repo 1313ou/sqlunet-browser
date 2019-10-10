@@ -218,6 +218,7 @@ class VnNodeFactory extends NodeFactory
 	 * @param pattern delimiter pattern
 	 * @return segments
 	 */
+	@Nullable
 	static private String[] parse(@NonNull final CharSequence text, @NonNull final Pattern pattern)
 	{
 		// general pattern

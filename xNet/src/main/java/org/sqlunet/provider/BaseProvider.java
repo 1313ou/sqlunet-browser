@@ -59,6 +59,7 @@ public abstract class BaseProvider extends ContentProvider
 		}
 	}
 
+	@NonNull
 	@SuppressWarnings("WeakerAccess")
 	static protected Uri[] getAuthorityUris()
 	{
@@ -85,11 +86,12 @@ public abstract class BaseProvider extends ContentProvider
 
 	// S Q L   B U F F E R
 
-	static public final int DEFAULT_SQL_BUFFER_CAPACITY = 15;
+	private static final int DEFAULT_SQL_BUFFER_CAPACITY = 15;
 
 	/**
 	 * SQL statement buffer
 	 */
+	@NonNull
 	@SuppressWarnings("StaticVariableOfConcreteClass")
 	static public CircularBuffer sqlBuffer = new CircularBuffer(DEFAULT_SQL_BUFFER_CAPACITY);
 
@@ -102,7 +104,7 @@ public abstract class BaseProvider extends ContentProvider
 
 		static public final String PREF_SQL_LOG = "pref_sql_log";
 
-		private int limit;
+		private final int limit;
 
 		CircularBuffer(@SuppressWarnings("SameParameterValue") final int number)
 		{
@@ -309,7 +311,7 @@ public abstract class BaseProvider extends ContentProvider
 	 * @param uri     provider uri
 	 */
 	@SuppressWarnings("WeakerAccess")
-	static public void closeProvider(@NonNull final Context context, final Uri uri)
+	static public void closeProvider(@NonNull final Context context, @NonNull final Uri uri)
 	{
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
 		{
@@ -434,6 +436,7 @@ public abstract class BaseProvider extends ContentProvider
 	 * @param args args
 	 * @return string
 	 */
+	@NonNull
 	static protected String argsToString(@Nullable final String... args)
 	{
 		final StringBuilder sb = new StringBuilder();

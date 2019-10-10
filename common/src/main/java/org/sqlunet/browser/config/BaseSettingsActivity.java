@@ -17,6 +17,7 @@ import org.sqlunet.browser.common.R;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -30,7 +31,7 @@ public abstract class BaseSettingsActivity extends AppCompatActivity implements 
 	private static final String TITLE_TAG = "settingsActivityTitle";
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
+	protected void onCreate(@Nullable Bundle savedInstanceState)
 	{
 		// super
 		super.onCreate(savedInstanceState);
@@ -145,7 +146,7 @@ public abstract class BaseSettingsActivity extends AppCompatActivity implements 
 	// U T I L S
 
 	@Override
-	public boolean onPreferenceStartFragment(PreferenceFragmentCompat caller, Preference pref)
+	public boolean onPreferenceStartFragment(PreferenceFragmentCompat caller, @NonNull Preference pref)
 	{
 		// Instantiate the new Fragment
 		final Bundle args = pref.getExtras();

@@ -94,6 +94,7 @@ public class PropBankProvider extends BaseProvider
 		PropBankProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_PbWords.TABLE + "/", PropBankProvider.SUGGEST_FTS_WORDS);
 	}
 
+	@NonNull
 	static public String makeUri(final String table)
 	{
 		return BaseProvider.SCHEME + AUTHORITY + '/' + table;

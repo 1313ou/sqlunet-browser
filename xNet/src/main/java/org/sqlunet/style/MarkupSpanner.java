@@ -65,6 +65,7 @@ public class MarkupSpanner extends Spanner
 		 * @param flags flags
 		 * @return position
 		 */
+		@Nullable
 		static public SpanPosition valueOf(final long flags)
 		{
 			switch ((int) (flags & 3))

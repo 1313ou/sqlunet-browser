@@ -25,12 +25,14 @@ public class Pointer implements IPointer
 	 */
 	static public final Creator<Pointer> CREATOR = new Creator<Pointer>()
 	{
+		@NonNull
 		@Override
 		public Pointer createFromParcel(@NonNull Parcel in)
 		{
 			return new Pointer(in);
 		}
 
+		@NonNull
 		@Override
 		public Pointer[] newArray(int size)
 		{

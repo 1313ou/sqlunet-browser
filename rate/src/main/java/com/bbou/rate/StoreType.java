@@ -63,6 +63,7 @@ public enum StoreType
 
 	// S P E C I F I C S
 
+	@Nullable
 	private static Intent getGooglePlayIntent(@NonNull final Context context)
 	{
 		final String packageName = context.getPackageName();

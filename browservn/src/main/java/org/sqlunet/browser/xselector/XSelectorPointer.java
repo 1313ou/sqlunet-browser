@@ -63,12 +63,14 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	@SuppressWarnings("unused")
 	static public final Parcelable.Creator<XSelectorPointer> CREATOR = new Parcelable.Creator<XSelectorPointer>()
 	{
+		@NonNull
 		@Override
 		public XSelectorPointer createFromParcel(@NonNull final Parcel parcel)
 		{
 			return new XSelectorPointer(parcel);
 		}
 
+		@NonNull
 		@Override
 		public XSelectorPointer[] newArray(final int size)
 		{

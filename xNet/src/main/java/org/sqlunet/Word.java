@@ -27,12 +27,14 @@ public class Word implements IPointer
 	 */
 	static public final Creator<Word> CREATOR = new Creator<Word>()
 	{
+		@NonNull
 		@Override
 		public Word createFromParcel(@NonNull Parcel parcel)
 		{
 			return new Word(parcel);
 		}
 
+		@NonNull
 		@Override
 		public Word[] newArray(int size)
 		{

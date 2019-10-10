@@ -90,6 +90,7 @@ public class VerbNetProvider extends BaseProvider
 		VerbNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_VnWords.TABLE + "/", VerbNetProvider.SUGGEST_FTS_WORDS);
 	}
 
+	@NonNull
 	static public String makeUri(final String table)
 	{
 		return BaseProvider.SCHEME + AUTHORITY + '/' + table;

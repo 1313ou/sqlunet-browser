@@ -23,12 +23,14 @@ public class VnClassPointer extends Pointer
 	 */
 	static public final Parcelable.Creator<VnClassPointer> CREATOR = new Parcelable.Creator<VnClassPointer>()
 	{
+		@NonNull
 		@Override
 		public VnClassPointer createFromParcel(@NonNull final Parcel parcel)
 		{
 			return new VnClassPointer(parcel);
 		}
 
+		@NonNull
 		@Override
 		public VnClassPointer[] newArray(final int size)
 		{

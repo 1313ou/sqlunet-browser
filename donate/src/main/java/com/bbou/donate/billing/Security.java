@@ -31,6 +31,8 @@ import java.security.SignatureException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
 
+import androidx.annotation.NonNull;
+
 /**
  * Security-related methods. For a secure implementation, all of this code should be implemented on a server that communicates with the application on the device.
  */
@@ -51,7 +53,7 @@ class Security
 	 * @throws IOException if encoding algorithm is not supported or key specification
 	 *                     is invalid
 	 */
-	public static boolean verifyPurchase(String base64PublicKey, String signedData, String signature) throws IOException
+	public static boolean verifyPurchase(String base64PublicKey, @NonNull String signedData, String signature) throws IOException
 	{
 		if (TextUtils.isEmpty(signedData) || TextUtils.isEmpty(base64PublicKey) || TextUtils.isEmpty(signature))
 		{
@@ -100,7 +102,7 @@ class Security
 	 * @param signature  server signature
 	 * @return true if the data and signature match
 	 */
-	private static boolean verify(PublicKey publicKey, String signedData, String signature)
+	private static boolean verify(PublicKey publicKey, @NonNull String signedData, String signature)
 	{
 		byte[] signatureBytes;
 		try

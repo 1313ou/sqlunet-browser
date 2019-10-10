@@ -24,6 +24,7 @@ class StorageReports
 	 * @param context context
 	 * @return pair of names and values
 	 */
+	@NonNull
 	static public Pair<CharSequence[], CharSequence[]> getStyledCachesNamesValues(@NonNull final Context context)
 	{
 		final List<CharSequence> names = new ArrayList<>();
@@ -82,6 +83,7 @@ class StorageReports
 	 * @param context context
 	 * @return pair of names and values
 	 */
+	@NonNull
 	static public Pair<CharSequence[], CharSequence[]> getStorageDirectoriesNamesValues(@NonNull final Context context)
 	{
 		final List<CharSequence> names = new ArrayList<>();
@@ -109,6 +111,7 @@ class StorageReports
 	 * @param context context
 	 * @return pair of names and values
 	 */
+	@NonNull
 	@SuppressWarnings("unused")
 	static public Pair<CharSequence[], CharSequence[]> get2StorageDirectoriesNamesValues(@NonNull final Context context)
 	{

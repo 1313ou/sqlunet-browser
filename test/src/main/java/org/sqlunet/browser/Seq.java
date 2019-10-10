@@ -45,6 +45,7 @@ import static org.hamcrest.Matchers.anything;
 
 public class Seq
 {
+	@NonNull
 	static public String getResourceString(@StringRes int id)
 	{
 		final Context targetContext = ApplicationProvider.getApplicationContext();
@@ -82,7 +83,7 @@ public class Seq
 	 * @param text         text
 	 */
 	@SuppressWarnings("unused")
-	static public void do_typeSearch(@IdRes final int searchViewId, final String text)
+	static public void do_typeSearch(@IdRes final int searchViewId, @NonNull final String text)
 	{
 		final Matcher<View> searchView = withId(searchViewId);
 

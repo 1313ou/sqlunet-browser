@@ -85,6 +85,7 @@ public class Report
 	 * @param resId   res id
 	 * @return image span
 	 */
+	@NonNull
 	static private Object makeImageSpan(@NonNull final Context context, final int resId)
 	{
 		final Resources res = context.getResources();

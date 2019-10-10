@@ -73,7 +73,7 @@ public class Diagnostics
 	}
 
 	@NonNull
-	private static String report(final Context context)
+	private static String report(@NonNull final Context context)
 	{
 		final StringBuilder sb = new StringBuilder();
 		sb.append("DIAGNOSTICS");
@@ -373,7 +373,7 @@ public class Diagnostics
 	}
 
 	@SuppressWarnings("SameReturnValue")
-	static private boolean canOpen(final String path) throws SQLiteCantOpenDatabaseException
+	static private boolean canOpen(@NonNull final String path) throws SQLiteCantOpenDatabaseException
 	{
 		try (SQLiteDatabase db = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY))
 		{
@@ -381,7 +381,7 @@ public class Diagnostics
 		}
 	}
 
-	static private long rowCount(final String path, final String table) throws SQLiteException
+	static private long rowCount(@NonNull final String path, final String table) throws SQLiteException
 	{
 		try (SQLiteDatabase db = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY))
 		{

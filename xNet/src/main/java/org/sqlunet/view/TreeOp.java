@@ -38,7 +38,7 @@ public class TreeOp
 	}
 
 	@NonNull
-	static public TreeOp[] seq(Object... items)
+	static public TreeOp[] seq(@NonNull Object... items)
 	{
 		final TreeOp[] result = new TreeOp[items.length / 2];
 		int j = 0;
@@ -71,7 +71,7 @@ public class TreeOp
 		}
 		*/
 
-		private void prepend(Object... items)
+		private void prepend(@NonNull Object... items)
 		{
 			for (int i = 0; i < items.length - 1; i += 2)
 			{

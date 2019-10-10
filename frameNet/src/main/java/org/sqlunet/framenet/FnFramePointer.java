@@ -23,12 +23,14 @@ public class FnFramePointer extends Pointer
 	 */
 	static public final Parcelable.Creator<FnFramePointer> CREATOR = new Parcelable.Creator<FnFramePointer>()
 	{
+		@NonNull
 		@Override
 		public FnFramePointer createFromParcel(@NonNull final Parcel parcel)
 		{
 			return new FnFramePointer(parcel);
 		}
 
+		@NonNull
 		@Override
 		public FnFramePointer[] newArray(final int size)
 		{

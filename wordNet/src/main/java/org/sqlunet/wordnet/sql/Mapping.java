@@ -159,6 +159,7 @@ class Mapping
 	 *
 	 * @return array of string part-of-speech names
 	 */
+	@NonNull
 	static public String[] getPosNames()
 	{
 		return new String[]{"noun", "verb", "adj", "adv"};

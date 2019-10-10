@@ -67,6 +67,7 @@ public class StorageUtils
 			return i1 < i2 ? -1 : (i1 == i2 ? 0 : 1);
 		}
 
+		@NonNull
 		public String toDisplay()
 		{
 			switch (this)
@@ -563,6 +564,7 @@ public class StorageUtils
 	 *
 	 * @return external storage directory
 	 */
+	@Nullable
 	@SuppressWarnings("unused")
 	static public String selectExternalStorage()
 	{
@@ -598,6 +600,7 @@ public class StorageUtils
 	 *
 	 * @return primary emulated external storage directory
 	 */
+	@Nullable
 	static private File discoverPrimaryEmulatedExternalStorage()
 	{
 		// primary emulated sdcard
@@ -626,6 +629,7 @@ public class StorageUtils
 	 *
 	 * @return primary physical external storage directory
 	 */
+	@Nullable
 	static private File discoverPrimaryPhysicalExternalStorage()
 	{
 		final String externalStorage = System.getenv("EXTERNAL_STORAGE");
@@ -643,6 +647,7 @@ public class StorageUtils
 	 *
 	 * @return secondary external storage directories
 	 */
+	@Nullable
 	static private File[] discoverSecondaryExternalStorage()
 	{
 		// all secondary sdcards (all except primary) separated by ":"
@@ -799,6 +804,7 @@ public class StorageUtils
 		return stats;
 	}
 
+	@NonNull
 	static public String getFree(@NonNull final Context context, @NonNull final String target)
 	{
 		final File file = new File(target);
@@ -844,6 +850,7 @@ public class StorageUtils
 	 * @param dir dir
 	 * @return free space as string
 	 */
+	@NonNull
 	static CharSequence storageFreeAsString(@NonNull final File dir)
 	{
 		return storageFreeAsString(dir.getAbsolutePath());
@@ -855,6 +862,7 @@ public class StorageUtils
 	 * @param dir dir
 	 * @return free space as string
 	 */
+	@NonNull
 	static CharSequence storageFreeAsString(final String dir)
 	{
 		return StorageUtils.mbToString(storageFree(dir));
@@ -896,6 +904,7 @@ public class StorageUtils
 	 * @param mb megabytes
 	 * @return string
 	 */
+	@NonNull
 	static public String mbToString(final float mb)
 	{
 		if (Float.isNaN(mb))
@@ -920,6 +929,7 @@ public class StorageUtils
 	 * @param count byte count
 	 * @return string
 	 */
+	@NonNull
 	static public String countToStorageString(final long count)
 	{
 		if (count > 0)

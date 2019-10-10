@@ -23,12 +23,14 @@ public class FnSentencePointer extends Pointer
 	 */
 	static public final Parcelable.Creator<FnSentencePointer> CREATOR = new Parcelable.Creator<FnSentencePointer>()
 	{
+		@NonNull
 		@Override
 		public FnSentencePointer createFromParcel(@NonNull final Parcel parcel)
 		{
 			return new FnSentencePointer(parcel);
 		}
 
+		@NonNull
 		@Override
 		public FnSentencePointer[] newArray(final int size)
 		{

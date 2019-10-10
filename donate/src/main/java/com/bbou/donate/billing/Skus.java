@@ -21,6 +21,7 @@ import android.content.res.Resources;
 import com.bbou.donate.R;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Static fields and methods useful for billing
@@ -28,19 +29,23 @@ import androidx.annotation.NonNull;
 public final class Skus
 {
 	// SKUs for products: the donate (consumable)
+	@Nullable
 	private static String[] inAppSkus = null;
 
 	// SKUs for subscription
+	@Nullable
 	@SuppressWarnings("CanBeFinal")
 	private static String[] subscriptionSkus = null;
 
 	// SKUs for products: the donate (consumable)
+	@Nullable
 	public static String[] getInappSkus()
 	{
 		return inAppSkus;
 	}
 
 	// SKUs for subscription
+	@Nullable
 	public static String[] getSubscriptionSkus()
 	{
 		return subscriptionSkus;

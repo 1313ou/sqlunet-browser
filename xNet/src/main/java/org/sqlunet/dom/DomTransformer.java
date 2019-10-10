@@ -39,6 +39,7 @@ public class DomTransformer
 	 * @param doc doc
 	 * @return xml
 	 */
+	@NonNull
 	static public String docToXml(final Document doc)
 	{
 		try
@@ -61,6 +62,7 @@ public class DomTransformer
 	 * @param document org.w3.dom.Document to convert to XML form
 	 * @return XML string for Document
 	 */
+	@NonNull
 	static public String docToString(final Document document)
 	{
 		try
@@ -92,6 +94,7 @@ public class DomTransformer
 	 * @return XML String that represents DOM document
 	 * @throws TransformerException transformer exception
 	 */
+	@NonNull
 	static public String docToString(final Document doc, @Nullable final InputStream xslStream, final String method) throws TransformerException
 	{
 		final Source source = new DOMSource(doc);

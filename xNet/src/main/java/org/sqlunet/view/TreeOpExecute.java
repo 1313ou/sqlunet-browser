@@ -43,7 +43,7 @@ public class TreeOpExecute
 	{
 	}
 
-	private void execImpl(final TreeOp[] ops)
+	private void execImpl(@NonNull final TreeOp[] ops)
 	{
 		final TreeView treeView = this.fragment.getTreeView();
 		if (treeView == null)
@@ -65,7 +65,7 @@ public class TreeOpExecute
 		}
 	}
 
-	private void execOp(final TreeOp op, @NonNull final TreeView treeView, final int levels)
+	private void execOp(@NonNull final TreeOp op, @NonNull final TreeView treeView, final int levels)
 	{
 		final TreeOpCode code = op.getCode();
 		final TreeNode node = op.getNode();
@@ -154,7 +154,7 @@ public class TreeOpExecute
 		}
 	}
 
-	private boolean isNodeWithCompositeValueText(final TreeNode node, @NonNull final String text)
+	private boolean isNodeWithCompositeValueText(@NonNull final TreeNode node, @NonNull final String text)
 	{
 		final Object value = node.getValue();
 		return (value instanceof CompositeValue) && text.equals(((CompositeValue) value).text.toString());

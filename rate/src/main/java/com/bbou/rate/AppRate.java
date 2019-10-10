@@ -12,7 +12,6 @@ import java.util.Date;
 
 import androidx.annotation.NonNull;
 
-import static com.bbou.rate.BuildConfig.DEBUG;
 import static com.bbou.rate.DialogBuilder.build;
 import static com.bbou.rate.PreferenceHelper.getInstallDate;
 import static com.bbou.rate.PreferenceHelper.getIsAgreeShowDialog;
@@ -239,7 +238,7 @@ public final class AppRate
 		PreferenceHelper.setLaunchTimes(context, getLaunchTimes(context) + 1);
 	}
 
-	private void showRateDialog(final Activity activity)
+	private void showRateDialog(@NonNull final Activity activity)
 	{
 		if (!activity.isFinishing())
 		{

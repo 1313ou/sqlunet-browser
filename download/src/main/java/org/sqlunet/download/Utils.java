@@ -6,6 +6,8 @@ package org.sqlunet.download;
 
 import java.util.Locale;
 
+import androidx.annotation.NonNull;
+
 @SuppressWarnings("WeakerAccess")
 public class Utils
 {
@@ -17,6 +19,7 @@ public class Utils
 	 * @param count byte count
 	 * @return string
 	 */
+	@NonNull
 	static public String countToStorageString(final long count)
 	{
 		if (count > 0)
