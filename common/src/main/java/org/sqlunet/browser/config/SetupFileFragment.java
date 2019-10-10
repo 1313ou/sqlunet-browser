@@ -29,6 +29,7 @@ import org.sqlunet.settings.StorageUtils;
 import java.io.File;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
 import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_TO_ARG;
@@ -58,6 +59,7 @@ public class SetupFileFragment extends BaseTaskFragment
 		 */
 		static private CharSequence[] operations;
 
+		@Nullable
 		static Operation fromIndex(int index)
 		{
 			final CharSequence operation = Operation.operations[index];

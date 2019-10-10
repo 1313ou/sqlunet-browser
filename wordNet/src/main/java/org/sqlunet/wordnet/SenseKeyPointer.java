@@ -27,12 +27,14 @@ public class SenseKeyPointer implements Parcelable, HasSenseKey
 	 */
 	static public final Creator<SenseKeyPointer> CREATOR = new Creator<SenseKeyPointer>()
 	{
+		@NonNull
 		@Override
 		public SenseKeyPointer createFromParcel(@NonNull final Parcel parcel)
 		{
 			return new SenseKeyPointer(parcel);
 		}
 
+		@NonNull
 		@Override
 		public SenseKeyPointer[] newArray(final int size)
 		{

@@ -12,13 +12,15 @@ import androidx.annotation.NonNull;
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
 
+@SuppressWarnings("WeakerAccess")
 public class Actions
 {
 	@NonNull
-	static ViewAction onlyIf(final ViewAction action, final Matcher<View> constraints)
+	static ViewAction onlyIf(@NonNull final ViewAction action, @NonNull final Matcher<View> constraints)
 	{
 		return new ViewAction()
 		{
+			@NonNull
 			@Override
 			public Matcher<View> getConstraints()
 			{

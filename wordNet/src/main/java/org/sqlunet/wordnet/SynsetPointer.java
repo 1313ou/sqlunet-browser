@@ -25,12 +25,14 @@ public class SynsetPointer extends Pointer implements HasSynsetId
 	 */
 	static public final Parcelable.Creator<SynsetPointer> CREATOR = new Parcelable.Creator<SynsetPointer>()
 	{
+		@NonNull
 		@Override
 		public SynsetPointer createFromParcel(@NonNull final Parcel parcel)
 		{
 			return new SynsetPointer(parcel);
 		}
 
+		@NonNull
 		@Override
 		public SynsetPointer[] newArray(final int size)
 		{

@@ -38,6 +38,7 @@ final class DialogBuilder
 		return isLollipop() ? R.style.CustomLollipopDialogStyle : 0;
 	}
 
+	@NonNull
 	@SuppressLint("NewApi")
 	static private AlertDialog.Builder getDialogBuilder(Context context)
 	{
@@ -55,7 +56,7 @@ final class DialogBuilder
 		 */
 	}
 
-	static Dialog build(@NonNull final Context context, final DialogOptions options)
+	static Dialog build(@NonNull final Context context, @NonNull final DialogOptions options)
 	{
 		final AlertDialog.Builder builder = getDialogBuilder(context);
 

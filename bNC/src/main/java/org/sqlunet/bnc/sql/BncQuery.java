@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import org.sqlunet.sql.DBQuery;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * BNC query
@@ -66,6 +67,7 @@ class BncQuery extends DBQuery
 	 *
 	 * @return the frequency from the result set
 	 */
+	@Nullable
 	@SuppressWarnings("boxing")
 	private Integer getFreq()
 	{
@@ -82,6 +84,7 @@ class BncQuery extends DBQuery
 	 *
 	 * @return the range from the result set
 	 */
+	@Nullable
 	@SuppressWarnings("boxing")
 	private Integer getRange()
 	{
@@ -98,6 +101,7 @@ class BncQuery extends DBQuery
 	 *
 	 * @return the disp from the result set
 	 */
+	@Nullable
 	@SuppressWarnings("boxing")
 	private Float getDisp()
 	{
@@ -116,6 +120,7 @@ class BncQuery extends DBQuery
 	 *
 	 * @return the conversation frequency from the result set
 	 */
+	@Nullable
 	@SuppressWarnings("boxing")
 	private Integer getConvFreq()
 	{
@@ -132,6 +137,7 @@ class BncQuery extends DBQuery
 	 *
 	 * @return the conversation range from the result set
 	 */
+	@Nullable
 	@SuppressWarnings("boxing")
 	private Integer getConvRange()
 	{
@@ -148,6 +154,7 @@ class BncQuery extends DBQuery
 	 *
 	 * @return the conversation disp from the result set
 	 */
+	@Nullable
 	@SuppressWarnings("boxing")
 	private Float getConvDisp()
 	{
@@ -164,6 +171,7 @@ class BncQuery extends DBQuery
 	 *
 	 * @return the task frequency from the result set
 	 */
+	@Nullable
 	@SuppressWarnings("boxing")
 	private Integer getTaskFreq()
 	{
@@ -180,6 +188,7 @@ class BncQuery extends DBQuery
 	 *
 	 * @return the task range from the result set
 	 */
+	@Nullable
 	@SuppressWarnings("boxing")
 	private Integer getTaskRange()
 	{
@@ -196,6 +205,7 @@ class BncQuery extends DBQuery
 	 *
 	 * @return the disp from the result set
 	 */
+	@Nullable
 	@SuppressWarnings("boxing")
 	private Float getTaskDisp()
 	{
@@ -214,6 +224,7 @@ class BncQuery extends DBQuery
 	 *
 	 * @return the imagination frequency from the result set
 	 */
+	@Nullable
 	@SuppressWarnings("boxing")
 	private Integer getImagFreq()
 	{
@@ -230,6 +241,7 @@ class BncQuery extends DBQuery
 	 *
 	 * @return the imagination range from the result set
 	 */
+	@Nullable
 	@SuppressWarnings("boxing")
 	private Integer getImagRange()
 	{
@@ -246,6 +258,7 @@ class BncQuery extends DBQuery
 	 *
 	 * @return the imagination disp from the result set
 	 */
+	@Nullable
 	@SuppressWarnings("boxing")
 	private Float getImagDisp()
 	{
@@ -262,6 +275,7 @@ class BncQuery extends DBQuery
 	 *
 	 * @return the information frequency from the result set
 	 */
+	@Nullable
 	@SuppressWarnings("boxing")
 	private Integer getInfFreq()
 	{
@@ -278,6 +292,7 @@ class BncQuery extends DBQuery
 	 *
 	 * @return the information range from the result set
 	 */
+	@Nullable
 	@SuppressWarnings("boxing")
 	private Integer getInfRange()
 	{
@@ -294,6 +309,7 @@ class BncQuery extends DBQuery
 	 *
 	 * @return the information from the result set
 	 */
+	@Nullable
 	@SuppressWarnings("boxing")
 	private Float getInfDisp()
 	{
@@ -312,6 +328,7 @@ class BncQuery extends DBQuery
 	 *
 	 * @return the spoken frequency from the result set
 	 */
+	@Nullable
 	@SuppressWarnings("boxing")
 	private Integer getSpokenFreq()
 	{
@@ -328,6 +345,7 @@ class BncQuery extends DBQuery
 	 *
 	 * @return the spoken range from the result set
 	 */
+	@Nullable
 	@SuppressWarnings("boxing")
 	private Integer getSpokenRange()
 	{
@@ -344,6 +362,7 @@ class BncQuery extends DBQuery
 	 *
 	 * @return the spoken disp from the result set
 	 */
+	@Nullable
 	@SuppressWarnings("boxing")
 	private Float getSpokenDisp()
 	{
@@ -360,6 +379,7 @@ class BncQuery extends DBQuery
 	 *
 	 * @return the written frequency from the result set
 	 */
+	@Nullable
 	@SuppressWarnings("boxing")
 	private Integer getWrittenFreq()
 	{
@@ -376,6 +396,7 @@ class BncQuery extends DBQuery
 	 *
 	 * @return the written range from the result set
 	 */
+	@Nullable
 	@SuppressWarnings("boxing")
 	private Integer getWrittenRange()
 	{
@@ -392,6 +413,7 @@ class BncQuery extends DBQuery
 	 *
 	 * @return the written disp from the result set
 	 */
+	@Nullable
 	@SuppressWarnings("boxing")
 	private Float getWrittenDisp()
 	{

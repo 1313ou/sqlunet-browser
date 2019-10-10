@@ -143,7 +143,7 @@ public class TextFragment extends AbstractTableFragment
 		};
 	}
 
-	static private String[] toPatterns(final String query)
+	static private String[] toPatterns(@NonNull final String query)
 	{
 		String[] tokens = query.split("[\\s()]+");
 		List<String> patterns = new ArrayList<>();
@@ -280,6 +280,7 @@ public class TextFragment extends AbstractTableFragment
 	 * @param concatChoices concatenated choices
 	 * @return array of typed pointers and array of labels
 	 */
+	@NonNull
 	private Pair<TypedPointer[], CharSequence[]> makeData(@NonNull final String... concatChoices)
 	{
 		final List<TypedPointer> typedPointers = new ArrayList<>();
@@ -342,6 +343,7 @@ public class TextFragment extends AbstractTableFragment
 	 * @param choices  choices
 	 * @return dialog
 	 */
+	@NonNull
 	private AlertDialog makeDialog(final DialogInterface.OnClickListener listener, final CharSequence... choices)
 	{
 		return new AlertDialog.Builder(requireContext()) //
@@ -393,6 +395,7 @@ public class TextFragment extends AbstractTableFragment
 	 * @param resId   res id
 	 * @return image span
 	 */
+	@NonNull
 	static private Object makeImageSpan(@NonNull final Context context, final int resId)
 	{
 		Drawable drawable;

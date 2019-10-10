@@ -7,7 +7,6 @@ package org.sqlunet.browser.xn;
 import android.os.Bundle;
 
 import androidx.preference.EditTextPreference;
-import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 
 /**

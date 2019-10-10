@@ -205,6 +205,7 @@ public class WordNetProvider extends BaseProvider
 	}
 
 
+	@NonNull
 	static public String makeUri(final String table)
 	{
 		return BaseProvider.SCHEME + AUTHORITY + '/' + table;

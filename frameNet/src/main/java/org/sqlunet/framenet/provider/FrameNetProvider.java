@@ -160,6 +160,7 @@ public class FrameNetProvider extends BaseProvider
 		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_FnWords.TABLE + "/", FrameNetProvider.SUGGEST_FTS_WORDS);
 	}
 
+	@NonNull
 	static public String makeUri(final String table)
 	{
 		return BaseProvider.SCHEME + AUTHORITY + '/' + table;

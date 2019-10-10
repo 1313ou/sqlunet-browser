@@ -3,10 +3,10 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
 	<string name="verbnet">VerbNet</string>
-	<string name="verbnet_blurb">&lt;b&gt;VerbNet&lt;/b&gt;\nexplores semantic roles</string>
+	<string name="verbnet_blurb" tools:keep="@string/verbnet_blurb">&lt;b&gt;VerbNet&lt;/b&gt;\nexplores semantic roles</string>
 
 	<string name="title_activity_vnclass">VerbNet Class</string>
 

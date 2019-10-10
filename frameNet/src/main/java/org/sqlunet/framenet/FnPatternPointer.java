@@ -23,12 +23,14 @@ public class FnPatternPointer extends Pointer
 	 */
 	static public final Parcelable.Creator<FnPatternPointer> CREATOR = new Parcelable.Creator<FnPatternPointer>()
 	{
+		@NonNull
 		@Override
 		public FnPatternPointer createFromParcel(@NonNull final Parcel parcel)
 		{
 			return new FnPatternPointer(parcel);
 		}
 
+		@NonNull
 		@Override
 		public FnPatternPointer[] newArray(final int size)
 		{

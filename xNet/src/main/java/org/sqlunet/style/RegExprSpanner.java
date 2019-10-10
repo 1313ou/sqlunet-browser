@@ -30,7 +30,7 @@ public class RegExprSpanner extends Spanner
 	 * @param regexprs  regexprs
 	 * @param factories span factories, distinct for each regexpr
 	 */
-	public RegExprSpanner(@NonNull final String[] regexprs, final SpanFactory[][] factories)
+	public RegExprSpanner(@NonNull final String[] regexprs, @NonNull final SpanFactory[][] factories)
 	{
 		int n = regexprs.length < factories.length ? regexprs.length : factories.length;
 		this.spanReplacers = new SpanReplacer[n];

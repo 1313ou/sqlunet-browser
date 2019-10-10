@@ -23,12 +23,14 @@ public class PbRoleSetPointer extends Pointer
 	 */
 	static public final Parcelable.Creator<PbRoleSetPointer> CREATOR = new Parcelable.Creator<PbRoleSetPointer>()
 	{
+		@NonNull
 		@Override
 		public PbRoleSetPointer createFromParcel(@NonNull final Parcel parcel)
 		{
 			return new PbRoleSetPointer(parcel);
 		}
 
+		@NonNull
 		@Override
 		public PbRoleSetPointer[] newArray(final int size)
 		{

@@ -481,6 +481,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		// adapter
 		final ExpandableListAdapter adapter = new SimpleCursorTreeAdapter(requireContext(), this.xnCursor, R.layout.item_group_xselector, groupFrom, groupTo, R.layout.item_xselector, childFrom, childTo)
 		{
+			@Nullable
 			@Override
 			protected Cursor getChildrenCursor(@NonNull Cursor groupCursor)
 			{

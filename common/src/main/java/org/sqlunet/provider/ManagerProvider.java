@@ -50,6 +50,7 @@ public class ManagerProvider extends BaseProvider
 		ManagerProvider.uriMatcher.addURI(AUTHORITY, TablesAndIndices.TABLE, ManagerProvider.TABLES_AND_INDICES);
 	}
 
+	@NonNull
 	static public String makeUri(@SuppressWarnings("SameParameterValue") final String table)
 	{
 		return BaseProvider.SCHEME + AUTHORITY + '/' + table;

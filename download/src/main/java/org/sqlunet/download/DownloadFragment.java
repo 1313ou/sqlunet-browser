@@ -62,6 +62,7 @@ public class DownloadFragment extends BaseDownloadFragment
 			return reason == null ? R.string.status_error_reason_unknown : reason.res;
 		}
 
+		@Nullable
 		static Reason valueOf(int code)
 		{
 			for (Reason reason : values())
@@ -395,6 +396,7 @@ public class DownloadFragment extends BaseDownloadFragment
 	 * @param status _status
 	 * @return string resource id
 	 */
+	@Nullable
 	static private Status dmStatus2Status(final int status)
 	{
 		switch (status)
@@ -420,6 +422,7 @@ public class DownloadFragment extends BaseDownloadFragment
 	 * @param reason _Download Manager reason
 	 * @return Status reason
 	 */
+	@Nullable
 	static private Reason dmReason2Reason(final int reason)
 	{
 		switch (reason)

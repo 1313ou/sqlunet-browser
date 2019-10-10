@@ -23,12 +23,14 @@ public class WordPointer extends Pointer implements HasWordId
 	 */
 	static public final Creator<WordPointer> CREATOR = new Creator<WordPointer>()
 	{
+		@NonNull
 		@Override
 		public WordPointer createFromParcel(@NonNull final Parcel parcel)
 		{
 			return new WordPointer(parcel);
 		}
 
+		@NonNull
 		@Override
 		public WordPointer[] newArray(final int size)
 		{

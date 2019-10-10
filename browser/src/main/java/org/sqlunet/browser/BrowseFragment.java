@@ -405,6 +405,7 @@ public class BrowseFragment extends BaseSearchFragment
 	 *
 	 * @return fragment
 	 */
+	@NonNull
 	private Fragment makeSelectorFragment()
 	{
 		// context

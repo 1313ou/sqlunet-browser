@@ -17,6 +17,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * File utilities
@@ -36,6 +37,7 @@ class FileUtils
 	 * @param fileName file in assets
 	 * @return uri of copied file
 	 */
+	@Nullable
 	static public Uri copyAssetFile(@NonNull final Context context, @NonNull final String fileName)
 	{
 		AssetManager assetManager = null;
@@ -141,6 +143,7 @@ class FileUtils
 	 * @param fileName zip file in assets
 	 * @return uri of dest dir
 	 */
+	@Nullable
 	static public Uri expandZipAssetFile(@NonNull final Context context, @NonNull final String fileName)
 	{
 		try (AssetManager assetManager = context.getAssets())

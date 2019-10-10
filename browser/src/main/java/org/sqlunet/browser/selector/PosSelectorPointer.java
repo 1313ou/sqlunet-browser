@@ -28,12 +28,14 @@ public class PosSelectorPointer extends SelectorPointer implements HasPos
 	 */
 	static public final Parcelable.Creator<PosSelectorPointer> CREATOR = new Parcelable.Creator<PosSelectorPointer>()
 	{
+		@NonNull
 		@Override
 		public PosSelectorPointer createFromParcel(@NonNull final Parcel parcel)
 		{
 			return new PosSelectorPointer(parcel);
 		}
 
+		@NonNull
 		@Override
 		public PosSelectorPointer[] newArray(final int size)
 		{

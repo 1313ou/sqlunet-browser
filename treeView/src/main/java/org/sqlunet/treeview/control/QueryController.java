@@ -6,6 +6,8 @@ package org.sqlunet.treeview.control;
 
 import org.sqlunet.treeview.R;
 
+import androidx.annotation.Nullable;
+
 public class QueryController extends TreeController
 {
 	// static private final String TAG = "QueryController";
@@ -59,6 +61,7 @@ public class QueryController extends TreeController
 	/**
 	 * Get query
 	 */
+	@Nullable
 	private Query getQuery()
 	{
 		final CompositeValue value = (CompositeValue) this.node.getValue();

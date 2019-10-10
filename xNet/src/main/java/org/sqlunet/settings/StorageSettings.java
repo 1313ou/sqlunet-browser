@@ -64,6 +64,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return database path
 	 */
+	@NonNull
 	static public String getDatabasePath(@NonNull final Context context)
 	{
 		return getDataDir(context) + File.separatorChar + Storage.DBFILE;
@@ -158,6 +159,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return download db source
 	 */
+	@NonNull
 	static public String getDbDownloadSource(@NonNull final Context context)
 	{
 		return StorageSettings.getDownloadSite(context) + '/' + StorageSettings.getDbDownloadFile(context);
@@ -169,6 +171,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return download db target
 	 */
+	@NonNull
 	static public String getDbDownloadTarget(@NonNull final Context context)
 	{
 		return StorageSettings.getDataDir(context) + File.separatorChar + Storage.DBFILE;
@@ -180,6 +183,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return download db source
 	 */
+	@NonNull
 	static public String getDbDownloadZippedSource(@NonNull final Context context)
 	{
 		return StorageSettings.getDownloadSite(context) + '/' + StorageSettings.getDbDownloadFile(context) + ".zip";
@@ -191,6 +195,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return download db target
 	 */
+	@NonNull
 	static public String getDbDownloadZippedTarget(@NonNull final Context context)
 	{
 		return StorageSettings.getCacheDir(context) + File.separatorChar + Storage.DBFILEZIP;
@@ -230,6 +235,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return download sql source
 	 */
+	@NonNull
 	static public String getSqlDownloadSource(@NonNull final Context context)
 	{
 
@@ -242,6 +248,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return download sql target
 	 */
+	@NonNull
 	static public String getSqlDownloadTarget(@NonNull final Context context)
 	{
 		return StorageSettings.getCacheDir(context) + File.separator + StorageSettings.getSqlDownloadFile(context);
@@ -253,6 +260,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return SQL source
 	 */
+	@NonNull
 	static public String getSqlSource(@NonNull final Context context)
 	{
 		return StorageSettings.getSqlDownloadTarget(context);

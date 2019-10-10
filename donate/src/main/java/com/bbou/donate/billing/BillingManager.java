@@ -103,6 +103,7 @@ public class BillingManager implements PurchasesUpdatedListener
 	 * want to make it easy for an attacker to replace the public key with one
 	 * of their own and then fake messages from the server.
 	 */
+	@NonNull
 	private final String base64EncodedPublicKey;
 
 	/**
@@ -467,7 +468,7 @@ public class BillingManager implements PurchasesUpdatedListener
 	 *
 	 * @param purchase purchase
 	 */
-	public void consume(final Purchase purchase)
+	public void consume(@NonNull final Purchase purchase)
 	{
 		final String purchaseToken = purchase.getPurchaseToken();
 

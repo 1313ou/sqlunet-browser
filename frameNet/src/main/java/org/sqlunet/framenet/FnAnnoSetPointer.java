@@ -23,12 +23,14 @@ public class FnAnnoSetPointer extends Pointer
 	 */
 	static public final Parcelable.Creator<FnAnnoSetPointer> CREATOR = new Parcelable.Creator<FnAnnoSetPointer>()
 	{
+		@NonNull
 		@Override
 		public FnAnnoSetPointer createFromParcel(@NonNull final Parcel parcel)
 		{
 			return new FnAnnoSetPointer(parcel);
 		}
 
+		@NonNull
 		@Override
 		public FnAnnoSetPointer[] newArray(final int size)
 		{

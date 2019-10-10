@@ -1174,6 +1174,7 @@ abstract class BaseModule extends Module
 		 * @param s string
 		 * @return string with capitalized first character
 		 */
+		@NonNull
 		private CharSequence capitalize1(@NonNull final String s)
 		{
 			return s.substring(0, 1).toUpperCase(Locale.ENGLISH) + s.substring(1);
@@ -1749,6 +1750,7 @@ abstract class BaseModule extends Module
 	 * @param s string
 	 * @return string with capitalized first character
 	 */
+	@NonNull
 	private String capitalize1(@NonNull final String s)
 	{
 		return s.substring(0, 1).toUpperCase(Locale.ENGLISH) + s.substring(1);

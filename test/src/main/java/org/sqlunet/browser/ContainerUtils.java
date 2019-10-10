@@ -7,6 +7,7 @@ import android.widget.ExpandableListView;
 
 import org.hamcrest.Matcher;
 
+import androidx.annotation.NonNull;
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
 
@@ -20,17 +21,19 @@ public class ContainerUtils
 	 * @param matcher matcher for parent
 	 * @return the number of children in the group
 	 */
-	static public int getViewCount(final Matcher<View> matcher)
+	static public int getViewCount(@NonNull final Matcher<View> matcher)
 	{
 		final int[] count = {0}; // has to be final
 		onView(matcher).perform(new ViewAction()
 		{
+			@NonNull
 			@Override
 			public Matcher<View> getConstraints()
 			{
 				return matcher;
 			}
 
+			@NonNull
 			@Override
 			public String getDescription()
 			{
@@ -53,17 +56,19 @@ public class ContainerUtils
 	 * @param matcher matcher for adapter view
 	 * @return how many items are in the data set represented by this adapter
 	 */
-	static public int getItemCount(final Matcher<View> matcher)
+	static public int getItemCount(@NonNull final Matcher<View> matcher)
 	{
 		final int[] count = {0}; // has to be final
 		onView(matcher).perform(new ViewAction()
 		{
+			@NonNull
 			@Override
 			public Matcher<View> getConstraints()
 			{
 				return matcher;
 			}
 
+			@NonNull
 			@Override
 			public String getDescription()
 			{
@@ -86,17 +91,19 @@ public class ContainerUtils
 	 * @param matcher matcher for ExpandableListView
 	 * @return array of counts per group
 	 */
-	static public int[] getExpandableListViewItemCounts(final Matcher<View> matcher)
+	static public int[] getExpandableListViewItemCounts(@NonNull final Matcher<View> matcher)
 	{
 		final int[][] result = {new int[0]}; // has to be final
 		onView(matcher).perform(new ViewAction()
 		{
+			@NonNull
 			@Override
 			public Matcher<View> getConstraints()
 			{
 				return matcher;
 			}
 
+			@NonNull
 			@Override
 			public String getDescription()
 			{

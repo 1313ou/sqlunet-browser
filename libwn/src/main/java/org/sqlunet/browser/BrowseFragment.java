@@ -267,6 +267,7 @@ public class BrowseFragment extends BaseSearchFragment
 	 *
 	 * @return fragment
 	 */
+	@Nullable
 	private Fragment makeSelectorFragment()
 	{
 		// context

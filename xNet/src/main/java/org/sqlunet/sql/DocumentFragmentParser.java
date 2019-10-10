@@ -21,6 +21,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * <tt>DOMFragmentParser</tt> build a document fragment from an XML fragment source that has not necessary a unique root element, or that may have text content
@@ -49,6 +50,7 @@ public class DocumentFragmentParser
 	 *
 	 * @return document builder
 	 */
+	@Nullable
 	private DocumentBuilder makeDocumentBuilder()
 	{
 		try

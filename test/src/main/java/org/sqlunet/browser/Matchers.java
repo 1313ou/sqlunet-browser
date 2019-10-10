@@ -8,8 +8,6 @@ import org.hamcrest.Matcher;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
-import androidx.test.espresso.UiController;
-import androidx.test.espresso.ViewAction;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import static androidx.test.espresso.Espresso.onView;
@@ -24,6 +22,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.instanceOf;
 
+@SuppressWarnings("WeakerAccess")
 public class Matchers
 {
 	@NonNull

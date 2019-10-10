@@ -23,12 +23,14 @@ public class FnValenceUnitPointer extends Pointer
 	 */
 	static public final Parcelable.Creator<FnValenceUnitPointer> CREATOR = new Parcelable.Creator<FnValenceUnitPointer>()
 	{
+		@NonNull
 		@Override
 		public FnValenceUnitPointer createFromParcel(@NonNull final Parcel parcel)
 		{
 			return new FnValenceUnitPointer(parcel);
 		}
 
+		@NonNull
 		@Override
 		public FnValenceUnitPointer[] newArray(final int size)
 		{

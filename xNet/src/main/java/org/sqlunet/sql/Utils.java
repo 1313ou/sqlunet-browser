@@ -112,6 +112,7 @@ public class Utils
 	 * @param args arguments
 	 * @return arguments as string
 	 */
+	@NonNull
 	static public String argsToString(@Nullable final String... args)
 	{
 		final StringBuilder sb = new StringBuilder();

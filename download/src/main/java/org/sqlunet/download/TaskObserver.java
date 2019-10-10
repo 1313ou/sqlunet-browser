@@ -320,6 +320,7 @@ public class TaskObserver
 	 * @param count byte count
 	 * @return string
 	 */
+	@NonNull
 	static private String countToString(final long count, final CharSequence unit)
 	{
 		return NumberFormat.getNumberInstance(Locale.US).format(count) + ' ' + unit;

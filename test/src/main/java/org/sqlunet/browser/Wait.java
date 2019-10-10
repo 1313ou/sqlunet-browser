@@ -25,6 +25,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 public class Wait
 {
+	@NonNull
 	private static ViewAction waitId(final int viewId, final long millis)
 	{
 		return new ViewAction()
@@ -36,6 +37,7 @@ public class Wait
 				return isRoot();
 			}
 
+			@NonNull
 			@Override
 			public String getDescription()
 			{
@@ -69,6 +71,7 @@ public class Wait
 		};
 	}
 
+	@NonNull
 	private static ViewAction waitIdText(final int viewId, final String target, final boolean not, final long millis)
 	{
 		return new ViewAction()
@@ -80,6 +83,7 @@ public class Wait
 				return isRoot();
 			}
 
+			@NonNull
 			@Override
 			public String getDescription()
 			{

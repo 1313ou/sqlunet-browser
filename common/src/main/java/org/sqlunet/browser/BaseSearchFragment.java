@@ -216,6 +216,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	/**
 	 * Set up spinner
 	 */
+	@NonNull
 	@SuppressWarnings("WeakerAccess")
 	protected BaseAdapter getSpinnerAdapter()
 	{

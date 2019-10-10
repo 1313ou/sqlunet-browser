@@ -147,6 +147,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 			return status.res;
 		}
 
+		@Nullable
 		static Status valueOf(int code)
 		{
 			for (Status status : values())

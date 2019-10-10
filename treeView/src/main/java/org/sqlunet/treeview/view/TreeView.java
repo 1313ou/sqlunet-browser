@@ -323,7 +323,7 @@ public class TreeView
 	 *
 	 * @return whether node is expanded
 	 */
-	static public boolean isExpanded(final TreeNode node)
+	static public boolean isExpanded(@NonNull final TreeNode node)
 	{
 		final Controller controller = node.getController();
 		final ViewGroup childrenView = controller.getChildrenView();
@@ -542,7 +542,7 @@ public class TreeView
 	 * @return parent's children view == node view container
 	 */
 	@Nullable
-	private View insertNodeView(final TreeNode parent, @NonNull final TreeNode node)
+	private View insertNodeView(@NonNull final TreeNode parent, @NonNull final TreeNode node)
 	{
 		final Controller<?> parentController = parent.getController();
 		final ViewGroup childrenView = parentController.getChildrenView();
@@ -609,7 +609,7 @@ public class TreeView
 		return true;
 	}
 
-	private int getPosition(final View view)
+	private int getPosition(@NonNull final View view)
 	{
 		int y = view.getTop();
 		View parent = (View) view.getParent();
@@ -666,7 +666,7 @@ public class TreeView
 	// P R I M I T I V E S
 
 
-	private boolean isNodeWithCompositeValueText(final TreeNode node, @NonNull final String text)
+	private boolean isNodeWithCompositeValueText(@NonNull final TreeNode node, @NonNull final String text)
 	{
 		final Object value = node.getValue();
 		return (value instanceof CompositeValue) && text.equals(((CompositeValue) value).text.toString());

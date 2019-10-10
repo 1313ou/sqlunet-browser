@@ -6,6 +6,8 @@ package org.sqlunet.verbnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
 
+import androidx.annotation.Nullable;
+
 /**
  * VerbNet class
  *
@@ -51,6 +53,7 @@ public class VnClass
 	 * @param classId    is the class id to build the query from
 	 * @return list of VerbNet classes
 	 */
+	@Nullable
 	static public VnClass make(final SQLiteDatabase connection, final long classId)
 	{
 		VnClassQuery query = null;

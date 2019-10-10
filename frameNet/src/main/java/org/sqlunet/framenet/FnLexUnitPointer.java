@@ -23,12 +23,14 @@ public class FnLexUnitPointer extends Pointer
 	 */
 	static public final Parcelable.Creator<FnLexUnitPointer> CREATOR = new Parcelable.Creator<FnLexUnitPointer>()
 	{
+		@NonNull
 		@Override
 		public FnLexUnitPointer createFromParcel(@NonNull final Parcel parcel)
 		{
 			return new FnLexUnitPointer(parcel);
 		}
 
+		@NonNull
 		@Override
 		public FnLexUnitPointer[] newArray(final int size)
 		{

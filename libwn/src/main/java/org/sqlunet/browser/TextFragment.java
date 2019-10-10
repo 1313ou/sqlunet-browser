@@ -127,7 +127,7 @@ public class TextFragment extends AbstractTableFragment
 		};
 	}
 
-	static private String[] toPatterns(final String query)
+	static private String[] toPatterns(@NonNull final String query)
 	{
 		String[] tokens = query.split("[\\s()]+");
 		List<String> patterns = new ArrayList<>();
