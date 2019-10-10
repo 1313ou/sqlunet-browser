@@ -27,7 +27,7 @@ public class RunBrowseFlat extends TestCase
 			activityScenarioRule.getScenario().launch(MainActivity.class);
 
 		//Actions.do_choose(R.id.spinner, "senses");
-		Actions.do_choose(R.id.spinner, 0);
+		Seq.do_choose(R.id.spinner, 0);
 	}
 
 	@Test

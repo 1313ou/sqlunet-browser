@@ -10,7 +10,7 @@ import android.widget.ListView;
 
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matcher;
-import org.sqlunet.browser.Actions;
+import org.sqlunet.browser.Seq;
 import org.sqlunet.browser.ContainerUtils;
 import org.sqlunet.browser.DataUtils;
 import org.sqlunet.browser.ToBoolean;
@@ -42,10 +42,10 @@ class Do
 
 	static private void download()
 	{
-		Actions.do_click(R.id.databaseButton);
+		Seq.do_click(R.id.databaseButton);
 		// download activity
-		Actions.do_click(R.id.downloadButton);
-		Wait.until_not_text(R.id.status, Actions.getResourceString(R.string.status_task_running), 500);
+		Seq.do_click(R.id.downloadButton);
+		Wait.until_not_text(R.id.status, Seq.getResourceString(R.string.status_task_running), 500);
 	}
 
 	static void ensureTextSearchSetup(@IdRes int buttonId)
@@ -54,22 +54,22 @@ class Do
 		if (notSet)
 		{
 			textSearchSetup(buttonId);
-			Actions.do_pressBack();
+			Seq.do_pressBack();
 		}
 	}
 
 	static private void textSearchSetup(@IdRes int buttonId)
 	{
-		Actions.do_click(buttonId);
-		Actions.do_click(R.id.task_run);
-		Wait.until_not_text(R.id.task_status, Actions.getResourceString(R.string.status_task_running), 100);
+		Seq.do_click(buttonId);
+		Seq.do_click(R.id.task_run);
+		Wait.until_not_text(R.id.task_status, Seq.getResourceString(R.string.status_task_running), 100);
 	}
 
 	static void searchRunFlat()
 	{
 		for (String word : DataUtils.getWordList())
 		{
-			Actions.do_typeSearch(R.id.search, word);
+			Seq.do_typeSearch(R.id.search, word);
 
 			// selector list
 			Wait.until(android.R.id.list, 5);
@@ -96,12 +96,12 @@ class Do
 	{
 		if (position != -1)
 		{
-			Actions.do_choose(R.id.spinner, position);
+			Seq.do_choose(R.id.spinner, position);
 		}
 
 		for (String word : DataUtils.getWordList())
 		{
-			Actions.do_typeSearch(R.id.search, word);
+			Seq.do_typeSearch(R.id.search, word);
 		}
 	}
 }
