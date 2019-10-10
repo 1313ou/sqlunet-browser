@@ -27,9 +27,9 @@ public class RunMainFlat extends TestCase
 			activityScenarioRule.getScenario().launch(MainActivity.class);
 
 		//Actions.do_navigate(R.id.drawer_layout, R.id.nav_view, "Browse");
-		Actions.do_navigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_search_browse);
+		Seq.do_navigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_search_browse);
 		//Actions.do_choose(R.id.spinner, "senses");
-		Actions.do_choose(R.id.spinner, 0);
+		Seq.do_choose(R.id.spinner, 0);
 	}
 
 	@Test

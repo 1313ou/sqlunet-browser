@@ -25,9 +25,9 @@ public class RunMainTree extends TestCase
 			activityScenarioRule.getScenario().launch(MainActivity.class);
 
 		//Actions.do_navigate(R.id.drawer_layout, R.id.nav_view, "Browse");
-		Actions.do_navigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_search_browse);
+		Seq.do_navigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_search_browse);
 		//Actions.do_choose(R.id.spinner, "grouped by source");
-		Actions.do_choose(R.id.spinner, 1);
+		Seq.do_choose(R.id.spinner, 1);
 		Wait.pause(6);
 	}
 

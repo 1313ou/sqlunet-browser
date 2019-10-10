@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.sqlunet.browser.Actions;
+import org.sqlunet.browser.Seq;
 import org.sqlunet.browser.MainActivity;
 import org.sqlunet.browser.wn.lib.R;
 
@@ -28,7 +28,7 @@ public class RunMain extends TestCase
 			activityScenarioRule.getScenario().launch(MainActivity.class);
 
 		//Actions.do_navigate(R.id.drawer_layout, R.id.nav_view, "Browse");
-		Actions.do_navigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_search_browse);
+		Seq.do_navigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_search_browse);
 	}
 
 	@Test

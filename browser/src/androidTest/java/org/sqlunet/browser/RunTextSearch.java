@@ -28,13 +28,13 @@ public class RunTextSearch extends TestCase
 		if (Do.ensureDownloaded())
 			activityScenarioRule.getScenario().launch(MainActivity.class);
 
-		Actions.do_navigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_status);
+		Seq.do_navigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_status);
 		Do.ensureTextSearchSetup(R.id.searchtextWnButton);
 		Do.ensureTextSearchSetup(R.id.searchtextFnButton);
 		Do.ensureTextSearchSetup(R.id.searchtextVnButton);
 		Do.ensureTextSearchSetup(R.id.searchtextPbButton);
 
-		Actions.do_navigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_search_text);
+		Seq.do_navigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_search_text);
 	}
 
 	@Test

@@ -24,7 +24,7 @@ public class RunBrowseTree extends TestCase
 	public void before()
 	{
 		//Actions.do_choose(R.id.spinner, "grouped by source");
-		Actions.do_choose(R.id.spinner, 1);
+		Seq.do_choose(R.id.spinner, 1);
 	}
 
 	@Test
