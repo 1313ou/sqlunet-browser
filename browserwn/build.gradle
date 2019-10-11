@@ -56,23 +56,24 @@ android {
 }
 
 dependencies {
-    implementation project(':common')
-    implementation project(':expandableListFragment')
-    implementation project(':download')
-    implementation project(':deploy')
-    implementation project(':others')
-    implementation project(':donate')
-    implementation project(':rate')
-    implementation project(':xNet')
-    implementation project(':wordNet')
-    implementation project(':bNC')
+    //implementation project(':common')
+    //implementation project(':expandableListFragment')
+    //implementation project(':download')
+    //implementation project(':deploy')
+    //implementation project(':others')
+    //implementation project(':donate')
+    //implementation project(':rate')
+    //implementation project(':xNet')
+    //implementation project(':wordNet')
+    //implementation project(':bNC')
     implementation project(':libwn')
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
-    implementation 'androidx.legacy:legacy-support-v13:1.0.0'
-    implementation 'androidx.preference:preference:1.1.0'
-    implementation 'androidx.annotation:annotation:1.1.0'
-    implementation 'com.google.android.material:material:1.1.0-beta01'
+
+    implementation 'androidx.appcompat:appcompat:1.1.0' // for resources validation
+    //implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    //implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+    //implementation 'androidx.preference:preference:1.1.0'
+    //implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0-beta01' // for resource include
 
     // local unit tests (JUnit 4 framework)
     testImplementation 'junit:junit:4.12'
