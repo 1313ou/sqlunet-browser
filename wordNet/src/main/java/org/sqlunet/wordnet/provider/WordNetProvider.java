@@ -615,7 +615,8 @@ public class WordNetProvider extends BaseProvider
 				//noinspection fallthrough
 			case WORDS_MORPHMAPS_MORPHS:
 				table = "words " + //
-						"LEFT JOIN morphmaps USING (wordid) " + "LEFT JOIN morphs USING (morphid)";
+						"LEFT JOIN morphmaps USING (wordid) " + //
+						"LEFT JOIN morphs USING (morphid)";
 				break;
 
 			// T E X T S E A R C H

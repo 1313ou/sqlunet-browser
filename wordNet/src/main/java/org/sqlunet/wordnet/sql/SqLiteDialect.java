@@ -22,21 +22,38 @@ class SqLiteDialect
 
 	// WORD
 	// query for word id
-	static final String WordQuery = "SELECT wordid, lemma " + "FROM words " + "WHERE wordid = ?;";
+	static final String WordQuery = "SELECT wordid, lemma " +  //
+			"FROM words " +  //
+			"WHERE wordid = ?;";
 	// query for word
-	static final String WordQueryFromLemma = "SELECT wordid, lemma " + "FROM words " + "WHERE lemma = ?;";
+	static final String WordQueryFromLemma = "SELECT wordid, lemma " +  //
+			"FROM words " +  //
+			"WHERE lemma = ?;";
 
 	// SYNSET
 	// query for synset from synset id
-	static final String SynsetQuery = "SELECT synsetid, definition, lexdomainid, GROUP_CONCAT(sample, '|' ) AS sampleset " + "FROM synsets " + "LEFT JOIN samples USING (synsetid) " + "WHERE synsetid = ? " + "GROUP BY synsetid;";
+	static final String SynsetQuery = "SELECT synsetid, definition, lexdomainid, GROUP_CONCAT(sample, '|' ) AS sampleset " +  //
+			"FROM synsets " +  //
+			"LEFT JOIN samples USING (synsetid) " +  //
+			"WHERE synsetid = ? " +  //
+			"GROUP BY synsetid;";
 	// query for words in synsets
-	static final String SynsetWordsQuery = "SELECT lemma, wordid " + "FROM senses " + "INNER JOIN words USING (wordid) " + "WHERE synsetid = ?;";
+	static final String SynsetWordsQuery = "SELECT lemma, wordid " +  //
+			"FROM senses " +  //
+			"INNER JOIN words USING (wordid) " + //
+			"WHERE synsetid = ?;";
 	// query for synsets from word id
-	static final String SynsetsQueryFromWordId = "SELECT synsetid, definition, pos, lexdomainid, GROUP_CONCAT(sample, '|' ) AS sampleset " + "FROM senses " + "INNER JOIN synsets USING (synsetid) " + "LEFT JOIN samples USING (synsetid) " + "WHERE wordid = ? " + //
-			"GROUP BY synsetid " + "ORDER BY lexdomainid ASC, sensenum DESC;";
+	static final String SynsetsQueryFromWordId = "SELECT synsetid, definition, pos, lexdomainid, GROUP_CONCAT(sample, '|' ) AS sampleset " +  //
+			"FROM senses " +  //
+			"INNER JOIN synsets USING (synsetid) " + //
+			"LEFT JOIN samples USING (synsetid) " + //
+			"WHERE wordid = ? " + //
+			"GROUP BY synsetid " +  //
+			"ORDER BY lexdomainid ASC, sensenum DESC;";
 	// query for synsets of given pos type from word id
 	static final String SynsetsQueryFromWordIdAndPos = "SELECT synsetid, definition, lexdomainid, GROUP_CONCAT(sample, '|' ) AS sampleset " + //
-			"FROM senses " + "INNER JOIN synsets USING (synsetid) " + //
+			"FROM senses " + //
+			"INNER JOIN synsets USING (synsetid) " + //
 			"LEFT JOIN samples USING (synsetid) " + //
 			"WHERE wordid = ? AND pos = ? " + //
 			"GROUP BY synsetid " + //
@@ -71,7 +88,8 @@ class SqLiteDialect
 			"ORDER BY 1, 2;";
 	// query for links from synsets and link type
 	static final String LinksQueryFromSynsetIdAndLinkId = "SELECT linkid, synsetid, definition, lexdomainid, GROUP_CONCAT(sample, '|' ) AS samples, 0 AS word2id, NULL AS word2, synset1id, 0 " + //
-			"FROM semlinks " + "INNER JOIN synsets ON synset2id = synsetid " + //
+			"FROM semlinks " + //
+			"INNER JOIN synsets ON synset2id = synsetid " + //
 			"LEFT JOIN linktypes USING (linkid) " + //
 			"LEFT JOIN samples USING (synsetid) " + //
 			"WHERE synset1id = ? AND linkid = ? " + //
