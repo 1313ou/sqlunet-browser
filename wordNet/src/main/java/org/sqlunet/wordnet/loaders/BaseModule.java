@@ -1813,8 +1813,12 @@ abstract public class BaseModule extends Module
 				return R.drawable.ic_substance_meronym;
 			case 21:
 				return R.drawable.ic_entail;
+			case 22:
+				return R.drawable.ic_entailed;
 			case 23:
 				return R.drawable.ic_cause;
+			case 24:
+				return R.drawable.ic_caused;
 			case 30:
 				return R.drawable.ic_antonym;
 			case 40:
