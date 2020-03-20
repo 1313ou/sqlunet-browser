@@ -27,8 +27,10 @@ also
 antonym
 attribute
 cause
+caused
 derivation
 entail
+entailed
 holonym
 hypernym
 hyponym

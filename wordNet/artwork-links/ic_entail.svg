@@ -14,8 +14,8 @@
    width="128"
    height="128"
    id="svg2"
-   inkscape:version="0.48.5 r10040"
-   sodipodi:docname="entail.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="ic_entail.svg"
    inkscape:export-filename="entail.png"
    inkscape:export-xdpi="11.25"
    inkscape:export-ydpi="11.25">
@@ -40,12 +40,12 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="779"
-     inkscape:window-height="574"
+     inkscape:window-width="799"
+     inkscape:window-height="882"
      id="namedview21"
      showgrid="false"
      inkscape:zoom="0.76367188"
-     inkscape:cx="-147.47826"
+     inkscape:cx="4.1815872"
      inkscape:cy="64"
      inkscape:window-x="266"
      inkscape:window-y="45"
@@ -124,26 +124,14 @@
   </defs>
   <text
      xml:space="preserve"
-     style="font-size:123.12194061px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial Black;-inkscape-font-specification:'Arial Black, Bold'"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:0%;font-family:'Arial Black';-inkscape-font-specification:'Arial Black, Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
      x="34.484474"
-     y="92.064735"
+     y="94.94075"
      id="text2995"
-     sodipodi:linespacing="125%"
      transform="scale(0.76141768,1.3133396)"><tspan
        sodipodi:role="line"
        id="tspan3024"
        x="34.484474"
-       y="92.064735">⇒</tspan></text>
-  <text
-     transform="scale(0.76141768,1.3133396)"
-     sodipodi:linespacing="125%"
-     id="text3026"
-     y="92.064735"
-     x="34.484474"
-     style="font-size:123.12194061px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial Black;-inkscape-font-specification:'Arial Black, Bold'"
-     xml:space="preserve"><tspan
-       y="92.064735"
-       x="34.484474"
-       id="tspan3028"
-       sodipodi:role="line">⇒</tspan></text>
+       y="94.94075"
+       style="font-size:123.12194061px;line-height:1.25">⇒</tspan></text>
 </svg>
