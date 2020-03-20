@@ -358,7 +358,7 @@ public class WebFragment extends Fragment
 					}
 					else
 					{
-						final long id = Long.valueOf(value);
+						final long id = Long.parseLong(value);
 
 						// warn with id
 						final Activity activity = getActivity();

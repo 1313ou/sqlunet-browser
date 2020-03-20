@@ -126,6 +126,6 @@ public class Settings extends org.sqlunet.settings.Settings
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		final String value = sharedPref.getString(Settings.PREF_LINK_RECURSE, null);
-		return value == null ? -1 : Integer.valueOf(value);
+		return value == null ? -1 : Integer.parseInt(value);
 	}
 }

@@ -171,7 +171,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		}
 	}
 
-	class Progress
+	static class Progress
 	{
 		long total;
 		long downloaded;

@@ -21,13 +21,13 @@ allprojects {
     }
 
     ext {
-        versionCode = 46
-        versionName = '1.46'
+        versionCode = 47
+        versionName = '1.47'
         minSdkVersion = 17
         targetSdkVersion = 28
         compileSdkVersion = 28
-        lifecycleVersion = '2.1.0'
-        navVersion = '2.1.0'
+        lifecycleVersion = '2.2.0'
+        navVersion = '2.2.1'
     }
 
     tasks.withType(JavaCompile) {

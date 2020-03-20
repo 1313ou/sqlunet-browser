@@ -299,7 +299,7 @@ public class TextFragment extends AbstractTableFragment
 	/**
 	 * Typed pointer
 	 */
-	private class TypedPointer
+	private static class TypedPointer
 	{
 		final int type;
 		final long id;
