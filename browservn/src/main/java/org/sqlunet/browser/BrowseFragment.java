@@ -133,7 +133,7 @@ public class BrowseFragment extends BaseSearchFragment
 		Bundle args = new Bundle();
 		if (query.matches("#\\p{Lower}\\p{Lower}\\d+"))
 		{
-			final long id = Long.valueOf(query.substring(3));
+			final long id = Long.parseLong(query.substring(3));
 
 			// wordnet
 			if (query.startsWith("#ws"))
