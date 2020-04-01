@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="128"
+   height="128"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.92.1 r15371"
+   sodipodi:docname="category.svg">
+  <title
+     id="title3672">Star</title>
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="6.90625"
+     inkscape:cx="64"
+     inkscape:cy="52.41629"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:snap-grids="false"
+     inkscape:snap-to-guides="false"
+     inkscape:snap-nodes="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1103"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Star</dc:title>
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:date>2010-6-19=1389-3-29</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Alinn</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:publisher>
+          <cc:Agent>
+            <dc:title>openclipart.org</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title />
+          </cc:Agent>
+        </dc:rights>
+        <dc:description>Taftish.wordpress.com</dc:description>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(34.910995,-797.35291)">
+    <path
+       sodipodi:type="star"
+       style="fill:#917c6f;fill-opacity:0.969163;fill-rule:evenodd;stroke:none;stroke-width:1.02695417"
+       id="path3590"
+       sodipodi:sides="5"
+       sodipodi:cx="30.936754"
+       sodipodi:cy="859.67804"
+       sodipodi:r1="62.321415"
+       sodipodi:r2="33.304295"
+       sodipodi:arg1="0.66766559"
+       sodipodi:arg2="1.2959841"
+       inkscape:flatsided="false"
+       inkscape:rounded="0.36"
+       inkscape:randomized="0"
+       d="m 79.87584,898.26463 c -9.012238,11.43015 -25.891895,-10.48193 -39.901425,-6.532 -14.009531,3.94993 -16.957018,31.45219 -30.6126764,26.41316 -13.6556583,-5.03904 1.9678684,-27.86375 -6.1179203,-39.96701 -8.0857892,-12.10326 -35.1528193,-6.40782 -34.5802423,-20.95227 0.572576,-14.54445 27.1081045,-6.73882 36.1203422,-18.16897 9.0122378,-11.43016 -4.76861966,-35.41245 9.2409108,-39.36238 14.00953,-3.94993 14.785861,23.69893 28.44152,28.73797 13.655658,5.03903 32.20565,-15.47828 40.291439,-3.37502 8.085789,12.10326 -17.96994,21.38557 -18.542517,35.93002 -0.572576,14.54445 24.672806,25.84634 15.660569,37.2765 z"
+       transform="matrix(0.99983254,0.28137301,-0.28137301,0.99983254,240.13208,-1.8229566)" />
+  </g>
+</svg>

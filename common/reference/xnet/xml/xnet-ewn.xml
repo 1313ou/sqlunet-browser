@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<concepts name="XNet">
+
+<concept name="English WordNet" id="wordnet">
+	<img src="wordnet.png" />
+	<a href="wordnet.html"/>
+	<description>English WordNet is a lexical database of semantic relations between words.</description>
+</concept>
+
+<concept name="BNC" id="bnc">
+	<img src="bnc.png" />
+	<a href="bnc.html"/>
+	<description>The British National Corpus (BNC) is a 100-million-word text corpus of samples of written and spoken English from a wide range of sources. </description>
+</concept>
+
+</concepts>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<concepts name="WordNet">
+
+<concept name="Synset" id="wnsynset">
+	<img src="wnsynset.png" />
+	<description> Nouns, verbs, adjectives and adverbs are grouped into sets of cognitive synonyms (synsets), each expressing a distinct concept.</description>
+	<examples>
+		<example>[broadcast, circularise, circularize, circulate, diffuse, disperse, disseminate, distribute, pass around, propagate, spread]</example>
+		<example>[circulate, go round, spread]</example>
+		<example>[fear, fearfulness, fright]</example>
+	</examples>
+</concept>
+
+<concept name="Members" id="wnmembers">
+	<img src="wnmembers.png" />
+	<description>Synsets have lemmas as members.</description>
+	<examples>
+		<context><name>[fear, fearfulness, fright]</name>synset</context>
+		<example>[fear]</example>
+		<example>[fearfulness]</example>
+		<example>[fright]</example>
+	</examples>
+</concept>
+
+<concept name="Member" id="wnmember">
+	<img src="wnmember.png" />
+	<description>A synset member is a lemma. </description>
+	<examples>
+		<context><name>[fear, fearfulness, fright]</name>synset</context>
+		<example>fear</example>
+	</examples>
+</concept>
+
+<concept name="Lemma" id="wnlemma">
+	<img src="wnlemma.png" />
+	<description>A lemma is a word in canonical form. </description>
+	<examples>
+		<example>jump</example>
+	</examples>
+</concept>
+
+<concept name="Relation" id="wnrelation">
+	<img src="wnrelation.png" />
+	<a href="relations/index.html"/>
+	<description>Synsets are interlinked by means of conceptual-semantic and lexical relations. WordNet labels the semantic relations among words, whereas the groupings of words in a thesaurus does not follow any explicit pattern other than meaning similarity.</description>
+	<items>
+		<item>antonym</item>
+		<item>hypernym</item>
+		<item>instance hypernym</item>
+		<item>hyponym</item>
+		<item>instance hyponym</item>
+		<item>holonym member</item>
+		<item>holonym substance</item>
+		<item>holonym part</item>
+		<item>meronym member</item>
+		<item>meronym substance</item>
+		<item>meronym part</item>
+		<item>attribute</item>
+		<item>pertainym</item>
+		<item>derivation</item>
+		<item>domain topic</item>
+		<item>has domain topic</item>
+		<item>domain region</item>
+		<item>has domain region</item>
+		<item>exemplifies</item>
+		<item>is exemplified by</item>
+		<item>also</item>
+		<item>entails</item>
+		<item>is entailed by</item>
+		<item>similar</item>
+		<item>similar</item>
+		<item>participle</item>
+		<item>causes</item>
+		<item>is caused by</item>
+	</items>
+</concept>
+
+<concept name="Part-of-speech" id="wnpos">
+	<img src="wnpos.png" />
+	<description>Part of speech</description>
+	<items>
+		<item>noun</item>
+		<item>verb</item>
+		<item>adjective</item>
+		<item>adverb</item>
+		<item>adjective satellite</item>
+	</items>
+</concept>
+
+<concept name="Domain" id="wndomain">
+	<img src="wndomain.png" />
+	<description>Lexical domain. Synsets are organized into forty-five lexicographer files based on syntactic category and logical groupings.</description>
+	<items>
+		<item>adj.all</item>
+		<item>adj.pert</item>
+		<item>adj.ppl</item>
+		<item>adv.all</item>
+		<item>noun.Tops</item>
+		<item>noun.act</item>
+		<item>noun.animal</item>
+		<item>noun.artifact</item>
+		<item>noun.attribute</item>
+		<item>noun.body</item>
+		<item>noun.cognition</item>
+		<item>noun.communication</item>
+		<item>noun.event</item>
+		<item>noun.feeling</item>
+		<item>noun.food</item>
+		<item>noun.group</item>
+		<item>noun.location</item>
+		<item>noun.motive</item>
+		<item>noun.object</item>
+		<item>noun.person</item>
+		<item>noun.phenomenon</item>
+		<item>noun.plant</item>
+		<item>noun.possession</item>
+		<item>noun.process</item>
+		<item>noun.quantity</item>
+		<item>noun.relation</item>
+		<item>noun.shape</item>
+		<item>noun.state</item>
+		<item>noun.substance</item>
+		<item>noun.time</item>
+		<item>verb.body</item>
+		<item>verb.change</item>
+		<item>verb.cognition</item>
+		<item>verb.communication</item>
+		<item>verb.competition</item>
+		<item>verb.consumption</item>
+		<item>verb.contact</item>
+		<item>verb.creation</item>
+		<item>verb.emotion</item>
+		<item>verb.motion</item>
+		<item>verb.perception</item>
+		<item>verb.possession</item>
+		<item>verb.social</item>
+		<item>verb.stative</item>
+		<item>verb.weather</item>
+	</items>
+</concept>
+
+<concept name="Examples" id="wnsample">
+	<img src="wnsample.png" />
+	<description>The example sentences or phrases of a synset</description>
+	<examples>
+		<context><name>[broadcast, circularise, circularize, circulate, diffuse, disperse, disseminate, distribute, pass around, propagate, spread]</name> synset </context>
+		<example>spread information</example>
+		<example>spread a rumor</example>
+		<example>broadcast the news</example>
+	</examples>
+</concept>
+
+<concept name="Morphological form" id="wnmorph">
+	<img src="wnmorph.png" />
+	<description>The morphological forms of a lemma</description>
+	<examples>
+		<context><name>mouse</name> lemma</context>
+		<example>mice</example>
+	</examples>
+</concept>
+
+<concept name="VerbFrame" id="wnverbframe">
+	<img src="wnverbframe.png" />
+	<description>Verb frames are the syntactic constructs attached to a sense of the verb.</description>
+	<examples>
+		<context><name>[broadcast, circularise, circularize, circulate, diffuse, disperse, disseminate, distribute, pass around, propagate, spread]</name> synset </context>
+		<example>Somebody ___s something</example>
+	</examples>
+</concept>
+
+<concept name="VerbTemplate" id="wnverbtemplate">
+	<img src="wnverbtemplate.png" />
+	<description>Verb templates or example sentences illustrate actual uses of the verb. They are attached to some verb senses.</description>
+	<examples>
+		<context><name>[flip, toss]</name> synset </context>
+		<example>They ___ the coin.</example>
+	</examples>
+</concept>
+
+<concept name="Adjective position" id="wnadjposition">
+	<img src="wnadjposition.png" />
+	<description>Adjective position. They are attached to some adjective senses,</description>
+	<items>
+		<item>predicative</item>
+		<item>pre-nominal (attributive)</item>
+		<item>immediately post-nominal</item>
+	</items>
+	<examples>
+		<example>(p) lacking</example>
+		<example>(a) putative</example>
+		<example>(ip) galore</example>
+	</examples>
+</concept>
+
+</concepts>

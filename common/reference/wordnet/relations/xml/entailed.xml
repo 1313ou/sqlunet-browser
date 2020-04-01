@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<link name="Entailed" id="entailed" type="semantic" v="true">
+
+	<img src="entailed.png" />
+
+	<description>
+		<span>Is entailed by. </span>
+	</description>
+
+	<logical>
+		<def>
+			<span>
+				A verb
+				<b>Y</b>
+				is entailed by
+				<b>X</b>
+			</span>
+		</def>
+		<cond>
+			<span>
+				<b>X</b>
+				cannot be done unless
+				<b>Y</b>
+				is, or has been, done
+			</span>
+		</cond>
+		<cond>
+			<span>
+				there is no conceivable state of affairs that could make
+				<b>X</b>
+				true and
+				<b>Y</b>
+				false
+			</span>
+		</cond>
+	</logical>
+
+	<examples>
+		<example>
+			<from>walk</from>
+			<to>limp</to>
+			<gloss>temporal inclusion - coextensive</gloss>
+		</example>
+		<example>
+			<from>talk</from>
+			<to>lisp</to>
+			<gloss>temporal inclusion - coextensive</gloss>
+		</example>
+		<example>
+			<from>sleep</from>
+			<to>snore</to>
+			<gloss>temporal inclusion - proper inclusion</gloss>
+		</example>
+		<example>
+			<from>pay</from>
+			<to>buy</to>
+			<gloss>temporal inclusion - proper inclusion</gloss>
+		</example>
+		<example>
+			<from>try</from>
+			<to>succeed</to>
+			<gloss>no temporal inclusion - backward presupposition</gloss>
+		</example>
+		<example>
+			<from>try</from>
+			<to>fail</to>
+			<gloss>no temporal inclusion - backward presupposition</gloss>
+		</example>
+		<example>
+			<from>tie</from>
+			<to>untie</to>
+			<gloss>no temporal inclusion - backward presupposition</gloss>
+		</example>
+		<example>
+			<from>aim</from>
+			<to>hit</to>
+			<gloss>no temporal inclusion - backward presupposition</gloss>
+		</example>
+		<example>
+			<from>aim</from>
+			<to>miss</to>
+			<gloss>no temporal inclusion - backward presupposition</gloss>
+		</example>
+		<example>
+			<from>rise</from>
+			<to>raise</to>
+			<gloss>no temporal inclusion - cause</gloss>
+		</example>
+		<example>
+			<from>have</from>
+			<to>giveve</to>
+			<gloss>no temporal inclusion - cause</gloss>
+		</example>
+		<example>
+			<from>fear</from>
+			<to>scare</to>
+			<gloss>no temporal inclusion - cause</gloss>
+		</example>
+		<example>
+			<from>eat</from>
+			<to>feed</to>
+			<gloss>no temporal inclusion - cause</gloss>
+		</example>
+		<example>
+			<from>learn</from>
+			<to>teach</to>
+			<gloss>no temporal inclusion - cause</gloss>
+		</example>
+	</examples>
+
+	<see tag="caused"></see>
+
+</link>

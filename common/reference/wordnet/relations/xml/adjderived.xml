@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<link name="Derived from adjective" id="adjderived" type="lexical" reflexive="false" r="true">
+
+	<img src="adjderived.png" />
+
+	<description>
+		<span>Derived from adjective</span>
+	</description>
+
+	<examples>
+		<example>
+			<from>gradually</from>
+			<to>gradual</to>
+		</example>
+		<example>
+			<from>really</from>
+			<to>real</to>
+		</example>
+		<example>
+			<from>truly</from>
+			<to>true</to>
+		</example>
+	</examples>
+
+</link>
+

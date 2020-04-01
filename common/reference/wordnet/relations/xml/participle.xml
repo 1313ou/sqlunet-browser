@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<link name="Participle" id="participle" type="lexical" v="true">
+
+	<img src="participle.png" />
+
+	<description>
+		<span>Verb participle</span>
+	</description>
+
+	<examples>
+		<example>
+			<from>beaten</from>
+			<to>beat</to>
+		</example>
+		<example>
+			<from>collected</from>
+			<to>collect</to>
+		</example>
+		<example>
+			<from>transpiring</from>
+			<to>transpire</to>
+		</example>
+		<example>
+			<from>ungathered</from>
+			<to>gather</to>
+		</example>
+	</examples>
+
+</link>
+

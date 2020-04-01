@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<link name="Domain Member" id="member" type="both" reverse="domain" n="true" v="true" a="true" r="true" s="true">
+
+	<img src="domain.member.png" />
+
+	<description>
+		<span>Domain of synset</span>
+	</description>
+
+	<examples>
+		<example>
+			<from>cooking</from>
+			<to>marinate</to>
+			<gloss>domain member category</gloss>
+			<img src="domain.member.category.png" />
+		</example>
+		<example>
+			<from>cooking</from>
+			<to>reduce</to>
+			<gloss>domain member category</gloss>
+			<img src="domain.member.category.png" />
+		</example>
+		<example>
+			<from>cooking</from>
+			<to>bake</to>
+			<gloss>domain member category</gloss>
+			<img src="domain.member.category.png" />
+		</example>
+		<example>
+			<from>cooking</from>
+			<to>souse</to>
+			<gloss>domain member category</gloss>
+			<img src="domain.member.category.png" />
+		</example>
+		<example>
+			<from>music</from>
+			<to>sing</to>
+			<gloss>domain member category</gloss>
+			<img src="domain.member.category.png" />
+		</example>
+		<example>
+			<from>music</from>
+			<to>psalm</to>
+			<gloss>domain member category</gloss>
+			<img src="domain.member.category.png" />
+		</example>
+		<example>
+			<from>music</from>
+			<to>hymn</to>
+			<gloss>domain member category</gloss>
+			<img src="domain.member.category.png" />
+		</example>
+		<example>
+			<from>music</from>
+			<to>choir</to>
+			<gloss>domain member category</gloss>
+			<img src="domain.member.category.png" />
+		</example>
+
+		<example>
+			<from>chili con carne</from>
+			<to>Mexico</to>
+			<gloss>domain member region</gloss>
+			<img src="domain.member.region.png" />
+		</example>
+		<example>
+			<from>taco</from>
+			<to>Mexico</to>
+			<gloss>domain member region</gloss>
+			<img src="domain.member.region.png" />
+		</example>
+		<example>
+			<from>burrito</from>
+			<to>Mexico</to>
+			<gloss>domain member region</gloss>
+			<img src="domain.member.region.png" />
+		</example>
+
+		<example>
+			<from>portmanteau word</from>
+			<to>motel</to>
+			<gloss>domain member usage</gloss>
+			<img src="domain.member.usage.png" />
+		</example>
+		<example>
+			<from>plural</from>
+			<to>high jinx</to>
+			<gloss>domain member usage</gloss>
+			<img src="domain.member.usage.png" />
+		</example>
+		<example>
+			<from>idiom</from>
+			<to>like clockwork</to>
+			<gloss>domain member usage</gloss>
+			<img src="domain.member.usage.png" />
+		</example>
+
+	</examples>
+
+</link>
+

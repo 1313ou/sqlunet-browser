@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<link name="Derivation" id="derivation" type="lexical" reverse="derivation" reflexive="true" n="true" v="true" a="true" r="true" s="true">
+
+	<img src="derivation.png" />
+
+	<description>
+		<span>Derivationally-related</span>
+	</description>
+
+	<examples>
+		<example>
+			<from>abstraction</from>
+			<to>abstract</to>
+		</example>
+		<example>
+			<from>object</from>
+			<to>objectify</to>
+		</example>
+		<example>
+			<from>unit</from>
+			<to>unify</to>
+		</example>
+		<example>
+			<from>being</from>
+			<to>be</to>
+		</example>
+		<example>
+			<from>cause</from>
+			<to>causal</to>
+		</example>
+		<example>
+			<from>being</from>
+			<to>be</to>
+		</example>
+		<example>
+			<from>location</from>
+			<to>locate</to>
+		</example>
+	</examples>
+
+</link>
+

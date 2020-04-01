@@ -1,0 +1,169 @@
+/* SqlUNet */
+
+* {
+	color: black;
+	font-family: Arial,sans-serif;
+}
+
+body {
+	background-color: #F3F1E2;
+	font-size: small;
+	padding: 0px;
+}
+
+h1 {
+	background-color: #00cc99;
+	color: white;
+	padding-left: 20px;
+	padding-right: 10px;
+	font-size: xx-large;
+	font-weight: bold;
+	letter-spacing: 20px;
+}
+
+.toc {
+	display: none;
+}
+
+/******* hyperlink and anchor tag styles *******/
+
+a:link,a:visited {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/********* custom *********/
+
+.header {
+	background-color: gray;
+	color: orange;
+}
+
+.title {
+	color: orange;
+	font-size: xxx-large;
+	font-weight: bold;
+}
+
+.expand {
+	width: 100%;
+}
+
+.concept {
+	visibility: visible;
+	margin-bottom: 100px;
+}
+
+.headerimage {
+	width: 36px;
+}
+
+.headertitle {
+}
+
+.headerlink {
+	width: 36px;
+}
+
+.conceptname {
+	background-color: orange;
+	color: black;
+	font-size: x-large;
+	font-weight: bold;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding-left: 25px;
+	padding-right: 25px;
+	vertical-align: middle;
+}
+
+.description {
+	background-color: #E5E2B3;
+	font-weight: bold;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.enumeration {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.enumerationlist {
+}
+
+.enumerationitem {
+	font-style: italic;
+	font-weight: lighter;
+	border-style:hidden;
+	border-width: 2px;
+	background-color: white;
+}
+
+.examples {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.exampletable {
+	border-style:hidden;
+	border-width: 1px;
+}
+
+.example {
+	border-style:solid;
+	border-width: 1px;
+	background-color: white;
+}
+
+.keyword {
+	background-color: #cccccc;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+.context {
+	font-style: italic;
+	margin-bottom: 2px;
+}
+
+.gloss {
+	color: gray;
+	font-size: small;
+	font-style: italic;
+}
+
+.type {
+}
+
+.reflexive {
+}
+
+.def {
+	color: gray;
+}
+
+.cond {
+	color: gray;
+}
+
+.backimage {
+	background-repeat: repeat;
+}
+
+.splash {
+	height: 100%;
+	background-color: #E5E2B3;
+	background-repeat: no-repeat;
+	background-position: center center;
+    background-attachment: fixed;
+	background-image: url('./images/splash.png');
+}
+
+.selectorname {
+		margin-left:10px;
+}
+
