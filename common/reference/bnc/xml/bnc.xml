@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<concepts name="BNC">
+
+<concept name="BNC data" id="bnc">
+	<img src="bnc.png" />
+	<description>BNC data per lemma</description>
+	<items>
+		<item><name>Frequency</name> per million words.</item>
+		<item><name>Range</name> This is a figure that indicates whether a word is distributed across the different text types in the BNC or whether it occurs in some text types only. To obtain the figure, the corpus is divided into 100 ‘sectors’, each consisting of texts of one type only. A word that occurs in many of the sectors will have a higher range score than one that occurs only in a few sectors. A word that occurs in all sectors will have a range score of 100.</item>
+		<item><name>Dispersion</name>This figure indicates whether aword occurs equally frequently in all texts and parts of texts or whether it occurs in some texts or parts only. The figure is obtained by dividing the corpus again into 100 sectors, but this time the sectors are consecutive through the corpus and are therefore of mixed text types. A high score for Dispersion means that a word occurs relatively evenly in any texts,whereas a low scoremeans that a word tends to ‘clump’ in some texts.</item>
+	</items>
+</concept>
+
+<concept name="Spoken - Written" id="bncspwr">
+	<img src="bncspwr.png" />
+	<description>Spoken vs Written</description>
+</concept>
+
+<concept name="Conversational - Task-oriented" id="bncconvtask">
+	<img src="bncconvtask.png" />
+	<description>Spoken Conversational vs Spoken Task-oriented</description>
+</concept>
+
+<concept name="Imaginative - Informational" id="bncimaginf">
+	<img src="bncimaginf.png" />
+	<description>Written Imaginative vs Written Informational</description>
+</concept>
+
+</concepts>

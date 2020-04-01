@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<link name="Meronym" id="meronym" type="semantic" reverse="holonym" n="true">
+
+	<img src="meronym.png" />
+
+	<description>
+		<span>The name of a constituent part of, the substance of, or a member of something. Part name (a word that names a part of a larger whole).</span>
+	</description>
+
+	<logical>
+		<def>
+			<span>
+				<b>X</b>
+				is a meronym of
+				<b>Y</b>
+			</span>
+		</def>
+		<cond>
+			<span>
+				<b>X</b>
+				is a part of
+				<b>Y</b>
+			</span>
+		</cond>
+		<cond>
+			<span>
+				<b>X</b>
+				is a substance of
+				<b>Y</b>
+			</span>
+		</cond>
+		<cond>
+			<span>
+				<b>X</b>
+				is a member of
+				<b>Y</b>
+			</span>
+		</cond>
+	</logical>
+
+	<examples>
+		<example>
+			<from>bird</from>
+			<to>wing</to>
+			<gloss>object-component</gloss>
+			<img src="part.meronym.png" />
+		</example>
+		<example>
+			<from>face</from>
+			<to>mouth</to>
+			<gloss>object-component</gloss>
+			<img src="part.meronym.png" />
+		</example>
+		<example>
+			<from>body</from>
+			<to>arm</to>
+			<gloss>object-component</gloss>
+			<img src="part.meronym.png" />
+		</example>
+		<example>
+			<from>door</from>
+			<to>handle</to>
+			<gloss>object-component</gloss>
+			<img src="part.meronym.png" />
+		</example>
+		<example>
+			<from>tree</from>
+			<to>branch</to>
+			<gloss>object-component</gloss>
+			<img src="part.meronym.png" />
+		</example>
+		<example>
+			<from>forest</from>
+			<to>tree</to>
+			<gloss>collection-member</gloss>
+			<img src="member.meronym.png" />
+		</example>
+		<example>
+			<from>air</from>
+			<to>oxygen</to>
+			<gloss>object-substance</gloss>
+			<img src="substance.meronym.png" />
+		</example>
+		<example>
+			<from>olive oil</from>
+			<to>olive</to>
+			<gloss>object-substance</gloss>
+			<img src="substance.meronym.png" />
+		</example>
+		<example>
+			<from>cake</from>
+			<to>slice</to>
+			<gloss>mass-portion</gloss>
+		</example>
+		<example>
+			<from>growing up</from>
+			<to>adolescence</to>
+			<gloss>process-phase</gloss>
+		</example>
+		<example>
+			<from>shopping</from>
+			<to>paying</to>
+			<gloss>activity-feature</gloss>
+		</example>
+	</examples>
+
+	<see tag="holonym">(the inverse relation)</see>
+
+</link>

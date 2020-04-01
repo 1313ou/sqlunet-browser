@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<link name="Direct antonym" id="antonym" type="lexical" reverse="antonym" reflexive="true" n="true" v="true" a="true" r="true">
+
+	<img src="antonym.png" />
+
+	<description>
+		<span>
+			A pair of words between which there is an opposition relation. Antonymy is a
+			<strong>lexical relation</strong>
+			, not a semantic one.
+			<em>Heavy</em>
+			and
+			<em>light</em>
+			are antonyms while
+			<em>ponderous</em>
+			and
+			<em>light</em>
+			,
+			<em>heavy</em>
+			and
+			<em>weightless</em>
+			are not (they're indirect antonyms).
+		</span>
+	</description>
+
+	<examples>
+		<example>
+			<from>happy</from>
+			<to>unhappy</to>
+			<gloss>adj</gloss>
+		</example>
+		<example>
+			<from>heavy</from>
+			<to>light</to>
+			<gloss>adj</gloss>
+		</example>
+		<example>
+			<from>wet</from>
+			<to>dry</to>
+			<gloss>adj</gloss>
+		</example>
+		<example>
+			<from>rich</from>
+			<to>poor</to>
+			<gloss>adj</gloss>
+		</example>
+		<example>
+			<from>long</from>
+			<to>short</to>
+			<gloss>adj</gloss>
+		</example>
+		<example>
+			<from>dead</from>
+			<to>alive</to>
+			<gloss>adj</gloss>
+		</example>
+		<example>
+			<from>man</from>
+			<to>woman</to>
+			<gloss>noun</gloss>
+		</example>
+		<example>
+			<from>actor</from>
+			<to>actress</to>
+			<gloss>noun</gloss>
+		</example>
+		<example>
+			<from>king</from>
+			<to>queen</to>
+			<gloss>noun</gloss>
+		</example>
+		<example>
+			<from>promotion</from>
+			<to>demotion</to>
+			<gloss>noun</gloss>
+		</example>
+		<example>
+			<from>demotion</from>
+			<to>promotion</to>
+			<gloss>noun</gloss>
+		</example>
+		<example>
+			<from>deceleration</from>
+			<to>acceleration</to>
+			<gloss>noun</gloss>
+		</example>
+		<example>
+			<from>opening</from>
+			<to>closing</to>
+			<gloss>noun</gloss>
+		</example>
+		<example>
+			<from>finish</from>
+			<to>start</to>
+			<gloss>verb</gloss>
+		</example>
+		<example>
+			<from>increase</from>
+			<to>decrease</to>
+			<gloss>verb</gloss>
+		</example>
+		<example>
+			<from>wake</from>
+			<to>sleep</to>
+			<gloss>verb</gloss>
+		</example>
+		<example>
+			<from>rise</from>
+			<to>fall</to>
+			<gloss>verb</gloss>
+		</example>
+		<example>
+			<from>give</from>
+			<to>take</to>
+			<gloss>verb</gloss>
+		</example>
+		<example>
+			<from>teach</from>
+			<to>learn</to>
+			<gloss>verb</gloss>
+		</example>
+		<example>
+			<from>live</from>
+			<to>die</to>
+			<gloss>verb</gloss>
+		</example>
+		<example>
+			<from>bottlefeed</from>
+			<to>breastfeed</to>
+			<gloss>verb</gloss>
+		</example>
+		<example>
+			<from>appear</from>
+			<to>disappear</to>
+			<gloss>verb</gloss>
+		</example>
+		<example>
+			<from>walk</from>
+			<to>run</to>
+			<gloss>verb</gloss>
+		</example>
+	</examples>
+	>
+
+	<see tag="similar">(among adjectives)</see>
+
+</link>
+

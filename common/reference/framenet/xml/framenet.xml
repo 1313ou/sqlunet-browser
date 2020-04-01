@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<concepts name="FrameNet">
+
+<concept name="Frame" id="fnframe">
+	<img src="fnframe.png" />
+	<description>A frame is a schematic representation of a situation involving various participants, props, and other conceptual roles, each of which is a frame element</description>
+	<examples>
+		<example>Being_born</example>
+		<example>Locative_relation</example>
+		<example>Commerce_goods-transfer</example>
+	</examples>
+</concept>
+
+<concept name="Frame Element" abbrev="FE" id="fnfe">
+	<img src="fnfe.png" />
+	<description>The semantic roles of a frame, the linguistic realization of which highlights different participants (or semantic roles) of a frame</description>
+	<examples>
+		<context><name>Commerce_goods-transfer</name>frame</context>
+		<example>Seller</example>
+		<example>Buyer</example>
+		<example>Goods</example>
+	</examples>
+</concept>
+
+<concept name="Core Frame Element" id="fnfecore">
+	<img src="fnfecore.png" />
+	<description>The roles of a frame that are essential to its meaning.</description>
+	<examples>
+		<context><name>Complaining</name> frame</context>
+		<example>Seller</example>
+		<example>Buyer</example>
+		<example>Goods</example>
+	</examples>
+</concept>
+
+<concept name="Non-Core Frame Element" id="fnfenoncore">
+	<img src="fnfenoncore.png" />
+	<description>The non-essential roles of a frame. Non-core FEs are generally descriptive (such as time, place, manner, etc.).</description>
+	<examples>
+		<context><name>Commerce_goods-transfer</name> frame</context>
+		<example>Place</example>
+		<example>Purpose</example>
+	</examples>
+</concept>
+
+<concept name="Frame Definition" id="fnframedefinition">
+	<img src="fnframedefinition.png" />
+	<description>A textual description of what the frame represents.</description>
+	<examples>
+	</examples>
+</concept>
+
+<concept name="Lexical Unit" short="LexUnit" abbrev="LU" id="fnlu">
+	<img src="fnlu.png" />
+	<description>The lemmas, with their part of speech, that evoke a specific frame. Pairing between a lemma and a frame.</description>
+	<examples>
+		<context><name>Complaining</name>frame</context>
+		<example>complain</example>
+		<example>grouse</example>
+		<example>lament</example>
+	</examples>
+</concept>
+
+<concept name="Frame Relation" id="fnframerelation">
+	<img src="fnframerelation.png" />
+	<description>Relations capture relationships between different frames</description>
+	<examples>
+		<example>Inheritance</example>
+		<example>Perspectivized_in</example>
+		<example>Subframe</example>
+		<example>Precedes</example>
+		<example>Causative_of</example>
+		<example>Inchoative_of</example>
+		<example>Using</example>
+		<example>See_also</example>
+	</examples>
+</concept>
+
+<concept name="Example sentences" id="fnsentence">
+	<img src="fnsentence.png" />
+	<description>The example sentences of a frame.</description>
+	<examples>
+	</examples>
+</concept>
+
+<concept name="Valence" id="fnvalence">
+	<img src="fnvalence.png" />
+	<description>The range of semantic and syntactic combinatory
+possibilities. The particular kinds of constituents, in terms of semantic roles, grammatical functions, and phrase t/ypes, with which a word combines in a grammatical sentence. The number and the position of the frame elements within example sentences. Semantico-syntactic combinatorial possibilities ◦meaning-form-function mappings. FrameNet valence:</description>
+	<items>
+		<item>Frame Element</item>
+		<item>Grammatical Function</item>
+		<item>Phrase Type</item>
+	</items>
+ 	<examples>
+		<context><name>She was born about AD 460</name>sentence</context>
+		<example>NP Ext, INI --, NP Dep</example>
+	</examples>
+</concept>
+
+<concept name="Annoset" id="fnannoset">
+	<img src="fnannoset.png" />
+	<description>Annotation set. The assignment of semantic role tags to syntactic constituents.</description>
+	<examples>
+		<context><name>Avoiding</name> frame</context>
+		<example>[We Agent] must avoid [jumping to conclusions Undesirable_situation].</example>
+		<example> [Victoria Agent] avoids [weekend work Undesirable_situation].</example>
+		<example>[They Agent] could not avoid [criticism Undesirable_situation].</example>
+		<example>[Young people Agent] can avoid [getting into trouble Undesirable_situation].
+</example>
+	</examples>
+  
+</concept>
+
+<concept name="Realization" id="fnrealization">
+	<img src="fnrealization.png" />
+	<description>Realizations.</description>
+</concept>
+
+<concept name="Group Realization" id="fngrouprealization">
+	<img src="fngrouprealization.png" />
+	<description>Group Realizations.</description>
+</concept>
+
+<concept name="Layer" id="fnlayer">
+	<img src="fnlayer.png" />
+	<description>Layers.</description>
+</concept>
+
+<concept name="Label" id="fnlabel">
+	<img src="fnlabel.png" />
+	<description>Labels.</description>
+</concept>
+
+<concept name="Governor" id="fngovernor">
+	<img src="fngovernor.png" />
+	<description>Governors.</description>
+</concept>
+
+<concept name="Semantic type" id="fnsemtype">
+	<img src="fnsemtype.png" />
+	<description>Semantic types.</description>
+</concept>
+
+<concept name="Core set" id="fncoreset">
+	<img src="fncoreset.png" />
+	<description>Core set.</description>
+</concept>
+
+<concept name="GF" id="fngf">
+	<description>Grammatical Function. Describes the ways in which constituents in a sentence satisfy abstract grammatical requirements of the target word.</description>
+	<items>
+		<item>External</item>	
+		<item>Object</item>	
+		<item>Dependent</item>	
+	</items>
+</concept>
+
+<concept name="PT" id="fngf">
+	<description>Phrase Type.</description>
+	<items>
+		<item>NP</item>	
+		<item>VPing</item>	
+		<item>PP(of various types)</item>	
+		<item>etc.</item>	
+	</items>
+</concept>
+
+</concepts>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<concepts name="XNet">
+
+<concept name="FrameNet" id="framenet">
+	<img src="framenet.png" />
+	<a href="framenet.html"/>
+	<description>FrameNet is a computational lexicography project based on the principles of Frame Semantics</description>
+</concept>
+
+</concepts>

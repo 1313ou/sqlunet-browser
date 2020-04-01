@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<link name="Domain" id="domain" type="both" reverse="member" n="true" v="true" a="true" r="true" s="true">
+
+	<img src="domain.png" />
+
+	<description>
+		<span>Domain of synset</span>
+	</description>
+
+	<examples>
+		<example>
+			<from>mitzvah</from>
+			<to>judaism</to>
+			<gloss>domain category</gloss>
+			<img src="domain.category.png" />
+		</example>
+		<example>
+			<from>cell</from>
+			<to>biology</to>
+			<gloss>domain category</gloss>
+			<img src="domain.category.png" />
+		</example>
+		<example>
+			<from>plant</from>
+			<to>botany</to>
+			<gloss>domain category</gloss>
+			<img src="domain.category.png" />
+		</example>
+
+		<example>
+			<from>zebra crossing</from>
+			<to>Britain</to>
+			<gloss>domain region</gloss>
+			<img src="domain.region.png" />
+		</example>
+		<example>
+			<from>tramcar</from>
+			<to>Britain</to>
+			<gloss>domain region</gloss>
+			<img src="domain.region.png" />
+		</example>
+		<example>
+			<from>centre</from>
+			<to>Britain</to>
+			<gloss>domain region</gloss>
+			<img src="domain.region.png" />
+		</example>
+		<example>
+			<from>walkabout</from>
+			<to>Australia</to>
+			<gloss>domain region</gloss>
+			<img src="domain.region.png" />
+		</example>
+		<example>
+			<from>trek</from>
+			<to>South Africa</to>
+			<gloss>domain region</gloss>
+			<img src="domain.region.png" />
+		</example>
+		<example>
+			<from>curling</from>
+			<to>Scotland</to>
+			<gloss>domain region</gloss>
+			<img src="domain.region.png" />
+		</example>
+
+		<example>
+			<from>snafu</from>
+			<to>acronym</to>
+			<gloss>domain usage</gloss>
+			<img src="domain.usage.png" />
+		</example>
+		<example>
+			<from>neutralization</from>
+			<to>euphemism</to>
+			<gloss>domain usage</gloss>
+			<img src="domain.usage.png" />
+		</example>
+		<example>
+			<from>scrabble</from>
+			<to>trademark</to>
+			<gloss>domain usage</gloss>
+			<img src="domain.usage.png" />
+		</example>
+
+	</examples>
+
+</link>
+
