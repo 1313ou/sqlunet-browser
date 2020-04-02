@@ -25,10 +25,9 @@
 		tools:context="org.sqlunet.browser.HelpActivity"
 		tools:ignore="MergeRootFrame">
 
-		<androidx.androidx.androidx.androidx.androidx.fragment.app.FragmentContainerView.app.FragmentContainerView.app.FragmentContainerView.app.FragmentContainerView.app.FragmentContainerView
+		<androidx.fragment.app.FragmentContainerView
 			android:id="@+id/fragment_help"
 			android:name="org.sqlunet.browser.HelpFragment"
-			class="org.sqlunet.browser.HelpFragment"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			tools:layout="@layout/fragment_help"/>

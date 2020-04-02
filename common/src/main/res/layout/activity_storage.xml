@@ -24,10 +24,9 @@
 		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
 		tools:context="org.sqlunet.browser.config.StorageActivity">
 
-		<androidx.androidx.androidx.androidx.androidx.fragment.app.FragmentContainerView.app.FragmentContainerView.app.FragmentContainerView.app.FragmentContainerView.app.FragmentContainerView
+		<androidx.fragment.app.FragmentContainerView
 			android:id="@+id/fragment_storage"
 			android:name="org.sqlunet.browser.config.StorageFragment"
-			class="org.sqlunet.browser.config.StorageFragment"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			tools:context="org.sqlunet.browser.config.StorageActivity"
