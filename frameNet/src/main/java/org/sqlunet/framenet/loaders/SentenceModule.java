@@ -23,7 +23,7 @@ import org.sqlunet.view.TreeOpExecute;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import static org.sqlunet.view.TreeOp.TreeOpCode.NEWUNIQUE;
 import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
@@ -68,7 +68,7 @@ public class SentenceModule extends BaseModule
 	 */
 	private void makeModels()
 	{
-		this.sentenceFromSentenceIdModel = ViewModelProviders.of(this.fragment).get("fn.sentence(sentenceid)", SqlunetViewTreeModel.class);
+		this.sentenceFromSentenceIdModel = new ViewModelProvider(this.fragment).get("fn.sentence(sentenceid)", SqlunetViewTreeModel.class);
 		this.sentenceFromSentenceIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 	}
 

@@ -12,6 +12,8 @@ cp -RT "${wherefrom}" "${appdir}"
 rm ${appdir}/xnet-ewn.html
 rm ${appdir}/xnet-vn.html
 rm ${appdir}/xnet-fn.html
+rm ${appdir}/relations/index*.html
+mv ${appdir}/relations/android-index.html ${appdir}/relations/index.html
 
 tag=wn
 app=browser${tag}
@@ -23,7 +25,7 @@ rm ${appdir}/verbnet.html
 rm ${appdir}/propbank.html
 rm ${appdir}/framenet.html
 rm ${appdir}/xnet.html
-rm ${appdir}/xnet-ewn.html
+#rm ${appdir}/xnet-ewn.html
 rm ${appdir}/xnet-vn.html
 rm ${appdir}/xnet-fn.html
 rm ${appdir}/images/vn*.png
@@ -33,6 +35,8 @@ rm ${appdir}/images/verbnet.png
 rm ${appdir}/images/propbank.png
 rm ${appdir}/images/framenet.png
 rm ${appdir}/images/predicatematrix.png
+rm ${appdir}/relations/index*.html
+mv ${appdir}/relations/android-index.html ${appdir}/relations/index.html
 
 tag=ewn
 app=browser${tag}
@@ -44,7 +48,7 @@ rm ${appdir}/verbnet.html
 rm ${appdir}/propbank.html
 rm ${appdir}/framenet.html
 rm ${appdir}/xnet.html
-rm ${appdir}/xnet-wn.html
+#rm ${appdir}/xnet-wn.html
 rm ${appdir}/xnet-vn.html
 rm ${appdir}/xnet-fn.html
 rm ${appdir}/images/vn*.png
@@ -54,6 +58,8 @@ rm ${appdir}/images/verbnet.png
 rm ${appdir}/images/propbank.png
 rm ${appdir}/images/framenet.png
 rm ${appdir}/images/predicatematrix.png
+rm ${appdir}/relations/index*.html
+mv ${appdir}/relations/android-index.html ${appdir}/relations/index.html
 
 tag=fn
 app=browser${tag}
@@ -93,4 +99,6 @@ rm ${appdir}/xnet-fn.html
 rm ${appdir}/images/fn*.png
 rm ${appdir}/images/framenet.png
 rm ${appdir}/images/predicatematrix.png
+rm ${appdir}/relations/index*.html
+mv ${appdir}/relations/android-index.html ${appdir}/relations/index.html
 

@@ -2,7 +2,7 @@
 <HTML>
 <HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<TITLE>WordNet Links</TITLE>
+<TITLE>Relations</TITLE>
 <LINK rel="stylesheet" type="text/css" href="style.css">
 <SCRIPT type="text/javascript">
 function select(tag)
@@ -12,10 +12,10 @@ function select(tag)
 		for(i=0;i<all.length;i++)
 		{
 			var e=all[i];
-			e.style.visibility='collapse';
+			e.style.display='none';
 		}
 		var e=maindoc.getElementById(tag);
-		e.style.visibility='visible';
+		e.style.display='block';
 }
 function menu()
 {

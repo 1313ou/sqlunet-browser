@@ -24,7 +24,7 @@
 		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
 		tools:context="org.sqlunet.browser.SearchTextActivity">
 
-		<fragment
+		<androidx.androidx.fragment.app.FragmentContainerView.app.FragmentContainerView
 			android:id="@+id/fragment_searchtext"
 			android:name="org.sqlunet.browser.SearchTextFragment"
 			class="org.sqlunet.browser.SearchTextFragment"

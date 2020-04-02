@@ -34,13 +34,13 @@ import java.util.Arrays;
 import java.util.Locale;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWTREE;
 import static org.sqlunet.view.TreeOp.TreeOpCode.NEWCHILD;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWUNIQUE;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWMAIN;
 import static org.sqlunet.view.TreeOp.TreeOpCode.NEWEXTRA;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWMAIN;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWTREE;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWUNIQUE;
 import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
 
 /**
@@ -142,16 +142,16 @@ abstract class BaseModule extends Module
 	 */
 	private void makeModels()
 	{
-		this.pbRoleSetFromRoleSetIdModel = ViewModelProviders.of(this.fragment).get("pb.roleset(rolesetid)", SqlunetViewTreeModel.class);
+		this.pbRoleSetFromRoleSetIdModel = new ViewModelProvider(this.fragment).get("pb.roleset(rolesetid)", SqlunetViewTreeModel.class);
 		this.pbRoleSetFromRoleSetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
-		this.roleSetsFromWordIdModel = ViewModelProviders.of(this.fragment).get("pb.rolesets(wordid)", SqlunetViewTreeModel.class);
+		this.roleSetsFromWordIdModel = new ViewModelProvider(this.fragment).get("pb.rolesets(wordid)", SqlunetViewTreeModel.class);
 		this.roleSetsFromWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
-		this.rolesFromRoleSetIdModel = ViewModelProviders.of(this.fragment).get("pb.roles(rolesetid)", SqlunetViewTreeModel.class);
+		this.rolesFromRoleSetIdModel = new ViewModelProvider(this.fragment).get("pb.roles(rolesetid)", SqlunetViewTreeModel.class);
 		this.rolesFromRoleSetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
-		this.examplesFromRoleSetIdModel = ViewModelProviders.of(this.fragment).get("pb.examples(rolesetid)", SqlunetViewTreeModel.class);
+		this.examplesFromRoleSetIdModel = new ViewModelProvider(this.fragment).get("pb.examples(rolesetid)", SqlunetViewTreeModel.class);
 		this.examplesFromRoleSetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 	}
 

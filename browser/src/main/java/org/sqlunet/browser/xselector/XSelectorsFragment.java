@@ -36,7 +36,7 @@ import java.util.Locale;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.app.local.ExpandableListFragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 /**
  * X selector fragment
@@ -293,10 +293,10 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 */
 	private void makeModels()
 	{
-		this.wordIdFromWordModel = ViewModelProviders.of(this).get("xselectors.wordid(word)", SqlunetViewModel.class);
+		this.wordIdFromWordModel = new ViewModelProvider(this).get("xselectors.wordid(word)", SqlunetViewModel.class);
 		this.wordIdFromWordModel.getData().observe(this, unusedCursor -> initialize());
 
-		this.wnFromWordIdModel = ViewModelProviders.of(this).get("xselectors.wn(wordid)", SqlunetViewModel.class);
+		this.wnFromWordIdModel = new ViewModelProvider(this).get("xselectors.wn(wordid)", SqlunetViewModel.class);
 		this.wnFromWordIdModel.getData().observe(this, cursor -> {
 
 			if (cursor != null)
@@ -316,7 +316,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			}
 		});
 
-		this.vnFromWordIdModel = ViewModelProviders.of(this).get("xselectors.vn(wordid)", SqlunetViewModel.class);
+		this.vnFromWordIdModel = new ViewModelProvider(this).get("xselectors.vn(wordid)", SqlunetViewModel.class);
 		this.vnFromWordIdModel.getData().observe(this, cursor -> {
 
 			if (cursor != null)
@@ -336,7 +336,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			}
 		});
 
-		this.pbFromWordIdModel = ViewModelProviders.of(this).get("xselectors.pb(wordid)", SqlunetViewModel.class);
+		this.pbFromWordIdModel = new ViewModelProvider(this).get("xselectors.pb(wordid)", SqlunetViewModel.class);
 		this.pbFromWordIdModel.getData().observe(this, cursor -> {
 
 			if (cursor != null)
@@ -356,7 +356,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			}
 		});
 
-		this.fnFromWordIdModel = ViewModelProviders.of(this).get("xselectors.fn(wordid)", SqlunetViewModel.class);
+		this.fnFromWordIdModel = new ViewModelProvider(this).get("xselectors.fn(wordid)", SqlunetViewModel.class);
 		this.fnFromWordIdModel.getData().observe(this, cursor -> {
 
 			if (cursor != null)

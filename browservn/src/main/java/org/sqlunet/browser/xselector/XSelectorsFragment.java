@@ -33,7 +33,7 @@ import java.util.Locale;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.app.local.ExpandableListFragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 /**
  * X selector fragment
@@ -243,10 +243,10 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 */
 	private void makeModels()
 	{
-		this.wordIdFromWordModel = ViewModelProviders.of(this).get("vn:xselectors.wordid(word)", SqlunetViewModel.class);
+		this.wordIdFromWordModel = new ViewModelProvider(this).get("vn:xselectors.wordid(word)", SqlunetViewModel.class);
 		this.wordIdFromWordModel.getData().observe(this, unusedCursor -> initialize());
 
-		this.vnFromWordIdModel = ViewModelProviders.of(this).get("vn:xselectors.vn(wordid)", SqlunetViewModel.class);
+		this.vnFromWordIdModel = new ViewModelProvider(this).get("vn:xselectors.vn(wordid)", SqlunetViewModel.class);
 		this.vnFromWordIdModel.getData().observe(this, cursor -> {
 
 			if (cursor != null)
@@ -266,7 +266,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			}
 		});
 
-		this.pbFromWordIdModel = ViewModelProviders.of(this).get("vn:xselectors.pb(wordid)", SqlunetViewModel.class);
+		this.pbFromWordIdModel = new ViewModelProvider(this).get("vn:xselectors.pb(wordid)", SqlunetViewModel.class);
 		this.pbFromWordIdModel.getData().observe(this, cursor -> {
 
 			if (cursor != null)

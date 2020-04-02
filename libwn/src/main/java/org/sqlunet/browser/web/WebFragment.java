@@ -49,7 +49,7 @@ import java.net.URLDecoder;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 /**
  * A fragment representing a SqlUNet web view.
@@ -222,7 +222,7 @@ public class WebFragment extends Fragment
 	private void makeModels()
 	{
 		final boolean xml = Settings.getXmlPref(requireContext());
-		this.model = ViewModelProviders.of(this).get("wn:web(doc)", WebModel.class);
+		this.model = new ViewModelProvider(this).get("wn:web(doc)", WebModel.class);
 		this.model.getData().observe(this, doc -> {
 			Log.d(WebFragment.TAG, "onLoadFinished");
 			final String mimeType = xml ? "text/xml" : "text/html";

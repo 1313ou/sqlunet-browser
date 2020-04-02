@@ -15,6 +15,7 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -170,7 +171,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	{
 		Log.d(BaseSearchFragment.TAG, "set up specific action bar " + this);
 
-		final AppCompatActivity activity = (AppCompatActivity)requireActivity();
+		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
 		final ActionBar actionBar = activity.getSupportActionBar();
 		assert actionBar != null;
 
@@ -326,6 +327,8 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 				return false;
 			}
 		});
+
+		new Handler().postDelayed(() -> this.searchView.setIconified(false), 1500);
 	}
 
 	public void clearQuery()

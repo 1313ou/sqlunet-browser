@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import org.sqlunet.browser.common.R;
 
 import androidx.annotation.NonNull;
@@ -16,6 +18,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.navigation.fragment.NavHostFragment;
 
 /**
  * Home fragment
@@ -35,7 +39,16 @@ public class HomeFragment extends Fragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		return inflater.inflate(R.layout.fragment_home, container, false);
+		View view = inflater.inflate(R.layout.fragment_home, container, false);
+		FloatingActionButton fab = view.findViewById(R.id.fab);
+		fab.setOnClickListener((v)->
+		{
+			final FragmentActivity activity = requireActivity();
+			final NavHostFragment navHostFragment = (NavHostFragment) activity.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+			assert navHostFragment != null;
+			navHostFragment.getNavController().navigate(R.id.nav_search_browse);
+		});
+		return view;
 	}
 
 	@Override

@@ -26,7 +26,7 @@
 		tools:context="org.sqlunet.browser.AboutActivity"
 		tools:ignore="MergeRootFrame">
 
-		<fragment
+		<androidx.androidx.androidx.androidx.androidx.fragment.app.FragmentContainerView.app.FragmentContainerView.app.FragmentContainerView.app.FragmentContainerView.app.FragmentContainerView
 			android:id="@+id/fragment_about"
 			android:name="org.sqlunet.browser.AboutFragment"
 			class="org.sqlunet.browser.AboutFragment"

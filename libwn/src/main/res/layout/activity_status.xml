@@ -24,7 +24,7 @@
 		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
 		tools:context="org.sqlunet.browser.StatusActivity">
 
-		<fragment
+		<androidx.androidx.fragment.app.FragmentContainerView.app.FragmentContainerView
 			android:id="@+id/fragment_status"
 			android:name="org.sqlunet.browser.wn.StatusFragment"
 			class="org.sqlunet.browser.wn.StatusFragment"

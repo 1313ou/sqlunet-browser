@@ -33,7 +33,7 @@ import org.sqlunet.view.TreeOpExecute;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import static org.sqlunet.view.TreeOp.TreeOpCode.NEWTREE;
 import static org.sqlunet.view.TreeOp.TreeOpCode.NEWCHILD;
@@ -168,16 +168,16 @@ abstract class BaseModule extends Module
 	 */
 	private void makeModels()
 	{
-		this.vnClassFromClassIdModel = ViewModelProviders.of(this.fragment).get("vn.class(classid)", SqlunetViewTreeModel.class);
+		this.vnClassFromClassIdModel = new ViewModelProvider(this.fragment).get("vn.class(classid)", SqlunetViewTreeModel.class);
 		this.vnClassFromClassIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
-		this.vnMembersFromClassIdModel = ViewModelProviders.of(this.fragment).get("vn.members(classid)", SqlunetViewTreeModel.class);
+		this.vnMembersFromClassIdModel = new ViewModelProvider(this.fragment).get("vn.members(classid)", SqlunetViewTreeModel.class);
 		this.vnMembersFromClassIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
-		this.vnRolesFromClassIdModel = ViewModelProviders.of(this.fragment).get("vn.roles(classid)", SqlunetViewTreeModel.class);
+		this.vnRolesFromClassIdModel = new ViewModelProvider(this.fragment).get("vn.roles(classid)", SqlunetViewTreeModel.class);
 		this.vnRolesFromClassIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
-		this.vnFramesFromClassIdModel = ViewModelProviders.of(this.fragment).get("vn.frames(classid)", SqlunetViewTreeModel.class);
+		this.vnFramesFromClassIdModel = new ViewModelProvider(this.fragment).get("vn.frames(classid)", SqlunetViewTreeModel.class);
 		this.vnFramesFromClassIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 	}
 

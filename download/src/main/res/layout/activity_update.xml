@@ -24,7 +24,7 @@
 		android:layout_height="match_parent"
 		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-		<fragment
+		<androidx.androidx.androidx.androidx.androidx.fragment.app.FragmentContainerView.app.FragmentContainerView.app.FragmentContainerView.app.FragmentContainerView.app.FragmentContainerView
 			android:id="@+id/fragment_update"
 			android:name="org.sqlunet.download.UpdateFragment"
 			class="org.sqlunet.download.UpdateFragment"
