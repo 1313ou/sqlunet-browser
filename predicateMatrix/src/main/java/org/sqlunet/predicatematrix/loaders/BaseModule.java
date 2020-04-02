@@ -48,7 +48,7 @@ import java.util.TreeSet;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import static org.sqlunet.view.TreeOp.TreeOpCode.NEWTREE;
 import static org.sqlunet.view.TreeOp.TreeOpCode.NEWCHILD;
@@ -98,7 +98,7 @@ abstract class BaseModule extends Module
 	 */
 	private void makeModels()
 	{
-		this.model = ViewModelProviders.of(fragment).get("pm.pm(?)", SqlunetViewTreeModel.class);
+		this.model = new ViewModelProvider(fragment).get("pm.pm(?)", SqlunetViewTreeModel.class);
 		this.model.getData().observe(fragment, data -> new TreeOpExecute(fragment).exec(data));
 	}
 

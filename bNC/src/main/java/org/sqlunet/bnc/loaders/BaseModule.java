@@ -28,7 +28,7 @@ import org.sqlunet.view.TreeOpExecute;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import static org.sqlunet.view.TreeOp.TreeOpCode.NEWUNIQUE;
 import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
@@ -93,7 +93,7 @@ public class BaseModule extends Module
 	 */
 	private void makeModels()
 	{
-		this.bncFromWordIdModel = ViewModelProviders.of(this.fragment).get("bnc.bnc(wordid)", SqlunetViewTreeModel.class);
+		this.bncFromWordIdModel = new ViewModelProvider(this.fragment).get("bnc.bnc(wordid)", SqlunetViewTreeModel.class);
 		this.bncFromWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 	}
 

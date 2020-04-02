@@ -28,7 +28,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.ListFragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 /**
  * A list fragment representing a table.
@@ -66,7 +66,7 @@ public abstract class AbstractTableFragment extends ListFragment
 	 */
 	private void makeModels()
 	{
-		this.model = ViewModelProviders.of(this).get("elements", SqlunetViewModel.class);
+		this.model = new ViewModelProvider(this).get("elements", SqlunetViewModel.class);
 		this.model.getData().observe(this, cursor -> {
 
 			final CursorAdapter adapter = (CursorAdapter) getListAdapter();

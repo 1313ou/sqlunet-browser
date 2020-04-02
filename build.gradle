@@ -8,8 +8,8 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.1'
-        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.1.0"
+        classpath 'com.android.tools.build:gradle:3.6.2'
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.2.1"
     }
 }
 
@@ -21,8 +21,8 @@ allprojects {
     }
 
     ext {
-        versionCode = 47
-        versionName = '1.47'
+        versionCode = 48
+        versionName = '1.48'
         minSdkVersion = 17
         targetSdkVersion = 28
         compileSdkVersion = 28

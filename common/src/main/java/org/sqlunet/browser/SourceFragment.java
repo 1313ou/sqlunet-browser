@@ -17,7 +17,7 @@ import org.sqlunet.provider.XSqlUNetProvider;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.ListFragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 /**
  * A list fragment representing sources.
@@ -58,7 +58,7 @@ public class SourceFragment extends ListFragment
 	 */
 	private void makeModels()
 	{
-		this.model = ViewModelProviders.of(this).get("sources", SqlunetViewModel.class);
+		this.model = new ViewModelProvider(this).get("sources", SqlunetViewModel.class);
 		this.model.getData().observe(this, cursor -> {
 
 			final CursorAdapter adapter = (CursorAdapter) getListAdapter();

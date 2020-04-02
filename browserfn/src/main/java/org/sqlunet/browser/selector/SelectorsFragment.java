@@ -34,7 +34,7 @@ import java.util.Locale;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.ListFragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 /**
  * Selector Fragment
@@ -181,7 +181,7 @@ public class SelectorsFragment extends ListFragment
 	 */
 	private void makeModels()
 	{
-		this.model = ViewModelProviders.of(this).get("fn:selectors(word)", SqlunetViewModel.class);
+		this.model = new ViewModelProvider(this).get("fn:selectors(word)", SqlunetViewModel.class);
 		this.model.getData().observe(this, cursor -> {
 
 			// pass on to list adapter

@@ -32,7 +32,7 @@ import java.util.Locale;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.ListFragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 /**
  * A fragment representing senses
@@ -195,7 +195,7 @@ public class SensesFragment extends ListFragment
 	 */
 	private void makeModels()
 	{
-		this.sensesModelFromWord = ViewModelProviders.of(this).get("wn.senses(word)", SqlunetViewModel.class);
+		this.sensesModelFromWord = new ViewModelProvider(this).get("wn.senses(word)", SqlunetViewModel.class);
 		this.sensesModelFromWord.getData().observe(this, cursor -> {
 
 			// pass on to list adapter

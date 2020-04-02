@@ -26,7 +26,7 @@ import org.sqlunet.view.TreeOpExecute;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import static org.sqlunet.view.TreeOp.TreeOpCode.NEWTREE;
 import static org.sqlunet.view.TreeOp.TreeOpCode.NEWCHILD;
@@ -73,7 +73,7 @@ public class ClassFromWordModule extends BaseModule
 	 */
 	private void makeModels()
 	{
-		this.vnClassesFromWordIdSynsetIdModel = ViewModelProviders.of(this.fragment).get("vn.classes(wordid,synsetid)", SqlunetViewTreeModel.class);
+		this.vnClassesFromWordIdSynsetIdModel = new ViewModelProvider(this.fragment).get("vn.classes(wordid,synsetid)", SqlunetViewTreeModel.class);
 		this.vnClassesFromWordIdSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 	}
 
