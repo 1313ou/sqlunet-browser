@@ -11,7 +11,7 @@
 	app:layout_behavior="@string/appbar_scrolling_view_behavior"
 	tools:showIn="@layout/main">
 
-	<androidx.androidx.androidx.androidx.androidx.fragment.app.FragmentContainerView.app.FragmentContainerView.app.FragmentContainerView.app.FragmentContainerView.app.FragmentContainerView
+	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/nav_host_fragment"
 		android:name="androidx.navigation.fragment.NavHostFragment"
 		android:layout_width="match_parent"
