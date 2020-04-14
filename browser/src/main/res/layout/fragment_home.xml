@@ -24,12 +24,19 @@
 		android:layout_height="wrap_content"
 		android:layout_gravity="bottom|end"
 		android:layout_margin="@dimen/fab_margin"
+		android:background="@color/accentColor"
 		android:clickable="true"
 		android:contentDescription="@string/title_activity_browse"
+		android:elevation="4dp"
 		android:focusable="true"
 		android:visibility="visible"
+		app:backgroundTint="@color/accentColor"
 		app:fabSize="normal"
+		app:layout_anchor="@+id/home_container"
+		app:layout_anchorGravity="bottom|end"
 		app:srcCompat="@drawable/ic_search_browse"
-		app:useCompatPadding="true" />
+		app:tint="@android:color/white"
+		app:useCompatPadding="true"
+		tools:targetApi="lollipop" />
 
 </FrameLayout>
