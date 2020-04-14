@@ -1,0 +1,85 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>Relations</TITLE>
+<LINK rel="stylesheet" type="text/css" href="style.css">
+<SCRIPT type="text/javascript">
+function select(tag)
+{
+		var iframe=parent.document.getElementById('main');
+		var maindoc=iframe.contentWindow.document;
+		var all=maindoc.getElementsByName('link');
+		for(i=0;i<all.length;i++)
+		{
+			var e=all[i];
+			e.style.visibility="collapse";
+		}
+		var e=maindoc.getElementById(tag);
+		e.style.visibility="visible";
+}
+
+</SCRIPT>
+</HEAD>
+<BODY>
+<TABLE>
+<TR class="selector" onclick="javascript:select('hypernym');">
+<TD style="vertical-align: top;"><IMG class="linkimage" src="./images/hypernym.png" alt="Hypernym"><SPAN class="selectorname">Hypernym</SPAN></TD>
+</TR>
+<TR class="selector" onclick="javascript:select('hyponym');">
+<TD style="vertical-align: top;"><IMG class="linkimage" src="./images/hyponym.png" alt="Hyponym/Troponym"><SPAN class="selectorname">Hyponym/Troponym</SPAN></TD>
+</TR>
+<TR class="selector" onclick="javascript:select('holonym');">
+<TD style="vertical-align: top;"><IMG class="linkimage" src="./images/holonym.png" alt="Holonym"><SPAN class="selectorname">Holonym</SPAN></TD>
+</TR>
+<TR class="selector" onclick="javascript:select('meronym');">
+<TD style="vertical-align: top;"><IMG class="linkimage" src="./images/meronym.png" alt="Meronym"><SPAN class="selectorname">Meronym</SPAN></TD>
+</TR>
+<TR class="selector" onclick="javascript:select('antonym');">
+<TD style="vertical-align: top;"><IMG class="linkimage" src="./images/antonym.png" alt="Direct antonym"><SPAN class="selectorname">Direct antonym</SPAN></TD>
+</TR>
+<TR class="selector" onclick="javascript:select('similar');">
+<TD style="vertical-align: top;"><IMG class="linkimage" src="./images/similar.png" alt="Similar"><SPAN class="selectorname">Similar</SPAN></TD>
+</TR>
+<TR class="selector" onclick="javascript:select('cause');">
+<TD style="vertical-align: top;"><IMG class="linkimage" src="./images/cause.png" alt="Cause"><SPAN class="selectorname">Cause</SPAN></TD>
+</TR>
+<TR class="selector" onclick="javascript:select('caused');">
+<TD style="vertical-align: top;"><IMG class="linkimage" src="./images/caused.png" alt="Caused"><SPAN class="selectorname">Caused</SPAN></TD>
+</TR>
+<TR class="selector" onclick="javascript:select('entail');">
+<TD style="vertical-align: top;"><IMG class="linkimage" src="./images/entail.png" alt="Entail"><SPAN class="selectorname">Entail</SPAN></TD>
+</TR>
+<TR class="selector" onclick="javascript:select('entailed');">
+<TD style="vertical-align: top;"><IMG class="linkimage" src="./images/entailed.png" alt="Entailed"><SPAN class="selectorname">Entailed</SPAN></TD>
+</TR>
+<TR class="selector" onclick="javascript:select('attribute');">
+<TD style="vertical-align: top;"><IMG class="linkimage" src="./images/attribute.png" alt="Attribute"><SPAN class="selectorname">Attribute</SPAN></TD>
+</TR>
+<TR class="selector" onclick="javascript:select('pertainym');">
+<TD style="vertical-align: top;"><IMG class="linkimage" src="./images/pertainym.png" alt="Pertainym"><SPAN class="selectorname">Pertainym</SPAN></TD>
+</TR>
+<TR class="selector" onclick="javascript:select('derivation');">
+<TD style="vertical-align: top;"><IMG class="linkimage" src="./images/derivation.png" alt="Derivation"><SPAN class="selectorname">Derivation</SPAN></TD>
+</TR>
+<TR class="selector" onclick="javascript:select('adjderived');">
+<TD style="vertical-align: top;"><IMG class="linkimage" src="./images/adjderived.png" alt="Derived from adjective"><SPAN class="selectorname">Derived from adjective</SPAN></TD>
+</TR>
+<TR class="selector" onclick="javascript:select('participle');">
+<TD style="vertical-align: top;"><IMG class="linkimage" src="./images/participle.png" alt="Participle"><SPAN class="selectorname">Participle</SPAN></TD>
+</TR>
+<TR class="selector" onclick="javascript:select('alsosee');">
+<TD style="vertical-align: top;"><IMG class="linkimage" src="./images/alsosee.png" alt="Also See"><SPAN class="selectorname">Also See</SPAN></TD>
+</TR>
+<TR class="selector" onclick="javascript:select('verbgroup');">
+<TD style="vertical-align: top;"><IMG class="linkimage" src="./images/verb.group.png" alt="Verb Group"><SPAN class="selectorname">Verb Group</SPAN></TD>
+</TR>
+<TR class="selector" onclick="javascript:select('domain');">
+<TD style="vertical-align: top;"><IMG class="linkimage" src="./images/domain.png" alt="Domain"><SPAN class="selectorname">Domain</SPAN></TD>
+</TR>
+<TR class="selector" onclick="javascript:select('member');">
+<TD style="vertical-align: top;"><IMG class="linkimage" src="./images/domain.member.png" alt="Domain Member"><SPAN class="selectorname">Domain Member</SPAN></TD>
+</TR>
+</TABLE>
+</BODY>
+</HTML>

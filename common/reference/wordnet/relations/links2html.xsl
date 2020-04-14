@@ -41,7 +41,7 @@ function menu()
 			<BODY>
 				<DIV class="header">
 					<IMG class="menu" src="./images/menu.png" alt="menu" oncLick="javascript:menu()" />
-					<SPAN class="title">WordNet Links</SPAN>
+					<SPAN class="title">Relations</SPAN>
 				</DIV>
 				<TABLE>
 					<TR>
