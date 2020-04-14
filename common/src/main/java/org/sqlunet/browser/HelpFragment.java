@@ -4,6 +4,7 @@
 
 package org.sqlunet.browser;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -46,6 +47,7 @@ public class HelpFragment extends Fragment
 	{
 	}
 
+	@SuppressLint("SetJavaScriptEnabled")
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
@@ -53,8 +55,12 @@ public class HelpFragment extends Fragment
 		final View view = inflater.inflate(R.layout.fragment_help, container, false);
 
 		// web view
-		final WebView webview = view.findViewById(R.id.webView);
-		webview.setWebViewClient(new WebViewClient()
+		final WebView webView = view.findViewById(R.id.webView);
+		webView.clearCache(true);
+		webView.clearHistory();
+		webView.getSettings().setJavaScriptEnabled(true);
+		webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+		webView.setWebViewClient(new WebViewClient()
 		{
 			@TargetApi(Build.VERSION_CODES.N)
 			@Override
@@ -114,7 +120,7 @@ public class HelpFragment extends Fragment
 			url += lang + '-';
 		}
 		url += "index.html";
-		webview.loadUrl(url);
+		webView.loadUrl(url);
 
 		return view;
 	}
