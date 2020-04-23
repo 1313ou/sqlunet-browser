@@ -17,6 +17,8 @@ import org.sqlunet.browser.ToBoolean;
 import org.sqlunet.browser.Wait;
 import org.sqlunet.browser.wn.lib.R;
 
+import java.util.Objects;
+
 import androidx.annotation.IdRes;
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.action.ViewActions;
@@ -48,7 +50,7 @@ class Do
 		Wait.until_not_text(R.id.status, Seq.getResourceString(R.string.status_task_running), 100);
 	}
 
-	static void ensureTextSearchSetup(@IdRes int buttonId)
+	static void ensureTextSearchSetup(@SuppressWarnings("SameParameterValue") @IdRes int buttonId)
 	{
 		boolean notSet = ToBoolean.testAssertion(withId(buttonId), doesNotExist()) || ToBoolean.test(withId(buttonId), isDisplayed());
 		if (notSet)
@@ -67,7 +69,7 @@ class Do
 
 	static void searchRun()
 	{
-		for (String word : DataUtils.getWordList())
+		for (String word : Objects.requireNonNull(DataUtils.getWordList()))
 		{
 			Seq.do_typeSearch(R.id.search, word);
 
@@ -96,7 +98,7 @@ class Do
 	{
 		Seq.do_choose(R.id.spinner, position);
 
-		for (String word : DataUtils.getWordList())
+		for (String word : Objects.requireNonNull(DataUtils.getWordList()))
 		{
 			Seq.do_typeSearch(R.id.search, word);
 		}

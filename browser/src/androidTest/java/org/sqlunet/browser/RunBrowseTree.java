@@ -28,11 +28,6 @@ public class RunBrowseTree extends TestCase
 	}
 
 	@Test
-	public void dummy()
-	{
-	}
-
-	@Test
 	public void searchRun()
 	{
 		Do.searchRunTree();

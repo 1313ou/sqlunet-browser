@@ -16,6 +16,8 @@ import org.sqlunet.browser.DataUtils;
 import org.sqlunet.browser.ToBoolean;
 import org.sqlunet.browser.Wait;
 
+import java.util.Objects;
+
 import androidx.annotation.IdRes;
 
 import static androidx.test.espresso.Espresso.onData;
@@ -71,7 +73,7 @@ class Do
 
 	static void searchRunTree()
 	{
-		for (String word : DataUtils.getWordList())
+		for (String word : Objects.requireNonNull(DataUtils.getWordList()))
 		{
 			Seq.do_typeSearch(R.id.search, word);
 
@@ -115,7 +117,7 @@ class Do
 	{
 		Seq.do_choose(R.id.spinner, position);
 
-		for (String word : DataUtils.getWordList())
+		for (String word : Objects.requireNonNull(DataUtils.getWordList()))
 		{
 			Seq.do_typeSearch(R.id.search, word);
 		}

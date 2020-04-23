@@ -28,11 +28,6 @@ public class RunXSelectTree extends TestCase
 	}
 
 	@Test
-	public void dummy()
-	{
-	}
-
-	@Test
 	public void searchRun()
 	{
 		Do.xselectorsRunTree();

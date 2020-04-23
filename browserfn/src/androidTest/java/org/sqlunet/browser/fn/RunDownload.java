@@ -6,7 +6,6 @@ package org.sqlunet.browser.fn;
 
 import junit.framework.TestCase;
 
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,11 +21,6 @@ public class RunDownload extends TestCase
 {
 	@Rule
 	public ActivityScenarioRule<MainActivity> activityScenarioRule = new ActivityScenarioRule<>(MainActivity.class);
-
-	@Before
-	public void before()
-	{
-	}
 
 	@Test
 	public void download()

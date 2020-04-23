@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import androidx.annotation.NonNull;
+import androidx.test.core.app.ActivityScenario;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
@@ -24,15 +25,10 @@ public class RunBrowseFlat extends TestCase
 	public void before()
 	{
 		if (Do.ensureDownloaded())
-			activityScenarioRule.getScenario().launch(MainActivity.class);
+			ActivityScenario.launch(MainActivity.class);
 
 		//Actions.do_choose(R.id.spinner, "senses");
 		Seq.do_choose(R.id.spinner, 0);
-	}
-
-	@Test
-	public void dummy()
-	{
 	}
 
 	@Test
