@@ -156,7 +156,7 @@ possibilities. The particular kinds of constituents, in terms of semantic roles,
 	</items>
 </concept>
 
-<concept name="PT" id="fngf">
+<concept name="PT" id="fnpt">
 	<description>Phrase Type.</description>
 	<items>
 		<item>NP</item>	
