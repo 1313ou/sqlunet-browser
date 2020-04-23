@@ -13,6 +13,7 @@ import org.junit.runner.RunWith;
 import org.sqlunet.browser.Seq;
 import org.sqlunet.browser.MainActivity;
 
+import androidx.test.core.app.ActivityScenario;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
@@ -28,18 +29,13 @@ public class RunTextSearch extends TestCase
 	public void before()
 	{
 		if (Do.ensureDownloaded())
-			activityScenarioRule.getScenario().launch(MainActivity.class);
+			ActivityScenario.launch(MainActivity.class);
 
 		Seq.do_navigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_status);
 		Do.ensureTextSearchSetup(R.id.searchtextVnButton);
 		Do.ensureTextSearchSetup(R.id.searchtextPbButton);
 
 		Seq.do_navigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_search_text);
-	}
-
-	@Test
-	public void dummy()
-	{
 	}
 
 	@Test
