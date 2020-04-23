@@ -104,7 +104,7 @@
 
 	<xsl:template match="example">
 		<TR><TD class="example">
-			<xsl:copy-of select="." />
+			<xsl:copy-of select="./text()" />
 		</TD></TR>
 	</xsl:template>
 
