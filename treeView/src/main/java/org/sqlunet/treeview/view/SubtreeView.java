@@ -37,7 +37,7 @@ public class SubtreeView extends LinearLayout
 	 * Node label view
 	 */
 	@NonNull
-	public final View nodeView;
+	private final View nodeView;
 
 	/**
 	 * Node container
