@@ -120,6 +120,7 @@ public class SettingsActivity extends BaseSettingsActivity
 	/**
 	 * This fragment shows general preferences only.
 	 */
+	@SuppressWarnings("WeakerAccess")
 	static public class GeneralPreferenceFragment extends PreferenceFragmentCompat
 	{
 		static private final Preference.OnPreferenceChangeListener listener = (preference, value) -> {
@@ -197,6 +198,7 @@ public class SettingsActivity extends BaseSettingsActivity
 	/**
 	 * This fragment shows general preferences only.
 	 */
+	@SuppressWarnings("WeakerAccess")
 	static public class FilterPreferenceFragment extends PreferenceFragmentCompat
 	{
 		@Override
@@ -210,6 +212,7 @@ public class SettingsActivity extends BaseSettingsActivity
 	/**
 	 * This fragment shows database preferences only.
 	 */
+	@SuppressWarnings("WeakerAccess")
 	static public class DatabasePreferenceFragment extends PreferenceFragmentCompat
 	{
 		@Override
