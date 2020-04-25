@@ -5,8 +5,10 @@
 package org.sqlunet.browser;
 
 import android.os.Bundle;
+import android.view.InflateException;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import org.sqlunet.browser.common.R;
 
@@ -28,7 +30,16 @@ public class HelpActivity extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 
 		// content
-		setContentView(R.layout.activity_help);
+		try
+		{
+			setContentView(R.layout.activity_help);
+		}
+		catch (InflateException e)
+		{
+			Toast.makeText(this, "Needs android WebView", Toast.LENGTH_LONG).show();
+			finish();
+			return;
+		}
 
 		// toolbar
 		final Toolbar toolbar = findViewById(R.id.toolbar);
