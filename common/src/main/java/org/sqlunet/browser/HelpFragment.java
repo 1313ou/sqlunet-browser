@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,78 +52,86 @@ public class HelpFragment extends Fragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		// view
-		final View view = inflater.inflate(R.layout.fragment_help, container, false);
-
-		// web view
-		final WebView webView = view.findViewById(R.id.webView);
-		webView.clearCache(true);
-		webView.clearHistory();
-		webView.getSettings().setJavaScriptEnabled(true);
-		webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-		webView.setWebViewClient(new WebViewClient()
+		try
 		{
-			@TargetApi(Build.VERSION_CODES.N)
-			@Override
-			public void onReceivedError(final WebView webView, final WebResourceRequest request, @NonNull WebResourceError error)
-			{
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
-				{
-					super.onReceivedError(webView, request, error);
-				}
-				Log.e(HelpFragment.TAG, error.toString());
-			}
+			// view
+			final View view = inflater.inflate(R.layout.fragment_help, container, false);
 
-			@Override
-			public void onReceivedError(final WebView webView, final int errorCode, final String description, final String failingUrl)
+			// web view
+			final WebView webView = view.findViewById(R.id.webView);
+			webView.clearCache(true);
+			webView.clearHistory();
+			webView.getSettings().setJavaScriptEnabled(true);
+			webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+			webView.setWebViewClient(new WebViewClient()
 			{
-				super.onReceivedError(webView, errorCode, description, failingUrl);
-				Log.e(HelpFragment.TAG, failingUrl + ':' + description + ',' + errorCode);
-			}
-
-			@TargetApi(Build.VERSION_CODES.N)
-			@Override
-			public boolean shouldOverrideUrlLoading(@NonNull final WebView webView, @NonNull final WebResourceRequest request)
-			{
-				final Uri uri = request.getUrl();
-				final String fileName = uri.getLastPathSegment();
-				if (fileName != null && (fileName.endsWith("pdf") || fileName.endsWith("PDF")))
+				@TargetApi(Build.VERSION_CODES.N)
+				@Override
+				public void onReceivedError(final WebView webView, final WebResourceRequest request, @NonNull WebResourceError error)
 				{
-					if (handleUri(uri, "application/pdf"))
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
 					{
-						return true;
+						super.onReceivedError(webView, request, error);
 					}
+					Log.e(HelpFragment.TAG, error.toString());
 				}
-				webView.loadUrl(uri.toString());
-				return false;
-			}
 
-			@Override
-			public boolean shouldOverrideUrlLoading(@NonNull final WebView webView, @NonNull final String url)
-			{
-				if (url.endsWith("pdf") || url.endsWith("PDF"))
+				@Override
+				public void onReceivedError(final WebView webView, final int errorCode, final String description, final String failingUrl)
 				{
-					final Uri uri = Uri.parse(url);
-					if (handleUri(uri, "application/pdf"))
-					{
-						return true;
-					}
+					super.onReceivedError(webView, errorCode, description, failingUrl);
+					Log.e(HelpFragment.TAG, failingUrl + ':' + description + ',' + errorCode);
 				}
-				webView.loadUrl(url);
-				return false;
-			}
-		});
 
-		final String lang = getString(R.string.lang_tag);
-		String url = "file:///android_asset/help/";
-		if (!lang.isEmpty())
-		{
-			url += lang + '-';
+				@TargetApi(Build.VERSION_CODES.N)
+				@Override
+				public boolean shouldOverrideUrlLoading(@NonNull final WebView webView, @NonNull final WebResourceRequest request)
+				{
+					final Uri uri = request.getUrl();
+					final String fileName = uri.getLastPathSegment();
+					if (fileName != null && (fileName.endsWith("pdf") || fileName.endsWith("PDF")))
+					{
+						if (handleUri(uri, "application/pdf"))
+						{
+							return true;
+						}
+					}
+					webView.loadUrl(uri.toString());
+					return false;
+				}
+
+				@Override
+				public boolean shouldOverrideUrlLoading(@NonNull final WebView webView, @NonNull final String url)
+				{
+					if (url.endsWith("pdf") || url.endsWith("PDF"))
+					{
+						final Uri uri = Uri.parse(url);
+						if (handleUri(uri, "application/pdf"))
+						{
+							return true;
+						}
+					}
+					webView.loadUrl(url);
+					return false;
+				}
+			});
+
+			final String lang = getString(R.string.lang_tag);
+			String url = "file:///android_asset/help/";
+			if (!lang.isEmpty())
+			{
+				url += lang + '-';
+			}
+			url += "index.html";
+			webView.loadUrl(url);
+
+			return view;
 		}
-		url += "index.html";
-		webView.loadUrl(url);
-
-		return view;
+		catch (InflateException e)
+		{
+			Toast.makeText(requireContext(), "No WebView support", Toast.LENGTH_LONG).show();
+			return null;
+		}
 	}
 
 	@Override

@@ -15,6 +15,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
+import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -124,16 +125,24 @@ public class WebFragment extends Fragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		// view
-		final View view = inflater.inflate(R.layout.fragment_web, container, false);
+		try
+		{
+			// view
+			final View view = inflater.inflate(R.layout.fragment_web, container, false);
 
-		// webview
-		this.webview = view.findViewById(R.id.webView);
+			// webview
+			this.webview = view.findViewById(R.id.webView);
 
-		// load view
-		load();
+			// load view
+			load();
 
-		return view;
+			return view;
+		}
+		catch (InflateException e)
+		{
+			Toast.makeText(requireContext(), "No WebView support", Toast.LENGTH_LONG).show();
+			return null;
+		}
 	}
 
 	static private class WebDocumentStringLoader implements DocumentStringLoader
