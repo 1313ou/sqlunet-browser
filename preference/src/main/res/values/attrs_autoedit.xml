@@ -1,0 +1,11 @@
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>
+  -->
+
+<resources>
+
+	<declare-styleable name="AutoEditTextPreference">
+		<attr name="values"/>
+	</declare-styleable>
+
+</resources>

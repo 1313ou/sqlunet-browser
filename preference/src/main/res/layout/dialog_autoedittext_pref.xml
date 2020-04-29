@@ -1,0 +1,26 @@
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+	<AutoCompleteTextView
+		android:id="@+id/autoedit_text"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="false"
+		android:layout_centerVertical="true"
+		android:completionHint="@string/hints"
+		android:completionThreshold="1"
+		android:dropDownWidth="match_parent"
+		android:ellipsize="middle"
+		android:ems="40"
+		android:hint="@string/hint"
+		android:inputType="textUri|textNoSuggestions">
+
+		<requestFocus/>
+	</AutoCompleteTextView>
+
+</RelativeLayout>

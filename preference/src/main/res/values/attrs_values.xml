@@ -1,0 +1,9 @@
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>
+  -->
+
+<resources>
+
+	<attr name="values" format="color|reference"/>
+
+</resources>

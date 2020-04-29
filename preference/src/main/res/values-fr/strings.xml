@@ -1,0 +1,17 @@
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>
+  -->
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+	<!-- hint -->
+	<string name="hint">Taper…</string>
+	<string name="hints">Suggestions</string>
+
+	<!-- default value -->
+	<string name="pref_value_default">Défaut</string>
+
+	<!-- title -->
+	<string name="title_activity_settings" tools:keep="@string/title_activity_settings">Paramètres</string>
+
+</resources>
