@@ -7,6 +7,8 @@
 	<!-- sites -->
 	<string-array name="pref_download_site_labels" tools:ignore="InconsistentArrays">
 		<item>Default</item>
+		<item>WordNet 3.1 core</item>
+		<item>Default (old repo)</item>
 	</string-array>
 
 </resources>
