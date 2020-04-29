@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2020. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="pref_default_download_dbfile">sqlunet-wn.db</string>
-	<!--<string name="pref_default_download_dbfile_zipped">sqlunet-wn.db.zip</string>-->
-	<string name="pref_default_download_sqlfile">sqlunet-wn.sql.zip</string>
-	<string name="pref_default_entry_import">sqlunet-wn.sql</string>
-	<string name="pref_default_entry_index">sqlunet-wn-index.sql</string>
+	<!-- sites -->
+	<string-array name="pref_download_site_labels" tools:ignore="InconsistentArrays">
+		<item>Default</item>
+	</string-array>
 
 </resources>
