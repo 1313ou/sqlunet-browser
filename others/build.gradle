@@ -29,11 +29,11 @@ android {
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.annotation:annotation:1.1.0'
-    implementation 'com.google.android.material:material:1.2.0-alpha05'
+    implementation 'com.google.android.material:material:1.1.0'
 
     testImplementation 'junit:junit:4.13'
 
-    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0-alpha4', {
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 }
