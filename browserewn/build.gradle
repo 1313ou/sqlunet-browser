@@ -73,7 +73,7 @@ dependencies {
     //implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
     //implementation 'androidx.preference:preference:1.1.0'
     //implementation 'androidx.annotation:annotation:1.1.0'
-    implementation 'com.google.android.material:material:1.2.0-alpha05' // for resource include
+    implementation 'com.google.android.material:material:1.2.0-alpha06' // for resource include
 
     // local unit tests (JUnit 4 framework)
     testImplementation 'junit:junit:4.13'
