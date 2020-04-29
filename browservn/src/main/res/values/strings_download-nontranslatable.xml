@@ -13,5 +13,9 @@
 	<!-- sites -->
 	<string-array name="pref_download_site_urls" translatable="false" tools:ignore="InconsistentArrays">
 		<item>@string/pref_default_download_site_url</item>
+		<item>https://sourceforge.net/projects/sqlunet/files/6.0.0/semantikos/31</item>
+		<item>https://sourceforge.net/projects/sqlunet/files/6.0.0/semantikos/XX</item>
+		<item>https://sourceforge.net/projects/sqlunet/files/current/android</item>
 	</string-array>
+
 </resources>
