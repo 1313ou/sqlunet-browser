@@ -1,0 +1,39 @@
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:padding="16dp">
+
+	<EditText
+		android:id="@+id/openedit_text"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:ellipsize="middle"
+		android:ems="40"
+		android:hint="@string/hint"
+		android:importantForAutofill="no"
+		android:inputType="textUri|textNoSuggestions"
+		android:selectAllOnFocus="false"
+		android:singleLine="true"
+		tools:targetApi="o">
+
+		<requestFocus />
+	</EditText>
+
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/openedit_text">
+
+		<RadioGroup
+			android:id="@+id/openedit_options"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+
+	</ScrollView>
+
+</RelativeLayout>
