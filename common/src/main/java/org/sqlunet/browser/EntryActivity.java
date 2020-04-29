@@ -87,4 +87,11 @@ public class EntryActivity extends AppCompatActivity
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 		context.startActivity(intent);
 	}
+
+	static public void rerun(@NonNull final Context context)
+	{
+		final Intent intent = new Intent(context, EntryActivity.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+		context.startActivity(intent);
+	}
 }
