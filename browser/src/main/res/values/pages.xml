@@ -5,7 +5,7 @@
 
 <resources>
 
-	<string name="fragment_class_setup_status_page">org.sqlunet.browser.xn.SetupStatusFragment</string> <!-- 0 -->
-	<string name="fragment_class_setup_sql_page">org.sqlunet.browser.xn.SetupSqlFragment</string> <!-- 4 -->
+	<string name="fragment_class_setup_status_page" translatable="false">org.sqlunet.browser.xn.SetupStatusFragment</string> <!-- 0 -->
+	<string name="fragment_class_setup_sql_page" translatable="false">org.sqlunet.browser.xn.SetupSqlFragment</string> <!-- 4 -->
 
 </resources>

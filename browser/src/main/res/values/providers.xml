@@ -4,14 +4,14 @@
   -->
 
 <resources xmlns:tools="http://schemas.android.com/tools">
-	<string name="manager_authority">org.sqlunet.manager.provider</string>
-	<string name="xsqlunet_authority">org.sqlunet.xsqlunet.provider</string>
-	<string name="wordnet_authority">org.sqlunet.wordnet.provider</string>
-	<string name="verbnet_authority">org.sqlunet.verbnet.provider</string>
-	<string name="propbank_authority">org.sqlunet.propbank.provider</string>
-	<string name="framenet_authority">org.sqlunet.framenet.provider</string>
-	<string name="bnc_authority">org.sqlunet.bnc.provider</string>
-	<string name="predicatematrix_authority">org.sqlunet.predicatematrix.provider</string>
+	<string name="manager_authority" translatable="false">org.sqlunet.manager.provider</string>
+	<string name="xsqlunet_authority" translatable="false">org.sqlunet.xsqlunet.provider</string>
+	<string name="wordnet_authority" translatable="false">org.sqlunet.wordnet.provider</string>
+	<string name="verbnet_authority" translatable="false">org.sqlunet.verbnet.provider</string>
+	<string name="propbank_authority" translatable="false">org.sqlunet.propbank.provider</string>
+	<string name="framenet_authority" translatable="false">org.sqlunet.framenet.provider</string>
+	<string name="bnc_authority" translatable="false">org.sqlunet.bnc.provider</string>
+	<string name="predicatematrix_authority" translatable="false">org.sqlunet.predicatematrix.provider</string>
 
 	<string-array name="provider_authorities" tools:ignore="InconsistentArrays">
 		<item>@string/manager_authority</item>
