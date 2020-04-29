@@ -117,7 +117,7 @@ public class StorageSettings
 		}
 
 		// set to default value
-		value = context.getResources().getString(R.string.pref_default_download_site);
+		value = context.getResources().getString(R.string.pref_default_download_site_url);
 
 		// store value in preferences
 		sharedPref.edit().putString(StorageSettings.PREF_DOWNLOAD_SITE, value).apply();
