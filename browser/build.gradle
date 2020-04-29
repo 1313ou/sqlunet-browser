@@ -59,6 +59,7 @@ android {
 dependencies {
     implementation project(':common')
     implementation project(':expandableListFragment')
+    implementation project(':preference')
     implementation project(':download')
     implementation project(':deploy')
     implementation project(':others')
