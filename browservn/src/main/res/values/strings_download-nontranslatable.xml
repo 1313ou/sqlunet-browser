@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2020. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+	<string name="pref_default_download_dbfile" translatable="false">sqlunet-vn.db</string>
+	<!--<string name="pref_default_download_dbfile_zipped" translatable="false">sqlunet-vn.db.zip</string>-->
+	<string name="pref_default_download_sqlfile" translatable="false">sqlunet-vn.sql.zip</string>
+	<string name="pref_default_entry_import" translatable="false">sqlunet-vn.sql</string>
+	<string name="pref_default_entry_index" translatable="false">sqlunet-vn-index.sql</string>
+
+	<!-- sites -->
+	<string-array name="pref_download_site_urls" translatable="false" tools:ignore="InconsistentArrays">
+		<item>@string/pref_default_download_site_url</item>
+	</string-array>
+</resources>
