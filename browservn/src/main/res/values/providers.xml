@@ -4,11 +4,11 @@
   -->
 
 <resources xmlns:tools="http://schemas.android.com/tools">
-	<string name="manager_authority">org.sqlunet.manager.vn.provider</string>
-	<string name="xsqlunet_authority">org.sqlunet.xsqlunet.vn.provider</string>
-	<string name="verbnet_authority">org.sqlunet.verbnet.vn.provider</string>
-	<string name="propbank_authority">org.sqlunet.propbank.vn.provider</string>
-	<string name="wordnet_authority">org.sqlunet.wordnet.vn.provider</string>
+	<string name="manager_authority" translatable="false">org.sqlunet.manager.vn.provider</string>
+	<string name="xsqlunet_authority" translatable="false">org.sqlunet.xsqlunet.vn.provider</string>
+	<string name="verbnet_authority" translatable="false">org.sqlunet.verbnet.vn.provider</string>
+	<string name="propbank_authority" translatable="false">org.sqlunet.propbank.vn.provider</string>
+	<string name="wordnet_authority" translatable="false">org.sqlunet.wordnet.vn.provider</string>
 	<string-array name="provider_authorities" tools:ignore="InconsistentArrays">
 		<item>@string/manager_authority</item>
 		<item>@string/xsqlunet_authority</item>
