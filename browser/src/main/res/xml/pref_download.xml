@@ -10,11 +10,13 @@
 	<!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to dismiss it. -->
 	<!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
 
-	<EditTextPreference
-		android:defaultValue="@string/pref_default_download_site"
+	<org.sqlunet.preference.OpenEditTextPreference
+		android:defaultValue="@string/pref_default_download_site_url"
 		android:key="pref_download_site"
 		android:summary="@string/pref_description_download_site"
-		android:title="@string/pref_title_download_site"/>
+		android:title="@string/pref_title_download_site"
+		app:labels="@array/pref_download_site_labels"
+		app:values="@array/pref_download_site_urls"/>
 
 	<ListPreference
 		android:defaultValue="@string/pref_default_downloader"
