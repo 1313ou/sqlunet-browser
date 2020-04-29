@@ -11,6 +11,7 @@ import android.util.Pair;
 
 import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.common.R;
+import org.sqlunet.preference.OpenEditTextPreference;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageReports;
@@ -255,7 +256,7 @@ public class SettingsActivity extends BaseSettingsActivity
 
 			final Preference sitePreference = findPreference(Settings.PREF_DOWNLOAD_SITE);
 			assert sitePreference != null;
-			sitePreference.setSummaryProvider(EditTextPreference.SimpleSummaryProvider.getInstance());
+			sitePreference.setSummaryProvider(OpenEditTextPreference.SUMMARY_PROVIDER);
 
 			final Preference dbFilePreference = findPreference(Settings.PREF_DOWNLOAD_DBFILE);
 			assert dbFilePreference != null;
@@ -272,6 +273,15 @@ public class SettingsActivity extends BaseSettingsActivity
 			final Preference entryIndexPreference = findPreference(Settings.PREF_ENTRY_INDEX);
 			assert entryIndexPreference != null;
 			entryIndexPreference.setSummaryProvider(EditTextPreference.SimpleSummaryProvider.getInstance());
+		}
+
+		@Override
+		public void onDisplayPreferenceDialog(final Preference preference)
+		{
+			if (!OpenEditTextPreference.onDisplayPreferenceDialog(this, preference))
+			{
+				super.onDisplayPreferenceDialog(preference);
+			}
 		}
 	}
 }
