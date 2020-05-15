@@ -137,7 +137,7 @@ public class Settings
 		 * @param context context
 		 * @return preferred selector mode
 		 */
-		static Selector getPref(final Context context)
+		public static Selector getPref(final Context context)
 		{
 			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 			final String name = sharedPref.getString(Settings.PREF_SELECTOR, Settings.Selector.SELECTOR.name());

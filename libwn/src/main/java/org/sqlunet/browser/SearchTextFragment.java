@@ -91,8 +91,8 @@ public class SearchTextFragment extends BaseSearchFragment
 		});
 
 		// spinner position
-		final int position = Settings.getSearchModePref(requireContext());
-		this.spinner.setSelection(position);
+		final int modePosition = Settings.getSearchModePref(requireContext());
+		this.spinner.setSelection(modePosition);
 	}
 
 	// S E A R C H
@@ -138,7 +138,7 @@ public class SearchTextFragment extends BaseSearchFragment
 		*/
 
 		// type
-		final int typePosition = this.spinner.getSelectedItemPosition();
+		final int typePosition = getSearchModePosition();
 
 		// status
 		// final CharSequence[] textSearches = getResources().getTextArray(R.array.searchtext_modes);

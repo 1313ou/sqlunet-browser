@@ -30,6 +30,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.sqlunet.browser.common.R;
+import org.sqlunet.settings.Settings;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -284,6 +285,27 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		adapter.setDropDownViewResource(R.layout.spinner_item_actionbar_dropdown);
 
 		return adapter;
+	}
+
+	/**
+	 * Get search type position by peeking at spinner state or registry if spinner is still null
+	 *
+	 * @return search type position
+	 */
+	protected int getSearchModePosition()
+	{
+		if (this.spinner != null)
+		{
+			return this.spinner.getSelectedItemPosition();
+		}
+
+		final Settings.Selector selectorMode = Settings.Selector.getPref(requireContext());
+		if (selectorMode != null)
+		{
+			return selectorMode.ordinal();
+		}
+
+		return 0;
 	}
 
 	// S E A R C H V I E W
