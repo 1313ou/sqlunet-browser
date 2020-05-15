@@ -105,7 +105,7 @@ public class SearchTextFragment extends BaseSearchFragment
 		*/
 
 		// type
-		final int typePosition = this.spinner.getSelectedItemPosition();
+		final int modePosition = getSearchModePosition();
 
 		// status
 		// final CharSequence[] textSearches = getResources().getTextArray(R.array.searchtext_modes);
@@ -118,7 +118,7 @@ public class SearchTextFragment extends BaseSearchFragment
 		String[] columns;
 		String[] hiddenColumns;
 		String database;
-		if (typePosition == 0)
+		if (modePosition == 0)
 		{
 			searchUri = FrameNetProvider.makeUri(Lookup_FnSentences_X.CONTENT_URI_TABLE);
 			id = Lookup_FnSentences_X.SENTENCEID;
