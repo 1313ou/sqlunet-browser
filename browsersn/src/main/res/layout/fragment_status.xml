@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/swipe_refresh"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		android:weightSum="1">
+
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginBottom="12dp"
+			android:layout_marginTop="12dp"
+			android:contentDescription="@string/app_name"
+			android:src="@mipmap/ic_launcher"/>
+
+		<ScrollView
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1"
+			android:clipToPadding="false"
+			android:fillViewport="false"
+			android:orientation="vertical">
+
+			<GridLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:columnCount="2"
+				android:gravity="center_vertical"
+				android:orientation="horizontal"
+				android:paddingBottom="20dp"
+				android:paddingTop="20dp">
+
+				<!-- database -->
+
+				<TextView
+					style="@style/GridLabel"
+					android:text="@string/status_database"/>
+
+				<LinearLayout style="@style/GridData">
+
+					<ImageView
+						android:id="@+id/status_database"
+						style="@style/GridStatusImage"
+						android:contentDescription="@string/status_database"/>
+
+					<ImageButton
+						android:id="@+id/databaseButton"
+						style="@style/GridStatusActionButton"
+						android:contentDescription="@string/status_database"
+						android:src="@drawable/bn_download"/>
+
+					<ImageButton
+						android:id="@+id/info_database"
+						style="@style/GridStatusInfoButton"
+						android:contentDescription="@string/hint_database"
+						android:src="@drawable/bn_info"/>
+				</LinearLayout>
+
+				<!-- indexes -->
+
+				<TextView
+					style="@style/GridLabel"
+					android:text="@string/status_indexes"
+					/>
+
+				<LinearLayout style="@style/GridData">
+
+					<ImageView
+						android:id="@+id/status_indexes"
+						style="@style/GridStatusImage"
+						android:contentDescription="@string/status_indexes"/>
+
+					<ImageButton
+						android:id="@+id/indexesButton"
+						style="@style/GridStatusActionButton"
+						android:contentDescription="@string/status_indexes"
+						android:src="@drawable/bn_setup"/>
+				</LinearLayout>
+
+				<!-- searchtext wordnet -->
+
+				<TextView
+					style="@style/GridLabel"
+					android:text="@string/status_searchtext"
+					/>
+
+				<LinearLayout style="@style/GridData">
+
+					<ImageView
+						android:id="@+id/status_searchtext_wn"
+						style="@style/GridStatusImage"
+						android:contentDescription="@string/status_searchtext"
+						tools:ignore="InconsistentLayout"/>
+
+					<ImageButton
+						android:id="@+id/searchtextWnButton"
+						style="@style/GridStatusActionButton"
+						android:contentDescription="@string/status_searchtext"
+						android:src="@drawable/bn_setup"
+						tools:ignore="InconsistentLayout"/>
+				</LinearLayout>
+
+			</GridLayout>
+		</ScrollView>
+
+	</LinearLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

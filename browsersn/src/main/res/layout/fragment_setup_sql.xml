@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/swipe_refresh"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		android:weightSum="1">
+
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginBottom="12dp"
+			android:layout_marginTop="12dp"
+			android:contentDescription="@string/app_name"
+			android:src="@mipmap/ic_launcher"/>
+
+		<ScrollView
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1"
+			android:orientation="vertical">
+
+			<GridLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:columnCount="2"
+				android:gravity="center_vertical"
+				android:orientation="horizontal"
+				android:paddingBottom="20dp"
+				android:paddingTop="20dp">
+
+				<!-- sql zip -->
+
+				<TextView
+					style="@style/GridLabel"
+					android:text="@string/title_sqlzip"/>
+
+				<LinearLayout style="@style/GridData">
+
+					<ImageView
+						android:id="@+id/status_sqlzip"
+						style="@style/GridStatusImage"
+						android:contentDescription="@string/status_sqlzip"/>
+
+					<ImageButton
+						android:id="@+id/download_sqlzip"
+						style="@style/GridActionButton"
+						android:contentDescription="@string/download_sqlzip"
+						android:src="@drawable/bn_download"/>
+
+					<ImageButton
+						android:id="@+id/info_sqlzip"
+						style="@style/GridInfoButton"
+						android:contentDescription="@string/info_sqlzip"
+						android:src="@drawable/bn_info"/>
+				</LinearLayout>
+
+				<!-- create -->
+
+				<TextView
+					style="@style/GridLabel"
+					android:text="@string/title_created"/>
+
+				<LinearLayout style="@style/GridData">
+
+					<ImageView
+						android:id="@+id/status_created"
+						style="@style/GridStatusImage"
+						android:contentDescription="@string/status_created"/>
+
+					<ImageButton
+						android:id="@+id/create_database"
+						style="@style/GridActionButton"
+						android:contentDescription="@string/create_database"
+						android:src="@drawable/bn_setup"/>
+
+					<ImageButton
+						android:id="@+id/info_created"
+						style="@style/GridInfoButton"
+						android:contentDescription="@string/info_created"
+						android:src="@drawable/bn_info"/>
+				</LinearLayout>
+
+				<!-- import -->
+
+				<TextView
+					style="@style/GridLabel"
+					android:text="@string/title_import"/>
+
+				<LinearLayout style="@style/GridData">
+
+					<ImageView
+						android:id="@+id/status_import"
+						style="@style/GridStatusImage"
+						android:contentDescription="@string/status_import"/>
+
+					<ImageButton
+						android:id="@+id/execute_import"
+						style="@style/GridActionButton"
+						android:contentDescription="@string/execute_import"
+						android:src="@drawable/bn_setup"/>
+
+					<ImageButton
+						android:id="@+id/info_import"
+						style="@style/GridInfoButton"
+						android:contentDescription="@string/info_import"
+						android:src="@drawable/bn_info"/>
+				</LinearLayout>
+
+				<!-- indexes -->
+
+				<TextView
+					style="@style/GridLabel"
+					android:text="@string/title_indexes"/>
+
+				<LinearLayout style="@style/GridData">
+
+					<ImageView
+						android:id="@+id/status_indexes"
+						style="@style/GridStatusImage"
+						android:contentDescription="@string/status_indexes"/>
+
+					<ImageButton
+						android:id="@+id/execute_indexes"
+						style="@style/GridActionButton"
+						android:contentDescription="@string/execute_indexes"
+						android:src="@drawable/bn_setup"/>
+
+					<ImageButton
+						android:id="@+id/info_indexes"
+						style="@style/GridInfoButton"
+						android:contentDescription="@string/info_indexes"
+						android:src="@drawable/bn_info"/>
+				</LinearLayout>
+
+			</GridLayout>
+
+		</ScrollView>
+	</LinearLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

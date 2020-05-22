@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+	<string-array name="required_tables" tools:ignore="InconsistentArrays">
+
+		<!-- wordnet -->
+		<item>words</item>
+		<item>senses</item>
+		<item>synsets</item>
+		<item>adjpositions</item>
+		<item>adjpositiontypes</item>
+		<item>casedwords</item>
+		<item>lexdomains</item>
+		<item>lexlinks</item>
+		<item>linktypes</item>
+		<item>morphmaps</item>
+		<item>morphs</item>
+		<item>postypes</item>
+		<item>samples</item>
+		<item>semlinks</item>
+		<item>vframemaps</item>
+		<item>vframes</item>
+		<item>vframesentencemaps</item>
+		<item>vframesentences</item>
+
+		<!-- syntagnet -->
+		<item>syntagms</item>
+
+		<!-- bnc -->
+		<item>bncconvtasks</item>
+		<item>bncimaginfs</item>
+		<item>bncs</item>
+		<item>bncspwrs</item>
+
+		<!-- sources -->
+		<item>sources</item>
+
+	</string-array>
+
+	<string-array name="required_indexes" tools:ignore="InconsistentArrays">
+
+		<!-- wordnet -->
+		<item>index_words_lemma</item>
+		<item>index_senses_wordid</item>
+		<item>index_senses_synsetid</item>
+		<item>index_synsets_synsetid</item>
+		<item>index_casedwords_wordid_casedwordid</item>
+		<item>index_semlinks_synset1id</item>
+		<item>index_semlinks_linkid</item>
+		<item>index_samples_synsetid</item>
+
+		<!-- syntagnet -->
+		<item>index_syntagms_word1id_synset1id</item>
+		<item>index_syntagms_word2id_synset2id</item>
+
+	</string-array>
+
+	<string-array name="required_pm">
+		<item>pmvn</item>
+		<item>pmpb</item>
+		<item>pmfn</item>
+	</string-array>
+
+	<string-array name="required_texts_wn">
+		<item>words_lemma_fts4</item>
+		<item>synsets_definition_fts4</item>
+		<item>samples_sample_fts4</item>
+	</string-array>
+
+	<string-array name="required_texts_vn">
+		<item>vnexamples_example_fts4</item>
+	</string-array>
+
+	<string-array name="required_texts_pb">
+		<item>pbexamples_text_fts4</item>
+	</string-array>
+
+	<string-array name="required_texts_fn">
+		<item>fnsentences_text_fts4</item>
+	</string-array>
+
+</resources>

@@ -1,0 +1,61 @@
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<TITLE>SqlUNet</TITLE>
+	<LINK rel="stylesheet" type="text/css" href="style.css">
+</HEAD>
+<BODY>
+
+<DIV class="header">
+	<IMG class='center title' src="./images/logo.png">
+</DIV>
+
+<DIV class='section'>
+	<DIV class='sectionhead'>What is SqlUNet ?</DIV>
+	<DIV class='sectiontext'>
+		SqlUNet stands for SQL Unified XNet where X subsumes WordNet, VerbNet, PropBank, FrameNet, Predicate Matrix and SyntagNet.
+		While WordNet centers on senses and sense relations, VerbNet, PropBank, FrameNet focus on the semantic roles attached to them. PredicateMatrix tries to align semantic roles to be found in VerbNet, PropBank, FrameNet.
+		SyntagNet provides word collocations and disambiguation.
+		Instead of having separate independent databases, each in its own format, SqlUNet unifies them all into a single relational database, with a number of benefits:
+		<UL>
+			<LI class='sectiontext'>it makes it easy to maintain and use references across database boundaries</LI>
+			<LI class='sectiontext'>this also eliminates the need of specific interfaces and APIs</LI>
+			<LI class='sectiontext'>the SQL language becomes the common query language, with its full expressive power to build sophisticated queries</LI>
+			<LI class='sectiontext'>surprisingly this is not at the expense of performance</LI>
+		</UL>
+		SqlUNet is a relational database that comes in various guises. The application uses a stripped-down version in Sqlite3 format. It does not use the logical forms (ILFwn, GlossLF and XWordNet) and SUMO ontology.
+	</DIV>
+
+	<DIV>
+		<IMG class='center splash' src="./images/sqlunet.png">
+	</DIV>
+
+	<DIV class='section'>
+		<DIV class='sectionhead'><IMG class="domainimg" src="images/wordnet.png"/>WordNet</DIV>
+		<DIV class='sectiontext'>WordNet® is a large lexical database of English. Nouns, verbs, adjectives and adverbs are grouped into <SPAN class='enh'>sets of cognitive synonyms (synsets)</SPAN>, each expressing a distinct concept. Synsets are <SPAN
+				class='enh'>interlinked</SPAN> by means of conceptual-<SPAN class='enh'>semantic and lexical relations</SPAN>. The resulting network of meaningfully related words and concepts can be navigated. WordNet captures a word's relations to other
+			words by building a tree graph. The relation types include: 'more specific', 'more generic', 'causes', 'entails', 'similar to', 'opposite of', 'part of', 'whole of', etc… [WordNet]
+		</DIV>
+	</DIV>
+
+	<DIV class='section'>
+		<DIV class='sectionhead'><IMG class="domainimg" src="images/syntagnet.png"/>SyntagNet</DIV>
+		<DIV class='sectiontext'>SyntagNet® is ... [SyntagNet]
+		</DIV>
+	</DIV>
+
+	<DIV class='section'>
+		<DIV class='sectionhead'>Terminology</DIV>
+		<DIV class='sectiontext'></DIV>
+		<TABLE class='center'>
+		</TABLE>
+		<BR>* (attached to predicate)
+
+	</DIV>
+
+</DIV>
+
+<BR/>
+
+</BODY>
+</HTML>

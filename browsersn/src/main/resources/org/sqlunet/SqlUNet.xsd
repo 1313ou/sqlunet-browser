@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<!--suppress XmlPathReference, XmlPathReference -->
+<xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema'
+           targetNamespace='http://org.sqlunet'
+           xmlns='http://org.sqlunet'
+           xmlns:wn='http://org.sqlunet/wn'
+           xmlns:sn='http://org.sqlunet/sn'
+           xmlns:bc='http://org.sqlunet/bc'
+>
+
+	<xs:import namespace="http://org.sqlunet/wn" schemaLocation="WordNet.xsd"/>
+	<xs:import namespace="http://org.sqlunet/sn" schemaLocation="SyntagNet.xsd"/>
+	<xs:import namespace="http://org.sqlunet/bc" schemaLocation="BNC.xsd"/>
+
+	<xs:element name='sqlunet'>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref='wn:wordnet' minOccurs='0'/>
+				<xs:element ref='sn:syntagnet' minOccurs='0'/>
+				<xs:element ref='bc:bnc' minOccurs='0'/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

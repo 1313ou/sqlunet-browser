@@ -1,0 +1,1601 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>Relations</TITLE>
+<LINK rel="stylesheet" type="text/css" href="style.css">
+<SCRIPT type="text/javascript">
+function select(tag)
+{
+		var maindoc=document;
+		var all=maindoc.getElementsByName('link');
+		for(i=0;i<all.length;i++)
+		{
+			var e=all[i];
+			e.style.display='none';
+		}
+		var e=maindoc.getElementById(tag);
+		e.style.display='block';
+}
+function menu()
+{
+		var maindoc=document;
+		var toc=maindoc.getElementById('toc');
+		if((toc.style.display != 'inline'))
+			toc.style.display='inline';
+		else
+			toc.style.display='none';
+}
+
+</SCRIPT>
+</HEAD>
+<BODY>
+<DIV class="header">
+<IMG class="menu" src="./images/menu.png" alt="menu" oncLick="javascript:menu()"><SPAN class="title">Relations</SPAN>
+</DIV>
+<TABLE>
+<TR>
+<TD style="vertical-align: top;">
+<DIV id="toc" class="toc">
+<TABLE>
+<TR class="selector" onclick="javascript:select('hypernym');">
+<TD><IMG src="./images/hypernym.png" alt="Hypernym"></TD><TD>Hypernym</TD>
+</TR>
+<TR class="selector" onclick="javascript:select('hyponym');">
+<TD><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD><TD>Hyponym/Troponym</TD>
+</TR>
+<TR class="selector" onclick="javascript:select('holonym');">
+<TD><IMG src="./images/holonym.png" alt="Holonym"></TD><TD>Holonym</TD>
+</TR>
+<TR class="selector" onclick="javascript:select('meronym');">
+<TD><IMG src="./images/meronym.png" alt="Meronym"></TD><TD>Meronym</TD>
+</TR>
+<TR class="selector" onclick="javascript:select('antonym');">
+<TD><IMG src="./images/antonym.png" alt="Direct antonym"></TD><TD>Direct antonym</TD>
+</TR>
+<TR class="selector" onclick="javascript:select('similar');">
+<TD><IMG src="./images/similar.png" alt="Similar"></TD><TD>Similar</TD>
+</TR>
+<TR class="selector" onclick="javascript:select('cause');">
+<TD><IMG src="./images/cause.png" alt="Cause"></TD><TD>Cause</TD>
+</TR>
+<TR class="selector" onclick="javascript:select('caused');">
+<TD><IMG src="./images/caused.png" alt="Caused"></TD><TD>Caused</TD>
+</TR>
+<TR class="selector" onclick="javascript:select('entail');">
+<TD><IMG src="./images/entail.png" alt="Entail"></TD><TD>Entail</TD>
+</TR>
+<TR class="selector" onclick="javascript:select('entailed');">
+<TD><IMG src="./images/entailed.png" alt="Entailed"></TD><TD>Entailed</TD>
+</TR>
+<TR class="selector" onclick="javascript:select('attribute');">
+<TD><IMG src="./images/attribute.png" alt="Attribute"></TD><TD>Attribute</TD>
+</TR>
+<TR class="selector" onclick="javascript:select('pertainym');">
+<TD><IMG src="./images/pertainym.png" alt="Pertainym"></TD><TD>Pertainym</TD>
+</TR>
+<TR class="selector" onclick="javascript:select('derivation');">
+<TD><IMG src="./images/derivation.png" alt="Derivation"></TD><TD>Derivation</TD>
+</TR>
+<TR class="selector" onclick="javascript:select('adjderived');">
+<TD><IMG src="./images/adjderived.png" alt="Derived from adjective"></TD><TD>Derived from adjective</TD>
+</TR>
+<TR class="selector" onclick="javascript:select('participle');">
+<TD><IMG src="./images/participle.png" alt="Participle"></TD><TD>Participle</TD>
+</TR>
+<TR class="selector" onclick="javascript:select('alsosee');">
+<TD><IMG src="./images/alsosee.png" alt="Also See"></TD><TD>Also See</TD>
+</TR>
+<TR class="selector" onclick="javascript:select('verbgroup');">
+<TD><IMG src="./images/verb.group.png" alt="Verb Group"></TD><TD>Verb Group</TD>
+</TR>
+<TR class="selector" onclick="javascript:select('domain');">
+<TD><IMG src="./images/domain.png" alt="Domain"></TD><TD>Domain</TD>
+</TR>
+<TR class="selector" onclick="javascript:select('member');">
+<TD><IMG src="./images/domain.member.png" alt="Domain Member"></TD><TD>Domain Member</TD>
+</TR>
+</TABLE>
+</DIV>
+</TD><TD style="vertical-align: top;">
+<DIV class="main">
+<TABLE>
+<TR class="link" name="link" id="hypernym">
+<TD>
+<TABLE>
+<TR>
+<TD class="linkimage"><IMG src="./images/hypernym.png" alt="Hypernym"></TD><TD class="linkheader"><SPAN class="name">Hypernym</SPAN></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="description">
+<span>Superordinate (i.e. more generic). The generic term used to designate a whole class of specific instances.</span>
+</DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="logical">
+<DIV class="def">
+<span>
+				<b>X</b>
+				is a hypernym of
+				<b>Y</b>
+			</span> iff </DIV>
+<DIV class="cond"> &rarr; <span>
+				<b>Y</b>
+				is a (kind of)
+				<b>X</b>
+				<i>(nouns)</i>
+			</span>
+</DIV>
+<DIV class="cond"> &rarr; <span>
+				to
+				<b>Y</b>
+				is to
+				<b>X</b>
+				in some particular manner
+				<i>(verbs)</i>
+			</span>
+</DIV>
+</DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="features">
+<IMG class="featureimage" src="./images/semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="./images/pos.n.png" alt="noun" title="noun"><IMG class="featureimage" src="./images/pos.v.png" alt="verb" title="verb"></DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="examples">
+<TABLE class="exampletable">
+<TR>
+<TD class="from">oak</TD><TD class="rel"><IMG src="./images/hypernym.png" alt="Hypernym"></TD><TD class="to">tree</TD><TD class="gloss">an oak is a kind of tree</TD>
+</TR>
+<TR>
+<TD class="from">tree</TD><TD class="rel"><IMG src="./images/hypernym.png" alt="Hypernym"></TD><TD class="to">plant</TD><TD class="gloss">a tree is a kind of plant</TD>
+</TR>
+<TR>
+<TD class="from">house</TD><TD class="rel"><IMG src="./images/hypernym.png" alt="Hypernym"></TD><TD class="to">dwelling</TD><TD class="gloss">a house is a kind of dwelling</TD>
+</TR>
+<TR>
+<TD class="from">disappointment</TD><TD class="rel"><IMG src="./images/hypernym.png" alt="Hypernym"></TD><TD class="to">disatisfaction</TD><TD class="gloss">disappointment is a kind of disatisfaction</TD>
+</TR>
+<TR>
+<TD class="from">amble</TD><TD class="rel"><IMG src="./images/hypernym.png" alt="Hypernym"></TD><TD class="to">walk</TD><TD class="gloss">to amble is to walk in some manner</TD>
+</TR>
+<TR>
+<TD class="from">march</TD><TD class="rel"><IMG src="./images/hypernym.png" alt="Hypernym"></TD><TD class="to">walk</TD><TD class="gloss">to march is to walk in some manner</TD>
+</TR>
+<TR>
+<TD class="from">lisp</TD><TD class="rel"><IMG src="./images/hypernym.png" alt="Hypernym"></TD><TD class="to">say</TD><TD class="gloss">to lisp is to say in some manner</TD>
+</TR>
+<TR>
+<TD class="from">slam</TD><TD class="rel"><IMG src="./images/hypernym.png" alt="Hypernym"></TD><TD class="to">hit</TD><TD class="gloss">to slam is to hit in some manner</TD>
+</TR>
+<TR>
+<TD class="from">Dien Bien Phu</TD><TD class="rel"><IMG src="./images/instance.hypernym.png" alt="Hypernym"></TD><TD class="to">siege</TD><TD class="gloss">instance hypernym</TD>
+</TR>
+<TR>
+<TD class="from">Korean war</TD><TD class="rel"><IMG src="./images/instance.hypernym.png" alt="Hypernym"></TD><TD class="to">war</TD><TD class="gloss">instance hypernym</TD>
+</TR>
+<TR>
+<TD class="from">Chartres cathedral</TD><TD class="rel"><IMG src="./images/instance.hypernym.png" alt="Hypernym"></TD><TD class="to">cathedral</TD><TD class="gloss">instance hypernym</TD>
+</TR>
+<TR>
+<TD class="from">Carnegie Mellon University</TD><TD class="rel"><IMG src="./images/instance.hypernym.png" alt="Hypernym"></TD><TD class="to">university</TD><TD class="gloss">instance hypernym</TD>
+</TR>
+<TR>
+<TD class="from">Mayflower</TD><TD class="rel"><IMG src="./images/instance.hypernym.png" alt="Hypernym"></TD><TD class="to">ship</TD><TD class="gloss">instance hypernym</TD>
+</TR>
+</TABLE>
+</DIV>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR class="link" name="link" id="hyponym">
+<TD>
+<TABLE>
+<TR>
+<TD class="linkimage"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD><TD class="linkheader"><SPAN class="name">Hyponym/Troponym</SPAN></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="description">
+<span>Subordinate (i.e. more specific). The specific term used to designate a member of a class.</span>
+</DIV>
+<DIV class="description">
+<span>A verb expressing a specific manner elaboration of another verb. Manner name (a word that denotes a manner of doing something).</span>
+</DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="logical">
+<DIV class="def">
+<span>
+				<b>X</b>
+				is a hyponym of
+				<b>Y</b>
+			</span> iff </DIV>
+<DIV class="cond"> &rarr; <span>
+				<b>X</b>
+				is a (kind of)
+				<b>Y</b>
+			</span>
+</DIV>
+</DIV>
+<DIV class="logical">
+<DIV class="def">
+<span>
+				<b>X</b>
+				is a troponym of
+				<b>Y</b>
+			</span> iff </DIV>
+<DIV class="cond"> &rarr; <span>
+				to
+				<b>X</b>
+				is to
+				<b>Y</b>
+				in some manner
+			</span>
+</DIV>
+</DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="features">
+<IMG class="featureimage" src="./images/semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="./images/pos.n.png" alt="noun" title="noun"><IMG class="featureimage" src="./images/pos.v.png" alt="verb" title="verb"></DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="examples">
+<TABLE class="exampletable">
+<TR>
+<TD class="from">tree</TD><TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">oak</TD><TD class="gloss">an oak is a kind of tree</TD>
+</TR>
+<TR>
+<TD class="from">plant</TD><TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">tree</TD><TD class="gloss">a tree is a kind of plant</TD>
+</TR>
+<TR>
+<TD class="from">tree</TD><TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">oak</TD><TD class="gloss">a oak is a kind of tree</TD>
+</TR>
+<TR>
+<TD class="from">roadster</TD><TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">car</TD><TD class="gloss">a roadster is a kind of car</TD>
+</TR>
+<TR>
+<TD class="from">car</TD><TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">motor vehicle</TD><TD class="gloss">a car is a kind of motor vehicle</TD>
+</TR>
+<TR>
+<TD class="from">motor vehicle</TD><TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">wheeled vehicle</TD><TD class="gloss">a motor vehicle is a kind of wheeled vehicle</TD>
+</TR>
+<TR>
+<TD class="from">dwelling</TD><TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">house</TD><TD class="gloss">a house is a kind of dwelling</TD>
+</TR>
+<TR>
+<TD class="from">disatisfaction</TD><TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">disappointment</TD><TD class="gloss">disappointment is a kind of disatisfaction</TD>
+</TR>
+<TR>
+<TD class="from">group</TD><TD class="rel"><IMG src="./images/instance.hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">the Great Lakes</TD><TD class="gloss">instance hypernym</TD>
+</TR>
+<TR>
+<TD class="from">evacuation</TD><TD class="rel"><IMG src="./images/instance.hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">Dunkirk</TD><TD class="gloss">instance hypernym</TD>
+</TR>
+<TR>
+<TD class="from">revolution</TD><TD class="rel"><IMG src="./images/instance.hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">French revolution</TD><TD class="gloss">instance hypernym</TD>
+</TR>
+<TR>
+<TD class="from">walk</TD><TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">amble</TD><TD class="gloss">to amble is to walk in some manner</TD>
+</TR>
+<TR>
+<TD class="from">walk</TD><TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">march</TD><TD class="gloss">to march is to walk in some manner</TD>
+</TR>
+<TR>
+<TD class="from">say</TD><TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">lisp</TD><TD class="gloss">to lisp is to say in some manner</TD>
+</TR>
+<TR>
+<TD class="from">hit</TD><TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">slam</TD><TD class="gloss">to slam is to hit in some manner</TD>
+</TR>
+</TABLE>
+</DIV>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR class="link" name="link" id="holonym">
+<TD>
+<TABLE>
+<TR>
+<TD class="linkimage"><IMG src="./images/holonym.png" alt="Holonym"></TD><TD class="linkheader"><SPAN class="name">Holonym</SPAN></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="description">
+<span>The name of the whole of which the meronym names a part, a member or the substance. Whole name (a word that names the whole of which a given word is a
+			part).</span>
+</DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="logical">
+<DIV class="def">
+<span>
+				<b>X</b>
+				is a holonym of
+				<b>Y</b>
+			</span> iff </DIV>
+<DIV class="cond"> &rarr; <span>
+				<b>Y</b>
+				is a part of
+				<b>X</b>
+			</span>
+</DIV>
+<DIV class="cond"> &rarr; <span>
+				<b>Y</b>
+				is a substance of
+				<b>X</b>
+			</span>
+</DIV>
+<DIV class="cond"> &rarr; <span>
+				<b>Y</b>
+				is a member of
+				<b>X</b>
+			</span>
+</DIV>
+</DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="features">
+<IMG class="featureimage" src="./images/semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="./images/pos.n.png" alt="noun" title="noun"></DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="examples">
+<TABLE class="exampletable">
+<TR>
+<TD class="from">wing</TD><TD class="rel"><IMG src="./images/part.holonym.png" alt="Holonym"></TD><TD class="to">bird</TD><TD class="gloss">component-object</TD>
+</TR>
+<TR>
+<TD class="from">mouth</TD><TD class="rel"><IMG src="./images/part.holonym.png" alt="Holonym"></TD><TD class="to">face</TD><TD class="gloss">component-object</TD>
+</TR>
+<TR>
+<TD class="from">arm</TD><TD class="rel"><IMG src="./images/part.holonym.png" alt="Holonym"></TD><TD class="to">body</TD><TD class="gloss">object-component</TD>
+</TR>
+<TR>
+<TD class="from">handle</TD><TD class="rel"><IMG src="./images/part.holonym.png" alt="Holonym"></TD><TD class="to">door</TD><TD class="gloss">object-component</TD>
+</TR>
+<TR>
+<TD class="from">branch</TD><TD class="rel"><IMG src="./images/part.holonym.png" alt="Holonym"></TD><TD class="to">tree</TD><TD class="gloss">component-object</TD>
+</TR>
+<TR>
+<TD class="from">tree</TD><TD class="rel"><IMG src="./images/member.holonym.png" alt="Holonym"></TD><TD class="to">forest</TD><TD class="gloss">member-collection</TD>
+</TR>
+<TR>
+<TD class="from">oxygen</TD><TD class="rel"><IMG src="./images/substance.holonym.png" alt="Holonym"></TD><TD class="to">air</TD><TD class="gloss">substance-object</TD>
+</TR>
+<TR>
+<TD class="from">olive</TD><TD class="rel"><IMG src="./images/substance.holonym.png" alt="Holonym"></TD><TD class="to">olive oil</TD><TD class="gloss">substance-object</TD>
+</TR>
+<TR>
+<TD class="from">adolescence</TD><TD class="rel"><IMG src="./images/holonym.png" alt="Holonym"></TD><TD class="to">growing up</TD><TD class="gloss">phase-process</TD>
+</TR>
+<TR>
+<TD class="from">slice</TD><TD class="rel"><IMG src="./images/holonym.png" alt="Holonym"></TD><TD class="to">cake</TD><TD class="gloss">portion-mass</TD>
+</TR>
+<TR>
+<TD class="from">paying</TD><TD class="rel"><IMG src="./images/holonym.png" alt="Holonym"></TD><TD class="to">shopping</TD><TD class="gloss">feature-activity</TD>
+</TR>
+</TABLE>
+</DIV>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR class="link" name="link" id="meronym">
+<TD>
+<TABLE>
+<TR>
+<TD class="linkimage"><IMG src="./images/meronym.png" alt="Meronym"></TD><TD class="linkheader"><SPAN class="name">Meronym</SPAN></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="description">
+<span>The name of a constituent part of, the substance of, or a member of something. Part name (a word that names a part of a larger whole).</span>
+</DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="logical">
+<DIV class="def">
+<span>
+				<b>X</b>
+				is a meronym of
+				<b>Y</b>
+			</span> iff </DIV>
+<DIV class="cond"> &rarr; <span>
+				<b>X</b>
+				is a part of
+				<b>Y</b>
+			</span>
+</DIV>
+<DIV class="cond"> &rarr; <span>
+				<b>X</b>
+				is a substance of
+				<b>Y</b>
+			</span>
+</DIV>
+<DIV class="cond"> &rarr; <span>
+				<b>X</b>
+				is a member of
+				<b>Y</b>
+			</span>
+</DIV>
+</DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="features">
+<IMG class="featureimage" src="./images/semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="./images/pos.n.png" alt="noun" title="noun"></DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="examples">
+<TABLE class="exampletable">
+<TR>
+<TD class="from">bird</TD><TD class="rel"><IMG src="./images/part.meronym.png" alt="Meronym"></TD><TD class="to">wing</TD><TD class="gloss">object-component</TD>
+</TR>
+<TR>
+<TD class="from">face</TD><TD class="rel"><IMG src="./images/part.meronym.png" alt="Meronym"></TD><TD class="to">mouth</TD><TD class="gloss">object-component</TD>
+</TR>
+<TR>
+<TD class="from">body</TD><TD class="rel"><IMG src="./images/part.meronym.png" alt="Meronym"></TD><TD class="to">arm</TD><TD class="gloss">object-component</TD>
+</TR>
+<TR>
+<TD class="from">door</TD><TD class="rel"><IMG src="./images/part.meronym.png" alt="Meronym"></TD><TD class="to">handle</TD><TD class="gloss">object-component</TD>
+</TR>
+<TR>
+<TD class="from">tree</TD><TD class="rel"><IMG src="./images/part.meronym.png" alt="Meronym"></TD><TD class="to">branch</TD><TD class="gloss">object-component</TD>
+</TR>
+<TR>
+<TD class="from">forest</TD><TD class="rel"><IMG src="./images/member.meronym.png" alt="Meronym"></TD><TD class="to">tree</TD><TD class="gloss">collection-member</TD>
+</TR>
+<TR>
+<TD class="from">air</TD><TD class="rel"><IMG src="./images/substance.meronym.png" alt="Meronym"></TD><TD class="to">oxygen</TD><TD class="gloss">object-substance</TD>
+</TR>
+<TR>
+<TD class="from">olive oil</TD><TD class="rel"><IMG src="./images/substance.meronym.png" alt="Meronym"></TD><TD class="to">olive</TD><TD class="gloss">object-substance</TD>
+</TR>
+<TR>
+<TD class="from">cake</TD><TD class="rel"><IMG src="./images/meronym.png" alt="Meronym"></TD><TD class="to">slice</TD><TD class="gloss">mass-portion</TD>
+</TR>
+<TR>
+<TD class="from">growing up</TD><TD class="rel"><IMG src="./images/meronym.png" alt="Meronym"></TD><TD class="to">adolescence</TD><TD class="gloss">process-phase</TD>
+</TR>
+<TR>
+<TD class="from">shopping</TD><TD class="rel"><IMG src="./images/meronym.png" alt="Meronym"></TD><TD class="to">paying</TD><TD class="gloss">activity-feature</TD>
+</TR>
+</TABLE>
+</DIV>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR class="link" name="link" id="antonym">
+<TD>
+<TABLE>
+<TR>
+<TD class="linkimage"><IMG src="./images/antonym.png" alt="Direct antonym"></TD><TD class="linkheader"><SPAN class="name">Direct antonym</SPAN></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="description">
+<span>
+			A pair of words between which there is an opposition relation. Antonymy is a
+			<strong>lexical relation</strong>
+			, not a semantic one.
+			<em>Heavy</em>
+			and
+			<em>light</em>
+			are antonyms while
+			<em>ponderous</em>
+			and
+			<em>light</em>
+			,
+			<em>heavy</em>
+			and
+			<em>weightless</em>
+			are not (they're indirect antonyms).
+		</span>
+</DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2"></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="features">
+<IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/reflexive.png" alt="reflexive" title="reflexive"><IMG class="featureimage" src="./images/pos.n.png" alt="noun" title="noun"><IMG class="featureimage" src="./images/pos.v.png" alt="verb" title="verb"><IMG class="featureimage" src="./images/pos.a.png" alt="adj" title="adjective"><IMG class="featureimage" src="./images/pos.r.png" alt="adv" title="adverb"></DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="examples">
+<TABLE class="exampletable">
+<TR>
+<TD class="from">happy</TD><TD class="rel"><IMG src="./images/antonym.png" alt="Direct antonym"></TD><TD class="to">unhappy</TD><TD class="gloss">adj</TD>
+</TR>
+<TR>
+<TD class="from">heavy</TD><TD class="rel"><IMG src="./images/antonym.png" alt="Direct antonym"></TD><TD class="to">light</TD><TD class="gloss">adj</TD>
+</TR>
+<TR>
+<TD class="from">wet</TD><TD class="rel"><IMG src="./images/antonym.png" alt="Direct antonym"></TD><TD class="to">dry</TD><TD class="gloss">adj</TD>
+</TR>
+<TR>
+<TD class="from">rich</TD><TD class="rel"><IMG src="./images/antonym.png" alt="Direct antonym"></TD><TD class="to">poor</TD><TD class="gloss">adj</TD>
+</TR>
+<TR>
+<TD class="from">long</TD><TD class="rel"><IMG src="./images/antonym.png" alt="Direct antonym"></TD><TD class="to">short</TD><TD class="gloss">adj</TD>
+</TR>
+<TR>
+<TD class="from">dead</TD><TD class="rel"><IMG src="./images/antonym.png" alt="Direct antonym"></TD><TD class="to">alive</TD><TD class="gloss">adj</TD>
+</TR>
+<TR>
+<TD class="from">man</TD><TD class="rel"><IMG src="./images/antonym.png" alt="Direct antonym"></TD><TD class="to">woman</TD><TD class="gloss">noun</TD>
+</TR>
+<TR>
+<TD class="from">actor</TD><TD class="rel"><IMG src="./images/antonym.png" alt="Direct antonym"></TD><TD class="to">actress</TD><TD class="gloss">noun</TD>
+</TR>
+<TR>
+<TD class="from">king</TD><TD class="rel"><IMG src="./images/antonym.png" alt="Direct antonym"></TD><TD class="to">queen</TD><TD class="gloss">noun</TD>
+</TR>
+<TR>
+<TD class="from">promotion</TD><TD class="rel"><IMG src="./images/antonym.png" alt="Direct antonym"></TD><TD class="to">demotion</TD><TD class="gloss">noun</TD>
+</TR>
+<TR>
+<TD class="from">demotion</TD><TD class="rel"><IMG src="./images/antonym.png" alt="Direct antonym"></TD><TD class="to">promotion</TD><TD class="gloss">noun</TD>
+</TR>
+<TR>
+<TD class="from">deceleration</TD><TD class="rel"><IMG src="./images/antonym.png" alt="Direct antonym"></TD><TD class="to">acceleration</TD><TD class="gloss">noun</TD>
+</TR>
+<TR>
+<TD class="from">opening</TD><TD class="rel"><IMG src="./images/antonym.png" alt="Direct antonym"></TD><TD class="to">closing</TD><TD class="gloss">noun</TD>
+</TR>
+<TR>
+<TD class="from">finish</TD><TD class="rel"><IMG src="./images/antonym.png" alt="Direct antonym"></TD><TD class="to">start</TD><TD class="gloss">verb</TD>
+</TR>
+<TR>
+<TD class="from">increase</TD><TD class="rel"><IMG src="./images/antonym.png" alt="Direct antonym"></TD><TD class="to">decrease</TD><TD class="gloss">verb</TD>
+</TR>
+<TR>
+<TD class="from">wake</TD><TD class="rel"><IMG src="./images/antonym.png" alt="Direct antonym"></TD><TD class="to">sleep</TD><TD class="gloss">verb</TD>
+</TR>
+<TR>
+<TD class="from">rise</TD><TD class="rel"><IMG src="./images/antonym.png" alt="Direct antonym"></TD><TD class="to">fall</TD><TD class="gloss">verb</TD>
+</TR>
+<TR>
+<TD class="from">give</TD><TD class="rel"><IMG src="./images/antonym.png" alt="Direct antonym"></TD><TD class="to">take</TD><TD class="gloss">verb</TD>
+</TR>
+<TR>
+<TD class="from">teach</TD><TD class="rel"><IMG src="./images/antonym.png" alt="Direct antonym"></TD><TD class="to">learn</TD><TD class="gloss">verb</TD>
+</TR>
+<TR>
+<TD class="from">live</TD><TD class="rel"><IMG src="./images/antonym.png" alt="Direct antonym"></TD><TD class="to">die</TD><TD class="gloss">verb</TD>
+</TR>
+<TR>
+<TD class="from">bottlefeed</TD><TD class="rel"><IMG src="./images/antonym.png" alt="Direct antonym"></TD><TD class="to">breastfeed</TD><TD class="gloss">verb</TD>
+</TR>
+<TR>
+<TD class="from">appear</TD><TD class="rel"><IMG src="./images/antonym.png" alt="Direct antonym"></TD><TD class="to">disappear</TD><TD class="gloss">verb</TD>
+</TR>
+<TR>
+<TD class="from">walk</TD><TD class="rel"><IMG src="./images/antonym.png" alt="Direct antonym"></TD><TD class="to">run</TD><TD class="gloss">verb</TD>
+</TR>
+</TABLE>
+</DIV>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR class="link" name="link" id="similar">
+<TD>
+<TABLE>
+<TR>
+<TD class="linkimage"><IMG src="./images/similar.png" alt="Similar"></TD><TD class="linkheader"><SPAN class="name">Similar</SPAN></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="description">
+<span>Similarity among adjectives</span>
+</DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2"></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="features">
+<IMG class="featureimage" src="./images/semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="./images/reflexive.png" alt="reflexive" title="reflexive"><IMG class="featureimage" src="./images/pos.a.png" alt="adj" title="adjective"><IMG class="featureimage" src="./images/pos.s.png" alt="satellite" title="satellite adj"></DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="examples">
+<TABLE class="exampletable">
+<TR>
+<TD class="from">moist</TD><TD class="rel"><IMG src="./images/similar.png" alt="Similar"></TD><TD class="to">wet</TD>
+</TR>
+<TR>
+<TD class="from">ponderous</TD><TD class="rel"><IMG src="./images/similar.png" alt="Similar"></TD><TD class="to">heavy</TD>
+</TR>
+<TR>
+<TD class="from">dying</TD><TD class="rel"><IMG src="./images/similar.png" alt="Similar"></TD><TD class="to">moribund</TD>
+</TR>
+<TR>
+<TD class="from">dying</TD><TD class="rel"><IMG src="./images/similar.png" alt="Similar"></TD><TD class="to">last</TD>
+</TR>
+<TR>
+<TD class="from">moribund</TD><TD class="rel"><IMG src="./images/similar.png" alt="Similar"></TD><TD class="to">dying</TD>
+</TR>
+<TR>
+<TD class="from">last</TD><TD class="rel"><IMG src="./images/similar.png" alt="Similar"></TD><TD class="to">dying</TD>
+</TR>
+<TR>
+<TD class="from">abridged</TD><TD class="rel"><IMG src="./images/similar.png" alt="Similar"></TD><TD class="to">cut</TD>
+</TR>
+<TR>
+<TD class="from">abridged</TD><TD class="rel"><IMG src="./images/similar.png" alt="Similar"></TD><TD class="to">shortened</TD>
+</TR>
+<TR>
+<TD class="from">abundant</TD><TD class="rel"><IMG src="./images/similar.png" alt="Similar"></TD><TD class="to">plentiful</TD>
+</TR>
+<TR>
+<TD class="from">abundant</TD><TD class="rel"><IMG src="./images/similar.png" alt="Similar"></TD><TD class="to">rampant</TD>
+</TR>
+<TR>
+<TD class="from">abundant</TD><TD class="rel"><IMG src="./images/similar.png" alt="Similar"></TD><TD class="to">rank</TD>
+</TR>
+<TR>
+<TD class="from">abundant</TD><TD class="rel"><IMG src="./images/similar.png" alt="Similar"></TD><TD class="to">superabundant</TD>
+</TR>
+<TR>
+<TD class="from">abundant</TD><TD class="rel"><IMG src="./images/similar.png" alt="Similar"></TD><TD class="to">teeming</TD>
+</TR>
+<TR>
+<TD class="from">abundant</TD><TD class="rel"><IMG src="./images/similar.png" alt="Similar"></TD><TD class="to">torrential</TD>
+</TR>
+<TR>
+<TD class="from">abundant</TD><TD class="rel"><IMG src="./images/similar.png" alt="Similar"></TD><TD class="to">verdant</TD>
+</TR>
+</TABLE>
+</DIV>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR class="link" name="link" id="cause">
+<TD>
+<TABLE>
+<TR>
+<TD class="linkimage"><IMG src="./images/cause.png" alt="Cause"></TD><TD class="linkheader"><SPAN class="name">Cause</SPAN></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="description">
+<span>Cause</span>
+</DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="logical">
+<DIV class="def">
+<span>
+				A verb
+				<b>X</b>
+				causes
+				<b>Y</b>
+			</span> iff </DIV>
+<DIV class="cond"> &rarr; <span>
+				<b>X</b>
+				denotes the causation of the state or activity referred to by
+				<b>Y</b>
+			</span>
+</DIV>
+</DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="features">
+<IMG class="featureimage" src="./images/semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="./images/pos.v.png" alt="verb" title="verb"></DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="examples">
+<TABLE class="exampletable">
+<TR>
+<TD class="from">give</TD><TD class="rel"><IMG src="./images/cause.png" alt="Cause"></TD><TD class="to">have</TD><TD class="gloss">resultative</TD>
+</TR>
+<TR>
+<TD class="from">show</TD><TD class="rel"><IMG src="./images/cause.png" alt="Cause"></TD><TD class="to">see</TD><TD class="gloss">resultative</TD>
+</TR>
+<TR>
+<TD class="from">raise</TD><TD class="rel"><IMG src="./images/cause.png" alt="Cause"></TD><TD class="to">rise</TD><TD class="gloss">resultative</TD>
+</TR>
+<TR>
+<TD class="from">teach</TD><TD class="rel"><IMG src="./images/cause.png" alt="Cause"></TD><TD class="to">learn</TD><TD class="gloss">resultative</TD>
+</TR>
+<TR>
+<TD class="from">feed</TD><TD class="rel"><IMG src="./images/cause.png" alt="Cause"></TD><TD class="to">eat</TD><TD class="gloss">resultative</TD>
+</TR>
+<TR>
+<TD class="from">scare</TD><TD class="rel"><IMG src="./images/cause.png" alt="Cause"></TD><TD class="to">fear</TD><TD class="gloss">resultative</TD>
+</TR>
+<TR>
+<TD class="from">fell</TD><TD class="rel"><IMG src="./images/cause.png" alt="Cause"></TD><TD class="to">fall</TD><TD class="gloss">resultative</TD>
+</TR>
+</TABLE>
+</DIV>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR class="link" name="link" id="caused">
+<TD>
+<TABLE>
+<TR>
+<TD class="linkimage"><IMG src="./images/caused.png" alt="Caused"></TD><TD class="linkheader"><SPAN class="name">Caused</SPAN></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="description">
+<span>Is caused by</span>
+</DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="logical">
+<DIV class="def">
+<span>
+				A verb
+				<b>Y</b> 
+				is caused by 
+				<b>X</b>
+			</span> iff </DIV>
+<DIV class="cond"> &rarr; <span>
+				<b>X</b>
+				denotes the causation of the state or activity referred to by
+				<b>Y</b>
+			</span>
+</DIV>
+</DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="features">
+<IMG class="featureimage" src="./images/semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="./images/pos.v.png" alt="verb" title="verb"></DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="examples">
+<TABLE class="exampletable">
+<TR>
+<TD class="from">have</TD><TD class="rel"><IMG src="./images/caused.png" alt="Caused"></TD><TD class="to">give</TD><TD class="gloss">resultative</TD>
+</TR>
+<TR>
+<TD class="from">see</TD><TD class="rel"><IMG src="./images/caused.png" alt="Caused"></TD><TD class="to">show</TD><TD class="gloss">resultative</TD>
+</TR>
+<TR>
+<TD class="from">rise</TD><TD class="rel"><IMG src="./images/caused.png" alt="Caused"></TD><TD class="to">raise</TD><TD class="gloss">resultative</TD>
+</TR>
+<TR>
+<TD class="from">learn</TD><TD class="rel"><IMG src="./images/caused.png" alt="Caused"></TD><TD class="to">teach</TD><TD class="gloss">resultative</TD>
+</TR>
+<TR>
+<TD class="from">eat</TD><TD class="rel"><IMG src="./images/caused.png" alt="Caused"></TD><TD class="to">feed</TD><TD class="gloss">resultative</TD>
+</TR>
+<TR>
+<TD class="from">fear</TD><TD class="rel"><IMG src="./images/caused.png" alt="Caused"></TD><TD class="to">scare</TD><TD class="gloss">resultative</TD>
+</TR>
+<TR>
+<TD class="from">fall</TD><TD class="rel"><IMG src="./images/caused.png" alt="Caused"></TD><TD class="to">fell</TD><TD class="gloss">resultative</TD>
+</TR>
+</TABLE>
+</DIV>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR class="link" name="link" id="entail">
+<TD>
+<TABLE>
+<TR>
+<TD class="linkimage"><IMG src="./images/entail.png" alt="Entail"></TD><TD class="linkheader"><SPAN class="name">Entail</SPAN></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="description">
+<span>Entailment. </span>
+</DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="logical">
+<DIV class="def">
+<span>
+				A verb
+				<b>X</b>
+				entails
+				<b>Y</b>
+			</span> iff </DIV>
+<DIV class="cond"> &rarr; <span>
+				<b>X</b>
+				cannot be done unless
+				<b>Y</b>
+				is, or has been, done
+			</span>
+</DIV>
+<DIV class="cond"> &rarr; <span>
+				there is no conceivable state of affairs that could make
+				<b>X</b>
+				true and
+				<b>Y</b>
+				false
+			</span>
+</DIV>
+</DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="features">
+<IMG class="featureimage" src="./images/semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="./images/pos.v.png" alt="verb" title="verb"></DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="examples">
+<TABLE class="exampletable">
+<TR>
+<TD class="from">limp</TD><TD class="rel"><IMG src="./images/entail.png" alt="Entail"></TD><TD class="to">walk</TD><TD class="gloss">temporal inclusion - coextensive</TD>
+</TR>
+<TR>
+<TD class="from">lisp</TD><TD class="rel"><IMG src="./images/entail.png" alt="Entail"></TD><TD class="to">talk</TD><TD class="gloss">temporal inclusion - coextensive</TD>
+</TR>
+<TR>
+<TD class="from">snore</TD><TD class="rel"><IMG src="./images/entail.png" alt="Entail"></TD><TD class="to">sleep</TD><TD class="gloss">temporal inclusion - proper inclusion</TD>
+</TR>
+<TR>
+<TD class="from">buy</TD><TD class="rel"><IMG src="./images/entail.png" alt="Entail"></TD><TD class="to">pay</TD><TD class="gloss">temporal inclusion - proper inclusion</TD>
+</TR>
+<TR>
+<TD class="from">succeed</TD><TD class="rel"><IMG src="./images/entail.png" alt="Entail"></TD><TD class="to">try</TD><TD class="gloss">no temporal inclusion - backward presupposition</TD>
+</TR>
+<TR>
+<TD class="from">fail</TD><TD class="rel"><IMG src="./images/entail.png" alt="Entail"></TD><TD class="to">try</TD><TD class="gloss">no temporal inclusion - backward presupposition</TD>
+</TR>
+<TR>
+<TD class="from">untie</TD><TD class="rel"><IMG src="./images/entail.png" alt="Entail"></TD><TD class="to">tie</TD><TD class="gloss">no temporal inclusion - backward presupposition</TD>
+</TR>
+<TR>
+<TD class="from">hit</TD><TD class="rel"><IMG src="./images/entail.png" alt="Entail"></TD><TD class="to">aim</TD><TD class="gloss">no temporal inclusion - backward presupposition</TD>
+</TR>
+<TR>
+<TD class="from">miss</TD><TD class="rel"><IMG src="./images/entail.png" alt="Entail"></TD><TD class="to">aim</TD><TD class="gloss">no temporal inclusion - backward presupposition</TD>
+</TR>
+<TR>
+<TD class="from">raise</TD><TD class="rel"><IMG src="./images/entail.png" alt="Entail"></TD><TD class="to">rise</TD><TD class="gloss">no temporal inclusion - cause</TD>
+</TR>
+<TR>
+<TD class="from">give</TD><TD class="rel"><IMG src="./images/entail.png" alt="Entail"></TD><TD class="to">have</TD><TD class="gloss">no temporal inclusion - cause</TD>
+</TR>
+<TR>
+<TD class="from">scare</TD><TD class="rel"><IMG src="./images/entail.png" alt="Entail"></TD><TD class="to">fear</TD><TD class="gloss">no temporal inclusion - cause</TD>
+</TR>
+<TR>
+<TD class="from">feed</TD><TD class="rel"><IMG src="./images/entail.png" alt="Entail"></TD><TD class="to">eat</TD><TD class="gloss">no temporal inclusion - cause</TD>
+</TR>
+<TR>
+<TD class="from">teach</TD><TD class="rel"><IMG src="./images/entail.png" alt="Entail"></TD><TD class="to">learn</TD><TD class="gloss">no temporal inclusion - cause</TD>
+</TR>
+</TABLE>
+</DIV>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR class="link" name="link" id="entailed">
+<TD>
+<TABLE>
+<TR>
+<TD class="linkimage"><IMG src="./images/entailed.png" alt="Entailed"></TD><TD class="linkheader"><SPAN class="name">Entailed</SPAN></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="description">
+<span>Is entailed by. </span>
+</DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="logical">
+<DIV class="def">
+<span>
+				A verb
+				<b>Y</b>
+				is entailed by
+				<b>X</b>
+			</span> iff </DIV>
+<DIV class="cond"> &rarr; <span>
+				<b>X</b>
+				cannot be done unless
+				<b>Y</b>
+				is, or has been, done
+			</span>
+</DIV>
+<DIV class="cond"> &rarr; <span>
+				there is no conceivable state of affairs that could make
+				<b>X</b>
+				true and
+				<b>Y</b>
+				false
+			</span>
+</DIV>
+</DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="features">
+<IMG class="featureimage" src="./images/semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="./images/pos.v.png" alt="verb" title="verb"></DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="examples">
+<TABLE class="exampletable">
+<TR>
+<TD class="from">walk</TD><TD class="rel"><IMG src="./images/entailed.png" alt="Entailed"></TD><TD class="to">limp</TD><TD class="gloss">temporal inclusion - coextensive</TD>
+</TR>
+<TR>
+<TD class="from">talk</TD><TD class="rel"><IMG src="./images/entailed.png" alt="Entailed"></TD><TD class="to">lisp</TD><TD class="gloss">temporal inclusion - coextensive</TD>
+</TR>
+<TR>
+<TD class="from">sleep</TD><TD class="rel"><IMG src="./images/entailed.png" alt="Entailed"></TD><TD class="to">snore</TD><TD class="gloss">temporal inclusion - proper inclusion</TD>
+</TR>
+<TR>
+<TD class="from">pay</TD><TD class="rel"><IMG src="./images/entailed.png" alt="Entailed"></TD><TD class="to">buy</TD><TD class="gloss">temporal inclusion - proper inclusion</TD>
+</TR>
+<TR>
+<TD class="from">try</TD><TD class="rel"><IMG src="./images/entailed.png" alt="Entailed"></TD><TD class="to">succeed</TD><TD class="gloss">no temporal inclusion - backward presupposition</TD>
+</TR>
+<TR>
+<TD class="from">try</TD><TD class="rel"><IMG src="./images/entailed.png" alt="Entailed"></TD><TD class="to">fail</TD><TD class="gloss">no temporal inclusion - backward presupposition</TD>
+</TR>
+<TR>
+<TD class="from">tie</TD><TD class="rel"><IMG src="./images/entailed.png" alt="Entailed"></TD><TD class="to">untie</TD><TD class="gloss">no temporal inclusion - backward presupposition</TD>
+</TR>
+<TR>
+<TD class="from">aim</TD><TD class="rel"><IMG src="./images/entailed.png" alt="Entailed"></TD><TD class="to">hit</TD><TD class="gloss">no temporal inclusion - backward presupposition</TD>
+</TR>
+<TR>
+<TD class="from">aim</TD><TD class="rel"><IMG src="./images/entailed.png" alt="Entailed"></TD><TD class="to">miss</TD><TD class="gloss">no temporal inclusion - backward presupposition</TD>
+</TR>
+<TR>
+<TD class="from">rise</TD><TD class="rel"><IMG src="./images/entailed.png" alt="Entailed"></TD><TD class="to">raise</TD><TD class="gloss">no temporal inclusion - cause</TD>
+</TR>
+<TR>
+<TD class="from">have</TD><TD class="rel"><IMG src="./images/entailed.png" alt="Entailed"></TD><TD class="to">giveve</TD><TD class="gloss">no temporal inclusion - cause</TD>
+</TR>
+<TR>
+<TD class="from">fear</TD><TD class="rel"><IMG src="./images/entailed.png" alt="Entailed"></TD><TD class="to">scare</TD><TD class="gloss">no temporal inclusion - cause</TD>
+</TR>
+<TR>
+<TD class="from">eat</TD><TD class="rel"><IMG src="./images/entailed.png" alt="Entailed"></TD><TD class="to">feed</TD><TD class="gloss">no temporal inclusion - cause</TD>
+</TR>
+<TR>
+<TD class="from">learn</TD><TD class="rel"><IMG src="./images/entailed.png" alt="Entailed"></TD><TD class="to">teach</TD><TD class="gloss">no temporal inclusion - cause</TD>
+</TR>
+</TABLE>
+</DIV>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR class="link" name="link" id="attribute">
+<TD>
+<TABLE>
+<TR>
+<TD class="linkimage"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="linkheader"><SPAN class="name">Attribute</SPAN></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="description">
+<span>Attribute</span>
+</DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2"></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="features">
+<IMG class="featureimage" src="./images/semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="./images/reflexive.png" alt="reflexive" title="reflexive"><IMG class="featureimage" src="./images/pos.n.png" alt="noun" title="noun"><IMG class="featureimage" src="./images/pos.a.png" alt="adj" title="adjective"></DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="examples">
+<TABLE class="exampletable">
+<TR>
+<TD class="from">emotionality</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">cold</TD>
+</TR>
+<TR>
+<TD class="from">emotionality</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">warm</TD>
+</TR>
+<TR>
+<TD class="from">emotionality</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">cool</TD>
+</TR>
+<TR>
+<TD class="from">beauty</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">beautiful</TD>
+</TR>
+<TR>
+<TD class="from">beauty</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">ugly</TD>
+</TR>
+<TR>
+<TD class="from">morality</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">immoral</TD>
+</TR>
+<TR>
+<TD class="from">morality</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">pure</TD>
+</TR>
+<TR>
+<TD class="from">morality</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">impure</TD>
+</TR>
+<TR>
+<TD class="from">age</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">old</TD>
+</TR>
+<TR>
+<TD class="from">age</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">new</TD>
+</TR>
+<TR>
+<TD class="from">strength</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">strong</TD>
+</TR>
+<TR>
+<TD class="from">strength</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">weak</TD>
+</TR>
+<TR>
+<TD class="from">quantity</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">abundant</TD>
+</TR>
+<TR>
+<TD class="from">quantity</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">scarce</TD>
+</TR>
+<TR>
+<TD class="from">quantity</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">sufficient</TD>
+</TR>
+</TABLE>
+</DIV>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR class="link" name="link" id="pertainym">
+<TD>
+<TABLE>
+<TR>
+<TD class="linkimage"><IMG src="./images/pertainym.png" alt="Pertainym"></TD><TD class="linkheader"><SPAN class="name">Pertainym</SPAN></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="description">
+<span>A relational adjective. Adjectives that are pertainyms are usually defined by such phrases as "of or pertaining to" and do not have antonyms.
+			A pertainym can point to a noun or another pertainym.</span>
+</DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2"></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="features">
+<IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos.a.png" alt="adj" title="adjective"><IMG class="featureimage" src="./images/pos.r.png" alt="adv" title="adverb"></DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="examples">
+<TABLE class="exampletable">
+<TR>
+<TD class="from">fraternal</TD><TD class="rel"><IMG src="./images/pertainym.png" alt="Pertainym"></TD><TD class="to">brother</TD>
+</TR>
+<TR>
+<TD class="from">dental</TD><TD class="rel"><IMG src="./images/pertainym.png" alt="Pertainym"></TD><TD class="to">tooth</TD>
+</TR>
+<TR>
+<TD class="from">musical</TD><TD class="rel"><IMG src="./images/pertainym.png" alt="Pertainym"></TD><TD class="to">music</TD>
+</TR>
+<TR>
+<TD class="from">interstellar</TD><TD class="rel"><IMG src="./images/pertainym.png" alt="Pertainym"></TD><TD class="to">star</TD>
+</TR>
+<TR>
+<TD class="from">medical</TD><TD class="rel"><IMG src="./images/pertainym.png" alt="Pertainym"></TD><TD class="to">medicine</TD>
+</TR>
+<TR>
+<TD class="from">abbatial</TD><TD class="rel"><IMG src="./images/pertainym.png" alt="Pertainym"></TD><TD class="to">abbey</TD>
+</TR>
+<TR>
+<TD class="from">academic</TD><TD class="rel"><IMG src="./images/pertainym.png" alt="Pertainym"></TD><TD class="to">academia</TD>
+</TR>
+<TR>
+<TD class="from">agronomical</TD><TD class="rel"><IMG src="./images/pertainym.png" alt="Pertainym"></TD><TD class="to">agronomy</TD>
+</TR>
+<TR>
+<TD class="from">alimentative</TD><TD class="rel"><IMG src="./images/pertainym.png" alt="Pertainym"></TD><TD class="to">alimentation</TD>
+</TR>
+<TR>
+<TD class="from">alphabetic</TD><TD class="rel"><IMG src="./images/pertainym.png" alt="Pertainym"></TD><TD class="to">alphabet</TD>
+</TR>
+<TR>
+<TD class="from">analphabetic</TD><TD class="rel"><IMG src="./images/pertainym.png" alt="Pertainym"></TD><TD class="to">alphabet</TD>
+</TR>
+<TR>
+<TD class="from">archaistic</TD><TD class="rel"><IMG src="./images/pertainym.png" alt="Pertainym"></TD><TD class="to">archaism</TD>
+</TR>
+<TR>
+<TD class="from">archangelical</TD><TD class="rel"><IMG src="./images/pertainym.png" alt="Pertainym"></TD><TD class="to">archangel</TD>
+</TR>
+</TABLE>
+</DIV>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR class="link" name="link" id="derivation">
+<TD>
+<TABLE>
+<TR>
+<TD class="linkimage"><IMG src="./images/derivation.png" alt="Derivation"></TD><TD class="linkheader"><SPAN class="name">Derivation</SPAN></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="description">
+<span>Derivationally-related</span>
+</DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2"></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="features">
+<IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/reflexive.png" alt="reflexive" title="reflexive"><IMG class="featureimage" src="./images/pos.n.png" alt="noun" title="noun"><IMG class="featureimage" src="./images/pos.v.png" alt="verb" title="verb"><IMG class="featureimage" src="./images/pos.a.png" alt="adj" title="adjective"><IMG class="featureimage" src="./images/pos.r.png" alt="adv" title="adverb"><IMG class="featureimage" src="./images/pos.s.png" alt="satellite" title="satellite adj"></DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="examples">
+<TABLE class="exampletable">
+<TR>
+<TD class="from">abstraction</TD><TD class="rel"><IMG src="./images/derivation.png" alt="Derivation"></TD><TD class="to">abstract</TD>
+</TR>
+<TR>
+<TD class="from">object</TD><TD class="rel"><IMG src="./images/derivation.png" alt="Derivation"></TD><TD class="to">objectify</TD>
+</TR>
+<TR>
+<TD class="from">unit</TD><TD class="rel"><IMG src="./images/derivation.png" alt="Derivation"></TD><TD class="to">unify</TD>
+</TR>
+<TR>
+<TD class="from">being</TD><TD class="rel"><IMG src="./images/derivation.png" alt="Derivation"></TD><TD class="to">be</TD>
+</TR>
+<TR>
+<TD class="from">cause</TD><TD class="rel"><IMG src="./images/derivation.png" alt="Derivation"></TD><TD class="to">causal</TD>
+</TR>
+<TR>
+<TD class="from">being</TD><TD class="rel"><IMG src="./images/derivation.png" alt="Derivation"></TD><TD class="to">be</TD>
+</TR>
+<TR>
+<TD class="from">location</TD><TD class="rel"><IMG src="./images/derivation.png" alt="Derivation"></TD><TD class="to">locate</TD>
+</TR>
+</TABLE>
+</DIV>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR class="link" name="link" id="adjderived">
+<TD>
+<TABLE>
+<TR>
+<TD class="linkimage"><IMG src="./images/adjderived.png" alt="Derived from adjective"></TD><TD class="linkheader"><SPAN class="name">Derived from adjective</SPAN></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="description">
+<span>Derived from adjective</span>
+</DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2"></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="features">
+<IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos.r.png" alt="adv" title="adverb"></DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="examples">
+<TABLE class="exampletable">
+<TR>
+<TD class="from">gradually</TD><TD class="rel"><IMG src="./images/adjderived.png" alt="Derived from adjective"></TD><TD class="to">gradual</TD>
+</TR>
+<TR>
+<TD class="from">really</TD><TD class="rel"><IMG src="./images/adjderived.png" alt="Derived from adjective"></TD><TD class="to">real</TD>
+</TR>
+<TR>
+<TD class="from">truly</TD><TD class="rel"><IMG src="./images/adjderived.png" alt="Derived from adjective"></TD><TD class="to">true</TD>
+</TR>
+</TABLE>
+</DIV>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR class="link" name="link" id="participle">
+<TD>
+<TABLE>
+<TR>
+<TD class="linkimage"><IMG src="./images/participle.png" alt="Participle"></TD><TD class="linkheader"><SPAN class="name">Participle</SPAN></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="description">
+<span>Verb participle</span>
+</DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2"></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="features">
+<IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos.v.png" alt="verb" title="verb"></DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="examples">
+<TABLE class="exampletable">
+<TR>
+<TD class="from">beaten</TD><TD class="rel"><IMG src="./images/participle.png" alt="Participle"></TD><TD class="to">beat</TD>
+</TR>
+<TR>
+<TD class="from">collected</TD><TD class="rel"><IMG src="./images/participle.png" alt="Participle"></TD><TD class="to">collect</TD>
+</TR>
+<TR>
+<TD class="from">transpiring</TD><TD class="rel"><IMG src="./images/participle.png" alt="Participle"></TD><TD class="to">transpire</TD>
+</TR>
+<TR>
+<TD class="from">ungathered</TD><TD class="rel"><IMG src="./images/participle.png" alt="Participle"></TD><TD class="to">gather</TD>
+</TR>
+</TABLE>
+</DIV>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR class="link" name="link" id="alsosee">
+<TD>
+<TABLE>
+<TR>
+<TD class="linkimage"><IMG src="./images/alsosee.png" alt="Also See"></TD><TD class="linkheader"><SPAN class="name">Also See</SPAN></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="description">
+<span>See also</span>
+</DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2"></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="features">
+<IMG class="featureimage" src="./images/semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos.v.png" alt="verb" title="verb"><IMG class="featureimage" src="./images/pos.a.png" alt="adj" title="adjective"></DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="examples">
+<TABLE class="exampletable">
+<TR>
+<TD class="from">scarce</TD><TD class="rel"><IMG src="./images/alsosee.png" alt="Also See"></TD><TD class="to">stingy</TD>
+</TR>
+<TR>
+<TD class="from">scarce</TD><TD class="rel"><IMG src="./images/alsosee.png" alt="Also See"></TD><TD class="to">scrimpy</TD>
+</TR>
+<TR>
+<TD class="from">acceptable</TD><TD class="rel"><IMG src="./images/alsosee.png" alt="Also See"></TD><TD class="to">satisfactory</TD>
+</TR>
+<TR>
+<TD class="from">unacceptable</TD><TD class="rel"><IMG src="./images/alsosee.png" alt="Also See"></TD><TD class="to">satisfactory</TD>
+</TR>
+<TR>
+<TD class="from">unacceptable</TD><TD class="rel"><IMG src="./images/alsosee.png" alt="Also See"></TD><TD class="to">unwelcome</TD>
+</TR>
+<TR>
+<TD class="from">accessible</TD><TD class="rel"><IMG src="./images/alsosee.png" alt="Also See"></TD><TD class="to">convenient</TD>
+</TR>
+<TR>
+<TD class="from">breathe</TD><TD class="rel"><IMG src="./images/alsosee.png" alt="Also See"></TD><TD class="to">breathe out</TD>
+</TR>
+<TR>
+<TD class="from">breathe</TD><TD class="rel"><IMG src="./images/alsosee.png" alt="Also See"></TD><TD class="to">breathe in</TD>
+</TR>
+<TR>
+<TD class="from">cough</TD><TD class="rel"><IMG src="./images/alsosee.png" alt="Also See"></TD><TD class="to">cough up</TD>
+</TR>
+<TR>
+<TD class="from">cough</TD><TD class="rel"><IMG src="./images/alsosee.png" alt="Also See"></TD><TD class="to">cough out</TD>
+</TR>
+<TR>
+<TD class="from">act</TD><TD class="rel"><IMG src="./images/alsosee.png" alt="Also See"></TD><TD class="to">act up</TD>
+</TR>
+<TR>
+<TD class="from">sleep</TD><TD class="rel"><IMG src="./images/alsosee.png" alt="Also See"></TD><TD class="to">sleep in</TD>
+</TR>
+<TR>
+<TD class="from">sleep</TD><TD class="rel"><IMG src="./images/alsosee.png" alt="Also See"></TD><TD class="to">sleep late</TD>
+</TR>
+</TABLE>
+</DIV>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR class="link" name="link" id="verbgroup">
+<TD>
+<TABLE>
+<TR>
+<TD class="linkimage"><IMG src="./images/verb.group.png" alt="Verb Group"></TD><TD class="linkheader"><SPAN class="name">Verb Group</SPAN></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="description">
+<span>Verb group. Some similar senses of verbs have been grouped. Transitivity is used to combine groups of overlapping senses into the largest sense groups
+			possible.</span>
+</DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2"></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="features">
+<IMG class="featureimage" src="./images/semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="./images/reflexive.png" alt="reflexive" title="reflexive"><IMG class="featureimage" src="./images/pos.v.png" alt="verb" title="verb"></DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="examples">
+<TABLE class="exampletable">
+<TR>
+<TD class="from">block up</TD><TD class="rel"><IMG src="./images/verb.group.png" alt="Verb Group"></TD><TD class="to">block</TD>
+</TR>
+<TR>
+<TD class="from">block off</TD><TD class="rel"><IMG src="./images/verb.group.png" alt="Verb Group"></TD><TD class="to">block</TD>
+</TR>
+<TR>
+<TD class="from">blockade</TD><TD class="rel"><IMG src="./images/verb.group.png" alt="Verb Group"></TD><TD class="to">block</TD>
+</TR>
+<TR>
+<TD class="from">barricade</TD><TD class="rel"><IMG src="./images/verb.group.png" alt="Verb Group"></TD><TD class="to">block</TD>
+</TR>
+<TR>
+<TD class="from">bar</TD><TD class="rel"><IMG src="./images/verb.group.png" alt="Verb Group"></TD><TD class="to">block</TD>
+</TR>
+<TR>
+<TD class="from">stop</TD><TD class="rel"><IMG src="./images/verb.group.png" alt="Verb Group"></TD><TD class="to">block</TD>
+</TR>
+</TABLE>
+</DIV>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR class="link" name="link" id="domain">
+<TD>
+<TABLE>
+<TR>
+<TD class="linkimage"><IMG src="./images/domain.png" alt="Domain"></TD><TD class="linkheader"><SPAN class="name">Domain</SPAN></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="description">
+<span>Domain of synset</span>
+</DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2"></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="features">
+<IMG class="featureimage" src="./images/semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos.n.png" alt="noun" title="noun"><IMG class="featureimage" src="./images/pos.v.png" alt="verb" title="verb"><IMG class="featureimage" src="./images/pos.a.png" alt="adj" title="adjective"><IMG class="featureimage" src="./images/pos.r.png" alt="adv" title="adverb"><IMG class="featureimage" src="./images/pos.s.png" alt="satellite" title="satellite adj"></DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="examples">
+<TABLE class="exampletable">
+<TR>
+<TD class="from">mitzvah</TD><TD class="rel"><IMG src="./images/domain.category.png" alt="Domain"></TD><TD class="to">judaism</TD><TD class="gloss">domain category</TD>
+</TR>
+<TR>
+<TD class="from">cell</TD><TD class="rel"><IMG src="./images/domain.category.png" alt="Domain"></TD><TD class="to">biology</TD><TD class="gloss">domain category</TD>
+</TR>
+<TR>
+<TD class="from">plant</TD><TD class="rel"><IMG src="./images/domain.category.png" alt="Domain"></TD><TD class="to">botany</TD><TD class="gloss">domain category</TD>
+</TR>
+<TR>
+<TD class="from">zebra crossing</TD><TD class="rel"><IMG src="./images/domain.region.png" alt="Domain"></TD><TD class="to">Britain</TD><TD class="gloss">domain region</TD>
+</TR>
+<TR>
+<TD class="from">tramcar</TD><TD class="rel"><IMG src="./images/domain.region.png" alt="Domain"></TD><TD class="to">Britain</TD><TD class="gloss">domain region</TD>
+</TR>
+<TR>
+<TD class="from">centre</TD><TD class="rel"><IMG src="./images/domain.region.png" alt="Domain"></TD><TD class="to">Britain</TD><TD class="gloss">domain region</TD>
+</TR>
+<TR>
+<TD class="from">walkabout</TD><TD class="rel"><IMG src="./images/domain.region.png" alt="Domain"></TD><TD class="to">Australia</TD><TD class="gloss">domain region</TD>
+</TR>
+<TR>
+<TD class="from">trek</TD><TD class="rel"><IMG src="./images/domain.region.png" alt="Domain"></TD><TD class="to">South Africa</TD><TD class="gloss">domain region</TD>
+</TR>
+<TR>
+<TD class="from">curling</TD><TD class="rel"><IMG src="./images/domain.region.png" alt="Domain"></TD><TD class="to">Scotland</TD><TD class="gloss">domain region</TD>
+</TR>
+<TR>
+<TD class="from">snafu</TD><TD class="rel"><IMG src="./images/domain.usage.png" alt="Domain"></TD><TD class="to">acronym</TD><TD class="gloss">domain usage</TD>
+</TR>
+<TR>
+<TD class="from">neutralization</TD><TD class="rel"><IMG src="./images/domain.usage.png" alt="Domain"></TD><TD class="to">euphemism</TD><TD class="gloss">domain usage</TD>
+</TR>
+<TR>
+<TD class="from">scrabble</TD><TD class="rel"><IMG src="./images/domain.usage.png" alt="Domain"></TD><TD class="to">trademark</TD><TD class="gloss">domain usage</TD>
+</TR>
+</TABLE>
+</DIV>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+<TR class="link" name="link" id="member">
+<TD>
+<TABLE>
+<TR>
+<TD class="linkimage"><IMG src="./images/domain.member.png" alt="Domain Member"></TD><TD class="linkheader"><SPAN class="name">Domain Member</SPAN></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="description">
+<span>Domain of synset</span>
+</DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2"></TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="features">
+<IMG class="featureimage" src="./images/semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos.n.png" alt="noun" title="noun"><IMG class="featureimage" src="./images/pos.v.png" alt="verb" title="verb"><IMG class="featureimage" src="./images/pos.a.png" alt="adj" title="adjective"><IMG class="featureimage" src="./images/pos.r.png" alt="adv" title="adverb"><IMG class="featureimage" src="./images/pos.s.png" alt="satellite" title="satellite adj"></DIV>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+<DIV class="examples">
+<TABLE class="exampletable">
+<TR>
+<TD class="from">cooking</TD><TD class="rel"><IMG src="./images/domain.member.category.png" alt="Domain Member"></TD><TD class="to">marinate</TD><TD class="gloss">domain member category</TD>
+</TR>
+<TR>
+<TD class="from">cooking</TD><TD class="rel"><IMG src="./images/domain.member.category.png" alt="Domain Member"></TD><TD class="to">reduce</TD><TD class="gloss">domain member category</TD>
+</TR>
+<TR>
+<TD class="from">cooking</TD><TD class="rel"><IMG src="./images/domain.member.category.png" alt="Domain Member"></TD><TD class="to">bake</TD><TD class="gloss">domain member category</TD>
+</TR>
+<TR>
+<TD class="from">cooking</TD><TD class="rel"><IMG src="./images/domain.member.category.png" alt="Domain Member"></TD><TD class="to">souse</TD><TD class="gloss">domain member category</TD>
+</TR>
+<TR>
+<TD class="from">music</TD><TD class="rel"><IMG src="./images/domain.member.category.png" alt="Domain Member"></TD><TD class="to">sing</TD><TD class="gloss">domain member category</TD>
+</TR>
+<TR>
+<TD class="from">music</TD><TD class="rel"><IMG src="./images/domain.member.category.png" alt="Domain Member"></TD><TD class="to">psalm</TD><TD class="gloss">domain member category</TD>
+</TR>
+<TR>
+<TD class="from">music</TD><TD class="rel"><IMG src="./images/domain.member.category.png" alt="Domain Member"></TD><TD class="to">hymn</TD><TD class="gloss">domain member category</TD>
+</TR>
+<TR>
+<TD class="from">music</TD><TD class="rel"><IMG src="./images/domain.member.category.png" alt="Domain Member"></TD><TD class="to">choir</TD><TD class="gloss">domain member category</TD>
+</TR>
+<TR>
+<TD class="from">chili con carne</TD><TD class="rel"><IMG src="./images/domain.member.region.png" alt="Domain Member"></TD><TD class="to">Mexico</TD><TD class="gloss">domain member region</TD>
+</TR>
+<TR>
+<TD class="from">taco</TD><TD class="rel"><IMG src="./images/domain.member.region.png" alt="Domain Member"></TD><TD class="to">Mexico</TD><TD class="gloss">domain member region</TD>
+</TR>
+<TR>
+<TD class="from">burrito</TD><TD class="rel"><IMG src="./images/domain.member.region.png" alt="Domain Member"></TD><TD class="to">Mexico</TD><TD class="gloss">domain member region</TD>
+</TR>
+<TR>
+<TD class="from">portmanteau word</TD><TD class="rel"><IMG src="./images/domain.member.usage.png" alt="Domain Member"></TD><TD class="to">motel</TD><TD class="gloss">domain member usage</TD>
+</TR>
+<TR>
+<TD class="from">plural</TD><TD class="rel"><IMG src="./images/domain.member.usage.png" alt="Domain Member"></TD><TD class="to">high jinx</TD><TD class="gloss">domain member usage</TD>
+</TR>
+<TR>
+<TD class="from">idiom</TD><TD class="rel"><IMG src="./images/domain.member.usage.png" alt="Domain Member"></TD><TD class="to">like clockwork</TD><TD class="gloss">domain member usage</TD>
+</TR>
+</TABLE>
+</DIV>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+</TD>
+</TR>
+</TABLE>
+</BODY>
+</HTML>

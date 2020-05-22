@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+	<!-- mode spinner
+	SELECTORS
+	XSELECTORS
+	-->
+	<string-array name="selectors_names" tools:ignore="InconsistentArrays">
+		<item>senses</item>
+		<item>grouped by source</item>
+	</string-array>
+	<integer-array name="selectors_icons" tools:ignore="InconsistentArrays">
+		<item>@drawable/ic_selector</item>
+		<item>@drawable/ic_xselector</item>
+	</integer-array>
+
+	<!-- searchtext spinner
+	WORDS
+	DEFINITIONS
+	SAMPLES
+	-->
+	<string-array name="searchtext_modes" tools:ignore="InconsistentArrays">
+		<item>WordNet definitions</item>
+		<item>WordNet samples</item>
+		<item>WordNet words</item>
+	</string-array>
+	<integer-array name="searchtext_icons" tools:ignore="InconsistentArrays">
+		<item>@drawable/ic_search_wndefinition</item>
+		<item>@drawable/ic_search_wnsample</item>
+		<item>@drawable/ic_search_wnword</item>
+	</integer-array>
+
+</resources>
