@@ -39,25 +39,7 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 
 	// components
 
-	private ImageView imagePm;
-
 	private ImageView imageTextSearchWn;
-
-	private ImageView imageTextSearchVn;
-
-	private ImageView imageTextSearchPb;
-
-	private ImageView imageTextSearchFn;
-
-	private ImageButton buttonPm;
-
-	private ImageButton buttonTextSearchWn;
-
-	private ImageButton buttonTextSearchVn;
-
-	private ImageButton buttonTextSearchPb;
-
-	private ImageButton buttonTextSearchFn;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
@@ -77,52 +59,12 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 		this.imageTextSearchWn = view.findViewById(R.id.status_searchtext_wn);
 
 		// buttons
-		this.buttonTextSearchWn = view.findViewById(R.id.searchtextWnButton);
 		final ImageButton infoDatabaseButton = view.findViewById(R.id.info_database);
 
 		// click listeners
 		this.buttonDb.setOnClickListener(v -> download());
 		this.buttonIndexes.setOnClickListener(v -> index());
 		this.infoDatabaseButton.setOnClickListener(v -> info());
-		this.buttonPm.setOnClickListener(v -> {
-
-			int index = getResources().getInteger(R.integer.sql_statement_do_predicatematrix_position);
-			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
-			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
-		});
-
-		this.buttonTextSearchWn.setOnClickListener(v -> {
-
-			int index = getResources().getInteger(R.integer.sql_statement_do_ts_wn_position);
-			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
-			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
-		});
-
-		this.buttonTextSearchVn.setOnClickListener(v -> {
-
-			int index = getResources().getInteger(R.integer.sql_statement_do_ts_vn_position);
-			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
-			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
-		});
-
-		this.buttonTextSearchPb.setOnClickListener(v -> {
-
-			int index = getResources().getInteger(R.integer.sql_statement_do_ts_pb_position);
-			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
-			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
-		});
-
-		this.buttonTextSearchFn.setOnClickListener(v -> {
-
-			int index = getResources().getInteger(R.integer.sql_statement_do_ts_fn_position);
-			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
-			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
-		});
 
 		infoDatabaseButton.setOnClickListener(v -> {
 
@@ -193,35 +135,11 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 				ColorUtils.tint(ColorUtils.getColor(context, R.color.tertiaryForeColor), okDrawable);
 				final Drawable failDrawable = ColorUtils.getDrawable(context, R.drawable.ic_fail);
 
-				this.imageTextSearchFn.setImageDrawable(existsTsFn ? okDrawable : failDrawable);
-				this.imagePm.setImageDrawable(existsPm ? okDrawable : failDrawable);
 				this.imageTextSearchWn.setImageDrawable(existsTsWn ? okDrawable : failDrawable);
-				this.imageTextSearchVn.setImageDrawable(existsTsVn ? okDrawable : failDrawable);
-				this.imageTextSearchPb.setImageDrawable(existsTsPb ? okDrawable : failDrawable);
-				this.imageTextSearchFn.setImageDrawable(existsTsFn ? okDrawable : failDrawable);
-
-				this.buttonTextSearchFn.setVisibility(existsTsFn ? View.GONE : View.VISIBLE);
-				this.buttonPm.setVisibility(existsPm ? View.GONE : View.VISIBLE);
-				this.buttonTextSearchWn.setVisibility(existsTsWn ? View.GONE : View.VISIBLE);
-				this.buttonTextSearchVn.setVisibility(existsTsVn ? View.GONE : View.VISIBLE);
-				this.buttonTextSearchPb.setVisibility(existsTsPb ? View.GONE : View.VISIBLE);
-				this.buttonTextSearchFn.setVisibility(existsTsFn ? View.GONE : View.VISIBLE);
 			}
 			else
 			{
-				this.buttonTextSearchFn.setVisibility(View.GONE);
-				this.buttonPm.setVisibility(View.GONE);
-				this.buttonTextSearchWn.setVisibility(View.GONE);
-				this.buttonTextSearchVn.setVisibility(View.GONE);
-				this.buttonTextSearchPb.setVisibility(View.GONE);
-				this.buttonTextSearchFn.setVisibility(View.GONE);
-
-				this.imageTextSearchFn.setImageResource(R.drawable.ic_unknown);
-				this.imagePm.setImageResource(R.drawable.ic_unknown);
 				this.imageTextSearchWn.setImageResource(R.drawable.ic_unknown);
-				this.imageTextSearchVn.setImageResource(R.drawable.ic_unknown);
-				this.imageTextSearchPb.setImageResource(R.drawable.ic_unknown);
-				this.imageTextSearchFn.setImageResource(R.drawable.ic_unknown);
 			}
 		}
 	}
