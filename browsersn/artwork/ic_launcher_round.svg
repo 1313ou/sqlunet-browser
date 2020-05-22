@@ -13,7 +13,7 @@
    height="341.33334"
    id="svg2"
    version="1.1"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
    sodipodi:docname="ic_launcher_round.svg"
    inkscape:export-filename="/home/bbou/Desktop/wordnet.png"
    inkscape:export-xdpi="57.252365"
@@ -26,16 +26,16 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.2596236"
-     inkscape:cx="94.287816"
+     inkscape:cx="-1450.2559"
      inkscape:cy="160.09041"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1630"
-     inkscape:window-height="1002"
-     inkscape:window-x="135"
-     inkscape:window-y="112"
-     inkscape:window-maximized="0"
+     inkscape:window-width="1864"
+     inkscape:window-height="1108"
+     inkscape:window-x="56"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
@@ -46,31 +46,31 @@
   <defs
      id="defs">
     <filter
-       id="filter4016"
+       id="filter4016-1"
        inkscape:menu-tooltip="Basic diffuse bevel to use for building textures"
        inkscape:menu="ABCs"
        inkscape:label="Diffuse light"
        style="color-interpolation-filters:sRGB">
       <feGaussianBlur
-         id="feGaussianBlur4018"
+         id="feGaussianBlur4018-7"
          result="result0"
          in="SourceGraphic"
          stdDeviation="5" />
       <feDiffuseLighting
          lighting-color="rgb(254,254,254)"
-         id="feDiffuseLighting4020"
+         id="feDiffuseLighting4020-5"
          result="result5"
          surfaceScale="10"
          diffuseConstant="1">
         <feDistantLight
-           id="feDistantLight4022"
+           id="feDistantLight4022-1"
            azimuth="235"
            elevation="13" />
       </feDiffuseLighting>
       <feComposite
          in2="SourceGraphic"
          k4="0"
-         id="feComposite4024"
+         id="feComposite4024-7"
          k3="0.6"
          k2="0"
          operator="arithmetic"
@@ -97,61 +97,61 @@
      inkscape:groupmode="layer"
      inkscape:label="Layer">
     <ellipse
-       style="opacity:0.98999999;fill:#e3abe6;fill-opacity:0.73160172;fill-rule:evenodd;stroke:none;stroke-width:4.98529387;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="opacity:0.98999999;fill:#f3bfad;fill-opacity:0.73160173;fill-rule:evenodd;stroke:none;stroke-width:4.98529387;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="path8566"
-       cx="368.14114"
-       cy="93.908096"
+       cx="368.36874"
+       cy="93.921211"
        rx="163.21706"
        ry="162.97632" />
     <g
-       id="layer1-0"
+       id="layer1-1"
        inkscape:label="Layer"
-       transform="matrix(0.92875643,0,0,0.92875643,22.543311,6.3659335)">
+       transform="translate(-3.9844615,-0.35030594)">
       <g
-         id="g10537"
+         id="g10537-7"
          transform="translate(326.2655,-443.91214)"
-         style="stroke:#00a7a7;filter:url(#filter4016)">
+         style="stroke:#ad8b9e;filter:url(#filter4016-1)">
         <ellipse
            ry="143.60815"
            rx="143.52534"
            cy="538.18365"
            cx="46.087704"
-           style="fill:none;stroke:#00a7a7;stroke-width:16.16086197;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           id="ellipse10515" />
+           style="fill:none;stroke:#ad8b9e;stroke-width:16.16086197;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="ellipse10515-1" />
         <path
            sodipodi:nodetypes="cccccccccccc"
            inkscape:connector-curvature="0"
-           id="path10517"
+           id="path10517-1"
            d="m -52.149993,538.87733 c 64.797616,0.28502 129.595231,0.57003 194.392863,0.85505 M 44.682378,641.30326 c 0.243947,-68.34766 0.487894,-136.6953 0.731851,-205.04295 m -59.895339,22.75193 c 31.826687,45.91009 31.589525,112.33723 -0.563825,157.96677 m 119.626385,0.52617 C 72.754756,571.5951 72.991917,505.16796 105.14527,459.53842 M -51.851943,538.54353 C -4.5962499,477.34274 95.800594,478.10256 142.6293,539.72808 m -0.31441,0.22216 C 95.059176,601.15102 -5.0240479,600.39257 -51.852743,538.76706"
-           style="fill:none;stroke:#00a7a7;stroke-width:12.72536182;stroke-opacity:1" />
+           style="fill:none;stroke:#ad8b9e;stroke-width:12.72536182;stroke-opacity:1" />
         <ellipse
            ry="17.920031"
            rx="17.870319"
            cy="438.42767"
            cx="-466.94287"
-           style="fill:#00a7a7;fill-opacity:1;stroke:#00a7a7;stroke-width:0.07928234"
-           id="ellipse10519"
+           style="fill:#ad8b9e;fill-opacity:1;stroke:#ad8b9e;stroke-width:0.07928234"
+           id="ellipse10519-1"
            transform="matrix(-0.72081244,-0.69313016,-0.66514612,0.74671323,0,0)" />
         <ellipse
            transform="matrix(-0.72081244,-0.69313016,-0.66514612,0.74671323,0,0)"
-           id="ellipse10521"
-           style="fill:#00a7a7;fill-opacity:1;stroke:#00a7a7;stroke-width:0.07928234"
+           id="ellipse10521-7"
+           style="fill:#ad8b9e;fill-opacity:1;stroke:#ad8b9e;stroke-width:0.07928234"
            cx="-478.92422"
            cy="278.43362"
            rx="17.870319"
            ry="17.920031" />
         <ellipse
            transform="matrix(-0.72081244,-0.69313016,-0.66514612,0.74671323,0,0)"
-           id="ellipse10523"
-           style="fill:#00a7a7;fill-opacity:1;stroke:#00a7a7;stroke-width:0.07928234"
+           id="ellipse10523-0"
+           style="fill:#ad8b9e;fill-opacity:1;stroke:#ad8b9e;stroke-width:0.07928234"
            cx="-306.6351"
            cy="436.62354"
            rx="17.870319"
            ry="17.920031" />
         <ellipse
            transform="matrix(-0.72081244,-0.69313016,-0.66514612,0.74671323,0,0)"
-           id="ellipse10525"
-           style="fill:#00a7a7;fill-opacity:1;stroke:#00a7a7;stroke-width:0.07928234"
+           id="ellipse10525-4"
+           style="fill:#ad8b9e;fill-opacity:1;stroke:#ad8b9e;stroke-width:0.07928234"
            cx="-399.74319"
            cy="466.78085"
            rx="17.870319"
@@ -161,13 +161,13 @@
            rx="17.870319"
            cy="340.65161"
            cx="-281.89261"
-           style="fill:#00a7a7;fill-opacity:1;stroke:#00a7a7;stroke-width:0.07928234"
-           id="ellipse10527"
+           style="fill:#ad8b9e;fill-opacity:1;stroke:#ad8b9e;stroke-width:0.07928234"
+           id="ellipse10527-0"
            transform="matrix(-0.72081244,-0.69313016,-0.66514612,0.74671323,0,0)" />
         <ellipse
            transform="matrix(-0.72081244,-0.69313016,-0.66514612,0.74671323,0,0)"
-           id="ellipse10529"
-           style="fill:#00a7a7;fill-opacity:1;stroke:#00a7a7;stroke-width:0.07928234"
+           id="ellipse10529-8"
+           style="fill:#ad8b9e;fill-opacity:1;stroke:#ad8b9e;stroke-width:0.07928234"
            cx="-385.00516"
            cy="247.76277"
            rx="17.870319"
@@ -177,21 +177,21 @@
            rx="17.870319"
            cy="375.022"
            cx="-500.97342"
-           style="fill:#4c0000;fill-opacity:1;stroke:#00a7a7;stroke-width:0.07928234"
-           id="ellipse10531"
+           style="fill:#4c0000;fill-opacity:1;stroke:#ad8b9e;stroke-width:0.07928234"
+           id="ellipse10531-5"
            transform="matrix(-0.72081244,-0.69313016,-0.66514612,0.74671323,0,0)" />
         <ellipse
            transform="matrix(-0.72081244,-0.69313016,-0.66514612,0.74671323,0,0)"
-           id="ellipse10533"
-           style="fill:#00a7a7;fill-opacity:1;stroke:#00a7a7;stroke-width:0.07928234"
+           id="ellipse10533-1"
+           style="fill:#ad8b9e;fill-opacity:1;stroke:#ad8b9e;stroke-width:0.07928234"
            cx="-500.97342"
            cy="375.022"
            rx="17.870319"
            ry="17.920031" />
         <ellipse
            transform="matrix(-0.72081244,-0.69313016,-0.66514612,0.74671323,0,0)"
-           id="ellipse10535"
-           style="fill:#00a7a7;fill-opacity:1;stroke:#00a7a7;stroke-width:0.07928234"
+           id="ellipse10535-6"
+           style="fill:#ad8b9e;fill-opacity:1;stroke:#ad8b9e;stroke-width:0.07928234"
            cx="-317.02222"
            cy="275.43076"
            rx="17.870319"
@@ -214,6 +214,12 @@
   <style
      type="text/css"
      id="style8-6">
+      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
+      .Label { font-size:24; font-family:Arial; fill:black; }
+   </style>
+  <style
+     type="text/css"
+     id="style8-62">
       .Border { fill: lightGray; stroke: black; stroke-width: 4; }
       .Label { font-size:24; font-family:Arial; fill:black; }
    </style>
