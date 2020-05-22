@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2020. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+	<!-- sites -->
+	<string-array name="pref_download_site_labels" tools:ignore="InconsistentArrays">
+		<item>Default</item>
+		<item>WordNet 3.1 core</item>
+		<item>English WordNet 2020 core</item>
+		<item>Default (old repo)</item>
+	</string-array>
+
+</resources>

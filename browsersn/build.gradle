@@ -1,0 +1,92 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
+apply plugin: 'com.android.application'
+apply plugin: 'androidx.navigation.safeargs'
+
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+android {
+
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        applicationId "org.sqlunet.browser.sn"
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        androidTest {
+            assets.srcDirs = ['src/main/assets', 'src/debug/assets/']
+        }
+    }
+
+    signingConfigs {
+        sqlunet {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.sqlunet
+            versionNameSuffix 'signed'
+        }
+        debug {
+            signingConfig signingConfigs.sqlunet
+        }
+    }
+}
+
+dependencies {
+    implementation project(':common')
+    implementation project(':expandableListFragment')
+    implementation project(':preference')
+    implementation project(':download')
+    implementation project(':deploy')
+    implementation project(':others')
+    implementation project(':donate')
+    implementation project(':rate')
+    implementation project(':xNet')
+    implementation project(':wordNet')
+    //implementation project(':syntagNet')
+    implementation project(':bNC')
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    implementation "androidx.navigation:navigation-fragment:$navVersion"
+    implementation "androidx.navigation:navigation-ui:$navVersion"
+    implementation 'androidx.legacy:legacy-support-v13:1.0.0'
+    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0'
+
+    // local unit tests (JUnit 4 framework)
+    testImplementation 'junit:junit:4.13'
+
+    // instrumented tests
+    androidTestImplementation project(':test')
+    androidTestImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.annotation:annotation:1.1.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2020. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+	<string name="pref_default_download_dbfile" translatable="false">sqlunet.db</string>
+	<!--<string name="pref_default_download_dbfile_zipped" translatable="false">sqlunet.db.zip</string>-->
+	<string name="pref_default_download_sqlfile" translatable="false">sqlunet.sql.zip</string>
+	<string name="pref_default_entry_import" translatable="false">sqlunet.sql</string>
+	<string name="pref_default_entry_index" translatable="false">sqlunet-index.sql</string>
+
+	<!-- sites -->
+	<string-array name="pref_download_site_urls" translatable="false" tools:ignore="InconsistentArrays">
+		<item>@string/pref_default_download_site_url</item>
+		<item>https://sourceforge.net/projects/sqlunet/files/6.0.0/semantikos/31</item>
+		<item>https://sourceforge.net/projects/sqlunet/files/6.0.0/semantikos/XX</item>
+		<item>https://sourceforge.net/projects/sqlunet/files/current/android</item>
+	</string-array>
+
+</resources>

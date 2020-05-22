@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+	<!-- app -->
+	<string name="app_name">Semantikos-SyntagNet</string>
+	<string name="app_subname"/>
+
+	<!-- ACTIONS -->
+
+	<!-- setup -->
+	<string name="action_setup_searchtext_wn" tools:keep="@string/action_setup_searchtext_wn">Setup text search for WordNet</string>
+
+	<!-- TITLES -->
+
+	<!-- labels -->
+	<string name="title_activity_selector">Senses</string>
+	<string name="title_activity_xselector">Sources</string>
+	<string name="title_activity_browse2">Data</string>
+	<string name="title_activity_table">Table</string>
+
+	<!-- _status -->
+	<string name="status_searchtext">Text Search\non WordNet</string>
+
+	<!-- database info -->
+	<string name="action_tables_and_indices">Tables and Indices</string>
+	<string name="action_table_lexdomains">Lex Domains</string>
+	<string name="action_table_linktypes">Link types</string>
+	<string name="action_table_postypes">POS types</string>
+	<string name="action_table_adjpositiontypes">Adjective Position types</string>
+
+	<!-- misc -->
+	<string name="hint_search_predicatematrix">Search Predicate Matrix</string>
+	<string name="hint_splash_predicatematrix">Exploring Predicate Matrix</string>
+
+	<!-- databases -->
+	<string name="source">Source database</string>
+	<string name="sqlunet">SqlUNet</string>
+
+</resources>

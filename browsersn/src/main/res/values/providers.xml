@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+	<string name="manager_authority" translatable="false">org.sqlunet.manager.sn.provider</string>
+	<string name="xsqlunet_authority" translatable="false">org.sqlunet.xsqlunet.sn.provider</string>
+	<string name="wordnet_authority" translatable="false">org.sqlunet.wordnet.sn.provider</string>
+	<string name="syntagnet_authority" translatable="false">org.sqlunet.syntagnet.sn.provider</string>
+	<string name="bnc_authority" translatable="false">org.sqlunet.bnc.sn.provider</string>
+
+	<string-array name="provider_authorities" tools:ignore="InconsistentArrays">
+		<item>@string/manager_authority</item>
+		<item>@string/xsqlunet_authority</item>
+		<item>@string/wordnet_authority</item>
+		<item>@string/syntagnet_authority</item>
+		<item>@string/bnc_authority</item>
+	</string-array>
+
+</resources>
