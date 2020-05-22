@@ -4,11 +4,11 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="pref_default_download_dbfile" translatable="false">sqlunet.db</string>
-	<!--<string name="pref_default_download_dbfile_zipped" translatable="false">sqlunet.db.zip</string>-->
-	<string name="pref_default_download_sqlfile" translatable="false">sqlunet.sql.zip</string>
-	<string name="pref_default_entry_import" translatable="false">sqlunet.sql</string>
-	<string name="pref_default_entry_index" translatable="false">sqlunet-index.sql</string>
+	<string name="pref_default_download_dbfile" translatable="false">sqlunet-sn.db</string>
+	<!--<string name="pref_default_download_dbfile_zipped" translatable="false">sqlunet-sn.db.zip</string>-->
+	<string name="pref_default_download_sqlfile" translatable="false">sqlunet-sn.sql.zip</string>
+	<string name="pref_default_entry_import" translatable="false">sqlunet-sn.sql</string>
+	<string name="pref_default_entry_index" translatable="false">sqlunet-sn-index.sql</string>
 
 	<!-- sites -->
 	<string-array name="pref_download_site_urls" translatable="false" tools:ignore="InconsistentArrays">
