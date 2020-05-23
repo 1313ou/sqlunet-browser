@@ -53,11 +53,7 @@ public class Status extends org.sqlunet.browser.config.Status
 			final Resources res = context.getResources();
 			final String[] requiredTables = res.getStringArray(R.array.required_tables);
 			final String[] requiredIndexes = res.getStringArray(R.array.required_indexes);
-			final String[] requiredTextsPm = res.getStringArray(R.array.required_pm);
 			final String[] requiredTextsWn = res.getStringArray(R.array.required_texts_wn);
-			final String[] requiredTextsVn = res.getStringArray(R.array.required_texts_vn);
-			final String[] requiredTextsPb = res.getStringArray(R.array.required_texts_pb);
-			final String[] requiredTextsFn = res.getStringArray(R.array.required_texts_fn);
 
 			List<String> existingTablesAndIndexes;
 			try
@@ -72,11 +68,7 @@ public class Status extends org.sqlunet.browser.config.Status
 
 			boolean existsTables = contains(existingTablesAndIndexes, requiredTables);
 			boolean existsIdx = contains(existingTablesAndIndexes, requiredIndexes);
-			boolean existsPm = contains(existingTablesAndIndexes, requiredTextsPm);
 			boolean existsTsWn = contains(existingTablesAndIndexes, requiredTextsWn);
-			boolean existsTsVn = contains(existingTablesAndIndexes, requiredTextsVn);
-			boolean existsTsPb = contains(existingTablesAndIndexes, requiredTextsPb);
-			boolean existsTsFn = contains(existingTablesAndIndexes, requiredTextsFn);
 
 			if (existsTables)
 			{
@@ -86,25 +78,9 @@ public class Status extends org.sqlunet.browser.config.Status
 			{
 				status |= EXISTS_INDEXES;
 			}
-			if (existsPm)
-			{
-				status |= EXISTS_PREDICATEMATRIX;
-			}
 			if (existsTsWn)
 			{
 				status |= EXISTS_TS_WN;
-			}
-			if (existsTsVn)
-			{
-				status |= EXISTS_TS_VN;
-			}
-			if (existsTsPb)
-			{
-				status |= EXISTS_TS_PB;
-			}
-			if (existsTsFn)
-			{
-				status |= EXISTS_TS_FN;
 			}
 			return status;
 		}
@@ -120,7 +96,7 @@ public class Status extends org.sqlunet.browser.config.Status
 	static public boolean canRun(@NonNull final Context context)
 	{
 		final int status = status(context);
-		return (status & (EXISTS | EXISTS_TABLES | EXISTS_INDEXES | EXISTS_PREDICATEMATRIX)) == (EXISTS | EXISTS_TABLES | EXISTS_INDEXES | EXISTS_PREDICATEMATRIX);
+		return (status & (EXISTS | EXISTS_TABLES | EXISTS_INDEXES)) == (EXISTS | EXISTS_TABLES | EXISTS_INDEXES);
 	}
 
 	@NonNull
@@ -147,18 +123,6 @@ public class Status extends org.sqlunet.browser.config.Status
 		if ((status & EXISTS_TS_WN) != 0)
 		{
 			sb.append(" tswn");
-		}
-		if ((status & EXISTS_TS_VN) != 0)
-		{
-			sb.append(" tsvn");
-		}
-		if ((status & EXISTS_TS_PB) != 0)
-		{
-			sb.append(" tspb");
-		}
-		if ((status & EXISTS_TS_FN) != 0)
-		{
-			sb.append(" tsfn");
 		}
 		return sb;
 	}
