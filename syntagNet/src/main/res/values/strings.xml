@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+	<string name="syntagnet">SyntagNet</string>
+	<string name="syntagnet_blurb" tools:keep="@string/syntagnet_blurb">&lt;b&gt;SyntagNet&lt;/b&gt;\nexplores collocations</string>
+
+	<string name="title_activity_pbroleset">SyntagNet Collocations</string>
+
+</resources>

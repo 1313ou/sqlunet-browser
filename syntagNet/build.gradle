@@ -1,0 +1,37 @@
+/*
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ */
+
+apply plugin: 'com.android.library'
+
+android {
+
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    implementation project(':treeView')
+    implementation project(':xNet')
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0'
+}
