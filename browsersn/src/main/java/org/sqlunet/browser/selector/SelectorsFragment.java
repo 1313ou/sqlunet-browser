@@ -22,9 +22,9 @@ import android.widget.TextView;
 import org.sqlunet.browser.R;
 import org.sqlunet.browser.SqlunetViewModel;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.provider.XSqlUNetContract;
-import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_PbWords_VnWords;
-import org.sqlunet.provider.XSqlUNetProvider;
+import org.sqlunet.wordnet.provider.WordNetContract;
+import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains;
+import org.sqlunet.wordnet.provider.WordNetProvider;
 
 import java.util.Locale;
 
@@ -121,36 +121,30 @@ public class SelectorsFragment extends ListFragment
 		// list adapter, with no data
 		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(requireContext(), R.layout.item_selector, null, //
 				new String[]{ //
-						Words_FnWords_PbWords_VnWords.POS, //
-						Words_FnWords_PbWords_VnWords.SENSENUM, //
-						Words_FnWords_PbWords_VnWords.LEXDOMAIN, //
-						Words_FnWords_PbWords_VnWords.DEFINITION, //
-						Words_FnWords_PbWords_VnWords.CASED, //
-						Words_FnWords_PbWords_VnWords.TAGCOUNT, //
-						Words_FnWords_PbWords_VnWords.LEXID, //
-						Words_FnWords_PbWords_VnWords.SENSEKEY, //
-						Words_FnWords_PbWords_VnWords.WORDID, //
-						Words_FnWords_PbWords_VnWords.SYNSETID, //
-						Words_FnWords_PbWords_VnWords.SENSEID, //
-						Words_FnWords_PbWords_VnWords.VNWORDID, //
-						Words_FnWords_PbWords_VnWords.PBWORDID, //
-						Words_FnWords_PbWords_VnWords.FNWORDID, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXDOMAIN, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.DEFINITION, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CASED, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSEKEY, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXID, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.TAGCOUNT, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID, //
+						Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSEID, //
 				}, //
 				new int[]{ //
 						R.id.pos, //
-						R.id.sensenum, //
 						R.id.lexdomain, //
 						R.id.definition, //
 						R.id.cased, //
-						R.id.tagcount, //
-						R.id.lexid, //
+						R.id.sensenum, //
 						R.id.sensekey, //
+						R.id.lexid, //
+						R.id.tagcount, //
 						R.id.wordid, //
 						R.id.synsetid, //
 						R.id.senseid, //
-						R.id.vnwordid, //
-						R.id.pbwordid, //
-						R.id.fnwordid, //
 				}, 0);
 
 		adapter.setViewBinder((view, cursor, columnIndex) -> {
@@ -293,29 +287,26 @@ public class SelectorsFragment extends ListFragment
 	 */
 	private void load()
 	{
-		// run the contents
-		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(Words_FnWords_PbWords_VnWords.CONTENT_URI_TABLE));
+		// load the contents
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CONTENT_URI_TABLE));
 		final String[] projection = { //
-				Words_FnWords_PbWords_VnWords.SYNSETID + " AS _id", //
-				Words_FnWords_PbWords_VnWords.WORDID, //
-				Words_FnWords_PbWords_VnWords.SENSEID, //
-				Words_FnWords_PbWords_VnWords.SENSENUM, //
-				Words_FnWords_PbWords_VnWords.SENSEKEY, //
-				Words_FnWords_PbWords_VnWords.LEXID, //
-				Words_FnWords_PbWords_VnWords.TAGCOUNT, //
-				Words_FnWords_PbWords_VnWords.SYNSETID, //
-				Words_FnWords_PbWords_VnWords.DEFINITION, //
-				XSqlUNetContract.SYNSET + '.' + Words_FnWords_PbWords_VnWords.POS, //
-				Words_FnWords_PbWords_VnWords.POSNAME, //
-				Words_FnWords_PbWords_VnWords.LEXDOMAIN, //
-				Words_FnWords_PbWords_VnWords.CASED, //
-				Words_FnWords_PbWords_VnWords.FNWORDID, //
-				Words_FnWords_PbWords_VnWords.VNWORDID, //
-				Words_FnWords_PbWords_VnWords.PBWORDID, //
+				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID + " AS _id", //
+				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID, //
+				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSEID, //
+				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM, //
+				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSEKEY, //
+				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXID, //
+				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.TAGCOUNT, //
+				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID, //
+				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.DEFINITION, //
+				WordNetContract.SYNSET + '.' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS, //
+				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POSNAME, //
+				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXDOMAIN, //
+				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CASED, //
 		};
-		final String selection = XSqlUNetContract.WORD + '.' + Words_FnWords_PbWords_VnWords.LEMMA + " = ?"; ////
+		final String selection = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + " = ?"; ////
 		final String[] selectionArgs = {SelectorsFragment.this.word};
-		final String sortOrder = XSqlUNetContract.SYNSET + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
+		final String sortOrder = WordNetContract.SYNSET + '.' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
 		this.model.loadData(uri, projection, selection, selectionArgs, sortOrder, this::selectorsPostProcess);
 	}
 
@@ -324,7 +315,7 @@ public class SelectorsFragment extends ListFragment
 		// store source
 		if (cursor.moveToFirst())
 		{
-			final int idWordId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.WORDID);
+			final int idWordId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID);
 			SelectorsFragment.this.wordId = cursor.getLong(idWordId);
 		}
 	}
@@ -363,9 +354,9 @@ public class SelectorsFragment extends ListFragment
 			if (cursor.moveToPosition(position))
 			{
 				// column indexes
-				final int idSynsetId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.SYNSETID);
-				final int idPos = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.POSNAME);
-				final int idCased = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.CASED);
+				final int idSynsetId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID);
+				final int idPos = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POSNAME);
+				final int idCased = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CASED);
 
 				// retrieve
 				final long synsetId = cursor.isNull(idSynsetId) ? 0 : cursor.getLong(idSynsetId);
