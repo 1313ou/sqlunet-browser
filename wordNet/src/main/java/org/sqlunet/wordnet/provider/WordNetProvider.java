@@ -453,50 +453,50 @@ public class WordNetProvider extends BaseProvider
 			// J O I N S
 
 			case WORDS_SENSES_SYNSETS:
-				table = "words " + //
-						"LEFT JOIN senses USING (wordid) " + //
-						"LEFT JOIN synsets USING (synsetid)";
+				table = "words AS " + WordNetContract.WORD + " " + //
+						"LEFT JOIN senses AS " + WordNetContract.SENSE + " USING (wordid) " + //
+						"LEFT JOIN synsets AS " + WordNetContract.SYNSET + " USING (synsetid)";
 				break;
 
 			case WORDS_SENSES_CASEDWORDS_SYNSETS:
-				table = "words " + //
-						"LEFT JOIN senses USING (wordid) " + //
-						"LEFT JOIN casedwords USING (wordid,casedwordid) " + //
-						"LEFT JOIN synsets USING (synsetid)";
+				table = "words AS " + WordNetContract.WORD + " " + //
+						"LEFT JOIN senses AS " + WordNetContract.SENSE + " USING (wordid) " + //
+						"LEFT JOIN casedwords AS " + WordNetContract.CASED + " USING (wordid,casedwordid) " + //
+						"LEFT JOIN synsets AS " + WordNetContract.SYNSET + " USING (synsetid)";
 				break;
 
 			case WORDS_SENSES_CASEDWORDS_SYNSETS_POSTYPES_LEXDOMAINS:
-				table = "words " + //
+				table = "words AS " + WordNetContract.WORD + " " + //
 						"LEFT JOIN senses AS " + WordNetContract.SENSE + " USING (wordid) " + //
-						"LEFT JOIN casedwords USING (wordid,casedwordid) " + //
+						"LEFT JOIN casedwords AS " + WordNetContract.CASED + " USING (wordid,casedwordid) " + //
 						"LEFT JOIN synsets AS " + WordNetContract.SYNSET + " USING (synsetid) " + //
 						"LEFT JOIN postypes AS " + WordNetContract.POS + " USING (pos) " + //
-						"LEFT JOIN lexdomains USING (lexdomainid)";
+						"LEFT JOIN lexdomains AS " + WordNetContract.LEXDOMAIN + " USING (lexdomainid)";
 				break;
 
 			case SENSES_WORDS:
-				table = "senses " + //
-						"LEFT JOIN words USING(wordid)";
+				table = "senses AS " + WordNetContract.SENSE + " " + //
+						"LEFT JOIN words AS " + WordNetContract.WORD + " USING(wordid)";
 				break;
 
 			case SENSES_WORDS_BY_SYNSET:
 				groupBy = "synsetid";
-				table = "senses " + //
-						"LEFT JOIN words USING(wordid)";
+				table = "senses AS " + WordNetContract.SENSE + " " + //
+						"LEFT JOIN words AS " + WordNetContract.WORD + " USING(wordid)";
 				actualProjection = BaseProvider.appendProjection(actualProjection, "GROUP_CONCAT(words.lemma, ', ' ) AS " + Senses_Words.MEMBERS);
 				break;
 
 			case SENSES_SYNSETS_POSTYPES_LEXDOMAINS:
-				table = "senses " + //
-						"INNER JOIN synsets USING (synsetid) " + //
-						"LEFT JOIN postypes USING(pos) " + //
-						"LEFT JOIN lexdomains USING(lexdomainid)";
+				table = "senses AS " + WordNetContract.SENSE + " " + //
+						"INNER JOIN synsets AS " + WordNetContract.SYNSET + " USING (synsetid) " + //
+						"LEFT JOIN postypes AS " + WordNetContract.POS + " USING(pos) " + //
+						"LEFT JOIN lexdomains AS " + WordNetContract.LEXDOMAIN + " USING(lexdomainid)";
 				break;
 
 			case SYNSETS_POSTYPES_LEXDOMAINS:
-				table = "synsets " + //
-						"LEFT JOIN postypes USING(pos) " + //
-						"LEFT JOIN lexdomains USING(lexdomainid)";
+				table = "synsets AS " + WordNetContract.SYNSET + " " + //
+						"LEFT JOIN postypes AS " + WordNetContract.POS + " USING(pos) " + //
+						"LEFT JOIN lexdomains AS " + WordNetContract.LEXDOMAIN + " USING(lexdomainid)";
 				break;
 
 			case LINKS_SENSES_WORDS_X_BY_SYNSET:

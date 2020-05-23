@@ -23,6 +23,8 @@ public class WordNetContract
 	static public final String SENSE = "s";
 	static public final String SYNSET = "y";
 	static public final String POS = "p";
+	static public final String CASED = "c";
+	static public final String LEXDOMAIN = "m";
 
 	// T A B L E S
 

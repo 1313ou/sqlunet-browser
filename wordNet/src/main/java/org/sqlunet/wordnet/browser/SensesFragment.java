@@ -287,7 +287,7 @@ public class SensesFragment extends ListFragment
 				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POSNAME, //
 				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXDOMAIN, //
 				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CASED};
-		final String selection = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + " = ?";
+		final String selection = WordNetContract.WORD + '.' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + " = ?";
 		final String[] selectionArgs = {SensesFragment.this.word};
 		final String sortOrder = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
 		this.sensesModelFromWord.loadData(uri, projection, selection, selectionArgs, sortOrder, this::sensesPostProcess);
