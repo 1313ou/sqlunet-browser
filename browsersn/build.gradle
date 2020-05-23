@@ -67,7 +67,7 @@ dependencies {
     implementation project(':rate')
     implementation project(':xNet')
     implementation project(':wordNet')
-    //implementation project(':syntagNet')
+    implementation project(':syntagNet')
     implementation project(':bNC')
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"

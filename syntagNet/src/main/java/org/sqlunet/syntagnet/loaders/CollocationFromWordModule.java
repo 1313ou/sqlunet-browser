@@ -2,7 +2,7 @@
  * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
-package org.sqlunet.propbank.loaders;
+package org.sqlunet.syntagnet.loaders;
 
 import android.os.Parcelable;
 
@@ -15,11 +15,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /**
- * Module for PropBank role sets from word
+ * Module for SyntagNet collocation from word
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class RoleSetFromWordModule extends BaseModule
+public class CollocationFromWordModule extends BaseModule
 {
 	/**
 	 * Word id
@@ -32,7 +32,7 @@ public class RoleSetFromWordModule extends BaseModule
 	 *
 	 * @param fragment fragment
 	 */
-	public RoleSetFromWordModule(@NonNull final TreeFragment fragment)
+	public CollocationFromWordModule(@NonNull final TreeFragment fragment)
 	{
 		super(fragment);
 	}
@@ -54,7 +54,7 @@ public class RoleSetFromWordModule extends BaseModule
 		if (this.wordId != null && this.wordId != 0)
 		{
 			// data
-			roleSets(this.wordId, parent);
+			collocations(this.wordId, parent);
 		}
 		else
 		{

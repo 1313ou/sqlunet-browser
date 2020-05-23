@@ -2,7 +2,7 @@
  * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
-package org.sqlunet.propbank.browser;
+package org.sqlunet.syntagnet.browser;
 
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -10,32 +10,32 @@ import android.os.Parcelable;
 import org.sqlunet.HasXId;
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.TreeFragment;
-import org.sqlunet.propbank.R;
-import org.sqlunet.propbank.loaders.RoleSetFromWordModule;
-import org.sqlunet.propbank.loaders.RoleSetModule;
 import org.sqlunet.provider.ProviderArgs;
+import org.sqlunet.syntagnet.R;
+import org.sqlunet.syntagnet.loaders.CollocationFromWordModule;
+import org.sqlunet.syntagnet.loaders.CollocationModule;
 import org.sqlunet.treeview.model.TreeNode;
 
 import androidx.annotation.Nullable;
 
 /**
- * A fragment representing a PropBank search
+ * A fragment representing a SyntagNet search
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class PropBankFragment extends TreeFragment
+public class SyntagNetFragment extends TreeFragment
 {
-	// static private final String TAG = "PropBankF";
+	// static private final String TAG = "SyntagNetF";
 
 	/**
 	 * Constructor
 	 */
-	public PropBankFragment()
+	public SyntagNetFragment()
 	{
-		this.layoutId = R.layout.fragment_propbank;
+		this.layoutId = R.layout.fragment_syntagnet;
 		this.treeContainerId = R.id.data_contents;
-		this.header = "PropBank";
-		this.iconId = R.drawable.propbank;
+		this.header = "SyntagNet";
+		this.iconId = R.drawable.syntagnet;
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class PropBankFragment extends TreeFragment
 			final TreeNode queryNode = this.treeRoot.getChildren().iterator().next();
 
 			// module
-			final Module module = (pointer instanceof HasXId) ? new RoleSetModule(this) : new RoleSetFromWordModule(this);
+			final Module module = (pointer instanceof HasXId) ? new CollocationModule(this) : new CollocationFromWordModule(this);
 			module.init(type, pointer);
 			module.process(queryNode);
 		}

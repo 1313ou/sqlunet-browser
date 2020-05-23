@@ -2,7 +2,7 @@
  * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
-package org.sqlunet.propbank.sql;
+package org.sqlunet.syntagnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
 
@@ -12,80 +12,121 @@ import java.util.List;
 import androidx.annotation.NonNull;
 
 /**
- * PropBank role set
+ * SyntagNet role set
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-class PbRoleSet
+class Collocation
 {
-	/**
-	 * Name
-	 */
-	public final String roleSetName;
+	static class CollocationX extends Collocation
+	{
+		/**
+		 * POS 1
+		 */
+		public final char pos1;
+
+		/**
+		 * POS 2
+		 */
+		public final char pos2;
+
+		/**
+		 * Definition 1
+		 */
+		public final String definition1;
+
+		/**
+		 * Definition 2
+		 */
+		public final String definition2;
+
+		public CollocationX(final long word1Id, final long word2Id, final long synset1Id, final long synset2Id, final String word1, final String word2, final char pos1, final char pos2, final String definition1, final String definition2)
+		{
+			super(word1Id, word2Id, synset1Id, synset2Id, word1, word2);
+			this.pos1 = pos1;
+			this.pos2 = pos2;
+			this.definition1 = definition1;
+			this.definition2 = definition2;
+		}
+	}
 
 	/**
-	 * Head
+	 * Word1 Id
 	 */
-	public final String roleSetHead;
+	public final long word1Id;
 
 	/**
-	 * Description
+	 * Word2 id
 	 */
-	public final String roleSetDescr;
+	public final long word2Id;
 
 	/**
-	 * RoleSet id
+	 * Synset2 id
 	 */
-	public final long roleSetId;
+	public final long synset1Id;
 
 	/**
-	 * Word Id
+	 * Synset2 id
 	 */
-	public final long wordId;
+	public final long synset2Id;
+
+	/**
+	 * Word1
+	 */
+	public final String word1;
+
+	/**
+	 * Word2
+	 */
+	public final String word2;
 
 	/**
 	 * Constructor
 	 *
-	 * @param roleSetName  name
-	 * @param roleSetHead  head
-	 * @param roleSetDescr description
-	 * @param roleSetId    role set id
+	 * @param word1Id   word 1 id
+	 * @param word2Id   word 2 id
+	 * @param synset1Id synset 1 id
+	 * @param synset2Id synset 2 id
+	 * @param word1     word 1
+	 * @param word2     word 2
 	 */
-	private PbRoleSet(final String roleSetName, final String roleSetHead, final String roleSetDescr, final long roleSetId, final long wordId)
+	private Collocation(final long word1Id, final long word2Id, final long synset1Id, final long synset2Id, final String word1, final String word2)
 	{
 		super();
-		this.roleSetName = roleSetName;
-		this.roleSetHead = roleSetHead;
-		this.roleSetDescr = roleSetDescr;
-		this.roleSetId = roleSetId;
-		this.wordId = wordId;
+		this.word1Id = word1Id;
+		this.word2Id = word2Id;
+		this.synset1Id = synset1Id;
+		this.synset2Id = synset2Id;
+		this.word1 = word1;
+		this.word2 = word2;
 	}
 
 	/**
-	 * Make sets of PropBank roleSets from query built from word id
+	 * Make sets of SyntagNet collocations from query built from word id
 	 *
 	 * @param connection connection
 	 * @param word       is the word to build query from
-	 * @return list of PropBank roleSets
+	 * @return list of SyntagNet collocations
 	 */
 	@NonNull
-	static public List<PbRoleSet> makeFromWord(final SQLiteDatabase connection, final String word)
+	static public List<Collocation> makeFromWord(final SQLiteDatabase connection, final String word)
 	{
-		final List<PbRoleSet> result = new ArrayList<>();
-		PbRoleSetQueryFromWord query = null;
+		final List<Collocation> result = new ArrayList<>();
+		CollocationQueryFromWord query = null;
 		try
 		{
-			query = new PbRoleSetQueryFromWord(connection, word);
+			query = new CollocationQueryFromWord(connection, word);
 			query.execute();
 
 			while (query.next())
 			{
-				final String roleSetName = query.getRoleSetName();
-				final String roleSetHead = query.getRoleSetHead();
-				final String roleSetDescr = query.getRoleSetDescr();
-				final long roleSetId = query.getRoleSetId();
-				final long wordId = query.getWordId();
-				result.add(new PbRoleSet(roleSetName, roleSetHead, roleSetDescr, roleSetId, wordId));
+				final long word1Id = query.getWord1Id();
+				final long word2Id = query.getWord2Id();
+				final long synset1Id = query.getSynset1Id();
+				final long synset2Id = query.getSynset2Id();
+				final String word1 = query.getWord1();
+				final String word2 = query.getWord2();
+				result.add(new Collocation(word1Id, word2Id, synset1Id, synset2Id, word1, word2));
 			}
 			return result;
 		}
@@ -99,29 +140,31 @@ class PbRoleSet
 	}
 
 	/**
-	 * Make sets of PropBank roleSets from query built from word id
+	 * Make sets of SyntagNet roleSets from query built from word id
 	 *
 	 * @param connection connection
 	 * @param wordId     is the word id to build query from
-	 * @return list of PropBank roleSets
+	 * @return list of SyntagNet roleSets
 	 */
 	@NonNull
-	static public List<PbRoleSet> makeFromWordId(final SQLiteDatabase connection, final long wordId)
+	static public List<Collocation> makeFromWordId(final SQLiteDatabase connection, final long wordId)
 	{
-		final List<PbRoleSet> result = new ArrayList<>();
-		PbRoleSetQueryFromWordId query = null;
+		final List<Collocation> result = new ArrayList<>();
+		CollocationQueryFromWordId query = null;
 		try
 		{
-			query = new PbRoleSetQueryFromWordId(connection, wordId);
+			query = new CollocationQueryFromWordId(connection, wordId);
 			query.execute();
 
 			while (query.next())
 			{
-				final String roleSetName = query.getRoleSetName();
-				final String roleSetHead = query.getRoleSetHead();
-				final String roleSetDescr = query.getRoleSetDescr();
-				final long roleSetId = query.getRoleSetId();
-				result.add(new PbRoleSet(roleSetName, roleSetHead, roleSetDescr, roleSetId, wordId));
+				final long word1Id = query.getWord1Id();
+				final long word2Id = query.getWord2Id();
+				final long synset1Id = query.getSynset1Id();
+				final long synset2Id = query.getSynset2Id();
+				final String word1 = query.getWord1();
+				final String word2 = query.getWord2();
+				result.add(new Collocation(word1Id, word2Id, synset1Id, synset2Id, word1, word2));
 			}
 		}
 		finally
@@ -135,28 +178,31 @@ class PbRoleSet
 	}
 
 	/**
-	 * Make sets of PropBank roleSets from query built from roleSet id
+	 * Make sets of SyntagNet collocations from query built from roleSet id
 	 *
 	 * @param connection connection
 	 * @param roleSetId  is the role set id to build query from
-	 * @return list of PropBank role sets
+	 * @return list of SyntagNet collocations
 	 */
 	@NonNull
-	static public List<PbRoleSet> make(final SQLiteDatabase connection, final long roleSetId)
+	static public List<Collocation> make(final SQLiteDatabase connection, final long roleSetId)
 	{
-		final List<PbRoleSet> result = new ArrayList<>();
-		PbRoleSetQuery query = null;
+		final List<Collocation> result = new ArrayList<>();
+		CollocationQuery query = null;
 		try
 		{
-			query = new PbRoleSetQuery(connection, roleSetId);
+			query = new CollocationQuery(connection, roleSetId);
 			query.execute();
 
 			while (query.next())
 			{
-				final String roleSetName = query.getRoleSetName();
-				final String roleSetHead = query.getRoleSetHead();
-				final String roleSetDescr = query.getRoleSetDescr();
-				result.add(new PbRoleSet(roleSetName, roleSetHead, roleSetDescr, roleSetId, 0));
+				final long word1Id = query.getWord1Id();
+				final long word2Id = query.getWord2Id();
+				final long synset1Id = query.getSynset1Id();
+				final long synset2Id = query.getSynset2Id();
+				final String word1 = query.getWord1();
+				final String word2 = query.getWord2();
+				result.add(new Collocation(word1Id, word2Id, synset1Id, synset2Id, word1, word2));
 			}
 		}
 		finally

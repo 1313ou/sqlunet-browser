@@ -2,42 +2,41 @@
  * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
-package org.sqlunet.propbank.style;
+package org.sqlunet.syntagnet.style;
 
 import android.content.Context;
 import android.text.style.ImageSpan;
 
-import org.sqlunet.propbank.R;
 import org.sqlunet.style.RegExprSpanner;
+import org.sqlunet.syntagnet.R;
 
 import androidx.annotation.NonNull;
 
 /**
- * Spanner for PropBank
+ * Spanner for SyntagNet
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class PropBankSpanner extends RegExprSpanner
+public class SyntagNetSpanner extends RegExprSpanner
 {
 	/**
 	 * Patterns
 	 */
-	static private final String[] patterns = {"((?:\\[\\*\\]|\\*trace\\*)(\\-?\\d*))", // *trace*-n or [*] : 1 capture //
-			// static public String[] patterns = new String[] { "(\\*trace\\*)(\\-?\\d*)", // *trace*-n or [*] : 1 capture
-	};
+	static private final String[] patterns = {"(.*)",};
 
 	/**
 	 * Constructor
 	 *
 	 * @param context context
 	 */
-	public PropBankSpanner(@NonNull final Context context)
+	public SyntagNetSpanner(@NonNull final Context context)
 	{
 		// trace number
 		// trace
-		super(PropBankSpanner.patterns, new SpanFactory[][]{ //
+		super(SyntagNetSpanner.patterns, new SpanFactory[][]{ //
 				new SpanFactory[]{ //
-						flags -> new ImageSpan(context, R.drawable.trace), //
-						flags -> new HiddenSpan(),},});
+						flags -> new ImageSpan(context, R.drawable.info), //
+				},
+		});
 	}
 }

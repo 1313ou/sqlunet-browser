@@ -2,23 +2,23 @@
  * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
-package org.sqlunet.propbank.sql;
+package org.sqlunet.syntagnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
 
 import org.sqlunet.sql.DBQuery;
 
 /**
- * PropBank role sets query from word id
+ * SyntagNet Collocation query from word id
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-class PbRoleSetQueryFromWordId extends DBQuery
+class CollocationQueryFromWordId extends DBQuery
 {
 	/**
 	 * <code>QUERY</code> is the SQL statement
 	 */
-	static private final String QUERY = SqLiteDialect.PropBankRoleSetQueryFromWordId;
+	static private final String QUERY = SqLiteDialect.SyntagNetRoleSetQueryFromWordId;
 
 	/**
 	 * Constructor
@@ -27,53 +27,75 @@ class PbRoleSetQueryFromWordId extends DBQuery
 	 * @param wordId     target word id
 	 */
 	@SuppressWarnings("boxing")
-	public PbRoleSetQueryFromWordId(final SQLiteDatabase connection, final long wordId)
+	public CollocationQueryFromWordId(final SQLiteDatabase connection, final long wordId)
 	{
-		super(connection, PbRoleSetQueryFromWordId.QUERY);
+		super(connection, CollocationQueryFromWordId.QUERY);
 		setParams(wordId);
 	}
 
 	/**
-	 * Get the role set id from the result set
+	 * Get the word 1 id from the result set
 	 *
-	 * @return the role set id from the result set
+	 * @return the word 1 id from the result set
 	 */
-	public long getRoleSetId()
+	public long getWord1Id()
 	{
 		assert this.cursor != null;
 		return this.cursor.getLong(0);
 	}
 
 	/**
-	 * Get the role set name from the result set
+	 * Get the word 2 id from the result set
 	 *
-	 * @return the role set name from the result set
+	 * @return the word 2 id from the result set
 	 */
-	public String getRoleSetName()
+	public long getWord2Id()
 	{
 		assert this.cursor != null;
-		return this.cursor.getString(1);
+		return this.cursor.getLong(1);
 	}
 
 	/**
-	 * Get role set head
+	 * Get the synset 1  id from the result set
 	 *
-	 * @return role set head
+	 * @return the synset 1 id from the result set
 	 */
-	public String getRoleSetHead()
+	public long getSynset1Id()
 	{
 		assert this.cursor != null;
-		return this.cursor.getString(2);
+		return this.cursor.getLong(2);
 	}
 
 	/**
-	 * Get role set description
+	 * Get the synset 2 id from the result set
 	 *
-	 * @return role set description
+	 * @return the synset 2 id from the result set
 	 */
-	public String getRoleSetDescr()
+	public long getSynset2Id()
 	{
 		assert this.cursor != null;
-		return this.cursor.getString(3);
+		return this.cursor.getLong(3);
+	}
+
+	/**
+	 * Get the word 1 from the result set
+	 *
+	 * @return the word 1 from the result set
+	 */
+	public String getWord1()
+	{
+		assert this.cursor != null;
+		return this.cursor.getString(4);
+	}
+
+	/**
+	 * Get word 2 from the result set
+	 *
+	 * @return word 2 from the result set
+	 */
+	public String getWord2()
+	{
+		assert this.cursor != null;
+		return this.cursor.getString(5);
 	}
 }

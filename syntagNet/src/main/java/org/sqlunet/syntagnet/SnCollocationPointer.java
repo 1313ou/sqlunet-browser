@@ -2,7 +2,7 @@
  * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
-package org.sqlunet.propbank;
+package org.sqlunet.syntagnet;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -16,25 +16,25 @@ import androidx.annotation.NonNull;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class PbRoleSetPointer extends Pointer
+public class SnCollocationPointer extends Pointer
 {
 	/**
 	 * Static field used to regenerate object, individually or as arrays
 	 */
-	static public final Parcelable.Creator<PbRoleSetPointer> CREATOR = new Parcelable.Creator<PbRoleSetPointer>()
+	static public final Parcelable.Creator<SnCollocationPointer> CREATOR = new Parcelable.Creator<SnCollocationPointer>()
 	{
 		@NonNull
 		@Override
-		public PbRoleSetPointer createFromParcel(@NonNull final Parcel parcel)
+		public SnCollocationPointer createFromParcel(@NonNull final Parcel parcel)
 		{
-			return new PbRoleSetPointer(parcel);
+			return new SnCollocationPointer(parcel);
 		}
 
 		@NonNull
 		@Override
-		public PbRoleSetPointer[] newArray(final int size)
+		public SnCollocationPointer[] newArray(final int size)
 		{
-			return new PbRoleSetPointer[size];
+			return new SnCollocationPointer[size];
 		}
 	};
 
@@ -43,7 +43,7 @@ public class PbRoleSetPointer extends Pointer
 	 *
 	 * @param parcel parcel
 	 */
-	private PbRoleSetPointer(@NonNull final Parcel parcel)
+	private SnCollocationPointer(@NonNull final Parcel parcel)
 	{
 		super(parcel);
 	}
@@ -53,7 +53,7 @@ public class PbRoleSetPointer extends Pointer
 	 *
 	 * @param roleSetId role set id
 	 */
-	public PbRoleSetPointer(final long roleSetId)
+	public SnCollocationPointer(final long roleSetId)
 	{
 		super(roleSetId);
 	}
