@@ -54,33 +54,15 @@
 		<item>index_samples_synsetid</item>
 
 		<!-- syntagnet -->
-		<item>index_syntagms_word1id_synset1id</item>
-		<item>index_syntagms_word2id_synset2id</item>
+		<item>index_syntagms_synset1id_word1id</item>
+		<item>index_syntagms_synset2id_word2id</item>
 
-	</string-array>
-
-	<string-array name="required_pm">
-		<item>pmvn</item>
-		<item>pmpb</item>
-		<item>pmfn</item>
 	</string-array>
 
 	<string-array name="required_texts_wn">
 		<item>words_lemma_fts4</item>
 		<item>synsets_definition_fts4</item>
 		<item>samples_sample_fts4</item>
-	</string-array>
-
-	<string-array name="required_texts_vn">
-		<item>vnexamples_example_fts4</item>
-	</string-array>
-
-	<string-array name="required_texts_pb">
-		<item>pbexamples_text_fts4</item>
-	</string-array>
-
-	<string-array name="required_texts_fn">
-		<item>fnsentences_text_fts4</item>
 	</string-array>
 
 </resources>
