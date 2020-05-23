@@ -10,13 +10,13 @@
 	android:theme="@style/MyCustomBackgroundAppTheme"
 	tools:context="org.sqlunet.browser.xn.HomeFragment">
 
-	<org.sqlunet.browser.xn.HomeImageView
+	<ImageView
 		android:id="@+id/splash"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
 		android:contentDescription="@string/app_name"
-		android:src="@drawable/sqlunet" />
+		android:src="@drawable/ic_splash" />
 
 	<com.google.android.material.floatingactionbutton.FloatingActionButton
 		android:id="@+id/fab"
