@@ -14,9 +14,6 @@
 	<string name="hr_size_sqlunet_sql_zip">115 MB</string>
 
 	<string name="hr_size_searchtext_wn">34 MB</string>
-	<string name="hr_size_searchtext_vn">1 MB</string>
-	<string name="hr_size_searchtext_pb">6 MB</string>
-	<string name="hr_size_searchtext_fn">134 MB</string>
 	<string name="hr_size_searchtext">173 MB</string>
 
 	<string name="hr_size_db_working_total">686 MB</string>
