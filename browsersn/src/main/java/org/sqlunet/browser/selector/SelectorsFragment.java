@@ -304,7 +304,7 @@ public class SelectorsFragment extends ListFragment
 				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXDOMAIN, //
 				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CASED, //
 		};
-		final String selection = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + " = ?"; ////
+		final String selection = WordNetContract.WORD + '.' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + " = ?"; ////
 		final String[] selectionArgs = {SelectorsFragment.this.word};
 		final String sortOrder = WordNetContract.SYNSET + '.' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
 		this.model.loadData(uri, projection, selection, selectionArgs, sortOrder, this::selectorsPostProcess);
