@@ -2,7 +2,7 @@
  * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
-package org.sqlunet.propbank.style;
+package org.sqlunet.syntagnet.style;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -14,11 +14,11 @@ import org.sqlunet.style.Factories;
 import org.sqlunet.style.Spanner.SpanFactory;
 
 /**
- * Span factories for PropBank
+ * Span factories for SyntagNet
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class PropBankFactories
+public class SyntagNetFactories
 {
 	static public final SpanFactory roleSetFactory = Factories.classFactory;
 

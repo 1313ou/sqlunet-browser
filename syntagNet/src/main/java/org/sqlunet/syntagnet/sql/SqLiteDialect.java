@@ -2,29 +2,29 @@
  * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
-package org.sqlunet.propbank.sql;
+package org.sqlunet.syntagnet.sql;
 
 /**
- * SQL dialect for PropBank
+ * SQL dialect for SyntagNet
  */
 @SuppressWarnings("unused")
 class SqLiteDialect
 {
-	// ROLE SETS
+	// collocations
 	// query for role set from role set id
-	static final String PropBankRoleSetQuery = //
+	static final String SyntagNetCollocationQuery = //
 			"SELECT rolesetid, rolesetname, rolesethead, rolesetdescr " + //
 					"FROM pbrolesets " + //
 					"WHERE rolesetid = ? ;";
 	// query for role set from word
-	static final String PropBankRoleSetQueryFromWord = //
+	static final String SyntagNetCollocationQueryFromWord = //
 			"SELECT wordid, rolesetid, rolesetname, rolesethead, rolesetdescr " + //
 					"FROM words AS w " + //
 					"INNER JOIN pbwords USING (wordid) " + //
 					"LEFT JOIN pbrolesets USING (pbwordid) " + //
 					"WHERE w.lemma = ? ";
 	// query for role set from word id
-	static final String PropBankRoleSetQueryFromWordId = //
+	static final String SyntagNetRoleSetQueryFromWordId = //
 			"SELECT rolesetid, rolesetname, rolesethead, rolesetdescr " + //
 					"FROM words " + //
 					"INNER JOIN pbwords USING (wordid) " + //
@@ -33,7 +33,7 @@ class SqLiteDialect
 
 	// ROLES
 	// query for roles
-	static final String PropBankRolesQueryFromRoleSetId = //
+	static final String SyntagNetRolesQueryFromRoleSetId = //
 			"SELECT roleid,roledescr,narg,funcname,thetaname " + //
 					"FROM pbrolesets " + //
 					"INNER JOIN pbroles USING (rolesetid) " + //
@@ -44,7 +44,7 @@ class SqLiteDialect
 
 	// EXAMPLES
 	// query for examples rel(n~arg|n~arg|..)
-	static final String PropBankExamplesQueryFromRoleSetId = //
+	static final String SyntagNetExamplesQueryFromRoleSetId = //
 			"SELECT exampleid,text,rel,GROUP_CONCAT(narg||'~'||" + //
 					"(CASE WHEN funcname IS NULL THEN '*' ELSE funcname END)||'~'||" + //
 					"roledescr||'~'||" + //

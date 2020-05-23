@@ -2,9 +2,8 @@
  * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
-package org.sqlunet.propbank.provider;
+package org.sqlunet.syntagnet.provider;
 
-import android.app.SearchManager;
 import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;
@@ -14,33 +13,25 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.util.Log;
 
-import org.sqlunet.propbank.provider.PropBankContract.Lookup_PbExamples;
-import org.sqlunet.propbank.provider.PropBankContract.Lookup_PbExamples_X;
-import org.sqlunet.propbank.provider.PropBankContract.PbRoleSets;
-import org.sqlunet.propbank.provider.PropBankContract.PbRoleSets_PbExamples;
-import org.sqlunet.propbank.provider.PropBankContract.PbRoleSets_PbRoles;
-import org.sqlunet.propbank.provider.PropBankContract.PbRoleSets_X;
-import org.sqlunet.propbank.provider.PropBankContract.PbWords;
-import org.sqlunet.propbank.provider.PropBankContract.Suggest_FTS_PbWords;
-import org.sqlunet.propbank.provider.PropBankContract.Suggest_PbWords;
-import org.sqlunet.propbank.provider.PropBankContract.Words_PbRoleSets;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.sql.SqlFormatter;
+import org.sqlunet.syntagnet.provider.SyntagNetContract.SnCollocations;
+import org.sqlunet.syntagnet.provider.SyntagNetContract.SnCollocations_X;
 
 import androidx.annotation.NonNull;
 
 /**
- * PropBank provider
+ * SyntagNet provider
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class PropBankProvider extends BaseProvider
+public class SyntagNetProvider extends BaseProvider
 {
-	static private final String TAG = "PropBankProvider";
+	static private final String TAG = "SyntagNetProvider";
 
 	// C O N T E N T   P R O V I D E R   A U T H O R I T Y
 
-	static private final String AUTHORITY = makeAuthority("propbank_authority");
+	static private final String AUTHORITY = makeAuthority("syntagnet_authority");
 
 	// U R I M A T C H E R
 
@@ -53,45 +44,15 @@ public class PropBankProvider extends BaseProvider
 	}
 
 	// table codes
-	static private final int PBROLESET = 10;
-	static private final int PBROLESETS = 11;
+	static private final int COLLOCATIONS = 10;
 
 	// join codes
-	static private final int PBROLESETS_X = 100;
-	static private final int PBROLESETS_X_BY_ROLESET = 101;
-	static private final int WORDS_PBROLESETS = 110;
-	static private final int PBROLESETS_PBROLES = 120;
-	static private final int PBROLESETS_PBEXAMPLES = 130;
-	static private final int PBROLESETS_PBEXAMPLES_BY_EXAMPLE = 131;
-
-	// search text codes
-	static private final int LOOKUP_FTS_EXAMPLES = 501;
-	static private final int LOOKUP_FTS_EXAMPLES_X = 511;
-	static private final int LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE = 512;
-
-	// suggest
-	static private final int SUGGEST_WORDS = 601;
-	static private final int SUGGEST_FTS_WORDS = 602;
+	static private final int COLLOCATIONS_X = 100;
 
 	static private void matchURIs()
 	{
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, PbRoleSets.TABLE, PropBankProvider.PBROLESET);
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, PbRoleSets.TABLE, PropBankProvider.PBROLESETS);
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, PbRoleSets_X.TABLE, PropBankProvider.PBROLESETS_X);
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, PbRoleSets_X.TABLE_BY_ROLESET, PropBankProvider.PBROLESETS_X_BY_ROLESET);
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, Words_PbRoleSets.TABLE, PropBankProvider.WORDS_PBROLESETS);
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, PbRoleSets_PbRoles.TABLE, PropBankProvider.PBROLESETS_PBROLES);
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, PbRoleSets_PbExamples.TABLE, PropBankProvider.PBROLESETS_PBEXAMPLES);
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, PbRoleSets_PbExamples.TABLE_BY_EXAMPLE, PropBankProvider.PBROLESETS_PBEXAMPLES_BY_EXAMPLE);
-
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, Lookup_PbExamples.TABLE + "/", PropBankProvider.LOOKUP_FTS_EXAMPLES);
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, Lookup_PbExamples_X.TABLE + "/", PropBankProvider.LOOKUP_FTS_EXAMPLES_X);
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, Lookup_PbExamples_X.TABLE_BY_EXAMPLE + "/", PropBankProvider.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE);
-
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, Suggest_PbWords.TABLE + "/*", PropBankProvider.SUGGEST_WORDS);
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, Suggest_PbWords.TABLE + "/", PropBankProvider.SUGGEST_WORDS);
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_PbWords.TABLE + "/*", PropBankProvider.SUGGEST_FTS_WORDS);
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_PbWords.TABLE + "/", PropBankProvider.SUGGEST_FTS_WORDS);
+		SyntagNetProvider.uriMatcher.addURI(AUTHORITY, SnCollocations.TABLE, SyntagNetProvider.COLLOCATIONS);
+		SyntagNetProvider.uriMatcher.addURI(AUTHORITY, SnCollocations_X.TABLE, SyntagNetProvider.COLLOCATIONS_X);
 	}
 
 	@NonNull
@@ -105,7 +66,7 @@ public class PropBankProvider extends BaseProvider
 	/**
 	 * Constructor
 	 */
-	public PropBankProvider()
+	public SyntagNetProvider()
 	{
 		//
 	}
@@ -128,38 +89,13 @@ public class PropBankProvider extends BaseProvider
 	@Override
 	public String getType(@NonNull final Uri uri)
 	{
-		switch (PropBankProvider.uriMatcher.match(uri))
+		switch (SyntagNetProvider.uriMatcher.match(uri))
 		{
 			// T A B L E S
-			case PBROLESET:
-				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets.TABLE;
-			case PBROLESETS:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets.TABLE;
-			case PBROLESETS_X:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets_X.TABLE;
-			case PBROLESETS_X_BY_ROLESET:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets_X.TABLE_BY_ROLESET;
-			case WORDS_PBROLESETS:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_PbRoleSets.TABLE;
-			case PBROLESETS_PBROLES:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets_PbRoles.TABLE;
-			case PBROLESETS_PBEXAMPLES:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets_PbExamples.TABLE;
-			case PBROLESETS_PBEXAMPLES_BY_EXAMPLE:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets_PbExamples.TABLE_BY_EXAMPLE;
-
-			// L O O K U P
-			case LOOKUP_FTS_EXAMPLES:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_PbExamples.TABLE;
-			case LOOKUP_FTS_EXAMPLES_X:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_PbExamples_X.TABLE;
-			case LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_PbExamples_X.TABLE_BY_EXAMPLE;
-
-			// S U G G E S T
-			case SUGGEST_WORDS:
-			case SUGGEST_FTS_WORDS:
-				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbWords.TABLE;
+			case COLLOCATIONS:
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + SnCollocations.TABLE;
+			case COLLOCATIONS_X:
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + SnCollocations_X.TABLE;
 
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");
@@ -187,8 +123,8 @@ public class PropBankProvider extends BaseProvider
 		// choose the table to query and a sort order based on the code returned for the incoming URI
 		String actualSelection = selection;
 		String actualSortOrder = sortOrder;
-		final int code = PropBankProvider.uriMatcher.match(uri);
-		Log.d(PropBankProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code));
+		final int code = SyntagNetProvider.uriMatcher.match(uri);
+		Log.d(SyntagNetProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code));
 		String groupBy = null;
 		String table;
 		switch (code)
@@ -197,8 +133,8 @@ public class PropBankProvider extends BaseProvider
 			// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
 			// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query
 
-			case PBROLESET:
-				table = PbRoleSets.TABLE;
+			case COLLOCATIONS:
+				table = SnCollocations.TABLE;
 				if (actualSelection != null)
 				{
 					actualSelection += " AND ";
@@ -207,104 +143,19 @@ public class PropBankProvider extends BaseProvider
 				{
 					actualSelection = "";
 				}
-				actualSelection += PbRoleSets.ROLESETID + " = ?";
-				break;
-
-			case PBROLESETS:
-				table = PbRoleSets.TABLE;
+				actualSelection += SnCollocations.COLLOCATIONID + " = ?";
 				break;
 
 			// J O I N S
 
-			case PBROLESETS_X_BY_ROLESET:
-				groupBy = PbRoleSets_X.ROLESETID;
-				//$FALL-THROUGH$
-				//noinspection fallthrough
-			case PBROLESETS_X:
-				table = "pbrolesets " + //
-						"LEFT JOIN pbrolesetmembers AS " + PropBankContract.MEMBER + " USING (rolesetid) " + //
-						"LEFT JOIN pbwords AS " + PropBankContract.WORD + " ON " + PropBankContract.MEMBER + ".pbwordid = " + PropBankContract.WORD + ".pbwordid";
+			case COLLOCATIONS_X:
+				table = "syntagms " + //
+						"JOIN words AS " + SyntagNetContract.WORD1 + " ON (word1id = " + SyntagNetContract.WORD1 + ".wordid)" + //
+						"JOIN words AS " + SyntagNetContract.WORD2 + " ON (word2id = " + SyntagNetContract.WORD2 + ".wordid)" + //
+						"JOIN synsets AS " + SyntagNetContract.SYNSET1 + " ON (synset1id = s1.synsetid)" + //
+						"JOIN synsets AS " + SyntagNetContract.SYNSET2 + " ON (synset2id = s2.synsetid)";
 				break;
 
-			case WORDS_PBROLESETS:
-				table = "words " + //
-						"INNER JOIN pbwords USING (wordid) " + //
-						"INNER JOIN pbrolesets USING (pbwordid)";
-				break;
-
-			case PBROLESETS_PBROLES:
-				table = "pbrolesets " + //
-						"INNER JOIN pbroles USING (rolesetid) " + //
-						"LEFT JOIN pbfuncs USING (func) " + //
-						"LEFT JOIN pbvnthetas USING (theta)";
-				actualSortOrder = "narg";
-				break;
-
-			case PBROLESETS_PBEXAMPLES_BY_EXAMPLE:
-				groupBy = PropBankContract.EXAMPLE + ".exampleid";
-				//$FALL-THROUGH$
-				//noinspection fallthrough
-			case PBROLESETS_PBEXAMPLES:
-				table = "pbrolesets " + //
-						"INNER JOIN pbexamples AS " + PropBankContract.EXAMPLE + " USING (rolesetid) " + //
-						"LEFT JOIN pbrels AS " + PropBankContract.REL + " USING (exampleid) " + //
-						"LEFT JOIN pbargs AS " + PropBankContract.ARG + " USING (exampleid) " + //
-						"LEFT JOIN pbfuncs AS " + PropBankContract.FUNC + " ON (" + PropBankContract.ARG + ".func = " + PropBankContract.FUNC + ".func) " + //
-						"LEFT JOIN pbaspects USING (aspect) " + //
-						"LEFT JOIN pbforms USING (form) " + //
-						"LEFT JOIN pbtenses USING (tense) " + //
-						"LEFT JOIN pbvoices USING (voice) " + //
-						"LEFT JOIN pbpersons USING (person) " + //
-						"LEFT JOIN pbroles USING (rolesetid,narg) " + //
-						"LEFT JOIN pbvnthetas USING (theta)";
-				actualSortOrder = PropBankContract.EXAMPLE + ".exampleid,narg";
-				break;
-
-			// L O O K U P
-
-			case LOOKUP_FTS_EXAMPLES:
-				table = "pbexamples_text_fts4";
-				break;
-			case LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
-				groupBy = "exampleid";
-				//$FALL-THROUGH$
-				//noinspection fallthrough
-			case LOOKUP_FTS_EXAMPLES_X:
-				table = "pbexamples_text_fts4 " + //
-						"LEFT JOIN pbrolesets USING (rolesetid)";
-				break;
-
-			// S U G G E S T
-
-			case SUGGEST_WORDS:
-			{
-				final String last = uri.getLastPathSegment();
-				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(last))
-				{
-					return null;
-				}
-				table = "pbwords";
-				return this.db.query(table, new String[]{"pbwordid AS _id", //
-								"lemma AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
-								"lemma AS " + SearchManager.SUGGEST_COLUMN_QUERY}, //
-						"lemma LIKE ? || '%'", //
-						new String[]{last}, null, null, null);
-			}
-
-			case SUGGEST_FTS_WORDS:
-			{
-				final String last = uri.getLastPathSegment();
-				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(last))
-				{
-					return null;
-				}
-				table = "pbwords_word_fts4";
-				return this.db.query(table, new String[]{"pbwordid AS _id", //
-								"lemma AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
-								"lemma AS " + SearchManager.SUGGEST_COLUMN_QUERY}, //
-						"lemma MATCH ?", //
-						new String[]{last + '*'}, null, null, null);
-			}
 
 			default:
 			case UriMatcher.NO_MATCH:
@@ -315,8 +166,8 @@ public class PropBankProvider extends BaseProvider
 		logSql(sql, selectionArgs);
 		if (BaseProvider.logSql)
 		{
-			Log.d(PropBankProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
-			Log.d(PropBankProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
+			Log.d(SyntagNetProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
+			Log.d(SyntagNetProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		}
 
 		// do query
@@ -328,7 +179,7 @@ public class PropBankProvider extends BaseProvider
 		catch (SQLiteException e)
 		{
 			Log.d(TAG + "SQL", sql);
-			Log.e(TAG, "PropBank provider query failed", e);
+			Log.e(TAG, "SyntagNet provider query failed", e);
 			return null;
 		}
 	}

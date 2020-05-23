@@ -2,7 +2,7 @@
  * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
-package org.sqlunet.propbank.sql;
+package org.sqlunet.syntagnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
 
@@ -16,18 +16,18 @@ import java.util.List;
 import androidx.annotation.NonNull;
 
 /**
- * Encapsulates PropBank query implementation
+ * Encapsulates SyntagNet query implementation
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class PropBankImplementation implements PropBankInterface
+public class SyntagNetImplementation implements SyntagNetInterface
 {
-	static public final String PB_NS = "http://org.sqlunet/pb";
+	static public final String SN_NS = "http://org.sqlunet/sn";
 
 	// S E L E C T O R
 
 	/**
-	 * Perform queries for PropBank selector data from word
+	 * Perform queries for SyntagNet selector data from word
 	 *
 	 * @param connection connection
 	 * @param doc        org.w3c.dom.Document being built
@@ -36,7 +36,7 @@ public class PropBankImplementation implements PropBankInterface
 	 */
 	static private void walkSelector(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final String targetWord)
 	{
-		final List<PbRoleSet> roleSets = PbRoleSet.makeFromWord(connection, targetWord);
+		final List<Collocation> roleSets = Collocation.makeFromWord(connection, targetWord);
 		//if (roleSets == null)
 		//{
 		//	return;
@@ -45,12 +45,12 @@ public class PropBankImplementation implements PropBankInterface
 		// word
 		// NodeFactory.makeWordNode(doc, parent, targetWord, wordId);
 
-		// propbank nodes
-		PropBankImplementation.makeSelector(doc, parent, roleSets);
+		// syntagnet nodes
+		SyntagNetImplementation.makeSelector(doc, parent, roleSets);
 	}
 
 	/**
-	 * Perform queries for PropBank data from word
+	 * Perform queries for SyntagNet data from word
 	 *
 	 * @param connection connection
 	 * @param doc        org.w3c.dom.Document being built
@@ -59,8 +59,8 @@ public class PropBankImplementation implements PropBankInterface
 	 */
 	static private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final String targetWord)
 	{
-		final List<PbRoleSet> roleSets = PbRoleSet.makeFromWord(connection, targetWord);
-		//if (roleSets == null)
+		final List<Collocation> collocations = Collocation.makeFromWord(connection, targetWord);
+		//if (collocations == null)
 		//{
 		//	return;
 		//}
@@ -68,19 +68,18 @@ public class PropBankImplementation implements PropBankInterface
 		// word
 		// NodeFactory.makeWordNode(doc, parent, targetWord, wordId);
 
-		// role sets
+		// collocations
 		int i = 1;
-		for (final PbRoleSet roleSet : roleSets)
+		for (final Collocation collocation : collocations)
 		{
-			// role set
-			PbNodeFactory.makePbRoleSetNode(doc, parent, roleSet, i++);
+			SnNodeFactory.makeCollocationNode(doc, parent, collocation, i++);
 		}
 	}
 
 	// D E T A I L
 
 	/**
-	 * Perform queries for PropBank data from word id
+	 * Perform queries for SyntagNet data from word id
 	 *
 	 * @param connection   data source
 	 * @param doc          org.w3c.dom.Document being built
@@ -89,100 +88,85 @@ public class PropBankImplementation implements PropBankInterface
 	 */
 	static private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long targetWordId)
 	{
-		// role sets
-		final List<PbRoleSet> roleSets = PbRoleSet.makeFromWordId(connection, targetWordId);
-		walk(connection, doc, parent, roleSets);
+		// collocations
+		final List<Collocation> collocations = Collocation.makeFromWordId(connection, targetWordId);
+		walk(connection, doc, parent, collocations);
 	}
 
 	/**
-	 * Perform queries for PropBank data from role set id
+	 * Perform queries for SyntagNet data from role set id
 	 *
 	 * @param connection data source
 	 * @param doc        org.w3c.dom.Document being built
 	 * @param parent     org.w3c.dom.Node the walk will attach results to
 	 * @param roleSetId  role set id
 	 */
-	static private void walkRoleSet(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long roleSetId)
+	static private void walkCollocations(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long roleSetId)
 	{
-		// role sets
-		final List<PbRoleSet> roleSets = PbRoleSet.make(connection, roleSetId);
-		walk(connection, doc, parent, roleSets);
+		// collocations
+		final List<Collocation> collocations = Collocation.make(connection, roleSetId);
+		walk(connection, doc, parent, collocations);
 	}
 
 	/**
-	 * Query PropBank data from role sets
+	 * Query SyntagNet data from collocations
 	 *
-	 * @param connection data source
-	 * @param doc        org.w3c.dom.Document being built
-	 * @param parent     org.w3c.dom.Node the walk will attach results to
-	 * @param roleSets   role sets
+	 * @param connection   data source
+	 * @param doc          org.w3c.dom.Document being built
+	 * @param parent       org.w3c.dom.Node the walk will attach results to
+	 * @param collocations collocations
 	 */
-	static private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, @NonNull final Iterable<PbRoleSet> roleSets)
+	static private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, @NonNull final Iterable<Collocation> collocations)
 	{
-		// role sets
 		int i = 1;
-		for (final PbRoleSet roleSet : roleSets)
+		for (final Collocation collocation : collocations)
 		{
 			// role set
-			final Node roleSetNode = PbNodeFactory.makePbRoleSetNode(doc, parent, roleSet, i++);
-
-			// roles
-			final List<PbRole> roles = PbRole.make(connection, roleSet.roleSetId);
-			for (final PbRole role : roles)
-			{
-				PbNodeFactory.makePbRoleNode(doc, roleSetNode, role);
-			}
-			// examples
-			final List<PbExample> examples = PbExample.make(connection, roleSet.roleSetId);
-			for (final PbExample example : examples)
-			{
-				PbNodeFactory.makePbExampleNode(doc, roleSetNode, example);
-			}
+			final Node collocationNode = SnNodeFactory.makeCollocationNode(doc, parent, collocation, i++);
 		}
 	}
 
 	/**
-	 * Display query results for PropBank data from query result
+	 * Display query results for SyntagNet data from query result
 	 *
-	 * @param doc      org.w3c.dom.Document being built
-	 * @param parent   org.w3c.dom.Node the walk will attach results to
-	 * @param roleSets role sets
+	 * @param doc          org.w3c.dom.Document being built
+	 * @param parent       org.w3c.dom.Node the walk will attach results to
+	 * @param collocations collocations
 	 */
-	static private void makeSelector(@NonNull final Document doc, final Node parent, @NonNull final Iterable<PbRoleSet> roleSets)
+	static private void makeSelector(@NonNull final Document doc, final Node parent, @NonNull final Iterable<Collocation> collocations)
 	{
-		// role sets
 		int i = 1;
-		for (final PbRoleSet roleSet : roleSets)
+		for (final Collocation collocation : collocations)
 		{
 			// role set
-			PbNodeFactory.makePbRoleSetNode(doc, parent, roleSet, i++);
+			SnNodeFactory.makeCollocationNode(doc, parent, collocation, i++);
 		}
 	}
 
 	// I T E M S
 
 	/**
-	 * Business method that returns PropBank selector data as DOM document
+	 * Business method that returns SyntagNet selector data as DOM document
 	 *
 	 * @param connection connection
 	 * @param word       target word
-	 * @return PropBank selector data as DOM document
+	 * @return SyntagNet selector data as DOM document
 	 */
 	@Override
 	public Document querySelectorDoc(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = DomFactory.makeDocument();
-		final Node rootNode = PbNodeFactory.makePbRootNode(doc, word);
-		PropBankImplementation.walkSelector(connection, doc, rootNode, word);
+		final Node rootNode = SnNodeFactory.makeSnRootNode(doc, word);
+		SyntagNetImplementation.walkSelector(connection, doc, rootNode, word);
 		return doc;
 	}
 
 	/**
-	 * Business method that returns PropBank selector data as XML
+	 * Business method that returns SyntagNet selector data as XML
 	 *
 	 * @param connection connection
 	 * @param word       target word
-	 * @return PropBank selector data as XML
+	 * @return SyntagNet selector data as XML
 	 */
 	@NonNull
 	@Override
@@ -195,27 +179,27 @@ public class PropBankImplementation implements PropBankInterface
 	// W A L K
 
 	/**
-	 * Business method that returns PropBank data as DOM document from word
+	 * Business method that returns SyntagNet data as DOM document from word
 	 *
 	 * @param connection connection
 	 * @param word       target word
-	 * @return PropBank data as DOM document
+	 * @return SyntagNet data as DOM document
 	 */
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final String word)
 	{
 		final Document doc = DomFactory.makeDocument();
-		final Node rootNode = PbNodeFactory.makePbRootNode(doc, word);
-		PropBankImplementation.walk(connection, doc, rootNode, word);
+		final Node rootNode = SnNodeFactory.makeSnRootNode(doc, word);
+		SyntagNetImplementation.walk(connection, doc, rootNode, word);
 		return doc;
 	}
 
 	/**
-	 * Business method that returns PropBank data as XML from word
+	 * Business method that returns SyntagNet data as XML from word
 	 *
 	 * @param connection connection
 	 * @param word       target word
-	 * @return PropBank data as XML
+	 * @return SyntagNet data as XML
 	 */
 	@NonNull
 	@Override
@@ -226,29 +210,29 @@ public class PropBankImplementation implements PropBankInterface
 	}
 
 	/**
-	 * Business method that returns PropBank data as DOM document from word id
+	 * Business method that returns SyntagNet data as DOM document from word id
 	 *
 	 * @param connection connection
 	 * @param wordId     word id to build query from
 	 * @param pos        pos to build query from
-	 * @return PropBank data as DOM document
+	 * @return SyntagNet data as DOM document
 	 */
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final long wordId, final Character pos)
 	{
 		final Document doc = DomFactory.makeDocument();
-		final Node wordNode = PbNodeFactory.makePbRootNode(doc, wordId);
-		PropBankImplementation.walk(connection, doc, wordNode, wordId);
+		final Node wordNode = SnNodeFactory.makeSnRootNode(doc, wordId);
+		SyntagNetImplementation.walk(connection, doc, wordNode, wordId);
 		return doc;
 	}
 
 	/**
-	 * Business method that returns PropBank data as XML from word id
+	 * Business method that returns SyntagNet data as XML from word id
 	 *
 	 * @param connection connection
 	 * @param wordId     target word id
 	 * @param pos        pos to build query from
-	 * @return PropBank data as XML
+	 * @return SyntagNet data as XML
 	 */
 	@NonNull
 	@Override
@@ -264,14 +248,14 @@ public class PropBankImplementation implements PropBankInterface
 	 * @param connection connection
 	 * @param roleSetId  role set to build query from
 	 * @param pos        pos to build query from
-	 * @return PropBank role set data as DOM document
+	 * @return SyntagNet role set data as DOM document
 	 */
 	@Override
-	public Document queryRoleSetDoc(final SQLiteDatabase connection, final long roleSetId, final Character pos)
+	public Document queryCollocationDoc(final SQLiteDatabase connection, final long roleSetId, final Character pos)
 	{
 		final Document doc = DomFactory.makeDocument();
-		final Node rootNode = PbNodeFactory.makePbRootRoleSetNode(doc, roleSetId);
-		PropBankImplementation.walkRoleSet(connection, doc, rootNode, roleSetId);
+		final Node rootNode = SnNodeFactory.makeSnRootNode(doc, roleSetId);
+		SyntagNetImplementation.walkCollocations(connection, doc, rootNode, roleSetId);
 		return doc;
 	}
 
@@ -283,13 +267,13 @@ public class PropBankImplementation implements PropBankInterface
 	 * @param connection connection
 	 * @param roleSetId  role set id to build query from
 	 * @param pos        pos to build query from
-	 * @return PropBank role set data as XML
+	 * @return SyntagNet role set data as XML
 	 */
 	@NonNull
 	@Override
-	public String queryRoleSetXML(final SQLiteDatabase connection, final long roleSetId, final Character pos)
+	public String queryCollocationXML(final SQLiteDatabase connection, final long roleSetId, final Character pos)
 	{
-		final Document doc = queryRoleSetDoc(connection, roleSetId, pos);
+		final Document doc = queryCollocationDoc(connection, roleSetId, pos);
 		return DomTransformer.docToString(doc);
 	}
 }

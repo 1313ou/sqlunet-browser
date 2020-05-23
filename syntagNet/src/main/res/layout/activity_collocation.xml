@@ -19,11 +19,11 @@
 	</com.google.android.material.appbar.AppBarLayout>
 
 	<FrameLayout
-		android:id="@+id/container_pbroleset"
+		android:id="@+id/container_collocation"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-		tools:context="org.sqlunet.propbank.browser.PbRoleSetFragment"
+		tools:context="org.sqlunet.propbank.browser.CollocationFragment"
 		tools:ignore="MergeRootFrame"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
