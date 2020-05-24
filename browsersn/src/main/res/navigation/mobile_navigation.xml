@@ -22,12 +22,6 @@
 		tools:layout="@layout/fragment_browse" />
 
 	<fragment
-		android:id="@+id/nav_search_predicatematrix"
-		android:name="org.sqlunet.browser.BrowsePredicateMatrixFragment"
-		android:label="@string/nav_search_predicatematrix"
-		tools:layout="@layout/fragment_browse_predicatematrix" />
-
-	<fragment
 		android:id="@+id/nav_search_text"
 		android:name="org.sqlunet.browser.SearchTextFragment"
 		android:label="@string/nav_search_text"
