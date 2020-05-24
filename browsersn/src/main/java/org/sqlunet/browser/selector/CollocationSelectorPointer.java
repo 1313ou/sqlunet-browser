@@ -102,7 +102,9 @@ public class CollocationSelectorPointer extends PosSelectorPointer
 	public void writeToParcel(@NonNull final Parcel parcel, final int flags)
 	{
 		super.writeToParcel(parcel, flags);
-		parcel.writeString(this.pos.toString());
+		parcel.writeLong(this.synset2Id);
+		parcel.writeLong(this.word2Id);
+		parcel.writeString(this.pos2.toString());
 	}
 
 	@SuppressWarnings("SameReturnValue")
