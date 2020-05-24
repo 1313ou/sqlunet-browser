@@ -375,14 +375,12 @@
 			android:exported="false"
 			tools:ignore="ExportedContentProvider"/>
 
-		<!--
 		<provider
-			android:name="org.sqlunet.wordnet.provider.SyntagNetProvider"
+			android:name="org.sqlunet.syntagnet.provider.SyntagNetProvider"
 			android:authorities="@string/syntagnet_authority"
 			android:enabled="true"
 			android:exported="false"
 			tools:ignore="ExportedContentProvider"/>
-		-->
 
 		<provider
 			android:name="org.sqlunet.bnc.provider.BNCProvider"

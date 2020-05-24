@@ -150,10 +150,10 @@ public class SyntagNetProvider extends BaseProvider
 
 			case COLLOCATIONS_X:
 				table = "syntagms " + //
-						"JOIN words AS " + SyntagNetContract.WORD1 + " ON (word1id = " + SyntagNetContract.WORD1 + ".wordid)" + //
-						"JOIN words AS " + SyntagNetContract.WORD2 + " ON (word2id = " + SyntagNetContract.WORD2 + ".wordid)" + //
-						"JOIN synsets AS " + SyntagNetContract.SYNSET1 + " ON (synset1id = s1.synsetid)" + //
-						"JOIN synsets AS " + SyntagNetContract.SYNSET2 + " ON (synset2id = s2.synsetid)";
+						"JOIN words AS " + SyntagNetContract.W1 + " ON (word1id = " + SyntagNetContract.W1 + ".wordid) " + //
+						"JOIN words AS " + SyntagNetContract.W2 + " ON (word2id = " + SyntagNetContract.W2 + ".wordid) " + //
+						"JOIN synsets AS " + SyntagNetContract.S1 + " ON (synset1id = " + SyntagNetContract.S1 + ".synsetid) " + //
+						"JOIN synsets AS " + SyntagNetContract.S2 + " ON (synset2id = " + SyntagNetContract.S2 + ".synsetid)";
 				break;
 
 

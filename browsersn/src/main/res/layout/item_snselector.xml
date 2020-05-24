@@ -9,7 +9,7 @@
               android:layout_height="wrap_content"
               android:background="?android:attr/activatedBackgroundIndicator"
               android:orientation="vertical"
-              tools:context="org.sqlunet.browser.selector.Browse1Fragment"
+              tools:context="org.sqlunet.browser.xselector.XBrowse1Fragment"
               tools:ignore="Overdraw">
 
 	<LinearLayout
@@ -23,73 +23,27 @@
 			android:layout_height="wrap_content"
 			android:layout_marginEnd="5dp"
 			android:contentDescription="@string/item"
-			android:src="@drawable/ic_item"/>
+			android:src="@drawable/ic_collocation"/>
 
 		<TextView
-			android:id="@+id/pos"
-			style="@style/Data.Pos"
+			android:id="@+id/word1"
+			style="@style/Data.Collocation1"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:contentDescription="@string/word1"
 			android:textIsSelectable="false"/>
 
-		<View
-			android:layout_width="0dp"
-			android:layout_height="0dp"
-			android:layout_weight="1"/>
+<!--		<View-->
+<!--			android:layout_width="0dp"-->
+<!--			android:layout_height="0dp"-->
+<!--			android:layout_weight="1"/>-->
 
 		<TextView
-			android:id="@+id/lexdomain"
-			style="@style/Data.LexDomain"
+			android:id="@+id/word2"
+			style="@style/Data.Collocation1"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textIsSelectable="false"/>
-	</LinearLayout>
-
-	<TextView
-		android:id="@+id/cased"
-		style="@style/Data.Cased"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:textIsSelectable="false"/>
-
-	<TextView
-		android:id="@+id/definition"
-		style="@style/Data.Definition"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:textIsSelectable="false"/>
-
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal">
-
-		<TextView
-			android:id="@+id/sensenum"
-			style="@style/Data.SenseNum"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:textIsSelectable="false"/>
-
-		<TextView
-			android:id="@+id/sensekey"
-			style="@style/Data.SenseKey"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:textIsSelectable="false"/>
-
-		<TextView
-			android:id="@+id/lexid"
-			style="@style/Data.LexId"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:textIsSelectable="false"/>
-
-		<TextView
-			android:id="@+id/tagcount"
-			style="@style/Data.TagCount"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
+			android:contentDescription="@string/word2"
 			android:textIsSelectable="false"/>
 
 	</LinearLayout>
@@ -99,26 +53,48 @@
 		android:layout_height="wrap_content"
 		android:orientation="horizontal">
 
+<!--		<TextView-->
+<!--			android:id="@+id/word1id"-->
+<!--			style="@style/Data.XWordId"-->
+<!--			android:layout_width="wrap_content"-->
+<!--			android:layout_height="wrap_content"-->
+<!--			android:textIsSelectable="false"/>-->
+
 		<TextView
-			android:id="@+id/wordid"
-			style="@style/Data.WordId"
+			android:id="@+id/pos1"
+			style="@style/Data.PosId"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:textIsSelectable="false"/>
 
 		<TextView
-			android:id="@+id/synsetid"
-			style="@style/Data.SynsetId"
+			android:id="@+id/synset1id"
+			style="@style/Data.XSynsetId"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:textIsSelectable="false"/>
 
-		<TextView
-			android:id="@+id/senseid"
-			style="@style/Data.SenseId"
+<!--		<TextView-->
+<!--			android:id="@+id/word2id"-->
+<!--			style="@style/Data.XWordId"-->
+<!--			android:layout_width="wrap_content"-->
+<!--			android:layout_height="wrap_content"-->
+<!--			android:textIsSelectable="false"/>-->
+
+			<TextView
+			android:id="@+id/pos2"
+			style="@style/Data.PosId"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:textIsSelectable="false"/>
+
+	<TextView
+			android:id="@+id/synset2id"
+			style="@style/Data.XSynsetId"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textIsSelectable="false"/>
+
 	</LinearLayout>
 
 </LinearLayout>

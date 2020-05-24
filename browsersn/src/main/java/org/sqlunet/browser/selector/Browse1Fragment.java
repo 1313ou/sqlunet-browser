@@ -28,6 +28,8 @@ import androidx.fragment.app.FragmentManager;
  */
 public class Browse1Fragment extends Fragment implements SelectorsFragment.Listener
 {
+	public static final String IS_TWO_PANE = "is_two_pane";
+
 	/**
 	 * Selectors fragment
 	 */
@@ -53,7 +55,10 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 		if (this.selectorsFragment == null)
 		{
 			this.selectorsFragment = new SelectorsFragment();
-			this.selectorsFragment.setArguments(getArguments());
+			Bundle args = getArguments();
+			boolean isTwoPane = isTwoPane(view);
+			args.putBoolean(IS_TWO_PANE, isTwoPane);
+			this.selectorsFragment.setArguments(args);
 			this.selectorsFragment.setListener(this);
 		}
 
@@ -80,19 +85,6 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 		}
 
 		return view;
-	}
-
-	@Override
-	public void onViewCreated(@NonNull View view, Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
-
-		if (isTwoPane(view))
-		{
-			// in two-pane mode, list items should be given the 'activated' state when touched.
-			assert this.selectorsFragment != null;
-			this.selectorsFragment.setActivateOnItemClick(true);
-		}
 	}
 
 	// I T E M S E L E C T I O N H A N D L I N G
