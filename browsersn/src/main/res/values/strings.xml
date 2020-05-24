@@ -36,8 +36,18 @@
 	<string name="hint_search_predicatematrix">Search Predicate Matrix</string>
 	<string name="hint_splash_predicatematrix">Exploring Predicate Matrix</string>
 
+	<!-- items -->
+	<string name="word1">1st word</string>
+	<string name="word2">2nd word</string>
+	<string name="word1id">1st word id</string>
+	<string name="word2id">2nd word id</string>
+	<string name="synset1">1st synset</string>
+	<string name="synset2">2nd synset</string>
+	<string name="synset1id">1st synset id</string>
+	<string name="synset2id">2nd synset id</string>
+
 	<!-- databases -->
-	<string name="source">Source database</string>
+	<string name="source">Source</string>
 	<string name="sqlunet">SqlUNet</string>
 
 </resources>
