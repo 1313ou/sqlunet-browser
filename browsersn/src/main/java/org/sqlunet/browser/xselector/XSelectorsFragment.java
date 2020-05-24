@@ -58,7 +58,7 @@ public class XSelectorsFragment extends Fragment
 		super.onViewCreated(view, savedInstanceState);
 
 		// Check that the activity is using the layout version with the fragment_container FrameLayout
-		if (view.findViewById(R.id.xwnselectors) != null)
+		if (view.findViewById(R.id.wnselectors) != null)
 		{
 			// However, if we're being restored from a previous state, then we don't need to do anything and should return or else
 			// we could end up with overlapping fragments.
@@ -76,11 +76,11 @@ public class XSelectorsFragment extends Fragment
 			// Add the fragment to the fragment container layout
 			getChildFragmentManager() //
 					.beginTransaction() //
-					.add(R.id.xwnselectors, fragment) //
+					.add(R.id.wnselectors, fragment) //
 					.commit();
 		}
 
-		if (view.findViewById(R.id.xsnselectors) != null)
+		if (view.findViewById(R.id.snselectors) != null)
 		{
 			// However, if we're being restored from a previous state, then we don't need to do anything and should return or else
 			// we could end up with overlapping fragments.
@@ -98,7 +98,7 @@ public class XSelectorsFragment extends Fragment
 			// Add the fragment to the fragment container layout
 			getChildFragmentManager() //
 					.beginTransaction() //
-					.add(R.id.xsnselectors, fragment) //
+					.add(R.id.snselectors, fragment) //
 					.commit();
 		}
 	}
