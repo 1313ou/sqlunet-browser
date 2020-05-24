@@ -49,9 +49,7 @@ public class XSelectorsFragment extends Fragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		return inflater.inflate(R.layout.fragment_xselectors_all, container, false);
-		//android:name="org.sqlunet.browser.xselector.XWnSelectorsFragment"
-		//android:name="org.sqlunet.browser.xselector.XSnSelectorsFragment"
+		return inflater.inflate(R.layout.fragment_xselectors, container, false);
 	}
 
 	@Override
