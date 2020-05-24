@@ -19,7 +19,7 @@ import androidx.annotation.NonNull;
 public class PosSelectorPointer extends SelectorPointer implements HasPos
 {
 	/**
-	 * Word id
+	 * POS
 	 */
 	private final Character pos;
 

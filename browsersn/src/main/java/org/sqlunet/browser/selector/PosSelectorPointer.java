@@ -19,9 +19,9 @@ import androidx.annotation.NonNull;
 public class PosSelectorPointer extends SelectorPointer implements HasPos
 {
 	/**
-	 * Word id
+	 * POS
 	 */
-	private final Character pos;
+	protected final Character pos;
 
 	/**
 	 * Static field used to regenerate object, individually or as arrays
@@ -48,7 +48,7 @@ public class PosSelectorPointer extends SelectorPointer implements HasPos
 	 *
 	 * @param parcel parcel
 	 */
-	private PosSelectorPointer(@NonNull Parcel parcel)
+	protected PosSelectorPointer(@NonNull Parcel parcel)
 	{
 		super(parcel);
 		String posStr = parcel.readString();

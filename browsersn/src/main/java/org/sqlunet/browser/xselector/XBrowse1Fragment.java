@@ -13,6 +13,11 @@ import android.view.ViewGroup;
 import org.sqlunet.browser.Browse2Activity;
 import org.sqlunet.browser.Browse2Fragment;
 import org.sqlunet.browser.R;
+import org.sqlunet.browser.Selectors;
+import org.sqlunet.browser.selector.CollocationSelectorPointer;
+import org.sqlunet.browser.selector.SelectorPointer;
+import org.sqlunet.browser.selector.SelectorsFragment;
+import org.sqlunet.browser.selector.SnSelectorsFragment;
 import org.sqlunet.browser.xn.Settings;
 import org.sqlunet.provider.ProviderArgs;
 
@@ -26,7 +31,7 @@ import androidx.fragment.app.FragmentManager;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Listener
+public class XBrowse1Fragment extends Fragment implements SelectorsFragment.Listener, SnSelectorsFragment.Listener
 {
 	/**
 	 * Selectors fragment
@@ -53,8 +58,11 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 		if (this.xSelectorsFragment == null)
 		{
 			this.xSelectorsFragment = new XSelectorsFragment();
-			this.xSelectorsFragment.setArguments(getArguments());
-			this.xSelectorsFragment.setListener(this);
+			Bundle args = getArguments();
+			boolean isTwoPane = isTwoPane(view);
+			args.putBoolean(Selectors.IS_TWO_PANE, isTwoPane);
+			this.xSelectorsFragment.setArguments(args);
+			this.xSelectorsFragment.setListener(this, this);
 		}
 
 		// transaction on selectors pane
@@ -70,7 +78,7 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 			if (browse2Fragment == null)
 			{
 				browse2Fragment = new Browse2Fragment();
-				final Bundle args = new Bundle();
+				Bundle args = new Bundle();
 				args.putBoolean(Browse2Fragment.ARG_ALT, false);
 				browse2Fragment.setArguments(args);
 			}
@@ -82,26 +90,13 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 		return view;
 	}
 
-	@Override
-	public void onViewCreated(@NonNull View view, Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
-
-		if (isTwoPane(view))
-		{
-			// in two-pane mode, list items should be given the 'activated' state when touched.
-			assert this.xSelectorsFragment != null;
-			//TODO this.xSelectorsFragment.setActivateOnItemClick(true);
-		}
-	}
-
 	// I T E M S E L E C T I O N H A N D L I N G
 
 	/**
-	 * Callback method from {@link XSelectorsFragment.Listener} indicating that the item with the given ID was selected.
+	 * Callback method from {@link SelectorsFragment.Listener} indicating that the item with the given ID was selected.
 	 */
 	@Override
-	public void onItemSelected(@NonNull final XSelectorPointer pointer, final String word, final String cased, final String pos)
+	public void onItemSelected(@NonNull final SelectorPointer pointer, final String word, final String cased, final String pos)
 	{
 		final View view = getView();
 		assert view != null;
@@ -122,11 +117,17 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 			args.putString(ProviderArgs.ARG_HINTWORD, word);
 			args.putString(ProviderArgs.ARG_HINTCASED, cased);
 			args.putString(ProviderArgs.ARG_HINTPOS, pos);
-			args.putBoolean(Browse2Fragment.ARG_ALT, pointer.getXGroup() != 0);
 			final Intent intent = new Intent(requireContext(), Browse2Activity.class);
 			intent.putExtras(args);
 			startActivity(intent);
 		}
+	}
+
+	@Override
+	public void onItemSelected(final CollocationSelectorPointer pointer)
+	{
+		// TODO
+		System.out.println("Collocation onItemSelected");
 	}
 
 	// V I E W   D E T E C T I O N

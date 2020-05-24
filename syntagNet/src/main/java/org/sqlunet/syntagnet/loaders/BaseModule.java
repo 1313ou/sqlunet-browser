@@ -16,6 +16,7 @@ import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.model.TreeFactory;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.syntagnet.R;
+import org.sqlunet.syntagnet.provider.SyntagNetContract;
 import org.sqlunet.syntagnet.provider.SyntagNetContract.SnCollocations_X;
 import org.sqlunet.syntagnet.provider.SyntagNetProvider;
 import org.sqlunet.syntagnet.style.SyntagNetFactories;
@@ -120,8 +121,8 @@ abstract class BaseModule extends Module
 				SnCollocations_X.WORD2ID, //
 				SnCollocations_X.SYNSET1ID, //
 				SnCollocations_X.SYNSET2ID, //
-				SnCollocations_X.WORD1, //
-				SnCollocations_X.WORD2,};
+				SyntagNetContract.WORD1, //
+				SyntagNetContract.WORD2,};
 		final String selection = SnCollocations_X.COLLOCATIONID + " = ?";
 		final String[] selectionArgs = {Long.toString(collocationId)};
 		this.collocationFromCollocationIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> collocationCursorToTreeModel(cursor, collocationId, parent));
@@ -143,8 +144,8 @@ abstract class BaseModule extends Module
 			final int idWord2Id = cursor.getColumnIndex(SnCollocations_X.WORD2ID);
 			final int idSynset1Id = cursor.getColumnIndex(SnCollocations_X.SYNSET1ID);
 			final int idSynset2Id = cursor.getColumnIndex(SnCollocations_X.SYNSET2ID);
-			final int idWord1 = cursor.getColumnIndex(SnCollocations_X.WORD1);
-			final int idWord2 = cursor.getColumnIndex(SnCollocations_X.WORD2);
+			final int idWord1 = cursor.getColumnIndex(SyntagNetContract.WORD1);
+			final int idWord2 = cursor.getColumnIndex(SyntagNetContract.WORD2);
 
 			// read cursor
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
@@ -211,8 +212,8 @@ abstract class BaseModule extends Module
 				SnCollocations_X.WORD2ID, //
 				SnCollocations_X.SYNSET1ID, //
 				SnCollocations_X.SYNSET2ID, //
-				SnCollocations_X.WORD1, //
-				SnCollocations_X.WORD2,};
+				SyntagNetContract.WORD1, //
+				SyntagNetContract.WORD2,};
 		final String selection = SnCollocations_X.WORD1ID + " = ? OR " + SnCollocations_X.WORD2ID + " = ?";
 		final String[] selectionArgs = {Long.toString(wordId)};
 		this.collocationsFromWordIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> collocationsCursorToTreeModel(cursor, parent));
@@ -231,8 +232,8 @@ abstract class BaseModule extends Module
 				SnCollocations_X.WORD2ID, //
 				SnCollocations_X.SYNSET1ID, //
 				SnCollocations_X.SYNSET2ID, //
-				SnCollocations_X.WORD1, //
-				SnCollocations_X.WORD2,};
+				SyntagNetContract.WORD1, //
+				SyntagNetContract.WORD2,};
 		final String selection = SnCollocations_X.WORD1ID + " = ? OR " + SnCollocations_X.WORD2ID + " = ?";
 		final String[] selectionArgs = {word};
 		this.collocationsFromWordModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> collocationsCursorToTreeModel(cursor, parent));
@@ -252,8 +253,8 @@ abstract class BaseModule extends Module
 			final int idWord2Id = cursor.getColumnIndex(SnCollocations_X.WORD2ID);
 			final int idSynset1Id = cursor.getColumnIndex(SnCollocations_X.SYNSET1ID);
 			final int idSynset2Id = cursor.getColumnIndex(SnCollocations_X.SYNSET2ID);
-			final int idWord1 = cursor.getColumnIndex(SnCollocations_X.WORD1);
-			final int idWord2 = cursor.getColumnIndex(SnCollocations_X.WORD2);
+			final int idWord1 = cursor.getColumnIndex(SyntagNetContract.WORD1);
+			final int idWord2 = cursor.getColumnIndex(SyntagNetContract.WORD2);
 
 			// read cursor
 			do

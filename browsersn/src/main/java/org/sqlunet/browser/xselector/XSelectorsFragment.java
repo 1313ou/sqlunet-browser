@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import org.sqlunet.browser.R;
 import org.sqlunet.browser.selector.SelectorsFragment;
+import org.sqlunet.browser.selector.SnSelectorsFragment;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,16 +27,14 @@ public class XSelectorsFragment extends Fragment
 	static private final String TAG = "XSelectorsF";
 
 	/**
-	 * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
+	 * Wn listener
 	 */
-	@FunctionalInterface
-	public interface Listener
-	{
-		/**
-		 * Callback for when an item has been selected.
-		 */
-		void onItemSelected(XSelectorPointer pointer, String word, String cased, String pos);
-	}
+	private SelectorsFragment.Listener wnListener;
+
+	/**
+	 * Sn collocation listener
+	 */
+	private SnSelectorsFragment.Listener snListener;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
@@ -68,10 +67,13 @@ public class XSelectorsFragment extends Fragment
 			}
 
 			// Create a new Fragment to be placed in the activity layout
-			Fragment fragment = new SelectorsFragment();
+			SelectorsFragment fragment = new SelectorsFragment();
 
 			// Pass the arguments
 			fragment.setArguments(getArguments());
+
+			// Listener
+			fragment.setListener(this.wnListener);
 
 			// Add the fragment to the fragment container layout
 			getChildFragmentManager() //
@@ -90,10 +92,13 @@ public class XSelectorsFragment extends Fragment
 			}
 
 			// Create a new Fragment to be placed in the activity layout
-			Fragment fragment = new SnSelectorsFragment();
+			SnSelectorsFragment fragment = new SnSelectorsFragment();
 
 			// Pass the arguments
 			fragment.setArguments(getArguments());
+
+			// Listener
+			fragment.setListener(this.snListener);
 
 			// Add the fragment to the fragment container layout
 			getChildFragmentManager() //
@@ -103,15 +108,17 @@ public class XSelectorsFragment extends Fragment
 		}
 	}
 
-	// L I S T E N E R
+	// L I S T E N E R S
 
 	/**
 	 * Set listener
 	 *
-	 * @param listener listener
+	 * @param listener1 wordnet listener
+	 * @param listener2 syntagnet listener
 	 */
-	public void setListener(final XSelectorsFragment.Listener listener)
+	public void setListener(final SelectorsFragment.Listener listener1, final SnSelectorsFragment.Listener listener2)
 	{
-		//this.listener = listener;
+		this.wnListener = listener1;
+		this.snListener = listener2;
 	}
 }
