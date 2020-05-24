@@ -1,16 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="?android:attr/activatedBackgroundIndicator"
-              android:orientation="vertical"
-              tools:context="org.sqlunet.browser.xselector.XBrowse1Fragment"
-              tools:ignore="Overdraw">
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:background="?android:attr/activatedBackgroundIndicator"
+	android:orientation="vertical"
+	tools:context="org.sqlunet.browser.xselector.XBrowse1Fragment"
+	tools:ignore="Overdraw">
 
 	<LinearLayout
 		android:layout_width="match_parent"
@@ -21,9 +20,10 @@
 			style="@style/Data.XIcon"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:layout_gravity="center_vertical"
 			android:layout_marginEnd="5dp"
 			android:contentDescription="@string/item"
-			android:src="@drawable/ic_collocation"/>
+			android:src="@drawable/ic_collocation" />
 
 		<TextView
 			android:id="@+id/word1"
@@ -31,12 +31,12 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:contentDescription="@string/word1"
-			android:textIsSelectable="false"/>
+			android:textIsSelectable="false" />
 
-<!--		<View-->
-<!--			android:layout_width="0dp"-->
-<!--			android:layout_height="0dp"-->
-<!--			android:layout_weight="1"/>-->
+		<!--		<View-->
+		<!--			android:layout_width="0dp"-->
+		<!--			android:layout_height="0dp"-->
+		<!--			android:layout_weight="1"/>-->
 
 		<TextView
 			android:id="@+id/word2"
@@ -44,7 +44,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:contentDescription="@string/word2"
-			android:textIsSelectable="false"/>
+			android:textIsSelectable="false" />
 
 	</LinearLayout>
 
@@ -53,47 +53,47 @@
 		android:layout_height="wrap_content"
 		android:orientation="horizontal">
 
-<!--		<TextView-->
-<!--			android:id="@+id/word1id"-->
-<!--			style="@style/Data.XWordId"-->
-<!--			android:layout_width="wrap_content"-->
-<!--			android:layout_height="wrap_content"-->
-<!--			android:textIsSelectable="false"/>-->
+		<!--		<TextView-->
+		<!--			android:id="@+id/word1id"-->
+		<!--			style="@style/Data.XWordId"-->
+		<!--			android:layout_width="wrap_content"-->
+		<!--			android:layout_height="wrap_content"-->
+		<!--			android:textIsSelectable="false"/>-->
 
 		<TextView
 			android:id="@+id/pos1"
 			style="@style/Data.PosId"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textIsSelectable="false"/>
+			android:textIsSelectable="false" />
 
 		<TextView
 			android:id="@+id/synset1id"
 			style="@style/Data.XSynsetId"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textIsSelectable="false"/>
+			android:textIsSelectable="false" />
 
-<!--		<TextView-->
-<!--			android:id="@+id/word2id"-->
-<!--			style="@style/Data.XWordId"-->
-<!--			android:layout_width="wrap_content"-->
-<!--			android:layout_height="wrap_content"-->
-<!--			android:textIsSelectable="false"/>-->
+		<!--		<TextView-->
+		<!--			android:id="@+id/word2id"-->
+		<!--			style="@style/Data.XWordId"-->
+		<!--			android:layout_width="wrap_content"-->
+		<!--			android:layout_height="wrap_content"-->
+		<!--			android:textIsSelectable="false"/>-->
 
-			<TextView
+		<TextView
 			android:id="@+id/pos2"
 			style="@style/Data.PosId"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textIsSelectable="false"/>
+			android:textIsSelectable="false" />
 
-	<TextView
+		<TextView
 			android:id="@+id/synset2id"
 			style="@style/Data.XSynsetId"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textIsSelectable="false"/>
+			android:textIsSelectable="false" />
 
 	</LinearLayout>
 
