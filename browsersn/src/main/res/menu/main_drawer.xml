@@ -18,10 +18,6 @@
 			android:icon="@drawable/ic_search_browse"
 			android:title="@string/nav_search_browse" />
 		<item
-			android:id="@+id/nav_search_predicatematrix"
-			android:icon="@drawable/ic_search_pm"
-			android:title="@string/nav_search_predicatematrix" />
-		<item
 			android:id="@+id/nav_search_text"
 			android:icon="@drawable/ic_search_text"
 			android:title="@string/nav_search_text" />
