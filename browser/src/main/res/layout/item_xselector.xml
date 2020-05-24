@@ -35,7 +35,7 @@
 			style="@style/Data.XSources"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:contentDescription="@string/download_source"
+			android:contentDescription="@string/source"
 			android:textIsSelectable="false"/>
 
 		<ImageView
@@ -43,14 +43,14 @@
 			style="@style/Data.XSources"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:contentDescription="@string/download_source"/>
+			android:contentDescription="@string/source"/>
 
 		<ImageView
 			android:id="@+id/pm"
 			style="@style/Data.XSources"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:contentDescription="@string/download_source"/>
+			android:contentDescription="@string/source"/>
 	</LinearLayout>
 
 	<TextView
