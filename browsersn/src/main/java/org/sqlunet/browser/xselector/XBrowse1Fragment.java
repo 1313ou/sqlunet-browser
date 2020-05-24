@@ -20,6 +20,7 @@ import org.sqlunet.browser.selector.SelectorsFragment;
 import org.sqlunet.browser.selector.SnSelectorsFragment;
 import org.sqlunet.browser.xn.Settings;
 import org.sqlunet.provider.ProviderArgs;
+import org.sqlunet.syntagnet.browser.CollocationActivity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -128,6 +129,25 @@ public class XBrowse1Fragment extends Fragment implements SelectorsFragment.List
 	{
 		// TODO
 		System.out.println("Collocation onItemSelected");
+		final View view = getView();
+		assert view != null;
+		if (isTwoPane(view))
+		{
+			// TODO
+			// in two-pane mode, show the detail view in this activity by adding or replacing the detail fragment using a fragment transaction.
+			//final Browse2Fragment fragment = (Browse2Fragment) getChildFragmentManager().findFragmentById(R.id.container_browse2);
+			//assert fragment != null;
+			//fragment.search(pointer, pos);
+		}
+		else
+		{
+			// in single-pane mode, simply start the detail activity for the selected item ID.
+			final Bundle args = new Bundle();
+			args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer);
+			final Intent intent = new Intent(requireContext(), CollocationActivity.class);
+			intent.putExtras(args);
+			startActivity(intent);
+		}
 	}
 
 	// V I E W   D E T E C T I O N
