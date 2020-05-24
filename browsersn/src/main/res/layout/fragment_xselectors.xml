@@ -1,14 +1,46 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2020. Bernard Bou <1313ou@gmail.com>.
   -->
+<!--
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content">
+-->
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical">
 
-<ExpandableListView xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    android:id="@android:id/list"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:choiceMode="singleChoice"
-                    android:listSelector="@drawable/listitem_selector"
-                    tools:listitem="@layout/item_xselector"/>
+		<androidx.fragment.app.FragmentContainerView
+			android:id="@+id/wnselectors"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="2"
+			android:tag="wordnet" />
+
+	<View
+		android:id="@+id/divider1"
+		android:layout_width="match_parent"
+		android:layout_height="3dp"
+		android:background="?android:attr/listDivider" />
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/syntagnet" />
+
+	<View
+		android:id="@+id/divider2"
+		android:layout_width="match_parent"
+		android:layout_height="3dp"
+		android:background="?android:attr/listDivider" />
+
+	<androidx.fragment.app.FragmentContainerView
+			android:id="@+id/snselectors"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1"
+			android:tag="syntagnet" />
+
+	</LinearLayout>
+<!--</ScrollView>-->
