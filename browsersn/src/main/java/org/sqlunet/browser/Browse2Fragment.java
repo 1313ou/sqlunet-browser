@@ -12,9 +12,6 @@ import org.sqlunet.bnc.browser.BNCFragment;
 import org.sqlunet.browser.web.WebFragment;
 import org.sqlunet.browser.xn.Settings;
 import org.sqlunet.browser.xselector.XSelectorPointer;
-import org.sqlunet.browser.xselector.XSelectorsFragment;
-import org.sqlunet.browser.xselector.XSnSelectorsFragment;
-import org.sqlunet.browser.xselector.XWnSelectorsFragment;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.wordnet.browser.SenseFragment;
 
