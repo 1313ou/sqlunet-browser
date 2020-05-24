@@ -24,7 +24,7 @@
 	<string name="hint_splash_browse">Exploring semantic roles</string>
 
 	<!-- databases -->
-	<string name="source">Source database</string>
+	<string name="source">Source</string>
 	<string name="verbnet" tools:keep="@string/verbnet">VerbNet</string>
 	<string name="propbank" tools:keep="@string/propbank">PropBank</string>
 
