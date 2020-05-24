@@ -53,6 +53,21 @@ abstract class BaseModule extends Module
 	 */
 	private final Drawable beforeDrawable;
 
+	/**
+	 * Drawable for following collocation definition (after)
+	 */
+	private final Drawable afterDefinitionDrawable;
+
+	/**
+	 * Drawable for preceding collocation definition (before)
+	 */
+	private final Drawable beforeDefinitionDrawable;
+
+	/**
+	 * Drawable info
+	 */
+	private final Drawable infoDrawable;
+
 	// agents
 
 	/**
@@ -83,8 +98,11 @@ abstract class BaseModule extends Module
 
 		// drawables
 		final Context context = BaseModule.this.fragment.requireContext();
-		this.afterDrawable = Spanner.getDrawable(context, R.drawable.info);
-		this.beforeDrawable = Spanner.getDrawable(context, R.drawable.info);
+		this.beforeDrawable = Spanner.getDrawable(context, R.drawable.before);
+		this.afterDrawable = Spanner.getDrawable(context, R.drawable.after);
+		this.beforeDefinitionDrawable = Spanner.getDrawable(context, R.drawable.definition1);
+		this.afterDefinitionDrawable = Spanner.getDrawable(context, R.drawable.definition2);
+		this.infoDrawable = Spanner.getDrawable(context, R.drawable.info);
 
 		// spanner
 		this.spanner = new SyntagNetSpanner(context);
@@ -117,18 +135,55 @@ abstract class BaseModule extends Module
 	{
 		final Uri uri = Uri.parse(SyntagNetProvider.makeUri(SnCollocations_X.CONTENT_URI_TABLE));
 		final String[] projection = { //
+				SnCollocations_X.COLLOCATIONID, //
 				SnCollocations_X.WORD1ID, //
 				SnCollocations_X.WORD2ID, //
 				SnCollocations_X.SYNSET1ID, //
 				SnCollocations_X.SYNSET2ID, //
-				SyntagNetContract.WORD1, //
-				SyntagNetContract.WORD2,};
+				SyntagNetContract.W1 + '.' + SnCollocations_X.LEMMA + " AS " + SyntagNetContract.WORD1, //
+				SyntagNetContract.W2 + '.' + SnCollocations_X.LEMMA + " AS " + SyntagNetContract.WORD2, //
+				SyntagNetContract.S1 + '.' + SnCollocations_X.DEFINITION + " AS " + SyntagNetContract.DEFINITION1, //
+				SyntagNetContract.S2 + '.' + SnCollocations_X.DEFINITION + " AS " + SyntagNetContract.DEFINITION2, //
+				SyntagNetContract.S1 + '.' + SnCollocations_X.POS + " AS " + SyntagNetContract.POS1, //
+				SyntagNetContract.S2 + '.' + SnCollocations_X.POS + " AS " + SyntagNetContract.POS2, //
+		};
 		final String selection = SnCollocations_X.COLLOCATIONID + " = ?";
 		final String[] selectionArgs = {Long.toString(collocationId)};
-		this.collocationFromCollocationIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> collocationCursorToTreeModel(cursor, collocationId, parent));
+		this.collocationFromCollocationIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> collocationCursorToTreeModel(cursor, parent));
 	}
 
-	private TreeOp[] collocationCursorToTreeModel(@NonNull final Cursor cursor, final long collocationId, @NonNull final TreeNode parent)
+	/**
+	 * Collocation from ids
+	 *
+	 * @param word1Id   word 1 id
+	 * @param word2Id   word 2 id
+	 * @param synset1Id synset 1 id
+	 * @param synset2Id synset 2 id
+	 * @param parent    parent node
+	 */
+	void collocation(final Long word1Id, final Long word2Id, final Long synset1Id, final Long synset2Id, final TreeNode parent)
+	{
+		final Uri uri = Uri.parse(SyntagNetProvider.makeUri(SnCollocations_X.CONTENT_URI_TABLE));
+		final String[] projection = { //
+				SnCollocations_X.COLLOCATIONID, //
+				SnCollocations_X.WORD1ID, //
+				SnCollocations_X.WORD1ID, //
+				SnCollocations_X.WORD2ID, //
+				SnCollocations_X.SYNSET1ID, //
+				SnCollocations_X.SYNSET2ID, //
+				SyntagNetContract.W1 + '.' + SnCollocations_X.LEMMA + " AS " + SyntagNetContract.WORD1, //
+				SyntagNetContract.W2 + '.' + SnCollocations_X.LEMMA + " AS " + SyntagNetContract.WORD2, //
+				SyntagNetContract.S1 + '.' + SnCollocations_X.DEFINITION + " AS " + SyntagNetContract.DEFINITION1, //
+				SyntagNetContract.S2 + '.' + SnCollocations_X.DEFINITION + " AS " + SyntagNetContract.DEFINITION2, //
+				SyntagNetContract.S1 + '.' + SnCollocations_X.POS + " AS " + SyntagNetContract.POS1, //
+				SyntagNetContract.S2 + '.' + SnCollocations_X.POS + " AS " + SyntagNetContract.POS2, //
+		};
+		final String selection = SnCollocations_X.WORD1ID + " = ? AND " + SnCollocations_X.WORD2ID + " = ? AND " + SnCollocations_X.SYNSET1ID + " = ? AND " + SnCollocations_X.SYNSET2ID + " = ?";
+		final String[] selectionArgs = {Long.toString(word1Id), Long.toString(word2Id), Long.toString(synset1Id), Long.toString(synset2Id)};
+		this.collocationFromCollocationIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> collocationCursorToTreeModel(cursor, parent));
+	}
+
+	private TreeOp[] collocationCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (cursor.getCount() > 1)
 		{
@@ -139,39 +194,52 @@ abstract class BaseModule extends Module
 		if (cursor.moveToFirst())
 		{
 			// column indices
-			//final int idCollocationId = cursor.getColumnIndex(SnCollocations_X.COLLOCATIONID);
+			final int idCollocationId = cursor.getColumnIndex(SnCollocations_X.COLLOCATIONID);
 			final int idWord1Id = cursor.getColumnIndex(SnCollocations_X.WORD1ID);
 			final int idWord2Id = cursor.getColumnIndex(SnCollocations_X.WORD2ID);
 			final int idSynset1Id = cursor.getColumnIndex(SnCollocations_X.SYNSET1ID);
 			final int idSynset2Id = cursor.getColumnIndex(SnCollocations_X.SYNSET2ID);
 			final int idWord1 = cursor.getColumnIndex(SyntagNetContract.WORD1);
 			final int idWord2 = cursor.getColumnIndex(SyntagNetContract.WORD2);
+			final int idDefinition1 = cursor.getColumnIndex(SyntagNetContract.DEFINITION1);
+			final int idDefinition2 = cursor.getColumnIndex(SyntagNetContract.DEFINITION2);
+			final int idPos1 = cursor.getColumnIndex(SyntagNetContract.POS1);
+			final int idPos2 = cursor.getColumnIndex(SyntagNetContract.POS2);
 
 			// read cursor
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 			// data
-			//final int collocationId = cursor.getInt(idCollocationId);
+			final int collocationId = cursor.getInt(idCollocationId);
 
 			// words
 			Spanner.appendImage(sb, BaseModule.this.beforeDrawable);
 			sb.append(' ');
-			Spanner.append(sb, cursor.getString(idWord1), 0, SyntagNetFactories.roleSetFactory);
+			Spanner.append(sb, cursor.getString(idWord1), 0, SyntagNetFactories.beforeFactory);
+			sb.append('\n');
+
+			Spanner.appendImage(sb, BaseModule.this.beforeDefinitionDrawable);
 			sb.append(' ');
+			Spanner.append(sb, cursor.getString(idDefinition1), 0, SyntagNetFactories.beforeDefinitionFactory);
+			sb.append('\n');
+
 			Spanner.appendImage(sb, BaseModule.this.afterDrawable);
 			sb.append(' ');
-			sb.append(cursor.getString(idWord2));
+			Spanner.append(sb, cursor.getString(idWord2), 0, SyntagNetFactories.afterFactory);
+			sb.append('\n');
+
+			Spanner.appendImage(sb, BaseModule.this.afterDefinitionDrawable);
+			sb.append(' ');
+			Spanner.append(sb, cursor.getString(idDefinition2), 0, SyntagNetFactories.afterDefinitionFactory);
 			sb.append('\n');
 
 			// ids
-			Spanner.appendImage(sb, BaseModule.this.beforeDrawable);
+			Spanner.appendImage(sb, BaseModule.this.infoDrawable);
 			sb.append(' ');
 			sb.append(Long.toString(cursor.getLong(idWord1Id)));
 			sb.append(' ');
 			sb.append(Long.toString(cursor.getLong(idSynset1Id)));
 			sb.append(" > ");
-			Spanner.appendImage(sb, BaseModule.this.afterDrawable);
-			sb.append(' ');
 			sb.append(cursor.getString(idWord2Id));
 			sb.append(' ');
 			sb.append(cursor.getString(idSynset2Id));
@@ -267,7 +335,7 @@ abstract class BaseModule extends Module
 				// words
 				Spanner.appendImage(sb, BaseModule.this.beforeDrawable);
 				sb.append(' ');
-				Spanner.append(sb, cursor.getString(idWord1), 0, SyntagNetFactories.roleSetFactory);
+				Spanner.append(sb, cursor.getString(idWord1), 0, SyntagNetFactories.beforeFactory);
 				sb.append(' ');
 				Spanner.appendImage(sb, BaseModule.this.afterDrawable);
 				sb.append(' ');

@@ -20,15 +20,13 @@ import org.sqlunet.style.Spanner.SpanFactory;
  */
 public class SyntagNetFactories
 {
-	static public final SpanFactory roleSetFactory = Factories.classFactory;
+	static public final SpanFactory beforeFactory = flags -> new Object[]{new BackgroundColorSpan(Color.BLUE), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
 
-	static public final SpanFactory roleFactory = Factories.roleFactory;
+	static public final SpanFactory afterFactory = flags -> new Object[]{new BackgroundColorSpan(Color.RED), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
 
-	static public final SpanFactory thetaFactory = flags -> new Object[]{new BackgroundColorSpan(Color.BLUE), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
+	static public final SpanFactory beforeDefinitionFactory = flags -> new Object[]{new BackgroundColorSpan(Color.WHITE), new ForegroundColorSpan(Color.BLUE), new StyleSpan(Typeface.ITALIC)};
 
-	static public final SpanFactory definitionFactory = Factories.definitionFactory;
+	static public final SpanFactory afterDefinitionFactory = flags -> new Object[]{new BackgroundColorSpan(Color.WHITE), new ForegroundColorSpan(Color.RED), new StyleSpan(Typeface.ITALIC)};
 
-	static public final SpanFactory exampleFactory = Factories.exampleFactory;
-
-	static public final SpanFactory relationFactory = flags -> new Object[]{new BackgroundColorSpan(Color.GRAY), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
+	// static public final SpanFactory definitionFactory = Factories.definitionFactory;
 }
