@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.sqlunet.browser.R;
+import org.sqlunet.browser.selector.SelectorsFragment;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -69,7 +70,7 @@ public class XSelectorsFragment extends Fragment
 			}
 
 			// Create a new Fragment to be placed in the activity layout
-			XWnSelectorsFragment fragment = new XWnSelectorsFragment();
+			Fragment fragment = new SelectorsFragment();
 
 			// Pass the arguments
 			fragment.setArguments(getArguments());
@@ -91,7 +92,7 @@ public class XSelectorsFragment extends Fragment
 			}
 
 			// Create a new Fragment to be placed in the activity layout
-			Fragment fragment = new XSnSelectorsFragment();
+			Fragment fragment = new SnSelectorsFragment();
 
 			// Pass the arguments
 			fragment.setArguments(getArguments());
