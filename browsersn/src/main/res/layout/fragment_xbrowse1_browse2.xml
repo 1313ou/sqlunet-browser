@@ -18,7 +18,7 @@
 		android:layout_width="0dp"
 		android:layout_height="match_parent"
 		android:layout_weight="1"
-		tools:layout="@layout/fragment_xselectors_all"/>
+		tools:layout="@layout/fragment_xselectors"/>
 
 	<!-- detail -->
 	<androidx.core.widget.NestedScrollView
