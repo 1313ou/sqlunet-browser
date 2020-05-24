@@ -13,6 +13,8 @@ import org.sqlunet.browser.web.WebFragment;
 import org.sqlunet.browser.xn.Settings;
 import org.sqlunet.browser.xselector.XSelectorPointer;
 import org.sqlunet.browser.xselector.XSelectorsFragment;
+import org.sqlunet.browser.xselector.XSnSelectorsFragment;
+import org.sqlunet.browser.xselector.XWnSelectorsFragment;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.wordnet.browser.SenseFragment;
 
@@ -66,17 +68,19 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 				{
 					// sections to disable
 					int mask = 0;
-					final XSelectorPointer xpointer = (XSelectorPointer) this.pointer;
-					final int group = xpointer.getXGroup();
-					switch (group)
-					{
-						case XSelectorsFragment.GROUPID_WORDNET:
-							mask = Settings.ENABLE_SYNTAGNET;
-							break;
-						case XSelectorsFragment.GROUPID_SYNTAGNET:
-							mask = 0;
-							break;
-					}
+//					final XSelectorPointer xpointer = (XSelectorPointer) this.pointer;
+//					final int group = xpointer.getXGroup();
+//					switch (group)
+//					{
+//						//TODO
+//						case XWnSelectorsFragment.GROUPID_WORDNET:
+//							mask = Settings.ENABLE_SYNTAGNET;
+//							break;
+//						//TODO
+//						case XSnSelectorsFragment.GROUPID_SYNTAGNET:
+//							mask = 0;
+//							break;
+//					}
 					enable &= ~mask;
 				}
 

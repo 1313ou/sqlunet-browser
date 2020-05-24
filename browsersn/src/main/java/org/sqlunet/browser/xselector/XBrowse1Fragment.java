@@ -91,7 +91,7 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 		{
 			// in two-pane mode, list items should be given the 'activated' state when touched.
 			assert this.xSelectorsFragment != null;
-			this.xSelectorsFragment.setActivateOnItemClick(true);
+			//TODO this.xSelectorsFragment.setActivateOnItemClick(true);
 		}
 	}
 
