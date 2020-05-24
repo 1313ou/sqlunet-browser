@@ -6,6 +6,9 @@ package org.sqlunet.browser.selector;
 
 import android.os.Parcel;
 
+import org.sqlunet.Has2SynsetId;
+import org.sqlunet.Has2WordId;
+
 import androidx.annotation.NonNull;
 
 /**
@@ -13,7 +16,7 @@ import androidx.annotation.NonNull;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class CollocationSelectorPointer extends PosSelectorPointer
+public class CollocationSelectorPointer extends PosSelectorPointer implements Has2SynsetId, Has2WordId
 {
 	/**
 	 * Synset 2 id
