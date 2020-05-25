@@ -6,6 +6,8 @@ package org.sqlunet.browser.selector;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.MatrixCursor;
+import android.database.MergeCursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -25,6 +27,8 @@ import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.syntagnet.provider.SyntagNetContract;
 import org.sqlunet.syntagnet.provider.SyntagNetContract.SnCollocations_X;
 import org.sqlunet.syntagnet.provider.SyntagNetProvider;
+import org.sqlunet.wordnet.provider.WordNetContract.Words;
+import org.sqlunet.wordnet.provider.WordNetProvider;
 
 import java.util.Locale;
 
@@ -60,6 +64,49 @@ public class SnSelectorsFragment extends ListFragment
 	static private final String STATE_ACTIVATED_SELECTOR = "activated_selector";
 
 	/**
+	 * Columns
+	 */
+	private static String[] COLUMNS = { //
+			"_id", //
+			SnCollocations_X.WORD1ID, //
+			SnCollocations_X.WORD2ID, //
+			SnCollocations_X.SYNSET1ID, //
+			SnCollocations_X.SYNSET2ID, //
+			SyntagNetContract.WORD1, //
+			SyntagNetContract.WORD2, //
+			SyntagNetContract.POS1, //
+			SyntagNetContract.POS2, //
+	};
+
+	/**
+	 * Displayed columns
+	 */
+	private static String[] DISPLAYED_COLUMNS = { //
+			SyntagNetContract.WORD1, //
+			SyntagNetContract.WORD2, //
+			//SnCollocations_X.WORD1ID, //
+			//SnCollocations_X.WORD2ID, //
+			SnCollocations_X.SYNSET1ID, //
+			SnCollocations_X.SYNSET2ID, //
+			SyntagNetContract.POS1, //
+			SyntagNetContract.POS2, //
+	};
+
+	/**
+	 * Column resources
+	 */
+	private static int[] DISPLAYED_COLUMN_RES_IDS = {  //
+			R.id.word1, //
+			R.id.word2, //
+			//R.id.word1id, //
+			//R.id.word2id, //
+			R.id.synset1id, //
+			R.id.synset2id, //
+			R.id.pos1, //
+			R.id.pos2, //
+	};
+
+	/**
 	 * Activate on click flag: in two-pane mode, list items should be given the 'activated' state when touched.
 	 */
 	private boolean activateOnItemClick = false;
@@ -79,6 +126,11 @@ public class SnSelectorsFragment extends ListFragment
 	 */
 	@Nullable
 	private String word;
+
+	/**
+	 * Search query
+	 */
+	private long wordId = -1;
 
 	// View model
 
@@ -115,29 +167,11 @@ public class SnSelectorsFragment extends ListFragment
 			query = query.trim().toLowerCase(Locale.ENGLISH);
 		}
 		this.word = query;
+		this.wordId = queryId(query);
 
 		// list adapter, with no data
 		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(requireContext(), R.layout.item_snselector, null, //
-				new String[]{ //
-						SyntagNetContract.WORD1, //
-						SyntagNetContract.WORD2, //
-						//SnCollocations_X.WORD1ID, //
-						//SnCollocations_X.WORD2ID, //
-						SnCollocations_X.SYNSET1ID, //
-						SnCollocations_X.SYNSET2ID, //
-						SyntagNetContract.POS1, //
-						SyntagNetContract.POS2, //
-				}, //
-				new int[]{ //
-						R.id.word1, //
-						R.id.word2, //
-						//R.id.word1id, //
-						//R.id.word2id, //
-						R.id.synset1id, //
-						R.id.synset2id, //
-						R.id.pos1, //
-						R.id.pos2, //
-				}, 0);
+				DISPLAYED_COLUMNS, DISPLAYED_COLUMN_RES_IDS, 0);
 
 		adapter.setViewBinder((view, cursor, columnIndex) -> {
 
@@ -184,6 +218,32 @@ public class SnSelectorsFragment extends ListFragment
 	}
 
 	/**
+	 * Query word
+	 *
+	 * @param query query word
+	 * @return word id
+	 */
+	private long queryId(final String query)
+	{
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(Words.CONTENT_URI_TABLE));
+		final String[] projection = {Words.WORDID,};
+		final String selection = Words.LEMMA + " = ?"; //
+		final String[] selectionArgs = {query};
+		try (Cursor cursor = requireContext().getContentResolver().query(uri, projection, selection, selectionArgs, null))
+		{
+			if (cursor != null)
+			{
+				if (cursor.moveToFirst())
+				{
+					final int idWordId = cursor.getColumnIndex(Words.WORDID);
+					return cursor.getLong(idWordId);
+				}
+			}
+		}
+		return -1;
+	}
+
+	/**
 	 * Make view models
 	 */
 	private void makeModels()
@@ -191,10 +251,12 @@ public class SnSelectorsFragment extends ListFragment
 		this.model = new ViewModelProvider(this).get("snselectors(word)", SqlunetViewModel.class);
 		this.model.getData().observe(this, cursor -> {
 
+			Cursor cursor2 = SnSelectorsFragment.augmentCursor(cursor, wordId, word);
+
 			// pass on to list adapter
 			final CursorAdapter adapter = (CursorAdapter) getListAdapter();
 			assert adapter != null;
-			adapter.swapCursor(cursor);
+			adapter.swapCursor(cursor2);
 
 			// check
 			/*
@@ -205,6 +267,28 @@ public class SnSelectorsFragment extends ListFragment
 			}
 			*/
 		});
+	}
+
+	/**
+	 * Augment cursor with special values
+	 *
+	 * @param cursor cursor
+	 * @param wordid word id
+	 * @param word   word
+	 * @return augmented cursor
+	 */
+	private static Cursor augmentCursor(Cursor cursor, long wordid, String word)
+	{
+		// Create a MatrixCursor filled with the special rows to add.
+		MatrixCursor matrixCursor = new MatrixCursor(COLUMNS);
+
+		//	"_id",  WORD1ID,  WORD2ID,  SYNSET1ID,  SYNSET2ID,  WORD1,  WORD2,  POS1,  POS2
+		matrixCursor.addRow(new Object[]{Integer.MAX_VALUE, wordid, wordid, null, null, word + "|*", "*|" + word, null, null});
+		matrixCursor.addRow(new Object[]{Integer.MAX_VALUE - 1, wordid, null, null, null, word, "*", null, null});
+		matrixCursor.addRow(new Object[]{Integer.MAX_VALUE - 2, null, wordid, null, null, "*", word, null, null});
+
+		// Merge your existing cursor with the matrixCursor you created.
+		return new MergeCursor(new Cursor[]{matrixCursor, cursor});
 	}
 
 	// V I E W
@@ -245,7 +329,10 @@ public class SnSelectorsFragment extends ListFragment
 		super.onStart();
 
 		// run the contents (once activity is available)
-		load();
+		if (this.wordId != -1)
+		{
+			load();
+		}
 	}
 
 	@Override
@@ -292,8 +379,8 @@ public class SnSelectorsFragment extends ListFragment
 				SyntagNetContract.S1 + '.' + SnCollocations_X.POS + " AS " + SyntagNetContract.POS1, //
 				SyntagNetContract.S2 + '.' + SnCollocations_X.POS + " AS " + SyntagNetContract.POS2, //
 		};
-		final String selection = SyntagNetContract.W1 + '.' + SnCollocations_X.LEMMA + " = ? OR " + SyntagNetContract.W2 + '.' + SnCollocations_X.LEMMA + " = ?"; ////
-		final String[] selectionArgs = {SnSelectorsFragment.this.word, SnSelectorsFragment.this.word};
+		final String selection = SnCollocations_X.WORD1ID + " = ? OR " + SnCollocations_X.WORD2ID + " = ?"; //
+		final String[] selectionArgs = {Long.toString(SnSelectorsFragment.this.wordId), Long.toString(SnSelectorsFragment.this.wordId)};
 		final String sortOrder = SyntagNetContract.W1 + '.' + SnCollocations_X.LEMMA + ',' + SyntagNetContract.W2 + '.' + SnCollocations_X.LEMMA;
 		this.model.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
 	}
@@ -330,11 +417,11 @@ public class SnSelectorsFragment extends ListFragment
 
 				// retrieve
 				final long synset1Id = cursor.isNull(idSynset1Id) ? 0 : cursor.getLong(idSynset1Id);
-				final char pos1 = cursor.getString(idPos1).charAt(0);
-				final long word1Id = cursor.getLong(idWord1Id);
-				final long synset2Id = cursor.isNull(idSynset2Id) ? 0 : cursor.getLong(idSynset2Id);
-				final char pos2 = cursor.getString(idPos2).charAt(0);
-				final long word2Id = cursor.getLong(idWord2Id);
+				final char pos1 = cursor.isNull(idPos1) ? 0 : cursor.getString(idPos1).charAt(0);
+				final long word1Id = cursor.isNull(idWord1Id) ? 0 : cursor.getLong(idWord1Id);
+				final long synset2Id = cursor.isNull(idWord1Id) ? 0 : cursor.isNull(idSynset2Id) ? 0 : cursor.getLong(idSynset2Id);
+				final char pos2 = cursor.isNull(idPos2) ? 0 : cursor.getString(idPos2).charAt(0);
+				final long word2Id = cursor.isNull(idWord2Id) ? 0 : cursor.getLong(idWord2Id);
 
 				// pointer
 				final CollocationSelectorPointer pointer = new CollocationSelectorPointer(synset1Id, word1Id, pos1, synset2Id, word2Id, pos2);
