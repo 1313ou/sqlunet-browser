@@ -416,12 +416,12 @@ public class SnSelectorsFragment extends ListFragment
 				final int idWord2Id = cursor.getColumnIndex(SnCollocations_X.WORD2ID);
 
 				// retrieve
-				final long synset1Id = cursor.isNull(idSynset1Id) ? 0 : cursor.getLong(idSynset1Id);
+				final long synset1Id = cursor.isNull(idSynset1Id) ? -1 : cursor.getLong(idSynset1Id);
+				final long word1Id = cursor.isNull(idWord1Id) ? -1 : cursor.getLong(idWord1Id);
 				final char pos1 = cursor.isNull(idPos1) ? 0 : cursor.getString(idPos1).charAt(0);
-				final long word1Id = cursor.isNull(idWord1Id) ? 0 : cursor.getLong(idWord1Id);
-				final long synset2Id = cursor.isNull(idWord1Id) ? 0 : cursor.isNull(idSynset2Id) ? 0 : cursor.getLong(idSynset2Id);
+				final long synset2Id = cursor.isNull(idSynset2Id) ? -1 : cursor.getLong(idSynset2Id);
+				final long word2Id = cursor.isNull(idWord2Id) ? -1 : cursor.getLong(idWord2Id);
 				final char pos2 = cursor.isNull(idPos2) ? 0 : cursor.getString(idPos2).charAt(0);
-				final long word2Id = cursor.isNull(idWord2Id) ? 0 : cursor.getLong(idWord2Id);
 
 				// pointer
 				final CollocationSelectorPointer pointer = new CollocationSelectorPointer(synset1Id, word1Id, pos1, synset2Id, word2Id, pos2);
