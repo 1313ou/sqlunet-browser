@@ -27,6 +27,13 @@
 
 <!--	<style name="Label.Source"/>-->
 
+	<style name="Header">
+		<item name="android:textColor">@android:color/white</item>
+		<item name="android:textSize">16sp</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:background">@color/secondaryDarkColor</item>
+	</style>
+
 	<style name="Label.Group">
 		<item name="android:padding">8dp</item>
 		<item name="android:background">@color/group_color</item>

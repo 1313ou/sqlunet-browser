@@ -20,6 +20,8 @@ import org.sqlunet.style.Spanner.SpanFactory;
  */
 public class SyntagNetFactories
 {
+	static public final SpanFactory collocationFactory = flags -> new Object[]{new BackgroundColorSpan(Color.WHITE), new ForegroundColorSpan(Color.DKGRAY), new StyleSpan(Typeface.BOLD)};
+
 	static public final SpanFactory beforeFactory = flags -> new Object[]{new BackgroundColorSpan(Color.BLUE), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
 
 	static public final SpanFactory afterFactory = flags -> new Object[]{new BackgroundColorSpan(Color.RED), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
