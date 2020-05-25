@@ -46,6 +46,9 @@ abstract class BaseModule extends Module
 	// resources
 
 	/**
+	 * Drawable for collocation pait
+	 */
+	/**
 	 * Drawable for following collocation (after)
 	 */
 	private final Drawable afterDrawable;
@@ -154,15 +157,6 @@ abstract class BaseModule extends Module
 		this.collocationFromCollocationIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> collocationCursorToTreeModel(cursor, parent));
 	}
 
-	private TreeOp[] collocationCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
-	{
-		if (cursor.getCount() > 1)
-		{
-			throw new RuntimeException("Unexpected number of rows");
-		}
-		return collocationsCursorToTreeModel(cursor, parent);
-	}
-
 	/**
 	 * Collocation from ids
 	 *
@@ -194,91 +188,6 @@ abstract class BaseModule extends Module
 		this.collocationFromCollocationIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> collocationsCursorToTreeModel(cursor, parent));
 	}
 
-	private TreeOp[] collocationsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
-	{
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			// column indices
-			final int idCollocationId = cursor.getColumnIndex(SnCollocations_X.COLLOCATIONID);
-			final int idWord1Id = cursor.getColumnIndex(SnCollocations_X.WORD1ID);
-			final int idWord2Id = cursor.getColumnIndex(SnCollocations_X.WORD2ID);
-			final int idSynset1Id = cursor.getColumnIndex(SnCollocations_X.SYNSET1ID);
-			final int idSynset2Id = cursor.getColumnIndex(SnCollocations_X.SYNSET2ID);
-			final int idWord1 = cursor.getColumnIndex(SyntagNetContract.WORD1);
-			final int idWord2 = cursor.getColumnIndex(SyntagNetContract.WORD2);
-			final int idDefinition1 = cursor.getColumnIndex(SyntagNetContract.DEFINITION1);
-			final int idDefinition2 = cursor.getColumnIndex(SyntagNetContract.DEFINITION2);
-			final int idPos1 = cursor.getColumnIndex(SyntagNetContract.POS1);
-			final int idPos2 = cursor.getColumnIndex(SyntagNetContract.POS2);
-
-			// read cursor
-			do
-			{
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-
-				// data
-				final int collocationId = cursor.getInt(idCollocationId);
-				final String word1 = cursor.getString(idWord1);
-				final String word2 = cursor.getString(idWord2);
-
-				final TreeNode node = TreeFactory.makeTreeNode(word1 + " " + word2, R.drawable.info, false).addTo(parent);
-
-				// words
-				Spanner.appendImage(sb, BaseModule.this.beforeDrawable);
-				sb.append(' ');
-				Spanner.append(sb, word1, 0, SyntagNetFactories.beforeFactory);
-				sb.append('\n');
-
-				Spanner.appendImage(sb, BaseModule.this.beforeDefinitionDrawable);
-				sb.append(' ');
-				Spanner.append(sb, cursor.getString(idDefinition1), 0, SyntagNetFactories.beforeDefinitionFactory);
-				sb.append('\n');
-
-				Spanner.appendImage(sb, BaseModule.this.afterDrawable);
-				sb.append(' ');
-				Spanner.append(sb, word2, 0, SyntagNetFactories.afterFactory);
-				sb.append('\n');
-
-				Spanner.appendImage(sb, BaseModule.this.afterDefinitionDrawable);
-				sb.append(' ');
-				Spanner.append(sb, cursor.getString(idDefinition2), 0, SyntagNetFactories.afterDefinitionFactory);
-				sb.append('\n');
-
-				// ids
-				Spanner.appendImage(sb, BaseModule.this.infoDrawable);
-				sb.append(' ');
-				sb.append(Long.toString(cursor.getLong(idWord1Id)));
-				sb.append(' ');
-				sb.append(Long.toString(cursor.getLong(idSynset1Id)));
-				sb.append(" > ");
-				sb.append(cursor.getString(idWord2Id));
-				sb.append(' ');
-				sb.append(cursor.getString(idSynset2Id));
-				sb.append('\n');
-
-				// attach result
-				final TreeNode subnode = TreeFactory.makeTextNode(sb, true).addTo(node);
-
-				// sub nodes
-				//TODO
-				//final TreeNode rolesNode = TreeFactory.makeHotQueryNode("More", R.drawable.roles, false, new RolesQuery(roleSetId)).addTo(parent);
-				//final TreeNode examplesNode = TreeFactory.makeQueryNode("More", R.drawable.sample, false, new ExamplesQuery(roleSetId)).addTo(parent);
-				//changed = TreeOp.seq(NEWMAIN, node, NEWEXTRA, rolesNode, NEWEXTRA, examplesNode, NEWTREE, parent);
-			}
-			while (cursor.moveToNext());
-			changed = TreeOp.seq(NEWTREE, parent);
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(REMOVE, parent);
-		}
-
-		cursor.close();
-		return changed;
-	}
-
 	/**
 	 * Collocations for word id
 	 *
@@ -298,6 +207,92 @@ abstract class BaseModule extends Module
 		final String selection = SnCollocations_X.WORD1ID + " = ? OR " + SnCollocations_X.WORD2ID + " = ?";
 		final String[] selectionArgs = {Long.toString(wordId)};
 		this.collocationsFromWordIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> collocationsCursorToTreeModel(cursor, parent));
+	}
+
+	/**
+	 * Collocations for word
+	 *
+	 * @param word word	 * @param parent parent node
+	 */
+	void collocations(final String word, @NonNull final TreeNode parent)
+	{
+		final Uri uri = Uri.parse(SyntagNetProvider.makeUri(SnCollocations_X.CONTENT_URI_TABLE));
+		final String[] projection = { //
+				SnCollocations_X.WORD1ID, //
+				SnCollocations_X.WORD2ID, //
+				SnCollocations_X.SYNSET1ID, //
+				SnCollocations_X.SYNSET2ID, //
+				SyntagNetContract.WORD1, //
+				SyntagNetContract.WORD2,};
+		final String selection = SnCollocations_X.WORD1ID + " = ? OR " + SnCollocations_X.WORD2ID + " = ?";
+		final String[] selectionArgs = {word};
+		this.collocationsFromWordModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> collocationsCursorToTreeModel(cursor, parent));
+	}
+
+	private TreeOp[] collocationCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	{
+		if (cursor.getCount() > 1)
+		{
+			throw new RuntimeException("Unexpected number of rows");
+		}
+		return collocationsCursorToTreeModel(cursor, parent);
+	}
+
+	private TreeOp[] collocationsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	{
+		TreeOp[] changed;
+		if (cursor.moveToFirst())
+		{
+			final TreeOps changedList = new TreeOps(NEWTREE, parent);
+
+			// column indices
+			final int idCollocationId = cursor.getColumnIndex(SnCollocations_X.COLLOCATIONID);
+			final int idWord1Id = cursor.getColumnIndex(SnCollocations_X.WORD1ID);
+			final int idWord2Id = cursor.getColumnIndex(SnCollocations_X.WORD2ID);
+			final int idSynset1Id = cursor.getColumnIndex(SnCollocations_X.SYNSET1ID);
+			final int idSynset2Id = cursor.getColumnIndex(SnCollocations_X.SYNSET2ID);
+			final int idWord1 = cursor.getColumnIndex(SyntagNetContract.WORD1);
+			final int idWord2 = cursor.getColumnIndex(SyntagNetContract.WORD2);
+			final int idDefinition1 = cursor.getColumnIndex(SyntagNetContract.DEFINITION1);
+			final int idDefinition2 = cursor.getColumnIndex(SyntagNetContract.DEFINITION2);
+			final int idPos1 = cursor.getColumnIndex(SyntagNetContract.POS1);
+			final int idPos2 = cursor.getColumnIndex(SyntagNetContract.POS2);
+
+			// read cursor
+			do
+			{
+				// data
+				final int collocationId = cursor.getInt(idCollocationId);
+				final String word1 = cursor.getString(idWord1);
+				final String word2 = cursor.getString(idWord2);
+				final long word1Id = cursor.getLong(idWord1Id);
+				final long word2Id = cursor.getLong(idWord2Id);
+				final long synset1Id = cursor.getLong(idSynset1Id);
+				final long synset2Id = cursor.getLong(idSynset2Id);
+				final String pos1 = cursor.getString(idPos1);
+				final String pos2 = cursor.getString(idPos2);
+				final String definition1 = cursor.getString(idDefinition1);
+				final String definition2 = cursor.getString(idDefinition2);
+
+				makeContent(collocationId, word1, word2, word1Id, word2Id, synset1Id, synset2Id, pos1, pos2, definition1, definition2, parent, changedList);
+
+				// sub nodes
+				//TODO
+				//final TreeNode moreNode = TreeFactory.makeHotQueryNode("More", R.drawable.more, false, new MoreQuery(collocationId)).addTo(parent);
+				//final TreeNode more2Node = TreeFactory.makeQueryNode("More2", R.drawable.more2, false, new More2Query(collocationId)).addTo(parent);
+				//changed = TreeOp.seq(NEWMAIN, node, NEWEXTRA, moreNode, NEWEXTRA, more2Node, NEWTREE, parent);
+			}
+			while (cursor.moveToNext());
+			changed = changedList.toArray();
+		}
+		else
+		{
+			TreeFactory.setNoResult(parent);
+			changed = TreeOp.seq(REMOVE, parent);
+		}
+
+		cursor.close();
+		return changed;
 	}
 
 	/**
@@ -353,96 +348,65 @@ abstract class BaseModule extends Module
 		return args.toArray(new String[0]);
 	}
 
-	/**
-	 * Collocations for word
-	 *
-	 * @param word word	 * @param parent parent node
-	 */
-	void collocations(final String word, @NonNull final TreeNode parent)
+	private void makeContent(final int collocationId, //
+			final String word1, final String word2,  //
+			final long word1Id, final long word2Id, //
+			final long synset1Id, final long synset2Id, //
+			final String pos1, final String pos2,  //
+			final String definition1, final String definition2, //
+			final TreeNode parent, final TreeOps changedList)
 	{
-		final Uri uri = Uri.parse(SyntagNetProvider.makeUri(SnCollocations_X.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				SnCollocations_X.WORD1ID, //
-				SnCollocations_X.WORD2ID, //
-				SnCollocations_X.SYNSET1ID, //
-				SnCollocations_X.SYNSET2ID, //
-				SyntagNetContract.WORD1, //
-				SyntagNetContract.WORD2,};
-		final String selection = SnCollocations_X.WORD1ID + " = ? OR " + SnCollocations_X.WORD2ID + " = ?";
-		final String[] selectionArgs = {word};
-		this.collocationsFromWordModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> collocationsCursorToTreeModel(cursor, parent));
-	}
+		// header
+		final SpannableStringBuilder sbh = new SpannableStringBuilder();
+		Spanner.append(sbh, word1, 0, SyntagNetFactories.collocationFactory);
+		sbh.append(' ');
+		sbh.append(pos1);
+		sbh.append(' ');
+		Spanner.append(sbh, word2, 0, SyntagNetFactories.collocationFactory);
+		sbh.append(' ');
+		sbh.append(pos2);
 
-	@NonNull
-	private TreeOp[] collocations2CursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
-	{
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			final TreeOp.TreeOps changedList = new TreeOps(NEWTREE, parent);
+		// collocation
+		final TreeNode collocationNode = TreeFactory.makeTreeNode(sbh, R.drawable.collocation, true).addTo(parent);
+		changedList.add(NEWCHILD, collocationNode);
 
-			// column indices
-			// final int idCollocationId = cursor.getColumnIndex(SnCollocations_X.COLLOCATIONID);
-			final int idWord1Id = cursor.getColumnIndex(SnCollocations_X.WORD1ID);
-			final int idWord2Id = cursor.getColumnIndex(SnCollocations_X.WORD2ID);
-			final int idSynset1Id = cursor.getColumnIndex(SnCollocations_X.SYNSET1ID);
-			final int idSynset2Id = cursor.getColumnIndex(SnCollocations_X.SYNSET2ID);
-			final int idWord1 = cursor.getColumnIndex(SyntagNetContract.WORD1);
-			final int idWord2 = cursor.getColumnIndex(SyntagNetContract.WORD2);
+		// contents
+		final SpannableStringBuilder sb = new SpannableStringBuilder();
 
-			// read cursor
-			do
-			{
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
+		// words
+		Spanner.appendImage(sb, BaseModule.this.beforeDrawable);
+		sb.append(' ');
+		Spanner.append(sb, word1, 0, SyntagNetFactories.beforeFactory);
+		sb.append('\n');
 
-				// data
-				// final int collocationId = cursor.getInt(idCollocationId);
+		Spanner.appendImage(sb, BaseModule.this.beforeDefinitionDrawable);
+		sb.append(' ');
+		Spanner.append(sb, definition1, 0, SyntagNetFactories.beforeDefinitionFactory);
+		sb.append('\n');
 
-				// words
-				Spanner.appendImage(sb, BaseModule.this.beforeDrawable);
-				sb.append(' ');
-				Spanner.append(sb, cursor.getString(idWord1), 0, SyntagNetFactories.beforeFactory);
-				sb.append(' ');
-				Spanner.appendImage(sb, BaseModule.this.afterDrawable);
-				sb.append(' ');
-				sb.append(cursor.getString(idWord2));
-				sb.append('\n');
+		Spanner.appendImage(sb, BaseModule.this.afterDrawable);
+		sb.append(' ');
+		Spanner.append(sb, word2, 0, SyntagNetFactories.afterFactory);
+		sb.append('\n');
 
-				// ids
-				Spanner.appendImage(sb, BaseModule.this.beforeDrawable);
-				sb.append(' ');
-				sb.append(Long.toString(cursor.getLong(idWord1Id)));
-				sb.append(' ');
-				sb.append(Long.toString(cursor.getLong(idSynset1Id)));
-				sb.append(" > ");
-				Spanner.appendImage(sb, BaseModule.this.afterDrawable);
-				sb.append(' ');
-				sb.append(cursor.getString(idWord2Id));
-				sb.append(' ');
-				sb.append(cursor.getString(idSynset2Id));
-				sb.append('\n');
+		Spanner.appendImage(sb, BaseModule.this.afterDefinitionDrawable);
+		sb.append(' ');
+		Spanner.append(sb, definition2, 0, SyntagNetFactories.afterDefinitionFactory);
+		sb.append('\n');
 
-				// attach result
-				final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-				changedList.add(NEWCHILD, node);
+		// ids
+		Spanner.appendImage(sb, BaseModule.this.infoDrawable);
+		sb.append(' ');
+		sb.append(Long.toString(word1Id));
+		sb.append(' ');
+		sb.append(Long.toString(synset1Id));
+		sb.append(" > ");
+		sb.append(Long.toString(word2Id));
+		sb.append(' ');
+		sb.append(Long.toString(synset2Id));
 
-				// sub nodes
-				// TODO
-				//final TreeNode rolesNode = TreeFactory.makeHotQueryNode("Roles", R.drawable.roles, false, new RolesQuery(roleSetId)).addTo(parent);
-				//changedList.add(NEWCHILD, rolesNode);
-				//final TreeNode examplesNode = TreeFactory.makeQueryNode("Examples", R.drawable.sample, false, new ExamplesQuery(roleSetId)).addTo(parent);
-				//changedList.add(NEWCHILD, examplesNode);
-			}
-			while (cursor.moveToNext());
-			changed = changedList.toArray();
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(REMOVE, parent);
-		}
-
-		cursor.close();
-		return changed;
+		// attach result
+		final TreeNode extraNode = TreeFactory.makeTextNode(sb, false).addTo(collocationNode);
+		changedList.add(NEWCHILD, extraNode);
 	}
 }
