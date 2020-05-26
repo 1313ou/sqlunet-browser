@@ -84,12 +84,14 @@ public class SnSelectorsFragment extends ListFragment
 	private static String[] DISPLAYED_COLUMNS = { //
 			SyntagNetContract.WORD1, //
 			SyntagNetContract.WORD2, //
-			//SnCollocations_X.WORD1ID, //
-			//SnCollocations_X.WORD2ID, //
-			SnCollocations_X.SYNSET1ID, //
-			SnCollocations_X.SYNSET2ID, //
 			SyntagNetContract.POS1, //
 			SyntagNetContract.POS2, //
+			//SnCollocations_X.WORD1ID, //
+			//SnCollocations_X.WORD2ID, //
+			//SnCollocations_X.SYNSET1ID, //
+			//SnCollocations_X.SYNSET2ID, //
+			//SyntagNetContract.POS1, //
+			//SyntagNetContract.POS2, //
 	};
 
 	/**
@@ -98,12 +100,14 @@ public class SnSelectorsFragment extends ListFragment
 	private static int[] DISPLAYED_COLUMN_RES_IDS = {  //
 			R.id.word1, //
 			R.id.word2, //
-			//R.id.word1id, //
-			//R.id.word2id, //
-			R.id.synset1id, //
-			R.id.synset2id, //
 			R.id.pos1, //
 			R.id.pos2, //
+			//R.id.word1id, //
+			//R.id.word2id, //
+			//R.id.synset1id, //
+			//R.id.synset2id, //
+			//R.id.pos1, //
+			//R.id.pos2, //
 	};
 
 	/**
@@ -283,7 +287,7 @@ public class SnSelectorsFragment extends ListFragment
 		MatrixCursor matrixCursor = new MatrixCursor(COLUMNS);
 
 		//	"_id",  WORD1ID,  WORD2ID,  SYNSET1ID,  SYNSET2ID,  WORD1,  WORD2,  POS1,  POS2
-		matrixCursor.addRow(new Object[]{Integer.MAX_VALUE, wordid, wordid, null, null, word + "|*", "*|" + word, null, null});
+		matrixCursor.addRow(new Object[]{Integer.MAX_VALUE, wordid, wordid, null, null, word + " *", "* " + word, null, null});
 		matrixCursor.addRow(new Object[]{Integer.MAX_VALUE - 1, wordid, null, null, null, word, "*", null, null});
 		matrixCursor.addRow(new Object[]{Integer.MAX_VALUE - 2, null, wordid, null, null, "*", word, null, null});
 
