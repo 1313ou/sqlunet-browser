@@ -31,9 +31,6 @@ public class RunTextSearch extends TestCase
 
 		Seq.do_navigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_status);
 		Do.ensureTextSearchSetup(R.id.searchtextWnButton);
-		Do.ensureTextSearchSetup(R.id.searchtextFnButton);
-		Do.ensureTextSearchSetup(R.id.searchtextVnButton);
-		Do.ensureTextSearchSetup(R.id.searchtextPbButton);
 
 		Seq.do_navigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_search_text);
 	}
@@ -54,23 +51,5 @@ public class RunTextSearch extends TestCase
 	public void searchWnWordsRun()
 	{
 		Do.textSearchRun(2);
-	}
-
-	@Test
-	public void searchFbRun()
-	{
-		Do.textSearchRun(3);
-	}
-
-	@Test
-	public void searchVnRun()
-	{
-		Do.textSearchRun(4);
-	}
-
-	@Test
-	public void searchPbRun()
-	{
-		Do.textSearchRun(5);
 	}
 }

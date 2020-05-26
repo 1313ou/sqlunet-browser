@@ -32,12 +32,6 @@ public class Status extends org.sqlunet.browser.config.Status
 
 	static public final int EXISTS_TS_WN = 0x100;
 
-	static public final int EXISTS_TS_VN = 0x1000;
-
-	static public final int EXISTS_TS_PB = 0x2000;
-
-	static public final int EXISTS_TS_FN = 0x4000;
-
 	/**
 	 * Get _status
 	 *

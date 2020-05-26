@@ -57,7 +57,7 @@ public class RunTextSearch extends TestCase
 	}
 
 	@Test
-	public void searchFbRun()
+	public void searchFnRun()
 	{
 		Do.textSearchRun(3);
 	}
