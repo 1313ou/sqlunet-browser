@@ -58,12 +58,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWTREE;
 import static org.sqlunet.view.TreeOp.TreeOpCode.DEADEND;
 import static org.sqlunet.view.TreeOp.TreeOpCode.NEWCHILD;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWUNIQUE;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWMAIN;
 import static org.sqlunet.view.TreeOp.TreeOpCode.NEWEXTRA;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWMAIN;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWTREE;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWUNIQUE;
 import static org.sqlunet.view.TreeOp.TreeOpCode.NOOP;
 import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
 import static org.sqlunet.view.TreeOp.TreeOpCode.UPDATE;
@@ -592,7 +592,7 @@ abstract public class BaseModule extends Module
 			final TreeNode linksNode = TreeFactory.makeHotQueryNode("Links", R.drawable.ic_links, false, new LinksQuery(synsetId, wordId)).addTo(parent);
 			final TreeNode samplesNode = TreeFactory.makeHotQueryNode("Samples", R.drawable.sample, false, new SamplesQuery(synsetId)).addTo(parent);
 
-			changed = TreeOp.seq( NEWMAIN, node, NEWEXTRA, linksNode, NEWEXTRA, samplesNode, NEWTREE, parent);
+			changed = TreeOp.seq(NEWMAIN, node, NEWEXTRA, linksNode, NEWEXTRA, samplesNode, NEWTREE, parent);
 		}
 		else
 		{
@@ -2042,30 +2042,31 @@ abstract public class BaseModule extends Module
 	/**
 	 * Word link data
 	 */
-	class WordLink extends Link
+	public static class BaseWordLink extends Link
 	{
+		private final Context context;
+
 		/**
 		 * Constructor
 		 *
-		 * @param wordId word id
+		 * @param wordId  word id
+		 * @param context context
 		 */
-		WordLink(final long wordId)
+		public BaseWordLink(final long wordId, final Context context)
 		{
 			super(wordId);
+			this.context = context;
 		}
 
 		@Override
 		public void process()
 		{
-			final Context context = BaseModule.this.fragment.requireContext();
-
 			final Parcelable pointer = new WordPointer(this.id);
-			final Intent intent = new Intent(context, WordActivity.class);
+			final Intent intent = new Intent(this.context, WordActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_WORD);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
-
-			context.startActivity(intent);
+			this.context.startActivity(intent);
 		}
 
 		@NonNull
@@ -2077,10 +2078,27 @@ abstract public class BaseModule extends Module
 	}
 
 	/**
+	 * Word link data
+	 */
+	public class WordLink extends BaseWordLink
+	{
+		/**
+		 * Constructor
+		 *
+		 * @param wordId word id
+		 */
+		WordLink(final long wordId)
+		{
+			super(wordId, BaseModule.this.fragment.requireContext());
+		}
+	}
+
+	/**
 	 * Synset link data
 	 */
-	class SynsetLink extends Link
+	public static class BaseSynsetLink extends Link
 	{
+		protected final Context context;
 		final int recurse;
 
 		/**
@@ -2088,26 +2106,25 @@ abstract public class BaseModule extends Module
 		 *
 		 * @param synsetId synset id
 		 * @param recurse  max recursion level
+		 * @param context  context
 		 */
-		SynsetLink(final long synsetId, final int recurse)
+		public BaseSynsetLink(final long synsetId, final int recurse, final Context context)
 		{
 			super(synsetId);
 			this.recurse = recurse;
+			this.context = context;
 		}
 
 		@Override
 		public void process()
 		{
-			final Context context = BaseModule.this.fragment.requireContext();
-
 			final Parcelable pointer = new SynsetPointer(this.id);
-			final Intent intent = new Intent(context, SynsetActivity.class);
+			final Intent intent = new Intent(this.context, SynsetActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.putExtra(ProviderArgs.ARG_QUERYRECURSE, this.recurse);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
-
-			context.startActivity(intent);
+			this.context.startActivity(intent);
 		}
 
 		@NonNull
@@ -2119,9 +2136,26 @@ abstract public class BaseModule extends Module
 	}
 
 	/**
+	 * Synset link data
+	 */
+	public class SynsetLink extends BaseSynsetLink
+	{
+		/**
+		 * Constructor
+		 *
+		 * @param synsetId synset id
+		 * @param recurse  max recursion level
+		 */
+		SynsetLink(final long synsetId, final int recurse)
+		{
+			super(synsetId, recurse, BaseModule.this.fragment.requireContext());
+		}
+	}
+
+	/**
 	 * Sense link data
 	 */
-	class SenseLink extends SynsetLink
+	public static class BaseSenseLink extends BaseSynsetLink
 	{
 		final private long wordId;
 
@@ -2132,25 +2166,22 @@ abstract public class BaseModule extends Module
 		 * @param wordId   word id
 		 * @param recurse  max recursion level
 		 */
-		SenseLink(final long synsetId, final long wordId, final int recurse)
+		public BaseSenseLink(final long synsetId, final long wordId, final int recurse, final Context context)
 		{
-			super(synsetId, recurse);
+			super(synsetId, recurse, context);
 			this.wordId = wordId;
 		}
 
 		@Override
 		public void process()
 		{
-			final Context context = BaseModule.this.fragment.requireContext();
-
 			final Parcelable pointer = new SensePointer(this.id, this.wordId);
-			final Intent intent = new Intent(context, SynsetActivity.class);
+			final Intent intent = new Intent(this.context, SynsetActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.putExtra(ProviderArgs.ARG_QUERYRECURSE, this.recurse);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
-
-			context.startActivity(intent);
+			this.context.startActivity(intent);
 		}
 
 		@NonNull
@@ -2158,6 +2189,24 @@ abstract public class BaseModule extends Module
 		public String toString()
 		{
 			return "sense for " + this.id + ',' + this.wordId;
+		}
+	}
+
+	/**
+	 * Sense link data
+	 */
+	public class SenseLink extends BaseSenseLink
+	{
+		/**
+		 * Constructor
+		 *
+		 * @param synsetId synset id
+		 * @param wordId   word id
+		 * @param recurse  max recursion level
+		 */
+		SenseLink(final long synsetId, final long wordId, final int recurse)
+		{
+			super(synsetId, wordId, recurse, BaseModule.this.fragment.requireContext());
 		}
 	}
 }
