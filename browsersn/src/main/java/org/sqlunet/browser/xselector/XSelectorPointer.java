@@ -35,7 +35,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	private long xClassId;
 
 	/**
-	 * xId : (fn=lex unit that is member of frame) optional/nullable
+	 * xId : (member) optional/nullable
 	 */
 	private long xMemberId;
 
@@ -153,7 +153,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	}
 
 	/**
-	 * Get member id (fn=lex unit that is member of frame) id
+	 * Get member id
 	 *
 	 * @return role id
 	 */
