@@ -21,10 +21,14 @@ import org.sqlunet.syntagnet.provider.SyntagNetContract.SnCollocations_X;
 import org.sqlunet.syntagnet.provider.SyntagNetProvider;
 import org.sqlunet.syntagnet.style.SyntagNetFactories;
 import org.sqlunet.syntagnet.style.SyntagNetSpanner;
+import org.sqlunet.treeview.control.Link;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.view.TreeOp;
 import org.sqlunet.view.TreeOp.TreeOps;
 import org.sqlunet.view.TreeOpExecute;
+import org.sqlunet.wordnet.loaders.BaseModule.BaseSenseLink;
+import org.sqlunet.wordnet.loaders.BaseModule.BaseSynsetLink;
+import org.sqlunet.wordnet.loaders.BaseModule.BaseWordLink;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -356,6 +360,8 @@ abstract class BaseModule extends Module
 			final String definition1, final String definition2, //
 			final TreeNode parent, final TreeOps changedList)
 	{
+		final Context context = BaseModule.this.fragment.requireContext();
+
 		// header
 		final SpannableStringBuilder sbh = new SpannableStringBuilder();
 		Spanner.append(sbh, word1, 0, SyntagNetFactories.collocationFactory);
@@ -371,42 +377,45 @@ abstract class BaseModule extends Module
 		changedList.add(NEWCHILD, collocationNode);
 
 		// contents
-		final SpannableStringBuilder sb = new SpannableStringBuilder();
 
-		// words
-		Spanner.appendImage(sb, BaseModule.this.beforeDrawable);
-		sb.append(' ');
-		Spanner.append(sb, word1, 0, SyntagNetFactories.beforeFactory);
-		sb.append('\n');
+		// collocation 1
+		final SpannableStringBuilder sb1w = new SpannableStringBuilder();
+		Spanner.append(sb1w, word1, 0, SyntagNetFactories.beforeFactory);
+		final Link link1w = new BaseWordLink(word1Id, context);
+		final TreeNode collocation1wNode = TreeFactory.makeLinkLeafNode(sb1w, R.drawable.before,false, link1w).addTo(collocationNode);
+		changedList.add(NEWCHILD, collocation1wNode);
 
-		Spanner.appendImage(sb, BaseModule.this.beforeDefinitionDrawable);
-		sb.append(' ');
-		Spanner.append(sb, definition1, 0, SyntagNetFactories.beforeDefinitionFactory);
-		sb.append('\n');
+		final SpannableStringBuilder sb1s = new SpannableStringBuilder();
+		Spanner.append(sb1s, definition1, 0, SyntagNetFactories.beforeDefinitionFactory);
+		final Link link1s = new BaseSynsetLink(synset1Id, Integer.MAX_VALUE, context);
+		final TreeNode collocation1sNode = TreeFactory.makeLinkLeafNode(sb1s, R.drawable.definition1,false, link1s).addTo(collocationNode);
+		changedList.add(NEWCHILD, collocation1sNode);
 
-		Spanner.appendImage(sb, BaseModule.this.afterDrawable);
-		sb.append(' ');
-		Spanner.append(sb, word2, 0, SyntagNetFactories.afterFactory);
-		sb.append('\n');
+		// collocation 2
+		final SpannableStringBuilder sb2w = new SpannableStringBuilder();
+		Spanner.append(sb2w, word2, 0, SyntagNetFactories.afterFactory);
+		final Link link2w = new BaseWordLink(word2Id, context);
+		final TreeNode collocation2wNode = TreeFactory.makeLinkLeafNode(sb2w, R.drawable.after,false, link2w).addTo(collocationNode);
+		changedList.add(NEWCHILD, collocation2wNode);
 
-		Spanner.appendImage(sb, BaseModule.this.afterDefinitionDrawable);
-		sb.append(' ');
-		Spanner.append(sb, definition2, 0, SyntagNetFactories.afterDefinitionFactory);
-		sb.append('\n');
+		final SpannableStringBuilder sb2s = new SpannableStringBuilder();
+		Spanner.append(sb2s, definition2, 0, SyntagNetFactories.afterDefinitionFactory);
+		final Link link2s = new BaseSynsetLink(synset2Id, Integer.MAX_VALUE, context);
+		final TreeNode collocation2sNode = TreeFactory.makeLinkLeafNode(sb2s, R.drawable.definition2,false, link2s).addTo(collocationNode);
+		changedList.add(NEWCHILD, collocation2sNode);
 
 		// ids
-		Spanner.appendImage(sb, BaseModule.this.infoDrawable);
-		sb.append(' ');
-		sb.append(Long.toString(word1Id));
-		sb.append(' ');
-		sb.append(Long.toString(synset1Id));
-		sb.append(" > ");
-		sb.append(Long.toString(word2Id));
-		sb.append(' ');
-		sb.append(Long.toString(synset2Id));
-
-		// attach result
-		final TreeNode extraNode = TreeFactory.makeTextNode(sb, false).addTo(collocationNode);
+		final SpannableStringBuilder sbi = new SpannableStringBuilder();
+		Spanner.appendImage(sbi, BaseModule.this.infoDrawable);
+		sbi.append(' ');
+		sbi.append(Long.toString(word1Id));
+		sbi.append(' ');
+		sbi.append(Long.toString(synset1Id));
+		sbi.append(" > ");
+		sbi.append(Long.toString(word2Id));
+		sbi.append(' ');
+		sbi.append(Long.toString(synset2Id));
+		final TreeNode extraNode = TreeFactory.makeTextNode(sbi, false).addTo(collocationNode);
 		changedList.add(NEWCHILD, extraNode);
 	}
 }
