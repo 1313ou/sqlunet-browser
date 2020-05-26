@@ -137,8 +137,8 @@ public class SearchTextFragment extends BaseSearchFragment
 		}
 		*/
 
-		// type
-		final int typePosition = getSearchModePosition();
+		// mode
+		final int modePosition = getSearchModePosition();
 
 		// status
 		// final CharSequence[] textSearches = getResources().getTextArray(R.array.searchtext_modes);
@@ -151,7 +151,7 @@ public class SearchTextFragment extends BaseSearchFragment
 		String[] columns;
 		String[] hiddenColumns;
 		String database;
-		switch (typePosition)
+		switch (modePosition)
 		{
 			case 0:
 				searchUri = WordNetProvider.makeUri(WordNetContract.Lookup_Definitions.CONTENT_URI_TABLE);

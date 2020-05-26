@@ -96,6 +96,20 @@
 		</activity>
 
 		<activity
+			android:name=".selector.SnBrowse1Activity"
+			android:label="@string/title_activity_selector"
+			android:launchMode="singleTop"
+			android:parentActivityName=".MainActivity"
+			tools:ignore="UnusedAttribute">
+			<intent-filter>
+				<action android:name="android.intent.action.SEARCH" />
+			</intent-filter>
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value=".MainActivity" />
+		</activity>
+
+		<activity
 			android:name=".xselector.XBrowse1Activity"
 			android:label="@string/title_activity_xselector"
 			android:launchMode="singleTop"
@@ -134,6 +148,16 @@
 
 		<activity
 			android:name=".Browse2Activity"
+			android:label="@string/title_activity_browse2"
+			android:parentActivityName="org.sqlunet.browser.MainActivity"
+			tools:ignore="UnusedAttribute">
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value="org.sqlunet.browser.MainActivity" />
+		</activity>
+
+		<activity
+			android:name=".SnBrowse2Activity"
 			android:label="@string/title_activity_browse2"
 			android:parentActivityName="org.sqlunet.browser.MainActivity"
 			tools:ignore="UnusedAttribute">
