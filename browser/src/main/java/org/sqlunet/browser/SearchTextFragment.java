@@ -142,8 +142,8 @@ public class SearchTextFragment extends BaseSearchFragment
 		}
 		*/
 
-		// type
-		int modePosition = getSearchModePosition();
+		// mode
+		final int modePosition = getSearchModePosition();
 
 		// status
 		// final CharSequence[] textSearches = getResources().getTextArray(R.array.searchtext_modes);

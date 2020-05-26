@@ -19,6 +19,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import org.sqlunet.browser.config.TableActivity;
 import org.sqlunet.browser.selector.Browse1Activity;
 import org.sqlunet.browser.selector.Browse1Fragment;
+import org.sqlunet.browser.selector.SnBrowse1Fragment;
 import org.sqlunet.browser.web.WebActivity;
 import org.sqlunet.browser.web.WebFragment;
 import org.sqlunet.browser.xn.Settings;
@@ -327,6 +328,8 @@ public class BrowseFragment extends BaseSearchFragment
 						return new Browse1Fragment();
 					case XSELECTOR:
 						return new XBrowse1Fragment();
+					case SELECTOR_ALT:
+						return new SnBrowse1Fragment();
 				}
 				break;
 

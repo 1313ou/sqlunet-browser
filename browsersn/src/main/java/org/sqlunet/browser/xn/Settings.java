@@ -80,7 +80,8 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * Selectors
 	 */
 	public enum Selector
-	{SELECTOR, XSELECTOR;
+	{
+		SELECTOR, XSELECTOR, SELECTOR_ALT;
 
 		/**
 		 * Set this selector as preferred selector

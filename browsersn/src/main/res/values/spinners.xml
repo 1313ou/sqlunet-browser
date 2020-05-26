@@ -11,11 +11,13 @@
 	-->
 	<string-array name="selectors_names" tools:ignore="InconsistentArrays">
 		<item>senses</item>
-		<item>grouped by source</item>
+		<item>senses + collocations</item>
+		<item>collocations</item>
 	</string-array>
 	<integer-array name="selectors_icons" tools:ignore="InconsistentArrays">
 		<item>@drawable/ic_selector</item>
 		<item>@drawable/ic_xselector</item>
+		<item>@drawable/ic_snselector</item>
 	</integer-array>
 
 	<!-- searchtext spinner

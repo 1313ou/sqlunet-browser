@@ -104,7 +104,7 @@ public class SearchTextFragment extends BaseSearchFragment
 		}
 		*/
 
-		// type
+		// mode
 		final int modePosition = getSearchModePosition();
 
 		// status
