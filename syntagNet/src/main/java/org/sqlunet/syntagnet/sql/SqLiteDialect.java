@@ -34,12 +34,12 @@ class SqLiteDialect
 			SyntagNetBaseCollocationOrder + ";";
 
 	// query for collocation from word id
-	static final String SyntagNetRoleSetQueryFromWordId = SyntagNetBaseCollocationQuery +//
+	static final String SyntagNetCollocationQueryFromWordId = SyntagNetBaseCollocationQuery +//
 			"WHERE w1.wordid = ? OR w2.wordid = ? " + //
 			SyntagNetBaseCollocationOrder + ";";
 
 	// query for collocation from word id and synset id
-	static final String SyntagNetRoleSetQueryFromWordIdAndSynsetId = SyntagNetBaseCollocationQuery +//
+	static final String SyntagNetCollocationQueryFromWordIdAndSynsetId = SyntagNetBaseCollocationQuery +//
 			"WHERE (w1.wordid = ? AND s1.synsetid = ?) OR (w2.wordid = ? AND s2.synsetid = ?) " + //
 			SyntagNetBaseCollocationOrder + ";";
 }

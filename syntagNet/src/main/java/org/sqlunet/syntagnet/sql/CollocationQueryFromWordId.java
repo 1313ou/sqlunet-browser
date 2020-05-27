@@ -16,7 +16,7 @@ class CollocationQueryFromWordId extends BaseCollocationQuery
 	/**
 	 * <code>QUERY</code> is the SQL statement
 	 */
-	static private final String QUERY = SqLiteDialect.SyntagNetRoleSetQueryFromWordId;
+	static private final String QUERY = SqLiteDialect.SyntagNetCollocationQueryFromWordId;
 
 	/**
 	 * Constructor
