@@ -51,10 +51,10 @@ public class SnCollocationPointer extends Pointer
 	/**
 	 * Constructor
 	 *
-	 * @param roleSetId role set id
+	 * @param collocationId collocation id
 	 */
-	public SnCollocationPointer(final long roleSetId)
+	public SnCollocationPointer(final long collocationId)
 	{
-		super(roleSetId);
+		super(collocationId);
 	}
 }
