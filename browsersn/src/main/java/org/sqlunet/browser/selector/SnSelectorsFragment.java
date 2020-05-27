@@ -66,7 +66,7 @@ public class SnSelectorsFragment extends ListFragment
 	/**
 	 * Columns
 	 */
-	private static String[] COLUMNS = { //
+	private static final String[] COLUMNS = { //
 			"_id", //
 			SnCollocations_X.WORD1ID, //
 			SnCollocations_X.WORD2ID, //
@@ -81,7 +81,7 @@ public class SnSelectorsFragment extends ListFragment
 	/**
 	 * Displayed columns
 	 */
-	private static String[] DISPLAYED_COLUMNS = { //
+	private static final String[] DISPLAYED_COLUMNS = { //
 			SyntagNetContract.WORD1, //
 			SyntagNetContract.WORD2, //
 			SyntagNetContract.POS1, //
@@ -97,7 +97,7 @@ public class SnSelectorsFragment extends ListFragment
 	/**
 	 * Column resources
 	 */
-	private static int[] DISPLAYED_COLUMN_RES_IDS = {  //
+	private static final int[] DISPLAYED_COLUMN_RES_IDS = {  //
 			R.id.word1, //
 			R.id.word2, //
 			R.id.pos1, //

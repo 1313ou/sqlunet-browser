@@ -33,6 +33,7 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 	/**
 	 * Selectors fragment
 	 */
+	@SuppressWarnings("FieldCanBeLocal")
 	@Nullable
 	private SelectorsFragment selectorsFragment;
 
@@ -56,6 +57,8 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 		{
 			this.selectorsFragment = new SelectorsFragment();
 			Bundle args = getArguments();
+			if(args == null)
+				args = new Bundle();
 			boolean isTwoPane = isTwoPane(view);
 			args.putBoolean(IS_TWO_PANE, isTwoPane);
 			this.selectorsFragment.setArguments(args);

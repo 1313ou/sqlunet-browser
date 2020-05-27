@@ -6,7 +6,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<integer name="sql_statement_do_indexes_position">1</integer>
-	<integer name="sql_statement_do_ts_wn_position">3</integer>
+	<integer name="sql_statement_do_ts_wn_position">2</integer>
 
 	<string-array name="sql_statement_titles" tools:ignore="InconsistentArrays">
 		<item>[SELECT OPERATION]</item>

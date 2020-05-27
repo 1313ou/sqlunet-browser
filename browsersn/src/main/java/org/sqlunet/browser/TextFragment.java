@@ -36,6 +36,8 @@ import org.sqlunet.style.RegExprSpanner;
 import org.sqlunet.style.Spanner.SpanFactory;
 import org.sqlunet.wordnet.SynsetPointer;
 import org.sqlunet.wordnet.WordPointer;
+import org.sqlunet.wordnet.browser.SynsetActivity;
+import org.sqlunet.wordnet.browser.WordActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -184,54 +186,52 @@ public class TextFragment extends AbstractTableFragment
 		if (database != null)
 		{
 			// wordnet
-			switch (database)
+			if ("wn".equals(database))
 			{
-				case "wn":
-					String subtarget = args.getString(ProviderArgs.ARG_QUERYIDTYPE);
+				String subtarget = args.getString(ProviderArgs.ARG_QUERYIDTYPE);
 
-					if ("synset".equals(subtarget))
-					{
-						// recursion
-						final int recurse = Settings.getRecursePref(getContext());
+				if ("synset".equals(subtarget))
+				{
+					// recursion
+					final int recurse = Settings.getRecursePref(getContext());
 
-						// target
-						final int colIdx = cursor.getColumnIndex("synsetid");
-						final long targetId = cursor.getLong(colIdx);
-						Log.d(TAG, "CLICK wn synset=" + targetId);
+					// target
+					final int colIdx = cursor.getColumnIndex("synsetid");
+					final long targetId = cursor.getLong(colIdx);
+					Log.d(TAG, "CLICK wn synset=" + targetId);
 
-						// build pointer
-						final Parcelable synsetPointer = new SynsetPointer(targetId);
+					// build pointer
+					final Parcelable synsetPointer = new SynsetPointer(targetId);
 
-						// intent
-						final Intent targetIntent = new Intent(requireContext(), org.sqlunet.wordnet.browser.SynsetActivity.class);
-						targetIntent.setAction(ProviderArgs.ACTION_QUERY);
-						targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
-						targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, synsetPointer);
-						targetIntent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse);
+					// intent
+					final Intent targetIntent = new Intent(requireContext(), SynsetActivity.class);
+					targetIntent.setAction(ProviderArgs.ACTION_QUERY);
+					targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
+					targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, synsetPointer);
+					targetIntent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse);
 
-						// start
-						startActivity(targetIntent);
-					}
-					else if ("lemma".equals(subtarget))
-					{
-						// target
-						final int colIdx = cursor.getColumnIndex("wordid");
-						final long targetId = cursor.getLong(colIdx);
-						Log.d(TAG, "CLICK wn word=" + targetId);
+					// start
+					startActivity(targetIntent);
+				}
+				else if ("lemma".equals(subtarget))
+				{
+					// target
+					final int colIdx = cursor.getColumnIndex("wordid");
+					final long targetId = cursor.getLong(colIdx);
+					Log.d(TAG, "CLICK wn word=" + targetId);
 
-						// build pointer
-						final Parcelable wordPointer = new WordPointer(targetId);
+					// build pointer
+					final Parcelable wordPointer = new WordPointer(targetId);
 
-						// intent
-						final Intent targetIntent = new Intent(requireContext(), org.sqlunet.wordnet.browser.WordActivity.class);
-						targetIntent.setAction(ProviderArgs.ACTION_QUERY);
-						targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_WORD);
-						targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, wordPointer);
+					// intent
+					final Intent targetIntent = new Intent(requireContext(), WordActivity.class);
+					targetIntent.setAction(ProviderArgs.ACTION_QUERY);
+					targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_WORD);
+					targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, wordPointer);
 
-						// start
-						startActivity(targetIntent);
-					}
-					break;
+					// start
+					startActivity(targetIntent);
+				}
 			}
 		}
 	}

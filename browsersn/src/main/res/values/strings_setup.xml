@@ -5,9 +5,4 @@
 
 <resources>
 
-	<string name="title_predicatematrix">Predicate\nMatrix</string>
-	<string name="execute_predicatematrix">Import PredicateMatrix</string>
-	<string name="info_predicatematrix">Info about PredicateMatrix</string>
-	<string name="info_op_execute_predicatematrix">Execute the specific PredicateMatrix statements to alter the database</string>
-
 </resources>

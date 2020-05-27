@@ -6,7 +6,6 @@ package org.sqlunet.browser.xn;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,8 +18,6 @@ import android.widget.ImageView;
 import org.sqlunet.browser.ColorUtils;
 import org.sqlunet.browser.Info;
 import org.sqlunet.browser.R;
-import org.sqlunet.browser.config.SetupDatabaseActivity;
-import org.sqlunet.browser.config.SetupDatabaseFragment;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
 

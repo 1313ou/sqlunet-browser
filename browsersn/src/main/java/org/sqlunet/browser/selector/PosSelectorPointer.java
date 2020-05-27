@@ -21,6 +21,7 @@ public class PosSelectorPointer extends SelectorPointer implements HasPos
 	/**
 	 * POS
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected final Character pos;
 
 	/**
@@ -48,6 +49,7 @@ public class PosSelectorPointer extends SelectorPointer implements HasPos
 	 *
 	 * @param parcel parcel
 	 */
+	@SuppressWarnings("WeakerAccess")
 	protected PosSelectorPointer(@NonNull Parcel parcel)
 	{
 		super(parcel);
