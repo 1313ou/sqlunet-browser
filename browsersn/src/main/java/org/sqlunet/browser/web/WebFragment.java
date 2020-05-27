@@ -40,6 +40,8 @@ import org.sqlunet.settings.LogUtils;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.sql.DataSource;
 import org.sqlunet.sql.NodeFactory;
+import org.sqlunet.syntagnet.SnCollocationPointer;
+import org.sqlunet.syntagnet.sql.SyntagNetImplementation;
 import org.sqlunet.wordnet.SensePointer;
 import org.sqlunet.wordnet.SynsetPointer;
 import org.sqlunet.wordnet.WordPointer;
@@ -221,6 +223,15 @@ public class WebFragment extends Fragment
 										bncDomDoc = new BncImplementation().queryDoc(db, wordId, pos);
 									}
 								}
+								else if (pointer instanceof SnCollocationPointer)
+								{
+									final SnCollocationPointer collocationPointer = (SnCollocationPointer) pointer;
+									final Long collocationId = collocationPointer.getId();
+									if (collocationId != null) //
+									{
+										snDomDoc = new SyntagNetImplementation().queryCollocationDoc(db, collocationId);
+									}
+								}
 								else
 								{
 									final SensePointer sense2Pointer = (SensePointer) pointer;
@@ -230,7 +241,10 @@ public class WebFragment extends Fragment
 									{
 										wnDomDoc = new WordNetImplementation().queryDoc(db, wordId, synsetId, true, false);
 									}
-
+									if (Settings.Source.SYNTAGNET.test(sources))
+									{
+										snDomDoc = new SyntagNetImplementation().queryDoc(db, wordId, synsetId, pos);
+									}
 									if (Settings.Source.BNC.test(sources))
 									{
 										bncDomDoc = new BncImplementation().queryDoc(db, wordId, pos);
