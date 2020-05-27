@@ -14,10 +14,10 @@ class SqLiteDialect
 	// query for collocation from collocation id
 	private static final String SyntagNetBaseCollocationQuery = "SELECT	" + //
 			"word1id, w1.lemma AS lemma1, synset1id, s1.pos AS pos1, s1.definition AS definition1, " + //
-			"word2id, w2.lemma AS lemma2, synset2id, s2.pos AS pos2, s2.definition AS definition2, " + //
+			"word2id, w2.lemma AS lemma2, synset2id, s2.pos AS pos2, s2.definition AS definition2 " + //
 			"FROM syntagms " + //
 			"JOIN words AS w1 ON (word1id = w1.wordid) " + //
-			"JOIN words AS w2 ON (word2id = w2.wordid)" + //
+			"JOIN words AS w2 ON (word2id = w2.wordid) " + //
 			"JOIN synsets AS s1 ON (synset1id = s1.synsetid) " + //
 			"JOIN synsets AS s2 ON (synset2id = s2.synsetid) ";
 
