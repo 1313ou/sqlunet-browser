@@ -243,19 +243,18 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	}
 
 	/**
-	 * Business method that returns role set data as DOM document from role set id
+	 * Business method that returns collocation data as DOM document from collocation id
 	 *
 	 * @param connection connection
-	 * @param roleSetId  role set to build query from
-	 * @param pos        pos to build query from
+	 * @param collocationId  role set to build query from
 	 * @return SyntagNet role set data as DOM document
 	 */
 	@Override
-	public Document queryCollocationDoc(final SQLiteDatabase connection, final long roleSetId, final Character pos)
+	public Document queryCollocationDoc(final SQLiteDatabase connection, final long collocationId)
 	{
 		final Document doc = DomFactory.makeDocument();
-		final Node rootNode = SnNodeFactory.makeSnRootNode(doc, roleSetId);
-		SyntagNetImplementation.walkCollocations(connection, doc, rootNode, roleSetId);
+		final Node rootNode = SnNodeFactory.makeSnRootNode(doc, collocationId);
+		SyntagNetImplementation.walkCollocations(connection, doc, rootNode, collocationId);
 		return doc;
 	}
 

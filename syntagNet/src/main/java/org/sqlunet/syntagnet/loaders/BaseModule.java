@@ -20,13 +20,11 @@ import org.sqlunet.syntagnet.provider.SyntagNetContract;
 import org.sqlunet.syntagnet.provider.SyntagNetContract.SnCollocations_X;
 import org.sqlunet.syntagnet.provider.SyntagNetProvider;
 import org.sqlunet.syntagnet.style.SyntagNetFactories;
-import org.sqlunet.syntagnet.style.SyntagNetSpanner;
 import org.sqlunet.treeview.control.Link;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.view.TreeOp;
 import org.sqlunet.view.TreeOp.TreeOps;
 import org.sqlunet.view.TreeOpExecute;
-import org.sqlunet.wordnet.loaders.BaseModule.BaseSenseLink;
 import org.sqlunet.wordnet.loaders.BaseModule.BaseSynsetLink;
 import org.sqlunet.wordnet.loaders.BaseModule.BaseWordLink;
 
@@ -50,42 +48,13 @@ abstract class BaseModule extends Module
 	// resources
 
 	/**
-	 * Drawable for collocation pait
-	 */
-	/**
-	 * Drawable for following collocation (after)
-	 */
-	private final Drawable afterDrawable;
-
-	/**
-	 * Drawable for preceding collocation (before)
-	 */
-	private final Drawable beforeDrawable;
-
-	/**
-	 * Drawable for following collocation definition (after)
-	 */
-	private final Drawable afterDefinitionDrawable;
-
-	/**
-	 * Drawable for preceding collocation definition (before)
-	 */
-	private final Drawable beforeDefinitionDrawable;
-
-	/**
 	 * Drawable info
 	 */
 	private final Drawable infoDrawable;
 
 	// agents
 
-	/**
-	 * Spanner
-	 */
-	@NonNull
-	private final SyntagNetSpanner spanner;
-
-	// View models
+	// view models
 
 	private SqlunetViewTreeModel collocationFromCollocationIdModel;
 
@@ -107,14 +76,7 @@ abstract class BaseModule extends Module
 
 		// drawables
 		final Context context = BaseModule.this.fragment.requireContext();
-		this.beforeDrawable = Spanner.getDrawable(context, R.drawable.before);
-		this.afterDrawable = Spanner.getDrawable(context, R.drawable.after);
-		this.beforeDefinitionDrawable = Spanner.getDrawable(context, R.drawable.definition1);
-		this.afterDefinitionDrawable = Spanner.getDrawable(context, R.drawable.definition2);
 		this.infoDrawable = Spanner.getDrawable(context, R.drawable.info);
-
-		// spanner
-		this.spanner = new SyntagNetSpanner(context);
 	}
 
 	/**

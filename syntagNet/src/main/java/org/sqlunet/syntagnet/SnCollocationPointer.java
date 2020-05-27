@@ -12,7 +12,7 @@ import org.sqlunet.Pointer;
 import androidx.annotation.NonNull;
 
 /**
- * Parcelable role set pointer
+ * Parcelable collocation pointer
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */

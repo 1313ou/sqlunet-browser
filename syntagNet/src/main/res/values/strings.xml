@@ -8,8 +8,6 @@
 	<string name="syntagnet">SyntagNet</string>
 	<string name="syntagnet_blurb" tools:keep="@string/syntagnet_blurb">&lt;b&gt;SyntagNet&lt;/b&gt;\nexplores collocations</string>
 
-	<string name="title_activity_pbroleset">SyntagNet Collocations</string>
-
 	<!-- items -->
 	<string name="word1">1st word</string>
 	<string name="word2">2nd word</string>

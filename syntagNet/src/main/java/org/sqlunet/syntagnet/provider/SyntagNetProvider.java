@@ -122,7 +122,7 @@ public class SyntagNetProvider extends BaseProvider
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI
 		String actualSelection = selection;
-		String actualSortOrder = sortOrder;
+		@SuppressWarnings("UnnecessaryLocalVariable") String actualSortOrder = sortOrder;
 		final int code = SyntagNetProvider.uriMatcher.match(uri);
 		Log.d(SyntagNetProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code));
 		String groupBy = null;
@@ -162,7 +162,7 @@ public class SyntagNetProvider extends BaseProvider
 				throw new RuntimeException("Malformed URI " + uri);
 		}
 
-		final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, actualSortOrder, null);
+		@SuppressWarnings("ConstantConditions") final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, actualSortOrder, null);
 		logSql(sql, selectionArgs);
 		if (BaseProvider.logSql)
 		{
