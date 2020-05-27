@@ -23,21 +23,25 @@ class Collocation
 		/**
 		 * POS 1
 		 */
+		@SuppressWarnings("WeakerAccess")
 		public final char pos1;
 
 		/**
 		 * POS 2
 		 */
+		@SuppressWarnings("WeakerAccess")
 		public final char pos2;
 
 		/**
 		 * Definition 1
 		 */
+		@SuppressWarnings("WeakerAccess")
 		public final String definition1;
 
 		/**
 		 * Definition 2
 		 */
+		@SuppressWarnings("WeakerAccess")
 		public final String definition2;
 
 		public CollocationX(final long word1Id, final long word2Id, final long synset1Id, final long synset2Id, final String word1, final String word2, final char pos1, final char pos2, final String definition1, final String definition2)

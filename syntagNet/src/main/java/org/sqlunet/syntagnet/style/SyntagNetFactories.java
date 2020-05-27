@@ -10,7 +10,6 @@ import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 
-import org.sqlunet.style.Factories;
 import org.sqlunet.style.Spanner.SpanFactory;
 
 /**

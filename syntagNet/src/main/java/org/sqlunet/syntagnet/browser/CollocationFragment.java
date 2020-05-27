@@ -10,7 +10,6 @@ import android.os.Parcelable;
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.syntagnet.R;
-import org.sqlunet.syntagnet.SnCollocationPointer;
 import org.sqlunet.syntagnet.loaders.CollocationModule;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.treeview.model.TreeNode;
