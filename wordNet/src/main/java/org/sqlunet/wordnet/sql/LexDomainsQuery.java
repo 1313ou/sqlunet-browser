@@ -60,6 +60,9 @@ class LexDomainsQuery extends DBQuery
 	public int getPos()
 	{
 		assert this.cursor != null;
-		return this.cursor.getString(2).charAt(0);
+		String posStr = this.cursor.getString(2);
+		if (posStr != null)
+			return posStr.charAt(0);
+		return 0;
 	}
 }
