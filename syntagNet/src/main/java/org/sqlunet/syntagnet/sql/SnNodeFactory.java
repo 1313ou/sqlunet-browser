@@ -50,13 +50,13 @@ class SnNodeFactory extends NodeFactory
 	 * Make SyntagNet root node
 	 *
 	 * @param doc       is the DOM Document being built
-	 * @param roleSetId target roleSet id
+	 * @param collocationId target collocation id
 	 * @return newly created node
 	 */
-	static public Node makeCollocationNode(@NonNull final Document doc, long roleSetId)
+	static public Node makeCollocationNode(@NonNull final Document doc, long collocationId)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "syntagnet", null, SyntagNetImplementation.SN_NS);
-		NodeFactory.addAttributes(rootNode, "rolesetid", Long.toString(roleSetId));
+		NodeFactory.addAttributes(rootNode, "syntagnetid", Long.toString(collocationId));
 		return rootNode;
 	}
 
@@ -65,12 +65,12 @@ class SnNodeFactory extends NodeFactory
 	 *
 	 * @param doc         is the DOM Document being built
 	 * @param parent      is the parent node to attach this node to
-	 * @param collocation is the roleSet information
-	 * @param i           the ith roleSet
+	 * @param collocation is the collocation information
+	 * @param i           the ith collocation
 	 */
 	static public Node makeCollocationNode(@NonNull final Document doc, final Node parent, @NonNull final Collocation collocation, final int i)
 	{
-		final Element element = NodeFactory.makeNode(doc, parent, "roleset", null);
+		final Element element = NodeFactory.makeNode(doc, parent, "collocation", null);
 		NodeFactory.makeAttribute(element, "id", Integer.toString(i));
 		NodeFactory.makeAttribute(element, "word1", collocation.word1);
 		NodeFactory.makeAttribute(element, "word2", collocation.word2);

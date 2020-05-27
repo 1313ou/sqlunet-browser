@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import org.w3c.dom.Document;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Business methods fro SyntagNet interface
@@ -45,7 +46,7 @@ interface SyntagNetInterface
 	 * @param word target word
 	 * @return SyntagNet data as DOM document
 	 */
-	Document queryDoc(final SQLiteDatabase connection, final String word);
+	Document queryDoc(final SQLiteDatabase connection, @NonNull final String word);
 
 	/**
 	 * Business method that returns SyntagNet selector data as XML from word
@@ -54,47 +55,47 @@ interface SyntagNetInterface
 	 * @return SyntagNet selector data as XML
 	 */
 	@NonNull
-	String queryXML(final SQLiteDatabase connection, final String word);
+	String queryXML(final SQLiteDatabase connection, @NonNull final String word);
 
 	/**
 	 * Business method that returns SyntagNet data as DOM document from word id
 	 *
-	 * @param wordId is the word id to build query from
-	 * @param pos    the pos to build query from
+	 * @param wordId   is the word id to build query from
+	 * @param synsetId is the synset id to build query from (nullable)
+	 * @param pos      the pos to build query from (nullable)
 	 * @return SyntagNet data as DOM document
 	 */
-	Document queryDoc(final SQLiteDatabase connection, final long wordId, final Character pos);
+	Document queryDoc(final SQLiteDatabase connection, final long wordId, @Nullable final Long synsetId, @Nullable final Character pos);
 
 	/**
 	 * Business method that returns SyntagNet data as XML from word id
 	 *
-	 * @param wordId target word id
-	 * @param pos    the pos to build query from
+	 * @param wordId   target word id
+	 * @param synsetId is the synset id to build query from (nullable)
+	 * @param pos      the pos to build query from (nullable)
 	 * @return SyntagNet data as XML
 	 */
 	@NonNull
-	String queryXML(final SQLiteDatabase connection, final long wordId, final Character pos);
+	String queryXML(final SQLiteDatabase connection, final long wordId, @Nullable final Long synsetId, @Nullable final Character pos);
 
 	// I T E M S
 
 	/**
-	 * Business method that returns collocation data as DOM document from role set id
+	 * Business method that returns collocation data as DOM document from collocation id
 	 *
-	 * @param connection connection
-	 * @param roleSetId  the role set to build query from
-	 * @param pos        the pos to build query from
-	 * @return SyntagNet role set data as DOM document
+	 * @param connection    connection
+	 * @param collocationId the collocation to build query from
+	 * @return SyntagNet collocation data as DOM document
 	 */
-	Document queryCollocationDoc(final SQLiteDatabase connection, final long roleSetId, final Character pos);
+	Document queryCollocationDoc(final SQLiteDatabase connection, final long collocationId);
 
 	/**
-	 * Business method that returns collocation data as XML from role set id
+	 * Business method that returns collocation data as XML from collocation id
 	 *
-	 * @param connection connection
-	 * @param roleSetId  the role set id to build query from
-	 * @param pos        the pos to build query from
-	 * @return SyntagNet role set data as XML
+	 * @param connection    connection
+	 * @param collocationId the collocation id to build query from
+	 * @return SyntagNet collocation data as XML
 	 */
 	@NonNull
-	String queryCollocationXML(final SQLiteDatabase connection, final long roleSetId, final Character pos);
+	String queryCollocationXML(final SQLiteDatabase connection, final long collocationId);
 }
