@@ -96,17 +96,33 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	}
 
 	/**
-	 * Perform queries for SyntagNet data from collocation id
+	 * Perform queries for SyntagNet data from word id
 	 *
-	 * @param connection data source
-	 * @param doc        org.w3c.dom.Document being built
-	 * @param parent     org.w3c.dom.Node the walk will attach results to
-	 * @param roleSetId  collocation id
+	 * @param connection     data source
+	 * @param doc            org.w3c.dom.Document being built
+	 * @param parent         org.w3c.dom.Node the walk will attach results to
+	 * @param targetWordId   target word id
+	 * @param targetSynsetId target synset id
 	 */
-	static private void walkCollocations(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long roleSetId)
+	private static void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long targetWordId, final long targetSynsetId)
 	{
 		// collocations
-		final List<Collocation> collocations = Collocation.make(connection, roleSetId);
+		final List<Collocation> collocations = Collocation.makeFromWordIdAndSynsetId(connection, targetWordId, targetSynsetId);
+		walk(connection, doc, parent, collocations);
+	}
+
+	/**
+	 * Perform queries for SyntagNet data from collocation id
+	 *
+	 * @param connection    data source
+	 * @param doc           org.w3c.dom.Document being built
+	 * @param parent        org.w3c.dom.Node the walk will attach results to
+	 * @param collocationId collocation id
+	 */
+	static private void walkCollocations(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long collocationId)
+	{
+		// collocations
+		final List<Collocation> collocations = Collocation.make(connection, collocationId);
 		walk(connection, doc, parent, collocations);
 	}
 
@@ -225,7 +241,14 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	{
 		final Document doc = DomFactory.makeDocument();
 		final Node wordNode = SnNodeFactory.makeSnRootNode(doc, wordId);
-		SyntagNetImplementation.walk(connection, doc, wordNode, wordId);
+		if (synsetId == null)
+		{
+			SyntagNetImplementation.walk(connection, doc, wordNode, wordId);
+		}
+		else
+		{
+			SyntagNetImplementation.walk(connection, doc, wordNode, wordId, synsetId);
+		}
 		return doc;
 	}
 
