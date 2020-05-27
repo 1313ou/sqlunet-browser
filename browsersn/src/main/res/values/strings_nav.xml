@@ -6,7 +6,7 @@
 <resources>
 
 	<string name="nav_header_title">Semantikos</string>
-	<string name="nav_header_subtitle">SqlUNet</string>
+	<string name="nav_header_subtitle">SyntagNet</string>
 
 	<string name="nav_home">Semantikos</string>
 
