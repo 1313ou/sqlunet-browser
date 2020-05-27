@@ -7,14 +7,16 @@
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:background="?android:attr/activatedBackgroundIndicator"
-	android:orientation="vertical"
+	android:orientation="horizontal"
 	tools:context="org.sqlunet.browser.xselector.XBrowse1Fragment"
 	tools:ignore="Overdraw">
 
+	<!--
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:orientation="horizontal">
+	-->
 
 		<ImageView
 			style="@style/Data.XIcon"
@@ -65,7 +67,7 @@
 			android:layout_height="wrap_content"
 			android:textIsSelectable="false" />
 
-	</LinearLayout>
+	<!-- </LinearLayout> -->
 
 	<!--
 	<LinearLayout

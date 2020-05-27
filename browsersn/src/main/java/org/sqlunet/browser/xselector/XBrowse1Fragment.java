@@ -37,6 +37,7 @@ public class XBrowse1Fragment extends Fragment implements SelectorsFragment.List
 	/**
 	 * Selectors fragment
 	 */
+	@SuppressWarnings("FieldCanBeLocal")
 	@Nullable
 	private XSelectorsFragment xSelectorsFragment;
 
@@ -60,6 +61,8 @@ public class XBrowse1Fragment extends Fragment implements SelectorsFragment.List
 		{
 			this.xSelectorsFragment = new XSelectorsFragment();
 			Bundle args = getArguments();
+			if(args == null)
+				args = new Bundle();
 			boolean isTwoPane = isTwoPane(view);
 			args.putBoolean(Selectors.IS_TWO_PANE, isTwoPane);
 			this.xSelectorsFragment.setArguments(args);
@@ -133,11 +136,10 @@ public class XBrowse1Fragment extends Fragment implements SelectorsFragment.List
 		assert view != null;
 		if (isTwoPane(view))
 		{
-			// TODO
 			// in two-pane mode, show the detail view in this activity by adding or replacing the detail fragment using a fragment transaction.
-			//final Browse2Fragment fragment = (Browse2Fragment) getChildFragmentManager().findFragmentById(R.id.container_browse2);
-			//assert fragment != null;
-			//fragment.search(pointer, pos);
+			final Browse2Fragment fragment = (Browse2Fragment) getChildFragmentManager().findFragmentById(R.id.container_browse2);
+			assert fragment != null;
+			fragment.search(pointer, null);
 		}
 		else
 		{

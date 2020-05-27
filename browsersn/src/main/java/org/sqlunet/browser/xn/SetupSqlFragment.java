@@ -4,24 +4,16 @@
 
 package org.sqlunet.browser.xn;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import org.sqlunet.browser.ColorUtils;
-import org.sqlunet.browser.Info;
 import org.sqlunet.browser.R;
-import org.sqlunet.browser.config.ExecAsyncTask;
-import org.sqlunet.browser.config.TaskObserver;
 import org.sqlunet.settings.StorageSettings;
-import org.sqlunet.settings.StorageUtils;
 
 import java.io.File;
 
@@ -34,7 +26,7 @@ import androidx.annotation.NonNull;
  */
 public class SetupSqlFragment extends org.sqlunet.browser.config.SetupSqlFragment
 {
-	static private final String TAG = "SetupSqlF";
+	// static private final String TAG = "SetupSqlF";
 
 	/**
 	 * Constructor

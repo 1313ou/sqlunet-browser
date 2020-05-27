@@ -24,7 +24,7 @@ import androidx.fragment.app.Fragment;
  */
 public class XSelectorsFragment extends Fragment
 {
-	static private final String TAG = "XSelectorsF";
+	// static private final String TAG = "XSelectorsF";
 
 	/**
 	 * Wn listener

@@ -28,11 +28,12 @@ import androidx.fragment.app.FragmentManager;
  */
 public class SnBrowse1Fragment extends Fragment implements SnSelectorsFragment.Listener
 {
-	public static final String IS_TWO_PANE = "is_two_pane";
+	private static final String IS_TWO_PANE = "is_two_pane";
 
 	/**
 	 * Sn Selectors fragment
 	 */
+	@SuppressWarnings("FieldCanBeLocal")
 	@Nullable
 	private SnSelectorsFragment selectorsFragment;
 
@@ -56,6 +57,8 @@ public class SnBrowse1Fragment extends Fragment implements SnSelectorsFragment.L
 		{
 			this.selectorsFragment = new SnSelectorsFragment();
 			Bundle args = getArguments();
+			if(args == null)
+				args = new Bundle();
 			boolean isTwoPane = isTwoPane(view);
 			args.putBoolean(IS_TWO_PANE, isTwoPane);
 			this.selectorsFragment.setArguments(args);

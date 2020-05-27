@@ -5,13 +5,13 @@
 
 <resources>
 
-	<color name="primaryColor">#607d8b</color>
-	<color name="primaryLightColor">#8eacbb</color>
-	<color name="primaryDarkColor">#34515e</color>
-	<color name="secondaryColor">#d500f9</color>
-	<color name="secondaryLightColor">#ff5bff</color>
-	<color name="secondaryDarkColor">#9e00c5</color>
-	<color name="tertiaryForeColor">@android:color/white</color>
+	<color name="primaryColor">#76608B</color>
+	<color name="primaryLightColor">#AA8EBB</color>
+	<color name="primaryDarkColor">#45345E</color>
+	<color name="secondaryColor">#F99500</color>
+	<color name="secondaryLightColor">#FFBD5B</color>
+	<color name="secondaryDarkColor">#C56600</color>
+	<color name="tertiaryForeColor">@android:color/white</color>color
 	<!--
 	<color name="secondaryColor">#ff9800</color>
 	<color name="secondaryLightColor">#ffc947</color>
@@ -28,8 +28,5 @@
 
 	<color name="group_color">@color/secondaryColor</color>
 	<color name="group_fore_color">@color/primaryForeColor</color>
-
-	<!-- browse action bars -->
-	<color name="predicatematrix_actionbar_color">@color/primaryLightColor</color>
 
 </resources>

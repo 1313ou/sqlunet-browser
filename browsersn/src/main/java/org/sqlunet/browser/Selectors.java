@@ -4,8 +4,6 @@
 
 package org.sqlunet.browser;
 
-import org.sqlunet.browser.selector.SelectorPointer;
-
 public class Selectors
 {
 	/**
