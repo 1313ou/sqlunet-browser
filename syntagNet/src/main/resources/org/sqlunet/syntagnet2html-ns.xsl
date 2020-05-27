@@ -5,26 +5,26 @@
 
 <xsl:transform xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                version="1.0"
-               xmlns:pb="http://org.sqlunet/pb">
+               xmlns:sn="http://org.sqlunet/sn">
 	<xsl:output method="xml" indent="yes" encoding="UTF-8"/>
 	<xsl:strip-space elements="label"/>
 
 	<xsl:template match="/">
-		<DIV id="propbank">
-			<xsl:apply-templates select="//pb:propbank"/>
+		<DIV id="syntagnet">
+			<xsl:apply-templates select="//sn:syntagnet"/>
 		</DIV>
 	</xsl:template>
 
-	<xsl:template match="pb:propbank">
+	<xsl:template match="sn:syntagnet">
 		<xsl:choose>
-			<xsl:when test="count(./pb:roleset)=0">
+			<xsl:when test="count(./sn:collocation)=0">
 				<SPAN class="treejunction">
 					<IMG class="treepix" src="images/closed.png"/>
 				</SPAN>
 				<!-- data image -->
-				<IMG class="dataimg" src="images/xnet/propbank.png"/>
+				<IMG class="dataimg" src="images/xnet/syntagnet.png"/>
 				<SPAN class="domain">
-					<xsl:text><![CDATA[propbank]]></xsl:text>
+					<xsl:text><![CDATA[syntagnet]]></xsl:text>
 				</SPAN>
 				<SPAN class="error" id="default">
 					<xsl:text><![CDATA[∅ data]]></xsl:text>
@@ -35,141 +35,49 @@
 					<IMG class="treepix" src="images/open.png"/>
 				</SPAN>
 				<!-- data image -->
-				<IMG class="dataimg" src="images/xnet/propbank.png"/>
+				<IMG class="dataimg" src="images/xnet/syntagnet.png"/>
 				<SPAN class="domain">
-					<xsl:text><![CDATA[propbank]]></xsl:text>
+					<xsl:text><![CDATA[syntagnet]]></xsl:text>
 				</SPAN>
 				<UL style="display: block;">
-					<xsl:apply-templates select="./pb:roleset"/>
+					<xsl:apply-templates select="./sn:collocation"/>
 				</UL>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
 
-	<xsl:template match="pb:roleset">
+	<xsl:template match="sn:collocation">
 		<!-- indented -->
-		<LI class="treeitem treepanel pbroleset block1">
+		<LI class="treeitem treepanel sncollocation block1">
 			<!-- tree handle -->
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 				<IMG class="treepix" src="images/open.png"/>
 			</SPAN>
 			<!-- data image -->
-			<IMG class="dataimg" src="images/xnet/roleclass.png"/>
+			<IMG class="dataimg" src="images/xnet/collocation.png"/>
 			<!-- label -->
-			<SPAN class="pbrolesetlabel">
-				<SPAN class="pbrolesetname">
+			<SPAN class="sncollocationlabel">
+				<SPAN class="sncollocationname">
 					<xsl:value-of select="./@name"/>
 				</SPAN>
 				<IMG class="dataimg" src="images/xnet/definition.png"/>
-				<SPAN class="pbrolesettext">
+				<SPAN class="sncollocationtext">
 					<xsl:value-of select="./text()"/>
 				</SPAN>
 				<!--
-				<xsl:text><![CDATA[ rolesetid=]]></xsl:text>
-				<xsl:value-of select="./@rolesetid"/>
+				<xsl:text><![CDATA[ collocationid=]]></xsl:text>
+				<xsl:value-of select="./@collocationid"/>
 				-->
-				<xsl:text><![CDATA[ num=]]></xsl:text>
-				<xsl:value-of select="./@num"/>
-				<xsl:text><![CDATA[ head=]]></xsl:text>
-				<xsl:value-of select="./@head"/>
-			</SPAN>
-			<!-- collapsible content -->
-			<UL style="display: block;">
-				<!-- non indented -->
-				<xsl:apply-templates select="./pb:role"/>
-				<xsl:apply-templates select="./pb:example"/>
-			</UL>
-		</LI>
-	</xsl:template>
-
-	<xsl:template match="pb:role">
-		<!-- indented -->
-		<LI class="treeitem treepanel pbrole">
-			<!-- data image -->
-			<IMG class="dataimg" src="images/xnet/role.png"/>
-			<!-- label -->
-			<SPAN class="pbrolelabel">
-				<!-- <xsl:text><![CDATA[role]]></xsl:text> -->
-				<!-- <xsl:text><![CDATA[ #]]></xsl:text> -->
-				<!-- <xsl:value-of select="./@narg" /> -->
-				<!-- <![CDATA[ ]]> -->
-				<SPAN class="pbrolename">
-					<xsl:value-of select="./text()"/>
-				</SPAN>
-				<xsl:if test="./@theta != ''">
-					<xsl:text><![CDATA[-]]></xsl:text>
-					<SPAN class="pbthetaname">
-						<xsl:value-of select="./@theta"/>
-					</SPAN>
-				</xsl:if>
+				<xsl:text><![CDATA[ word1id=]]></xsl:text>
+				<xsl:value-of select="./@word1id"/>
+				<xsl:text><![CDATA[ word2id=]]></xsl:text>
+				<xsl:value-of select="./@word2id"/>
+				<xsl:text><![CDATA[ synset1id=]]></xsl:text>
+				<xsl:value-of select="./@synset1id"/>
+				<xsl:text><![CDATA[ synset2id=]]></xsl:text>
+				<xsl:value-of select="./@synset2id"/>
 			</SPAN>
 		</LI>
-	</xsl:template>
-
-	<xsl:template match="pb:example">
-		<!-- indented -->
-		<LI class="treeitem treepanel pbexample">
-			<!-- tree handle -->
-			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
-				<IMG class="treepix" src="images/open.png"/>
-			</SPAN>
-			<!-- data image -->
-			<IMG class="dataimg" src="images/xnet/sample.png"/>
-			<!-- label -->
-			<SPAN class="pbexamplelabel">
-				<xsl:text><![CDATA[example]]></xsl:text>
-				<xsl:text><![CDATA[ id=]]></xsl:text>
-				<xsl:value-of select="./@exampleid"/>
-			</SPAN>
-			<!-- collapsible content -->
-			<UL style="display: block;">
-				<LI>
-					<DIV class="pbexampletext">
-						<xsl:value-of select="./text()"/>
-					</DIV>
-					<xsl:apply-templates select="./pb:rel"/>
-					<xsl:apply-templates select="./pb:arg"/>
-				</LI>
-			</UL>
-		</LI>
-	</xsl:template>
-
-	<xsl:template match="pb:rel">
-		<!-- non indented -->
-		<DIV class="pbrel">
-			<!-- data image -->
-			<IMG class="dataimg" src="images/xnet/relation.png"/>
-			<!-- label -->
-			<SPAN class="pbrellabel">
-				<SPAN class="pbrelname">
-					<xsl:value-of select="./text()"/>
-				</SPAN>
-			</SPAN>
-		</DIV>
-	</xsl:template>
-
-	<xsl:template match="pb:arg">
-		<!-- non indented -->
-		<DIV class="pbarg">
-			<!-- data image -->
-			<IMG class="dataimg" src="images/xnet/role.png"/>
-			<!-- label -->
-			<SPAN class="pbarglabel">
-				<SPAN class="pbargname">
-					<xsl:value-of select="./@descr"/>
-				</SPAN>
-				<xsl:if test="./@theta != ''">
-					<xsl:text><![CDATA[-]]></xsl:text>
-					<SPAN class="pbargtheta">
-						<xsl:value-of select="./@theta"/>
-					</SPAN>
-				</xsl:if>
-			</SPAN>
-			<xsl:text><![CDATA[ ]]></xsl:text>
-			<SPAN class="pbargtext">
-				<xsl:value-of select="./text()"/>
-			</SPAN>
-		</DIV>
 	</xsl:template>
 
 </xsl:transform>
