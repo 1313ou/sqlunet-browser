@@ -8,12 +8,14 @@ import android.database.sqlite.SQLiteDatabase;
 
 import org.sqlunet.dom.DomFactory;
 import org.sqlunet.dom.DomTransformer;
+import org.sqlunet.wordnet.sql.NodeFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Encapsulates SyntagNet query implementation
@@ -36,17 +38,17 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	 */
 	static private void walkSelector(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final String targetWord)
 	{
-		final List<Collocation> roleSets = Collocation.makeFromWord(connection, targetWord);
-		//if (roleSets == null)
-		//{
-		//	return;
-		//}
+		final List<Collocation> collocations = Collocation.makeFromWord(connection, targetWord);
+		if (collocations == null)
+		{
+			return;
+		}
 
 		// word
-		// NodeFactory.makeWordNode(doc, parent, targetWord, wordId);
+		NodeFactory.makeNode(doc, parent, "word", targetWord);
 
 		// syntagnet nodes
-		SyntagNetImplementation.makeSelector(doc, parent, roleSets);
+		SyntagNetImplementation.makeSelector(doc, parent, collocations);
 	}
 
 	/**
@@ -60,13 +62,13 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	static private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final String targetWord)
 	{
 		final List<Collocation> collocations = Collocation.makeFromWord(connection, targetWord);
-		//if (collocations == null)
-		//{
-		//	return;
-		//}
+		if (collocations == null)
+		{
+			return;
+		}
 
 		// word
-		// NodeFactory.makeWordNode(doc, parent, targetWord, wordId);
+		NodeFactory.makeNode(doc, parent, "word", targetWord);
 
 		// collocations
 		int i = 1;
@@ -94,12 +96,12 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	}
 
 	/**
-	 * Perform queries for SyntagNet data from role set id
+	 * Perform queries for SyntagNet data from collocation id
 	 *
 	 * @param connection data source
 	 * @param doc        org.w3c.dom.Document being built
 	 * @param parent     org.w3c.dom.Node the walk will attach results to
-	 * @param roleSetId  role set id
+	 * @param roleSetId  collocation id
 	 */
 	static private void walkCollocations(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long roleSetId)
 	{
@@ -121,7 +123,7 @@ public class SyntagNetImplementation implements SyntagNetInterface
 		int i = 1;
 		for (final Collocation collocation : collocations)
 		{
-			// role set
+			// collocation
 			final Node collocationNode = SnNodeFactory.makeCollocationNode(doc, parent, collocation, i++);
 		}
 	}
@@ -138,7 +140,7 @@ public class SyntagNetImplementation implements SyntagNetInterface
 		int i = 1;
 		for (final Collocation collocation : collocations)
 		{
-			// role set
+			// collocation
 			SnNodeFactory.makeCollocationNode(doc, parent, collocation, i++);
 		}
 	}
@@ -214,11 +216,12 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	 *
 	 * @param connection connection
 	 * @param wordId     word id to build query from
-	 * @param pos        pos to build query from
+	 * @param synsetId   is the synset id to build query from (nullable)
+	 * @param pos        pos to build query from (nullable)
 	 * @return SyntagNet data as DOM document
 	 */
 	@Override
-	public Document queryDoc(final SQLiteDatabase connection, final long wordId, final Character pos)
+	public Document queryDoc(final SQLiteDatabase connection, final long wordId, @Nullable Long synsetId, @Nullable final Character pos)
 	{
 		final Document doc = DomFactory.makeDocument();
 		final Node wordNode = SnNodeFactory.makeSnRootNode(doc, wordId);
@@ -231,23 +234,24 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	 *
 	 * @param connection connection
 	 * @param wordId     target word id
-	 * @param pos        pos to build query from
+	 * @param synsetId   is the synset id to build query from (nullable)
+	 * @param pos        pos to build query from (nullable)
 	 * @return SyntagNet data as XML
 	 */
 	@NonNull
 	@Override
-	public String queryXML(final SQLiteDatabase connection, final long wordId, final Character pos)
+	public String queryXML(final SQLiteDatabase connection, final long wordId, @Nullable Long synsetId, @Nullable final Character pos)
 	{
-		final Document doc = queryDoc(connection, wordId, pos);
+		final Document doc = queryDoc(connection, wordId, synsetId, pos);
 		return DomTransformer.docToString(doc);
 	}
 
 	/**
 	 * Business method that returns collocation data as DOM document from collocation id
 	 *
-	 * @param connection connection
-	 * @param collocationId  role set to build query from
-	 * @return SyntagNet role set data as DOM document
+	 * @param connection    connection
+	 * @param collocationId collocation to build query from
+	 * @return SyntagNet collocation data as DOM document
 	 */
 	@Override
 	public Document queryCollocationDoc(final SQLiteDatabase connection, final long collocationId)
@@ -261,18 +265,17 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	// H E L P E R S
 
 	/**
-	 * Business method that returns role set data as XML from role set id
+	 * Business method that returns collocation data as XML from collocation id
 	 *
-	 * @param connection connection
-	 * @param roleSetId  role set id to build query from
-	 * @param pos        pos to build query from
-	 * @return SyntagNet role set data as XML
+	 * @param connection    connection
+	 * @param collocationId collocation id to build query from
+	 * @return SyntagNet collocation data as XML
 	 */
 	@NonNull
 	@Override
-	public String queryCollocationXML(final SQLiteDatabase connection, final long roleSetId, final Character pos)
+	public String queryCollocationXML(final SQLiteDatabase connection, final long collocationId)
 	{
-		final Document doc = queryCollocationDoc(connection, roleSetId, pos);
+		final Document doc = queryCollocationDoc(connection, collocationId);
 		return DomTransformer.docToString(doc);
 	}
 }

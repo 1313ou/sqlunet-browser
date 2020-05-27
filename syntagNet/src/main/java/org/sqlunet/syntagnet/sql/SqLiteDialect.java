@@ -11,59 +11,35 @@ package org.sqlunet.syntagnet.sql;
 class SqLiteDialect
 {
 	// collocations
-	// query for role set from role set id
-	static final String SyntagNetCollocationQuery = //
-			"SELECT rolesetid, rolesetname, rolesethead, rolesetdescr " + //
-					"FROM pbrolesets " + //
-					"WHERE rolesetid = ? ;";
-	// query for role set from word
-	static final String SyntagNetCollocationQueryFromWord = //
-			"SELECT wordid, rolesetid, rolesetname, rolesethead, rolesetdescr " + //
-					"FROM words AS w " + //
-					"INNER JOIN pbwords USING (wordid) " + //
-					"LEFT JOIN pbrolesets USING (pbwordid) " + //
-					"WHERE w.lemma = ? ";
-	// query for role set from word id
-	static final String SyntagNetRoleSetQueryFromWordId = //
-			"SELECT rolesetid, rolesetname, rolesethead, rolesetdescr " + //
-					"FROM words " + //
-					"INNER JOIN pbwords USING (wordid) " + //
-					"INNER JOIN pbrolesets USING (pbwordid) " + //
-					"WHERE wordid = ? ;";
+	// query for collocation from collocation id
+	private static final String SyntagNetBaseCollocationQuery = "SELECT	" + //
+			"word1id, w1.lemma AS lemma1, synset1id, s1.pos AS pos1, s1.definition AS definition1, " + //
+			"word2id, w2.lemma AS lemma2, synset2id, s2.pos AS pos2, s2.definition AS definition2, " + //
+			"FROM syntagms " + //
+			"JOIN words AS w1 ON (word1id = w1.wordid) " + //
+			"JOIN words AS w2 ON (word2id = w2.wordid)" + //
+			"JOIN synsets AS s1 ON (synset1id = s1.synsetid) " + //
+			"JOIN synsets AS s2 ON (synset2id = s2.synsetid) ";
 
-	// ROLES
-	// query for roles
-	static final String SyntagNetRolesQueryFromRoleSetId = //
-			"SELECT roleid,roledescr,narg,funcname,thetaname " + //
-					"FROM pbrolesets " + //
-					"INNER JOIN pbroles USING (rolesetid) " + //
-					"LEFT JOIN pbfuncs USING (func) " + //
-					"LEFT JOIN pbvnthetas USING (theta) " + //
-					"WHERE rolesetid = ? " + //
-					"ORDER BY narg;";
+	private static final String SyntagNetBaseCollocationOrder = "ORDER BY w1.lemma, w2.lemma";
 
-	// EXAMPLES
-	// query for examples rel(n~arg|n~arg|..)
-	static final String SyntagNetExamplesQueryFromRoleSetId = //
-			"SELECT exampleid,text,rel,GROUP_CONCAT(narg||'~'||" + //
-					"(CASE WHEN funcname IS NULL THEN '*' ELSE funcname END)||'~'||" + //
-					"roledescr||'~'||" + //
-					"(CASE WHEN thetaname IS NULL THEN '*' ELSE thetaname END)||'~'||" + //
-					"arg,'|')," + //
-					"aspectname,formname,tensename,voicename,personname " + //
-					"FROM pbrolesets " + //
-					"INNER JOIN pbexamples AS e USING (rolesetid) " + //
-					"LEFT JOIN pbrels AS r USING (exampleid) " + //
-					"LEFT JOIN pbargs AS a USING (exampleid) " + //
-					"LEFT JOIN pbfuncs AS f ON (a.func = f.func) " + //
-					"LEFT JOIN pbaspects USING (aspect) " + //
-					"LEFT JOIN pbforms USING (form) " + //
-					"LEFT JOIN pbtenses USING (tense) " + //
-					"LEFT JOIN pbvoices USING (voice) " + //
-					"LEFT JOIN pbpersons USING (person) " + //
-					"LEFT JOIN pbroles USING (rolesetid,narg) " + //
-					"LEFT JOIN pbvnthetas USING (theta) " + //
-					"WHERE rolesetid = ? " + //
-					"GROUP BY e.exampleid " + //
-					"ORDER BY e.exampleid,narg;";
+	// query for collocation from collocation id
+	static final String SyntagNetCollocationQuery = SyntagNetBaseCollocationQuery + //
+			"WHERE syntagmid = ? " + //
+			SyntagNetBaseCollocationOrder + ";";
+
+	// query for collocation from word
+	static final String SyntagNetCollocationQueryFromWord = SyntagNetBaseCollocationQuery +//
+			"WHERE w1.lemma = ? OR w2.lemma = ? " + //
+			SyntagNetBaseCollocationOrder + ";";
+
+	// query for collocation from word id
+	static final String SyntagNetRoleSetQueryFromWordId = SyntagNetBaseCollocationQuery +//
+			"WHERE w1.wordid = ? OR w2.wordid = ? " + //
+			SyntagNetBaseCollocationOrder + ";";
+
+	// query for collocation from word id and synset id
+	static final String SyntagNetRoleSetQueryFromWordIdAndSynsetId = SyntagNetBaseCollocationQuery +//
+			"WHERE (w1.wordid = ? AND s1.synsetid = ?) OR (w2.wordid = ? AND s2.synsetid = ?) " + //
+			SyntagNetBaseCollocationOrder + ";";
 }

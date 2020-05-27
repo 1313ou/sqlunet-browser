@@ -12,7 +12,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 
 /**
- * SyntagNet role set
+ * SyntagNet collocation
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -144,11 +144,11 @@ class Collocation
 	}
 
 	/**
-	 * Make sets of SyntagNet roleSets from query built from word id
+	 * Make sets of SyntagNet collocations from query built from word id
 	 *
 	 * @param connection connection
 	 * @param wordId     is the word id to build query from
-	 * @return list of SyntagNet roleSets
+	 * @return list of SyntagNet collocations
 	 */
 	@NonNull
 	static public List<Collocation> makeFromWordId(final SQLiteDatabase connection, final long wordId)
@@ -182,20 +182,20 @@ class Collocation
 	}
 
 	/**
-	 * Make sets of SyntagNet collocations from query built from roleSet id
+	 * Make sets of SyntagNet collocations from query built from collocation id
 	 *
 	 * @param connection connection
-	 * @param roleSetId  is the role set id to build query from
+	 * @param collocationId  is the collocation id to build query from
 	 * @return list of SyntagNet collocations
 	 */
 	@NonNull
-	static public List<Collocation> make(final SQLiteDatabase connection, final long roleSetId)
+	static public List<Collocation> make(final SQLiteDatabase connection, final long collocationId)
 	{
 		final List<Collocation> result = new ArrayList<>();
 		CollocationQuery query = null;
 		try
 		{
-			query = new CollocationQuery(connection, roleSetId);
+			query = new CollocationQuery(connection, collocationId);
 			query.execute();
 
 			while (query.next())

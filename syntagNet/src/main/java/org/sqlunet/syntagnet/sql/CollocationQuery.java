@@ -13,7 +13,7 @@ import org.sqlunet.sql.DBQuery;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-class CollocationQuery extends DBQuery
+class CollocationQuery extends BaseCollocationQuery
 {
 	/**
 	 * <code>QUERY</code> is the SQL statement
@@ -24,78 +24,12 @@ class CollocationQuery extends DBQuery
 	 * Constructor
 	 *
 	 * @param connection connection
-	 * @param roleSetId  target role set id
+	 * @param collocationId  target collocation id
 	 */
 	@SuppressWarnings("boxing")
-	public CollocationQuery(final SQLiteDatabase connection, final long roleSetId)
+	public CollocationQuery(final SQLiteDatabase connection, final long collocationId)
 	{
 		super(connection, CollocationQuery.QUERY);
-		setParams(roleSetId);
-	}
-
-	/**
-	 * Get the word 1 id from the result set
-	 *
-	 * @return the word 1 id from the result set
-	 */
-	public long getWord1Id()
-	{
-		assert this.cursor != null;
-		return this.cursor.getLong(0);
-	}
-
-	/**
-	 * Get the word 2 id from the result set
-	 *
-	 * @return the word 2 id from the result set
-	 */
-	public long getWord2Id()
-	{
-		assert this.cursor != null;
-		return this.cursor.getLong(1);
-	}
-
-	/**
-	 * Get the synset 1  id from the result set
-	 *
-	 * @return the synset 1 id from the result set
-	 */
-	public long getSynset1Id()
-	{
-		assert this.cursor != null;
-		return this.cursor.getLong(2);
-	}
-
-	/**
-	 * Get the synset 2 id from the result set
-	 *
-	 * @return the synset 2 id from the result set
-	 */
-	public long getSynset2Id()
-	{
-		assert this.cursor != null;
-		return this.cursor.getLong(3);
-	}
-
-	/**
-	 * Get the word 1 from the result set
-	 *
-	 * @return the word 1 from the result set
-	 */
-	public String getWord1()
-	{
-		assert this.cursor != null;
-		return this.cursor.getString(4);
-	}
-
-	/**
-	 * Get word 2 from the result set
-	 *
-	 * @return word 2 from the result set
-	 */
-	public String getWord2()
-	{
-		assert this.cursor != null;
-		return this.cursor.getString(5);
+		setParams(collocationId);
 	}
 }
