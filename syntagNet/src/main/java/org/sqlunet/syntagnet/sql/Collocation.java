@@ -182,10 +182,48 @@ class Collocation
 	}
 
 	/**
-	 * Make sets of SyntagNet collocations from query built from collocation id
+	 * Make sets of SyntagNet collocations from query built from word id
 	 *
 	 * @param connection connection
-	 * @param collocationId  is the collocation id to build query from
+	 * @param wordId     is the word id to build query from
+	 * @return list of SyntagNet collocations
+	 */
+	@NonNull
+	static public List<Collocation> makeFromWordIdAndSynsetId(final SQLiteDatabase connection, final long wordId, final long synsetId)
+	{
+		final List<Collocation> result = new ArrayList<>();
+		CollocationQueryFromWordIdAndSynsetId query = null;
+		try
+		{
+			query = new CollocationQueryFromWordIdAndSynsetId(connection, wordId, synsetId);
+			query.execute();
+
+			while (query.next())
+			{
+				final long word1Id = query.getWord1Id();
+				final long word2Id = query.getWord2Id();
+				final long synset1Id = query.getSynset1Id();
+				final long synset2Id = query.getSynset2Id();
+				final String word1 = query.getWord1();
+				final String word2 = query.getWord2();
+				result.add(new Collocation(word1Id, word2Id, synset1Id, synset2Id, word1, word2));
+			}
+		}
+		finally
+		{
+			if (query != null)
+			{
+				query.release();
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Make sets of SyntagNet collocations from query built from collocation id
+	 *
+	 * @param connection    connection
+	 * @param collocationId is the collocation id to build query from
 	 * @return list of SyntagNet collocations
 	 */
 	@NonNull
