@@ -7,7 +7,7 @@
 
 	<!-- app -->
 	<string name="app_name">Semantikos-SyntagNet</string>
-	<string name="app_subname"/>
+	<string name="app_subname">SyntagNet</string>
 
 	<!-- ACTIONS -->
 
