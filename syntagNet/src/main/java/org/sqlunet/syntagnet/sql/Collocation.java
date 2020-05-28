@@ -18,7 +18,7 @@ import androidx.annotation.NonNull;
  */
 class Collocation
 {
-	static class CollocationX extends Collocation
+	static class WithDefinitionAndPos extends Collocation
 	{
 		/**
 		 * POS 1
@@ -44,7 +44,7 @@ class Collocation
 		@SuppressWarnings("WeakerAccess")
 		public final String definition2;
 
-		public CollocationX(final long word1Id, final long word2Id, final long synset1Id, final long synset2Id, final String word1, final String word2, final char pos1, final char pos2, final String definition1, final String definition2)
+		public WithDefinitionAndPos(final long word1Id, final long word2Id, final long synset1Id, final long synset2Id, final String word1, final String word2, final char pos1, final char pos2, final String definition1, final String definition2)
 		{
 			super(word1Id, word2Id, synset1Id, synset2Id, word1, word2);
 			this.pos1 = pos1;
@@ -151,9 +151,9 @@ class Collocation
 	 * @return list of SyntagNet collocations
 	 */
 	@NonNull
-	static public List<Collocation> makeFromWordId(final SQLiteDatabase connection, final long wordId)
+	static public List<Collocation.WithDefinitionAndPos> makeFromWordId(final SQLiteDatabase connection, final long wordId)
 	{
-		final List<Collocation> result = new ArrayList<>();
+		final List<Collocation.WithDefinitionAndPos> result = new ArrayList<>();
 		CollocationQueryFromWordId query = null;
 		try
 		{
@@ -168,7 +168,11 @@ class Collocation
 				final long synset2Id = query.getSynset2Id();
 				final String word1 = query.getWord1();
 				final String word2 = query.getWord2();
-				result.add(new Collocation(word1Id, word2Id, synset1Id, synset2Id, word1, word2));
+				final Character pos1 = query.getPos1();
+				final Character pos2 = query.getPos2();
+				final String definition1 = query.getDefinition1();
+				final String definition2 = query.getDefinition2();
+				result.add(new Collocation.WithDefinitionAndPos(word1Id, word2Id, synset1Id, synset2Id, word1, word2, pos1, pos2, definition1, definition2));
 			}
 		}
 		finally
@@ -189,9 +193,9 @@ class Collocation
 	 * @return list of SyntagNet collocations
 	 */
 	@NonNull
-	static public List<Collocation> makeFromWordIdAndSynsetId(final SQLiteDatabase connection, final long wordId, final long synsetId)
+	static public List<Collocation.WithDefinitionAndPos> makeFromWordIdAndSynsetId(final SQLiteDatabase connection, final long wordId, final long synsetId)
 	{
-		final List<Collocation> result = new ArrayList<>();
+		final List<Collocation.WithDefinitionAndPos> result = new ArrayList<>();
 		CollocationQueryFromWordIdAndSynsetId query = null;
 		try
 		{
@@ -206,7 +210,11 @@ class Collocation
 				final long synset2Id = query.getSynset2Id();
 				final String word1 = query.getWord1();
 				final String word2 = query.getWord2();
-				result.add(new Collocation(word1Id, word2Id, synset1Id, synset2Id, word1, word2));
+				final Character pos1 = query.getPos1();
+				final Character pos2 = query.getPos2();
+				final String definition1 = query.getDefinition1();
+				final String definition2 = query.getDefinition2();
+				result.add(new Collocation.WithDefinitionAndPos(word1Id, word2Id, synset1Id, synset2Id, word1, word2, pos1, pos2, definition1, definition2));
 			}
 		}
 		finally
@@ -227,9 +235,9 @@ class Collocation
 	 * @return list of SyntagNet collocations
 	 */
 	@NonNull
-	static public List<Collocation> make(final SQLiteDatabase connection, final long collocationId)
+	static public List<Collocation.WithDefinitionAndPos> make(final SQLiteDatabase connection, final long collocationId)
 	{
-		final List<Collocation> result = new ArrayList<>();
+		final List<Collocation.WithDefinitionAndPos> result = new ArrayList<>();
 		CollocationQuery query = null;
 		try
 		{
@@ -244,7 +252,11 @@ class Collocation
 				final long synset2Id = query.getSynset2Id();
 				final String word1 = query.getWord1();
 				final String word2 = query.getWord2();
-				result.add(new Collocation(word1Id, word2Id, synset1Id, synset2Id, word1, word2));
+				final Character pos1 = query.getPos1();
+				final Character pos2 = query.getPos2();
+				final String definition1 = query.getDefinition1();
+				final String definition2 = query.getDefinition2();
+				result.add(new Collocation.WithDefinitionAndPos(word1Id, word2Id, synset1Id, synset2Id, word1, word2, pos1, pos2, definition1, definition2));
 			}
 		}
 		finally
