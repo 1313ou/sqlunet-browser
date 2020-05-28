@@ -295,6 +295,15 @@ public class WebFragment extends Fragment
 								wnDomDoc = new WordNetImplementation().querySynsetDoc(db, synsetPointer.getSynsetId());
 							}
 							break;
+
+						case ProviderArgs.ARG_QUERYTYPE_COLLOCATION:
+							@SuppressWarnings("TypeMayBeWeakened") final SnCollocationPointer collocationPointer = (SnCollocationPointer) pointer;
+							Log.d(WebFragment.TAG, "ARG_POSITION collocation=" + collocationPointer);
+							if (collocationPointer != null && Settings.Source.SYNTAGNET.test(sources))
+							{
+								snDomDoc = new SyntagNetImplementation().queryCollocationDoc(db, collocationPointer.getId());
+							}
+							break;
 					}
 				}
 
