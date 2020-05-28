@@ -103,10 +103,11 @@ abstract class BaseCollocationQuery extends DBQuery
 	 *
 	 * @return the pos 1 from the result set
 	 */
-	public String getPos1()
+	public Character getPos1()
 	{
 		assert this.cursor != null;
-		return this.cursor.getString(3);
+		String posString = this.cursor.getString(3);
+		return posString != null ? posString.charAt(0) : null;
 	}
 
 	/**
@@ -114,10 +115,11 @@ abstract class BaseCollocationQuery extends DBQuery
 	 *
 	 * @return pos 2 from the result set
 	 */
-	public String getPos2()
+	public Character getPos2()
 	{
 		assert this.cursor != null;
-		return this.cursor.getString(8);
+		String posString = this.cursor.getString(8);
+		return posString != null ? posString.charAt(0) : null;
 	}
 
 	/**

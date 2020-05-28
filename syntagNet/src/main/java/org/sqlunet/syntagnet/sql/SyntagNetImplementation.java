@@ -91,7 +91,7 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	static private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long targetWordId)
 	{
 		// collocations
-		final List<Collocation> collocations = Collocation.makeFromWordId(connection, targetWordId);
+		final List<Collocation.WithDefinitionAndPos> collocations = Collocation.makeFromWordId(connection, targetWordId);
 		walk(connection, doc, parent, collocations);
 	}
 
@@ -107,7 +107,7 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	private static void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long targetWordId, final long targetSynsetId)
 	{
 		// collocations
-		final List<Collocation> collocations = Collocation.makeFromWordIdAndSynsetId(connection, targetWordId, targetSynsetId);
+		final List<Collocation.WithDefinitionAndPos> collocations = Collocation.makeFromWordIdAndSynsetId(connection, targetWordId, targetSynsetId);
 		walk(connection, doc, parent, collocations);
 	}
 
@@ -122,7 +122,7 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	static private void walkCollocations(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long collocationId)
 	{
 		// collocations
-		final List<Collocation> collocations = Collocation.make(connection, collocationId);
+		final List<Collocation.WithDefinitionAndPos> collocations = Collocation.make(connection, collocationId);
 		walk(connection, doc, parent, collocations);
 	}
 
@@ -134,7 +134,7 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	 * @param parent       org.w3c.dom.Node the walk will attach results to
 	 * @param collocations collocations
 	 */
-	static private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, @NonNull final Iterable<Collocation> collocations)
+	static private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, @NonNull final Iterable<Collocation.WithDefinitionAndPos> collocations)
 	{
 		int i = 1;
 		for (final Collocation collocation : collocations)
