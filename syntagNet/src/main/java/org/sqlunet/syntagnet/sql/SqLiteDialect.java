@@ -38,8 +38,18 @@ class SqLiteDialect
 			"WHERE w1.wordid = ? OR w2.wordid = ? " + //
 			SyntagNetBaseCollocationOrder + ";";
 
+	// query for collocation from word ids
+	static final String SyntagNetCollocationQueryFromWordIds = SyntagNetBaseCollocationQuery +//
+			"WHERE w1.wordid = ? OR w2.word2id = ? " + //
+			SyntagNetBaseCollocationOrder + ";";
+
 	// query for collocation from word id and synset id
 	static final String SyntagNetCollocationQueryFromWordIdAndSynsetId = SyntagNetBaseCollocationQuery +//
 			"WHERE (w1.wordid = ? AND s1.synsetid = ?) OR (w2.wordid = ? AND s2.synsetid = ?) " + //
+			SyntagNetBaseCollocationOrder + ";";
+
+	// query for collocation from word ids and synset ids
+	static final String SyntagNetCollocationQueryFromWordIdsAndSynsetIds = SyntagNetBaseCollocationQuery +//
+			"WHERE (w1.wordid = ? AND s1.synsetid = ?) AND (w2.wordid = ? AND s2.synsetid = ?) " + //
 			SyntagNetBaseCollocationOrder + ";";
 }

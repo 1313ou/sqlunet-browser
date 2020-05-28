@@ -112,6 +112,37 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	}
 
 	/**
+	 * Perform queries for SyntagNet data from word id
+	 *
+	 * @param connection   data source
+	 * @param doc          org.w3c.dom.Document being built
+	 * @param parent       org.w3c.dom.Node the walk will attach results to
+	 * @param targetWordId target word id
+	 */
+	static private void walk2(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long targetWordId, final long targetWord2Id)
+	{
+		// collocations
+		final List<Collocation.WithDefinitionAndPos> collocations = Collocation.WithDefinitionAndPos.makeFromWordIds(connection, targetWordId, targetWord2Id);
+		walk(connection, doc, parent, collocations);
+	}
+
+	/**
+	 * Perform queries for SyntagNet data from word id
+	 *
+	 * @param connection     data source
+	 * @param doc            org.w3c.dom.Document being built
+	 * @param parent         org.w3c.dom.Node the walk will attach results to
+	 * @param targetWordId   target word id
+	 * @param targetSynsetId target synset id
+	 */
+	private static void walk2(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long targetWordId, final long targetSynsetId, final long targetWord2Id, final long targetSynset2Id)
+	{
+		// collocations
+		final List<Collocation.WithDefinitionAndPos> collocations = Collocation.WithDefinitionAndPos.makeFromWordIdAndSynsetIds(connection, targetWordId, targetSynsetId, targetWord2Id, targetSynset2Id);
+		walk(connection, doc, parent, collocations);
+	}
+
+	/**
 	 * Perform queries for SyntagNet data from collocation id
 	 *
 	 * @param connection    data source
@@ -119,7 +150,7 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	 * @param parent        org.w3c.dom.Node the walk will attach results to
 	 * @param collocationId collocation id
 	 */
-	static private void walkCollocations(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long collocationId)
+	static private void walkCollocation(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long collocationId)
 	{
 		// collocations
 		final List<Collocation.WithDefinitionAndPos> collocations = Collocation.WithDefinitionAndPos.make(connection, collocationId);
@@ -141,23 +172,6 @@ public class SyntagNetImplementation implements SyntagNetInterface
 		{
 			// collocation
 			SnNodeFactory.makeCollocationNode(doc, parent, collocation, i++);
-		}
-	}
-
-	/**
-	 * Display query results for SyntagNet data from query result
-	 *
-	 * @param doc          org.w3c.dom.Document being built
-	 * @param parent       org.w3c.dom.Node the walk will attach results to
-	 * @param collocations collocations
-	 */
-	static private void makeSelector(@NonNull final Document doc, final Node parent, @NonNull final Iterable<Collocation> collocations)
-	{
-		int i = 1;
-		for (final Collocation collocation : collocations)
-		{
-			// collocation
-			SnNodeFactory.makeSelectorCollocationNode(doc, parent, collocation, i++);
 		}
 	}
 
@@ -269,6 +283,30 @@ public class SyntagNetImplementation implements SyntagNetInterface
 		return DomTransformer.docToString(doc);
 	}
 
+	@Override
+	public Document queryDoc(final SQLiteDatabase connection, final long wordId, @Nullable final Long synsetId, final long word2Id, @Nullable final Long synset2Id)
+	{
+		final Document doc = DomFactory.makeDocument();
+		final Node wordNode = SnNodeFactory.makeSnRootNode(doc, wordId);
+		if (synsetId == null || synset2Id == null)
+		{
+			SyntagNetImplementation.walk2(connection, doc, wordNode, wordId, word2Id);
+		}
+		else
+		{
+			SyntagNetImplementation.walk2(connection, doc, wordNode, wordId, synsetId, word2Id, synset2Id);
+		}
+		return doc;
+	}
+
+	@NonNull
+	@Override
+	public String queryXML(final SQLiteDatabase connection, final long wordId, @Nullable final Long synsetId, final long word2Id, @Nullable final Long synset2Id)
+	{
+		final Document doc = queryDoc(connection, wordId, synsetId, word2Id, synset2Id);
+		return DomTransformer.docToString(doc);
+	}
+
 	/**
 	 * Business method that returns collocation data as DOM document from collocation id
 	 *
@@ -281,7 +319,7 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	{
 		final Document doc = DomFactory.makeDocument();
 		final Node rootNode = SnNodeFactory.makeSnRootNode(doc, collocationId);
-		SyntagNetImplementation.walkCollocations(connection, doc, rootNode, collocationId);
+		SyntagNetImplementation.walkCollocation(connection, doc, rootNode, collocationId);
 		return doc;
 	}
 
@@ -300,5 +338,22 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	{
 		final Document doc = queryCollocationDoc(connection, collocationId);
 		return DomTransformer.docToString(doc);
+	}
+
+	/**
+	 * Display query results for SyntagNet data from query result
+	 *
+	 * @param doc          org.w3c.dom.Document being built
+	 * @param parent       org.w3c.dom.Node the walk will attach results to
+	 * @param collocations collocations
+	 */
+	static private void makeSelector(@NonNull final Document doc, final Node parent, @NonNull final Iterable<Collocation> collocations)
+	{
+		int i = 1;
+		for (final Collocation collocation : collocations)
+		{
+			// collocation
+			SnNodeFactory.makeSelectorCollocationNode(doc, parent, collocation, i++);
+		}
 	}
 }

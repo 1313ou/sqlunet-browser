@@ -29,6 +29,7 @@ import org.sqlunet.Pointer;
 import org.sqlunet.bnc.sql.BncImplementation;
 import org.sqlunet.browser.BuildConfig;
 import org.sqlunet.browser.R;
+import org.sqlunet.browser.selector.CollocationSelectorPointer;
 import org.sqlunet.browser.xn.DocumentTransformer;
 import org.sqlunet.browser.xn.Settings;
 import org.sqlunet.browser.xselector.XSelectorPointer;
@@ -230,6 +231,26 @@ public class WebFragment extends Fragment
 									if (collocationId != null) //
 									{
 										snDomDoc = new SyntagNetImplementation().queryCollocationDoc(db, collocationId);
+									}
+								}
+								else if (pointer instanceof CollocationSelectorPointer)
+								{
+									final CollocationSelectorPointer selectorPointer = (CollocationSelectorPointer) pointer;
+									final long wordId = selectorPointer.getWordId();
+									final long synsetId = selectorPointer.getSynsetId();
+									final long word2Id = selectorPointer.getWord2Id();
+									final long synset2Id = selectorPointer.getSynset2Id();
+									if (Settings.Source.WORDNET.test(sources))
+									{
+										wnDomDoc = new WordNetImplementation().queryDoc(db, wordId, synsetId, true, false);
+									}
+									if (Settings.Source.SYNTAGNET.test(sources))
+									{
+										snDomDoc = new SyntagNetImplementation().queryDoc(db, wordId, synsetId, word2Id, synset2Id);
+									}
+									if (Settings.Source.BNC.test(sources))
+									{
+										bncDomDoc = new BncImplementation().queryDoc(db, wordId, pos);
 									}
 								}
 								else
