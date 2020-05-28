@@ -12,7 +12,7 @@ class SqLiteDialect
 {
 	// collocations
 	// query for collocation from collocation id
-	private static final String SyntagNetBaseCollocationQuery = "SELECT	" + //
+	private static final String SyntagNetBaseCollocationQuery = "SELECT	syntagmid" + //
 			"word1id, w1.lemma AS lemma1, synset1id, s1.pos AS pos1, s1.definition AS definition1, " + //
 			"word2id, w2.lemma AS lemma2, synset2id, s2.pos AS pos2, s2.definition AS definition2 " + //
 			"FROM syntagms " + //

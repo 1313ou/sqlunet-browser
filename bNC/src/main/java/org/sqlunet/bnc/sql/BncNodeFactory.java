@@ -53,7 +53,7 @@ class BncNodeFactory extends NodeFactory
 	static public Node makeBncNode(@NonNull final Document doc, final Node parent, @NonNull final BncData data, final int i)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "bncdata", null);
-		NodeFactory.makeAttribute(element, "id", Integer.toString(i));
+		NodeFactory.makeAttribute(element, "ith", Integer.toString(i));
 		NodeFactory.makeAttribute(element, "pos", data.posName != null ? data.posName : data.pos);
 
 		BncNodeFactory.makeDataNode(doc, element, "freq", data.freq);

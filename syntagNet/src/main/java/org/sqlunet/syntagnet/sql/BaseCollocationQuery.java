@@ -27,10 +27,21 @@ abstract class BaseCollocationQuery extends DBQuery
 		super(connection, query);
 	}
 
-	// 0         1                   2          3               4
+	// 1         2                   3          4               5
 	// "word1id, w1.lemma AS lemma1, synset1id, s1.pos AS pos1, s1.definition AS definition1,"
-	// 5         6                   7          8               9
+	// 6         7                   8          9               10
 	// "word2id, w2.lemma AS lemma2, synset2id, s2.pos AS pos2, s2.definition AS definition2,"
+
+	/**
+	 * Get the id from the result set
+	 *
+	 * @return the word 1 id from the result set
+	 */
+	public long getId()
+	{
+		assert this.cursor != null;
+		return this.cursor.getLong(0);
+	}
 
 	/**
 	 * Get the word 1 id from the result set
@@ -40,7 +51,7 @@ abstract class BaseCollocationQuery extends DBQuery
 	public long getWord1Id()
 	{
 		assert this.cursor != null;
-		return this.cursor.getLong(0);
+		return this.cursor.getLong(1);
 	}
 
 	/**
@@ -51,7 +62,7 @@ abstract class BaseCollocationQuery extends DBQuery
 	public long getWord2Id()
 	{
 		assert this.cursor != null;
-		return this.cursor.getLong(5);
+		return this.cursor.getLong(6);
 	}
 
 	/**
@@ -62,7 +73,7 @@ abstract class BaseCollocationQuery extends DBQuery
 	public long getSynset1Id()
 	{
 		assert this.cursor != null;
-		return this.cursor.getLong(2);
+		return this.cursor.getLong(3);
 	}
 
 	/**
@@ -73,7 +84,7 @@ abstract class BaseCollocationQuery extends DBQuery
 	public long getSynset2Id()
 	{
 		assert this.cursor != null;
-		return this.cursor.getLong(7);
+		return this.cursor.getLong(8);
 	}
 
 	/**
@@ -84,7 +95,7 @@ abstract class BaseCollocationQuery extends DBQuery
 	public String getWord1()
 	{
 		assert this.cursor != null;
-		return this.cursor.getString(1);
+		return this.cursor.getString(2);
 	}
 
 	/**
@@ -95,7 +106,7 @@ abstract class BaseCollocationQuery extends DBQuery
 	public String getWord2()
 	{
 		assert this.cursor != null;
-		return this.cursor.getString(6);
+		return this.cursor.getString(7);
 	}
 
 	/**
@@ -106,7 +117,7 @@ abstract class BaseCollocationQuery extends DBQuery
 	public Character getPos1()
 	{
 		assert this.cursor != null;
-		String posString = this.cursor.getString(3);
+		String posString = this.cursor.getString(4);
 		return posString != null ? posString.charAt(0) : null;
 	}
 
@@ -118,7 +129,7 @@ abstract class BaseCollocationQuery extends DBQuery
 	public Character getPos2()
 	{
 		assert this.cursor != null;
-		String posString = this.cursor.getString(8);
+		String posString = this.cursor.getString(9);
 		return posString != null ? posString.charAt(0) : null;
 	}
 
@@ -130,7 +141,7 @@ abstract class BaseCollocationQuery extends DBQuery
 	public String getDefinition1()
 	{
 		assert this.cursor != null;
-		return this.cursor.getString(4);
+		return this.cursor.getString(5);
 	}
 
 	/**
@@ -141,6 +152,6 @@ abstract class BaseCollocationQuery extends DBQuery
 	public String getDefinition2()
 	{
 		assert this.cursor != null;
-		return this.cursor.getString(9);
+		return this.cursor.getString(10);
 	}
 }
