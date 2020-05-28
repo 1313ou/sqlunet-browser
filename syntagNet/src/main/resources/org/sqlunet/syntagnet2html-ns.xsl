@@ -58,19 +58,21 @@
 			<!-- label -->
 			<SPAN class="sncollocationlabel">
 				<SPAN class="sncollocationname">
-					<xsl:value-of select="./word[@which='1']"/>
+					<xsl:value-of select="./sn:word[@which='1']"/>
 					<xsl:text> </xsl:text>
-					<xsl:value-of select="./word[@which='2']/text()"/>
+					<xsl:value-of select="./sn:word[@which='2']/text()"/>
+				</SPAN>
+			</SPAN>
+			<UL style="display: block;">
+				<LI class="block2">
+				<IMG class="dataimg" src="images/xnet/definition.png"/>
+				<SPAN class="sncollocationtext">
+					<xsl:value-of select="./sn:synset[@which='1']/text()"/>
 				</SPAN>
 				<BR/>
 				<IMG class="dataimg" src="images/xnet/definition.png"/>
 				<SPAN class="sncollocationtext">
-					<xsl:value-of select="./synset[@which='1']/text()"/>
-				</SPAN>
-				<BR/>
-				<IMG class="dataimg" src="images/xnet/definition.png"/>
-				<SPAN class="sncollocationtext">
-					<xsl:value-of select="./synset[@which='2']/text()"/>
+					<xsl:value-of select="./sn:synset[@which='2']/text()"/>
 				</SPAN>
 				<!--
 				<xsl:text><![CDATA[ collocationid=]]></xsl:text>
@@ -87,7 +89,8 @@
 				<xsl:text><![CDATA[ synset2id=]]></xsl:text>
 				<xsl:value-of select="./@synset2id"/>
 				-->
-			</SPAN>
+				</LI>
+			</UL>
 		</LI>
 	</xsl:template>
 
