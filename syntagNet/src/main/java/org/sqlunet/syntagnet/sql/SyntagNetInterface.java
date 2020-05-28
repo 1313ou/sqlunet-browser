@@ -78,6 +78,29 @@ interface SyntagNetInterface
 	@NonNull
 	String queryXML(final SQLiteDatabase connection, final long wordId, @Nullable final Long synsetId, @Nullable final Character pos);
 
+	/**
+	 * Business method that returns SyntagNet data as DOM document from word id
+	 *
+	 * @param wordId   is the word id to build query from
+	 * @param synsetId is the synset id to build query from (nullable)
+	 * @param word2Id   is the word 2 id to build query from
+	 * @param synset2Id is the synset 2 id to build query from (nullable)
+	 * @return SyntagNet data as DOM document
+	 */
+	Document queryDoc(final SQLiteDatabase connection, final long wordId, @Nullable final Long synsetId, final long word2Id, @Nullable final Long synset2Id);
+
+	/**
+	 * Business method that returns SyntagNet data as XML from word id
+	 *
+	 * @param wordId   target word id
+	 * @param synsetId is the synset id to build query from (nullable)
+	 * @param word2Id   is the word 2 id to build query from
+	 * @param synset2Id is the synset 2 id to build query from (nullable)
+	 * @return SyntagNet data as XML
+	 */
+	@NonNull
+	String queryXML(final SQLiteDatabase connection, final long wordId, @Nullable final Long synsetId, final long word2Id, @Nullable final Long synset2Id);
+
 	// I T E M S
 
 	/**

@@ -52,21 +52,22 @@ class Collocation
 			this.definition1 = definition1;
 			this.definition2 = definition2;
 		}
+
 		/**
-		 * Make sets of SyntagNet collocations from query built from word id
+		 * Make sets of SyntagNet collocations from query built from word
 		 *
 		 * @param connection connection
-		 * @param word       is the word to build query from
+		 * @param targetWord is the word to build query from
 		 * @return list of SyntagNet collocations
 		 */
 		@NonNull
-		static List<Collocation.WithDefinitionAndPos> makeFromWord(final SQLiteDatabase connection, final String word)
+		static List<Collocation.WithDefinitionAndPos> makeFromWord(final SQLiteDatabase connection, final String targetWord)
 		{
 			final List<Collocation.WithDefinitionAndPos> result = new ArrayList<>();
 			CollocationQueryFromWord query = null;
 			try
 			{
-				query = new CollocationQueryFromWord(connection, word);
+				query = new CollocationQueryFromWord(connection, targetWord);
 				query.execute();
 
 				while (query.next())
@@ -88,18 +89,18 @@ class Collocation
 		/**
 		 * Make sets of SyntagNet collocations from query built from word id
 		 *
-		 * @param connection connection
-		 * @param wordId     is the word id to build query from
+		 * @param connection   connection
+		 * @param targetWordId is the word id to build query from
 		 * @return list of SyntagNet collocations
 		 */
 		@NonNull
-		static List<Collocation.WithDefinitionAndPos> makeFromWordId(final SQLiteDatabase connection, final long wordId)
+		static List<Collocation.WithDefinitionAndPos> makeFromWordId(final SQLiteDatabase connection, final long targetWordId)
 		{
 			final List<Collocation.WithDefinitionAndPos> result = new ArrayList<>();
 			CollocationQueryFromWordId query = null;
 			try
 			{
-				query = new CollocationQueryFromWordId(connection, wordId);
+				query = new CollocationQueryFromWordId(connection, targetWordId);
 				query.execute();
 
 				while (query.next())
@@ -119,20 +120,90 @@ class Collocation
 		}
 
 		/**
-		 * Make sets of SyntagNet collocations from query built from word id
+		 * Make sets of SyntagNet collocations from query built from word ids
 		 *
 		 * @param connection connection
-		 * @param wordId     is the word id to build query from
+		 * @param targetWordId    is the word id to build query from
+		 * @param targetWord2Id   is the word 2 id to build query from
 		 * @return list of SyntagNet collocations
 		 */
 		@NonNull
-		static List<Collocation.WithDefinitionAndPos> makeFromWordIdAndSynsetId(final SQLiteDatabase connection, final long wordId, final long synsetId)
+		static public List<WithDefinitionAndPos> makeFromWordIds(final SQLiteDatabase connection, final long targetWordId, final long targetWord2Id)
+		{
+			final List<Collocation.WithDefinitionAndPos> result = new ArrayList<>();
+			CollocationQueryFromWordIds query = null;
+			try
+			{
+				query = new CollocationQueryFromWordIds(connection, targetWordId, targetWord2Id);
+				query.execute();
+
+				while (query.next())
+				{
+					Collocation.WithDefinitionAndPos collocation = makeCollocationWithDefinitionAndPos(query);
+					result.add(collocation);
+				}
+			}
+			finally
+			{
+				if (query != null)
+				{
+					query.release();
+				}
+			}
+			return result;
+		}
+
+		/**
+		 * Make sets of SyntagNet collocations from query built from word id ad synset id
+		 *
+		 * @param connection   connection
+		 * @param targetWordId is the word id to build query from
+		 * @return list of SyntagNet collocations
+		 */
+		@NonNull
+		static List<Collocation.WithDefinitionAndPos> makeFromWordIdAndSynsetId(final SQLiteDatabase connection, final long targetWordId, final long targetSynsetId)
 		{
 			final List<Collocation.WithDefinitionAndPos> result = new ArrayList<>();
 			CollocationQueryFromWordIdAndSynsetId query = null;
 			try
 			{
-				query = new CollocationQueryFromWordIdAndSynsetId(connection, wordId, synsetId);
+				query = new CollocationQueryFromWordIdAndSynsetId(connection, targetWordId, targetSynsetId);
+				query.execute();
+
+				while (query.next())
+				{
+					Collocation.WithDefinitionAndPos collocation = makeCollocationWithDefinitionAndPos(query);
+					result.add(collocation);
+				}
+			}
+			finally
+			{
+				if (query != null)
+				{
+					query.release();
+				}
+			}
+			return result;
+		}
+
+		/**
+		 * Make sets of SyntagNet collocations from query built from word ids ad synset ids
+		 *
+		 * @param connection      connection
+		 * @param targetWordId    is the word id to build query from
+		 * @param targetWord2Id   is the word 2 id to build query from
+		 * @param targetSynsetId  is the synset id to build query from
+		 * @param targetSynset2Id is the synset 2 id to build query from
+		 * @return list of SyntagNet collocations
+		 */
+		@NonNull
+		static public List<WithDefinitionAndPos> makeFromWordIdAndSynsetIds(final SQLiteDatabase connection, final long targetWordId, final long targetSynsetId, final long targetWord2Id, final long targetSynset2Id)
+		{
+			final List<Collocation.WithDefinitionAndPos> result = new ArrayList<>();
+			CollocationQueryFromWordIdsAndSynsetIds query = null;
+			try
+			{
+				query = new CollocationQueryFromWordIdsAndSynsetIds(connection, targetWordId, targetSynsetId, targetWord2Id, targetSynset2Id);
 				query.execute();
 
 				while (query.next())
@@ -249,7 +320,7 @@ class Collocation
 	private Collocation(final long collocationId, final long word1Id, final long word2Id, final long synset1Id, final long synset2Id, final String word1, final String word2)
 	{
 		super();
-		this.collocationId=collocationId;
+		this.collocationId = collocationId;
 		this.word1Id = word1Id;
 		this.word2Id = word2Id;
 		this.synset1Id = synset1Id;
