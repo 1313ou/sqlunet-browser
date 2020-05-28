@@ -4,6 +4,16 @@
 
 <xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace='http://org.sqlunet/sn' xmlns='http://org.sqlunet/sn' xsi:schemaLocation="http://org.sqlunet/sn ">
 
+	<xs:simpleType name="posType">
+		<xs:restriction base='xs:string'>
+			<xs:enumeration value='n'/>
+			<xs:enumeration value='v'/>
+			<xs:enumeration value='a'/>
+			<xs:enumeration value='r'/>
+			<xs:enumeration value='s'/>
+		</xs:restriction>
+	</xs:simpleType>
+
 	<xs:simpleType name="pairIdxType">
 		<xs:restriction base="xs:int">
 			<xs:minInclusive value="1" />
@@ -26,12 +36,10 @@
 	<xs:element name='collocation'>
 		<xs:complexType mixed='false'>
 			<xs:sequence>
-				<xs:element maxOccurs='1' minOccurs='1' ref='word' />
-				<xs:element maxOccurs='1' minOccurs='1' ref='definition' />
-				<xs:element maxOccurs='1' minOccurs='1' ref='word' />
-				<xs:element maxOccurs='1' minOccurs='1' ref='definition' />
+				<xs:element maxOccurs='2' minOccurs='2' ref='word' />
+				<xs:element maxOccurs='2' minOccurs='2' ref='synset' />
 			</xs:sequence>
-			<xs:attribute name='ith' type='xs:int'/>
+			<xs:attribute name='ith' type='xs:int' />
 			<xs:attribute name='collocationid' type='xs:long' use='required' />
 			<xs:attribute name='word1id' type='xs:long' use='required' />
 			<xs:attribute name='synset1id' type='xs:long' use='required' />
@@ -41,16 +49,25 @@
 	</xs:element>
 
 	<xs:element name='word'>
-		<xs:complexType>
-			<xs:attribute name='which' type='pairIdxType' use='required' />
-			<xs:attribute name='word1id' type='xs:long' use='required' />
+		<xs:complexType mixed='false'>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name='which' type='pairIdxType' use='required' />
+					<xs:attribute name='wordid' type='xs:long' use='required' />
+				</xs:extension>
+			</xs:simpleContent>
 		</xs:complexType>
 	</xs:element>
 
-	<xs:element name='definition'>
-		<xs:complexType>
-			<xs:attribute name='which' type='pairIdxType' use='required' />
-			<xs:attribute name='synset1id' type='xs:long' use='required' />
+	<xs:element name='synset'>
+		<xs:complexType mixed='false'>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name='which' type='pairIdxType' use='required' />
+					<xs:attribute name='synsetid' type='xs:long' use='required' />
+					<xs:attribute name='pos' type='posType' />
+				</xs:extension>
+			</xs:simpleContent>
 		</xs:complexType>
 	</xs:element>
 
