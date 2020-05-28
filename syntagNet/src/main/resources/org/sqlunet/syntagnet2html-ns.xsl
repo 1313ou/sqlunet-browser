@@ -58,7 +58,7 @@
 			<!-- label -->
 			<SPAN class="sncollocationlabel">
 				<SPAN class="sncollocationname">
-					<xsl:value-of select="./sn:word[@which='1']"/>
+					<xsl:value-of select="./sn:word[@which='1']/text()" />
 					<xsl:text> </xsl:text>
 					<xsl:value-of select="./sn:word[@which='2']/text()"/>
 				</SPAN>

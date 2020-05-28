@@ -52,20 +52,19 @@
 			</xsl:variable>
 			<A class="pointer">
 				<xsl:attribute name="href">
-					<xsl:value-of select="concat('query?sncollocationid=',$ref)"/>
+					<xsl:value-of select="concat('query?collocationid=',$ref)"/>
 				</xsl:attribute>
 				<IMG class="dataimg" src="images/pointer.png"/>
 			</A>
 			<!-- data image -->
-			<IMG class="dataimg" src="images/xnet/roleclass.png"/>
+			<IMG class="dataimg" src="images/syntaxnet/collocation.png"/>
 			<!-- label -->
 			<SPAN class="sncollocationlabel">
 				<SPAN class="sncollocationname">
-					<xsl:value-of select="./@name"/>
+					<xsl:value-of select="./word[@which='1']/text()" />
+					<xsl:text> </xsl:text>
+					<xsl:value-of select="./word[@which='2']/text()" />
 				</SPAN>
-			</SPAN>
-			<SPAN class="definition">
-				<xsl:value-of select="./text()"/>
 			</SPAN>
 		</LI>
 	</xsl:template>
