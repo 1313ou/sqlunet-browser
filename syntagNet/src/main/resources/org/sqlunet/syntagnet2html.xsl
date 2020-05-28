@@ -53,20 +53,30 @@
 				<IMG class="treepix" src="images/open.png"/>
 			</SPAN>
 			<!-- data image -->
-			<IMG class="dataimg" src="images/xnet/collocation.png"/>
+			<IMG class="dataimg" src="images/syntagnet/collocation.png"/>
 			<!-- label -->
 			<SPAN class="sncollocationlabel">
 				<SPAN class="sncollocationname">
-					<xsl:value-of select="./@name"/>
+					<xsl:value-of select="./word[@which='1']"/>
+					<xsl:text> </xsl:text>
+					<xsl:value-of select="./word[@which='2']/text()"/>
 				</SPAN>
+				<BR/>
 				<IMG class="dataimg" src="images/xnet/definition.png"/>
 				<SPAN class="sncollocationtext">
-					<xsl:value-of select="./text()"/>
+					<xsl:value-of select="./synset[@which='1']/text()"/>
+				</SPAN>
+				<BR/>
+				<IMG class="dataimg" src="images/xnet/definition.png"/>
+				<SPAN class="sncollocationtext">
+					<xsl:value-of select="./synset[@which='2']/text()"/>
 				</SPAN>
 				<!--
 				<xsl:text><![CDATA[ collocationid=]]></xsl:text>
 				<xsl:value-of select="./@collocationid"/>
 				-->
+				<!--
+				<BR/>
 				<xsl:text><![CDATA[ word1id=]]></xsl:text>
 				<xsl:value-of select="./@word1id"/>
 				<xsl:text><![CDATA[ word2id=]]></xsl:text>
@@ -75,6 +85,7 @@
 				<xsl:value-of select="./@synset1id"/>
 				<xsl:text><![CDATA[ synset2id=]]></xsl:text>
 				<xsl:value-of select="./@synset2id"/>
+				-->
 			</SPAN>
 		</LI>
 	</xsl:template>
