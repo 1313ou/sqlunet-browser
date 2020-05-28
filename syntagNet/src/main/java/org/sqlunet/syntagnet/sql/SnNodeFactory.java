@@ -83,7 +83,7 @@ class SnNodeFactory extends NodeFactory
 		NodeFactory.makeAttribute(word1Element, "which", "1");
 		final Element word2Element = NodeFactory.makeNode(doc, collocationElement, "word", collocation.word2);
 		NodeFactory.makeAttribute(word2Element, "wordid", Long.toString(collocation.word2Id));
-		NodeFactory.makeAttribute(word1Element, "which", "2");
+		NodeFactory.makeAttribute(word2Element, "which", "2");
 
 		final Element synset1Element = NodeFactory.makeNode(doc, collocationElement, "synset", collocation.definition1);
 		NodeFactory.makeAttribute(synset1Element, "synsetid", Long.toString(collocation.synset1Id));
@@ -120,7 +120,7 @@ class SnNodeFactory extends NodeFactory
 		NodeFactory.makeAttribute(word1Element, "which", "1");
 		final Element word2Element = NodeFactory.makeNode(doc, collocationElement, "word", collocation.word2);
 		NodeFactory.makeAttribute(word2Element, "wordid", Long.toString(collocation.word2Id));
-		NodeFactory.makeAttribute(word1Element, "which", "2");
+		NodeFactory.makeAttribute(word2Element, "which", "2");
 		return collocationElement;
 	}
 }
