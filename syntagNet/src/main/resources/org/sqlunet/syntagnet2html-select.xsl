@@ -57,7 +57,7 @@
 				<IMG class="dataimg" src="images/pointer.png"/>
 			</A>
 			<!-- data image -->
-			<IMG class="dataimg" src="images/syntaxnet/collocation.png"/>
+			<IMG class="dataimg" src="images/syntagnet/collocation.png"/>
 			<!-- label -->
 			<SPAN class="sncollocationlabel">
 				<SPAN class="sncollocationname">

@@ -42,6 +42,7 @@ public final class ProviderArgs
 	static public final int ARG_QUERYTYPE_FNPREDICATE = 37;
 	static public final int ARG_QUERYTYPE_PM = 40;
 	static public final int ARG_QUERYTYPE_PMROLE = 41;
+	static public final int ARG_QUERYTYPE_COLLOCATION = 50;
 
 	// tables
 	static public final String ARG_QUERYURI = "QUERYURI";

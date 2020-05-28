@@ -390,6 +390,10 @@ public class WebFragment extends Fragment
 								type = ProviderArgs.ARG_QUERYTYPE_SYNSET;
 								pointer = new SynsetPointer(id);
 								break;
+							case "collocationid":
+								type = ProviderArgs.ARG_QUERYTYPE_COLLOCATION;
+								pointer = new SnCollocationPointer(id);
+								break;
 							default:
 								Log.e(WebFragment.TAG, "Ill-formed Uri: " + uri);
 								return false;
