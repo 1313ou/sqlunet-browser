@@ -32,6 +32,7 @@
 				<xs:element minOccurs='0' ref='frame'/>
 				<xs:element maxOccurs='unbounded' minOccurs='0' ref='sentences'/>
 			</xs:sequence>
+			<xs:attribute name='ith' type='xs:int'/>
 			<xs:attribute name='name' type='xs:string' use='required'/>
 			<xs:attribute name='luid' type='xs:long' use='required'/>
 		</xs:complexType>
@@ -45,6 +46,7 @@
 				<xs:element maxOccurs='unbounded' minOccurs='0' ref='lexunit'/>
 				<xs:element maxOccurs='unbounded' minOccurs='0' ref='fe'/>
 			</xs:sequence>
+			<xs:attribute name='ith' type='xs:int'/>
 			<xs:attribute name='name' type='xs:string' use='required'/>
 			<xs:attribute name='frameid' type='xs:string'/>
 		</xs:complexType>

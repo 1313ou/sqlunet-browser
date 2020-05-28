@@ -24,7 +24,7 @@ import androidx.annotation.Nullable;
  */
 public class SyntagNetImplementation implements SyntagNetInterface
 {
-	static public final String SN_NS = "http://org.sqlunet/sn";
+	static final String SN_NS = "http://org.sqlunet/sn";
 
 	// S E L E C T O R
 
@@ -38,7 +38,7 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	 */
 	static private void walkSelector(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final String targetWord)
 	{
-		final List<Collocation> collocations = Collocation.makeFromWord(connection, targetWord);
+		final List<Collocation> collocations = Collocation.makeSelectorFromWord(connection, targetWord);
 		if (collocations == null)
 		{
 			return;
@@ -61,7 +61,7 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	 */
 	static private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final String targetWord)
 	{
-		final List<Collocation> collocations = Collocation.makeFromWord(connection, targetWord);
+		final List<Collocation.WithDefinitionAndPos> collocations = Collocation.WithDefinitionAndPos.makeFromWord(connection, targetWord);
 		if (collocations == null)
 		{
 			return;
@@ -72,7 +72,7 @@ public class SyntagNetImplementation implements SyntagNetInterface
 
 		// collocations
 		int i = 1;
-		for (final Collocation collocation : collocations)
+		for (final Collocation.WithDefinitionAndPos collocation : collocations)
 		{
 			SnNodeFactory.makeCollocationNode(doc, parent, collocation, i++);
 		}
@@ -91,7 +91,7 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	static private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long targetWordId)
 	{
 		// collocations
-		final List<Collocation.WithDefinitionAndPos> collocations = Collocation.makeFromWordId(connection, targetWordId);
+		final List<Collocation.WithDefinitionAndPos> collocations = Collocation.WithDefinitionAndPos.makeFromWordId(connection, targetWordId);
 		walk(connection, doc, parent, collocations);
 	}
 
@@ -107,7 +107,7 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	private static void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long targetWordId, final long targetSynsetId)
 	{
 		// collocations
-		final List<Collocation.WithDefinitionAndPos> collocations = Collocation.makeFromWordIdAndSynsetId(connection, targetWordId, targetSynsetId);
+		final List<Collocation.WithDefinitionAndPos> collocations = Collocation.WithDefinitionAndPos.makeFromWordIdAndSynsetId(connection, targetWordId, targetSynsetId);
 		walk(connection, doc, parent, collocations);
 	}
 
@@ -122,7 +122,7 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	static private void walkCollocations(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long collocationId)
 	{
 		// collocations
-		final List<Collocation.WithDefinitionAndPos> collocations = Collocation.make(connection, collocationId);
+		final List<Collocation.WithDefinitionAndPos> collocations = Collocation.WithDefinitionAndPos.make(connection, collocationId);
 		walk(connection, doc, parent, collocations);
 	}
 
@@ -137,10 +137,10 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	static private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, @NonNull final Iterable<Collocation.WithDefinitionAndPos> collocations)
 	{
 		int i = 1;
-		for (final Collocation collocation : collocations)
+		for (final Collocation.WithDefinitionAndPos collocation : collocations)
 		{
 			// collocation
-			final Node collocationNode = SnNodeFactory.makeCollocationNode(doc, parent, collocation, i++);
+			SnNodeFactory.makeCollocationNode(doc, parent, collocation, i++);
 		}
 	}
 
@@ -157,7 +157,7 @@ public class SyntagNetImplementation implements SyntagNetInterface
 		for (final Collocation collocation : collocations)
 		{
 			// collocation
-			SnNodeFactory.makeCollocationNode(doc, parent, collocation, i++);
+			SnNodeFactory.makeSelectorCollocationNode(doc, parent, collocation, i++);
 		}
 	}
 

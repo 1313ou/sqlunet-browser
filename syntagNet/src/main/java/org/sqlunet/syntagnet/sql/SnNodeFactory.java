@@ -49,7 +49,7 @@ class SnNodeFactory extends NodeFactory
 	/**
 	 * Make SyntagNet root node
 	 *
-	 * @param doc       is the DOM Document being built
+	 * @param doc           is the DOM Document being built
 	 * @param collocationId target collocation id
 	 * @return newly created node
 	 */
@@ -68,16 +68,59 @@ class SnNodeFactory extends NodeFactory
 	 * @param collocation is the collocation information
 	 * @param i           the ith collocation
 	 */
-	static public Node makeCollocationNode(@NonNull final Document doc, final Node parent, @NonNull final Collocation collocation, final int i)
+	static public Node makeCollocationNode(@NonNull final Document doc, final Node parent, @NonNull final Collocation.WithDefinitionAndPos collocation, final int i)
 	{
-		final Element element = NodeFactory.makeNode(doc, parent, "collocation", null);
-		NodeFactory.makeAttribute(element, "id", Integer.toString(i));
-		NodeFactory.makeAttribute(element, "word1", collocation.word1);
-		NodeFactory.makeAttribute(element, "word2", collocation.word2);
-		NodeFactory.makeAttribute(element, "word1id", Long.toString(collocation.word1Id));
-		NodeFactory.makeAttribute(element, "word2id", Long.toString(collocation.word2Id));
-		NodeFactory.makeAttribute(element, "synset1id", Long.toString(collocation.synset1Id));
-		NodeFactory.makeAttribute(element, "synset2id", Long.toString(collocation.synset2Id));
-		return element;
+		final Element collocationElement = NodeFactory.makeNode(doc, parent, "collocation", null);
+		NodeFactory.makeAttribute(collocationElement, "ith", Integer.toString(i));
+		NodeFactory.makeAttribute(collocationElement, "collocationid", Long.toString(collocation.collocationId));
+		NodeFactory.makeAttribute(collocationElement, "word1id", Long.toString(collocation.word1Id));
+		NodeFactory.makeAttribute(collocationElement, "word2id", Long.toString(collocation.word2Id));
+		NodeFactory.makeAttribute(collocationElement, "synset1id", Long.toString(collocation.synset1Id));
+		NodeFactory.makeAttribute(collocationElement, "synset2id", Long.toString(collocation.synset2Id));
+
+		final Element word1Element = NodeFactory.makeNode(doc, collocationElement, "word", collocation.word1);
+		NodeFactory.makeAttribute(word1Element, "wordid", Long.toString(collocation.word1Id));
+		NodeFactory.makeAttribute(word1Element, "which", "1");
+		final Element word2Element = NodeFactory.makeNode(doc, collocationElement, "word", collocation.word2);
+		NodeFactory.makeAttribute(word2Element, "wordid", Long.toString(collocation.word2Id));
+		NodeFactory.makeAttribute(word1Element, "which", "2");
+
+		final Element synset1Element = NodeFactory.makeNode(doc, collocationElement, "synset", collocation.definition1);
+		NodeFactory.makeAttribute(synset1Element, "synsetid", Long.toString(collocation.synset1Id));
+		NodeFactory.makeAttribute(synset1Element, "pos", Character.toString(collocation.pos1));
+		NodeFactory.makeAttribute(synset1Element, "which", "1");
+		final Element synset2Element = NodeFactory.makeNode(doc, collocationElement, "synset", collocation.definition2);
+		NodeFactory.makeAttribute(synset2Element, "synsetid", Long.toString(collocation.synset2Id));
+		NodeFactory.makeAttribute(synset1Element, "pos", Character.toString(collocation.pos2));
+		NodeFactory.makeAttribute(synset2Element, "which", "2");
+
+		return collocationElement;
+	}
+
+	/**
+	 * Make the collocation node
+	 *
+	 * @param doc         is the DOM Document being built
+	 * @param parent      is the parent node to attach this node to
+	 * @param collocation is the collocation information
+	 * @param i           the ith collocation
+	 */
+	static public Node makeSelectorCollocationNode(@NonNull final Document doc, final Node parent, @NonNull final Collocation collocation, final int i)
+	{
+		final Element collocationElement = NodeFactory.makeNode(doc, parent, "collocation", null);
+		NodeFactory.makeAttribute(collocationElement, "ith", Integer.toString(i));
+		NodeFactory.makeAttribute(collocationElement, "collocationid", Long.toString(collocation.collocationId));
+		NodeFactory.makeAttribute(collocationElement, "word1id", Long.toString(collocation.word1Id));
+		NodeFactory.makeAttribute(collocationElement, "word2id", Long.toString(collocation.word2Id));
+		NodeFactory.makeAttribute(collocationElement, "synset1id", Long.toString(collocation.synset1Id));
+		NodeFactory.makeAttribute(collocationElement, "synset2id", Long.toString(collocation.synset2Id));
+
+		final Element word1Element = NodeFactory.makeNode(doc, collocationElement, "word", collocation.word1);
+		NodeFactory.makeAttribute(word1Element, "wordid", Long.toString(collocation.word1Id));
+		NodeFactory.makeAttribute(word1Element, "which", "1");
+		final Element word2Element = NodeFactory.makeNode(doc, collocationElement, "word", collocation.word2);
+		NodeFactory.makeAttribute(word2Element, "wordid", Long.toString(collocation.word2Id));
+		NodeFactory.makeAttribute(word1Element, "which", "2");
+		return collocationElement;
 	}
 }

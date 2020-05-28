@@ -172,6 +172,7 @@
 			<xs:sequence>
 				<xs:element maxOccurs='unbounded' minOccurs='0' ref='sense'/>
 			</xs:sequence>
+			<xs:attribute name='ith' type='xs:int'/>
 			<xs:attribute name='wordid' type='xs:long'/>
 		</xs:complexType>
 	</xs:element>
@@ -182,6 +183,7 @@
 				<xs:element minOccurs='0' ref='word'/>
 				<xs:element ref='synset'/>
 			</xs:sequence>
+			<xs:attribute name='ith' type='xs:int'/>
 			<xs:attribute name='number' type='xs:integer'/>
 			<xs:attribute name='wordid' type='xs:long'/>
 			<xs:attribute name='synsetid' type='xs:long'/>
@@ -199,6 +201,7 @@
 				<xs:element minOccurs='0' ref='sample'/>
 				<xs:element minOccurs='0' ref='links'/>
 			</xs:sequence>
+			<xs:attribute name='ith' type='xs:int'/>
 			<xs:attribute name='size' type='xs:integer'/>
 			<xs:attribute name='synsetid' type='xs:long'/>
 		</xs:complexType>

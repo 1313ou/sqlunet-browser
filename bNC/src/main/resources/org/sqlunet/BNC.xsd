@@ -50,6 +50,7 @@
 				<xs:element minOccurs='0' ref='writtenrange'/>
 				<xs:element minOccurs='0' ref='writtendisp'/>
 			</xs:sequence>
+			<xs:attribute name='ith' type='xs:int'/>
 			<xs:attribute name='pos' type='xs:string'/>
 		</xs:complexType>
 	</xs:element>
