@@ -198,6 +198,10 @@ public class WebFragment extends Fragment
 					{
 						wnDomDoc = new WordNetImplementation().querySelectorDoc(db, data);
 					}
+					if (Settings.Source.SYNTAGNET.test(sources))
+					{
+						snDomDoc = new SyntagNetImplementation().querySelectorDoc(db, data);
+					}
 				}
 				else
 				{

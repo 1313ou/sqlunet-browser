@@ -8,9 +8,9 @@
 	<color name="primaryColor">#76608B</color>
 	<color name="primaryLightColor">#AA8EBB</color>
 	<color name="primaryDarkColor">#45345E</color>
-	<color name="secondaryColor">#F99500</color>
-	<color name="secondaryLightColor">#FFBD5B</color>
-	<color name="secondaryDarkColor">#C56600</color>
+	<color name="secondaryColor">#E46D42</color>
+	<color name="secondaryLightColor">#E19174</color>
+	<color name="secondaryDarkColor">#CA481A</color>
 	<color name="tertiaryForeColor">@android:color/white</color>color
 	<!--
 	<color name="secondaryColor">#ff9800</color>
