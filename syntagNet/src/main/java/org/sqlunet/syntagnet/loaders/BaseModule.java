@@ -150,8 +150,11 @@ abstract class BaseModule extends Module
 				SyntagNetContract.S2 + '.' + SnCollocations_X.POS + " AS " + SyntagNetContract.POS2, //
 		};
 		final String selection = selection(word1Id, word2Id, synset1Id, synset2Id);
-		final String[] selectionArgs = selectionArgs(word1Id, word2Id, synset1Id, synset2Id);
-		this.collocationFromCollocationIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> collocationsCursorToTreeModel(cursor, parent));
+		final String[] selectionArgs = selectionArgs(word1Id, word2Id, synset1Id, synset2Id, word2Id);
+		String sortOrder = SyntagNetContract.W1 + '.' + SnCollocations_X.LEMMA + ',' + SyntagNetContract.W2 + '.' + SnCollocations_X.LEMMA;
+		if(word2Id != null)
+			sortOrder = SnCollocations_X.WORD2ID + " = ?" + ',' + sortOrder;
+		this.collocationFromCollocationIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> collocationsCursorToTreeModel(cursor, parent));
 	}
 
 	/**
@@ -171,8 +174,9 @@ abstract class BaseModule extends Module
 				SyntagNetContract.WORD1, //
 				SyntagNetContract.WORD2,};
 		final String selection = SnCollocations_X.WORD1ID + " = ? OR " + SnCollocations_X.WORD2ID + " = ?";
-		final String[] selectionArgs = {Long.toString(wordId)};
-		this.collocationsFromWordIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> collocationsCursorToTreeModel(cursor, parent));
+		final String[] selectionArgs = {Long.toString(wordId), Long.toString(wordId), Long.toString(wordId)};
+		final String sortOrder = SnCollocations_X.WORD2ID + " = ?" + ',' + SyntagNetContract.W1 + '.' + SnCollocations_X.LEMMA + ',' + SyntagNetContract.W2 + '.' + SnCollocations_X.LEMMA;
+		this.collocationsFromWordIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> collocationsCursorToTreeModel(cursor, parent));
 	}
 
 	/**
@@ -192,7 +196,8 @@ abstract class BaseModule extends Module
 				SyntagNetContract.WORD2,};
 		final String selection = SnCollocations_X.WORD1ID + " = ? OR " + SnCollocations_X.WORD2ID + " = ?";
 		final String[] selectionArgs = {word};
-		this.collocationsFromWordModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> collocationsCursorToTreeModel(cursor, parent));
+		final String sortOrder = SnCollocations_X.WORD2ID + " = ?" + ',' + SyntagNetContract.W1 + '.' + SnCollocations_X.LEMMA + ',' + SyntagNetContract.W2 + '.' + SnCollocations_X.LEMMA;
+		this.collocationsFromWordModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> collocationsCursorToTreeModel(cursor, parent));
 	}
 
 	private TreeOp[] collocationCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -290,9 +295,10 @@ abstract class BaseModule extends Module
 	 * @param word2Id   word 2 id
 	 * @param synset1Id synset 1 id
 	 * @param synset2Id synset 2 id
+	 * @param orderId id param used in order clause
 	 * @return selection arguments
 	 */
-	private String[] selectionArgs(final Long word1Id, final Long word2Id, final Long synset1Id, final Long synset2Id)
+	private String[] selectionArgs(final Long word1Id, final Long word2Id, final Long synset1Id, final Long synset2Id, final Long orderId)
 	{
 		List<String> args = new ArrayList<>();
 		if (word1Id != null)
@@ -310,6 +316,10 @@ abstract class BaseModule extends Module
 		if (synset2Id != null)
 		{
 			args.add(Long.toString(synset2Id));
+		}
+		if (orderId != null)
+		{
+			args.add(Long.toString(orderId));
 		}
 		return args.toArray(new String[0]);
 	}
@@ -344,26 +354,26 @@ abstract class BaseModule extends Module
 		final SpannableStringBuilder sb1w = new SpannableStringBuilder();
 		Spanner.append(sb1w, word1, 0, SyntagNetFactories.beforeFactory);
 		final Link link1w = new BaseWordLink(word1Id, context);
-		final TreeNode collocation1wNode = TreeFactory.makeLinkLeafNode(sb1w, R.drawable.before,false, link1w).addTo(collocationNode);
+		final TreeNode collocation1wNode = TreeFactory.makeLinkLeafNode(sb1w, R.drawable.before, false, link1w).addTo(collocationNode);
 		changedList.add(NEWCHILD, collocation1wNode);
 
 		final SpannableStringBuilder sb1s = new SpannableStringBuilder();
 		Spanner.append(sb1s, definition1, 0, SyntagNetFactories.beforeDefinitionFactory);
 		final Link link1s = new BaseSynsetLink(synset1Id, Integer.MAX_VALUE, context);
-		final TreeNode collocation1sNode = TreeFactory.makeLinkLeafNode(sb1s, R.drawable.definition1,false, link1s).addTo(collocationNode);
+		final TreeNode collocation1sNode = TreeFactory.makeLinkLeafNode(sb1s, R.drawable.definition1, false, link1s).addTo(collocationNode);
 		changedList.add(NEWCHILD, collocation1sNode);
 
 		// collocation 2
 		final SpannableStringBuilder sb2w = new SpannableStringBuilder();
 		Spanner.append(sb2w, word2, 0, SyntagNetFactories.afterFactory);
 		final Link link2w = new BaseWordLink(word2Id, context);
-		final TreeNode collocation2wNode = TreeFactory.makeLinkLeafNode(sb2w, R.drawable.after,false, link2w).addTo(collocationNode);
+		final TreeNode collocation2wNode = TreeFactory.makeLinkLeafNode(sb2w, R.drawable.after, false, link2w).addTo(collocationNode);
 		changedList.add(NEWCHILD, collocation2wNode);
 
 		final SpannableStringBuilder sb2s = new SpannableStringBuilder();
 		Spanner.append(sb2s, definition2, 0, SyntagNetFactories.afterDefinitionFactory);
 		final Link link2s = new BaseSynsetLink(synset2Id, Integer.MAX_VALUE, context);
-		final TreeNode collocation2sNode = TreeFactory.makeLinkLeafNode(sb2s, R.drawable.definition2,false, link2s).addTo(collocationNode);
+		final TreeNode collocation2sNode = TreeFactory.makeLinkLeafNode(sb2s, R.drawable.definition2, false, link2s).addTo(collocationNode);
 		changedList.add(NEWCHILD, collocation2sNode);
 
 		// ids
