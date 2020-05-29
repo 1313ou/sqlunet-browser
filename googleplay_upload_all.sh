@@ -12,4 +12,5 @@ RECENT_CHANGES="Fixes"
 ./googleplay_upload_semantikos_ewn.sh	"${RELEASE_NAME}" "${RECENT_CHANGES}"
 ./googleplay_upload_semantikos_fn.sh	"${RELEASE_NAME}" "${RECENT_CHANGES}"
 ./googleplay_upload_semantikos_vn.sh	"${RELEASE_NAME}" "${RECENT_CHANGES}"
+./googleplay_upload_semantikos_sn.sh	"${RELEASE_NAME}" "${RECENT_CHANGES}"
 

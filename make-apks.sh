@@ -19,7 +19,7 @@ fi
 exit
 
 #specific targets
-apps="browser browserfn browservn browserwn browserewn"
+apps="browser browserfn browservn browserwn browserewn browsersn"
 for a in $apps; do
 	echo $a
 	./gradlew :${a}:assembleRelease
