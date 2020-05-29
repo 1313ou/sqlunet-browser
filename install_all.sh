@@ -12,7 +12,7 @@ fi
 
 APKDIR=dist/releases
 
-for e in '' 'fn' 'wn' 'ewn' 'vn'; do
+for e in '' 'fn' 'wn' 'ewn' 'vn' 'sn'; do
 
 	d=$e
 	if [ ! -z "$e" ]; then
