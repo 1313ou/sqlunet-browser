@@ -260,7 +260,8 @@
 		<activity
 			android:name=".config.SetupActivity"
 			android:label="@string/title_activity_setup"
-			android:launchMode="singleTop">
+			android:launchMode="singleTop"
+			android:parentActivityName=".MainActivity">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value=".MainActivity" />
@@ -269,7 +270,8 @@
 		<activity
 			android:name="org.sqlunet.download.UpdateActivity"
 			android:label="@string/title_activity_update"
-			android:launchMode="singleTop">
+			android:launchMode="singleTop"
+			android:parentActivityName=".MainActivity">
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value=".MainActivity" />
@@ -400,28 +402,28 @@
 			android:authorities="@string/xsqlunet_authority"
 			android:enabled="true"
 			android:exported="false"
-			tools:ignore="ExportedContentProvider"/>
+			tools:ignore="ExportedContentProvider" />
 
 		<provider
 			android:name="org.sqlunet.wordnet.provider.WordNetProvider"
 			android:authorities="@string/wordnet_authority"
 			android:enabled="true"
 			android:exported="false"
-			tools:ignore="ExportedContentProvider"/>
+			tools:ignore="ExportedContentProvider" />
 
 		<provider
 			android:name="org.sqlunet.syntagnet.provider.SyntagNetProvider"
 			android:authorities="@string/syntagnet_authority"
 			android:enabled="true"
 			android:exported="false"
-			tools:ignore="ExportedContentProvider"/>
+			tools:ignore="ExportedContentProvider" />
 
 		<provider
 			android:name="org.sqlunet.bnc.provider.BNCProvider"
 			android:authorities="@string/bnc_authority"
 			android:enabled="true"
 			android:exported="false"
-			tools:ignore="ExportedContentProvider"/>
+			tools:ignore="ExportedContentProvider" />
 
 		<service
 			android:name="org.sqlunet.download.SimpleDownloaderService"
@@ -429,7 +431,7 @@
 			android:enabled="true"
 			android:exported="false"
 			android:icon="@mipmap/ic_launcher"
-			android:label="@string/service_downloader"/>
+			android:label="@string/service_downloader" />
 
 	</application>
 
