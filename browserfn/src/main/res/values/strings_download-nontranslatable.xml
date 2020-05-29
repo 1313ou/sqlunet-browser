@@ -4,11 +4,15 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+	<!-- site files -->
 	<string name="pref_default_download_dbfile" translatable="false">sqlunet-fn.db</string>
 	<!--<string name="pref_default_download_dbfile_zipped" translatable="false">sqlunet-fn.db.zip</string>-->
 	<string name="pref_default_download_sqlfile" translatable="false">sqlunet-fn.sql.zip</string>
 	<string name="pref_default_entry_import" translatable="false">sqlunet-fn.sql</string>
 	<string name="pref_default_entry_index" translatable="false">sqlunet-fn-index.sql</string>
+
+	<!-- default site -->
+	<!-- not overriden -->
 
 	<!-- sites -->
 	<string-array name="pref_download_site_urls" translatable="false" tools:ignore="InconsistentArrays">
