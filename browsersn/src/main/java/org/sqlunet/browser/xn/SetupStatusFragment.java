@@ -6,6 +6,7 @@ package org.sqlunet.browser.xn;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,8 @@ import android.widget.ImageView;
 import org.sqlunet.browser.ColorUtils;
 import org.sqlunet.browser.Info;
 import org.sqlunet.browser.R;
+import org.sqlunet.browser.config.SetupDatabaseActivity;
+import org.sqlunet.browser.config.SetupDatabaseFragment;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
 
@@ -38,6 +41,8 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 
 	private ImageView imageTextSearchWn;
 
+	private ImageButton buttonTextSearchWn;
+
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */
@@ -55,15 +60,21 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 		// images
 		this.imageTextSearchWn = view.findViewById(R.id.status_searchtext_wn);
 
-		// buttons
-		final ImageButton infoDatabaseButton = view.findViewById(R.id.info_database);
+		// button
+		this.buttonTextSearchWn = view.findViewById(R.id.searchtextWnButton);
 
 		// click listeners
 		this.buttonDb.setOnClickListener(v -> download());
 		this.buttonIndexes.setOnClickListener(v -> index());
-		this.infoDatabaseButton.setOnClickListener(v -> info());
+		this.buttonTextSearchWn.setOnClickListener(v -> {
 
-		infoDatabaseButton.setOnClickListener(v -> {
+			int index = getResources().getInteger(R.integer.sql_statement_do_ts_wn_position);
+			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
+			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
+			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
+		});
+
+		this.infoDatabaseButton.setOnClickListener(v -> {
 
 			final Activity activity = requireActivity();
 			final String database = StorageSettings.getDatabasePath(activity);
@@ -82,7 +93,7 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 						getString(R.string.title_status), getString(existsTables ? R.string.status_data_exists : R.string.status_data_not_exists), //
 						getString(R.string.title_free), free, //
 						getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
-						getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.wordnet), getString(R.string.hr_size_searchtext) + " (" + getString(R.string.hr_size_searchtext_wn) + '+' + getString(R.string.hr_size_searchtext) + ')', //
+						getString(R.string.size_expected) + ' ' +  getString(R.string.text_search) + ' ' + getString(R.string.wordnet), getString(R.string.hr_size_searchtext), //
 						getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
 						getString(R.string.size_actual), hrSize);
 			}
@@ -93,7 +104,7 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 						getString(R.string.title_from), source, //
 						getString(R.string.title_database), database, //
 						getString(R.string.title_free), free, //
-						getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.wordnet) + '/', getString(R.string.hr_size_searchtext) + " (" + getString(R.string.hr_size_searchtext_wn) + '+' + '+' + getString(R.string.hr_size_searchtext) + ')', //
+						getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.wordnet), getString(R.string.hr_size_searchtext), //
 						getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
 						getString(R.string.title_status), getString(R.string.status_database_not_exists));
 			}
@@ -129,10 +140,12 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 				final Drawable failDrawable = ColorUtils.getDrawable(context, R.drawable.ic_fail);
 
 				this.imageTextSearchWn.setImageDrawable(existsTsWn ? okDrawable : failDrawable);
+				this.buttonTextSearchWn.setVisibility(existsTsWn ? View.GONE : View.VISIBLE);
 			}
 			else
 			{
 				this.imageTextSearchWn.setImageResource(R.drawable.ic_unknown);
+				this.buttonTextSearchWn.setVisibility(View.GONE);
 			}
 		}
 	}
