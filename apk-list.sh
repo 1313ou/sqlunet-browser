@@ -2,20 +2,12 @@
 
 RELEASE=build/outputs/apk/release
 all="
-app_grammarscope_udpipe/${RELEASE}/app_grammarscope_udpipe-x86_64-release.apk
-app_grammarscope_udpipe/${RELEASE}/app_grammarscope_udpipe-arm64-v8a-release.apk
-app_grammarscope_udpipe/${RELEASE}/app_grammarscope_udpipe-x86-release.apk
-app_grammarscope_udpipe/${RELEASE}/app_grammarscope_udpipe-armeabi-v7a-release.apk
-
-app_mysyntaxnet/${RELEASE}/app_mysyntaxnet-armeabi-v7a-release.apk
-app_mysyntaxnet/${RELEASE}/app_mysyntaxnet-arm64-v8a-release.apk
-app_mysyntaxnet/${RELEASE}/app_mysyntaxnet-x86_64-release.apk
-app_mysyntaxnet/${RELEASE}/app_mysyntaxnet-x86-release.apk
-
-app_grammarscope_syntaxnet/${RELEASE}/app_grammarscope_syntaxnet-arm64-v8a-release.apk
-app_grammarscope_syntaxnet/${RELEASE}/app_grammarscope_syntaxnet-armeabi-v7a-release.apk
-app_grammarscope_syntaxnet/${RELEASE}/app_grammarscope_syntaxnet-x86-release.apk
-app_grammarscope_syntaxnet/${RELEASE}/app_grammarscope_syntaxnet-x86_64-release.apk
+browser/${RELEASE}/browser-release.apk
+browserwn/${RELEASE}/browserwn-release.apk
+browserewn/${RELEASE}/browserewn-release.apk
+browserfn/${RELEASE}/browserfn-release.apk
+browservn/${RELEASE}/browservn-release.apk
+browsersn/${RELEASE}/browsersn-release.apk
 "
 
 RED='\u001b[31m'
