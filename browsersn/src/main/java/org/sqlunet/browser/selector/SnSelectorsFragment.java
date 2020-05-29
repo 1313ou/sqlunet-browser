@@ -384,8 +384,8 @@ public class SnSelectorsFragment extends ListFragment
 				SyntagNetContract.S2 + '.' + SnCollocations_X.POS + " AS " + SyntagNetContract.POS2, //
 		};
 		final String selection = SnCollocations_X.WORD1ID + " = ? OR " + SnCollocations_X.WORD2ID + " = ?"; //
-		final String[] selectionArgs = {Long.toString(SnSelectorsFragment.this.wordId), Long.toString(SnSelectorsFragment.this.wordId)};
-		final String sortOrder = SyntagNetContract.W1 + '.' + SnCollocations_X.LEMMA + ',' + SyntagNetContract.W2 + '.' + SnCollocations_X.LEMMA;
+		final String[] selectionArgs = {Long.toString(SnSelectorsFragment.this.wordId), Long.toString(SnSelectorsFragment.this.wordId), Long.toString(SnSelectorsFragment.this.wordId)};
+		final String sortOrder = SnCollocations_X.WORD2ID + " = ?" + ',' + SyntagNetContract.W1 + '.' + SnCollocations_X.LEMMA + ',' + SyntagNetContract.W2 + '.' + SnCollocations_X.LEMMA;
 		this.model.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
 	}
 
