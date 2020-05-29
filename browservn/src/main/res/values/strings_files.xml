@@ -5,10 +5,6 @@
 
 <resources>
 
-	<string name="sqlunet_db">f4b9865d966a13898676f27d6db26f9a</string> <!-- sqlunet-vn.db -->
-	<string name="sqlunet_db_zip">d6c02d52483436701ade698c75099fcf</string> <!-- sqlunet-vn.db.zip -->
-	<string name="sqlunet_sql_zip">273adb6953476af35d688fd7c12b3949</string> <!-- sqlunet-vn.sql.zip -->
-
 	<string name="hr_size_sqlunet_db">72 MB</string> <!-- sqlunet-vn.db -->
 	<string name="hr_size_sqlunet_db_zip">31 MB</string> <!-- sqlunet-vn.db.zip -->
 	<string name="hr_size_sqlunet_sql_zip">15 MB</string> <!-- sqlunet-vn.sql.zip -->
