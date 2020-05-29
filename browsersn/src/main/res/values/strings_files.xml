@@ -5,17 +5,12 @@
 
 <resources>
 
-	<string name="sqlunet_db">d5fd73df600a3f82aebd000577228a0e</string>
-	<string name="sqlunet_db_zip">b7bb91e7f1c96695910d50a84b1ef21e</string>
-	<string name="sqlunet_sql_zip">accf4449bdd6dd1f21b696f703b03312</string>
-
-	<string name="hr_size_sqlunet_db">515 MB</string>
-	<string name="hr_size_sqlunet_db_zip">174 MB</string>
+	<string name="hr_size_sqlunet_db">70 MB</string>
+	<string name="hr_size_sqlunet_db_zip">31 MB</string>
 	<string name="hr_size_sqlunet_sql_zip">115 MB</string>
 
-	<string name="hr_size_searchtext_wn">34 MB</string>
-	<string name="hr_size_searchtext">173 MB</string>
+	<string name="hr_size_searchtext">34 MB</string>
 
-	<string name="hr_size_db_working_total">686 MB</string>
+	<string name="hr_size_db_working_total">104 MB</string>
 
 </resources>
