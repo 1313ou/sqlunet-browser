@@ -74,20 +74,19 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 		assert view != null;
 
 		// images
-		this.imageTextSearchFn = view.findViewById(R.id.status_searchtext_fn);
-		this.imagePm = view.findViewById(R.id.status_predicatematrix);
 		this.imageTextSearchWn = view.findViewById(R.id.status_searchtext_wn);
 		this.imageTextSearchVn = view.findViewById(R.id.status_searchtext_vn);
 		this.imageTextSearchPb = view.findViewById(R.id.status_searchtext_pb);
 		this.imageTextSearchFn = view.findViewById(R.id.status_searchtext_fn);
+		this.imagePm = view.findViewById(R.id.status_predicatematrix);
 
 		// buttons
-		this.buttonPm = view.findViewById(R.id.predicatematrixButton);
 		this.buttonTextSearchWn = view.findViewById(R.id.searchtextWnButton);
 		this.buttonTextSearchVn = view.findViewById(R.id.searchtextVnButton);
 		this.buttonTextSearchPb = view.findViewById(R.id.searchtextPbButton);
 		this.buttonTextSearchFn = view.findViewById(R.id.searchtextFnButton);
-		final ImageButton infoDatabaseButton = view.findViewById(R.id.info_database);
+		this.buttonPm = view.findViewById(R.id.predicatematrixButton);
+		this.infoDatabaseButton = view.findViewById(R.id.info_database);
 
 		// click listeners
 		this.buttonDb.setOnClickListener(v -> download());
@@ -133,7 +132,7 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
 		});
 
-		infoDatabaseButton.setOnClickListener(v -> {
+		this.infoDatabaseButton.setOnClickListener(v -> {
 
 			final Activity activity = requireActivity();
 			final String database = StorageSettings.getDatabasePath(activity);
@@ -152,7 +151,9 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 						getString(R.string.title_status), getString(existsTables ? R.string.status_data_exists : R.string.status_data_not_exists), //
 						getString(R.string.title_free), free, //
 						getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
-						getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.wordnet) + '/' + getString(R.string.verbnet) + '/' + getString(R.string.propbank) + '/' + getString(R.string.framenet), getString(R.string.hr_size_searchtext) + " (" + getString(R.string.hr_size_searchtext_wn) + '+' + getString(R.string.hr_size_searchtext_vn) + '+' + getString(R.string.hr_size_searchtext_pb) + '+' + getString(R.string.hr_size_searchtext_fn) + '+' + getString(R.string.hr_size_searchtext) + ')', //
+						getString(R.string.size_expected) + ' ' +  //
+						getString(R.string.text_search) + ' ' + getString(R.string.wordnet) + '/' + getString(R.string.verbnet) + '/' + getString(R.string.propbank) + '/' + getString(R.string.framenet),  //
+						getString(R.string.hr_size_searchtext) + " (" + getString(R.string.hr_size_searchtext_wn) + '+' + getString(R.string.hr_size_searchtext_vn) + '+' + getString(R.string.hr_size_searchtext_pb) + '+' + getString(R.string.hr_size_searchtext_fn) + '+' + getString(R.string.hr_size_searchtext) + ')', //
 						getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
 						getString(R.string.size_actual), hrSize);
 			}
