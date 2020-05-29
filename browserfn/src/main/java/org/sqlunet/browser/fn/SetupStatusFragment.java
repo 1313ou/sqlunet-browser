@@ -73,6 +73,7 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
 			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
 		});
+
 		this.infoDatabaseButton.setOnClickListener(v -> {
 
 			final Activity activity = requireActivity();

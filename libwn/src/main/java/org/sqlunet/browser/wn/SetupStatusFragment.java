@@ -66,8 +66,6 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 		// click listeners
 		this.buttonDb.setOnClickListener(v -> download());
 		this.buttonIndexes.setOnClickListener(v -> index());
-		this.infoDatabaseButton.setOnClickListener(v -> info());
-
 		this.buttonTextSearchWn.setOnClickListener(v -> {
 
 			int index = getResources().getInteger(R.integer.sql_statement_do_ts_wn_position);
@@ -145,8 +143,8 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 			}
 			else
 			{
-				this.buttonTextSearchWn.setVisibility(View.GONE);
 				this.imageTextSearchWn.setImageResource(R.drawable.ic_unknown);
+				this.buttonTextSearchWn.setVisibility(View.GONE);
 			}
 		}
 	}
