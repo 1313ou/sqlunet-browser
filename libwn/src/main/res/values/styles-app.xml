@@ -77,7 +77,6 @@
 <!--	<style name="Data.AdjPosition"/>-->
 
 	<style name="Data.XIcon">
-		<item name="android:layout_gravity">center_vertical</item>
 	</style>
 
 <!--	<style name="Data.XName">-->
