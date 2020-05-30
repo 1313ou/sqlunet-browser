@@ -10,9 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.sqlunet.browser.Browse2Fragment;
 import org.sqlunet.browser.R;
 import org.sqlunet.browser.SnBrowse2Activity;
-import org.sqlunet.browser.SnBrowse2Fragment;
 import org.sqlunet.browser.xn.Settings;
 import org.sqlunet.provider.ProviderArgs;
 
@@ -74,16 +74,16 @@ public class SnBrowse1Fragment extends Fragment implements SnSelectorsFragment.L
 		if (isTwoPane(view))
 		{
 			// detail fragment (rigid layout)
-			Fragment snBrowse2Fragment = manager.findFragmentByTag("snbrowse2");
-			if (snBrowse2Fragment == null)
+			Fragment browse2Fragment = manager.findFragmentByTag("browse2");
+			if (browse2Fragment == null)
 			{
-				snBrowse2Fragment = new SnBrowse2Fragment();
+				browse2Fragment = new Browse2Fragment();
 				final Bundle args = new Bundle();
-				args.putBoolean(SnBrowse2Fragment.ARG_ALT, false);
-				snBrowse2Fragment.setArguments(args);
+				args.putBoolean(Browse2Fragment.ARG_ALT, false);
+				browse2Fragment.setArguments(args);
 			}
 			manager.beginTransaction() //
-					.replace(R.id.container_browse2, snBrowse2Fragment, "snbrowse2") //
+					.replace(R.id.container_browse2, browse2Fragment, "browse2") //
 					.commit();
 		}
 
@@ -104,7 +104,7 @@ public class SnBrowse1Fragment extends Fragment implements SnSelectorsFragment.L
 		if (isTwoPane(view))
 		{
 			// in two-pane mode, show the detail view in this activity by adding or replacing the detail fragment using a fragment transaction.
-			final SnBrowse2Fragment fragment = (SnBrowse2Fragment) getChildFragmentManager().findFragmentById(R.id.container_browse2);
+			final Browse2Fragment fragment = (Browse2Fragment) getChildFragmentManager().findFragmentById(R.id.container_browse2);
 			assert fragment != null;
 			fragment.search(pointer, null);
 		}
