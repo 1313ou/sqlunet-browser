@@ -62,25 +62,6 @@ public class SnBrowse2Fragment extends BaseBrowse2Fragment
 		{
 			case VIEW:
 				int enable = Settings.getAllPref(context);
-				if (this.pointer instanceof XSelectorPointer)
-				{
-					// sections to disable
-					int mask = 0;
-//					final XSelectorPointer xpointer = (XSelectorPointer) this.pointer;
-//					final int group = xpointer.getXGroup();
-//					switch (group)
-//					{
-//						//TODO
-//						case XWnSelectorsFragment.GROUPID_WORDNET:
-//							mask = Settings.ENABLE_SYNTAGNET;
-//							break;
-//						//TODO
-//						case XSnSelectorsFragment.GROUPID_SYNTAGNET:
-//							mask = 0;
-//							break;
-//					}
-					enable &= ~mask;
-				}
 
 				// transaction
 				final FragmentTransaction transaction = manager.beginTransaction();
@@ -104,6 +85,24 @@ public class SnBrowse2Fragment extends BaseBrowse2Fragment
 					}
 				}
 
+				// syntagnet
+				if ((enable & Settings.ENABLE_SYNTAGNET) != 0)
+				{
+					// final View labelView = findViewById(R.id.label_syntagnet);
+					// labelView.setVisibility(View.VISIBLE);
+					final Fragment collocationFragment = new CollocationFragment();
+					collocationFragment.setArguments(args);
+					transaction.replace(R.id.container_syntagnet, collocationFragment, "syntagnet");
+				}
+				else
+				{
+					final Fragment collocationFragment = manager.findFragmentByTag("syntagnet");
+					if (collocationFragment != null)
+					{
+						transaction.remove(collocationFragment);
+					}
+				}
+
 				// bnc
 				if ((enable & Settings.ENABLE_BNC) != 0)
 				{
@@ -116,24 +115,6 @@ public class SnBrowse2Fragment extends BaseBrowse2Fragment
 				else
 				{
 					final Fragment bncFragment = manager.findFragmentByTag("bnc");
-					if (bncFragment != null)
-					{
-						transaction.remove(bncFragment);
-					}
-				}
-
-				// sn
-				if ((enable & Settings.ENABLE_SYNTAGNET) != 0)
-				{
-					// final View labelView = findViewById(R.id.label_sn);
-					// labelView.setVisibility(View.VISIBLE);
-					final Fragment snFragment = new CollocationFragment();
-					snFragment.setArguments(args);
-					transaction.replace(R.id.container_syntagnet, snFragment, "sn");
-				}
-				else
-				{
-					final Fragment bncFragment = manager.findFragmentByTag("sn");
 					if (bncFragment != null)
 					{
 						transaction.remove(bncFragment);

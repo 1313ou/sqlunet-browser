@@ -13,6 +13,7 @@ import org.sqlunet.browser.web.WebFragment;
 import org.sqlunet.browser.xn.Settings;
 import org.sqlunet.browser.xselector.XSelectorPointer;
 import org.sqlunet.provider.ProviderArgs;
+import org.sqlunet.syntagnet.browser.CollocationFragment;
 import org.sqlunet.wordnet.browser.SenseFragment;
 
 import androidx.annotation.Nullable;
@@ -61,25 +62,6 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 		{
 			case VIEW:
 				int enable = Settings.getAllPref(context);
-				if (this.pointer instanceof XSelectorPointer)
-				{
-					// sections to disable
-					int mask = 0;
-//					final XSelectorPointer xpointer = (XSelectorPointer) this.pointer;
-//					final int group = xpointer.getXGroup();
-//					switch (group)
-//					{
-//						//TODO
-//						case XWnSelectorsFragment.GROUPID_WORDNET:
-//							mask = Settings.ENABLE_SYNTAGNET;
-//							break;
-//						//TODO
-//						case XSnSelectorsFragment.GROUPID_SYNTAGNET:
-//							mask = 0;
-//							break;
-//					}
-					enable &= ~mask;
-				}
 
 				// transaction
 				final FragmentTransaction transaction = manager.beginTransaction();
@@ -100,6 +82,24 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 					if (senseFragment != null)
 					{
 						transaction.remove(senseFragment);
+					}
+				}
+
+				// syntagnet
+				if ((enable & Settings.ENABLE_SYNTAGNET) != 0)
+				{
+					// final View labelView = findViewById(R.id.label_syntagnet);
+					// labelView.setVisibility(View.VISIBLE);
+					final Fragment collocationFragment = new CollocationFragment();
+					collocationFragment.setArguments(args);
+					transaction.replace(R.id.container_syntagnet, collocationFragment, "syntagnet");
+				}
+				else
+				{
+					final Fragment collocationFragment = manager.findFragmentByTag("syntagnet");
+					if (collocationFragment != null)
+					{
+						transaction.remove(collocationFragment);
 					}
 				}
 
