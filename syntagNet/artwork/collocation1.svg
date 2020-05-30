@@ -10,7 +10,7 @@
    viewBox="0 0 18 18"
    version="1.1"
    id="svg4"
-   sodipodi:docname="collocation2.svg"
+   sodipodi:docname="collocation1.svg"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
   <metadata
      id="metadata10">
@@ -39,24 +39,15 @@
      id="namedview6"
      showgrid="false"
      inkscape:zoom="32.611111"
-     inkscape:cx="9"
+     inkscape:cx="8.8828585"
      inkscape:cy="6.4770058"
      inkscape:window-x="570"
      inkscape:window-y="25"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg4" />
-  <g
-     id="g827"
-     transform="matrix(0.95400341,0,0,0.95400341,8.7295442e-4,0.41396926)">
-    <path
-       inkscape:connector-curvature="0"
-       id="path2"
-       d="m 5.125,3.0000001 c -6.5,0 -6.5,7.4999999 0,11.9999999 1.8866766,-1.306161 3.2085692,-2.865031 4,-4.419922 C 7.9814572,8.3334089 7.9819413,6.1076616 9.125,4.6523439 8.3336622,3.6448297 7.0122537,3.0000002 5.125,3.0000001 Z m -0.058594,2 a 2,2 0 0 1 2.0585938,2 2,2 0 0 1 -4,0 2,2 0 0 1 1.9414062,-2 z"
-       style="fill:#85377d;fill-rule:evenodd" />
-    <path
-       style="fill:#e46d43;fill-rule:evenodd"
-       d="m 13.741027,3.0000002 c -6.4999996,0 -6.4999996,7.4999998 0,11.9999998 6.5,-4.5 6.5,-11.9999998 0,-11.9999998 z m -2,4.0000001 a 2,2 0 0 0 4,0 2,2 0 0 0 -4,0"
-       id="path818"
-       inkscape:connector-curvature="0" />
-  </g>
+  <path
+     inkscape:connector-curvature="0"
+     id="path818"
+     d="m 9.0000008,0.66125009 c -9.03364637,0 -9.03364637,10.42343791 0,16.67749991 9.0336442,-6.254062 9.0336442,-16.6774999 0,-16.67749991 z M 6.2204167,6.2204168 a 2.7795833,2.7795833 0 0 0 5.5591653,0 2.7795833,2.7795833 0 0 0 -5.5591653,0"
+     style="fill:#e46d43;fill-rule:evenodd;stroke-width:1.38979173" />
 </svg>
