@@ -19,15 +19,19 @@ import org.sqlunet.style.Spanner.SpanFactory;
  */
 public class SyntagNetFactories
 {
+	static public final int COLOR1 = 0xFFE46D42;
+
+	static public final int COLOR2= 0xFF76608B;
+
 	static public final SpanFactory collocationFactory = flags -> new Object[]{new BackgroundColorSpan(Color.WHITE), new ForegroundColorSpan(Color.DKGRAY), new StyleSpan(Typeface.BOLD)};
 
-	static public final SpanFactory beforeFactory = flags -> new Object[]{new BackgroundColorSpan(Color.BLUE), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
+	static public final SpanFactory beforeFactory = flags -> new Object[]{new BackgroundColorSpan(COLOR1), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
 
-	static public final SpanFactory afterFactory = flags -> new Object[]{new BackgroundColorSpan(Color.RED), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
+	static public final SpanFactory afterFactory = flags -> new Object[]{new BackgroundColorSpan(COLOR2), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
 
-	static public final SpanFactory beforeDefinitionFactory = flags -> new Object[]{new BackgroundColorSpan(Color.WHITE), new ForegroundColorSpan(Color.BLUE), new StyleSpan(Typeface.ITALIC)};
+	static public final SpanFactory beforeDefinitionFactory = flags -> new Object[]{new BackgroundColorSpan(Color.WHITE), new ForegroundColorSpan(COLOR1), new StyleSpan(Typeface.ITALIC)};
 
-	static public final SpanFactory afterDefinitionFactory = flags -> new Object[]{new BackgroundColorSpan(Color.WHITE), new ForegroundColorSpan(Color.RED), new StyleSpan(Typeface.ITALIC)};
+	static public final SpanFactory afterDefinitionFactory = flags -> new Object[]{new BackgroundColorSpan(Color.WHITE), new ForegroundColorSpan(COLOR2), new StyleSpan(Typeface.ITALIC)};
 
 	// static public final SpanFactory definitionFactory = Factories.definitionFactory;
 }
