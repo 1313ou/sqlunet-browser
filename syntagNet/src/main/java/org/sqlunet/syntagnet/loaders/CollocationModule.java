@@ -79,18 +79,6 @@ public class CollocationModule extends BaseModule
 			final SnCollocationPointer collocationPointer = (SnCollocationPointer) pointer;
 			this.collocationId = collocationPointer.getId();
 		}
-		if (pointer instanceof HasSynsetId)
-		{
-			final HasSynsetId pointer1 = (HasSynsetId) pointer;
-			long id = pointer1.getSynsetId();
-			this.synset1Id = id == -1 ? null : pointer1.getSynsetId();
-		}
-		if (pointer instanceof Has2SynsetId)
-		{
-			final Has2SynsetId pointer2 = (Has2SynsetId) pointer;
-			long id = pointer2.getSynset2Id();
-			this.synset2Id = id == -1 ? null : pointer2.getSynset2Id();
-		}
 		if (pointer instanceof HasWordId)
 		{
 			final HasWordId pointer1 = (HasWordId) pointer;
@@ -103,17 +91,26 @@ public class CollocationModule extends BaseModule
 			long id = pointer2.getWord2Id();
 			this.word2Id = id == -1 ? null : pointer2.getWord2Id();
 		}
-		/*
-		if (pointer instanceof HasXId)
+		else
 		{
-			final HasXId xIdPointer = (HasXId) pointer;
-			final String xSources = xIdPointer.getXSources();
-			if (xSources == null || xSources.contains("sn")) //
-			{
-				this.collocationId = xIdPointer.getXClassId();
-			}
+			this.word2Id = this.word1Id;
 		}
-		*/
+		if (pointer instanceof HasSynsetId)
+		{
+			final HasSynsetId pointer1 = (HasSynsetId) pointer;
+			long id = pointer1.getSynsetId();
+			this.synset1Id = id == -1 ? null : pointer1.getSynsetId();
+		}
+		if (pointer instanceof Has2SynsetId)
+		{
+			final Has2SynsetId pointer2 = (Has2SynsetId) pointer;
+			long id = pointer2.getSynset2Id();
+			this.synset2Id = id == -1 ? null : pointer2.getSynset2Id();
+		}
+		else
+		{
+			this.synset2Id = this.synset1Id;
+		}
 	}
 
 	@Override
@@ -125,12 +122,12 @@ public class CollocationModule extends BaseModule
 		}
 		else if (this.word1Id != null || this.word2Id != null || this.synset1Id != null || this.synset2Id != null)
 		{
-			collocations(this.word1Id, this.word2Id,  this.synset1Id,  this.synset2Id, parent);
+			collocations(this.word1Id, this.word2Id, this.synset1Id, this.synset2Id, parent);
 		}
-//		else if (this.word1Id != null)
-//		{
-//			collocations(this.word1Id, parent);
-//		}
+		//		else if (this.word1Id != null)
+		//		{
+		//			collocations(this.word1Id, parent);
+		//		}
 		else
 		{
 			TreeFactory.setNoResult(parent);

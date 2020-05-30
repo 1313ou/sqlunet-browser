@@ -152,8 +152,10 @@ abstract class BaseModule extends Module
 		final String selection = selection(word1Id, word2Id, synset1Id, synset2Id);
 		final String[] selectionArgs = selectionArgs(word1Id, word2Id, synset1Id, synset2Id, word2Id);
 		String sortOrder = SyntagNetContract.W1 + '.' + SnCollocations_X.LEMMA + ',' + SyntagNetContract.W2 + '.' + SnCollocations_X.LEMMA;
-		if(word2Id != null)
+		if (word2Id != null)
+		{
 			sortOrder = SnCollocations_X.WORD2ID + " = ?" + ',' + sortOrder;
+		}
 		this.collocationFromCollocationIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> collocationsCursorToTreeModel(cursor, parent));
 	}
 
@@ -285,7 +287,7 @@ abstract class BaseModule extends Module
 		String synsetSelection2 = synset2Id == null ? "" : SnCollocations_X.SYNSET2ID + " = ?";
 		String synsetSelection = synsetSelection1.isEmpty() || synsetSelection2.isEmpty() ? synsetSelection1 + synsetSelection2 : synsetSelection1 + (synset1Id.equals(synset2Id) ? " OR " : " AND ") + synsetSelection2;
 
-		return wordSelection.isEmpty() || synsetSelection.isEmpty() ? (wordSelection + synsetSelection) : (wordSelection + " AND " + synsetSelection);
+		return wordSelection.isEmpty() || synsetSelection.isEmpty() ? (wordSelection + synsetSelection) : ('(' + wordSelection + ") AND (" + synsetSelection + ')');
 	}
 
 	/**
@@ -295,7 +297,7 @@ abstract class BaseModule extends Module
 	 * @param word2Id   word 2 id
 	 * @param synset1Id synset 1 id
 	 * @param synset2Id synset 2 id
-	 * @param orderId id param used in order clause
+	 * @param orderId   id param used in order clause
 	 * @return selection arguments
 	 */
 	private String[] selectionArgs(final Long word1Id, final Long word2Id, final Long synset1Id, final Long synset2Id, final Long orderId)
