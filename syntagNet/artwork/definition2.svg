@@ -14,7 +14,7 @@
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
    width="360"
    height="360"
-   sodipodi:docname="definition2.svg"
+   sodipodi:docname="definition1.svg"
    version="1.0">
   <metadata
      id="metadata7">
@@ -30,7 +30,7 @@
   <defs
      id="defs5" />
   <sodipodi:namedview
-     inkscape:window-height="834"
+     inkscape:window-height="836"
      inkscape:window-width="908"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
@@ -41,10 +41,10 @@
      inkscape:showpageshadow="false"
      borderlayer="top"
      inkscape:zoom="0.70710678"
-     inkscape:cx="169.2759"
+     inkscape:cx="-18.926588"
      inkscape:cy="5.9905448"
-     inkscape:window-x="569"
-     inkscape:window-y="275"
+     inkscape:window-x="805"
+     inkscape:window-y="297"
      inkscape:current-layer="svg2"
      showgrid="false"
      inkscape:window-maximized="0" />
@@ -63,11 +63,11 @@
      id="text2989"
      y="312.53247"
      x="1.6408254"
-     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:0%;font-family:ChopinScript;-inkscape-font-specification:'ChopinScript Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#e05a2c;fill-opacity:1;stroke:none;"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:0%;font-family:ChopinScript;-inkscape-font-specification:'ChopinScript Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#85377d;fill-opacity:1;stroke:none;"
      xml:space="preserve"><tspan
        y="312.53247"
        x="1.6408254"
        id="tspan2991"
        sodipodi:role="line"
-       style="font-size:352.95266724px;line-height:1.25;fill:#e05a2c;fill-opacity:1;">D</tspan></text>
+       style="font-size:352.95266724px;line-height:1.25;fill:#85377d;fill-opacity:1;">D</tspan></text>
 </svg>

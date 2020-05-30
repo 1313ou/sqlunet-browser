@@ -356,7 +356,7 @@ abstract class BaseModule extends Module
 		final SpannableStringBuilder sb1w = new SpannableStringBuilder();
 		Spanner.append(sb1w, word1, 0, SyntagNetFactories.beforeFactory);
 		final Link link1w = new BaseWordLink(word1Id, context);
-		final TreeNode collocation1wNode = TreeFactory.makeLinkLeafNode(sb1w, R.drawable.before, false, link1w).addTo(collocationNode);
+		final TreeNode collocation1wNode = TreeFactory.makeLinkLeafNode(sb1w, R.drawable.collocation1, false, link1w).addTo(collocationNode);
 		changedList.add(NEWCHILD, collocation1wNode);
 
 		final SpannableStringBuilder sb1s = new SpannableStringBuilder();
@@ -369,7 +369,7 @@ abstract class BaseModule extends Module
 		final SpannableStringBuilder sb2w = new SpannableStringBuilder();
 		Spanner.append(sb2w, word2, 0, SyntagNetFactories.afterFactory);
 		final Link link2w = new BaseWordLink(word2Id, context);
-		final TreeNode collocation2wNode = TreeFactory.makeLinkLeafNode(sb2w, R.drawable.after, false, link2w).addTo(collocationNode);
+		final TreeNode collocation2wNode = TreeFactory.makeLinkLeafNode(sb2w, R.drawable.collocation2, false, link2w).addTo(collocationNode);
 		changedList.add(NEWCHILD, collocation2wNode);
 
 		final SpannableStringBuilder sb2s = new SpannableStringBuilder();
