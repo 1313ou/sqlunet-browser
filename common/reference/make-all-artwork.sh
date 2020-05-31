@@ -6,7 +6,7 @@ whereto=`readlink -m "${whereto}"`
 mkdir -p "${whereto}/images"
 mkdir -p "${whereto}/relations/images"
 
-for d in xnet wordnet verbnet propbank framenet bnc; do
+for d in xnet wordnet verbnet propbank framenet bnc syntagnet; do
 	./make-artwork.sh $d "${whereto}/images"
 done
 

@@ -330,11 +330,11 @@ public class Settings
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		final Editor editor = sharedPref.edit();
 
-		final String selector_string = sharedPref.getString(Settings.PREF_SELECTOR, null);
-		if (selector_string == null)
-		{
-			editor.putString(Settings.PREF_SELECTOR, Settings.Selector.SELECTOR.name());
-		}
+//		final String selector_string = sharedPref.getString(Settings.PREF_SELECTOR, null);
+//		if (selector_string == null)
+//		{
+//			editor.putString(Settings.PREF_SELECTOR, Settings.Selector.SELECTOR.name());
+//		}
 
 		final String viewwebMode_string = sharedPref.getString(Settings.PREF_SELECTOR_MODE, null);
 		if (viewwebMode_string == null)

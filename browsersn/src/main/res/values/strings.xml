@@ -42,4 +42,7 @@
 	<string name="synset1id">1st synset id</string>
 	<string name="synset2id">2nd synset id</string>
 
+	<!-- hints -->
+	<string name="hint_splash_browse">Exploring senses, relations and collocations</string>
+
 </resources>
