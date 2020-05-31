@@ -26,6 +26,8 @@ import org.sqlunet.browser.xn.Settings;
 import org.sqlunet.browser.xselector.XBrowse1Activity;
 import org.sqlunet.browser.xselector.XBrowse1Fragment;
 import org.sqlunet.provider.ProviderArgs;
+import org.sqlunet.syntagnet.SnCollocationPointer;
+import org.sqlunet.syntagnet.browser.CollocationActivity;
 import org.sqlunet.wordnet.SenseKeyPointer;
 import org.sqlunet.wordnet.SynsetPointer;
 import org.sqlunet.wordnet.WordPointer;
@@ -249,6 +251,15 @@ public class BrowseFragment extends BaseSearchFragment
 				args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse);
 
 				targetIntent = makeDetailIntent(WordActivity.class);
+			}
+			else if (query.startsWith("#sc"))
+			{
+				final Parcelable collocationPointer = new SnCollocationPointer(id);
+				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_COLLOCATION);
+				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, collocationPointer);
+				args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse);
+
+				targetIntent = makeDetailIntent(CollocationActivity.class);
 			}
 		}
 		if (query.matches("#\\p{Lower}\\p{Lower}[\\w:%]+"))
