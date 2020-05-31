@@ -25,13 +25,11 @@ public class SyntagNetFactories
 
 	static public final SpanFactory collocationFactory = flags -> new Object[]{new BackgroundColorSpan(Color.WHITE), new ForegroundColorSpan(Color.DKGRAY), new StyleSpan(Typeface.BOLD)};
 
-	static public final SpanFactory beforeFactory = flags -> new Object[]{new BackgroundColorSpan(COLOR1), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
+	static public final SpanFactory word1Factory = flags -> new Object[]{new BackgroundColorSpan(COLOR1), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
 
-	static public final SpanFactory afterFactory = flags -> new Object[]{new BackgroundColorSpan(COLOR2), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
+	static public final SpanFactory word2Factory = flags -> new Object[]{new BackgroundColorSpan(COLOR2), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
 
-	static public final SpanFactory beforeDefinitionFactory = flags -> new Object[]{new BackgroundColorSpan(Color.WHITE), new ForegroundColorSpan(COLOR1), new StyleSpan(Typeface.ITALIC)};
+	static public final SpanFactory definition1Factory = flags -> new Object[]{new BackgroundColorSpan(Color.WHITE), new ForegroundColorSpan(COLOR1), new StyleSpan(Typeface.ITALIC)};
 
-	static public final SpanFactory afterDefinitionFactory = flags -> new Object[]{new BackgroundColorSpan(Color.WHITE), new ForegroundColorSpan(COLOR2), new StyleSpan(Typeface.ITALIC)};
-
-	// static public final SpanFactory definitionFactory = Factories.definitionFactory;
+	static public final SpanFactory definition2Factory = flags -> new Object[]{new BackgroundColorSpan(Color.WHITE), new ForegroundColorSpan(COLOR2), new StyleSpan(Typeface.ITALIC)};
 }

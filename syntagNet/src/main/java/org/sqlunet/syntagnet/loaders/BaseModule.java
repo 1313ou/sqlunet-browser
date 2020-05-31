@@ -80,6 +80,11 @@ abstract class BaseModule extends Module
 	}
 
 	/**
+	 * Whether target comes second in collocation
+	 */
+	abstract protected boolean isTargetSecond(final long word1Id, final long word2Id);
+
+	/**
 	 * Make view models
 	 */
 	private void makeModels()
@@ -232,6 +237,7 @@ abstract class BaseModule extends Module
 			final int idPos2 = cursor.getColumnIndex(SyntagNetContract.POS2);
 
 			// read cursor
+			boolean isSingle = cursor.getCount() == 1;
 			do
 			{
 				// data
@@ -246,8 +252,9 @@ abstract class BaseModule extends Module
 				final String pos2 = cursor.getString(idPos2);
 				final String definition1 = cursor.getString(idDefinition1);
 				final String definition2 = cursor.getString(idDefinition2);
+				boolean isTargetSecond = isTargetSecond(word1Id, word2Id);
 
-				makeContent(collocationId, word1, word2, word1Id, word2Id, synset1Id, synset2Id, pos1, pos2, definition1, definition2, parent, changedList);
+				makeContent(collocationId, word1, word2, word1Id, word2Id, synset1Id, synset2Id, pos1, pos2, definition1, definition2, isSingle, isTargetSecond, parent, changedList);
 
 				// sub nodes
 				//TODO
@@ -332,7 +339,7 @@ abstract class BaseModule extends Module
 			final long synset1Id, final long synset2Id, //
 			final String pos1, final String pos2,  //
 			final String definition1, final String definition2, //
-			final TreeNode parent, final TreeOps changedList)
+			final boolean isSingle, final boolean isTargetSecond, final TreeNode parent, final TreeOps changedList)
 	{
 		final Context context = BaseModule.this.fragment.requireContext();
 
@@ -347,35 +354,35 @@ abstract class BaseModule extends Module
 		sbh.append(pos2);
 
 		// collocation
-		final TreeNode collocationNode = TreeFactory.makeTreeNode(sbh, R.drawable.collocation, true).addTo(parent);
+		final TreeNode collocationNode = TreeFactory.makeTreeNode(sbh, R.drawable.collocation, !isSingle).addTo(parent);
 		changedList.add(NEWCHILD, collocationNode);
 
 		// contents
 
 		// collocation 1
 		final SpannableStringBuilder sb1w = new SpannableStringBuilder();
-		Spanner.append(sb1w, word1, 0, SyntagNetFactories.beforeFactory);
+		Spanner.append(sb1w, word1, 0, isTargetSecond ? SyntagNetFactories.word2Factory : SyntagNetFactories.word1Factory);
 		final Link link1w = new BaseWordLink(word1Id, context);
-		final TreeNode collocation1wNode = TreeFactory.makeLinkLeafNode(sb1w, R.drawable.collocation1, false, link1w).addTo(collocationNode);
+		final TreeNode collocation1wNode = TreeFactory.makeLinkLeafNode(sb1w, isTargetSecond ? R.drawable.collocation2 : R.drawable.collocation1, false, link1w).addTo(collocationNode);
 		changedList.add(NEWCHILD, collocation1wNode);
 
 		final SpannableStringBuilder sb1s = new SpannableStringBuilder();
-		Spanner.append(sb1s, definition1, 0, SyntagNetFactories.beforeDefinitionFactory);
+		Spanner.append(sb1s, definition1, 0, isTargetSecond ? SyntagNetFactories.definition2Factory : SyntagNetFactories.definition1Factory);
 		final Link link1s = new BaseSynsetLink(synset1Id, Integer.MAX_VALUE, context);
-		final TreeNode collocation1sNode = TreeFactory.makeLinkLeafNode(sb1s, R.drawable.definition1, false, link1s).addTo(collocationNode);
+		final TreeNode collocation1sNode = TreeFactory.makeLinkLeafNode(sb1s, isTargetSecond ? R.drawable.definition2 : R.drawable.definition1, false, link1s).addTo(collocationNode);
 		changedList.add(NEWCHILD, collocation1sNode);
 
 		// collocation 2
 		final SpannableStringBuilder sb2w = new SpannableStringBuilder();
-		Spanner.append(sb2w, word2, 0, SyntagNetFactories.afterFactory);
+		Spanner.append(sb2w, word2, 0, isTargetSecond ? SyntagNetFactories.word1Factory : SyntagNetFactories.word2Factory);
 		final Link link2w = new BaseWordLink(word2Id, context);
-		final TreeNode collocation2wNode = TreeFactory.makeLinkLeafNode(sb2w, R.drawable.collocation2, false, link2w).addTo(collocationNode);
+		final TreeNode collocation2wNode = TreeFactory.makeLinkLeafNode(sb2w, isTargetSecond ? R.drawable.collocation1 : R.drawable.collocation2, false, link2w).addTo(collocationNode);
 		changedList.add(NEWCHILD, collocation2wNode);
 
 		final SpannableStringBuilder sb2s = new SpannableStringBuilder();
-		Spanner.append(sb2s, definition2, 0, SyntagNetFactories.afterDefinitionFactory);
+		Spanner.append(sb2s, definition2, 0, isTargetSecond ? SyntagNetFactories.definition1Factory : SyntagNetFactories.definition2Factory);
 		final Link link2s = new BaseSynsetLink(synset2Id, Integer.MAX_VALUE, context);
-		final TreeNode collocation2sNode = TreeFactory.makeLinkLeafNode(sb2s, R.drawable.definition2, false, link2s).addTo(collocationNode);
+		final TreeNode collocation2sNode = TreeFactory.makeLinkLeafNode(sb2s, isTargetSecond ? R.drawable.definition1 : R.drawable.definition2, false, link2s).addTo(collocationNode);
 		changedList.add(NEWCHILD, collocation2sNode);
 
 		// ids
