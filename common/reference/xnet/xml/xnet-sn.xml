@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<concepts name="XNet">
+
+<concept name="WordNet" id="wordnet">
+	<img src="wordnet.png" />
+	<a href="wordnet.html"/>
+	<description>WordNet is a lexical database of semantic relations between words.</description>
+</concept>
+
+<concept name="SyntagNet" id="syntagnet">
+	<img src="syntagnet.png" />
+	<a href="syntagnet.html"/>
+	<description>SyntagNet is a manually-curated large-scale lexical-semantic combination database which associates pairs of concepts with pairs of co-occurring words, hence capturing sense distinctions evoked by syntagmatic relations.</description>
+</concept>
+
+<concept name="BNC" id="bnc">
+	<img src="bnc.png" />
+	<a href="bnc.html"/>
+	<description>The British National Corpus (BNC) is a 100-million-word text corpus of samples of written and spoken English from a wide range of sources. </description>
+</concept>
+
+</concepts>

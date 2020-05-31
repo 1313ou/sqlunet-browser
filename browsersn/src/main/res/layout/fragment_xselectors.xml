@@ -19,11 +19,11 @@
 			android:paddingBottom="10dp"
 			android:tag="wordnet" />
 
-	<View
-		android:id="@+id/divider1"
-		android:layout_width="match_parent"
-		android:layout_height="3dp"
-		android:background="?android:attr/listDivider" />
+<!--	<View-->
+<!--		android:id="@+id/divider1"-->
+<!--		android:layout_width="match_parent"-->
+<!--		android:layout_height="3dp"-->
+<!--		android:background="?android:attr/listDivider" />-->
 
 	<TextView
 		style="@style/Header"
