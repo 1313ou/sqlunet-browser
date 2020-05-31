@@ -341,6 +341,51 @@
 				android:src="@drawable/ic_googleplay"
 				android:visibility="visible"/>
 
+			<!-- semantikos sn -->
+
+			<ImageView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:layout_marginTop="25dp"
+				android:contentDescription="@string/description_logo_semantikos_sn"
+				android:gravity="center_horizontal"
+				android:padding="5dp"
+				android:src="@drawable/logo_semantikos_sn"
+				android:visibility="visible"/>
+
+			<TextView
+				style="@style/HeaderText"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:gravity="center_horizontal"
+				android:padding="5dp"
+				android:text="@string/title_semantikos_sn"
+				android:textStyle="bold"
+				android:visibility="visible"/>
+
+			<TextView
+				style="@style/DescriptionText"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:gravity="center_horizontal"
+				android:padding="5dp"
+				android:text="@string/text_semantikos_sn"
+				android:visibility="visible"/>
+
+			<ImageButton
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:layout_marginTop="20dp"
+				android:background="@null"
+				android:contentDescription="@string/description_googleplay_semantikos_sn"
+				android:onClick="onMarketSemantikosSn"
+				android:src="@drawable/ic_googleplay"
+				android:visibility="visible"/>
+
 		</LinearLayout>
 
 	</ScrollView>

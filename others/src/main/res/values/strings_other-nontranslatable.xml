@@ -13,5 +13,6 @@
 	<string name="semantikos_ewn_uri" translatable="false">market://details?id=org.sqlunet.browser.ewn</string>
 	<string name="semantikos_vn_uri" translatable="false">market://details?id=org.sqlunet.browser.vn</string>
 	<string name="semantikos_fn_uri" translatable="false">market://details?id=org.sqlunet.browser.fn</string>
+	<string name="semantikos_sn_uri" translatable="false">market://details?id=org.sqlunet.browser.sn</string>
 
 </resources>
