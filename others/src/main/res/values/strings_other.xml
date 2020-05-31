@@ -50,6 +50,11 @@ Touch-dragging word nodes allows the user to interact with the display and to br
 	<string name="description_logo_semantikos_fn">Semantikos FrameNet Logo</string>
 	<string name="description_googleplay_semantikos_fn">Semantikos FrameNet on GooglePlay</string>
 
+	<string name="title_semantikos_sn">Semantikos SyntagNet</string>
+	<string name="text_semantikos_sn">Semantikos SyntagNet explores senses and collocations. Linguistic data from SyntagNet. Textual search on sample sentences.</string>
+	<string name="description_logo_semantikos_sn">Semantikos SyntagNet Logo</string>
+	<string name="description_googleplay_semantikos_sn">Semantikos SyntagNet on GooglePlay</string>
+
 	<string name="market_fail">Failed to query Google Play for </string>
 
 </resources>

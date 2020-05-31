@@ -84,6 +84,11 @@ public class OthersActivity extends AppCompatActivity
 		install(getString(R.string.semantikos_fn_uri));
 	}
 
+	public void onMarketSemantikosSn(@SuppressWarnings("UnusedParameters") View view)
+	{
+		install(getString(R.string.semantikos_sn_uri));
+	}
+
 	private void install(final String uri)
 	{
 		final Intent goToMarket = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(uri));
