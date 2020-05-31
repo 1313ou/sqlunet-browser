@@ -19,7 +19,7 @@ import androidx.annotation.Nullable;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class CollocationFromWordModule extends BaseModule
+public class CollocationFromWordIdModule extends BaseModule
 {
 	/**
 	 * Word id
@@ -32,9 +32,15 @@ public class CollocationFromWordModule extends BaseModule
 	 *
 	 * @param fragment fragment
 	 */
-	public CollocationFromWordModule(@NonNull final TreeFragment fragment)
+	public CollocationFromWordIdModule(@NonNull final TreeFragment fragment)
 	{
 		super(fragment);
+	}
+
+	@Override
+	protected boolean isTargetSecond(final long word1Id, final long word2Id)
+	{
+		return false;
 	}
 
 	@Override

@@ -12,6 +12,7 @@ import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.syntagnet.R;
 import org.sqlunet.syntagnet.loaders.CollocationModule;
 import org.sqlunet.provider.ProviderArgs;
+import org.sqlunet.syntagnet.loaders.CollocationsModule;
 import org.sqlunet.treeview.model.TreeNode;
 
 import androidx.annotation.Nullable;
@@ -54,7 +55,7 @@ public class CollocationFragment extends TreeFragment
 			final TreeNode queryNode = this.treeRoot.getChildren().iterator().next();
 
 			// module
-			final Module module = new CollocationModule(this);
+			final Module module = new CollocationsModule(this);
 			module.init(type, pointer);
 			module.process(queryNode);
 		}

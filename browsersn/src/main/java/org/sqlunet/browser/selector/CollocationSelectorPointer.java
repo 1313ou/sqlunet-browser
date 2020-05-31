@@ -6,8 +6,10 @@ package org.sqlunet.browser.selector;
 
 import android.os.Parcel;
 
+import org.sqlunet.Has2Pos;
 import org.sqlunet.Has2SynsetId;
 import org.sqlunet.Has2WordId;
+import org.sqlunet.HasTarget;
 
 import androidx.annotation.NonNull;
 
@@ -16,7 +18,7 @@ import androidx.annotation.NonNull;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class CollocationSelectorPointer extends PosSelectorPointer implements Has2SynsetId, Has2WordId
+public class CollocationSelectorPointer extends PosSelectorPointer implements Has2SynsetId, Has2WordId, Has2Pos, HasTarget
 {
 	/**
 	 * Synset 2 id
@@ -32,6 +34,11 @@ public class CollocationSelectorPointer extends PosSelectorPointer implements Ha
 	 * POS 2
 	 */
 	private final Character pos2;
+
+	/**
+	 * Target
+	 */
+	private final int target;
 
 	/**
 	 * Static field used to regenerate object, individually or as arrays
@@ -66,6 +73,7 @@ public class CollocationSelectorPointer extends PosSelectorPointer implements Ha
 		String posStr = parcel.readString();
 		assert posStr != null;
 		this.pos2 = posStr.charAt(0);
+		this.target = parcel.readInt();
 	}
 
 	/**
@@ -77,28 +85,39 @@ public class CollocationSelectorPointer extends PosSelectorPointer implements Ha
 	 * @param synset2Id synset 2 id
 	 * @param word2Id   word 2 id
 	 * @param pos2      pos 2
+	 * @param target    target (1, 2 or 0 unspecified)
 	 */
-	public CollocationSelectorPointer(final long synset1Id, final long word1Id, final Character pos1, final long synset2Id, final long word2Id, final Character pos2)
+	public CollocationSelectorPointer(final long synset1Id, final long word1Id, final Character pos1, final long synset2Id, final long word2Id, final Character pos2, int target)
 	{
 		super(synset1Id, word1Id, pos1);
 		this.synset2Id = synset2Id;
 		this.word2Id = word2Id;
 		this.pos2 = pos2;
+		this.target = target;
 	}
 
+	@Override
 	public long getSynset2Id()
 	{
 		return this.synset2Id;
 	}
 
+	@Override
 	public long getWord2Id()
 	{
 		return this.word2Id;
 	}
 
+	@Override
 	public Character getPos2()
 	{
 		return this.pos2;
+	}
+
+	@Override
+	public int getTarget()
+	{
+		return this.target;
 	}
 
 	@Override
@@ -108,6 +127,7 @@ public class CollocationSelectorPointer extends PosSelectorPointer implements Ha
 		parcel.writeLong(this.synset2Id);
 		parcel.writeLong(this.word2Id);
 		parcel.writeString(this.pos2.toString());
+		parcel.writeInt(this.target);
 	}
 
 	@SuppressWarnings("SameReturnValue")
@@ -121,7 +141,6 @@ public class CollocationSelectorPointer extends PosSelectorPointer implements Ha
 	@Override
 	public String toString()
 	{
-		return super.toString() + ' ' + "pos=" + this.pos;
+		return super.toString() + ' ' + "word2=" + this.word2Id + ' ' + "synset2=" + this.synset2Id + ' ' + "pos2=" + this.pos2 + ' ' + "target=" + this.target;
 	}
-
 }

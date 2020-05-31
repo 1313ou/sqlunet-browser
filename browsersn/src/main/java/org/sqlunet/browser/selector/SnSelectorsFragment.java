@@ -427,8 +427,10 @@ public class SnSelectorsFragment extends ListFragment
 				final long word2Id = cursor.isNull(idWord2Id) ? -1 : cursor.getLong(idWord2Id);
 				final char pos2 = cursor.isNull(idPos2) ? 0 : cursor.getString(idPos2).charAt(0);
 
+				int target = this.wordId != -1 && word1Id != word2Id ? (word1Id == this.wordId ? 1 : word2Id == this.wordId ? 2 : 0) : 0;
+
 				// pointer
-				final CollocationSelectorPointer pointer = new CollocationSelectorPointer(synset1Id, word1Id, pos1, synset2Id, word2Id, pos2);
+				final CollocationSelectorPointer pointer = new CollocationSelectorPointer(synset1Id, word1Id, pos1, synset2Id, word2Id, pos2, target);
 
 				// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
 				this.listener.onItemSelected(pointer);
