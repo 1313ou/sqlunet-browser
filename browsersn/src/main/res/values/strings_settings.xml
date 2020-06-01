@@ -9,13 +9,11 @@
 	<string-array name="pref_launch_list_titles" tools:ignore="InconsistentArrays">
 		<item>Main</item>
 		<item>Browse</item>
-		<item>Browse PredicateMatrix</item>
 		<item>Search text</item>
 	</string-array>
 	<string-array name="pref_launch_list_values" tools:ignore="InconsistentArrays">
 		<item>@string/pref_default_launch</item>
 		<item>org.sqlunet.browser.BrowseActivity</item>
-		<item>org.sqlunet.browser.BrowsePredicateMatrixActivity</item>
 		<item>org.sqlunet.browser.SearchTextActivity</item>
 	</string-array>
 

@@ -29,7 +29,7 @@
 		style="@style/Header"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="@string/syntagnet" />
+		android:text="@string/collocations" />
 
 <!--	<View-->
 <!--		android:id="@+id/divider2"-->

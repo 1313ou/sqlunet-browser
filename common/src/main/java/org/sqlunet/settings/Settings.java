@@ -17,6 +17,7 @@ import org.sqlunet.browser.common.R;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.sql.PreparedStatement;
 
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -108,6 +109,25 @@ public class Settings
 				sharedPref.edit().putString(Settings.PREF_DETAIL_MODE, mode.name()).apply();
 			}
 			return mode;
+		}
+	}
+
+	// P A N E  L A Y O U T   H O O K
+
+	static int paneMode = 2;
+
+	@LayoutRes
+	public static int getPaneLayout(@LayoutRes int defaultPaneLayout, @LayoutRes int onePaneLayout, @LayoutRes int twoPanesLayout)
+	{
+		switch(paneMode)
+		{
+			default:
+			case 0:
+				return defaultPaneLayout;
+			case 1:
+				return onePaneLayout;
+			case 2:
+				return twoPanesLayout;
 		}
 	}
 
@@ -382,7 +402,7 @@ public class Settings
 		}
 	}
 
-	/**
+	/**fragment_browse_first
 	 * Application settings
 	 *
 	 * @param context context
