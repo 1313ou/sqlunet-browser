@@ -40,7 +40,7 @@ import androidx.lifecycle.ViewModelProvider;
  */
 public class SelectorsFragment extends ListFragment
 {
-	// static protected final String TAG = "SelectorsF";
+	static protected final String TAG = "SelectorsF";
 
 	/**
 	 * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
@@ -70,9 +70,9 @@ public class SelectorsFragment extends ListFragment
 	private int activatedPosition = AdapterView.INVALID_POSITION;
 
 	/**
-	 * The fragment's current callback object, which is notified of list item clicks.
+	 * The fragment's current callback objects, which are notified of list item clicks.
 	 */
-	private Listener listener;
+	private Listener[] listeners;
 
 	/**
 	 * Search query
@@ -277,11 +277,11 @@ public class SelectorsFragment extends ListFragment
 	/**
 	 * Set listener
 	 *
-	 * @param listener listener
+	 * @param listeners listeners
 	 */
-	public void setListener(final Listener listener)
+	public void setListeners(final Listener... listeners)
 	{
-		this.listener = listener;
+		this.listeners = listeners;
 	}
 
 	// L O A D
@@ -350,7 +350,7 @@ public class SelectorsFragment extends ListFragment
 		listView.setItemChecked(position, true);
 		this.activatedPosition = position;
 
-		if (this.listener != null)
+		if (this.listeners != null)
 		{
 			final SimpleCursorAdapter adapter = (SimpleCursorAdapter) getListAdapter();
 			assert adapter != null;
@@ -371,8 +371,18 @@ public class SelectorsFragment extends ListFragment
 				final SelectorPointer pointer = new PosSelectorPointer(synsetId, this.wordId, pos.charAt(0));
 
 				// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
-				this.listener.onItemSelected(pointer, this.word, cased, pos);
+				for (Listener listener : this.listeners)
+				{
+					listener.onItemSelected(pointer, this.word, cased, pos);
+				}
 			}
 		}
+	}
+
+	public void deactivate()
+	{
+		final ListView listView = getListView();
+		listView.clearChoices();
+		listView.requestLayout();
 	}
 }

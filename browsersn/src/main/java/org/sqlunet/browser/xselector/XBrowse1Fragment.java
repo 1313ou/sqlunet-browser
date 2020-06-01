@@ -132,8 +132,6 @@ public class XBrowse1Fragment extends Fragment implements SelectorsFragment.List
 	@Override
 	public void onItemSelected(final CollocationSelectorPointer pointer)
 	{
-		// TODO
-		System.out.println("Collocation onItemSelected");
 		final View view = getView();
 		assert view != null;
 		if (isTwoPane(view))
