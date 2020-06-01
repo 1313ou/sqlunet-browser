@@ -42,13 +42,13 @@ public class SnBrowse2Activity extends AppCompatActivity
 
 		// fragment
 		final Browse2Fragment browse2Fragment = new Browse2Fragment();
-		final boolean alt = getIntent().getBooleanExtra(Browse2Fragment.ARG_ALT, false);
+		final boolean alt = getIntent().getBooleanExtra(Browse2Fragment.ARG_ALT, true);
 		final Bundle args = new Bundle();
 		args.putBoolean(Browse2Fragment.ARG_ALT, alt);
 		browse2Fragment.setArguments(args);
 		getSupportFragmentManager() //
 				.beginTransaction() //
-				.replace(R.id.container_browse2, browse2Fragment, "browse2") //
+				.replace(R.id.container_browse2, browse2Fragment, "snbrowse2") //
 				.commit();
 	}
 
@@ -63,7 +63,7 @@ public class SnBrowse2Activity extends AppCompatActivity
 		//final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
 		final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 		final String pos = args.getString(ProviderArgs.ARG_HINTPOS);
-		final Browse2Fragment fragment = (Browse2Fragment) getSupportFragmentManager().findFragmentByTag("browse2");
+		final Browse2Fragment fragment = (Browse2Fragment) getSupportFragmentManager().findFragmentByTag("snbrowse2");
 		assert fragment != null;
 		fragment.search(pointer, pos);
 	}
