@@ -28,8 +28,6 @@ public class Status extends org.sqlunet.browser.config.Status
 
 	// _status flags
 
-	static public final int EXISTS_PREDICATEMATRIX = 0x20;
-
 	static public final int EXISTS_TS_WN = 0x100;
 
 	/**
@@ -109,10 +107,6 @@ public class Status extends org.sqlunet.browser.config.Status
 		if ((status & EXISTS_INDEXES) != 0)
 		{
 			sb.append(" indexes");
-		}
-		if ((status & EXISTS_PREDICATEMATRIX) != 0)
-		{
-			sb.append(" pm");
 		}
 		if ((status & EXISTS_TS_WN) != 0)
 		{

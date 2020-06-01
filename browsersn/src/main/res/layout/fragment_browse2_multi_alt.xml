@@ -9,14 +9,6 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-	<!--     <TextView -->
-	<!--         android:id="@+id/label_syntagnet" -->
-	<!--         android:layout_width="match_parent" -->
-	<!--         android:layout_height="wrap_content" -->
-	<!--         android:text="@string/syntagnet" -->
-	<!--         android:textSize="30sp" -->
-	<!--         android:visibility="visible" /> -->
-
 	<FrameLayout
 		android:id="@+id/container_syntagnet"
 		android:layout_width="match_parent"
@@ -28,14 +20,6 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		tools:ignore="InconsistentLayout"/>
-
-	<!--     <TextView -->
-	<!--         android:id="@+id/label_bnc" -->
-	<!--         android:layout_width="match_parent" -->
-	<!--         android:layout_height="wrap_content" -->
-	<!--         android:text="@string/bnc" -->
-	<!--         android:textSize="30sp" -->
-	<!--         android:visibility="visible" /> -->
 
 	<FrameLayout
 		android:id="@+id/container_bnc"

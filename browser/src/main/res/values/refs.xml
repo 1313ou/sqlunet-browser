@@ -11,6 +11,6 @@
 	http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
 	-->
 	<item name="fragment_browse_first" type="layout">@layout/fragment_browse1</item>
-	<!--<item name="fragment_xbrowse_first" type="layout">@layout/fragment_xbrowse1</item>-->
+	<item name="fragment_xbrowse_first" type="layout">@layout/fragment_xbrowse1</item>
 
 </resources>

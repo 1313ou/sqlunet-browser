@@ -47,7 +47,7 @@ public class XBrowse1Fragment extends Fragment implements SelectorsFragment.List
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		// view
-		final View view = inflater.inflate(R.layout.fragment_xbrowse1, container, false);
+		final View view = inflater.inflate(Settings.getPaneLayout(R.layout.fragment_xbrowse_first, R.layout.fragment_xbrowse1, R.layout.fragment_xbrowse1_browse2), container, false);
 
 		// retain instance
 		setRetainInstance(true);
@@ -61,8 +61,10 @@ public class XBrowse1Fragment extends Fragment implements SelectorsFragment.List
 		{
 			this.xSelectorsFragment = new XSelectorsFragment();
 			Bundle args = getArguments();
-			if(args == null)
+			if (args == null)
+			{
 				args = new Bundle();
+			}
 			boolean isTwoPane = isTwoPane(view);
 			args.putBoolean(Selectors.IS_TWO_PANE, isTwoPane);
 			this.xSelectorsFragment.setArguments(args);
