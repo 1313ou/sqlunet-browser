@@ -121,9 +121,9 @@ public class SnSelectorsFragment extends ListFragment
 	private int activatedPosition = AdapterView.INVALID_POSITION;
 
 	/**
-	 * The fragment's current callback object, which is notified of list item clicks.
+	 * The fragment's current callback objects, which are notified of list item clicks.
 	 */
-	private Listener listener;
+	private Listener[] listeners;
 
 	/**
 	 * Search query
@@ -354,13 +354,13 @@ public class SnSelectorsFragment extends ListFragment
 	// L I S T E N E R
 
 	/**
-	 * Set listener
+	 * Set listeners
 	 *
-	 * @param listener listener
+	 * @param listeners listeners
 	 */
-	public void setListener(final Listener listener)
+	public void setListeners(final Listener... listeners)
 	{
-		this.listener = listener;
+		this.listeners = listeners;
 	}
 
 	// L O A D
@@ -404,7 +404,7 @@ public class SnSelectorsFragment extends ListFragment
 		listView.setItemChecked(position, true);
 		this.activatedPosition = position;
 
-		if (this.listener != null)
+		if (this.listeners != null)
 		{
 			final SimpleCursorAdapter adapter = (SimpleCursorAdapter) getListAdapter();
 			assert adapter != null;
@@ -433,8 +433,18 @@ public class SnSelectorsFragment extends ListFragment
 				final CollocationSelectorPointer pointer = new CollocationSelectorPointer(synset1Id, word1Id, pos1, synset2Id, word2Id, pos2, target);
 
 				// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
-				this.listener.onItemSelected(pointer);
+				for (Listener listener : this.listeners)
+				{
+					listener.onItemSelected(pointer);
+				}
 			}
 		}
+	}
+
+	public void deactivate()
+	{
+		final ListView listView = getListView();
+		listView.clearChoices();
+		listView.requestLayout();
 	}
 }

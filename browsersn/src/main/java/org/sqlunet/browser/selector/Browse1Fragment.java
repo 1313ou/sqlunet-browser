@@ -62,7 +62,7 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 			boolean isTwoPane = isTwoPane(view);
 			args.putBoolean(IS_TWO_PANE, isTwoPane);
 			this.selectorsFragment.setArguments(args);
-			this.selectorsFragment.setListener(this);
+			this.selectorsFragment.setListeners(this);
 		}
 
 		// transaction on selectors pane

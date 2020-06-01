@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.sqlunet.browser.R;
+import org.sqlunet.browser.selector.CollocationSelectorPointer;
+import org.sqlunet.browser.selector.SelectorPointer;
 import org.sqlunet.browser.selector.SelectorsFragment;
 import org.sqlunet.browser.selector.SnSelectorsFragment;
 
@@ -22,7 +24,7 @@ import androidx.fragment.app.Fragment;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class XSelectorsFragment extends Fragment
+public class XSelectorsFragment extends Fragment implements SelectorsFragment.Listener, SnSelectorsFragment.Listener
 {
 	// static private final String TAG = "XSelectorsF";
 
@@ -72,13 +74,13 @@ public class XSelectorsFragment extends Fragment
 			// Pass the arguments
 			fragment.setArguments(getArguments());
 
-			// Listener
-			fragment.setListener(this.wnListener);
+			// Listeners
+			fragment.setListeners(this.wnListener, this);
 
 			// Add the fragment to the fragment container layout
 			getChildFragmentManager() //
 					.beginTransaction() //
-					.add(R.id.wnselectors, fragment) //
+					.add(R.id.wnselectors, fragment, "wnselectors") //
 					.commit();
 		}
 
@@ -98,12 +100,12 @@ public class XSelectorsFragment extends Fragment
 			fragment.setArguments(getArguments());
 
 			// Listener
-			fragment.setListener(this.snListener);
+			fragment.setListeners(this.snListener, this);
 
 			// Add the fragment to the fragment container layout
 			getChildFragmentManager() //
 					.beginTransaction() //
-					.add(R.id.snselectors, fragment) //
+					.add(R.id.snselectors, fragment, "snselectors") //
 					.commit();
 		}
 	}
@@ -120,5 +122,25 @@ public class XSelectorsFragment extends Fragment
 	{
 		this.wnListener = listener1;
 		this.snListener = listener2;
+	}
+
+	@Override
+	public void onItemSelected(final SelectorPointer pointer, final String word, final String cased, final String pos)
+	{
+		SnSelectorsFragment f = (SnSelectorsFragment) getChildFragmentManager().findFragmentByTag("snselectors");
+		if (f != null)
+		{
+			f.deactivate();
+		}
+	}
+
+	@Override
+	public void onItemSelected(final CollocationSelectorPointer pointer)
+	{
+		SelectorsFragment f = (SelectorsFragment) getChildFragmentManager().findFragmentByTag("wnselectors");
+		if (f != null)
+		{
+			f.deactivate();
+		}
 	}
 }
