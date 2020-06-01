@@ -32,9 +32,9 @@ public class Settings
 	// preferences
 
 	static public final String PREF_LAUNCH = "pref_launch";
-	static public final String PREF_SELECTOR = "pref_selector_mode";
-	static public final String PREF_SELECTOR_MODE = "pref_viewweb_mode";
-	static public final String PREF_DETAIL_MODE = "pref_detail_mode";
+	static public final String PREF_SELECTOR = "pref_selector_mode"; // selector or xselector or ...
+	static public final String PREF_SELECTOR_MODE = "pref_selector_view_mode"; // view or web for selector fragment
+	static public final String PREF_DETAIL_MODE = "pref_detail_view_mode"; // view wor web for detail fragment
 	static public final String PREF_XML = "pref_xml";
 	static public final String PREF_TEXTSEARCH_MODE = "pref_searchtext_mode";
 	static public final String PREF_STORAGE = StorageSettings.PREF_STORAGE;
@@ -47,6 +47,7 @@ public class Settings
 	static public final String PREF_CACHE = StorageSettings.PREF_CACHE;
 	static public final String PREF_DB_DATE = "pref_db_date";
 	static public final String PREF_DB_SIZE = "pref_db_size";
+	static public final String PREF_TWO_PANES = "pref_two_panes";
 
 	// D I S P L A Y
 
@@ -114,12 +115,12 @@ public class Settings
 
 	// P A N E  L A Y O U T   H O O K
 
-	static int paneMode = 2;
+	public static int paneMode = 0;
 
 	@LayoutRes
 	public static int getPaneLayout(@LayoutRes int defaultPaneLayout, @LayoutRes int onePaneLayout, @LayoutRes int twoPanesLayout)
 	{
-		switch(paneMode)
+		switch (paneMode)
 		{
 			default:
 			case 0:
@@ -350,11 +351,11 @@ public class Settings
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		final Editor editor = sharedPref.edit();
 
-//		final String selector_string = sharedPref.getString(Settings.PREF_SELECTOR, null);
-//		if (selector_string == null)
-//		{
-//			editor.putString(Settings.PREF_SELECTOR, Settings.Selector.SELECTOR.name());
-//		}
+		//		final String selector_string = sharedPref.getString(Settings.PREF_SELECTOR, null);
+		//		if (selector_string == null)
+		//		{
+		//			editor.putString(Settings.PREF_SELECTOR, Settings.Selector.SELECTOR.name());
+		//		}
 
 		final String viewwebMode_string = sharedPref.getString(Settings.PREF_SELECTOR_MODE, null);
 		if (viewwebMode_string == null)
@@ -400,9 +401,13 @@ public class Settings
 				//
 			}
 		}
+
+		final boolean twoPanes = sharedPref.getBoolean(Settings.PREF_TWO_PANES, false);
+		Settings.paneMode = twoPanes ? 2 : 0;
 	}
 
-	/**fragment_browse_first
+	/**
+	 * fragment_browse_first
 	 * Application settings
 	 *
 	 * @param context context

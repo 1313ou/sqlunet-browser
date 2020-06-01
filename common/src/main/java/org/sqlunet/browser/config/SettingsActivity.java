@@ -193,6 +193,15 @@ public class SettingsActivity extends BaseSettingsActivity
 				BaseProvider.logSql = flag;
 				return true;
 			});
+
+			final Preference twoPanesPreference = findPreference(Settings.PREF_TWO_PANES);
+			assert twoPanesPreference != null;
+			twoPanesPreference.setOnPreferenceChangeListener((preference, value) -> {
+
+				boolean flag = (Boolean) value;
+				Settings.paneMode = flag ? 2 : 0;
+				return true;
+			});
 		}
 	}
 

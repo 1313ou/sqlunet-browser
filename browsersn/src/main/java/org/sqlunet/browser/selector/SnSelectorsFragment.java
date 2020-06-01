@@ -287,7 +287,7 @@ public class SnSelectorsFragment extends ListFragment
 		MatrixCursor matrixCursor = new MatrixCursor(COLUMNS);
 
 		//	"_id",  WORD1ID,  WORD2ID,  SYNSET1ID,  SYNSET2ID,  WORD1,  WORD2,  POS1,  POS2
-		matrixCursor.addRow(new Object[]{Integer.MAX_VALUE, wordid, wordid, null, null, word + " *", "* " + word, null, null});
+		matrixCursor.addRow(new Object[]{Integer.MAX_VALUE, wordid, wordid, null, null, "* " + word + " *", "", null, null});
 		matrixCursor.addRow(new Object[]{Integer.MAX_VALUE - 1, wordid, null, null, null, word, "*", null, null});
 		matrixCursor.addRow(new Object[]{Integer.MAX_VALUE - 2, null, wordid, null, null, "*", word, null, null});
 
