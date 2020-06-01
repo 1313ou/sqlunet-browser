@@ -79,7 +79,7 @@ public class SnBrowse1Fragment extends Fragment implements SnSelectorsFragment.L
 			{
 				browse2Fragment = new Browse2Fragment();
 				final Bundle args = new Bundle();
-				args.putBoolean(Browse2Fragment.ARG_ALT, false);
+				args.putBoolean(Browse2Fragment.ARG_ALT, true);
 				browse2Fragment.setArguments(args);
 			}
 			manager.beginTransaction() //
