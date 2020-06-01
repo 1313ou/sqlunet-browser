@@ -21,7 +21,7 @@
 		android:defaultValue="-1"
 		android:entries="@array/pref_selector_mode_list_titles"
 		android:entryValues="@array/pref_selector_mode_list_values"
-		android:key="pref_viewweb_mode"
+		android:key="pref_selector_view_mode"
 		android:negativeButtonText="@null"
 		android:positiveButtonText="@null"
 		android:summary="@string/pref_description_selector_mode"
@@ -31,7 +31,7 @@
 		android:defaultValue="-1"
 		android:entries="@array/pref_detail_mode_list_titles"
 		android:entryValues="@array/pref_detail_mode_list_values"
-		android:key="pref_detail_mode"
+		android:key="pref_detail_view_mode"
 		android:negativeButtonText="@null"
 		android:positiveButtonText="@null"
 		android:summary="@string/pref_description_detail_mode"
@@ -71,6 +71,13 @@
 		android:key="pref_sql_log"
 		android:summary="@string/pref_description_sql_log"
 		android:title="@string/pref_title_sql_log"
+		app:singleLineTitle="false"/>
+
+	<SwitchPreferenceCompat
+		android:defaultValue="false"
+		android:key="pref_two_panes"
+		android:summary="@string/pref_description_two_panes"
+		android:title="@string/pref_title_two_panes"
 		app:singleLineTitle="false"/>
 
 </PreferenceScreen>
