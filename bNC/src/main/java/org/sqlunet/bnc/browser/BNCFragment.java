@@ -32,7 +32,7 @@ public class BNCFragment extends TreeFragment
 	{
 		this.layoutId = R.layout.fragment_bnc;
 		this.treeContainerId = R.id.data_contents;
-		this.header = "BNC";
+		this.headerId = R.string.bnc_frequencies;
 		this.iconId = R.drawable.bnc;
 	}
 

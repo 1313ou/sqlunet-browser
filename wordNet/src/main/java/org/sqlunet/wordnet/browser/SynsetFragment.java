@@ -50,7 +50,7 @@ public class SynsetFragment extends TreeFragment
 		this.expand = true;
 		this.layoutId = R.layout.fragment_sense;
 		this.treeContainerId = R.id.data_contents;
-		this.header = "WordNet";
+		this.headerId = R.string.wordnet_synsets;
 		this.iconId = R.drawable.wordnet;
 	}
 

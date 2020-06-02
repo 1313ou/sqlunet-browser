@@ -16,8 +16,10 @@ import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.xnet.R;
 
+import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 
 /**
@@ -47,8 +49,10 @@ abstract public class TreeFragment extends Fragment
 
 	protected int treeContainerId;
 
-	protected String header;
+	@StringRes
+	protected int headerId;
 
+	@IdRes
 	protected int iconId;
 
 	/**
@@ -69,7 +73,8 @@ abstract public class TreeFragment extends Fragment
 		this.treeRoot.setSelectable(false);
 
 		// sub root node
-		TreeFactory.makeTreeNode(this.header, this.iconId, false).addTo(this.treeRoot);
+		String header = getResources().getString(this.headerId);
+		TreeFactory.makeTreeNode(header, this.iconId, false).addTo(this.treeRoot);
 	}
 
 	@Override

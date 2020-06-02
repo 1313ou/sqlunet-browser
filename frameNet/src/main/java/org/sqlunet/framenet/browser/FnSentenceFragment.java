@@ -32,7 +32,7 @@ public class FnSentenceFragment extends TreeFragment
 	{
 		this.layoutId = R.layout.fragment_fnsentence;
 		this.treeContainerId = R.id.data_contents;
-		this.header = "Sentence";
+		this.headerId = R.string.framenet_sentences;
 		this.iconId = R.drawable.sentence;
 	}
 

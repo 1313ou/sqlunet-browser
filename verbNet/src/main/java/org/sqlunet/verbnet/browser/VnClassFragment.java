@@ -32,7 +32,7 @@ public class VnClassFragment extends TreeFragment
 	{
 		this.layoutId = R.layout.fragment_vnclass;
 		this.treeContainerId = R.id.data_contents;
-		this.header = "Classes";
+		this.headerId = R.string.verbnet_classes;
 		this.iconId = R.drawable.verbnet;
 	}
 

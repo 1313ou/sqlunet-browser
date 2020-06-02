@@ -35,7 +35,7 @@ public class PredicateMatrixFragment extends TreeFragment
 	{
 		this.layoutId = R.layout.fragment_predicatematrix;
 		this.treeContainerId = R.id.data_contents;
-		this.header = "PredicateMatrix";
+		this.headerId = R.string.predicatematrix_predicates;
 		this.iconId = R.drawable.predicatematrix;
 	}
 

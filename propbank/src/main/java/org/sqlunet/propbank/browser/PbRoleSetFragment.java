@@ -32,7 +32,7 @@ public class PbRoleSetFragment extends TreeFragment
 	{
 		this.layoutId = R.layout.fragment_pbroleset;
 		this.treeContainerId = R.id.data_contents;
-		this.header = "RoleSet";
+		this.headerId = R.string.propbank_rolesets;
 		this.iconId = R.drawable.propbank;
 	}
 

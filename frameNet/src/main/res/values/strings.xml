@@ -6,6 +6,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<string name="framenet" tools:keep="@string/framenet">FrameNet</string>
+	<string name="framenet_frames" tools:keep="@string/framenet_frames">Frames (FrameNet)</string>
+	<string name="framenet_lexunits" tools:keep="@string/framenet_lexunits">Lexical Units (FrameNet)</string>
+	<string name="framenet_sentences" tools:keep="@string/framenet_sentences">Sentences (FrameNet)</string>
+	<string name="framenet_annosets" tools:keep="@string/framenet_annosets">Annotation sets (FrameNet)</string>
+	<string name="framenet_annosets_for_valenceunit" tools:keep="@string/framenet_annosets_for_valenceunit">Annotation sets for Valence unit (FrameNet)</string>
+	<string name="framenet_annosets_for_pattern" tools:keep="@string/framenet_annosets_for_pattern">Annotation sets for Pattern (FrameNet)</string>
 	<string name="framenet_blurb" tools:keep="@string/framenet_blurb">&lt;b&gt;FrameNet&lt;/b&gt;\nexplores semantic roles</string>
 
 	<string name="title_activity_fnframe">FrameNet Frame</string>

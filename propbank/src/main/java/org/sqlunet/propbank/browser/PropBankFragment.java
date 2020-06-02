@@ -34,7 +34,7 @@ public class PropBankFragment extends TreeFragment
 	{
 		this.layoutId = R.layout.fragment_propbank;
 		this.treeContainerId = R.id.data_contents;
-		this.header = "PropBank";
+		this.headerId = R.string.propbank_rolesets;
 		this.iconId = R.drawable.propbank;
 	}
 

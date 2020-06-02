@@ -6,6 +6,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<string name="predicatematrix" tools:keep="@string/predicatematrix">Predicate Matrix</string>
+	<string name="predicatematrix_predicates" tools:keep="@string/predicatematrix_predicates">Predicates (Predicate Matrix)</string>
 	<string name="predicatematrix_blurb" tools:keep="@string/predicatematrix_blurb">&lt;b&gt;Predicate Matrix&lt;/b&gt;\nunifies semantic roles across VerbNet, PropBank and FrameNet</string>
 
 	<string name="title_activity_predicatematrix">PredicateMatrix</string>
