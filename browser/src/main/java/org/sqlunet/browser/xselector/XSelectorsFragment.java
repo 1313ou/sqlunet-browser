@@ -274,10 +274,11 @@ public class XSelectorsFragment extends ExpandableListFragment
 		}
 		if (Settings.Source.FRAMENET.test(enable))
 		{
+			//noinspection UnusedAssignment
 			this.groupFrameNetPosition = position++;
 			this.xnCursor.addRow(new Object[]{GROUPID_FRAMENET, "framenet", Integer.toString(R.drawable.framenet)});
 		}
-		this.groupPosition = position >= 0 ? 0 : -1;
+		this.groupPosition = 0;
 		Log.d(XSelectorsFragment.TAG, "init position " + this.groupPosition + " " + this);
 	}
 

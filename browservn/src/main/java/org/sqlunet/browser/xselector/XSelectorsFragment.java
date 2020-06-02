@@ -224,10 +224,11 @@ public class XSelectorsFragment extends ExpandableListFragment
 		}
 		if (Settings.Source.PROPBANK.test(enable))
 		{
+			//noinspection UnusedAssignment
 			this.groupPropBankPosition = position++;
 			this.xnCursor.addRow(new Object[]{GROUPID_PROPBANK, "propbank", Integer.toString(R.drawable.propbank)});
 		}
-		this.groupPosition = position >= 0 ? 0 : -1;
+		this.groupPosition = 0;
 		Log.d(XSelectorsFragment.TAG, "init position " + this.groupPosition + " " + this);
 	}
 
