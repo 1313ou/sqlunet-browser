@@ -5,7 +5,6 @@
 package org.sqlunet.syntagnet.loaders;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.text.SpannableStringBuilder;
@@ -342,8 +341,6 @@ abstract class BaseModule extends Module
 			final String definition1, final String definition2, //
 			final boolean isSingle, final boolean isTargetSecond, final TreeNode parent, final TreeOps changedList)
 	{
-		final Context context = BaseModule.this.fragment.requireContext();
-
 		// header
 		final SpannableStringBuilder sbh = new SpannableStringBuilder();
 		Spanner.append(sbh, word1, 0, SyntagNetFactories.collocationFactory);

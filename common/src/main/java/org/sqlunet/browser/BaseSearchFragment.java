@@ -239,7 +239,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		array.recycle();
 
 		// adapter
-		final ArrayAdapter adapter = new ArrayAdapter<CharSequence>(context, R.layout.spinner_item_actionbar, android.R.id.text1, modeLabels)
+		final ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(context, R.layout.spinner_item_actionbar, android.R.id.text1, modeLabels)
 		{
 			@NonNull
 			@Override

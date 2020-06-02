@@ -314,7 +314,6 @@ public class SqlFormatter
 			if (this.inFunction > 0)
 			{
 				this.inFunction--;
-				out();
 			}
 			else
 			{
@@ -323,8 +322,8 @@ public class SqlFormatter
 					this.indent--;
 					newline();
 				}
-				out();
 			}
+			out();
 			this.beginLine = false;
 		}
 

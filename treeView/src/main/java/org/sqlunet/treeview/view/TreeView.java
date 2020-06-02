@@ -239,7 +239,7 @@ public class TreeView
 	@Nullable
 	public View update(@NonNull final TreeNode node)
 	{
-		final Controller controller = node.getController();
+		@SuppressWarnings("unchecked") final Controller<Object> controller = (Controller<Object>) node.getController();
 		final SubtreeView subtreeView = controller.getSubtreeView();
 		final View nodeView = controller.getNodeView();
 		if (subtreeView != null && nodeView != null)
@@ -252,7 +252,7 @@ public class TreeView
 			subtreeView.removeNodeView(nodeView);
 
 			// new node view
-			@SuppressWarnings("unchecked") final View newNodeView = controller.createNodeView(this.context, node, node.getValue());
+			final View newNodeView = controller.createNodeView(this.context, node, node.getValue());
 			assert newNodeView != null;
 			controller.setNodeView(newNodeView);
 
@@ -325,7 +325,7 @@ public class TreeView
 	 */
 	static public boolean isExpanded(@NonNull final TreeNode node)
 	{
-		final Controller controller = node.getController();
+		final Controller<?> controller = node.getController();
 		final ViewGroup childrenView = controller.getChildrenView();
 		if (childrenView == null)
 		{
