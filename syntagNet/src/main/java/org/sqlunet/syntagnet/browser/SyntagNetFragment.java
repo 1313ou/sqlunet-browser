@@ -56,7 +56,8 @@ public class SyntagNetFragment extends TreeFragment
 			final TreeNode queryNode = this.treeRoot.getChildren().iterator().next();
 
 			// module
-			final Module module = (pointer instanceof SnCollocationPointer) ? new CollocationModule(this) : new CollocationsModule(this);
+			//final Module module = (pointer instanceof SnCollocationPointer) ? new CollocationModule(this) : new CollocationsModule(this);
+			final Module module = type == ProviderArgs.ARG_QUERYTYPE_COLLOCATION ? new CollocationModule(this) : new CollocationsModule(this);
 			module.init(type, pointer);
 			module.process(queryNode);
 		}

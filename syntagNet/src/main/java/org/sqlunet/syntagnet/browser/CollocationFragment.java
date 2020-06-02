@@ -11,6 +11,7 @@ import org.sqlunet.browser.Module;
 import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.syntagnet.R;
+import org.sqlunet.syntagnet.SnCollocationPointer;
 import org.sqlunet.syntagnet.loaders.CollocationModule;
 import org.sqlunet.syntagnet.loaders.CollocationsModule;
 import org.sqlunet.treeview.model.TreeNode;
@@ -33,7 +34,7 @@ public class CollocationFragment extends TreeFragment
 	{
 		this.layoutId = R.layout.fragment_collocation;
 		this.treeContainerId = R.id.data_contents;
-		this.header = "Collocations";
+		this.header = "Collocation";
 		this.iconId = R.drawable.syntagnet;
 	}
 
@@ -55,7 +56,8 @@ public class CollocationFragment extends TreeFragment
 			final TreeNode queryNode = this.treeRoot.getChildren().iterator().next();
 
 			// module
-			final Module module = type == ProviderArgs.ARG_QUERYTYPE_COLLOCATION ? new CollocationModule(this) : new CollocationsModule(this);
+			final Module module = (pointer instanceof SnCollocationPointer) ? new CollocationModule(this) : new CollocationsModule(this);
+			//final Module module = type == ProviderArgs.ARG_QUERYTYPE_COLLOCATION ? new CollocationModule(this) : new CollocationsModule(this);
 			module.init(type, pointer);
 			module.process(queryNode);
 		}
