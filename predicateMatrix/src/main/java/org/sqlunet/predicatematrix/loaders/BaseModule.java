@@ -50,8 +50,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWTREE;
 import static org.sqlunet.view.TreeOp.TreeOpCode.NEWCHILD;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWTREE;
 
 /**
  * Base module for PredicateMatrix
@@ -1670,14 +1670,17 @@ abstract class BaseModule extends Module
 		@Override
 		public void process()
 		{
-			final Context context = BaseModule.this.fragment.requireContext();
+			final Context context = BaseModule.this.fragment.getContext();
+			if (context == null)
+			{
+				return;
+			}
 
 			final Parcelable pointer = new VnClassPointer(this.id);
 			final Intent intent = new Intent(context, VnClassActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_VNCLASS);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
-
 			context.startActivity(intent);
 		}
 	}
@@ -1700,14 +1703,17 @@ abstract class BaseModule extends Module
 		@Override
 		public void process()
 		{
-			final Context context = BaseModule.this.fragment.requireContext();
+			final Context context = BaseModule.this.fragment.getContext();
+			if (context == null)
+			{
+				return;
+			}
 
 			final Parcelable pointer = new PbRoleSetPointer(this.id);
 			final Intent intent = new Intent(context, PbRoleSetActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_PBROLESET);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
-
 			context.startActivity(intent);
 		}
 	}
@@ -1730,14 +1736,17 @@ abstract class BaseModule extends Module
 		@Override
 		public void process()
 		{
-			final Context context = BaseModule.this.fragment.requireContext();
+			final Context context = BaseModule.this.fragment.getContext();
+			if (context == null)
+			{
+				return;
+			}
 
 			final Parcelable pointer = new FnFramePointer(this.id);
 			final Intent intent = new Intent(context, FnFrameActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNFRAME);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
-
 			context.startActivity(intent);
 		}
 	}

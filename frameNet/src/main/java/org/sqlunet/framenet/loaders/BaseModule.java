@@ -2632,13 +2632,17 @@ abstract public class BaseModule extends Module
 		@Override
 		public void process()
 		{
-			final Context context = BaseModule.this.fragment.requireContext();
+			final Context context = BaseModule.this.fragment.getContext();
+			if (context == null)
+			{
+				return;
+			}
+
 			final Parcelable pointer = new FnFramePointer(this.id);
 			final Intent intent = new Intent(context, FnFrameActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNFRAME);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
-
 			context.startActivity(intent);
 		}
 
@@ -2668,13 +2672,18 @@ abstract public class BaseModule extends Module
 		@Override
 		public void process()
 		{
+			final Context context = BaseModule.this.fragment.getContext();
+			if (context == null)
+			{
+				return;
+			}
+
 			final Parcelable pointer = new FnLexUnitPointer(this.id);
-			final Intent intent = new Intent(BaseModule.this.fragment.requireContext(), FnLexUnitActivity.class);
+			final Intent intent = new Intent(context, FnLexUnitActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
-
-			BaseModule.this.fragment.requireContext().startActivity(intent);
+			context.startActivity(intent);
 		}
 
 		@NonNull
@@ -2703,13 +2712,18 @@ abstract public class BaseModule extends Module
 		@Override
 		public void process()
 		{
+			final Context context = BaseModule.this.fragment.getContext();
+			if (context == null)
+			{
+				return;
+			}
+
 			final Parcelable pointer = new FnSentencePointer(this.id);
-			final Intent intent = new Intent(BaseModule.this.fragment.requireContext(), FnSentenceActivity.class);
+			final Intent intent = new Intent(context, FnSentenceActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNSENTENCE);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
-
-			BaseModule.this.fragment.requireContext().startActivity(intent);
+			context.startActivity(intent);
 		}
 
 		@NonNull
