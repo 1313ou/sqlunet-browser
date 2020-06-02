@@ -146,7 +146,8 @@ public class XBrowse1Fragment extends Fragment implements SelectorsFragment.List
 			// in single-pane mode, simply start the detail activity for the selected item ID.
 			final Bundle args = new Bundle();
 			args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer);
-			final Intent intent = new Intent(requireContext(), CollocationActivity.class);
+			args.putBoolean(Browse2Fragment.ARG_ALT, true);
+			final Intent intent = new Intent(requireContext(), Browse2Activity.class);
 			intent.putExtras(args);
 			startActivity(intent);
 		}
