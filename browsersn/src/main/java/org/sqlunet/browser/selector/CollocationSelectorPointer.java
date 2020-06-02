@@ -12,6 +12,7 @@ import org.sqlunet.Has2WordId;
 import org.sqlunet.HasTarget;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * SelectorPointer
@@ -33,6 +34,7 @@ public class CollocationSelectorPointer extends PosSelectorPointer implements Ha
 	/**
 	 * POS 2
 	 */
+	@Nullable
 	private final Character pos2;
 
 	/**
@@ -71,8 +73,7 @@ public class CollocationSelectorPointer extends PosSelectorPointer implements Ha
 		this.synset2Id = parcel.readLong();
 		this.word2Id = parcel.readLong();
 		String posStr = parcel.readString();
-		assert posStr != null;
-		this.pos2 = posStr.charAt(0);
+		this.pos2 = posStr == null ? null : posStr.charAt(0);
 		this.target = parcel.readInt();
 	}
 
@@ -87,7 +88,7 @@ public class CollocationSelectorPointer extends PosSelectorPointer implements Ha
 	 * @param pos2      pos 2
 	 * @param target    target (1, 2 or 0 unspecified)
 	 */
-	public CollocationSelectorPointer(final long synset1Id, final long word1Id, final Character pos1, final long synset2Id, final long word2Id, final Character pos2, int target)
+	public CollocationSelectorPointer(final long synset1Id, final long word1Id, final Character pos1, final long synset2Id, final long word2Id, @Nullable final Character pos2, int target)
 	{
 		super(synset1Id, word1Id, pos1);
 		this.synset2Id = synset2Id;
@@ -108,6 +109,7 @@ public class CollocationSelectorPointer extends PosSelectorPointer implements Ha
 		return this.word2Id;
 	}
 
+	@Nullable
 	@Override
 	public Character getPos2()
 	{
@@ -126,7 +128,7 @@ public class CollocationSelectorPointer extends PosSelectorPointer implements Ha
 		super.writeToParcel(parcel, flags);
 		parcel.writeLong(this.synset2Id);
 		parcel.writeLong(this.word2Id);
-		parcel.writeString(this.pos2.toString());
+		parcel.writeString(this.pos2 == null ? null : this.pos2.toString());
 		parcel.writeInt(this.target);
 	}
 

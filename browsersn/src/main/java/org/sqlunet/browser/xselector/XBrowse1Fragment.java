@@ -20,7 +20,6 @@ import org.sqlunet.browser.selector.SelectorsFragment;
 import org.sqlunet.browser.selector.SnSelectorsFragment;
 import org.sqlunet.browser.xn.Settings;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.syntagnet.browser.CollocationActivity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

@@ -4,7 +4,7 @@
 
 package org.sqlunet;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Has part-of-speech interface
@@ -18,6 +18,6 @@ public interface Has2Pos extends HasPos
 	 *
 	 * @return pos
 	 */
-	@NonNull
+	@Nullable
 	Character getPos2();
 }

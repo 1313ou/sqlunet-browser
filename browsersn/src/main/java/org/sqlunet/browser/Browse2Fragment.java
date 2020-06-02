@@ -13,7 +13,6 @@ import org.sqlunet.browser.web.WebFragment;
 import org.sqlunet.browser.xn.Settings;
 import org.sqlunet.browser.xselector.XSelectorPointer;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.syntagnet.browser.CollocationFragment;
 import org.sqlunet.syntagnet.browser.SyntagNetFragment;
 import org.sqlunet.wordnet.browser.SenseFragment;
 

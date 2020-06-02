@@ -26,7 +26,4 @@
 	<color name="primaryForeColor">@android:color/white</color>
 	<color name="secondaryForeColor">#c0c0d0</color>
 
-	<color name="group_color">@color/secondaryColor</color>
-	<color name="group_fore_color">@color/primaryForeColor</color>
-
 </resources>
