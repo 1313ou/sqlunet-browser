@@ -2042,31 +2042,33 @@ abstract public class BaseModule extends Module
 	/**
 	 * Word link data
 	 */
-	public static class BaseWordLink extends Link
+	public class BaseWordLink extends Link
 	{
-		private final Context context;
-
 		/**
 		 * Constructor
 		 *
 		 * @param wordId  word id
-		 * @param context context
 		 */
-		public BaseWordLink(final long wordId, final Context context)
+		public BaseWordLink(final long wordId)
 		{
 			super(wordId);
-			this.context = context;
 		}
 
 		@Override
 		public void process()
 		{
+			final Context context = BaseModule.this.fragment.getContext();
+			if (context == null)
+			{
+				return;
+			}
+
 			final Parcelable pointer = new WordPointer(this.id);
-			final Intent intent = new Intent(this.context, WordActivity.class);
+			final Intent intent = new Intent(context, WordActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_WORD);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
-			this.context.startActivity(intent);
+			context.startActivity(intent);
 		}
 
 		@NonNull
@@ -2089,16 +2091,15 @@ abstract public class BaseModule extends Module
 		 */
 		WordLink(final long wordId)
 		{
-			super(wordId, BaseModule.this.fragment.requireContext());
+			super(wordId);
 		}
 	}
 
 	/**
 	 * Synset link data
 	 */
-	public static class BaseSynsetLink extends Link
+	public class BaseSynsetLink extends Link
 	{
-		protected final Context context;
 		final int recurse;
 
 		/**
@@ -2106,25 +2107,29 @@ abstract public class BaseModule extends Module
 		 *
 		 * @param synsetId synset id
 		 * @param recurse  max recursion level
-		 * @param context  context
 		 */
-		public BaseSynsetLink(final long synsetId, final int recurse, final Context context)
+		public BaseSynsetLink(final long synsetId, final int recurse)
 		{
 			super(synsetId);
 			this.recurse = recurse;
-			this.context = context;
 		}
 
 		@Override
 		public void process()
 		{
+			final Context context = BaseModule.this.fragment.getContext();
+			if (context == null)
+			{
+				return;
+			}
+
 			final Parcelable pointer = new SynsetPointer(this.id);
-			final Intent intent = new Intent(this.context, SynsetActivity.class);
+			final Intent intent = new Intent(context, SynsetActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.putExtra(ProviderArgs.ARG_QUERYRECURSE, this.recurse);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
-			this.context.startActivity(intent);
+			context.startActivity(intent);
 		}
 
 		@NonNull
@@ -2148,14 +2153,14 @@ abstract public class BaseModule extends Module
 		 */
 		SynsetLink(final long synsetId, final int recurse)
 		{
-			super(synsetId, recurse, BaseModule.this.fragment.requireContext());
+			super(synsetId, recurse);
 		}
 	}
 
 	/**
 	 * Sense link data
 	 */
-	public static class BaseSenseLink extends BaseSynsetLink
+	public class BaseSenseLink extends BaseSynsetLink
 	{
 		final private long wordId;
 
@@ -2164,24 +2169,29 @@ abstract public class BaseModule extends Module
 		 *
 		 * @param synsetId synset id
 		 * @param wordId   word id
-		 * @param recurse  max recursion level
 		 */
-		public BaseSenseLink(final long synsetId, final long wordId, final int recurse, final Context context)
+		public BaseSenseLink(final long synsetId, final long wordId, final int recurse)
 		{
-			super(synsetId, recurse, context);
+			super(synsetId, recurse);
 			this.wordId = wordId;
 		}
 
 		@Override
 		public void process()
 		{
+			final Context context = BaseModule.this.fragment.getContext();
+			if (context == null)
+			{
+				return;
+			}
+
 			final Parcelable pointer = new SensePointer(this.id, this.wordId);
-			final Intent intent = new Intent(this.context, SynsetActivity.class);
+			final Intent intent = new Intent(context, SynsetActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.putExtra(ProviderArgs.ARG_QUERYRECURSE, this.recurse);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
-			this.context.startActivity(intent);
+			context.startActivity(intent);
 		}
 
 		@NonNull
@@ -2206,7 +2216,7 @@ abstract public class BaseModule extends Module
 		 */
 		SenseLink(final long synsetId, final long wordId, final int recurse)
 		{
-			super(synsetId, wordId, recurse, BaseModule.this.fragment.requireContext());
+			super(synsetId, wordId, recurse);
 		}
 	}
 }
