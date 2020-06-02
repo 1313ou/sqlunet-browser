@@ -14,6 +14,7 @@ import org.sqlunet.browser.xn.Settings;
 import org.sqlunet.browser.xselector.XSelectorPointer;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.syntagnet.browser.CollocationFragment;
+import org.sqlunet.syntagnet.browser.SyntagNetFragment;
 import org.sqlunet.wordnet.browser.SenseFragment;
 
 import androidx.annotation.Nullable;
@@ -90,9 +91,9 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 				{
 					// final View labelView = findViewById(R.id.label_syntagnet);
 					// labelView.setVisibility(View.VISIBLE);
-					final Fragment collocationFragment = new CollocationFragment();
-					collocationFragment.setArguments(args);
-					transaction.replace(R.id.container_syntagnet, collocationFragment, "syntagnet");
+					final Fragment syntagNetFragment = new SyntagNetFragment();
+					syntagNetFragment.setArguments(args);
+					transaction.replace(R.id.container_syntagnet, syntagNetFragment, "syntagnet");
 				}
 				else
 				{
