@@ -34,7 +34,7 @@ public class CollocationFragment extends TreeFragment
 	{
 		this.layoutId = R.layout.fragment_collocation;
 		this.treeContainerId = R.id.data_contents;
-		this.header = "Collocation";
+		this.header = getResources().getString(R.string.collocations);
 		this.iconId = R.drawable.syntagnet;
 	}
 

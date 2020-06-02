@@ -11,7 +11,6 @@ import org.sqlunet.browser.Module;
 import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.syntagnet.R;
-import org.sqlunet.syntagnet.SnCollocationPointer;
 import org.sqlunet.syntagnet.loaders.CollocationModule;
 import org.sqlunet.syntagnet.loaders.CollocationsModule;
 import org.sqlunet.treeview.model.TreeNode;
@@ -34,7 +33,7 @@ public class SyntagNetFragment extends TreeFragment
 	{
 		this.layoutId = R.layout.fragment_syntagnet;
 		this.treeContainerId = R.id.data_contents;
-		this.header = "SyntagNet";
+		this.header = getResources().getString(R.string.syntagnet);
 		this.iconId = R.drawable.syntagnet;
 	}
 

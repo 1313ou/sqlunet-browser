@@ -62,10 +62,6 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	static private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final String targetWord)
 	{
 		final List<Collocation.WithDefinitionAndPos> collocations = Collocation.WithDefinitionAndPos.makeFromWord(connection, targetWord);
-		if (collocations == null)
-		{
-			return;
-		}
 
 		// word
 		NodeFactory.makeNode(doc, parent, "word", targetWord);
@@ -218,7 +214,7 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	 * @return SyntagNet data as DOM document
 	 */
 	@Override
-	public Document queryDoc(final SQLiteDatabase connection, final String word)
+	public Document queryDoc(final SQLiteDatabase connection, @NonNull final String word)
 	{
 		final Document doc = DomFactory.makeDocument();
 		final Node rootNode = SnNodeFactory.makeSnRootNode(doc, word);
@@ -235,7 +231,7 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	 */
 	@NonNull
 	@Override
-	public String queryXML(final SQLiteDatabase connection, final String word)
+	public String queryXML(final SQLiteDatabase connection, @NonNull final String word)
 	{
 		final Document doc = queryDoc(connection, word);
 		return DomTransformer.docToString(doc);

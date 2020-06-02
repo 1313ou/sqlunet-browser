@@ -21,7 +21,6 @@ abstract class BaseCollocationQuery extends DBQuery
 	 * @param connection connection
 	 * @param query      query
 	 */
-	@SuppressWarnings("boxing")
 	public BaseCollocationQuery(final SQLiteDatabase connection, final String query)
 	{
 		super(connection, query);

@@ -82,12 +82,8 @@ public class CollocationsModule extends BaseModule
 		}
 		else
 		{
-			if (this.word2Id != null && this.word2Id.equals(this.word1Id) && this.word2Id.equals(word2Id))
-			{
-				return true;
-			}
+			return this.word2Id != null && this.word2Id.equals(this.word1Id) && this.word2Id.equals(word2Id);
 		}
-		return false;
 	}
 
 	@Override
