@@ -6,8 +6,6 @@ package org.sqlunet.syntagnet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import org.sqlunet.sql.DBQuery;
-
 /**
  * SyntagNet collocation query
  *

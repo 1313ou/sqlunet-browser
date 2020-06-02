@@ -6,10 +6,6 @@ package org.sqlunet.syntagnet.loaders;
 
 import android.os.Parcelable;
 
-import org.sqlunet.Has2SynsetId;
-import org.sqlunet.Has2WordId;
-import org.sqlunet.HasSynsetId;
-import org.sqlunet.HasWordId;
 import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.model.TreeFactory;
 import org.sqlunet.syntagnet.SnCollocationPointer;

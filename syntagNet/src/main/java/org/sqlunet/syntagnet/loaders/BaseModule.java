@@ -7,7 +7,6 @@ package org.sqlunet.syntagnet.loaders;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.text.SpannableStringBuilder;
 
@@ -83,7 +82,7 @@ abstract class BaseModule extends Module
 	/**
 	 * Whether target comes second in collocation
 	 */
-	abstract protected boolean isTargetSecond(final long word1Id, final long word2Id);
+	abstract protected boolean isTargetSecond(@SuppressWarnings("unused") final long word1Id, final long word2Id);
 
 	/**
 	 * Make view models

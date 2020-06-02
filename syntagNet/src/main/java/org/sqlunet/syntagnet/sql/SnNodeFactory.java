@@ -105,6 +105,7 @@ class SnNodeFactory extends NodeFactory
 	 * @param collocation is the collocation information
 	 * @param i           the ith collocation
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	static public Node makeSelectorCollocationNode(@NonNull final Document doc, final Node parent, @NonNull final Collocation collocation, final int i)
 	{
 		final Element collocationElement = NodeFactory.makeNode(doc, parent, "collocation", null);
