@@ -34,7 +34,7 @@ public class FrameNetFragment extends TreeFragment
 	{
 		this.layoutId = R.layout.fragment_framenet;
 		this.treeContainerId = R.id.data_contents;
-		this.header = "FrameNet";
+		this.headerId = R.string.framenet_frames;
 		this.iconId = R.drawable.framenet;
 	}
 

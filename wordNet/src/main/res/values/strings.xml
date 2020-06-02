@@ -6,6 +6,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<string name="wordnet" tools:keep="@string/wordnet">WordNet</string>
+	<string name="wordnet_words" tools:keep="@string/wordnet_words">Words (WordNet)</string>
+	<string name="wordnet_senses" tools:keep="@string/wordnet_senses">Senses (WordNet)</string>
+	<string name="wordnet_synsets" tools:keep="@string/wordnet_synsets">Synsets (WordNet)</string>
+	<string name="wordnet_sensekeys" tools:keep="@string/wordnet_sensekeys">SenseKeys (WordNet)</string>
 	<string name="wordnet_blurb" tools:keep="@string/wordnet_blurb">&lt;b&gt;WordNet&lt;/b&gt;\ngroups English words into sets of synonyms called synsets,\nand records relations among these synonym sets or their members</string>
 
 	<!--<string name="title_activity_senses">Senses</string>-->

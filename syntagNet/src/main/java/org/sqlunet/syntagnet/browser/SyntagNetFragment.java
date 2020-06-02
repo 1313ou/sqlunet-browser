@@ -33,7 +33,7 @@ public class SyntagNetFragment extends TreeFragment
 	{
 		this.layoutId = R.layout.fragment_syntagnet;
 		this.treeContainerId = R.id.data_contents;
-		this.header = getResources().getString(R.string.syntagnet);
+		this.headerId = R.string.syntagnet_collocations;
 		this.iconId = R.drawable.syntagnet;
 	}
 

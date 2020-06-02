@@ -365,26 +365,26 @@ abstract class BaseModule extends Module
 		// collocation 1
 		final SpannableStringBuilder sb1w = new SpannableStringBuilder();
 		Spanner.append(sb1w, word1, 0, isTargetSecond ? SyntagNetFactories.word2Factory : SyntagNetFactories.word1Factory);
-		final Link link1w = new BaseWordLink(word1Id, context);
+		final Link link1w = new BaseWordLink(word1Id, this.fragment);
 		final TreeNode collocation1wNode = TreeFactory.makeLinkNode(sb1w, isTargetSecond ? R.drawable.collocation2 : R.drawable.collocation1, false, link1w).addTo(collocationNode);
 		changedList.add(NEWCHILD, collocation1wNode);
 
 		final SpannableStringBuilder sb1s = new SpannableStringBuilder();
 		Spanner.append(sb1s, definition1, 0, isTargetSecond ? SyntagNetFactories.definition2Factory : SyntagNetFactories.definition1Factory);
-		final Link link1s = new BaseSynsetLink(synset1Id, Integer.MAX_VALUE, context);
+		final Link link1s = new BaseSynsetLink(synset1Id, Integer.MAX_VALUE, this.fragment);
 		final TreeNode collocation1sNode = TreeFactory.makeLinkNode(sb1s, isTargetSecond ? R.drawable.definition2 : R.drawable.definition1, false, link1s).addTo(collocationNode);
 		changedList.add(NEWCHILD, collocation1sNode);
 
 		// collocation 2
 		final SpannableStringBuilder sb2w = new SpannableStringBuilder();
 		Spanner.append(sb2w, word2, 0, isTargetSecond ? SyntagNetFactories.word1Factory : SyntagNetFactories.word2Factory);
-		final Link link2w = new BaseWordLink(word2Id, context);
+		final Link link2w = new BaseWordLink(word2Id, this.fragment);
 		final TreeNode collocation2wNode = TreeFactory.makeLinkNode(sb2w, isTargetSecond ? R.drawable.collocation1 : R.drawable.collocation2, false, link2w).addTo(collocationNode);
 		changedList.add(NEWCHILD, collocation2wNode);
 
 		final SpannableStringBuilder sb2s = new SpannableStringBuilder();
 		Spanner.append(sb2s, definition2, 0, isTargetSecond ? SyntagNetFactories.definition1Factory : SyntagNetFactories.definition2Factory);
-		final Link link2s = new BaseSynsetLink(synset2Id, Integer.MAX_VALUE, context);
+		final Link link2s = new BaseSynsetLink(synset2Id, Integer.MAX_VALUE, this.fragment);
 		final TreeNode collocation2sNode = TreeFactory.makeLinkNode(sb2s, isTargetSecond ? R.drawable.definition1 : R.drawable.definition2, false, link2s).addTo(collocationNode);
 		changedList.add(NEWCHILD, collocation2sNode);
 

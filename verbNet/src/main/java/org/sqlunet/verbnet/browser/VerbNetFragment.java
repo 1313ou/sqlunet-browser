@@ -34,7 +34,7 @@ public class VerbNetFragment extends TreeFragment
 	{
 		this.layoutId = R.layout.fragment_verbnet;
 		this.treeContainerId = R.id.data_contents;
-		this.header = "VerbNet";
+		this.headerId = R.string.verbnet_classes;
 		this.iconId = R.drawable.verbnet;
 	}
 

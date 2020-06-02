@@ -32,7 +32,7 @@ public class WordFragment extends TreeFragment
 	{
 		this.layoutId = R.layout.fragment_word;
 		this.treeContainerId = R.id.data_contents;
-		this.header = "WordNet";
+		this.headerId = R.string.wordnet_words;
 		this.iconId = R.drawable.wordnet;
 	}
 

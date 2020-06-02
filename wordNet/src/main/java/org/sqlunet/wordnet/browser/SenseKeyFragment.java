@@ -5,6 +5,7 @@
 package org.sqlunet.wordnet.browser;
 
 import org.sqlunet.browser.Module;
+import org.sqlunet.wordnet.R;
 import org.sqlunet.wordnet.loaders.SenseKeyModule;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ public class SenseKeyFragment extends SynsetFragment
 	public SenseKeyFragment()
 	{
 		super();
+		this.headerId = R.string.wordnet_sensekeys;
 	}
 
 	@NonNull

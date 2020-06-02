@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 
 import org.sqlunet.bnc.browser.BNCFragment;
+import org.sqlunet.browser.selector.CollocationSelectorPointer;
 import org.sqlunet.browser.web.WebFragment;
 import org.sqlunet.browser.xn.Settings;
 import org.sqlunet.browser.xselector.XSelectorPointer;
@@ -56,6 +57,14 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 		args.putString(ProviderArgs.ARG_HINTPOS, this.pos);
 		args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse);
 
+		//
+		boolean hasWordNet = true;
+		if (this.pointer instanceof CollocationSelectorPointer)
+		{
+			CollocationSelectorPointer selectorPointer = (CollocationSelectorPointer)this.pointer;
+			hasWordNet = selectorPointer.getSynsetId() != -1 || selectorPointer.getSynset2Id() != -1;
+		}
+
 		// detail fragment
 		final Settings.DetailViewMode mode = Settings.getDetailViewModePref(context);
 		switch (mode)
@@ -67,7 +76,7 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 				final FragmentTransaction transaction = manager.beginTransaction();
 
 				// wordnet
-				if ((enable & Settings.ENABLE_WORDNET) != 0)
+				if ((enable & Settings.ENABLE_WORDNET) != 0 && hasWordNet)
 				{
 					// final View labelView = findViewById(R.id.label_wordnet);
 					// labelView.setVisibility(View.VISIBLE);

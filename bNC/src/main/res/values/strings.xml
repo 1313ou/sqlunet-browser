@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<string name="bnc" tools:keep="@string/bnc">BNC</string>
+	<string name="bnc_frequencies" tools:keep="@string/bnc_frequencies">Frequencies (BNC)</string>
 
 </resources>

@@ -32,7 +32,7 @@ public class FnLexUnitFragment extends TreeFragment
 	{
 		this.layoutId = R.layout.fragment_fnlexunit;
 		this.treeContainerId = R.id.data_contents;
-		this.header = "LexUnit";
+		this.headerId = R.string.framenet_lexunits;
 		this.iconId = R.drawable.member;
 	}
 

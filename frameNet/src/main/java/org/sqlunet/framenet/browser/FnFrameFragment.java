@@ -32,7 +32,7 @@ public class FnFrameFragment extends TreeFragment
 	{
 		this.layoutId = R.layout.fragment_fnframe;
 		this.treeContainerId = R.id.data_contents;
-		this.header = "Frame";
+		this.headerId = R.string.framenet_frames;
 		this.iconId = R.drawable.roleclass;
 	}
 

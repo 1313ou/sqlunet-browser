@@ -84,7 +84,7 @@ public class XBrowse1Fragment extends Fragment implements SelectorsFragment.List
 			{
 				browse2Fragment = new Browse2Fragment();
 				Bundle args = new Bundle();
-				args.putBoolean(Browse2Fragment.ARG_ALT, true);
+				args.putBoolean(Browse2Fragment.ARG_ALT, false);
 				browse2Fragment.setArguments(args);
 			}
 			manager.beginTransaction() //
