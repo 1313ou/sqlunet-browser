@@ -19,7 +19,7 @@
 	-->
 
 		<ImageView
-			style="@style/Data.XIcon"
+			style="@style/Data.Icon"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_vertical"
@@ -42,7 +42,7 @@
 
 		<TextView
 			android:id="@+id/word2"
-			style="@style/Data.Collocation1"
+			style="@style/Data.Collocation2"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:contentDescription="@string/word2"

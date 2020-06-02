@@ -215,8 +215,6 @@ public class WebFragment extends Fragment
 								{
 									final XSelectorPointer xPointer = (XSelectorPointer) pointer;
 									final String xSources = xPointer.getXSources();
-									final Long xClassId = xPointer.getXClassId();
-									// final Long xMemberId = xpointer.getXMemberId();
 									final long wordId = xPointer.getWordId();
 									final Long synsetId = xPointer.getSynsetId();
 									if (xSources == null || xSources.contains("wn")) //
@@ -231,11 +229,8 @@ public class WebFragment extends Fragment
 								else if (pointer instanceof SnCollocationPointer)
 								{
 									final SnCollocationPointer collocationPointer = (SnCollocationPointer) pointer;
-									final Long collocationId = collocationPointer.getId();
-									if (collocationId != null) //
-									{
-										snDomDoc = new SyntagNetImplementation().queryCollocationDoc(db, collocationId);
-									}
+									final long collocationId = collocationPointer.getId();
+									snDomDoc = new SyntagNetImplementation().queryCollocationDoc(db, collocationId);
 								}
 								else if (pointer instanceof CollocationSelectorPointer)
 								{
@@ -297,7 +292,7 @@ public class WebFragment extends Fragment
 							break;
 
 						case ProviderArgs.ARG_QUERYTYPE_COLLOCATION:
-							@SuppressWarnings("TypeMayBeWeakened") final SnCollocationPointer collocationPointer = (SnCollocationPointer) pointer;
+							final SnCollocationPointer collocationPointer = (SnCollocationPointer) pointer;
 							Log.d(WebFragment.TAG, "ARG_POSITION collocation=" + collocationPointer);
 							if (collocationPointer != null && Settings.Source.SYNTAGNET.test(sources))
 							{
