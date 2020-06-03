@@ -48,7 +48,8 @@ public class StorageUtils
 	 * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
 	 */
 	public enum DirType
-	{AUTO, APP_EXTERNAL_SECONDARY, APP_EXTERNAL_PRIMARY, PUBLIC_EXTERNAL_SECONDARY, PUBLIC_EXTERNAL_PRIMARY, APP_INTERNAL;
+	{
+		AUTO, APP_EXTERNAL_SECONDARY, APP_EXTERNAL_PRIMARY, PUBLIC_EXTERNAL_SECONDARY, PUBLIC_EXTERNAL_PRIMARY, APP_INTERNAL;
 
 		/**
 		 * Compare (sort by preference)
@@ -84,7 +85,8 @@ public class StorageUtils
 					return "internal";
 			}
 			return null;
-		}}
+		}
+	}
 
 	/**
 	 * Directory with type
@@ -343,18 +345,22 @@ public class StorageUtils
 	static private List<Directory> getDirectories(@NonNull final Context context)
 	{
 		final List<Directory> result = new ArrayList<>();
+		File dir;
 
 		// A P P - S P E C I F I C - P O S S I B L Y   A D O P T E D
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) //
 		{
-			result.add(new Directory(context.getFilesDir(), DirType.AUTO));
+			dir = context.getFilesDir();
+			if (dir != null)
+			{
+				result.add(new Directory(dir, DirType.AUTO));
+			}
 		}
 
 		// A P P - S P E C I F I C
 
 		// application-specific secondary external storage or primary external (KITKAT)
-		File dir;
 		try
 		{
 			final File[] dirs = context.getExternalFilesDirs(null);
@@ -426,7 +432,11 @@ public class StorageUtils
 		// internal private storage
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) //
 		{
-			result.add(new Directory(context.getFilesDir(), DirType.APP_INTERNAL));
+			dir = context.getFilesDir();
+			if (dir != null)
+			{
+				result.add(new Directory(dir, DirType.APP_INTERNAL));
+			}
 		}
 
 		return result;
