@@ -153,7 +153,7 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 						getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
 						getString(R.string.size_expected) + ' ' +  //
 						getString(R.string.text_search) + ' ' + getString(R.string.wordnet) + '/' + getString(R.string.verbnet) + '/' + getString(R.string.propbank) + '/' + getString(R.string.framenet),  //
-						getString(R.string.hr_size_searchtext) + " (" + getString(R.string.hr_size_searchtext_wn) + '+' + getString(R.string.hr_size_searchtext_vn) + '+' + getString(R.string.hr_size_searchtext_pb) + '+' + getString(R.string.hr_size_searchtext_fn) + '+' + getString(R.string.hr_size_searchtext) + ')', //
+						getString(R.string.hr_size_searchtext) + " (" + getString(R.string.hr_size_searchtext_wn) + '+' + getString(R.string.hr_size_searchtext_vn) + '+' + getString(R.string.hr_size_searchtext_pb) + '+' + getString(R.string.hr_size_searchtext_fn) + ')', //
 						getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
 						getString(R.string.size_actual), hrSize);
 			}
@@ -164,7 +164,7 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 						getString(R.string.title_from), source, //
 						getString(R.string.title_database), database, //
 						getString(R.string.title_free), free, //
-						getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.wordnet) + '/' + getString(R.string.verbnet) + '/' + getString(R.string.propbank) + '/' + getString(R.string.framenet), getString(R.string.hr_size_searchtext) + " (" + getString(R.string.hr_size_searchtext_wn) + '+' + getString(R.string.hr_size_searchtext_vn) + '+' + getString(R.string.hr_size_searchtext_pb) + '+' + getString(R.string.hr_size_searchtext_fn) + '+' + getString(R.string.hr_size_searchtext) + ')', //
+						getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.wordnet) + '/' + getString(R.string.verbnet) + '/' + getString(R.string.propbank) + '/' + getString(R.string.framenet), getString(R.string.hr_size_searchtext) + " (" + getString(R.string.hr_size_searchtext_wn) + '+' + getString(R.string.hr_size_searchtext_vn) + '+' + getString(R.string.hr_size_searchtext_pb) + '+' + getString(R.string.hr_size_searchtext_fn) + ')', //
 						getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
 						getString(R.string.title_status), getString(R.string.status_database_not_exists));
 			}
