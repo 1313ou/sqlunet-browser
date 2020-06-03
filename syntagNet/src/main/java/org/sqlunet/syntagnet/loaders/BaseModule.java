@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
 import static org.sqlunet.view.TreeOp.TreeOpCode.NEWCHILD;
@@ -136,7 +137,7 @@ abstract class BaseModule extends Module
 	 * @param synset2Id synset 2 id
 	 * @param parent    parent node
 	 */
-	void collocations(final Long word1Id, final Long word2Id, final Long synset1Id, final Long synset2Id, final TreeNode parent)
+	void collocations(final Long word1Id, @Nullable final Long word2Id, final Long synset1Id, final Long synset2Id, @NonNull final TreeNode parent)
 	{
 		final Uri uri = Uri.parse(SyntagNetProvider.makeUri(SnCollocations_X.CONTENT_URI_TABLE));
 		final String[] projection = { //
@@ -283,7 +284,8 @@ abstract class BaseModule extends Module
 	 * @param synset2Id synset 2 id
 	 * @return selection string
 	 */
-	private String selection(final Long word1Id, final Long word2Id, final Long synset1Id, final Long synset2Id)
+	@NonNull
+	private String selection(@Nullable final Long word1Id, @Nullable final Long word2Id, @Nullable final Long synset1Id, @Nullable final Long synset2Id)
 	{
 		String wordSelection1 = word1Id == null ? "" : SnCollocations_X.WORD1ID + " = ?";
 		String wordSelection2 = word2Id == null ? "" : SnCollocations_X.WORD2ID + " = ?";
@@ -306,7 +308,7 @@ abstract class BaseModule extends Module
 	 * @param orderId   id param used in order clause
 	 * @return selection arguments
 	 */
-	private String[] selectionArgs(final Long word1Id, final Long word2Id, final Long synset1Id, final Long synset2Id, final Long orderId)
+	private String[] selectionArgs(@Nullable final Long word1Id, @Nullable final Long word2Id, @Nullable final Long synset1Id, @Nullable final Long synset2Id, @Nullable final Long orderId)
 	{
 		List<String> args = new ArrayList<>();
 		if (word1Id != null)
@@ -339,7 +341,7 @@ abstract class BaseModule extends Module
 			final long synset1Id, final long synset2Id, //
 			final String pos1, final String pos2,  //
 			final String definition1, final String definition2, //
-			final boolean isSingle, final boolean isTargetSecond, final TreeNode parent, final TreeOps changedList)
+			final boolean isSingle, final boolean isTargetSecond, @NonNull final TreeNode parent, @NonNull final TreeOps changedList)
 	{
 		// header
 		final SpannableStringBuilder sbh = new SpannableStringBuilder();

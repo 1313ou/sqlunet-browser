@@ -91,21 +91,25 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 	/**
 	 * Top role drawable
 	 */
+	@NonNull
 	private final Drawable role2Drawable;
 
 	/**
 	 * Role drawable
 	 */
+	@NonNull
 	private final Drawable roleDrawable;
 
 	/**
 	 * Relation drawable
 	 */
+	@NonNull
 	private final Drawable relationDrawable;
 
 	/**
 	 * Sample drawable
 	 */
+	@NonNull
 	private final Drawable sampleDrawable;
 
 	/**

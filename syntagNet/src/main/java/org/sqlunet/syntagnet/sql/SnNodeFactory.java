@@ -25,6 +25,7 @@ class SnNodeFactory extends NodeFactory
 	 * @param wordId target word id
 	 * @return newly created node
 	 */
+	@NonNull
 	static public Node makeSnRootNode(@NonNull final Document doc, final long wordId)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "syntagnet", null, SyntagNetImplementation.SN_NS);
@@ -39,6 +40,7 @@ class SnNodeFactory extends NodeFactory
 	 * @param word target word
 	 * @return newly created node
 	 */
+	@NonNull
 	static public Node makeSnRootNode(@NonNull final Document doc, final String word)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "syntagnet", null, SyntagNetImplementation.SN_NS);
@@ -53,6 +55,7 @@ class SnNodeFactory extends NodeFactory
 	 * @param collocationId target collocation id
 	 * @return newly created node
 	 */
+	@NonNull
 	static public Node makeCollocationNode(@NonNull final Document doc, long collocationId)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "syntagnet", null, SyntagNetImplementation.SN_NS);

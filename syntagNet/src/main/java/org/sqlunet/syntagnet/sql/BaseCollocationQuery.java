@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import org.sqlunet.sql.DBQuery;
 
+import androidx.annotation.Nullable;
+
 /**
  * SyntagNet collocation query
  *
@@ -113,6 +115,7 @@ abstract class BaseCollocationQuery extends DBQuery
 	 *
 	 * @return the pos 1 from the result set
 	 */
+	@Nullable
 	public Character getPos1()
 	{
 		assert this.cursor != null;
@@ -125,6 +128,7 @@ abstract class BaseCollocationQuery extends DBQuery
 	 *
 	 * @return pos 2 from the result set
 	 */
+	@Nullable
 	public Character getPos2()
 	{
 		assert this.cursor != null;

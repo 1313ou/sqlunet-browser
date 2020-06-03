@@ -281,6 +281,7 @@ public class SnSelectorsFragment extends ListFragment
 	 * @param word   word
 	 * @return augmented cursor
 	 */
+	@NonNull
 	private static Cursor augmentCursor(Cursor cursor, long wordid, String word)
 	{
 		// Create a MatrixCursor filled with the special rows to add.

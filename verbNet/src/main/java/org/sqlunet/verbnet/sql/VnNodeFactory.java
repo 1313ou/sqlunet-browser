@@ -29,6 +29,7 @@ class VnNodeFactory extends NodeFactory
 	 * @param classId target class id
 	 * @return newly created node
 	 */
+	@NonNull
 	static public Node makeVnRootClassNode(@NonNull final Document doc, final long classId)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "verbnet", null, VerbNetImplementation.VN_NS);
@@ -44,6 +45,7 @@ class VnNodeFactory extends NodeFactory
 	 * @param synsetId target synset id (0 for all)
 	 * @return newly created node
 	 */
+	@NonNull
 	static public Node makeVnRootNode(@NonNull final Document doc, final long wordId, @Nullable final Long synsetId)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "verbnet", null, VerbNetImplementation.VN_NS);
@@ -65,6 +67,7 @@ class VnNodeFactory extends NodeFactory
 	 * @param word target word
 	 * @return newly created node
 	 */
+	@NonNull
 	static public Node makeVnRootNode(@NonNull final Document doc, final String word)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "verbnet", null, VerbNetImplementation.VN_NS);
