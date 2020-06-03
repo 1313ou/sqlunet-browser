@@ -41,11 +41,15 @@ class StorageReports
 			values.add(value);
 		}
 
-		value = context.getCacheDir().getAbsolutePath();
-		name = new SpannableStringBuilder();
-		Report.appendHeader(name, "Cache").append(' ').append(StorageUtils.storageFreeAsString(value.toString())).append('\n').append(value);
-		names.add(name);
-		values.add(value);
+		dir = context.getCacheDir();
+		if (dir != null)
+		{
+			value = dir.getAbsolutePath();
+			name = new SpannableStringBuilder();
+			Report.appendHeader(name, "Cache").append(' ').append(StorageUtils.storageFreeAsString(value.toString())).append('\n').append(value);
+			names.add(name);
+			values.add(value);
+		}
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
 		{
@@ -64,11 +68,15 @@ class StorageReports
 			}
 		}
 
-		value = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath();
-		name = new SpannableStringBuilder();
-		Report.appendHeader(name, "Download").append(' ').append(StorageUtils.storageFreeAsString(value.toString())).append('\n').append(value);
-		names.add(name);
-		values.add(value);
+		dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+		if (dir != null)
+		{
+			value = dir.getAbsolutePath();
+			name = new SpannableStringBuilder();
+			Report.appendHeader(name, "Download").append(' ').append(StorageUtils.storageFreeAsString(value.toString())).append('\n').append(value);
+			names.add(name);
+			values.add(value);
+		}
 
 		// convert to array
 		final CharSequence[] entries = names.toArray(new CharSequence[0]);
