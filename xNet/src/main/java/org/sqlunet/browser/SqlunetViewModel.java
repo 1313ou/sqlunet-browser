@@ -21,7 +21,7 @@ public class SqlunetViewModel extends AndroidViewModel
 	@FunctionalInterface
 	public interface PostProcessor
 	{
-		void postProcess(final Cursor cursor);
+		void postProcess(@NonNull final Cursor cursor);
 	}
 
 	private final MutableLiveData<Cursor> data = new MutableLiveData<>();
@@ -47,7 +47,7 @@ public class SqlunetViewModel extends AndroidViewModel
 			protected Cursor doInBackground(Void... voids)
 			{
 				final Cursor cursor = getApplication().getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder);
-				if (postProcessor != null)
+				if (postProcessor != null && cursor != null)
 				{
 					postProcessor.postProcess(cursor);
 				}
