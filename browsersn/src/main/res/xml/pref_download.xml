@@ -2,7 +2,7 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<PreferenceScreen
+<androidx.preference.PreferenceScreen
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	app:title="@string/pref_header_download">
@@ -60,4 +60,4 @@
 		android:positiveButtonText="@null"
 		android:title="@string/pref_title_cache"/>
 
-</PreferenceScreen>
+</androidx.preference.PreferenceScreen>
