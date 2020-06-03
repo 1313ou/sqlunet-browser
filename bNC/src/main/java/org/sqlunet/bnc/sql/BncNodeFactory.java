@@ -27,6 +27,7 @@ class BncNodeFactory extends NodeFactory
 	 * @param pos    target pos
 	 * @return newly created node
 	 */
+	@NonNull
 	static public Node makeBncRootNode(@NonNull final Document doc, final long wordId, @Nullable final Character pos)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "bnc", null, BncImplementation.BNC_NS);

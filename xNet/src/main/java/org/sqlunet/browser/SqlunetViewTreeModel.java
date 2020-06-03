@@ -54,7 +54,7 @@ public class SqlunetViewTreeModel extends AndroidViewModel
 			}
 
 			@Override
-			protected void onPostExecute(TreeOp[] treeOps)
+			protected void onPostExecute(@Nullable TreeOp[] treeOps)
 			{
 				if (treeOps != null)
 				{

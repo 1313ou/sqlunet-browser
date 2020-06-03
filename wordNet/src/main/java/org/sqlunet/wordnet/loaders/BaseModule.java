@@ -78,20 +78,28 @@ abstract public class BaseModule extends Module
 {
 	// Resources
 
+	@NonNull
 	private final Drawable synsetDrawable;
 
+	@NonNull
 	private final Drawable memberDrawable;
 
+	@NonNull
 	private final Drawable definitionDrawable;
 
+	@NonNull
 	private final Drawable sampleDrawable;
 
+	@NonNull
 	private final Drawable posDrawable;
 
+	@NonNull
 	private final Drawable lexdomainDrawable;
 
+	@NonNull
 	private final Drawable verbframeDrawable;
 
+	@NonNull
 	private final Drawable morphDrawable;
 
 	/**

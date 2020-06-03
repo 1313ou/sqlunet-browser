@@ -66,11 +66,13 @@ abstract class BaseModule extends Module
 	/**
 	 * Drawable for roles
 	 */
+	@NonNull
 	private final Drawable classDrawable;
 
 	/**
 	 * Drawable for role
 	 */
+	@NonNull
 	private final Drawable roleDrawable;
 
 	// View models

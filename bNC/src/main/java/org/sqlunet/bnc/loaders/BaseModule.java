@@ -49,21 +49,25 @@ public class BaseModule extends Module
 	/**
 	 * Drawable for conv/task
 	 */
+	@NonNull
 	private final Drawable convtaskDrawable;
 
 	/**
 	 * Drawable for spoken/written
 	 */
+	@NonNull
 	private final Drawable imaginfDrawable;
 
 	/**
 	 * Drawable for spoken/written
 	 */
+	@NonNull
 	private final Drawable spwrDrawable;
 
 	/**
 	 * Drawable for pos
 	 */
+	@NonNull
 	private final Drawable posDrawable;
 
 	// View models

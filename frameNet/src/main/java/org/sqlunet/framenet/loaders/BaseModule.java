@@ -118,51 +118,61 @@ abstract public class BaseModule extends Module
 	/**
 	 * Drawable for frame
 	 */
+	@NonNull
 	private final Drawable frameDrawable;
 
 	/**
 	 * Drawable for FE
 	 */
+	@NonNull
 	private final Drawable feDrawable;
 
 	/**
 	 * Drawable for lexUnit
 	 */
+	@NonNull
 	private final Drawable lexunitDrawable;
 
 	/**
 	 * Drawable for definition
 	 */
+	@NonNull
 	private final Drawable definitionDrawable;
 
 	/**
 	 * Drawable for meta definition
 	 */
+	@NonNull
 	private final Drawable metadefinitionDrawable;
 
 	/**
 	 * Drawable for realization
 	 */
+	@NonNull
 	private final Drawable realizationDrawable;
 
 	/**
 	 * Drawable for sentence
 	 */
+	@NonNull
 	private final Drawable sentenceDrawable;
 
 	/**
 	 * Drawable for semtype
 	 */
+	@NonNull
 	private final Drawable semtypeDrawable;
 
 	/**
 	 * Drawable for coreset
 	 */
+	@NonNull
 	private final Drawable coresetDrawable;
 
 	/**
 	 * Drawable for layer
 	 */
+	@NonNull
 	private final Drawable layerDrawable;
 
 	// View models

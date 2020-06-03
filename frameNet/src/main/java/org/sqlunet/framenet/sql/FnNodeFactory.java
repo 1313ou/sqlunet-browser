@@ -30,6 +30,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param pos    target pos
 	 * @return newly created node
 	 */
+	@NonNull
 	static public Node makeFnRootNode(@NonNull final Document doc, final long wordId, @Nullable final Character pos)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null, FrameNetImplementation.FN_NS);
@@ -52,6 +53,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param pos  target pos
 	 * @return newly created node
 	 */
+	@NonNull
 	static public Node makeFnRootNode(@NonNull final Document doc, final String word, @Nullable final Character pos)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null, FrameNetImplementation.FN_NS);
@@ -284,6 +286,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param frameId target frame id
 	 * @return root frame node
 	 */
+	@NonNull
 	static public Node makeFnRootFrameNode(@NonNull final Document doc, final long frameId)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null, FrameNetImplementation.FN_NS);
@@ -298,6 +301,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param luId target luId
 	 * @return root lexunit node
 	 */
+	@NonNull
 	static public Node makeFnRootLexUnitNode(@NonNull final Document doc, final long luId)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null, FrameNetImplementation.FN_NS);
@@ -312,6 +316,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param sentenceId target sentence id
 	 * @return root sentence node
 	 */
+	@NonNull
 	static public Node makeFnRootSentenceNode(@NonNull final Document doc, final long sentenceId)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null, FrameNetImplementation.FN_NS);
@@ -326,6 +331,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param annoSetId target annoSetId
 	 * @return root annoSet node
 	 */
+	@NonNull
 	static public Node makeFnRootAnnoSetNode(@NonNull final Document doc, final long annoSetId)
 	{
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "framenet", null, FrameNetImplementation.FN_NS);

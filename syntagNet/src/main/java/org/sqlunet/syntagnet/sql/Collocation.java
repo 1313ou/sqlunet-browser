@@ -255,7 +255,8 @@ class Collocation
 			return result;
 		}
 
-		private static Collocation.WithDefinitionAndPos makeCollocationWithDefinitionAndPos(BaseCollocationQuery query)
+		@NonNull
+		private static Collocation.WithDefinitionAndPos makeCollocationWithDefinitionAndPos(@NonNull BaseCollocationQuery query)
 		{
 			final long collocationId = query.getId();
 			final long word1Id = query.getWord1Id();
@@ -329,6 +330,7 @@ class Collocation
 		this.word2 = word2;
 	}
 
+	@NonNull
 	public static List<Collocation> makeSelectorFromWord(final SQLiteDatabase connection, final String targetWord)
 	{
 		final List<Collocation> result = new ArrayList<>();
@@ -354,7 +356,8 @@ class Collocation
 		}
 	}
 
-	private static Collocation makeCollocation(BaseCollocationQuery query)
+	@NonNull
+	private static Collocation makeCollocation(@NonNull BaseCollocationQuery query)
 	{
 		final long collocationId = query.getId();
 		final long word1Id = query.getWord1Id();

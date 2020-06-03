@@ -55,41 +55,49 @@ abstract class BaseModule extends Module
 	/**
 	 * Drawable for roleSets
 	 */
+	@NonNull
 	private final Drawable roleSetDrawable;
 
 	/**
 	 * Drawable for roles
 	 */
+	@NonNull
 	private final Drawable rolesDrawable;
 
 	/**
 	 * Drawable for relation
 	 */
+	@NonNull
 	private final Drawable relationDrawable;
 
 	/**
 	 * Drawable for role
 	 */
+	@NonNull
 	private final Drawable roleDrawable;
 
 	/**
 	 * Drawable for alias
 	 */
+	@NonNull
 	private final Drawable aliasDrawable;
 
 	/**
 	 * Drawable for theta role
 	 */
+	@NonNull
 	private final Drawable thetaDrawable;
 
 	/**
 	 * Drawable for definition
 	 */
+	@NonNull
 	private final Drawable definitionDrawable;
 
 	/**
 	 * Drawable for sample
 	 */
+	@NonNull
 	private final Drawable sampleDrawable;
 
 	// agents

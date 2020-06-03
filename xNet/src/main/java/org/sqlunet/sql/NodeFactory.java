@@ -72,6 +72,7 @@ public class NodeFactory
 	 * @param text     is the node's text content
 	 * @return newly created node
 	 */
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
 	static public Element makeRootNode(@NonNull final Document document, final Node parent, @SuppressWarnings("SameParameterValue") final String name, @SuppressWarnings("SameParameterValue") final String text, @SuppressWarnings("SameParameterValue") final String ns)
 	{

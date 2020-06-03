@@ -75,51 +75,61 @@ abstract class BaseModule extends Module
 	/**
 	 * Drawable for class
 	 */
+	@NonNull
 	private final Drawable drawableClass;
 
 	/**
 	 * Drawable for member
 	 */
+	@NonNull
 	private final Drawable drawableMember;
 
 	/**
 	 * Drawable for role sets
 	 */
+	@NonNull
 	final Drawable drawableRoles;
 
 	/**
 	 * Drawable for role
 	 */
+	@NonNull
 	private final Drawable drawableRole;
 
 	/**
 	 * Drawable for frame
 	 */
+	@NonNull
 	private final Drawable drawableFrame;
 
 	/**
 	 * Drawable for syntax
 	 */
+	@NonNull
 	private final Drawable drawableSyntax;
 
 	/**
 	 * Drawable for semantics
 	 */
+	@NonNull
 	private final Drawable drawableSemantics;
 
 	/**
 	 * Drawable for example
 	 */
+	@NonNull
 	private final Drawable drawableExample;
 
 	/**
 	 * Drawable for definition
 	 */
+	@NonNull
 	private final Drawable drawableDefinition;
 
 	/**
 	 * Drawable for grouping
 	 */
+	@NonNull
 	private final Drawable drawableGrouping;
 
 	// View models
