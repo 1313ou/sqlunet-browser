@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Storage styling utilities
@@ -282,9 +283,12 @@ public class StorageReports
 
 	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
-	static private SpannableStringBuilder appendDir(@NonNull final SpannableStringBuilder sb, final CharSequence header, @NonNull final File dir)
+	static private SpannableStringBuilder appendDir(@NonNull final SpannableStringBuilder sb, final CharSequence header, @Nullable final File dir)
 	{
-		Report.appendHeader(sb, header).append(' ').append(StorageUtils.storageFreeAsString(dir)).append('\n').append(dir.getAbsolutePath()).append('\n');
+		if (dir != null)
+		{
+			Report.appendHeader(sb, header).append(' ').append(StorageUtils.storageFreeAsString(dir)).append('\n').append(dir.getAbsolutePath()).append('\n');
+		}
 		return sb;
 	}
 
