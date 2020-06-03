@@ -21,7 +21,7 @@ for m in ${modules}; do
 	echo -e "${BLUE}${m}${RESET}"
 	d=$m/src/main
 	if [ ! -e "${d}" ]; then
-		echo -en "${d} ${YELLOW}!EXISTS${RESET}"
+		echo -e "${d} ${YELLOW}!EXISTS${RESET}"
 		continue
 	fi
 	find ${d} -name 'selector*.png' -exec touch {} \;

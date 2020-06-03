@@ -21,7 +21,7 @@ make_res "${icon_list}" 32
 make_res "${smallicon_list}" 16
 make_res "${middleicon_list}" 24
 make_res "${drawericon_list}" 32
-make_res "${arrow_list}" 10
+make_res "${arrow_list}" 8
 make_res "${settings_list}" 24
 
 make_help "logo.svg" 128
