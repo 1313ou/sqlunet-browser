@@ -59,8 +59,7 @@ android {
 dependencies {
     implementation project(':common')
     implementation project(':expandableListFragment')
-    implementation project(':preference')
-    implementation project(':download')
+     implementation project(':download')
     implementation project(':deploy')
     implementation project(':others')
     implementation project(':donate')
@@ -69,11 +68,12 @@ dependencies {
     implementation project(':wordNet')
     implementation project(':syntagNet')
     implementation project(':bNC')
+
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     implementation "androidx.navigation:navigation-fragment:$navVersion"
     implementation "androidx.navigation:navigation-ui:$navVersion"
-    implementation 'androidx.legacy:legacy-support-v13:1.0.0'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
     implementation 'androidx.preference:preference:1.1.1'
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'com.google.android.material:material:1.1.0'
