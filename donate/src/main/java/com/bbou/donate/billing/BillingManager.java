@@ -237,7 +237,7 @@ public class BillingManager implements PurchasesUpdatedListener
 	 * @param sku         sku id
 	 * @param billingType billing type
 	 */
-	public void initiatePurchaseFlow(final String sku, final @SkuType String billingType)
+	public void initiatePurchaseFlow(final String sku, @SkuType final String billingType)
 	{
 		final List<String> skuList = new ArrayList<>();
 		skuList.add(sku);
