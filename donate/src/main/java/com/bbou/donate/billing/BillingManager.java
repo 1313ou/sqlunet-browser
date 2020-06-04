@@ -34,7 +34,6 @@ import com.android.billingclient.api.PurchasesUpdatedListener;
 import com.android.billingclient.api.SkuDetails;
 import com.android.billingclient.api.SkuDetailsParams;
 import com.android.billingclient.api.SkuDetailsResponseListener;
-
 import com.bbou.donate.R;
 
 import java.io.IOException;
@@ -159,7 +158,12 @@ public class BillingManager implements PurchasesUpdatedListener
 	 */
 	private void startServiceConnection(@Nullable final Runnable executeOnSuccess)
 	{
-		assert this.client != null;
+		// guard against destroyed client
+		if (this.client == null)
+		{
+			return;
+		}
+		Log.d(TAG, "Setting up client.");
 		this.client.startConnection(new BillingClientStateListener()
 		{
 			@Override
@@ -199,7 +203,6 @@ public class BillingManager implements PurchasesUpdatedListener
 	public void destroy()
 	{
 		Log.d(TAG, "Destroying the billing client.");
-
 		if (this.client != null && this.client.isReady())
 		{
 			this.client.endConnection();
@@ -239,15 +242,19 @@ public class BillingManager implements PurchasesUpdatedListener
 	 */
 	public void initiatePurchaseFlow(final String sku, @SkuType final String billingType)
 	{
-		final List<String> skuList = new ArrayList<>();
-		skuList.add(sku);
+		// guard against destroyed client
+		if (this.client == null)
+		{
+			return;
+		}
+		Log.d(TAG, "Getting skuDetails for " + sku);
 
 		// Retrieve a value for "skuDetails" by calling querySkuDetailsAsync().
-		Log.d(TAG, "Getting skuDetails for " + sku);
+		final List<String> skuList = new ArrayList<>();
+		skuList.add(sku);
 		final SkuDetailsParams.Builder builder = SkuDetailsParams.newBuilder() //
 				.setSkusList(skuList) //
 				.setType(billingType);
-		assert this.client != null;
 		this.client.querySkuDetailsAsync(builder.build(), (billingResult, skuDetailsList) -> {
 
 			int response = billingResult.getResponseCode();
@@ -280,11 +287,14 @@ public class BillingManager implements PurchasesUpdatedListener
 	{
 		executeServiceRequest(() -> {
 
+			// guard against destroyed client
+			if (this.client == null)
+			{
+				return;
+			}
+			Log.d(TAG, "Launching inapp purchase flow.");
 			final BillingFlowParams flowParams = BillingFlowParams.newBuilder().setSkuDetails(skuDetails) //
 					.build();
-
-			assert this.client != null;
-			Log.d(TAG, "Launching inapp purchase flow.");
 			/* final BillingResult billingResult = */
 			this.client.launchBillingFlow(this.activity, flowParams);
 		});
@@ -359,13 +369,18 @@ public class BillingManager implements PurchasesUpdatedListener
 	@SuppressWarnings("WeakerAccess")
 	public void acknowledgePurchase(@NonNull final Purchase purchase)
 	{
+		// guard against destroyed client
+		if (this.client == null)
+		{
+			return;
+		}
+
 		// Acknowledge the purchase if it hasn't already been acknowledged.
 		if (!purchase.isAcknowledged())
 		{
 			final AcknowledgePurchaseParams acknowledgePurchaseParams = AcknowledgePurchaseParams.newBuilder() //
 					.setPurchaseToken(purchase.getPurchaseToken()) //
 					.build();
-			assert this.client != null;
 			this.client.acknowledgePurchase(acknowledgePurchaseParams, (billingResult) -> Log.i(TAG, "Acknowledged purchase: " + purchase + " response: " + billingResult.getResponseCode()));
 		}
 	}
@@ -379,7 +394,12 @@ public class BillingManager implements PurchasesUpdatedListener
 	{
 		executeServiceRequest(() -> {
 
-			assert this.client != null;
+			// guard against destroyed client
+			if (this.client == null)
+			{
+				return;
+			}
+
 			long time = System.currentTimeMillis();
 			final PurchasesResult inappResult = this.client.queryPurchases(SkuType.INAPP);
 			Log.d(TAG, "Querying inapp purchases elapsed: " + (System.currentTimeMillis() - time) + "ms");
@@ -452,11 +472,16 @@ public class BillingManager implements PurchasesUpdatedListener
 		// Creating a runnable from the request to use it inside our connection retry policy below
 		executeServiceRequest(() -> {
 
+			// guard against destroyed client
+			if (this.client == null)
+			{
+				return;
+			}
+
 			// Query the purchase async
 			SkuDetailsParams.Builder builder = SkuDetailsParams.newBuilder() //
 					.setSkusList(skuList) //
 					.setType(itemType);
-			assert this.client != null;
 			this.client.querySkuDetailsAsync(builder.build(), listener);
 		});
 	}
@@ -488,9 +513,14 @@ public class BillingManager implements PurchasesUpdatedListener
 		// Creating a runnable from the request to use it inside our connection retry policy below
 		executeServiceRequest(() -> {
 
+			// guard against destroyed client
+			if (this.client == null)
+			{
+				return;
+			}
+
 			// Consume the purchase async
 			final ConsumeParams consumeParams = ConsumeParams.newBuilder().setPurchaseToken(purchaseToken).build();
-			assert this.client != null;
 			this.client.consumeAsync(consumeParams, (billingResult, consumedPurchaseToken) -> {
 
 				// If billing service was disconnected, we try to reconnect 1 time (feel free to introduce your retry policy here).
@@ -528,7 +558,11 @@ public class BillingManager implements PurchasesUpdatedListener
 	 */
 	private boolean areSubscriptionsSupported()
 	{
-		assert this.client != null;
+		// guard against destroyed client
+		if (this.client == null)
+		{
+			return false;
+		}
 		final BillingResult billingResult = this.client.isFeatureSupported(FeatureType.SUBSCRIPTIONS);
 		int responseCode = billingResult.getResponseCode();
 		if (BillingResponseCode.OK != responseCode)
