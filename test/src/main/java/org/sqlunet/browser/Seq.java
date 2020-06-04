@@ -123,7 +123,7 @@ public class Seq
 	 * @param menuText Text in menu item to click
 	 */
 	@SuppressWarnings("unused")
-	static public void do_menu(final @IdRes int menuId, @StringRes int menuText)
+	static public void do_menu(@IdRes final int menuId, @StringRes int menuText)
 	{
 		onView(Matchers.withMenuIdOrText(menuId, menuText)).perform(click());
 	}
@@ -134,7 +134,7 @@ public class Seq
 	 * @param menuText Text in menu item to click
 	 */
 	@SuppressWarnings("unused")
-	static public void do_options_menu(final @StringRes int menuText)
+	static public void do_options_menu(@StringRes final int menuText)
 	{
 		openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getInstrumentation().getTargetContext());
 		onView(withText(menuText)).perform(click());
