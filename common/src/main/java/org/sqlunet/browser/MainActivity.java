@@ -103,6 +103,10 @@ public class MainActivity extends AppCompatActivity
 	{
 		final NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
 		assert navHostFragment != null;
+		if (!navHostFragment.isAdded())
+		{
+			return;
+		}
 		final FragmentManager manager = navHostFragment.getChildFragmentManager();
 		final List<Fragment> fragments = manager.getFragments();
 		final Fragment fragment = fragments.get(0);

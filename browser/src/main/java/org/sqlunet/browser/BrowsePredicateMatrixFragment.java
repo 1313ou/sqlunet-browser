@@ -215,6 +215,10 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		// fragment
 		final Fragment fragment = new PredicateMatrixFragment();
 		fragment.setArguments(args);
+		if (!isAdded())
+		{
+			return;
+		}
 		getChildFragmentManager() //
 				.beginTransaction() //
 				.replace(R.id.container_predicatematrix, fragment) //
@@ -285,6 +289,10 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		// fragment
 		final Fragment fragment = new PredicateMatrixFragment();
 		fragment.setArguments(args);
+		if (!isAdded())
+		{
+			return;
+		}
 		getChildFragmentManager() //
 				.beginTransaction() //
 				.replace(R.id.container_predicatematrix, fragment) //

@@ -50,6 +50,10 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 	protected void search()
 	{
 		final Context context = requireContext();
+		if (!isAdded())
+		{
+			return;
+		}
 		final FragmentManager manager = getChildFragmentManager();
 
 		// args
