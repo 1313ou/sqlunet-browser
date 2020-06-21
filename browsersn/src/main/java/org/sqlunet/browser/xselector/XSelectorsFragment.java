@@ -127,6 +127,10 @@ public class XSelectorsFragment extends Fragment implements SelectorsFragment.Li
 	@Override
 	public void onItemSelected(final SelectorPointer pointer, final String word, final String cased, final String pos)
 	{
+		if (!isAdded())
+		{
+			return;
+		}
 		SnSelectorsFragment f = (SnSelectorsFragment) getChildFragmentManager().findFragmentByTag("snselectors");
 		if (f != null)
 		{
@@ -137,6 +141,10 @@ public class XSelectorsFragment extends Fragment implements SelectorsFragment.Li
 	@Override
 	public void onItemSelected(final CollocationSelectorPointer pointer)
 	{
+		if (!isAdded())
+		{
+			return;
+		}
 		SelectorsFragment f = (SelectorsFragment) getChildFragmentManager().findFragmentByTag("wnselectors");
 		if (f != null)
 		{

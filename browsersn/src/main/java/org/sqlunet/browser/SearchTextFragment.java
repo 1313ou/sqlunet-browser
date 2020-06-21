@@ -198,6 +198,10 @@ public class SearchTextFragment extends BaseSearchFragment
 		// fragment
 		final Fragment fragment = new TextFragment();
 		fragment.setArguments(args);
+		if (!isAdded())
+		{
+			return;
+		}
 		getChildFragmentManager() //
 				.beginTransaction() //
 				.replace(R.id.container_searchtext, fragment) //

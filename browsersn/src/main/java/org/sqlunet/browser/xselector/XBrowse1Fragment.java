@@ -108,6 +108,10 @@ public class XBrowse1Fragment extends Fragment implements SelectorsFragment.List
 		if (isTwoPane(view))
 		{
 			// in two-pane mode, show the detail view in this activity by adding or replacing the detail fragment using a fragment transaction.
+			if (!isAdded())
+			{
+				return;
+			}
 			final Browse2Fragment fragment = (Browse2Fragment) getChildFragmentManager().findFragmentById(R.id.container_browse2);
 			assert fragment != null;
 			fragment.search(pointer, pos);
@@ -136,6 +140,10 @@ public class XBrowse1Fragment extends Fragment implements SelectorsFragment.List
 		if (isTwoPane(view))
 		{
 			// in two-pane mode, show the detail view in this activity by adding or replacing the detail fragment using a fragment transaction.
+			if (!isAdded())
+			{
+				return;
+			}
 			final Browse2Fragment fragment = (Browse2Fragment) getChildFragmentManager().findFragmentById(R.id.container_browse2);
 			assert fragment != null;
 			fragment.search(pointer, null);

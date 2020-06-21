@@ -206,6 +206,10 @@ public class BrowseFragment extends BaseSearchFragment
 			fragment.setArguments(args);
 
 			// transaction
+			if (!isAdded())
+			{
+				return;
+			}
 			getChildFragmentManager() //
 					.beginTransaction() //
 					.replace(R.id.container_browse, fragment) //
