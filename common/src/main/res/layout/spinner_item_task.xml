@@ -5,18 +5,19 @@
   -->
 
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-          android:id="@android:id/text1"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:id="@android:id/text1"
           style="?android:attr/spinnerItemStyle"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_gravity="center"
           android:background="@drawable/bg_spinner"
           android:paddingBottom="5dp"
-          android:drawableBottom="?android:attr/listDivider"
-          android:ellipsize="marquee"
+	android:ellipsize="marquee"
           android:gravity="center"
           android:textColor="@color/tertiaryForeColor"
           android:textIsSelectable="false"
-          android:singleLine="true"/>
+          android:singleLine="true"
+	app:drawableBottomCompat="?android:attr/listDivider" />
 
 	<!-- android:drawableEnd="@drawable/ic_spinner_arrow" -->
