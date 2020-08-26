@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity
 		final DrawerLayout drawer = findViewById(R.id.drawer_layout);
 		final NavigationView navView = findViewById(R.id.nav_view);
 		final NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-		this.appBarConfiguration = new AppBarConfiguration.Builder(topDest).setDrawerLayout(drawer).build();
+		this.appBarConfiguration = new AppBarConfiguration.Builder(topDest).setOpenableLayout(drawer).build();
 		NavigationUI.setupActionBarWithNavController(this, navController, this.appBarConfiguration);
 		NavigationUI.setupWithNavController(navView, navController);
 	}
