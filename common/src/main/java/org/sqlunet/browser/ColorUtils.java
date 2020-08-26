@@ -13,6 +13,7 @@ import android.util.TypedValue;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 
 /**
@@ -79,18 +80,9 @@ public class ColorUtils
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	static public Drawable getDrawable(@NonNull final Context context, @DrawableRes int drawableRes)
 	{
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-		{
-			return context.getResources().getDrawable(drawableRes, context.getTheme());
-		}
-		else
-		{
-			//noinspection deprecation
-			return context.getResources().getDrawable(drawableRes);
-		}
+		return ResourcesCompat.getDrawable(context.getResources(), drawableRes, context.getTheme());
 	}
 
 	static public int fetchColor(@NonNull final Context context, int attr)
