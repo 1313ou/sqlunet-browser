@@ -87,7 +87,6 @@ public class Report
 	@NonNull
 	static private Object makeImageSpan(@NonNull final Context context, @DrawableRes final int resId)
 	{
-		final Resources res = context.getResources();
 		final Drawable drawable = ResourcesCompat.getDrawable(context.getResources(), resId, context.getTheme());
 		drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 		return new ImageSpan(drawable, DynamicDrawableSpan.ALIGN_BOTTOM);
