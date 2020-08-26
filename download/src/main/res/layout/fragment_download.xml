@@ -3,7 +3,8 @@
   -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:context="org.sqlunet.download.DownloadFragment"
@@ -79,12 +80,12 @@
 		android:layout_marginStart="50dp"
 		android:layout_marginEnd="50dp"
 		android:layout_marginBottom="10dp"
-		android:drawableBottom="@drawable/ic_download_source"
 		android:drawablePadding="5dp"
 		android:scrollHorizontally="true"
 		android:singleLine="true"
 		android:text="@string/download_source"
-		android:textStyle="bold"/>
+		android:textStyle="bold"
+		app:drawableBottomCompat="@drawable/ic_download_source" />
 
 	<TextView
 		android:id="@+id/src2"
@@ -121,7 +122,6 @@
 		android:layout_marginStart="50dp"
 		android:layout_marginTop="10dp"
 		android:layout_marginEnd="50dp"
-		android:drawableTop="@drawable/ic_download_dest"
 		android:drawablePadding="5dp"
 		android:ellipsize="marquee"
 		android:focusable="true"
@@ -130,7 +130,8 @@
 		android:marqueeRepeatLimit="marquee_forever"
 		android:scrollHorizontally="true"
 		android:singleLine="true"
-		android:text="@string/download_dest"/>
+		android:text="@string/download_dest"
+		app:drawableTopCompat="@drawable/ic_download_dest" />
 
 	<TextView
 		android:id="@+id/target2"
