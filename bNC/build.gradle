@@ -30,7 +30,7 @@ dependencies {
     implementation project(':treeView')
     implementation project(':xNet')
 
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     implementation 'androidx.annotation:annotation:1.1.0'
 }
