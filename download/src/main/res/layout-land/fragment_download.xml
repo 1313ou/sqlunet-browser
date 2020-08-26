@@ -3,7 +3,8 @@
   -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:context="org.sqlunet.download.DownloadFragment"
@@ -18,11 +19,11 @@
 		android:layout_marginTop="25dp"
 		android:layout_marginEnd="50dp"
 		android:layout_marginStart="50dp"
-		android:drawableBottom="@drawable/ic_download_source"
 		android:drawablePadding="0dp"
 		android:scrollHorizontally="true"
 		android:text="@string/download_source"
-		android:singleLine="true"/>
+		android:singleLine="true"
+		app:drawableBottomCompat="@drawable/ic_download_source" />
 
 	<LinearLayout
 		android:id="@+id/middle"
@@ -95,10 +96,10 @@
 		android:layout_marginStart="50dp"
 		android:layout_marginTop="10dp"
 		android:drawablePadding="0dp"
-		android:drawableTop="@drawable/ic_download_dest"
 		android:scrollHorizontally="true"
 		android:text="@string/download_dest"
-		android:singleLine="true"/>
+		android:singleLine="true"
+		app:drawableTopCompat="@drawable/ic_download_dest" />
 
 	<TextView
 		android:id="@+id/status"

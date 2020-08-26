@@ -3,7 +3,8 @@
   -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:context="org.sqlunet.download.UpdateFragment">
@@ -21,10 +22,10 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:drawablePadding="10dp"
-			android:drawableStart="@drawable/ic_download_source"
 			android:gravity="center_vertical"
 			android:text="@string/download_available"
-			android:textStyle="bold"/>
+			android:textStyle="bold"
+			app:drawableStartCompat="@drawable/ic_download_source" />
 
 		<TextView
 			android:id="@+id/src"
@@ -49,10 +50,10 @@
 			android:layout_height="wrap_content"
 			android:layout_marginTop="10dp"
 			android:drawablePadding="10dp"
-			android:drawableStart="@drawable/ic_download_dest"
 			android:gravity="center_vertical"
 			android:text="@string/download_actual"
-			android:textStyle="bold"/>
+			android:textStyle="bold"
+			app:drawableStartCompat="@drawable/ic_download_dest" />
 
 		<TextView
 			android:id="@+id/dest"
