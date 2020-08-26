@@ -4,6 +4,6 @@
 
 <resources>
 
-	<attr name="values" format="color|reference"/>
+<!--	<attr name="values" format="color|reference" />-->
 
 </resources>
