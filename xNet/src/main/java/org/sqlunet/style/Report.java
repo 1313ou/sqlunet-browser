@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.DynamicDrawableSpan;
@@ -18,6 +17,7 @@ import android.text.style.StyleSpan;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
 
 /**
  * Report helper
@@ -88,15 +88,7 @@ public class Report
 	static private Object makeImageSpan(@NonNull final Context context, @DrawableRes final int resId)
 	{
 		final Resources res = context.getResources();
-		Drawable drawable;
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N)
-		{
-			drawable = res.getDrawable(resId);
-		}
-		else
-		{
-			drawable = res.getDrawable(resId, null);
-		}
+		final Drawable drawable = ResourcesCompat.getDrawable(context.getResources(), resId, context.getTheme());
 		drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 		return new ImageSpan(drawable, DynamicDrawableSpan.ALIGN_BOTTOM);
 	}
