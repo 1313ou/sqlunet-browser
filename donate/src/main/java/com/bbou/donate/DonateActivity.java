@@ -311,7 +311,6 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 
 	// H E L P E R
 
-	@SuppressWarnings("deprecation")
 	private static Drawable getDrawable(@NonNull final Context context, @DrawableRes int drawableRes)
 	{
 		return ResourcesCompat.getDrawable(context.getResources(), drawableRes, context.getTheme());
