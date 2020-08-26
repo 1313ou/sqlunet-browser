@@ -5,10 +5,10 @@
 package com.bbou.donate;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -34,6 +34,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
 
 /**
  * Donate
@@ -90,7 +91,7 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 		Skus.init(this);
 		final String[] inappSkus = Skus.getInappSkus();
 		final int n = inappSkus.length;
-		if (BuildConfig.DEBUG)
+		if ((getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0)
 		{
 			final int n1 = BUTTON_IDS.length;
 			final int n2 = DRAWABLE_IDS.length;
@@ -313,15 +314,7 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 	@SuppressWarnings("deprecation")
 	private static Drawable getDrawable(@NonNull final Context context, @DrawableRes int drawableRes)
 	{
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-		{
-			return context.getResources().getDrawable(drawableRes, context.getTheme());
-		}
-		else
-		{
-			//noinspection deprecation
-			return context.getResources().getDrawable(drawableRes);
-		}
+		return ResourcesCompat.getDrawable(context.getResources(), drawableRes, context.getTheme());
 	}
 
 	private void inform(@NonNull final String message)
