@@ -339,8 +339,9 @@ public class WebFragment extends Fragment
 		// client
 		final WebViewClient webClient = new WebViewClient()
 		{
+			@SuppressWarnings("deprecation")
 			@Override
-			public boolean shouldOverrideUrlLoading(final WebView view, final String urlString)
+			public boolean shouldOverrideUrlLoading(@NonNull final WebView view, @NonNull final String urlString)
 			{
 				final Uri uri = Uri.parse(urlString);
 				return handleUrl(uri);
@@ -348,7 +349,7 @@ public class WebFragment extends Fragment
 
 			@TargetApi(Build.VERSION_CODES.N)
 			@Override
-			public boolean shouldOverrideUrlLoading(final WebView view, @NonNull final WebResourceRequest request)
+			public boolean shouldOverrideUrlLoading(@NonNull final WebView view, @NonNull final WebResourceRequest request)
 			{
 				final Uri uri = request.getUrl();
 				return handleUrl(uri);

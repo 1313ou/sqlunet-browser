@@ -65,6 +65,14 @@ public class HelpFragment extends Fragment
 			webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
 			webView.setWebViewClient(new WebViewClient()
 			{
+				@SuppressWarnings("deprecation")
+				@Override
+				public void onReceivedError(final WebView webView, final int errorCode, final String description, final String failingUrl)
+				{
+					super.onReceivedError(webView, errorCode, description, failingUrl);
+					Log.e(HelpFragment.TAG, failingUrl + ':' + description + ',' + errorCode);
+				}
+
 				@TargetApi(Build.VERSION_CODES.N)
 				@Override
 				public void onReceivedError(final WebView webView, final WebResourceRequest request, @NonNull WebResourceError error)
@@ -76,11 +84,20 @@ public class HelpFragment extends Fragment
 					Log.e(HelpFragment.TAG, error.toString());
 				}
 
+				@SuppressWarnings("deprecation")
 				@Override
-				public void onReceivedError(final WebView webView, final int errorCode, final String description, final String failingUrl)
+				public boolean shouldOverrideUrlLoading(@NonNull final WebView webView, @NonNull final String url)
 				{
-					super.onReceivedError(webView, errorCode, description, failingUrl);
-					Log.e(HelpFragment.TAG, failingUrl + ':' + description + ',' + errorCode);
+					if (url.endsWith("pdf") || url.endsWith("PDF"))
+					{
+						final Uri uri = Uri.parse(url);
+						if (handleUri(uri, "application/pdf"))
+						{
+							return true;
+						}
+					}
+					webView.loadUrl(url);
+					return false;
 				}
 
 				@TargetApi(Build.VERSION_CODES.N)
@@ -97,21 +114,6 @@ public class HelpFragment extends Fragment
 						}
 					}
 					webView.loadUrl(uri.toString());
-					return false;
-				}
-
-				@Override
-				public boolean shouldOverrideUrlLoading(@NonNull final WebView webView, @NonNull final String url)
-				{
-					if (url.endsWith("pdf") || url.endsWith("PDF"))
-					{
-						final Uri uri = Uri.parse(url);
-						if (handleUri(uri, "application/pdf"))
-						{
-							return true;
-						}
-					}
-					webView.loadUrl(url);
 					return false;
 				}
 			});
