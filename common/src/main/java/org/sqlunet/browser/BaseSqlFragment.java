@@ -42,6 +42,7 @@ public class BaseSqlFragment extends ListFragment
 			final CharSequence statement = (CharSequence) av.getAdapter().getItem(pos);
 			final ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
 			final ClipData clipData = ClipData.newPlainText("text", statement);
+			assert clipboard != null;
 			clipboard.setPrimaryClip(clipData);
 			Toast.makeText(requireContext(), R.string.copy_copied, Toast.LENGTH_SHORT).show();
 			return true;

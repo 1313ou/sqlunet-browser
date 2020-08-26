@@ -335,7 +335,7 @@ public class SimpleDownloaderService extends IntentService
 	private void prerequisite()
 	{
 		final File dir = new File(this.toFile).getParentFile();
-		if (!dir.exists())
+		if (dir != null && !dir.exists())
 		{
 			//noinspection ResultOfMethodCallIgnored
 			dir.mkdirs();

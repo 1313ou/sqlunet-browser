@@ -227,8 +227,12 @@ class FileUtils
 							final File outFile = new File(destDir + File.separator + new File(entryName).getName());
 
 							// create all non exists folders else you will hit FileNotFoundException for compressed folder
-							//noinspection ResultOfMethodCallIgnored
-							new File(outFile.getParent()).mkdirs();
+							final String parent = outFile.getParent();
+							if (parent != null)
+							{
+								final File dir = new File(parent);
+								boolean created = dir.mkdirs();
+							}
 
 							// output
 

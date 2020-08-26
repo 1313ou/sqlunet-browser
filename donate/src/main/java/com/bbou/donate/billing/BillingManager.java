@@ -403,7 +403,7 @@ public class BillingManager implements PurchasesUpdatedListener
 			long time = System.currentTimeMillis();
 			final PurchasesResult inappResult = this.client.queryPurchases(SkuType.INAPP);
 			Log.d(TAG, "Querying inapp purchases elapsed: " + (System.currentTimeMillis() - time) + "ms");
-			Log.i(TAG, "Querying inapp purchases response: " + inappResult.getResponseCode() + " count: " + inappResult.getPurchasesList().size());
+			Log.i(TAG, "Querying inapp purchases response: " + inappResult.getResponseCode() + " count: " + (inappResult.getPurchasesList() == null ? "null" : inappResult.getPurchasesList().size()));
 
 			// If there are subscriptions supported, we add subscription rows as well
 			if (areSubscriptionsSupported())
@@ -411,7 +411,7 @@ public class BillingManager implements PurchasesUpdatedListener
 				time = System.currentTimeMillis();
 				final PurchasesResult subscriptionResult = this.client.queryPurchases(SkuType.SUBS);
 				Log.d(TAG, "Querying subscription purchases elapsed: " + (System.currentTimeMillis() - time) + "ms");
-				Log.i(TAG, "Querying subscription purchases response: " + subscriptionResult.getResponseCode() + " count: " + subscriptionResult.getPurchasesList().size());
+				Log.i(TAG, "Querying subscription purchases response: " + subscriptionResult.getResponseCode() + " count: " + (subscriptionResult.getPurchasesList() == null ? "null" : subscriptionResult.getPurchasesList().size()));
 
 				if (BillingResponseCode.OK == subscriptionResult.getResponseCode())
 				{

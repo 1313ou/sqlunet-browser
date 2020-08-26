@@ -66,6 +66,7 @@ public class SqlFragment extends BaseSqlFragment
 			}
 			final ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
 			final ClipData clip = ClipData.newPlainText("SQL", sb);
+			assert clipboard != null;
 			clipboard.setPrimaryClip(clip);
 		}
 		return false;

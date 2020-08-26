@@ -377,6 +377,7 @@ public class Spanner
 	static public Drawable getDrawable(@NonNull final Context context, @DrawableRes final int resId)
 	{
 		final Drawable drawable = ResourcesCompat.getDrawable(context.getResources(), resId, context.getTheme());
+		assert drawable != null;
 		drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 		return drawable;
 	}

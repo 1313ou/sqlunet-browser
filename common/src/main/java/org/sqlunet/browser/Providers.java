@@ -80,6 +80,7 @@ class Providers
 
 		// suggestion (this activity may not be searchable)
 		final SearchManager searchManager = (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
+		assert searchManager != null;
 		final SearchableInfo info = searchManager.getSearchableInfo(activity.getComponentName());
 		if (info != null)
 		{

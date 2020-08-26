@@ -226,6 +226,7 @@ public class StorageReports
 	 * @param context context
 	 * @return pair of names and values
 	 */
+	@SuppressWarnings("deprecation")
 	@NonNull
 	static public Pair<CharSequence[], CharSequence[]> getStyledCachesNamesValues(@NonNull final Context context)
 	{

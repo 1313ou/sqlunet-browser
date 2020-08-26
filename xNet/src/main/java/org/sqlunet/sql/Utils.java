@@ -82,12 +82,12 @@ public class Utils
 	 * @param strings strings to join
 	 * @return joined strings
 	 */
-	@Nullable
+	@NonNull
 	static public String join(@Nullable final String... strings)
 	{
 		if (strings == null)
 		{
-			return null;
+			return "";
 		}
 		final StringBuilder sb = new StringBuilder();
 		boolean first = true;
