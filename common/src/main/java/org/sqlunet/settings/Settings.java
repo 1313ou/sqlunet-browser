@@ -11,7 +11,6 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.net.Uri;
 import android.os.Build;
-import android.preference.PreferenceManager;
 
 import org.sqlunet.browser.common.R;
 import org.sqlunet.provider.BaseProvider;
@@ -20,6 +19,7 @@ import org.sqlunet.sql.PreparedStatement;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.preference.PreferenceManager;
 
 /**
  * Settings

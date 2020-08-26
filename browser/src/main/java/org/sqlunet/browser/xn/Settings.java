@@ -7,9 +7,9 @@ package org.sqlunet.browser.xn;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
 import androidx.annotation.NonNull;
+import androidx.preference.PreferenceManager;
 
 /**
  * Settings
@@ -41,7 +41,8 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * Source
 	 */
 	public enum Source
-	{WORDNET(0x1), BNC(0x2), VERBNET(0x10), PROPBANK(0x20), FRAMENET(0x40);
+	{
+		WORDNET(0x1), BNC(0x2), VERBNET(0x10), PROPBANK(0x20), FRAMENET(0x40);
 
 		/**
 		 * Source mask
@@ -78,7 +79,8 @@ public class Settings extends org.sqlunet.settings.Settings
 		public boolean test(final int sources)
 		{
 			return (sources & this.mask) != 0;
-		}}
+		}
+	}
 
 	// S E L E C T O R   T Y P E
 
@@ -86,7 +88,8 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * Selectors
 	 */
 	public enum Selector
-	{SELECTOR, XSELECTOR;
+	{
+		SELECTOR, XSELECTOR;
 
 		/**
 		 * Set this selector as preferred selector
@@ -120,7 +123,8 @@ public class Settings extends org.sqlunet.settings.Settings
 				sharedPref.edit().putString(org.sqlunet.settings.Settings.PREF_SELECTOR, mode.name()).apply();
 			}
 			return mode;
-		}}
+		}
+	}
 
 	// P R E F E R E N C E   S H O R T C U T S
 
