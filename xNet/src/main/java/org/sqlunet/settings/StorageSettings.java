@@ -6,7 +6,7 @@ package org.sqlunet.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 
 import org.sqlunet.xnet.R;
 
