@@ -12,7 +12,6 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.SpannableStringBuilder;
@@ -48,6 +47,7 @@ import java.util.regex.Pattern;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.res.ResourcesCompat;
 
 /**
  * Text result fragment
@@ -398,15 +398,7 @@ public class TextFragment extends AbstractTableFragment
 	@NonNull
 	static private Object makeImageSpan(@NonNull final Context context, final int resId)
 	{
-		Drawable drawable;
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N)
-		{
-			drawable = context.getResources().getDrawable(resId);
-		}
-		else
-		{
-			drawable = context.getResources().getDrawable(resId, null);
-		}
+		final Drawable drawable = ResourcesCompat.getDrawable(context.getResources(), resId, context.getTheme());
 		drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 		return new ImageSpan(drawable, DynamicDrawableSpan.ALIGN_BOTTOM);
 	}

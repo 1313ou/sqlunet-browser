@@ -8,7 +8,6 @@ import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
@@ -36,6 +35,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 import androidx.core.widget.NestedScrollView;
+import androidx.preference.PreferenceManager;
 
 import static android.view.ViewGroup.FOCUS_BLOCK_DESCENDANTS;
 
