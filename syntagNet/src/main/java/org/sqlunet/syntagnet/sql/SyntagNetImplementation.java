@@ -39,10 +39,6 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	static private void walkSelector(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final String targetWord)
 	{
 		final List<Collocation> collocations = Collocation.makeSelectorFromWord(connection, targetWord);
-		if (collocations == null)
-		{
-			return;
-		}
 
 		// word
 		NodeFactory.makeNode(doc, parent, "word", targetWord);

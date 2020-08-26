@@ -8,6 +8,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.text.Html;
+import android.text.Spanned;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -39,7 +40,7 @@ class HomeImageView extends AppCompatImageView
 		super(context, attrs, defStyleAttr);
 	}
 
-	@SuppressWarnings("SameReturnValue")
+	@SuppressWarnings({"SameReturnValue", "deprecation"})
 	void init()
 	{
 		setOnTouchListener((v, event) -> {
@@ -133,8 +134,9 @@ class HomeImageView extends AppCompatImageView
 			{
 				final Context context = getContext();
 				final String message = context.getString(messageId);
+				final Spanned html = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N ? Html.fromHtml(message, 0) : Html.fromHtml(message);
 				//Log.i("Pick ", message);
-				final Toast toast = Toast.makeText(getContext(), Html.fromHtml(message), Toast.LENGTH_LONG);
+				final Toast toast = Toast.makeText(getContext(), html, Toast.LENGTH_LONG);
 				final View view = toast.getView();
 				view.setBackgroundResource(android.R.drawable.toast_frame);
 				final TextView textView = view.findViewById(android.R.id.message);

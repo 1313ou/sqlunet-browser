@@ -58,7 +58,8 @@ public class Deploy
 		{
 			throw new RuntimeException("Is not a directory " + toDir.getAbsolutePath());
 		}
-		if (toDir.list().length == 0)
+		final String[] dirContent = toDir.list();
+		if (dirContent == null || dirContent.length == 0)
 		{
 			throw new RuntimeException("Is empty " + toDir.getAbsolutePath());
 		}
@@ -94,7 +95,8 @@ public class Deploy
 		}
 		if (toDir.isDirectory())
 		{
-			boolean isEmpty = toDir.list().length == 0;
+			final String[] dirContent = toDir.list();
+			boolean isEmpty = dirContent == null || dirContent.length == 0;
 			if (isEmpty)
 			{
 				// expand asset
@@ -118,12 +120,23 @@ public class Deploy
 	static synchronized public void redeploy(@NonNull final File toDir, final String lang, @NonNull final InputStreamGetter getter)
 	{
 		emptyDirectory(toDir);
-		if (toDir.listFiles().length != 0)
+		File[] dirContent = toDir.listFiles();
+		if (dirContent == null)
+		{
+			throw new RuntimeException("Null directory");
+		}
+		if (dirContent.length != 0)
 		{
 			throw new RuntimeException("Incomplete removal of previous data");
 		}
+
 		deploy(toDir, lang, getter);
-		if (toDir.listFiles().length == 0)
+		dirContent = toDir.listFiles();
+		if (dirContent == null)
+		{
+			throw new RuntimeException("Null directory");
+		}
+		if (dirContent.length == 0)
 		{
 			throw new RuntimeException("Failed deployment of data for " + lang);
 		}
@@ -223,8 +236,13 @@ public class Deploy
 							final File outFile = flatten ? new File(toDir + File.separator + new File(entryName).getName()) : new File(toDir + File.separator + entryName);
 
 							// create all non exists folders else you will hit FileNotFoundException for compressed folder
-							//noinspection ResultOfMethodCallIgnored
-							new File(outFile.getParent()).mkdirs();
+							final String parent = outFile.getParent();
+							if (parent != null)
+							{
+								File dir = new File(parent);
+								boolean created = dir.mkdirs();
+								Log.d(TAG, dir + " created=" + created + " exists=" + dir.exists());
+							}
 							Log.d(TAG, "Unzipped : " + outFile);
 
 							// output
@@ -369,10 +387,15 @@ public class Deploy
 				// Log.d(TAG, outFile + " exist=" + outFile.exists());
 
 				// create all non exists folders else you will hit FileNotFoundException for compressed folder
-				final File dir = new File(outFile.getParent());
-				boolean created = dir.mkdirs();
-				Log.d(TAG, dir + " created=" + created + " exists=" + dir.exists());
+				final String parent = outFile.getParent();
+				if (parent != null)
+				{
+					final File dir = new File(parent);
+					boolean created = dir.mkdirs();
+					Log.d(TAG, dir + " created=" + created + " exists=" + dir.exists());
+				}
 
+				// input
 				try (InputStream in = zipFile.getInputStream(zipEntry); FileOutputStream out = new FileOutputStream(outFile))
 				{
 					long length = zipEntry.getSize();
@@ -717,7 +740,12 @@ public class Deploy
 				}
 			}
 		}
-		if (dir.listFiles().length != 0)
+		File[] dirContent = dir.listFiles();
+		if (dirContent == null)
+		{
+			throw new RuntimeException("Null directory");
+		}
+		if (dirContent.length != 0)
 		{
 			throw new RuntimeException("Cannot empty " + dir);
 		}
@@ -779,6 +807,10 @@ public class Deploy
 				{
 					final String digest = matcher.group(1);
 					String name = matcher.group(2);
+					if (name == null)
+					{
+						continue;
+					}
 					if (name.startsWith("./"))
 					{
 						name = name.substring(2);

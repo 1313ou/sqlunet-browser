@@ -14,7 +14,6 @@ import java.io.StringReader;
 import java.net.URL;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import mf.javax.xml.transform.Source;
 import mf.javax.xml.transform.stream.StreamSource;
 import mf.javax.xml.validation.Schema;
@@ -147,7 +146,7 @@ public class DomValidator
 	 * @param xsdPath xsd file
 	 * @return xsdUrl
 	 */
-	@Nullable
+	@NonNull
 	@SuppressWarnings("unused")
 	static public URL path2Url(@NonNull final String xsdPath)
 	{

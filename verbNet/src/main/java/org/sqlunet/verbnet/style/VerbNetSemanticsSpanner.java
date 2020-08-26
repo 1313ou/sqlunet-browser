@@ -6,6 +6,8 @@ package org.sqlunet.verbnet.style;
 
 import org.sqlunet.style.RegExprSpanner;
 
+import java.util.Objects;
+
 import androidx.annotation.Nullable;
 
 /**
@@ -39,6 +41,6 @@ public class VerbNetSemanticsSpanner extends RegExprSpanner
 	 */
 	public VerbNetSemanticsSpanner()
 	{
-		super(VerbNetSemanticsSpanner.patterns, VerbNetSemanticsSpanner.semanticFactories);
+		super(VerbNetSemanticsSpanner.patterns, Objects.requireNonNull(VerbNetSemanticsSpanner.semanticFactories));
 	}
 }

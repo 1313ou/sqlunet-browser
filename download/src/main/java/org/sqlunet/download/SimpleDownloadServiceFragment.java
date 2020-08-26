@@ -90,43 +90,48 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		@Override
 		public void onReceive(final Context context, @NonNull final Intent intent)
 		{
-			switch (intent.getStringExtra(SimpleDownloaderService.EVENT))
+
+			String event = intent.getStringExtra(SimpleDownloaderService.EVENT);
+			if (event != null)
 			{
-				case SimpleDownloaderService.EVENT_START:
-					Log.d(TAG, "Start");
-					SimpleDownloadServiceFragment.downloading = true;
-					fireNotification(++SimpleDownloadServiceFragment.notificationId, NotificationType.START);
-					break;
+				switch (event)
+				{
+					case SimpleDownloaderService.EVENT_START:
+						Log.d(TAG, "Start");
+						SimpleDownloadServiceFragment.downloading = true;
+						fireNotification(++SimpleDownloadServiceFragment.notificationId, NotificationType.START);
+						break;
 
-				case SimpleDownloaderService.EVENT_UPDATE:
-					if (SimpleDownloadServiceFragment.downloading)
-					{
-						Log.d(TAG, "Update");
-						// SimpleDownloadServiceFragment.downloading = true;
-						progressDownloaded = intent.getIntExtra(SimpleDownloaderService.EVENT_UPDATE_DOWNLOADED, 0);
-						progressTotal = intent.getIntExtra(SimpleDownloaderService.EVENT_UPDATE_TOTAL, 0);
-						float progress = (float) progressDownloaded / progressTotal;
-						fireNotification(SimpleDownloadServiceFragment.notificationId, NotificationType.UPDATE, progress);
-					}
-					break;
+					case SimpleDownloaderService.EVENT_UPDATE:
+						if (SimpleDownloadServiceFragment.downloading)
+						{
+							Log.d(TAG, "Update");
+							// SimpleDownloadServiceFragment.downloading = true;
+							progressDownloaded = intent.getIntExtra(SimpleDownloaderService.EVENT_UPDATE_DOWNLOADED, 0);
+							progressTotal = intent.getIntExtra(SimpleDownloaderService.EVENT_UPDATE_TOTAL, 0);
+							float progress = (float) progressDownloaded / progressTotal;
+							fireNotification(SimpleDownloadServiceFragment.notificationId, NotificationType.UPDATE, progress);
+						}
+						break;
 
-				case SimpleDownloaderService.EVENT_FINISH:
-					int id = intent.getIntExtra(SimpleDownloaderService.EVENT_FINISH_ID, 0);
-					if (id == SimpleDownloadServiceFragment.downloadId)
-					{
-						SimpleDownloadServiceFragment.downloading = false;
-						SimpleDownloadServiceFragment.success = intent.getBooleanExtra(SimpleDownloaderService.EVENT_FINISH_RESULT, false);
-						SimpleDownloadServiceFragment.exception = intent.getStringExtra(SimpleDownloaderService.EVENT_FINISH_EXCEPTION);
-						Log.d(TAG, "Finish " + success);
+					case SimpleDownloaderService.EVENT_FINISH:
+						int id = intent.getIntExtra(SimpleDownloaderService.EVENT_FINISH_ID, 0);
+						if (id == SimpleDownloadServiceFragment.downloadId)
+						{
+							SimpleDownloadServiceFragment.downloading = false;
+							SimpleDownloadServiceFragment.success = intent.getBooleanExtra(SimpleDownloaderService.EVENT_FINISH_RESULT, false);
+							SimpleDownloadServiceFragment.exception = intent.getStringExtra(SimpleDownloaderService.EVENT_FINISH_EXCEPTION);
+							Log.d(TAG, "Finish " + success);
 
-						// fire notification
-						fireNotification(SimpleDownloadServiceFragment.notificationId, NotificationType.FINISH, SimpleDownloadServiceFragment.success);
+							// fire notification
+							fireNotification(SimpleDownloadServiceFragment.notificationId, NotificationType.FINISH, SimpleDownloadServiceFragment.success);
 
-						// fire onDone
-						boolean result = success != null ? success : false;
-						onDone(result);
-					}
-					break;
+							// fire onDone
+							boolean result = success != null ? success : false;
+							onDone(result);
+						}
+						break;
+				}
 			}
 		}
 	};

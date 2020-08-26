@@ -266,7 +266,9 @@ class Collocation
 			final String word1 = query.getWord1();
 			final String word2 = query.getWord2();
 			final Character pos1 = query.getPos1();
+			assert pos1 != null;
 			final Character pos2 = query.getPos2();
+			assert pos2 != null;
 			final String definition1 = query.getDefinition1();
 			final String definition2 = query.getDefinition2();
 			return new Collocation.WithDefinitionAndPos(collocationId, word1Id, word2Id, synset1Id, synset2Id, word1, word2, pos1, pos2, definition1, definition2);
