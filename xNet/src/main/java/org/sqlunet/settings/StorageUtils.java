@@ -340,6 +340,7 @@ public class StorageUtils
 	 * @return list of storage directories
 	 */
 	@NonNull
+	@SuppressWarnings("deprecation")
 	@TargetApi(Build.VERSION_CODES.KITKAT)
 	static private List<Directory> getDirectories(@NonNull final Context context)
 	{
@@ -752,6 +753,7 @@ public class StorageUtils
 	 *
 	 * @return user id
 	 */
+	@SuppressWarnings("deprecation")
 	@NonNull
 	static private String getUserId()
 	{
@@ -822,6 +824,7 @@ public class StorageUtils
 	 * @param path path
 	 * @return free storage in megabytes
 	 */
+	@SuppressWarnings("deprecation")
 	static private float storageFree(final String path)
 	{
 		try
@@ -874,6 +877,7 @@ public class StorageUtils
 	 * @param path path
 	 * @return storage capacity in megabytes
 	 */
+	@SuppressWarnings("deprecation")
 	static float storageCapacity(final String path)
 	{
 		try
