@@ -96,8 +96,7 @@ public class Deploy
 		if (toDir.isDirectory())
 		{
 			final String[] dirContent = toDir.list();
-			boolean isEmpty = dirContent == null || dirContent.length == 0;
-			if (isEmpty)
+			if (dirContent == null || dirContent.length == 0)
 			{
 				// expand asset
 				expandZipFile(lang + ".zip", toDir, false, getter);
