@@ -7,6 +7,7 @@ package androidx.app.local;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.support.local.app.R;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -31,7 +32,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 	@Nullable
 	private ExpandableListView mExpandableList;
 
-	final private Handler mHandler = new Handler();
+	final private Handler mHandler = new Handler(Looper.getMainLooper());
 
 	final private AdapterView.OnItemClickListener mOnClickListener = (parent, v, position, id) -> onListItemClick((ExpandableListView) parent, v, position, id);
 

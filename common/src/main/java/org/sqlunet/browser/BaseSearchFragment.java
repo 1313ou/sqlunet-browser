@@ -16,6 +16,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -350,7 +351,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 			}
 		});
 
-		new Handler().postDelayed(() -> this.searchView.setIconified(false), 1500);
+		new Handler(Looper.getMainLooper()).postDelayed(() -> this.searchView.setIconified(false), 1500);
 	}
 
 	public void clearQuery()

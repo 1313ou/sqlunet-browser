@@ -10,6 +10,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -849,7 +850,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 			return;
 		}
 
-		final Handler handler = new Handler();
+		final Handler handler = new Handler(Looper.getMainLooper());
 		handler.postDelayed(() -> this.listener.onDone(status), 1000);
 	}
 
