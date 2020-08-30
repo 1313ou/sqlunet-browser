@@ -431,7 +431,8 @@
 			android:enabled="true"
 			android:exported="false"
 			android:icon="@mipmap/ic_launcher"
-			android:label="@string/service_downloader" />
+			android:label="@string/service_downloader"
+			android:permission="android.permission.BIND_JOB_SERVICE" />
 
 	</application>
 

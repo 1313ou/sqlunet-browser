@@ -347,21 +347,21 @@
 			android:authorities="@string/manager_authority"
 			android:enabled="true"
 			android:exported="false"
-			tools:ignore="ExportedContentProvider"></provider>
+			tools:ignore="ExportedContentProvider" />
 
 		<provider
 			android:name="org.sqlunet.provider.XSqlUNetProvider"
 			android:authorities="@string/xsqlunet_authority"
 			android:enabled="true"
 			android:exported="false"
-			tools:ignore="ExportedContentProvider"></provider>
+			tools:ignore="ExportedContentProvider" />
 
 		<provider
 			android:name="org.sqlunet.framenet.provider.FrameNetProvider"
 			android:authorities="@string/framenet_authority"
 			android:enabled="true"
 			android:exported="false"
-			tools:ignore="ExportedContentProvider"></provider>
+			tools:ignore="ExportedContentProvider" />
 
 		<service
 			android:name="org.sqlunet.download.SimpleDownloaderService"
@@ -369,7 +369,8 @@
 			android:enabled="true"
 			android:exported="false"
 			android:icon="@mipmap/ic_launcher"
-			android:label="@string/service_downloader"></service>
+			android:label="@string/service_downloader"
+			android:permission="android.permission.BIND_JOB_SERVICE"/>
 
 	</application>
 

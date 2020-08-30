@@ -138,6 +138,7 @@ class HomeImageView extends AppCompatImageView
 				//Log.i("Pick ", message);
 				final Toast toast = Toast.makeText(getContext(), html, Toast.LENGTH_LONG);
 				final View view = toast.getView();
+				assert view != null;
 				view.setBackgroundResource(android.R.drawable.toast_frame);
 				final TextView textView = view.findViewById(android.R.id.message);
 				textView.setBackgroundColor(Color.TRANSPARENT);
