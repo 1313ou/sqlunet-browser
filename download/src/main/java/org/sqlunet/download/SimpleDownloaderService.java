@@ -4,7 +4,6 @@
 
 package org.sqlunet.download;
 
-import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.os.PowerManager;
@@ -23,6 +22,7 @@ import java.net.URLConnection;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.JobIntentService;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 /**
@@ -30,7 +30,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class SimpleDownloaderService extends IntentService
+public class SimpleDownloaderService extends JobIntentService
 {
 	static private final String TAG = "SimpleDownloaderS";
 
@@ -63,6 +63,11 @@ public class SimpleDownloaderService extends IntentService
 	static public final String EVENT_FINISH_ID = "finish_id";
 
 	static public final String EVENT_FINISH_EXCEPTION = "finish_exception";
+
+	/**
+	 * Unique job ID for this service.
+	 */
+	static final int JOB_ID = 1313;
 
 	/**
 	 * Buffer size
@@ -110,7 +115,7 @@ public class SimpleDownloaderService extends IntentService
 	 */
 	public SimpleDownloaderService()
 	{
-		super("SimpleDownloaderService");
+		super();
 		this.cancel = false;
 		this.exception = null;
 	}
@@ -118,7 +123,7 @@ public class SimpleDownloaderService extends IntentService
 	// M A I N   E N T R Y
 
 	@Override
-	protected void onHandleIntent(@Nullable final Intent intent)
+	protected void onHandleWork(@Nullable final Intent intent)
 	{
 		if (intent != null)
 		{
@@ -386,6 +391,16 @@ public class SimpleDownloaderService extends IntentService
 	{
 		super.onDestroy();
 		this.cancel = true;
+	}
+
+	// S T A R T
+
+	/**
+	 * Convenience method for enqueuing work in to this service.
+	 */
+	public static void enqueueWork(final Context context, final Intent work)
+	{
+		enqueueWork(context, SimpleDownloaderService.class, JOB_ID, work);
 	}
 
 	// A L T

@@ -224,7 +224,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 				intent.putExtra(SimpleDownloaderService.ARG_TO_FILE, to);
 				intent.putExtra(SimpleDownloaderService.ARG_CODE, ++SimpleDownloadServiceFragment.downloadId);
 				final Context context = requireContext();
-				context.startService(intent);
+				SimpleDownloaderService.enqueueWork(context, intent);
 
 				// status
 				SimpleDownloadServiceFragment.downloading = true;
