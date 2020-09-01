@@ -8,8 +8,8 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 
+import org.sqlunet.concurrency.Task;
 import org.sqlunet.view.TreeOp;
 
 import androidx.annotation.NonNull;
@@ -43,24 +43,24 @@ public class SqlunetViewTreeModel extends AndroidViewModel
 	@SuppressLint("StaticFieldLeak")
 	public void loadData(@NonNull final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder, @NonNull final ToTreeOps treeConverter)
 	{
-		new AsyncTask<Void, Void, TreeOp[]>()
+		new Task<Void, Void, TreeOp[]>()
 		{
 			@Nullable
 			@Override
-			protected TreeOp[] doInBackground(Void... voids)
+			protected TreeOp[] job(Void... voids)
 			{
 				final Cursor cursor = getApplication().getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder);
 				return cursor == null ? null : treeConverter.cursorToTreeOps(cursor);
 			}
 
 			@Override
-			protected void onPostExecute(@Nullable TreeOp[] treeOps)
+			protected void onJobComplete(@Nullable TreeOp[] treeOps)
 			{
 				if (treeOps != null)
 				{
 					data.setValue(treeOps);
 				}
 			}
-		}.execute();
+		}.run();
 	}
 }

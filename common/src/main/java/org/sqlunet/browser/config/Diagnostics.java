@@ -12,11 +12,11 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
-import android.os.AsyncTask;
 import android.os.Build;
 
 import org.sqlunet.Deploy;
 import org.sqlunet.browser.common.R;
+import org.sqlunet.concurrency.Task;
 import org.sqlunet.download.Settings;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
@@ -36,7 +36,7 @@ public class Diagnostics
 		void onResult(T t);
 	}
 
-	static public class AsyncDiagnostics extends AsyncTask<Context, Long, String>
+	static public class AsyncDiagnostics extends Task<Context, Long, String>
 	{
 		/**
 		 * Result listener
@@ -55,16 +55,15 @@ public class Diagnostics
 
 		@NonNull
 		@Override
-		protected String doInBackground(final Context... params)
+		protected String job(final Context... params)
 		{
 			final Context context = params[0];
 			return report(context);
 		}
 
 		@Override
-		protected void onPostExecute(final String result)
+		protected void onJobComplete(final String result)
 		{
-			super.onPostExecute(result);
 			if (this.resultListener != null)
 			{
 				this.resultListener.onResult(result);

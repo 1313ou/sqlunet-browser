@@ -2,13 +2,12 @@
  * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
-package org.sqlunet.download;
+package org.sqlunet.concurrency;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -38,7 +37,7 @@ public class TaskObserver
 		/**
 		 * Start event
 		 */
-		default void taskStart(final AsyncTask<?, ?, ?> task)
+		default void taskStart(final Task<?, ?, ?> task)
 		{
 		}
 
@@ -64,7 +63,7 @@ public class TaskObserver
 	/**
 	 * Base listener
 	 */
-	static abstract class BaseListener implements Listener
+	static public abstract class BaseListener implements Listener
 	{
 		/**
 		 * Cached context
@@ -74,7 +73,7 @@ public class TaskObserver
 		 * PreferenceManager.getDefaultSharedPreferences(context)
 		 * LocalBroadcastManager.getInstance(context)
 		 */
-		final Context appContext;
+		final protected Context appContext;
 
 		BaseListener(final Context appContext)
 		{
@@ -83,7 +82,7 @@ public class TaskObserver
 
 		@SuppressWarnings("WeakerAccess")
 		@Override
-		public void taskStart(final AsyncTask<?, ?, ?> task)
+		public void taskStart(final Task<?, ?, ?> task)
 		{
 			Log.d(TAG, "Task start");
 		}
@@ -106,7 +105,7 @@ public class TaskObserver
 	/**
 	 * Toast listener
 	 */
-	static class ToastListener extends BaseListener
+	static public class ToastListener extends BaseListener
 	{
 		ToastListener(final Context appContext)
 		{
@@ -115,7 +114,7 @@ public class TaskObserver
 
 		@SuppressWarnings("WeakerAccess")
 		@Override
-		public void taskStart(final AsyncTask<?, ?, ?> task)
+		public void taskStart(final Task<?, ?, ?> task)
 		{
 			super.taskStart(task);
 			Toast.makeText(this.appContext, R.string.status_task_start_toast, Toast.LENGTH_SHORT).show();
@@ -133,18 +132,18 @@ public class TaskObserver
 	/**
 	 * Toast listener
 	 */
-	static class ToastWithStatusListener extends ToastListener
+	static public class ToastWithStatusListener extends ToastListener
 	{
 		final private TextView status;
 
-		ToastWithStatusListener(final Context appContext, final TextView status)
+		public ToastWithStatusListener(final Context appContext, final TextView status)
 		{
 			super(appContext);
 			this.status = status;
 		}
 
 		@Override
-		public void taskStart(final AsyncTask<?, ?, ?> task)
+		public void taskStart(final Task<?, ?, ?> task)
 		{
 			super.taskStart(task);
 			this.status.setText(R.string.status_task_running);
@@ -162,7 +161,7 @@ public class TaskObserver
 	 * Progress bar listener
 	 */
 	@SuppressWarnings("unused")
-	static class ProgressListener extends ToastListener
+	static public class ProgressListener extends ToastListener
 	{
 		private final ProgressBar progress;
 
@@ -179,7 +178,7 @@ public class TaskObserver
 		}
 
 		@Override
-		public void taskStart(AsyncTask<?, ?, ?> task)
+		public void taskStart(Task<?, ?, ?> task)
 		{
 			super.taskStart(task);
 			this.progress.setIndeterminate(true);
@@ -247,14 +246,14 @@ public class TaskObserver
 		}
 
 		@Override
-		public void taskStart(@NonNull final AsyncTask<?, ?, ?> task)
+		public void taskStart(@NonNull final Task<?, ?, ?> task)
 		{
 			super.taskStart(task);
 			this.progressDialog.show();
 			this.progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, this.appContext.getString(R.string.action_abort), (dialog, which) -> {
 				if (which == DialogInterface.BUTTON_NEGATIVE)
 				{
-					boolean result = task.cancel(true);
+					boolean result = task.cancelJob(true);
 					Log.d(TAG, "Cancel task " + task + ' ' + result);
 					dialog.dismiss();
 				}
@@ -272,7 +271,7 @@ public class TaskObserver
 				this.progressDialog.setProgressNumberFormat(null);
 				this.progressDialog.setProgressPercentFormat(null);
 			}
-			final String message = this.unit != null ? countToString(progress, this.unit) : Utils.countToStorageString(progress);
+			final String message = this.unit != null ? countToString(progress, this.unit) : countToStorageString(progress);
 			this.progressDialog.setMessage(message);
 			if (!indeterminate)
 			{
@@ -324,5 +323,36 @@ public class TaskObserver
 	static private String countToString(final long count, final CharSequence unit)
 	{
 		return NumberFormat.getNumberInstance(Locale.US).format(count) + ' ' + unit;
+	}
+
+	static private final String[] UNITS = {"B", "KB", "MB", "GB"};
+
+	/**
+	 * Byte count to string
+	 *
+	 * @param count byte count
+	 * @return string
+	 */
+	@NonNull
+	static private String countToStorageString(final long count)
+	{
+		if (count > 0)
+		{
+			float unit = 1024F * 1024F * 1024F;
+			for (int i = 3; i >= 0; i--)
+			{
+				if (count >= unit)
+				{
+					return String.format(Locale.ENGLISH, "%.1f %s", count / unit, UNITS[i]);
+				}
+
+				unit /= 1024;
+			}
+		}
+		else if (count == 0)
+		{
+			return "0 Byte";
+		}
+		return "[n/a]";
 	}
 }

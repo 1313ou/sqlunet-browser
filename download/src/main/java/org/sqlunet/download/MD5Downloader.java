@@ -4,8 +4,9 @@
 
 package org.sqlunet.download;
 
-import android.os.AsyncTask;
 import android.util.Log;
+
+import org.sqlunet.concurrency.Task;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,7 +24,7 @@ import androidx.annotation.Nullable;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-class MD5Downloader extends AsyncTask<String, Void, String>
+class MD5Downloader extends Task<String, Void, String>
 {
 	static private final String TAG = "MD5Downloader";
 
@@ -51,7 +52,7 @@ class MD5Downloader extends AsyncTask<String, Void, String>
 
 	@Nullable
 	@Override
-	protected String doInBackground(final String... params)
+	protected String job(final String... params)
 	{
 		final String md5Arg = params[0];
 		final String targetArg = params[1];
@@ -98,7 +99,7 @@ class MD5Downloader extends AsyncTask<String, Void, String>
 					throw ie;
 				}
 
-				if (isCancelled())
+				if (jobIsCancelled())
 				{
 					throw new InterruptedException("cancelled");
 				}
@@ -146,14 +147,14 @@ class MD5Downloader extends AsyncTask<String, Void, String>
 	}
 
 	@Override
-	protected void onPostExecute(final String result)
+	protected void onJobComplete(final String result)
 	{
 		Log.d(TAG, "Completed " + result);
 		this.listener.onDone(result);
 	}
 
 	@Override
-	protected void onCancelled(final String result)
+	protected void onJobCancelled(final String result)
 	{
 		Log.d(TAG, "Cancelled " + result);
 		this.listener.onDone(result);

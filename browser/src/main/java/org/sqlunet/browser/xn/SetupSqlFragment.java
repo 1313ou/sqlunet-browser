@@ -19,7 +19,7 @@ import org.sqlunet.browser.ColorUtils;
 import org.sqlunet.browser.Info;
 import org.sqlunet.browser.R;
 import org.sqlunet.browser.config.ExecAsyncTask;
-import org.sqlunet.browser.config.TaskObserver;
+import org.sqlunet.concurrency.TaskObserver;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
 

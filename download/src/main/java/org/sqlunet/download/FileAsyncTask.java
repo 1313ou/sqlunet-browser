@@ -6,7 +6,6 @@ package org.sqlunet.download;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.os.AsyncTask;
 import android.text.SpannableStringBuilder;
 import android.util.Pair;
 import android.widget.EditText;
@@ -16,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.sqlunet.Deploy;
+import org.sqlunet.concurrency.Task;
+import org.sqlunet.concurrency.TaskObserver;
 
 import java.io.File;
 
@@ -77,7 +78,7 @@ public class FileAsyncTask
 
 	// CORE
 
-	static private class AsyncCopyFromFile extends AsyncTask<String, Long, Boolean> implements Deploy.Publisher
+	static private class AsyncCopyFromFile extends Task<String, Long, Boolean> implements Deploy.Publisher
 	{
 		/**
 		 * Task listener
@@ -111,7 +112,7 @@ public class FileAsyncTask
 		@NonNull
 		@SuppressWarnings("boxing")
 		@Override
-		protected Boolean doInBackground(final String... params)
+		protected Boolean job(final String... params)
 		{
 			String srcFileArg = params[0];
 			String destFileArg = params[1];
@@ -121,23 +122,20 @@ public class FileAsyncTask
 		}
 
 		@Override
-		protected void onPreExecute()
+		protected void onPre()
 		{
-			super.onPreExecute();
 			this.listener.taskStart(this);
 		}
 
 		@Override
-		protected void onProgressUpdate(final Long... params)
+		protected void onProgress(final Long... params)
 		{
-			super.onProgressUpdate(params);
 			this.listener.taskUpdate(params[0], params[1]);
 		}
 
 		@Override
-		protected void onPostExecute(final Boolean result)
+		protected void onJobComplete(final Boolean result)
 		{
-			super.onPostExecute(result);
 			this.listener.taskFinish(result);
 			if (this.resultListener != null)
 			{
@@ -154,11 +152,11 @@ public class FileAsyncTask
 		@Override
 		public void publish(long current, long total)
 		{
-			publishProgress(current, total);
+			pushProgress(current, total);
 		}
 	}
 
-	static private class AsyncUnzipFromArchive extends AsyncTask<String, Long, Boolean> implements Deploy.Publisher
+	static private class AsyncUnzipFromArchive extends Task<String, Long, Boolean> implements Deploy.Publisher
 	{
 		/**
 		 * Task listener
@@ -192,7 +190,7 @@ public class FileAsyncTask
 		@NonNull
 		@Override
 		@SuppressWarnings("boxing")
-		protected Boolean doInBackground(final String... params)
+		protected Boolean job(final String... params)
 		{
 			String srcArchiveArg = params[0];
 			String destDirArg = params[1];
@@ -202,19 +200,19 @@ public class FileAsyncTask
 		}
 
 		@Override
-		protected void onPreExecute()
+		protected void onPre()
 		{
 			this.listener.taskStart(this);
 		}
 
 		@Override
-		protected void onProgressUpdate(final Long... params)
+		protected void onProgress(final Long... params)
 		{
 			this.listener.taskUpdate(params[0], params[1]);
 		}
 
 		@Override
-		protected void onPostExecute(final Boolean result)
+		protected void onJobComplete(final Boolean result)
 		{
 			this.listener.taskFinish(result);
 			if (this.resultListener != null)
@@ -224,7 +222,7 @@ public class FileAsyncTask
 		}
 
 		@Override
-		protected void onCancelled(final Boolean result)
+		protected void onJobCancelled(final Boolean result)
 		{
 			this.listener.taskFinish(false);
 		}
@@ -232,11 +230,11 @@ public class FileAsyncTask
 		@Override
 		public void publish(long current, long total)
 		{
-			publishProgress(current, total);
+			pushProgress(current, total);
 		}
 	}
 
-	static private class AsyncUnzipEntryFromArchive extends AsyncTask<String, Long, Boolean> implements Deploy.Publisher
+	static private class AsyncUnzipEntryFromArchive extends Task<String, Long, Boolean> implements Deploy.Publisher
 	{
 		/**
 		 * Task listener
@@ -270,7 +268,7 @@ public class FileAsyncTask
 		@NonNull
 		@Override
 		@SuppressWarnings("boxing")
-		protected Boolean doInBackground(final String... params)
+		protected Boolean job(final String... params)
 		{
 			String srcArchiveArg = params[0];
 			String srcEntryArg = params[1];
@@ -281,19 +279,19 @@ public class FileAsyncTask
 		}
 
 		@Override
-		protected void onPreExecute()
+		protected void onPre()
 		{
 			this.listener.taskStart(this);
 		}
 
 		@Override
-		protected void onProgressUpdate(final Long... params)
+		protected void onProgress(final Long... params)
 		{
 			this.listener.taskUpdate(params[0], params[1]);
 		}
 
 		@Override
-		protected void onPostExecute(final Boolean result)
+		protected void onJobComplete(final Boolean result)
 		{
 			this.listener.taskFinish(result);
 			if (this.resultListener != null)
@@ -303,7 +301,7 @@ public class FileAsyncTask
 		}
 
 		@Override
-		protected void onCancelled(final Boolean result)
+		protected void onJobCancelled(final Boolean result)
 		{
 			this.listener.taskFinish(false);
 		}
@@ -311,11 +309,11 @@ public class FileAsyncTask
 		@Override
 		public void publish(long current, long total)
 		{
-			publishProgress(current, total);
+			pushProgress(current, total);
 		}
 	}
 
-	static private class AsyncMd5FromFile extends AsyncTask<String, Long, String> implements Deploy.Publisher
+	static private class AsyncMd5FromFile extends Task<String, Long, String> implements Deploy.Publisher
 	{
 		/**
 		 * Task listener
@@ -348,7 +346,7 @@ public class FileAsyncTask
 
 		@Nullable
 		@Override
-		protected String doInBackground(final String... params)
+		protected String job(final String... params)
 		{
 			String srcFileArg = params[0];
 
@@ -357,19 +355,19 @@ public class FileAsyncTask
 		}
 
 		@Override
-		protected void onPreExecute()
+		protected void onPre()
 		{
 			this.listener.taskStart(this);
 		}
 
 		@Override
-		protected void onProgressUpdate(final Long... params)
+		protected void onProgress(final Long... params)
 		{
 			this.listener.taskUpdate(params[0], params[1]);
 		}
 
 		@Override
-		protected void onCancelled(final String result)
+		protected void onJobCancelled(final String result)
 		{
 			this.listener.taskFinish(false);
 			if (this.resultListener != null)
@@ -379,7 +377,7 @@ public class FileAsyncTask
 		}
 
 		@Override
-		protected void onPostExecute(@Nullable final String result)
+		protected void onJobComplete(@Nullable final String result)
 		{
 			this.listener.taskFinish(result != null);
 			if (this.resultListener != null)
@@ -391,7 +389,7 @@ public class FileAsyncTask
 		@Override
 		public void publish(long current, long total)
 		{
-			publishProgress(current, total);
+			pushProgress(current, total);
 		}
 	}
 
@@ -405,10 +403,10 @@ public class FileAsyncTask
 	 */
 	@NonNull
 	@SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
-	public AsyncTask<String, Long, Boolean> copyFromFile(final String src, final String dest)
+	public Task<String, Long, Boolean> copyFromFile(final String src, final String dest)
 	{
-		final AsyncTask<String, Long, Boolean> task = new AsyncCopyFromFile(this.listener, this.resultListener, this.publishRate);
-		task.execute(src, dest);
+		final Task<String, Long, Boolean> task = new AsyncCopyFromFile(this.listener, this.resultListener, this.publishRate);
+		task.run(src, dest);
 		return task;
 	}
 
@@ -420,10 +418,10 @@ public class FileAsyncTask
 	 * @param dest       dest file
 	 */
 	@SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
-	public AsyncTask<String, Long, Boolean> unzipEntryFromArchive(final String srcArchive, final String srcEntry, final String dest)
+	public Task<String, Long, Boolean> unzipEntryFromArchive(final String srcArchive, final String srcEntry, final String dest)
 	{
-		final AsyncTask<String, Long, Boolean> task = new AsyncUnzipEntryFromArchive(this.listener, this.resultListener, this.publishRate);
-		return task.execute(srcArchive, srcEntry, dest);
+		final Task<String, Long, Boolean> task = new AsyncUnzipEntryFromArchive(this.listener, this.resultListener, this.publishRate);
+		return task.run(srcArchive, srcEntry, dest);
 	}
 
 	/**
@@ -433,10 +431,10 @@ public class FileAsyncTask
 	 * @param dest       dest file
 	 */
 	@SuppressWarnings("UnusedReturnValue")
-	public AsyncTask<String, Long, Boolean> unzipFromArchive(final String srcArchive, final String dest)
+	public Task<String, Long, Boolean> unzipFromArchive(final String srcArchive, final String dest)
 	{
-		final AsyncTask<String, Long, Boolean> task = new AsyncUnzipFromArchive(this.listener, this.resultListener, this.publishRate);
-		return task.execute(srcArchive, dest);
+		final Task<String, Long, Boolean> task = new AsyncUnzipFromArchive(this.listener, this.resultListener, this.publishRate);
+		return task.run(srcArchive, dest);
 	}
 
 	/**
@@ -445,10 +443,10 @@ public class FileAsyncTask
 	 * @param targetFile file path
 	 */
 	@SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
-	public AsyncTask<String, Long, String> md5FromFile(final String targetFile)
+	public Task<String, Long, String> md5FromFile(final String targetFile)
 	{
-		final AsyncTask<String, Long, String> task = new AsyncMd5FromFile(this.listener, this.resultListener, this.publishRate);
-		return task.execute(targetFile);
+		final Task<String, Long, String> task = new AsyncMd5FromFile(this.listener, this.resultListener, this.publishRate);
+		return task.run(targetFile);
 	}
 
 	// DIALOG

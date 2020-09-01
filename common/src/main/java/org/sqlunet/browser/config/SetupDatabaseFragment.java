@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
 
 import org.sqlunet.browser.common.R;
+import org.sqlunet.concurrency.TaskObserver;
 import org.sqlunet.provider.ManagerContract;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.settings.StorageSettings;

@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.sqlunet.Deploy;
+import org.sqlunet.concurrency.TaskObserver;
 
 import java.io.File;
 
@@ -976,6 +977,6 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 					}
 				});
 			}
-		}).execute(from, targetFile);
+		}).run(from, targetFile);
 	}
 }

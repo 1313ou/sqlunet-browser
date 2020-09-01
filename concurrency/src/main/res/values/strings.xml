@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+	<string name="action_abort">Abort</string>
+	<string name="action_dismiss">Dismiss</string>
+	<string name="status_task_start_toast">Task started</string>
+	<string name="status_task_done_toast">Task done</string>
+
+	<string name="status_task_done">done</string>
+	<string name="status_task_success">success</string>
+	<string name="status_task_failed">failed</string>
+	<string name="status_task_running">running</string>
+</resources>

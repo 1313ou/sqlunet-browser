@@ -30,6 +30,7 @@ android {
 
 dependencies {
     implementation project(':expandableListFragment')
+    implementation project(':concurrency')
     implementation project(':preference')
     implementation project(':download')
     implementation project(':deploy')

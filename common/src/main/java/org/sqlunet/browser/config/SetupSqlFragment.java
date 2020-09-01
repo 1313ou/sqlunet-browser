@@ -8,7 +8,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,6 +23,8 @@ import android.widget.Toast;
 import org.sqlunet.browser.ColorUtils;
 import org.sqlunet.browser.Info;
 import org.sqlunet.browser.common.R;
+import org.sqlunet.concurrency.Task;
+import org.sqlunet.concurrency.TaskObserver;
 import org.sqlunet.download.BaseDownloadFragment;
 import org.sqlunet.download.DownloadActivity;
 import org.sqlunet.settings.StorageSettings;
@@ -51,7 +52,7 @@ public class SetupSqlFragment extends Fragment implements Updatable
 
 	// task
 	@SuppressWarnings("unused")
-	protected AsyncTask<?, Integer, Boolean> task;
+	protected Task<?, Integer, Boolean> task;
 
 	// download sql button
 	private ImageButton downloadSqlZipButton;
