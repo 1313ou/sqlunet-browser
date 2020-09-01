@@ -5,8 +5,9 @@
 package org.sqlunet;
 
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.util.Log;
+
+import org.sqlunet.concurrency.Task;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -305,7 +306,7 @@ public class Deploy
 	 * @param publishRate publish rate
 	 * @return true if successful
 	 */
-	static synchronized public boolean copyFromFile(final String srcFile, final String destFile, @NonNull final AsyncTask<String, Long, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
+	static synchronized public boolean copyFromFile(final String srcFile, final String destFile, @NonNull final Task<String, Long, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
 	{
 		Log.d(Deploy.TAG, "Copy from " + srcFile + " to " + destFile);
 
@@ -335,7 +336,7 @@ public class Deploy
 				}
 
 				// cancel hook
-				if (task.isCancelled())
+				if (task.jobIsCancelled())
 				{
 					//noinspection BreakStatement
 					break;
@@ -361,7 +362,7 @@ public class Deploy
 	 * @param publishRate publish rate
 	 * @return true if successful
 	 */
-	static synchronized public boolean unzipFromArchive(final String srcArchive, final String destDir, @NonNull final AsyncTask<String, Long, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
+	static synchronized public boolean unzipFromArchive(final String srcArchive, final String destDir, @NonNull final Task<String, Long, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
 	{
 		Log.d(Deploy.TAG, "Expand from " + srcArchive + " to " + destDir);
 
@@ -420,7 +421,7 @@ public class Deploy
 						}
 
 						// cancel hook
-						if (task.isCancelled())
+						if (task.jobIsCancelled())
 						{
 							//noinspection BreakStatement
 							break;
@@ -476,7 +477,7 @@ public class Deploy
 	 * @param publishRate publish rate
 	 * @return true if successful
 	 */
-	static synchronized public boolean unzipEntryFromArchive(final String srcArchive, final String srcEntry, final String destFile, @NonNull final AsyncTask<String, Long, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
+	static synchronized public boolean unzipEntryFromArchive(final String srcArchive, final String srcEntry, final String destFile, @NonNull final Task<String, Long, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
 	{
 		Log.d(Deploy.TAG, "Expand from " + srcArchive + " (entry " + srcEntry + ") to " + destFile);
 
@@ -514,7 +515,7 @@ public class Deploy
 					}
 
 					// cancel hook
-					if (task.isCancelled())
+					if (task.jobIsCancelled())
 					{
 						//noinspection BreakStatement
 						break;
@@ -569,7 +570,7 @@ public class Deploy
 	 * @return true if successful
 	 */
 	@Nullable
-	static synchronized public String md5FromFile(final String srcFile, @NonNull final AsyncTask<String, Long, String> task, @NonNull final Publisher publisher, final int publishRate)
+	static synchronized public String md5FromFile(final String srcFile, @NonNull final Task<String, Long, String> task, @NonNull final Publisher publisher, final int publishRate)
 	{
 		Log.d(TAG, "Md5 " + srcFile);
 		try
@@ -599,7 +600,7 @@ public class Deploy
 					}
 
 					// cancel hook
-					if (task.isCancelled())
+					if (task.jobIsCancelled())
 					{
 						//noinspection BreakStatement
 						break;
@@ -771,13 +772,8 @@ public class Deploy
 				}
 			}
 			// Directory is empty.
-			file.delete();
 		}
-		else
-		{
-			// Regular file.
-			file.delete();
-		}
+		file.delete();
 	}
 
 	// M D 5

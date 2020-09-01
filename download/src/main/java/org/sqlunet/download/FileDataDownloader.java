@@ -6,9 +6,10 @@ package org.sqlunet.download;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
+
+import org.sqlunet.concurrency.Task;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -26,7 +27,7 @@ import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_TO_ARG;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class FileDataDownloader extends AsyncTask<String, Void, FileData>
+public class FileDataDownloader extends Task<String, Void, FileData>
 {
 	static private final String TAG = "FileDataDownloader";
 
@@ -47,7 +48,7 @@ public class FileDataDownloader extends AsyncTask<String, Void, FileData>
 
 	@Nullable
 	@Override
-	protected FileData doInBackground(final String... params)
+	protected FileData job(final String... params)
 	{
 		final String urlString = params[0];
 
@@ -92,14 +93,14 @@ public class FileDataDownloader extends AsyncTask<String, Void, FileData>
 	}
 
 	@Override
-	protected void onPostExecute(final FileData result)
+	protected void onJobComplete(final FileData result)
 	{
 		Log.d(TAG, "Completed " + result);
 		this.listener.onDone(result);
 	}
 
 	@Override
-	protected void onCancelled(final FileData result)
+	protected void onJobCancelled(final FileData result)
 	{
 		Log.d(TAG, "Cancelled " + result);
 		this.listener.onDone(result);
@@ -163,7 +164,7 @@ public class FileDataDownloader extends AsyncTask<String, Void, FileData>
 			activity.startActivity(intent);
 		});
 
-		task.execute(downloadSourceUrl);
+		task.run(downloadSourceUrl);
 	}
 
 	/*

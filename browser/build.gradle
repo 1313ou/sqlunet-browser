@@ -61,6 +61,7 @@ dependencies {
     implementation project(':expandableListFragment')
     implementation project(':download')
     implementation project(':deploy')
+    implementation project(':concurrency')
     implementation project(':others')
     implementation project(':donate')
     implementation project(':rate')

@@ -67,7 +67,7 @@ public class DiagnosticsActivity extends AppCompatActivity
 			textView.setText(text);
 			fab.setVisibility(View.VISIBLE);
 			fab.setEnabled(true);
-		}).execute(this);
+		}).run(this);
 
 	}
 }

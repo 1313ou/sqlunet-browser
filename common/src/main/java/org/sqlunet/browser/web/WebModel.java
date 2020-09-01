@@ -5,7 +5,8 @@
 package org.sqlunet.browser.web;
 
 import android.annotation.SuppressLint;
-import android.os.AsyncTask;
+
+import org.sqlunet.concurrency.Task;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,20 +36,20 @@ public class WebModel extends ViewModel
 	@SuppressLint("StaticFieldLeak")
 	public void loadData(@NonNull final DocumentStringLoader loader)
 	{
-		new AsyncTask<Void, Void, String>()
+		new Task<Void, Void, String>()
 		{
 			@Nullable
 			@Override
-			protected String doInBackground(Void... voids)
+			protected String job(Void... voids)
 			{
 				return loader.getDoc();
 			}
 
 			@Override
-			protected void onPostExecute(String treeNode)
+			protected void onJobComplete(String treeNode)
 			{
 				data.setValue(treeNode);
 			}
-		}.execute();
+		}.run();
 	}
 }
