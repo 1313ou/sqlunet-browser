@@ -47,20 +47,20 @@ public class SqlunetViewTreeModel extends AndroidViewModel
 		{
 			@Nullable
 			@Override
-			protected TreeOp[] job(Void... voids)
+			protected TreeOp[] doInBackground(Void... voids)
 			{
 				final Cursor cursor = getApplication().getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder);
 				return cursor == null ? null : treeConverter.cursorToTreeOps(cursor);
 			}
 
 			@Override
-			protected void onJobComplete(@Nullable TreeOp[] treeOps)
+			protected void onPostExecute(@Nullable TreeOp[] treeOps)
 			{
 				if (treeOps != null)
 				{
 					data.setValue(treeOps);
 				}
 			}
-		}.run();
+		}.execute();
 	}
 }

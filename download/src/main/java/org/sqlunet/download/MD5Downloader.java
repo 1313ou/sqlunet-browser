@@ -52,7 +52,7 @@ class MD5Downloader extends Task<String, Void, String>
 
 	@Nullable
 	@Override
-	protected String job(final String... params)
+	protected String doInBackground(final String... params)
 	{
 		final String md5Arg = params[0];
 		final String targetArg = params[1];
@@ -99,7 +99,7 @@ class MD5Downloader extends Task<String, Void, String>
 					throw ie;
 				}
 
-				if (jobIsCancelled())
+				if (isCancelled())
 				{
 					throw new InterruptedException("cancelled");
 				}
@@ -147,14 +147,14 @@ class MD5Downloader extends Task<String, Void, String>
 	}
 
 	@Override
-	protected void onJobComplete(final String result)
+	protected void onPostExecute(final String result)
 	{
 		Log.d(TAG, "Completed " + result);
 		this.listener.onDone(result);
 	}
 
 	@Override
-	protected void onJobCancelled(final String result)
+	protected void onCancelled(final String result)
 	{
 		Log.d(TAG, "Cancelled " + result);
 		this.listener.onDone(result);

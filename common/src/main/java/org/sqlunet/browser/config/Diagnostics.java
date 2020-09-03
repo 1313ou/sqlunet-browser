@@ -55,14 +55,14 @@ public class Diagnostics
 
 		@NonNull
 		@Override
-		protected String job(final Context... params)
+		protected String doInBackground(final Context... params)
 		{
 			final Context context = params[0];
 			return report(context);
 		}
 
 		@Override
-		protected void onJobComplete(final String result)
+		protected void onPostExecute(final String result)
 		{
 			if (this.resultListener != null)
 			{

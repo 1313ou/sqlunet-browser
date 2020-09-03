@@ -336,7 +336,7 @@ public class Deploy
 				}
 
 				// cancel hook
-				if (task.jobIsCancelled())
+				if (task.isCancelled())
 				{
 					//noinspection BreakStatement
 					break;
@@ -421,7 +421,7 @@ public class Deploy
 						}
 
 						// cancel hook
-						if (task.jobIsCancelled())
+						if (task.isCancelled())
 						{
 							//noinspection BreakStatement
 							break;
@@ -515,7 +515,7 @@ public class Deploy
 					}
 
 					// cancel hook
-					if (task.jobIsCancelled())
+					if (task.isCancelled())
 					{
 						//noinspection BreakStatement
 						break;
@@ -600,7 +600,7 @@ public class Deploy
 					}
 
 					// cancel hook
-					if (task.jobIsCancelled())
+					if (task.isCancelled())
 					{
 						//noinspection BreakStatement
 						break;

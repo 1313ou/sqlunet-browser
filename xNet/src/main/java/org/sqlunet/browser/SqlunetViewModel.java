@@ -45,7 +45,7 @@ public class SqlunetViewModel extends AndroidViewModel
 		{
 			@Nullable
 			@Override
-			protected Cursor job(Void... voids)
+			protected Cursor doInBackground(Void... voids)
 			{
 				final Cursor cursor = getApplication().getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder);
 				if (postProcessor != null && cursor != null)
@@ -56,10 +56,10 @@ public class SqlunetViewModel extends AndroidViewModel
 			}
 
 			@Override
-			protected void onJobComplete(Cursor cursor)
+			protected void onPostExecute(Cursor cursor)
 			{
 				data.setValue(cursor);
 			}
-		}.run();
+		}.execute();
 	}
 }

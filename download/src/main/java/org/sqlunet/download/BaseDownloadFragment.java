@@ -977,6 +977,6 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 					}
 				});
 			}
-		}).run(from, targetFile);
+		}).execute(from, targetFile);
 	}
 }

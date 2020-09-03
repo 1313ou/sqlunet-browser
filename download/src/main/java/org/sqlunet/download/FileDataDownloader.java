@@ -48,7 +48,7 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 
 	@Nullable
 	@Override
-	protected FileData job(final String... params)
+	protected FileData doInBackground(final String... params)
 	{
 		final String urlString = params[0];
 
@@ -93,14 +93,14 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 	}
 
 	@Override
-	protected void onJobComplete(final FileData result)
+	protected void onPostExecute(final FileData result)
 	{
 		Log.d(TAG, "Completed " + result);
 		this.listener.onDone(result);
 	}
 
 	@Override
-	protected void onJobCancelled(final FileData result)
+	protected void onCancelled(final FileData result)
 	{
 		Log.d(TAG, "Cancelled " + result);
 		this.listener.onDone(result);
@@ -163,8 +163,7 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 
 			activity.startActivity(intent);
 		});
-
-		task.run(downloadSourceUrl);
+		task.execute(downloadSourceUrl);
 	}
 
 	/*
