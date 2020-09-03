@@ -253,7 +253,7 @@ public class TaskObserver
 			this.progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, this.appContext.getString(R.string.action_abort), (dialog, which) -> {
 				if (which == DialogInterface.BUTTON_NEGATIVE)
 				{
-					boolean result = task.cancelJob(true);
+					boolean result = task.cancel(true);
 					Log.d(TAG, "Cancel task " + task + ' ' + result);
 					dialog.dismiss();
 				}

@@ -118,7 +118,7 @@ public class ExecAsyncTask
 		@NonNull
 		@SafeVarargs
 		@Override
-		protected final Boolean job(final Pair<String, String[]>... params)
+		protected final Boolean doInBackground(final Pair<String, String[]>... params)
 		{
 			final Pair<String, String[]> args = params[0];
 			final String databaseArg = args.first;
@@ -145,17 +145,17 @@ public class ExecAsyncTask
 					// publish
 					if (total % this.publishRate == 0)
 					{
-						pushProgress(i, total);
+						publishProgress(i, total);
 					}
 
 					// cancel hook
-					if (jobIsCancelled())
+					if (isCancelled())
 					{
 						//noinspection BreakStatement
 						break;
 					}
 				}
-				pushProgress(total, total);
+				publishProgress(total, total);
 				return true;
 			}
 			catch (@NonNull final Exception e)
@@ -166,19 +166,19 @@ public class ExecAsyncTask
 		}
 
 		@Override
-		protected void onPre()
+		protected void onPreExecute()
 		{
 			this.listener.taskStart(this);
 		}
 
 		@Override
-		protected void onProgress(final Integer... params)
+		protected void onProgressUpdate(final Integer... params)
 		{
 			this.listener.taskUpdate(params[0], params[1]);
 		}
 
 		@Override
-		protected void onJobComplete(final Boolean result)
+		protected void onPostExecute(final Boolean result)
 		{
 			this.listener.taskFinish(result);
 			this.doneListener.onDone();
@@ -196,7 +196,7 @@ public class ExecAsyncTask
 	public Task<Pair<String, String[]>, Integer, Boolean> executeFromSql(final String database, final String... sqls)
 	{
 		final Task<Pair<String, String[]>, Integer, Boolean> task = new AsyncExecuteFromSql(this.doneListener, this.listener, this.publishRate);
-		task.run(new Pair<>(database, sqls));
+		task.execute(new Pair<>(database, sqls));
 		return task;
 	}
 
@@ -248,7 +248,7 @@ public class ExecAsyncTask
 		@NonNull
 		@Override
 		@SuppressWarnings("boxing")
-		protected Boolean job(final String... params)
+		protected Boolean doInBackground(final String... params)
 		{
 			final String archiveArg = params[0];
 			final String entryArg = params[1];
@@ -341,18 +341,18 @@ public class ExecAsyncTask
 					{
 						if (count % this.publishRate == 0)
 						{
-							pushProgress(count, -1);
+							publishProgress(count, -1);
 						}
 					}
 
 					// cancel hook
-					if (jobIsCancelled())
+					if (isCancelled())
 					{
 						//noinspection BreakStatement
 						break;
 					}
 				}
-				pushProgress(count, count);
+				publishProgress(count, count);
 				return true;
 			}
 			catch (IOException e1)
@@ -406,20 +406,20 @@ public class ExecAsyncTask
 		}
 
 		@Override
-		protected void onPre()
+		protected void onPreExecute()
 		{
 			this.window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 			this.listener.taskStart(this);
 		}
 
 		@Override
-		protected void onProgress(final Integer... params)
+		protected void onProgressUpdate(final Integer... params)
 		{
 			this.listener.taskUpdate(params[0], params[1]);
 		}
 
 		@Override
-		protected void onJobComplete(final Boolean result)
+		protected void onPostExecute(final Boolean result)
 		{
 			this.window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 			this.listener.taskFinish(result);
@@ -439,7 +439,7 @@ public class ExecAsyncTask
 		final PowerManager powerManager = (PowerManager) ExecAsyncTask.this.activity.getSystemService(Context.POWER_SERVICE);
 		final Window window = ExecAsyncTask.this.activity.getWindow();
 		final Task<String, Integer, Boolean> task = new AsyncExecuteFromArchive(this.doneListener, this.listener, this.publishRate, powerManager, window);
-		return task.run(archive, entry, database);
+		return task.execute(archive, entry, database);
 	}
 
 	static private class AsyncVacuum extends Task<String, Void, Void>
@@ -468,7 +468,7 @@ public class ExecAsyncTask
 
 		@Nullable
 		@Override
-		protected Void job(String... params)
+		protected Void doInBackground(String... params)
 		{
 			final String databasePathArg = params[0];
 			final String tempDirArg = params[1];
@@ -488,7 +488,7 @@ public class ExecAsyncTask
 		}
 
 		@Override
-		protected void onJobComplete(Void result)
+		protected void onPostExecute(Void result)
 		{
 			this.listener.taskFinish(true);
 			this.doneListener.onDone();
@@ -506,6 +506,6 @@ public class ExecAsyncTask
 	void vacuum(final String database, final String tempDir)
 	{
 		final Task<String, Void, Void> task = new AsyncVacuum(this.doneListener, this.listener);
-		task.run(database, tempDir);
+		task.execute(database, tempDir);
 	}
 }

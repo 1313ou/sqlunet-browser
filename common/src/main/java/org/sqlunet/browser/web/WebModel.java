@@ -40,16 +40,16 @@ public class WebModel extends ViewModel
 		{
 			@Nullable
 			@Override
-			protected String job(Void... voids)
+			protected String doInBackground(Void... voids)
 			{
 				return loader.getDoc();
 			}
 
 			@Override
-			protected void onJobComplete(String treeNode)
+			protected void onPostExecute(String treeNode)
 			{
 				data.setValue(treeNode);
 			}
-		}.run();
+		}.execute();
 	}
 }
