@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2020. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+
+	android:orientation="vertical">
+
+	<ProgressBar
+		android:id="@+id/progressBar"
+		style="@android:style/Widget.ProgressBar.Horizontal"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:layout_marginLeft="25dp"
+		android:layout_marginRight="25dp" />
+
+	<TextView
+		android:id="@+id/progressMessage"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:layout_marginLeft="25dp"
+		android:layout_marginTop="16dp"
+		android:layout_marginRight="25dp" />
+
+</LinearLayout>

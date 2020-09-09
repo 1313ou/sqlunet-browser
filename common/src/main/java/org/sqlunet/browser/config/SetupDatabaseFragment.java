@@ -7,6 +7,7 @@ package org.sqlunet.browser.config;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,6 +18,8 @@ import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
 
 import org.sqlunet.browser.common.R;
+import org.sqlunet.concurrency.ObservedDelegatingTask;
+import org.sqlunet.concurrency.Task;
 import org.sqlunet.concurrency.TaskObserver;
 import org.sqlunet.provider.ManagerContract;
 import org.sqlunet.provider.ProviderArgs;
@@ -82,7 +85,10 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 			// execute
 			final CharSequence sql = sqls[(int) id];
 			final String[] sqlStatements = sql.toString().split(";");
-			new ExecAsyncTask(activity, this::update, new TaskObserver.ToastWithStatusListener(activity, SetupDatabaseFragment.this.status), 1).executeFromSql(databasePath, sqlStatements);
+			final Task<Pair<String, String[]>, Integer, Boolean> st = new ExecAsyncTask(activity, this::update, null, 1).fromSql();
+			final TaskObserver.Listener<Integer> stListener = new TaskObserver.ToastWithStatusListener<>(activity, SetupDatabaseFragment.this.status);
+			final ObservedDelegatingTask<Pair<String, String[]>, Integer, Boolean> oft = new ObservedDelegatingTask<>(st, stListener);
+			oft.execute(new Pair<>(databasePath, sqlStatements));
 		});
 
 		return view;

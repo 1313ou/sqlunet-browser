@@ -23,6 +23,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 @SuppressWarnings("unused")
 abstract public class Task<Params, Progress, Result>
@@ -41,6 +42,7 @@ abstract public class Task<Params, Progress, Result>
 	{
 		private final AtomicInteger count = new AtomicInteger(1);
 
+		@NonNull
 		public Thread newThread(@NonNull Runnable runnable)
 		{
 			return new Thread(runnable, "ModernAsyncTask #" + this.count.getAndIncrement());
@@ -49,6 +51,7 @@ abstract public class Task<Params, Progress, Result>
 
 	private static final BlockingQueue<Runnable> POOL_WORK_QUEUE = new LinkedBlockingQueue<>(10);
 
+	@NonNull
 	public static final Executor THREAD_POOL_EXECUTOR;
 
 	static
@@ -78,7 +81,7 @@ abstract public class Task<Params, Progress, Result>
 		}
 
 		@SuppressWarnings("unchecked")
-		public void handleMessage(Message msg)
+		public void handleMessage(@NonNull Message msg)
 		{
 			switch (msg.what)
 			{
@@ -98,7 +101,7 @@ abstract public class Task<Params, Progress, Result>
 				}
 				case MESSAGE_POST_PROGRESS:
 				{
-					final Pair<Task<Params, Progress, Result>,Progress[]> payload2 = (Pair<Task<Params, Progress, Result>,Progress[]>) msg.obj;
+					final Pair<Task<Params, Progress, Result>, Progress[]> payload2 = (Pair<Task<Params, Progress, Result>, Progress[]>) msg.obj;
 					payload2.first.onProgressUpdate(payload2.second);
 					break;
 				}
@@ -106,7 +109,7 @@ abstract public class Task<Params, Progress, Result>
 		}
 	}
 
-	private static MultiplexingHandler<?,?,?> handler;
+	private static MultiplexingHandler<?, ?, ?> handler;
 
 	private static Handler getHandler()
 	{
@@ -131,10 +134,12 @@ abstract public class Task<Params, Progress, Result>
 		}
 	}
 
+	@NonNull
 	private final WorkerRunnable<Params, Result> worker;
 
 	// F U T U R E
 
+	@NonNull
 	private final FutureTask<Result> future;
 
 	// S T A T U S
@@ -155,14 +160,19 @@ abstract public class Task<Params, Progress, Result>
 		return this.status;
 	}
 
+	@NonNull
 	final AtomicBoolean cancelled;
 
+	@NonNull
 	final AtomicBoolean taskInvoked;
+
+	private Task<?, ?, ?> forward;
 
 	// C O N S T R U C T
 
 	public Task()
 	{
+		this.forward = this;
 		this.status = Status.PENDING;
 		this.cancelled = new AtomicBoolean();
 		this.taskInvoked = new AtomicBoolean();
@@ -170,6 +180,7 @@ abstract public class Task<Params, Progress, Result>
 		// build worker
 		this.worker = new WorkerRunnable<Params, Result>()
 		{
+			@Nullable
 			public Result call()
 			{
 				Task.this.taskInvoked.set(true);
@@ -188,7 +199,7 @@ abstract public class Task<Params, Progress, Result>
 				}
 				finally
 				{
-					Task.this.postResult((Result) result);
+					Task.this.postResult(result);
 				}
 
 				return result;
@@ -198,6 +209,7 @@ abstract public class Task<Params, Progress, Result>
 		// future
 		this.future = new FutureTask<Result>(this.worker)
 		{
+			@Override
 			protected void done()
 			{
 				try
@@ -215,7 +227,7 @@ abstract public class Task<Params, Progress, Result>
 				}
 				catch (CancellationException ce)
 				{
-					Task.this.postResultIfNotInvoked((Result) null);
+					Task.this.postResultIfNotInvoked(null);
 				}
 				catch (Throwable t)
 				{
@@ -225,10 +237,23 @@ abstract public class Task<Params, Progress, Result>
 		};
 	}
 
+	// D E L E G A T I O N
+
+	/**
+	 * Set this task as delegate and forward termination and progress signals to delegating task
+	 *
+	 * @param delegating delegating task
+	 */
+	protected final void setForward(Task<?, ?, ?> delegating)
+	{
+		this.forward = delegating;
+	}
+
 	// O V E R R I D A B L E
 
 	/**
 	 * Background job
+	 *
 	 * @param params parameters
 	 */
 	protected abstract Result doInBackground(Params[] params);
@@ -254,7 +279,7 @@ abstract public class Task<Params, Progress, Result>
 
 	public final boolean isCancelled()
 	{
-		return this.cancelled.get();
+		return this.cancelled.get() || this.future.isCancelled();
 	}
 
 	public final boolean cancel(boolean mayInterruptIfRunning)
@@ -279,6 +304,7 @@ abstract public class Task<Params, Progress, Result>
 
 	/**
 	 * Progress update callback
+	 *
 	 * @param values progress values
 	 */
 	protected void onProgressUpdate(Progress[] values)
@@ -290,20 +316,22 @@ abstract public class Task<Params, Progress, Result>
 	{
 		if (!this.isCancelled())
 		{
-			getHandler().obtainMessage(MESSAGE_POST_PROGRESS, new Pair<>(this, values)).sendToTarget();
+			getHandler().obtainMessage(MESSAGE_POST_PROGRESS, new Pair<>(this.forward, values)).sendToTarget();
 		}
 	}
 
 	// E X E C U T E
 
+	@NonNull
 	@SafeVarargs
 	public final Task<Params, Progress, Result> execute(Params... params)
 	{
 		return this.executeOnExecutor(defaultExecutor, params);
 	}
 
+	@NonNull
 	@SafeVarargs
-	public final Task<Params, Progress, Result> executeOnExecutor(Executor exec, Params... params)
+	public final Task<Params, Progress, Result> executeOnExecutor(@NonNull Executor exec, Params... params)
 	{
 		if (this.status != Task.Status.PENDING)
 		{
@@ -343,7 +371,7 @@ abstract public class Task<Params, Progress, Result>
 
 	private void postResult(Result result)
 	{
-		Message message = getHandler().obtainMessage(MESSAGE_POST_RESULT, new Pair<>(this, result));
+		Message message = getHandler().obtainMessage(MESSAGE_POST_RESULT, new Pair<>(this.forward, result));
 		message.sendToTarget();
 	}
 }

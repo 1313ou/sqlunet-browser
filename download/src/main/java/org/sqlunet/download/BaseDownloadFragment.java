@@ -23,6 +23,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.sqlunet.Deploy;
+import org.sqlunet.concurrency.ObservedDelegatingTask;
+import org.sqlunet.concurrency.Task;
 import org.sqlunet.concurrency.TaskObserver;
 
 import java.io.File;
@@ -30,6 +32,7 @@ import java.io.File;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 /**
  * Download activity
@@ -629,7 +632,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 					break;
 				}
 
-				// observer update
+				// observer update UI
 				observerUpdate();
 
 				// sleep
@@ -772,7 +775,6 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		Log.d(TAG, "OnDone " + success + " " + this);
 
 		BaseDownloadFragment.isDownloading = false;
-		FileData.recordDatabase(this.appContext, this.downloadedFile);
 
 		// register if this is the database
 		//assert this.downloadedFile != null;
@@ -829,7 +831,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 			this.deployButton.setVisibility(success && this.unzipDir != null ? View.VISIBLE : View.GONE);
 		}
 
-		// fire done result (to listener)
+		// fire done (broadcast to listener)
 		fireDone(success);
 
 		// invalidate
@@ -876,36 +878,42 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		{
 			return;
 		}
-		final TaskObserver.Listener taskListener = new TaskObserver.DialogListener(activity, R.string.action_unzip_from_archive, this.downloadedFile.getName(), null) // guarded, level 1
+		final TaskObserver.BaseListener<Long> taskListener = new TaskObserver.BaseListener<Long>()
 		{
 			@Override
 			public void taskFinish(final boolean result)
 			{
 				super.taskFinish(result);
-				if (result && BaseDownloadFragment.this.downloadedFile != null)
-				{
-					if (renameFrom != null && renameTo != null && !renameFrom.equals(renameTo))
-					{
-						final File renameFromFile = new File(destDir, renameFrom);
-						final File renameToFile = new File(destDir, renameTo);
-						boolean result2 = renameFromFile.renameTo(renameToFile);
-						Log.d(TAG, "Rename " + renameFromFile + " to " + renameToFile + " : " + result2);
-						FileData.recordDatabase(this.appContext, renameToFile);
-					}
 
-					//noinspection ResultOfMethodCallIgnored
-					BaseDownloadFragment.this.downloadedFile.delete();
-				}
-				//broadcastRequest(this.appContext, NEW);
 				final Activity activity = getActivity();
 				if (activity != null)
 				{
+					if (result && BaseDownloadFragment.this.downloadedFile != null)
+					{
+						if (renameFrom != null && renameTo != null && !renameFrom.equals(renameTo))
+						{
+							final File renameFromFile = new File(destDir, renameFrom);
+							final File renameToFile = new File(destDir, renameTo);
+							boolean result2 = renameFromFile.renameTo(renameToFile);
+							Log.d(TAG, "Rename " + renameFromFile + " to " + renameToFile + " : " + result2);
+							FileData.recordDatabase(activity, renameToFile);
+						}
+
+						//noinspection ResultOfMethodCallIgnored
+						BaseDownloadFragment.this.downloadedFile.delete();
+					}
+					//broadcastRequest(this.appContext, NEW);
 					activity.finish();
 				}
 			}
 		};
 		//broadcastRequest(this.appContext, KILL);
-		new FileAsyncTask(taskListener, null, 1000).unzipFromArchive(this.downloadedFile.getAbsolutePath(), destDir);
+
+		final Task<String, Long, Boolean> ft = new FileAsyncTask(taskListener, null, 1000).unzipFromArchive();
+		//final TaskObserver.Listener<Long> fatListener = new TaskObserver.ProgressDialogListener<>(activity, activity.getString(R.string.action_unzip_from_archive), this.downloadedFile.getName(), null); // guarded, level 1
+		final TaskObserver.DialogListener<Long> fatListener = new TaskObserver.DialogListener<>(getParentFragmentManager(), activity.getString(R.string.action_unzip_from_archive), this.downloadedFile.getName(), null); // guarded, level 1
+		final Task<String, Long, Boolean> oft = new ObservedDelegatingTask<>(ft, fatListener);
+		oft.execute(this.downloadedFile.getAbsolutePath(), destDir);
 	}
 
 	/*
@@ -932,7 +940,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		final String targetFile = Uri.parse(this.downloadUrl).getLastPathSegment();
 		new MD5Downloader(downloadedResult -> {
 
-			final Activity activity = getActivity();
+			final FragmentActivity activity = getActivity();
 			if (activity == null || isDetached() || activity.isFinishing() || activity.isDestroyed())
 			{
 				return;

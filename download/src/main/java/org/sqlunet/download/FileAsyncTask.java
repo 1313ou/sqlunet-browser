@@ -4,7 +4,6 @@
 
 package org.sqlunet.download;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.text.SpannableStringBuilder;
 import android.util.Pair;
@@ -15,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.sqlunet.Deploy;
+import org.sqlunet.concurrency.ObservedDelegatingTask;
 import org.sqlunet.concurrency.Task;
 import org.sqlunet.concurrency.TaskObserver;
 
@@ -22,6 +22,7 @@ import java.io.File;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
 
 /**
  * File async tasks
@@ -49,7 +50,7 @@ public class FileAsyncTask
 	/**
 	 * Task listener
 	 */
-	final private TaskObserver.Listener listener;
+	final private TaskObserver.Listener<Long> listener;
 
 	/**
 	 * Result listener
@@ -69,7 +70,7 @@ public class FileAsyncTask
 	 * @param publishRate    publish rate
 	 */
 	@SuppressWarnings("WeakerAccess")
-	protected FileAsyncTask(final TaskObserver.Listener listener, final ResultListener resultListener, @SuppressWarnings("SameParameterValue") final int publishRate)
+	protected FileAsyncTask(final TaskObserver.Listener<Long> listener, final ResultListener resultListener, @SuppressWarnings("SameParameterValue") final int publishRate)
 	{
 		this.listener = listener;
 		this.resultListener = resultListener;
@@ -83,7 +84,7 @@ public class FileAsyncTask
 		/**
 		 * Task listener
 		 */
-		final private TaskObserver.Listener listener;
+		final private TaskObserver.Listener<Long> listener;
 
 		/**
 		 * Result listener
@@ -102,7 +103,7 @@ public class FileAsyncTask
 		 * @param resultListener result listener
 		 * @param publishRate    public rate
 		 */
-		AsyncCopyFromFile(final TaskObserver.Listener listener, final ResultListener resultListener, final int publishRate)
+		AsyncCopyFromFile(final TaskObserver.Listener<Long> listener, final ResultListener resultListener, final int publishRate)
 		{
 			this.listener = listener;
 			this.resultListener = resultListener;
@@ -124,12 +125,14 @@ public class FileAsyncTask
 		@Override
 		protected void onPreExecute()
 		{
+			super.onPreExecute();
 			this.listener.taskStart(this);
 		}
 
 		@Override
 		protected void onProgressUpdate(final Long... params)
 		{
+			super.onProgressUpdate(params);
 			this.listener.taskUpdate(params[0], params[1]);
 		}
 
@@ -161,7 +164,7 @@ public class FileAsyncTask
 		/**
 		 * Task listener
 		 */
-		final private TaskObserver.Listener listener;
+		final private TaskObserver.Listener<Long> listener;
 
 		/**
 		 * Result listener
@@ -180,7 +183,7 @@ public class FileAsyncTask
 		 * @param resultListener result listener
 		 * @param publishRate    public rate
 		 */
-		AsyncUnzipFromArchive(final TaskObserver.Listener listener, final ResultListener resultListener, final int publishRate)
+		AsyncUnzipFromArchive(final TaskObserver.Listener<Long> listener, final ResultListener resultListener, final int publishRate)
 		{
 			this.listener = listener;
 			this.resultListener = resultListener;
@@ -239,7 +242,7 @@ public class FileAsyncTask
 		/**
 		 * Task listener
 		 */
-		final private TaskObserver.Listener listener;
+		final private TaskObserver.Listener<Long> listener;
 
 		/**
 		 * Result listener
@@ -258,7 +261,7 @@ public class FileAsyncTask
 		 * @param resultListener result listener
 		 * @param publishRate    public rate
 		 */
-		AsyncUnzipEntryFromArchive(final TaskObserver.Listener listener, final ResultListener resultListener, final int publishRate)
+		AsyncUnzipEntryFromArchive(final TaskObserver.Listener<Long> listener, final ResultListener resultListener, final int publishRate)
 		{
 			this.listener = listener;
 			this.resultListener = resultListener;
@@ -318,7 +321,7 @@ public class FileAsyncTask
 		/**
 		 * Task listener
 		 */
-		final private TaskObserver.Listener listener;
+		final private TaskObserver.Listener<Long> listener;
 
 		/**
 		 * Result listener
@@ -337,7 +340,7 @@ public class FileAsyncTask
 		 * @param resultListener result listener
 		 * @param publishRate    public rate
 		 */
-		AsyncMd5FromFile(final TaskObserver.Listener listener, final ResultListener resultListener, final int publishRate)
+		AsyncMd5FromFile(final TaskObserver.Listener<Long> listener, final ResultListener resultListener, final int publishRate)
 		{
 			this.listener = listener;
 			this.resultListener = resultListener;
@@ -397,56 +400,39 @@ public class FileAsyncTask
 
 	/**
 	 * Copy from source file
-	 *
-	 * @param src  source file
-	 * @param dest dest file
 	 */
 	@NonNull
-	@SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
-	public Task<String, Long, Boolean> copyFromFile(final String src, final String dest)
+	@SuppressWarnings("WeakerAccess")
+	public Task<String, Long, Boolean> copyFromFile()
 	{
-		final Task<String, Long, Boolean> task = new AsyncCopyFromFile(this.listener, this.resultListener, this.publishRate);
-		task.execute(src, dest);
-		return task;
+		return new AsyncCopyFromFile(this.listener, this.resultListener, this.publishRate);
 	}
 
 	/**
 	 * Expand entry from zipfile
-	 *
-	 * @param srcArchive zip file path
-	 * @param srcEntry   entry
-	 * @param dest       dest file
 	 */
-	@SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
-	public Task<String, Long, Boolean> unzipEntryFromArchive(final String srcArchive, final String srcEntry, final String dest)
+	@SuppressWarnings("WeakerAccess")
+	public Task<String, Long, Boolean> unzipEntryFromArchive()
 	{
-		final Task<String, Long, Boolean> task = new AsyncUnzipEntryFromArchive(this.listener, this.resultListener, this.publishRate);
-		return task.execute(srcArchive, srcEntry, dest);
+		return new AsyncUnzipEntryFromArchive(this.listener, this.resultListener, this.publishRate);
 	}
 
 	/**
 	 * Expand all from zipfile
-	 *
-	 * @param srcArchive zip file path
-	 * @param dest       dest file
 	 */
 	@SuppressWarnings("UnusedReturnValue")
-	public Task<String, Long, Boolean> unzipFromArchive(final String srcArchive, final String dest)
+	public Task<String, Long, Boolean> unzipFromArchive()
 	{
-		final Task<String, Long, Boolean> task = new AsyncUnzipFromArchive(this.listener, this.resultListener, this.publishRate);
-		return task.execute(srcArchive, dest);
+		return new AsyncUnzipFromArchive(this.listener, this.resultListener, this.publishRate);
 	}
 
 	/**
 	 * Md5 check sum of file
-	 *
-	 * @param targetFile file path
 	 */
 	@SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
-	public Task<String, Long, String> md5FromFile(final String targetFile)
+	public Task<String, Long, String> md5FromFile()
 	{
-		final Task<String, Long, String> task = new AsyncMd5FromFile(this.listener, this.resultListener, this.publishRate);
-		return task.execute(targetFile);
+		return new AsyncMd5FromFile(this.listener, this.resultListener, this.publishRate);
 	}
 
 	// DIALOG
@@ -458,7 +444,7 @@ public class FileAsyncTask
 	 * @param containerDir container dir
 	 * @param databasePath database path
 	 */
-	static public void unzipFromArchive(@NonNull final Activity activity, final String containerDir, final String databasePath)
+	static public void unzipFromArchive(@NonNull final FragmentActivity activity, final String containerDir, final String databasePath)
 	{
 		final AlertDialog.Builder alert = new AlertDialog.Builder(activity); // unguarded, level 1
 		alert.setTitle(R.string.action_unzip_from_archive);
@@ -479,7 +465,7 @@ public class FileAsyncTask
 			{
 				return;
 			}
-			final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.action_unzip_from_archive, sourceFile, null); // guarded, level 2
+			final TaskObserver.Listener<Long> listener = new TaskObserver.BaseListener<>();
 			final ResultListener resultListener = result -> {
 				final Boolean success = (Boolean) result;
 				if (success)
@@ -487,7 +473,11 @@ public class FileAsyncTask
 					FileData.recordDatabase(activity, new File(sourceFile));
 				}
 			};
-			new FileAsyncTask(listener, resultListener, 1000).unzipFromArchive(sourceFile, databasePath);
+			final Task<String, Long, Boolean> ft = new FileAsyncTask(listener, resultListener, 1000).unzipFromArchive();
+			//final TaskObserver.Listener<Long> fatListener = new TaskObserver.ProgressDialogListener<>(activity, activity.getString(R.string.action_unzip_from_archive), sourceFile, null); // guarded, level 2
+			final TaskObserver.Listener<Long> fatListener = new TaskObserver.DialogListener<>(activity.getSupportFragmentManager(), activity.getString(R.string.action_unzip_from_archive), sourceFile, null); // guarded, level 2
+			final Task<String, Long, Boolean> oft = new ObservedDelegatingTask<>(ft, fatListener);
+			oft.execute(sourceFile, databasePath);
 		});
 		alert.setNegativeButton(R.string.action_cancel, (dialog, whichButton) -> {
 			// canceled.
@@ -503,7 +493,7 @@ public class FileAsyncTask
 	 * @param zipEntry     zip entry
 	 * @param databasePath database path
 	 */
-	static public void unzipEntryFromArchive(@NonNull final Activity activity, final String containerDir, final String zipEntry, final String databasePath)
+	static public void unzipEntryFromArchive(@NonNull final FragmentActivity activity, final String containerDir, final String zipEntry, final String databasePath)
 	{
 		final AlertDialog.Builder alert = new AlertDialog.Builder(activity); // unguarded, level 1
 		alert.setTitle(R.string.action_unzip_from_archive);
@@ -525,7 +515,7 @@ public class FileAsyncTask
 			{
 				return;
 			}
-			final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.action_unzip_from_archive, sourceFile, null); // guarded, level 2
+			final TaskObserver.Listener<Long> listener = new TaskObserver.BaseListener<>();
 			final ResultListener resultListener = result -> {
 				final Boolean success = (Boolean) result;
 				if (success)
@@ -533,7 +523,11 @@ public class FileAsyncTask
 					FileData.recordDatabase(activity, new File(sourceFile));
 				}
 			};
-			new FileAsyncTask(listener, resultListener, 1000).unzipEntryFromArchive(sourceFile, zipEntry, databasePath);
+			final Task<String, Long, Boolean> ft = new FileAsyncTask(listener, resultListener, 1000).unzipEntryFromArchive();
+			//final TaskObserver.Listener<Long> fatListener = new TaskObserver.ProgressDialogListener<>(activity, activity.getString(R.string.action_unzip_from_archive), sourceFile, null); // guarded, level 2
+			final TaskObserver.Listener<Long> fatListener = new TaskObserver.DialogListener<>(activity.getSupportFragmentManager(), activity.getString(R.string.action_unzip_from_archive), sourceFile, null); // guarded, level 2
+			final Task<String, Long, Boolean> oft = new ObservedDelegatingTask<>(ft, fatListener);
+			oft.execute(sourceFile, zipEntry, databasePath);
 		});
 		alert.setNegativeButton(R.string.action_cancel, (dialog, whichButton) -> {
 			// canceled.
@@ -548,7 +542,7 @@ public class FileAsyncTask
 	 * @param containerDir container dir
 	 * @param databasePath database path
 	 */
-	static public void copyFromFile(@NonNull final Activity activity, final String containerDir, final String databasePath)
+	static public void copyFromFile(@NonNull final FragmentActivity activity, final String containerDir, final String databasePath)
 	{
 		final AlertDialog.Builder alert = new AlertDialog.Builder(activity); // unguarded, level 1
 		alert.setTitle(R.string.action_copy_from_file);
@@ -568,7 +562,7 @@ public class FileAsyncTask
 			{
 				return;
 			}
-			final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.action_copy_from_file, sourceFile, null); // guarded, level 2
+			final TaskObserver.Listener<Long> listener = new TaskObserver.BaseListener<>();
 			final ResultListener resultListener = result -> {
 				final Boolean success = (Boolean) result;
 				if (success)
@@ -576,7 +570,11 @@ public class FileAsyncTask
 					FileData.recordDatabase(activity, new File(sourceFile));
 				}
 			};
-			new FileAsyncTask(listener, resultListener, 1000).copyFromFile(sourceFile, databasePath);
+			final Task<String, Long, Boolean> ft = new FileAsyncTask(listener, resultListener, 1000).copyFromFile();
+			//final TaskObserver.Listener<Long> fatListener = new TaskObserver.ProgressDialogListener<>(activity, activity.getString(R.string.action_copy_from_file), sourceFile, null); // guarded, level 2
+			final TaskObserver.Listener<Long> fatListener = new TaskObserver.DialogListener<>(activity.getSupportFragmentManager(), activity.getString(R.string.action_copy_from_file), sourceFile, null); // guarded, level 2
+			final Task<String, Long, Boolean> oft = new ObservedDelegatingTask<>(ft, fatListener);
+			oft.execute(sourceFile, databasePath);
 		});
 		alert.setNegativeButton(R.string.action_cancel, (dialog, whichButton) -> {
 			// canceled.
@@ -591,17 +589,21 @@ public class FileAsyncTask
 	 * @param path           path
 	 * @param resultListener result listener
 	 */
-	static public void md5(@NonNull final Activity activity, final String path, final ResultListener resultListener)
+	static public void md5(@NonNull final FragmentActivity activity, final String path, final ResultListener resultListener)
 	{
 		if (activity.isFinishing() || activity.isDestroyed())
 		{
 			return;
 		}
-		final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.action_md5, path, null); // guarded, level > 1
-		new FileAsyncTask(listener, resultListener, 1000).md5FromFile(path);
+		final TaskObserver.Listener<Long> listener = new TaskObserver.BaseListener<>();
+		final Task<String, Long, String> ft = new FileAsyncTask(listener, resultListener, 1000).md5FromFile();
+		//final TaskObserver.Listener<Long> fatListener = new TaskObserver.ProgressDialogListener<>(activity, activity.getString(R.string.action_md5), path, null); // guarded, level > 1
+		final TaskObserver.Listener<Long> fatListener = new TaskObserver.DialogListener<>(activity.getSupportFragmentManager(), activity.getString(R.string.action_md5), path, null); // guarded, level 2
+		final Task<String, Long, String> oft = new ObservedDelegatingTask<>(ft, fatListener);
+		oft.execute(path);
 	}
 
-	static public void md5(@NonNull final Activity activity)
+	static public void md5(@NonNull final FragmentActivity activity)
 	{
 		final Pair<CharSequence[], CharSequence[]> result = StorageReports.getStyledCachesNamesValues(activity);
 		final CharSequence[] names = result.first;

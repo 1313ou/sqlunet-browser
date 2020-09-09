@@ -5,10 +5,14 @@
 package org.sqlunet.concurrency;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
+import android.app.Dialog;
+//import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
+//import android.content.DialogInterface;
+import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +21,11 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 
 /**
  * Task observer
@@ -32,12 +41,12 @@ public class TaskObserver
 	 * Manager listener
 	 */
 	@FunctionalInterface
-	public interface Listener
+	public interface Listener<Progress extends Number>
 	{
 		/**
 		 * Start event
 		 */
-		default void taskStart(final Task<?, ?, ?> task)
+		default void taskStart(@NonNull final Task<?, Progress, ?> task)
 		{
 		}
 
@@ -55,7 +64,7 @@ public class TaskObserver
 		 * @param progress progress value
 		 * @param length   length
 		 */
-		default void taskUpdate(long progress, long length)
+		default void taskUpdate(@NonNull Progress progress, @NonNull Progress length)
 		{
 		}
 	}
@@ -63,33 +72,18 @@ public class TaskObserver
 	/**
 	 * Base listener
 	 */
-	static public abstract class BaseListener implements Listener
+	static public class BaseListener<Progress extends Number> implements Listener<Progress>
 	{
-		/**
-		 * Cached context
-		 * <p>
-		 * Uses:
-		 * context.getString(R.string.x)
-		 * PreferenceManager.getDefaultSharedPreferences(context)
-		 * LocalBroadcastManager.getInstance(context)
-		 */
-		final protected Context appContext;
-
-		BaseListener(final Context appContext)
-		{
-			this.appContext = appContext;
-		}
-
 		@SuppressWarnings("WeakerAccess")
 		@Override
-		public void taskStart(final Task<?, ?, ?> task)
+		public void taskStart(@NonNull final Task<?, Progress, ?> task)
 		{
 			Log.d(TAG, "Task start");
 		}
 
 		@SuppressWarnings("WeakerAccess")
 		@Override
-		public void taskUpdate(long progress, long length)
+		public void taskUpdate(@NonNull Progress progress, @NonNull Progress length)
 		{
 			Log.d(TAG, "Task " + progress + '/' + length);
 		}
@@ -105,16 +99,23 @@ public class TaskObserver
 	/**
 	 * Toast listener
 	 */
-	static public class ToastListener extends BaseListener
+	static public class ToastListener<Progress extends Number> extends BaseListener<Progress>
 	{
-		ToastListener(final Context appContext)
+		/**
+		 * Cached context
+		 */
+		@NonNull
+		final protected Context appContext;
+
+		ToastListener(@NonNull final Context appContext)
 		{
-			super(appContext);
+			super();
+			this.appContext = appContext;
 		}
 
 		@SuppressWarnings("WeakerAccess")
 		@Override
-		public void taskStart(final Task<?, ?, ?> task)
+		public void taskStart(@NonNull final Task<?, Progress, ?> task)
 		{
 			super.taskStart(task);
 			Toast.makeText(this.appContext, R.string.status_task_start_toast, Toast.LENGTH_SHORT).show();
@@ -132,18 +133,19 @@ public class TaskObserver
 	/**
 	 * Toast listener
 	 */
-	static public class ToastWithStatusListener extends ToastListener
+	static public class ToastWithStatusListener<Progress extends Number> extends ToastListener<Progress>
 	{
+		@NonNull
 		final private TextView status;
 
-		public ToastWithStatusListener(final Context appContext, final TextView status)
+		public ToastWithStatusListener(@NonNull final Context appContext, @NonNull final TextView status)
 		{
 			super(appContext);
 			this.status = status;
 		}
 
 		@Override
-		public void taskStart(final Task<?, ?, ?> task)
+		public void taskStart(@NonNull final Task<?, Progress, ?> task)
 		{
 			super.taskStart(task);
 			this.status.setText(R.string.status_task_running);
@@ -161,7 +163,7 @@ public class TaskObserver
 	 * Progress bar listener
 	 */
 	@SuppressWarnings("unused")
-	static public class ProgressListener extends ToastListener
+	static public class ProgressListener<Progress extends Number> extends ToastListener<Progress>
 	{
 		private final ProgressBar progress;
 
@@ -171,24 +173,24 @@ public class TaskObserver
 		 * @param appContext app context
 		 * @param progress   progress bar
 		 */
-		ProgressListener(final Context appContext, final ProgressBar progress)
+		ProgressListener(@NonNull final Context appContext, final ProgressBar progress)
 		{
 			super(appContext);
 			this.progress = progress;
 		}
 
 		@Override
-		public void taskStart(Task<?, ?, ?> task)
+		public void taskStart(@NonNull Task<?, Progress, ?> task)
 		{
 			super.taskStart(task);
 			this.progress.setIndeterminate(true);
 		}
 
 		@Override
-		public void taskUpdate(long progress, long length)
+		public void taskUpdate(@NonNull final Progress progress, @NonNull final Progress length)
 		{
 			super.taskUpdate(progress, length);
-			boolean indeterminate = length == -1;
+			boolean indeterminate = length.equals(-1);
 			this.progress.setIndeterminate(indeterminate);
 			if (!indeterminate)
 			{
@@ -206,78 +208,183 @@ public class TaskObserver
 		}
 	}
 
+//	/**
+//	 * ProgressDialog listener
+//	 */
+//	static public class ProgressDialogListener<Progress extends Number> extends BaseListener<Progress>
+//	{
+//		@Nullable
+//		private Task<?, ?, ?> task;
+//
+//		@NonNull
+//		private final ProgressDialog progressDialog;
+//
+//		@Nullable
+//		private final CharSequence unit;
+//
+//		/**
+//		 * Constructor
+//		 *
+//		 * @param activity  activity
+//		 * @param titleId   title id
+//		 * @param messageId message id
+//		 * @param unitId    unit id
+//		 */
+//		public ProgressDialogListener(@NonNull final Activity activity, @StringRes final int titleId, @StringRes final int messageId, @StringRes final int unitId)
+//		{
+//			this(activity, activity.getString(titleId), activity.getString(messageId), unitId == 0 ? null : activity.getString(unitId));
+//		}
+//
+//		/**
+//		 * Constructor
+//		 *
+//		 * @param activity activity
+//		 * @param title    title
+//		 * @param message  message
+//		 * @param unit     unit
+//		 */
+//		public ProgressDialogListener(@NonNull final Activity activity, @NonNull final CharSequence title, @NonNull final CharSequence message, @Nullable final CharSequence unit)
+//		{
+//			this.progressDialog = makeDialog(activity, title, message);
+//			this.unit = unit;
+//		}
+//
+//		@Override
+//		public void taskStart(@NonNull final Task<?, Progress, ?> task)
+//		{
+//			super.taskStart(task);
+//			this.task = task;
+//			this.progressDialog.show();
+//		}
+//
+//		@Override
+//		public void taskUpdate(@NonNull final Progress progress, @NonNull final Progress length)
+//		{
+//			super.taskUpdate(progress, length);
+//			final long longLength = length.longValue();
+//			final long longProgress = progress.longValue();
+//			final boolean indeterminate = longLength == -1L;
+//			this.progressDialog.setIndeterminate(indeterminate);
+//			if (indeterminate)
+//			{
+//				this.progressDialog.setProgressNumberFormat(null);
+//				this.progressDialog.setProgressPercentFormat(null);
+//			}
+//			final String message = this.unit != null ? countToString(progress.longValue(), this.unit) : countToStorageString(progress.longValue());
+//			this.progressDialog.setMessage(message);
+//			if (!indeterminate)
+//			{
+//				//final int percent = (int) ((longProgress * 100F) / longLength);
+//				this.progressDialog.setMax((int) longLength);
+//				this.progressDialog.setProgress((int) longProgress);
+//			}
+//		}
+//
+//		@SuppressWarnings("UnusedReturnValue")
+//		@Override
+//		public void taskFinish(boolean result)
+//		{
+//			super.taskFinish(result);
+//			this.progressDialog.dismiss();
+//		}
+//
+//		/**
+//		 * Make dialog
+//		 *
+//		 * @param activity activity
+//		 * @param title    title
+//		 * @param message  message
+//		 * @return dialog
+//		 */
+//		@NonNull
+//		private ProgressDialog makeDialog(@NonNull final Activity activity, @NonNull final CharSequence title, @NonNull final CharSequence message)
+//		{
+//			final ProgressDialog progressDialog = new ProgressDialog(activity);
+//			progressDialog.setTitle(title);
+//			progressDialog.setMessage(message);
+//			progressDialog.setIndeterminate(true);
+//			progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+//			progressDialog.setCancelable(true);
+//			progressDialog.setButton(DialogInterface.BUTTON_POSITIVE, activity.getString(R.string.action_dismiss), (dialog, which) -> dialog.dismiss());
+//			progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, activity.getString(R.string.action_abort), (dialog, which) -> {
+//
+//				if (which == DialogInterface.BUTTON_NEGATIVE)
+//				{
+//					boolean result = ProgressDialogListener.this.task != null && ProgressDialogListener.this.task.cancel(true);
+//					Log.d(TAG, "Cancel task " + this.task + ' ' + result);
+//					dialog.dismiss();
+//				}
+//			});
+//			return progressDialog;
+//		}
+//	}
+
 	/**
 	 * Dialog listener
 	 */
-	static public class DialogListener extends BaseListener
+	static public class DialogListener<Progress extends Number> extends BaseListener<Progress>
 	{
 		@NonNull
-		private final ProgressDialog progressDialog;
+		private final FragmentManager fragmentManager;
 
+		@NonNull
+		private final ProgressDialogFragment progressDialogFragment;
+
+		@Nullable
 		private final CharSequence unit;
 
 		/**
 		 * Constructor
 		 *
-		 * @param activity  activity
-		 * @param titleId   titleId id
-		 * @param messageId message id
-		 * @param unitId    unit id
+		 * @param appContext appContext
+		 * @param titleId    titleId id
+		 * @param messageId  message id
+		 * @param unitId     unit id
 		 */
 		@SuppressWarnings("unused")
-		DialogListener(@NonNull final Activity activity, final int titleId, final int messageId, final int unitId)
+		public DialogListener(@NonNull final FragmentManager fragmentManager, @NonNull final Context appContext, @StringRes final int titleId, @StringRes final int messageId, @StringRes final int unitId)
 		{
-			this(activity, titleId, activity.getString(messageId), activity.getString(unitId));
+			this(fragmentManager, appContext.getString(titleId), appContext.getString(messageId), unitId == 0 ? null : appContext.getString(unitId));
 		}
 
 		/**
 		 * Constructor
 		 *
-		 * @param activity activity
-		 * @param titleId  titleId id
-		 * @param message  message
-		 * @param unit     unit
+		 * @param title   title
+		 * @param message message
+		 * @param unit    unit
 		 */
-		public DialogListener(@NonNull final Activity activity, final int titleId, final CharSequence message, final CharSequence unit)
+		public DialogListener(@NonNull final FragmentManager fragmentManager, @NonNull final CharSequence title, @NonNull final CharSequence message, @Nullable final CharSequence unit)
 		{
-			super(activity);
-			this.progressDialog = makeDialog(activity, titleId, message);
+			super();
+			this.fragmentManager = fragmentManager;
+			this.progressDialogFragment = makeDialogFragment(title, message);
 			this.unit = unit;
 		}
 
 		@Override
-		public void taskStart(@NonNull final Task<?, ?, ?> task)
+		public void taskStart(@NonNull final Task<?, Progress, ?> task)
 		{
 			super.taskStart(task);
-			this.progressDialog.show();
-			this.progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, this.appContext.getString(R.string.action_abort), (dialog, which) -> {
-				if (which == DialogInterface.BUTTON_NEGATIVE)
-				{
-					boolean result = task.cancel(true);
-					Log.d(TAG, "Cancel task " + task + ' ' + result);
-					dialog.dismiss();
-				}
-			});
+			this.progressDialogFragment.setTask(task);
+			this.progressDialogFragment.show(this.fragmentManager, "tag");
 		}
 
 		@Override
-		public void taskUpdate(long progress, long length)
+		public void taskUpdate(@NonNull final Progress progress, @NonNull final Progress length)
 		{
 			super.taskUpdate(progress, length);
-			final boolean indeterminate = length == -1;
-			this.progressDialog.setIndeterminate(indeterminate);
-			if (indeterminate)
-			{
-				this.progressDialog.setProgressNumberFormat(null);
-				this.progressDialog.setProgressPercentFormat(null);
-			}
-			final String message = this.unit != null ? countToString(progress, this.unit) : countToStorageString(progress);
-			this.progressDialog.setMessage(message);
+			final long longLength = length.longValue();
+			final long longProgress = progress.longValue();
+			final boolean indeterminate = longLength == -1L;
+			this.progressDialogFragment.progressBar.setIndeterminate(indeterminate);
+			final String message = (this.unit != null ? countToString(longProgress, this.unit) : countToStorageString(longProgress)) + " / " + longLength;
+			this.progressDialogFragment.textView.setText(message);
 			if (!indeterminate)
 			{
-				final int percent = (int) ((progress * 100F) / length);
-				this.progressDialog.setMax(100);
-				this.progressDialog.setProgress(percent);
+				final int percent = (int) ((longProgress * 100F) / longLength);
+				this.progressDialogFragment.progressBar.setMax(100);
+				this.progressDialogFragment.progressBar.setProgress(percent);
 			}
 		}
 
@@ -286,30 +393,69 @@ public class TaskObserver
 		public void taskFinish(boolean result)
 		{
 			super.taskFinish(result);
-			this.progressDialog.dismiss();
+			this.progressDialogFragment.dismiss();
 		}
 
 		/**
-		 * Make dialog
+		 * Make dialog fragment
 		 *
-		 * @param activity activity
-		 * @param titleId  titleId id
-		 * @param message  message
+		 * @param title   title id
+		 * @param message message
 		 * @return dialog
 		 */
 		@NonNull
-		static private ProgressDialog makeDialog(@NonNull final Activity activity, final int titleId, final CharSequence message)
+		static private ProgressDialogFragment makeDialogFragment(@NonNull final CharSequence title, @NonNull final CharSequence message)
 		{
-			final ProgressDialog progressDialog = new ProgressDialog(activity);
-			progressDialog.setTitle(titleId);
-			progressDialog.setMessage(message);
-			progressDialog.setIndeterminate(true);
-			progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-			progressDialog.setCancelable(true);
-			// until task is available
-			progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, activity.getString(R.string.action_abort), (dialog, which) -> dialog.dismiss());
-			progressDialog.setButton(DialogInterface.BUTTON_POSITIVE, activity.getString(R.string.action_dismiss), (dialog, which) -> dialog.dismiss());
-			return progressDialog;
+			return new ProgressDialogFragment(title, message);
+		}
+
+		public static class ProgressDialogFragment extends DialogFragment
+		{
+			@NonNull
+			private final CharSequence title;
+
+			@NonNull
+			private final CharSequence message;
+
+			private TextView textView;
+
+			private ProgressBar progressBar;
+
+			@Nullable
+			private Task<?, ?, ?> task;
+
+			public ProgressDialogFragment(@NonNull final CharSequence title, @NonNull final CharSequence message)
+			{
+				this.title = title;
+				this.message = message;
+			}
+
+			public void setTask(@NonNull final Task<?, ?, ?> task)
+			{
+				this.task = task;
+			}
+
+			@NonNull
+			@Override
+			public Dialog onCreateDialog(Bundle savedInstanceState)
+			{
+				final Activity activity = requireActivity();
+				final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+				final LayoutInflater inflater = activity.getLayoutInflater();
+				final View view = inflater.inflate(R.layout.dialog_progress, null);
+				this.progressBar = view.findViewById(R.id.progressBar);
+				this.textView = view.findViewById(R.id.progressMessage);
+				builder.setView(view);
+				builder.setTitle(this.title);
+				builder.setMessage(this.message);
+				builder.setNegativeButton(R.string.action_cancel, (dialog, whichButton) -> {
+					// canceled.
+					boolean result = this.task != null && this.task.cancel(true);
+					Log.d(TAG, "Cancel task " + this.task + ' ' + result);
+					this.dismiss();
+				});
+				return builder.create();
+			}
 		}
 	}
 
@@ -320,7 +466,7 @@ public class TaskObserver
 	 * @return string
 	 */
 	@NonNull
-	static private String countToString(final long count, final CharSequence unit)
+	static private String countToString(final long count, @NonNull final CharSequence unit)
 	{
 		return NumberFormat.getNumberInstance(Locale.US).format(count) + ' ' + unit;
 	}

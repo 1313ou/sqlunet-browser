@@ -57,7 +57,7 @@ public class ExecAsyncTask
 	/**
 	 * Result listener
 	 */
-	final private TaskObserver.Listener listener;
+	final private TaskObserver.Listener<Integer> listener;
 
 	/**
 	 * Publish rate
@@ -77,7 +77,7 @@ public class ExecAsyncTask
 	 * @param listener     listener
 	 * @param publishRate  publish rate
 	 */
-	public ExecAsyncTask(final Activity activity, final DoneListener doneListener, final TaskObserver.Listener listener, final int publishRate)
+	public ExecAsyncTask(final Activity activity, final DoneListener doneListener, final TaskObserver.Listener<Integer> listener, final int publishRate)
 	{
 		this.activity = activity;
 		this.doneListener = doneListener;
@@ -95,7 +95,7 @@ public class ExecAsyncTask
 		/**
 		 * Task listener
 		 */
-		final private TaskObserver.Listener listener;
+		final private TaskObserver.Listener<Integer> listener;
 
 		/**
 		 * Publish rate
@@ -108,7 +108,7 @@ public class ExecAsyncTask
 		 * @param listener    listener
 		 * @param publishRate publish rate
 		 */
-		AsyncExecuteFromSql(final DoneListener doneListener, final TaskObserver.Listener listener, final int publishRate)
+		AsyncExecuteFromSql(final DoneListener doneListener, final TaskObserver.Listener<Integer> listener, final int publishRate)
 		{
 			this.doneListener = doneListener;
 			this.listener = listener;
@@ -187,17 +187,12 @@ public class ExecAsyncTask
 
 	/**
 	 * Execute sql statements
-	 *
-	 * @param database database path
-	 * @param sqls     sql statements
 	 */
 	@NonNull
 	@SuppressWarnings({"UnusedReturnValue", "unchecked"})
-	public Task<Pair<String, String[]>, Integer, Boolean> executeFromSql(final String database, final String... sqls)
+	public Task<Pair<String, String[]>, Integer, Boolean> fromSql()
 	{
-		final Task<Pair<String, String[]>, Integer, Boolean> task = new AsyncExecuteFromSql(this.doneListener, this.listener, this.publishRate);
-		task.execute(new Pair<>(database, sqls));
-		return task;
+		return new AsyncExecuteFromSql(this.doneListener, this.listener, this.publishRate);
 	}
 
 	static private class AsyncExecuteFromArchive extends Task<String, Integer, Boolean>
@@ -210,7 +205,7 @@ public class ExecAsyncTask
 		/**
 		 * Task listener
 		 */
-		final private TaskObserver.Listener listener;
+		final private TaskObserver.Listener<Integer> listener;
 
 		/**
 		 * Publish rate
@@ -236,7 +231,7 @@ public class ExecAsyncTask
 		 * @param powerManager power manager
 		 * @param window       window
 		 */
-		AsyncExecuteFromArchive(final DoneListener doneListener, final TaskObserver.Listener listener, final int publishRate, final PowerManager powerManager, final Window window)
+		AsyncExecuteFromArchive(final DoneListener doneListener, final TaskObserver.Listener<Integer> listener, final int publishRate, final PowerManager powerManager, final Window window)
 		{
 			this.doneListener = doneListener;
 			this.listener = listener;
@@ -429,17 +424,13 @@ public class ExecAsyncTask
 
 	/**
 	 * Execute sql statements from zipfile
-	 *
-	 * @param database database path
-	 * @param archive  zip file path with sql statements
-	 * @param entry    entry
 	 */
-	public Task<String, Integer, Boolean> executeFromArchive(final String database, final String archive, final String entry)
+	public Task<String, Integer, Boolean> fromArchive()
 	{
 		final PowerManager powerManager = (PowerManager) ExecAsyncTask.this.activity.getSystemService(Context.POWER_SERVICE);
 		final Window window = ExecAsyncTask.this.activity.getWindow();
-		final Task<String, Integer, Boolean> task = new AsyncExecuteFromArchive(this.doneListener, this.listener, this.publishRate, powerManager, window);
-		return task.execute(archive, entry, database);
+		return new AsyncExecuteFromArchive(this.doneListener, this.listener, this.publishRate, powerManager, window);
+		// task.execute(archive, entry, database);
 	}
 
 	static private class AsyncVacuum extends Task<String, Void, Void>
@@ -452,7 +443,7 @@ public class ExecAsyncTask
 		/**
 		 * Task listener
 		 */
-		final private TaskObserver.Listener listener;
+		final private TaskObserver.Listener<Integer> listener;
 
 		/**
 		 * Constructor
@@ -460,7 +451,7 @@ public class ExecAsyncTask
 		 * @param doneListener doneListener
 		 * @param listener     listener
 		 */
-		AsyncVacuum(final DoneListener doneListener, final TaskObserver.Listener listener)
+		AsyncVacuum(final DoneListener doneListener, final TaskObserver.Listener<Integer> listener)
 		{
 			this.doneListener = doneListener;
 			this.listener = listener;

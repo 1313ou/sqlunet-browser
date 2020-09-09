@@ -3,6 +3,7 @@ package org.sqlunet.concurrency;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import androidx.annotation.NonNull;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 /**
@@ -22,7 +23,7 @@ public class ConcurrencyInstrumentedTest
 		final Task<Integer, String, Long> t = new Task<Integer, String, Long>()
 		{
 			@Override
-			protected final Long doInBackground(final Integer... params)
+			protected final Long doInBackground(@NonNull final Integer... params)
 			{
 				long s = 0;
 				for (Integer param : params)
@@ -40,7 +41,7 @@ public class ConcurrencyInstrumentedTest
 				System.out.println(result);
 			}
 
-			protected void onProgressUpdate(String... progresses)
+			protected void onProgressUpdate(@NonNull String... progresses)
 			{
 				for (String progress : progresses)
 				{

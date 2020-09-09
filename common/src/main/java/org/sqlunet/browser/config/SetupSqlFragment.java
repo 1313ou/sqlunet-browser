@@ -23,6 +23,7 @@ import android.widget.Toast;
 import org.sqlunet.browser.ColorUtils;
 import org.sqlunet.browser.Info;
 import org.sqlunet.browser.common.R;
+import org.sqlunet.concurrency.ObservedDelegatingTask;
 import org.sqlunet.concurrency.Task;
 import org.sqlunet.concurrency.TaskObserver;
 import org.sqlunet.download.BaseDownloadFragment;
@@ -35,6 +36,7 @@ import java.io.File;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 /**
@@ -49,10 +51,6 @@ public class SetupSqlFragment extends Fragment implements Updatable
 	// codes
 
 	static private final int REQUEST_DOWNLOAD_CODE = 0xDDDD;
-
-	// task
-	@SuppressWarnings("unused")
-	protected Task<?, Integer, Boolean> task;
 
 	// download sql button
 	private ImageButton downloadSqlZipButton;
@@ -177,15 +175,19 @@ public class SetupSqlFragment extends Fragment implements Updatable
 		// import
 		this.importButton.setOnClickListener(v -> {
 
-			final Activity activity = requireActivity();
+			final FragmentActivity activity = requireActivity();
 			try
 			{
 				final String database = StorageSettings.getDatabasePath(activity);
 				final String source = StorageSettings.getSqlSource(activity);
 				final String entry = StorageSettings.getImportEntry(activity);
 				final String unit = activity.getString(R.string.unit_statement);
-				final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.status_managing, source + '@' + entry, unit);
-				SetupSqlFragment.this.task = new ExecAsyncTask(activity, this::update, listener, 1000).executeFromArchive(database, source, entry);
+				final TaskObserver.Listener<Integer> listener = new TaskObserver.BaseListener<>();
+				final Task<String, Integer, Boolean> st = new ExecAsyncTask(activity, this::update, listener, 1000).fromArchive();
+				// final TaskObserver.Listener<Integer> stListener = new TaskObserver.ProgressDialogListener<>(activity, activity.getString(R.string.status_managing), source + '@' + entry, unit);
+				final TaskObserver.Listener<Integer> stListener = new TaskObserver.DialogListener<>(activity.getSupportFragmentManager(), activity.getString(R.string.status_managing), source + '@' + entry, unit);
+				final ObservedDelegatingTask<String, Integer, Boolean> oft = new ObservedDelegatingTask<>(st, stListener);
+				oft.execute(database, source, entry);
 			}
 			catch (@NonNull final Exception e)
 			{
@@ -215,7 +217,7 @@ public class SetupSqlFragment extends Fragment implements Updatable
 		// index button
 		this.indexesButton.setOnClickListener(v -> {
 
-			final Activity activity = requireActivity();
+			final FragmentActivity activity = requireActivity();
 
 			// starting indexing task
 			try
@@ -224,8 +226,12 @@ public class SetupSqlFragment extends Fragment implements Updatable
 				final String source = StorageSettings.getSqlSource(activity);
 				final String entry = StorageSettings.getIndexEntry(activity);
 				final String unit = activity.getString(R.string.unit_statement);
-				final TaskObserver.Listener listener = new TaskObserver.DialogListener(activity, R.string.status_managing, source + '@' + entry, unit);
-				SetupSqlFragment.this.task = new ExecAsyncTask(activity, this::update, listener, 1).executeFromArchive(database, source, entry);
+				final TaskObserver.Listener<Integer> listener = new TaskObserver.BaseListener<>();
+				final Task<String, Integer, Boolean> st = new ExecAsyncTask(activity, this::update, listener, 1).fromArchive(); //database, source, entry);
+				// final TaskObserver.Listener<Integer> stListener = new TaskObserver.ProgressDialogListener<>(activity, activity.getString(R.string.status_managing), source + '@' + entry, unit);
+				final TaskObserver.Listener<Integer> stListener = new TaskObserver.DialogListener<>(activity.getSupportFragmentManager(), activity.getString(R.string.status_managing), source + '@' + entry, unit);
+				final ObservedDelegatingTask<String, Integer, Boolean> oft = new ObservedDelegatingTask<>(st, stListener);
+				oft.execute(database, source, entry);
 			}
 			catch (@NonNull final Exception e)
 			{
