@@ -4,7 +4,6 @@
 
 package org.sqlunet.browser.config;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,6 +29,7 @@ import java.io.File;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
 
 import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
 import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_TO_ARG;
@@ -114,7 +114,7 @@ public class SetupFileFragment extends BaseTaskFragment
 
 			// execute
 			boolean success;
-			final Activity activity = requireActivity();
+			final FragmentActivity activity = requireActivity();
 			final Operation op = Operation.fromIndex((int) id);
 			if (op != null)
 			{

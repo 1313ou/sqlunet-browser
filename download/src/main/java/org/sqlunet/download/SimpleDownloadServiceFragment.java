@@ -90,7 +90,6 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		@Override
 		public void onReceive(final Context context, @NonNull final Intent intent)
 		{
-
 			String event = intent.getStringExtra(SimpleDownloaderService.EVENT);
 			if (event != null)
 			{
