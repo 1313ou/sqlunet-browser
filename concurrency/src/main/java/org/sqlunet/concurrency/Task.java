@@ -223,7 +223,7 @@ abstract public class Task<Params, Progress, Result>
 				}
 				catch (ExecutionException ee)
 				{
-					throw new RuntimeException("An error occurred while executing doInBackground()", ee.getCause());
+					throw new RuntimeException("An error occurred while executing background job", ee.getCause());
 				}
 				catch (CancellationException ce)
 				{
@@ -231,7 +231,7 @@ abstract public class Task<Params, Progress, Result>
 				}
 				catch (Throwable t)
 				{
-					throw new RuntimeException("An error occurred while executing doInBackground()", t);
+					throw new RuntimeException("An error occurred while executing background job", t);
 				}
 			}
 		};
