@@ -52,11 +52,13 @@ public class ExecAsyncTask
 	/**
 	 * Result listener
 	 */
+	@Nullable
 	final private DoneListener doneListener;
 
 	/**
 	 * Result listener
 	 */
+	@Nullable
 	final private TaskObserver.Listener<Integer> listener;
 
 	/**
@@ -77,7 +79,7 @@ public class ExecAsyncTask
 	 * @param listener     listener
 	 * @param publishRate  publish rate
 	 */
-	public ExecAsyncTask(final Activity activity, final DoneListener doneListener, final TaskObserver.Listener<Integer> listener, final int publishRate)
+	public ExecAsyncTask(final Activity activity, @Nullable final DoneListener doneListener, @Nullable final TaskObserver.Listener<Integer> listener, final int publishRate)
 	{
 		this.activity = activity;
 		this.doneListener = doneListener;
@@ -87,14 +89,16 @@ public class ExecAsyncTask
 
 	static private class AsyncExecuteFromSql extends Task<Pair<String, String[]>, Integer, Boolean>
 	{
-		/**
+		/*
 		 * Done listener
 		 */
+		@Nullable
 		final DoneListener doneListener;
 
 		/**
 		 * Task listener
 		 */
+		@Nullable
 		final private TaskObserver.Listener<Integer> listener;
 
 		/**
@@ -108,7 +112,7 @@ public class ExecAsyncTask
 		 * @param listener    listener
 		 * @param publishRate publish rate
 		 */
-		AsyncExecuteFromSql(final DoneListener doneListener, final TaskObserver.Listener<Integer> listener, final int publishRate)
+		AsyncExecuteFromSql(@Nullable final DoneListener doneListener, @Nullable final TaskObserver.Listener<Integer> listener, final int publishRate)
 		{
 			this.doneListener = doneListener;
 			this.listener = listener;
@@ -148,10 +152,15 @@ public class ExecAsyncTask
 						publishProgress(i, total);
 					}
 
-					// cancel hook
+					// cooperative exit
 					if (isCancelled())
 					{
-						//noinspection BreakStatement
+						Log.d(TAG, "Cancelled!");
+						break;
+					}
+					if (Thread.interrupted())
+					{
+						Log.d(TAG, "Interrupted!");
 						break;
 					}
 				}
@@ -168,20 +177,32 @@ public class ExecAsyncTask
 		@Override
 		protected void onPreExecute()
 		{
-			this.listener.taskStart(this);
+			if (this.listener != null)
+			{
+				this.listener.taskStart(this);
+			}
 		}
 
 		@Override
 		protected void onProgressUpdate(final Integer... params)
 		{
-			this.listener.taskUpdate(params[0], params[1]);
+			if (this.listener != null)
+			{
+				this.listener.taskUpdate(params[0], params[1]);
+			}
 		}
 
 		@Override
 		protected void onPostExecute(final Boolean result)
 		{
-			this.listener.taskFinish(result);
-			this.doneListener.onDone();
+			if (this.listener != null)
+			{
+				this.listener.taskFinish(result);
+			}
+			if (this.doneListener != null)
+			{
+				this.doneListener.onDone();
+			}
 		}
 	}
 
@@ -200,11 +221,13 @@ public class ExecAsyncTask
 		/**
 		 * Done listener
 		 */
+		@Nullable
 		final DoneListener doneListener;
 
 		/**
 		 * Task listener
 		 */
+		@Nullable
 		final private TaskObserver.Listener<Integer> listener;
 
 		/**
@@ -231,7 +254,7 @@ public class ExecAsyncTask
 		 * @param powerManager power manager
 		 * @param window       window
 		 */
-		AsyncExecuteFromArchive(final DoneListener doneListener, final TaskObserver.Listener<Integer> listener, final int publishRate, final PowerManager powerManager, final Window window)
+		AsyncExecuteFromArchive(@Nullable final DoneListener doneListener, @Nullable final TaskObserver.Listener<Integer> listener, final int publishRate, final PowerManager powerManager, final Window window)
 		{
 			this.doneListener = doneListener;
 			this.listener = listener;
@@ -245,9 +268,9 @@ public class ExecAsyncTask
 		@SuppressWarnings("boxing")
 		protected Boolean doInBackground(final String... params)
 		{
-			final String archiveArg = params[0];
-			final String entryArg = params[1];
-			final String databaseArg = params[2];
+			final String databaseArg = params[0];
+			final String archiveArg = params[1];
+			final String entryArg = params[2];
 			Log.d(ExecAsyncTask.TAG, archiveArg + '!' + entryArg + '>' + databaseArg);
 
 			// wake lock
@@ -255,6 +278,7 @@ public class ExecAsyncTask
 			final PowerManager.WakeLock wakelock = this.powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "org.sqlunet.browser:Executor");
 			wakelock.acquire(20 * 60 * 1000L /*20 minutes*/);
 
+			boolean inTransaction = false;
 			SQLiteDatabase db = null;
 			ZipFile zipFile = null;
 			BufferedReader reader = null;
@@ -310,9 +334,21 @@ public class ExecAsyncTask
 					}
 
 					// filter
-					if (SKIP_TRANSACTION && (sql.equals("BEGIN TRANSACTION;") || sql.equals("COMMIT;"))) //
+					if (sql.equals("BEGIN;") || sql.equals("BEGIN TRANSACTION;")) //
 					{
-						continue;
+						if (SKIP_TRANSACTION)
+						{
+							continue;
+						}
+						inTransaction = true;
+					}
+					if (sql.equals("COMMIT;") || sql.equals("COMMIT TRANSACTION;") || sql.equals("END;") || sql.equals("END TRANSACTION;")) //
+					{
+						if (SKIP_TRANSACTION)
+						{
+							continue;
+						}
+						inTransaction = false;
 					}
 
 					// execute
@@ -340,10 +376,15 @@ public class ExecAsyncTask
 						}
 					}
 
-					// cancel hook
+					// cooperative exit
 					if (isCancelled())
 					{
-						//noinspection BreakStatement
+						Log.d(TAG, "Cancelled!");
+						break;
+					}
+					if (Thread.interrupted())
+					{
+						Log.d(TAG, "Interrupted!");
 						break;
 					}
 				}
@@ -361,6 +402,10 @@ public class ExecAsyncTask
 
 				if (db != null)
 				{
+					if (inTransaction)
+					{
+						db.endTransaction();
+					}
 					db.close();
 				}
 				if (zipFile != null)
@@ -404,21 +449,33 @@ public class ExecAsyncTask
 		protected void onPreExecute()
 		{
 			this.window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-			this.listener.taskStart(this);
+			if (this.listener != null)
+			{
+				this.listener.taskStart(this);
+			}
 		}
 
 		@Override
 		protected void onProgressUpdate(final Integer... params)
 		{
-			this.listener.taskUpdate(params[0], params[1]);
+			if (this.listener != null)
+			{
+				this.listener.taskUpdate(params[0], params[1]);
+			}
 		}
 
 		@Override
 		protected void onPostExecute(final Boolean result)
 		{
 			this.window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-			this.listener.taskFinish(result);
-			this.doneListener.onDone();
+			if (this.listener != null)
+			{
+				this.listener.taskFinish(result);
+			}
+			if (this.doneListener != null)
+			{
+				this.doneListener.onDone();
+			}
 		}
 	}
 
@@ -430,7 +487,7 @@ public class ExecAsyncTask
 		final PowerManager powerManager = (PowerManager) ExecAsyncTask.this.activity.getSystemService(Context.POWER_SERVICE);
 		final Window window = ExecAsyncTask.this.activity.getWindow();
 		return new AsyncExecuteFromArchive(this.doneListener, this.listener, this.publishRate, powerManager, window);
-		// task.execute(archive, entry, database);
+		// task.execute(database, archive, entry);
 	}
 
 	static private class AsyncVacuum extends Task<String, Void, Void>
@@ -438,11 +495,13 @@ public class ExecAsyncTask
 		/**
 		 * Done listener
 		 */
+		@Nullable
 		final DoneListener doneListener;
 
 		/**
 		 * Task listener
 		 */
+		@Nullable
 		final private TaskObserver.Listener<Integer> listener;
 
 		/**
@@ -451,7 +510,7 @@ public class ExecAsyncTask
 		 * @param doneListener doneListener
 		 * @param listener     listener
 		 */
-		AsyncVacuum(final DoneListener doneListener, final TaskObserver.Listener<Integer> listener)
+		AsyncVacuum(@Nullable final DoneListener doneListener, @Nullable final TaskObserver.Listener<Integer> listener)
 		{
 			this.doneListener = doneListener;
 			this.listener = listener;
@@ -481,10 +540,15 @@ public class ExecAsyncTask
 		@Override
 		protected void onPostExecute(Void result)
 		{
-			this.listener.taskFinish(true);
-			this.doneListener.onDone();
+			if (this.listener != null)
+			{
+				this.listener.taskFinish(true);
+			}
+			if (this.doneListener != null)
+			{
+				this.doneListener.onDone();
+			}
 		}
-
 	}
 
 	/**
