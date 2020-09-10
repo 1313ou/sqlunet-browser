@@ -91,17 +91,18 @@ class MD5Downloader extends Task<String, Void, String>
 					final String[] fields = line.split("\\s+");
 					return fields[0].trim();
 				}
-				// interrupted
+				// cooperative exit
+				if (isCancelled())
+				{
+					Log.d(TAG, "Cancelled!");
+					throw new InterruptedException("cancelled");
+				}
 				if (Thread.interrupted())
 				{
+					Log.d(TAG, "Interrupted!");
 					final InterruptedException ie = new InterruptedException("interrupted while downloading");
 					this.exception = ie;
 					throw ie;
-				}
-
-				if (isCancelled())
-				{
-					throw new InterruptedException("cancelled");
 				}
 			}
 			return null;
