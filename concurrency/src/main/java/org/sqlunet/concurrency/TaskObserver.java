@@ -6,9 +6,7 @@ package org.sqlunet.concurrency;
 
 import android.app.Activity;
 import android.app.Dialog;
-//import android.app.ProgressDialog;
 import android.content.Context;
-//import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,6 +24,9 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
+
+//import android.app.ProgressDialog;
+//import android.content.DialogInterface;
 
 /**
  * Task observer
@@ -190,12 +191,12 @@ public class TaskObserver
 		public void taskUpdate(@NonNull final Progress progress, @NonNull final Progress length)
 		{
 			super.taskUpdate(progress, length);
-			boolean indeterminate = length.equals(-1);
+			boolean indeterminate = length.longValue() == -1L;
 			this.progress.setIndeterminate(indeterminate);
 			if (!indeterminate)
 			{
-				this.progress.setMax(100);
-				this.progress.setProgress(100);
+				this.progress.setMax(length.intValue());
+				this.progress.setProgress(progress.intValue());
 			}
 		}
 
@@ -203,121 +204,126 @@ public class TaskObserver
 		public void taskFinish(boolean result)
 		{
 			super.taskFinish(result);
-			this.progress.setMax(100);
-			this.progress.setProgress(100);
+			int done = result ? 0 : 100;
+			this.progress.setMax(done);
+			this.progress.setProgress(done);
 		}
 	}
 
-//	/**
-//	 * ProgressDialog listener
-//	 */
-//	static public class ProgressDialogListener<Progress extends Number> extends BaseListener<Progress>
-//	{
-//		@Nullable
-//		private Task<?, ?, ?> task;
-//
-//		@NonNull
-//		private final ProgressDialog progressDialog;
-//
-//		@Nullable
-//		private final CharSequence unit;
-//
-//		/**
-//		 * Constructor
-//		 *
-//		 * @param activity  activity
-//		 * @param titleId   title id
-//		 * @param messageId message id
-//		 * @param unitId    unit id
-//		 */
-//		public ProgressDialogListener(@NonNull final Activity activity, @StringRes final int titleId, @StringRes final int messageId, @StringRes final int unitId)
-//		{
-//			this(activity, activity.getString(titleId), activity.getString(messageId), unitId == 0 ? null : activity.getString(unitId));
-//		}
-//
-//		/**
-//		 * Constructor
-//		 *
-//		 * @param activity activity
-//		 * @param title    title
-//		 * @param message  message
-//		 * @param unit     unit
-//		 */
-//		public ProgressDialogListener(@NonNull final Activity activity, @NonNull final CharSequence title, @NonNull final CharSequence message, @Nullable final CharSequence unit)
-//		{
-//			this.progressDialog = makeDialog(activity, title, message);
-//			this.unit = unit;
-//		}
-//
-//		@Override
-//		public void taskStart(@NonNull final Task<?, Progress, ?> task)
-//		{
-//			super.taskStart(task);
-//			this.task = task;
-//			this.progressDialog.show();
-//		}
-//
-//		@Override
-//		public void taskUpdate(@NonNull final Progress progress, @NonNull final Progress length)
-//		{
-//			super.taskUpdate(progress, length);
-//			final long longLength = length.longValue();
-//			final long longProgress = progress.longValue();
-//			final boolean indeterminate = longLength == -1L;
-//			this.progressDialog.setIndeterminate(indeterminate);
-//			if (indeterminate)
-//			{
-//				this.progressDialog.setProgressNumberFormat(null);
-//				this.progressDialog.setProgressPercentFormat(null);
-//			}
-//			final String message = this.unit != null ? countToString(progress.longValue(), this.unit) : countToStorageString(progress.longValue());
-//			this.progressDialog.setMessage(message);
-//			if (!indeterminate)
-//			{
-//				//final int percent = (int) ((longProgress * 100F) / longLength);
-//				this.progressDialog.setMax((int) longLength);
-//				this.progressDialog.setProgress((int) longProgress);
-//			}
-//		}
-//
-//		@SuppressWarnings("UnusedReturnValue")
-//		@Override
-//		public void taskFinish(boolean result)
-//		{
-//			super.taskFinish(result);
-//			this.progressDialog.dismiss();
-//		}
-//
-//		/**
-//		 * Make dialog
-//		 *
-//		 * @param activity activity
-//		 * @param title    title
-//		 * @param message  message
-//		 * @return dialog
-//		 */
-//		@NonNull
-//		private ProgressDialog makeDialog(@NonNull final Activity activity, @NonNull final CharSequence title, @NonNull final CharSequence message)
-//		{
-//			final ProgressDialog progressDialog = new ProgressDialog(activity);
-//			progressDialog.setTitle(title);
-//			progressDialog.setMessage(message);
-//			progressDialog.setIndeterminate(true);
-//			progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-//			progressDialog.setCancelable(true);
-//			progressDialog.setButton(DialogInterface.BUTTON_POSITIVE, activity.getString(R.string.action_dismiss), (dialog, which) -> dialog.dismiss());
-//			progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, activity.getString(R.string.action_abort), (dialog, which) -> {
-//
-//				if (which == DialogInterface.BUTTON_NEGATIVE)
-//				{
-//					boolean result = ProgressDialogListener.this.task != null && ProgressDialogListener.this.task.cancel(true);
-//					Log.d(TAG, "Cancel task " + this.task + ' ' + result);
-//					dialog.dismiss();
-//				}
-//			});
-//			return progressDialog;
-//		}
-//	}
+	//	/**
+	//	 * ProgressDialog listener
+	//	 */
+	//	static public class ProgressDialogListener<Progress extends Number> extends BaseListener<Progress>
+	//	{
+	//		@Nullable
+	//		private Task<?, ?, ?> task;
+	//
+	//		@NonNull
+	//		private final ProgressDialog progressDialog;
+	//
+	//		@Nullable
+	//		private final CharSequence unit;
+	//
+	//		/**
+	//		 * Constructor
+	//		 *
+	//		 * @param activity  activity
+	//		 * @param titleId   title id
+	//		 * @param messageId message id
+	//		 * @param unitId    unit id
+	//		 */
+	//		public ProgressDialogListener(@NonNull final Activity activity, @StringRes final int titleId, @StringRes final int messageId, @StringRes final int unitId)
+	//		{
+	//			this(activity, activity.getString(titleId), activity.getString(messageId), unitId == 0 ? null : activity.getString(unitId));
+	//		}
+	//
+	//		/**
+	//		 * Constructor
+	//		 *
+	//		 * @param activity activity
+	//		 * @param title    title
+	//		 * @param message  message
+	//		 * @param unit     unit
+	//		 */
+	//		public ProgressDialogListener(@NonNull final Activity activity, @NonNull final CharSequence title, @NonNull final CharSequence message, @Nullable final CharSequence unit)
+	//		{
+	//			this.progressDialog = makeDialog(activity, title, message);
+	//			this.unit = unit;
+	//		}
+	//
+	//		@Override
+	//		public void taskStart(@NonNull final Task<?, Progress, ?> task)
+	//		{
+	//			super.taskStart(task);
+	//			this.task = task;
+	//			this.progressDialog.show();
+	//		}
+	//
+	//		@Override
+	//		public void taskUpdate(@NonNull final Progress progress, @NonNull final Progress length)
+	//		{
+	//			super.taskUpdate(progress, length);
+	//			final long longLength = length.longValue();
+	//			final long longProgress = progress.longValue();
+	//			final boolean indeterminate = longLength == -1L;
+	//			this.progressDialog.setIndeterminate(indeterminate);
+	//			if (indeterminate)
+	//			{
+	//				this.progressDialog.setProgressNumberFormat(null);
+	//				this.progressDialog.setProgressPercentFormat(null);
+	//			}
+	//			final String message = this.unit != null ? countToString(progress.longValue(), this.unit) : countToStorageString(progress.longValue());
+	//          if (longLength != -1L)
+	//          {
+	//	            message += " / " + longLength;
+	//          }
+	//			this.progressDialog.setMessage(message);
+	//			if (!indeterminate)
+	//			{
+	//				//final int percent = (int) ((longProgress * 100F) / longLength);
+	//				this.progressDialog.setMax((int) longLength);
+	//				this.progressDialog.setProgress((int) longProgress);
+	//			}
+	//		}
+	//
+	//		@SuppressWarnings("UnusedReturnValue")
+	//		@Override
+	//		public void taskFinish(boolean result)
+	//		{
+	//			super.taskFinish(result);
+	//			this.progressDialog.dismiss();
+	//		}
+	//
+	//		/**
+	//		 * Make dialog
+	//		 *
+	//		 * @param activity activity
+	//		 * @param title    title
+	//		 * @param message  message
+	//		 * @return dialog
+	//		 */
+	//		@NonNull
+	//		private ProgressDialog makeDialog(@NonNull final Activity activity, @NonNull final CharSequence title, @NonNull final CharSequence message)
+	//		{
+	//			final ProgressDialog progressDialog = new ProgressDialog(activity);
+	//			progressDialog.setTitle(title);
+	//			progressDialog.setMessage(message);
+	//			progressDialog.setIndeterminate(true);
+	//			progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+	//			progressDialog.setCancelable(true);
+	//			progressDialog.setButton(DialogInterface.BUTTON_POSITIVE, activity.getString(R.string.action_dismiss), (dialog, which) -> dialog.dismiss());
+	//			progressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, activity.getString(R.string.action_abort), (dialog, which) -> {
+	//
+	//				if (which == DialogInterface.BUTTON_NEGATIVE)
+	//				{
+	//					boolean result = ProgressDialogListener.this.task != null && ProgressDialogListener.this.task.cancel(true);
+	//					Log.d(TAG, "Cancel task @" + Integer.toHexString(this.task.hashCode()) + ' ' + result);
+	//					dialog.dismiss();
+	//				}
+	//			});
+	//			return progressDialog;
+	//		}
+	//	}
 
 	/**
 	 * Dialog listener
@@ -378,7 +384,11 @@ public class TaskObserver
 			final long longProgress = progress.longValue();
 			final boolean indeterminate = longLength == -1L;
 			this.progressDialogFragment.progressBar.setIndeterminate(indeterminate);
-			final String message = (this.unit != null ? countToString(longProgress, this.unit) : countToStorageString(longProgress)) + " / " + longLength;
+			String message = (this.unit != null ? countToString(longProgress, this.unit) : countToStorageString(longProgress));
+			if (longLength != -1L)
+			{
+				message += " / " + longLength;
+			}
 			this.progressDialogFragment.textView.setText(message);
 			if (!indeterminate)
 			{
@@ -451,7 +461,7 @@ public class TaskObserver
 				builder.setNegativeButton(R.string.action_cancel, (dialog, whichButton) -> {
 					// canceled.
 					boolean result = this.task != null && this.task.cancel(true);
-					Log.d(TAG, "Cancel task " + this.task + ' ' + result);
+					Log.d(TAG, "Cancel task @" + (this.task == null ? "null" : Integer.toHexString(this.task.hashCode())) + ' ' + result);
 					this.dismiss();
 				});
 				return builder.create();
