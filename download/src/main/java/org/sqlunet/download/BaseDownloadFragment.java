@@ -432,21 +432,15 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 
 		if (savedInstanceState != null)
 		{
-			//noinspection WrongConstant
 			this.downloadButton.setVisibility(savedInstanceState.getInt(DOWNLOAD_BTN_STATE, View.VISIBLE));
 			this.downloadButtonImageResId = savedInstanceState.getInt(DOWNLOAD_BTN_IMAGE_STATE, R.drawable.bn_download);
 			this.downloadButton.setImageResource(this.downloadButtonImageResId);
 			this.downloadButtonBackgroundResId = savedInstanceState.getInt(DOWNLOAD_BTN_BACKGROUND_STATE, R.drawable.bg_button_action);
 			this.downloadButton.setBackgroundResource(this.downloadButtonBackgroundResId);
-			//noinspection WrongConstant
 			this.progressBar.setVisibility(savedInstanceState.getInt(PROGRESS_STATE, View.INVISIBLE));
-			//noinspection WrongConstant
 			this.progressStatus.setVisibility(savedInstanceState.getInt(PROGRESS_STATUS_STATE, View.INVISIBLE));
-			//noinspection WrongConstant
 			this.cancelButton.setVisibility(savedInstanceState.getInt(CANCEL_BTN_STATE, View.INVISIBLE));
-			//noinspection WrongConstant
 			this.deployButton.setVisibility(savedInstanceState.getInt(DEPLOY_BTN_STATE, View.INVISIBLE));
-			//noinspection WrongConstant
 			this.md5Button.setVisibility(savedInstanceState.getInt(MD5_BTN_STATE, View.INVISIBLE));
 		}
 		else
