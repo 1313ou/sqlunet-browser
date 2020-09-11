@@ -6,7 +6,9 @@ package org.sqlunet.concurrency;
 
 import android.app.Activity;
 import android.app.Dialog;
+//import android.app.ProgressDialog;
 import android.content.Context;
+//import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,9 +26,6 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
-
-//import android.app.ProgressDialog;
-//import android.content.DialogInterface;
 
 /**
  * Task observer
