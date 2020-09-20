@@ -96,7 +96,7 @@ public class Settings extends org.sqlunet.settings.Settings
 		 *
 		 * @param context context
 		 */
-		public void setPref(final Context context)
+		public void setPref(@NonNull final Context context)
 		{
 			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 			sharedPref.edit().putString(org.sqlunet.settings.Settings.PREF_SELECTOR, this.name()).apply();
@@ -108,7 +108,7 @@ public class Settings extends org.sqlunet.settings.Settings
 		 * @param context context
 		 * @return preferred selector mode
 		 */
-		static public Selector getPref(final Context context)
+		static public Selector getPref(@NonNull final Context context)
 		{
 			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 			final String name = sharedPref.getString(org.sqlunet.settings.Settings.PREF_SELECTOR, Selector.XSELECTOR.name());
@@ -134,7 +134,7 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * @param context context
 	 * @return preferred selector type
 	 */
-	static public Selector getXSelectorPref(final Context context)
+	static public Selector getXSelectorPref(@NonNull final Context context)
 	{
 		return Selector.getPref(context);
 	}
@@ -145,7 +145,7 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * @param context context
 	 * @return preferred enable WordNet flag
 	 */
-	static public int getAllPref(final Context context)
+	static public int getAllPref(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		int result = 0;
@@ -178,7 +178,7 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * @param context context
 	 * @return preferred enable WordNet flag
 	 */
-	static public boolean getWordNetPref(final Context context)
+	static public boolean getWordNetPref(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getBoolean(Settings.PREF_ENABLE_WORDNET, true);
@@ -190,7 +190,7 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * @param context context
 	 * @return preferred enable VerbNet flag
 	 */
-	static public boolean getVerbNetPref(final Context context)
+	static public boolean getVerbNetPref(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getBoolean(Settings.PREF_ENABLE_VERBNET, true);
@@ -202,7 +202,7 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * @param context context
 	 * @return preferred enable PropBank flag
 	 */
-	static public boolean getPropBankPref(final Context context)
+	static public boolean getPropBankPref(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getBoolean(Settings.PREF_ENABLE_PROPBANK, true);
@@ -214,7 +214,7 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * @param context context
 	 * @return preferred enable FrameNet flag
 	 */
-	static public boolean getFrameNetPref(final Context context)
+	static public boolean getFrameNetPref(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getBoolean(Settings.PREF_ENABLE_FRAMENET, true);
@@ -226,7 +226,7 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * @param context context
 	 * @return preferred enable BNC flag
 	 */
-	static public boolean getBncPref(final Context context)
+	static public boolean getBncPref(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getBoolean(Settings.PREF_ENABLE_BNC, true);
@@ -264,7 +264,7 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * @param context context
 	 * @return preferred recurse max level
 	 */
-	static public int getRecursePref(final Context context)
+	static public int getRecursePref(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		final String value = sharedPref.getString(Settings.PREF_LINK_RECURSE, null);
@@ -277,7 +277,7 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * @param context context
 	 */
 	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
-	static public void initialize(final Context context)
+	static public void initialize(@NonNull final Context context)
 	{
 		org.sqlunet.settings.Settings.initialize(context);
 

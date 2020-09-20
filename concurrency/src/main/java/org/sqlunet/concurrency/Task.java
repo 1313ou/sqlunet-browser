@@ -256,6 +256,7 @@ abstract public class Task<Params, Progress, Result>
 	 *
 	 * @param params parameters
 	 */
+	@Nullable
 	protected abstract Result doInBackground(Params[] params);
 
 	protected void onPreExecute()

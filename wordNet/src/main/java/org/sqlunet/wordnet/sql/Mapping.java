@@ -170,6 +170,7 @@ class Mapping
 	 *
 	 * @return array of Strings
 	 */
+	@NonNull
 	static public String[] getLexDomainNames()
 	{
 		final Set<String> nameSet = Mapping.lexDomainsByName.keySet();
@@ -181,6 +182,7 @@ class Mapping
 	 *
 	 * @return array of Strings
 	 */
+	@NonNull
 	static public String[] getLinkNames()
 	{
 		final Set<String> nameSet = Mapping.linksByName.keySet();

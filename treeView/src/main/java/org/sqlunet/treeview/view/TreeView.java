@@ -92,6 +92,7 @@ public class TreeView
 	/**
 	 * Context
 	 */
+	@NonNull
 	private final Context context;
 
 	/**
@@ -132,7 +133,7 @@ public class TreeView
 	 * @param context context
 	 * @param root    root
 	 */
-	public TreeView(final Context context, final TreeNode root)
+	public TreeView(@NonNull final Context context, final TreeNode root)
 	{
 		this.root = root;
 		this.context = context;

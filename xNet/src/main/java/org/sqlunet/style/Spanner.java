@@ -374,6 +374,7 @@ public class Spanner
 	 * @param resId   resource id
 	 * @return drawable
 	 */
+	@Nullable
 	static public Drawable getDrawable(@NonNull final Context context, @DrawableRes final int resId)
 	{
 		final Drawable drawable = ResourcesCompat.getDrawable(context.getResources(), resId, context.getTheme());

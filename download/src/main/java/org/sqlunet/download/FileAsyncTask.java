@@ -411,6 +411,7 @@ public class FileAsyncTask
 	/**
 	 * Expand entry from zipfile
 	 */
+	@NonNull
 	@SuppressWarnings("WeakerAccess")
 	public Task<String, Long, Boolean> unzipEntryFromArchive()
 	{
@@ -420,6 +421,7 @@ public class FileAsyncTask
 	/**
 	 * Expand all from zipfile
 	 */
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
 	public Task<String, Long, Boolean> unzipFromArchive()
 	{
@@ -429,6 +431,7 @@ public class FileAsyncTask
 	/**
 	 * Md5 check sum of file
 	 */
+	@NonNull
 	@SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 	public Task<String, Long, String> md5FromFile()
 	{
@@ -589,7 +592,7 @@ public class FileAsyncTask
 	 * @param path           path
 	 * @param resultListener result listener
 	 */
-	static public void md5(@NonNull final FragmentActivity activity, final String path, final ResultListener resultListener)
+	static public void md5(@NonNull final FragmentActivity activity, @NonNull final String path, final ResultListener resultListener)
 	{
 		if (activity.isFinishing() || activity.isDestroyed())
 		{

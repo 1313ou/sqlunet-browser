@@ -240,7 +240,7 @@ public class BillingManager implements PurchasesUpdatedListener
 	 * @param sku         sku id
 	 * @param billingType billing type
 	 */
-	public void initiatePurchaseFlow(final String sku, @SkuType final String billingType)
+	public void initiatePurchaseFlow(final String sku, @NonNull @SkuType final String billingType)
 	{
 		// guard against destroyed client
 		if (this.client == null)
@@ -283,7 +283,7 @@ public class BillingManager implements PurchasesUpdatedListener
 	 *
 	 * @param skuDetails sku details
 	 */
-	private void initiatePurchaseFlow(final SkuDetails skuDetails)
+	private void initiatePurchaseFlow(@NonNull final SkuDetails skuDetails)
 	{
 		executeServiceRequest(() -> {
 
@@ -467,7 +467,7 @@ public class BillingManager implements PurchasesUpdatedListener
 	 * @param skuList  sku list
 	 * @param listener response listener
 	 */
-	public void querySkuDetails(@SkuType final String itemType, @NonNull final List<String> skuList, @NonNull final SkuDetailsResponseListener listener)
+	public void querySkuDetails(@NonNull @SkuType final String itemType, @NonNull final List<String> skuList, @NonNull final SkuDetailsResponseListener listener)
 	{
 		// Creating a runnable from the request to use it inside our connection retry policy below
 		executeServiceRequest(() -> {

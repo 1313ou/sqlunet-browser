@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,7 +43,7 @@ public class DownloadActivity extends AppCompatActivity implements DownloadFragm
 			this.res = res;
 		}
 
-		static Downloader getFromPref(final Context context)
+		static Downloader getFromPref(@NonNull final Context context)
 		{
 			final String preferredDownloader = Settings.getDownloaderPref(context);
 			if (preferredDownloader == null)

@@ -7,6 +7,7 @@ package org.sqlunet.browser.fn;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
 
 /**
@@ -74,7 +75,7 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * @param context context
 	 * @return preferred enable FrameNet flag
 	 */
-	static public boolean getFrameNetPref(final Context context)
+	static public boolean getFrameNetPref(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getBoolean(Settings.PREF_ENABLE_FRAMENET, true);

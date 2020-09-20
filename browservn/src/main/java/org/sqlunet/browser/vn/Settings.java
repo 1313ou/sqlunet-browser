@@ -85,7 +85,7 @@ public class Settings extends org.sqlunet.settings.Settings
 		 *
 		 * @param context context
 		 */
-		public void setPref(final Context context)
+		public void setPref(@NonNull final Context context)
 		{
 			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 			sharedPref.edit().putString(Settings.PREF_SELECTOR, this.name()).apply();
@@ -97,7 +97,7 @@ public class Settings extends org.sqlunet.settings.Settings
 		 * @param context context
 		 * @return preferred selector mode
 		 */
-		static Selector getPref(final Context context)
+		static Selector getPref(@NonNull final Context context)
 		{
 			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 			final String name = sharedPref.getString(Settings.PREF_SELECTOR, Selector.XSELECTOR.name());
@@ -120,7 +120,7 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * @param context context
 	 * @return preferred selector type
 	 */
-	static public Selector getXSelectorPref(final Context context)
+	static public Selector getXSelectorPref(@NonNull final Context context)
 	{
 		return Selector.getPref(context);
 	}
@@ -133,7 +133,7 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * @param context context
 	 * @return preferred enable WordNet flag
 	 */
-	static public int getAllPref(final Context context)
+	static public int getAllPref(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		int result = 0;
@@ -158,7 +158,7 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * @param context context
 	 * @return preferred enable VerbNet flag
 	 */
-	static public boolean getVerbNetPref(final Context context)
+	static public boolean getVerbNetPref(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getBoolean(Settings.PREF_ENABLE_VERBNET, true);
@@ -170,7 +170,7 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * @param context context
 	 * @return preferred enable PropBank flag
 	 */
-	static public boolean getPropBankPref(final Context context)
+	static public boolean getPropBankPref(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getBoolean(Settings.PREF_ENABLE_PROPBANK, true);
@@ -182,7 +182,7 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * @param context context
 	 * @return preferred enable WordNet flag
 	 */
-	static public boolean getWordNetPref(final Context context)
+	static public boolean getWordNetPref(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getBoolean(Settings.PREF_ENABLE_WORDNET, true);

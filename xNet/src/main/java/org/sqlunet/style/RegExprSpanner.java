@@ -98,6 +98,7 @@ public class RegExprSpanner extends Spanner
 		/**
 		 * Pattern
 		 */
+		@NonNull
 		final private Pattern pattern;
 
 		/**

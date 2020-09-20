@@ -92,11 +92,13 @@ public class SimpleDownloaderService extends JobIntentService
 	/**
 	 * From URL
 	 */
+	@Nullable
 	private String fromUrl;
 
 	/**
 	 * To file
 	 */
+	@Nullable
 	private String toFile;
 
 	/**
@@ -398,7 +400,7 @@ public class SimpleDownloaderService extends JobIntentService
 	/**
 	 * Convenience method for enqueuing work in to this service.
 	 */
-	public static void enqueueWork(final Context context, final Intent work)
+	public static void enqueueWork(@NonNull final Context context, @NonNull final Intent work)
 	{
 		enqueueWork(context, SimpleDownloaderService.class, JOB_ID, work);
 	}

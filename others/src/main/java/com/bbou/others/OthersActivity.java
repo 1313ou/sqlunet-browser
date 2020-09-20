@@ -105,7 +105,7 @@ public class OthersActivity extends AppCompatActivity
 		}
 	}
 
-	static private boolean isAppInstalled(final String uri, @NonNull final Context context)
+	static private boolean isAppInstalled(@NonNull final String uri, @NonNull final Context context)
 	{
 		final PackageManager packageManager = context.getPackageManager();
 		boolean isInstalled;
