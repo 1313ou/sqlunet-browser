@@ -93,10 +93,13 @@ public class SetupSqlFragment extends Fragment implements Updatable
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		// view
-		final View view = inflater.inflate(R.layout.fragment_setup_sql, container, false);
+		return inflater.inflate(R.layout.fragment_setup_sql, container, false);
+	}
 
-		// activity
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
 
 		// statuses
 		this.downloadSqlZipStatus = view.findViewById(R.id.status_sqlzip);
@@ -105,21 +108,21 @@ public class SetupSqlFragment extends Fragment implements Updatable
 		this.indexesStatus = view.findViewById(R.id.status_indexes);
 
 		// buttons
-		this.createButton = view.findViewById(R.id.create_database);
 		this.downloadSqlZipButton = view.findViewById(R.id.download_sqlzip);
+		this.createButton = view.findViewById(R.id.create_database);
 		this.importButton = view.findViewById(R.id.execute_import);
 		this.indexesButton = view.findViewById(R.id.execute_indexes);
-		ImageButton infoSqlZipButton = view.findViewById(R.id.info_sqlzip);
-		ImageButton infoCreateButton = view.findViewById(R.id.info_created);
-		ImageButton infoImportButton = view.findViewById(R.id.info_import);
-		ImageButton infoIndexesButton = view.findViewById(R.id.info_indexes);
+		final ImageButton infoSqlZipButton = view.findViewById(R.id.info_sqlzip);
+		final ImageButton infoCreateButton = view.findViewById(R.id.info_created);
+		final ImageButton infoImportButton = view.findViewById(R.id.info_import);
+		final ImageButton infoIndexesButton = view.findViewById(R.id.info_indexes);
 
 		// sql zip
 		this.downloadSqlZipButton.setOnClickListener(v -> {
 
-			SetupSqlFragment.this.downloadSqlZipButton.setEnabled(false);
-			SetupSqlFragment.this.importButton.setEnabled(false);
-			SetupSqlFragment.this.indexesButton.setEnabled(false);
+			this.downloadSqlZipButton.setEnabled(false);
+			this.importButton.setEnabled(false);
+			this.indexesButton.setEnabled(false);
 
 			// starting download
 			final Context context = requireContext();
@@ -261,12 +264,12 @@ public class SetupSqlFragment extends Fragment implements Updatable
 		this.swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
 		this.swipeRefreshLayout.setColorSchemeResources(R.color.swipe_down_1_color, R.color.swipe_down_2_color);
 		this.swipeRefreshLayout.setOnRefreshListener(() -> {
+
 			update();
 
 			// stop the refreshing indicator
-			SetupSqlFragment.this.swipeRefreshLayout.setRefreshing(false);
+			this.swipeRefreshLayout.setRefreshing(false);
 		});
-		return view;
 	}
 
 	@Override
