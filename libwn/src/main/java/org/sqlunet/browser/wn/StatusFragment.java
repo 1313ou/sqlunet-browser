@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class StatusFragment extends SetupStatusFragment
+public class StatusFragment extends SetupXStatusFragment
 {
 	@Override
 	public void onResume()
