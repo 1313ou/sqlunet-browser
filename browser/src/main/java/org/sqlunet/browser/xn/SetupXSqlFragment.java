@@ -76,55 +76,47 @@ public class SetupXSqlFragment extends org.sqlunet.browser.config.SetupSqlFragme
 		final ImageButton infoPmButton = view.findViewById(R.id.info_pm);
 
 		// pm exec button
-		this.predicateMatrixButton.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(final View v)
-			{
-				final FragmentActivity activity = requireActivity();
+		this.predicateMatrixButton.setOnClickListener(v -> {
 
-				// starting pm task
-				try
-				{
-					final String database = StorageSettings.getDatabasePath(activity);
-					final String source = StorageSettings.getSqlSource(activity);
-					final String entry = Settings.getPmEntry(activity);
-					final String unit = activity.getString(R.string.unit_statement);
-					final TaskObserver.Listener<Integer> listener = new TaskObserver.BaseListener<>();
-					final Task<String, Integer, Boolean> st = new ExecAsyncTask(activity, SetupXSqlFragment.this::update, listener, 1).fromArchive();
-					// final TaskObserver.Listener<Integer> stListener = new TaskObserver.ProgressDialogListener<>(activity, activity.getString(R.string.status_managing), source + '@' + entry, unit);
-					final TaskObserver.Listener<Integer> stListener = new TaskObserver.DialogListener<>(activity.getSupportFragmentManager(), activity.getString(R.string.status_managing), source + '@' + entry, unit);
-					final ObservedDelegatingTask<String, Integer, Boolean> oft = new ObservedDelegatingTask<>(st, stListener);
-					oft.execute(database, source, entry);
-				}
-				catch (@NonNull final Exception e)
-				{
-					Log.e(TAG, "While preparing predicatematrix", e);
-				}
-			}
-		});
-		// pm info button
-		infoPmButton.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(final View v)
+			final FragmentActivity activity = requireActivity();
+
+			// starting pm task
+			try
 			{
-				final Activity activity = requireActivity();
 				final String database = StorageSettings.getDatabasePath(activity);
 				final String source = StorageSettings.getSqlSource(activity);
 				final String entry = Settings.getPmEntry(activity);
-				final String free = StorageUtils.getFree(activity, database);
-				final boolean dbExists = new File(database).exists();
-				final boolean sqlzipExists = new File(source).exists();
-				Info.info(activity, R.string.title_predicatematrix, //
-						getString(R.string.title_operation), getString(R.string.info_op_execute_predicatematrix), //
-						getString(R.string.title_database), database, //
-						getString(R.string.title_status), getString(dbExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
-						getString(R.string.title_free), free, //
-						getString(R.string.title_archive), source, //
-						getString(R.string.title_entry), entry, //
-						getString(R.string.title_status), getString(sqlzipExists ? R.string.status_local_exists : R.string.status_local_not_exists));
+				final String unit = activity.getString(R.string.unit_statement);
+				final TaskObserver.Listener<Integer> listener = new TaskObserver.BaseListener<>();
+				final Task<String, Integer, Boolean> st = new ExecAsyncTask(activity, SetupXSqlFragment.this::update, listener, 1).fromArchive();
+				// final TaskObserver.Listener<Integer> stListener = new TaskObserver.ProgressDialogListener<>(activity, activity.getString(R.string.status_managing), source + '@' + entry, unit);
+				final TaskObserver.Listener<Integer> stListener = new TaskObserver.DialogListener<>(activity.getSupportFragmentManager(), activity.getString(R.string.status_managing), source + '@' + entry, unit);
+				final ObservedDelegatingTask<String, Integer, Boolean> oft = new ObservedDelegatingTask<>(st, stListener);
+				oft.execute(database, source, entry);
 			}
+			catch (@NonNull final Exception e)
+			{
+				Log.e(TAG, "While preparing predicatematrix", e);
+			}
+		});
+		// pm info button
+		infoPmButton.setOnClickListener(v -> {
+
+			final Activity activity = requireActivity();
+			final String database = StorageSettings.getDatabasePath(activity);
+			final String source = StorageSettings.getSqlSource(activity);
+			final String entry = Settings.getPmEntry(activity);
+			final String free = StorageUtils.getFree(activity, database);
+			final boolean dbExists = new File(database).exists();
+			final boolean sqlzipExists = new File(source).exists();
+			Info.info(activity, R.string.title_predicatematrix, //
+					getString(R.string.title_operation), getString(R.string.info_op_execute_predicatematrix), //
+					getString(R.string.title_database), database, //
+					getString(R.string.title_status), getString(dbExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
+					getString(R.string.title_free), free, //
+					getString(R.string.title_archive), source, //
+					getString(R.string.title_entry), entry, //
+					getString(R.string.title_status), getString(sqlzipExists ? R.string.status_local_exists : R.string.status_local_not_exists));
 		});
 	}
 
