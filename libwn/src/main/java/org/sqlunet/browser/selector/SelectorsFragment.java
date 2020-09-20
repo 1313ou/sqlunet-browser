@@ -59,7 +59,6 @@ public class SelectorsFragment extends ListFragment
 	/**
 	 * The serialization (saved instance state) Bundle key representing the activated item position. Only used on tablets.
 	 */
-	@SuppressWarnings("unused")
 	static private final String STATE_ACTIVATED_SELECTOR = "activated_selector";
 
 	/**
@@ -70,7 +69,6 @@ public class SelectorsFragment extends ListFragment
 	/**
 	 * The current activated item position. Only used on tablets.
 	 */
-	@SuppressWarnings("unused")
 	private int activatedPosition = AdapterView.INVALID_POSITION;
 
 	/**
@@ -82,19 +80,16 @@ public class SelectorsFragment extends ListFragment
 	 * Search query
 	 */
 	@Nullable
-	@SuppressWarnings("unused")
 	private String word;
 
 	/**
 	 * Word id
 	 */
-	@SuppressWarnings("unused")
 	private long wordId;
 
 	/**
 	 * View model
 	 */
-	@SuppressWarnings("unused")
 	private SqlunetViewModel model;
 
 	/**

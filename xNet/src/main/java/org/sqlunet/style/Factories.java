@@ -33,6 +33,5 @@ public class Factories
 
 	static public final SpanFactory boldFactory = flags -> new Object[]{new StyleSpan(Typeface.BOLD)};
 
-	@SuppressWarnings("unused")
 	static public final SpanFactory italicFactory = flags -> new Object[]{new StyleSpan(Typeface.ITALIC)};
 }

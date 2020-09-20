@@ -194,13 +194,11 @@ public class WebFragment extends Fragment
 	/**
 	 * WebView
 	 */
-	@SuppressWarnings("unused")
 	private WebView webview;
 
 	/**
 	 * View model
 	 */
-	@SuppressWarnings("unused")
 	private WebModel model;
 
 	/**
@@ -291,7 +289,6 @@ public class WebFragment extends Fragment
 				return handleUrl(uri);
 			}
 
-			@SuppressWarnings("unused")
 			private boolean handleUrl(@NonNull final Uri uri)
 			{
 				Log.d(WebFragment.TAG, "Uri " + uri);
@@ -337,7 +334,7 @@ public class WebFragment extends Fragment
 								return false;
 						}
 
-						final int recurse = Settings.getRecursePref(getContext());
+						final int recurse = Settings.getRecursePref(requireContext());
 						targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, type);
 						targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 						targetIntent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse);

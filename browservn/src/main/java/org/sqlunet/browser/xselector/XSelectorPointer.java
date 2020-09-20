@@ -60,7 +60,6 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	/**
 	 * Static field used to regenerate object, individually or as arrays
 	 */
-	@SuppressWarnings("unused")
 	static public final Parcelable.Creator<XSelectorPointer> CREATOR = new Parcelable.Creator<XSelectorPointer>()
 	{
 		@NonNull
@@ -194,7 +193,6 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	 *
 	 * @return x mask
 	 */
-	@SuppressWarnings("unused")
 	public long getXMask()
 	{
 		return this.xMask;

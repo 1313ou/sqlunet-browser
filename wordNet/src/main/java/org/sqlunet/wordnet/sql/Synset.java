@@ -31,7 +31,6 @@ class Synset extends BasicSynset
 	 * @param lexDomainId lexdomain id
 	 * @param sample      sample
 	 */
-	@SuppressWarnings("unused")
 	protected Synset(final long synsetId, final String definition, final int lexDomainId, final String sample)
 	{
 		super(synsetId, definition, lexDomainId, sample);
@@ -132,7 +131,6 @@ class Synset extends BasicSynset
 	 * @return list of words in synset as a comma-separated string
 	 */
 	@NonNull
-	@SuppressWarnings("unused")
 	public String getSynsetWordsAsString(final SQLiteDatabase connection)
 	{
 		final StringBuilder sb = new StringBuilder();

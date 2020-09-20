@@ -205,7 +205,6 @@ public abstract class AbstractTableFragment extends ListFragment
 	 *
 	 * @param cursor cursor
 	 */
-	@SuppressWarnings("unused")
 	void dump(@Nullable final Cursor cursor)
 	{
 		if (cursor == null)

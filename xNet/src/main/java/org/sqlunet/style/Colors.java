@@ -25,7 +25,6 @@ public class Colors
 
 	static public final int pink = 0xFFE9967A;
 
-	@SuppressWarnings("unused")
 	static public final int dk_pink = 0xFFef2063;
 
 	static public final int brown = 0xFF6F4E37;

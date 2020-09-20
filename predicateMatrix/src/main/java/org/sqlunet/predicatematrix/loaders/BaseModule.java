@@ -1064,7 +1064,8 @@ abstract class BaseModule extends Module
 					{
 						final Set<WnData> wnData = this.wnMap.get(vnData);
 						assert wnData != null;
-						@SuppressWarnings("unused") final TreeNode vnNode = this.displayer.makeVnNode(pmroleNode, this.changedList, vnData, wnData.toArray(new WnData[0]));
+						/* final TreeNode vnNode = */
+						this.displayer.makeVnNode(pmroleNode, this.changedList, vnData, wnData.toArray(new WnData[0]));
 
 						// contribute to header
 						if (vnData.vnRole != null && !vnData.vnRole.isEmpty())
@@ -1079,7 +1080,8 @@ abstract class BaseModule extends Module
 					{
 						final Set<WnData> wnData = this.wnMap.get(pbData);
 						assert wnData != null;
-						@SuppressWarnings("unused") final TreeNode pbNode = this.displayer.makePbNode(pmroleNode, this.changedList, pbData, wnData.toArray(new WnData[0]));
+						/* final TreeNode pbNode = */
+						this.displayer.makePbNode(pmroleNode, this.changedList, pbData, wnData.toArray(new WnData[0]));
 
 						// contribute to header
 						if (pbData.pbRoleDescr != null && !pbData.pbRoleDescr.isEmpty())
@@ -1094,7 +1096,8 @@ abstract class BaseModule extends Module
 					{
 						final Set<WnData> wnData = this.wnMap.get(fnData);
 						assert wnData != null;
-						@SuppressWarnings("unused") final TreeNode fnNode = this.displayer.makeFnNode(pmroleNode, this.changedList, fnData, wnData.toArray(new WnData[0]));
+						/* final TreeNode fnNode = */
+						this.displayer.makeFnNode(pmroleNode, this.changedList, fnData, wnData.toArray(new WnData[0]));
 
 						// contribute to header
 						if (fnData.fnFe != null && !fnData.fnFe.isEmpty())
@@ -1200,13 +1203,34 @@ abstract class BaseModule extends Module
 			final TreeNode roleNode = displayPmRow(parent, pmRow, wnDataOnRow ? wnData : null, changedList);
 
 			// vn
-			@SuppressWarnings("unused") final TreeNode vnNode = wnDataOnXData ? makeVnNode(roleNode, changedList, vnData, wnData) : makeVnNode(roleNode, changedList, vnData);
+			if (wnDataOnXData)
+			{
+				makeVnNode(roleNode, changedList, vnData, wnData);
+			}
+			else
+			{
+				makeVnNode(roleNode, changedList, vnData);
+			}
 
 			// pb
-			@SuppressWarnings("unused") final TreeNode pbNode = wnDataOnXData ? makePbNode(roleNode, changedList, pbData, wnData) : makePbNode(roleNode, changedList, pbData);
+			if (wnDataOnXData)
+			{
+				makePbNode(roleNode, changedList, pbData, wnData);
+			}
+			else
+			{
+				makePbNode(roleNode, changedList, pbData);
+			}
 
 			// fn
-			@SuppressWarnings("unused") final TreeNode fnNode = wnDataOnXData ? makeFnNode(roleNode, changedList, fnData, wnData) : makeFnNode(roleNode, changedList, fnData);
+			if (wnDataOnXData)
+			{
+				makeFnNode(roleNode, changedList, fnData, wnData);
+			}
+			else
+			{
+				makeFnNode(roleNode, changedList, fnData);
+			}
 		}
 
 		/**
@@ -1289,6 +1313,7 @@ abstract class BaseModule extends Module
 		 * @param wnDatas WordNet data
 		 * @return created node
 		 */
+		@SuppressWarnings("UnusedReturnValue")
 		@NonNull
 		TreeNode makeVnNode(@NonNull final TreeNode parent, @NonNull final TreeOps changedList, @NonNull final VnData vnData, @NonNull final WnData... wnDatas)
 		{
@@ -1346,6 +1371,7 @@ abstract class BaseModule extends Module
 		 * @param wnDatas WordNet data
 		 * @return created node
 		 */
+		@SuppressWarnings("UnusedReturnValue")
 		@NonNull
 		TreeNode makePbNode(@NonNull final TreeNode parent, @NonNull final TreeOps changedList, @NonNull final PbData pbData, @NonNull final WnData... wnDatas)
 		{
@@ -1417,6 +1443,7 @@ abstract class BaseModule extends Module
 		 * @param wnDatas WordNet data
 		 * @return created node
 		 */
+		@SuppressWarnings("UnusedReturnValue")
 		@NonNull
 		TreeNode makeFnNode(@NonNull final TreeNode parent, @NonNull final TreeOps changedList, @NonNull final FnData fnData, @NonNull final WnData... wnDatas)
 		{

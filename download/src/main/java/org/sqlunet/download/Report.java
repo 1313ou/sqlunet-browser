@@ -71,7 +71,6 @@ public class Report
 	 * @param sb      spannable string builder
 	 * @param resId   resource id
 	 */
-	@SuppressWarnings("unused")
 	static public void appendImage(@NonNull final Context context, @NonNull final SpannableStringBuilder sb, final int resId)
 	{
 		append(sb, "\u0000", makeImageSpan(context, resId));

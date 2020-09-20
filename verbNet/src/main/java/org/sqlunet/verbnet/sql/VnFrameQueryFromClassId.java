@@ -38,7 +38,6 @@ class VnFrameQueryFromClassId extends DBQuery
 	 *
 	 * @return the frame id from the result set
 	 */
-	@SuppressWarnings("unused")
 	public long getFrameId()
 	{
 		assert this.cursor != null;

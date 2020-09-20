@@ -270,7 +270,6 @@ public class TreeView
 	 * @param node  node
 	 * @param value character sequence
 	 */
-	@SuppressWarnings("unused")
 	public void setNodeValue(@NonNull final TreeNode node, @Nullable final CharSequence value)
 	{
 		// delete node from parent if null value
@@ -344,7 +343,6 @@ public class TreeView
 	 * @param parent parent node
 	 * @param node   node to add
 	 */
-	@SuppressWarnings("unused")
 	public void add(@NonNull final TreeNode parent, @NonNull final TreeNode node)
 	{
 		// tree
@@ -356,7 +354,7 @@ public class TreeView
 			final Controller<?> parentController = parent.getController();
 			final ViewGroup viewGroup = parentController.getChildrenView();
 			assert viewGroup != null;
-			int index = parent.indexOf(node);
+			/* int index = parent.indexOf(node); */
 			addSubtreeView(viewGroup, node, -1);
 		}
 	}
@@ -487,7 +485,6 @@ public class TreeView
 	 *
 	 * @param node node to remove
 	 */
-	@SuppressWarnings("unused")
 	synchronized private void removeSubtreeView(@NonNull final TreeNode node)
 	{
 		Log.d(TAG, "Remove subtree view for node " + node);
@@ -960,7 +957,6 @@ public class TreeView
 	 *
 	 * @param listener on-click listener
 	 */
-	@SuppressWarnings("unused")
 	public void setDefaultNodeClickListener(final TreeNode.TreeNodeClickListener listener)
 	{
 		this.nodeClickListener = listener;
@@ -975,7 +971,6 @@ public class TreeView
 	 *
 	 * @return whether selection mode is enabled
 	 */
-	@SuppressWarnings("unused")
 	public boolean isSelectable()
 	{
 		return this.selectable;
@@ -986,7 +981,6 @@ public class TreeView
 	 *
 	 * @param selectable selection mode enable flag
 	 */
-	@SuppressWarnings("unused")
 	public void setSelectable(final boolean selectable)
 	{
 		if (!selectable)
@@ -1033,7 +1027,7 @@ public class TreeView
 	 * @return values
 	 */
 	@NonNull
-	@SuppressWarnings({"unchecked", "unused"})
+	@SuppressWarnings({"unchecked"})
 	public <E> List<E> getSelectedValues(final Class<E> valueClass)
 	{
 		List<E> result = new ArrayList<>();
@@ -1095,7 +1089,6 @@ public class TreeView
 	 *
 	 * @param skipCollapsed whether to skip collapsed nod
 	 */
-	@SuppressWarnings("unused")
 	public void selectAll(final boolean skipCollapsed)
 	{
 		selectAll(true, skipCollapsed);
@@ -1132,7 +1125,6 @@ public class TreeView
 	 * @param node     node
 	 * @param selected selected flag
 	 */
-	@SuppressWarnings("unused")
 	public void selectNode(@NonNull final TreeNode node, boolean selected)
 	{
 		if (this.selectable)
@@ -1187,7 +1179,6 @@ public class TreeView
 	 * @return save state
 	 */
 	@NonNull
-	@SuppressWarnings("unused")
 	public String getSaveState()
 	{
 		final StringBuilder sb = new StringBuilder();
@@ -1225,7 +1216,6 @@ public class TreeView
 	 *
 	 * @param saveState save state
 	 */
-	@SuppressWarnings("unused")
 	public void restoreState(@Nullable final String saveState)
 	{
 		if (saveState != null && !saveState.isEmpty())

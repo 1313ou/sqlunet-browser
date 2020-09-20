@@ -42,13 +42,11 @@ class Link extends Synset
 	/**
 	 * <code>fromSynsetId</code> source synset id
 	 */
-	@SuppressWarnings("unused")
 	public final long fromSynsetId;
 
 	/**
 	 * <code>fromWordId</code> source synset id
 	 */
-	@SuppressWarnings("unused")
 	public final long fromWordId;
 
 	/**

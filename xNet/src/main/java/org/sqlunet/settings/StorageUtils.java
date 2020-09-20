@@ -567,7 +567,6 @@ public class StorageUtils
 	 * @return external storage directory
 	 */
 	@Nullable
-	@SuppressWarnings("unused")
 	static public String selectExternalStorage()
 	{
 		// S E C O N D A R Y
@@ -825,7 +824,6 @@ public class StorageUtils
 	 * @param path path
 	 * @return free storage in megabytes
 	 */
-	@SuppressWarnings("deprecation")
 	static private float storageFree(final String path)
 	{
 		try
@@ -878,7 +876,6 @@ public class StorageUtils
 	 * @param path path
 	 * @return storage capacity in megabytes
 	 */
-	@SuppressWarnings("deprecation")
 	static float storageCapacity(final String path)
 	{
 		try

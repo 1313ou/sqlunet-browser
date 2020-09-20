@@ -336,7 +336,6 @@ class VnNodeFactory extends NodeFactory
 	 * @param flag   is the synset's flag
 	 * @return newly created node
 	 */
-	@SuppressWarnings("unused")
 	static public Node makeSynsetNodeFlagged(@NonNull final Document doc, final Node parent, final int size, final long id, final boolean flag)
 	{
 		final Element element = NodeFactory.makeSynsetNode(doc, parent, id, size);

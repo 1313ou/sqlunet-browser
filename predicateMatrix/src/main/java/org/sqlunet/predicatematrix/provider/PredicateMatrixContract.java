@@ -26,7 +26,6 @@ public class PredicateMatrixContract
 	static public final String FNFETYPE = "ft";
 	static public final String FNLU = "fu";
 
-	@SuppressWarnings("unused")
 	static public class PredicateMatrix
 	{
 		static public final String PMID = "pmid";
@@ -51,14 +50,12 @@ public class PredicateMatrixContract
 		static public final String FEID = "fnfeid";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Pm extends PredicateMatrix
 	{
 		static public final String TABLE = "pm";
 		static public final String CONTENT_URI_TABLE = Pm.TABLE;
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Pm_X extends PredicateMatrix
 	{
 		static public final String TABLE = "pm_x";

@@ -55,7 +55,6 @@ public class Seq
 	/**
 	 * Press back control
 	 */
-	@SuppressWarnings("unused")
 	static public void do_pressBack()
 	{
 		onView(isRoot()).perform(pressBack());
@@ -67,7 +66,6 @@ public class Seq
 	 * @param editTextViewId EditTextView id
 	 * @param text           text
 	 */
-	@SuppressWarnings("unused")
 	static public void do_type(@SuppressWarnings("SameParameterValue") @IdRes final int editTextViewId, @NonNull final String text)
 	{
 		onView(withId(editTextViewId)) //
@@ -82,7 +80,6 @@ public class Seq
 	 * @param searchViewId SearchView id
 	 * @param text         text
 	 */
-	@SuppressWarnings("unused")
 	static public void do_typeSearch(@IdRes final int searchViewId, @NonNull final String text)
 	{
 		final Matcher<View> searchView = withId(searchViewId);
@@ -107,7 +104,6 @@ public class Seq
 	 *
 	 * @param buttonId Button id
 	 */
-	@SuppressWarnings("unused")
 	static public void do_click(@IdRes final int buttonId)
 	{
 		onView(withId(buttonId)) //
@@ -122,7 +118,6 @@ public class Seq
 	 * @param menuId   Menu id
 	 * @param menuText Text in menu item to click
 	 */
-	@SuppressWarnings("unused")
 	static public void do_menu(@IdRes final int menuId, @StringRes int menuText)
 	{
 		onView(Matchers.withMenuIdOrText(menuId, menuText)).perform(click());
@@ -133,7 +128,6 @@ public class Seq
 	 *
 	 * @param menuText Text in menu item to click
 	 */
-	@SuppressWarnings("unused")
 	static public void do_options_menu(@StringRes final int menuText)
 	{
 		openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getInstrumentation().getTargetContext());
@@ -187,7 +181,6 @@ public class Seq
 	 * @param navViewId      NavigationView id
 	 * @param targetText     Text in nav item to click
 	 */
-	@SuppressWarnings("unused")
 	static public void do_navigate(@IdRes int drawerLayoutId, @IdRes int navViewId, final String targetText)
 	{
 		onView(withId(drawerLayoutId)) //
@@ -216,7 +209,6 @@ public class Seq
 	 * @param navViewId      NavigationView id
 	 * @param targetId       Menu item id in nav item to click
 	 */
-	@SuppressWarnings("unused")
 	static public void do_navigate(@IdRes int drawerLayoutId, @IdRes int navViewId, @MenuRes final int targetId)
 	{
 		onView(withId(drawerLayoutId)) //
@@ -241,7 +233,6 @@ public class Seq
 	 *
 	 * @param viewId View id
 	 */
-	@SuppressWarnings("unused")
 	static public void do_swipeUp(@IdRes final int viewId)
 	{
 		onView(withId(viewId)) //

@@ -26,7 +26,6 @@ public class FrameNetContract
 	static public final String SENTENCE = "s";
 	static public final String ANNOSET = "a";
 
-	@SuppressWarnings("unused")
 	static public final class FnWords
 	{
 		static public final String TABLE = "fnwords";
@@ -36,7 +35,6 @@ public class FrameNetContract
 		static public final String WORD = "word";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class LexUnits
 	{
 		static public final String TABLE = "fnlexunits";
@@ -49,7 +47,6 @@ public class FrameNetContract
 		static public final String FRAMEID = "frameid";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class LexUnits_X
 	{
 		static public final String TABLE_BY_LEXUNIT = "fnlexunits_x_by_lexunit";
@@ -83,7 +80,6 @@ public class FrameNetContract
 		static public final String ISFRAME = "isframe";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Frames
 	{
 		static public final String TABLE = "fnframes";
@@ -92,7 +88,6 @@ public class FrameNetContract
 		static public final String CONTENTS = "frameid";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Frames_X
 	{
 		static public final String TABLE_BY_FRAME = "fnframes_x_by_frame";
@@ -127,7 +122,6 @@ public class FrameNetContract
 		static public final String TEXT = "text";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class AnnoSets
 	{
 		static public final String TABLE = "fnannosets";
@@ -136,7 +130,6 @@ public class FrameNetContract
 		static public final String CONTENTS = "annosetid";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Sentences_Layers_X
 	{
 		static public final String TABLE = "fnsentences_fnlayers_x";
@@ -155,7 +148,6 @@ public class FrameNetContract
 		static public final String FGCOLOR = "fgcolor";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class AnnoSets_Layers_X
 	{
 		static public final String TABLE = "fnannosets_fnlayers_x";
@@ -175,7 +167,6 @@ public class FrameNetContract
 		static public final String FGCOLOR = "fgcolor";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Patterns_Layers_X
 	{
 		static public final String TABLE = "fnpatterns_fnlayers_x";
@@ -195,7 +186,6 @@ public class FrameNetContract
 		static public final String FGCOLOR = "fgcolor";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class ValenceUnits_Layers_X
 	{
 		static public final String TABLE = "fnvalenceunits_fnlayers_x";
@@ -215,7 +205,6 @@ public class FrameNetContract
 		static public final String FGCOLOR = "fgcolor";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Words_LexUnits_Frames
 	{
 		static public final String TABLE = "words_fnlexunits";
@@ -237,7 +226,6 @@ public class FrameNetContract
 		static public final String INCORPORATEDFEDEFINITION = "fedefinition";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Frames_FEs
 	{
 		static public final String TABLE = "fnframes_fnfes";
@@ -256,7 +244,6 @@ public class FrameNetContract
 		static public final String CORETYPEID = "coretypeid";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class LexUnits_Sentences
 	{
 		static public final String TABLE = "fnframes_fnsentences";
@@ -273,7 +260,6 @@ public class FrameNetContract
 		static public final String SENTNO = "sentno";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class LexUnits_Sentences_AnnoSets_Layers_Labels
 	{
 		static public final String TABLE = "fnlexunits_fnsentences_fnannosets_fnlayers_fnlabels";
@@ -312,7 +298,6 @@ public class FrameNetContract
 		static public final String FNWORD = "word";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class LexUnits_FERealizations_ValenceUnits
 	{
 		static public final String TABLE = "fnlexunits_fnferealizations_fnvalenceunits";
@@ -329,7 +314,6 @@ public class FrameNetContract
 		static public final String FERS = "fers";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class LexUnits_FEGroupRealizations_Patterns_ValenceUnits
 	{
 		static public final String TABLE = "fnlexunits_fnferealizations_fnpatterns_fnvalenceunits";
@@ -388,7 +372,6 @@ public class FrameNetContract
 		static public final String WORD = "word";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Lookup_FnSentences
 	{
 		static public final String TABLE = "fts_fnsentences";
@@ -400,7 +383,6 @@ public class FrameNetContract
 		static public final String ANNOSETID = "annosetid";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Lookup_FnSentences_X
 	{
 		static public final String TABLE = "fts_fnsentences_x";

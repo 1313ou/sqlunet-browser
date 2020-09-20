@@ -6,7 +6,6 @@ package org.sqlunet.bnc.sql;
 
 import androidx.annotation.NonNull;
 
-@SuppressWarnings("unused")
 class SqLiteDialect
 {
 	static private final String BNCBaseWordQuery = "SELECT " + //

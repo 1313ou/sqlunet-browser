@@ -21,7 +21,6 @@ class LexDomainDef
 	/**
 	 * <code>pos</code> pos id
 	 */
-	@SuppressWarnings("unused")
 	public final int pos;
 
 	/**

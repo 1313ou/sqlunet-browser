@@ -225,7 +225,6 @@ public class Word extends BasicWord
 	 * @return lexdomain-link type map for a given word
 	 */
 	@Nullable
-	@SuppressWarnings("unused")
 	static public Map<Integer, Set<Integer>> getLinkTypes(final SQLiteDatabase connection, final String word)
 	{
 		LinkTypesQueryFromWord query = null;

@@ -16,7 +16,6 @@ import androidx.annotation.Nullable;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-@SuppressWarnings("unused")
 interface SyntagNetInterface
 {
 	// S E L E C T O R

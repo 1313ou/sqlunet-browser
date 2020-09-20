@@ -241,7 +241,7 @@ public class BrowseFragment extends BaseSearchFragment
 	private Fragment makeSelectorFragment()
 	{
 		// context
-		final Context context = getContext();
+		final Context context = requireContext();
 
 		// type
 		final Settings.Selector selectorType = Settings.getSelectorPref(context);
@@ -271,7 +271,6 @@ public class BrowseFragment extends BaseSearchFragment
 	 * @return intent
 	 */
 	@NonNull
-	@SuppressWarnings("unused")
 	private Intent makeSelectorIntent()
 	{
 		// context

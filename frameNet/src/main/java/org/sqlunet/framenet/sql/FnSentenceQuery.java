@@ -38,7 +38,6 @@ class FnSentenceQuery extends DBQuery
 	 *
 	 * @return the governor id from the result set
 	 */
-	@SuppressWarnings("unused")
 	public long getSentenceId()
 	{
 		assert this.cursor != null;

@@ -879,7 +879,6 @@ public class ScrollView2D extends FrameLayout
 	 * @param x the position where to scroll on the X axis
 	 * @param y the position where to scroll on the Y axis
 	 */
-	@SuppressWarnings("unused")
 	public final void smoothScrollTo(int x, int y)
 	{
 		smoothScrollBy(x - getScrollX(), y - getScrollY());

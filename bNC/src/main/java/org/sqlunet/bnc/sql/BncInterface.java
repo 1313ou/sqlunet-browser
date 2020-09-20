@@ -10,7 +10,6 @@ import org.w3c.dom.Document;
 
 import androidx.annotation.NonNull;
 
-@SuppressWarnings("unused")
 interface BncInterface
 {
 	/**

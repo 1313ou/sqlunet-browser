@@ -9,7 +9,6 @@ package org.sqlunet.provider;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-@SuppressWarnings("unused")
 public final class ProviderArgs
 {
 	// intent type

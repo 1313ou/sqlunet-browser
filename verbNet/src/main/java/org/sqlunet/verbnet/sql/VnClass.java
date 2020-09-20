@@ -28,7 +28,6 @@ public class VnClass
 	/**
 	 * Groupings
 	 */
-	@SuppressWarnings("unused")
 	public final String groupings;
 
 	/**

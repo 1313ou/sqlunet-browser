@@ -160,7 +160,6 @@ public class TreeNode
 	 * @return this node
 	 */
 	@NonNull
-	@SuppressWarnings("unused")
 	public TreeNode addChildren(@NonNull final Iterable<TreeNode> nodes)
 	{
 		for (TreeNode node : nodes)
@@ -209,7 +208,6 @@ public class TreeNode
 	 * @return this node
 	 */
 	@NonNull
-	@SuppressWarnings({"unused"})
 	public TreeNode prependChildren(@NonNull final TreeNode... nodes)
 	{
 		for (int i = nodes.length - 1; i >= 0; i--)
@@ -228,7 +226,6 @@ public class TreeNode
 	 *
 	 * @return true if deleted
 	 */
-	@SuppressWarnings("unused")
 	public boolean delete()
 	{
 		final TreeNode parent = getParent();
@@ -322,7 +319,6 @@ public class TreeNode
 	 * @return root
 	 */
 	@Nullable
-	@SuppressWarnings("unused")
 	public TreeNode getRoot()
 	{
 		TreeNode root = this;
@@ -397,7 +393,6 @@ public class TreeNode
 	 *
 	 * @return Whether node is first child
 	 */
-	@SuppressWarnings("unused")
 	public boolean isFirstChild()
 	{
 		if (isNotRoot())
@@ -412,7 +407,6 @@ public class TreeNode
 	 *
 	 * @return Whether node is last child
 	 */
-	@SuppressWarnings("unused")
 	public boolean isLastChild()
 	{
 		if (isNotRoot())
@@ -467,7 +461,6 @@ public class TreeNode
 	 *
 	 * @param enabled flag
 	 */
-	@SuppressWarnings("unused")
 	public void setEnabled(boolean enabled)
 	{
 		this.enabled = enabled;
@@ -511,7 +504,6 @@ public class TreeNode
 	 *
 	 * @return whether this node is selectable
 	 */
-	@SuppressWarnings("unused")
 	public boolean isSelectable()
 	{
 		return this.selectable;
@@ -543,7 +535,6 @@ public class TreeNode
 	 *
 	 * @param collapsible collapsible flag
 	 */
-	@SuppressWarnings("unused")
 	public void setCollapsible(boolean collapsible)
 	{
 		this.collapsible = collapsible;
@@ -635,7 +626,6 @@ public class TreeNode
 	 * @return this node
 	 */
 	@NonNull
-	@SuppressWarnings("unused")
 	public TreeNode setClickListener(TreeNodeClickListener listener)
 	{
 		this.listener = listener;
@@ -656,7 +646,6 @@ public class TreeNode
 	 * Click listener interface
 	 */
 	@FunctionalInterface
-	@SuppressWarnings("unused")
 	public interface TreeNodeClickListener
 	{
 		/**

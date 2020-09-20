@@ -106,7 +106,6 @@ public class DomValidator
 	 * @param xsdUrl    xsd url
 	 * @param filePaths files
 	 */
-	@SuppressWarnings("unused")
 	static public void validateFiles(@NonNull final URL xsdUrl, @NonNull final String... filePaths)
 	{
 		try
@@ -147,7 +146,6 @@ public class DomValidator
 	 * @return xsdUrl
 	 */
 	@NonNull
-	@SuppressWarnings("unused")
 	static public URL path2Url(@NonNull final String xsdPath)
 	{
 		URL xsdUrl;

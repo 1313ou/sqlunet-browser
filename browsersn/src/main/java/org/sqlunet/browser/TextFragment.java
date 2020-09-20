@@ -182,7 +182,7 @@ public class TextFragment extends AbstractTableFragment
 				if ("synset".equals(subtarget))
 				{
 					// recursion
-					final int recurse = Settings.getRecursePref(getContext());
+					final int recurse = Settings.getRecursePref(requireContext());
 
 					// target
 					final int colIdx = cursor.getColumnIndex("synsetid");

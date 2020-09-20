@@ -191,7 +191,6 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	 *
 	 * @return x mask
 	 */
-	@SuppressWarnings("unused")
 	public long getXMask()
 	{
 		return this.xMask;

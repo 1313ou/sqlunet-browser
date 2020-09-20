@@ -71,7 +71,6 @@ public class Diagnostics
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	@NonNull
 	private static String report(@NonNull final Context context)
 	{

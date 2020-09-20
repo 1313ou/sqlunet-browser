@@ -121,7 +121,6 @@ class StorageReports
 	 * @return pair of names and values
 	 */
 	@NonNull
-	@SuppressWarnings("unused")
 	static public Pair<CharSequence[], CharSequence[]> get2StorageDirectoriesNamesValues(@NonNull final Context context)
 	{
 		final List<CharSequence> names = new ArrayList<>();

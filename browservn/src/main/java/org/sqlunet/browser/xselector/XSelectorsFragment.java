@@ -215,7 +215,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 
 		// fill groups
 		int position = 0;
-		int enable = Settings.getAllPref(getContext());
+		int enable = Settings.getAllPref(requireContext());
 
 		if (Settings.Source.VERBNET.test(enable))
 		{
@@ -619,7 +619,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 	/**
 	 * Expand all
 	 */
-	@SuppressWarnings("unused")
 	private void expandAll()
 	{
 		final ExpandableListView view = getExpandableListView();
@@ -665,7 +664,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 	/**
 	 * Dump utility
 	 */
-	@SuppressWarnings("unused")
 	static public void dump(@NonNull final Cursor cursor)
 	{
 		if (cursor.moveToFirst())

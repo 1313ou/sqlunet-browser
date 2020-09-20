@@ -234,7 +234,6 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @return FrameNet sentence data as XML
 	 */
 	@NonNull
-	@SuppressWarnings("unused")
 	public String querySentenceXML(final SQLiteDatabase connection, final long sentenceId)
 	{
 		final Document doc = querySentenceDoc(connection, sentenceId);
@@ -266,7 +265,6 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @return FrameNet annoSet data as XML
 	 */
 	@NonNull
-	@SuppressWarnings("unused")
 	public String queryAnnoSetXML(final SQLiteDatabase connection, final long annoSetId)
 	{
 		final Document doc = queryAnnoSetDoc(connection, annoSetId);

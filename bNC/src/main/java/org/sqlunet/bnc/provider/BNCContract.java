@@ -6,7 +6,6 @@ package org.sqlunet.bnc.provider;
 
 public class BNCContract
 {
-	@SuppressWarnings("unused")
 	static public final class BNCs
 	{
 		static public final String TABLE = "bncs";
@@ -17,7 +16,6 @@ public class BNCContract
 		static public final String FREQ = "freq";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Words_BNCs
 	{
 		static public final String TABLE = "words_bncs";

@@ -45,7 +45,6 @@ public class SensesFragment extends ListFragment
 	 * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
 	 */
 	@FunctionalInterface
-	@SuppressWarnings("unused")
 	public interface Listener
 	{
 		/**
@@ -212,7 +211,6 @@ public class SensesFragment extends ListFragment
 	 *
 	 * @param listener listener
 	 */
-	@SuppressWarnings("unused")
 	public void setListener(final Listener listener)
 	{
 		this.listener = listener;
@@ -308,7 +306,6 @@ public class SensesFragment extends ListFragment
 	/**
 	 * Turns on activate-on-click mode. When this mode is on, list items will be given the 'activated' state when touched.
 	 */
-	@SuppressWarnings("unused")
 	public void setActivateOnItemClick(final boolean activateOnItemClick)
 	{
 		this.activateOnItemClick = activateOnItemClick;

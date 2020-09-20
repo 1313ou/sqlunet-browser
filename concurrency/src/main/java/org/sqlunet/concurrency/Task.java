@@ -25,7 +25,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-@SuppressWarnings("unused")
 abstract public class Task<Params, Progress, Result>
 {
 	private static final String LOG_TAG = "AsyncTask";

@@ -269,7 +269,6 @@ abstract public class BaseModule extends Module
 	 *
 	 * @param membersGrouped member grouping flag
 	 */
-	@SuppressWarnings("unused")
 	public void setMembersGrouped(final boolean membersGrouped)
 	{
 		this.membersGrouped = membersGrouped;
@@ -357,7 +356,6 @@ abstract public class BaseModule extends Module
 	 * @param word   word
 	 * @param parent tree parent node
 	 */
-	@SuppressWarnings("unused")
 	protected void senses(final String word, @NonNull final TreeNode parent)
 	{
 		// load the contents
@@ -462,7 +460,6 @@ abstract public class BaseModule extends Module
 	 * @param senseId sense id
 	 * @param parent  parent node
 	 */
-	@SuppressWarnings("unused")
 	public void sense(final long senseId, @NonNull final TreeNode parent)
 	{
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(Senses.CONTENT_URI_TABLE));
@@ -851,7 +848,6 @@ abstract public class BaseModule extends Module
 	 * @param parent     parent node
 	 * @param addNewNode whether to addItem to (or set) node
 	 */
-	@SuppressWarnings("unused")
 	void members2(final long synsetId, @NonNull final TreeNode parent, final boolean addNewNode)
 	{
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(BaseModule.this.membersGrouped ? Senses_Words.CONTENT_URI_TABLE_BY_SYNSET : Senses_Words.CONTENT_URI_TABLE));
@@ -1397,7 +1393,6 @@ abstract public class BaseModule extends Module
 	 * @param parent                  parent
 	 * @param deadendParentIfNoResult mark parent node as deadend if there is no result
 	 */
-	@SuppressWarnings("unused")
 	void lexLinks(final long synsetId, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
 	{
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(LexLinks_Senses_Words_X.CONTENT_URI_TABLE));
@@ -1912,7 +1907,6 @@ abstract public class BaseModule extends Module
 	/**
 	 * Semantic Link query
 	 */
-	@SuppressWarnings("unused")
 	class SemLinksQuery extends Query
 	{
 		/**
@@ -1942,7 +1936,6 @@ abstract public class BaseModule extends Module
 	/**
 	 * Lexical Link query
 	 */
-	@SuppressWarnings("unused")
 	class LexLinksQuery extends Query
 	{
 		/**

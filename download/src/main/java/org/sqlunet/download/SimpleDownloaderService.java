@@ -161,13 +161,15 @@ public class SimpleDownloaderService extends JobIntentService
 					this.exception = ie;
 
 					// clean up
-					File file = new File(this.toFile);
-					if (file.exists())
+					if (this.toFile != null)
 					{
-						//noinspection ResultOfMethodCallIgnored
-						file.delete();
+						File file = new File(this.toFile);
+						if (file.exists())
+						{
+							//noinspection ResultOfMethodCallIgnored
+							file.delete();
+						}
 					}
-
 					Log.d(TAG, "Interrupted while downloading, " + ie.getMessage());
 					broadcast(MAIN_INTENT_FILTER, EVENT, EVENT_FINISH, EVENT_FINISH_ID, id, EVENT_FINISH_RESULT, false, EVENT_FINISH_EXCEPTION, exception.getMessage());
 				}
@@ -313,27 +315,30 @@ public class SimpleDownloaderService extends JobIntentService
 		}
 
 		// rename
-		final File newFile = new File(this.toFile);
-		boolean success = false;
-		if (outFile.exists())
+		if (this.toFile != null)
 		{
-			if (newFile.exists())
+			final File newFile = new File(this.toFile);
+			boolean success = false;
+			if (outFile.exists())
 			{
-				//noinspection ResultOfMethodCallIgnored
-				newFile.delete();
+				if (newFile.exists())
+				{
+					//noinspection ResultOfMethodCallIgnored
+					newFile.delete();
+				}
+				success = outFile.renameTo(newFile);
+				if (date != -1)
+				{
+					//noinspection ResultOfMethodCallIgnored
+					newFile.setLastModified(date);
+				}
+				if (size != -1 && newFile.length() != size)
+				{
+					throw new RuntimeException("Size do not match");
+				}
 			}
-			success = outFile.renameTo(newFile);
-			if (date != -1)
-			{
-				//noinspection ResultOfMethodCallIgnored
-				newFile.setLastModified(date);
-			}
-			if (size != -1 && newFile.length() != size)
-			{
-				throw new RuntimeException("Size do not match");
-			}
+			Log.d(TAG, "Rename " + outFile + " to " + newFile + ' ' + success);
 		}
-		Log.d(TAG, "Rename " + outFile + " to " + newFile + ' ' + success);
 	}
 
 	/**
@@ -341,6 +346,11 @@ public class SimpleDownloaderService extends JobIntentService
 	 */
 	private void prerequisite()
 	{
+		if (this.toFile == null)
+		{
+			return;
+		}
+
 		final File dir = new File(this.toFile).getParentFile();
 		if (dir != null && !dir.exists())
 		{

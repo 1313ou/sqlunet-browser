@@ -15,7 +15,6 @@ import androidx.annotation.NonNull;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-@SuppressWarnings("unused")
 interface WordNetInterface
 {
 	// S E L E C T O R

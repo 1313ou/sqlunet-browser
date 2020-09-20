@@ -64,7 +64,6 @@ class FnAnnoSetQuery extends DBQuery
 	 * @return the annoSet ids from the result set
 	 */
 	@NonNull
-	@SuppressWarnings("unused")
 	public long[] getAnnoSetIds()
 	{
 		assert this.cursor != null;

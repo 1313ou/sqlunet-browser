@@ -306,7 +306,6 @@ abstract public class BaseModule extends Module
 	 *
 	 * @param verbose flag
 	 */
-	@SuppressWarnings("unused")
 	static public void setVerbose(boolean verbose)
 	{
 		VERBOSE = verbose;

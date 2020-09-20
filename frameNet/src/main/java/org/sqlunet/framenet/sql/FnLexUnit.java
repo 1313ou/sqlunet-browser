@@ -33,7 +33,6 @@ public class FnLexUnit
 	/**
 	 * Pos
 	 */
-	@SuppressWarnings("unused")
 	public final String pos;
 
 	/**
@@ -44,7 +43,6 @@ public class FnLexUnit
 	/**
 	 * Source dictionary
 	 */
-	@SuppressWarnings("unused")
 	public final String dictionary;
 
 	/**
@@ -56,7 +54,6 @@ public class FnLexUnit
 	/**
 	 * Incorporated frame element
 	 */
-	@SuppressWarnings("unused")
 	public final String incorporatedFe;
 
 	/**
