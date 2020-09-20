@@ -65,6 +65,7 @@ public class HelpFragment extends Fragment
 			webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
 			webView.setWebViewClient(new WebViewClient()
 			{
+				@SuppressWarnings("deprecation")
 				@Override
 				public void onReceivedError(final WebView webView, final int errorCode, final String description, final String failingUrl)
 				{
@@ -83,6 +84,7 @@ public class HelpFragment extends Fragment
 					Log.e(HelpFragment.TAG, error.toString());
 				}
 
+				@SuppressWarnings("deprecation")
 				@Override
 				public boolean shouldOverrideUrlLoading(@NonNull final WebView webView, @NonNull final String url)
 				{

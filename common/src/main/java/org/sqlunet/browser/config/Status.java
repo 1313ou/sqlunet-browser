@@ -52,7 +52,7 @@ abstract public class Status
 	 * @param context context
 	 * @return _status
 	 */
-	static public int status(@NonNull final Context context)
+	public static int status(@NonNull final Context context)
 	{
 		if (existsDatabase(context))
 		{

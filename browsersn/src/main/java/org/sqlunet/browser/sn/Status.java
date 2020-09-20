@@ -21,8 +21,7 @@ import androidx.annotation.NonNull;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-@SuppressWarnings("WeakerAccess")
-public class Status extends org.sqlunet.browser.config.Status
+class Status extends org.sqlunet.browser.config.Status
 {
 	static private final String TAG = "Status";
 
@@ -77,18 +76,6 @@ public class Status extends org.sqlunet.browser.config.Status
 			return status;
 		}
 		return 0;
-	}
-
-	/**
-	 * Can run _status
-	 *
-	 * @param context context
-	 * @return true if app is ready to run
-	 */
-	static public boolean canRun(@NonNull final Context context)
-	{
-		final int status = status(context);
-		return (status & (EXISTS | EXISTS_TABLES | EXISTS_INDEXES)) == (EXISTS | EXISTS_TABLES | EXISTS_INDEXES);
 	}
 
 	@NonNull
