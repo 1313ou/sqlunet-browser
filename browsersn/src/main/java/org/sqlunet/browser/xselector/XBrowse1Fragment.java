@@ -18,7 +18,7 @@ import org.sqlunet.browser.selector.CollocationSelectorPointer;
 import org.sqlunet.browser.selector.SelectorPointer;
 import org.sqlunet.browser.selector.SelectorsFragment;
 import org.sqlunet.browser.selector.SnSelectorsFragment;
-import org.sqlunet.browser.xn.Settings;
+import org.sqlunet.browser.sn.Settings;
 import org.sqlunet.provider.ProviderArgs;
 
 import androidx.annotation.NonNull;

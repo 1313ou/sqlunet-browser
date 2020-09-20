@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ * Copyright (c) 2020. Bernard Bou <1313ou@gmail.com>.
  */
 
-package org.sqlunet.browser.xn;
+package org.sqlunet.browser.sn;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

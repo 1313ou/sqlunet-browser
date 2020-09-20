@@ -22,7 +22,7 @@ import org.sqlunet.browser.selector.Browse1Fragment;
 import org.sqlunet.browser.selector.SnBrowse1Fragment;
 import org.sqlunet.browser.web.WebActivity;
 import org.sqlunet.browser.web.WebFragment;
-import org.sqlunet.browser.xn.Settings;
+import org.sqlunet.browser.sn.Settings;
 import org.sqlunet.browser.xselector.XBrowse1Activity;
 import org.sqlunet.browser.xselector.XBrowse1Fragment;
 import org.sqlunet.provider.ProviderArgs;
