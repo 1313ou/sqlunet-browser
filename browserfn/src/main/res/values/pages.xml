@@ -5,6 +5,6 @@
 
 <resources>
 
-	<string name="fragment_class_setup_status_page" translatable="false">org.sqlunet.browser.fn.SetupStatusFragment</string> <!-- 0 -->
+	<string name="fragment_class_setup_status_page" translatable="false">org.sqlunet.browser.fn.SetupXStatusFragment</string> <!-- 0 -->
 
 </resources>
