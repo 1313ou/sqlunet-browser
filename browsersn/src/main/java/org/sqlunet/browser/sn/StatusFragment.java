@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ * Copyright (c) 2020. Bernard Bou <1313ou@gmail.com>.
  */
 
-package org.sqlunet.browser.xn;
+package org.sqlunet.browser.sn;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class StatusFragment extends SetupStatusFragment
+public class StatusFragment extends SetupXStatusFragment
 {
 	@Override
 	public void onResume()

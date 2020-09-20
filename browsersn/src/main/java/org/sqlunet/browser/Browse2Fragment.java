@@ -11,7 +11,7 @@ import android.os.Parcelable;
 import org.sqlunet.bnc.browser.BNCFragment;
 import org.sqlunet.browser.selector.CollocationSelectorPointer;
 import org.sqlunet.browser.web.WebFragment;
-import org.sqlunet.browser.xn.Settings;
+import org.sqlunet.browser.sn.Settings;
 import org.sqlunet.browser.xselector.XSelectorPointer;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.syntagnet.browser.SyntagNetFragment;
