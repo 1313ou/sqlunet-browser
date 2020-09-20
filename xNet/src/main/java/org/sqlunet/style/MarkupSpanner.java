@@ -177,7 +177,6 @@ public class MarkupSpanner extends Spanner
 	 * @param flags     flags
 	 * @param factories span factories
 	 */
-	@SuppressWarnings("unused")
 	static private void setSpan(final String selector, @NonNull final SpannableStringBuilder sb, final int i, final int j, final long flags, @NonNull final SpanFactory... factories)
 	{
 		final Object[] spans = new Object[factories.length];

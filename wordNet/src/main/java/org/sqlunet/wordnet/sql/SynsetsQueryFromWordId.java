@@ -60,7 +60,6 @@ class SynsetsQueryFromWordId extends DBQuery
 	 *
 	 * @return pos
 	 */
-	@SuppressWarnings("unused")
 	public String getPos()
 	{
 		assert this.cursor != null;

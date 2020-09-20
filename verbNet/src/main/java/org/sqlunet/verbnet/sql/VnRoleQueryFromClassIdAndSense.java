@@ -52,7 +52,6 @@ class VnRoleQueryFromClassIdAndSense extends DBQuery
 	 *
 	 * @return the role id from the result set
 	 */
-	@SuppressWarnings("unused")
 	public long getRoleId()
 	{
 		assert this.cursor != null;
@@ -64,7 +63,6 @@ class VnRoleQueryFromClassIdAndSense extends DBQuery
 	 *
 	 * @return the role type id from the result set
 	 */
-	@SuppressWarnings("unused")
 	public long getRoleTypeId()
 	{
 		assert this.cursor != null;
@@ -98,7 +96,6 @@ class VnRoleQueryFromClassIdAndSense extends DBQuery
 	 *
 	 * @return the quality from the result set
 	 */
-	@SuppressWarnings("unused")
 	public int getQuality()
 	{
 		assert this.cursor != null;
@@ -110,7 +107,6 @@ class VnRoleQueryFromClassIdAndSense extends DBQuery
 	 *
 	 * @return the synset-specific flag from the result set
 	 */
-	@SuppressWarnings("unused")
 	public boolean getSynsetSpecific()
 	{
 		assert this.cursor != null;

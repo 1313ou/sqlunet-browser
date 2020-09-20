@@ -27,7 +27,6 @@ class FnFrameElement
 	/**
 	 * FE type id
 	 */
-	@SuppressWarnings("unused")
 	public final long feTypeId;
 
 	/**
@@ -43,7 +42,6 @@ class FnFrameElement
 	/**
 	 * FE abbrev
 	 */
-	@SuppressWarnings("unused")
 	public final String feAbbrev;
 
 	/**
@@ -54,7 +52,6 @@ class FnFrameElement
 	/**
 	 * Whether FE is core
 	 */
-	@SuppressWarnings("unused")
 	public final boolean isCore;
 
 	/**

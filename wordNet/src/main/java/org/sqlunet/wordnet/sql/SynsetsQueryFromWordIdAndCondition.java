@@ -28,7 +28,6 @@ class SynsetsQueryFromWordIdAndCondition extends DBQuery
 	/**
 	 * Init data (resources, ...)
 	 */
-	@SuppressWarnings("unused")
 	static void init()
 	{
 		SynsetsQueryFromWordIdAndCondition.QUERYWITHLEXDOMAIN = SqLiteDialect.SynsetsQueryFromWordIdAndLexDomainId;

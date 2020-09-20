@@ -548,7 +548,6 @@ public class StorageUtils
 	 * @return external storage directory
 	 */
 	@Nullable
-	@SuppressWarnings("unused")
 	static public String selectExternalStorage()
 	{
 		// S E C O N D A R Y

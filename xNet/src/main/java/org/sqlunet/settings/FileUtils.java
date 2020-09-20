@@ -24,7 +24,6 @@ import androidx.annotation.Nullable;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-@SuppressWarnings("unused")
 class FileUtils
 {
 	// static private final String TAG = "FileUtils";
@@ -231,7 +230,9 @@ class FileUtils
 							if (parent != null)
 							{
 								final File dir = new File(parent);
-								boolean created = dir.mkdirs();
+								/* boolean created = */
+								//noinspection ResultOfMethodCallIgnored
+								dir.mkdirs();
 							}
 
 							// output

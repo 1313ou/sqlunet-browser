@@ -21,7 +21,6 @@ public final class XSqlUNetContract
 
 	// Word cross reference
 
-	@SuppressWarnings("unused")
 	static public final class Words_FnWords_PbWords_VnWords
 	{
 		static public final String TABLE = "words_fnwords_pbwords_vnwords";
@@ -67,7 +66,6 @@ public final class XSqlUNetContract
 		static public final String SOURCES = "sources";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Words_VnWords_VnClasses
 	{
 		static public final String TABLE = "words_vnwords_vnclasses";
@@ -83,7 +81,6 @@ public final class XSqlUNetContract
 		static public final String SOURCES = "sources";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Words_PbWords_PbRoleSets
 	{
 		static public final String TABLE = "words_pbwords_pbrolesets";
@@ -99,7 +96,6 @@ public final class XSqlUNetContract
 		static public final String SOURCES = "sources";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Words_XNet
 	{
 		static public final String WORDID = "wordid";
@@ -131,7 +127,6 @@ public final class XSqlUNetContract
 
 	// PredicateMatrix
 
-	@SuppressWarnings("unused")
 	static public final class PredicateMatrix
 	{
 		static public final String TABLE = "pm";
@@ -147,7 +142,6 @@ public final class XSqlUNetContract
 		static public final String FRAMEID = "fnframeid";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class PredicateMatrix_VerbNet
 	{
 		static public final String TABLE = "predicatematrix_verbnet";
@@ -158,7 +152,6 @@ public final class XSqlUNetContract
 		static public final String CLASSID = "vnclassid";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class PredicateMatrix_PropBank
 	{
 		static public final String TABLE = "predicatematrix_propbank";
@@ -169,7 +162,6 @@ public final class XSqlUNetContract
 		static public final String ROLESETID = "pbrolesetid";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class PredicateMatrix_FrameNet
 	{
 		static public final String TABLE = "predicatematrix_framenet";
@@ -183,7 +175,6 @@ public final class XSqlUNetContract
 
 	// PredicateMatrix unions
 
-	@SuppressWarnings("unused")
 	static public final class Words_XNet_U
 	{
 		static public final String WORDID = "wordid";
@@ -199,7 +190,6 @@ public final class XSqlUNetContract
 		static public final String SOURCES = "sources";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Words_VnWords_VnClasses_U
 	{
 		static public final String TABLE = "U_words_vnwords_vnclasses";
@@ -215,7 +205,6 @@ public final class XSqlUNetContract
 		static public final String SOURCES = "sources";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Words_PbWords_PbRoleSets_U
 	{
 		static public final String TABLE = "U_words_pbwords_pbrolesets";
@@ -231,7 +220,6 @@ public final class XSqlUNetContract
 		static public final String SOURCES = "sources";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Words_FnWords_FnFrames_U
 	{
 		static public final String TABLE = "U_words_fnwords_fnframes";

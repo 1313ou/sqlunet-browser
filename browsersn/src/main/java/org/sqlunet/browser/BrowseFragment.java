@@ -361,7 +361,6 @@ public class BrowseFragment extends BaseSearchFragment
 	 * @return intent
 	 */
 	@NonNull
-	@SuppressWarnings("unused")
 	private Intent makeSelectorIntent()
 	{
 		// context

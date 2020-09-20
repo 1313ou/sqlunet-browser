@@ -20,7 +20,6 @@ class LinkDef
 	/**
 	 * <code>pos</code> part-of-speech id
 	 */
-	@SuppressWarnings("unused")
 	public int pos;
 
 	/**

@@ -38,7 +38,6 @@ class PbRoleSetQuery extends DBQuery
 	 *
 	 * @return the role set id from the result set
 	 */
-	@SuppressWarnings("unused")
 	public long getRoleSetId()
 	{
 		assert this.cursor != null;

@@ -404,7 +404,7 @@ public class WebFragment extends Fragment
 								return false;
 						}
 
-						final int recurse = Settings.getRecursePref(getContext());
+						final int recurse = Settings.getRecursePref(requireContext());
 						targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, type);
 						targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 						targetIntent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse);

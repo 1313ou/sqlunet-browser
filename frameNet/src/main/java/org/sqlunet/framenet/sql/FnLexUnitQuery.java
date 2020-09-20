@@ -38,7 +38,6 @@ class FnLexUnitQuery extends DBQuery
 	 *
 	 * @return the frame id from the result set
 	 */
-	@SuppressWarnings("unused")
 	public long getLuId()
 	{
 		assert this.cursor != null;

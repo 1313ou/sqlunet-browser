@@ -9,7 +9,6 @@ package org.sqlunet.framenet.sql;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-@SuppressWarnings("unused")
 class SqLiteDialect
 {
 	// LEXUNITS

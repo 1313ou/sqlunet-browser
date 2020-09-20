@@ -36,7 +36,6 @@ class VnClassWithSense
 	/**
 	 * Word id
 	 */
-	@SuppressWarnings("unused")
 	public final Long wordId;
 
 	/**

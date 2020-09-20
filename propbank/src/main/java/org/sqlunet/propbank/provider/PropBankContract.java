@@ -23,7 +23,6 @@ public class PropBankContract
 	static public final String WORD = "w";
 	static public final String MEMBER = "m";
 
-	@SuppressWarnings("unused")
 	static public final class PbWords
 	{
 		static public final String TABLE = "pbwords";
@@ -33,7 +32,6 @@ public class PropBankContract
 		static public final String WORD = "lemma";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class PbRoleSets
 	{
 		static public final String TABLE = "pbrolesets";
@@ -57,7 +55,6 @@ public class PropBankContract
 		static public final String ALIASES = "aliases";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Words_PbRoleSets
 	{
 		static public final String TABLE = "words_pbrolesets";
@@ -104,7 +101,6 @@ public class PropBankContract
 		static public final String PERSONNAME = "personname";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Lookup_PbExamples
 	{
 		static public final String TABLE = "fts_pbexamples";
@@ -114,7 +110,6 @@ public class PropBankContract
 		static public final String ROLESETID = "rolesetid";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Lookup_PbExamples_X
 	{
 		static public final String TABLE = "fts_pbexamples_x";

@@ -21,7 +21,6 @@ public class Utils
 	 * @return joined ids
 	 */
 	@Nullable
-	@SuppressWarnings("unused")
 	static public String join(@Nullable final int... ids)
 	{
 		if (ids == null)
@@ -52,7 +51,6 @@ public class Utils
 	 * @return joined ids
 	 */
 	@Nullable
-	@SuppressWarnings("unused")
 	static public String join(@Nullable final long... ids)
 	{
 		if (ids == null)

@@ -104,7 +104,6 @@ class FnLexUnitQueryFromFrameId extends DBQuery
 	 *
 	 * @return the annoSetId from the result set
 	 */
-	@SuppressWarnings("unused")
 	public long getFrameId()
 	{
 		assert this.cursor != null;

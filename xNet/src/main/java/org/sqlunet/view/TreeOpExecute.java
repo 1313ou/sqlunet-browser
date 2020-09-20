@@ -39,7 +39,7 @@ public class TreeOpExecute
 	}
 
 	@SuppressWarnings("EmptyMethod")
-	private void noopImpl(@SuppressWarnings("unused") final TreeOp[] ops)
+	private void noopImpl(final TreeOp[] ops)
 	{
 	}
 

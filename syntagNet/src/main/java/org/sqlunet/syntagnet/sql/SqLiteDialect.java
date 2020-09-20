@@ -7,7 +7,6 @@ package org.sqlunet.syntagnet.sql;
 /**
  * SQL dialect for SyntagNet
  */
-@SuppressWarnings("unused")
 class SqLiteDialect
 {
 	// collocations

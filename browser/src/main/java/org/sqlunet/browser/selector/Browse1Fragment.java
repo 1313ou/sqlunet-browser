@@ -119,7 +119,7 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 		else
 		{
 			// in single-pane mode, simply start the detail activity for the selected item ID.
-			final int recurse = Settings.getRecursePref(getContext());
+			final int recurse = Settings.getRecursePref(requireContext());
 			final Bundle args = new Bundle();
 			args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse);

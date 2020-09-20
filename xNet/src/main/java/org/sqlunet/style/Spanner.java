@@ -73,7 +73,6 @@ public class Spanner
 	 * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
 	 */
 	@FunctionalInterface
-	@SuppressWarnings("unused")
 	public interface OnClickImage
 	{
 		void onClickImage(final SpannableStringBuilder sb, final int position, final boolean collapsed);
@@ -113,7 +112,6 @@ public class Spanner
 	 *
 	 * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
 	 */
-	@SuppressWarnings("unused")
 	static public class HiddenSpanFactory implements SpanFactory
 	{
 		@NonNull
@@ -214,7 +212,6 @@ public class Spanner
 	 * @param listener click listener
 	 * @param context  context
 	 */
-	@SuppressWarnings("unused")
 	static public void appendClickableImage(@NonNull final SpannableStringBuilder sb, @NonNull final CharSequence caption, @NonNull final OnClickImage listener, @NonNull final Context context)
 	{
 		final Drawable collapsedDrawable = getDrawable(context, R.drawable.ic_collapsed);
@@ -281,7 +278,6 @@ public class Spanner
 	 * @param position insert position
 	 * @param tag      tag
 	 */
-	@SuppressWarnings("unused")
 	static public void insertTag(@NonNull final SpannableStringBuilder sb, final int position, @NonNull final CharSequence tag)
 	{
 		final String insert = tag.toString() + '\n' + Spanner.EOEXPANDEDSTRING;
@@ -296,7 +292,6 @@ public class Spanner
 	 * @param sb       spannable string builder
 	 * @param position position to start from (to end-of-expanded string)
 	 */
-	@SuppressWarnings("unused")
 	static public void collapse(@NonNull final SpannableStringBuilder sb, final int position)
 	{
 		sb.delete(position, Spanner.find(sb, position, Spanner.EOEXPANDEDSTRING));
@@ -374,7 +369,7 @@ public class Spanner
 	 * @param resId   resource id
 	 * @return drawable
 	 */
-	@Nullable
+	@NonNull
 	static public Drawable getDrawable(@NonNull final Context context, @DrawableRes final int resId)
 	{
 		final Drawable drawable = ResourcesCompat.getDrawable(context.getResources(), resId, context.getTheme());

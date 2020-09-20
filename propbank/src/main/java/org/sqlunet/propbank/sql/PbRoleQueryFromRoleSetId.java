@@ -41,7 +41,6 @@ class PbRoleQueryFromRoleSetId extends DBQuery
 	 *
 	 * @param roleSetId target role set id
 	 */
-	@SuppressWarnings("unused")
 	public void setId(final long roleSetId)
 	{
 		this.statement.setLong(0, roleSetId);

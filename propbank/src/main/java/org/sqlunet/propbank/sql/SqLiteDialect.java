@@ -7,7 +7,6 @@ package org.sqlunet.propbank.sql;
 /**
  * SQL dialect for PropBank
  */
-@SuppressWarnings("unused")
 class SqLiteDialect
 {
 	// ROLE SETS

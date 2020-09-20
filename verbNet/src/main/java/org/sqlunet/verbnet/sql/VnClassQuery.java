@@ -38,7 +38,6 @@ class VnClassQuery extends DBQuery
 	 *
 	 * @return the class id from the result set
 	 */
-	@SuppressWarnings("unused")
 	public long getClassId()
 	{
 		assert this.cursor != null;

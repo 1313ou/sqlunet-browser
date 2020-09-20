@@ -62,7 +62,6 @@ public class SetupDatabaseTasks
 	 * @param databasePath path
 	 * @return true if successful
 	 */
-	@SuppressWarnings("deprecation")
 	static public boolean deleteDatabase(@NonNull final Context context, final String databasePath)
 	{
 		// make sure you close all connections before deleting
@@ -114,7 +113,6 @@ public class SetupDatabaseTasks
 	 * @param databasePath path
 	 * @param tables       tables to drop
 	 */
-	@SuppressWarnings("unused")
 	static public void dropAll(@NonNull final Context context, final String databasePath, @Nullable final Collection<String> tables)
 	{
 		if (tables != null && !tables.isEmpty())
@@ -136,7 +134,6 @@ public class SetupDatabaseTasks
 	 * @param databasePath path
 	 * @param tables       tables to flush
 	 */
-	@SuppressWarnings("unused")
 	static public void flushAll(@NonNull final Context context, final String databasePath, @Nullable final Collection<String> tables)
 	{
 		if (tables != null && !tables.isEmpty())

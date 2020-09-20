@@ -13,7 +13,6 @@ import android.app.SearchManager;
  */
 public class VerbNetContract
 {
-	@SuppressWarnings("unused")
 	static public final class VnWords
 	{
 		static public final String TABLE = "vnwords";
@@ -23,7 +22,6 @@ public class VerbNetContract
 		static public final String WORD = "lemma";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class VnClasses
 	{
 		static public final String TABLE = "vnclasses";
@@ -35,7 +33,6 @@ public class VerbNetContract
 		static public final String CLASSTAG = "classtag";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Words_VnClasses
 	{
 		static public final String TABLE = "words_vnclasses";
@@ -91,7 +88,6 @@ public class VerbNetContract
 		static public final String EXAMPLES = "examples";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Lookup_VnExamples
 	{
 		static public final String TABLE = "fts_vnexamples";
@@ -102,7 +98,6 @@ public class VerbNetContract
 		static public final String FRAMEID = "frameid";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Lookup_VnExamples_X
 	{
 		static public final String TABLE = "fts_vnexamples_x";

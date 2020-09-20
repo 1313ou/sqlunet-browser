@@ -28,7 +28,6 @@ public class WordNetContract
 
 	// T A B L E S
 
-	@SuppressWarnings("unused")
 	static public final class Words
 	{
 		static public final String TABLE = "words";
@@ -38,7 +37,6 @@ public class WordNetContract
 		static public final String MEMBER = "lemma";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class CasedWords
 	{
 		static public final String TABLE = "casedwords";
@@ -48,7 +46,6 @@ public class WordNetContract
 		static public final String CASED = "cased";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Senses
 	{
 		static public final String TABLE = "senses";
@@ -63,7 +60,6 @@ public class WordNetContract
 		static public final String TAGCOUNT = "tagcount";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Synsets
 	{
 		static public final String TABLE = "synsets";
@@ -133,7 +129,6 @@ public class WordNetContract
 		static public final String POSITIONNAME = "positionname";
 	}
 
-	@SuppressWarnings("unused")
 	static public final class LexDomains
 	{
 		static public final String TABLE = "lexdomains";
@@ -162,7 +157,6 @@ public class WordNetContract
 		// words LEFT JOIN senses LEFT JOIN synsets
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Words_Senses_CasedWords_Synsets
 	{
 		static public final String TABLE = "words_senses_casedwords_synsets";
@@ -170,7 +164,6 @@ public class WordNetContract
 		// words LEFT JOIN senses LEFT JOIN casedwords LEFT JOIN synsets
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Words_Senses_CasedWords_Synsets_PosTypes_LexDomains
 	{
 		static public final String TABLE = "words_senses_casedwords_synsets_postypes_lexdomains";
@@ -204,7 +197,6 @@ public class WordNetContract
 		// synsets LEFT JOIN senses LEFT JOIN words
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Senses_Synsets_PosTypes_LexDomains
 	{
 		static public final String TABLE = "senses_synsets_postypes_lexdomains";
@@ -220,7 +212,6 @@ public class WordNetContract
 		// synsets LEFT JOIN postypes LEFT JOIN lexdomains
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Links_Senses_Words_X
 	{
 		static public final String TABLE_BY_SYNSET = "links_senses_linktypes_senses_words_by_synset";
@@ -234,7 +225,6 @@ public class WordNetContract
 		// lexlinks INNER JOIN synsets INNER JOIN words LEFT JOIN linktypes LEFT JOIN senses LEFT JOIN words
 	}
 
-	@SuppressWarnings("unused")
 	static public final class SemLinks_Synsets
 	{
 		static public final String TABLE = "semlinks_synsets";
@@ -242,7 +232,6 @@ public class WordNetContract
 		// semlinks INNER JOIN synsets
 	}
 
-	@SuppressWarnings("unused")
 	static public final class SemLinks_Synsets_X
 	{
 		static public final String TABLE = "semlinks_synsets_linktypes";
@@ -250,7 +239,6 @@ public class WordNetContract
 		// semlinks INNER JOIN synsets LEFT JOIN linktypes
 	}
 
-	@SuppressWarnings("unused")
 	static public final class SemLinks_Synsets_Words_X
 	{
 		static public final String TABLE_BY_SYNSET = "semlinks_synsets_linktypes_senses_words_by_synset";
@@ -262,7 +250,6 @@ public class WordNetContract
 		// semlinks INNER JOIN synsets LEFT JOIN linktypes LEFT JOIN senses LEFT JOIN words
 	}
 
-	@SuppressWarnings("unused")
 	static public final class LexLinks_Senses
 	{
 		static public final String TABLE = "lexlinks_synsets_words";
@@ -270,7 +257,6 @@ public class WordNetContract
 		// lexlinks INNER JOIN synsets INNER JOIN words
 	}
 
-	@SuppressWarnings("unused")
 	static public final class LexLinks_Senses_X
 	{
 		static public final String TABLE = "lexlinks_synsets_words_linktypes";
@@ -278,7 +264,6 @@ public class WordNetContract
 		// lexlinks INNER JOIN synsets INNER JOIN words LEFT JOIN linktypes
 	}
 
-	@SuppressWarnings("unused")
 	static public final class LexLinks_Senses_Words_X
 	{
 		static public final String TABLE_BY_SYNSET = "lexlinks_synsets_words_linktypes_senses_words_by_synset";
@@ -309,7 +294,6 @@ public class WordNetContract
 		// vframesentencemaps LEFT JOIN vframesentences
 	}
 
-	@SuppressWarnings("unused")
 	static public final class AdjPositions_AdjPositionTypes
 	{
 		static public final String TABLE = "adjpositions_adjpositiontypes";
@@ -331,7 +315,6 @@ public class WordNetContract
 		// morphmaps LEFT JOIN morphs
 	}
 
-	@SuppressWarnings("unused")
 	static public final class Words_MorphMaps_Morphs
 	{
 		static public final String TABLE = "words_morphmaps_morphs";
@@ -347,7 +330,6 @@ public class WordNetContract
 
 	// V I E W S
 
-	@SuppressWarnings("unused")
 	static public final class Dict
 	{
 		static public final String TABLE = "dict";

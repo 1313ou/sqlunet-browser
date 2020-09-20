@@ -52,7 +52,6 @@ class VnFrameQueryFromClassIdAndSense extends DBQuery
 	 *
 	 * @return the frame id from the result set
 	 */
-	@SuppressWarnings("unused")
 	public long getFrameId()
 	{
 		assert this.cursor != null;
@@ -141,7 +140,6 @@ class VnFrameQueryFromClassIdAndSense extends DBQuery
 	 *
 	 * @return the frame quality from the result set
 	 */
-	@SuppressWarnings("unused")
 	public int getQuality()
 	{
 		assert this.cursor != null;
@@ -153,7 +151,6 @@ class VnFrameQueryFromClassIdAndSense extends DBQuery
 	 *
 	 * @return the synset-specific flag from the result set
 	 */
-	@SuppressWarnings("unused")
 	public boolean getSynsetSpecific()
 	{
 		assert this.cursor != null;

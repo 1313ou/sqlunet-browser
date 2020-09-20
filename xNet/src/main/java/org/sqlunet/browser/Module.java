@@ -28,7 +28,6 @@ public abstract class Module
 	/**
 	 * Type of query (expected result)
 	 */
-	@SuppressWarnings("unused")
 	protected int type;
 
 	/**

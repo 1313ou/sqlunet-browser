@@ -162,7 +162,6 @@ public class TaskObserver
 	/**
 	 * Progress bar listener
 	 */
-	@SuppressWarnings("unused")
 	static public class ProgressListener<Progress extends Number> extends ToastListener<Progress>
 	{
 		private final ProgressBar progress;
@@ -346,7 +345,6 @@ public class TaskObserver
 		 * @param messageId  message id
 		 * @param unitId     unit id
 		 */
-		@SuppressWarnings("unused")
 		public DialogListener(@NonNull final FragmentManager fragmentManager, @NonNull final Context appContext, @StringRes final int titleId, @StringRes final int messageId, @StringRes final int unitId)
 		{
 			this(fragmentManager, appContext.getString(titleId), appContext.getString(messageId), unitId == 0 ? null : appContext.getString(unitId));

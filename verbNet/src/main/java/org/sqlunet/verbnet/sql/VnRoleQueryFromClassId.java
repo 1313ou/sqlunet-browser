@@ -38,7 +38,6 @@ class VnRoleQueryFromClassId extends DBQuery
 	 *
 	 * @return the role id from the result set
 	 */
-	@SuppressWarnings("unused")
 	public long getRoleId()
 	{
 		assert this.cursor != null;
@@ -50,7 +49,6 @@ class VnRoleQueryFromClassId extends DBQuery
 	 *
 	 * @return the role type id from the result set
 	 */
-	@SuppressWarnings("unused")
 	public long getRoleTypeId()
 	{
 		assert this.cursor != null;
