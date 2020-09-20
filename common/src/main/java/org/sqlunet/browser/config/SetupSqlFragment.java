@@ -308,6 +308,7 @@ public class SetupSqlFragment extends Fragment implements Updatable
 			// sql zip file
 			final String sqlZip = StorageSettings.getSqlSource(context);
 			boolean sqlZipExists = new File(sqlZip).exists();
+			this.downloadSqlZipButton.setEnabled(!sqlZipExists);
 			this.downloadSqlZipButton.setVisibility(sqlZipExists ? View.GONE : View.VISIBLE);
 			this.downloadSqlZipStatus.setImageDrawable(sqlZipExists ? okDrawable : failDrawable);
 
