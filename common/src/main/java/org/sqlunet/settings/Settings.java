@@ -64,7 +64,7 @@ public class Settings
 		 * @param context context
 		 * @return preferred selector view mode
 		 */
-		static SelectorViewMode getPref(final Context context)
+		static SelectorViewMode getPref(@NonNull final Context context)
 		{
 			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 			final String mode_string = sharedPref.getString(Settings.PREF_SELECTOR_MODE, SelectorViewMode.VIEW.name());
@@ -95,7 +95,7 @@ public class Settings
 		 * @param context context
 		 * @return preferred selector mode
 		 */
-		static DetailViewMode getPref(final Context context)
+		static DetailViewMode getPref(@NonNull final Context context)
 		{
 			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 			final String mode_string = sharedPref.getString(Settings.PREF_DETAIL_MODE, DetailViewMode.VIEW.name());
@@ -146,7 +146,7 @@ public class Settings
 		 *
 		 * @param context context
 		 */
-		public void setPref(final Context context)
+		public void setPref(@NonNull final Context context)
 		{
 			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 			sharedPref.edit().putString(Settings.PREF_SELECTOR, this.name()).apply();
@@ -158,7 +158,7 @@ public class Settings
 		 * @param context context
 		 * @return preferred selector mode
 		 */
-		public static Selector getPref(final Context context)
+		public static Selector getPref(@NonNull final Context context)
 		{
 			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 			final String name = sharedPref.getString(Settings.PREF_SELECTOR, Settings.Selector.SELECTOR.name());
@@ -202,7 +202,7 @@ public class Settings
 	 * @param context context
 	 * @return preferred selector view mode
 	 */
-	static public SelectorViewMode getSelectorViewModePref(final Context context)
+	static public SelectorViewMode getSelectorViewModePref(@NonNull final Context context)
 	{
 		return SelectorViewMode.getPref(context);
 	}
@@ -213,7 +213,7 @@ public class Settings
 	 * @param context context
 	 * @return preferred detail view mode
 	 */
-	static public DetailViewMode getDetailViewModePref(final Context context)
+	static public DetailViewMode getDetailViewModePref(@NonNull final Context context)
 	{
 		return DetailViewMode.getPref(context);
 	}
@@ -224,7 +224,7 @@ public class Settings
 	 * @param context context
 	 * @return preferred selector type
 	 */
-	static public Selector getSelectorPref(final Context context)
+	static public Selector getSelectorPref(@NonNull final Context context)
 	{
 		return Selector.getPref(context);
 	}
@@ -235,7 +235,7 @@ public class Settings
 	 * @param context context
 	 * @return preferred XML output flag when view mode is WEB
 	 */
-	static public boolean getXmlPref(final Context context)
+	static public boolean getXmlPref(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getBoolean(Settings.PREF_XML, true);
@@ -247,7 +247,7 @@ public class Settings
 	 * @param context context
 	 * @return preferred search mode
 	 */
-	static public int getSearchModePref(final Context context)
+	static public int getSearchModePref(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getInt(Settings.PREF_TEXTSEARCH_MODE, 0);
@@ -259,7 +259,7 @@ public class Settings
 	 * @param context context
 	 * @param value   preferred search mode
 	 */
-	static public void setSearchModePref(final Context context, final int value)
+	static public void setSearchModePref(@NonNull final Context context, final int value)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		sharedPref.edit().putInt(Settings.PREF_TEXTSEARCH_MODE, value).apply();
@@ -272,7 +272,7 @@ public class Settings
 	 * @return preferred downloader
 	 */
 	@Nullable
-	static public String getDownloaderPref(final Context context)
+	static public String getDownloaderPref(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getString(Settings.PREF_DOWNLOADER, null);
@@ -286,7 +286,7 @@ public class Settings
 	 * @return preferred cache
 	 */
 	@Nullable
-	static public String getCachePref(final Context context)
+	static public String getCachePref(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getString(Settings.PREF_CACHE, null);
@@ -298,7 +298,7 @@ public class Settings
 	 * @param context context
 	 * @return timestamp
 	 */
-	static public long getDbDate(final Context context)
+	static public long getDbDate(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getLong(Settings.PREF_DB_DATE, -1);
@@ -310,7 +310,7 @@ public class Settings
 	 * @param context   context
 	 * @param timestamp timestamp
 	 */
-	static public void setDbDate(final Context context, final long timestamp)
+	static public void setDbDate(@NonNull final Context context, final long timestamp)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		sharedPref.edit().putLong(Settings.PREF_DB_DATE, timestamp).apply();
@@ -322,7 +322,7 @@ public class Settings
 	 * @param context context
 	 * @return size
 	 */
-	static public long getDbSize(final Context context)
+	static public long getDbSize(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getLong(Settings.PREF_DB_SIZE, -1);
@@ -334,7 +334,7 @@ public class Settings
 	 * @param context context
 	 * @param size    size
 	 */
-	static public void setDbSize(final Context context, final long size)
+	static public void setDbSize(@NonNull final Context context, final long size)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		sharedPref.edit().putLong(Settings.PREF_DB_SIZE, size).apply();
@@ -346,7 +346,7 @@ public class Settings
 	 * @param context context
 	 */
 	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
-	static public void initialize(final Context context)
+	static public void initialize(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		final Editor editor = sharedPref.edit();
@@ -372,7 +372,7 @@ public class Settings
 		editor.commit();
 	}
 
-	static public void updateGlobals(final Context context)
+	static public void updateGlobals(@NonNull final Context context)
 	{
 		// globals
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);

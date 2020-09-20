@@ -7,6 +7,7 @@ package org.sqlunet.browser.wn;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
 
 /**
@@ -78,7 +79,7 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * @param context context
 	 * @return preferred enable WordNet flag
 	 */
-	static public int getAllPref(final Context context)
+	static public int getAllPref(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		int result = 0;
@@ -99,7 +100,7 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * @param context context
 	 * @return preferred enable WordNet flag
 	 */
-	static public boolean getWordNetPref(final Context context)
+	static public boolean getWordNetPref(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getBoolean(Settings.PREF_ENABLE_WORDNET, true);
@@ -111,7 +112,7 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * @param context context
 	 * @return preferred enable BNC flag
 	 */
-	static public boolean getBncPref(final Context context)
+	static public boolean getBncPref(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getBoolean(Settings.PREF_ENABLE_BNC, true);
@@ -123,7 +124,7 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * @param context context
 	 * @return preferred recurse max level
 	 */
-	static public int getRecursePref(final Context context)
+	static public int getRecursePref(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		final String value = sharedPref.getString(Settings.PREF_LINK_RECURSE, null);

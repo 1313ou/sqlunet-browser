@@ -1,6 +1,7 @@
 package org.sqlunet.concurrency;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class ObservedDelegatingTask<Params, Progress extends Number, Result> extends Task<Params, Progress, Result>
 {
@@ -18,6 +19,7 @@ public class ObservedDelegatingTask<Params, Progress extends Number, Result> ext
 	@NonNull
 	protected Task<Params, Progress, Result> getTask() { return this; }
 
+	@Nullable
 	@Override
 	protected Result doInBackground(final Params[] params)
 	{

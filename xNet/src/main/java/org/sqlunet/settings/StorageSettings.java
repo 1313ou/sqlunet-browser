@@ -43,6 +43,7 @@ public class StorageSettings
 	 * @param context context
 	 * @return database directory
 	 */
+	@NonNull
 	static public String getDataDir(@NonNull final Context context)
 	{
 		final File dir = Storage.getSqlUNetStorage(context);

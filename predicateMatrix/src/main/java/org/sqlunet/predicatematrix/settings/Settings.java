@@ -31,7 +31,7 @@ public class Settings
 		 * @param context context
 		 * @return mode preference
 		 */
-		static public PMMode getPref(final Context context)
+		static public PMMode getPref(@NonNull final Context context)
 		{
 			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 			final String mode_string = sharedPref.getString(Settings.PREF_PM_MODE, Settings.PMMode.ROLES.name());
@@ -54,7 +54,7 @@ public class Settings
 		 * @param context context
 		 * @return true if value has changed
 		 */
-		public boolean setPref(final Context context)
+		public boolean setPref(@NonNull final Context context)
 		{
 			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 			final String prev = sharedPref.getString(Settings.PREF_PM_MODE, null);

@@ -110,6 +110,7 @@ public class StorageUtils
 			return this.type;
 		}
 
+		@NonNull
 		CharSequence getValue()
 		{
 			if (DirType.AUTO == this.type)

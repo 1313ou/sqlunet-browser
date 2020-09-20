@@ -27,6 +27,7 @@ public class Preprocessor
 		/**
 		 * Replaced pattern
 		 */
+		@NonNull
 		final private Pattern pattern;
 
 		/**
@@ -52,6 +53,7 @@ public class Preprocessor
 		 * @param input input
 		 * @return output
 		 */
+		@NonNull
 		String replace(@NonNull final CharSequence input)
 		{
 			final Matcher matcher = this.pattern.matcher(input);

@@ -7,6 +7,7 @@ package org.sqlunet.download;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
 
@@ -23,7 +24,7 @@ public class Settings
 	public static final String HINT_DB_ZIP = "sqlunet.zip";
 
 	@Nullable
-	public static String getDownloaderPref(final Context context)
+	public static String getDownloaderPref(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getString(Settings.PREF_DOWNLOADER, null);
@@ -36,7 +37,7 @@ public class Settings
 	 * @return name
 	 */
 	@Nullable
-	static public String getDbName(final Context context)
+	static public String getDbName(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getString(Settings.PREF_DB_NAME, null);
@@ -48,7 +49,7 @@ public class Settings
 	 * @param context context
 	 * @param name    name
 	 */
-	static public void setDbName(final Context context, final String name)
+	static public void setDbName(@NonNull final Context context, final String name)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		sharedPref.edit().putString(Settings.PREF_DB_NAME, name).apply();
@@ -60,7 +61,7 @@ public class Settings
 	 * @param context context
 	 * @return timestamp
 	 */
-	static public long getDbDate(final Context context)
+	static public long getDbDate(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getLong(Settings.PREF_DB_DATE, -1);
@@ -72,7 +73,7 @@ public class Settings
 	 * @param context   context
 	 * @param timestamp timestamp
 	 */
-	static public void setDbDate(final Context context, final long timestamp)
+	static public void setDbDate(@NonNull final Context context, final long timestamp)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		sharedPref.edit().putLong(Settings.PREF_DB_DATE, timestamp).apply();
@@ -84,7 +85,7 @@ public class Settings
 	 * @param context context
 	 * @return size
 	 */
-	static public long getDbSize(final Context context)
+	static public long getDbSize(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getLong(Settings.PREF_DB_SIZE, -1);
@@ -96,7 +97,7 @@ public class Settings
 	 * @param context context
 	 * @param size    size
 	 */
-	static public void setDbSize(final Context context, final long size)
+	static public void setDbSize(@NonNull final Context context, final long size)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		sharedPref.edit().putLong(Settings.PREF_DB_SIZE, size).apply();
@@ -108,7 +109,7 @@ public class Settings
 	 *
 	 * @param context context
 	 */
-	static public void unrecordDb(final Context context)
+	static public void unrecordDb(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		sharedPref.edit() //

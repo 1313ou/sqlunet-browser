@@ -308,6 +308,7 @@ abstract class BaseModule extends Module
 	 * @param orderId   id param used in order clause
 	 * @return selection arguments
 	 */
+	@NonNull
 	private String[] selectionArgs(@Nullable final Long word1Id, @Nullable final Long word2Id, @Nullable final Long synset1Id, @Nullable final Long synset2Id, @Nullable final Long orderId)
 	{
 		List<String> args = new ArrayList<>();

@@ -13,6 +13,7 @@ import android.util.TypedValue;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 
@@ -80,6 +81,7 @@ public class ColorUtils
 		}
 	}
 
+	@Nullable
 	static public Drawable getDrawable(@NonNull final Context context, @DrawableRes int drawableRes)
 	{
 		return ResourcesCompat.getDrawable(context.getResources(), drawableRes, context.getTheme());

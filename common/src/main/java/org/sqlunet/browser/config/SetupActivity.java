@@ -125,6 +125,7 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 	 */
 	private class SectionsPagerAdapter extends FragmentPagerAdapter
 	{
+		@NonNull
 		private final Fragment[] fragments;
 
 		SectionsPagerAdapter(@NonNull final FragmentManager fragmentManager, @NonNull final Context context)
