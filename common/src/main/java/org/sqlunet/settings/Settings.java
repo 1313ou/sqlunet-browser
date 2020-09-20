@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.net.Uri;
-import android.os.Build;
 
 import org.sqlunet.browser.common.R;
 import org.sqlunet.provider.BaseProvider;
@@ -415,21 +414,20 @@ public class Settings
 	 */
 	static public void applicationSettings(@NonNull final Context context, final String pkgName)
 	{
-		final int apiLevel = Build.VERSION.SDK_INT;
 		final Intent intent = new Intent();
 
-		if (apiLevel >= 9)
-		{
+		// if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD)
+		// {
 			intent.setAction(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
 			intent.setData(Uri.parse("package:" + pkgName));
-		}
-		else
-		{
-			final String appPkgName = apiLevel == 8 ? "pkg" : "com.android.settings.ApplicationPkgName";
-			intent.setAction(Intent.ACTION_VIEW);
-			intent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails");
-			intent.putExtra(appPkgName, pkgName);
-		}
+		// }
+		// else
+		// {
+		//	final String appPkgName = Build.VERSION.SDK_INT == Build.VERSION_CODES.FROYO ? "pkg" : "com.android.settings.ApplicationPkgName";
+		//	intent.setAction(Intent.ACTION_VIEW);
+		//	intent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails");
+		//	intent.putExtra(appPkgName, pkgName);
+		// }
 
 		// start activity
 		context.startActivity(intent);

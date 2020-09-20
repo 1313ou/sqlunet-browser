@@ -29,7 +29,6 @@ public class EntryActivity extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 
 		// settings
-		Settings.initialize(this);
 		Settings.updateGlobals(this);
 
 		// check hook

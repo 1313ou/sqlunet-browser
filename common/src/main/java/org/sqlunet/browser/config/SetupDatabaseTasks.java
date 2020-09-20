@@ -62,6 +62,7 @@ public class SetupDatabaseTasks
 	 * @param databasePath path
 	 * @return true if successful
 	 */
+	@SuppressWarnings("deprecation")
 	static public boolean deleteDatabase(@NonNull final Context context, final String databasePath)
 	{
 		// make sure you close all connections before deleting
