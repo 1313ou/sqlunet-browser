@@ -33,7 +33,7 @@ import androidx.annotation.NonNull;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusFragment
+public class SetupXStatusFragment extends org.sqlunet.browser.config.SetupStatusFragment
 {
 	static private final String TAG = "SetupStatusF";
 
@@ -62,7 +62,7 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */
-	public SetupStatusFragment()
+	public SetupXStatusFragment()
 	{
 	}
 
@@ -97,7 +97,7 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 			int index = getResources().getInteger(R.integer.sql_statement_do_predicatematrix_position);
 			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
 			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
+			startActivityForResult(intent, SetupXStatusFragment.REQUEST_MANAGE_CODE + index);
 		});
 
 		this.buttonTextSearchWn.setOnClickListener(v -> {
@@ -105,7 +105,7 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 			int index = getResources().getInteger(R.integer.sql_statement_do_ts_wn_position);
 			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
 			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
+			startActivityForResult(intent, SetupXStatusFragment.REQUEST_MANAGE_CODE + index);
 		});
 
 		this.buttonTextSearchVn.setOnClickListener(v -> {
@@ -113,7 +113,7 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 			int index = getResources().getInteger(R.integer.sql_statement_do_ts_vn_position);
 			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
 			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
+			startActivityForResult(intent, SetupXStatusFragment.REQUEST_MANAGE_CODE + index);
 		});
 
 		this.buttonTextSearchPb.setOnClickListener(v -> {
@@ -121,7 +121,7 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 			int index = getResources().getInteger(R.integer.sql_statement_do_ts_pb_position);
 			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
 			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
+			startActivityForResult(intent, SetupXStatusFragment.REQUEST_MANAGE_CODE + index);
 		});
 
 		this.buttonTextSearchFn.setOnClickListener(v -> {
@@ -129,7 +129,7 @@ public class SetupStatusFragment extends org.sqlunet.browser.config.SetupStatusF
 			int index = getResources().getInteger(R.integer.sql_statement_do_ts_fn_position);
 			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
 			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-			startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
+			startActivityForResult(intent, SetupXStatusFragment.REQUEST_MANAGE_CODE + index);
 		});
 
 		this.infoDatabaseButton.setOnClickListener(v -> {
