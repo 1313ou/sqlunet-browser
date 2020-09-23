@@ -1,0 +1,65 @@
+/*
+ * Copyright (c) 2020. Bernard Bou <1313ou@gmail.com>.
+ */
+
+package org.sqlunet.browser;
+
+import android.view.View;
+
+import org.hamcrest.Matcher;
+
+import androidx.annotation.IdRes;
+import androidx.test.espresso.IdlingRegistry;
+import androidx.test.espresso.IdlingResource;
+
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+
+public class WaitUntil extends BaseWaitUntil
+{
+	// private static final String TAG = WaitUntil.class.getSimpleName();
+
+	public WaitUntil(final Matcher<View> viewMatcher)
+	{
+		super(viewMatcher);
+	}
+
+	@Override
+	public boolean isIdleNow()
+	{
+		View view = getView(this.viewMatcher);
+		boolean idle = view == null || view.isShown();
+		if (idle && this.resourceCallback != null)
+		{
+			this.resourceCallback.onTransitionToIdle();
+		}
+		return idle;
+	}
+
+	@Override
+	public String getName()
+	{
+		return this + this.viewMatcher.toString();
+	}
+
+	public static void waitViewShown(final Matcher<View> matcher)
+	{
+		final IdlingResource idlingResource = new WaitUntil(matcher);
+		try
+		{
+			IdlingRegistry.getInstance().register(idlingResource);
+			onView(matcher).check(matches(isDisplayed()));
+		}
+		finally
+		{
+			IdlingRegistry.getInstance().unregister(idlingResource);
+		}
+	}
+
+	public static void shown(@IdRes final int viewId)
+	{
+		waitViewShown(withId(viewId));
+	}
+}
