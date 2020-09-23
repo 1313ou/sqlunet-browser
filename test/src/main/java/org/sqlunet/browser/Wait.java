@@ -25,8 +25,10 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 public class Wait
 {
+	static private final int TIME_UNIT_IN_MS = 1000;
+
 	@NonNull
-	private static ViewAction waitId(final int viewId, final long millis)
+	private static ViewAction waitId(@IdRes final int viewId, final long millis)
 	{
 		return new ViewAction()
 		{
@@ -126,26 +128,24 @@ public class Wait
 
 	static public void until(@IdRes int resId, int sec)
 	{
-		onView(isRoot()).perform(waitId(resId, sec * 1000));
+		onView(isRoot()).perform(waitId(resId, sec * TIME_UNIT_IN_MS));
 	}
 
 	static public void until_not_text(@IdRes int resId, String target, int sec)
 	{
-		onView(isRoot()).perform(waitIdText(resId, target, true, sec * 1000));
+		onView(isRoot()).perform(waitIdText(resId, target, true, sec * TIME_UNIT_IN_MS));
 	}
 
 	static public void until_text(@IdRes int resId, String target, int sec)
 	{
-		onView(isRoot()).perform(waitIdText(resId, target, false, sec * 1000));
+		onView(isRoot()).perform(waitIdText(resId, target, false, sec * TIME_UNIT_IN_MS));
 	}
-
-	static private final int PAUSE_UNIT = 1000;
 
 	static public void pause(int sec)
 	{
 		try
 		{
-			Thread.sleep(PAUSE_UNIT * sec);
+			Thread.sleep( sec * TIME_UNIT_IN_MS);
 		}
 		catch (InterruptedException e)
 		{

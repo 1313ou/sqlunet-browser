@@ -171,7 +171,7 @@ public class XSqlUNetProvider extends BaseProvider
 		{
 			try
 			{
-				open();
+				openReadOnly();
 			}
 			catch (SQLiteCantOpenDatabaseException e)
 			{

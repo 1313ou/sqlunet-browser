@@ -211,14 +211,32 @@ public abstract class BaseProvider extends ContentProvider
 
 	// O P E N / S H U T D O W N
 
-	protected void open() throws SQLiteCantOpenDatabaseException
+	protected void openReadOnly() throws SQLiteCantOpenDatabaseException
 	{
 		final Context context = getContext();
 		assert context != null;
 		final String path = StorageSettings.getDatabasePath(context);
 		try
 		{
-			this.db = open(path, SQLiteDatabase.OPEN_READONLY);
+			this.db = openReadOnly(path, SQLiteDatabase.OPEN_READONLY);
+			assert this.db != null;
+			Log.d(BaseProvider.TAG, "Opened by " + this.getClass() + " content provider: " + this.db.getPath());
+		}
+		catch (@NonNull final SQLiteCantOpenDatabaseException e)
+		{
+			Log.e(BaseProvider.TAG, "Open failed by " + this.getClass() + " content provider: " + path, e);
+			throw e;
+		}
+	}
+
+	protected void openReadWrite() throws SQLiteCantOpenDatabaseException
+	{
+		final Context context = getContext();
+		assert context != null;
+		final String path = StorageSettings.getDatabasePath(context);
+		try
+		{
+			this.db = openReadOnly(path, SQLiteDatabase.OPEN_READWRITE);
 			assert this.db != null;
 			Log.d(BaseProvider.TAG, "Opened by " + this.getClass() + " content provider: " + this.db.getPath());
 		}
@@ -237,7 +255,7 @@ public abstract class BaseProvider extends ContentProvider
 	 * @return opened database
 	 */
 	@Nullable
-	private SQLiteDatabase open(@NonNull final String path, @SuppressWarnings("SameParameterValue") final int flags)
+	private SQLiteDatabase openReadOnly(@NonNull final String path, @SuppressWarnings("SameParameterValue") final int flags)
 	{
 		this.db = SQLiteDatabase.openDatabase(path, null, flags);
 		return this.db;
