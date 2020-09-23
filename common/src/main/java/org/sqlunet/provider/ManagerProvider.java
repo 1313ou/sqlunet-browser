@@ -99,7 +99,7 @@ public class ManagerProvider extends BaseProvider
 		{
 			try
 			{
-				open();
+				openReadWrite();
 			}
 			catch (SQLiteCantOpenDatabaseException e)
 			{

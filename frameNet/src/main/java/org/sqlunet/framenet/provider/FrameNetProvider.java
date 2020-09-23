@@ -282,7 +282,7 @@ public class FrameNetProvider extends BaseProvider
 		{
 			try
 			{
-				open();
+				openReadOnly();
 			}
 			catch (SQLiteCantOpenDatabaseException e)
 			{

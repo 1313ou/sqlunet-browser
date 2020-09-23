@@ -112,7 +112,7 @@ public class SyntagNetProvider extends BaseProvider
 		{
 			try
 			{
-				open();
+				openReadOnly();
 			}
 			catch (SQLiteCantOpenDatabaseException e)
 			{

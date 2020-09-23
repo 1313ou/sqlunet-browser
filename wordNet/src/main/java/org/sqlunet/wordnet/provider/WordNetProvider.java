@@ -369,7 +369,7 @@ public class WordNetProvider extends BaseProvider
 		{
 			try
 			{
-				open();
+				openReadOnly();
 			}
 			catch (SQLiteCantOpenDatabaseException e)
 			{

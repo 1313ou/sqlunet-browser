@@ -171,7 +171,7 @@ public class VerbNetProvider extends BaseProvider
 		{
 			try
 			{
-				open();
+				openReadOnly();
 			}
 			catch (SQLiteCantOpenDatabaseException e)
 			{
