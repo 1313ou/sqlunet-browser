@@ -505,6 +505,15 @@
 			android:label="@string/service_downloader"
 			android:permission="android.permission.BIND_JOB_SERVICE" />
 
+		<service
+			android:name="org.sqlunet.download.SimpleZipDownloaderService"
+			android:description="@string/description_service_zip_downloader"
+			android:enabled="true"
+			android:exported="false"
+			android:icon="@mipmap/ic_launcher"
+			android:label="@string/service_zip_downloader"
+			android:permission="android.permission.BIND_JOB_SERVICE" />
+
 	</application>
 
 </manifest>

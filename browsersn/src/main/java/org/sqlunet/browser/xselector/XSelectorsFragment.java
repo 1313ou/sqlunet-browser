@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.sqlunet.browser.R;
+import org.sqlunet.browser.sn.R;
 import org.sqlunet.browser.selector.CollocationSelectorPointer;
 import org.sqlunet.browser.selector.SelectorPointer;
 import org.sqlunet.browser.selector.SelectorsFragment;

@@ -6,7 +6,7 @@ package org.sqlunet.browser.selector;
 
 import android.os.Bundle;
 
-import org.sqlunet.browser.R;
+import org.sqlunet.browser.sn.R;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;

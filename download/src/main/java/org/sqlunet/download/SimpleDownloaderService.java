@@ -72,45 +72,45 @@ public class SimpleDownloaderService extends JobIntentService
 	/**
 	 * Buffer size
 	 */
-	static private final int CHUNK_SIZE = 8192;
+	static protected final int CHUNK_SIZE = 8192;
 
 	/**
 	 * Publish granularity for update = 8192 x 128 = 1MB
 	 */
-	static private final int PUBLISH_UPDATE_GRANULARITY = 128;
+	static protected final int PUBLISH_UPDATE_GRANULARITY = 128;
 
 	/**
 	 * Publish granularity for main = 1MB x 10 = 10MB
 	 */
-	static private final int PUBLISH_MAIN_GRANULARITY = PUBLISH_UPDATE_GRANULARITY * 10;
+	static protected final int PUBLISH_MAIN_GRANULARITY = PUBLISH_UPDATE_GRANULARITY * 10;
 
 	/**
 	 * Timeout in seconds
 	 */
-	static private final int TIMEOUT_S = 15;
+	static protected final int TIMEOUT_S = 15;
 
 	/**
 	 * From URL
 	 */
 	@Nullable
-	private String fromUrl;
+	protected String fromUrl;
 
 	/**
 	 * To file
 	 */
 	@Nullable
-	private String toFile;
+	protected String toFile;
 
 	/**
 	 * Cancel
 	 */
-	private boolean cancel;
+	protected boolean cancel;
 
 	/**
 	 * Exception while executing
 	 */
 	@Nullable
-	private Exception exception;
+	protected Exception exception;
 
 	/**
 	 * Constructor
@@ -140,11 +140,7 @@ public class SimpleDownloaderService extends JobIntentService
 				*/
 
 				// arguments
-				this.fromUrl = intent.getStringExtra(SimpleDownloaderService.ARG_FROM_URL);
-				this.toFile = intent.getStringExtra(SimpleDownloaderService.ARG_TO_FILE);
-
-				// id
-				int id = intent.getIntExtra(SimpleDownloaderService.ARG_CODE, 0);
+				int id = unmarshal(intent);
 
 				// fire start event
 				broadcast(MAIN_INTENT_FILTER, EVENT, EVENT_START);
@@ -159,29 +155,21 @@ public class SimpleDownloaderService extends JobIntentService
 				catch (@NonNull final InterruptedException ie)
 				{
 					this.exception = ie;
-
-					// clean up
-					if (this.toFile != null)
-					{
-						File file = new File(this.toFile);
-						if (file.exists())
-						{
-							//noinspection ResultOfMethodCallIgnored
-							file.delete();
-						}
-					}
+					cleanup();
 					Log.d(TAG, "Interrupted while downloading, " + ie.getMessage());
 					broadcast(MAIN_INTENT_FILTER, EVENT, EVENT_FINISH, EVENT_FINISH_ID, id, EVENT_FINISH_RESULT, false, EVENT_FINISH_EXCEPTION, exception.getMessage());
 				}
 				catch (@NonNull final SocketTimeoutException ste)
 				{
 					this.exception = ste;
+					cleanup();
 					Log.d(TAG, "Timeout while downloading, " + ste.getMessage());
 					broadcast(MAIN_INTENT_FILTER, EVENT, EVENT_FINISH, EVENT_FINISH_ID, id, EVENT_FINISH_RESULT, false, EVENT_FINISH_EXCEPTION, exception.getMessage());
 				}
 				catch (@NonNull final Exception e)
 				{
 					this.exception = e;
+					cleanup();
 					Log.e(TAG, "Exception while downloading, " + e.getMessage());
 					broadcast(MAIN_INTENT_FILTER, EVENT, EVENT_FINISH, EVENT_FINISH_ID, id, EVENT_FINISH_RESULT, false, EVENT_FINISH_EXCEPTION, exception.getMessage());
 				}
@@ -195,22 +183,16 @@ public class SimpleDownloaderService extends JobIntentService
 	 * Download job
 	 */
 	@SuppressWarnings("boxing")
-	private void job() throws Exception
+	protected void job() throws Exception
 	{
+		// first
 		prerequisite();
-
-		// wake lock
-		final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-		assert pm != null;
-		final PowerManager.WakeLock wakelock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "org.sqlunet:DownloaderService");
-		wakelock.acquire(30 * 60 * 1000L /*30 minutes*/);
+		final PowerManager.WakeLock wakelock = wakelock();
 
 		long date = -1;
 		long size = -1;
 
 		final File outFile = new File(this.toFile + ".part");
-		InputStream input = null;
-		OutputStream output = null;
 		try
 		{
 			// connection
@@ -224,6 +206,7 @@ public class SimpleDownloaderService extends JobIntentService
 			connection.connect();
 			Log.d(TAG, "Connected");
 
+			// getting file length
 			// expect HTTP 200 OK, so we don't mistakenly save error report instead of the file
 			if (connection instanceof HttpURLConnection)
 			{
@@ -236,84 +219,124 @@ public class SimpleDownloaderService extends JobIntentService
 				date = httpConnection.getLastModified(); // new Date(date));
 				size = httpConnection.getContentLength();
 			}
-
-			// getting file length
-			int total = connection.getContentLength();
-
-			// input stream toFile read file - with 8k buffer
-			input = new BufferedInputStream(connection.getInputStream(), CHUNK_SIZE);
-
-			// output stream toFile write file
-			output = new FileOutputStream(outFile);
-
-			// copy streams
-			final byte[] buffer = new byte[1024];
-			int downloaded = 0;
-			int chunks = 0;
-			int count;
-			while ((count = input.read(buffer)) != -1)
+			else
 			{
-				downloaded += count;
-
-				// publishing the progress
-				if ((chunks % PUBLISH_MAIN_GRANULARITY) == 0)
-				{
-					broadcast(MAIN_INTENT_FILTER, EVENT, EVENT_UPDATE, EVENT_UPDATE_DOWNLOADED, downloaded, EVENT_UPDATE_TOTAL, total);
-				}
-				if ((chunks % PUBLISH_UPDATE_GRANULARITY) == 0)
-				{
-					broadcast(UPDATE_INTENT_FILTER, EVENT, EVENT_UPDATE, EVENT_UPDATE_DOWNLOADED, downloaded, EVENT_UPDATE_TOTAL, total);
-				}
-				chunks++;
-
-				// writing data toFile file
-				output.write(buffer, 0, count);
-
-				// interrupted
-				if (Thread.interrupted())
-				{
-					final InterruptedException ie = new InterruptedException("interrupted");
-					this.exception = ie;
-					throw ie;
-				}
-
-				if (this.cancel)
-				{
-					throw new InterruptedException("cancelled");
-				}
+				size = connection.getContentLength();
 			}
-			output.flush();
+
+			try (InputStream input = new BufferedInputStream(connection.getInputStream(), CHUNK_SIZE); OutputStream output = new FileOutputStream(outFile))
+			{
+				copyStreams(input, output, size);
+			}
 		}
 		finally
 		{
-			// wake lock
 			wakelock.release();
-
-			if (output != null)
-			{
-				try
-				{
-					output.close();
-				}
-				catch (@NonNull final IOException e)
-				{
-					Log.e(TAG, "While closing output", e);
-				}
-			}
-			if (input != null)
-			{
-				try
-				{
-					input.close();
-				}
-				catch (@NonNull final IOException e)
-				{
-					this.exception = e;
-					Log.e(TAG, "While closing input", e);
-				}
-			}
 		}
 
+		// install
+		install(outFile, date, size);
+	}
+
+	/**
+	 * Prerequisite
+	 */
+	protected void prerequisite()
+	{
+		if (this.toFile == null)
+		{
+			return;
+		}
+
+		final File dir = new File(this.toFile).getParentFile();
+		if (dir != null && !dir.exists())
+		{
+			//noinspection ResultOfMethodCallIgnored
+			dir.mkdirs();
+		}
+	}
+
+	/**
+	 * Unmarshal arguments from intent
+	 *
+	 * @param intent intent ppassed to service
+	 * @return unmarshalled id
+	 */
+	protected int unmarshal(@NonNull final Intent intent)
+	{
+		// arguments
+		this.fromUrl = intent.getStringExtra(SimpleDownloaderService.ARG_FROM_URL);
+		this.toFile = intent.getStringExtra(SimpleDownloaderService.ARG_TO_FILE);
+
+		// id
+		return intent.getIntExtra(SimpleDownloaderService.ARG_CODE, 0);
+	}
+
+	/**
+	 * Copy streams or consume input stream
+	 *
+	 * @param input  input stream
+	 * @param output output stream
+	 * @param total  expected total length
+	 * @throws InterruptedException interrupted exception
+	 * @throws IOException          io exception
+	 */
+	protected void copyStreams(final InputStream input, @Nullable final OutputStream output, final long total) throws InterruptedException, IOException
+	{
+		// copy streams
+		final byte[] buffer = new byte[1024];
+		long downloaded = 0;
+		int chunks = 0;
+		int count;
+		while ((count = input.read(buffer)) != -1)
+		{
+			downloaded += count;
+
+			// publishing the progress
+			if ((chunks % PUBLISH_MAIN_GRANULARITY) == 0)
+			{
+				broadcast(MAIN_INTENT_FILTER, EVENT, EVENT_UPDATE, EVENT_UPDATE_DOWNLOADED, downloaded, EVENT_UPDATE_TOTAL, total);
+			}
+			if ((chunks % PUBLISH_UPDATE_GRANULARITY) == 0)
+			{
+				broadcast(UPDATE_INTENT_FILTER, EVENT, EVENT_UPDATE, EVENT_UPDATE_DOWNLOADED, downloaded, EVENT_UPDATE_TOTAL, total);
+			}
+			chunks++;
+
+			// writing data toFile file
+			if (output != null)
+			{
+				output.write(buffer, 0, count);
+			}
+
+			// interrupted
+			if (Thread.interrupted())
+			{
+				final InterruptedException ie = new InterruptedException("interrupted");
+				this.exception = ie;
+				throw ie;
+			}
+
+			if (this.cancel)
+			{
+				throw new InterruptedException("cancelled");
+			}
+		}
+		if (output != null)
+		{
+			output.flush();
+		}
+	}
+
+	/**
+	 * Install
+	 *
+	 * @param outFile temporary file
+	 * @param date    date stamp
+	 * @param size    expected size
+	 */
+	protected void install(final File outFile, final long date, final long size)
+	{
 		// rename
 		if (this.toFile != null)
 		{
@@ -342,21 +365,37 @@ public class SimpleDownloaderService extends JobIntentService
 	}
 
 	/**
-	 * Prerequisite
+	 * Cleanup
 	 */
-	private void prerequisite()
+	protected void cleanup()
 	{
-		if (this.toFile == null)
+		if (this.toFile != null)
 		{
-			return;
+			File file = new File(this.toFile);
+			if (file.exists())
+			{
+				//noinspection ResultOfMethodCallIgnored
+				file.delete();
+			}
+			file = new File(this.toFile + ".part");
+			if (file.exists())
+			{
+				//noinspection ResultOfMethodCallIgnored
+				file.delete();
+			}
 		}
+	}
 
-		final File dir = new File(this.toFile).getParentFile();
-		if (dir != null && !dir.exists())
-		{
-			//noinspection ResultOfMethodCallIgnored
-			dir.mkdirs();
-		}
+	/**
+	 * Wake lock
+	 */
+	protected PowerManager.WakeLock wakelock()
+	{
+		final PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+		assert pm != null;
+		final PowerManager.WakeLock wakelock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "org.sqlunet:DownloaderService");
+		wakelock.acquire(30 * 60 * 1000L /*30 minutes*/);
+		return wakelock;
 	}
 
 	// F I R E   E V E N T S
@@ -367,7 +406,7 @@ public class SimpleDownloaderService extends JobIntentService
 	 * @param intentFilter intent filter
 	 * @param args         arguments
 	 */
-	private void broadcast(final String intentFilter, @NonNull final Object... args)
+	protected void broadcast(final String intentFilter, @NonNull final Object... args)
 	{
 		final Intent broadcastIntent = new Intent(intentFilter);
 		broadcastIntent.setPackage(this.getPackageName());
@@ -385,6 +424,11 @@ public class SimpleDownloaderService extends JobIntentService
 			else if (value instanceof Integer)
 			{
 				broadcastIntent.putExtra(key, (int) value);
+			}
+			// long
+			else if (value instanceof Long)
+			{
+				broadcastIntent.putExtra(key, (long) value);
 			}
 			// boolean
 			else if (value instanceof Boolean)

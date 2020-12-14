@@ -183,11 +183,18 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 	}
 
 	/**
-	 * Download dir uri
+	 * Download uri
 	 */
 	@SuppressWarnings("WeakerAccess")
 	@Nullable
 	protected String downloadUrl;
+
+	/**
+	 * Download source uri (may differ, entry if zip stream)
+	 */
+	@SuppressWarnings("WeakerAccess")
+	@Nullable
+	protected String sourceUrl;
 
 	/**
 	 * Destination file
@@ -312,7 +319,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		final String unzipToArg = arguments == null ? null : arguments.getString(UNZIP_TO_ARG);
 
 		// download source data
-		this.downloadUrl = fromArg;
+		this.downloadUrl = this.sourceUrl = fromArg;
 		if (this.downloadUrl == null || this.downloadUrl.isEmpty())
 		{
 			final String message = this.appContext.getString(R.string.status_download_error_null_download_url);
@@ -337,6 +344,8 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		this.status = 0;
 	}
 
+	abstract protected int getResId();
+
 	@SuppressWarnings("WeakerAccess")
 	@Nullable
 	@Override
@@ -345,7 +354,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		Log.d(TAG, "onCreateView " + savedInstanceState + " " + this);
 
 		// view
-		final View view = inflater.inflate(R.layout.fragment_download, container, false);
+		final View view = inflater.inflate(getResId(), container, false);
 
 		// components
 		this.progressBar = view.findViewById(R.id.progressBar);
@@ -930,8 +939,8 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 	 */
 	private void md5()
 	{
-		final String from = this.downloadUrl + ".md5";
-		final String targetFile = Uri.parse(this.downloadUrl).getLastPathSegment();
+		final String from = this.sourceUrl + ".md5";
+		final String targetFile = Uri.parse(this.sourceUrl).getLastPathSegment();
 		new MD5Downloader(downloadedResult -> {
 
 			final FragmentActivity activity = getActivity();

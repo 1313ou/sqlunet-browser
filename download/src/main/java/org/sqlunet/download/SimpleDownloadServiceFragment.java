@@ -106,8 +106,8 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 						{
 							Log.d(TAG, "Update");
 							// SimpleDownloadServiceFragment.downloading = true;
-							progressDownloaded = intent.getIntExtra(SimpleDownloaderService.EVENT_UPDATE_DOWNLOADED, 0);
-							progressTotal = intent.getIntExtra(SimpleDownloaderService.EVENT_UPDATE_TOTAL, 0);
+							progressDownloaded = intent.getLongExtra(SimpleDownloaderService.EVENT_UPDATE_DOWNLOADED, 0);
+							progressTotal = intent.getLongExtra(SimpleDownloaderService.EVENT_UPDATE_TOTAL, 0);
 							float progress = (float) progressDownloaded / progressTotal;
 							fireNotification(SimpleDownloadServiceFragment.notificationId, NotificationType.UPDATE, progress);
 						}
@@ -145,8 +145,8 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		{
 			if (SimpleDownloaderService.EVENT_UPDATE.equals(intent.getStringExtra(SimpleDownloaderService.EVENT)))
 			{
-				progressDownloaded = intent.getIntExtra(SimpleDownloaderService.EVENT_UPDATE_DOWNLOADED, 0);
-				progressTotal = intent.getIntExtra(SimpleDownloaderService.EVENT_UPDATE_TOTAL, 0);
+				progressDownloaded = intent.getLongExtra(SimpleDownloaderService.EVENT_UPDATE_DOWNLOADED, 0);
+				progressTotal = intent.getLongExtra(SimpleDownloaderService.EVENT_UPDATE_TOTAL, 0);
 				Log.d(TAG, "Update " + progressDownloaded + '/' + progressTotal);
 			}
 		}
@@ -165,13 +165,19 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	}
 
 	@Override
+	protected int getResId()
+	{
+		return R.layout.fragment_download;
+	}
+
+	@Override
 	public void onDestroy()
 	{
 		super.onDestroy();
 
 		// main receiver
 		Log.d(TAG, "Unregister main receiver");
-		LocalBroadcastManager.getInstance(this.appContext).unregisterReceiver(SimpleDownloadServiceFragment.this.mainBroadcastReceiver);
+		LocalBroadcastManager.getInstance(this.appContext).unregisterReceiver(this.mainBroadcastReceiver);
 	}
 
 	@Override
@@ -223,7 +229,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 				intent.putExtra(SimpleDownloaderService.ARG_TO_FILE, to);
 				intent.putExtra(SimpleDownloaderService.ARG_CODE, ++SimpleDownloadServiceFragment.downloadId);
 				final Context context = requireContext();
-				SimpleDownloaderService.enqueueWork(context, intent);
+				startService(context, intent);
 
 				// status
 				SimpleDownloadServiceFragment.downloading = true;
@@ -231,6 +237,11 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 			}
 		}
 		throw new RuntimeException("Already downloading");
+	}
+
+	protected void startService(@NonNull Context context, @NonNull Intent intent)
+	{
+		SimpleDownloaderService.enqueueWork(context, intent);
 	}
 
 	/**
@@ -365,7 +376,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	 * @param type notification
 	 * @param args arguments
 	 */
-	private void fireNotification(int id, @NonNull final NotificationType type, final Object... args)
+	protected void fireNotification(int id, @NonNull final NotificationType type, final Object... args)
 	{
 		// get an instance of the NotificationManager service
 		final NotificationManager manager = (NotificationManager) this.appContext.getSystemService(Context.NOTIFICATION_SERVICE);

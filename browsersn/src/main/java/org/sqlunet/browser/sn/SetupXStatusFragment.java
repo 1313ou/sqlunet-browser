@@ -18,7 +18,7 @@ import android.widget.ImageView;
 
 import org.sqlunet.browser.ColorUtils;
 import org.sqlunet.browser.Info;
-import org.sqlunet.browser.R;
+import org.sqlunet.browser.sn.R;
 import org.sqlunet.browser.config.SetupDatabaseActivity;
 import org.sqlunet.browser.config.SetupDatabaseFragment;
 import org.sqlunet.settings.StorageSettings;
