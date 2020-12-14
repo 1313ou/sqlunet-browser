@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.sqlunet.browser.Browse2Fragment;
-import org.sqlunet.browser.R;
+import org.sqlunet.browser.sn.R;
 import org.sqlunet.browser.SnBrowse2Activity;
 import org.sqlunet.browser.sn.Settings;
 import org.sqlunet.provider.ProviderArgs;

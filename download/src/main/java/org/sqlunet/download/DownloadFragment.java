@@ -180,6 +180,12 @@ public class DownloadFragment extends BaseDownloadFragment
 	}
 
 	@Override
+	protected int getResId()
+	{
+		return R.layout.fragment_download;
+	}
+
+	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
 		final View view = super.onCreateView(inflater, container, savedInstanceState);

@@ -33,25 +33,21 @@ public class DownloadActivity extends AppCompatActivity implements DownloadFragm
 	 * Downloaders
 	 */
 	private enum Downloader
-	{SIMPLE_SERVICE(R.layout.activity_download), //
-		DOWNLOAD_MANAGER(R.layout.activity_download);
-
-		final private int res;
-
-		Downloader(int res)
-		{
-			this.res = res;
-		}
+	{
+		SIMPLE_SERVICE, //
+		SIMPLE_ZIP_SERVICE, //
+		DOWNLOAD_MANAGER;
 
 		static Downloader getFromPref(@NonNull final Context context)
 		{
 			final String preferredDownloader = Settings.getDownloaderPref(context);
 			if (preferredDownloader == null)
 			{
-				return SIMPLE_SERVICE;
+				return SIMPLE_ZIP_SERVICE;
 			}
 			return Downloader.valueOf(preferredDownloader);
-		}}
+		}
+	}
 
 	@Override
 	protected void onCreate(@Nullable final Bundle savedInstanceState)
@@ -61,7 +57,7 @@ public class DownloadActivity extends AppCompatActivity implements DownloadFragm
 		final Downloader downloader = Downloader.getFromPref(this);
 
 		// content
-		setContentView(downloader.res);
+		setContentView(R.layout.activity_download);
 
 		// toolbar
 		final Toolbar toolbar = findViewById(R.id.toolbar);
@@ -80,6 +76,10 @@ public class DownloadActivity extends AppCompatActivity implements DownloadFragm
 			{
 				case SIMPLE_SERVICE:
 					downloadFragment = new SimpleDownloadServiceFragment();
+					break;
+
+				case SIMPLE_ZIP_SERVICE:
+					downloadFragment = new SimpleZipDownloadServiceFragment();
 					break;
 
 				case DOWNLOAD_MANAGER:

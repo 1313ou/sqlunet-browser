@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
+import org.sqlunet.browser.sn.R;
 import org.sqlunet.browser.sn.Settings;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.wordnet.provider.WordNetContract;

@@ -13,7 +13,6 @@ import org.sqlunet.browser.ContainerUtils;
 import org.sqlunet.browser.DataUtils;
 import org.sqlunet.browser.Seq;
 import org.sqlunet.browser.ToBoolean;
-import org.sqlunet.browser.Wait;
 import org.sqlunet.browser.WaitUntil;
 import org.sqlunet.browser.WaitUntilText;
 

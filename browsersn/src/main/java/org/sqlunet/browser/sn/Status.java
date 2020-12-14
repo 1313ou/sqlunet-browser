@@ -10,7 +10,7 @@ import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
 
-import org.sqlunet.browser.R;
+import org.sqlunet.browser.sn.R;
 
 import java.util.List;
 

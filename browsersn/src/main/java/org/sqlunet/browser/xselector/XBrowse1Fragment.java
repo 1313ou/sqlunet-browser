@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import org.sqlunet.browser.Browse2Activity;
 import org.sqlunet.browser.Browse2Fragment;
-import org.sqlunet.browser.R;
+import org.sqlunet.browser.sn.R;
 import org.sqlunet.browser.Selectors;
 import org.sqlunet.browser.selector.CollocationSelectorPointer;
 import org.sqlunet.browser.selector.SelectorPointer;

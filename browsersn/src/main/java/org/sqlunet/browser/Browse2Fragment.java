@@ -10,8 +10,9 @@ import android.os.Parcelable;
 
 import org.sqlunet.bnc.browser.BNCFragment;
 import org.sqlunet.browser.selector.CollocationSelectorPointer;
-import org.sqlunet.browser.web.WebFragment;
+import org.sqlunet.browser.sn.R;
 import org.sqlunet.browser.sn.Settings;
+import org.sqlunet.browser.web.WebFragment;
 import org.sqlunet.browser.xselector.XSelectorPointer;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.syntagnet.browser.SyntagNetFragment;
@@ -65,7 +66,7 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 		boolean hasWordNet = true;
 		if (this.pointer instanceof CollocationSelectorPointer)
 		{
-			CollocationSelectorPointer selectorPointer = (CollocationSelectorPointer)this.pointer;
+			CollocationSelectorPointer selectorPointer = (CollocationSelectorPointer) this.pointer;
 			hasWordNet = selectorPointer.getSynsetId() != -1 || selectorPointer.getSynset2Id() != -1;
 		}
 

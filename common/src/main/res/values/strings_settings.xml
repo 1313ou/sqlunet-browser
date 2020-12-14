@@ -94,13 +94,13 @@
 	<!-- Downloader -->
 	<string name="pref_title_downloader">Downloader</string>
 	<string-array name="pref_downloader_titles">
+		<item>Simple zip download service</item>
 		<item>Simple download service</item>
-		<item>Android Download Manager</item>
 	</string-array>
-	<string name="pref_default_downloader">SIMPLE_SERVICE</string>
+	<string name="pref_default_downloader">SIMPLE_ZIP_SERVICE</string>
 	<string-array name="pref_downloader_values">
 		<item>@string/pref_default_downloader</item>
-		<item>DOWNLOAD_MANAGER</item>
+		<item>SIMPLE_SERVICE</item>
 	</string-array>
 	<string name="pref_description_downloader">Downloader</string>
 

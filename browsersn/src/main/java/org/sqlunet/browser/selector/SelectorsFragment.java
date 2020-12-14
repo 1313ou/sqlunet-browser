@@ -19,7 +19,7 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
-import org.sqlunet.browser.R;
+import org.sqlunet.browser.sn.R;
 import org.sqlunet.browser.SqlunetViewModel;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.wordnet.provider.WordNetContract;

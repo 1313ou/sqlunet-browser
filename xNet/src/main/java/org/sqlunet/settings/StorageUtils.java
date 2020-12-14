@@ -824,6 +824,7 @@ public class StorageUtils
 	 * @param path path
 	 * @return free storage in megabytes
 	 */
+	@SuppressWarnings("deprecation")
 	static private float storageFree(final String path)
 	{
 		try
@@ -876,6 +877,7 @@ public class StorageUtils
 	 * @param path path
 	 * @return storage capacity in megabytes
 	 */
+	@SuppressWarnings("deprecation")
 	static float storageCapacity(final String path)
 	{
 		try
