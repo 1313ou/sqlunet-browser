@@ -15,6 +15,7 @@
 	<!-- not overriden -->
 
 	<!-- sites -->
+	<string name="pref_default_download_site_url" translatable="false">@string/pref_bitbucket_31_site_url</string>
 	<string-array name="pref_download_site_urls" translatable="false" tools:ignore="InconsistentArrays">
 		<item>@string/pref_default_download_site_url</item>
 		<item>@string/pref_sourceforge_600_31_site_url</item>

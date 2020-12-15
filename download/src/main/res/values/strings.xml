@@ -35,6 +35,8 @@
 	<!-- service -->
 	<string name="service_downloader">service_downloader</string>
 	<string name="description_service_downloader">Downloader Service</string>
+	<string name="service_zip_downloader">service_zip downloader</string>
+	<string name="description_service_zip_downloader">Downloader ZIP Service</string>
 
 	<!-- items -->
 	<string name="download_source">source</string>

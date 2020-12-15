@@ -1,0 +1,162 @@
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="org.sqlunet.download.DownloadFragment"
+                tools:ignore="InconsistentLayouts">
+
+	<TextView
+		android:id="@+id/src"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"
+		android:layout_marginBottom="10dp"
+		android:layout_marginTop="25dp"
+		android:layout_marginEnd="50dp"
+		android:layout_marginStart="50dp"
+		android:drawablePadding="0dp"
+		android:scrollHorizontally="true"
+		android:text="@string/download_source"
+		android:singleLine="true"
+		app:drawableBottomCompat="@drawable/ic_download_zip_source" />
+
+	<LinearLayout
+		android:id="@+id/middle"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"
+		android:layout_below="@id/src"
+		android:orientation="horizontal">
+
+		<View
+			android:layout_width="0dip"
+			android:layout_height="match_parent"
+			android:layout_weight="0.15">
+		</View>
+
+		<FrameLayout
+			android:layout_width="0dip"
+			android:layout_height="wrap_content"
+			android:layout_weight="0.7">
+
+			<ImageButton
+				android:id="@+id/downloadButton"
+				style="?android:attr/buttonStyle"
+				android:layout_width="64dp"
+				android:layout_height="64dp"
+				android:layout_gravity="center_vertical|center_horizontal"
+				android:background="@drawable/bg_button_action"
+				android:contentDescription="@string/description_download"
+				android:src="@drawable/bn_download"
+				android:text="@string/action_download"
+				android:visibility="invisible"/>
+
+			<ProgressBar
+				android:id="@+id/progressBar"
+				style="@android:style/Widget.ProgressBar.Horizontal"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical|center_horizontal"
+				android:indeterminate="false"
+				android:max="100"
+				android:progress="0"
+				android:visibility="invisible"/>
+
+			<TextView
+				android:id="@+id/progressStatus"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical|center_horizontal"
+				android:text="@string/action_download"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:textColor="@android:color/white"
+				android:visibility="invisible"/>
+
+		</FrameLayout>
+
+		<View
+			android:layout_width="0dip"
+			android:layout_height="match_parent"
+			android:layout_weight="0.15">
+		</View>
+	</LinearLayout>
+
+	<TextView
+		android:id="@+id/target"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/middle"
+		android:layout_centerHorizontal="true"
+		android:layout_marginEnd="50dp"
+		android:layout_marginStart="50dp"
+		android:layout_marginTop="10dp"
+		android:drawablePadding="0dp"
+		android:scrollHorizontally="true"
+		android:text="@string/download_dest"
+		android:singleLine="true"
+		app:drawableTopCompat="@drawable/ic_download_dest" />
+
+	<TextView
+		android:id="@+id/status"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_above="@+id/buttons"
+		android:layout_centerHorizontal="true"
+		android:layout_marginStart="50dp"
+		android:layout_marginTop="10dp"
+		android:layout_marginEnd="50dp"
+		android:layout_marginBottom="10dp"
+		android:freezesText="true"
+		android:gravity="center"
+		android:textAppearance="?android:attr/textAppearanceSmall"
+		android:textStyle="italic"
+		android:visibility="visible"/>
+
+	<LinearLayout
+		android:id="@+id/buttons"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:layout_centerHorizontal="true"
+		android:orientation="horizontal">
+
+		<Button
+			android:id="@+id/cancelButton"
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/action_cancel"
+			android:visibility="gone"/>
+
+		<Button
+			android:id="@+id/showButton"
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/action_show"
+			android:visibility="gone"/>
+
+		<Button
+			android:id="@+id/md5Button"
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/action_md5"
+			android:visibility="gone"/>
+
+		<Button
+			android:id="@+id/deployButton"
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/action_deploy"
+			android:visibility="gone"/>
+
+	</LinearLayout>
+
+</RelativeLayout>
