@@ -3,7 +3,8 @@
 #list devices
 #adb devices -l
 
-device=ce12160c903ac05e0c
+device=ce12160c903ac05e0c	#samsung
+device=e7f518b7				#xiaomi
 if [ "-device" == "$1" ]; then
 	shift
 	device=$1
