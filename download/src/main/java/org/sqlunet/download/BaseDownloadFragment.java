@@ -385,7 +385,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		this.md5Button.setOnClickListener(v -> md5());
 
 		// source
-		final TextView srcView = view.findViewById(R.id.src);
+		final TextView srcView = view.findViewById(R.id.up_src);
 		final TextView srcView2 = view.findViewById(R.id.src2);
 		final TextView srcView3 = view.findViewById(R.id.src3);
 		if (srcView2 != null && srcView3 != null)
@@ -780,11 +780,11 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		BaseDownloadFragment.isDownloading = false;
 
 		// register if this is the database
-		//assert this.downloadedFile != null;
-		//if (success)
-		//{
-		//	FileData.recordDatabase(this.context, this.downloadedFile);
-		//}
+		assert this.downloadedFile != null;
+		if (success)
+		{
+			Settings.recordDb(requireContext(), this.downloadedFile);
+		}
 
 		// observer
 		stopObserver();
@@ -899,7 +899,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 							final File renameToFile = new File(destDir, renameTo);
 							boolean result2 = renameFromFile.renameTo(renameToFile);
 							Log.d(TAG, "Rename " + renameFromFile + " to " + renameToFile + " : " + result2);
-							FileData.recordDatabase(activity, renameToFile);
+							Settings.recordDb(activity, renameToFile);
 						}
 
 						//noinspection ResultOfMethodCallIgnored

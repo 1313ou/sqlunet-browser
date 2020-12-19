@@ -130,7 +130,7 @@ public class SetupStatusFragment extends Fragment implements Updatable
 	{
 		final Context context = requireContext();
 		final Intent intent = new Intent(context, DownloadActivity.class);
-		intent.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadSource(context));
+		intent.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadSource(context, org.sqlunet.download.Settings.Downloader.isZipDownloaderPref(context)));
 		intent.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadTarget(context));
 		startActivityForResult(intent, SetupStatusFragment.REQUEST_DOWNLOAD_CODE);
 	}
@@ -148,7 +148,7 @@ public class SetupStatusFragment extends Fragment implements Updatable
 		final Activity activity = requireActivity();
 		final String database = StorageSettings.getDatabasePath(activity);
 		final String free = StorageUtils.getFree(activity, database);
-		final String source = StorageSettings.getDbDownloadSource(activity);
+		final String source = StorageSettings.getDbDownloadSource(activity, org.sqlunet.download.Settings.Downloader.isZipDownloaderPref(activity));
 		final int status = Status.status(activity);
 		final boolean existsDb = (status & Status.EXISTS) != 0;
 		final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
@@ -164,7 +164,7 @@ public class SetupStatusFragment extends Fragment implements Updatable
 					getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
 					getString(R.string.size_expected) + ' ' + getString(R.string.text_search), getString(R.string.hr_size_searchtext), //
 					getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
-					getString(R.string.size_actual), hrSize);
+					getString(R.string.size_current), hrSize);
 		}
 		else
 		{

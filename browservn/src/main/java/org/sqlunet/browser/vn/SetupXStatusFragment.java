@@ -92,7 +92,7 @@ public class SetupXStatusFragment extends org.sqlunet.browser.config.SetupStatus
 			final Activity activity = requireActivity();
 			final String database = StorageSettings.getDatabasePath(activity);
 			final String free = StorageUtils.getFree(activity, database);
-			final String source = StorageSettings.getDbDownloadSource(activity);
+			final String source = StorageSettings.getDbDownloadSource(activity, org.sqlunet.download.Settings.Downloader.isZipDownloaderPref(activity));
 			final int status = Status.status(activity);
 			final boolean existsDb = (status & Status.EXISTS) != 0;
 			final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
@@ -107,7 +107,7 @@ public class SetupXStatusFragment extends org.sqlunet.browser.config.SetupStatus
 						getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
 						getString(R.string.size_expected) + ' ' + getString(R.string.text_search), getString(R.string.hr_size_searchtext), //
 						getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
-						getString(R.string.size_actual), hrSize);
+						getString(R.string.size_current), hrSize);
 			}
 			else
 			{

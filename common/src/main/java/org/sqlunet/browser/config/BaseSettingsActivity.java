@@ -127,6 +127,12 @@ public abstract class BaseSettingsActivity extends AppCompatActivity implements 
 			restart();
 			return true;
 		}
+		else if (itemId == R.id.action_diagnostics)
+		{
+			Intent intent = new Intent(this, DiagnosticsActivity.class);
+			startActivity(intent);
+			return true;
+		}
 		return super.onOptionsItemSelected(item);
 	}
 

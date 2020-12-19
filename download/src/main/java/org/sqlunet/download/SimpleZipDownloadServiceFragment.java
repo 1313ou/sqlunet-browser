@@ -4,27 +4,11 @@
 
 package org.sqlunet.download;
 
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.NotificationCompat;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 /**
  * Download Service fragment
@@ -45,7 +29,10 @@ public class SimpleZipDownloadServiceFragment extends SimpleDownloadServiceFragm
 		super.onCreate(savedInstanceState);
 
 		// download source data
-		this.downloadUrl += ".zip";
+		if (!this.downloadUrl.endsWith(".zip"))
+		{
+			this.downloadUrl += ".zip";
+		}
 	}
 
 	@Override

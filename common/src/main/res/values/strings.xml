@@ -169,17 +169,17 @@
 	<!-- items -->
 	<string name="download_source">source</string>
 	<string name="download_dest">destination</string>
-	<string name="download_available">available source</string>
+	<string name="download_up">available source</string>
 	<string name="download_newer">source is newer</string>
 	<!--<string name="download_current">current database</string>-->
-	<string name="download_actual">actual database</string>
+	<string name="download_down">current database</string>
 	<string name="item">item</string>
 	<string name="md5_downloaded">Downloaded</string>
 	<string name="md5_computed">Computed</string>
 	<string name="md5_compared">Compared</string>
 	<!--<string name="md5_expected">Expected MD5</string>-->
 	<string name="size_expected">Expected size</string>
-	<string name="size_actual">Actual size</string>
+	<string name="size_current">Current size</string>
 	<string name="total">total</string>
 	<string name="text_search">text search</string>
 	<string name="unit_statement">statements</string>

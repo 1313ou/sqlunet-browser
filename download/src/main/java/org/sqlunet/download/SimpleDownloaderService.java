@@ -236,6 +236,7 @@ public class SimpleDownloaderService extends JobIntentService
 
 		// install
 		install(outFile, date, size);
+		Settings.recordDbSource(this, this.fromUrl, date, size);
 	}
 
 	/**

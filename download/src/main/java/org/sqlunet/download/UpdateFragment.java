@@ -31,22 +31,28 @@ public class UpdateFragment extends Fragment
 	/**
 	 * From argument
 	 */
-	static public final String FROM_ARG = "from";
+	static public final String UP_SOURCE_ARG = "up_source";
 
-	static public final String FROM_DATE_ARG = "from_date";
+	static public final String UP_DATE_ARG = "up_date";
 
-	static public final String FROM_SIZE_ARG = "from_size";
+	static public final String UP_SIZE_ARG = "up_size";
 
 	/**
 	 * To argument
 	 */
-	static public final String TO_ARG = "to";
+	static public final String DOWN_ARG = "down_name";
 
-	static public final String TO_DEST_ARG = "to_dest";
+	static public final String DOWN_TARGET_ARG = "down_target";
 
-	static public final String TO_DATE_ARG = "to_date";
+	static public final String DOWN_DATE_ARG = "down_date";
 
-	static public final String TO_SIZE_ARG = "to_size";
+	static public final String DOWN_SIZE_ARG = "down_size";
+
+	static public final String DOWN_SOURCE_ARG = "down_source";
+
+	static public final String DOWN_SOURCE_DATE_ARG = "down_source_date";
+
+	static public final String DOWN_SOURCE_SIZE_ARG = "down_source_size";
 
 	static public final String NEWER_ARG = "newer";
 
@@ -71,32 +77,41 @@ public class UpdateFragment extends Fragment
 		final Activity activity = requireActivity();
 		final Intent intent = activity.getIntent();
 
-		final String fromArg = intent.getStringExtra(FROM_ARG);
-		final String fromDateArg = intent.getStringExtra(FROM_DATE_ARG);
-		final String fromSizeArg = intent.getStringExtra(FROM_SIZE_ARG);
+		final String upSrcArg = intent.getStringExtra(UP_SOURCE_ARG);
+		final String upDateArg = intent.getStringExtra(UP_DATE_ARG);
+		final String upSizeArg = intent.getStringExtra(UP_SIZE_ARG);
 
-		final String toArg = intent.getStringExtra(TO_ARG);
-		final String toDateArg = intent.getStringExtra(TO_DATE_ARG);
-		final String toSizeArg = intent.getStringExtra(TO_SIZE_ARG);
+		final String downArg = intent.getStringExtra(DOWN_ARG);
+		final String downDateArg = intent.getStringExtra(DOWN_DATE_ARG);
+		final String downSizeArg = intent.getStringExtra(DOWN_SIZE_ARG);
+		final String downSourceArg = intent.getStringExtra(DOWN_SOURCE_ARG);
+		final String downSourceDateArg = intent.getStringExtra(DOWN_SOURCE_DATE_ARG);
+		final String downSourceSizeArg = intent.getStringExtra(DOWN_SOURCE_SIZE_ARG);
 
 		final boolean newerArg = intent.getBooleanExtra(NEWER_ARG, false);
 
 		final View view = getView();
 		assert view != null;
 
-		final TextView src = view.findViewById(R.id.src);
-		final TextView srcDate = view.findViewById(R.id.src_date);
-		final TextView srcSize = view.findViewById(R.id.src_size);
-		src.setText(fromArg);
-		srcDate.setText(fromDateArg);
-		srcSize.setText(fromSizeArg);
+		final TextView upSrc = view.findViewById(R.id.up_src);
+		final TextView upDate = view.findViewById(R.id.up_date);
+		final TextView upSize = view.findViewById(R.id.up_size);
+		upSrc.setText(upSrcArg);
+		upDate.setText(upDateArg);
+		upSize.setText(upSizeArg);
 
-		final TextView dest = view.findViewById(R.id.dest);
-		final TextView destDate = view.findViewById(R.id.dest_date);
-		final TextView destSize = view.findViewById(R.id.dest_size);
-		dest.setText(toArg);
-		destDate.setText(toDateArg);
-		destSize.setText(toSizeArg);
+		final TextView downDb = view.findViewById(R.id.down_db);
+		final TextView downDate = view.findViewById(R.id.down_db_date);
+		final TextView downSize = view.findViewById(R.id.down_db_size);
+		final TextView downSource = view.findViewById(R.id.down_source);
+		final TextView downSourceDate = view.findViewById(R.id.down_source_date);
+		final TextView downSourceSize = view.findViewById(R.id.down_source_size);
+		downDb.setText(downArg);
+		downDate.setText(downDateArg);
+		downSize.setText(downSizeArg);
+		downSource.setText(downSourceArg);
+		downSourceDate.setText(downSourceDateArg);
+		downSourceSize.setText(downSourceSizeArg);
 
 		final TextView newer = view.findViewById(R.id.newer);
 		if (newerArg)

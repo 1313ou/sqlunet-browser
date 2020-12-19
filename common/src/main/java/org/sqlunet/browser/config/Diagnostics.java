@@ -343,10 +343,22 @@ public class Diagnostics
 			}
 		}
 
+		final String source = Settings.getDbSource(context);
+		final long sourceSize = Settings.getDbSourceSize(context);
+		final long sourceStamp = Settings.getDbSourceDate(context);
 		final String name = Settings.getDbName(context);
 		final long size = Settings.getDbSize(context);
 		final long stamp = Settings.getDbDate(context);
 
+		sb.append('\n');
+		sb.append("recorded source: ");
+		sb.append(name == null ? "null" : source);
+		sb.append('\n');
+		sb.append("recorded source size: ");
+		sb.append(size == -1 ? "null" : sourceSize);
+		sb.append('\n');
+		sb.append("recorded source date: ");
+		sb.append(stamp == -1 ? "null" : new Date(sourceStamp).toString());
 		sb.append('\n');
 		sb.append("recorded name: ");
 		sb.append(name == null ? "null" : name);
@@ -358,7 +370,7 @@ public class Diagnostics
 		sb.append(stamp == -1 ? "null" : new Date(stamp).toString());
 		sb.append('\n');
 
-		final String dbDownloadSource = StorageSettings.getDbDownloadSource(context);
+		final String dbDownloadSource = StorageSettings.getDbDownloadSource(context, org.sqlunet.download.Settings.Downloader.isZipDownloaderPref(context));
 		final String dbDownloadTarget = StorageSettings.getDbDownloadTarget(context);
 
 		sb.append('\n');

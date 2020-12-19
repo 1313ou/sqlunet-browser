@@ -29,32 +29,12 @@ public class DownloadActivity extends AppCompatActivity implements DownloadFragm
 	 */
 	static private final String RESULT_DOWNLOAD_DATA_AVAILABLE = "download_data_available";
 
-	/**
-	 * Downloaders
-	 */
-	private enum Downloader
-	{
-		SIMPLE_SERVICE, //
-		SIMPLE_ZIP_SERVICE, //
-		DOWNLOAD_MANAGER;
-
-		static Downloader getFromPref(@NonNull final Context context)
-		{
-			final String preferredDownloader = Settings.getDownloaderPref(context);
-			if (preferredDownloader == null)
-			{
-				return SIMPLE_ZIP_SERVICE;
-			}
-			return Downloader.valueOf(preferredDownloader);
-		}
-	}
-
 	@Override
 	protected void onCreate(@Nullable final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 
-		final Downloader downloader = Downloader.getFromPref(this);
+		final Settings.Downloader downloader = Settings.Downloader.getFromPref(this);
 
 		// content
 		setContentView(R.layout.activity_download);
