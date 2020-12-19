@@ -19,11 +19,11 @@ import androidx.annotation.Nullable;
  */
 public class FileData
 {
-	private final String name;
+	public final String name;
 
-	private final long date;
+	public final long date;
 
-	private final long size;
+	public final long size;
 
 	public FileData(final String name, final long date, final long size)
 	{
@@ -66,30 +66,5 @@ public class FileData
 	public Date getDate()
 	{
 		return this.date == -1 ? null : new Date(this.date);
-	}
-
-	public static void recordDatabase(@NonNull final Context context, final File databaseFile)
-	{
-		final FileData fileData = makeFileDataFrom(databaseFile);
-		if (fileData != null)
-		{
-			if (fileData.name != null)
-			{
-				Settings.setDbName(context, fileData.name);
-			}
-			if (fileData.date != -1)
-			{
-				Settings.setDbDate(context, fileData.date);
-			}
-			if (fileData.size != -1)
-			{
-				Settings.setDbSize(context, fileData.size);
-			}
-		}
-	}
-
-	public static void unrecordDatabase(@NonNull final Context context)
-	{
-		Settings.unrecordDb(context);
 	}
 }

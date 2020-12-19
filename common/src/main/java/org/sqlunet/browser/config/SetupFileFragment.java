@@ -124,7 +124,7 @@ public class SetupFileFragment extends BaseTaskFragment
 						SetupFileFragment.this.status.setText(R.string.status_task_running);
 						success = SetupDatabaseTasks.createDatabase(activity, StorageSettings.getDatabasePath(activity));
 						SetupFileFragment.this.status.setText(success ? R.string.status_task_done : R.string.status_task_failed);
-						FileData.unrecordDatabase(activity);
+						org.sqlunet.download.Settings.unrecordDb(activity);
 						break;
 
 					case DROP:
@@ -132,7 +132,7 @@ public class SetupFileFragment extends BaseTaskFragment
 							SetupFileFragment.this.status.setText(R.string.status_task_running);
 							boolean success1 = SetupDatabaseTasks.deleteDatabase(activity, StorageSettings.getDatabasePath(activity));
 							SetupFileFragment.this.status.setText(success1 ? R.string.status_task_done : R.string.status_task_failed);
-							FileData.unrecordDatabase(activity);
+							org.sqlunet.download.Settings.unrecordDb(activity);
 							EntryActivity.rerun(activity);
 						});
 						break;
@@ -141,7 +141,7 @@ public class SetupFileFragment extends BaseTaskFragment
 						if (Permissions.check(activity))
 						{
 							FileAsyncTask.copyFromFile(activity, StorageSettings.getCacheDir(activity), StorageSettings.getDatabasePath(activity));
-							FileData.unrecordDatabase(activity);
+							org.sqlunet.download.Settings.unrecordDb(activity);
 						}
 						break;
 
@@ -154,7 +154,7 @@ public class SetupFileFragment extends BaseTaskFragment
 								zipEntry = Storage.DBFILE;
 							}
 							FileAsyncTask.unzipEntryFromArchive(activity, StorageSettings.getCacheDir(activity), zipEntry, StorageSettings.getDatabasePath(activity));
-							FileData.unrecordDatabase(activity);
+							org.sqlunet.download.Settings.unrecordDb(activity);
 						}
 						break;
 
@@ -402,7 +402,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	private CharSequence statusDownload()
 	{
 		final Context context = requireContext();
-		final String from = StorageSettings.getDbDownloadSource(context);
+		final String from = StorageSettings.getDbDownloadSource(context, org.sqlunet.download.Settings.Downloader.isZipDownloaderPref(context));
 		final String to = StorageSettings.getDbDownloadTarget(context);
 		final String free = StorageUtils.getFree(context, to);
 		final boolean targetExists = new File(to).exists();

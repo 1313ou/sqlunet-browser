@@ -23,24 +23,24 @@
 			android:layout_height="wrap_content"
 			android:drawablePadding="10dp"
 			android:gravity="center_vertical"
-			android:text="@string/download_available"
+			android:text="@string/download_up"
 			android:textStyle="bold"
 			app:drawableStartCompat="@drawable/ic_download_source" />
 
 		<TextView
-			android:id="@+id/src"
+			android:id="@+id/up_src"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="@string/status_state_unknown"/>
 
 		<TextView
-			android:id="@+id/src_size"
+			android:id="@+id/up_size"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="@string/status_state_unknown"/>
 
 		<TextView
-			android:id="@+id/src_date"
+			android:id="@+id/up_date"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="@string/status_state_unknown"/>
@@ -51,24 +51,42 @@
 			android:layout_marginTop="10dp"
 			android:drawablePadding="10dp"
 			android:gravity="center_vertical"
-			android:text="@string/download_actual"
+			android:text="@string/download_down"
 			android:textStyle="bold"
 			app:drawableStartCompat="@drawable/ic_download_dest" />
 
 		<TextView
-			android:id="@+id/dest"
+			android:id="@+id/down_db"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="@string/status_state_unknown"/>
 
 		<TextView
-			android:id="@+id/dest_size"
+			android:id="@+id/down_db_size"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="@string/status_state_unknown"/>
 
 		<TextView
-			android:id="@+id/dest_date"
+			android:id="@+id/down_db_date"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/status_state_unknown"/>
+
+		<TextView
+			android:id="@+id/down_source"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/status_state_unknown"/>
+
+		<TextView
+			android:id="@+id/down_source_size"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/status_state_unknown"/>
+
+		<TextView
+			android:id="@+id/down_source_date"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="@string/status_state_unknown"/>

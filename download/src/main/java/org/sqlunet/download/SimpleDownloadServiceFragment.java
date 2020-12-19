@@ -342,7 +342,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 			String action = intent.getAction();
 			System.out.println("Received kill " + action);
 			assert action != null;
-			if (action.equals(SimpleDownloadServiceFragment.Killer.KILL_DOWNLOAD_SERVICE))
+			if (action.equals(Killer.KILL_DOWNLOAD_SERVICE))
 			{
 				SimpleDownloadServiceFragment.kill(context);
 			}

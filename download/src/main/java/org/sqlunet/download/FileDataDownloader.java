@@ -120,43 +120,53 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 		void onDone(final FileData result);
 	}
 
-	static public void start(@NonNull final Activity activity, @Nullable final String name, @Nullable final String downloadSourceUrl, final String downloadDest, final String cache)
+	static public void start(@NonNull final Activity activity, @Nullable final String name, @Nullable final String downloadSourceUrl0, final String downloadDest, final String cache)
 	{
 		// download source data
-		if (name == null || downloadSourceUrl == null || downloadSourceUrl.isEmpty())
+		if (name == null || downloadSourceUrl0 == null || downloadSourceUrl0.isEmpty())
 		{
 			final String message = activity.getString(R.string.status_download_error_unavailable_download_url);
 			activity.runOnUiThread(() -> Toast.makeText(activity, message, Toast.LENGTH_LONG).show());
 			return;
 		}
+		final String downloadSourceUrl = Settings.Downloader.zipDownloaderSource(activity, downloadSourceUrl0);
 
 		// download source data (acquired by task)
 		final FileDataDownloader task = new FileDataDownloader(srcData -> {
 
-			// actual data
-			final long actualDateValue = Settings.getDbDate(activity);
-			final long actualSizeValue = Settings.getDbSize(activity);
-			final Date actualDate = actualDateValue == -1 ? null : new Date(actualDateValue);
-			final Long actualSize = actualSizeValue == -1 ? null : actualSizeValue;
+			// in-use downstream data
+			final long downDateValue = Settings.getDbDate(activity);
+			final long downSizeValue = Settings.getDbSize(activity);
+			final Date downDate = downDateValue == -1 ? null : new Date(downDateValue);
+			final Long downSize = downSizeValue == -1 ? null : downSizeValue;
+			final long downSourceDateValue = Settings.getDbSourceDate(activity);
+			final long downSourceSizeValue = Settings.getDbSourceSize(activity);
+			final String downSource = Settings.getDbSource(activity);
+			final Date downSourceDate = downSourceDateValue == -1 ? null : new Date(downSourceDateValue);
+			final Long downSourceSize = downSourceSizeValue == -1 ? null : downSourceSizeValue;
 
-			// src data
+			// upstream data
 			final Date srcDate = srcData == null ? null : srcData.getDate();
 			final Long srcSize = srcData == null ? null : srcData.getSize();
 
 			// newer
-			final boolean newer = srcDate == null || actualDate == null || srcDate.compareTo(actualDate) > 0;
+			final boolean newer = srcDate == null || downDate == null || srcDate.compareTo(downDate) > 0;
+			final boolean newer2 = srcDate == null || downSourceDate == null || srcDate.compareTo(downSourceDate) > 0;
 
 			// start update activity
 			final Intent intent = new Intent(activity, UpdateActivity.class);
 			// result
-			intent.putExtra(UpdateFragment.FROM_ARG, downloadSourceUrl);
-			intent.putExtra(UpdateFragment.FROM_DATE_ARG, srcDate == null ? "n/a" : srcDate.toString());
-			intent.putExtra(UpdateFragment.FROM_SIZE_ARG, srcSize == null ? "n/a" : srcSize.toString() + " bytes");
-			intent.putExtra(UpdateFragment.TO_ARG, name);
-			intent.putExtra(UpdateFragment.TO_DEST_ARG, cache + '/' + name);
-			intent.putExtra(UpdateFragment.TO_DATE_ARG, actualDate == null ? "n/a" : actualDate.toString());
-			intent.putExtra(UpdateFragment.TO_SIZE_ARG, actualSize == null ? "n/a" : actualSize.toString() + " bytes");
-			intent.putExtra(UpdateFragment.NEWER_ARG, newer);
+			intent.putExtra(UpdateFragment.UP_SOURCE_ARG, downloadSourceUrl);
+			intent.putExtra(UpdateFragment.UP_DATE_ARG, srcDate == null ? "n/a" : srcDate.toString());
+			intent.putExtra(UpdateFragment.UP_SIZE_ARG, srcSize == null ? "n/a" : srcSize.toString() + " bytes");
+			intent.putExtra(UpdateFragment.DOWN_ARG, name);
+			intent.putExtra(UpdateFragment.DOWN_TARGET_ARG, cache + '/' + name);
+			intent.putExtra(UpdateFragment.DOWN_DATE_ARG, downDate == null ? "n/a" : downDate.toString());
+			intent.putExtra(UpdateFragment.DOWN_SIZE_ARG, downSize == null ? "n/a" : downSize.toString() + " bytes");
+			intent.putExtra(UpdateFragment.DOWN_SOURCE_ARG, downSource);
+			intent.putExtra(UpdateFragment.DOWN_SOURCE_DATE_ARG, downSourceDate == null ? "n/a" : downSourceDate.toString());
+			intent.putExtra(UpdateFragment.DOWN_SOURCE_SIZE_ARG, downSourceSize == null ? "n/a" : downSourceSize.toString() + " bytes");
+			intent.putExtra(UpdateFragment.NEWER_ARG, newer2);
 			// to do if confirmed
 			intent.putExtra(DOWNLOAD_FROM_ARG, downloadSourceUrl);
 			intent.putExtra(DOWNLOAD_TO_ARG, downloadDest);

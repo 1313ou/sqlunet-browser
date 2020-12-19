@@ -6,13 +6,13 @@ package org.sqlunet.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import androidx.preference.PreferenceManager;
 
 import org.sqlunet.xnet.R;
 
 import java.io.File;
 
 import androidx.annotation.NonNull;
+import androidx.preference.PreferenceManager;
 
 /**
  * Storage settings
@@ -167,6 +167,31 @@ public class StorageSettings
 	}
 
 	/**
+	 * Get download db zipped source
+	 *
+	 * @param context context
+	 * @return download db source
+	 */
+	@NonNull
+	static public String getDbDownloadZippedSource(@NonNull final Context context)
+	{
+		return StorageSettings.getDbDownloadSource(context) + ".zip";
+	}
+
+	/**
+	 * Get download db source as per downloader
+	 *
+	 * @param context       context
+	 * @param zipDownloader whether downloader is zip downloader
+	 * @return download db source
+	 */
+	@NonNull
+	static public String getDbDownloadSource(@NonNull final Context context, boolean zipDownloader)
+	{
+		return zipDownloader ? StorageSettings.getDbDownloadZippedSource(context) : StorageSettings.getDbDownloadSource(context);
+	}
+
+	/**
 	 * Get download db target
 	 *
 	 * @param context context
@@ -176,18 +201,6 @@ public class StorageSettings
 	static public String getDbDownloadTarget(@NonNull final Context context)
 	{
 		return StorageSettings.getDataDir(context) + File.separatorChar + Storage.DBFILE;
-	}
-
-	/**
-	 * Get download db zipped source
-	 *
-	 * @param context context
-	 * @return download db source
-	 */
-	@NonNull
-	static public String getDbDownloadZippedSource(@NonNull final Context context)
-	{
-		return StorageSettings.getDownloadSite(context) + '/' + StorageSettings.getDbDownloadFile(context) + ".zip";
 	}
 
 	/**

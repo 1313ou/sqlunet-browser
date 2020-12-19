@@ -60,11 +60,12 @@ public class SimpleZipDownloaderService extends SimpleDownloaderService
 
 		// dest file
 		final File outFile = new File(this.toFile + ".part");
-		long zdate = -1;
-		long zsize = -1;
 		long date = -1;
 		long size = -1;
+		long zDate = -1;
+		long zSize = -1;
 
+		boolean done = false;
 		try
 		{
 			// connection
@@ -88,12 +89,13 @@ public class SimpleZipDownloaderService extends SimpleDownloaderService
 					final String message = "server returned HTTP " + httpConnection.getResponseCode() + " " + httpConnection.getResponseMessage();
 					throw new RuntimeException(message);
 				}
-				zdate = httpConnection.getLastModified(); // new Date(date));
-				zsize = httpConnection.getContentLength();
+				zDate = httpConnection.getLastModified(); // new Date(date));
+				zSize = httpConnection.getContentLength();
 			}
 			else
 			{
-				zsize = connection.getContentLength();
+				zDate = connection.getDate();
+				zSize = connection.getContentLength();
 			}
 
 			// streams
@@ -114,6 +116,7 @@ public class SimpleZipDownloaderService extends SimpleDownloaderService
 							// copy
 							copyStreams(zinput, output, size);
 							zinput.closeEntry();
+							done = true;
 							break;
 						}
 						//else
@@ -132,7 +135,15 @@ public class SimpleZipDownloaderService extends SimpleDownloaderService
 		}
 
 		// rename
-		install(outFile, date, size);
+		if (done)
+		{
+			install(outFile, date, size);
+			Settings.recordDbSource(this, this.fromUrl, zDate, zSize);
+		}
+		else
+		{
+			throw new RuntimeException("Entry not found " + this.entry);
+		}
 	}
 
 	/**

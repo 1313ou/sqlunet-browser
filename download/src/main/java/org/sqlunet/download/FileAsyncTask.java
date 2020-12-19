@@ -473,7 +473,7 @@ public class FileAsyncTask
 				final Boolean success = (Boolean) result;
 				if (success)
 				{
-					FileData.recordDatabase(activity, new File(sourceFile));
+					Settings.recordDb(activity, new File(sourceFile));
 				}
 			};
 			final Task<String, Long, Boolean> ft = new FileAsyncTask(listener, resultListener, 1000).unzipFromArchive();
@@ -523,7 +523,7 @@ public class FileAsyncTask
 				final Boolean success = (Boolean) result;
 				if (success)
 				{
-					FileData.recordDatabase(activity, new File(sourceFile));
+					Settings.recordDb(activity, new File(sourceFile));
 				}
 			};
 			final Task<String, Long, Boolean> ft = new FileAsyncTask(listener, resultListener, 1000).unzipEntryFromArchive();
@@ -570,7 +570,7 @@ public class FileAsyncTask
 				final Boolean success = (Boolean) result;
 				if (success)
 				{
-					FileData.recordDatabase(activity, new File(sourceFile));
+					Settings.recordDb(activity, new File(sourceFile));
 				}
 			};
 			final Task<String, Long, Boolean> ft = new FileAsyncTask(listener, resultListener, 1000).copyFromFile();

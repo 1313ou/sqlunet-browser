@@ -64,6 +64,18 @@ public class DownloadedPreferenceFragment extends PreferenceFragmentCompat
 		final Preference sizePreference = findPreference(Settings.PREF_DB_SIZE);
 		assert sizePreference != null;
 		sizePreference.setSummaryProvider(LONG_SUMMARY_PROVIDER);
+
+		final Preference sourcePreference = findPreference(Settings.PREF_DB_SOURCE);
+		assert sourcePreference != null;
+		sourcePreference.setSummaryProvider(STRING_SUMMARY_PROVIDER);
+
+		final Preference zipDatePreference = findPreference(Settings.PREF_DB_SOURCE_DATE);
+		assert zipDatePreference != null;
+		zipDatePreference.setSummaryProvider(DATE_SUMMARY_PROVIDER);
+
+		final Preference zipSizePreference = findPreference(Settings.PREF_DB_SOURCE_SIZE);
+		assert zipSizePreference != null;
+		zipSizePreference.setSummaryProvider(LONG_SUMMARY_PROVIDER);
 	}
 
 	@SuppressWarnings("SameReturnValue")

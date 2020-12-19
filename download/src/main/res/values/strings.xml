@@ -41,10 +41,10 @@
 	<!-- items -->
 	<string name="download_source">source</string>
 	<string name="download_dest">destination</string>
-	<string name="download_available">available source</string>
+	<string name="download_up">available source</string>
+	<string name="download_down">current database</string>
 	<string name="download_newer">source is newer</string>
 	<string name="download_uptodate">source is up-to-date</string>
-	<string name="download_actual">actual database</string>
 
 	<!-- dialog -->
 	<string name="yes">Yes</string>
