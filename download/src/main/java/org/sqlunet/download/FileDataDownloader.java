@@ -137,12 +137,12 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 			// in-use downstream data
 			final long downDateValue = Settings.getDbDate(activity);
 			final long downSizeValue = Settings.getDbSize(activity);
-			final Date downDate = downDateValue == -1 ? null : new Date(downDateValue);
+			final Date downDate = downDateValue == -1 || downDateValue == 0 ? null : new Date(downDateValue);
 			final Long downSize = downSizeValue == -1 ? null : downSizeValue;
 			final long downSourceDateValue = Settings.getDbSourceDate(activity);
 			final long downSourceSizeValue = Settings.getDbSourceSize(activity);
 			final String downSource = Settings.getDbSource(activity);
-			final Date downSourceDate = downSourceDateValue == -1 ? null : new Date(downSourceDateValue);
+			final Date downSourceDate = downSourceDateValue == -1 || downSourceDateValue == 0 ? null : new Date(downSourceDateValue);
 			final Long downSourceSize = downSourceSizeValue == -1 ? null : downSourceSizeValue;
 
 			// upstream data
@@ -166,7 +166,7 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 			intent.putExtra(UpdateFragment.DOWN_SOURCE_ARG, downSource);
 			intent.putExtra(UpdateFragment.DOWN_SOURCE_DATE_ARG, downSourceDate == null ? "n/a" : downSourceDate.toString());
 			intent.putExtra(UpdateFragment.DOWN_SOURCE_SIZE_ARG, downSourceSize == null ? "n/a" : downSourceSize.toString() + " bytes");
-			intent.putExtra(UpdateFragment.NEWER_ARG, newer2);
+			intent.putExtra(UpdateFragment.NEWER_ARG, newer || newer2);
 			// to do if confirmed
 			intent.putExtra(DOWNLOAD_FROM_ARG, downloadSourceUrl);
 			intent.putExtra(DOWNLOAD_TO_ARG, downloadDest);

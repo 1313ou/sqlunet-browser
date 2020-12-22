@@ -7,6 +7,7 @@ package org.sqlunet.download;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -116,6 +117,7 @@ public class UpdateFragment extends Fragment
 		final TextView newer = view.findViewById(R.id.newer);
 		if (newerArg)
 		{
+			newer.setTextColor(Color.BLUE);
 			newer.setText(R.string.download_newer);
 			final ImageButton button = view.findViewById(R.id.update);
 			button.setVisibility(View.VISIBLE);
@@ -136,6 +138,7 @@ public class UpdateFragment extends Fragment
 		}
 		else
 		{
+			newer.setTextColor(Color.GREEN);
 			newer.setText(R.string.download_uptodate);
 		}
 	}

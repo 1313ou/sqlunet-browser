@@ -19,7 +19,6 @@ import org.sqlunet.browser.Info;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.download.DownloadActivity;
 import org.sqlunet.download.FileAsyncTask;
-import org.sqlunet.download.FileData;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.Storage;
 import org.sqlunet.settings.StorageSettings;
@@ -31,6 +30,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 
+import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_DOWNLOADER_ARG;
 import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
 import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_TO_ARG;
 import static org.sqlunet.download.BaseDownloadFragment.RENAME_FROM_ARG;
@@ -46,13 +46,14 @@ public class SetupFileFragment extends BaseTaskFragment
 {
 	//static private final String TAG = "SetupFileF";
 
-	static private final String ARG = "operation";
+	static public final String ARG = "operation";
 
 	/**
 	 * Operations
 	 */
-	private enum Operation
-	{CREATE, DROP, COPY, UNZIP, MD5, DOWNLOAD, DOWNLOADZIPPED, UPDATE;
+	public enum Operation
+	{
+		CREATE, DROP, COPY, UNZIP, MD5, DOWNLOAD, DOWNLOADZIPPED, UPDATE;
 
 		/**
 		 * Spinner operations
@@ -68,7 +69,8 @@ public class SetupFileFragment extends BaseTaskFragment
 				return null;
 			}
 			return Operation.valueOf(operation.toString());
-		}}
+		}
+	}
 
 	/**
 	 * Constructor
@@ -100,7 +102,7 @@ public class SetupFileFragment extends BaseTaskFragment
 			if (arg != null)
 			{
 				final Operation op = Operation.valueOf(arg);
-				this.spinner.setSelection(op.ordinal());
+				this.spinner.setSelection(op.ordinal() + 1);
 			}
 		}
 
@@ -174,6 +176,7 @@ public class SetupFileFragment extends BaseTaskFragment
 
 					case DOWNLOADZIPPED:
 						final Intent intent3 = new Intent(activity, DownloadActivity.class);
+						intent3.putExtra(DOWNLOAD_DOWNLOADER_ARG, org.sqlunet.download.Settings.Downloader.SIMPLE_SERVICE.toString());
 						intent3.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadZippedSource(activity));
 						intent3.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadZippedTarget(activity));
 						intent3.putExtra(UNZIP_TO_ARG, StorageSettings.getDataDir(activity));

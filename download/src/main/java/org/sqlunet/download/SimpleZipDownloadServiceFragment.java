@@ -29,6 +29,10 @@ public class SimpleZipDownloadServiceFragment extends SimpleDownloadServiceFragm
 		super.onCreate(savedInstanceState);
 
 		// download source data
+		if (this.sourceUrl.endsWith(".zip"))
+		{
+			this.sourceUrl = this.sourceUrl.substring(0, this.sourceUrl.length() - 4);
+		}
 		if (!this.downloadUrl.endsWith(".zip"))
 		{
 			this.downloadUrl += ".zip";

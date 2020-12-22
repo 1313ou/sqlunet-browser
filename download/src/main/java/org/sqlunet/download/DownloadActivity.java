@@ -15,6 +15,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_DOWNLOADER_ARG;
+
 /**
  * Download activity
  *
@@ -34,7 +36,9 @@ public class DownloadActivity extends AppCompatActivity implements DownloadFragm
 	{
 		super.onCreate(savedInstanceState);
 
-		final Settings.Downloader downloader = Settings.Downloader.getFromPref(this);
+		// downloader
+		final String overriddenDownloader = getIntent().getStringExtra(DOWNLOAD_DOWNLOADER_ARG);
+		final Settings.Downloader downloader = overriddenDownloader == null ? Settings.Downloader.getFromPref(this) : org.sqlunet.download.Settings.Downloader.valueOf(overriddenDownloader);
 
 		// content
 		setContentView(R.layout.activity_download);

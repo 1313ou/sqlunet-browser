@@ -65,6 +65,6 @@ public class FileData
 	@Nullable
 	public Date getDate()
 	{
-		return this.date == -1 ? null : new Date(this.date);
+		return this.date == -1 || this.date == 0 ? null : new Date(this.date);
 	}
 }

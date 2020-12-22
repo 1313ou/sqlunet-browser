@@ -85,7 +85,8 @@ public class TaskObserver
 		@Override
 		public void taskUpdate(@NonNull Progress progress, @NonNull Progress length)
 		{
-			Log.d(TAG, "Task " + progress + '/' + length);
+			// TODO progress observation
+			// Log.d(TAG, "Task " + progress + '/' + length);
 		}
 
 		@SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})
