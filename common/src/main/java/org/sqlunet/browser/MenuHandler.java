@@ -16,6 +16,8 @@ import org.sqlunet.browser.common.R;
 import org.sqlunet.browser.config.DiagnosticsActivity;
 import org.sqlunet.browser.config.SettingsActivity;
 import org.sqlunet.browser.config.SetupActivity;
+import org.sqlunet.browser.config.SetupFileActivity;
+import org.sqlunet.browser.config.SetupFileFragment;
 import org.sqlunet.browser.config.StorageActivity;
 import org.sqlunet.download.FileDataDownloader;
 import org.sqlunet.provider.BaseProvider;
@@ -75,6 +77,11 @@ public class MenuHandler
 		else if (itemId == R.id.action_diagnostics)
 		{
 			intent = new Intent(activity, DiagnosticsActivity.class);
+		}
+		else if (itemId == R.id.action_drop)
+		{
+			intent = new Intent(activity, SetupFileActivity.class);
+			intent.putExtra(SetupFileFragment.ARG, SetupFileFragment.Operation.DROP.toString());
 		}
 		else if (itemId == R.id.action_update)
 		{

@@ -154,7 +154,7 @@ public class Diagnostics
 				sb.append('\n');
 
 				sb.append("last modified: ");
-				sb.append(new Date(databaseLastModified).toString());
+				sb.append(databaseLastModified == -1 || databaseLastModified == 0 ? "n/a" : new Date(databaseLastModified).toString());
 				sb.append('\n');
 
 				sb.append("can read: ");
@@ -358,7 +358,7 @@ public class Diagnostics
 		sb.append(size == -1 ? "null" : sourceSize);
 		sb.append('\n');
 		sb.append("recorded source date: ");
-		sb.append(stamp == -1 ? "null" : new Date(sourceStamp).toString());
+		sb.append(stamp == -1 || stamp == 0 ? "null" : new Date(sourceStamp).toString());
 		sb.append('\n');
 		sb.append("recorded name: ");
 		sb.append(name == null ? "null" : name);
@@ -367,7 +367,7 @@ public class Diagnostics
 		sb.append(size == -1 ? "null" : size);
 		sb.append('\n');
 		sb.append("recorded date: ");
-		sb.append(stamp == -1 ? "null" : new Date(stamp).toString());
+		sb.append(stamp == -1 || stamp == 0 ? "null" : new Date(stamp).toString());
 		sb.append('\n');
 
 		final String dbDownloadSource = StorageSettings.getDbDownloadSource(context, org.sqlunet.download.Settings.Downloader.isZipDownloaderPref(context));

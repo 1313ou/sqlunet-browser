@@ -7,11 +7,11 @@
 	<!-- default sites -->
 	<string name="pref_sourceforge_600_31_site_url" translatable="false">https://sourceforge.net/projects/sqlunet/files/6.0.0/semantikos/31</string>
 	<string name="pref_sourceforge_600_XX_site_url" translatable="false">https://sourceforge.net/projects/sqlunet/files/6.0.0/semantikos/XX</string>
-	<string name="pref_sourceforge_current_site_url" translatable="false">https://sourceforge.net/projects/sqlunet/files/current/semantikos</string>
-	<string name="pref_sourceforge_current_alias_site_url" translatable="false">https://sourceforge.net/projects/sqlunet/files/current/android</string>
+	<string name="pref_sourceforge_520_site_url" translatable="false">https://sourceforge.net/projects/sqlunet/files/current/semantikos</string>
+	<string name="pref_sourceforge_520_alias_site_url" translatable="false">https://sourceforge.net/projects/sqlunet/files/current/android</string>
 	<string name="pref_bitbucket_31_site_url" translatable="false">https://bitbucket.org/semantikos/semantikos/raw/f43cd6267bbbead5b86ad7958e890f7118d0f2c7/31</string>
-	<string name="pref_bitbucket_XX_site_url" translatable="false">https://bitbucket.org/semantikos/semantikos/raw/f43cd6267bbbead5b86ad7958e890f7118d0f2c7/XX</string>
-	<string name="pref_default_download_site_url" translatable="false">@string/pref_sourceforge_current_site_url</string>
+	<string name="pref_bitbucket_XX_site_url" translatable="false">https://bitbucket.org/semantikos/semantikos/raw/3560a7713a3cdd6da4deec0e6b69ef1e45f108b2/XX</string>
+	<string name="pref_default_download_site_url" translatable="false">@string/pref_sourceforge_520_site_url</string>
 
 	<!-- site files -->
 	<string name="pref_default_download_dbfile" translatable="false">sqlunet.db</string>

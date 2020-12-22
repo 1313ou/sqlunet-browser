@@ -23,7 +23,8 @@
 	<string name="action_status">Status</string>
 	<string name="action_refresh">Refresh</string>
 	<string name="action_copy">Copy</string>
-	<string name="action_update">Update database</string>
+	<string name="action_drop">Drop</string>
+	<string name="action_update">Update</string>
 	<string name="action_diagnostics">Diagnostics</string>
 
 	<!-- setup -->
@@ -88,7 +89,7 @@
 	<string name="title_activity_download">Download</string>
 	<string name="title_activity_searchtext">Text Search</string>
 	<string name="title_activity_storage">Storage</string>
-	<string name="title_activity_update">Update database</string>
+	<string name="title_activity_update">Update</string>
 	<!--<string name="title_activity_share_browse">Browse with Semantikos</string>-->
 	<!--<string name="title_activity_share_searchtext">Text search with Semantikos</string>-->
 

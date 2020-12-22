@@ -6,7 +6,6 @@
 
 	<!-- site files -->
 	<string name="pref_default_download_dbfile" translatable="false">sqlunet.db</string>
-	<!--<string name="pref_default_download_dbfile_zipped" translatable="false">sqlunet.db.zip</string>-->
 	<string name="pref_default_download_sqlfile" translatable="false">sqlunet.sql.zip</string>
 	<string name="pref_default_entry_import" translatable="false">sqlunet.sql</string>
 	<string name="pref_default_entry_index" translatable="false">sqlunet-index.sql</string>
@@ -15,12 +14,13 @@
 	<!-- not overriden -->
 
 	<!-- sites -->
-	<string name="pref_default_download_site_url" translatable="false">@string/pref_bitbucket_31_site_url</string>
 	<string-array name="pref_download_site_urls" translatable="false" tools:ignore="InconsistentArrays">
-		<item>@string/pref_default_download_site_url</item>
+		<item>@string/pref_bitbucket_31_site_url</item>
+		<item>@string/pref_bitbucket_XX_site_url</item>
 		<item>@string/pref_sourceforge_600_31_site_url</item>
 		<item>@string/pref_sourceforge_600_XX_site_url</item>
-		<item>@string/pref_sourceforge_current_alias_site_url</item>
+		<item>@string/pref_sourceforge_520_site_url</item>
+		<item>@string/pref_sourceforge_520_alias_site_url</item>
 	</string-array>
 
 </resources>

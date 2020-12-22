@@ -84,6 +84,11 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 	static private final String PROGRESS_STATUS_STATE = "progress_status_state";
 
 	/**
+	 * Downloader argument
+	 */
+	static public final String DOWNLOAD_DOWNLOADER_ARG = "download_downloader";
+
+	/**
 	 * From argument
 	 */
 	static public final String DOWNLOAD_FROM_ARG = "download_from";
@@ -940,7 +945,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 	private void md5()
 	{
 		final String from = this.sourceUrl + ".md5";
-		final String targetFile = Uri.parse(this.sourceUrl).getLastPathSegment();
+		final String targetFile = this.downloadedFile.getName();
 		new MD5Downloader(downloadedResult -> {
 
 			final FragmentActivity activity = getActivity();

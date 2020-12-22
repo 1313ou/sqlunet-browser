@@ -27,6 +27,11 @@
 				app:showAsAction="never"
 				tools:ignore="AppCompatResource"/>
 			<item
+				android:id="@+id/action_drop"
+				android:title="@string/action_drop"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource"/>
+			<item
 				android:id="@+id/action_update"
 				android:title="@string/action_update"
 				app:showAsAction="never"
