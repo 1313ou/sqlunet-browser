@@ -21,6 +21,7 @@ import org.sqlunet.browser.common.R;
 import org.sqlunet.concurrency.ObservedDelegatingTask;
 import org.sqlunet.concurrency.Task;
 import org.sqlunet.concurrency.TaskObserver;
+import org.sqlunet.concurrency.TaskToastObserver;
 import org.sqlunet.provider.ManagerContract;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.settings.StorageSettings;
@@ -86,7 +87,7 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 			final CharSequence sql = sqls[(int) id];
 			final String[] sqlStatements = sql.toString().split(";");
 			final Task<Pair<String, String[]>, Integer, Boolean> st = new ExecAsyncTask(activity, this::update, null, 1).fromSql();
-			final TaskObserver.Listener<Integer> stListener = new TaskObserver.ToastWithStatusListener<>(activity, SetupDatabaseFragment.this.status);
+			final TaskObserver.Observer<Integer> stListener = new TaskToastObserver.WithStatus<>(activity, SetupDatabaseFragment.this.status);
 			final ObservedDelegatingTask<Pair<String, String[]>, Integer, Boolean> oft = new ObservedDelegatingTask<>(st, stListener);
 			oft.execute(new Pair<>(databasePath, sqlStatements));
 		});
