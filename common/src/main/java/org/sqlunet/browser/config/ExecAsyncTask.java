@@ -59,7 +59,7 @@ public class ExecAsyncTask
 	 * Result listener
 	 */
 	@Nullable
-	final private TaskObserver.Listener<Integer> listener;
+	final private TaskObserver.Observer<Integer> listener;
 
 	/**
 	 * Publish rate
@@ -79,7 +79,7 @@ public class ExecAsyncTask
 	 * @param listener     listener
 	 * @param publishRate  publish rate
 	 */
-	public ExecAsyncTask(final Activity activity, @Nullable final DoneListener doneListener, @Nullable final TaskObserver.Listener<Integer> listener, final int publishRate)
+	public ExecAsyncTask(final Activity activity, @Nullable final DoneListener doneListener, @Nullable final TaskObserver.Observer<Integer> listener, final int publishRate)
 	{
 		this.activity = activity;
 		this.doneListener = doneListener;
@@ -99,7 +99,7 @@ public class ExecAsyncTask
 		 * Task listener
 		 */
 		@Nullable
-		final private TaskObserver.Listener<Integer> listener;
+		final private TaskObserver.Observer<Integer> listener;
 
 		/**
 		 * Publish rate
@@ -112,7 +112,7 @@ public class ExecAsyncTask
 		 * @param listener    listener
 		 * @param publishRate publish rate
 		 */
-		AsyncExecuteFromSql(@Nullable final DoneListener doneListener, @Nullable final TaskObserver.Listener<Integer> listener, final int publishRate)
+		AsyncExecuteFromSql(@Nullable final DoneListener doneListener, @Nullable final TaskObserver.Observer<Integer> listener, final int publishRate)
 		{
 			this.doneListener = doneListener;
 			this.listener = listener;
@@ -228,7 +228,7 @@ public class ExecAsyncTask
 		 * Task listener
 		 */
 		@Nullable
-		final private TaskObserver.Listener<Integer> listener;
+		final private TaskObserver.Observer<Integer> listener;
 
 		/**
 		 * Publish rate
@@ -254,7 +254,7 @@ public class ExecAsyncTask
 		 * @param powerManager power manager
 		 * @param window       window
 		 */
-		AsyncExecuteFromArchive(@Nullable final DoneListener doneListener, @Nullable final TaskObserver.Listener<Integer> listener, final int publishRate, final PowerManager powerManager, final Window window)
+		AsyncExecuteFromArchive(@Nullable final DoneListener doneListener, @Nullable final TaskObserver.Observer<Integer> listener, final int publishRate, final PowerManager powerManager, final Window window)
 		{
 			this.doneListener = doneListener;
 			this.listener = listener;
@@ -503,7 +503,7 @@ public class ExecAsyncTask
 		 * Task listener
 		 */
 		@Nullable
-		final private TaskObserver.Listener<Integer> listener;
+		final private TaskObserver.Observer<Integer> listener;
 
 		/**
 		 * Constructor
@@ -511,7 +511,7 @@ public class ExecAsyncTask
 		 * @param doneListener doneListener
 		 * @param listener     listener
 		 */
-		AsyncVacuum(@Nullable final DoneListener doneListener, @Nullable final TaskObserver.Listener<Integer> listener)
+		AsyncVacuum(@Nullable final DoneListener doneListener, @Nullable final TaskObserver.Observer<Integer> listener)
 		{
 			this.doneListener = doneListener;
 			this.listener = listener;

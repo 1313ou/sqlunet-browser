@@ -7,9 +7,9 @@ public class ObservedDelegatingTask<Params, Progress extends Number, Result> ext
 {
 	private final Task<Params, Progress, Result> delegate;
 
-	private final TaskObserver.Listener<Progress> observer;
+	private final TaskObserver.Observer<Progress> observer;
 
-	public ObservedDelegatingTask(final Task<Params, Progress, Result> delegate, final TaskObserver.Listener<Progress> observer)
+	public ObservedDelegatingTask(final Task<Params, Progress, Result> delegate, final TaskObserver.Observer<Progress> observer)
 	{
 		this.delegate = delegate;
 		this.delegate.setForward(this);

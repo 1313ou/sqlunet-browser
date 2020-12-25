@@ -2,9 +2,9 @@ package org.sqlunet.concurrency;
 
 public abstract class ObservedTask<Params, Progress extends Number, Result> extends Task<Params, Progress, Result>
 {
-	private final TaskObserver.Listener<Progress> observer;
+	private final TaskObserver.Observer<Progress> observer;
 
-	public ObservedTask(final TaskObserver.Listener<Progress> observer)
+	public ObservedTask(final TaskObserver.Observer<Progress> observer)
 	{
 		this.observer = observer;
 	}

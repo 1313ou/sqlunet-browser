@@ -25,6 +25,7 @@ import org.sqlunet.browser.Info;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.concurrency.ObservedDelegatingTask;
 import org.sqlunet.concurrency.Task;
+import org.sqlunet.concurrency.TaskDialogObserver;
 import org.sqlunet.concurrency.TaskObserver;
 import org.sqlunet.download.BaseDownloadFragment;
 import org.sqlunet.download.DownloadActivity;
@@ -185,11 +186,11 @@ public class SetupSqlFragment extends Fragment implements Updatable
 				final String source = StorageSettings.getSqlSource(activity);
 				final String entry = StorageSettings.getImportEntry(activity);
 				final String unit = activity.getString(R.string.unit_statement);
-				final TaskObserver.Listener<Integer> listener = new TaskObserver.BaseListener<>();
-				final Task<String, Integer, Boolean> st = new ExecAsyncTask(activity, this::update, listener, 1000).fromArchive();
-				// final TaskObserver.Listener<Integer> stListener = new TaskObserver.ProgressDialogListener<>(activity, activity.getString(R.string.status_managing), source + '@' + entry, unit);
-				final TaskObserver.Listener<Integer> stListener = new TaskObserver.DialogListener<>(activity.getSupportFragmentManager(), activity.getString(R.string.status_managing), source + '@' + entry, unit);
-				final ObservedDelegatingTask<String, Integer, Boolean> oft = new ObservedDelegatingTask<>(st, stListener);
+				final TaskObserver.Observer<Integer> observer = new TaskObserver.BaseObserver<>();
+				final Task<String, Integer, Boolean> st = new ExecAsyncTask(activity, this::update, observer, 1000).fromArchive();
+				// final TaskObserver.Observer<Integer> stObserver = new TaskProgressDialogObserver<>(activity, activity.getString(R.string.status_managing), source + '@' + entry, unit);
+				final TaskObserver.Observer<Integer> stObserver = new TaskDialogObserver<>(activity.getSupportFragmentManager(), activity.getString(R.string.status_managing), source + '@' + entry, unit);
+				final ObservedDelegatingTask<String, Integer, Boolean> oft = new ObservedDelegatingTask<>(st, stObserver);
 				oft.execute(database, source, entry);
 			}
 			catch (@NonNull final Exception e)
@@ -229,11 +230,11 @@ public class SetupSqlFragment extends Fragment implements Updatable
 				final String source = StorageSettings.getSqlSource(activity);
 				final String entry = StorageSettings.getIndexEntry(activity);
 				final String unit = activity.getString(R.string.unit_statement);
-				final TaskObserver.Listener<Integer> listener = new TaskObserver.BaseListener<>();
-				final Task<String, Integer, Boolean> st = new ExecAsyncTask(activity, this::update, listener, 1).fromArchive(); //database, source, entry);
-				// final TaskObserver.Listener<Integer> stListener = new TaskObserver.ProgressDialogListener<>(activity, activity.getString(R.string.status_managing), source + '@' + entry, unit);
-				final TaskObserver.Listener<Integer> stListener = new TaskObserver.DialogListener<>(activity.getSupportFragmentManager(), activity.getString(R.string.status_managing), source + '@' + entry, unit);
-				final ObservedDelegatingTask<String, Integer, Boolean> oft = new ObservedDelegatingTask<>(st, stListener);
+				final TaskObserver.Observer<Integer> observer = new TaskObserver.BaseObserver<>();
+				final Task<String, Integer, Boolean> st = new ExecAsyncTask(activity, this::update, observer, 1).fromArchive(); //database, source, entry);
+				// final TaskObserver.Observer<Integer> stObserver = new TaskProgressDialogObserver<>(activity, activity.getString(R.string.status_managing), source + '@' + entry, unit);
+				final TaskObserver.Observer<Integer> stObserver = new TaskDialogObserver<>(activity.getSupportFragmentManager(), activity.getString(R.string.status_managing), source + '@' + entry, unit);
+				final ObservedDelegatingTask<String, Integer, Boolean> oft = new ObservedDelegatingTask<>(st, stObserver);
 				oft.execute(database, source, entry);
 			}
 			catch (@NonNull final Exception e)

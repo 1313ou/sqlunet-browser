@@ -25,6 +25,7 @@ import android.widget.Toast;
 import org.sqlunet.Deploy;
 import org.sqlunet.concurrency.ObservedDelegatingTask;
 import org.sqlunet.concurrency.Task;
+import org.sqlunet.concurrency.TaskDialogObserver;
 import org.sqlunet.concurrency.TaskObserver;
 
 import java.io.File;
@@ -886,7 +887,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		{
 			return;
 		}
-		final TaskObserver.BaseListener<Long> taskListener = new TaskObserver.BaseListener<Long>()
+		final TaskObserver.BaseObserver<Long> taskListener = new TaskObserver.BaseObserver<Long>()
 		{
 			@Override
 			public void taskFinish(final boolean result)
@@ -918,8 +919,8 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		//broadcastRequest(this.appContext, KILL);
 
 		final Task<String, Long, Boolean> ft = new FileAsyncTask(taskListener, null, 1000).unzipFromArchive();
-		//final TaskObserver.Listener<Long> fatListener = new TaskObserver.ProgressDialogListener<>(activity, activity.getString(R.string.action_unzip_from_archive), this.downloadedFile.getName(), null); // guarded, level 1
-		final TaskObserver.DialogListener<Long> fatListener = new TaskObserver.DialogListener<>(getParentFragmentManager(), activity.getString(R.string.action_unzip_from_archive), this.downloadedFile.getName(), null); // guarded, level 1
+		//final TaskObserver.Observer<Long> fatListener = new TaskProgressDialogObserver<>(activity, activity.getString(R.string.action_unzip_from_archive), this.downloadedFile.getName(), null); // guarded, level 1
+		final TaskDialogObserver<Long> fatListener = new TaskDialogObserver<>(getParentFragmentManager(), activity.getString(R.string.action_unzip_from_archive), this.downloadedFile.getName(), null); // guarded, level 1
 		final Task<String, Long, Boolean> oft = new ObservedDelegatingTask<>(ft, fatListener);
 		oft.execute(this.downloadedFile.getAbsolutePath(), destDir);
 	}
