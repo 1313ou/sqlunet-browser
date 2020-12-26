@@ -967,7 +967,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 				assert this.downloadedFile != null;
 				final String localPath = this.downloadedFile.getAbsolutePath();
 
-				FileAsyncTask.md5(activity, localPath, result -> {
+				FileAsyncTaskChooser.md5(activity, localPath, result -> {
 
 					final Activity activity2 = getActivity();
 					if (activity2 != null && !isDetached() && !activity2.isFinishing() && !activity2.isDestroyed())
