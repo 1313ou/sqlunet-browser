@@ -19,6 +19,7 @@ import org.sqlunet.browser.Info;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.download.DownloadActivity;
 import org.sqlunet.download.FileAsyncTask;
+import org.sqlunet.download.FileAsyncTaskChooser;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.Storage;
 import org.sqlunet.settings.StorageSettings;
@@ -142,7 +143,7 @@ public class SetupFileFragment extends BaseTaskFragment
 					case COPY:
 						if (Permissions.check(activity))
 						{
-							FileAsyncTask.copyFromFile(activity, StorageSettings.getCacheDir(activity), StorageSettings.getDatabasePath(activity));
+							FileAsyncTaskChooser.copyFromFile(activity, StorageSettings.getCacheDir(activity), StorageSettings.getDatabasePath(activity));
 							org.sqlunet.download.Settings.unrecordDb(activity);
 						}
 						break;
@@ -155,7 +156,7 @@ public class SetupFileFragment extends BaseTaskFragment
 							{
 								zipEntry = Storage.DBFILE;
 							}
-							FileAsyncTask.unzipEntryFromArchive(activity, StorageSettings.getCacheDir(activity), zipEntry, StorageSettings.getDatabasePath(activity));
+							FileAsyncTaskChooser.unzipEntryFromArchive(activity, StorageSettings.getCacheDir(activity), zipEntry, StorageSettings.getDatabasePath(activity));
 							org.sqlunet.download.Settings.unrecordDb(activity);
 						}
 						break;
@@ -163,7 +164,7 @@ public class SetupFileFragment extends BaseTaskFragment
 					case MD5:
 						if (Permissions.check(activity))
 						{
-							FileAsyncTask.md5(activity);
+							FileAsyncTaskChooser.md5(activity);
 						}
 						break;
 
