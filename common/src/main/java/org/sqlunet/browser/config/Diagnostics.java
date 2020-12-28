@@ -14,7 +14,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.os.Build;
 
-import org.sqlunet.Deploy;
+import org.sqlunet.deploy.Deploy;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.concurrency.Task;
 import org.sqlunet.download.Settings;

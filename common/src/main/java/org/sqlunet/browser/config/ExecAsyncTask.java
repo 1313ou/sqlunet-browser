@@ -188,7 +188,7 @@ public class ExecAsyncTask
 		{
 			if (this.listener != null)
 			{
-				this.listener.taskUpdate(params[0], params[1]);
+				this.listener.taskProgress(params[0], params[1]);
 			}
 		}
 
@@ -460,7 +460,7 @@ public class ExecAsyncTask
 		{
 			if (this.listener != null)
 			{
-				this.listener.taskUpdate(params[0], params[1]);
+				this.listener.taskProgress(params[0], params[1]);
 			}
 		}
 
