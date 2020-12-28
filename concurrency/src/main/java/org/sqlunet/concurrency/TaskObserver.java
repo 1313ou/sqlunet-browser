@@ -24,13 +24,12 @@ public class TaskObserver
 	/**
 	 * Observer interface
 	 */
-	@FunctionalInterface
 	public interface Observer<Progress extends Number>
 	{
 		/**
 		 * Start event
 		 */
-		default void taskStart(@NonNull final Task<?, Progress, ?> task)
+		default void taskStart(@NonNull final Cancelable task)
 		{
 		}
 
@@ -43,12 +42,21 @@ public class TaskObserver
 		void taskFinish(boolean result);
 
 		/**
-		 * Intermediate update event
+		 * Intermediate progress event
 		 *
 		 * @param progress progress value
 		 * @param length   length
 		 */
-		default void taskUpdate(@NonNull Progress progress, @NonNull Progress length)
+		default void taskProgress(@NonNull Progress progress, @NonNull Progress length)
+		{
+		}
+
+		/**
+		 * Intermediate update event
+		 *
+		 * @param message message
+		 */
+		default void taskUpdate(@NonNull String message)
 		{
 		}
 	}
@@ -60,17 +68,23 @@ public class TaskObserver
 	{
 		@SuppressWarnings("WeakerAccess")
 		@Override
-		public void taskStart(@NonNull final Task<?, Progress, ?> task)
+		public void taskStart(@NonNull final Cancelable task)
 		{
 			Log.d(TAG, "Task start");
 		}
 
 		@SuppressWarnings("WeakerAccess")
 		@Override
-		public void taskUpdate(@NonNull Progress progress, @NonNull Progress length)
+		public void taskProgress(@NonNull Progress progress, @NonNull Progress length)
 		{
-			// TODO progress observation
-			// Log.d(TAG, "Task " + progress + '/' + length);
+			Log.d(TAG, "Task " + progress + '/' + length);
+		}
+
+		@SuppressWarnings("WeakerAccess")
+		@Override
+		public void taskUpdate(@NonNull final String message)
+		{
+			Log.d(TAG, "Task " + message);
 		}
 
 		@SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})

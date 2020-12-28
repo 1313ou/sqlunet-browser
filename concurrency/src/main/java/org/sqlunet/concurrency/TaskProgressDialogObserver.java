@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 /**
- * Task DiaalogProgress observer
+ * Task DialogProgress observer
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -25,7 +25,7 @@ public class TaskProgressDialogObserver<Progress extends Number> extends TaskObs
 	static private final String TAG = "TaskDPObserver";
 
 	@Nullable
-	private Task<?, ?, ?> task;
+	private Cancelable task;
 
 	@NonNull
 	private final ProgressDialog progressDialog;
@@ -61,7 +61,7 @@ public class TaskProgressDialogObserver<Progress extends Number> extends TaskObs
 	}
 
 	@Override
-	public void taskStart(@NonNull final Task<?, Progress, ?> task)
+	public void taskStart(@NonNull final Cancelable task)
 	{
 		super.taskStart(task);
 		this.task = task;
@@ -69,9 +69,9 @@ public class TaskProgressDialogObserver<Progress extends Number> extends TaskObs
 	}
 
 	@Override
-	public void taskUpdate(@NonNull final Progress progress, @NonNull final Progress length)
+	public void taskProgress(@NonNull final Progress progress, @NonNull final Progress length)
 	{
-		super.taskUpdate(progress, length);
+		super.taskProgress(progress, length);
 		final long longLength = length.longValue();
 		final long longProgress = progress.longValue();
 		final boolean indeterminate = longLength == -1L;
@@ -93,6 +93,13 @@ public class TaskProgressDialogObserver<Progress extends Number> extends TaskObs
 			this.progressDialog.setMax((int) longLength);
 			this.progressDialog.setProgress((int) longProgress);
 		}
+	}
+
+	@Override
+	public void taskUpdate(@NonNull final String message)
+	{
+		super.taskUpdate(message);
+		this.progressDialog.setMessage(message);
 	}
 
 	@SuppressWarnings("UnusedReturnValue")
