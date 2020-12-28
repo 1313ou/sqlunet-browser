@@ -25,7 +25,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-abstract public class Task<Params, Progress, Result>
+abstract public class Task<Params, Progress, Result> implements Cancelable
 {
 	private static final String LOG_TAG = "AsyncTask";
 
@@ -282,6 +282,7 @@ abstract public class Task<Params, Progress, Result>
 		return this.cancelled.get() || this.future.isCancelled();
 	}
 
+	@Override
 	public final boolean cancel(boolean mayInterruptIfRunning)
 	{
 		this.cancelled.set(true);

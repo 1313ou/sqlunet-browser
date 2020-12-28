@@ -69,7 +69,7 @@ public class TaskDialogObserver<Progress extends Number> extends TaskObserver.Ba
 	}
 
 	@Override
-	public void taskStart(@NonNull final Task<?, Progress, ?> task)
+	public void taskStart(@NonNull final Cancelable task)
 	{
 		super.taskStart(task);
 		this.progressDialogFragment.setTask(task);
@@ -77,9 +77,9 @@ public class TaskDialogObserver<Progress extends Number> extends TaskObserver.Ba
 	}
 
 	@Override
-	public void taskUpdate(@NonNull final Progress progress, @NonNull final Progress length)
+	public void taskProgress(@NonNull final Progress progress, @NonNull final Progress length)
 	{
-		super.taskUpdate(progress, length);
+		super.taskProgress(progress, length);
 		final long longLength = length.longValue();
 		final long longProgress = progress.longValue();
 		final boolean indeterminate = longLength == -1L;
@@ -96,6 +96,13 @@ public class TaskDialogObserver<Progress extends Number> extends TaskObserver.Ba
 			this.progressDialogFragment.progressBar.setMax(100);
 			this.progressDialogFragment.progressBar.setProgress(percent);
 		}
+	}
+
+	@Override
+	public void taskUpdate(@NonNull final String message)
+	{
+		super.taskUpdate(message);
+		this.progressDialogFragment.textView.setText(message);
 	}
 
 	@SuppressWarnings("UnusedReturnValue")
@@ -132,7 +139,7 @@ public class TaskDialogObserver<Progress extends Number> extends TaskObserver.Ba
 		private ProgressBar progressBar;
 
 		@Nullable
-		private Task<?, ?, ?> task;
+		private Cancelable task;
 
 		public ProgressDialogFragment(@NonNull final CharSequence title, @NonNull final CharSequence message)
 		{
@@ -140,7 +147,7 @@ public class TaskDialogObserver<Progress extends Number> extends TaskObserver.Ba
 			this.message = message;
 		}
 
-		public void setTask(@NonNull final Task<?, ?, ?> task)
+		public void setTask(@NonNull final Cancelable task)
 		{
 			this.task = task;
 		}
@@ -159,6 +166,7 @@ public class TaskDialogObserver<Progress extends Number> extends TaskObserver.Ba
 			builder.setTitle(this.title);
 			builder.setMessage(this.message);
 			builder.setNegativeButton(R.string.action_cancel, (dialog, whichButton) -> {
+
 				// canceled.
 				boolean result = this.task != null && this.task.cancel(true);
 				Log.d(TAG, "Cancel task @" + (this.task == null ? "null" : Integer.toHexString(this.task.hashCode())) + ' ' + result);

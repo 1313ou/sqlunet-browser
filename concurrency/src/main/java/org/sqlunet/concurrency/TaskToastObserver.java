@@ -35,7 +35,7 @@ public class TaskToastObserver<Progress extends Number> extends TaskObserver.Bas
 
 	@SuppressWarnings("WeakerAccess")
 	@Override
-	public void taskStart(@NonNull final Task<?, Progress, ?> task)
+	public void taskStart(@NonNull final Cancelable task)
 	{
 		super.taskStart(task);
 		Toast.makeText(this.appContext, R.string.status_task_start_toast, Toast.LENGTH_SHORT).show();
@@ -64,10 +64,17 @@ public class TaskToastObserver<Progress extends Number> extends TaskObserver.Bas
 		}
 
 		@Override
-		public void taskStart(@NonNull final Task<?, Progress, ?> task)
+		public void taskStart(@NonNull final Cancelable task)
 		{
 			super.taskStart(task);
 			this.status.setText(R.string.status_task_running);
+		}
+
+		@Override
+		public void taskUpdate(@NonNull final String message)
+		{
+			super.taskUpdate(message);
+			this.status.setText(message);
 		}
 
 		@Override
@@ -98,16 +105,16 @@ public class TaskToastObserver<Progress extends Number> extends TaskObserver.Bas
 		}
 
 		@Override
-		public void taskStart(@NonNull Task<?, Progress, ?> task)
+		public void taskStart(@NonNull Cancelable task)
 		{
 			super.taskStart(task);
 			this.progress.setIndeterminate(true);
 		}
 
 		@Override
-		public void taskUpdate(@NonNull final Progress progress, @NonNull final Progress length)
+		public void taskProgress(@NonNull final Progress progress, @NonNull final Progress length)
 		{
-			super.taskUpdate(progress, length);
+			super.taskProgress(progress, length);
 			boolean indeterminate = length.longValue() == -1L;
 			this.progress.setIndeterminate(indeterminate);
 			if (!indeterminate)

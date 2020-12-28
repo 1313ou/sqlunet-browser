@@ -58,6 +58,6 @@ public class ObservedDelegatingTask<Params, Progress extends Number, Result> ext
 	protected void onProgressUpdate(final Progress[] values)
 	{
 		this.delegate.onProgressUpdate(values);
-		this.observer.taskUpdate(values[0], values[1]); // current, total
+		this.observer.taskProgress(values[0], values[1]); // current, total
 	}
 }
