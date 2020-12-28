@@ -1,33 +1,24 @@
 /*
- * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ * Copyright (c) 2020. Bernard Bou <1313ou@gmail.com>.
  */
 
-package org.sqlunet;
+package org.sqlunet.deploy;
 
-import android.net.Uri;
 import android.util.Log;
 
 import org.sqlunet.concurrency.Task;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-import java.util.zip.ZipInputStream;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -67,7 +58,6 @@ public class ObservedDeploy
 
 		try (FileInputStream in = new FileInputStream(srcFile); FileOutputStream out = new FileOutputStream(destFile))
 		{
-
 			final byte[] buffer = new byte[CHUNK_SIZE];
 			long byteCount = 0;
 			int chunkCount = 0;
@@ -122,7 +112,6 @@ public class ObservedDeploy
 
 		try
 		{
-			// zip
 			zipFile = new ZipFile(srcArchive);
 			Enumeration<? extends ZipEntry> zipEntries = zipFile.entries();
 			while (zipEntries.hasMoreElements())
@@ -332,7 +321,6 @@ public class ObservedDeploy
 			long length = sourceFile.length();
 			try (FileInputStream fis = new FileInputStream(srcFile); DigestInputStream dis = new DigestInputStream(fis, md))
 			{
-
 				final byte[] buffer = new byte[CHUNK_SIZE];
 				long byteCount = 0;
 				int chunkCount = 0;
@@ -364,6 +352,7 @@ public class ObservedDeploy
 		}
 		catch (@NonNull NoSuchAlgorithmException | IOException e)
 		{
+			Log.e(TAG, srcFile, e);
 			return null;
 		}
 	}
