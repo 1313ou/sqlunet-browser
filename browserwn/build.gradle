@@ -33,6 +33,8 @@ android {
         }
     }
 
+    assetPacks = [":dbwn_wn31_asset"]
+
     signingConfigs {
         sqlunet {
             keyAlias keystoreProperties['keyAlias']
@@ -56,17 +58,17 @@ android {
 }
 
 dependencies {
-    //implementation project(':common')
-    //implementation project(':expandableListFragment')
-    //implementation project(':download')
-    //implementation project(':deploy')
-    //implementation project(':others')
-    //implementation project(':donate')
-    //implementation project(':rate')
-    //implementation project(':xNet')
-    //implementation project(':wordNet')
-    //implementation project(':bNC')
-    implementation project(':libwn')
+    //implementation project(path: ':common')
+    //implementation project(path: ':expandableListFragment')
+    //implementation project(path: ':download')
+    //implementation project(path: ':deploy')
+    //implementation project(path: ':others')
+    //implementation project(path: ':donate')
+    //implementation project(path: ':rate')
+    //implementation project(path: ':xNet')
+    //implementation project(path: ':wordNet')
+    //implementation project(path: ':bNC')
+    implementation project(path: ':libwn')
 
     implementation 'androidx.appcompat:appcompat:1.2.0' // for resources validation
     //implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"

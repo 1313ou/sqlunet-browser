@@ -34,6 +34,8 @@ android {
         }
     }
 
+    assetPacks = [":dbvn_wn31_asset", ":dbvn_ewn_asset"]
+
     signingConfigs {
         sqlunet {
             keyAlias keystoreProperties['keyAlias']
@@ -57,17 +59,18 @@ android {
 }
 
 dependencies {
-    implementation project(':common')
-    implementation project(':expandableListFragment')
-    implementation project(':download')
-    implementation project(':deploy')
-    implementation project(':others')
-    implementation project(':donate')
-    implementation project(':rate')
-    implementation project(':xNet')
-    implementation project(':wordNet')
-    implementation project(':verbNet')
-    implementation project(':propbank')
+    implementation project(path: ':common')
+    implementation project(path: ':expandableListFragment')
+    implementation project(path: ':assetpacks')
+    implementation project(path: ':download')
+    implementation project(path: ':deploy')
+    implementation project(path: ':others')
+    implementation project(path: ':donate')
+    implementation project(path: ':rate')
+    implementation project(path: ':xNet')
+    implementation project(path: ':wordNet')
+    implementation project(path: ':verbNet')
+    implementation project(path: ':propbank')
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     implementation "androidx.navigation:navigation-fragment:$navVersion"
