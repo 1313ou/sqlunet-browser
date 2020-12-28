@@ -30,10 +30,6 @@ public class AssetPackLoader implements Cancelable
 {
 	private static final String LOGTAG = "AssetPackLoader";
 
-	public static final String WN31_PACKNAME = "dbwn31asset";
-
-	public static final String EWN_PACKNAME = "dbewnasset";
-
 	@NonNull
 	private final String pack;
 
