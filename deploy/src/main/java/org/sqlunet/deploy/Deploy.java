@@ -1,13 +1,11 @@
 /*
- * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ * Copyright (c) 2020. Bernard Bou <1313ou@gmail.com>.
  */
 
-package org.sqlunet;
+package org.sqlunet.deploy;
 
 import android.net.Uri;
 import android.util.Log;
-
-import org.sqlunet.concurrency.Task;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -20,13 +18,11 @@ import java.io.OutputStream;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 
 import androidx.annotation.NonNull;
@@ -389,7 +385,7 @@ public class Deploy
 	}
 
 	@Nullable
-	static String digestToString(@Nullable byte... byteArray)
+	public static String digestToString(@Nullable byte... byteArray)
 	{
 		if (byteArray == null)
 		{
