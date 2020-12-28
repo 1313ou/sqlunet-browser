@@ -22,7 +22,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.sqlunet.Deploy;
+import org.sqlunet.deploy.Deploy;
 import org.sqlunet.concurrency.ObservedDelegatingTask;
 import org.sqlunet.concurrency.Task;
 import org.sqlunet.concurrency.TaskDialogObserver;
@@ -967,7 +967,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 				assert this.downloadedFile != null;
 				final String localPath = this.downloadedFile.getAbsolutePath();
 
-				FileAsyncTaskChooser.md5(activity, localPath, result -> {
+				MD5AsyncTaskChooser.md5(activity, localPath, result -> {
 
 					final Activity activity2 = getActivity();
 					if (activity2 != null && !isDetached() && !activity2.isFinishing() && !activity2.isDestroyed())
@@ -988,7 +988,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 						sb.append(getString(success ? R.string.status_task_success : R.string.status_task_failed));
 
 						new AlertDialog.Builder(activity2) // guarded, level 3
-								.setTitle(getString(R.string.action_md5_of) + ' ' + targetFile) //
+								.setTitle(getString(R.string.action_md5_of_file) + ' ' + targetFile) //
 								.setMessage(sb) //
 								.show();
 					}

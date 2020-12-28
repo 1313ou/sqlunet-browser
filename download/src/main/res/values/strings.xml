@@ -21,13 +21,13 @@
 	<string name="action_unzip_from_archive">Unzip database from &#8230;</string>
 	<string name="action_update">Update</string>
 	<string name="action_md5">MD5</string>
-	<string name="action_md5_of">MD5 of</string>
+	<string name="action_md5_of_file">MD5 of</string>
 	<string name="action_md5_ask">MD5 &#8230;</string>
 
 	<!-- hint -->
 	<string name="hint_unzip_from_archive">Select the zip archive to unzip from</string>
 	<string name="hint_copy_from_file">Select the file to copy from</string>
-	<string name="hint_md5">Select the file to md5-checksum</string>
+	<string name="hint_md5_of_file">Select the file to md5-checksum</string>
 
 	<!-- description -->
 	<string name="description_download">Download database</string>
@@ -96,6 +96,11 @@
 	<string name="status_task_done_toast">Task done</string>
 
 	<!--<string name="status_download_downloadable_content">Now downloading available content. Be patient.</string>-->
+
+	<!-- result -->
+	<string name="result_success">Ok</string>
+	<string name="result_fail">Fail</string>
+	<string name="result_is">Result is </string>
 
 	<string name="format_storage_data" formatted="true">%1$s\nfree: %2$s capacity: %3$s (%4$.1f percent)</string>
 
