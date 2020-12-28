@@ -5,19 +5,12 @@
 package org.sqlunet.download;
 
 import android.app.AlertDialog;
-import android.text.SpannableStringBuilder;
-import android.util.Pair;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import org.sqlunet.ObservedDeploy;
 import org.sqlunet.concurrency.ObservedDelegatingTask;
 import org.sqlunet.concurrency.Task;
 import org.sqlunet.concurrency.TaskDialogObserver;
 import org.sqlunet.concurrency.TaskObserver;
+import org.sqlunet.deploy.ObservedDeploy;
 
 import java.io.File;
 
@@ -134,7 +127,7 @@ public class FileAsyncTask
 		protected void onProgressUpdate(final Long... params)
 		{
 			super.onProgressUpdate(params);
-			this.observer.taskUpdate(params[0], params[1]);
+			this.observer.taskProgress(params[0], params[1]);
 		}
 
 		@Override
@@ -212,7 +205,7 @@ public class FileAsyncTask
 		@Override
 		protected void onProgressUpdate(final Long... params)
 		{
-			this.observer.taskUpdate(params[0], params[1]);
+			this.observer.taskProgress(params[0], params[1]);
 		}
 
 		@Override
@@ -291,7 +284,7 @@ public class FileAsyncTask
 		@Override
 		protected void onProgressUpdate(final Long... params)
 		{
-			this.observer.taskUpdate(params[0], params[1]);
+			this.observer.taskProgress(params[0], params[1]);
 		}
 
 		@Override
@@ -367,7 +360,7 @@ public class FileAsyncTask
 		@Override
 		protected void onProgressUpdate(final Long... params)
 		{
-			this.observer.taskUpdate(params[0], params[1]);
+			this.observer.taskProgress(params[0], params[1]);
 		}
 
 		@Override
@@ -437,5 +430,82 @@ public class FileAsyncTask
 	public Task<String, Long, String> md5FromFile()
 	{
 		return new AsyncMd5FromFile(this.observer, this.resultListener, this.publishRate);
+	}
+
+	// L A U N C H E R S
+
+	public static void launchUnzip(@NonNull final FragmentActivity activity, @NonNull final String sourceFile, @NonNull final String databasePath)
+	{
+		final TaskObserver.Observer<Long> observer = new TaskObserver.BaseObserver<>();
+		final FileAsyncTask.ResultListener resultListener = result -> {
+			final Boolean success = (Boolean) result;
+			if (success)
+			{
+				Settings.recordDb(activity, new File(sourceFile));
+			}
+		};
+		final Task<String, Long, Boolean> ft = new FileAsyncTask(observer, resultListener, 1000).unzipFromArchive();
+		//final TaskObserver.Observer<Long> fatObserver = new TaskProgressDialogObserver<>(activity, activity.getString(R.string.action_unzip_from_archive), sourceFile, null); // guarded, level 2
+		final TaskObserver.Observer<Long> fatObserver = new TaskDialogObserver<>(activity.getSupportFragmentManager(), activity.getString(R.string.action_unzip_from_archive), sourceFile, null); // guarded, level 2
+		final Task<String, Long, Boolean> oft = new ObservedDelegatingTask<>(ft, fatObserver);
+		oft.execute(sourceFile, databasePath);
+	}
+
+	public static void launchUnzip(@NonNull final FragmentActivity activity, @NonNull final String sourceFile, @NonNull final String zipEntry, @NonNull final String databasePath)
+	{
+		final TaskObserver.Observer<Long> observer = new TaskObserver.BaseObserver<>();
+		final FileAsyncTask.ResultListener resultListener = result -> {
+			final Boolean success = (Boolean) result;
+			if (success)
+			{
+				Settings.recordDb(activity, new File(sourceFile));
+			}
+		};
+		final Task<String, Long, Boolean> ft = new FileAsyncTask(observer, resultListener, 1000).unzipEntryFromArchive();
+		//final TaskObserver.Observer<Long> fatObserver = new TaskObserver.ProgressDialogObserver<>(activity, activity.getString(R.string.action_unzip_from_archive), sourceFile, null); // guarded, level 2
+		final TaskObserver.Observer<Long> fatObserver = new TaskDialogObserver<>(activity.getSupportFragmentManager(), activity.getString(R.string.action_unzip_from_archive), sourceFile, null); // guarded, level 2
+		final Task<String, Long, Boolean> oft = new ObservedDelegatingTask<>(ft, fatObserver);
+		oft.execute(sourceFile, zipEntry, databasePath);
+	}
+
+	public static void launchCopy(@NonNull final FragmentActivity activity, @NonNull final String sourceFile, @NonNull final String databasePath)
+	{
+		final TaskObserver.Observer<Long> observer = new TaskObserver.BaseObserver<>();
+		final FileAsyncTask.ResultListener resultListener = result -> {
+			final Boolean success = (Boolean) result;
+			if (success)
+			{
+				Settings.recordDb(activity, new File(sourceFile));
+			}
+		};
+		final Task<String, Long, Boolean> ft = new FileAsyncTask(observer, resultListener, 1000).copyFromFile();
+		//final TaskObserver.Observer<Long> fatObserver = new TaskProgressDialogObserver<>(activity, activity.getString(R.string.action_copy_from_file), sourceFile, null); // guarded, level 2
+		final TaskObserver.Observer<Long> fatObserver = new TaskDialogObserver<>(activity.getSupportFragmentManager(), activity.getString(R.string.action_copy_from_file), sourceFile, null); // guarded, level 2
+		final Task<String, Long, Boolean> oft = new ObservedDelegatingTask<>(ft, fatObserver);
+		oft.execute(sourceFile, databasePath);
+	}
+
+	public static void launchMd5(@NonNull final FragmentActivity activity, @NonNull final String sourceFile)
+	{
+		final TaskObserver.Observer<Long> observer = new TaskObserver.BaseObserver<>();
+		final FileAsyncTask.ResultListener resultListener = result -> {
+
+			final String md5 = (String) result;
+			final AlertDialog.Builder alert2 = new AlertDialog.Builder(activity); // unguarded, level 1
+			if (md5 != null)
+			{
+				alert2.setMessage(md5);
+			}
+			else
+			{
+				alert2.setMessage(R.string.result_fail);
+			}
+			alert2.show();
+		};
+		final Task<String, Long, String> ft = new FileAsyncTask(observer, resultListener, 1000).md5FromFile();
+		//final TaskObserver.Observer<Long> fatObserver = new TaskObserver.ProgressDialogObserver<>(activity, activity.getString(R.string.action_md5), path, null); // guarded, level > 1
+		final TaskObserver.Observer<Long> fatObserver = new TaskDialogObserver<>(activity.getSupportFragmentManager(), activity.getString(R.string.action_md5), sourceFile, null); // guarded, level 2
+		final Task<String, Long, String> oft = new ObservedDelegatingTask<>(ft, fatObserver);
+		oft.execute(sourceFile);
 	}
 }
