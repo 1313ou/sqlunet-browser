@@ -51,15 +51,16 @@ android {
 }
 
 dependencies {
-    api project(':common')
-    api project(':expandableListFragment')
-    api project(':download')
-    api project(':deploy')
-    api project(':others')
-    api project(':donate')
-    api project(':xNet')
-    api project(':wordNet')
-    api project(':bNC')
+    api project(path: ':common')
+    api project(path: ':expandableListFragment')
+    api project(path: ':assetpacks')
+    api project(path: ':download')
+    api project(path: ':deploy')
+    api project(path: ':others')
+    api project(path: ':donate')
+    api project(path: ':xNet')
+    api project(path: ':wordNet')
+    api project(path: ':bNC')
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
