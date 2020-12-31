@@ -36,6 +36,7 @@ public class Settings
 	static public final String PREF_DETAIL_MODE = "pref_detail_view_mode"; // view wor web for detail fragment
 	static public final String PREF_XML = "pref_xml";
 	static public final String PREF_TEXTSEARCH_MODE = "pref_searchtext_mode";
+	static public final String PREF_ASSETS = "pref_assets";
 	static public final String PREF_STORAGE = StorageSettings.PREF_STORAGE;
 	static public final String PREF_DOWNLOADER = StorageSettings.PREF_DOWNLOADER;
 	static public final String PREF_DOWNLOAD_SITE = StorageSettings.PREF_DOWNLOAD_SITE;

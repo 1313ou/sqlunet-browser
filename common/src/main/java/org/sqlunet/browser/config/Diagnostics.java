@@ -12,11 +12,16 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.graphics.Typeface;
 import android.os.Build;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.StyleSpan;
 
-import org.sqlunet.deploy.Deploy;
+import org.sqlunet.assetpack.AssetPackLoader;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.concurrency.Task;
+import org.sqlunet.deploy.Deploy;
 import org.sqlunet.download.Settings;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
@@ -26,6 +31,7 @@ import java.util.Date;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 @SuppressWarnings("WeakerAccess")
 public class Diagnostics
@@ -36,33 +42,33 @@ public class Diagnostics
 		void onResult(T t);
 	}
 
-	static public class AsyncDiagnostics extends Task<Context, Long, String>
+	static public class AsyncDiagnostics extends Task<Context, Long, CharSequence>
 	{
 		/**
 		 * Result listener
 		 */
-		final private ResultListener<String> resultListener;
+		final private ResultListener<CharSequence> resultListener;
 
 		/**
 		 * Constructor
 		 *
 		 * @param resultListener result listener
 		 */
-		AsyncDiagnostics(final ResultListener<String> resultListener)
+		AsyncDiagnostics(final ResultListener<CharSequence> resultListener)
 		{
 			this.resultListener = resultListener;
 		}
 
 		@NonNull
 		@Override
-		protected String doInBackground(final Context... params)
+		protected CharSequence doInBackground(final Context... params)
 		{
 			final Context context = params[0];
 			return report(context);
 		}
 
 		@Override
-		protected void onPostExecute(final String result)
+		protected void onPostExecute(final CharSequence result)
 		{
 			if (this.resultListener != null)
 			{
@@ -73,13 +79,17 @@ public class Diagnostics
 
 	@SuppressWarnings("deprecation")
 	@NonNull
-	private static String report(@NonNull final Context context)
+	private static CharSequence report(@NonNull final Context context)
 	{
-		final StringBuilder sb = new StringBuilder();
-		sb.append("DIAGNOSTICS");
-		sb.append('\n');
+		final SpannableStringBuilder sb = new SpannableStringBuilder();
+		append(sb, "DIAGNOSTICS", new StyleSpan(Typeface.BOLD));
 		sb.append('\n');
 
+		// APP
+
+		sb.append('\n');
+		append(sb, "app", new StyleSpan(Typeface.BOLD));
+		sb.append('\n');
 		final String packageName = context.getApplicationInfo().packageName;
 		sb.append(packageName);
 		sb.append('\n');
@@ -90,25 +100,29 @@ public class Diagnostics
 			pInfo = context.getPackageManager().getPackageInfo(packageName, 0);
 			final long code = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P ? pInfo.getLongVersionCode() : pInfo.versionCode;
 			sb.append("version: ");
-			sb.append(code);
+			sb.append(Long.toString(code));
 			sb.append('\n');
 		}
 		catch (PackageManager.NameNotFoundException e)
 		{
 			sb.append("package info: ");
-			sb.append(e);
+			sb.append(e.getMessage());
 			sb.append('\n');
 		}
 
 		sb.append("api: ");
-		sb.append(Build.VERSION.SDK_INT);
+		sb.append(Integer.toString(Build.VERSION.SDK_INT));
 		sb.append(' ');
 		sb.append(Build.VERSION.CODENAME);
 		sb.append('\n');
-		sb.append('\n');
+
+		// DATABASE
 
 		final String database = StorageSettings.getDatabasePath(context);
 
+		sb.append('\n');
+		append(sb, "database", new StyleSpan(Typeface.BOLD));
+		sb.append('\n');
 		sb.append("path: ");
 		sb.append(database);
 		sb.append('\n');
@@ -119,7 +133,7 @@ public class Diagnostics
 			final boolean databaseExists = databaseFile.exists();
 
 			sb.append("exists: ");
-			sb.append(databaseExists);
+			sb.append(Boolean.toString(databaseExists));
 			sb.append('\n');
 
 			final String parent = databaseFile.getParent();
@@ -134,7 +148,7 @@ public class Diagnostics
 			sb.append(StorageUtils.mbToString(dc));
 			sb.append('\n');
 			sb.append("occupancy: ");
-			sb.append(dp);
+			sb.append(Float.toString(dp));
 			sb.append('%');
 			sb.append('\n');
 
@@ -146,11 +160,11 @@ public class Diagnostics
 				final boolean databaseCanRead = databaseFile.canRead();
 
 				sb.append("is file: ");
-				sb.append(databaseIsFile);
+				sb.append(Boolean.toString(databaseIsFile));
 				sb.append('\n');
 
 				sb.append("size: ");
-				sb.append(databaseSize);
+				sb.append(Long.toString(databaseSize));
 				sb.append('\n');
 
 				sb.append("last modified: ");
@@ -158,7 +172,7 @@ public class Diagnostics
 				sb.append('\n');
 
 				sb.append("can read: ");
-				sb.append(databaseCanRead);
+				sb.append(Boolean.toString(databaseCanRead));
 				sb.append('\n');
 
 				final String md5 = Deploy.computeDigest(database);
@@ -171,7 +185,7 @@ public class Diagnostics
 				try
 				{
 					databaseCanOpen = canOpen(database);
-					sb.append(databaseCanOpen);
+					sb.append(Boolean.toString(databaseCanOpen));
 					sb.append('\n');
 
 					final int status = Status.status(context);
@@ -179,9 +193,13 @@ public class Diagnostics
 					final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
 					if (existsDb)
 					{
+						// TABLES
+
+						sb.append('\n');
+						append(sb, "tables", new StyleSpan(Typeface.BOLD));
 						sb.append('\n');
 						sb.append("tables exist: ");
-						sb.append(existsTables);
+						sb.append(Boolean.toString(existsTables));
 						sb.append('\n');
 
 						final Resources res = context.getResources();
@@ -211,11 +229,11 @@ public class Diagnostics
 									sb.append(table);
 									sb.append(" exists: ");
 									boolean exists = existingTablesAndIndexes.contains(table);
-									sb.append(exists);
+									sb.append(Boolean.toString(exists));
 									if (exists)
 									{
 										sb.append(" rows: ");
-										sb.append(rowCount(database, table));
+										sb.append(Long.toString(rowCount(database, table)));
 									}
 									sb.append('\n');
 								}
@@ -225,7 +243,7 @@ public class Diagnostics
 									sb.append("index ");
 									sb.append(index);
 									sb.append(": ");
-									sb.append(existingTablesAndIndexes.contains(index));
+									sb.append(Boolean.toString(existingTablesAndIndexes.contains(index)));
 									sb.append('\n');
 								}
 								if (requiredPmTables != null)
@@ -237,11 +255,11 @@ public class Diagnostics
 										sb.append(table);
 										sb.append(" exists: ");
 										boolean exists = existingTablesAndIndexes.contains(table);
-										sb.append(exists);
+										sb.append(Boolean.toString(exists));
 										if (exists)
 										{
 											sb.append(" rows: ");
-											sb.append(rowCount(database, table));
+											sb.append(Long.toString(rowCount(database, table)));
 										}
 										sb.append('\n');
 									}
@@ -255,11 +273,11 @@ public class Diagnostics
 										sb.append(table);
 										sb.append(" exists: ");
 										boolean exists = existingTablesAndIndexes.contains(table);
-										sb.append(exists);
+										sb.append(Boolean.toString(exists));
 										if (exists)
 										{
 											sb.append(" rows: ");
-											sb.append(rowCount(database, table));
+											sb.append(Long.toString(rowCount(database, table)));
 										}
 										sb.append('\n');
 									}
@@ -273,11 +291,11 @@ public class Diagnostics
 										sb.append(table);
 										sb.append(" exists: ");
 										boolean exists = existingTablesAndIndexes.contains(table);
-										sb.append(exists);
+										sb.append(Boolean.toString(exists));
 										if (exists)
 										{
 											sb.append(" rows: ");
-											sb.append(rowCount(database, table));
+											sb.append(Long.toString(rowCount(database, table)));
 										}
 										sb.append('\n');
 									}
@@ -291,11 +309,11 @@ public class Diagnostics
 										sb.append(table);
 										sb.append(" exists: ");
 										boolean exists = existingTablesAndIndexes.contains(table);
-										sb.append(exists);
+										sb.append(Boolean.toString(exists));
 										if (exists)
 										{
 											sb.append(" rows: ");
-											sb.append(rowCount(database, table));
+											sb.append(Long.toString(rowCount(database, table)));
 										}
 										sb.append('\n');
 									}
@@ -309,11 +327,11 @@ public class Diagnostics
 										sb.append(table);
 										sb.append(" exists: ");
 										boolean exists = existingTablesAndIndexes.contains(table);
-										sb.append(exists);
+										sb.append(Boolean.toString(exists));
 										if (exists)
 										{
 											sb.append(" rows: ");
-											sb.append(rowCount(database, table));
+											sb.append(Long.toString(rowCount(database, table)));
 										}
 										sb.append('\n');
 									}
@@ -328,20 +346,22 @@ public class Diagnostics
 						catch (Exception e)
 						{
 							sb.append("cannot read tables or indexes: ");
-							sb.append(e);
+							sb.append(e.getMessage());
 							sb.append('\n');
 						}
 					}
 				}
 				catch (@NonNull final SQLiteCantOpenDatabaseException e)
 				{
-					sb.append(databaseCanOpen);
+					sb.append(Boolean.toString(databaseCanOpen));
 					sb.append('\n');
-					sb.append(e);
+					sb.append(e.getMessage());
 					sb.append('\n');
 				}
 			}
 		}
+
+		// RECORDED SOURCE
 
 		final String source = Settings.getDbSource(context);
 		final long sourceSize = Settings.getDbSourceSize(context);
@@ -351,28 +371,93 @@ public class Diagnostics
 		final long stamp = Settings.getDbDate(context);
 
 		sb.append('\n');
+		append(sb, "source", new StyleSpan(Typeface.BOLD));
+		sb.append('\n');
 		sb.append("recorded source: ");
-		sb.append(name == null ? "null" : source);
+		sb.append(source == null ? "null" : source);
 		sb.append('\n');
 		sb.append("recorded source size: ");
-		sb.append(size == -1 ? "null" : sourceSize);
+		sb.append(sourceSize == -1 ? "null" : Long.toString(sourceSize));
 		sb.append('\n');
 		sb.append("recorded source date: ");
-		sb.append(stamp == -1 || stamp == 0 ? "null" : new Date(sourceStamp).toString());
+		sb.append(sourceStamp == -1 || sourceStamp == 0 ? "null" : new Date(sourceStamp).toString());
 		sb.append('\n');
 		sb.append("recorded name: ");
 		sb.append(name == null ? "null" : name);
 		sb.append('\n');
 		sb.append("recorded size: ");
-		sb.append(size == -1 ? "null" : size);
+		sb.append(size == -1 ? "null" : Long.toString(size));
 		sb.append('\n');
 		sb.append("recorded date: ");
 		sb.append(stamp == -1 || stamp == 0 ? "null" : new Date(stamp).toString());
 		sb.append('\n');
 
+		// ASSET PACKS
+
+		final String assetPack = context.getString(R.string.asset_default);
+		final String assetZip = context.getString(R.string.asset_zip);
+		final String assetDir = context.getString(R.string.asset_dir);
+
+		sb.append('\n');
+		append(sb, "assets", new StyleSpan(Typeface.BOLD));
+		sb.append('\n');
+		sb.append("asset pack: ");
+		sb.append(assetPack);
+		sb.append('\n');
+		sb.append("asset archive: ");
+		sb.append(assetDir);
+		sb.append('/');
+		sb.append(assetZip);
+		sb.append('\n');
+		String assetLocation = new AssetPackLoader(context, assetPack).assetPackPathIfInstalled();
+		sb.append("asset ");
+		sb.append(assetPack);
+		if (assetLocation != null)
+		{
+			sb.append(" installed at: ");
+			sb.append(assetLocation);
+		}
+		else
+		{
+			sb.append(" not installed");
+		}
+		sb.append('\n');
+
+		final String altAssetPack = context.getString(R.string.asset_alt);
+		final String altAssetDir = context.getString(R.string.asset_dir_alt);
+		final String altAssetZip = context.getString(R.string.asset_zip_alt);
+		sb.append("alt asset pack: ");
+		if (!altAssetPack.isEmpty())
+		{
+			sb.append(altAssetPack);
+			sb.append('\n');
+			sb.append("alt asset archive: ");
+			sb.append(altAssetDir);
+			sb.append('/');
+			sb.append(altAssetZip);
+			sb.append('\n');
+		}
+		String altAssetLocation = new AssetPackLoader(context, altAssetPack).assetPackPathIfInstalled();
+		sb.append("alt asset ");
+		sb.append(altAssetPack);
+		if (altAssetLocation != null)
+		{
+			sb.append(" installed at: ");
+			sb.append(altAssetLocation);
+		}
+		else
+		{
+			sb.append(" not installed");
+		}
+		sb.append('\n');
+
+		// DOWNLOAD
+
 		final String dbDownloadSource = StorageSettings.getDbDownloadSource(context, org.sqlunet.download.Settings.Downloader.isZipDownloaderPref(context));
 		final String dbDownloadTarget = StorageSettings.getDbDownloadTarget(context);
 
+		sb.append('\n');
+		append(sb, "download", new StyleSpan(Typeface.BOLD));
 		sb.append('\n');
 		sb.append("download source: ");
 		sb.append(dbDownloadSource);
@@ -381,7 +466,7 @@ public class Diagnostics
 		sb.append(dbDownloadTarget);
 		sb.append('\n');
 
-		return sb.toString();
+		return sb;
 	}
 
 	@SuppressWarnings("SameReturnValue")
@@ -398,6 +483,30 @@ public class Diagnostics
 		try (SQLiteDatabase db = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY))
 		{
 			return DatabaseUtils.queryNumEntries(db, table);
+		}
+	}
+
+	/**
+	 * Append text
+	 *
+	 * @param sb    spannable string builder
+	 * @param text  text
+	 * @param spans spans to apply
+	 */
+	static private void append(@NonNull final SpannableStringBuilder sb, @Nullable final CharSequence text, @NonNull final Object... spans)
+	{
+		if (text == null || text.length() == 0)
+		{
+			return;
+		}
+
+		final int from = sb.length();
+		sb.append(text);
+		final int to = sb.length();
+
+		for (final Object span : spans)
+		{
+			sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 		}
 	}
 }

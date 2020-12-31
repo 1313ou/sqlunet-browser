@@ -242,6 +242,27 @@ public class SettingsActivity extends BaseSettingsActivity
 	}
 
 	/**
+	 * This fragment shows asset pack preferences only.
+	 */
+	@SuppressWarnings("WeakerAccess")
+	static public class AssetsPreferenceFragment extends PreferenceFragmentCompat
+	{
+		@Override
+		public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey)
+		{
+			// inflate
+			addPreferencesFromResource(R.xml.pref_assets);
+
+			// required if no 'entries' and 'entryValues' in XML
+			//final Preference defaultAssetPreference = findPreference(Settings.PREF_ASSETS);
+			//assert defaultAssetPreference != null;
+
+			// bind the summaries to their values.
+			//defaultAssetPreference.setSummaryProvider(EditTextPreference.SimpleSummaryProvider.getInstance());
+		}
+	}
+
+	/**
 	 * This fragment shows download preferences only.
 	 */
 	static public class DownloadPreferenceFragment extends PreferenceFragmentCompat

@@ -37,6 +37,26 @@
 				app:showAsAction="never"
 				tools:ignore="AppCompatResource"/>
 			<item
+				android:id="@+id/action_asset_deliver"
+				android:title="@string/action_asset_deliver"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource"/>
+			<item
+				android:id="@+id/action_asset_dispose"
+				android:title="@string/action_asset_dispose"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource"/>
+			<item
+				android:id="@+id/action_asset_alt_deliver"
+				android:title="@string/action_asset_alt_deliver"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource"/>
+			<item
+				android:id="@+id/action_asset_alt_dispose"
+				android:title="@string/action_asset_alt_dispose"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource"/>
+			<item
 				android:id="@+id/action_storage"
 				android:title="@string/action_storage"
 				app:showAsAction="never"

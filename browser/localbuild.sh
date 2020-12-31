@@ -6,7 +6,7 @@ AAB=build/outputs/bundle/${TARGET}/browser-${TARGET}.aab
 APKS=build/outputs/apks/${TARGET}.apks
 APK=${APKS}/browser-${TARGET}.apk
 
-./gradlew :bundleDebug
+../gradlew :browser:bundleDebug
 
 java -jar ${BT} build-apks \
 	--bundle=${AAB} \

@@ -49,7 +49,7 @@ public class FileAsyncTaskChooser
 			{
 				return;
 			}
-			FileAsyncTask.launchUnzip(activity, sourceFile, databasePath);
+			FileAsyncTask.launchUnzip(activity, sourceFile, databasePath, null);
 		});
 		alert.setNegativeButton(R.string.action_cancel, (dialog, whichButton) -> {
 			// canceled.
@@ -87,7 +87,7 @@ public class FileAsyncTaskChooser
 			{
 				return;
 			}
-			FileAsyncTask.launchUnzip(activity, sourceFile, zipEntry, databasePath);
+			FileAsyncTask.launchUnzip(activity, sourceFile, zipEntry, databasePath, null);
 		});
 		alert.setNegativeButton(R.string.action_cancel, (dialog, whichButton) -> {
 			// canceled.
@@ -123,7 +123,7 @@ public class FileAsyncTaskChooser
 			{
 				return;
 			}
-			FileAsyncTask.launchCopy(activity, sourceFile, databasePath);
+			FileAsyncTask.launchCopy(activity, sourceFile, databasePath, null);
 		});
 		alert.setNegativeButton(R.string.action_cancel, (dialog, whichButton) -> {
 			// canceled.

@@ -86,6 +86,12 @@
 	<string name="pref_title_storage">Database Storage</string>
 	<string name="pref_description_storage">Database Storage</string>
 
+	<!-- ASSETS -->
+
+	<string name="pref_header_assets">Assets</string>
+	<string name="pref_description_asset_default">Use default asset</string>
+	<string name="pref_title_asset_default">Default asset</string>
+
 	<!-- DOWNLOAD -->
 
 	<string name="pref_header_download">Download</string>

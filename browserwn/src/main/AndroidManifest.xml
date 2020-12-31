@@ -60,6 +60,12 @@
 		</activity>
 
 		<activity
+			android:name="org.sqlunet.browser.AssetActivity"
+			android:label="@string/title_activity_asset"
+			android:launchMode="singleTask"
+			android:noHistory="true" />
+
+		<activity
 			android:name="org.sqlunet.browser.BrowseActivity"
 			android:label="@string/title_activity_browse"
 			android:launchMode="singleTop"
