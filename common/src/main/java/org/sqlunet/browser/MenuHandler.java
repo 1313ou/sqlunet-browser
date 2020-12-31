@@ -92,29 +92,36 @@ public class MenuHandler
 		}
 		else if (itemId == R.id.action_asset_deliver)
 		{
-			String pack = Settings.getAssetPack(activity);
-			SetupAsset.deliverAsset(pack, activity, null);
-			return true;
-		}
-		else if (itemId == R.id.action_asset_dispose)
-		{
-			String pack = Settings.getAssetPack(activity);
-			SetupAsset.disposeAsset(pack, activity, null);
+			final String asset = Settings.getAssetPack(activity);
+			final String assetDir = Settings.getAssetPackDir(activity);
+			final String assetZip = Settings.getAssetPackZip(activity);
+			SetupAsset.deliverAsset(asset, assetDir, assetZip, activity, null);
 			return true;
 		}
 		else if (itemId == R.id.action_asset_deliver_primary)
 		{
-			SetupAsset.deliverAsset(activity.getString(R.string.asset_primary), activity, null);
+			final String asset = activity.getString(R.string.asset_primary);
+			final String assetDir = activity.getString(R.string.asset_dir_primary);
+			final String assetZip = activity.getString(R.string.asset_zip_primary);
+			SetupAsset.deliverAsset(asset, assetDir, assetZip, activity, null);
+			return true;
+		}
+		else if (itemId == R.id.action_asset_deliver_alt)
+		{
+			final String asset = activity.getString(R.string.asset_alt);
+			final String assetDir = activity.getString(R.string.asset_dir_alt);
+			final String assetZip = activity.getString(R.string.asset_zip_alt);
+			SetupAsset.deliverAsset(asset, assetDir, assetZip, activity, null);
+			return true;
+		}
+		else if (itemId == R.id.action_asset_dispose)
+		{
+			SetupAsset.disposeAsset(Settings.getAssetPack(activity), activity, null);
 			return true;
 		}
 		else if (itemId == R.id.action_asset_dispose_primary)
 		{
 			SetupAsset.disposeAsset(activity.getString(R.string.asset_primary), activity, null);
-			return true;
-		}
-		else if (itemId == R.id.action_asset_deliver_alt)
-		{
-			SetupAsset.deliverAsset(activity.getString(R.string.asset_alt), activity, null);
 			return true;
 		}
 		else if (itemId == R.id.action_asset_dispose_alt)

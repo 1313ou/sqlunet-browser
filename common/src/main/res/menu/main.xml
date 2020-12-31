@@ -52,22 +52,22 @@
 				<menu>
 					<item
 						android:id="@+id/action_asset_deliver_primary"
-						android:title="@string/action_asset_deliver"
+						android:title="@string/action_asset_deliver_primary"
 						app:showAsAction="never"
 						tools:ignore="AppCompatResource" />
 					<item
 						android:id="@+id/action_asset_dispose_primary"
-						android:title="@string/action_asset_dispose"
+						android:title="@string/action_asset_dispose_primary"
 						app:showAsAction="never"
 						tools:ignore="AppCompatResource" />
 					<item
 						android:id="@+id/action_asset_deliver_alt"
-						android:title="@string/action_asset_alt_deliver"
+						android:title="@string/action_asset_deliver_alt"
 						app:showAsAction="never"
 						tools:ignore="AppCompatResource" />
 					<item
 						android:id="@+id/action_asset_dispose_alt"
-						android:title="@string/action_asset_alt_dispose"
+						android:title="@string/action_asset_dispose_alt"
 						app:showAsAction="never"
 						tools:ignore="AppCompatResource" />
 				</menu>

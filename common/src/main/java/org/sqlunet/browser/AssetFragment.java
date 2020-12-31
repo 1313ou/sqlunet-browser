@@ -4,6 +4,7 @@
 
 package org.sqlunet.browser;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,10 +44,13 @@ public class AssetFragment extends Fragment
 	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
 		super.onViewCreated(view, savedInstanceState);
-		SetupAsset.deliverAsset(Settings.getAssetPack(requireContext()), requireActivity(), view);
+		final Context context = requireContext();
+		final String asset = Settings.getAssetPack(context);
+		final String assetDir = Settings.getAssetPackDir(context);
+		final String assetZip = Settings.getAssetPackZip(context);
+		SetupAsset.deliverAsset(asset, assetDir, assetZip, requireActivity(), view);
 	}
 
-	@Override
 	public void onResume()
 	{
 		super.onResume();

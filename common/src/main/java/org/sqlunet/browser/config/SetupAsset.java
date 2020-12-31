@@ -5,6 +5,7 @@
 package org.sqlunet.browser.config;
 
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.play.core.assetpacks.AssetPackLocation;
@@ -38,22 +39,22 @@ public class SetupAsset
 	 * Deliver asset
 	 *
 	 * @param assetPack asset pack name
+	 * @param assetDir  asset pack dir
+	 * @param assetZip  asset pack zip
 	 * @param activity  activity
 	 * @param view      view for snackbar
 	 * @return path if already installed
 	 */
-	public static String deliverAsset(@NonNull final String assetPack, @NonNull final FragmentActivity activity, @Nullable final View view)
+	public static String deliverAsset(@NonNull final String assetPack, @NonNull final String assetDir, @NonNull final String assetZip, @NonNull final FragmentActivity activity, @Nullable final View view)
 	{
 		if (assetPack.isEmpty())
 		{
 			throw new RuntimeException("Asset is empty");
 		}
-		String assetZip = activity.getString(R.string.asset_zip_primary);
 		if (assetZip.isEmpty())
 		{
 			throw new RuntimeException("Asset zip is empty");
 		}
-		String assetDir = activity.getString(R.string.asset_dir_primary);
 		if (assetDir.isEmpty())
 		{
 			throw new RuntimeException("Asset dir is empty");
@@ -61,7 +62,11 @@ public class SetupAsset
 
 		if (view != null)
 		{
-			Snackbar.make(view, R.string.action_asset_deliver, Snackbar.LENGTH_LONG).show();
+			Snackbar.make(view, R.string.action_asset_deliver, Snackbar.LENGTH_SHORT).show();
+		}
+		else
+		{
+			Toast.makeText(activity, R.string.action_asset_deliver, Toast.LENGTH_SHORT).show();
 		}
 		// deliver asset (returns non null path if already installed)
 		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager(), "Asset Pack", assetPack, "MB");
@@ -83,8 +88,12 @@ public class SetupAsset
 				Snackbar.make(view, R.string.action_asset_installed, Snackbar.LENGTH_LONG)
 						//.setAction(R.string.action_asset_md5, (view2) -> FileAsyncTask.launchMd5(activity, new File(activity.getFilesDir(), TARGET_DB).getAbsolutePath()))
 						//.setAction(R.string.action_asset_dispose, (view2) -> disposeAsset(assetPack, activity, view2))
-						.setAction(R.string.action_asset_deploy, (view2) -> FileAsyncTask.launchUnzip(activity, new File(new File(path, assetDir), assetZip).getAbsolutePath(), ASSET_ARCHIVE_ENTRY, StorageSettings.getDatabasePath(activity), () -> EntryActivity.reenter(activity)))
-						.show();
+						.setAction(R.string.action_asset_deploy, (view2) -> FileAsyncTask.launchUnzip(activity, new File(new File(path, assetDir), assetZip).getAbsolutePath(), ASSET_ARCHIVE_ENTRY, StorageSettings.getDatabasePath(activity), () -> EntryActivity.reenter(activity))).show();
+			}
+			else
+			{
+				Toast.makeText(activity, R.string.action_asset_installed, Toast.LENGTH_LONG).show();
+				FileAsyncTask.launchUnzip(activity, new File(new File(path, assetDir), assetZip).getAbsolutePath(), ASSET_ARCHIVE_ENTRY, StorageSettings.getDatabasePath(activity), () -> EntryActivity.reenter(activity));
 			}
 			return path;
 		}
