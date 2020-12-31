@@ -5,9 +5,9 @@
 
 <resources>
 
-	<string name="asset_default" translatable="false"></string>
-	<string name="asset_zip" translatable="false"></string>
-	<string name="asset_dir" translatable="false"></string>
+	<string name="asset_primary" translatable="false"></string>
+	<string name="asset_dir_primary" translatable="false"></string>
+	<string name="asset_zip_primary" translatable="false"></string>
 
 	<string name="asset_alt" translatable="false"></string>
 	<string name="asset_dir_alt" translatable="false"></string>

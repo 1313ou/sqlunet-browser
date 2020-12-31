@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import org.sqlunet.browser.common.R;
 import org.sqlunet.browser.config.SetupAsset;
+import org.sqlunet.settings.Settings;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,7 +43,7 @@ public class AssetFragment extends Fragment
 	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
 		super.onViewCreated(view, savedInstanceState);
-		String assetPath = SetupAsset.deliverAsset(requireContext().getString(R.string.asset_default), requireActivity(), view);
+		SetupAsset.deliverAsset(Settings.getAssetPack(requireContext()), requireActivity(), view);
 	}
 
 	@Override

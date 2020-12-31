@@ -48,12 +48,12 @@ public class SetupAsset
 		{
 			throw new RuntimeException("Asset is empty");
 		}
-		String assetZip = activity.getString(R.string.asset_zip);
+		String assetZip = activity.getString(R.string.asset_zip_primary);
 		if (assetZip.isEmpty())
 		{
 			throw new RuntimeException("Asset zip is empty");
 		}
-		String assetDir = activity.getString(R.string.asset_dir);
+		String assetDir = activity.getString(R.string.asset_dir_primary);
 		if (assetDir.isEmpty())
 		{
 			throw new RuntimeException("Asset dir is empty");

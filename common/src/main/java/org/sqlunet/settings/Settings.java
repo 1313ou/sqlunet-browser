@@ -36,7 +36,7 @@ public class Settings
 	static public final String PREF_DETAIL_MODE = "pref_detail_view_mode"; // view wor web for detail fragment
 	static public final String PREF_XML = "pref_xml";
 	static public final String PREF_TEXTSEARCH_MODE = "pref_searchtext_mode";
-	static public final String PREF_ASSETS = "pref_assets";
+	static public final String PREF_ASSETS_DEFAULT = "pref_asset_default";
 	static public final String PREF_STORAGE = StorageSettings.PREF_STORAGE;
 	static public final String PREF_DOWNLOADER = StorageSettings.PREF_DOWNLOADER;
 	static public final String PREF_DOWNLOAD_SITE = StorageSettings.PREF_DOWNLOAD_SITE;
@@ -266,6 +266,19 @@ public class Settings
 	}
 
 	/**
+	 * Get preferred asset pack
+	 *
+	 * @param context context
+	 * @return asset pack preference
+	 */
+	public static String getAssetPack(final Context context)
+	{
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		boolean isDefault = prefs.getBoolean(PREF_ASSETS_DEFAULT, true);
+		return context.getString(isDefault ? R.string.asset_primary : R.string.asset_alt);
+	}
+
+	/**
 	 * Get preferred downloader
 	 *
 	 * @param context context
@@ -419,8 +432,8 @@ public class Settings
 
 		// if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD)
 		// {
-			intent.setAction(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-			intent.setData(Uri.parse("package:" + pkgName));
+		intent.setAction(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+		intent.setData(Uri.parse("package:" + pkgName));
 		// }
 		// else
 		// {
