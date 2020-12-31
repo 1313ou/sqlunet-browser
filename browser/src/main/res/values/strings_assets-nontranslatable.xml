@@ -4,9 +4,9 @@
 
 <resources>
 
-	<string name="asset_default" translatable="false">db_wn31_asset</string>
-	<string name="asset_dir" translatable="false">31</string>
-	<string name="asset_zip" translatable="false">sqlunet.db.zip</string>
+	<string name="asset_primary" translatable="false">db_wn31_asset</string>
+	<string name="asset_dir_primary" translatable="false">31</string>
+	<string name="asset_zip_primary" translatable="false">sqlunet.db.zip</string>
 
 	<string name="asset_alt" translatable="false">db_ewn_asset</string>
 	<string name="asset_dir_alt" translatable="false">XX</string>

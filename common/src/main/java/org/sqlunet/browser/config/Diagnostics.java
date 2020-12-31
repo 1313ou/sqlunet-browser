@@ -394,23 +394,23 @@ public class Diagnostics
 
 		// ASSET PACKS
 
-		final String assetPack = context.getString(R.string.asset_default);
-		final String assetZip = context.getString(R.string.asset_zip);
-		final String assetDir = context.getString(R.string.asset_dir);
+		final String assetPack = context.getString(R.string.asset_primary);
+		final String assetZip = context.getString(R.string.asset_zip_primary);
+		final String assetDir = context.getString(R.string.asset_dir_primary);
 
 		sb.append('\n');
 		append(sb, "assets", new StyleSpan(Typeface.BOLD));
 		sb.append('\n');
-		sb.append("asset pack: ");
+		sb.append("primary asset pack: ");
 		sb.append(assetPack);
 		sb.append('\n');
-		sb.append("asset archive: ");
+		sb.append("primary asset archive: ");
 		sb.append(assetDir);
 		sb.append('/');
 		sb.append(assetZip);
 		sb.append('\n');
 		String assetLocation = new AssetPackLoader(context, assetPack).assetPackPathIfInstalled();
-		sb.append("asset ");
+		sb.append("primary asset ");
 		sb.append(assetPack);
 		if (assetLocation != null)
 		{

@@ -92,20 +92,32 @@ public class MenuHandler
 		}
 		else if (itemId == R.id.action_asset_deliver)
 		{
-			SetupAsset.deliverAsset(activity.getString(R.string.asset_default), activity, null);
+			String pack = Settings.getAssetPack(activity);
+			SetupAsset.deliverAsset(pack, activity, null);
 			return true;
 		}
 		else if (itemId == R.id.action_asset_dispose)
 		{
-			SetupAsset.disposeAsset(activity.getString(R.string.asset_default), activity, null);
+			String pack = Settings.getAssetPack(activity);
+			SetupAsset.disposeAsset(pack, activity, null);
 			return true;
 		}
-		else if (itemId == R.id.action_asset_alt_deliver)
+		else if (itemId == R.id.action_asset_deliver_primary)
+		{
+			SetupAsset.deliverAsset(activity.getString(R.string.asset_primary), activity, null);
+			return true;
+		}
+		else if (itemId == R.id.action_asset_dispose_primary)
+		{
+			SetupAsset.disposeAsset(activity.getString(R.string.asset_primary), activity, null);
+			return true;
+		}
+		else if (itemId == R.id.action_asset_deliver_alt)
 		{
 			SetupAsset.deliverAsset(activity.getString(R.string.asset_alt), activity, null);
 			return true;
 		}
-		else if (itemId == R.id.action_asset_alt_dispose)
+		else if (itemId == R.id.action_asset_dispose_alt)
 		{
 			SetupAsset.disposeAsset(activity.getString(R.string.asset_alt), activity, null);
 			return true;
