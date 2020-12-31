@@ -1,0 +1,20 @@
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	app:title="@string/pref_header_assets">
+
+	<!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to dismiss it. -->
+	<!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
+
+	<SwitchPreferenceCompat
+		android:defaultValue="true"
+		android:key="pref_asset_default"
+		android:summary="@string/pref_description_asset_default"
+		android:title="@string/pref_title_asset_default"
+		app:singleLineTitle="false"/>
+
+</PreferenceScreen>
