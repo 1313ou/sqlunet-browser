@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import org.sqlunet.browser.config.SetupAsset;
 import org.sqlunet.browser.config.Status;
 import org.sqlunet.settings.Settings;
 
@@ -73,7 +74,8 @@ public class EntryActivity extends AppCompatActivity
 
 	private static void forkOff(@NonNull final AppCompatActivity activity)
 	{
-		final Intent intent = new Intent(activity, StatusActivity.class);
+		//final Intent intent = new Intent(activity, StatusActivity.class);
+		final Intent intent = new Intent(activity, AssetActivity.class);
 		intent.putExtra(Status.CANTRUN, true);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		activity.startActivity(intent);

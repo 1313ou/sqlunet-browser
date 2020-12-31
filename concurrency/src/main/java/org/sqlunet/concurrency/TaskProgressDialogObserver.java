@@ -81,12 +81,13 @@ public class TaskProgressDialogObserver<Progress extends Number> extends TaskObs
 			this.progressDialog.setProgressNumberFormat(null);
 			this.progressDialog.setProgressPercentFormat(null);
 		}
-		String message = this.unit != null ? TaskObserver.countToString(progress.longValue(), this.unit) : TaskObserver.countToStorageString(progress.longValue());
+		String strProgress = this.unit != null ? TaskObserver.countToString(progress.longValue(), this.unit) : TaskObserver.countToStorageString(progress.longValue());
 		if (longLength != -1L)
 		{
-			message += " / " + longLength;
+			String strLength = (this.unit != null ? TaskObserver.countToString(longLength, this.unit) : TaskObserver.countToStorageString(longLength));
+			strProgress += " / " + strLength;
 		}
-		this.progressDialog.setMessage(message);
+		this.progressDialog.setMessage(strProgress);
 		if (!indeterminate)
 		{
 			//final int percent = (int) ((longProgress * 100F) / longLength);

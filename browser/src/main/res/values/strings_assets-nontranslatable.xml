@@ -1,0 +1,15 @@
+<!--
+  ~ Copyright (c) 2020. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+
+	<string name="asset_default" translatable="false">db_wn31_asset</string>
+	<string name="asset_dir" translatable="false">31</string>
+	<string name="asset_zip" translatable="false">sqlunet.db.zip</string>
+
+	<string name="asset_alt" translatable="false">db_ewn_asset</string>
+	<string name="asset_dir_alt" translatable="false">XX</string>
+	<string name="asset_zip_alt" translatable="false">sqlunet.db.zip</string>
+
+</resources>

@@ -40,6 +40,14 @@
 
 	<string name="action_info">Info</string>
 
+	<string name="action_asset_deliver">Deliver asset</string>
+	<string name="action_asset_alt_deliver">Deliver alt asset</string>
+	<string name="action_asset_dispose">Dispose of asset</string>
+	<string name="action_asset_alt_dispose">Dispose of alt asset</string>
+	<string name="action_asset_deploy">Deploy asset</string>
+	<string name="action_asset_md5">Asset MD5</string>
+	<string name="action_asset_installed">Asset installed</string>
+
 	<string name="info_op_download_database">Download the almost-ready-to-use database.</string>
 	<string name="info_op_download_sqlzip">Download the SQL statements bundled in a Zip archive file\nThe execution of these statements will build the database. The import process may be long.</string>
 	<string name="info_op_create_database">Create an empty database</string>

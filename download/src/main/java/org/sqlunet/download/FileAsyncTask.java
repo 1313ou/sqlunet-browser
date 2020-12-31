@@ -434,14 +434,19 @@ public class FileAsyncTask
 
 	// L A U N C H E R S
 
-	public static void launchUnzip(@NonNull final FragmentActivity activity, @NonNull final String sourceFile, @NonNull final String databasePath)
+	public static void launchUnzip(@NonNull final FragmentActivity activity, @NonNull final String sourceFile, @NonNull final String databasePath, @Nullable final Runnable whenDone)
 	{
 		final TaskObserver.Observer<Long> observer = new TaskObserver.BaseObserver<>();
 		final FileAsyncTask.ResultListener resultListener = result -> {
+
 			final Boolean success = (Boolean) result;
 			if (success)
 			{
 				Settings.recordDb(activity, new File(sourceFile));
+				if (whenDone != null)
+				{
+					whenDone.run();
+				}
 			}
 		};
 		final Task<String, Long, Boolean> ft = new FileAsyncTask(observer, resultListener, 1000).unzipFromArchive();
@@ -451,14 +456,19 @@ public class FileAsyncTask
 		oft.execute(sourceFile, databasePath);
 	}
 
-	public static void launchUnzip(@NonNull final FragmentActivity activity, @NonNull final String sourceFile, @NonNull final String zipEntry, @NonNull final String databasePath)
+	public static void launchUnzip(@NonNull final FragmentActivity activity, @NonNull final String sourceFile, @NonNull final String zipEntry, @NonNull final String databasePath, @Nullable final Runnable whenDone)
 	{
 		final TaskObserver.Observer<Long> observer = new TaskObserver.BaseObserver<>();
 		final FileAsyncTask.ResultListener resultListener = result -> {
+
 			final Boolean success = (Boolean) result;
 			if (success)
 			{
 				Settings.recordDb(activity, new File(sourceFile));
+				if (whenDone != null)
+				{
+					whenDone.run();
+				}
 			}
 		};
 		final Task<String, Long, Boolean> ft = new FileAsyncTask(observer, resultListener, 1000).unzipEntryFromArchive();
@@ -468,14 +478,19 @@ public class FileAsyncTask
 		oft.execute(sourceFile, zipEntry, databasePath);
 	}
 
-	public static void launchCopy(@NonNull final FragmentActivity activity, @NonNull final String sourceFile, @NonNull final String databasePath)
+	public static void launchCopy(@NonNull final FragmentActivity activity, @NonNull final String sourceFile, @NonNull final String databasePath, @Nullable final Runnable whenDone)
 	{
 		final TaskObserver.Observer<Long> observer = new TaskObserver.BaseObserver<>();
 		final FileAsyncTask.ResultListener resultListener = result -> {
+
 			final Boolean success = (Boolean) result;
 			if (success)
 			{
 				Settings.recordDb(activity, new File(sourceFile));
+			}
+			if (whenDone != null)
+			{
+				whenDone.run();
 			}
 		};
 		final Task<String, Long, Boolean> ft = new FileAsyncTask(observer, resultListener, 1000).copyFromFile();

@@ -16,6 +16,7 @@ import org.sqlunet.browser.common.R;
 import org.sqlunet.browser.config.DiagnosticsActivity;
 import org.sqlunet.browser.config.SettingsActivity;
 import org.sqlunet.browser.config.SetupActivity;
+import org.sqlunet.browser.config.SetupAsset;
 import org.sqlunet.browser.config.SetupFileActivity;
 import org.sqlunet.browser.config.SetupFileFragment;
 import org.sqlunet.browser.config.StorageActivity;
@@ -87,6 +88,26 @@ public class MenuHandler
 		{
 			BaseProvider.closeProviders(activity);
 			FileDataDownloader.start(activity, activity.getResources().getString(R.string.pref_default_download_dbfile), StorageSettings.getDbDownloadSource(activity), StorageSettings.getDatabasePath(activity), StorageSettings.getCacheDir(activity));
+			return true;
+		}
+		else if (itemId == R.id.action_asset_deliver)
+		{
+			SetupAsset.deliverAsset(activity.getString(R.string.asset_default), activity, null);
+			return true;
+		}
+		else if (itemId == R.id.action_asset_dispose)
+		{
+			SetupAsset.disposeAsset(activity.getString(R.string.asset_default), activity, null);
+			return true;
+		}
+		else if (itemId == R.id.action_asset_alt_deliver)
+		{
+			SetupAsset.deliverAsset(activity.getString(R.string.asset_alt), activity, null);
+			return true;
+		}
+		else if (itemId == R.id.action_asset_alt_dispose)
+		{
+			SetupAsset.disposeAsset(activity.getString(R.string.asset_alt), activity, null);
 			return true;
 		}
 		else if (itemId == R.id.action_setup)

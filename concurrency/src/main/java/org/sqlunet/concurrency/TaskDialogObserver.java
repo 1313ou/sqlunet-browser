@@ -84,12 +84,13 @@ public class TaskDialogObserver<Progress extends Number> extends TaskObserver.Ba
 		final long longProgress = progress.longValue();
 		final boolean indeterminate = longLength == -1L;
 		this.progressDialogFragment.progressBar.setIndeterminate(indeterminate);
-		String message = (this.unit != null ? TaskObserver.countToString(longProgress, this.unit) : TaskObserver.countToStorageString(longProgress));
+		String strProgress = (this.unit != null ? TaskObserver.countToString(longProgress, this.unit) : TaskObserver.countToStorageString(longProgress));
 		if (longLength != -1L)
 		{
-			message += " / " + longLength;
+			String strLength = (this.unit != null ? TaskObserver.countToString(longLength, this.unit) : TaskObserver.countToStorageString(longLength));
+			strProgress += " / " + strLength;
 		}
-		this.progressDialogFragment.textView.setText(message);
+		this.progressDialogFragment.progressTextView.setText(strProgress);
 		if (!indeterminate)
 		{
 			final int percent = (int) ((longProgress * 100F) / longLength);
@@ -102,7 +103,7 @@ public class TaskDialogObserver<Progress extends Number> extends TaskObserver.Ba
 	public void taskUpdate(@NonNull final String message)
 	{
 		super.taskUpdate(message);
-		this.progressDialogFragment.textView.setText(message);
+		this.progressDialogFragment.messageTextView.setText(message);
 	}
 
 	@SuppressWarnings("UnusedReturnValue")
@@ -134,7 +135,9 @@ public class TaskDialogObserver<Progress extends Number> extends TaskObserver.Ba
 		@NonNull
 		private final CharSequence message;
 
-		private TextView textView;
+		private TextView messageTextView;
+
+		private TextView progressTextView;
 
 		private ProgressBar progressBar;
 
@@ -161,7 +164,8 @@ public class TaskDialogObserver<Progress extends Number> extends TaskObserver.Ba
 			final LayoutInflater inflater = activity.getLayoutInflater();
 			final View view = inflater.inflate(R.layout.dialog_progress, null);
 			this.progressBar = view.findViewById(R.id.progressBar);
-			this.textView = view.findViewById(R.id.progressMessage);
+			this.messageTextView = view.findViewById(R.id.progressMessage);
+			this.progressTextView = view.findViewById(R.id.progressProgress);
 			builder.setView(view);
 			builder.setTitle(this.title);
 			builder.setMessage(this.message);

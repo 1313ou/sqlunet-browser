@@ -6,7 +6,4 @@ package org.sqlunet.browser.vn;
 
 public class Assets
 {
-	public static final String WN31_PACKNAME = "dbvn_wn31_asset";
-
-	public static final String EWN_PACKNAME = "dbvn_ewn_asset";
 }
