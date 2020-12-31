@@ -279,6 +279,32 @@ public class Settings
 	}
 
 	/**
+	 * Get preferred asset pack dir
+	 *
+	 * @param context context
+	 * @return asset pack dir preference
+	 */
+	public static String getAssetPackDir(final Context context)
+	{
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		boolean isDefault = prefs.getBoolean(PREF_ASSETS_DEFAULT, true);
+		return context.getString(isDefault ? R.string.asset_dir_primary : R.string.asset_dir_alt);
+	}
+
+	/**
+	 * Get preferred asset pack zip
+	 *
+	 * @param context context
+	 * @return asset pack zip preference
+	 */
+	public static String getAssetPackZip(final Context context)
+	{
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		boolean isDefault = prefs.getBoolean(PREF_ASSETS_DEFAULT, true);
+		return context.getString(isDefault ? R.string.asset_zip_primary : R.string.asset_zip_alt);
+	}
+
+	/**
 	 * Get preferred downloader
 	 *
 	 * @param context context

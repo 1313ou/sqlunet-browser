@@ -43,10 +43,10 @@
 	<string name="action_assets">Assets</string>
 	<string name="action_asset_deliver">Deliver asset</string>
 	<string name="action_asset_dispose">Dispose of asset</string>
-	<string name="action_asset_default_deliver">Deliver default asset</string>
-	<string name="action_asset_alt_deliver">Deliver alt asset</string>
-	<string name="action_asset_default_dispose">Dispose of default asset</string>
-	<string name="action_asset_alt_dispose">Dispose of alt asset</string>
+	<string name="action_asset_deliver_primary">Deliver primary asset</string>
+	<string name="action_asset_deliver_alt">Deliver alt asset</string>
+	<string name="action_asset_dispose_primary">Dispose of primary asset</string>
+	<string name="action_asset_dispose_alt">Dispose of alt asset</string>
 	<string name="action_asset_deploy">Deploy asset</string>
 	<string name="action_asset_md5">Asset MD5</string>
 	<string name="action_asset_installed">Asset installed</string>
