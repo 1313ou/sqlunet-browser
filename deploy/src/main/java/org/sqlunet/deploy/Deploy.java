@@ -54,6 +54,7 @@ public class Deploy
 	static public boolean expandZip(final String fromPath, @NonNull final String toPath, final boolean flatten, @NonNull final InputStreamGetter getter)
 	{
 		final File toDir = new File(toPath);
+		//noinspection ResultOfMethodCallIgnored
 		toDir.mkdirs();
 		try (InputStream in = getter.get(fromPath))
 		{

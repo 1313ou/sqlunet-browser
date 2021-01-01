@@ -62,8 +62,8 @@ public class SimpleZipDownloaderService extends SimpleDownloaderService
 		final File outFile = new File(this.toFile + ".part");
 		long date = -1;
 		long size = -1;
-		long zDate = -1;
-		long zSize = -1;
+		long zDate;
+		long zSize;
 
 		boolean done = false;
 		try

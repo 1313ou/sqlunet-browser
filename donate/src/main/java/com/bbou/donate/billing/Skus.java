@@ -35,7 +35,7 @@ public final class Skus
 	// SKUs for subscription
 	@Nullable
 	@SuppressWarnings("CanBeFinal")
-	private static String[] subscriptionSkus = null;
+	private static final String[] subscriptionSkus = null;
 
 	// SKUs for products: the donate (consumable)
 	@Nullable

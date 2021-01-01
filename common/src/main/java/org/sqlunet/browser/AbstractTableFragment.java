@@ -76,7 +76,6 @@ public abstract class AbstractTableFragment extends ListFragment
 		});
 	}
 
-	@SuppressWarnings("ConstantConditions")
 	@Override
 	public void onStart()
 	{

@@ -16,15 +16,14 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 
-import org.sqlunet.browser.sn.R;
-
 import org.sqlunet.browser.config.TableActivity;
 import org.sqlunet.browser.selector.Browse1Activity;
 import org.sqlunet.browser.selector.Browse1Fragment;
 import org.sqlunet.browser.selector.SnBrowse1Fragment;
+import org.sqlunet.browser.sn.R;
+import org.sqlunet.browser.sn.Settings;
 import org.sqlunet.browser.web.WebActivity;
 import org.sqlunet.browser.web.WebFragment;
-import org.sqlunet.browser.sn.Settings;
 import org.sqlunet.browser.xselector.XBrowse1Activity;
 import org.sqlunet.browser.xselector.XBrowse1Fragment;
 import org.sqlunet.provider.ProviderArgs;
@@ -138,43 +137,42 @@ public class BrowseFragment extends BaseSearchFragment
 
 		// handle item selection
 		final int itemId = item.getItemId();
-		switch (itemId)
+		if (R.id.action_table_lexdomains == itemId)
 		{
-			case R.id.action_table_lexdomains:
-				intent = new Intent(context, TableActivity.class);
-				intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(LexDomains.CONTENT_URI_TABLE));
-				intent.putExtra(ProviderArgs.ARG_QUERYID, LexDomains.LEXDOMAINID);
-				intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{LexDomains.LEXDOMAINID, LexDomains.LEXDOMAIN, LexDomains.POS});
-				intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table3);
-				break;
-
-			case R.id.action_table_postypes:
-				intent = new Intent(context, TableActivity.class);
-				intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(PosTypes.CONTENT_URI_TABLE));
-				intent.putExtra(ProviderArgs.ARG_QUERYID, PosTypes.POS);
-				intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{PosTypes.POS, PosTypes.POSNAME});
-				intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table2);
-				break;
-
-			case R.id.action_table_adjpositiontypes:
-				intent = new Intent(context, TableActivity.class);
-				intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(AdjPositionTypes.CONTENT_URI_TABLE));
-				intent.putExtra(ProviderArgs.ARG_QUERYID, AdjPositionTypes.POSITION);
-				intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{AdjPositionTypes.POSITION, AdjPositionTypes.POSITIONNAME});
-				intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table2);
-				break;
-
-			case R.id.action_table_linktypes:
-				intent = new Intent(context, TableActivity.class);
-				intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(LinkTypes.CONTENT_URI_TABLE));
-				intent.putExtra(ProviderArgs.ARG_QUERYID, LinkTypes.LINKID);
-				intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{LinkTypes.LINKID, LinkTypes.LINK, LinkTypes.RECURSESSELECT});
-				intent.putExtra(ProviderArgs.ARG_QUERYSORT, LinkTypes.LINKID + " ASC");
-				intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table3);
-				break;
-
-			default:
-				return false;
+			intent = new Intent(context, TableActivity.class);
+			intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(LexDomains.CONTENT_URI_TABLE));
+			intent.putExtra(ProviderArgs.ARG_QUERYID, LexDomains.LEXDOMAINID);
+			intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{LexDomains.LEXDOMAINID, LexDomains.LEXDOMAIN, LexDomains.POS});
+			intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table3);
+		}
+		else if (R.id.action_table_postypes == itemId)
+		{
+			intent = new Intent(context, TableActivity.class);
+			intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(PosTypes.CONTENT_URI_TABLE));
+			intent.putExtra(ProviderArgs.ARG_QUERYID, PosTypes.POS);
+			intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{PosTypes.POS, PosTypes.POSNAME});
+			intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table2);
+		}
+		else if (R.id.action_table_adjpositiontypes == itemId)
+		{
+			intent = new Intent(context, TableActivity.class);
+			intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(AdjPositionTypes.CONTENT_URI_TABLE));
+			intent.putExtra(ProviderArgs.ARG_QUERYID, AdjPositionTypes.POSITION);
+			intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{AdjPositionTypes.POSITION, AdjPositionTypes.POSITIONNAME});
+			intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table2);
+		}
+		else if (R.id.action_table_linktypes == itemId)
+		{
+			intent = new Intent(context, TableActivity.class);
+			intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(LinkTypes.CONTENT_URI_TABLE));
+			intent.putExtra(ProviderArgs.ARG_QUERYID, LinkTypes.LINKID);
+			intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{LinkTypes.LINKID, LinkTypes.LINK, LinkTypes.RECURSESSELECT});
+			intent.putExtra(ProviderArgs.ARG_QUERYSORT, LinkTypes.LINKID + " ASC");
+			intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table3);
+		}
+		else
+		{
+			return false;
 		}
 
 		// start activity

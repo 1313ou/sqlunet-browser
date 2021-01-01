@@ -647,6 +647,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 				// sleep
 				try
 				{
+					//noinspection BusyWait
 					Thread.sleep(TIMELAPSE);
 				}
 				catch (@NonNull final InterruptedException e)

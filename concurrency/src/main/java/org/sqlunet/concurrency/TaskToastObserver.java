@@ -19,7 +19,7 @@ import androidx.annotation.NonNull;
 @SuppressWarnings("WeakerAccess")
 public class TaskToastObserver<Progress extends Number> extends TaskObserver.BaseObserver<Progress>
 {
-	static private final String TAG = "TaskTObserver";
+	// static private final String TAG = "TaskTObserver";
 
 	/**
 	 * Cached context

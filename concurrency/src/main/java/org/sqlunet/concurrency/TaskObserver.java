@@ -24,6 +24,7 @@ public class TaskObserver
 	/**
 	 * Observer interface
 	 */
+	@FunctionalInterface
 	public interface Observer<Progress extends Number>
 	{
 		/**
