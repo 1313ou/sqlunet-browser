@@ -508,50 +508,49 @@ public class XSelectorsFragment extends ExpandableListFragment
 			@Override
 			protected void setViewImage(@NonNull ImageView v, @NonNull String value)
 			{
-				switch (v.getId())
+				int id = v.getId();
+				if (R.id.xsources == id)
 				{
-					case R.id.xsources:
-						final String[] fields = value.split(",");
-						for (String field : fields)
+					final String[] fields = value.split(",");
+					for (String field : fields)
+					{
+						switch (field)
 						{
-							switch (field)
-							{
-								case "wn": //
-									v.setImageResource(R.drawable.wordnet);
-									return;
-								case "vn": //
-									v.setImageResource(R.drawable.verbnet);
-									return;
-								case "pb": //
-									v.setImageResource(R.drawable.propbank);
-									return;
-								case "fn": //
-									v.setImageResource(R.drawable.framenet);
-									return;
-							}
-						}
-						v.setImageDrawable(null);
-						// v.setVisibility(View.GONE);
-						break;
-
-					case R.id.pm:
-						final String[] fields2 = value.split(",");
-						for (String field2 : fields2)
-						{
-							if (field2.startsWith("pm")) //
-							{
-								v.setImageResource(R.drawable.predicatematrix);
-								v.setVisibility(View.VISIBLE);
+							case "wn": //
+								v.setImageResource(R.drawable.wordnet);
 								return;
-							}
+							case "vn": //
+								v.setImageResource(R.drawable.verbnet);
+								return;
+							case "pb": //
+								v.setImageResource(R.drawable.propbank);
+								return;
+							case "fn": //
+								v.setImageResource(R.drawable.framenet);
+								return;
 						}
-						v.setImageDrawable(null);
-						v.setVisibility(View.GONE);
-						break;
-
-					default:
-						super.setViewImage(v, value);
-						break;
+					}
+					v.setImageDrawable(null);
+					// v.setVisibility(View.GONE);
+				}
+				else if (R.id.pm == id)
+				{
+					final String[] fields2 = value.split(",");
+					for (String field2 : fields2)
+					{
+						if (field2.startsWith("pm")) //
+						{
+							v.setImageResource(R.drawable.predicatematrix);
+							v.setVisibility(View.VISIBLE);
+							return;
+						}
+					}
+					v.setImageDrawable(null);
+					v.setVisibility(View.GONE);
+				}
+				else
+				{
+					super.setViewImage(v, value);
 				}
 			}
 		};

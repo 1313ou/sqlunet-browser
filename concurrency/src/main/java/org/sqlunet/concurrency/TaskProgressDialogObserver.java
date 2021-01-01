@@ -19,7 +19,7 @@ import androidx.annotation.StringRes;
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 @Deprecated
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess","deprecation"})
 public class TaskProgressDialogObserver<Progress extends Number> extends TaskObserver.BaseObserver<Progress>
 {
 	static private final String TAG = "TaskDPObserver";

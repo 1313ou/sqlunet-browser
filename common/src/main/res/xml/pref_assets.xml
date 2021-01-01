@@ -18,6 +18,12 @@
 
 	<Preference
 		android:defaultValue="true"
+		android:key="pref_db_asset"
+		android:title="@string/pref_title_db_asset"
+		app:singleLineTitle="false" />
+
+	<Preference
+		android:defaultValue="true"
 		android:key="pref_asset_primary"
 		android:summary="@string/asset_primary"
 		android:title="@string/pref_title_asset_primary"

@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import org.sqlunet.browser.config.SetupAsset;
 import org.sqlunet.browser.config.Status;
 import org.sqlunet.settings.Settings;
 

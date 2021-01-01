@@ -4,6 +4,7 @@
 
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 
@@ -68,7 +69,8 @@
 				android:contentDescription="@string/description_googleplay_grammarscope_syntaxnet"
 				android:onClick="onMarketGrammarScope"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible" />
+				android:visibility="visible"
+				tools:ignore="OnClick" />
 
 			<!-- grammarscope udpipe -->
 
@@ -113,7 +115,8 @@
 				android:contentDescription="@string/description_googleplay_grammarscope_udpipe"
 				android:onClick="onMarketGrammarScopeUDPipe"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible" />
+				android:visibility="visible"
+				tools:ignore="OnClick" />
 
 			<!-- treebolic wordnet -->
 
@@ -157,7 +160,8 @@
 				android:contentDescription="@string/description_googleplay_treebolicwordnet"
 				android:onClick="onMarketTreebolicWordNet"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible" />
+				android:visibility="visible"
+				tools:ignore="OnClick" />
 
 			<!-- semantikos wn -->
 
@@ -202,7 +206,8 @@
 				android:contentDescription="@string/description_googleplay_semantikos_wn"
 				android:onClick="onMarketSemantikosWn"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible" />
+				android:visibility="visible"
+				tools:ignore="OnClick" />
 
 			<!-- semantikos ewn -->
 
@@ -247,7 +252,8 @@
 				android:contentDescription="@string/description_googleplay_semantikos_ewn"
 				android:onClick="onMarketSemantikosEWn"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible" />
+				android:visibility="visible"
+				tools:ignore="OnClick" />
 
 			<!-- semantikos vn -->
 
@@ -292,7 +298,8 @@
 				android:contentDescription="@string/description_googleplay_semantikos_vn"
 				android:onClick="onMarketSemantikosVn"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible" />
+				android:visibility="visible"
+				tools:ignore="OnClick" />
 
 			<!-- semantikos fn -->
 
@@ -337,7 +344,8 @@
 				android:contentDescription="@string/description_googleplay_semantikos_fn"
 				android:onClick="onMarketSemantikosFn"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible" />
+				android:visibility="visible"
+				tools:ignore="OnClick" />
 
 			<!-- semantikos sn -->
 
@@ -382,7 +390,8 @@
 				android:contentDescription="@string/description_googleplay_semantikos_sn"
 				android:onClick="onMarketSemantikosSn"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible" />
+				android:visibility="visible"
+				tools:ignore="OnClick" />
 
 		</LinearLayout>
 

@@ -23,6 +23,7 @@ import androidx.preference.EditTextPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceManager;
 
 /**
  * A PreferenceActivity that presents a set of application settings. On handset devices, settings are presented as a single list. On tablets, settings
@@ -254,11 +255,11 @@ public class SettingsActivity extends BaseSettingsActivity
 			addPreferencesFromResource(R.xml.pref_assets);
 
 			// required if no 'entries' and 'entryValues' in XML
-			//final Preference defaultAssetPreference = findPreference(Settings.PREF_ASSETS);
-			//assert defaultAssetPreference != null;
+			final Preference dbAssetPreference = findPreference(org.sqlunet.assetpack.Settings.PREF_DB_ASSET);
+			assert dbAssetPreference != null;
 
 			// bind the summaries to their values.
-			//defaultAssetPreference.setSummaryProvider(EditTextPreference.SimpleSummaryProvider.getInstance());
+			dbAssetPreference.setSummaryProvider((preference) -> PreferenceManager.getDefaultSharedPreferences(preference.getContext()).getString(preference.getKey(), "-"));
 		}
 	}
 

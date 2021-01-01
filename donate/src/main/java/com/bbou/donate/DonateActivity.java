@@ -73,7 +73,6 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 
 	// L I F E C Y C L E   A N D   S E T U P
 
-	@SuppressWarnings("ConstantConditions")
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState)
 	{

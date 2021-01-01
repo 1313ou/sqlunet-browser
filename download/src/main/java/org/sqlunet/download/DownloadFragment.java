@@ -189,7 +189,6 @@ public class DownloadFragment extends BaseDownloadFragment
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
 		final View view = super.onCreateView(inflater, container, savedInstanceState);
-		//noinspection ConstantConditions
 		this.showButton = view.findViewById(R.id.showButton);
 		this.showButton.setOnClickListener(v -> showDownloads());
 		if (savedInstanceState != null)

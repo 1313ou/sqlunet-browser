@@ -112,9 +112,6 @@ public class AssetPackLoader implements Cancelable
 									switch (status2)
 									{
 										case AssetPackStatus.NOT_INSTALLED: // Asset pack is not downloaded yet.
-											observer.taskUpdate(status2Str);
-											break;
-
 										case AssetPackStatus.PENDING:
 											observer.taskUpdate(status2Str);
 											break;

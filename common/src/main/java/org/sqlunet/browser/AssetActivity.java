@@ -4,20 +4,15 @@
 
 package org.sqlunet.browser;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import org.sqlunet.browser.common.R;
-import org.sqlunet.browser.config.SetupAsset;
 import org.sqlunet.browser.config.Status;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;

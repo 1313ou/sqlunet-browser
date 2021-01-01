@@ -18,7 +18,6 @@ import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.Info;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.download.DownloadActivity;
-import org.sqlunet.download.FileAsyncTask;
 import org.sqlunet.download.FileAsyncTaskChooser;
 import org.sqlunet.download.MD5AsyncTaskChooser;
 import org.sqlunet.settings.Settings;

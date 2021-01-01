@@ -182,7 +182,6 @@ public class SimpleDownloaderService extends JobIntentService
 	/**
 	 * Download job
 	 */
-	@SuppressWarnings("boxing")
 	protected void job() throws Exception
 	{
 		// first
@@ -190,7 +189,7 @@ public class SimpleDownloaderService extends JobIntentService
 		final PowerManager.WakeLock wakelock = wakelock();
 
 		long date = -1;
-		long size = -1;
+		long size;
 
 		final File outFile = new File(this.toFile + ".part");
 		try

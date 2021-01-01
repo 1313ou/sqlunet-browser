@@ -143,12 +143,11 @@ public class FileAsyncTaskChooser
 		alert.setTitle(R.string.action_md5_of_file);
 		alert.setMessage(R.string.hint_md5_of_file);
 		final EditText input = new EditText(activity);
-		String fromPath = containerDir;
-		if (fromPath != null)
+		if (containerDir != null)
 		{
 			// fromPath += File.separatorChar + Settings.HINT_DB_ZIP;
-			input.setText(fromPath);
-			input.setSelection(fromPath.length());
+			input.setText(containerDir);
+			input.setSelection(containerDir.length());
 		}
 		alert.setView(input);
 		alert.setPositiveButton(R.string.action_ok, (dialog, whichButton) -> {

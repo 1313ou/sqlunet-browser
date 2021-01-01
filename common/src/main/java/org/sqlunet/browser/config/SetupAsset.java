@@ -18,6 +18,7 @@ import org.sqlunet.browser.common.R;
 import org.sqlunet.concurrency.TaskDialogObserver;
 import org.sqlunet.concurrency.TaskObserver;
 import org.sqlunet.download.FileAsyncTask;
+import org.sqlunet.download.Settings;
 import org.sqlunet.settings.StorageSettings;
 
 import java.io.File;
@@ -45,6 +46,7 @@ public class SetupAsset
 	 * @param view      view for snackbar
 	 * @return path if already installed
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	public static String deliverAsset(@NonNull final String assetPack, @NonNull final String assetDir, @NonNull final String assetZip, @NonNull final FragmentActivity activity, @Nullable final View view)
 	{
 		if (assetPack.isEmpty())
@@ -70,32 +72,48 @@ public class SetupAsset
 		}
 		// deliver asset (returns non null path if already installed)
 		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager(), "Asset Pack", assetPack, "MB");
-		final String path = new AssetPackLoader(activity, assetPack).assetPackDelivery(activity, observer, () -> {
+		final String path0 = new AssetPackLoader(activity, assetPack).assetPackDelivery(activity, observer, () -> {
 
 			// run when delivery completes
 			final AssetPackManager assetPackManager = AssetPackManagerFactory.getInstance(activity);
 			final AssetPackLocation packLocation = assetPackManager.getPackLocation(assetPack);
 			assert packLocation != null;
-			final String path2 = packLocation.assetsPath();
-			FileAsyncTask.launchUnzip(activity, new File(new File(path2, assetDir), assetZip).getAbsolutePath(), ASSET_ARCHIVE_ENTRY, StorageSettings.getDatabasePath(activity), () -> EntryActivity.reenter(activity));
+			final String path = packLocation.assetsPath();
+			FileAsyncTask.launchUnzip(activity, new File(new File(path, assetDir), assetZip).getAbsolutePath(), ASSET_ARCHIVE_ENTRY, StorageSettings.getDatabasePath(activity), () -> {
+
+				org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
+				Settings.recordDbSource(activity, new File(new File(path, assetDir), assetZip).getAbsolutePath(), -1, -1);
+				EntryActivity.reenter(activity);
+			});
 		});
 
 		// if already installed
-		if (path != null)
+		if (path0 != null)
 		{
 			if (view != null)
 			{
 				Snackbar.make(view, R.string.action_asset_installed, Snackbar.LENGTH_LONG)
 						//.setAction(R.string.action_asset_md5, (view2) -> FileAsyncTask.launchMd5(activity, new File(activity.getFilesDir(), TARGET_DB).getAbsolutePath()))
 						//.setAction(R.string.action_asset_dispose, (view2) -> disposeAsset(assetPack, activity, view2))
-						.setAction(R.string.action_asset_deploy, (view2) -> FileAsyncTask.launchUnzip(activity, new File(new File(path, assetDir), assetZip).getAbsolutePath(), ASSET_ARCHIVE_ENTRY, StorageSettings.getDatabasePath(activity), () -> EntryActivity.reenter(activity))).show();
+						.setAction(R.string.action_asset_deploy, (view2) -> FileAsyncTask.launchUnzip(activity, new File(new File(path0, assetDir), assetZip).getAbsolutePath(), ASSET_ARCHIVE_ENTRY, StorageSettings.getDatabasePath(activity), () -> {
+
+							org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
+							Settings.recordDbSource(activity, new File(new File(path0, assetDir), assetZip).getAbsolutePath(), -1, -1);
+							EntryActivity.reenter(activity);
+						})) //
+						.show();
 			}
 			else
 			{
 				Toast.makeText(activity, R.string.action_asset_installed, Toast.LENGTH_LONG).show();
-				FileAsyncTask.launchUnzip(activity, new File(new File(path, assetDir), assetZip).getAbsolutePath(), ASSET_ARCHIVE_ENTRY, StorageSettings.getDatabasePath(activity), () -> EntryActivity.reenter(activity));
+				FileAsyncTask.launchUnzip(activity, new File(new File(path0, assetDir), assetZip).getAbsolutePath(), ASSET_ARCHIVE_ENTRY, StorageSettings.getDatabasePath(activity), () -> {
+
+					org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
+					Settings.recordDbSource(activity, new File(new File(path0, assetDir), assetZip).getAbsolutePath(), -1, -1);
+					EntryActivity.reenter(activity);
+				});
 			}
-			return path;
+			return path0;
 		}
 		return null;
 	}
