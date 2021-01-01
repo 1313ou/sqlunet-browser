@@ -82,7 +82,6 @@ public class DataUtils
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	@Nullable
 	static private String[] readWordListAlt()
 	{
