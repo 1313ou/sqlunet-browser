@@ -40,7 +40,7 @@ class HomeImageView extends AppCompatImageView
 		super(context, attrs, defStyleAttr);
 	}
 
-	@SuppressWarnings({"SameReturnValue"})
+	@SuppressWarnings({"deprecation", "SameReturnValue"})
 	void init()
 	{
 		setOnTouchListener((v, event) -> {
