@@ -14,16 +14,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Uploads apk to alpha track and updates its listing properties."""
+"""Uploads an aab bundle to internal track and updates its listing properties."""
 """Unknown field name: recentChanges"""
 import argparse
 import sys
 from apiclient import sample_tools
 from oauth2client import client
 import mimetypes
-mimetypes.add_type('application/octet-stream', '.apk')
+mimetypes.add_type('application/octet-stream', '.aab')
 
-TRACK = 'alpha'  # Can be 'alpha', beta', 'production' or 'rollout'
+TRACK = 'internal'  # Can be 'internal', 'alpha', beta', 'production' or 'rollout'
 RECENT_CHANGES=u'Fixes and enhancements'
 
 # Declare command-line flags.
@@ -34,9 +34,9 @@ argparser.add_argument('release_name',
                        help='The release name.')
 argparser.add_argument('recent_changes',
                        help='The recent changes.')
-argparser.add_argument('apk_files',
+argparser.add_argument('aab_files',
                        nargs='*',
-                       help='The path to the APK files to upload.')
+                       help='The path to the AAB files to upload.')
 
 def main(argv):
     # Authenticate and construct service.
@@ -50,7 +50,7 @@ def main(argv):
 
     # Process flags and read their values.
     package_name = flags.package_name
-    apk_files = flags.apk_files
+    aab_files = flags.aab_files
     release_name=flags.release_name
     recent_changes=flags.recent_changes
     print 'PACKAGE %s' % package_name
@@ -63,14 +63,14 @@ def main(argv):
     
         # upload
         versionCodes=[]
-        for apk_file in apk_files:
-            print 'Uploading %s' % apk_file
-            apk_response = service.edits().apks().upload(
+        for aab_file in aab_files:
+            print 'Uploading %s' % aab_file
+            aab_response = service.edits().bundles().upload(
                 editId=edit_id,
                 packageName=package_name,
-                media_body=apk_file).execute()
-            versionCodes.append(apk_response['versionCode'])
-            print 'Version code %d has been uploaded' % apk_response['versionCode']
+                media_body=aab_file).execute()
+            versionCodes.append(aab_response['versionCode'])
+            print 'Version code %d has been uploaded' % aab_response['versionCode']
     
         # update tracks
         track_response = service.edits().tracks().update(
