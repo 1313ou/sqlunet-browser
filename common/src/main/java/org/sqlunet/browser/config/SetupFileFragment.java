@@ -131,7 +131,7 @@ public class SetupFileFragment extends BaseTaskFragment
 						break;
 
 					case DROP:
-						Utils.confirm(activity, R.string.title_setup_drop, R.string.askDrop, () -> {
+						Utils.confirm(activity, R.string.title_setup_drop, R.string.ask_drop, () -> {
 							SetupFileFragment.this.status.setText(R.string.status_task_running);
 							boolean success1 = SetupDatabaseTasks.deleteDatabase(activity, StorageSettings.getDatabasePath(activity));
 							SetupFileFragment.this.status.setText(success1 ? R.string.status_task_done : R.string.status_task_failed);
