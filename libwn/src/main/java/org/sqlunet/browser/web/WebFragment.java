@@ -430,6 +430,7 @@ public class WebFragment extends Fragment
 			if (BuildConfig.DEBUG)
 			{
 				LogUtils.writeLog(data, false, null);
+				//noinspection ConstantConditions
 				DomValidator.validateStrings(DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd"), data);
 				Log.d(TAG, "output=\n" + data);
 			}
@@ -489,6 +490,7 @@ public class WebFragment extends Fragment
 
 			if (BuildConfig.DEBUG)
 			{
+				//noinspection ConstantConditions
 				DomValidator.validateDocs(DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd"), wnDomDoc, bncDomDoc);
 				LogUtils.writeLog(false, null, wnDomDoc, bncDomDoc);
 				LogUtils.writeLog(data, false, null);
