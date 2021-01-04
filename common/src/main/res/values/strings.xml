@@ -196,7 +196,8 @@
 	<string name="no">No</string>
 	<!--<string name="askDownload">Do you wish to download ?</string>-->
 	<!--<string name="askUpdate">Do you wish to update ?</string>-->
-	<string name="askDrop">Do you wish to drop the database ?</string>
+	<string name="ask_drop">Do you wish to drop the database ?</string>
+	<string name="asset_delivery">Asset Pack delivery</string>
 
 	<string name="title_activity_diagnostics">DiagnosticsActivity</string>
 
