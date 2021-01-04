@@ -18,6 +18,7 @@ import org.sqlunet.concurrency.TaskObserver;
 
 import java.io.File;
 import java.util.Collections;
+import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -86,143 +87,174 @@ public class AssetPackLoader implements Cancelable
 		// observer
 		observer.taskStart(this);
 
-		// state
+		// listener
+		this.assetPackManager.registerListener(new Listener(activity, observer, whenReady));
+
+		// fetch if uninstalled
 		this.assetPackManager //
 				.getPackStates(Collections.singletonList(this.pack)) //
-				.addOnCompleteListener(task1 -> {
+				.addOnCompleteListener(getStateTask -> {
 
 					try
 					{
-						AssetPackStates assetPackStates1 = task1.getResult();
-						AssetPackState assetPackState1 = assetPackStates1.packStates().get(this.pack);
-						assert assetPackState1 != null;
-						int status1 = assetPackState1.status();
-						Log.d(LOGTAG, String.format("Assetpack %s status %s %d/%d %d%%", assetPackState1.name(), statusToString(status1), assetPackState1.bytesDownloaded(), assetPackState1.totalBytesToDownload(), assetPackState1.transferProgressPercentage()));
-						if (AssetPackStatus.NOT_INSTALLED == status1)
+						// state
+						final AssetPackStates assetPackStates = getStateTask.getResult();
+						final AssetPackState assetPackState = assetPackStates.packStates().get(this.pack);
+						assert assetPackState != null;
+						final int status = assetPackState.status();
+						Log.i(LOGTAG, String.format("AssetPack %s status %s %d/%d %d%%", assetPackState.name(), statusToString(status), assetPackState.bytesDownloaded(), assetPackState.totalBytesToDownload(), assetPackState.transferProgressPercentage()));
+
+						if (AssetPackStatus.NOT_INSTALLED == status)
 						{
-							assetPackManager.registerListener(new AssetPackStateUpdateListener()
+							// fetch
+							// returns an AssetPackStates object containing a list of packs and their initial download states and sizes.
+							// if an asset pack requested via fetch() is already downloading, the download status is returned and no additional download is started.
+							/* Task<AssetPackStates> fetchTask0 = */
+							this.assetPackManager.fetch(Collections.singletonList(this.pack)) //
+
+									.addOnCompleteListener(fetchTask -> {
+
+										final AssetPackStates fetchAssetPackStates = fetchTask.getResult();
+										final AssetPackState fetchAssetPackState = fetchAssetPackStates.packStates().get(this.pack);
+										assert fetchAssetPackState != null;
+										final int fetchStatus = fetchAssetPackState.status();
+										Log.i(LOGTAG, "OnFetchCompleted " + statusToString(fetchStatus));
+										if (fetchStatus == AssetPackStatus.FAILED)
+										{
+											Log.e(LOGTAG, "OnFetchCompleted with error " + fetchAssetPackState.errorCode());
+										}
+									}) //
+									.addOnFailureListener(exception -> Log.i(LOGTAG, "OnFetchFailure " + exception.getMessage())) //
+									.addOnSuccessListener(task2 -> {
+
+										Log.i(LOGTAG, "OnFetchSuccess ");
+										final AssetPackLocation packLocation2 = this.assetPackManager.getPackLocation(this.pack);
+										Log.i(LOGTAG, "OnFetchSuccess, Path asset " + (packLocation2 == null ? "null" : packLocation2.assetsPath()));
+									});
+						}
+						else if (AssetPackStatus.COMPLETED == status)
+						{
+							final AssetPackLocation packLocation1 = AssetPackLoader.this.assetPackManager.getPackLocation(AssetPackLoader.this.pack);
+							Log.i(LOGTAG, "Status asset path " + (packLocation1 == null ? "null" : packLocation1.assetsPath()));
+							observer.taskUpdate(statusToString(status));
+							observer.taskFinish(true);
+							if (whenReady != null)
 							{
-								@Override
-								public void onStateUpdate(@NonNull final AssetPackState assetPackState2)
-								{
-									int status2 = assetPackState2.status();
-									String status2Str = statusToString(status2);
-									Log.d(LOGTAG, "Status " + status2Str);
-
-									switch (status2)
-									{
-										case AssetPackStatus.NOT_INSTALLED: // Asset pack is not downloaded yet.
-										case AssetPackStatus.PENDING:
-											observer.taskUpdate(status2Str);
-											break;
-
-										case AssetPackStatus.DOWNLOADING:
-											long downloaded = assetPackState2.bytesDownloaded();
-											long totalSize = assetPackState2.totalBytesToDownload();
-											Log.i(LOGTAG, "Status downloading progress " + String.format("%d / %d", downloaded, totalSize));
-											observer.taskUpdate(status2Str);
-											observer.taskProgress(downloaded, totalSize);
-											break;
-
-										case AssetPackStatus.TRANSFERRING: // 100% downloaded and assets are being transferred. Notify user to wait until transfer is complete.
-											int percent2 = assetPackState2.transferProgressPercentage();
-											String percent2Str = String.format("%d %%", percent2);
-											Log.i(LOGTAG, "Status transferring progress " + percent2Str);
-											observer.taskUpdate(status2Str + ' ' + percent2Str);
-											observer.taskProgress(percent2, 100);
-											break;
-
-										case AssetPackStatus.COMPLETED: // Asset pack is ready to use.
-											final AssetPackLocation packLocation1 = AssetPackLoader.this.assetPackManager.getPackLocation(AssetPackLoader.this.pack);
-											Log.d(LOGTAG, "Status asset path " + (packLocation1 == null ? "null" : packLocation1.assetsPath()));
-											AssetPackLoader.this.assetPackManager.unregisterListener(this);
-											observer.taskUpdate(status2Str);
-											observer.taskFinish(true);
-											whenReady.run();
-											break;
-
-										case AssetPackStatus.FAILED: // Request failed. Notify user.
-											AssetPackLoader.this.assetPackManager.unregisterListener(this);
-											observer.taskUpdate(status2Str);
-											observer.taskFinish(false);
-											int errorCode = assetPackState2.errorCode();
-											Log.e(LOGTAG, "Status error " + errorCode);
-											observer.taskUpdate(Integer.toString(errorCode));
-											break;
-
-										case AssetPackStatus.CANCELED:  // Request canceled. Notify user.
-											AssetPackLoader.this.assetPackManager.unregisterListener(this);
-											observer.taskUpdate(status2Str);
-											observer.taskFinish(false);
-											Log.e(LOGTAG, "Status canceled" + assetPackState2.errorCode());
-											break;
-
-										case AssetPackStatus.WAITING_FOR_WIFI:
-											observer.taskUpdate(status2Str);
-											if (!AssetPackLoader.this.waitForWifiConfirmationShown)
-											{
-												AssetPackLoader.this.assetPackManager.showCellularDataConfirmation(activity).addOnSuccessListener(resultCode -> {
-
-													if (resultCode == Activity.RESULT_OK)
-													{
-														Log.d(LOGTAG, "Confirmation dialog has been accepted.");
-													}
-													else if (resultCode == Activity.RESULT_CANCELED)
-													{
-														Log.d(LOGTAG, "Confirmation dialog has been denied by the user.");
-													}
-												});
-												AssetPackLoader.this.waitForWifiConfirmationShown = true;
-											}
-											break;
-
-										case AssetPackStatus.UNKNOWN:
-											// Asset pack state is not known.
-											break;
-									}
-								}
-							});
-
-							assetPackManager.fetch(Collections.singletonList(this.pack)) //
-								/*
-								.addOnCompleteListener(task2 -> {
-
-									AssetPackStates assetPackStates2 = task2.getResult();
-									AssetPackState assetPackState2 = assetPackStates2.packStates().get(this.pack);
-									assert assetPackState2 != null;
-									int status2 = assetPackState2.status();
-									Log.d(LOGTAG, "Status2 completed " + status(status2));
-									switch (status2)
-									{
-										case AssetPackStatus.FAILED:
-											// Request failed. Notify user.
-											Log.e(LOGTAG, "error " + assetPackState2.errorCode());
-											break;
-
-										default:
-											break;
-									}
-								}) //
-								.addOnFailureListener(exception -> {
-
-									Log.d(LOGTAG, "Status2 failure " + exception.getMessage());
-								}) //
-								.addOnSuccessListener(task2 -> {
-
-									Log.d(LOGTAG, "Status2 success ");
-									final AssetPackLocation packLocation2 = this.assetPackManager.getPackLocation(this.pack);
-									Log.d(LOGTAG, "Status2 path asset " + (packLocation2 == null ? "null" : packLocation2.assetsPath()));
-								})asset
-								*/
-							;
+								whenReady.run();
+							}
+						}
+						else if (AssetPackStatus.FAILED == status || AssetPackStatus.CANCELED == status)
+						{
+							observer.taskUpdate(statusToString(status));
+							observer.taskFinish(true);
 						}
 					}
 					catch (RuntimeExecutionException e)
 					{
-						Log.e(LOGTAG, "Failure1 "  + e.getMessage());
+						Log.e(LOGTAG, "Failure " + e.getMessage());
 					}
 				});
 		return null;
+	}
+
+	class Listener implements AssetPackStateUpdateListener
+	{
+		@NonNull
+		final Activity activity;
+
+		@NonNull
+		final TaskObserver.Observer<Number> observer;
+
+		@Nullable
+		final Runnable whenReady;
+
+		Listener(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @Nullable Runnable whenReady)
+		{
+			this.activity = activity;
+			this.observer = observer;
+			this.whenReady = whenReady;
+		}
+
+		@Override
+		public void onStateUpdate(@NonNull final AssetPackState state)
+		{
+			int status = state.status();
+			String statusStr = statusToString(status);
+			Log.d(LOGTAG, "Status " + statusStr);
+
+			switch (status)
+			{
+				case AssetPackStatus.UNKNOWN: // The pack has never been requested before.
+				case AssetPackStatus.NOT_INSTALLED: // Asset pack is not downloaded yet.
+				case AssetPackStatus.PENDING: // The asset pack download is pending and will be processed soon.
+					// Asset pack state is not known.
+					this.observer.taskUpdate(statusStr);
+					break;
+
+				case AssetPackStatus.DOWNLOADING:
+					long downloaded = state.bytesDownloaded();
+					long totalSize = state.totalBytesToDownload();
+					Log.i(LOGTAG, "Status downloading progress " + String.format("%d / %d", downloaded, totalSize));
+					this.observer.taskUpdate(statusStr);
+					this.observer.taskProgress(downloaded, totalSize);
+					break;
+
+				case AssetPackStatus.TRANSFERRING: // 100% downloaded and assets are being transferred. Notify user to wait until transfer is complete.
+					int percent2 = state.transferProgressPercentage();
+					String percent2Str = String.format(Locale.getDefault(), "%d %%", percent2);
+					Log.i(LOGTAG, "Status transferring progress " + percent2Str);
+					this.observer.taskUpdate(statusStr + ' ' + percent2Str);
+					this.observer.taskProgress(percent2, 100);
+					break;
+
+				case AssetPackStatus.WAITING_FOR_WIFI: // The asset pack download is waiting for Wi-Fi to become available before proceeding.
+					this.observer.taskUpdate(statusStr);
+					if (!AssetPackLoader.this.waitForWifiConfirmationShown)
+					{
+						AssetPackLoader.this.assetPackManager.showCellularDataConfirmation(this.activity).addOnSuccessListener(resultCode -> {
+
+							if (resultCode == Activity.RESULT_OK)
+							{
+								Log.d(LOGTAG, "Confirmation dialog has been accepted.");
+							}
+							else if (resultCode == Activity.RESULT_CANCELED)
+							{
+								Log.d(LOGTAG, "Confirmation dialog has been denied by the user.");
+							}
+						});
+						AssetPackLoader.this.waitForWifiConfirmationShown = true;
+					}
+					break;
+
+				case AssetPackStatus.COMPLETED: // Asset pack is ready to use.
+					final AssetPackLocation packLocation1 = AssetPackLoader.this.assetPackManager.getPackLocation(AssetPackLoader.this.pack);
+					Log.i(LOGTAG, "Status asset path " + (packLocation1 == null ? "null" : packLocation1.assetsPath()));
+					AssetPackLoader.this.assetPackManager.unregisterListener(this);
+					this.observer.taskUpdate(statusStr);
+					this.observer.taskFinish(true);
+					if (this.whenReady != null)
+					{
+						this.whenReady.run();
+					}
+					break;
+
+				case AssetPackStatus.FAILED: // Request failed. Notify user.
+					AssetPackLoader.this.assetPackManager.unregisterListener(this);
+					this.observer.taskUpdate(statusStr);
+					this.observer.taskFinish(false);
+					int errorCode = state.errorCode();
+					Log.e(LOGTAG, "Status error " + errorCode);
+					this.observer.taskUpdate("Error " + errorCode);
+					break;
+
+				case AssetPackStatus.CANCELED:  // Request canceled. Notify user.
+					AssetPackLoader.this.assetPackManager.unregisterListener(this);
+					this.observer.taskUpdate(statusStr);
+					this.observer.taskFinish(false);
+					Log.i(LOGTAG, "Status canceled " + state.errorCode());
+					break;
+			}
+		}
 	}
 
 	/**
@@ -231,6 +263,7 @@ public class AssetPackLoader implements Cancelable
 	 * @param status numeric static
 	 * @return status string
 	 */
+	@NonNull
 	private static String statusToString(int status)
 	{
 		switch (status)
@@ -254,23 +287,27 @@ public class AssetPackLoader implements Cancelable
 			case AssetPackStatus.NOT_INSTALLED:
 				return "not installed";
 		}
-		return null;
+		return "illegal";
 	}
 
 	/**
 	 * Dispose of asset pack
 	 *
 	 * @param activity activity
-	 * @param pack     pack to delete
+	 * @param packs    packs to delete
 	 */
-	public static void assetPackDelete(final Activity activity, final String pack)
+	public static void assetPackRemove(final Activity activity, @NonNull final String... packs)
 	{
-		// manager
 		final AssetPackManager assetPackManager = AssetPackManagerFactory.getInstance(activity);
-
-		assetPackManager.removePack(pack) //
-				.addOnCompleteListener(task3 -> Log.d(LOGTAG, "Success3 " + task3.isSuccessful())) //
-				.addOnFailureListener(exception -> Log.e(LOGTAG, "Failure3 " + exception.getMessage()));
+		for (String pack : packs)
+		{
+			if (pack != null && !pack.isEmpty())
+			{
+				assetPackManager.removePack(pack) //
+						.addOnCompleteListener(task3 -> Log.d(LOGTAG, "Remove success " + task3.isSuccessful())) //
+						.addOnFailureListener(exception -> Log.e(LOGTAG, "Remove failure " + exception.getMessage()));
+			}
+		}
 	}
 
 	/**
@@ -282,6 +319,7 @@ public class AssetPackLoader implements Cancelable
 	@Override
 	public boolean cancel(final boolean mayInterruptIfRunning)
 	{
+		Log.d(LOGTAG, "Cancel !");
 		AssetPackLoader.this.assetPackManager.cancel(Collections.singletonList(this.pack));
 		return true;
 	}
