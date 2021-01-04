@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import org.sqlunet.browser.config.SetupAsset;
 import org.sqlunet.browser.config.Status;
 import org.sqlunet.settings.Settings;
 
@@ -37,6 +38,12 @@ public class EntryActivity extends AppCompatActivity
 		{
 			forkOff(this);
 			return;
+		}
+
+		// clean up assets
+		if (Settings.getAssetAutoCleanup(this))
+		{
+			SetupAsset.disposeAllAssets(this);
 		}
 
 		// switch as per preferred launch mode
