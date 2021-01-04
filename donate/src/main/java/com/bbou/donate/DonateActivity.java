@@ -83,12 +83,14 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 
 		// overlay drawable
 		final BitmapDrawable overlay = (BitmapDrawable) getDrawable(this, R.drawable.ic_overlay);
+		assert overlay != null;
 		overlay.setGravity(Gravity.TOP | Gravity.END);
 		this.overlay = overlay;
 
 		// init skus from resources
 		Skus.init(this);
 		final String[] inappSkus = Skus.getInappSkus();
+		assert inappSkus != null;
 		final int n = inappSkus.length;
 		if ((getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0)
 		{
