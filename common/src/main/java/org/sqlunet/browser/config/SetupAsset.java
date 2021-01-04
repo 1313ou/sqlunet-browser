@@ -29,6 +29,10 @@ import androidx.fragment.app.FragmentActivity;
 
 public class SetupAsset
 {
+	static public final String PREF_ASSET_PRIMARY_DEFAULT = "pref_asset_primary_default";
+
+	static public final String PREF_ASSET_AUTO_CLEANUP = "pref_asset_auto_cleanup";
+
 	/**
 	 * Entry name in archive
 	 */
@@ -71,7 +75,7 @@ public class SetupAsset
 			Toast.makeText(activity, R.string.action_asset_deliver, Toast.LENGTH_SHORT).show();
 		}
 		// deliver asset (returns non null path if already installed)
-		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager(), "Asset Pack", assetPack, "MB");
+		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager(), activity.getString(R.string.asset_delivery), assetPack, "MB");
 		final String path0 = new AssetPackLoader(activity, assetPack).assetPackDelivery(activity, observer, () -> {
 
 			// run when delivery completes
@@ -123,14 +127,25 @@ public class SetupAsset
 	 *
 	 * @param assetPack asset pack name
 	 * @param activity  activity
-	 * @param view      view for snackbar
 	 */
-	public static void disposeAsset(@NonNull final String assetPack, @NonNull final FragmentActivity activity, @Nullable final View view)
+	public static void disposeAsset(@NonNull final String assetPack, @NonNull final FragmentActivity activity)
 	{
 		if (assetPack.isEmpty())
 		{
 			throw new RuntimeException("Asset is empty");
 		}
-		AssetPackLoader.assetPackDelete(activity, assetPack);
+		AssetPackLoader.assetPackRemove(activity, assetPack);
+	}
+
+	/**
+	 * Dispose of assets
+	 *
+	 * @param activity  activity
+	 */
+	public static void disposeAllAssets(@NonNull final FragmentActivity activity)
+	{
+		String assetPack1 = activity.getString(R.string.asset_primary);
+		String assetPack2 = activity.getString(R.string.asset_alt);
+		AssetPackLoader.assetPackRemove(activity, assetPack1, assetPack2);
 	}
 }
