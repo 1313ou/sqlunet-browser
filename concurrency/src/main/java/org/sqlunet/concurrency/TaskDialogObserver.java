@@ -73,7 +73,10 @@ public class TaskDialogObserver<Progress extends Number> extends TaskObserver.Ba
 	{
 		super.taskStart(task);
 		this.progressDialogFragment.setTask(task);
-		this.progressDialogFragment.show(this.fragmentManager, "tag");
+		if (!this.fragmentManager.isDestroyed())
+		{
+			this.progressDialogFragment.show(this.fragmentManager, "tag");
+		}
 	}
 
 	@Override
