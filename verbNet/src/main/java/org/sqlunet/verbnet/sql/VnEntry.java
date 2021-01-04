@@ -71,7 +71,7 @@ public class VnEntry
 				}
 				synsets.add(new VnSynset(query));
 			}
-			if (wordId != 0 && synsets != null)
+			if (wordId != 0)
 			{
 				entry = new VnEntry(new BasicWord(word, wordId), synsets);
 			}
