@@ -20,7 +20,7 @@
 /captures
 /release
 **/build
-**/keystore.properties
+**/keystore*.properties
 **/strings_license-nontranslatable.xml
 **/androidpublisher.dat
 **/client_secrets.json
