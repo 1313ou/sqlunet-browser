@@ -116,17 +116,17 @@ public class MenuHandler
 		}
 		else if (itemId == R.id.action_asset_dispose)
 		{
-			SetupAsset.disposeAsset(Settings.getAssetPack(activity), activity, null);
+			SetupAsset.disposeAsset(Settings.getAssetPack(activity), activity);
 			return true;
 		}
 		else if (itemId == R.id.action_asset_dispose_primary)
 		{
-			SetupAsset.disposeAsset(activity.getString(R.string.asset_primary), activity, null);
+			SetupAsset.disposeAsset(activity.getString(R.string.asset_primary), activity);
 			return true;
 		}
 		else if (itemId == R.id.action_asset_dispose_alt)
 		{
-			SetupAsset.disposeAsset(activity.getString(R.string.asset_alt), activity, null);
+			SetupAsset.disposeAsset(activity.getString(R.string.asset_alt), activity);
 			return true;
 		}
 		else if (itemId == R.id.action_setup)
