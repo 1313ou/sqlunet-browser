@@ -12,6 +12,7 @@ import android.content.SharedPreferences.Editor;
 import android.net.Uri;
 
 import org.sqlunet.browser.common.R;
+import org.sqlunet.browser.config.SetupAsset;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.sql.PreparedStatement;
 
@@ -36,7 +37,8 @@ public class Settings
 	static public final String PREF_DETAIL_MODE = "pref_detail_view_mode"; // view wor web for detail fragment
 	static public final String PREF_XML = "pref_xml";
 	static public final String PREF_TEXTSEARCH_MODE = "pref_searchtext_mode";
-	static public final String PREF_ASSETS_DEFAULT = "pref_asset_default";
+	static public final String PREF_ASSET_PRIMARY_DEFAULT = SetupAsset.PREF_ASSET_PRIMARY_DEFAULT;
+	static public final String PREF_ASSET_AUTO_CLEANUP = SetupAsset.PREF_ASSET_AUTO_CLEANUP;
 	static public final String PREF_STORAGE = StorageSettings.PREF_STORAGE;
 	static public final String PREF_DOWNLOADER = StorageSettings.PREF_DOWNLOADER;
 	static public final String PREF_DOWNLOAD_SITE = StorageSettings.PREF_DOWNLOAD_SITE;
@@ -273,9 +275,15 @@ public class Settings
 	 */
 	public static String getAssetPack(final Context context)
 	{
+		final String primary = context.getString(R.string.asset_primary);
+		final String alt = context.getString(R.string.asset_alt);
+		if (alt == null)
+		{
+			return primary;
+		}
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-		boolean isDefault = prefs.getBoolean(PREF_ASSETS_DEFAULT, true);
-		return context.getString(isDefault ? R.string.asset_primary : R.string.asset_alt);
+		final boolean isPrimaryDefault = prefs.getBoolean(PREF_ASSET_PRIMARY_DEFAULT, true);
+		return isPrimaryDefault ? primary : alt;
 	}
 
 	/**
@@ -287,8 +295,8 @@ public class Settings
 	public static String getAssetPackDir(final Context context)
 	{
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-		boolean isDefault = prefs.getBoolean(PREF_ASSETS_DEFAULT, true);
-		return context.getString(isDefault ? R.string.asset_dir_primary : R.string.asset_dir_alt);
+		boolean isPrimaryDefault = prefs.getBoolean(PREF_ASSET_PRIMARY_DEFAULT, true);
+		return context.getString(isPrimaryDefault ? R.string.asset_dir_primary : R.string.asset_dir_alt);
 	}
 
 	/**
@@ -300,8 +308,20 @@ public class Settings
 	public static String getAssetPackZip(final Context context)
 	{
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-		boolean isDefault = prefs.getBoolean(PREF_ASSETS_DEFAULT, true);
-		return context.getString(isDefault ? R.string.asset_zip_primary : R.string.asset_zip_alt);
+		boolean isPrimaryDefault = prefs.getBoolean(PREF_ASSET_PRIMARY_DEFAULT, true);
+		return context.getString(isPrimaryDefault ? R.string.asset_zip_primary : R.string.asset_zip_alt);
+	}
+
+	/**
+	 * Get preferred asset pack auto cleanup flag
+	 *
+	 * @param context context
+	 * @return asset asset pack auto cleanup preference
+	 */
+	public static boolean getAssetAutoCleanup(final Context context)
+	{
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		return prefs.getBoolean(PREF_ASSET_AUTO_CLEANUP, true);
 	}
 
 	/**
