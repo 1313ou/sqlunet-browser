@@ -135,7 +135,7 @@ public abstract class AbstractTableFragment extends ListFragment
 		{
 			to[i++] = n;
 		}
-		Log.d(AbstractTableFragment.TAG + " To", Utils.join(to));
+		Log.d(AbstractTableFragment.TAG + " To", "" + Utils.join(to));
 
 		// make cursor adapter
 		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(requireContext(), layoutId, null, //
