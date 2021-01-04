@@ -11,9 +11,16 @@
 
 	<SwitchPreferenceCompat
 		android:defaultValue="true"
-		android:key="pref_asset_default"
-		android:summary="@string/pref_description_asset_default"
-		android:title="@string/pref_title_asset_default"
+		android:key="pref_asset_primary_default"
+		android:summary="@string/pref_description_primary_asset_default"
+		android:title="@string/pref_title_asset_primary_default"
+		app:singleLineTitle="false" />
+
+	<SwitchPreferenceCompat
+		android:defaultValue="true"
+		android:key="pref_asset_auto_cleanup"
+		android:summary="@string/pref_description_asset_auto_cleanup"
+		android:title="@string/pref_title_asset_auto_cleanup"
 		app:singleLineTitle="false" />
 
 	<Preference

@@ -89,8 +89,8 @@
 	<!-- ASSETS -->
 
 	<string name="pref_header_assets">Assets</string>
-	<string name="pref_description_asset_default">Use primary asset as default</string>
-	<string name="pref_title_asset_default">Default</string>
+	<string name="pref_title_asset_primary_default">Default</string>
+	<string name="pref_title_asset_auto_cleanup">Auto_cleanup</string>
 	<string name="pref_title_db_asset">DB asset</string>
 	<string name="pref_title_asset_primary">Primary</string>
 	<string name="pref_title_asset_dir_primary">Primary dir</string>
@@ -98,6 +98,8 @@
 	<string name="pref_title_asset_alt">Alt</string>
 	<string name="pref_title_asset_dir_alt">Alt dir</string>
 	<string name="pref_title_asset_zip_alt">Alt zip</string>
+	<string name="pref_description_primary_asset_default">Use primary asset as default</string>
+	<string name="pref_description_asset_auto_cleanup">Auto clean-up of installed assets when no longer used</string>
 
 	<!-- DOWNLOAD -->
 
