@@ -11,7 +11,6 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 
 /**
  * Task DialogProgress observer
@@ -30,34 +29,16 @@ public class TaskProgressDialogObserver<Progress extends Number> extends TaskObs
 	@NonNull
 	private final ProgressDialog progressDialog;
 
-	@Nullable
-	private final CharSequence unit;
-
-	/**
-	 * Constructor
-	 *
-	 * @param activity  activity
-	 * @param titleId   title id
-	 * @param messageId message id
-	 * @param unitId    unit id
-	 */
-	public TaskProgressDialogObserver(@NonNull final Activity activity, @StringRes final int titleId, @StringRes final int messageId, @StringRes final int unitId)
-	{
-		this(activity, activity.getString(titleId), activity.getString(messageId), unitId == 0 ? null : activity.getString(unitId));
-	}
-
 	/**
 	 * Constructor
 	 *
 	 * @param activity activity
 	 * @param title    title
 	 * @param message  message
-	 * @param unit     unit
 	 */
-	public TaskProgressDialogObserver(@NonNull final Activity activity, @NonNull final CharSequence title, @NonNull final CharSequence message, @Nullable final CharSequence unit)
+	public TaskProgressDialogObserver(@NonNull final Activity activity, @NonNull final CharSequence title, @NonNull final CharSequence message)
 	{
 		this.progressDialog = makeDialog(activity, title, message);
-		this.unit = unit;
 	}
 
 	@Override
@@ -71,9 +52,9 @@ public class TaskProgressDialogObserver<Progress extends Number> extends TaskObs
 	}
 
 	@Override
-	public void taskProgress(@NonNull final Progress progress, @NonNull final Progress length)
+	public void taskProgress(@NonNull final Progress progress, @NonNull final Progress length, @Nullable String unit)
 	{
-		super.taskProgress(progress, length);
+		super.taskProgress(progress, length, unit);
 		final long longLength = length.longValue();
 		final long longProgress = progress.longValue();
 		final boolean indeterminate = longLength == -1L;
@@ -83,19 +64,7 @@ public class TaskProgressDialogObserver<Progress extends Number> extends TaskObs
 			this.progressDialog.setProgressNumberFormat(null);
 			this.progressDialog.setProgressPercentFormat(null);
 		}
-		String strProgress;
-		if (longLength != -1L)
-		{
-			strProgress = this.unit != null ? TaskObserver.countToString(progress.longValue(), this.unit) : TaskObserver.countToStorageString(progress.longValue());
-			String strLength = (this.unit != null ? TaskObserver.countToString(longLength, this.unit) : TaskObserver.countToStorageString(longLength));
-			strProgress += " / " + strLength;
-		}
-		else
-		{
-			strProgress = TaskObserver.countToString(progress.longValue(), null);
-		}
-
-		this.progressDialog.setMessage(strProgress);
+		this.progressDialog.setMessage(TaskObserver.countToString(longProgress, longLength, unit));
 		if (!indeterminate)
 		{
 			//final int percent = (int) ((longProgress * 100F) / longLength);

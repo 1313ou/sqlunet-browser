@@ -43,7 +43,7 @@ public class MD5AsyncTaskChooser
 		{
 			return;
 		}
-		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager(), null) // guarded, level 2
+		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
 				.setTitle(activity.getString(R.string.action_md5)) //
 				.setMessage(path);
 		final Task<String, Number, String> ft = new FileAsyncTask(observer, resultListener, 1000).md5FromFile();

@@ -184,8 +184,7 @@ public class SetupSqlFragment extends Fragment implements Updatable
 				final String database = StorageSettings.getDatabasePath(activity);
 				final String source = StorageSettings.getSqlSource(activity);
 				final String entry = StorageSettings.getImportEntry(activity);
-				final String unit = activity.getString(R.string.unit_statement);
-				final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager(), unit) //
+				final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
 						.setTitle(activity.getString(R.string.status_managing)) //
 						.setMessage(source + '@' + entry);
 				final Task<String, Number, Boolean> et = new ExecAsyncTask(activity, this::update, observer, 1000).fromArchive();
@@ -227,8 +226,7 @@ public class SetupSqlFragment extends Fragment implements Updatable
 				final String database = StorageSettings.getDatabasePath(activity);
 				final String source = StorageSettings.getSqlSource(activity);
 				final String entry = StorageSettings.getIndexEntry(activity);
-				final String unit = activity.getString(R.string.unit_statement);
-				final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager(), unit) //
+				final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
 						.setTitle(activity.getString(R.string.status_managing)) //
 						.setMessage(source + '@' + entry);
 				final Task<String, Number, Boolean> st = new ExecAsyncTask(activity, this::update, observer, 1).fromArchive(); //database, source, entry);

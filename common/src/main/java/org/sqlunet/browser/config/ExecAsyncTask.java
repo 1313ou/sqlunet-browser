@@ -15,6 +15,7 @@ import android.util.Pair;
 import android.view.Window;
 import android.view.WindowManager;
 
+import org.sqlunet.browser.common.R;
 import org.sqlunet.concurrency.Task;
 import org.sqlunet.concurrency.TaskObserver;
 
@@ -67,6 +68,11 @@ public class ExecAsyncTask
 	private final int publishRate;
 
 	/**
+	 * Unit
+	 */
+	private final String unit;
+
+	/**
 	 * Activity
 	 */
 	private final Activity activity;
@@ -85,6 +91,7 @@ public class ExecAsyncTask
 		this.doneListener = doneListener;
 		this.observer = observer;
 		this.publishRate = publishRate;
+		this.unit = activity.getString(R.string.unit_statement);
 	}
 
 	static private class AsyncExecuteFromSql extends Task<Pair<String, String[]>, Number, Boolean>
@@ -102,6 +109,11 @@ public class ExecAsyncTask
 		final private TaskObserver.Observer<Number> observer;
 
 		/**
+		 * Unit
+		 */
+		private final String unit;
+
+		/**
 		 * Publish rate
 		 */
 		private final int publishRate;
@@ -112,11 +124,12 @@ public class ExecAsyncTask
 		 * @param observer    observer
 		 * @param publishRate publish rate
 		 */
-		AsyncExecuteFromSql(@Nullable final DoneListener doneListener, @Nullable final TaskObserver.Observer<Number> observer, final int publishRate)
+		AsyncExecuteFromSql(@Nullable final DoneListener doneListener, @Nullable final TaskObserver.Observer<Number> observer, final int publishRate, final String unit)
 		{
 			this.doneListener = doneListener;
 			this.observer = observer;
 			this.publishRate = publishRate;
+			this.unit = unit;
 		}
 
 		@NonNull
@@ -188,7 +201,7 @@ public class ExecAsyncTask
 		{
 			if (this.observer != null)
 			{
-				this.observer.taskProgress(params[0], params[1]);
+				this.observer.taskProgress(params[0], params[1], this.unit);
 			}
 		}
 
@@ -213,7 +226,7 @@ public class ExecAsyncTask
 	@SuppressWarnings({"UnusedReturnValue", "unchecked"})
 	public Task<Pair<String, String[]>, Number, Boolean> fromSql()
 	{
-		return new AsyncExecuteFromSql(this.doneListener, this.observer, this.publishRate);
+		return new AsyncExecuteFromSql(this.doneListener, this.observer, this.publishRate, this.unit);
 	}
 
 	static private class AsyncExecuteFromArchive extends Task<String, Number, Boolean>
@@ -236,6 +249,11 @@ public class ExecAsyncTask
 		private final int publishRate;
 
 		/**
+		 * UNit
+		 */
+		private final String unit;
+
+		/**
 		 * Power manager
 		 */
 		private final PowerManager powerManager;
@@ -254,11 +272,12 @@ public class ExecAsyncTask
 		 * @param powerManager power manager
 		 * @param window       window
 		 */
-		AsyncExecuteFromArchive(@Nullable final DoneListener doneListener, @Nullable final TaskObserver.Observer<Number> observer, final int publishRate, final PowerManager powerManager, final Window window)
+		AsyncExecuteFromArchive(@Nullable final DoneListener doneListener, @Nullable final TaskObserver.Observer<Number> observer, final int publishRate, final String unit, final PowerManager powerManager, final Window window)
 		{
 			this.doneListener = doneListener;
 			this.observer = observer;
 			this.publishRate = publishRate;
+			this.unit = unit;
 			this.powerManager = powerManager;
 			this.window = window;
 		}
@@ -460,7 +479,7 @@ public class ExecAsyncTask
 		{
 			if (this.observer != null)
 			{
-				this.observer.taskProgress(params[0], params[1]);
+				this.observer.taskProgress(params[0], params[1], this.unit);
 			}
 		}
 
@@ -487,7 +506,7 @@ public class ExecAsyncTask
 	{
 		final PowerManager powerManager = (PowerManager) ExecAsyncTask.this.activity.getSystemService(Context.POWER_SERVICE);
 		final Window window = ExecAsyncTask.this.activity.getWindow();
-		return new AsyncExecuteFromArchive(this.doneListener, this.observer, this.publishRate, powerManager, window);
+		return new AsyncExecuteFromArchive(this.doneListener, this.observer, this.publishRate, this.unit, powerManager, window);
 	}
 
 	static private class AsyncVacuum extends Task<String, Void, Void>

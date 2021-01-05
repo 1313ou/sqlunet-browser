@@ -41,6 +41,6 @@ public abstract class ObservedTask<Params, Progress extends Number, Result> exte
 	protected void onProgressUpdate(final Progress[] values)
 	{
 		super.onProgressUpdate(values);
-		this.observer.taskProgress(values[0], values[1]); // current, total
+		this.observer.taskProgress(values[0], values[1], null); // current, total
 	}
 }

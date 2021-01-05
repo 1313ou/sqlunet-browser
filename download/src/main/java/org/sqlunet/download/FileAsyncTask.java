@@ -127,7 +127,7 @@ public class FileAsyncTask
 		protected void onProgressUpdate(final Number... params)
 		{
 			super.onProgressUpdate(params);
-			this.observer.taskProgress(params[0], params[1]);
+			this.observer.taskProgress(params[0], params[1], null);
 		}
 
 		@Override
@@ -205,7 +205,7 @@ public class FileAsyncTask
 		@Override
 		protected void onProgressUpdate(final Number... params)
 		{
-			this.observer.taskProgress(params[0], params[1]);
+			this.observer.taskProgress(params[0], params[1], null);
 		}
 
 		@Override
@@ -284,7 +284,7 @@ public class FileAsyncTask
 		@Override
 		protected void onProgressUpdate(final Number... params)
 		{
-			this.observer.taskProgress(params[0], params[1]);
+			this.observer.taskProgress(params[0], params[1], null);
 		}
 
 		@Override
@@ -360,7 +360,7 @@ public class FileAsyncTask
 		@Override
 		protected void onProgressUpdate(final Number... params)
 		{
-			this.observer.taskProgress(params[0], params[1]);
+			this.observer.taskProgress(params[0], params[1], null);
 		}
 
 		@Override
@@ -436,7 +436,7 @@ public class FileAsyncTask
 
 	public static void launchUnzip(@NonNull final FragmentActivity activity, @NonNull final String sourceFile, @NonNull final String databasePath, @Nullable final Runnable whenDone)
 	{
-		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager(), null) // guarded, level 2
+		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
 				.setTitle(activity.getString(R.string.action_unzip_from_archive)) //
 				.setMessage(sourceFile);
 		final FileAsyncTask.ResultListener resultListener = result -> {
@@ -457,7 +457,7 @@ public class FileAsyncTask
 
 	public static void launchUnzip(@NonNull final FragmentActivity activity, @NonNull final String sourceFile, @NonNull final String zipEntry, @NonNull final String databasePath, @Nullable final Runnable whenDone)
 	{
-		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager(), null) // guarded, level 2
+		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
 				.setTitle(activity.getString(R.string.action_unzip_from_archive)) //
 				.setMessage(sourceFile);
 		final FileAsyncTask.ResultListener resultListener = result -> {
@@ -478,9 +478,9 @@ public class FileAsyncTask
 
 	public static void launchCopy(@NonNull final FragmentActivity activity, @NonNull final String sourceFile, @NonNull final String databasePath, @Nullable final Runnable whenDone)
 	{
-		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager(), null) // guarded, level 2
+		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
 				.setTitle(activity.getString(R.string.action_copy_from_file)) //
-				.setMessage(sourceFile);
+				.setMessage(sourceFile);;
 		final FileAsyncTask.ResultListener resultListener = result -> {
 
 			final Boolean success = (Boolean) result;
@@ -499,7 +499,7 @@ public class FileAsyncTask
 
 	public static void launchMd5(@NonNull final FragmentActivity activity, @NonNull final String sourceFile)
 	{
-		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager(), null) // guarded, level 2
+		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
 				.setTitle(activity.getString(R.string.action_md5)) //
 				.setMessage(sourceFile);
 		final FileAsyncTask.ResultListener resultListener = result -> {

@@ -45,8 +45,9 @@ public class TaskObserver
 		 *
 		 * @param progress progress value
 		 * @param length   length
+		 * @param unit     unit
 		 */
-		void taskProgress(@NonNull Progress progress, @NonNull Progress length);
+		void taskProgress(@NonNull Progress progress, @NonNull Progress length, @Nullable String unit);
 
 		/**
 		 * Intermediate update event
@@ -84,9 +85,9 @@ public class TaskObserver
 
 		@SuppressWarnings("WeakerAccess")
 		@Override
-		public void taskProgress(@NonNull Progress progress, @NonNull Progress length)
+		public void taskProgress(@NonNull Progress progress, @NonNull Progress length, @Nullable String unit)
 		{
-			Log.d(TAG, "Task " + progress + '/' + length);
+			Log.d(TAG, "Task " + progress + '/' + length + ' ' + unit);
 		}
 
 		@SuppressWarnings("WeakerAccess")
@@ -124,7 +125,7 @@ public class TaskObserver
 	 * @return string
 	 */
 	@NonNull
-	public static String countToString(final long count, @Nullable final CharSequence unit)
+	public static String countToString(final long count, @Nullable final String unit)
 	{
 		String strValue = NumberFormat.getNumberInstance(Locale.US).format(count);
 		if (unit == null)
@@ -163,5 +164,17 @@ public class TaskObserver
 			return "0 Byte";
 		}
 		return "[n/a]";
+	}
+
+	@NonNull
+	public static String countToString(final long progress, final long length, @Nullable final String unit)
+	{
+		String str = (unit != null ? countToString(progress, unit) : countToStorageString(progress));
+		if (length != -1L)
+		{
+			String strLength = (unit != null ? countToString(length, unit) : countToStorageString(length));
+			str += " / " + strLength;
+		}
+		return str;
 	}
 }
