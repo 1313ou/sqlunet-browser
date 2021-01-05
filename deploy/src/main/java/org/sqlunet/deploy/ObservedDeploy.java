@@ -49,7 +49,7 @@ public class ObservedDeploy
 	 * @param publishRate publish rate
 	 * @return true if successful
 	 */
-	static synchronized public boolean copyFromFile(@NonNull final String srcFile, final String destFile, @NonNull final Task<String, Long, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
+	static synchronized public boolean copyFromFile(@NonNull final String srcFile, final String destFile, @NonNull final Task<String, Number, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
 	{
 		Log.d(ObservedDeploy.TAG, "Copy from " + srcFile + " to " + destFile);
 
@@ -104,7 +104,7 @@ public class ObservedDeploy
 	 * @param publishRate publish rate
 	 * @return true if successful
 	 */
-	static synchronized public boolean unzipFromArchive(final String srcArchive, final String destDir, @NonNull final Task<String, Long, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
+	static synchronized public boolean unzipFromArchive(final String srcArchive, final String destDir, @NonNull final Task<String, Number, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
 	{
 		Log.d(ObservedDeploy.TAG, "Expand from " + srcArchive + " to " + destDir);
 
@@ -218,7 +218,7 @@ public class ObservedDeploy
 	 * @param publishRate publish rate
 	 * @return true if successful
 	 */
-	static synchronized public boolean unzipEntryFromArchive(final String srcArchive, final String srcEntry, @NonNull final String destFile, @NonNull final Task<String, Long, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
+	static synchronized public boolean unzipEntryFromArchive(final String srcArchive, final String srcEntry, @NonNull final String destFile, @NonNull final Task<String, Number, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
 	{
 		Log.d(ObservedDeploy.TAG, "Expand from " + srcArchive + " (entry " + srcEntry + ") to " + destFile);
 
@@ -311,7 +311,7 @@ public class ObservedDeploy
 	 * @return true if successful
 	 */
 	@Nullable
-	static synchronized public String md5FromFile(@NonNull final String srcFile, @NonNull final Task<String, Long, String> task, @NonNull final Publisher publisher, final int publishRate)
+	static synchronized public String md5FromFile(@NonNull final String srcFile, @NonNull final Task<String, Number, String> task, @NonNull final Publisher publisher, final int publishRate)
 	{
 		Log.d(TAG, "Md5 " + srcFile);
 		try

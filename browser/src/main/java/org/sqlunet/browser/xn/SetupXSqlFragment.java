@@ -19,7 +19,6 @@ import org.sqlunet.browser.ColorUtils;
 import org.sqlunet.browser.Info;
 import org.sqlunet.browser.R;
 import org.sqlunet.browser.config.ExecAsyncTask;
-import org.sqlunet.concurrency.ObservedDelegatingTask;
 import org.sqlunet.concurrency.Task;
 import org.sqlunet.concurrency.TaskDialogObserver;
 import org.sqlunet.concurrency.TaskObserver;
@@ -88,12 +87,11 @@ public class SetupXSqlFragment extends org.sqlunet.browser.config.SetupSqlFragme
 				final String source = StorageSettings.getSqlSource(activity);
 				final String entry = Settings.getPmEntry(activity);
 				final String unit = activity.getString(R.string.unit_statement);
-				final TaskObserver.Observer<Integer> observer = new TaskObserver.BaseObserver<>();
-				final Task<String, Integer, Boolean> st = new ExecAsyncTask(activity, SetupXSqlFragment.this::update, observer, 1).fromArchive();
-				// final TaskObserver.Listener<Integer> stObserver = new TaskProgressDialogListener<>(activity, activity.getString(R.string.status_managing), source + '@' + entry, unit);
-				final TaskObserver.Observer<Integer> stObserver = new TaskDialogObserver<>(activity.getSupportFragmentManager(), activity.getString(R.string.status_managing), source + '@' + entry, unit);
-				final ObservedDelegatingTask<String, Integer, Boolean> oft = new ObservedDelegatingTask<>(st, stObserver);
-				oft.execute(database, source, entry);
+				final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager(), unit) //
+						.setTitle(activity.getString(R.string.status_managing)) //
+						.setMessage(source + '@' + entry);
+				final Task<String, Number, Boolean> st = new ExecAsyncTask(activity, SetupXSqlFragment.this::update, observer, 1).fromArchive();
+				st.execute(database, source, entry);
 			}
 			catch (@NonNull final Exception e)
 			{

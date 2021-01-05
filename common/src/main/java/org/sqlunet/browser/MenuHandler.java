@@ -20,6 +20,8 @@ import org.sqlunet.browser.config.SetupAsset;
 import org.sqlunet.browser.config.SetupFileActivity;
 import org.sqlunet.browser.config.SetupFileFragment;
 import org.sqlunet.browser.config.StorageActivity;
+import org.sqlunet.concurrency.TaskDialogObserver;
+import org.sqlunet.concurrency.TaskObserver;
 import org.sqlunet.download.FileDataDownloader;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.settings.Settings;
@@ -95,7 +97,10 @@ public class MenuHandler
 			final String asset = Settings.getAssetPack(activity);
 			final String assetDir = Settings.getAssetPackDir(activity);
 			final String assetZip = Settings.getAssetPackZip(activity);
-			SetupAsset.deliverAsset(asset, assetDir, assetZip, activity, null);
+			final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager(), "B") //
+					.setTitle(activity.getString(R.string.asset_delivery)) //
+					.setMessage(asset);
+			SetupAsset.deliverAsset(asset, assetDir, assetZip, activity, observer, null);
 			return true;
 		}
 		else if (itemId == R.id.action_asset_deliver_primary)
@@ -103,7 +108,10 @@ public class MenuHandler
 			final String asset = activity.getString(R.string.asset_primary);
 			final String assetDir = activity.getString(R.string.asset_dir_primary);
 			final String assetZip = activity.getString(R.string.asset_zip_primary);
-			SetupAsset.deliverAsset(asset, assetDir, assetZip, activity, null);
+			final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager(), "B") //
+					.setTitle(activity.getString(R.string.asset_delivery)) //
+					.setMessage(asset);
+			SetupAsset.deliverAsset(asset, assetDir, assetZip, activity, observer, null);
 			return true;
 		}
 		else if (itemId == R.id.action_asset_deliver_alt)
@@ -114,7 +122,10 @@ public class MenuHandler
 			assert asset != null;
 			if (!asset.isEmpty())
 			{
-				SetupAsset.deliverAsset(asset, assetDir, assetZip, activity, null);
+				final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager(), "B") //
+						.setTitle(activity.getString(R.string.asset_delivery)) //
+						.setMessage(asset);
+				SetupAsset.deliverAsset(asset, assetDir, assetZip, activity, observer, null);
 			}
 			return true;
 		}

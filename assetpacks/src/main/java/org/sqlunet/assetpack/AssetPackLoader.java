@@ -25,7 +25,7 @@ import androidx.annotation.Nullable;
 
 public class AssetPackLoader implements Cancelable
 {
-	private static final String LOGTAG = "AssetPackLoader";
+	private static final String TAG = "AssetPackLoader";
 
 	@NonNull
 	private final String pack;
@@ -59,7 +59,7 @@ public class AssetPackLoader implements Cancelable
 		if (packLocation != null)
 		{
 			final String path = packLocation.assetsPath();
-			Log.d(LOGTAG, "Asset path " + path);
+			Log.d(TAG, "Asset path " + path);
 			return path;
 		}
 		return null;
@@ -80,7 +80,7 @@ public class AssetPackLoader implements Cancelable
 		if (packLocation != null)
 		{
 			final String path = packLocation.assetsPath();
-			Log.d(LOGTAG, "Asset path " + path);
+			Log.d(TAG, "Asset path " + path);
 			return path;
 		}
 
@@ -102,7 +102,7 @@ public class AssetPackLoader implements Cancelable
 						final AssetPackState assetPackState = assetPackStates.packStates().get(this.pack);
 						assert assetPackState != null;
 						final int status = assetPackState.status();
-						Log.i(LOGTAG, String.format("AssetPack %s status %s %d/%d %d%%", assetPackState.name(), statusToString(status), assetPackState.bytesDownloaded(), assetPackState.totalBytesToDownload(), assetPackState.transferProgressPercentage()));
+						Log.i(TAG, String.format("AssetPack %s status %s %d/%d %d%%", assetPackState.name(), statusToString(status), assetPackState.bytesDownloaded(), assetPackState.totalBytesToDownload(), assetPackState.transferProgressPercentage()));
 
 						if (AssetPackStatus.NOT_INSTALLED == status)
 						{
@@ -118,24 +118,24 @@ public class AssetPackLoader implements Cancelable
 										final AssetPackState fetchAssetPackState = fetchAssetPackStates.packStates().get(this.pack);
 										assert fetchAssetPackState != null;
 										final int fetchStatus = fetchAssetPackState.status();
-										Log.i(LOGTAG, "OnFetchCompleted " + statusToString(fetchStatus));
+										Log.i(TAG, "OnFetchCompleted " + statusToString(fetchStatus));
 										if (fetchStatus == AssetPackStatus.FAILED)
 										{
-											Log.e(LOGTAG, "OnFetchCompleted with error " + fetchAssetPackState.errorCode());
+											Log.e(TAG, "OnFetchCompleted with error " + fetchAssetPackState.errorCode());
 										}
 									}) //
-									.addOnFailureListener(exception -> Log.i(LOGTAG, "OnFetchFailure " + exception.getMessage())) //
+									.addOnFailureListener(exception -> Log.i(TAG, "OnFetchFailure " + exception.getMessage())) //
 									.addOnSuccessListener(task2 -> {
 
-										Log.i(LOGTAG, "OnFetchSuccess ");
+										Log.i(TAG, "OnFetchSuccess ");
 										final AssetPackLocation packLocation2 = this.assetPackManager.getPackLocation(this.pack);
-										Log.i(LOGTAG, "OnFetchSuccess, Path asset " + (packLocation2 == null ? "null" : packLocation2.assetsPath()));
+										Log.i(TAG, "OnFetchSuccess, Path asset " + (packLocation2 == null ? "null" : packLocation2.assetsPath()));
 									});
 						}
 						else if (AssetPackStatus.COMPLETED == status)
 						{
 							final AssetPackLocation packLocation1 = AssetPackLoader.this.assetPackManager.getPackLocation(AssetPackLoader.this.pack);
-							Log.i(LOGTAG, "Status asset path " + (packLocation1 == null ? "null" : packLocation1.assetsPath()));
+							Log.i(TAG, "Status asset path " + (packLocation1 == null ? "null" : packLocation1.assetsPath()));
 							observer.taskUpdate(statusToString(status));
 							observer.taskFinish(true);
 							if (whenReady != null)
@@ -151,7 +151,7 @@ public class AssetPackLoader implements Cancelable
 					}
 					catch (RuntimeExecutionException e)
 					{
-						Log.e(LOGTAG, "Failure " + e.getMessage());
+						Log.e(TAG, "Failure " + e.getMessage());
 					}
 				});
 		return null;
@@ -180,7 +180,7 @@ public class AssetPackLoader implements Cancelable
 		{
 			int status = state.status();
 			String statusStr = statusToString(status);
-			Log.d(LOGTAG, "Status " + statusStr);
+			Log.d(TAG, "Status " + statusStr);
 
 			switch (status)
 			{
@@ -194,7 +194,7 @@ public class AssetPackLoader implements Cancelable
 				case AssetPackStatus.DOWNLOADING:
 					long downloaded = state.bytesDownloaded();
 					long totalSize = state.totalBytesToDownload();
-					Log.i(LOGTAG, "Status downloading progress " + String.format("%d / %d", downloaded, totalSize));
+					Log.i(TAG, "Status downloading progress " + String.format("%d / %d", downloaded, totalSize));
 					this.observer.taskUpdate(statusStr);
 					this.observer.taskProgress(downloaded, totalSize);
 					break;
@@ -202,9 +202,9 @@ public class AssetPackLoader implements Cancelable
 				case AssetPackStatus.TRANSFERRING: // 100% downloaded and assets are being transferred. Notify user to wait until transfer is complete.
 					int percent2 = state.transferProgressPercentage();
 					String percent2Str = String.format(Locale.getDefault(), "%d %%", percent2);
-					Log.i(LOGTAG, "Status transferring progress " + percent2Str);
+					Log.i(TAG, "Status transferring progress " + percent2Str);
 					this.observer.taskUpdate(statusStr + ' ' + percent2Str);
-					this.observer.taskProgress(percent2, 100);
+					this.observer.taskProgress(percent2, -1);
 					break;
 
 				case AssetPackStatus.WAITING_FOR_WIFI: // The asset pack download is waiting for Wi-Fi to become available before proceeding.
@@ -215,11 +215,11 @@ public class AssetPackLoader implements Cancelable
 
 							if (resultCode == Activity.RESULT_OK)
 							{
-								Log.d(LOGTAG, "Confirmation dialog has been accepted.");
+								Log.d(TAG, "Confirmation dialog has been accepted.");
 							}
 							else if (resultCode == Activity.RESULT_CANCELED)
 							{
-								Log.d(LOGTAG, "Confirmation dialog has been denied by the user.");
+								Log.d(TAG, "Confirmation dialog has been denied by the user.");
 							}
 						});
 						AssetPackLoader.this.waitForWifiConfirmationShown = true;
@@ -228,7 +228,7 @@ public class AssetPackLoader implements Cancelable
 
 				case AssetPackStatus.COMPLETED: // Asset pack is ready to use.
 					final AssetPackLocation packLocation1 = AssetPackLoader.this.assetPackManager.getPackLocation(AssetPackLoader.this.pack);
-					Log.i(LOGTAG, "Status asset path " + (packLocation1 == null ? "null" : packLocation1.assetsPath()));
+					Log.i(TAG, "Status asset path " + (packLocation1 == null ? "null" : packLocation1.assetsPath()));
 					AssetPackLoader.this.assetPackManager.unregisterListener(this);
 					this.observer.taskUpdate(statusStr);
 					this.observer.taskFinish(true);
@@ -243,7 +243,7 @@ public class AssetPackLoader implements Cancelable
 					this.observer.taskUpdate(statusStr);
 					this.observer.taskFinish(false);
 					int errorCode = state.errorCode();
-					Log.e(LOGTAG, "Status error " + errorCode);
+					Log.e(TAG, "Status error " + errorCode);
 					this.observer.taskUpdate("Error " + errorCode);
 					break;
 
@@ -251,7 +251,7 @@ public class AssetPackLoader implements Cancelable
 					AssetPackLoader.this.assetPackManager.unregisterListener(this);
 					this.observer.taskUpdate(statusStr);
 					this.observer.taskFinish(false);
-					Log.i(LOGTAG, "Status canceled " + state.errorCode());
+					Log.i(TAG, "Status canceled " + state.errorCode());
 					break;
 			}
 		}
@@ -304,8 +304,8 @@ public class AssetPackLoader implements Cancelable
 			if (pack != null && !pack.isEmpty())
 			{
 				assetPackManager.removePack(pack) //
-						.addOnCompleteListener(task3 -> Log.d(LOGTAG, "Remove success " + task3.isSuccessful())) //
-						.addOnFailureListener(exception -> Log.e(LOGTAG, "Remove failure " + exception.getMessage()));
+						.addOnCompleteListener(task3 -> Log.d(TAG, "Remove success " + task3.isSuccessful())) //
+						.addOnFailureListener(exception -> Log.e(TAG, "Remove failure " + exception.getMessage()));
 			}
 		}
 	}
@@ -319,7 +319,7 @@ public class AssetPackLoader implements Cancelable
 	@Override
 	public boolean cancel(final boolean mayInterruptIfRunning)
 	{
-		Log.d(LOGTAG, "Cancel !");
+		Log.d(TAG, "Cancel !");
 		AssetPackLoader.this.assetPackManager.cancel(Collections.singletonList(this.pack));
 		return true;
 	}
@@ -342,7 +342,7 @@ public class AssetPackLoader implements Cancelable
 				{
 					for (String f : content)
 					{
-						Log.d(LOGTAG, "exists " + f);
+						Log.d(TAG, "exists " + f);
 					}
 				}
 			}

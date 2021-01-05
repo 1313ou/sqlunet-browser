@@ -100,6 +100,8 @@
 	<string name="title_activity_browse2">Data</string>
 	<string name="title_activity_table">Table</string>
 
+	<string name="title_activity_diagnostics">Diagnostics</string>
+
 	<string name="title_dialog_sql">SQL</string>
 	<string name="title_download">SqlUNet download</string>
 
@@ -198,7 +200,6 @@
 	<!--<string name="askUpdate">Do you wish to update ?</string>-->
 	<string name="ask_drop">Do you wish to drop the database ?</string>
 	<string name="asset_delivery">Asset Pack delivery</string>
-
-	<string name="title_activity_diagnostics">DiagnosticsActivity</string>
+	<string name="asset_delivery_message">Database is being delivered as an asset pack.\nPlease be patient.</string>
 
 </resources>

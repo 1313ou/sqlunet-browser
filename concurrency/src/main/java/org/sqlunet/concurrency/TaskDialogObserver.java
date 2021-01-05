@@ -6,7 +6,6 @@ package org.sqlunet.concurrency;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,7 +15,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
@@ -34,47 +32,32 @@ public class TaskDialogObserver<Progress extends Number> extends TaskObserver.Ba
 	@NonNull
 	private final FragmentManager fragmentManager;
 
-	@NonNull
-	private final ProgressDialogFragment progressDialogFragment;
-
 	@Nullable
 	private final CharSequence unit;
 
-	/**
-	 * Constructor
-	 *
-	 * @param appContext appContext
-	 * @param titleId    titleId id
-	 * @param messageId  message id
-	 * @param unitId     unit id
-	 */
-	public TaskDialogObserver(@NonNull final FragmentManager fragmentManager, @NonNull final Context appContext, @StringRes final int titleId, @StringRes final int messageId, @StringRes final int unitId)
-	{
-		this(fragmentManager, appContext.getString(titleId), appContext.getString(messageId), unitId == 0 ? null : appContext.getString(unitId));
-	}
+	@NonNull
+	private final ProgressDialogFragment progressDialogFragment;
 
 	/**
 	 * Constructor
 	 *
-	 * @param title   title
-	 * @param message message
-	 * @param unit    unit
+	 * @param unit unit
 	 */
-	public TaskDialogObserver(@NonNull final FragmentManager fragmentManager, @NonNull final CharSequence title, @NonNull final CharSequence message, @Nullable final CharSequence unit)
+	public TaskDialogObserver(@NonNull final FragmentManager fragmentManager, @Nullable final CharSequence unit)
 	{
 		super();
 		this.fragmentManager = fragmentManager;
-		this.progressDialogFragment = makeDialogFragment(title, message);
 		this.unit = unit;
+		this.progressDialogFragment = ProgressDialogFragment.make();
 	}
 
 	@Override
 	public void taskStart(@NonNull final Cancelable task)
 	{
 		super.taskStart(task);
-		this.progressDialogFragment.setTask(task);
 		if (!this.fragmentManager.isDestroyed())
 		{
+			this.progressDialogFragment.setTask(task);
 			this.progressDialogFragment.show(this.fragmentManager, "tag");
 		}
 	}
@@ -86,27 +69,44 @@ public class TaskDialogObserver<Progress extends Number> extends TaskObserver.Ba
 		final long longLength = length.longValue();
 		final long longProgress = progress.longValue();
 		final boolean indeterminate = longLength == -1L;
-		this.progressDialogFragment.progressBar.setIndeterminate(indeterminate);
-		String strProgress = (this.unit != null ? TaskObserver.countToString(longProgress, this.unit) : TaskObserver.countToStorageString(longProgress));
-		if (longLength != -1L)
+
+		// progress
+		if (this.progressDialogFragment.progressBar != null)
 		{
-			String strLength = (this.unit != null ? TaskObserver.countToString(longLength, this.unit) : TaskObserver.countToStorageString(longLength));
-			strProgress += " / " + strLength;
+			this.progressDialogFragment.progressBar.setIndeterminate(indeterminate);
+			if (!indeterminate)
+			{
+				final int percent = (int) ((longProgress * 100F) / longLength);
+				this.progressDialogFragment.progressBar.setMax(100);
+				this.progressDialogFragment.progressBar.setProgress(percent);
+			}
 		}
-		this.progressDialogFragment.progressTextView.setText(strProgress);
-		if (!indeterminate)
+		// progress string
+		if (this.progressDialogFragment.progressTextView != null)
 		{
-			final int percent = (int) ((longProgress * 100F) / longLength);
-			this.progressDialogFragment.progressBar.setMax(100);
-			this.progressDialogFragment.progressBar.setProgress(percent);
+			String strProgress;
+			if (longLength != -1L)
+			{
+				strProgress = (this.unit != null ? TaskObserver.countToString(longProgress, this.unit) : TaskObserver.countToStorageString(longProgress));
+				String strLength = (this.unit != null ? TaskObserver.countToString(longLength, this.unit) : TaskObserver.countToStorageString(longLength));
+				strProgress += " / " + strLength;
+			}
+			else
+			{
+				strProgress = TaskObserver.countToString(longProgress, null);
+			}
+			this.progressDialogFragment.progressTextView.setText(strProgress);
 		}
 	}
 
 	@Override
-	public void taskUpdate(@NonNull final String message)
+	public void taskUpdate(@NonNull final CharSequence status)
 	{
-		super.taskUpdate(message);
-		this.progressDialogFragment.messageTextView.setText(message);
+		super.taskUpdate(status);
+		if (this.progressDialogFragment.statusTextView != null)
+		{
+			this.progressDialogFragment.statusTextView.setText(status);
+		}
 	}
 
 	@SuppressWarnings("UnusedReturnValue")
@@ -117,45 +117,57 @@ public class TaskDialogObserver<Progress extends Number> extends TaskObserver.Ba
 		this.progressDialogFragment.dismiss();
 	}
 
-	/**
-	 * Make dialog fragment
-	 *
-	 * @param title   title id
-	 * @param message message
-	 * @return dialog
-	 */
-	@NonNull
-	static private ProgressDialogFragment makeDialogFragment(@NonNull final CharSequence title, @NonNull final CharSequence message)
+	@Override
+	public TaskObserver.Observer<Progress> setTitle(@NonNull final CharSequence title)
 	{
-		return new ProgressDialogFragment(title, message);
+		super.setTitle(title);
+		this.progressDialogFragment.setTitle(title);
+		return this;
 	}
 
+	@Override
+	public TaskObserver.Observer<Progress> setMessage(@NonNull final CharSequence message)
+	{
+		super.setMessage(message);
+		this.progressDialogFragment.setMessage(message);
+		return this;
+	}
+
+	/**
+	 * Dialog fragment
+	 */
 	public static class ProgressDialogFragment extends DialogFragment
 	{
-		@NonNull
-		private final CharSequence title;
-
-		@NonNull
-		private final CharSequence message;
-
-		private TextView messageTextView;
-
 		private TextView progressTextView;
 
 		private ProgressBar progressBar;
 
+		private TextView statusTextView;
+
+		private TextView titleTextView;
+
+		private TextView messageTextView;
+
+		private CharSequence title;
+
+		private CharSequence message;
+
 		@Nullable
 		private Cancelable task;
 
-		public ProgressDialogFragment(@NonNull final CharSequence title, @NonNull final CharSequence message)
+		public ProgressDialogFragment()
 		{
-			this.title = title;
-			this.message = message;
 		}
 
-		public void setTask(@NonNull final Cancelable task)
+		/**
+		 * Make dialog fragment
+		 *
+		 * @return dialog
+		 */
+		@NonNull
+		static private ProgressDialogFragment make()
 		{
-			this.task = task;
+			return new ProgressDialogFragment();
 		}
 
 		@NonNull
@@ -167,11 +179,19 @@ public class TaskDialogObserver<Progress extends Number> extends TaskObserver.Ba
 			final LayoutInflater inflater = activity.getLayoutInflater();
 			final View view = inflater.inflate(R.layout.dialog_progress, null);
 			this.progressBar = view.findViewById(R.id.progressBar);
-			this.messageTextView = view.findViewById(R.id.progressMessage);
 			this.progressTextView = view.findViewById(R.id.progressProgress);
+			this.statusTextView = view.findViewById(R.id.progressMessage);
+			this.titleTextView = view.findViewById(R.id.title);
+			this.messageTextView = view.findViewById(R.id.message);
+			if (this.title != null)
+			{
+				this.titleTextView.setText(this.title);
+			}
+			if (this.message != null)
+			{
+				this.messageTextView.setText(this.message);
+			}
 			builder.setView(view);
-			builder.setTitle(this.title);
-			builder.setMessage(this.message);
 			builder.setNegativeButton(R.string.action_cancel, (dialog, whichButton) -> {
 
 				// canceled.
@@ -180,6 +200,29 @@ public class TaskDialogObserver<Progress extends Number> extends TaskObserver.Ba
 				this.dismiss();
 			});
 			return builder.create();
+		}
+
+		public void setTask(@NonNull final Cancelable task)
+		{
+			this.task = task;
+		}
+
+		public void setTitle(final CharSequence title)
+		{
+			this.title = title;
+			if (this.titleTextView != null)
+			{
+				this.titleTextView.setText(title);
+			}
+		}
+
+		public void setMessage(final CharSequence message)
+		{
+			this.message = message;
+			if (this.messageTextView != null)
+			{
+				this.messageTextView.setText(message);
+			}
 		}
 	}
 }

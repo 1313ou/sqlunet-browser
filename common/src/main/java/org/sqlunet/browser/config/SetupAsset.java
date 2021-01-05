@@ -4,6 +4,7 @@
 
 package org.sqlunet.browser.config;
 
+import android.app.Activity;
 import android.view.View;
 import android.widget.Toast;
 
@@ -15,7 +16,6 @@ import com.google.android.play.core.assetpacks.AssetPackManagerFactory;
 import org.sqlunet.assetpack.AssetPackLoader;
 import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.common.R;
-import org.sqlunet.concurrency.TaskDialogObserver;
 import org.sqlunet.concurrency.TaskObserver;
 import org.sqlunet.download.FileAsyncTask;
 import org.sqlunet.download.Settings;
@@ -47,11 +47,12 @@ public class SetupAsset
 	 * @param assetDir  asset pack dir
 	 * @param assetZip  asset pack zip
 	 * @param activity  activity
+	 * @param observer  observer
 	 * @param view      view for snackbar
 	 * @return path if already installed
 	 */
 	@SuppressWarnings("UnusedReturnValue")
-	public static String deliverAsset(@NonNull final String assetPack, @NonNull final String assetDir, @NonNull final String assetZip, @NonNull final FragmentActivity activity, @Nullable final View view)
+	public static String deliverAsset(@NonNull final String assetPack, @NonNull final String assetDir, @NonNull final String assetZip, @NonNull final Activity activity, final TaskObserver.Observer<Number> observer, @Nullable final View view)
 	{
 		if (assetPack.isEmpty())
 		{
@@ -74,8 +75,12 @@ public class SetupAsset
 		{
 			Toast.makeText(activity, R.string.action_asset_deliver, Toast.LENGTH_SHORT).show();
 		}
+
+		// observer title and message
+		observer.setTitle(activity.getString(R.string.title_asset_pack_delivery));
+		observer.setMessage(activity.getString(R.string.asset_delivery_message));
+
 		// deliver asset (returns non null path if already installed)
-		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager(), activity.getString(R.string.asset_delivery), assetPack, "MB");
 		final String path0 = new AssetPackLoader(activity, assetPack).assetPackDelivery(activity, observer, () -> {
 
 			// run when delivery completes
@@ -83,7 +88,10 @@ public class SetupAsset
 			final AssetPackLocation packLocation = assetPackManager.getPackLocation(assetPack);
 			assert packLocation != null;
 			final String path = packLocation.assetsPath();
-			FileAsyncTask.launchUnzip(activity, new File(new File(path, assetDir), assetZip).getAbsolutePath(), ASSET_ARCHIVE_ENTRY, StorageSettings.getDatabasePath(activity), () -> {
+			final String zipFile = new File(new File(path, assetDir), assetZip).getAbsolutePath();
+			observer.setTitle(activity.getString(R.string.action_unzip_from_archive));
+			observer.setMessage(zipFile);
+			FileAsyncTask.launchUnzip2(activity, observer, zipFile, ASSET_ARCHIVE_ENTRY, StorageSettings.getDatabasePath(activity), () -> {
 
 				org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
 				Settings.recordDbSource(activity, new File(new File(path, assetDir), assetZip).getAbsolutePath(), -1, -1);
@@ -99,27 +107,24 @@ public class SetupAsset
 				Snackbar.make(view, R.string.action_asset_installed, Snackbar.LENGTH_LONG)
 						//.setAction(R.string.action_asset_md5, (view2) -> FileAsyncTask.launchMd5(activity, new File(activity.getFilesDir(), TARGET_DB).getAbsolutePath()))
 						//.setAction(R.string.action_asset_dispose, (view2) -> disposeAsset(assetPack, activity, view2))
-						.setAction(R.string.action_asset_deploy, (view2) -> FileAsyncTask.launchUnzip(activity, new File(new File(path0, assetDir), assetZip).getAbsolutePath(), ASSET_ARCHIVE_ENTRY, StorageSettings.getDatabasePath(activity), () -> {
-
-							org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
-							Settings.recordDbSource(activity, new File(new File(path0, assetDir), assetZip).getAbsolutePath(), -1, -1);
-							EntryActivity.reenter(activity);
-						})) //
 						.show();
 			}
 			else
 			{
 				Toast.makeText(activity, R.string.action_asset_installed, Toast.LENGTH_LONG).show();
-				FileAsyncTask.launchUnzip(activity, new File(new File(path0, assetDir), assetZip).getAbsolutePath(), ASSET_ARCHIVE_ENTRY, StorageSettings.getDatabasePath(activity), () -> {
+			}
+			/* boolean success = */ SetupDatabaseTasks.deleteDatabase(activity, StorageSettings.getDatabasePath(activity));
+			// if (success)
+			{
+				FileAsyncTask.launchUnzip2(activity, observer, new File(new File(path0, assetDir), assetZip).getAbsolutePath(), ASSET_ARCHIVE_ENTRY, StorageSettings.getDatabasePath(activity), () -> {
 
 					org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
 					Settings.recordDbSource(activity, new File(new File(path0, assetDir), assetZip).getAbsolutePath(), -1, -1);
 					EntryActivity.reenter(activity);
 				});
 			}
-			return path0;
 		}
-		return null;
+		return path0;
 	}
 
 	/**
@@ -140,7 +145,7 @@ public class SetupAsset
 	/**
 	 * Dispose of assets
 	 *
-	 * @param activity  activity
+	 * @param activity activity
 	 */
 	public static void disposeAllAssets(@NonNull final FragmentActivity activity)
 	{
