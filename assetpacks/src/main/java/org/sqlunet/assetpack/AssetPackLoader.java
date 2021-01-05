@@ -196,7 +196,7 @@ public class AssetPackLoader implements Cancelable
 					long totalSize = state.totalBytesToDownload();
 					Log.i(TAG, "Status downloading progress " + String.format("%d / %d", downloaded, totalSize));
 					this.observer.taskUpdate(statusStr);
-					this.observer.taskProgress(downloaded, totalSize);
+					this.observer.taskProgress(downloaded, totalSize, null);
 					break;
 
 				case AssetPackStatus.TRANSFERRING: // 100% downloaded and assets are being transferred. Notify user to wait until transfer is complete.
@@ -204,7 +204,7 @@ public class AssetPackLoader implements Cancelable
 					String percent2Str = String.format(Locale.getDefault(), "%d %%", percent2);
 					Log.i(TAG, "Status transferring progress " + percent2Str);
 					this.observer.taskUpdate(statusStr + ' ' + percent2Str);
-					this.observer.taskProgress(percent2, -1);
+					this.observer.taskProgress(percent2, -1, "%");
 					break;
 
 				case AssetPackStatus.WAITING_FOR_WIFI: // The asset pack download is waiting for Wi-Fi to become available before proceeding.
