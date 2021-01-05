@@ -919,7 +919,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		};
 		//broadcastRequest(this.appContext, KILL);
 
-		final TaskObserver.Observer<Number> fatObserver = new TaskDialogObserver<>(getParentFragmentManager(), null) // guarded, level 1
+		final TaskObserver.Observer<Number> fatObserver = new TaskDialogObserver<>(getParentFragmentManager()) // guarded, level 1
 				.setTitle(activity.getString(R.string.action_unzip_from_archive)) //
 				.setMessage(this.downloadedFile.getName());
 		final Task<String, Number, Boolean> ft = new FileAsyncTask(taskListener, null, 1000).unzipFromArchive();

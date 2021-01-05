@@ -48,9 +48,6 @@ public class AssetFragment extends Fragment implements TaskObserver.Observer<Num
 	private Button cancelButton;
 
 	@Nullable
-	private final CharSequence unit;
-
-	@Nullable
 	private Cancelable task;
 
 	/**
@@ -58,7 +55,6 @@ public class AssetFragment extends Fragment implements TaskObserver.Observer<Num
 	 */
 	public AssetFragment()
 	{
-		this.unit = "B";
 	}
 
 	@Override
@@ -128,22 +124,16 @@ public class AssetFragment extends Fragment implements TaskObserver.Observer<Num
 	}
 
 	@Override
-	public void taskProgress(@NonNull final Number progress0, @NonNull final Number length0)
+	public void taskProgress(@NonNull final Number progress, @NonNull final Number length, @Nullable String unit)
 	{
-		final long progress = progress0.longValue();
-		final long length = length0.longValue();
-		final boolean indeterminate = length == -1L;
+		final long longProgress = progress.longValue();
+		final long longLength = length.longValue();
+		final boolean indeterminate = longLength == -1L;
+		this.progressTextView.setText(TaskObserver.countToString(longProgress, longLength, unit));
 		this.progressBar.setIndeterminate(indeterminate);
-		String strProgress = (this.unit != null ? TaskObserver.countToString(progress, this.unit) : TaskObserver.countToStorageString(progress));
-		if (length != -1L)
-		{
-			String strLength = (this.unit != null ? TaskObserver.countToString(length, this.unit) : TaskObserver.countToStorageString(length));
-			strProgress += " / " + strLength;
-		}
-		this.progressTextView.setText(strProgress);
 		if (!indeterminate)
 		{
-			final int percent = (int) ((progress * 100F) / length);
+			final int percent = (int) ((longProgress * 100F) / longLength);
 			this.progressBar.setMax(100);
 			this.progressBar.setProgress(percent);
 		}

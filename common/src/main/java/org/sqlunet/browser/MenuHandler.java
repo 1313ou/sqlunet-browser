@@ -97,7 +97,7 @@ public class MenuHandler
 			final String asset = Settings.getAssetPack(activity);
 			final String assetDir = Settings.getAssetPackDir(activity);
 			final String assetZip = Settings.getAssetPackZip(activity);
-			final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager(), "B") //
+			final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
 					.setTitle(activity.getString(R.string.asset_delivery)) //
 					.setMessage(asset);
 			SetupAsset.deliverAsset(asset, assetDir, assetZip, activity, observer, null);
@@ -108,7 +108,7 @@ public class MenuHandler
 			final String asset = activity.getString(R.string.asset_primary);
 			final String assetDir = activity.getString(R.string.asset_dir_primary);
 			final String assetZip = activity.getString(R.string.asset_zip_primary);
-			final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager(), "B") //
+			final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
 					.setTitle(activity.getString(R.string.asset_delivery)) //
 					.setMessage(asset);
 			SetupAsset.deliverAsset(asset, assetDir, assetZip, activity, observer, null);
@@ -122,7 +122,7 @@ public class MenuHandler
 			assert asset != null;
 			if (!asset.isEmpty())
 			{
-				final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager(), "B") //
+				final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
 						.setTitle(activity.getString(R.string.asset_delivery)) //
 						.setMessage(asset);
 				SetupAsset.deliverAsset(asset, assetDir, assetZip, activity, observer, null);

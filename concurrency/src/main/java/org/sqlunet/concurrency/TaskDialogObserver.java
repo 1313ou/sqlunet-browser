@@ -32,22 +32,18 @@ public class TaskDialogObserver<Progress extends Number> extends TaskObserver.Ba
 	@NonNull
 	private final FragmentManager fragmentManager;
 
-	@Nullable
-	private final CharSequence unit;
-
 	@NonNull
 	private final ProgressDialogFragment progressDialogFragment;
 
 	/**
 	 * Constructor
 	 *
-	 * @param unit unit
+	 * @param fragmentManager fragment manager
 	 */
-	public TaskDialogObserver(@NonNull final FragmentManager fragmentManager, @Nullable final CharSequence unit)
+	public TaskDialogObserver(@NonNull final FragmentManager fragmentManager)
 	{
 		super();
 		this.fragmentManager = fragmentManager;
-		this.unit = unit;
 		this.progressDialogFragment = ProgressDialogFragment.make();
 	}
 
@@ -63,13 +59,18 @@ public class TaskDialogObserver<Progress extends Number> extends TaskObserver.Ba
 	}
 
 	@Override
-	public void taskProgress(@NonNull final Progress progress, @NonNull final Progress length)
+	public void taskProgress(@NonNull final Progress progress, @NonNull final Progress length, @Nullable String unit)
 	{
-		super.taskProgress(progress, length);
+		super.taskProgress(progress, length, unit);
 		final long longLength = length.longValue();
 		final long longProgress = progress.longValue();
 		final boolean indeterminate = longLength == -1L;
 
+		// progress string
+		if (this.progressDialogFragment.progressTextView != null)
+		{
+			this.progressDialogFragment.progressTextView.setText(TaskObserver.countToString(longProgress, longLength, unit));
+		}
 		// progress
 		if (this.progressDialogFragment.progressBar != null)
 		{
@@ -80,22 +81,6 @@ public class TaskDialogObserver<Progress extends Number> extends TaskObserver.Ba
 				this.progressDialogFragment.progressBar.setMax(100);
 				this.progressDialogFragment.progressBar.setProgress(percent);
 			}
-		}
-		// progress string
-		if (this.progressDialogFragment.progressTextView != null)
-		{
-			String strProgress;
-			if (longLength != -1L)
-			{
-				strProgress = (this.unit != null ? TaskObserver.countToString(longProgress, this.unit) : TaskObserver.countToStorageString(longProgress));
-				String strLength = (this.unit != null ? TaskObserver.countToString(longLength, this.unit) : TaskObserver.countToStorageString(longLength));
-				strProgress += " / " + strLength;
-			}
-			else
-			{
-				strProgress = TaskObserver.countToString(longProgress, null);
-			}
-			this.progressDialogFragment.progressTextView.setText(strProgress);
 		}
 	}
 

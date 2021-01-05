@@ -47,8 +47,8 @@ public class DataUtils
 
 	// S A M P L E S
 
-	@Nullable
-	static String[] WORD_LIST = {"abandon", "leave", "inveigle", "foist", "flounder", "flout"};
+	// @Nullable
+	// static String[] WORD_LIST = {"abandon", "leave", "inveigle", "foist", "flounder", "flout"};
 
 	@Nullable
 	static public String[] getWordList()
@@ -56,6 +56,7 @@ public class DataUtils
 		return readWordList();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Nullable
 	static private String[] readWordList()
 	{
@@ -82,6 +83,7 @@ public class DataUtils
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@Nullable
 	static private String[] readWordListAlt()
 	{

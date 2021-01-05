@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Task toast observer
@@ -112,9 +113,9 @@ public class TaskToastObserver<Progress extends Number> extends TaskObserver.Bas
 		}
 
 		@Override
-		public void taskProgress(@NonNull final Progress progress, @NonNull final Progress length)
+		public void taskProgress(@NonNull final Progress progress, @NonNull final Progress length, @Nullable String unit)
 		{
-			super.taskProgress(progress, length);
+			super.taskProgress(progress, length, unit);
 			boolean indeterminate = length.longValue() == -1L;
 			this.progress.setIndeterminate(indeterminate);
 			if (!indeterminate)
