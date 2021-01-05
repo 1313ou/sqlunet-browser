@@ -522,7 +522,7 @@ public class FileAsyncTask
 
 	// L A U N C H E R S  W I T H  O B S E R V E R S
 
-	public static void launchUnzip2(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final String sourceFile, @NonNull final String zipEntry, @NonNull final String databasePath, @Nullable final Runnable whenDone)
+	public static void launchUnzip(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final String sourceFile, @NonNull final String zipEntry, @NonNull final String databasePath, @Nullable final Runnable whenDone)
 	{
 		final FileAsyncTask.ResultListener resultListener = result -> {
 
