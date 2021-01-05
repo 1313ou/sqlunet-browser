@@ -111,7 +111,11 @@ public class MenuHandler
 			final String asset = activity.getString(R.string.asset_alt);
 			final String assetDir = activity.getString(R.string.asset_dir_alt);
 			final String assetZip = activity.getString(R.string.asset_zip_alt);
-			SetupAsset.deliverAsset(asset, assetDir, assetZip, activity, null);
+			assert asset != null;
+			if (!asset.isEmpty())
+			{
+				SetupAsset.deliverAsset(asset, assetDir, assetZip, activity, null);
+			}
 			return true;
 		}
 		else if (itemId == R.id.action_asset_dispose)
@@ -126,7 +130,12 @@ public class MenuHandler
 		}
 		else if (itemId == R.id.action_asset_dispose_alt)
 		{
-			SetupAsset.disposeAsset(activity.getString(R.string.asset_alt), activity);
+			String asset = activity.getString(R.string.asset_alt);
+			assert asset != null;
+			if (!asset.isEmpty())
+			{
+				SetupAsset.disposeAsset(asset, activity);
+			}
 			return true;
 		}
 		else if (itemId == R.id.action_setup)
