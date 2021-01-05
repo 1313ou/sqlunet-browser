@@ -19,7 +19,7 @@ import androidx.annotation.StringRes;
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 @Deprecated
-@SuppressWarnings({"WeakerAccess","deprecation"})
+@SuppressWarnings({"WeakerAccess", "deprecation"})
 public class TaskProgressDialogObserver<Progress extends Number> extends TaskObserver.BaseObserver<Progress>
 {
 	static private final String TAG = "TaskDPObserver";
@@ -65,6 +65,8 @@ public class TaskProgressDialogObserver<Progress extends Number> extends TaskObs
 	{
 		super.taskStart(task);
 		this.task = task;
+		this.progressDialog.setMessage("");
+		this.progressDialog.setIndeterminate(true);
 		this.progressDialog.show();
 	}
 
@@ -81,12 +83,18 @@ public class TaskProgressDialogObserver<Progress extends Number> extends TaskObs
 			this.progressDialog.setProgressNumberFormat(null);
 			this.progressDialog.setProgressPercentFormat(null);
 		}
-		String strProgress = this.unit != null ? TaskObserver.countToString(progress.longValue(), this.unit) : TaskObserver.countToStorageString(progress.longValue());
+		String strProgress;
 		if (longLength != -1L)
 		{
+			strProgress = this.unit != null ? TaskObserver.countToString(progress.longValue(), this.unit) : TaskObserver.countToStorageString(progress.longValue());
 			String strLength = (this.unit != null ? TaskObserver.countToString(longLength, this.unit) : TaskObserver.countToStorageString(longLength));
 			strProgress += " / " + strLength;
 		}
+		else
+		{
+			strProgress = TaskObserver.countToString(progress.longValue(), null);
+		}
+
 		this.progressDialog.setMessage(strProgress);
 		if (!indeterminate)
 		{
@@ -97,10 +105,10 @@ public class TaskProgressDialogObserver<Progress extends Number> extends TaskObs
 	}
 
 	@Override
-	public void taskUpdate(@NonNull final String message)
+	public void taskUpdate(@NonNull final CharSequence status)
 	{
-		super.taskUpdate(message);
-		this.progressDialog.setMessage(message);
+		super.taskUpdate(status);
+		this.progressDialog.setMessage(status);
 	}
 
 	@SuppressWarnings("UnusedReturnValue")
@@ -109,6 +117,22 @@ public class TaskProgressDialogObserver<Progress extends Number> extends TaskObs
 	{
 		super.taskFinish(result);
 		this.progressDialog.dismiss();
+	}
+
+	@Override
+	public TaskObserver.Observer<Progress> setTitle(@NonNull final CharSequence title)
+	{
+		super.setTitle(title);
+		this.progressDialog.setTitle(title);
+		return this;
+	}
+
+	@Override
+	public TaskObserver.Observer<Progress> setMessage(@NonNull final CharSequence message)
+	{
+		super.setMessage(message);
+		this.progressDialog.setMessage(message);
+		return this;
 	}
 
 	/**

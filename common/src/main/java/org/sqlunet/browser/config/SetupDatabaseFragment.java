@@ -18,7 +18,6 @@ import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
 
 import org.sqlunet.browser.common.R;
-import org.sqlunet.concurrency.ObservedDelegatingTask;
 import org.sqlunet.concurrency.Task;
 import org.sqlunet.concurrency.TaskObserver;
 import org.sqlunet.concurrency.TaskToastObserver;
@@ -86,10 +85,9 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 			// execute
 			final CharSequence sql = sqls[(int) id];
 			final String[] sqlStatements = sql.toString().split(";");
-			final Task<Pair<String, String[]>, Integer, Boolean> st = new ExecAsyncTask(activity, this::update, null, 1).fromSql();
-			final TaskObserver.Observer<Integer> stListener = new TaskToastObserver.WithStatus<>(activity, SetupDatabaseFragment.this.status);
-			final ObservedDelegatingTask<Pair<String, String[]>, Integer, Boolean> oft = new ObservedDelegatingTask<>(st, stListener);
-			oft.execute(new Pair<>(databasePath, sqlStatements));
+			final TaskObserver.Observer<Number> observer = new TaskToastObserver.WithStatus<>(activity, SetupDatabaseFragment.this.status);
+			final Task<Pair<String, String[]>, Number, Boolean> st = new ExecAsyncTask(activity, this::update, observer, 1).fromSql();
+			st.execute(new Pair<>(databasePath, sqlStatements));
 		});
 
 		return view;

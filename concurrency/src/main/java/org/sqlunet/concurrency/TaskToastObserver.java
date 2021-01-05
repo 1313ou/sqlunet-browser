@@ -71,10 +71,10 @@ public class TaskToastObserver<Progress extends Number> extends TaskObserver.Bas
 		}
 
 		@Override
-		public void taskUpdate(@NonNull final String message)
+		public void taskUpdate(@NonNull final CharSequence status)
 		{
-			super.taskUpdate(message);
-			this.status.setText(message);
+			super.taskUpdate(status);
+			this.status.setText(status);
 		}
 
 		@Override

@@ -12,7 +12,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.sqlunet.concurrency.ObservedDelegatingTask;
 import org.sqlunet.concurrency.Task;
 import org.sqlunet.concurrency.TaskDialogObserver;
 import org.sqlunet.concurrency.TaskObserver;
@@ -44,12 +43,11 @@ public class MD5AsyncTaskChooser
 		{
 			return;
 		}
-		final TaskObserver.Observer<Long> observer = new TaskObserver.BaseObserver<>();
-		final Task<String, Long, String> ft = new FileAsyncTask(observer, resultListener, 1000).md5FromFile();
-		//final TaskObserver.Observer<Long> fatObserver = new TaskObserver.ProgressDialogObserver<>(activity, activity.getString(R.string.action_md5), path, null); // guarded, level > 1
-		final TaskObserver.Observer<Long> fatObserver = new TaskDialogObserver<>(activity.getSupportFragmentManager(), activity.getString(R.string.action_md5), path, null); // guarded, level 2
-		final Task<String, Long, String> oft = new ObservedDelegatingTask<>(ft, fatObserver);
-		oft.execute(path);
+		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager(), null) // guarded, level 2
+				.setTitle(activity.getString(R.string.action_md5)) //
+				.setMessage(path);
+		final Task<String, Number, String> ft = new FileAsyncTask(observer, resultListener, 1000).md5FromFile();
+		ft.execute(path);
 	}
 
 	/**

@@ -10,6 +10,7 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Task observer
@@ -24,15 +25,12 @@ public class TaskObserver
 	/**
 	 * Observer interface
 	 */
-	@FunctionalInterface
 	public interface Observer<Progress extends Number>
 	{
 		/**
 		 * Start event
 		 */
-		default void taskStart(@NonNull final Cancelable task)
-		{
-		}
+		void taskStart(@NonNull final Cancelable task);
 
 		/**
 		 * Finish event
@@ -48,18 +46,28 @@ public class TaskObserver
 		 * @param progress progress value
 		 * @param length   length
 		 */
-		default void taskProgress(@NonNull Progress progress, @NonNull Progress length)
-		{
-		}
+		void taskProgress(@NonNull Progress progress, @NonNull Progress length);
 
 		/**
 		 * Intermediate update event
 		 *
+		 * @param status status
+		 */
+		void taskUpdate(@NonNull CharSequence status);
+
+		/**
+		 * Set title
+		 *
+		 * @param title title
+		 */
+		Observer<Progress> setTitle(@NonNull CharSequence title);
+
+		/**
+		 * Set message
+		 *
 		 * @param message message
 		 */
-		default void taskUpdate(@NonNull String message)
-		{
-		}
+		Observer<Progress> setMessage(@NonNull CharSequence message);
 	}
 
 	/**
@@ -83,9 +91,9 @@ public class TaskObserver
 
 		@SuppressWarnings("WeakerAccess")
 		@Override
-		public void taskUpdate(@NonNull final String message)
+		public void taskUpdate(@NonNull final CharSequence status)
 		{
-			Log.d(TAG, "Task " + message);
+			Log.d(TAG, "Task " + status);
 		}
 
 		@SuppressWarnings({"WeakerAccess", "UnusedReturnValue"})
@@ -94,18 +102,36 @@ public class TaskObserver
 		{
 			Log.d(TAG, "Task " + (result ? "succeeded" : "failed"));
 		}
+
+		@Override
+		public Observer<Progress> setTitle(@NonNull final CharSequence title)
+		{
+			return this;
+		}
+
+		@Override
+		public Observer<Progress> setMessage(@NonNull final CharSequence message)
+		{
+			return this;
+		}
 	}
 
 	/**
 	 * Byte count to string
 	 *
 	 * @param count byte count
+	 * @param unit  unit
 	 * @return string
 	 */
 	@NonNull
-	static String countToString(final long count, @NonNull final CharSequence unit)
+	public static String countToString(final long count, @Nullable final CharSequence unit)
 	{
-		return NumberFormat.getNumberInstance(Locale.US).format(count) + ' ' + unit;
+		String strValue = NumberFormat.getNumberInstance(Locale.US).format(count);
+		if (unit == null)
+		{
+			return strValue;
+		}
+		return strValue + ' ' + unit;
 	}
 
 	static final String[] UNITS = {"B", "KB", "MB", "GB"};
@@ -117,7 +143,7 @@ public class TaskObserver
 	 * @return string
 	 */
 	@NonNull
-	static String countToStorageString(final long count)
+	public static String countToStorageString(final long count)
 	{
 		if (count > 0)
 		{
