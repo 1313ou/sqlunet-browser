@@ -501,7 +501,7 @@ public class ExecAsyncTask
 	/**
 	 * Execute sql statements from zipfile
 	 */
-	@Nullable
+	@NonNull
 	public Task<String, Number, Boolean> fromArchive()
 	{
 		final PowerManager powerManager = (PowerManager) ExecAsyncTask.this.activity.getSystemService(Context.POWER_SERVICE);

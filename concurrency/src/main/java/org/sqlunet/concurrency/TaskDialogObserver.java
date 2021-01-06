@@ -165,7 +165,7 @@ public class TaskDialogObserver<Progress extends Number> extends TaskObserver.Ba
 			final View view = inflater.inflate(R.layout.dialog_progress, null);
 			this.progressBar = view.findViewById(R.id.progressBar);
 			this.progressTextView = view.findViewById(R.id.progressProgress);
-			this.statusTextView = view.findViewById(R.id.progressMessage);
+			this.statusTextView = view.findViewById(R.id.status);
 			this.titleTextView = view.findViewById(R.id.title);
 			this.messageTextView = view.findViewById(R.id.message);
 			if (this.title != null)

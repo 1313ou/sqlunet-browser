@@ -82,6 +82,10 @@
 	<string name="status_download_error_null_download_url">No download url</string>
 	<string name="status_download_error_unavailable_download_url">Unavailable download url</string>
 
+	<string name="status_unzipping">unzipping</string>
+	<string name="status_copying">copying</string>
+	<string name="status_md5_checking">MD5 checking</string>
+
 	<string name="status_error_no_file">no file</string>
 	<string name="status_error_reason_unknown">unknown reason</string>
 	<string name="status_error_invalid">invalid</string>

@@ -20,7 +20,7 @@ public class ConcurrencyInstrumentedTest
 		// Context of the app under test.
 		// Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-		final Task<Integer, String, Long> t = new Task<Integer, String, Long>()
+		final Task<Integer, String, Long> task = new Task<Integer, String, Long>()
 		{
 			@Override
 			protected final Long doInBackground(@NonNull final Integer... params)
@@ -49,6 +49,6 @@ public class ConcurrencyInstrumentedTest
 				}
 			}
 		};
-		t.execute(1, 2, 3);
+		task.execute(1, 2, 3);
 	}
 }

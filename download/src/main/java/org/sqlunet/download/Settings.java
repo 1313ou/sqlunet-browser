@@ -201,7 +201,7 @@ public class Settings
 	/**
 	 * Record db source info
 	 *
-	 * @param context contect
+	 * @param context context
 	 * @param source  source
 	 * @param date    data
 	 * @param size    size

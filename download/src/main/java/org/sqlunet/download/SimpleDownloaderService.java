@@ -259,7 +259,7 @@ public class SimpleDownloaderService extends JobIntentService
 	/**
 	 * Unmarshal arguments from intent
 	 *
-	 * @param intent intent ppassed to service
+	 * @param intent intent passed to service
 	 * @return unmarshalled id
 	 */
 	protected int unmarshal(@NonNull final Intent intent)

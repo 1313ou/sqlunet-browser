@@ -118,7 +118,7 @@ public class SetupAsset
 			final String zipFile = new File(new File(path0, assetDir), assetZip).getAbsolutePath();
 			observer.setTitle(activity.getString(R.string.action_unzip_from_archive));
 			observer.setMessage(zipFile);
-			FileAsyncTask.launchUnzip(activity, observer, new File(new File(path0, assetDir), assetZip).getAbsolutePath(), ASSET_ARCHIVE_ENTRY, StorageSettings.getDatabasePath(activity), () -> {
+			FileAsyncTask.launchUnzip(activity, observer, zipFile, ASSET_ARCHIVE_ENTRY, StorageSettings.getDatabasePath(activity), () -> {
 
 				org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
 				Settings.recordDbSource(activity, zipFile, -1, -1);

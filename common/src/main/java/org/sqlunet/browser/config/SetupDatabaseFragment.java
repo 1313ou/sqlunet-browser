@@ -86,8 +86,8 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 			final CharSequence sql = sqls[(int) id];
 			final String[] sqlStatements = sql.toString().split(";");
 			final TaskObserver.Observer<Number> observer = new TaskToastObserver.WithStatus<>(activity, SetupDatabaseFragment.this.status);
-			final Task<Pair<String, String[]>, Number, Boolean> st = new ExecAsyncTask(activity, this::update, observer, 1).fromSql();
-			st.execute(new Pair<>(databasePath, sqlStatements));
+			final Task<Pair<String, String[]>, Number, Boolean> task = new ExecAsyncTask(activity, this::update, observer, 1).fromSql();
+			task.execute(new Pair<>(databasePath, sqlStatements));
 		});
 
 		return view;

@@ -75,11 +75,8 @@ public class AssetFragment extends Fragment implements TaskObserver.Observer<Num
 		this.cancelButton = view.findViewById(R.id.cancelButton);
 		this.cancelButton.setOnClickListener((v) -> {
 
-			if (this.task != null)
-			{
-				boolean result = this.task != null && this.task.cancel(true);
-				Log.d(TAG, "Cancel task @" + (this.task == null ? "null" : Integer.toHexString(this.task.hashCode())) + ' ' + result);
-			}
+			boolean result = this.task != null && this.task.cancel(true);
+			Log.d(TAG, "Cancel task @" + (this.task == null ? "null" : Integer.toHexString(this.task.hashCode())) + ' ' + result);
 		});
 	}
 
