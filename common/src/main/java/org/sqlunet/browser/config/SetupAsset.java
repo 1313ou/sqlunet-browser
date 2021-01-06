@@ -117,17 +117,28 @@ public class SetupAsset
 			{
 				Toast.makeText(activity, R.string.action_asset_installed, Toast.LENGTH_LONG).show();
 			}
+
 			/* boolean success = */
 			SetupDatabaseTasks.deleteDatabase(activity, StorageSettings.getDatabasePath(activity));
-			final String zipFile = new File(new File(path0, assetDir), assetZip).getAbsolutePath();
-			observer.setTitle(activity.getString(R.string.action_unzip_from_archive));
-			observer.setMessage(zipFile);
-			FileAsyncTask.launchUnzip(activity, observer, zipFile, ASSET_ARCHIVE_ENTRY, StorageSettings.getDatabasePath(activity), () -> {
 
-				org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
-				Settings.recordDbSource(activity, zipFile, -1, -1);
-				EntryActivity.reenter(activity);
-			});
+			final File zipFile = new File(new File(path0, assetDir), assetZip);
+			final String zipFilePath = zipFile.getAbsolutePath();
+			if (zipFile.exists())
+			{
+				observer.setTitle(activity.getString(R.string.action_unzip_from_archive));
+				observer.setMessage(zipFilePath);
+				FileAsyncTask.launchUnzip(activity, observer, zipFilePath, ASSET_ARCHIVE_ENTRY, StorageSettings.getDatabasePath(activity), () -> {
+
+					org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
+					Settings.recordDbSource(activity, zipFilePath, -1, -1);
+					EntryActivity.reenter(activity);
+				});
+			}
+			else
+			{
+				observer.setTitle(activity.getString(R.string.action_unzip_from_archive));
+				observer.setMessage(activity.getString(R.string.status_error_no_file) + ' ' + zipFilePath);
+			}
 		}
 		return path0;
 	}

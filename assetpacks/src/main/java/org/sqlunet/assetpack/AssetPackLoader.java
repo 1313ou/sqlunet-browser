@@ -10,6 +10,7 @@ import com.google.android.play.core.assetpacks.AssetPackManagerFactory;
 import com.google.android.play.core.assetpacks.AssetPackState;
 import com.google.android.play.core.assetpacks.AssetPackStateUpdateListener;
 import com.google.android.play.core.assetpacks.AssetPackStates;
+import com.google.android.play.core.assetpacks.model.AssetPackErrorCode;
 import com.google.android.play.core.assetpacks.model.AssetPackStatus;
 import com.google.android.play.core.tasks.RuntimeExecutionException;
 
@@ -101,14 +102,21 @@ public class AssetPackLoader implements Cancelable
 					try
 					{
 						// state
-						final AssetPackStates assetPackStates = getStateTask.getResult();
-						final AssetPackState assetPackState = assetPackStates.packStates().get(this.pack);
-						assert assetPackState != null;
-						final int status = assetPackState.status();
-						Log.i(TAG, String.format("AssetPack %s status %s %d/%d %d%%", assetPackState.name(), statusToString(status), assetPackState.bytesDownloaded(), assetPackState.totalBytesToDownload(), assetPackState.transferProgressPercentage()));
+						final AssetPackStates states = getStateTask.getResult();
+						final AssetPackState state = states.packStates().get(this.pack);
+						assert state != null;
+						final int status = state.status();
+						Log.i(TAG, String.format("AssetPack %s status %s %d/%d %d%%", state.name(), statusToString(status), state.bytesDownloaded(), state.totalBytesToDownload(), state.transferProgressPercentage()));
 
-						if (AssetPackStatus.NOT_INSTALLED == status)
+						if (AssetPackStatus.NOT_INSTALLED == status || AssetPackStatus.CANCELED == status || AssetPackStatus.FAILED == status)
 						{
+							// do not eat error
+							if (AssetPackStatus.FAILED == status)
+							{
+								int errorCode = state.errorCode();
+								observer.taskUpdate(statusToString(status) + ' ' + errorToString(errorCode));
+							}
+
 							// fetch
 							// returns an AssetPackStates object containing a list of packs and their initial download states and sizes.
 							// if an asset pack requested via fetch() is already downloading, the download status is returned and no additional download is started.
@@ -124,7 +132,8 @@ public class AssetPackLoader implements Cancelable
 										Log.i(TAG, "OnFetchCompleted " + statusToString(fetchStatus));
 										if (fetchStatus == AssetPackStatus.FAILED)
 										{
-											Log.e(TAG, "OnFetchCompleted with error " + fetchAssetPackState.errorCode());
+											int errorCode = fetchAssetPackState.errorCode();
+											Log.e(TAG, "OnFetchCompleted with error " + errorCode + ' ' + errorToString(errorCode));
 										}
 									}) //
 									.addOnFailureListener(exception -> Log.i(TAG, "OnFetchFailure " + exception.getMessage())) //
@@ -145,11 +154,6 @@ public class AssetPackLoader implements Cancelable
 							{
 								whenReady.run();
 							}
-						}
-						else if (AssetPackStatus.FAILED == status || AssetPackStatus.CANCELED == status)
-						{
-							observer.taskUpdate(statusToString(status));
-							observer.taskFinish(true);
 						}
 					}
 					catch (RuntimeExecutionException e)
@@ -230,9 +234,9 @@ public class AssetPackLoader implements Cancelable
 					break;
 
 				case AssetPackStatus.COMPLETED: // Asset pack is ready to use.
+					AssetPackLoader.this.assetPackManager.unregisterListener(this);
 					final AssetPackLocation packLocation1 = AssetPackLoader.this.assetPackManager.getPackLocation(AssetPackLoader.this.pack);
 					Log.i(TAG, "Status asset path " + (packLocation1 == null ? "null" : packLocation1.assetsPath()));
-					AssetPackLoader.this.assetPackManager.unregisterListener(this);
 					this.observer.taskUpdate(statusStr);
 					this.observer.taskFinish(true);
 					if (this.whenReady != null)
@@ -243,18 +247,19 @@ public class AssetPackLoader implements Cancelable
 
 				case AssetPackStatus.FAILED: // Request failed. Notify user.
 					AssetPackLoader.this.assetPackManager.unregisterListener(this);
+					int errorCode = state.errorCode();
+					Log.e(TAG, "Status error " + errorCode + ' ' + errorToString(errorCode));
 					this.observer.taskUpdate(statusStr);
 					this.observer.taskFinish(false);
-					int errorCode = state.errorCode();
-					Log.e(TAG, "Status error " + errorCode);
-					this.observer.taskUpdate("Error " + errorCode);
+					this.observer.taskUpdate("Error " + errorToString(errorCode));
 					break;
 
 				case AssetPackStatus.CANCELED:  // Request canceled. Notify user.
 					AssetPackLoader.this.assetPackManager.unregisterListener(this);
+					int errorCode2 = state.errorCode();
+					Log.i(TAG, "Status canceled " + errorCode2 + ' ' + errorToString(errorCode2));
 					this.observer.taskUpdate(statusStr);
 					this.observer.taskFinish(false);
-					Log.i(TAG, "Status canceled " + state.errorCode());
 					break;
 			}
 		}
@@ -263,7 +268,7 @@ public class AssetPackLoader implements Cancelable
 	/**
 	 * Status to string
 	 *
-	 * @param status numeric static
+	 * @param status numeric status
 	 * @return status string
 	 */
 	@NonNull
@@ -291,6 +296,43 @@ public class AssetPackLoader implements Cancelable
 				return "not installed";
 		}
 		return "illegal";
+	}
+
+	/**
+	 * Error to string
+	 *
+	 * @param error numeric static
+	 * @return error string
+	 */
+	@NonNull
+	private static String errorToString(int error)
+	{
+		switch (error)
+		{
+			case AssetPackErrorCode.NO_ERROR:
+				return "no error";
+			case AssetPackErrorCode.APP_UNAVAILABLE:
+				return "app unavailable";
+			case AssetPackErrorCode.PACK_UNAVAILABLE:
+				return "pack unavailable";
+			case AssetPackErrorCode.INVALID_REQUEST:
+				return "invalid request";
+			case AssetPackErrorCode.DOWNLOAD_NOT_FOUND:
+				return "download not found";
+			case AssetPackErrorCode.API_NOT_AVAILABLE:
+				return "api not available";
+			case AssetPackErrorCode.NETWORK_ERROR:
+				return "network error";
+			case AssetPackErrorCode.ACCESS_DENIED:
+				return "access denied";
+			case AssetPackErrorCode.INSUFFICIENT_STORAGE:
+				return "insufficient storage";
+			case AssetPackErrorCode.APP_NOT_OWNED:
+				return "app not owned (not acquired from Play)";
+			case AssetPackErrorCode.INTERNAL_ERROR:
+				return "internal error";
+		}
+		return "unknown " + error;
 	}
 
 	/**

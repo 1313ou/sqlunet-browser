@@ -200,7 +200,7 @@ public class StorageSettings
 	@NonNull
 	static public String getDbDownloadTarget(@NonNull final Context context)
 	{
-		return StorageSettings.getDataDir(context) + File.separatorChar + Storage.DBFILE;
+		return getDataDir(context) + File.separatorChar + Storage.DBFILE;
 	}
 
 	/**

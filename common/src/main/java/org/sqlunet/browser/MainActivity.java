@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity
 		AppRate.invoke(this);
 
 		// info
-		Log.d(TAG, "DATABASE=" + StorageSettings.getDatabasePath(getBaseContext()));
+		Log.d(TAG, "Database:" + StorageSettings.getDatabasePath(getBaseContext()));
 
 		// content view
 		setContentView(R.layout.activity_main);
