@@ -200,6 +200,6 @@
 	<!--<string name="askUpdate">Do you wish to update ?</string>-->
 	<string name="ask_drop">Do you wish to drop the database ?</string>
 	<string name="asset_delivery">Asset Pack delivery</string>
-	<string name="asset_delivery_message">Database is being delivered as an asset pack.\nPlease be patient.</string>
+	<string name="asset_delivery_message">Database is being delivered as an asset pack.\nThis may take some time.</string>
 
 </resources>

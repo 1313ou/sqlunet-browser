@@ -82,23 +82,26 @@ public class SetupAsset
 		observer.setMessage(activity.getString(R.string.asset_delivery_message));
 
 		// deliver asset (returns non null path if already installed)
-		final String path0 = new AssetPackLoader(activity, assetPack).assetPackDelivery(activity, observer, () -> {
+		final String path0 = new AssetPackLoader(activity, assetPack) //
+				.assetPackDelivery(activity, observer, () -> {
 
-			// run when delivery completes
-			final AssetPackManager assetPackManager = AssetPackManagerFactory.getInstance(activity);
-			final AssetPackLocation packLocation = assetPackManager.getPackLocation(assetPack);
-			assert packLocation != null;
-			final String path = packLocation.assetsPath();
-			final String zipFile = new File(new File(path, assetDir), assetZip).getAbsolutePath();
-			observer.setTitle(activity.getString(R.string.action_unzip_from_archive));
-			observer.setMessage(zipFile);
-			FileAsyncTask.launchUnzip(activity, observer, zipFile, ASSET_ARCHIVE_ENTRY, StorageSettings.getDatabasePath(activity), () -> {
+					// run when delivery completes
+					final AssetPackManager assetPackManager = AssetPackManagerFactory.getInstance(activity);
+					final AssetPackLocation packLocation = assetPackManager.getPackLocation(assetPack);
+					if (packLocation != null)
+					{
+						final String path = packLocation.assetsPath();
+						final String zipFile = new File(new File(path, assetDir), assetZip).getAbsolutePath();
+						observer.setTitle(activity.getString(R.string.action_unzip_from_archive));
+						observer.setMessage(zipFile);
+						FileAsyncTask.launchUnzip(activity, observer, zipFile, ASSET_ARCHIVE_ENTRY, StorageSettings.getDatabasePath(activity), () -> {
 
-				org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
-				Settings.recordDbSource(activity, new File(new File(path, assetDir), assetZip).getAbsolutePath(), -1, -1);
-				EntryActivity.reenter(activity);
-			});
-		});
+							org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
+							Settings.recordDbSource(activity, new File(new File(path, assetDir), assetZip).getAbsolutePath(), -1, -1);
+							EntryActivity.reenter(activity);
+						});
+					}
+				});
 
 		// if already installed
 		if (path0 != null)
