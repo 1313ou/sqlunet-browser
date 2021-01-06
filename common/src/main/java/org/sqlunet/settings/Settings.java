@@ -273,7 +273,8 @@ public class Settings
 	 * @param context context
 	 * @return asset pack preference
 	 */
-	public static String getAssetPack(final Context context)
+	@NonNull
+	public static String getAssetPack(@NonNull final Context context)
 	{
 		final String primary = context.getString(R.string.asset_primary);
 		final String alt = context.getString(R.string.asset_alt);
@@ -292,7 +293,8 @@ public class Settings
 	 * @param context context
 	 * @return asset pack dir preference
 	 */
-	public static String getAssetPackDir(final Context context)
+	@NonNull
+	public static String getAssetPackDir(@NonNull final Context context)
 	{
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		boolean isPrimaryDefault = prefs.getBoolean(PREF_ASSET_PRIMARY_DEFAULT, true);
@@ -305,7 +307,8 @@ public class Settings
 	 * @param context context
 	 * @return asset pack zip preference
 	 */
-	public static String getAssetPackZip(final Context context)
+	@NonNull
+	public static String getAssetPackZip(@NonNull final Context context)
 	{
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		boolean isPrimaryDefault = prefs.getBoolean(PREF_ASSET_PRIMARY_DEFAULT, true);
@@ -318,7 +321,7 @@ public class Settings
 	 * @param context context
 	 * @return asset asset pack auto cleanup preference
 	 */
-	public static boolean getAssetAutoCleanup(final Context context)
+	public static boolean getAssetAutoCleanup(@NonNull final Context context)
 	{
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		return prefs.getBoolean(PREF_ASSET_AUTO_CLEANUP, true);

@@ -30,6 +30,7 @@ public class AssetPackLoader implements Cancelable
 	@NonNull
 	private final String pack;
 
+	@NonNull
 	private final AssetPackManager assetPackManager;
 
 	private boolean waitForWifiConfirmationShown = false;
@@ -52,6 +53,7 @@ public class AssetPackLoader implements Cancelable
 	 *
 	 * @return asset pack path if installed, null other wise
 	 */
+	@Nullable
 	public String assetPackPathIfInstalled()
 	{
 		// pack location
@@ -73,6 +75,7 @@ public class AssetPackLoader implements Cancelable
 	 * @param whenReady to run when ready
 	 * @return asset pack path if pack was installed
 	 */
+	@Nullable
 	public String assetPackDelivery(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @Nullable Runnable whenReady)
 	{
 		// pack location
@@ -296,7 +299,7 @@ public class AssetPackLoader implements Cancelable
 	 * @param activity activity
 	 * @param packs    packs to delete
 	 */
-	public static void assetPackRemove(final Activity activity, @NonNull final String... packs)
+	public static void assetPackRemove(@NonNull final Activity activity, @NonNull final String... packs)
 	{
 		final AssetPackManager assetPackManager = AssetPackManagerFactory.getInstance(activity);
 		for (String pack : packs)

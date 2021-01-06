@@ -281,7 +281,7 @@ public class SimpleDownloaderService extends JobIntentService
 	 * @throws InterruptedException interrupted exception
 	 * @throws IOException          io exception
 	 */
-	protected void copyStreams(final InputStream input, @Nullable final OutputStream output, final long total) throws InterruptedException, IOException
+	protected void copyStreams(@NonNull final InputStream input, @Nullable final OutputStream output, final long total) throws InterruptedException, IOException
 	{
 		// copy streams
 		final byte[] buffer = new byte[1024];
@@ -335,7 +335,7 @@ public class SimpleDownloaderService extends JobIntentService
 	 * @param date    date stamp
 	 * @param size    expected size
 	 */
-	protected void install(final File outFile, final long date, final long size)
+	protected void install(@NonNull final File outFile, final long date, final long size)
 	{
 		// rename
 		if (this.toFile != null)

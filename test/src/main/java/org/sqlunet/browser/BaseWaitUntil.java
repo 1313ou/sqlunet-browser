@@ -10,6 +10,8 @@ import org.hamcrest.Matcher;
 
 import java.lang.reflect.Field;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.test.espresso.IdlingResource;
 import androidx.test.espresso.ViewFinder;
 import androidx.test.espresso.ViewInteraction;
@@ -33,7 +35,8 @@ public abstract class BaseWaitUntil implements IdlingResource
 		this.resourceCallback = resourceCallback;
 	}
 
-	protected static View getView(Matcher<View> viewMatcher)
+	@Nullable
+	protected static View getView(@NonNull Matcher<View> viewMatcher)
 	{
 		try
 		{

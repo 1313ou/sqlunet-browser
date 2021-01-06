@@ -70,11 +70,13 @@ public class ExecAsyncTask
 	/**
 	 * Unit
 	 */
+	@NonNull
 	private final String unit;
 
 	/**
 	 * Activity
 	 */
+	@NonNull
 	private final Activity activity;
 
 	/**
@@ -85,7 +87,7 @@ public class ExecAsyncTask
 	 * @param observer     observer
 	 * @param publishRate  publish rate
 	 */
-	public ExecAsyncTask(final Activity activity, @Nullable final DoneListener doneListener, @Nullable final TaskObserver.Observer<Number> observer, final int publishRate)
+	public ExecAsyncTask(@NonNull final Activity activity, @Nullable final DoneListener doneListener, @Nullable final TaskObserver.Observer<Number> observer, final int publishRate)
 	{
 		this.activity = activity;
 		this.doneListener = doneListener;

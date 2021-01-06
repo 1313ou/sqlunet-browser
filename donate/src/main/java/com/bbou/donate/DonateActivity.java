@@ -69,6 +69,7 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 	/**
 	 * Overlay drawable
 	 */
+	@Nullable
 	private Drawable overlay;
 
 	// L I F E C Y C L E   A N D   S E T U P

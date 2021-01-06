@@ -102,6 +102,7 @@ public class TaskDialogObserver<Progress extends Number> extends TaskObserver.Ba
 		this.progressDialogFragment.dismiss();
 	}
 
+	@NonNull
 	@Override
 	public TaskObserver.Observer<Progress> setTitle(@NonNull final CharSequence title)
 	{
@@ -110,6 +111,7 @@ public class TaskDialogObserver<Progress extends Number> extends TaskObserver.Ba
 		return this;
 	}
 
+	@NonNull
 	@Override
 	public TaskObserver.Observer<Progress> setMessage(@NonNull final CharSequence message)
 	{

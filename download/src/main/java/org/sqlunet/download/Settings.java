@@ -43,7 +43,8 @@ public class Settings
 			return sharedPref.getString(Settings.PREF_DOWNLOADER, null);
 		}
 
-		public static String zipDownloaderSource(@NonNull final Context context, final String source)
+		@NonNull
+		public static String zipDownloaderSource(@NonNull final Context context, @NonNull final String source)
 		{
 			return Settings.Downloader.isZipDownloaderPref(context) || source.endsWith(".zip") ? source + ".zip" : source;
 		}
@@ -206,7 +207,7 @@ public class Settings
 	 * @param date    data
 	 * @param size    size
 	 */
-	public static void recordDbSource(@NonNull final Context context, final String source, final long date, final long size)
+	public static void recordDbSource(@NonNull final Context context, @Nullable final String source, final long date, final long size)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		final SharedPreferences.Editor edit = sharedPref.edit(); //
