@@ -91,7 +91,7 @@ public class Storage
 				final File prefStorage = new File(prefValue);
 				if (Storage.build(prefStorage))
 				{
-					Log.d(TAG, "Using pref " + prefStorage.getAbsolutePath());
+					// Log.d(TAG, "Using defined pref " + prefStorage.getAbsolutePath());
 					return prefStorage;
 				}
 				//  pref defined as invalid value
