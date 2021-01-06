@@ -142,6 +142,7 @@ public class AssetFragment extends Fragment implements TaskObserver.Observer<Num
 		this.statusTextView.setText(status);
 	}
 
+	@Nullable
 	@Override
 	public TaskObserver.Observer<Number> setTitle(@NonNull final CharSequence title)
 	{
@@ -149,6 +150,7 @@ public class AssetFragment extends Fragment implements TaskObserver.Observer<Num
 		return null;
 	}
 
+	@NonNull
 	@Override
 	public TaskObserver.Observer<Number> setMessage(@NonNull final CharSequence message)
 	{

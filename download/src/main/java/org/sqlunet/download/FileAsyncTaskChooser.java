@@ -10,6 +10,7 @@ import android.widget.EditText;
 import java.io.File;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 
 /**
@@ -28,7 +29,7 @@ public class FileAsyncTaskChooser
 	 * @param containerDir container dir
 	 * @param databasePath database path
 	 */
-	static public void unzipFromArchive(@NonNull final FragmentActivity activity, final String containerDir, final String databasePath)
+	static public void unzipFromArchive(@NonNull final FragmentActivity activity, final String containerDir, @NonNull final String databasePath)
 	{
 		final AlertDialog.Builder alert = new AlertDialog.Builder(activity); // unguarded, level 1
 		alert.setTitle(R.string.action_unzip_from_archive);
@@ -65,7 +66,7 @@ public class FileAsyncTaskChooser
 	 * @param zipEntry     zip entry
 	 * @param databasePath database path
 	 */
-	static public void unzipEntryFromArchive(@NonNull final FragmentActivity activity, final String containerDir, final String zipEntry, final String databasePath)
+	static public void unzipEntryFromArchive(@NonNull final FragmentActivity activity, final String containerDir, @NonNull final String zipEntry, @NonNull final String databasePath)
 	{
 		final AlertDialog.Builder alert = new AlertDialog.Builder(activity); // unguarded, level 1
 		alert.setTitle(R.string.action_unzip_from_archive);
@@ -102,7 +103,7 @@ public class FileAsyncTaskChooser
 	 * @param containerDir container dir
 	 * @param databasePath database path
 	 */
-	static public void copyFromFile(@NonNull final FragmentActivity activity, final String containerDir, final String databasePath)
+	static public void copyFromFile(@NonNull final FragmentActivity activity, final String containerDir, @NonNull final String databasePath)
 	{
 		final AlertDialog.Builder alert = new AlertDialog.Builder(activity); // unguarded, level 1
 		alert.setTitle(R.string.action_copy_from_file);
@@ -137,7 +138,7 @@ public class FileAsyncTaskChooser
 	 * @param activity     activity
 	 * @param containerDir container dir
 	 */
-	static public void md5FromFile(@NonNull final FragmentActivity activity, final String containerDir)
+	static public void md5FromFile(@NonNull final FragmentActivity activity, @Nullable final String containerDir)
 	{
 		final AlertDialog.Builder alert = new AlertDialog.Builder(activity); // unguarded, level 1
 		alert.setTitle(R.string.action_md5_of_file);

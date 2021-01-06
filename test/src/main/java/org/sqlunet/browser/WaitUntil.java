@@ -9,6 +9,7 @@ import android.view.View;
 import org.hamcrest.Matcher;
 
 import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
 import androidx.test.espresso.IdlingRegistry;
 import androidx.test.espresso.IdlingResource;
 
@@ -38,13 +39,14 @@ public class WaitUntil extends BaseWaitUntil
 		return idle;
 	}
 
+	@NonNull
 	@Override
 	public String getName()
 	{
 		return this + this.viewMatcher.toString();
 	}
 
-	public static void waitViewShown(final Matcher<View> matcher)
+	public static void waitViewShown(@NonNull final Matcher<View> matcher)
 	{
 		final IdlingResource idlingResource = new WaitUntil(matcher);
 		try

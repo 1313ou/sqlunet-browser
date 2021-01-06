@@ -10,6 +10,7 @@ import android.widget.TextView;
 import org.hamcrest.Matcher;
 
 import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
 import androidx.test.espresso.IdlingRegistry;
 import androidx.test.espresso.IdlingResource;
 import androidx.test.espresso.PerformException;
@@ -66,13 +67,14 @@ public class WaitUntilText extends BaseWaitUntil
 		return idle;
 	}
 
+	@NonNull
 	@Override
 	public String getName()
 	{
 		return this + this.viewMatcher.toString();
 	}
 
-	public static void waitTextView(final Matcher<View> matcher, final String target, final boolean not)
+	public static void waitTextView(@NonNull final Matcher<View> matcher, final String target, final boolean not)
 	{
 		final IdlingResource idlingResource = new WaitUntilText(matcher, target, not);
 		try

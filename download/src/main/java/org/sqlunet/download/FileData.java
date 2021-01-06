@@ -9,6 +9,7 @@ import android.content.Context;
 import java.io.File;
 import java.util.Date;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /**
@@ -43,7 +44,7 @@ public class FileData
 	}
 
 	@Nullable
-	static public FileData getCurrent(final Context context)
+	static public FileData getCurrent(@NonNull final Context context)
 	{
 		final String name = Settings.getDbName(context);
 		final long date = Settings.getDbDate(context);

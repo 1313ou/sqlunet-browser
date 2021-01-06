@@ -61,6 +61,7 @@ public class TaskObserver
 		 *
 		 * @param title title
 		 */
+		@Nullable
 		Observer<Progress> setTitle(@NonNull CharSequence title);
 
 		/**
@@ -68,6 +69,7 @@ public class TaskObserver
 		 *
 		 * @param message message
 		 */
+		@NonNull
 		Observer<Progress> setMessage(@NonNull CharSequence message);
 	}
 
@@ -110,6 +112,7 @@ public class TaskObserver
 			return this;
 		}
 
+		@NonNull
 		@Override
 		public Observer<Progress> setMessage(@NonNull final CharSequence message)
 		{

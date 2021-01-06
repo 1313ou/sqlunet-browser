@@ -88,6 +88,7 @@ public class TaskProgressDialogObserver<Progress extends Number> extends TaskObs
 		this.progressDialog.dismiss();
 	}
 
+	@NonNull
 	@Override
 	public TaskObserver.Observer<Progress> setTitle(@NonNull final CharSequence title)
 	{
@@ -96,6 +97,7 @@ public class TaskProgressDialogObserver<Progress extends Number> extends TaskObs
 		return this;
 	}
 
+	@NonNull
 	@Override
 	public TaskObserver.Observer<Progress> setMessage(@NonNull final CharSequence message)
 	{

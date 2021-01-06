@@ -51,8 +51,9 @@ public class SetupAsset
 	 * @param view      view for snackbar
 	 * @return path if already installed
 	 */
+	@Nullable
 	@SuppressWarnings("UnusedReturnValue")
-	public static String deliverAsset(@NonNull final String assetPack, @NonNull final String assetDir, @NonNull final String assetZip, @NonNull final Activity activity, final TaskObserver.Observer<Number> observer, @Nullable final View view)
+	public static String deliverAsset(@NonNull final String assetPack, @NonNull final String assetDir, @NonNull final String assetZip, @NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @Nullable final View view)
 	{
 		if (assetPack.isEmpty())
 		{
