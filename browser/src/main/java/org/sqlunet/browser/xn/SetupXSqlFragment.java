@@ -86,12 +86,11 @@ public class SetupXSqlFragment extends org.sqlunet.browser.config.SetupSqlFragme
 				final String database = StorageSettings.getDatabasePath(activity);
 				final String source = StorageSettings.getSqlSource(activity);
 				final String entry = Settings.getPmEntry(activity);
-				final String unit = activity.getString(R.string.unit_statement);
 				final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
 						.setTitle(activity.getString(R.string.status_managing)) //
 						.setMessage(source + '@' + entry);
-				final Task<String, Number, Boolean> st = new ExecAsyncTask(activity, SetupXSqlFragment.this::update, observer, 1).fromArchive();
-				st.execute(database, source, entry);
+				final Task<String, Number, Boolean> task = new ExecAsyncTask(activity, SetupXSqlFragment.this::update, observer, 1).fromArchive();
+				task.execute(database, source, entry);
 			}
 			catch (@NonNull final Exception e)
 			{

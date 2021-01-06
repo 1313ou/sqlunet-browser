@@ -240,7 +240,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 	/**
 	 * Status view
 	 */
-	private TextView statusView;
+	private TextView statusTextView;
 
 	/**
 	 * Download button
@@ -365,7 +365,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		// components
 		this.progressBar = view.findViewById(R.id.progressBar);
 		this.progressStatus = view.findViewById(R.id.progressStatus);
-		this.statusView = view.findViewById(R.id.status);
+		this.statusTextView = view.findViewById(R.id.status);
 
 		// default button resources
 		this.downloadButtonImageResId = R.drawable.bn_download;
@@ -380,7 +380,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 			cancel();
 			stopObserver();
 			isDownloading = false;
-			this.statusView.setText(R.string.status_download_canceled);
+			this.statusTextView.setText(R.string.status_download_canceled);
 		});
 		this.deployButton = view.findViewById(R.id.deployButton);
 		this.deployButton.setOnClickListener(v -> {
@@ -443,7 +443,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		}
 
 		// destination
-		this.statusView.setText("");
+		this.statusTextView.setText("");
 
 		if (savedInstanceState != null)
 		{
@@ -517,7 +517,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 				this.progressBar.setVisibility(View.VISIBLE);
 				this.progressStatus.setVisibility(View.VISIBLE);
 				this.cancelButton.setVisibility(View.VISIBLE);
-				this.statusView.setText("");
+				this.statusTextView.setText("");
 
 				try
 				{
@@ -710,7 +710,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 					this.progressBar.setProgress(progress100);
 					this.progressStatus.setText(count);
 				}
-				this.statusView.setText(message);
+				this.statusTextView.setText(message);
 			});
 		}
 	}
@@ -808,14 +808,14 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		{
 			this.progressStatus.setVisibility(View.INVISIBLE);
 		}
-		if (this.statusView != null)
+		if (this.statusTextView != null)
 		{
 			final String status = makeStatusString(this.status);
 			final String reason = getReason();
 			final String message = status + (reason == null ? "" : '\n' + reason);
 
-			this.statusView.setText(success ? this.appContext.getString(R.string.status_download_successful) : message);
-			this.statusView.setVisibility(View.VISIBLE);
+			this.statusTextView.setText(success ? this.appContext.getString(R.string.status_download_successful) : message);
+			this.statusTextView.setVisibility(View.VISIBLE);
 		}
 
 		// buttons
@@ -888,11 +888,12 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		{
 			return;
 		}
-		final TaskObserver.BaseObserver<Number> taskListener = new TaskObserver.BaseObserver<Number>()
+		final TaskObserver.BaseObserver<Number> observer = new TaskObserver.BaseObserver<Number>()
 		{
 			@Override
 			public void taskFinish(final boolean result)
 			{
+
 				super.taskFinish(result);
 
 				final Activity activity = getActivity();
@@ -922,9 +923,9 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		final TaskObserver.Observer<Number> fatObserver = new TaskDialogObserver<>(getParentFragmentManager()) // guarded, level 1
 				.setTitle(activity.getString(R.string.action_unzip_from_archive)) //
 				.setMessage(this.downloadedFile.getName());
-		final Task<String, Number, Boolean> ft = new FileAsyncTask(taskListener, null, 1000).unzipFromArchive();
-		final Task<String, Number, Boolean> oft = new ObservedDelegatingTask<>(ft, fatObserver);
-		oft.execute(this.downloadedFile.getAbsolutePath(), destDir);
+		final Task<String, Number, Boolean> baseTask = new FileAsyncTask(observer, null, 1000).unzipFromArchive();
+		final Task<String, Number, Boolean> task = new ObservedDelegatingTask<>(baseTask, fatObserver);
+		task.execute(this.downloadedFile.getAbsolutePath(), destDir);
 	}
 
 	/*

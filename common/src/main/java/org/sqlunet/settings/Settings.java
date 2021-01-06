@@ -277,7 +277,7 @@ public class Settings
 	{
 		final String primary = context.getString(R.string.asset_primary);
 		final String alt = context.getString(R.string.asset_alt);
-		if (alt == null || alt.isEmpty())
+		if (alt.isEmpty())
 		{
 			return primary;
 		}

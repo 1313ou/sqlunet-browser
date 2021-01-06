@@ -434,11 +434,33 @@ public class FileAsyncTask
 
 	// L A U N C H E R S
 
+	/**
+	 * Launch unzipping
+	 *
+	 * @param activity     activity
+	 * @param sourceFile   source zip file
+	 * @param databasePath database path
+	 * @param whenDone     to run when done
+	 */
 	public static void launchUnzip(@NonNull final FragmentActivity activity, @NonNull final String sourceFile, @NonNull final String databasePath, @Nullable final Runnable whenDone)
 	{
 		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
 				.setTitle(activity.getString(R.string.action_unzip_from_archive)) //
 				.setMessage(sourceFile);
+		launchUnzip(activity, observer, sourceFile, databasePath, whenDone);
+	}
+
+	/**
+	 * Launch unzipping
+	 *
+	 * @param activity     activity
+	 * @param observer     observer
+	 * @param sourceFile   source zip file
+	 * @param databasePath database path
+	 * @param whenDone     to run when done
+	 */
+	public static void launchUnzip(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final String sourceFile, @NonNull final String databasePath, @Nullable final Runnable whenDone)
+	{
 		final FileAsyncTask.ResultListener resultListener = result -> {
 
 			final Boolean success = (Boolean) result;
@@ -451,77 +473,38 @@ public class FileAsyncTask
 				}
 			}
 		};
-		final Task<String, Number, Boolean> ft = new FileAsyncTask(observer, resultListener, 1000).unzipFromArchive();
-		ft.execute(sourceFile, databasePath);
+		final Task<String, Number, Boolean> task = new FileAsyncTask(observer, resultListener, 1000).unzipFromArchive();
+		task.execute(sourceFile, databasePath);
+		observer.taskUpdate(activity.getString(R.string.status_unzipping));
 	}
 
+	/**
+	 * Launch unzipping of entry
+	 *
+	 * @param activity     activity
+	 * @param sourceFile   source zip file
+	 * @param zipEntry     zip entry
+	 * @param databasePath database path
+	 * @param whenDone     to run when done
+	 */
 	public static void launchUnzip(@NonNull final FragmentActivity activity, @NonNull final String sourceFile, @NonNull final String zipEntry, @NonNull final String databasePath, @Nullable final Runnable whenDone)
 	{
 		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
 				.setTitle(activity.getString(R.string.action_unzip_from_archive)) //
 				.setMessage(sourceFile);
-		final FileAsyncTask.ResultListener resultListener = result -> {
-
-			final Boolean success = (Boolean) result;
-			if (success)
-			{
-				Settings.recordDb(activity, new File(sourceFile));
-				if (whenDone != null)
-				{
-					whenDone.run();
-				}
-			}
-		};
-		final Task<String, Number, Boolean> ft = new FileAsyncTask(observer, resultListener, 1000).unzipEntryFromArchive();
-		ft.execute(sourceFile, zipEntry, databasePath);
+		launchUnzip(activity, observer, sourceFile, zipEntry, databasePath, whenDone);
 	}
 
-	public static void launchCopy(@NonNull final FragmentActivity activity, @NonNull final String sourceFile, @NonNull final String databasePath, @Nullable final Runnable whenDone)
-	{
-		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
-				.setTitle(activity.getString(R.string.action_copy_from_file)) //
-				.setMessage(sourceFile);;
-		final FileAsyncTask.ResultListener resultListener = result -> {
-
-			final Boolean success = (Boolean) result;
-			if (success)
-			{
-				Settings.recordDb(activity, new File(sourceFile));
-			}
-			if (whenDone != null)
-			{
-				whenDone.run();
-			}
-		};
-		final Task<String, Number, Boolean> ft = new FileAsyncTask(observer, resultListener, 1000).copyFromFile();
-		ft.execute(sourceFile, databasePath);
-	}
-
-	public static void launchMd5(@NonNull final FragmentActivity activity, @NonNull final String sourceFile)
-	{
-		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
-				.setTitle(activity.getString(R.string.action_md5)) //
-				.setMessage(sourceFile);
-		final FileAsyncTask.ResultListener resultListener = result -> {
-
-			final String md5 = (String) result;
-			final AlertDialog.Builder alert2 = new AlertDialog.Builder(activity); // unguarded, level 1
-			if (md5 != null)
-			{
-				alert2.setMessage(md5);
-			}
-			else
-			{
-				alert2.setMessage(R.string.result_fail);
-			}
-			alert2.show();
-		};
-		final Task<String, Number, String> ft = new FileAsyncTask(observer, resultListener, 1000).md5FromFile();
-		ft.execute(sourceFile);
-	}
-
-	// L A U N C H E R S  W I T H  O B S E R V E R S
-
+	/**
+	 * Launch unzipping of entry
+	 *
+	 * @param activity     activity
+	 * @param observer     observer
+	 * @param sourceFile   source zip file
+	 * @param zipEntry     zip entry
+	 * @param databasePath database path
+	 * @param whenDone     to run when done
+	 */
 	public static void launchUnzip(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final String sourceFile, @NonNull final String zipEntry, @NonNull final String databasePath, @Nullable final Runnable whenDone)
 	{
 		final FileAsyncTask.ResultListener resultListener = result -> {
@@ -536,7 +519,94 @@ public class FileAsyncTask
 				}
 			}
 		};
-		final Task<String, Number, Boolean> ft = new FileAsyncTask(observer, resultListener, 1000).unzipEntryFromArchive();
-		ft.execute(sourceFile, zipEntry, databasePath);
+		final Task<String, Number, Boolean> task = new FileAsyncTask(observer, resultListener, 1000).unzipEntryFromArchive();
+		task.execute(sourceFile, zipEntry, databasePath);
+		observer.taskUpdate(activity.getString(R.string.status_unzipping) + ' ' + zipEntry);
+	}
+
+	/**
+	 * Launch copy
+	 *
+	 * @param activity     activity
+	 * @param sourceFile   source file
+	 * @param databasePath database path
+	 * @param whenDone     to run when done
+	 */
+	public static void launchCopy(@NonNull final FragmentActivity activity, @NonNull final String sourceFile, @NonNull final String databasePath, @Nullable final Runnable whenDone)
+	{
+		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
+				.setTitle(activity.getString(R.string.action_copy_from_file)) //
+				.setMessage(sourceFile);
+		launchCopy(activity, observer, sourceFile, databasePath, whenDone);
+	}
+
+	/**
+	 * Launch copy
+	 *
+	 * @param activity     activity
+	 * @param observer     observer
+	 * @param sourceFile   source file
+	 * @param databasePath database path
+	 * @param whenDone     to run when done
+	 */
+	public static void launchCopy(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final String sourceFile, @NonNull final String databasePath, @Nullable final Runnable whenDone)
+	{
+		final FileAsyncTask.ResultListener resultListener = result -> {
+
+			final Boolean success = (Boolean) result;
+			if (success)
+			{
+				Settings.recordDb(activity, new File(sourceFile));
+			}
+			if (whenDone != null)
+			{
+				whenDone.run();
+			}
+		};
+		final Task<String, Number, Boolean> task = new FileAsyncTask(observer, resultListener, 1000).copyFromFile();
+		task.execute(sourceFile, databasePath);
+		observer.taskUpdate(activity.getString(R.string.status_copying) + ' ' + sourceFile);
+	}
+
+	/**
+	 * Launch computation of MD5
+	 *
+	 * @param activity   activity
+	 * @param sourceFile source file
+	 */
+	public static void launchMd5(@NonNull final FragmentActivity activity, @NonNull final String sourceFile)
+	{
+		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
+				.setTitle(activity.getString(R.string.action_md5)) //
+				.setMessage(sourceFile);
+		launchMd5(activity, observer, sourceFile);
+	}
+
+	/**
+	 * Launch computation of MD5
+	 *
+	 * @param activity   activity
+	 * @param observer   observer
+	 * @param sourceFile source file
+	 */
+	public static void launchMd5(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final String sourceFile)
+	{
+		final FileAsyncTask.ResultListener resultListener = result -> {
+
+			final String md5 = (String) result;
+			final AlertDialog.Builder alert2 = new AlertDialog.Builder(activity); // unguarded, level 1
+			if (md5 != null)
+			{
+				alert2.setMessage(md5);
+			}
+			else
+			{
+				alert2.setMessage(R.string.result_fail);
+			}
+			alert2.show();
+		};
+		final Task<String, Number, String> task = new FileAsyncTask(observer, resultListener, 1000).md5FromFile();
+		task.execute(sourceFile);
+		observer.taskUpdate(activity.getString(R.string.status_md5_checking) + ' ' + sourceFile);
 	}
 }

@@ -99,11 +99,11 @@ public class SimpleZipDownloaderService extends SimpleDownloaderService
 			}
 
 			// streams
-			try (ZipInputStream zinput = new ZipInputStream(connection.getInputStream()); OutputStream output = new FileOutputStream(outFile))
+			try (ZipInputStream zInput = new ZipInputStream(connection.getInputStream()); OutputStream output = new FileOutputStream(outFile))
 			{
 				// get the entry
 				ZipEntry entry;
-				while ((entry = zinput.getNextEntry()) != null)
+				while ((entry = zInput.getNextEntry()) != null)
 				{
 					if (!entry.isDirectory())
 					{
@@ -114,18 +114,18 @@ public class SimpleZipDownloaderService extends SimpleDownloaderService
 							date = entry.getTime();
 
 							// copy
-							copyStreams(zinput, output, size);
-							zinput.closeEntry();
+							copyStreams(zInput, output, size);
+							zInput.closeEntry();
 							done = true;
 							break;
 						}
 						//else
 						// consume
 						//{
-						//	copyStreams(zinput, null, zsize);
+						//	copyStreams(zInput, null, zSize);
 						//}
 					}
-					zinput.closeEntry();
+					zInput.closeEntry();
 				}
 			}
 		}

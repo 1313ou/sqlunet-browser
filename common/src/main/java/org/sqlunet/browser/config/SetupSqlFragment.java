@@ -187,8 +187,8 @@ public class SetupSqlFragment extends Fragment implements Updatable
 				final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
 						.setTitle(activity.getString(R.string.status_managing)) //
 						.setMessage(source + '@' + entry);
-				final Task<String, Number, Boolean> et = new ExecAsyncTask(activity, this::update, observer, 1000).fromArchive();
-				et.execute(database, source, entry);
+				final Task<String, Number, Boolean> task = new ExecAsyncTask(activity, this::update, observer, 1000).fromArchive();
+				task.execute(database, source, entry);
 			}
 			catch (@NonNull final Exception e)
 			{
@@ -229,8 +229,8 @@ public class SetupSqlFragment extends Fragment implements Updatable
 				final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
 						.setTitle(activity.getString(R.string.status_managing)) //
 						.setMessage(source + '@' + entry);
-				final Task<String, Number, Boolean> st = new ExecAsyncTask(activity, this::update, observer, 1).fromArchive(); //database, source, entry);
-				st.execute(database, source, entry);
+				final Task<String, Number, Boolean> task = new ExecAsyncTask(activity, this::update, observer, 1).fromArchive(); //database, source, entry);
+				task.execute(database, source, entry);
 			}
 			catch (@NonNull final Exception e)
 			{

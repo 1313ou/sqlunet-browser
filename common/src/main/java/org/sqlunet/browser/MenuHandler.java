@@ -119,7 +119,6 @@ public class MenuHandler
 			final String asset = activity.getString(R.string.asset_alt);
 			final String assetDir = activity.getString(R.string.asset_dir_alt);
 			final String assetZip = activity.getString(R.string.asset_zip_alt);
-			assert asset != null;
 			if (!asset.isEmpty())
 			{
 				final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
@@ -142,7 +141,6 @@ public class MenuHandler
 		else if (itemId == R.id.action_asset_dispose_alt)
 		{
 			String asset = activity.getString(R.string.asset_alt);
-			assert asset != null;
 			if (!asset.isEmpty())
 			{
 				SetupAsset.disposeAsset(asset, activity);
