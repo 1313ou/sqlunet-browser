@@ -364,7 +364,7 @@ public class AssetPackLoader implements Cancelable
 	@Override
 	public boolean cancel(final boolean mayInterruptIfRunning)
 	{
-		Log.d(TAG, "Cancel !");
+		Log.d(TAG, "User cancel");
 		AssetPackLoader.this.assetPackManager.cancel(Collections.singletonList(this.pack));
 		return true;
 	}

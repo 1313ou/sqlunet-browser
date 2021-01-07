@@ -33,27 +33,25 @@ public class SetupAsset
 
 	static public final String PREF_ASSET_AUTO_CLEANUP = "pref_asset_auto_cleanup";
 
-	/**
-	 * Entry name in archive
-	 */
-	public static final String ASSET_ARCHIVE_ENTRY = "sqlunet.db";
+	// public static final String ASSET_ARCHIVE_ENTRY = "sqlunet.db";
 
 	// public static final String TARGET_DB = "sqlunet.db";
 
 	/**
 	 * Deliver asset
 	 *
-	 * @param assetPack asset pack name
-	 * @param assetDir  asset pack dir
-	 * @param assetZip  asset pack zip
-	 * @param activity  activity
-	 * @param observer  observer
-	 * @param view      view for snackbar
+	 * @param assetPack     asset pack name
+	 * @param assetDir      asset pack dir
+	 * @param assetZip      asset pack zip
+	 * @param assetZipEntry asset pack zip entry
+	 * @param activity      activity
+	 * @param observer      observer
+	 * @param view          view for snackbar
 	 * @return path if already installed
 	 */
 	@Nullable
 	@SuppressWarnings("UnusedReturnValue")
-	public static String deliverAsset(@NonNull final String assetPack, @NonNull final String assetDir, @NonNull final String assetZip, @NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @Nullable final View view)
+	public static String deliverAsset(@NonNull final String assetPack, @NonNull final String assetDir, @NonNull final String assetZip, @NonNull final String assetZipEntry, @NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @Nullable final View view)
 	{
 		if (assetPack.isEmpty())
 		{
@@ -94,7 +92,7 @@ public class SetupAsset
 						final String zipFile = new File(new File(path, assetDir), assetZip).getAbsolutePath();
 						observer.setTitle(activity.getString(R.string.action_unzip_from_archive));
 						observer.setMessage(zipFile);
-						FileAsyncTask.launchUnzip(activity, observer, zipFile, ASSET_ARCHIVE_ENTRY, StorageSettings.getDatabasePath(activity), () -> {
+						FileAsyncTask.launchUnzip(activity, observer, zipFile, assetZipEntry, StorageSettings.getDatabasePath(activity), () -> {
 
 							org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
 							Settings.recordDbSource(activity, new File(new File(path, assetDir), assetZip).getAbsolutePath(), -1, -1);
@@ -127,7 +125,7 @@ public class SetupAsset
 			{
 				observer.setTitle(activity.getString(R.string.action_unzip_from_archive));
 				observer.setMessage(zipFilePath);
-				FileAsyncTask.launchUnzip(activity, observer, zipFilePath, ASSET_ARCHIVE_ENTRY, StorageSettings.getDatabasePath(activity), () -> {
+				FileAsyncTask.launchUnzip(activity, observer, zipFilePath, assetZipEntry, StorageSettings.getDatabasePath(activity), () -> {
 
 					org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
 					Settings.recordDbSource(activity, zipFilePath, -1, -1);

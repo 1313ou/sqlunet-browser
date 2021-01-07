@@ -97,10 +97,11 @@ public class MenuHandler
 			final String asset = Settings.getAssetPack(activity);
 			final String assetDir = Settings.getAssetPackDir(activity);
 			final String assetZip = Settings.getAssetPackZip(activity);
+			final String assetZipEntry = activity.getString(R.string.asset_zip_entry);
 			final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
 					.setTitle(activity.getString(R.string.asset_delivery)) //
 					.setMessage(asset);
-			SetupAsset.deliverAsset(asset, assetDir, assetZip, activity, observer, null);
+			SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null);
 			return true;
 		}
 		else if (itemId == R.id.action_asset_deliver_primary)
@@ -108,10 +109,11 @@ public class MenuHandler
 			final String asset = activity.getString(R.string.asset_primary);
 			final String assetDir = activity.getString(R.string.asset_dir_primary);
 			final String assetZip = activity.getString(R.string.asset_zip_primary);
+			final String assetZipEntry = activity.getString(R.string.asset_zip_entry);
 			final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
 					.setTitle(activity.getString(R.string.asset_delivery)) //
 					.setMessage(asset);
-			SetupAsset.deliverAsset(asset, assetDir, assetZip, activity, observer, null);
+			SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null);
 			return true;
 		}
 		else if (itemId == R.id.action_asset_deliver_alt)
@@ -119,12 +121,13 @@ public class MenuHandler
 			final String asset = activity.getString(R.string.asset_alt);
 			final String assetDir = activity.getString(R.string.asset_dir_alt);
 			final String assetZip = activity.getString(R.string.asset_zip_alt);
+			final String assetZipEntry = activity.getString(R.string.asset_zip_entry);
 			if (!asset.isEmpty())
 			{
 				final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
 						.setTitle(activity.getString(R.string.asset_delivery)) //
 						.setMessage(asset);
-				SetupAsset.deliverAsset(asset, assetDir, assetZip, activity, observer, null);
+				SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null);
 			}
 			return true;
 		}

@@ -5,6 +5,8 @@
 
 <resources>
 
+	<string name="asset_zip_entry" translatable="false"></string>
+
 	<string name="asset_primary" translatable="false"></string>
 	<string name="asset_dir_primary" translatable="false"></string>
 	<string name="asset_zip_primary" translatable="false"></string>

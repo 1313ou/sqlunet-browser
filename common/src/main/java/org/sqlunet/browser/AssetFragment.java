@@ -88,7 +88,8 @@ public class AssetFragment extends Fragment implements TaskObserver.Observer<Num
 		final String asset = Settings.getAssetPack(context);
 		final String assetDir = Settings.getAssetPackDir(context);
 		final String assetZip = Settings.getAssetPackZip(context);
-		SetupAsset.deliverAsset(asset, assetDir, assetZip, requireActivity(), this, getView());
+		final String assetZipEntry = context.getString(R.string.asset_zip_entry);
+		SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, requireActivity(), this, getView());
 	}
 
 	@Override
