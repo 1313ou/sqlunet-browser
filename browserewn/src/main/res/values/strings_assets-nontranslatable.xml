@@ -4,6 +4,8 @@
 
 <resources>
 
+	<string name="asset_zip_entry" translatable="false">sqlunet-ewn.db</string>
+
 	<string name="asset_primary" translatable="false">dbewn_ewn_asset</string>
 	<string name="asset_dir_primary" translatable="false">XX</string>
 	<string name="asset_zip_primary" translatable="false">sqlunet-ewn.db.zip</string>
