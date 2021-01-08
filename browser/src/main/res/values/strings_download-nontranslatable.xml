@@ -1,4 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE resources [
+	<!ENTITY bbuser "semantikos">
+	<!ENTITY bbrepo "semantikos">
+	<!ENTITY bbcommit "d56e743195fbecbfe60f0033c0084ec17e032e08">
+	]>
+
+<!--
   ~ Copyright (c) 2020. Bernard Bou <1313ou@gmail.com>.
   -->
 
@@ -10,10 +17,10 @@
 	<string name="pref_default_entry_import" translatable="false">sqlunet.sql</string>
 	<string name="pref_default_entry_index" translatable="false">sqlunet-index.sql</string>
 
-	<!-- default site -->
-	<!-- not overridden -->
-
 	<!-- sites -->
+	<string name="pref_bitbucket_31_site_url" translatable="false">https://bitbucket.org/&bbuser;/&bbrepo;/raw/&bbcommit;/31</string>
+	<string name="pref_bitbucket_XX_site_url" translatable="false">https://bitbucket.org/&bbuser;/&bbrepo;/raw/&bbcommit;/XX</string>
+	<string name="pref_default_download_site_url" translatable="false">@string/pref_bitbucket_31_site_url</string>
 	<string-array name="pref_download_site_urls" translatable="false" tools:ignore="InconsistentArrays">
 		<item>@string/pref_bitbucket_31_site_url</item>
 		<item>@string/pref_bitbucket_XX_site_url</item>

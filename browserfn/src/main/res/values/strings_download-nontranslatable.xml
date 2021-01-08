@@ -1,4 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE resources [
+	<!ENTITY bbuser "semantikos3">
+	<!ENTITY bbrepo "semantikos3">
+	<!ENTITY bbcommit "ac63d8137ccad7639d0c1c63e318483a4bd840fd">
+	]>
+
+<!--
   ~ Copyright (c) 2020. Bernard Bou <1313ou@gmail.com>.
   -->
 
@@ -6,19 +13,20 @@
 
 	<!-- site files -->
 	<string name="pref_default_download_dbfile" translatable="false">sqlunet-fn.db</string>
-	<!--<string name="pref_default_download_dbfile_zipped" translatable="false">sqlunet-fn.db.zip</string>-->
 	<string name="pref_default_download_sqlfile" translatable="false">sqlunet-fn.sql.zip</string>
 	<string name="pref_default_entry_import" translatable="false">sqlunet-fn.sql</string>
 	<string name="pref_default_entry_index" translatable="false">sqlunet-fn-index.sql</string>
 
-	<!-- default site -->
-	<!-- not overridden -->
-
 	<!-- sites -->
+	<string name="pref_bitbucket_31_site_url" translatable="false">https://bitbucket.org/&bbuser;/&bbrepo;/raw/&bbcommit;/31</string>
+	<string name="pref_bitbucket_XX_site_url" translatable="false">https://bitbucket.org/&bbuser;/&bbrepo;/raw/&bbcommit;/XX</string>
+	<string name="pref_default_download_site_url" translatable="false">@string/pref_bitbucket_31_site_url</string>
 	<string-array name="pref_download_site_urls" translatable="false" tools:ignore="InconsistentArrays">
-		<item>@string/pref_default_download_site_url</item>
+		<item>@string/pref_bitbucket_31_site_url</item>
+		<item>@string/pref_bitbucket_XX_site_url</item>
 		<item>@string/pref_sourceforge_600_31_site_url</item>
 		<item>@string/pref_sourceforge_600_XX_site_url</item>
+		<item>@string/pref_sourceforge_520_site_url</item>
 		<item>@string/pref_sourceforge_520_alias_site_url</item>
 	</string-array>
 
