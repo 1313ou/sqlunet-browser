@@ -6,9 +6,10 @@
 
 	<!-- sites -->
 	<string-array name="pref_download_site_labels" tools:ignore="InconsistentArrays">
-		<item>Default</item>
-		<item>English WordNet 2020 core</item>
-		<item>Default (old repo)</item>
+		<item>English WordNet 2020 core (Bitbucket, zipped)</item>
+		<item>English WordNet 2020 core (Sourceforge)</item>
+		<item>English WordNet 2020 core (Sourceforge, initial repo)</item>
+		<item>English WordNet 2020 core (Sourceforge, initial repo alias)</item>
 	</string-array>
 
 </resources>
