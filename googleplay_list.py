@@ -61,6 +61,21 @@ def main(argv):
                 apk['binary']['sha1']
             )
 
+        # get bundles
+        bundles_result = service.edits().bundles().list(
+            editId=edit_id,
+            packageName=package_name
+        ).execute()
+
+        # iterate on bundles
+        print 'BUNDLEs'
+        for bundle in bundles_result['bundles']:
+            #print bundle
+            print 'versionCode: %s, sha1: %s' % (
+                bundle['versionCode'],
+                bundle['sha1'],
+            )
+
         # get tracks
         tracks_result = service.edits().tracks().list(
             editId=edit_id,
