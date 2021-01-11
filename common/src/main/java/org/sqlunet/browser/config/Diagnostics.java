@@ -366,6 +366,9 @@ public class Diagnostics
 		final String source = Settings.getDbSource(context);
 		final long sourceSize = Settings.getDbSourceSize(context);
 		final long sourceStamp = Settings.getDbSourceDate(context);
+		final String sourceEtag = Settings.getDbSourceEtag(context);
+		final String sourceVersion = Settings.getDbSourceVersion(context);
+		final String sourceStaticVersion = Settings.getDbSourceStaticVersion(context);
 		final String name = Settings.getDbName(context);
 		final long size = Settings.getDbSize(context);
 		final long stamp = Settings.getDbDate(context);
@@ -381,6 +384,15 @@ public class Diagnostics
 		sb.append('\n');
 		sb.append("recorded source date: ");
 		sb.append(sourceStamp == -1 || sourceStamp == 0 ? "null" : new Date(sourceStamp).toString());
+		sb.append('\n');
+		sb.append("recorded source etag: ");
+		sb.append(sourceEtag == null ? "null" : sourceEtag);
+		sb.append('\n');
+		sb.append("recorded source version: ");
+		sb.append(sourceVersion == null ? "null" : sourceVersion);
+		sb.append('\n');
+		sb.append("recorded source static version: ");
+		sb.append(sourceStaticVersion == null ? "null" : sourceStaticVersion);
 		sb.append('\n');
 		sb.append("recorded name: ");
 		sb.append(name == null ? "null" : name);

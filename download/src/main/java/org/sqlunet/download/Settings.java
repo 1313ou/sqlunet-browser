@@ -59,12 +59,17 @@ public class Settings
 	static public final String PREF_DOWNLOADER = "pref_downloader";
 
 	static public final String PREF_DB_SOURCE = "pref_db_source";
-	static public final String PREF_DB_SOURCE_DATE = "pref_db_zip_date";
-	static public final String PREF_DB_SOURCE_SIZE = "pref_db_zip_size";
+	static public final String PREF_DB_SOURCE_DATE = "pref_db_source_date";
+	static public final String PREF_DB_SOURCE_SIZE = "pref_db_source_size";
+	static public final String PREF_DB_SOURCE_ETAG = "pref_db_source_etag";
+	static public final String PREF_DB_SOURCE_VERSION = "pref_db_source_version";
+	static public final String PREF_DB_SOURCE_STATIC_VERSION = "pref_db_source_static_version";
 
 	static public final String PREF_DB_NAME = "pref_db_name";
 	static public final String PREF_DB_DATE = "pref_db_date";
 	static public final String PREF_DB_SIZE = "pref_db_size";
+
+	static public final String PREF_DB_RESET_BUTTON = "pref_db_reset";
 
 	public static final String STORAGE_DB_DIR = "sqlunet";
 	public static final String HINT_DB_ZIP = "sqlunet.zip";
@@ -132,6 +137,42 @@ public class Settings
 	}
 
 	/**
+	 * Get database source etag
+	 *
+	 * @param context context
+	 * @return etag
+	 */
+	public static String getDbSourceEtag(final Context context)
+	{
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		return sharedPref.getString(Settings.PREF_DB_SOURCE_ETAG, null);
+	}
+
+	/**
+	 * Get database source version
+	 *
+	 * @param context context
+	 * @return version
+	 */
+	public static String getDbSourceVersion(final Context context)
+	{
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		return sharedPref.getString(Settings.PREF_DB_SOURCE_VERSION, null);
+	}
+
+	/**
+	 * Get database source static version
+	 *
+	 * @param context context
+	 * @return static version
+	 */
+	public static String getDbSourceStaticVersion(final Context context)
+	{
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		return sharedPref.getString(Settings.PREF_DB_SOURCE_STATIC_VERSION, null);
+	}
+
+	/**
 	 * Get database source size
 	 *
 	 * @param context context
@@ -180,7 +221,7 @@ public class Settings
 			{
 				edit.remove(PREF_DB_SIZE);
 			}
-		edit.apply();
+			edit.apply();
 		}
 	}
 
@@ -202,12 +243,15 @@ public class Settings
 	/**
 	 * Record db source info
 	 *
-	 * @param context context
-	 * @param source  source
-	 * @param date    data
-	 * @param size    size
+	 * @param context       context
+	 * @param source        source
+	 * @param date          data
+	 * @param size          size
+	 * @param etag          etag
+	 * @param version       version
+	 * @param staticVersion staticVersion
 	 */
-	public static void recordDbSource(@NonNull final Context context, @Nullable final String source, final long date, final long size)
+	public static void recordDbSource(@NonNull final Context context, @Nullable final String source, final long date, final long size, @Nullable final String etag, @Nullable final String version, @Nullable final String staticVersion)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		final SharedPreferences.Editor edit = sharedPref.edit(); //
@@ -234,6 +278,30 @@ public class Settings
 		else
 		{
 			edit.remove(PREF_DB_SOURCE_SIZE);
+		}
+		if (etag != null)
+		{
+			edit.putString(PREF_DB_SOURCE_ETAG, etag);
+		}
+		else
+		{
+			edit.remove(PREF_DB_SOURCE_ETAG);
+		}
+		if (version != null)
+		{
+			edit.putString(PREF_DB_SOURCE_VERSION, version);
+		}
+		else
+		{
+			edit.remove(PREF_DB_SOURCE_VERSION);
+		}
+		if (staticVersion != null)
+		{
+			edit.putString(PREF_DB_SOURCE_STATIC_VERSION, staticVersion);
+		}
+		else
+		{
+			edit.remove(PREF_DB_SOURCE_STATIC_VERSION);
 		}
 		edit.apply();
 	}

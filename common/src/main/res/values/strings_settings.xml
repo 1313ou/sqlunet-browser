@@ -13,6 +13,7 @@
 
 	<!-- GENERAL -->
 	<string name="pref_header_general">General</string>
+	<string name="pref_view_control_category">View Control</string>
 
 	<!-- Launch -->
 	<string name="pref_title_launch">Launched activity</string>
@@ -75,7 +76,6 @@
 	<string name="pref_title_two_panes">Two panes</string>
 	<string name="pref_description_two_panes">Force two panes</string>
 
-
 	<!-- FILTER -->
 
 	<string name="pref_header_filter">Filter</string>
@@ -89,24 +89,28 @@
 	<!-- ASSETS -->
 
 	<string name="pref_header_assets">Assets</string>
+	<string name="pref_asset_primary_category">Primary asset</string>
+	<string name="pref_asset_alt_category">Alt asset</string>
 	<string name="pref_title_asset_primary_default">Default</string>
 	<string name="pref_title_asset_auto_cleanup">Auto_cleanup</string>
 	<string name="pref_title_db_asset">DB asset</string>
-	<string name="pref_title_asset_primary">Primary</string>
-	<string name="pref_title_asset_dir_primary">Primary dir</string>
-	<string name="pref_title_asset_zip_primary">Primary zip</string>
-	<string name="pref_title_asset_zip_entry_primary">Primary zip entry</string>
-	<string name="pref_title_asset_alt">Alt</string>
-	<string name="pref_title_asset_dir_alt">Alt dir</string>
-	<string name="pref_title_asset_zip_alt">Alt zip</string>
-	<string name="pref_title_asset_zip_entry_alt">Alt zip entry</string>
+	<string name="pref_title_asset_primary">Primary asset</string>
+	<string name="pref_title_asset_dir_primary">Primary asset dir</string>
+	<string name="pref_title_asset_zip_primary">Primary asset zip</string>
+	<string name="pref_title_asset_zip_entry_primary">Primary asset zip entry</string>
+	<string name="pref_title_asset_alt">Alt asset name</string>
+	<string name="pref_title_asset_dir_alt">Alt asset dir</string>
+	<string name="pref_title_asset_zip_alt">Alt asset zip</string>
+	<string name="pref_title_asset_zip_entry_alt">Alt asset zip entry</string>
 	<string name="pref_description_primary_asset_default">Use primary asset as default</string>
 	<string name="pref_description_asset_auto_cleanup">Auto clean-up of installed assets when no longer used</string>
 
 	<!-- DOWNLOAD -->
 
 	<string name="pref_header_download">Download</string>
-	<string name="pref_header_downloaded">Downloaded</string>
+
+	<string name="pref_sql_category">SQL</string>
+	<string name="pref_cache_category">Cache</string>
 
 	<!-- Downloader -->
 	<string name="pref_title_downloader">Downloader</string>
@@ -124,6 +128,10 @@
 	<!-- Download site -->
 	<string name="pref_title_download_site">Download site</string>
 	<string name="pref_description_download_site">Download site for data</string>
+
+	<!-- Downloaded -->
+	<string name="pref_title_downloaded">Downloaded</string>
+	<string name="pref_description_downloaded">Downloaded DB file</string>
 
 	<!-- Db file -->
 	<string name="pref_title_download_dbfile">Download DB file</string>

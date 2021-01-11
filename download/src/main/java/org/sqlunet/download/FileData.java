@@ -25,11 +25,20 @@ public class FileData
 
 	public final long size;
 
-	public FileData(final String name, final long date, final long size)
+	public final String etag;
+
+	public final String version;
+
+	public final String staticVersion;
+
+	public FileData(final String name, final long date, final long size, final String etag, final String version, final String staticVersion)
 	{
 		this.name = name;
 		this.date = date;
 		this.size = size;
+		this.etag = etag;
+		this.version = version;
+		this.staticVersion = staticVersion;
 	}
 
 	@SuppressWarnings("WeakerAccess")
@@ -38,22 +47,21 @@ public class FileData
 	{
 		if (file != null && file.exists())
 		{
-			return new FileData(file.getName(), file.lastModified(), file.length());
+			return new FileData(file.getName(), file.lastModified(), file.length(), null, null, null);
 		}
 		return null;
 	}
 
-	@Nullable
+	@NonNull
 	static public FileData getCurrent(@NonNull final Context context)
 	{
 		final String name = Settings.getDbName(context);
 		final long date = Settings.getDbDate(context);
 		final long size = Settings.getDbSize(context);
-		if (date != -1)
-		{
-			return new FileData(name, date, size);
-		}
-		return null;
+		final String etag = Settings.getDbSourceEtag(context);
+		final String version = Settings.getDbSourceVersion(context);
+		final String staticVersion = Settings.getDbSourceStaticVersion(context);
+		return new FileData(name, date, size, etag, version, staticVersion);
 	}
 
 	@Nullable
@@ -66,5 +74,23 @@ public class FileData
 	public Date getDate()
 	{
 		return this.date == -1 || this.date == 0 ? null : new Date(this.date);
+	}
+
+	@Nullable
+	public String getEtag()
+	{
+		return this.etag;
+	}
+
+	@Nullable
+	public String getVersion()
+	{
+		return this.version;
+	}
+
+	@Nullable
+	public String getStaticVersion()
+	{
+		return this.staticVersion;
 	}
 }

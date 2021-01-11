@@ -2,8 +2,7 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<PreferenceScreen
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	app:title="@string/pref_header_general">
 
@@ -15,69 +14,73 @@
 		android:negativeButtonText="@null"
 		android:positiveButtonText="@null"
 		android:summary="@string/pref_description_launch"
-		android:title="@string/pref_title_launch"/>
+		android:title="@string/pref_title_launch" />
 
-	<ListPreference
-		android:defaultValue="-1"
-		android:entries="@array/pref_selector_mode_list_titles"
-		android:entryValues="@array/pref_selector_mode_list_values"
-		android:key="pref_selector_view_mode"
-		android:negativeButtonText="@null"
-		android:positiveButtonText="@null"
-		android:summary="@string/pref_description_selector_mode"
-		android:title="@string/pref_title_selector_mode"/>
+	<PreferenceCategory android:title="@string/pref_view_control_category">
+		<ListPreference
+			android:defaultValue="-1"
+			android:entries="@array/pref_selector_mode_list_titles"
+			android:entryValues="@array/pref_selector_mode_list_values"
+			android:key="pref_selector_view_mode"
+			android:negativeButtonText="@null"
+			android:positiveButtonText="@null"
+			android:summary="@string/pref_description_selector_mode"
+			android:title="@string/pref_title_selector_mode" />
 
-	<ListPreference
-		android:defaultValue="-1"
-		android:entries="@array/pref_detail_mode_list_titles"
-		android:entryValues="@array/pref_detail_mode_list_values"
-		android:key="pref_detail_view_mode"
-		android:negativeButtonText="@null"
-		android:positiveButtonText="@null"
-		android:summary="@string/pref_description_detail_mode"
-		android:title="@string/pref_title_detail_mode"/>
+		<ListPreference
+			android:defaultValue="-1"
+			android:entries="@array/pref_detail_mode_list_titles"
+			android:entryValues="@array/pref_detail_mode_list_values"
+			android:key="pref_detail_view_mode"
+			android:negativeButtonText="@null"
+			android:positiveButtonText="@null"
+			android:summary="@string/pref_description_detail_mode"
+			android:title="@string/pref_title_detail_mode" />
 
-	<SwitchPreferenceCompat
-		android:defaultValue="false"
-		android:key="pref_scroll_2d"
-		android:summary="@string/pref_description_scroll_2d"
-		android:title="@string/pref_title_scroll_2d"
-		app:singleLineTitle="false"/>
+		<SwitchPreferenceCompat
+			android:defaultValue="false"
+			android:key="pref_two_panes"
+			android:summary="@string/pref_description_two_panes"
+			android:title="@string/pref_title_two_panes"
+			app:singleLineTitle="false" />
 
-	<SwitchPreferenceCompat
-		android:defaultValue="true"
-		android:key="pref_use_animation"
-		android:summary="@string/pref_description_use_animation"
-		android:title="@string/pref_title_use_animation"
-		app:singleLineTitle="false"/>
+		<SwitchPreferenceCompat
+			android:defaultValue="false"
+			android:key="pref_scroll_2d"
+			android:summary="@string/pref_description_scroll_2d"
+			android:title="@string/pref_title_scroll_2d"
+			app:singleLineTitle="false" />
 
-	<SwitchPreferenceCompat
-		android:defaultValue="false"
-		android:key="pref_xml"
-		android:summary="@string/pref_description_xml"
-		android:title="@string/pref_title_xml"
-		app:singleLineTitle="false"/>
+		<SwitchPreferenceCompat
+			android:defaultValue="true"
+			android:key="pref_use_animation"
+			android:summary="@string/pref_description_use_animation"
+			android:title="@string/pref_title_use_animation"
+			app:singleLineTitle="false" />
 
-	<EditTextPreference
-		android:defaultValue="16"
-		android:inputType="numberDecimal"
-		android:key="pref_sql_buffer_capacity"
-		android:summary="@string/pref_description_sql_buffer_capacity"
-		android:title="@string/pref_title_sql_buffer_capacity"
-		app:singleLineTitle="false" />
+		<SwitchPreferenceCompat
+			android:defaultValue="false"
+			android:key="pref_xml"
+			android:summary="@string/pref_description_xml"
+			android:title="@string/pref_title_xml"
+			app:singleLineTitle="false" />
+	</PreferenceCategory>
 
-	<SwitchPreferenceCompat
-		android:defaultValue="false"
-		android:key="pref_sql_log"
-		android:summary="@string/pref_description_sql_log"
-		android:title="@string/pref_title_sql_log"
-		app:singleLineTitle="false"/>
+	<PreferenceCategory android:title="@string/pref_sql_category">
+		<EditTextPreference
+			android:defaultValue="16"
+			android:inputType="numberDecimal"
+			android:key="pref_sql_buffer_capacity"
+			android:summary="@string/pref_description_sql_buffer_capacity"
+			android:title="@string/pref_title_sql_buffer_capacity"
+			app:singleLineTitle="false" />
 
-	<SwitchPreferenceCompat
-		android:defaultValue="false"
-		android:key="pref_two_panes"
-		android:summary="@string/pref_description_two_panes"
-		android:title="@string/pref_title_two_panes"
-		app:singleLineTitle="false"/>
+		<SwitchPreferenceCompat
+			android:defaultValue="false"
+			android:key="pref_sql_log"
+			android:summary="@string/pref_description_sql_log"
+			android:title="@string/pref_title_sql_log"
+			app:singleLineTitle="false" />
+	</PreferenceCategory>
 
 </PreferenceScreen>

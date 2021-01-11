@@ -30,63 +30,65 @@
 		app:singleLineTitle="false" />
 
 	<!-- Primary -->
+	<PreferenceCategory android:title="@string/pref_asset_primary_category">
+		<Preference
+			android:defaultValue="true"
+			android:key="pref_asset_primary"
+			android:summary="@string/asset_primary"
+			android:title="@string/pref_title_asset_primary"
+			app:singleLineTitle="false" />
 
-	<Preference
-		android:defaultValue="true"
-		android:key="pref_asset_primary"
-		android:summary="@string/asset_primary"
-		android:title="@string/pref_title_asset_primary"
-		app:singleLineTitle="false" />
+		<Preference
+			android:defaultValue="true"
+			android:key="pref_asset_dir_primary"
+			android:summary="@string/asset_dir_primary"
+			android:title="@string/pref_title_asset_dir_primary"
+			app:singleLineTitle="false" />
 
-	<Preference
-		android:defaultValue="true"
-		android:key="pref_asset_dir_primary"
-		android:summary="@string/asset_dir_primary"
-		android:title="@string/pref_title_asset_dir_primary"
-		app:singleLineTitle="false" />
+		<Preference
+			android:defaultValue="true"
+			android:key="pref_asset_zip_primary"
+			android:summary="@string/asset_zip_primary"
+			android:title="@string/pref_title_asset_zip_primary"
+			app:singleLineTitle="false" />
 
-	<Preference
-		android:defaultValue="true"
-		android:key="pref_asset_zip_primary"
-		android:summary="@string/asset_zip_primary"
-		android:title="@string/pref_title_asset_zip_primary"
-		app:singleLineTitle="false" />
+		<Preference
+			android:defaultValue="true"
+			android:key="pref_asset_zip_entry_primary"
+			android:summary="@string/asset_zip_entry"
+			android:title="@string/pref_title_asset_zip_entry_primary"
+			app:singleLineTitle="false" />
+	</PreferenceCategory>
 
-	<Preference
-		android:defaultValue="true"
-		android:key="pref_asset_zip_entry_primary"
-		android:summary="@string/asset_zip_entry"
-		android:title="@string/pref_title_asset_zip_entry_primary"
-		app:singleLineTitle="false" />
+	<!-- Alt -->
+	<PreferenceCategory android:title="@string/pref_asset_alt_category">
+		<Preference
+			android:defaultValue="true"
+			android:key="pref_asset_alt"
+			android:summary="@string/asset_alt"
+			android:title="@string/pref_title_asset_alt"
+			app:singleLineTitle="false" />
 
-	<!-- Primary -->
+		<Preference
+			android:defaultValue="true"
+			android:key="pref_asset_dir_alt"
+			android:summary="@string/asset_dir_alt"
+			android:title="@string/pref_title_asset_dir_alt"
+			app:singleLineTitle="false" />
 
-	<Preference
-		android:defaultValue="true"
-		android:key="pref_asset_alt"
-		android:summary="@string/asset_alt"
-		android:title="@string/pref_title_asset_alt"
-		app:singleLineTitle="false" />
+		<Preference
+			android:defaultValue="true"
+			android:key="pref_asset_zip_alt"
+			android:summary="@string/asset_zip_alt"
+			android:title="@string/pref_title_asset_zip_alt"
+			app:singleLineTitle="false" />
 
-	<Preference
-		android:defaultValue="true"
-		android:key="pref_asset_dir_alt"
-		android:summary="@string/asset_dir_alt"
-		android:title="@string/pref_title_asset_dir_alt"
-		app:singleLineTitle="false" />
-
-	<Preference
-		android:defaultValue="true"
-		android:key="pref_asset_zip_alt"
-		android:summary="@string/asset_zip_alt"
-		android:title="@string/pref_title_asset_zip_alt"
-		app:singleLineTitle="false" />
-
-	<Preference
-		android:defaultValue="true"
-		android:key="pref_asset_zip_entry_alt"
-		android:summary="@string/asset_zip_entry"
-		android:title="@string/pref_title_asset_zip_entry_alt"
-		app:singleLineTitle="false" />
+		<Preference
+			android:defaultValue="true"
+			android:key="pref_asset_zip_entry_alt"
+			android:summary="@string/asset_zip_entry"
+			android:title="@string/pref_title_asset_zip_entry_alt"
+			app:singleLineTitle="false" />
+	</PreferenceCategory>
 
 </PreferenceScreen>

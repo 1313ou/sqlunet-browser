@@ -6,6 +6,7 @@ package org.sqlunet.download;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -69,13 +70,45 @@ public class DownloadedPreferenceFragment extends PreferenceFragmentCompat
 		assert sourcePreference != null;
 		sourcePreference.setSummaryProvider(STRING_SUMMARY_PROVIDER);
 
-		final Preference zipDatePreference = findPreference(Settings.PREF_DB_SOURCE_DATE);
-		assert zipDatePreference != null;
-		zipDatePreference.setSummaryProvider(DATE_SUMMARY_PROVIDER);
+		final Preference sourceDatePreference = findPreference(Settings.PREF_DB_SOURCE_DATE);
+		assert sourceDatePreference != null;
+		sourceDatePreference.setSummaryProvider(DATE_SUMMARY_PROVIDER);
 
-		final Preference zipSizePreference = findPreference(Settings.PREF_DB_SOURCE_SIZE);
-		assert zipSizePreference != null;
-		zipSizePreference.setSummaryProvider(LONG_SUMMARY_PROVIDER);
+		final Preference sourceSizePreference = findPreference(Settings.PREF_DB_SOURCE_SIZE);
+		assert sourceSizePreference != null;
+		sourceSizePreference.setSummaryProvider(LONG_SUMMARY_PROVIDER);
+
+		final Preference sourceEtagPreference = findPreference(Settings.PREF_DB_SOURCE_ETAG);
+		assert sourceEtagPreference != null;
+		sourceEtagPreference.setSummaryProvider(STRING_SUMMARY_PROVIDER);
+
+		final Preference sourceVersionPreference = findPreference(Settings.PREF_DB_SOURCE_VERSION);
+		assert sourceVersionPreference != null;
+		sourceVersionPreference.setSummaryProvider(STRING_SUMMARY_PROVIDER);
+
+		final Preference sourceStaticVersionPreference = findPreference(Settings.PREF_DB_SOURCE_STATIC_VERSION);
+		assert sourceStaticVersionPreference != null;
+		sourceStaticVersionPreference.setSummaryProvider(STRING_SUMMARY_PROVIDER);
+
+		// unset button
+		final Preference unsetButton = findPreference(Settings.PREF_DB_RESET_BUTTON);
+		assert unsetButton != null;
+		unsetButton.setOnPreferenceClickListener(pref -> {
+
+			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(pref.getContext());
+			prefs.edit() //
+					.remove(Settings.PREF_DB_NAME) //
+					.remove(Settings.PREF_DB_DATE) //
+					.remove(Settings.PREF_DB_SIZE) //
+					.remove(Settings.PREF_DB_SOURCE) //
+					.remove(Settings.PREF_DB_SOURCE_DATE) //
+					.remove(Settings.PREF_DB_SOURCE_SIZE) //
+					.remove(Settings.PREF_DB_SOURCE_ETAG) //
+					.remove(Settings.PREF_DB_SOURCE_VERSION) //
+					.remove(Settings.PREF_DB_SOURCE_STATIC_VERSION) //
+					.apply();
+			return true;
+		});
 	}
 
 	@SuppressWarnings("SameReturnValue")

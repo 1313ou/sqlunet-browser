@@ -2,8 +2,7 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<PreferenceScreen
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	app:title="@string/pref_header_database">
 
@@ -16,6 +15,13 @@
 		android:negativeButtonText="@null"
 		android:positiveButtonText="@null"
 		android:summary="@string/pref_description_storage"
-		android:title="@string/pref_title_storage"/>
+		android:title="@string/pref_title_storage" />
+
+	<Preference
+		android:title="@string/pref_title_downloaded"
+		app:fragment="org.sqlunet.download.DownloadedPreferenceFragment"
+		app:key="pref_download"
+		app:summary="@string/pref_description_downloaded"
+		app:title="@string/pref_title_downloaded" />
 
 </PreferenceScreen>
