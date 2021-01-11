@@ -188,8 +188,8 @@ public class SimpleDownloaderService extends JobIntentService
 		prerequisite();
 		final PowerManager.WakeLock wakelock = wakelock();
 
-		long date = -1;
-		long size = -1;
+		@SuppressWarnings("UnusedAssignment") long date = -1;
+		@SuppressWarnings("UnusedAssignment") long size = -1;
 		String etag = null;
 		String version = null;
 		String staticVersion = null;
