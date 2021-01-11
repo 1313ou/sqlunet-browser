@@ -189,16 +189,55 @@ public class SimpleDownloaderService extends JobIntentService
 		final PowerManager.WakeLock wakelock = wakelock();
 
 		long date = -1;
-		long size;
+		long size = -1;
+		String etag = null;
+		String version = null;
+		String staticVersion = null;
 
 		final File outFile = new File(this.toFile + ".part");
+		HttpURLConnection httpConnection = null;
 		try
 		{
 			// connection
 			final URL url = new URL(this.fromUrl);
 			Log.d(TAG, "Get " + url.toString());
-			final URLConnection connection = url.openConnection();
+			URLConnection connection = url.openConnection();
 			connection.setConnectTimeout(TIMEOUT_S * 1000);
+
+			// handle redirect
+			if (connection instanceof HttpURLConnection)
+			{
+				httpConnection = (HttpURLConnection) connection;
+				httpConnection.setInstanceFollowRedirects(false);
+				HttpURLConnection.setFollowRedirects(false);
+
+				int status = httpConnection.getResponseCode();
+				Log.d(TAG, "Response Code ... " + status);
+				if (status == HttpURLConnection.HTTP_MOVED_TEMP || status == HttpURLConnection.HTTP_MOVED_PERM || status == HttpURLConnection.HTTP_SEE_OTHER)
+				{
+					// headers
+					// date = connection.getLastModified(); // new Date(date));
+					// size = connection.getContentLength();
+					etag = connection.getHeaderField("etag");
+					version = connection.getHeaderField("x-version");
+					staticVersion = connection.getHeaderField("x-static-version");
+
+					// get redirect url from "location" header field
+					String newUrl = httpConnection.getHeaderField("Location");
+
+					// close
+					httpConnection.getInputStream().close();
+
+					// disconnect
+					httpConnection.disconnect();
+
+					// open the new connection again
+					connection = httpConnection = (HttpURLConnection) new URL(newUrl).openConnection();
+					httpConnection.setInstanceFollowRedirects(true);
+					HttpURLConnection.setFollowRedirects(true);
+					Log.d(TAG, "Redirect to URL : " + newUrl);
+				}
+			}
 
 			// connect
 			Log.d(TAG, "Connecting");
@@ -209,18 +248,28 @@ public class SimpleDownloaderService extends JobIntentService
 			// expect HTTP 200 OK, so we don't mistakenly save error report instead of the file
 			if (connection instanceof HttpURLConnection)
 			{
-				HttpURLConnection httpConnection = (HttpURLConnection) connection;
 				if (httpConnection.getResponseCode() != HttpURLConnection.HTTP_OK)
 				{
 					final String message = "server returned HTTP " + httpConnection.getResponseCode() + " " + httpConnection.getResponseMessage();
 					throw new RuntimeException(message);
 				}
-				date = httpConnection.getLastModified(); // new Date(date));
-				size = httpConnection.getContentLength();
 			}
-			else
+
+			// headers
+			Log.d(TAG, "Headers " + connection.getHeaderFields());
+			date = connection.getLastModified(); // new Date(date));
+			size = connection.getContentLength();
+			if (etag == null)
 			{
-				size = connection.getContentLength();
+				etag = connection.getHeaderField("etag");
+			}
+			if (version == null)
+			{
+				version = connection.getHeaderField("x-version");
+			}
+			if (staticVersion == null)
+			{
+				staticVersion = connection.getHeaderField("x-static-version");
 			}
 
 			try (InputStream input = new BufferedInputStream(connection.getInputStream(), CHUNK_SIZE); OutputStream output = new FileOutputStream(outFile))
@@ -230,12 +279,16 @@ public class SimpleDownloaderService extends JobIntentService
 		}
 		finally
 		{
+			if (httpConnection != null)
+			{
+				httpConnection.disconnect();
+			}
 			wakelock.release();
 		}
 
 		// install
 		install(outFile, date, size);
-		Settings.recordDbSource(this, this.fromUrl, date, size);
+		Settings.recordDbSource(this, this.fromUrl, date, size, etag, version, staticVersion);
 	}
 
 	/**

@@ -9,7 +9,6 @@ import android.util.Log;
 import org.sqlunet.concurrency.Task;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -56,8 +55,7 @@ class MD5Downloader extends Task<String, Void, String>
 	{
 		final String md5Arg = params[0];
 		final String targetArg = params[1];
-		InputStream input = null;
-		BufferedReader reader = null;
+		HttpURLConnection httpConnection = null;
 		try
 		{
 			// connect
@@ -69,7 +67,7 @@ class MD5Downloader extends Task<String, Void, String>
 			// expect HTTP 200 OK, so we don't mistakenly save error report instead of the file
 			if (connection instanceof HttpURLConnection)
 			{
-				HttpURLConnection httpConnection = (HttpURLConnection) connection;
+				httpConnection = (HttpURLConnection) connection;
 				if (httpConnection.getResponseCode() != HttpURLConnection.HTTP_OK)
 				{
 					final String message = "server returned HTTP " + httpConnection.getResponseCode() + " " + httpConnection.getResponseMessage();
@@ -78,31 +76,30 @@ class MD5Downloader extends Task<String, Void, String>
 			}
 
 			// open the reader
-			input = connection.getInputStream();
-			final InputStreamReader isr = new InputStreamReader(input);
-			reader = new BufferedReader(isr);
-
-			// read
-			String line;
-			while ((line = reader.readLine()) != null)
+			try (InputStream input = connection.getInputStream(); InputStreamReader isr = new InputStreamReader(input); BufferedReader reader = new BufferedReader(isr))
 			{
-				if (line.contains(targetArg))
+				// read
+				String line;
+				while ((line = reader.readLine()) != null)
 				{
-					final String[] fields = line.split("\\s+");
-					return fields[0].trim();
-				}
-				// cooperative exit
-				if (isCancelled())
-				{
-					Log.d(TAG, "Cancelled!");
-					throw new InterruptedException("cancelled");
-				}
-				if (Thread.interrupted())
-				{
-					Log.d(TAG, "Interrupted!");
-					final InterruptedException ie = new InterruptedException("interrupted while downloading");
-					this.exception = ie;
-					throw ie;
+					if (line.contains(targetArg))
+					{
+						final String[] fields = line.split("\\s+");
+						return fields[0].trim();
+					}
+					// cooperative exit
+					if (isCancelled())
+					{
+						Log.d(TAG, "Cancelled!");
+						throw new InterruptedException("cancelled");
+					}
+					if (Thread.interrupted())
+					{
+						Log.d(TAG, "Interrupted!");
+						final InterruptedException ie = new InterruptedException("interrupted while downloading");
+						this.exception = ie;
+						throw ie;
+					}
 				}
 			}
 			return null;
@@ -119,29 +116,9 @@ class MD5Downloader extends Task<String, Void, String>
 		}
 		finally
 		{
-			if (reader != null)
+			if (httpConnection != null)
 			{
-				try
-				{
-					reader.close();
-				}
-				catch (@NonNull final IOException e)
-				{
-					this.exception = e;
-					Log.e(TAG, "While closing reader", e);
-				}
-			}
-			if (input != null)
-			{
-				try
-				{
-					input.close();
-				}
-				catch (@NonNull final IOException e)
-				{
-					this.exception = e;
-					Log.e(TAG, "While closing input", e);
-				}
+				httpConnection.disconnect();
 			}
 		}
 		return null;

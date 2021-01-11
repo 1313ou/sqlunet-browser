@@ -2,8 +2,7 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<androidx.preference.PreferenceScreen
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	app:title="@string/pref_header_download">
 
@@ -16,7 +15,7 @@
 		android:summary="@string/pref_description_download_site"
 		android:title="@string/pref_title_download_site"
 		app:labels="@array/pref_download_site_labels"
-		app:values="@array/pref_download_site_urls"/>
+		app:values="@array/pref_download_site_urls" />
 
 	<ListPreference
 		android:defaultValue="@string/pref_default_downloader"
@@ -26,44 +25,48 @@
 		android:negativeButtonText="@null"
 		android:positiveButtonText="@null"
 		android:summary="@string/pref_description_downloader"
-		android:title="@string/pref_title_downloader"/>
+		android:title="@string/pref_title_downloader" />
 
 	<EditTextPreference
 		android:defaultValue="@string/pref_default_download_dbfile"
 		android:key="pref_download_dbfile"
 		android:summary="@string/pref_description_download_dbfile"
-		android:title="@string/pref_title_download_dbfile"/>
+		android:title="@string/pref_title_download_dbfile" />
 
-	<EditTextPreference
-		android:defaultValue="@string/pref_default_download_sqlfile"
-		android:key="pref_download_sqlfile"
-		android:summary="@string/pref_description_download_sqlfile"
-		android:title="@string/pref_title_download_sqlfile"/>
+	<PreferenceCategory android:title="@string/pref_sql_category">
+		<EditTextPreference
+			android:defaultValue="@string/pref_default_download_sqlfile"
+			android:key="pref_download_sqlfile"
+			android:summary="@string/pref_description_download_sqlfile"
+			android:title="@string/pref_title_download_sqlfile" />
 
-	<EditTextPreference
-		android:defaultValue="@string/pref_default_entry_import"
-		android:key="pref_entry_import"
-		android:summary="@string/pref_description_entry_import"
-		android:title="@string/pref_title_entry_import"/>
+		<EditTextPreference
+			android:defaultValue="@string/pref_default_entry_import"
+			android:key="pref_entry_import"
+			android:summary="@string/pref_description_entry_import"
+			android:title="@string/pref_title_entry_import" />
 
-	<EditTextPreference
-		android:defaultValue="@string/pref_default_entry_pm"
-		android:key="pref_entry_pm"
-		android:summary="@string/pref_description_entry_pm"
-		android:title="@string/pref_title_entry_pm"/>
+		<EditTextPreference
+			android:defaultValue="@string/pref_default_entry_pm"
+			android:key="pref_entry_pm"
+			android:summary="@string/pref_description_entry_pm"
+			android:title="@string/pref_title_entry_pm" />
 
-	<EditTextPreference
-		android:defaultValue="@string/pref_default_entry_index"
-		android:key="pref_entry_index"
-		android:summary="@string/pref_description_entry_index"
-		android:title="@string/pref_title_entry_index"/>
+		<EditTextPreference
+			android:defaultValue="@string/pref_default_entry_index"
+			android:key="pref_entry_index"
+			android:summary="@string/pref_description_entry_index"
+			android:title="@string/pref_title_entry_index" />
+	</PreferenceCategory>
 
-	<ListPreference
-		android:defaultValue="@string/pref_default_cache"
-		android:key="pref_cache"
-		android:summary="@string/pref_description_cache"
-		android:negativeButtonText="@null"
-		android:positiveButtonText="@null"
-		android:title="@string/pref_title_cache"/>
+	<PreferenceCategory android:title="@string/pref_cache_category">
+		<ListPreference
+			android:defaultValue="@string/pref_default_cache"
+			android:key="pref_cache"
+			android:negativeButtonText="@null"
+			android:positiveButtonText="@null"
+			android:summary="@string/pref_description_cache"
+			android:title="@string/pref_title_cache" />
+	</PreferenceCategory>
 
 </androidx.preference.PreferenceScreen>

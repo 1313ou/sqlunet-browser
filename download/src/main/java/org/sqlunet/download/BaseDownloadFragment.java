@@ -949,7 +949,8 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 	private void md5()
 	{
 		final String from = this.sourceUrl + ".md5";
-		assert this.downloadedFile != null;
+		final Uri uri = Uri.parse(this.sourceUrl);
+		final String sourceFile = uri.getLastPathSegment();
 		final String targetFile = this.downloadedFile.getName();
 		new MD5Downloader(downloadedResult -> {
 
@@ -998,6 +999,6 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 					}
 				});
 			}
-		}).execute(from, targetFile);
+		}).execute(from, sourceFile);
 	}
 }

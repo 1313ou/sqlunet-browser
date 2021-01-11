@@ -38,6 +38,12 @@ public class UpdateFragment extends Fragment
 
 	static public final String UP_SIZE_ARG = "up_size";
 
+	static public final String UP_ETAG_ARG = "up_etag";
+
+	static public final String UP_VERSION_ARG = "up_version";
+
+	static public final String UP_STATIC_VERSION_ARG = "up_static_version";
+
 	/**
 	 * To argument
 	 */
@@ -54,6 +60,12 @@ public class UpdateFragment extends Fragment
 	static public final String DOWN_SOURCE_DATE_ARG = "down_source_date";
 
 	static public final String DOWN_SOURCE_SIZE_ARG = "down_source_size";
+
+	static public final String DOWN_SOURCE_ETAG_ARG = "down_source_etag";
+
+	static public final String DOWN_SOURCE_VERSION_ARG = "down_source_version";
+
+	static public final String DOWN_SOURCE_STATIC_VERSION_ARG = "down_source_static_version";
 
 	static public final String NEWER_ARG = "newer";
 
@@ -81,6 +93,9 @@ public class UpdateFragment extends Fragment
 		final String upSrcArg = intent.getStringExtra(UP_SOURCE_ARG);
 		final String upDateArg = intent.getStringExtra(UP_DATE_ARG);
 		final String upSizeArg = intent.getStringExtra(UP_SIZE_ARG);
+		final String upEtagArg = intent.getStringExtra(UP_ETAG_ARG);
+		final String upVersionArg = intent.getStringExtra(UP_VERSION_ARG);
+		final String upStaticVersionArg = intent.getStringExtra(UP_STATIC_VERSION_ARG);
 
 		final String downArg = intent.getStringExtra(DOWN_ARG);
 		final String downDateArg = intent.getStringExtra(DOWN_DATE_ARG);
@@ -88,6 +103,9 @@ public class UpdateFragment extends Fragment
 		final String downSourceArg = intent.getStringExtra(DOWN_SOURCE_ARG);
 		final String downSourceDateArg = intent.getStringExtra(DOWN_SOURCE_DATE_ARG);
 		final String downSourceSizeArg = intent.getStringExtra(DOWN_SOURCE_SIZE_ARG);
+		final String downSourceEtagArg = intent.getStringExtra(DOWN_SOURCE_ETAG_ARG);
+		final String downSourceVersionArg = intent.getStringExtra(DOWN_SOURCE_VERSION_ARG);
+		final String downSourceStaticVersionArg = intent.getStringExtra(DOWN_SOURCE_STATIC_VERSION_ARG);
 
 		final boolean newerArg = intent.getBooleanExtra(NEWER_ARG, false);
 
@@ -97,9 +115,15 @@ public class UpdateFragment extends Fragment
 		final TextView upSrc = view.findViewById(R.id.up_src);
 		final TextView upDate = view.findViewById(R.id.up_date);
 		final TextView upSize = view.findViewById(R.id.up_size);
+		final TextView upEtag = view.findViewById(R.id.up_etag);
+		final TextView upVersion = view.findViewById(R.id.up_version);
+		final TextView upStaticVersion = view.findViewById(R.id.up_static_version);
 		upSrc.setText(upSrcArg);
 		upDate.setText(upDateArg);
 		upSize.setText(upSizeArg);
+		upEtag.setText(upEtagArg);
+		upVersion.setText(upVersionArg);
+		upStaticVersion.setText(upStaticVersionArg);
 
 		final TextView downDb = view.findViewById(R.id.down_db);
 		final TextView downDate = view.findViewById(R.id.down_db_date);
@@ -107,12 +131,18 @@ public class UpdateFragment extends Fragment
 		final TextView downSource = view.findViewById(R.id.down_source);
 		final TextView downSourceDate = view.findViewById(R.id.down_source_date);
 		final TextView downSourceSize = view.findViewById(R.id.down_source_size);
+		final TextView downSourceEtag = view.findViewById(R.id.down_source_etag);
+		final TextView downSourceVersion = view.findViewById(R.id.down_source_version);
+		final TextView downSourceStaticVersion = view.findViewById(R.id.down_source_static_version);
 		downDb.setText(downArg);
 		downDate.setText(downDateArg);
 		downSize.setText(downSizeArg);
 		downSource.setText(downSourceArg);
 		downSourceDate.setText(downSourceDateArg);
 		downSourceSize.setText(downSourceSizeArg);
+		downSourceEtag.setText(downSourceEtagArg);
+		downSourceVersion.setText(downSourceVersionArg);
+		downSourceStaticVersion.setText(downSourceStaticVersionArg);
 
 		final TextView newer = view.findViewById(R.id.newer);
 		if (newerArg)

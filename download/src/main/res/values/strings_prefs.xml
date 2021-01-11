@@ -5,12 +5,22 @@
 <resources>
 
 	<string name="pref_header_downloaded">Downloaded</string>
-	<string name="pref_title_db_source">Database source</string>
 	<string name="pref_title_db_name">Database name</string>
 	<string name="pref_title_db_date">Database date</string>
 	<string name="pref_title_db_size">Database size</string>
-	<string name="pref_title_db_zip_date">Database zip date</string>
-	<string name="pref_title_db_zip_size">Database zip size</string>
+	<string name="pref_title_db_source">Database source</string>
+	<string name="pref_title_db_source_date">Database source date</string>
+	<string name="pref_title_db_source_size">Database source size</string>
+	<string name="pref_title_db_source_etag">Database source etag</string>
+	<string name="pref_title_db_source_version">Database source version</string>
+	<string name="pref_title_db_source_static_version">Database source static version</string>
 	<string name="pref_value_unrecorded">Unrecorded</string>
+
+	<string name="pref_database_category">Database</string>
+	<string name="pref_source_category">Source</string>
+	<string name="pref_control_category">Control</string>
+
+	<string name="title_db_reset">Reset</string>
+	<string name="description_db_reset">Reset db info</string>
 
 </resources>

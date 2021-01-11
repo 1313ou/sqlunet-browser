@@ -62,17 +62,57 @@ public class SimpleZipDownloaderService extends SimpleDownloaderService
 		final File outFile = new File(this.toFile + ".part");
 		long date = -1;
 		long size = -1;
-		long zDate;
-		long zSize;
+		long zDate = -1;
+		long zSize = -1;
+		String zEtag = null;
+		String zVersion = null;
+		String zStaticVersion = null;
 
 		boolean done = false;
+		HttpURLConnection httpConnection = null;
 		try
 		{
 			// connection
 			final URL url = new URL(this.fromUrl);
 			Log.d(TAG, "Get " + url.toString());
-			final URLConnection connection = url.openConnection();
+			URLConnection connection = url.openConnection();
 			connection.setConnectTimeout(TIMEOUT_S * 1000);
+			// connection.addRequestProperty("If-None-Match", "*"); // returns HTTP 304 Not Modified
+
+			// handle redirect
+			if (connection instanceof HttpURLConnection)
+			{
+				httpConnection = (HttpURLConnection) connection;
+				httpConnection.setInstanceFollowRedirects(false);
+				HttpURLConnection.setFollowRedirects(false);
+
+				int status = httpConnection.getResponseCode();
+				Log.d(TAG, "Response Code ... " + status);
+				if (status == HttpURLConnection.HTTP_MOVED_TEMP || status == HttpURLConnection.HTTP_MOVED_PERM || status == HttpURLConnection.HTTP_SEE_OTHER)
+				{
+					// headers
+					// zDate = connection.getLastModified(); // new Date(date));
+					// zSize = connection.getContentLength();
+					zEtag = connection.getHeaderField("etag");
+					zVersion = connection.getHeaderField("x-version");
+					zStaticVersion = connection.getHeaderField("x-static-version");
+
+					// get redirect url from "location" header field
+					String newUrl = httpConnection.getHeaderField("Location");
+
+					// close
+					httpConnection.getInputStream().close();
+
+					// disconnect
+					httpConnection.disconnect();
+
+					// open the new connection again
+					connection = httpConnection = (HttpURLConnection) new URL(newUrl).openConnection();
+					httpConnection.setInstanceFollowRedirects(true);
+					HttpURLConnection.setFollowRedirects(true);
+					Log.d(TAG, "Redirect to URL : " + newUrl);
+				}
+			}
 
 			// connect
 			Log.d(TAG, "Connecting");
@@ -83,19 +123,29 @@ public class SimpleZipDownloaderService extends SimpleDownloaderService
 			// expect HTTP 200 OK, so we don't mistakenly save error report instead of the file
 			if (connection instanceof HttpURLConnection)
 			{
-				HttpURLConnection httpConnection = (HttpURLConnection) connection;
 				if (httpConnection.getResponseCode() != HttpURLConnection.HTTP_OK)
 				{
 					final String message = "server returned HTTP " + httpConnection.getResponseCode() + " " + httpConnection.getResponseMessage();
 					throw new RuntimeException(message);
 				}
-				zDate = httpConnection.getLastModified(); // new Date(date));
-				zSize = httpConnection.getContentLength();
 			}
-			else
+
+			// headers
+			Log.d(TAG, "Headers " + connection.getHeaderFields());
+			zDate = connection.getLastModified(); // new Date(date));
+			zSize = connection.getContentLength();
+
+			if (zEtag == null)
 			{
-				zDate = connection.getDate();
-				zSize = connection.getContentLength();
+				zEtag = connection.getHeaderField("etag");
+			}
+			if (zVersion == null)
+			{
+				zVersion = connection.getHeaderField("x-version");
+			}
+			if (zStaticVersion == null)
+			{
+				zStaticVersion = connection.getHeaderField("x-static-version");
 			}
 
 			// streams
@@ -131,6 +181,10 @@ public class SimpleZipDownloaderService extends SimpleDownloaderService
 		}
 		finally
 		{
+			if (httpConnection != null)
+			{
+				httpConnection.disconnect();
+			}
 			wakelock.release();
 		}
 
@@ -138,7 +192,7 @@ public class SimpleZipDownloaderService extends SimpleDownloaderService
 		if (done)
 		{
 			install(outFile, date, size);
-			Settings.recordDbSource(this, this.fromUrl, zDate, zSize);
+			Settings.recordDbSource(this, this.fromUrl, zDate, zSize, zEtag, zVersion, zStaticVersion);
 		}
 		else
 		{

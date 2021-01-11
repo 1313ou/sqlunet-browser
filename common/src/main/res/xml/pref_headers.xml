@@ -26,11 +26,6 @@
 		app:key="pref_header_download"
 		app:title="@string/pref_header_download" />
 	<Preference
-		app:fragment="org.sqlunet.download.DownloadedPreferenceFragment"
-		app:icon="@drawable/ic_settings_download"
-		app:key="pref_header_downloaded"
-		app:title="@string/pref_header_downloaded" />
-	<Preference
 		app:fragment="org.sqlunet.browser.config.SettingsActivity$DatabasePreferenceFragment"
 		app:icon="@drawable/ic_settings_database"
 		app:key="pref_header_database"
