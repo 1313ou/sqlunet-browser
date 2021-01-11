@@ -62,8 +62,8 @@ public class SimpleZipDownloaderService extends SimpleDownloaderService
 		final File outFile = new File(this.toFile + ".part");
 		long date = -1;
 		long size = -1;
-		long zDate = -1;
-		long zSize = -1;
+		@SuppressWarnings("UnusedAssignment") long zDate = -1;
+		@SuppressWarnings("UnusedAssignment") long zSize = -1;
 		String zEtag = null;
 		String zVersion = null;
 		String zStaticVersion = null;

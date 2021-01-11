@@ -951,7 +951,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		final String from = this.sourceUrl + ".md5";
 		final Uri uri = Uri.parse(this.sourceUrl);
 		final String sourceFile = uri.getLastPathSegment();
-		final String targetFile = this.downloadedFile.getName();
+		final String targetFile = this.downloadedFile == null ? "?" : this.downloadedFile.getName();
 		new MD5Downloader(downloadedResult -> {
 
 			final FragmentActivity activity = getActivity();

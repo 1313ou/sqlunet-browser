@@ -65,7 +65,7 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 			final URL url = new URL(urlString);
 			Log.d(TAG, "Get " + url.toString());
 
-			// connectiom
+			// connection
 			URLConnection connection = url.openConnection();
 
 			// handle redirect
