@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
@@ -33,7 +32,7 @@
 					<gradient  android:type="radial"  android:gradientRadius="25dp" android:centerX="0.5" android:centerY="0.5"
 					    android:startColor="@color/shadow"
 					    android:centerColor="@color/shadow"
-					    android:endColor="transparent" />
+					    android:endColor="@android:color/transparent" />
 					<size android:width="@dimen/action_button_diameter" android:height="@dimen/action_button_diameter" />
 					<padding android:bottom="@dimen/action_button_shadow_offset" android:left="@dimen/action_button_shadow_offset" android:right="@dimen/action_button_shadow_offset" android:top="@dimen/action_button_shadow_offset" />
 				</shape>
