@@ -9,7 +9,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 
 import org.sqlunet.browser.common.R;
 import org.sqlunet.browser.config.SetupAsset;
@@ -50,6 +53,7 @@ public class Settings
 	static public final String PREF_DB_DATE = "pref_db_date";
 	static public final String PREF_DB_SIZE = "pref_db_size";
 	static public final String PREF_TWO_PANES = "pref_two_panes";
+	static private final String PREF_VERSION = "org.sqlunet.browser.version";
 
 	// D I S P L A Y
 
@@ -296,9 +300,15 @@ public class Settings
 	@NonNull
 	public static String getAssetPackDir(@NonNull final Context context)
 	{
+		final String primary = context.getString(R.string.asset_dir_primary);
+		final String alt = context.getString(R.string.asset_dir_alt);
+		if (alt.isEmpty())
+		{
+			return primary;
+		}
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		boolean isPrimaryDefault = prefs.getBoolean(PREF_ASSET_PRIMARY_DEFAULT, true);
-		return context.getString(isPrimaryDefault ? R.string.asset_dir_primary : R.string.asset_dir_alt);
+		return isPrimaryDefault ? primary : alt;
 	}
 
 	/**
@@ -310,9 +320,15 @@ public class Settings
 	@NonNull
 	public static String getAssetPackZip(@NonNull final Context context)
 	{
+		final String primary = context.getString(R.string.asset_zip_primary);
+		final String alt = context.getString(R.string.asset_zip_alt);
+		if (alt.isEmpty())
+		{
+			return primary;
+		}
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		boolean isPrimaryDefault = prefs.getBoolean(PREF_ASSET_PRIMARY_DEFAULT, true);
-		return context.getString(isPrimaryDefault ? R.string.asset_zip_primary : R.string.asset_zip_alt);
+		return isPrimaryDefault ? primary : alt;
 	}
 
 	/**
@@ -434,6 +450,11 @@ public class Settings
 		editor.commit();
 	}
 
+	/**
+	 * Update globals
+	 *
+	 * @param context context
+	 */
 	static public void updateGlobals(@NonNull final Context context)
 	{
 		// globals
@@ -469,7 +490,63 @@ public class Settings
 	}
 
 	/**
-	 * fragment_browse_first
+	 * Clear settings on upgrade
+	 *
+	 * @param context context
+	 * @return build version
+	 */
+	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
+	@SuppressWarnings({"UnusedReturnValue", "deprecation"})
+	public static long clearSettingsOnUpgrade(@NonNull final Context context)
+	{
+		// recorded version
+		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		long version;
+		try
+		{
+			version = prefs.getLong(Settings.PREF_VERSION, -1);
+		}
+		catch (ClassCastException e)
+		{
+			version = prefs.getInt(Settings.PREF_VERSION, -1);
+		}
+
+		// build version
+		long build = 0; //BuildConfig.VERSION_CODE;
+		try
+		{
+			final PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P)
+			{
+				build = packageInfo.getLongVersionCode();
+			}
+			else
+			{
+				build = packageInfo.versionCode;
+			}
+		}
+		catch (PackageManager.NameNotFoundException ignored)
+		{
+			//
+		}
+
+		// upgrade test
+		if (version < build)
+		{
+			prefs.edit() //
+					// clear all settings
+					// .clear()
+					// clear some settings
+					.remove(PREF_DOWNLOADER) //
+					.remove(PREF_DOWNLOAD_SITE) //
+					.remove(PREF_DOWNLOAD_SITE) //
+					// flag as 'has run'
+					.putLong(Settings.PREF_VERSION, build).apply();
+		}
+		return build;
+	}
+
+	/**
 	 * Application settings
 	 *
 	 * @param context context

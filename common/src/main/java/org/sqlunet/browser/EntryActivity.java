@@ -29,6 +29,9 @@ public class EntryActivity extends AppCompatActivity
 	{
 		super.onCreate(savedInstanceState);
 
+		// clear (some/all) settings on first run of this version
+		Settings.clearSettingsOnUpgrade(this);
+
 		// settings
 		Settings.updateGlobals(this);
 
