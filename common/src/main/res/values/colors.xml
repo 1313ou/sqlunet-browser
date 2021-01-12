@@ -8,8 +8,9 @@
 
 	<!-- grays -->
 	<!--<color name="light_gray_color">#FFC0C0C0</color>-->
-	<color name="middle_gray_color">#FF707070</color>
+	<color name="middle_gray_color">#4A4848</color>
 	<color name="dark_gray_color">#FF303030</color>
+	<color name="shadow">#80000000</color>
 
 	<!-- light yellow -->
 	<!--<color name="light_yellow_color">#FFffff99</color>-->
@@ -79,6 +80,7 @@
 	<!-- button -->
 	<color name="action_button_color">@color/secondaryColor</color>
 	<color name="info_button_color">@color/blue_color</color>
+	<color name="info_button_activated_color">@color/light_blue_color</color>
 	<color name="ok_button_color">@color/dark_green_color</color>
 	<color name="err_button_color">@color/dark_red_color</color>
 

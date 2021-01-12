@@ -5,41 +5,38 @@
   -->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
+
 	<item android:state_pressed="true">
-		<shape android:shape="oval">
-			<solid android:color="@color/accentColor"/>
-			<size
-				android:width="50dp"
-				android:height="50dp"/>
-
-			<!--     <stroke -->
-			<!--         android:width="2dip" -->
-			<!--         android:color="@color/button_border_color" /> -->
-
-			<!--     <padding -->
-			<!--         android:bottom="10dip" -->
-			<!--         android:left="10dip" -->
-			<!--         android:right="10dip" -->
-			<!--         android:top="10dip" /> -->
-		</shape>
+		<layer-list>
+			<item android:left="@dimen/action_button_shadow_offset" android:top="@dimen/action_button_shadow_offset">
+				<shape android:shape="oval" >
+					<solid android:color="@color/info_button_activated_color" />
+					<size android:width="@dimen/action_button_diameter" android:height="@dimen/action_button_diameter" />
+					<padding android:bottom="@dimen/action_button_shadow_offset" android:left="@dimen/action_button_shadow_offset" android:right="@dimen/action_button_shadow_offset" android:top="@dimen/action_button_shadow_offset" />
+				</shape>
+			</item>
+		</layer-list>
 	</item>
+
 	<item>
-		<shape android:shape="oval">
-			<solid android:color="@color/info_button_color"/>
-			<size
-				android:width="50dp"
-				android:height="50dp"/>
-
-			<!--     <stroke -->
-			<!--         android:width="2dip" -->
-			<!--         android:color="@color/button_border_color" /> -->
-
-			<!--     <padding -->
-			<!--         android:bottom="10dip" -->
-			<!--         android:left="10dip" -->
-			<!--         android:right="10dip" -->
-			<!--         android:top="10dip" /> -->
-		</shape>
+		<layer-list>
+			<item android:left="@dimen/action_button_shadow_offset" android:top="@dimen/action_button_shadow_offset">
+				<shape android:shape="oval">
+					<gradient  android:type="radial"  android:gradientRadius="25dp" android:centerX="0.5" android:centerY="0.5"
+					    android:startColor="@color/shadow"
+					    android:centerColor="@color/shadow"
+					    android:endColor="transparent" />
+					<size android:width="@dimen/action_button_diameter" android:height="@dimen/action_button_diameter" />
+					<padding android:bottom="@dimen/action_button_shadow_offset" android:left="@dimen/action_button_shadow_offset" android:right="@dimen/action_button_shadow_offset" android:top="@dimen/action_button_shadow_offset" />
+				</shape>
+			</item>
+			<item android:left="0dp" android:top="0dp">
+				<shape android:shape="oval">
+					<solid android:color="@color/info_button_color" />
+					<size android:width="@dimen/action_button_diameter" android:height="@dimen/action_button_diameter" />
+				</shape>
+			</item>
+		</layer-list>
 	</item>
 
 </selector>
