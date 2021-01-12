@@ -8,11 +8,18 @@
 
 	<item android:state_pressed="true">
 		<layer-list>
+			<!-- dummy shadow -->
+			<item android:left="0dp" android:top="0dp">
+				<shape android:shape="rectangle">
+					<size android:width="@dimen/action_button_diameter" android:height="@dimen/action_button_diameter" />
+					<padding android:left="@dimen/action_button_shadow_offset" android:top="@dimen/action_button_shadow_offset" />
+				</shape>
+			</item>
+			<!-- button background -->
 			<item android:left="@dimen/action_button_shadow_offset" android:top="@dimen/action_button_shadow_offset">
 				<shape android:shape="oval" >
 					<solid android:color="@color/info_button_activated_color" />
 					<size android:width="@dimen/action_button_diameter" android:height="@dimen/action_button_diameter" />
-					<padding android:bottom="@dimen/action_button_shadow_offset" android:left="@dimen/action_button_shadow_offset" android:right="@dimen/action_button_shadow_offset" android:top="@dimen/action_button_shadow_offset" />
 				</shape>
 			</item>
 		</layer-list>
@@ -20,6 +27,7 @@
 
 	<item>
 		<layer-list>
+			<!-- shadow -->
 			<item android:left="@dimen/action_button_shadow_offset" android:top="@dimen/action_button_shadow_offset">
 				<shape android:shape="oval">
 					<gradient  android:type="radial"  android:gradientRadius="25dp" android:centerX="0.5" android:centerY="0.5"
@@ -30,6 +38,7 @@
 					<padding android:bottom="@dimen/action_button_shadow_offset" android:left="@dimen/action_button_shadow_offset" android:right="@dimen/action_button_shadow_offset" android:top="@dimen/action_button_shadow_offset" />
 				</shape>
 			</item>
+			<!-- button background -->
 			<item android:left="0dp" android:top="0dp">
 				<shape android:shape="oval">
 					<solid android:color="@color/info_button_color" />
