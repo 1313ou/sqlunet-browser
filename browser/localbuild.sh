@@ -1,15 +1,24 @@
 #!/bin/bash
 
+TAG=
 BT=/opt/androidsdk/bundle-tool/bundletool-all-1.4.0.jar
 TARGET=debug
-AAB=build/outputs/bundle/${TARGET}/browser-${TARGET}.aab
+AAB=build/outputs/bundle/${TARGET}/browser${TAG}-${TARGET}.aab
 APKS=build/outputs/apks/${TARGET}.apks
-APK=${APKS}/browser-${TARGET}.apk
+APK=${APKS}/browser${TAG}-${TARGET}.apk
 
-../gradlew :browser:bundleDebug
+if ! ../gradlew :browser${TAG}:bundleDebug ; then
+    echo "gradle failed"
+    exit 1
+fi
 
-java -jar ${BT} build-apks \
+if ! java -jar ${BT} build-apks \
 	--bundle=${AAB} \
 	--output=${APKS} \
 	--overwrite \
-	--local-testing
+	--local-testing ; then
+  echo "bundletool failed"
+  exit 2
+fi
+
+exit 0
