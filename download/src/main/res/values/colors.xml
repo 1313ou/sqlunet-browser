@@ -7,6 +7,9 @@
 
 	<!-- R A W -->
 
+	<!-- gray -->
+	<color name="shadow">#80202020</color>
+
 	<!-- red -->
 	<color name="dark_red_color">#FFb32400</color>
 
@@ -16,6 +19,8 @@
 	<!-- M A I N -->
 
 	<!-- button -->
+	<color name="action_button_color">#FFff00ff</color>
+	<color name="activated_color">#FFff80ff</color>
 	<color name="ok_button_color">@color/dark_green_color</color>
 	<color name="err_button_color">@color/dark_red_color</color>
 
