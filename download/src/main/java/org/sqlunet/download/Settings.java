@@ -69,7 +69,7 @@ public class Settings
 	static public final String PREF_DB_DATE = "pref_db_date";
 	static public final String PREF_DB_SIZE = "pref_db_size";
 
-	static public final String PREF_DB_RESET_BUTTON = "pref_db_reset";
+	static public final String PREF_DB_CLEAR_BUTTON = "pref_db_clear";
 
 	public static final String STORAGE_DB_DIR = "sqlunet";
 	public static final String HINT_DB_ZIP = "sqlunet.zip";

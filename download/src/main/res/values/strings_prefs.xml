@@ -20,7 +20,7 @@
 	<string name="pref_source_category">Source</string>
 	<string name="pref_control_category">Control</string>
 
-	<string name="title_db_reset">Reset</string>
-	<string name="description_db_reset">Reset db info</string>
+	<string name="title_db_clear">Clear</string>
+	<string name="description_db_clear">Clear db info</string>
 
 </resources>

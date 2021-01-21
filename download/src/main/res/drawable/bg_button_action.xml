@@ -4,21 +4,50 @@
   -->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
+
 	<item android:state_pressed="true">
-		<shape android:shape="oval">
-			<solid android:color="?attr/colorPrimary"/>
-			<size
-				android:width="50dp"
-				android:height="50dp"/>
-		</shape>
+		<layer-list>
+
+			<!-- space -->
+			<item android:left="0dp" android:top="0dp" android:gravity="center">
+				<shape android:shape="rectangle">
+					<size android:width="@dimen/download_action_button_diameter" android:height="@dimen/download_action_button_diameter" />
+					<padding android:bottom="@dimen/download_action_button_shadow_offset" android:left="@dimen/download_action_button_shadow_offset" android:right="@dimen/download_action_button_shadow_offset" android:top="@dimen/download_action_button_shadow_offset" />
+				</shape>
+			</item>
+
+			<!-- button background -->
+			<item android:left="0dp" android:top="0dp" android:gravity="center">
+				<shape android:shape="oval">
+					<solid android:color="@color/activated_color" />
+					<size android:width="@dimen/download_action_button_diameter" android:height="@dimen/download_action_button_diameter" />
+				</shape>
+			</item>
+
+		</layer-list>
 	</item>
+
 	<item>
-		<shape android:shape="oval">
-			<solid android:color="?attr/colorAccent"/>
-			<size
-				android:width="50dp"
-				android:height="50dp"/>
-		</shape>
+		<layer-list>
+
+			<!-- shadow -->
+			<item android:left="@dimen/download_action_button_shadow_offset" android:top="@dimen/download_action_button_shadow_offset"  android:gravity="center">
+				<shape android:shape="oval">
+					<gradient android:centerColor="@color/shadow" android:centerX="0.5" android:centerY="0.5" android:endColor="@android:color/transparent" android:gradientRadius="25dp" android:startColor="@color/shadow" android:type="radial" />
+					<size android:width="@dimen/download_action_button_diameter" android:height="@dimen/download_action_button_diameter" />
+					<padding android:bottom="@dimen/download_action_button_shadow_offset" android:left="@dimen/download_action_button_shadow_offset" android:right="@dimen/download_action_button_shadow_offset" android:top="@dimen/download_action_button_shadow_offset" />
+				</shape>
+			</item>
+
+			<!-- button background -->
+			<item android:left="0dp" android:top="0dp" android:gravity="center">
+				<shape android:shape="oval">
+					<solid android:color="@color/action_button_color" />
+					<size android:width="@dimen/download_action_button_diameter" android:height="@dimen/download_action_button_diameter" />
+				</shape>
+			</item>
+
+		</layer-list>
 	</item>
 
 </selector>

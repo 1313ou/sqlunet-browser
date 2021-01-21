@@ -91,7 +91,7 @@ public class DownloadedPreferenceFragment extends PreferenceFragmentCompat
 		sourceStaticVersionPreference.setSummaryProvider(STRING_SUMMARY_PROVIDER);
 
 		// unset button
-		final Preference unsetButton = findPreference(Settings.PREF_DB_RESET_BUTTON);
+		final Preference unsetButton = findPreference(Settings.PREF_DB_CLEAR_BUTTON);
 		assert unsetButton != null;
 		unsetButton.setOnPreferenceClickListener(pref -> {
 
