@@ -235,7 +235,7 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 			intent.putExtra(UpdateFragment.UP_ETAG_ARG, srcSize == null ? "n/a" : srcEtag);
 			intent.putExtra(UpdateFragment.UP_VERSION_ARG, srcSize == null ? "n/a" : srcVersion);
 			intent.putExtra(UpdateFragment.UP_STATIC_VERSION_ARG, srcSize == null ? "n/a" : srcStaticVersion);
-			intent.putExtra(UpdateFragment.DOWN_ARG, name);
+			intent.putExtra(UpdateFragment.DOWN_NAME_ARG, name);
 			intent.putExtra(UpdateFragment.DOWN_TARGET_ARG, cache + '/' + name);
 			intent.putExtra(UpdateFragment.DOWN_DATE_ARG, downDate == null ? "n/a" : downDate.toString());
 			intent.putExtra(UpdateFragment.DOWN_SIZE_ARG, downSize == null ? "n/a" : downSize.toString() + " bytes");
