@@ -7,7 +7,7 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context="org.sqlunet.download.DownloadFragment"
+	tools:context="org.sqlunet.download.DownloadActivity"
 	tools:ignore="InconsistentLayouts">
 
 	<LinearLayout
@@ -21,7 +21,7 @@
 		<View
 			android:layout_width="0dip"
 			android:layout_height="match_parent"
-			android:layout_weight="0.15"></View>
+			android:layout_weight="0.15" />
 
 		<FrameLayout
 			android:layout_width="0dip"
@@ -66,11 +66,12 @@
 		<View
 			android:layout_width="0dip"
 			android:layout_height="match_parent"
-			android:layout_weight="0.15"></View>
+			android:layout_weight="0.15" />
+
 	</LinearLayout>
 
 	<TextView
-		android:id="@+id/up_src"
+		android:id="@+id/src"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_above="@+id/middle"
@@ -89,7 +90,7 @@
 		android:id="@+id/src2"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_above="@+id/up_src"
+		android:layout_above="@+id/src"
 		android:layout_centerHorizontal="true"
 		android:layout_marginStart="50dp"
 		android:layout_marginEnd="50dp"
