@@ -89,7 +89,11 @@ public class MenuHandler
 		else if (itemId == R.id.action_update)
 		{
 			BaseProvider.closeProviders(activity);
-			FileDataDownloader.start(activity, activity.getResources().getString(R.string.pref_default_download_dbfile), StorageSettings.getDbDownloadSource(activity), StorageSettings.getDatabasePath(activity), StorageSettings.getCacheDir(activity));
+			final String name = activity.getResources().getString(R.string.pref_default_download_dbfile);
+			final String downloadSourceUrl = StorageSettings.getDbDownloadSource(activity);
+			final String downloadDest = StorageSettings.getDatabasePath(activity);
+			final String cache = StorageSettings.getCacheDir(activity);
+			FileDataDownloader.start(activity, name, downloadSourceUrl, downloadDest, cache);
 			return true;
 		}
 		else if (itemId == R.id.action_asset_deliver)
