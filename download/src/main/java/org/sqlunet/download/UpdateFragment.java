@@ -158,6 +158,7 @@ public class UpdateFragment extends Fragment
 
 				final Context context = requireContext();
 				confirm(context, R.string.title_activity_update, R.string.askUpdate, () -> {
+
 					final String downloadFromArg = intent.getStringExtra(DOWNLOAD_FROM_ARG);
 					final String downloadToArg = intent.getStringExtra(DOWNLOAD_TO_ARG);
 					update(context, downloadFromArg, downloadToArg);

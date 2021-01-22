@@ -19,9 +19,6 @@ import java.util.Date;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
-import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_TO_ARG;
-
 /**
  * File data downloader
  *
@@ -198,16 +195,16 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 		// download source data (acquired by task)
 		final FileDataDownloader task = new FileDataDownloader(srcData -> {
 
-			// in-use downstream db data
+			// in-use downstream data
 			final long downDateValue = Settings.getDbDate(activity);
 			final long downSizeValue = Settings.getDbSize(activity);
 			final Date downDate = downDateValue == -1 || downDateValue == 0 ? null : new Date(downDateValue);
 			final Long downSize = downSizeValue == -1 ? null : downSizeValue;
 
 			// in-use downstream recorded source data
+			final String downSource = Settings.getDbSource(activity);
 			final long downSourceDateValue = Settings.getDbSourceDate(activity);
 			final long downSourceSizeValue = Settings.getDbSourceSize(activity);
-			final String downSource = Settings.getDbSource(activity);
 			final Date downSourceDate = downSourceDateValue == -1 || downSourceDateValue == 0 ? null : new Date(downSourceDateValue);
 			final Long downSourceSize = downSourceSizeValue == -1 ? null : downSourceSizeValue;
 			final String downSourceEtag = Settings.getDbSourceEtag(activity);
@@ -232,9 +229,10 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 			intent.putExtra(UpdateFragment.UP_SOURCE_ARG, downloadSourceUrl);
 			intent.putExtra(UpdateFragment.UP_DATE_ARG, srcDate == null ? "n/a" : srcDate.toString());
 			intent.putExtra(UpdateFragment.UP_SIZE_ARG, srcSize == null ? "n/a" : srcSize.toString() + " bytes");
-			intent.putExtra(UpdateFragment.UP_ETAG_ARG, srcSize == null ? "n/a" : srcEtag);
-			intent.putExtra(UpdateFragment.UP_VERSION_ARG, srcSize == null ? "n/a" : srcVersion);
-			intent.putExtra(UpdateFragment.UP_STATIC_VERSION_ARG, srcSize == null ? "n/a" : srcStaticVersion);
+			intent.putExtra(UpdateFragment.UP_ETAG_ARG, srcEtag == null ? "n/a" : srcEtag);
+			intent.putExtra(UpdateFragment.UP_VERSION_ARG, srcVersion == null ? "n/a" : srcVersion);
+			intent.putExtra(UpdateFragment.UP_STATIC_VERSION_ARG, srcStaticVersion == null ? "n/a" : srcStaticVersion);
+
 			intent.putExtra(UpdateFragment.DOWN_NAME_ARG, name);
 			intent.putExtra(UpdateFragment.DOWN_TARGET_ARG, cache + '/' + name);
 			intent.putExtra(UpdateFragment.DOWN_DATE_ARG, downDate == null ? "n/a" : downDate.toString());
@@ -245,25 +243,15 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 			intent.putExtra(UpdateFragment.DOWN_SOURCE_ETAG_ARG, downSourceEtag == null ? "n/a" : downSourceEtag);
 			intent.putExtra(UpdateFragment.DOWN_SOURCE_VERSION_ARG, downSourceVersion == null ? "n/a" : downSourceVersion);
 			intent.putExtra(UpdateFragment.DOWN_SOURCE_STATIC_VERSION_ARG, downSourceVersion == null ? "n/a" : downSourceStaticVersion);
+
 			intent.putExtra(UpdateFragment.NEWER_ARG, !same && (newer || srcNewer));
+
 			// to do if confirmed
-			intent.putExtra(DOWNLOAD_FROM_ARG, downloadSourceUrl);
-			intent.putExtra(DOWNLOAD_TO_ARG, downloadDest);
+			intent.putExtra(BaseDownloadFragment.DOWNLOAD_FROM_ARG, downloadSourceUrl);
+			intent.putExtra(BaseDownloadFragment.DOWNLOAD_TO_ARG, downloadDest);
 
 			activity.startActivity(intent);
 		});
 		task.execute(downloadSourceUrl);
 	}
-
-	/*
-	long getCreateTime(File file)
-	{
-		java.nio.Path file = java.nio.Paths.get(file.getAbsoluteFile().toURI());
-		java.nio.BasicFileAttributes attr = java.nio.Files.readAttributes(file, java.nio.BasicFileAttributes.class);
-
-		System.out.println("creationTime: " + attr.creationTime());
-		System.out.println("lastAccessTime: " + attr.lastAccessTime());
-		System.out.println("lastModifiedTime: " + attr.lastModifiedTime());
-	}
-	*/
 }
