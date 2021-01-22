@@ -62,8 +62,7 @@
 		<Preference
 			android:key="pref_db_clear"
 			android:summary="@string/description_db_clear"
-			android:title="@string/title_db_clear"
-			android:widgetLayout="@layout/bn_db_clear"/>
+			android:title="@string/title_db_clear" />
 	</PreferenceCategory>
 
 </PreferenceScreen>
