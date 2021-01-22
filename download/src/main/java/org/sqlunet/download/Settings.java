@@ -56,8 +56,15 @@ public class Settings
 		}
 	}
 
+	// downloader preference key
 	static public final String PREF_DOWNLOADER = "pref_downloader";
 
+	// database preference keys
+	static public final String PREF_DB_NAME = "pref_db_name";
+	static public final String PREF_DB_DATE = "pref_db_date";
+	static public final String PREF_DB_SIZE = "pref_db_size";
+
+	// database source preference keys
 	static public final String PREF_DB_SOURCE = "pref_db_source";
 	static public final String PREF_DB_SOURCE_DATE = "pref_db_source_date";
 	static public final String PREF_DB_SOURCE_SIZE = "pref_db_source_size";
@@ -65,14 +72,14 @@ public class Settings
 	static public final String PREF_DB_SOURCE_VERSION = "pref_db_source_version";
 	static public final String PREF_DB_SOURCE_STATIC_VERSION = "pref_db_source_static_version";
 
-	static public final String PREF_DB_NAME = "pref_db_name";
-	static public final String PREF_DB_DATE = "pref_db_date";
-	static public final String PREF_DB_SIZE = "pref_db_size";
-
+	// clear button preference key
 	static public final String PREF_DB_CLEAR_BUTTON = "pref_db_clear";
 
+	// others
 	public static final String STORAGE_DB_DIR = "sqlunet";
 	public static final String HINT_DB_ZIP = "sqlunet.zip";
+
+	// D A T A B A S E
 
 	/**
 	 * Get database name
@@ -318,6 +325,9 @@ public class Settings
 				.remove(Settings.PREF_DB_SOURCE) //
 				.remove(Settings.PREF_DB_SOURCE_DATE) //
 				.remove(Settings.PREF_DB_SOURCE_SIZE) //
+				.remove(Settings.PREF_DB_SOURCE_ETAG) //
+				.remove(Settings.PREF_DB_SOURCE_VERSION) //
+				.remove(Settings.PREF_DB_SOURCE_STATIC_VERSION) //
 				.apply();
 	}
 }
