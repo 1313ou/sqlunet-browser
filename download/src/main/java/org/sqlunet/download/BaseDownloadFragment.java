@@ -391,7 +391,7 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 		this.md5Button.setOnClickListener(v -> md5());
 
 		// source
-		final TextView srcView = view.findViewById(R.id.up_src);
+		final TextView srcView = view.findViewById(R.id.src);
 		final TextView srcView2 = view.findViewById(R.id.src2);
 		final TextView srcView3 = view.findViewById(R.id.src3);
 		if (srcView2 != null && srcView3 != null)
@@ -893,7 +893,6 @@ abstract public class BaseDownloadFragment extends Fragment implements View.OnCl
 			@Override
 			public void taskFinish(final boolean result)
 			{
-
 				super.taskFinish(result);
 
 				final Activity activity = getActivity();
