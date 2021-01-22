@@ -36,7 +36,7 @@ public class DownloadActivity extends AppCompatActivity implements DownloadFragm
 
 		// downloader
 		final String overriddenDownloader = getIntent().getStringExtra(DOWNLOAD_DOWNLOADER_ARG);
-		final Settings.Downloader downloader = overriddenDownloader == null ? Settings.Downloader.getFromPref(this) : org.sqlunet.download.Settings.Downloader.valueOf(overriddenDownloader);
+		final Settings.Downloader downloader = overriddenDownloader == null ? Settings.Downloader.getFromPref(this) : Settings.Downloader.valueOf(overriddenDownloader);
 
 		// content
 		setContentView(R.layout.activity_download);
