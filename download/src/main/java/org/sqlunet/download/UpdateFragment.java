@@ -30,7 +30,7 @@ import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_TO_ARG;
 public class UpdateFragment extends Fragment
 {
 	/**
-	 * From argument
+	 * Up argument (available upstream)
 	 */
 	static public final String UP_SOURCE_ARG = "up_source";
 
@@ -45,9 +45,9 @@ public class UpdateFragment extends Fragment
 	static public final String UP_STATIC_VERSION_ARG = "up_static_version";
 
 	/**
-	 * To argument
+	 * Down argument (already downloaded)
 	 */
-	static public final String DOWN_ARG = "down_name";
+	static public final String DOWN_NAME_ARG = "down_name";
 
 	static public final String DOWN_TARGET_ARG = "down_target";
 
@@ -67,6 +67,9 @@ public class UpdateFragment extends Fragment
 
 	static public final String DOWN_SOURCE_STATIC_VERSION_ARG = "down_source_static_version";
 
+	/**
+	 * Newer argument
+	 */
 	static public final String NEWER_ARG = "newer";
 
 	public UpdateFragment()
@@ -97,7 +100,7 @@ public class UpdateFragment extends Fragment
 		final String upVersionArg = intent.getStringExtra(UP_VERSION_ARG);
 		final String upStaticVersionArg = intent.getStringExtra(UP_STATIC_VERSION_ARG);
 
-		final String downArg = intent.getStringExtra(DOWN_ARG);
+		final String downNameArg = intent.getStringExtra(DOWN_NAME_ARG);
 		final String downDateArg = intent.getStringExtra(DOWN_DATE_ARG);
 		final String downSizeArg = intent.getStringExtra(DOWN_SIZE_ARG);
 		final String downSourceArg = intent.getStringExtra(DOWN_SOURCE_ARG);
@@ -134,7 +137,7 @@ public class UpdateFragment extends Fragment
 		final TextView downSourceEtag = view.findViewById(R.id.down_source_etag);
 		final TextView downSourceVersion = view.findViewById(R.id.down_source_version);
 		final TextView downSourceStaticVersion = view.findViewById(R.id.down_source_static_version);
-		downDb.setText(downArg);
+		downDb.setText(downNameArg);
 		downDate.setText(downDateArg);
 		downSize.setText(downSizeArg);
 		downSource.setText(downSourceArg);
