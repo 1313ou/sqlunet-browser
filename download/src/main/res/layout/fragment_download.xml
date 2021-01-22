@@ -5,10 +5,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context="org.sqlunet.download.DownloadFragment"
-                tools:ignore="InconsistentLayouts">
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context="org.sqlunet.download.DownloadActivity"
+	tools:ignore="InconsistentLayouts">
 
 	<LinearLayout
 		android:id="@+id/middle"
@@ -21,8 +21,7 @@
 		<View
 			android:layout_width="0dip"
 			android:layout_height="match_parent"
-			android:layout_weight="0.15">
-		</View>
+			android:layout_weight="0.15" />
 
 		<FrameLayout
 			android:layout_width="0dip"
@@ -39,7 +38,7 @@
 				android:contentDescription="@string/description_download"
 				android:src="@drawable/bn_download"
 				android:text="@string/action_download"
-				android:visibility="invisible"/>
+				android:visibility="invisible" />
 
 			<ProgressBar
 				android:id="@+id/progressBar"
@@ -50,7 +49,7 @@
 				android:indeterminate="false"
 				android:max="100"
 				android:progress="0"
-				android:visibility="invisible"/>
+				android:visibility="invisible" />
 
 			<TextView
 				android:id="@+id/progressStatus"
@@ -60,19 +59,19 @@
 				android:text="@string/action_download"
 				android:textAppearance="?android:attr/textAppearanceSmall"
 				android:textColor="@android:color/white"
-				android:visibility="invisible"/>
+				android:visibility="invisible" />
 
 		</FrameLayout>
 
 		<View
 			android:layout_width="0dip"
 			android:layout_height="match_parent"
-			android:layout_weight="0.15">
-		</View>
+			android:layout_weight="0.15" />
+
 	</LinearLayout>
 
 	<TextView
-		android:id="@+id/up_src"
+		android:id="@+id/src"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_above="@+id/middle"
@@ -91,14 +90,14 @@
 		android:id="@+id/src2"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_above="@+id/up_src"
+		android:layout_above="@+id/src"
 		android:layout_centerHorizontal="true"
 		android:layout_marginStart="50dp"
 		android:layout_marginEnd="50dp"
 		android:scrollHorizontally="true"
 		android:singleLine="true"
 		android:text="@string/download_source"
-		tools:ignore="InconsistentLayout"/>
+		tools:ignore="InconsistentLayout" />
 
 	<TextView
 		android:id="@+id/src3"
@@ -111,7 +110,7 @@
 		android:scrollHorizontally="true"
 		android:singleLine="true"
 		android:text="@string/download_source"
-		tools:ignore="InconsistentLayout"/>
+		tools:ignore="InconsistentLayout" />
 
 	<TextView
 		android:id="@+id/target"
@@ -144,7 +143,7 @@
 		android:scrollHorizontally="true"
 		android:singleLine="true"
 		android:text="@string/download_dest"
-		tools:ignore="InconsistentLayout"/>
+		tools:ignore="InconsistentLayout" />
 
 	<TextView
 		android:id="@+id/target3"
@@ -158,7 +157,7 @@
 		android:singleLine="true"
 		android:text="@string/download_dest"
 		android:textStyle="bold"
-		tools:ignore="InconsistentLayout"/>
+		tools:ignore="InconsistentLayout" />
 
 	<TextView
 		android:id="@+id/status"
@@ -174,7 +173,7 @@
 		android:gravity="center"
 		android:textAppearance="?android:attr/textAppearanceSmall"
 		android:textStyle="italic"
-		android:visibility="visible"/>
+		android:visibility="visible" />
 
 	<LinearLayout
 		android:id="@+id/buttons"
@@ -190,7 +189,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="@string/action_cancel"
-			android:visibility="gone"/>
+			android:visibility="gone" />
 
 		<Button
 			android:id="@+id/showButton"
@@ -198,7 +197,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="@string/action_show"
-			android:visibility="gone"/>
+			android:visibility="gone" />
 
 		<Button
 			android:id="@+id/md5Button"
@@ -206,7 +205,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="@string/action_md5"
-			android:visibility="gone"/>
+			android:visibility="gone" />
 
 		<Button
 			android:id="@+id/deployButton"
@@ -214,7 +213,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="@string/action_deploy"
-			android:visibility="gone"/>
+			android:visibility="gone" />
 
 	</LinearLayout>
 
