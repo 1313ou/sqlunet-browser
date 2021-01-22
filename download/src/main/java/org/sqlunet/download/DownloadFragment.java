@@ -41,7 +41,8 @@ public class DownloadFragment extends BaseDownloadFragment
 	 * Reason
 	 */
 	enum Reason
-	{PAUSED_WAITING_TO_RETRY(1, R.string.status_download_paused_waiting_to_retry), PAUSED_WAITING_FOR_NETWORK(2, R.string.status_download_paused_waiting_for_network), PAUSED_QUEUED_FOR_WIFI(3, R.string.status_download_paused_queued_for_wifi), PAUSED_UNKNOWN(4, R.string.status_download_paused_unknown),
+	{
+		PAUSED_WAITING_TO_RETRY(1, R.string.status_download_paused_waiting_to_retry), PAUSED_WAITING_FOR_NETWORK(2, R.string.status_download_paused_waiting_for_network), PAUSED_QUEUED_FOR_WIFI(3, R.string.status_download_paused_queued_for_wifi), PAUSED_UNKNOWN(4, R.string.status_download_paused_unknown),
 
 		ERROR_UNKNOWN(1000, R.string.status_download_error_unknown), ERROR_FILE_ERROR(1001, R.string.status_download_error_file_error), ERROR_UNHANDLED_HTTP_CODE(1002, R.string.status_download_error_unhandled_http_code), ERROR_HTTP_DATA_ERROR(1004, R.string.status_download_error_http_data_error), ERROR_TOO_MANY_REDIRECTS(1005, R.string.status_download_error_too_many_redirects), ERROR_INSUFFICIENT_SPACE(1006, R.string.status_download_error_insufficient_space), ERROR_DEVICE_NOT_FOUND(1007, R.string.status_download_error_device_not_found), ERROR_CANNOT_RESUME(1008, R.string.status_download_error_cannot_resume), ERROR_FILE_ALREADY_EXISTS(1009, R.string.status_download_error_file_already_exists), ERROR_BLOCKED(1010, R.string.status_download_error_blocked),
 
@@ -73,7 +74,8 @@ public class DownloadFragment extends BaseDownloadFragment
 				}
 			}
 			return null;
-		}}
+		}
+	}
 
 	static private long pack(int status, int reason)
 	{
@@ -397,7 +399,7 @@ public class DownloadFragment extends BaseDownloadFragment
 	}
 
 	/**
-	 * Get _status result as per _status returned by cursor
+	 * Get _status result as per status returned by cursor
 	 *
 	 * @param status _status
 	 * @return string resource id
