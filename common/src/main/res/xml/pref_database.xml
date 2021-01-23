@@ -18,6 +18,12 @@
 		android:title="@string/pref_title_storage" />
 
 	<Preference
+		android:title="@string/pref_title_db_file"
+		app:key="pref_db_file"
+		app:summary="@string/pref_description_db_file"
+		app:title="@string/pref_title_db_file" />
+
+	<Preference
 		android:title="@string/pref_title_downloaded"
 		app:fragment="org.sqlunet.download.DownloadedPreferenceFragment"
 		app:key="pref_download"

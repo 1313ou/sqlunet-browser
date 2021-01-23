@@ -84,7 +84,9 @@
 
 	<string name="pref_header_database">Database</string>
 	<string name="pref_title_storage">Database Storage</string>
-	<string name="pref_description_storage">Database Storage</string>
+	<string name="pref_description_storage">Database Storage location</string>
+	<string name="pref_title_db_file">Database File</string>
+	<string name="pref_description_db_file">Database File location</string>
 
 	<!-- ASSETS -->
 

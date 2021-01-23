@@ -5,6 +5,7 @@
 package org.sqlunet.browser.config;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Pair;
@@ -14,9 +15,13 @@ import org.sqlunet.browser.common.R;
 import org.sqlunet.preference.OpenEditTextPreference;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.settings.Settings;
+import org.sqlunet.settings.Storage;
 import org.sqlunet.settings.StorageReports;
+import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
 import org.sqlunet.sql.PreparedStatement;
+
+import java.io.File;
 
 import androidx.annotation.NonNull;
 import androidx.preference.EditTextPreference;
@@ -232,13 +237,34 @@ public class SettingsActivity extends BaseSettingsActivity
 			// inflate
 			addPreferencesFromResource(R.xml.pref_database);
 
+			final Preference dbFilePreference = findPreference(Settings.PREF_DB_FILE);
+			String storage = StorageSettings.getDatabasePath(getContext());
+			dbFilePreference.setSummary(storage);
+			dbFilePreference.setOnPreferenceChangeListener((preference, newValue) -> {
+				String storage2 = (String) newValue;
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && StorageUtils.DirType.AUTO.toString().equals(newValue)) //
+				{
+					storage2 = getContext().getFilesDir().getAbsolutePath();
+				}
+				storage2 += File.separatorChar + Storage.DBFILE;
+				dbFilePreference.setSummary(storage2);
+				return false;
+			});
+
 			// required if no 'entries' and 'entryValues' in XML
 			final Preference storagePreference = findPreference(Settings.PREF_STORAGE);
 			assert storagePreference != null;
 			populateStoragePreference(requireContext(), storagePreference);
-
-			// bind the summaries to their values.
 			storagePreference.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
+			final Preference.OnPreferenceChangeListener listener1 = storagePreference.getOnPreferenceChangeListener();
+			storagePreference.setOnPreferenceChangeListener((preference, newValue) -> {
+				if (listener1 != null)
+				{
+					listener1.onPreferenceChange(preference, newValue);
+				}
+				dbFilePreference.callChangeListener(newValue);
+				return true;
+			});
 		}
 	}
 
