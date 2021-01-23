@@ -29,8 +29,6 @@ public class DownloadedPreferenceFragment extends PreferenceFragmentCompat
 		setHasOptionsMenu(true);
 	}
 
-	// S U M M A R Y
-
 	@NonNull
 	private static String unrecorded = "";
 
@@ -56,39 +54,39 @@ public class DownloadedPreferenceFragment extends PreferenceFragmentCompat
 		// Bind the summaries of preferences to their values. When their values change, their summaries are updated to reflect the new value, per the Android Design guidelines.
 		final Preference namePreference = findPreference(Settings.PREF_DB_NAME);
 		assert namePreference != null;
-		namePreference.setSummaryProvider(STRING_SUMMARY_PROVIDER);
+		namePreference.setSummary(STRING_SUMMARY_PROVIDER.provideSummary(namePreference));
 
 		final Preference datePreference = findPreference(Settings.PREF_DB_DATE);
 		assert datePreference != null;
-		datePreference.setSummaryProvider(DATE_SUMMARY_PROVIDER);
+		datePreference.setSummary(DATE_SUMMARY_PROVIDER.provideSummary(datePreference));
 
 		final Preference sizePreference = findPreference(Settings.PREF_DB_SIZE);
 		assert sizePreference != null;
-		sizePreference.setSummaryProvider(LONG_SUMMARY_PROVIDER);
+		sizePreference.setSummary(LONG_SUMMARY_PROVIDER.provideSummary(sizePreference));
 
 		final Preference sourcePreference = findPreference(Settings.PREF_DB_SOURCE);
 		assert sourcePreference != null;
-		sourcePreference.setSummaryProvider(STRING_SUMMARY_PROVIDER);
+		sourcePreference.setSummary(STRING_SUMMARY_PROVIDER.provideSummary(sourcePreference));
 
 		final Preference sourceDatePreference = findPreference(Settings.PREF_DB_SOURCE_DATE);
 		assert sourceDatePreference != null;
-		sourceDatePreference.setSummaryProvider(DATE_SUMMARY_PROVIDER);
+		sourceDatePreference.setSummary(DATE_SUMMARY_PROVIDER.provideSummary(sourceDatePreference));
 
 		final Preference sourceSizePreference = findPreference(Settings.PREF_DB_SOURCE_SIZE);
 		assert sourceSizePreference != null;
-		sourceSizePreference.setSummaryProvider(LONG_SUMMARY_PROVIDER);
+		sourceSizePreference.setSummary(LONG_SUMMARY_PROVIDER.provideSummary(sourceSizePreference));
 
 		final Preference sourceEtagPreference = findPreference(Settings.PREF_DB_SOURCE_ETAG);
 		assert sourceEtagPreference != null;
-		sourceEtagPreference.setSummaryProvider(STRING_SUMMARY_PROVIDER);
+		sourceEtagPreference.setSummary(STRING_SUMMARY_PROVIDER.provideSummary(sourceEtagPreference));
 
 		final Preference sourceVersionPreference = findPreference(Settings.PREF_DB_SOURCE_VERSION);
 		assert sourceVersionPreference != null;
-		sourceVersionPreference.setSummaryProvider(STRING_SUMMARY_PROVIDER);
+		sourceVersionPreference.setSummary(STRING_SUMMARY_PROVIDER.provideSummary(sourceVersionPreference));
 
 		final Preference sourceStaticVersionPreference = findPreference(Settings.PREF_DB_SOURCE_STATIC_VERSION);
 		assert sourceStaticVersionPreference != null;
-		sourceStaticVersionPreference.setSummaryProvider(STRING_SUMMARY_PROVIDER);
+		sourceStaticVersionPreference.setSummary(STRING_SUMMARY_PROVIDER.provideSummary(sourceStaticVersionPreference));
 
 		// unset button
 		final Preference unsetButton = findPreference(Settings.PREF_DB_CLEAR_BUTTON);
@@ -107,6 +105,16 @@ public class DownloadedPreferenceFragment extends PreferenceFragmentCompat
 					.remove(Settings.PREF_DB_SOURCE_VERSION) //
 					.remove(Settings.PREF_DB_SOURCE_STATIC_VERSION) //
 					.apply();
+
+			namePreference.setSummary(STRING_SUMMARY_PROVIDER.provideSummary(namePreference));
+			datePreference.setSummary(DATE_SUMMARY_PROVIDER.provideSummary(datePreference));
+			sizePreference.setSummary(LONG_SUMMARY_PROVIDER.provideSummary(sizePreference));
+			sourcePreference.setSummary(STRING_SUMMARY_PROVIDER.provideSummary(sourcePreference));
+			sourceDatePreference.setSummary(DATE_SUMMARY_PROVIDER.provideSummary(sourceDatePreference));
+			sourceSizePreference.setSummary(LONG_SUMMARY_PROVIDER.provideSummary(sourceSizePreference));
+			sourceEtagPreference.setSummary(STRING_SUMMARY_PROVIDER.provideSummary(sourceEtagPreference));
+			sourceVersionPreference.setSummary(STRING_SUMMARY_PROVIDER.provideSummary(sourceVersionPreference));
+			sourceStaticVersionPreference.setSummary(STRING_SUMMARY_PROVIDER.provideSummary(sourceStaticVersionPreference));
 			return true;
 		});
 	}

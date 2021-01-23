@@ -76,7 +76,7 @@ abstract public class BaseDownloadFragment extends AbstractDownloadFragment
 		// guard against no unzip dir
 		if (this.unzipDir == null)
 		{
-			Log.e(TAG, "Null model dir, aborting deployment");
+			Log.e(TAG, "Null db dir, aborting deployment");
 			return;
 		}
 
