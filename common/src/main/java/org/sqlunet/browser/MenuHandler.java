@@ -22,6 +22,7 @@ import org.sqlunet.browser.config.SetupFileFragment;
 import org.sqlunet.browser.config.StorageActivity;
 import org.sqlunet.concurrency.TaskDialogObserver;
 import org.sqlunet.concurrency.TaskObserver;
+import org.sqlunet.download.DownloadActivity;
 import org.sqlunet.download.FileDataDownloader;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.settings.Settings;
@@ -30,6 +31,9 @@ import org.sqlunet.settings.StorageSettings;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
+
+import static org.sqlunet.download.AbstractDownloadFragment.DOWNLOAD_FROM_ARG;
+import static org.sqlunet.download.AbstractDownloadFragment.DOWNLOAD_TO_ARG;
 
 /**
  * Main activity stub
@@ -85,6 +89,12 @@ public class MenuHandler
 		{
 			intent = new Intent(activity, SetupFileActivity.class);
 			intent.putExtra(SetupFileFragment.ARG, SetupFileFragment.Operation.DROP.toString());
+		}
+		else if (itemId == R.id.action_download)
+		{
+			intent = new Intent(activity, DownloadActivity.class);
+			intent.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadSource(activity));
+			intent.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadTarget(activity));
 		}
 		else if (itemId == R.id.action_update)
 		{
