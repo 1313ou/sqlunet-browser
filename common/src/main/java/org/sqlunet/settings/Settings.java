@@ -42,6 +42,7 @@ public class Settings
 	static public final String PREF_TEXTSEARCH_MODE = "pref_searchtext_mode";
 	static public final String PREF_ASSET_PRIMARY_DEFAULT = SetupAsset.PREF_ASSET_PRIMARY_DEFAULT;
 	static public final String PREF_ASSET_AUTO_CLEANUP = SetupAsset.PREF_ASSET_AUTO_CLEANUP;
+	static public final String PREF_DB_FILE = "pref_db_file";
 	static public final String PREF_STORAGE = StorageSettings.PREF_STORAGE;
 	static public final String PREF_DOWNLOADER = StorageSettings.PREF_DOWNLOADER;
 	static public final String PREF_DOWNLOAD_SITE = StorageSettings.PREF_DOWNLOAD_SITE;
