@@ -158,7 +158,10 @@ public class AssetPackLoader implements Cancelable
 					}
 					catch (RuntimeExecutionException e)
 					{
-						Log.e(TAG, "Failure " + e.getMessage());
+						final String message = e.getMessage();
+						Log.e(TAG, "Failure " + message);
+						observer.taskUpdate(message);
+						observer.taskFinish(false);
 					}
 				});
 		return null;
