@@ -6,7 +6,6 @@ package org.sqlunet.browser.selector;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -28,6 +27,7 @@ import org.sqlunet.framenet.FnLexUnitPointer;
 import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_or_Frames;
 import org.sqlunet.framenet.provider.FrameNetProvider;
 import org.sqlunet.provider.ProviderArgs;
+import org.sqlunet.style.Colors;
 
 import java.util.Locale;
 
@@ -150,7 +150,7 @@ public class SelectorsFragment extends ListFragment
 				if (idName == columnIndex)
 				{
 					boolean isLike = cursor.getInt(idIsLike) != 0;
-					textView.setTextColor(isLike ? Color.GRAY : Color.BLACK);
+					textView.setTextColor(isLike ? Colors.textDimmedForeColor : Colors.textNormalForeColor);
 				}
 				return true;
 			}

@@ -201,6 +201,12 @@ public class Colors
 	static public int textMatchBackColor = Color.TRANSPARENT;
 	static public int textMatchForeColor = Color.BLACK;
 
+	static public int textDimmedBackColor = Color.TRANSPARENT;
+	static public int textDimmedForeColor = Color.GRAY;
+
+	static public int textNormalBackColor = Color.TRANSPARENT;
+	static public int textNormalForeColor = Color.BLACK;
+
 	// SQL
 	static public int sqlKeywordBackColor = Color.TRANSPARENT;
 	static public int sqlKeywordForeColor = 0xFF800080;
