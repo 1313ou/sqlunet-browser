@@ -111,14 +111,18 @@ public class AssetFragment extends Fragment implements TaskObserver.Observer<Num
 		this.cancelButton.setVisibility(View.VISIBLE);
 		this.progressBar.setIndeterminate(true);
 		this.progressTextView.setText("");
-		this.statusTextView.setText("");
+		this.messageTextView.setText("");
 	}
 
 	@Override
-	public void taskFinish(final boolean result)
+	public void taskFinish(final boolean success)
 	{
 		this.task = null;
 		this.cancelButton.setVisibility(View.GONE);
+		this.progressBar.setIndeterminate(false);
+		this.progressBar.setMax(100);
+		this.progressBar.setProgress(100);
+		this.messageTextView.setText(success ? R.string.result_success : R.string.result_fail);
 	}
 
 	@Override
