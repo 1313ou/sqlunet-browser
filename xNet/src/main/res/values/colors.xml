@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+	<!--
+    <color name="bright_pink">#ff007f</color>
+    <color name="red">#ff0000</color>
+    <color name="orange">#ff7f00</color>
+    <color name="yellow">#ffff00</color>
+    <color name="chartreuse">#7fff00</color>
+    <color name="green">#00ff00</color>
+    <color name="spring_green">#00ff7f</color>
+    <color name="cyan">#00ffff</color>
+    <color name="azure">#007fff</color>
+	<color name="blue">#0000ff</color>
+    <color name="violet">#7f00ff</color>
+    <color name="magenta">#ff00ff</color>
+	
+	<color name="xlt_yellow">#ffffdd</color>
+	<color name="lt_yellow">#ffff99</color>
+	<color name="lemon">#ffff59</color>
+	<color name="lt_orange">#ffa500</color>
+	<color name="dk_red">#8b0000</color>
+	<color name="pink">#e9967a</color>
+	<color name="lt_pink">#ffc0c0</color>
+	<color name="dk_pink">#ef2063</color>
+	<color name="lt_magenta">#dd80dd</color>
+	<color name="lt_blue">#e9ffff</color>
+	<color name="deepblue">#43486e</color>
+	<color name="brown">#6f4e37</color>
+	<color name="lt_brown">#ffe5b4</color>
+	-->
+
+	<color name="xlt_yellow">#FFFFFFDD</color>
+	<color name="lt_yellow">#FFFFFF99</color>
+	<color name="yellow">#FFFFFF59</color>
+
+	<color name="orange">#FFFFA500</color>
+
+	<color name="lt_magenta">#FFDD80DD</color>
+
+	<color name="dk_red">#FF8B0000</color>
+	<color name="pink">#FFE9967A</color>
+
+	<color name="dk_pink">#FFef2063</color>
+	<color name="brown">#FF6F4E37</color>
+
+	<color name="lt_brown">#FFFFE5B4</color>
+	<color name="lt_blue">#FF4682B4</color>
+
+	<color name="blue">#FF4251bd</color>
+
+
+	<color name="rootBackColor">#FFff0000</color> <!-- red -->
+	<color name="rootColor">#FFffffff</color> <!-- white -->
+
+	<color name="labelBackColor">#FFff00ff</color> <!-- magenta -->
+	<color name="labelColor">#FFffffff</color> <!-- white -->
+
+	<color name="headBackColor">#FFffffff</color> <!-- white -->
+	<color name="headColor">#FF43486E</color> <!-- blue -->
+
+	<color name="dependentBackColor">#FFffffff</color> <!-- white -->
+	<color name="dependentColor">#FF006064</color> <!-- teal -->
+
+
+	<color name="predicateBackColor">#BF360C</color> <!-- red orange -->
+	<color name="predicateColor">#FFffffff</color> <!-- white -->
+
+	<color name="subjectBackColor">#BCDADA</color> <!-- light_blue -->
+	<color name="subjectColor">#FF000000</color> <!-- black -->
+
+	<color name="objectBackColor">#FFdd80dd</color> <!-- light_magenta -->
+	<color name="objectColor">#FF000000</color> <!-- black -->
+
+	<color name="termModifierPredicateBackColor">#FFffffdd</color> <!-- extra light yellow -->
+	<color name="termModifierPredicateColor">#FF000000</color> <!-- black -->
+
+	<color name="predicateModifierPredicateBackColor">#FFffc0c0</color> <!-- lt_pink -->
+	<color name="predicateModifierPredicateColor">#FF000000</color> <!-- black -->
+
+	<array name="palette">
+		<item>@color/rootBackColor</item>
+		<item>@color/rootColor</item>
+		<item>@color/labelBackColor</item>
+		<item>@color/labelColor</item>
+		<item>@color/headBackColor</item>
+		<item>@color/headColor</item>
+		<item>@color/dependentBackColor</item>
+		<item>@color/dependentColor</item>
+
+		<item>@color/predicateBackColor</item>
+		<item>@color/predicateColor</item>
+		<item>@color/subjectBackColor</item>
+		<item>@color/subjectColor</item>
+		<item>@color/objectBackColor</item>
+		<item>@color/objectColor</item>
+		<item>@color/termModifierPredicateBackColor</item>
+		<item>@color/termModifierPredicateColor</item>
+		<item>@color/predicateModifierPredicateBackColor</item>
+		<item>@color/predicateModifierPredicateColor</item>
+	</array>
+
+</resources>

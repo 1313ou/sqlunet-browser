@@ -28,7 +28,7 @@ public class FrameNetFactories
 	// frame
 	static public final SpanFactory frameFactory = Factories.classFactory;
 
-	static public final SpanFactory metaFrameDefinitionFactory = flags -> new Object[]{new ForegroundColorSpan(Colors.dk_red), new StyleSpan(Typeface.ITALIC)};
+	static public final SpanFactory metaFrameDefinitionFactory = flags -> new Object[]{new ForegroundColorSpan(Colors.metaFrameDefinitionForeColor), new StyleSpan(Typeface.ITALIC)};
 
 	// lex unit
 	static public final SpanFactory lexunitFactory = Factories.memberFactory;
@@ -38,11 +38,11 @@ public class FrameNetFactories
 	// fe
 	static public final SpanFactory feFactory = Factories.roleFactory;
 
-	static public final SpanFactory fe2Factory = flags -> new Object[]{new BackgroundColorSpan(Color.GRAY), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
+	static public final SpanFactory fe2Factory = flags -> new Object[]{new BackgroundColorSpan(Colors.fe2BackColor), new ForegroundColorSpan(Colors.fe2ForeColor), new StyleSpan(Typeface.BOLD)};
 
-	static public final SpanFactory feAbbrevFactory = flags -> new Object[]{new ForegroundColorSpan(Color.MAGENTA)};
+	static public final SpanFactory feAbbrevFactory = flags -> new Object[]{new ForegroundColorSpan(Colors.feAbbrevForeColor)};
 
-	static public final SpanFactory metaFeDefinitionFactory = flags -> new Object[]{new ForegroundColorSpan(Colors.lt_blue), new StyleSpan(Typeface.ITALIC)};
+	static public final SpanFactory metaFeDefinitionFactory = flags -> new Object[]{new ForegroundColorSpan(Colors.metaFeDefinitionForeColor), new StyleSpan(Typeface.ITALIC)};
 
 	// sentence
 	static public final SpanFactory sentenceFactory = Factories.exampleFactory;
@@ -50,23 +50,23 @@ public class FrameNetFactories
 	// annotations
 	static public final SpanFactory annoSetFactory = flags -> new Object[]{new StyleSpan(Typeface.BOLD)};
 
-	static public final SpanFactory layerTypeFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.yellow), new StyleSpan(Typeface.BOLD)};
+	static public final SpanFactory layerTypeFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.layerTypeBackColor), new BackgroundColorSpan(Colors.layerTypeForeColor), new StyleSpan(Typeface.BOLD)};
 
-	static public final SpanFactory labelFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.pink), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
+	static public final SpanFactory labelFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.labelBackColor), new ForegroundColorSpan(Colors.labelForeColor), new StyleSpan(Typeface.BOLD)};
 
-	static public final SpanFactory subtextFactory = flags -> new Object[]{new ForegroundColorSpan(Color.GRAY), new StyleSpan(Typeface.ITALIC)};
+	static public final SpanFactory subtextFactory = flags -> new Object[]{new ForegroundColorSpan(Colors.subtextForeColor), new StyleSpan(Typeface.ITALIC)};
 
-	static public final SpanFactory targetFactory = flags -> new Object[]{new BackgroundColorSpan(Color.RED), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
+	static public final SpanFactory targetFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.targetBackColor), new ForegroundColorSpan(Colors.targetForeColor), new StyleSpan(Typeface.BOLD)};
 
-	static public final SpanFactory highlightTextFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.yellow), new ForegroundColorSpan(Color.BLACK), new StyleSpan(Typeface.NORMAL)};
+	static public final SpanFactory highlightTextFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.highlightBackColor), new ForegroundColorSpan(Colors.highlightForeColor), new StyleSpan(Typeface.NORMAL)};
 
-	static public final SpanFactory targetHighlightTextFactory = flags -> new Object[]{new BackgroundColorSpan(Color.BLACK), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
+	static public final SpanFactory targetHighlightTextFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.targetHighlightTextBackColor), new ForegroundColorSpan(Colors.targetHighlightTextForeColor), new StyleSpan(Typeface.BOLD)};
 
-	static public final SpanFactory ptFactory = flags -> new Object[]{new ForegroundColorSpan(Color.BLACK), new StyleSpan(Typeface.BOLD)};
+	static public final SpanFactory ptFactory = flags -> new Object[]{new ForegroundColorSpan(Colors.ptForeColor), new StyleSpan(Typeface.BOLD)};
 
-	static public final SpanFactory gfFactory = flags -> new Object[]{new ForegroundColorSpan(Color.GRAY)};
+	static public final SpanFactory gfFactory = flags -> new Object[]{new ForegroundColorSpan(Colors.gfForeColor)};
 
-	static public final SpanFactory governorTypeFactory = flags -> new Object[]{new ForegroundColorSpan(Colors.dk_red), new StyleSpan(Typeface.BOLD)};
+	static public final SpanFactory governorTypeFactory = flags -> new Object[]{new ForegroundColorSpan(Colors.governorTypeForeColor), new StyleSpan(Typeface.BOLD)};
 
-	static public final SpanFactory governorFactory = flags -> new Object[]{new ForegroundColorSpan(Color.BLACK), new StyleSpan(Typeface.BOLD)};
+	static public final SpanFactory governorFactory = flags -> new Object[]{new ForegroundColorSpan(Colors.governorForeColor), new StyleSpan(Typeface.BOLD)};
 }
