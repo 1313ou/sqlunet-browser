@@ -35,6 +35,7 @@ import org.sqlunet.framenet.FnLexUnitPointer;
 import org.sqlunet.framenet.FnSentencePointer;
 import org.sqlunet.framenet.provider.FrameNetContract;
 import org.sqlunet.provider.ProviderArgs;
+import org.sqlunet.style.Colors;
 import org.sqlunet.style.RegExprSpanner;
 import org.sqlunet.style.Spanner.SpanFactory;
 
@@ -61,7 +62,7 @@ public class TextFragment extends AbstractTableFragment
 	/**
 	 * Bold style factory
 	 */
-	static private final SpanFactory boldFactory = flags -> new Object[]{/*new BackgroundColorSpan(Colors.dk_red), new ForegroundColorSpan(Color.WHITE), */new StyleSpan(Typeface.BOLD)};
+	static private final SpanFactory boldFactory = flags -> new Object[]{new StyleSpan(Typeface.BOLD)};
 
 	/**
 	 * Factories
@@ -320,11 +321,11 @@ public class TextFragment extends AbstractTableFragment
 				sb.append(' ');
 				if (pattern.matcher(label).find())
 				{
-					append(sb, label, new ForegroundColorSpan(Color.BLACK), new StyleSpan(Typeface.BOLD));
+					append(sb, label, new ForegroundColorSpan(Colors.textMatchForeColor), new StyleSpan(Typeface.BOLD));
 				}
 				else
 				{
-					append(sb, label, new ForegroundColorSpan(Color.GRAY));
+					append(sb, label, new ForegroundColorSpan(Colors.textForeColor));
 				}
 
 				labels.add(sb);

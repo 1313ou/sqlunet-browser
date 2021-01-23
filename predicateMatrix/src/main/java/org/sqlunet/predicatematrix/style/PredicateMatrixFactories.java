@@ -17,13 +17,10 @@ import org.sqlunet.style.Spanner.SpanFactory;
 public class PredicateMatrixFactories
 {
 	// name
-	static public final SpanFactory nameFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.lt_yellow), new ForegroundColorSpan(Color.BLACK), new StyleSpan(Typeface.BOLD)};
+	static public final SpanFactory nameFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.predicateNameBackColor), new ForegroundColorSpan(Colors.predicateNameForeColor), new StyleSpan(Typeface.BOLD)};
 
 	// group
-	static public final SpanFactory groupFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.orange), new ForegroundColorSpan(Color.BLACK), new StyleSpan(Typeface.BOLD)};
-
-	// word
-	static public final SpanFactory wordFactory = flags -> new Object[]{new ForegroundColorSpan(Color.BLACK), new StyleSpan(Typeface.ITALIC)};
+	static public final SpanFactory groupFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.groupBackColor), new ForegroundColorSpan(Colors.groupForeColor), new StyleSpan(Typeface.BOLD)};
 
 	// definition
 	static public final SpanFactory definitionFactory = Factories.definitionFactory;
@@ -35,7 +32,7 @@ public class PredicateMatrixFactories
 	static public final SpanFactory roleFactory = Factories.roleFactory;
 
 	// role alias
-	static public final SpanFactory roleAliasFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.blue), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
+	static public final SpanFactory roleAliasFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.roleAliasBackColor), new ForegroundColorSpan(Colors.roleAliasForeColor), new StyleSpan(Typeface.BOLD)};
 
 	// data
 	static public final SpanFactory dataFactory = Factories.dataFactory;

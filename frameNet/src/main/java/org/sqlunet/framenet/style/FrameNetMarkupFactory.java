@@ -45,37 +45,37 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 	static private final MarkupSpanner.SpanFactory textFactory = (selector, flags) -> {
 		if ("fe".equals(selector))
 		{
-			return new Object[]{new BackgroundColorSpan(Color.MAGENTA), new ForegroundColorSpan(Color.WHITE)};
+			return new Object[]{new BackgroundColorSpan(Colors.feBackColor), new ForegroundColorSpan(Colors.feBackColor)};
 		}
 		if ("t".equals(selector)) // target
 		{
-			return new Object[]{new BackgroundColorSpan(Color.GRAY), new ForegroundColorSpan(Color.WHITE)};
+			return new Object[]{new BackgroundColorSpan(Colors.tBackColor), new ForegroundColorSpan(Colors.tForeColor)};
 		}
 		if ("fen".equals(selector))
 		{
 			if ((flags & FrameNetMarkupFactory.FEDEF) != 0)
 			{
-				return new ForegroundColorSpan(Color.MAGENTA);
+				return new ForegroundColorSpan(Colors.fenWithinDefForeColor);
 			}
 			else
 			{
-				return new Object[]{new BackgroundColorSpan(Color.MAGENTA), new ForegroundColorSpan(Color.WHITE)};
+				return new Object[]{new BackgroundColorSpan(Colors.fenBackColor), new ForegroundColorSpan(Colors.fenForeColor)};
 			}
 		}
 		if (selector.matches("fex.*"))
 		{
 			if ((flags & FrameNetMarkupFactory.FEDEF) == 0)
 			{
-				return new Object[]{new ForegroundColorSpan(Color.GRAY), new UnderlineSpan()};
+				return new Object[]{new ForegroundColorSpan(Colors.fexWithinDefForeColor), new UnderlineSpan()};
 			}
 			else
 			{
-				return new Object[]{new BackgroundColorSpan(Colors.lt_magenta), new ForegroundColorSpan(Color.WHITE)};
+				return new Object[]{new BackgroundColorSpan(Colors.fexBackColor), new ForegroundColorSpan(Colors.fexForeColor)};
 			}
 		}
 		if ("xfen".equals(selector))
 		{
-			return new ForegroundColorSpan(Color.MAGENTA);// new BackgroundColorSpan(Color.WHITE);
+			return new ForegroundColorSpan(Colors.xfenForeColor);// new BackgroundColorSpan(Colors.xfenBackColor);
 		}
 		if ("ex".equals(selector))
 		{
@@ -83,7 +83,7 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 		}
 		if ("x".equals(selector))
 		{
-			return new Object[]{new ForegroundColorSpan(Color.BLACK), new StyleSpan(android.graphics.Typeface.BOLD)};
+			return new Object[]{new ForegroundColorSpan(Colors.xForeColor), new StyleSpan(android.graphics.Typeface.BOLD)};
 		}
 		return null;
 	};
@@ -172,7 +172,7 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 					{
 						return new HiddenSpan();
 					}
-					return new BackgroundColorSpan(Color.GREEN);
+					return new BackgroundColorSpan(Colors.tag1ForeColor);
 
 				case TAG2:
 					switch (selector)
@@ -186,7 +186,7 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 						case "fe":
 							return new HiddenSpan();
 					}
-					return new BackgroundColorSpan(Color.CYAN);
+					return new BackgroundColorSpan(Colors.tag2ForeColor);
 
 				case TEXT:
 					assert textFactory != null;

@@ -7,9 +7,6 @@
 
 	<!-- R A W -->
 
-	<!-- gray -->
-	<color name="shadow">#80202020</color>
-
 	<!-- red -->
 	<color name="dark_red_color">#FFb32400</color>
 
@@ -17,6 +14,9 @@
 	<color name="dark_green_color">#FF008000</color>
 
 	<!-- M A I N -->
+
+	<!-- gray -->
+	<color name="shadow">#80202020</color>
 
 	<!-- button -->
 	<color name="action_button_color">#FFff00ff</color>

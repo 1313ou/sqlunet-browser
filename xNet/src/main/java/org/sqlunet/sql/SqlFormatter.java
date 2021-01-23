@@ -17,6 +17,8 @@ import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 
+import org.sqlunet.style.Colors;
+
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -498,7 +500,7 @@ public class SqlFormatter
 		{
 			if (this.style)
 			{
-				append(this.result, this.token, new ForegroundColorSpan(0xFF800080), new StyleSpan(Typeface.BOLD));
+				append(this.result, this.token, new ForegroundColorSpan(Colors.sqlKeywordForeColor), new StyleSpan(Typeface.BOLD));
 			}
 			else
 			{
@@ -513,10 +515,10 @@ public class SqlFormatter
 				switch (this.token.charAt(0))
 				{
 					case '\'':
-						append(this.result, this.token, new ForegroundColorSpan(0xFF008000));
+						append(this.result, this.token, new ForegroundColorSpan(Colors.sqlSlashForeColor));
 						break;
 					case '?':
-						append(this.result, this.token, new ForegroundColorSpan(Color.RED));
+						append(this.result, this.token, new ForegroundColorSpan(Colors.sqlQuestionMarkForeColor));
 						break;
 					default:
 						out();

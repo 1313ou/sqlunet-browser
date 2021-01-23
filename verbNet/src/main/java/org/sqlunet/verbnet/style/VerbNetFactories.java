@@ -37,38 +37,38 @@ public class VerbNetFactories
 
 	// groupings
 
-	static public final SpanFactory groupingFactory = flags -> new ForegroundColorSpan(Color.LTGRAY);
+	static public final SpanFactory groupingFactory = flags -> new ForegroundColorSpan(Colors.groupingForeColor);
 
 	// role
 
 	static public final SpanFactory roleFactory = Factories.roleFactory;
 
-	static final SpanFactory themroleFactory = flags -> new BackgroundColorSpan(Colors.lt_magenta);
+	static final SpanFactory themroleFactory = flags -> new BackgroundColorSpan(Colors.themroleBackColor);
 
 	// frame
 
-	static public final SpanFactory frameFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.brown), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
+	static public final SpanFactory frameFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.vnFrameBackColor), new ForegroundColorSpan(Colors.vnFrameForeColor), new StyleSpan(Typeface.BOLD)};
 
-	static public final SpanFactory framesubnameFactory = flags -> new Object[]{new BackgroundColorSpan(Color.LTGRAY), new ForegroundColorSpan(Color.WHITE)};
+	static public final SpanFactory framesubnameFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.vnFrameSubnameBackColor), new ForegroundColorSpan(Colors.vnFrameSubnameForeColor)};
 
-	static final SpanFactory catFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.lt_brown), new ForegroundColorSpan(Color.DKGRAY)};
+	static final SpanFactory catFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.catBackColor), new ForegroundColorSpan(Colors.catForeColor)};
 
-	static final SpanFactory catValueFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.lt_magenta)};
+	static final SpanFactory catValueFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.catValueBackColor)};
 
 	// semantics
 
-	static final SpanFactory predicateFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.orange), new ForegroundColorSpan(Color.WHITE)};
+	static final SpanFactory predicateFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.vnPredicateBackColor), new ForegroundColorSpan(Colors.vnPredicateForeColor)};
 
 	@Nullable
 	static final SpanFactory argsFactory = flags -> null;
 
-	static final SpanFactory constantFactory = flags -> new Object[]{new BackgroundColorSpan(Color.LTGRAY)};
+	static final SpanFactory constantFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.constantBackColor), new ForegroundColorSpan(Colors.constantForeColor)};
 
-	static final SpanFactory eventFactory = flags -> new Object[]{new BackgroundColorSpan(Color.BLUE), new ForegroundColorSpan(Color.WHITE)};
+	static final SpanFactory eventFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.eventBackColor), new ForegroundColorSpan(Colors.eventForeColor)};
 
 	// restrs
 
-	static public final SpanFactory restrsFactory = flags -> new BackgroundColorSpan(Colors.lt_brown);
+	static public final SpanFactory restrsFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.restrBackColor), new ForegroundColorSpan(Colors.restrForeColor)};
 
 	// example
 

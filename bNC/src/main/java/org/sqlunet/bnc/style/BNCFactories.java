@@ -15,5 +15,5 @@ import org.sqlunet.style.Spanner.SpanFactory;
 
 public class BNCFactories
 {
-	static public final SpanFactory headerFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.pink), new ForegroundColorSpan(Color.WHITE), new StyleSpan(Typeface.BOLD)};
+	static public final SpanFactory headerFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.bncHeaderBackColor), new ForegroundColorSpan(Colors.bncHeaderForeColor), new StyleSpan(Typeface.BOLD)};
 }

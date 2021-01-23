@@ -50,7 +50,7 @@ public class TextFragment extends AbstractTableFragment
 	/**
 	 * Bold style factory
 	 */
-	static private final SpanFactory boldFactory = flags -> new Object[]{/*new BackgroundColorSpan(Colors.dk_red), new ForegroundColorSpan(Color.WHITE), */new StyleSpan(Typeface.BOLD)};
+	static private final SpanFactory boldFactory = flags -> new Object[]{new StyleSpan(Typeface.BOLD)};
 
 	/**
 	 * Factories
