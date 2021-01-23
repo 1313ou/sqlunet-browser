@@ -31,11 +31,6 @@
 				app:showAsAction="never"
 				tools:ignore="AppCompatResource" />
 			<item
-				android:id="@+id/action_update"
-				android:title="@string/action_update"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
-			<item
 				android:id="@+id/action_asset_deliver"
 				android:title="@string/action_asset_deliver"
 				app:showAsAction="never"
@@ -72,6 +67,16 @@
 						tools:ignore="AppCompatResource" />
 				</menu>
 			</item>
+			<item
+				android:id="@+id/action_download"
+				android:title="@string/action_download"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+			<item
+				android:id="@+id/action_update"
+				android:title="@string/action_update"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
 			<item
 				android:id="@+id/action_storage"
 				android:title="@string/action_storage"
