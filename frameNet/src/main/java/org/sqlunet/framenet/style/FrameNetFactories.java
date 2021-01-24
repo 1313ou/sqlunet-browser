@@ -60,7 +60,7 @@ public class FrameNetFactories
 
 	static public final SpanFactory targetFactory = flags -> Factories.spans(Colors.targetBackColor, Colors.targetForeColor, new StyleSpan(Typeface.BOLD));
 
-	static public final SpanFactory highlightTextFactory = flags -> Factories.spans(Colors.highlightBackColor, Colors.highlightForeColor, new StyleSpan(Typeface.NORMAL));
+	static public final SpanFactory highlightTextFactory = flags -> Factories.spans(Colors.textHighlightBackColor, Colors.textHighlightForeColor, new StyleSpan(Typeface.NORMAL));
 
 	static public final SpanFactory targetHighlightTextFactory = flags -> Factories.spans(Colors.targetHighlightTextBackColor, Colors.targetHighlightTextForeColor, new StyleSpan(Typeface.BOLD));
 
