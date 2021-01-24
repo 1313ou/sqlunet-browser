@@ -5,17 +5,15 @@
 package org.sqlunet.framenet.style;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.text.style.BackgroundColorSpan;
 import android.text.style.DynamicDrawableSpan;
-import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
 import android.text.style.StyleSpan;
 import android.text.style.UnderlineSpan;
 
 import org.sqlunet.framenet.R;
 import org.sqlunet.style.Colors;
+import org.sqlunet.style.Factories;
 import org.sqlunet.style.MarkupSpanner;
 import org.sqlunet.style.MarkupSpanner.SpanPosition;
 import org.sqlunet.style.Spanner;
@@ -45,45 +43,45 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 	static private final MarkupSpanner.SpanFactory textFactory = (selector, flags) -> {
 		if ("fe".equals(selector))
 		{
-			return new Object[]{new BackgroundColorSpan(Colors.feBackColor), new ForegroundColorSpan(Colors.feBackColor)};
+			return Factories.spans(Colors.feBackColor, Colors.feForeColor);
 		}
 		if ("t".equals(selector)) // target
 		{
-			return new Object[]{new BackgroundColorSpan(Colors.tBackColor), new ForegroundColorSpan(Colors.tForeColor)};
+			return Factories.spans(Colors.tBackColor, Colors.tForeColor);
 		}
 		if ("fen".equals(selector))
 		{
 			if ((flags & FrameNetMarkupFactory.FEDEF) != 0)
 			{
-				return new ForegroundColorSpan(Colors.fenWithinDefForeColor);
+				return Factories.spans(Colors.fenWithinDefBackColor, Colors.fenWithinDefForeColor);
 			}
 			else
 			{
-				return new Object[]{new BackgroundColorSpan(Colors.fenBackColor), new ForegroundColorSpan(Colors.fenForeColor)};
+				return Factories.spans(Colors.fenBackColor, Colors.fenForeColor);
 			}
 		}
 		if (selector.matches("fex.*"))
 		{
 			if ((flags & FrameNetMarkupFactory.FEDEF) == 0)
 			{
-				return new Object[]{new ForegroundColorSpan(Colors.fexWithinDefForeColor), new UnderlineSpan()};
+				return Factories.spans(Colors.fexWithinDefBackColor, Colors.fexWithinDefForeColor, new UnderlineSpan());
 			}
 			else
 			{
-				return new Object[]{new BackgroundColorSpan(Colors.fexBackColor), new ForegroundColorSpan(Colors.fexForeColor)};
+				return Factories.spans(Colors.fexBackColor, Colors.fexForeColor);
 			}
 		}
 		if ("xfen".equals(selector))
 		{
-			return new ForegroundColorSpan(Colors.xfenForeColor);// new BackgroundColorSpan(Colors.xfenBackColor);
+			return Factories.spans(Colors.xfenBackColor, Colors.xfenForeColor);// new BackgroundColorSpan(Colors.xfenBackColor);
 		}
 		if ("ex".equals(selector))
 		{
-			return new Object[]{new StyleSpan(android.graphics.Typeface.ITALIC)};
+			return Factories.spans(Colors.exBackColor, Colors.exForeColor, new StyleSpan(android.graphics.Typeface.ITALIC));
 		}
 		if ("x".equals(selector))
 		{
-			return new Object[]{new ForegroundColorSpan(Colors.xForeColor), new StyleSpan(android.graphics.Typeface.BOLD)};
+			return Factories.spans(Colors.xBackColor, Colors.xForeColor, new StyleSpan(android.graphics.Typeface.BOLD));
 		}
 		return null;
 	};
@@ -172,7 +170,7 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 					{
 						return new HiddenSpan();
 					}
-					return new BackgroundColorSpan(Colors.tag1ForeColor);
+					return Factories.spans(Colors.tag1BackColor, Colors.tag1ForeColor);
 
 				case TAG2:
 					switch (selector)
@@ -186,7 +184,7 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 						case "fe":
 							return new HiddenSpan();
 					}
-					return new BackgroundColorSpan(Colors.tag2ForeColor);
+					return Factories.spans(Colors.tag2BackColor, Colors.tag2ForeColor);
 
 				case TEXT:
 					assert textFactory != null;

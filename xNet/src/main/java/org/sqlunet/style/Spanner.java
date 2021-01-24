@@ -21,6 +21,8 @@ import android.widget.TextView;
 
 import org.sqlunet.xnet.R;
 
+import java.util.Collection;
+
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -64,7 +66,7 @@ public class Spanner
 	public interface SpanFactory
 	{
 		@Nullable
-		Object makeSpans(@SuppressWarnings("UnusedParameters") final long flags);
+		Object make(@SuppressWarnings("UnusedParameters") final long flags);
 	}
 
 	/**
@@ -104,21 +106,6 @@ public class Spanner
 		public int getSize(@NonNull final Paint paint, final CharSequence text, final int from, final int to, final FontMetricsInt fm)
 		{
 			return 0;
-		}
-	}
-
-	/**
-	 * Hidden span factory
-	 *
-	 * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
-	 */
-	static public class HiddenSpanFactory implements SpanFactory
-	{
-		@NonNull
-		@Override
-		public Object makeSpans(final long flags)
-		{
-			return new Object[]{new HiddenSpan()};
 		}
 	}
 
@@ -166,7 +153,7 @@ public class Spanner
 	{
 		for (final SpanFactory spanFactory : factories)
 		{
-			final Object spans = spanFactory.makeSpans(flags);
+			final Object spans = spanFactory.make(flags);
 			Spanner.setSpan(sb, from, to, spans);
 		}
 	}
@@ -308,6 +295,7 @@ public class Spanner
 	 * @param factories span factories
 	 * @return input spannable string builder
 	 */
+	@SuppressWarnings("unchecked")
 	@NonNull
 	static public Appendable append(@NonNull final SpannableStringBuilder sb, @Nullable final CharSequence text, @SuppressWarnings("SameParameterValue") final long flags, @Nullable final SpanFactory... factories)
 	{
@@ -320,8 +308,15 @@ public class Spanner
 			{
 				for (final SpanFactory spanFactory : factories)
 				{
-					final Object spans = spanFactory.makeSpans(flags);
-					if (spans instanceof Object[])
+					final Object spans = spanFactory.make(flags);
+					if (spans instanceof Collection)
+					{
+						for (final Object span : (Collection<Object>) spans)
+						{
+							sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+						}
+					}
+					else if (spans instanceof Object[])
 					{
 						for (final Object span : (Object[]) spans)
 						{

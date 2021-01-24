@@ -6,9 +6,6 @@ package org.sqlunet.style;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.StyleSpan;
 
 import org.sqlunet.xnet.R;
 
@@ -61,14 +58,14 @@ public class Colors
 	static public int wordForeColor = Color.BLACK;
 
 	// FN
+	static public int feBackColor = Color.MAGENTA; // 0xFFff00ff
+	static public int feForeColor = Color.WHITE; // 0xFFffffff
+
 	static public int metaFrameDefinitionBackColor = Color.TRANSPARENT; // 0x00000000
 	static public int metaFrameDefinitionForeColor = 0xFF8B0000;
 
 	static public int tBackColor = Color.GRAY; // 0xFF888888
 	static public int tForeColor = Color.WHITE; // 0xFFffffff
-
-	static public int feBackColor = Color.MAGENTA; // 0xFFff00ff
-	static public int feForeColor = Color.WHITE; // 0xFFffffff
 
 	static public int fe2BackColor = Color.GRAY; // 0xFF888888
 	static public int fe2ForeColor = Color.WHITE; // 0xFFffffff
@@ -100,8 +97,20 @@ public class Colors
 	static public int fexWithinDefBackColor = Color.TRANSPARENT; // 0x00000000
 	static public int fexWithinDefForeColor = Color.GRAY; // 0xFF888888
 
+	static public int exBackColor = Color.TRANSPARENT; // 0x00000000
+	static public int exForeColor = Color.TRANSPARENT; // 0x00000000
+
 	static public int xBackColor = Color.TRANSPARENT; // 0x00000000
 	static public int xForeColor = Color.BLACK; // 0xFF000000;
+
+	static public int governorTypeBackColor = Color.TRANSPARENT; // 0x00000000
+	static public int governorTypeForeColor = 0xFFFFA500;
+
+	static public int governorBackColor = Color.TRANSPARENT; // 0x00000000
+	static public int governorForeColor = Color.BLACK; // 0xFF000000
+
+	static public int annoSetBackColor = Color.TRANSPARENT; // 0x00000000
+	static public int annoSetForeColor = Color.TRANSPARENT; // 0x00000000
 
 	static public int layerTypeBackColor = 0xFFFFFF59;
 	static public int layerTypeForeColor = 0xFF000000;
@@ -111,9 +120,6 @@ public class Colors
 
 	static public int subtextBackColor = Color.TRANSPARENT; // 0x00000000
 	static public int subtextForeColor = Color.GRAY; // 0xFF888888
-
-	static public int governorTypeBackColor = Color.TRANSPARENT; // 0x00000000
-	static public int governorTypeForeColor = 0xFFFFA500;
 
 	static public int groupBackColor = 0xFFFFA500;
 	static public int groupForeColor = 0xFF000000;
@@ -129,9 +135,6 @@ public class Colors
 
 	static public int gfBackColor = Color.TRANSPARENT; // 0x00000000
 	static public int gfForeColor = Color.GRAY; // 0xFF888888
-
-	static public int governorBackColor = Color.TRANSPARENT; // 0x00000000
-	static public int governorForeColor = Color.BLACK; // 0xFF000000
 
 	// VN
 	static public int groupingBackColor = Color.TRANSPARENT; // 0x00000000
