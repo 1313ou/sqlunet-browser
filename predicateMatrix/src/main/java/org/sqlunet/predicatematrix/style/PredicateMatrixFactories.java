@@ -4,10 +4,7 @@
 
 package org.sqlunet.predicatematrix.style;
 
-import android.graphics.Color;
 import android.graphics.Typeface;
-import android.text.style.BackgroundColorSpan;
-import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 
 import org.sqlunet.style.Colors;
@@ -17,10 +14,10 @@ import org.sqlunet.style.Spanner.SpanFactory;
 public class PredicateMatrixFactories
 {
 	// name
-	static public final SpanFactory nameFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.predicateNameBackColor), new ForegroundColorSpan(Colors.predicateNameForeColor), new StyleSpan(Typeface.BOLD)};
+	static public final SpanFactory nameFactory = flags -> Factories.spans(Colors.predicateNameBackColor, Colors.predicateNameForeColor, new StyleSpan(Typeface.BOLD));
 
 	// group
-	static public final SpanFactory groupFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.groupBackColor), new ForegroundColorSpan(Colors.groupForeColor), new StyleSpan(Typeface.BOLD)};
+	static public final SpanFactory groupFactory = flags -> Factories.spans(Colors.groupBackColor, Colors.groupForeColor, new StyleSpan(Typeface.BOLD));
 
 	// definition
 	static public final SpanFactory definitionFactory = Factories.definitionFactory;
@@ -32,7 +29,7 @@ public class PredicateMatrixFactories
 	static public final SpanFactory roleFactory = Factories.roleFactory;
 
 	// role alias
-	static public final SpanFactory roleAliasFactory = flags -> new Object[]{new BackgroundColorSpan(Colors.roleAliasBackColor), new ForegroundColorSpan(Colors.roleAliasForeColor), new StyleSpan(Typeface.BOLD)};
+	static public final SpanFactory roleAliasFactory = flags -> Factories.spans(Colors.roleAliasBackColor, Colors.roleAliasForeColor, new StyleSpan(Typeface.BOLD));
 
 	// data
 	static public final SpanFactory dataFactory = Factories.dataFactory;
