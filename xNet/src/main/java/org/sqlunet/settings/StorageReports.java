@@ -20,6 +20,7 @@ import org.sqlunet.settings.StorageUtils.DirType;
 import org.sqlunet.settings.StorageUtils.StorageDirectory;
 import org.sqlunet.settings.StorageUtils.StorageType;
 import org.sqlunet.style.Colors;
+import org.sqlunet.style.Factories;
 import org.sqlunet.style.Report;
 import org.sqlunet.xnet.R;
 
@@ -55,9 +56,11 @@ public class StorageReports
 		sb.append(' ');
 		Report.append(sb, ' ' + dir.dir.getType().toDisplay() + ' ', new RelativeSizeSpan(1.5F), new BackgroundColorSpan(Colors.dirTypeBackColor), new ForegroundColorSpan(Colors.dirTypeForeColor));
 		sb.append('\n');
-		Report.append(sb, dir.dir.getValue(), new StyleSpan(Typeface.ITALIC), new ForegroundColorSpan(Colors.dirValueForeColor));
+		Report.append(sb, dir.dir.getValue(), Factories.spans(Colors.dirValueBackColor, Colors.dirValueForeColor, new StyleSpan(Typeface.ITALIC)));
 		sb.append('\n');
-		Report.append(sb, StorageUtils.mbToString(dir.free), new ForegroundColorSpan(dir.status == 0 && dir.fitsIn(context) ? Colors.dirOkForeColor : Colors.dirFailForeColor));
+		Report.append(sb, StorageUtils.mbToString(dir.free), Factories.spans( //
+				dir.status == 0 && dir.fitsIn(context) ? Colors.dirOkBackColor : Colors.dirFailBackColor,  //
+				dir.status == 0 && dir.fitsIn(context) ? Colors.dirOkForeColor : Colors.dirFailForeColor));
 		return sb;
 	}
 
@@ -73,7 +76,7 @@ public class StorageReports
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		final boolean fitsIn = dir.fitsIn(context);
-		Report.append(sb, fitsIn ? "Fits in" : "Does not fit in", new ForegroundColorSpan(fitsIn ? Colors.dirOkForeColor : Colors.dirFailForeColor));
+		Report.append(sb, fitsIn ? "Fits in" : "Does not fit in", Factories.spans(fitsIn ? Colors.dirOkBackColor : Colors.dirFailBackColor, fitsIn ? Colors.dirOkForeColor : Colors.dirFailForeColor));
 		return sb;
 	}
 
@@ -89,7 +92,7 @@ public class StorageReports
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		final CharSequence status = dir.status();
 		final boolean isOk = "Ok".equals(status.toString());
-		Report.append(sb, status, new ForegroundColorSpan(isOk ? Colors.dirOkForeColor : Colors.dirFailForeColor));
+		Report.append(sb, status, Factories.spans(isOk ? Colors.dirOkBackColor : Colors.dirFailBackColor, isOk ? Colors.dirOkForeColor : Colors.dirFailForeColor));
 		return sb;
 	}
 
@@ -467,7 +470,7 @@ public class StorageReports
 			for (File f : physical)
 			{
 				final String s = f.getAbsolutePath();
-				Report.append(sb, s, new StyleSpan(Typeface.ITALIC), new ForegroundColorSpan(Colors.storageValueForeColor));
+				Report.append(sb, s, Factories.spans(Colors.storageValueBackColor, Colors.storageValueForeColor, new StyleSpan(Typeface.ITALIC)));
 				sb.append('\n');
 				sb.append(StorageUtils.mbToString(StorageUtils.storageCapacity(s)));
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
@@ -494,7 +497,7 @@ public class StorageReports
 			for (File f : emulated)
 			{
 				final String s = f.getAbsolutePath();
-				Report.append(sb, s, new StyleSpan(Typeface.ITALIC), new ForegroundColorSpan(Colors.storageValueForeColor));
+				Report.append(sb, s, Factories.spans(Colors.storageValueBackColor, Colors.storageValueForeColor, new StyleSpan(Typeface.ITALIC)));
 				sb.append('\n');
 				sb.append(StorageUtils.mbToString(StorageUtils.storageCapacity(s)));
 				sb.append(' ');
@@ -518,7 +521,7 @@ public class StorageReports
 			for (File f : secondary)
 			{
 				final String s = f.getAbsolutePath();
-				Report.append(sb, s, new StyleSpan(Typeface.ITALIC), new ForegroundColorSpan(Colors.storageValueForeColor));
+				Report.append(sb, s, Factories.spans(Colors.storageValueBackColor, Colors.storageValueForeColor, new StyleSpan(Typeface.ITALIC)));
 				sb.append('\n');
 				sb.append(StorageUtils.mbToString(StorageUtils.storageCapacity(s)));
 				sb.append(' ');

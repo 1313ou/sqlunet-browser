@@ -24,6 +24,7 @@ import android.widget.TextView;
 import org.sqlunet.browser.sn.R;
 import org.sqlunet.browser.sn.Settings;
 import org.sqlunet.provider.ProviderArgs;
+import org.sqlunet.style.Factories;
 import org.sqlunet.style.RegExprSpanner;
 import org.sqlunet.style.Spanner.SpanFactory;
 import org.sqlunet.wordnet.SynsetPointer;
@@ -48,14 +49,9 @@ public class TextFragment extends AbstractTableFragment
 	static private final String TAG = "TextF";
 
 	/**
-	 * Bold style factory
-	 */
-	static private final SpanFactory boldFactory = flags -> new Object[]{new StyleSpan(Typeface.BOLD)};
-
-	/**
 	 * Factories
 	 */
-	static private final SpanFactory[] factories = new SpanFactory[]{boldFactory,};
+	static private final SpanFactory[] factories = new SpanFactory[]{Factories.boldFactory,};
 
 	/**
 	 * Query argument
