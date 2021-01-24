@@ -5,6 +5,7 @@
 package org.sqlunet.browser;
 
 import org.sqlunet.settings.Settings;
+import org.sqlunet.style.Colors;
 
 public class Application extends android.app.Application
 {
@@ -12,6 +13,7 @@ public class Application extends android.app.Application
 	public void onCreate()
 	{
 		super.onCreate();
+		Colors.setColorsFromResources(this);
 		Settings.initialize(this);
 	}
 }

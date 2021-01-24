@@ -5,102 +5,485 @@
 
 <resources>
 	<!--
-    <color name="bright_pink">#ff007f</color>
-    <color name="red">#ff0000</color>
-    <color name="orange">#ff7f00</color>
-    <color name="yellow">#ffff00</color>
-    <color name="chartreuse">#7fff00</color>
-    <color name="green">#00ff00</color>
-    <color name="spring_green">#00ff7f</color>
-    <color name="cyan">#00ffff</color>
-    <color name="azure">#007fff</color>
-	<color name="blue">#0000ff</color>
-    <color name="violet">#7f00ff</color>
-    <color name="magenta">#ff00ff</color>
-	
-	<color name="xlt_yellow">#ffffdd</color>
-	<color name="lt_yellow">#ffff99</color>
-	<color name="lemon">#ffff59</color>
-	<color name="lt_orange">#ffa500</color>
-	<color name="dk_red">#8b0000</color>
-	<color name="pink">#e9967a</color>
-	<color name="lt_pink">#ffc0c0</color>
-	<color name="dk_pink">#ef2063</color>
-	<color name="lt_magenta">#dd80dd</color>
-	<color name="lt_blue">#e9ffff</color>
-	<color name="deepblue">#43486e</color>
-	<color name="brown">#6f4e37</color>
-	<color name="lt_brown">#ffe5b4</color>
+    <color name="bright_pink">#00000000</color>
+    <color name="red">#00000000</color>
+    <color name="orange">#00000000</color>
+	<color name="alt_orange">#00000000</color>
+    <color name="yellow">#00000000</color>
+    <color name="chartreuse">#00000000</color>
+    <color name="green">#00000000</color>
+    <color name="spring_green">#00000000</color>
+    <color name="cyan">#00000000</color>
+	<color name="xlt_blue">#00000000</color>
+    <color name="azure">#00000000</color>
+	<color name="blue">#00000000</color>
+	<color name="alt_blue">#00000000</color>
+	<color name="lt_blue">#00000000</color>
+	<color name="deepblue">#00000000</color>
+    <color name="violet">#00000000</color>
+    <color name="magenta">#00000000</color>
+	<color name="xlt_yellow">#00000000</color>
+	<color name="lt_yellow">#00000000</color>
+	<color name="alt_yellow">#00000000</color>
+	<color name="lemon">#00000000</color>
+	<color name="lt_orange">#00000000</color>
+	<color name="dk_red">#00000000</color>
+	<color name="pink">#00000000</color>
+	<color name="lt_pink">#00000000</color>
+	<color name="dk_pink">#00000000</color>
+	<color name="lt_magenta">#00000000</color>
+	<color name="brown">#00000000</color>
+	<color name="lt_brown">#00000000</color>
 	-->
 
-	<color name="xlt_yellow">#FFFFFFDD</color>
-	<color name="lt_yellow">#FFFFFF99</color>
-	<color name="yellow">#FFFFFF59</color>
+	<!--  TEXT -->
+	<color name="textBackColor">#00000000</color>
+	<color name="textForeColor">#00000000</color>
 
-	<color name="orange">#FFFFA500</color>
+	<color name="textNormalBackColor">#00000000</color>
+	<color name="textNormalForeColor">#00000000</color>
 
-	<color name="lt_magenta">#FFDD80DD</color>
+	<color name="textHighlightBackColor">#00000000</color>
+	<color name="textHighlightForeColor">#00000000</color>
 
-	<color name="dk_red">#FF8B0000</color>
-	<color name="pink">#FFE9967A</color>
+	<color name="textDimmedBackColor">#00000000</color>
+	<color name="textDimmedForeColor">#00000000</color>
 
-	<color name="dk_pink">#FFef2063</color>
-	<color name="brown">#FF6F4E37</color>
+	<color name="textMatchBackColor">#00000000</color>
+	<color name="textMatchForeColor">#00000000</color>
 
-	<color name="lt_brown">#FFFFE5B4</color>
-	<color name="lt_blue">#FF4682B4</color>
+	<!--  COMMON -->
 
-	<color name="blue">#FF4251bd</color>
+	<color name="classBackColor">#00000000</color>
+	<color name="classForeColor">#00000000</color>
 
+	<color name="roleBackColor">#00000000</color>
+	<color name="roleForeColor">#00000000</color>
 
-	<color name="rootBackColor">#FFff0000</color> <!-- red -->
-	<color name="rootColor">#FFffffff</color> <!-- white -->
+	<color name="memberBackColor">#00000000</color>
+	<color name="memberForeColor">#00000000</color>
 
-	<color name="labelBackColor">#FFff00ff</color> <!-- magenta -->
-	<color name="labelColor">#FFffffff</color> <!-- white -->
+	<color name="definitionBackColor">#00000000</color>
+	<color name="definitionForeColor">#00000000</color>
 
-	<color name="headBackColor">#FFffffff</color> <!-- white -->
-	<color name="headColor">#FF43486E</color> <!-- blue -->
+	<color name="exampleBackColor">#00000000</color>
+	<color name="exampleForeColor">#00000000</color>
 
-	<color name="dependentBackColor">#FFffffff</color> <!-- white -->
-	<color name="dependentColor">#FF006064</color> <!-- teal -->
+	<color name="dataBackColor">#00000000</color>
+	<color name="dataForeColor">#00000000</color>
 
+	<!--  PM -->
+	<color name="predicateNameBackColor">#00000000</color>
+	<color name="predicateNameForeColor">#00000000</color>
 
-	<color name="predicateBackColor">#BF360C</color> <!-- red orange -->
-	<color name="predicateColor">#FFffffff</color> <!-- white -->
+	<color name="roleAliasBackColor">#00000000</color>
+	<color name="roleAliasForeColor">#00000000</color>
 
-	<color name="subjectBackColor">#BCDADA</color> <!-- light_blue -->
-	<color name="subjectColor">#FF000000</color> <!-- black -->
+	<!--  WN -->
+	<color name="lemmaBackColor">#00000000</color>
+	<color name="lemmaForeColor">#00000000</color>
 
-	<color name="objectBackColor">#FFdd80dd</color> <!-- light_magenta -->
-	<color name="objectColor">#FF000000</color> <!-- black -->
+	<color name="membersBackColor">#00000000</color>
+	<color name="membersForeColor">#00000000</color>
 
-	<color name="termModifierPredicateBackColor">#FFffffdd</color> <!-- extra light yellow -->
-	<color name="termModifierPredicateColor">#FF000000</color> <!-- black -->
+	<color name="wordBackColor">#00000000</color>
+	<color name="wordForeColor">#00000000</color>
 
-	<color name="predicateModifierPredicateBackColor">#FFffc0c0</color> <!-- lt_pink -->
-	<color name="predicateModifierPredicateColor">#FF000000</color> <!-- black -->
+	<!--  FN -->
+	<color name="feBackColor">#00000000</color>
+	<color name="feForeColor">#00000000</color>
+
+	<color name="feAbbrevBackColor">#00000000</color>
+	<color name="feAbbrevForeColor">#00000000</color>
+
+	<color name="fe2BackColor">#00000000</color>
+	<color name="fe2ForeColor">#00000000</color>
+
+	<color name="fenBackColor">#00000000</color>
+	<color name="fenForeColor">#00000000</color>
+
+	<color name="fenWithinDefBackColor">#00000000</color>
+	<color name="fenWithinDefForeColor">#00000000</color>
+
+	<color name="xfenBackColor">#00000000</color>
+	<color name="xfenForeColor">#00000000</color>
+
+	<color name="fexBackColor">#00000000</color>
+	<color name="fexForeColor">#00000000</color>
+
+	<color name="fexWithinDefBackColor">#00000000</color>
+	<color name="fexWithinDefForeColor">#00000000</color>
+
+	<color name="metaFrameDefinitionBackColor">#00000000</color>
+	<color name="metaFrameDefinitionForeColor">#00000000</color>
+
+	<color name="metaFeDefinitionBackColor">#00000000</color>
+	<color name="metaFeDefinitionForeColor">#00000000</color>
+
+	<color name="tag1BackColor">#00000000</color>
+	<color name="tag1ForeColor">#00000000</color>
+
+	<color name="tag2BackColor">#00000000</color>
+	<color name="tag2ForeColor">#00000000</color>
+
+	<color name="exBackColor">#00000000</color>
+	<color name="exForeColor">#00000000</color>
+
+	<color name="xBackColor">#00000000</color>
+	<color name="xForeColor">#00000000</color>
+
+	<color name="tBackColor">#00000000</color>
+	<color name="tForeColor">#00000000</color>
+
+	<color name="governorTypeBackColor">#00000000</color>
+	<color name="governorTypeForeColor">#00000000</color>
+
+	<color name="governorBackColor">#00000000</color>
+	<color name="governorForeColor">#00000000</color> 
+
+	<color name="annoSetBackColor">#00000000</color>
+	<color name="annoSetForeColor">#00000000</color>
+
+	<color name="layerTypeBackColor">#00000000</color>
+	<color name="layerTypeForeColor">#00000000</color>
+
+	<color name="labelBackColor">#00000000</color>
+	<color name="labelForeColor">#00000000</color>
+
+	<color name="subtextBackColor">#00000000</color>
+	<color name="subtextForeColor">#00000000</color>
+
+	<color name="groupBackColor">#00000000</color>
+	<color name="groupForeColor">#00000000</color>
+
+	<color name="targetBackColor">#00000000</color>
+	<color name="targetForeColor">#00000000</color>
+
+	<color name="targetHighlightTextBackColor">#00000000</color> 
+	<color name="targetHighlightTextForeColor">#00000000</color>
+
+	<color name="ptBackColor">#00000000</color>
+	<color name="ptForeColor">#00000000</color> 
+
+	<color name="gfBackColor">#00000000</color>
+	<color name="gfForeColor">#00000000</color>
+
+	<!--  VN -->
+	<color name="vnPredicateBackColor">#00000000</color>
+	<color name="vnPredicateForeColor">#00000000</color>
+
+	<color name="groupingBackColor">#00000000</color>
+	<color name="groupingForeColor">#00000000</color>
+
+	<color name="vnFrameBackColor">#00000000</color>
+	<color name="vnFrameForeColor">#00000000</color>
+
+	<color name="vnFrameSubnameBackColor">#00000000</color>
+	<color name="vnFrameSubnameForeColor">#00000000</color>
+
+	<color name="themroleBackColor">#00000000</color>
+	<color name="themroleForeColor">#00000000</color>
+
+	<color name="catBackColor">#00000000</color>
+	<color name="catForeColor">#00000000</color>
+
+	<color name="catValueBackColor">#00000000</color>
+	<color name="catValueForeColor">#00000000</color>
+
+	<color name="restrBackColor">#00000000</color>
+	<color name="restrForeColor">#00000000</color> 
+
+	<color name="constantBackColor">#00000000</color>
+	<color name="constantForeColor">#00000000</color>
+
+	<color name="eventBackColor">#00000000</color>
+	<color name="eventForeColor">#00000000</color>
+
+	<!--  PB -->
+	<color name="thetaBackColor">#00000000</color>
+	<color name="thetaForeColor">#00000000</color>
+
+	<color name="relationBackColor">#00000000</color>
+	<color name="relationForeColor">#00000000</color>
+
+	<!--  SN -->
+	<color name="collocationBackColor">#00000000</color>
+	<color name="collocationForeColor">#00000000</color>
+
+	<color name="word1BackColor">#00000000</color>
+	<color name="word1ForeColor">#00000000</color>
+
+	<color name="word2BackColor">#00000000</color>
+	<color name="word2ForeColor">#00000000</color>
+
+	<color name="definition1BackColor">#00000000</color>
+	<color name="definition1ForeColor">#00000000</color>
+
+	<color name="definition2BackColor">#00000000</color>
+	<color name="definition2ForeColor">#00000000</color>
+
+	<color name="idsBackColor">#00000000</color>
+	<color name="idsForeColor">#00000000</color>
+
+	<!--  BNC -->
+	<color name="bncHeaderBackColor">#00000000</color>
+	<color name="bncHeaderForeColor">#00000000</color>
+
+	<!--  SQL -->
+	<color name="sqlKeywordBackColor">#00000000</color>
+	<color name="sqlKeywordForeColor">#00000000</color>
+
+	<color name="sqlSlashBackColor">#00000000</color>
+	<color name="sqlSlashForeColor">#00000000</color>
+
+	<color name="sqlQuestionMarkBackColor">#00000000</color>
+	<color name="sqlQuestionMarkForeColor">#00000000</color>
+
+	<!--  REPORT -->
+
+	<color name="storageTypeBackColor">#00000000</color>
+	<color name="storageTypeForeColor">#00000000</color>
+
+	<color name="storageValueBackColor">#00000000</color>
+	<color name="storageValueForeColor">#00000000</color>
+
+	<color name="dirTypeBackColor">#00000000</color>
+	<color name="dirTypeForeColor">#00000000</color>
+
+	<color name="dirValueBackColor">#00000000</color>
+	<color name="dirValueForeColor">#00000000</color>
+
+	<color name="dirOkBackColor">#00000000</color>
+	<color name="dirOkForeColor">#00000000</color>
+
+	<color name="dirFailBackColor">#00000000</color> 
+	<color name="dirFailForeColor">#00000000</color>
 
 	<array name="palette">
-		<item>@color/rootBackColor</item>
-		<item>@color/rootColor</item>
-		<item>@color/labelBackColor</item>
-		<item>@color/labelColor</item>
-		<item>@color/headBackColor</item>
-		<item>@color/headColor</item>
-		<item>@color/dependentBackColor</item>
-		<item>@color/dependentColor</item>
 
-		<item>@color/predicateBackColor</item>
-		<item>@color/predicateColor</item>
-		<item>@color/subjectBackColor</item>
-		<item>@color/subjectColor</item>
-		<item>@color/objectBackColor</item>
-		<item>@color/objectColor</item>
-		<item>@color/termModifierPredicateBackColor</item>
-		<item>@color/termModifierPredicateColor</item>
-		<item>@color/predicateModifierPredicateBackColor</item>
-		<item>@color/predicateModifierPredicateColor</item>
+		<!--  TEXT -->
+		<item>@color/textBackColor</item>
+		<item>@color/textForeColor</item>
+
+		<item>@color/textNormalBackColor</item>
+		<item>@color/textNormalForeColor</item>
+
+		<item>@color/textHighlightBackColor</item>
+		<item>@color/textHighlightForeColor</item>
+
+		<item>@color/textDimmedBackColor</item>
+		<item>@color/textDimmedForeColor</item>
+
+		<item>@color/textMatchBackColor</item>
+		<item>@color/textMatchForeColor</item>
+
+		<!--  COMMON -->
+
+		<item>@color/classBackColor</item>
+		<item>@color/classForeColor</item>
+
+		<item>@color/roleBackColor</item>
+		<item>@color/roleForeColor</item>
+
+		<item>@color/memberBackColor</item>
+		<item>@color/memberForeColor</item>
+
+		<item>@color/definitionBackColor</item>
+		<item>@color/definitionForeColor</item>
+
+		<item>@color/exampleBackColor</item>
+		<item>@color/exampleForeColor</item>
+
+		<item>@color/dataBackColor</item>
+		<item>@color/dataForeColor</item>
+
+		<!--  PM -->
+		<item>@color/predicateNameBackColor</item>
+		<item>@color/predicateNameForeColor</item>
+
+		<item>@color/roleAliasBackColor</item>
+		<item>@color/roleAliasForeColor</item>
+
+		<!--  WN -->
+		<item>@color/lemmaBackColor</item>
+		<item>@color/lemmaForeColor</item>
+
+		<item>@color/membersBackColor</item>
+		<item>@color/membersForeColor</item>
+
+		<item>@color/wordBackColor</item>
+		<item>@color/wordForeColor</item>
+
+		<!--  FN -->
+		<item>@color/feBackColor</item>
+		<item>@color/feForeColor</item>
+
+		<item>@color/feAbbrevBackColor</item>
+		<item>@color/feAbbrevForeColor</item>
+
+		<item>@color/fe2BackColor</item>
+		<item>@color/fe2ForeColor</item>
+
+		<item>@color/fenBackColor</item>
+		<item>@color/fenForeColor</item>
+
+		<item>@color/fenWithinDefBackColor</item>
+		<item>@color/fenWithinDefForeColor</item>
+
+		<item>@color/xfenBackColor</item>
+		<item>@color/xfenForeColor</item>
+
+		<item>@color/fexBackColor</item>
+		<item>@color/fexForeColor</item>
+
+		<item>@color/fexWithinDefBackColor</item>
+		<item>@color/fexWithinDefForeColor</item>
+
+		<item>@color/metaFrameDefinitionBackColor</item>
+		<item>@color/metaFrameDefinitionForeColor</item>
+
+		<item>@color/metaFeDefinitionBackColor</item>
+		<item>@color/metaFeDefinitionForeColor</item>
+
+		<item>@color/tag1BackColor</item>
+		<item>@color/tag1ForeColor</item>
+
+		<item>@color/tag2BackColor</item>
+		<item>@color/tag2ForeColor</item>
+
+		<item>@color/exBackColor</item>
+		<item>@color/exForeColor</item>
+
+		<item>@color/xBackColor</item>
+		<item>@color/xForeColor</item>
+
+		<item>@color/tBackColor</item>
+		<item>@color/tForeColor</item>
+
+		<item>@color/governorTypeBackColor</item>
+		<item>@color/governorTypeForeColor</item>
+
+		<item>@color/governorBackColor</item>
+		<item>@color/governorForeColor</item>
+
+		<item>@color/annoSetBackColor</item>
+		<item>@color/annoSetForeColor</item>
+
+		<item>@color/layerTypeBackColor</item>
+		<item>@color/layerTypeForeColor</item>
+
+		<item>@color/labelBackColor</item>
+		<item>@color/labelForeColor</item>
+
+		<item>@color/subtextBackColor</item>
+		<item>@color/subtextForeColor</item>
+
+		<item>@color/groupBackColor</item>
+		<item>@color/groupForeColor</item>
+
+		<item>@color/targetBackColor</item>
+		<item>@color/targetForeColor</item>
+
+		<item>@color/targetHighlightTextBackColor</item>
+		<item>@color/targetHighlightTextForeColor</item>
+
+		<item>@color/ptBackColor</item>
+		<item>@color/ptForeColor</item>
+
+		<item>@color/gfBackColor</item>
+		<item>@color/gfForeColor</item>
+
+		<!--  VN -->
+		<item>@color/vnPredicateBackColor</item>
+		<item>@color/vnPredicateForeColor</item>
+
+		<item>@color/groupingBackColor</item>
+		<item>@color/groupingForeColor</item>
+
+		<item>@color/vnFrameBackColor</item>
+		<item>@color/vnFrameForeColor</item>
+
+		<item>@color/vnFrameSubnameBackColor</item>
+		<item>@color/vnFrameSubnameForeColor</item>
+
+		<item>@color/themroleBackColor</item>
+		<item>@color/themroleForeColor</item>
+
+		<item>@color/catBackColor</item>
+		<item>@color/catForeColor</item>
+
+		<item>@color/catValueBackColor</item>
+		<item>@color/catValueForeColor</item>
+
+		<item>@color/restrBackColor</item>
+		<item>@color/restrForeColor</item>
+
+		<item>@color/constantBackColor</item>
+		<item>@color/constantForeColor</item>
+
+		<item>@color/eventBackColor</item>
+		<item>@color/eventForeColor</item>
+
+		<!--  PB -->
+		<item>@color/thetaBackColor</item>
+		<item>@color/thetaForeColor</item>
+
+		<item>@color/relationBackColor</item>
+		<item>@color/relationForeColor</item>
+
+		<!--  SN -->
+		<item>@color/collocationBackColor</item>
+		<item>@color/collocationForeColor</item>
+
+		<item>@color/word1BackColor</item>
+		<item>@color/word1ForeColor</item>
+
+		<item>@color/word2BackColor</item>
+		<item>@color/word2ForeColor</item>
+
+		<item>@color/definition1BackColor</item>
+		<item>@color/definition1ForeColor</item>
+
+		<item>@color/definition2BackColor</item>
+		<item>@color/definition2ForeColor</item>
+
+		<item>@color/idsBackColor</item>
+		<item>@color/idsForeColor</item>
+
+		<!--  BNC -->
+		<item>@color/bncHeaderBackColor</item>
+		<item>@color/bncHeaderForeColor</item>
+
+		<!--  SQL -->
+		<item>@color/sqlKeywordBackColor</item>
+		<item>@color/sqlKeywordForeColor</item>
+
+		<item>@color/sqlSlashBackColor</item>
+		<item>@color/sqlSlashForeColor</item>
+
+		<item>@color/sqlQuestionMarkBackColor</item>
+		<item>@color/sqlQuestionMarkForeColor</item>
+
+		<!--  REPORT -->
+
+		<item>@color/storageTypeBackColor</item>
+		<item>@color/storageTypeForeColor</item>
+
+		<item>@color/storageValueBackColor</item>
+		<item>@color/storageValueForeColor</item>
+
+		<item>@color/dirTypeBackColor</item>
+		<item>@color/dirTypeForeColor</item>
+
+		<item>@color/dirValueBackColor</item>
+		<item>@color/dirValueForeColor</item>
+
+		<item>@color/dirOkBackColor</item>
+		<item>@color/dirOkForeColor</item>
+
+		<item>@color/dirFailBackColor</item>
+		<item>@color/dirFailForeColor</item>
+
 	</array>
 
 </resources>

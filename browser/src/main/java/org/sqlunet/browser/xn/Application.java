@@ -4,12 +4,15 @@
 
 package org.sqlunet.browser.xn;
 
+import org.sqlunet.style.Colors;
+
 public class Application extends android.app.Application
 {
 	@Override
 	public void onCreate()
 	{
 		super.onCreate();
+		Colors.setColorsFromResources(this);
 		Settings.initialize(this);
 	}
 }
