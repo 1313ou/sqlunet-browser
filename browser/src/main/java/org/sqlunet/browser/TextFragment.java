@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -17,7 +16,6 @@ import android.os.Parcelable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.DynamicDrawableSpan;
-import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
 import android.text.style.StyleSpan;
 import android.util.Log;
@@ -39,6 +37,7 @@ import org.sqlunet.propbank.browser.PbRoleSetActivity;
 import org.sqlunet.propbank.provider.PropBankContract;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.style.Colors;
+import org.sqlunet.style.Factories;
 import org.sqlunet.style.RegExprSpanner;
 import org.sqlunet.style.Spanner.SpanFactory;
 import org.sqlunet.verbnet.VnClassPointer;
@@ -68,14 +67,9 @@ public class TextFragment extends AbstractTableFragment
 	static private final String TAG = "TextF";
 
 	/**
-	 * Bold style factory
-	 */
-	static private final SpanFactory boldFactory = flags -> new Object[]{new StyleSpan(Typeface.BOLD)};
-
-	/**
 	 * Factories
 	 */
-	static private final SpanFactory[] factories = new SpanFactory[]{boldFactory,};
+	static private final SpanFactory[] factories = new SpanFactory[]{Factories.boldFactory,};
 
 	/**
 	 * Query argument
@@ -488,11 +482,11 @@ public class TextFragment extends AbstractTableFragment
 				sb.append(' ');
 				if (pattern.matcher(label).find())
 				{
-					append(sb, label, new ForegroundColorSpan(Colors.textMatchForeColor), new StyleSpan(Typeface.BOLD));
+					append(sb, label, Factories.spans(Colors.textMatchBackColor, Colors.textMatchForeColor, new StyleSpan(Typeface.BOLD)));
 				}
 				else
 				{
-					append(sb, label, new ForegroundColorSpan(Colors.textForeColor));
+					append(sb, label, Factories.spans(Colors.textBackColor, Colors.textForeColor));
 				}
 
 				labels.add(sb);

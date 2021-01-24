@@ -10,14 +10,13 @@
  */
 package org.sqlunet.sql;
 
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 
 import org.sqlunet.style.Colors;
+import org.sqlunet.style.Factories;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -500,7 +499,7 @@ public class SqlFormatter
 		{
 			if (this.style)
 			{
-				append(this.result, this.token, new ForegroundColorSpan(Colors.sqlKeywordForeColor), new StyleSpan(Typeface.BOLD));
+				append(this.result, this.token, Factories.spans(Colors.sqlKeywordBackColor, Colors.sqlKeywordForeColor, new StyleSpan(Typeface.BOLD)));
 			}
 			else
 			{
@@ -515,10 +514,10 @@ public class SqlFormatter
 				switch (this.token.charAt(0))
 				{
 					case '\'':
-						append(this.result, this.token, new ForegroundColorSpan(Colors.sqlSlashForeColor));
+						append(this.result, this.token, Factories.spans(Colors.sqlSlashBackColor, Colors.sqlSlashForeColor));
 						break;
 					case '?':
-						append(this.result, this.token, new ForegroundColorSpan(Colors.sqlQuestionMarkForeColor));
+						append(this.result, this.token, Factories.spans(Colors.sqlQuestionMarkBackColor, Colors.sqlQuestionMarkForeColor));
 						break;
 					default:
 						out();
