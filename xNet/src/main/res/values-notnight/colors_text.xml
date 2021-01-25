@@ -53,7 +53,6 @@
 	<color name="textMatchForeColor">#FF000000</color>
 
 	<!--  COMMON -->
-
 	<color name="classBackColor">#FF8b0000</color>
 	<color name="classForeColor">#FFffffff</color>
 
@@ -64,16 +63,16 @@
 	<color name="memberForeColor">#FFffffff</color>
 
 	<color name="definitionBackColor">#00000000</color>
-	<color name="definitionForeColor">#FF4682B4</color>
+	<color name="definitionForeColor">#FF4682b4</color>
 
-	<color name="exampleBackColor">#FFFFFFDD</color>
-	<color name="exampleForeColor">#FF000000</color>
+	<color name="exampleBackColor">#FFffffc0</color>
+	<color name="exampleForeColor">#FFcccccc</color>
 
 	<color name="dataBackColor">#00000000</color>
 	<color name="dataForeColor">#FF888888</color>
 
 	<!--  PM -->
-	<color name="predicateNameBackColor">#FFFFFF99</color>
+	<color name="predicateNameBackColor">#FFffff99</color>
 	<color name="predicateNameForeColor">#FF000000</color>
 
 	<color name="roleAliasBackColor">#FF4251bd</color>
@@ -108,17 +107,17 @@
 	<color name="xfenBackColor">#00000000</color>
 	<color name="xfenForeColor">#FFff00ff</color>
 
-	<color name="fexBackColor">#FFDD80DD</color>
+	<color name="fexBackColor">#FFdd80dd</color>
 	<color name="fexForeColor">#FFffffff</color>
 
 	<color name="fexWithinDefBackColor">#00000000</color>
 	<color name="fexWithinDefForeColor">#FF888888</color>
 
 	<color name="metaFrameDefinitionBackColor">#00000000</color>
-	<color name="metaFrameDefinitionForeColor">#FF8B0000</color>
+	<color name="metaFrameDefinitionForeColor">#FF8b0000</color>
 
 	<color name="metaFeDefinitionBackColor">#00000000</color>
-	<color name="metaFeDefinitionForeColor">#FF4682B4</color>
+	<color name="metaFeDefinitionForeColor">#FF4682b4</color>
 
 	<color name="tag1BackColor">#00000000</color>
 	<color name="tag1ForeColor">#FF00ff00</color>
@@ -144,16 +143,16 @@
 	<color name="annoSetBackColor">#00000000</color>
 	<color name="annoSetForeColor">#00000000</color>
 
-	<color name="layerTypeBackColor">#FFFFFF59</color>
+	<color name="layerTypeBackColor">#FFffff59</color>
 	<color name="layerTypeForeColor">#FF000000</color>
 
-	<color name="labelBackColor">#FFE9967A</color>
+	<color name="labelBackColor">#FFe9967a</color>
 	<color name="labelForeColor">#FFffffff</color>
 
 	<color name="subtextBackColor">#00000000</color>
 	<color name="subtextForeColor">#FF888888</color>
 
-	<color name="groupBackColor">#FFFFA500</color>
+	<color name="groupBackColor">#FFffa500</color>
 	<color name="groupForeColor">#FF000000</color>
 
 	<color name="targetBackColor">#FFff0000</color>
@@ -169,28 +168,28 @@
 	<color name="gfForeColor">#FF888888</color>
 
 	<!--  VN -->
-	<color name="vnPredicateBackColor">#FFFFA500</color>
+	<color name="vnPredicateBackColor">#FFffa500</color>
 	<color name="vnPredicateForeColor">#FFffffff</color>
 
 	<color name="groupingBackColor">#00000000</color>
 	<color name="groupingForeColor">#FFcccccc</color>
 
-	<color name="vnFrameBackColor">#FF6F4E37</color>
+	<color name="vnFrameBackColor">#FF6f4e37</color>
 	<color name="vnFrameForeColor">#FFffffff</color>
 
 	<color name="vnFrameSubnameBackColor">#FFcccccc</color>
 	<color name="vnFrameSubnameForeColor">#FFffffff</color>
 
-	<color name="themroleBackColor">#FFFFA500</color>
+	<color name="themroleBackColor">#FFffa500</color>
 	<color name="themroleForeColor">#FFffffff</color>
 
-	<color name="catBackColor">#FFFFE5B4</color>
+	<color name="catBackColor">#FFffe5b4</color>
 	<color name="catForeColor">#FF444444</color>
 
-	<color name="catValueBackColor">#FFDD80DD</color>
+	<color name="catValueBackColor">#FFdd80dd</color>
 	<color name="catValueForeColor">#FFffffff</color>
 
-	<color name="restrBackColor">#FFFFE5B4</color>
+	<color name="restrBackColor">#FFffe5b4</color>
 	<color name="restrForeColor">#FF444444</color> 
 
 	<color name="constantBackColor">#FFcccccc</color>
@@ -210,24 +209,24 @@
 	<color name="collocationBackColor">#FFffffff</color>
 	<color name="collocationForeColor">#FF444444</color>
 
-	<color name="word1BackColor">#FFE46D42</color>
+	<color name="word1BackColor">#FFe46d42</color>
 	<color name="word1ForeColor">#FFffffff</color>
 
-	<color name="word2BackColor">#FF76608B</color>
+	<color name="word2BackColor">#FF76608b</color>
 	<color name="word2ForeColor">#FFffffff</color>
 
 	<color name="definition1BackColor">#FFffffff</color>
-	<color name="definition1ForeColor">#FFE46D42</color>
+	<color name="definition1ForeColor">#FFe46d42</color>
 
 	<color name="definition2BackColor">#FFffffff</color>
-	<color name="definition2ForeColor">#FF76608B</color>
+	<color name="definition2ForeColor">#FF76608b</color>
 
 	<color name="idsBackColor">#00000000</color>
 	<color name="idsForeColor">#FF888888</color>
 
 	<!--  BNC -->
-	<color name="bncHeaderBackColor">#FFE9967A</color>
-	<color name="bncHeaderForeColor">#FFE9967A</color>
+	<color name="bncHeaderBackColor">#00000000</color>
+	<color name="bncHeaderForeColor">#FFe9967a</color>
 
 	<!--  SQL -->
 	<color name="sqlKeywordBackColor">#00000000</color>
@@ -241,22 +240,22 @@
 
 	<!--  REPORT -->
 
-	<color name="storageTypeBackColor">#FFE9967A</color>
+	<color name="storageTypeBackColor">#FFe9967a</color>
 	<color name="storageTypeForeColor">#FF000000</color>
 
 	<color name="storageValueBackColor">#00000000</color>
 	<color name="storageValueForeColor">#FF888888</color>
 
-	<color name="dirTypeBackColor">#FFFFFF99</color>
+	<color name="dirTypeBackColor">#FFffff99</color>
 	<color name="dirTypeForeColor">#FF000000</color>
 
 	<color name="dirValueBackColor">#00000000</color>
 	<color name="dirValueForeColor">#FF888888</color>
 
-	<color name="dirOkBackColor">#FF008B00</color>
+	<color name="dirOkBackColor">#FF008b00</color>
 	<color name="dirOkForeColor">#FF000000</color>
 
-	<color name="dirFailBackColor">#FF8B0000</color> 
+	<color name="dirFailBackColor">#FF8b0000</color>
 	<color name="dirFailForeColor">#FF000000</color>
 
 </resources>

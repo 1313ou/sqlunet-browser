@@ -1,35 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
 <resources>
 
 	<color name="primaryColor">#607d8b</color>
-	<color name="primaryLightColor">#8eacbb</color>
 	<color name="primaryDarkColor">#34515e</color>
+	<color name="primaryLightColor">#8eacbb</color>
+	<color name="accentColor">#d500f9</color>
+
 	<color name="secondaryColor">#d500f9</color>
 	<color name="secondaryLightColor">#ff5bff</color>
 	<color name="secondaryDarkColor">#9e00c5</color>
-	<color name="tertiaryForeColor">@android:color/white</color>
-	<!--
-	<color name="secondaryColor">#ff9800</color>
-	<color name="secondaryLightColor">#ffc947</color>
-	<color name="secondaryDarkColor">#c66900</color>
-	<color name="secondaryColor">#aeea00</color>
-	<color name="secondaryLightColor">#e4ff54</color>
-	<color name="secondaryDarkColor">#79b700</color>
-	<color name="secondaryColor">#c6ff00</color>
-	<color name="secondaryLightColor">#fdff58</color>
-	<color name="secondaryDarkColor">#90cc00</color>
-	-->
+
 	<color name="primaryForeColor">@android:color/white</color>
 	<color name="secondaryForeColor">#c0c0d0</color>
-
-	<color name="group_color">@color/secondaryColor</color>
-	<color name="group_fore_color">@color/primaryForeColor</color>
-
-	<!-- browse action bars -->
-	<color name="predicatematrix_actionbar_color">@color/primaryLightColor</color>
+	<color name="tertiaryForeColor">@android:color/white</color>
 
 </resources>

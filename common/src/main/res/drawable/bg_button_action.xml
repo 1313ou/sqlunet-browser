@@ -18,7 +18,7 @@
 			<!-- button background -->
 			<item android:left="0dp" android:top="0dp" android:gravity="center">
 				<shape android:shape="oval">
-					<solid android:color="@color/activated_color" />
+					<solid android:color="@color/secondaryLightColor" />
 					<size android:width="@dimen/action_button_diameter" android:height="@dimen/action_button_diameter" />
 				</shape>
 			</item>
@@ -41,7 +41,7 @@
 			<!-- button background -->
 			<item android:left="0dp" android:top="0dp" android:gravity="center">
 				<shape android:shape="oval">
-					<solid android:color="@color/action_button_color" />
+					<solid android:color="@color/secondaryColor" />
 					<size android:width="@dimen/action_button_diameter" android:height="@dimen/action_button_diameter" />
 				</shape>
 			</item>
