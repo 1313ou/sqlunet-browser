@@ -1,16 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
 <resources>
 
 	<color name="primaryColor">#fff59d</color>
-	<color name="primaryLightColor">#ffffcf</color>
 	<color name="primaryDarkColor">#cbc26d</color>
+	<color name="primaryLightColor">#ffffcf</color>
+	<color name="accentColor">#ef6c00</color>
+
 	<color name="secondaryColor">#ef6c00</color>
 	<color name="secondaryLightColor">#ff9d3f</color>
 	<color name="secondaryDarkColor">#b53d00</color>
+
 	<color name="primaryForeColor">@android:color/black</color>
 	<color name="secondaryForeColor">#808080</color>
 	<color name="tertiaryForeColor">@android:color/white</color>

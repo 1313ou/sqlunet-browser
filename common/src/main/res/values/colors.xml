@@ -4,57 +4,31 @@
 
 <resources>
 
-	<!-- R A W -->
+	<!-- F R A M E W O R K -->
 
-	<!-- grays -->
-	<!--<color name="light_gray_color">#FFC0C0C0</color>-->
-	<color name="middle_gray_color">#4A4848</color>
-	<color name="dark_gray_color">#FF303030</color>
-	<color name="shadow">#80202020</color>
+	<color name="primaryColor">#FF4251bd</color> <!-- framework, middle color in nav drawer background gradient, x selector header -->
+	<color name="primaryDarkColor">#FF293073</color> <!-- framework, end color in nav drawer gradient -->
+	<color name="primaryLightColor">#FF4251dd</color> <!-- end color in nav drawer gradient, pm action bar, browse action bar, search text action bar, major list item -->
 
-	<!-- light yellow -->
-	<!--<color name="light_yellow_color">#FFffff99</color>-->
+	<color name="accentColor">#FFef2063</color> <!-- framework, fabs, cased text color, app tile back in about,  -->
 
-	<!-- pink -->
-	<color name="pink_color">#FFef2063</color>
-	<color name="light_pink_color">#FFff60C0</color>
-	<color name="dark_pink_color">#FFcb0020</color>
-
-	<!-- red -->
-	<!--<color name="dark_red_color">#FFb32400</color>-->
-	<!--<color name="darker_red_color">#FF800000</color>-->
-
-	<!-- blue -->
-	<color name="blue_color">#FF4251bd</color>
-	<color name="dark_blue_color">#FF293073</color>
-	<color name="light_blue_color">#FF4251dd</color>
-
-	<!-- orange -->
-	<!--<color name="orange_color">#FFffa500</color>-->
-
-	<!-- violet -->
-	<!--<color name="violet_color">#FF990073</color>-->
-	<!--<color name="dark_violet_color">#FF400020</color>-->
-	<!--<color name="mauve_color">#FF806678</color>-->
-
-	<!-- green -->
-	<color name="dark_green_color">#FF008000</color>
+	<!-- text -->
+	<color name="textColorPrimary">@android:color/black </color> <!-- framework -->
+	<color name="textColorSecondary">@android:color/darker_gray</color> <!-- framework -->
 
 	<!-- B A S E -->
 
-	<color name="primaryColor">@color/blue_color</color>
-	<color name="primaryLightColor">@color/light_blue_color</color>
-	<color name="primaryDarkColor">@color/dark_blue_color</color>
-	<color name="secondaryColor">@color/pink_color</color>
-	<color name="secondaryLightColor">@color/light_pink_color</color>
-	<color name="secondaryDarkColor">@color/dark_pink_color</color>
-	<color name="primaryForeColor">@android:color/white</color>
-	<color name="secondaryForeColor">@color/middle_gray_color</color>
-	<color name="tertiaryForeColor">@android:color/white</color>
+	<!-- secondary -->
+	<color name="secondaryColor">#FFef2063</color> <!-- group color, action button, spinner, drawer item -->
+	<color name="secondaryLightColor">#FFff60C0</color> <!-- action button, drawer item,  swipe1 down, list item, status image back ground -->
+	<color name="secondaryDarkColor">#FFcb0020</color> <!-- swipe2 down -->
+
+	<!-- fore -->
+	<color name="primaryForeColor">@android:color/white</color> <!-- action bar fore color, action bar title fore color, dropdown fore color, drawer item fore, selected tab, list item major fore, group fore color -->
+	<color name="secondaryForeColor">#FF4a4848</color> <!-- overlay text color secondary, action bar subtitle fore color, list item fore color-->
+	<color name="tertiaryForeColor">@android:color/white</color> <!-- task spinner item fore, ok drawable -->
 
 	<!-- D E R I V E D -->
-
-	<color name="accentColor">@color/secondaryColor</color>
 
 	<!-- action bar -->
 	<color name="actionbar_color">@color/primaryColor</color>
@@ -66,26 +40,21 @@
 	<!-- browse action bars -->
 	<color name="browse_actionbar_color">@color/primaryLightColor</color>
 	<color name="searchtext_actionbar_color">@color/primaryLightColor</color>
-	<!--
-	<color name="browse_actionbar_color">@color/violet_color</color>
-	<color name="predicatematrix_actionbar_color">@color/mauve_color</color>
-	<color name="searchtext_actionbar_color">@color/dark_red_color</color>
-	-->
 
 	<!-- special -->
-	<color name="activated_color">@color/secondaryLightColor</color>
-	<color name="enhance_color">@color/secondaryLightColor</color>
 	<color name="home_color">@color/primaryColor</color>
-
-	<!-- button -->
-	<color name="action_button_color">@color/secondaryColor</color>
-	<color name="info_button_color">@color/blue_color</color>
-	<color name="info_button_activated_color">@color/light_blue_color</color>
-	<color name="ok_button_color">@color/dark_green_color</color>
-	<color name="err_button_color">@color/dark_red_color</color>
 
 	<!-- swipe down refresh -->
 	<color name="swipe_down_1_color">@color/secondaryLightColor</color>
 	<color name="swipe_down_2_color">@color/secondaryDarkColor</color>
+
+	<!-- button -->
+	<color name="info_button_color">#FF4251bd</color>
+	<color name="info_button_activated_color">#FF4251dd</color>
+	<color name="ok_button_color">#FF008000</color>
+	<color name="err_button_color">@color/dark_red_color</color>
+
+	<!-- shadow -->
+	<color name="shadow">#80202020</color>
 
 </resources>
