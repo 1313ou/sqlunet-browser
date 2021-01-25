@@ -7,11 +7,12 @@
 	<color name="primaryColor">#76608B</color>
 	<color name="primaryDarkColor">#45345E</color>
 	<color name="primaryLightColor">#AA8EBB</color>
-	<color name="accentColor">#E46D42</color>
+	<color name="onPrimaryColor">@android:color/white </color>
 
 	<color name="secondaryColor">#E46D42</color>
 	<color name="secondaryLightColor">#E19174</color>
 	<color name="secondaryDarkColor">#CA481A</color>
+	<color name="onSecondaryColor">@android:color/white </color>
 
 	<color name="tertiaryForeColor">@android:color/white</color>color
 	<color name="primaryForeColor">@android:color/white</color>
