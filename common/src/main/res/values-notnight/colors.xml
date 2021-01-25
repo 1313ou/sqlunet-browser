@@ -9,19 +9,19 @@
 	<color name="primaryColor">#FF4251bd</color>
 	<color name="primaryDarkColor">#FF293073</color>
 	<color name="primaryLightColor">#FF4251dd</color>
+	<color name="onPrimaryColor">@android:color/white </color>
 
-	<color name="accentColor">#FFef2063</color>
+	<!-- secondary -->
+	<color name="secondaryColor">#FFef2063</color>
+	<color name="secondaryLightColor">#FFff60C0</color>
+	<color name="secondaryDarkColor">#FFcb0020</color>
+	<color name="onSecondaryColor">@android:color/white </color>
 
 	<!-- text -->
 	<color name="textColorPrimary">@android:color/black </color>
 	<color name="textColorSecondary">@android:color/darker_gray</color>
 
 	<!-- B A S E -->
-
-	<!-- secondary -->
-	<color name="secondaryColor">#FFef2063</color>
-	<color name="secondaryLightColor">#FFff60C0</color>
-	<color name="secondaryDarkColor">#FFcb0020</color>
 
 	<!-- fore -->
 	<color name="primaryForeColor">@android:color/white</color>

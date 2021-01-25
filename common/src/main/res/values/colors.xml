@@ -6,11 +6,17 @@
 
 	<!-- F R A M E W O R K -->
 
+	<!-- primary -->
 	<color name="primaryColor">#FF4251bd</color> <!-- framework, middle color in nav drawer background gradient, x selector header -->
 	<color name="primaryDarkColor">#FF293073</color> <!-- framework, end color in nav drawer gradient -->
 	<color name="primaryLightColor">#FF4251dd</color> <!-- end color in nav drawer gradient, pm action bar, browse action bar, search text action bar, major list item -->
+	<color name="onPrimaryColor">@android:color/white </color> <!-- framework -->
 
-	<color name="accentColor">#FFef2063</color> <!-- framework, fabs, cased text color, app tile back in about,  -->
+	<!-- secondary -->
+	<color name="secondaryColor">#FFef2063</color> <!-- group color, action button, spinner, drawer item -->
+	<color name="secondaryLightColor">#FFff60C0</color> <!-- action button, drawer item,  swipe1 down, list item, status image back ground -->
+	<color name="secondaryDarkColor">#FFcb0020</color> <!-- swipe2 down -->
+	<color name="onSecondaryColor">@android:color/white </color> <!-- framework -->
 
 	<!-- text -->
 	<color name="textColorPrimary">@android:color/black </color> <!-- framework -->
@@ -18,17 +24,15 @@
 
 	<!-- B A S E -->
 
-	<!-- secondary -->
-	<color name="secondaryColor">#FFef2063</color> <!-- group color, action button, spinner, drawer item -->
-	<color name="secondaryLightColor">#FFff60C0</color> <!-- action button, drawer item,  swipe1 down, list item, status image back ground -->
-	<color name="secondaryDarkColor">#FFcb0020</color> <!-- swipe2 down -->
-
 	<!-- fore -->
 	<color name="primaryForeColor">@android:color/white</color> <!-- action bar fore color, action bar title fore color, dropdown fore color, drawer item fore, selected tab, list item major fore, group fore color -->
 	<color name="secondaryForeColor">#FF4a4848</color> <!-- overlay text color secondary, action bar subtitle fore color, list item fore color-->
 	<color name="tertiaryForeColor">@android:color/white</color> <!-- task spinner item fore, ok drawable -->
 
 	<!-- D E R I V E D -->
+
+	<!-- accent -->
+	<color name="accentColor">#FFef2063</color> <!-- framework, fabs, cased text color, app tile back in about,  -->
 
 	<!-- action bar -->
 	<color name="actionbar_color">@color/primaryColor</color>
