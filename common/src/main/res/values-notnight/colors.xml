@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+
+	<!-- F R A M E W O R K -->
+
+	<color name="primaryColor">#FF4251bd</color>
+	<color name="primaryDarkColor">#FF293073</color>
+	<color name="primaryLightColor">#FF4251dd</color>
+
+	<color name="accentColor">#FFef2063</color>
+
+	<!-- text -->
+	<color name="textColorPrimary">@android:color/black </color>
+	<color name="textColorSecondary">@android:color/darker_gray</color>
+
+	<!-- B A S E -->
+
+	<!-- secondary -->
+	<color name="secondaryColor">#FFef2063</color>
+	<color name="secondaryLightColor">#FFff60C0</color>
+	<color name="secondaryDarkColor">#FFcb0020</color>
+
+	<!-- fore -->
+	<color name="primaryForeColor">@android:color/white</color>
+	<color name="secondaryForeColor">#FF4a4848</color>
+	<color name="tertiaryForeColor">@android:color/white</color>
+
+	<!-- shadow -->
+	<color name="shadow">#80202020</color>
+
+</resources>
