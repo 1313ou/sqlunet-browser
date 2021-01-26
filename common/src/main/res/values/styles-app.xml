@@ -37,19 +37,17 @@
 		<item name="android:paddingBottom">@dimen/listitem_vertical_padding</item>
 		<item name="android:gravity">center_vertical</item>
 		<item name="android:textIsSelectable">true</item>
-		<item name="android:textColor">@color/secondaryForeColor</item>
 		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
 		<item name="android:ellipsize">end</item>
 	</style>
 
 	<style name="ListItemColumn.Minor">
 		<item name="android:textAppearance">?attr/textAppearanceListItemSmall</item>
-		<item name="android:textColor">@color/secondaryForeColor</item>
 	</style>
 
 	<style name="ListItemColumn.Major">
 		<item name="android:background">@color/primaryLightColor</item>
-		<item name="android:textColor">@color/primaryForeColor</item>
+		<item name="android:textColor">@color/onPrimaryColor</item>
 	</style>
 
 	<!-- S E A R C H -->

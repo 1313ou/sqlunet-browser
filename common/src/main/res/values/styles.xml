@@ -13,44 +13,44 @@
 
 	<!-- Toolbar -->
 	<style name="MyToolbar" parent="Widget.AppCompat.Toolbar">
-		<item name="android:background">@color/actionbar_color</item>
+		<item name="android:background">?attr/colorPrimary</item>
 	</style>
 
 	<!-- Action bar -->
 	<style name="MyActionBar" parent="Widget.AppCompat.ActionBar">
-		<item name="android:background">@color/actionbar_color</item> <!-- whole actionbar background -->
+		<item name="android:background">?attr/colorPrimary</item> <!-- whole actionbar background -->
 	</style>
 
 	<!-- ActionBar Overlay -->
 	<style name="MyActionBarOverlay" parent="MyActionBarBaseOverlay">
 		<item name="android:background">@null</item> <!-- menu overflow, search view, title, subtitle backgrounds -->
-		<item name="android:textColorPrimary">@color/actionbar_fore_color</item> <!-- search view foreground -->
-		<item name="titleTextColor">@color/primaryForeColor</item> <!-- title foreground -->
-		<item name="subtitleTextColor">@color/secondaryForeColor</item> <!-- subtitle foreground -->
-		<item name="colorControlNormal">@color/actionbar_fore_color</item> <!-- pictograms (menu overflow, search magnifying glass, navigation) -->
+		<item name="android:textColorPrimary">?attr/colorOnPrimary</item> <!-- search view foreground -->
+		<item name="titleTextColor">?attr/colorOnPrimary</item> <!-- title foreground -->
+		<item name="subtitleTextColor">?attr/colorHighlightOnPrimary</item> <!-- subtitle foreground -->
+		<item name="colorControlNormal">?attr/colorOnPrimary</item> <!-- pictograms (menu overflow, search magnifying glass, navigation) -->
 	</style>
 
 	<!-- Overlay -->
 	<style name="MyOverlay" parent="MyBaseOverlay">
-		<item name="android:background">@color/actionbar_color</item>item> <!-- submenu background -->
-		<item name="android:textColorPrimary">@color/actionbar_fore_color</item>item> <!-- item foreground -->
-		<item name="android:textColorSecondary">@color/actionbar_secondary_fore_color</item> <!-- submenu item foreground -->
+		<item name="android:background">?attr/colorPrimary</item>item> <!-- submenu background -->
+		<item name="android:textColorPrimary">?attr/colorOnPrimary</item>item> <!-- item foreground -->
+		<item name="android:textColorSecondary">?attr/colorHighlightOnPrimary</item> <!-- submenu item foreground -->
 	</style>
 
 	<!-- Dropdown list -->
 	<style name="MyDropDownListViewStyle" parent="Widget.AppCompat.ListView.DropDown">
-		<item name="android:background">@color/dropdown_color</item>
+		<item name="android:background">?attr/colorPrimary</item>
 	</style>
 
 	<!-- Dropdown item -->
 	<style name="MyDropDownItemStyle" parent="Widget.AppCompat.DropDownItem.Spinner">
-		<item name="android:textColor">@color/dropdown_fore_color</item>
+		<item name="android:textColor">?attr/colorOnPrimary</item>
 		<item name="android:textSize">14sp</item>
 	</style>
 
 	<!-- Autocomplete -->
 	<style name="MyAutoCompleteTextViewStyle" parent="Widget.AppCompat.Light.AutoCompleteTextView">
-		<item name="android:popupBackground">@color/dropdown_color</item>
+		<item name="android:popupBackground">?attr/colorPrimary</item>
 	</style>
 
 </resources>

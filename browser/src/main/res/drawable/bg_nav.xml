@@ -4,8 +4,8 @@
 	tools:keep="@drawable/bg_nav">
 	<gradient
 		android:angle="135"
-		android:centerColor="@color/primaryColor"
-		android:endColor="@color/primaryDarkColor"
-		android:startColor="@color/primaryLightColor"
+		android:centerColor="?attr/colorPrimary"
+		android:endColor="?attr/colorPrimaryDark"
+		android:startColor="?attr/colorPrimaryVariant"
 		android:type="linear" />
 </shape>

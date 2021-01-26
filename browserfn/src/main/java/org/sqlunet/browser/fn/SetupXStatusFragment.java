@@ -134,7 +134,7 @@ public class SetupXStatusFragment extends org.sqlunet.browser.config.SetupStatus
 			{
 				// images
 				final Drawable okDrawable = ColorUtils.getDrawable(context, R.drawable.ic_ok);
-				ColorUtils.tint(ColorUtils.getColor(context, R.color.tertiaryForeColor), okDrawable);
+				ColorUtils.tint(ColorUtils.getColor(context, R.color.onSecondaryColor), okDrawable);
 				final Drawable failDrawable = ColorUtils.getDrawable(context, org.sqlunet.browser.common.R.drawable.ic_fail);
 
 				final boolean existsTsFn = (status & Status.EXISTS_TS_FN) != 0;

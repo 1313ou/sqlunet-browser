@@ -14,19 +14,9 @@
 	<!-- secondary -->
 	<color name="secondaryColor">#FFef2063</color>
 	<color name="secondaryLightColor">#FFff60C0</color>
-	<color name="secondaryDarkColor">#FFcb0020</color>
 	<color name="onSecondaryColor">@android:color/white </color>
 
-	<!-- text -->
-	<color name="textColorPrimary">@android:color/black </color>
-	<color name="textColorSecondary">@android:color/darker_gray</color>
-
 	<!-- B A S E -->
-
-	<!-- fore -->
-	<color name="primaryForeColor">@android:color/white</color>
-	<color name="secondaryForeColor">#FF4a4848</color>
-	<color name="tertiaryForeColor">@android:color/white</color>
 
 	<!-- shadow -->
 	<color name="shadow">#80202020</color>

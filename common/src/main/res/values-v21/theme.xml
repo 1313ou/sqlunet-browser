@@ -7,9 +7,9 @@
 
 	<style name="MyXBaseTheme" parent="MyBaseTheme">
 
-		<item name="android:colorPrimary">@color/primaryColor</item>
-		<item name="android:colorPrimaryDark">@color/primaryDarkColor</item>
-		<item name="android:colorAccent">@color/accentColor</item>
+		<item name="android:colorPrimary">?attr/colorPrimary</item>
+		<item name="android:colorPrimaryDark">?attr/colorPrimaryDark</item>
+		<item name="android:colorAccent">?attr/colorSecondary</item>
 
 		<!-- toolbar/action bar -->
 		<item name="toolbarStyle">@style/MyToolbar</item>

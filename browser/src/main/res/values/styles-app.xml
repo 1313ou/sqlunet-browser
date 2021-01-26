@@ -7,29 +7,10 @@
 
 	<!--S E L E C T O R S -->
 
-<!--	<style name="Label.Members"/>-->
-
-<!--	<style name="Label.Definition"/>-->
-
-<!--	<style name="Label.Samples"/>-->
-
-<!--	<style name="Label.SemLinks"/>-->
-
-<!--	<style name="Label.LexLinks"/>-->
-
-<!--	<style name="Label.VerbFrames"/>-->
-
-<!--	<style name="Label.VerbSentenceFrames"/>-->
-
-<!--	<style name="Label.Morphology"/>-->
-
-<!--	<style name="Label.AdjPosition"/>-->
-
-<!--	<style name="Label.Source"/>-->
-
 	<style name="Label.Group">
 		<item name="android:padding">8dp</item>
-		<item name="android:background">@color/group_color</item>
+		<item name="android:background">@color/secondaryColor</item>
+		<item name="android:textColor">@color/onSecondaryColor</item>
 	</style>
 
 	<style name="Label.GroupIcon">
@@ -39,7 +20,8 @@
 
 	<style name="Label.GroupName">
 		<item name="android:textSize">20sp</item>
-		<item name="android:textColor">@color/group_fore_color</item>
+		<item name="android:background">@color/secondaryColor</item>
+		<item name="android:textColor">@color/onSecondaryColor</item>
 		<item name="android:paddingLeft">2dp</item>
 		<item name="android:paddingStart">2dp</item>
 	</style>
@@ -51,7 +33,7 @@
 
 	<style name="Data.SenseNum">
 		<item name="android:maxLines">1</item>
-		<item name="android:textColor">#808080</item>
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
 		<item name="android:textSize">10sp</item>
 	</style>
 
@@ -62,55 +44,41 @@
 	</style>
 
 	<style name="Data.Cased">
-		<item name="android:textColor">@color/accentColor</item>
+		<item name="android:textColor">?attr/colorHighlightOnBackground</item>
 		<item name="android:textSize">12sp</item>
 	</style>
 
 	<style name="Data.TagCount">
-		<item name="android:textColor">#808080</item>
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
 		<item name="android:textSize">12sp</item>
 	</style>
 
 	<style name="Data.SenseKey">
-		<item name="android:textColor">#808080</item>
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
 		<item name="android:textSize">10sp</item>
 	</style>
 
 	<style name="Data.LexId">
-		<item name="android:textColor">#808080</item>
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
 		<item name="android:textSize">10sp</item>
 	</style>
 
 	<style name="Data.WordId">
-		<item name="android:textColor">#808080</item>
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
 		<item name="android:textSize">10sp</item>
 	</style>
 
 	<style name="Data.SenseId">
-		<item name="android:textColor">#808080</item>
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
 		<item name="android:textSize">10sp</item>
 	</style>
 
 	<style name="Data.SynsetId">
-		<item name="android:textColor">#808080</item>
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
 		<item name="android:textSize">10sp</item>
 	</style>
 
 	<style name="Data.Definition"/>
-
-<!--	<style name="Data.Samples"/>-->
-
-<!--	<style name="Data.SemLinks"/>-->
-
-<!--	<style name="Data.LexLinks"/>-->
-
-<!--	<style name="Data.VerbFrames"/>-->
-
-<!--	<style name="Data.VerbSentenceFrames"/>-->
-
-<!--	<style name="Data.Morphology"/>-->
-
-<!--	<style name="Data.AdjPosition"/>-->
 
 	<style name="Data.XSources">
 		<item name="android:textColor">#FF202020</item>

@@ -4,18 +4,14 @@
 
 <resources>
 
-	<color name="primaryColor">#607d8b</color>
-	<color name="primaryDarkColor">#34515e</color>
-	<color name="primaryLightColor">#8eacbb</color>
-	<color name="onPrimaryColor">@android:color/white </color>
+	<color name="primaryColor">#FF607d8b</color>
+	<color name="primaryDarkColor">#FF34515e</color>
+	<color name="primaryLightColor">#FF8eacbb</color>
+	<color name="onPrimaryColor">#FFcccccc</color>
+	<color name="highLightOnPrimaryColor">@android:color/white</color>
 
 	<color name="secondaryColor">#d500f9</color>
 	<color name="secondaryLightColor">#ff5bff</color>
-	<color name="secondaryDarkColor">#9e00c5</color>
-	<color name="onSecondaryColor">@android:color/white </color>
-
-	<color name="primaryForeColor">@android:color/white</color>
-	<color name="secondaryForeColor">#c0c0d0</color>
-	<color name="tertiaryForeColor">@android:color/white</color>
+	<color name="onSecondaryColor">@android:color/white</color>
 
 </resources>

@@ -33,8 +33,14 @@ import android.widget.TextView;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.Settings;
 
+import androidx.annotation.AttrRes;
+import androidx.annotation.ColorRes;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.MenuRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -69,14 +75,19 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 
 	// R E S O U R C E S
 
+	@LayoutRes
 	int layoutId;
 
+	@MenuRes
 	int menuId;
 
-	int colorId;
+	@AttrRes
+	int colorAttrId;
 
+	@StringRes
 	int spinnerLabels;
 
+	@DrawableRes
 	int spinnerIcons;
 
 	// C R E A T I O N
@@ -181,7 +192,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		actionBar.setSubtitle(R.string.app_subname);
 
 		// background
-		final int color = ColorUtils.getColor(activity, this.colorId);
+		final int color = ColorUtils.fetchColor(activity, this.colorAttrId);
 		actionBar.setBackgroundDrawable(new ColorDrawable(color));
 
 		// action bar customized view
@@ -198,11 +209,6 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 
 		// set up the action bar to show a custom layout
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
-		// actionBar.setDisplayShowCustomEnabled(true);
-		// actionBar.setDisplayShowHomeEnabled(true);
-		// actionBar.setDisplayHomeAsUpEnabled(true);
-		// actionBar.setDisplayShowTitleEnabled(false);
-
 	}
 
 	// S P I N N E R
@@ -254,7 +260,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 				textView.setText("");
 				int resId = modeIcons[position];
 
-				final int color = ColorUtils.getColor(context, R.color.actionbar_fore_color);
+				final int color = ColorUtils.fetchColor(context, R.attr.colorOnPrimary);
 				final Drawable drawable = ColorUtils.getDrawable(context, resId);
 				ColorUtils.tint(color, drawable);
 
@@ -274,7 +280,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 				textView.setText(rowItem);
 				int resId = modeIcons[position];
 
-				final int color = ColorUtils.getColor(context, R.color.actionbar_fore_color);
+				final int color = ColorUtils.fetchColor(context, R.attr.colorOnPrimary);
 				final Drawable drawable = ColorUtils.getDrawable(context, resId);
 				ColorUtils.tint(color, drawable);
 
