@@ -65,7 +65,7 @@ public class BrowseFragment extends BaseSearchFragment
 	{
 		this.layoutId = R.layout.fragment_browse;
 		this.menuId = R.menu.browse;
-		this.colorId = R.color.browse_actionbar_color;
+		this.colorAttrId = R.attr.colorPrimary;
 		this.spinnerLabels = R.array.selectors_names;
 		this.spinnerIcons = R.array.selectors_icons;
 	}

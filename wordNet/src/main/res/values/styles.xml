@@ -52,42 +52,42 @@
 
 	<style name="Data.WnSenseNum">
 		<item name="android:maxLines">1</item>
-		<item name="android:textColor">#FF808080</item>
+		<item name="android:textColor">?attr/textColorDimmed</item>
 		<item name="android:textSize">12sp</item>
 	</style>
 
 	<style name="Data.WnCased">
-		<item name="android:textColor">#0000FF</item>
+		<item name="android:textColor">?attr/textColorHighlight</item>
 		<item name="android:textSize">12sp</item>
 	</style>
 
 	<style name="Data.WnTagCount">
-		<item name="android:textColor">#FF808080</item>
+		<item name="android:textColor">?attr/textColorDimmed</item>
 		<item name="android:textSize">12sp</item>
 	</style>
 
 	<style name="Data.WnSenseKey">
-		<item name="android:textColor">#FF808080</item>
+		<item name="android:textColor">?attr/textColorDimmed</item>
 		<item name="android:textSize">12sp</item>
 	</style>
 
 	<style name="Data.WnLexId">
-		<item name="android:textColor">#FF808080</item>
+		<item name="android:textColor">?attr/textColorDimmed</item>
 		<item name="android:textSize">12sp</item>
 	</style>
 
 	<style name="Data.WnWordId">
-		<item name="android:textColor">#808080</item>
+		<item name="android:textColor">?attr/textColorDimmed</item>
 		<item name="android:textSize">10sp</item>
 	</style>
 
 	<style name="Data.WnSenseId">
-		<item name="android:textColor">#808080</item>
+		<item name="android:textColor">?attr/textColorDimmed</item>
 		<item name="android:textSize">10sp</item>
 	</style>
 
 	<style name="Data.WnSynsetId">
-		<item name="android:textColor">#FF808080</item>
+		<item name="android:textColor">?attr/textColorDimmed</item>
 		<item name="android:textSize">10sp</item>
 	</style>
 
