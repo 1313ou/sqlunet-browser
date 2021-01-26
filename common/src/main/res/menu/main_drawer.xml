@@ -18,37 +18,40 @@
 			android:title="@string/nav_search_text" />
 	</group>
 
-	<item android:title="@string/nav_utils">
-		<menu>
-			<item
-				android:id="@+id/nav_status"
-				android:icon="@drawable/ic_status"
-				android:title="@string/nav_status" />
-			<item
-				android:id="@+id/nav_setup"
-				android:icon="@drawable/ic_setup"
-				android:title="@string/nav_setup" />
-			<item
-				android:id="@+id/nav_storage"
-				android:icon="@drawable/ic_storage"
-				android:title="@string/nav_storage" />
-			<item
-				android:id="@+id/nav_settings"
-				android:icon="@drawable/ic_settings"
-				android:title="@string/nav_settings" />
-			<item
-				android:id="@+id/nav_sql"
-				android:icon="@drawable/ic_sql"
-				android:title="@string/nav_sql" />
-			<item
-				android:id="@+id/nav_help"
-				android:icon="@drawable/ic_help"
-				android:title="@string/nav_help" />
-			<item
-				android:id="@+id/nav_about"
-				android:icon="@drawable/ic_about"
-				android:title="@string/nav_about" />
-		</menu>
-	</item>
+	<!--	<item>-->
+	<!--		android:title="@string/nav_utils"-->
+	<!--		<menu>-->
+	<group>
+		<item
+			android:id="@+id/nav_status"
+			android:icon="@drawable/ic_status"
+			android:title="@string/nav_status" />
+		<item
+			android:id="@+id/nav_setup"
+			android:icon="@drawable/ic_setup"
+			android:title="@string/nav_setup" />
+		<item
+			android:id="@+id/nav_storage"
+			android:icon="@drawable/ic_storage"
+			android:title="@string/nav_storage" />
+		<item
+			android:id="@+id/nav_settings"
+			android:icon="@drawable/ic_settings"
+			android:title="@string/nav_settings" />
+		<item
+			android:id="@+id/nav_sql"
+			android:icon="@drawable/ic_sql"
+			android:title="@string/nav_sql" />
+		<item
+			android:id="@+id/nav_help"
+			android:icon="@drawable/ic_help"
+			android:title="@string/nav_help" />
+		<item
+			android:id="@+id/nav_about"
+			android:icon="@drawable/ic_about"
+			android:title="@string/nav_about" />
+	</group>
+	<!--		</menu>-->
+	<!--	</item>-->
 
 </menu>

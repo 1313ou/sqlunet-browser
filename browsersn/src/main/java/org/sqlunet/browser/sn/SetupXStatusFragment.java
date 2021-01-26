@@ -135,7 +135,7 @@ public class SetupXStatusFragment extends org.sqlunet.browser.config.SetupStatus
 
 				// images
 				final Drawable okDrawable = ColorUtils.getDrawable(context, R.drawable.ic_ok);
-				ColorUtils.tint(ColorUtils.getColor(context, R.color.tertiaryForeColor), okDrawable);
+				ColorUtils.tint(ColorUtils.getColor(context, R.color.onSecondaryColor), okDrawable);
 				final Drawable failDrawable = ColorUtils.getDrawable(context, R.drawable.ic_fail);
 
 				this.imageTextSearchWn.setImageDrawable(existsTsWn ? okDrawable : failDrawable);

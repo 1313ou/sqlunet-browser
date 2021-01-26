@@ -7,15 +7,6 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 	<item>
 		<layer-list>
-			<!--
-			<item>
-				<shape>
-					<stroke android:width="1dp" android:color="#FFffffff"/>
-					<corners android:radius="4dp"/>
-					<padding android:bottom="3dp" android:left="3dp" android:right="3dp" android:top="3dp"/>
-				</shape>
-			</item>
-			-->
 			<item>
 				<shape android:shape="rectangle">
 					<solid android:color="@color/secondaryColor"/>
@@ -25,7 +16,7 @@
 			</item>
 
 			<item>
-				<bitmap android:gravity="bottom|right" android:src="@drawable/ic_spinner_arrow"/>
+				<bitmap android:gravity="bottom|right" android:src="@drawable/ic_spinner_arrow" android:tint="@color/onSecondaryColor"/>
 			</item>
 		</layer-list>
 	</item>

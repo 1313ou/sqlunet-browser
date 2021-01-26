@@ -20,8 +20,8 @@
 			android:id="@+id/tablayout"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			app:tabSelectedTextColor="@color/primaryForeColor"
-			app:tabTextColor="@color/secondaryForeColor"
+			app:tabSelectedTextColor="@color/highLightOnPrimaryColor"
+			app:tabTextColor="@color/onPrimaryColor"
 			app:layout_scrollFlags="scroll|enterAlways"/>
 
 	</com.google.android.material.appbar.AppBarLayout>
@@ -33,17 +33,6 @@
 		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
 		tools:context="org.sqlunet.browser.config.SetupActivity">
 
-		<!--
-		<android.support.v4.view.PagerTitleStrip
-			android:id="@+id/pager_title_strip"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_gravity="top"
-			android:background="#33b5e5"
-			android:paddingBottom="5dp"
-			android:paddingTop="5dp"
-			android:textColor="#fff"/>
-		-->
 	</androidx.viewpager.widget.ViewPager>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

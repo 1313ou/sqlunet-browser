@@ -4,29 +4,19 @@
 
 <resources>
 
-	<!-- F R A M E W O R K -->
-
-	<color name="primaryColor">#FF4251bd</color>
-	<color name="primaryDarkColor">#FF293073</color>
-	<color name="primaryLightColor">#FF4251dd</color>
-	<color name="onPrimaryColor">@android:color/white </color>
+	<!-- primary -->
+	<color name="primaryColor">#FF4251bd</color> <!-- framework + nav (middle in gradient), x selector header -->
+	<color name="primaryDarkColor">#FF293073</color> <!-- framework + nav (end in gradient) -->
+	<color name="primaryLightColor">#FF4251dd</color> <!-- framework + nav (start in gradient), browse action bar, search text action bar, pm action bar, major list item -->
+	<color name="onPrimaryColor">#FFcccccc</color> <!-- framework + nav, tabs -->
+	<color name="highLightOnPrimaryColor">@android:color/white</color> <!-- framework + nav, tabs-->
 
 	<!-- secondary -->
 	<color name="secondaryColor">#FFef2063</color>
 	<color name="secondaryLightColor">#FFff60C0</color>
-	<color name="secondaryDarkColor">#FFcb0020</color>
 	<color name="onSecondaryColor">@android:color/white </color>
 
-	<!-- text -->
-	<color name="textColorPrimary">@android:color/white </color>
-	<color name="textColorSecondary">@android:color/darker_gray</color>
-
 	<!-- B A S E -->
-
-	<!-- fore -->
-	<color name="primaryForeColor">@android:color/white</color>
-	<color name="secondaryForeColor">#FF4a4848</color>
-	<color name="tertiaryForeColor">@android:color/white</color>
 
 	<!-- shadow -->
 	<color name="shadow">#80c0c0c0</color>

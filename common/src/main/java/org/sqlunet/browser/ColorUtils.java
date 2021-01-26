@@ -10,6 +10,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.TypedValue;
 
+import androidx.annotation.AttrRes;
+import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
@@ -60,6 +62,7 @@ public class ColorUtils
 		return result;
 	}
 
+	@ColorInt
 	static public int getColor(@NonNull final Context context, @ColorRes int colorRes)
 	{
 		final Resources res = context.getResources();
@@ -68,7 +71,8 @@ public class ColorUtils
 	}
 
 	@SuppressWarnings({"deprecation", "WeakerAccess"})
-	static public int getColor(@NonNull final Resources res, final Resources.Theme theme, int colorRes)
+	@ColorInt
+	static public int getColor(@NonNull final Resources res, final Resources.Theme theme, @ColorRes int colorRes)
 	{
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
 		{
@@ -87,11 +91,21 @@ public class ColorUtils
 		return ResourcesCompat.getDrawable(context.getResources(), drawableRes, context.getTheme());
 	}
 
-	static public int fetchColor(@NonNull final Context context, int attr)
+	@ColorInt
+	static public int fetchColor(@NonNull final Context context, @AttrRes int attr)
 	{
 		final TypedValue typedValue = new TypedValue();
 		final Resources.Theme theme = context.getTheme();
 		theme.resolveAttribute(attr, typedValue, true);
 		return typedValue.data;
+	}
+
+	@ColorRes
+	static public int fetchColorRes(@NonNull final Context context, @AttrRes int attr)
+	{
+		final TypedValue typedValue = new TypedValue();
+		final Resources.Theme theme = context.getTheme();
+		theme.resolveAttribute(attr, typedValue, true);
+		return typedValue.resourceId;
 	}
 }

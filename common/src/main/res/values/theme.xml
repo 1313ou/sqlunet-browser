@@ -1,25 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
 <resources>
 
-	<style name="MyBaseTheme"/>
+	<style name="MyBaseTheme" />
 	<!--<style name="MyBaseTheme" parent="Theme.AppCompat.DayNight.NoActionBar"/>-->
 	<!--<style name="MyBaseTheme" parent="Theme.AppCompat.NoActionBar"/>-->
 
-	<style name="MyXBaseTheme" parent="MyBaseTheme"/>
+	<style name="MyXBaseTheme" parent="MyBaseTheme" />
 
 	<style name="MyTheme" parent="MyXBaseTheme">
 
 		<item name="colorPrimary">@color/primaryColor</item>
+		<item name="colorPrimaryVariant">@color/primaryLightColor</item>
 		<item name="colorPrimaryDark">@color/primaryDarkColor</item>
-		<item name="colorAccent">@color/accentColor</item>
 		<item name="colorOnPrimary">@color/onPrimaryColor</item>
+
+		<item name="colorSecondary">@color/secondaryColor</item>
+		<item name="colorSecondaryVariant">@color/secondaryLightColor</item>
 		<item name="colorOnSecondary">@color/onSecondaryColor</item>
-		<item name="android:textColorPrimary">@color/textColorPrimary </item>
-		<item name="android:textColorSecondary">@color/textColorSecondary</item>
+
+		<item name="colorHighlightOnPrimary">@color/highLightOnPrimaryColor</item>
+
+		<item name="colorHighlightOnBackground">@color/colorHighlightOnBackground</item>
+		<item name="colorDimmedOnBackground">@color/colorDimmedOnBackground</item>
+
+		<!-- B A S E -->
 
 		<!-- action bar -->
 		<item name="android:actionBarStyle">@style/MyActionBar</item>
@@ -46,7 +53,7 @@
 	<style name="MyCustomBackgroundAppTheme" parent="MyXBaseTheme">
 
 		<item name="android:windowBackground">@null</item>
-		<item name="android:background">@color/home_color</item>
+		<item name="android:background">?attr/colorPrimary</item>
 
 	</style>
 

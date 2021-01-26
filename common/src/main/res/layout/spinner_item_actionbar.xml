@@ -11,4 +11,4 @@
           android:layout_height="wrap_content"
           android:background="@null"
           android:gravity="center"
-          android:textColor="@color/actionbar_fore_color"/>
+          android:textColor="?attr/colorOnPrimary"/>
