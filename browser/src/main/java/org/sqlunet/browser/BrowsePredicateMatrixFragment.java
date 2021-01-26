@@ -64,7 +64,7 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 	{
 		this.layoutId = R.layout.fragment_browse_predicatematrix;
 		this.menuId = R.menu.predicate_matrix;
-		this.colorId = R.color.predicatematrix_actionbar_color;
+		this.colorAttrId = R.attr.colorPrimaryVariant;
 		this.spinnerLabels = R.array.predicatematrix_modes;
 		this.spinnerIcons = R.array.predicatematrix_icons;
 	}
