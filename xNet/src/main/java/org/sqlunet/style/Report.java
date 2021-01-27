@@ -8,14 +8,12 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
-import android.text.Spanned;
 import android.text.style.DynamicDrawableSpan;
 import android.text.style.ImageSpan;
 import android.text.style.StyleSpan;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.content.res.ResourcesCompat;
 
 /**
@@ -28,30 +26,6 @@ public class Report
 	// H E L P E R S
 
 	/**
-	 * Append text
-	 *
-	 * @param sb    spannable string builder
-	 * @param text  text
-	 * @param spans spans to apply
-	 */
-	@NonNull
-	static public SpannableStringBuilder append(@NonNull final SpannableStringBuilder sb, @Nullable final CharSequence text, @NonNull final Object... spans)
-	{
-		if (text != null && text.length() > 0)
-		{
-			final int from = sb.length();
-			sb.append(text);
-			final int to = sb.length();
-
-			for (final Object span : spans)
-			{
-				sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-			}
-		}
-		return sb;
-	}
-
-	/**
 	 * Append header
 	 *
 	 * @param sb   spannable string builder
@@ -61,7 +35,7 @@ public class Report
 	@NonNull
 	static public SpannableStringBuilder appendHeader(@NonNull SpannableStringBuilder sb, CharSequence text)
 	{
-		return append(sb, text, new StyleSpan(Typeface.BOLD));
+		return Spanner.appendWithSpans(sb, text, new StyleSpan(Typeface.BOLD));
 	}
 
 	/**
@@ -73,7 +47,7 @@ public class Report
 	 */
 	static public void appendImage(@NonNull final Context context, @NonNull final SpannableStringBuilder sb, @DrawableRes final int resId)
 	{
-		append(sb, "\u0000", makeImageSpan(context, resId));
+		Spanner.appendWithSpans(sb, "\u0000", makeImageSpan(context, resId));
 	}
 
 	/**

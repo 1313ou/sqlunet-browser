@@ -39,7 +39,8 @@ public class HomeFragment extends Fragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		View view = inflater.inflate(R.layout.fragment_home, container, false);
+		final View view = inflater.inflate(R.layout.fragment_home, container, false);
+
 		FloatingActionButton fab = view.findViewById(R.id.fab);
 		fab.setOnClickListener((v)->
 		{
@@ -48,6 +49,7 @@ public class HomeFragment extends Fragment
 			assert navHostFragment != null;
 			navHostFragment.getNavController().navigate(R.id.nav_search_browse);
 		});
+
 		return view;
 	}
 

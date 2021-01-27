@@ -9,23 +9,40 @@
 	<dimen name="activity_horizontal_padding">16dp</dimen>
 	<dimen name="activity_vertical_padding">16dp</dimen>
 
-	<!-- buttons -->
-	<dimen name="fab_margin">16dp</dimen>
-	<dimen name="action_button_diameter">50dp</dimen>
-	<dimen name="action_button_shadow_offset">10dp</dimen>
-
+	<!-- web -->
 	<dimen name="web_horizontal_padding" tools:ignore="UnusedResources">0dp</dimen>
 	<dimen name="web_vertical_padding" tools:ignore="UnusedResources">0dp</dimen>
 
+	<!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp: https://developer.android.com/design/patterns/navigation-drawer.html -->
+	<dimen name="navigation_drawer_width" tools:ignore="UnusedResources">240dp</dimen>
+
+	<!-- fabs -->
+	<dimen name="fab_margin">16dp</dimen>
+
+	<!-- buttons -->
+	<dimen name="action_button_diameter">50dp</dimen>
+	<dimen name="action_button_shadow_offset">10dp</dimen>
+
+	<!-- list -->
 	<dimen name="list_horizontal_margin">0dp</dimen>
 	<dimen name="list_vertical_margin">8dp</dimen>
 	<dimen name="list_horizontal_padding">0dp</dimen>
 	<dimen name="list_vertical_padding">0dp</dimen>
 
+	<!-- list items -->
 	<dimen name="listitem_horizontal_padding">4dp</dimen>
 	<dimen name="listitem_vertical_padding">4dp</dimen>
 
-	<!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp: https://developer.android.com/design/patterns/navigation-drawer.html -->
-	<dimen name="navigation_drawer_width" tools:ignore="UnusedResources">240dp</dimen>
+	<!-- grid -->
+	<dimen name="grid_padding_vertical">20dp</dimen>
+	<dimen name="grid_min_row_height">60dp</dimen>
+	<dimen name="grid_group_margin_vertical">2dp</dimen>
+	<dimen name="grid_group_margin_left">20dp</dimen>
+	<dimen name="grid_group_margin_right">20dp</dimen>
+	<dimen name="grid_group_margin_intra">8dp</dimen>
+	<dimen name="grid_margin_intra">8dp</dimen>
+	<dimen name="grid_margin_intra_small">2dp</dimen>
+	<dimen name="grid_image_hpadding">20dp</dimen>
+	<dimen name="grid_image_vpadding">20dp</dimen>
 
 </resources>

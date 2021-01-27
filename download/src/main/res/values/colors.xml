@@ -8,10 +8,10 @@
 	<!-- R A W -->
 
 	<!-- red -->
-	<color name="dark_red_color">#FFb32400</color>
+	<color name="dark_red_color">#b32400</color>
 
 	<!-- green -->
-	<color name="dark_green_color">#FF008000</color>
+	<color name="dark_green_color">#008000</color>
 
 	<!-- M A I N -->
 
@@ -19,8 +19,8 @@
 	<color name="shadow">#80202020</color>
 
 	<!-- button -->
-	<color name="action_button_color">#FFff00ff</color>
-	<color name="activated_color">#FFff80ff</color>
+	<color name="action_button_color">#ff00ff</color>
+	<color name="activated_color">#ff80ff</color>
 	<color name="ok_button_color">@color/dark_green_color</color>
 	<color name="err_button_color">@color/dark_red_color</color>
 

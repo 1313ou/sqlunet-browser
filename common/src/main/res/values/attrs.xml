@@ -3,8 +3,8 @@
   -->
 <resources>
 
-	<attr name="colorHighlightOnPrimary" format="color" />
-	<attr name="colorHighlightOnBackground" format="color" />
-	<attr name="colorDimmedOnBackground" format="color" />
+	<attr name="colorHighlightOnPrimary" format="color|reference" />
+	<attr name="colorHighlightOnBackground" format="color|reference" />
+	<attr name="colorDimmedOnBackground" format="color|reference" />
 
 </resources>

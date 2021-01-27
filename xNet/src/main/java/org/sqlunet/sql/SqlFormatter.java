@@ -12,11 +12,11 @@ package org.sqlunet.sql;
 
 import android.graphics.Typeface;
 import android.text.SpannableStringBuilder;
-import android.text.Spanned;
 import android.text.style.StyleSpan;
 
 import org.sqlunet.style.Colors;
 import org.sqlunet.style.Factories;
+import org.sqlunet.style.Spanner;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -25,7 +25,6 @@ import java.util.Locale;
 import java.util.StringTokenizer;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 /**
  * Performs formatting of basic SQL statements (DML + query).
@@ -499,7 +498,7 @@ public class SqlFormatter
 		{
 			if (this.style)
 			{
-				append(this.result, this.token, Factories.spans(Colors.sqlKeywordBackColor, Colors.sqlKeywordForeColor, new StyleSpan(Typeface.BOLD)));
+				Spanner.appendWithSpans(this.result, this.token, Factories.spans(Colors.sqlKeywordBackColor, Colors.sqlKeywordForeColor, new StyleSpan(Typeface.BOLD)));
 			}
 			else
 			{
@@ -514,10 +513,10 @@ public class SqlFormatter
 				switch (this.token.charAt(0))
 				{
 					case '\'':
-						append(this.result, this.token, Factories.spans(Colors.sqlSlashBackColor, Colors.sqlSlashForeColor));
+						Spanner.appendWithSpans(this.result, this.token, Factories.spans(Colors.sqlSlashBackColor, Colors.sqlSlashForeColor));
 						break;
 					case '?':
-						append(this.result, this.token, Factories.spans(Colors.sqlQuestionMarkBackColor, Colors.sqlQuestionMarkForeColor));
+						Spanner.appendWithSpans(this.result, this.token, Factories.spans(Colors.sqlQuestionMarkBackColor, Colors.sqlQuestionMarkForeColor));
 						break;
 					default:
 						out();
@@ -527,30 +526,6 @@ public class SqlFormatter
 			else
 			{
 				out();
-			}
-		}
-
-		/**
-		 * Append text with style
-		 *
-		 * @param sb    spannable string builder
-		 * @param text  text
-		 * @param spans spans to apply
-		 */
-		static private void append(@NonNull final SpannableStringBuilder sb, @Nullable final CharSequence text, @NonNull final Object... spans)
-		{
-			if (text == null || text.length() == 0)
-			{
-				return;
-			}
-
-			final int from = sb.length();
-			sb.append(text);
-			final int to = sb.length();
-
-			for (final Object span : spans)
-			{
-				sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
 		}
 	}

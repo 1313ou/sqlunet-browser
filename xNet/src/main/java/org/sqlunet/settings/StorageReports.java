@@ -22,6 +22,7 @@ import org.sqlunet.settings.StorageUtils.StorageType;
 import org.sqlunet.style.Colors;
 import org.sqlunet.style.Factories;
 import org.sqlunet.style.Report;
+import org.sqlunet.style.Spanner;
 import org.sqlunet.xnet.R;
 
 import java.io.File;
@@ -39,8 +40,6 @@ import androidx.annotation.Nullable;
  */
 public class StorageReports
 {
-	// Colors
-
 	/**
 	 * Styled string
 	 *
@@ -54,11 +53,11 @@ public class StorageReports
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		Report.appendImage(context, sb, toIconId(dir.dir.getType()));
 		sb.append(' ');
-		Report.append(sb, ' ' + dir.dir.getType().toDisplay() + ' ', new RelativeSizeSpan(1.5F), new BackgroundColorSpan(Colors.dirTypeBackColor), new ForegroundColorSpan(Colors.dirTypeForeColor));
+		Spanner.appendWithSpans(sb, ' ' + dir.dir.getType().toDisplay() + ' ', new RelativeSizeSpan(1.5F), new BackgroundColorSpan(Colors.dirTypeBackColor), new ForegroundColorSpan(Colors.dirTypeForeColor));
 		sb.append('\n');
-		Report.append(sb, dir.dir.getValue(), Factories.spans(Colors.dirValueBackColor, Colors.dirValueForeColor, new StyleSpan(Typeface.ITALIC)));
+		Spanner.appendWithSpans(sb, dir.dir.getValue(), Factories.spans(Colors.dirValueBackColor, Colors.dirValueForeColor, new StyleSpan(Typeface.ITALIC)));
 		sb.append('\n');
-		Report.append(sb, StorageUtils.mbToString(dir.free), Factories.spans( //
+		Spanner.appendWithSpans(sb, StorageUtils.mbToString(dir.free), Factories.spans( //
 				dir.status == 0 && dir.fitsIn(context) ? Colors.dirOkBackColor : Colors.dirFailBackColor,  //
 				dir.status == 0 && dir.fitsIn(context) ? Colors.dirOkForeColor : Colors.dirFailForeColor));
 		return sb;
@@ -76,7 +75,7 @@ public class StorageReports
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		final boolean fitsIn = dir.fitsIn(context);
-		Report.append(sb, fitsIn ? "Fits in" : "Does not fit in", Factories.spans(fitsIn ? Colors.dirOkBackColor : Colors.dirFailBackColor, fitsIn ? Colors.dirOkForeColor : Colors.dirFailForeColor));
+		Spanner.appendWithSpans(sb, fitsIn ? "Fits in" : "Does not fit in", Factories.spans(fitsIn ? Colors.dirOkBackColor : Colors.dirFailBackColor, fitsIn ? Colors.dirOkForeColor : Colors.dirFailForeColor));
 		return sb;
 	}
 
@@ -92,7 +91,7 @@ public class StorageReports
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		final CharSequence status = dir.status();
 		final boolean isOk = "Ok".equals(status.toString());
-		Report.append(sb, status, Factories.spans(isOk ? Colors.dirOkBackColor : Colors.dirFailBackColor, isOk ? Colors.dirOkForeColor : Colors.dirFailForeColor));
+		Spanner.appendWithSpans(sb, status, Factories.spans(isOk ? Colors.dirOkBackColor : Colors.dirFailBackColor, isOk ? Colors.dirOkForeColor : Colors.dirFailForeColor));
 		return sb;
 	}
 
@@ -465,12 +464,12 @@ public class StorageReports
 		{
 			Report.appendImage(context, sb, R.drawable.ic_storage_intern);
 			sb.append(' ');
-			Report.append(sb, " primary physical ", new RelativeSizeSpan(1.5F), new BackgroundColorSpan(Colors.storageTypeBackColor), new ForegroundColorSpan(Colors.storageTypeForeColor));
+			Spanner.appendWithSpans(sb, " primary physical ", new RelativeSizeSpan(1.5F), new BackgroundColorSpan(Colors.storageTypeBackColor), new ForegroundColorSpan(Colors.storageTypeForeColor));
 			sb.append('\n');
 			for (File f : physical)
 			{
 				final String s = f.getAbsolutePath();
-				Report.append(sb, s, Factories.spans(Colors.storageValueBackColor, Colors.storageValueForeColor, new StyleSpan(Typeface.ITALIC)));
+				Spanner.appendWithSpans(sb, s, Factories.spans(Colors.storageValueBackColor, Colors.storageValueForeColor, new StyleSpan(Typeface.ITALIC)));
 				sb.append('\n');
 				sb.append(StorageUtils.mbToString(StorageUtils.storageCapacity(s)));
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
@@ -492,12 +491,12 @@ public class StorageReports
 		{
 			Report.appendImage(context, sb, R.drawable.ic_storage_extern_primary);
 			sb.append(' ');
-			Report.append(sb, " primary emulated ", new RelativeSizeSpan(1.5F), new BackgroundColorSpan(Colors.storageTypeBackColor), new ForegroundColorSpan(Colors.storageTypeForeColor));
+			Spanner.appendWithSpans(sb, " primary emulated ", new RelativeSizeSpan(1.5F), new BackgroundColorSpan(Colors.storageTypeBackColor), new ForegroundColorSpan(Colors.storageTypeForeColor));
 			sb.append('\n');
 			for (File f : emulated)
 			{
 				final String s = f.getAbsolutePath();
-				Report.append(sb, s, Factories.spans(Colors.storageValueBackColor, Colors.storageValueForeColor, new StyleSpan(Typeface.ITALIC)));
+				Spanner.appendWithSpans(sb, s, Factories.spans(Colors.storageValueBackColor, Colors.storageValueForeColor, new StyleSpan(Typeface.ITALIC)));
 				sb.append('\n');
 				sb.append(StorageUtils.mbToString(StorageUtils.storageCapacity(s)));
 				sb.append(' ');
@@ -516,12 +515,12 @@ public class StorageReports
 			Report.appendImage(context, sb, R.drawable.ic_storage_extern_secondary);
 			sb.append(' ');
 			sb.append(' ');
-			Report.append(sb, " secondary ", new RelativeSizeSpan(1.5F), new BackgroundColorSpan(Colors.storageTypeBackColor), new ForegroundColorSpan(Colors.storageTypeForeColor));
+			Spanner.appendWithSpans(sb, " secondary ", new RelativeSizeSpan(1.5F), new BackgroundColorSpan(Colors.storageTypeBackColor), new ForegroundColorSpan(Colors.storageTypeForeColor));
 			sb.append('\n');
 			for (File f : secondary)
 			{
 				final String s = f.getAbsolutePath();
-				Report.append(sb, s, Factories.spans(Colors.storageValueBackColor, Colors.storageValueForeColor, new StyleSpan(Typeface.ITALIC)));
+				Spanner.appendWithSpans(sb, s, Factories.spans(Colors.storageValueBackColor, Colors.storageValueForeColor, new StyleSpan(Typeface.ITALIC)));
 				sb.append('\n');
 				sb.append(StorageUtils.mbToString(StorageUtils.storageCapacity(s)));
 				sb.append(' ');

@@ -4,8 +4,7 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/swipe_refresh"
 	android:layout_width="match_parent"
@@ -21,10 +20,10 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"
-			android:layout_marginBottom="12dp"
 			android:layout_marginTop="12dp"
+			android:layout_marginBottom="12dp"
 			android:contentDescription="@string/app_name"
-			android:src="@mipmap/ic_launcher"/>
+			android:src="@mipmap/ic_launcher" />
 
 		<ScrollView
 			android:layout_width="match_parent"
@@ -38,64 +37,66 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
+				android:layout_marginTop="20dp"
 				android:columnCount="2"
 				android:gravity="center_vertical"
 				android:orientation="horizontal"
-				android:paddingBottom="20dp"
-				android:paddingTop="20dp">
+				android:paddingTop="20dp"
+				android:paddingBottom="20dp">
 
 				<!-- database -->
 
 				<TextView
 					style="@style/GridLabel"
-					android:text="@string/status_database"/>
+					android:text="@string/status_database" />
 
 				<LinearLayout style="@style/GridData">
 
 					<ImageView
 						android:id="@+id/status_database"
 						style="@style/GridStatusImage"
-						android:contentDescription="@string/status_database"/>
+						android:contentDescription="@string/status_database" />
 
 					<ImageButton
 						android:id="@+id/databaseButton"
-						style="@style/GridStatusActionButton"
+						style="@style/GridActionButton"
 						android:contentDescription="@string/status_database"
-						android:src="@drawable/bn_download"/>
+						android:src="@drawable/bn_download" />
 
 					<ImageButton
 						android:id="@+id/info_database"
-						style="@style/GridStatusInfoButton"
+						style="@style/GridInfoButton"
 						android:contentDescription="@string/hint_database"
-						android:src="@drawable/bn_info"/>
+						android:src="@drawable/bn_info" />
+
 				</LinearLayout>
 
 				<!-- indexes -->
 
 				<TextView
 					style="@style/GridLabel"
-					android:text="@string/status_indexes"
-					/>
+					android:text="@string/status_indexes" />
 
 				<LinearLayout style="@style/GridData">
 
 					<ImageView
 						android:id="@+id/status_indexes"
 						style="@style/GridStatusImage"
-						android:contentDescription="@string/status_indexes"/>
+						android:contentDescription="@string/status_indexes" />
 
 					<ImageButton
 						android:id="@+id/indexesButton"
-						style="@style/GridStatusActionButton"
+						style="@style/GridActionButton"
 						android:contentDescription="@string/status_indexes"
-						android:src="@drawable/bn_setup"/>
+						android:src="@drawable/bn_setup" />
+
 				</LinearLayout>
 
 				<!-- searchtext framenet -->
 
 				<TextView
 					style="@style/GridLabel"
-					android:text="@string/status_searchtext_fn"/>
+					android:text="@string/status_searchtext_fn" />
 
 				<LinearLayout style="@style/GridData">
 
@@ -103,18 +104,18 @@
 						android:id="@+id/status_searchtext_fn"
 						style="@style/GridStatusImage"
 						android:contentDescription="@string/status_searchtext_fn"
-						tools:ignore="InconsistentLayout"/>
+						tools:ignore="InconsistentLayout" />
 
 					<ImageButton
 						android:id="@+id/searchtextFnButton"
-						style="@style/GridStatusActionButton"
+						style="@style/GridActionButton"
 						android:contentDescription="@string/status_searchtext_fn"
 						android:src="@drawable/bn_setup"
-						tools:ignore="InconsistentLayout"/>
+						tools:ignore="InconsistentLayout" />
+
 				</LinearLayout>
 
 			</GridLayout>
 		</ScrollView>
-
 	</LinearLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

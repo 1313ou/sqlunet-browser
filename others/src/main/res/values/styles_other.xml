@@ -6,10 +6,10 @@
 <resources>
 
 	<style name="HeaderText" parent="TextAppearance.AppCompat">
-		<item name="android:textColor">#000000</item>
+		<item name="android:textColor">?attr/titleTextColor</item>
 	</style>
 
 	<style name="DescriptionText" parent="TextAppearance.AppCompat">
-		<item name="android:textColor">#606060</item>
+		<item name="android:textColor">?attr/subtitleTextColor</item>
 	</style>
 </resources>

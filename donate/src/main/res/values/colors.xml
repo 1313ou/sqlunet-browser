@@ -6,9 +6,9 @@
 <resources>
 
 	<color name="donate1Color">#9bce34</color>
-	<color name="donate2Color">#01579B</color>
-	<color name="donate3Color">#BF360C</color>
-	<color name="donate4Color">#FF6D00</color>
-	<color name="donate5Color">#FFAB00</color>
+	<color name="donate2Color">#01579b</color>
+	<color name="donate3Color">#bf360c</color>
+	<color name="donate4Color">#ff6d00</color>
+	<color name="donate5Color">#ffab00</color>
 
 </resources>
