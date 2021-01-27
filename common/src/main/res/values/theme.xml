@@ -4,9 +4,7 @@
 
 <resources>
 
-	<style name="MyBaseTheme" />
-	<!--<style name="MyBaseTheme" parent="Theme.AppCompat.DayNight.NoActionBar"/>-->
-	<!--<style name="MyBaseTheme" parent="Theme.AppCompat.NoActionBar"/>-->
+	<style name="MyBaseTheme" parent="Theme.AppCompat.DayNight.NoActionBar" />
 
 	<style name="MyXBaseTheme" parent="MyBaseTheme" />
 
@@ -21,8 +19,11 @@
 		<item name="colorSecondaryVariant">@color/secondaryLightColor</item>
 		<item name="colorOnSecondary">@color/onSecondaryColor</item>
 
-		<item name="colorHighlightOnPrimary">@color/highLightOnPrimaryColor</item>
+		<item name="colorControlNormal">@color/secondaryColor</item>
+		<item name="colorControlActivated">@color/secondaryLightColor</item>
 
+		<!-- extras -->
+		<item name="colorHighlightOnPrimary">@color/highLightOnPrimaryColor</item>
 		<item name="colorHighlightOnBackground">@color/colorHighlightOnBackground</item>
 		<item name="colorDimmedOnBackground">@color/colorDimmedOnBackground</item>
 
@@ -46,14 +47,6 @@
 
 		<!-- autocomplete -->
 		<item name="android:autoCompleteTextViewStyle">@style/MyAutoCompleteTextViewStyle</item>
-
-	</style>
-
-	<!-- Custom background theme -->
-	<style name="MyCustomBackgroundAppTheme" parent="MyXBaseTheme">
-
-		<item name="android:windowBackground">@null</item>
-		<item name="android:background">?attr/colorPrimary</item>
 
 	</style>
 

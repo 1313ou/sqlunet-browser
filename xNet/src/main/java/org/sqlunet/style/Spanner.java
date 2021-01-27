@@ -308,29 +308,78 @@ public class Spanner
 			{
 				for (final SpanFactory spanFactory : factories)
 				{
-					final Object spans = spanFactory.make(flags);
-					if (spans instanceof Collection)
-					{
-						for (final Object span : (Collection<Object>) spans)
-						{
-							sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-						}
-					}
-					else if (spans instanceof Object[])
-					{
-						for (final Object span : (Object[]) spans)
-						{
-							sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-						}
-					}
-					else
-					{
-						sb.setSpan(spans, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-					}
+					final Object span = spanFactory.make(flags);
+					applySpan(sb, from, to, span);
 				}
 			}
 		}
 		return sb;
+	}
+
+	/**
+	 * Append text
+	 *
+	 * @param sb    spannable string builder
+	 * @param text  text
+	 * @param spans spans to apply
+	 */
+	@NonNull
+	static public SpannableStringBuilder appendWithSpans(@NonNull final SpannableStringBuilder sb, @Nullable final CharSequence text, @NonNull final Object... spans)
+	{
+		if (text != null && text.length() > 0)
+		{
+			final int from = sb.length();
+			sb.append(text);
+			final int to = sb.length();
+			applySpans(sb, from, to, spans);
+		}
+		return sb;
+	}
+
+	/**
+	 * Apply spans
+	 *
+	 * @param sb    spannable string builder
+	 * @param from  from position
+	 * @param to    to position
+	 * @param spans spans to apply
+	 */
+	static public void applySpans(@NonNull final SpannableStringBuilder sb, final int from, final int to, @NonNull final Object... spans)
+	{
+		for (final Object span : spans)
+		{
+			applySpan(sb, from, to, span);
+		}
+	}
+
+	/**
+	 * Apply span
+	 *
+	 * @param sb   spannable string builder
+	 * @param from from position
+	 * @param to   to position
+	 * @param span span to apply
+	 */
+	static public void applySpan(@NonNull final SpannableStringBuilder sb, final int from, final int to, @NonNull final Object span)
+	{
+		if (span instanceof Object[])
+		{
+			for (Object span2 : (Object[]) span)
+			{
+				sb.setSpan(span2, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+			}
+		}
+		else if (span instanceof Collection)
+		{
+			for (Object span2 : (Collection<Object>) span)
+			{
+				sb.setSpan(span2, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+			}
+		}
+		else if (span instanceof Object)
+		{
+			sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+		}
 	}
 
 	// H E L P E R S

@@ -7,11 +7,14 @@
 	<color name="primaryColor">#e2dbbe</color>
 	<color name="primaryDarkColor">#958e6e</color>
 	<color name="primaryLightColor">#f4ebc7</color>
-	<color name="onPrimaryColor">#FF444444</color>
+	<color name="onPrimaryColor">#444444</color>
 	<color name="onPrimaryColorHightlight">@android:color/black</color>
 
 	<color name="secondaryColor">#1de9b6</color>
 	<color name="secondaryLightColor">#6effe8</color>
 	<color name="onSecondaryColor">@android:color/white</color>
+
+	<color name="colorHighlightOnBackground">#004d40</color>
+	<color name="colorDimmedOnBackground">#808080</color>
 
 </resources>
