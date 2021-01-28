@@ -253,9 +253,9 @@
 	<color name="dirValueForeColor">#888888</color>
 
 	<color name="dirOkBackColor">#FF008B00</color>
-	<color name="dirOkForeColor">#000000</color>
+	<color name="dirOkForeColor">#FFFFFF</color>
 
 	<color name="dirFailBackColor">#FF8B0000</color>
-	<color name="dirFailForeColor">#000000</color>
+	<color name="dirFailForeColor">#FFFFFF</color>
 
 </resources>

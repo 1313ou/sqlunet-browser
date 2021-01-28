@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+
+	<style name="Label.Group">
+		<item name="android:padding">8dp</item>
+		<item name="android:background">?attr/colorSecondary</item>
+		<item name="android:textColor">?attr/colorOnSecondary</item>
+	</style>
+
+	<style name="Label.GroupIcon">
+		<item name="android:paddingLeft">20dp</item>
+		<item name="android:paddingStart">20dp</item>
+	</style>
+
+	<style name="Label.GroupName">
+		<item name="android:textSize">20sp</item>
+		<item name="android:background">?attr/colorSecondary</item>
+		<item name="android:textColor">?attr/colorOnSecondary</item>
+		<item name="android:paddingLeft">2dp</item>
+		<item name="android:paddingStart">2dp</item>
+	</style>
+
+	<style name="Data.XIcon">
+	</style>
+
+	<style name="Data.XName">
+		<item name="android:textSize">20sp</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+
+	<style name="Data.XHeader">
+		<item name="android:textSize">15sp</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+
+	<style name="Data.XInfo">
+		<item name="android:textSize">15sp</item>
+	</style>
+
+	<style name="Data.XDefinition">
+		<item name="android:textColor">?attr/colorHighlightOnBackground</item>
+		<item name="android:textSize">15sp</item>
+	</style>
+
+	<style name="Data.XWordId">
+		<item name="android:textSize">12sp</item>
+	</style>
+
+	<style name="Data.XSynsetId">
+		<item name="android:textSize">12sp</item>
+	</style>
+
+	<style name="Data.XId">
+		<item name="android:textSize">12sp</item>
+	</style>
+
+	<style name="Data.XMemberId">
+		<item name="android:textSize">12sp</item>
+	</style>
+
+</resources>

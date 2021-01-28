@@ -252,10 +252,10 @@
 	<color name="dirValueBackColor">#00000000</color>
 	<color name="dirValueForeColor">#888888</color>
 
-	<color name="dirOkBackColor">#008b00</color>
-	<color name="dirOkForeColor">#000000</color>
+	<color name="dirOkBackColor">#00000000</color>
+	<color name="dirOkForeColor">#008b00</color>
 
-	<color name="dirFailBackColor">#8b0000</color>
-	<color name="dirFailForeColor">#000000</color>
+	<color name="dirFailBackColor">#00000000</color>
+	<color name="dirFailForeColor">#8b0000</color>
 
 </resources>
