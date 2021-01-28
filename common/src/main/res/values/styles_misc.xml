@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+	<!-- L I S T -->
+
+	<style name="ListItem">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginBottom">@dimen/list_vertical_margin</item>
+		<item name="android:layout_marginTop">@dimen/list_vertical_margin</item>
+		<item name="android:layout_marginLeft">@dimen/list_horizontal_margin</item>
+		<item name="android:layout_marginRight">@dimen/list_horizontal_margin</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:paddingTop">@dimen/list_vertical_padding</item>
+		<item name="android:paddingBottom">@dimen/list_vertical_padding</item>
+		<item name="android:paddingLeft">@dimen/list_horizontal_padding</item>
+		<item name="android:paddingRight">@dimen/list_horizontal_padding</item>
+		<item name="android:textIsSelectable">true</item>
+		<item name="android:descendantFocusability">blocksDescendants</item>
+	</style>
+
+	<style name="ListItemColumn">
+		<item name="android:layout_width">0dp</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:paddingStart">@dimen/listitem_horizontal_padding</item>
+		<item name="android:paddingEnd">@dimen/listitem_horizontal_padding</item>
+		<item name="android:paddingTop">@dimen/listitem_vertical_padding</item>
+		<item name="android:paddingBottom">@dimen/listitem_vertical_padding</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:textIsSelectable">true</item>
+		<item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+		<item name="android:ellipsize">end</item>
+	</style>
+
+	<style name="ListItemColumn.Minor">
+		<item name="android:textAppearance">?attr/textAppearanceListItemSmall</item>
+	</style>
+
+	<style name="ListItemColumn.Major">
+		<item name="android:background">?attr/colorSecondary</item>
+		<item name="android:textColor">?attr/colorOnSecondary</item>
+	</style>
+
+	<!-- S E A R C H -->
+
+	<style name="SearchItem" tools:ignore="UnusedResources">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textAppearance">?attr/textAppearanceListItemSmall</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:paddingLeft">?android:attr/listPreferredItemPaddingStart</item>
+		<item name="android:paddingRight">?android:attr/listPreferredItemPaddingEnd</item>
+		<item name="android:textIsSelectable">true</item>
+		<item name="android:minHeight">?attr/listPreferredItemHeightSmall</item>
+	</style>
+
+	<!-- S T A T U S   /   S E T U P  -->
+
+	<style name="GridLabel">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center_vertical|end</item>
+		<item name="android:layout_marginLeft">@dimen/grid_group_margin_left</item>
+		<item name="android:minHeight">@dimen/grid_min_row_height</item>
+		<item name="android:layout_marginRight">@dimen/grid_group_margin_intra</item>
+		<item name="android:layout_marginTop">@dimen/grid_group_margin_vertical</item>
+		<item name="android:layout_marginBottom">@dimen/grid_group_margin_vertical</item>
+		<item name="android:gravity">end</item>
+		<item name="android:maxLines">2</item>
+	</style>
+
+	<style name="GridData"> <!-- includes image + button1 + button2-->
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:minHeight">@dimen/grid_min_row_height</item>
+		<item name="android:layout_marginLeft">@dimen/grid_group_margin_intra</item>
+		<item name="android:layout_marginRight">@dimen/grid_group_margin_right</item>
+		<item name="android:layout_marginTop">@dimen/grid_group_margin_vertical</item>
+		<item name="android:layout_marginBottom">@dimen/grid_group_margin_vertical</item>
+		<item name="android:orientation">horizontal</item>
+	</style>
+
+	<style name="GridStatusImage">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:layout_marginRight">@dimen/grid_group_margin_intra</item>
+		<item name="android:background">@color/secondaryLightColor</item>
+		<item name="android:paddingTop">@dimen/grid_image_vpadding</item>
+		<item name="android:paddingBottom">@dimen/grid_image_vpadding</item>
+		<item name="android:paddingLeft">@dimen/grid_image_hpadding</item>
+		<item name="android:paddingRight">@dimen/grid_image_hpadding</item>
+		<item name="android:src">@drawable/ic_unknown</item>
+	</style>
+
+	<style name="GridActionButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:layout_marginLeft">@dimen/grid_margin_intra</item>
+		<item name="android:layout_marginRight">@dimen/grid_margin_intra_small</item>
+		<item name="android:paddingTop">@dimen/grid_image_vpadding</item>
+		<item name="android:paddingBottom">@dimen/grid_image_vpadding</item>
+		<item name="android:background">@drawable/bg_button_action</item>
+		<item name="android:gravity">center|center_vertical</item>
+	</style>
+
+	<style name="GridInfoButton">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:layout_marginLeft">@dimen/grid_margin_intra_small</item>
+		<item name="android:layout_marginRight">@dimen/grid_margin_intra</item>
+		<item name="android:paddingTop">@dimen/grid_image_vpadding</item>
+		<item name="android:paddingBottom">@dimen/grid_image_vpadding</item>
+		<item name="android:background">@drawable/bg_button_info</item>
+		<item name="android:gravity">end|center_vertical</item>
+	</style>
+
+</resources>

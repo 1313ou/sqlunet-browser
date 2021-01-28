@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+
+	<!--S E L E C T O R S -->
+
+	<style name="Data.Pos">
+		<item name="android:maxLines">1</item>
+		<item name="android:textSize">22sp</item>
+	</style>
+
+	<style name="Data.SenseNum">
+		<item name="android:maxLines">1</item>
+		<item name="android:textSize">10sp</item>
+	</style>
+
+	<style name="Data.LexDomain">
+		<item name="android:maxLines">1</item>
+		<item name="android:textSize">18sp</item>
+	</style>
+
+	<style name="Data.Cased">
+		<item name="android:textColor">?attr/colorHighlightOnBackground</item>
+		<item name="android:textSize">12sp</item>
+		<item name="android:textStyle">italic|bold</item>
+	</style>
+
+	<style name="Data.TagCount">
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
+		<item name="android:textSize">12sp</item>
+	</style>
+
+	<style name="Data.SenseKey">
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
+		<item name="android:textSize">10sp</item>
+	</style>
+
+	<style name="Data.LexId">
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
+		<item name="android:textSize">10sp</item>
+	</style>
+
+	<style name="Data.WordId">
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
+		<item name="android:textSize">10sp</item>
+	</style>
+
+	<style name="Data.SenseId">
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
+		<item name="android:textSize">10sp</item>
+	</style>
+
+	<style name="Data.SynsetId">
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
+		<item name="android:textSize">10sp</item>
+	</style>
+
+	<style name="Data.Definition">
+		<item name="android:textColor">?attr/colorHighlightOnBackground</item>
+	</style>
+
+	<style name="Data.XIcon">
+	</style>
+
+</resources>

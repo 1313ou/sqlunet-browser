@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+
+	<style name="Data.FnName">
+		<item name="android:textSize">24sp</item>
+	</style>
+
+	<style name="Data.FnFrameName">
+		<item name="android:textColor">?attr/colorHighlightOnBackground</item>
+		<item name="android:textSize">24sp</item>
+	</style>
+
+	<style name="Data.FnWord">
+		<item name="android:textSize">16sp</item>
+	</style>
+
+	<style name="Data.FnId">
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
+		<item name="android:textSize">12sp</item>
+	</style>
+
+	<style name="Data.FnWordId">
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
+		<item name="android:textSize">12sp</item>
+	</style>
+
+	<style name="Data.FnFrameId">
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
+		<item name="android:textSize">12sp</item>
+	</style>
+
+</resources>

@@ -1,0 +1,71 @@
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+
+	<style name="Data.WnPos">
+		<item name="android:maxLines">1</item>
+		<item name="android:textSize">20sp</item>
+	</style>
+
+	<style name="Data.WnLexDomain">
+		<item name="android:maxLines">1</item>
+		<item name="android:textSize">20sp</item>
+	</style>
+
+	<style name="Data.WnSenseNum">
+		<item name="android:maxLines">1</item>
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
+		<item name="android:textSize">12sp</item>
+	</style>
+
+	<style name="Data.WnCased">
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
+		<item name="android:textSize">12sp</item>
+	</style>
+
+	<style name="Data.WnTagCount">
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
+		<item name="android:textSize">12sp</item>
+	</style>
+
+	<style name="Data.WnSenseKey">
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
+		<item name="android:textSize">12sp</item>
+	</style>
+
+	<style name="Data.WnLexId">
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
+		<item name="android:textSize">12sp</item>
+	</style>
+
+	<style name="Data.WnWordId">
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
+		<item name="android:textSize">10sp</item>
+	</style>
+
+	<style name="Data.WnSenseId">
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
+		<item name="android:textSize">10sp</item>
+	</style>
+
+	<style name="Data.WnSynsetId">
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
+		<item name="android:textSize">10sp</item>
+	</style>
+
+	<style name="Data.WnDefinition"/>
+
+	<style name="Senses">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">1dp</item>
+		<item name="android:layout_marginTop">6dp</item>
+		<item name="android:background">?android:attr/activatedBackgroundIndicator</item>
+		<item name="android:paddingRight">0dp</item>
+		<item name="android:paddingLeft">0dp</item>
+		<item name="android:paddingBottom">8dp</item>
+		<item name="android:descendantFocusability">blocksDescendants</item>
+	</style>
+
+</resources>
