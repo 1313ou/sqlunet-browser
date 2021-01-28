@@ -165,7 +165,7 @@ abstract class BaseModule extends Module
 		this.drawableSemantics = Spanner.getDrawable(context, R.drawable.semantics);
 		this.drawableExample = Spanner.getDrawable(context, R.drawable.sample);
 		this.drawableDefinition = Spanner.getDrawable(context, R.drawable.definition);
-		this.drawableGrouping = Spanner.getDrawable(context, R.drawable.info);
+		this.drawableGrouping = Spanner.getDrawable(context, R.drawable.grouping);
 
 		// create processors and spanners
 		this.semanticsProcessor = new VerbNetSemanticsProcessor();

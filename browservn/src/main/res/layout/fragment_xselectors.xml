@@ -4,11 +4,10 @@
   -->
 
 <ExpandableListView xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-                    android:id="@android:id/list"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:choiceMode="singleChoice"
-                    android:listSelector="@drawable/listitem_selector"
-                    tools:listitem="@layout/item_xselector"/>
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@android:id/list"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:layout_centerHorizontal="true"
+	android:choiceMode="singleChoice"
+	tools:listitem="@layout/item_xselector" />

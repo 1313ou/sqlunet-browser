@@ -151,7 +151,7 @@ public class RegExprSpanner extends Spanner
 
 					// span
 					final Object startSpans = this.spanFactories[i].make(flags);
-					Spanner.setSpan(sb, start, end, startSpans);
+					Spanner.applySpans(sb, start, end, startSpans);
 				}
 			}
 		}

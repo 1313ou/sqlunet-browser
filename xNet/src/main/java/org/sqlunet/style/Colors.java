@@ -244,6 +244,8 @@ public class Colors
 
 	static public void setColorsFromResources(@NonNull final Context context)
 	{
+		// do not reorder : dependent on resource array order
+
 		int[] palette = context.getResources().getIntArray(R.array.palette);
 		int i = 0;
 
