@@ -11,13 +11,13 @@
 	<color name="primaryDarkColor">#293073</color> <!-- framework + nav (end in gradient) -->
 	<color name="primaryLightColor">#4251dd</color> <!-- framework + nav (start in gradient), browse action bar, search text action bar, pm action bar, major list item -->
 	<color name="onPrimaryColor">#cccccc</color> <!-- framework + nav, tabs -->
-	<color name="highLightOnPrimaryColor">@android:color/white</color> <!-- framework + nav, tabs-->
+	<color name="highlightOnPrimaryColor">@android:color/white</color> <!-- framework + nav, tabs-->
 
 	<!-- secondary -->
 	<color name="secondaryColor">#ef2063</color> <!-- framework + action button, spinner, group bg, fabs bg, app title bg, swipe 1-->
 	<color name="secondaryLightColor">#ff60C0</color> <!-- framework + action button, activated list item, fabs fg, swipe2 down, status bg -->
-	<color name="onSecondaryColor">#d0d0d0</color> <!-- framework +  spinner arrow, group fg -->
-	<color name="onSecondaryColorHighlighted">@android:color/white</color> <!--  -->
+	<color name="onSecondaryColor">#F0F0F0</color> <!-- framework +  spinner arrow, group fg -->
+	<color name="highlightOnSecondaryColor">@android:color/white</color> <!--  -->
 
 	<!-- text - variants of colorOnBackground, must display on colorBackground -->
 	<color name="colorHighlightOnBackground">#e46d42</color> <!--  -->

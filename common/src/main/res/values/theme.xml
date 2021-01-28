@@ -19,11 +19,12 @@
 		<item name="colorSecondaryVariant">@color/secondaryLightColor</item>
 		<item name="colorOnSecondary">@color/onSecondaryColor</item>
 
-		<item name="colorControlNormal">@color/secondaryColor</item>
-		<item name="colorControlActivated">@color/secondaryLightColor</item>
+		<item name="colorAccent">@color/secondaryColor</item>
+		<item name="colorControlNormal">@color/onSecondaryColor</item>
+		<item name="colorControlActivated">@color/highlightOnSecondaryColor</item>
 
 		<!-- extras -->
-		<item name="colorHighlightOnPrimary">@color/highLightOnPrimaryColor</item>
+		<item name="colorHighlightOnPrimary">@color/highlightOnPrimaryColor</item>
 		<item name="colorHighlightOnBackground">@color/colorHighlightOnBackground</item>
 		<item name="colorDimmedOnBackground">@color/colorDimmedOnBackground</item>
 

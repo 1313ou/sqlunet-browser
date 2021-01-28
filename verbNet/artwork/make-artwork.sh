@@ -2,7 +2,7 @@
 
 source "./lib-artwork.sh"
 
-icon_list="vnframe.svg syntax.svg semantics.svg restr.svg"
+icon_list="vnframe.svg syntax.svg semantics.svg restr.svg grouping.svg"
 asset_list="vnframe.svg syntax.svg semantics.svg restr.svg synsetspecific.svg"
 
 make_res "${icon_list}" 16

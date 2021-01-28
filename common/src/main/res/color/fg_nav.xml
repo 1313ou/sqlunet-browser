@@ -4,9 +4,9 @@
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<item android:color="@color/highLightOnPrimaryColor" android:state_checked="true" />
+	<item android:color="@color/highlightOnPrimaryColor" android:state_checked="true" />
 
-	<item android:color="@color/highLightOnPrimaryColor" android:state_checked="true" android:state_pressed="true" />
+	<item android:color="@color/highlightOnPrimaryColor" android:state_checked="true" android:state_pressed="true" />
 
 	<item android:color="@color/onPrimaryColor" />
 

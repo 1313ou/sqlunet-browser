@@ -20,7 +20,7 @@
 			android:id="@+id/tablayout"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			app:tabSelectedTextColor="@color/highLightOnPrimaryColor"
+			app:tabSelectedTextColor="@color/highlightOnPrimaryColor"
 			app:tabTextColor="@color/onPrimaryColor"
 			app:layout_scrollFlags="scroll|enterAlways"/>
 
