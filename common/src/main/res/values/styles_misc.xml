@@ -87,12 +87,12 @@
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">center</item>
-		<item name="android:layout_marginRight">@dimen/grid_group_margin_intra</item>
+		<item name="android:layout_marginRight">@dimen/grid_margin_intra</item>
 		<item name="android:background">@color/secondaryLightColor</item>
-		<item name="android:paddingTop">@dimen/grid_image_vpadding</item>
-		<item name="android:paddingBottom">@dimen/grid_image_vpadding</item>
-		<item name="android:paddingLeft">@dimen/grid_image_hpadding</item>
-		<item name="android:paddingRight">@dimen/grid_image_hpadding</item>
+		<item name="android:paddingTop">@dimen/grid_image_padding_vertical</item>
+		<item name="android:paddingBottom">@dimen/grid_image_padding_vertical</item>
+		<item name="android:paddingLeft">@dimen/grid_image_padding_horizontal</item>
+		<item name="android:paddingRight">@dimen/grid_image_padding_horizontal</item>
 		<item name="android:src">@drawable/ic_unknown</item>
 	</style>
 
@@ -100,24 +100,24 @@
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">center</item>
-		<item name="android:layout_marginLeft">@dimen/grid_margin_intra</item>
-		<item name="android:layout_marginRight">@dimen/grid_margin_intra_small</item>
-		<item name="android:paddingTop">@dimen/grid_image_vpadding</item>
-		<item name="android:paddingBottom">@dimen/grid_image_vpadding</item>
+		<item name="android:layout_marginLeft">@dimen/grid_margin_button</item>
+		<item name="android:layout_marginRight">@dimen/grid_margin_button</item>
+		<item name="android:paddingTop">@dimen/grid_image_padding_vertical</item>
+		<item name="android:paddingBottom">@dimen/grid_image_padding_vertical</item>
 		<item name="android:background">@drawable/bg_button_action</item>
-		<item name="android:gravity">center|center_vertical</item>
+		<item name="android:gravity">center_vertical</item>
 	</style>
 
 	<style name="GridInfoButton">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">center</item>
-		<item name="android:layout_marginLeft">@dimen/grid_margin_intra_small</item>
-		<item name="android:layout_marginRight">@dimen/grid_margin_intra</item>
-		<item name="android:paddingTop">@dimen/grid_image_vpadding</item>
-		<item name="android:paddingBottom">@dimen/grid_image_vpadding</item>
+		<item name="android:layout_marginLeft">@dimen/grid_margin_button</item>
+		<item name="android:layout_marginRight">@dimen/grid_margin_button</item>
+		<item name="android:paddingTop">@dimen/grid_image_padding_vertical</item>
+		<item name="android:paddingBottom">@dimen/grid_image_padding_vertical</item>
 		<item name="android:background">@drawable/bg_button_info</item>
-		<item name="android:gravity">end|center_vertical</item>
+		<item name="android:gravity">center_vertical</item>
 	</style>
 
 </resources>
