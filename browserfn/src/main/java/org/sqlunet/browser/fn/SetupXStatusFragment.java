@@ -7,6 +7,7 @@ package org.sqlunet.browser.fn;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +27,7 @@ import org.sqlunet.settings.StorageUtils;
 import java.io.File;
 
 import androidx.annotation.NonNull;
+import androidx.core.widget.ImageViewCompat;
 
 /**
  * Setup Status fragment
@@ -134,11 +136,11 @@ public class SetupXStatusFragment extends org.sqlunet.browser.config.SetupStatus
 			{
 				// images
 				final Drawable okDrawable = ColorUtils.getDrawable(context, R.drawable.ic_ok);
-				ColorUtils.tint(ColorUtils.getColor(context, R.color.onSecondaryColor), okDrawable);
-				final Drawable failDrawable = ColorUtils.getDrawable(context, org.sqlunet.browser.common.R.drawable.ic_fail);
+				final Drawable failDrawable = ColorUtils.getDrawable(context, R.drawable.ic_fail);
 
 				final boolean existsTsFn = (status & Status.EXISTS_TS_FN) != 0;
 				this.imageTextSearchFn.setImageDrawable(existsTsFn ? okDrawable : failDrawable);
+				ImageViewCompat.setImageTintMode(this.imageTextSearchFn, existsTsFn ? PorterDuff.Mode.SRC_IN : PorterDuff.Mode.DST);
 				this.buttonTextSearchFn.setVisibility(existsTsFn ? View.GONE : View.VISIBLE);
 			}
 			else

@@ -15,7 +15,6 @@
 	<color name="secondaryColor">#ef2063</color>
 	<color name="secondaryLightColor">#ff60c0</color>
 	<color name="onSecondaryColor">#F0F0F0</color>
-	<color name="highlightOnSecondaryColor">@android:color/white</color>
 
 	<!-- text - variants of colorOnBackground, must display on colorBackground -->
 	<color name="colorHighlightOnBackground">#ef2063</color> <!--  -->

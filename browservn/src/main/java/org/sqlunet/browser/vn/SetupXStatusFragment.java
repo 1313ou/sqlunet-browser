@@ -7,7 +7,9 @@ package org.sqlunet.browser.vn;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,6 +28,7 @@ import org.sqlunet.settings.StorageUtils;
 import java.io.File;
 
 import androidx.annotation.NonNull;
+import androidx.core.widget.ImageViewCompat;
 
 /**
  * Setup Status fragment
@@ -147,14 +150,15 @@ public class SetupXStatusFragment extends org.sqlunet.browser.config.SetupStatus
 			{
 				// images
 				final Drawable okDrawable = ColorUtils.getDrawable(context, R.drawable.ic_ok);
-				ColorUtils.tint(ColorUtils.getColor(context, R.color.onSecondaryColor), okDrawable);
-				final Drawable failDrawable = ColorUtils.getDrawable(context, org.sqlunet.browser.common.R.drawable.ic_fail);
+				final Drawable failDrawable = ColorUtils.getDrawable(context, R.drawable.ic_fail);
 
 				final boolean existsTsVn = (status & Status.EXISTS_TS_VN) != 0;
 				final boolean existsTsPb = (status & Status.EXISTS_TS_PB) != 0;
 				this.imageTextSearchVn.setImageDrawable(existsTsVn ? okDrawable : failDrawable);
-				this.buttonTextSearchVn.setVisibility(existsTsVn ? View.GONE : View.VISIBLE);
+				ImageViewCompat.setImageTintMode(this.imageTextSearchVn, existsTsPb ? PorterDuff.Mode.SRC_IN : PorterDuff.Mode.DST);
 				this.imageTextSearchPb.setImageDrawable(existsTsPb ? okDrawable : failDrawable);
+				ImageViewCompat.setImageTintMode(this.imageTextSearchPb, existsTsPb ? PorterDuff.Mode.SRC_IN : PorterDuff.Mode.DST);
+				this.buttonTextSearchVn.setVisibility(existsTsVn ? View.GONE : View.VISIBLE);
 				this.buttonTextSearchPb.setVisibility(existsTsPb ? View.GONE : View.VISIBLE);
 			}
 			else

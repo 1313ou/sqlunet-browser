@@ -7,6 +7,7 @@ package org.sqlunet.browser.config;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,6 +33,7 @@ import java.io.File;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.ImageViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -192,7 +194,6 @@ public class SetupStatusFragment extends Fragment implements Updatable
 
 			// images
 			final Drawable okDrawable = ColorUtils.getDrawable(context, R.drawable.ic_ok);
-			ColorUtils.tint(ColorUtils.getColor(context, R.color.onSecondaryColor), okDrawable);
 			final Drawable failDrawable = ColorUtils.getDrawable(context, R.drawable.ic_fail);
 
 			final boolean existsDb = (status & Status.EXISTS) != 0;
@@ -200,16 +201,19 @@ public class SetupStatusFragment extends Fragment implements Updatable
 			if (existsDb && existsTables)
 			{
 				this.imageDb.setImageDrawable(okDrawable);
+				ImageViewCompat.setImageTintMode(this.imageDb, PorterDuff.Mode.SRC_IN);
 				this.buttonDb.setVisibility(View.GONE);
 
 				final boolean existsIndexes = (status & Status.EXISTS_INDEXES) != 0;
 
 				this.imageIndexes.setImageDrawable(existsIndexes ? okDrawable : failDrawable);
+				ImageViewCompat.setImageTintMode(this.imageIndexes, existsIndexes ? PorterDuff.Mode.SRC_IN : PorterDuff.Mode.DST);
 				this.buttonIndexes.setVisibility(existsIndexes ? View.GONE : View.VISIBLE);
 			}
 			else
 			{
 				this.imageDb.setImageDrawable(failDrawable);
+				ImageViewCompat.setImageTintMode(this.imageDb, PorterDuff.Mode.DST);
 				this.buttonDb.setVisibility(View.VISIBLE);
 
 				this.buttonIndexes.setVisibility(View.GONE);
