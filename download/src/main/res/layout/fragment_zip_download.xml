@@ -70,8 +70,8 @@
 
 	</LinearLayout>
 
-	<TextView
-		android:id="@+id/src"
+	<ImageView
+		android:id="@+id/imgsrc"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_above="@+id/middle"
@@ -79,12 +79,22 @@
 		android:layout_marginStart="50dp"
 		android:layout_marginEnd="50dp"
 		android:layout_marginBottom="10dp"
-		android:drawablePadding="5dp"
+		android:src="@drawable/ic_download_zip_source"
+		app:tint="?android:attr/colorForeground" />
+
+	<TextView
+		android:id="@+id/src"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_above="@+id/imgsrc"
+		android:layout_centerHorizontal="true"
+		android:layout_marginStart="50dp"
+		android:layout_marginEnd="50dp"
+		android:layout_marginBottom="10dp"
 		android:scrollHorizontally="true"
 		android:singleLine="true"
 		android:text="@string/download_source"
-		android:textStyle="bold"
-		app:drawableBottomCompat="@drawable/ic_download_zip_source" />
+		android:textStyle="bold" />
 
 	<TextView
 		android:id="@+id/src2"
@@ -112,8 +122,8 @@
 		android:text="@string/download_source"
 		tools:ignore="InconsistentLayout" />
 
-	<TextView
-		android:id="@+id/target"
+	<ImageView
+		android:id="@+id/imgtarget"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_below="@+id/middle"
@@ -121,7 +131,18 @@
 		android:layout_marginStart="50dp"
 		android:layout_marginTop="10dp"
 		android:layout_marginEnd="50dp"
-		android:drawablePadding="5dp"
+		android:src="@drawable/ic_download_dest"
+		app:tint="?android:attr/colorForeground" />
+
+	<TextView
+		android:id="@+id/target"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/imgtarget"
+		android:layout_centerHorizontal="true"
+		android:layout_marginStart="50dp"
+		android:layout_marginTop="10dp"
+		android:layout_marginEnd="50dp"
 		android:ellipsize="marquee"
 		android:focusable="true"
 		android:focusableInTouchMode="true"
@@ -129,8 +150,7 @@
 		android:marqueeRepeatLimit="marquee_forever"
 		android:scrollHorizontally="true"
 		android:singleLine="true"
-		android:text="@string/download_dest"
-		app:drawableTopCompat="@drawable/ic_download_dest" />
+		android:text="@string/download_dest" />
 
 	<TextView
 		android:id="@+id/target2"
