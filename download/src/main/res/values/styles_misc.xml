@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+	<!-- B U T T O N -->
+	<style name="ActionButton" parent="Widget.AppCompat.Button.Borderless">
+		<item name="android:tint">#00FF00</item>
+	</style>
+
+</resources>

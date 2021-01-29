@@ -6,6 +6,7 @@ package org.sqlunet.browser.xn;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +30,7 @@ import java.io.File;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.ImageViewCompat;
 import androidx.fragment.app.FragmentActivity;
 
 /**
@@ -44,7 +46,7 @@ public class SetupXSqlFragment extends org.sqlunet.browser.config.SetupSqlFragme
 	private ImageButton predicateMatrixButton;
 
 	// pm view
-	private ImageView pmStatus;
+	private ImageView imagePm;
 
 	/**
 	 * Constructor
@@ -69,7 +71,7 @@ public class SetupXSqlFragment extends org.sqlunet.browser.config.SetupSqlFragme
 		super.onViewCreated(view, savedInstanceState);
 
 		// statuses
-		this.pmStatus = view.findViewById(R.id.status_pm);
+		this.imagePm = view.findViewById(R.id.status_pm);
 
 		// buttons
 		this.predicateMatrixButton = view.findViewById(R.id.execute_predicatematrix);
@@ -136,7 +138,6 @@ public class SetupXSqlFragment extends org.sqlunet.browser.config.SetupSqlFragme
 
 			// images
 			final Drawable okDrawable = ColorUtils.getDrawable(context, R.drawable.ic_ok);
-			ColorUtils.tint(ColorUtils.getColor(context, R.color.onSecondaryColor), okDrawable);
 			final Drawable failDrawable = ColorUtils.getDrawable(context, R.drawable.ic_fail);
 
 			// status
@@ -145,7 +146,8 @@ public class SetupXSqlFragment extends org.sqlunet.browser.config.SetupSqlFragme
 			final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
 			// final boolean existsIndexes = (status & org.sqlunet.browser.config.Status.EXISTS_INDEXES) != 0;
 			final boolean existsPm = (status & Status.EXISTS_PREDICATEMATRIX) != 0;
-			this.pmStatus.setImageDrawable(existsPm ? okDrawable : failDrawable);
+			this.imagePm.setImageDrawable(existsPm ? okDrawable : failDrawable);
+			ImageViewCompat.setImageTintMode(this.imagePm, existsPm ? PorterDuff.Mode.SRC_IN : PorterDuff.Mode.DST);
 
 			// actions
 			this.predicateMatrixButton.setVisibility(sqlZipExists && existsDatabase && existsTables && !existsPm ? View.VISIBLE : View.GONE);

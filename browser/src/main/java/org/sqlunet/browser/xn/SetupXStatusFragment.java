@@ -7,6 +7,7 @@ package org.sqlunet.browser.xn;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,6 +28,7 @@ import org.sqlunet.settings.StorageUtils;
 import java.io.File;
 
 import androidx.annotation.NonNull;
+import androidx.core.widget.ImageViewCompat;
 
 /**
  * Setup Status fragment
@@ -200,18 +202,21 @@ public class SetupXStatusFragment extends org.sqlunet.browser.config.SetupStatus
 
 				// images
 				final Drawable okDrawable = ColorUtils.getDrawable(context, R.drawable.ic_ok);
-				ColorUtils.tint(ColorUtils.getColor(context, R.color.onSecondaryColor), okDrawable);
 				final Drawable failDrawable = ColorUtils.getDrawable(context, R.drawable.ic_fail);
 
-				this.imageTextSearchFn.setImageDrawable(existsTsFn ? okDrawable : failDrawable);
 				this.imagePm.setImageDrawable(existsPm ? okDrawable : failDrawable);
-				this.imageTextSearchWn.setImageDrawable(existsTsWn ? okDrawable : failDrawable);
-				this.imageTextSearchVn.setImageDrawable(existsTsVn ? okDrawable : failDrawable);
-				this.imageTextSearchPb.setImageDrawable(existsTsPb ? okDrawable : failDrawable);
+				ImageViewCompat.setImageTintMode(this.imagePm, existsPm ? PorterDuff.Mode.SRC_IN : PorterDuff.Mode.DST);
 				this.imageTextSearchFn.setImageDrawable(existsTsFn ? okDrawable : failDrawable);
+				ImageViewCompat.setImageTintMode(this.imageTextSearchFn, existsTsFn ? PorterDuff.Mode.SRC_IN : PorterDuff.Mode.DST);
+				this.imageTextSearchWn.setImageDrawable(existsTsWn ? okDrawable : failDrawable);
+				ImageViewCompat.setImageTintMode(this.imageTextSearchWn, existsTsWn ? PorterDuff.Mode.SRC_IN : PorterDuff.Mode.DST);
+				this.imageTextSearchVn.setImageDrawable(existsTsVn ? okDrawable : failDrawable);
+				ImageViewCompat.setImageTintMode(this.imageTextSearchVn, existsTsVn ? PorterDuff.Mode.SRC_IN : PorterDuff.Mode.DST);
+				this.imageTextSearchPb.setImageDrawable(existsTsPb ? okDrawable : failDrawable);
+				ImageViewCompat.setImageTintMode(this.imageTextSearchPb, existsTsPb ? PorterDuff.Mode.SRC_IN : PorterDuff.Mode.DST);
 
-				this.buttonTextSearchFn.setVisibility(existsTsFn ? View.GONE : View.VISIBLE);
 				this.buttonPm.setVisibility(existsPm ? View.GONE : View.VISIBLE);
+				this.buttonTextSearchFn.setVisibility(existsTsFn ? View.GONE : View.VISIBLE);
 				this.buttonTextSearchWn.setVisibility(existsTsWn ? View.GONE : View.VISIBLE);
 				this.buttonTextSearchVn.setVisibility(existsTsVn ? View.GONE : View.VISIBLE);
 				this.buttonTextSearchPb.setVisibility(existsTsPb ? View.GONE : View.VISIBLE);
@@ -219,15 +224,15 @@ public class SetupXStatusFragment extends org.sqlunet.browser.config.SetupStatus
 			}
 			else
 			{
-				this.buttonTextSearchFn.setVisibility(View.GONE);
 				this.buttonPm.setVisibility(View.GONE);
+				this.buttonTextSearchFn.setVisibility(View.GONE);
 				this.buttonTextSearchWn.setVisibility(View.GONE);
 				this.buttonTextSearchVn.setVisibility(View.GONE);
 				this.buttonTextSearchPb.setVisibility(View.GONE);
 				this.buttonTextSearchFn.setVisibility(View.GONE);
 
-				this.imageTextSearchFn.setImageResource(R.drawable.ic_unknown);
 				this.imagePm.setImageResource(R.drawable.ic_unknown);
+				this.imageTextSearchFn.setImageResource(R.drawable.ic_unknown);
 				this.imageTextSearchWn.setImageResource(R.drawable.ic_unknown);
 				this.imageTextSearchVn.setImageResource(R.drawable.ic_unknown);
 				this.imageTextSearchPb.setImageResource(R.drawable.ic_unknown);

@@ -13,7 +13,6 @@
 	<color name="secondaryColor">#1de9b6</color>
 	<color name="secondaryLightColor">#6effe8</color>
 	<color name="onSecondaryColor">#F0F0F0</color>
-	<color name="highlightOnSecondaryColor">@android:color/white</color>
 
 	<color name="colorHighlightOnBackground">#1de9b6</color>
 	<color name="colorDimmedOnBackground">#808080</color>

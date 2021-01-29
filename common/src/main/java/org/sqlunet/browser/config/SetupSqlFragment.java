@@ -7,6 +7,7 @@ package org.sqlunet.browser.config;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,6 +36,7 @@ import java.io.File;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.ImageViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -65,16 +67,16 @@ public class SetupSqlFragment extends Fragment implements Updatable
 	private ImageButton indexesButton;
 
 	// download sql view
-	private ImageView downloadSqlZipStatus;
+	private ImageView imageDownloadSqlZipStatus;
 
 	// create view
-	private ImageView createStatus;
+	private ImageView imageCreateStatus;
 
 	// import view
-	private ImageView importStatus;
+	private ImageView imageImportStatus;
 
 	// index view
-	private ImageView indexesStatus;
+	private ImageView imageIndexesStatus;
 
 	/**
 	 * Swipe refresh layout
@@ -102,10 +104,10 @@ public class SetupSqlFragment extends Fragment implements Updatable
 		super.onViewCreated(view, savedInstanceState);
 
 		// statuses
-		this.downloadSqlZipStatus = view.findViewById(R.id.status_sqlzip);
-		this.createStatus = view.findViewById(R.id.status_created);
-		this.importStatus = view.findViewById(R.id.status_import);
-		this.indexesStatus = view.findViewById(R.id.status_indexes);
+		this.imageDownloadSqlZipStatus = view.findViewById(R.id.status_sqlzip);
+		this.imageCreateStatus = view.findViewById(R.id.status_created);
+		this.imageImportStatus = view.findViewById(R.id.status_import);
+		this.imageIndexesStatus = view.findViewById(R.id.status_indexes);
 
 		// buttons
 		this.downloadSqlZipButton = view.findViewById(R.id.download_sqlzip);
@@ -298,7 +300,6 @@ public class SetupSqlFragment extends Fragment implements Updatable
 		{
 			// images
 			final Drawable okDrawable = ColorUtils.getDrawable(context, R.drawable.ic_ok);
-			ColorUtils.tint(ColorUtils.getColor(context, R.color.onSecondaryColor), okDrawable);
 			final Drawable failDrawable = ColorUtils.getDrawable(context, R.drawable.ic_fail);
 
 			// sql zip file
@@ -306,7 +307,8 @@ public class SetupSqlFragment extends Fragment implements Updatable
 			boolean sqlZipExists = new File(sqlZip).exists();
 			this.downloadSqlZipButton.setEnabled(!sqlZipExists);
 			this.downloadSqlZipButton.setVisibility(sqlZipExists ? View.GONE : View.VISIBLE);
-			this.downloadSqlZipStatus.setImageDrawable(sqlZipExists ? okDrawable : failDrawable);
+			this.imageDownloadSqlZipStatus.setImageDrawable(sqlZipExists ? okDrawable : failDrawable);
+			ImageViewCompat.setImageTintMode(this.imageDownloadSqlZipStatus, sqlZipExists ? PorterDuff.Mode.SRC_IN : PorterDuff.Mode.DST);
 
 			// status
 			final int status = Status.status(context);
@@ -314,9 +316,12 @@ public class SetupSqlFragment extends Fragment implements Updatable
 			final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
 			final boolean existsIndexes = (status & Status.EXISTS_INDEXES) != 0;
 
-			this.createStatus.setImageDrawable(existsDatabase ? okDrawable : failDrawable);
-			this.importStatus.setImageDrawable(existsTables ? okDrawable : failDrawable);
-			this.indexesStatus.setImageDrawable(existsIndexes ? okDrawable : failDrawable);
+			this.imageCreateStatus.setImageDrawable(existsDatabase ? okDrawable : failDrawable);
+			ImageViewCompat.setImageTintMode(this.imageCreateStatus, existsDatabase ? PorterDuff.Mode.SRC_IN : PorterDuff.Mode.DST);
+			this.imageImportStatus.setImageDrawable(existsTables ? okDrawable : failDrawable);
+			ImageViewCompat.setImageTintMode(this.imageImportStatus, existsTables ? PorterDuff.Mode.SRC_IN : PorterDuff.Mode.DST);
+			this.imageIndexesStatus.setImageDrawable(existsIndexes ? okDrawable : failDrawable);
+			ImageViewCompat.setImageTintMode(this.imageIndexesStatus, existsIndexes ? PorterDuff.Mode.SRC_IN : PorterDuff.Mode.DST);
 
 			// actions
 			this.createButton.setVisibility(sqlZipExists && !existsDatabase ? View.VISIBLE : View.GONE);

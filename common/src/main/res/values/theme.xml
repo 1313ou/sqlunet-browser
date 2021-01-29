@@ -20,8 +20,6 @@
 		<item name="colorOnSecondary">@color/onSecondaryColor</item>
 
 		<item name="colorAccent">@color/secondaryColor</item>
-		<item name="colorControlNormal">@color/onSecondaryColor</item>
-		<item name="colorControlActivated">@color/highlightOnSecondaryColor</item>
 
 		<!-- extras -->
 		<item name="colorHighlightOnPrimary">@color/highlightOnPrimaryColor</item>
