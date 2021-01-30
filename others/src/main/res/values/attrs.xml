@@ -1,0 +1,11 @@
+<!--
+  ~ Copyright (c) 2021. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+
+<!--	<attr name="colorSecondary" format="color|reference" />-->
+<!--	<attr name="colorOnSecondary" format="color|reference" />-->
+	<attr name="colorHighlightOnBackground" format="color" />
+
+</resources>
