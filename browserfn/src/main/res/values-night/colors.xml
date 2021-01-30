@@ -4,11 +4,11 @@
 
 <resources>
 
-	<color name="primaryColor">#e2dbbe</color>
-	<color name="primaryDarkColor">#958e6e</color>
-	<color name="primaryLightColor">#f4ebc7</color>
-	<color name="onPrimaryColor">#444444</color>
-	<color name="highlightOnPrimaryColor">@android:color/black</color>
+	<color name="primaryColor">#5F5941</color>
+	<color name="primaryDarkColor">#4A4738</color>
+	<color name="primaryLightColor">#68624B</color>
+	<color name="onPrimaryColor">#cccccc</color>
+	<color name="highlightOnPrimaryColor">@android:color/white</color>
 
 	<color name="secondaryColor">#1de9b6</color>
 	<color name="secondaryLightColor">#6effe8</color>
