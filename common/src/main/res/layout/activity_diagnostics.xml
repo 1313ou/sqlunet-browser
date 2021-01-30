@@ -58,6 +58,6 @@
 		android:layout_margin="@dimen/fab_margin"
 		android:enabled="false"
 		app:srcCompat="@android:drawable/ic_dialog_email"
-		app:tint="@android:color/white" />
+		app:tint="?attr/colorOnSecondary" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
