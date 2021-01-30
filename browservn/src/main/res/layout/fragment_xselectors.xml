@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
@@ -10,4 +9,5 @@
 	android:layout_height="wrap_content"
 	android:layout_centerHorizontal="true"
 	android:choiceMode="singleChoice"
+	android:groupIndicator="@drawable/expander_group_arrow"
 	tools:listitem="@layout/item_xselector" />

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- after @android:drawable/expander_group_material -->
+
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:state_expanded="true">
+		<nine-patch android:src="@drawable/expanded_arrow" android:tint="?attr/colorOnSecondary" />
+	</item>
+	<item>
+		<nine-patch android:src="@drawable/collapsed_arrow" android:tint="?attr/colorOnSecondary" />
+	</item>
+</selector>
