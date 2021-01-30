@@ -13,7 +13,6 @@ import org.sqlunet.provider.ProviderArgs;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 /**
@@ -21,7 +20,7 @@ import androidx.appcompat.widget.Toolbar;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class Browse2Activity extends AppCompatActivity
+public class Browse2Activity extends AbstractBrowse2Activity
 {
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
