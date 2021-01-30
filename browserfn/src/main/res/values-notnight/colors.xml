@@ -4,9 +4,9 @@
 
 <resources>
 
-	<color name="primaryColor">#e2dbbe</color>
-	<color name="primaryDarkColor">#958e6e</color>
-	<color name="primaryLightColor">#f4ebc7</color>
+	<color name="primaryColor">#A09B87</color>
+	<color name="primaryDarkColor">#847E62</color>
+	<color name="primaryLightColor">#BEB385</color>
 	<color name="onPrimaryColor">#444444</color>
 	<color name="highlightOnPrimaryColor">@android:color/black</color>
 
