@@ -127,6 +127,7 @@
 				android:layout_gravity="center"
 				android:contentDescription="@string/description_logo_treebolicwordnet"
 				android:gravity="center_horizontal"
+				android:layout_marginTop="25dp"
 				android:padding="5dp"
 				android:src="@drawable/logo_treebolicwordnet"
 				android:visibility="visible"/>
