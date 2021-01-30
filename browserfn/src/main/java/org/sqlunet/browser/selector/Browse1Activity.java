@@ -6,11 +6,11 @@ package org.sqlunet.browser.selector;
 
 import android.os.Bundle;
 
+import org.sqlunet.browser.AbstractBrowse1Activity;
 import org.sqlunet.browser.fn.R;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
@@ -19,7 +19,7 @@ import androidx.fragment.app.Fragment;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class Browse1Activity extends AppCompatActivity
+public class Browse1Activity extends AbstractBrowse1Activity
 {
 	@Override
 	protected void onCreate(@Nullable final Bundle savedInstanceState)
