@@ -4,16 +4,18 @@
 
 package org.sqlunet.browser;
 
-import android.app.Activity;
 import android.app.Application;
+import android.content.res.Configuration;
 
 import androidx.annotation.NonNull;
 
 abstract public class AbstractApplication extends Application
 {
-	static public AbstractApplication getApplication(@NonNull Activity thisApp )
+	@Override
+	public void onConfigurationChanged(@NonNull final Configuration newConfig)
 	{
-		return (AbstractApplication)thisApp.getApplication();
+		super.onConfigurationChanged(newConfig);
+		setAllColorsFromResources();
 	}
 
 	abstract public void setAllColorsFromResources();
