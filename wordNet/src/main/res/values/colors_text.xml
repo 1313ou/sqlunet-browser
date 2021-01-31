@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+
+	<color name="lemmaBackColor">#00000000</color>
+	<color name="lemmaForeColor">#00000000</color>
+
+	<color name="membersBackColor">#00000000</color>
+	<color name="membersForeColor">#00000000</color>
+
+	<color name="wordBackColor">#00000000</color>
+	<color name="wordForeColor">#00000000</color>
+
+	<array name="palette_wn">
+
+		<item>@color/lemmaBackColor</item>
+		<item>@color/lemmaForeColor</item>
+
+		<item>@color/membersBackColor</item>
+		<item>@color/membersForeColor</item>
+
+		<item>@color/wordBackColor</item>
+		<item>@color/wordForeColor</item>
+
+	</array>
+
+</resources>

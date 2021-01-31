@@ -7,7 +7,6 @@ package org.sqlunet.wordnet.style;
 import android.graphics.Typeface;
 import android.text.style.StyleSpan;
 
-import org.sqlunet.style.Colors;
 import org.sqlunet.style.Factories;
 import org.sqlunet.style.Spanner.SpanFactory;
 

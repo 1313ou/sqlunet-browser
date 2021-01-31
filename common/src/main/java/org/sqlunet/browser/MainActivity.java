@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity
 	public void onConfigurationChanged(@NonNull final Configuration newConfig)
 	{
 		super.onConfigurationChanged(newConfig);
-		Colors.setColorsFromResources(this);
+		AbstractApplication.getApplication(this).setAllColorsFromResources();
 	}
 
 	// S E A R C H

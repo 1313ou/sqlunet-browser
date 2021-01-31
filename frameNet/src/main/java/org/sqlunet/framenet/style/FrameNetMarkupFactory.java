@@ -12,7 +12,6 @@ import android.text.style.StyleSpan;
 import android.text.style.UnderlineSpan;
 
 import org.sqlunet.framenet.R;
-import org.sqlunet.style.Colors;
 import org.sqlunet.style.Factories;
 import org.sqlunet.style.MarkupSpanner;
 import org.sqlunet.style.MarkupSpanner.SpanPosition;

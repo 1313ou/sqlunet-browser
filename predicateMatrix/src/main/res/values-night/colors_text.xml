@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+
+	<color name="predicateNameBackColor">#FFFF99</color>
+	<color name="predicateNameForeColor">#000000</color>
+
+	<color name="groupBackColor">#00000000</color>
+	<color name="groupForeColor">#E65100</color>
+
+	<color name="roleAliasBackColor">#4251BD</color>
+	<color name="roleAliasForeColor">#FFFFFF</color>
+
+</resources>

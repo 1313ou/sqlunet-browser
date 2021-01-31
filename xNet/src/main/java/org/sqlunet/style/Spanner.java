@@ -360,6 +360,7 @@ public class Spanner
 	 * @param to   to position
 	 * @param span span to apply
 	 */
+	@SuppressWarnings("unchecked")
 	static public void applySpan(@NonNull final SpannableStringBuilder sb, final int from, final int to, @NonNull final Object span)
 	{
 		if (span instanceof Object[])

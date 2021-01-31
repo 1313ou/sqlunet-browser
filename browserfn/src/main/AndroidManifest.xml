@@ -19,7 +19,7 @@
 		android:required="true" />
 
 	<application
-		android:name="org.sqlunet.browser.Application"
+		android:name="org.sqlunet.browser.fn.Application"
 		android:allowBackup="true"
 		android:fullBackupContent="@xml/backup"
 		android:icon="@mipmap/ic_launcher"

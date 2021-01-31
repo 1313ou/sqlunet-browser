@@ -12,9 +12,9 @@ import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.sqlunet.browser.xn.Application;
 import org.sqlunet.predicatematrix.PmRolePointer;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.style.Colors;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -76,7 +76,7 @@ public class BrowsePredicateMatrixActivity extends AppCompatActivity
 	public void onConfigurationChanged(@NonNull final Configuration newConfig)
 	{
 		super.onConfigurationChanged(newConfig);
-		Colors.setColorsFromResources(this);
+		AbstractApplication.getApplication(this).setAllColorsFromResources();
 	}
 
 	// M E N U

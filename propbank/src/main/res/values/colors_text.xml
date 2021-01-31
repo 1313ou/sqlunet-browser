@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+
+	<color name="thetaBackColor">#00000000</color>
+	<color name="thetaForeColor">#00000000</color>
+
+	<color name="relationBackColor">#00000000</color>
+	<color name="relationForeColor">#00000000</color>
+
+	<array name="palette_pb">
+
+		<item>@color/thetaBackColor</item>
+		<item>@color/thetaForeColor</item>
+
+		<item>@color/relationBackColor</item>
+		<item>@color/relationForeColor</item>
+
+	</array>
+
+</resources>

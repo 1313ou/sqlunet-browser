@@ -7,7 +7,6 @@ package org.sqlunet.framenet.style;
 import android.graphics.Typeface;
 import android.text.style.StyleSpan;
 
-import org.sqlunet.style.Colors;
 import org.sqlunet.style.Factories;
 import org.sqlunet.style.Spanner.SpanFactory;
 
@@ -60,7 +59,7 @@ public class FrameNetFactories
 
 	static public final SpanFactory targetFactory = flags -> Factories.spans(Colors.targetBackColor, Colors.targetForeColor, new StyleSpan(Typeface.BOLD));
 
-	static public final SpanFactory highlightTextFactory = flags -> Factories.spans(Colors.textHighlightBackColor, Colors.textHighlightForeColor, new StyleSpan(Typeface.NORMAL));
+	static public final SpanFactory highlightTextFactory = flags -> Factories.spans(org.sqlunet.style.Colors.textHighlightBackColor, org.sqlunet.style.Colors.textHighlightForeColor, new StyleSpan(Typeface.NORMAL));
 
 	static public final SpanFactory targetHighlightTextFactory = flags -> Factories.spans(Colors.targetHighlightTextBackColor, Colors.targetHighlightTextForeColor, new StyleSpan(Typeface.BOLD));
 

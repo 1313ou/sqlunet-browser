@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+	<integer name="size_sqlunet_db" tools:keep="@integer/size_sqlunet_db">0</integer>
+	<integer name="size_sqlunet_db_zip" tools:keep="@integer/size_sqlunet_db_zip">0</integer>
+	<integer name="size_sqlunet_sql_zip" tools:keep="@integer/size_sqlunet_sql_zip">0</integer>
+
+	<integer name="size_searchtext" tools:keep="@integer/size_searchtext">0</integer>
+
+	<integer name="size_db_working_total">0</integer>
+
+</resources>

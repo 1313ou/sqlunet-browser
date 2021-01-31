@@ -17,6 +17,6 @@ public abstract class AbstractBrowse1Activity extends AppCompatActivity
 	public void onConfigurationChanged(@NonNull final Configuration newConfig)
 	{
 		super.onConfigurationChanged(newConfig);
-		Colors.setColorsFromResources(this);
+		AbstractApplication.getApplication(this).setAllColorsFromResources();
 	}
 }

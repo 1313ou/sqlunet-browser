@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+
+	<color name="predicateNameBackColor">#00000000</color>
+	<color name="predicateNameForeColor">#00000000</color>
+
+	<color name="groupBackColor">#00000000</color>
+	<color name="groupForeColor">#00000000</color>
+
+	<color name="roleAliasBackColor">#00000000</color>
+	<color name="roleAliasForeColor">#00000000</color>
+
+	<array name="palette_pm">
+
+		<item>@color/predicateNameBackColor</item>
+		<item>@color/predicateNameForeColor</item>
+
+		<item>@color/groupBackColor</item>
+		<item>@color/groupForeColor</item>
+
+		<item>@color/roleAliasBackColor</item>
+		<item>@color/roleAliasForeColor</item>
+
+	</array>
+
+</resources>

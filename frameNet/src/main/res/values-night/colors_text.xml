@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+
+	<color name="feBackColor">#FF00FF</color>
+	<color name="feForeColor">#FFFFFF</color>
+
+	<color name="feAbbrevBackColor">#00000000</color>
+	<color name="feAbbrevForeColor">#FF00FF</color>
+
+	<color name="fe2BackColor">#888888</color>
+	<color name="fe2ForeColor">#FFFFFF</color>
+
+	<color name="fenBackColor">#FF00FF</color>
+	<color name="fenForeColor">#FFFFFF</color>
+
+	<color name="fenWithinDefBackColor">#00000000</color>
+	<color name="fenWithinDefForeColor">#FF00FF</color>
+
+	<color name="xfenBackColor">#00000000</color>
+	<color name="xfenForeColor">#FF00FF</color>
+
+	<color name="fexBackColor">#DD80DD</color>
+	<color name="fexForeColor">#FFFFFF</color>
+
+	<color name="fexWithinDefBackColor">#00000000</color>
+	<color name="fexWithinDefForeColor">#888888</color>
+
+	<color name="metaFrameDefinitionBackColor">#00000000</color>
+	<color name="metaFrameDefinitionForeColor">#8B0000</color>
+
+	<color name="metaFeDefinitionBackColor">#00000000</color>
+	<color name="metaFeDefinitionForeColor">#4682B4</color>
+
+	<color name="tag1BackColor">#00000000</color>
+	<color name="tag1ForeColor">#00FF00</color>
+
+	<color name="tag2BackColor">#00000000</color>
+	<color name="tag2ForeColor">#00FFFF</color>
+
+	<color name="exBackColor">#00000000</color>
+	<color name="exForeColor">#00000000</color>
+
+	<color name="xBackColor">#00000000</color>
+	<color name="xForeColor">#000000</color>
+
+	<color name="tBackColor">#888888</color>
+	<color name="tForeColor">#FFFFFF</color>
+
+	<color name="governorTypeBackColor">#00000000</color>
+	<color name="governorTypeForeColor">#FFA500</color>
+
+	<color name="governorBackColor">#00000000</color>
+	<color name="governorForeColor">#000000</color>
+
+	<color name="annoSetBackColor">#00000000</color>
+	<color name="annoSetForeColor">#00000000</color>
+
+	<color name="layerTypeBackColor">#FFFF59</color>
+	<color name="layerTypeForeColor">#000000</color>
+
+	<color name="labelBackColor">#E9967A</color>
+	<color name="labelForeColor">#FFFFFF</color>
+
+	<color name="subtextBackColor">#00000000</color>
+	<color name="subtextForeColor">#888888</color>
+
+	<color name="groupBackColor">#FFA500</color>
+	<color name="groupForeColor">#000000</color>
+
+	<color name="targetBackColor">#FF0000</color>
+	<color name="targetForeColor">#FFFFFF</color>
+
+	<color name="targetHighlightTextBackColor">#000000</color>
+	<color name="targetHighlightTextForeColor">#FFFFFF</color>
+
+	<color name="ptBackColor">#00000000</color>
+	<color name="ptForeColor">#000000</color>
+
+	<color name="gfBackColor">#00000000</color>
+	<color name="gfForeColor">#888888</color>
+
+</resources>
