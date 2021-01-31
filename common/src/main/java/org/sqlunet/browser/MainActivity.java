@@ -6,7 +6,6 @@ package org.sqlunet.browser;
 
 import android.app.SearchManager;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,7 +17,6 @@ import com.google.android.material.navigation.NavigationView;
 
 import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.StorageSettings;
-import org.sqlunet.style.Colors;
 
 import java.util.List;
 
@@ -92,13 +90,6 @@ public class MainActivity extends AppCompatActivity
 	{
 		super.onNewIntent(intent);
 		handleSearchIntent(intent);
-	}
-
-	@Override
-	public void onConfigurationChanged(@NonNull final Configuration newConfig)
-	{
-		super.onConfigurationChanged(newConfig);
-		AbstractApplication.getApplication(this).setAllColorsFromResources();
 	}
 
 	// S E A R C H

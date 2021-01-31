@@ -4,10 +4,8 @@
 
 package org.sqlunet.browser;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 
-import org.sqlunet.style.Colors;
 import org.sqlunet.xnet.R;
 
 import androidx.annotation.NonNull;
@@ -62,12 +60,5 @@ abstract public class AbstractActivity extends AppCompatActivity
 					.replace(getContainerId(), fragment) //
 					.commit();
 		}
-	}
-
-	@Override
-	public void onConfigurationChanged(@NonNull final Configuration newConfig)
-	{
-		super.onConfigurationChanged(newConfig);
-		//AbstractApplication.getApplication(this).setAllColorsFromResources();
 	}
 }
