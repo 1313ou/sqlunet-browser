@@ -12,7 +12,15 @@ public class Application extends android.app.Application
 	public void onCreate()
 	{
 		super.onCreate();
-		Colors.setColorsFromResources(this);
+		setAllColorsFromResources();
 		Settings.initialize(this);
+	}
+
+	public void setAllColorsFromResources()
+	{
+		Colors.setColorsFromResources(this);
+		org.sqlunet.syntagnet.style.Colors.setColorsFromResources(this);
+		org.sqlunet.wordnet.style.Colors.setColorsFromResources(this);
+		org.sqlunet.bnc.style.Colors.setColorsFromResources(this);
 	}
 }

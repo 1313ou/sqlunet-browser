@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+
+	<color name="feBackColor">#00000000</color>
+	<color name="feForeColor">#00000000</color>
+
+	<color name="feAbbrevBackColor">#00000000</color>
+	<color name="feAbbrevForeColor">#00000000</color>
+
+	<color name="fe2BackColor">#00000000</color>
+	<color name="fe2ForeColor">#00000000</color>
+
+	<color name="fenBackColor">#00000000</color>
+	<color name="fenForeColor">#00000000</color>
+
+	<color name="fenWithinDefBackColor">#00000000</color>
+	<color name="fenWithinDefForeColor">#00000000</color>
+
+	<color name="xfenBackColor">#00000000</color>
+	<color name="xfenForeColor">#00000000</color>
+
+	<color name="fexBackColor">#00000000</color>
+	<color name="fexForeColor">#00000000</color>
+
+	<color name="fexWithinDefBackColor">#00000000</color>
+	<color name="fexWithinDefForeColor">#00000000</color>
+
+	<color name="metaFrameDefinitionBackColor">#00000000</color>
+	<color name="metaFrameDefinitionForeColor">#00000000</color>
+
+	<color name="metaFeDefinitionBackColor">#00000000</color>
+	<color name="metaFeDefinitionForeColor">#00000000</color>
+
+	<color name="tag1BackColor">#00000000</color>
+	<color name="tag1ForeColor">#00000000</color>
+
+	<color name="tag2BackColor">#00000000</color>
+	<color name="tag2ForeColor">#00000000</color>
+
+	<color name="exBackColor">#00000000</color>
+	<color name="exForeColor">#00000000</color>
+
+	<color name="xBackColor">#00000000</color>
+	<color name="xForeColor">#00000000</color>
+
+	<color name="tBackColor">#00000000</color>
+	<color name="tForeColor">#00000000</color>
+
+	<color name="governorTypeBackColor">#00000000</color>
+	<color name="governorTypeForeColor">#00000000</color>
+
+	<color name="governorBackColor">#00000000</color>
+	<color name="governorForeColor">#00000000</color> 
+
+	<color name="annoSetBackColor">#00000000</color>
+	<color name="annoSetForeColor">#00000000</color>
+
+	<color name="layerTypeBackColor">#00000000</color>
+	<color name="layerTypeForeColor">#00000000</color>
+
+	<color name="labelBackColor">#00000000</color>
+	<color name="labelForeColor">#00000000</color>
+
+	<color name="subtextBackColor">#00000000</color>
+	<color name="subtextForeColor">#00000000</color>
+
+	<color name="groupBackColor">#00000000</color>
+	<color name="groupForeColor">#00000000</color>
+
+	<color name="targetBackColor">#00000000</color>
+	<color name="targetForeColor">#00000000</color>
+
+	<color name="targetHighlightTextBackColor">#00000000</color> 
+	<color name="targetHighlightTextForeColor">#00000000</color>
+
+	<color name="ptBackColor">#00000000</color>
+	<color name="ptForeColor">#00000000</color> 
+
+	<color name="gfBackColor">#00000000</color>
+	<color name="gfForeColor">#00000000</color>
+
+	<array name="palette_fn">
+
+		<item>@color/feBackColor</item>
+		<item>@color/feForeColor</item>
+
+		<item>@color/feAbbrevBackColor</item>
+		<item>@color/feAbbrevForeColor</item>
+
+		<item>@color/fe2BackColor</item>
+		<item>@color/fe2ForeColor</item>
+
+		<item>@color/fenBackColor</item>
+		<item>@color/fenForeColor</item>
+
+		<item>@color/fenWithinDefBackColor</item>
+		<item>@color/fenWithinDefForeColor</item>
+
+		<item>@color/xfenBackColor</item>
+		<item>@color/xfenForeColor</item>
+
+		<item>@color/fexBackColor</item>
+		<item>@color/fexForeColor</item>
+
+		<item>@color/fexWithinDefBackColor</item>
+		<item>@color/fexWithinDefForeColor</item>
+
+		<item>@color/metaFrameDefinitionBackColor</item>
+		<item>@color/metaFrameDefinitionForeColor</item>
+
+		<item>@color/metaFeDefinitionBackColor</item>
+		<item>@color/metaFeDefinitionForeColor</item>
+
+		<item>@color/tag1BackColor</item>
+		<item>@color/tag1ForeColor</item>
+
+		<item>@color/tag2BackColor</item>
+		<item>@color/tag2ForeColor</item>
+
+		<item>@color/exBackColor</item>
+		<item>@color/exForeColor</item>
+
+		<item>@color/xBackColor</item>
+		<item>@color/xForeColor</item>
+
+		<item>@color/tBackColor</item>
+		<item>@color/tForeColor</item>
+
+		<item>@color/governorTypeBackColor</item>
+		<item>@color/governorTypeForeColor</item>
+
+		<item>@color/governorBackColor</item>
+		<item>@color/governorForeColor</item>
+
+		<item>@color/annoSetBackColor</item>
+		<item>@color/annoSetForeColor</item>
+
+		<item>@color/layerTypeBackColor</item>
+		<item>@color/layerTypeForeColor</item>
+
+		<item>@color/labelBackColor</item>
+		<item>@color/labelForeColor</item>
+
+		<item>@color/subtextBackColor</item>
+		<item>@color/subtextForeColor</item>
+
+		<item>@color/groupBackColor</item>
+		<item>@color/groupForeColor</item>
+
+		<item>@color/targetBackColor</item>
+		<item>@color/targetForeColor</item>
+
+		<item>@color/targetHighlightTextBackColor</item>
+		<item>@color/targetHighlightTextForeColor</item>
+
+		<item>@color/ptBackColor</item>
+		<item>@color/ptForeColor</item>
+
+		<item>@color/gfBackColor</item>
+		<item>@color/gfForeColor</item>
+
+	</array>
+
+</resources>

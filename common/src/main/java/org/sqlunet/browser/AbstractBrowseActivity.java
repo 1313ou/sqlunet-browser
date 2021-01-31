@@ -75,7 +75,7 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 	public void onConfigurationChanged(@NonNull final Configuration newConfig)
 	{
 		super.onConfigurationChanged(newConfig);
-		Colors.setColorsFromResources(this);
+		AbstractApplication.getApplication(this).setAllColorsFromResources();
 	}
 
 	// M E N U

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+
+	<color name="vnPredicateBackColor">#00000000</color>
+	<color name="vnPredicateForeColor">#FFA500</color>
+
+	<color name="groupingBackColor">#00000000</color>
+	<color name="groupingForeColor">#808080</color>
+
+	<color name="vnFrameBackColor">#6F4E37</color>
+	<color name="vnFrameForeColor">#FFFFFF</color>
+
+	<color name="vnFrameSubnameBackColor">#00000000</color>
+	<color name="vnFrameSubnameForeColor">#6F4E37</color>
+
+	<color name="themroleBackColor">#00000000</color>
+	<color name="themroleForeColor">#DD80DD</color>
+
+	<color name="catBackColor">#00000000</color>
+	<color name="catForeColor">#FFE5B4</color>
+
+	<color name="catValueBackColor">#00000000</color>
+	<color name="catValueForeColor">#DD80DD</color>
+
+	<color name="restrBackColor">#00000000</color>
+	<color name="restrForeColor">#FFE5B4</color>
+
+	<color name="constantBackColor">#00000000</color>
+	<color name="constantForeColor">#CCCCCC</color>
+
+	<color name="eventBackColor">#00000000</color>
+	<color name="eventForeColor">#0000FF</color>
+
+</resources>

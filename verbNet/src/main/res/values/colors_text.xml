@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+
+	<color name="vnPredicateBackColor">#00000000</color>
+	<color name="vnPredicateForeColor">#00000000</color>
+
+	<color name="groupingBackColor">#00000000</color>
+	<color name="groupingForeColor">#00000000</color>
+
+	<color name="vnFrameBackColor">#00000000</color>
+	<color name="vnFrameForeColor">#00000000</color>
+
+	<color name="vnFrameSubnameBackColor">#00000000</color>
+	<color name="vnFrameSubnameForeColor">#00000000</color>
+
+	<color name="themroleBackColor">#00000000</color>
+	<color name="themroleForeColor">#00000000</color>
+
+	<color name="catBackColor">#00000000</color>
+	<color name="catForeColor">#00000000</color>
+
+	<color name="catValueBackColor">#00000000</color>
+	<color name="catValueForeColor">#00000000</color>
+
+	<color name="restrBackColor">#00000000</color>
+	<color name="restrForeColor">#00000000</color> 
+
+	<color name="constantBackColor">#00000000</color>
+	<color name="constantForeColor">#00000000</color>
+
+	<color name="eventBackColor">#00000000</color>
+	<color name="eventForeColor">#00000000</color>
+
+	<array name="palette_vn">
+
+		<item>@color/vnPredicateBackColor</item>
+		<item>@color/vnPredicateForeColor</item>
+
+		<item>@color/groupingBackColor</item>
+		<item>@color/groupingForeColor</item>
+
+		<item>@color/vnFrameBackColor</item>
+		<item>@color/vnFrameForeColor</item>
+
+		<item>@color/vnFrameSubnameBackColor</item>
+		<item>@color/vnFrameSubnameForeColor</item>
+
+		<item>@color/themroleBackColor</item>
+		<item>@color/themroleForeColor</item>
+
+		<item>@color/catBackColor</item>
+		<item>@color/catForeColor</item>
+
+		<item>@color/catValueBackColor</item>
+		<item>@color/catValueForeColor</item>
+
+		<item>@color/restrBackColor</item>
+		<item>@color/restrForeColor</item>
+
+		<item>@color/constantBackColor</item>
+		<item>@color/constantForeColor</item>
+
+		<item>@color/eventBackColor</item>
+		<item>@color/eventForeColor</item>
+
+	</array>
+
+</resources>

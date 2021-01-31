@@ -4,53 +4,6 @@
   -->
 
 <resources>
-	<!--
-    <color name="bright_pink">#ff007f</color>
-    <color name="red">#ff0000</color>
-    <color name="orange">#ff7f00</color>
-	<color name="alt_orange">#ffa500</color>
-    <color name="yellow">#ffff00</color>
-    <color name="chartreuse">#7fff00</color>
-    <color name="green">#00ff00</color>
-    <color name="spring_green">#00ff7f</color>
-    <color name="cyan">#00ffff</color>
-	<color name="xlt_blue">#e9ffff</color>
-    <color name="azure">#007fff</color>
-	<color name="blue">#0000ff</color>
-	<color name="alt_blue">#4251bd</color>
-	<color name="lt_blue">#4682B4</color>
-	<color name="deepblue">#43486e</color>
-    <color name="violet">#7f00ff</color>
-    <color name="magenta">#ff00ff</color>
-	<color name="xlt_yellow">#ffffdd</color>
-	<color name="lt_yellow">#ffff99</color>
-	<color name="alt_yellow">#ffff59</color>
-	<color name="lemon">#ffff59</color>
-	<color name="lt_orange">#ffa500</color>
-	<color name="dk_red">#8b0000</color>
-	<color name="pink">#e9967a</color>
-	<color name="lt_pink">#ffc0c0</color>
-	<color name="dk_pink">#ef2063</color>
-	<color name="lt_magenta">#dd80dd</color>
-	<color name="brown">#6f4e37</color>
-	<color name="lt_brown">#ffe5b4</color>
-	-->
-
-	<!--  TEXT -->
-	<color name="textBackColor">#00000000</color>
-	<color name="textForeColor">#888888</color>
-
-	<color name="textNormalBackColor">#00000000</color>
-	<color name="textNormalForeColor">#000000</color>
-
-	<color name="textHighlightBackColor">#FFFF59</color>
-	<color name="textHighlightForeColor">#000000</color>
-
-	<color name="textDimmedBackColor">#00000000</color>
-	<color name="textDimmedForeColor">#888888</color>
-
-	<color name="textMatchBackColor">#00000000</color>
-	<color name="textMatchForeColor">#000000</color>
 
 	<!--  COMMON -->
 	<color name="classBackColor">#8B0000</color>
@@ -71,162 +24,21 @@
 	<color name="dataBackColor">#00000000</color>
 	<color name="dataForeColor">#888888</color>
 
-	<!--  PM -->
-	<color name="predicateNameBackColor">#FFFF99</color>
-	<color name="predicateNameForeColor">#000000</color>
+	<!--  TEXT -->
+	<color name="textBackColor">#00000000</color>
+	<color name="textForeColor">#888888</color>
 
-	<color name="roleAliasBackColor">#4251BD</color>
-	<color name="roleAliasForeColor">#FFFFFF</color>
+	<color name="textNormalBackColor">#00000000</color>
+	<color name="textNormalForeColor">#000000</color>
 
-	<!--  WN -->
-	<color name="lemmaBackColor">#00000000</color>
-	<color name="lemmaForeColor">#CCCCCC</color>
+	<color name="textHighlightBackColor">#FFFF59</color>
+	<color name="textHighlightForeColor">#000000</color>
 
-	<color name="membersBackColor">#00000000</color>
-	<color name="membersForeColor">#AAAAAA</color>
+	<color name="textDimmedBackColor">#00000000</color>
+	<color name="textDimmedForeColor">#888888</color>
 
-	<color name="wordBackColor">#00000000</color>
-	<color name="wordForeColor">#FFFFFF</color>
-
-	<!--  FN -->
-	<color name="feBackColor">#FF00FF</color>
-	<color name="feForeColor">#FFFFFF</color>
-
-	<color name="feAbbrevBackColor">#00000000</color>
-	<color name="feAbbrevForeColor">#FF00FF</color>
-
-	<color name="fe2BackColor">#888888</color>
-	<color name="fe2ForeColor">#FFFFFF</color>
-
-	<color name="fenBackColor">#FF00FF</color>
-	<color name="fenForeColor">#FFFFFF</color>
-
-	<color name="fenWithinDefBackColor">#00000000</color>
-	<color name="fenWithinDefForeColor">#FF00FF</color>
-
-	<color name="xfenBackColor">#00000000</color>
-	<color name="xfenForeColor">#FF00FF</color>
-
-	<color name="fexBackColor">#DD80DD</color>
-	<color name="fexForeColor">#FFFFFF</color>
-
-	<color name="fexWithinDefBackColor">#00000000</color>
-	<color name="fexWithinDefForeColor">#888888</color>
-
-	<color name="metaFrameDefinitionBackColor">#00000000</color>
-	<color name="metaFrameDefinitionForeColor">#8B0000</color>
-
-	<color name="metaFeDefinitionBackColor">#00000000</color>
-	<color name="metaFeDefinitionForeColor">#4682B4</color>
-
-	<color name="tag1BackColor">#00000000</color>
-	<color name="tag1ForeColor">#00FF00</color>
-
-	<color name="tag2BackColor">#00000000</color>
-	<color name="tag2ForeColor">#00FFFF</color>
-
-	<color name="exBackColor">#00000000</color>
-	<color name="exForeColor">#00000000</color>
-
-	<color name="xBackColor">#00000000</color>
-	<color name="xForeColor">#000000</color>
-
-	<color name="tBackColor">#888888</color>
-	<color name="tForeColor">#FFFFFF</color>
-
-	<color name="governorTypeBackColor">#00000000</color>
-	<color name="governorTypeForeColor">#FFA500</color>
-
-	<color name="governorBackColor">#00000000</color>
-	<color name="governorForeColor">#000000</color>
-
-	<color name="annoSetBackColor">#00000000</color>
-	<color name="annoSetForeColor">#00000000</color>
-
-	<color name="layerTypeBackColor">#FFFF59</color>
-	<color name="layerTypeForeColor">#000000</color>
-
-	<color name="labelBackColor">#E9967A</color>
-	<color name="labelForeColor">#FFFFFF</color>
-
-	<color name="subtextBackColor">#00000000</color>
-	<color name="subtextForeColor">#888888</color>
-
-	<color name="groupBackColor">#FFA500</color>
-	<color name="groupForeColor">#000000</color>
-
-	<color name="targetBackColor">#FF0000</color>
-	<color name="targetForeColor">#FFFFFF</color>
-
-	<color name="targetHighlightTextBackColor">#000000</color>
-	<color name="targetHighlightTextForeColor">#FFFFFF</color>
-
-	<color name="ptBackColor">#00000000</color>
-	<color name="ptForeColor">#000000</color>
-
-	<color name="gfBackColor">#00000000</color>
-	<color name="gfForeColor">#888888</color>
-
-	<!--  VN -->
-	<color name="vnPredicateBackColor">#00000000</color>
-	<color name="vnPredicateForeColor">#FFA500</color>
-
-	<color name="groupingBackColor">#00000000</color>
-	<color name="groupingForeColor">#808080</color>
-
-	<color name="vnFrameBackColor">#6F4E37</color>
-	<color name="vnFrameForeColor">#FFFFFF</color>
-
-	<color name="vnFrameSubnameBackColor">#00000000</color>
-	<color name="vnFrameSubnameForeColor">#6F4E37</color>
-
-	<color name="themroleBackColor">#00000000</color>
-	<color name="themroleForeColor">#DD80DD</color>
-
-	<color name="catBackColor">#00000000</color>
-	<color name="catForeColor">#FFE5B4</color>
-
-	<color name="catValueBackColor">#00000000</color>
-	<color name="catValueForeColor">#DD80DD</color>
-
-	<color name="restrBackColor">#00000000</color>
-	<color name="restrForeColor">#FFE5B4</color>
-
-	<color name="constantBackColor">#00000000</color>
-	<color name="constantForeColor">#CCCCCC</color>
-
-	<color name="eventBackColor">#00000000</color>
-	<color name="eventForeColor">#0000FF</color>
-
-	<!--  PB -->
-	<color name="thetaBackColor">#00000000</color>
-	<color name="thetaForeColor">#0000FF</color>
-
-	<color name="relationBackColor">#00000000</color>
-	<color name="relationForeColor">#CCCCCC</color>
-
-	<!--  SN -->
-	<color name="collocationBackColor">#FFFFFF</color>
-	<color name="collocationForeColor">#444444</color>
-
-	<color name="word1BackColor">#E46D42</color>
-	<color name="word1ForeColor">#FFFFFF</color>
-
-	<color name="word2BackColor">#76608B</color>
-	<color name="word2ForeColor">#FFFFFF</color>
-
-	<color name="definition1BackColor">#FFFFFF</color>
-	<color name="definition1ForeColor">#E46D42</color>
-
-	<color name="definition2BackColor">#FFFFFF</color>
-	<color name="definition2ForeColor">#76608B</color>
-
-	<color name="idsBackColor">#00000000</color>
-	<color name="idsForeColor">#888888</color>
-
-	<!--  BNC -->
-	<color name="bncHeaderBackColor">#E9967A</color>
-	<color name="bncHeaderForeColor">#E9967A</color>
+	<color name="textMatchBackColor">#00000000</color>
+	<color name="textMatchForeColor">#000000</color>
 
 	<!--  SQL -->
 	<color name="sqlKeywordBackColor">#00000000</color>

@@ -76,7 +76,7 @@ public abstract class AbstractSearchTextActivity<F extends BaseSearchFragment> e
 	public void onConfigurationChanged(@NonNull final Configuration newConfig)
 	{
 		super.onConfigurationChanged(newConfig);
-		Colors.setColorsFromResources(this);
+		AbstractApplication.getApplication(this).setAllColorsFromResources();
 	}
 
 	// M E N U

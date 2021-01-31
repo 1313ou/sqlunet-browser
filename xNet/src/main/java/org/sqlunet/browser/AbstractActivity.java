@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ * Copyright (c) 2021. Bernard Bou <1313ou@gmail.com>.
  */
 
 package org.sqlunet.browser;
@@ -68,6 +68,6 @@ abstract public class AbstractActivity extends AppCompatActivity
 	public void onConfigurationChanged(@NonNull final Configuration newConfig)
 	{
 		super.onConfigurationChanged(newConfig);
-		Colors.setColorsFromResources(this);
+		//AbstractApplication.getApplication(this).setAllColorsFromResources();
 	}
 }

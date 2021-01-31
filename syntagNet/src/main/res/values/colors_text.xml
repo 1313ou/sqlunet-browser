@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+
+	<color name="collocationBackColor">#00000000</color>
+	<color name="collocationForeColor">#00000000</color>
+
+	<color name="word1BackColor">#00000000</color>
+	<color name="word1ForeColor">#00000000</color>
+
+	<color name="word2BackColor">#00000000</color>
+	<color name="word2ForeColor">#00000000</color>
+
+	<color name="definition1BackColor">#00000000</color>
+	<color name="definition1ForeColor">#00000000</color>
+
+	<color name="definition2BackColor">#00000000</color>
+	<color name="definition2ForeColor">#00000000</color>
+
+	<color name="idsBackColor">#00000000</color>
+	<color name="idsForeColor">#00000000</color>
+
+	<array name="palette_sn">
+
+		<item>@color/collocationBackColor</item>
+		<item>@color/collocationForeColor</item>
+
+		<item>@color/word1BackColor</item>
+		<item>@color/word1ForeColor</item>
+
+		<item>@color/word2BackColor</item>
+		<item>@color/word2ForeColor</item>
+
+		<item>@color/definition1BackColor</item>
+		<item>@color/definition1ForeColor</item>
+
+		<item>@color/definition2BackColor</item>
+		<item>@color/definition2ForeColor</item>
+
+	</array>
+
+</resources>
