@@ -30,6 +30,7 @@ import org.sqlunet.settings.StorageSettings;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.PreferenceManager;
 
 import static org.sqlunet.download.AbstractDownloadFragment.DOWNLOAD_FROM_ARG;
@@ -208,6 +209,21 @@ public class MenuHandler
 		{
 			final String appId = activity.getPackageName();
 			Settings.applicationSettings(activity, appId);
+			return true;
+		}
+		else if (itemId == R.id.action_theme_system)
+		{
+			AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+			return true;
+		}
+		else if (itemId == R.id.action_theme_night)
+		{
+			AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+			return true;
+		}
+		else if (itemId == R.id.action_theme_day)
+		{
+			AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 			return true;
 		}
 		else
