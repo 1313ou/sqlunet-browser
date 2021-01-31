@@ -40,6 +40,9 @@
 		<item>@color/definition2BackColor</item>
 		<item>@color/definition2ForeColor</item>
 
+		<item>@color/idsBackColor</item>
+		<item>@color/idsForeColor</item>
+
 	</array>
 
 </resources>
