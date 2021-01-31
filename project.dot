@@ -1,0 +1,164 @@
+digraph {
+  graph [label="semantikos\n ",labelloc=t,fontsize=30,ranksep=1.4];
+  node [style=filled, fillcolor="#bbbbbb"];
+  rankdir=TB;
+
+  # Projects
+
+  ":assetpacks" [fillcolor="#baffc9"];
+  ":bNC" [fillcolor="#baffc9"];
+  ":browser" [fillcolor="#baffc9"];
+  ":browserewn" [fillcolor="#baffc9"];
+  ":browserfn" [fillcolor="#baffc9"];
+  ":browsersn" [fillcolor="#baffc9"];
+  ":browservn" [fillcolor="#baffc9"];
+  ":browserwn" [fillcolor="#baffc9"];
+  ":common" [fillcolor="#baffc9"];
+  ":concurrency" [fillcolor="#baffc9"];
+  ":db_ewn_asset" [fillcolor="#eeeeee"];
+  ":db_wn31_asset" [fillcolor="#eeeeee"];
+  ":dbewn_ewn_asset" [fillcolor="#eeeeee"];
+  ":dbfn_ewn_asset" [fillcolor="#eeeeee"];
+  ":dbfn_wn31_asset" [fillcolor="#eeeeee"];
+  ":dbsn_ewn_asset" [fillcolor="#eeeeee"];
+  ":dbsn_wn31_asset" [fillcolor="#eeeeee"];
+  ":dbvn_ewn_asset" [fillcolor="#eeeeee"];
+  ":dbvn_wn31_asset" [fillcolor="#eeeeee"];
+  ":dbwn_wn31_asset" [fillcolor="#eeeeee"];
+  ":deploy" [fillcolor="#baffc9"];
+  ":donate" [fillcolor="#baffc9"];
+  ":download" [fillcolor="#baffc9"];
+  ":expandableListFragment" [fillcolor="#baffc9"];
+  ":frameNet" [fillcolor="#baffc9"];
+  ":libwn" [fillcolor="#baffc9"];
+  ":others" [fillcolor="#baffc9"];
+  ":predicateMatrix" [fillcolor="#baffc9"];
+  ":preference" [fillcolor="#baffc9"];
+  ":propbank" [fillcolor="#baffc9"];
+  ":rate" [fillcolor="#baffc9"];
+  ":syntagNet" [fillcolor="#baffc9"];
+  ":test" [fillcolor="#baffc9"];
+  ":treeView" [fillcolor="#baffc9"];
+  ":verbNet" [fillcolor="#baffc9"];
+  ":wordNet" [fillcolor="#baffc9"];
+  ":xNet" [fillcolor="#baffc9"];
+
+  {rank = same;}
+
+  # Dependencies
+
+  ":assetpacks" -> ":deploy" [color=blue]
+  ":assetpacks" -> ":concurrency" [color=blue]
+  ":bNC" -> ":treeView" [color=blue]
+  ":bNC" -> ":xNet" [color=blue]
+  ":browser" -> ":test" [color=blue]
+  ":browser" -> ":db_wn31_asset"
+  ":browser" -> ":db_ewn_asset"
+  ":browser" -> ":common" [color=blue]
+  ":browser" -> ":expandableListFragment" [color=blue]
+  ":browser" -> ":assetpacks" [color=blue]
+  ":browser" -> ":download" [color=blue]
+  ":browser" -> ":deploy" [color=blue]
+  ":browser" -> ":concurrency" [color=blue]
+  ":browser" -> ":others" [color=blue]
+  ":browser" -> ":donate" [color=blue]
+  ":browser" -> ":rate" [color=blue]
+  ":browser" -> ":xNet" [color=blue]
+  ":browser" -> ":wordNet" [color=blue]
+  ":browser" -> ":verbNet" [color=blue]
+  ":browser" -> ":propbank" [color=blue]
+  ":browser" -> ":frameNet" [color=blue]
+  ":browser" -> ":predicateMatrix" [color=blue]
+  ":browser" -> ":bNC" [color=blue]
+  ":browserewn" -> ":test" [color=blue]
+  ":browserewn" -> ":dbewn_ewn_asset"
+  ":browserewn" -> ":libwn" [color=blue]
+  ":browserfn" -> ":test" [color=blue]
+  ":browserfn" -> ":dbfn_wn31_asset"
+  ":browserfn" -> ":dbfn_ewn_asset"
+  ":browserfn" -> ":common" [color=blue]
+  ":browserfn" -> ":expandableListFragment" [color=blue]
+  ":browserfn" -> ":assetpacks" [color=blue]
+  ":browserfn" -> ":download" [color=blue]
+  ":browserfn" -> ":deploy" [color=blue]
+  ":browserfn" -> ":others" [color=blue]
+  ":browserfn" -> ":donate" [color=blue]
+  ":browserfn" -> ":rate" [color=blue]
+  ":browserfn" -> ":xNet" [color=blue]
+  ":browserfn" -> ":frameNet" [color=blue]
+  ":browsersn" -> ":test" [color=blue]
+  ":browsersn" -> ":dbsn_wn31_asset"
+  ":browsersn" -> ":dbsn_ewn_asset"
+  ":browsersn" -> ":common" [color=blue]
+  ":browsersn" -> ":expandableListFragment" [color=blue]
+  ":browsersn" -> ":assetpacks" [color=blue]
+  ":browsersn" -> ":download" [color=blue]
+  ":browsersn" -> ":deploy" [color=blue]
+  ":browsersn" -> ":others" [color=blue]
+  ":browsersn" -> ":donate" [color=blue]
+  ":browsersn" -> ":rate" [color=blue]
+  ":browsersn" -> ":xNet" [color=blue]
+  ":browsersn" -> ":wordNet" [color=blue]
+  ":browsersn" -> ":syntagNet" [color=blue]
+  ":browsersn" -> ":bNC" [color=blue]
+  ":browservn" -> ":test" [color=blue]
+  ":browservn" -> ":dbvn_wn31_asset"
+  ":browservn" -> ":dbvn_ewn_asset"
+  ":browservn" -> ":common" [color=blue]
+  ":browservn" -> ":expandableListFragment" [color=blue]
+  ":browservn" -> ":assetpacks" [color=blue]
+  ":browservn" -> ":download" [color=blue]
+  ":browservn" -> ":deploy" [color=blue]
+  ":browservn" -> ":others" [color=blue]
+  ":browservn" -> ":donate" [color=blue]
+  ":browservn" -> ":rate" [color=blue]
+  ":browservn" -> ":xNet" [color=blue]
+  ":browservn" -> ":wordNet" [color=blue]
+  ":browservn" -> ":verbNet" [color=blue]
+  ":browservn" -> ":propbank" [color=blue]
+  ":browserwn" -> ":test" [color=blue]
+  ":browserwn" -> ":dbwn_wn31_asset"
+  ":browserwn" -> ":libwn" [color=blue]
+  ":common" -> ":expandableListFragment" [color=blue]
+  ":common" -> ":concurrency" [color=blue]
+  ":common" -> ":preference" [color=blue]
+  ":common" -> ":download" [color=blue]
+  ":common" -> ":deploy" [color=blue]
+  ":common" -> ":others" [color=blue]
+  ":common" -> ":donate" [color=blue]
+  ":common" -> ":rate" [color=blue]
+  ":common" -> ":xNet" [color=blue]
+  ":common" -> ":assetpacks" [color=blue]
+  ":deploy" -> ":concurrency" [color=blue]
+  ":download" -> ":deploy" [color=blue]
+  ":download" -> ":concurrency" [color=blue]
+  ":frameNet" -> ":treeView" [color=blue]
+  ":frameNet" -> ":xNet" [color=blue]
+  ":libwn" -> ":test" [color=blue]
+  ":libwn" -> ":common"
+  ":libwn" -> ":expandableListFragment"
+  ":libwn" -> ":assetpacks"
+  ":libwn" -> ":download"
+  ":libwn" -> ":deploy"
+  ":libwn" -> ":others"
+  ":libwn" -> ":donate"
+  ":libwn" -> ":xNet"
+  ":libwn" -> ":wordNet"
+  ":libwn" -> ":bNC"
+  ":predicateMatrix" -> ":xNet" [color=blue]
+  ":predicateMatrix" -> ":treeView" [color=blue]
+  ":predicateMatrix" -> ":frameNet" [color=blue]
+  ":predicateMatrix" -> ":propbank" [color=blue]
+  ":predicateMatrix" -> ":verbNet" [color=blue]
+  ":propbank" -> ":treeView" [color=blue]
+  ":propbank" -> ":xNet" [color=blue]
+  ":syntagNet" -> ":treeView" [color=blue]
+  ":syntagNet" -> ":xNet" [color=blue]
+  ":syntagNet" -> ":wordNet" [color=blue]
+  ":verbNet" -> ":treeView" [color=blue]
+  ":verbNet" -> ":xNet" [color=blue]
+  ":wordNet" -> ":xNet" [color=blue]
+  ":wordNet" -> ":treeView" [color=blue]
+  ":xNet" -> ":treeView" [color=blue]
+  ":xNet" -> ":concurrency" [color=blue]
+}
