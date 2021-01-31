@@ -149,13 +149,23 @@
 		</menu>
 	</item>
 
-	<group android:id="@+id/theme_group" android:checkableBehavior="single">
-		<item android:id="@+id/action_theme_system"
-			android:title="@string/action_theme_system"/>
-		<item android:id="@+id/action_theme_night"
-			android:title="@string/action_theme_night"/>
-		<item android:id="@+id/action_theme_day"
-			android:title="@string/action_theme_day"/>
-	</group>
-
+	<item
+		android:title="@string/action_theme"
+		app:showAsAction="never">
+		<menu>
+			<group
+				android:id="@+id/theme_group"
+				android:checkableBehavior="single">
+				<item
+					android:id="@+id/action_theme_system"
+					android:title="@string/action_theme_system" />
+				<item
+					android:id="@+id/action_theme_night"
+					android:title="@string/action_theme_night" />
+				<item
+					android:id="@+id/action_theme_day"
+					android:title="@string/action_theme_day" />
+			</group>
+		</menu>
+	</item>
 </menu>
