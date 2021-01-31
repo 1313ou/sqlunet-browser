@@ -51,6 +51,9 @@
 	<string name="action_credits">Credits</string>
 	<string name="action_provider_info">Providers</string>
 	<string name="action_appsettings">Application</string>
+	<string name="action_theme_system">Theme follows system</string>
+	<string name="action_theme_night">Night theme</string>
+	<string name="action_theme_day">Day theme</string>
 
 	<!-- run -->
 	<string name="action_run">Run</string>
