@@ -2,11 +2,13 @@
 
 #list devices
 #adb devices -l
+#device=ce12160c903ac05e0c	#samsung
+#device=e7f518b7				#xiaomi
 
-device=ce12160c903ac05e0c
 if [ "-device" == "$1" ]; then
 	shift
 	device=$1
+	deviceswitch="-s $1"
 	shift 
 fi
 
@@ -29,10 +31,10 @@ for e in '' 'fn' 'wn' 'ewn' 'vn' 'sn'; do
 	echo -e "${Y}browser$e <$e><$d>${Z}"
 
 	if [ "$1" == "-z" ]; then
-		adb -s ${device} uninstall org.sqlunet.browser$d
+		adb ${deviceswitch} uninstall org.sqlunet.browser$d
 	fi
 
-	adb -s ${device} install -r ${APKDIR}/browser$e-release.apk
+	adb ${deviceswitch} install -r ${APKDIR}/browser$e-release.apk
 
 done
 
