@@ -34,22 +34,4 @@ public class ColorsNight extends AbstractColors
 	{
 		return AppCompatDelegate.MODE_NIGHT_YES;
 	}
-
-	@Before
-	public void before() throws Throwable
-	{
-		super.before();
-	}
-
-	@Test
-	public void colorContrast() throws Colors.IllegalColorPair
-	{
-		super.colorContrast();
-	}
-
-	@Test
-	public void colorContrastXNet()
-	{
-		super.colorContrastXNet();
-	}
 }

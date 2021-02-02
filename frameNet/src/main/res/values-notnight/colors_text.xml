@@ -57,7 +57,7 @@
 	<color name="governorForeColor">#000000</color>
 
 	<color name="annoSetBackColor">#00000000</color>
-	<color name="annoSetForeColor">#00000000</color>
+	<color name="annoSetForeColor">#000000</color>
 
 	<color name="layerTypeBackColor">#FFFF59</color>
 	<color name="layerTypeForeColor">#000000</color>

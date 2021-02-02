@@ -6,7 +6,7 @@
 <resources>
 
 	<color name="thetaBackColor">#00000000</color>
-	<color name="thetaForeColor">#0000FF</color>
+	<color name="thetaForeColor">#5A5ACA</color>
 
 	<color name="relationBackColor">#00000000</color>
 	<color name="relationForeColor">#CCCCCC</color>

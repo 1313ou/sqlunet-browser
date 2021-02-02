@@ -15,7 +15,7 @@
 	<color name="vnFrameForeColor">#FFFFFF</color>
 
 	<color name="vnFrameSubnameBackColor">#00000000</color>
-	<color name="vnFrameSubnameForeColor">#6F4E37</color>
+	<color name="vnFrameSubnameForeColor">#7F624E</color>
 
 	<color name="themroleBackColor">#00000000</color>
 	<color name="themroleForeColor">#DD80DD</color>
@@ -33,6 +33,6 @@
 	<color name="constantForeColor">#CCCCCC</color>
 
 	<color name="eventBackColor">#00000000</color>
-	<color name="eventForeColor">#0000FF</color>
+	<color name="eventForeColor">#6262E1</color>
 
 </resources>

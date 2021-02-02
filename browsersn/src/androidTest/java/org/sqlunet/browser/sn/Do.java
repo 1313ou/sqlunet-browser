@@ -11,7 +11,6 @@ import android.widget.ListView;
 import org.hamcrest.Matcher;
 import org.sqlunet.browser.ContainerUtils;
 import org.sqlunet.browser.DataUtils;
-import org.sqlunet.browser.R;
 import org.sqlunet.browser.Seq;
 import org.sqlunet.browser.ToBoolean;
 import org.sqlunet.browser.WaitUntil;
