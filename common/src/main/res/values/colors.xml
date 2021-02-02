@@ -6,6 +6,10 @@
 
 	<!-- T H E M E  A T T R  -->
 
+	<!-- generic -->
+	<color name="backgroundColor">@android:color/white</color> <!-- generic window background -->
+	<color name="foregroundColor">@android:color/black</color> <!-- generic window foreground -->
+
 	<!-- primary -->
 	<color name="primaryColor">#4251bd</color> <!-- framework + nav (middle in gradient), x selector header -->
 	<color name="primaryDarkColor">#293073</color> <!-- framework + nav (end in gradient) -->

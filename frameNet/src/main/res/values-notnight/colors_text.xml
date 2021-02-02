@@ -23,7 +23,7 @@
 	<color name="xfenBackColor">#00000000</color>
 	<color name="xfenForeColor">#FF00FF</color>
 
-	<color name="fexBackColor">#DD80DD</color>
+	<color name="fexBackColor">#DC59DC</color>
 	<color name="fexForeColor">#FFFFFF</color>
 
 	<color name="fexWithinDefBackColor">#00000000</color>
@@ -36,10 +36,10 @@
 	<color name="metaFeDefinitionForeColor">#4682B4</color>
 
 	<color name="tag1BackColor">#00000000</color>
-	<color name="tag1ForeColor">#00FF00</color>
+	<color name="tag1ForeColor">#1B5E20</color>
 
 	<color name="tag2BackColor">#00000000</color>
-	<color name="tag2ForeColor">#00FFFF</color>
+	<color name="tag2ForeColor">#0D47A1</color>
 
 	<color name="exBackColor">#00000000</color>
 	<color name="exForeColor">#00000000</color>
@@ -51,7 +51,7 @@
 	<color name="tForeColor">#FFFFFF</color>
 
 	<color name="governorTypeBackColor">#00000000</color>
-	<color name="governorTypeForeColor">#FFA500</color>
+	<color name="governorTypeForeColor">#BF360C</color>
 
 	<color name="governorBackColor">#00000000</color>
 	<color name="governorForeColor">#000000</color>
@@ -62,7 +62,7 @@
 	<color name="layerTypeBackColor">#FFFF59</color>
 	<color name="layerTypeForeColor">#000000</color>
 
-	<color name="labelBackColor">#E9967A</color>
+	<color name="labelBackColor">#A76C59</color>
 	<color name="labelForeColor">#FFFFFF</color>
 
 	<color name="subtextBackColor">#00000000</color>

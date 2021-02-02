@@ -4,6 +4,10 @@
 
 <resources>
 
+	<!-- generic -->
+	<color name="backgroundColor">@android:color/white</color> <!-- generic window background -->
+	<color name="foregroundColor">@android:color/black</color> <!-- generic window foreground -->
+
 	<!-- primary -->
 	<color name="primaryColor">#4251bd</color>
 	<color name="primaryDarkColor">#293073</color>
