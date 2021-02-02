@@ -68,7 +68,7 @@ dependencies {
     //implementation project(path: ':xNet')
     //implementation project(path: ':wordNet')
     //implementation project(path: ':bNC')
-    implementation project(path: ':libwn')
+    implementation project(path: ':commonwn')
 
     implementation 'androidx.appcompat:appcompat:1.2.0' // for resources validation
     //implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
