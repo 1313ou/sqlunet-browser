@@ -4,6 +4,7 @@
 
 package org.sqlunet.browser;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.Menu;
@@ -54,6 +55,13 @@ public class Browse2Activity extends AbstractBrowse2Activity
 		final Browse2Fragment fragment = (Browse2Fragment) getSupportFragmentManager().findFragmentById(R.id.fragment_detail);
 		assert fragment != null;
 		fragment.search(pointer, null);
+	}
+
+	@Override
+	public void onConfigurationChanged(@NonNull final Configuration newConfig)
+	{
+		// Needed ?
+		super.onConfigurationChanged(newConfig);
 	}
 
 	// M E N U

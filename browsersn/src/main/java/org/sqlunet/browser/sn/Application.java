@@ -4,23 +4,29 @@
 
 package org.sqlunet.browser.sn;
 
+import android.content.Context;
+
+import org.sqlunet.browser.AbstractApplication;
 import org.sqlunet.style.Colors;
 
-public class Application extends android.app.Application
+import androidx.annotation.NonNull;
+
+public class Application extends AbstractApplication
 {
 	@Override
 	public void onCreate()
 	{
 		super.onCreate();
-		setAllColorsFromResources();
+		setAllColorsFromResources(this);
 		Settings.initialize(this);
 	}
 
-	public void setAllColorsFromResources()
+	@Override
+	public void setAllColorsFromResources(@NonNull final Context context)
 	{
-		Colors.setColorsFromResources(this);
-		org.sqlunet.syntagnet.style.Colors.setColorsFromResources(this);
-		org.sqlunet.wordnet.style.Colors.setColorsFromResources(this);
-		org.sqlunet.bnc.style.Colors.setColorsFromResources(this);
+		Colors.setColorsFromResources(context);
+		org.sqlunet.syntagnet.style.Colors.setColorsFromResources(context);
+		org.sqlunet.wordnet.style.Colors.setColorsFromResources(context);
+		org.sqlunet.bnc.style.Colors.setColorsFromResources(context);
 	}
 }

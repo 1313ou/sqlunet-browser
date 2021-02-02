@@ -4,6 +4,10 @@
 
 package org.sqlunet.browser;
 
+import android.content.res.Configuration;
+
+import androidx.annotation.NonNull;
+
 /**
  * Search text activity
  *
@@ -11,4 +15,10 @@ package org.sqlunet.browser;
  */
 public class SearchTextActivity extends AbstractSearchTextActivity<SearchTextFragment>
 {
+	@Override
+	public void onConfigurationChanged(@NonNull final Configuration newConfig)
+	{
+		// Needed ?
+		super.onConfigurationChanged(newConfig);
+	}
 }

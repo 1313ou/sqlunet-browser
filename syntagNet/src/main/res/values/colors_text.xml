@@ -5,24 +5,6 @@
 
 <resources>
 
-	<color name="collocationBackColor">#00000000</color>
-	<color name="collocationForeColor">#00000000</color>
-
-	<color name="word1BackColor">#00000000</color>
-	<color name="word1ForeColor">#00000000</color>
-
-	<color name="word2BackColor">#00000000</color>
-	<color name="word2ForeColor">#00000000</color>
-
-	<color name="definition1BackColor">#00000000</color>
-	<color name="definition1ForeColor">#00000000</color>
-
-	<color name="definition2BackColor">#00000000</color>
-	<color name="definition2ForeColor">#00000000</color>
-
-	<color name="idsBackColor">#00000000</color>
-	<color name="idsForeColor">#00000000</color>
-
 	<array name="palette_sn">
 
 		<item>@color/collocationBackColor</item>

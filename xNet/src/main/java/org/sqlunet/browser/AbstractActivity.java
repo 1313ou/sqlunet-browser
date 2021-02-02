@@ -4,6 +4,7 @@
 
 package org.sqlunet.browser;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import org.sqlunet.xnet.R;
@@ -60,5 +61,13 @@ abstract public class AbstractActivity extends AppCompatActivity
 					.replace(getContainerId(), fragment) //
 					.commit();
 		}
+	}
+
+	@Override
+	public void onConfigurationChanged(@NonNull final Configuration newConfig)
+	{
+		super.onConfigurationChanged(newConfig);
+		getApplication().onConfigurationChanged(newConfig);
+		recreate();
 	}
 }

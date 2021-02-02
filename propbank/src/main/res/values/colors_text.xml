@@ -5,12 +5,6 @@
 
 <resources>
 
-	<color name="thetaBackColor">#00000000</color>
-	<color name="thetaForeColor">#00000000</color>
-
-	<color name="relationBackColor">#00000000</color>
-	<color name="relationForeColor">#00000000</color>
-
 	<array name="palette_pb">
 
 		<item>@color/thetaBackColor</item>

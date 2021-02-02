@@ -18,13 +18,14 @@ public class Application extends AbstractApplication
 	public void onCreate()
 	{
 		super.onCreate();
-		setAllColorsFromResources();
+		setAllColorsFromResources(this);
 		Settings.initialize(this);
 	}
 
-	public void setAllColorsFromResources()
+	@Override
+	public void setAllColorsFromResources(@NonNull final Context context)
 	{
-		Colors.setColorsFromResources(this);
-		org.sqlunet.framenet.style.Colors.setColorsFromResources(this);
+		Colors.setColorsFromResources(context);
+		org.sqlunet.framenet.style.Colors.setColorsFromResources(context);
 	}
 }

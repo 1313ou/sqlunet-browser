@@ -5,36 +5,6 @@
 
 <resources>
 
-	<color name="vnPredicateBackColor">#00000000</color>
-	<color name="vnPredicateForeColor">#00000000</color>
-
-	<color name="groupingBackColor">#00000000</color>
-	<color name="groupingForeColor">#00000000</color>
-
-	<color name="vnFrameBackColor">#00000000</color>
-	<color name="vnFrameForeColor">#00000000</color>
-
-	<color name="vnFrameSubnameBackColor">#00000000</color>
-	<color name="vnFrameSubnameForeColor">#00000000</color>
-
-	<color name="themroleBackColor">#00000000</color>
-	<color name="themroleForeColor">#00000000</color>
-
-	<color name="catBackColor">#00000000</color>
-	<color name="catForeColor">#00000000</color>
-
-	<color name="catValueBackColor">#00000000</color>
-	<color name="catValueForeColor">#00000000</color>
-
-	<color name="restrBackColor">#00000000</color>
-	<color name="restrForeColor">#00000000</color> 
-
-	<color name="constantBackColor">#00000000</color>
-	<color name="constantForeColor">#00000000</color>
-
-	<color name="eventBackColor">#00000000</color>
-	<color name="eventForeColor">#00000000</color>
-
 	<array name="palette_vn">
 
 		<item>@color/vnPredicateBackColor</item>

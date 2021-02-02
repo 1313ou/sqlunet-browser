@@ -5,15 +5,6 @@
 
 <resources>
 
-	<color name="lemmaBackColor">#00000000</color>
-	<color name="lemmaForeColor">#00000000</color>
-
-	<color name="membersBackColor">#00000000</color>
-	<color name="membersForeColor">#00000000</color>
-
-	<color name="wordBackColor">#00000000</color>
-	<color name="wordForeColor">#00000000</color>
-
 	<array name="palette_wn">
 
 		<item>@color/lemmaBackColor</item>

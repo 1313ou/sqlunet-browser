@@ -4,6 +4,8 @@
 
 package org.sqlunet.framenet.browser;
 
+import android.content.res.Configuration;
+
 import org.sqlunet.browser.AbstractActivity;
 import org.sqlunet.framenet.R;
 
@@ -34,5 +36,12 @@ public class FnSentenceActivity extends AbstractActivity
 	protected Fragment makeFragment()
 	{
 		return new FnSentenceFragment();
+	}
+
+	@Override
+	public void onConfigurationChanged(@NonNull final Configuration newConfig)
+	{
+		// Needed ?
+		super.onConfigurationChanged(newConfig);
 	}
 }

@@ -6,6 +6,7 @@ package org.sqlunet.browser;
 
 import android.app.SearchManager;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.Log;
@@ -90,6 +91,14 @@ public class MainActivity extends AppCompatActivity
 	{
 		super.onNewIntent(intent);
 		handleSearchIntent(intent);
+	}
+
+	@Override
+	public void onConfigurationChanged(@NonNull final Configuration newConfig)
+	{
+		super.onConfigurationChanged(newConfig);
+		getApplication().onConfigurationChanged(newConfig);
+		recreate();
 	}
 
 	// S E A R C H

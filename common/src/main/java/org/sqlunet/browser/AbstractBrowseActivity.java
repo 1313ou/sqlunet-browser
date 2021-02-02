@@ -6,6 +6,7 @@ package org.sqlunet.browser;
 
 import android.app.SearchManager;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -67,6 +68,13 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 	{
 		super.onNewIntent(intent);
 		handleSearchIntent(intent);
+	}
+
+	@Override
+	public void onConfigurationChanged(@NonNull final Configuration newConfig)
+	{
+		getApplication().onConfigurationChanged(newConfig);
+		recreate();
 	}
 
 	// M E N U
