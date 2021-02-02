@@ -1,4 +1,4 @@
-package org.sqlunet.browser;
+package org.sqlunet.browser.ewn;
 
 import android.content.Context;
 import android.util.Log;
@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.sqlunet.browser.MainActivity;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -18,7 +19,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
 import static androidx.test.internal.runner.junit4.statement.UiThreadStatement.runOnUiThread;
-import static org.sqlunet.browser.Colors.testColorsFromResources;
+import static org.sqlunet.browser.ewn.Colors.testColorsFromResources;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
@@ -54,11 +55,7 @@ abstract class AbstractColors extends TestCase
 		testColorsFromResources(this.context, org.sqlunet.browser.common.R.array.palette_ui, false);
 		testColorsFromResources(this.context, org.sqlunet.xnet.R.array.palette, false);
 		testColorsFromResources(this.context, org.sqlunet.wordnet.R.array.palette_wn, false);
-		testColorsFromResources(this.context, org.sqlunet.framenet.R.array.palette_fn, false);
-		testColorsFromResources(this.context, org.sqlunet.verbnet.R.array.palette_vn, false);
-		testColorsFromResources(this.context, org.sqlunet.propbank.R.array.palette_pb, false);
 		testColorsFromResources(this.context, org.sqlunet.bnc.R.array.palette_bnc, false);
-		testColorsFromResources(this.context, org.sqlunet.predicatematrix.R.array.palette_pm, false);
 	}
 
 	@Test
@@ -70,11 +67,7 @@ abstract class AbstractColors extends TestCase
 			testColorsFromResources(this.context, org.sqlunet.browser.common.R.array.palette_ui, true);
 			testColorsFromResources(this.context, org.sqlunet.xnet.R.array.palette, true);
 			testColorsFromResources(this.context, org.sqlunet.wordnet.R.array.palette_wn, true);
-			testColorsFromResources(this.context, org.sqlunet.framenet.R.array.palette_fn, true);
-			testColorsFromResources(this.context, org.sqlunet.verbnet.R.array.palette_vn, true);
-			testColorsFromResources(this.context, org.sqlunet.propbank.R.array.palette_pb, true);
 			testColorsFromResources(this.context, org.sqlunet.bnc.R.array.palette_bnc, true);
-			testColorsFromResources(this.context, org.sqlunet.predicatematrix.R.array.palette_pm, true);
 		}
 		catch (Colors.IllegalColorPair ce)
 		{

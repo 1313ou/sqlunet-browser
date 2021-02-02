@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+
+	<array name="palette_ui">
+
+		<!-- [0] -->
+		<item>@android:color/transparent</item>
+		<item>@android:color/transparent</item>
+
+		<!-- [1] -->
+		<item>@color/backgroundColor</item>
+		<item>@color/foregroundColor</item>
+
+		<!-- [2] -->
+		<item>@color/primaryColor</item>
+		<item>@color/onPrimaryColor</item>
+
+		<!-- [3] -->
+		<item>@color/primaryColor</item>
+		<item>@color/onPrimaryColor</item>
+
+		<!-- [4] -->
+		<item>@color/primaryDarkColor</item>
+		<item>@color/onPrimaryColor</item>
+
+		<!-- [5] -->
+		<item>@color/primaryLightColor</item>
+		<item>@color/onPrimaryColor</item>
+		
+		<!-- [6] -->
+		<item>@color/primaryColor</item>
+		<item>@color/highlightOnPrimaryColor</item>
+
+		<!-- [7] -->
+		<item>@color/secondaryColor</item>
+		<item>@color/onSecondaryColor</item>
+
+		<!-- [8] -->
+		<item>@color/secondaryLightColor</item>
+		<item>@color/onSecondaryColor</item>
+
+		<!-- [9] -->
+		<item>@android:color/transparent</item>
+		<item>@color/colorHighlightOnBackground</item>
+
+		<!-- [10] -->
+		<item>@android:color/transparent</item>
+		<item>@color/colorDimmedOnBackground</item>
+
+		<!-- [11] -->
+		<item>@android:color/transparent</item>
+		<item>@color/shadow</item>
+
+		<!-- [12] -->
+		<item>@android:color/transparent</item>
+		<item>@color/info_button_color</item>
+
+		<!-- [13] -->
+		<item>@android:color/transparent</item>
+		<item>@color/info_button_activated_color</item>
+
+		<!-- [14] -->
+		<item>@android:color/transparent</item>
+		<item>@color/ok_button_color</item>
+
+		<!-- [15] -->
+		<item>@android:color/transparent</item>
+		<item>@color/err_button_color</item>
+
+		<!-- [16] -->
+<!--		<item>@android:color/transparent</item>-->
+<!--		<item>@color/swipe_down_1_color</item>-->
+
+		<!-- [17] -->
+<!--		<item>@android:color/transparent</item>-->
+<!--		<item>@color/swipe_down_2_color</item>-->
+
+		<!-- [18] -->
+<!--		<item>@color/info_button_color</item>-->
+<!--		<item>@color/onSecondaryColor</item>-->
+
+		<!-- [19] -->
+<!--		<item>@color/info_button_activated_color</item>-->
+<!--		<item>@color/onSecondaryColor</item>-->
+
+		<!-- [20] -->
+<!--		<item>@color/err_button_color</item>-->
+<!--		<item>@color/onSecondaryColor</item>-->
+
+	</array>
+
+</resources>
