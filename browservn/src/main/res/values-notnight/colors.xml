@@ -5,7 +5,7 @@
 <resources>
 
 	<color name="primaryColor">#c8ddb7</color>
-	<color name="primaryDarkColor">#7d956e</color>
+	<color name="primaryDarkColor">#96B384</color>
 	<color name="primaryLightColor">#dbf4c7</color>
 	<color name="onPrimaryColor">#444444</color>
 	<color name="highlightOnPrimaryColor">@android:color/black</color>
