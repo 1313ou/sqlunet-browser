@@ -5,8 +5,8 @@
 
 <resources>
 
-	<color name="vnPredicateBackColor">#FFA500</color>
-	<color name="vnPredicateForeColor">#FFFFFF</color>
+	<color name="vnPredicateBackColor">#FFA501</color>
+	<color name="vnPredicateForeColor">#444444</color>
 
 	<color name="groupingBackColor">#00000000</color>
 	<color name="groupingForeColor">#808080</color>
@@ -17,13 +17,13 @@
 	<color name="vnFrameSubnameBackColor">#00000000</color>
 	<color name="vnFrameSubnameForeColor">#6F4E37</color>
 
-	<color name="themroleBackColor">#DD80DD</color>
+	<color name="themroleBackColor">#D551D5</color>
 	<color name="themroleForeColor">#FFFFFF</color>
 
 	<color name="catBackColor">#FFE5B4</color>
 	<color name="catForeColor">#444444</color>
 
-	<color name="catValueBackColor">#DD80DD</color>
+	<color name="catValueBackColor">#D861D8</color>
 	<color name="catValueForeColor">#FFFFFF</color>
 
 	<color name="restrBackColor">#FFE5B4</color>
