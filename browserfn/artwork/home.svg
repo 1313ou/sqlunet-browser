@@ -14,7 +14,7 @@
    viewBox="0 0 799.99999 799.99999"
    id="svg2"
    version="1.1"
-   inkscape:version="0.92.1 r15371"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
    sodipodi:docname="home.svg">
   <defs
      id="defs4">
@@ -38,8 +38,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.54821705"
-     inkscape:cx="39.479635"
-     inkscape:cy="398.4375"
+     inkscape:cx="124.97176"
+     inkscape:cy="610.03252"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -47,10 +47,10 @@
      fit-margin-left="5"
      fit-margin-right="5"
      fit-margin-bottom="5"
-     inkscape:window-width="1920"
-     inkscape:window-height="1103"
-     inkscape:window-x="0"
-     inkscape:window-y="27"
+     inkscape:window-width="1864"
+     inkscape:window-height="1108"
+     inkscape:window-x="56"
+     inkscape:window-y="25"
      inkscape:window-maximized="1"
      units="px"
      showguides="true"
@@ -95,17 +95,17 @@
          x="-6.7661743"
          y="-33.25634" />
       <rect
-         style="display:inline;opacity:1;fill:#5c5a3f;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:16.57569122;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         style="display:inline;opacity:1;fill:#d2b48c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:16.57569122;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
          id="rect4513"
          width="802.0611"
          height="294.96454"
          x="-6.7661743"
          y="475.86053" />
       <rect
-         style="display:inline;opacity:1;fill:#45344d;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:18.3908577;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         style="display:inline;opacity:1;fill:#45344d;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:21.83448219;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
          id="rect4527"
          width="803.07129"
-         height="97.984795"
+         height="138.11488"
          x="-6.7661743"
          y="394.01785" />
       <text
@@ -133,13 +133,6 @@
            id="tspan3648"
            sodipodi:role="line">Frame</tspan></text>
     </g>
-    <rect
-       style="opacity:1;fill:#90846c;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.74789166;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect8451"
-       width="83.255867"
-       height="74.787926"
-       x="-243.24602"
-       y="-33.25634" />
   </g>
   <style
      type="text/css"
