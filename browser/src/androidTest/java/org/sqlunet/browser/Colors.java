@@ -48,7 +48,7 @@ public class Colors extends TestCase
 		@Override
 		public String getMessage()
 		{
-			return String.format("%d %s [%02d] #%x on #%x (default #%x on #%x) with contrast %f ", resId, res, index, foreColor, backColor, defaultForeColor, defaultBackColor, contrast);
+			return String.format("%d %s [%02d] %s on %s (default %s on %s) with contrast %f ", resId, res, index, colorToString(foreColor), colorToString(backColor), colorToString(defaultForeColor), colorToString(defaultBackColor), contrast);
 		}
 	}
 
@@ -94,7 +94,7 @@ public class Colors extends TestCase
 					foreColor = defaultColors[1];
 				}
 				double contrast = ColorUtils.calculateContrast(foreColor, backColor);
-				final String info = String.format("[%02d] Contrast #%x on #%x is %f", i / 2, foreColor, backColor, contrast);
+				final String info = String.format("[%02d] Contrast %s on %s is %f", i / 2, colorToString(foreColor), colorToString(backColor), contrast);
 				if (contrast < MIN_CONTRAST)
 				{
 					Log.e(LOGTAG, info);
@@ -108,6 +108,23 @@ public class Colors extends TestCase
 					Log.d(LOGTAG, info);
 				}
 			}
+		}
+	}
+
+	static String colorToString(final int color)
+	{
+		switch (color)
+		{
+			case 0:
+				return "transparent";
+			case 0xFF000000:
+				return "black";
+			case 0xFFffffff:
+				return "white";
+			case 0xFF808080:
+				return "gray";
+			default:
+				return '#' + Integer.toHexString(color);
 		}
 	}
 
@@ -133,7 +150,7 @@ public class Colors extends TestCase
 		{
 			String name = context.getResources().getResourceName(resIds[i]);
 			int value = a.getColor(i, NOT_DEFINED);
-			Log.i(LOGTAG, String.format("Attr %s = #%x", name, value));
+			Log.i(LOGTAG, String.format("Attr %s = %s", name, colorToString(value)));
 		}
 		a.recycle();
 	}
@@ -192,6 +209,4 @@ public class Colors extends TestCase
 				throw new IllegalStateException("Unexpected value: " + mode);
 		}
 	}
-
-
 }

@@ -29,23 +29,23 @@
 	<color name="textForeColor">#888888</color>
 
 	<color name="textNormalBackColor">#00000000</color>
-	<color name="textNormalForeColor">#000000</color>
+	<color name="textNormalForeColor">#ffffff</color>
 
-	<color name="textHighlightBackColor">#FFFF59</color>
-	<color name="textHighlightForeColor">#000000</color>
+	<color name="textHighlightBackColor">#00000000</color>
+	<color name="textHighlightForeColor">#FFFF59</color>
 
 	<color name="textDimmedBackColor">#00000000</color>
-	<color name="textDimmedForeColor">#888888</color>
+	<color name="textDimmedForeColor">#808080</color>
 
 	<color name="textMatchBackColor">#00000000</color>
-	<color name="textMatchForeColor">#000000</color>
+	<color name="textMatchForeColor">#ffff00</color>
 
 	<!--  SQL -->
 	<color name="sqlKeywordBackColor">#00000000</color>
-	<color name="sqlKeywordForeColor">#800080</color>
+	<color name="sqlKeywordForeColor">#A050A0</color>
 
 	<color name="sqlSlashBackColor">#00000000</color>
-	<color name="sqlSlashForeColor">#008000</color>
+	<color name="sqlSlashForeColor">#0EB70E</color>
 
 	<color name="sqlQuestionMarkBackColor">#00000000</color>
 	<color name="sqlQuestionMarkForeColor">#FF0000</color>
@@ -68,6 +68,6 @@
 	<color name="dirOkForeColor">#008B00</color>
 
 	<color name="dirFailBackColor">#00000000</color>
-	<color name="dirFailForeColor">#8B0000</color>
+	<color name="dirFailForeColor">#C01B1B</color>
 
 </resources>

@@ -11,7 +11,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.sqlunet.browser.MainActivity;
-import org.sqlunet.browser.R;
 import org.sqlunet.browser.Seq;
 
 import androidx.annotation.NonNull;
