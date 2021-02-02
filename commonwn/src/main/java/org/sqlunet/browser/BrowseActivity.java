@@ -4,6 +4,10 @@
 
 package org.sqlunet.browser;
 
+import android.content.res.Configuration;
+
+import androidx.annotation.NonNull;
+
 /**
  * Browse activity
  *
@@ -11,4 +15,10 @@ package org.sqlunet.browser;
  */
 public class BrowseActivity extends AbstractBrowseActivity<BrowseFragment>
 {
+	@Override
+	public void onConfigurationChanged(@NonNull final Configuration newConfig)
+	{
+		// Needed ?
+		super.onConfigurationChanged(newConfig);
+	}
 }

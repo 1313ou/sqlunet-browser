@@ -4,6 +4,8 @@
 
 package org.sqlunet.wordnet.browser;
 
+import android.content.res.Configuration;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
@@ -19,5 +21,12 @@ public class SenseKeyActivity extends SynsetActivity
 	protected Fragment makeFragment()
 	{
 		return new SenseKeyFragment();
+	}
+
+	@Override
+	public void onConfigurationChanged(@NonNull final Configuration newConfig)
+	{
+		// Needed ?
+		super.onConfigurationChanged(newConfig);
 	}
 }

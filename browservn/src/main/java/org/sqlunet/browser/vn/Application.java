@@ -6,12 +6,13 @@ package org.sqlunet.browser.vn;
 
 import android.content.Context;
 
+import org.sqlunet.browser.AbstractApplication;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.style.Colors;
 
 import androidx.annotation.NonNull;
 
-public class Application extends android.app.Application
+public class Application extends AbstractApplication
 {
 	@Override
 	public void onCreate()
@@ -21,7 +22,8 @@ public class Application extends android.app.Application
 		Settings.initialize(this);
 	}
 
-	public void setAllColorsFromResources(@NonNull Context context)
+	@Override
+	public void setAllColorsFromResources(@NonNull final Context context)
 	{
 		Colors.setColorsFromResources(context);
 		org.sqlunet.verbnet.style.Colors.setColorsFromResources(context);

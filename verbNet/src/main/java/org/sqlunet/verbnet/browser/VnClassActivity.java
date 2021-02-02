@@ -4,6 +4,8 @@
 
 package org.sqlunet.verbnet.browser;
 
+import android.content.res.Configuration;
+
 import org.sqlunet.browser.AbstractActivity;
 import org.sqlunet.verbnet.R;
 
@@ -34,5 +36,12 @@ public class VnClassActivity extends AbstractActivity
 	protected Fragment makeFragment()
 	{
 		return new VnClassFragment();
+	}
+
+	@Override
+	public void onConfigurationChanged(@NonNull final Configuration newConfig)
+	{
+		// Needed ?
+		super.onConfigurationChanged(newConfig);
 	}
 }

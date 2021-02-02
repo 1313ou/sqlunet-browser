@@ -4,6 +4,8 @@
 
 package org.sqlunet.propbank.browser;
 
+import android.content.res.Configuration;
+
 import org.sqlunet.browser.AbstractActivity;
 import org.sqlunet.propbank.R;
 
@@ -34,6 +36,13 @@ public class PbRoleSetActivity extends AbstractActivity
 	protected Fragment makeFragment()
 	{
 		return new PbRoleSetFragment();
+	}
+
+	@Override
+	public void onConfigurationChanged(@NonNull final Configuration newConfig)
+	{
+		// Needed ?
+		super.onConfigurationChanged(newConfig);
 	}
 }
 

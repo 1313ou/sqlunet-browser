@@ -4,11 +4,13 @@
 
 package org.sqlunet.browser.xselector;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import org.sqlunet.browser.AbstractBrowse1Activity;
 import org.sqlunet.browser.R;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -45,5 +47,12 @@ public class XBrowse1Activity extends AbstractBrowse1Activity
 					.replace(R.id.container_browse, fragment) //
 					.commit();
 		}
+	}
+
+	@Override
+	public void onConfigurationChanged(@NonNull final Configuration newConfig)
+	{
+		// Needed ?
+		super.onConfigurationChanged(newConfig);
 	}
 }

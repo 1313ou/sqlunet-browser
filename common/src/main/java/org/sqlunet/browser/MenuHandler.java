@@ -6,6 +6,7 @@ package org.sqlunet.browser;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.bbou.donate.DonateActivity;
@@ -219,11 +220,13 @@ public class MenuHandler
 		else if (itemId == R.id.action_theme_night)
 		{
 			AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+			Log.d("MenuHandler", "set night mode from " + activity.getComponentName());
 			return true;
 		}
 		else if (itemId == R.id.action_theme_day)
 		{
 			AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+			Log.d("MenuHandler", "set day mode from " + activity.getComponentName());
 			return true;
 		}
 		else

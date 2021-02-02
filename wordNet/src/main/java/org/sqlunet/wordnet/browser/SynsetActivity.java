@@ -4,6 +4,8 @@
 
 package org.sqlunet.wordnet.browser;
 
+import android.content.res.Configuration;
+
 import org.sqlunet.browser.AbstractActivity;
 import org.sqlunet.wordnet.R;
 
@@ -34,5 +36,12 @@ public class SynsetActivity extends AbstractActivity
 	protected Fragment makeFragment()
 	{
 		return new SynsetFragment();
+	}
+
+	@Override
+	public void onConfigurationChanged(@NonNull final Configuration newConfig)
+	{
+		// Needed ?
+		super.onConfigurationChanged(newConfig);
 	}
 }

@@ -4,6 +4,8 @@
 
 package org.sqlunet.syntagnet.browser;
 
+import android.content.res.Configuration;
+
 import org.sqlunet.browser.AbstractActivity;
 import org.sqlunet.syntagnet.R;
 
@@ -34,6 +36,13 @@ public class CollocationActivity extends AbstractActivity
 	protected Fragment makeFragment()
 	{
 		return new CollocationFragment();
+	}
+
+	@Override
+	public void onConfigurationChanged(@NonNull final Configuration newConfig)
+	{
+		// Needed ?
+		super.onConfigurationChanged(newConfig);
 	}
 }
 
