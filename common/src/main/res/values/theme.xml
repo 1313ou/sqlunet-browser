@@ -10,6 +10,11 @@
 
 	<style name="MyTheme" parent="MyXBaseTheme">
 
+		<item name="android:colorBackground">@color/backgroundColor</item>
+		<item name="android:colorForeground">@color/foregroundColor</item>
+		<!-- <item name="colorOnSurface">@color/backgroundColor</item>-->
+		<!-- <item name="colorSurface">@color/foregroundColor</item>-->
+
 		<item name="colorPrimary">@color/primaryColor</item>
 		<item name="colorPrimaryVariant">@color/primaryLightColor</item>
 		<item name="colorPrimaryDark">@color/primaryDarkColor</item>
