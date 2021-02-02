@@ -14,6 +14,7 @@ digraph {
   ":browservn" [fillcolor="#baffc9"];
   ":browserwn" [fillcolor="#baffc9"];
   ":common" [fillcolor="#baffc9"];
+  ":commonwn" [fillcolor="#baffc9"];
   ":concurrency" [fillcolor="#baffc9"];
   ":db_ewn_asset" [fillcolor="#eeeeee"];
   ":db_wn31_asset" [fillcolor="#eeeeee"];
@@ -30,7 +31,6 @@ digraph {
   ":download" [fillcolor="#baffc9"];
   ":expandableListFragment" [fillcolor="#baffc9"];
   ":frameNet" [fillcolor="#baffc9"];
-  ":libwn" [fillcolor="#baffc9"];
   ":others" [fillcolor="#baffc9"];
   ":predicateMatrix" [fillcolor="#baffc9"];
   ":preference" [fillcolor="#baffc9"];
@@ -72,7 +72,7 @@ digraph {
   ":browser" -> ":bNC" [color=blue]
   ":browserewn" -> ":test" [color=blue]
   ":browserewn" -> ":dbewn_ewn_asset"
-  ":browserewn" -> ":libwn" [color=blue]
+  ":browserewn" -> ":commonwn" [color=blue]
   ":browserfn" -> ":test" [color=blue]
   ":browserfn" -> ":dbfn_wn31_asset"
   ":browserfn" -> ":dbfn_ewn_asset"
@@ -118,7 +118,7 @@ digraph {
   ":browservn" -> ":propbank" [color=blue]
   ":browserwn" -> ":test" [color=blue]
   ":browserwn" -> ":dbwn_wn31_asset"
-  ":browserwn" -> ":libwn" [color=blue]
+  ":browserwn" -> ":commonwn" [color=blue]
   ":common" -> ":expandableListFragment" [color=blue]
   ":common" -> ":concurrency" [color=blue]
   ":common" -> ":preference" [color=blue]
@@ -129,22 +129,22 @@ digraph {
   ":common" -> ":rate" [color=blue]
   ":common" -> ":xNet" [color=blue]
   ":common" -> ":assetpacks" [color=blue]
+  ":commonwn" -> ":test" [color=blue]
+  ":commonwn" -> ":common"
+  ":commonwn" -> ":expandableListFragment"
+  ":commonwn" -> ":assetpacks"
+  ":commonwn" -> ":download"
+  ":commonwn" -> ":deploy"
+  ":commonwn" -> ":others"
+  ":commonwn" -> ":donate"
+  ":commonwn" -> ":xNet"
+  ":commonwn" -> ":wordNet"
+  ":commonwn" -> ":bNC"
   ":deploy" -> ":concurrency" [color=blue]
   ":download" -> ":deploy" [color=blue]
   ":download" -> ":concurrency" [color=blue]
   ":frameNet" -> ":treeView" [color=blue]
   ":frameNet" -> ":xNet" [color=blue]
-  ":libwn" -> ":test" [color=blue]
-  ":libwn" -> ":common"
-  ":libwn" -> ":expandableListFragment"
-  ":libwn" -> ":assetpacks"
-  ":libwn" -> ":download"
-  ":libwn" -> ":deploy"
-  ":libwn" -> ":others"
-  ":libwn" -> ":donate"
-  ":libwn" -> ":xNet"
-  ":libwn" -> ":wordNet"
-  ":libwn" -> ":bNC"
   ":predicateMatrix" -> ":xNet" [color=blue]
   ":predicateMatrix" -> ":treeView" [color=blue]
   ":predicateMatrix" -> ":frameNet" [color=blue]
