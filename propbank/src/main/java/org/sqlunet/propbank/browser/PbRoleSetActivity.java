@@ -37,12 +37,5 @@ public class PbRoleSetActivity extends AbstractActivity
 	{
 		return new PbRoleSetFragment();
 	}
-
-	@Override
-	public void onConfigurationChanged(@NonNull final Configuration newConfig)
-	{
-		// Needed ?
-		super.onConfigurationChanged(newConfig);
-	}
 }
 

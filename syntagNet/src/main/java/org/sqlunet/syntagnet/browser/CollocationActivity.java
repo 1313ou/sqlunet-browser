@@ -37,12 +37,5 @@ public class CollocationActivity extends AbstractActivity
 	{
 		return new CollocationFragment();
 	}
-
-	@Override
-	public void onConfigurationChanged(@NonNull final Configuration newConfig)
-	{
-		// Needed ?
-		super.onConfigurationChanged(newConfig);
-	}
 }
 

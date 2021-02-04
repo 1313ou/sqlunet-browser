@@ -37,11 +37,4 @@ public class VnClassActivity extends AbstractActivity
 	{
 		return new VnClassFragment();
 	}
-
-	@Override
-	public void onConfigurationChanged(@NonNull final Configuration newConfig)
-	{
-		// Needed ?
-		super.onConfigurationChanged(newConfig);
-	}
 }

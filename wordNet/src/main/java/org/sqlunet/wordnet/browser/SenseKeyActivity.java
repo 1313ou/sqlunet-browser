@@ -22,11 +22,4 @@ public class SenseKeyActivity extends SynsetActivity
 	{
 		return new SenseKeyFragment();
 	}
-
-	@Override
-	public void onConfigurationChanged(@NonNull final Configuration newConfig)
-	{
-		// Needed ?
-		super.onConfigurationChanged(newConfig);
-	}
 }

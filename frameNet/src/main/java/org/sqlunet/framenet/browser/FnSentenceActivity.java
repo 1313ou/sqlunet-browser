@@ -37,11 +37,4 @@ public class FnSentenceActivity extends AbstractActivity
 	{
 		return new FnSentenceFragment();
 	}
-
-	@Override
-	public void onConfigurationChanged(@NonNull final Configuration newConfig)
-	{
-		// Needed ?
-		super.onConfigurationChanged(newConfig);
-	}
 }
