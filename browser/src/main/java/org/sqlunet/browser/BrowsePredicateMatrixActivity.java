@@ -6,6 +6,7 @@ package org.sqlunet.browser;
 
 import android.app.SearchManager;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.Menu;
@@ -68,6 +69,14 @@ public class BrowsePredicateMatrixActivity extends AppCompatActivity
 	{
 		super.onNewIntent(intent);
 		handleSearchIntent(intent);
+	}
+
+	@Override
+	protected void onNightModeChanged(final int mode)
+	{
+		super.onNightModeChanged(mode);
+		final Configuration overrideConfig = AbstractApplication.createOverrideConfigurationForDayNight(this, mode);
+		getApplication().onConfigurationChanged(overrideConfig);
 	}
 
 	// M E N U

@@ -26,12 +26,6 @@ public class Application extends AbstractApplication
 	}
 
 	@Override
-	public void onConfigurationChanged(@NonNull final Configuration newConfig)
-	{
-		super.onConfigurationChanged(newConfig);
-	}
-
-	@Override
 	public void setAllColorsFromResources(@NonNull final Context context)
 	{
 		Colors.setColorsFromResources(context);

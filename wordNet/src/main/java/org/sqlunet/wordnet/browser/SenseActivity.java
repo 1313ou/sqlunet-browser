@@ -22,11 +22,4 @@ public class SenseActivity extends SynsetActivity
 	{
 		return new SenseFragment();
 	}
-
-	@Override
-	public void onConfigurationChanged(@NonNull final Configuration newConfig)
-	{
-		// Needed ?
-		super.onConfigurationChanged(newConfig);
-	}
 }

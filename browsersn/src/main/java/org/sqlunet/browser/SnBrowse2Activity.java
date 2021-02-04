@@ -69,13 +69,6 @@ public class SnBrowse2Activity extends AbstractBrowse1Activity
 		fragment.search(pointer, pos);
 	}
 
-	@Override
-	public void onConfigurationChanged(@NonNull final Configuration newConfig)
-	{
-		// Needed ?
-		super.onConfigurationChanged(newConfig);
-	}
-
 	// M E N U
 
 	@SuppressWarnings("SameReturnValue")

@@ -15,10 +15,4 @@ import androidx.annotation.NonNull;
  */
 public class SearchTextActivity extends AbstractSearchTextActivity<SearchTextFragment>
 {
-	@Override
-	public void onConfigurationChanged(@NonNull final Configuration newConfig)
-	{
-		// Needed ?
-		super.onConfigurationChanged(newConfig);
-	}
 }

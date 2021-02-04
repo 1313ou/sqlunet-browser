@@ -54,11 +54,4 @@ public class Browse1Activity extends AbstractBrowse1Activity
 					.commit();
 		}
 	}
-
-	@Override
-	public void onConfigurationChanged(@NonNull final Configuration newConfig)
-	{
-		// Needed ?
-		super.onConfigurationChanged(newConfig);
-	}
 }

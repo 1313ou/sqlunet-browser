@@ -37,11 +37,4 @@ public class FnAnnoSetActivity extends AbstractActivity
 	{
 		return new FnAnnoSetFragment();
 	}
-
-	@Override
-	public void onConfigurationChanged(@NonNull final Configuration newConfig)
-	{
-		// Needed ?
-		super.onConfigurationChanged(newConfig);
-	}
 }

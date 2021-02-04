@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import org.sqlunet.browser.common.R;
+import org.sqlunet.provider.BaseProvider;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -71,10 +72,9 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 	}
 
 	@Override
-	public void onConfigurationChanged(@NonNull final Configuration newConfig)
+	protected void onDestroy()
 	{
-		getApplication().onConfigurationChanged(newConfig);
-		recreate();
+		super.onDestroy();
 	}
 
 	// M E N U
@@ -92,6 +92,14 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
 	{
 		return MenuHandler.menuDispatch(this, item);
+	}
+
+	@Override
+	protected void onNightModeChanged(final int mode)
+	{
+		super.onNightModeChanged(mode);
+		final Configuration overrideConfig = AbstractApplication.createOverrideConfigurationForDayNight(this, mode);
+		getApplication().onConfigurationChanged(overrideConfig);
 	}
 
 	// S E A R C H

@@ -94,11 +94,11 @@ public class MainActivity extends AppCompatActivity
 	}
 
 	@Override
-	public void onConfigurationChanged(@NonNull final Configuration newConfig)
+	protected void onNightModeChanged(final int mode)
 	{
-		super.onConfigurationChanged(newConfig);
-		getApplication().onConfigurationChanged(newConfig);
-		recreate();
+		super.onNightModeChanged(mode);
+		final Configuration overrideConfig = AbstractApplication.createOverrideConfigurationForDayNight(this, mode);
+		getApplication().onConfigurationChanged(overrideConfig);
 	}
 
 	// S E A R C H

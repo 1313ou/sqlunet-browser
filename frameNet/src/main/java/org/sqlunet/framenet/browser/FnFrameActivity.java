@@ -37,11 +37,4 @@ public class FnFrameActivity extends AbstractActivity
 	{
 		return new FnFrameFragment();
 	}
-
-	@Override
-	public void onConfigurationChanged(@NonNull final Configuration newConfig)
-	{
-		// Needed ?
-		super.onConfigurationChanged(newConfig);
-	}
 }

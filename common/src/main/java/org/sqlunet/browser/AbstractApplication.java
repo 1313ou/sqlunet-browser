@@ -14,6 +14,10 @@ import org.sqlunet.browser.common.R;
 import androidx.annotation.NonNull;
 import androidx.appcompat.view.ContextThemeWrapper;
 
+import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
+import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO;
+import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES;
+
 abstract public class AbstractApplication extends Application
 {
 	static private final String LOG = "AApplication";
@@ -38,6 +42,33 @@ abstract public class AbstractApplication extends Application
 		//newConfig.uiMode |= toConfigurationUiMode(mode) & Configuration.UI_MODE_NIGHT_MASK; // set
 		Context newContext = context.createConfigurationContext(newConfig);
 		return new ContextThemeWrapper(newContext, R.style.MyTheme);
+	}
+
+
+	@NonNull
+	static public Configuration createOverrideConfigurationForDayNight(@NonNull Context context, final int mode)
+	{
+		int newNightMode;
+		switch (mode) {
+			case MODE_NIGHT_YES:
+				newNightMode = Configuration.UI_MODE_NIGHT_YES;
+				break;
+			case MODE_NIGHT_NO:
+				newNightMode = Configuration.UI_MODE_NIGHT_NO;
+				break;
+			default:
+			case MODE_NIGHT_FOLLOW_SYSTEM:
+				// If we're following the system, we just use the system default from the application context
+				final Configuration appConfig =	context.getApplicationContext().getResources().getConfiguration();
+				newNightMode = appConfig.uiMode & Configuration.UI_MODE_NIGHT_MASK;
+				break;
+		}
+
+		// If we're here then we can try and apply an override configuration on the Context.
+		final Configuration overrideConf = new Configuration();
+		overrideConf.fontScale = 0;
+		overrideConf.uiMode = newNightMode | (overrideConf.uiMode & ~Configuration.UI_MODE_NIGHT_MASK);
+		return overrideConf;
 	}
 
 	/**

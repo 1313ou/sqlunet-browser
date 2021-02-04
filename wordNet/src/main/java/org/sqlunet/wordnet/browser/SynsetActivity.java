@@ -37,11 +37,4 @@ public class SynsetActivity extends AbstractActivity
 	{
 		return new SynsetFragment();
 	}
-
-	@Override
-	public void onConfigurationChanged(@NonNull final Configuration newConfig)
-	{
-		// Needed ?
-		super.onConfigurationChanged(newConfig);
-	}
 }

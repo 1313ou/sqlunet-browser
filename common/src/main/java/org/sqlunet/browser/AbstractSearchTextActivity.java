@@ -72,10 +72,11 @@ public abstract class AbstractSearchTextActivity<F extends BaseSearchFragment> e
 	}
 
 	@Override
-	public void onConfigurationChanged(@NonNull final Configuration newConfig)
+	protected void onNightModeChanged(final int mode)
 	{
-		getApplication().onConfigurationChanged(newConfig);
-		recreate();
+		super.onNightModeChanged(mode);
+		final Configuration overrideConfig = AbstractApplication.createOverrideConfigurationForDayNight(this, mode);
+		getApplication().onConfigurationChanged(overrideConfig);
 	}
 
 	// M E N U
