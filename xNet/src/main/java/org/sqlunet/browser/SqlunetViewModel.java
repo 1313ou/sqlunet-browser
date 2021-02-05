@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.database.Cursor;
 import android.net.Uri;
+import android.util.Log;
 
 import org.sqlunet.concurrency.Task;
 
@@ -19,6 +20,8 @@ import androidx.lifecycle.MutableLiveData;
 
 public class SqlunetViewModel extends AndroidViewModel
 {
+	static private final String TAG = "SqlunetViewModel";
+
 	@FunctionalInterface
 	public interface PostProcessor
 	{
@@ -41,6 +44,7 @@ public class SqlunetViewModel extends AndroidViewModel
 	@SuppressLint("StaticFieldLeak")
 	public void loadData(@NonNull final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder, @Nullable final PostProcessor postProcessor)
 	{
+		Log.d(TAG, "load data " + uri);
 		new Task<Void, Void, Cursor>()
 		{
 			@Nullable
@@ -48,6 +52,7 @@ public class SqlunetViewModel extends AndroidViewModel
 			protected Cursor doInBackground(Void... voids)
 			{
 				final Cursor cursor = getApplication().getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder);
+				Log.d(TAG, "loaded data for " + uri + " yielded cursor " + cursor);
 				if (postProcessor != null && cursor != null)
 				{
 					postProcessor.postProcess(cursor);
