@@ -5,6 +5,7 @@
 package org.sqlunet.browser;
 
 import android.content.res.Configuration;
+import android.util.Log;
 
 import org.sqlunet.provider.BaseProvider;
 
@@ -19,11 +20,5 @@ public abstract class AbstractBrowse1Activity extends AppCompatActivity
 		super.onNightModeChanged(mode);
 		final Configuration overrideConfig = AbstractApplication.createOverrideConfigurationForDayNight(this, mode);
 		getApplication().onConfigurationChanged(overrideConfig);
-	}
-
-	@Override
-	protected void onDestroy()
-	{
-		super.onDestroy();
 	}
 }
