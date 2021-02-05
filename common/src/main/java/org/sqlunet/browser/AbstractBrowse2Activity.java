@@ -27,10 +27,4 @@ public abstract class AbstractBrowse2Activity extends AppCompatActivity
 		final Configuration overrideConfig = AbstractApplication.createOverrideConfigurationForDayNight(this, mode);
 		getApplication().onConfigurationChanged(overrideConfig);
 	}
-
-	@Override
-	protected void onDestroy()
-	{
-		super.onDestroy();
-	}
 }

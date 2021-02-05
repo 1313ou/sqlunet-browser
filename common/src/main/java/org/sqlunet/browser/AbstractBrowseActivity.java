@@ -71,12 +71,6 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 		handleSearchIntent(intent);
 	}
 
-	@Override
-	protected void onDestroy()
-	{
-		super.onDestroy();
-	}
-
 	// M E N U
 
 	@SuppressWarnings("SameReturnValue")
