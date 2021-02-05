@@ -82,9 +82,6 @@ abstract public class TreeFragment extends Fragment
 	{
 		Log.d(TAG, "onCreateView() " + this);
 
-		// retain instance
-		setRetainInstance(true);
-
 		// view
 		final View view = inflater.inflate(this.layoutId, container, false);
 

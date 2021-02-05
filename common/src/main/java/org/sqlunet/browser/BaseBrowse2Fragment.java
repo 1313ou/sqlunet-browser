@@ -51,9 +51,6 @@ public abstract class BaseBrowse2Fragment extends Fragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		// retain instance
-		setRetainInstance(true);
-
 		// mode
 		final Settings.DetailViewMode mode = Settings.getDetailViewModePref(requireContext());
 

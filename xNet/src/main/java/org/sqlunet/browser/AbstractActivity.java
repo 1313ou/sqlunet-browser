@@ -57,7 +57,7 @@ abstract public class AbstractActivity extends AppCompatActivity
 		// savedInstanceState is non-null when there is fragment state saved from previous configurations of this activity (e.g. when rotating the screen from
 		// portrait to landscape). In this case, the fragment will automatically be re-added to its container so we don't need to manually addItem it.
 		// @see http://developer.android.com/guide/components/fragments.html
-		if (savedInstanceState == null)
+		// if (savedInstanceState == null)
 		{
 			// create the sense fragment, transmit intent's extras as parameters and addItem it to the activity using a fragment transaction
 			final Fragment fragment = makeFragment();

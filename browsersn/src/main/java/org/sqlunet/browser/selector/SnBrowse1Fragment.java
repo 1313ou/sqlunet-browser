@@ -45,9 +45,6 @@ public class SnBrowse1Fragment extends Fragment implements SnSelectorsFragment.L
 		// view
 		final View view = inflater.inflate(Settings.getPaneLayout(R.layout.fragment_snbrowse_first, R.layout.fragment_snbrowse1, R.layout.fragment_snbrowse1_browse2), container, false);
 
-		// retain instance
-		setRetainInstance(true);
-
 		// manager
 		final FragmentManager manager = getChildFragmentManager();
 
