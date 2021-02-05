@@ -65,7 +65,7 @@ public class BrowseFragment extends BaseSearchFragment
 	{
 		final View view = super.onCreateView(inflater, container, savedInstanceState);
 
-		if (savedInstanceState == null)
+		// if (savedInstanceState == null)
 		{
 			// splash fragment
 			final Fragment fragment = new BrowseSplashFragment();

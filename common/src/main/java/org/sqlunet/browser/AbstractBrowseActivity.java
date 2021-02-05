@@ -46,7 +46,7 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 		setSupportActionBar(toolbar);
 
 		// fragment
-		if (savedInstanceState == null)
+		// if (savedInstanceState == null)
 		{
 			this.fragment = (F) getSupportFragmentManager().findFragmentById(R.id.fragment_browse);
 		}

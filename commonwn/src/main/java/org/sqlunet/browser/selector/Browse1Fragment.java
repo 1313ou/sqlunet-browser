@@ -43,9 +43,6 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 		// view
 		final View view = inflater.inflate(Settings.getPaneLayout(R.layout.fragment_browse_first, R.layout.fragment_browse1, R.layout.fragment_browse1_browse2), container, false);
 
-		// retain instance
-		setRetainInstance(true);
-
 		// manager
 		final FragmentManager manager = getChildFragmentManager();
 

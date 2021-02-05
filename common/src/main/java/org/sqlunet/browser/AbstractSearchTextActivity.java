@@ -45,7 +45,7 @@ public abstract class AbstractSearchTextActivity<F extends BaseSearchFragment> e
 		setSupportActionBar(toolbar);
 
 		// fragment
-		if (savedInstanceState == null)
+		// if (savedInstanceState == null)
 		{
 			this.fragment = (F) getSupportFragmentManager().findFragmentById(R.id.fragment_searchtext);
 			assert this.fragment != null;
