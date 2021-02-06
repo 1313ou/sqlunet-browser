@@ -42,7 +42,7 @@ public class WebActivity extends AppCompatActivity
 		// savedInstanceState is non-null when there is fragment state saved from previous configurations of this activity (e.g. when rotating the screen from
 		// portrait to landscape). In this case, the fragment will automatically be re-added to its container so we don't need to manually addItem it.
 		// @see http://developer.android.com/guide/components/fragments.html
-		// if (savedInstanceState == null)
+		if (savedInstanceState == null)
 		{
 			final Fragment fragment = new WebFragment();
 			fragment.setArguments(getIntent().getExtras());
