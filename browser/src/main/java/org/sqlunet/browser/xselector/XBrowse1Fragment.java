@@ -13,11 +13,11 @@ import android.view.ViewGroup;
 import org.sqlunet.browser.Browse2Activity;
 import org.sqlunet.browser.Browse2Fragment;
 import org.sqlunet.browser.R;
+import org.sqlunet.browser.Selectors;
 import org.sqlunet.browser.xn.Settings;
 import org.sqlunet.provider.ProviderArgs;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -28,12 +28,6 @@ import androidx.fragment.app.FragmentManager;
  */
 public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Listener
 {
-	/**
-	 * Selectors fragment
-	 */
-	@Nullable
-	private XSelectorsFragment xSelectorsFragment;
-
 	// C R E A T I O N
 
 	@Override
@@ -41,55 +35,45 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 	{
 		// view
 		final View view = inflater.inflate(Settings.getPaneLayout(R.layout.fragment_xbrowse_first, R.layout.fragment_xbrowse1, R.layout.fragment_xbrowse1_browse2), container, false);
+		boolean isTwoPane = isTwoPane(view);
 
 		// manager
 		final FragmentManager manager = getChildFragmentManager();
 
 		// x selector fragment
-		this.xSelectorsFragment = (XSelectorsFragment) manager.findFragmentByTag("browse1");
-		if (this.xSelectorsFragment == null)
+		final XSelectorsFragment xSelectorsFragment = new XSelectorsFragment();
+		Bundle args1 = getArguments();
+		if (args1 == null)
 		{
-			this.xSelectorsFragment = new XSelectorsFragment();
-			this.xSelectorsFragment.setArguments(getArguments());
+			args1 = new Bundle();
 		}
-		this.xSelectorsFragment.setListener(this);
+		args1.putBoolean(Selectors.IS_TWO_PANE, isTwoPane);
+		xSelectorsFragment.setArguments(args1);
+		xSelectorsFragment.setListener(this);
 
 		// transaction on selectors pane
 		manager.beginTransaction() //
-				.replace(R.id.container_xselectors, this.xSelectorsFragment, "browse1") //
+				.replace(R.id.container_xselectors, xSelectorsFragment, "browse1") //
 				.commit();
 
 		// two-pane specific set up
-		if (isTwoPane(view))
+		if (isTwoPane)
 		{
+			// in two-pane mode, list items should be given the 'activated' state when touched.
+			xSelectorsFragment.setActivateOnItemClick(true);
+
 			// detail fragment (rigid layout)
-			Fragment browse2Fragment = manager.findFragmentByTag("browse2");
-			if (browse2Fragment == null)
-			{
-				browse2Fragment = new Browse2Fragment();
-				final Bundle args = new Bundle();
-				args.putBoolean(Browse2Fragment.ARG_ALT, false);
-				browse2Fragment.setArguments(args);
-			}
+			final Fragment browse2Fragment = new Browse2Fragment();
+			final Bundle args2 = new Bundle();
+			args2.putBoolean(Browse2Fragment.ARG_ALT, false);
+			browse2Fragment.setArguments(args2);
+
 			manager.beginTransaction() //
 					.replace(R.id.container_browse2, browse2Fragment, "browse2") //
 					.commit();
 		}
 
 		return view;
-	}
-
-	@Override
-	public void onViewCreated(@NonNull View view, Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
-
-		if (isTwoPane(view))
-		{
-			// in two-pane mode, list items should be given the 'activated' state when touched.
-			assert this.xSelectorsFragment != null;
-			this.xSelectorsFragment.setActivateOnItemClick(true);
-		}
 	}
 
 	// I T E M S E L E C T I O N H A N D L I N G
