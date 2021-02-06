@@ -86,7 +86,7 @@ public class BrowseFragment extends BaseSearchFragment
 	{
 		final View view = super.onCreateView(inflater, container, savedInstanceState);
 
-		// if (savedInstanceState == null)
+		if (savedInstanceState == null)
 		{
 			// splash fragment
 			final Fragment fragment = new BrowseSplashFragment();
@@ -369,7 +369,6 @@ public class BrowseFragment extends BaseSearchFragment
 
 			//targetIntent = makeSelectorIntent();
 			fragment = makeSelectorFragment();
-			//fragment = new Test1Fragment();
 		}
 
 		// menuDispatch
