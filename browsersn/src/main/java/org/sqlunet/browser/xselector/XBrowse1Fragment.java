@@ -12,17 +12,16 @@ import android.view.ViewGroup;
 
 import org.sqlunet.browser.Browse2Activity;
 import org.sqlunet.browser.Browse2Fragment;
-import org.sqlunet.browser.sn.R;
 import org.sqlunet.browser.Selectors;
 import org.sqlunet.browser.selector.CollocationSelectorPointer;
 import org.sqlunet.browser.selector.SelectorPointer;
 import org.sqlunet.browser.selector.SelectorsFragment;
 import org.sqlunet.browser.selector.SnSelectorsFragment;
+import org.sqlunet.browser.sn.R;
 import org.sqlunet.browser.sn.Settings;
 import org.sqlunet.provider.ProviderArgs;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -33,13 +32,6 @@ import androidx.fragment.app.FragmentManager;
  */
 public class XBrowse1Fragment extends Fragment implements SelectorsFragment.Listener, SnSelectorsFragment.Listener
 {
-	/**
-	 * Selectors fragment
-	 */
-	@SuppressWarnings("FieldCanBeLocal")
-	@Nullable
-	private XSelectorsFragment xSelectorsFragment;
-
 	// C R E A T I O N
 
 	@Override
@@ -47,43 +39,36 @@ public class XBrowse1Fragment extends Fragment implements SelectorsFragment.List
 	{
 		// view
 		final View view = inflater.inflate(Settings.getPaneLayout(R.layout.fragment_xbrowse_first, R.layout.fragment_xbrowse1, R.layout.fragment_xbrowse1_browse2), container, false);
+		boolean isTwoPane = isTwoPane(view);
 
 		// manager
 		final FragmentManager manager = getChildFragmentManager();
 
 		// x selector fragment
-		this.xSelectorsFragment = (XSelectorsFragment) manager.findFragmentByTag("browse1");
-		if (this.xSelectorsFragment == null)
+		final XSelectorsFragment xSelectorsFragment = new XSelectorsFragment();
+		Bundle args1 = getArguments();
+		if (args1 == null)
 		{
-			this.xSelectorsFragment = new XSelectorsFragment();
-			Bundle args = getArguments();
-			if (args == null)
-			{
-				args = new Bundle();
-			}
-			boolean isTwoPane = isTwoPane(view);
-			args.putBoolean(Selectors.IS_TWO_PANE, isTwoPane);
-			this.xSelectorsFragment.setArguments(args);
+			args1 = new Bundle();
 		}
-		this.xSelectorsFragment.setListener(this, this);
+		args1.putBoolean(Selectors.IS_TWO_PANE, isTwoPane);
+		xSelectorsFragment.setArguments(args1);
+		xSelectorsFragment.setListener(this, this);
 
 		// transaction on selectors pane
 		manager.beginTransaction() //
-				.replace(R.id.container_xselectors, this.xSelectorsFragment, "browse1") //
+				.replace(R.id.container_xselectors, xSelectorsFragment, "browse1") //
 				.commit();
 
 		// two-pane specific set up
-		if (isTwoPane(view))
+		if (isTwoPane)
 		{
 			// detail fragment (rigid layout)
-			Fragment browse2Fragment = manager.findFragmentByTag("browse2");
-			if (browse2Fragment == null)
-			{
-				browse2Fragment = new Browse2Fragment();
-				Bundle args = new Bundle();
-				args.putBoolean(Browse2Fragment.ARG_ALT, false);
-				browse2Fragment.setArguments(args);
-			}
+			final Fragment browse2Fragment = new Browse2Fragment();
+			Bundle args2 = new Bundle();
+			args2.putBoolean(Browse2Fragment.ARG_ALT, false);
+			browse2Fragment.setArguments(args2);
+
 			manager.beginTransaction() //
 					.replace(R.id.container_browse2, browse2Fragment, "browse2") //
 					.commit();
