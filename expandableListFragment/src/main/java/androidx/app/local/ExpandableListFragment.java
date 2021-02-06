@@ -25,16 +25,31 @@ import androidx.fragment.app.Fragment;
 
 public class ExpandableListFragment extends Fragment implements ExpandableListView.OnChildClickListener, ExpandableListView.OnGroupCollapseListener, ExpandableListView.OnGroupExpandListener
 {
+	/**
+	 * Adapter
+	 */
 	@Nullable
 	private ExpandableListAdapter mAdapter;
 
+	/**
+	 * List view
+	 */
 	@Nullable
 	private ExpandableListView mExpandableList;
 
-	final private Handler mHandler = new Handler(Looper.getMainLooper());
-
+	/**
+	 * Click listener
+	 */
 	final private AdapterView.OnItemClickListener mOnClickListener = (parent, v, position, id) -> onListItemClick((ExpandableListView) parent, v, position, id);
 
+	/**
+	 * Focus handler (receives posted focus request)
+	 */
+	final private Handler mFocusHandler = new Handler(Looper.getMainLooper());
+
+	/**
+	 * Focus request
+	 */
 	final private Runnable mRequestFocus = () -> {
 		assert ExpandableListFragment.this.mExpandableList != null;
 		ExpandableListFragment.this.mExpandableList.focusableViewAvailable(ExpandableListFragment.this.mExpandableList);
@@ -155,7 +170,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 		}
 
 		// request focus
-		this.mHandler.post(this.mRequestFocus);
+		this.mFocusHandler.post(this.mRequestFocus);
 	}
 
 	// L I F E C Y C L E   E V E N T S
@@ -192,7 +207,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 	@Override
 	public void onDestroyView()
 	{
-		this.mHandler.removeCallbacks(this.mRequestFocus);
+		this.mFocusHandler.removeCallbacks(this.mRequestFocus);
 		this.mExpandableList = null;
 		this.mExpandableListShown = false;
 		this.mEmptyView = null;
@@ -282,6 +297,17 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 	}
 
 	/**
+	 * Sets the selection to the specified group.
+	 *
+	 * @param groupPosition The position of the group that should be selected.
+	 */
+	public void setSelectedGroup(int groupPosition)
+	{
+		assert this.mExpandableList != null;
+		this.mExpandableList.setSelectedGroup(groupPosition);
+	}
+
+	/**
 	 * Sets the selection to the specified child. If the child is in a collapsed group, the group will only be expanded and child subsequently selected if
 	 * shouldExpandGroup is set to true, otherwise the method will return false.
 	 *
@@ -294,17 +320,6 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 	{
 		assert this.mExpandableList != null;
 		return this.mExpandableList.setSelectedChild(groupPosition, childPosition, shouldExpandGroup);
-	}
-
-	/**
-	 * Sets the selection to the specified group.
-	 *
-	 * @param groupPosition The position of the group that should be selected.
-	 */
-	public void setSelectedGroup(int groupPosition)
-	{
-		assert this.mExpandableList != null;
-		this.mExpandableList.setSelectedGroup(groupPosition);
 	}
 
 	// A D A P T E R
