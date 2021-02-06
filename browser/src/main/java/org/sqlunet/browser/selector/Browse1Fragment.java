@@ -51,8 +51,8 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 		{
 			this.selectorsFragment = new SelectorsFragment();
 			this.selectorsFragment.setArguments(getArguments());
-			this.selectorsFragment.setListener(this);
 		}
+		this.selectorsFragment.setListener(this);
 
 		// transaction on selectors pane
 		manager.beginTransaction() //

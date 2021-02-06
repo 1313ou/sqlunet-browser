@@ -51,8 +51,8 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 		{
 			this.xSelectorsFragment = new XSelectorsFragment();
 			this.xSelectorsFragment.setArguments(getArguments());
-			this.xSelectorsFragment.setListener(this);
 		}
+		this.xSelectorsFragment.setListener(this);
 
 		// transaction on selectors pane
 		manager.beginTransaction() //

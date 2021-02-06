@@ -64,8 +64,8 @@ public class XBrowse1Fragment extends Fragment implements SelectorsFragment.List
 			boolean isTwoPane = isTwoPane(view);
 			args.putBoolean(Selectors.IS_TWO_PANE, isTwoPane);
 			this.xSelectorsFragment.setArguments(args);
-			this.xSelectorsFragment.setListener(this, this);
 		}
+		this.xSelectorsFragment.setListener(this, this);
 
 		// transaction on selectors pane
 		manager.beginTransaction() //
