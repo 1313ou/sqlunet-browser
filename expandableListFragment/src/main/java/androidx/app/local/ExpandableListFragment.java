@@ -343,7 +343,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 	}
 
 	/**
-	 * Provide the cursor for the list view.
+	 * Provide the adapter for the list view.
 	 */
 	protected void setListAdapter(ExpandableListAdapter adapter)
 	{
@@ -461,6 +461,28 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 			this.mProgressContainer.setVisibility(View.VISIBLE);
 			this.mExpandableListContainer.setVisibility(View.GONE);
 		}
+	}
+
+	// E X P A N D
+
+	/**
+	 * Expand section
+	 */
+	public void expand(int groupPosition)
+	{
+		final ExpandableListView view = getExpandableListView();
+		assert view != null;
+		view.expandGroup(groupPosition);
+	}
+
+	/**
+	 * Collapse section
+	 */
+	public void collapse(int groupPosition)
+	{
+		final ExpandableListView view = getExpandableListView();
+		assert view != null;
+		view.collapseGroup(groupPosition);
 	}
 
 	// O V E R R I D A B L E S
