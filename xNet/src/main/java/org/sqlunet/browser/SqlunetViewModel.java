@@ -36,6 +36,12 @@ public class SqlunetViewModel extends AndroidViewModel
 		return data;
 	}
 
+	@NonNull
+	public MutableLiveData<Cursor> getMutableData()
+	{
+		return data;
+	}
+
 	public SqlunetViewModel(@NonNull final Application application)
 	{
 		super(application);
