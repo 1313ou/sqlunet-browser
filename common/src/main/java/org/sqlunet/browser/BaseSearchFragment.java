@@ -33,6 +33,7 @@ import android.widget.TextView;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.Settings;
 
+import androidx.annotation.ArrayRes;
 import androidx.annotation.AttrRes;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
@@ -84,10 +85,10 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	@AttrRes
 	int colorAttrId;
 
-	@StringRes
+	@ArrayRes
 	int spinnerLabels;
 
-	@DrawableRes
+	@ArrayRes
 	int spinnerIcons;
 
 	// C R E A T I O N
@@ -346,7 +347,6 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 			public boolean onQueryTextSubmit(final String query)
 			{
 				clearQuery();
-				searchMenuItem.collapseActionView();
 				return false;
 			}
 
@@ -356,8 +356,13 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 				return false;
 			}
 		});
-
+		if (triggerFocusSearch())
 		new Handler(Looper.getMainLooper()).postDelayed(() -> this.searchView.setIconified(false), 1500);
+	}
+
+	protected boolean triggerFocusSearch()
+	{
+		return true;
 	}
 
 	public void clearQuery()
@@ -367,6 +372,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 			this.searchView.clearFocus();
 			this.searchView.setFocusable(false);
 			this.searchView.setQuery("", false);
+			this.searchView.setIconified(true);
 			closeKeyboard();
 		}
 	}

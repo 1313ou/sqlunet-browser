@@ -74,7 +74,7 @@ public class ClassFromWordModule extends BaseModule
 	private void makeModels()
 	{
 		this.vnClassesFromWordIdSynsetIdModel = new ViewModelProvider(this.fragment).get("vn.classes(wordid,synsetid)", SqlunetViewTreeModel.class);
-		this.vnClassesFromWordIdSynsetIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.vnClassesFromWordIdSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 	}
 
 	@Override

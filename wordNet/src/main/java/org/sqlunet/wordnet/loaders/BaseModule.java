@@ -188,70 +188,70 @@ abstract public class BaseModule extends Module
 	private void makeModels()
 	{
 		this.wordModel = new ViewModelProvider(this.fragment).get("wn.word(wordid)", SqlunetViewTreeModel.class);
-		this.wordModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.wordModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.sensesFromWordModel = new ViewModelProvider(this.fragment).get("wn.senses(word)", SqlunetViewTreeModel.class);
-		this.sensesFromWordModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.sensesFromWordModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.sensesFromWordIdModel = new ViewModelProvider(this.fragment).get("wn.senses(wordid)", SqlunetViewTreeModel.class);
-		this.sensesFromWordIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.sensesFromWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.senseFromSenseIdModel = new ViewModelProvider(this.fragment).get("wn.sense(senseid)", SqlunetViewTreeModel.class);
-		this.senseFromSenseIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.senseFromSenseIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.senseFromSenseKeyModel = new ViewModelProvider(this.fragment).get("wn.sense(sensekey)", SqlunetViewTreeModel.class);
-		this.senseFromSenseKeyModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.senseFromSenseKeyModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.senseFromSynsetIdWordIdModel = new ViewModelProvider(this.fragment).get("wn.sense(synsetid,wordid)", SqlunetViewTreeModel.class);
-		this.senseFromSynsetIdWordIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.senseFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.synsetFromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.synset(synsetid)", SqlunetViewTreeModel.class);
-		this.synsetFromSynsetIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.synsetFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.membersFromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.members2(synsetid)", SqlunetViewTreeModel.class);
-		this.membersFromSynsetIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.membersFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.members2FromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.members2(synsetid)", SqlunetViewTreeModel.class);
-		this.members2FromSynsetIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.members2FromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.samplesfromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.samples(synsetid)", SqlunetViewTreeModel.class);
-		this.samplesfromSynsetIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.samplesfromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.linksFromSynsetIdWordIdModel = new ViewModelProvider(this.fragment).get("wn.links(synsetid,wordid)", SqlunetViewTreeModel.class);
-		this.linksFromSynsetIdWordIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.linksFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.semLinksFromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.semlinks(synsetid)", SqlunetViewTreeModel.class);
-		this.semLinksFromSynsetIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.semLinksFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.semLinksFromSynsetIdLinkIdModel = new ViewModelProvider(this.fragment).get("wn.semlinks(synsetid,linkid)", SqlunetViewTreeModel.class);
-		this.semLinksFromSynsetIdLinkIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.semLinksFromSynsetIdLinkIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.lexLinksFromSynsetIdWordIdModel = new ViewModelProvider(this.fragment).get("wn.lexlinks(synsetid,wordid)", SqlunetViewTreeModel.class);
-		this.lexLinksFromSynsetIdWordIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.lexLinksFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.lexLinksFromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.lexlinks(synsetid)", SqlunetViewTreeModel.class);
-		this.lexLinksFromSynsetIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.lexLinksFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.vFramesFromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.vframes(synsetid)", SqlunetViewTreeModel.class);
-		this.vFramesFromSynsetIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.vFramesFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.vFramesFromSynsetIdWordIdModel = new ViewModelProvider(this.fragment).get("wn.vframes(synsetid,wordid)", SqlunetViewTreeModel.class);
-		this.vFramesFromSynsetIdWordIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.vFramesFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.vFrameSentencesFromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.vframesentences(synsetid)", SqlunetViewTreeModel.class);
-		this.vFrameSentencesFromSynsetIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.vFrameSentencesFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.vFrameSentencesFromSynsetIdWordIdModel = new ViewModelProvider(this.fragment).get("wn.vframesentences(synsetid,wordid)", SqlunetViewTreeModel.class);
-		this.vFrameSentencesFromSynsetIdWordIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.vFrameSentencesFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.adjPositionFromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.adjposition(synsetid)", SqlunetViewTreeModel.class);
-		this.adjPositionFromSynsetIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.adjPositionFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.adjPositionFromSynsetIdWordIdModel = new ViewModelProvider(this.fragment).get("wn.adjposition(synsetid,wordid)", SqlunetViewTreeModel.class);
-		this.adjPositionFromSynsetIdWordIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.adjPositionFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.morphsFromWordIdModel = new ViewModelProvider(this.fragment).get("wn.morphs(wordid)", SqlunetViewTreeModel.class);
-		this.morphsFromWordIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.morphsFromWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 	}
 
 	/**
