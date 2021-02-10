@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ * Copyright (c) 2021. Bernard Bou <1313ou@gmail.com>.
  */
 
 package org.sqlunet.browser.selector;
@@ -13,11 +13,11 @@ import android.view.ViewGroup;
 import org.sqlunet.browser.Browse2Activity;
 import org.sqlunet.browser.Browse2Fragment;
 import org.sqlunet.browser.R;
+import org.sqlunet.browser.Selectors;
 import org.sqlunet.browser.xn.Settings;
 import org.sqlunet.provider.ProviderArgs;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -28,12 +28,6 @@ import androidx.fragment.app.FragmentManager;
  */
 public class Browse1Fragment extends Fragment implements SelectorsFragment.Listener
 {
-	/**
-	 * Selectors fragment
-	 */
-	@Nullable
-	private SelectorsFragment selectorsFragment;
-
 	// C R E A T I O N
 
 	@Override
@@ -41,35 +35,43 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 	{
 		// view
 		final View view = inflater.inflate(Settings.getPaneLayout(R.layout.fragment_browse_first, R.layout.fragment_browse1, R.layout.fragment_browse1_browse2), container, false);
+		boolean isTwoPane = isTwoPane(view);
 
 		// manager
 		final FragmentManager manager = getChildFragmentManager();
 
 		// selector fragment
-		this.selectorsFragment = (SelectorsFragment) manager.findFragmentByTag("browse1");
-		if (this.selectorsFragment == null)
+		SelectorsFragment selectorsFragment = (SelectorsFragment) manager.findFragmentByTag("browse1");
+		if (selectorsFragment == null)
 		{
-			this.selectorsFragment = new SelectorsFragment();
-			this.selectorsFragment.setArguments(getArguments());
+			selectorsFragment = new SelectorsFragment();
+			selectorsFragment.setArguments(getArguments());
 		}
-		this.selectorsFragment.setListener(this);
-
-		// transaction on selectors pane
+		Bundle args1 = selectorsFragment.getArguments();
+		if (args1 == null)
+		{
+			args1 = new Bundle();
+		}
+		args1.putBoolean(Selectors.IS_TWO_PANE, isTwoPane);
+		selectorsFragment.setListener(this);
 		manager.beginTransaction() //
-				.replace(R.id.container_selectors, this.selectorsFragment, "browse1") //
+				.replace(R.id.container_selectors, selectorsFragment, "browse1") //
 				.commit();
 
 		// two-pane specific set up
-		if (isTwoPane(view))
+		if (isTwoPane)
 		{
+			// in two-pane mode, list items should be given the 'activated' state when touched.
+			selectorsFragment.setActivateOnItemClick(true);
+
 			// detail fragment (rigid layout)
 			Fragment browse2Fragment = manager.findFragmentByTag("browse2");
 			if (browse2Fragment == null)
 			{
 				browse2Fragment = new Browse2Fragment();
-				final Bundle args = new Bundle();
-				args.putBoolean(Browse2Fragment.ARG_ALT, false);
-				browse2Fragment.setArguments(args);
+				final Bundle args2 = new Bundle();
+				args2.putBoolean(Browse2Fragment.ARG_ALT, false);
+				browse2Fragment.setArguments(args2);
 			}
 			manager.beginTransaction() //
 					.replace(R.id.container_browse2, browse2Fragment, "browse2") //
@@ -77,19 +79,6 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 		}
 
 		return view;
-	}
-
-	@Override
-	public void onViewCreated(@NonNull View view, Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
-
-		if (isTwoPane(view))
-		{
-			// in two-pane mode, list items should be given the 'activated' state when touched.
-			assert this.selectorsFragment != null;
-			this.selectorsFragment.setActivateOnItemClick(true);
-		}
 	}
 
 	// I T E M S E L E C T I O N H A N D L I N G

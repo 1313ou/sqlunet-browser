@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ * Copyright (c) 2021. Bernard Bou <1313ou@gmail.com>.
  */
 
 package org.sqlunet.browser.xselector;
@@ -255,7 +255,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
 				if (adapter != null && this.groupPosition >= 0)
 				{
-					adapter.setChildrenCursor(groupPosition, cursor);
+					adapter.setChildrenCursor(this.groupPosition, cursor);
 				}
 			}
 			else
@@ -275,7 +275,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
 				if (adapter != null && this.groupPosition >= 0)
 				{
-					adapter.setChildrenCursor(groupPosition, cursor);
+					adapter.setChildrenCursor(this.groupPosition, cursor);
 				}
 			}
 			else
@@ -602,16 +602,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 	}
 
 	// E X P A N D
-
-	/**
-	 * Expand section
-	 */
-	private void expand(int groupPosition)
-	{
-		final ExpandableListView view = getExpandableListView();
-		assert view != null;
-		view.expandGroup(groupPosition);
-	}
 
 	/**
 	 * Expand all

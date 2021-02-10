@@ -18,6 +18,18 @@ public class CursorDump
 	 */
 	static public void dump(@NonNull final Cursor cursor)
 	{
+		if (cursor == null)
+		{
+			Log.i("dump", "null cursor");
+			return;
+		}
+
+		if (cursor.isClosed())
+		{
+			Log.i("dump", "closed cursor=" + cursor);
+			return;
+		}
+
 		if (cursor.moveToFirst())
 		{
 			do

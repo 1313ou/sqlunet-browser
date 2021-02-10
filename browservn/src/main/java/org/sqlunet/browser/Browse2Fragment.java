@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ * Copyright (c) 2021. Bernard Bou <1313ou@gmail.com>.
  */
 
 package org.sqlunet.browser;
@@ -28,6 +28,8 @@ import androidx.fragment.app.FragmentTransaction;
  */
 public class Browse2Fragment extends BaseBrowse2Fragment
 {
+	public static final String ARG_ALT = "alt_arg";
+
 	/**
 	 * Search
 	 */

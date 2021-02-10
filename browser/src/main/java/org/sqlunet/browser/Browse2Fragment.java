@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ * Copyright (c) 2021. Bernard Bou <1313ou@gmail.com>.
  */
 
 package org.sqlunet.browser;
@@ -97,18 +97,21 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 				final FragmentTransaction transaction = manager.beginTransaction();
 
 				// wordnet
+				SenseFragment senseFragment = (SenseFragment) manager.findFragmentByTag("wordnet");
 				if ((enable & Settings.ENABLE_WORDNET) != 0)
 				{
 					// final View labelView = findViewById(R.id.label_wordnet);
 					// labelView.setVisibility(View.VISIBLE);
-					final SenseFragment senseFragment = new SenseFragment();
-					senseFragment.setArguments(args);
-					senseFragment.setExpand(wordNetOnly(this.pointer));
+					if (senseFragment == null)
+					{
+						senseFragment = new SenseFragment();
+						senseFragment.setArguments(args);
+						senseFragment.setExpand(wordNetOnly(this.pointer));
+					}
 					transaction.replace(R.id.container_wordnet, senseFragment, "wordnet");
 				}
 				else
 				{
-					final Fragment senseFragment = manager.findFragmentByTag("wordnet");
 					if (senseFragment != null)
 					{
 						transaction.remove(senseFragment);
@@ -116,17 +119,20 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 				}
 
 				// verbnet
+				Fragment verbnetFragment = manager.findFragmentByTag("verbnet");
 				if ((enable & Settings.ENABLE_VERBNET) != 0)
 				{
 					// final View labelView = findViewById(R.id.label_verbnet);
 					// labelView.setVisibility(View.VISIBLE);
-					final Fragment verbnetFragment = new VerbNetFragment();
-					verbnetFragment.setArguments(args);
+					if (verbnetFragment == null)
+					{
+						verbnetFragment = new VerbNetFragment();
+						verbnetFragment.setArguments(args);
+					}
 					transaction.replace(R.id.container_verbnet, verbnetFragment, "verbnet");
 				}
 				else
 				{
-					final Fragment verbnetFragment = manager.findFragmentByTag("verbnet");
 					if (verbnetFragment != null)
 					{
 						transaction.remove(verbnetFragment);
@@ -134,17 +140,20 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 				}
 
 				// propbank
+				Fragment propbankFragment = manager.findFragmentByTag("propbank");
 				if ((enable & Settings.ENABLE_PROPBANK) != 0)
 				{
 					// final View labelView = findViewById(R.id.label_propbank);
 					// labelView.setVisibility(View.VISIBLE);
-					final Fragment propbankFragment = new PropBankFragment();
-					propbankFragment.setArguments(args);
+					if (propbankFragment == null)
+					{
+						propbankFragment = new PropBankFragment();
+						propbankFragment.setArguments(args);
+					}
 					transaction.replace(R.id.container_propbank, propbankFragment, "propbank");
 				}
 				else
 				{
-					final Fragment propbankFragment = manager.findFragmentByTag("propbank");
 					if (propbankFragment != null)
 					{
 						transaction.remove(propbankFragment);
@@ -152,17 +161,20 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 				}
 
 				// framenet
+				Fragment framenetFragment = manager.findFragmentByTag("framenet");
 				if ((enable & Settings.ENABLE_FRAMENET) != 0)
 				{
 					// final View labelView = findViewById(R.id.label_framenet);
 					// labelView.setVisibility(View.VISIBLE);
-					final Fragment framenetFragment = new FrameNetFragment();
-					framenetFragment.setArguments(args);
+					if (framenetFragment == null)
+					{
+						framenetFragment = new FrameNetFragment();
+						framenetFragment.setArguments(args);
+					}
 					transaction.replace(R.id.container_framenet, framenetFragment, "framenet");
 				}
 				else
 				{
-					final Fragment framenetFragment = manager.findFragmentByTag("framenet");
 					if (framenetFragment != null)
 					{
 						transaction.remove(framenetFragment);
@@ -170,17 +182,20 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 				}
 
 				// bnc
+				Fragment bncFragment = manager.findFragmentByTag("bnc");
 				if ((enable & Settings.ENABLE_BNC) != 0)
 				{
 					// final View labelView = findViewById(R.id.label_bnc);
 					// labelView.setVisibility(View.VISIBLE);
-					final Fragment bncFragment = new BNCFragment();
-					bncFragment.setArguments(args);
+					if (bncFragment == null)
+					{
+						bncFragment = new BNCFragment();
+						bncFragment.setArguments(args);
+					}
 					transaction.replace(R.id.container_bnc, bncFragment, "bnc");
 				}
 				else
 				{
-					final Fragment bncFragment = manager.findFragmentByTag("bnc");
 					if (bncFragment != null)
 					{
 						transaction.remove(bncFragment);
