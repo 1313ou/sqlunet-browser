@@ -119,7 +119,7 @@ public class WebFragment extends Fragment
 	{
 		final boolean xml = Settings.getXmlPref(requireContext());
 		this.model = new ViewModelProvider(this).get("web(doc)", WebModel.class);
-		this.model.getData().observe(this, doc -> {
+		this.model.getData().observe(getViewLifecycleOwner(), doc -> {
 
 			Log.d(WebFragment.TAG, "onLoadFinished");
 			final String mimeType = xml ? "text/xml" : "text/html";

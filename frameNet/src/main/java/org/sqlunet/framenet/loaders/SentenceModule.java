@@ -69,7 +69,7 @@ public class SentenceModule extends BaseModule
 	private void makeModels()
 	{
 		this.sentenceFromSentenceIdModel = new ViewModelProvider(this.fragment).get("fn.sentence(sentenceid)", SqlunetViewTreeModel.class);
-		this.sentenceFromSentenceIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
+		this.sentenceFromSentenceIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
 	}
 
 	@Override

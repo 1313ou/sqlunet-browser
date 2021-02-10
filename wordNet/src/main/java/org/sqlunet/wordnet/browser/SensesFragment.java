@@ -195,7 +195,7 @@ public class SensesFragment extends ListFragment
 	private void makeModels()
 	{
 		this.sensesModelFromWord = new ViewModelProvider(this).get("wn.senses(word)", SqlunetViewModel.class);
-		this.sensesModelFromWord.getData().observe(this, cursor -> {
+		this.sensesModelFromWord.getData().observe(getViewLifecycleOwner(), cursor -> {
 
 			// pass on to list adapter
 			final CursorAdapter adapter = (CursorAdapter) getListAdapter();

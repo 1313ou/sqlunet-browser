@@ -4,7 +4,6 @@
 
 package org.sqlunet.browser.xselector;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
@@ -26,7 +25,6 @@ import android.widget.SimpleCursorTreeAdapter;
 import org.sqlunet.browser.R;
 import org.sqlunet.browser.SqlunetViewModel;
 import org.sqlunet.browser.xn.Settings;
-import org.sqlunet.provider.CursorDump;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.provider.XSqlUNetContract;
 import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_PbWords_VnWords;
@@ -40,6 +38,7 @@ import java.util.Locale;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.app.local.ExpandableListFragment;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
 
 /**
@@ -66,7 +65,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	/**
 	 * The serialization (saved instance state) Bundle key representing the activated item position. Only used on tablets.
 	 */
-	static private final String STATE_GROUP = "group_state";
+	static private final String STATE_GROUPS = "groups_state";
 
 	/**
 	 * Activate on click flag
@@ -89,49 +88,29 @@ public class XSelectorsFragment extends ExpandableListFragment
 	static private final String GROUPICON_COLUMN = "xicon";
 
 	/**
-	 * WordNet position
+	 * First expanded group
 	 */
-	static public final int GROUP_POSITION_WORDNET = 0;
-
-	/**
-	 * VerbNet position
-	 */
-	static public final int GROUP_POSITION_VERBNET = 1;
-
-	/**
-	 * Propbank position
-	 */
-	static public final int GROUP_POSITION_PROPBANK = 2;
-
-	/**
-	 * FrameNet position
-	 */
-	static public final int GROUP_POSITION_FRAMENET = 3;
-
-	/**
-	 * Group position
-	 */
-	static public final int GROUP_POSITION_COUNT = 4;
+	static public final int GROUP_POSITION_INITIAL = 0;
 
 	/**
 	 * WordNet id
 	 */
-	static public final int GROUPID_WORDNET = GROUP_POSITION_WORDNET + 1;
+	static public final int GROUPID_WORDNET = 1;
 
 	/**
 	 * VerbNet id
 	 */
-	static public final int GROUPID_VERBNET = GROUP_POSITION_VERBNET + 1;
+	static public final int GROUPID_VERBNET = 2;
 
 	/**
 	 * Propbank id
 	 */
-	static public final int GROUPID_PROPBANK = GROUP_POSITION_PROPBANK + 1;
+	static public final int GROUPID_PROPBANK = 3;
 
 	/**
 	 * FrameNet id
 	 */
-	static public final int GROUPID_FRAMENET = GROUP_POSITION_FRAMENET + 1;
+	static public final int GROUPID_FRAMENET = 4;
 
 	/**
 	 * Source fields for groups
@@ -184,32 +163,22 @@ public class XSelectorsFragment extends ExpandableListFragment
 	/**
 	 * WordNet group position
 	 */
-	private int groupWordNetPosition;
+	private int groupPositionWordNet;
 
 	/**
 	 * VerbNet group position
 	 */
-	private int groupVerbNetPosition;
+	private int groupPositionVerbNet;
 
 	/**
 	 * PropBank group position
 	 */
-	private int groupPropBankPosition;
+	private int groupPositionPropBank;
 
 	/**
 	 * FrameNet group position
 	 */
-	private int groupFrameNetPosition;
-
-	/**
-	 * The current activated item position.
-	 */
-	private int groupPosition;
-
-	/**
-	 * The current group state.
-	 */
-	private int groupState;
+	private int groupPositionFrameNet;
 
 	/**
 	 * The current restored group state.
@@ -263,21 +232,20 @@ public class XSelectorsFragment extends ExpandableListFragment
 	public XSelectorsFragment()
 	{
 		Log.d(TAG, "lifecycle: Constructor " + this);
-		this.groupWordNetPosition = AdapterView.INVALID_POSITION;
-		this.groupVerbNetPosition = AdapterView.INVALID_POSITION;
-		this.groupPropBankPosition = AdapterView.INVALID_POSITION;
-		this.groupFrameNetPosition = AdapterView.INVALID_POSITION;
-		this.groupState = 0;
+		this.groupPositionWordNet = AdapterView.INVALID_POSITION;
+		this.groupPositionVerbNet = AdapterView.INVALID_POSITION;
+		this.groupPositionPropBank = AdapterView.INVALID_POSITION;
+		this.groupPositionFrameNet = AdapterView.INVALID_POSITION;
 	}
 
 	// L I F E C Y C L E   E V E N T S
 
-	@Override
-	public void onAttach(@NonNull final Context context)
-	{
-		super.onAttach(context);
-		Log.d(TAG, "lifecycle: onAttach (1) " + this);
-	}
+	//	@Override
+	//	public void onAttach(@NonNull final Context context)
+	//	{
+	//		super.onAttach(context);
+	//		Log.d(TAG, "lifecycle: onAttach (1) " + this);
+	//	}
 
 	@Override
 	public void onCreate(final Bundle savedInstanceState)
@@ -298,20 +266,21 @@ public class XSelectorsFragment extends ExpandableListFragment
 		}
 		this.word = query;
 		this.wordId = 0;
-
-		// group cursor
-		makeGroupCursor();
-		this.groupPosition = 0;
-		Log.d(TAG, "onCreate: groupCursor at groupPosition " + this.groupPosition);
-
-		// data view models
-		makeModels();
 	}
 
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		Log.d(TAG, "lifecycle: onCreateView (3) " + this);
+
+		// group cursor
+		Log.d(TAG, "-: make groupCursor");
+		makeGroupCursor();
+
+		// data view models
+		Log.d(TAG, "-: make models");
+		makeModels();
+
 		return inflater.inflate(R.layout.fragment_xselectors, container, false);
 	}
 
@@ -339,66 +308,54 @@ public class XSelectorsFragment extends ExpandableListFragment
 		}
 	}
 
-	@Override
-	public void onActivityCreated(@Nullable final Bundle savedInstanceState)
-	{
-		super.onActivityCreated(savedInstanceState);
-		Log.d(TAG, "lifecycle: onActivityCreated (5) " + this);
-	}
-
-	@Override
-	public void onStop()
-	{
-		super.onStop();
-		Log.d(TAG, "lifecycle: onStop (1) " + this);
-	}
+	//	@Override
+	//	public void onActivityCreated(@Nullable final Bundle savedInstanceState)
+	//	{
+	//		super.onActivityCreated(savedInstanceState);
+	//		Log.d(TAG, "lifecycle: onActivityCreated (5) " + this);
+	//	}
 
 	@Override
 	public void onDestroyView()
 	{
 		super.onDestroyView();
 		Log.d(TAG, "lifecycle: onDestroyView (3) " + this);
+		cleanup();
 	}
 
-	@Override
-	public void onDestroy()
-	{
-		super.onDestroy();
-		Log.d(TAG, "lifecycle: onDestroy (4) " + this);
-	}
+	//	@Override
+	//	public void onDestroy()
+	//	{
+	//		super.onDestroy();
+	//		Log.d(TAG, "lifecycle: onDestroy (4) " + this);
+	//	}
 
-	@Override
-	public void onDetach()
-	{
-		super.onDetach();
-		Log.d(TAG, "lifecycle: onDetach (5) " + this);
-	}
-
-	public void clear()
-	{
-		View view = getExpandableListView();
-		ViewGroup container = (ViewGroup) view.getParent();
-		container.removeView(view);
-
-		CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
-		adapter.setChildrenCursor(0, null);
-		adapter.setChildrenCursor(1, null);
-		adapter.setChildrenCursor(2, null);
-		adapter.setChildrenCursor(3, null);
-		adapter.setGroupCursor(null);
-		setListAdapter(null);
-	}
+	//	@Override
+	//	public void onDetach()
+	//	{
+	//		super.onDetach();
+	//		Log.d(TAG, "lifecycle: onDetach (5) " + this);
+	//	}
 
 	@Override
 	public void onSaveInstanceState(@NonNull final Bundle outState)
 	{
 		Log.d(TAG, "lifecycle: onSaveInstanceState (2) " + this);
-		//clear();
 		super.onSaveInstanceState(outState);
 
-		// serialize and persist the activated item position.
-		outState.putInt(STATE_GROUP, this.groupState);
-		Log.d(TAG, "save group states " + Integer.toHexString(this.groupState) + " " + this);
+		// serialize and persist the activated group state
+		final ExpandableListView expandableListView = getExpandableListView();
+		int groupCount = this.xnCursor.getCount();
+		int groupState = 0;
+		for (int i = 0; i < groupCount; i++)
+		{
+			if (expandableListView.isGroupExpanded(i))
+			{
+				groupState |= (1 << i);
+			}
+		}
+		outState.putInt(STATE_GROUPS, groupState);
+		Log.d(TAG, "save group states " + Integer.toHexString(groupState) + " " + this);
 	}
 
 	@Override
@@ -406,14 +363,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	{
 		super.onViewStateRestored(savedInstanceState);
 		Log.d(TAG, "lifecycle: onViewStateRestored " + this);
-		if (savedInstanceState != null)
-		{
-			restoredGroupState = savedInstanceState.getInt(STATE_GROUP);
-		}
-		else
-		{
-			restoredGroupState = null;
-		}
+		this.restoredGroupState = savedInstanceState != null ? savedInstanceState.getInt(STATE_GROUPS) : null;
 	}
 
 	/**
@@ -422,8 +372,8 @@ public class XSelectorsFragment extends ExpandableListFragment
 	private void initializeGroups()
 	{
 		// expand (triggers data loading)
-		Log.d(TAG, "expand group " + this.groupPosition + " " + this);
-		expand(this.groupPosition);
+		Log.d(TAG, "expand group " + GROUP_POSITION_INITIAL + " " + this);
+		expand(GROUP_POSITION_INITIAL);
 	}
 
 	/**
@@ -437,7 +387,8 @@ public class XSelectorsFragment extends ExpandableListFragment
 		}
 		final Handler handler = new Handler(Looper.getMainLooper());
 		Log.d(TAG, "saved position " + Integer.toHexString(groupState) + " " + this);
-		for (int i = 0; i < GROUP_POSITION_COUNT; i++)
+		int groupCount = this.xnCursor.getCount();
+		for (int i = 0; i < groupCount; i++)
 		{
 			if ((groupState & (1 << i)) != 0)
 			{
@@ -460,23 +411,23 @@ public class XSelectorsFragment extends ExpandableListFragment
 
 		if (Settings.Source.WORDNET.test(enable))
 		{
-			this.groupWordNetPosition = position++;
+			this.groupPositionWordNet = position++;
 			this.xnCursor.addRow(new Object[]{GROUPID_WORDNET, "wordnet", Integer.toString(R.drawable.wordnet)});
 		}
 		if (Settings.Source.VERBNET.test(enable))
 		{
-			this.groupVerbNetPosition = position++;
+			this.groupPositionVerbNet = position++;
 			this.xnCursor.addRow(new Object[]{GROUPID_VERBNET, "verbnet", Integer.toString(R.drawable.verbnet)});
 		}
 		if (Settings.Source.PROPBANK.test(enable))
 		{
-			this.groupPropBankPosition = position++;
+			this.groupPositionPropBank = position++;
 			this.xnCursor.addRow(new Object[]{GROUPID_PROPBANK, "propbank", Integer.toString(R.drawable.propbank)});
 		}
 		if (Settings.Source.FRAMENET.test(enable))
 		{
 			//noinspection UnusedAssignment
-			this.groupFrameNetPosition = position++;
+			this.groupPositionFrameNet = position++;
 			this.xnCursor.addRow(new Object[]{GROUPID_FRAMENET, "framenet", Integer.toString(R.drawable.framenet)});
 		}
 	}
@@ -486,8 +437,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 */
 	private void makeModels()
 	{
+		final LifecycleOwner owner = getViewLifecycleOwner();
 		this.wordIdFromWordModel = new ViewModelProvider(this).get("xselectors.wordid(word)", SqlunetViewModel.class);
-		this.wordIdFromWordModel.getData().observe(this, unusedCursor -> {
+		this.wordIdFromWordModel.getData().observe(owner, unusedCursor -> {
 
 			unusedCursor.close();
 
@@ -502,20 +454,21 @@ public class XSelectorsFragment extends ExpandableListFragment
 			{
 				initializeGroups();
 			}
+			this.wordIdFromWordModel.getData().removeObservers(this);
 		});
 
 		this.wnFromWordIdModel = new ViewModelProvider(this).get("xselectors.wn(wordid)", SqlunetViewModel.class);
-		this.wnFromWordIdModel.getData().observe(this, cursor -> {
+		this.wnFromWordIdModel.getData().observe(owner, cursor -> {
 
-			if (cursor != null)
+			if (cursor != null && wnFromWordIdModel.getData().hasActiveObservers())
 			{
 				// dumpXCursor(cursor);
 
 				// pass on to list adapter
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
-				if (adapter != null && this.groupPosition >= 0)
+				if (adapter != null && this.groupPositionWordNet != AdapterView.INVALID_POSITION)
 				{
-					adapter.setChildrenCursor(this.groupPosition, cursor);
+					adapter.setChildrenCursor(this.groupPositionWordNet, cursor);
 				}
 			}
 			else
@@ -525,17 +478,17 @@ public class XSelectorsFragment extends ExpandableListFragment
 		});
 
 		this.vnFromWordIdModel = new ViewModelProvider(this).get("xselectors.vn(wordid)", SqlunetViewModel.class);
-		this.vnFromWordIdModel.getData().observe(this, cursor -> {
+		this.vnFromWordIdModel.getData().observe(owner, cursor -> {
 
-			if (cursor != null)
+			if (cursor != null && vnFromWordIdModel.getData().hasActiveObservers())
 			{
 				// dumpXCursor(cursor);
 
 				// pass on to list adapter
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
-				if (adapter != null && this.groupPosition >= 0)
+				if (adapter != null && this.groupPositionVerbNet != AdapterView.INVALID_POSITION)
 				{
-					adapter.setChildrenCursor(this.groupPosition, cursor);
+					adapter.setChildrenCursor(this.groupPositionVerbNet, cursor);
 				}
 			}
 			else
@@ -545,17 +498,17 @@ public class XSelectorsFragment extends ExpandableListFragment
 		});
 
 		this.pbFromWordIdModel = new ViewModelProvider(this).get("xselectors.pb(wordid)", SqlunetViewModel.class);
-		this.pbFromWordIdModel.getData().observe(this, cursor -> {
+		this.pbFromWordIdModel.getData().observe(owner, cursor -> {
 
-			if (cursor != null)
+			if (cursor != null && pbFromWordIdModel.getData().hasActiveObservers())
 			{
 				// dumpXCursor(cursor);
 
 				// pass on to list adapter
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
-				if (adapter != null && this.groupPosition >= 0)
+				if (adapter != null && this.groupPositionPropBank != AdapterView.INVALID_POSITION)
 				{
-					adapter.setChildrenCursor(this.groupPosition, cursor);
+					adapter.setChildrenCursor(this.groupPositionPropBank, cursor);
 				}
 			}
 			else
@@ -565,17 +518,17 @@ public class XSelectorsFragment extends ExpandableListFragment
 		});
 
 		this.fnFromWordIdModel = new ViewModelProvider(this).get("xselectors.fn(wordid)", SqlunetViewModel.class);
-		this.fnFromWordIdModel.getData().observe(this, cursor -> {
+		this.fnFromWordIdModel.getData().observe(owner, cursor -> {
 
-			if (cursor != null)
+			if (cursor != null && fnFromWordIdModel.getData().hasActiveObservers())
 			{
 				// dumpXCursor(cursor);
 
 				// pass on to list adapter
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
-				if (adapter != null && this.groupPosition >= 0)
+				if (adapter != null && this.groupPositionFrameNet != AdapterView.INVALID_POSITION)
 				{
-					adapter.setChildrenCursor(this.groupPosition, cursor);
+					adapter.setChildrenCursor(this.groupPositionFrameNet, cursor);
 				}
 			}
 			else
@@ -583,55 +536,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 				Log.i(TAG, "FN none");
 			}
 		});
-	}
-
-	// L I S T E N E R
-
-	/**
-	 * Set listener
-	 *
-	 * @param listener listener
-	 */
-	public void setListener(final Listener listener)
-	{
-		this.listener = listener;
-	}
-
-	// L O A D
-
-	/**
-	 * Load id from word
-	 */
-	private void load()
-	{
-		// load the contents
-		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(Words_FnWords_PbWords_VnWords.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				Words_FnWords_PbWords_VnWords.SYNSETID + " AS " + GROUPID_COLUMN, //
-				Words_FnWords_PbWords_VnWords.WORDID, //
-				Words_FnWords_PbWords_VnWords.FNWORDID, //
-				Words_FnWords_PbWords_VnWords.VNWORDID, //
-				Words_FnWords_PbWords_VnWords.PBWORDID, //
-		};
-		final String selection = XSqlUNetContract.WORD + '.' + Words_FnWords_PbWords_VnWords.LEMMA + " = ?";
-		final String[] selectionArgs = {XSelectorsFragment.this.word};
-		final String sortOrder = XSqlUNetContract.POS + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
-		this.wordIdFromWordModel.loadData(uri, projection, selection, selectionArgs, sortOrder, this::xselectorsPostProcess);
-	}
-
-	/**
-	 * Read wordId from cursor
-	 *
-	 * @param cursor cursor
-	 */
-	private void xselectorsPostProcess(@NonNull final Cursor cursor)
-	{
-		// store source
-		if (cursor.moveToFirst())
-		{
-			final int idWordId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.WORDID);
-			XSelectorsFragment.this.wordId = cursor.getLong(idWordId);
-		}
 	}
 
 	/**
@@ -716,37 +620,69 @@ public class XSelectorsFragment extends ExpandableListFragment
 					super.setViewImage(v, value);
 				}
 			}
-
-			@Override
-			protected void bindChildView(final View view, final Context context, final Cursor cursor, final boolean isLastChild)
-			{
-				try
-				{
-					super.bindChildView(view, context, cursor, isLastChild);
-				}
-				catch (Exception e)
-				{
-					Log.e(TAG, "bindChildView() adapter=" + this + " cursor=" + cursor, e);
-					CursorDump.dump(cursor);
-					throw e;
-				}
-			}
-
-			@Override
-			protected void bindGroupView(final View view, final Context context, final Cursor cursor, final boolean isExpanded)
-			{
-				try
-				{
-					super.bindGroupView(view, context, cursor, isExpanded);
-				}
-				catch (Exception e)
-				{
-					Log.e(TAG, "bindGroupView() adapter=" + this + " cursor=" + cursor, e);
-					CursorDump.dump(cursor);
-					throw e;
-				}
-			}
 		};
+	}
+
+	public void cleanup()
+	{
+		CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
+		for (int i = 0; i < adapter.getGroupCount(); i++)
+		{
+			adapter.setChildrenCursor(i, null);
+		}
+		adapter.setGroupCursor(null);
+		setListAdapter(null);
+	}
+
+	// L I S T E N E R
+
+	/**
+	 * Set listener
+	 *
+	 * @param listener listener
+	 */
+	public void setListener(final Listener listener)
+	{
+		this.listener = listener;
+	}
+
+	// L O A D
+
+	/**
+	 * Load id from word
+	 */
+	private void load()
+	{
+		// load the contents
+		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(Words_FnWords_PbWords_VnWords.CONTENT_URI_TABLE));
+		final String[] projection = { //
+				Words_FnWords_PbWords_VnWords.SYNSETID + " AS " + GROUPID_COLUMN, //
+				Words_FnWords_PbWords_VnWords.WORDID, //
+				Words_FnWords_PbWords_VnWords.FNWORDID, //
+				Words_FnWords_PbWords_VnWords.VNWORDID, //
+				Words_FnWords_PbWords_VnWords.PBWORDID, //
+		};
+		final String selection = XSqlUNetContract.WORD + '.' + Words_FnWords_PbWords_VnWords.LEMMA + " = ?";
+		final String[] selectionArgs = {XSelectorsFragment.this.word};
+		final String sortOrder = XSqlUNetContract.POS + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
+		this.wordIdFromWordModel.loadData(uri, projection, selection, selectionArgs, sortOrder, this::wordIdFromWordPostProcess);
+	}
+
+	/**
+	 * Read wordId from cursor
+	 * Closes cursor because it's no longer needed.
+	 *
+	 * @param cursor cursor
+	 */
+	private void wordIdFromWordPostProcess(@NonNull final Cursor cursor)
+	{
+		// store source
+		if (cursor.moveToFirst())
+		{
+			final int idWordId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.WORDID);
+			XSelectorsFragment.this.wordId = cursor.getLong(idWordId);
+		}
+		cursor.close();
 	}
 
 	/**
@@ -933,23 +869,23 @@ public class XSelectorsFragment extends ExpandableListFragment
 
 	// S E L E C T I O N   L I S T E N E R
 
+	/*
 	@Override
 	public void onGroupExpand(final int groupPosition)
 	{
 		super.onGroupExpand(groupPosition);
-		this.groupPosition = groupPosition;
-		this.groupState |= 1 << groupPosition;
 		Log.d(TAG, "expand " + groupPosition);
 	}
+	*/
 
+	/*
 	@Override
 	public void onGroupCollapse(final int groupPosition)
 	{
 		super.onGroupCollapse(groupPosition);
-		this.groupPosition = -1;
-		this.groupState &= ~(1 << groupPosition);
 		Log.d(TAG, "collapse " + groupPosition);
 	}
+	*/
 
 	// C L I C K
 
@@ -1002,19 +938,19 @@ public class XSelectorsFragment extends ExpandableListFragment
 				final long xMask = XSelectorPointer.getMask(xSources);
 
 				int groupId = -1;
-				if (this.groupWordNetPosition != AdapterView.INVALID_POSITION && groupPosition == this.groupWordNetPosition)
+				if (this.groupPositionWordNet != AdapterView.INVALID_POSITION && groupPosition == this.groupPositionWordNet)
 				{
 					groupId = GROUPID_WORDNET;
 				}
-				else if (this.groupVerbNetPosition != AdapterView.INVALID_POSITION && groupPosition == this.groupVerbNetPosition)
+				else if (this.groupPositionVerbNet != AdapterView.INVALID_POSITION && groupPosition == this.groupPositionVerbNet)
 				{
 					groupId = GROUPID_VERBNET;
 				}
-				else if (this.groupPropBankPosition != AdapterView.INVALID_POSITION && groupPosition == this.groupPropBankPosition)
+				else if (this.groupPositionPropBank != AdapterView.INVALID_POSITION && groupPosition == this.groupPositionPropBank)
 				{
 					groupId = GROUPID_PROPBANK;
 				}
-				else if (this.groupFrameNetPosition != AdapterView.INVALID_POSITION && groupPosition == this.groupFrameNetPosition)
+				else if (this.groupPositionFrameNet != AdapterView.INVALID_POSITION && groupPosition == this.groupPositionFrameNet)
 				{
 					groupId = GROUPID_FRAMENET;
 				}
@@ -1053,16 +989,13 @@ public class XSelectorsFragment extends ExpandableListFragment
 		}
 	}
 
-	/**
+	/*
 	 * Expand or Collapse section
 	 */
+	/*
 	private void expandOrCollapse(int groupPosition, boolean expand)
 	{
-		if (getExpandableListAdapter() == null)
-		{
-			return;
-		}
-
+		assert getExpandableListAdapter() != null;
 		final ExpandableListView view = getExpandableListView();
 		assert view != null;
 		boolean expanded = view.isGroupExpanded(groupPosition);
@@ -1078,6 +1011,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			collapse(groupPosition);
 		}
 	}
+	*/
 
 	// H E L P E R
 

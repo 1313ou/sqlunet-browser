@@ -242,10 +242,10 @@ public class XSelectorsFragment extends ExpandableListFragment
 	private void makeModels()
 	{
 		this.wordIdFromWordModel = new ViewModelProvider(this).get("vn:xselectors.wordid(word)", SqlunetViewModel.class);
-		this.wordIdFromWordModel.getData().observe(this, unusedCursor -> initialize());
+		this.wordIdFromWordModel.getData().observe(getViewLifecycleOwner(), unusedCursor -> initialize());
 
 		this.vnFromWordIdModel = new ViewModelProvider(this).get("vn:xselectors.vn(wordid)", SqlunetViewModel.class);
-		this.vnFromWordIdModel.getData().observe(this, cursor -> {
+		this.vnFromWordIdModel.getData().observe(getViewLifecycleOwner(), cursor -> {
 
 			if (cursor != null)
 			{
@@ -265,7 +265,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		});
 
 		this.pbFromWordIdModel = new ViewModelProvider(this).get("vn:xselectors.pb(wordid)", SqlunetViewModel.class);
-		this.pbFromWordIdModel.getData().observe(this, cursor -> {
+		this.pbFromWordIdModel.getData().observe(getViewLifecycleOwner(), cursor -> {
 
 			if (cursor != null)
 			{

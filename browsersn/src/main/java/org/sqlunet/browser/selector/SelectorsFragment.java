@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
+import org.sqlunet.browser.Selectors;
 import org.sqlunet.browser.sn.R;
 import org.sqlunet.browser.SqlunetViewModel;
 import org.sqlunet.provider.ProviderArgs;
@@ -108,7 +109,7 @@ public class SelectorsFragment extends ListFragment
 		assert args != null;
 
 		// activate on click
-		this.activateOnItemClick = args.getBoolean(Browse1Fragment.IS_TWO_PANE, false);
+		this.activateOnItemClick = args.getBoolean(Selectors.IS_TWO_PANE, false);
 
 		// target word
 		String query = args.getString(ProviderArgs.ARG_QUERYSTRING);
@@ -198,7 +199,7 @@ public class SelectorsFragment extends ListFragment
 	private void makeModels()
 	{
 		this.model = new ViewModelProvider(this).get("selectors(word)", SqlunetViewModel.class);
-		this.model.getData().observe(this, cursor -> {
+		this.model.getData().observe(getViewLifecycleOwner(), cursor -> {
 
 			// pass on to list adapter
 			final CursorAdapter adapter = (CursorAdapter) getListAdapter();

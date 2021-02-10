@@ -59,7 +59,7 @@ public class SourceFragment extends ListFragment
 	private void makeModels()
 	{
 		this.model = new ViewModelProvider(this).get("sources", SqlunetViewModel.class);
-		this.model.getData().observe(this, cursor -> {
+		this.model.getData().observe(getViewLifecycleOwner(), cursor -> {
 
 			final CursorAdapter adapter = (CursorAdapter) getListAdapter();
 			assert adapter != null;
