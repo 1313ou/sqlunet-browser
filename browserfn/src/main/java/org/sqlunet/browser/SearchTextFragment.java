@@ -83,7 +83,7 @@ public class SearchTextFragment extends BaseSearchFragment
 		}
 
 		// log
-		Log.d(SearchTextFragment.TAG, "SEARCH TEXT " + query);
+		Log.d(SearchTextFragment.TAG, "Search text " + query);
 
 		// subtitle
 		final AppCompatActivity activity = (AppCompatActivity) requireActivity();

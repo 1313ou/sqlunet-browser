@@ -248,55 +248,55 @@ abstract public class BaseModule extends Module
 	private void makeModels()
 	{
 		this.frameFromFrameIdModel = new ViewModelProvider(this.fragment).get("fn.frame(frameid)", SqlunetViewTreeModel.class);
-		this.frameFromFrameIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.frameFromFrameIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.relatedFramesFromFrameIdModel = new ViewModelProvider(this.fragment).get("fn.relatedframes(frameid)", SqlunetViewTreeModel.class);
-		this.relatedFramesFromFrameIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.relatedFramesFromFrameIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.fesFromFrameIdModel = new ViewModelProvider(this.fragment).get("fn.fes(frameid)", SqlunetViewTreeModel.class);
-		this.fesFromFrameIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.fesFromFrameIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.lexUnitFromLuIdModel = new ViewModelProvider(this.fragment).get("fn.lexunit(luid)", SqlunetViewTreeModel.class);
-		this.lexUnitFromLuIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.lexUnitFromLuIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.lexUnitsFromFrameIdModel = new ViewModelProvider(this.fragment).get("fn.lexunits(frameid)", SqlunetViewTreeModel.class);
-		this.lexUnitsFromFrameIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.lexUnitsFromFrameIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.lexUnitsFromWordIdPosModel = new ViewModelProvider(this.fragment).get("fn.lexunits(wordid,pos)", SqlunetViewTreeModel.class);
-		this.lexUnitsFromWordIdPosModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.lexUnitsFromWordIdPosModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.governorsFromLuIdModel = new ViewModelProvider(this.fragment).get("fn.governors(luid)", SqlunetViewTreeModel.class);
-		this.governorsFromLuIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.governorsFromLuIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.realizationsFromLuIdModel = new ViewModelProvider(this.fragment).get("fn.realizations(luid)", SqlunetViewTreeModel.class);
-		this.realizationsFromLuIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.realizationsFromLuIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.groupRealizationsFromLuIdModel = new ViewModelProvider(this.fragment).get("fn.grouprealizations(luid)", SqlunetViewTreeModel.class);
-		this.groupRealizationsFromLuIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.groupRealizationsFromLuIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.sentencesFromLuIdModel = new ViewModelProvider(this.fragment).get("fn.sentences(luid)", SqlunetViewTreeModel.class);
-		this.sentencesFromLuIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.sentencesFromLuIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.sentencesFromPatternIdModel = new ViewModelProvider(this.fragment).get("fn.sentences(patternid)", SqlunetViewTreeModel.class);
-		this.sentencesFromPatternIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.sentencesFromPatternIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.sentencesFromVuIdModel = new ViewModelProvider(this.fragment).get("fn.sentences(vuid)", SqlunetViewTreeModel.class);
-		this.sentencesFromVuIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.sentencesFromVuIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.annoSetFromAnnoSetIdModel = new ViewModelProvider(this.fragment).get("fn.annoset(annosetid)", SqlunetViewTreeModel.class);
-		this.annoSetFromAnnoSetIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.annoSetFromAnnoSetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.annoSetsFromGovernorIdModel = new ViewModelProvider(this.fragment).get("fn.annosets(governorid)", SqlunetViewTreeModel.class);
-		this.annoSetsFromGovernorIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.annoSetsFromGovernorIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.annoSetsFromPatternIdModel = new ViewModelProvider(this.fragment).get("fn.annosets(patternid)", SqlunetViewTreeModel.class);
-		this.annoSetsFromPatternIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.annoSetsFromPatternIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.annoSetsFromVuIdModel = new ViewModelProvider(this.fragment).get("fn.annosets(vuid)", SqlunetViewTreeModel.class);
-		this.annoSetsFromVuIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.annoSetsFromVuIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.layersFromSentenceIdModel = new ViewModelProvider(this.fragment).get("fn.layers(sentenceid)", SqlunetViewTreeModel.class);
-		this.layersFromSentenceIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
+		this.layersFromSentenceIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 	}
 
 	// C R E A T I O N

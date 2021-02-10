@@ -71,7 +71,7 @@ public class BrowseFragment extends BaseSearchFragment
 			final Fragment fragment = new BrowseSplashFragment();
 			getChildFragmentManager() //
 					.beginTransaction() //
-					.replace(R.id.container_browse, fragment) //
+					.replace(R.id.container_browse, fragment, "fragment_splash") //
 					.commit();
 		}
 
@@ -190,7 +190,7 @@ public class BrowseFragment extends BaseSearchFragment
 		}
 
 		// menuDispatch
-		Log.d(BrowseFragment.TAG, "SEARCH " + args);
+		Log.d(BrowseFragment.TAG, "Search " + args);
 		if (targetIntent != null)
 		{
 			targetIntent.putExtras(args);
@@ -216,6 +216,13 @@ public class BrowseFragment extends BaseSearchFragment
 					.commit();
 
 		}
+	}
+
+	@Override
+	protected boolean triggerFocusSearch()
+	{
+		Fragment active = getChildFragmentManager().findFragmentById(R.id.container_browse);
+		return "fragment_splash".equals(active.getTag());
 	}
 
 	// I N T E N T / F R A G M E N T   F A C T O R Y
