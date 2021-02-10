@@ -245,7 +245,7 @@ public class SelectorsFragment extends ListFragment
 	private void makeModels()
 	{
 		this.dataModel = new ViewModelProvider(this).get("selectors(word)", SqlunetViewModel.class);
-		this.dataModel.getData().observe(this, cursor -> {
+		this.dataModel.getData().observe(getViewLifecycleOwner(), cursor -> {
 
 			// pass on to list adapter
 			final CursorAdapter adapter = (CursorAdapter) getListAdapter();

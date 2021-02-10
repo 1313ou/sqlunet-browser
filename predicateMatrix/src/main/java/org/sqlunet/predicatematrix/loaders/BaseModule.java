@@ -100,8 +100,8 @@ abstract class BaseModule extends Module
 	 */
 	private void makeModels()
 	{
-		this.model = new ViewModelProvider(fragment).get("pm.pm(?)", SqlunetViewTreeModel.class);
-		this.model.getData().observe(fragment, data -> new TreeOpExecute(fragment).exec(data));
+		this.model = new ViewModelProvider(this.fragment).get("pm.pm(?)", SqlunetViewTreeModel.class);
+		this.model.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(fragment).exec(data));
 	}
 
 	// L O A D E R S

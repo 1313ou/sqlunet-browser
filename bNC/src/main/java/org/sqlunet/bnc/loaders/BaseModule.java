@@ -98,7 +98,7 @@ public class BaseModule extends Module
 	private void makeModels()
 	{
 		this.bncFromWordIdModel = new ViewModelProvider(this.fragment).get("bnc.bnc(wordid)", SqlunetViewTreeModel.class);
-		this.bncFromWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
+		this.bncFromWordIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
 	}
 
 	@Override

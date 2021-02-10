@@ -67,7 +67,7 @@ public abstract class AbstractTableFragment extends ListFragment
 	private void makeModels()
 	{
 		this.model = new ViewModelProvider(this).get("elements", SqlunetViewModel.class);
-		this.model.getData().observe(this, cursor -> {
+		this.model.getData().observe(getViewLifecycleOwner(), cursor -> {
 
 			final CursorAdapter adapter = (CursorAdapter) getListAdapter();
 			assert adapter != null;

@@ -90,13 +90,13 @@ abstract class BaseModule extends Module
 	private void makeModels()
 	{
 		this.collocationFromCollocationIdModel = new ViewModelProvider(this.fragment).get("sn.collocation(collocationid)", SqlunetViewTreeModel.class);
-		this.collocationFromCollocationIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
+		this.collocationFromCollocationIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.collocationsFromWordIdModel = new ViewModelProvider(this.fragment).get("sn.collocations(wordid)", SqlunetViewTreeModel.class);
-		this.collocationsFromWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
+		this.collocationsFromWordIdModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.collocationsFromWordModel = new ViewModelProvider(this.fragment).get("sn.collocations(word)", SqlunetViewTreeModel.class);
-		this.collocationsFromWordModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
+		this.collocationsFromWordModel.getData().observe(this.fragment.getViewLifecycleOwner(), data -> new TreeOpExecute(this.fragment).exec(data));
 	}
 
 	// C O L L O C A T I O N S
