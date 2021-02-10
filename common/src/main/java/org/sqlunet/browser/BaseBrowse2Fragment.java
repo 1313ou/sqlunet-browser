@@ -49,6 +49,13 @@ public abstract class BaseBrowse2Fragment extends Fragment
 	}
 
 	@Override
+	public void onCreate(@Nullable final Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		this.setRetainInstance(false);
+	}
+
+	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
 		// mode

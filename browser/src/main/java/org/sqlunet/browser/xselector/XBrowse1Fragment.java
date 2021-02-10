@@ -1,11 +1,12 @@
 /*
- * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ * Copyright (c) 2021. Bernard Bou <1313ou@gmail.com>.
  */
 
 package org.sqlunet.browser.xselector;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import org.sqlunet.provider.ProviderArgs;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 /**
  * X selector fragment
@@ -28,11 +30,15 @@ import androidx.fragment.app.FragmentManager;
  */
 public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Listener
 {
+	static private final String TAG = "XBrowse1F";
+
 	// C R E A T I O N
 
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
+		Log.d(TAG, "lifecycle: onCreate");
+
 		// view
 		final View view = inflater.inflate(Settings.getPaneLayout(R.layout.fragment_xbrowse_first, R.layout.fragment_xbrowse1, R.layout.fragment_xbrowse1_browse2), container, false);
 		boolean isTwoPane = isTwoPane(view);
@@ -40,40 +46,77 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 		// manager
 		final FragmentManager manager = getChildFragmentManager();
 
-		// x selector fragment
-		final XSelectorsFragment xSelectorsFragment = new XSelectorsFragment();
-		Bundle args1 = getArguments();
+		// selector fragment
+		XSelectorsFragment selectorsFragment;
+		selectorsFragment = (XSelectorsFragment) manager.findFragmentByTag("browse1");
+		if (selectorsFragment == null)
+		{
+			selectorsFragment = new XSelectorsFragment();
+			selectorsFragment.setArguments(getArguments());
+		}
+		Bundle args1 = selectorsFragment.getArguments();
 		if (args1 == null)
 		{
 			args1 = new Bundle();
 		}
 		args1.putBoolean(Selectors.IS_TWO_PANE, isTwoPane);
-		xSelectorsFragment.setArguments(args1);
-		xSelectorsFragment.setListener(this);
-
-		// transaction on selectors pane
+		selectorsFragment.setListener(this);
+		Log.d(TAG, "create 'browse1' fragment");
 		manager.beginTransaction() //
-				.replace(R.id.container_xselectors, xSelectorsFragment, "browse1") //
+				.replace(R.id.container_xselectors, selectorsFragment, "browse1") //
 				.commit();
 
 		// two-pane specific set up
 		if (isTwoPane)
 		{
 			// in two-pane mode, list items should be given the 'activated' state when touched.
-			xSelectorsFragment.setActivateOnItemClick(true);
+			selectorsFragment.setActivateOnItemClick(true);
 
 			// detail fragment (rigid layout)
-			final Fragment browse2Fragment = new Browse2Fragment();
-			final Bundle args2 = new Bundle();
-			args2.putBoolean(Browse2Fragment.ARG_ALT, false);
-			browse2Fragment.setArguments(args2);
-
+			Fragment browse2Fragment;
+			browse2Fragment = manager.findFragmentByTag("browse2");
+			if (browse2Fragment == null)
+			{
+				browse2Fragment = new Browse2Fragment();
+				final Bundle args2 = new Bundle();
+				args2.putBoolean(Browse2Fragment.ARG_ALT, false);
+				browse2Fragment.setArguments(args2);
+			}
+			Log.d(TAG, "create 'browse2' fragment");
 			manager.beginTransaction() //
 					.replace(R.id.container_browse2, browse2Fragment, "browse2") //
 					.commit();
 		}
 
 		return view;
+	}
+
+	@Override
+	public void onDestroyView()
+	{
+		super.onDestroyView();
+		Log.d(TAG, "lifecycle: onDestroy");
+	}
+
+	public void destroyFragments()
+	{
+		super.onDestroy();
+		// remove fragments so that they will not be restored
+		final FragmentManager manager = getChildFragmentManager();
+		Fragment selectorsFragment = manager.findFragmentByTag("browse1");
+		Fragment browse2Fragment = manager.findFragmentByTag("browse2");
+		FragmentTransaction transaction = manager.beginTransaction();
+		if (selectorsFragment != null)
+		{
+			Log.d(TAG, "destroy 'browse1' fragment");
+			transaction.remove(selectorsFragment);
+		}
+		if (browse2Fragment != null)
+		{
+			Log.d(TAG, "destroy 'browse2' fragment");
+			transaction.remove(browse2Fragment);
+		}
+		transaction.commit();
 	}
 
 	// I T E M S E L E C T I O N H A N D L I N G

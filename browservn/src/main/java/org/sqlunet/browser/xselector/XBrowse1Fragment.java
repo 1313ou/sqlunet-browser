@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ * Copyright (c) 2021. Bernard Bou <1313ou@gmail.com>.
  */
 
 package org.sqlunet.browser.xselector;
@@ -41,17 +41,20 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 		final FragmentManager manager = getChildFragmentManager();
 
 		// x selector fragment
-		final XSelectorsFragment xSelectorsFragment = new XSelectorsFragment();
-		Bundle args1 = getArguments();
+		// transaction on selectors pane
+		XSelectorsFragment xSelectorsFragment = (XSelectorsFragment) manager.findFragmentByTag("browse1");
+		if (xSelectorsFragment == null)
+		{
+			xSelectorsFragment = new XSelectorsFragment();
+			xSelectorsFragment.setArguments(getArguments());
+		}
+		Bundle args1 = xSelectorsFragment.getArguments();
 		if (args1 == null)
 		{
 			args1 = new Bundle();
 		}
 		args1.putBoolean(Selectors.IS_TWO_PANE, isTwoPane);
-		xSelectorsFragment.setArguments(args1);
 		xSelectorsFragment.setListener(this);
-
-		// transaction on selectors pane
 		manager.beginTransaction() //
 				.replace(R.id.container_xselectors, xSelectorsFragment, "browse1") //
 				.commit();
@@ -63,10 +66,15 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 			xSelectorsFragment.setActivateOnItemClick(true);
 
 			// detail fragment (rigid layout)
-			final Fragment browse2Fragment = new Browse2Fragment();
-			final Bundle args2 = new Bundle();
-			browse2Fragment.setArguments(args2);
-
+			Fragment browse2Fragment;
+			// browse2Fragment = manager.findFragmentByTag("browse2");
+			// if (browse2Fragment == null)
+			{
+				browse2Fragment = new Browse2Fragment();
+				final Bundle args2 = new Bundle();
+				args2.putBoolean(Browse2Fragment.ARG_ALT, false);
+				browse2Fragment.setArguments(args2);
+			}
 			manager.beginTransaction() //
 					.replace(R.id.container_browse2, browse2Fragment, "browse2") //
 					.commit();

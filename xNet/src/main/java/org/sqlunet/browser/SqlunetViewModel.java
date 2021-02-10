@@ -69,7 +69,7 @@ public class SqlunetViewModel extends AndroidViewModel
 			@Override
 			protected void onPostExecute(Cursor cursor)
 			{
-				data.setValue(cursor);
+				SqlunetViewModel.this.data.setValue(cursor);
 			}
 		}.execute();
 	}

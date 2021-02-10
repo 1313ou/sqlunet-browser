@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ * Copyright (c) 2021. Bernard Bou <1313ou@gmail.com>.
  */
 
 package org.sqlunet.browser;
@@ -51,7 +51,7 @@ public class SearchTextFragment extends BaseSearchFragment
 	{
 		final View view = super.onCreateView(inflater, container, savedInstanceState);
 
-		// if (savedInstanceState == null)
+		if (savedInstanceState == null)
 		{
 			// splash fragment
 			final Fragment fragment = new SearchTextSplashFragment();
