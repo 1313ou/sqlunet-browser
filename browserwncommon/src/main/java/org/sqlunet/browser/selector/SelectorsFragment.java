@@ -168,7 +168,7 @@ public class SelectorsFragment extends ListFragment
 		Log.d(TAG, "lifecycle: onStart (6) " + this);
 
 		// load the contents
-		// final MutableLiveData<Cursor> idLiveData = wordIdFromWordModel.getMutableData();
+		// final MutableLiveData<Cursor> idLiveData = dataModel.getMutableData();
 		//  final Cursor idCursor = idLiveData.getValue();
 		//  if (idCursor != null && !idCursor.isClosed())
 		//  {

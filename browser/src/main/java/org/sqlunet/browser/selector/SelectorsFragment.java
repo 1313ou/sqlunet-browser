@@ -167,7 +167,7 @@ public class SelectorsFragment extends ListFragment
 		Log.d(TAG, "lifecycle: onStart (6) " + this);
 
 		// load the contents
-		// final MutableLiveData<Cursor> idLiveData = wordIdFromWordModel.getMutableData();
+		// final MutableLiveData<Cursor> idLiveData = dataModel.getMutableData();
 		//  final Cursor idCursor = idLiveData.getValue();
 		//  if (idCursor != null && !idCursor.isClosed())
 		//  {
@@ -395,6 +395,11 @@ public class SelectorsFragment extends ListFragment
 		activate(position);
 	}
 
+	/**
+	 * Activate item at position
+	 *
+	 * @param position position
+	 */
 	private void activate(int position)
 	{
 		this.positionModel.setPosition(position);
