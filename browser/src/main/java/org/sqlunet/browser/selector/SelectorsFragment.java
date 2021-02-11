@@ -285,7 +285,6 @@ public class SelectorsFragment extends ListFragment
 		});
 		return adapter;
 	}
-	}
 
 	// V I E W M O D E L S
 
