@@ -13,6 +13,9 @@
 		<item name="android:background">?attr/colorPrimary</item>
 	</style>
 
+	<style name="Data.Icon">
+	</style>
+
 	<style name="Data.Pos">
 		<item name="android:maxLines">1</item>
 		<item name="android:textSize">22sp</item>
@@ -33,44 +36,8 @@
 		<item name="android:textSize">12sp</item>
 	</style>
 
-	<style name="Data.TagCount">
+	<style name="Data.Definition">
 		<item name="android:textColor">?attr/colorHighlightOnBackground</item>
-		<item name="android:textSize">12sp</item>
-	</style>
-
-	<style name="Data.SenseKey">
-		<item name="android:textColor">?attr/colorHighlightOnBackground</item>
-		<item name="android:textSize">10sp</item>
-	</style>
-
-	<style name="Data.LexId">
-		<item name="android:textColor">?attr/colorHighlightOnBackground</item>
-		<item name="android:textSize">10sp</item>
-	</style>
-
-	<style name="Data.WordId">
-		<item name="android:textColor">?attr/colorHighlightOnBackground</item>
-		<item name="android:textSize">10sp</item>
-	</style>
-
-	<style name="Data.SenseId">
-		<item name="android:textColor">?attr/colorHighlightOnBackground</item>
-		<item name="android:textSize">10sp</item>
-	</style>
-
-	<style name="Data.SynsetId">
-		<item name="android:textColor">?attr/colorHighlightOnBackground</item>
-		<item name="android:textSize">10sp</item>
-	</style>
-
-	<style name="Data.PosId">
-		<item name="android:textColor">?attr/colorHighlightOnBackground</item>
-		<item name="android:textSize">10sp</item>
-	</style>
-
-	<style name="Data.Definition"/>
-
-	<style name="Data.Icon">
 	</style>
 
 	<style name="Data.Collocation1">
@@ -81,6 +48,41 @@
 	<style name="Data.Collocation2">
 		<item name="android:textSize">16sp</item>
 		<item name="android:textStyle">bold</item>
+	</style>
+
+	<style name="Data.PosId">
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
+		<item name="android:textSize">10sp</item>
+	</style>
+
+	<style name="Data.TagCount">
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
+		<item name="android:textSize">12sp</item>
+	</style>
+
+	<style name="Data.SenseKey">
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
+		<item name="android:textSize">10sp</item>
+	</style>
+
+	<style name="Data.LexId">
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
+		<item name="android:textSize">10sp</item>
+	</style>
+
+	<style name="Data.WordId">
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
+		<item name="android:textSize">10sp</item>
+	</style>
+
+	<style name="Data.SenseId">
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
+		<item name="android:textSize">10sp</item>
+	</style>
+
+	<style name="Data.SynsetId">
+		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
+		<item name="android:textSize">10sp</item>
 	</style>
 
 </resources>
