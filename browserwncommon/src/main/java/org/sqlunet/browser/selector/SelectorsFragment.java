@@ -94,10 +94,12 @@ public class SelectorsFragment extends ListFragment
 	 */
 	public SelectorsFragment()
 	{
-		Log.d(TAG, "lifecycle: Constructor (1) " + this);
+		Log.d(TAG, "lifecycle: Constructor (0) " + this);
 	}
 
 	// L I F E C Y C L E
+
+	// --activate--
 
 	//	@Override
 	//	public void onAttach(@NonNull final Context context)
@@ -134,6 +136,7 @@ public class SelectorsFragment extends ListFragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
+		Log.d(TAG, "lifecycle: onCreateView (3) " + this);
 		return inflater.inflate(R.layout.fragment_selectors, container, false);
 	}
 
@@ -165,7 +168,7 @@ public class SelectorsFragment extends ListFragment
 		Log.d(TAG, "lifecycle: onStart (6) " + this);
 
 		// load the contents
-		// final MutableLiveData<Cursor> idLiveData = model.getMutableData();
+		// final MutableLiveData<Cursor> idLiveData = wordIdFromWordModel.getMutableData();
 		//  final Cursor idCursor = idLiveData.getValue();
 		//  if (idCursor != null && !idCursor.isClosed())
 		//  {
@@ -277,6 +280,8 @@ public class SelectorsFragment extends ListFragment
 		});
 		return adapter;
 	}
+
+	// V I E W M O D E L S
 
 	/**
 	 * Make view models
