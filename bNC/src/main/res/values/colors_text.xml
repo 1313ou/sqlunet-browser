@@ -5,6 +5,9 @@
 
 <resources>
 
+	<color name="bncHeaderBackColor">#FFFFFF</color>
+	<color name="bncHeaderForeColor">#000000</color>
+
 	<array name="palette_bnc">
 
 		<item>@color/bncHeaderBackColor</item>
