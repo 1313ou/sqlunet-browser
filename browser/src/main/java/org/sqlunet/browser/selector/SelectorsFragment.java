@@ -58,12 +58,12 @@ public class SelectorsFragment extends ListFragment
 	}
 
 	/**
-	 * Activate on click flag
+	 * Activate on click flag: in two-pane mode, list items should be given the 'activated' state when touched.
 	 */
 	private boolean activateOnItemClick = true;
 
 	/**
-	 * The fragment's current callback object, which is notified of list item clicks.
+	 * The fragment's current callback, which is notified of list item clicks.
 	 */
 	private Listener listener;
 
@@ -211,6 +211,8 @@ public class SelectorsFragment extends ListFragment
 
 	/**
 	 * Make adapter
+	 *
+	 * @return adapter
 	 */
 	private ListAdapter makeAdapter()
 	{
@@ -316,7 +318,7 @@ public class SelectorsFragment extends ListFragment
 	// L O A D
 
 	/**
-	 * Load ids from word
+	 * Load data from word
 	 */
 	private void load()
 	{
