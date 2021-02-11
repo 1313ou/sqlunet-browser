@@ -179,7 +179,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	private long wordId;
 
 	/**
-	 * Model
+	 * Id view model
 	 */
 	private SqlunetViewModel wordIdFromWordModel;
 
@@ -198,7 +198,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 */
 	public XSelectorsFragment()
 	{
-		Log.d(TAG, "lifecycle: Constructor " + this);
+		Log.d(TAG, "lifecycle: Constructor (0) " + this);
 		this.xnCursor = new MatrixCursor(new String[]{GROUPID_COLUMN, GROUPNAME_COLUMN, GROUPICON_COLUMN});
 	}
 
@@ -220,7 +220,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		Log.d(TAG, "lifecycle: onCreate (2) " + this);
 		this.setRetainInstance(false); // default
 
-		// args
+		// arguments
 		Bundle args = getArguments();
 		assert args != null;
 
@@ -274,17 +274,15 @@ public class XSelectorsFragment extends ExpandableListFragment
 		super.onStart();
 		Log.d(TAG, "lifecycle: onStart (6) " + this);
 
-		// load the contents (once activity is available)
-		//		final MutableLiveData<Cursor> idLiveData = wordIdFromWordModel.getMutableData();
-		//		final Cursor idCursor = idLiveData.getValue();
-		//		if (idCursor != null && !idCursor.isClosed())
-		//		{
-		//			idLiveData.setValue(idCursor);
-		//		}
-		//		else
-		{
-			load();
-		}
+		// load the contents
+		// final MutableLiveData<Cursor> idLiveData = wordIdFromWordModel.getMutableData();
+		// final Cursor idCursor = idLiveData.getValue();
+		// if (idCursor != null && !idCursor.isClosed())
+		// {
+		//		idLiveData.setValue(idCursor);
+		// }
+		// else
+		load();
 	}
 
 	// --deactivate--
@@ -301,7 +299,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	{
 		super.onDestroyView();
 		Log.d(TAG, "lifecycle: onDestroyView (-3) " + this);
-		removeAdapter();
+		resetAdapter();
 	}
 
 	//	@Override
@@ -422,17 +420,17 @@ public class XSelectorsFragment extends ExpandableListFragment
 	}
 
 	/**
-	 * Dispose and remove adapter
+	 * Reset adapter. (Otherwise stale cursors)
 	 */
-	public void removeAdapter()
+	public void resetAdapter()
 	{
 		CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
 		for (int i = 0; i < adapter.getGroupCount(); i++)
 		{
 			adapter.setChildrenCursor(i, null);
 		}
-		adapter.setGroupCursor(null);
-		setListAdapter(null);
+		//adapter.setGroupCursor(null);
+		//setListAdapter(null);
 	}
 
 	/**
@@ -560,14 +558,13 @@ public class XSelectorsFragment extends ExpandableListFragment
 	}
 
 	/**
-	 * Read wordId from cursor
+	 * Post processing, extraction of wordid from cursor
 	 * Closes cursor because it's no longer needed.
 	 *
 	 * @param cursor cursor
 	 */
 	private void wordIdFromWordPostProcess(@NonNull final Cursor cursor)
 	{
-		// store source
 		if (cursor.moveToFirst())
 		{
 			final int idWordId = cursor.getColumnIndex(Words_PbWords_VnWords.WORDID);
@@ -584,7 +581,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 */
 	private void startChildLoader(int groupId)
 	{
-		Log.d(XSelectorsFragment.TAG, "Invoking startChildLoader() for groupId=" + groupId);
+		Log.d(TAG, "Invoking startChildLoader() for groupId=" + groupId);
 		switch (groupId)
 		{
 			case GROUPID_VERBNET:
@@ -596,9 +593,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				//					vnLiveData.setValue(vnCursor);
 				//				}
 				//				else
-				{
-					loadVn(this.wordId);
-				}
+				loadVn(this.wordId);
 			}
 			break;
 
@@ -611,9 +606,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				//					pbLiveData.setValue(pbCursor);
 				//				}
 				//				else
-				{
-					loadPb(this.wordId);
-				}
+				loadPb(this.wordId);
 			}
 			break;
 
@@ -621,8 +614,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 				break;
 		}
 	}
-
-	// L O A D
 
 	/**
 	 * Load VerbNet data
@@ -759,6 +750,11 @@ public class XSelectorsFragment extends ExpandableListFragment
 				final long xMemberId = cursor.isNull(idXMemberId) ? 0 : cursor.getLong(idXMemberId);
 				final String xSources = cursor.getString(idXSources);
 				final long xMask = XSelectorPointer.getMask(xSources);
+
+				if (groupPosition == AdapterView.INVALID_POSITION)
+				{
+					return false;
+				}
 
 				int groupId = -1;
 				if (groupPosition == this.groupPositions[GROUPINDEX_VERBNET])

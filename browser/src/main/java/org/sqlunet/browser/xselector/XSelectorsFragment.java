@@ -208,7 +208,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	private long wordId;
 
 	/**
-	 * Model
+	 * Id view model
 	 */
 	private SqlunetViewModel wordIdFromWordModel;
 
@@ -237,7 +237,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 */
 	public XSelectorsFragment()
 	{
-		Log.d(TAG, "lifecycle: Constructor " + this);
+		Log.d(TAG, "lifecycle: Constructor (0) " + this);
 		this.xnCursor = new MatrixCursor(new String[]{GROUPID_COLUMN, GROUPNAME_COLUMN, GROUPICON_COLUMN});
 	}
 
@@ -259,7 +259,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		Log.d(TAG, "lifecycle: onCreate (2) " + this);
 		this.setRetainInstance(false); // default
 
-		// args
+		// arguments
 		Bundle args = getArguments();
 		assert args != null;
 
@@ -313,17 +313,15 @@ public class XSelectorsFragment extends ExpandableListFragment
 		super.onStart();
 		Log.d(TAG, "lifecycle: onStart (6) " + this);
 
-		// load the contents (once activity is available)
-		//		final MutableLiveData<Cursor> idLiveData = wordIdFromWordModel.getMutableData();
-		//		final Cursor idCursor = idLiveData.getValue();
-		//		if (idCursor != null && !idCursor.isClosed())
-		//		{
-		//			idLiveData.setValue(idCursor);
-		//		}
-		//		else
-		{
-			load();
-		}
+		// load the contents
+		// final MutableLiveData<Cursor> idLiveData = wordIdFromWordModel.getMutableData();
+		// final Cursor idCursor = idLiveData.getValue();
+		// if (idCursor != null && !idCursor.isClosed())
+		// {
+		//  	idLiveData.setValue(idCursor);
+		// }
+		// else
+		load();
 	}
 
 	// --deactivate--
@@ -340,7 +338,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	{
 		super.onDestroyView();
 		Log.d(TAG, "lifecycle: onDestroyView (-3) " + this);
-		removeAdapter();
+		resetAdapter();
 	}
 
 	//	@Override
@@ -508,17 +506,17 @@ public class XSelectorsFragment extends ExpandableListFragment
 	}
 
 	/**
-	 * Dispose and remove adapter
+	 * Reset adapter. (Otherwise stale cursors)
 	 */
-	public void removeAdapter()
+	public void resetAdapter()
 	{
 		CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
 		for (int i = 0; i < adapter.getGroupCount(); i++)
 		{
 			adapter.setChildrenCursor(i, null);
 		}
-		adapter.setGroupCursor(null);
-		setListAdapter(null);
+		//adapter.setGroupCursor(null);
+		//setListAdapter(null);
 	}
 
 	/**
@@ -687,14 +685,13 @@ public class XSelectorsFragment extends ExpandableListFragment
 	}
 
 	/**
-	 * Read wordId from cursor
+	 * Post processing, extraction of wordid from cursor
 	 * Closes cursor because it's no longer needed.
 	 *
 	 * @param cursor cursor
 	 */
 	private void wordIdFromWordPostProcess(@NonNull final Cursor cursor)
 	{
-		// store source
 		if (cursor.moveToFirst())
 		{
 			final int idWordId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.WORDID);
@@ -722,9 +719,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				//					wnLiveData.setValue(wnCursor);
 				//				}
 				//				else
-				{
-					loadWn(this.wordId);
-				}
+				loadWn(this.wordId);
 			}
 			break;
 
@@ -737,9 +732,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				//					vnLiveData.setValue(vnCursor);
 				//				}
 				//				else
-				{
-					loadVn(this.wordId);
-				}
+				loadVn(this.wordId);
 			}
 			break;
 
@@ -752,9 +745,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				//					pbLiveData.setValue(pbCursor);
 				//				}
 				//				else
-				{
-					loadPb(this.wordId);
-				}
+				loadPb(this.wordId);
 			}
 			break;
 
@@ -767,9 +758,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				//					fnLiveData.setValue(fnCursor);
 				//				}
 				//				else
-				{
-					loadFn(this.wordId);
-				}
+				loadFn(this.wordId);
 			}
 			break;
 
