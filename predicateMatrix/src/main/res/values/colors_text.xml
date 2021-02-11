@@ -5,6 +5,15 @@
 
 <resources>
 
+	<color name="predicateNameBackColor">#FFFFFF</color>
+	<color name="predicateNameForeColor">#000000</color>
+
+	<color name="groupBackColor">#FFFFFF</color>
+	<color name="groupForeColor">#000000</color>
+
+	<color name="roleAliasBackColor">#FFFFFF</color>
+	<color name="roleAliasForeColor">#000000</color>
+
 	<array name="palette_pm">
 
 		<item>@color/predicateNameBackColor</item>

@@ -5,6 +5,70 @@
 
 <resources>
 
+	<color name="classBackColor">#FFFFFF</color>
+	<color name="classForeColor">#000000</color>
+
+	<color name="roleBackColor">#FFFFFF</color>
+	<color name="roleForeColor">#000000</color>
+
+	<color name="memberBackColor">#FFFFFF</color>
+	<color name="memberForeColor">#000000</color>
+
+	<color name="definitionBackColor">#FFFFFF</color>
+	<color name="definitionForeColor">#000000</color>
+
+	<color name="exampleBackColor">#FFFFFF</color>
+	<color name="exampleForeColor">#000000</color>
+
+	<color name="dataBackColor">#FFFFFF</color>
+	<color name="dataForeColor">#000000</color>
+
+	<!--  TEXT -->
+	<color name="textBackColor">#FFFFFF</color>
+	<color name="textForeColor">#000000</color>
+
+	<color name="textNormalBackColor">#FFFFFF</color>
+	<color name="textNormalForeColor">#000000</color>
+
+	<color name="textHighlightBackColor">#FFFFFF</color>
+	<color name="textHighlightForeColor">#000000</color>
+
+	<color name="textDimmedBackColor">#FFFFFF</color>
+	<color name="textDimmedForeColor">#000000</color>
+
+	<color name="textMatchBackColor">#FFFFFF</color>
+	<color name="textMatchForeColor">#000000</color>
+
+	<!--  SQL -->
+	<color name="sqlKeywordBackColor">#FFFFFF</color>
+	<color name="sqlKeywordForeColor">#000000</color>
+
+	<color name="sqlSlashBackColor">#FFFFFF</color>
+	<color name="sqlSlashForeColor">#000000</color>
+
+	<color name="sqlQuestionMarkBackColor">#FFFFFF</color>
+	<color name="sqlQuestionMarkForeColor">#000000</color>
+
+	<!--  REPORT -->
+
+	<color name="storageTypeBackColor">#FFFFFF</color>
+	<color name="storageTypeForeColor">#000000</color>
+
+	<color name="storageValueBackColor">#FFFFFF</color>
+	<color name="storageValueForeColor">#000000</color>
+
+	<color name="dirTypeBackColor">#FFFFFF</color>
+	<color name="dirTypeForeColor">#000000</color>
+
+	<color name="dirValueBackColor">#FFFFFF</color>
+	<color name="dirValueForeColor">#000000</color>
+
+	<color name="dirOkBackColor">#FFFFFF</color>
+	<color name="dirOkForeColor">#000000</color>
+
+	<color name="dirFailBackColor">#FFFFFF</color>
+	<color name="dirFailForeColor">#000000</color>
+
 	<array name="palette">
 
 		<!--  COMMON -->

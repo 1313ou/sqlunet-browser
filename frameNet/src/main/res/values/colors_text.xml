@@ -5,6 +5,84 @@
 
 <resources>
 
+	<color name="feBackColor">#FFFFFF</color>
+	<color name="feForeColor">#000000</color>
+
+	<color name="feAbbrevBackColor">#FFFFFF</color>
+	<color name="feAbbrevForeColor">#000000</color>
+
+	<color name="fe2BackColor">#FFFFFF</color>
+	<color name="fe2ForeColor">#000000</color>
+
+	<color name="fenBackColor">#FFFFFF</color>
+	<color name="fenForeColor">#000000</color>
+
+	<color name="fenWithinDefBackColor">#FFFFFF</color>
+	<color name="fenWithinDefForeColor">#000000</color>
+
+	<color name="xfenBackColor">#FFFFFF</color>
+	<color name="xfenForeColor">#000000</color>
+
+	<color name="fexBackColor">#FFFFFF</color>
+	<color name="fexForeColor">#000000</color>
+
+	<color name="fexWithinDefBackColor">#FFFFFF</color>
+	<color name="fexWithinDefForeColor">#000000</color>
+
+	<color name="metaFrameDefinitionBackColor">#FFFFFF</color>
+	<color name="metaFrameDefinitionForeColor">#000000</color>
+
+	<color name="metaFeDefinitionBackColor">#FFFFFF</color>
+	<color name="metaFeDefinitionForeColor">#000000</color>
+
+	<color name="tag1BackColor">#FFFFFF</color>
+	<color name="tag1ForeColor">#000000</color>
+
+	<color name="tag2BackColor">#FFFFFF</color>
+	<color name="tag2ForeColor">#000000</color>
+
+	<color name="exBackColor">#FFFFFF</color>
+	<color name="exForeColor">#000000</color>
+
+	<color name="xBackColor">#FFFFFF</color>
+	<color name="xForeColor">#000000</color>
+
+	<color name="tBackColor">#FFFFFF</color>
+	<color name="tForeColor">#000000</color>
+
+	<color name="governorTypeBackColor">#FFFFFF</color>
+	<color name="governorTypeForeColor">#000000</color>
+
+	<color name="governorBackColor">#FFFFFF</color>
+	<color name="governorForeColor">#000000</color>
+
+	<color name="annoSetBackColor">#FFFFFF</color>
+	<color name="annoSetForeColor">#000000</color>
+
+	<color name="layerTypeBackColor">#FFFFFF</color>
+	<color name="layerTypeForeColor">#000000</color>
+
+	<color name="labelBackColor">#FFFFFF</color>
+	<color name="labelForeColor">#000000</color>
+
+	<color name="subtextBackColor">#FFFFFF</color>
+	<color name="subtextForeColor">#000000</color>
+
+	<color name="groupBackColor">#FFFFFF</color>
+	<color name="groupForeColor">#000000</color>
+
+	<color name="targetBackColor">#FFFFFF</color>
+	<color name="targetForeColor">#000000</color>
+
+	<color name="targetHighlightTextBackColor">#FFFFFF</color>
+	<color name="targetHighlightTextForeColor">#000000</color>
+
+	<color name="ptBackColor">#FFFFFF</color>
+	<color name="ptForeColor">#000000</color>
+
+	<color name="gfBackColor">#FFFFFF</color>
+	<color name="gfForeColor">#000000</color>
+
 	<array name="palette_fn">
 
 		<item>@color/feBackColor</item>
