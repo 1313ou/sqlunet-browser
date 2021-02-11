@@ -5,19 +5,19 @@
 
 <resources>
 
-	<color name="collocationBackColor">#FFFFFF</color>
-	<color name="collocationForeColor">#444444</color>
+	<color name="collocationBackColor">#444444</color>
+	<color name="collocationForeColor">#FFFFFF</color>
 
-	<color name="word1BackColor">#E46D42</color>
-	<color name="word1ForeColor">#FFFFFF</color>
+	<color name="word1BackColor">#00000000</color>
+	<color name="word1ForeColor">#E46D42</color>
 
-	<color name="word2BackColor">#76608B</color>
-	<color name="word2ForeColor">#FFFFFF</color>
+	<color name="word2BackColor">#00000000</color>
+	<color name="word2ForeColor">#76608B</color>
 
-	<color name="definition1BackColor">#FFFFFF</color>
+	<color name="definition1BackColor">#00000000</color>
 	<color name="definition1ForeColor">#E46D42</color>
 
-	<color name="definition2BackColor">#FFFFFF</color>
+	<color name="definition2BackColor">#00000000</color>
 	<color name="definition2ForeColor">#76608B</color>
 
 	<color name="idsBackColor">#00000000</color>
