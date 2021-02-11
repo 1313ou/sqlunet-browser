@@ -355,6 +355,7 @@ public class SelectorsFragment extends ListFragment
 			final int idWordId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID);
 			this.wordId = cursor.getLong(idWordId);
 		}
+		// cursor.close()
 	}
 
 	// L I S T E N E R

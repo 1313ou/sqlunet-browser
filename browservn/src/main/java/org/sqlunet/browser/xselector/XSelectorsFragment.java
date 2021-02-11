@@ -366,7 +366,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		{
 			//noinspection UnusedAssignment
 			groupPositions[GROUPINDEX_PROPBANK] = position++;
-			cursor.addRow(new Object[]{GROUPINDEX_PROPBANK, "framenet", Integer.toString(R.drawable.propbank)});
+			cursor.addRow(new Object[]{GROUPID_PROPBANK, "propbank", Integer.toString(R.drawable.propbank)});
 		}
 		return groupPositions;
 	}
@@ -570,7 +570,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			final int idWordId = cursor.getColumnIndex(Words_PbWords_VnWords.WORDID);
 			this.wordId = cursor.getLong(idWordId);
 		}
-		cursor.close();
+		// cursor.close();
 	}
 
 
