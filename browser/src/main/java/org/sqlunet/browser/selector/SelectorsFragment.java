@@ -350,7 +350,6 @@ public class SelectorsFragment extends ListFragment
 
 	/**
 	 * Post processing, extraction of wordid from cursor
-	 * Closes cursor because it's no longer needed.
 	 *
 	 * @param cursor cursor
 	 */
@@ -361,7 +360,7 @@ public class SelectorsFragment extends ListFragment
 			final int idWordId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.WORDID);
 			this.wordId = cursor.getLong(idWordId);
 		}
-		cursor.close();
+		// cursor.close();
 	}
 
 	// L I S T E N E R
