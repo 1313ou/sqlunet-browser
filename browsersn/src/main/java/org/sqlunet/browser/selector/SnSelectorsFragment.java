@@ -4,12 +4,12 @@
 
 package org.sqlunet.browser.selector;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.database.MergeCursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,13 +17,15 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
+import org.sqlunet.browser.PositionViewModel;
 import org.sqlunet.browser.Selectors;
-import org.sqlunet.browser.sn.R;
 import org.sqlunet.browser.SqlunetViewModel;
+import org.sqlunet.browser.sn.R;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.syntagnet.provider.SyntagNetContract;
 import org.sqlunet.syntagnet.provider.SyntagNetContract.SnCollocations_X;
@@ -43,9 +45,10 @@ import androidx.lifecycle.ViewModelProvider;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
+@SuppressWarnings("WeakerAccess")
 public class SnSelectorsFragment extends ListFragment
 {
-	// static protected final String TAG = "SnSelectorsF";
+	static private final String TAG = "SnSelectorsF";
 
 	/**
 	 * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
@@ -58,11 +61,6 @@ public class SnSelectorsFragment extends ListFragment
 		 */
 		void onItemSelected(CollocationSelectorPointer pointer);
 	}
-
-	/**
-	 * The serialization (saved instance state) Bundle key representing the activated item position. Only used on tablets.
-	 */
-	static private final String STATE_ACTIVATED_SELECTOR = "activated_selector";
 
 	/**
 	 * Columns
@@ -114,15 +112,10 @@ public class SnSelectorsFragment extends ListFragment
 	/**
 	 * Activate on click flag: in two-pane mode, list items should be given the 'activated' state when touched.
 	 */
-	private boolean activateOnItemClick = false;
+	private boolean activateOnItemClick = true;
 
 	/**
-	 * The current activated item position. Only used on tablets.
-	 */
-	private int activatedPosition = AdapterView.INVALID_POSITION;
-
-	/**
-	 * The fragment's current callback objects, which are notified of list item clicks.
+	 * The fragment's current callbacks, which are notified of list item clicks.
 	 */
 	private Listener[] listeners;
 
@@ -133,27 +126,45 @@ public class SnSelectorsFragment extends ListFragment
 	private String word;
 
 	/**
-	 * Search query
+	 * Word id
 	 */
 	private long wordId = -1;
 
-	// View model
+	/**
+	 * Data view model
+	 */
+	private SqlunetViewModel dataModel;
 
-	private SqlunetViewModel model;
+	/**
+	 * Position view model
+	 */
+	private PositionViewModel positionModel;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */
 	public SnSelectorsFragment()
 	{
+		Log.d(TAG, "lifecycle: Constructor (0) " + this);
 	}
 
-	// C R E A T E
+	// L I F E C Y C L E
+
+	// --activate--
+
+	//	@Override
+	//	public void onAttach(@NonNull final Context context)
+	//	{
+	//		super.onAttach(context);
+	//		Log.d(TAG, "lifecycle: onAttach (1) " + this);
+	//	}
 
 	@Override
 	public void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		Log.d(TAG, "lifecycle: onCreate (2) " + this);
+		this.setRetainInstance(false); // default
 
 		// arguments
 		Bundle args = getArguments();
@@ -172,9 +183,126 @@ public class SnSelectorsFragment extends ListFragment
 		this.wordId = queryId(query);
 
 		// list adapter, with no data
+		ListAdapter adapter = makeAdapter();
+		setListAdapter(adapter);
+	}
+
+	@Override
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	{
+		Log.d(TAG, "lifecycle: onCreateView (3) " + this);
+		return inflater.inflate(R.layout.fragment_snselectors, container, false);
+	}
+
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
+		Log.d(TAG, "lifecycle: onViewCreated (4) " + this);
+
+		// when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
+		getListView().setChoiceMode(this.activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
+
+		// data view models
+		Log.d(TAG, "make models");
+		makeModels();
+	}
+
+	//	@Override
+	//	public void onActivityCreated(@Nullable final Bundle savedInstanceState)
+	//	{
+	//		super.onActivityCreated(savedInstanceState);
+	//		Log.d(TAG, "lifecycle: onActivityCreated (5) " + this);
+	//	}
+
+	@Override
+	public void onStart()
+	{
+		super.onStart();
+		Log.d(TAG, "lifecycle: onStart (6) " + this);
+
+		// load the contents
+		if (this.wordId != -1)
+		{
+			// load the contents
+			// final MutableLiveData<Cursor> idLiveData = dataModel.getMutableData();
+			//  final Cursor idCursor = idLiveData.getValue();
+			//  if (idCursor != null && !idCursor.isClosed())
+			//  {
+			//   	idLiveData.setValue(idCursor);
+			//  }
+			//  else
+			load();
+		}
+	}
+
+	// --deactivate--
+
+	//	@Override
+	//	public void onStop()
+	//	{
+	//		super.onStop();
+	//		Log.d(TAG, "lifecycle: onStop(-4) " + this);
+	//	}
+
+	//	@Override
+	//	public void onDestroyView()
+	//	{
+	//		super.onDestroyView();
+	//		Log.d(TAG, "lifecycle: onDestroyView (-3) " + this);
+	//	}
+
+	//	@Override
+	//	public void onDestroy()
+	//	{
+	//		super.onDestroy();
+	//		Log.d(TAG, "lifecycle: onDestroy (-2) " + this);
+	//	}
+
+	//	@Override
+	//	public void onDetach()
+	//	{
+	//		super.onDetach();
+	//		Log.d(TAG, "lifecycle: onDetach (-1) " + this);
+	//	}
+
+	// H E L P E R S
+
+	/**
+	 * Query word
+	 *
+	 * @param query query word
+	 * @return word id
+	 */
+	private long queryId(final String query)
+	{
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(Words.CONTENT_URI_TABLE));
+		final String[] projection = {Words.WORDID,};
+		final String selection = Words.LEMMA + " = ?"; //
+		final String[] selectionArgs = {query};
+		try (Cursor cursor = requireContext().getContentResolver().query(uri, projection, selection, selectionArgs, null))
+		{
+			if (cursor != null)
+			{
+				if (cursor.moveToFirst())
+				{
+					final int idWordId = cursor.getColumnIndex(Words.WORDID);
+					return cursor.getLong(idWordId);
+				}
+			}
+		}
+		return -1;
+	}
+
+	/**
+	 * Make adapter
+	 *
+	 * @return adapter
+	 */
+	private ListAdapter makeAdapter()
+	{
 		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(requireContext(), R.layout.item_snselector, null, //
 				DISPLAYED_COLUMNS, DISPLAYED_COLUMN_RES_IDS, 0);
-
 		adapter.setViewBinder((view, cursor, columnIndex) -> {
 
 			String text = cursor.getString(columnIndex);
@@ -209,49 +337,19 @@ public class SnSelectorsFragment extends ListFragment
 			}
 			return false;
 		});
-		setListAdapter(adapter);
+		return adapter;
 	}
 
-	@Override
-	public void onAttach(@NonNull final Context context)
-	{
-		super.onAttach(context);
-		makeModels();
-	}
-
-	/**
-	 * Query word
-	 *
-	 * @param query query word
-	 * @return word id
-	 */
-	private long queryId(final String query)
-	{
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(Words.CONTENT_URI_TABLE));
-		final String[] projection = {Words.WORDID,};
-		final String selection = Words.LEMMA + " = ?"; //
-		final String[] selectionArgs = {query};
-		try (Cursor cursor = requireContext().getContentResolver().query(uri, projection, selection, selectionArgs, null))
-		{
-			if (cursor != null)
-			{
-				if (cursor.moveToFirst())
-				{
-					final int idWordId = cursor.getColumnIndex(Words.WORDID);
-					return cursor.getLong(idWordId);
-				}
-			}
-		}
-		return -1;
-	}
+	// V I E W M O D E L S
 
 	/**
 	 * Make view models
 	 */
 	private void makeModels()
 	{
-		this.model = new ViewModelProvider(this).get("snselectors(word)", SqlunetViewModel.class);
-		this.model.getData().observe(getViewLifecycleOwner(), cursor -> {
+		// data model
+		this.dataModel = new ViewModelProvider(this).get("snselectors(word)", SqlunetViewModel.class);
+		this.dataModel.getData().observe(getViewLifecycleOwner(), cursor -> {
 
 			Cursor cursor2 = SnSelectorsFragment.augmentCursor(cursor, wordId, word);
 
@@ -259,16 +357,16 @@ public class SnSelectorsFragment extends ListFragment
 			final CursorAdapter adapter = (CursorAdapter) getListAdapter();
 			assert adapter != null;
 			adapter.swapCursor(cursor2);
-
-			// check
-			/*
-			if (SelectorsFragment.this.activatedPosition != AdapterView.INVALID_POSITION)
-			{
-				final ListView listView = getListView();
-				listView.setItemChecked(SelectorsFragment.this.activatedPosition, true);
-			}
-			*/
 		});
+
+		// position model
+		this.positionModel = new ViewModelProvider(this).get(PositionViewModel.class);
+		this.positionModel.getPositionLiveData().observe(getViewLifecycleOwner(), (position) -> {
+
+			Log.d(TAG, "Observed position change " + position);
+			getListView().setItemChecked(position, position != AdapterView.INVALID_POSITION);
+		});
+		this.positionModel.setPosition(AdapterView.INVALID_POSITION);
 	}
 
 	/**
@@ -294,74 +392,6 @@ public class SnSelectorsFragment extends ListFragment
 		return new MergeCursor(new Cursor[]{matrixCursor, cursor});
 	}
 
-	// V I E W
-
-	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
-	{
-		return inflater.inflate(R.layout.fragment_snselectors, container, false);
-	}
-
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
-
-		// when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
-		getListView().setChoiceMode(this.activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
-
-		// restore the previously serialized activated item position, if any
-		if (savedInstanceState != null)
-		{
-			final int position = savedInstanceState.getInt(SnSelectorsFragment.STATE_ACTIVATED_SELECTOR, AdapterView.INVALID_POSITION);
-			if (position == AdapterView.INVALID_POSITION)
-			{
-				getListView().setItemChecked(this.activatedPosition, false);
-			}
-			else
-			{
-				getListView().setItemChecked(position, true);
-			}
-			this.activatedPosition = position;
-		}
-	}
-
-	@Override
-	public void onStart()
-	{
-		super.onStart();
-
-		// run the contents (once activity is available)
-		if (this.wordId != -1)
-		{
-			load();
-		}
-	}
-
-	@Override
-	public void onSaveInstanceState(@NonNull final Bundle outState)
-	{
-		super.onSaveInstanceState(outState);
-
-		if (this.activatedPosition != AdapterView.INVALID_POSITION)
-		{
-			// serialize and persist the activated item position.
-			outState.putInt(SnSelectorsFragment.STATE_ACTIVATED_SELECTOR, this.activatedPosition);
-		}
-	}
-
-	// L I S T E N E R
-
-	/**
-	 * Set listeners
-	 *
-	 * @param listeners listeners
-	 */
-	public void setListeners(final Listener... listeners)
-	{
-		this.listeners = listeners;
-	}
-
 	// L O A D
 
 	/**
@@ -385,7 +415,19 @@ public class SnSelectorsFragment extends ListFragment
 		final String selection = SnCollocations_X.WORD1ID + " = ? OR " + SnCollocations_X.WORD2ID + " = ?"; //
 		final String[] selectionArgs = {Long.toString(SnSelectorsFragment.this.wordId), Long.toString(SnSelectorsFragment.this.wordId), Long.toString(SnSelectorsFragment.this.wordId)};
 		final String sortOrder = SnCollocations_X.WORD2ID + " = ?" + ',' + SyntagNetContract.W1 + '.' + SnCollocations_X.LEMMA + ',' + SyntagNetContract.W2 + '.' + SnCollocations_X.LEMMA;
-		this.model.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
+		this.dataModel.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
+	}
+
+	// L I S T E N E R
+
+	/**
+	 * Set listeners
+	 *
+	 * @param listeners listeners
+	 */
+	public void setListeners(final Listener... listeners)
+	{
+		this.listeners = listeners;
 	}
 
 	// C L I C K
@@ -399,9 +441,7 @@ public class SnSelectorsFragment extends ListFragment
 
 	private void activate(int position)
 	{
-		final ListView listView = getListView();
-		listView.setItemChecked(position, true);
-		this.activatedPosition = position;
+		this.positionModel.setPosition(position);
 
 		if (this.listeners != null)
 		{

@@ -77,7 +77,7 @@ public class SelectorsFragment extends ListFragment
 	/**
 	 * Word id
 	 */
-	private long wordId;
+	private long wordId = -1;
 
 	/**
 	 * Data view model
@@ -345,7 +345,6 @@ public class SelectorsFragment extends ListFragment
 
 	/**
 	 * Post processing, extraction of wordid from cursor
-	 * Closes cursor because it's no longer needed.
 	 *
 	 * @param cursor cursor
 	 */
@@ -356,7 +355,6 @@ public class SelectorsFragment extends ListFragment
 			final int idWordId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID);
 			this.wordId = cursor.getLong(idWordId);
 		}
-		cursor.close();
 	}
 
 	// L I S T E N E R
