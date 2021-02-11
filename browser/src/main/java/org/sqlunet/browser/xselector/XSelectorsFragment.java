@@ -239,7 +239,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 		this.groupPositionFrameNet = AdapterView.INVALID_POSITION;
 	}
 
-	// L I F E C Y C L E   E V E N T S
+	// L I F E C Y C L E
+
+	// --activate--
 
 	//	@Override
 	//	public void onAttach(@NonNull final Context context)
@@ -309,6 +311,8 @@ public class XSelectorsFragment extends ExpandableListFragment
 		}
 	}
 
+	// --deactivate--
+
 	//	@Override
 	//	public void onActivityCreated(@Nullable final Bundle savedInstanceState)
 	//	{
@@ -316,11 +320,18 @@ public class XSelectorsFragment extends ExpandableListFragment
 	//		Log.d(TAG, "lifecycle: onActivityCreated (5) " + this);
 	//	}
 
+	//	@Override
+	//	public void onStop()
+	//	{
+	//		super.onStop();
+	//		Log.d(TAG, "lifecycle: onStop(-4) " + this);
+	//	}
+
 	@Override
 	public void onDestroyView()
 	{
 		super.onDestroyView();
-		Log.d(TAG, "lifecycle: onDestroyView (3) " + this);
+		Log.d(TAG, "lifecycle: onDestroyView (-3) " + this);
 		cleanup();
 	}
 
@@ -328,14 +339,14 @@ public class XSelectorsFragment extends ExpandableListFragment
 	//	public void onDestroy()
 	//	{
 	//		super.onDestroy();
-	//		Log.d(TAG, "lifecycle: onDestroy (4) " + this);
+	//		Log.d(TAG, "lifecycle: onDestroy (-2) " + this);
 	//	}
 
 	//	@Override
 	//	public void onDetach()
 	//	{
 	//		super.onDetach();
-	//		Log.d(TAG, "lifecycle: onDetach (5) " + this);
+	//		Log.d(TAG, "lifecycle: onDetach (-1) " + this);
 	//	}
 
 	@Override
@@ -767,8 +778,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 				break;
 		}
 	}
-
-	// L O A D
 
 	/**
 	 * Load WordNet data
