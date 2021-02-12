@@ -470,9 +470,9 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 	 */
 	public void expand(int groupPosition)
 	{
-		final ExpandableListView view = getExpandableListView();
-		assert view != null;
-		view.expandGroup(groupPosition);
+		final ExpandableListView expandableListView = getExpandableListView();
+		assert expandableListView != null;
+		expandableListView.expandGroup(groupPosition);
 	}
 
 	/**
@@ -480,9 +480,9 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 	 */
 	public void collapse(int groupPosition)
 	{
-		final ExpandableListView view = getExpandableListView();
-		assert view != null;
-		view.collapseGroup(groupPosition);
+		final ExpandableListView expandableListView = getExpandableListView();
+		assert expandableListView != null;
+		expandableListView.collapseGroup(groupPosition);
 	}
 
 	// O V E R R I D A B L E S

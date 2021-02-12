@@ -24,6 +24,9 @@
 	<color name="colorHighlightOnBackground">#ef2063</color> <!--  -->
 	<color name="colorDimmedOnBackground">#808080</color> <!--  -->
 
+	<!-- background -->
+	<color name="activatedBackgroundColor">#10FFFFFF</color>
+
 	<!-- B A S E -->
 
 	<!-- shadow -->

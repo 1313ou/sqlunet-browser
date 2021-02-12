@@ -71,7 +71,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	/**
 	 * Activate on click flag
 	 */
-	private boolean activateOnItemClick = false;
+	private boolean activateOnItemClick = true;
 
 	/**
 	 * id column
@@ -363,6 +363,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 
 		// serialize and persist the activated group state
 		final ExpandableListView expandableListView = getExpandableListView();
+		assert expandableListView != null;
 		int groupCount = this.xnCursor.getCount();
 		int groupState = 0;
 		for (int i = 0; i < groupCount; i++)
@@ -511,6 +512,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	public void resetAdapter()
 	{
 		CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
+		assert adapter != null;
 		for (int i = 0; i < adapter.getGroupCount(); i++)
 		{
 			adapter.setChildrenCursor(i, null);
@@ -1003,12 +1005,12 @@ public class XSelectorsFragment extends ExpandableListFragment
 			return;
 		}
 
-		final ExpandableListView view = getExpandableListView();
-		assert view != null;
+		final ExpandableListView expandableListView = getExpandableListView();
+		assert expandableListView != null;
 		int count = this.xnCursor.getCount();
 		for (int position = 0; position < count; position++)
 		{
-			view.expandGroup(position);
+			expandableListView.expandGroup(position);
 		}
 	}
 
@@ -1019,9 +1021,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 	private void expandOrCollapse(int groupPosition, boolean expand)
 	{
 		assert getExpandableListAdapter() != null;
-		final ExpandableListView view = getExpandableListView();
-		assert view != null;
-		boolean expanded = view.isGroupExpanded(groupPosition);
+		final ExpandableListView expandableListView = getExpandableListView();
+		assert expandableListView != null;
+		boolean expanded = expandableListView.isGroupExpanded(groupPosition);
 		Log.d(TAG, "Expanded " + expanded);
 		if (expand && !expanded)
 		{
