@@ -11,6 +11,7 @@ import android.text.Spanned;
 import org.sqlunet.style.MarkupSpanner;
 import org.sqlunet.style.Spanner;
 
+import java.util.Collection;
 import java.util.regex.Pattern;
 
 import androidx.annotation.NonNull;
@@ -69,6 +70,7 @@ public class FrameNetSpanner
 	 * @param selector selector guide
 	 * @param flags    flags
 	 */
+	@SuppressWarnings("unchecked")
 	public void addSpan(@NonNull final SpannableStringBuilder sb, final int start, final int end, @NonNull final String selector, final long flags)
 	{
 		final Object spans = this.factory.makeSpans(selector, flags);
@@ -79,6 +81,13 @@ public class FrameNetSpanner
 				for (final Object span : (Object[]) spans)
 				{
 					sb.setSpan(span, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+				}
+			}
+			else if (spans instanceof Collection)
+			{
+				for (Object span2 : (Collection<Object>) spans)
+				{
+					sb.setSpan(span2, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 				}
 			}
 			else

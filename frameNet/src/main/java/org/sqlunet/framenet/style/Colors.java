@@ -7,6 +7,7 @@ package org.sqlunet.framenet.style;
 import android.content.Context;
 import android.graphics.Color;
 
+import org.sqlunet.framenet.BuildConfig;
 import org.sqlunet.framenet.R;
 
 import androidx.annotation.NonNull;
@@ -179,5 +180,10 @@ public class Colors
 
 		gfBackColor = palette[i++];
 		gfForeColor = palette[i++];
+
+		if (BuildConfig.DEBUG && i != palette.length)
+		{
+			throw new AssertionError("Assertion failed");
+		}
 	}
 }

@@ -148,16 +148,19 @@ public class MarkupSpanner extends Spanner
 				final String headTag = matcher.group(1);
 				final String tailTag = matcher.group(3);
 
+				// <tag>
 				final Object startSpans = spanFactory.makeSpans(headTag, flags | SpanPosition.TAG1.flags());
 				final int tag1Start = matcher.start(1) - 1;
 				final int tag1End = matcher.end(1) + 1;
 				Spanner.setSpan(sb, tag1Start, tag1End, startSpans);
 
+				// text
 				final Object textSpans = spanFactory.makeSpans(tailTag, flags | SpanPosition.TEXT.flags());
 				final int textStart = matcher.start(2);
 				final int textEnd = matcher.end(2);
 				Spanner.setSpan(sb, textStart, textEnd, textSpans);
 
+				// </tag>
 				final Object endSpans = spanFactory.makeSpans(tailTag, flags | SpanPosition.TAG2.flags());
 				final int tag2Start = matcher.start(3) - 2;
 				final int tag2End = matcher.end(3) + 1;

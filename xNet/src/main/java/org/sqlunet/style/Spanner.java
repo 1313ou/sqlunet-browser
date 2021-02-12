@@ -119,6 +119,7 @@ public class Spanner
 	 * @param to    finish
 	 * @param spans spans to apply
 	 */
+	@SuppressWarnings("unchecked")
 	static void setSpan(@NonNull @SuppressWarnings("TypeMayBeWeakened") final SpannableStringBuilder sb, final int from, final int to, @Nullable final Object spans)
 	{
 		if (spans != null && from != to)
@@ -131,6 +132,13 @@ public class Spanner
 					{
 						sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 					}
+				}
+			}
+			else if (spans instanceof Collection)
+			{
+				for (Object span2 : (Collection<Object>) spans)
+				{
+					sb.setSpan(span2, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 				}
 			}
 			else
@@ -377,7 +385,7 @@ public class Spanner
 				sb.setSpan(span2, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 			}
 		}
-		else if (span instanceof Object)
+		else
 		{
 			sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 		}
