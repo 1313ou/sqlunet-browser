@@ -26,6 +26,9 @@
 	<color name="colorHighlightOnBackground">#e46d42</color> <!--  -->
 	<color name="colorDimmedOnBackground">#808080</color> <!--  -->
 
+	<!-- background -->
+	<color name="activatedBackgroundColor">@android:color/darker_gray</color>
+
 	<!-- D E R I V E D -->
 
 	<!-- swipe down refresh -->

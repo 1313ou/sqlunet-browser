@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
@@ -47,6 +46,10 @@
 		<item name="android:textSize">12sp</item>
 	</style>
 
+	<style name="Data.Definition">
+		<item name="android:textColor">?attr/colorHighlightOnBackground</item>
+	</style>
+
 	<style name="Data.TagCount">
 		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
 		<item name="android:textSize">12sp</item>
@@ -77,8 +80,6 @@
 		<item name="android:textSize">10sp</item>
 	</style>
 
-	<style name="Data.Definition"/>
-
 	<style name="Data.XSources">
 		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
 		<item name="android:textSize">12sp</item>
@@ -87,8 +88,7 @@
 		<item name="android:gravity">end</item>
 	</style>
 
-	<style name="Data.XIcon">
-	</style>
+	<style name="Data.XIcon"></style>
 
 	<style name="Data.XName">
 		<item name="android:textSize">20sp</item>
