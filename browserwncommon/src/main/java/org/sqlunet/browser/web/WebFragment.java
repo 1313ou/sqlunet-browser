@@ -209,29 +209,6 @@ public class WebFragment extends Fragment
 	}
 
 	@Override
-	public void onAttach(@NonNull final Context context)
-	{
-		super.onAttach(context);
-		makeModels();
-	}
-
-	/**
-	 * Make view models
-	 */
-	private void makeModels()
-	{
-		final boolean xml = Settings.getXmlPref(requireContext());
-		this.model = new ViewModelProvider(this).get("wn:web(doc)", WebModel.class);
-		this.model.getData().observe(getViewLifecycleOwner(), doc -> {
-			Log.d(WebFragment.TAG, "onLoadFinished");
-			final String mimeType = xml ? "text/xml" : "text/html";
-			final String baseUrl = "file:///android_asset/";
-			WebFragment.this.webview.loadDataWithBaseURL(baseUrl, doc, mimeType, "utf-8", null);
-			//WebFragment.this.webview.loadUrl("_about:blank");
-		});
-	}
-
-	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		try
@@ -252,6 +229,29 @@ public class WebFragment extends Fragment
 			Toast.makeText(requireContext(), "No WebView support", Toast.LENGTH_LONG).show();
 			return null;
 		}
+	}
+
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
+		makeModels();
+	}
+
+	/**
+	 * Make view models
+	 */
+	private void makeModels()
+	{
+		final boolean xml = Settings.getXmlPref(requireContext());
+		this.model = new ViewModelProvider(this).get("wn:web(doc)", WebModel.class);
+		this.model.getData().observe(getViewLifecycleOwner(), doc -> {
+			Log.d(WebFragment.TAG, "onLoadFinished");
+			final String mimeType = xml ? "text/xml" : "text/html";
+			final String baseUrl = "file:///android_asset/";
+			WebFragment.this.webview.loadDataWithBaseURL(baseUrl, doc, mimeType, "utf-8", null);
+			//WebFragment.this.webview.loadUrl("_about:blank");
+		});
 	}
 
 	/**
