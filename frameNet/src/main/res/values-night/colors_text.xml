@@ -27,10 +27,10 @@
 	<color name="fexForeColor">#FFFFFF</color>
 
 	<color name="fexWithinDefBackColor">#00000000</color>
-	<color name="fexWithinDefForeColor">#888888</color>
+	<color name="fexWithinDefForeColor">#9B577B</color>
 
 	<color name="metaFrameDefinitionBackColor">#00000000</color>
-	<color name="metaFrameDefinitionForeColor">#B71C1C</color>
+	<color name="metaFrameDefinitionForeColor">#956B95</color>
 
 	<color name="metaFeDefinitionBackColor">#00000000</color>
 	<color name="metaFeDefinitionForeColor">#4D90C8</color>
@@ -42,7 +42,7 @@
 	<color name="tag2ForeColor">#00FFFF</color>
 
 	<color name="exBackColor">#00000000</color>
-	<color name="exForeColor">#00000000</color>
+	<color name="exForeColor">#A97791</color>
 
 	<color name="xBackColor">#00000000</color>
 	<color name="xForeColor">#6F6F6F</color>

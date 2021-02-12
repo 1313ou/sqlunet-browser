@@ -90,6 +90,10 @@
 <!--		<item>@color/err_button_color</item>-->
 <!--		<item>@color/onSecondaryColor</item>-->
 
+		<!-- [21] -->
+<!--		<item>@color/activatedBackgroundColor</item>-->
+<!--		<item>@color/foregroundColor</item>-->
+
 	</array>
 
 </resources>
