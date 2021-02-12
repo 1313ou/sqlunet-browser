@@ -4,10 +4,10 @@
 
 package org.sqlunet.wordnet.browser;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +15,12 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
+import org.sqlunet.browser.PositionViewModel;
 import org.sqlunet.browser.SqlunetViewModel;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.wordnet.R;
@@ -35,12 +37,15 @@ import androidx.fragment.app.ListFragment;
 import androidx.lifecycle.ViewModelProvider;
 
 /**
- * A fragment representing senses
+ * Senses selector fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
+@SuppressWarnings("WeakerAccess")
 public class SensesFragment extends ListFragment
 {
+	static private final String TAG = "SensesF";
+
 	/**
 	 * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
 	 */
@@ -54,22 +59,12 @@ public class SensesFragment extends ListFragment
 	}
 
 	/**
-	 * The serialization (saved instance state) Bundle key representing the activated item position. Only used on tablets.
+	 * Activate on click flag: in two-pane mode, list items should be given the 'activated' state when touched.
 	 */
-	static private final String STATE_ACTIVATED_SELECTOR = "activated_selector";
+	private boolean activateOnItemClick = true;
 
 	/**
-	 * Activate on click flag
-	 */
-	private boolean activateOnItemClick = false;
-
-	/**
-	 * The current activated item position. Only used on tablets.
-	 */
-	private int activatedPosition = AdapterView.INVALID_POSITION;
-
-	/**
-	 * The fragment's current callback object, which is notified of list item clicks.
+	 * The fragment's current callback, which is notified of list item clicks.
 	 */
 	private Listener listener;
 
@@ -84,27 +79,44 @@ public class SensesFragment extends ListFragment
 	 */
 	private long wordId;
 
-	// View models
+	/**
+	 * Data view model
+	 */
+	private SqlunetViewModel dataModel;
 
-	private SqlunetViewModel sensesModelFromWord;
+	/**
+	 * Position view model
+	 */
+	private PositionViewModel positionModel;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */
 	public SensesFragment()
 	{
-		//
+		Log.d(TAG, "lifecycle: Constructor (0) " + this);
 	}
 
 	// L I F E C Y C L E
+
+	// --activate--
+
+	//	@Override
+	//	public void onAttach(@NonNull final Context context)
+	//	{
+	//		super.onAttach(context);
+	//		Log.d(TAG, "lifecycle: onAttach (1) " + this);
+	//	}
 
 	@Override
 	public void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		Log.d(TAG, "lifecycle: onCreate (2) " + this);
+		this.setRetainInstance(false); // default
 
 		// arguments
-		final Bundle args = getArguments();
+		Bundle args = getArguments();
 		assert args != null;
 
 		// target word
@@ -117,6 +129,95 @@ public class SensesFragment extends ListFragment
 		this.wordId = 0;
 
 		// list adapter, with no data
+		ListAdapter adapter = makeAdapter();
+		setListAdapter(adapter);
+	}
+
+	@Override
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	{
+		Log.d(TAG, "lifecycle: onCreateView (3) " + this);
+		return inflater.inflate(R.layout.fragment_senses, container, false);
+	}
+
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
+		Log.d(TAG, "lifecycle: onViewCreated (4) " + this);
+
+		// when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
+		getListView().setChoiceMode(this.activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
+
+		// data view models
+		Log.d(TAG, "make models");
+		makeModels();
+	}
+
+	//	@Override
+	//	public void onActivityCreated(@Nullable final Bundle savedInstanceState)
+	//	{
+	//		super.onActivityCreated(savedInstanceState);
+	//		Log.d(TAG, "lifecycle: onActivityCreated (5) " + this);
+	//	}
+
+	@Override
+	public void onStart()
+	{
+		super.onStart();
+		Log.d(TAG, "lifecycle: onStart (6) " + this);
+
+		// load the contents
+		// final MutableLiveData<Cursor> idLiveData = dataModel.getMutableData();
+		//  final Cursor idCursor = idLiveData.getValue();
+		//  if (idCursor != null && !idCursor.isClosed())
+		//  {
+		//   	idLiveData.setValue(idCursor);
+		//  }
+		//  else
+		load();
+	}
+
+	// --deactivate--
+
+	//	@Override
+	//	public void onStop()
+	//	{
+	//		super.onStop();
+	//		Log.d(TAG, "lifecycle: onStop(-4) " + this);
+	//	}
+
+	//	@Override
+	//	public void onDestroyView()
+	//	{
+	//		super.onDestroyView();
+	//		Log.d(TAG, "lifecycle: onDestroyView (-3) " + this);
+	//	}
+
+	//	@Override
+	//	public void onDestroy()
+	//	{
+	//		super.onDestroy();
+	//		Log.d(TAG, "lifecycle: onDestroy (-2) " + this);
+	//	}
+
+	//	@Override
+	//	public void onDetach()
+	//	{
+	//		super.onDetach();
+	//		Log.d(TAG, "lifecycle: onDetach (-1) " + this);
+	//	}
+
+	// H E L P E R S
+
+	/**
+	 * Make adapter
+	 *
+	 * @return adapter
+	 */
+	private ListAdapter makeAdapter()
+	{
+		Log.d(TAG, "make adapter");
 		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(requireContext(), R.layout.item_sense, null, //
 				new String[]{ //
 						WordNetContract.PosTypes.POSNAME, //
@@ -179,88 +280,34 @@ public class SensesFragment extends ListFragment
 			}
 			return false;
 		});
-		setListAdapter(adapter);
+		return adapter;
 	}
 
-	@Override
-	public void onAttach(@NonNull final Context context)
-	{
-		super.onAttach(context);
-		makeModels();
-	}
+	// V I E W M O D E L S
 
 	/**
 	 * Make view models
 	 */
 	private void makeModels()
 	{
-		this.sensesModelFromWord = new ViewModelProvider(this).get("wn.senses(word)", SqlunetViewModel.class);
-		this.sensesModelFromWord.getData().observe(getViewLifecycleOwner(), cursor -> {
+		// data model
+		this.dataModel = new ViewModelProvider(this).get("wn.senses(word)", SqlunetViewModel.class);
+		this.dataModel.getData().observe(getViewLifecycleOwner(), cursor -> {
 
 			// pass on to list adapter
 			final CursorAdapter adapter = (CursorAdapter) getListAdapter();
 			assert adapter != null;
 			adapter.swapCursor(cursor);
 		});
-	}
 
-	// L I S T E N E R
+		// position model
+		this.positionModel = new ViewModelProvider(this).get(PositionViewModel.class);
+		this.positionModel.getPositionLiveData().observe(getViewLifecycleOwner(), (position) -> {
 
-	/**
-	 * Set listener
-	 *
-	 * @param listener listener
-	 */
-	public void setListener(final Listener listener)
-	{
-		this.listener = listener;
-	}
-
-	// V I E W
-
-	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
-	{
-		return inflater.inflate(R.layout.fragment_senses, container, false);
-	}
-
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
-
-		// when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
-		getListView().setChoiceMode(this.activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
-
-		// restore the previously serialized activated item position, if any
-		if (savedInstanceState != null && savedInstanceState.containsKey(SensesFragment.STATE_ACTIVATED_SELECTOR))
-		{
-			final int position = savedInstanceState.getInt(SensesFragment.STATE_ACTIVATED_SELECTOR);
-			if (position == AdapterView.INVALID_POSITION)
-			{
-				getListView().setItemChecked(this.activatedPosition, false);
-			}
-			else
-			{
-				getListView().setItemChecked(position, true);
-			}
-			this.activatedPosition = position;
-		}
-
-		// load the contents
-		load();
-	}
-
-	@Override
-	public void onSaveInstanceState(@NonNull final Bundle outState)
-	{
-		super.onSaveInstanceState(outState);
-
-		if (this.activatedPosition != AdapterView.INVALID_POSITION)
-		{
-			// serialize and persist the activated item position.
-			outState.putInt(SensesFragment.STATE_ACTIVATED_SELECTOR, this.activatedPosition);
-		}
+			Log.d(TAG, "Observed position change " + position);
+			getListView().setItemChecked(position, position != AdapterView.INVALID_POSITION);
+		});
+		this.positionModel.setPosition(AdapterView.INVALID_POSITION);
 	}
 
 	// L O A D
@@ -286,27 +333,48 @@ public class SensesFragment extends ListFragment
 				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXDOMAIN, //
 				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CASED};
 		final String selection = WordNetContract.WORD + '.' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + " = ?";
-		final String[] selectionArgs = {SensesFragment.this.word};
+		final String[] selectionArgs = {this.word};
 		final String sortOrder = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
-		this.sensesModelFromWord.loadData(uri, projection, selection, selectionArgs, sortOrder, this::sensesPostProcess);
+		this.dataModel.loadData(uri, projection, selection, selectionArgs, sortOrder, this::wordIdFromWordPostProcess);
 	}
 
-	private void sensesPostProcess(@NonNull final Cursor cursor)
+	/**
+	 * Post processing, extraction of wordid from cursor
+	 *
+	 * @param cursor cursor
+	 */
+	private void wordIdFromWordPostProcess(@NonNull final Cursor cursor)
 	{
-		// store source result
 		if (cursor.moveToFirst())
 		{
-			final int wordId = cursor.getColumnIndex(WordNetContract.Words.WORDID);
-			SensesFragment.this.wordId = cursor.getLong(wordId);
+			final int idWordId = cursor.getColumnIndex(WordNetContract.Words.WORDID);
+			this.wordId = cursor.getLong(idWordId);
 		}
+		// cursor.close();
+	}
+
+	// L I S T E N E R
+
+	/**
+	 * Set listener
+	 *
+	 * @param listener listener
+	 */
+	@SuppressWarnings("WeakerAccess")
+	public void setListener(final Listener listener)
+	{
+		this.listener = listener;
 	}
 
 	// C L I C K
 
 	/**
 	 * Turns on activate-on-click mode. When this mode is on, list items will be given the 'activated' state when touched.
+	 *
+	 * @param activateOnItemClick true if activate
 	 */
-	public void setActivateOnItemClick(final boolean activateOnItemClick)
+	@SuppressWarnings("WeakerAccess")
+	public void setActivateOnItemClick(@SuppressWarnings("SameParameterValue") final boolean activateOnItemClick)
 	{
 		this.activateOnItemClick = activateOnItemClick;
 	}
@@ -315,8 +383,18 @@ public class SensesFragment extends ListFragment
 	public void onListItemClick(@NonNull final ListView listView, @NonNull final View view, final int position, final long id)
 	{
 		super.onListItemClick(listView, view, position, id);
+		activate(position);
+	}
 
-		// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
+	/**
+	 * Activate item at position
+	 *
+	 * @param position position
+	 */
+	private void activate(int position)
+	{
+		this.positionModel.setPosition(position);
+
 		if (this.listener != null)
 		{
 			final SimpleCursorAdapter adapter = (SimpleCursorAdapter) getListAdapter();
@@ -325,21 +403,22 @@ public class SensesFragment extends ListFragment
 			assert cursor != null;
 			if (cursor.moveToPosition(position))
 			{
+				// column indexes
 				final int idSynsetId = cursor.getColumnIndex(WordNetContract.Synsets.SYNSETID);
 				final int idPos = cursor.getColumnIndex(WordNetContract.PosTypes.POSNAME);
 				final int idCased = cursor.getColumnIndex(WordNetContract.CasedWords.CASED);
 
+				// retrieve
 				final long synsetId = cursor.isNull(idSynsetId) ? 0 : cursor.getLong(idSynsetId);
 				final String pos = cursor.getString(idPos);
 				final String cased = cursor.getString(idCased);
 
-				final SensePointer sense = new SensePointer(synsetId, this.wordId);
+				// pointer
+				final SensePointer pointer = new SensePointer(synsetId, this.wordId);
 
-				this.listener.onItemSelected(sense, this.word, cased, pos);
+				// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
+				this.listener.onItemSelected(pointer, this.word, cased, pos);
 			}
-
-			// cursor ownership is transferred  to adapter, so do not call
-			// cursor.close();
 		}
 	}
 }

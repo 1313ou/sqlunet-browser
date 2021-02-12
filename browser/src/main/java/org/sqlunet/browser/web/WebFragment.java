@@ -73,85 +73,6 @@ public class WebFragment extends Fragment
 
 	static private final String SQLUNET_NS = "http://org.sqlunet";
 
-	/**
-	 * HTML stuff
-	 */
-	static private final String BODY1 = "<HTML><HEAD>";
-	static private final String BODY2 = "</HEAD><BODY>";
-	static private final String BODY3 = "</BODY></HTML>";
-	static private final String TOP = "<DIV class='titlesection'><IMG class='titleimg' src='images/logo.png'/></DIV>";
-	static private final String STYLESHEET1 = "<LINK rel='stylesheet' type='text/css' href='";
-	static private final String STYLESHEET2 = "' />";
-	static private final String SCRIPT1 = "<SCRIPT type='text/javascript' src='";
-	static private final String SCRIPT2 = "'></SCRIPT>";
-	static private final String LIST1 = "<UL style='display: block;'>";
-	static private final String LIST2 = "</UL>";
-	static private final String ITEM1 = "<LI class='treeitem treepanel'>";
-	static private final String ITEM2 = "</LI>";
-
-	/**
-	 * WebView
-	 */
-	private WebView webview;
-
-	// View model
-
-	private WebModel model;
-
-	/**
-	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
-	 */
-	public WebFragment()
-	{
-	}
-
-	@Override
-	public void onAttach(@NonNull final Context context)
-	{
-		super.onAttach(context);
-		makeModels();
-	}
-
-	/**
-	 * Make view models
-	 */
-	private void makeModels()
-	{
-		final boolean xml = Settings.getXmlPref(requireContext());
-		this.model = new ViewModelProvider(this).get("web(doc)", WebModel.class);
-		this.model.getData().observe(getViewLifecycleOwner(), doc -> {
-
-			Log.d(WebFragment.TAG, "onLoadFinished");
-			final String mimeType = xml ? "text/xml" : "text/html";
-			final String baseUrl = "file:///android_asset/";
-			WebFragment.this.webview.loadDataWithBaseURL(baseUrl, doc, mimeType, "utf-8", null);
-			//WebFragment.this.webview.loadUrl("_about:blank");
-		});
-	}
-
-	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
-	{
-		try
-		{
-			// view
-			final View view = inflater.inflate(R.layout.fragment_web, container, false);
-
-			// webview
-			this.webview = view.findViewById(R.id.webView);
-
-			// run view
-			load();
-
-			return view;
-		}
-		catch (InflateException e)
-		{
-			Toast.makeText(requireContext(), "No WebView support", Toast.LENGTH_LONG).show();
-			return null;
-		}
-	}
-
 	static private class WebDocumentStringLoader implements DocumentStringLoader
 	{
 		@NonNull
@@ -379,6 +300,85 @@ public class WebFragment extends Fragment
 			}
 			return null;
 		}
+	}
+
+	/**
+	 * HTML stuff
+	 */
+	static private final String BODY1 = "<HTML><HEAD>";
+	static private final String BODY2 = "</HEAD><BODY>";
+	static private final String BODY3 = "</BODY></HTML>";
+	static private final String TOP = "<DIV class='titlesection'><IMG class='titleimg' src='images/logo.png'/></DIV>";
+	static private final String STYLESHEET1 = "<LINK rel='stylesheet' type='text/css' href='";
+	static private final String STYLESHEET2 = "' />";
+	static private final String SCRIPT1 = "<SCRIPT type='text/javascript' src='";
+	static private final String SCRIPT2 = "'></SCRIPT>";
+	static private final String LIST1 = "<UL style='display: block;'>";
+	static private final String LIST2 = "</UL>";
+	static private final String ITEM1 = "<LI class='treeitem treepanel'>";
+	static private final String ITEM2 = "</LI>";
+
+	/**
+	 * WebView
+	 */
+	private WebView webview;
+
+	// View model
+
+	private WebModel model;
+
+	/**
+	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
+	 */
+	public WebFragment()
+	{
+	}
+
+	@Override
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	{
+		try
+		{
+			// view
+			final View view = inflater.inflate(R.layout.fragment_web, container, false);
+
+			// webview
+			this.webview = view.findViewById(R.id.webView);
+
+			// run view
+			load();
+
+			return view;
+		}
+		catch (InflateException e)
+		{
+			Toast.makeText(requireContext(), "No WebView support", Toast.LENGTH_LONG).show();
+			return null;
+		}
+	}
+
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
+		makeModels();
+	}
+
+	/**
+	 * Make view models
+	 */
+	private void makeModels()
+	{
+		final boolean xml = Settings.getXmlPref(requireContext());
+		this.model = new ViewModelProvider(this).get("web(doc)", WebModel.class);
+		this.model.getData().observe(getViewLifecycleOwner(), doc -> {
+
+			Log.d(WebFragment.TAG, "onLoadFinished");
+			final String mimeType = xml ? "text/xml" : "text/html";
+			final String baseUrl = "file:///android_asset/";
+			WebFragment.this.webview.loadDataWithBaseURL(baseUrl, doc, mimeType, "utf-8", null);
+			//WebFragment.this.webview.loadUrl("_about:blank");
+		});
 	}
 
 	/**

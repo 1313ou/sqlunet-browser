@@ -55,25 +55,32 @@ public abstract class AbstractTableFragment extends ListFragment
 	abstract protected ViewBinder makeViewBinder();
 
 	@Override
-	public void onAttach(@NonNull final Context context)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		super.onAttach(context);
-		makeModels();
+		// view
+		final View view = inflater.inflate(R.layout.fragment_table, container, false);
+
+		// args
+		final Bundle args = getArguments();
+		assert args != null;
+
+		// query
+		final String queryArg = args.getString(ProviderArgs.ARG_QUERYARG);
+		if (VERBOSE)
+		{
+			final String uriString = args.getString(ProviderArgs.ARG_QUERYURI);
+			final String selection = args.getString(ProviderArgs.ARG_QUERYFILTER);
+			Log.d(TAG, String.format("%s (filter: %s)(arg=%s)", uriString, selection, queryArg));
+		}
+
+		return view;
 	}
 
-	/**
-	 * Make view models
-	 */
-	private void makeModels()
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
-		this.model = new ViewModelProvider(this).get("elements", SqlunetViewModel.class);
-		this.model.getData().observe(getViewLifecycleOwner(), cursor -> {
-
-			final CursorAdapter adapter = (CursorAdapter) getListAdapter();
-			assert adapter != null;
-			adapter.swapCursor(cursor);
-			((CursorAdapter) getListAdapter()).swapCursor(cursor);
-		});
+		super.onViewCreated(view, savedInstanceState);
+		makeModels();
 	}
 
 	@Override
@@ -174,29 +181,19 @@ public abstract class AbstractTableFragment extends ListFragment
 		this.model.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
 	}
 
-
-	// L A Y O U T
-
-	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	/**
+	 * Make view models
+	 */
+	private void makeModels()
 	{
-		// view
-		final View view = inflater.inflate(R.layout.fragment_table, container, false);
+		this.model = new ViewModelProvider(this).get("elements", SqlunetViewModel.class);
+		this.model.getData().observe(getViewLifecycleOwner(), cursor -> {
 
-		// args
-		final Bundle args = getArguments();
-		assert args != null;
-
-		// query
-		final String queryArg = args.getString(ProviderArgs.ARG_QUERYARG);
-		if (VERBOSE)
-		{
-			final String uriString = args.getString(ProviderArgs.ARG_QUERYURI);
-			final String selection = args.getString(ProviderArgs.ARG_QUERYFILTER);
-			Log.d(TAG, String.format("%s (filter: %s)(arg=%s)", uriString, selection, queryArg));
-		}
-
-		return view;
+			final CursorAdapter adapter = (CursorAdapter) getListAdapter();
+			assert adapter != null;
+			adapter.swapCursor(cursor);
+			((CursorAdapter) getListAdapter()).swapCursor(cursor);
+		});
 	}
 
 	/**

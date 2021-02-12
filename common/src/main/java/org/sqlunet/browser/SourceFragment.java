@@ -7,6 +7,9 @@ package org.sqlunet.browser;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.ListAdapter;
 import android.widget.SimpleCursorAdapter;
@@ -16,6 +19,7 @@ import org.sqlunet.provider.XSqlUNetContract.Sources;
 import org.sqlunet.provider.XSqlUNetProvider;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.ListFragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -36,10 +40,9 @@ public class SourceFragment extends ListFragment
 	{
 		super.onCreate(savedInstanceState);
 
+		// make cursor adapter
 		final String[] from = {Sources.NAME, Sources.VERSION, Sources.URL, Sources.PROVIDER, Sources.REFERENCE};
 		final int[] to = {R.id.name, R.id.version, R.id.url, R.id.provider, R.id.reference};
-
-		// make cursor adapter
 		final ListAdapter adapter = new SimpleCursorAdapter(requireContext(), R.layout.item_source, null, //
 				from, //
 				to, 0);
@@ -47,10 +50,22 @@ public class SourceFragment extends ListFragment
 	}
 
 	@Override
-	public void onAttach(@NonNull final Context context)
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
-		super.onAttach(context);
+		super.onViewCreated(view, savedInstanceState);
 		makeModels();
+	}
+
+	@Override
+	public void onStart()
+	{
+		super.onStart();
+
+		// load the contents
+		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(Sources.CONTENT_URI_TABLE));
+		final String[] projection = {Sources.ID + " AS _id", Sources.NAME, Sources.VERSION, Sources.URL, Sources.PROVIDER, Sources.REFERENCE};
+		final String sortOrder = Sources.ID;
+		this.model.loadData(uri, projection, null, null, sortOrder, null);
 	}
 
 	/**
@@ -65,17 +80,5 @@ public class SourceFragment extends ListFragment
 			assert adapter != null;
 			adapter.swapCursor(cursor);
 		});
-	}
-
-	@Override
-	public void onStart()
-	{
-		super.onStart();
-
-		// load the contents
-		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(Sources.CONTENT_URI_TABLE));
-		final String[] projection = {Sources.ID + " AS _id", Sources.NAME, Sources.VERSION, Sources.URL, Sources.PROVIDER, Sources.REFERENCE};
-		final String sortOrder = Sources.ID;
-		this.model.loadData(uri, projection, null, null, sortOrder, null);
 	}
 }
