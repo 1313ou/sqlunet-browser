@@ -6,6 +6,7 @@ package org.sqlunet.browser;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import org.sqlunet.browser.config.SetupAsset;
@@ -13,6 +14,7 @@ import org.sqlunet.browser.config.Status;
 import org.sqlunet.settings.Settings;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 /**
@@ -24,6 +26,7 @@ public class EntryActivity extends AppCompatActivity
 {
 	// static private final String TAG = "EntryA";
 
+	@RequiresApi(api = Build.VERSION_CODES.M)
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -41,7 +44,7 @@ public class EntryActivity extends AppCompatActivity
 			SetupAsset.disposeAllAssets(this);
 		}
 
-		// common
+		// dispatch
 		dispatch();
 	}
 

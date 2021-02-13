@@ -4,14 +4,19 @@
 
 package org.sqlunet.browser;
 
+import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.util.Log;
 
 import org.sqlunet.browser.common.R;
 
+import java.util.List;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.view.ContextThemeWrapper;
 
 import static androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
@@ -116,4 +121,22 @@ abstract public class AbstractApplication extends Application
 	}
 
 	abstract public void setAllColorsFromResources(@NonNull final Context newContext);
+
+	@RequiresApi(api = Build.VERSION_CODES.M)
+	public void dumpTasks()
+	{
+		dumpTasks(this.getBaseContext());
+	}
+
+	@RequiresApi(api = Build.VERSION_CODES.M)
+	static public void dumpTasks(@NonNull Context context)
+	{
+		final ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+		final List<ActivityManager.AppTask> tasks = manager.getAppTasks ();
+		for (ActivityManager.AppTask task : tasks)
+		{
+			ActivityManager.RecentTaskInfo info = task.getTaskInfo();
+			Log.i("task", info.baseActivity.toString());
+		}
+	}
 }
