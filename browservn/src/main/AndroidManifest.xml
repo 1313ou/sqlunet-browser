@@ -50,7 +50,7 @@
 		<activity
 			android:name="org.sqlunet.browser.MainActivity"
 			android:label="@string/app_name"
-			android:launchMode="singleTask">
+			android:launchMode="singleTop">
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH" />
 			</intent-filter>
@@ -62,7 +62,6 @@
 		<activity
 			android:name="org.sqlunet.browser.AssetActivity"
 			android:label="@string/title_activity_asset"
-			android:launchMode="singleTask"
 			android:noHistory="true" />
 
 		<activity
@@ -249,17 +248,6 @@
 		<activity
 			android:name="org.sqlunet.browser.config.SetupDatabaseActivity"
 			android:label="@string/title_activity_setup_database"
-			android:launchMode="singleTop"
-			android:parentActivityName="org.sqlunet.browser.MainActivity"
-			tools:ignore="UnusedAttribute">
-			<meta-data
-				android:name="android.support.PARENT_ACTIVITY"
-				android:value="org.sqlunet.browser.MainActivity" />
-		</activity>
-
-		<activity
-			android:name="org.sqlunet.browser.config.SetupSqlActivity"
-			android:label="@string/title_activity_setup"
 			android:launchMode="singleTop"
 			android:parentActivityName="org.sqlunet.browser.MainActivity"
 			tools:ignore="UnusedAttribute">
