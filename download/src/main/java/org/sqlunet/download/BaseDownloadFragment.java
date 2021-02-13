@@ -114,11 +114,7 @@ abstract public class BaseDownloadFragment extends AbstractDownloadFragment
 				}
 
 				// finish download activity
-				final Activity activity = getActivity();
-				if (activity != null)
-				{
-					activity.finish();
-				}
+				fireDone(success);
 			}
 		};
 
