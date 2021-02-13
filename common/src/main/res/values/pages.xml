@@ -15,12 +15,10 @@
 	<string name="fragment_class_setup_status_page" translatable="false">org.sqlunet.browser.config.SetupStatusFragment</string> <!-- 0 -->
 	<string name="fragment_class_setup_file_page" translatable="false">org.sqlunet.browser.config.SetupFileFragment</string> <!-- 1 -->
 	<string name="fragment_class_setup_database_page" translatable="false">org.sqlunet.browser.config.SetupDatabaseFragment</string> <!-- 3 -->
-	<string name="fragment_class_setup_sql_page" translatable="false">org.sqlunet.browser.config.SetupSqlFragment</string> <!-- 4 -->
 	<string-array name="fragment_class_setup_pages">
 		<item>@string/fragment_class_setup_status_page</item>
 		<item>@string/fragment_class_setup_file_page</item>
 		<item>@string/fragment_class_setup_database_page</item>
-		<item>@string/fragment_class_setup_sql_page</item>
 	</string-array>
 
 </resources>
