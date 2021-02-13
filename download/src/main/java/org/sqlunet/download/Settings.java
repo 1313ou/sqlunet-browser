@@ -23,8 +23,7 @@ public class Settings
 	public enum Downloader
 	{
 		SIMPLE_SERVICE, //
-		SIMPLE_ZIP_SERVICE, //
-		DOWNLOAD_MANAGER;
+		SIMPLE_ZIP_SERVICE;
 
 		static Downloader getFromPref(@NonNull final Context context)
 		{
