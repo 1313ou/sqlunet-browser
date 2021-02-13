@@ -23,7 +23,7 @@ import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_DOWNLOADER_ARG;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class DownloadActivity extends AppCompatActivity implements DownloadFragment.DownloadListener
+public class DownloadActivity extends AppCompatActivity
 {
 	static private final String TAG = "DownloadA";
 
@@ -66,13 +66,8 @@ public class DownloadActivity extends AppCompatActivity implements DownloadFragm
 				case SIMPLE_ZIP_SERVICE:
 					downloadFragment = new SimpleZipDownloadServiceFragment();
 					break;
-
-				case DOWNLOAD_MANAGER:
-					downloadFragment = new DownloadFragment();
-					break;
 			}
 			downloadFragment.setArguments(getIntent().getExtras());
-			downloadFragment.setListener(this);
 
 			getSupportFragmentManager() //
 					.beginTransaction() //
@@ -96,15 +91,5 @@ public class DownloadActivity extends AppCompatActivity implements DownloadFragm
 	{
 		Log.d(TAG, "onNavigateUp()");
 		return super.onNavigateUp();
-	}
-
-	@Override
-	public void onDone(boolean result)
-	{
-		// return result
-		final Intent resultIntent = new Intent();
-		resultIntent.putExtra(DownloadActivity.RESULT_DOWNLOAD_DATA_AVAILABLE, result);
-		setResult(result ? Activity.RESULT_OK : Activity.RESULT_CANCELED, resultIntent);
-		finish();
 	}
 }

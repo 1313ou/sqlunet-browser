@@ -104,15 +104,6 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	static public final String RETURN_ON_SERVICE_COMPLETION = "returns_on_service_completion";
 
 	/**
-	 * Download listener (typically implemented by activity)
-	 */
-	@FunctionalInterface
-	interface DownloadListener
-	{
-		void onDone(boolean result);
-	}
-
-	/**
 	 * Status
 	 */
 	enum Status
@@ -257,11 +248,6 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	private Button md5Button;
 
 	/**
-	 * Done listener
-	 */
-	private DownloadListener listener;
-
-	/**
 	 * Result status
 	 */
 	private Progress progress;
@@ -321,9 +307,6 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		{
 			final String message = this.appContext.getString(R.string.status_download_error_null_download_url);
 			warn(message);
-
-			// fire done result to listener
-			fireDone(false);
 		}
 
 		// download dest data
@@ -469,16 +452,6 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		outState.putInt(MD5_BTN_STATE, this.md5Button.getVisibility());
 		outState.putInt(PROGRESS_STATE, this.progressBar.getVisibility());
 		outState.putInt(PROGRESS_STATUS_STATE, this.progressStatus.getVisibility());
-	}
-
-	/**
-	 * Set listener
-	 *
-	 * @param listener listener
-	 */
-	public void setListener(final DownloadListener listener)
-	{
-		this.listener = listener;
 	}
 
 	static private final Object lock = new Object();
@@ -826,28 +799,6 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		{
 			this.downloadedFile = null;
 		}
-
-		// fire done if no deploy option (broadcast to listener)
-		if (this.returnsOnServiceCompletion)
-		{
-			fireDone(success);
-		}
-	}
-
-	/**
-	 * Fire done event to fragment listener (DownloadActivity)
-	 *
-	 * @param status result status
-	 */
-	void fireDone(final boolean status)
-	{
-		if (this.listener == null)
-		{
-			return;
-		}
-
-		final Handler handler = new Handler(Looper.getMainLooper());
-		handler.postDelayed(() -> this.listener.onDone(status), 2000);
 	}
 
 	// M D 5
