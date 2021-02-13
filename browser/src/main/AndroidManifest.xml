@@ -64,6 +64,7 @@
 		<activity
 			android:name="org.sqlunet.browser.AssetActivity"
 			android:label="@string/title_activity_asset"
+			android:launchMode="singleTop"
 			android:noHistory="true" />
 
 		<activity
