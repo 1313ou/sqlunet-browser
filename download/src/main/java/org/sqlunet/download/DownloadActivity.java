@@ -7,7 +7,10 @@ package org.sqlunet.download;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,7 +25,7 @@ import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_DOWNLOADER_ARG;
  */
 public class DownloadActivity extends AppCompatActivity implements DownloadFragment.DownloadListener
 {
-	// static private final String TAG = "DownloadA";
+	static private final String TAG = "DownloadA";
 
 	/**
 	 * Result extra
@@ -76,6 +79,23 @@ public class DownloadActivity extends AppCompatActivity implements DownloadFragm
 					.replace(R.id.container, downloadFragment) //
 					.commit();
 		}
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
+	{
+		if (item.getItemId() == android.R.id.home)
+		{
+			Log.d(TAG, "onOptionsItemSelected(android.R.id.home)");
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public boolean onNavigateUp()
+	{
+		Log.d(TAG, "onNavigateUp()");
+		return super.onNavigateUp();
 	}
 
 	@Override
