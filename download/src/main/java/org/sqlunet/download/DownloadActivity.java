@@ -85,6 +85,6 @@ public class DownloadActivity extends AppCompatActivity implements DownloadFragm
 		final Intent resultIntent = new Intent();
 		resultIntent.putExtra(DownloadActivity.RESULT_DOWNLOAD_DATA_AVAILABLE, result);
 		setResult(result ? Activity.RESULT_OK : Activity.RESULT_CANCELED, resultIntent);
-		// finish();
+		finish();
 	}
 }
