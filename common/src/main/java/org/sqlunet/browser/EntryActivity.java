@@ -35,18 +35,33 @@ public class EntryActivity extends AppCompatActivity
 		// settings
 		Settings.updateGlobals(this);
 
+		// clean up assets
+		if (Settings.getAssetAutoCleanup(this))
+		{
+			SetupAsset.disposeAllAssets(this);
+		}
+
+		// common
+		dispatch();
+	}
+
+	@Override
+	protected void onNewIntent(final Intent intent)
+	{
+		super.onNewIntent(intent);
+
+		// common
+		dispatch();
+	}
+
+	private void dispatch()
+	{
 		// check hook
 		boolean canRun = Status.canRun(getBaseContext());
 		if (!canRun)
 		{
 			forkOff(this);
 			return;
-		}
-
-		// clean up assets
-		if (Settings.getAssetAutoCleanup(this))
-		{
-			SetupAsset.disposeAllAssets(this);
 		}
 
 		// switch as per preferred launch mode
