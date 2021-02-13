@@ -99,6 +99,11 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	static public final String UNZIP_TO_ARG = "unzip_to";
 
 	/**
+	 * Return on service completion argument
+	 */
+	static public final String RETURN_ON_SERVICE_COMPLETION = "returns_on_service_completion";
+
+	/**
 	 * Download listener (typically implemented by activity)
 	 */
 	@FunctionalInterface
@@ -160,10 +165,12 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 			return status == 0 || STATUS_SUCCESSFUL.test(status) || STATUS_FAILED.test(status);
 		}
 
+		/*
 		static boolean isSuccess(long status)
 		{
 			return STATUS_SUCCESSFUL.test(status);
 		}
+		 */
 	}
 
 	static class Progress
@@ -198,6 +205,11 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	 */
 	@Nullable
 	protected File unzipDir;
+
+	/**
+	 * Return on service completion
+	 */
+	protected boolean returnsOnServiceCompletion;
 
 	/**
 	 * Progress bar
@@ -301,6 +313,7 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		final String fromArg = arguments == null ? null : arguments.getString(DOWNLOAD_FROM_ARG);
 		final String toArg = arguments == null ? null : arguments.getString(DOWNLOAD_TO_ARG);
 		final String unzipToArg = arguments == null ? null : arguments.getString(UNZIP_TO_ARG);
+		final boolean returnsOnServiceCompletion = arguments != null && arguments.getBoolean(RETURN_ON_SERVICE_COMPLETION);
 
 		// download source data
 		this.downloadUrl = this.sourceUrl = fromArg;
@@ -318,6 +331,9 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 
 		// unzip
 		this.unzipDir = unzipToArg != null ? new File(unzipToArg) : null;
+
+		// return on service completion
+		this.returnsOnServiceCompletion = returnsOnServiceCompletion;
 
 		// inits
 		this.progress = new Progress();
@@ -345,8 +361,10 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 
 		// buttons
 		this.downloadButton = view.findViewById(R.id.downloadButton);
+		assert this.downloadButton != null;
 		this.downloadButton.setOnClickListener(this);
 		this.cancelButton = view.findViewById(R.id.cancelButton);
+		assert this.cancelButton != null;
 		this.cancelButton.setOnClickListener(v -> {
 			this.cancelButton.setVisibility(View.INVISIBLE);
 			cancel();
@@ -355,8 +373,10 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 			this.statusTextView.setText(R.string.status_download_canceled);
 		});
 		this.deployButton = view.findViewById(R.id.deployButton);
+		assert this.deployButton != null;
 		this.deployButton.setOnClickListener(v -> deploy());
 		this.md5Button = view.findViewById(R.id.md5Button);
+		assert this.md5Button != null;
 		this.md5Button.setOnClickListener(v -> md5());
 
 		// source
@@ -797,35 +817,29 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 			this.downloadButton.setEnabled(false);
 			this.downloadButton.setVisibility(View.VISIBLE);
 		}
-		if (this.cancelButton != null)
-		{
-			this.cancelButton.setVisibility(View.GONE);
-		}
-		if (this.md5Button != null)
-		{
-			this.md5Button.setVisibility(success ? View.VISIBLE : View.GONE);
-		}
-		if (this.deployButton != null)
-		{
-			this.deployButton.setVisibility(success && this.unzipDir != null ? View.VISIBLE : View.GONE);
-		}
-
-		// fire done (broadcast to listener)
-		fireDone(success);
+		this.cancelButton.setVisibility(View.GONE);
+		this.md5Button.setVisibility(success ? View.VISIBLE : View.GONE);
+		this.deployButton.setVisibility(success && this.unzipDir != null ? View.VISIBLE : View.GONE);
 
 		// invalidate
 		if (!success)
 		{
 			this.downloadedFile = null;
 		}
+
+		// fire done if no deploy option (broadcast to listener)
+		if (this.returnsOnServiceCompletion)
+		{
+			fireDone(success);
+		}
 	}
 
 	/**
-	 * Fire done event to fragment listener
+	 * Fire done event to fragment listener (DownloadActivity)
 	 *
 	 * @param status result status
 	 */
-	private void fireDone(final boolean status)
+	void fireDone(final boolean status)
 	{
 		if (this.listener == null)
 		{
@@ -833,7 +847,7 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		}
 
 		final Handler handler = new Handler(Looper.getMainLooper());
-		handler.postDelayed(() -> this.listener.onDone(status), 1000);
+		handler.postDelayed(() -> this.listener.onDone(status), 2000);
 	}
 
 	// M D 5
