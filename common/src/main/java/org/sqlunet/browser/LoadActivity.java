@@ -30,7 +30,7 @@ public class LoadActivity extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 
 		// content
-		setContentView(R.layout.activity_asset);
+		setContentView(R.layout.activity_load);
 
 		// toolbar
 		final Toolbar toolbar = findViewById(R.id.toolbar);
@@ -48,6 +48,21 @@ public class LoadActivity extends AppCompatActivity
 		}
 	}
 
+	@Override
+	public void onBackPressed()
+	{
+		// super.onBackPressed();
+		EntryActivity.rerun(this);
+	}
+
+	@Override
+	public boolean onNavigateUp()
+	{
+		EntryActivity.rerun(this);
+		finish();
+		return true;
+	}
+
 	// M E N U
 
 	@SuppressWarnings("SameReturnValue")
@@ -55,7 +70,7 @@ public class LoadActivity extends AppCompatActivity
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{
 		// inflate the menu; this adds items to the type bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.load, menu);
 		return true;
 	}
 
