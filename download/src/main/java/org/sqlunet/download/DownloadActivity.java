@@ -87,6 +87,13 @@ public class DownloadActivity extends AppCompatActivity
 	}
 
 	@Override
+	public void onBackPressed()
+	{
+		super.onBackPressed();
+		Log.d(TAG, "onBackPressed()");
+	}
+
+	@Override
 	public boolean onNavigateUp()
 	{
 		Log.d(TAG, "onNavigateUp()");
