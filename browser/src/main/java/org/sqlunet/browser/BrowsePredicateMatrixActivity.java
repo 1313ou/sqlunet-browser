@@ -15,9 +15,10 @@ import android.view.MenuItem;
 import org.sqlunet.predicatematrix.PmRolePointer;
 import org.sqlunet.provider.ProviderArgs;
 
+import androidx.annotation.IdRes;
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 /**
@@ -25,75 +26,18 @@ import androidx.appcompat.widget.Toolbar;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class BrowsePredicateMatrixActivity extends AppCompatActivity
+public class BrowsePredicateMatrixActivity extends AbstractBrowseActivity<BrowsePredicateMatrixFragment>
 {
-	/**
-	 * Fragment
-	 */
-	@Nullable
-	private BrowsePredicateMatrixFragment fragment;
-
-	@Override
-	protected void onCreate(@Nullable Bundle savedInstanceState)
+	@LayoutRes
+	protected int getLayoutId()
 	{
-		super.onCreate(savedInstanceState);
-
-		// content
-		setContentView(R.layout.activity_predicatematrix);
-
-		// toolbar
-		final Toolbar toolbar = findViewById(R.id.toolbar);
-		setSupportActionBar(toolbar);
-
-		// fragment
-		if (savedInstanceState == null)
-		{
-			this.fragment = (BrowsePredicateMatrixFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_predicatematrix);
-		}
+		return R.layout.activity_predicatematrix;
 	}
 
-	@Override
-	protected void onResume()
+	@IdRes
+	protected int getFragmentId()
 	{
-		super.onResume();
-
-		// check hook
-		EntryActivity.branchOffToLoadIfCantRun(this);
-
-		// handle sent intent
-		handleSearchIntent(getIntent());
-	}
-
-	@Override
-	protected void onNewIntent(@NonNull final Intent intent)
-	{
-		super.onNewIntent(intent);
-		handleSearchIntent(intent);
-	}
-
-	@Override
-	protected void onNightModeChanged(final int mode)
-	{
-		super.onNightModeChanged(mode);
-		final Configuration overrideConfig = AbstractApplication.createOverrideConfigurationForDayNight(this, mode);
-		getApplication().onConfigurationChanged(overrideConfig);
-	}
-
-	// M E N U
-
-	@SuppressWarnings("SameReturnValue")
-	@Override
-	public boolean onCreateOptionsMenu(final Menu menu)
-	{
-		// inflate the menu; this adds items to the type bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
-	{
-		return MenuHandler.menuDispatch(this, item);
+		return R.id.fragment_predicatematrix;
 	}
 
 	// S E A R C H
@@ -103,7 +47,8 @@ public class BrowsePredicateMatrixActivity extends AppCompatActivity
 	 *
 	 * @param intent intent
 	 */
-	private void handleSearchIntent(@NonNull final Intent intent)
+	@Override
+	protected void handleSearchIntent(@NonNull final Intent intent)
 	{
 		final String action = intent.getAction();
 
