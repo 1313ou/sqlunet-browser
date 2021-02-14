@@ -138,7 +138,7 @@ public class SettingsActivity extends BaseSettingsActivity
 			if (value == null ? prevValue != null : !value.equals(prevValue))
 			{
 				final Context context = preference.getContext();
-				EntryActivity.reenter(context);
+				EntryActivity.rerun(context);
 			}
 			return true;
 		};

@@ -23,7 +23,7 @@
 		android:layout_height="match_parent"
 		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
 
-		tools:context="org.sqlunet.browser.AssetActivity"
+		tools:context="org.sqlunet.browser.LoadActivity"
 		tools:ignore="MergeRootFrame">
 
 		<androidx.fragment.app.FragmentContainerView

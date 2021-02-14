@@ -12,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import org.sqlunet.browser.common.R;
-import org.sqlunet.provider.BaseProvider;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -58,7 +57,7 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 		super.onResume();
 
 		// check hook
-		EntryActivity.forkOffIfCantRun(this);
+		EntryActivity.branchOffToLoadIfCantRun(this);
 
 		// handle sent intent
 		handleSearchIntent(getIntent());

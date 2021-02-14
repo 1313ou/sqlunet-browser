@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 
 import org.sqlunet.browser.config.SetupAsset;
 import org.sqlunet.browser.config.Status;
@@ -24,13 +25,14 @@ import androidx.appcompat.app.AppCompatActivity;
  */
 public class EntryActivity extends AppCompatActivity
 {
-	// static private final String TAG = "EntryA";
+	static private final String TAG = "EntryA";
 
 	@RequiresApi(api = Build.VERSION_CODES.M)
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		Log.d(TAG, "lifecycle: OnCreate()");
 
 		// clear (some/all) settings on first run of this version
 		Settings.clearSettingsOnUpgrade(this);
@@ -52,18 +54,21 @@ public class EntryActivity extends AppCompatActivity
 	protected void onNewIntent(final Intent intent)
 	{
 		super.onNewIntent(intent);
+		Log.d(TAG, "lifecycle: OnNewIntent()");
 
-		// common
 		dispatch();
 	}
 
+	/**
+	 * Dispatch, depending on whether the app can run
+	 */
 	private void dispatch()
 	{
 		// check hook
 		boolean canRun = Status.canRun(getBaseContext());
 		if (!canRun)
 		{
-			forkOff(this);
+			branchOffToLoad(this);
 			return;
 		}
 
@@ -74,10 +79,13 @@ public class EntryActivity extends AppCompatActivity
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		intent.putExtra(Status.CANTRUN, false);
 		startActivity(intent);
-		finish();
 	}
 
-	static public void forkOffIfCantRun(@NonNull final AppCompatActivity activity)
+	/**
+	 * Branch off to load activity
+	 * @param activity activity to branch from
+	 */
+	static public void branchOffToLoadIfCantRun(@NonNull final AppCompatActivity activity)
 	{
 		boolean canRun;
 		final Intent currentIntent = activity.getIntent();
@@ -94,21 +102,29 @@ public class EntryActivity extends AppCompatActivity
 		}
 		if (!canRun)
 		{
-			forkOff(activity);
-			// return;
+			branchOffToLoad(activity);
 		}
 	}
 
-	private static void forkOff(@NonNull final AppCompatActivity activity)
+	/**
+	 * Branch off to load activity
+	 *
+	 * @param activity activity to branch from
+	 */
+	private static void branchOffToLoad(@NonNull final AppCompatActivity activity)
 	{
 		//final Intent intent = new Intent(activity, StatusActivity.class);
-		final Intent intent = new Intent(activity, AssetActivity.class);
+		final Intent intent = new Intent(activity, LoadActivity.class);
 		intent.putExtra(Status.CANTRUN, true);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		activity.startActivity(intent);
-		activity.finish();
 	}
 
+	/**
+	 * Rerun entry activity. If a task is running with entry activity running, bring it to the foreground and dispatch onNewIntent(). Otherwise, entry activity is started in new task.
+	 *
+	 * @param context context
+	 */
 	static public void reenter(@NonNull final Context context)
 	{
 		final Intent intent = new Intent(context, EntryActivity.class);
@@ -116,10 +132,15 @@ public class EntryActivity extends AppCompatActivity
 		context.startActivity(intent);
 	}
 
+	/**
+	 * Rerun entry activity. Task is cleared before the activity is started. The activity becomes the new root of an otherwise empty task.
+	 *
+	 * @param context context
+	 */
 	static public void rerun(@NonNull final Context context)
 	{
 		final Intent intent = new Intent(context, EntryActivity.class);
-		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 		context.startActivity(intent);
 	}
 }

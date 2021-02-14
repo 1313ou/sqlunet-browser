@@ -94,7 +94,7 @@
 	<string name="title_activity_searchtext">Text Search</string>
 	<string name="title_activity_storage">Storage</string>
 	<string name="title_activity_update">Update</string>
-	<string name="title_activity_asset">Asset</string>
+	<string name="title_activity_load">Asset</string>
 	<!--<string name="title_activity_share_browse">Browse with Semantikos</string>-->
 	<!--<string name="title_activity_share_searchtext">Text search with Semantikos</string>-->
 

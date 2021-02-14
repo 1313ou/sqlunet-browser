@@ -96,7 +96,7 @@ public class SetupAsset
 
 							org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
 							Settings.recordDbSource(activity, new File(new File(path, assetDir), assetZip).getAbsolutePath(), -1, -1, null, null, null);
-							EntryActivity.reenter(activity);
+							EntryActivity.rerun(activity);
 						});
 					}
 				});
@@ -129,7 +129,7 @@ public class SetupAsset
 
 					org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
 					Settings.recordDbSource(activity, zipFilePath, -1, -1, null, null, null);
-					EntryActivity.reenter(activity);
+					EntryActivity.rerun(activity);
 				});
 			}
 			else
