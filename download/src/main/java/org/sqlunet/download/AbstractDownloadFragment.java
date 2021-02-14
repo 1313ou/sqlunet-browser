@@ -556,7 +556,7 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	public void onPause()
 	{
 		super.onPause();
-		Log.d(TAG, "Stop  observer");
+		Log.d(TAG, "Stop observer");
 		stopObserver();
 	}
 
