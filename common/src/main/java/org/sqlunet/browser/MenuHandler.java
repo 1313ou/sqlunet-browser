@@ -20,6 +20,7 @@ import org.sqlunet.browser.config.SetupActivity;
 import org.sqlunet.browser.config.SetupAsset;
 import org.sqlunet.browser.config.SetupFileActivity;
 import org.sqlunet.browser.config.SetupFileFragment;
+import org.sqlunet.browser.config.SetupStatusFragment;
 import org.sqlunet.browser.config.StorageActivity;
 import org.sqlunet.concurrency.TaskDialogObserver;
 import org.sqlunet.concurrency.TaskObserver;
@@ -94,10 +95,12 @@ public class MenuHandler
 		}
 		else if (itemId == R.id.action_download)
 		{
-			intent = new Intent(activity, DownloadActivity.class);
+			intent = new Intent(activity, org.sqlunet.browser.DownloadActivity.class);
 			intent.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadSource(activity));
 			intent.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadTarget(activity));
-			// intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+			activity.startActivity(intent);
+			return true;
 		}
 		else if (itemId == R.id.action_update)
 		{
