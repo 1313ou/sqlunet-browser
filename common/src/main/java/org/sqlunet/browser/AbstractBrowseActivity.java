@@ -13,6 +13,8 @@ import android.view.MenuItem;
 
 import org.sqlunet.browser.common.R;
 
+import androidx.annotation.IdRes;
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,7 +31,19 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 	 * Fragment
 	 */
 	@Nullable
-	private F fragment;
+	protected F fragment;
+
+	@LayoutRes
+	protected int getLayoutId()
+	{
+		return R.layout.activity_browse;
+	}
+
+	@IdRes
+	protected int getFragmentId()
+	{
+		return R.id.fragment_browse;
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -38,7 +52,7 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 		super.onCreate(savedInstanceState);
 
 		// content
-		setContentView(R.layout.activity_browse);
+		setContentView(getLayoutId());
 
 		// toolbar
 		final Toolbar toolbar = findViewById(R.id.toolbar);
@@ -47,7 +61,7 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 		// fragment
 		if (savedInstanceState == null)
 		{
-			this.fragment = (F) getSupportFragmentManager().findFragmentById(R.id.fragment_browse);
+			this.fragment = (F) getSupportFragmentManager().findFragmentById(getFragmentId());
 		}
 	}
 
@@ -70,6 +84,14 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 		handleSearchIntent(intent);
 	}
 
+	@Override
+	protected void onNightModeChanged(final int mode)
+	{
+		super.onNightModeChanged(mode);
+		final Configuration overrideConfig = AbstractApplication.createOverrideConfigurationForDayNight(this, mode);
+		getApplication().onConfigurationChanged(overrideConfig);
+	}
+
 	// M E N U
 
 	@SuppressWarnings("SameReturnValue")
@@ -87,14 +109,6 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 		return MenuHandler.menuDispatch(this, item);
 	}
 
-	@Override
-	protected void onNightModeChanged(final int mode)
-	{
-		super.onNightModeChanged(mode);
-		final Configuration overrideConfig = AbstractApplication.createOverrideConfigurationForDayNight(this, mode);
-		getApplication().onConfigurationChanged(overrideConfig);
-	}
-
 	// S E A R C H
 
 	/**
@@ -102,7 +116,7 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 	 *
 	 * @param intent intent
 	 */
-	private void handleSearchIntent(@NonNull final Intent intent)
+	protected void handleSearchIntent(@NonNull final Intent intent)
 	{
 		final String action = intent.getAction();
 		final boolean isActionView = Intent.ACTION_VIEW.equals(action);
