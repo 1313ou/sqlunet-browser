@@ -66,6 +66,12 @@
 			android:noHistory="true" />
 
 		<activity
+			android:name="org.sqlunet.browser.DownloadActivity"
+			android:label="@string/title_activity_download"
+			android:launchMode="singleTop"
+			android:noHistory="true" />
+
+		<activity
 			android:name="org.sqlunet.browser.BrowseActivity"
 			android:label="@string/title_activity_browse"
 			android:launchMode="singleTop"
