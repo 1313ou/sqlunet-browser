@@ -8,7 +8,9 @@
 	android:installLocation="preferExternal">
 
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage" />
+	<uses-permission
+		android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+		tools:ignore="ScopedStorage" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -62,6 +64,12 @@
 		<activity
 			android:name="org.sqlunet.browser.LoadActivity"
 			android:label="@string/title_activity_load"
+			android:launchMode="singleTop"
+			android:noHistory="true" />
+
+		<activity
+			android:name="org.sqlunet.browser.DownloadActivity"
+			android:label="@string/title_activity_download"
 			android:launchMode="singleTop"
 			android:noHistory="true" />
 
