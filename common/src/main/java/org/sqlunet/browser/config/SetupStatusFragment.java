@@ -239,13 +239,7 @@ public class SetupStatusFragment extends Fragment implements Updatable
 
 				Toast.makeText(context, R.string.title_download_complete, Toast.LENGTH_SHORT).show();
 
-				EntryActivity.reenter(context);
-
-				final Activity activity = getActivity();
-				if (activity != null)
-				{
-					activity.finish();
-				}
+				EntryActivity.rerun(context);
 			}
 		}
 		super.onActivityResult(requestCode, resultCode, returnIntent);
