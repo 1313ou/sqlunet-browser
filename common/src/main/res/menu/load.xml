@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	tools:context="org.sqlunet.browser.MainActivity">
+	<item
+		android:id="@+id/action_settings"
+		android:title="@string/action_settings"
+		app:showAsAction="never"
+		tools:ignore="AppCompatResource" />
+
+	<item
+		android:title="@string/action_data"
+		app:showAsAction="never">
+		<menu>
+			<item
+				android:id="@+id/action_status"
+				android:title="@string/action_status"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+			<item
+				android:id="@+id/action_setup"
+				android:title="@string/action_setup"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+			<item
+				android:id="@+id/action_drop"
+				android:title="@string/action_drop"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+			<item
+				android:id="@+id/action_asset_deliver"
+				android:title="@string/action_asset_deliver"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+			<item
+				android:id="@+id/action_asset_dispose"
+				android:title="@string/action_asset_dispose"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+			<item
+				android:id="@+id/action_assets"
+				android:title="@string/action_assets"
+				app:showAsAction="never">
+				<menu>
+					<item
+						android:id="@+id/action_asset_deliver_primary"
+						android:title="@string/action_asset_deliver_primary"
+						app:showAsAction="never"
+						tools:ignore="AppCompatResource" />
+					<item
+						android:id="@+id/action_asset_dispose_primary"
+						android:title="@string/action_asset_dispose_primary"
+						app:showAsAction="never"
+						tools:ignore="AppCompatResource" />
+					<item
+						android:id="@+id/action_asset_deliver_alt"
+						android:title="@string/action_asset_deliver_alt"
+						app:showAsAction="never"
+						tools:ignore="AppCompatResource" />
+					<item
+						android:id="@+id/action_asset_dispose_alt"
+						android:title="@string/action_asset_dispose_alt"
+						app:showAsAction="never"
+						tools:ignore="AppCompatResource" />
+				</menu>
+			</item>
+			<item
+				android:id="@+id/action_download"
+				android:title="@string/action_download"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+			<item
+				android:id="@+id/action_storage"
+				android:title="@string/action_storage"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+			<item
+				android:id="@+id/action_diagnostics"
+				android:title="@string/action_diagnostics"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+		</menu>
+	</item>
+
+	<item
+		android:title="@string/action_app"
+		app:showAsAction="never">
+		<menu>
+			<item
+				android:id="@+id/action_appsettings"
+				android:title="@string/action_appsettings"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+			<item
+				android:id="@+id/action_quit"
+				android:title="@string/action_quit"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+		</menu>
+	</item>
+
+	<item
+		android:title="@string/action_theme"
+		app:showAsAction="never">
+		<menu>
+			<group
+				android:id="@+id/theme_group"
+				android:checkableBehavior="single">
+				<item
+					android:id="@+id/action_theme_system"
+					android:title="@string/action_theme_system" />
+				<item
+					android:id="@+id/action_theme_night"
+					android:title="@string/action_theme_night" />
+				<item
+					android:id="@+id/action_theme_day"
+					android:title="@string/action_theme_day" />
+			</group>
+		</menu>
+	</item>
+</menu>
