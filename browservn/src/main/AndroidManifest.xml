@@ -60,13 +60,13 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.browser.LoadActivity"
+			android:name="org.sqlunet.browser.config.LoadActivity"
 			android:label="@string/title_activity_load"
 			android:launchMode="singleTop"
 			android:noHistory="true" />
 
 		<activity
-			android:name="org.sqlunet.browser.DownloadActivity"
+			android:name="org.sqlunet.browser.config.DownloadActivity"
 			android:label="@string/title_activity_download"
 			android:launchMode="singleTop"
 			android:noHistory="true" />
