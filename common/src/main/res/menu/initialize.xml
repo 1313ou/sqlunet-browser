@@ -6,11 +6,6 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	tools:context="org.sqlunet.browser.MainActivity">
-	<item
-		android:id="@+id/action_settings"
-		android:title="@string/action_settings"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource" />
 
 	<item
 		android:title="@string/action_data"
@@ -27,18 +22,13 @@
 				app:showAsAction="never"
 				tools:ignore="AppCompatResource" />
 			<item
-				android:id="@+id/action_drop"
-				android:title="@string/action_drop"
+				android:id="@+id/action_download_settings"
+				android:title="@string/action_download_settings"
 				app:showAsAction="never"
 				tools:ignore="AppCompatResource" />
 			<item
-				android:id="@+id/action_asset_deliver"
-				android:title="@string/action_asset_deliver"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
-			<item
-				android:id="@+id/action_asset_dispose"
-				android:title="@string/action_asset_dispose"
+				android:id="@+id/action_download"
+				android:title="@string/action_download"
 				app:showAsAction="never"
 				tools:ignore="AppCompatResource" />
 			<item
@@ -46,6 +36,16 @@
 				android:title="@string/action_assets"
 				app:showAsAction="never">
 				<menu>
+					<item
+						android:id="@+id/action_asset_deliver"
+						android:title="@string/action_asset_deliver"
+						app:showAsAction="never"
+						tools:ignore="AppCompatResource" />
+					<item
+						android:id="@+id/action_asset_dispose"
+						android:title="@string/action_asset_dispose"
+						app:showAsAction="never"
+						tools:ignore="AppCompatResource" />
 					<item
 						android:id="@+id/action_asset_deliver_primary"
 						android:title="@string/action_asset_deliver_primary"
@@ -69,8 +69,8 @@
 				</menu>
 			</item>
 			<item
-				android:id="@+id/action_download"
-				android:title="@string/action_download"
+				android:id="@+id/action_drop"
+				android:title="@string/action_drop"
 				app:showAsAction="never"
 				tools:ignore="AppCompatResource" />
 			<item
