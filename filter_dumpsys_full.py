@@ -21,10 +21,6 @@ n=len(lines)
 mark=[False for i in range(n)]
 for i in range(n):
 	if re.match('^\s*Stack.*$',lines[i]):
-	#if re.search("Stack",lines[i]):
-		#print lines[i],
-		#for j in range(i,min(i+after,n)):
-		#	mark[j]=True
 		mark[i]=True
 		lines[i]=colors.CYAN + lines[i] + colors.Z
 		if re.search('type=standard',lines[i]):
@@ -32,22 +28,18 @@ for i in range(n):
 			while j < n:
 				if re.match('^\s*$',lines[j]):
 					break
-				if	not re.search('mMaxWidth',lines[j]) \
-					and not re.search('mMinWidth',lines[j]) \
-					and	not re.search('mBounds',lines[j]) \
-					and	not re.search('mResizeMode',lines[j]) \
-					:
-					mark[j]=True
-				#if re.search('Task',lines[j]) :
+				mark[j]=True
 				if re.match('^\s*\* Task.*$',lines[j]):
 					lines[j]=colors.GREEN + lines[j] + colors.Z
+				if re.match('^\s*Activities=.*$',lines[j]):
+					lines[j]=colors.YELLOW + lines[j] + colors.Z
 				if re.match('^\s*\* Hist.*$',lines[j]):
 					lines[j]=colors.BLUE + lines[j] + colors.Z
 				if re.search(target,lines[j]):
 					lines[j]=colors.BOLD + lines[j] + colors.Z
 
 				j=j+1
-				i=i+1
+			i=j
 
 lines2=[lines[i] for i in range(n) if mark[i]]
 sys.__stdout__.writelines(lines2)
