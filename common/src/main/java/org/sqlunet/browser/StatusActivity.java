@@ -4,13 +4,12 @@
 
 package org.sqlunet.browser;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import org.sqlunet.browser.common.R;
-import org.sqlunet.browser.config.Status;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -24,6 +23,8 @@ import androidx.appcompat.widget.Toolbar;
  */
 public class StatusActivity extends AppCompatActivity
 {
+	static private final String TAG = "StatusA";
+
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
@@ -40,11 +41,7 @@ public class StatusActivity extends AppCompatActivity
 		final ActionBar actionBar = getSupportActionBar();
 		if (actionBar != null)
 		{
-			final Intent intent = getIntent();
-			boolean cantRun = intent.getBooleanExtra(Status.CANTRUN, false);
-			actionBar.setDisplayShowHomeEnabled(!cantRun);
-			actionBar.setDisplayHomeAsUpEnabled(!cantRun);
-			actionBar.setDisplayShowTitleEnabled(true);
+			actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
 		}
 	}
 
@@ -55,22 +52,19 @@ public class StatusActivity extends AppCompatActivity
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{
 		// inflate the menu; this adds items to the type bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.initialize, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
 	{
-		// handle item selection
+		// handle home
 		if (item.getItemId() == android.R.id.home)
 		{
-			final Intent intent = getIntent();
-			boolean cantRun = intent.getBooleanExtra(Status.CANTRUN, false);
-			if (!cantRun)
-			{
-				return super.onOptionsItemSelected(item);
-			}
+			Log.d(TAG, "onHomePressed");
+			EntryActivity.rerun(this);
+			return true;
 		}
 
 		return MenuHandler.menuDispatch(this, item);

@@ -36,8 +36,6 @@ abstract public class Status
 {
 	static private final String TAG = "Status";
 
-	static public final String CANTRUN = "_status.cant.run";
-
 	// _status flags
 
 	static public final int EXISTS = 0x1;

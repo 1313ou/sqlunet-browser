@@ -41,8 +41,12 @@ public class SetupDatabaseActivity extends AppCompatActivity
 
 		// set up the action bar
 		final ActionBar actionBar = getSupportActionBar();
-		assert actionBar != null;
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
+		if (actionBar != null)
+		{
+			actionBar.setDisplayShowHomeEnabled(true);
+			actionBar.setDisplayHomeAsUpEnabled(true);
+			actionBar.setDisplayShowTitleEnabled(true);
+		}
 
 		// fragment
 		final Fragment fragment = new SetupDatabaseFragment();
@@ -69,12 +73,7 @@ public class SetupDatabaseActivity extends AppCompatActivity
 	{
 		if (item.getItemId() == android.R.id.home)
 		{
-			final Intent intent = getIntent();
-			boolean cantRun = intent.getBooleanExtra(Status.CANTRUN, false);
-			if (!cantRun)
-			{
-				return super.onOptionsItemSelected(item);
-			}
+			return super.onOptionsItemSelected(item);
 		}
 
 		return MenuHandler.menuDispatch(this, item);

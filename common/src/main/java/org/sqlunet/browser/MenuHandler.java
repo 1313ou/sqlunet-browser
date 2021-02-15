@@ -20,7 +20,6 @@ import org.sqlunet.browser.config.SetupActivity;
 import org.sqlunet.browser.config.SetupAsset;
 import org.sqlunet.browser.config.SetupFileActivity;
 import org.sqlunet.browser.config.SetupFileFragment;
-import org.sqlunet.browser.config.SetupStatusFragment;
 import org.sqlunet.browser.config.StorageActivity;
 import org.sqlunet.concurrency.TaskDialogObserver;
 import org.sqlunet.concurrency.TaskObserver;
@@ -35,6 +34,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.PreferenceManager;
 
+import static org.sqlunet.browser.config.BaseSettingsActivity.INITIAL_ARG;
 import static org.sqlunet.download.AbstractDownloadFragment.DOWNLOAD_FROM_ARG;
 import static org.sqlunet.download.AbstractDownloadFragment.DOWNLOAD_TO_ARG;
 
@@ -58,49 +58,48 @@ public class MenuHandler
 
 		// handle item selection
 		final int itemId = item.getItemId();
+
+		// main
 		if (itemId == R.id.action_main)
 		{
 			intent = new Intent(activity, MainActivity.class);
-			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		}
-		else if (itemId == R.id.action_settings)
+
+		// status
+		else if (itemId == R.id.action_status)
 		{
-			intent = new Intent(activity, SettingsActivity.class);
-			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-		}
-		else if (itemId == R.id.action_clear_settings)
-		{
-			final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
-			final SharedPreferences.Editor edit = prefs.edit();
-			edit.clear().apply();
-			intent = new Intent(activity, SettingsActivity.class);
-			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+			intent = new Intent(activity, StatusActivity.class);
 		}
 		else if (itemId == R.id.action_storage)
 		{
 			intent = new Intent(activity, StorageActivity.class);
 		}
-		else if (itemId == R.id.action_status)
-		{
-			intent = new Intent(activity, StatusActivity.class);
-		}
 		else if (itemId == R.id.action_diagnostics)
 		{
 			intent = new Intent(activity, DiagnosticsActivity.class);
 		}
+		else if (itemId == R.id.action_provider_info)
+		{
+			Providers.listProviders(activity);
+			return true;
+		}
+
+		// change data
 		else if (itemId == R.id.action_drop)
 		{
 			intent = new Intent(activity, SetupFileActivity.class);
 			intent.putExtra(SetupFileFragment.ARG, SetupFileFragment.Operation.DROP.toString());
 		}
+		else if (itemId == R.id.action_setup)
+		{
+			intent = new Intent(activity, SetupActivity.class);
+		}
 		else if (itemId == R.id.action_download)
 		{
-			intent = new Intent(activity, org.sqlunet.browser.DownloadActivity.class);
+			intent = new Intent(activity, DownloadActivity.class);
 			intent.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadSource(activity));
 			intent.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadTarget(activity));
-			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-			activity.startActivity(intent);
-			return true;
 		}
 		else if (itemId == R.id.action_update)
 		{
@@ -170,15 +169,30 @@ public class MenuHandler
 			}
 			return true;
 		}
-		else if (itemId == R.id.action_setup)
+
+		// settings
+		else if (itemId == R.id.action_settings)
 		{
-			intent = new Intent(activity, SetupActivity.class);
+			intent = new Intent(activity, SettingsActivity.class);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		}
+		else if (itemId == R.id.action_clear_settings)
+		{
+			final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+			final SharedPreferences.Editor edit = prefs.edit();
+			edit.clear().apply();
+			intent = new Intent(activity, SettingsActivity.class);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		}
+
+		// sql
 		else if (itemId == R.id.action_clear_sql)
 		{
 			BaseProvider.sqlBuffer.clear();
 			return true;
 		}
+
+		// others
 		else if (itemId == R.id.action_help)
 		{
 			intent = new Intent(activity, HelpActivity.class);
@@ -186,11 +200,6 @@ public class MenuHandler
 		else if (itemId == R.id.action_credits)
 		{
 			intent = new Intent(activity, AboutActivity.class);
-		}
-		else if (itemId == R.id.action_provider_info)
-		{
-			Providers.listProviders(activity);
-			return true;
 		}
 		else if (itemId == R.id.action_donate)
 		{
@@ -205,6 +214,177 @@ public class MenuHandler
 			AppRate.rate(activity);
 			return true;
 		}
+		else if (itemId == R.id.action_quit)
+		{
+			activity.finish();
+			return true;
+		}
+		else if (itemId == R.id.action_appsettings)
+		{
+			final String appId = activity.getPackageName();
+			Settings.applicationSettings(activity, appId);
+			return true;
+		}
+		else if (itemId == R.id.action_theme_system)
+		{
+			AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+			return true;
+		}
+		else if (itemId == R.id.action_theme_night)
+		{
+			AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+			Log.d("MenuHandler", "set night mode from " + activity.getComponentName());
+			return true;
+		}
+		else if (itemId == R.id.action_theme_day)
+		{
+			AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+			Log.d("MenuHandler", "set day mode from " + activity.getComponentName());
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+
+		// start activity
+		activity.startActivity(intent);
+		return true;
+	}
+
+	/**
+	 * Dispatch menu item action when can't run
+	 *
+	 * @param activity activity
+	 * @param item     menu item
+	 * @return true if processed/consumed
+	 */
+	static public boolean menuDispatchWhenCantRun(@NonNull final AppCompatActivity activity, @NonNull final MenuItem item)
+	{
+		Intent intent;
+
+		// handle item selection
+		final int itemId = item.getItemId();
+
+		// status
+		if (itemId == R.id.action_status)
+		{
+			intent = new Intent(activity, StatusActivity.class);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		}
+		else if (itemId == R.id.action_storage)
+		{
+			intent = new Intent(activity, StorageActivity.class);
+		}
+		else if (itemId == R.id.action_diagnostics)
+		{
+			intent = new Intent(activity, DiagnosticsActivity.class);
+		}
+
+		// change data
+		else if (itemId == R.id.action_setup)
+		{
+			intent = new Intent(activity, SetupActivity.class);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		}
+		else if (itemId == R.id.action_download)
+		{
+			intent = new Intent(activity, org.sqlunet.browser.config.DownloadActivity.class);
+			intent.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadSource(activity));
+			intent.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadTarget(activity));
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		}
+		else if (itemId == R.id.action_update)
+		{
+			BaseProvider.closeProviders(activity);
+			final String name = activity.getResources().getString(R.string.pref_default_download_dbfile);
+			final String downloadSourceUrl = StorageSettings.getDbDownloadSource(activity);
+			final String downloadDest = StorageSettings.getDatabasePath(activity);
+			final String cache = StorageSettings.getCacheDir(activity);
+			FileDataDownloader.start(activity, name, downloadSourceUrl, downloadDest, cache);
+			return true;
+		}
+		else if (itemId == R.id.action_asset_deliver)
+		{
+			final String asset = Settings.getAssetPack(activity);
+			final String assetDir = Settings.getAssetPackDir(activity);
+			final String assetZip = Settings.getAssetPackZip(activity);
+			final String assetZipEntry = activity.getString(R.string.asset_zip_entry);
+			final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
+					.setTitle(activity.getString(R.string.asset_delivery)) //
+					.setMessage(asset);
+			SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null);
+			return true;
+		}
+		else if (itemId == R.id.action_asset_deliver_primary)
+		{
+			final String asset = activity.getString(R.string.asset_primary);
+			final String assetDir = activity.getString(R.string.asset_dir_primary);
+			final String assetZip = activity.getString(R.string.asset_zip_primary);
+			final String assetZipEntry = activity.getString(R.string.asset_zip_entry);
+			final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
+					.setTitle(activity.getString(R.string.asset_delivery)) //
+					.setMessage(asset);
+			SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null);
+			return true;
+		}
+		else if (itemId == R.id.action_asset_deliver_alt)
+		{
+			final String asset = activity.getString(R.string.asset_alt);
+			final String assetDir = activity.getString(R.string.asset_dir_alt);
+			final String assetZip = activity.getString(R.string.asset_zip_alt);
+			final String assetZipEntry = activity.getString(R.string.asset_zip_entry);
+			if (!asset.isEmpty())
+			{
+				final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
+						.setTitle(activity.getString(R.string.asset_delivery)) //
+						.setMessage(asset);
+				SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null);
+			}
+			return true;
+		}
+		else if (itemId == R.id.action_asset_dispose)
+		{
+			SetupAsset.disposeAsset(Settings.getAssetPack(activity), activity);
+			return true;
+		}
+		else if (itemId == R.id.action_asset_dispose_primary)
+		{
+			SetupAsset.disposeAsset(activity.getString(R.string.asset_primary), activity);
+			return true;
+		}
+		else if (itemId == R.id.action_asset_dispose_alt)
+		{
+			String asset = activity.getString(R.string.asset_alt);
+			if (!asset.isEmpty())
+			{
+				SetupAsset.disposeAsset(asset, activity);
+			}
+			return true;
+		}
+		else if (itemId == R.id.action_drop)
+		{
+			intent = new Intent(activity, SetupFileActivity.class);
+			intent.putExtra(SetupFileFragment.ARG, SetupFileFragment.Operation.DROP.toString());
+		}
+
+		// settings
+		else if (itemId == R.id.action_download_settings)
+		{
+			intent = new Intent(activity, SettingsActivity.class);
+			intent.putExtra(INITIAL_ARG, true);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		}
+		else if (itemId == R.id.action_clear_settings)
+		{
+			final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+			final SharedPreferences.Editor edit = prefs.edit();
+			edit.clear().apply();
+			intent = new Intent(activity, SettingsActivity.class);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		}
+
+		// others
 		else if (itemId == R.id.action_quit)
 		{
 			activity.finish();

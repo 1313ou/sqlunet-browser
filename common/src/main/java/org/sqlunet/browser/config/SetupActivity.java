@@ -15,6 +15,7 @@ import android.view.MenuItem;
 
 import com.google.android.material.tabs.TabLayout;
 
+import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.common.R;
 
 import java.lang.reflect.Constructor;
@@ -55,8 +56,10 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 
 		// set up the action bar
 		final ActionBar actionBar = getSupportActionBar();
-		assert actionBar != null;
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
+		if (actionBar != null)
+		{
+			actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
+		}
 
 		// create the adapter that will return a fragment for each of the three sections of the activity.
 		final SectionsPagerAdapter pagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), this);
@@ -228,7 +231,15 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		final int itemId = item.getItemId();
-		if (itemId == R.id.action_settings)
+
+		// handle home
+		if (itemId == android.R.id.home)
+		{
+			Log.d(TAG, "onHomePressed");
+			EntryActivity.rerun(this);
+			return true;
+		}
+		else if (itemId == R.id.action_settings)
 		{
 			final Intent intent = new Intent(this, SettingsActivity.class);
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
