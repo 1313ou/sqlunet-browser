@@ -1,0 +1,26 @@
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	app:title="@string/pref_header_database">
+
+	<!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to dismiss it. -->
+	<!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
+
+	<ListPreference
+		android:defaultValue="-1"
+		android:key="pref_storage"
+		android:negativeButtonText="@null"
+		android:positiveButtonText="@null"
+		android:summary="@string/pref_description_storage"
+		android:title="@string/pref_title_storage" />
+
+	<Preference
+		android:title="@string/pref_title_db_file"
+		app:key="pref_db_file"
+		app:summary="@string/pref_description_db_file"
+		app:title="@string/pref_title_db_file" />
+	
+</PreferenceScreen>

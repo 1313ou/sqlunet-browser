@@ -33,6 +33,7 @@
 		android:summary="@string/pref_description_download_dbfile"
 		android:title="@string/pref_title_download_dbfile" />
 
+	<!--
 	<PreferenceCategory android:title="@string/pref_sql_category">
 		<EditTextPreference
 			android:defaultValue="@string/pref_default_download_sqlfile"
@@ -62,5 +63,6 @@
 			android:summary="@string/pref_description_cache"
 			android:title="@string/pref_title_cache" />
 	</PreferenceCategory>
+	-->
 
 </androidx.preference.PreferenceScreen>

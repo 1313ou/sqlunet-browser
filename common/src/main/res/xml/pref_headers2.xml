@@ -1,0 +1,24 @@
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<PreferenceScreen
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<Preference
+		app:fragment="org.sqlunet.browser.config.SettingsActivity$AssetsPreferenceFragment"
+		app:icon="@drawable/ic_settings_assets"
+		app:key="pref_header_assets"
+		app:title="@string/pref_header_assets" />
+	<Preference
+		app:fragment="org.sqlunet.browser.config.SettingsActivity$DownloadPreferenceFragment"
+		app:icon="@drawable/ic_settings_download"
+		app:key="pref_header_download"
+		app:title="@string/pref_header_download" />
+	<Preference
+		app:fragment="org.sqlunet.browser.config.SettingsActivity$DatabasePreference2Fragment"
+		app:icon="@drawable/ic_settings_database"
+		app:key="pref_header_database2"
+		app:title="@string/pref_header_database" />
+
+</PreferenceScreen>

@@ -30,6 +30,8 @@ public abstract class BaseSettingsActivity extends AppCompatActivity implements 
 {
 	private static final String TITLE_TAG = "settingsActivityTitle";
 
+	public static final String INITIAL_ARG = "settings_header";
+
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState)
 	{
@@ -45,7 +47,8 @@ public abstract class BaseSettingsActivity extends AppCompatActivity implements 
 		// fragment
 		if (savedInstanceState == null)
 		{
-			fm.beginTransaction().replace(R.id.settings, new HeaderFragment()).commit();
+			boolean initial = getIntent().getBooleanExtra(INITIAL_ARG, false);
+			fm.beginTransaction().replace(R.id.settings, initial ? new Header2Fragment() : new HeaderFragment()).commit();
 			setTitle(R.string.title_settings);
 		}
 		else
@@ -174,6 +177,16 @@ public abstract class BaseSettingsActivity extends AppCompatActivity implements 
 		public void onCreatePreferences(Bundle savedInstanceState, String rootKey)
 		{
 			setPreferencesFromResource(R.xml.pref_headers, rootKey);
+		}
+	}
+
+	@SuppressWarnings("WeakerAccess")
+	public static class Header2Fragment extends PreferenceFragmentCompat
+	{
+		@Override
+		public void onCreatePreferences(Bundle savedInstanceState, String rootKey)
+		{
+			setPreferencesFromResource(R.xml.pref_headers2, rootKey);
 		}
 	}
 
