@@ -4,8 +4,6 @@
 
 package org.sqlunet.download;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -27,11 +25,6 @@ public class DownloadActivity extends AppCompatActivity
 {
 	static private final String TAG = "DownloadA";
 
-	/**
-	 * Result extra
-	 */
-	static private final String RESULT_DOWNLOAD_DATA_AVAILABLE = "download_data_available";
-
 	@Override
 	protected void onCreate(@Nullable final Bundle savedInstanceState)
 	{
@@ -50,8 +43,10 @@ public class DownloadActivity extends AppCompatActivity
 
 		// set up the action bar
 		final ActionBar actionBar = getSupportActionBar();
-		assert actionBar != null;
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
+		if (actionBar != null)
+		{
+			actionBar.setDisplayShowTitleEnabled(true);
+		}
 
 		if (savedInstanceState == null)
 		{
@@ -74,29 +69,5 @@ public class DownloadActivity extends AppCompatActivity
 					.replace(R.id.container, downloadFragment) //
 					.commit();
 		}
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
-	{
-		if (item.getItemId() == android.R.id.home)
-		{
-			Log.d(TAG, "onOptionsItemSelected(android.R.id.home)");
-		}
-		return super.onOptionsItemSelected(item);
-	}
-
-	@Override
-	public void onBackPressed()
-	{
-		super.onBackPressed();
-		Log.d(TAG, "onBackPressed()");
-	}
-
-	@Override
-	public boolean onNavigateUp()
-	{
-		Log.d(TAG, "onNavigateUp()");
-		return super.onNavigateUp();
 	}
 }
