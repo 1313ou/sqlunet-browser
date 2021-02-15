@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
+import org.sqlunet.browser.config.LoadActivity;
 import org.sqlunet.browser.config.SetupAsset;
 import org.sqlunet.browser.config.Status;
 import org.sqlunet.settings.Settings;
@@ -45,9 +46,6 @@ public class EntryActivity extends AppCompatActivity
 		{
 			SetupAsset.disposeAllAssets(this);
 		}
-
-		// dispatch
-		dispatch();
 	}
 
 	@Override
@@ -55,8 +53,22 @@ public class EntryActivity extends AppCompatActivity
 	{
 		super.onNewIntent(intent);
 		Log.d(TAG, "lifecycle: OnNewIntent()");
+	}
+
+	@Override
+	protected void onResume()
+	{
+		super.onResume();
+		Log.d(TAG, "lifecycle: OnResume()");
 
 		dispatch();
+	}
+
+	@Override
+	protected void onDestroy()
+	{
+		super.onDestroy();
+		Log.d(TAG, "lifecycle: onDestroy()");
 	}
 
 	/**
@@ -76,30 +88,19 @@ public class EntryActivity extends AppCompatActivity
 		final String clazz = Settings.getLaunchPref(this); // = "org.sqlunet.browser.MainActivity";
 		final Intent intent = new Intent();
 		intent.setClassName(this, clazz);
-		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		intent.putExtra(Status.CANTRUN, false);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(intent);
+		finish();
 	}
 
 	/**
 	 * Branch off to load activity
+	 *
 	 * @param activity activity to branch from
 	 */
 	static public void branchOffToLoadIfCantRun(@NonNull final AppCompatActivity activity)
 	{
-		boolean canRun;
-		final Intent currentIntent = activity.getIntent();
-		final Bundle extras = currentIntent.getExtras();
-		boolean checked = extras != null && extras.containsKey(Status.CANTRUN);
-		if (checked)
-		{
-			canRun = !currentIntent.getBooleanExtra(Status.CANTRUN, true);
-		}
-		else
-		{
-			// check now
-			canRun = Status.canRun(activity);
-		}
+		boolean canRun = Status.canRun(activity);
 		if (!canRun)
 		{
 			branchOffToLoad(activity);
@@ -115,8 +116,7 @@ public class EntryActivity extends AppCompatActivity
 	{
 		//final Intent intent = new Intent(activity, StatusActivity.class);
 		final Intent intent = new Intent(activity, LoadActivity.class);
-		intent.putExtra(Status.CANTRUN, true);
-		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		activity.startActivity(intent);
 	}
 
