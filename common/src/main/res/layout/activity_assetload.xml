@@ -26,11 +26,11 @@
 		tools:ignore="MergeRootFrame">
 
 		<androidx.fragment.app.FragmentContainerView
-			android:id="@+id/fragment_asset"
+			android:id="@+id/fragment_assetload"
 			android:name="org.sqlunet.browser.config.AssetLoadFragment"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			tools:layout="@layout/fragment_asset"/>
+			tools:layout="@layout/fragment_assetload"/>
 
 	</FrameLayout>
 

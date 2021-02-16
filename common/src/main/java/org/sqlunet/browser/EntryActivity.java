@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import org.sqlunet.browser.config.AssetLoadActivity;
+import org.sqlunet.browser.config.LoadActivity;
 import org.sqlunet.browser.config.SetupAsset;
 import org.sqlunet.browser.config.Status;
 import org.sqlunet.settings.Settings;
@@ -114,22 +115,9 @@ public class EntryActivity extends AppCompatActivity
 	 */
 	private static void branchOffToLoad(@NonNull final AppCompatActivity activity)
 	{
-		//final Intent intent = new Intent(activity, StatusActivity.class);
-		final Intent intent = new Intent(activity, AssetLoadActivity.class);
+		final Intent intent = new Intent(activity, LoadActivity.class);
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		activity.startActivity(intent);
-	}
-
-	/**
-	 * Rerun entry activity. If a task is running with entry activity running, bring it to the foreground and dispatch onNewIntent(). Otherwise, entry activity is started in new task.
-	 *
-	 * @param context context
-	 */
-	static public void reenter(@NonNull final Context context)
-	{
-		final Intent intent = new Intent(context, EntryActivity.class);
-		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-		context.startActivity(intent);
 	}
 
 	/**

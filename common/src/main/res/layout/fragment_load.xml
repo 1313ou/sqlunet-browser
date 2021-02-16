@@ -73,7 +73,7 @@
 		android:layout_gravity="center_horizontal"
 		android:background="@drawable/bg_button_action"
 		android:contentDescription="@string/action_assetload"
-		android:src="@drawable/ic_run"
+		android:src="@drawable/bn_assetload"
 		android:text="@string/action_assetload" />
 
 	<TextView
@@ -103,7 +103,7 @@
 		android:layout_gravity="center_horizontal"
 		android:background="@drawable/bg_button_action"
 		android:contentDescription="@string/action_download"
-		android:src="@drawable/ic_run"
+		android:src="@drawable/bn_download"
 		android:text="@string/action_download" />
 
 	<TextView
