@@ -10,7 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
-import org.sqlunet.browser.config.LoadActivity;
+import org.sqlunet.browser.config.AssetLoadActivity;
 import org.sqlunet.browser.config.SetupAsset;
 import org.sqlunet.browser.config.Status;
 import org.sqlunet.settings.Settings;
@@ -115,7 +115,7 @@ public class EntryActivity extends AppCompatActivity
 	private static void branchOffToLoad(@NonNull final AppCompatActivity activity)
 	{
 		//final Intent intent = new Intent(activity, StatusActivity.class);
-		final Intent intent = new Intent(activity, LoadActivity.class);
+		final Intent intent = new Intent(activity, AssetLoadActivity.class);
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		activity.startActivity(intent);
 	}

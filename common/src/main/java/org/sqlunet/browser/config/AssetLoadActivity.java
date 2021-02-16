@@ -23,7 +23,7 @@ import androidx.appcompat.widget.Toolbar;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class LoadActivity extends AppCompatActivity
+public class AssetLoadActivity extends AppCompatActivity
 {
 	static private final String TAG = "LoadA";
 
@@ -33,7 +33,7 @@ public class LoadActivity extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 
 		// content
-		setContentView(R.layout.activity_load);
+		setContentView(R.layout.activity_assetload);
 
 		// toolbar
 		final Toolbar toolbar = findViewById(R.id.toolbar);
