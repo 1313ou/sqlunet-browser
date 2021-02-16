@@ -31,7 +31,7 @@ import androidx.fragment.app.Fragment;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class AssetFragment extends Fragment implements TaskObserver.Observer<Number>
+public class AssetLoadFragment extends Fragment implements TaskObserver.Observer<Number>
 {
 	static private final String TAG = "AssetF";
 
@@ -53,7 +53,7 @@ public class AssetFragment extends Fragment implements TaskObserver.Observer<Num
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */
-	public AssetFragment()
+	public AssetLoadFragment()
 	{
 	}
 

@@ -50,6 +50,12 @@
 		</activity>
 
 		<activity
+			android:name="org.sqlunet.browser.config.AssetLoadActivity"
+			android:label="@string/title_activity_assetload"
+			android:launchMode="singleTop">
+		</activity>
+
+		<activity
 			android:name="org.sqlunet.browser.config.DownloadActivity"
 			android:label="@string/title_activity_load"
 			android:launchMode="singleTop">
