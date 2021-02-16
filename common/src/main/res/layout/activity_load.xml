@@ -27,7 +27,7 @@
 
 		<androidx.fragment.app.FragmentContainerView
 			android:id="@+id/fragment_asset"
-			android:name="org.sqlunet.browser.AssetFragment"
+			android:name="org.sqlunet.browser.config.AssetFragment"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			tools:layout="@layout/fragment_asset"/>

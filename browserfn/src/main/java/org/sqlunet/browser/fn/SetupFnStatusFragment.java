@@ -2,7 +2,7 @@
  * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
-package org.sqlunet.browser.wn;
+package org.sqlunet.browser.fn;
 
 import android.app.Activity;
 import android.content.Context;
@@ -21,7 +21,6 @@ import org.sqlunet.browser.ColorUtils;
 import org.sqlunet.browser.Info;
 import org.sqlunet.browser.config.SetupDatabaseActivity;
 import org.sqlunet.browser.config.SetupDatabaseFragment;
-import org.sqlunet.browser.wn.lib.R;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
 
@@ -35,20 +34,20 @@ import androidx.core.widget.ImageViewCompat;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class SetupXStatusFragment extends org.sqlunet.browser.config.SetupStatusFragment
+public class SetupFnStatusFragment extends org.sqlunet.browser.config.SetupStatusFragment
 {
 	static private final String TAG = "SetupStatusF";
 
 	// components
 
-	private ImageView imageTextSearchWn;
+	private ImageView imageTextSearchFn;
 
-	private ImageButton buttonTextSearchWn;
+	private ImageButton buttonTextSearchFn;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */
-	public SetupXStatusFragment()
+	public SetupFnStatusFragment()
 	{
 	}
 
@@ -60,27 +59,28 @@ public class SetupXStatusFragment extends org.sqlunet.browser.config.SetupStatus
 		assert view != null;
 
 		// images
-		this.imageTextSearchWn = view.findViewById(R.id.status_searchtext_wn);
+		this.imageTextSearchFn = view.findViewById(R.id.status_searchtext_fn);
 
 		// buttons
-		this.buttonTextSearchWn = view.findViewById(R.id.searchtextWnButton);
+		this.buttonTextSearchFn = view.findViewById(R.id.searchtextFnButton);
 
 		// click listeners
 		this.buttonDb.setOnClickListener(v -> download());
 		this.buttonIndexes.setOnClickListener(v -> index());
-		this.buttonTextSearchWn.setOnClickListener(v -> {
+		this.infoDatabaseButton.setOnClickListener(v -> info());
+		this.buttonTextSearchFn.setOnClickListener(v -> {
 
-			int index = getResources().getInteger(R.integer.sql_statement_do_ts_wn_position);
+			int index = getResources().getInteger(R.integer.sql_statement_do_ts_fn_position);
 			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
 			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-			startActivityForResult(intent, SetupXStatusFragment.REQUEST_MANAGE_CODE + index);
+			startActivityForResult(intent, SetupFnStatusFragment.REQUEST_MANAGE_CODE + index);
 		});
 
 		this.infoDatabaseButton.setOnClickListener(v -> {
 
 			final Activity activity = requireActivity();
 			final String database = StorageSettings.getDatabasePath(activity);
-			final String free = StorageUtils.getFree(activity, database);
+			final String free = StorageUtils.getFree(requireContext(), database);
 			final String source = StorageSettings.getDbDownloadSource(activity, org.sqlunet.download.Settings.Downloader.isZipDownloaderPref(activity));
 			final int status = Status.status(activity);
 			final boolean existsDb = (status & Status.EXISTS) != 0;
@@ -138,15 +138,15 @@ public class SetupXStatusFragment extends org.sqlunet.browser.config.SetupStatus
 				final Drawable okDrawable = ColorUtils.getDrawable(context, R.drawable.ic_ok);
 				final Drawable failDrawable = ColorUtils.getDrawable(context, R.drawable.ic_fail);
 
-				final boolean existsTsWn = (status & Status.EXISTS_TS_WN) != 0;
-				this.imageTextSearchWn.setImageDrawable(existsTsWn ? okDrawable : failDrawable);
-				ImageViewCompat.setImageTintMode(this.imageTextSearchWn, existsTsWn ? PorterDuff.Mode.SRC_IN : PorterDuff.Mode.DST);
-				this.buttonTextSearchWn.setVisibility(existsTsWn ? View.GONE : View.VISIBLE);
+				final boolean existsTsFn = (status & Status.EXISTS_TS_FN) != 0;
+				this.imageTextSearchFn.setImageDrawable(existsTsFn ? okDrawable : failDrawable);
+				ImageViewCompat.setImageTintMode(this.imageTextSearchFn, existsTsFn ? PorterDuff.Mode.SRC_IN : PorterDuff.Mode.DST);
+				this.buttonTextSearchFn.setVisibility(existsTsFn ? View.GONE : View.VISIBLE);
 			}
 			else
 			{
-				this.imageTextSearchWn.setImageResource(R.drawable.ic_unknown);
-				this.buttonTextSearchWn.setVisibility(View.GONE);
+				this.buttonTextSearchFn.setVisibility(View.GONE);
+				this.imageTextSearchFn.setImageResource(R.drawable.ic_unknown);
 			}
 		}
 	}

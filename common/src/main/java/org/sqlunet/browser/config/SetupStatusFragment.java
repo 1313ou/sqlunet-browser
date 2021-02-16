@@ -41,7 +41,7 @@ import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
 import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_TO_ARG;
 
 /**
- * Status fragment
+ * Base Status fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */

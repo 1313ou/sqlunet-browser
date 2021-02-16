@@ -2,7 +2,7 @@
  * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
-package org.sqlunet.browser;
+package org.sqlunet.browser.config;
 
 import android.content.Context;
 import android.os.Bundle;
