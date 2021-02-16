@@ -47,6 +47,7 @@
 
 	<!-- misc -->
 	<string name="action_clear_sql">Clear SQLs</string>
+	<string name="action_assetload">Asset load</string>
 	<string name="action_download">Download</string>
 	<string name="action_help">Help</string>
 	<string name="action_credits">Credits</string>
@@ -94,10 +95,9 @@
 	<string name="title_activity_setup_database">Set up database</string>
 	<string name="title_activity_storage">Storage</string>
 	<string name="title_activity_update">Update</string>
+	<string name="title_activity_load">Load</string>
 	<string name="title_activity_download">Download</string>
 	<string name="title_activity_assetload">Asset load</string>
-	<!--<string name="title_activity_share_browse">Browse with Semantikos</string>-->
-	<!--<string name="title_activity_share_searchtext">Text search with Semantikos</string>-->
 
 	<string name="title_activity_selector">Select</string>
 	<string name="title_email_intent_selector">Choose an Email client</string>
@@ -143,7 +143,6 @@
 	<string name="status_download_paused_waiting_for_network">waiting for network</string>
 	<string name="status_download_paused_waiting_to_retry">waiting to retry</string>
 	<string name="status_state_unknown" />
-	<!--<string name="status_reason_unknown"/>-->
 	<string name="status_managing">Managing</string>
 	<string name="status_task_running">running</string>
 	<string name="status_task_done">done</string>
@@ -151,10 +150,6 @@
 	<string name="status_task_failed">failed</string>
 	<string name="status_task_start_toast">Task started</string>
 	<string name="status_task_done_toast">Task done</string>
-	<!--<string name="status_task_success_summary">Task succeeded</string>-->
-	<!--<string name="status_task_failed_summary">Task failed</string>-->
-	<!--<string name="status_error_null_download_url">Null download URL (see Settings)</string>-->
-	<!--<string name="status_provider_query_failed">Could not perform query, cause is logged</string>-->
 	<string name="status_viewer_failed">No viewer</string>
 
 	<!-- copy -->
@@ -201,10 +196,13 @@
 	<!-- dialog -->
 	<string name="yes">Yes</string>
 	<string name="no">No</string>
-	<!--<string name="askDownload">Do you wish to download ?</string>-->
-	<!--<string name="askUpdate">Do you wish to update ?</string>-->
 	<string name="ask_drop">Do you wish to drop the database ?</string>
 	<string name="asset_delivery">Asset Pack delivery</string>
 	<string name="asset_delivery_message">Database is being delivered as an asset pack.\nThis may take some time.</string>
+
+	<!-- gloss -->
+	<string name="gloss_load">You need to acquire database</string>
+	<string name="gloss_assetload">Load database from the bundle associated with the application. This is the recommended way.</string>
+	<string name="gloss_download">Download database from external site.</string>
 
 </resources>

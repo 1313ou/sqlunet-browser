@@ -14,21 +14,22 @@ import org.sqlunet.browser.MenuHandler;
 import org.sqlunet.browser.common.R;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 /**
- * Status activity
+ * Asset load activity
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class AssetLoadActivity extends AppCompatActivity
 {
-	static private final String TAG = "LoadA";
+	static private final String TAG = "AssetLoadA";
 
 	@Override
-	protected void onCreate(final Bundle savedInstanceState)
+	public void onCreate(@Nullable final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 
@@ -39,7 +40,7 @@ public class AssetLoadActivity extends AppCompatActivity
 		final Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
 
-		// actionbar
+		// set up the action bar
 		final ActionBar actionBar = getSupportActionBar();
 		if (actionBar != null)
 		{
