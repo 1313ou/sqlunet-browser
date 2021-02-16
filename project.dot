@@ -13,8 +13,8 @@ digraph {
   ":browsersn" [fillcolor="#baffc9"];
   ":browservn" [fillcolor="#baffc9"];
   ":browserwn" [fillcolor="#baffc9"];
+  ":browserwncommon" [fillcolor="#baffc9"];
   ":common" [fillcolor="#baffc9"];
-  ":commonwn" [fillcolor="#baffc9"];
   ":concurrency" [fillcolor="#baffc9"];
   ":db_ewn_asset" [fillcolor="#eeeeee"];
   ":db_wn31_asset" [fillcolor="#eeeeee"];
@@ -72,7 +72,7 @@ digraph {
   ":browser" -> ":bNC" [color=blue]
   ":browserewn" -> ":test" [color=blue]
   ":browserewn" -> ":dbewn_ewn_asset"
-  ":browserewn" -> ":commonwn" [color=blue]
+  ":browserewn" -> ":browserwncommon" [color=blue]
   ":browserfn" -> ":test" [color=blue]
   ":browserfn" -> ":dbfn_wn31_asset"
   ":browserfn" -> ":dbfn_ewn_asset"
@@ -118,7 +118,18 @@ digraph {
   ":browservn" -> ":propbank" [color=blue]
   ":browserwn" -> ":test" [color=blue]
   ":browserwn" -> ":dbwn_wn31_asset"
-  ":browserwn" -> ":commonwn" [color=blue]
+  ":browserwn" -> ":browserwncommon" [color=blue]
+  ":browserwncommon" -> ":test" [color=blue]
+  ":browserwncommon" -> ":common"
+  ":browserwncommon" -> ":expandableListFragment"
+  ":browserwncommon" -> ":assetpacks"
+  ":browserwncommon" -> ":download"
+  ":browserwncommon" -> ":deploy"
+  ":browserwncommon" -> ":others"
+  ":browserwncommon" -> ":donate"
+  ":browserwncommon" -> ":xNet"
+  ":browserwncommon" -> ":wordNet"
+  ":browserwncommon" -> ":bNC"
   ":common" -> ":expandableListFragment" [color=blue]
   ":common" -> ":concurrency" [color=blue]
   ":common" -> ":preference" [color=blue]
@@ -129,17 +140,6 @@ digraph {
   ":common" -> ":rate" [color=blue]
   ":common" -> ":xNet" [color=blue]
   ":common" -> ":assetpacks" [color=blue]
-  ":commonwn" -> ":test" [color=blue]
-  ":commonwn" -> ":common"
-  ":commonwn" -> ":expandableListFragment"
-  ":commonwn" -> ":assetpacks"
-  ":commonwn" -> ":download"
-  ":commonwn" -> ":deploy"
-  ":commonwn" -> ":others"
-  ":commonwn" -> ":donate"
-  ":commonwn" -> ":xNet"
-  ":commonwn" -> ":wordNet"
-  ":commonwn" -> ":bNC"
   ":deploy" -> ":concurrency" [color=blue]
   ":download" -> ":deploy" [color=blue]
   ":download" -> ":concurrency" [color=blue]

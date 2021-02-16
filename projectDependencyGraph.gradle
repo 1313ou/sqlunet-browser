@@ -1,8 +1,11 @@
 // From https://github.com/JakeWharton/SdkSearch/blob/master/gradle/projectDependencyGraph.gradle
 // The only difference here is the output directory.
 
-// Add this file in your gradle directory and the following line at the bottom of your build file:
-// apply from: file('gradle/projectDependencyGraph.gradle')
+// Add this file in your project directory
+// Add the following line at the bottom of your master build.gradle file:
+// 		apply from: file('projectDependencyGraph.gradle')
+// Run
+// ./gradlew projectDependencyGraph
 
 task projectDependencyGraph {
   doLast {
