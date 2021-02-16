@@ -62,8 +62,8 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.browser.config.LoadActivity"
-			android:label="@string/title_activity_load"
+			android:name="org.sqlunet.browser.config.AssetLoadActivity"
+			android:label="@string/title_activity_assetload"
 			android:launchMode="singleTop"
 			android:noHistory="true" />
 
