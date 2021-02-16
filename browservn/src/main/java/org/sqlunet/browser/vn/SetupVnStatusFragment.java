@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2020. Bernard Bou <1313ou@gmail.com>.
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
-package org.sqlunet.browser.sn;
+package org.sqlunet.browser.vn;
 
 import android.app.Activity;
 import android.content.Context;
@@ -34,20 +34,24 @@ import androidx.core.widget.ImageViewCompat;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class SetupXStatusFragment extends org.sqlunet.browser.config.SetupStatusFragment
+public class SetupVnStatusFragment extends org.sqlunet.browser.config.SetupStatusFragment
 {
 	static private final String TAG = "SetupStatusF";
 
 	// components
 
-	private ImageView imageTextSearchWn;
+	private ImageView imageTextSearchVn;
 
-	private ImageButton buttonTextSearchWn;
+	private ImageView imageTextSearchPb;
+
+	private ImageButton buttonTextSearchVn;
+
+	private ImageButton buttonTextSearchPb;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */
-	public SetupXStatusFragment()
+	public SetupVnStatusFragment()
 	{
 	}
 
@@ -59,20 +63,30 @@ public class SetupXStatusFragment extends org.sqlunet.browser.config.SetupStatus
 		assert view != null;
 
 		// images
-		this.imageTextSearchWn = view.findViewById(R.id.status_searchtext_wn);
+		this.imageTextSearchVn = view.findViewById(R.id.status_searchtext_vn);
+		this.imageTextSearchPb = view.findViewById(R.id.status_searchtext_pb);
 
-		// button
-		this.buttonTextSearchWn = view.findViewById(R.id.searchtextWnButton);
+		// buttons
+		this.buttonTextSearchVn = view.findViewById(R.id.searchtextVnButton);
+		this.buttonTextSearchPb = view.findViewById(R.id.searchtextPbButton);
 
 		// click listeners
 		this.buttonDb.setOnClickListener(v -> download());
 		this.buttonIndexes.setOnClickListener(v -> index());
-		this.buttonTextSearchWn.setOnClickListener(v -> {
+		this.infoDatabaseButton.setOnClickListener(v -> info());
+		this.buttonTextSearchVn.setOnClickListener(v -> {
 
-			int index = getResources().getInteger(R.integer.sql_statement_do_ts_wn_position);
+			int index = getResources().getInteger(R.integer.sql_statement_do_ts_vn_position);
 			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
 			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-			startActivityForResult(intent, SetupXStatusFragment.REQUEST_MANAGE_CODE + index);
+			startActivityForResult(intent, SetupVnStatusFragment.REQUEST_MANAGE_CODE + index);
+		});
+		this.buttonTextSearchPb.setOnClickListener(v -> {
+
+			int index = getResources().getInteger(R.integer.sql_statement_do_ts_pb_position);
+			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
+			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
+			startActivityForResult(intent, SetupVnStatusFragment.REQUEST_MANAGE_CODE + index);
 		});
 
 		this.infoDatabaseButton.setOnClickListener(v -> {
@@ -81,20 +95,19 @@ public class SetupXStatusFragment extends org.sqlunet.browser.config.SetupStatus
 			final String database = StorageSettings.getDatabasePath(activity);
 			final String free = StorageUtils.getFree(activity, database);
 			final String source = StorageSettings.getDbDownloadSource(activity, org.sqlunet.download.Settings.Downloader.isZipDownloaderPref(activity));
-			final int status = org.sqlunet.browser.config.Status.status(activity);
-			final boolean existsDb = (status & org.sqlunet.browser.config.Status.EXISTS) != 0;
-			final boolean existsTables = (status & org.sqlunet.browser.config.Status.EXISTS_TABLES) != 0;
+			final int status = Status.status(activity);
+			final boolean existsDb = (status & Status.EXISTS) != 0;
+			final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
 			if (existsDb)
 			{
 				final long size = new File(database).length();
 				final String hrSize = StorageUtils.countToStorageString(size) + " (" + size + ')';
 				Info.info(activity, R.string.title_status, //
 						getString(R.string.title_database), database, //
-						getString(R.string.title_status), getString(R.string.status_database_exists), //
-						getString(R.string.title_status), getString(existsTables ? R.string.status_data_exists : R.string.status_data_not_exists), //
+						getString(R.string.title_status), getString(R.string.status_database_exists) + '-' + getString(existsTables ? R.string.status_data_exists : R.string.status_data_not_exists), //
 						getString(R.string.title_free), free, //
 						getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
-						getString(R.string.size_expected) + ' ' +  getString(R.string.text_search) + ' ' + getString(R.string.wordnet), getString(R.string.hr_size_searchtext), //
+						getString(R.string.size_expected) + ' ' + getString(R.string.text_search), getString(R.string.hr_size_searchtext), //
 						getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
 						getString(R.string.size_current), hrSize);
 			}
@@ -105,7 +118,8 @@ public class SetupXStatusFragment extends org.sqlunet.browser.config.SetupStatus
 						getString(R.string.title_from), source, //
 						getString(R.string.title_database), database, //
 						getString(R.string.title_free), free, //
-						getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.wordnet), getString(R.string.hr_size_searchtext), //
+						getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
+						getString(R.string.size_expected) + ' ' + getString(R.string.text_search), getString(R.string.hr_size_searchtext), //
 						getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
 						getString(R.string.title_status), getString(R.string.status_database_not_exists));
 			}
@@ -133,20 +147,25 @@ public class SetupXStatusFragment extends org.sqlunet.browser.config.SetupStatus
 			final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
 			if (existsDb && existsTables)
 			{
-				final boolean existsTsWn = (status & Status.EXISTS_TS_WN) != 0;
-
 				// images
 				final Drawable okDrawable = ColorUtils.getDrawable(context, R.drawable.ic_ok);
 				final Drawable failDrawable = ColorUtils.getDrawable(context, R.drawable.ic_fail);
 
-				this.imageTextSearchWn.setImageDrawable(existsTsWn ? okDrawable : failDrawable);
-				ImageViewCompat.setImageTintMode(this.imageTextSearchWn, existsTsWn ? PorterDuff.Mode.SRC_IN : PorterDuff.Mode.DST);
-				this.buttonTextSearchWn.setVisibility(existsTsWn ? View.GONE : View.VISIBLE);
+				final boolean existsTsVn = (status & Status.EXISTS_TS_VN) != 0;
+				final boolean existsTsPb = (status & Status.EXISTS_TS_PB) != 0;
+				this.imageTextSearchVn.setImageDrawable(existsTsVn ? okDrawable : failDrawable);
+				ImageViewCompat.setImageTintMode(this.imageTextSearchVn, existsTsPb ? PorterDuff.Mode.SRC_IN : PorterDuff.Mode.DST);
+				this.imageTextSearchPb.setImageDrawable(existsTsPb ? okDrawable : failDrawable);
+				ImageViewCompat.setImageTintMode(this.imageTextSearchPb, existsTsPb ? PorterDuff.Mode.SRC_IN : PorterDuff.Mode.DST);
+				this.buttonTextSearchVn.setVisibility(existsTsVn ? View.GONE : View.VISIBLE);
+				this.buttonTextSearchPb.setVisibility(existsTsPb ? View.GONE : View.VISIBLE);
 			}
 			else
 			{
-				this.imageTextSearchWn.setImageResource(R.drawable.ic_unknown);
-				this.buttonTextSearchWn.setVisibility(View.GONE);
+				this.buttonTextSearchVn.setVisibility(View.GONE);
+				this.imageTextSearchVn.setImageResource(R.drawable.ic_unknown);
+				this.buttonTextSearchPb.setVisibility(View.GONE);
+				this.imageTextSearchPb.setImageResource(R.drawable.ic_unknown);
 			}
 		}
 	}
