@@ -17,6 +17,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 
+/**
+ * Download activity
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
 public class DownloadActivity extends org.sqlunet.download.DownloadActivity
 {
 	static private final String TAG = "DownloadA";
