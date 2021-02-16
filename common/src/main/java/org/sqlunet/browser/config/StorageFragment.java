@@ -26,7 +26,7 @@ import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 /**
- * Storage activity
+ * Storage fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
