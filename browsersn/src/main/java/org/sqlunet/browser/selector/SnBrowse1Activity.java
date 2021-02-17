@@ -4,13 +4,11 @@
 
 package org.sqlunet.browser.selector;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 
 import org.sqlunet.browser.AbstractBrowse1Activity;
 import org.sqlunet.browser.sn.R;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;

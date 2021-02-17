@@ -40,6 +40,7 @@ public class SqlunetViewTreeModel extends AndroidViewModel
 		super(application);
 	}
 
+	@SuppressWarnings("UnusedReturnValue")
 	@SuppressLint("StaticFieldLeak")
 	public void loadData(@NonNull final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder, @NonNull final ToTreeOps treeConverter)
 	{

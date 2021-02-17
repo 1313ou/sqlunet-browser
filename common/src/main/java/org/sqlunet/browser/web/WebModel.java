@@ -34,6 +34,7 @@ public class WebModel extends ViewModel
 	}
 
 	@SuppressLint("StaticFieldLeak")
+	@SuppressWarnings("UnusedReturnValue")
 	public void loadData(@NonNull final DocumentStringLoader loader)
 	{
 		new Task<Void, Void, String>()

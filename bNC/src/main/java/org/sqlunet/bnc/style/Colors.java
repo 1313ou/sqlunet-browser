@@ -29,6 +29,7 @@ public class Colors
 		int[] palette = context.getResources().getIntArray(R.array.palette_bnc);
 		int i = 0;
 		bncHeaderBackColor = palette[i++];
+		//noinspection UnusedAssignment
 		bncHeaderForeColor = palette[i++];
 	}
 }

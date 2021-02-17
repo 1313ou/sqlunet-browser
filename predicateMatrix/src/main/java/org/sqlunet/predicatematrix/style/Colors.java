@@ -40,6 +40,7 @@ public class Colors
 		groupForeColor = palette[i++];
 
 		roleAliasBackColor = palette[i++];
+		//noinspection UnusedAssignment
 		roleAliasForeColor = palette[i++];
 	}
 }

@@ -1,7 +1,5 @@
 package org.sqlunet.browser;
 
-import org.junit.Before;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import androidx.appcompat.app.AppCompatDelegate;

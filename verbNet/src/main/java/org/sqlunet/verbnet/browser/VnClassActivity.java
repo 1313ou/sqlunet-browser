@@ -4,8 +4,6 @@
 
 package org.sqlunet.verbnet.browser;
 
-import android.content.res.Configuration;
-
 import org.sqlunet.browser.AbstractActivity;
 import org.sqlunet.verbnet.R;
 

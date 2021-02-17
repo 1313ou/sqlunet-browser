@@ -10,7 +10,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
-import org.sqlunet.browser.config.AssetLoadActivity;
 import org.sqlunet.browser.config.LoadActivity;
 import org.sqlunet.browser.config.SetupAsset;
 import org.sqlunet.browser.config.Status;

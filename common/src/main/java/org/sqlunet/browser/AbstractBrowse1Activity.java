@@ -5,11 +5,7 @@
 package org.sqlunet.browser;
 
 import android.content.res.Configuration;
-import android.util.Log;
 
-import org.sqlunet.provider.BaseProvider;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public abstract class AbstractBrowse1Activity extends AppCompatActivity

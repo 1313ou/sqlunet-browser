@@ -303,7 +303,6 @@ public class Spanner
 	 * @param factories span factories
 	 * @return input spannable string builder
 	 */
-	@SuppressWarnings("unchecked")
 	@NonNull
 	static public Appendable append(@NonNull final SpannableStringBuilder sb, @Nullable final CharSequence text, @SuppressWarnings("SameParameterValue") final long flags, @Nullable final SpanFactory... factories)
 	{

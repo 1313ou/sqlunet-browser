@@ -58,6 +58,7 @@ public class Colors
 		definition2ForeColor = palette[i++];
 
 		idsBackColor = palette[i++];
+		//noinspection UnusedAssignment
 		idsForeColor = palette[i++];
 	}
 }

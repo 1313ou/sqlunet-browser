@@ -5,15 +5,12 @@
 package org.sqlunet.browser.xn;
 
 import android.content.Context;
-import android.content.res.Configuration;
 
 import org.sqlunet.browser.AbstractApplication;
-import org.sqlunet.browser.R;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.style.Colors;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.view.ContextThemeWrapper;
 
 public class Application extends AbstractApplication
 {

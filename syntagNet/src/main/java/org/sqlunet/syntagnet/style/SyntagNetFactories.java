@@ -18,10 +18,6 @@ import org.sqlunet.style.Spanner.SpanFactory;
  */
 public class SyntagNetFactories
 {
-	static public final int COLOR1 = 0xFFE46D42;
-
-	static public final int COLOR2 = 0xFF76608B;
-
 	static public final SpanFactory collocationFactory = flags -> Factories.spans(Colors.collocationBackColor, Colors.collocationForeColor, new StyleSpan(Typeface.BOLD));
 
 	static public final SpanFactory word1Factory = flags -> Factories.spans(Colors.word1BackColor, Colors.word1ForeColor, new StyleSpan(Typeface.BOLD));

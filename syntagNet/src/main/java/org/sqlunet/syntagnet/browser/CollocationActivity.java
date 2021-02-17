@@ -4,8 +4,6 @@
 
 package org.sqlunet.syntagnet.browser;
 
-import android.content.res.Configuration;
-
 import org.sqlunet.browser.AbstractActivity;
 import org.sqlunet.syntagnet.R;
 

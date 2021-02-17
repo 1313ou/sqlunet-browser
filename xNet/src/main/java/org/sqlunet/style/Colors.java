@@ -155,6 +155,7 @@ public class Colors
 		dirOkForeColor = palette[i++];
 
 		dirFailBackColor = palette[i++];
+		//noinspection UnusedAssignment
 		dirFailForeColor = palette[i++];
 	}
 

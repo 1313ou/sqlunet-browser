@@ -14,7 +14,6 @@ import com.google.android.play.core.assetpacks.AssetPackManager;
 import com.google.android.play.core.assetpacks.AssetPackManagerFactory;
 
 import org.sqlunet.assetpack.AssetPackLoader;
-import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.concurrency.TaskObserver;
 import org.sqlunet.download.FileAsyncTask;

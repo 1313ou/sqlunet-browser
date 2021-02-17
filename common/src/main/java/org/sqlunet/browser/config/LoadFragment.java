@@ -64,10 +64,7 @@ public class LoadFragment extends Fragment
 			activity.startActivity(intent);
 		});
 		final Button cancelButton = view.findViewById(R.id.cancelButton);
-		cancelButton.setOnClickListener((v) -> {
-
-			requireActivity().finish();
-		});
+		cancelButton.setOnClickListener((v) -> requireActivity().finish());
 		return view;
 	}
 }

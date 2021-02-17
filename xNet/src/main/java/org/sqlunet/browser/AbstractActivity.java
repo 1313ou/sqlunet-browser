@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
-import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.xnet.R;
 
 import androidx.annotation.NonNull;
@@ -75,12 +74,6 @@ abstract public class AbstractActivity extends AppCompatActivity
 		super.onNightModeChanged(mode);
 		final Configuration overrideConfig = createOverrideConfigurationForDayNight(this, mode);
 		getApplication().onConfigurationChanged(overrideConfig);
-	}
-
-	@Override
-	protected void onDestroy()
-	{
-		super.onDestroy();
 	}
 
 	@NonNull

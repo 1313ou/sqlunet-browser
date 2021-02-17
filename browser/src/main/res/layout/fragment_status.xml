@@ -55,17 +55,23 @@
 					<ImageView
 						android:id="@+id/status_database"
 						style="@style/GridStatusImage"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
 						android:contentDescription="@string/status_database" />
 
 					<ImageButton
 						android:id="@+id/databaseButton"
 						style="@style/GridActionButton"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
 						android:contentDescription="@string/status_database"
 						android:src="@drawable/bn_download" />
 
 					<ImageButton
 						android:id="@+id/info_database"
 						style="@style/GridInfoButton"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
 						android:contentDescription="@string/hint_database"
 						android:src="@drawable/bn_info" />
 
@@ -82,12 +88,16 @@
 					<ImageView
 						android:id="@+id/status_predicatematrix"
 						style="@style/GridStatusImage"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
 						android:contentDescription="@string/status_predicatematrix"
 						tools:ignore="InconsistentLayout" />
 
 					<ImageButton
 						android:id="@+id/predicatematrixButton"
 						style="@style/GridActionButton"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
 						android:contentDescription="@string/status_predicatematrix"
 						android:src="@drawable/bn_setup"
 						tools:ignore="InconsistentLayout" />
@@ -105,11 +115,15 @@
 					<ImageView
 						android:id="@+id/status_indexes"
 						style="@style/GridStatusImage"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
 						android:contentDescription="@string/status_indexes" />
 
 					<ImageButton
 						android:id="@+id/indexesButton"
 						style="@style/GridActionButton"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
 						android:contentDescription="@string/status_indexes"
 						android:src="@drawable/bn_setup" />
 
@@ -126,15 +140,18 @@
 					<ImageView
 						android:id="@+id/status_searchtext_wn"
 						style="@style/GridStatusImage"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
 						android:contentDescription="@string/status_searchtext"
 						tools:ignore="InconsistentLayout" />
 
 					<ImageButton
 						android:id="@+id/searchtextWnButton"
 						style="@style/GridActionButton"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
 						android:contentDescription="@string/status_searchtext"
 						android:src="@drawable/bn_setup"
-
 						tools:ignore="InconsistentLayout" />
 
 				</LinearLayout>
@@ -150,12 +167,16 @@
 					<ImageView
 						android:id="@+id/status_searchtext_vn"
 						style="@style/GridStatusImage"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
 						android:contentDescription="@string/status_searchtext_vn"
 						tools:ignore="InconsistentLayout" />
 
 					<ImageButton
 						android:id="@+id/searchtextVnButton"
 						style="@style/GridActionButton"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
 						android:contentDescription="@string/status_searchtext_vn"
 						android:src="@drawable/bn_setup"
 						tools:ignore="InconsistentLayout" />
@@ -173,12 +194,16 @@
 					<ImageView
 						android:id="@+id/status_searchtext_pb"
 						style="@style/GridStatusImage"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
 						android:contentDescription="@string/status_searchtext_pb"
 						tools:ignore="InconsistentLayout" />
 
 					<ImageButton
 						android:id="@+id/searchtextPbButton"
 						style="@style/GridActionButton"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
 						android:contentDescription="@string/status_searchtext_pb"
 						android:src="@drawable/bn_setup"
 						tools:ignore="InconsistentLayout" />
@@ -196,6 +221,8 @@
 					<ImageView
 						android:id="@+id/status_searchtext_fn"
 						style="@style/GridStatusImage"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
 						android:contentDescription="@string/status_searchtext_fn"
 						tools:ignore="InconsistentLayout" />
 
@@ -203,6 +230,8 @@
 						android:id="@+id/searchtextFnButton"
 						style="@style/GridActionButton"
 						android:contentDescription="@string/status_searchtext_fn"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
 						android:src="@drawable/bn_setup"
 						tools:ignore="InconsistentLayout" />
 

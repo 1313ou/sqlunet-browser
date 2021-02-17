@@ -113,6 +113,7 @@ abstract class BaseModule extends Module
 	 * @param parent    parent node
 	 * @param displayer displayer
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	void fromWord(final String word, final TreeNode parent, final Displayer displayer)
 	{
 		new PmProcessOnIteration(parent, displayer)
@@ -139,6 +140,7 @@ abstract class BaseModule extends Module
 	 * @param word   word
 	 * @param parent parent node
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	void fromWordGrouped(final String word, final TreeNode parent)
 	{
 		new PmProcessGrouped(parent, new DisplayerByPmRole())
@@ -166,6 +168,7 @@ abstract class BaseModule extends Module
 	 * @param parent    parent node
 	 * @param displayer displayer
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	void fromRoleId(final long pmRoleId, final TreeNode parent, final Displayer displayer)
 	{
 		new PmProcessOnIteration(parent, displayer)

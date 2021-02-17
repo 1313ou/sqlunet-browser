@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 
 public class CursorDump
 {
-	static private final String TAG = "CursorDump";
+	// static private final String TAG = "CursorDump";
 
 	/**
 	 * Dump any cursor (discover its schema)

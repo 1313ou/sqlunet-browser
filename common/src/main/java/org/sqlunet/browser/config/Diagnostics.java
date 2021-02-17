@@ -77,7 +77,6 @@ public class Diagnostics
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	@NonNull
 	private static CharSequence report(@NonNull final Context context)
 	{

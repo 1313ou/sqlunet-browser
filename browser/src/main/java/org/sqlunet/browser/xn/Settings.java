@@ -8,8 +8,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import org.sqlunet.style.Colors;
-
 import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
 

@@ -34,7 +34,6 @@ public class LogUtils
 	 * @param append   whether to append to file
 	 * @param fileName file name
 	 */
-	@SuppressWarnings("deprecation")
 	@Nullable
 	static public String writeLog(final CharSequence text, final boolean append, @Nullable final String fileName)
 	{
