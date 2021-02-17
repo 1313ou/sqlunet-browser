@@ -28,6 +28,7 @@ import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.sql.SqlFormatter;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * PropBank provider
@@ -125,6 +126,7 @@ public class PropBankProvider extends BaseProvider
 
 	// M I M E
 
+	@NonNull
 	@Override
 	public String getType(@NonNull final Uri uri)
 	{
@@ -168,6 +170,7 @@ public class PropBankProvider extends BaseProvider
 
 	// Q U E R Y
 
+	@Nullable
 	@SuppressWarnings("boxing")
 	@Override
 	public Cursor query(@NonNull final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)

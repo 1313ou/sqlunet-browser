@@ -148,7 +148,7 @@ public class Settings
 	 * @param context context
 	 * @return etag
 	 */
-	public static String getDbSourceEtag(final Context context)
+	public static String getDbSourceEtag(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getString(Settings.PREF_DB_SOURCE_ETAG, null);
@@ -160,7 +160,7 @@ public class Settings
 	 * @param context context
 	 * @return version
 	 */
-	public static String getDbSourceVersion(final Context context)
+	public static String getDbSourceVersion(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getString(Settings.PREF_DB_SOURCE_VERSION, null);
@@ -172,7 +172,7 @@ public class Settings
 	 * @param context context
 	 * @return static version
 	 */
-	public static String getDbSourceStaticVersion(final Context context)
+	public static String getDbSourceStaticVersion(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getString(Settings.PREF_DB_SOURCE_STATIC_VERSION, null);

@@ -287,6 +287,7 @@ public abstract class BaseProvider extends ContentProvider
 		return true;
 	}
 
+	@Nullable
 	@SuppressWarnings("SameReturnValue")
 	@Override
 	public Bundle call(@NonNull final String method, final String arg, final Bundle extras)
@@ -364,6 +365,7 @@ public abstract class BaseProvider extends ContentProvider
 	}
 
 
+	@NonNull
 	@Override
 	public Uri insert(@NonNull final Uri uri, final ContentValues values)
 	{

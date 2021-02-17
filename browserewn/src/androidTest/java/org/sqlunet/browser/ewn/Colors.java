@@ -56,6 +56,7 @@ public class Colors extends TestCase
 
 	static private final int NOT_DEFINED = 0xAAAAAAAA;
 
+	@NonNull
 	static public Context getContext(int mode)
 	{
 		Context targetContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
@@ -111,6 +112,7 @@ public class Colors extends TestCase
 		}
 	}
 
+	@NonNull
 	static String colorToString(final int color)
 	{
 		switch (color)
@@ -155,6 +157,7 @@ public class Colors extends TestCase
 		a.recycle();
 	}
 
+	@NonNull
 	static int[] getDefaultColorAttrs(@NonNull final Context context)
 	{
 		@StyleableRes int[] resIds = new int[]{ //

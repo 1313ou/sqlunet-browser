@@ -6,6 +6,7 @@ package org.sqlunet.browser;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
@@ -27,6 +28,7 @@ public class PositionViewModel extends ViewModel
 		this.savedStateHandle.set("position", position);
 	}
 
+	@NonNull
 	public LiveData<Integer> getPositionLiveData()
 	{
 		return savedStateHandle.getLiveData("position");

@@ -19,6 +19,7 @@ import org.sqlunet.syntagnet.provider.SyntagNetContract.SnCollocations;
 import org.sqlunet.syntagnet.provider.SyntagNetContract.SnCollocations_X;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * SyntagNet provider
@@ -86,6 +87,7 @@ public class SyntagNetProvider extends BaseProvider
 
 	// M I M E
 
+	@NonNull
 	@Override
 	public String getType(@NonNull final Uri uri)
 	{
@@ -104,6 +106,7 @@ public class SyntagNetProvider extends BaseProvider
 
 	// Q U E R Y
 
+	@Nullable
 	@SuppressWarnings("boxing")
 	@Override
 	public Cursor query(@NonNull final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)

@@ -18,6 +18,7 @@ import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.sql.SqlFormatter;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * PredicateMatrix provider
@@ -83,6 +84,7 @@ public class PredicateMatrixProvider extends BaseProvider
 
 	// M I M E
 
+	@NonNull
 	@Override
 	public String getType(@NonNull final Uri uri)
 	{
@@ -99,6 +101,7 @@ public class PredicateMatrixProvider extends BaseProvider
 
 	// Q U E R Y
 
+	@Nullable
 	@SuppressWarnings("boxing")
 	@Override
 	public Cursor query(@NonNull final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)

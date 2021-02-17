@@ -212,6 +212,7 @@ public class SelectorsFragment extends ListFragment
 	/**
 	 * Make adapter
 	 */
+	@NonNull
 	private ListAdapter makeAdapter()
 	{
 		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(requireContext(), R.layout.item_selector, null, //

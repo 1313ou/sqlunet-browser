@@ -235,6 +235,7 @@ public class WordNetProvider extends BaseProvider
 
 	// M I M E
 
+	@NonNull
 	@SuppressWarnings("DuplicateBranchesInSwitch")
 	@Override
 	public String getType(@NonNull final Uri uri)

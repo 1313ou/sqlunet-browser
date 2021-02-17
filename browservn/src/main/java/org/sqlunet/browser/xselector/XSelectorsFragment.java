@@ -160,6 +160,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	/**
 	 * The current restored group state.
 	 */
+	@Nullable
 	private Integer restoredGroupState;
 
 	/**
@@ -350,6 +351,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	/**
 	 * Populate group cursor. Requires context to be available
 	 */
+	@NonNull
 	private static int[] populateGroupCursor(@NonNull final Context context, @NonNull final MatrixCursor cursor)
 	{
 		// fill groups
@@ -374,6 +376,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	/**
 	 * Make adapter
 	 */
+	@NonNull
 	private ExpandableListAdapter makeAdapter()
 	{
 		Log.d(TAG, "make adapter");
