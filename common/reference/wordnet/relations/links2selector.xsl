@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- RELATION 2 HTML SELECTORS - (C) 2020 Author: Bernard Bou -->
+<?xml version="1.0" encoding="UTF-8"?><!-- RELATION 2 HTML SELECTORS - (C) 2020 Author: Bernard Bou -->
 <xsl:transform version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:output method="html" indent="yes" encoding="UTF-8" doctype-system="about:legacy-compat" />
 
@@ -28,7 +27,7 @@ function select(tag)
 		e.style.visibility="visible";
 }
 ]]>
-</xsl:text>
+					</xsl:text>
 				</SCRIPT>
 			</HEAD>
 			<BODY>
@@ -41,11 +40,17 @@ function select(tag)
 
 	<xsl:template match="link">
 		<TR class='selector'>
-			<xsl:attribute name="onclick">javascript:select('<xsl:value-of select="./@id" />');</xsl:attribute>
+			<xsl:attribute name="onclick">javascript:select('<xsl:value-of select="./@id" />');
+			</xsl:attribute>
 			<TD style='vertical-align: top;'>
 				<IMG class="linkimage">
-					<xsl:attribute name="src"><xsl:copy-of select="$imagedir" /><xsl:value-of select="./img/@src" /></xsl:attribute>
-					<xsl:attribute name="alt"><xsl:value-of select="./@name" /></xsl:attribute>
+					<xsl:attribute name="src">
+						<xsl:copy-of select="$imagedir" />
+						<xsl:value-of select="./img/@src" />
+					</xsl:attribute>
+					<xsl:attribute name="alt">
+						<xsl:value-of select="./@name" />
+					</xsl:attribute>
 				</IMG>
 				<SPAN class="selectorname">
 					<xsl:value-of select="./@name" />

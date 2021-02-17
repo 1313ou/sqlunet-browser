@@ -1,21 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<!-- mode spinner -->
-	<string-array name="selectors_names">
-	</string-array>
-	<integer-array name="selectors_icons" tools:ignore="UnusedResources">
-	</integer-array>
+	<string-array name="selectors_names"></string-array>
+	<integer-array name="selectors_icons" tools:ignore="UnusedResources"></integer-array>
 
 	<!-- searchtext spinner -->
-	<string-array name="searchtext_modes">
-	</string-array>
-	<integer-array name="searchtext_icons" tools:ignore="UnusedResources">
-	</integer-array>
+	<string-array name="searchtext_modes"></string-array>
+	<integer-array name="searchtext_icons" tools:ignore="UnusedResources"></integer-array>
 
 	<!-- setup spinner -->
 	<string name="title_select">[SELECT OPERATION]</string>
@@ -39,7 +34,7 @@
 		<item>@string/title_setup_update</item>
 	</string-array>
 	<string-array name="setup_files_values" formatted="false">
-		<item/>
+		<item />
 		<item>CREATE</item>
 		<item>DROP</item>
 		<item>COPY</item>

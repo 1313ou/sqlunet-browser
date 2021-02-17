@@ -21,7 +21,7 @@ public class StatusFragment extends SetupStatusFragment
 	{
 		super.onResume();
 
-		final AppCompatActivity activity = (AppCompatActivity)requireActivity();
+		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
 		final ActionBar actionBar = activity.getSupportActionBar();
 		assert actionBar != null;
 		actionBar.setCustomView(null);

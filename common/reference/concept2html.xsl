@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- LINK 2 HTML - (C) 2014 Author: Bernard Bou -->
+<?xml version="1.0" encoding="UTF-8"?><!-- LINK 2 HTML - (C) 2014 Author: Bernard Bou -->
 <xsl:transform version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<xsl:output method="html" indent="yes" encoding="UTF-8" doctype-system="about:legacy-compat"/>
+	<xsl:output method="html" indent="yes" encoding="UTF-8" doctype-system="about:legacy-compat" />
 
 	<xsl:variable name="imagedir" select='"./images/"' />
 
@@ -14,7 +13,9 @@
 				<LINK rel="stylesheet" type="text/css" href="style.css" />
 			</HEAD>
 			<BODY>
-				<H1><xsl:value-of select="//concepts/@name" /></H1>
+				<H1>
+					<xsl:value-of select="//concepts/@name" />
+				</H1>
 				<TABLE class="concepts">
 					<xsl:apply-templates select="//concept" />
 				</TABLE>
@@ -25,45 +26,62 @@
 
 	<xsl:template match="concept">
 		<TR class="concept" name="concept">
-			<xsl:attribute name="id"><xsl:value-of select="./@id" /></xsl:attribute>
+			<xsl:attribute name="id">
+				<xsl:value-of select="./@id" />
+			</xsl:attribute>
 			<TD>
 				<TABLE class="expand">
 
-					<TR class="expand"><TD class="expand">
-						<TABLE class="expand"><TR>
-							<TD class="headerimage" colspan="1">
-								<IMG>
-									<xsl:attribute name="src"><xsl:value-of select="$imagedir" /><xsl:value-of select="./img/@src" /></xsl:attribute>
-									<xsl:attribute name="alt"><xsl:value-of select="./@name" /></xsl:attribute>
-								</IMG>
-							</TD>
-							<TD class="headertitle" >
-								<SPAN class="conceptname">
-									<xsl:value-of select="./@name" />
-								</SPAN>
-							</TD>
-							<xsl:if test="./a">
-								<TD class="headerlink" >
-									<xsl:apply-templates select="./a" />
-								</TD>
-							</xsl:if>
-						</TR></TABLE>
-					</TD></TR>
+					<TR class="expand">
+						<TD class="expand">
+							<TABLE class="expand">
+								<TR>
+									<TD class="headerimage" colspan="1">
+										<IMG>
+											<xsl:attribute name="src">
+												<xsl:value-of select="$imagedir" />
+												<xsl:value-of select="./img/@src" />
+											</xsl:attribute>
+											<xsl:attribute name="alt">
+												<xsl:value-of select="./@name" />
+											</xsl:attribute>
+										</IMG>
+									</TD>
+									<TD class="headertitle">
+										<SPAN class="conceptname">
+											<xsl:value-of select="./@name" />
+										</SPAN>
+									</TD>
+									<xsl:if test="./a">
+										<TD class="headerlink">
+											<xsl:apply-templates select="./a" />
+										</TD>
+									</xsl:if>
+								</TR>
+							</TABLE>
+						</TD>
+					</TR>
 
-					<TR class="expand"><TD class="expand">
-						<xsl:apply-templates select="./description" />
-					</TD></TR>
+					<TR class="expand">
+						<TD class="expand">
+							<xsl:apply-templates select="./description" />
+						</TD>
+					</TR>
 
 					<xsl:if test="./items">
-					<TR class="expand"><TD class="expand">
-						<xsl:apply-templates select="./items" />
-					</TD></TR>
+						<TR class="expand">
+							<TD class="expand">
+								<xsl:apply-templates select="./items" />
+							</TD>
+						</TR>
 					</xsl:if>
 
 					<xsl:if test="./examples">
-					<TR class="expand"><TD class="expand">
-							<xsl:apply-templates select="./examples" />
-					</TD></TR>
+						<TR class="expand">
+							<TD class="expand">
+								<xsl:apply-templates select="./examples" />
+							</TD>
+						</TR>
 					</xsl:if>
 
 				</TABLE>
@@ -94,7 +112,8 @@
 	<xsl:template match="examples">
 		<DIV class="examples">
 			<xsl:if test="./context">
-				<DIV class="context">In the context of the <xsl:apply-templates select="./context" />:</DIV>
+				<DIV class="context">In the context of the<xsl:apply-templates select="./context" />:
+				</DIV>
 			</xsl:if>
 			<TABLE class="exampletable">
 				<xsl:apply-templates select="./example" />
@@ -103,14 +122,18 @@
 	</xsl:template>
 
 	<xsl:template match="example">
-		<TR><TD class="example">
-			<xsl:copy-of select="./text()" />
-		</TD></TR>
+		<TR>
+			<TD class="example">
+				<xsl:copy-of select="./text()" />
+			</TD>
+		</TR>
 	</xsl:template>
 
 	<xsl:template match="name">
-		<SPAN class="keyword"><xsl:apply-templates/></SPAN>
-	 </xsl:template>
+		<SPAN class="keyword">
+			<xsl:apply-templates />
+		</SPAN>
+	</xsl:template>
 
 	<xsl:template match="a">
 		<A>
@@ -119,11 +142,11 @@
 			</xsl:attribute>
 			<IMG src="images/link.png" />
 		</A>
-	 </xsl:template>
+	</xsl:template>
 
 	<xsl:template match="@*">
 		<xsl:attribute name="{name()}">
-		<xsl:value-of select="." />
+			<xsl:value-of select="." />
 		</xsl:attribute>
 	</xsl:template>
 

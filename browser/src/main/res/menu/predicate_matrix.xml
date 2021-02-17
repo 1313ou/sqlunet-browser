@@ -3,19 +3,19 @@
   -->
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto"
-      xmlns:tools="http://schemas.android.com/tools"
-      tools:context="org.sqlunet.browser.BrowsePredicateMatrixFragment">
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	tools:context="org.sqlunet.browser.BrowsePredicateMatrixFragment">
 	<item
 		android:id="@+id/search"
 		android:iconifiedByDefault="true"
 		android:title="@string/hint_search_predicatematrix"
 		app:actionViewClass="androidx.appcompat.widget.SearchView"
 		app:showAsAction="always"
-		tools:ignore="AlwaysShowAction"/>
+		tools:ignore="AlwaysShowAction" />
 	<item
 		android:id="@+id/action_main"
 		android:title="@string/action_main"
 		app:showAsAction="never"
-		tools:ignore="AppCompatResource"/>
+		tools:ignore="AppCompatResource" />
 </menu>

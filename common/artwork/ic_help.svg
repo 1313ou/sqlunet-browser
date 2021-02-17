@@ -1,482 +1,211 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   height="1066.6666"
-   width="1000"
-   id="svg2"
-   version="1.1"
-   inkscape:version="0.92.1 r15371"
-   sodipodi:docname="ic_help.svg">
-  <metadata
-     id="metadata10">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <defs
-     id="defs8">
-    <linearGradient
-       id="linearGradient19282"
-       osb:paint="solid"
-       gradientTransform="matrix(0,0,0,0,-110542770,-6317143.7)">
-      <stop
-         style="stop-color:#666666;stop-opacity:1;"
-         offset="0"
-         id="stop19284" />
-    </linearGradient>
-    <inkscape:path-effect
-       effect="spiro"
-       id="path-effect36695"
-       is_visible="true" />
-    <clipPath
-       id="clipPath980">
-      <path
-         d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z"
-         inkscape:connector-curvature="0"
-         id="path982" />
-    </clipPath>
-    <clipPath
-       id="clipPath46">
-      <path
-         d="M 0,32 H 32 V 0 H 0 Z"
-         inkscape:connector-curvature="0"
-         id="path48" />
-    </clipPath>
-    <clipPath
-       id="clipPath980-5">
-      <path
-         d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z"
-         inkscape:connector-curvature="0"
-         id="path982-0" />
-    </clipPath>
-    <clipPath
-       id="clipPath46-9">
-      <path
-         d="M 0,32 H 32 V 0 H 0 Z"
-         inkscape:connector-curvature="0"
-         id="path48-0" />
-    </clipPath>
-    <clipPath
-       id="clipPath46-8">
-      <path
-         id="path48-9"
-         inkscape:connector-curvature="0"
-         d="M 0,32 H 32 V 0 H 0 Z" />
-    </clipPath>
-    <clipPath
-       id="clipPath980-6">
-      <path
-         id="path982-8"
-         inkscape:connector-curvature="0"
-         d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z" />
-    </clipPath>
-    <clipPath
-       id="clipPath9180"
-       clipPathUnits="userSpaceOnUse">
-      <ellipse
-         transform="matrix(1.3993902,0,0,1.1907217,3.486295,1.0575123)"
-         id="path9182"
-         style="fill:#a9a9a9;fill-opacity:1;fill-rule:evenodd;stroke:none"
-         cx="43.980995"
-         cy="52.105968"
-         rx="43.980995"
-         ry="52.026299" />
-    </clipPath>
-    <clipPath
-       id="clipPath9184"
-       clipPathUnits="userSpaceOnUse">
-      <ellipse
-         transform="matrix(0.1815424,0,0,0.1544719,788.01368,700.63965)"
-         id="path9186"
-         style="fill:#a9a9a9;fill-opacity:1;fill-rule:evenodd;stroke:none"
-         cx="43.980995"
-         cy="52.105968"
-         rx="43.980995"
-         ry="52.026299" />
-    </clipPath>
-    <clipPath
-       id="clipPath46-7">
-      <path
-         d="M 0,32 H 32 V 0 H 0 Z"
-         inkscape:connector-curvature="0"
-         id="path48-8" />
-    </clipPath>
-    <clipPath
-       id="clipPath980-58">
-      <path
-         d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z"
-         inkscape:connector-curvature="0"
-         id="path982-7" />
-    </clipPath>
-    <inkscape:path-effect
-       effect="spiro"
-       id="path-effect36695-8"
-       is_visible="true" />
-    <inkscape:path-effect
-       is_visible="true"
-       id="path-effect36695-5"
-       effect="spiro" />
-    <clipPath
-       id="clipPath980-9">
-      <path
-         id="path982-06"
-         inkscape:connector-curvature="0"
-         d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z" />
-    </clipPath>
-    <clipPath
-       id="clipPath46-8-5">
-      <path
-         id="path48-6"
-         inkscape:connector-curvature="0"
-         d="M 0,32 H 32 V 0 H 0 Z" />
-    </clipPath>
-    <clipPath
-       id="clipPath980-5-2">
-      <path
-         id="path982-0-8"
-         inkscape:connector-curvature="0"
-         d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z" />
-    </clipPath>
-    <clipPath
-       id="clipPath46-9-5">
-      <path
-         id="path48-0-7"
-         inkscape:connector-curvature="0"
-         d="M 0,32 H 32 V 0 H 0 Z" />
-    </clipPath>
-    <inkscape:path-effect
-       is_visible="true"
-       id="path-effect36695-9"
-       effect="spiro" />
-    <clipPath
-       id="clipPath46-99">
-      <path
-         id="path48-96"
-         inkscape:connector-curvature="0"
-         d="M 0,32 H 32 V 0 H 0 Z" />
-    </clipPath>
-    <clipPath
-       id="clipPath980-0">
-      <path
-         id="path982-6"
-         inkscape:connector-curvature="0"
-         d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z" />
-    </clipPath>
-    <clipPath
-       id="clipPath46-3">
-      <path
-         id="path48-05"
-         inkscape:connector-curvature="0"
-         d="M 0,32 H 32 V 0 H 0 Z" />
-    </clipPath>
-    <clipPath
-       id="clipPath980-4">
-      <path
-         id="path982-1"
-         inkscape:connector-curvature="0"
-         d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z" />
-    </clipPath>
-    <inkscape:path-effect
-       effect="spiro"
-       id="path-effect36695-85"
-       is_visible="true" />
-    <clipPath
-       id="clipPath980-1">
-      <path
-         d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z"
-         inkscape:connector-curvature="0"
-         id="path982-9" />
-    </clipPath>
-    <clipPath
-       id="clipPath46-96">
-      <path
-         d="M 0,32 H 32 V 0 H 0 Z"
-         inkscape:connector-curvature="0"
-         id="path48-7" />
-    </clipPath>
-    <clipPath
-       id="clipPath980-5-9">
-      <path
-         d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z"
-         inkscape:connector-curvature="0"
-         id="path982-0-0" />
-    </clipPath>
-    <clipPath
-       id="clipPath46-9-59">
-      <path
-         d="M 0,32 H 32 V 0 H 0 Z"
-         inkscape:connector-curvature="0"
-         id="path48-0-76" />
-    </clipPath>
-    <clipPath
-       id="clipPath9180-8"
-       clipPathUnits="userSpaceOnUse">
-      <ellipse
-         transform="matrix(1.3993902,0,0,1.1907217,3.486295,1.0575123)"
-         id="path9182-1"
-         style="fill:#a9a9a9;fill-opacity:1;fill-rule:evenodd;stroke:none"
-         cx="43.980995"
-         cy="52.105968"
-         rx="43.980995"
-         ry="52.026299" />
-    </clipPath>
-    <clipPath
-       id="clipPath9184-8"
-       clipPathUnits="userSpaceOnUse">
-      <ellipse
-         transform="matrix(0.1815424,0,0,0.1544719,788.01368,700.63965)"
-         id="path9186-9"
-         style="fill:#a9a9a9;fill-opacity:1;fill-rule:evenodd;stroke:none"
-         cx="43.980995"
-         cy="52.105968"
-         rx="43.980995"
-         ry="52.026299" />
-    </clipPath>
-    <clipPath
-       id="clipPath46-2">
-      <path
-         d="M 0,32 H 32 V 0 H 0 Z"
-         inkscape:connector-curvature="0"
-         id="path48-95" />
-    </clipPath>
-    <clipPath
-       id="clipPath980-46">
-      <path
-         d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z"
-         inkscape:connector-curvature="0"
-         id="path982-2" />
-    </clipPath>
-    <inkscape:path-effect
-       effect="spiro"
-       id="path-effect36695-7"
-       is_visible="true" />
-    <inkscape:path-effect
-       is_visible="true"
-       id="path-effect36695-5-7"
-       effect="spiro" />
-    <clipPath
-       id="clipPath980-9-1">
-      <path
-         id="path982-06-7"
-         inkscape:connector-curvature="0"
-         d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z" />
-    </clipPath>
-    <clipPath
-       id="clipPath46-8-1">
-      <path
-         id="path48-6-8"
-         inkscape:connector-curvature="0"
-         d="M 0,32 H 32 V 0 H 0 Z" />
-    </clipPath>
-    <clipPath
-       id="clipPath980-5-6">
-      <path
-         id="path982-0-80"
-         inkscape:connector-curvature="0"
-         d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z" />
-    </clipPath>
-    <clipPath
-       id="clipPath46-9-7">
-      <path
-         id="path48-0-8"
-         inkscape:connector-curvature="0"
-         d="M 0,32 H 32 V 0 H 0 Z" />
-    </clipPath>
-    <clipPath
-       id="clipPath46-6">
-      <path
-         id="path48-08"
-         inkscape:connector-curvature="0"
-         d="M 0,32 H 32 V 0 H 0 Z" />
-    </clipPath>
-    <clipPath
-       id="clipPath980-8">
-      <path
-         id="path982-70"
-         inkscape:connector-curvature="0"
-         d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z" />
-    </clipPath>
-    <inkscape:path-effect
-       is_visible="true"
-       id="path-effect36695-98"
-       effect="spiro" />
-    <clipPath
-       id="clipPath980-85">
-      <path
-         id="path982-84"
-         inkscape:connector-curvature="0"
-         d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z" />
-    </clipPath>
-    <clipPath
-       id="clipPath46-37">
-      <path
-         id="path48-1"
-         inkscape:connector-curvature="0"
-         d="M 0,32 H 32 V 0 H 0 Z" />
-    </clipPath>
-    <clipPath
-       id="clipPath980-5-3">
-      <path
-         id="path982-0-809"
-         inkscape:connector-curvature="0"
-         d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z" />
-    </clipPath>
-    <clipPath
-       id="clipPath46-9-79">
-      <path
-         id="path48-0-9"
-         inkscape:connector-curvature="0"
-         d="M 0,32 H 32 V 0 H 0 Z" />
-    </clipPath>
-    <style
-       type="text/css"
-       id="style2988">
-    .fil0 {fill:#006C3B}
-    .fil1 {fill:#77C06C}
-   </style>
-    <style
-       type="text/css"
-       id="style2988-7">
-    .fil0 {fill:#006C3B}
-    .fil1 {fill:#77C06C}
-   </style>
-  </defs>
-  <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="1058"
-     inkscape:window-height="1029"
-     id="namedview6"
-     showgrid="false"
-     inkscape:zoom="0.24208851"
-     inkscape:cx="-348.86471"
-     inkscape:cy="683.99491"
-     inkscape:window-x="258"
-     inkscape:window-y="101"
-     inkscape:window-maximized="0"
-     inkscape:current-layer="svg2" />
-  <style
-     type="text/css"
-     id="style8">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     type="text/css"
-     id="style8-7">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     type="text/css"
-     id="style8-3">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     type="text/css"
-     id="style8-6">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     id="style8-1"
-     type="text/css">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     id="style8-7-0"
-     type="text/css">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     id="style8-3-2"
-     type="text/css">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     id="style8-6-7"
-     type="text/css">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     type="text/css"
-     id="style8-66">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     type="text/css"
-     id="style8-7-9">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     type="text/css"
-     id="style8-3-6">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     type="text/css"
-     id="style8-6-1">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     id="style8-1-8"
-     type="text/css">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     id="style8-7-0-5"
-     type="text/css">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     id="style8-3-2-9"
-     type="text/css">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     id="style8-6-7-6"
-     type="text/css">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <g
-     id="g30"
-     transform="matrix(40.104918,0,0,-40.104918,381.18479,869.71774)"
-     style="fill:#808080;fill-opacity:1">
-    <path
-       style="fill:#808080;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.06666672"
-       id="path32"
-       inkscape:connector-curvature="0"
-       d="M 0,0 C 0,0.4608 0.06613333,0.85013333 0.1984,1.1690667 0.33066667,1.4869333 0.51413333,1.744 0.74986667,1.9402667 0.98453333,2.1365333 1.2618667,2.2784 1.5808,2.3669333 1.8986667,2.4544 2.2389333,2.4992 2.6016,2.4992 2.9450667,2.4992 3.2714667,2.4544 3.5797333,2.3669333 3.888,2.2784 4.16,2.1365333 4.3957333,1.9402667 4.6304,1.744 4.816,1.4869333 4.9536,1.1690667 5.0912,0.85013333 5.1594667,0.4608 5.1594667,0 5.1594667,-0.4416 5.0912,-0.8192 4.9536,-1.1328 4.816,-1.4453333 4.6304,-1.7066667 4.3957333,-1.9125333 4.16,-2.1173333 3.888,-2.2666667 3.5797333,-2.3605333 3.2714667,-2.4533333 2.9450667,-2.5002667 2.6016,-2.5002667 c -0.3626667,0 -0.7029333,0.046933 -1.0208,0.1397334 -0.3189333,0.093867 -0.59626667,0.2432 -0.83093333,0.448 C 0.51413333,-1.7066667 0.33066667,-1.4453333 0.1984,-1.1328 0.06613333,-0.8192 0,-0.4416 0,0 M 0.48533333,5.0282667 V 6.1152 c 0,0.5002667 0.0512,0.9536 0.15466667,1.36 0.1024,0.4074667 0.2592,0.7936 0.4704,1.1616 0.2101333,0.3669333 0.4821333,0.7253333 0.8149333,1.0730667 0.3338667,0.3477333 0.736,0.7082663 1.2064,1.0805333 0.4117334,0.3232 0.7594667,0.612267 1.0432,0.868267 0.2848,0.253866 0.5141334,0.506666 0.6912,0.757333 0.176,0.2496 0.304,0.510933 0.3818667,0.785067 0.078933,0.2752 0.1184,0.594133 0.1184,0.955733 0,0.558933 -0.1898667,1.0208 -0.5664,1.3824 -0.3776,0.362667 -0.9536,0.544 -1.728,0.544 -0.6752,0 -1.4037333,-0.141867 -2.18346667,-0.4256 -0.7776,-0.2848 -1.58506666,-0.632533 -2.41813333,-1.044267 L -3.0282667,17.8624 C -2.608,18.107733 -2.1493333,18.340267 -1.6544,18.56 c 0.496,0.2208 1.01013333,0.417067 1.54346667,0.5888 0.5344,0.170667 1.07626666,0.306133 1.62453333,0.404267 0.5493333,0.09813 1.088,0.1472 1.6181333,0.1472 0.9994667,0 1.9008,-0.120534 2.704,-0.360534 0.8042667,-0.24 1.4858667,-0.589866 2.0437334,-1.050666 0.56,-0.4608 0.9877333,-1.0208 1.2864,-1.6768 C 9.4656,15.9552 9.6149333,15.2064 9.6149333,14.363733 c 0,-0.6176 -0.069333,-1.169066 -0.2058666,-1.6544 C 9.2725333,12.224 9.0677333,11.7728 8.8,11.3568 8.5290667,10.939733 8.1909333,10.5376 7.7845333,10.151467 7.3781333,9.7642667 6.9045333,9.3546667 6.3658667,8.9237333 5.9541333,8.6005333 5.6181333,8.3178667 5.3578667,8.0778667 5.0986667,7.8378667 4.8949333,7.6096 4.7488,7.3952 4.6016,7.1786667 4.5013333,6.9557333 4.4469333,6.7253333 4.3936,6.496 4.3658667,6.224 4.3658667,5.9104 V 5.0282667 Z" />
-  </g>
+<svg xmlns:osb="http://www.openswatchbook.org/uri/2009/osb" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" height="1066.6666" width="1000" id="svg2" version="1.1"
+	inkscape:version="0.92.1 r15371" sodipodi:docname="ic_help.svg">
+	<metadata id="metadata10">
+		<rdf:RDF>
+			<cc:Work rdf:about="">
+				<dc:format>image/svg+xml</dc:format>
+				<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+			</cc:Work>
+		</rdf:RDF>
+	</metadata>
+	<defs id="defs8">
+		<linearGradient id="linearGradient19282" osb:paint="solid" gradientTransform="matrix(0,0,0,0,-110542770,-6317143.7)">
+			<stop style="stop-color:#666666;stop-opacity:1;" offset="0" id="stop19284" />
+		</linearGradient>
+		<inkscape:path-effect effect="spiro" id="path-effect36695" is_visible="true" />
+		<clipPath id="clipPath980">
+			<path d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z" inkscape:connector-curvature="0" id="path982" />
+		</clipPath>
+		<clipPath id="clipPath46">
+			<path d="M 0,32 H 32 V 0 H 0 Z" inkscape:connector-curvature="0" id="path48" />
+		</clipPath>
+		<clipPath id="clipPath980-5">
+			<path d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z" inkscape:connector-curvature="0" id="path982-0" />
+		</clipPath>
+		<clipPath id="clipPath46-9">
+			<path d="M 0,32 H 32 V 0 H 0 Z" inkscape:connector-curvature="0" id="path48-0" />
+		</clipPath>
+		<clipPath id="clipPath46-8">
+			<path id="path48-9" inkscape:connector-curvature="0" d="M 0,32 H 32 V 0 H 0 Z" />
+		</clipPath>
+		<clipPath id="clipPath980-6">
+			<path id="path982-8" inkscape:connector-curvature="0" d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z" />
+		</clipPath>
+		<clipPath id="clipPath9180" clipPathUnits="userSpaceOnUse">
+			<ellipse transform="matrix(1.3993902,0,0,1.1907217,3.486295,1.0575123)" id="path9182" style="fill:#a9a9a9;fill-opacity:1;fill-rule:evenodd;stroke:none" cx="43.980995" cy="52.105968" rx="43.980995" ry="52.026299" />
+		</clipPath>
+		<clipPath id="clipPath9184" clipPathUnits="userSpaceOnUse">
+			<ellipse transform="matrix(0.1815424,0,0,0.1544719,788.01368,700.63965)" id="path9186" style="fill:#a9a9a9;fill-opacity:1;fill-rule:evenodd;stroke:none" cx="43.980995" cy="52.105968" rx="43.980995" ry="52.026299" />
+		</clipPath>
+		<clipPath id="clipPath46-7">
+			<path d="M 0,32 H 32 V 0 H 0 Z" inkscape:connector-curvature="0" id="path48-8" />
+		</clipPath>
+		<clipPath id="clipPath980-58">
+			<path d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z" inkscape:connector-curvature="0" id="path982-7" />
+		</clipPath>
+		<inkscape:path-effect effect="spiro" id="path-effect36695-8" is_visible="true" />
+		<inkscape:path-effect is_visible="true" id="path-effect36695-5" effect="spiro" />
+		<clipPath id="clipPath980-9">
+			<path id="path982-06" inkscape:connector-curvature="0" d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z" />
+		</clipPath>
+		<clipPath id="clipPath46-8-5">
+			<path id="path48-6" inkscape:connector-curvature="0" d="M 0,32 H 32 V 0 H 0 Z" />
+		</clipPath>
+		<clipPath id="clipPath980-5-2">
+			<path id="path982-0-8" inkscape:connector-curvature="0" d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z" />
+		</clipPath>
+		<clipPath id="clipPath46-9-5">
+			<path id="path48-0-7" inkscape:connector-curvature="0" d="M 0,32 H 32 V 0 H 0 Z" />
+		</clipPath>
+		<inkscape:path-effect is_visible="true" id="path-effect36695-9" effect="spiro" />
+		<clipPath id="clipPath46-99">
+			<path id="path48-96" inkscape:connector-curvature="0" d="M 0,32 H 32 V 0 H 0 Z" />
+		</clipPath>
+		<clipPath id="clipPath980-0">
+			<path id="path982-6" inkscape:connector-curvature="0" d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z" />
+		</clipPath>
+		<clipPath id="clipPath46-3">
+			<path id="path48-05" inkscape:connector-curvature="0" d="M 0,32 H 32 V 0 H 0 Z" />
+		</clipPath>
+		<clipPath id="clipPath980-4">
+			<path id="path982-1" inkscape:connector-curvature="0" d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z" />
+		</clipPath>
+		<inkscape:path-effect effect="spiro" id="path-effect36695-85" is_visible="true" />
+		<clipPath id="clipPath980-1">
+			<path d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z" inkscape:connector-curvature="0" id="path982-9" />
+		</clipPath>
+		<clipPath id="clipPath46-96">
+			<path d="M 0,32 H 32 V 0 H 0 Z" inkscape:connector-curvature="0" id="path48-7" />
+		</clipPath>
+		<clipPath id="clipPath980-5-9">
+			<path d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z" inkscape:connector-curvature="0" id="path982-0-0" />
+		</clipPath>
+		<clipPath id="clipPath46-9-59">
+			<path d="M 0,32 H 32 V 0 H 0 Z" inkscape:connector-curvature="0" id="path48-0-76" />
+		</clipPath>
+		<clipPath id="clipPath9180-8" clipPathUnits="userSpaceOnUse">
+			<ellipse transform="matrix(1.3993902,0,0,1.1907217,3.486295,1.0575123)" id="path9182-1" style="fill:#a9a9a9;fill-opacity:1;fill-rule:evenodd;stroke:none" cx="43.980995" cy="52.105968" rx="43.980995" ry="52.026299" />
+		</clipPath>
+		<clipPath id="clipPath9184-8" clipPathUnits="userSpaceOnUse">
+			<ellipse transform="matrix(0.1815424,0,0,0.1544719,788.01368,700.63965)" id="path9186-9" style="fill:#a9a9a9;fill-opacity:1;fill-rule:evenodd;stroke:none" cx="43.980995" cy="52.105968" rx="43.980995" ry="52.026299" />
+		</clipPath>
+		<clipPath id="clipPath46-2">
+			<path d="M 0,32 H 32 V 0 H 0 Z" inkscape:connector-curvature="0" id="path48-95" />
+		</clipPath>
+		<clipPath id="clipPath980-46">
+			<path d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z" inkscape:connector-curvature="0" id="path982-2" />
+		</clipPath>
+		<inkscape:path-effect effect="spiro" id="path-effect36695-7" is_visible="true" />
+		<inkscape:path-effect is_visible="true" id="path-effect36695-5-7" effect="spiro" />
+		<clipPath id="clipPath980-9-1">
+			<path id="path982-06-7" inkscape:connector-curvature="0" d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z" />
+		</clipPath>
+		<clipPath id="clipPath46-8-1">
+			<path id="path48-6-8" inkscape:connector-curvature="0" d="M 0,32 H 32 V 0 H 0 Z" />
+		</clipPath>
+		<clipPath id="clipPath980-5-6">
+			<path id="path982-0-80" inkscape:connector-curvature="0" d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z" />
+		</clipPath>
+		<clipPath id="clipPath46-9-7">
+			<path id="path48-0-8" inkscape:connector-curvature="0" d="M 0,32 H 32 V 0 H 0 Z" />
+		</clipPath>
+		<clipPath id="clipPath46-6">
+			<path id="path48-08" inkscape:connector-curvature="0" d="M 0,32 H 32 V 0 H 0 Z" />
+		</clipPath>
+		<clipPath id="clipPath980-8">
+			<path id="path982-70" inkscape:connector-curvature="0" d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z" />
+		</clipPath>
+		<inkscape:path-effect is_visible="true" id="path-effect36695-98" effect="spiro" />
+		<clipPath id="clipPath980-85">
+			<path id="path982-84" inkscape:connector-curvature="0" d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z" />
+		</clipPath>
+		<clipPath id="clipPath46-37">
+			<path id="path48-1" inkscape:connector-curvature="0" d="M 0,32 H 32 V 0 H 0 Z" />
+		</clipPath>
+		<clipPath id="clipPath980-5-3">
+			<path id="path982-0-809" inkscape:connector-curvature="0" d="M 5.38916,28.1929 H 27.1973 V 3.86426 H 5.38916 Z" />
+		</clipPath>
+		<clipPath id="clipPath46-9-79">
+			<path id="path48-0-9" inkscape:connector-curvature="0" d="M 0,32 H 32 V 0 H 0 Z" />
+		</clipPath>
+		<style type="text/css" id="style2988">
+			.fil0 {fill:#006C3B}
+			.fil1 {fill:#77C06C}
+		</style>
+		<style type="text/css" id="style2988-7">
+			.fil0 {fill:#006C3B}
+			.fil1 {fill:#77C06C}
+		</style>
+	</defs>
+	<sodipodi:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-width="1058" inkscape:window-height="1029"
+		id="namedview6" showgrid="false" inkscape:zoom="0.24208851" inkscape:cx="-348.86471" inkscape:cy="683.99491" inkscape:window-x="258" inkscape:window-y="101" inkscape:window-maximized="0" inkscape:current-layer="svg2" />
+	<style type="text/css" id="style8">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style type="text/css" id="style8-7">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style type="text/css" id="style8-3">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style type="text/css" id="style8-6">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style id="style8-1" type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style id="style8-7-0" type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style id="style8-3-2" type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style id="style8-6-7" type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style type="text/css" id="style8-66">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style type="text/css" id="style8-7-9">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style type="text/css" id="style8-3-6">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style type="text/css" id="style8-6-1">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style id="style8-1-8" type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style id="style8-7-0-5" type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style id="style8-3-2-9" type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style id="style8-6-7-6" type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<g id="g30" transform="matrix(40.104918,0,0,-40.104918,381.18479,869.71774)" style="fill:#808080;fill-opacity:1">
+		<path style="fill:#808080;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.06666672" id="path32" inkscape:connector-curvature="0"
+			d="M 0,0 C 0,0.4608 0.06613333,0.85013333 0.1984,1.1690667 0.33066667,1.4869333 0.51413333,1.744 0.74986667,1.9402667 0.98453333,2.1365333 1.2618667,2.2784 1.5808,2.3669333 1.8986667,2.4544 2.2389333,2.4992 2.6016,2.4992 2.9450667,2.4992 3.2714667,2.4544 3.5797333,2.3669333 3.888,2.2784 4.16,2.1365333 4.3957333,1.9402667 4.6304,1.744 4.816,1.4869333 4.9536,1.1690667 5.0912,0.85013333 5.1594667,0.4608 5.1594667,0 5.1594667,-0.4416 5.0912,-0.8192 4.9536,-1.1328 4.816,-1.4453333 4.6304,-1.7066667 4.3957333,-1.9125333 4.16,-2.1173333 3.888,-2.2666667 3.5797333,-2.3605333 3.2714667,-2.4533333 2.9450667,-2.5002667 2.6016,-2.5002667 c -0.3626667,0 -0.7029333,0.046933 -1.0208,0.1397334 -0.3189333,0.093867 -0.59626667,0.2432 -0.83093333,0.448 C 0.51413333,-1.7066667 0.33066667,-1.4453333 0.1984,-1.1328 0.06613333,-0.8192 0,-0.4416 0,0 M 0.48533333,5.0282667 V 6.1152 c 0,0.5002667 0.0512,0.9536 0.15466667,1.36 0.1024,0.4074667 0.2592,0.7936 0.4704,1.1616 0.2101333,0.3669333 0.4821333,0.7253333 0.8149333,1.0730667 0.3338667,0.3477333 0.736,0.7082663 1.2064,1.0805333 0.4117334,0.3232 0.7594667,0.612267 1.0432,0.868267 0.2848,0.253866 0.5141334,0.506666 0.6912,0.757333 0.176,0.2496 0.304,0.510933 0.3818667,0.785067 0.078933,0.2752 0.1184,0.594133 0.1184,0.955733 0,0.558933 -0.1898667,1.0208 -0.5664,1.3824 -0.3776,0.362667 -0.9536,0.544 -1.728,0.544 -0.6752,0 -1.4037333,-0.141867 -2.18346667,-0.4256 -0.7776,-0.2848 -1.58506666,-0.632533 -2.41813333,-1.044267 L -3.0282667,17.8624 C -2.608,18.107733 -2.1493333,18.340267 -1.6544,18.56 c 0.496,0.2208 1.01013333,0.417067 1.54346667,0.5888 0.5344,0.170667 1.07626666,0.306133 1.62453333,0.404267 0.5493333,0.09813 1.088,0.1472 1.6181333,0.1472 0.9994667,0 1.9008,-0.120534 2.704,-0.360534 0.8042667,-0.24 1.4858667,-0.589866 2.0437334,-1.050666 0.56,-0.4608 0.9877333,-1.0208 1.2864,-1.6768 C 9.4656,15.9552 9.6149333,15.2064 9.6149333,14.363733 c 0,-0.6176 -0.069333,-1.169066 -0.2058666,-1.6544 C 9.2725333,12.224 9.0677333,11.7728 8.8,11.3568 8.5290667,10.939733 8.1909333,10.5376 7.7845333,10.151467 7.3781333,9.7642667 6.9045333,9.3546667 6.3658667,8.9237333 5.9541333,8.6005333 5.6181333,8.3178667 5.3578667,8.0778667 5.0986667,7.8378667 4.8949333,7.6096 4.7488,7.3952 4.6016,7.1786667 4.5013333,6.9557333 4.4469333,6.7253333 4.3936,6.496 4.3658667,6.224 4.3658667,5.9104 V 5.0282667 Z" />
+	</g>
 </svg>

@@ -2,27 +2,26 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<full-backup-content
-	xmlns:tools="http://schemas.android.com/tools"
+<full-backup-content xmlns:tools="http://schemas.android.com/tools"
 	tools:ignore="UnusedResources">
 
 	<exclude
 		domain="file"
-		path="sqlunet.db"/>
+		path="sqlunet.db" />
 	<exclude
 		domain="file"
-		path="sqlunet.db-journal"/>
+		path="sqlunet.db-journal" />
 	<exclude
 		domain="external"
-		path="sqlunet.db"/>
+		path="sqlunet.db" />
 	<exclude
 		domain="external"
-		path="sqlunet.db-journal"/>
+		path="sqlunet.db-journal" />
 	<exclude
 		domain="database"
-		path="sqlunet.db"/>
+		path="sqlunet.db" />
 	<exclude
 		domain="database"
-		path="sqlunet.db-journal"/>
+		path="sqlunet.db-journal" />
 
 </full-backup-content>

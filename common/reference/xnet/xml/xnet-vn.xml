@@ -1,28 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <concepts name="XNet">
 
-<concept name="WordNet" id="wordnet">
-	<img src="wordnet.png" />
-	<a href="wordnet.html"/>
-	<description>WordNet is a lexical database of semantic relations between words.</description>
-</concept>
+	<concept
+		name="WordNet"
+		id="wordnet">
+		<img src="wordnet.png" />
+		<a href="wordnet.html" />
+		<description>WordNet is a lexical database of semantic relations between words.</description>
+	</concept>
 
-<concept name="VerbNet" id="verbnet">
-	<img src="verbnet.png" />
-	<a href="verbnet.html"/>
-	<description>The VerbNet project maps PropBank verb types to their corresponding Levin classes. It is a lexical resource that incorporates both semantic and syntactic information. </description>
-</concept>
+	<concept
+		name="VerbNet"
+		id="verbnet">
+		<img src="verbnet.png" />
+		<a href="verbnet.html" />
+		<description>The VerbNet project maps PropBank verb types to their corresponding Levin classes. It is a lexical resource that incorporates both semantic and syntactic information.</description>
+	</concept>
 
-<concept name="PropBank" id="propbank">
-	<img src="propbank.png" />
-	<a href="propbank.html"/>
-	<description>PropBank is a corpus that is annotated with verbal propositions and their arguments—a "proposition bank". </description>
-</concept>
+	<concept
+		name="PropBank"
+		id="propbank">
+		<img src="propbank.png" />
+		<a href="propbank.html" />
+		<description>PropBank is a corpus that is annotated with verbal propositions and their arguments—a "proposition bank".</description>
+	</concept>
 
-<concept name="BNC" id="bnc">
-	<img src="bnc.png" />
-	<a href="bnc.html"/>
-	<description>The British National Corpus (BNC) is a 100-million-word text corpus of samples of written and spoken English from a wide range of sources. </description>
-</concept>
+	<concept
+		name="BNC"
+		id="bnc">
+		<img src="bnc.png" />
+		<a href="bnc.html" />
+		<description>The British National Corpus (BNC) is a 100-million-word text corpus of samples of written and spoken English from a wide range of sources.</description>
+	</concept>
 
 </concepts>

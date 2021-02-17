@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              style="@style/ListItem"
-              android:orientation="vertical">
+	style="@style/ListItem"
+	android:orientation="vertical">
 
 	<TextView
 		android:id="@+id/name"
@@ -14,7 +13,7 @@
 		android:layout_height="wrap_content"
 		android:layout_gravity="center_horizontal"
 		android:gravity="center"
-		android:textIsSelectable="true"/>
+		android:textIsSelectable="true" />
 
 	<TextView
 		android:id="@+id/version"
@@ -23,7 +22,7 @@
 		android:layout_height="wrap_content"
 		android:layout_gravity="center_horizontal"
 		android:gravity="center"
-		android:textIsSelectable="true"/>
+		android:textIsSelectable="true" />
 
 	<TextView
 		android:id="@+id/provider"
@@ -32,7 +31,7 @@
 		android:layout_height="wrap_content"
 		android:layout_gravity="center_horizontal"
 		android:gravity="center"
-		android:textIsSelectable="true"/>
+		android:textIsSelectable="true" />
 
 	<TextView
 		android:id="@+id/url"
@@ -45,7 +44,7 @@
 		android:clickable="true"
 		android:linksClickable="true"
 		android:textIsSelectable="false"
-		android:focusable="true"/>
+		android:focusable="true" />
 
 	<TextView
 		android:id="@+id/reference"
@@ -53,6 +52,6 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:textColor="@android:color/secondary_text_dark"
-		android:textIsSelectable="true"/>
+		android:textIsSelectable="true" />
 
 </LinearLayout>

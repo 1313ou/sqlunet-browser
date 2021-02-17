@@ -1,139 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
 <wordnet xmlns="http://org.sqlunet/wn" word="abandon">
-  <pos name="noun">
-    <lexdomain name="attribute">
-      <sense wordid="419" synsetid="104892593" number="1">
-        <word wordid="419">abandon</word>
-        <synset synsetid="104892593" size="3">
-          <word wordid="419">abandon</word>
-          <word wordid="137614">unconstraint</word>
-          <word wordid="142904">wantonness</word>
-          <definition>the trait of lacking restraint or control;
-          reckless freedom from inhibition or worry</definition>
-          <sample>she danced with abandon</sample>
-        </synset>
-      </sense>
-    </lexdomain>
-    <lexdomain name="feeling">
-      <sense wordid="419" synsetid="107496363" number="2">
-        <word wordid="419">abandon</word>
-        <synset synsetid="107496363" size="2">
-          <word wordid="419">abandon</word>
-          <word wordid="144916">wildness</word>
-          <definition>a feeling of extreme emotional
-          intensity</definition>
-          <sample>the wildness of his anger</sample>
-        </synset>
-      </sense>
-    </lexdomain>
-  </pos>
-  <pos name="verb">
-    <lexdomain name="cognition">
-      <sense wordid="419" synsetid="200615748" number="3">
-        <word wordid="419">abandon</word>
-        <synset synsetid="200615748" size="4">
-          <word wordid="419">abandon</word>
-          <word wordid="35618">desert</word>
-          <word wordid="35709">desolate</word>
-          <word wordid="50581">forsake</word>
-          <definition>leave someone who needs or counts on you;
-          leave in the lurch</definition>
-          <sample>The mother deserted her children</sample>
-        </synset>
-      </sense>
-      <sense wordid="419" synsetid="200614907" number="4">
-        <word wordid="419">abandon</word>
-        <synset synsetid="200614907" size="2">
-          <word wordid="419">abandon</word>
-          <word wordid="57964">give up</word>
-          <definition>stop maintaining or insisting on; of ideas or
-          claims</definition>
-          <sample>He abandoned the thought of asking for her hand
-          in marriage|Both sides have to give up some claims in
-          these negotiations</sample>
-        </synset>
-      </sense>
-    </lexdomain>
-    <lexdomain name="motion">
-      <sense wordid="419" synsetid="202080923" number="5">
-        <word wordid="419">abandon</word>
-        <synset synsetid="202080923" size="3">
-          <word wordid="419">abandon</word>
-          <word wordid="42111">empty</word>
-          <word wordid="140257">vacate</word>
-          <definition>leave behind empty; move out of</definition>
-          <sample>You must vacate your office by tonight</sample>
-        </synset>
-      </sense>
-    </lexdomain>
-    <lexdomain name="possession">
-      <sense wordid="419" synsetid="202232523" number="6">
-        <word wordid="419">abandon</word>
-        <synset synsetid="202232523" size="2">
-          <word wordid="419">abandon</word>
-          <word wordid="57964">give up</word>
-          <definition>give up with the intent of never claiming
-          again</definition>
-          <sample>Abandon your life to God|She gave up her children
-          to her ex-husband when she moved to Tahiti|We gave the
-          drowning victim up for dead</sample>
-        </synset>
-      </sense>
-      <sense wordid="419" synsetid="202232813" number="7">
-        <word wordid="419">abandon</word>
-        <synset synsetid="202232813" size="1">
-          <word wordid="419">abandon</word>
-          <definition>forsake, leave behind</definition>
-          <sample>We abandoned the old car in the empty parking
-          lot</sample>
-        </synset>
-      </sense>
-    </lexdomain>
-  </pos>
-</wordnet>
-<verbnet word="abandon">
-  <vnclass name="leave-51.2" classid="261" wordid="419"
-  synsetid="202080923" sensenum="2" sensekey="abandon%2:38:00"
-  groupings="abandon.01" quality="1.0">
-    <sense wordid="419" synsetid="202080923" number="2">
-      <synset synsetid="202080923">
-        <definition>leave behind empty; move out of</definition>
-      </synset>
-    </sense>
-  </vnclass>
-  <vnclass name="leave-51.2" classid="261" wordid="419"
-  synsetid="202232813" sensenum="1" sensekey="abandon%2:40:00"
-  groupings="abandon.01" quality="1.0">
-    <sense wordid="419" synsetid="202232813" number="1">
-      <synset synsetid="202232813">
-        <definition>forsake, leave behind</definition>
-      </synset>
-    </sense>
-  </vnclass>
-</verbnet>
-<propbank word="abandon">
-  <roleset num="1" name="abandon.01" rolesetid="5" head="abandon"
-  wordid="419">leave behind</roleset>
-  <roleset num="2" name="abandon.02" rolesetid="6" head="abandon"
-  wordid="419">exchange</roleset>
-  <roleset num="3" name="abandon.03" rolesetid="7" head="abandon"
-  wordid="419">surrender, give_over</roleset>
-</propbank>
-<framenet word="abandon">
-  <lexunit name="abandon.v" luid="13410">give up (an action or
-  practice) completely. [FN: this is distinct from abandoning a
-  belief]
-  <frame name="Activity_stop" frameid="166">
-    <framedefinition>An 
-    <fen>Agent</fen>ceases an 
-    <fen>Activity</fen>without completing it.</framedefinition>
-  </frame></lexunit>
-  <lexunit name="abandon.v" luid="14839">leave behind
-  <frame name="Abandonment" frameid="2031">
-    <framedefinition>An 
-    <fen>Agent</fen>leaves behind a 
-    <fen>Theme</fen>effectively rendering it no longer within their
-    control or of the normal security as one's
-    property.</framedefinition>
-  </frame></lexunit>
+	<pos name="noun">
+		<lexdomain name="attribute">
+			<sense wordid="419" synsetid="104892593" number="1">
+				<word wordid="419">abandon</word>
+				<synset synsetid="104892593" size="3">
+					<word wordid="419">abandon</word>
+					<word wordid="137614">unconstraint</word>
+					<word wordid="142904">wantonness</word>
+					<definition>the trait of lacking restraint or control;
+						reckless freedom from inhibition or worry
+					</definition>
+					<sample>she danced with abandon</sample>
+				</synset>
+			</sense>
+		</lexdomain>
+		<lexdomain name="feeling">
+			<sense wordid="419" synsetid="107496363" number="2">
+				<word wordid="419">abandon</word>
+				<synset synsetid="107496363" size="2">
+					<word wordid="419">abandon</word>
+					<word wordid="144916">wildness</word>
+					<definition>a feeling of extreme emotional
+						intensity
+					</definition>
+					<sample>the wildness of his anger</sample>
+				</synset>
+			</sense>
+		</lexdomain>
+	</pos>
+	<pos name="verb">
+		<lexdomain name="cognition">
+			<sense wordid="419" synsetid="200615748" number="3">
+				<word wordid="419">abandon</word>
+				<synset synsetid="200615748" size="4">
+					<word wordid="419">abandon</word>
+					<word wordid="35618">desert</word>
+					<word wordid="35709">desolate</word>
+					<word wordid="50581">forsake</word>
+					<definition>leave someone who needs or counts on you;
+						leave in the lurch
+					</definition>
+					<sample>The mother deserted her children</sample>
+				</synset>
+			</sense>
+			<sense wordid="419" synsetid="200614907" number="4">
+				<word wordid="419">abandon</word>
+				<synset synsetid="200614907" size="2">
+					<word wordid="419">abandon</word>
+					<word wordid="57964">give up</word>
+					<definition>stop maintaining or insisting on; of ideas or
+						claims
+					</definition>
+					<sample>He abandoned the thought of asking for her hand
+						in marriage|Both sides have to give up some claims in
+						these negotiations
+					</sample>
+				</synset>
+			</sense>
+		</lexdomain>
+		<lexdomain name="motion">
+			<sense wordid="419" synsetid="202080923" number="5">
+				<word wordid="419">abandon</word>
+				<synset synsetid="202080923" size="3">
+					<word wordid="419">abandon</word>
+					<word wordid="42111">empty</word>
+					<word wordid="140257">vacate</word>
+					<definition>leave behind empty; move out of</definition>
+					<sample>You must vacate your office by tonight</sample>
+				</synset>
+			</sense>
+		</lexdomain>
+		<lexdomain name="possession">
+			<sense wordid="419" synsetid="202232523" number="6">
+				<word wordid="419">abandon</word>
+				<synset synsetid="202232523" size="2">
+					<word wordid="419">abandon</word>
+					<word wordid="57964">give up</word>
+					<definition>give up with the intent of never claiming
+						again
+					</definition>
+					<sample>Abandon your life to God|She gave up her children
+						to her ex-husband when she moved to Tahiti|We gave the
+						drowning victim up for dead
+					</sample>
+				</synset>
+			</sense>
+			<sense wordid="419" synsetid="202232813" number="7">
+				<word wordid="419">abandon</word>
+				<synset synsetid="202232813" size="1">
+					<word wordid="419">abandon</word>
+					<definition>forsake, leave behind</definition>
+					<sample>We abandoned the old car in the empty parking
+						lot
+					</sample>
+				</synset>
+			</sense>
+		</lexdomain>
+	</pos>
+</wordnet><verbnet word="abandon">
+<vnclass name="leave-51.2" classid="261" wordid="419" synsetid="202080923" sensenum="2" sensekey="abandon%2:38:00" groupings="abandon.01" quality="1.0">
+	<sense wordid="419" synsetid="202080923" number="2">
+		<synset synsetid="202080923">
+			<definition>leave behind empty; move out of</definition>
+		</synset>
+	</sense>
+</vnclass>
+<vnclass name="leave-51.2" classid="261" wordid="419" synsetid="202232813" sensenum="1" sensekey="abandon%2:40:00" groupings="abandon.01" quality="1.0">
+	<sense wordid="419" synsetid="202232813" number="1">
+		<synset synsetid="202232813">
+			<definition>forsake, leave behind</definition>
+		</synset>
+	</sense>
+</vnclass>
+</verbnet><propbank word="abandon">
+<roleset num="1" name="abandon.01" rolesetid="5" head="abandon" wordid="419">leave behind</roleset>
+<roleset num="2" name="abandon.02" rolesetid="6" head="abandon" wordid="419">exchange</roleset>
+<roleset num="3" name="abandon.03" rolesetid="7" head="abandon" wordid="419">surrender, give_over</roleset>
+</propbank><framenet word="abandon">
+<lexunit name="abandon.v" luid="13410">give up (an action or
+	practice) completely. [FN: this is distinct from abandoning a
+	belief]
+	<frame name="Activity_stop" frameid="166">
+		<framedefinition>An
+			<fen>Agent</fen>ceases an
+			<fen>Activity</fen>without completing it.
+		</framedefinition>
+	</frame>
+</lexunit>
+<lexunit name="abandon.v" luid="14839">leave behind
+	<frame name="Abandonment" frameid="2031">
+		<framedefinition>An
+			<fen>Agent</fen>leaves behind a
+			<fen>Theme</fen>effectively rendering it no longer within their
+			control or of the normal security as one's
+			property.
+		</framedefinition>
+	</frame>
+</lexunit>
 </framenet>

@@ -66,7 +66,7 @@ public abstract class BaseBrowse2Fragment extends Fragment
 		switch (mode)
 		{
 			case VIEW:
-				view = inflater.inflate(this.layoutId , container, false);
+				view = inflater.inflate(this.layoutId, container, false);
 				break;
 			case WEB:
 				view = inflater.inflate(R.layout.fragment_browse2, container, false);

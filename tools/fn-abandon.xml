@@ -1,2 +1,99 @@
-<?xml version="1.0" encoding="UTF-8"?><sqlunet xmlns="http://org.sqlunet" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="http://org.sqlunet SqlUNet.xsd"><framenet xmlns="http://org.sqlunet/fn" frameid="166"><frame name="Activity_stop" frameid="166"><framedefinition>An <fen>Agent</fen> ceases an <fen>Activity</fen> without completing it.</framedefinition><related frameid="88" frame="Eventive_affecting" relation="Uses"/><related frameid="124" frame="Activity" relation="Subframe of"/><related frameid="144" frame="Process_stop" relation="Inherits from"/><related frameid="164" frame="Activity_ongoing" relation="Is Preceded by"/><related frameid="168" frame="Activity_abandoned_state" relation="Precedes"/><related frameid="181" frame="Activity_paused_state" relation="Precedes"/><related frameid="1024" frame="Halt" relation="Is Inherited by"/><lexunit name="stop.v" luid="11312">discontinue an action, practice, or habit</lexunit><lexunit name="halt.v" luid="11358">bring or come to an abrupt stop</lexunit><lexunit name="discontinue.v" luid="11359">stop doing, providing, or making</lexunit><lexunit name="cease.v" luid="11360">come or bring to an end; stop</lexunit><lexunit name="terminate.v" luid="11856">bring to an end</lexunit><lexunit name="abandon.v" luid="13410">give up (an action or practice) completely.
-[FN: this is distinct from abandoning a belief]</lexunit><lexunit name="quit.v" luid="14637">stop doing something</lexunit><fe name="Agent" feid="2083" coreset="0" type="Core" semtype="Sentient"><fedefinition>This FE identifies <fen>Agent</fen> that stops the <fen>Activity</fen>.</fedefinition></fe><fe name="Activity" feid="2084" coreset="0" type="Core-Unexpressed"><fedefinition>This FE identifies the <fen>Activity</fen> that the <fen>Agent</fen> stops.</fedefinition></fe><fe name="Circumstances" feid="10119" coreset="0" type="Extra-Thematic"><fedefinition>Circumstances describe the state of the world (at a particular time and place) which is specifically independent of the event itself and any of its participants. </fedefinition></fe><fe name="Containing_event" feid="10118" coreset="0" type="Extra-Thematic"><fedefinition>This FE denotes an event that occurs or state of affairs that holds at a time that includes the time during which the event or state of affairs reported by the target occurs and of which it is taken to be a part.</fedefinition></fe><fe name="Degree" feid="10112" coreset="0" type="Peripheral" semtype="Degree"><fedefinition>This FE describes the completeness of stopping. </fedefinition></fe><fe name="Depictive" feid="2079" coreset="0" type="Extra-Thematic"><fedefinition>This FE is used for a <fen>Depictive</fen> phrase describing the actor or undergoer of an action.</fedefinition></fe><fe name="Duration" feid="2581" coreset="0" type="Peripheral" semtype="Duration"><fedefinition>This FE identifies the length of <fen>Time</fen> during which the <fen>Activity</fen> is stopped.</fedefinition></fe><fe name="Event_description" feid="10123" coreset="0" type="Extra-Thematic"><fedefinition>n general, this FE is used for phrases that describe the clause of the target as a whole. </fedefinition></fe><fe name="Explanation" feid="10121" coreset="0" type="Extra-Thematic" semtype="State_of_affairs"><fedefinition>The reason the <fen>Agent</fen> stops the <fen>Activity</fen>. </fedefinition></fe><fe name="Frequency" feid="10115" coreset="0" type="Extra-Thematic"><fedefinition>This frame element is defined as the number of times an event occurs per some unit of time. A Frequency expression answers the question how often. It is to be distinguished from Iteration, which pertains simply to the number of times an event occurs-Iteration expressions answer the question how many times. </fedefinition></fe><fe name="Manner" feid="2080" coreset="0" type="Peripheral" semtype="Manner"><fedefinition>This FE identifies the <fen>Manner</fen> in which the <fen>Agent</fen> stops the <fen>Activity</fen>.</fedefinition></fe><fe name="Means" feid="2582" coreset="0" type="Extra-Thematic" semtype="State_of_affairs"><fedefinition>This FE identifies the <fen>Means</fen> by which the <fen>Agent</fen> stops the <fen>Activity</fen>.</fedefinition></fe><fe name="Particular_iteration" feid="10128" coreset="0" type="Extra-Thematic"><fedefinition>Expressions marked with this extra-thematic FE modify a non-iterative use of the target, and indicate that it is conceived as embedded within an iterated series of similar events or states. </fedefinition></fe><fe name="Place" feid="2076" coreset="0" type="Peripheral" semtype="Locative_relation"><fedefinition>This FE identifies the <fen>Place</fen> where the <fen>Agent</fen> stops the <fen>Activity</fen>.</fedefinition></fe><fe name="Purpose" feid="2074" coreset="0" type="Extra-Thematic" semtype="State_of_affairs"><fedefinition>This FE identifies the <fen>Purpose</fen> for which an <fen>Agent</fen> stopped the <fen>Activity</fen>.</fedefinition></fe><fe name="Re_encoding" feid="10120" coreset="0" type="Extra-Thematic"><fedefinition>This FE presents the current frame as an integral part of a larger conceptualization expressed by another frame. </fedefinition></fe><fe name="Result" feid="2081" coreset="0" type="Extra-Thematic"><fedefinition>This FE identifies the <fen>Result</fen> of the stopped <fen>Activity</fen>.</fedefinition></fe><fe name="Subevent" feid="2602" coreset="0" type="Extra-Thematic"><fedefinition>This FE identifies the last <fen>Subevent</fen> of the stopped <fen>Activity</fen>.<ex><fex name="Sub">With the arrival of the bishop</fex>, everyone <t>stopped</t> working.</ex></fedefinition></fe><fe name="Time" feid="2077" coreset="0" type="Peripheral" semtype="Time"><fedefinition>This FE identifies the <fen>Time</fen> when the <fen>Agent</fen> stops the <fen>Activity</fen>.</fedefinition></fe></frame></framenet></sqlunet>
+<?xml version="1.0" encoding="UTF-8"?>
+<sqlunet xmlns="http://org.sqlunet" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:schemaLocation="http://org.sqlunet SqlUNet.xsd">
+	<framenet xmlns="http://org.sqlunet/fn" frameid="166">
+		<frame name="Activity_stop" frameid="166">
+			<framedefinition>An <fen>Agent</fen> ceases an <fen>Activity</fen> without completing it.
+			</framedefinition>
+			<related frameid="88" frame="Eventive_affecting" relation="Uses" />
+			<related frameid="124" frame="Activity" relation="Subframe of" />
+			<related frameid="144" frame="Process_stop" relation="Inherits from" />
+			<related frameid="164" frame="Activity_ongoing" relation="Is Preceded by" />
+			<related frameid="168" frame="Activity_abandoned_state" relation="Precedes" />
+			<related frameid="181" frame="Activity_paused_state" relation="Precedes" />
+			<related frameid="1024" frame="Halt" relation="Is Inherited by" />
+			<lexunit name="stop.v" luid="11312">discontinue an action, practice, or habit</lexunit>
+			<lexunit name="halt.v" luid="11358">bring or come to an abrupt stop</lexunit>
+			<lexunit name="discontinue.v" luid="11359">stop doing, providing, or making</lexunit>
+			<lexunit name="cease.v" luid="11360">come or bring to an end; stop</lexunit>
+			<lexunit name="terminate.v" luid="11856">bring to an end</lexunit>
+			<lexunit name="abandon.v" luid="13410">give up (an action or practice) completely.
+				[FN: this is distinct from abandoning a belief]
+			</lexunit>
+			<lexunit name="quit.v" luid="14637">stop doing something</lexunit>
+			<fe name="Agent" feid="2083" coreset="0" type="Core" semtype="Sentient">
+				<fedefinition>This FE identifies <fen>Agent</fen> that stops the <fen>Activity</fen>.
+				</fedefinition>
+			</fe>
+			<fe name="Activity" feid="2084" coreset="0" type="Core-Unexpressed">
+				<fedefinition>This FE identifies the <fen>Activity</fen> that the <fen>Agent</fen> stops.
+				</fedefinition>
+			</fe>
+			<fe name="Circumstances" feid="10119" coreset="0" type="Extra-Thematic">
+				<fedefinition>Circumstances describe the state of the world (at a particular time and place) which is specifically independent of the event itself and any of its participants.</fedefinition>
+			</fe>
+			<fe name="Containing_event" feid="10118" coreset="0" type="Extra-Thematic">
+				<fedefinition>This FE denotes an event that occurs or state of affairs that holds at a time that includes the time during which the event or state of affairs reported by the target occurs and of which it is taken to be a part.
+				</fedefinition>
+			</fe>
+			<fe name="Degree" feid="10112" coreset="0" type="Peripheral" semtype="Degree">
+				<fedefinition>This FE describes the completeness of stopping.</fedefinition>
+			</fe>
+			<fe name="Depictive" feid="2079" coreset="0" type="Extra-Thematic">
+				<fedefinition>This FE is used for a <fen>Depictive</fen> phrase describing the actor or undergoer of an action.
+				</fedefinition>
+			</fe>
+			<fe name="Duration" feid="2581" coreset="0" type="Peripheral" semtype="Duration">
+				<fedefinition>This FE identifies the length of <fen>Time</fen> during which the <fen>Activity</fen> is stopped.
+				</fedefinition>
+			</fe>
+			<fe name="Event_description" feid="10123" coreset="0" type="Extra-Thematic">
+				<fedefinition>n general, this FE is used for phrases that describe the clause of the target as a whole.</fedefinition>
+			</fe>
+			<fe name="Explanation" feid="10121" coreset="0" type="Extra-Thematic" semtype="State_of_affairs">
+				<fedefinition>The reason the <fen>Agent</fen> stops the <fen>Activity</fen>.
+				</fedefinition>
+			</fe>
+			<fe name="Frequency" feid="10115" coreset="0" type="Extra-Thematic">
+				<fedefinition>This frame element is defined as the number of times an event occurs per some unit of time. A Frequency expression answers the question how often. It is to be distinguished from Iteration, which pertains simply to the number
+					of times an event occurs-Iteration expressions answer the question how many times.
+				</fedefinition>
+			</fe>
+			<fe name="Manner" feid="2080" coreset="0" type="Peripheral" semtype="Manner">
+				<fedefinition>This FE identifies the <fen>Manner</fen> in which the <fen>Agent</fen> stops the <fen>Activity</fen>.
+				</fedefinition>
+			</fe>
+			<fe name="Means" feid="2582" coreset="0" type="Extra-Thematic" semtype="State_of_affairs">
+				<fedefinition>This FE identifies the <fen>Means</fen> by which the <fen>Agent</fen> stops the <fen>Activity</fen>.
+				</fedefinition>
+			</fe>
+			<fe name="Particular_iteration" feid="10128" coreset="0" type="Extra-Thematic">
+				<fedefinition>Expressions marked with this extra-thematic FE modify a non-iterative use of the target, and indicate that it is conceived as embedded within an iterated series of similar events or states.</fedefinition>
+			</fe>
+			<fe name="Place" feid="2076" coreset="0" type="Peripheral" semtype="Locative_relation">
+				<fedefinition>This FE identifies the <fen>Place</fen> where the <fen>Agent</fen> stops the <fen>Activity</fen>.
+				</fedefinition>
+			</fe>
+			<fe name="Purpose" feid="2074" coreset="0" type="Extra-Thematic" semtype="State_of_affairs">
+				<fedefinition>This FE identifies the <fen>Purpose</fen> for which an <fen>Agent</fen> stopped the <fen>Activity</fen>.
+				</fedefinition>
+			</fe>
+			<fe name="Re_encoding" feid="10120" coreset="0" type="Extra-Thematic">
+				<fedefinition>This FE presents the current frame as an integral part of a larger conceptualization expressed by another frame.</fedefinition>
+			</fe>
+			<fe name="Result" feid="2081" coreset="0" type="Extra-Thematic">
+				<fedefinition>This FE identifies the <fen>Result</fen> of the stopped <fen>Activity</fen>.
+				</fedefinition>
+			</fe>
+			<fe name="Subevent" feid="2602" coreset="0" type="Extra-Thematic">
+				<fedefinition>This FE identifies the last <fen>Subevent</fen> of the stopped <fen>Activity</fen>.
+					<ex><fex name="Sub">With the arrival of the bishop</fex>, everyone <t>stopped</t> working.
+					</ex>
+				</fedefinition>
+			</fe>
+			<fe name="Time" feid="2077" coreset="0" type="Peripheral" semtype="Time">
+				<fedefinition>This FE identifies the <fen>Time</fen> when the <fen>Agent</fen> stops the <fen>Activity</fen>.
+				</fedefinition>
+			</fe>
+		</frame>
+	</framenet>
+</sqlunet>

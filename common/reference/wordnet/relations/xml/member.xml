@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<link name="Domain Member" id="member" type="both" reverse="domain" n="true" v="true" a="true" r="true" s="true">
+<link
+	name="Domain Member"
+	id="member"
+	type="both"
+	reverse="domain"
+	n="true"
+	v="true"
+	a="true"
+	r="true"
+	s="true">
 
 	<img src="domain.member.png" />
 

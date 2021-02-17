@@ -56,7 +56,7 @@ final class PreferenceHelper
 	 * If it is false, rate dialog will never shown unless data is cleared.
 	 *
 	 * @param context context
-	 * @param agree agree with showing rate dialog
+	 * @param agree   agree with showing rate dialog
 	 */
 	static void setAgreeShowDialog(@NonNull Context context, boolean agree)
 	{

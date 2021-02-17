@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
@@ -41,7 +40,7 @@
 		<item>Drop sampleset View</item>
 	</string-array>
 	<string-array name="sql_statements_values" formatted="false" tools:ignore="InconsistentArrays">
-		<item/>
+		<item />
 		<item>
 			CREATE INDEX IF NOT EXISTS index_words_lemma ON words(lemma);
 			CREATE INDEX IF NOT EXISTS index_senses_wordid ON senses(wordid);

@@ -1,262 +1,152 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   height="1066.6666"
-   width="1000"
-   id="svg2"
-   version="1.1"
-   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   sodipodi:docname="ic_settings_database.svg">
-  <metadata
-     id="metadata10">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <defs
-     id="defs8">
-    <style
-       id="style2988"
-       type="text/css">
-    .fil0 {fill:#006C3B}
-    .fil1 {fill:#77C06C}
-   </style>
-    <linearGradient
-       gradientTransform="matrix(0,0,0,0,-49014053000,-1.5520205e11)"
-       osb:paint="solid"
-       id="linearGradient19282">
-      <stop
-         id="stop19284"
-         offset="0"
-         style="stop-color:#666666;stop-opacity:1;" />
-    </linearGradient>
-    <style
-       type="text/css"
-       id="style2988-0">
-    .fil0 {fill:#006C3B}
-    .fil1 {fill:#77C06C}
-   </style>
-    <style
-       id="style2988-6"
-       type="text/css">
-    .fil0 {fill:#006C3B}
-    .fil1 {fill:#77C06C}
-   </style>
-    <style
-       type="text/css"
-       id="style2988-70">
-    .fil0 {fill:#006C3B}
-    .fil1 {fill:#77C06C}
-   </style>
-    <style
-       type="text/css"
-       id="style2988-7">
-    .fil0 {fill:#006C3B}
-    .fil1 {fill:#77C06C}
-   </style>
-    <style
-       id="style2988-4"
-       type="text/css">
-    .fil0 {fill:#006C3B}
-    .fil1 {fill:#77C06C}
-   </style>
-    <style
-       id="style2988-7-8"
-       type="text/css">
-    .fil0 {fill:#006C3B}
-    .fil1 {fill:#77C06C}
-   </style>
-  </defs>
-  <sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="1314"
-     inkscape:window-height="1029"
-     id="namedview6"
-     showgrid="false"
-     inkscape:zoom="0.24208851"
-     inkscape:cx="-1005.0993"
-     inkscape:cy="698.81018"
-     inkscape:window-x="606"
-     inkscape:window-y="101"
-     inkscape:window-maximized="0"
-     inkscape:current-layer="svg2" />
-  <style
-     id="style8068"
-     type="text/css">
-	.st0{fill:#333333;}
-</style>
-  <g
-     id="XMLID_2_"
-     transform="matrix(14.116511,0,0,14.116511,-226.60897,-179.27617)"
-     style="fill:#696969;fill-opacity:1">
-    <path
-       d="m 51.2,46.613333 c 5.653333,0 10.88,-0.533333 15.786667,-1.493333 4.906666,-1.066667 8.746666,-2.56 11.626666,-4.586667 v 6.08 c 0,1.6 -1.173333,3.2 -3.626666,4.586667 -2.453334,1.386667 -5.76,2.56 -10.026667,3.306667 -4.266667,0.746666 -8.746667,1.28 -13.76,1.28 -5.013333,0 -9.493333,-0.426667 -13.76,-1.28 C 33.173333,53.653333 29.866667,52.586667 27.413333,51.2 24.96,49.813333 23.786667,48.32 23.786667,46.613333 v -6.08 c 2.88,2.026667 6.72,3.52 11.626666,4.586667 C 40.32,46.08 45.546667,46.613333 51.2,46.613333 Z m 0,27.413334 c 5.653333,0 10.88,-0.533334 15.786667,-1.493334 4.906666,-1.066666 8.746666,-2.56 11.626666,-4.586666 v 6.08 c 0,1.6 -1.173333,3.2 -3.626666,4.586666 C 72.533333,80 69.226667,81.173333 64.96,81.92 60.693333,82.666667 56.106667,83.2 51.2,83.2 46.293333,83.2 41.706667,82.773333 37.44,81.92 33.173333,81.066667 29.866667,80 27.413333,78.613333 24.96,77.226667 23.786667,75.733333 23.786667,74.026667 v -6.08 c 2.88,2.026666 6.72,3.52 11.626666,4.586666 4.906667,0.96 10.133334,1.493334 15.786667,1.493334 z m 0,-13.653334 c 5.653333,0 10.88,-0.533333 15.786667,-1.493333 4.906666,-0.96 8.746666,-2.56 11.626666,-4.586667 v 6.08 c 0,1.6 -1.173333,3.2 -3.626666,4.586667 -2.453334,1.386667 -5.76,2.56 -10.026667,3.306667 -4.266667,0.853333 -8.746667,1.28 -13.76,1.28 -5.013333,0 -9.493333,-0.426667 -13.76,-1.28 C 33.173333,67.413333 29.866667,66.346667 27.413333,64.96 24.96,63.573333 23.786667,62.08 23.786667,60.373333 v -6.08 c 2.88,2.026667 6.72,3.52 11.626666,4.586667 C 40.32,59.946667 45.546667,60.373333 51.2,60.373333 Z M 51.2,19.2 c 4.906667,0 9.493333,0.426667 13.76,1.28 4.266667,0.853333 7.573333,1.92 10.026667,3.306667 2.453333,1.386666 3.626666,2.88 3.626666,4.586666 V 32.96 c 0,1.6 -1.173333,3.2 -3.626666,4.586667 -2.453334,1.386666 -5.76,2.56 -10.026667,3.306666 -4.266667,0.746667 -8.746667,1.28 -13.76,1.28 -5.013333,0 -9.493333,-0.426666 -13.76,-1.28 C 33.173333,40 29.866667,38.933333 27.413333,37.546667 24.96,36.16 23.786667,34.666667 23.786667,32.96 v -4.586667 c 0,-1.6 1.173333,-3.2 3.626666,-4.586666 C 29.866667,22.4 33.173333,21.226667 37.44,20.48 41.706667,19.626667 46.293333,19.2 51.2,19.2 Z"
-       class="st0"
-       id="XMLID_8_"
-       inkscape:connector-curvature="0"
-       style="fill:#696969;fill-opacity:1;stroke-width:1.06666672" />
-  </g>
-  <style
-     type="text/css"
-     id="style8">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     type="text/css"
-     id="style8-7">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     type="text/css"
-     id="style8-3">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     type="text/css"
-     id="style8-6">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     id="style8-1"
-     type="text/css">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     id="style8-7-0"
-     type="text/css">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     id="style8-3-2"
-     type="text/css">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     id="style8-6-7"
-     type="text/css">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     id="style8-8"
-     type="text/css">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     id="style8-7-5"
-     type="text/css">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     id="style8-3-1"
-     type="text/css">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     id="style8-6-6"
-     type="text/css">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     type="text/css"
-     id="style8-1-6">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     type="text/css"
-     id="style8-7-0-2">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     type="text/css"
-     id="style8-3-2-1">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     type="text/css"
-     id="style8-6-7-9">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     type="text/css"
-     id="style8-0">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     type="text/css"
-     id="style8-7-8">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     type="text/css"
-     id="style8-3-10">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     type="text/css"
-     id="style8-6-2">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     id="style8-1-2"
-     type="text/css">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     id="style8-7-0-9"
-     type="text/css">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     id="style8-3-2-7"
-     type="text/css">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <style
-     id="style8-6-7-5"
-     type="text/css">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
+<svg xmlns:osb="http://www.openswatchbook.org/uri/2009/osb" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg"
+	xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" height="1066.6666" width="1000" id="svg2" version="1.1"
+	inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)" sodipodi:docname="ic_settings_database.svg">
+	<metadata id="metadata10">
+		<rdf:RDF>
+			<cc:Work rdf:about="">
+				<dc:format>image/svg+xml</dc:format>
+				<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+			</cc:Work>
+		</rdf:RDF>
+	</metadata>
+	<defs id="defs8">
+		<style id="style2988" type="text/css">
+			.fil0 {fill:#006C3B}
+			.fil1 {fill:#77C06C}
+		</style>
+		<linearGradient gradientTransform="matrix(0,0,0,0,-49014053000,-1.5520205e11)" osb:paint="solid" id="linearGradient19282">
+			<stop id="stop19284" offset="0" style="stop-color:#666666;stop-opacity:1;" />
+		</linearGradient>
+		<style type="text/css" id="style2988-0">
+			.fil0 {fill:#006C3B}
+			.fil1 {fill:#77C06C}
+		</style>
+		<style id="style2988-6" type="text/css">
+			.fil0 {fill:#006C3B}
+			.fil1 {fill:#77C06C}
+		</style>
+		<style type="text/css" id="style2988-70">
+			.fil0 {fill:#006C3B}
+			.fil1 {fill:#77C06C}
+		</style>
+		<style type="text/css" id="style2988-7">
+			.fil0 {fill:#006C3B}
+			.fil1 {fill:#77C06C}
+		</style>
+		<style id="style2988-4" type="text/css">
+			.fil0 {fill:#006C3B}
+			.fil1 {fill:#77C06C}
+		</style>
+		<style id="style2988-7-8" type="text/css">
+			.fil0 {fill:#006C3B}
+			.fil1 {fill:#77C06C}
+		</style>
+	</defs>
+	<sodipodi:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-width="1314" inkscape:window-height="1029"
+		id="namedview6" showgrid="false" inkscape:zoom="0.24208851" inkscape:cx="-1005.0993" inkscape:cy="698.81018" inkscape:window-x="606" inkscape:window-y="101" inkscape:window-maximized="0" inkscape:current-layer="svg2" />
+	<style id="style8068" type="text/css">
+		.st0{fill:#333333;}
+	</style>
+	<g id="XMLID_2_" transform="matrix(14.116511,0,0,14.116511,-226.60897,-179.27617)" style="fill:#696969;fill-opacity:1">
+		<path
+			d="m 51.2,46.613333 c 5.653333,0 10.88,-0.533333 15.786667,-1.493333 4.906666,-1.066667 8.746666,-2.56 11.626666,-4.586667 v 6.08 c 0,1.6 -1.173333,3.2 -3.626666,4.586667 -2.453334,1.386667 -5.76,2.56 -10.026667,3.306667 -4.266667,0.746666 -8.746667,1.28 -13.76,1.28 -5.013333,0 -9.493333,-0.426667 -13.76,-1.28 C 33.173333,53.653333 29.866667,52.586667 27.413333,51.2 24.96,49.813333 23.786667,48.32 23.786667,46.613333 v -6.08 c 2.88,2.026667 6.72,3.52 11.626666,4.586667 C 40.32,46.08 45.546667,46.613333 51.2,46.613333 Z m 0,27.413334 c 5.653333,0 10.88,-0.533334 15.786667,-1.493334 4.906666,-1.066666 8.746666,-2.56 11.626666,-4.586666 v 6.08 c 0,1.6 -1.173333,3.2 -3.626666,4.586666 C 72.533333,80 69.226667,81.173333 64.96,81.92 60.693333,82.666667 56.106667,83.2 51.2,83.2 46.293333,83.2 41.706667,82.773333 37.44,81.92 33.173333,81.066667 29.866667,80 27.413333,78.613333 24.96,77.226667 23.786667,75.733333 23.786667,74.026667 v -6.08 c 2.88,2.026666 6.72,3.52 11.626666,4.586666 4.906667,0.96 10.133334,1.493334 15.786667,1.493334 z m 0,-13.653334 c 5.653333,0 10.88,-0.533333 15.786667,-1.493333 4.906666,-0.96 8.746666,-2.56 11.626666,-4.586667 v 6.08 c 0,1.6 -1.173333,3.2 -3.626666,4.586667 -2.453334,1.386667 -5.76,2.56 -10.026667,3.306667 -4.266667,0.853333 -8.746667,1.28 -13.76,1.28 -5.013333,0 -9.493333,-0.426667 -13.76,-1.28 C 33.173333,67.413333 29.866667,66.346667 27.413333,64.96 24.96,63.573333 23.786667,62.08 23.786667,60.373333 v -6.08 c 2.88,2.026667 6.72,3.52 11.626666,4.586667 C 40.32,59.946667 45.546667,60.373333 51.2,60.373333 Z M 51.2,19.2 c 4.906667,0 9.493333,0.426667 13.76,1.28 4.266667,0.853333 7.573333,1.92 10.026667,3.306667 2.453333,1.386666 3.626666,2.88 3.626666,4.586666 V 32.96 c 0,1.6 -1.173333,3.2 -3.626666,4.586667 -2.453334,1.386666 -5.76,2.56 -10.026667,3.306666 -4.266667,0.746667 -8.746667,1.28 -13.76,1.28 -5.013333,0 -9.493333,-0.426666 -13.76,-1.28 C 33.173333,40 29.866667,38.933333 27.413333,37.546667 24.96,36.16 23.786667,34.666667 23.786667,32.96 v -4.586667 c 0,-1.6 1.173333,-3.2 3.626666,-4.586666 C 29.866667,22.4 33.173333,21.226667 37.44,20.48 41.706667,19.626667 46.293333,19.2 51.2,19.2 Z"
+			class="st0" id="XMLID_8_" inkscape:connector-curvature="0" style="fill:#696969;fill-opacity:1;stroke-width:1.06666672" />
+	</g>
+	<style type="text/css" id="style8">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style type="text/css" id="style8-7">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style type="text/css" id="style8-3">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style type="text/css" id="style8-6">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style id="style8-1" type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style id="style8-7-0" type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style id="style8-3-2" type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style id="style8-6-7" type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style id="style8-8" type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style id="style8-7-5" type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style id="style8-3-1" type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style id="style8-6-6" type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style type="text/css" id="style8-1-6">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style type="text/css" id="style8-7-0-2">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style type="text/css" id="style8-3-2-1">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style type="text/css" id="style8-6-7-9">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style type="text/css" id="style8-0">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style type="text/css" id="style8-7-8">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style type="text/css" id="style8-3-10">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style type="text/css" id="style8-6-2">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style id="style8-1-2" type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style id="style8-7-0-9" type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style id="style8-3-2-7" type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<style id="style8-6-7-5" type="text/css">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
 </svg>

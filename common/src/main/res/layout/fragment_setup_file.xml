@@ -1,15 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerHorizontal="true"
-                android:orientation="vertical"
-                tools:context="org.sqlunet.browser.config.SetupFileFragment">
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:layout_centerHorizontal="true"
+	android:orientation="vertical"
+	tools:context="org.sqlunet.browser.config.SetupFileFragment">
 
 	<LinearLayout
 		android:layout_width="match_parent"
@@ -26,7 +25,7 @@
 			android:layout_gravity="center_horizontal"
 			android:layout_margin="10dp"
 			android:background="@android:color/transparent"
-			android:gravity="center"/>
+			android:gravity="center" />
 
 		<ImageButton
 			android:id="@+id/task_run"
@@ -37,7 +36,7 @@
 			android:background="@drawable/bg_button_action"
 			android:contentDescription="@string/action_download"
 			android:src="@drawable/ic_run"
-			android:text="@string/action_run"/>
+			android:text="@string/action_run" />
 
 		<TextView
 			android:id="@+id/task_status"
@@ -48,7 +47,7 @@
 			android:layout_marginEnd="50dp"
 			android:layout_marginStart="50dp"
 			android:layout_marginTop="20dp"
-			android:textIsSelectable="true"/>
+			android:textIsSelectable="true" />
 
 	</LinearLayout>
 </RelativeLayout>

@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<link name="Similar" id="similar" type="semantic" reverse="similar" reflexive="true" a="true" s="true">
+<link
+	name="Similar"
+	id="similar"
+	type="semantic"
+	reverse="similar"
+	reflexive="true"
+	a="true"
+	s="true">
 
 	<img src="similar.png" />
 

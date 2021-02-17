@@ -60,13 +60,13 @@
 						android:id="@+id/databaseButton"
 						style="@style/GridActionButton"
 						android:contentDescription="@string/status_database"
-						android:src="@drawable/bn_download"  />
+						android:src="@drawable/bn_download" />
 
 					<ImageButton
 						android:id="@+id/info_database"
 						style="@style/GridInfoButton"
 						android:contentDescription="@string/hint_database"
-						android:src="@drawable/bn_info"  />
+						android:src="@drawable/bn_info" />
 
 				</LinearLayout>
 
@@ -87,7 +87,7 @@
 						android:id="@+id/indexesButton"
 						style="@style/GridActionButton"
 						android:contentDescription="@string/status_indexes"
-						android:src="@drawable/bn_setup"  />
+						android:src="@drawable/bn_setup" />
 				</LinearLayout>
 
 			</GridLayout>

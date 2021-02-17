@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<link name="Entailed" id="entailed" type="semantic" v="true">
+<link
+	name="Entailed"
+	id="entailed"
+	type="semantic"
+	v="true">
 
 	<img src="entailed.png" />
 
 	<description>
-		<span>Is entailed by. </span>
+		<span>Is entailed by.</span>
 	</description>
 
 	<logical>

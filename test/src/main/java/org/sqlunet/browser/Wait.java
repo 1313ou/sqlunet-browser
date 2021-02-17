@@ -106,14 +106,20 @@ public class Wait
 						// found view with required ID
 						if (viewMatcher.matches(child))
 						{
-							if(! (child instanceof TextView))
+							if (!(child instanceof TextView))
+							{
 								throw new PerformException.Builder().withActionDescription(this.getDescription()).withViewDescription(HumanReadables.describe(view)).withCause(new ClassCastException()).build();
+							}
 							final TextView textView = (TextView) child;
 							final String text = textView.getText().toString();
 							if (not && !text.equals(target))
+							{
 								return;
+							}
 							else if (!not && text.equals(target))
+							{
 								return;
+							}
 						}
 					}
 					uiController.loopMainThreadForAtLeast(50);
@@ -145,7 +151,7 @@ public class Wait
 	{
 		try
 		{
-			Thread.sleep( sec * TIME_UNIT_IN_MS);
+			Thread.sleep(sec * TIME_UNIT_IN_MS);
 		}
 		catch (InterruptedException e)
 		{

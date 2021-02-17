@@ -80,7 +80,8 @@ abstract public class AbstractActivity extends AppCompatActivity
 	static public Configuration createOverrideConfigurationForDayNight(@NonNull Context context, final int mode)
 	{
 		int newNightMode;
-		switch (mode) {
+		switch (mode)
+		{
 			case MODE_NIGHT_YES:
 				newNightMode = Configuration.UI_MODE_NIGHT_YES;
 				break;
@@ -90,7 +91,7 @@ abstract public class AbstractActivity extends AppCompatActivity
 			default:
 			case MODE_NIGHT_FOLLOW_SYSTEM:
 				// If we're following the system, we just use the system default from the application context
-				final Configuration appConfig =	context.getApplicationContext().getResources().getConfiguration();
+				final Configuration appConfig = context.getApplicationContext().getResources().getConfiguration();
 				newNightMode = appConfig.uiMode & Configuration.UI_MODE_NIGHT_MASK;
 				break;
 		}

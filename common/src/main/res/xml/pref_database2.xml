@@ -22,5 +22,5 @@
 		app:key="pref_db_file"
 		app:summary="@string/pref_description_db_file"
 		app:title="@string/pref_title_db_file" />
-	
+
 </PreferenceScreen>

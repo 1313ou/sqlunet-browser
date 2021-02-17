@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<link name="Derivation" id="derivation" type="lexical" reverse="derivation" reflexive="true" n="true" v="true" a="true" r="true" s="true">
+<link
+	name="Derivation"
+	id="derivation"
+	type="lexical"
+	reverse="derivation"
+	reflexive="true"
+	n="true"
+	v="true"
+	a="true"
+	r="true"
+	s="true">
 
 	<img src="derivation.png" />
 

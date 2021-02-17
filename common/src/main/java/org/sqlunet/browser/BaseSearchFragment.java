@@ -354,7 +354,9 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 			}
 		});
 		if (triggerFocusSearch())
-		new Handler(Looper.getMainLooper()).postDelayed(() -> this.searchView.setIconified(false), 1500);
+		{
+			new Handler(Looper.getMainLooper()).postDelayed(() -> this.searchView.setIconified(false), 1500);
+		}
 	}
 
 	protected boolean triggerFocusSearch()

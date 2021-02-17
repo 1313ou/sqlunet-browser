@@ -42,8 +42,7 @@ public class HomeFragment extends Fragment
 		final View view = inflater.inflate(R.layout.fragment_home, container, false);
 
 		FloatingActionButton fab = view.findViewById(R.id.fab);
-		fab.setOnClickListener((v)->
-		{
+		fab.setOnClickListener((v) -> {
 			final FragmentActivity activity = requireActivity();
 			final NavHostFragment navHostFragment = (NavHostFragment) activity.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
 			assert navHostFragment != null;
@@ -58,7 +57,7 @@ public class HomeFragment extends Fragment
 	{
 		super.onResume();
 
-		final AppCompatActivity activity = (AppCompatActivity)requireActivity();
+		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
 		final ActionBar actionBar = activity.getSupportActionBar();
 		assert actionBar != null;
 		actionBar.setCustomView(null);

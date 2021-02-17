@@ -30,7 +30,7 @@
 		<layer-list>
 
 			<!-- shadow -->
-			<item android:left="@dimen/action_button_shadow_offset" android:top="@dimen/action_button_shadow_offset"  android:gravity="center">
+			<item android:left="@dimen/action_button_shadow_offset" android:top="@dimen/action_button_shadow_offset" android:gravity="center">
 				<shape android:shape="oval">
 					<gradient android:centerColor="@color/shadow" android:centerX="0.5" android:centerY="0.5" android:endColor="@android:color/transparent" android:gradientRadius="25dp" android:startColor="@color/shadow" android:type="radial" />
 					<size android:width="@dimen/action_button_diameter" android:height="@dimen/action_button_diameter" />

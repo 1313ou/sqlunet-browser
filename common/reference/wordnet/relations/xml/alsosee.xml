@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<link name="Also See" id="alsosee" type="both" v="true" a="true">
+<link
+	name="Also See"
+	id="alsosee"
+	type="both"
+	v="true"
+	a="true">
 
 	<img src="alsosee.png" />
 

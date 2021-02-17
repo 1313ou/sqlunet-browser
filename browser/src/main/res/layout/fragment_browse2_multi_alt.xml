@@ -1,13 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
 
 	<!--     <TextView -->
 	<!--         android:id="@+id/label_verbnet" -->
@@ -21,7 +20,7 @@
 		android:id="@+id/container_verbnet"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		tools:ignore="InconsistentLayout"/>
+		tools:ignore="InconsistentLayout" />
 
 	<!--     <TextView -->
 	<!--         android:id="@+id/label_propbank" -->
@@ -35,7 +34,7 @@
 		android:id="@+id/container_propbank"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		tools:ignore="InconsistentLayout"/>
+		tools:ignore="InconsistentLayout" />
 
 	<!--     <TextView -->
 	<!--         android:id="@+id/label_framenet" -->
@@ -49,7 +48,7 @@
 		android:id="@+id/container_framenet"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		tools:ignore="InconsistentLayout"/>
+		tools:ignore="InconsistentLayout" />
 
 	<!--     <TextView -->
 	<!--         android:id="@+id/label_wordnet" -->
@@ -63,7 +62,7 @@
 		android:id="@+id/container_wordnet"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		tools:ignore="InconsistentLayout"/>
+		tools:ignore="InconsistentLayout" />
 
 	<!--     <TextView -->
 	<!--         android:id="@+id/label_bnc" -->
@@ -77,6 +76,6 @@
 		android:id="@+id/container_bnc"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		tools:ignore="InconsistentLayout"/>
+		tools:ignore="InconsistentLayout" />
 
 </LinearLayout>

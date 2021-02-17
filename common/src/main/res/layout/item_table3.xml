@@ -1,26 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              style="@style/ListItem"
-              tools:ignore="UnusedResources">
+	xmlns:tools="http://schemas.android.com/tools"
+	style="@style/ListItem"
+	tools:ignore="UnusedResources">
 
 	<TextView
 		android:id="@+id/item0"
 		style="@style/ListItemColumn.Minor"
-		android:layout_weight=".1"/>
+		android:layout_weight=".1" />
 
 	<TextView
 		android:id="@+id/item1"
 		style="@style/ListItemColumn.Major"
-		android:layout_weight=".65"/>
+		android:layout_weight=".65" />
 
 	<TextView
 		android:id="@+id/item2"
 		style="@style/ListItemColumn.Minor"
-		android:layout_weight=".25"/>
+		android:layout_weight=".25" />
 
 </LinearLayout>

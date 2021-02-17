@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<link name="Verb Group" id="verbgroup" type="semantic" reverse="verbgroup" reflexive="true" v="true">
+<link
+	name="Verb Group"
+	id="verbgroup"
+	type="semantic"
+	reverse="verbgroup"
+	reflexive="true"
+	v="true">
 
 	<img src="verb.group.png" />
 
 	<description>
 		<span>Verb group. Some similar senses of verbs have been grouped. Transitivity is used to combine groups of overlapping senses into the largest sense groups
-			possible.</span>
+			possible.
+		</span>
 	</description>
 
 	<examples>

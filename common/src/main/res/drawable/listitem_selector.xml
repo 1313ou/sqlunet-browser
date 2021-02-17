@@ -1,14 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
 <selector xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android" tools:ignore="UnusedResources">
 
 	<!-- Focused -->
-	<item android:state_focused="true" android:drawable="@android:color/transparent"/>
+	<item android:state_focused="true" android:drawable="@android:color/transparent" />
 
 	<!-- Default -->
-	<item android:drawable="@android:color/transparent"/>
+	<item android:drawable="@android:color/transparent" />
 
 </selector>
