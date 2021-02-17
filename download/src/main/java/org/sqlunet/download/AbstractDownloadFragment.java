@@ -9,8 +9,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -456,6 +454,9 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 
 	static private final Object lock = new Object();
 
+	/**
+	 * Download button click
+	 */
 	@SuppressWarnings("WeakerAccess")
 	@Override
 	public void onClick(@NonNull final View view)
@@ -738,7 +739,7 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	// E V E N T S
 
 	/**
-	 * Event sink for events fired by downloader
+	 * Event sink for download events fired by downloader
 	 *
 	 * @param success whether download was successful
 	 */
@@ -792,13 +793,33 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		}
 		this.cancelButton.setVisibility(View.GONE);
 		this.md5Button.setVisibility(success ? View.VISIBLE : View.GONE);
-		this.deployButton.setVisibility(success && this.unzipDir != null ? View.VISIBLE : View.GONE);
+
+		// deploy button to complete task
+		boolean requiresDeploy = this.unzipDir != null;
+		this.deployButton.setVisibility(success && requiresDeploy ? View.VISIBLE : View.GONE);
 
 		// invalidate
 		if (!success)
 		{
 			this.downloadedFile = null;
 		}
+
+		// complete
+		if (!success || !requiresDeploy)
+		{
+			onComplete(success);
+		}
+	}
+
+	/**
+	 * Event sink for completion events fired by downloader
+	 *
+	 * @param success whether download and deployment were successful
+	 */
+	void onComplete(final boolean success)
+	{
+		Log.d(TAG, "OnComplete " + success + " " + this);
+		((OnComplete) getActivity()).onComplete(success);
 	}
 
 	// M D 5

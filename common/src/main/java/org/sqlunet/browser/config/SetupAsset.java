@@ -51,7 +51,7 @@ public class SetupAsset
 	 */
 	@Nullable
 	@SuppressWarnings("UnusedReturnValue")
-	public static String deliverAsset(@NonNull final String assetPack, @NonNull final String assetDir, @NonNull final String assetZip, @NonNull final String assetZipEntry, @NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @Nullable final View view)
+	public static String deliverAsset(@NonNull final String assetPack, @NonNull final String assetDir, @NonNull final String assetZip, @NonNull final String assetZipEntry, @NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @Nullable Runnable whenComplete, @Nullable final View view)
 	{
 		if (assetPack.isEmpty())
 		{
@@ -96,7 +96,10 @@ public class SetupAsset
 
 							org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
 							Settings.recordDbSource(activity, new File(new File(path, assetDir), assetZip).getAbsolutePath(), -1, -1, null, null, null);
-							EntryActivity.rerun(activity);
+							if (whenComplete != null)
+							{
+								whenComplete.run();
+							}
 						});
 					}
 				});
@@ -129,7 +132,10 @@ public class SetupAsset
 
 					org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
 					Settings.recordDbSource(activity, zipFilePath, -1, -1, null, null, null);
-					EntryActivity.rerun(activity);
+					if (whenComplete != null)
+					{
+						whenComplete.run();
+					}
 				});
 			}
 			else

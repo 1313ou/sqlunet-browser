@@ -6,9 +6,7 @@ package org.sqlunet.download;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,12 +14,18 @@ import androidx.appcompat.widget.Toolbar;
 
 import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_DOWNLOADER_ARG;
 
+@FunctionalInterface
+interface OnComplete
+{
+	void onComplete(boolean success);
+}
+
 /**
  * Download activity
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class DownloadActivity extends AppCompatActivity
+public class DownloadActivity extends AppCompatActivity implements OnComplete
 {
 	static private final String TAG = "DownloadA";
 
@@ -70,4 +74,11 @@ public class DownloadActivity extends AppCompatActivity
 					.commit();
 		}
 	}
+
+	@Override
+	public void onComplete(final boolean success)
+	{
+		Log.d(TAG, "OnComplete " + success + " " + this);
+	}
 }
+

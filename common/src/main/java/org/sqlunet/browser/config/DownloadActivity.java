@@ -39,6 +39,16 @@ public class DownloadActivity extends org.sqlunet.download.DownloadActivity
 		}
 	}
 
+	@Override
+	public void onComplete(final boolean success)
+	{
+		Log.d(TAG, "OnComplete " + success + " " + this);
+		if (success)
+		{
+			EntryActivity.rerun(this);
+		}
+	}
+
 	// M E N U
 
 	@SuppressWarnings("SameReturnValue")

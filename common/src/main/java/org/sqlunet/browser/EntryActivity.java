@@ -29,6 +29,14 @@ public class EntryActivity extends AppCompatActivity
 {
 	static private final String TAG = "EntryA";
 
+	public static final int INITIAL_TASK_FLAGS = 0;
+
+	public static final int POST_INITIAL_TASK_FLAGS = 0;
+
+	private static final int BRANCH_FLAGS = 0;
+
+	public static final int REENTER_FLAGS = Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK;
+
 	@RequiresApi(api = Build.VERSION_CODES.M)
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -89,7 +97,7 @@ public class EntryActivity extends AppCompatActivity
 		final String clazz = Settings.getLaunchPref(this); // = "org.sqlunet.browser.MainActivity";
 		final Intent intent = new Intent();
 		intent.setClassName(this, clazz);
-		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		intent.addFlags(POST_INITIAL_TASK_FLAGS);
 		startActivity(intent);
 		finish();
 	}
@@ -116,7 +124,7 @@ public class EntryActivity extends AppCompatActivity
 	private static void branchOffToLoad(@NonNull final AppCompatActivity activity)
 	{
 		final Intent intent = new Intent(activity, LoadActivity.class);
-		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		intent.addFlags(BRANCH_FLAGS);
 		activity.startActivity(intent);
 	}
 
@@ -128,7 +136,7 @@ public class EntryActivity extends AppCompatActivity
 	static public void rerun(@NonNull final Context context)
 	{
 		final Intent intent = new Intent(context, EntryActivity.class);
-		intent.addFlags(/*Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | */Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		intent.addFlags(REENTER_FLAGS);
 		context.startActivity(intent);
 	}
 }
