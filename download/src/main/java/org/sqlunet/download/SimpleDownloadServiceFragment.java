@@ -90,14 +90,13 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		@Override
 		public void onReceive(final Context context, @NonNull final Intent intent)
 		{
-
 			String event = intent.getStringExtra(SimpleDownloaderService.EVENT);
 			if (event != null)
 			{
 				switch (event)
 				{
 					case SimpleDownloaderService.EVENT_START:
-						Log.d(TAG, "Start");
+						Log.d(TAG, "Broadcast Receive start");
 						SimpleDownloadServiceFragment.downloading = true;
 						fireNotification(++SimpleDownloadServiceFragment.notificationId, NotificationType.START);
 						break;
@@ -105,7 +104,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 					case SimpleDownloaderService.EVENT_UPDATE:
 						if (SimpleDownloadServiceFragment.downloading)
 						{
-							Log.d(TAG, "Update");
+							Log.d(TAG, "Broadcast Receive update");
 							// SimpleDownloadServiceFragment.downloading = true;
 							progressDownloaded = intent.getLongExtra(SimpleDownloaderService.EVENT_UPDATE_DOWNLOADED, 0);
 							progressTotal = intent.getLongExtra(SimpleDownloaderService.EVENT_UPDATE_TOTAL, 0);
@@ -121,7 +120,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 							SimpleDownloadServiceFragment.downloading = false;
 							SimpleDownloadServiceFragment.success = intent.getBooleanExtra(SimpleDownloaderService.EVENT_FINISH_RESULT, false);
 							SimpleDownloadServiceFragment.exception = intent.getStringExtra(SimpleDownloaderService.EVENT_FINISH_EXCEPTION);
-							Log.d(TAG, "Finish " + success);
+							Log.d(TAG, "Broadcast Receive finish " + success);
 
 							// fire notification
 							fireNotification(SimpleDownloadServiceFragment.notificationId, NotificationType.FINISH, SimpleDownloadServiceFragment.success);
@@ -209,7 +208,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	{
 		synchronized (this)
 		{
-			Log.d(TAG, "START");
+			Log.d(TAG, "Start");
 			if (!SimpleDownloadServiceFragment.downloading)
 			{
 				// reset

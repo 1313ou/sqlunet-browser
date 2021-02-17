@@ -81,4 +81,3 @@ public class DownloadActivity extends AppCompatActivity implements OnComplete
 		Log.d(TAG, "OnComplete " + success + " " + this);
 	}
 }
-
