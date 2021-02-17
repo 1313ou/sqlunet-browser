@@ -17,6 +17,7 @@ import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.sql.SqlFormatter;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * WordNet provider
@@ -82,6 +83,7 @@ public class BNCProvider extends BaseProvider
 
 	// M I M E
 
+	@NonNull
 	@Override
 	public String getType(@NonNull final Uri uri)
 	{
@@ -102,6 +104,7 @@ public class BNCProvider extends BaseProvider
 
 	// Q U E R Y
 
+	@Nullable
 	@SuppressWarnings("boxing")
 	@Override
 	public Cursor query(@NonNull final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)

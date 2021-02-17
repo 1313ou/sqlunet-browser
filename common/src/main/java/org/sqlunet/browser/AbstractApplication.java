@@ -37,6 +37,7 @@ abstract public class AbstractApplication extends Application
 		setAllColorsFromResources(newContext);
 	}
 
+	@NonNull
 	static private Context wrapContext(@NonNull final Context context, final Configuration newConfig)
 	{
 		//Context themedContext = new ContextThemeWrapper(context, R.style.MyTheme);
@@ -105,6 +106,7 @@ abstract public class AbstractApplication extends Application
 	 * @param context context
 	 * @return mode to string
 	 */
+	@NonNull
 	public static String getNightMode(@NonNull final Context context)
 	{
 		int nightModeFlags = context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;

@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * 5House-keeping) Manager provider
@@ -80,6 +81,7 @@ public class ManagerProvider extends BaseProvider
 
 	// M I M E
 
+	@NonNull
 	@Override
 	public String getType(@NonNull final Uri uri)
 	{
@@ -92,6 +94,7 @@ public class ManagerProvider extends BaseProvider
 
 	// Q U E R Y
 
+	@Nullable
 	@Override
 	public Cursor query(@NonNull final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
 	{

@@ -28,6 +28,7 @@ import org.sqlunet.verbnet.provider.VerbNetContract.VnWords;
 import org.sqlunet.verbnet.provider.VerbNetContract.Words_VnClasses;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * VerbNet provider
@@ -120,6 +121,7 @@ public class VerbNetProvider extends BaseProvider
 
 	// M I M E
 
+	@NonNull
 	@Override
 	public String getType(@NonNull final Uri uri)
 	{
@@ -163,6 +165,7 @@ public class VerbNetProvider extends BaseProvider
 
 	// Q U E R Y
 
+	@Nullable
 	@SuppressWarnings("boxing")
 	@Override
 	public Cursor query(@NonNull final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, String sortOrder)

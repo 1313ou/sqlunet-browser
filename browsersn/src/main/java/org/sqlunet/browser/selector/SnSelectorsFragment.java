@@ -299,6 +299,7 @@ public class SnSelectorsFragment extends ListFragment
 	 *
 	 * @return adapter
 	 */
+	@NonNull
 	private ListAdapter makeAdapter()
 	{
 		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(requireContext(), R.layout.item_snselector, null, //

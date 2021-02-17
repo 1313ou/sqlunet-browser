@@ -214,6 +214,7 @@ public class SelectorsFragment extends ListFragment
 	 *
 	 * @return adapter
 	 */
+	@NonNull
 	private ListAdapter makeAdapter()
 	{
 		Log.d(TAG, "make adapter");

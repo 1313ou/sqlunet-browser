@@ -117,6 +117,7 @@ public class XSqlUNetProvider extends BaseProvider
 
 	// M I M E
 
+	@NonNull
 	@Override
 	public String getType(@NonNull final Uri uri)
 	{
@@ -163,6 +164,7 @@ public class XSqlUNetProvider extends BaseProvider
 	 * @param sortOrder     sort order
 	 * @return cursor
 	 */
+	@Nullable
 	@SuppressWarnings("boxing")
 	@Override
 	public Cursor query(@NonNull final Uri uri, @Nullable final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
