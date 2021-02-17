@@ -14,8 +14,8 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.common.R;
-import org.sqlunet.browser.config.SetupAsset;
 import org.sqlunet.concurrency.Cancelable;
 import org.sqlunet.concurrency.TaskObserver;
 import org.sqlunet.settings.Settings;
@@ -60,7 +60,7 @@ public class AssetLoadFragment extends Fragment implements TaskObserver.Observer
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		return inflater.inflate(R.layout.fragment_asset, container, false);
+		return inflater.inflate(R.layout.fragment_assetload, container, false);
 	}
 
 	@Override
@@ -89,7 +89,7 @@ public class AssetLoadFragment extends Fragment implements TaskObserver.Observer
 		final String assetDir = Settings.getAssetPackDir(context);
 		final String assetZip = Settings.getAssetPackZip(context);
 		final String assetZipEntry = context.getString(R.string.asset_zip_entry);
-		SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, requireActivity(), this, getView());
+		SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, requireActivity(), this, () -> EntryActivity.rerun(requireContext()), getView());
 	}
 
 	@Override

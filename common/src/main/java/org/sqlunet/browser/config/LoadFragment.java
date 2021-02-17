@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.StorageSettings;
 
@@ -49,7 +50,7 @@ public class LoadFragment extends Fragment
 
 			Activity activity = requireActivity();
 			final Intent intent = new Intent(activity, AssetLoadActivity.class);
-			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			intent.addFlags(EntryActivity.INITIAL_TASK_FLAGS);
 			activity.startActivity(intent);
 		});
 		final ImageButton downloadButton = view.findViewById(R.id.download);
@@ -59,7 +60,7 @@ public class LoadFragment extends Fragment
 			final Intent intent = new Intent(activity, DownloadActivity.class);
 			intent.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadSource(activity));
 			intent.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadTarget(activity));
-			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			intent.addFlags(EntryActivity.INITIAL_TASK_FLAGS);
 			activity.startActivity(intent);
 		});
 		final Button cancelButton = view.findViewById(R.id.cancelButton);

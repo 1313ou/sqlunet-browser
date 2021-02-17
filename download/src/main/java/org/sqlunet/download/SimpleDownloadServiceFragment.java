@@ -90,6 +90,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		@Override
 		public void onReceive(final Context context, @NonNull final Intent intent)
 		{
+
 			String event = intent.getStringExtra(SimpleDownloaderService.EVENT);
 			if (event != null)
 			{
@@ -153,6 +154,12 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	};
 
 	@Override
+	protected int getResId()
+	{
+		return R.layout.fragment_download;
+	}
+
+	@Override
 	public void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
@@ -162,12 +169,6 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		LocalBroadcastManager.getInstance(requireContext()).registerReceiver(this.mainBroadcastReceiver, new IntentFilter(SimpleDownloaderService.MAIN_INTENT_FILTER));
 
 		initChannels();
-	}
-
-	@Override
-	protected int getResId()
-	{
-		return R.layout.fragment_download;
 	}
 
 	@Override

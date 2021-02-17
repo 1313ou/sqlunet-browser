@@ -63,7 +63,7 @@ public class MenuHandler
 		if (itemId == R.id.action_main)
 		{
 			intent = new Intent(activity, MainActivity.class);
-			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			intent.addFlags(EntryActivity.POST_INITIAL_TASK_FLAGS);
 		}
 
 		// status
@@ -120,7 +120,7 @@ public class MenuHandler
 			final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
 					.setTitle(activity.getString(R.string.asset_delivery)) //
 					.setMessage(asset);
-			SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null);
+			SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null, null);
 			return true;
 		}
 		else if (itemId == R.id.action_asset_deliver_primary)
@@ -132,7 +132,7 @@ public class MenuHandler
 			final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
 					.setTitle(activity.getString(R.string.asset_delivery)) //
 					.setMessage(asset);
-			SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null);
+			SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null, null);
 			return true;
 		}
 		else if (itemId == R.id.action_asset_deliver_alt)
@@ -146,7 +146,7 @@ public class MenuHandler
 				final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
 						.setTitle(activity.getString(R.string.asset_delivery)) //
 						.setMessage(asset);
-				SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null);
+				SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null, null);
 			}
 			return true;
 		}
@@ -174,7 +174,7 @@ public class MenuHandler
 		else if (itemId == R.id.action_settings)
 		{
 			intent = new Intent(activity, SettingsActivity.class);
-			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			intent.addFlags(EntryActivity.POST_INITIAL_TASK_FLAGS);
 		}
 		else if (itemId == R.id.action_clear_settings)
 		{
@@ -182,7 +182,7 @@ public class MenuHandler
 			final SharedPreferences.Editor edit = prefs.edit();
 			edit.clear().apply();
 			intent = new Intent(activity, SettingsActivity.class);
-			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			intent.addFlags(EntryActivity.POST_INITIAL_TASK_FLAGS);
 		}
 
 		// sql
@@ -270,7 +270,7 @@ public class MenuHandler
 		if (itemId == R.id.action_status)
 		{
 			intent = new Intent(activity, StatusActivity.class);
-			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			intent.addFlags(EntryActivity.INITIAL_TASK_FLAGS);
 		}
 		else if (itemId == R.id.action_storage)
 		{
@@ -285,14 +285,14 @@ public class MenuHandler
 		else if (itemId == R.id.action_setup)
 		{
 			intent = new Intent(activity, SetupActivity.class);
-			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			intent.addFlags(EntryActivity.INITIAL_TASK_FLAGS);
 		}
 		else if (itemId == R.id.action_download)
 		{
 			intent = new Intent(activity, org.sqlunet.browser.config.DownloadActivity.class);
 			intent.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadSource(activity));
 			intent.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadTarget(activity));
-			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			intent.addFlags(EntryActivity.INITIAL_TASK_FLAGS);
 		}
 		else if (itemId == R.id.action_update)
 		{
@@ -313,7 +313,7 @@ public class MenuHandler
 			final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
 					.setTitle(activity.getString(R.string.asset_delivery)) //
 					.setMessage(asset);
-			SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null);
+			SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null, null);
 			return true;
 		}
 		else if (itemId == R.id.action_asset_deliver_primary)
@@ -325,7 +325,7 @@ public class MenuHandler
 			final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
 					.setTitle(activity.getString(R.string.asset_delivery)) //
 					.setMessage(asset);
-			SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null);
+			SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null, null);
 			return true;
 		}
 		else if (itemId == R.id.action_asset_deliver_alt)
@@ -339,7 +339,7 @@ public class MenuHandler
 				final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
 						.setTitle(activity.getString(R.string.asset_delivery)) //
 						.setMessage(asset);
-				SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null);
+				SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null, null);
 			}
 			return true;
 		}
@@ -373,7 +373,7 @@ public class MenuHandler
 		{
 			intent = new Intent(activity, SettingsActivity.class);
 			intent.putExtra(INITIAL_ARG, true);
-			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			intent.addFlags(EntryActivity.INITIAL_TASK_FLAGS);
 		}
 		else if (itemId == R.id.action_clear_settings)
 		{
@@ -381,7 +381,7 @@ public class MenuHandler
 			final SharedPreferences.Editor edit = prefs.edit();
 			edit.clear().apply();
 			intent = new Intent(activity, SettingsActivity.class);
-			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			intent.addFlags(EntryActivity.INITIAL_TASK_FLAGS);
 		}
 
 		// others
