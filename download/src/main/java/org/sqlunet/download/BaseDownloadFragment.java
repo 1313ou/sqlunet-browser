@@ -112,6 +112,8 @@ abstract public class BaseDownloadFragment extends AbstractDownloadFragment
 					//noinspection ResultOfMethodCallIgnored
 					BaseDownloadFragment.this.downloadedFile.delete();
 				}
+
+				// signal
 				onComplete(success);
 			}
 		};
