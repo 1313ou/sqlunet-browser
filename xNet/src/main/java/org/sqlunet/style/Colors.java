@@ -160,7 +160,7 @@ public class Colors
 	}
 
 	@NonNull
-	public static int[] getColors(@NonNull final Context context, @NonNull @ColorRes final int... colorIds)
+	public static int[] getColors(@NonNull final Context context, @ColorRes final int... colorIds)
 	{
 		int[] result = new int[colorIds.length];
 		for (int i = 0; i < colorIds.length; i++)
