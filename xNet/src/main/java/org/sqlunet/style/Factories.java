@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import androidx.annotation.ColorInt;
+
 /**
  * Span factories
  *
@@ -50,7 +52,7 @@ public class Factories
 	 * @param otherSpans other spans
 	 * @return spans
 	 */
-	static public Object spans(final int bg, final int fg, final CharacterStyle... otherSpans)
+	static public Object spans(@ColorInt final int bg, @ColorInt final int fg, final CharacterStyle... otherSpans)
 	{
 		if (bg == Color.TRANSPARENT && fg == Color.TRANSPARENT)
 		{
