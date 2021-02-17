@@ -4,10 +4,6 @@
 
 package org.sqlunet.browser;
 
-import android.content.res.Configuration;
-
-import androidx.annotation.NonNull;
-
 /**
  * Browse activity
  *

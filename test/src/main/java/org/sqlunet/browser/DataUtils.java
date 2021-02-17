@@ -56,7 +56,6 @@ public class DataUtils
 		return readWordList();
 	}
 
-	@SuppressWarnings("deprecation")
 	@Nullable
 	static private String[] readWordList()
 	{
@@ -83,7 +82,6 @@ public class DataUtils
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	@Nullable
 	static private String[] readWordListAlt()
 	{

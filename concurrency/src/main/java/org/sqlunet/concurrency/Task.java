@@ -169,7 +169,7 @@ abstract public class Task<Params, Progress, Result> implements Cancelable
 
 	// C O N S T R U C T
 
-	public Task()
+	protected Task()
 	{
 		this.forward = this;
 		this.status = Status.PENDING;
@@ -262,6 +262,7 @@ abstract public class Task<Params, Progress, Result> implements Cancelable
 	{
 	}
 
+	@SuppressWarnings("UnusedReturnValue")
 	protected void onPostExecute(Result result)
 	{
 	}
@@ -308,6 +309,7 @@ abstract public class Task<Params, Progress, Result> implements Cancelable
 	 *
 	 * @param values progress values
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	protected void onProgressUpdate(Progress[] values)
 	{
 	}
@@ -325,6 +327,7 @@ abstract public class Task<Params, Progress, Result> implements Cancelable
 
 	@NonNull
 	@SafeVarargs
+	@SuppressWarnings("UnusedReturnValue")
 	public final Task<Params, Progress, Result> execute(Params... params)
 	{
 		return this.executeOnExecutor(defaultExecutor, params);

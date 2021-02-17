@@ -787,7 +787,7 @@ public class WordNetProvider extends BaseProvider
 		//return embed(uQuery, projection, selection, groupBy, sortOrder);
 	}
 
-	private String makeSelection(final String[] projection, final String selection)
+	private String makeSelection(@SuppressWarnings("unused") final String[] projection, final String selection)
 	{
 		return selection;
 	}

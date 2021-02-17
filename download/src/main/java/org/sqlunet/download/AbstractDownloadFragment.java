@@ -97,11 +97,6 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	static public final String UNZIP_TO_ARG = "unzip_to";
 
 	/**
-	 * Return on service completion argument
-	 */
-	static public final String RETURN_ON_SERVICE_COMPLETION = "returns_on_service_completion";
-
-	/**
 	 * Status
 	 */
 	enum Status
@@ -196,11 +191,6 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	protected File unzipDir;
 
 	/**
-	 * Return on service completion
-	 */
-	protected boolean returnsOnServiceCompletion;
-
-	/**
 	 * Progress bar
 	 */
 	private ProgressBar progressBar;
@@ -275,6 +265,7 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	@SuppressWarnings("WeakerAccess")
 	protected Context appContext;
 
+	@SuppressWarnings({"EmptyMethod", "UnusedReturnValue"})
 	abstract protected void deploy();
 
 	abstract protected void record();
@@ -297,7 +288,6 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		final String fromArg = arguments == null ? null : arguments.getString(DOWNLOAD_FROM_ARG);
 		final String toArg = arguments == null ? null : arguments.getString(DOWNLOAD_TO_ARG);
 		final String unzipToArg = arguments == null ? null : arguments.getString(UNZIP_TO_ARG);
-		final boolean returnsOnServiceCompletion = arguments != null && arguments.getBoolean(RETURN_ON_SERVICE_COMPLETION);
 
 		// download source data
 		this.downloadUrl = this.sourceUrl = fromArg;
@@ -312,9 +302,6 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 
 		// unzip
 		this.unzipDir = unzipToArg != null ? new File(unzipToArg) : null;
-
-		// return on service completion
-		this.returnsOnServiceCompletion = returnsOnServiceCompletion;
 
 		// inits
 		this.progress = new Progress();
@@ -535,6 +522,7 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	/**
 	 * Cleanup after download
 	 */
+	@SuppressWarnings("EmptyMethod")
 	abstract protected void cleanup();
 
 	// O B S E R V E R

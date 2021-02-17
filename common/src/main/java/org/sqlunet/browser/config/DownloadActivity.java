@@ -72,10 +72,4 @@ public class DownloadActivity extends org.sqlunet.download.DownloadActivity
 		}
 		return MenuHandler.menuDispatchWhenCantRun(this, item);
 	}
-
-	@Override
-	public void onBackPressed()
-	{
-		super.onBackPressed();
-	}
 }

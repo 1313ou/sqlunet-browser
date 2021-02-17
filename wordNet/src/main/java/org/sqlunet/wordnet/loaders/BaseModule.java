@@ -1296,7 +1296,7 @@ abstract public class BaseModule extends Module
 	 * @param parent                  parent node
 	 * @param deadendParentIfNoResult mark parent node as deadend if there is no result
 	 */
-	private void lexLinks(final long synsetId, final long wordId, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
+	private void lexLinks(final long synsetId, final long wordId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean deadendParentIfNoResult)
 	{
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(LexLinks_Senses_Words_X.CONTENT_URI_TABLE));
 		final String[] projection = { //

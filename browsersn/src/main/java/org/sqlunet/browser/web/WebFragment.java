@@ -339,7 +339,6 @@ public class WebFragment extends Fragment
 		// client
 		final WebViewClient webClient = new WebViewClient()
 		{
-			@SuppressWarnings("deprecation")
 			@Override
 			public boolean shouldOverrideUrlLoading(@NonNull final WebView view, @NonNull final String urlString)
 			{
@@ -509,7 +508,6 @@ public class WebFragment extends Fragment
 			if (BuildConfig.DEBUG)
 			{
 				LogUtils.writeLog(data, false, null);
-				//noinspection ConstantConditions
 				DomValidator.validateStrings(DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd"), data);
 				Log.d(TAG, "output=\n" + data);
 			}
@@ -583,7 +581,6 @@ public class WebFragment extends Fragment
 
 			if (BuildConfig.DEBUG)
 			{
-				//noinspection ConstantConditions
 				DomValidator.validateDocs(DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd"), wnDomDoc, snDomDoc, bncDomDoc);
 				LogUtils.writeLog(false, null, wnDomDoc, snDomDoc, bncDomDoc);
 				LogUtils.writeLog(data, false, null);

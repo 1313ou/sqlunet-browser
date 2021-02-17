@@ -77,7 +77,7 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 		});
 
 		// tab layout
-		final TabLayout tabLayout = findViewById(R.id.tablayout);
+		final TabLayout tabLayout = findViewById(R.id.tab_layout);
 		tabLayout.addOnTabSelectedListener(this);
 
 		// For each of the sections in the app, add a tab to the action bar.

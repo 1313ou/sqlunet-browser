@@ -122,7 +122,7 @@ public class DocumentFragmentParser
 	 * @throws SAXException sax exception
 	 * @throws IOException  io exception
 	 */
-	public DocumentFragment parse_with_entities(@NonNull final String text) throws SAXException, IOException
+	public DocumentFragment parseWithEntities(@NonNull final String text) throws SAXException, IOException
 	{
 		final InputSource input = new InputSource(new StringReader(text));
 

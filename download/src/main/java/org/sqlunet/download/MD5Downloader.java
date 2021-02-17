@@ -144,7 +144,6 @@ class MD5Downloader extends Task<String, Void, String>
 	 * @return exception
 	 */
 	@Nullable
-	@SuppressWarnings("unused")
 	synchronized public Exception getException()
 	{
 		final Exception result = this.exception;

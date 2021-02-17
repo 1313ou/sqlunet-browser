@@ -47,8 +47,6 @@
 	<!-- S E A R C H -->
 
 	<style name="SearchItem" tools:ignore="UnusedResources">
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">wrap_content</item>
 		<item name="android:textAppearance">?attr/textAppearanceListItemSmall</item>
 		<item name="android:gravity">center_vertical</item>
 		<item name="android:paddingLeft">?android:attr/listPreferredItemPaddingStart</item>
@@ -60,8 +58,6 @@
 	<!-- S T A T U S   /   S E T U P  -->
 
 	<style name="GridLabel">
-		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">center_vertical|end</item>
 		<item name="android:layout_marginLeft">@dimen/grid_group_margin_left</item>
 		<item name="android:minHeight">@dimen/grid_min_row_height</item>
@@ -73,8 +69,6 @@
 	</style>
 
 	<style name="GridData"> <!-- includes image + button1 + button2-->
-		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">wrap_content</item>
 		<item name="android:minHeight">@dimen/grid_min_row_height</item>
 		<item name="android:layout_marginLeft">@dimen/grid_group_margin_intra</item>
 		<item name="android:layout_marginRight">@dimen/grid_group_margin_right</item>
@@ -84,8 +78,6 @@
 	</style>
 
 	<style name="GridStatusImage">
-		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">center</item>
 		<item name="android:layout_marginRight">@dimen/grid_margin_intra</item>
 		<item name="android:background">@color/secondaryLightColor</item>
@@ -98,8 +90,6 @@
 	</style>
 
 	<style name="GridActionButton">
-		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">center</item>
 		<item name="android:layout_marginLeft">@dimen/grid_margin_button</item>
 		<item name="android:layout_marginRight">@dimen/grid_margin_button</item>
@@ -111,8 +101,6 @@
 	</style>
 
 	<style name="GridInfoButton">
-		<item name="android:layout_width">wrap_content</item>
-		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_gravity">center</item>
 		<item name="android:layout_marginLeft">@dimen/grid_margin_button</item>
 		<item name="android:layout_marginRight">@dimen/grid_margin_button</item>

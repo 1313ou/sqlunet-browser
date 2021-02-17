@@ -4,8 +4,6 @@
 
 package org.sqlunet.wordnet.browser;
 
-import android.content.res.Configuration;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 

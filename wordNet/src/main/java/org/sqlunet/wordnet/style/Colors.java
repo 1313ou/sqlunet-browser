@@ -40,6 +40,7 @@ public class Colors
 		membersForeColor = palette[i++];
 
 		wordBackColor = palette[i++];
+		//noinspection UnusedAssignment
 		wordForeColor = palette[i++];
 	}
 }

@@ -4,8 +4,6 @@
 
 package org.sqlunet.propbank.browser;
 
-import android.content.res.Configuration;
-
 import org.sqlunet.browser.AbstractActivity;
 import org.sqlunet.propbank.R;
 

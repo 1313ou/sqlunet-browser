@@ -34,6 +34,7 @@ public class Colors
 		thetaForeColor = palette[i++];
 
 		relationBackColor = palette[i++];
+		//noinspection UnusedAssignment
 		relationForeColor = palette[i++];
 	}
 }

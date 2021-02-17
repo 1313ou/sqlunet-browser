@@ -48,6 +48,7 @@ public class SqlunetViewModel extends AndroidViewModel
 	}
 
 	@SuppressLint("StaticFieldLeak")
+	@SuppressWarnings("UnusedReturnValue")
 	public void loadData(@NonNull final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder, @Nullable final PostProcessor postProcessor)
 	{
 		Log.d(TAG, "load data " + uri);

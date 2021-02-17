@@ -82,6 +82,7 @@ public class Colors
 		constantForeColor = palette[i++];
 
 		eventBackColor = palette[i++];
+		//noinspection UnusedAssignment
 		eventForeColor = palette[i++];
 	}
 }
