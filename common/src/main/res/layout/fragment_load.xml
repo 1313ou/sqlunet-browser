@@ -113,7 +113,7 @@
 		android:layout_marginLeft="25dp"
 		android:layout_marginTop="0dp"
 		android:layout_marginRight="25dp"
-		android:text="@string/gloss_download"/>
+		android:text="@string/gloss_download" />
 
 	<Button
 		android:id="@+id/cancelButton"

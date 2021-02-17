@@ -33,7 +33,7 @@ abstract public class AbstractApplication extends Application
 	{
 		super.onConfigurationChanged(newConfig);
 		Context newContext = wrapContext(this, newConfig);
-		Log.d(LOG, "onConfigurationChanged: "  + getNightMode(this) + " -> " + getNightMode(newContext));
+		Log.d(LOG, "onConfigurationChanged: " + getNightMode(this) + " -> " + getNightMode(newContext));
 		setAllColorsFromResources(newContext);
 	}
 
@@ -54,7 +54,8 @@ abstract public class AbstractApplication extends Application
 	static public Configuration createOverrideConfigurationForDayNight(@NonNull Context context, final int mode)
 	{
 		int newNightMode;
-		switch (mode) {
+		switch (mode)
+		{
 			case MODE_NIGHT_YES:
 				newNightMode = Configuration.UI_MODE_NIGHT_YES;
 				break;
@@ -64,7 +65,7 @@ abstract public class AbstractApplication extends Application
 			default:
 			case MODE_NIGHT_FOLLOW_SYSTEM:
 				// If we're following the system, we just use the system default from the application context
-				final Configuration appConfig =	context.getApplicationContext().getResources().getConfiguration();
+				final Configuration appConfig = context.getApplicationContext().getResources().getConfiguration();
 				newNightMode = appConfig.uiMode & Configuration.UI_MODE_NIGHT_MASK;
 				break;
 		}
@@ -132,7 +133,7 @@ abstract public class AbstractApplication extends Application
 	static public void dumpTasks(@NonNull Context context)
 	{
 		final ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-		final List<ActivityManager.AppTask> tasks = manager.getAppTasks ();
+		final List<ActivityManager.AppTask> tasks = manager.getAppTasks();
 		for (ActivityManager.AppTask task : tasks)
 		{
 			ActivityManager.RecentTaskInfo info = task.getTaskInfo();

@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<link name="Direct antonym" id="antonym" type="lexical" reverse="antonym" reflexive="true" n="true" v="true" a="true" r="true">
+<link
+	name="Direct antonym"
+	id="antonym"
+	type="lexical"
+	reverse="antonym"
+	reflexive="true"
+	n="true"
+	v="true"
+	a="true"
+	r="true">
 
 	<img src="antonym.png" />
 

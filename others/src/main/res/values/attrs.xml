@@ -4,8 +4,8 @@
 
 <resources>
 
-<!--	<attr name="colorSecondary" format="color|reference" />-->
-<!--	<attr name="colorOnSecondary" format="color|reference" />-->
+	<!--	<attr name="colorSecondary" format="color|reference" />-->
+	<!--	<attr name="colorOnSecondary" format="color|reference" />-->
 	<attr name="colorHighlightOnBackground" format="color" />
 
 </resources>

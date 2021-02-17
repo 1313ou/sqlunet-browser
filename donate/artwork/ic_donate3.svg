@@ -1,85 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   version="1.0"
-   height="600"
-   width="600"
-   id="svg2"
-   sodipodi:version="0.32"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="ic_donate3.svg"
-   inkscape:output_extension="org.inkscape.output.svg.inkscape"
-   inkscape:export-filename="/home/bbou/Images/svg/treebolic-logo32.png"
-   inkscape:export-xdpi="5.4420452"
-   inkscape:export-ydpi="5.4420452">
-  <metadata
-     id="metadata29">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <sodipodi:namedview
-     inkscape:window-height="949"
-     inkscape:window-width="1673"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0.0"
-     guidetolerance="10.0"
-     gridtolerance="10.0"
-     objecttolerance="10.0"
-     borderopacity="1.0"
-     bordercolor="#666666"
-     pagecolor="#ffffff"
-     id="base"
-     showgrid="false"
-     inkscape:zoom="0.69462777"
-     inkscape:cx="-25.899241"
-     inkscape:cy="238.2571"
-     inkscape:window-x="178"
-     inkscape:window-y="151"
-     inkscape:current-layer="svg2"
-     inkscape:window-maximized="0" />
-  <title
-     id="title4"> Example showing a blue circle with 3D highlighting effect </title>
-  <desc
-     id="desc6"> Picture of a blue sphere (circle with 3D highlighting) </desc>
-  <style
-     type="text/css"
-     id="style8">
-      .Border { fill: lightGray; stroke: black; stroke-width: 4; }
-      .Label { font-size:24; font-family:Arial; fill:black; }
-   </style>
-  <defs
-     id="defs10" />
-  <text
-     xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-     x="38.20414"
-     y="474.83066"
-     id="text8147"
-     transform="scale(0.95388325,1.0483463)"><tspan
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+	xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.0" height="600" width="600" id="svg2" sodipodi:version="0.32" inkscape:version="0.92.3 (2405546, 2018-03-11)" sodipodi:docname="ic_donate3.svg" inkscape:output_extension="org.inkscape.output.svg.inkscape" inkscape:export-filename="/home/bbou/Images/svg/treebolic-logo32.png" inkscape:export-xdpi="5.4420452" inkscape:export-ydpi="5.4420452">
+	<metadata id="metadata29">
+		<rdf:RDF>
+			<cc:Work rdf:about="">
+				<dc:format>image/svg+xml</dc:format>
+				<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+			</cc:Work>
+		</rdf:RDF>
+	</metadata>
+	<sodipodi:namedview inkscape:window-height="949" inkscape:window-width="1673" inkscape:pageshadow="2" inkscape:pageopacity="0.0" guidetolerance="10.0" gridtolerance="10.0" objecttolerance="10.0" borderopacity="1.0" bordercolor="#666666"
+		pagecolor="#ffffff" id="base" showgrid="false" inkscape:zoom="0.69462777" inkscape:cx="-25.899241" inkscape:cy="238.2571" inkscape:window-x="178" inkscape:window-y="151" inkscape:current-layer="svg2" inkscape:window-maximized="0" />
+	<title id="title4">Example showing a blue circle with 3D highlighting effect</title>
+	<desc id="desc6">Picture of a blue sphere (circle with 3D highlighting)</desc>
+	<style type="text/css" id="style8">
+		.Border { fill: lightGray; stroke: black; stroke-width: 4; }
+		.Label { font-size:24; font-family:Arial; fill:black; }
+	</style>
+	<defs id="defs10" />
+	<text xml:space="preserve"
+		style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+		x="38.20414" y="474.83066" id="text8147" transform="scale(0.95388325,1.0483463)"><tspan
        sodipodi:role="line"
        id="tspan8084"
        x="38.20414"
        y="474.83066"
        style="font-size:505.95678711px;line-height:1">1</tspan></text>
-  <text
-     xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-     x="250.29335"
-     y="493.74881"
-     id="text8076"
-     transform="scale(1.0068788,0.9931682)"><tspan
+	<text xml:space="preserve"
+		style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+		x="250.29335" y="493.74881" id="text8076" transform="scale(1.0068788,0.9931682)"><tspan
        sodipodi:role="line"
        id="tspan8082"
        x="250.29335"

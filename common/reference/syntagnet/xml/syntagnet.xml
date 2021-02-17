@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <concepts name="SyntagNet">
 
-<concept name="Collocation" id="sncollocation">
-	<img src="collocation.png" />
-	<description>The habitual juxtaposition of a particular word with another word or words with a frequency greater than chance.</description>
-</concept>
+	<concept
+		name="Collocation"
+		id="sncollocation">
+		<img src="collocation.png" />
+		<description>The habitual juxtaposition of a particular word with another word or words with a frequency greater than chance.</description>
+	</concept>
 
 </concepts>

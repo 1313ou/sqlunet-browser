@@ -1,37 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto"
-      xmlns:tools="http://schemas.android.com/tools">
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
 	<item
 		android:id="@+id/search"
 		android:iconifiedByDefault="true"
 		android:title="@string/hint_search"
 		app:actionViewClass="androidx.appcompat.widget.SearchView"
 		app:showAsAction="always"
-		tools:ignore="AlwaysShowAction"/>
+		tools:ignore="AlwaysShowAction" />
 	<item
 		android:id="@+id/action_main"
 		android:title="@string/action_main"
 		app:showAsAction="never"
-		tools:ignore="AppCompatResource"/>
+		tools:ignore="AppCompatResource" />
 	<item
 		android:id="@+id/action_table_lexdomains"
 		android:title="@string/action_table_lexdomains"
-		app:showAsAction="never"/>
+		app:showAsAction="never" />
 	<item
 		android:id="@+id/action_table_linktypes"
 		android:title="@string/action_table_linktypes"
-		app:showAsAction="never"/>
+		app:showAsAction="never" />
 	<item
 		android:id="@+id/action_table_postypes"
 		android:title="@string/action_table_postypes"
-		app:showAsAction="never"/>
+		app:showAsAction="never" />
 	<item
 		android:id="@+id/action_table_adjpositiontypes"
 		android:title="@string/action_table_adjpositiontypes"
-		app:showAsAction="never"/>
+		app:showAsAction="never" />
 </menu>

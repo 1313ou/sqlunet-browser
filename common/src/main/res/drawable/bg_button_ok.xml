@@ -1,15 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-       android:shape="oval">
+	android:shape="oval">
 
-	<solid android:color="@color/ok_button_color"/>
+	<solid android:color="@color/ok_button_color" />
 
 	<size
 		android:width="@dimen/action_button_diameter"
-		android:height="@dimen/action_button_diameter"/>
+		android:height="@dimen/action_button_diameter" />
 
 </shape>

@@ -302,7 +302,6 @@ public final class AppRate
 	@SuppressWarnings("UnusedReturnValue")
 	static public void rate(@NonNull final Activity activity)
 	{
-		AppRate.with(activity)
-				.showRateDialog(activity);
+		AppRate.with(activity).showRateDialog(activity);
 	}
 }

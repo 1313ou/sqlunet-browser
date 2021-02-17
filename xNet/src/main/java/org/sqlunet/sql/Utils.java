@@ -165,7 +165,7 @@ public class Utils
 			else */
 
 			// A single quote within the string can be encoded by putting two single quotes in a row
-			final String arg = args[i].replaceAll("'","''");
+			final String arg = args[i].replaceAll("'", "''");
 			if (arg.matches("-?\\d+(\\.\\d+)?"))
 			{
 				result[i] = arg;

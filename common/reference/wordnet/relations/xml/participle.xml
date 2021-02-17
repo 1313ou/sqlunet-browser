@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<link name="Participle" id="participle" type="lexical" v="true">
+<link
+	name="Participle"
+	id="participle"
+	type="lexical"
+	v="true">
 
 	<img src="participle.png" />
 

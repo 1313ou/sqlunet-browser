@@ -1,77 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <concepts name="PropBank">
 
-<concept name="Role Set" id="pbroleset">
-	<img src="pbroleset.png" />
-	<description>The set of roles attached to a predicate verb.</description>
-	<examples>
-		<context><name>rise</name>predicate</context>
-		<example>rise.01</example>
-	</examples>
-</concept>
+	<concept
+		name="Role Set"
+		id="pbroleset">
+		<img src="pbroleset.png" />
+		<description>The set of roles attached to a predicate verb.</description>
+		<examples>
+			<context><name>rise</name>predicate
+			</context>
+			<example>rise.01</example>
+		</examples>
+	</concept>
 
-<concept name="Predicate" id="pbpredicate">
-	<img src="pbpredicate.png" />
-	<description>The predicate verb</description>
-	<examples>
-		<context><name>The sales rose.</name>example</context>
-		<example>rose</example>
-	</examples>
-</concept>
+	<concept
+		name="Predicate"
+		id="pbpredicate">
+		<img src="pbpredicate.png" />
+		<description>The predicate verb</description>
+		<examples>
+			<context><name>The sales rose.</name>example
+			</context>
+			<example>rose</example>
+		</examples>
+	</concept>
 
-<concept name="Role" id="pbrole">
-	<img src="pbrole.png" />
-	<description>Roles in the role set seen as arguments to predicate</description>
-	<examples>
-		<context><name>rise.01</name>role set</context>
-		<example>Arg0 <i>Causer of inception/rising of arg1</i></example>
-		<example>Arg1 <i>Logical subject, patient, thing rising</i></example>
-		<example>Arg2 <i>EXT, amount risen</i></example>
-		<example>Arg3 <i>Start point</i></example>
-		<example>Arg4 <i>End point</i></example>
-		<example>Arg5 <i>Medium</i></example>
-	</examples>
-</concept>
+	<concept
+		name="Role"
+		id="pbrole">
+		<img src="pbrole.png" />
+		<description>Roles in the role set seen as arguments to predicate</description>
+		<examples>
+			<context><name>rise.01</name>role set
+			</context>
+			<example>Arg0
+				<i>Causer of inception/rising of arg1</i>
+			</example>
+			<example>Arg1
+				<i>Logical subject, patient, thing rising</i>
+			</example>
+			<example>Arg2
+				<i>EXT, amount risen</i>
+			</example>
+			<example>Arg3
+				<i>Start point</i>
+			</example>
+			<example>Arg4
+				<i>End point</i>
+			</example>
+			<example>Arg5
+				<i>Medium</i>
+			</example>
+		</examples>
+	</concept>
 
-<concept name="Theta" id="pbtheta">
-	<img src="pbtheta.png" />
-	<description>Another name given to the argument role.</description>
-	<examples>
-		<context><name>Arg-1</name>role</context>
-		<example>Theme</example>
-	</examples>
-	<examples>
-		<context><name>Arg-2</name>role</context>
-		<example>Extent</example>
-	</examples>
-	<examples>
-		<context><name>Arg-3</name>role</context>
-		<example>Initial location</example>
-	</examples>
-	<examples>
-		<context><name>Arg-4</name>role</context>
-		<example>Destination</example>
-	</examples>
-</concept>
+	<concept
+		name="Theta"
+		id="pbtheta">
+		<img src="pbtheta.png" />
+		<description>Another name given to the argument role.</description>
+		<examples>
+			<context><name>Arg-1</name>role
+			</context>
+			<example>Theme</example>
+		</examples>
+		<examples>
+			<context><name>Arg-2</name>role
+			</context>
+			<example>Extent</example>
+		</examples>
+		<examples>
+			<context><name>Arg-3</name>role
+			</context>
+			<example>Initial location</example>
+		</examples>
+		<examples>
+			<context><name>Arg-4</name>role
+			</context>
+			<example>Destination</example>
+		</examples>
+	</concept>
 
-<concept name="Alias" id="pbalias">
-	<img src="pbalias.png" />
-	<description>Aliases in VerbNet or FrameNet</description>
-	<examples>
-		<context><name>abandon (v.)</name>roleset</context>
-		<example>Quitting_a_place (FrameNet)</example> 
-		<example>Departing (FrameNet)</example> 
-	</examples>
-</concept>
+	<concept
+		name="Alias"
+		id="pbalias">
+		<img src="pbalias.png" />
+		<description>Aliases in VerbNet or FrameNet</description>
+		<examples>
+			<context><name>abandon (v.)</name>roleset
+			</context>
+			<example>Quitting_a_place (FrameNet)</example>
+			<example>Departing (FrameNet)</example>
+		</examples>
+	</concept>
 
-<concept name="Trace" id="pbtrace">
-	<img src="pbtrace.png" />
-	<description>The trace (left by 'movement')</description>
-	<examples>
-		<context><name>I want to eat ice-cream</name>sentence</context>
-		<example>Arg0:I<br/>rel:want<br/>Arg1:[*T* to eat ice-cream]</example>
-	</examples>
-</concept>
+	<concept
+		name="Trace"
+		id="pbtrace">
+		<img src="pbtrace.png" />
+		<description>The trace (left by 'movement')</description>
+		<examples>
+			<context><name>I want to eat ice-cream</name>sentence
+			</context>
+			<example>Arg0:I<br />rel:want<br />Arg1:[*T* to eat ice-cream]
+			</example>
+		</examples>
+	</concept>
 
 </concepts>
 

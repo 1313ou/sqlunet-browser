@@ -37,7 +37,8 @@ public class MarkupSpanner extends Spanner
 	 * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
 	 */
 	public enum SpanPosition
-	{TAG1, TEXT, TAG2;
+	{
+		TAG1, TEXT, TAG2;
 
 		/**
 		 * Make flags
@@ -80,7 +81,8 @@ public class MarkupSpanner extends Spanner
 					break;
 			}
 			return null;
-		}}
+		}
+	}
 
 	/**
 	 * Apply spans

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- RELATIONS 2 HTML - (C) 2020 Author: Bernard Bou -->
+<?xml version="1.0" encoding="UTF-8"?><!-- RELATIONS 2 HTML - (C) 2020 Author: Bernard Bou -->
 <xsl:transform version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:output method="html" indent="yes" encoding="UTF-8" doctype-system="about:legacy-compat" />
 	<xsl:import href='link2html.xsl' />
@@ -35,7 +34,7 @@ function menu()
 			toc.style.display='none';
 }
 ]]>
-</xsl:text>
+					</xsl:text>
 				</SCRIPT>
 			</HEAD>
 			<BODY>
@@ -71,11 +70,17 @@ function menu()
 		<xsl:param name="title" />
 		<xsl:for-each select=".//link">
 			<TR class='selector'>
-				<xsl:attribute name="onclick">javascript:select('<xsl:value-of select="./@id" />');</xsl:attribute>
+				<xsl:attribute name="onclick">javascript:select('<xsl:value-of select="./@id" />');
+				</xsl:attribute>
 				<TD>
 					<IMG>
-						<xsl:attribute name="src"><xsl:copy-of select="$imagedir" /><xsl:value-of select="./img/@src" /></xsl:attribute>
-						<xsl:attribute name="alt"><xsl:value-of select="./@name" /></xsl:attribute>
+						<xsl:attribute name="src">
+							<xsl:copy-of select="$imagedir" />
+							<xsl:value-of select="./img/@src" />
+						</xsl:attribute>
+						<xsl:attribute name="alt">
+							<xsl:value-of select="./@name" />
+						</xsl:attribute>
 					</IMG>
 				</TD>
 				<TD>

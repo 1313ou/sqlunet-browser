@@ -29,7 +29,9 @@ public class RunTextSearch extends TestCase
 	public void before()
 	{
 		if (Do.ensureDownloaded())
+		{
 			ActivityScenario.launch(MainActivity.class);
+		}
 
 		Seq.do_navigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_status);
 		Do.ensureTextSearchSetup(R.id.searchtextWnButton);

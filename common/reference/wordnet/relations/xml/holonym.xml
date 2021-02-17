@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<link name="Holonym" id="holonym" type="semantic" n="true">
+<link
+	name="Holonym"
+	id="holonym"
+	type="semantic"
+	n="true">
 
 	<img src="holonym.png" />
 
 	<description>
 		<span>The name of the whole of which the meronym names a part, a member or the substance. Whole name (a word that names the whole of which a given word is a
-			part).</span>
+			part).
+		</span>
 	</description>
 
 	<logical>

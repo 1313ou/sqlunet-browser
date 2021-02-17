@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<link name="Derived from adjective" id="adjderived" type="lexical" reflexive="false" r="true">
+<link
+	name="Derived from adjective"
+	id="adjderived"
+	type="lexical"
+	reflexive="false"
+	r="true">
 
 	<img src="adjderived.png" />
 

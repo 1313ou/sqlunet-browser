@@ -1,20 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<manifest
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.bbou.donate">
 
-	<uses-permission android:name="com.android.vending.BILLING"/>
+	<uses-permission android:name="com.android.vending.BILLING" />
 
 	<application>
 
 		<activity
 			android:name=".DonateActivity"
-			android:label="@string/title_activity_donate">
-		</activity>
+			android:label="@string/title_activity_donate"></activity>
 
 	</application>
 

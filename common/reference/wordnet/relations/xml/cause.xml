@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<link name="Cause" id="cause" type="semantic" v="true">
+<link
+	name="Cause"
+	id="cause"
+	type="semantic"
+	v="true">
 
 	<img src="cause.png" />
 

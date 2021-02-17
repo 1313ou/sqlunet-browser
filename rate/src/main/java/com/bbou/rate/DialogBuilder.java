@@ -50,7 +50,7 @@ final class DialogBuilder
 		else
 		{
 		 */
-			return new AlertDialog.Builder(context, getDialogTheme());
+		return new AlertDialog.Builder(context, getDialogTheme());
 		/*
 		}
 		 */

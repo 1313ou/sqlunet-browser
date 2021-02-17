@@ -1,28 +1,30 @@
-    <wordnet xmlns="http://org.sqlunet/wn" word="wantonness">
-      <pos name="noun">
-        <lexdomain name="attribute">
-          <sense wordid="142904" synsetid="104858946" number="1">
-            <word wordid="142904">wantonness</word>
-            <synset synsetid="104858946" size="2">
-              <word wordid="77377">licentiousness</word>
-              <word wordid="142904">wantonness</word>
-              <definition>the quality of being lewd and
-              lascivious</definition>
-            </synset>
-          </sense>
-          <sense wordid="142904" synsetid="104892593" number="2">
-            <word wordid="142904">wantonness</word>
-            <synset synsetid="104892593" size="3">
-              <word wordid="419">abandon</word>
-              <word wordid="137614">unconstraint</word>
-              <word wordid="142904">wantonness</word>
-              <definition>the trait of lacking restraint or
-              control; reckless freedom from inhibition or
-              worry</definition>
-              <sample>she danced with abandon</sample>
-            </synset>
-          </sense>
-        </lexdomain>
-      </pos>
-    </wordnet>
+<wordnet xmlns="http://org.sqlunet/wn" word="wantonness">
+	<pos name="noun">
+		<lexdomain name="attribute">
+			<sense wordid="142904" synsetid="104858946" number="1">
+				<word wordid="142904">wantonness</word>
+				<synset synsetid="104858946" size="2">
+					<word wordid="77377">licentiousness</word>
+					<word wordid="142904">wantonness</word>
+					<definition>the quality of being lewd and
+						lascivious
+					</definition>
+				</synset>
+			</sense>
+			<sense wordid="142904" synsetid="104892593" number="2">
+				<word wordid="142904">wantonness</word>
+				<synset synsetid="104892593" size="3">
+					<word wordid="419">abandon</word>
+					<word wordid="137614">unconstraint</word>
+					<word wordid="142904">wantonness</word>
+					<definition>the trait of lacking restraint or
+						control; reckless freedom from inhibition or
+						worry
+					</definition>
+					<sample>she danced with abandon</sample>
+				</synset>
+			</sense>
+		</lexdomain>
+	</pos>
+</wordnet>
 

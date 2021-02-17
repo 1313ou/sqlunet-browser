@@ -62,7 +62,9 @@ public class MainActivity extends AppCompatActivity
 		int len = array.length();
 		int[] topDest = new int[len];
 		for (int i = 0; i < len; i++)
+		{
 			topDest[i] = array.getResourceId(i, 0);
+		}
 		array.recycle();
 
 		// navigation

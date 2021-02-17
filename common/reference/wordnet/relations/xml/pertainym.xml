@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<link name="Pertainym" id="pertainym" type="lexical" a="true" r="true">
+<link
+	name="Pertainym"
+	id="pertainym"
+	type="lexical"
+	a="true"
+	r="true">
 
 	<img src="pertainym.png" />
 
 	<description>
 		<span>A relational adjective. Adjectives that are pertainyms are usually defined by such phrases as &quot;of or pertaining to&quot; and do not have antonyms.
-			A pertainym can point to a noun or another pertainym.</span>
+			A pertainym can point to a noun or another pertainym.
+		</span>
 	</description>
 
 	<examples>

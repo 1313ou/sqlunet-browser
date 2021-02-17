@@ -1,9 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE resources [
-	<!ENTITY bbuser "semantikos">
-	<!ENTITY bbrepo "semantikos">
-	<!ENTITY bbcommit "d56e743195fbecbfe60f0033c0084ec17e032e08">
-	]>
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE resources [	<!ENTITY bbuser "semantikos">	<!ENTITY bbrepo "semantikos">	<!ENTITY bbcommit "d56e743195fbecbfe60f0033c0084ec17e032e08">	]>
 
 <!--
   ~ Copyright (c) 2020. Bernard Bou <1313ou@gmail.com>.

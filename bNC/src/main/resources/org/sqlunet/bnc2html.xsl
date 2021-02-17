@@ -1,16 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+<?xml version="1.0" encoding="UTF-8"?><!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<xsl:transform xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-               version="1.0">
-	<xsl:output encoding="UTF-8" indent="yes" method="xml"/>
-	<xsl:strip-space elements="label"/>
+<xsl:transform xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+	<xsl:output encoding="UTF-8" indent="yes" method="xml" />
+	<xsl:strip-space elements="label" />
 
 	<xsl:template match="/">
 		<DIV id="bnc">
-			<xsl:apply-templates select="./bnc"/>
+			<xsl:apply-templates select="./bnc" />
 		</DIV>
 	</xsl:template>
 
@@ -18,10 +16,10 @@
 		<xsl:choose>
 			<xsl:when test="count(./bncdata)=0">
 				<SPAN class="treejunction">
-					<IMG class="treepix" src="images/closed.png"/>
+					<IMG class="treepix" src="images/closed.png" />
 				</SPAN>
 				<!-- data image -->
-				<IMG class="dataimg" src="images/xnet/bnc.png"/>
+				<IMG class="dataimg" src="images/xnet/bnc.png" />
 				<SPAN class="domain">
 					<xsl:text><![CDATA[bnc]]></xsl:text>
 				</SPAN>
@@ -31,14 +29,14 @@
 			</xsl:when>
 			<xsl:otherwise>
 				<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
-					<IMG class="treepix" src="images/open.png"/>
+					<IMG class="treepix" src="images/open.png" />
 				</SPAN>
-				<IMG class="dataimg" src="images/xnet/bnc.png"/>
+				<IMG class="dataimg" src="images/xnet/bnc.png" />
 				<SPAN class="domain">
 					<xsl:text><![CDATA[bnc]]></xsl:text>
 				</SPAN>
 				<OL style="display: block;">
-					<xsl:apply-templates select="./bncdata"/>
+					<xsl:apply-templates select="./bncdata" />
 				</OL>
 			</xsl:otherwise>
 		</xsl:choose>
@@ -47,9 +45,9 @@
 	<xsl:template match="bncdata">
 		<!-- indent -->
 		<LI class="treeitem treepanel bncdata block3">
-			<IMG class="dataimg" src="images/xnet/pos.png"/>
+			<IMG class="dataimg" src="images/xnet/pos.png" />
 			<SPAN class="bncpos">
-				<xsl:value-of select="./@pos"/>
+				<xsl:value-of select="./@pos" />
 			</SPAN>
 
 			<DIV class="bncgen">
@@ -58,24 +56,24 @@
 				</DIV>
 				<DIV class="bncfreq">
 					frequency
-					<xsl:apply-templates select="./freq"/>
+					<xsl:apply-templates select="./freq" />
 					<SPAN class="bncunit">
 						<xsl:text><![CDATA[ (per million)]]></xsl:text>
 					</SPAN>
 				</DIV>
 				<DIV class="bncrange">
 					range
-					<xsl:apply-templates select="./range"/>
+					<xsl:apply-templates select="./range" />
 				</DIV>
 				<DIV class="bncdisp">
 					dispersion
-					<xsl:apply-templates select="./disp"/>
+					<xsl:apply-templates select="./disp" />
 				</DIV>
 			</DIV>
 
 			<xsl:if test="count(./spokenfreq)>0 or count(./writtenfreq)>0">
 				<DIV class="bncspwr">
-					<IMG class="dataimg" src="images/bnc/spwr.png"/>
+					<IMG class="dataimg" src="images/bnc/spwr.png" />
 					<TABLE class="bnctable">
 						<TR>
 							<TH class="bnctablecell">
@@ -93,35 +91,35 @@
 							<TD class="bnctablecell">
 								<DIV class="bncfreq">
 									frequency
-									<xsl:apply-templates select="./spokenfreq"/>
+									<xsl:apply-templates select="./spokenfreq" />
 									<SPAN class="bncunit">
 										<xsl:text><![CDATA[ (per million)]]></xsl:text>
 									</SPAN>
 								</DIV>
 								<DIV class="bncrange">
 									range
-									<xsl:apply-templates select="./spokenrange"/>
+									<xsl:apply-templates select="./spokenrange" />
 								</DIV>
 								<DIV class="bncdisp">
 									dispersion
-									<xsl:apply-templates select="./spokendisp"/>
+									<xsl:apply-templates select="./spokendisp" />
 								</DIV>
 							</TD>
 							<TD class="bnctablecell">
 								<DIV class="bncfreq">
 									frequency
-									<xsl:apply-templates select="./writtenfreq"/>
+									<xsl:apply-templates select="./writtenfreq" />
 									<SPAN class="bncunit">
 										<xsl:text><![CDATA[ (per million)]]></xsl:text>
 									</SPAN>
 								</DIV>
 								<DIV class="bncrange">
 									range
-									<xsl:apply-templates select="./writtenrange"/>
+									<xsl:apply-templates select="./writtenrange" />
 								</DIV>
 								<DIV class="bncdisp">
 									dispersion
-									<xsl:apply-templates select="./writtendisp"/>
+									<xsl:apply-templates select="./writtendisp" />
 								</DIV>
 							</TD>
 						</TR>
@@ -131,7 +129,7 @@
 
 			<xsl:if test="count(./convfreq)>0 or count(./taskfreq)>0">
 				<DIV class="bncconvtask">
-					<IMG class="dataimg" src="images/bnc/convtask.png"/>
+					<IMG class="dataimg" src="images/bnc/convtask.png" />
 					<TABLE class="bnctable">
 						<TR>
 							<TH class="bnctablecell">
@@ -149,35 +147,35 @@
 							<TD class="bnctablecell">
 								<DIV class="bncfreq">
 									frequency
-									<xsl:apply-templates select="./convfreq"/>
+									<xsl:apply-templates select="./convfreq" />
 									<SPAN class="bncunit">
 										<xsl:text><![CDATA[ (per million)]]></xsl:text>
 									</SPAN>
 								</DIV>
 								<DIV class="bncrange">
 									range
-									<xsl:apply-templates select="./convrange"/>
+									<xsl:apply-templates select="./convrange" />
 								</DIV>
 								<DIV class="bncdisp">
 									dispersion
-									<xsl:apply-templates select="./convdisp"/>
+									<xsl:apply-templates select="./convdisp" />
 								</DIV>
 							</TD>
 							<TD class="bnctablecell">
 								<DIV class="bncfreq">
 									frequency
-									<xsl:apply-templates select="./taskfreq"/>
+									<xsl:apply-templates select="./taskfreq" />
 									<SPAN class="bncunit">
 										<xsl:text><![CDATA[ (per million)]]></xsl:text>
 									</SPAN>
 								</DIV>
 								<DIV class="bncrange">
 									range
-									<xsl:apply-templates select="./taskrange"/>
+									<xsl:apply-templates select="./taskrange" />
 								</DIV>
 								<DIV class="bncdisp">
 									dispersion
-									<xsl:apply-templates select="./taskdisp"/>
+									<xsl:apply-templates select="./taskdisp" />
 								</DIV>
 							</TD>
 						</TR>
@@ -187,7 +185,7 @@
 
 			<xsl:if test="count(./imagfreq)>0 or count(./inffreq)>0">
 				<DIV class="bncimaginf">
-					<IMG class="dataimg" src="images/bnc/imaginf.png"/>
+					<IMG class="dataimg" src="images/bnc/imaginf.png" />
 					<TABLE class="bnctable">
 						<TR>
 							<TH class="bnctablecell">
@@ -205,35 +203,35 @@
 							<TD class="bnctablecell">
 								<DIV class="bncfreq">
 									frequency
-									<xsl:apply-templates select="./imagfreq"/>
+									<xsl:apply-templates select="./imagfreq" />
 									<SPAN class="bncunit">
 										<xsl:text><![CDATA[ (per million)]]></xsl:text>
 									</SPAN>
 								</DIV>
 								<DIV class="bncrange">
 									range
-									<xsl:apply-templates select="./imagrange"/>
+									<xsl:apply-templates select="./imagrange" />
 								</DIV>
 								<DIV class="bncdisp">
 									dispersion
-									<xsl:apply-templates select="./imagdisp"/>
+									<xsl:apply-templates select="./imagdisp" />
 								</DIV>
 							</TD>
 							<TD class="bnctablecell">
 								<DIV class="bncfreq">
 									frequency
-									<xsl:apply-templates select="./inffreq"/>
+									<xsl:apply-templates select="./inffreq" />
 									<SPAN class="bncunit">
 										<xsl:text><![CDATA[ (per million)]]></xsl:text>
 									</SPAN>
 								</DIV>
 								<DIV class="bncrange">
 									range
-									<xsl:apply-templates select="./infrange"/>
+									<xsl:apply-templates select="./infrange" />
 								</DIV>
 								<DIV class="bncdisp">
 									dispersion
-									<xsl:apply-templates select="./infdisp"/>
+									<xsl:apply-templates select="./infdisp" />
 								</DIV>
 							</TD>
 						</TR>

@@ -1,91 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <concepts name="VerbNet">
 
-<concept name="Class" id="vnclass">
-	<img src="vnclass.png" />
-	<description>A class. VerbNet groups verbs according to shared syntactic behaviors, thereby revealing generalizations of verb behavior. VerbNet is inspired by Beth Levin’s classification of verb classes and their syntactic alternations. According to Levin’s work, members within a single verb class participate in shared types of alternations, such as the locative alternation (spray verbs) or the causative alternation (wrinkle verbs) etc., because of an underlying shared semantic meaning. Thus, although the basis of VerbNet classification is syntactic, the verbs of a given class do share semantic regularities as well because, as Levin hypothesized, the syntactic behavior of a verb is largely determined by its meaning. Each individual class is hierarchical in the sense that classes may include one or more subclasses.</description>
-	<examples>
-		<example>give-13.1</example>
-		<example>give-13.1-1</example>
-	</examples>
-</concept>
+	<concept
+		name="Class"
+		id="vnclass">
+		<img src="vnclass.png" />
+		<description>A class. VerbNet groups verbs according to shared syntactic behaviors, thereby revealing generalizations of verb behavior. VerbNet is inspired by Beth Levin’s classification of verb classes and their syntactic alternations. According
+			to Levin’s work, members within a single verb class participate in shared types of alternations, such as the locative alternation (spray verbs) or the causative alternation (wrinkle verbs) etc., because of an underlying shared semantic
+			meaning. Thus, although the basis of VerbNet classification is syntactic, the verbs of a given class do share semantic regularities as well because, as Levin hypothesized, the syntactic behavior of a verb is largely determined by its meaning.
+			Each individual class is hierarchical in the sense that classes may include one or more subclasses.
+		</description>
+		<examples>
+			<example>give-13.1</example>
+			<example>give-13.1-1</example>
+		</examples>
+	</concept>
 
-<concept name="Members" id="vnmember">
-	<img src="vnmember.png" />
-	<description>Member</description>
-	<examples>
-		<example>lend</example>
-		<example>loan</example>
-		<example>pass</example>
-		<example>peddle</example>
-		<example>refund</example>
-		<example>render</example>
-	</examples>
-</concept>
+	<concept
+		name="Members"
+		id="vnmember">
+		<img src="vnmember.png" />
+		<description>Member</description>
+		<examples>
+			<example>lend</example>
+			<example>loan</example>
+			<example>pass</example>
+			<example>peddle</example>
+			<example>refund</example>
+			<example>render</example>
+		</examples>
+	</concept>
 
-<concept name="Role" id="vnrole">
-	<img src="vnrole.png" />
-	<description>Thematic roles refer to the semantic relationship between a predicate and its arguments.  VerbNet makes use of a hierarchical thematic roleset.</description>
-	<examples>
-		<context><name>give-13.1</name>class</context>
-		<example>agent [+animate | +organization]</example>
-		<example>theme</example>
-		<example>recipient  [+animate | +organization]</example>
-	</examples>
-</concept>
+	<concept
+		name="Role"
+		id="vnrole">
+		<img src="vnrole.png" />
+		<description>Thematic roles refer to the semantic relationship between a predicate and its arguments. VerbNet makes use of a hierarchical thematic roleset.</description>
+		<examples>
+			<context><name>give-13.1</name>class
+			</context>
+			<example>agent [+animate | +organization]</example>
+			<example>theme</example>
+			<example>recipient [+animate | +organization]</example>
+		</examples>
+	</concept>
 
-<concept name="Selectional Restrictions" abbrev="selrestr" id="vnrestr">
-	<img src="vnrestr.png" />
-	<description>Selectional Restrictions. Each thematic role listed in a class may optionally be further characterized by certain selectional restrictions, which provide more information about the nature of a given role.</description>
-	<examples>
-		<context><name>give-13.1 agent</name>role</context>
-		<example>[+animate | +organization]</example>
-	</examples>
-</concept>
+	<concept
+		name="Selectional Restrictions"
+		abbrev="selrestr"
+		id="vnrestr">
+		<img src="vnrestr.png" />
+		<description>Selectional Restrictions. Each thematic role listed in a class may optionally be further characterized by certain selectional restrictions, which provide more information about the nature of a given role.</description>
+		<examples>
+			<context><name>give-13.1 agent</name>role
+			</context>
+			<example>[+animate | +organization]</example>
+		</examples>
+	</concept>
 
-<concept name="Frame" id="vnframe">
-	<img src="vnframe.png" />
-	<description>The Frames consist of syntactic constructions, example sentences, and the semantic roles mapped to syntactic arguments. They provide a description of the different surface realizations and diathesis alternations allowed for the members of the class.</description>
-	<examples>
-		<context><name>NP V PP.destination</name> role</context>
-		<example>
-	EXAMPLE Paint sprayed onto the wall.
-	SYNTAX Theme V {{+loc | +dir | +dest_conf}} Destination
-	SEMANTICS motion(during(E),Theme) not(Prep(start(E), Theme, Destination)) Prep(end(E), Theme, Destination)
-</example>
-	</examples>
-</concept>
+	<concept
+		name="Frame"
+		id="vnframe">
+		<img src="vnframe.png" />
+		<description>The Frames consist of syntactic constructions, example sentences, and the semantic roles mapped to syntactic arguments. They provide a description of the different surface realizations and diathesis alternations allowed for the
+			members of the class.
+		</description>
+		<examples>
+			<context>
+				<name>NP V PP.destination</name>
+				role
+			</context>
+			<example>
+				EXAMPLE Paint sprayed onto the wall.
+				SYNTAX Theme V {{+loc | +dir | +dest_conf}} Destination
+				SEMANTICS motion(during(E),Theme) not(Prep(start(E), Theme, Destination)) Prep(end(E), Theme, Destination)
+			</example>
+		</examples>
+	</concept>
 
-<concept name="Syntax" id="vnsyntax">
-	<img src="vnsyntax.png" />
-	<description>Syntactic constructions</description>
-	<examples>
-		<context><name>NP V PP.destination</name> role with <name>Paint sprayed onto the wall.</name> example</context>
-		<example>Theme V {{+loc | +dir | +dest_conf}} Destination</example>
-	</examples>
-	<examples>
-		<context><name>NP V NP PP.destination-Conative</name> role with <name>Jessica squirted water at me.</name> example</context>
-		<example>Agent V Theme at Destination</example>
-	</examples>
-</concept>
+	<concept
+		name="Syntax"
+		id="vnsyntax">
+		<img src="vnsyntax.png" />
+		<description>Syntactic constructions</description>
+		<examples>
+			<context>
+				<name>NP V PP.destination</name>
+				role with <name>Paint sprayed onto the wall.</name> example
+			</context>
+			<example>Theme V {{+loc | +dir | +dest_conf}} Destination</example>
+		</examples>
+		<examples>
+			<context>
+				<name>NP V NP PP.destination-Conative</name>
+				role with <name>Jessica squirted water at me.</name> example
+			</context>
+			<example>Agent V Theme at Destination</example>
+		</examples>
+	</concept>
 
-<concept name="Semantics" id="vnsemantics">
-	<img src="vnsemantics.png" />
-	<description>Semantic predicates indicate how the participants are involved in the event.</description>
-	<examples>
-		<context><name>NP V PP.destination</name> with <name>Paint sprayed onto the wall.</name> example</context>
-		<example>motion(during(E),Theme) not(Prep(start(E), Theme, Destination)) Prep(end(E), Theme, Destination)</example>
-	</examples>
-	<examples>
-		<context><name>NP V NP PP.destination-Conative</name> with <name>Jessica squirted water at me.</name> example</context>
-		<example>motion(during(E), Theme)) not(location(start(E), Theme, Destination)) cause(Agent, E)</example>
-	</examples>
-</concept>
+	<concept
+		name="Semantics"
+		id="vnsemantics">
+		<img src="vnsemantics.png" />
+		<description>Semantic predicates indicate how the participants are involved in the event.</description>
+		<examples>
+			<context>
+				<name>NP V PP.destination</name>
+				with <name>Paint sprayed onto the wall.</name> example
+			</context>
+			<example>motion(during(E),Theme) not(Prep(start(E), Theme, Destination)) Prep(end(E), Theme, Destination)</example>
+		</examples>
+		<examples>
+			<context>
+				<name>NP V NP PP.destination-Conative</name>
+				with <name>Jessica squirted water at me.</name> example
+			</context>
+			<example>motion(during(E), Theme)) not(location(start(E), Theme, Destination)) cause(Agent, E)</example>
+		</examples>
+	</concept>
 
-<concept name="Synset-specific" id="vnsynsetspecific">
-	<img src="vnsynsetspecific.png" />
-	<description>Synset-specific. Some consructs are attached to specific senses.</description>
-</concept>
+	<concept
+		name="Synset-specific"
+		id="vnsynsetspecific">
+		<img src="vnsynsetspecific.png" />
+		<description>Synset-specific. Some consructs are attached to specific senses.</description>
+	</concept>
 
 </concepts>
 

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<link name="Caused" id="caused" type="semantic" v="true">
+<link
+	name="Caused"
+	id="caused"
+	type="semantic"
+	v="true">
 
 	<img src="caused.png" />
 
@@ -12,8 +16,8 @@
 		<def>
 			<span>
 				A verb
-				<b>Y</b> 
-				is caused by 
+				<b>Y</b>
+				is caused by
 				<b>X</b>
 			</span>
 		</def>

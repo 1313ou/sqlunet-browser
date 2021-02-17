@@ -8,7 +8,7 @@
 	<item>
 		<layer-list>
 			<item>
-				<bitmap android:gravity="bottom|right" android:src="@drawable/ic_spinner_arrow"/>
+				<bitmap android:gravity="bottom|right" android:src="@drawable/ic_spinner_arrow" />
 			</item>
 		</layer-list>
 	</item>
