@@ -20,7 +20,6 @@
 
 	<!-- button -->
 	<color name="action_button_color">#ff00ff</color>
-	<color name="activated_color">#ff80ff</color>
 	<color name="ok_button_color">@color/dark_green_color</color>
 	<color name="err_button_color">@color/dark_red_color</color>
 
