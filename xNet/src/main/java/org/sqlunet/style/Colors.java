@@ -5,12 +5,18 @@
 package org.sqlunet.style;
 
 import android.content.Context;
+import android.content.res.Configuration;
+import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.util.Log;
 
 import org.sqlunet.xnet.R;
 
 import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.StyleRes;
+import androidx.annotation.StyleableRes;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.res.ResourcesCompat;
 
 /**
@@ -20,6 +26,10 @@ import androidx.core.content.res.ResourcesCompat;
  */
 public class Colors
 {
+	static private final String DUMP = "Contrast";
+
+	static private final String NIGHT = "NightMode";
+
 	// COMMON
 
 	static public int classBackColor = Color.TRANSPARENT;
@@ -168,5 +178,90 @@ public class Colors
 			result[i] = ResourcesCompat.getColor(context.getResources(), colorIds[i], null);
 		}
 		return result;
+	}
+
+	static public final int NOT_DEFINED = 0xAAAAAAAA;
+
+	@NonNull
+	static public int[] getColorAttrs(@NonNull final Context context, @StyleRes int themeId, @StyleableRes int... resIds)
+	{
+		TypedArray a = context.getTheme().obtainStyledAttributes(themeId, resIds);
+
+		int[] result = new int[resIds.length];
+		for (int i = 0; i < resIds.length; i++)
+		{
+			result[i] = a.getColor(i, NOT_DEFINED);
+		}
+
+		a.recycle();
+		return result;
+	}
+
+	static public void dumpColorAttrs(@NonNull final Context context, @StyleRes int themeId, @StyleableRes int... resIds)
+	{
+		TypedArray a = context.getTheme().obtainStyledAttributes(themeId, resIds);
+		for (int i = 0; i < a.length(); i++)
+		{
+			String name = context.getResources().getResourceName(resIds[i]);
+			int value = a.getColor(i, NOT_DEFINED);
+			Log.i(DUMP, String.format("Attr %s = %s", name, colorToString(value)));
+		}
+		a.recycle();
+	}
+
+	@NonNull
+	static public String colorToString(final int color)
+	{
+		switch (color)
+		{
+			case 0:
+				return "transparent";
+			case 0xFF000000:
+				return "black";
+			case 0xFFffffff:
+				return "white";
+			case 0xFF808080:
+				return "gray";
+			default:
+				return '#' + Integer.toHexString(color);
+		}
+	}
+
+
+	static public boolean checkDarkMode(@NonNull final Context context, int expected)
+	{
+		int mode = AppCompatDelegate.getDefaultNightMode();
+		switch (mode)
+		{
+			case AppCompatDelegate.MODE_NIGHT_YES:
+				Log.d(NIGHT, "Night mode");
+				return expected == AppCompatDelegate.MODE_NIGHT_YES;
+
+			case AppCompatDelegate.MODE_NIGHT_NO:
+				Log.d(NIGHT, "Day mode");
+				return expected == AppCompatDelegate.MODE_NIGHT_NO;
+
+			case AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM:
+				Log.d(NIGHT, "Follow system");
+				return expected == AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
+
+			default:
+				throw new IllegalStateException("Unexpected value: " + mode);
+		}
+	}
+
+	static public int toConfigurationUiMode(final int mode)
+	{
+		switch (mode)
+		{
+			case AppCompatDelegate.MODE_NIGHT_YES:
+				return Configuration.UI_MODE_NIGHT_YES;
+
+			case AppCompatDelegate.MODE_NIGHT_NO:
+				return Configuration.UI_MODE_NIGHT_NO;
+
+			default:
+				throw new IllegalStateException("Unexpected value: " + mode);
+		}
 	}
 }

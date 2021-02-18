@@ -48,6 +48,8 @@
 
 				<TextView
 					style="@style/GridLabel"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
 					android:text="@string/status_database" />
 
 				<LinearLayout style="@style/GridData">
@@ -81,6 +83,8 @@
 
 				<TextView
 					style="@style/GridLabel"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
 					android:text="@string/status_predicatematrix" />
 
 				<LinearLayout style="@style/GridData">
@@ -108,6 +112,8 @@
 
 				<TextView
 					style="@style/GridLabel"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
 					android:text="@string/status_indexes" />
 
 				<LinearLayout style="@style/GridData">
@@ -133,6 +139,8 @@
 
 				<TextView
 					style="@style/GridLabel"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
 					android:text="@string/status_searchtext" />
 
 				<LinearLayout style="@style/GridData">
@@ -160,6 +168,8 @@
 
 				<TextView
 					style="@style/GridLabel"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
 					android:text="@string/status_searchtext_vn" />
 
 				<LinearLayout style="@style/GridData">
@@ -187,6 +197,8 @@
 
 				<TextView
 					style="@style/GridLabel"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
 					android:text="@string/status_searchtext_pb" />
 
 				<LinearLayout style="@style/GridData">
@@ -214,6 +226,8 @@
 
 				<TextView
 					style="@style/GridLabel"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
 					android:text="@string/status_searchtext_fn" />
 
 				<LinearLayout style="@style/GridData">
@@ -229,9 +243,9 @@
 					<ImageButton
 						android:id="@+id/searchtextFnButton"
 						style="@style/GridActionButton"
-						android:contentDescription="@string/status_searchtext_fn"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
+						android:contentDescription="@string/status_searchtext_fn"
 						android:src="@drawable/bn_setup"
 						tools:ignore="InconsistentLayout" />
 

@@ -31,10 +31,6 @@
 
 	<!-- D E R I V E D -->
 
-	<!-- swipe down refresh -->
-	<color name="swipe_down_1_color">@color/secondaryColor</color>
-	<color name="swipe_down_2_color">@color/secondaryLightColor</color>
-
 	<!-- button -->
 	<color name="info_button_color">#4251bd</color>
 	<color name="info_button_activated_color">#4251dd</color>

@@ -10,6 +10,7 @@
 
 	<style name="MyTheme" parent="MyXBaseTheme">
 
+		<!-- framework colors -->
 		<item name="android:colorBackground">@color/backgroundColor</item>
 		<item name="android:colorForeground">@color/foregroundColor</item>
 		<!-- <item name="colorOnSurface">@color/backgroundColor</item>-->
@@ -26,7 +27,7 @@
 
 		<item name="colorAccent">@color/secondaryColor</item>
 
-		<!-- extras -->
+		<!-- extras color attrs -->
 		<item name="colorHighlightOnPrimary">@color/highlightOnPrimaryColor</item>
 		<item name="colorHighlightOnBackground">@color/colorHighlightOnBackground</item>
 		<item name="colorDimmedOnBackground">@color/colorDimmedOnBackground</item>

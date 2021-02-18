@@ -31,8 +31,8 @@
 
 	<!-- Overlay -->
 	<style name="MyOverlay" parent="MyBaseOverlay">
-		<item name="android:background">?attr/colorPrimary</item>item> <!-- submenu background -->
-		<item name="android:textColorPrimary">?attr/colorOnPrimary</item>item> <!-- item foreground -->
+		<item name="android:background">?attr/colorPrimary</item> <!-- submenu background -->
+		<item name="android:textColorPrimary">?attr/colorOnPrimary</item> <!-- item foreground -->
 		<item name="android:textColorSecondary">?attr/colorHighlightOnPrimary</item> <!-- submenu item foreground -->
 	</style>
 
