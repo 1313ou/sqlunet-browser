@@ -1,25 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-       android:shape="oval">
+	android:shape="oval">
 
-	<solid android:color="@color/ok_button_color"/>
+	<solid android:color="@color/ok_button_color" />
 
 	<size
 		android:width="50dp"
-		android:height="50dp"/>
-
-	<!--     <stroke -->
-	<!--         android:width="2dip" -->
-	<!--         android:color="@color/button_border_color" /> -->
-
-	<!--     <padding -->
-	<!--         android:bottom="10dip" -->
-	<!--         android:left="10dip" -->
-	<!--         android:right="10dip" -->
-	<!--         android:top="10dip" /> -->
+		android:height="50dp" />
 
 </shape>

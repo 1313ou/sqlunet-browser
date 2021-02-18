@@ -48,7 +48,7 @@
 		<item name="android:dropDownItemStyle">@style/MyDropDownItemStyle</item>
 
 		<!-- background of activated indicator -->
-		<item name="android:activatedBackgroundIndicator">@drawable/listitem_background</item>
+		<item name="android:activatedBackgroundIndicator">@drawable/bg_listitem</item>
 
 		<!-- autocomplete -->
 		<item name="android:autoCompleteTextViewStyle">@style/MyAutoCompleteTextViewStyle</item>
