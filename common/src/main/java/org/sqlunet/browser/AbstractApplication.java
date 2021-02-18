@@ -27,7 +27,6 @@ abstract public class AbstractApplication extends Application
 {
 	static private final String LOG = "AApplication";
 
-	// doesn't get called
 	@Override
 	public void onConfigurationChanged(@NonNull final Configuration newConfig)
 	{
@@ -49,7 +48,6 @@ abstract public class AbstractApplication extends Application
 		Context newContext = context.createConfigurationContext(newConfig);
 		return new ContextThemeWrapper(newContext, R.style.MyTheme);
 	}
-
 
 	@NonNull
 	static public Configuration createOverrideConfigurationForDayNight(@NonNull Context context, final int mode)
@@ -101,7 +99,7 @@ abstract public class AbstractApplication extends Application
 	}
 
 	/**
-	 * Test whether in night mode.
+	 * Get night mode.
 	 *
 	 * @param context context
 	 * @return mode to string
@@ -124,6 +122,8 @@ abstract public class AbstractApplication extends Application
 	}
 
 	abstract public void setAllColorsFromResources(@NonNull final Context newContext);
+
+	// T A S K S
 
 	@RequiresApi(api = Build.VERSION_CODES.M)
 	public void dumpTasks()

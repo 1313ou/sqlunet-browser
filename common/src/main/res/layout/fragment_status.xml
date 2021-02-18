@@ -47,6 +47,8 @@
 
 				<TextView
 					style="@style/GridLabel"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
 					android:text="@string/status_database" />
 
 				<LinearLayout style="@style/GridData">
@@ -54,17 +56,23 @@
 					<ImageView
 						android:id="@+id/status_database"
 						style="@style/GridStatusImage"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
 						android:contentDescription="@string/status_database" />
 
 					<ImageButton
 						android:id="@+id/databaseButton"
 						style="@style/GridActionButton"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
 						android:contentDescription="@string/status_database"
 						android:src="@drawable/bn_download" />
 
 					<ImageButton
 						android:id="@+id/info_database"
 						style="@style/GridInfoButton"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
 						android:contentDescription="@string/hint_database"
 						android:src="@drawable/bn_info" />
 
@@ -74,6 +82,8 @@
 
 				<TextView
 					style="@style/GridLabel"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
 					android:text="@string/status_indexes" />
 
 				<LinearLayout style="@style/GridData">
@@ -81,11 +91,15 @@
 					<ImageView
 						android:id="@+id/status_indexes"
 						style="@style/GridStatusImage"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
 						android:contentDescription="@string/status_indexes" />
 
 					<ImageButton
 						android:id="@+id/indexesButton"
 						style="@style/GridActionButton"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
 						android:contentDescription="@string/status_indexes"
 						android:src="@drawable/bn_setup" />
 				</LinearLayout>

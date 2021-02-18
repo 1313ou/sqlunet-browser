@@ -53,7 +53,7 @@ public class StorageFragment extends Fragment
 
 		// swipe refresh layout
 		this.swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
-		this.swipeRefreshLayout.setColorSchemeResources(R.color.swipe_down_1_color, R.color.swipe_down_2_color);
+		//this.swipeRefreshLayout.setColorSchemeResources(R.color.swipe_down_1_color, R.color.swipe_down_2_color);
 		this.swipeRefreshLayout.setOnRefreshListener(() -> {
 			update();
 

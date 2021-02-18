@@ -2,7 +2,6 @@ package org.sqlunet.browser.ewn;
 
 import android.content.Context;
 import android.content.res.Configuration;
-import android.content.res.TypedArray;
 import android.util.Log;
 
 import junit.framework.TestCase;
@@ -11,7 +10,6 @@ import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleableRes;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.core.graphics.ColorUtils;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -48,13 +46,11 @@ public class Colors extends TestCase
 		@Override
 		public String getMessage()
 		{
-			return String.format("%d %s [%02d] %s on %s (default %s on %s) with contrast %f ", resId, res, index, colorToString(foreColor), colorToString(backColor), colorToString(defaultForeColor), colorToString(defaultBackColor), contrast);
+			return String.format("%d %s [%02d] %s on %s (default %s on %s) with contrast %f ", resId, res, index, org.sqlunet.style.Colors.colorToString(foreColor), org.sqlunet.style.Colors.colorToString(backColor), org.sqlunet.style.Colors.colorToString(defaultForeColor), org.sqlunet.style.Colors.colorToString(defaultBackColor), contrast);
 		}
 	}
 
 	static private final float MIN_CONTRAST = 3.0F;
-
-	static private final int NOT_DEFINED = 0xAAAAAAAA;
 
 	@NonNull
 	static public Context getContext(int mode)
@@ -63,7 +59,7 @@ public class Colors extends TestCase
 		Context themedContext = new ContextThemeWrapper(targetContext, R.style.MyTheme);
 		Configuration newConfig = themedContext.getResources().getConfiguration();
 		newConfig.uiMode &= ~Configuration.UI_MODE_NIGHT_MASK; // clear
-		newConfig.uiMode |= toConfigurationUiMode(mode) & Configuration.UI_MODE_NIGHT_MASK; // set
+		newConfig.uiMode |= org.sqlunet.style.Colors.toConfigurationUiMode(mode) & Configuration.UI_MODE_NIGHT_MASK; // set
 		Context newContext = themedContext.createConfigurationContext(newConfig);
 		return new ContextThemeWrapper(newContext, R.style.MyTheme);
 	}
@@ -95,7 +91,7 @@ public class Colors extends TestCase
 					foreColor = defaultColors[1];
 				}
 				double contrast = ColorUtils.calculateContrast(foreColor, backColor);
-				final String info = String.format("[%02d] Contrast %s on %s is %f", i / 2, colorToString(foreColor), colorToString(backColor), contrast);
+				final String info = String.format("[%02d] Contrast %s on %s is %f", i / 2, org.sqlunet.style.Colors.colorToString(foreColor), org.sqlunet.style.Colors.colorToString(backColor), contrast);
 				if (contrast < MIN_CONTRAST)
 				{
 					Log.e(LOGTAG, info);
@@ -109,24 +105,6 @@ public class Colors extends TestCase
 					Log.d(LOGTAG, info);
 				}
 			}
-		}
-	}
-
-	@NonNull
-	static String colorToString(final int color)
-	{
-		switch (color)
-		{
-			case 0:
-				return "transparent";
-			case 0xFF000000:
-				return "black";
-			case 0xFFffffff:
-				return "white";
-			case 0xFF808080:
-				return "gray";
-			default:
-				return '#' + Integer.toHexString(color);
 		}
 	}
 
@@ -146,15 +124,7 @@ public class Colors extends TestCase
 				R.attr.colorOnSurface, //
 				R.attr.backgroundColor, //
 		};
-
-		TypedArray a = context.getTheme().obtainStyledAttributes(R.style.MyTheme, resIds);
-		for (int i = 0; i < a.length(); i++)
-		{
-			String name = context.getResources().getResourceName(resIds[i]);
-			int value = a.getColor(i, NOT_DEFINED);
-			Log.i(LOGTAG, String.format("Attr %s = %s", name, colorToString(value)));
-		}
-		a.recycle();
+		org.sqlunet.style.Colors.dumpColorAttrs(context, R.style.MyTheme, resIds);
 	}
 
 	@NonNull
@@ -164,52 +134,6 @@ public class Colors extends TestCase
 				android.R.attr.colorBackground, //
 				android.R.attr.colorForeground, //
 		};
-
-		TypedArray a = context.getTheme().obtainStyledAttributes(R.style.MyTheme, resIds);
-		int[] result = new int[2];
-		result[0] = a.getColor(0, NOT_DEFINED);
-		result[1] = a.getColor(1, NOT_DEFINED);
-		// String name0 = context.getResources().getResourceName(resIds[0]);
-		// String name1 = context.getResources().getResourceName(resIds[1]);
-		// Log.i(LOGTAG, String.format("Default Attr %s = #%x", name1, result[1]));
-		a.recycle();
-		return result;
-	}
-
-	static boolean checkDarkMode(@NonNull final Context context, int expected)
-	{
-		int mode = AppCompatDelegate.getDefaultNightMode();
-		switch (mode)
-		{
-			case AppCompatDelegate.MODE_NIGHT_YES:
-				Log.d(LOGTAG, "Night mode");
-				return expected == AppCompatDelegate.MODE_NIGHT_YES;
-
-			case AppCompatDelegate.MODE_NIGHT_NO:
-				Log.d(LOGTAG, "Day mode");
-				return expected == AppCompatDelegate.MODE_NIGHT_NO;
-
-			case AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM:
-				Log.d(LOGTAG, "Follow system");
-				return expected == AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
-
-			default:
-				throw new IllegalStateException("Unexpected value: " + mode);
-		}
-	}
-
-	static int toConfigurationUiMode(final int mode)
-	{
-		switch (mode)
-		{
-			case AppCompatDelegate.MODE_NIGHT_YES:
-				return Configuration.UI_MODE_NIGHT_YES;
-
-			case AppCompatDelegate.MODE_NIGHT_NO:
-				return Configuration.UI_MODE_NIGHT_NO;
-
-			default:
-				throw new IllegalStateException("Unexpected value: " + mode);
-		}
+		return org.sqlunet.style.Colors.getColorAttrs(context, R.style.MyTheme, resIds);
 	}
 }
