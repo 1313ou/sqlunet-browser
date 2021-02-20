@@ -7,7 +7,7 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context="org.sqlunet.download.UpdateFragment">
+	tools:context="org.sqlunet.download.UpdateActivity">
 
 	<LinearLayout
 		android:layout_width="match_parent"
@@ -18,14 +18,18 @@
 		android:paddingEnd="@dimen/activity_horizontal_padding"
 		tools:ignore="UselessParent">
 
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:contentDescription="@string/download_up"
+			android:src="@drawable/ic_download_source"
+			app:tint="?android:attr/colorForeground" />
+
 		<TextView
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:drawablePadding="10dp"
-			android:gravity="center_vertical"
 			android:text="@string/download_up"
-			android:textStyle="bold"
-			app:drawableStartCompat="@drawable/ic_download_source" />
+			android:textStyle="bold" />
 
 		<TextView
 			android:id="@+id/up_src"
@@ -63,30 +67,36 @@
 			android:layout_height="wrap_content"
 			android:text="@string/status_state_unknown" />
 
-		<TextView
-			android:layout_width="match_parent"
+		<ImageView
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="10dp"
+			android:contentDescription="@string/download_down"
+			android:gravity="start"
+			android:src="@drawable/ic_download_dest"
+			app:tint="?android:attr/colorForeground" />
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
 			android:drawablePadding="10dp"
-			android:gravity="center_vertical"
 			android:text="@string/download_down"
-			android:textStyle="bold"
-			app:drawableStartCompat="@drawable/ic_download_dest" />
+			android:textStyle="bold" />
 
 		<TextView
-			android:id="@+id/down_db"
+			android:id="@+id/down_model"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="@string/status_state_unknown" />
 
 		<TextView
-			android:id="@+id/down_db_size"
+			android:id="@+id/down_model_size"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="@string/status_state_unknown" />
 
 		<TextView
-			android:id="@+id/down_db_date"
+			android:id="@+id/down_model_date"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="@string/status_state_unknown" />
@@ -144,9 +154,8 @@
 			android:background="@drawable/bg_button_action"
 			android:contentDescription="@string/action_update"
 			android:padding="5dp"
-			android:src="@drawable/ic_run"
-			android:text="@string/action_run"
-			android:visibility="invisible" />
+			android:src="@drawable/bn_download"
+			android:visibility="visible" />
 
 	</LinearLayout>
 
