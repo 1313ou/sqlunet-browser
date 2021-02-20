@@ -128,9 +128,9 @@ public class UpdateFragment extends Fragment
 		upVersion.setText(upVersionArg);
 		upStaticVersion.setText(upStaticVersionArg);
 
-		final TextView downDb = view.findViewById(R.id.down_db);
-		final TextView downDate = view.findViewById(R.id.down_db_date);
-		final TextView downSize = view.findViewById(R.id.down_db_size);
+		final TextView downDb = view.findViewById(R.id.down_model);
+		final TextView downDate = view.findViewById(R.id.down_model_date);
+		final TextView downSize = view.findViewById(R.id.down_model_size);
 		final TextView downSource = view.findViewById(R.id.down_source);
 		final TextView downSourceDate = view.findViewById(R.id.down_source_date);
 		final TextView downSourceSize = view.findViewById(R.id.down_source_size);
