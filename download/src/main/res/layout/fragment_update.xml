@@ -155,7 +155,7 @@
 			android:contentDescription="@string/action_update"
 			android:padding="5dp"
 			android:src="@drawable/bn_download"
-			android:visibility="visible" />
+			android:visibility="invisible" />
 
 	</LinearLayout>
 
