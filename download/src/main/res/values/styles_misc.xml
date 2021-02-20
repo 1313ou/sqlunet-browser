@@ -4,9 +4,6 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<!-- B U T T O N -->
-	<style name="ActionButton" parent="Widget.AppCompat.Button.Borderless">
-		<item name="android:tint">#00FF00</item>
-	</style>
+	<style name="ActionButton" parent="Widget.AppCompat.Button.Borderless" />
 
 </resources>

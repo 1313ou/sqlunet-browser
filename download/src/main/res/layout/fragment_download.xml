@@ -79,6 +79,7 @@
 		android:layout_marginStart="50dp"
 		android:layout_marginEnd="50dp"
 		android:layout_marginBottom="10dp"
+		android:contentDescription="@string/download_source"
 		android:src="@drawable/ic_download_source"
 		app:tint="?android:attr/colorForeground" />
 
@@ -132,6 +133,7 @@
 		android:layout_marginStart="50dp"
 		android:layout_marginTop="10dp"
 		android:layout_marginEnd="50dp"
+		android:contentDescription="@string/download_dest"
 		android:src="@drawable/ic_download_dest"
 		app:tint='?android:attr/colorForeground' />
 
