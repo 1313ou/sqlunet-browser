@@ -45,7 +45,11 @@ public class Settings
 		@NonNull
 		public static String zipDownloaderSource(@NonNull final Context context, @NonNull final String source)
 		{
-			return Settings.Downloader.isZipDownloaderPref(context) || source.endsWith(".zip") ? source + ".zip" : source;
+			if (Settings.Downloader.isZipDownloaderPref(context) && !source.endsWith(".zip"))
+			{
+				return source + ".zip";
+			}
+			return source;
 		}
 
 		public static boolean isZipDownloaderPref(@NonNull final Context context)
