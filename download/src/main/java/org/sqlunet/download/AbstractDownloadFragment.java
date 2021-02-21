@@ -7,6 +7,8 @@ package org.sqlunet.download;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
@@ -24,6 +26,8 @@ import java.io.File;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
@@ -406,7 +410,10 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		{
 			this.downloadButton.setVisibility(savedInstanceState.getInt(DOWNLOAD_BTN_STATE, View.VISIBLE));
 			this.downloadButtonImageResId = savedInstanceState.getInt(DOWNLOAD_BTN_IMAGE_STATE, R.drawable.bn_download);
-			this.downloadButton.setImageResource(this.downloadButtonImageResId);
+			Drawable drawable = ResourcesCompat.getDrawable(getResources(), this.downloadButtonImageResId, requireContext().getTheme());
+			assert drawable != null;
+			DrawableCompat.setTint(drawable, Color.WHITE);
+			this.downloadButton.setImageDrawable(drawable);
 			this.downloadButtonBackgroundResId = savedInstanceState.getInt(DOWNLOAD_BTN_BACKGROUND_STATE, R.drawable.bg_button_action);
 			this.downloadButton.setBackgroundResource(this.downloadButtonBackgroundResId);
 			this.progressBar.setVisibility(savedInstanceState.getInt(PROGRESS_STATE, View.INVISIBLE));
@@ -773,7 +780,10 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		if (this.downloadButton != null)
 		{
 			this.downloadButtonImageResId = success ? R.drawable.bn_download_ok : R.drawable.bn_download;
-			this.downloadButton.setImageResource(downloadButtonImageResId);
+			Drawable drawable = ResourcesCompat.getDrawable(getResources(), this.downloadButtonImageResId, requireContext().getTheme());
+			assert drawable != null;
+			DrawableCompat.setTint(drawable, Color.WHITE);
+			this.downloadButton.setImageDrawable(drawable);
 			this.downloadButtonBackgroundResId = success ? R.drawable.bg_button_ok : R.drawable.bg_button_err;
 			this.downloadButton.setBackgroundResource(this.downloadButtonBackgroundResId);
 			this.downloadButton.setEnabled(false);
@@ -807,7 +817,9 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	void onComplete(final boolean success)
 	{
 		Log.d(TAG, "OnComplete " + success + " " + this);
-		((OnComplete) getActivity()).onComplete(success);
+		OnComplete listener = (OnComplete) getActivity();
+		assert listener != null;
+		listener.onComplete(success);
 	}
 
 	// M D 5
