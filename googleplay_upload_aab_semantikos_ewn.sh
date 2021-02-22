@@ -14,7 +14,7 @@ DIR=dist/releases
 PACKAGE=org.sqlunet.browser.ewn
 AAB=browserewn
 
-python googleplay_upload_aabs.py \
+python googleplay_upload_aab.py \
 	${PACKAGE} \
 	"${RELEASE_NAME}" \
 	"${RECENT_CHANGES}" \

@@ -11,10 +11,10 @@ if [ -z "${RECENT_CHANGES}" ]; then
 	RECENT_CHANGES="Fixes"
 fi
 DIR=dist/releases
-PACKAGE=org.sqlunet.browser.vn
-AAB=browservn
+PACKAGE=org.sqlunet.browser
+AAB=browser
 
-python googleplay_upload_aabs.py \
+python googleplay_upload_aab.py \
 	${PACKAGE} \
 	"${RELEASE_NAME}" \
 	"${RECENT_CHANGES}" \
