@@ -26,7 +26,7 @@ import java.util.Collection;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.res.ResourcesCompat;
+import androidx.appcompat.content.res.AppCompatResources;
 
 /**
  * Spanner
@@ -424,7 +424,7 @@ public class Spanner
 	@NonNull
 	static public Drawable getDrawable(@NonNull final Context context, @DrawableRes final int resId)
 	{
-		final Drawable drawable = ResourcesCompat.getDrawable(context.getResources(), resId, context.getTheme());
+		final Drawable drawable = AppCompatResources.getDrawable(context, resId);
 		assert drawable != null;
 		drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 		return drawable;
