@@ -26,7 +26,7 @@ import java.io.File;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.res.ResourcesCompat;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -410,7 +410,7 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		{
 			this.downloadButton.setVisibility(savedInstanceState.getInt(DOWNLOAD_BTN_STATE, View.VISIBLE));
 			this.downloadButtonImageResId = savedInstanceState.getInt(DOWNLOAD_BTN_IMAGE_STATE, R.drawable.bn_download);
-			Drawable drawable = ResourcesCompat.getDrawable(getResources(), this.downloadButtonImageResId, requireContext().getTheme());
+			Drawable drawable = AppCompatResources.getDrawable(requireContext(), this.downloadButtonImageResId);
 			assert drawable != null;
 			DrawableCompat.setTint(drawable, Color.WHITE);
 			this.downloadButton.setImageDrawable(drawable);
@@ -780,7 +780,7 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		if (this.downloadButton != null)
 		{
 			this.downloadButtonImageResId = success ? R.drawable.bn_download_ok : R.drawable.bn_download;
-			Drawable drawable = ResourcesCompat.getDrawable(getResources(), this.downloadButtonImageResId, requireContext().getTheme());
+			Drawable drawable = AppCompatResources.getDrawable(requireContext(), this.downloadButtonImageResId);
 			assert drawable != null;
 			DrawableCompat.setTint(drawable, Color.WHITE);
 			this.downloadButton.setImageDrawable(drawable);

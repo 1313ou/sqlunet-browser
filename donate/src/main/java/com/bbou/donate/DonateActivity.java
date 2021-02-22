@@ -33,8 +33,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.res.ResourcesCompat;
 
 /**
  * Donate
@@ -314,9 +314,9 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 	// H E L P E R
 
 	@Nullable
-	private static Drawable getDrawable(@NonNull final Context context, @DrawableRes int drawableRes)
+	private static Drawable getDrawable(@NonNull final Context context, @DrawableRes int resId)
 	{
-		return ResourcesCompat.getDrawable(context.getResources(), drawableRes, context.getTheme());
+		return AppCompatResources.getDrawable(context, resId);
 	}
 
 	private void inform(@NonNull final String message)
