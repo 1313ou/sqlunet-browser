@@ -3,7 +3,7 @@
 RELEASE_NAME="$1"
 if [ -z "${RELEASE_NAME}" ]; then
 	V=`./find-version.sh`
-	RELEASE_NAME="I${V}"
+	RELEASE_NAME="A${V}"
 	echo "Version name ${RELEASE_NAME}"
 fi
 RECENT_CHANGES="$2"
@@ -12,10 +12,11 @@ if [ -z "${RECENT_CHANGES}" ]; then
 fi
 DIR=dist/releases
 PACKAGE=org.sqlunet.browser
-AAB=browser
+APK=browser
 
-python googleplay_upload_aabs.py \
+python googleplay_upload_apk.py \
 	${PACKAGE} \
 	"${RELEASE_NAME}" \
 	"${RECENT_CHANGES}" \
-	${DIR}/${AAB}-release.aab \
+	${DIR}/${APK}-release.apk \
+
