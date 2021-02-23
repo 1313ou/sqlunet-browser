@@ -4,6 +4,8 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	style="@style/ListItem"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
 	android:orientation="vertical">
 
 	<TextView
@@ -40,11 +42,11 @@
 		android:layout_height="wrap_content"
 		android:layout_gravity="center_horizontal"
 		android:autoLink="web"
-		android:gravity="center"
 		android:clickable="true"
+		android:focusable="true"
+		android:gravity="center"
 		android:linksClickable="true"
-		android:textIsSelectable="false"
-		android:focusable="true" />
+		android:textIsSelectable="false" />
 
 	<TextView
 		android:id="@+id/reference"
