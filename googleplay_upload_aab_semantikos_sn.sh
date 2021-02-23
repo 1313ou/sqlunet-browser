@@ -1,5 +1,13 @@
 #!/bin/bash
 
+R='\u001b[31m'
+G='\u001b[32m'
+Y='\u001b[33m'
+B='\u001b[34m'
+M='\u001b[35m'
+C='\u001b[36m'
+Z='\u001b[0m'
+
 RELEASE_NAME="$1"
 if [ -z "${RELEASE_NAME}" ]; then
 	V=`./find-version.sh`
@@ -14,6 +22,7 @@ DIR=dist/releases
 PACKAGE=org.sqlunet.browser.sn
 AAB=browsersn
 
+echo -e "${Y}${PACKAGE}${Z}"
 python googleplay_upload_aab.py \
 	${PACKAGE} \
 	"${RELEASE_NAME}" \
