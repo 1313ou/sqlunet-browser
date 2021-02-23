@@ -82,7 +82,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	private long progressTotal = 0;
 
 	/**
-	 * Broadcast receiver for start finish events
+	 * Broadcast receiver for start/finish/update main events
 	 */
 	@NonNull
 	private final BroadcastReceiver mainBroadcastReceiver = new BroadcastReceiver()
@@ -136,7 +136,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	};
 
 	/**
-	 * Broadcast receiver for update events
+	 * Broadcast receiver for update small granularity events
 	 */
 	private final BroadcastReceiver updateBroadcastReceiver = new BroadcastReceiver()
 	{
@@ -364,12 +364,6 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	}
 
 	/**
-	 * Persistent notification builder
-	 */
-	@Nullable
-	private NotificationCompat.Builder builder;
-
-	/**
 	 * UI notification
 	 *
 	 * @param id   id
@@ -394,50 +388,68 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		switch (type)
 		{
 			case START:
+				// builder
+				NotificationCompat.Builder builder1 = new NotificationCompat.Builder(this.appContext, CHANNEL_ID);
+				builder1.setDefaults(NotificationCompat.DEFAULT_LIGHTS) //
+						.setSmallIcon(android.R.drawable.stat_sys_download);
+
+				// content
 				contentText += ' ' + this.appContext.getString(R.string.status_download_running);
-				this.builder = new NotificationCompat.Builder(this.appContext, CHANNEL_ID);
-				this.builder.setDefaults(NotificationCompat.DEFAULT_LIGHTS) //
-						.setSmallIcon(android.R.drawable.stat_sys_download) //
-						.setContentTitle(contentTitle) //
+				builder1.setContentTitle(contentTitle) //
 						.setContentText(contentText);
+
 				// action
-				final Intent intent = new Intent(this.appContext, Killer.class);
-				intent.setAction(Killer.KILL_DOWNLOAD_SERVICE);
-				intent.putExtra(SimpleDownloadServiceFragment.NOTIFICATION_ID, id);
+				final Intent intent1 = new Intent(this.appContext, Killer.class);
+				intent1.setAction(Killer.KILL_DOWNLOAD_SERVICE);
+				intent1.putExtra(SimpleDownloadServiceFragment.NOTIFICATION_ID, id);
+				PendingIntent pendingIntent1 = PendingIntent.getBroadcast(this.appContext, (int) System.currentTimeMillis(), intent1, PendingIntent.FLAG_UPDATE_CURRENT); // use System.currentTimeMillis() to have a unique ID for the pending intent
+				builder1.addAction(R.drawable.ic_error, this.appContext.getString(R.string.action_cancel), pendingIntent1);
 
-				// use System.currentTimeMillis() to have a unique ID for the pending intent
-				PendingIntent pendingIntent = PendingIntent.getBroadcast(this.appContext, (int) System.currentTimeMillis(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
-				this.builder.addAction(R.drawable.ic_error, this.appContext.getString(R.string.action_cancel), pendingIntent);
-
-				notification = this.builder.build();
+				// build notification
+				notification = builder1.build();
 				break;
 
 			case UPDATE:
+				// builder
+				NotificationCompat.Builder builder2 = new NotificationCompat.Builder(this.appContext, CHANNEL_ID);
+				builder2.setDefaults(NotificationCompat.DEFAULT_LIGHTS) //
+						.setSmallIcon(android.R.drawable.stat_sys_download);
+
+				// action
+				final Intent intent2 = new Intent(this.appContext, Killer.class);
+				intent2.setAction(Killer.KILL_DOWNLOAD_SERVICE);
+				intent2.putExtra(SimpleDownloadServiceFragment.NOTIFICATION_ID, id);
+				PendingIntent pendingIntent2 = PendingIntent.getBroadcast(this.appContext, (int) System.currentTimeMillis(), intent2, PendingIntent.FLAG_UPDATE_CURRENT); // use System.currentTimeMillis() to have a unique ID for the pending intent
+				builder2.addAction(R.drawable.ic_error, this.appContext.getString(R.string.action_cancel), pendingIntent2);
+
+				// content
 				final float downloaded = (Float) args[0];
 				final int percent = (int) (downloaded * 100);
-				contentText += ' ' + this.appContext.getString(R.string.status_download_running);
-				contentText += ' ' + Integer.toString(percent) + '%';
+				contentText += ' ' + this.appContext.getString(R.string.status_download_running) + ' ' + percent + '%';
+				builder2.setContentTitle(contentTitle) //
+						.setContentText(contentText);
 
-				ensureBuilder();
-				assert this.builder != null;
-				this.builder.setContentText(contentText);
-
-				notification = this.builder.build();
+				// build notification
+				notification = builder2.build();
 				break;
 
 			case FINISH:
+				// builder
+				NotificationCompat.Builder builder3 = new NotificationCompat.Builder(this.appContext, CHANNEL_ID);
+				builder3.setDefaults(NotificationCompat.DEFAULT_LIGHTS) //
+						.setSmallIcon(android.R.drawable.stat_sys_download_done);
+
+				// content
 				final boolean success = (Boolean) args[0];
 				contentText += ' ' + this.appContext.getString(success ? R.string.status_download_successful : R.string.status_download_fail);
-
-				// force new builder (no action)
-				this.builder = new NotificationCompat.Builder(this.appContext, CHANNEL_ID);
-				this.builder.setDefaults(NotificationCompat.DEFAULT_LIGHTS) //
-						.setSmallIcon(android.R.drawable.stat_sys_download_done) //
+				builder3.setContentTitle(contentTitle) //
 						.setContentText(contentText);
 
+				// build notification
+				notification = builder3.build();
+
+				// cancel previous
 				manager.cancel(id);
-				notification = this.builder.build();
-				this.builder = null;
 				break;
 
 			default:
@@ -449,25 +461,14 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		manager.notify(id, notification);
 	}
 
-	private void ensureBuilder()
-	{
-		if (this.builder == null)
-		{
-			Log.d(TAG, "New Notification Builder");
-			this.builder = new NotificationCompat.Builder(this.appContext, CHANNEL_ID);
-			this.builder.setDefaults(NotificationCompat.DEFAULT_LIGHTS) //
-					.setSmallIcon(android.R.drawable.stat_sys_download);
-		}
-	}
-
 	private void initChannels()
 	{
 		if (Build.VERSION.SDK_INT < 26)
 		{
 			return;
 		}
-		final Context context = getContext();
-		assert context != null;
+		final Context context = requireContext();
+
 		final NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "Simple Download Service", NotificationManager.IMPORTANCE_LOW);
 		channel.setDescription("Simple Download Service Channel");
 		channel.setSound(null, null);
