@@ -7,8 +7,6 @@
 	<!-- L I S T -->
 
 	<style name="ListItem">
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">wrap_content</item>
 		<item name="android:layout_marginBottom">@dimen/list_vertical_margin</item>
 		<item name="android:layout_marginTop">@dimen/list_vertical_margin</item>
 		<item name="android:layout_marginLeft">@dimen/list_horizontal_margin</item>
@@ -23,8 +21,6 @@
 	</style>
 
 	<style name="ListItemColumn">
-		<item name="android:layout_width">0dp</item>
-		<item name="android:layout_height">wrap_content</item>
 		<item name="android:paddingStart">@dimen/listitem_horizontal_padding</item>
 		<item name="android:paddingEnd">@dimen/listitem_horizontal_padding</item>
 		<item name="android:paddingTop">@dimen/listitem_vertical_padding</item>
@@ -114,6 +110,8 @@
 	<!-- -->
 	<style name="ActionButton" parent="Widget.AppCompat.Button.Borderless">
 		<item name="android:tint">?attr/colorOnSecondary</item>
+		<item name="android:layout_width">@dimen/action_button_diameter</item>
+		<item name="android:layout_height">@dimen/action_button_diameter</item>
 	</style>
 
 </resources>

@@ -83,7 +83,6 @@
 	<style name="Data.XSources">
 		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
 		<item name="android:textSize">12sp</item>
-		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_gravity">end</item>
 		<item name="android:gravity">end</item>
 	</style>
