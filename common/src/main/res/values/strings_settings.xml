@@ -110,9 +110,6 @@
 
 	<string name="pref_header_download">Download</string>
 
-	<string name="pref_sql_category">SQL</string>
-	<string name="pref_cache_category">Cache</string>
-
 	<!-- Downloader -->
 	<string name="pref_title_downloader">Downloader</string>
 	<string-array name="pref_downloader_titles">
@@ -138,15 +135,8 @@
 	<string name="pref_title_download_dbfile">Download DB file</string>
 	<string name="pref_description_download_dbfile">Data download DB file</string>
 
-	<!-- Sql file -->
-	<string name="pref_title_download_sqlfile">Download SQL file</string>
-	<string name="pref_description_download_sqlfile">Data download SQL file</string>
-
-	<!-- Zip entries -->
-	<string name="pref_title_entry_import">Import entry</string>
-	<string name="pref_description_entry_import">Zip file entry for SQL importing code</string>
-	<string name="pref_title_entry_index">Index entry</string>
-	<string name="pref_description_entry_index">Zip file entry for SQL indexing code</string>
+	<!-- Cache -->
+	<string name="pref_cache_category">Cache</string>
 	<string name="pref_title_cache">Cache</string>
 	<string name="pref_description_cache">Cache used for download/copy/unzip</string>
 

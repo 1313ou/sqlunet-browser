@@ -343,14 +343,6 @@ public class SettingsActivity extends BaseSettingsActivity
 			// inflate
 			addPreferencesFromResource(R.xml.pref_download);
 
-			// required if no 'entries' and 'entryValues' in XML
-			/*
-			final Preference cachePreference = findPreference(Settings.PREF_CACHE);
-			assert cachePreference != null;
-			populateCachePreference(requireContext(), cachePreference);
-			cachePreference.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
-			*/
-
 			// bind the summaries to their values.
 			final Preference downloaderPreference = findPreference(Settings.PREF_DOWNLOADER);
 			assert downloaderPreference != null;
@@ -363,20 +355,6 @@ public class SettingsActivity extends BaseSettingsActivity
 			final Preference dbFilePreference = findPreference(Settings.PREF_DOWNLOAD_DBFILE);
 			assert dbFilePreference != null;
 			dbFilePreference.setSummaryProvider(EditTextPreference.SimpleSummaryProvider.getInstance());
-
-			/*
-			final Preference sqlFilePreference = findPreference(Settings.PREF_DOWNLOAD_SQLFILE);
-			assert sqlFilePreference != null;
-			sqlFilePreference.setSummaryProvider(EditTextPreference.SimpleSummaryProvider.getInstance());
-
-			final Preference entryImportPreference = findPreference(Settings.PREF_ENTRY_IMPORT);
-			assert entryImportPreference != null;
-			entryImportPreference.setSummaryProvider(EditTextPreference.SimpleSummaryProvider.getInstance());
-
-			final Preference entryIndexPreference = findPreference(Settings.PREF_ENTRY_INDEX);
-			assert entryIndexPreference != null;
-			entryIndexPreference.setSummaryProvider(EditTextPreference.SimpleSummaryProvider.getInstance());
-			 */
 		}
 
 		@Override
