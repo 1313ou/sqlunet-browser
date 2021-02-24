@@ -25,6 +25,15 @@
 			android:name="org.sqlunet.download.UpdateActivity"
 			android:label="@string/title_activity_update"/>
 
+		<receiver
+			android:name="org.sqlunet.download.SimpleDownloadServiceFragment$Killer"
+			android:enabled="true"
+			android:exported="false">
+			<intent-filter>
+				<action android:name="kill_download_service" />
+			</intent-filter>
+		</receiver>
+
 		<service
 			android:name="org.sqlunet.download.SimpleDownloaderService"
 			android:description="@string/description_service_downloader"
