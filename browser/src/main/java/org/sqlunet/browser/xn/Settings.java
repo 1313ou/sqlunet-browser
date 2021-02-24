@@ -27,8 +27,6 @@ public class Settings extends org.sqlunet.settings.Settings
 	static private final String PREF_ENABLE_FRAMENET = "pref_enable_framenet";
 	static private final String PREF_ENABLE_BNC = "pref_enable_bnc";
 
-	static public final String PREF_ENTRY_PM = "pref_entry_pm";
-
 	static public final int ENABLE_WORDNET = 0x1;
 	static public final int ENABLE_VERBNET = 0x10;
 	static public final int ENABLE_PROPBANK = 0x20;
@@ -230,32 +228,6 @@ public class Settings extends org.sqlunet.settings.Settings
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getBoolean(Settings.PREF_ENABLE_BNC, true);
-	}
-
-	/**
-	 * Get pm archive entry
-	 *
-	 * @param context context
-	 * @return pm archive entry
-	 */
-	@NonNull
-	static public String getPmEntry(@NonNull final Context context)
-	{
-		// test if already in preferences
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		String value = sharedPref.getString(Settings.PREF_ENTRY_PM, null);
-		if (value != null)
-		{
-			return value;
-		}
-
-		// set to default value
-		value = context.getResources().getString(org.sqlunet.xnet.R.string.pref_default_entry_pm);
-
-		// store value in preferences
-		sharedPref.edit().putString(Settings.PREF_ENTRY_PM, value).apply();
-
-		return value;
 	}
 
 	/**

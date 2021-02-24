@@ -33,32 +33,6 @@
 		android:summary="@string/pref_description_download_dbfile"
 		android:title="@string/pref_title_download_dbfile" />
 
-	<PreferenceCategory android:title="@string/pref_sql_category">
-		<EditTextPreference
-			android:defaultValue="@string/pref_default_download_sqlfile"
-			android:key="pref_download_sqlfile"
-			android:summary="@string/pref_description_download_sqlfile"
-			android:title="@string/pref_title_download_sqlfile" />
-
-		<EditTextPreference
-			android:defaultValue="@string/pref_default_entry_import"
-			android:key="pref_entry_import"
-			android:summary="@string/pref_description_entry_import"
-			android:title="@string/pref_title_entry_import" />
-
-		<EditTextPreference
-			android:defaultValue="@string/pref_default_entry_pm"
-			android:key="pref_entry_pm"
-			android:summary="@string/pref_description_entry_pm"
-			android:title="@string/pref_title_entry_pm" />
-
-		<EditTextPreference
-			android:defaultValue="@string/pref_default_entry_index"
-			android:key="pref_entry_index"
-			android:summary="@string/pref_description_entry_index"
-			android:title="@string/pref_title_entry_index" />
-	</PreferenceCategory>
-
 	<PreferenceCategory android:title="@string/pref_cache_category">
 		<ListPreference
 			android:defaultValue="@string/pref_default_cache"

@@ -20,7 +20,7 @@
 		app:key="pref_header_assets"
 		app:title="@string/pref_header_assets" />
 	<Preference
-		app:fragment="org.sqlunet.browser.xn.DownloadPreferenceFragment"
+		app:fragment="org.sqlunet.browser.config.SettingsActivity.DownloadPreferenceFragment"
 		app:icon="@drawable/ic_settings_download"
 		app:key="pref_header_download"
 		app:title="@string/pref_header_download" />

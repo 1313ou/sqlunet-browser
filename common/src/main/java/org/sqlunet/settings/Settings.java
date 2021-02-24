@@ -47,9 +47,6 @@ public class Settings
 	static public final String PREF_DOWNLOADER = StorageSettings.PREF_DOWNLOADER;
 	static public final String PREF_DOWNLOAD_SITE = StorageSettings.PREF_DOWNLOAD_SITE;
 	static public final String PREF_DOWNLOAD_DBFILE = StorageSettings.PREF_DOWNLOAD_DBFILE;
-	//static public final String PREF_DOWNLOAD_SQLFILE = StorageSettings.PREF_DOWNLOAD_SQLFILE;
-	//static public final String PREF_ENTRY_IMPORT = StorageSettings.PREF_ENTRY_IMPORT;
-	//static public final String PREF_ENTRY_INDEX = StorageSettings.PREF_ENTRY_INDEX;
 	static public final String PREF_CACHE = StorageSettings.PREF_CACHE;
 	static public final String PREF_DB_DATE = "pref_db_date";
 	static public final String PREF_DB_SIZE = "pref_db_size";
