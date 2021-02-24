@@ -20,6 +20,10 @@
 	<string name="status_searchtext_vn">Text Search\non VerbNet</string>
 	<string name="status_searchtext_pb">Text Search\non PropBank</string>
 
+	<!-- description -->
+	<string name="description_action_searchtext_vn">Prepare text search on VerbNet</string>
+	<string name="description_action_searchtext_pb">Prepare text search on PropBank</string>
+
 	<!-- hints -->
 	<string name="hint_splash_browse">Exploring semantic roles</string>
 

@@ -30,7 +30,9 @@
 	<string name="hint_md5_of_file">Select the file to md5-checksum</string>
 
 	<!-- description -->
+	<string name="description_assetload">Load database from assets</string>
 	<string name="description_download">Download database</string>
+	<string name="description_cancel">Cancel operation</string>
 
 	<!-- service -->
 	<string name="service_downloader">service_downloader</string>
