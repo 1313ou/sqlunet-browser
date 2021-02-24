@@ -17,6 +17,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.util.Locale;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
@@ -340,7 +342,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		public void onReceive(@NonNull Context context, @NonNull Intent intent)
 		{
 			String action = intent.getAction();
-			System.out.println("Received kill " + action);
+			Log.i(TAG, "Received " + action);
 			assert action != null;
 			if (action.equals(Killer.KILL_DOWNLOAD_SERVICE))
 			{
@@ -388,65 +390,21 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		switch (type)
 		{
 			case START:
-				// builder
-				NotificationCompat.Builder builder1 = new NotificationCompat.Builder(this.appContext, CHANNEL_ID);
-				builder1.setDefaults(NotificationCompat.DEFAULT_LIGHTS) //
-						.setSmallIcon(android.R.drawable.stat_sys_download);
-
-				// content
 				contentText += ' ' + this.appContext.getString(R.string.status_download_running);
-				builder1.setContentTitle(contentTitle) //
-						.setContentText(contentText);
-
-				// action
-				final Intent intent1 = new Intent(this.appContext, Killer.class);
-				intent1.setAction(Killer.KILL_DOWNLOAD_SERVICE);
-				intent1.putExtra(SimpleDownloadServiceFragment.NOTIFICATION_ID, id);
-				PendingIntent pendingIntent1 = PendingIntent.getBroadcast(this.appContext, (int) System.currentTimeMillis(), intent1, PendingIntent.FLAG_UPDATE_CURRENT); // use System.currentTimeMillis() to have a unique ID for the pending intent
-				builder1.addAction(R.drawable.ic_error, this.appContext.getString(R.string.action_cancel), pendingIntent1);
-
-				// build notification
-				notification = builder1.build();
+				notification = makeNotificationStartOrUpdate(contentTitle, contentText, id);
 				break;
 
 			case UPDATE:
-				// builder
-				NotificationCompat.Builder builder2 = new NotificationCompat.Builder(this.appContext, CHANNEL_ID);
-				builder2.setDefaults(NotificationCompat.DEFAULT_LIGHTS) //
-						.setSmallIcon(android.R.drawable.stat_sys_download);
-
-				// action
-				final Intent intent2 = new Intent(this.appContext, Killer.class);
-				intent2.setAction(Killer.KILL_DOWNLOAD_SERVICE);
-				intent2.putExtra(SimpleDownloadServiceFragment.NOTIFICATION_ID, id);
-				PendingIntent pendingIntent2 = PendingIntent.getBroadcast(this.appContext, (int) System.currentTimeMillis(), intent2, PendingIntent.FLAG_UPDATE_CURRENT); // use System.currentTimeMillis() to have a unique ID for the pending intent
-				builder2.addAction(R.drawable.ic_error, this.appContext.getString(R.string.action_cancel), pendingIntent2);
-
-				// content
 				final float downloaded = (Float) args[0];
 				final int percent = (int) (downloaded * 100);
 				contentText += ' ' + this.appContext.getString(R.string.status_download_running) + ' ' + percent + '%';
-				builder2.setContentTitle(contentTitle) //
-						.setContentText(contentText);
-
-				// build notification
-				notification = builder2.build();
+				notification = makeNotificationStartOrUpdate(contentTitle, contentText, id);
 				break;
 
 			case FINISH:
-				// builder
-				NotificationCompat.Builder builder3 = new NotificationCompat.Builder(this.appContext, CHANNEL_ID);
-				builder3.setDefaults(NotificationCompat.DEFAULT_LIGHTS) //
-						.setSmallIcon(android.R.drawable.stat_sys_download_done);
-
-				// content
 				final boolean success = (Boolean) args[0];
 				contentText += ' ' + this.appContext.getString(success ? R.string.status_download_successful : R.string.status_download_fail);
-				builder3.setContentTitle(contentTitle) //
-						.setContentText(contentText);
-
-				// build notification
-				notification = builder3.build();
+				notification = makeNotificationFinish(contentTitle, contentText);
 
 				// cancel previous
 				manager.cancel(id);
@@ -459,6 +417,42 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		// issue notification
 		Log.d(TAG, "Notification id=" + id + " type=" + type.name() + " " + notification);
 		manager.notify(id, notification);
+	}
+
+	private Notification makeNotificationStartOrUpdate(final String contentTitle, final String contentText, final int id)
+	{
+		// builder
+		final NotificationCompat.Builder builder = new NotificationCompat.Builder(this.appContext, CHANNEL_ID);
+		builder.setDefaults(NotificationCompat.DEFAULT_LIGHTS) //
+				.setSmallIcon(android.R.drawable.stat_sys_download) //
+				.setContentTitle(contentTitle) //
+				.setContentText(contentText) //
+				// .setColor(some color) //
+		;
+
+		// action
+		final Intent intent = new Intent(this.appContext, Killer.class);
+		intent.setAction(Killer.KILL_DOWNLOAD_SERVICE);
+		intent.putExtra(SimpleDownloadServiceFragment.NOTIFICATION_ID, id);
+		final PendingIntent pendingIntent = PendingIntent.getBroadcast(this.appContext, (int) System.currentTimeMillis(), intent, PendingIntent.FLAG_UPDATE_CURRENT); // use System.currentTimeMillis() to have a unique ID for the pending intent
+		NotificationCompat.Action action = new NotificationCompat.Action.Builder(R.drawable.ic_notif_cancel, this.appContext.getString(R.string.action_cancel).toUpperCase(Locale.getDefault()), pendingIntent).build();
+		builder.addAction(action);
+
+		// build notification
+		return builder.build();
+	}
+
+	private Notification makeNotificationFinish(final String contentTitle, final String contentText)
+	{
+		// builder
+		final NotificationCompat.Builder builder = new NotificationCompat.Builder(this.appContext, CHANNEL_ID);
+		builder.setDefaults(NotificationCompat.DEFAULT_LIGHTS) //
+				.setSmallIcon(android.R.drawable.stat_sys_download_done) //
+				.setContentTitle(contentTitle) //
+				.setContentText(contentText);
+
+		// build notification
+		return builder.build();
 	}
 
 	private void initChannels()
