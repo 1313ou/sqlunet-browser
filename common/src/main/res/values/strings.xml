@@ -155,6 +155,7 @@
 	<string name="description_action_database">Get database</string>
 	<string name="description_info_database">Info about database</string>
 	<string name="description_action_indexes">Make database indexes</string>
+	<string name="description_action_send">Send to developer</string>
 
 	<!-- copy -->
 	<string name="copy_copied">Copied to clipboard</string>
@@ -207,5 +208,16 @@
 
 	<!-- prefs -->
 	<string name="pref_sql_category">SQL</string>
+
+	<!-- columns -->
+	<string name="description_column_id">id</string>
+	<string name="description_column_major">major</string>
+	<string name="description_column_other">other</string>
+	<string name="description_column_statement">statement</string>
+	<string name="description_column_name">name</string>
+	<string name="description_column_version">version</string>
+	<string name="description_column_provider">provider</string>
+	<string name="description_column_url">url</string>
+	<string name="description_column_reference">reference</string>
 
 </resources>
