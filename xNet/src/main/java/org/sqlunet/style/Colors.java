@@ -227,8 +227,7 @@ public class Colors
 		}
 	}
 
-
-	static public boolean checkDarkMode(@NonNull final Context context, int expected)
+	static public boolean checkDarkMode(int expected)
 	{
 		int mode = AppCompatDelegate.getDefaultNightMode();
 		switch (mode)
@@ -245,6 +244,7 @@ public class Colors
 				Log.d(NIGHT, "Follow system");
 				return expected == AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
 
+			case AppCompatDelegate.MODE_NIGHT_UNSPECIFIED:
 			default:
 				throw new IllegalStateException("Unexpected value: " + mode);
 		}
