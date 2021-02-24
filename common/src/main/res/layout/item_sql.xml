@@ -7,9 +7,10 @@
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:background="?android:attr/activatedBackgroundIndicator"
+	android:contentDescription="@string/description_column_statement"
 	android:gravity="center_vertical"
 	android:minHeight="?attr/listPreferredItemHeightSmall"
-	android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
 	android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+	android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
 	android:textAppearance="?attr/textAppearanceListItemSmall"
 	android:textIsSelectable="true" />
