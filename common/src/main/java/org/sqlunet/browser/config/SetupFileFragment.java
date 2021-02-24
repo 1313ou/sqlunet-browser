@@ -54,7 +54,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	 */
 	public enum Operation
 	{
-		CREATE, DROP, COPY, UNZIP, MD5, DOWNLOAD, DOWNLOADZIPPED, UPDATE;
+		CREATE, DROP, COPY, MD5, DOWNLOAD, DOWNLOADZIPPED, UPDATE;
 
 		/**
 		 * Spinner operations
@@ -148,19 +148,6 @@ public class SetupFileFragment extends BaseTaskFragment
 						}
 						break;
 
-					case UNZIP:
-						if (Permissions.check(activity))
-						{
-							String zipEntry = StorageSettings.getImportEntry(activity);
-							if (/*zipEntry == null ||*/ zipEntry.isEmpty())
-							{
-								zipEntry = Storage.DBFILE;
-							}
-							FileAsyncTaskChooser.unzipEntryFromArchive(activity, StorageSettings.getCacheDir(activity), zipEntry, StorageSettings.getDatabasePath(activity));
-							org.sqlunet.download.Settings.unrecordDb(activity);
-						}
-						break;
-
 					case MD5:
 						if (Permissions.check(activity))
 						{
@@ -228,10 +215,6 @@ public class SetupFileFragment extends BaseTaskFragment
 
 				case COPY:
 					message = statusCopy();
-					break;
-
-				case UNZIP:
-					message = statusUnzip();
 					break;
 
 				case MD5:
