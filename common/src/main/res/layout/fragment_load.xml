@@ -72,7 +72,7 @@
 		android:layout_height="64dp"
 		android:layout_gravity="center_horizontal"
 		android:background="@drawable/bg_button_action"
-		android:contentDescription="@string/action_assetload"
+		android:contentDescription="@string/description_assetload"
 		android:src="@drawable/bn_assetload"
 		android:text="@string/action_assetload" />
 
@@ -102,7 +102,7 @@
 		android:layout_height="64dp"
 		android:layout_gravity="center_horizontal"
 		android:background="@drawable/bg_button_action"
-		android:contentDescription="@string/action_download"
+		android:contentDescription="@string/description_download"
 		android:src="@drawable/bn_download"
 		android:text="@string/action_download" />
 
@@ -123,6 +123,7 @@
 		android:layout_gravity="center"
 		android:layout_marginTop="25dp"
 		android:text="@string/action_cancel"
+		android:contentDescription="@string/description_cancel"
 		android:visibility="visible" />
 
 </LinearLayout>

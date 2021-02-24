@@ -81,7 +81,6 @@
 	<string name="page_setup">Default</string>
 	<string name="page_setup_file">File</string>
 	<string name="page_setup_database">Database</string>
-	<string name="page_setup_sql">SQL</string>
 
 	<!-- TITLES -->
 
@@ -152,6 +151,11 @@
 	<string name="status_task_done_toast">Task done</string>
 	<string name="status_viewer_failed">No viewer</string>
 
+	<!-- description -->
+	<string name="description_action_database">Get database</string>
+	<string name="description_info_database">Info about database</string>
+	<string name="description_action_indexes">Make database indexes</string>
+
 	<!-- copy -->
 	<string name="copy_copied">Copied to clipboard</string>
 
@@ -167,10 +171,6 @@
 	<string name="hint_splash_browse">Exploring senses and semantic roles</string>
 	<string name="hint_splash_searchtext">Text search</string>
 	<string name="hint_sql">SQL statements stack</string>
-	<string name="hint_unzip_from_archive">Select the zip archive to unzip from</string>
-	<string name="hint_copy_from_file">Select the file to copy from</string>
-	<string name="hint_md5">Select the file to md5-checksum</string>
-	<string name="hint_database">Info about Database</string>
 
 	<!-- items -->
 	<string name="download_source">source</string>
@@ -204,5 +204,8 @@
 	<string name="gloss_load">You need to acquire database</string>
 	<string name="gloss_assetload">Load database from the bundle associated with the application. This is the recommended way.</string>
 	<string name="gloss_download">Download database from external site.</string>
+
+	<!-- prefs -->
+	<string name="pref_sql_category">SQL</string>
 
 </resources>

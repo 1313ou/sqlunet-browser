@@ -29,10 +29,17 @@
 
 	<!-- _status -->
 	<string name="status_predicatematrix">Predicate\nMatrix</string>
-	<string name="status_searchtext">Text Search\non WordNet</string>
+	<string name="status_searchtext_wn">Text Search\non WordNet</string>
 	<string name="status_searchtext_vn">Text Search\non VerbNet</string>
 	<string name="status_searchtext_pb">Text Search\non PropBank</string>
 	<string name="status_searchtext_fn">Text Search\non FrameNet</string>
+
+	<!-- description -->
+	<string name="description_action_predicatematrix">Prepare Predicate Matrix</string>
+	<string name="description_action_searchtext_wn">Prepare text search on WordNet</string>
+	<string name="description_action_searchtext_vn">Prepare text search on VerbNet</string>
+	<string name="description_action_searchtext_pb">Prepare text search on PropBank</string>
+	<string name="description_action_searchtext_fn">Prepare text search on FrameNet</string>
 
 	<!-- database info -->
 	<string name="action_tables_and_indices">Tables and Indices</string>

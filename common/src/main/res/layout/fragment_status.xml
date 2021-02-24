@@ -65,7 +65,7 @@
 						style="@style/GridActionButton"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:contentDescription="@string/status_database"
+						android:contentDescription="@string/description_action_database"
 						android:src="@drawable/bn_download" />
 
 					<ImageButton
@@ -73,7 +73,7 @@
 						style="@style/GridInfoButton"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:contentDescription="@string/hint_database"
+						android:contentDescription="@string/description_info_database"
 						android:src="@drawable/bn_info" />
 
 				</LinearLayout>
@@ -100,7 +100,7 @@
 						style="@style/GridActionButton"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:contentDescription="@string/status_indexes"
+						android:contentDescription="@string/description_action_indexes"
 						android:src="@drawable/bn_setup" />
 				</LinearLayout>
 
