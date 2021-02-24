@@ -206,8 +206,6 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 					return getString(R.string.page_setup_file);
 				case 2:
 					return getString(R.string.page_setup_database);
-				case 3:
-					return getString(R.string.page_setup_sql);
 			}
 			return null;
 		}
