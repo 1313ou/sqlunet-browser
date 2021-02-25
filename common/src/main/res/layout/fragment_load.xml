@@ -2,128 +2,137 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	android:layout_weight="1"
+	android:clipToPadding="false"
+	android:fillViewport="false"
 	android:orientation="vertical"
-	android:paddingLeft="16dp"
-	android:paddingTop="16dp"
-	android:paddingRight="16dp"
-	android:paddingBottom="16dp"
-	android:weightSum="1"
-	tools:context="org.sqlunet.browser.config.LoadFragment">
+	tools:context="org.sqlunet.browser.config.LoadActivity">
 
-	<ImageView
-		android:layout_width="wrap_content"
+	<LinearLayout
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_gravity="center_horizontal"
-		android:contentDescription="@string/about_sqlunet_label"
-		android:src="@mipmap/ic_launcher" />
+		android:orientation="vertical"
+		android:paddingLeft="16dp"
+		android:paddingTop="16dp"
+		android:paddingRight="16dp"
+		android:paddingBottom="16dp"
+		android:weightSum="1">
 
-	<TextView
-		style="@android:style/TextAppearance.Large.Inverse"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center_horizontal"
-		android:background="?attr/colorSecondary"
-		android:text="@string/about_sqlunet_label"
-		android:textColor="?attr/colorOnSecondary"
-		android:textStyle="bold" />
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:contentDescription="@string/about_sqlunet_label"
+			android:src="@mipmap/ic_launcher" />
 
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center_horizontal"
-		android:gravity="center"
-		android:text="@string/semantikos_greek"
-		android:textStyle="italic" />
+		<TextView
+			style="@android:style/TextAppearance.Large.Inverse"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:background="?attr/colorSecondary"
+			android:text="@string/about_sqlunet_label"
+			android:textColor="?attr/colorOnSecondary"
+			android:textStyle="bold" />
 
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center_horizontal"
-		android:gravity="center"
-		android:text="@string/semantikos_latin"
-		android:textStyle="italic" />
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:gravity="center"
+			android:text="@string/semantikos_greek"
+			android:textStyle="italic" />
 
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center"
-		android:layout_marginLeft="25dp"
-		android:layout_marginTop="20dp"
-		android:layout_marginRight="25dp"
-		android:text="@string/gloss_load" />
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:gravity="center"
+			android:text="@string/semantikos_latin"
+			android:textStyle="italic" />
 
-	<TextView
-		style="@android:style/TextAppearance.Medium"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center_horizontal"
-		android:layout_marginTop="20dp"
-		android:gravity="center_horizontal"
-		android:text="@string/action_assetload" />
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:layout_marginLeft="25dp"
+			android:layout_marginTop="20dp"
+			android:layout_marginRight="25dp"
+			android:text="@string/gloss_load" />
 
-	<ImageButton
-		android:id="@+id/assetload"
-		style="@style/ActionButton"
-		android:layout_width="64dp"
-		android:layout_height="64dp"
-		android:layout_gravity="center_horizontal"
-		android:background="@drawable/bg_button_action"
-		android:contentDescription="@string/description_assetload"
-		android:src="@drawable/bn_assetload"
-		android:text="@string/action_assetload" />
+		<TextView
+			style="@android:style/TextAppearance.Medium"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginTop="20dp"
+			android:gravity="center_horizontal"
+			android:text="@string/action_assetload" />
 
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center"
-		android:layout_marginLeft="25dp"
-		android:layout_marginTop="0dp"
-		android:layout_marginRight="25dp"
-		android:gravity="center_horizontal"
-		android:text="@string/gloss_assetload" />
+		<ImageButton
+			android:id="@+id/assetload"
+			style="@style/ActionButton"
+			android:layout_width="64dp"
+			android:layout_height="64dp"
+			android:layout_gravity="center_horizontal"
+			android:background="@drawable/bg_button_action"
+			android:contentDescription="@string/description_assetload"
+			android:src="@drawable/bn_assetload"
+			android:text="@string/action_assetload" />
 
-	<TextView
-		style="@android:style/TextAppearance.Medium"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center_horizontal"
-		android:layout_marginTop="20dp"
-		android:gravity="center_horizontal"
-		android:text="@string/action_download" />
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:layout_marginLeft="25dp"
+			android:layout_marginTop="0dp"
+			android:layout_marginRight="25dp"
+			android:gravity="center_horizontal"
+			android:text="@string/gloss_assetload" />
 
-	<ImageButton
-		android:id="@+id/download"
-		style="@style/ActionButton"
-		android:layout_width="64dp"
-		android:layout_height="64dp"
-		android:layout_gravity="center_horizontal"
-		android:background="@drawable/bg_button_action"
-		android:contentDescription="@string/description_download"
-		android:src="@drawable/bn_download"
-		android:text="@string/action_download" />
+		<TextView
+			style="@android:style/TextAppearance.Medium"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginTop="20dp"
+			android:gravity="center_horizontal"
+			android:text="@string/action_download" />
 
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center"
-		android:layout_marginLeft="25dp"
-		android:layout_marginTop="0dp"
-		android:layout_marginRight="25dp"
-		android:text="@string/gloss_download" />
+		<ImageButton
+			android:id="@+id/download"
+			style="@style/ActionButton"
+			android:layout_width="64dp"
+			android:layout_height="64dp"
+			android:layout_gravity="center_horizontal"
+			android:background="@drawable/bg_button_action"
+			android:contentDescription="@string/description_download"
+			android:src="@drawable/bn_download"
+			android:text="@string/action_download" />
 
-	<Button
-		android:id="@+id/cancelButton"
-		style="?android:attr/buttonBarButtonStyle"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center"
-		android:layout_marginTop="25dp"
-		android:text="@string/action_cancel"
-		android:contentDescription="@string/description_cancel"
-		android:visibility="visible" />
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:layout_marginLeft="25dp"
+			android:layout_marginTop="0dp"
+			android:layout_marginRight="25dp"
+			android:text="@string/gloss_download" />
 
-</LinearLayout>
+		<Button
+			android:id="@+id/cancelButton"
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:layout_marginTop="25dp"
+			android:contentDescription="@string/description_cancel"
+			android:text="@string/action_cancel"
+			android:visibility="visible" />
+
+	</LinearLayout>
+</ScrollView>
