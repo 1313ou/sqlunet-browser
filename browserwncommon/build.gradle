@@ -54,6 +54,7 @@ dependencies {
     api project(path: ':common')
     api project(path: ':expandableListFragment')
     api project(path: ':assetpacks')
+    api project(path: ':nightmode')
     api project(path: ':download')
     api project(path: ':deploy')
     api project(path: ':others')
