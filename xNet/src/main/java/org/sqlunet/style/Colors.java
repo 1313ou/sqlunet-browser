@@ -28,8 +28,6 @@ public class Colors
 {
 	static private final String DUMP = "Contrast";
 
-	static private final String NIGHT = "NightMode";
-
 	// COMMON
 
 	static public int classBackColor = Color.TRANSPARENT;
