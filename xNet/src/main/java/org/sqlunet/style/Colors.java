@@ -227,29 +227,6 @@ public class Colors
 		}
 	}
 
-	static public boolean checkDarkMode(int expected)
-	{
-		int mode = AppCompatDelegate.getDefaultNightMode();
-		switch (mode)
-		{
-			case AppCompatDelegate.MODE_NIGHT_YES:
-				Log.d(NIGHT, "Night mode");
-				return expected == AppCompatDelegate.MODE_NIGHT_YES;
-
-			case AppCompatDelegate.MODE_NIGHT_NO:
-				Log.d(NIGHT, "Day mode");
-				return expected == AppCompatDelegate.MODE_NIGHT_NO;
-
-			case AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM:
-				Log.d(NIGHT, "Follow system");
-				return expected == AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
-
-			case AppCompatDelegate.MODE_NIGHT_UNSPECIFIED:
-			default:
-				throw new IllegalStateException("Unexpected value: " + mode);
-		}
-	}
-
 	static public int toConfigurationUiMode(final int mode)
 	{
 		switch (mode)
