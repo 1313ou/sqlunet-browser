@@ -6,6 +6,7 @@
 
 	<string name="label_info">Target info</string>
 	<string name="label_contents">Contents</string>
+	<string name="description_data_info">Data info</string>
 
 	<string name="pref_default_cache" />
 
