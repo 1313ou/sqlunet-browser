@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import org.sqlunet.browser.common.R;
+import org.sqlunet.nightmode.NightMode;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
@@ -88,7 +89,7 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 	protected void onNightModeChanged(final int mode)
 	{
 		super.onNightModeChanged(mode);
-		final Configuration overrideConfig = AbstractApplication.createOverrideConfigurationForDayNight(this, mode);
+		final Configuration overrideConfig = NightMode.createOverrideConfigurationForDayNight(this, mode);
 		getApplication().onConfigurationChanged(overrideConfig);
 	}
 

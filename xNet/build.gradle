@@ -27,10 +27,11 @@ android {
 }
 
 dependencies {
-    implementation project(':treeView')
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':concurrency')
+    implementation project(path: ':treeView')
+    implementation project(path: ':concurrency')
+    implementation project(path: ':nightmode')
 
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.preference:preference:1.1.1'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"

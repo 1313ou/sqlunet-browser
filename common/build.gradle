@@ -29,15 +29,16 @@ android {
 }
 
 dependencies {
-    implementation project(':expandableListFragment')
-    implementation project(':concurrency')
-    implementation project(':preference')
-    implementation project(':download')
-    implementation project(':deploy')
-    implementation project(':others')
-    implementation project(':donate')
-    implementation project(':rate')
-    implementation project(':xNet')
+    implementation project(path: ':expandableListFragment')
+    implementation project(path: ':concurrency')
+    implementation project(path: ':preference')
+    implementation project(path: ':nightmode')
+    implementation project(path: ':download')
+    implementation project(path: ':deploy')
+    implementation project(path: ':others')
+    implementation project(path: ':donate')
+    implementation project(path: ':rate')
+    implementation project(path: ':xNet')
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
