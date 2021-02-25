@@ -62,12 +62,6 @@ public class NightMode
 	@NonNull
 	public static Context wrapContext(@NonNull final Context context, final Configuration newConfig, @StyleRes int themeId)
 	{
-		//Context themedContext = new ContextThemeWrapper(context, R.style.MyTheme);
-		//return themedContext;
-
-		//Configuration newConfig = context.getResources().getConfiguration();
-		//newConfig.uiMode &= ~Configuration.UI_MODE_NIGHT_MASK; // clear
-		//newConfig.uiMode |= toConfigurationUiMode(mode) & Configuration.UI_MODE_NIGHT_MASK; // set
 		Context newContext = context.createConfigurationContext(newConfig);
 		return new ContextThemeWrapper(newContext, themeId);
 	}
@@ -83,13 +77,14 @@ public class NightMode
 		int nightModeFlags = context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
 		switch (nightModeFlags)
 		{
-			case Configuration.UI_MODE_NIGHT_YES:
+			case Configuration.UI_MODE_NIGHT_YES: // 0x20 = 32
 				return +1;
 
-			case Configuration.UI_MODE_NIGHT_NO:
+			case Configuration.UI_MODE_NIGHT_NO: // 0x10 = 16
 				return 1;
 
 			default:
+			case Configuration.UI_MODE_NIGHT_UNDEFINED: // 0
 				return 0;
 		}
 	}
@@ -101,22 +96,22 @@ public class NightMode
 	 * @return mode to string
 	 */
 	@NonNull
-	static public String getNightMode(@NonNull final Context context)
+	static public String nightModeToString(@NonNull final Context context)
 	{
 		int nightModeFlags = context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
-		switch (nightModeFlags)
+		switch (nightModeFlags) // mask = 0x30;
 		{
-			case Configuration.UI_MODE_NIGHT_YES:
+			case Configuration.UI_MODE_NIGHT_YES: // 0x20 = 32
 				return "night";
 
-			case Configuration.UI_MODE_NIGHT_NO:
+			case Configuration.UI_MODE_NIGHT_NO: // 0x10 = 16
 				return "day";
 
 			default:
-				return "unknown";
+			case Configuration.UI_MODE_NIGHT_UNDEFINED: // 0
+				return "undefined";
 		}
 	}
-
 
 	static public boolean checkDarkMode(int expected)
 	{
