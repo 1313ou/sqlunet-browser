@@ -23,6 +23,7 @@
 			style="@style/Data.Info"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:contentDescription="@string/description_data_info"
 			android:textIsSelectable="true" />
 
 		<TextView
