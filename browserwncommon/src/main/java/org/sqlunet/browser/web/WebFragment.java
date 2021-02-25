@@ -219,9 +219,6 @@ public class WebFragment extends Fragment
 			// webview
 			this.webview = view.findViewById(R.id.webView);
 
-			// load view
-			load();
-
 			return view;
 		}
 		catch (InflateException e)
@@ -235,7 +232,12 @@ public class WebFragment extends Fragment
 	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
 		super.onViewCreated(view, savedInstanceState);
+
+		// models
 		makeModels();
+
+		// load data
+		load();
 	}
 
 	/**
