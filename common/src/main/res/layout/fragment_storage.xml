@@ -9,7 +9,7 @@
 	android:id="@+id/swipe_refresh"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context="org.sqlunet.browser.config.StorageFragment">
+	tools:context="org.sqlunet.browser.config.StorageActivity">
 
 	<ScrollView
 		android:layout_width="match_parent"
