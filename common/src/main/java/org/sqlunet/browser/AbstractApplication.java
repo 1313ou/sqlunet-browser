@@ -19,7 +19,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
-import static org.sqlunet.nightmode.NightMode.getNightMode;
+import static org.sqlunet.nightmode.NightMode.nightModeToString;
 
 abstract public class AbstractApplication extends Application
 {
@@ -30,7 +30,7 @@ abstract public class AbstractApplication extends Application
 	{
 		super.onConfigurationChanged(newConfig);
 		Context newContext = NightMode.wrapContext(this, newConfig, R.style.MyTheme);
-		Log.d(LOG, "onConfigurationChanged: " + getNightMode(this) + " -> " + getNightMode(newContext));
+		Log.d(LOG, "onConfigurationChanged: " + nightModeToString(this) + " -> " + nightModeToString(newContext));
 		setAllColorsFromResources(newContext);
 	}
 
