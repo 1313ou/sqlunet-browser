@@ -27,9 +27,9 @@ android {
 }
 
 dependencies {
-    implementation project(':treeView')
-    implementation project(':xNet')
-    implementation project(':wordNet')
+    implementation project(path: ':treeView')
+    implementation project(path: ':xNet')
+    implementation project(path: ':wordNet')
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"

@@ -17,6 +17,7 @@ import com.bbou.rate.AppRate;
 import com.google.android.material.navigation.NavigationView;
 
 import org.sqlunet.browser.common.R;
+import org.sqlunet.nightmode.NightMode;
 import org.sqlunet.settings.StorageSettings;
 
 import java.util.List;
@@ -99,7 +100,7 @@ public class MainActivity extends AppCompatActivity
 	protected void onNightModeChanged(final int mode)
 	{
 		super.onNightModeChanged(mode);
-		final Configuration overrideConfig = AbstractApplication.createOverrideConfigurationForDayNight(this, mode);
+		final Configuration overrideConfig = NightMode.createOverrideConfigurationForDayNight(this, mode);
 		getApplication().onConfigurationChanged(overrideConfig);
 	}
 

@@ -6,6 +6,8 @@ package org.sqlunet.browser;
 
 import android.content.res.Configuration;
 
+import org.sqlunet.nightmode.NightMode;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public abstract class AbstractBrowse2Activity extends AppCompatActivity
@@ -14,7 +16,7 @@ public abstract class AbstractBrowse2Activity extends AppCompatActivity
 	protected void onNightModeChanged(final int mode)
 	{
 		super.onNightModeChanged(mode);
-		final Configuration overrideConfig = AbstractApplication.createOverrideConfigurationForDayNight(this, mode);
+		final Configuration overrideConfig = NightMode.createOverrideConfigurationForDayNight(this, mode);
 		getApplication().onConfigurationChanged(overrideConfig);
 	}
 }

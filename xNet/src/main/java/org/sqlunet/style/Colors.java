@@ -226,19 +226,4 @@ public class Colors
 				return '#' + Integer.toHexString(color);
 		}
 	}
-
-	static public int toConfigurationUiMode(final int mode)
-	{
-		switch (mode)
-		{
-			case AppCompatDelegate.MODE_NIGHT_YES:
-				return Configuration.UI_MODE_NIGHT_YES;
-
-			case AppCompatDelegate.MODE_NIGHT_NO:
-				return Configuration.UI_MODE_NIGHT_NO;
-
-			default:
-				throw new IllegalStateException("Unexpected value: " + mode);
-		}
-	}
 }

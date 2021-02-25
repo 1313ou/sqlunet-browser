@@ -6,20 +6,19 @@ import android.util.Log;
 
 import junit.framework.TestCase;
 
+import org.sqlunet.nightmode.NightMode;
+
 import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleableRes;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.core.graphics.ColorUtils;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 public class Colors extends TestCase
 {
-	static private final String CONTRAST_TAG = "Contrast";
-
-	static private final String NIGHT_TAG = "NIGHT";
+	static private final String TAG = "Colors";
 
 	static class IllegalColorPair extends Exception
 	{
@@ -62,7 +61,7 @@ public class Colors extends TestCase
 		Context themedContext = new ContextThemeWrapper(targetContext, R.style.MyTheme);
 		Configuration newConfig = themedContext.getResources().getConfiguration();
 		newConfig.uiMode &= ~Configuration.UI_MODE_NIGHT_MASK; // clear
-		newConfig.uiMode |= org.sqlunet.style.Colors.toConfigurationUiMode(mode) & Configuration.UI_MODE_NIGHT_MASK; // set
+		newConfig.uiMode |= NightMode.toConfigurationUiMode(mode) & Configuration.UI_MODE_NIGHT_MASK; // set
 		Context newContext = themedContext.createConfigurationContext(newConfig);
 		return new ContextThemeWrapper(newContext, R.style.MyTheme);
 	}
@@ -70,7 +69,7 @@ public class Colors extends TestCase
 	static void testColorsFromResources(@NonNull final Context context, @ArrayRes int paletteId, final boolean throwError) throws IllegalColorPair
 	{
 		String res = context.getResources().getResourceName(paletteId);
-		Log.i(CONTRAST_TAG, "Palette " + context.getResources().getResourceEntryName(paletteId) + " " + res);
+		Log.i(TAG, "Palette " + context.getResources().getResourceEntryName(paletteId) + " " + res);
 
 		int[] defaultColors = getDefaultColorAttrs(context);
 		// Log.d(LOGTAG, String.format("Effective default colors #%x on #%x", defaultColors[1], defaultColors[0]));
@@ -97,7 +96,7 @@ public class Colors extends TestCase
 				final String info = String.format("[%02d] Contrast %s on %s is %f", i / 2, org.sqlunet.style.Colors.colorToString(foreColor), org.sqlunet.style.Colors.colorToString(backColor), contrast);
 				if (contrast < MIN_CONTRAST)
 				{
-					Log.e(CONTRAST_TAG, info);
+					Log.e(TAG, info);
 					if (throwError)
 					{
 						throw new IllegalColorPair(res, paletteId, i / 2, backColor0, foreColor0, defaultColors[0], defaultColors[1], contrast);
@@ -105,7 +104,7 @@ public class Colors extends TestCase
 				}
 				else
 				{
-					Log.d(CONTRAST_TAG, info);
+					Log.d(TAG, info);
 				}
 			}
 		}
@@ -138,28 +137,5 @@ public class Colors extends TestCase
 				android.R.attr.colorForeground, //
 		};
 		return org.sqlunet.style.Colors.getColorAttrs(context, R.style.MyTheme, resIds);
-	}
-
-	static public boolean checkDarkMode(int expected)
-	{
-		int mode = AppCompatDelegate.getDefaultNightMode();
-		switch (mode)
-		{
-			case AppCompatDelegate.MODE_NIGHT_YES:
-				Log.d(NIGHT_TAG, "Night mode");
-				return expected == AppCompatDelegate.MODE_NIGHT_YES;
-
-			case AppCompatDelegate.MODE_NIGHT_NO:
-				Log.d(NIGHT_TAG, "Day mode");
-				return expected == AppCompatDelegate.MODE_NIGHT_NO;
-
-			case AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM:
-				Log.d(NIGHT_TAG, "Follow system");
-				return expected == AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
-
-			case AppCompatDelegate.MODE_NIGHT_UNSPECIFIED:
-			default:
-				throw new IllegalStateException("Unexpected value: " + mode);
-		}
 	}
 }
