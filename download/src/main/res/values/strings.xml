@@ -107,6 +107,7 @@
 	<string name="result_success">Ok</string>
 	<string name="result_fail">Fail</string>
 	<string name="result_is">Result is </string>
+	<string name="result_deleted">deleted</string>
 
 	<string name="format_storage_data" formatted="true">%1$s\nfree: %2$s capacity: %3$s (%4$.1f percent)</string>
 

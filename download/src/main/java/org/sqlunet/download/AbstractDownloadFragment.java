@@ -579,7 +579,7 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 
 				// status
 				AbstractDownloadFragment.this.status = getStatus(AbstractDownloadFragment.this.progress);
-				Log.d(TAG, "Status " + Long.toHexString(AbstractDownloadFragment.this.status));
+				Log.d(TAG, "Status " + Long.toHexString(AbstractDownloadFragment.this.status) + "=" + Status.valueOf(AbstractDownloadFragment.this.status));
 
 				// exit because task has ended
 				if (Status.finished(AbstractDownloadFragment.this.status))
@@ -745,9 +745,9 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		AbstractDownloadFragment.isDownloading = false;
 
 		// register if this is the database
-		assert this.downloadedFile != null;
 		if (success)
 		{
+			assert this.downloadedFile != null;
 			record();
 		}
 

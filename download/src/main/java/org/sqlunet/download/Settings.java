@@ -22,15 +22,15 @@ public class Settings
 	 */
 	public enum Downloader
 	{
-		SIMPLE_SERVICE, //
-		SIMPLE_ZIP_SERVICE;
+		DOWNLOAD_SERVICE, //
+		DOWNLOAD_ZIP_SERVICE;
 
 		static Downloader getFromPref(@NonNull final Context context)
 		{
 			final String preferredDownloader = getDownloaderPref(context);
 			if (preferredDownloader == null)
 			{
-				return SIMPLE_ZIP_SERVICE;
+				return DOWNLOAD_ZIP_SERVICE;
 			}
 			return Downloader.valueOf(preferredDownloader);
 		}
@@ -55,7 +55,7 @@ public class Settings
 		public static boolean isZipDownloaderPref(@NonNull final Context context)
 		{
 			Downloader dl = Downloader.getFromPref(context);
-			return dl.equals(SIMPLE_ZIP_SERVICE);
+			return dl.equals(DOWNLOAD_ZIP_SERVICE);
 		}
 	}
 

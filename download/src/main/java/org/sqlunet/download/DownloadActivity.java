@@ -58,12 +58,12 @@ public class DownloadActivity extends AppCompatActivity implements OnComplete
 			BaseDownloadFragment downloadFragment = null;
 			switch (downloader)
 			{
-				case SIMPLE_SERVICE:
-					downloadFragment = new SimpleDownloadServiceFragment();
+				case DOWNLOAD_SERVICE:
+					downloadFragment = new DownloadFragment();
 					break;
 
-				case SIMPLE_ZIP_SERVICE:
-					downloadFragment = new SimpleZipDownloadServiceFragment();
+				case DOWNLOAD_ZIP_SERVICE:
+					downloadFragment = new DownloadZipFragment();
 					break;
 			}
 			downloadFragment.setArguments(getIntent().getExtras());

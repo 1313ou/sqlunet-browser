@@ -24,27 +24,32 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import static org.sqlunet.download.Killer.EVENT_CANCEL_REQUEST;
+import static org.sqlunet.download.DownloadService.EVENT_FINISH;
+import static org.sqlunet.download.DownloadService.EVENT_START;
+import static org.sqlunet.download.DownloadService.EVENT_UPDATE;
+
 /**
  * Download Service fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class SimpleDownloadServiceFragment extends BaseDownloadFragment
+public class DownloadFragment extends BaseDownloadFragment
 {
 	/**
 	 * Log tag
 	 */
-	static private final String TAG = "SimpleDownloadServiceF";
+	static private final String TAG = "DownloadF";
+
+	/**
+	 * Channel id key
+	 */
+	static private final String CHANNEL_ID = "semantikos_download_notification_channel";
 
 	/**
 	 * Notification id key
 	 */
-	static private final String NOTIFICATION_ID = "notification_id";
-
-	/**
-	 * Channel id
-	 */
-	static private final String CHANNEL_ID = "simple_download_service";
+	static public final String NOTIFICATION_ID = "notification_id";
 
 	/**
 	 * Id for the current notification
@@ -60,18 +65,24 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	 * Result
 	 */
 	@Nullable
-	static private Boolean success;
+	protected Boolean success;
+
+	/**
+	 * Cause
+	 */
+	@Nullable
+	protected String cause;
 
 	/**
 	 * Exception
 	 */
 	@Nullable
-	static private String exception;
+	protected String exception;
 
 	/**
 	 * Downloading flag (prevents re-entrance)
 	 */
-	static private boolean downloading = false;
+	protected boolean downloading = false;
 
 	/**
 	 * Downloaded progress when status was read
@@ -92,48 +103,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		@Override
 		public void onReceive(final Context context, @NonNull final Intent intent)
 		{
-			String event = intent.getStringExtra(SimpleDownloaderService.EVENT);
-			if (event != null)
-			{
-				switch (event)
-				{
-					case SimpleDownloaderService.EVENT_START:
-						Log.d(TAG, "Broadcast Receive start");
-						SimpleDownloadServiceFragment.downloading = true;
-						fireNotification(++SimpleDownloadServiceFragment.notificationId, NotificationType.START);
-						break;
-
-					case SimpleDownloaderService.EVENT_UPDATE:
-						if (SimpleDownloadServiceFragment.downloading)
-						{
-							Log.d(TAG, "Broadcast Receive update");
-							// SimpleDownloadServiceFragment.downloading = true;
-							progressDownloaded = intent.getLongExtra(SimpleDownloaderService.EVENT_UPDATE_DOWNLOADED, 0);
-							progressTotal = intent.getLongExtra(SimpleDownloaderService.EVENT_UPDATE_TOTAL, 0);
-							float progress = (float) progressDownloaded / progressTotal;
-							fireNotification(SimpleDownloadServiceFragment.notificationId, NotificationType.UPDATE, progress);
-						}
-						break;
-
-					case SimpleDownloaderService.EVENT_FINISH:
-						int id = intent.getIntExtra(SimpleDownloaderService.EVENT_FINISH_ID, 0);
-						if (id == SimpleDownloadServiceFragment.downloadId)
-						{
-							SimpleDownloadServiceFragment.downloading = false;
-							SimpleDownloadServiceFragment.success = intent.getBooleanExtra(SimpleDownloaderService.EVENT_FINISH_RESULT, false);
-							SimpleDownloadServiceFragment.exception = intent.getStringExtra(SimpleDownloaderService.EVENT_FINISH_EXCEPTION);
-							Log.d(TAG, "Broadcast Receive finish " + success);
-
-							// fire notification
-							fireNotification(SimpleDownloadServiceFragment.notificationId, NotificationType.FINISH, SimpleDownloadServiceFragment.success);
-
-							// fire onDone
-							boolean result = success != null ? success : false;
-							onDone(result);
-						}
-						break;
-				}
-			}
+			handleMainIntent(intent);
 		}
 	};
 
@@ -145,20 +115,28 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		@Override
 		public void onReceive(final Context context, @NonNull final Intent intent)
 		{
-			if (SimpleDownloaderService.EVENT_UPDATE.equals(intent.getStringExtra(SimpleDownloaderService.EVENT)))
-			{
-				progressDownloaded = intent.getLongExtra(SimpleDownloaderService.EVENT_UPDATE_DOWNLOADED, 0);
-				progressTotal = intent.getLongExtra(SimpleDownloaderService.EVENT_UPDATE_TOTAL, 0);
-				Log.d(TAG, "Update " + progressDownloaded + '/' + progressTotal);
-			}
+			handleUpdateIntent(intent);
 		}
 	};
 
+	/**
+	 * Action for the service
+	 */
+	protected String getAction()
+	{
+		return Killer.KILL_DOWNLOAD_SERVICE;
+	}
+
+	/**
+	 * Layout
+	 */
 	@Override
 	protected int getResId()
 	{
 		return R.layout.fragment_download;
 	}
+
+	// L I F E C Y C L E
 
 	@Override
 	public void onCreate(final Bundle savedInstanceState)
@@ -167,8 +145,9 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 
 		// main receiver
 		Log.d(TAG, "Register main receiver");
-		LocalBroadcastManager.getInstance(requireContext()).registerReceiver(this.mainBroadcastReceiver, new IntentFilter(SimpleDownloaderService.MAIN_INTENT_FILTER));
+		LocalBroadcastManager.getInstance(requireContext()).registerReceiver(this.mainBroadcastReceiver, new IntentFilter(DownloadService.MAIN_INTENT_FILTER));
 
+		// notifications
 		initChannels();
 	}
 
@@ -189,7 +168,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 
 		// update receiver
 		Log.d(TAG, "Register update receiver");
-		LocalBroadcastManager.getInstance(requireContext()).registerReceiver(this.updateBroadcastReceiver, new IntentFilter(SimpleDownloaderService.UPDATE_INTENT_FILTER));
+		LocalBroadcastManager.getInstance(requireContext()).registerReceiver(this.updateBroadcastReceiver, new IntentFilter(DownloadService.UPDATE_INTENT_FILTER));
 	}
 
 	@Override
@@ -202,6 +181,8 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(this.updateBroadcastReceiver);
 	}
 
+	// S T A R T
+
 	/**
 	 * Start download
 	 */
@@ -211,11 +192,12 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		synchronized (this)
 		{
 			Log.d(TAG, "Start");
-			if (!SimpleDownloadServiceFragment.downloading)
+			if (!this.downloading) // prevent recursion
 			{
 				// reset
-				SimpleDownloadServiceFragment.success = null;
-				SimpleDownloadServiceFragment.exception = null;
+				this.success = null;
+				this.exception = null;
+				this.cause = null;
 				this.progressDownloaded = 0;
 				this.progressTotal = 0;
 
@@ -225,16 +207,16 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 				final String to = this.downloadedFile.getAbsolutePath();
 
 				// service intent
-				final Intent intent = new Intent(requireContext(), SimpleDownloaderService.class);
-				intent.setAction(SimpleDownloaderService.ACTION_DOWNLOAD);
-				intent.putExtra(SimpleDownloaderService.ARG_FROM_URL, from);
-				intent.putExtra(SimpleDownloaderService.ARG_TO_FILE, to);
-				intent.putExtra(SimpleDownloaderService.ARG_CODE, ++SimpleDownloadServiceFragment.downloadId);
+				final Intent intent = new Intent(requireContext(), DownloadService.class);
+				intent.setAction(DownloadService.ACTION_DOWNLOAD);
+				intent.putExtra(DownloadService.ARG_FROM_URL, from);
+				intent.putExtra(DownloadService.ARG_TO_FILE, to);
+				intent.putExtra(DownloadService.ARG_CODE, ++DownloadFragment.downloadId);
 				final Context context = requireContext();
 				startService(context, intent);
 
 				// status
-				SimpleDownloadServiceFragment.downloading = true;
+				this.downloading = true; // set
 				return;
 			}
 		}
@@ -243,7 +225,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 
 	protected void startService(@NonNull Context context, @NonNull Intent intent)
 	{
-		SimpleDownloaderService.enqueueWork(context, intent);
+		DownloadService.enqueueWork(context, intent);
 	}
 
 	/**
@@ -252,7 +234,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	@Override
 	protected void cancel()
 	{
-		kill(requireContext());
+		Killer.kill(requireContext(), getAction());
 	}
 
 	/**
@@ -264,19 +246,6 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	{
 	}
 
-	/**
-	 * Kill task (called from notification)
-	 *
-	 * @param context context
-	 */
-	private static void kill(@NonNull final Context context)
-	{
-		Log.d(TAG, "Kill service");
-		SimpleDownloadServiceFragment.downloading = false;
-		final Intent intent = new Intent(context, SimpleDownloaderService.class);
-		context.stopService(intent);  // execute the Service.onDestroy() method immediately but then let the code in onHandleIntent() finish all the way through before destroying the service.
-	}
-
 	// S T A T U S
 
 	/**
@@ -286,19 +255,19 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	synchronized protected int getStatus(@Nullable final Progress progress)
 	{
 		Status status;
-		if (SimpleDownloadServiceFragment.downloading)
+		if (this.downloading) // status
 		{
 			status = Status.STATUS_RUNNING;
 		}
 		else
 		{
-			if (SimpleDownloadServiceFragment.success == null)
+			if (this.success == null)
 			{
 				status = Status.STATUS_PENDING;
 			}
 			else
 			{
-				status = SimpleDownloadServiceFragment.exception == null && success ? Status.STATUS_SUCCESSFUL : Status.STATUS_FAILED;
+				status = this.exception == null && this.success ? Status.STATUS_SUCCESSFUL : Status.STATUS_FAILED;
 			}
 		}
 
@@ -317,44 +286,82 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 	@Override
 	protected String getReason()
 	{
-		if (SimpleDownloadServiceFragment.exception != null)
+		if (this.exception != null)
 		{
-			return SimpleDownloadServiceFragment.exception;
+			return this.exception;
+		}
+		if (this.cause != null)
+		{
+			return this.cause;
 		}
 		return null;
 	}
 
+	// R E C E I V E R
 
-	// K I L L   E V E N T
-
-	/**
-	 * Killer (used in notifications)
-	 */
-	public static class Killer extends BroadcastReceiver
+	private void handleMainIntent(@NonNull final Intent intent)
 	{
-		static final String KILL_DOWNLOAD_SERVICE = "kill_download_service";
-
-		public Killer()
+		String event = intent.getStringExtra(DownloadService.EVENT);
+		if (event != null)
 		{
+			switch (event)
+			{
+				case EVENT_START:
+					Log.d(TAG, "Main Broadcast Receive start");
+					this.downloading = true; // confirm
+					fireNotification(++DownloadFragment.notificationId, NotificationType.START);
+					break;
+
+				case EVENT_UPDATE:
+					if (this.downloading) // drop event if not
+					{
+						Log.d(TAG, "Main Broadcast Receive update");
+						progressDownloaded = intent.getLongExtra(DownloadService.EVENT_UPDATE_DOWNLOADED, 0);
+						progressTotal = intent.getLongExtra(DownloadService.EVENT_UPDATE_TOTAL, 0);
+						float progress = (float) progressDownloaded / progressTotal;
+						fireNotification(DownloadFragment.notificationId, NotificationType.UPDATE, progress);
+					}
+					break;
+
+				case EVENT_FINISH:
+					int id = intent.getIntExtra(DownloadService.EVENT_FINISH_ID, 0);
+					if (id == DownloadFragment.downloadId)
+					{
+						this.downloading = false; // release
+
+						// parse arguments
+						this.success = intent.getBooleanExtra(DownloadService.EVENT_FINISH_RESULT, false);
+						this.exception = intent.getStringExtra(DownloadService.EVENT_FINISH_EXCEPTION);
+						this.cause = intent.getStringExtra(DownloadService.EVENT_FINISH_CAUSE);
+						Log.d(TAG, "Main Broadcast Receive finish " + this.success);
+
+						// fire notification
+						fireNotification(DownloadFragment.notificationId, NotificationType.FINISH, this.success);
+
+						// fire onDone
+						boolean result = this.success != null ? this.success : false;
+						onDone(result);
+					}
+					break;
+
+				case EVENT_CANCEL_REQUEST:
+					this.downloading = false; // release
+					this.success = intent.getBooleanExtra(DownloadService.EVENT_FINISH_RESULT, false);
+					this.exception = intent.getStringExtra(DownloadService.EVENT_FINISH_EXCEPTION);
+					this.cause = intent.getStringExtra(DownloadService.EVENT_FINISH_CAUSE);
+					Log.d(TAG, "Main Broadcast Receive cancel request");
+					break;
+			}
 		}
+	}
 
-		@Override
-		public void onReceive(@NonNull Context context, @NonNull Intent intent)
+	private void handleUpdateIntent(@NonNull final Intent intent)
+	{
+		if (EVENT_UPDATE.equals(intent.getStringExtra(DownloadService.EVENT)))
 		{
-			String action = intent.getAction();
-			Log.i(TAG, "Received " + action);
-			assert action != null;
-			if (action.equals(Killer.KILL_DOWNLOAD_SERVICE))
-			{
-				SimpleDownloadServiceFragment.kill(context);
-			}
-			int id = intent.getIntExtra(SimpleDownloadServiceFragment.NOTIFICATION_ID, 0);
-			if (id != 0)
-			{
-				final NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-				assert manager != null;
-				manager.cancel(id);
-			}
+			progressDownloaded = intent.getLongExtra(DownloadService.EVENT_UPDATE_DOWNLOADED, 0);
+			progressTotal = intent.getLongExtra(DownloadService.EVENT_UPDATE_TOTAL, 0);
+			Log.d(TAG, "Update Broadcast Receiver " + progressDownloaded + '/' + progressTotal);
 		}
 	}
 
@@ -380,8 +387,7 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 
 		// content
 		final String from = Uri.parse(this.downloadUrl).getHost();
-		assert this.downloadedFile != null;
-		final String to = this.downloadedFile.getName();
+		final String to = this.downloadedFile == null ? this.appContext.getString(R.string.result_deleted) : this.downloadedFile.getName();
 		String contentTitle = this.appContext.getString(R.string.title_download);
 		String contentText = from + '→' + to;
 
@@ -427,13 +433,13 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 				.setSmallIcon(android.R.drawable.stat_sys_download) //
 				.setContentTitle(contentTitle) //
 				.setContentText(contentText) //
-				// .setColor(some color) //
+		// .setColor(some color) //
 		;
 
 		// action
 		final Intent intent = new Intent(this.appContext, Killer.class);
-		intent.setAction(Killer.KILL_DOWNLOAD_SERVICE);
-		intent.putExtra(SimpleDownloadServiceFragment.NOTIFICATION_ID, id);
+		intent.setAction(getAction());
+		intent.putExtra(DownloadFragment.NOTIFICATION_ID, id);
 		final PendingIntent pendingIntent = PendingIntent.getBroadcast(this.appContext, (int) System.currentTimeMillis(), intent, PendingIntent.FLAG_UPDATE_CURRENT); // use System.currentTimeMillis() to have a unique ID for the pending intent
 		NotificationCompat.Action action = new NotificationCompat.Action.Builder(R.drawable.ic_notif_cancel, this.appContext.getString(R.string.action_cancel).toUpperCase(Locale.getDefault()), pendingIntent).build();
 		builder.addAction(action);
@@ -463,8 +469,8 @@ public class SimpleDownloadServiceFragment extends BaseDownloadFragment
 		}
 		final Context context = requireContext();
 
-		final NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "Simple Download Service", NotificationManager.IMPORTANCE_LOW);
-		channel.setDescription("Simple Download Service Channel");
+		final NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "Download Service", NotificationManager.IMPORTANCE_LOW);
+		channel.setDescription("Download Service Channel");
 		channel.setSound(null, null);
 		final NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 		assert notificationManager != null;

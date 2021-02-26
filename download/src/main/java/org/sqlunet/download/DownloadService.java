@@ -4,8 +4,10 @@
 
 package org.sqlunet.download;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.PowerManager;
 import android.util.Log;
 
@@ -19,6 +21,7 @@ import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Iterator;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,19 +29,21 @@ import androidx.core.app.JobIntentService;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 /**
- * SimpleDownloader service
+ * Download service
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class SimpleDownloaderService extends JobIntentService
+public class DownloadService extends JobIntentService
 {
-	static private final String TAG = "SimpleDownloaderS";
+	static private final String TAG = "DownloadS";
 
 	static public final String MAIN_INTENT_FILTER = "intent_filter_downloader_main";
 
 	static public final String UPDATE_INTENT_FILTER = "intent_filter_downloader_update";
 
 	static public final String ACTION_DOWNLOAD = "download";
+
+	public static final String ACTION_DOWNLOAD_CANCEL = "cancel_download";
 
 	static public final String ARG_FROM_URL = "from_url";
 
@@ -64,6 +69,8 @@ public class SimpleDownloaderService extends JobIntentService
 
 	static public final String EVENT_FINISH_EXCEPTION = "finish_exception";
 
+	static public final String EVENT_FINISH_CAUSE = "finish_cause";
+
 	/**
 	 * Unique job ID for this service.
 	 */
@@ -75,19 +82,33 @@ public class SimpleDownloaderService extends JobIntentService
 	static protected final int CHUNK_SIZE = 8192;
 
 	/**
-	 * Publish granularity for update = 8192 x 128 = 1MB
+	 * Publish granularity (number of chunks) for update = 1MB x 10 = 10MB
+	 * 1MB = 8192 chunk size x 128 chunks
 	 */
-	static protected final int PUBLISH_UPDATE_GRANULARITY = 128;
+	static protected final int PUBLISH_UPDATE_GRANULARITY = 128 * 10;
 
 	/**
-	 * Publish granularity for main = 1MB x 10 = 10MB
+	 * Publish granularity for (number of chunks) main = 1MB x 16 = 16MB
+	 * 1MB = 8192 chunk size x 128 chunks
 	 */
-	static protected final int PUBLISH_MAIN_GRANULARITY = PUBLISH_UPDATE_GRANULARITY * 10;
+	static protected final int PUBLISH_MAIN_GRANULARITY = 128 * 16;
 
 	/**
 	 * Timeout in seconds
 	 */
 	static protected final int TIMEOUT_S = 15;
+
+	/**
+	 * Intent filter
+	 */
+	static private final IntentFilter intentFilter = new IntentFilter();
+
+	static
+	{
+		intentFilter.addAction(ACTION_DOWNLOAD);
+		intentFilter.addAction(ACTION_DOWNLOAD_CANCEL);
+		intentFilter.addCategory(Intent.CATEGORY_DEFAULT);
+	}
 
 	/**
 	 * From URL
@@ -113,13 +134,60 @@ public class SimpleDownloaderService extends JobIntentService
 	protected Exception exception;
 
 	/**
+	 * Cancel broadcast receiver
+	 */
+	private final BroadcastReceiver receiver = new BroadcastReceiver()
+	{
+		@Override
+		public void onReceive(final Context context, final Intent intent)
+		{
+
+			String action = intent.getAction();
+			Log.d(TAG, "broadcast receiver caught " + action);
+			if (action.equals(ACTION_DOWNLOAD_CANCEL))
+			{
+				Log.d(TAG, "cancel flagged");
+				DownloadService.this.cancel = true;
+			}
+		}
+	};
+
+	/**
 	 * Constructor
 	 */
-	public SimpleDownloaderService()
+	public DownloadService()
 	{
 		super();
-		this.cancel = false;
-		this.exception = null;
+	}
+
+	/**
+	 * OnCreate
+	 */
+	@Override
+	public void onCreate()
+	{
+		super.onCreate();
+
+		// cancel receiver
+		LocalBroadcastManager.getInstance(this).registerReceiver(this.receiver, DownloadService.intentFilter);
+		Iterator<String> it = intentFilter.actionsIterator();
+		Log.d(TAG, "Register " + this.receiver + " filter=" + it.next() + " filter=" + it.next());
+	}
+
+	/**
+	 * OnDestroy
+	 * Called by context.stopService()
+	 */
+	@Override
+	public void onDestroy()
+	{
+		super.onDestroy();
+		Log.d(TAG, "cancel flagged in onDestroy by stopService");
+		this.cancel = true;
+
+		// unregister cancel receiver
+		LocalBroadcastManager.getInstance(this).unregisterReceiver(this.receiver);
+		Log.d(TAG, "Unregister " + this.receiver);
 	}
 
 	// M A I N   E N T R Y
@@ -130,48 +198,59 @@ public class SimpleDownloaderService extends JobIntentService
 		if (intent != null)
 		{
 			final String action = intent.getAction();
-			if (SimpleDownloaderService.ACTION_DOWNLOAD.equals(action))
+			if (DownloadService.ACTION_DOWNLOAD.equals(action))
 			{
-				/*
-				final IntentFilter filter = new IntentFilter(StopReceiver.ACTION_STOP);
-				filter.addCategory(Intent.CATEGORY_DEFAULT);
-				StopReceiver receiver = new StopReceiver();
-				registerReceiver(receiver, filter);
-				*/
-
 				// arguments
 				int id = unmarshal(intent);
 
 				// fire start event
-				broadcast(MAIN_INTENT_FILTER, EVENT, EVENT_START);
+				broadcast(MAIN_INTENT_FILTER, //
+						EVENT, EVENT_START);
 
 				// do job
+				this.cancel = false;
+				this.exception = null;
 				try
 				{
 					job();
-					Log.d(TAG, "Completed successfully");
-					broadcast(MAIN_INTENT_FILTER, EVENT, EVENT_FINISH, EVENT_FINISH_ID, id, EVENT_FINISH_RESULT, true);
+					Log.d(TAG, "Completed cancel=" + this.cancel);
+					broadcast(MAIN_INTENT_FILTER, //
+							EVENT, EVENT_FINISH, //
+							EVENT_FINISH_ID, id, //
+							EVENT_FINISH_RESULT, !this.cancel);
 				}
 				catch (@NonNull final InterruptedException ie)
 				{
 					this.exception = ie;
 					cleanup();
 					Log.d(TAG, "Interrupted while downloading, " + ie.getMessage());
-					broadcast(MAIN_INTENT_FILTER, EVENT, EVENT_FINISH, EVENT_FINISH_ID, id, EVENT_FINISH_RESULT, false, EVENT_FINISH_EXCEPTION, exception.getMessage());
+					broadcast(MAIN_INTENT_FILTER, //
+							EVENT, EVENT_FINISH, //
+							EVENT_FINISH_ID, id, //
+							EVENT_FINISH_RESULT, false, //
+							EVENT_FINISH_EXCEPTION, exception.getMessage());
 				}
 				catch (@NonNull final SocketTimeoutException ste)
 				{
 					this.exception = ste;
 					cleanup();
 					Log.d(TAG, "Timeout while downloading, " + ste.getMessage());
-					broadcast(MAIN_INTENT_FILTER, EVENT, EVENT_FINISH, EVENT_FINISH_ID, id, EVENT_FINISH_RESULT, false, EVENT_FINISH_EXCEPTION, exception.getMessage());
+					broadcast(MAIN_INTENT_FILTER, //
+							EVENT, EVENT_FINISH, //
+							EVENT_FINISH_ID, id, //
+							EVENT_FINISH_RESULT, false, //
+							EVENT_FINISH_EXCEPTION, exception.getMessage());
 				}
 				catch (@NonNull final Exception e)
 				{
 					this.exception = e;
 					cleanup();
 					Log.e(TAG, "Exception while downloading, " + e.getMessage());
-					broadcast(MAIN_INTENT_FILTER, EVENT, EVENT_FINISH, EVENT_FINISH_ID, id, EVENT_FINISH_RESULT, false, EVENT_FINISH_EXCEPTION, exception.getMessage());
+					broadcast(MAIN_INTENT_FILTER, //
+							EVENT, EVENT_FINISH, //
+							EVENT_FINISH_ID, id, //
+							EVENT_FINISH_RESULT, false, //
+							EVENT_FINISH_EXCEPTION, exception.getMessage());
 				}
 			}
 		}
@@ -287,8 +366,11 @@ public class SimpleDownloaderService extends JobIntentService
 		}
 
 		// install
-		install(outFile, date, size);
-		Settings.recordDbSource(this, this.fromUrl, date, size, etag, version, staticVersion);
+		if (!this.cancel)
+		{
+			install(outFile, date, size);
+			Settings.recordDbSource(this, this.fromUrl, date, size, etag, version, staticVersion);
+		}
 	}
 
 	/**
@@ -318,11 +400,11 @@ public class SimpleDownloaderService extends JobIntentService
 	protected int unmarshal(@NonNull final Intent intent)
 	{
 		// arguments
-		this.fromUrl = intent.getStringExtra(SimpleDownloaderService.ARG_FROM_URL);
-		this.toFile = intent.getStringExtra(SimpleDownloaderService.ARG_TO_FILE);
+		this.fromUrl = intent.getStringExtra(DownloadService.ARG_FROM_URL);
+		this.toFile = intent.getStringExtra(DownloadService.ARG_TO_FILE);
 
 		// id
-		return intent.getIntExtra(SimpleDownloaderService.ARG_CODE, 0);
+		return intent.getIntExtra(DownloadService.ARG_CODE, 0);
 	}
 
 	/**
@@ -348,11 +430,17 @@ public class SimpleDownloaderService extends JobIntentService
 			// publishing the progress
 			if ((chunks % PUBLISH_MAIN_GRANULARITY) == 0)
 			{
-				broadcast(MAIN_INTENT_FILTER, EVENT, EVENT_UPDATE, EVENT_UPDATE_DOWNLOADED, downloaded, EVENT_UPDATE_TOTAL, total);
+				broadcast(MAIN_INTENT_FILTER, //
+						EVENT, EVENT_UPDATE, //
+						EVENT_UPDATE_DOWNLOADED, downloaded, //
+						EVENT_UPDATE_TOTAL, total);
 			}
 			if ((chunks % PUBLISH_UPDATE_GRANULARITY) == 0)
 			{
-				broadcast(UPDATE_INTENT_FILTER, EVENT, EVENT_UPDATE, EVENT_UPDATE_DOWNLOADED, downloaded, EVENT_UPDATE_TOTAL, total);
+				broadcast(UPDATE_INTENT_FILTER, //
+						EVENT, EVENT_UPDATE, //
+						EVENT_UPDATE_DOWNLOADED, downloaded, //
+						EVENT_UPDATE_TOTAL, total);
 			}
 			chunks++;
 
@@ -451,7 +539,7 @@ public class SimpleDownloaderService extends JobIntentService
 		return wakelock;
 	}
 
-	// F I R E   E V E N T S
+	// B R O A D C A S T   E V E N T S
 
 	/**
 	 * Broadcast message
@@ -492,14 +580,22 @@ public class SimpleDownloaderService extends JobIntentService
 		LocalBroadcastManager.getInstance(this).sendBroadcast(broadcastIntent);
 	}
 
+	// C A N C E L
+
 	/**
-	 * Cancel
+	 * Kill by broadcasting cancel action in intent
+	 *
+	 * @param context context
 	 */
-	@Override
-	public void onDestroy()
+	static public void kill(final Context context)
 	{
-		super.onDestroy();
-		this.cancel = true;
+		final Intent broadcastIntent = new Intent();
+		broadcastIntent.setPackage(context.getPackageName());
+		broadcastIntent.setAction(ACTION_DOWNLOAD_CANCEL);
+		broadcastIntent.addCategory(Intent.CATEGORY_DEFAULT);
+
+		Log.d(TAG, "Send kill " + broadcastIntent);
+		LocalBroadcastManager.getInstance(context).sendBroadcastSync(broadcastIntent);
 	}
 
 	// S T A R T
@@ -509,27 +605,7 @@ public class SimpleDownloaderService extends JobIntentService
 	 */
 	public static void enqueueWork(@NonNull final Context context, @NonNull final Intent work)
 	{
-		enqueueWork(context, SimpleDownloaderService.class, JOB_ID, work);
+		enqueueWork(context, DownloadService.class, JOB_ID, work);
 	}
 
-	// A L T
-	/*
-	public class StopReceiver extends BroadcastReceiver
-	{
-		public static final String ACTION_STOP = "stop";
-
-		@Override
-		public void onReceive(final Context context, Intent intent)
-		{
-			SimpleDownloaderService.this.cancel = true;
-		}
-	}
-
-	static public void kill(final Context context)
-	{
-		final Intent intent = new Intent();
-		intent.setAction(StopReceiver.ACTION_STOP);
-		LocalBroadcastManager.getInstance(this.context).sendBroadcast(intent);
-	}
-	*/
 }

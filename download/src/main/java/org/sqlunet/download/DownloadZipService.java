@@ -22,13 +22,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /**
- * SimpleDownloader service
+ * Download Zip service
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class SimpleZipDownloaderService extends SimpleDownloaderService
+public class DownloadZipService extends DownloadService
 {
-	static private final String TAG = "SimpleZipDownloaderS";
+	static private final String TAG = "DownloaderZipS";
 
 	static public final String ARG_ENTRY = "entry";
 
@@ -41,7 +41,7 @@ public class SimpleZipDownloaderService extends SimpleDownloaderService
 	/**
 	 * Constructor
 	 */
-	public SimpleZipDownloaderService()
+	public DownloadZipService()
 	{
 		super();
 	}
@@ -189,7 +189,7 @@ public class SimpleZipDownloaderService extends SimpleDownloaderService
 		}
 
 		// rename
-		if (done)
+		if (done && ! this.cancel)
 		{
 			install(outFile, date, size);
 			Settings.recordDbSource(this, this.fromUrl, zDate, zSize, zEtag, zVersion, zStaticVersion);
@@ -211,7 +211,7 @@ public class SimpleZipDownloaderService extends SimpleDownloaderService
 		int id = super.unmarshal(intent);
 
 		// entry argument
-		this.entry = intent.getStringExtra(SimpleZipDownloaderService.ARG_ENTRY);
+		this.entry = intent.getStringExtra(DownloadZipService.ARG_ENTRY);
 		if (this.entry == null)
 		{
 			if (this.fromUrl != null)
@@ -237,6 +237,6 @@ public class SimpleZipDownloaderService extends SimpleDownloaderService
 	 */
 	public static void enqueueWork(@NonNull final Context context, @NonNull final Intent work)
 	{
-		enqueueWork(context, SimpleZipDownloaderService.class, JOB_ID, work);
+		enqueueWork(context, DownloadZipService.class, JOB_ID, work);
 	}
 }
