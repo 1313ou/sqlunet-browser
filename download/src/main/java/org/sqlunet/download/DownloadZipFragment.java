@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class SimpleZipDownloadServiceFragment extends SimpleDownloadServiceFragment
+public class DownloadZipFragment extends DownloadFragment
 {
 	@Override
 	protected int getResId()
@@ -44,7 +44,16 @@ public class SimpleZipDownloadServiceFragment extends SimpleDownloadServiceFragm
 	@Override
 	protected void startService(@NonNull Context context, @NonNull Intent intent)
 	{
-		SimpleZipDownloaderService.enqueueWork(context, intent);
+		DownloadZipService.enqueueWork(context, intent);
+	}
+
+	/**
+	 * Action fro this service
+	 */
+	@Override
+	protected String getAction()
+	{
+		return Killer.KILL_ZIP_DOWNLOAD_SERVICE;
 	}
 }
 

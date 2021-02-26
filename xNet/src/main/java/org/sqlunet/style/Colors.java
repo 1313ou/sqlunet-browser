@@ -5,7 +5,6 @@
 package org.sqlunet.style;
 
 import android.content.Context;
-import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.util.Log;
@@ -16,7 +15,6 @@ import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.StyleRes;
 import androidx.annotation.StyleableRes;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.res.ResourcesCompat;
 
 /**

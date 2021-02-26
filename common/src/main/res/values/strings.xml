@@ -78,9 +78,12 @@
 
 	<!-- SETUP PAGES -->
 
-	<string name="page_setup">Default</string>
+	<string name="page_setup_status">Status</string>
 	<string name="page_setup_file">File</string>
 	<string name="page_setup_database">Database</string>
+	<string name="page_setup_status_description">Set up from Status</string>
+	<string name="page_setup_file_description">Set up from File operations</string>
+	<string name="page_setup_database_description">Set up from Database operations</string>
 
 	<!-- TITLES -->
 

@@ -73,7 +73,7 @@ public class SetupFnStatusFragment extends org.sqlunet.browser.config.SetupStatu
 			int index = getResources().getInteger(R.integer.sql_statement_do_ts_fn_position);
 			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
 			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-			startActivityForResult(intent, SetupFnStatusFragment.REQUEST_MANAGE_CODE + index);
+			startActivity(intent);
 		});
 
 		this.infoDatabaseButton.setOnClickListener(v -> {

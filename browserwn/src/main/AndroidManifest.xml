@@ -345,7 +345,7 @@
 		</activity>
 
 		<receiver
-			android:name="org.sqlunet.download.SimpleDownloadServiceFragment$Killer"
+			android:name="org.sqlunet.download.Killer"
 			android:enabled="true"
 			android:exported="false">
 			<intent-filter>
@@ -382,7 +382,7 @@
 			tools:ignore="ExportedContentProvider" />
 
 		<service
-			android:name="org.sqlunet.download.SimpleDownloaderService"
+			android:name="org.sqlunet.download.DownloadService"
 			android:description="@string/description_service_downloader"
 			android:enabled="true"
 			android:exported="false"

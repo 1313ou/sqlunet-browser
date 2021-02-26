@@ -79,14 +79,14 @@ public class SetupVnStatusFragment extends org.sqlunet.browser.config.SetupStatu
 			int index = getResources().getInteger(R.integer.sql_statement_do_ts_vn_position);
 			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
 			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-			startActivityForResult(intent, SetupVnStatusFragment.REQUEST_MANAGE_CODE + index);
+			startActivity(intent);
 		});
 		this.buttonTextSearchPb.setOnClickListener(v -> {
 
 			int index = getResources().getInteger(R.integer.sql_statement_do_ts_pb_position);
 			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
 			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-			startActivityForResult(intent, SetupVnStatusFragment.REQUEST_MANAGE_CODE + index);
+			startActivity(intent);
 		});
 
 		this.infoDatabaseButton.setOnClickListener(v -> {

@@ -88,7 +88,8 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 			// this tab is selected.
 			tabLayout.addTab(tabLayout.newTab() //
 					.setTag(pagerAdapter.getItem(i)) //
-					.setText(pagerAdapter.getPageTitle(i)));
+					.setContentDescription(pagerAdapter.getPageDescriptionId(i)) //
+					.setText(pagerAdapter.getPageTitleId(i)));
 		}
 	}
 
@@ -198,16 +199,40 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 		@Override
 		public CharSequence getPageTitle(int position)
 		{
+			int id = getPageTitleId(position);
+			if (id == 0)
+			{
+				return "";
+			}
+			return getString(id);
+		}
+
+		public int getPageTitleId(final int position)
+		{
 			switch (position)
 			{
 				case 0:
-					return getString(R.string.page_setup);
+					return R.string.page_setup_status;
 				case 1:
-					return getString(R.string.page_setup_file);
+					return R.string.page_setup_file;
 				case 2:
-					return getString(R.string.page_setup_database);
+					return R.string.page_setup_database;
 			}
-			return null;
+			return 0;
+		}
+
+		public int getPageDescriptionId(final int position)
+		{
+			switch (position)
+			{
+				case 0:
+					return R.string.page_setup_status_description;
+				case 1:
+					return R.string.page_setup_file_description;
+				case 2:
+					return R.string.page_setup_database_description;
+			}
+			return 0;
 		}
 	}
 

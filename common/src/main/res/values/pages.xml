@@ -8,7 +8,6 @@
 	SETUPSTATUSFRAGMENT
 	SETUPFILEFRAGMENT
 	SETUPDATABASEFRAGMENT
-	SETUPSQLFRAGMENT
 	-->
 
 	<string name="fragment_class_setup_status_page" translatable="false">org.sqlunet.browser.config.SetupStatusFragment</string> <!-- 0 -->

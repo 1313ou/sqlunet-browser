@@ -53,8 +53,6 @@ public class SetupStatusFragment extends Fragment implements Updatable
 
 	private static final int REQUEST_DOWNLOAD_CODE = 0xDDDD;
 
-	static protected final int REQUEST_MANAGE_CODE = 0xAAA0;
-
 	// components
 
 	private ImageView imageDb;
@@ -142,7 +140,7 @@ public class SetupStatusFragment extends Fragment implements Updatable
 		int index = getResources().getInteger(R.integer.sql_statement_do_indexes_position);
 		final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
 		intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-		startActivityForResult(intent, SetupStatusFragment.REQUEST_MANAGE_CODE + index);
+		startActivity(intent);
 	}
 
 	protected void info()

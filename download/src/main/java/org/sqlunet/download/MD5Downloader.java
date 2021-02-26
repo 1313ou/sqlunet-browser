@@ -19,7 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /**
- * SimpleDownloader task
+ * MD5 downloader task
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */

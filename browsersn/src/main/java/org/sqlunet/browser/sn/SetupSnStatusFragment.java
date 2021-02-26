@@ -72,7 +72,7 @@ public class SetupSnStatusFragment extends org.sqlunet.browser.config.SetupStatu
 			int index = getResources().getInteger(R.integer.sql_statement_do_ts_wn_position);
 			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
 			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-			startActivityForResult(intent, SetupSnStatusFragment.REQUEST_MANAGE_CODE + index);
+			startActivity(intent);
 		});
 
 		this.infoDatabaseButton.setOnClickListener(v -> {
@@ -94,7 +94,7 @@ public class SetupSnStatusFragment extends org.sqlunet.browser.config.SetupStatu
 						getString(R.string.title_status), getString(existsTables ? R.string.status_data_exists : R.string.status_data_not_exists), //
 						getString(R.string.title_free), free, //
 						getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
-						getString(R.string.size_expected) + ' ' +  getString(R.string.text_search) + ' ' + getString(R.string.wordnet), getString(R.string.hr_size_searchtext), //
+						getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.wordnet), getString(R.string.hr_size_searchtext), //
 						getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
 						getString(R.string.size_current), hrSize);
 			}
