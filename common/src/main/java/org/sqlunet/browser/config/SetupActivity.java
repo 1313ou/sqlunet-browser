@@ -212,11 +212,11 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 			switch (position)
 			{
 				case 0:
-					return R.string.page_setup_status;
+					return R.string.title_page_setup_status;
 				case 1:
-					return R.string.page_setup_file;
+					return R.string.title_page_setup_file;
 				case 2:
-					return R.string.page_setup_database;
+					return R.string.title_page_setup_database;
 			}
 			return 0;
 		}
@@ -226,11 +226,11 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 			switch (position)
 			{
 				case 0:
-					return R.string.page_setup_status_description;
+					return R.string.description_page_setup_status;
 				case 1:
-					return R.string.page_setup_file_description;
+					return R.string.description_page_setup_file;
 				case 2:
-					return R.string.page_setup_database_description;
+					return R.string.description_page_setup_database;
 			}
 			return 0;
 		}

@@ -433,7 +433,7 @@ public class DownloadFragment extends BaseDownloadFragment
 				.setSmallIcon(android.R.drawable.stat_sys_download) //
 				.setContentTitle(contentTitle) //
 				.setContentText(contentText) //
-		// .setColor(some color) //
+				// .setColor(some color) //
 		;
 
 		// action

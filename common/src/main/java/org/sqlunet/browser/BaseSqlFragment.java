@@ -44,7 +44,7 @@ public class BaseSqlFragment extends ListFragment
 			final ClipData clipData = ClipData.newPlainText("text", statement);
 			assert clipboard != null;
 			clipboard.setPrimaryClip(clipData);
-			Toast.makeText(requireContext(), R.string.copy_copied, Toast.LENGTH_SHORT).show();
+			Toast.makeText(requireContext(), R.string.status_clipboard_copied, Toast.LENGTH_SHORT).show();
 			return true;
 		});
 	}

@@ -42,7 +42,7 @@ public class DiagnosticsActivity extends AppCompatActivity
 
 		// text view
 		final TextView textView = findViewById(R.id.report);
-		textView.setText(R.string.title_running_diagnostics);
+		textView.setText(R.string.status_diagnostics_running);
 
 		// action button
 		final FloatingActionButton fab = findViewById(R.id.send_fab);
@@ -55,7 +55,7 @@ public class DiagnosticsActivity extends AppCompatActivity
 			email.putExtra(Intent.EXTRA_TEXT, textView.getText());
 			email.setType("message/rfc822"); // prompts email client only
 
-			startActivity(Intent.createChooser(email, getString(R.string.title_email_intent_selector)));
+			startActivity(Intent.createChooser(email, getString(R.string.title_dialog_select_email)));
 		});
 
 		// diagnostics
@@ -67,6 +67,5 @@ public class DiagnosticsActivity extends AppCompatActivity
 			fab.setVisibility(View.VISIBLE);
 			fab.setEnabled(true);
 		}).execute(this);
-
 	}
 }

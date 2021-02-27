@@ -9,8 +9,8 @@
 	<string name="action_setup_searchtext_wn" tools:keep="@string/action_setup_searchtext_wn">Setup text search for WordNet</string>
 
 	<!-- send -->
-	<string name="send_activity_browse">Semantikos-WordNet</string>
-	<string name="send_activity_searchtext">Semantikos-WordNet (Text)</string>
+	<string name="title_intentfilter_send_activity_browse">Semantikos-WordNet</string>
+	<string name="title_intentfilter_send_activity_searchtext">Semantikos-WordNet (Text)</string>
 
 	<!-- database info -->
 	<string name="action_tables_and_indices">Tables and Indices</string>

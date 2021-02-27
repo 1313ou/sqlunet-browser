@@ -75,8 +75,8 @@ public class SetupAsset
 		}
 
 		// observer title and message
-		observer.setTitle(activity.getString(R.string.title_asset_pack_delivery));
-		observer.setMessage(activity.getString(R.string.asset_delivery_message));
+		observer.setTitle(activity.getString(R.string.title_dialog_assetload));
+		observer.setMessage(activity.getString(R.string.gloss_asset_delivery_message));
 
 		// deliver asset (returns non null path if already installed)
 		final String path0 = new AssetPackLoader(activity, assetPack) //

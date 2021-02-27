@@ -113,7 +113,7 @@ public class SetupVnStatusFragment extends org.sqlunet.browser.config.SetupStatu
 			}
 			else
 			{
-				Info.info(activity, R.string.title_download, //
+				Info.info(activity, R.string.title_dialog_info_download, //
 						getString(R.string.title_operation), getString(R.string.info_op_download_database), //
 						getString(R.string.title_from), source, //
 						getString(R.string.title_database), database, //

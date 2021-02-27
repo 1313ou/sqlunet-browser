@@ -13,8 +13,8 @@
 	<string name="action_setup_searchtext_fn" tools:keep="@string/action_setup_searchtext_fn">Setup text search for FrameNet</string>
 
 	<!-- send -->
-	<string name="send_activity_browse">Semantikos-FrameNet</string>
-	<string name="send_activity_searchtext">Semantikos-FrameNet (Text)</string>
+	<string name="title_intentfilter_send_activity_browse">Semantikos-FrameNet</string>
+	<string name="title_intentfilter_send_activity_searchtext">Semantikos-FrameNet (Text)</string>
 
 	<!-- _status -->
 	<string name="status_searchtext_fn">Text Search\non FrameNet</string>
