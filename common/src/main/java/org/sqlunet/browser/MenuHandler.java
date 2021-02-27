@@ -118,7 +118,7 @@ public class MenuHandler
 			final String assetZip = Settings.getAssetPackZip(activity);
 			final String assetZipEntry = activity.getString(R.string.asset_zip_entry);
 			final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
-					.setTitle(activity.getString(R.string.asset_delivery)) //
+					.setTitle(activity.getString(R.string.title_dialog_assetload)) //
 					.setMessage(asset);
 			SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null, null);
 			return true;
@@ -130,7 +130,7 @@ public class MenuHandler
 			final String assetZip = activity.getString(R.string.asset_zip_primary);
 			final String assetZipEntry = activity.getString(R.string.asset_zip_entry);
 			final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
-					.setTitle(activity.getString(R.string.asset_delivery)) //
+					.setTitle(activity.getString(R.string.title_dialog_assetload)) //
 					.setMessage(asset);
 			SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null, null);
 			return true;
@@ -144,7 +144,7 @@ public class MenuHandler
 			if (!asset.isEmpty())
 			{
 				final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
-						.setTitle(activity.getString(R.string.asset_delivery)) //
+						.setTitle(activity.getString(R.string.title_dialog_assetload)) //
 						.setMessage(asset);
 				SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null, null);
 			}
@@ -311,7 +311,7 @@ public class MenuHandler
 			final String assetZip = Settings.getAssetPackZip(activity);
 			final String assetZipEntry = activity.getString(R.string.asset_zip_entry);
 			final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
-					.setTitle(activity.getString(R.string.asset_delivery)) //
+					.setTitle(activity.getString(R.string.title_dialog_assetload)) //
 					.setMessage(asset);
 			SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null, null);
 			return true;
@@ -323,7 +323,7 @@ public class MenuHandler
 			final String assetZip = activity.getString(R.string.asset_zip_primary);
 			final String assetZipEntry = activity.getString(R.string.asset_zip_entry);
 			final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
-					.setTitle(activity.getString(R.string.asset_delivery)) //
+					.setTitle(activity.getString(R.string.title_dialog_assetload)) //
 					.setMessage(asset);
 			SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null, null);
 			return true;
@@ -337,7 +337,7 @@ public class MenuHandler
 			if (!asset.isEmpty())
 			{
 				final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
-						.setTitle(activity.getString(R.string.asset_delivery)) //
+						.setTitle(activity.getString(R.string.title_dialog_assetload)) //
 						.setMessage(asset);
 				SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null, null);
 			}

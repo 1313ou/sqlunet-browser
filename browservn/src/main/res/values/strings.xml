@@ -13,8 +13,8 @@
 	<string name="action_setup_searchtext_vn" tools:keep="@string/action_setup_searchtext_vn">Setup text search for VerbNet</string>
 
 	<!-- send -->
-	<string name="send_activity_browse">Semantikos-VerbNet</string>
-	<string name="send_activity_searchtext">Semantikos-VerbNet (Text)</string>
+	<string name="title_intentfilter_send_activity_browse">Semantikos-VerbNet</string>
+	<string name="title_intentfilter_send_activity_searchtext">Semantikos-VerbNet (Text)</string>
 
 	<!-- _status -->
 	<string name="status_searchtext_vn">Text Search\non VerbNet</string>

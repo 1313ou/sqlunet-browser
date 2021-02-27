@@ -75,6 +75,9 @@
 	<string name="pref_title_two_panes">Two panes</string>
 	<string name="pref_description_two_panes">Force two panes</string>
 
+	<!-- sql -->
+	<string name="pref_sql_category">SQL</string>
+
 	<!-- FILTER -->
 
 	<string name="pref_header_filter">Filter</string>

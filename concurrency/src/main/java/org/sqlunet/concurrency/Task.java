@@ -27,7 +27,7 @@ import androidx.annotation.Nullable;
 
 abstract public class Task<Params, Progress, Result> implements Cancelable
 {
-	private static final String LOG_TAG = "AsyncTask";
+	// private static final String LOG_TAG = "Task";
 
 	// E X E C U T O R
 

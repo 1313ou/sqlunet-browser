@@ -11,7 +11,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 
 /**
- * Download Service fragment
+ * Download Zip fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */

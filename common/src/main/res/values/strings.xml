@@ -11,13 +11,15 @@
 	<string name="app_name">@string/semantikos</string>
 	<string name="app_subname">@null</string>
 
-	<!-- ACTIONS -->
+	<!-- databases -->
+	<string name="sqlunet">SqlUNet</string>
 
+	<!-- ACTIONS -->
 	<!-- submenus -->
 	<string name="action_data">Data</string>
 	<string name="action_app">App</string>
 	<string name="action_about">About</string>
-
+	<string name="action_theme">Theme …</string>
 	<!-- settings and status -->
 	<string name="action_settings">Settings</string>
 	<string name="action_download_settings">Download settings</string>
@@ -27,37 +29,19 @@
 	<string name="action_drop">Drop</string>
 	<string name="action_update">Update</string>
 	<string name="action_diagnostics">Diagnostics</string>
-
 	<!-- setup -->
 	<string name="action_setup">Set up</string>
-
 	<!-- setup from file -->
 	<string name="action_copy_from_file">Copy database from &#8230;</string>
 	<string name="action_unzip_from_archive">Unzip database from &#8230;</string>
-
 	<!-- database info -->
 	<string name="action_tables_and_indices">Tables and Indices</string>
-
 	<!-- file info -->
 	<string name="action_storage_dirs">Storage dirs</string>
 	<string name="action_storage">Storage</string>
 	<string name="action_md5">MD5</string>
 	<string name="action_md5_of">MD5 of</string>
 	<string name="action_md5_ask">MD5 &#8230;</string>
-
-	<!-- misc -->
-	<string name="action_clear_sql">Clear SQLs</string>
-	<string name="action_assetload">Asset load</string>
-	<string name="action_download">Download</string>
-	<string name="action_help">Help</string>
-	<string name="action_credits">Credits</string>
-	<string name="action_provider_info">Providers</string>
-	<string name="action_appsettings">Application</string>
-	<string name="action_theme">Theme …</string>
-	<string name="action_theme_system">Theme follows system</string>
-	<string name="action_theme_night">Night theme</string>
-	<string name="action_theme_day">Day theme</string>
-
 	<!-- run -->
 	<string name="action_run">Run</string>
 	<string name="action_main">Main</string>
@@ -67,23 +51,23 @@
 	<string name="action_cancel">Cancel</string>
 	<string name="action_ok">OK</string>
 	<string name="action_show">Show</string>
-
+	<!-- load -->
+	<string name="action_assetload">Asset load</string>
+	<string name="action_download">Download</string>
 	<!-- misc -->
-	<string name="providers">content providers</string>
-	<string name="provider_authority">authority</string>
-	<string name="suggestions">suggestions</string>
-	<string name="suggestion_provider_pack">package</string>
-	<string name="suggestion_provider_authority">authority</string>
-	<string name="suggestion_provider_path">path</string>
-
-	<!-- SETUP PAGES -->
-
-	<string name="page_setup_status">Status</string>
-	<string name="page_setup_file">File</string>
-	<string name="page_setup_database">Database</string>
-	<string name="page_setup_status_description">Set up from Status</string>
-	<string name="page_setup_file_description">Set up from File operations</string>
-	<string name="page_setup_database_description">Set up from Database operations</string>
+	<string name="action_clear_sql">Clear SQLs</string>
+	<string name="action_help">Help</string>
+	<string name="action_credits">Credits</string>
+	<string name="action_provider_info">Providers</string>
+	<string name="action_appsettings">Application</string>
+	<string name="action_theme_system">Theme follows system</string>
+	<string name="action_theme_night">Night theme</string>
+	<string name="action_theme_day">Day theme</string>
+	<!-- description -->
+	<string name="description_action_database">Get database</string>
+	<string name="description_action_indexes">Make database indexes</string>
+	<string name="description_action_send">Send to developer</string>
+	<string name="description_info_database">Info about database</string>
 
 	<!-- TITLES -->
 
@@ -100,28 +84,22 @@
 	<string name="title_activity_load">Load</string>
 	<string name="title_activity_download">Download</string>
 	<string name="title_activity_assetload">Asset load</string>
-
 	<string name="title_activity_selector">Select</string>
-	<string name="title_email_intent_selector">Choose an Email client</string>
-
 	<string name="title_activity_browse2">Data</string>
 	<string name="title_activity_table">Table</string>
-
 	<string name="title_activity_diagnostics">Diagnostics</string>
 
+	<string name="title_dialog_select_email">Choose an Email client</string>
 	<string name="title_dialog_sql">SQL</string>
-	<string name="title_download">SqlUNet download</string>
-
-	<string name="title_running_diagnostics">Running diagnostics…</string>
-
-	<string name="title_asset_pack_delivery">Asset pack delivery</string>
+	<string name="title_dialog_info_download">SqlUNet download</string>
+	<string name="title_dialog_assetload">Asset pack delivery</string>
+	<string name="description_assetload">Load database from assets</string>
 
 	<!-- send -->
-	<string name="send_activity_browse">Semantikos</string>
-	<string name="send_activity_searchtext">Semantikos (Text)</string>
+	<string name="title_intentfilter_send_activity_browse">Semantikos</string>
+	<string name="title_intentfilter_send_activity_searchtext">Semantikos (Text)</string>
 
 	<!-- _status -->
-	<!--<string name="status_data_fail">Data is unavailable</string>-->
 	<string name="status_database">Database</string>
 	<string name="status_indexes">Indexes</string>
 	<string name="status_download_pending">pending</string>
@@ -144,8 +122,6 @@
 	<string name="status_download_paused_unknown">unknown</string>
 	<string name="status_download_paused_waiting_for_network">waiting for network</string>
 	<string name="status_download_paused_waiting_to_retry">waiting to retry</string>
-	<string name="status_state_unknown" />
-	<string name="status_managing">Managing</string>
 	<string name="status_task_running">running</string>
 	<string name="status_task_done">done</string>
 	<string name="status_task_success">success</string>
@@ -153,20 +129,35 @@
 	<string name="status_task_start_toast">Task started</string>
 	<string name="status_task_done_toast">Task done</string>
 	<string name="status_viewer_failed">No viewer</string>
+	<string name="status_managing">Managing</string>
+	<string name="status_clipboard_copied">Copied to clipboard</string>
+	<string name="status_diagnostics_running">Running diagnostics…</string>
+	<string name="status_state_unknown" />
 
-	<!-- description -->
-	<string name="description_action_database">Get database</string>
-	<string name="description_info_database">Info about database</string>
-	<string name="description_action_indexes">Make database indexes</string>
-	<string name="description_action_send">Send to developer</string>
+	<!-- pages -->
+	<string name="title_page_setup_status">Status</string>
+	<string name="title_page_setup_file">File</string>
+	<string name="title_page_setup_database">Database</string>
+	<string name="description_page_setup_status">Set up from Status</string>
+	<string name="description_page_setup_file">Set up from File operations</string>
+	<string name="description_page_setup_database">Set up from Database operations</string>
 
-	<!-- copy -->
-	<string name="copy_copied">Copied to clipboard</string>
+	<!-- dialog -->
+	<string name="yes">Yes</string>
+	<string name="no">No</string>
+	<string name="ask_drop">Do you wish to drop the database ?</string>
+	<string name="description_cancel">Cancel operation</string>
+
+	<!-- gloss -->
+	<string name="gloss_load">You need to acquire database</string>
+	<string name="gloss_assetload">Load database from the bundle associated with the application. This is the recommended way.</string>
+	<string name="gloss_download">Download database from external site.</string>
+	<string name="gloss_asset_delivery_message">Database is being delivered as an asset pack.\nThis may take some time.</string>
 
 	<!-- service -->
 	<string name="service_downloader">service_downloader</string>
-	<string name="description_service_downloader">Downloader Service</string>
 	<string name="service_zip_downloader">service_zip_downloader</string>
+	<string name="description_service_downloader">Downloader Service</string>
 	<string name="description_service_zip_downloader">Zip Downloader Service</string>
 
 	<!-- misc -->
@@ -176,41 +167,33 @@
 	<string name="hint_splash_searchtext">Text search</string>
 	<string name="hint_sql">SQL statements stack</string>
 
-	<!-- items -->
+	<!-- provider items -->
+	<string name="providers">content providers</string>
+	<string name="provider_authority">authority</string>
+	<string name="suggestions">suggestions</string>
+	<string name="suggestion_provider_pack">package</string>
+	<string name="suggestion_provider_authority">authority</string>
+	<string name="suggestion_provider_path">path</string>
+
+	<!-- download items -->
 	<string name="download_source">source</string>
-	<string name="download_dest">destination</string>
 	<string name="download_up">available source</string>
 	<string name="download_newer">source is possibly newer</string>
-	<!--<string name="download_current">current database</string>-->
 	<string name="download_down">current database</string>
-	<string name="item">item</string>
+	<string name="download_dest">destination</string>
 	<string name="md5_downloaded">Downloaded</string>
 	<string name="md5_computed">Computed</string>
 	<string name="md5_compared">Compared</string>
-	<!--<string name="md5_expected">Expected MD5</string>-->
 	<string name="size_expected">Expected size</string>
 	<string name="size_current">Current size</string>
 	<string name="total">total</string>
 	<string name="text_search">text search</string>
+
+	<!-- statement items -->
 	<string name="unit_statement">statements</string>
 
-	<!-- databases -->
-	<string name="sqlunet">SqlUNet</string>
-
-	<!-- dialog -->
-	<string name="yes">Yes</string>
-	<string name="no">No</string>
-	<string name="ask_drop">Do you wish to drop the database ?</string>
-	<string name="asset_delivery">Asset Pack delivery</string>
-	<string name="asset_delivery_message">Database is being delivered as an asset pack.\nThis may take some time.</string>
-
-	<!-- gloss -->
-	<string name="gloss_load">You need to acquire database</string>
-	<string name="gloss_assetload">Load database from the bundle associated with the application. This is the recommended way.</string>
-	<string name="gloss_download">Download database from external site.</string>
-
-	<!-- prefs -->
-	<string name="pref_sql_category">SQL</string>
+	<!-- rows -->
+	<string name="description_row">row</string>
 
 	<!-- columns -->
 	<string name="description_column_id">id</string>

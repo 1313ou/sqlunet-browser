@@ -160,6 +160,8 @@ public class DownloadService extends JobIntentService
 		super();
 	}
 
+	// L I F E C Y C L E
+
 	/**
 	 * OnCreate
 	 */
@@ -607,5 +609,4 @@ public class DownloadService extends JobIntentService
 	{
 		enqueueWork(context, DownloadService.class, JOB_ID, work);
 	}
-
 }
