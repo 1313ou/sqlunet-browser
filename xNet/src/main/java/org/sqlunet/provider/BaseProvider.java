@@ -496,7 +496,7 @@ public abstract class BaseProvider extends ContentProvider
 	 */
 	static public void resizeSql(final int capacity)
 	{
-		Log.d(TAG, "Sql buffer capacity " + capacity);
+		// Log.d(TAG, "Sql buffer capacity " + capacity);
 		sqlBuffer = new CircularBuffer(capacity);
 	}
 
