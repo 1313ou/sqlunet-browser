@@ -32,7 +32,15 @@ public class Settings
 			{
 				return DOWNLOAD_ZIP_SERVICE;
 			}
-			return Downloader.valueOf(preferredDownloader);
+			try
+			{
+				return Downloader.valueOf(preferredDownloader);
+			}
+			catch (IllegalArgumentException iae)
+			{
+				PreferenceManager.getDefaultSharedPreferences(context).edit().clear().apply();
+				return DOWNLOAD_ZIP_SERVICE;
+			}
 		}
 
 		@Nullable
