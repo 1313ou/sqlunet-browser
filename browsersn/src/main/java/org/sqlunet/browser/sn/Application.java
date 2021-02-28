@@ -21,8 +21,8 @@ public class Application extends AbstractApplication
 	public void onCreate()
 	{
 		super.onCreate();
+		Settings.initializeSelectorPrefs(this);
 		setAllColorsFromResources(this);
-		Settings.initialize(this);
 	}
 
 	@Override

@@ -9,7 +9,6 @@ import android.util.Log;
 
 import org.sqlunet.browser.AbstractApplication;
 import org.sqlunet.nightmode.NightMode;
-import org.sqlunet.settings.Settings;
 import org.sqlunet.style.Colors;
 
 import androidx.annotation.NonNull;
@@ -23,7 +22,6 @@ public class Application extends AbstractApplication
 	{
 		super.onCreate();
 		setAllColorsFromResources(this);
-		Settings.initialize(this);
 	}
 
 	@Override

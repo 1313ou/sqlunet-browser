@@ -244,15 +244,13 @@ public class Settings extends org.sqlunet.settings.Settings
 	}
 
 	/**
-	 * Initialize preferences
+	 * Initialize selector preferences
 	 *
 	 * @param context context
 	 */
 	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
-	static public void initialize(@NonNull final Context context)
+	static public void initializeSelectorPrefs(@NonNull final Context context)
 	{
-		org.sqlunet.settings.Settings.initialize(context);
-
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		final SharedPreferences.Editor editor = sharedPref.edit();
 
