@@ -4,14 +4,14 @@
 
 <resources>
 
-	<string name="asset_zip_entry" translatable="false"></string>
+	<string name="asset_zip_entry" translatable="false" />
 
-	<string name="asset_primary" translatable="false"></string>
-	<string name="asset_dir_primary" translatable="false"></string>
-	<string name="asset_zip_primary" translatable="false"></string>
+	<string name="asset_primary" translatable="false" />
+	<string name="asset_dir_primary" translatable="false" />
+	<string name="asset_zip_primary" translatable="false" />
 
-	<string name="asset_alt" translatable="false"></string>
-	<string name="asset_dir_alt" translatable="false"></string>
-	<string name="asset_zip_alt" translatable="false"></string>
+	<string name="asset_alt" translatable="false" />
+	<string name="asset_dir_alt" translatable="false" />
+	<string name="asset_zip_alt" translatable="false" />
 
 </resources>

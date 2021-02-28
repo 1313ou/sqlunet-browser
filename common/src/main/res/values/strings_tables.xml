@@ -7,6 +7,6 @@
 	<string-array name="required_tables">
 		<item>sources</item>
 	</string-array>
-	<string-array name="required_indexes"></string-array>
+	<string-array name="required_indexes" />
 
 </resources>

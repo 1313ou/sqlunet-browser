@@ -2,7 +2,7 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
 	<style name="ActionButton" parent="Widget.AppCompat.Button.Borderless" />
 

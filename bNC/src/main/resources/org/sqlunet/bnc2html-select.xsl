@@ -14,6 +14,6 @@
 		</DIV>
 	</xsl:template>
 
-	<xsl:template match="bnc"></xsl:template>
+	<xsl:template match="bnc" />
 
 </xsl:transform>
