@@ -7,7 +7,7 @@ logo_list="ic_logo.svg"
 logo_app_list="logo_app.svg"
 splash_list="ic_splash.svg"
 supersplash_list="home.svg"
-icon_list="ic_search_vnexample.svg ic_search_pbexample.svg"
+icon_list="ic_xselector.svg ic_search_vnexample.svg ic_search_pbexample.svg"
 
 make_mipmap "${launch_list}" 48
 make_res "${logo_list}" 64
