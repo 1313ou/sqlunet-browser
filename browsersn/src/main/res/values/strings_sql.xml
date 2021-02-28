@@ -5,10 +5,10 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<integer name="sql_statement_do_indexes_position">1</integer>
+	<integer name="sql_statement_do_indexes_position" tools:keep="@integer/sql_statement_do_indexes_position">1</integer>
 	<integer name="sql_statement_do_ts_wn_position">2</integer>
 
-	<string-array name="sql_statement_titles" tools:ignore="InconsistentArrays">
+	<string-array name="sql_statement_titles" tools:ignore="InconsistentArrays" tools:keep="@array/sql_statement_titles">
 		<item>[SELECT OPERATION]</item>
 		<item>Create all indexes</item>
 		<item>Prepare WordNet text search</item>
@@ -21,7 +21,7 @@
 		<item>Create sampleset View</item>
 		<item>Drop sampleset View</item>
 	</string-array>
-	<string-array name="sql_statements_values" formatted="false" tools:ignore="InconsistentArrays">
+	<string-array name="sql_statements_values" formatted="false" tools:ignore="InconsistentArrays" tools:keep="@array/sql_statements_values">
 		<item/>
 		<item>
 			CREATE INDEX IF NOT EXISTS index_words_lemma ON words(lemma);

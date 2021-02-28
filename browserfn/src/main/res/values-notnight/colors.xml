@@ -2,19 +2,19 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-	<color name="primaryColor">#716D60</color>
-	<color name="primaryDarkColor">#5D5A4C</color>
-	<color name="primaryLightColor">#79735A</color>
-	<color name="onPrimaryColor">#eeeeee</color>
-	<color name="highlightOnPrimaryColor">@android:color/white</color>
+	<color name="primaryColor" tools:keep="@color/primaryColor">#716D60</color>
+	<color name="primaryDarkColor" tools:keep="@color/primaryDarkColor">#5D5A4C</color>
+	<color name="primaryLightColor" tools:keep="@color/primaryLightColor">#79735A</color>
+	<color name="onPrimaryColor" tools:keep="@color/onPrimaryColor">#eeeeee</color>
+	<color name="highlightOnPrimaryColor" tools:keep="@color/highlightOnPrimaryColor">@android:color/white</color>
 
-	<color name="secondaryColor">#1de9b6</color>
-	<color name="secondaryLightColor">#6effe8</color>
-	<color name="onSecondaryColor">#000000</color>
+	<color name="secondaryColor" tools:keep="@color/secondaryColor">#1de9b6</color>
+	<color name="secondaryLightColor" tools:keep="@color/secondaryLightColor">#6effe8</color>
+	<color name="onSecondaryColor" tools:keep="@color/onSecondaryColor">#000000</color>
 
-	<color name="colorHighlightOnBackground">#007B66</color>
-	<color name="colorDimmedOnBackground">#808080</color>
+	<color name="colorHighlightOnBackground" tools:keep="@color/colorHighlightOnBackground">#007B66</color>
+	<color name="colorDimmedOnBackground" tools:keep="@color/colorDimmedOnBackground">#808080</color>
 
 </resources>

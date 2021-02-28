@@ -12,7 +12,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:orientation="vertical">
-
+		<!--
 		<TextView
 			style="@style/Label.Info"
 			android:layout_width="wrap_content"
@@ -32,7 +32,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="@string/label_contents"/>
-
+		-->
 		<RelativeLayout
 			android:id="@+id/data_contents"
 			style="@style/Data.Contents"

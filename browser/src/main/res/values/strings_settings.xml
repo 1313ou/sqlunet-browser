@@ -5,13 +5,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<!-- Launch -->
-	<string-array name="pref_launch_list_titles" tools:ignore="InconsistentArrays">
+	<string-array name="pref_launch_list_titles" tools:ignore="InconsistentArrays" tools:keep="@array/pref_launch_list_titles">
 		<item>Main</item>
 		<item>Browse</item>
 		<item>Browse PredicateMatrix</item>
 		<item>Search text</item>
 	</string-array>
-	<string-array name="pref_launch_list_values" tools:ignore="InconsistentArrays">
+	<string-array name="pref_launch_list_values" tools:ignore="InconsistentArrays" tools:keep="@array/pref_launch_list_values">
 		<item>@string/pref_default_launch</item>
 		<item>org.sqlunet.browser.BrowseActivity</item>
 		<item>org.sqlunet.browser.BrowsePredicateMatrixActivity</item>
@@ -19,17 +19,17 @@
 	</string-array>
 
 	<!-- Filter -->
-	<string name="pref_title_link_recursion">Link max recursion</string>
-	<string name="pref_description_link_recursion">Link max recursion level (-1=unbounded)</string>
-	<string name="pref_title_enable_wordnet">Enable WordNet</string>
-	<string name="pref_description_enable_wordnet">Display WordNet information</string>
-	<string name="pref_title_enable_verbnet">Enable VerbNet</string>
-	<string name="pref_description_enable_verbnet">Display VerbNet information</string>
-	<string name="pref_title_enable_propbank">Enable PropBank</string>
-	<string name="pref_description_enable_propbank">Display PropBank information</string>
-	<string name="pref_title_enable_framenet">Enable FrameNet</string>
-	<string name="pref_description_enable_framenet">Display FrameNet information</string>
-	<string name="pref_title_enable_bnc">Enable BNC</string>
-	<string name="pref_description_enable_bnc">Display BNC information</string>
+	<string name="pref_title_link_recursion" tools:keep="@string/pref_title_link_recursion">Link max recursion</string>
+	<string name="pref_description_link_recursion" tools:keep="@string/pref_description_link_recursion">Link max recursion level (-1=unbounded)</string>
+	<string name="pref_title_enable_wordnet" tools:keep="@string/pref_title_enable_wordnet">Enable WordNet</string>
+	<string name="pref_description_enable_wordnet" tools:keep="@string/pref_description_enable_wordnet">Display WordNet information</string>
+	<string name="pref_title_enable_verbnet" tools:keep="@string/pref_title_enable_verbnet">Enable VerbNet</string>
+	<string name="pref_description_enable_verbnet" tools:keep="@string/pref_description_enable_verbnet">Display VerbNet information</string>
+	<string name="pref_title_enable_propbank" tools:keep="@string/pref_title_enable_propbank">Enable PropBank</string>
+	<string name="pref_description_enable_propbank" tools:keep="@string/pref_description_enable_propbank">Display PropBank information</string>
+	<string name="pref_title_enable_framenet" tools:keep="@string/pref_title_enable_framenet">Enable FrameNet</string>
+	<string name="pref_description_enable_framenet" tools:keep="@string/pref_description_enable_framenet">Display FrameNet information</string>
+	<string name="pref_title_enable_bnc" tools:keep="@string/pref_title_enable_bnc">Enable BNC</string>
+	<string name="pref_description_enable_bnc" tools:keep="@string/pref_description_enable_bnc">Display BNC information</string>
 
 </resources>

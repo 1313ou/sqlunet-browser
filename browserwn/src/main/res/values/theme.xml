@@ -2,12 +2,12 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-	<style name="MyBaseTheme" parent="Theme.AppCompat.DayNight.NoActionBar" />
+	<style name="MyBaseTheme" parent="Theme.AppCompat.DayNight.NoActionBar" tools:keep="@style/MyBaseTheme" />
 
-	<style name="MyBaseOverlay" parent="ThemeOverlay.AppCompat.DayNight" />
+	<style name="MyBaseOverlay" parent="ThemeOverlay.AppCompat.DayNight" tools:keep="@style/MyBaseOverlay" />
 
-	<style name="MyActionBarBaseOverlay" parent="ThemeOverlay.AppCompat.DayNight.ActionBar" />
+	<style name="MyActionBarBaseOverlay" parent="ThemeOverlay.AppCompat.DayNight.ActionBar" tools:keep="@style/MyActionBarBaseOverlay" />
 
 </resources>

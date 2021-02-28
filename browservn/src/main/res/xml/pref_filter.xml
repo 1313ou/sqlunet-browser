@@ -5,7 +5,9 @@
 <PreferenceScreen
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	app:title="@string/pref_header_filter">
+	xmlns:tools="http://schemas.android.com/tools"
+	app:title="@string/pref_header_filter"
+	tools:keep="@xml/pref_filter">
 
 	<SwitchPreferenceCompat
 		android:defaultValue="true"

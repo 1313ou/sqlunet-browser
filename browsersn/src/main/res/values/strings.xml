@@ -7,7 +7,7 @@
 
 	<!-- app -->
 	<string name="app_name">Semantikos-SyntagNet</string>
-	<string name="app_subname">SyntagNet</string>
+	<string name="app_subname" tools:keep="@string/app_subname">SyntagNet</string>
 
 	<!-- ACTIONS -->
 
@@ -29,13 +29,13 @@
 	<string name="description_action_searchtext_wn">Prepare text search on WordNet</string>
 
 	<!-- database info -->
-	<string name="action_tables_and_indices">Tables and Indices</string>
+<!--	<string name="action_tables_and_indices">Tables and Indices</string>-->
 	<string name="action_table_lexdomains">Lex Domains</string>
 	<string name="action_table_linktypes">Link types</string>
 	<string name="action_table_postypes">POS types</string>
 	<string name="action_table_adjpositiontypes">Adjective Position types</string>
 
 	<!-- hints -->
-	<string name="hint_splash_browse">Exploring senses, relations and collocations</string>
+	<string name="hint_splash_browse" tools:keep="@string/hint_splash_browse">Exploring senses, relations and collocations</string>
 
 </resources>

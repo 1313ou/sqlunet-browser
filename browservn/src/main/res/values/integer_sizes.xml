@@ -13,6 +13,6 @@
 	<integer name="size_searchtext_pb" tools:keep="@integer/size_searchtext_pb">6291456</integer>
 	<integer name="size_searchtext" tools:keep="@integer/size_searchtext">6631424</integer>
 
-	<integer name="size_db_working_total">82100224</integer>
+<!--	<integer name="size_db_working_total">82100224</integer>-->
 
 </resources>

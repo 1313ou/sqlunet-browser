@@ -6,7 +6,8 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context="org.sqlunet.browser.HelpFragment">
+	tools:context="org.sqlunet.browser.HelpFragment"
+	tools:keep="@layout/fragment_help">
 
 	<WebView
 		android:id="@+id/webView"
