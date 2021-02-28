@@ -6,6 +6,6 @@
 
 	<!--S E L E C T O R S -->
 
-	<style name="Data.Icon" tools:keep="@style/Data_Icon"></style>
+	<style name="Data.Icon" tools:keep="@style/Data_Icon" />
 
 </resources>

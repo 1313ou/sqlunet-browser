@@ -205,11 +205,11 @@
 	</xs:element>
 
 	<xs:element name='definition'>
-		<xs:complexType mixed='true'></xs:complexType>
+		<xs:complexType mixed='true' />
 	</xs:element>
 
 	<xs:element name='sample'>
-		<xs:complexType mixed='true'></xs:complexType>
+		<xs:complexType mixed='true' />
 	</xs:element>
 
 	<xs:element name='hypernym' type="semlinkType" />

@@ -91,7 +91,7 @@
 	</xs:element>
 
 	<xs:element name='example'>
-		<xs:complexType mixed='true'></xs:complexType>
+		<xs:complexType mixed='true' />
 	</xs:element>
 
 	<xs:element name='syntax'>
@@ -155,7 +155,7 @@
 	</xs:element>
 
 	<xs:element name='restr'>
-		<xs:complexType mixed='true'></xs:complexType>
+		<xs:complexType mixed='true' />
 	</xs:element>
 
 	<xs:element name='restrs'>
@@ -165,6 +165,6 @@
 	</xs:element>
 
 	<xs:element name='selrestrs'>
-		<xs:complexType mixed='true'></xs:complexType>
+		<xs:complexType mixed='true' />
 	</xs:element>
 </xs:schema>
