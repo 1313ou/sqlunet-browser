@@ -8,7 +8,7 @@
 	<string name="xsqlunet_authority">org.sqlunet.xsqlunet.wn.provider</string>
 	<string name="wordnet_authority">org.sqlunet.wordnet.wn.provider</string>
 	<string name="bnc_authority">org.sqlunet.bnc.wn.provider</string>
-	<string-array name="provider_authorities" tools:ignore="InconsistentArrays">
+	<string-array name="provider_authorities" tools:ignore="InconsistentArrays" tools:keep="@array/provider_authorities">
 		<item>@string/manager_authority</item>
 		<item>@string/xsqlunet_authority</item>
 		<item>@string/wordnet_authority</item>

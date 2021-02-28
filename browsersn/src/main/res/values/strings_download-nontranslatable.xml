@@ -12,16 +12,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<!-- site files -->
-	<string name="pref_default_download_dbfile" translatable="false">sqlunet-sn.db</string>
-	<string name="pref_default_download_sqlfile" translatable="false">sqlunet-sn.sql.zip</string>
-	<string name="pref_default_entry_import" translatable="false">sqlunet-sn.sql</string>
-	<string name="pref_default_entry_index" translatable="false">sqlunet-sn-index.sql</string>
+	<string name="pref_default_download_dbfile" translatable="false" tools:keep="@string/pref_default_download_dbfile">sqlunet-sn.db</string>
+	<string name="pref_default_download_sqlfile" translatable="false" tools:keep="@string/pref_default_download_sqlfile">sqlunet-sn.sql.zip</string>
+	<string name="pref_default_entry_import" translatable="false" tools:keep="@string/pref_default_entry_import">sqlunet-sn.sql</string>
+	<string name="pref_default_entry_index" translatable="false" tools:keep="@string/pref_default_entry_index">sqlunet-sn-index.sql</string>
 
 	<!-- sites -->
-	<string name="pref_bitbucket_31_site_url" translatable="false">https://bitbucket.org/&bbuser;/&bbrepo;/raw/&bbcommit;/31</string>
-	<string name="pref_bitbucket_XX_site_url" translatable="false">https://bitbucket.org/&bbuser;/&bbrepo;/raw/&bbcommit;/XX</string>
-	<string name="pref_default_download_site_url" translatable="false">@string/pref_bitbucket_31_site_url</string>
-	<string-array name="pref_download_site_urls" translatable="false" tools:ignore="InconsistentArrays">
+	<string name="pref_bitbucket_31_site_url" translatable="false" tools:keep="@string/pref_bitbucket_31_site_url">https://bitbucket.org/&bbuser;/&bbrepo;/raw/&bbcommit;/31</string>
+	<string name="pref_bitbucket_XX_site_url" translatable="false" tools:keep="@string/pref_bitbucket_XX_site_url">https://bitbucket.org/&bbuser;/&bbrepo;/raw/&bbcommit;/XX</string>
+	<string name="pref_default_download_site_url" translatable="false" tools:keep="@string/pref_default_download_site_url">@string/pref_bitbucket_31_site_url</string>
+	<string-array name="pref_download_site_urls" translatable="false" tools:ignore="InconsistentArrays" tools:keep="@array/pref_download_site_urls">
 		<item>@string/pref_bitbucket_31_site_url</item>
 		<item>@string/pref_bitbucket_XX_site_url</item>
 		<item>@string/pref_sourceforge_600_31_site_url</item>

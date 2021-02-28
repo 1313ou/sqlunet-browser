@@ -7,7 +7,7 @@
 	<string name="manager_authority" translatable="false">org.sqlunet.manager.fn.provider</string>
 	<string name="xsqlunet_authority" translatable="false">org.sqlunet.xsqlunet.fn.provider</string>
 	<string name="framenet_authority" translatable="false">org.sqlunet.framenet.fn.provider</string>
-	<string-array name="provider_authorities" tools:ignore="InconsistentArrays">
+	<string-array name="provider_authorities" tools:ignore="InconsistentArrays" tools:keep="@array/provider_authorities">
 		<item>@string/manager_authority</item>
 		<item>@string/xsqlunet_authority</item>
 		<item>@string/framenet_authority</item>

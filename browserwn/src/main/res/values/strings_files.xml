@@ -3,14 +3,14 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="hr_size_sqlunet_db">63 MB</string> <!-- sqlunet-wn.db -->
-	<string name="hr_size_sqlunet_db_zip">27 MB</string> <!-- sqlunet-wn.db.zip -->
-	<string name="hr_size_sqlunet_sql_zip">12 MB</string> <!-- sqlunet-wn.sql.zip -->
+	<string name="hr_size_sqlunet_db" tools:keep="@string/hr_size_sqlunet_db">63 MB</string> <!-- sqlunet-wn.db -->
+	<string name="hr_size_sqlunet_db_zip" tools:keep="@string/hr_size_sqlunet_db_zip">27 MB</string> <!-- sqlunet-wn.db.zip -->
+	<string name="hr_size_sqlunet_sql_zip" tools:keep="@string/hr_size_sqlunet_sql_zip">12 MB</string> <!-- sqlunet-wn.sql.zip -->
 
-	<string name="hr_size_searchtext">34 MB</string>
+	<string name="hr_size_searchtext" tools:keep="@string/hr_size_searchtext">34 MB</string>
 
-	<string name="hr_size_db_working_total">97 MB</string>
+	<string name="hr_size_db_working_total" tools:keep="@string/hr_size_db_working_total">97 MB</string>
 
 </resources>

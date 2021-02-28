@@ -6,7 +6,7 @@
 
 	<!-- app -->
 	<string name="app_name">@string/semantikos</string>
-	<string name="app_subname" />
+	<string name="app_subname" tools:keep="@string/app_subname" />
 
 	<!-- ACTIONS -->
 
@@ -42,7 +42,7 @@
 	<string name="description_action_searchtext_fn">Prepare text search on FrameNet</string>
 
 	<!-- database info -->
-	<string name="action_tables_and_indices">Tables and Indices</string>
+<!--	<string name="action_tables_and_indices">Tables and Indices</string>-->
 	<string name="action_table_lexdomains">Lex Domains</string>
 	<string name="action_table_linktypes">Link types</string>
 	<string name="action_table_postypes">POS types</string>
@@ -54,6 +54,5 @@
 
 	<!-- databases -->
 	<string name="source">Source</string>
-	<string name="sqlunet">SqlUNet</string>
 
 </resources>

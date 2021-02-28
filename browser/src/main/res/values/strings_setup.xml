@@ -2,11 +2,11 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="title_predicatematrix">Predicate\nMatrix</string>
-	<string name="execute_predicatematrix">Import PredicateMatrix</string>
-	<string name="info_predicatematrix">Info about PredicateMatrix</string>
-	<string name="info_op_execute_predicatematrix">Execute the specific PredicateMatrix statements to alter the database</string>
+	<string name="title_predicatematrix" tools:keep="@string/title_predicatematrix">Predicate\nMatrix</string>
+	<string name="execute_predicatematrix" tools:keep="@string/execute_predicatematrix">Import PredicateMatrix</string>
+	<string name="info_predicatematrix" tools:keep="@string/info_predicatematrix">Info about PredicateMatrix</string>
+	<string name="info_op_execute_predicatematrix" tools:keep="@string/info_op_execute_predicatematrix">Execute the specific PredicateMatrix statements to alter the database</string>
 
 </resources>

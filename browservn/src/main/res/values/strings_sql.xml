@@ -5,11 +5,11 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<integer name="sql_statement_do_indexes_position">1</integer>
+	<integer name="sql_statement_do_indexes_position" tools:keep="@integer/sql_statement_do_indexes_position">1</integer>
 	<integer name="sql_statement_do_ts_vn_position">2</integer>
 	<integer name="sql_statement_do_ts_pb_position">3</integer>
 
-	<string-array name="sql_statement_titles" tools:ignore="InconsistentArrays">
+	<string-array name="sql_statement_titles" tools:ignore="InconsistentArrays" tools:keep="@array/sql_statement_titles">
 		<item>[SELECT OPERATION]</item>
 		<item>Create all indexes</item>
 		<item>Prepare VerbNet text search</item>
@@ -23,7 +23,7 @@
 		<item>Drop VerbNet text search</item>
 		<item>Drop PropBank text search</item>
 	</string-array>
-	<string-array name="sql_statements_values" formatted="false" tools:ignore="InconsistentArrays">
+	<string-array name="sql_statements_values" formatted="false" tools:ignore="InconsistentArrays" tools:keep="@array/sql_statements_values">
 		<item/>
 		<item>
 			CREATE INDEX IF NOT EXISTS index_words_lemma ON words(lemma);

@@ -3,7 +3,9 @@
   -->
 
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-	android:shape="rectangle">
+	xmlns:tools="http://schemas.android.com/tools"
+	android:shape="rectangle"
+	tools:keep="@drawable/bg_nav">
 	<gradient
 		android:angle="135"
 		android:centerColor="?attr/colorPrimary"

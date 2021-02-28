@@ -3,8 +3,8 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="license_key" translatable="false">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnndMPFJ8mNynDqO+iY9aqbANn9AYOuQohF5lNM7RK0HaILybgRAkJ4tKaGPwA4Ud9NqL8gG8USSRO60SVjkBZQjG1ahl0F2m3GMciGzskjihWCZs038HCe/2KVCcELL3YKw0lnJ7re9JK5x7gltBz8awPaTpFou2cYZN5hSJeJ62Jp9Srto90pR0gPNuQ1AQE4OYS/u9yTCZ4Td7MyMp0UhUCYp/cXAOr/C9f4BywQ8owL+tpdhesT6TeAf3xYsIkODr6sozE73YnaIrD10GCBITSrdU/ECXWgw7G9E3vcNR6LWgMwMXHD/6bRFdc/4C+wGV7NiouOyLTOgv2/nltQIDAQAB</string>
+	<string name="license_key" translatable="false" tools:keep="@string/license_key">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnndMPFJ8mNynDqO+iY9aqbANn9AYOuQohF5lNM7RK0HaILybgRAkJ4tKaGPwA4Ud9NqL8gG8USSRO60SVjkBZQjG1ahl0F2m3GMciGzskjihWCZs038HCe/2KVCcELL3YKw0lnJ7re9JK5x7gltBz8awPaTpFou2cYZN5hSJeJ62Jp9Srto90pR0gPNuQ1AQE4OYS/u9yTCZ4Td7MyMp0UhUCYp/cXAOr/C9f4BywQ8owL+tpdhesT6TeAf3xYsIkODr6sozE73YnaIrD10GCBITSrdU/ECXWgw7G9E3vcNR6LWgMwMXHD/6bRFdc/4C+wGV7NiouOyLTOgv2/nltQIDAQAB</string>
 
 </resources>

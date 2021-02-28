@@ -10,6 +10,6 @@
 
 	<integer name="size_searchtext" tools:keep="@integer/size_searchtext">180764672</integer>
 
-	<integer name="size_db_working_total">720359424</integer>
+<!--	<integer name="size_db_working_total">720359424</integer>-->
 
 </resources>

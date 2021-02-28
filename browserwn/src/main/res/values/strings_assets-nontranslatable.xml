@@ -2,12 +2,12 @@
   ~ Copyright (c) 2020. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="asset_zip_entry" translatable="false">sqlunet-wn.db</string>
+	<string name="asset_zip_entry" translatable="false" tools:keep="@string/asset_zip_entry">sqlunet-wn.db</string>
 
-	<string name="asset_primary" translatable="false">dbwn_wn31_asset</string>
-	<string name="asset_dir_primary" translatable="false">31</string>
-	<string name="asset_zip_primary" translatable="false">sqlunet-wn.db.zip</string>
+	<string name="asset_primary" translatable="false" tools:keep="@string/asset_primary">dbwn_wn31_asset</string>
+	<string name="asset_dir_primary" translatable="false" tools:keep="@string/asset_dir_primary">31</string>
+	<string name="asset_zip_primary" translatable="false" tools:keep="@string/asset_zip_primary">sqlunet-wn.db.zip</string>
 
 </resources>

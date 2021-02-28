@@ -2,16 +2,16 @@
   ~ Copyright (c) 2020. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="asset_zip_entry" translatable="false">sqlunet-sn.db</string>
+	<string name="asset_zip_entry" translatable="false" tools:keep="@string/asset_zip_entry">sqlunet-sn.db</string>
 
-	<string name="asset_primary" translatable="false">dbsn_wn31_asset</string>
-	<string name="asset_dir_primary" translatable="false">31</string>
-	<string name="asset_zip_primary" translatable="false">sqlunet-sn.db.zip</string>
+	<string name="asset_primary" translatable="false" tools:keep="@string/asset_primary">dbsn_wn31_asset</string>
+	<string name="asset_dir_primary" translatable="false" tools:keep="@string/asset_dir_primary">31</string>
+	<string name="asset_zip_primary" translatable="false" tools:keep="@string/asset_zip_primary">sqlunet-sn.db.zip</string>
 
-	<string name="asset_alt" translatable="false">dbsn_ewn_asset</string>
-	<string name="asset_dir_alt" translatable="false">XX</string>
-	<string name="asset_zip_alt" translatable="false">sqlunet-sn.db.zip</string>
+	<string name="asset_alt" translatable="false" tools:keep="@string/asset_alt">dbsn_ewn_asset</string>
+	<string name="asset_dir_alt" translatable="false" tools:keep="@string/asset_dir_alt">XX</string>
+	<string name="asset_zip_alt" translatable="false" tools:keep="@string/asset_zip_alt">sqlunet-sn.db.zip</string>
 
 </resources>

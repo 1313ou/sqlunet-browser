@@ -7,7 +7,8 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="vertical"
-	tools:context="org.sqlunet.browser.config.SetupDatabaseFragment">
+	tools:context="org.sqlunet.browser.config.SetupDatabaseFragment"
+	tools:keep="@layout/fragment_setup_database">
 
 	<Spinner
 		android:id="@+id/task_spinner"

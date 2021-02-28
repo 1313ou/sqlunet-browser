@@ -9,7 +9,8 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:theme="@style/MyCustomBackgroundAppTheme"
-	tools:context="org.sqlunet.browser.HomeFragment">
+	tools:context="org.sqlunet.browser.HomeFragment"
+	tools:keep="@layout/fragment_home">
 
 	<ImageView
 		android:id="@+id/splash"

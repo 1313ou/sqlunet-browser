@@ -12,7 +12,7 @@
 	<string name="bnc_authority" translatable="false">org.sqlunet.bnc.provider</string>
 	<string name="predicatematrix_authority" translatable="false">org.sqlunet.predicatematrix.provider</string>
 
-	<string-array name="provider_authorities" tools:ignore="InconsistentArrays">
+	<string-array name="provider_authorities" tools:ignore="InconsistentArrays" tools:keep="@array/provider_authorities">
 		<item>@string/manager_authority</item>
 		<item>@string/xsqlunet_authority</item>
 		<item>@string/wordnet_authority</item>

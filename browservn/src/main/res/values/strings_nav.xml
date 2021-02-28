@@ -3,11 +3,11 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="nav_header_title">Semantikos</string>
-	<string name="nav_header_subtitle">VerbNet/PropBank</string>
+	<string name="nav_header_title" tools:keep="@string/nav_header_title">Semantikos</string>
+	<string name="nav_header_subtitle" tools:keep="@string/nav_header_subtitle">VerbNet/PropBank</string>
 
-	<string name="nav_home">Semantikos</string>
+	<string name="nav_home" tools:keep="@string/nav_home">Semantikos</string>
 
 </resources>

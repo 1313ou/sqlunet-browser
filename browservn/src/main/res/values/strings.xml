@@ -7,7 +7,7 @@
 
 	<!-- app -->
 	<string name="app_name">Semantikos-VerbNet</string>>
-	<string name="app_subname">VerbNet</string>
+	<string name="app_subname" tools:keep="@string/app_subname">VerbNet</string>
 
 	<!-- actions -->
 	<string name="action_setup_searchtext_vn" tools:keep="@string/action_setup_searchtext_vn">Setup text search for VerbNet</string>
@@ -25,7 +25,7 @@
 	<string name="description_action_searchtext_pb">Prepare text search on PropBank</string>
 
 	<!-- hints -->
-	<string name="hint_splash_browse">Exploring semantic roles</string>
+	<string name="hint_splash_browse" tools:keep="@string/hint_splash_browse">Exploring semantic roles</string>
 
 	<!-- databases -->
 	<string name="source">Source</string>

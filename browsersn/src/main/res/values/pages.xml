@@ -3,8 +3,8 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="fragment_class_setup_status_page" translatable="false">org.sqlunet.browser.sn.SetupSnStatusFragment</string> <!-- 0 -->
+	<string name="fragment_class_setup_status_page" translatable="false" tools:keep="@string/fragment_class_setup_status_page">org.sqlunet.browser.sn.SetupSnStatusFragment</string> <!-- 0 -->
 
 </resources>
