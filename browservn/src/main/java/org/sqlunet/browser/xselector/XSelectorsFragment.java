@@ -324,14 +324,17 @@ public class XSelectorsFragment extends ExpandableListFragment
 		super.onSaveInstanceState(outState);
 
 		// serialize and persist the activated group state
-		final ExpandableListView expandableListView = getExpandableListView();
 		int groupCount = this.xnCursor.getCount();
 		int groupState = 0;
-		for (int i = 0; i < groupCount; i++)
+		final ExpandableListView expandableListView = getExpandableListView();
+		if (expandableListView != null)
 		{
-			if (expandableListView.isGroupExpanded(i))
+			for (int i = 0; i < groupCount; i++)
 			{
-				groupState |= (1 << i);
+				if (expandableListView.isGroupExpanded(i))
+				{
+					groupState |= (1 << i);
+				}
 			}
 		}
 		outState.putInt(STATE_GROUPS, groupState);
@@ -428,11 +431,14 @@ public class XSelectorsFragment extends ExpandableListFragment
 	public void resetAdapter()
 	{
 		CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
-		for (int i = 0; i < adapter.getGroupCount(); i++)
+		if (adapter != null)
 		{
-			adapter.setChildrenCursor(i, null);
+			for (int i = 0; i < adapter.getGroupCount(); i++)
+			{
+				adapter.setChildrenCursor(i, null);
+			}
+			//adapter.setGroupCursor(null);
 		}
-		//adapter.setGroupCursor(null);
 		//setListAdapter(null);
 	}
 

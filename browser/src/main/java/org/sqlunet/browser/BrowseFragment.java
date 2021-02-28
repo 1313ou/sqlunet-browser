@@ -404,6 +404,7 @@ public class BrowseFragment extends BaseSearchFragment
 	protected boolean triggerFocusSearch()
 	{
 		Fragment active = getChildFragmentManager().findFragmentById(R.id.container_browse);
+		assert active != null;
 		return "fragment_splash".equals(active.getTag());
 	}
 

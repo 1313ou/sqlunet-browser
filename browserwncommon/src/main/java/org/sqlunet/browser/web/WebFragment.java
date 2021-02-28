@@ -45,6 +45,7 @@ import org.sqlunet.wordnet.WordPointer;
 import org.sqlunet.wordnet.sql.WordNetImplementation;
 import org.w3c.dom.Document;
 
+import java.net.URL;
 import java.net.URLDecoder;
 
 import androidx.annotation.NonNull;
@@ -431,7 +432,9 @@ public class WebFragment extends Fragment
 			if (BuildConfig.DEBUG)
 			{
 				LogUtils.writeLog(data, false, null);
-				DomValidator.validateStrings(DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd"), data);
+				final URL xsd = DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd");
+				assert xsd != null;
+				DomValidator.validateStrings(xsd, data);
 				Log.d(TAG, "output=\n" + data);
 			}
 		}
@@ -490,7 +493,9 @@ public class WebFragment extends Fragment
 
 			if (BuildConfig.DEBUG)
 			{
-				DomValidator.validateDocs(DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd"), wnDomDoc, bncDomDoc);
+				final URL xsd = DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd");
+				assert xsd != null;
+				DomValidator.validateDocs(xsd, wnDomDoc, bncDomDoc);
 				LogUtils.writeLog(false, null, wnDomDoc, bncDomDoc);
 				LogUtils.writeLog(data, false, null);
 				Log.d(TAG, "output=\n" + data);

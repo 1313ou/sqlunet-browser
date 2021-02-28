@@ -7,7 +7,7 @@ package org.sqlunet.provider;
 import android.database.Cursor;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class CursorDump
 {
@@ -16,7 +16,7 @@ public class CursorDump
 	/**
 	 * Dump any cursor (discover its schema)
 	 */
-	static public void dump(@NonNull final Cursor cursor)
+	static public void dump(@Nullable final Cursor cursor)
 	{
 		if (cursor == null)
 		{
@@ -51,8 +51,13 @@ public class CursorDump
 	/**
 	 * Dump X cursor (x selector query)
 	 */
-	static public void dumpXCursor(@NonNull final Cursor cursor)
+	static public void dumpXCursor(@Nullable final Cursor cursor)
 	{
+		if (cursor == null)
+		{
+			Log.i("dump", "null cursor");
+			return;
+		}
 		if (cursor.moveToFirst())
 		{
 			final int idWordId = cursor.getColumnIndex(XSqlUNetContract.Words_XNet_U.WORDID);

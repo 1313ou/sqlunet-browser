@@ -157,7 +157,7 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	 * @param parent       org.w3c.dom.Node the walk will attach results to
 	 * @param collocations collocations
 	 */
-	static private void walk(@SuppressWarnings("unused") final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, @NonNull final Iterable<Collocation.WithDefinitionAndPos> collocations)
+	static private void walk(@SuppressWarnings("UnusedParameters") final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, @NonNull final Iterable<Collocation.WithDefinitionAndPos> collocations)
 	{
 		int i = 1;
 		for (final Collocation.WithDefinitionAndPos collocation : collocations)

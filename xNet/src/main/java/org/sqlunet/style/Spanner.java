@@ -316,7 +316,10 @@ public class Spanner
 				for (final SpanFactory spanFactory : factories)
 				{
 					final Object span = spanFactory.make(flags);
-					applySpan(sb, from, to, span);
+					if (span != null)
+					{
+						applySpan(sb, from, to, span);
+					}
 				}
 			}
 		}

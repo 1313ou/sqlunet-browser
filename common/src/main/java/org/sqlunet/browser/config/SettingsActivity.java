@@ -238,13 +238,14 @@ public class SettingsActivity extends BaseSettingsActivity
 			addPreferencesFromResource(R.xml.pref_database);
 
 			final Preference dbFilePreference = findPreference(Settings.PREF_DB_FILE);
-			String storage = StorageSettings.getDatabasePath(getContext());
+			assert dbFilePreference != null;
+			String storage = StorageSettings.getDatabasePath(requireContext());
 			dbFilePreference.setSummary(storage);
 			dbFilePreference.setOnPreferenceChangeListener((preference, newValue) -> {
 				String storage2 = (String) newValue;
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && StorageUtils.DirType.AUTO.toString().equals(newValue)) //
 				{
-					storage2 = getContext().getFilesDir().getAbsolutePath();
+					storage2 = requireContext().getFilesDir().getAbsolutePath();
 				}
 				storage2 += File.separatorChar + Storage.DBFILE;
 				dbFilePreference.setSummary(storage2);
@@ -281,13 +282,14 @@ public class SettingsActivity extends BaseSettingsActivity
 			addPreferencesFromResource(R.xml.pref_database2);
 
 			final Preference dbFilePreference = findPreference(Settings.PREF_DB_FILE);
-			String storage = StorageSettings.getDatabasePath(getContext());
+			assert dbFilePreference != null;
+			String storage = StorageSettings.getDatabasePath(requireContext());
 			dbFilePreference.setSummary(storage);
 			dbFilePreference.setOnPreferenceChangeListener((preference, newValue) -> {
 				String storage2 = (String) newValue;
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && StorageUtils.DirType.AUTO.toString().equals(newValue)) //
 				{
-					storage2 = getContext().getFilesDir().getAbsolutePath();
+					storage2 = requireContext().getFilesDir().getAbsolutePath();
 				}
 				storage2 += File.separatorChar + Storage.DBFILE;
 				dbFilePreference.setSummary(storage2);
