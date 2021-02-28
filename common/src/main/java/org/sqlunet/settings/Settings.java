@@ -537,7 +537,7 @@ public class Settings
 					// clear some settings
 					.remove(PREF_DOWNLOADER) //
 					.remove(PREF_DOWNLOAD_SITE) //
-					.remove(PREF_DOWNLOAD_SITE) //
+					.remove(PREF_DOWNLOAD_DBFILE) //
 					// flag as 'has run'
 					.putLong(Settings.PREF_VERSION, build).apply();
 		}
