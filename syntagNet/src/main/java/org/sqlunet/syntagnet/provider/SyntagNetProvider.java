@@ -165,7 +165,6 @@ public class SyntagNetProvider extends BaseProvider
 				throw new RuntimeException("Malformed URI " + uri);
 		}
 
-		//noinspection ConstantConditions
 		final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, actualSortOrder, null);
 		logSql(sql, selectionArgs);
 		if (BaseProvider.logSql)
