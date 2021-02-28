@@ -13,6 +13,7 @@ import android.util.Log;
 
 import org.sqlunet.browser.common.R;
 import org.sqlunet.nightmode.NightMode;
+import org.sqlunet.settings.Settings;
 
 import java.util.List;
 
@@ -24,6 +25,13 @@ import static org.sqlunet.nightmode.NightMode.nightModeToString;
 abstract public class AbstractApplication extends Application
 {
 	static private final String LOG = "AApplication";
+
+	@Override
+	public void onCreate()
+	{
+		super.onCreate();
+		Settings.initializeDisplayPrefs(this);
+	}
 
 	@Override
 	public void onConfigurationChanged(@NonNull final Configuration newConfig)
