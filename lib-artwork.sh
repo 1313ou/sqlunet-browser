@@ -135,13 +135,19 @@ function check(){
 	#check_dir ${d}
 }
 
+DELAY=15
 function check_dir(){
 	local d=$1
 	d="$(readlink -m ${d})"
 	echo -e "${MAGENTA}${d}${RESET}"
 	pushd "${d}" > /dev/null
+	if [ -e "./assets" ]; then
+		echo -en "${YELLOW}"
+		find -L ./assets -name '*.png' -mmin +${DELAY}
+		echo -en "${RESET}"
+	fi
 	echo -en "${RED}"
-	find -L . -name '*.png' -mmin +15
+	find -L ./res -name '*.png' -mmin +${DELAY}
 	echo -en "${RESET}"
 	popd > /dev/null
 }
