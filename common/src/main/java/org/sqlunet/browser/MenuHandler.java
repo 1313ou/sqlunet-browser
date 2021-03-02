@@ -4,9 +4,12 @@
 
 package org.sqlunet.browser;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.bbou.donate.DonateActivity;
@@ -30,6 +33,8 @@ import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.PreferenceManager;
@@ -421,5 +426,31 @@ public class MenuHandler
 		// start activity
 		activity.startActivity(intent);
 		return true;
+	}
+
+	static public void populateAssets(@NonNull Context context, @NonNull Menu menu)
+	{
+		MenuItem menuItem = menu.findItem(R.id.action_assets);
+		if (menuItem != null)
+		{
+			Menu subMenu = menuItem.getSubMenu();
+			if (subMenu != null)
+			{
+				final Resources res = context.getResources();
+				setAssetActionTitle(res, subMenu.findItem(R.id.action_asset_deliver_primary), R.string.action_asset_deliver_format, R.string.asset_primary_name);
+				setAssetActionTitle(res, subMenu.findItem(R.id.action_asset_dispose_primary), R.string.action_asset_dispose_format, R.string.asset_primary_name);
+				setAssetActionTitle(res, subMenu.findItem(R.id.action_asset_deliver_alt), R.string.action_asset_deliver_format, R.string.asset_alt_name);
+				setAssetActionTitle(res, subMenu.findItem(R.id.action_asset_dispose_alt), R.string.action_asset_dispose_format, R.string.asset_alt_name);
+			}
+		}
+	}
+
+	static private void setAssetActionTitle(@NonNull final Resources res, @Nullable final MenuItem menuItem, @StringRes int formatId, @StringRes int assetNameId)
+	{
+		if (menuItem != null)
+		{
+			String title = String.format(res.getString(formatId), res.getString(assetNameId));
+			menuItem.setTitle(title);
+		}
 	}
 }
