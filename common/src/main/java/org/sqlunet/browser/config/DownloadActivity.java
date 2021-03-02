@@ -72,4 +72,11 @@ public class DownloadActivity extends org.sqlunet.download.DownloadActivity
 		}
 		return MenuHandler.menuDispatchWhenCantRun(this, item);
 	}
+
+	@Override
+	public boolean onPrepareOptionsMenu(final Menu menu)
+	{
+		MenuHandler.populateAssets(this, menu);
+		return super.onPrepareOptionsMenu(menu);
+	}
 }

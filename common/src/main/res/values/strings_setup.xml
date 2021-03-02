@@ -46,6 +46,8 @@
 	<string name="action_asset_deliver_alt">Deliver alt asset</string>
 	<string name="action_asset_dispose_primary">Dispose of primary asset</string>
 	<string name="action_asset_dispose_alt">Dispose of alt asset</string>
+	<string name="action_asset_deliver_format">Deliver asset %1$s</string>
+	<string name="action_asset_dispose_format">Dispose of asset %1$s</string>
 	<string name="action_asset_deploy">Deploy asset</string>
 	<string name="action_asset_md5">Asset MD5</string>
 	<string name="action_asset_installed">Asset installed</string>

@@ -95,6 +95,9 @@
 	<string name="title_dialog_assetload">Asset pack delivery</string>
 	<string name="description_assetload">Load database from assets</string>
 
+	<!-- format -->
+	<string name="title_named_asset">Asset %1$s</string>
+
 	<!-- send -->
 	<string name="title_intentfilter_send_activity_browse">Semantikos</string>
 	<string name="title_intentfilter_send_activity_searchtext">Semantikos (Text)</string>
