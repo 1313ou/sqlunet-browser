@@ -10,6 +10,8 @@
 
 	<style name="MyTheme" parent="MyXBaseTheme">
 
+		<!-- C O L O R S -->
+
 		<!-- framework colors -->
 		<item name="android:colorBackground">@color/backgroundColor</item>
 		<item name="android:colorForeground">@color/foregroundColor</item>
@@ -32,13 +34,15 @@
 		<item name="colorHighlightOnBackground">@color/colorHighlightOnBackground</item>
 		<item name="colorDimmedOnBackground">@color/colorDimmedOnBackground</item>
 
-		<!-- B A S E -->
+		<!-- O V E R L A Y S -->
 
 		<!-- action bar theme UI -->
 		<item name="actionBarTheme">@style/MyActionBarTheme</item>
 
 		<!-- action bar popup theme UI -->
 		<item name="actionBarPopupTheme">@style/MyActionbarPopupTheme</item>
+
+		<!-- S T Y L E S -->
 
 		<!-- action bar -->
 		<item name="android:actionBarStyle">@style/MyActionBarStyle</item>
@@ -47,11 +51,13 @@
 		<item name="android:dropDownListViewStyle">@style/MyDropDownListViewStyle</item>
 		<item name="android:dropDownItemStyle">@style/MyDropDownItemStyle</item>
 
-		<!-- background of activated indicator -->
-		<item name="android:activatedBackgroundIndicator">@drawable/bg_listitem</item>
-
 		<!-- autocomplete -->
 		<item name="android:autoCompleteTextViewStyle">@style/MyAutoCompleteTextViewStyle</item>
+
+		<!-- O V E R R I D E S -->
+
+		<!-- background of activated indicator -->
+		<item name="android:activatedBackgroundIndicator">@drawable/bg_listitem</item>
 
 	</style>
 
