@@ -4,24 +4,13 @@
 
 <resources>
 
-	<!-- O V E R L A Y -->
+	<!-- T H E M E S -->
 
-	<style name="MyBaseOverlay" parent="ThemeOverlay.AppCompat.DayNight" />
+	<!-- Navigation -->
+	<style name="MyNavTheme" parent="ThemeOverlay.AppCompat.DayNight" />
 
-	<style name="MyActionBarBaseOverlay" parent="ThemeOverlay.AppCompat.DayNight.ActionBar" />
-
-	<!-- Toolbar -->
-	<style name="MyToolbar" parent="Widget.AppCompat.Toolbar">
-		<item name="android:background">?attr/colorPrimary</item>
-	</style>
-
-	<!-- Action bar -->
-	<style name="MyActionBar" parent="Widget.AppCompat.ActionBar">
-		<item name="android:background">?attr/colorPrimary</item> <!-- whole actionbar background -->
-	</style>
-
-	<!-- ActionBar Overlay -->
-	<style name="MyActionBarOverlay" parent="MyActionBarBaseOverlay">
+	<!-- Action bar  -->
+	<style name="MyActionBarTheme" parent="ThemeOverlay.AppCompat.DayNight.ActionBar">
 		<item name="android:background">@null</item> <!-- menu overflow, search view, title, subtitle backgrounds -->
 		<item name="android:textColorPrimary">?attr/colorOnPrimary</item> <!-- search view foreground -->
 		<item name="titleTextColor">?attr/colorOnPrimary</item> <!-- title foreground -->
@@ -29,14 +18,24 @@
 		<item name="colorControlNormal">?attr/colorOnPrimary</item> <!-- pictograms (menu overflow, search magnifying glass, navigation) -->
 	</style>
 
-	<!-- Overlay -->
-	<style name="MyOverlay" parent="MyBaseOverlay">
+	<!-- Action bar popup -->
+	<style name="MyActionbarPopupTheme" parent="ThemeOverlay.AppCompat.DayNight">
 		<item name="android:background">?attr/colorPrimary</item> <!-- submenu background -->
 		<item name="android:textColorPrimary">?attr/colorOnPrimary</item> <!-- item foreground -->
 		<item name="android:textColorSecondary">?attr/colorHighlightOnPrimary</item> <!-- submenu item foreground -->
 	</style>
 
-	<!-- W I D G E T -->
+	<!-- S T Y L E S -->
+
+	<!-- Toolbar -->
+	<style name="MyToolbarStyle" parent="Widget.AppCompat.Toolbar">
+		<item name="android:background">?attr/colorPrimary</item>
+	</style>
+
+	<!-- Action bar -->
+	<style name="MyActionBarStyle" parent="Widget.AppCompat.ActionBar">
+		<item name="android:background">?attr/colorPrimary</item> <!-- whole actionbar background -->
+	</style>
 
 	<!-- Dropdown list -->
 	<style name="MyDropDownListViewStyle" parent="Widget.AppCompat.ListView.DropDown">
