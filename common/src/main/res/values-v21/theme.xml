@@ -11,7 +11,7 @@
 		<item name="android:colorAccent">?attr/colorSecondary</item>
 
 		<!-- toolbar/action bar -->
-		<item name="toolbarStyle">@style/MyToolbar</item>
+		<item name="toolbarStyle">@style/MyToolbarStyle</item>
 
 	</style>
 

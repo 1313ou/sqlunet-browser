@@ -34,14 +34,14 @@
 
 		<!-- B A S E -->
 
-		<!-- action bar -->
-		<item name="android:actionBarStyle">@style/MyActionBar</item>
-
 		<!-- action bar theme UI -->
-		<item name="actionBarTheme">@style/MyActionBarOverlay</item>
+		<item name="actionBarTheme">@style/MyActionBarTheme</item>
 
 		<!-- action bar popup theme UI -->
-		<item name="actionBarPopupTheme">@style/MyOverlay</item>
+		<item name="actionBarPopupTheme">@style/MyActionbarPopupTheme</item>
+
+		<!-- action bar -->
+		<item name="android:actionBarStyle">@style/MyActionBarStyle</item>
 
 		<!-- dropdowns -->
 		<item name="android:dropDownListViewStyle">@style/MyDropDownListViewStyle</item>
