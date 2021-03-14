@@ -17,6 +17,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 /**
@@ -43,15 +44,15 @@ public class Storage
 	 */
 	static public final String DBFILEZIP = DBFILE + ".zip";
 
-	/**
+	/*
 	 * SqlUNet DB sql filename
 	 */
-	static private final String DBSQL = DBNAME + ".sql";
+	// static private final String DBSQL = DBNAME + ".sql";
 
-	/**
+	/*
 	 * SqlUNet DB zipped sql filename
 	 */
-	static public final String DBSQLZIP = DBSQL + ".zip";
+	// static public final String DBSQLZIP = DBSQL + ".zip";
 
 	/**
 	 * SqlUNet sub directory when external public
@@ -135,8 +136,8 @@ public class Storage
 				return dir.dir.getFile();
 			}
 		}
-		Log.e(TAG, "Error while looking for storage directories. External storage is " + StorageReports.reportExternalStorage());
-		throw new RuntimeException("Cannot find suitable storage directory " + StorageReports.reportStorageDirectories(context) + ' ' + StorageReports.reportExternalStorage());
+		Log.e(TAG, "Error while looking for storage directories. External storage is " + StorageReports.reportExternalStorage(context));
+		throw new RuntimeException("Cannot find suitable storage directory " + StorageReports.reportStorageDirectories(context) + ' ' + StorageReports.reportExternalStorage(context));
 	}
 
 	/**
@@ -173,9 +174,20 @@ public class Storage
 		String prefValue = sharedPref.getString(Storage.PREF_SQLUNET_CACHE, null);
 		if (prefValue == null || prefValue.isEmpty())
 		{
-			File cache = context.getExternalCacheDir();
+			File cache = null;
+
+			// consider external cache
+			for (File externalCache : ContextCompat.getExternalCacheDirs(context))
+			{
+				if (externalCache != null)
+				{
+					cache = externalCache;
+					break;
+				}
+			}
 			if (cache == null)
 			{
+				// fall back on internal cache
 				cache = context.getCacheDir();
 			}
 			prefValue = cache.getAbsolutePath();
