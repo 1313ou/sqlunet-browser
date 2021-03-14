@@ -91,9 +91,9 @@ public class SettingsActivity extends BaseSettingsActivity
 		CharSequence defaultValue;
 		if (entries == null || entries.length == 0 || entryValues == null || entryValues.length == 0)
 		{
-			defaultValue = StorageUtils.DirType.AUTO.toString();
+			defaultValue = StorageUtils.AUTO;
 			entryValues = new CharSequence[]{defaultValue};
-			entries = new CharSequence[]{StorageUtils.DirType.AUTO.toDisplay()};
+			entries = new CharSequence[]{StorageUtils.AUTO_LABEL};
 		}
 		else
 		{
@@ -237,13 +237,14 @@ public class SettingsActivity extends BaseSettingsActivity
 			// inflate
 			addPreferencesFromResource(R.xml.pref_database);
 
+			// db file
 			final Preference dbFilePreference = findPreference(Settings.PREF_DB_FILE);
 			assert dbFilePreference != null;
 			String storage = StorageSettings.getDatabasePath(requireContext());
 			dbFilePreference.setSummary(storage);
 			dbFilePreference.setOnPreferenceChangeListener((preference, newValue) -> {
 				String storage2 = (String) newValue;
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && StorageUtils.DirType.AUTO.toString().equals(newValue)) //
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && StorageUtils.isAuto(storage2)) //
 				{
 					storage2 = requireContext().getFilesDir().getAbsolutePath();
 				}
@@ -252,9 +253,10 @@ public class SettingsActivity extends BaseSettingsActivity
 				return false;
 			});
 
-			// required if no 'entries' and 'entryValues' in XML
+			// storage
 			final Preference storagePreference = findPreference(Settings.PREF_STORAGE);
 			assert storagePreference != null;
+			// required if no 'entries' and 'entryValues' in XML
 			populateStoragePreference(requireContext(), storagePreference);
 			storagePreference.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
 			final Preference.OnPreferenceChangeListener listener1 = storagePreference.getOnPreferenceChangeListener();
@@ -287,7 +289,7 @@ public class SettingsActivity extends BaseSettingsActivity
 			dbFilePreference.setSummary(storage);
 			dbFilePreference.setOnPreferenceChangeListener((preference, newValue) -> {
 				String storage2 = (String) newValue;
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && StorageUtils.DirType.AUTO.toString().equals(newValue)) //
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && StorageUtils.isAuto(storage2)) //
 				{
 					storage2 = requireContext().getFilesDir().getAbsolutePath();
 				}
