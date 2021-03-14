@@ -23,6 +23,7 @@ import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 public class AssetPackLoader implements Cancelable
 {
@@ -159,8 +160,10 @@ public class AssetPackLoader implements Cancelable
 					catch (RuntimeExecutionException e)
 					{
 						String message = e.getMessage();
-						if(message == null)
+						if (message == null)
+						{
 							message = "<unknown>";
+						}
 						Log.e(TAG, "Failure " + message);
 						observer.taskUpdate(message);
 						observer.taskFinish(false);
@@ -381,7 +384,7 @@ public class AssetPackLoader implements Cancelable
 	 */
 	static void dumpLocalTesting(@NonNull Context context)
 	{
-		File[] ds = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT ? context.getExternalFilesDirs(null) : new File[]{context.getExternalFilesDir(null)};
+		final File[] ds = ContextCompat.getExternalFilesDirs(context, null);
 		for (File d : ds)
 		{
 			File dir = new File(d, "local_testing");
