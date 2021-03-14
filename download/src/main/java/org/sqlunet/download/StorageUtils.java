@@ -9,6 +9,8 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
+import android.os.UserHandle;
+import android.os.UserManager;
 import android.util.Log;
 
 import java.io.File;
@@ -21,6 +23,8 @@ import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 
 /**
  * Storage utilities
@@ -47,7 +51,7 @@ public class StorageUtils
 	 *
 	 * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
 	 */
-	public enum DirType
+	enum DirType
 	{
 		AUTO, APP_EXTERNAL_SECONDARY, APP_EXTERNAL_PRIMARY, PUBLIC_EXTERNAL_SECONDARY, PUBLIC_EXTERNAL_PRIMARY, APP_INTERNAL;
 
@@ -194,16 +198,16 @@ public class StorageUtils
 			this.status = status;
 		}
 
-		/**
+		/*
 		 * Short string
 		 *
 		 * @return short string
 		 */
-		@NonNull
-		CharSequence toShortString()
-		{
-			return String.format(Locale.ENGLISH, "%s %s %s free", this.dir.type.toDisplay(), this.dir.file.getAbsolutePath(), mbToString(this.free));
-		}
+		//		@NonNull
+		//		CharSequence toShortString()
+		//		{
+		//			return String.format(Locale.ENGLISH, "%s %s %s free", this.dir.type.toDisplay(), this.dir.file.getAbsolutePath(), mbToString(this.free));
+		//		}
 
 		/**
 		 * Long string
@@ -361,44 +365,25 @@ public class StorageUtils
 
 		// A P P - S P E C I F I C
 
-		// application-specific secondary external storage or primary external (KITKAT)
-		try
+		// application-specific secondary external storage or primary external
+		final File[] dirs = ContextCompat.getExternalFilesDirs(context, null);
+		if (dirs.length > 0)
 		{
-			final File[] dirs = context.getExternalFilesDirs(null);
-			if (dirs.length > 0)
+			// preferably secondary storage (index >= 1)
+			for (int i = 1; i < dirs.length; i++)
 			{
-				// preferably secondary storage (index >= 1)
-				for (int i = 1; i < dirs.length; i++)
+				dir = dirs[i];
+				if (dir != null)
 				{
-					dir = dirs[i];
-					if (dir != null)
-					{
-						result.add(new Directory(dir, DirType.APP_EXTERNAL_SECONDARY));
-					}
+					result.add(new Directory(dir, DirType.APP_EXTERNAL_SECONDARY));
 				}
+			}
 
-				// primary storage (index == 0)
-				dir = dirs[0];
-				if (dir != null)
-				{
-					result.add(new Directory(dir, DirType.APP_EXTERNAL_PRIMARY));
-				}
-			}
-		}
-		catch (@NonNull final Throwable e)
-		{
-			// application-specific primary external storage
-			try
+			// primary storage (index == 0)
+			dir = dirs[0];
+			if (dir != null)
 			{
-				dir = context.getExternalFilesDir(null);
-				if (dir != null)
-				{
-					result.add(new Directory(dir, DirType.APP_EXTERNAL_PRIMARY));
-				}
-			}
-			catch (Exception e2)
-			{
-				//
+				result.add(new Directory(dir, DirType.APP_EXTERNAL_PRIMARY));
 			}
 		}
 
@@ -506,10 +491,11 @@ public class StorageUtils
 	/**
 	 * Get external storage
 	 *
+	 * @param context context
 	 * @return map per type of external storage
 	 */
 	@NonNull
-	static Map<StorageType, File[]> getExternalStorages()
+	static Map<StorageType, File[]> getExternalStorages(@NonNull final Context context)
 	{
 		// result set of paths
 		final Map<StorageType, File[]> dirs = new EnumMap<>(StorageType.class);
@@ -517,13 +503,13 @@ public class StorageUtils
 		// P R I M A R Y
 
 		// primary emulated
-		final File primaryEmulated = discoverPrimaryEmulatedExternalStorage();
+		final File primaryEmulated = discoverPrimaryEmulatedExternalStorage(context);
 		if (primaryEmulated != null)
 		{
 			dirs.put(StorageType.PRIMARY_EMULATED, new File[]{primaryEmulated});
 		}
 
-		// primary emulated
+		// primary physical
 		final File physicalEmulated = discoverPrimaryPhysicalExternalStorage();
 		if (physicalEmulated != null)
 		{
@@ -544,10 +530,11 @@ public class StorageUtils
 	/**
 	 * Select external storage
 	 *
+	 * @param context context
 	 * @return external storage directory
 	 */
 	@Nullable
-	static public String selectExternalStorage()
+	static public String selectExternalStorage(@NonNull final Context context)
 	{
 		// S E C O N D A R Y
 
@@ -561,7 +548,7 @@ public class StorageUtils
 		// P R I M A R Y
 
 		// primary emulated sdcard
-		final File primaryEmulated = discoverPrimaryEmulatedExternalStorage();
+		final File primaryEmulated = discoverPrimaryEmulatedExternalStorage(context);
 		if (primaryEmulated != null)
 		{
 			return primaryEmulated.getAbsolutePath();
@@ -579,10 +566,11 @@ public class StorageUtils
 	/**
 	 * Discover primary emulated external storage directory
 	 *
+	 * @param context context
 	 * @return primary emulated external storage directory
 	 */
 	@Nullable
-	static private File discoverPrimaryEmulatedExternalStorage()
+	static private File discoverPrimaryEmulatedExternalStorage(@NonNull final Context context)
 	{
 		// primary emulated sdcard
 		final String emulatedStorageTarget = System.getenv("EMULATED_STORAGE_TARGET");
@@ -590,7 +578,7 @@ public class StorageUtils
 		{
 			// device has emulated extStorage
 			// external extStorage paths should have userId burned into them
-			final String userId = StorageUtils.getUserId();
+			final String userId = StorageUtils.getUserId(context);
 
 			// /extStorage/emulated/0[1,2,...]
 			if (/*userId == null ||*/ userId.isEmpty())
@@ -731,25 +719,22 @@ public class StorageUtils
 	/**
 	 * User id
 	 *
+	 * @param context context
 	 * @return user id
 	 */
 	@NonNull
-	static private String getUserId()
+	@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+	static private String getUserId(@NonNull final Context context)
 	{
-		final String path = Environment.getExternalStorageDirectory().getAbsolutePath();
-		final String[] folders = path.split(File.separator);
-		final String lastFolder = folders[folders.length - 1];
-		boolean isDigit = false;
-		try
+		final UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
+		if (null != manager)
 		{
-			Integer.valueOf(lastFolder);
-			isDigit = true;
+			UserHandle user = android.os.Process.myUserHandle();
+			long userSerialNumber = manager.getSerialNumberForUser(user);
+			// Log.d("USER", "userSerialNumber = " + userSerialNumber);
+			return Long.toString(userSerialNumber);
 		}
-		catch (@NonNull final NumberFormatException ignored)
-		{
-			//
-		}
-		return isDigit ? lastFolder : "";
+		return "";
 	}
 
 	// C A P A C I T Y
