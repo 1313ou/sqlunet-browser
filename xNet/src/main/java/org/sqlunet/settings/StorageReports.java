@@ -32,6 +32,7 @@ import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 /**
  * Storage styling utilities
@@ -228,17 +229,23 @@ public class StorageReports
 		SpannableStringBuilder name;
 		CharSequence value;
 
-		File dir = context.getExternalCacheDir();
-		if (dir != null)
+		// external
+		int i = 1;
+		for (File dir2 : ContextCompat.getExternalCacheDirs(context))
 		{
-			value = dir.getAbsolutePath();
+			if (dir2 == null)
+			{
+				continue;
+			}
+			value = dir2.getAbsolutePath();
 			name = new SpannableStringBuilder();
-			Report.appendHeader(name, "External cache").append(' ').append(StorageUtils.storageFreeAsString(value.toString())).append('\n').append(value);
+			Report.appendHeader(name, "External cache[" + i++ + "]").append(' ').append(StorageUtils.storageFreeAsString(value.toString())).append('\n').append(value);
 			names.add(name);
 			values.add(value);
 		}
 
-		dir = context.getCacheDir();
+		// internal
+		File dir = context.getCacheDir();
 		if (dir != null)
 		{
 			value = dir.getAbsolutePath();
@@ -248,23 +255,7 @@ public class StorageReports
 			values.add(value);
 		}
 
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
-		{
-			int i = 1;
-			for (File dir2 : context.getExternalCacheDirs())
-			{
-				if (dir2 == null)
-				{
-					continue;
-				}
-				value = dir2.getAbsolutePath();
-				name = new SpannableStringBuilder();
-				Report.appendHeader(name, "External cache[" + i++ + "]").append(' ').append(StorageUtils.storageFreeAsString(value.toString())).append('\n').append(value);
-				names.add(name);
-				values.add(value);
-			}
-		}
-
+		// public download
 		dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
 		if (dir != null)
 		{
@@ -297,6 +288,12 @@ public class StorageReports
 
 	// R E P O R T S
 
+	/**
+	 * Report on external storage
+	 *
+	 * @param context context
+	 * @return report
+	 */
 	@NonNull
 	static CharSequence reportStorageDirectories(@NonNull final Context context)
 	{
@@ -321,12 +318,13 @@ public class StorageReports
 	/**
 	 * Report on external storage
 	 *
+	 * @param context context
 	 * @return report
 	 */
 	@NonNull
-	static CharSequence reportExternalStorage()
+	static CharSequence reportExternalStorage(@NonNull final Context context)
 	{
-		final Map<StorageType, File[]> storages = StorageUtils.getExternalStorages();
+		final Map<StorageType, File[]> storages = StorageUtils.getExternalStorages(context);
 		final File[] physical = storages.get(StorageType.PRIMARY_PHYSICAL);
 		final File[] emulated = storages.get(StorageType.PRIMARY_EMULATED);
 		final File[] secondary = storages.get(StorageType.SECONDARY);
@@ -456,7 +454,7 @@ public class StorageReports
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	static public CharSequence reportStyledExternalStorage(@NonNull final Context context)
 	{
-		final Map<StorageType, File[]> storages = StorageUtils.getExternalStorages();
+		final Map<StorageType, File[]> storages = StorageUtils.getExternalStorages(context);
 		final File[] physical = storages.get(StorageType.PRIMARY_PHYSICAL);
 		final File[] emulated = storages.get(StorageType.PRIMARY_EMULATED);
 		final File[] secondary = storages.get(StorageType.SECONDARY);
@@ -555,43 +553,24 @@ public class StorageReports
 		appendDir(sb, "obb dir", context.getObbDir());
 
 		// external files
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
+		int i = 1;
+		for (File dir : ContextCompat.getExternalFilesDirs(context, null))
 		{
-			int i = 1;
-			for (File dir : context.getExternalFilesDirs(null))
-			{
-				appendDir(sb, "external files dir [" + i++ + ']', dir);
-			}
-		}
-		else
-		{
-			final File dir = context.getExternalFilesDir(null);
-			appendDir(sb, "external files dir", dir);
+			appendDir(sb, "external files dir [" + i++ + ']', dir);
 		}
 
 		// external caches
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
+		i = 1;
+		for (File dir : ContextCompat.getExternalCacheDirs(context))
 		{
-			int i = 1;
-			for (File dir : context.getExternalCacheDirs())
-			{
-				appendDir(sb, "external cache dir [" + i++ + ']', dir);
-			}
-		}
-		else
-		{
-			final File dir = context.getExternalCacheDir();
-			appendDir(sb, "external cache dir", dir);
+			appendDir(sb, "external cache dir [" + i++ + ']', dir);
 		}
 
 		// obbs
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
+		i = 1;
+		for (File dir : ContextCompat.getObbDirs(context))
 		{
-			int i = 1;
-			for (File dir : context.getObbDirs())
-			{
-				appendDir(sb, "external obb dir [" + i++ + ']', dir);
-			}
+			appendDir(sb, "external obb dir [" + i++ + ']', dir);
 		}
 
 		return sb;
