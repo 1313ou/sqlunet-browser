@@ -89,13 +89,6 @@ public abstract class BaseProvider extends ContentProvider
 	private static final int DEFAULT_SQL_BUFFER_CAPACITY = 15;
 
 	/**
-	 * SQL statement buffer
-	 */
-	@NonNull
-	@SuppressWarnings("StaticVariableOfConcreteClass")
-	static public CircularBuffer sqlBuffer = new CircularBuffer(DEFAULT_SQL_BUFFER_CAPACITY);
-
-	/**
 	 * Circular buffer
 	 */
 	static public class CircularBuffer extends LinkedList<CharSequence>
@@ -193,6 +186,13 @@ public abstract class BaseProvider extends ContentProvider
 	}
 
 	/**
+	 * SQL statement buffer
+	 */
+	@NonNull
+	@SuppressWarnings("StaticVariableOfConcreteClass")
+	static public CircularBuffer sqlBuffer = new CircularBuffer(DEFAULT_SQL_BUFFER_CAPACITY);
+
+	/**
 	 * Record generated SQL
 	 */
 	static public boolean logSql = false;
@@ -200,7 +200,6 @@ public abstract class BaseProvider extends ContentProvider
 	static protected final String VENDOR = "sqlunet";
 
 	protected static final String SCHEME = "content://";
-
 
 	// D A T A B A S E
 
@@ -260,7 +259,6 @@ public abstract class BaseProvider extends ContentProvider
 		this.db = SQLiteDatabase.openDatabase(path, null, flags);
 		return this.db;
 	}
-
 
 	@SuppressWarnings("SameReturnValue")
 	@Override
