@@ -205,7 +205,7 @@ public class MenuHandler
 			final Intent shared = new Intent(Intent.ACTION_SEND);
 			shared.putExtra(Intent.EXTRA_SUBJECT, "Semantikos SQL");
 			shared.putExtra(Intent.EXTRA_TEXT, sb);
-			shared.putExtra(Intent.EXTRA_EMAIL, new String[]{"semantikos.org@gmail.com"});
+			// shared.putExtra(Intent.EXTRA_EMAIL, new String[]{"semantikos.org@gmail.com"});
 			shared.setType("message/rfc822"); // prompts email client only
 
 			activity.startActivity(Intent.createChooser(shared, null));
