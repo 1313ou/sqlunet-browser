@@ -99,9 +99,9 @@ public class StorageUtils
 		return DirType.AUTO.toString().equals(value);
 	}
 
-	static public String AUTO = DirType.AUTO.toString();
+	static public final String AUTO = DirType.AUTO.toString();
 
-	static public String AUTO_LABEL = DirType.AUTO.toDisplay();
+	static public final String AUTO_LABEL = DirType.AUTO.toDisplay();
 
 	/**
 	 * Directory with type
@@ -397,28 +397,28 @@ public class StorageUtils
 		// P U B L I C
 
 		// top-level public external storage directory
-		try
-		{
-			dir = Environment.getExternalStoragePublicDirectory(Storage.SQLUNETDIR);
-			result.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY));
-		}
-		catch (@NonNull final Throwable e)
-		{
-			// top-level public in external
-			try
-			{
-				final File storage = Environment.getExternalStorageDirectory();
-				if (storage != null)
-				{
-					dir = new File(storage, Storage.SQLUNETDIR);
-					result.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY));
-				}
-			}
-			catch (@NonNull final Throwable e2)
-			{
-				//
-			}
-		}
+//		try
+//		{
+//			dir = Environment.getExternalStoragePublicDirectory(Storage.SQLUNETDIR);
+//			result.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY));
+//		}
+//		catch (@NonNull final Throwable e)
+//		{
+//			// top-level public in external
+//			try
+//			{
+//				final File storage = Environment.getExternalStorageDirectory();
+//				if (storage != null)
+//				{
+//					dir = new File(storage, Storage.SQLUNETDIR);
+//					result.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY));
+//				}
+//			}
+//			catch (@NonNull final Throwable e2)
+//			{
+//				//
+//			}
+//		}
 
 		// top-level public external secondary storage directory: not accessible to apps
 

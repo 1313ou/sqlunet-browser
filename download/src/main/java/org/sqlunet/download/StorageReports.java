@@ -59,15 +59,15 @@ class StorageReports
 		}
 
 		// public download
-		dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-		if (dir != null)
-		{
-			value = dir.getAbsolutePath();
-			name = new SpannableStringBuilder();
-			Report.appendHeader(name, "Download").append(' ').append(StorageUtils.storageFreeAsString(value.toString())).append('\n').append(value);
-			names.add(name);
-			values.add(value);
-		}
+//		dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+//		if (dir != null)
+//		{
+//			value = dir.getAbsolutePath();
+//			name = new SpannableStringBuilder();
+//			Report.appendHeader(name, "Download").append(' ').append(StorageUtils.storageFreeAsString(value.toString())).append('\n').append(value);
+//			names.add(name);
+//			values.add(value);
+//		}
 
 		// convert to array
 		final CharSequence[] entries = names.toArray(new CharSequence[0]);
