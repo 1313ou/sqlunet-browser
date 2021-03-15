@@ -25,7 +25,7 @@ import androidx.annotation.Nullable;
  */
 public class LogUtils
 {
-	static private final String TAG = "";
+	static private final String TAG = "LogUtils";
 
 	/**
 	 * Write long text to log file
@@ -37,7 +37,7 @@ public class LogUtils
 	@Nullable
 	static public String writeLog(final CharSequence text, final boolean append, @Nullable final String fileName)
 	{
-		final File storage = Environment.getExternalStorageDirectory();
+		final File storage = Environment.getDataDirectory();
 		final File logFile = new File(storage, fileName != null ? fileName : "sqlunet.log");
 		try
 		{
