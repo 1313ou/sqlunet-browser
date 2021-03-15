@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,6 +32,7 @@ import org.sqlunet.download.FileDataDownloader;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
+import org.sqlunet.sql.SqlFormatter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -191,7 +193,25 @@ public class MenuHandler
 		}
 
 		// sql
-		else if (itemId == R.id.action_clear_sql)
+		else if (itemId == R.id.action_sql_export)
+		{
+			final SpannableStringBuilder sb = new SpannableStringBuilder();
+			final CharSequence[] sqls = BaseProvider.sqlBuffer.reverseItems();
+			for (CharSequence sql : sqls)
+			{
+				sb.append(SqlFormatter.styledFormat(sql));
+				sb.append(";\n\n");
+			}
+			final Intent shared = new Intent(Intent.ACTION_SEND);
+			shared.putExtra(Intent.EXTRA_SUBJECT, "Semantikos SQL");
+			shared.putExtra(Intent.EXTRA_TEXT, sb);
+			shared.putExtra(Intent.EXTRA_EMAIL, new String[]{"semantikos.org@gmail.com"});
+			shared.setType("message/rfc822"); // prompts email client only
+
+			activity.startActivity(Intent.createChooser(shared, null));
+			return true;
+		}
+		else if (itemId == R.id.action_sql_clear)
 		{
 			BaseProvider.sqlBuffer.clear();
 			return true;

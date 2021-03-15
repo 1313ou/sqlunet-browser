@@ -28,6 +28,7 @@
 	<string name="action_copy">Copy</string>
 	<string name="action_drop">Drop</string>
 	<string name="action_update">Update</string>
+	<string name="action_sql">SQL</string>
 	<string name="action_diagnostics">Diagnostics</string>
 	<!-- setup -->
 	<string name="action_setup">Set up</string>
@@ -55,7 +56,8 @@
 	<string name="action_assetload">Asset load</string>
 	<string name="action_download">Download</string>
 	<!-- misc -->
-	<string name="action_clear_sql">Clear SQLs</string>
+	<string name="action_sql_clear">Clear SQL statements</string>
+	<string name="action_sql_export">Export SQL statements</string>
 	<string name="action_help">Help</string>
 	<string name="action_credits">Credits</string>
 	<string name="action_provider_info">Providers</string>
