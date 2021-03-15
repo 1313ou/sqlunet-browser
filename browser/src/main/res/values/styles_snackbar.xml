@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+
+	<!-- Base application theme. -->
+	<style name="MyBaseTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+
+		<!-- Snackbar -->
+		<item name="snackbarStyle">@style/MySnackbarTheme</item>
+		<item name="snackbarTextViewStyle">@style/MySnackbarTextViewTheme</item>
+		<item name="snackbarButtonStyle">@style/MySnackbarTextButtonTheme</item>
+	</style>
+
+	<style name="MySnackbarTheme" parent="@style/Widget.MaterialComponents.Snackbar">
+		<item name="android:background">?attr/colorSecondary</item>
+		<item name="android:layout_margin">10dp</item>
+		<item name="backgroundTint">?attr/colorSecondary</item>
+	</style>
+
+	<style name="MySnackbarTextViewTheme" parent="@style/Widget.MaterialComponents.Snackbar.TextView">
+		<item name="android:textAppearance">@android:style/TextAppearance.Medium</item>
+		<item name="android:textColor">?attr/colorOnSecondary</item>
+	</style>
+
+	<style name="MySnackbarTextButtonTheme" parent="@style/Widget.MaterialComponents.Button.TextButton.Snackbar">
+		<item name="android:textColor">?attr/colorOnPrimary</item>
+		<item name="backgroundTint">?attr/colorPrimary</item>
+	</style>
+
+</resources>
