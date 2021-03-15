@@ -64,7 +64,7 @@
 	</item>
 	<item
 		android:id="@+id/action_clear_sql"
-		android:title="@string/action_clear_sql"
+		android:title="@string/action_sql_clear"
 		app:showAsAction="never"
 		tools:ignore="AppCompatResource" />
 	<item

@@ -89,11 +89,24 @@
 				tools:ignore="AppCompatResource" />
 		</menu>
 	</item>
+
 	<item
-		android:id="@+id/action_clear_sql"
-		android:title="@string/action_clear_sql"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource" />
+		android:title="@string/action_sql"
+		app:showAsAction="never">
+		<menu>
+			<item
+				android:id="@+id/action_sql_export"
+				android:title="@string/action_sql_export"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+			<item
+				android:id="@+id/action_sql_clear"
+				android:title="@string/action_sql_clear"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+		</menu>
+	</item>
+
 	<item
 		android:id="@+id/action_help"
 		android:title="@string/action_help"
