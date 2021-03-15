@@ -16,6 +16,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import org.sqlunet.browser.R;
 
 import androidx.annotation.NonNull;
@@ -136,15 +138,21 @@ class HomeImageView extends AppCompatImageView
 				final String message = context.getString(messageId);
 				final Spanned html = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N ? Html.fromHtml(message, 0) : Html.fromHtml(message);
 				//Log.i("Pick ", message);
-				final Toast toast = Toast.makeText(getContext(), html, Toast.LENGTH_LONG);
-				final View view = toast.getView();
-				if (view != null)
-				{
-					view.setBackgroundResource(android.R.drawable.toast_frame);
-					final TextView textView = view.findViewById(android.R.id.message);
-					textView.setBackgroundColor(Color.TRANSPARENT);
-				}
-				toast.show();
+
+//				final Toast toast = Toast.makeText(getContext(), html, Toast.LENGTH_LONG);
+//				final View view = toast.getView();
+//				if (view != null)
+//				{
+//					view.setBackgroundResource(android.R.drawable.toast_frame);
+//					final TextView textView = view.findViewById(android.R.id.message);
+//					textView.setBackgroundColor(Color.TRANSPARENT);
+//				}
+//				toast.show();
+
+				Snackbar snackbar = Snackbar.make(v, html, Snackbar.LENGTH_LONG);
+				// View snackBarView = snackbar.getView();
+				// snackBarView.setBackgroundColor(context.getResources().getColor(R.color.secondaryColor));
+				snackbar.show();
 			}
 			return false;
 		});
