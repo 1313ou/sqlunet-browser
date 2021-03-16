@@ -67,6 +67,8 @@ public class UpdateFragment extends Fragment
 
 	static public final String DOWN_SOURCE_STATIC_VERSION_ARG = "down_source_static_version";
 
+	static public final String DOWNLOAD_INTENT_ARG = "download_intent";
+
 	/**
 	 * Newer argument
 	 */
@@ -111,6 +113,7 @@ public class UpdateFragment extends Fragment
 		final String downSourceStaticVersionArg = intent.getStringExtra(DOWN_SOURCE_STATIC_VERSION_ARG);
 
 		final boolean newerArg = intent.getBooleanExtra(NEWER_ARG, false);
+		final Intent downloadIntent = intent.getParcelableExtra(DOWNLOAD_INTENT_ARG);
 
 		final View view = getView();
 		assert view != null;
@@ -161,7 +164,7 @@ public class UpdateFragment extends Fragment
 
 					final String downloadFromArg = intent.getStringExtra(DOWNLOAD_FROM_ARG);
 					final String downloadToArg = intent.getStringExtra(DOWNLOAD_TO_ARG);
-					update(context, downloadFromArg, downloadToArg);
+					update(context, downloadFromArg, downloadToArg, downloadIntent);
 					final Activity activity2 = getActivity();
 					if (activity2 != null)
 					{
@@ -177,9 +180,9 @@ public class UpdateFragment extends Fragment
 		}
 	}
 
-	static private void update(@NonNull final Context context, final String downloadFromArg, final String downloadToArg)
+	static private void update(@NonNull final Context context, final String downloadFromArg, final String downloadToArg, @Nullable final Intent downloadIntent)
 	{
-		final Intent intent = new Intent(context, DownloadActivity.class);
+		final Intent intent = downloadIntent != null ? downloadIntent : new Intent(context, DownloadActivity.class);
 		intent.putExtra(DOWNLOAD_FROM_ARG, downloadFromArg);
 		intent.putExtra(DOWNLOAD_TO_ARG, downloadToArg);
 		context.startActivity(intent);
