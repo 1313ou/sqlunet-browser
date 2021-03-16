@@ -12,6 +12,10 @@ import androidx.annotation.NonNull;
 
 /**
  * Download Zip fragment
+ * Interface between service and activity.
+ * Service sends messages to this fragment's receiver.
+ * Signals completion through the OnComplete callback in the activity.
+ * Source and stream are zipped.
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
