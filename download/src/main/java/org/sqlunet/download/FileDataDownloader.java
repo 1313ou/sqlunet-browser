@@ -181,7 +181,17 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 		void onDone(final FileData result);
 	}
 
-	static public void start(@NonNull final Activity activity, @Nullable final String name, @Nullable final String downloadSourceUrl0, final String downloadDest, final String cache)
+	/**
+	 * Start file data downloading
+	 *
+	 * @param activity           launching activity
+	 * @param name               name of file to be downloaded
+	 * @param downloadSourceUrl0 download source url
+	 * @param downloadDest       download destination
+	 * @param downloadIntent     downloader intent (activity)
+	 * @param cache              cache
+	 */
+	static public void start(@NonNull final Activity activity, @Nullable final String name, @Nullable final String downloadSourceUrl0, final String downloadDest, final Intent downloadIntent, final String cache)
 	{
 		// download source data
 		if (name == null || downloadSourceUrl0 == null || downloadSourceUrl0.isEmpty())
@@ -249,6 +259,7 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 			// to do if confirmed
 			intent.putExtra(BaseDownloadFragment.DOWNLOAD_FROM_ARG, downloadSourceUrl);
 			intent.putExtra(BaseDownloadFragment.DOWNLOAD_TO_ARG, downloadDest);
+			intent.putExtra(UpdateFragment.DOWNLOAD_INTENT_ARG, downloadIntent);
 
 			activity.startActivity(intent);
 		});
