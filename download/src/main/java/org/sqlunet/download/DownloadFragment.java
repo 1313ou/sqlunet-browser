@@ -24,13 +24,16 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import static org.sqlunet.download.Killer.EVENT_CANCEL_REQUEST;
 import static org.sqlunet.download.DownloadService.EVENT_FINISH;
 import static org.sqlunet.download.DownloadService.EVENT_START;
 import static org.sqlunet.download.DownloadService.EVENT_UPDATE;
+import static org.sqlunet.download.Killer.EVENT_CANCEL_REQUEST;
 
 /**
- * Download Service fragment
+ * Download Service fragment.
+ * Interface between service and activity.
+ * Service sends messages to this fragment's receiver.
+ * Signals completion through the OnComplete callback in the activity.
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -433,7 +436,7 @@ public class DownloadFragment extends BaseDownloadFragment
 				.setSmallIcon(android.R.drawable.stat_sys_download) //
 				.setContentTitle(contentTitle) //
 				.setContentText(contentText) //
-				// .setColor(some color) //
+		// .setColor(some color) //
 		;
 
 		// action

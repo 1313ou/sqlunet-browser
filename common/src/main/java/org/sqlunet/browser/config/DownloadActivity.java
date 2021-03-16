@@ -19,6 +19,7 @@ import androidx.appcompat.app.ActionBar;
 
 /**
  * Download activity
+ * Handles completion by re-entering application through entry activity.
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */

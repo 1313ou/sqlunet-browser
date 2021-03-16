@@ -22,6 +22,7 @@ interface OnComplete
 
 /**
  * Download activity
+ * This activity does not handle the completion signal.
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -54,7 +55,7 @@ public class DownloadActivity extends AppCompatActivity implements OnComplete
 
 		if (savedInstanceState == null)
 		{
-			// set this as listener
+			// fragment
 			BaseDownloadFragment downloadFragment = null;
 			switch (downloader)
 			{
@@ -66,6 +67,7 @@ public class DownloadActivity extends AppCompatActivity implements OnComplete
 					downloadFragment = new DownloadZipFragment();
 					break;
 			}
+			// pass arguments over to fragment
 			downloadFragment.setArguments(getIntent().getExtras());
 
 			getSupportFragmentManager() //
