@@ -102,8 +102,7 @@ public class MenuHandler
 			final String downloadSourceUrl = StorageSettings.getDbDownloadSource(activity);
 			final String downloadDest = StorageSettings.getDatabasePath(activity);
 			final String cache = StorageSettings.getCacheDir(activity);
-			//final Intent downloadIntent = new Intent(activity, DownloadActivity.class);
-			final Intent downloadIntent = null;
+			final Intent downloadIntent = new Intent(activity, DownloadActivity.class);
 			FileDataDownloader.start(activity, name, downloadSourceUrl, downloadDest, downloadIntent, cache);
 			return true;
 		}
