@@ -13,7 +13,6 @@ import android.os.Build;
 import android.util.Log;
 
 import org.sqlunet.browser.common.R;
-import org.sqlunet.download.DownloadActivity;
 import org.sqlunet.settings.StorageSettings;
 
 import java.util.Collection;
