@@ -139,8 +139,8 @@
 	<string name="pref_description_download_dbfile">Data download DB file</string>
 
 	<!-- Cache -->
-	<string name="pref_cache_category">Cache</string>
-	<string name="pref_title_cache">Cache</string>
-	<string name="pref_description_cache">Cache used for download/copy/unzip</string>
+<!--	<string name="pref_cache_category">Cache</string>-->
+<!--	<string name="pref_title_cache">Cache</string>-->
+<!--	<string name="pref_description_cache">Cache used for download/copy/unzip</string>-->
 
 </resources>
