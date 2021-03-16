@@ -5,16 +5,12 @@
 package org.sqlunet.browser.xn;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
