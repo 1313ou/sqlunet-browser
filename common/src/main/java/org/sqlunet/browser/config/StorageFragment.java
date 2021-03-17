@@ -4,6 +4,8 @@
 
 package org.sqlunet.browser.config;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -138,6 +140,38 @@ public class StorageFragment extends Fragment
 
 			// stop the refreshing indicator
 			this.swipeRefreshLayout.setRefreshing(false);
+		}
+		else if (item.getItemId() == R.id.action_copy)
+		{
+			final StringBuilder sb = new StringBuilder();
+
+			// view
+			final View view = getView();
+			assert view != null;
+
+			// db
+			sb.append(getString(R.string.title_database));
+			sb.append('\n');
+			sb.append(Storage.getSqlUNetStorage(context).getAbsolutePath());
+			sb.append('\n');
+			sb.append('\n');
+
+			// storage
+			sb.append(getString(R.string.title_storage));
+			sb.append('\n');
+			sb.append(StorageReports.reportStorageDirectories(context));
+			//sb.append('\n');
+
+			// storage devices
+			sb.append(getString(R.string.title_external_storage_devices));
+			sb.append('\n');
+			sb.append(StorageReports.reportExternalStorage(context));
+			//sb.append('\n');
+
+			final ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
+			final ClipData clip = ClipData.newPlainText("Storage", sb);
+			assert clipboard != null;
+			clipboard.setPrimaryClip(clip);
 		}
 		else
 		{

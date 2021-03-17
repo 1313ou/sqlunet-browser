@@ -6,6 +6,11 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools">
 	<item
+		android:id="@+id/action_copy"
+		android:title="@string/action_copy"
+		app:showAsAction="ifRoom"
+		tools:ignore="AppCompatResource" />
+	<item
 		android:id="@+id/action_storage_dirs"
 		android:title="@string/action_storage_dirs"
 		app:showAsAction="never"
