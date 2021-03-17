@@ -54,12 +54,16 @@ public class StorageReports
 	static private CharSequence toStyledString(@NonNull final Context context, @NonNull final StorageDirectory dir)
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
+		// icon
 		Report.appendImage(context, sb, toIconId(dir.dir.getType()));
 		sb.append(' ');
+		// type
 		Spanner.appendWithSpans(sb, ' ' + dir.dir.getType().toDisplay() + ' ', new BackgroundColorSpan(Colors.dirTypeBackColor), new ForegroundColorSpan(Colors.dirTypeForeColor), new RelativeSizeSpan(ENLARGE));
 		sb.append('\n');
-		Spanner.appendWithSpans(sb, dir.dir.getValue(), Factories.spans(Colors.dirValueBackColor, Colors.dirValueForeColor, new StyleSpan(Typeface.ITALIC)));
+		// value
+		Spanner.appendWithSpans(sb, dir.dir.getExpandedValue(), Factories.spans(Colors.dirValueBackColor, Colors.dirValueForeColor, new StyleSpan(Typeface.ITALIC)));
 		sb.append('\n');
+		// status
 		final boolean suitable = dir.status == 0 && dir.fitsIn(context);
 		Spanner.appendWithSpans(sb, StorageUtils.mbToString(dir.free), Factories.spans( //
 				suitable ? Colors.dirOkBackColor : Colors.dirFailBackColor,  //
@@ -295,7 +299,7 @@ public class StorageReports
 	 * @return report
 	 */
 	@NonNull
-	static CharSequence reportStorageDirectories(@NonNull final Context context)
+	public static CharSequence reportStorageDirectories(@NonNull final Context context)
 	{
 		final StringBuilder sb = new StringBuilder();
 		int i = 1;
@@ -322,7 +326,7 @@ public class StorageReports
 	 * @return report
 	 */
 	@NonNull
-	static CharSequence reportExternalStorage(@NonNull final Context context)
+	public static CharSequence reportExternalStorage(@NonNull final Context context)
 	{
 		final Map<StorageType, File[]> storages = StorageUtils.getExternalStorages(context);
 		final File[] physical = storages.get(StorageType.PRIMARY_PHYSICAL);
@@ -572,7 +576,6 @@ public class StorageReports
 		{
 			appendDir(sb, "external obb dir [" + i++ + ']', dir);
 		}
-
 		return sb;
 	}
 }

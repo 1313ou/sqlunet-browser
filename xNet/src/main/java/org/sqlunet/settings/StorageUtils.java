@@ -135,6 +135,16 @@ public class StorageUtils
 			return this.file.getAbsolutePath();
 		}
 
+		@NonNull
+		CharSequence getExpandedValue()
+		{
+			if (DirType.AUTO == this.type)
+			{
+				return DirType.AUTO.toString() + ':' + this.file.getAbsolutePath();
+			}
+			return this.file.getAbsolutePath();
+		}
+
 		public File getFile()
 		{
 			return this.file;
