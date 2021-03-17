@@ -14,7 +14,7 @@
 	<string name="title_status">Status</string>
 
 	<string name="title_storage">Storage</string>
-	<string name="title_storage_devices">Storage devices</string>
+	<string name="title_external_storage_devices">External storage devices</string>
 	<string name="title_download_complete">Download completed</string>
 	<string name="title_download_failed">Download failed</string>
 
