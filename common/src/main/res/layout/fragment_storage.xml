@@ -35,34 +35,35 @@
 			<TextView
 				android:id="@+id/database"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:textIsSelectable="true" />
+				android:layout_marginTop="10dp"
+				android:layout_height="wrap_content" />
 
 			<TextView
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="20dp"
+				android:layout_marginTop="25dp"
 				android:text="@string/title_storage"
 				android:textStyle="bold" />
 
 			<TextView
 				android:id="@+id/storage"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:textIsSelectable="true" />
+				android:layout_marginTop="10dp"
+				android:layout_height="wrap_content" />
 
 			<TextView
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginTop="20dp"
-				android:text="@string/title_storage_devices"
+				android:layout_marginTop="25dp"
+				android:text="@string/title_external_storage_devices"
 				android:textStyle="bold" />
 
 			<TextView
 				android:id="@+id/storage_devices"
+				android:layout_marginTop="10dp"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:textIsSelectable="true" />
+				android:layout_height="wrap_content" />
+
 		</LinearLayout>
 
 	</ScrollView>
