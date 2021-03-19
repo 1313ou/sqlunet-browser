@@ -2,10 +2,10 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
 	<!-- Base application theme. -->
-	<style name="MyBaseTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+	<style name="MyBaseTheme" parent="Theme.AppCompat.DayNight.NoActionBar" tools:keep="@style/MyBaseTheme">
 
 		<!-- Snackbar -->
 		<item name="snackbarStyle">@style/MySnackbarTheme</item>
@@ -13,18 +13,18 @@
 		<item name="snackbarButtonStyle">@style/MySnackbarTextButtonTheme</item>
 	</style>
 
-	<style name="MySnackbarTheme" parent="@style/Widget.MaterialComponents.Snackbar">
+	<style name="MySnackbarTheme" parent="@style/Widget.MaterialComponents.Snackbar" tools:keep="@style/MySnackbarTheme">
 		<item name="android:background">?attr/colorSecondary</item>
 		<item name="android:layout_margin">10dp</item>
 		<item name="backgroundTint">?attr/colorSecondary</item>
 	</style>
 
-	<style name="MySnackbarTextViewTheme" parent="@style/Widget.MaterialComponents.Snackbar.TextView">
+	<style name="MySnackbarTextViewTheme" parent="@style/Widget.MaterialComponents.Snackbar.TextView" tools:keep="@style/MySnackbarTextViewTheme">
 		<item name="android:textAppearance">@android:style/TextAppearance.Medium</item>
 		<item name="android:textColor">?attr/colorOnSecondary</item>
 	</style>
 
-	<style name="MySnackbarTextButtonTheme" parent="@style/Widget.MaterialComponents.Button.TextButton.Snackbar">
+	<style name="MySnackbarTextButtonTheme" parent="@style/Widget.MaterialComponents.Button.TextButton.Snackbar" tools:keep="@style/MySnackbarTextButtonTheme">
 		<item name="android:textColor">?attr/colorOnPrimary</item>
 		<item name="backgroundTint">?attr/colorPrimary</item>
 	</style>
