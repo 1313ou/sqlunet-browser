@@ -19,6 +19,9 @@ org.sqlunet.browser.vn
 org.sqlunet.browser.sn
 "
 
-for PACKAGE in ${packages}; do
-	./googleplay_move.sh ${PACKAGE} ${VERSION_CODE} ${TRACK} "${RELEASE_NAME}" "${RECENT_CHANGES}"
+source define_colors.sh
+
+for p in ${packages}; do
+	echo -e "${YELLOW}${p}${RESET}"
+	./googleplay_move.sh ${p} ${VERSION_CODE} ${TRACK} "${RELEASE_NAME}" "${RECENT_CHANGES}"
 done

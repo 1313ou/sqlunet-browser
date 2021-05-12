@@ -10,8 +10,10 @@ org.sqlunet.browser.ewn
 org.sqlunet.browser.sn
 "
 
+source define_colors.sh
+
 for p in ${packages}; do
-	echo ${p}
+	echo -e "${YELLOW}${p}${RESET}"
 	python googleplay_list.py ${p}
 	echo
 done
