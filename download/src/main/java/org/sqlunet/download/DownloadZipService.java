@@ -188,7 +188,7 @@ public class DownloadZipService extends DownloadService
 			wakelock.release();
 		}
 
-		// rename
+		// install and rename
 		if (done && ! this.cancel)
 		{
 			install(outFile, date, size);
