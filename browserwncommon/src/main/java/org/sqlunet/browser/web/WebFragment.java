@@ -260,6 +260,7 @@ public class WebFragment extends Fragment
 	/**
 	 * Load web view with data
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	@SuppressLint("SetJavaScriptEnabled")
 	private void load()
 	{

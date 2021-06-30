@@ -112,7 +112,7 @@ public class BillingManager implements PurchasesUpdatedListener
 	{
 		void onBillingClientSetupFinished();
 
-		void onConsumeFinished(String token, @BillingResponseCode int response);
+		void onConsumeFinished(String token, @SuppressWarnings("unused") @BillingResponseCode int response);
 
 		void onPurchasesUpdated(@Nullable List<Purchase> purchases);
 	}
