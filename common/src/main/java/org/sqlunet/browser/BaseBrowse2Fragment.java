@@ -52,6 +52,7 @@ public abstract class BaseBrowse2Fragment extends Fragment
 	public void onCreate(@Nullable final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		//noinspection deprecation
 		this.setRetainInstance(false);
 	}
 

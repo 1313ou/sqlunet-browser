@@ -113,6 +113,7 @@ public class SelectorsFragment extends ListFragment
 	{
 		super.onCreate(savedInstanceState);
 		Log.d(TAG, "lifecycle: onCreate (2) " + this);
+		//noinspection deprecation
 		this.setRetainInstance(false); // default
 
 		// arguments
