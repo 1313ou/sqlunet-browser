@@ -241,6 +241,7 @@ public class AutoEditTextPreference extends DialogPreference
 		if (preference instanceof AutoEditTextPreference)
 		{
 			final DialogFragment dialogFragment = AutoEditTextPreferenceDialogFragmentCompat.newInstance((AutoEditTextPreference) preference);
+			//noinspection deprecation
 			dialogFragment.setTargetFragment(prefFragment, 0);
 			dialogFragment.show(manager, DIALOG_FRAGMENT_TAG);
 			return true;

@@ -367,6 +367,7 @@ public class OpenEditTextPreference extends DialogPreference
 		if (preference instanceof OpenEditTextPreference)
 		{
 			final DialogFragment dialogFragment = OpenEditTextPreferenceDialogFragmentCompat.newInstance((OpenEditTextPreference) preference);
+			//noinspection deprecation
 			dialogFragment.setTargetFragment(prefFragment, 0);
 			dialogFragment.show(manager, DIALOG_FRAGMENT_TAG);
 			return true;
