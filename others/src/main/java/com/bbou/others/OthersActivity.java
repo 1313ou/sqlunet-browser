@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -42,6 +43,43 @@ public class OthersActivity extends AppCompatActivity
 		final ActionBar actionBar = getSupportActionBar();
 		assert actionBar != null;
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
+
+		// menu listeners
+		ImageButton b = findViewById(R.id.on_market_grammarscope);
+		if(b!=null)
+			b.setOnClickListener(this::onMarketGrammarScope);
+
+		b = findViewById(R.id.on_market_grammarscope_udpipe);
+		if(b!=null)
+			b.setOnClickListener(this::onMarketGrammarScopeUDPipe);
+
+		b = findViewById(R.id.on_market_treebolic_wordnet);
+		if(b!=null)
+			b.setOnClickListener(this::onMarketTreebolicWordNet);
+
+		b = findViewById(R.id.on_market_semantikos);
+		if(b!=null)
+			b.setOnClickListener(this::onMarketSemantikos);
+
+		b = findViewById(R.id.on_market_semantikos_wn);
+		if(b!=null)
+			b.setOnClickListener(this::onMarketSemantikosWn);
+
+		b = findViewById(R.id.on_market_semantikos_ewn);
+		if(b!=null)
+			b.setOnClickListener(this::onMarketSemantikosEWn);
+
+		b = findViewById(R.id.on_market_semantikos_vn);
+		if(b!=null)
+			b.setOnClickListener(this::onMarketSemantikosVn);
+
+		b = findViewById(R.id.on_market_semantikos_fn);
+		if(b!=null)
+			b.setOnClickListener(this::onMarketSemantikosFn);
+
+		b = findViewById(R.id.on_market_semantikos_sn);
+		if(b!=null)
+			b.setOnClickListener(this::onMarketSemantikosSn);
 	}
 
 	public void onMarketGrammarScope(@SuppressWarnings("UnusedParameters") View view)

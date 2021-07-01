@@ -1,10 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
@@ -15,7 +13,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content">
 
-		<include layout="@layout/toolbar"/>
+		<include layout="@layout/toolbar" />
 
 	</com.google.android.material.appbar.AppBarLayout>
 
@@ -35,12 +33,12 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
+				android:layout_marginTop="25dp"
 				android:contentDescription="@string/description_logo_grammarscope_syntaxnet"
 				android:gravity="center_horizontal"
-				android:layout_marginTop="25dp"
 				android:padding="5dp"
 				android:src="@drawable/logo_grammarscope"
-				android:visibility="visible"/>
+				android:visibility="visible" />
 
 			<TextView
 				style="@style/HeaderText"
@@ -51,7 +49,7 @@
 				android:padding="5dp"
 				android:text="@string/title_grammarscope_syntaxnet"
 				android:textStyle="bold"
-				android:visibility="visible"/>
+				android:visibility="visible" />
 
 			<TextView
 				style="@style/DescriptionText"
@@ -61,16 +59,16 @@
 				android:gravity="center_horizontal"
 				android:padding="5dp"
 				android:text="@string/text_grammarscope_syntaxnet"
-				android:visibility="visible"/>
+				android:visibility="visible" />
 
 			<ImageButton
+				android:id="@+id/on_market_grammarscope"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
 				android:layout_marginTop="10dp"
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_grammarscope_syntaxnet"
-				android:onClick="onMarketGrammarScope"
 				android:src="@drawable/ic_googleplay"
 				android:visibility="visible"
 				tools:ignore="OnClick" />
@@ -81,12 +79,12 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
+				android:layout_marginTop="25dp"
 				android:contentDescription="@string/description_logo_grammarscope_udpipe"
 				android:gravity="center_horizontal"
-				android:layout_marginTop="25dp"
 				android:padding="5dp"
 				android:src="@drawable/logo_grammarscope_udpipe"
-				android:visibility="visible"/>
+				android:visibility="visible" />
 
 			<TextView
 				style="@style/HeaderText"
@@ -97,7 +95,7 @@
 				android:padding="5dp"
 				android:text="@string/title_grammarscope_udpipe"
 				android:textStyle="bold"
-				android:visibility="visible"/>
+				android:visibility="visible" />
 
 			<TextView
 				style="@style/DescriptionText"
@@ -107,16 +105,16 @@
 				android:gravity="center_horizontal"
 				android:padding="5dp"
 				android:text="@string/text_grammarscope_udpipe"
-				android:visibility="visible"/>
+				android:visibility="visible" />
 
 			<ImageButton
+				android:id="@+id/on_market_grammarscope_udpipe"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
 				android:layout_marginTop="10dp"
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_grammarscope_udpipe"
-				android:onClick="onMarketGrammarScopeUDPipe"
 				android:src="@drawable/ic_googleplay"
 				android:visibility="visible"
 				tools:ignore="OnClick" />
@@ -127,12 +125,12 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
+				android:layout_marginTop="25dp"
 				android:contentDescription="@string/description_logo_treebolicwordnet"
 				android:gravity="center_horizontal"
-				android:layout_marginTop="25dp"
 				android:padding="5dp"
 				android:src="@drawable/logo_treebolicwordnet"
-				android:visibility="visible"/>
+				android:visibility="visible" />
 
 			<TextView
 				style="@style/HeaderText"
@@ -143,7 +141,7 @@
 				android:padding="5dp"
 				android:text="@string/title_treebolicwordnet"
 				android:textStyle="bold"
-				android:visibility="visible"/>
+				android:visibility="visible" />
 
 			<TextView
 				style="@style/DescriptionText"
@@ -153,16 +151,16 @@
 				android:gravity="center_horizontal"
 				android:padding="5dp"
 				android:text="@string/text_treebolicwordnet"
-				android:visibility="visible"/>
+				android:visibility="visible" />
 
 			<ImageButton
+				android:id="@+id/on_market_treebolic_wordnet"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
 				android:layout_marginTop="20dp"
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_treebolicwordnet"
-				android:onClick="onMarketTreebolicWordNet"
 				android:src="@drawable/ic_googleplay"
 				android:visibility="visible"
 				tools:ignore="OnClick" />
@@ -178,7 +176,7 @@
 				android:gravity="center_horizontal"
 				android:padding="5dp"
 				android:src="@drawable/logo_semantikos"
-				android:visibility="visible"/>
+				android:visibility="visible" />
 
 			<TextView
 				style="@style/HeaderText"
@@ -189,7 +187,7 @@
 				android:padding="5dp"
 				android:text="@string/title_semantikos"
 				android:textStyle="bold"
-				android:visibility="visible"/>
+				android:visibility="visible" />
 
 			<TextView
 				style="@style/DescriptionText"
@@ -199,16 +197,16 @@
 				android:gravity="center_horizontal"
 				android:padding="5dp"
 				android:text="@string/text_semantikos"
-				android:visibility="visible"/>
+				android:visibility="visible" />
 
 			<ImageButton
+				android:id="@+id/on_market_semantikos"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
 				android:layout_marginTop="20dp"
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_semantikos"
-				android:onClick="onMarketSemantikos"
 				android:src="@drawable/ic_googleplay"
 				android:visibility="visible"
 				tools:ignore="OnClick" />
@@ -224,7 +222,7 @@
 				android:gravity="center_horizontal"
 				android:padding="5dp"
 				android:src="@drawable/logo_semantikos_wn"
-				android:visibility="visible"/>
+				android:visibility="visible" />
 
 			<TextView
 				style="@style/HeaderText"
@@ -235,7 +233,7 @@
 				android:padding="5dp"
 				android:text="@string/title_semantikos_wn"
 				android:textStyle="bold"
-				android:visibility="visible"/>
+				android:visibility="visible" />
 
 			<TextView
 				style="@style/DescriptionText"
@@ -245,16 +243,16 @@
 				android:gravity="center_horizontal"
 				android:padding="5dp"
 				android:text="@string/text_semantikos_wn"
-				android:visibility="visible"/>
+				android:visibility="visible" />
 
 			<ImageButton
+				android:id="@+id/on_market_semantikos_wn"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
 				android:layout_marginTop="20dp"
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_semantikos_wn"
-				android:onClick="onMarketSemantikosWn"
 				android:src="@drawable/ic_googleplay"
 				android:visibility="visible"
 				tools:ignore="OnClick" />
@@ -270,7 +268,7 @@
 				android:gravity="center_horizontal"
 				android:padding="5dp"
 				android:src="@drawable/logo_semantikos_ewn"
-				android:visibility="visible"/>
+				android:visibility="visible" />
 
 			<TextView
 				style="@style/HeaderText"
@@ -281,7 +279,7 @@
 				android:padding="5dp"
 				android:text="@string/title_semantikos_ewn"
 				android:textStyle="bold"
-				android:visibility="visible"/>
+				android:visibility="visible" />
 
 			<TextView
 				style="@style/DescriptionText"
@@ -291,16 +289,16 @@
 				android:gravity="center_horizontal"
 				android:padding="5dp"
 				android:text="@string/text_semantikos_ewn"
-				android:visibility="visible"/>
+				android:visibility="visible" />
 
 			<ImageButton
+				android:id="@+id/on_market_semantikos_ewn"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
 				android:layout_marginTop="20dp"
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_semantikos_ewn"
-				android:onClick="onMarketSemantikosEWn"
 				android:src="@drawable/ic_googleplay"
 				android:visibility="visible"
 				tools:ignore="OnClick" />
@@ -316,7 +314,7 @@
 				android:gravity="center_horizontal"
 				android:padding="5dp"
 				android:src="@drawable/logo_semantikos_fn"
-				android:visibility="visible"/>
+				android:visibility="visible" />
 
 			<TextView
 				style="@style/HeaderText"
@@ -327,7 +325,7 @@
 				android:padding="5dp"
 				android:text="@string/title_semantikos_fn"
 				android:textStyle="bold"
-				android:visibility="visible"/>
+				android:visibility="visible" />
 
 			<TextView
 				style="@style/DescriptionText"
@@ -337,16 +335,16 @@
 				android:gravity="center_horizontal"
 				android:padding="5dp"
 				android:text="@string/text_semantikos_fn"
-				android:visibility="visible"/>
+				android:visibility="visible" />
 
 			<ImageButton
+				android:id="@+id/on_market_semantikos_fn"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
 				android:layout_marginTop="20dp"
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_semantikos_fn"
-				android:onClick="onMarketSemantikosFn"
 				android:src="@drawable/ic_googleplay"
 				android:visibility="visible"
 				tools:ignore="OnClick" />
@@ -362,7 +360,7 @@
 				android:gravity="center_horizontal"
 				android:padding="5dp"
 				android:src="@drawable/logo_semantikos_sn"
-				android:visibility="visible"/>
+				android:visibility="visible" />
 
 			<TextView
 				style="@style/HeaderText"
@@ -373,7 +371,7 @@
 				android:padding="5dp"
 				android:text="@string/title_semantikos_sn"
 				android:textStyle="bold"
-				android:visibility="visible"/>
+				android:visibility="visible" />
 
 			<TextView
 				style="@style/DescriptionText"
@@ -383,16 +381,16 @@
 				android:gravity="center_horizontal"
 				android:padding="5dp"
 				android:text="@string/text_semantikos_sn"
-				android:visibility="visible"/>
+				android:visibility="visible" />
 
 			<ImageButton
+				android:id="@+id/on_market_semantikos_sn"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
 				android:layout_marginTop="20dp"
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_semantikos_sn"
-				android:onClick="onMarketSemantikosSn"
 				android:src="@drawable/ic_googleplay"
 				android:visibility="visible"
 				tools:ignore="OnClick" />
