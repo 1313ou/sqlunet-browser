@@ -64,6 +64,15 @@ public class SynsetFragment extends TreeFragment
 		assert args != null;
 		final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
 		this.maxRecursion = args.containsKey(ProviderArgs.ARG_QUERYRECURSE) ? args.getInt(ProviderArgs.ARG_QUERYRECURSE) : -1;
+
+		// saved state
+		if (savedInstanceState != null)
+		{
+			Log.d(TAG, "restore instance state " + this);
+			this.expand = savedInstanceState.getBoolean(STATE_EXPAND);
+		}
+
+		// load
 		if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER))
 		{
 			// pointer
@@ -76,19 +85,6 @@ public class SynsetFragment extends TreeFragment
 			final Module module = makeModule();
 			module.init(type, pointer);
 			module.process(queryNode);
-		}
-	}
-
-	@Override
-	public void onActivityCreated(@Nullable final Bundle savedInstanceState)
-	{
-		super.onActivityCreated(savedInstanceState);
-
-		// saved state
-		if (savedInstanceState != null)
-		{
-			Log.d(TAG, "restore instance state " + this);
-			this.expand = savedInstanceState.getBoolean(STATE_EXPAND);
 		}
 	}
 

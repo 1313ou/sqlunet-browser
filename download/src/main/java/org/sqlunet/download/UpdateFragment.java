@@ -83,13 +83,7 @@ public class UpdateFragment extends Fragment
 	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		// inflate the layout for this fragment
-		return inflater.inflate(R.layout.fragment_update, container, false);
-	}
-
-	@Override
-	public void onActivityCreated(@Nullable Bundle savedInstanceState)
-	{
-		super.onActivityCreated(savedInstanceState);
+		View view = inflater.inflate(R.layout.fragment_update, container, false);
 
 		// arguments
 		final Activity activity = requireActivity();
@@ -115,7 +109,6 @@ public class UpdateFragment extends Fragment
 		final boolean newerArg = intent.getBooleanExtra(NEWER_ARG, false);
 		final Intent downloadIntent = intent.getParcelableExtra(DOWNLOAD_INTENT_ARG);
 
-		final View view = getView();
 		assert view != null;
 
 		final TextView upSrc = view.findViewById(R.id.up_src);
@@ -178,6 +171,7 @@ public class UpdateFragment extends Fragment
 			newer.setTextColor(Color.GREEN);
 			newer.setText(R.string.download_uptodate);
 		}
+		return view;
 	}
 
 	static private void update(@NonNull final Context context, final String downloadFromArg, final String downloadToArg, @Nullable final Intent downloadIntent)
