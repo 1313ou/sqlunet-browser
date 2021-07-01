@@ -12,6 +12,7 @@
 	tools:context="org.sqlunet.browser.xn.HomeFragment"
 	tools:keep="@layout/fragment_home">
 
+	<!--suppress AndroidUnresolvableTag -->
 	<org.sqlunet.browser.xn.HomeImageView
 		android:id="@+id/splash"
 		android:layout_width="wrap_content"

@@ -102,7 +102,7 @@
 	<!--<string name="status_download_downloadable_content">Now downloading available content. Be patient.</string>-->
 
 	<!-- result -->
-	<string name="result_success">Ok</string>
+	<string name="result_success">@android:string/ok</string>
 	<string name="result_fail">Fail</string>
 	<string name="result_is">Result is </string>
 	<string name="result_deleted">deleted</string>

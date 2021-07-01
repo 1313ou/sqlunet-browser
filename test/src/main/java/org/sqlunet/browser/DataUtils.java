@@ -86,7 +86,7 @@ public class DataUtils
 	static private String[] readWordListAlt()
 	{
 		final List<String> list = new ArrayList<>();
-		@SuppressWarnings("deprecation") final File dataFile = new File(Environment.getExternalStorageDirectory(), DataUtils.LIST_FILE);
+		final File dataFile = new File(Environment.getExternalStorageDirectory(), DataUtils.LIST_FILE);
 		try (final FileReader reader = new FileReader(dataFile); //
 		     final BufferedReader br = new BufferedReader(reader))
 		{

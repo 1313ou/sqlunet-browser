@@ -131,6 +131,9 @@ public class NightMode
 				return expected == AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
 
 			case AppCompatDelegate.MODE_NIGHT_UNSPECIFIED:
+			case AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY:
+				//noinspection deprecation
+			case AppCompatDelegate.MODE_NIGHT_AUTO_TIME:
 			default:
 				throw new IllegalStateException("Unexpected value: " + mode);
 		}
