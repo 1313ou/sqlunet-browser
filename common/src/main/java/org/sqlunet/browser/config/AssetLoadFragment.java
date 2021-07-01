@@ -67,6 +67,8 @@ public class AssetLoadFragment extends Fragment implements TaskObserver.Observer
 	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
 		super.onViewCreated(view, savedInstanceState);
+
+		// find view components to control loading
 		this.titleTextView = view.findViewById(R.id.title);
 		this.messageTextView = view.findViewById(R.id.message);
 		this.statusTextView = view.findViewById(R.id.status);
@@ -78,12 +80,8 @@ public class AssetLoadFragment extends Fragment implements TaskObserver.Observer
 			boolean result = this.task != null && this.task.cancel(true);
 			Log.d(TAG, "Cancel task @" + (this.task == null ? "null" : Integer.toHexString(this.task.hashCode())) + ' ' + result);
 		});
-	}
 
-	@Override
-	public void onActivityCreated(@Nullable final Bundle savedInstanceState)
-	{
-		super.onActivityCreated(savedInstanceState);
+		// load assets
 		final Context context = requireContext();
 		final String asset = Settings.getAssetPack(context);
 		final String assetDir = Settings.getAssetPackDir(context);
