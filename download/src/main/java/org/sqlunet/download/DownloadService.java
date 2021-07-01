@@ -143,10 +143,10 @@ public class DownloadService extends JobIntentService
 		{
 
 			String action = intent.getAction();
-			Log.d(TAG, "broadcast receiver caught " + action);
+			//Log.d(TAG, "Broadcast receiver caught " + action);
 			if (action.equals(ACTION_DOWNLOAD_CANCEL))
 			{
-				Log.d(TAG, "cancel flagged");
+				Log.d(TAG, "Cancel flagged through broadcast");
 				DownloadService.this.cancel = true;
 			}
 		}
@@ -184,7 +184,9 @@ public class DownloadService extends JobIntentService
 	public void onDestroy()
 	{
 		super.onDestroy();
-		Log.d(TAG, "cancel flagged in onDestroy by stopService");
+
+		// cancel flag
+		Log.d(TAG, "Cancel flagged in onDestroy");
 		this.cancel = true;
 
 		// unregister cancel receiver
@@ -368,8 +370,10 @@ public class DownloadService extends JobIntentService
 		}
 
 		// install
+		Log.d(TAG, "Download done " + outFile.getAbsolutePath());
 		if (!this.cancel)
 		{
+			Log.d(TAG, "Install " + outFile.getAbsolutePath());
 			install(outFile, date, size);
 			Settings.recordDbSource(this, this.fromUrl, date, size, etag, version, staticVersion);
 		}
@@ -462,7 +466,9 @@ public class DownloadService extends JobIntentService
 
 			if (this.cancel)
 			{
-				throw new InterruptedException("cancelled");
+				final InterruptedException ie = new InterruptedException("cancelled");
+				this.exception = ie;
+				throw ie;
 			}
 		}
 		if (output != null)
