@@ -164,6 +164,7 @@ public abstract class BaseSettingsActivity extends AppCompatActivity implements 
 		final Bundle args = pref.getExtras();
 		final Fragment fragment = getSupportFragmentManager().getFragmentFactory().instantiate(getClassLoader(), pref.getFragment());
 		fragment.setArguments(args);
+		//noinspection deprecation
 		fragment.setTargetFragment(caller, 0);
 
 		// Replace the existing Fragment with the new Fragment
