@@ -30,6 +30,8 @@ import org.sqlunet.settings.StorageUtils;
 
 import java.io.File;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.widget.ImageViewCompat;
@@ -48,9 +50,9 @@ public class SetupStatusFragment extends Fragment implements Updatable
 {
 	static private final String TAG = "SetupStatusF";
 
-	// codes
+	// activity result launcher
 
-	private static final int REQUEST_DOWNLOAD_CODE = 0xDDDD;
+	protected ActivityResultLauncher<Intent> activityResultLauncher;
 
 	// components
 
@@ -75,6 +77,24 @@ public class SetupStatusFragment extends Fragment implements Updatable
 	public SetupStatusFragment()
 	{
 		setHasOptionsMenu(true);
+	}
+
+	@Override
+	public void onCreate(@Nullable final Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+
+		this.activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+			boolean success = result.getResultCode() == Activity.RESULT_OK;
+			Log.d(TAG, "Download " + (success ? "succeeded" : "failed"));
+			update();
+			if (success)
+			{
+				final Context context2 = requireContext();
+				Toast.makeText(context2, R.string.title_download_complete, Toast.LENGTH_SHORT).show();
+				EntryActivity.rerun(context2);
+			}
+		});
 	}
 
 	@Nullable
@@ -131,7 +151,7 @@ public class SetupStatusFragment extends Fragment implements Updatable
 		final Intent intent = new Intent(context, DownloadActivity.class);
 		intent.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadSource(context, org.sqlunet.download.Settings.Downloader.isZipDownloaderPref(context)));
 		intent.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadTarget(context));
-		startActivityForResult(intent, SetupStatusFragment.REQUEST_DOWNLOAD_CODE);
+		this.activityResultLauncher.launch(intent);
 	}
 
 	protected void index()
@@ -217,29 +237,6 @@ public class SetupStatusFragment extends Fragment implements Updatable
 				this.imageIndexes.setImageResource(R.drawable.ic_unknown);
 			}
 		}
-	}
-
-	// R E T U R N S
-
-	@Override
-	public void onActivityResult(final int requestCode, final int resultCode, final Intent returnIntent)
-	{
-		// handle selection of input by other activity which returns selected input
-		if (requestCode == REQUEST_DOWNLOAD_CODE)
-		{
-			boolean success = resultCode == Activity.RESULT_OK;
-			Log.d(TAG, "Download " + (success ? "succeeded" : "failed")); ////
-			update();
-			if (success)
-			{
-				final Context context = requireContext();
-
-				Toast.makeText(context, R.string.title_download_complete, Toast.LENGTH_SHORT).show();
-
-				EntryActivity.rerun(context);
-			}
-		}
-		super.onActivityResult(requestCode, resultCode, returnIntent);
 	}
 
 	// M E N U
