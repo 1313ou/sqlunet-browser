@@ -190,7 +190,7 @@ public class DownloadZipService extends DownloadService
 
 		// install and rename
 		Log.d(TAG, "Download done " + outFile.getAbsolutePath());
-		if (done && ! this.cancel)
+		if (done && !this.cancel)
 		{
 			Log.d(TAG, "Install " + outFile.getAbsolutePath());
 			install(outFile, date, size);

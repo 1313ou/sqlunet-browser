@@ -26,7 +26,7 @@ allprojects {
         targetSdkVersion = 30
         compileSdkVersion = 30
         lifecycleVersion = '2.2.0'
-        navVersion = '2.3.4'
+        navVersion = '2.3.5'
     }
 
     tasks.withType(JavaCompile) {
