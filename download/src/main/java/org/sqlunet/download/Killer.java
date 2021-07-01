@@ -83,14 +83,14 @@ public class Killer extends BroadcastReceiver
 		{
 			Log.d(TAG, "Kill zip download service");
 
+			// stop service (broadcasting action)
+			DownloadService.kill(context);
+
 			// stop service
 			// execute the Service.onDestroy() method immediately
 			// but then let the code in onHandleIntent() finish all the way through before destroying the service.
 			final Intent intent = new Intent(context, DownloadZipService.class);
 			context.stopService(intent);
-
-			// stop service (broadcasting action)
-			DownloadService.kill(context);
 
 			// broadcast to fragment
 			broadcast(context, MAIN_INTENT_FILTER, //
