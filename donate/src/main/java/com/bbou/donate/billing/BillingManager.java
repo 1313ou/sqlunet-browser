@@ -22,14 +22,12 @@ import android.util.Log;
 import com.android.billingclient.api.AcknowledgePurchaseParams;
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClient.BillingResponseCode;
-import com.android.billingclient.api.BillingClient.FeatureType;
 import com.android.billingclient.api.BillingClient.SkuType;
 import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.BillingFlowParams;
 import com.android.billingclient.api.BillingResult;
 import com.android.billingclient.api.ConsumeParams;
 import com.android.billingclient.api.Purchase;
-import com.android.billingclient.api.Purchase.PurchasesResult;
 import com.android.billingclient.api.PurchasesUpdatedListener;
 import com.android.billingclient.api.SkuDetails;
 import com.android.billingclient.api.SkuDetailsParams;
@@ -143,7 +141,7 @@ public class BillingManager implements PurchasesUpdatedListener
 		startServiceConnection(() -> {
 
 			// Notifying the listener that billing client is ready
-			BillingManager.this.updatesListener.onBillingClientSetupFinished();
+			this.updatesListener.onBillingClientSetupFinished();
 
 			// IAB is fully set up. Now, let's get an inventory of stuff we own.
 			Log.d(TAG, "Querying inventory.");
@@ -394,58 +392,36 @@ public class BillingManager implements PurchasesUpdatedListener
 	{
 		executeServiceRequest(() -> {
 
-			// guard against destroyed client
-			if (this.client == null)
-			{
-				return;
-			}
+			assert this.client != null;
+			final long time = System.currentTimeMillis();
+			this.client.queryPurchasesAsync(SkuType.INAPP, (@NonNull BillingResult billingResult, @NonNull List<Purchase> purchasesList) -> {
 
-			long time = System.currentTimeMillis();
-			final PurchasesResult inappResult = this.client.queryPurchases(SkuType.INAPP);
-			Log.d(TAG, "Querying inapp purchases elapsed: " + (System.currentTimeMillis() - time) + "ms");
-			Log.i(TAG, "Querying inapp purchases response: " + inappResult.getResponseCode() + " count: " + (inappResult.getPurchasesList() == null ? "null" : inappResult.getPurchasesList().size()));
+				Log.d(TAG, "Querying inapp purchases elapsed: " + (System.currentTimeMillis() - time) + "ms");
+				Log.i(TAG, "Querying inapp purchases response: " + billingResult.getResponseCode() + " count: " + purchasesList.size());
 
-			// If there are subscriptions supported, we add subscription rows as well
-			if (areSubscriptionsSupported())
-			{
-				time = System.currentTimeMillis();
-				final PurchasesResult subscriptionResult = this.client.queryPurchases(SkuType.SUBS);
-				Log.d(TAG, "Querying subscription purchases elapsed: " + (System.currentTimeMillis() - time) + "ms");
-				Log.i(TAG, "Querying subscription purchases response: " + subscriptionResult.getResponseCode() + " count: " + (subscriptionResult.getPurchasesList() == null ? "null" : subscriptionResult.getPurchasesList().size()));
-
-				if (BillingResponseCode.OK == subscriptionResult.getResponseCode())
+				if (BillingResponseCode.OK == billingResult.getResponseCode())
 				{
-					inappResult.getPurchasesList().addAll(subscriptionResult.getPurchasesList());
+					onQueryPurchasesFinished(purchasesList);
 				}
 				else
 				{
-					Log.e(TAG, "Got an error response trying to query subscription purchases. " + subscriptionResult.getResponseCode());
+					Log.e(TAG, "Got an error response trying to query inapp purchases. " + billingResult.getResponseCode());
 				}
-			}
-			else if (BillingResponseCode.OK == inappResult.getResponseCode())
-			{
-				Log.d(TAG, "Skipped subscription purchases query since they are not supported.");
-			}
-			else
-			{
-				Log.e(TAG, "Got an error response trying to query trying to query inapp purchases: " + inappResult.getResponseCode());
-			}
-
-			onQueryPurchasesFinished(inappResult);
+			});
 		});
 	}
 
 	/**
 	 * Handle a result from querying of verifiedPurchases and report an updated list to the listener
 	 *
-	 * @param result purchase result
+	 * @param purchasesList purchase list
 	 */
-	private void onQueryPurchasesFinished(@NonNull final PurchasesResult result)
+	private void onQueryPurchasesFinished(@NonNull final List<Purchase> purchasesList)
 	{
 		// Have we been disposed of in the meantime? If so, or bad response code, then quit
-		if (this.client == null || BillingResponseCode.OK != result.getResponseCode())
+		if (this.client == null)
 		{
-			Log.w(TAG, "Query inventory failed. Billing client was null or response: " + result.getResponseCode());
+			Log.w(TAG, "Query inventory failed. Billing client was null");
 			return;
 		}
 
@@ -455,7 +431,7 @@ public class BillingManager implements PurchasesUpdatedListener
 		this.verifiedPurchases.clear();
 
 		// fire
-		onPurchasesUpdated(BillingResult.newBuilder().setResponseCode(BillingResponseCode.OK).build(), result.getPurchasesList());
+		onPurchasesUpdated(BillingResult.newBuilder().setResponseCode(BillingResponseCode.OK).build(), purchasesList);
 	}
 
 	// D E T A I L S
@@ -546,30 +522,6 @@ public class BillingManager implements PurchasesUpdatedListener
 			// (feel free to introduce your retry policy here).
 			startServiceConnection(runnable);
 		}
-	}
-
-	// S U P P O R T
-
-	/**
-	 * Checks if subscriptions are supported for current client
-	 * <p>Note: This method does not automatically retry for RESULT_SERVICE_DISCONNECTED.
-	 * It is only used in unit tests and after queryPurchases execution, which already has a retry-mechanism implemented.
-	 * </p>
-	 */
-	private boolean areSubscriptionsSupported()
-	{
-		// guard against destroyed client
-		if (this.client == null)
-		{
-			return false;
-		}
-		final BillingResult billingResult = this.client.isFeatureSupported(FeatureType.SUBSCRIPTIONS);
-		int responseCode = billingResult.getResponseCode();
-		if (BillingResponseCode.OK != responseCode)
-		{
-			Log.w(TAG, "areSubscriptionsSupported() got response: " + responseCode);
-		}
-		return BillingResponseCode.OK == responseCode;
 	}
 
 	// V A L I D I T Y
