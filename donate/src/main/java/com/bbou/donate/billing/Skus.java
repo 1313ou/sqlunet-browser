@@ -32,23 +32,11 @@ public final class Skus
 	@Nullable
 	private static String[] inAppSkus = null;
 
-	// SKUs for subscription
-	@Nullable
-	@SuppressWarnings("CanBeFinal")
-	private static final String[] subscriptionSkus = null;
-
 	// SKUs for products: the donate (consumable)
 	@Nullable
 	public static String[] getInappSkus()
 	{
 		return inAppSkus;
-	}
-
-	// SKUs for subscription
-	@Nullable
-	public static String[] getSubscriptionSkus()
-	{
-		return subscriptionSkus;
 	}
 
 	static public void init(@NonNull final Context context)
