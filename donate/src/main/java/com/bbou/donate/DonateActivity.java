@@ -5,7 +5,6 @@
 package com.bbou.donate;
 
 import android.content.Context;
-import android.content.pm.ApplicationInfo;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
@@ -41,6 +40,7 @@ import androidx.appcompat.widget.Toolbar;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
+@SuppressWarnings("WeakerAccess")
 public class DonateActivity extends AppCompatActivity implements BillingManager.BillingUpdatesListener
 {
 	static private final String TAG = "DonateA";
@@ -93,15 +93,6 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 		final String[] inappSkus = Skus.getInappSkus();
 		assert inappSkus != null;
 		final int n = inappSkus.length;
-		if ((getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0)
-		{
-			final int n1 = BUTTON_IDS.length;
-			final int n2 = DRAWABLE_IDS.length;
-			if (n1 != n || n2 != n)
-			{
-				throw new RuntimeException("");
-			}
-		}
 
 		// image buttons
 		final ImageButton[] buttons = new ImageButton[n];
@@ -128,8 +119,12 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 					sb.append("Order ID: ");
 					sb.append(purchase.getOrderId());
 					sb.append('\n');
-					sb.append("SKU: ");
-					sb.append(purchase.getSku());
+					sb.append("SKUs: ");
+					for (String sku2 : purchase.getSkus())
+					{
+						sb.append(sku2);
+						sb.append(' ');
+					}
 					sb.append('\n');
 					sb.append("Date: ");
 					sb.append(new Date(purchase.getPurchaseTime()));
@@ -227,15 +222,20 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 			// build data
 			for (Purchase purchase : updatedPurchases)
 			{
-				this.skuToPurchase.put(purchase.getSku(), purchase);
+				for (String sku : purchase.getSkus())
+				{
+					this.skuToPurchase.put(sku, purchase);
+				}
 			}
 
 			// set buttons and overlays
 			for (Purchase purchase : this.skuToPurchase.values())
 			{
 				Log.d(TAG, "Update " + purchase.toString());
-				final String sku = purchase.getSku();
-				update(sku, true);
+				for (String sku : purchase.getSkus())
+				{
+					update(sku, true);
+				}
 			}
 		}
 		else
@@ -292,9 +292,11 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 			{
 				if (purchase.getPurchaseToken().equals(token))
 				{
-					final String sku = purchase.getSku();
-					this.skuToPurchase.remove(sku);
-					update(sku, false);
+					for (String sku : purchase.getSkus())
+					{
+						this.skuToPurchase.remove(sku);
+						update(sku, false);
+					}
 					break;
 				}
 			}
