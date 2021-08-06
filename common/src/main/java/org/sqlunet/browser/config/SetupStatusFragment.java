@@ -50,10 +50,6 @@ public class SetupStatusFragment extends Fragment implements Updatable
 {
 	static private final String TAG = "SetupStatusF";
 
-	// activity result launcher
-
-	protected ActivityResultLauncher<Intent> activityResultLauncher;
-
 	// components
 
 	private ImageView imageDb;
@@ -65,6 +61,11 @@ public class SetupStatusFragment extends Fragment implements Updatable
 	protected ImageButton buttonIndexes;
 
 	protected ImageButton infoDatabaseButton;
+
+	/**
+	 * Activity result launcher
+	 */
+	protected ActivityResultLauncher<Intent> activityResultLauncher;
 
 	/**
 	 * Swipe refresh layout
