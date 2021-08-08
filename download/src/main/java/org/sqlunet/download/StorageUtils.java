@@ -83,7 +83,7 @@ public class StorageUtils
 				case APP_INTERNAL:
 					return "internal";
 			}
-			return null;
+			throw new IllegalArgumentException(this.toString());
 		}
 	}
 

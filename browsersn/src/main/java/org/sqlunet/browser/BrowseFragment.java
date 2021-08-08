@@ -359,7 +359,7 @@ public class BrowseFragment extends BaseSearchFragment
 				return new WebFragment();
 		}
 
-		return null;
+		throw new IllegalArgumentException(selectorMode.toString());
 	}
 
 	/**
