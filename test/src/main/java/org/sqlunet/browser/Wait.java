@@ -134,24 +134,24 @@ public class Wait
 
 	static public void until(@IdRes int resId, int sec)
 	{
-		onView(isRoot()).perform(waitId(resId, sec * TIME_UNIT_IN_MS));
+		onView(isRoot()).perform(waitId(resId, (long) sec * TIME_UNIT_IN_MS));
 	}
 
 	static public void until_not_text(@IdRes int resId, String target, int sec)
 	{
-		onView(isRoot()).perform(waitIdText(resId, target, true, sec * TIME_UNIT_IN_MS));
+		onView(isRoot()).perform(waitIdText(resId, target, true, (long) sec * TIME_UNIT_IN_MS));
 	}
 
 	static public void until_text(@IdRes int resId, String target, int sec)
 	{
-		onView(isRoot()).perform(waitIdText(resId, target, false, sec * TIME_UNIT_IN_MS));
+		onView(isRoot()).perform(waitIdText(resId, target, false, (long) sec * TIME_UNIT_IN_MS));
 	}
 
 	static public void pause(int sec)
 	{
 		try
 		{
-			Thread.sleep(sec * TIME_UNIT_IN_MS);
+			Thread.sleep((long) sec * TIME_UNIT_IN_MS);
 		}
 		catch (InterruptedException e)
 		{
