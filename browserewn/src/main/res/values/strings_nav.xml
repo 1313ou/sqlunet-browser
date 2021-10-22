@@ -6,7 +6,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<string name="nav_header_title" tools:keep="@string/nav_header_title">Semantikos</string>
-	<string name="nav_header_subtitle" tools:keep="@string/nav_header_subtitle">English WordNet</string>
+	<string name="nav_header_subtitle" tools:keep="@string/nav_header_subtitle">Open English Wordnet</string>
 
 	<string name="nav_home" tools:keep="@string/nav_home">Semantikos</string>
 

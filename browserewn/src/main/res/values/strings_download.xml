@@ -6,10 +6,13 @@
 
 	<!-- sites -->
 	<string-array name="pref_download_site_labels" tools:ignore="InconsistentArrays" tools:keep="@array/pref_download_site_labels">
-		<item>English WordNet 2020 core (Bitbucket, zipped)</item>
-		<item>English WordNet 2020 core (Sourceforge)</item>
-		<item>English WordNet 2020 core (Sourceforge, initial repo)</item>
-		<item>English WordNet 2020 core (Sourceforge, initial repo alias)</item>
+		<item>Open English Wordnet 2021 core (Bitbucket, zipped)</item>
+		<item>Open English Wordnet 2020 core (Bitbucket, zipped)</item>
+		<item>Open English Wordnet 2021 core (Sourceforge, zipped)</item>
+		<item>Open English Wordnet 2020 core (Sourceforge, zipped)</item>
+		<item>Open English Wordnet 2020 core (Sourceforge 600)</item>
+		<item>Open English Wordnet 2020 core (Sourceforge 520, initial repo)</item>
+		<item>Open English Wordnet 2020 core (Sourceforge 520, initial repo alias)</item>
 	</string-array>
 
 </resources>
