@@ -15,7 +15,7 @@
    viewBox="0 0 799.99999 799.99999"
    id="svg2"
    version="1.1"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
    sodipodi:docname="home.svg">
   <defs
      id="defs4">
@@ -82,8 +82,8 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.33392585"
-     inkscape:cx="-20.563508"
+     inkscape:zoom="0.94448493"
+     inkscape:cx="473.68631"
      inkscape:cy="423.43283"
      inkscape:document-units="px"
      inkscape:current-layer="g8444"
@@ -94,7 +94,7 @@
      fit-margin-bottom="5"
      inkscape:window-width="1431"
      inkscape:window-height="1004"
-     inkscape:window-x="51"
+     inkscape:window-x="56"
      inkscape:window-y="27"
      inkscape:window-maximized="0"
      units="px" />
@@ -163,28 +163,37 @@
            style="stroke-width:19.56344986px">Word</tspan></text>
       <text
          xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:294.2852478px;line-height:100%;font-family:Impact;-inkscape-font-specification:'Impact, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#c3b3a3;fill-opacity:0.99607843;stroke:none;stroke-width:19.61914062px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.99607843"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:294.28000814px;line-height:100%;font-family:Impact;-inkscape-font-specification:'Impact, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#c3b3a3;fill-opacity:0.99607843;stroke:none;stroke-width:19.61914062px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.99607843;"
          x="706.56885"
          y="351.49649"
          id="text4502"
          transform="matrix(0.67834239,-0.00187899,0,1.4741818,0,0)"><tspan
-           y="351.49649"
-           x="706.56885"
-           id="tspan4504"
            sodipodi:role="line"
-           style="stroke-width:19.61914062px">Net</tspan></text>
+           id="tspan833">net</tspan></text>
       <text
          xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:119.60908508px;line-height:100%;font-family:Impact;-inkscape-font-specification:'Impact, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;opacity:0.98000004;fill:#c5cfb9;fill-opacity:1;stroke:none;stroke-width:7.97400284px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.99607843;"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:119.60908508px;line-height:100%;font-family:Impact;-inkscape-font-specification:'Impact, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;opacity:0.98000004;fill:#c5cfb9;fill-opacity:1;stroke:none;stroke-width:7.97400284px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.99607843"
          x="241.48073"
-         y="145.30202"
+         y="152.77602"
          id="text850"
          transform="matrix(0.93425105,-0.0013643,0,1.0703761,0,0)"><tspan
            sodipodi:role="line"
            id="tspan852"
            x="241.48073"
-           y="145.30202"
-           style="fill:#c5cfb9;fill-opacity:1;stroke-width:7.97400284px;">English</tspan></text>
+           y="152.77602"
+           style="fill:#c5cfb9;fill-opacity:1;stroke-width:7.97400284px">English</tspan></text>
+      <text
+         transform="matrix(1.1183256,-0.00113974,0,0.89419395,0,0)"
+         id="text837"
+         y="49.120644"
+         x="283.76645"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:64.97320557px;line-height:100%;font-family:Impact;-inkscape-font-specification:'Impact, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;opacity:0.98000004;fill:#e4ddd5;fill-opacity:1;stroke:none;stroke-width:4.33157253px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.99607843"
+         xml:space="preserve"><tspan
+           sodipodi:role="line"
+           id="tspan839"
+           x="283.76645"
+           y="49.120644"
+           style="fill:#e4ddd5;fill-opacity:1;stroke-width:4.33157253px">Open</tspan></text>
     </g>
   </g>
 </svg>
