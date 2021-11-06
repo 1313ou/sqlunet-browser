@@ -82,15 +82,21 @@ public class AssetLoadFragment extends Fragment implements TaskObserver.Observer
 		});
 
 		// load assets
-		final Context context = getContext();
-		if (context != null) // avoid IllegalStateException: Fragment not yet attached to a context.
-		{
-			final String asset = Settings.getAssetPack(context);
-			final String assetDir = Settings.getAssetPackDir(context);
-			final String assetZip = Settings.getAssetPackZip(context);
-			final String assetZipEntry = context.getString(R.string.asset_zip_entry);
-			SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, requireActivity(), this, () -> EntryActivity.rerun(requireContext()), getView());
-		}
+		final Context context = requireContext();
+		final String asset = Settings.getAssetPack(context);
+		final String assetDir = Settings.getAssetPackDir(context);
+		final String assetZip = Settings.getAssetPackZip(context);
+		final String assetZipEntry = context.getString(R.string.asset_zip_entry);
+		final Runnable whenComplete = () -> {
+
+			// avoid IllegalStateException on completion
+			final Context context2 = getContext();
+			if (context2 != null)
+			{
+				EntryActivity.rerun(context2);
+			}
+		};
+		SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, requireActivity(), this, whenComplete, getView());
 	}
 
 	@Override
