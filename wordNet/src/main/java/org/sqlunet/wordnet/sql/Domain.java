@@ -7,14 +7,14 @@ package org.sqlunet.wordnet.sql;
 import androidx.annotation.NonNull;
 
 /**
- * LexDomainDef, utility class to encapsulate lexdomain data
+ * Domain, utility class to encapsulate domain data
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-class LexDomainDef
+class Domain
 {
 	/**
-	 * <code>id</code> lexdomain id
+	 * <code>id</code> domain id
 	 */
 	public final int id;
 
@@ -30,31 +30,31 @@ class LexDomainDef
 	public final String posName;
 
 	/**
-	 * <code>lexDomainName</code> lexdomain name
+	 * <code>domainName</code> domain name
 	 */
 	@NonNull
-	public final String lexDomainName;
+	public final String domainName;
 
 	/**
 	 * Constructor
 	 *
-	 * @param id   lexdomain id
+	 * @param id   domain id
 	 * @param pos  part-of-speech id
-	 * @param name lexdomain name
+	 * @param name domain name
 	 */
-	public LexDomainDef(final int id, final int pos, @NonNull final String name)
+	public Domain(final int id, final int pos, @NonNull final String name)
 	{
 		super();
 		this.id = id;
 		this.pos = pos;
 		this.posName = getPosName(name);
-		this.lexDomainName = getLexDomainName(name);
+		this.domainName = getDomainName(name);
 	}
 
 	/**
 	 * Get part-of-speech name
 	 *
-	 * @param string full lexdomain name
+	 * @param string full domain name
 	 * @return the part-of-speech name
 	 */
 	@NonNull
@@ -65,13 +65,13 @@ class LexDomainDef
 	}
 
 	/**
-	 * Get lexdomain name
+	 * Get domain name
 	 *
-	 * @param string full lexdomain name
-	 * @return the lexdomain name
+	 * @param string full domain name
+	 * @return the domain name
 	 */
 	@NonNull
-	private String getLexDomainName(@NonNull final String string)
+	private String getDomainName(@NonNull final String string)
 	{
 		final int index = string.indexOf('.');
 		return index == -1 ? string : string.substring(index + 1);

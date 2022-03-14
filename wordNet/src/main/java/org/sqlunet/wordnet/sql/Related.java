@@ -15,27 +15,27 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /**
- * Link, a linked synset
+ * Related, a related synset
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-class Link extends Synset
+class Related extends Synset
 {
-	static private final String TAG = "Link";
+	static private final String TAG = "Related";
 
 	/**
-	 * <code>linkType</code> relation type
+	 * <code>relationId</code> relation type id
 	 */
-	private final int linkType;
+	private final int relationId;
 
 	/**
-	 * <code>word</code> related word (lexlinks)
+	 * <code>word</code> related word (lexrelations)
 	 */
 	@Nullable
 	public final String word;
 
 	/**
-	 * <code>wordId</code> related word id (lexlinks)
+	 * <code>wordId</code> related word id (lexrelations)
 	 */
 	public final long wordId;
 
@@ -50,20 +50,20 @@ class Link extends Synset
 	public final long fromWordId;
 
 	/**
-	 * Constructor from query for synsets linked to a given synset
+	 * Constructor from query for synsets related to a given synset
 	 *
-	 * @param query query for synsets linked to a given synset
+	 * @param query query for synsets related to a given synset
 	 */
-	public Link(@NonNull final LinksQueryFromSynsetId query)
+	public Related(@NonNull final RelatedsQueryFromSynsetId query)
 	{
 		// construct synset
 		super(query);
 
-		// link data
+		// relation data
 		final String[] words = query.getWords();
 		final long[] wordIds = query.getWordIds();
 
-		this.linkType = query.getLinkType();
+		this.relationId = query.getRelationId();
 		this.word = words == null ? null : (words.length == 1 ? words[0] : null);
 		this.wordId = wordIds == null ? 0 : (wordIds.length == 1 ? wordIds[0] : 0);
 		this.fromSynsetId = query.getFromSynset();
@@ -71,20 +71,20 @@ class Link extends Synset
 	}
 
 	/**
-	 * Constructor from query for synsets linked to a given synset through a given relation type
+	 * Constructor from query for synsets related to a given synset through a given relation type id
 	 *
-	 * @param query is a query for synsets linked to a given synset through a given relation type
+	 * @param query is a query for synsets related to a given synset through a given relation type id
 	 */
-	Link(@NonNull final LinksQueryFromSynsetIdAndLinkType query)
+	Related(@NonNull final RelatedsQueryFromSynsetIdAndRelationId query)
 	{
 		// construct synset
 		super(query);
 
-		// link data
+		// relation data
 		final String[] words = query.getWords();
 		final long[] wordIds = query.getWordIds();
 
-		this.linkType = query.getLinkType();
+		this.relationId = query.getRelationId();
 		this.word = words == null ? null : (words.length == 1 ? words[0] : null);
 		this.wordId = wordIds == null ? 0 : (wordIds.length == 1 ? wordIds[0] : 0);
 		this.fromSynsetId = query.getFromSynset();
@@ -92,52 +92,52 @@ class Link extends Synset
 	}
 
 	/**
-	 * Get link name
+	 * Get relation name
 	 *
-	 * @return link name
+	 * @return relation name
 	 */
-	public String getLinkName()
+	public String getRelationName()
 	{
-		return Mapping.getLinkName(this.linkType);
+		return Mapping.getRelationName(this.relationId);
 	}
 
 	/**
-	 * Get whether link can recurse
+	 * Get whether relation can recurse
 	 *
-	 * @return true if the link can recurse
+	 * @return true if the relation can recurse
 	 */
 	public boolean canRecurse()
 	{
-		return Mapping.canRecurse(this.linkType);
+		return Mapping.canRecurse(this.relationId);
 	}
 
 	/**
-	 * Override : recurse only on links of the same link type
+	 * Override : recurse only on relations of the same relation type
 	 */
 	@Nullable
 	@Override
-	public List<Link> getLinks(final SQLiteDatabase connection, final long wordId)
+	public List<Related> getRelateds(final SQLiteDatabase connection, final long wordId)
 	{
-		LinksQueryFromSynsetIdAndLinkType query = null;
-		List<Link> links = new ArrayList<>();
+		RelatedsQueryFromSynsetIdAndRelationId query = null;
+		List<Related> relateds = new ArrayList<>();
 		try
 		{
-			query = new LinksQueryFromSynsetIdAndLinkType(connection);
+			query = new RelatedsQueryFromSynsetIdAndRelationId(connection);
 			query.setFromSynset(this.synsetId);
 			query.setFromWord(wordId);
-			query.setLinkType(this.linkType);
+			query.setRelation(this.relationId);
 			query.execute();
 
 			while (query.next())
 			{
-				final Link link = new Link(query);
-				links.add(link);
+				final Related related = new Related(query);
+				relateds.add(related);
 			}
 		}
 		catch (@NonNull final SQLException e)
 		{
 			Log.e(TAG, "While querying", e);
-			links = null;
+			relateds = null;
 		}
 		finally
 		{
@@ -146,6 +146,6 @@ class Link extends Synset
 				query.release();
 			}
 		}
-		return links;
+		return relateds;
 	}
 }

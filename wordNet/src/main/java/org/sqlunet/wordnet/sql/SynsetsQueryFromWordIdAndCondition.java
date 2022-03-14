@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import org.sqlunet.sql.DBQuery;
 
 /**
- * Query for synsets of a given part-of-speech or lexdomain type and containing a given word
+ * Query for synsets of a given part-of-speech or domain type and containing a given word
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -21,16 +21,16 @@ class SynsetsQueryFromWordIdAndCondition extends DBQuery
 	static private String QUERYWITHPOS;
 
 	/**
-	 * <code>QUERYWITHLEXDOMAIN</code> is the (lexdomain based) SQL statement
+	 * <code>QUERYWITHDOMAIN</code> is the (domain based) SQL statement
 	 */
-	static private String QUERYWITHLEXDOMAIN;
+	static private String QUERYWITHDOMAIN;
 
 	/**
 	 * Init data (resources, ...)
 	 */
 	static void init()
 	{
-		SynsetsQueryFromWordIdAndCondition.QUERYWITHLEXDOMAIN = SqLiteDialect.SynsetsQueryFromWordIdAndLexDomainId;
+		SynsetsQueryFromWordIdAndCondition.QUERYWITHDOMAIN = SqLiteDialect.SynsetsQueryFromWordIdAndDomainId;
 		SynsetsQueryFromWordIdAndCondition.QUERYWITHPOS = SqLiteDialect.SynsetsQueryFromWordIdAndPos;
 	}
 
@@ -38,11 +38,11 @@ class SynsetsQueryFromWordIdAndCondition extends DBQuery
 	 * Constructor
 	 *
 	 * @param connection     connection
-	 * @param lexDomainBased is whether the query is lexdomain based
+	 * @param domainBased is whether the query is domain based
 	 */
-	public SynsetsQueryFromWordIdAndCondition(final SQLiteDatabase connection, final boolean lexDomainBased)
+	public SynsetsQueryFromWordIdAndCondition(final SQLiteDatabase connection, final boolean domainBased)
 	{
-		super(connection, lexDomainBased ? SynsetsQueryFromWordIdAndCondition.QUERYWITHLEXDOMAIN : SynsetsQueryFromWordIdAndCondition.QUERYWITHPOS);
+		super(connection, domainBased ? SynsetsQueryFromWordIdAndCondition.QUERYWITHDOMAIN : SynsetsQueryFromWordIdAndCondition.QUERYWITHPOS);
 	}
 
 	/**
@@ -67,11 +67,11 @@ class SynsetsQueryFromWordIdAndCondition extends DBQuery
 	}
 
 	/**
-	 * Set lexdomain type parameter in prepared SQL statement
+	 * Set domain type parameter in prepared SQL statement
 	 *
-	 * @param type target lexdomain type
+	 * @param type target domain type
 	 */
-	public void setLexDomainType(final int type)
+	public void setDomainType(final int type)
 	{
 		this.statement.setInt(1, type);
 	}
@@ -99,11 +99,11 @@ class SynsetsQueryFromWordIdAndCondition extends DBQuery
 	}
 
 	/**
-	 * Get synset lexdomain id
+	 * Get synset domain id
 	 *
-	 * @return synset lexdomain id
+	 * @return synset domain id
 	 */
-	public int getLexDomainId()
+	public int getDomainId()
 	{
 		assert this.cursor != null;
 		return this.cursor.getInt(2);

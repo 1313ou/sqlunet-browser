@@ -9,31 +9,31 @@ import android.database.sqlite.SQLiteDatabase;
 import org.sqlunet.sql.DBQuery;
 
 /**
- * Query for a link enumeration
+ * Query for a relation enumeration
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-class LinksQuery extends DBQuery
+class RelationsQuery extends DBQuery
 {
 	/**
 	 * <code>QUERY</code> is the SQL statement
 	 */
-	static private final String QUERY = SqLiteDialect.AllLinksQuery;
+	static private final String QUERY = SqLiteDialect.AllRelationsQuery;
 
 	/**
 	 * Constructor
 	 *
 	 * @param connection connection
 	 */
-	public LinksQuery(final SQLiteDatabase connection)
+	public RelationsQuery(final SQLiteDatabase connection)
 	{
-		super(connection, LinksQuery.QUERY);
+		super(connection, RelationsQuery.QUERY);
 	}
 
 	/**
 	 * Get the id from the result set
 	 *
-	 * @return the link id value from the result set
+	 * @return the relation id value from the result set
 	 */
 	public int getId()
 	{
@@ -44,7 +44,7 @@ class LinksQuery extends DBQuery
 	/**
 	 * Get the name from the result set
 	 *
-	 * @return the link name value from the result set
+	 * @return the relation name value from the result set
 	 */
 	public String getName()
 	{
@@ -55,7 +55,7 @@ class LinksQuery extends DBQuery
 	/**
 	 * Get the recurse capability from the result set
 	 *
-	 * @return the link recurse capability value from the result set
+	 * @return the relation recurse capability value from the result set
 	 */
 	public boolean getRecurse()
 	{

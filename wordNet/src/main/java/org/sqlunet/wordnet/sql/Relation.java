@@ -5,15 +5,15 @@
 package org.sqlunet.wordnet.sql;
 
 /**
- * LinkDef, utility class to encapsulate link data
+ * Relation, utility class to encapsulate relation data
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 
-class LinkDef
+class Relation
 {
 	/**
-	 * <code>id</code> link id
+	 * <code>id</code> relation id
 	 */
 	public final int id;
 
@@ -23,23 +23,23 @@ class LinkDef
 	public int pos;
 
 	/**
-	 * <code>name</code> link name
+	 * <code>name</code> relation name
 	 */
 	public final String name;
 
 	/**
-	 * <code>recurses</code> is whether the link recurses
+	 * <code>recurses</code> is whether the relation recurses
 	 */
 	public final boolean recurses;
 
 	/**
 	 * Constructor
 	 *
-	 * @param id       link id
-	 * @param name     link name
-	 * @param recurses whether the link recurses
+	 * @param id       relation id
+	 * @param name     relation name
+	 * @param recurses whether the relation recurses
 	 */
-	public LinkDef(final int id, final String name, final boolean recurses)
+	public Relation(final int id, final String name, final boolean recurses)
 	{
 		super();
 		this.id = id;

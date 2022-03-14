@@ -26,14 +26,14 @@ class Synset extends BasicSynset
 	/**
 	 * Constructor from data
 	 *
-	 * @param synsetId    synset id
-	 * @param definition  definition
-	 * @param lexDomainId lexdomain id
-	 * @param sample      sample
+	 * @param synsetId   synset id
+	 * @param definition definition
+	 * @param domainId   domain id
+	 * @param sample     sample
 	 */
-	protected Synset(final long synsetId, final String definition, final int lexDomainId, final String sample)
+	protected Synset(final long synsetId, final String definition, final int domainId, final String sample)
 	{
-		super(synsetId, definition, lexDomainId, sample);
+		super(synsetId, definition, domainId, sample);
 	}
 
 	/**
@@ -43,7 +43,7 @@ class Synset extends BasicSynset
 	 */
 	Synset(@NonNull final SynsetsQueryFromWordId query)
 	{
-		super(query.getSynsetId(), query.getDefinition(), query.getLexDomainId(), query.getSample());
+		super(query.getSynsetId(), query.getDefinition(), query.getDomainId(), query.getSample());
 	}
 
 	/**
@@ -53,7 +53,7 @@ class Synset extends BasicSynset
 	 */
 	Synset(@NonNull final SynsetQuery query)
 	{
-		super(query.getSynsetId(), query.getDefinition(), query.getLexDomainId(), query.getSample());
+		super(query.getSynsetId(), query.getDefinition(), query.getDomainId(), query.getSample());
 	}
 
 	/**
@@ -63,27 +63,27 @@ class Synset extends BasicSynset
 	 */
 	Synset(@NonNull final SynsetsQueryFromWordIdAndCondition query)
 	{
-		super(query.getSynsetId(), query.getDefinition(), query.getLexDomainId(), query.getSample());
+		super(query.getSynsetId(), query.getDefinition(), query.getDomainId(), query.getSample());
 	}
 
 	/**
-	 * Constructor from query for linked synsets
+	 * Constructor from query for related synsets
 	 *
-	 * @param query query for linked synsets
+	 * @param query query for related synsets
 	 */
-	Synset(@NonNull final LinksQueryFromSynsetId query)
+	Synset(@NonNull final RelatedsQueryFromSynsetId query)
 	{
-		super(query.getSynsetId(), query.getDefinition(), query.getLexDomainId(), query.getSamples());
+		super(query.getSynsetId(), query.getDefinition(), query.getDomainId(), query.getSamples());
 	}
 
 	/**
-	 * Constructor from query for synsets linked through a given relation type
+	 * Constructor from query for synsets related through a given relation type id
 	 *
-	 * @param query query for synsets linked through a given relation type
+	 * @param query query for synsets related through a given relation type id
 	 */
-	Synset(@NonNull final LinksQueryFromSynsetIdAndLinkType query)
+	Synset(@NonNull final RelatedsQueryFromSynsetIdAndRelationId query)
 	{
-		super(query.getSynsetId(), query.getDefinition(), query.getLexDomainId(), query.getSamples());
+		super(query.getSynsetId(), query.getDefinition(), query.getDomainId(), query.getSamples());
 	}
 
 	/**
@@ -163,49 +163,49 @@ class Synset extends BasicSynset
 	@NonNull
 	public String getPosName()
 	{
-		return Mapping.getPosName(this.lexDomainId);
+		return Mapping.getPosName(this.domainId);
 	}
 
 	/**
-	 * Get the synset's lexdomain name
+	 * Get the synset's domain name
 	 *
-	 * @return synset's lexdomain name
+	 * @return synset's domain name
 	 */
 	@NonNull
-	public String getLexDomainName()
+	public String getDomainName()
 	{
-		return Mapping.getLexDomainName(this.lexDomainId);
+		return Mapping.getDomainName(this.domainId);
 	}
 
 	/**
-	 * Get synsets linked to the synset
+	 * Get synsets related to the synset
 	 *
 	 * @param connection connection
-	 * @param wordId     word id (for lexical links)
-	 * @return list of synsets linked to the synset
+	 * @param wordId     word id (for lexical relations)
+	 * @return list of synsets related to the synset
 	 */
 	@Nullable
-	public List<Link> getLinks(final SQLiteDatabase connection, final long wordId)
+	public List<Related> getRelateds(final SQLiteDatabase connection, final long wordId)
 	{
-		LinksQueryFromSynsetId query = null;
-		List<Link> links = new ArrayList<>();
+		RelatedsQueryFromSynsetId query = null;
+		List<Related> relateds = new ArrayList<>();
 		try
 		{
-			query = new LinksQueryFromSynsetId(connection);
+			query = new RelatedsQueryFromSynsetId(connection);
 			query.setFromSynset(this.synsetId);
 			query.setFromWord(wordId);
 			query.execute();
 
 			while (query.next())
 			{
-				final Link link = new Link(query);
-				links.add(link);
+				final Related related = new Related(query);
+				relateds.add(related);
 			}
 		}
 		catch (@NonNull final SQLException e)
 		{
-			Log.e(TAG, "While querying links", e);
-			links = null;
+			Log.e(TAG, "While querying relateds", e);
+			relateds = null;
 		}
 		finally
 		{
@@ -214,40 +214,40 @@ class Synset extends BasicSynset
 				query.release();
 			}
 		}
-		return links;
+		return relateds;
 	}
 
 	/**
-	 * Get synsets linked to the synset through a given relation type
+	 * Get synsets related to the synset through a given relation type id
 	 *
 	 * @param connection connection
-	 * @param wordId     word id (for lexical links)
-	 * @param linkType   link type
-	 * @return list of synsets linked to the synset through a given relation type
+	 * @param wordId     word id (for lexical relations)
+	 * @param relationId relation type id
+	 * @return list of synsets related to the synset through a given relation type
 	 */
 	@Nullable
-	public List<Link> getTypedLinks(final SQLiteDatabase connection, final long wordId, final int linkType)
+	public List<Related> getTypedRelateds(final SQLiteDatabase connection, final long wordId, final int relationId)
 	{
-		LinksQueryFromSynsetIdAndLinkType query = null;
-		List<Link> links = new ArrayList<>();
+		RelatedsQueryFromSynsetIdAndRelationId query = null;
+		List<Related> relateds = new ArrayList<>();
 		try
 		{
-			query = new LinksQueryFromSynsetIdAndLinkType(connection);
+			query = new RelatedsQueryFromSynsetIdAndRelationId(connection);
 			query.setFromSynset(this.synsetId);
 			query.setFromWord(wordId);
-			query.setLinkType(linkType);
+			query.setRelation(relationId);
 			query.execute();
 
 			while (query.next())
 			{
-				final Link link = new Link(query);
-				links.add(link);
+				final Related related = new Related(query);
+				relateds.add(related);
 			}
 		}
 		catch (@NonNull final SQLException e)
 		{
-			Log.e(TAG, "While querying typed links", e);
-			links = null;
+			Log.e(TAG, "While querying typed relations", e);
+			relateds = null;
 		}
 		finally
 		{
@@ -256,6 +256,6 @@ class Synset extends BasicSynset
 				query.release();
 			}
 		}
-		return links;
+		return relateds;
 	}
 }

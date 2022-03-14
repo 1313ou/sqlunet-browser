@@ -43,25 +43,25 @@ interface WordNetInterface
 	/**
 	 * Business method that returns WordNet data as a Document
 	 *
-	 * @param connection connection
-	 * @param word       target word
-	 * @param withLinks  determines if queries are to include links
-	 * @param recurse    determines if queries are to follow links recursively
+	 * @param connection    connection
+	 * @param word          target word
+	 * @param withRelations determines if queries are to include relations
+	 * @param recurse       determines if queries are to follow relations recursively
 	 * @return WordNet data as a DOM Document
 	 */
-	Document queryDoc(final SQLiteDatabase connection, final String word, final boolean withLinks, final boolean recurse);
+	Document queryDoc(final SQLiteDatabase connection, final String word, final boolean withRelations, final boolean recurse);
 
 	/**
 	 * Business method that returns WordNet data as XML
 	 *
-	 * @param connection connection
-	 * @param word       target word
-	 * @param withLinks  determines if queries are to include links
-	 * @param recurse    determines if queries are to follow links recursively
+	 * @param connection    connection
+	 * @param word          target word
+	 * @param withRelations determines if queries are to include relations
+	 * @param recurse       determines if queries are to follow relations recursively
 	 * @return WordNet data as XML
 	 */
 	@NonNull
-	String queryXML(final SQLiteDatabase connection, final String word, final boolean withLinks, final boolean recurse);
+	String queryXML(final SQLiteDatabase connection, final String word, final boolean withRelations, final boolean recurse);
 
 	/**
 	 * Business method that returns WordNet data as DOM document
@@ -69,13 +69,13 @@ interface WordNetInterface
 	 * @param connection    connection
 	 * @param word          target word
 	 * @param posName       target part-of-speech
-	 * @param lexDomainName target lexdomain
-	 * @param linkName      target link type
-	 * @param withLinks     determines if queries are to include links
-	 * @param recurse       determines if queries are to follow links recursively
+	 * @param domainName    target domain
+	 * @param relationName  target relation name
+	 * @param withRelations determines if queries are to include relations
+	 * @param recurse       determines if queries are to follow relations recursively
 	 * @return WordNet data as DOM document
 	 */
-	Document queryDoc(final SQLiteDatabase connection, final String word, final String posName, final String lexDomainName, final String linkName, final boolean withLinks, final boolean recurse);
+	Document queryDoc(final SQLiteDatabase connection, final String word, final String posName, final String domainName, final String relationName, final boolean withRelations, final boolean recurse);
 
 	/**
 	 * Business method that returns WordNet data as XML
@@ -83,26 +83,26 @@ interface WordNetInterface
 	 * @param connection    connection
 	 * @param word          target word
 	 * @param posName       target part-of-speech
-	 * @param lexDomainName target lexdomain
-	 * @param linkName      target link type
-	 * @param withLinks     determines if queries are to include links
-	 * @param recurse       determines if queries are to follow links recursively
+	 * @param domainName    target domain
+	 * @param relationName  target relation type name
+	 * @param withRelations determines if queries are to include relations
+	 * @param recurse       determines if queries are to follow relations recursively
 	 * @return WordNet data as XML data
 	 */
 	@NonNull
-	String queryXML(final SQLiteDatabase connection, final String word, final String posName, final String lexDomainName, final String linkName, final boolean withLinks, final boolean recurse);
+	String queryXML(final SQLiteDatabase connection, final String word, final String posName, final String domainName, final String relationName, final boolean withRelations, final boolean recurse);
 
 	/**
 	 * Business method that returns WordNet data as a Document
 	 *
-	 * @param connection connection
-	 * @param wordId     target word id
-	 * @param synsetId   target synset id
-	 * @param withLinks  determines if queries are to include links
-	 * @param recurse    determines if queries are to follow links recursively
+	 * @param connection    connection
+	 * @param wordId        target word id
+	 * @param synsetId      target synset id
+	 * @param withRelations determines if queries are to include relations
+	 * @param recurse       determines if queries are to follow relations recursively
 	 * @return WordNet data as a DOM Document
 	 */
-	Document queryDoc(final SQLiteDatabase connection, final long wordId, final Long synsetId, final boolean withLinks, final boolean recurse);
+	Document queryDoc(final SQLiteDatabase connection, final long wordId, final Long synsetId, final boolean withRelations, final boolean recurse);
 
 	// I T E M S
 
@@ -174,18 +174,18 @@ interface WordNetInterface
 	String[] getPosNames();
 
 	/**
-	 * Business method that returns WordNet lexdomains as array of strings
+	 * Business method that returns WordNet domains as array of strings
 	 *
 	 * @return array of Strings
 	 */
 	@NonNull
-	String[] getLexDomainNames();
+	String[] getDomainNames();
 
 	/**
-	 * Business method that returns WordNet link names as array of strings
+	 * Business method that returns WordNet relation names as array of strings
 	 *
 	 * @return array of Strings
 	 */
 	@NonNull
-	String[] getLinkNames();
+	String[] getRelationNames();
 }

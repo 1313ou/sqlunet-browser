@@ -10,10 +10,6 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -170,25 +166,25 @@ public class Word extends BasicWord
 	}
 
 	/**
-	 * Get synsets containing a given word and of a given part-of-speech or lexdomain id
+	 * Get synsets containing a given word and of a given part-of-speech or domain id
 	 *
-	 * @param connection     connection
-	 * @param targetType     target type to restrict search to
-	 * @param lexDomainBased is whether the query is lexdomain based
+	 * @param connection  connection
+	 * @param targetType  target type to restrict search to
+	 * @param domainBased is whether the query is domain based
 	 * @return list of synsets for a given word
 	 */
 	@Nullable
-	public List<Synset> getTypedSynsets(final SQLiteDatabase connection, final int targetType, final boolean lexDomainBased)
+	public List<Synset> getTypedSynsets(final SQLiteDatabase connection, final int targetType, final boolean domainBased)
 	{
 		SynsetsQueryFromWordIdAndCondition query = null;
 		List<Synset> synsets = new ArrayList<>();
 		try
 		{
-			query = new SynsetsQueryFromWordIdAndCondition(connection, lexDomainBased);
+			query = new SynsetsQueryFromWordIdAndCondition(connection, domainBased);
 			query.setWordId(this.id);
-			if (lexDomainBased)
+			if (domainBased)
 			{
-				query.setLexDomainType(targetType);
+				query.setDomainType(targetType);
 			}
 			else
 			{
@@ -215,61 +211,5 @@ public class Word extends BasicWord
 			}
 		}
 		return synsets;
-	}
-
-	/**
-	 * Get lexdomain-link type map for a given word
-	 *
-	 * @param connection connection
-	 * @param word       target word
-	 * @return lexdomain-link type map for a given word
-	 */
-	@Nullable
-	static public Map<Integer, Set<Integer>> getLinkTypes(final SQLiteDatabase connection, final String word)
-	{
-		LinkTypesQueryFromWord query = null;
-		Map<Integer, Set<Integer>> map = new TreeMap<>();
-		try
-		{
-			query = new LinkTypesQueryFromWord(connection);
-			query.setWord(word);
-			query.execute();
-
-			while (query.next())
-			{
-				final int linkType = query.getLinkType();
-				if (linkType == 0)
-				{
-					continue;
-				}
-				final Integer key = query.getLexDomainId();
-
-				Set<Integer> values;
-				if (map.containsKey(key))
-				{
-					values = map.get(key);
-				}
-				else
-				{
-					values = new TreeSet<>();
-					map.put(key, values);
-				}
-				assert values != null;
-				values.add(linkType);
-			}
-		}
-		catch (@NonNull final SQLException e)
-		{
-			Log.e(TAG, "While querying link types", e);
-			map = null;
-		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
-			}
-		}
-		return map;
 	}
 }

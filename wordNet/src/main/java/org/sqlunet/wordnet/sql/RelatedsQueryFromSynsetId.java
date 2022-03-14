@@ -11,68 +11,57 @@ import org.sqlunet.sql.DBQuery;
 import androidx.annotation.Nullable;
 
 /**
- * Query for synsets linked through a given relation type
+ * Query for related synsets
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-class LinksQueryFromSynsetIdAndLinkType extends DBQuery
+class RelatedsQueryFromSynsetId extends DBQuery
 {
 	/**
-	 * <code>QUERY</code> is the SQL statement
+	 * <code>QUERY</code> SQL statement
 	 */
-	static private final String QUERY = SqLiteDialect.LinksQueryFromSynsetIdAndLinkId;
+	static private final String QUERY = SqLiteDialect.RelatedsQueryFromSynsetId;
 
 	/**
 	 * Constructor
 	 *
 	 * @param connection connection
 	 */
-	public LinksQueryFromSynsetIdAndLinkType(final SQLiteDatabase connection)
+	public RelatedsQueryFromSynsetId(final SQLiteDatabase connection)
 	{
-		super(connection, LinksQueryFromSynsetIdAndLinkType.QUERY);
+		super(connection, RelatedsQueryFromSynsetId.QUERY);
 	}
 
 	/**
 	 * Set source synset parameter in prepared statement
 	 *
-	 * @param synsetId is the source synset id
+	 * @param synsetId synset id
 	 */
 	public void setFromSynset(final long synsetId)
 	{
 		this.statement.setLong(0, synsetId);
-		this.statement.setLong(2, synsetId);
+		this.statement.setLong(1, synsetId);
 	}
 
 	/**
 	 * Set source word parameter in prepared statement
 	 *
-	 * @param wordId is the source word id (for lexical links) or -1 if word is any in which case the query returns all lexical links whatever the word
+	 * @param wordId word id or 0 if word is any in which case the query returns all lexical relations whatever the word
 	 */
 	public void setFromWord(final long wordId)
 	{
-		this.statement.setLong(4, wordId);
-		this.statement.setLong(5, wordId);
+		this.statement.setLong(2, wordId);
+		this.statement.setLong(3, wordId);
 	}
 
-	/**
-	 * Set source type parameter in prepared statement
-	 *
-	 * @param type target synset type
-	 */
-	public void setLinkType(final int type)
-	{
-		this.statement.setInt(1, type);
-		this.statement.setInt(3, type);
-	}
-
-	// linkid, synsetid, definition, lexdomainid, sampleset, word2id, lemma, synset1id, word1id
+	// relationid, synsetid, definition, domainid, sampleset, word2id, lemma, synset1id, word1id
 
 	/**
-	 * Get link type
+	 * Get relation type id
 	 *
-	 * @return link type
+	 * @return relation type id
 	 */
-	public int getLinkType()
+	public int getRelationId()
 	{
 		assert this.cursor != null;
 		return this.cursor.getInt(0);
@@ -101,11 +90,11 @@ class LinksQueryFromSynsetIdAndLinkType extends DBQuery
 	}
 
 	/**
-	 * Get synset lexdomain id
+	 * Get synset domain id
 	 *
-	 * @return synset lexdomain id
+	 * @return synset domain id
 	 */
-	public int getLexDomainId()
+	public int getDomainId()
 	{
 		assert this.cursor != null;
 		return this.cursor.getInt(3);

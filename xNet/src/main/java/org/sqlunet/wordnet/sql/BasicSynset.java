@@ -24,7 +24,7 @@ public class BasicSynset
 	/**
 	 * <code>lexDomainId</code> is the synset's lexdomain
 	 */
-	public final int lexDomainId;
+	public final int domainId;
 
 	/**
 	 * <code>sample</code> is a string concatenating the synset's samples
@@ -36,14 +36,14 @@ public class BasicSynset
 	 *
 	 * @param synsetId    is the synset id
 	 * @param definition  is the definition
-	 * @param lexDomainId is the lexdomain id
+	 * @param domainId is the lexdomain id
 	 * @param sample      is the sample
 	 */
-	protected BasicSynset(final long synsetId, final String definition, final int lexDomainId, final String sample)
+	protected BasicSynset(final long synsetId, final String definition, final int domainId, final String sample)
 	{
 		this.synsetId = synsetId;
 		this.definition = definition;
-		this.lexDomainId = lexDomainId;
+		this.domainId = domainId;
 		this.sample = sample;
 	}
 }

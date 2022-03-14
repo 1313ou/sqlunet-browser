@@ -40,7 +40,7 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 * @param value  lexdomain
 	 * @return newly created node
 	 */
-	static public Node makeLexDomainNode(@NonNull final Document doc, final Node parent, final String value)
+	static public Node makeDomainNode(@NonNull final Document doc, final Node parent, final String value)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "lexdomain", null);
 		NodeFactory.makeAttribute(element, "name", value);
@@ -113,15 +113,15 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	/**
 	 * Make link node
 	 *
-	 * @param doc      is the DOM Document being built
-	 * @param parent   is the parent node to attach this node to
-	 * @param linkType is the link type
-	 * @param level    is the recursion level
+	 * @param doc          is the DOM Document being built
+	 * @param parent       is the parent node to attach this node to
+	 * @param relationType is the relation type
+	 * @param level        is the recursion level
 	 * @return newly created node
 	 */
-	static public Node makeLinkNode(@NonNull final Document doc, final Node parent, final String linkType, final int level)
+	static public Node makeRelationNode(@NonNull final Document doc, final Node parent, final String relationType, final int level)
 	{
-		final Element element = NodeFactory.makeNode(doc, parent, linkType, null);
+		final Element element = NodeFactory.makeNode(doc, parent, relationType, null);
 		if (level > 0)
 		{
 			NodeFactory.makeAttribute(element, "level", Integer.toString(level));
@@ -130,18 +130,18 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	}
 
 	/**
-	 * Make 'more' link node (when recursiveness is broken and result is truncated)
+	 * Make 'more' relation node (when recursiveness is broken and result is truncated)
 	 *
-	 * @param doc      is the DOM Document being built
-	 * @param parent   is the parent node to attach this node to
-	 * @param linkType is the link type
-	 * @param level    is the recursion level
+	 * @param doc          is the DOM Document being built
+	 * @param parent       is the parent node to attach this node to
+	 * @param relationType is the relation type
+	 * @param level        is the recursion level
 	 * @return newly created node
 	 */
 	@SuppressWarnings("UnusedReturnValue")
-	static public Node makeMoreLinkNode(@NonNull final Document doc, final Node parent, final String linkType, final int level)
+	static public Node makeMoreRelationNode(@NonNull final Document doc, final Node parent, final String relationType, final int level)
 	{
-		final Element element = NodeFactory.makeNode(doc, parent, linkType, null);
+		final Element element = NodeFactory.makeNode(doc, parent, relationType, null);
 		NodeFactory.makeAttribute(element, "level", Integer.toString(level));
 		NodeFactory.makeAttribute(element, "more", "true");
 		return element;

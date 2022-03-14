@@ -9,31 +9,31 @@ import android.database.sqlite.SQLiteDatabase;
 import org.sqlunet.sql.DBQuery;
 
 /**
- * Query for lexdomain enumeration
+ * Query for domain enumeration
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-class LexDomainsQuery extends DBQuery
+class DomainsQuery extends DBQuery
 {
 	/**
 	 * <code>QUERY</code> is the SQL statement
 	 */
-	static private final String QUERY = SqLiteDialect.AllLexDomainsQuery; // ;
+	static private final String QUERY = SqLiteDialect.AllDomainsQuery; // ;
 
 	/**
 	 * Constructor
 	 *
 	 * @param connection connection
 	 */
-	public LexDomainsQuery(final SQLiteDatabase connection)
+	public DomainsQuery(final SQLiteDatabase connection)
 	{
-		super(connection, LexDomainsQuery.QUERY);
+		super(connection, DomainsQuery.QUERY);
 	}
 
 	/**
-	 * Get the lexdomain id from the result set
+	 * Get the domain id from the result set
 	 *
-	 * @return the lexdomain id value from the result set
+	 * @return the domain id value from the result set
 	 */
 	public int getId()
 	{
@@ -42,11 +42,11 @@ class LexDomainsQuery extends DBQuery
 	}
 
 	/**
-	 * Get the lexdomain name (with pos prefix) from the result set
+	 * Get the domain name (with pos prefix) from the result set
 	 *
-	 * @return the lexdomain name (with pos prefix) from the result set
+	 * @return the domain name (with pos prefix) from the result set
 	 */
-	public String getPosLexDomainName()
+	public String getPosDomainName()
 	{
 		assert this.cursor != null;
 		return this.cursor.getString(1);

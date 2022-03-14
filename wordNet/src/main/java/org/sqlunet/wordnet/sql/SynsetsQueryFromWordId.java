@@ -67,11 +67,11 @@ class SynsetsQueryFromWordId extends DBQuery
 	}
 
 	/**
-	 * Get synset lexdomain id
+	 * Get synset domain id
 	 *
-	 * @return synset lexdomain id
+	 * @return synset domain id
 	 */
-	public int getLexDomainId()
+	public int getDomainId()
 	{
 		assert this.cursor != null;
 		return this.cursor.getInt(3);

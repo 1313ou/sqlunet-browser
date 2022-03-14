@@ -72,63 +72,63 @@ public class WordNetImplementation implements WordNetInterface
 	/**
 	 * Business method that returns WordNet data as a Document
 	 *
-	 * @param connection connection
-	 * @param word       target word
-	 * @param withLinks  determines if queries are to include links
-	 * @param recurse    determines if queries are to follow links recursively
+	 * @param connection    connection
+	 * @param word          target word
+	 * @param withRelations determines if queries are to include relations
+	 * @param recurse       determines if queries are to follow relations recursively
 	 * @return WordNet data as a DOM Document
 	 */
 	@Override
-	public Document queryDoc(final SQLiteDatabase connection, final String word, final boolean withLinks, final boolean recurse)
+	public Document queryDoc(final SQLiteDatabase connection, final String word, final boolean withRelations, final boolean recurse)
 	{
 		final Document doc = DomFactory.makeDocument();
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "wordnet", null, WordNetImplementation.WN_NS);
 		NodeFactory.addAttributes(rootNode, //
 				"word", word, //
-				"withlinks", Boolean.toString(withLinks), //
+				"withRelations", Boolean.toString(withRelations), //
 				"recurse", Boolean.toString(recurse));
-		WordNetImplementation.walk(connection, word, doc, rootNode, withLinks, recurse, Mapping.ANYTYPE, Mapping.ANYTYPE, Mapping.ANYTYPE);
+		WordNetImplementation.walk(connection, word, doc, rootNode, withRelations, recurse, Mapping.ANYTYPE, Mapping.ANYTYPE, Mapping.ANYTYPE);
 		return doc;
 	}
 
 	/**
 	 * Business method that returns WordNet data as a Document
 	 *
-	 * @param connection connection
-	 * @param wordId     target word id
-	 * @param synsetId   target synset id
-	 * @param withLinks  determines if queries are to include links
-	 * @param recurse    determines if queries are to follow links recursively
+	 * @param connection    connection
+	 * @param wordId        target word id
+	 * @param synsetId      target synset id
+	 * @param withRelations determines if queries are to include relations
+	 * @param recurse       determines if queries are to follow relations recursively
 	 * @return WordNet data as a DOM Document
 	 */
 	@Override
-	public Document queryDoc(final SQLiteDatabase connection, final long wordId, @Nullable final Long synsetId, final boolean withLinks, final boolean recurse)
+	public Document queryDoc(final SQLiteDatabase connection, final long wordId, @Nullable final Long synsetId, final boolean withRelations, final boolean recurse)
 	{
 		final Document doc = DomFactory.makeDocument();
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "wordnet", null, WordNetImplementation.WN_NS);
 		NodeFactory.addAttributes(rootNode, //
 				"wordid", Long.toString(wordId), //
 				"synsetid", synsetId == null ? null : Long.toString(synsetId), //
-				"withlinks", Boolean.toString(withLinks), //
+				"withRelations", Boolean.toString(withRelations), //
 				"recurse", Boolean.toString(recurse));
-		WordNetImplementation.walkSense(connection, wordId, synsetId, doc, rootNode, withLinks, recurse, Mapping.ANYTYPE);
+		WordNetImplementation.walkSense(connection, wordId, synsetId, doc, rootNode, withRelations, recurse, Mapping.ANYTYPE);
 		return doc;
 	}
 
 	/**
 	 * Business method that returns complete data as XML
 	 *
-	 * @param connection connection
-	 * @param word       target word
-	 * @param withLinks  determines if queries are to include links
-	 * @param recurse    determines if queries are to follow links recursively
+	 * @param connection    connection
+	 * @param word          target word
+	 * @param withRelations determines if queries are to include relations
+	 * @param recurse       determines if queries are to follow relations recursively
 	 * @return WordNet data as XML
 	 */
 	@NonNull
 	@Override
-	public String queryXML(final SQLiteDatabase connection, final String word, final boolean withLinks, final boolean recurse)
+	public String queryXML(final SQLiteDatabase connection, final String word, final boolean withRelations, final boolean recurse)
 	{
-		final Document doc = queryDoc(connection, word, withLinks, recurse);
+		final Document doc = queryDoc(connection, word, withRelations, recurse);
 		return DomTransformer.docToString(doc);
 	}
 
@@ -138,32 +138,32 @@ public class WordNetImplementation implements WordNetInterface
 	 * @param connection    connection
 	 * @param word          target word
 	 * @param posName       target part-of-speech
-	 * @param lexDomainName target lexdomain
-	 * @param linkName      target link type
-	 * @param withLinks     determines if queries are to include links
-	 * @param recurse       determines if queries are to follow links recursively
+	 * @param domainName    target domain
+	 * @param relationName  target relation type name
+	 * @param withRelations determines if queries are to include relations
+	 * @param recurse       determines if queries are to follow relations recursively
 	 * @return WordNet data as DOM document
 	 */
 	@Override
-	public Document queryDoc(final SQLiteDatabase connection, final String word, final String posName, final String lexDomainName, final String linkName, final boolean withLinks, final boolean recurse)
+	public Document queryDoc(final SQLiteDatabase connection, final String word, final String posName, final String domainName, final String relationName, final boolean withRelations, final boolean recurse)
 	{
 		final Document doc = DomFactory.makeDocument();
 
 		// parameters
-		final int posType = Mapping.getPosId(posName);
-		final int lexDomainType = Mapping.getLexDomainId(posName, lexDomainName);
-		final int linkType = Mapping.getLinkType(linkName);
+		final int posId = Mapping.getPosId(posName);
+		final int domainId = Mapping.getDomainId(posName, domainName);
+		final int relationId = Mapping.getRelationId(relationName);
 
 		// fill document
 		final Element rootNode = NodeFactory.makeNode(doc, doc, "wordnet", null, WordNetImplementation.WN_NS);
 		NodeFactory.addAttributes(rootNode, //
 				"word", word,  //
 				"pos", posName,  //
-				"lexdomain", lexDomainName, //
-				"link", linkName, //
-				"withlinks", Boolean.toString(withLinks), //
+				"domain", domainName, //
+				"relation", relationName, //
+				"withrelations", Boolean.toString(withRelations), //
 				"recurse", Boolean.toString(recurse));
-		WordNetImplementation.walk(connection, word, doc, rootNode, withLinks, recurse, posType, lexDomainType, linkType);
+		WordNetImplementation.walk(connection, word, doc, rootNode, withRelations, recurse, posId, domainId, relationId);
 
 		return doc;
 	}
@@ -174,17 +174,17 @@ public class WordNetImplementation implements WordNetInterface
 	 * @param connection    connection
 	 * @param word          target word
 	 * @param posName       target part-of-speech
-	 * @param lexDomainName target lexdomain
-	 * @param linkName      target link type
-	 * @param withLinks     determines if queries are to include links
-	 * @param recurse       determines if queries are to follow links recursively
+	 * @param domainName    target domain
+	 * @param relationName  target relation type name
+	 * @param withRelations determines if queries are to include relations
+	 * @param recurse       determines if queries are to follow relations recursively
 	 * @return WordNet data as XML data
 	 */
 	@NonNull
 	@Override
-	public String queryXML(final SQLiteDatabase connection, final String word, final String posName, final String lexDomainName, final String linkName, final boolean withLinks, final boolean recurse)
+	public String queryXML(final SQLiteDatabase connection, final String word, final String posName, final String domainName, final String relationName, final boolean withRelations, final boolean recurse)
 	{
-		final Document doc = queryDoc(connection, word, posName, lexDomainName, linkName, withLinks, recurse);
+		final Document doc = queryDoc(connection, word, posName, domainName, relationName, withRelations, recurse);
 		return DomTransformer.docToString(doc);
 	}
 
@@ -219,7 +219,7 @@ public class WordNetImplementation implements WordNetInterface
 			final Element senseElement = NodeFactory.makeSenseNode(doc, wordNode, wordId, synset.synsetId, 0);
 			NodeFactory.addAttributes(senseElement, //
 					"pos", synset.getPosName(), //
-					"lexdomain", synset.getLexDomainName());
+					"domain", synset.getDomainName());
 
 			// synset node
 			WordNetImplementation.walkSynsetHeader(doc, senseElement, synset);
@@ -268,8 +268,8 @@ public class WordNetImplementation implements WordNetInterface
 			final Synset synset = new Synset(query);
 			final Node synsetNode = WordNetImplementation.walkSynset(connection, doc, senseNode, synset);
 
-			// links
-			WordNetImplementation.walkSynsetLinks(connection, doc, synsetNode, synset, wordId, true /* withLinks */, true /* recurse */, Mapping.ANYTYPE);
+			// relations
+			WordNetImplementation.walkSynsetRelations(connection, doc, synsetNode, synset, wordId, true /* withRelations */, true /* recurse */, Mapping.ANYTYPE);
 		}
 		return doc;
 	}
@@ -311,8 +311,8 @@ public class WordNetImplementation implements WordNetInterface
 			final Synset synset = new Synset(query);
 			final Node synsetNode = WordNetImplementation.walkSynset(connection, doc, rootNode, synset);
 
-			// links
-			WordNetImplementation.walkSynsetLinks(connection, doc, synsetNode, synset, 0, true /* withLinks */, true /* recurse */, Mapping.ANYTYPE);
+			// relations
+			WordNetImplementation.walkSynsetRelations(connection, doc, synsetNode, synset, 0, true /* withRelations */, true /* recurse */, Mapping.ANYTYPE);
 		}
 		return doc;
 	}
@@ -357,9 +357,9 @@ public class WordNetImplementation implements WordNetInterface
 		{
 			return;
 		}
-		String lexDomain = null;
+		String domain = null;
 		String pos = null;
-		Node lexDomainNode = null;
+		Node domainNode = null;
 		Node posNode = null;
 		for (int i = 0; i < synsets.size(); i++)
 		{
@@ -371,19 +371,19 @@ public class WordNetImplementation implements WordNetInterface
 			{
 				posNode = NodeFactory.makePosNode(doc, parent, posName);
 				pos = posName;
-				lexDomain = null;
+				domain = null;
 			}
 
-			// lexdomain node
-			final String lexDomainName = synset.getLexDomainName();
-			if (!lexDomainName.equals(lexDomain))
+			// domain node
+			final String domainName = synset.getDomainName();
+			if (!domainName.equals(domain))
 			{
-				lexDomainNode = NodeFactory.makeLexDomainNode(doc, posNode, lexDomainName);
-				lexDomain = lexDomainName;
+				domainNode = NodeFactory.makeDomainNode(doc, posNode, domainName);
+				domain = domainName;
 			}
 
 			// sense node
-			final Node senseNode = NodeFactory.makeSenseNode(doc, lexDomainNode, word.id, synset.synsetId, i + 1);
+			final Node senseNode = NodeFactory.makeSenseNode(doc, domainNode, word.id, synset.synsetId, i + 1);
 
 			// word node
 			NodeFactory.makeWordNode(doc, senseNode, word.lemma, word.id);
@@ -396,17 +396,17 @@ public class WordNetImplementation implements WordNetInterface
 	/**
 	 * Perform queries for WordNet data from word
 	 *
-	 * @param connection          connection
-	 * @param targetWord          target word
-	 * @param doc                 org.w3c.dom.Document being built
-	 * @param parent              org.w3c.dom.Node walk will attach results to
-	 * @param withLinks           determines if queries are to include links
-	 * @param recurse             determines if queries are to follow links recursively
-	 * @param targetPosType       target part-of-speech type (ANYTYPE for all types)
-	 * @param targetLexDomainType target lexdomain type (ANYTYPE for all types)
-	 * @param targetLinkType      target link type (ANYTYPE for all types)
+	 * @param connection       connection
+	 * @param targetWord       target word
+	 * @param doc              org.w3c.dom.Document being built
+	 * @param parent           org.w3c.dom.Node walk will attach results to
+	 * @param withRelations    determines if queries are to include relations
+	 * @param recurse          determines if queries are to follow relations recursively
+	 * @param targetPosId      target part-of-speech id (ANYTYPE for all types)
+	 * @param targetDomainId   target domain id (ANYTYPE for all types)
+	 * @param targetRelationId target relation type id (ANYTYPE for all types)
 	 */
-	static private void walk(final SQLiteDatabase connection, final String targetWord, @NonNull final Document doc, final Node parent, final boolean withLinks, final boolean recurse, final int targetPosType, final int targetLexDomainType, final int targetLinkType)
+	static private void walk(final SQLiteDatabase connection, final String targetWord, @NonNull final Document doc, final Node parent, final boolean withRelations, final boolean recurse, final int targetPosId, final int targetDomainId, final int targetRelationId)
 	{
 		// word
 		final Word word = Word.make(connection, targetWord);
@@ -417,16 +417,16 @@ public class WordNetImplementation implements WordNetInterface
 		NodeFactory.makeWordNode(doc, parent, word.lemma, word.id);
 
 		// iterate synsets
-		final List<Synset> synsets = targetPosType == Mapping.ANYTYPE && targetLexDomainType == Mapping.ANYTYPE ?
+		final List<Synset> synsets = targetPosId == Mapping.ANYTYPE && targetDomainId == Mapping.ANYTYPE ?
 				word.getSynsets(connection) :
-				word.getTypedSynsets(connection, targetLexDomainType == Mapping.ANYTYPE ? targetPosType : targetLexDomainType, targetLexDomainType != Mapping.ANYTYPE);
+				word.getTypedSynsets(connection, targetDomainId == Mapping.ANYTYPE ? targetPosId : targetDomainId, targetDomainId != Mapping.ANYTYPE);
 		if (synsets == null)
 		{
 			return;
 		}
-		String lexDomain = null;
+		String domain = null;
 		String pos = null;
-		Node lexDomainNode = null;
+		Node domainNode = null;
 		Node posNode = null;
 		for (int i = 0; i < synsets.size(); i++)
 		{
@@ -438,48 +438,48 @@ public class WordNetImplementation implements WordNetInterface
 			{
 				posNode = NodeFactory.makePosNode(doc, parent, posName);
 				pos = posName;
-				lexDomain = null;
+				domain = null;
 			}
 
-			// lexdomain node
-			final String lexDomainName = synset.getLexDomainName();
-			if (!lexDomainName.equals(lexDomain))
+			// domain node
+			final String domainName = synset.getDomainName();
+			if (!domainName.equals(domain))
 			{
-				lexDomainNode = NodeFactory.makeLexDomainNode(doc, posNode, lexDomainName);
-				lexDomain = lexDomainName;
+				domainNode = NodeFactory.makeDomainNode(doc, posNode, domainName);
+				domain = domainName;
 			}
 
 			// sense node
-			final Node senseNode = NodeFactory.makeSenseNode(doc, lexDomainNode, word.id, synset.synsetId, i + 1);
+			final Node senseNode = NodeFactory.makeSenseNode(doc, domainNode, word.id, synset.synsetId, i + 1);
 
 			// synset nodes
 			final Node synsetNode = WordNetImplementation.walkSynset(connection, doc, senseNode, synset);
 
-			// links
-			WordNetImplementation.walkSynsetLinks(connection, doc, synsetNode, synset, word.id, withLinks, recurse, targetLinkType);
+			// relations
+			WordNetImplementation.walkSynsetRelations(connection, doc, synsetNode, synset, word.id, withRelations, recurse, targetRelationId);
 		}
 	}
 
 	/**
 	 * Perform queries for WordNet data from word id and synset id
 	 *
-	 * @param connection     connection
-	 * @param wordId         target word id
-	 * @param synsetId       target synset id
-	 * @param doc            org.w3c.dom.Document being built
-	 * @param parent         org.w3c.dom.Node walk will attach results to
-	 * @param withLinks      determines if queries are to include links
-	 * @param recurse        determines if queries are to follow links recursively
-	 * @param targetLinkType target link type
+	 * @param connection       connection
+	 * @param wordId           target word id
+	 * @param synsetId         target synset id
+	 * @param doc              org.w3c.dom.Document being built
+	 * @param parent           org.w3c.dom.Node walk will attach results to
+	 * @param withRelations    determines if queries are to include relations
+	 * @param recurse          determines if queries are to follow relations recursively
+	 * @param targetRelationId target relation type id
 	 */
 	static private void walkSense(final SQLiteDatabase connection, //
 			final long wordId,  //
 			@Nullable final Long synsetId,  //
 			@NonNull final Document doc, //
 			final Node parent, //
-			final boolean withLinks,//
+			final boolean withRelations,//
 			final boolean recurse, //
-			@SuppressWarnings("SameParameterValue") final int targetLinkType)
+			@SuppressWarnings("SameParameterValue") final int targetRelationId)
 	{
 		if (synsetId == null)
 		{
@@ -487,9 +487,9 @@ public class WordNetImplementation implements WordNetInterface
 			query.execute();
 
 			String posName = null;
-			String lexDomainName = null;
+			String domainName = null;
 			Node posNode = null;
-			Node lexDomainNode = null;
+			Node domainNode = null;
 			int i = 0;
 			while (query.next())
 			{
@@ -503,22 +503,22 @@ public class WordNetImplementation implements WordNetInterface
 					posName = synsetPosName;
 				}
 
-				// lexdomain node
-				final String synsetLexDomainName = synset.getLexDomainName();
-				if (!synsetLexDomainName.equals(lexDomainName))
+				// domain node
+				final String synsetDomainName = synset.getDomainName();
+				if (!synsetDomainName.equals(domainName))
 				{
-					lexDomainNode = NodeFactory.makeLexDomainNode(doc, posNode, synsetLexDomainName);
-					lexDomainName = synsetLexDomainName;
+					domainNode = NodeFactory.makeDomainNode(doc, posNode, synsetDomainName);
+					domainName = synsetDomainName;
 				}
 
 				// sense node
-				final Node senseNode = NodeFactory.makeSenseNode(doc, lexDomainNode, wordId, 0, ++i);
+				final Node senseNode = NodeFactory.makeSenseNode(doc, domainNode, wordId, 0, ++i);
 
 				// synset
 				final Node synsetNode = WordNetImplementation.walkSynset(connection, doc, senseNode, synset);
 
-				// links
-				WordNetImplementation.walkSynsetLinks(connection, doc, synsetNode, synset, wordId, withLinks, recurse, targetLinkType);
+				// relations
+				WordNetImplementation.walkSynsetRelations(connection, doc, synsetNode, synset, wordId, withRelations, recurse, targetRelationId);
 			}
 			return;
 		}
@@ -533,18 +533,18 @@ public class WordNetImplementation implements WordNetInterface
 			final String posName = synset.getPosName();
 			final Node posNode = NodeFactory.makePosNode(doc, parent, posName);
 
-			// lexdomain node
-			final String lexDomainName = synset.getLexDomainName();
-			final Node lexDomainNode = NodeFactory.makeLexDomainNode(doc, posNode, lexDomainName);
+			// domain node
+			final String domainName = synset.getDomainName();
+			final Node domainNode = NodeFactory.makeDomainNode(doc, posNode, domainName);
 
 			// sense node
-			final Node senseNode = NodeFactory.makeSenseNode(doc, lexDomainNode, wordId, synsetId, 1);
+			final Node senseNode = NodeFactory.makeSenseNode(doc, domainNode, wordId, synsetId, 1);
 
 			// synset
 			final Node synsetNode = WordNetImplementation.walkSynset(connection, doc, senseNode, synset);
 
-			// links
-			WordNetImplementation.walkSynsetLinks(connection, doc, synsetNode, synset, wordId, withLinks, recurse, targetLinkType);
+			// relations
+			WordNetImplementation.walkSynsetRelations(connection, doc, synsetNode, synset, wordId, withRelations, recurse, targetRelationId);
 		}
 	}
 
@@ -606,115 +606,115 @@ public class WordNetImplementation implements WordNetInterface
 	}
 
 	/**
-	 * Perform synset link queries for WordNet data
+	 * Perform synset relation queries for WordNet data
 	 *
-	 * @param connection     connection
-	 * @param doc            org.w3c.dom.Document being built
-	 * @param parent         org.w3c.dom.Node walk will attach results to
-	 * @param synset         target synset
-	 * @param wordId         target word id
-	 * @param withLinks      determines if queries are to include links
-	 * @param recurse        determines if queries are to follow links recursively
-	 * @param targetLinkType target link type
+	 * @param connection       connection
+	 * @param doc              org.w3c.dom.Document being built
+	 * @param parent           org.w3c.dom.Node walk will attach results to
+	 * @param synset           target synset
+	 * @param wordId           target word id
+	 * @param withRelations    determines if queries are to include relations
+	 * @param recurse          determines if queries are to follow relations recursively
+	 * @param targetRelationId target relation type id
 	 */
-	static private void walkSynsetLinks(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, @NonNull final Synset synset, final long wordId, final boolean withLinks, final boolean recurse, final int targetLinkType)
+	static private void walkSynsetRelations(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, @NonNull final Synset synset, final long wordId, final boolean withRelations, final boolean recurse, final int targetRelationId)
 	{
-		if (withLinks)
+		if (withRelations)
 		{
-			// link node
-			final Node linkNode = NodeFactory.makeNode(doc, parent, "links", null);
+			// relations node
+			final Node relationsNode = NodeFactory.makeNode(doc, parent, "relations", null);
 
-			// get links
-			final List<Link> links = targetLinkType == Mapping.ANYTYPE ? synset.getLinks(connection, wordId) : synset.getTypedLinks(connection, wordId, targetLinkType);
-			if (links == null)
+			// get related
+			final List<Related> relateds = targetRelationId == Mapping.ANYTYPE ? synset.getRelateds(connection, wordId) : synset.getTypedRelateds(connection, wordId, targetRelationId);
+			if (relateds == null)
 			{
 				return;
 			}
 
-			// iterate links
-			Node linkTypeNode = null;
-			String linkType = null;
-			for (final Link link : links)
+			// iterate relations
+			Node relationNode = null;
+			String currentRelationName = null;
+			for (final Related related : relateds)
 			{
 				// anchor node
-				final String type = link.getLinkName();
-				if (!type.equals(linkType))
+				final String relationName = related.getRelationName();
+				if (!relationName.equals(currentRelationName))
 				{
-					linkTypeNode = NodeFactory.makeLinkNode(doc, linkNode, type, 0);
-					linkType = type;
+					relationNode = NodeFactory.makeRelationNode(doc, relationsNode, relationName, 0);
+					currentRelationName = relationName;
 				}
 
 				// recurse check
 				final int recurse2 = recurse ?
-						synset.lexDomainId == Mapping.topsId && (targetLinkType == Mapping.hyponymId || targetLinkType == Mapping.instanceHyponymId || targetLinkType == Mapping.ANYTYPE) ? Mapping.NONRECURSIVE : 0 :
+						synset.domainId == Mapping.topsId && (targetRelationId == Mapping.hyponymId || targetRelationId == Mapping.instanceHyponymId || targetRelationId == Mapping.ANYTYPE) ? Mapping.NONRECURSIVE : 0 :
 						Mapping.NONRECURSIVE;
 
-				// process link
-				WordNetImplementation.walkLink(connection, doc, linkTypeNode, link, wordId, recurse2, targetLinkType);
+				// process relation
+				WordNetImplementation.walkRelation(connection, doc, relationNode, related, wordId, recurse2, targetRelationId);
 			}
 		}
 	}
 
 	/**
-	 * Process synset links (recurses)
+	 * Process synset relation (recurses)
 	 *
-	 * @param connection     connection
-	 * @param doc            org.w3c.dom.Document being built
-	 * @param parent0        org.w3c.dom.Node walk will attach results to
-	 * @param link           synset to start walk from
-	 * @param wordId         word id to start walk from
-	 * @param recurseLevel   recursion level
-	 * @param targetLinkType target link type (cannot be ANYTYPE for all types)
+	 * @param connection       connection
+	 * @param doc              org.w3c.dom.Document being built
+	 * @param parent0          org.w3c.dom.Node walk will attach results to
+	 * @param related          synset to start walk from
+	 * @param wordId           word id to start walk from
+	 * @param recurseLevel     recursion level
+	 * @param targetRelationId target relation type id (cannot be ANYTYPE for all types)
 	 */
-	static private void walkLink(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent0, @NonNull final Link link, final long wordId, final int recurseLevel, final int targetLinkType)
+	static private void walkRelation(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent0, @NonNull final Related related, final long wordId, final int recurseLevel, final int targetRelationId)
 	{
 		Node parent = parent0;
 
-		// word in lex links
-		if (link.wordId != 0)
+		// word in lex relations
+		if (related.wordId != 0)
 		{
-			parent = NodeFactory.makeSenseNode(doc, parent0, link.wordId, link.synsetId, 0);
-			NodeFactory.makeWordNode(doc, parent, link.word, link.wordId);
+			parent = NodeFactory.makeSenseNode(doc, parent0, related.wordId, related.synsetId, 0);
+			NodeFactory.makeWordNode(doc, parent, related.word, related.wordId);
 		}
 
 		// synset
-		final Node synsetNode = WordNetImplementation.walkSynset(connection, doc, parent, link);
+		final Node synsetNode = WordNetImplementation.walkSynset(connection, doc, parent, related);
 
 		// recurse
-		if (recurseLevel != Mapping.NONRECURSIVE && link.canRecurse())
+		if (recurseLevel != Mapping.NONRECURSIVE && related.canRecurse())
 		{
-			// link node
-			final Node linksNode = NodeFactory.makeNode(doc, synsetNode, "links", null);
+			// relation node
+			final Node relationsNode = NodeFactory.makeNode(doc, synsetNode, "relations", null);
 
 			// stop recursion in case maximum level is reached and
-			// hyponym/all links and source synset lexdomain is tops
-			if ((targetLinkType == Mapping.hyponymId || targetLinkType == Mapping.instanceHyponymId) && recurseLevel >= WordNetImplementation.MAX_RECURSE_LEVEL)
+			// hyponym/all relations and source synset domain is tops
+			if ((targetRelationId == Mapping.hyponymId || targetRelationId == Mapping.instanceHyponymId) && recurseLevel >= WordNetImplementation.MAX_RECURSE_LEVEL)
 			{
-				NodeFactory.makeMoreLinkNode(doc, linksNode, link.getLinkName(), recurseLevel);
+				NodeFactory.makeMoreRelationNode(doc, relationsNode, related.getRelationName(), recurseLevel);
 			}
 			else
 			{
-				// links
-				final List<Link> subLinks = targetLinkType == Mapping.ANYTYPE ? link.getLinks(connection, wordId) : link.getTypedLinks(connection, wordId, targetLinkType);
-				if (subLinks == null)
+				// get related
+				final List<Related> subRelated = targetRelationId == Mapping.ANYTYPE ? related.getRelateds(connection, wordId) : related.getTypedRelateds(connection, wordId, targetRelationId);
+				if (subRelated == null)
 				{
 					return;
 				}
 
-				// iterate sublinks
-				Node subLinkTypeNode = null;
-				String subLinkType = null;
+				// iterate subrelations
+				Node subRelatedNode = null;
+				String currentSubRelationName = null;
 
-				for (final Link subLink : subLinks)
+				for (final Related subRelation : subRelated)
 				{
 					// anchor node
-					final String type = subLink.getLinkName();
-					if (!type.equals(subLinkType))
+					final String relationName = subRelation.getRelationName();
+					if (!relationName.equals(currentSubRelationName))
 					{
-						subLinkTypeNode = NodeFactory.makeLinkNode(doc, linksNode, type, recurseLevel);
-						subLinkType = type;
+						subRelatedNode = NodeFactory.makeRelationNode(doc, relationsNode, relationName, recurseLevel);
+						currentSubRelationName = relationName;
 					}
-					WordNetImplementation.walkLink(connection, doc, subLinkTypeNode, subLink, wordId, recurseLevel + 1, targetLinkType);
+					WordNetImplementation.walkRelation(connection, doc, subRelatedNode, subRelation, wordId, recurseLevel + 1, targetRelationId);
 				}
 			}
 		}
@@ -726,8 +726,8 @@ public class WordNetImplementation implements WordNetInterface
 	static public void init(final SQLiteDatabase connection)
 	{
 		// do queries for static maps
-		Mapping.initLexDomains(connection);
-		Mapping.initLinks(connection);
+		Mapping.initDomains(connection);
+		Mapping.initRelations(connection);
 	}
 
 	// I T E M S
@@ -745,28 +745,28 @@ public class WordNetImplementation implements WordNetInterface
 	}
 
 	/**
-	 * Business method that returns WordNet lexdomains as array of strings
+	 * Business method that returns WordNet domains as array of strings
 	 *
 	 * @return array of Strings
 	 */
 	@NonNull
 	@Override
-	public String[] getLexDomainNames()
+	public String[] getDomainNames()
 	{
-		return Mapping.getLexDomainNames();
+		return Mapping.getDomainNames();
 	}
 
 	// I N I T I A L I Z E
 
 	/**
-	 * Business method that returns WordNet link names as array of strings
+	 * Business method that returns WordNet relation names as array of strings
 	 *
 	 * @return array of Strings
 	 */
 	@NonNull
 	@Override
-	public String[] getLinkNames()
+	public String[] getRelationNames()
 	{
-		return Mapping.getLinkNames();
+		return Mapping.getRelationNames();
 	}
 }

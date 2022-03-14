@@ -28,29 +28,30 @@ import androidx.annotation.Nullable;
 
 class Mapping
 {
-	static private final String TAG = "LexDomain";
-	/**
-	 * <code>lexDomains</code> is an array of lexdomains
-	 */
-	static private List<LexDomainDef> lexDomains;
+	static private final String TAG = "Mapping";
 
 	/**
-	 * <code>lexDomains</code> is map of lexdomains by name
+	 * <code>domains</code> is an array of domains
 	 */
-	static private Map<String, LexDomainDef> lexDomainsByName;
+	static private List<Domain> domains;
 
 	/**
-	 * <code>linksById</code> is links mapped by id
+	 * <code>domains</code> is map of domains by name
 	 */
-	static private SparseArray<LinkDef> linksById;
+	static private Map<String, Domain> domainsByName;
 
 	/**
-	 * <code>linksByName</code> is links mapped by name
+	 * <code>relationsById</code> is relations mapped by id
 	 */
-	static private Map<String, LinkDef> linksByName;
+	static private SparseArray<Relation> relationsById;
 
 	/**
-	 * <code>topsId</code> is a constant for Tops lexdomain id
+	 * <code>relationsByName</code> is relations mapped by name
+	 */
+	static private Map<String, Relation> relationsByName;
+
+	/**
+	 * <code>topsId</code> is a constant for Tops domain id
 	 */
 	static public final int topsId = 3;
 
@@ -65,7 +66,7 @@ class Mapping
 	static public final int instanceHyponymId = 4;
 
 	/**
-	 * is the constant for unspecified search types (pos, lexdomains, links)
+	 * is the constant for unspecified search types (pos, domains, relations)
 	 */
 	static public final int ANYTYPE = -1;
 
@@ -75,34 +76,34 @@ class Mapping
 	static public final int NONRECURSIVE = -1;
 
 	/**
-	 * Read lexdomain mappings from database
+	 * Read domain mappings from database
 	 *
 	 * @param connection connection
 	 */
-	static public void initLexDomains(final SQLiteDatabase connection)
+	static public void initDomains(final SQLiteDatabase connection)
 	{
-		// lexdomain
-		Mapping.lexDomains = new ArrayList<>();
-		Mapping.lexDomainsByName = new HashMap<>();
-		LexDomainsQuery query = null;
+		// domain
+		Mapping.domains = new ArrayList<>();
+		Mapping.domainsByName = new HashMap<>();
+		DomainsQuery query = null;
 		try
 		{
-			query = new LexDomainsQuery(connection);
+			query = new DomainsQuery(connection);
 			query.execute();
 
 			while (query.next())
 			{
 				final int id = query.getId();
 				final int pos = query.getPos();
-				final String name = query.getPosLexDomainName().replace(' ', '.');
-				final LexDomainDef lexDomain = new LexDomainDef(id, pos, name);
-				Mapping.lexDomains.add(lexDomain);
-				Mapping.lexDomainsByName.put(name, lexDomain);
+				final String name = query.getPosDomainName().replace(' ', '.');
+				final Domain domain = new Domain(id, pos, name);
+				Mapping.domains.add(domain);
+				Mapping.domainsByName.put(name, domain);
 			}
 		}
 		catch (@NonNull final SQLException e)
 		{
-			Log.e(TAG, "While initializing lexdomains", e);
+			Log.e(TAG, "While initializing domains", e);
 			throw new RuntimeException(e);
 		}
 		finally
@@ -115,19 +116,19 @@ class Mapping
 	}
 
 	/**
-	 * Read link mappings from database
+	 * Read relation mappings from database
 	 *
 	 * @param connection connection
 	 */
 	@SuppressLint("DefaultLocale")
-	static public void initLinks(final SQLiteDatabase connection)
+	static public void initRelations(final SQLiteDatabase connection)
 	{
-		Mapping.linksById = new SparseArray<>();
-		Mapping.linksByName = new HashMap<>();
-		LinksQuery query = null;
+		Mapping.relationsById = new SparseArray<>();
+		Mapping.relationsByName = new HashMap<>();
+		RelationsQuery query = null;
 		try
 		{
-			query = new LinksQuery(connection);
+			query = new RelationsQuery(connection);
 			query.execute();
 
 			while (query.next())
@@ -135,14 +136,14 @@ class Mapping
 				final int id = query.getId();
 				final String name = query.getName().replace(' ', '_').toLowerCase(Locale.US);
 				final boolean recurses = query.getRecurse();
-				final LinkDef linkDef = new LinkDef(id, name, recurses);
-				Mapping.linksById.put(id, linkDef);
-				Mapping.linksByName.put(name, linkDef);
+				final Relation relation = new Relation(id, name, recurses);
+				Mapping.relationsById.put(id, relation);
+				Mapping.relationsByName.put(name, relation);
 			}
 		}
 		catch (@NonNull final SQLException e)
 		{
-			Log.e(TAG, "While initializing links", e);
+			Log.e(TAG, "While initializing relations", e);
 			throw new RuntimeException(e);
 		}
 		finally
@@ -166,88 +167,88 @@ class Mapping
 	}
 
 	/**
-	 * Get lexdomains as array of strings
+	 * Get domains as array of strings
 	 *
 	 * @return array of Strings
 	 */
 	@NonNull
-	static public String[] getLexDomainNames()
+	static public String[] getDomainNames()
 	{
-		final Set<String> nameSet = Mapping.lexDomainsByName.keySet();
+		final Set<String> nameSet = Mapping.domainsByName.keySet();
 		return nameSet.toArray(new String[0]);
 	}
 
 	/**
-	 * Get linknames as array of strings
+	 * Get relations as array of strings
 	 *
 	 * @return array of Strings
 	 */
 	@NonNull
-	static public String[] getLinkNames()
+	static public String[] getRelationNames()
 	{
-		final Set<String> nameSet = Mapping.linksByName.keySet();
+		final Set<String> nameSet = Mapping.relationsByName.keySet();
 		return nameSet.toArray(new String[0]);
 	}
 
 	/**
-	 * Find part-of-speech name from lexdomain id
+	 * Find part-of-speech name from domainid
 	 *
-	 * @param lexDomainId is the lexdomain id
+	 * @param domainId is the domainid
 	 * @return part-of-speech name
 	 */
 	@NonNull
-	static public String getPosName(final int lexDomainId)
+	static public String getPosName(final int domainId)
 	{
 		try
 		{
-			final LexDomainDef lexDomain = Mapping.lexDomains.get(lexDomainId);
-			return lexDomain.posName;
+			final Domain domain = Mapping.domains.get(domainId);
+			return domain.posName;
 		}
 		catch (@NonNull final IndexOutOfBoundsException e)
 		{
-			return "lexdomainid." + lexDomainId;
+			return "domainid." + domainId;
 		}
 	}
 
 	/**
-	 * Find lexdomain name from lexdomain id
+	 * Find domain name from domain id
 	 *
-	 * @param lexDomainId is the lexdomain id
-	 * @return lexdomain name or "lexdomainid.xxx" if not found
+	 * @param domainId is the domain id
+	 * @return domain name or "domainid.xxx" if not found
 	 */
 	@NonNull
-	static public String getLexDomainName(final int lexDomainId)
+	static public String getDomainName(final int domainId)
 	{
 		try
 		{
-			final LexDomainDef lexDomain = Mapping.lexDomains.get(lexDomainId);
-			return lexDomain.lexDomainName;
+			final Domain domain = Mapping.domains.get(domainId);
+			return domain.domainName;
 		}
 		catch (@NonNull final IndexOutOfBoundsException e)
 		{
-			return "lexdomainid." + lexDomainId;
+			return "domainid." + domainId;
 		}
 	}
 
 	/**
-	 * Find lexdomain id from part-of-speech name and lexdomain name
+	 * Find domain id from part-of-speech name and domain name
 	 *
-	 * @param posName       target part-of-speech name
-	 * @param lexDomainName target lexdomain name
-	 * @return lexdomain id or -1 if not found
+	 * @param posName    target part-of-speech name
+	 * @param domainName target domain name
+	 * @return domain id or -1 if not found
 	 */
-	static public int getLexDomainId(@Nullable final String posName, @Nullable final String lexDomainName)
+	static public int getDomainId(@Nullable final String posName, @Nullable final String domainName)
 	{
-		if (posName == null || lexDomainName == null)
+		if (posName == null || domainName == null)
 		{
 			return Mapping.ANYTYPE;
 		}
-		final String fullName = posName + '.' + lexDomainName;
+		final String fullName = posName + '.' + domainName;
 		try
 		{
-			final LexDomainDef lexDomain = Mapping.lexDomainsByName.get(fullName);
-			assert lexDomain != null;
-			return lexDomain.id;
+			final Domain domain = Mapping.domainsByName.get(fullName);
+			assert domain != null;
+			return domain.id;
 		}
 		catch (@NonNull final NullPointerException e)
 		{
@@ -287,42 +288,42 @@ class Mapping
 	}
 
 	/**
-	 * Find link name from link id
+	 * Find relation name from relation id
 	 *
-	 * @param linkType target link id
-	 * @return link name or "linktype.xxx" if not found
+	 * @param relationId target relation id
+	 * @return relation name or "relation.xxx" if not found
 	 */
-	static public String getLinkName(final int linkType)
+	static public String getRelationName(final int relationId)
 	{
 		try
 		{
-			final LinkDef linkDef = Mapping.linksById.get(linkType);
-			return linkDef.name;
+			final Relation relation = Mapping.relationsById.get(relationId);
+			return relation.name;
 		}
 		catch (@NonNull final NullPointerException e)
 		{
-			return "linktype." + linkType;
+			return "relation." + relationId;
 		}
 	}
 
 	/**
-	 * Find link id from link name
+	 * Find relation id from relation name
 	 *
-	 * @param linkName target link name
-	 * @return link id or ANYTYPE if it is not found
+	 * @param relationName target relation name
+	 * @return relation id or ANYTYPE if it is not found
 	 */
-	static public int getLinkType(@Nullable final String linkName)
+	static public int getRelationId(@Nullable final String relationName)
 	{
-		if (linkName == null)
+		if (relationName == null)
 		{
 			return Mapping.ANYTYPE;
 		}
 
 		try
 		{
-			final LinkDef linkDef = Mapping.linksByName.get(linkName);
-			assert linkDef != null;
-			return linkDef.id;
+			final Relation relation = Mapping.relationsByName.get(relationName);
+			assert relation != null;
+			return relation.id;
 		}
 		catch (@NonNull final NullPointerException e)
 		{
@@ -331,17 +332,17 @@ class Mapping
 	}
 
 	/**
-	 * Determine if this link can recurse
+	 * Determine if this relation can recurse
 	 *
-	 * @param linkType target link id
-	 * @return whether this link type can recurse
+	 * @param relationId target relation id
+	 * @return whether this relation can recurse
 	 */
-	static public boolean canRecurse(final int linkType)
+	static public boolean canRecurse(final int relationId)
 	{
 		try
 		{
-			final LinkDef linkDef = Mapping.linksById.get(linkType);
-			return linkDef.recurses;
+			final Relation relation = Mapping.relationsById.get(relationId);
+			return relation.recurses;
 		}
 		catch (@NonNull final IndexOutOfBoundsException e)
 		{
