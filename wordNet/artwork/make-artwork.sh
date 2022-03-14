@@ -2,7 +2,7 @@
 
 source "./lib-artwork.sh"
 
-icon_list="morph.svg adjposition.svg verbframesentence.svg verbframe.svg"
+icon_list="morph.svg adjposition.svg verbtemplate.svg verbframe.svg"
 asset_list=""
 
 make_res "${icon_list}" 16

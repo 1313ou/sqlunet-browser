@@ -9,62 +9,65 @@
 
 		<!-- wordnet -->
 		<item>words</item>
+		<item>casedwords</item>
+		<item>morphs</item>
+		<item>poses</item>
 		<item>senses</item>
 		<item>synsets</item>
-		<item>adjpositions</item>
-		<item>adjpositiontypes</item>
-		<item>casedwords</item>
-		<item>lexdomains</item>
-		<item>morphmaps</item>
-		<item>morphs</item>
-		<item>postypes</item>
 		<item>samples</item>
-		<item>vframemaps</item>
+		<item>adjpositions</item>
+		<item>domains</item>
 		<item>vframes</item>
-		<item>vframesentencemaps</item>
-		<item>vframesentences</item>
+		<item>vtemplates</item>
+		<item>relations</item>
+		<item>synsets_synsets</item>
+		<item>senses_senses</item>
+		<item>senses_vframes</item>
+		<item>senses_vtemplates</item>
+		<item>senses_adjpositions</item>
+		<item>lexes_morphs</item>
 
 		<!-- verbnet -->
-		<item>vnclasses</item>
-		<item>vnclassmembers</item>
-		<item>vnclassmembersenses</item>
-		<item>vnexamplemaps</item>
-		<item>vnexamples</item>
-		<item>vnframemaps</item>
-		<item>vnframenames</item>
-		<item>vnframes</item>
-		<item>vnframesubnames</item>
-		<item>vngroupingmaps</item>
-		<item>vngroupings</item>
-		<item>vnpredicatemaps</item>
-		<item>vnpredicates</item>
-		<item>vnrestrs</item>
-		<item>vnrestrtypes</item>
-		<item>vnrolemaps</item>
-		<item>vnroles</item>
-		<item>vnroletypes</item>
-		<item>vnsemantics</item>
-		<item>vnsyntaxes</item>
-		<item>vnwords</item>
+		<item>vn_classes</item>
+		<item>vn_classmembers</item>
+		<item>vn_classmembersenses</item>
+		<item>vn_examplemaps</item>
+		<item>vn_examples</item>
+		<item>vn_framemaps</item>
+		<item>vn_framenames</item>
+		<item>vn_frames</item>
+		<item>vn_framesubnames</item>
+		<item>vn_groupingmaps</item>
+		<item>vn_groupings</item>
+		<item>vn_predicatemaps</item>
+		<item>vn_predicates</item>
+		<item>vn_restrs</item>
+		<item>vn_restrtypes</item>
+		<item>vn_rolemaps</item>
+		<item>vn_roles</item>
+		<item>vn_roletypes</item>
+		<item>vn_semantics</item>
+		<item>vn_syntaxes</item>
+		<item>vn_words</item>
 
 		<!-- propbank -->
-		<item>pbargns</item>
-		<item>pbargs</item>
-		<item>pbaspects</item>
-		<item>pbexamples</item>
-		<item>pbforms</item>
-		<item>pbfuncs</item>
-		<item>pbpersons</item>
-		<item>pbrels</item>
-		<item>pbroles</item>
-		<item>pbrolesetmembers</item>
-		<item>pbrolesets</item>
-		<item>pbtenses</item>
-		<item>pbvnclassmaps</item>
-		<item>pbvnrolemaps</item>
-		<item>pbvnthetas</item>
-		<item>pbvoices</item>
-		<item>pbwords</item>
+		<item>pb_argns</item>
+		<item>pb_args</item>
+		<item>pb_aspects</item>
+		<item>pb_examples</item>
+		<item>pb_forms</item>
+		<item>pb_funcs</item>
+		<item>pb_persons</item>
+		<item>pb_rels</item>
+		<item>pb_roles</item>
+		<item>pb_rolesetmembers</item>
+		<item>pb_rolesets</item>
+		<item>pb_tenses</item>
+		<item>pb_vnclassmaps</item>
+		<item>pb_vnrolemaps</item>
+		<item>pb_vnthetas</item>
+		<item>pb_voices</item>
+		<item>pb_words</item>
 
 		<!-- sources -->
 		<item>sources</item>

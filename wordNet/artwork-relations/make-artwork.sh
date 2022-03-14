@@ -21,7 +21,7 @@ base
 "
 
 list_fore="
-links
+relations
 adjderived
 also
 antonym

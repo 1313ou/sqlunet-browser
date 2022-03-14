@@ -74,11 +74,11 @@ public class SenseModule extends SynsetModule
 			// links and samples
 			if (this.expand)
 			{
-				TreeFactory.makeHotQueryNode("Links", R.drawable.ic_links, false, new LinksQuery(this.synsetId, this.wordId)).addTo(parent);
+				TreeFactory.makeHotQueryNode("Links", R.drawable.ic_relations, false, new RelationsQuery(this.synsetId, this.wordId)).addTo(parent);
 			}
 			else
 			{
-				TreeFactory.makeQueryNode("Links", R.drawable.ic_links, false, new LinksQuery(this.synsetId, this.wordId)).addTo(parent);
+				TreeFactory.makeQueryNode("Links", R.drawable.ic_relations, false, new RelationsQuery(this.synsetId, this.wordId)).addTo(parent);
 			}
 
 			if (this.expand)
@@ -97,9 +97,9 @@ public class SenseModule extends SynsetModule
 				{
 					case 'v':
 						final TreeNode vframesNode = TreeFactory.makeTreeNode("Verb frames", R.drawable.verbframe, false).addTo(parent);
-						final TreeNode vframeSentencesNode = TreeFactory.makeTreeNode("Verb frame sentences", R.drawable.verbframesentence, false).addTo(parent);
+						final TreeNode vtemplatesNode = TreeFactory.makeTreeNode("Verb templates", R.drawable.verbtemplate, false).addTo(parent);
 						vFrames(this.synsetId, this.wordId, vframesNode);
-						vFrameSentences(this.synsetId, this.wordId, vframeSentencesNode);
+						vTemplates(this.synsetId, this.wordId, vtemplatesNode);
 						break;
 
 					case 'a':
@@ -111,10 +111,10 @@ public class SenseModule extends SynsetModule
 			else
 			{
 				final TreeNode vframesNode = TreeFactory.makeTreeNode("Verb frames", R.drawable.verbframe, false).addTo(parent);
-				final TreeNode vframeSentencesNode = TreeFactory.makeTreeNode("Verb frame sentences", R.drawable.verbframesentence, false).addTo(parent);
+				final TreeNode vtemplatesNode = TreeFactory.makeTreeNode("Verb templates", R.drawable.verbtemplate, false).addTo(parent);
 				final TreeNode adjpositionsNode = TreeFactory.makeTreeNode("Adj positions", R.drawable.adjposition, false).addTo(parent);
 				vFrames(this.synsetId, this.wordId, vframesNode);
-				vFrameSentences(this.synsetId, this.wordId, vframeSentencesNode);
+				vTemplates(this.synsetId, this.wordId, vtemplatesNode);
 				adjPosition(this.synsetId, this.wordId, adjpositionsNode);
 			}
 		}

@@ -106,7 +106,7 @@ public class SynsetModule extends BaseModule
 				{
 					case 'v':
 						this.vFrames(this.synsetId, parent);
-						this.vFrameSentences(this.synsetId, parent);
+						this.vTemplates(this.synsetId, parent);
 						break;
 
 					case 'a':
@@ -118,11 +118,11 @@ public class SynsetModule extends BaseModule
 			// links and samples
 			if (this.expand)
 			{
-				TreeFactory.makeHotQueryNode("Links", R.drawable.ic_links, false, new LinksQuery(this.synsetId, 0)).addTo(parent);
+				TreeFactory.makeHotQueryNode("Links", R.drawable.ic_relations, false, new RelationsQuery(this.synsetId, 0)).addTo(parent);
 			}
 			else
 			{
-				TreeFactory.makeQueryNode("Links", R.drawable.ic_links, false, new LinksQuery(this.synsetId, 0)).addTo(parent);
+				TreeFactory.makeQueryNode("Links", R.drawable.ic_relations, false, new RelationsQuery(this.synsetId, 0)).addTo(parent);
 			}
 
 			if (this.expand)

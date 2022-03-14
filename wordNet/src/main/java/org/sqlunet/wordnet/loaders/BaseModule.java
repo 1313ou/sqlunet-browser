@@ -31,21 +31,21 @@ import org.sqlunet.wordnet.WordPointer;
 import org.sqlunet.wordnet.browser.SynsetActivity;
 import org.sqlunet.wordnet.browser.WordActivity;
 import org.sqlunet.wordnet.provider.WordNetContract;
-import org.sqlunet.wordnet.provider.WordNetContract.Senses_AdjPositions;
+import org.sqlunet.wordnet.provider.WordNetContract.BaseRelations_Senses_Words_X;
 import org.sqlunet.wordnet.provider.WordNetContract.Domains;
 import org.sqlunet.wordnet.provider.WordNetContract.LexRelations_Senses_Words_X;
-import org.sqlunet.wordnet.provider.WordNetContract.Relations;
-import org.sqlunet.wordnet.provider.WordNetContract.BaseRelations_Senses_Words_X;
 import org.sqlunet.wordnet.provider.WordNetContract.Lexes_Morphs;
 import org.sqlunet.wordnet.provider.WordNetContract.Poses;
+import org.sqlunet.wordnet.provider.WordNetContract.Relations;
 import org.sqlunet.wordnet.provider.WordNetContract.Samples;
 import org.sqlunet.wordnet.provider.WordNetContract.SemRelations_Synsets_Words_X;
 import org.sqlunet.wordnet.provider.WordNetContract.Senses;
+import org.sqlunet.wordnet.provider.WordNetContract.Senses_AdjPositions;
+import org.sqlunet.wordnet.provider.WordNetContract.Senses_VerbFrames;
+import org.sqlunet.wordnet.provider.WordNetContract.Senses_VerbTemplates;
 import org.sqlunet.wordnet.provider.WordNetContract.Senses_Words;
 import org.sqlunet.wordnet.provider.WordNetContract.Synsets;
 import org.sqlunet.wordnet.provider.WordNetContract.Synsets_Poses_Domains;
-import org.sqlunet.wordnet.provider.WordNetContract.Senses_VerbFrames;
-import org.sqlunet.wordnet.provider.WordNetContract.Senses_VerbTemplates;
 import org.sqlunet.wordnet.provider.WordNetContract.Words;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Lexes_Morphs;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains;
@@ -94,7 +94,7 @@ abstract public class BaseModule extends Module
 	private final Drawable posDrawable;
 
 	@NonNull
-	private final Drawable lexdomainDrawable;
+	private final Drawable domainDrawable;
 
 	@NonNull
 	private final Drawable verbframeDrawable;
@@ -108,7 +108,7 @@ abstract public class BaseModule extends Module
 	private boolean membersGrouped = false;
 
 	/**
-	 * Max link recursion
+	 * Max relation recursion
 	 */
 	private int maxRecursion = Integer.MAX_VALUE;
 
@@ -134,23 +134,23 @@ abstract public class BaseModule extends Module
 
 	private SqlunetViewTreeModel samplesfromSynsetIdModel;
 
-	private SqlunetViewTreeModel linksFromSynsetIdWordIdModel;
+	private SqlunetViewTreeModel relationsFromSynsetIdWordIdModel;
 
-	private SqlunetViewTreeModel semLinksFromSynsetIdModel;
+	private SqlunetViewTreeModel semRelationsFromSynsetIdModel;
 
-	private SqlunetViewTreeModel semLinksFromSynsetIdLinkIdModel;
+	private SqlunetViewTreeModel semRelationsFromSynsetIdRelationIdModel;
 
-	private SqlunetViewTreeModel lexLinksFromSynsetIdWordIdModel;
+	private SqlunetViewTreeModel lexRelationsFromSynsetIdWordIdModel;
 
-	private SqlunetViewTreeModel lexLinksFromSynsetIdModel;
+	private SqlunetViewTreeModel lexRelationsFromSynsetIdModel;
 
 	private SqlunetViewTreeModel vFramesFromSynsetIdModel;
 
 	private SqlunetViewTreeModel vFramesFromSynsetIdWordIdModel;
 
-	private SqlunetViewTreeModel vFrameSentencesFromSynsetIdModel;
+	private SqlunetViewTreeModel vTemplatesFromSynsetIdModel;
 
-	private SqlunetViewTreeModel vFrameSentencesFromSynsetIdWordIdModel;
+	private SqlunetViewTreeModel vTemplatesFromSynsetIdWordIdModel;
 
 	private SqlunetViewTreeModel adjPositionFromSynsetIdModel;
 
@@ -177,7 +177,7 @@ abstract public class BaseModule extends Module
 		this.definitionDrawable = Spanner.getDrawable(context, R.drawable.definition);
 		this.sampleDrawable = Spanner.getDrawable(context, R.drawable.sample);
 		this.posDrawable = Spanner.getDrawable(context, R.drawable.pos);
-		this.lexdomainDrawable = Spanner.getDrawable(context, R.drawable.domain);
+		this.domainDrawable = Spanner.getDrawable(context, R.drawable.domain);
 		this.verbframeDrawable = Spanner.getDrawable(context, R.drawable.verbframe);
 		this.morphDrawable = this.verbframeDrawable;
 	}
@@ -217,20 +217,20 @@ abstract public class BaseModule extends Module
 		this.samplesfromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.samples(synsetid)", SqlunetViewTreeModel.class);
 		this.samplesfromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
-		this.linksFromSynsetIdWordIdModel = new ViewModelProvider(this.fragment).get("wn.links(synsetid,wordid)", SqlunetViewTreeModel.class);
-		this.linksFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
+		this.relationsFromSynsetIdWordIdModel = new ViewModelProvider(this.fragment).get("wn.relations(synsetid,wordid)", SqlunetViewTreeModel.class);
+		this.relationsFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
-		this.semLinksFromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.semlinks(synsetid)", SqlunetViewTreeModel.class);
-		this.semLinksFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
+		this.semRelationsFromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.semrelations(synsetid)", SqlunetViewTreeModel.class);
+		this.semRelationsFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
-		this.semLinksFromSynsetIdLinkIdModel = new ViewModelProvider(this.fragment).get("wn.semlinks(synsetid,linkid)", SqlunetViewTreeModel.class);
-		this.semLinksFromSynsetIdLinkIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
+		this.semRelationsFromSynsetIdRelationIdModel = new ViewModelProvider(this.fragment).get("wn.semrelations(synsetid,relationid)", SqlunetViewTreeModel.class);
+		this.semRelationsFromSynsetIdRelationIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
-		this.lexLinksFromSynsetIdWordIdModel = new ViewModelProvider(this.fragment).get("wn.lexlinks(synsetid,wordid)", SqlunetViewTreeModel.class);
-		this.lexLinksFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
+		this.lexRelationsFromSynsetIdWordIdModel = new ViewModelProvider(this.fragment).get("wn.lexrelations(synsetid,wordid)", SqlunetViewTreeModel.class);
+		this.lexRelationsFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
-		this.lexLinksFromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.lexlinks(synsetid)", SqlunetViewTreeModel.class);
-		this.lexLinksFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
+		this.lexRelationsFromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.lexrelations(synsetid)", SqlunetViewTreeModel.class);
+		this.lexRelationsFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.vFramesFromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.vframes(synsetid)", SqlunetViewTreeModel.class);
 		this.vFramesFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
@@ -238,11 +238,11 @@ abstract public class BaseModule extends Module
 		this.vFramesFromSynsetIdWordIdModel = new ViewModelProvider(this.fragment).get("wn.vframes(synsetid,wordid)", SqlunetViewTreeModel.class);
 		this.vFramesFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
-		this.vFrameSentencesFromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.vframesentences(synsetid)", SqlunetViewTreeModel.class);
-		this.vFrameSentencesFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
+		this.vTemplatesFromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.vtemplates(synsetid)", SqlunetViewTreeModel.class);
+		this.vTemplatesFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
-		this.vFrameSentencesFromSynsetIdWordIdModel = new ViewModelProvider(this.fragment).get("wn.vframesentences(synsetid,wordid)", SqlunetViewTreeModel.class);
-		this.vFrameSentencesFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
+		this.vTemplatesFromSynsetIdWordIdModel = new ViewModelProvider(this.fragment).get("wn.vtemplates(synsetid,wordid)", SqlunetViewTreeModel.class);
+		this.vTemplatesFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.adjPositionFromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.adjposition(synsetid)", SqlunetViewTreeModel.class);
 		this.adjPositionFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
@@ -595,10 +595,10 @@ abstract public class BaseModule extends Module
 			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
 
 			// subnodes
-			final TreeNode linksNode = TreeFactory.makeHotQueryNode("Links", R.drawable.ic_links, false, new LinksQuery(synsetId, wordId)).addTo(parent);
+			final TreeNode relationsNode = TreeFactory.makeHotQueryNode("Relations", R.drawable.ic_relations, false, new RelationsQuery(synsetId, wordId)).addTo(parent);
 			final TreeNode samplesNode = TreeFactory.makeHotQueryNode("Samples", R.drawable.sample, false, new SamplesQuery(synsetId)).addTo(parent);
 
-			changed = TreeOp.seq(NEWMAIN, node, NEWEXTRA, linksNode, NEWEXTRA, samplesNode, NEWTREE, parent);
+			changed = TreeOp.seq(NEWMAIN, node, NEWEXTRA, relationsNode, NEWEXTRA, samplesNode, NEWTREE, parent);
 		}
 		else
 		{
@@ -749,7 +749,7 @@ abstract public class BaseModule extends Module
 		sb.append(' ');
 		sb.append(posName);
 		sb.append(' ');
-		Spanner.appendImage(sb, BaseModule.this.lexdomainDrawable);
+		Spanner.appendImage(sb, BaseModule.this.domainDrawable);
 		sb.append(' ');
 		sb.append(lexDomain);
 		sb.append(' ');
@@ -1006,14 +1006,14 @@ abstract public class BaseModule extends Module
 	static public final String TARGET_WORDID = "d_wordid";
 
 	/**
-	 * Links (union)
+	 * Relations (union)
 	 *
 	 * @param synsetId                synset id
 	 * @param wordId                  word id
 	 * @param parent                  parent node
 	 * @param deadendParentIfNoResult mark parent node as deadend if there is no result
 	 */
-	private void links(final long synsetId, final long wordId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean deadendParentIfNoResult)
+	private void relations(final long synsetId, final long wordId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean deadendParentIfNoResult)
 	{
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(BaseRelations_Senses_Words_X.CONTENT_URI_TABLE));
 		final String[] projection = { //
@@ -1029,19 +1029,19 @@ abstract public class BaseModule extends Module
 		final String selection = "synset1id = ? /**/|/**/ synset1id = ? AND word1id = ?";
 		final String[] selectionArgs = {Long.toString(synsetId), Long.toString(synsetId), Long.toString(wordId)};
 		final String sortOrder = Relations.RELATIONID;
-		this.linksFromSynsetIdWordIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> linksCursorToTreeModel(cursor, parent, deadendParentIfNoResult));
+		this.relationsFromSynsetIdWordIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> relationsCursorToTreeModel(cursor, parent, deadendParentIfNoResult));
 	}
 
 	@NonNull
-	private TreeOp[] linksCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
+	private TreeOp[] relationsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
 	{
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
 			final TreeOps changedList = new TreeOps(NEWTREE, parent);
 
-			final int idLinkId = cursor.getColumnIndex(Relations.RELATIONID);
-			// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
+			final int idRelationId = cursor.getColumnIndex(Relations.RELATIONID);
+			// final int idRelation = cursor.getColumnIndex(Relations.RELATION);
 			final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
 			final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
 			final int idTargetMembers = cursor.getColumnIndex(BaseRelations_Senses_Words_X.MEMBERS2);
@@ -1053,13 +1053,13 @@ abstract public class BaseModule extends Module
 			{
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
 
-				final int linkId = cursor.getInt(idLinkId);
-				//final String link = cursor.getString(idLink);
+				final int relationId = cursor.getInt(idRelationId);
+				//final String relation = cursor.getString(idRelation);
 
 				final long targetSynsetId = cursor.getLong(idTargetSynsetId);
 				final String targetDefinition = cursor.getString(idTargetDefinition);
 				String targetMembers = cursor.getString(idTargetMembers);
-				final boolean linkCanRecurse = !cursor.isNull(idRecurses) && cursor.getInt(idRecurses) != 0;
+				final boolean relationCanRecurse = !cursor.isNull(idRecurses) && cursor.getInt(idRecurses) != 0;
 				final String targetLemma = cursor.isNull(idTargetLemma) ? null : cursor.getString(idTargetLemma);
 				final Long targetWordId = cursor.isNull(idTargetWordId) ? null : cursor.getLong(idTargetWordId);
 
@@ -1072,14 +1072,14 @@ abstract public class BaseModule extends Module
 				Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
 				// recursion
-				if (linkCanRecurse)
+				if (relationCanRecurse)
 				{
-					final TreeNode linksNode = TreeFactory.makeLinkQueryNode(sb, getLinkRes(linkId), false, new SubLinksQuery(targetSynsetId, linkId, BaseModule.this.maxRecursion), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion, this.fragment)).addTo(parent);
-					changedList.add(NEWCHILD, linksNode);
+					final TreeNode relationsNode = TreeFactory.makeLinkQueryNode(sb, getRelationRes(relationId), false, new SubRelationsQuery(targetSynsetId, relationId, BaseModule.this.maxRecursion), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion, this.fragment)).addTo(parent);
+					changedList.add(NEWCHILD, relationsNode);
 				}
 				else
 				{
-					final TreeNode node = TreeFactory.makeLinkLeafNode(sb, getLinkRes(linkId), false, targetWordId == null ?
+					final TreeNode node = TreeFactory.makeLinkLeafNode(sb, getRelationRes(relationId), false, targetWordId == null ?
 							new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion, this.fragment) :
 							new SenseLink(targetSynsetId, targetWordId, BaseModule.this.maxRecursion, this.fragment)).addTo(parent);
 					changedList.add(NEWCHILD, node);
@@ -1105,16 +1105,16 @@ abstract public class BaseModule extends Module
 		return changed;
 	}
 
-	// S E M L I N K S
+	// S E M R E L A T I O N S
 
 	/**
-	 * Semantic links
+	 * Semantic relations
 	 *
 	 * @param synsetId                synset id
 	 * @param parent                  parent node
 	 * @param deadendParentIfNoResult mark parent node as deadend if there is no result
 	 */
-	private void semLinks(final long synsetId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean deadendParentIfNoResult)
+	private void semRelations(final long synsetId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean deadendParentIfNoResult)
 	{
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(SemRelations_Synsets_Words_X.CONTENT_URI_TABLE));
 		final String[] projection = { //
@@ -1127,19 +1127,19 @@ abstract public class BaseModule extends Module
 		final String selection = WordNetContract.RELATION + '.' + SemRelations_Synsets_Words_X.SYNSET1ID + " = ?";  ////
 		final String[] selectionArgs = {Long.toString(synsetId)};
 		final String sortOrder = Relations.RELATIONID;
-		this.semLinksFromSynsetIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> semLinksCursorToTreeModel(cursor, parent, deadendParentIfNoResult));
+		this.semRelationsFromSynsetIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> semRelationsCursorToTreeModel(cursor, parent, deadendParentIfNoResult));
 	}
 
 	@NonNull
-	private TreeOp[] semLinksCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
+	private TreeOp[] semRelationsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
 	{
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
 			final TreeOps changedList = new TreeOps(NEWTREE, parent);
 
-			// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
-			final int idLinkId = cursor.getColumnIndex(Relations.RELATIONID);
+			// final int idRelation = cursor.getColumnIndex(Relations.RELATION);
+			final int idRelationId = cursor.getColumnIndex(Relations.RELATIONID);
 			final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
 			final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
 			final int idTargetMembers = cursor.getColumnIndex(SemRelations_Synsets_Words_X.MEMBERS2);
@@ -1149,26 +1149,26 @@ abstract public class BaseModule extends Module
 			{
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
 
-				// final String link = cursor.getString(idLink);
-				final int linkId = cursor.getInt(idLinkId);
+				// final String relation = cursor.getString(idRelation);
+				final int relationId = cursor.getInt(idRelationId);
 				final long targetSynsetId = cursor.getLong(idTargetSynsetId);
 				final String targetDefinition = cursor.getString(idTargetDefinition);
 				final String targetMembers = cursor.getString(idTargetMembers);
-				final boolean linkCanRecurse = cursor.getInt(idRecurses) != 0;
+				final boolean relationCanRecurse = cursor.getInt(idRecurses) != 0;
 
 				Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
 				sb.append(' ');
 				Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
 				// recursion
-				if (linkCanRecurse)
+				if (relationCanRecurse)
 				{
-					final TreeNode linksNode = TreeFactory.makeLinkQueryNode(sb, getLinkRes(linkId), false, new SubLinksQuery(targetSynsetId, linkId, BaseModule.this.maxRecursion), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion, this.fragment)).addTo(parent);
-					changedList.add(NEWCHILD, linksNode);
+					final TreeNode relationsNode = TreeFactory.makeLinkQueryNode(sb, getRelationRes(relationId), false, new SubRelationsQuery(targetSynsetId, relationId, BaseModule.this.maxRecursion), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion, this.fragment)).addTo(parent);
+					changedList.add(NEWCHILD, relationsNode);
 				}
 				else
 				{
-					final TreeNode node = TreeFactory.makeLeafNode(sb, getLinkRes(linkId), false).addTo(parent);
+					final TreeNode node = TreeFactory.makeLeafNode(sb, getRelationRes(relationId), false).addTo(parent);
 					changedList.add(NEWCHILD, node);
 				}
 			}
@@ -1193,14 +1193,14 @@ abstract public class BaseModule extends Module
 	}
 
 	/**
-	 * Semantic links
+	 * Semantic relations
 	 *
 	 * @param synsetId                synset id
-	 * @param linkId                  link id
+	 * @param relationId              relation id
 	 * @param parent                  parent node
 	 * @param deadendParentIfNoResult mark parent node as deadend if there is no result
 	 */
-	private void semLinks(final long synsetId, final int linkId, final int recurseLevel, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean deadendParentIfNoResult)
+	private void semRelations(final long synsetId, final int relationId, final int recurseLevel, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean deadendParentIfNoResult)
 	{
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(SemRelations_Synsets_Words_X.CONTENT_URI_TABLE));
 		final String[] projection = { //
@@ -1211,20 +1211,20 @@ abstract public class BaseModule extends Module
 				Relations.RECURSES, //
 		};
 		final String selection = WordNetContract.RELATION + '.' + SemRelations_Synsets_Words_X.SYNSET1ID + " = ? AND " + Relations.RELATIONID + " = ?";
-		final String[] selectionArgs = {Long.toString(synsetId), Integer.toString(linkId)};
-		this.semLinksFromSynsetIdLinkIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> semLinksFromSynsetIdLinkIdCursorToTreeModel(cursor, linkId, recurseLevel, parent, deadendParentIfNoResult));
+		final String[] selectionArgs = {Long.toString(synsetId), Integer.toString(relationId)};
+		this.semRelationsFromSynsetIdRelationIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> semRelationsFromSynsetIdRelationIdCursorToTreeModel(cursor, relationId, recurseLevel, parent, deadendParentIfNoResult));
 	}
 
 	@NonNull
-	private TreeOp[] semLinksFromSynsetIdLinkIdCursorToTreeModel(@NonNull final Cursor cursor, final int linkId, final int recurseLevel, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
+	private TreeOp[] semRelationsFromSynsetIdRelationIdCursorToTreeModel(@NonNull final Cursor cursor, final int relationId, final int recurseLevel, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
 	{
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
 			final TreeOps changedList = new TreeOps(NEWTREE, parent);
 
-			// final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
-			// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
+			// final int idRelationId = cursor.getColumnIndex(Relations.RELATIONID);
+			// final int idRelation = cursor.getColumnIndex(Relations.RELATION);
 			final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
 			final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
 			final int idTargetMembers = cursor.getColumnIndex(SemRelations_Synsets_Words_X.MEMBERS2);
@@ -1234,35 +1234,35 @@ abstract public class BaseModule extends Module
 			{
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
 
-				// final int linkId = cursor.getInt(idLinkId);
-				// final String link = cursor.getString(idLink);
+				// final int relationId = cursor.getInt(idRelationId);
+				// final String relation = cursor.getString(idRelation);
 				final long targetSynsetId = cursor.getLong(idTargetSynsetId);
 				final String targetDefinition = cursor.getString(idTargetDefinition);
 				final String targetMembers = cursor.getString(idTargetMembers);
-				final boolean linkCanRecurse = cursor.getInt(idRecurses) != 0;
+				final boolean relationCanRecurse = cursor.getInt(idRecurses) != 0;
 
 				Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
 				sb.append(' ');
 				Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
 				// recurse
-				if (linkCanRecurse)
+				if (relationCanRecurse)
 				{
 					if (recurseLevel > 1)
 					{
 						final int newRecurseLevel = recurseLevel - 1;
-						final TreeNode linksNode = TreeFactory.makeLinkQueryNode(sb, getLinkRes(linkId), false, new SubLinksQuery(targetSynsetId, linkId, newRecurseLevel), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion, this.fragment)).addTo(parent);
-						changedList.add(NEWCHILD, linksNode);
+						final TreeNode relationsNode = TreeFactory.makeLinkQueryNode(sb, getRelationRes(relationId), false, new SubRelationsQuery(targetSynsetId, relationId, newRecurseLevel), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion, this.fragment)).addTo(parent);
+						changedList.add(NEWCHILD, relationsNode);
 					}
 					else
 					{
-						final TreeNode moreNode = TreeFactory.makeMoreNode(sb, getLinkRes(linkId), false).addTo(parent);
+						final TreeNode moreNode = TreeFactory.makeMoreNode(sb, getRelationRes(relationId), false).addTo(parent);
 						changedList.add(NEWCHILD, moreNode);
 					}
 				}
 				else
 				{
-					final TreeNode node = TreeFactory.makeLeafNode(sb, getLinkRes(linkId), false).addTo(parent);
+					final TreeNode node = TreeFactory.makeLeafNode(sb, getRelationRes(relationId), false).addTo(parent);
 					changedList.add(NEWCHILD, node);
 				}
 			}
@@ -1286,17 +1286,17 @@ abstract public class BaseModule extends Module
 		return changed;
 	}
 
-	// L E X L I N K S
+	// L E X R E L A T I O N S
 
 	/**
-	 * Lexical links
+	 * Lexical relations
 	 *
 	 * @param synsetId                synset id
 	 * @param wordId                  word id
 	 * @param parent                  parent node
 	 * @param deadendParentIfNoResult mark parent node as deadend if there is no result
 	 */
-	private void lexLinks(final long synsetId, final long wordId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean deadendParentIfNoResult)
+	private void lexRelations(final long synsetId, final long wordId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean deadendParentIfNoResult)
 	{
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(LexRelations_Senses_Words_X.CONTENT_URI_TABLE));
 		final String[] projection = { //
@@ -1310,19 +1310,19 @@ abstract public class BaseModule extends Module
 		final String selection = WordNetContract.RELATION + ".synset1id = ? AND " + WordNetContract.RELATION + ".word1id = ?";
 		final String[] selectionArgs = {Long.toString(synsetId), Long.toString(wordId)};
 		final String sortOrder = Relations.RELATIONID;
-		this.lexLinksFromSynsetIdWordIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> lexLinksCursorToTreeModel(cursor, parent, deadendParentIfNoResult));
+		this.lexRelationsFromSynsetIdWordIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> lexRelationsCursorToTreeModel(cursor, parent, deadendParentIfNoResult));
 	}
 
 	@NonNull
-	private TreeOp[] lexLinksCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
+	private TreeOp[] lexRelationsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
 	{
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
 			final TreeOps changedList = new TreeOps(NEWTREE, parent);
 
-			// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
-			final int idLinkId = cursor.getColumnIndex(Relations.RELATIONID);
+			// final int idRelation = cursor.getColumnIndex(Relations.RELATION);
+			final int idRelationId = cursor.getColumnIndex(Relations.RELATIONID);
 			final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
 			final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
 			final int idTargetMembers = cursor.getColumnIndex(LexRelations_Senses_Words_X.MEMBERS2);
@@ -1333,9 +1333,9 @@ abstract public class BaseModule extends Module
 			{
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
 
-				// final String link = cursor.getString(idLink);
+				// final String relation = cursor.getString(idRelation);
 				// final String targetWordId = cursor.getString(idTargetWordId);
-				final int linkId = cursor.getInt(idLinkId);
+				final int relationId = cursor.getInt(idRelationId);
 				final long targetSynsetId = cursor.getLong(idTargetSynsetId);
 				final String targetDefinition = cursor.getString(idTargetDefinition);
 				final String targetLemma = cursor.getString(idTargetLemma);
@@ -1344,13 +1344,13 @@ abstract public class BaseModule extends Module
 				{
 					targetMembers = targetMembers.replaceAll("\\b" + targetLemma + "\\b", targetLemma + '*');
 				}
-				// final String formattedTarget = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synset %s) {%s}", link, targetLemma, targetWordId,targetDefinition, targetSynsetId, targetMembers);
+				// final String formattedTarget = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synset %s) {%s}", relation, targetLemma, targetWordId,targetDefinition, targetSynsetId, targetMembers);
 
 				if (sb.length() != 0)
 				{
 					sb.append('\n');
 				}
-				// Spanner.appendImage(sb, getLinkDrawable(linkId));
+				// Spanner.appendImage(sb, getRelationDrawable(relationId));
 				// sb.append(formattedTarget);
 				// sb.append(' ');
 				Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
@@ -1364,8 +1364,8 @@ abstract public class BaseModule extends Module
 				Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
 				// attach result
-				final TreeNode linkNode = TreeFactory.makeLinkLeafNode(sb, getLinkRes(linkId), false, new SenseLink(targetSynsetId, idTargetWordId, BaseModule.this.maxRecursion, this.fragment)).addTo(parent);
-				changedList.add(NEWCHILD, linkNode);
+				final TreeNode relationNode = TreeFactory.makeLinkLeafNode(sb, getRelationRes(relationId), false, new SenseLink(targetSynsetId, idTargetWordId, BaseModule.this.maxRecursion, this.fragment)).addTo(parent);
+				changedList.add(NEWCHILD, relationNode);
 			}
 			while (cursor.moveToNext());
 			changed = changedList.toArray();
@@ -1387,13 +1387,13 @@ abstract public class BaseModule extends Module
 	}
 
 	/**
-	 * Lexical links
+	 * Lexical relations
 	 *
 	 * @param synsetId                synset id
 	 * @param parent                  parent
 	 * @param deadendParentIfNoResult mark parent node as deadend if there is no result
 	 */
-	void lexLinks(final long synsetId, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
+	void lexRelations(final long synsetId, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
 	{
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(LexRelations_Senses_Words_X.CONTENT_URI_TABLE));
 		final String[] projection = { //
@@ -1406,21 +1406,21 @@ abstract public class BaseModule extends Module
 		};
 		final String selection = WordNetContract.RELATION + '.' + LexRelations_Senses_Words_X.SYNSET1ID + " = ?";  ////
 		final String[] selectionArgs = {Long.toString(synsetId)};
-		this.lexLinksFromSynsetIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> lexLinksFromSynsetIdCursorToTreeModel(cursor, parent, deadendParentIfNoResult));
+		this.lexRelationsFromSynsetIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> lexRelationsFromSynsetIdCursorToTreeModel(cursor, parent, deadendParentIfNoResult));
 	}
 
 	@NonNull
-	private TreeOp[] lexLinksFromSynsetIdCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
+	private TreeOp[] lexRelationsFromSynsetIdCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
 	{
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
 			final TreeOps changedList = new TreeOps(NEWTREE, parent);
 
-			// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
+			// final int idRelation = cursor.getColumnIndex(Relations.RELATION);
 			// final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
 			// final int idTargetWordId = cursor.getColumnIndex(BaseModule.TARGET_WORDID);
-			final int idLinkId = cursor.getColumnIndex(Relations.RELATIONID);
+			final int idRelationId = cursor.getColumnIndex(Relations.RELATIONID);
 			final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
 			final int idTargetMembers = cursor.getColumnIndex(LexRelations_Senses_Words_X.MEMBERS2);
 			final int idTargetLemma = cursor.getColumnIndex(BaseModule.TARGET_WORD);
@@ -1428,10 +1428,10 @@ abstract public class BaseModule extends Module
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 			do
 			{
-				// final String link = cursor.getString(idLink);
+				// final String relation = cursor.getString(idRelation);
 				// final String targetSynsetId = cursor.getString(idTargetSynsetId);
 				// final String targetWordId = cursor.getString(idTargetWordId);
-				final int linkId = cursor.getInt(idLinkId);
+				final int relationId = cursor.getInt(idRelationId);
 				final String targetDefinition = cursor.getString(idTargetDefinition);
 				final String targetLemma = cursor.getString(idTargetLemma);
 				String targetMembers = cursor.getString(idTargetMembers);
@@ -1439,13 +1439,13 @@ abstract public class BaseModule extends Module
 				{
 					targetMembers = targetMembers.replaceAll("\\b" + targetLemma + "\\b", targetLemma + '*');
 				}
-				// final String formattedTarget = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synset %s) {%s}", link, targetLemma, targetWordId, targetDefinition, targetSynsetId, targetMembers);
+				// final String formattedTarget = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synset %s) {%s}", relation, targetLemma, targetWordId, targetDefinition, targetSynsetId, targetMembers);
 
 				if (sb.length() != 0)
 				{
 					sb.append('\n');
 				}
-				// Spanner.appendImage(sb, getLinkDrawable(linkId));
+				// Spanner.appendImage(sb, getRelationDrawable(relationId));
 				// sb.append(formattedTarget);
 				// sb.append(' ');
 				Spanner.append(sb, targetLemma, 0, WordNetFactories.lemmaFactory);
@@ -1458,8 +1458,8 @@ abstract public class BaseModule extends Module
 				Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
 				// attach result
-				final TreeNode linkNode = TreeFactory.makeLeafNode(sb, getLinkRes(linkId), false).addTo(parent);
-				changedList.add(NEWCHILD, linkNode);
+				final TreeNode relationNode = TreeFactory.makeLeafNode(sb, getRelationRes(relationId), false).addTo(parent);
+				changedList.add(NEWCHILD, relationNode);
 			}
 			while (cursor.moveToNext());
 
@@ -1553,42 +1553,42 @@ abstract public class BaseModule extends Module
 		return changed;
 	}
 
-	// V F R A M E S E N TE N C E S
+	// V T E M P L A T E S
 
 	/**
-	 * Verb frame sentences
+	 * Verb templates
 	 *
 	 * @param synsetId synset id
 	 * @param parent   parent node
 	 */
-	void vFrameSentences(final long synsetId, @NonNull final TreeNode parent)
+	void vTemplates(final long synsetId, @NonNull final TreeNode parent)
 	{
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(Senses_VerbTemplates.CONTENT_URI_TABLE));
 		final String[] projection = {Senses_VerbTemplates.TEMPLATE};
 		final String selection = Senses_VerbTemplates.SYNSETID + " = ?";
 		final String[] selectionArgs = {Long.toString(synsetId)};
-		this.vFrameSentencesFromSynsetIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> vFrameSentencesCursorToTreeModel(cursor, parent));
+		this.vTemplatesFromSynsetIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> vTemplatesCursorToTreeModel(cursor, parent));
 	}
 
-	private TreeOp[] vFrameSentencesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeOp[] vTemplatesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
-			final int vframeId = cursor.getColumnIndex(Senses_VerbTemplates.TEMPLATE);
+			final int vTemplateId = cursor.getColumnIndex(Senses_VerbTemplates.TEMPLATE);
 
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 			do
 			{
-				final String vframesentence = cursor.getString(vframeId);
-				final String formattedVframesentence = String.format(Locale.ENGLISH, vframesentence, "[-]");
+				final String vTemplate = cursor.getString(vTemplateId);
+				final String formattedVTemplate = String.format(Locale.ENGLISH, vTemplate, "[-]");
 				if (sb.length() != 0)
 				{
 					sb.append('\n');
 				}
 				Spanner.appendImage(sb, BaseModule.this.verbframeDrawable);
 				sb.append(' ');
-				sb.append(formattedVframesentence);
+				sb.append(formattedVTemplate);
 			}
 			while (cursor.moveToNext());
 
@@ -1607,41 +1607,41 @@ abstract public class BaseModule extends Module
 	}
 
 	/**
-	 * Verb frame sentences
+	 * Verb templates
 	 *
 	 * @param synsetId synset id
 	 * @param wordId   word id
 	 * @param parent   parent node
 	 */
-	void vFrameSentences(final long synsetId, final long wordId, @NonNull final TreeNode parent)
+	void vTemplates(final long synsetId, final long wordId, @NonNull final TreeNode parent)
 	{
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(Senses_VerbTemplates.CONTENT_URI_TABLE));
 		final String[] projection = {Senses_VerbTemplates.TEMPLATE};
 		final String selection = Senses_VerbTemplates.SYNSETID + " = ? AND " + Senses_VerbTemplates.WORDID + " = ?";
 		final String[] selectionArgs = {Long.toString(synsetId), Long.toString(wordId)};
-		this.vFrameSentencesFromSynsetIdWordIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> vFrameSentencesFromSynsetIdWordIdCursorToTreeModel(cursor, parent));
+		this.vTemplatesFromSynsetIdWordIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> vTemplatesFromSynsetIdWordIdCursorToTreeModel(cursor, parent));
 	}
 
-	private TreeOp[] vFrameSentencesFromSynsetIdWordIdCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
+	private TreeOp[] vTemplatesFromSynsetIdWordIdCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
 			final String lemma = "---";
-			final int vframeId = cursor.getColumnIndex(Senses_VerbTemplates.TEMPLATE);
+			final int vTemplateId = cursor.getColumnIndex(Senses_VerbTemplates.TEMPLATE);
 
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 			do
 			{
-				final String vframesentence = cursor.getString(vframeId);
-				final String formattedVframesentence = String.format(Locale.ENGLISH, vframesentence, '[' + lemma + ']');
+				final String vTemplate = cursor.getString(vTemplateId);
+				final String formattedVTemplate = String.format(Locale.ENGLISH, vTemplate, '[' + lemma + ']');
 				if (sb.length() != 0)
 				{
 					sb.append('\n');
 				}
 				Spanner.appendImage(sb, BaseModule.this.verbframeDrawable);
 				sb.append(' ');
-				sb.append(formattedVframesentence);
+				sb.append(formattedVTemplate);
 			}
 			while (cursor.moveToNext());
 
@@ -1786,14 +1786,14 @@ abstract public class BaseModule extends Module
 	// H E L P E R S
 
 	/**
-	 * Match link id to drawable resource id
+	 * Match relation id to drawable resource id
 	 *
-	 * @param linkId link id
+	 * @param relationId relation id
 	 * @return kink res id
 	 */
-	private int getLinkRes(final int linkId)
+	private int getRelationRes(final int relationId)
 	{
-		switch (linkId)
+		switch (relationId)
 		{
 			case 1:
 				return R.drawable.ic_hypernym;
@@ -1863,9 +1863,9 @@ abstract public class BaseModule extends Module
 	// Q U E R I E S
 
 	/**
-	 * Link query
+	 * Relations query
 	 */
-	class LinksQuery extends Query
+	class RelationsQuery extends Query
 	{
 		/**
 		 * Word id
@@ -1878,7 +1878,7 @@ abstract public class BaseModule extends Module
 		 * @param synsetId synset id
 		 * @param wordId   word id
 		 */
-		LinksQuery(final long synsetId, final long wordId)
+		RelationsQuery(final long synsetId, final long wordId)
 		{
 			super(synsetId);
 			this.wordId = wordId;
@@ -1887,34 +1887,34 @@ abstract public class BaseModule extends Module
 		@Override
 		public void process(@NonNull final TreeNode node)
 		{
-			links(this.id, this.wordId, node, true);
+			relations(this.id, this.wordId, node, true);
 
-			// sem links
-			//semLinks(this.id, node, false);
+			// sem relations
+			//semRelations(this.id, node, false);
 
-			// lex links
-			//lexLinks(this.id, this.wordId, node, false);
+			// lex relations
+			//lexRelations(this.id, this.wordId, node, false);
 		}
 
 		@NonNull
 		@Override
 		public String toString()
 		{
-			return "links for " + this.id + ',' + this.wordId;
+			return "relations for " + this.id + ',' + this.wordId;
 		}
 	}
 
 	/**
-	 * Semantic Link query
+	 * Semantic Relation query
 	 */
-	class SemLinksQuery extends Query
+	class SemRelationsQuery extends Query
 	{
 		/**
 		 * Constructor
 		 *
 		 * @param synsetId synset id
 		 */
-		public SemLinksQuery(final long synsetId)
+		public SemRelationsQuery(final long synsetId)
 		{
 			super(synsetId);
 		}
@@ -1922,21 +1922,21 @@ abstract public class BaseModule extends Module
 		@Override
 		public void process(@NonNull final TreeNode node)
 		{
-			semLinks(this.id, node, true);
+			semRelations(this.id, node, true);
 		}
 
 		@NonNull
 		@Override
 		public String toString()
 		{
-			return "semlinks for " + this.id;
+			return "semrelations for " + this.id;
 		}
 	}
 
 	/**
-	 * Lexical Link query
+	 * Lexical Relation query
 	 */
-	class LexLinksQuery extends Query
+	class LexRelationsQuery extends Query
 	{
 		/**
 		 * Word id
@@ -1949,7 +1949,7 @@ abstract public class BaseModule extends Module
 		 * @param synsetId synset id
 		 * @param wordId   word id
 		 */
-		public LexLinksQuery(final long synsetId, final long wordId)
+		public LexRelationsQuery(final long synsetId, final long wordId)
 		{
 			super(synsetId);
 			this.wordId = wordId;
@@ -1958,26 +1958,26 @@ abstract public class BaseModule extends Module
 		@Override
 		public void process(@NonNull final TreeNode node)
 		{
-			lexLinks(this.id, this.wordId, node, true);
+			lexRelations(this.id, this.wordId, node, true);
 		}
 
 		@NonNull
 		@Override
 		public String toString()
 		{
-			return "lexlinks for " + this.id + ',' + this.wordId;
+			return "lexrelations for " + this.id + ',' + this.wordId;
 		}
 	}
 
 	/**
-	 * Sub links of give type query
+	 * Sub relations of give type query
 	 */
-	class SubLinksQuery extends Query
+	class SubRelationsQuery extends Query
 	{
 		/**
-		 * Link id
+		 * Relation id
 		 */
-		final int linkId;
+		final int relationId;
 
 		/**
 		 * Recurse level
@@ -1988,27 +1988,27 @@ abstract public class BaseModule extends Module
 		 * Constructor
 		 *
 		 * @param synsetId     synset id
-		 * @param linkId       link id
+		 * @param relationId   relation id
 		 * @param recurseLevel recurse level
 		 */
-		SubLinksQuery(final long synsetId, final int linkId, final int recurseLevel)
+		SubRelationsQuery(final long synsetId, final int relationId, final int recurseLevel)
 		{
 			super(synsetId);
-			this.linkId = linkId;
+			this.relationId = relationId;
 			this.recurseLevel = recurseLevel;
 		}
 
 		@Override
 		public void process(@NonNull final TreeNode node)
 		{
-			semLinks(this.id, this.linkId, recurseLevel, node, true);
+			semRelations(this.id, this.relationId, recurseLevel, node, true);
 		}
 
 		@NonNull
 		@Override
 		public String toString()
 		{
-			return "sub semlinks of type " + this.linkId + " for " + this.id + " at level " + this.recurseLevel;
+			return "sub semrelations of type " + this.relationId + " for " + this.id + " at level " + this.recurseLevel;
 		}
 	}
 
