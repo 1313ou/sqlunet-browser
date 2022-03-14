@@ -15,16 +15,19 @@ public class WordNetContract
 {
 	// A L I A S E S
 
-	static public final String DEST = "d";
 	static public final String WORD = "w";
-	static public final String WORD2 = "t";
-	static public final String LINK = "l";
-	static public final String TYPE = "x";
 	static public final String SENSE = "s";
 	static public final String SYNSET = "y";
+	static public final String TYPE = "t";
+	static public final String RELATION = "r";
+	static public final String WORD2 = "w2";
+	static public final String SYNSET2 = "y2";
 	static public final String POS = "p";
 	static public final String CASED = "c";
-	static public final String LEXDOMAIN = "m";
+	static public final String DOMAIN = "d";
+
+	static public final String MEMBERS = "members";
+	static public final String MEMBERS2 = "members2";
 
 	// T A B L E S
 
@@ -33,8 +36,7 @@ public class WordNetContract
 		static public final String TABLE = "words";
 		static public final String CONTENT_URI_TABLE = Words.TABLE;
 		static public final String WORDID = "wordid";
-		static public final String LEMMA = "lemma";
-		static public final String MEMBER = "lemma";
+		static public final String WORD = "word";
 	}
 
 	static public final class CasedWords
@@ -43,7 +45,7 @@ public class WordNetContract
 		static public final String CONTENT_URI_TABLE = CasedWords.TABLE;
 		static public final String CASEDWORDID = "casedwordid";
 		static public final String WORDID = "wordid";
-		static public final String CASED = "cased";
+		static public final String CASED = "casedword";
 	}
 
 	static public final class Senses
@@ -65,78 +67,78 @@ public class WordNetContract
 		static public final String TABLE = "synsets";
 		static public final String CONTENT_URI_TABLE = Synsets.TABLE;
 		static public final String SYNSETID = "synsetid";
-		static public final String POS = "pos";
+		static public final String POSID = "posid";
 		static public final String SENSEID = "senseid";
-		static public final String LEXDOMAINID = "lexdomainid";
+		static public final String DOMAINID = "domainid";
 		static public final String DEFINITION = "definition";
 	}
 
-	static public final class Links
+	static public final class BaseRelations
 	{
-		static public final String TABLE = "semlinks";
-		static public final String CONTENT_URI_TABLE = SemLinks.TABLE;
+		static public final String TABLE = "synsets_synsets";
+		static public final String CONTENT_URI_TABLE = SemRelations.TABLE;
 		static public final String WORDID1 = "word1id";
 		static public final String SYNSETID1 = "synset1id";
 		static public final String WORDID2 = "word2id";
 		static public final String SYNSETID2 = "synset2id";
-		static public final String LINKID = "linkid";
+		static public final String RELATIONID = "relationid";
 	}
 
-	static public final class SemLinks
+	static public final class SemRelations
 	{
-		static public final String TABLE = "semlinks";
-		static public final String CONTENT_URI_TABLE = SemLinks.TABLE;
+		static public final String TABLE = "synsets_synsets";
+		static public final String CONTENT_URI_TABLE = SemRelations.TABLE;
 		static public final String SYNSETID1 = "synset1id";
 		static public final String SYNSETID2 = "synset2id";
-		static public final String LINKID = "linkid";
+		static public final String RELATIONID = "relationid";
 	}
 
-	static public final class LexLinks
+	static public final class LexRelations
 	{
-		static public final String TABLE = "lexlinks";
-		static public final String CONTENT_URI_TABLE = LexLinks.TABLE;
+		static public final String TABLE = "senses_senses";
+		static public final String CONTENT_URI_TABLE = LexRelations.TABLE;
 		static public final String WORDID1 = "word1id";
 		static public final String SYNSETID1 = "synset1id";
 		static public final String WORDID2 = "word2id";
 		static public final String SYNSETID2 = "synset2id";
-		static public final String LINKID = "linkid";
+		static public final String RELATIONID = "relationid";
 	}
 
-	static public final class LinkTypes
+	static public final class Relations
 	{
-		static public final String TABLE = "linktypes";
-		static public final String CONTENT_URI_TABLE = LinkTypes.TABLE;
-		static public final String LINKID = "linkid";
-		static public final String LINK = "link";
+		static public final String TABLE = "relations";
+		static public final String CONTENT_URI_TABLE = Relations.TABLE;
+		static public final String RELATIONID = "relationid";
+		static public final String RELATION = "relation";
 		static public final String RECURSES = "recurses";
 		static final String RECURSESSTR = "recursesstr";
-		static public final String RECURSESSELECT = "(CASE WHEN recurses <> 0 THEN 'recurses' ELSE '' END) AS " + LinkTypes.RECURSESSTR;
+		static public final String RECURSESSELECT = "(CASE WHEN " + Relations.RECURSES + " <> 0 THEN 'recurses' ELSE '' END) AS " + Relations.RECURSESSTR;
 	}
 
-	static public final class PosTypes
+	static public final class Poses
 	{
-		static public final String TABLE = "postypes";
-		static public final String CONTENT_URI_TABLE = PosTypes.TABLE;
+		static public final String TABLE = "poses";
+		static public final String CONTENT_URI_TABLE = Poses.TABLE;
+		static public final String POSID = "posid";
 		static public final String POS = "pos";
-		static public final String POSNAME = "posname";
 	}
 
-	static public final class AdjPositionTypes
+	static public final class AdjPositions
 	{
-		static public final String TABLE = "adjpositiontypes";
-		static public final String CONTENT_URI_TABLE = AdjPositionTypes.TABLE;
+		static public final String TABLE = "adjpositions";
+		static public final String CONTENT_URI_TABLE = AdjPositions.TABLE;
+		static public final String POSITIONID = "positionid";
 		static public final String POSITION = "position";
-		static public final String POSITIONNAME = "positionname";
 	}
 
-	static public final class LexDomains
+	static public final class Domains
 	{
-		static public final String TABLE = "lexdomains";
-		static public final String CONTENT_URI_TABLE = LexDomains.TABLE;
-		static public final String LEXDOMAINID = "lexdomainid";
-		static public final String LEXDOMAINNAME = "lexdomainname";
-		static public final String LEXDOMAIN = "lexdomain";
-		static public final String POS = "pos";
+		static public final String TABLE = "domains";
+		static public final String CONTENT_URI_TABLE = Domains.TABLE;
+		static public final String DOMAINID = "domainid";
+		static public final String DOMAIN = "domain";
+		static public final String DOMAINNAME = "domainname";
+		static public final String POSID = "posid";
 	}
 
 	static public final class Samples
@@ -164,12 +166,12 @@ public class WordNetContract
 		// words LEFT JOIN senses LEFT JOIN casedwords LEFT JOIN synsets
 	}
 
-	static public final class Words_Senses_CasedWords_Synsets_PosTypes_LexDomains
+	static public final class Words_Senses_CasedWords_Synsets_Poses_Domains
 	{
-		static public final String TABLE = "words_senses_casedwords_synsets_postypes_lexdomains";
-		static public final String CONTENT_URI_TABLE = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.TABLE;
-		static public final String LEMMA = "lemma";
-		static public final String CASED = "cased";
+		static public final String TABLE = "words_senses_casedwords_synsets_poses_domains";
+		static public final String CONTENT_URI_TABLE = Words_Senses_CasedWords_Synsets_Poses_Domains.TABLE;
+		static public final String WORD = "word";
+		static public final String CASED = "casedword";
 		static public final String WORDID = "wordid";
 		static public final String SYNSETID = "synsetid";
 		static public final String SENSEID = "senseid";
@@ -177,8 +179,8 @@ public class WordNetContract
 		static public final String SENSEKEY = "sensekey";
 		static public final String DEFINITION = "definition";
 		static public final String LEXID = "lexid";
-		static public final String LEXDOMAIN = "lexdomain";
-		static public final String POSNAME = "posname";
+		static public final String DOMAIN = "domain";
+		static public final String POSID = "posid";
 		static public final String POS = "pos";
 		static public final String TAGCOUNT = "tagcount";
 		// words LEFT JOIN senses LEFT JOIN casedwords LEFT JOIN synsets
@@ -192,140 +194,148 @@ public class WordNetContract
 		static public final String CONTENT_URI_TABLE_BY_SYNSET = Senses_Words.TABLE_BY_SYNSET;
 		static public final String SYNSETID = "synsetid";
 		static public final String WORDID = "wordid";
-		static public final String MEMBER = "lemma";
+		static public final String MEMBER = "word";
 		static public final String MEMBERS = "members";
 		// synsets LEFT JOIN senses LEFT JOIN words
 	}
 
-	static public final class Senses_Synsets_PosTypes_LexDomains
+	static public final class Senses_Synsets_Poses_Domains
 	{
-		static public final String TABLE = "senses_synsets_postypes_lexdomains";
-		static public final String CONTENT_URI_TABLE = Senses_Synsets_PosTypes_LexDomains.TABLE;
-		// senses INNER JOIN synsets LEFT JOIN postypes LEFT JOIN lexdomains
+		static public final String TABLE = "senses_synsets_poses_domains";
+		static public final String CONTENT_URI_TABLE = Senses_Synsets_Poses_Domains.TABLE;
+		// senses INNER JOIN synsets LEFT JOIN poses LEFT JOIN domains
 	}
 
-	static public final class Synsets_PosTypes_LexDomains
+	static public final class Synsets_Poses_Domains
 	{
-		static public final String TABLE = "synsets_postypes_lexdomains";
-		static public final String CONTENT_URI_TABLE = Synsets_PosTypes_LexDomains.TABLE;
+		static public final String TABLE = "synsets_poses_domains";
+		static public final String CONTENT_URI_TABLE = Synsets_Poses_Domains.TABLE;
 		static public final String SYNSETID = "synsetid";
-		// synsets LEFT JOIN postypes LEFT JOIN lexdomains
+		// synsets LEFT JOIN poses LEFT JOIN domains
 	}
 
-	static public final class Links_Senses_Words_X
+	static public final class BaseRelations_Senses_Words_X
 	{
-		static public final String TABLE_BY_SYNSET = "links_senses_linktypes_senses_words_by_synset";
-		static public final String CONTENT_URI_TABLE = Links_Senses_Words_X.TABLE_BY_SYNSET;
+		static public final String TABLE_BY_SYNSET = "baserelations_senses_relations_senses_words_by_synset";
+		static public final String CONTENT_URI_TABLE = BaseRelations_Senses_Words_X.TABLE_BY_SYNSET;
 		static public final String SYNSET1ID = "synset1id";
 		static public final String SYNSET2ID = "synset2id";
-		static public final String MEMBERS2 = "members";
+		static public final String MEMBERS2 = WordNetContract.MEMBERS2;
 		static public final String RECURSES = "recurses";
-		// semlinks INNER JOIN synsets LEFT JOIN linktypes LEFT JOIN senses LEFT JOIN words
+		// synsets_synsets INNER JOIN synsets LEFT JOIN relations LEFT JOIN senses LEFT JOIN words
 		// union
-		// lexlinks INNER JOIN synsets INNER JOIN words LEFT JOIN linktypes LEFT JOIN senses LEFT JOIN words
+		// senses_senses INNER JOIN synsets INNER JOIN words LEFT JOIN relations LEFT JOIN senses LEFT JOIN words
 	}
 
-	static public final class SemLinks_Synsets
+	static public final class SemRelations_Synsets
 	{
-		static public final String TABLE = "semlinks_synsets";
-		static public final String CONTENT_URI_TABLE = SemLinks_Synsets.TABLE;
-		// semlinks INNER JOIN synsets
+		static public final String TABLE = "semrelations_synsets";
+		static public final String CONTENT_URI_TABLE = SemRelations_Synsets.TABLE;
+		// semrelations INNER JOIN synsets
 	}
 
-	static public final class SemLinks_Synsets_X
+	static public final class SemRelations_Synsets_X
 	{
-		static public final String TABLE = "semlinks_synsets_linktypes";
-		static public final String CONTENT_URI_TABLE = SemLinks_Synsets_X.TABLE;
-		// semlinks INNER JOIN synsets LEFT JOIN linktypes
+		static public final String TABLE = "semrelations_synsets_relations";
+		static public final String CONTENT_URI_TABLE = SemRelations_Synsets_X.TABLE;
+		// semrelations INNER JOIN synsets LEFT JOIN relations
 	}
 
-	static public final class SemLinks_Synsets_Words_X
+	static public final class SemRelations_Synsets_Words_X
 	{
-		static public final String TABLE_BY_SYNSET = "semlinks_synsets_linktypes_senses_words_by_synset";
-		static public final String CONTENT_URI_TABLE = SemLinks_Synsets_Words_X.TABLE_BY_SYNSET;
+		static public final String TABLE_BY_SYNSET = "semrelations_synsets_relations_senses_words_by_synset";
+		static public final String CONTENT_URI_TABLE = SemRelations_Synsets_Words_X.TABLE_BY_SYNSET;
 		static public final String SYNSET1ID = "synset1id";
 		static public final String SYNSET2ID = "synset2id";
-		static public final String MEMBERS2 = "members";
+		static public final String MEMBERS2 = WordNetContract.MEMBERS2;
 		static public final String RECURSES = "recurses";
-		// semlinks INNER JOIN synsets LEFT JOIN linktypes LEFT JOIN senses LEFT JOIN words
+		// semrelations INNER JOIN synsets LEFT JOIN relations LEFT JOIN senses LEFT JOIN words
 	}
 
-	static public final class LexLinks_Senses
+	static public final class LexRelations_Senses
 	{
-		static public final String TABLE = "lexlinks_synsets_words";
-		static public final String CONTENT_URI_TABLE = LexLinks_Senses.TABLE;
-		// lexlinks INNER JOIN synsets INNER JOIN words
+		static public final String TABLE = "lexrelations_synsets_words";
+		static public final String CONTENT_URI_TABLE = LexRelations_Senses.TABLE;
+		static public final String QUERY = String.format( //
+				"%s AS %s " + //
+						"INNER JOIN %s AS %s ON %s.synset2id = %s.synsetid " + //
+						"INNER JOIN %s AS %s ON %s.word2id = %s.wordid", //
+				"senses_senses",	WordNetContract.RELATION, //
+				"synsets", WordNetContract.SYNSET2, WordNetContract.RELATION, WordNetContract.SYNSET2, //
+				"words", WordNetContract.WORD, WordNetContract.RELATION, WordNetContract.WORD //
+		);
+		// senses_senses INNER JOIN synsets INNER JOIN words
 	}
 
-	static public final class LexLinks_Senses_X
+	static public final class LexRelations_Senses_X
 	{
-		static public final String TABLE = "lexlinks_synsets_words_linktypes";
-		static public final String CONTENT_URI_TABLE = LexLinks_Senses_X.TABLE;
-		// lexlinks INNER JOIN synsets INNER JOIN words LEFT JOIN linktypes
+		static public final String TABLE = "lexrelations_synsets_words_relations";
+		static public final String CONTENT_URI_TABLE = LexRelations_Senses_X.TABLE;
+		// senses_senses INNER JOIN synsets INNER JOIN words LEFT JOIN relations
 	}
 
-	static public final class LexLinks_Senses_Words_X
+	static public final class LexRelations_Senses_Words_X
 	{
-		static public final String TABLE_BY_SYNSET = "lexlinks_synsets_words_linktypes_senses_words_by_synset";
-		static public final String CONTENT_URI_TABLE = LexLinks_Senses_Words_X.TABLE_BY_SYNSET;
+		static public final String TABLE_BY_SYNSET = "lexrelations_synsets_words_relations_senses_words_by_synset";
+		static public final String CONTENT_URI_TABLE = LexRelations_Senses_Words_X.TABLE_BY_SYNSET;
 		static public final String SYNSET1ID = "synset1id";
 		static public final String SYNSET2ID = "synset2id";
-		static public final String MEMBERS2 = "members";
-		// lexlinks INNER JOIN synsets INNER JOIN words LEFT JOIN linktypes LEFT JOIN senses LEFT JOIN words
+		static public final String MEMBERS2 = WordNetContract.MEMBERS2;
+		// senses_senses INNER JOIN synsets INNER JOIN words LEFT JOIN relations LEFT JOIN senses LEFT JOIN words
 	}
 
-	static public final class VerbFrameMaps_VerbFrames
+	static public final class Senses_VerbFrames
 	{
-		static public final String TABLE = "vframemaps_vframes";
-		static public final String CONTENT_URI_TABLE = VerbFrameMaps_VerbFrames.TABLE;
+		static public final String TABLE = "senses_vframes";
+		static public final String CONTENT_URI_TABLE = Senses_VerbFrames.TABLE;
 		static public final String SYNSETID = "synsetid";
 		static public final String WORDID = "wordid";
 		static public final String FRAME = "frame";
-		// vframemap LEFT JOIN vframes
+		// senses_vframes LEFT JOIN vframes
 	}
 
-	static public final class VerbFrameSentenceMaps_VerbFrameSentences
+	static public final class Senses_VerbTemplates
 	{
-		static public final String TABLE = "vframesentencemaps_vframesentences";
-		static public final String CONTENT_URI_TABLE = VerbFrameSentenceMaps_VerbFrameSentences.TABLE;
+		static public final String TABLE = "senses_vtemplates";
+		static public final String CONTENT_URI_TABLE = Senses_VerbTemplates.TABLE;
 		static public final String SYNSETID = "synsetid";
 		static public final String WORDID = "wordid";
-		static public final String SENTENCE = "sentence";
-		// vframesentencemaps LEFT JOIN vframesentences
+		static public final String TEMPLATE = "template";
+		// senses_vtemplates LEFT JOIN vtemplates
 	}
 
-	static public final class AdjPositions_AdjPositionTypes
+	static public final class Senses_AdjPositions
 	{
-		static public final String TABLE = "adjpositions_adjpositiontypes";
-		static public final String CONTENT_URI_TABLE = AdjPositions_AdjPositionTypes.TABLE;
+		static public final String TABLE = "senses_adjpositions";
+		static public final String CONTENT_URI_TABLE = Senses_AdjPositions.TABLE;
 		static public final String SYNSETID = "synsetid";
 		static public final String WORDID = "wordid";
+		static public final String POSITIONID = "positionid";
 		static public final String POSITION = "position";
-		static public final String POSITIONNAME = "positionname";
-		// adjpositions LEFT JOIN adjpositiontypes
+		// senses_adjpositions LEFT JOIN adjpositions
 	}
 
-	static public final class MorphMaps_Morphs
+	static public final class Lexes_Morphs
 	{
-		static public final String TABLE = "morphmaps_morphs";
-		static public final String CONTENT_URI_TABLE = MorphMaps_Morphs.TABLE;
+		static public final String TABLE = "lexes_morphs";
+		static public final String CONTENT_URI_TABLE = Lexes_Morphs.TABLE;
 		static public final String WORDID = "wordid";
 		static public final String MORPH = "morph";
-		static public final String POS = "pos";
-		// morphmaps LEFT JOIN morphs
+		static public final String POSID = "posid";
+		// lexes_morphs LEFT JOIN morphs
 	}
 
-	static public final class Words_MorphMaps_Morphs
+	static public final class Words_Lexes_Morphs
 	{
-		static public final String TABLE = "words_morphmaps_morphs";
-		static public final String TABLE_BY_WORD = "words_morphmaps_morphs_by_word";
-		static public final String CONTENT_URI_TABLE = Words_MorphMaps_Morphs.TABLE;
-		static public final String CONTENT_URI_TABLE_BY_WORD = Words_MorphMaps_Morphs.TABLE_BY_WORD;
-		static public final String LEMMA = "lemma";
+		static public final String TABLE = "words_lexes_morphs";
+		static public final String TABLE_BY_WORD = "words_lexes_morphs_by_word";
+		static public final String CONTENT_URI_TABLE = Words_Lexes_Morphs.TABLE;
+		static public final String CONTENT_URI_TABLE_BY_WORD = Words_Lexes_Morphs.TABLE_BY_WORD;
+		static public final String WORD = "word";
 		static public final String WORDID = "wordid";
 		static public final String MORPH = "morph";
-		static public final String POS = "pos";
-		// words LEFT JOIN morphmaps LEFT JOIN morphs
+		static public final String POSID = "posid";
+		// words LEFT JOIN lexes_morphs LEFT JOIN morphs
 	}
 
 	// V I E W S
@@ -344,7 +354,7 @@ public class WordNetContract
 		static public final String TABLE = "fts_words";
 		static public final String CONTENT_URI_TABLE = Lookup_Words.TABLE;
 		static public final String WORDID = "wordid";
-		static public final String LEMMA = "lemma";
+		static public final String WORD = "word";
 	}
 
 	static public final class Lookup_Definitions

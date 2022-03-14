@@ -122,12 +122,14 @@ public class BNCProvider extends BaseProvider
 		}
 
 		String actualSelection = selection;
+		String actualSelection2 = selection;
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI
 		final int code = BNCProvider.uriMatcher.match(uri);
 		Log.d(BNCProvider.TAG + "URI", String.format("%s (code %s)", uri, code));
 
 		String table;
+		String table2;
 		switch (code)
 		{
 
@@ -137,6 +139,7 @@ public class BNCProvider extends BaseProvider
 
 			case BNC:
 				table = BNCContract.BNCs.TABLE;
+				table2 = Queries.BNCS.TABLE;
 				if (actualSelection != null)
 				{
 					actualSelection += " AND ";
@@ -145,22 +148,29 @@ public class BNCProvider extends BaseProvider
 				{
 					actualSelection = "";
 				}
-				actualSelection += BNCContract.BNCs.POS + " = ?";
+				actualSelection2 = actualSelection;
+				actualSelection += BNCContract.BNCs.POSID + " = ?";
+				actualSelection2 += Queries.BNCS.SELECTION;
+
 				break;
 
 			// J O I N S
 
 			case WORDS_BNC:
-				table = "bncs " + //
-						"LEFT JOIN bncspwrs USING (wordid, pos) " + //
-						"LEFT JOIN bncconvtasks USING (wordid, pos) " + //
-						"LEFT JOIN bncimaginfs USING (wordid, pos) ";
+				table = "bnc_bncs " + //
+						"LEFT JOIN bnc_spwrs USING (wordid, posid) " + //
+						"LEFT JOIN bnc_convtasks USING (wordid, posid) " + //
+						"LEFT JOIN bnc_imaginfs USING (wordid, posid) ";
+				table2 = Queries.WORDS_BNCS.TABLE;
 				break;
 
 			default:
 			case UriMatcher.NO_MATCH:
 				throw new RuntimeException("Malformed URI " + uri);
 		}
+
+		assert equals(table, table2) : table + "!=" + table2;
+		assert equals(actualSelection, actualSelection2) : actualSelection + "!=" + actualSelection2;
 
 		final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, null, null, sortOrder, null);
 		logSql(sql, selectionArgs);
@@ -182,5 +192,10 @@ public class BNCProvider extends BaseProvider
 			Log.e(TAG, "Bnc provider query failed", e);
 			return null;
 		}
+	}
+
+	private static boolean equals(Object a, Object b)
+	{
+		return (a == b) || (a != null && a.equals(b));
 	}
 }

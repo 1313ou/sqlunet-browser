@@ -7,37 +7,37 @@
 
 	<string-array name="required_tables" tools:ignore="InconsistentArrays">
 		<item>words</item>
+		<item>casedwords</item>
 		<item>senses</item>
 		<item>synsets</item>
-		<item>adjpositions</item>
-		<item>adjpositiontypes</item>
-		<item>casedwords</item>
-		<item>lexdomains</item>
-		<item>lexlinks</item>
-		<item>linktypes</item>
-		<item>morphmaps</item>
+		<item>poses</item>
+		<item>domains</item>
+		<item>relations</item>
 		<item>morphs</item>
-		<item>postypes</item>
 		<item>samples</item>
-		<item>semlinks</item>
-		<item>vframemaps</item>
 		<item>vframes</item>
-		<item>vframesentencemaps</item>
-		<item>vframesentences</item>
+		<item>vtemplates</item>
+		<item>adjpositions</item>
+		<item>senses_senses</item>
+		<item>synsets_synsets</item>
+		<item>senses_vframes</item>
+		<item>senses_vtemplates</item>
+		<item>senses_adjpositions</item>
+		<item>lexes_morphs</item>
 		<item>sources</item>
 	</string-array>
 	<string-array name="required_indexes" tools:ignore="InconsistentArrays">
-		<item>index_words_lemma</item>
-		<item>index_senses_wordid</item>
-		<item>index_senses_synsetid</item>
-		<item>index_synsets_synsetid</item>
-		<item>index_casedwords_wordid_casedwordid</item>
-		<item>index_semlinks_synset1id</item>
-		<item>index_semlinks_linkid</item>
-		<item>index_samples_synsetid</item>
+		<item>uk_words_word</item>
+		<item>k_senses_wordid</item>
+		<item>k_senses_synsetid</item>
+<!--		<item>pk_synsets</item>-->
+		<item>k_casedwords_wordid_casedwordid</item>
+		<item>k_synsets_synsets_synset1id</item>
+		<item>k_synsets_synsets_relationid</item>
+		<item>k_samples_synsetid</item>
 	</string-array>
 	<string-array name="required_texts_wn">
-		<item>words_lemma_fts4</item>
+		<item>words_word_fts4</item>
 		<item>synsets_definition_fts4</item>
 		<item>samples_sample_fts4</item>
 	</string-array>

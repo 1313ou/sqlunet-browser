@@ -780,20 +780,20 @@ public class XSelectorsFragment extends ExpandableListFragment
 	private void loadWn(final long wordId)
 	{
 		Log.d(TAG, "loadWn " + wordId);
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CONTENT_URI_TABLE));
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CONTENT_URI_TABLE));
 		final String[] projection = { //
 				"'wn' AS " + Words_XNet_U.SOURCES, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID + " AS " + Words_XNet_U.XID, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS " + Words_XNet_U.XID, //
 				"NULL AS " + Words_XNet_U.XCLASSID, //
 				"NULL AS " + Words_XNet_U.XMEMBERID, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + "|| '.' ||" + WordNetContract.POS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + " AS " + Words_XNet_U.XNAME, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXDOMAIN + " AS " + Words_XNet_U.XHEADER, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSEKEY + " AS " + Words_XNet_U.XINFO, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID + " AS _id"};
-		final String selection = WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID + " = ?";
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORD + "|| '.' ||" + WordNetContract.POS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + " AS " + Words_XNet_U.XNAME, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN + " AS " + Words_XNet_U.XHEADER, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY + " AS " + Words_XNet_U.XINFO, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS _id"};
+		final String selection = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID + " = ?";
 		final String[] selectionArgs = {Long.toString(wordId)};
 		this.wnFromWordIdModel.loadData(uri, projection, selection, selectionArgs, null, null);
 	}

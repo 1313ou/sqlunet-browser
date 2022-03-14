@@ -279,7 +279,7 @@ public class SnSelectorsFragment extends ListFragment
 	{
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(Words.CONTENT_URI_TABLE));
 		final String[] projection = {Words.WORDID,};
-		final String selection = Words.LEMMA + " = ?"; //
+		final String selection = Words.WORD + " = ?"; //
 		final String[] selectionArgs = {query};
 		try (Cursor cursor = requireContext().getContentResolver().query(uri, projection, selection, selectionArgs, null))
 		{

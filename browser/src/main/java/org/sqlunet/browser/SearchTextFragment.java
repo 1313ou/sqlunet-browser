@@ -180,8 +180,8 @@ public class SearchTextFragment extends BaseSearchFragment
 				searchUri = WordNetProvider.makeUri(WordNetContract.Lookup_Words.CONTENT_URI_TABLE);
 				id = WordNetContract.Lookup_Words.WORDID;
 				idType = "lemma";
-				target = WordNetContract.Lookup_Words.LEMMA;
-				columns = new String[]{WordNetContract.Lookup_Words.LEMMA};
+				target = WordNetContract.Lookup_Words.WORD;
+				columns = new String[]{WordNetContract.Lookup_Words.WORD};
 				hiddenColumns = new String[]{WordNetContract.Lookup_Words.WORDID};
 				database = "wn";
 				break;

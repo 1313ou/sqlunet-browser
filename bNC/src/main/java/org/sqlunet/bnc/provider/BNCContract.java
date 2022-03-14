@@ -8,10 +8,10 @@ public class BNCContract
 {
 	static public final class BNCs
 	{
-		static public final String TABLE = "bncs";
+		static public final String TABLE = "bnc_bncs";
 		static public final String CONTENT_URI_TABLE = BNCs.TABLE;
 		static public final String WORDID = "wordid";
-		static public final String POS = "pos";
+		static public final String POSID = "posid";
 		static public final String CONTENTS = "contents";
 		static public final String FREQ = "freq";
 	}
@@ -20,9 +20,9 @@ public class BNCContract
 	{
 		static public final String TABLE = "words_bncs";
 		static public final String CONTENT_URI_TABLE = Words_BNCs.TABLE;
-		static public final String LEMMA = "lemma";
+		static public final String WORD = "word";
 		static public final String WORDID = "wordid";
-		static public final String POS = "pos";
+		static public final String POSID = "posid";
 		static public final String FREQ = "freq";
 		static public final String RANGE = "range";
 		static public final String DISP = "disp";
@@ -32,8 +32,8 @@ public class BNCContract
 		static public final String FREQ2 = "freq2";
 		static public final String RANGE2 = "range2";
 		static public final String DISP2 = "disp2";
-		static public final String BNCCONVTASKS = "bncconvtasks";
-		static public final String BNCIMAGINFS = "bncimaginfs";
-		static public final String BNCSPWRS = "bncspwrs";
+		static public final String BNCCONVTASKS = "bnc_convtasks";
+		static public final String BNCIMAGINFS = "bnc_imaginfs";
+		static public final String BNCSPWRS = "bnc_spwrs";
 	}
 }

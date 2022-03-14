@@ -142,7 +142,7 @@ public class BaseModule extends Module
 	private void bnc(final long wordId, @Nullable final Character pos, @NonNull final TreeNode parent)
 	{
 		final Uri uri = Uri.parse(BNCProvider.makeUri(Words_BNCs.CONTENT_URI_TABLE));
-		final String[] projection = {Words_BNCs.POS, Words_BNCs.FREQ, Words_BNCs.RANGE, Words_BNCs.DISP, //
+		final String[] projection = {Words_BNCs.POSID, Words_BNCs.FREQ, Words_BNCs.RANGE, Words_BNCs.DISP, //
 				Words_BNCs.BNCCONVTASKS + '.' + Words_BNCs.FREQ1 + " AS " + Words_BNCs.BNCCONVTASKS + Words_BNCs.FREQ1, //
 				Words_BNCs.BNCCONVTASKS + '.' + Words_BNCs.RANGE1 + " AS " + Words_BNCs.BNCCONVTASKS + Words_BNCs.RANGE1, //
 				Words_BNCs.BNCCONVTASKS + '.' + Words_BNCs.DISP1 + " AS " + Words_BNCs.BNCCONVTASKS + Words_BNCs.DISP1, //
@@ -164,7 +164,7 @@ public class BaseModule extends Module
 				Words_BNCs.BNCSPWRS + '.' + Words_BNCs.RANGE2 + " AS " + Words_BNCs.BNCSPWRS + Words_BNCs.RANGE2, //
 				Words_BNCs.BNCSPWRS + '.' + Words_BNCs.DISP2 + " AS " + Words_BNCs.BNCSPWRS + Words_BNCs.DISP2, //
 		};
-		final String selection = pos == null ? Words_BNCs.WORDID + " = ?" : Words_BNCs.WORDID + " = ? AND " + Words_BNCs.POS + "= ?";
+		final String selection = pos == null ? Words_BNCs.WORDID + " = ?" : Words_BNCs.WORDID + " = ? AND " + Words_BNCs.POSID + "= ?";
 		final String[] selectionArgs = pos == null ? new String[]{Long.toString(wordId)} : new String[]{Long.toString(wordId), Character.toString(pos),};
 		this.bncFromWordIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> bncCursorToTreeModel(cursor, parent));
 	}
@@ -177,7 +177,7 @@ public class BaseModule extends Module
 		// throw new RuntimeException("Unexpected number of rows");
 		if (cursor.moveToFirst())
 		{
-			final int idPos = cursor.getColumnIndexOrThrow(Words_BNCs.POS);
+			final int idPos = cursor.getColumnIndexOrThrow(Words_BNCs.POSID);
 			final int idFreq = cursor.getColumnIndexOrThrow(Words_BNCs.FREQ);
 			final int idRange = cursor.getColumnIndexOrThrow(Words_BNCs.RANGE);
 			final int idDisp = cursor.getColumnIndexOrThrow(Words_BNCs.DISP);

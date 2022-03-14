@@ -31,24 +31,24 @@ import org.sqlunet.wordnet.WordPointer;
 import org.sqlunet.wordnet.browser.SynsetActivity;
 import org.sqlunet.wordnet.browser.WordActivity;
 import org.sqlunet.wordnet.provider.WordNetContract;
-import org.sqlunet.wordnet.provider.WordNetContract.AdjPositions_AdjPositionTypes;
-import org.sqlunet.wordnet.provider.WordNetContract.LexDomains;
-import org.sqlunet.wordnet.provider.WordNetContract.LexLinks_Senses_Words_X;
-import org.sqlunet.wordnet.provider.WordNetContract.LinkTypes;
-import org.sqlunet.wordnet.provider.WordNetContract.Links_Senses_Words_X;
-import org.sqlunet.wordnet.provider.WordNetContract.MorphMaps_Morphs;
-import org.sqlunet.wordnet.provider.WordNetContract.PosTypes;
+import org.sqlunet.wordnet.provider.WordNetContract.Senses_AdjPositions;
+import org.sqlunet.wordnet.provider.WordNetContract.Domains;
+import org.sqlunet.wordnet.provider.WordNetContract.LexRelations_Senses_Words_X;
+import org.sqlunet.wordnet.provider.WordNetContract.Relations;
+import org.sqlunet.wordnet.provider.WordNetContract.BaseRelations_Senses_Words_X;
+import org.sqlunet.wordnet.provider.WordNetContract.Lexes_Morphs;
+import org.sqlunet.wordnet.provider.WordNetContract.Poses;
 import org.sqlunet.wordnet.provider.WordNetContract.Samples;
-import org.sqlunet.wordnet.provider.WordNetContract.SemLinks_Synsets_Words_X;
+import org.sqlunet.wordnet.provider.WordNetContract.SemRelations_Synsets_Words_X;
 import org.sqlunet.wordnet.provider.WordNetContract.Senses;
 import org.sqlunet.wordnet.provider.WordNetContract.Senses_Words;
 import org.sqlunet.wordnet.provider.WordNetContract.Synsets;
-import org.sqlunet.wordnet.provider.WordNetContract.Synsets_PosTypes_LexDomains;
-import org.sqlunet.wordnet.provider.WordNetContract.VerbFrameMaps_VerbFrames;
-import org.sqlunet.wordnet.provider.WordNetContract.VerbFrameSentenceMaps_VerbFrameSentences;
+import org.sqlunet.wordnet.provider.WordNetContract.Synsets_Poses_Domains;
+import org.sqlunet.wordnet.provider.WordNetContract.Senses_VerbFrames;
+import org.sqlunet.wordnet.provider.WordNetContract.Senses_VerbTemplates;
 import org.sqlunet.wordnet.provider.WordNetContract.Words;
-import org.sqlunet.wordnet.provider.WordNetContract.Words_MorphMaps_Morphs;
-import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_PosTypes_LexDomains;
+import org.sqlunet.wordnet.provider.WordNetContract.Words_Lexes_Morphs;
+import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains;
 import org.sqlunet.wordnet.provider.WordNetProvider;
 import org.sqlunet.wordnet.style.WordNetFactories;
 
@@ -288,11 +288,11 @@ abstract public class BaseModule extends Module
 	void word(final long wordId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
 	{
 		// load the contents
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(Words_MorphMaps_Morphs.CONTENT_URI_TABLE_BY_WORD));
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(Words_Lexes_Morphs.CONTENT_URI_TABLE_BY_WORD));
 		final String[] projection = { //
-				Words_MorphMaps_Morphs.LEMMA, //
-				Words_MorphMaps_Morphs.WORDID, //
-				"GROUP_CONCAT(" + Words_MorphMaps_Morphs.MORPH + "||'-'||" + Words_MorphMaps_Morphs.POS + ") AS " + BaseModule.ALLMORPHS};
+				Words_Lexes_Morphs.WORD, //
+				Words_Lexes_Morphs.WORDID, //
+				"GROUP_CONCAT(" + Words_Lexes_Morphs.MORPH + "||'-'||" + Words_Lexes_Morphs.POSID + ") AS " + BaseModule.ALLMORPHS};
 		final String selection = Words.WORDID + " = ?";
 		final String[] selectionArgs = {Long.toString(wordId)};
 		this.wordModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> wordCursorToTreeModel(cursor, parent, addNewNode));
@@ -311,7 +311,7 @@ abstract public class BaseModule extends Module
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 			// final int idWordId = cursor.getColumnIndex(Words.WORDID);
-			final int idLemma = cursor.getColumnIndex(Words_MorphMaps_Morphs.LEMMA);
+			final int idLemma = cursor.getColumnIndex(Words_Lexes_Morphs.WORD);
 			final int idMorphs = cursor.getColumnIndex(BaseModule.ALLMORPHS);
 			final String lemma = cursor.getString(idLemma);
 			final String morphs = cursor.getString(idMorphs);
@@ -359,23 +359,23 @@ abstract public class BaseModule extends Module
 	protected void senses(final String word, @NonNull final TreeNode parent)
 	{
 		// load the contents
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CONTENT_URI_TABLE));
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(Words_Senses_CasedWords_Synsets_Poses_Domains.CONTENT_URI_TABLE));
 		final String[] projection = { //
-				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID + " AS _id", //
-				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID, //
-				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSEID, //
-				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM, //
-				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSEKEY, //
-				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXID, //
-				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.TAGCOUNT, //
-				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID, //
-				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.DEFINITION, //
-				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POSNAME, //
-				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXDOMAIN, //
-				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CASED};
-		final String selection = WordNetContract.WORD + '.' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEMMA + " = ?";
+				Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS _id", //
+				Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID, //
+				Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEID, //
+				Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM, //
+				Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY, //
+				Words_Senses_CasedWords_Synsets_Poses_Domains.LEXID, //
+				Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT, //
+				Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID, //
+				Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION, //
+				Words_Senses_CasedWords_Synsets_Poses_Domains.POS, //
+				Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN, //
+				Words_Senses_CasedWords_Synsets_Poses_Domains.CASED};
+		final String selection = WordNetContract.WORD + '.' + Words_Senses_CasedWords_Synsets_Poses_Domains.WORD + " = ?";
 		final String[] selectionArgs = {word};
-		final String sortOrder = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
+		final String sortOrder = Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + ',' + Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM;
 		this.sensesFromWordModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> sensesCursorToTreeModel(cursor, parent));
 	}
 
@@ -388,23 +388,23 @@ abstract public class BaseModule extends Module
 	void senses(final long wordId, @NonNull final TreeNode parent)
 	{
 		// load the contents
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CONTENT_URI_TABLE));
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(Words_Senses_CasedWords_Synsets_Poses_Domains.CONTENT_URI_TABLE));
 		final String[] projection = { //
-				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID + " AS _id", //
-				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID, //
-				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSEID, //
-				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM, //
-				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSEKEY, //
-				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXID, //
-				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.TAGCOUNT, //
-				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID, //
-				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.DEFINITION, //
-				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POSNAME, //
-				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXDOMAIN, //
-				Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CASED};
-		final String selection = Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID + " = ?";
+				Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS _id", //
+				Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID, //
+				Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEID, //
+				Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM, //
+				Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY, //
+				Words_Senses_CasedWords_Synsets_Poses_Domains.LEXID, //
+				Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT, //
+				Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID, //
+				Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION, //
+				Words_Senses_CasedWords_Synsets_Poses_Domains.POS, //
+				Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN, //
+				Words_Senses_CasedWords_Synsets_Poses_Domains.CASED};
+		final String selection = Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID + " = ?";
 		final String[] selectionArgs = {Long.toString(wordId)};
-		final String sortOrder = WordNetContract.POS + '.' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POS + ',' + Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SENSENUM;
+		final String sortOrder = WordNetContract.POS + '.' + Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + ',' + Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM;
 		this.sensesFromWordIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> sensesCursorToTreeModel(cursor, parent));
 	}
 
@@ -416,13 +416,13 @@ abstract public class BaseModule extends Module
 		{
 			final TreeOps changedList = new TreeOps(NEWTREE, parent);
 
-			final int idWordId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.WORDID);
-			final int idSynsetId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.SYNSETID);
-			final int idPosName = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.POSNAME);
-			final int idLexDomain = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.LEXDOMAIN);
-			final int idDefinition = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.DEFINITION);
-			final int idTagCount = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.TAGCOUNT);
-			final int idCased = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_PosTypes_LexDomains.CASED);
+			final int idWordId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID);
+			final int idSynsetId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID);
+			final int idPosName = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.POS);
+			final int idLexDomain = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN);
+			final int idDefinition = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION);
+			final int idTagCount = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT);
+			final int idCased = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.CASED);
 
 			do
 			{
@@ -481,7 +481,7 @@ abstract public class BaseModule extends Module
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
-			final int idWordId = cursor.getColumnIndex(PosTypes.POSNAME);
+			final int idWordId = cursor.getColumnIndex(Poses.POS);
 			final int idSynsetId = cursor.getColumnIndex(Synsets.DEFINITION);
 			final long wordId = cursor.getLong(idWordId);
 			final long synsetId = cursor.getLong(idSynsetId);
@@ -559,13 +559,13 @@ abstract public class BaseModule extends Module
 	 */
 	private void sense(final long synsetId, final long wordId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(Synsets_PosTypes_LexDomains.CONTENT_URI_TABLE));
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(Synsets_Poses_Domains.CONTENT_URI_TABLE));
 		final String[] projection = { //
 				Synsets.DEFINITION, //
-				PosTypes.POSNAME, //
-				LexDomains.LEXDOMAIN, //
+				Poses.POS, //
+				Domains.DOMAIN, //
 		};
-		final String selection = Synsets_PosTypes_LexDomains.SYNSETID + " = ?";
+		final String selection = Synsets_Poses_Domains.SYNSETID + " = ?";
 		final String[] selectionArgs = {Long.toString(synsetId)};
 		this.senseFromSynsetIdWordIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> senseFromSynsetIdWordIdCursorToTreeModel(cursor, synsetId, wordId, parent));
 	}
@@ -580,8 +580,8 @@ abstract public class BaseModule extends Module
 		if (cursor.moveToFirst())
 		{
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
-			final int idPosName = cursor.getColumnIndex(PosTypes.POSNAME);
-			final int idLexDomain = cursor.getColumnIndex(LexDomains.LEXDOMAIN);
+			final int idPosName = cursor.getColumnIndex(Poses.POS);
+			final int idLexDomain = cursor.getColumnIndex(Domains.DOMAIN);
 			final int idDefinition = cursor.getColumnIndex(Synsets.DEFINITION);
 			final String posName = cursor.getString(idPosName);
 			final String lexDomain = cursor.getString(idLexDomain);
@@ -658,13 +658,13 @@ abstract public class BaseModule extends Module
 	 */
 	void synset(final long synsetId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
 	{
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(Synsets_PosTypes_LexDomains.CONTENT_URI_TABLE));
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(Synsets_Poses_Domains.CONTENT_URI_TABLE));
 		final String[] projection = { //
 				Synsets.DEFINITION, //
-				PosTypes.POSNAME, //
-				LexDomains.LEXDOMAIN, //
+				Poses.POS, //
+				Domains.DOMAIN, //
 		};
-		final String selection = Synsets_PosTypes_LexDomains.SYNSETID + " = ?";
+		final String selection = Synsets_Poses_Domains.SYNSETID + " = ?";
 		final String[] selectionArgs = {Long.toString(synsetId)};
 		this.synsetFromSynsetIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> synsetCursorToTreeModel(cursor, synsetId, parent, addNewNode));
 	}
@@ -679,8 +679,8 @@ abstract public class BaseModule extends Module
 		if (cursor.moveToFirst())
 		{
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
-			final int idPosName = cursor.getColumnIndex(PosTypes.POSNAME);
-			final int idLexDomain = cursor.getColumnIndex(LexDomains.LEXDOMAIN);
+			final int idPosName = cursor.getColumnIndex(Poses.POS);
+			final int idLexDomain = cursor.getColumnIndex(Domains.DOMAIN);
 			final int idDefinition = cursor.getColumnIndex(Synsets.DEFINITION);
 			final String posName = cursor.getString(idPosName);
 			final String lexDomain = cursor.getString(idLexDomain);
@@ -852,10 +852,10 @@ abstract public class BaseModule extends Module
 	{
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(BaseModule.this.membersGrouped ? Senses_Words.CONTENT_URI_TABLE_BY_SYNSET : Senses_Words.CONTENT_URI_TABLE));
 		final String[] projection = BaseModule.this.membersGrouped ? //
-				new String[]{Senses_Words.MEMBERS} : new String[]{Words.LEMMA};
+				new String[]{Senses_Words.MEMBERS} : new String[]{Words.WORD};
 		final String selection = Senses_Words.SYNSETID + " = ?";
 		final String[] selectionArgs = {Long.toString(synsetId)};
-		final String sortOrder = Words.LEMMA;
+		final String sortOrder = Words.WORD;
 		this.members2FromSynsetIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> members2CursorToTreeModel(cursor, parent, addNewNode));
 	}
 
@@ -880,7 +880,7 @@ abstract public class BaseModule extends Module
 			}
 			else
 			{
-				final int lemmaId = cursor.getColumnIndex(Words.LEMMA);
+				final int lemmaId = cursor.getColumnIndex(Words.WORD);
 				// int i = 1;
 				do
 				{
@@ -1002,7 +1002,7 @@ abstract public class BaseModule extends Module
 	static public final String TARGET_SYNSETID = "d_synsetid";
 	@SuppressWarnings("WeakerAccess")
 	static public final String TARGET_DEFINITION = "d_definition";
-	static public final String TARGET_LEMMA = "d_lemma";
+	static public final String TARGET_WORD = "d_word";
 	static public final String TARGET_WORDID = "d_wordid";
 
 	/**
@@ -1015,20 +1015,20 @@ abstract public class BaseModule extends Module
 	 */
 	private void links(final long synsetId, final long wordId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean deadendParentIfNoResult)
 	{
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(Links_Senses_Words_X.CONTENT_URI_TABLE));
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(BaseRelations_Senses_Words_X.CONTENT_URI_TABLE));
 		final String[] projection = { //
-				WordNetContract.TYPE, LinkTypes.LINKID, //
-				LinkTypes.LINK, //
-				WordNetContract.DEST + '.' + Synsets.SYNSETID + " AS " + BaseModule.TARGET_SYNSETID, //
-				WordNetContract.DEST + '.' + Synsets.DEFINITION + " AS " + BaseModule.TARGET_DEFINITION, //
-				"GROUP_CONCAT(" + WordNetContract.WORD + '.' + Words.LEMMA + ") AS " + Links_Senses_Words_X.MEMBERS2, //
-				Links_Senses_Words_X.RECURSES, //
+				WordNetContract.TYPE, Relations.RELATIONID, //
+				Relations.RELATION, //
+				WordNetContract.SYNSET2 + '.' + Synsets.SYNSETID + " AS " + BaseModule.TARGET_SYNSETID, //
+				WordNetContract.SYNSET2 + '.' + Synsets.DEFINITION + " AS " + BaseModule.TARGET_DEFINITION, //
+				"GROUP_CONCAT(" + WordNetContract.WORD + '.' + Words.WORD + ") AS " + BaseRelations_Senses_Words_X.MEMBERS2, //
+				BaseRelations_Senses_Words_X.RECURSES, //
 				WordNetContract.WORD2 + '.' + Words.WORDID + " AS " + BaseModule.TARGET_WORDID, //
-				WordNetContract.WORD2 + '.' + Words.LEMMA + " AS " + BaseModule.TARGET_LEMMA, //
+				WordNetContract.WORD2 + '.' + Words.WORD + " AS " + BaseModule.TARGET_WORD, //
 		};
 		final String selection = "synset1id = ? /**/|/**/ synset1id = ? AND word1id = ?";
 		final String[] selectionArgs = {Long.toString(synsetId), Long.toString(synsetId), Long.toString(wordId)};
-		final String sortOrder = LinkTypes.LINKID;
+		final String sortOrder = Relations.RELATIONID;
 		this.linksFromSynsetIdWordIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> linksCursorToTreeModel(cursor, parent, deadendParentIfNoResult));
 	}
 
@@ -1040,14 +1040,14 @@ abstract public class BaseModule extends Module
 		{
 			final TreeOps changedList = new TreeOps(NEWTREE, parent);
 
-			final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
+			final int idLinkId = cursor.getColumnIndex(Relations.RELATIONID);
 			// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
 			final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
 			final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
-			final int idTargetMembers = cursor.getColumnIndex(Links_Senses_Words_X.MEMBERS2);
-			final int idRecurses = cursor.getColumnIndex(Links_Senses_Words_X.RECURSES);
+			final int idTargetMembers = cursor.getColumnIndex(BaseRelations_Senses_Words_X.MEMBERS2);
+			final int idRecurses = cursor.getColumnIndex(BaseRelations_Senses_Words_X.RECURSES);
 			final int idTargetWordId = cursor.getColumnIndex(BaseModule.TARGET_WORDID);
-			final int idTargetLemma = cursor.getColumnIndex(BaseModule.TARGET_LEMMA);
+			final int idTargetLemma = cursor.getColumnIndex(BaseModule.TARGET_WORD);
 
 			do
 			{
@@ -1116,17 +1116,17 @@ abstract public class BaseModule extends Module
 	 */
 	private void semLinks(final long synsetId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean deadendParentIfNoResult)
 	{
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(SemLinks_Synsets_Words_X.CONTENT_URI_TABLE));
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(SemRelations_Synsets_Words_X.CONTENT_URI_TABLE));
 		final String[] projection = { //
-				LinkTypes.LINKID, //
-				LinkTypes.LINK, //
-				WordNetContract.DEST + '.' + Synsets.SYNSETID + " AS " + BaseModule.TARGET_SYNSETID, //
-				WordNetContract.DEST + '.' + Synsets.DEFINITION + " AS " + BaseModule.TARGET_DEFINITION, //
-				LinkTypes.RECURSES, //
+				Relations.RELATIONID, //
+				Relations.RELATION, //
+				WordNetContract.SYNSET2 + '.' + Synsets.SYNSETID + " AS " + BaseModule.TARGET_SYNSETID, //
+				WordNetContract.SYNSET2 + '.' + Synsets.DEFINITION + " AS " + BaseModule.TARGET_DEFINITION, //
+				Relations.RECURSES, //
 		};
-		final String selection = WordNetContract.LINK + '.' + SemLinks_Synsets_Words_X.SYNSET1ID + " = ?";  ////
+		final String selection = WordNetContract.RELATION + '.' + SemRelations_Synsets_Words_X.SYNSET1ID + " = ?";  ////
 		final String[] selectionArgs = {Long.toString(synsetId)};
-		final String sortOrder = LinkTypes.LINKID;
+		final String sortOrder = Relations.RELATIONID;
 		this.semLinksFromSynsetIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> semLinksCursorToTreeModel(cursor, parent, deadendParentIfNoResult));
 	}
 
@@ -1139,11 +1139,11 @@ abstract public class BaseModule extends Module
 			final TreeOps changedList = new TreeOps(NEWTREE, parent);
 
 			// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
-			final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
+			final int idLinkId = cursor.getColumnIndex(Relations.RELATIONID);
 			final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
 			final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
-			final int idTargetMembers = cursor.getColumnIndex(SemLinks_Synsets_Words_X.MEMBERS2);
-			final int idRecurses = cursor.getColumnIndex(SemLinks_Synsets_Words_X.RECURSES);
+			final int idTargetMembers = cursor.getColumnIndex(SemRelations_Synsets_Words_X.MEMBERS2);
+			final int idRecurses = cursor.getColumnIndex(SemRelations_Synsets_Words_X.RECURSES);
 
 			do
 			{
@@ -1202,15 +1202,15 @@ abstract public class BaseModule extends Module
 	 */
 	private void semLinks(final long synsetId, final int linkId, final int recurseLevel, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean deadendParentIfNoResult)
 	{
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(SemLinks_Synsets_Words_X.CONTENT_URI_TABLE));
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(SemRelations_Synsets_Words_X.CONTENT_URI_TABLE));
 		final String[] projection = { //
-				LinkTypes.LINKID, //
-				LinkTypes.LINK, //
-				WordNetContract.DEST + '.' + Synsets.SYNSETID + " AS " + BaseModule.TARGET_SYNSETID, //
-				WordNetContract.DEST + '.' + Synsets.DEFINITION + " AS " + BaseModule.TARGET_DEFINITION, //
-				LinkTypes.RECURSES, //
+				Relations.RELATIONID, //
+				Relations.RELATION, //
+				WordNetContract.SYNSET2 + '.' + Synsets.SYNSETID + " AS " + BaseModule.TARGET_SYNSETID, //
+				WordNetContract.SYNSET2 + '.' + Synsets.DEFINITION + " AS " + BaseModule.TARGET_DEFINITION, //
+				Relations.RECURSES, //
 		};
-		final String selection = WordNetContract.LINK + '.' + SemLinks_Synsets_Words_X.SYNSET1ID + " = ? AND " + LinkTypes.LINKID + " = ?";
+		final String selection = WordNetContract.RELATION + '.' + SemRelations_Synsets_Words_X.SYNSET1ID + " = ? AND " + Relations.RELATIONID + " = ?";
 		final String[] selectionArgs = {Long.toString(synsetId), Integer.toString(linkId)};
 		this.semLinksFromSynsetIdLinkIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> semLinksFromSynsetIdLinkIdCursorToTreeModel(cursor, linkId, recurseLevel, parent, deadendParentIfNoResult));
 	}
@@ -1227,8 +1227,8 @@ abstract public class BaseModule extends Module
 			// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
 			final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
 			final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
-			final int idTargetMembers = cursor.getColumnIndex(SemLinks_Synsets_Words_X.MEMBERS2);
-			final int idRecurses = cursor.getColumnIndex(SemLinks_Synsets_Words_X.RECURSES);
+			final int idTargetMembers = cursor.getColumnIndex(SemRelations_Synsets_Words_X.MEMBERS2);
+			final int idRecurses = cursor.getColumnIndex(SemRelations_Synsets_Words_X.RECURSES);
 
 			do
 			{
@@ -1298,18 +1298,18 @@ abstract public class BaseModule extends Module
 	 */
 	private void lexLinks(final long synsetId, final long wordId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean deadendParentIfNoResult)
 	{
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(LexLinks_Senses_Words_X.CONTENT_URI_TABLE));
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(LexRelations_Senses_Words_X.CONTENT_URI_TABLE));
 		final String[] projection = { //
-				LinkTypes.LINKID, //
-				LinkTypes.LINK, //
-				WordNetContract.DEST + '.' + Synsets.SYNSETID + " AS " + BaseModule.TARGET_SYNSETID, //
-				WordNetContract.DEST + '.' + Synsets.DEFINITION + " AS " + BaseModule.TARGET_DEFINITION, //
+				Relations.RELATIONID, //
+				Relations.RELATION, //
+				WordNetContract.SYNSET2 + '.' + Synsets.SYNSETID + " AS " + BaseModule.TARGET_SYNSETID, //
+				WordNetContract.SYNSET2 + '.' + Synsets.DEFINITION + " AS " + BaseModule.TARGET_DEFINITION, //
 				WordNetContract.WORD + '.' + Words.WORDID + " AS " + BaseModule.TARGET_WORDID, //
-				WordNetContract.WORD + '.' + Words.LEMMA + " AS " + BaseModule.TARGET_LEMMA, //
+				WordNetContract.WORD + '.' + Words.WORD + " AS " + BaseModule.TARGET_WORD, //
 		};
-		final String selection = WordNetContract.LINK + ".synset1id = ? AND " + WordNetContract.LINK + ".word1id = ?";
+		final String selection = WordNetContract.RELATION + ".synset1id = ? AND " + WordNetContract.RELATION + ".word1id = ?";
 		final String[] selectionArgs = {Long.toString(synsetId), Long.toString(wordId)};
-		final String sortOrder = LinkTypes.LINKID;
+		final String sortOrder = Relations.RELATIONID;
 		this.lexLinksFromSynsetIdWordIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> lexLinksCursorToTreeModel(cursor, parent, deadendParentIfNoResult));
 	}
 
@@ -1322,12 +1322,12 @@ abstract public class BaseModule extends Module
 			final TreeOps changedList = new TreeOps(NEWTREE, parent);
 
 			// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
-			final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
+			final int idLinkId = cursor.getColumnIndex(Relations.RELATIONID);
 			final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
 			final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
-			final int idTargetMembers = cursor.getColumnIndex(LexLinks_Senses_Words_X.MEMBERS2);
+			final int idTargetMembers = cursor.getColumnIndex(LexRelations_Senses_Words_X.MEMBERS2);
 			final int idTargetWordId = cursor.getColumnIndex(BaseModule.TARGET_WORDID);
-			final int idTargetLemma = cursor.getColumnIndex(BaseModule.TARGET_LEMMA);
+			final int idTargetLemma = cursor.getColumnIndex(BaseModule.TARGET_WORD);
 
 			do
 			{
@@ -1395,16 +1395,16 @@ abstract public class BaseModule extends Module
 	 */
 	void lexLinks(final long synsetId, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
 	{
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(LexLinks_Senses_Words_X.CONTENT_URI_TABLE));
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(LexRelations_Senses_Words_X.CONTENT_URI_TABLE));
 		final String[] projection = { //
-				LinkTypes.LINKID, //
-				LinkTypes.LINK, //
-				WordNetContract.DEST + '.' + Synsets.SYNSETID + " AS " + BaseModule.TARGET_SYNSETID, //
-				WordNetContract.DEST + '.' + Synsets.DEFINITION + " AS " + BaseModule.TARGET_DEFINITION, //
+				Relations.RELATIONID, //
+				Relations.RELATION, //
+				WordNetContract.SYNSET2 + '.' + Synsets.SYNSETID + " AS " + BaseModule.TARGET_SYNSETID, //
+				WordNetContract.SYNSET2 + '.' + Synsets.DEFINITION + " AS " + BaseModule.TARGET_DEFINITION, //
 				WordNetContract.WORD + '.' + Words.WORDID + " AS " + BaseModule.TARGET_WORDID, //
-				WordNetContract.WORD + '.' + Words.LEMMA + " AS " + BaseModule.TARGET_LEMMA, //
+				WordNetContract.WORD + '.' + Words.WORD + " AS " + BaseModule.TARGET_WORD, //
 		};
-		final String selection = WordNetContract.LINK + '.' + LexLinks_Senses_Words_X.SYNSET1ID + " = ?";  ////
+		final String selection = WordNetContract.RELATION + '.' + LexRelations_Senses_Words_X.SYNSET1ID + " = ?";  ////
 		final String[] selectionArgs = {Long.toString(synsetId)};
 		this.lexLinksFromSynsetIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> lexLinksFromSynsetIdCursorToTreeModel(cursor, parent, deadendParentIfNoResult));
 	}
@@ -1420,10 +1420,10 @@ abstract public class BaseModule extends Module
 			// final int idLink = cursor.getColumnIndex(LinkTypes.LINK);
 			// final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
 			// final int idTargetWordId = cursor.getColumnIndex(BaseModule.TARGET_WORDID);
-			final int idLinkId = cursor.getColumnIndex(LinkTypes.LINKID);
+			final int idLinkId = cursor.getColumnIndex(Relations.RELATIONID);
 			final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
-			final int idTargetMembers = cursor.getColumnIndex(LexLinks_Senses_Words_X.MEMBERS2);
-			final int idTargetLemma = cursor.getColumnIndex(BaseModule.TARGET_LEMMA);
+			final int idTargetMembers = cursor.getColumnIndex(LexRelations_Senses_Words_X.MEMBERS2);
+			final int idTargetLemma = cursor.getColumnIndex(BaseModule.TARGET_WORD);
 
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 			do
@@ -1494,9 +1494,9 @@ abstract public class BaseModule extends Module
 	 */
 	void vFrames(final long synsetId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(VerbFrameMaps_VerbFrames.CONTENT_URI_TABLE));
-		final String[] projection = {VerbFrameMaps_VerbFrames.FRAME};
-		final String selection = VerbFrameMaps_VerbFrames.SYNSETID + " = ?";
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(Senses_VerbFrames.CONTENT_URI_TABLE));
+		final String[] projection = {Senses_VerbFrames.FRAME};
+		final String selection = Senses_VerbFrames.SYNSETID + " = ?";
 		final String[] selectionArgs = {Long.toString(synsetId)};
 		this.vFramesFromSynsetIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> vframesCursorToTreeModel(cursor, parent));
 	}
@@ -1510,9 +1510,9 @@ abstract public class BaseModule extends Module
 	 */
 	void vFrames(final long synsetId, final long wordId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(VerbFrameMaps_VerbFrames.CONTENT_URI_TABLE));
-		final String[] projection = {VerbFrameMaps_VerbFrames.FRAME};
-		final String selection = VerbFrameMaps_VerbFrames.SYNSETID + " = ? AND " + VerbFrameMaps_VerbFrames.WORDID + " = ?";
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(Senses_VerbFrames.CONTENT_URI_TABLE));
+		final String[] projection = {Senses_VerbFrames.FRAME};
+		final String selection = Senses_VerbFrames.SYNSETID + " = ? AND " + Senses_VerbFrames.WORDID + " = ?";
 		final String[] selectionArgs = {Long.toString(synsetId), Long.toString(wordId)};
 		this.vFramesFromSynsetIdWordIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> vframesCursorToTreeModel(cursor, parent));
 	}
@@ -1522,7 +1522,7 @@ abstract public class BaseModule extends Module
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
-			final int vframeId = cursor.getColumnIndex(VerbFrameMaps_VerbFrames.FRAME);
+			final int vframeId = cursor.getColumnIndex(Senses_VerbFrames.FRAME);
 
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 			do
@@ -1563,9 +1563,9 @@ abstract public class BaseModule extends Module
 	 */
 	void vFrameSentences(final long synsetId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(VerbFrameSentenceMaps_VerbFrameSentences.CONTENT_URI_TABLE));
-		final String[] projection = {VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE};
-		final String selection = VerbFrameSentenceMaps_VerbFrameSentences.SYNSETID + " = ?";
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(Senses_VerbTemplates.CONTENT_URI_TABLE));
+		final String[] projection = {Senses_VerbTemplates.TEMPLATE};
+		final String selection = Senses_VerbTemplates.SYNSETID + " = ?";
 		final String[] selectionArgs = {Long.toString(synsetId)};
 		this.vFrameSentencesFromSynsetIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> vFrameSentencesCursorToTreeModel(cursor, parent));
 	}
@@ -1575,7 +1575,7 @@ abstract public class BaseModule extends Module
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
-			final int vframeId = cursor.getColumnIndex(VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE);
+			final int vframeId = cursor.getColumnIndex(Senses_VerbTemplates.TEMPLATE);
 
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 			do
@@ -1615,9 +1615,9 @@ abstract public class BaseModule extends Module
 	 */
 	void vFrameSentences(final long synsetId, final long wordId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(VerbFrameSentenceMaps_VerbFrameSentences.CONTENT_URI_TABLE));
-		final String[] projection = {VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE};
-		final String selection = VerbFrameSentenceMaps_VerbFrameSentences.SYNSETID + " = ? AND " + VerbFrameSentenceMaps_VerbFrameSentences.WORDID + " = ?";
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(Senses_VerbTemplates.CONTENT_URI_TABLE));
+		final String[] projection = {Senses_VerbTemplates.TEMPLATE};
+		final String selection = Senses_VerbTemplates.SYNSETID + " = ? AND " + Senses_VerbTemplates.WORDID + " = ?";
 		final String[] selectionArgs = {Long.toString(synsetId), Long.toString(wordId)};
 		this.vFrameSentencesFromSynsetIdWordIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> vFrameSentencesFromSynsetIdWordIdCursorToTreeModel(cursor, parent));
 	}
@@ -1628,7 +1628,7 @@ abstract public class BaseModule extends Module
 		if (cursor.moveToFirst())
 		{
 			final String lemma = "---";
-			final int vframeId = cursor.getColumnIndex(VerbFrameSentenceMaps_VerbFrameSentences.SENTENCE);
+			final int vframeId = cursor.getColumnIndex(Senses_VerbTemplates.TEMPLATE);
 
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 			do
@@ -1669,9 +1669,9 @@ abstract public class BaseModule extends Module
 	 */
 	void adjPosition(final long synsetId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(AdjPositions_AdjPositionTypes.CONTENT_URI_TABLE));
-		final String[] projection = {AdjPositions_AdjPositionTypes.POSITIONNAME};
-		final String selection = AdjPositions_AdjPositionTypes.SYNSETID + " = ?";
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(Senses_AdjPositions.CONTENT_URI_TABLE));
+		final String[] projection = {Senses_AdjPositions.POSITION};
+		final String selection = Senses_AdjPositions.SYNSETID + " = ?";
 		final String[] selectionArgs = {Long.toString(synsetId)};
 		this.adjPositionFromSynsetIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> adjPositionCursorToTreeModel(cursor, parent));
 	}
@@ -1685,9 +1685,9 @@ abstract public class BaseModule extends Module
 	 */
 	void adjPosition(final long synsetId, final long wordId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(AdjPositions_AdjPositionTypes.CONTENT_URI_TABLE));
-		final String[] projection = {AdjPositions_AdjPositionTypes.POSITIONNAME};
-		final String selection = AdjPositions_AdjPositionTypes.SYNSETID + " = ? AND " + AdjPositions_AdjPositionTypes.WORDID + " = ?";
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(Senses_AdjPositions.CONTENT_URI_TABLE));
+		final String[] projection = {Senses_AdjPositions.POSITION};
+		final String selection = Senses_AdjPositions.SYNSETID + " = ? AND " + Senses_AdjPositions.WORDID + " = ?";
 		final String[] selectionArgs = {Long.toString(synsetId), Long.toString(wordId)};
 		this.adjPositionFromSynsetIdWordIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> adjPositionCursorToTreeModel(cursor, parent));
 	}
@@ -1697,7 +1697,7 @@ abstract public class BaseModule extends Module
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
-			final int positionId = cursor.getColumnIndex(AdjPositions_AdjPositionTypes.POSITIONNAME);
+			final int positionId = cursor.getColumnIndex(Senses_AdjPositions.POSITION);
 
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 			do
@@ -1738,9 +1738,9 @@ abstract public class BaseModule extends Module
 	 */
 	void morphs(final long wordId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(MorphMaps_Morphs.CONTENT_URI_TABLE));
-		final String[] projection = {MorphMaps_Morphs.POS, MorphMaps_Morphs.MORPH};
-		final String selection = MorphMaps_Morphs.WORDID + " = ?";
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(Lexes_Morphs.CONTENT_URI_TABLE));
+		final String[] projection = {Lexes_Morphs.POSID, Lexes_Morphs.MORPH};
+		final String selection = Lexes_Morphs.WORDID + " = ?";
 		final String[] selectionArgs = {Long.toString(wordId)};
 		this.morphsFromWordIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> morphsCursorToTreeModel(cursor, parent));
 	}
@@ -1750,8 +1750,8 @@ abstract public class BaseModule extends Module
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
-			final int morphId = cursor.getColumnIndex(MorphMaps_Morphs.MORPH);
-			final int posId = cursor.getColumnIndex(MorphMaps_Morphs.POS);
+			final int morphId = cursor.getColumnIndex(Lexes_Morphs.MORPH);
+			final int posId = cursor.getColumnIndex(Lexes_Morphs.POSID);
 
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 			do
