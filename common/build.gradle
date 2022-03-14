@@ -40,15 +40,15 @@ dependencies {
     implementation project(path: ':rate')
     implementation project(path: ':xNet')
 
-    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     implementation "androidx.navigation:navigation-fragment:$navVersion"
     implementation "androidx.navigation:navigation-ui:$navVersion"
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.preference:preference:1.2.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
-    implementation 'androidx.annotation:annotation:1.2.0'
-    implementation 'com.google.android.material:material:1.3.0'
-    implementation 'com.google.android.play:core:1.10.0'
+    implementation 'androidx.annotation:annotation:1.3.0'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'com.google.android.play:core:1.10.3'
     implementation project(path: ':assetpacks')
 }

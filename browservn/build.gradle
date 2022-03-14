@@ -73,14 +73,14 @@ dependencies {
     implementation project(path: ':verbNet')
     implementation project(path: ':propbank')
 
-    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     implementation "androidx.navigation:navigation-fragment:$navVersion"
     implementation "androidx.navigation:navigation-ui:$navVersion"
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
-    implementation 'androidx.preference:preference:1.1.1'
-    implementation 'androidx.annotation:annotation:1.2.0'
-    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.preference:preference:1.2.0'
+    implementation 'androidx.annotation:annotation:1.3.0'
+    implementation 'com.google.android.material:material:1.5.0'
 
     //local unit tests (JUnit 4 framework)
     testImplementation 'junit:junit:4.13.2'
@@ -89,7 +89,7 @@ dependencies {
     androidTestImplementation project(path: ':test')
     androidTestImplementation project(path: ':nightmode')
     androidTestImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.annotation:annotation:1.2.0'
+    androidTestImplementation 'androidx.annotation:annotation:1.3.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test:rules:1.4.0'
     androidTestImplementation 'androidx.test:runner:1.4.0'
