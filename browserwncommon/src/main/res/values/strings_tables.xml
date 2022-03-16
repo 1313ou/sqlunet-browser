@@ -30,7 +30,7 @@
 		<item>index_words_word</item>
 		<item>index_senses_wordid</item>
 		<item>index_senses_synsetid</item>
-		<item>index_synsets</item>
+		<item>index_synsets_synsetid</item>
 		<item>index_casedwords_wordid_casedwordid</item>
 		<item>index_semrelations_synset1id</item>
 		<item>index_semrelations_relationid</item>
