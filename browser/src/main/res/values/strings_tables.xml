@@ -19,8 +19,8 @@
 		<item>vframes</item>
 		<item>vtemplates</item>
 		<item>relations</item>
-		<item>synsets_synsets</item>
-		<item>senses_senses</item>
+		<item>semrelations</item>
+		<item>lexrelations</item>
 		<item>senses_vframes</item>
 		<item>senses_vtemplates</item>
 		<item>senses_adjpositions</item>
@@ -137,13 +137,13 @@
 	<string-array name="required_indexes" tools:ignore="InconsistentArrays">
 
 		<!-- wordnet -->
-		<item>index_words_lemma</item>
+		<item>index_words_word</item>
 		<item>index_senses_wordid</item>
 		<item>index_senses_synsetid</item>
 		<item>index_synsets_synsetid</item>
 		<item>index_casedwords_wordid_casedwordid</item>
-		<item>index_semlinks_synset1id</item>
-		<item>index_semlinks_linkid</item>
+		<item>index_semrelations_synset1id</item>
+		<item>index_semrelations_relationid</item>
 		<item>index_samples_synsetid</item>
 
 		<!-- verbnet -->
@@ -178,7 +178,7 @@
 		<!-- predicate matrix -->
 		<item>index_pm_wordid</item>
 		<item>index_pm_synsetid</item>
-		<item>index_pm_lemma</item>
+		<item>index_pm_word</item>
 
 	</string-array>
 
@@ -189,7 +189,7 @@
 	</string-array>
 
 	<string-array name="required_texts_wn">
-		<item>words_lemma_fts4</item>
+		<item>words_word_fts4</item>
 		<item>synsets_definition_fts4</item>
 		<item>samples_sample_fts4</item>
 	</string-array>

@@ -206,7 +206,7 @@ public class WordNetImplementation implements WordNetInterface
 		// word
 		final Word word = Word.make(connection, wordId);
 		assert word != null;
-		final Node wordNode = NodeFactory.makeWordNode(doc, rootNode, word.lemma, word.id);
+		final Node wordNode = NodeFactory.makeWordNode(doc, rootNode, word.word, word.id);
 
 		final SynsetsQueryFromWordId query = new SynsetsQueryFromWordId(connection, wordId);
 		query.execute();
@@ -386,7 +386,7 @@ public class WordNetImplementation implements WordNetInterface
 			final Node senseNode = NodeFactory.makeSenseNode(doc, domainNode, word.id, synset.synsetId, i + 1);
 
 			// word node
-			NodeFactory.makeWordNode(doc, senseNode, word.lemma, word.id);
+			NodeFactory.makeWordNode(doc, senseNode, word.word, word.id);
 
 			// synset node
 			WordNetImplementation.walkSynset(connection, doc, senseNode, synset);
@@ -414,7 +414,7 @@ public class WordNetImplementation implements WordNetInterface
 		{
 			return;
 		}
-		NodeFactory.makeWordNode(doc, parent, word.lemma, word.id);
+		NodeFactory.makeWordNode(doc, parent, word.word, word.id);
 
 		// iterate synsets
 		final List<Synset> synsets = targetPosId == Mapping.ANYTYPE && targetDomainId == Mapping.ANYTYPE ?
@@ -588,8 +588,8 @@ public class WordNetImplementation implements WordNetInterface
 		{
 			for (final Word word : words)
 			{
-				final String lemma = word.lemma.replace('_', ' ');
-				NodeFactory.makeWordNode(doc, synsetNode, lemma, word.id);
+				final String word2 = word.word.replace('_', ' ');
+				NodeFactory.makeWordNode(doc, synsetNode, word2, word.id);
 			}
 		}
 

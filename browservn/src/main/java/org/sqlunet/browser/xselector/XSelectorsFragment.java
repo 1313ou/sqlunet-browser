@@ -561,7 +561,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				Words_PbWords_VnWords.VNWORDID, //
 				Words_PbWords_VnWords.PBWORDID, //
 		};
-		final String selection = XSqlUNetContract.WORD + '.' + Words_PbWords_VnWords.LEMMA + " = ?";
+		final String selection = XSqlUNetContract.WORD + '.' + Words_PbWords_VnWords.WORD + " = ?";
 		final String[] selectionArgs = {XSelectorsFragment.this.word};
 		final String sortOrder = XSqlUNetContract.POS + '.' + Words_PbWords_VnWords.POS + ',' + Words_PbWords_VnWords.SENSENUM;
 		this.wordIdFromWordModel.loadData(uri, projection, selection, selectionArgs, sortOrder, this::wordIdFromWordPostProcess);
@@ -751,7 +751,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 
 				// data
 				final long wordId = this.wordId;
-				final String lemma = this.word;
+				final String word = this.word;
 				final String cased = this.word;
 				final long synsetId = cursor.isNull(idSynsetId) ? 0 : cursor.getLong(idSynsetId);
 				final String pos = synsetIdToPos(synsetId);
@@ -781,7 +781,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				Log.d(TAG, "pointer=" + pointer);
 
 				// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
-				this.listener.onItemSelected(pointer, lemma, cased, pos);
+				this.listener.onItemSelected(pointer, word, cased, pos);
 			}
 			// cursor ownership is transferred  to adapter, so do not call
 			// cursor.close();

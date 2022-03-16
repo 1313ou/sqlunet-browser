@@ -17,47 +17,47 @@
 		<item>Create SyntagNet indexes</item>
 		<item>Drop SyntagNet indexes</item>
 		<item>Drop WordNet text search</item>
-		<item>Short LexDomains</item>
+		<item>Short Domains</item>
 		<item>Create sampleset View</item>
 		<item>Drop sampleset View</item>
 	</string-array>
 	<string-array name="sql_statements_values" formatted="false" tools:ignore="InconsistentArrays" tools:keep="@array/sql_statements_values">
 		<item/>
 		<item>
-			CREATE INDEX IF NOT EXISTS index_words_lemma ON words(lemma);
+			CREATE INDEX IF NOT EXISTS index_words_word ON words(word);
 			CREATE INDEX IF NOT EXISTS index_senses_wordid ON senses(wordid);
 			CREATE INDEX IF NOT EXISTS index_senses_synsetid ON senses(synsetid);
 			CREATE INDEX IF NOT EXISTS index_synsets_synsetid ON synsets(synsetid);
 			CREATE INDEX IF NOT EXISTS index_casedwords_wordid_casedwordid ON casedwords(wordid,casedwordid);
-			CREATE INDEX IF NOT EXISTS index_semlinks_synset1id ON semlinks(synset1id);
-			CREATE INDEX IF NOT EXISTS index_semlinks_linkid ON semlinks(linkid);
+			CREATE INDEX IF NOT EXISTS index_semrelations_synset1id ON semrelations(synset1id);
+			CREATE INDEX IF NOT EXISTS index_semrelations_relationid ON semrelations(relationid);
 			CREATE INDEX IF NOT EXISTS index_samples_synsetid ON samples(synsetid);
 			CREATE INDEX IF NOT EXISTS index_syntagms_synset1id_word1id ON syntagms(synset1id,word1id);
 			CREATE INDEX IF NOT EXISTS index_syntagms_synset2id_word2id ON syntagms(synset2id,word2id);</item>
 		<item>
-			CREATE VIRTUAL TABLE IF NOT EXISTS words_lemma_fts4 USING fts4(wordid INTEGER not null, lemma);
-			INSERT INTO words_lemma_fts4 SELECT wordid, lemma from words;
+			CREATE VIRTUAL TABLE IF NOT EXISTS words_word_fts4 USING fts4(wordid INTEGER not null, word);
+			INSERT INTO words_word_fts4 SELECT wordid, word from words;
 			CREATE VIRTUAL TABLE IF NOT EXISTS synsets_definition_fts4 USING fts4(synsetid INTEGER not null, definition);
 			INSERT INTO synsets_definition_fts4 SELECT synsetid, definition from synsets;
 			CREATE VIRTUAL TABLE IF NOT EXISTS samples_sample_fts4 USING fts4(synsetid INTEGER not null, sample);
 			INSERT INTO samples_sample_fts4 SELECT synsetid, sample from samples;</item>
 		<item>
-			CREATE INDEX IF NOT EXISTS index_words_lemma ON words(lemma);
+			CREATE INDEX IF NOT EXISTS index_words_word ON words(word);
 			CREATE INDEX IF NOT EXISTS index_senses_wordid ON senses(wordid);
 			CREATE INDEX IF NOT EXISTS index_senses_synsetid ON senses(synsetid);
 			CREATE INDEX IF NOT EXISTS index_synsets_synsetid ON synsets(synsetid);
 			CREATE INDEX IF NOT EXISTS index_casedwords_wordid_casedwordid ON casedwords(wordid,casedwordid);
-			CREATE INDEX IF NOT EXISTS index_semlinks_synset1id ON semlinks(synset1id);
-			CREATE INDEX IF NOT EXISTS index_semlinks_linkid ON semlinks(linkid);
+			CREATE INDEX IF NOT EXISTS index_semrelations_synset1id ON semrelations(synset1id);
+			CREATE INDEX IF NOT EXISTS index_semrelations_relationid ON semrelations(relationid);
 			CREATE INDEX IF NOT EXISTS index_samples_synsetid ON samples(synsetid);</item>
 		<item>
-			DROP INDEX IF EXISTS index_words_lemma;
+			DROP INDEX IF EXISTS index_words_word;
 			DROP INDEX IF EXISTS index_senses_wordid;
 			DROP INDEX IF EXISTS index_senses_synsetid;
 			DROP INDEX IF EXISTS index_synsets_synsetid;
 			DROP INDEX IF EXISTS index_casedwords_wordid_casedwordid;
-			DROP INDEX IF EXISTS index_semlinks_synset1id
-			DROP INDEX IF EXISTS index_semlinks_linkid;
+			DROP INDEX IF EXISTS index_semrelations_synset1id
+			DROP INDEX IF EXISTS index_semrelations_relationid;
 			DROP INDEX IF EXISTS index_samples_synsetid;</item>
 		<item>
 			CREATE INDEX IF NOT EXISTS index_syntagms_synset1id_word1id ON syntagms(synset1id,word1id);
@@ -66,12 +66,12 @@
 			DROP INDEX IF EXISTS index_syntagms_synset1id_word1id;
 			DROP INDEX IF EXISTS index_syntagms_synset2id_word2id;</item>
 		<item>
-			DROP TABLE IF EXISTS words_lemma_fts4;
+			DROP TABLE IF EXISTS words_word_fts4;
 			DROP TABLE IF EXISTS synsets_definition_fts4;
 			DROP TABLE IF EXISTS samples_sample_fts4;</item>
 		<item>
-			ALTER TABLE lexdomains ADD COLUMN lexdomain varchar(32);
-			UPDATE lexdomains SET lexdomain = SUBSTR(lexdomainname, INSTR(lexdomainname, \'.\')+1);</item>
+			ALTER TABLE domains ADD COLUMN domain varchar(32);
+			UPDATE domains SET domain = SUBSTR(domainname, INSTR(domainname, \'.\')+1);</item>
 		<item>
 			CREATE VIEW IF NOT EXISTS samplesets AS SELECT synsetid, GROUP_CONCAT(samples.sample, \'|\' ) AS sampleset FROM samples GROUP BY synsetid;</item>
 		<item>

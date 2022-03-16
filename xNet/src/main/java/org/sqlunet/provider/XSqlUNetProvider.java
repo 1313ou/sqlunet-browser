@@ -220,7 +220,7 @@ public class XSqlUNetProvider extends BaseProvider
 						"LEFT JOIN synsets AS " + XSqlUNetContract.SYNSET + " USING (synsetid) " + //
 						"LEFT JOIN postypes AS " + XSqlUNetContract.POS + " USING (pos) " + //
 						"LEFT JOIN casedwords USING (wordid,casedwordid) " + //
-						"LEFT JOIN lexdomains USING (lexdomainid) " + //
+						"LEFT JOIN domains USING (domainid) " + //
 						"LEFT JOIN fnwords USING (wordid) " + //
 						"LEFT JOIN vnwords USING (wordid) " + //
 						"LEFT JOIN pbwords USING (wordid)";
@@ -233,7 +233,7 @@ public class XSqlUNetProvider extends BaseProvider
 						"LEFT JOIN synsets AS " + XSqlUNetContract.SYNSET + " USING (synsetid) " + //
 						"LEFT JOIN postypes AS " + XSqlUNetContract.POS + " USING (pos) " + //
 						"LEFT JOIN casedwords USING (wordid,casedwordid) " + //
-						"LEFT JOIN lexdomains USING (lexdomainid) " + //
+						"LEFT JOIN domains USING (domainid) " + //
 						"LEFT JOIN vnwords USING (wordid) " + //
 						"LEFT JOIN pbwords USING (wordid)";
 				groupBy = "synsetid";

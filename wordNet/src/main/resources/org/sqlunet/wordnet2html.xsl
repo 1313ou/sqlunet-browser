@@ -88,21 +88,21 @@
 			<SPAN class="wnpos">
 				<xsl:value-of select="./@name" />
 			</SPAN>
-			<xsl:if test="count(./lexdomain)&gt;0">
+			<xsl:if test="count(./domain)&gt;0">
 				<UL style="display: block;">
-					<xsl:apply-templates select="./lexdomain" />
+					<xsl:apply-templates select="./domain" />
 				</UL>
 			</xsl:if>
 		</LI>
 	</xsl:template>
 
-	<xsl:template match="lexdomain">
+	<xsl:template match="domain">
 		<LI class="treeitem">
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 				<IMG class="treepix" src="images/open.png" />
 			</SPAN>
 			<IMG class="dataimg" src="images/xnet/domain.png" />
-			<SPAN class="wnlexdomain">
+			<SPAN class="wndomain">
 				<xsl:value-of select="./@name" />
 			</SPAN>
 			<xsl:if test="count(./sense)&gt;0">
@@ -142,10 +142,10 @@
 					<xsl:value-of select="./@pos" />
 				</SPAN>
 			</xsl:if>
-			<xsl:if test='./@lexdomain'>
+			<xsl:if test='./@domain'>
 				<IMG class="dataimg" src="images/xnet/domain.png" />
-				<SPAN class="wnlexdomain">
-					<xsl:value-of select="./@lexdomain" />
+				<SPAN class="wndomain">
+					<xsl:value-of select="./@domain" />
 				</SPAN>
 			</xsl:if>
 			<xsl:if test="count(./word)&gt;0">
@@ -155,7 +155,7 @@
 			</xsl:if>
 			<xsl:if test="count(./synset)&gt;0">
 				<xsl:choose>
-					<xsl:when test="count(./synset/word)&gt;0 or count(./synset/sample)&gt;0 or count(./synset/links)&gt;0">
+					<xsl:when test="count(./synset/word)&gt;0 or count(./synset/sample)&gt;0 or count(./synset/relations)&gt;0">
 						<UL style="display: block;">
 							<xsl:apply-templates select="./synset" />
 						</UL>
@@ -205,7 +205,7 @@
 					<xsl:apply-templates select="./sample" />
 				</UL>
 			</xsl:if>
-			<xsl:apply-templates select="./links" />
+			<xsl:apply-templates select="./relations" />
 		</LI>
 	</xsl:template>
 
@@ -218,7 +218,7 @@
 		</LI>
 	</xsl:template>
 
-	<xsl:template match="links">
+	<xsl:template match="relations">
 		<xsl:if test="count(./*)&gt;0">
 			<UL style="display: block;">
 				<xsl:apply-templates select="./*" />
@@ -228,31 +228,31 @@
 
 	<!-- semantic -->
 	<xsl:template match="hypernym|hyponym|instance_hypernym|instance_hyponym|part_meronym|part_holonym|substance_meronym|substance_holonym|member_meronym|member_holonym|entail|cause|similar|attribute">
-		<xsl:call-template name="_link">
+		<xsl:call-template name="_relation">
 			<xsl:with-param name="type" select="name()" />
-			<xsl:with-param name="linkclass" select="'[sem]'" />
+			<xsl:with-param name="relationclass" select="'[sem]'" />
 		</xsl:call-template>
 	</xsl:template>
 
 	<!-- lexical -->
 	<xsl:template match="antonym|participle|pertainym|derivation">
-		<xsl:call-template name="_link">
+		<xsl:call-template name="_relation">
 			<xsl:with-param name="type" select="name()" />
-			<xsl:with-param name="linkclass" select="'[lex]'" />
+			<xsl:with-param name="relationclass" select="'[lex]'" />
 		</xsl:call-template>
 	</xsl:template>
 
 	<!-- both -->
 	<xsl:template match="also|verb_group|domain_category|domain_member_category|domain_region|domain_member_region|domain_usage|domain_member_usage">
-		<xsl:call-template name="_link">
+		<xsl:call-template name="_relation">
 			<xsl:with-param name="type" select="name()" />
-			<xsl:with-param name="linkclass" select="'[both]'" />
+			<xsl:with-param name="relationclass" select="'[both]'" />
 		</xsl:call-template>
 	</xsl:template>
 
-	<xsl:template name="_link">
+	<xsl:template name="_relation">
 		<xsl:param name="type" />
-		<xsl:param name="linkclass" />
+		<xsl:param name="relationclass" />
 		<LI class="treeitem">
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 				<IMG class="treepix" src="images/open.png" />
@@ -265,11 +265,11 @@
 					<xsl:value-of select="concat('images/wordnet/',name(),'.png')" />
 				</xsl:attribute>
 			</xsl:element>
-			<SPAN class="wnlink">
+			<SPAN class="wnrelation">
 				<xsl:value-of select="name()" />
 			</SPAN>
 			<![CDATA[ ]]>
-			<xsl:value-of select="$linkclass" />
+			<xsl:value-of select="$relationclass" />
 			<xsl:if test="count(./synset)&gt;0">
 				<UL style="display: block;">
 					<xsl:apply-templates select="./synset" />

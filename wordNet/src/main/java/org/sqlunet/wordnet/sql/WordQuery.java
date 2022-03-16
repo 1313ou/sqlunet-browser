@@ -24,7 +24,7 @@ class WordQuery extends DBQuery
 	 * Constructor
 	 *
 	 * @param connection connection
-	 * @param wordId     is the word lemma
+	 * @param wordId     is the word id
 	 */
 	public WordQuery(final SQLiteDatabase connection, final long wordId)
 	{
@@ -44,11 +44,11 @@ class WordQuery extends DBQuery
 	}
 
 	/**
-	 * Get the word lemma from the result set
+	 * Get the word from the result set
 	 *
-	 * @return the lemma string value from the result set
+	 * @return the word string value from the result set
 	 */
-	public String getLemma()
+	public String getWord()
 	{
 		assert this.cursor != null;
 		return this.cursor.getString(1);

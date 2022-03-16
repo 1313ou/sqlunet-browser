@@ -237,7 +237,7 @@ public class SensesFragment extends ListFragment
 				new int[]{ //
 						R.id.pos, //
 						R.id.sensenum, //
-						R.id.lexdomain, //
+						R.id.domain, //
 						R.id.definition, //
 						R.id.cased, //
 						R.id.tagcount, //

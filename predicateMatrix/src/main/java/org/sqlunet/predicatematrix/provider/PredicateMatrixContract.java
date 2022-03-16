@@ -34,7 +34,7 @@ public class PredicateMatrixContract
 		static public final String PMPREDICATE = "predicate";
 		static public final String PMROLE = "role";
 		static public final String PMPOS = "pos";
-		static public final String WORD = "lemma";
+		static public final String WORD = "word";
 		static public final String WORDID = "wordid";
 		static public final String SYNSETID = "synsetid";
 		static public final String PMWSOURCE = "wsource";

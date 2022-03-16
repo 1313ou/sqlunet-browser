@@ -279,14 +279,14 @@ abstract class BaseModule extends Module
 		final String[] projection = { //
 				VnClasses_VnMembers_X.WORDID, //
 				VnClasses_VnMembers_X.VNWORDID, //
-				VnClasses_VnMembers_X.LEMMA, //
+				VnClasses_VnMembers_X.WORD, //
 				"REPLACE(REPLACE(GROUP_CONCAT(DISTINCT REPLACE(" + VnClasses_VnMembers_X.DEFINITION + ",',','#')),',','|'),'#',',') AS " + VnClasses_VnMembers_X.DEFINITIONS, //
 				"GROUP_CONCAT(DISTINCT " + VnClasses_VnMembers_X.GROUPING + ") AS " + VnClasses_VnMembers_X.GROUPINGS, //
 				VnClasses_VnMembers_X.CLASSID, //
 		};
 		final String selection = VnClasses_VnRoles_X.CLASSID + " = ?";
 		final String[] selectionArgs = {Long.toString(classId)};
-		final String sortOrder = VnClasses_VnMembers_X.LEMMA;
+		final String sortOrder = VnClasses_VnMembers_X.WORD;
 		this.vnMembersFromClassIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vnMembersCursorToTreeModel(cursor, parent));
 	}
 
@@ -301,7 +301,7 @@ abstract class BaseModule extends Module
 			// column indices
 			// final int idWordId = cursor.getColumnIndex(VnClasses_VnMembers_X.WORDID);
 			// final int idVnWordId = cursor.getColumnIndex(VnClasses_VnMembers_X.VNWORDID);
-			final int idLemma = cursor.getColumnIndex(VnClasses_VnMembers_X.LEMMA);
+			final int idWord = cursor.getColumnIndex(VnClasses_VnMembers_X.WORD);
 			final int idGroupings = cursor.getColumnIndex(VnClasses_VnMembers_X.GROUPINGS);
 			final int idDefinitions = cursor.getColumnIndex(VnClasses_VnMembers_X.DEFINITIONS);
 
@@ -312,7 +312,7 @@ abstract class BaseModule extends Module
 				// member
 				// Spanner.appendImage(sb, BaseModule.this.drawableMember);
 				// sb.append(' ');
-				Spanner.append(sb, cursor.getString(idLemma), 0, VerbNetFactories.memberFactory);
+				Spanner.append(sb, cursor.getString(idWord), 0, VerbNetFactories.memberFactory);
 
 				final String definitions = cursor.getString(idDefinitions);
 				final String groupings = cursor.getString(idGroupings);

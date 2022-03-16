@@ -71,14 +71,14 @@ public class SenseModule extends SynsetModule
 			final TreeNode morphsNode = TreeFactory.makeTreeNode("Morphs", R.drawable.morph, false).addTo(parent);
 			morphs(this.wordId, morphsNode);
 
-			// links and samples
+			// relations and samples
 			if (this.expand)
 			{
-				TreeFactory.makeHotQueryNode("Links", R.drawable.ic_relations, false, new RelationsQuery(this.synsetId, this.wordId)).addTo(parent);
+				TreeFactory.makeHotQueryNode("Relations", R.drawable.ic_relations, false, new RelationsQuery(this.synsetId, this.wordId)).addTo(parent);
 			}
 			else
 			{
-				TreeFactory.makeQueryNode("Links", R.drawable.ic_relations, false, new RelationsQuery(this.synsetId, this.wordId)).addTo(parent);
+				TreeFactory.makeQueryNode("Relations", R.drawable.ic_relations, false, new RelationsQuery(this.synsetId, this.wordId)).addTo(parent);
 			}
 
 			if (this.expand)

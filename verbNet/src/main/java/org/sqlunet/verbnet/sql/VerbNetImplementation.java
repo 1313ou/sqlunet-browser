@@ -174,7 +174,7 @@ public class VerbNetImplementation implements VerbNetInterface
 		}
 
 		// word
-		// NodeFactory.makeWordNode(doc, parent, entry.word.lemma, entry.word.id);
+		// NodeFactory.makeWordNode(doc, parent, entry.word.word, entry.word.id);
 
 		// iterate synsets
 		final List<VnSynset> synsets = entry.synsets;
@@ -222,7 +222,7 @@ public class VerbNetImplementation implements VerbNetInterface
 		}
 
 		// word
-		NodeFactory.makeWordNode(doc, parent, entry.word.lemma, entry.word.id);
+		NodeFactory.makeWordNode(doc, parent, entry.word.word, entry.word.id);
 
 		// iterate synsets
 		final List<VnSynset> synsets = entry.synsets;

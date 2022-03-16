@@ -50,21 +50,21 @@
 			<SPAN class="wnpos">
 				<xsl:value-of select="./@name" />
 			</SPAN>
-			<xsl:if test="count(./lexdomain)&gt;0">
+			<xsl:if test="count(./domain)&gt;0">
 				<OL style="display: block;">
-					<xsl:apply-templates select="./lexdomain" />
+					<xsl:apply-templates select="./domain" />
 				</OL>
 			</xsl:if>
 		</LI>
 	</xsl:template>
 
-	<xsl:template match="lexdomain">
+	<xsl:template match="domain">
 		<LI class="treeitem">
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 				<IMG class="treepix" src="images/open.png" />
 			</SPAN>
 			<IMG class="dataimg" src="images/xnet/domain.png" />
-			<SPAN class="wnlexdomain">
+			<SPAN class="wndomain">
 				<xsl:value-of select="./@name" />
 			</SPAN>
 			<xsl:if test="count(./sense)&gt;0">
@@ -77,7 +77,7 @@
 
 	<xsl:template match="sense">
 		<LI class="treeitem treepanel block2">
-			<!-- link -->
+			<!-- relation -->
 			<xsl:variable name="ref">
 				<xsl:value-of select="./synset/@synsetid" />
 			</xsl:variable>

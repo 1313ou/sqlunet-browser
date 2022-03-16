@@ -26,11 +26,11 @@ class SqLiteDialect
 
 	@NonNull
 	static String BNCWordPosQuery = SqLiteDialect.BNCBaseWordQuery + //
-			"WHERE lemma = ? AND pos = ?;";
+			"WHERE word = ? AND pos = ?;";
 
 	@NonNull
 	static String BNCWordQuery = SqLiteDialect.BNCBaseWordQuery + //
-			"WHERE lemma = ?;";
+			"WHERE word = ?;";
 
 	static private final String BNCBaseQuery = "SELECT " + //
 			"pos, posname, freq, range, disp, " + //

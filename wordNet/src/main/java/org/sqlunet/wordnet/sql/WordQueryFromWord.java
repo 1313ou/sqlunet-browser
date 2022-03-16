@@ -13,22 +13,22 @@ import org.sqlunet.sql.DBQuery;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-class WordQueryFromLemma extends DBQuery
+class WordQueryFromWord extends DBQuery
 {
 	/**
 	 * <code>QUERY</code> is the SQL statement
 	 */
-	static private final String QUERY = SqLiteDialect.WordQueryFromLemma;
+	static private final String QUERY = SqLiteDialect.WordQueryFromWord;
 
 	/**
 	 * Constructor
 	 *
 	 * @param connection connection
-	 * @param word       is the word lemma
+	 * @param word       is the word
 	 */
-	public WordQueryFromLemma(final SQLiteDatabase connection, final String word)
+	public WordQueryFromWord(final SQLiteDatabase connection, final String word)
 	{
-		super(connection, WordQueryFromLemma.QUERY);
+		super(connection, WordQueryFromWord.QUERY);
 		setParams(word);
 	}
 
@@ -44,11 +44,11 @@ class WordQueryFromLemma extends DBQuery
 	}
 
 	/**
-	 * Get the word lemma from the result set
+	 * Get the word from the result set
 	 *
-	 * @return the lemma string value from the result set
+	 * @return the word string value from the result set
 	 */
-	public String getLemma()
+	public String getWord()
 	{
 		assert this.cursor != null;
 		return this.cursor.getString(1);

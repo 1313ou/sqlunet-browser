@@ -21,7 +21,7 @@ class SqLiteDialect
 					"FROM words AS w " + //
 					"INNER JOIN pbwords USING (wordid) " + //
 					"LEFT JOIN pbrolesets USING (pbwordid) " + //
-					"WHERE w.lemma = ? ";
+					"WHERE w.word = ? ";
 	// query for role set from word id
 	static final String PropBankRoleSetQueryFromWordId = //
 			"SELECT rolesetid, rolesetname, rolesethead, rolesetdescr " + //

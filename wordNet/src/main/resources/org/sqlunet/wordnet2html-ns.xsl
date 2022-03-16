@@ -88,21 +88,21 @@
 			<SPAN class="wnpos">
 				<xsl:value-of select="./@name" />
 			</SPAN>
-			<xsl:if test="count(./wn:lexdomain)&gt;0">
+			<xsl:if test="count(./wn:domain)&gt;0">
 				<UL style="display: block;">
-					<xsl:apply-templates select="./wn:lexdomain" />
+					<xsl:apply-templates select="./wn:domain" />
 				</UL>
 			</xsl:if>
 		</LI>
 	</xsl:template>
 
-	<xsl:template match="wn:lexdomain">
+	<xsl:template match="wn:domain">
 		<LI class="treeitem">
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 				<IMG class="treepix" src="images/open.png" />
 			</SPAN>
 			<IMG class="dataimg" src="images/xnet/domain.png" />
-			<SPAN class="wnlexdomain">
+			<SPAN class="wndomain">
 				<xsl:value-of select="./@name" />
 			</SPAN>
 			<xsl:if test="count(./wn:sense)&gt;0">
@@ -142,10 +142,10 @@
 					<xsl:value-of select="./@pos" />
 				</SPAN>
 			</xsl:if>
-			<xsl:if test='./@lexdomain'>
+			<xsl:if test='./@domain'>
 				<IMG class="dataimg" src="images/xnet/domain.png" />
-				<SPAN class="wnlexdomain">
-					<xsl:value-of select="./@lexdomain" />
+				<SPAN class="wndomain">
+					<xsl:value-of select="./@domain" />
 				</SPAN>
 			</xsl:if>
 			<xsl:if test="count(./wn:word)&gt;0">
@@ -155,7 +155,7 @@
 			</xsl:if>
 			<xsl:if test="count(./wn:synset)&gt;0">
 				<xsl:choose>
-					<xsl:when test="count(./wn:synset/wn:word)&gt;0 or count(./wn:synset/wn:sample)&gt;0 or count(./wn:synset/wn:links)&gt;0">
+					<xsl:when test="count(./wn:synset/wn:word)&gt;0 or count(./wn:synset/wn:sample)&gt;0 or count(./wn:synset/wn:relations)&gt;0">
 						<UL style="display: block;">
 							<xsl:apply-templates select="./wn:synset" />
 						</UL>
@@ -205,7 +205,7 @@
 					<xsl:apply-templates select="./wn:sample" />
 				</UL>
 			</xsl:if>
-			<xsl:apply-templates select="./wn:links" />
+			<xsl:apply-templates select="./wn:relations" />
 		</LI>
 	</xsl:template>
 
@@ -218,7 +218,7 @@
 		</LI>
 	</xsl:template>
 
-	<xsl:template match="wn:links">
+	<xsl:template match="wn:relations">
 		<xsl:if test="count(./wn:*)&gt;0">
 			<UL style="display: block;">
 				<xsl:apply-templates select="./wn:*" />
@@ -228,31 +228,31 @@
 
 	<!-- semantic -->
 	<xsl:template match="wn:hypernym|wn:hyponym|wn:instance_hypernym|wn:instance_hyponym|wn:part_meronym|wn:part_holonym|wn:substance_meronym|wn:substance_holonym|wn:member_meronym|wn:member_holonym|wn:entail|wn:cause|wn:similar|wn:attribute">
-		<xsl:call-template name="_link">
+		<xsl:call-template name="_relation">
 			<xsl:with-param name="type" select="name()" />
-			<xsl:with-param name="linkclass" select="'[sem]'" />
+			<xsl:with-param name="relationclass" select="'[sem]'" />
 		</xsl:call-template>
 	</xsl:template>
 
 	<!-- lexical -->
 	<xsl:template match="wn:antonym|wn:participle|wn:pertainym|wn:derivation">
-		<xsl:call-template name="_link">
+		<xsl:call-template name="_relation">
 			<xsl:with-param name="type" select="name()" />
-			<xsl:with-param name="linkclass" select="'[lex]'" />
+			<xsl:with-param name="relationclass" select="'[lex]'" />
 		</xsl:call-template>
 	</xsl:template>
 
 	<!-- both -->
 	<xsl:template match="wn:also|wn:verb_group|wn:domain_category|wn:domain_member_category|wn:domain_region|wn:domain_member_region|wn:domain_usage|wn:domain_member_usage">
-		<xsl:call-template name="_link">
+		<xsl:call-template name="_relation">
 			<xsl:with-param name="type" select="name()" />
-			<xsl:with-param name="linkclass" select="'[both]'" />
+			<xsl:with-param name="relationclass" select="'[both]'" />
 		</xsl:call-template>
 	</xsl:template>
 
-	<xsl:template name="_link">
+	<xsl:template name="_relation">
 		<xsl:param name="type" />
-		<xsl:param name="linkclass" />
+		<xsl:param name="relationclass" />
 		<LI class="treeitem">
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 				<IMG class="treepix" src="images/open.png" />
@@ -265,11 +265,11 @@
 					<xsl:value-of select="concat('images/wordnet/',name(),'.png')" />
 				</xsl:attribute>
 			</xsl:element>
-			<SPAN class="wnlink">
+			<SPAN class="wnrelation">
 				<xsl:value-of select="name()" />
 			</SPAN>
 			<![CDATA[ ]]>
-			<xsl:value-of select="$linkclass" />
+			<xsl:value-of select="$relationclass" />
 			<xsl:if test="count(./wn:synset)&gt;0">
 				<UL style="display: block;">
 					<xsl:apply-templates select="./wn:synset" />

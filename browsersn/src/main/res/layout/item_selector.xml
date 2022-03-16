@@ -40,8 +40,8 @@
 			android:layout_weight="1"/>
 
 		<TextView
-			android:id="@+id/lexdomain"
-			style="@style/Data.LexDomain"
+			android:id="@+id/domain"
+			style="@style/Data.Domain"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:textIsSelectable="false"/>

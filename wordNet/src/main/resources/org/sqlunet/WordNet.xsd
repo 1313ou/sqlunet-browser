@@ -19,7 +19,7 @@
 		</xs:restriction>
 	</xs:simpleType>
 
-	<xs:simpleType name="lexdomainType">
+	<xs:simpleType name="domainType">
 		<xs:restriction base='xs:string'>
 			<xs:enumeration value='all' />
 			<xs:enumeration value='pert' />
@@ -45,7 +45,7 @@
 			<xs:enumeration value='possession' />
 			<xs:enumeration value='process' />
 			<xs:enumeration value='quantity' />
-			<xs:enumeration value='linkdef' />
+			<xs:enumeration value='relation' />
 			<xs:enumeration value='shape' />
 			<xs:enumeration value='state' />
 			<xs:enumeration value='substance' />
@@ -68,7 +68,7 @@
 		</xs:restriction>
 	</xs:simpleType>
 
-	<xs:simpleType name="linkType">
+	<xs:simpleType name="relationType">
 		<xs:restriction base='xs:string'>
 			<xs:enumeration value='hypernym' />
 			<xs:enumeration value='hyponym' />
@@ -107,20 +107,20 @@
 		</xs:restriction>
 	</xs:simpleType>
 
-	<xs:complexType name="semlinkType">
+	<xs:complexType name="semrelationType">
 		<xs:sequence>
 			<xs:element maxOccurs='unbounded' minOccurs='0' ref='synset' />
 		</xs:sequence>
 		<xs:attribute name='level' type='xs:integer' />
 	</xs:complexType>
 
-	<xs:complexType name="lexlinkType">
+	<xs:complexType name="lexrelationType">
 		<xs:sequence>
 			<xs:element maxOccurs='unbounded' minOccurs='0' ref='sense' />
 		</xs:sequence>
 	</xs:complexType>
 
-	<xs:complexType name="bothlinkType">
+	<xs:complexType name="bothrelationType">
 		<xs:choice>
 			<xs:element maxOccurs='unbounded' minOccurs='0' ref='synset' />
 			<xs:element maxOccurs='unbounded' minOccurs='0' ref='sense' />
@@ -139,9 +139,9 @@
 			<xs:attribute name='wordid' type='xs:long' />
 			<xs:attribute name='word' type='wordType' />
 			<xs:attribute name='pos' type='posType' />
-			<xs:attribute name='lexdomain' type='lexdomainType' />
-			<xs:attribute name='link' type='linkType' />
-			<xs:attribute name='withlinks' type='xs:boolean' />
+			<xs:attribute name='domain' type='domainType' />
+			<xs:attribute name='relation' type='relationType' />
+			<xs:attribute name='withrelations' type='xs:boolean' />
 			<xs:attribute name='recurse' type='xs:boolean' />
 		</xs:complexType>
 	</xs:element>
@@ -149,18 +149,18 @@
 	<xs:element name='pos'>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element maxOccurs='unbounded' minOccurs='0' ref='lexdomain' />
+				<xs:element maxOccurs='unbounded' minOccurs='0' ref='domain' />
 			</xs:sequence>
 			<xs:attribute name='name' type='posType' use='required' />
 		</xs:complexType>
 	</xs:element>
 
-	<xs:element name='lexdomain'>
+	<xs:element name='domain'>
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element maxOccurs='unbounded' minOccurs='0' ref='sense' />
 			</xs:sequence>
-			<xs:attribute name='name' type='lexdomainType' use='required' />
+			<xs:attribute name='name' type='domainType' use='required' />
 		</xs:complexType>
 	</xs:element>
 
@@ -186,7 +186,7 @@
 			<xs:attribute name='synsetid' type='xs:long' />
 			<xs:attribute name='sensekey' type='sensekeyType' />
 			<xs:attribute name='pos' type='posType' />
-			<xs:attribute name='lexdomain' type='lexdomainType' />
+			<xs:attribute name='domain' type='domainType' />
 		</xs:complexType>
 	</xs:element>
 
@@ -196,7 +196,7 @@
 				<xs:element maxOccurs='unbounded' minOccurs='0' ref='word' />
 				<xs:element ref='definition' />
 				<xs:element minOccurs='0' ref='sample' />
-				<xs:element minOccurs='0' ref='links' />
+				<xs:element minOccurs='0' ref='relations' />
 			</xs:sequence>
 			<xs:attribute name='ith' type='xs:int' />
 			<xs:attribute name='size' type='xs:integer' />
@@ -212,63 +212,63 @@
 		<xs:complexType mixed='true' />
 	</xs:element>
 
-	<xs:element name='hypernym' type="semlinkType" />
+	<xs:element name='hypernym' type="semrelationType" />
 
-	<xs:element name='hyponym' type="semlinkType" />
+	<xs:element name='hyponym' type="semrelationType" />
 
-	<xs:element name='instance_hypernym' type="semlinkType" />
+	<xs:element name='instance_hypernym' type="semrelationType" />
 
-	<xs:element name='instance_hyponym' type="semlinkType" />
+	<xs:element name='instance_hyponym' type="semrelationType" />
 
-	<xs:element name='member_holonym' type="semlinkType" />
+	<xs:element name='member_holonym' type="semrelationType" />
 
-	<xs:element name='substance_holonym' type="semlinkType" />
+	<xs:element name='substance_holonym' type="semrelationType" />
 
-	<xs:element name='part_holonym' type="semlinkType" />
+	<xs:element name='part_holonym' type="semrelationType" />
 
-	<xs:element name='holonym' type="semlinkType" />
+	<xs:element name='holonym' type="semrelationType" />
 
-	<xs:element name='member_meronym' type="semlinkType" />
+	<xs:element name='member_meronym' type="semrelationType" />
 
-	<xs:element name='substance_meronym' type="semlinkType" />
+	<xs:element name='substance_meronym' type="semrelationType" />
 
-	<xs:element name='part_meronym' type="semlinkType" />
+	<xs:element name='part_meronym' type="semrelationType" />
 
-	<xs:element name='meronym' type="semlinkType" />
+	<xs:element name='meronym' type="semrelationType" />
 
-	<xs:element name='cause' type="semlinkType" />
+	<xs:element name='cause' type="semrelationType" />
 
-	<xs:element name='entail' type="semlinkType" />
+	<xs:element name='entail' type="semrelationType" />
 
-	<xs:element name='antonym' type="lexlinkType" />
+	<xs:element name='antonym' type="lexrelationType" />
 
-	<xs:element name='similar' type="semlinkType" />
+	<xs:element name='similar' type="semrelationType" />
 
-	<xs:element name='also' type="bothlinkType" />
+	<xs:element name='also' type="bothrelationType" />
 
-	<xs:element name='attribute' type="semlinkType" />
+	<xs:element name='attribute' type="semrelationType" />
 
-	<xs:element name='verb_group' type="bothlinkType" />
+	<xs:element name='verb_group' type="bothrelationType" />
 
-	<xs:element name='participle' type="lexlinkType" />
+	<xs:element name='participle' type="lexrelationType" />
 
-	<xs:element name='pertainym' type="lexlinkType" />
+	<xs:element name='pertainym' type="lexrelationType" />
 
-	<xs:element name='derivation' type="lexlinkType" />
+	<xs:element name='derivation' type="lexrelationType" />
 
-	<xs:element name='domain_category' type="bothlinkType" />
+	<xs:element name='domain_category' type="bothrelationType" />
 
-	<xs:element name='domain_member_category' type="bothlinkType" />
+	<xs:element name='domain_member_category' type="bothrelationType" />
 
-	<xs:element name='domain_region' type="bothlinkType" />
+	<xs:element name='domain_region' type="bothrelationType" />
 
-	<xs:element name='domain_member_region' type="bothlinkType" />
+	<xs:element name='domain_member_region' type="bothrelationType" />
 
-	<xs:element name='domain_usage' type="bothlinkType" />
+	<xs:element name='domain_usage' type="bothrelationType" />
 
-	<xs:element name='domain_member_usage' type="bothlinkType" />
+	<xs:element name='domain_member_usage' type="bothrelationType" />
 
-	<xs:element name='links'>
+	<xs:element name='relations'>
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element minOccurs='0' ref='hypernym' />

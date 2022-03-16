@@ -26,12 +26,12 @@ public class Word extends BasicWord
 	/**
 	 * Word
 	 *
-	 * @param lemma word string
-	 * @param id    database id
+	 * @param word word string
+	 * @param id   database id
 	 */
-	public Word(final String lemma, final long id)
+	public Word(final String word, final long id)
 	{
-		super(lemma, id);
+		super(word, id);
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class Word extends BasicWord
 	 */
 	private Word(@NonNull final WordQuery query)
 	{
-		super(query.getLemma(), query.getId());
+		super(query.getWord(), query.getId());
 	}
 
 	/**
@@ -49,26 +49,26 @@ public class Word extends BasicWord
 	 *
 	 * @param query database query
 	 */
-	private Word(@NonNull final WordQueryFromLemma query)
+	private Word(@NonNull final WordQueryFromWord query)
 	{
-		super(query.getLemma(), query.getId());
+		super(query.getWord(), query.getId());
 	}
 
 	/**
 	 * Make word
 	 *
 	 * @param connection connection
-	 * @param lemma      target string
+	 * @param str      target string
 	 * @return Word or null
 	 */
 	@Nullable
-	static public Word make(final SQLiteDatabase connection, final String lemma)
+	static public Word make(final SQLiteDatabase connection, final String str)
 	{
 		Word word = null;
-		WordQueryFromLemma query = null;
+		WordQueryFromWord query = null;
 		try
 		{
-			query = new WordQueryFromLemma(connection, lemma);
+			query = new WordQueryFromWord(connection, str);
 			query.execute();
 
 			if (query.next())

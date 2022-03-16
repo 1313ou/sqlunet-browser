@@ -12,9 +12,9 @@ package org.sqlunet.wordnet.sql;
 public class BasicWord
 {
 	/**
-	 * <code>lemma</code> is the string
+	 * <code>word</code> is the string
 	 */
-	public final String lemma;
+	public final String word;
 
 	/**
 	 * <code>id</code> is the word id
@@ -24,12 +24,12 @@ public class BasicWord
 	/**
 	 * BasicWord
 	 *
-	 * @param lemma is the lemma
-	 * @param id    is the id
+	 * @param word is the word
+	 * @param id   is the id
 	 */
-	public BasicWord(final String lemma, final long id)
+	public BasicWord(final String word, final long id)
 	{
-		this.lemma = lemma;
+		this.word = word;
 		this.id = id;
 	}
 }

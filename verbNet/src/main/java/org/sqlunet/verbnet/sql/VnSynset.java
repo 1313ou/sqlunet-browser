@@ -27,7 +27,7 @@ class VnSynset extends BasicSynset
 	 */
 	VnSynset(@NonNull final VnClassQueryFromWordAndPos query)
 	{
-		super(query.getSynsetId(), query.getDefinition(), query.getLexDomainId(), null);
+		super(query.getSynsetId(), query.getDefinition(), query.getDomainId(), null);
 		this.flag = query.getSynsetSpecific();
 	}
 }

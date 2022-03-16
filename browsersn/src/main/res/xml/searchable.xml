@@ -14,7 +14,7 @@
 	>
 
 	<!--     android:searchSuggestIntentData="content://org.sqlunet.provider/lookup_word/search_suggest_query" > -->
-	<!--     android:searchSuggestSelection="lemma MATCH ?" > -->
+	<!--     android:searchSuggestSelection="word MATCH ?" > -->
 
 	<!-- allow green type key for search-bar and per-suggestion clicks -->
 	<actionkey

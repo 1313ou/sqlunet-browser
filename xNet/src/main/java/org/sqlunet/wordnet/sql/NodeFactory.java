@@ -33,16 +33,16 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	}
 
 	/**
-	 * Make lexdomain node
+	 * Make domain node
 	 *
 	 * @param doc    is the DOM Document being built
 	 * @param parent is the parent node to attach this node to
-	 * @param value  lexdomain
+	 * @param value  domain
 	 * @return newly created node
 	 */
 	static public Node makeDomainNode(@NonNull final Document doc, final Node parent, final String value)
 	{
-		final Element element = NodeFactory.makeNode(doc, parent, "lexdomain", null);
+		final Element element = NodeFactory.makeNode(doc, parent, "domain", null);
 		NodeFactory.makeAttribute(element, "name", value);
 		return element;
 	}

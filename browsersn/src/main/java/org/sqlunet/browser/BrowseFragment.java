@@ -137,7 +137,7 @@ public class BrowseFragment extends BaseSearchFragment
 
 		// handle item selection
 		final int itemId = item.getItemId();
-		if (R.id.action_table_lexdomains == itemId)
+		if (R.id.action_table_domains == itemId)
 		{
 			intent = new Intent(context, TableActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(Domains.CONTENT_URI_TABLE));
@@ -145,7 +145,7 @@ public class BrowseFragment extends BaseSearchFragment
 			intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{Domains.DOMAINID, Domains.DOMAIN, Domains.POSID});
 			intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table3);
 		}
-		else if (R.id.action_table_postypes == itemId)
+		else if (R.id.action_table_poses == itemId)
 		{
 			intent = new Intent(context, TableActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(Poses.CONTENT_URI_TABLE));
@@ -153,7 +153,7 @@ public class BrowseFragment extends BaseSearchFragment
 			intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{Poses.POSID, Poses.POS});
 			intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table2);
 		}
-		else if (R.id.action_table_adjpositiontypes == itemId)
+		else if (R.id.action_table_adjpositions == itemId)
 		{
 			intent = new Intent(context, TableActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(AdjPositions.CONTENT_URI_TABLE));
@@ -161,7 +161,7 @@ public class BrowseFragment extends BaseSearchFragment
 			intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{AdjPositions.POSITIONID, AdjPositions.POSITION});
 			intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table2);
 		}
-		else if (R.id.action_table_linktypes == itemId)
+		else if (R.id.action_table_relations == itemId)
 		{
 			intent = new Intent(context, TableActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(Relations.CONTENT_URI_TABLE));

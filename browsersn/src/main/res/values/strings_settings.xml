@@ -18,8 +18,8 @@
 	</string-array>
 
 	<!-- Filter -->
-	<string name="pref_title_link_recursion" tools:keep="@string/pref_title_link_recursion">Link max recursion</string>
-	<string name="pref_description_link_recursion" tools:keep="@string/pref_description_link_recursion">Link max recursion level (-1=unbounded)</string>
+	<string name="pref_title_relation_recursion" tools:keep="@string/pref_title_relation_recursion">Relation max recursion</string>
+	<string name="pref_description_relation_recursion" tools:keep="@string/pref_description_relation_recursion">Relation max recursion level (-1=unbounded)</string>
 	<string name="pref_title_enable_wordnet" tools:keep="@string/pref_title_enable_wordnet">Enable WordNet</string>
 	<string name="pref_description_enable_wordnet" tools:keep="@string/pref_description_enable_wordnet">Display WordNet information</string>
 	<string name="pref_title_enable_syntagnet" tools:keep="@string/pref_title_enable_syntagnet">Enable SyntagNet</string>

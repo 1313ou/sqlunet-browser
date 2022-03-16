@@ -409,14 +409,14 @@ public class SnSelectorsFragment extends ListFragment
 				SnCollocations_X.WORD2ID, //
 				SnCollocations_X.SYNSET1ID, //
 				SnCollocations_X.SYNSET2ID, //
-				SyntagNetContract.W1 + '.' + SnCollocations_X.LEMMA + " AS " + SyntagNetContract.WORD1, //
-				SyntagNetContract.W2 + '.' + SnCollocations_X.LEMMA + " AS " + SyntagNetContract.WORD2, //
+				SyntagNetContract.W1 + '.' + SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD1, //
+				SyntagNetContract.W2 + '.' + SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD2, //
 				SyntagNetContract.S1 + '.' + SnCollocations_X.POS + " AS " + SyntagNetContract.POS1, //
 				SyntagNetContract.S2 + '.' + SnCollocations_X.POS + " AS " + SyntagNetContract.POS2, //
 		};
 		final String selection = SnCollocations_X.WORD1ID + " = ? OR " + SnCollocations_X.WORD2ID + " = ?"; //
 		final String[] selectionArgs = {Long.toString(SnSelectorsFragment.this.wordId), Long.toString(SnSelectorsFragment.this.wordId), Long.toString(SnSelectorsFragment.this.wordId)};
-		final String sortOrder = SnCollocations_X.WORD2ID + " = ?" + ',' + SyntagNetContract.W1 + '.' + SnCollocations_X.LEMMA + ',' + SyntagNetContract.W2 + '.' + SnCollocations_X.LEMMA;
+		final String sortOrder = SnCollocations_X.WORD2ID + " = ?" + ',' + SyntagNetContract.W1 + '.' + SnCollocations_X.WORD + ',' + SyntagNetContract.W2 + '.' + SnCollocations_X.WORD;
 		this.dataModel.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
 	}
 

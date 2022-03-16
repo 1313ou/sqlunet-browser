@@ -179,7 +179,7 @@ abstract class BaseModule extends Module
 				PbRoleSets_X.ROLESETNAME, //
 				PbRoleSets_X.ROLESETHEAD, //
 				PbRoleSets_X.ROLESETDESC, //
-				"GROUP_CONCAT(" + PbRoleSets_X.LEMMA + ") AS " + PbRoleSets_X.ALIASES};
+				"GROUP_CONCAT(" + PbRoleSets_X.WORD + ") AS " + PbRoleSets_X.ALIASES};
 		final String selection = PbRoleSets_X.ROLESETID + " = ?";
 		final String[] selectionArgs = {Long.toString(roleSetId)};
 		this.pbRoleSetFromRoleSetIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> roleSetCursorToTreeModel(cursor, roleSetId, parent));

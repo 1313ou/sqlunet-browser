@@ -31,7 +31,7 @@ class SqLiteDialect
 					"LEFT JOIN fnframes USING (frameid) " + //
 					"LEFT JOIN fnposes AS p ON (lu.posid = p.posid) " + //
 					"LEFT JOIN fnfetypes ON (incorporatedfetypeid = fetypeid) " + //
-					"WHERE w.lemma = ?";
+					"WHERE w.word = ?";
 	// lex units from fn word
 	static public final String FrameNetLexUnitQueryFromFnWord = //
 			"SELECT fnwordid,luid,lexunit,pos,ludefinition,ludict,fetype AS incorporatedfe,frameid,frame,framedefinition " + //

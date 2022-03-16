@@ -2621,7 +2621,7 @@ abstract public class BaseModule extends Module
 		}
 	}
 
-	// L I N K S
+	// R E L A T I O N S
 
 	/**
 	 * Fn frame link data

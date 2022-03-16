@@ -1,6 +1,6 @@
 <wordnet xmlns="http://org.sqlunet/wn" word="wantonness">
 	<pos name="noun">
-		<lexdomain name="attribute">
+		<domain name="attribute">
 			<sense wordid="142904" synsetid="104858946" number="1">
 				<word wordid="142904">wantonness</word>
 				<synset synsetid="104858946" size="2">
@@ -24,7 +24,7 @@
 					<sample>she danced with abandon</sample>
 				</synset>
 			</sense>
-		</lexdomain>
+		</domain>
 	</pos>
 </wordnet>
 

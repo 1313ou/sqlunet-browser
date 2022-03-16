@@ -30,8 +30,8 @@
 			android:textIsSelectable="false"/>
 
 		<TextView
-			android:id="@+id/lexdomain"
-			style="@style/Data.WnLexDomain"
+			android:id="@+id/domain"
+			style="@style/Data.WnDomain"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="end"

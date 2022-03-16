@@ -19,7 +19,7 @@ public class Settings extends org.sqlunet.settings.Settings
 {
 	// preferences
 
-	static private final String PREF_LINK_RECURSE = "pref_link_recurse";
+	static private final String PREF_RELATION_RECURSE = "pref_relation_recurse";
 	static private final String PREF_ENABLE_WORDNET = "pref_enable_wordnet";
 	static private final String PREF_ENABLE_BNC = "pref_enable_bnc";
 
@@ -127,7 +127,7 @@ public class Settings extends org.sqlunet.settings.Settings
 	static public int getRecursePref(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		final String value = sharedPref.getString(Settings.PREF_LINK_RECURSE, null);
+		final String value = sharedPref.getString(Settings.PREF_RELATION_RECURSE, null);
 		return value == null ? -1 : Integer.parseInt(value);
 	}
 }

@@ -239,7 +239,7 @@ public class SelectorsFragment extends ListFragment
 				}, //
 				new int[]{ //
 						R.id.pos, //
-						R.id.lexdomain, //
+						R.id.domain, //
 						R.id.definition, //
 						R.id.cased, //
 						R.id.sensenum, //

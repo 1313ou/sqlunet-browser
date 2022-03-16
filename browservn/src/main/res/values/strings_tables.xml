@@ -20,8 +20,8 @@
 		<item>vframes</item>
 		<item>vtemplates</item>
 		<item>relations</item>
-		<item>synsets_synsets</item>
-		<item>senses_senses</item>
+		<item>semrelations</item>
+		<item>lexrelations</item>
 		<item>senses_vframes</item>
 		<item>senses_vtemplates</item>
 		<item>senses_adjpositions</item>
@@ -77,7 +77,7 @@
 	<string-array name="required_indexes" tools:ignore="InconsistentArrays">
 
 		<!-- wordnet -->
-		<item>index_words_lemma</item>
+		<item>index_words_word</item>
 		<item>index_senses_wordid</item>
 		<item>index_senses_synsetid</item>
 		<item>index_synsets_synsetid</item>
@@ -100,7 +100,7 @@
 	</string-array>
 
 	<string-array name="required_texts_wn" tools:keep="@array/required_texts_wn">
-		<item>words_lemma_fts4</item>
+		<item>words_word_fts4</item>
 		<item>synsets_definition_fts4</item>
 		<item>samples_sample_fts4</item>
 	</string-array>

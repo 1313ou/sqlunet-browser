@@ -75,7 +75,7 @@ public class WordNetContract
 
 	static public final class BaseRelations
 	{
-		static public final String TABLE = "synsets_synsets";
+		static public final String TABLE = "semrelations";
 		static public final String CONTENT_URI_TABLE = SemRelations.TABLE;
 		static public final String WORDID1 = "word1id";
 		static public final String SYNSETID1 = "synset1id";
@@ -86,7 +86,7 @@ public class WordNetContract
 
 	static public final class SemRelations
 	{
-		static public final String TABLE = "synsets_synsets";
+		static public final String TABLE = "semrelations";
 		static public final String CONTENT_URI_TABLE = SemRelations.TABLE;
 		static public final String SYNSETID1 = "synset1id";
 		static public final String SYNSETID2 = "synset2id";
@@ -95,7 +95,7 @@ public class WordNetContract
 
 	static public final class LexRelations
 	{
-		static public final String TABLE = "senses_senses";
+		static public final String TABLE = "lexrelations";
 		static public final String CONTENT_URI_TABLE = LexRelations.TABLE;
 		static public final String WORDID1 = "word1id";
 		static public final String SYNSETID1 = "synset1id";
@@ -222,9 +222,9 @@ public class WordNetContract
 		static public final String SYNSET2ID = "synset2id";
 		static public final String MEMBERS2 = WordNetContract.MEMBERS2;
 		static public final String RECURSES = "recurses";
-		// synsets_synsets INNER JOIN synsets LEFT JOIN relations LEFT JOIN senses LEFT JOIN words
+		// semrelations INNER JOIN synsets LEFT JOIN relations LEFT JOIN senses LEFT JOIN words
 		// union
-		// senses_senses INNER JOIN synsets INNER JOIN words LEFT JOIN relations LEFT JOIN senses LEFT JOIN words
+		// lexrelations INNER JOIN synsets INNER JOIN words LEFT JOIN relations LEFT JOIN senses LEFT JOIN words
 	}
 
 	static public final class SemRelations_Synsets
@@ -260,18 +260,18 @@ public class WordNetContract
 				"%s AS %s " + //
 						"INNER JOIN %s AS %s ON %s.synset2id = %s.synsetid " + //
 						"INNER JOIN %s AS %s ON %s.word2id = %s.wordid", //
-				"senses_senses",	WordNetContract.RELATION, //
+				"lexrelations",	WordNetContract.RELATION, //
 				"synsets", WordNetContract.SYNSET2, WordNetContract.RELATION, WordNetContract.SYNSET2, //
 				"words", WordNetContract.WORD, WordNetContract.RELATION, WordNetContract.WORD //
 		);
-		// senses_senses INNER JOIN synsets INNER JOIN words
+		// lexrelations INNER JOIN synsets INNER JOIN words
 	}
 
 	static public final class LexRelations_Senses_X
 	{
 		static public final String TABLE = "lexrelations_synsets_words_relations";
 		static public final String CONTENT_URI_TABLE = LexRelations_Senses_X.TABLE;
-		// senses_senses INNER JOIN synsets INNER JOIN words LEFT JOIN relations
+		// lexrelations INNER JOIN synsets INNER JOIN words LEFT JOIN relations
 	}
 
 	static public final class LexRelations_Senses_Words_X
@@ -281,7 +281,7 @@ public class WordNetContract
 		static public final String SYNSET1ID = "synset1id";
 		static public final String SYNSET2ID = "synset2id";
 		static public final String MEMBERS2 = WordNetContract.MEMBERS2;
-		// senses_senses INNER JOIN synsets INNER JOIN words LEFT JOIN relations LEFT JOIN senses LEFT JOIN words
+		// lexrelations INNER JOIN synsets INNER JOIN words LEFT JOIN relations LEFT JOIN senses LEFT JOIN words
 	}
 
 	static public final class Senses_VerbFrames

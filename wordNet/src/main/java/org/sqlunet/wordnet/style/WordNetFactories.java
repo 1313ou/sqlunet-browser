@@ -17,8 +17,6 @@ import org.sqlunet.style.Spanner.SpanFactory;
  */
 public class WordNetFactories
 {
-	static public final SpanFactory lemmaFactory = flags -> Factories.spans(Colors.lemmaBackColor, Colors.lemmaForeColor, new StyleSpan(Typeface.BOLD));
-
 	static public final SpanFactory membersFactory = flags -> Factories.spans(Colors.membersBackColor, Colors.membersForeColor, new StyleSpan(Typeface.BOLD));
 
 	static public final SpanFactory wordFactory = flags -> Factories.spans(Colors.wordBackColor, Colors.wordForeColor, new StyleSpan(Typeface.BOLD));

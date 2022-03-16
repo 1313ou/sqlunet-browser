@@ -116,8 +116,8 @@ abstract class BaseModule extends Module
 				SnCollocations_X.WORD2ID, //
 				SnCollocations_X.SYNSET1ID, //
 				SnCollocations_X.SYNSET2ID, //
-				SyntagNetContract.W1 + '.' + SnCollocations_X.LEMMA + " AS " + SyntagNetContract.WORD1, //
-				SyntagNetContract.W2 + '.' + SnCollocations_X.LEMMA + " AS " + SyntagNetContract.WORD2, //
+				SyntagNetContract.W1 + '.' + SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD1, //
+				SyntagNetContract.W2 + '.' + SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD2, //
 				SyntagNetContract.S1 + '.' + SnCollocations_X.DEFINITION + " AS " + SyntagNetContract.DEFINITION1, //
 				SyntagNetContract.S2 + '.' + SnCollocations_X.DEFINITION + " AS " + SyntagNetContract.DEFINITION2, //
 				SyntagNetContract.S1 + '.' + SnCollocations_X.POS + " AS " + SyntagNetContract.POS1, //
@@ -147,8 +147,8 @@ abstract class BaseModule extends Module
 				SnCollocations_X.WORD2ID, //
 				SnCollocations_X.SYNSET1ID, //
 				SnCollocations_X.SYNSET2ID, //
-				SyntagNetContract.W1 + '.' + SnCollocations_X.LEMMA + " AS " + SyntagNetContract.WORD1, //
-				SyntagNetContract.W2 + '.' + SnCollocations_X.LEMMA + " AS " + SyntagNetContract.WORD2, //
+				SyntagNetContract.W1 + '.' + SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD1, //
+				SyntagNetContract.W2 + '.' + SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD2, //
 				SyntagNetContract.S1 + '.' + SnCollocations_X.DEFINITION + " AS " + SyntagNetContract.DEFINITION1, //
 				SyntagNetContract.S2 + '.' + SnCollocations_X.DEFINITION + " AS " + SyntagNetContract.DEFINITION2, //
 				SyntagNetContract.S1 + '.' + SnCollocations_X.POS + " AS " + SyntagNetContract.POS1, //
@@ -156,7 +156,7 @@ abstract class BaseModule extends Module
 		};
 		final String selection = selection(word1Id, word2Id, synset1Id, synset2Id);
 		final String[] selectionArgs = selectionArgs(word1Id, word2Id, synset1Id, synset2Id, word2Id);
-		String sortOrder = SyntagNetContract.W1 + '.' + SnCollocations_X.LEMMA + ',' + SyntagNetContract.W2 + '.' + SnCollocations_X.LEMMA;
+		String sortOrder = SyntagNetContract.W1 + '.' + SnCollocations_X.WORD + ',' + SyntagNetContract.W2 + '.' + SnCollocations_X.WORD;
 		if (word2Id != null)
 		{
 			sortOrder = SnCollocations_X.WORD2ID + " = ?" + ',' + sortOrder;
@@ -182,7 +182,7 @@ abstract class BaseModule extends Module
 				SyntagNetContract.WORD2,};
 		final String selection = SnCollocations_X.WORD1ID + " = ? OR " + SnCollocations_X.WORD2ID + " = ?";
 		final String[] selectionArgs = {Long.toString(wordId), Long.toString(wordId), Long.toString(wordId)};
-		final String sortOrder = SnCollocations_X.WORD2ID + " = ?" + ',' + SyntagNetContract.W1 + '.' + SnCollocations_X.LEMMA + ',' + SyntagNetContract.W2 + '.' + SnCollocations_X.LEMMA;
+		final String sortOrder = SnCollocations_X.WORD2ID + " = ?" + ',' + SyntagNetContract.W1 + '.' + SnCollocations_X.WORD + ',' + SyntagNetContract.W2 + '.' + SnCollocations_X.WORD;
 		this.collocationsFromWordIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> collocationsCursorToTreeModel(cursor, parent));
 	}
 
@@ -203,7 +203,7 @@ abstract class BaseModule extends Module
 				SyntagNetContract.WORD2,};
 		final String selection = SnCollocations_X.WORD1ID + " = ? OR " + SnCollocations_X.WORD2ID + " = ?";
 		final String[] selectionArgs = {word};
-		final String sortOrder = SnCollocations_X.WORD2ID + " = ?" + ',' + SyntagNetContract.W1 + '.' + SnCollocations_X.LEMMA + ',' + SyntagNetContract.W2 + '.' + SnCollocations_X.LEMMA;
+		final String sortOrder = SnCollocations_X.WORD2ID + " = ?" + ',' + SyntagNetContract.W1 + '.' + SnCollocations_X.WORD + ',' + SyntagNetContract.W2 + '.' + SnCollocations_X.WORD;
 		this.collocationsFromWordModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> collocationsCursorToTreeModel(cursor, parent));
 	}
 

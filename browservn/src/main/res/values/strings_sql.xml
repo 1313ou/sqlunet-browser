@@ -26,7 +26,7 @@
 	<string-array name="sql_statements_values" formatted="false" tools:ignore="InconsistentArrays" tools:keep="@array/sql_statements_values">
 		<item/>
 		<item>
-			CREATE INDEX IF NOT EXISTS index_words_lemma ON words(lemma);
+			CREATE INDEX IF NOT EXISTS index_words_word ON words(word);
 			CREATE INDEX IF NOT EXISTS index_senses_wordid ON senses(wordid);
 			CREATE INDEX IF NOT EXISTS index_senses_synsetid ON senses(synsetid);
 			CREATE INDEX IF NOT EXISTS index_synsets_synsetid ON synsets(synsetid);
@@ -48,14 +48,14 @@
 			CREATE VIRTUAL TABLE IF NOT EXISTS pbexamples_text_fts4 USING fts4(exampleid INTEGER not null, rolesetid INTEGER not null, text);
 			INSERT INTO pbexamples_text_fts4 SELECT exampleid, rolesetid, text from pbexamples;</item>
 		<item>
-			CREATE INDEX IF NOT EXISTS index_words_lemma ON words(lemma);
+			CREATE INDEX IF NOT EXISTS index_words_word ON words(word);
 			CREATE INDEX IF NOT EXISTS index_senses_wordid ON senses(wordid);
 			CREATE INDEX IF NOT EXISTS index_senses_synsetid ON senses(synsetid);
 			CREATE INDEX IF NOT EXISTS index_synsets_synsetid ON synsets(synsetid);
 			CREATE INDEX IF NOT EXISTS index_casedwords_wordid_casedwordid ON casedwords(wordid,casedwordid);
 			CREATE INDEX IF NOT EXISTS index_samples_synsetid ON samples(synsetid);</item>
 		<item>
-			DROP INDEX IF EXISTS index_words_lemma;
+			DROP INDEX IF EXISTS index_words_word;
 			DROP INDEX IF EXISTS index_senses_wordid;
 			DROP INDEX IF EXISTS index_senses_synsetid;
 			DROP INDEX IF EXISTS index_synsets_synsetid;

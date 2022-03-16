@@ -22,7 +22,7 @@ public class BasicSynset
 	public final String definition;
 
 	/**
-	 * <code>lexDomainId</code> is the synset's lexdomain
+	 * <code>domainId</code> is the synset's domain
 	 */
 	public final int domainId;
 
@@ -36,7 +36,7 @@ public class BasicSynset
 	 *
 	 * @param synsetId    is the synset id
 	 * @param definition  is the definition
-	 * @param domainId is the lexdomain id
+	 * @param domainId is the domain id
 	 * @param sample      is the sample
 	 */
 	protected BasicSynset(final long synsetId, final String definition, final int domainId, final String sample)

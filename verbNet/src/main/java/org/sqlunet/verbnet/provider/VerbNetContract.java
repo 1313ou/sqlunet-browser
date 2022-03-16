@@ -19,7 +19,7 @@ public class VerbNetContract
 		static public final String CONTENT_URI_TABLE = VnWords.TABLE;
 		static public final String VNWORDID = "vnwordid";
 		static public final String WORDID = "wordid";
-		static public final String WORD = "lemma";
+		static public final String WORD = "word";
 	}
 
 	static public final class VnClasses
@@ -55,7 +55,7 @@ public class VerbNetContract
 		static public final String CLASSID = "classid";
 		static public final String VNWORDID = "vnwordid";
 		static public final String WORDID = "wordid";
-		static public final String LEMMA = "lemma";
+		static public final String WORD = "word";
 		static public final String DEFINITIONS = "definitions";
 		static public final String GROUPINGS = "groupings";
 		static public final String DEFINITION = "definition";
@@ -118,7 +118,7 @@ public class VerbNetContract
 		static public final String TABLE = Suggest_VnWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 		static public final String VNWORDID = "vnwordid";
 		static public final String WORDID = "wordid";
-		static public final String WORD = "lemma";
+		static public final String WORD = "word";
 	}
 
 	static public final class Suggest_FTS_VnWords
@@ -127,6 +127,6 @@ public class VerbNetContract
 		static public final String TABLE = Suggest_FTS_VnWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 		static public final String VNWORDID = "vnwordid";
 		static public final String WORDID = "wordid";
-		static public final String WORD = "lemma";
+		static public final String WORD = "word";
 	}
 }

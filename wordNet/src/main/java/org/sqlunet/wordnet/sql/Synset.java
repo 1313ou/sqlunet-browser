@@ -104,9 +104,9 @@ class Synset extends BasicSynset
 
 			while (query.next())
 			{
-				final String lemma = query.getLemma();
+				final String word = query.getWord();
 				final long id = query.getId();
-				words.add(new Word(lemma, id));
+				words.add(new Word(word, id));
 			}
 		}
 		catch (@NonNull final SQLException e)
@@ -144,12 +144,12 @@ class Synset extends BasicSynset
 			for (int i = 0; i < words.size(); i++)
 			{
 				final Word word = words.get(i);
-				final String lemma = word.lemma.replace('_', ' ');
+				final String word2 = word.word.replace('_', ' ');
 				if (i != 0)
 				{
 					sb.append(',');
 				}
-				sb.append(lemma);
+				sb.append(word2);
 			}
 		}
 		return sb.toString();

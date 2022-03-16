@@ -24,21 +24,21 @@ public class Queries {
 	}
 
 	static public class LEXRELATIONS {
-		static public final String TABLE = "senses_senses";
+		static public final String TABLE = "lexrelations";
 	}
 
 	static public class LEXRELATIONS_SENSES {
-		static public final String TABLE = "senses_senses AS r INNER JOIN synsets AS y2 ON r.synset2id = y2.synsetid INNER JOIN words AS w ON r.word2id = w.wordid";
+		static public final String TABLE = "lexrelations AS r INNER JOIN synsets AS y2 ON r.synset2id = y2.synsetid INNER JOIN words AS w ON r.word2id = w.wordid";
 	}
 
 	static public class LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET {
-		static public final String TABLE = "senses_senses AS r INNER JOIN relations USING (relationid) INNER JOIN synsets AS y2 ON r.synset2id = y2.synsetid INNER JOIN words AS w ON r.word2id = w.wordid LEFT JOIN senses AS s ON y2.synsetid = s.synsetid LEFT JOIN words AS w2 USING (wordid)";
+		static public final String TABLE = "lexrelations AS r INNER JOIN relations USING (relationid) INNER JOIN synsets AS y2 ON r.synset2id = y2.synsetid INNER JOIN words AS w ON r.word2id = w.wordid LEFT JOIN senses AS s ON y2.synsetid = s.synsetid LEFT JOIN words AS w2 USING (wordid)";
 		static public final String[] PROJECTION = {"GROUP_CONCAT(DISTINCT w2.word) AS #{members2}"};
 		static public final String GROUPBY = "y2.synsetid";
 	}
 
 	static public class LEXRELATIONS_SENSES_X {
-		static public final String TABLE = "senses_senses AS r INNER JOIN relations USING (relationid) INNER JOIN synsets AS y2 ON r.synset2id = y2.synsetid INNER JOIN words AS w ON r.word2id = w.wordid ";
+		static public final String TABLE = "lexrelations AS r INNER JOIN relations USING (relationid) INNER JOIN synsets AS y2 ON r.synset2id = y2.synsetid INNER JOIN words AS w ON r.word2id = w.wordid ";
 	}
 
 	static public class LOOKUP_FTS_DEFINITIONS {
@@ -66,21 +66,21 @@ public class Queries {
 	}
 
 	static public class SEMRELATIONS {
-		static public final String TABLE = "synsets_synsets";
+		static public final String TABLE = "semrelations";
 	}
 
 	static public class SEMRELATIONS_SYNSETS {
-		static public final String TABLE = "synsets_synsets AS r INNER JOIN synsets AS y2 ON r.synset2id = y2.synsetid";
+		static public final String TABLE = "semrelations AS r INNER JOIN synsets AS y2 ON r.synset2id = y2.synsetid";
 	}
 
 	static public class SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET {
-		static public final String TABLE = "synsets_synsets AS r INNER JOIN relations USING (relationid) INNER JOIN synsets AS y2 ON r.synset2id = y2.synsetid LEFT JOIN senses ON y2.synsetid = senses.synsetid LEFT JOIN words USING (wordid)";
+		static public final String TABLE = "semrelations AS r INNER JOIN relations USING (relationid) INNER JOIN synsets AS y2 ON r.synset2id = y2.synsetid LEFT JOIN senses ON y2.synsetid = senses.synsetid LEFT JOIN words USING (wordid)";
 		static public final String[] PROJECTION = {"GROUP_CONCAT(words.word, ', ' ) AS #{members2}"};
 		static public final String GROUPBY = "y2.synsetid";
 	}
 
 	static public class SEMRELATIONS_SYNSETS_X {
-		static public final String TABLE = "synsets_synsets AS r INNER JOIN relations USING (relationid) INNER JOIN synsets AS y2 ON r.synset2id = y2.synsetid ";
+		static public final String TABLE = "semrelations AS r INNER JOIN relations USING (relationid) INNER JOIN synsets AS y2 ON r.synset2id = y2.synsetid ";
 	}
 
 	static public class SENSE {
@@ -178,7 +178,8 @@ public class Queries {
 		static public final String TABLE = "words AS w LEFT JOIN senses AS s USING (wordid) LEFT JOIN casedwords AS c USING (wordid,casedwordid) LEFT JOIN synsets AS y USING (synsetid)";
 	}
 
-	static public class WORDS_SENSES_CASEDWORDS_SYNSETS_POSTYPES_LEXDOMAINS {
+	static public class WORDS_SENSES_CASEDWORDS_SYNSETS_POSTYPES_DOMAINS
+	{
 		static public final String TABLE = "words AS w LEFT JOIN senses AS s USING (wordid) LEFT JOIN casedwords AS c USING (wordid,casedwordid) LEFT JOIN synsets AS y USING (synsetid) LEFT JOIN poses AS p USING (posid) LEFT JOIN domains AS d USING (domainid)";
 	}
 

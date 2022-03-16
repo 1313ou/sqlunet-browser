@@ -10,7 +10,7 @@
 	padding-right: 2px;
 }
 
-.wnlexdomain {
+.wndomain {
 	font-weight: bold;
 	background-color: darkmagenta;
 	color: white;
@@ -43,7 +43,7 @@
 	color: gray;
 }
 
-.wnlink {
+.wnrelation {
 	background-color: orangered;
 	color: black;
 	padding-left: 2px;

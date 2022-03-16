@@ -28,10 +28,10 @@ abstract class BaseCollocationQuery extends DBQuery
 		super(connection, query);
 	}
 
-	// 1         2                   3          4               5
-	// "word1id, w1.lemma AS lemma1, synset1id, s1.pos AS pos1, s1.definition AS definition1,"
-	// 6         7                   8          9               10
-	// "word2id, w2.lemma AS lemma2, synset2id, s2.pos AS pos2, s2.definition AS definition2,"
+	// 1         2                 3          4               5
+	// "word1id, w1.word AS word1, synset1id, s1.pos AS pos1, s1.definition AS definition1,"
+	// 6         7                 8          9               10
+	// "word2id, w2.word AS word2, synset2id, s2.pos AS pos2, s2.definition AS definition2,"
 
 	/**
 	 * Get the id from the result set

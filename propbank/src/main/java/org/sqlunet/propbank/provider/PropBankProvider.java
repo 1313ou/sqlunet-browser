@@ -288,9 +288,9 @@ public class PropBankProvider extends BaseProvider
 				}
 				table = "pbwords";
 				return this.db.query(table, new String[]{"pbwordid AS _id", //
-								"lemma AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
-								"lemma AS " + SearchManager.SUGGEST_COLUMN_QUERY}, //
-						"lemma LIKE ? || '%'", //
+								"word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
+								"word AS " + SearchManager.SUGGEST_COLUMN_QUERY}, //
+						"word LIKE ? || '%'", //
 						new String[]{last}, null, null, null);
 			}
 
@@ -303,9 +303,9 @@ public class PropBankProvider extends BaseProvider
 				}
 				table = "pbwords_word_fts4";
 				return this.db.query(table, new String[]{"pbwordid AS _id", //
-								"lemma AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
-								"lemma AS " + SearchManager.SUGGEST_COLUMN_QUERY}, //
-						"lemma MATCH ?", //
+								"word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
+								"word AS " + SearchManager.SUGGEST_COLUMN_QUERY}, //
+						"word MATCH ?", //
 						new String[]{last + '*'}, null, null, null);
 			}
 

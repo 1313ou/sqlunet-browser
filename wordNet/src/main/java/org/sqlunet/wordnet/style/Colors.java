@@ -18,9 +18,6 @@ import androidx.annotation.NonNull;
  */
 public class Colors
 {
-	static public int lemmaBackColor = Color.TRANSPARENT;
-	static public int lemmaForeColor = Color.TRANSPARENT;
-
 	static public int membersBackColor = Color.TRANSPARENT;
 	static public int membersForeColor = Color.TRANSPARENT;
 
@@ -33,14 +30,10 @@ public class Colors
 
 		int[] palette = context.getResources().getIntArray(R.array.palette_wn);
 		int i = 0;
-		lemmaBackColor = palette[i++];
-		lemmaForeColor = palette[i++];
-
 		membersBackColor = palette[i++];
 		membersForeColor = palette[i++];
 
 		wordBackColor = palette[i++];
-		//noinspection UnusedAssignment
 		wordForeColor = palette[i++];
 	}
 }

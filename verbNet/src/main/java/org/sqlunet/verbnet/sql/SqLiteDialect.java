@@ -21,15 +21,15 @@ class SqLiteDialect
 					"WHERE classid = ? ";
 	// query for verbnet class from word and pos
 	static final String VerbNetClassQueryFromWordAndPos = //
-			"SELECT wordid, (synsetid IS NULL) AS nullsynset, synsetid, definition, lexdomainid, classid, class, classtag " + //
+			"SELECT wordid, (synsetid IS NULL) AS nullsynset, synsetid, definition, domainid, classid, class, classtag " + //
 					"FROM words AS w " + //
 					"INNER JOIN vnwords USING (wordid) " + //
 					"LEFT JOIN vnclassmembersenses USING (vnwordid) " + //
 					"LEFT JOIN synsets USING (synsetid) " + //
 					"LEFT JOIN vnclasses USING (classid) " + //
-					"WHERE pos = 'v' AND w.lemma = ? " + //
+					"WHERE pos = 'v' AND w.word = ? " + //
 					"GROUP BY wordid, synsetid " + //
-					"ORDER BY lexdomainid,synsetid,nullsynset ASC;";
+					"ORDER BY domainid,synsetid,nullsynset ASC;";
 	// query for verbnet class from sense
 	static final String VerbNetClassQueryFromSense = //
 			"SELECT classid, class, (synsetid IS NULL) AS nullsynset, definition, sensenum, sensekey, quality, GROUP_CONCAT(grouping, '|') AS groupings " + //

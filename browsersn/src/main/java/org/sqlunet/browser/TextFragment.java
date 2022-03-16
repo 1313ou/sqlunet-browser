@@ -197,7 +197,7 @@ public class TextFragment extends AbstractTableFragment
 					// start
 					startActivity(targetIntent);
 				}
-				else if ("lemma".equals(subtarget))
+				else if ("word".equals(subtarget))
 				{
 					// target
 					final int colIdx = cursor.getColumnIndex("wordid");

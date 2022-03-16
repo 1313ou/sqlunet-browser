@@ -222,7 +222,7 @@ public class SelectorsFragment extends ListFragment
 				new String[]{ //
 						Words_FnWords_PbWords_VnWords.POS, //
 						Words_FnWords_PbWords_VnWords.SENSENUM, //
-						Words_FnWords_PbWords_VnWords.LEXDOMAIN, //
+						Words_FnWords_PbWords_VnWords.DOMAIN, //
 						Words_FnWords_PbWords_VnWords.DEFINITION, //
 						Words_FnWords_PbWords_VnWords.CASED, //
 						Words_FnWords_PbWords_VnWords.TAGCOUNT, //
@@ -238,7 +238,7 @@ public class SelectorsFragment extends ListFragment
 				new int[]{ //
 						R.id.pos, //
 						R.id.sensenum, //
-						R.id.lexdomain, //
+						R.id.domain, //
 						R.id.definition, //
 						R.id.cased, //
 						R.id.tagcount, //
@@ -337,13 +337,13 @@ public class SelectorsFragment extends ListFragment
 				Words_FnWords_PbWords_VnWords.DEFINITION, //
 				XSqlUNetContract.SYNSET + '.' + Words_FnWords_PbWords_VnWords.POS, //
 				Words_FnWords_PbWords_VnWords.POSNAME, //
-				Words_FnWords_PbWords_VnWords.LEXDOMAIN, //
+				Words_FnWords_PbWords_VnWords.DOMAIN, //
 				Words_FnWords_PbWords_VnWords.CASED, //
 				Words_FnWords_PbWords_VnWords.FNWORDID, //
 				Words_FnWords_PbWords_VnWords.VNWORDID, //
 				Words_FnWords_PbWords_VnWords.PBWORDID, //
 		};
-		final String selection = XSqlUNetContract.WORD + '.' + Words_FnWords_PbWords_VnWords.LEMMA + " = ?"; ////
+		final String selection = XSqlUNetContract.WORD + '.' + Words_FnWords_PbWords_VnWords.WORD + " = ?"; ////
 		final String[] selectionArgs = {this.word};
 		final String sortOrder = XSqlUNetContract.SYNSET + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
 		this.dataModel.loadData(uri, projection, selection, selectionArgs, sortOrder, this::wordIdFromWordPostProcess);

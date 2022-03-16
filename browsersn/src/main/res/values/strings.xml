@@ -30,10 +30,10 @@
 
 	<!-- database info -->
 <!--	<string name="action_tables_and_indices">Tables and Indices</string>-->
-	<string name="action_table_lexdomains">Lex Domains</string>
-	<string name="action_table_linktypes">Link types</string>
-	<string name="action_table_postypes">POS types</string>
-	<string name="action_table_adjpositiontypes">Adjective Position types</string>
+	<string name="action_table_domains">Domains</string>
+	<string name="action_table_relations">Relations</string>
+	<string name="action_table_poses">POSes</string>
+	<string name="action_table_adjpositions">Adjective Positions</string>
 
 	<!-- hints -->
 	<string name="hint_splash_browse" tools:keep="@string/hint_splash_browse">Exploring senses, relations and collocations</string>

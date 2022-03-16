@@ -32,7 +32,7 @@ class SqLiteDialect
 			"WHERE wordid = ?;";
 
 	// query for word
-	static final String WordQueryFromLemma = //
+	static final String WordQueryFromWord = //
 			"SELECT wordid, word " +  //
 			"FROM words " +  //
 			"WHERE word = ?;";
@@ -88,7 +88,7 @@ class SqLiteDialect
 	// query for relateds from synsets
 	static final String RelatedsQueryFromSynsetId = //
 			"SELECT relationid, synsetid, definition, domainid, GROUP_CONCAT(sample, '|' ) AS sampleset, 0 AS word2id, NULL AS word2, synset1id, 0 " +  //
-			"FROM synsets_synsets " + //
+			"FROM semrelations " + //
 			"INNER JOIN synsets ON synset2id = synsetid " +  //
 			"LEFT JOIN relations USING (relationid) " + //
 			"LEFT JOIN samples USING (synsetid) " + //
@@ -96,7 +96,7 @@ class SqLiteDialect
 			"GROUP BY synsetid " + //
 			"UNION " + //
 			"SELECT relationid, synsetid, definition, domainid, GROUP_CONCAT(sample, '|' ) AS sampleset, GROUP_CONCAT(DISTINCT word2id), GROUP_CONCAT(DISTINCT word) AS word2, synset1id, word1id " + ///
-			"FROM senses_senses " + //
+			"FROM lexrelations " + //
 			"INNER JOIN synsets ON synset2id = synsetid " + //
 			"LEFT JOIN words ON word2id = wordid " + //
 			"LEFT JOIN relations USING (relationid) " + //
@@ -108,7 +108,7 @@ class SqLiteDialect
 	// query for relateds from synsets and relation type
 	static final String RelatedsQueryFromSynsetIdAndRelationId = //
 			"SELECT relationid, synsetid, definition, domainid, GROUP_CONCAT(sample, '|' ) AS sampleset, 0 AS word2id, NULL AS word2, synset1id, 0 " + //
-			"FROM synsets_synsets " + //
+			"FROM semrelations " + //
 			"INNER JOIN synsets ON synset2id = synsetid " + //
 			"LEFT JOIN relations USING (relationid) " + //
 			"LEFT JOIN samples USING (synsetid) " + //
@@ -116,7 +116,7 @@ class SqLiteDialect
 			"GROUP BY synsetid " + //
 			"UNION " + //
 			"SELECT relationid, synsetid, definition, domainid, GROUP_CONCAT(sample, '|' ) AS sampleset, GROUP_CONCAT(DISTINCT word2id), GROUP_CONCAT(DISTINCT word) AS word2, synset1id, word1id " + //
-			"FROM senses_senses " + //
+			"FROM lexrelations " + //
 			"INNER JOIN synsets ON synset2id = synsetid " + //
 			"LEFT JOIN words ON word2id = wordid " + //
 			"LEFT JOIN relations USING (relationid) " + //

@@ -38,7 +38,7 @@ class SynsetWordsQuery extends DBQuery
 	 *
 	 * @return word in the result set
 	 */
-	public String getLemma()
+	public String getWord()
 	{
 		assert this.cursor != null;
 		return this.cursor.getString(0);

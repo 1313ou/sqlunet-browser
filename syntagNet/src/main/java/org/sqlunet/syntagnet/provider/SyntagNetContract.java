@@ -36,7 +36,7 @@ public class SyntagNetContract
 		static public final String WORD2ID = "word2id";
 		static public final String SYNSET1ID = "synset1id";
 		static public final String SYNSET2ID = "synset2id";
-		static public final String LEMMA = "lemma";
+		static public final String WORD = "word";
 	}
 
 	static public final class SnCollocations_X
@@ -48,7 +48,7 @@ public class SyntagNetContract
 		static public final String WORD2ID = "word2id";
 		static public final String SYNSET1ID = "synset1id";
 		static public final String SYNSET2ID = "synset2id";
-		static public final String LEMMA = "lemma";
+		static public final String WORD = "word";
 		static public final String POS = "pos";
 		static public final String DEFINITION = "definition";
 	}

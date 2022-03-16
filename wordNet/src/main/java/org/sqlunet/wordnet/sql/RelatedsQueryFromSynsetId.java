@@ -54,7 +54,7 @@ class RelatedsQueryFromSynsetId extends DBQuery
 		this.statement.setLong(3, wordId);
 	}
 
-	// relationid, synsetid, definition, domainid, sampleset, word2id, lemma, synset1id, word1id
+	// relationid, synsetid, definition, domainid, sampleset, word2id, word, synset1id, word1id
 
 	/**
 	 * Get relation type id

@@ -311,14 +311,14 @@ abstract public class BaseModule extends Module
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 			// final int idWordId = cursor.getColumnIndex(Words.WORDID);
-			final int idLemma = cursor.getColumnIndex(Words_Lexes_Morphs.WORD);
+			final int idWord = cursor.getColumnIndex(Words_Lexes_Morphs.WORD);
 			final int idMorphs = cursor.getColumnIndex(BaseModule.ALLMORPHS);
-			final String lemma = cursor.getString(idLemma);
+			final String word = cursor.getString(idWord);
 			final String morphs = cursor.getString(idMorphs);
 
 			Spanner.appendImage(sb, BaseModule.this.memberDrawable);
 			sb.append(' ');
-			Spanner.append(sb, lemma, 0, WordNetFactories.wordFactory);
+			Spanner.append(sb, word, 0, WordNetFactories.wordFactory);
 
 			if (morphs != null && !morphs.isEmpty())
 			{
@@ -419,7 +419,7 @@ abstract public class BaseModule extends Module
 			final int idWordId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID);
 			final int idSynsetId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID);
 			final int idPosName = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.POS);
-			final int idLexDomain = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN);
+			final int idDomain = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN);
 			final int idDefinition = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION);
 			final int idTagCount = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT);
 			final int idCased = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.CASED);
@@ -429,13 +429,13 @@ abstract public class BaseModule extends Module
 				final long wordId = cursor.getLong(idWordId);
 				final long synsetId = cursor.getLong(idSynsetId);
 				final String posName = cursor.getString(idPosName);
-				final String lexDomain = cursor.getString(idLexDomain);
+				final String domain = cursor.getString(idDomain);
 				final String definition = cursor.getString(idDefinition);
 				final String cased = cursor.getString(idCased);
 				final int tagCount = cursor.getInt(idTagCount);
 
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
-				sense(sb, synsetId, posName, lexDomain, definition, tagCount, cased);
+				sense(sb, synsetId, posName, domain, definition, tagCount, cased);
 
 				// result
 				final TreeNode synsetNode = TreeFactory.makeLinkNode(sb, R.drawable.synset, false, new SenseLink(synsetId, wordId, this.maxRecursion, this.fragment)).addTo(parent);
@@ -581,15 +581,15 @@ abstract public class BaseModule extends Module
 		{
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 			final int idPosName = cursor.getColumnIndex(Poses.POS);
-			final int idLexDomain = cursor.getColumnIndex(Domains.DOMAIN);
+			final int idDomain = cursor.getColumnIndex(Domains.DOMAIN);
 			final int idDefinition = cursor.getColumnIndex(Synsets.DEFINITION);
 			final String posName = cursor.getString(idPosName);
-			final String lexDomain = cursor.getString(idLexDomain);
+			final String domain = cursor.getString(idDomain);
 			final String definition = cursor.getString(idDefinition);
 
 			Spanner.appendImage(sb, BaseModule.this.synsetDrawable);
 			sb.append(' ');
-			synset(sb, synsetId, posName, lexDomain, definition);
+			synset(sb, synsetId, posName, domain, definition);
 
 			// attach result
 			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
@@ -616,7 +616,7 @@ abstract public class BaseModule extends Module
 	 * @param sb         string builder
 	 * @param synsetId   synset id
 	 * @param posName    pos
-	 * @param lexDomain  lex domain
+	 * @param domain     domain
 	 * @param definition definition
 	 * @param tagCount   tag count
 	 * @param cased      cased
@@ -624,9 +624,9 @@ abstract public class BaseModule extends Module
 	 */
 	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
-	private SpannableStringBuilder sense(@NonNull final SpannableStringBuilder sb, final long synsetId, final CharSequence posName, final CharSequence lexDomain, final CharSequence definition, final int tagCount, @Nullable final CharSequence cased)
+	private SpannableStringBuilder sense(@NonNull final SpannableStringBuilder sb, final long synsetId, final CharSequence posName, final CharSequence domain, final CharSequence definition, final int tagCount, @Nullable final CharSequence cased)
 	{
-		synset_head(sb, synsetId, posName, lexDomain);
+		synset_head(sb, synsetId, posName, domain);
 
 		if (cased != null && cased.length() > 0)
 		{
@@ -680,15 +680,15 @@ abstract public class BaseModule extends Module
 		{
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 			final int idPosName = cursor.getColumnIndex(Poses.POS);
-			final int idLexDomain = cursor.getColumnIndex(Domains.DOMAIN);
+			final int idDomain = cursor.getColumnIndex(Domains.DOMAIN);
 			final int idDefinition = cursor.getColumnIndex(Synsets.DEFINITION);
 			final String posName = cursor.getString(idPosName);
-			final String lexDomain = cursor.getString(idLexDomain);
+			final String domain = cursor.getString(idDomain);
 			final String definition = cursor.getString(idDefinition);
 
 			Spanner.appendImage(sb, BaseModule.this.synsetDrawable);
 			sb.append(' ');
-			synset(sb, synsetId, posName, lexDomain, definition);
+			synset(sb, synsetId, posName, domain, definition);
 
 			// result
 			if (addNewNode)
@@ -718,15 +718,15 @@ abstract public class BaseModule extends Module
 	 * @param sb         string builder
 	 * @param synsetId   synset id
 	 * @param posName    pos
-	 * @param lexDomain  lex domain
+	 * @param domain     domain
 	 * @param definition definition
 	 * @return string builder
 	 */
 	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
-	private SpannableStringBuilder synset(@NonNull final SpannableStringBuilder sb, final long synsetId, final CharSequence posName, final CharSequence lexDomain, final CharSequence definition)
+	private SpannableStringBuilder synset(@NonNull final SpannableStringBuilder sb, final long synsetId, final CharSequence posName, final CharSequence domain, final CharSequence definition)
 	{
-		synset_head(sb, synsetId, posName, lexDomain);
+		synset_head(sb, synsetId, posName, domain);
 		sb.append('\n');
 		synset_definition(sb, definition);
 		return sb;
@@ -735,15 +735,15 @@ abstract public class BaseModule extends Module
 	/**
 	 * Synset head to string builder
 	 *
-	 * @param sb        string builder
-	 * @param synsetId  synset id
-	 * @param posName   pos
-	 * @param lexDomain lex domain
+	 * @param sb       string builder
+	 * @param synsetId synset id
+	 * @param posName  pos
+	 * @param domain   domain
 	 * @return string builder
 	 */
 	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
-	private SpannableStringBuilder synset_head(@NonNull final SpannableStringBuilder sb, final long synsetId, final CharSequence posName, final CharSequence lexDomain)
+	private SpannableStringBuilder synset_head(@NonNull final SpannableStringBuilder sb, final long synsetId, final CharSequence posName, final CharSequence domain)
 	{
 		Spanner.appendImage(sb, BaseModule.this.posDrawable);
 		sb.append(' ');
@@ -751,7 +751,7 @@ abstract public class BaseModule extends Module
 		sb.append(' ');
 		Spanner.appendImage(sb, BaseModule.this.domainDrawable);
 		sb.append(' ');
-		sb.append(lexDomain);
+		sb.append(domain);
 		sb.append(' ');
 		Spanner.append(sb, Long.toString(synsetId), 0, WordNetFactories.dataFactory);
 		return sb;
@@ -817,11 +817,11 @@ abstract public class BaseModule extends Module
 				final String member = cursor.getString(idMember);
 
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
-				// final String formattedLemma = String.format(Locale.ENGLISH, "[%d] %s", i++, lemma);
-				// sb.append(formattedLemma);
+				// final String formattedWord = String.format(Locale.ENGLISH, "[%d] %s", i++, word);
+				// sb.append(formattedWord);
 				// sb.append(Integer.toString(i++));
 				// sb.append('-');
-				// sb.append(lemma);
+				// sb.append(word);
 				Spanner.append(sb, member, 0, WordNetFactories.membersFactory);
 
 				// result
@@ -880,23 +880,23 @@ abstract public class BaseModule extends Module
 			}
 			else
 			{
-				final int lemmaId = cursor.getColumnIndex(Words.WORD);
+				final int wordId = cursor.getColumnIndex(Words.WORD);
 				// int i = 1;
 				do
 				{
-					final String lemma = cursor.getString(lemmaId);
+					final String word = cursor.getString(wordId);
 					if (sb.length() != 0)
 					{
 						sb.append('\n');
 					}
-					// final String formattedLemma = String.format(Locale.ENGLISH, "[%d] %s", i++, lemma);
-					// sb.append(formattedLemma);
+					// final String formattedWord = String.format(Locale.ENGLISH, "[%d] %s", i++, word);
+					// sb.append(formattedWord);
 					Spanner.appendImage(sb, BaseModule.this.memberDrawable);
 					sb.append(' ');
 					// sb.append(Integer.toString(i++));
 					// sb.append('-');
-					// sb.append(lemma);
-					Spanner.append(sb, lemma, 0, WordNetFactories.membersFactory);
+					// sb.append(word);
+					Spanner.append(sb, word, 0, WordNetFactories.membersFactory);
 				}
 				while (cursor.moveToNext());
 			}
@@ -993,12 +993,8 @@ abstract public class BaseModule extends Module
 		return changed;
 	}
 
-	// L I N K S
+	// R E L A T I O N S
 
-	//static private final String SOURCE_SYNSETID = "s_synsetid";
-	//static private final String SOURCE_DEFINITION = "s_definition";
-	//static private final String SOURCE_LEMMA = "s_lemma";
-	//static private final String SOURCE_WORDID = "s_wordid";
 	static public final String TARGET_SYNSETID = "d_synsetid";
 	@SuppressWarnings("WeakerAccess")
 	static public final String TARGET_DEFINITION = "d_definition";
@@ -1047,7 +1043,7 @@ abstract public class BaseModule extends Module
 			final int idTargetMembers = cursor.getColumnIndex(BaseRelations_Senses_Words_X.MEMBERS2);
 			final int idRecurses = cursor.getColumnIndex(BaseRelations_Senses_Words_X.RECURSES);
 			final int idTargetWordId = cursor.getColumnIndex(BaseModule.TARGET_WORDID);
-			final int idTargetLemma = cursor.getColumnIndex(BaseModule.TARGET_WORD);
+			final int idTargetWord = cursor.getColumnIndex(BaseModule.TARGET_WORD);
 
 			do
 			{
@@ -1060,12 +1056,12 @@ abstract public class BaseModule extends Module
 				final String targetDefinition = cursor.getString(idTargetDefinition);
 				String targetMembers = cursor.getString(idTargetMembers);
 				final boolean relationCanRecurse = !cursor.isNull(idRecurses) && cursor.getInt(idRecurses) != 0;
-				final String targetLemma = cursor.isNull(idTargetLemma) ? null : cursor.getString(idTargetLemma);
+				final String targetWord = cursor.isNull(idTargetWord) ? null : cursor.getString(idTargetWord);
 				final Long targetWordId = cursor.isNull(idTargetWordId) ? null : cursor.getLong(idTargetWordId);
 
-				if (targetLemma != null)
+				if (targetWord != null)
 				{
-					targetMembers = targetMembers.replaceAll("\\b" + targetLemma + "\\b", targetLemma + '*');
+					targetMembers = targetMembers.replaceAll("\\b" + targetWord + "\\b", targetWord + '*');
 				}
 				Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
 				sb.append(' ');
@@ -1327,7 +1323,7 @@ abstract public class BaseModule extends Module
 			final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
 			final int idTargetMembers = cursor.getColumnIndex(LexRelations_Senses_Words_X.MEMBERS2);
 			final int idTargetWordId = cursor.getColumnIndex(BaseModule.TARGET_WORDID);
-			final int idTargetLemma = cursor.getColumnIndex(BaseModule.TARGET_WORD);
+			final int idTargetWord = cursor.getColumnIndex(BaseModule.TARGET_WORD);
 
 			do
 			{
@@ -1338,13 +1334,13 @@ abstract public class BaseModule extends Module
 				final int relationId = cursor.getInt(idRelationId);
 				final long targetSynsetId = cursor.getLong(idTargetSynsetId);
 				final String targetDefinition = cursor.getString(idTargetDefinition);
-				final String targetLemma = cursor.getString(idTargetLemma);
+				final String targetWord = cursor.getString(idTargetWord);
 				String targetMembers = cursor.getString(idTargetMembers);
-				if (targetLemma != null)
+				if (targetWord != null)
 				{
-					targetMembers = targetMembers.replaceAll("\\b" + targetLemma + "\\b", targetLemma + '*');
+					targetMembers = targetMembers.replaceAll("\\b" + targetWord + "\\b", targetWord + '*');
 				}
-				// final String formattedTarget = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synset %s) {%s}", relation, targetLemma, targetWordId,targetDefinition, targetSynsetId, targetMembers);
+				// final String formattedTarget = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synset %s) {%s}", relation, targetWord, targetWordId,targetDefinition, targetSynsetId, targetMembers);
 
 				if (sb.length() != 0)
 				{
@@ -1354,7 +1350,7 @@ abstract public class BaseModule extends Module
 				// sb.append(formattedTarget);
 				// sb.append(' ');
 				Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
-				// Spanner.append(sb, targetLemma, 0, WordNetFactories.lemmaFactory);
+				// Spanner.append(sb, targetLWord, 0, WordNetFactories.wordFactory);
 				// sb.append(" in ");
 				// sb.append(' ');
 				// sb.append('{');
@@ -1423,7 +1419,7 @@ abstract public class BaseModule extends Module
 			final int idRelationId = cursor.getColumnIndex(Relations.RELATIONID);
 			final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
 			final int idTargetMembers = cursor.getColumnIndex(LexRelations_Senses_Words_X.MEMBERS2);
-			final int idTargetLemma = cursor.getColumnIndex(BaseModule.TARGET_WORD);
+			final int idTargetWord = cursor.getColumnIndex(BaseModule.TARGET_WORD);
 
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 			do
@@ -1433,13 +1429,13 @@ abstract public class BaseModule extends Module
 				// final String targetWordId = cursor.getString(idTargetWordId);
 				final int relationId = cursor.getInt(idRelationId);
 				final String targetDefinition = cursor.getString(idTargetDefinition);
-				final String targetLemma = cursor.getString(idTargetLemma);
+				final String targetWord = cursor.getString(idTargetWord);
 				String targetMembers = cursor.getString(idTargetMembers);
-				if (targetLemma != null)
+				if (targetWord != null)
 				{
-					targetMembers = targetMembers.replaceAll("\\b" + targetLemma + "\\b", targetLemma + '*');
+					targetMembers = targetMembers.replaceAll("\\b" + targetWord + "\\b", targetWord + '*');
 				}
-				// final String formattedTarget = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synset %s) {%s}", relation, targetLemma, targetWordId, targetDefinition, targetSynsetId, targetMembers);
+				// final String formattedTarget = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synset %s) {%s}", relation, targetWord, targetWordId, targetDefinition, targetSynsetId, targetMembers);
 
 				if (sb.length() != 0)
 				{
@@ -1448,7 +1444,7 @@ abstract public class BaseModule extends Module
 				// Spanner.appendImage(sb, getRelationDrawable(relationId));
 				// sb.append(formattedTarget);
 				// sb.append(' ');
-				Spanner.append(sb, targetLemma, 0, WordNetFactories.lemmaFactory);
+				Spanner.append(sb, targetWord, 0, WordNetFactories.wordFactory);
 				sb.append(" in ");
 				sb.append(' ');
 				sb.append('{');
@@ -1627,14 +1623,14 @@ abstract public class BaseModule extends Module
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
-			final String lemma = "---";
+			final String word = "---";
 			final int vTemplateId = cursor.getColumnIndex(Senses_VerbTemplates.TEMPLATE);
 
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 			do
 			{
 				final String vTemplate = cursor.getString(vTemplateId);
-				final String formattedVTemplate = String.format(Locale.ENGLISH, vTemplate, '[' + lemma + ']');
+				final String formattedVTemplate = String.format(Locale.ENGLISH, vTemplate, '[' + word + ']');
 				if (sb.length() != 0)
 				{
 					sb.append('\n');

@@ -29,7 +29,7 @@ public class PropBankContract
 		static public final String CONTENT_URI_TABLE = PbWords.TABLE;
 		static public final String PBWORDID = "pbwordid";
 		static public final String WORDID = "wordid";
-		static public final String WORD = "lemma";
+		static public final String WORD = "word";
 	}
 
 	static public final class PbRoleSets
@@ -51,7 +51,7 @@ public class PropBankContract
 		static public final String ROLESETNAME = "rolesetname";
 		static public final String ROLESETDESC = "rolesetdescr";
 		static public final String ROLESETHEAD = "rolesethead";
-		static public final String LEMMA = "lemma";
+		static public final String WORD = "word";
 		static public final String ALIASES = "aliases";
 	}
 
@@ -128,7 +128,7 @@ public class PropBankContract
 		static public final String TABLE = Suggest_PbWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 		static public final String PBWORDID = "pbwordid";
 		static public final String WORDID = "wordid";
-		static public final String WORD = "lemma";
+		static public final String WORD = "word";
 	}
 
 	static public final class Suggest_FTS_PbWords
@@ -137,6 +137,6 @@ public class PropBankContract
 		static public final String TABLE = Suggest_FTS_PbWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 		static public final String PBWORDID = "pbwordid";
 		static public final String WORDID = "wordid";
-		static public final String WORD = "lemma";
+		static public final String WORD = "word";
 	}
 }
