@@ -87,65 +87,63 @@ public class WordNetProvider extends BaseProvider
 	}
 
 	// table codes
-	static private final int WORDS = 10;
-	static private final int WORD = 11;
-	static private final int WORD_BY_WORD = 12;
-	static private final int SENSES = 20;
-	static private final int SENSE = 21;
-	static private final int SYNSETS = 30;
-	static private final int SYNSET = 31;
-	static private final int SEMRELATIONS = 40;
-	static private final int LEXRELATIONS = 50;
-	static private final int RELATIONS = 60;
-	static private final int POSES = 70;
-	static private final int DOMAINS = 80;
-	static private final int ADJPOSITIONS = 90;
-	static private final int SAMPLES = 100;
+	static final int WORDS = 10;
+	static final int WORD = 11;
+	static final int SENSES = 20;
+	static final int SENSE = 21;
+	static final int SYNSETS = 30;
+	static final int SYNSET = 31;
+	static final int SEMRELATIONS = 40;
+	static final int LEXRELATIONS = 50;
+	static final int RELATIONS = 60;
+	static final int POSES = 70;
+	static final int DOMAINS = 80;
+	static final int ADJPOSITIONS = 90;
+	static final int SAMPLES = 100;
 
 	// view codes
-	static private final int DICT = 200;
+	static final int DICT = 200;
 
 	// join codes
-	static private final int WORDS_SENSES_SYNSETS = 310;
-	static private final int WORDS_SENSES_CASEDWORDS_SYNSETS = 311;
-	static private final int WORDS_SENSES_CASEDWORDS_SYNSETS_POSTYPES_DOMAINS = 312;
-	static private final int SENSES_WORDS = 320;
-	static private final int SENSES_WORDS_BY_SYNSET = 321;
-	static private final int SENSES_SYNSETS_POSTYPES_DOMAINS = 330;
-	static private final int SYNSETS_POSTYPES_DOMAINS = 340;
+	static final int WORDS_SENSES_SYNSETS = 310;
+	static final int WORDS_SENSES_CASEDWORDS_SYNSETS = 311;
+	static final int WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS = 312;
+	static final int SENSES_WORDS = 320;
+	static final int SENSES_WORDS_BY_SYNSET = 321;
+	static final int SENSES_SYNSETS_POSES_DOMAINS = 330;
+	static final int SYNSETS_POSES_DOMAINS = 340;
 
-	static private final int BASERELATIONS_SENSES_WORDS_X_BY_SYNSET = 400;
-	static private final int SEMRELATIONS_SYNSETS = 410;
-	static private final int SEMRELATIONS_SYNSETS_X = 411;
-	static private final int SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET = 412;
-	static private final int LEXRELATIONS_SENSES = 420;
-	static private final int LEXRELATIONS_SENSES_X = 421;
-	static private final int LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET = 422;
+	static final int ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET = 400;
+	static final int SEMRELATIONS_SYNSETS = 410;
+	static final int SEMRELATIONS_SYNSETS_X = 411;
+	static final int SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET = 412;
+	static final int LEXRELATIONS_SENSES = 420;
+	static final int LEXRELATIONS_SENSES_X = 421;
+	static final int LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET = 422;
 
-	static private final int SENSES_VFRAMES = 510;
-	static private final int SENSES_VTEMPLATES = 515;
-	static private final int SENSES_ADJPOSITIONS = 520;
-	static private final int LEXES_MORPHS = 530;
-	static private final int WORDS_LEXES_MORPHS = 541;
-	static private final int WORDS_LEXES_MORPHS_BY_WORD = 542;
+	static final int SENSES_VFRAMES = 510;
+	static final int SENSES_VTEMPLATES = 515;
+	static final int SENSES_ADJPOSITIONS = 520;
+	static final int LEXES_MORPHS = 530;
+	static final int WORDS_LEXES_MORPHS = 541;
+	static final int WORDS_LEXES_MORPHS_BY_WORD = 542;
 
 	// search text codes
-	static private final int LOOKUP_FTS_WORDS = 810;
-	static private final int LOOKUP_FTS_DEFINITIONS = 820;
-	static private final int LOOKUP_FTS_SAMPLES = 830;
+	static final int LOOKUP_FTS_WORDS = 810;
+	static final int LOOKUP_FTS_DEFINITIONS = 820;
+	static final int LOOKUP_FTS_SAMPLES = 830;
 
 	// suggest codes
-	static private final int SUGGEST_WORDS = 900;
-	static private final int SUGGEST_FTS_WORDS = 910;
-	static private final int SUGGEST_FTS_DEFINITIONS = 920;
-	static private final int SUGGEST_FTS_SAMPLES = 930;
+	static final int SUGGEST_WORDS = 900;
+	static final int SUGGEST_FTS_WORDS = 910;
+	static final int SUGGEST_FTS_DEFINITIONS = 920;
+	static final int SUGGEST_FTS_SAMPLES = 930;
 
 	static private void matchURIs()
 	{
 		// table
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, Words.TABLE, WordNetProvider.WORDS);
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, Words.TABLE + "/#", WordNetProvider.WORD);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Words.TABLE + "/*", WordNetProvider.WORD_BY_WORD);
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, Senses.TABLE, WordNetProvider.SENSES);
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, Senses.TABLE + "/#", WordNetProvider.SENSE);
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, Synsets.TABLE, WordNetProvider.SYNSETS);
@@ -164,13 +162,13 @@ public class WordNetProvider extends BaseProvider
 		// joins
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, Words_Senses_Synsets.TABLE, WordNetProvider.WORDS_SENSES_SYNSETS);
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, Words_Senses_CasedWords_Synsets.TABLE, WordNetProvider.WORDS_SENSES_CASEDWORDS_SYNSETS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Words_Senses_CasedWords_Synsets_Poses_Domains.TABLE, WordNetProvider.WORDS_SENSES_CASEDWORDS_SYNSETS_POSTYPES_DOMAINS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Words_Senses_CasedWords_Synsets_Poses_Domains.TABLE, WordNetProvider.WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS);
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, Senses_Words.TABLE, WordNetProvider.SENSES_WORDS);
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, Senses_Words.TABLE_BY_SYNSET, WordNetProvider.SENSES_WORDS_BY_SYNSET);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Senses_Synsets_Poses_Domains.TABLE, WordNetProvider.SENSES_SYNSETS_POSTYPES_DOMAINS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Synsets_Poses_Domains.TABLE, WordNetProvider.SYNSETS_POSTYPES_DOMAINS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Senses_Synsets_Poses_Domains.TABLE, WordNetProvider.SENSES_SYNSETS_POSES_DOMAINS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Synsets_Poses_Domains.TABLE, WordNetProvider.SYNSETS_POSES_DOMAINS);
 
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, BaseRelations_Senses_Words_X.TABLE_BY_SYNSET, WordNetProvider.BASERELATIONS_SENSES_WORDS_X_BY_SYNSET);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, BaseRelations_Senses_Words_X.TABLE_BY_SYNSET, WordNetProvider.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET);
 
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, SemRelations_Synsets.TABLE, WordNetProvider.SEMRELATIONS_SYNSETS);
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, SemRelations_Synsets_X.TABLE, WordNetProvider.SEMRELATIONS_SYNSETS_X);
@@ -203,7 +201,6 @@ public class WordNetProvider extends BaseProvider
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_Samples.TABLE + "/*", WordNetProvider.SUGGEST_FTS_SAMPLES);
 		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_Samples.TABLE + "/", WordNetProvider.SUGGEST_FTS_SAMPLES);
 	}
-
 
 	@NonNull
 	static public String makeUri(final String table)
@@ -246,7 +243,6 @@ public class WordNetProvider extends BaseProvider
 
 			case WORDS:
 			case WORD:
-			case WORD_BY_WORD:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words.TABLE;
 			case SENSES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Senses.TABLE;
@@ -279,7 +275,7 @@ public class WordNetProvider extends BaseProvider
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_Senses_Synsets.TABLE;
 			case WORDS_SENSES_CASEDWORDS_SYNSETS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_Senses_CasedWords_Synsets.TABLE;
-			case WORDS_SENSES_CASEDWORDS_SYNSETS_POSTYPES_DOMAINS:
+			case WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_Senses_CasedWords_Synsets_Poses_Domains.TABLE;
 
 			// J O I N S
@@ -288,11 +284,11 @@ public class WordNetProvider extends BaseProvider
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Senses_Words.TABLE;
 			case SENSES_WORDS_BY_SYNSET:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Senses_Words.TABLE_BY_SYNSET;
-			case SENSES_SYNSETS_POSTYPES_DOMAINS:
+			case SENSES_SYNSETS_POSES_DOMAINS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Senses_Synsets_Poses_Domains.TABLE;
-			case SYNSETS_POSTYPES_DOMAINS:
+			case SYNSETS_POSES_DOMAINS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Synsets_Poses_Domains.TABLE;
-			case BASERELATIONS_SENSES_WORDS_X_BY_SYNSET:
+			case ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + BaseRelations_Senses_Words_X.TABLE_BY_SYNSET;
 			case SEMRELATIONS_SYNSETS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + SemRelations_Synsets.TABLE;
@@ -513,14 +509,14 @@ public class WordNetProvider extends BaseProvider
 				table2 = Queries.WORDS_SENSES_CASEDWORDS_SYNSETS.TABLE;
 				break;
 
-			case WORDS_SENSES_CASEDWORDS_SYNSETS_POSTYPES_DOMAINS:
+			case WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS:
 				table = "words AS " + WordNetContract.WORD + " " + //
 						"LEFT JOIN senses AS " + WordNetContract.SENSE + " USING (wordid) " + //
 						"LEFT JOIN casedwords AS " + WordNetContract.CASED + " USING (wordid,casedwordid) " + //
 						"LEFT JOIN synsets AS " + WordNetContract.SYNSET + " USING (synsetid) " + //
 						"LEFT JOIN poses AS " + WordNetContract.POS + " USING (posid) " + //
 						"LEFT JOIN domains AS " + WordNetContract.DOMAIN + " USING (domainid)";
-				table2 = Queries.WORDS_SENSES_CASEDWORDS_SYNSETS_POSTYPES_DOMAINS.TABLE;
+				table2 = Queries.WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS.TABLE;
 				break;
 
 			case SENSES_WORDS:
@@ -539,7 +535,7 @@ public class WordNetProvider extends BaseProvider
 				actualProjection2 = BaseProvider.appendProjection(actualProjection2, Queries.SENSES_WORDS_BY_SYNSET.PROJECTION[0].replaceAll("#\\{members\\}", WordNetContract.MEMBERS));
 				break;
 
-			case SENSES_SYNSETS_POSTYPES_DOMAINS:
+			case SENSES_SYNSETS_POSES_DOMAINS:
 				table = "senses AS " + WordNetContract.SENSE + " " + //
 						"INNER JOIN synsets AS " + WordNetContract.SYNSET + " USING (synsetid) " + //
 						"LEFT JOIN poses AS " + WordNetContract.POS + " USING (posid) " + //
@@ -547,14 +543,14 @@ public class WordNetProvider extends BaseProvider
 				table2 = Queries.SENSES_SYNSETS_POSES_DOMAINS.TABLE;
 				break;
 
-			case SYNSETS_POSTYPES_DOMAINS:
+			case SYNSETS_POSES_DOMAINS:
 				table = "synsets AS " + WordNetContract.SYNSET + " " + //
 						"LEFT JOIN poses AS " + WordNetContract.POS + " USING (posid) " + //
 						"LEFT JOIN domains AS " + WordNetContract.DOMAIN + " USING (domainid)";
 				table2 = Queries.SYNSETS_POSES_DOMAINS.TABLE;
 				break;
 
-			case BASERELATIONS_SENSES_WORDS_X_BY_SYNSET:
+			case ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET:
 			{
 				final String semTable = SemRelations.TABLE;
 				final String lexTable = LexRelations.TABLE;
@@ -578,7 +574,7 @@ public class WordNetProvider extends BaseProvider
 						BaseRelations.SYNSETID2, //
 				};
 				groupBy = BaseModule.TARGET_SYNSETID + "," + WordNetContract.TYPE + ",relation,relationid," + BaseModule.TARGET_WORDID + ',' + BaseModule.TARGET_WORD;
-				groupBy2 = Queries.BASERELATIONS_SENSES_WORDS_X_BY_SYNSET.GROUPBY
+				groupBy2 = Queries.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET.GROUPBY
 						.replaceAll("#\\{query_target_synsetid\\}", BaseModule.TARGET_SYNSETID) //
 						.replaceAll("#\\{query_target_wordid\\}", BaseModule.TARGET_WORDID) //
 						.replaceAll("#\\{query_target_word\\}", BaseModule.TARGET_WORD);
@@ -600,7 +596,7 @@ public class WordNetProvider extends BaseProvider
 						"LEFT JOIN senses ON " + WordNetContract.SYNSET2 + ".synsetid = senses.synsetid " + //
 						"LEFT JOIN words AS " + WordNetContract.WORD + " USING (wordid) " + //
 						"LEFT JOIN words AS " + WordNetContract.WORD2 + " ON " + WordNetContract.RELATION + ".word2id = " + WordNetContract.WORD2 + ".wordid";
-				table2 = Queries.BASERELATIONS_SENSES_WORDS_X_BY_SYNSET.TABLE.replaceFirst("#\\{query\\}", subQuery);
+				table2 = Queries.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET.TABLE.replaceFirst("#\\{query\\}", subQuery);
 				actualSelection = null;
 				actualSelection2 = null;
 			}
@@ -614,7 +610,7 @@ public class WordNetProvider extends BaseProvider
 
 			case SEMRELATIONS_SYNSETS_X:
 				table = "semrelations AS " + WordNetContract.RELATION + ' ' + //
-						"INNER JOIN relations USING (relationid)" + //
+						"INNER JOIN relations USING (relationid) " + //
 						"INNER JOIN synsets AS " + WordNetContract.SYNSET2 + " ON " + WordNetContract.RELATION + ".synset2id = " + WordNetContract.SYNSET2 + ".synsetid ";
 				table2 = Queries.SEMRELATIONS_SYNSETS_X.TABLE;
 				break;
@@ -866,7 +862,7 @@ public class WordNetProvider extends BaseProvider
 	 * @param selection2      selection
 	 * @return union sql
 	 */
-	private String makeQuery(//
+	static String makeQuery(//
 			@SuppressWarnings("SameParameterValue") @NonNull final String table1, //
 			@SuppressWarnings("SameParameterValue") @NonNull final String table2, //
 			@NonNull final String[] projection1, //
@@ -917,7 +913,7 @@ public class WordNetProvider extends BaseProvider
 		//return embed(uQuery, projection, selection, groupBy, sortOrder);
 	}
 
-	private String makeSelection(@SuppressWarnings("UnusedParameters") final String[] projection, final String selection)
+	private static String makeSelection(@SuppressWarnings("UnusedParameters") final String[] projection, final String selection)
 	{
 		return selection;
 	}

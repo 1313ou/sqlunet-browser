@@ -6,7 +6,8 @@ public class Queries {
 		static public final String TABLE = "adjpositions";
 	}
 
-	static public class BASERELATIONS_SENSES_WORDS_X_BY_SYNSET {
+	static public class ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET
+	{
 		static public final String TABLE = "( #{query} ) AS r INNER JOIN relations USING (relationid) INNER JOIN synsets AS y2 ON r.synset2id = y2.synsetid LEFT JOIN senses ON y2.synsetid = senses.synsetid LEFT JOIN words AS w USING (wordid) LEFT JOIN words AS w2 ON r.word2id = w2.wordid";
 		static public final String GROUPBY = "#{query_target_synsetid},t,relation,relationid,#{query_target_wordid},#{query_target_word}";
 	}
@@ -119,28 +120,28 @@ public class Queries {
 
 	static public class SUGGEST_FTS_DEFINITIONS {
 		static public final String TABLE = "synsets_definition_fts4";
-		static public final String[] PROJECTION = {"synsetid AS _id","definition AS SearchManager.SUGGEST_COLUMN_TEXT_1","definition AS SearchManager.SUGGEST_COLUMN_QUERY"};
+		static public final String[] PROJECTION = {"synsetid AS _id","definition AS suggest_text_1","definition AS suggest_intent_query"};
 		static public final String SELECTION = "definition MATCH ?";
 		static public final String[] ARGS = {"#{uri_last}*"};
 	}
 
 	static public class SUGGEST_FTS_SAMPLES {
 		static public final String TABLE = "samples_sample_fts4";
-		static public final String[] PROJECTION = {"sampleid AS _id","sample AS SearchManager.SUGGEST_COLUMN_TEXT_1","sample AS SearchManager.SUGGEST_COLUMN_QUERY"};
+		static public final String[] PROJECTION = {"sampleid AS _id","sample AS suggest_text_1","sample AS suggest_intent_query"};
 		static public final String SELECTION = "sample MATCH ?";
 		static public final String[] ARGS = {"#{uri_last}*"};
 	}
 
 	static public class SUGGEST_FTS_WORDS {
 		static public final String TABLE = "words_word_fts4";
-		static public final String[] PROJECTION = {"wordid AS _id","word AS SearchManager.SUGGEST_COLUMN_TEXT_1","word AS SearchManager.SUGGEST_COLUMN_QUERY"};
+		static public final String[] PROJECTION = {"wordid AS _id","word AS suggest_text_1","word AS suggest_intent_query"};
 		static public final String SELECTION = "word MATCH ?";
 		static public final String[] ARGS = {"#{uri_last}*"};
 	}
 
 	static public class SUGGEST_WORDS {
 		static public final String TABLE = "words";
-		static public final String[] PROJECTION = {"wordid AS _id","word AS SearchManager.SUGGEST_COLUMN_TEXT_1","word AS SearchManager.SUGGEST_COLUMN_QUERY"};
+		static public final String[] PROJECTION = {"wordid AS _id","word AS suggest_text_1","word AS suggest_intent_query"};
 		static public final String SELECTION = "word LIKE ? || '%'";
 		static public final String[] ARGS = {"#{uri_last}"};
 	}
@@ -178,7 +179,7 @@ public class Queries {
 		static public final String TABLE = "words AS w LEFT JOIN senses AS s USING (wordid) LEFT JOIN casedwords AS c USING (wordid,casedwordid) LEFT JOIN synsets AS y USING (synsetid)";
 	}
 
-	static public class WORDS_SENSES_CASEDWORDS_SYNSETS_POSTYPES_DOMAINS
+	static public class WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS
 	{
 		static public final String TABLE = "words AS w LEFT JOIN senses AS s USING (wordid) LEFT JOIN casedwords AS c USING (wordid,casedwordid) LEFT JOIN synsets AS y USING (synsetid) LEFT JOIN poses AS p USING (posid) LEFT JOIN domains AS d USING (domainid)";
 	}

@@ -386,7 +386,7 @@ public abstract class BaseProvider extends ContentProvider
 	 * @param items      items to addItem to projection
 	 * @return augmented projection
 	 */
-	static protected String[] appendProjection(@Nullable final String[] projection, @NonNull final String... items)
+	public static String[] appendProjection(@Nullable final String[] projection, @NonNull final String... items)
 	{
 		String[] projection2;
 		int i = 0;
