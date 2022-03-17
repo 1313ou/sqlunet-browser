@@ -69,7 +69,7 @@ NestedScrollView/ScrollView2D
  */
 public class TreeView
 {
-	private static final String TAG = "TreeView";
+	// private static final String TAG = "TreeView";
 
 	static private final String NODES_PATH_SEPARATOR = ";";
 
@@ -186,7 +186,7 @@ public class TreeView
 	@NonNull
 	private View makeView(@SuppressWarnings("SameParameterValue") final int style)
 	{
-		Log.d(TAG, "Make tree view");
+		// Log.d(TAG, "Make tree view");
 
 		// top scrollview
 		final ViewGroup view;
@@ -388,7 +388,7 @@ public class TreeView
 	 */
 	synchronized private void addSubtreeView(@NonNull final ViewGroup childrenView, @NonNull final TreeNode node, int atIndex)
 	{
-		Log.d(TAG, "Insert subtree view at index " + atIndex + " for node " + node + " count=" + childrenView.getChildCount());
+		// Log.d(TAG, "Insert subtree view at index " + atIndex + " for node " + node + " count=" + childrenView.getChildCount());
 		final Controller<?> controller = node.getController();
 		SubtreeView subtreeView = controller.getSubtreeView();
 		if (subtreeView == null)
@@ -487,7 +487,7 @@ public class TreeView
 	 */
 	synchronized private void removeSubtreeView(@NonNull final TreeNode node)
 	{
-		Log.d(TAG, "Remove subtree view for node " + node);
+		// Log.d(TAG, "Remove subtree view for node " + node);
 		TreeNode parent = node.getParent();
 		if (parent != null)
 		{
@@ -597,7 +597,7 @@ public class TreeView
 	private boolean scrollTo(@NonNull final View view)
 	{
 		int y = getPosition(view);
-		Log.d(TAG, "SCROLL " + y + " " + view);
+		// Log.d(TAG, "SCROLL " + y + " " + view);
 		if (y == 0)
 		{
 			return false;
@@ -682,7 +682,7 @@ public class TreeView
 	@Nullable
 	public View expandNode(@NonNull final TreeNode node, final int levels, final boolean fireHotNodes, final boolean overrideBreakExpand)
 	{
-		Log.d(TAG, "Expand node " + node);
+		// Log.d(TAG, "Expand node " + node);
 		//if (isNodeWithCompositeValueText(node, "Agent Agent"))
 		//{
 		//	Log.d(TAG, "XXX " + " " + node);

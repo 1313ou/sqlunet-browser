@@ -34,7 +34,7 @@ import androidx.annotation.NonNull;
  */
 public class TreeFactory
 {
-	private static final String TAG = "TreeFactory";
+	// private static final String TAG = "TreeFactory";
 
 	// NON-TREE (without tree junction icon)
 
@@ -215,7 +215,7 @@ public class TreeFactory
 	 */
 	static public void setNoResult(@NonNull final TreeNode node)
 	{
-		Log.d(TAG, "Deadend " + node);
+		// Log.d(TAG, "Deadend " + node);
 		node.setDeadend(true);
 		node.setEnabled(false);
 	}

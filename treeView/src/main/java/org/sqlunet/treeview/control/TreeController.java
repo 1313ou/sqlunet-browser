@@ -23,7 +23,7 @@ import androidx.annotation.NonNull;
  */
 public class TreeController extends Controller<CompositeValue>
 {
-	/// static private final String TAG = "TreeController";
+	// static private final String TAG = "TreeController";
 
 	/**
 	 * Junction view

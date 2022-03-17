@@ -24,7 +24,7 @@ import androidx.annotation.NonNull;
  */
 public class TreeOpExecute
 {
-	private static final String TAG = "TreeOpExecute";
+	// private static final String TAG = "TreeOpExecute";
 
 	private final TreeFragment fragment;
 
@@ -82,7 +82,7 @@ public class TreeOpExecute
 
 			case NEWTREE:
 			{
-				Log.d(TAG, "vvv " + op.getCode() + " " + node.toString());
+				// Log.d(TAG, "vvv " + op.getCode() + " " + node.toString());
 				final View view = treeView.expandNode(node, -1, false, false);
 				if (node.getController().takeEnsureVisible())
 				{
@@ -92,7 +92,7 @@ public class TreeOpExecute
 			break;
 
 			case NEWCHILD:
-				Log.d(TAG, "+++ " + op.getCode() + " " + node.toString());
+				// Log.d(TAG, "+++ " + op.getCode() + " " + node.toString());
 				//treeView.newNodeView(node, levels);
 				break;
 
@@ -100,7 +100,7 @@ public class TreeOpExecute
 			case NEWEXTRA:
 			case NEWUNIQUE:
 			{
-				Log.d(TAG, "... " + op.getCode() + " " + node.toString());
+				// Log.d(TAG, "... " + op.getCode() + " " + node.toString());
 				final View view = treeView.newNodeView(node, levels);
 				if (node.getController().takeEnsureVisible())
 				{
@@ -111,7 +111,7 @@ public class TreeOpExecute
 
 			case UPDATE:
 			{
-				Log.d(TAG, "!!! " + op.getCode() + " " + node.toString());
+				// Log.d(TAG, "!!! " + op.getCode() + " " + node.toString());
 				final View view = treeView.update(node);
 				if (node.getController().takeEnsureVisible() && view != null)
 				{
@@ -126,7 +126,7 @@ public class TreeOpExecute
 				final ViewGroup childrenView = controller.getChildrenView();
 				if (childrenView != null && TreeView.isExpanded(node))
 				{
-					Log.d(TAG, "^^^ " + op.getCode() + " " + node.toString());
+					// Log.d(TAG, "^^^ " + op.getCode() + " " + node.toString());
 					treeView.collapseNode(node, true);
 				}
 			}
@@ -134,7 +134,7 @@ public class TreeOpExecute
 
 			case REMOVE:
 			{
-				Log.d(TAG, "--- " + op.getCode() + " " + node.toString());
+				// Log.d(TAG, "--- " + op.getCode() + " " + node.toString());
 				treeView.remove(node);
 			}
 			break;
@@ -143,7 +143,7 @@ public class TreeOpExecute
 
 			case DEADEND:
 			{
-				Log.d(TAG, "xxx " + op.getCode() + " " + node.toString());
+				// Log.d(TAG, "xxx " + op.getCode() + " " + node.toString());
 				treeView.deadend(node);
 			}
 			break;
