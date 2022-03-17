@@ -4,7 +4,6 @@
 
 package org.sqlunet.wordnet.provider;
 
-import android.app.SearchManager;
 import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;
@@ -18,7 +17,6 @@ import android.util.Log;
 
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.sql.SqlFormatter;
-import org.sqlunet.wordnet.loaders.BaseModule;
 import org.sqlunet.wordnet.provider.WordNetContract.AdjPositions;
 import org.sqlunet.wordnet.provider.WordNetContract.BaseRelations;
 import org.sqlunet.wordnet.provider.WordNetContract.BaseRelations_Senses_Words_X;
@@ -56,6 +54,7 @@ import org.sqlunet.wordnet.provider.WordNetContract.Words_Lexes_Morphs;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_Synsets;
+import org.sqlunet.wordnet.provider.WordNetDispatcher.Result;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -86,120 +85,67 @@ public class WordNetProvider extends BaseProvider
 		matchURIs();
 	}
 
-	// table codes
-	static final int WORDS = 10;
-	static final int WORD = 11;
-	static final int SENSES = 20;
-	static final int SENSE = 21;
-	static final int SYNSETS = 30;
-	static final int SYNSET = 31;
-	static final int SEMRELATIONS = 40;
-	static final int LEXRELATIONS = 50;
-	static final int RELATIONS = 60;
-	static final int POSES = 70;
-	static final int DOMAINS = 80;
-	static final int ADJPOSITIONS = 90;
-	static final int SAMPLES = 100;
-
-	// view codes
-	static final int DICT = 200;
-
-	// join codes
-	static final int WORDS_SENSES_SYNSETS = 310;
-	static final int WORDS_SENSES_CASEDWORDS_SYNSETS = 311;
-	static final int WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS = 312;
-	static final int SENSES_WORDS = 320;
-	static final int SENSES_WORDS_BY_SYNSET = 321;
-	static final int SENSES_SYNSETS_POSES_DOMAINS = 330;
-	static final int SYNSETS_POSES_DOMAINS = 340;
-
-	static final int ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET = 400;
-	static final int SEMRELATIONS_SYNSETS = 410;
-	static final int SEMRELATIONS_SYNSETS_X = 411;
-	static final int SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET = 412;
-	static final int LEXRELATIONS_SENSES = 420;
-	static final int LEXRELATIONS_SENSES_X = 421;
-	static final int LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET = 422;
-
-	static final int SENSES_VFRAMES = 510;
-	static final int SENSES_VTEMPLATES = 515;
-	static final int SENSES_ADJPOSITIONS = 520;
-	static final int LEXES_MORPHS = 530;
-	static final int WORDS_LEXES_MORPHS = 541;
-	static final int WORDS_LEXES_MORPHS_BY_WORD = 542;
-
-	// search text codes
-	static final int LOOKUP_FTS_WORDS = 810;
-	static final int LOOKUP_FTS_DEFINITIONS = 820;
-	static final int LOOKUP_FTS_SAMPLES = 830;
-
-	// suggest codes
-	static final int SUGGEST_WORDS = 900;
-	static final int SUGGEST_FTS_WORDS = 910;
-	static final int SUGGEST_FTS_DEFINITIONS = 920;
-	static final int SUGGEST_FTS_SAMPLES = 930;
-
 	static private void matchURIs()
 	{
 		// table
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Words.TABLE, WordNetProvider.WORDS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Words.TABLE + "/#", WordNetProvider.WORD);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Senses.TABLE, WordNetProvider.SENSES);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Senses.TABLE + "/#", WordNetProvider.SENSE);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Synsets.TABLE, WordNetProvider.SYNSETS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Synsets.TABLE + "/#", WordNetProvider.SYNSET);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, SemRelations.TABLE, WordNetProvider.SEMRELATIONS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, LexRelations.TABLE, WordNetProvider.LEXRELATIONS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Relations.TABLE, WordNetProvider.RELATIONS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Poses.TABLE, WordNetProvider.POSES);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Domains.TABLE, WordNetProvider.DOMAINS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, AdjPositions.TABLE, WordNetProvider.ADJPOSITIONS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Samples.TABLE, WordNetProvider.SAMPLES);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Words.TABLE, WordNetDispatcher.WORDS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Words.TABLE + "/#", WordNetDispatcher.WORD);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Senses.TABLE, WordNetDispatcher.SENSES);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Senses.TABLE + "/#", WordNetDispatcher.SENSE);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Synsets.TABLE, WordNetDispatcher.SYNSETS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Synsets.TABLE + "/#", WordNetDispatcher.SYNSET);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, SemRelations.TABLE, WordNetDispatcher.SEMRELATIONS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, LexRelations.TABLE, WordNetDispatcher.LEXRELATIONS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Relations.TABLE, WordNetDispatcher.RELATIONS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Poses.TABLE, WordNetDispatcher.POSES);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Domains.TABLE, WordNetDispatcher.DOMAINS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, AdjPositions.TABLE, WordNetDispatcher.ADJPOSITIONS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Samples.TABLE, WordNetDispatcher.SAMPLES);
 
 		// view
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Dict.TABLE, WordNetProvider.DICT);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Dict.TABLE, WordNetDispatcher.DICT);
 
 		// joins
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Words_Senses_Synsets.TABLE, WordNetProvider.WORDS_SENSES_SYNSETS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Words_Senses_CasedWords_Synsets.TABLE, WordNetProvider.WORDS_SENSES_CASEDWORDS_SYNSETS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Words_Senses_CasedWords_Synsets_Poses_Domains.TABLE, WordNetProvider.WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Senses_Words.TABLE, WordNetProvider.SENSES_WORDS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Senses_Words.TABLE_BY_SYNSET, WordNetProvider.SENSES_WORDS_BY_SYNSET);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Senses_Synsets_Poses_Domains.TABLE, WordNetProvider.SENSES_SYNSETS_POSES_DOMAINS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Synsets_Poses_Domains.TABLE, WordNetProvider.SYNSETS_POSES_DOMAINS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Words_Senses_Synsets.TABLE, WordNetDispatcher.WORDS_SENSES_SYNSETS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Words_Senses_CasedWords_Synsets.TABLE, WordNetDispatcher.WORDS_SENSES_CASEDWORDS_SYNSETS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Words_Senses_CasedWords_Synsets_Poses_Domains.TABLE, WordNetDispatcher.WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Senses_Words.TABLE, WordNetDispatcher.SENSES_WORDS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Senses_Words.TABLE_BY_SYNSET, WordNetDispatcher.SENSES_WORDS_BY_SYNSET);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Senses_Synsets_Poses_Domains.TABLE, WordNetDispatcher.SENSES_SYNSETS_POSES_DOMAINS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Synsets_Poses_Domains.TABLE, WordNetDispatcher.SYNSETS_POSES_DOMAINS);
 
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, BaseRelations_Senses_Words_X.TABLE_BY_SYNSET, WordNetProvider.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, BaseRelations_Senses_Words_X.TABLE_BY_SYNSET, WordNetDispatcher.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET);
 
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, SemRelations_Synsets.TABLE, WordNetProvider.SEMRELATIONS_SYNSETS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, SemRelations_Synsets_X.TABLE, WordNetProvider.SEMRELATIONS_SYNSETS_X);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, SemRelations_Synsets_Words_X.TABLE_BY_SYNSET, WordNetProvider.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, SemRelations_Synsets.TABLE, WordNetDispatcher.SEMRELATIONS_SYNSETS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, SemRelations_Synsets_X.TABLE, WordNetDispatcher.SEMRELATIONS_SYNSETS_X);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, SemRelations_Synsets_Words_X.TABLE_BY_SYNSET, WordNetDispatcher.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET);
 
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, LexRelations_Senses.TABLE, WordNetProvider.LEXRELATIONS_SENSES);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, LexRelations_Senses_X.TABLE, WordNetProvider.LEXRELATIONS_SENSES_X);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, LexRelations_Senses_Words_X.TABLE_BY_SYNSET, WordNetProvider.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, LexRelations_Senses.TABLE, WordNetDispatcher.LEXRELATIONS_SENSES);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, LexRelations_Senses_X.TABLE, WordNetDispatcher.LEXRELATIONS_SENSES_X);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, LexRelations_Senses_Words_X.TABLE_BY_SYNSET, WordNetDispatcher.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET);
 
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Senses_VerbFrames.TABLE, WordNetProvider.SENSES_VFRAMES);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Senses_VerbTemplates.TABLE, WordNetProvider.SENSES_VTEMPLATES);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Senses_AdjPositions.TABLE, WordNetProvider.SENSES_ADJPOSITIONS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Senses_VerbFrames.TABLE, WordNetDispatcher.SENSES_VFRAMES);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Senses_VerbTemplates.TABLE, WordNetDispatcher.SENSES_VTEMPLATES);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Senses_AdjPositions.TABLE, WordNetDispatcher.SENSES_ADJPOSITIONS);
 
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Lexes_Morphs.TABLE, WordNetProvider.LEXES_MORPHS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Words_Lexes_Morphs.TABLE, WordNetProvider.WORDS_LEXES_MORPHS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Words_Lexes_Morphs.TABLE_BY_WORD, WordNetProvider.WORDS_LEXES_MORPHS_BY_WORD);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Lexes_Morphs.TABLE, WordNetDispatcher.LEXES_MORPHS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Words_Lexes_Morphs.TABLE, WordNetDispatcher.WORDS_LEXES_MORPHS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Words_Lexes_Morphs.TABLE_BY_WORD, WordNetDispatcher.WORDS_LEXES_MORPHS_BY_WORD);
 
 		// search text
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_Words.TABLE, WordNetProvider.LOOKUP_FTS_WORDS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_Definitions.TABLE, WordNetProvider.LOOKUP_FTS_DEFINITIONS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_Samples.TABLE, WordNetProvider.LOOKUP_FTS_SAMPLES);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_Words.TABLE, WordNetDispatcher.LOOKUP_FTS_WORDS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_Definitions.TABLE, WordNetDispatcher.LOOKUP_FTS_DEFINITIONS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_Samples.TABLE, WordNetDispatcher.LOOKUP_FTS_SAMPLES);
 
 		// search
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_Words.TABLE + "/*", WordNetProvider.SUGGEST_WORDS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_Words.TABLE + "/", WordNetProvider.SUGGEST_WORDS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_Words.TABLE + "/*", WordNetProvider.SUGGEST_FTS_WORDS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_Words.TABLE + "/", WordNetProvider.SUGGEST_FTS_WORDS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_Definitions.TABLE + "/*", WordNetProvider.SUGGEST_FTS_DEFINITIONS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_Definitions.TABLE + "/", WordNetProvider.SUGGEST_FTS_DEFINITIONS);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_Samples.TABLE + "/*", WordNetProvider.SUGGEST_FTS_SAMPLES);
-		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_Samples.TABLE + "/", WordNetProvider.SUGGEST_FTS_SAMPLES);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_Words.TABLE + "/*", WordNetDispatcher.SUGGEST_WORDS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_Words.TABLE + "/", WordNetDispatcher.SUGGEST_WORDS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_Words.TABLE + "/*", WordNetDispatcher.SUGGEST_FTS_WORDS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_Words.TABLE + "/", WordNetDispatcher.SUGGEST_FTS_WORDS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_Definitions.TABLE + "/*", WordNetDispatcher.SUGGEST_FTS_DEFINITIONS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_Definitions.TABLE + "/", WordNetDispatcher.SUGGEST_FTS_DEFINITIONS);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_Samples.TABLE + "/*", WordNetDispatcher.SUGGEST_FTS_SAMPLES);
+		WordNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_Samples.TABLE + "/", WordNetDispatcher.SUGGEST_FTS_SAMPLES);
 	}
 
 	@NonNull
@@ -241,96 +187,96 @@ public class WordNetProvider extends BaseProvider
 		{
 			// T A B L E S
 
-			case WORDS:
-			case WORD:
+			case  WordNetDispatcher.WORDS:
+			case  WordNetDispatcher.WORD:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words.TABLE;
-			case SENSES:
+			case  WordNetDispatcher.SENSES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Senses.TABLE;
-			case SENSE:
+			case  WordNetDispatcher.SENSE:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Senses.TABLE;
-			case SYNSETS:
+			case  WordNetDispatcher.SYNSETS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Synsets.TABLE;
-			case SYNSET:
+			case  WordNetDispatcher.SYNSET:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Synsets.TABLE;
-			case SEMRELATIONS:
+			case  WordNetDispatcher.SEMRELATIONS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + SemRelations.TABLE;
-			case LEXRELATIONS:
+			case  WordNetDispatcher.LEXRELATIONS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + LexRelations.TABLE;
-			case RELATIONS:
+			case  WordNetDispatcher.RELATIONS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Relations.TABLE;
-			case POSES:
+			case  WordNetDispatcher.POSES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Poses.TABLE;
-			case ADJPOSITIONS:
+			case  WordNetDispatcher.ADJPOSITIONS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + AdjPositions.TABLE;
-			case DOMAINS:
+			case  WordNetDispatcher.DOMAINS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Domains.TABLE;
-			case SAMPLES:
+			case  WordNetDispatcher.SAMPLES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Samples.TABLE;
 
 			// V I E W S
 
-			case DICT:
+			case  WordNetDispatcher.DICT:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Dict.TABLE;
-			case WORDS_SENSES_SYNSETS:
+			case  WordNetDispatcher.WORDS_SENSES_SYNSETS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_Senses_Synsets.TABLE;
-			case WORDS_SENSES_CASEDWORDS_SYNSETS:
+			case  WordNetDispatcher.WORDS_SENSES_CASEDWORDS_SYNSETS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_Senses_CasedWords_Synsets.TABLE;
-			case WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS:
+			case  WordNetDispatcher.WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_Senses_CasedWords_Synsets_Poses_Domains.TABLE;
 
 			// J O I N S
 
-			case SENSES_WORDS:
+			case  WordNetDispatcher.SENSES_WORDS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Senses_Words.TABLE;
-			case SENSES_WORDS_BY_SYNSET:
+			case  WordNetDispatcher.SENSES_WORDS_BY_SYNSET:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Senses_Words.TABLE_BY_SYNSET;
-			case SENSES_SYNSETS_POSES_DOMAINS:
+			case  WordNetDispatcher.SENSES_SYNSETS_POSES_DOMAINS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Senses_Synsets_Poses_Domains.TABLE;
-			case SYNSETS_POSES_DOMAINS:
+			case  WordNetDispatcher.SYNSETS_POSES_DOMAINS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Synsets_Poses_Domains.TABLE;
-			case ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET:
+			case  WordNetDispatcher.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + BaseRelations_Senses_Words_X.TABLE_BY_SYNSET;
-			case SEMRELATIONS_SYNSETS:
+			case  WordNetDispatcher.SEMRELATIONS_SYNSETS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + SemRelations_Synsets.TABLE;
-			case SEMRELATIONS_SYNSETS_X:
+			case  WordNetDispatcher.SEMRELATIONS_SYNSETS_X:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + SemRelations_Synsets_X.TABLE;
-			case SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET:
+			case  WordNetDispatcher.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + SemRelations_Synsets_Words_X.TABLE_BY_SYNSET;
-			case LEXRELATIONS_SENSES:
+			case  WordNetDispatcher.LEXRELATIONS_SENSES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + LexRelations_Senses.TABLE;
-			case LEXRELATIONS_SENSES_X:
+			case  WordNetDispatcher.LEXRELATIONS_SENSES_X:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + LexRelations_Senses_X.TABLE;
-			case LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET:
+			case  WordNetDispatcher.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + LexRelations_Senses_Words_X.TABLE_BY_SYNSET;
-			case SENSES_VFRAMES:
+			case  WordNetDispatcher.SENSES_VFRAMES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Senses_VerbFrames.TABLE;
-			case SENSES_VTEMPLATES:
+			case  WordNetDispatcher.SENSES_VTEMPLATES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Senses_VerbTemplates.TABLE;
-			case SENSES_ADJPOSITIONS:
+			case  WordNetDispatcher.SENSES_ADJPOSITIONS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Senses_AdjPositions.TABLE;
-			case LEXES_MORPHS:
+			case  WordNetDispatcher.LEXES_MORPHS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lexes_Morphs.TABLE;
-			case WORDS_LEXES_MORPHS:
+			case  WordNetDispatcher.WORDS_LEXES_MORPHS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_Lexes_Morphs.TABLE;
-			case WORDS_LEXES_MORPHS_BY_WORD:
+			case  WordNetDispatcher.WORDS_LEXES_MORPHS_BY_WORD:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_Lexes_Morphs.TABLE_BY_WORD;
 
 			// T E X T   L O O K U P S
 
-			case LOOKUP_FTS_WORDS:
+			case  WordNetDispatcher.LOOKUP_FTS_WORDS:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words.TABLE;
-			case LOOKUP_FTS_DEFINITIONS:
+			case  WordNetDispatcher.LOOKUP_FTS_DEFINITIONS:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Synsets.TABLE;
-			case LOOKUP_FTS_SAMPLES:
+			case  WordNetDispatcher.LOOKUP_FTS_SAMPLES:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Samples.TABLE;
 
 			// S E A R C H
 
-			case SUGGEST_FTS_WORDS:
+			case  WordNetDispatcher.SUGGEST_FTS_WORDS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words.TABLE;
-			case SUGGEST_FTS_DEFINITIONS:
+			case  WordNetDispatcher.SUGGEST_FTS_DEFINITIONS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Synsets.TABLE;
-			case SUGGEST_FTS_SAMPLES:
+			case  WordNetDispatcher.SUGGEST_FTS_SAMPLES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Samples.TABLE;
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");
@@ -376,297 +322,54 @@ public class WordNetProvider extends BaseProvider
 		final int code = WordNetProvider.uriMatcher.match(uri);
 		Log.d(WordNetProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code));
 
-		String table;
-		String[] projection = projection0;
-		String selection = selection0;
-		String groupBy = null;
-		switch (code)
+		Result result;
+		// MAIN
+		result = WordNetDispatcher.queryMain(code, uri.getLastPathSegment(), projection0, selection0, selectionArgs0);
+		if (result == null)
 		{
-			// T A B L E
-			// table uri : last element is table
-
-			case WORDS:
-				table = Queries.WORDS.TABLE;
-				break;
-
-			case SENSES:
-				table = Queries.SENSES.TABLE;
-				break;
-
-			case SYNSETS:
-				table = Queries.SYNSETS.TABLE;
-				break;
-
-			case SEMRELATIONS:
-				table = Queries.SEMRELATIONS.TABLE;
-				break;
-
-			case LEXRELATIONS:
-				table = Queries.LEXRELATIONS.TABLE;
-				break;
-
-			case RELATIONS:
-				table = Queries.RELATIONS.TABLE;
-				break;
-
-			case POSES:
-				table = Queries.POSES.TABLE;
-				break;
-
-			case DOMAINS:
-				table = Queries.DOMAINS.TABLE;
-				break;
-
-			case ADJPOSITIONS:
-				table = Queries.ADJPOSITIONS.TABLE;
-				break;
-
-			case SAMPLES:
-				table = Queries.SAMPLES.TABLE;
-				break;
-
-			// I T E M
-			// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
-			// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query
-
-			case WORD:
-				table = Queries.WORD.TABLE;
-				if (selection != null)
-				{
-					selection += " AND ";
-				}
-				else
-				{
-					selection = "";
-				}
-				selection += Words.WORDID + " = " + uri.getLastPathSegment();
-				break;
-
-			case SENSE:
-				table = Queries.SENSE.TABLE;
-				if (selection != null)
-				{
-					selection += " AND ";
-				}
-				else
-				{
-					selection = "";
-				}
-				selection += Senses.SENSEID + " = " + uri.getLastPathSegment();
-				break;
-
-			case SYNSET:
-				table = Queries.SYNSET.TABLE;
-				if (selection != null)
-				{
-					selection += " AND ";
-				}
-				else
-				{
-					selection = "";
-				}
-				selection += Synsets.SYNSETID + " = " + uri.getLastPathSegment();
-				break;
-
-			// V I E W S
-
-			case DICT:
-				table = Queries.DICT.TABLE;
-				break;
-
-			// J O I N S
-
-			case WORDS_SENSES_SYNSETS:
-				table = Queries.WORDS_SENSES_SYNSETS.TABLE;
-				break;
-
-			case WORDS_SENSES_CASEDWORDS_SYNSETS:
-				table = Queries.WORDS_SENSES_CASEDWORDS_SYNSETS.TABLE;
-				break;
-
-			case WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS:
-				table = Queries.WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS.TABLE;
-				break;
-
-			case SENSES_WORDS:
-				table = Queries.SENSES_WORDS.TABLE;
-				break;
-
-			case SENSES_WORDS_BY_SYNSET:
-				table = Queries.SENSES_WORDS_BY_SYNSET.TABLE;
-				projection = BaseProvider.appendProjection(projection, Queries.SENSES_WORDS_BY_SYNSET.PROJECTION[0].replaceAll("#\\{members\\}", WordNetContract.MEMBERS));
-				groupBy = Queries.SENSES_WORDS_BY_SYNSET.GROUPBY;
-				break;
-
-			case SENSES_SYNSETS_POSES_DOMAINS:
-				table = Queries.SENSES_SYNSETS_POSES_DOMAINS.TABLE;
-				break;
-
-			case SYNSETS_POSES_DOMAINS:
-				table = Queries.SYNSETS_POSES_DOMAINS.TABLE;
-				break;
-
-			case ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET:
-				final String subQuery = makeAllRelationsSubQuery(selection0);
-				table = Queries.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET.TABLE.replaceFirst("#\\{query\\}", subQuery);
-				selection = null;
-				groupBy = Queries.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET.GROUPBY.replaceAll("#\\{query_target_synsetid\\}", BaseModule.TARGET_SYNSETID) //
-						.replaceAll("#\\{query_target_wordid\\}", BaseModule.TARGET_WORDID) //
-						.replaceAll("#\\{query_target_word\\}", BaseModule.TARGET_WORD);
-				break;
-
-			case SEMRELATIONS_SYNSETS:
-				table = Queries.SEMRELATIONS_SYNSETS.TABLE;
-				break;
-
-			case SEMRELATIONS_SYNSETS_X:
-				table = Queries.SEMRELATIONS_SYNSETS_X.TABLE;
-				break;
-
-			case SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET:
-				table = Queries.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET.TABLE;
-				groupBy = Queries.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET.GROUPBY;
-				projection = BaseProvider.appendProjection(projection, Queries.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET.PROJECTION[0].replaceAll("#\\{members2\\}", WordNetContract.MEMBERS2));
-				break;
-
-			case LEXRELATIONS_SENSES:
-				table = Queries.LEXRELATIONS_SENSES.TABLE;
-				break;
-
-			case LEXRELATIONS_SENSES_X:
-				table = Queries.LEXRELATIONS_SENSES_X.TABLE;
-				break;
-
-			case LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET:
-				table = Queries.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET.TABLE;
-				projection = BaseProvider.appendProjection(projection, Queries.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET.PROJECTION[0].replaceAll("#\\{members2\\}", WordNetContract.MEMBERS2));
-				groupBy = Queries.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET.GROUPBY;
-				break;
-
-			case SENSES_VFRAMES:
-				table = Queries.SENSES_VFRAMES.TABLE;
-				break;
-
-			case SENSES_VTEMPLATES:
-				table = Queries.SENSES_VTEMPLATES.TABLE;
-				break;
-
-			case SENSES_ADJPOSITIONS:
-				table = Queries.SENSES_ADJPOSITIONS.TABLE;
-				break;
-
-			case LEXES_MORPHS:
-				table = Queries.LEXES_MORPHS.TABLE;
-				break;
-
-			case WORDS_LEXES_MORPHS_BY_WORD:
-				table = Queries.WORDS_LEXES_MORPHS.TABLE;
-				groupBy = Queries.WORDS_LEXES_MORPHS_BY_WORD.GROUPBY;
-				break;
-
-			case WORDS_LEXES_MORPHS:
-				table = Queries.WORDS_LEXES_MORPHS.TABLE;
-				break;
-
-			// T E X T S E A R C H
-
-			case LOOKUP_FTS_WORDS:
-				table = Queries.LOOKUP_FTS_WORDS.TABLE;
-				break;
-
-			case LOOKUP_FTS_DEFINITIONS:
-				table = Queries.LOOKUP_FTS_DEFINITIONS.TABLE;
-				break;
-
-			case LOOKUP_FTS_SAMPLES:
-				table = Queries.LOOKUP_FTS_SAMPLES.TABLE;
-				break;
-
-			// S U G G E S T
-
-			case SUGGEST_WORDS:
+			// RELATIONS
+			result = WordNetDispatcher.queryAllRelations(code, projection0, selection0, selectionArgs0, this::makeAllRelationsSubQuery);
+			if (result == null)
 			{
-				final String last = uri.getLastPathSegment();
-				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(last))
-				{
-					return null;
-				}
-				table = Queries.SUGGEST_WORDS.TABLE;
-				projection = Queries.SUGGEST_WORDS.PROJECTION;
-				selection = Queries.SUGGEST_WORDS.SELECTION;
-				String[] actualSelectionArgs = {Queries.SUGGEST_WORDS.ARGS[0].replaceAll("#\\{uri_last\\}", last)};
-				return this.db.query(table, projection, selection, actualSelectionArgs, null, null, null);
+				// TEXTSEARCH
+				result = WordNetDispatcher.querySearch(code, projection0, selection0, selectionArgs0);
+			}
+		}
+		// MAIN || RELATIONS || TEXTSEARCH
+		if (result != null)
+		{
+			final String sql = SQLiteQueryBuilder.buildQueryString(false, result.table, result.projection, result.selection, result.groupBy, null, sortOrder0, null);
+			logSql(sql, selectionArgs0);
+			if (BaseProvider.logSql)
+			{
+				Log.d(WordNetProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
+				Log.d(WordNetProvider.TAG + "ARG", BaseProvider.argsToString(selectionArgs0));
 			}
 
-			case SUGGEST_FTS_WORDS:
+			// do query
+			try
 			{
-				final String last = uri.getLastPathSegment();
-				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(last))
-				{
-					return null;
-				}
-				table = Queries.SUGGEST_FTS_WORDS.TABLE;
-				projection = Queries.SUGGEST_FTS_WORDS.PROJECTION;
-				selection = Queries.SUGGEST_FTS_WORDS.SELECTION;
-				String[] selectionArgs = {Queries.SUGGEST_FTS_WORDS.ARGS[0].replaceAll("#\\{uri_last\\}", last)};
-				return this.db.query(table, projection, selection, selectionArgs, null, null, null);
+				final Cursor cursor = this.db.rawQuery(sql, selectionArgs0);
+				Log.d(TAG + "COUNT", cursor.getCount() + " items");
+				return cursor;
+				//return this.db.query(table, actualProjection, actualSelection, selectionArgs, groupBy, null, sortOrder, null);
 			}
-
-			case SUGGEST_FTS_DEFINITIONS:
+			catch (@NonNull final SQLiteException e)
 			{
-				final String last = uri.getLastPathSegment();
-				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(last))
-				{
-					return null;
-				}
-				table = Queries.SUGGEST_FTS_DEFINITIONS.TABLE;
-				projection = Queries.SUGGEST_FTS_DEFINITIONS.PROJECTION;
-				selection = Queries.SUGGEST_FTS_DEFINITIONS.SELECTION;
-				String[] selectionArgs = {Queries.SUGGEST_FTS_DEFINITIONS.ARGS[0].replaceAll("#\\{uri_last\\}", last)};
-				return this.db.query(table, projection, selection, selectionArgs, null, null, null);
+				Log.d(TAG + "SQL", sql);
+				Log.e(TAG, "WordNet provider query failed", e);
+				return null;
 			}
-
-			case SUGGEST_FTS_SAMPLES:
-			{
-				final String last = uri.getLastPathSegment();
-				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(last))
-				{
-					return null;
-				}
-				projection = Queries.SUGGEST_FTS_SAMPLES.PROJECTION;
-				selection = Queries.SUGGEST_FTS_SAMPLES.SELECTION;
-				String[] actualSelectionArgs = {Queries.SUGGEST_FTS_SAMPLES.ARGS[0].replaceAll("#\\{uri_last\\}", last)};
-				table = Queries.SUGGEST_FTS_SAMPLES.TABLE;
-				return this.db.query(table, projection, selection, actualSelectionArgs, null, null, null);
-			}
-
-			case UriMatcher.NO_MATCH:
-			default:
-				throw new RuntimeException("Malformed URI " + uri);
 		}
 
-		final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder0, null);
-		logSql(sql, selectionArgs0);
-		if (BaseProvider.logSql)
+		// SUGGEST
+		result = WordNetDispatcher.querySuggest(code, uri.getLastPathSegment());
+		if (result != null)
 		{
-			Log.d(WordNetProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
-			Log.d(WordNetProvider.TAG + "ARG", BaseProvider.argsToString(selectionArgs0));
+			return this.db.query(result.table, result.projection, result.selection, result.selectionArgs, result.groupBy, null, null);
 		}
-
-		// do query
-		try
-		{
-			final Cursor cursor = this.db.rawQuery(sql, selectionArgs0);
-			Log.d(TAG + "COUNT", cursor.getCount() + " items");
-			return cursor;
-			//return this.db.query(table, actualProjection, actualSelection, selectionArgs, groupBy, null, sortOrder, null);
-		}
-		catch (@NonNull final SQLiteException e)
-		{
-			Log.d(TAG + "SQL", sql);
-			Log.e(TAG, "WordNet provider query failed", e);
-			return null;
-		}
+		// UriMatcher.NO_MATCH:
+		throw new RuntimeException("Malformed URI " + uri);
 	}
 
 	/**
@@ -730,7 +433,7 @@ public class WordNetProvider extends BaseProvider
 	 * @param selection2      selection
 	 * @return union sql
 	 */
-	static String makeQuery(//
+	private static String makeQuery(//
 			@SuppressWarnings("SameParameterValue") @NonNull final String table1, //
 			@SuppressWarnings("SameParameterValue") @NonNull final String table2, //
 			@NonNull final String[] projection1, //
