@@ -4,8 +4,10 @@ import android.app.SearchManager;
 
 import org.junit.Test;
 import org.sqlunet.provider.BaseProvider;
+import org.sqlunet.wordnet.loaders.BaseModule;
 
 import java.util.Arrays;
+import java.util.function.Function;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -53,8 +55,8 @@ public class QueriesUnitTest
 
 	public void query(int code, @NonNull final String uriLast, final String[] projection, @Nullable final String selection, final String[] selectionArgs, final String sortOrder)
 	{
-		Result r1 = query1(code, uriLast, projection, selection, selectionArgs, sortOrder);
-		Result r2 = query12(code, uriLast, projection, selection, selectionArgs, sortOrder);
+		Result r1 = query1(code, uriLast, projection, selection, selectionArgs, sortOrder, s -> "SUBQUERY");
+		Result r2 = query12(code, uriLast, projection, selection, selectionArgs, sortOrder, s -> "SUBQUERY");
 		if (r1 == null || r2 == null)
 		{
 			r1 = query2(code, uriLast, projection, selection, selectionArgs, sortOrder);
@@ -67,7 +69,7 @@ public class QueriesUnitTest
 		assert equals(r1.groupBy, r2.groupBy) : "Code=" + code + " " + r1.groupBy + " != " + r2.groupBy;
 	}
 
-	public Result query1(int code, @NonNull final String uriLast, final String[] projection0, @Nullable final String selection0, final String[] selectionArgs0, final String sortOrder0)
+	public Result query1(int code, @NonNull final String uriLast, final String[] projection0, @Nullable final String selection0, final String[] selectionArgs0, final String sortOrder0, final Function<String, String> subqueryFactory)
 	{
 		String table;
 		String[] projection = projection0;
@@ -197,10 +199,10 @@ public class QueriesUnitTest
 				break;
 
 			case WordNetProvider.SENSES_WORDS_BY_SYNSET:
-				groupBy = "synsetid";
 				table = "senses AS " + WordNetContract.SENSE + " " + //
 						"LEFT JOIN words AS " + WordNetContract.WORD + " USING (wordid)";
 				projection = BaseProvider.appendProjection(projection, "GROUP_CONCAT(words.word, ', ' ) AS " + WordNetContract.Senses_Words.MEMBERS);
+				groupBy = "synsetid";
 				break;
 
 			case WordNetProvider.SENSES_SYNSETS_POSES_DOMAINS:
@@ -217,8 +219,7 @@ public class QueriesUnitTest
 				break;
 
 			case WordNetProvider.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET:
-			{
-				final String subQuery = "SUBQUERY";
+				final String subQuery = subqueryFactory.apply(selection0);
 				table = "( " + subQuery + " ) AS " + WordNetContract.RELATION + ' ' + //
 						"INNER JOIN relations USING (relationid) " + //
 						"INNER JOIN synsets AS " + WordNetContract.SYNSET2 + " ON " + WordNetContract.RELATION + ".synset2id = " + WordNetContract.SYNSET2 + ".synsetid " + //
@@ -226,8 +227,8 @@ public class QueriesUnitTest
 						"LEFT JOIN words AS " + WordNetContract.WORD + " USING (wordid) " + //
 						"LEFT JOIN words AS " + WordNetContract.WORD2 + " ON " + WordNetContract.RELATION + ".word2id = " + WordNetContract.WORD2 + ".wordid";
 				selection = null;
-			}
-			break;
+				groupBy = BaseModule.TARGET_SYNSETID + "," + WordNetContract.TYPE + ",relation,relationid," + BaseModule.TARGET_WORDID + ',' + BaseModule.TARGET_WORD;
+				break;
 
 			case WordNetProvider.SEMRELATIONS_SYNSETS:
 				table = "semrelations AS " + WordNetContract.RELATION + ' ' + //
@@ -241,13 +242,13 @@ public class QueriesUnitTest
 				break;
 
 			case WordNetProvider.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET:
-				groupBy = WordNetContract.SYNSET2 + ".synsetid";
 				table = "semrelations AS " + WordNetContract.RELATION + ' ' + //
 						"INNER JOIN relations USING (relationid) " + //
 						"INNER JOIN synsets AS " + WordNetContract.SYNSET2 + " ON " + WordNetContract.RELATION + ".synset2id = " + WordNetContract.SYNSET2 + ".synsetid " + //
 						"LEFT JOIN senses ON " + WordNetContract.SYNSET2 + ".synsetid = senses.synsetid " + //
 						"LEFT JOIN words USING (wordid)";
 				projection = BaseProvider.appendProjection(projection, "GROUP_CONCAT(words.word, ', ' ) AS " + WordNetContract.SemRelations_Synsets_Words_X.MEMBERS2);
+				groupBy = WordNetContract.SYNSET2 + ".synsetid";
 				break;
 
 			case WordNetProvider.LEXRELATIONS_SENSES:
@@ -264,7 +265,6 @@ public class QueriesUnitTest
 				break;
 
 			case WordNetProvider.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET:
-				groupBy = WordNetContract.SYNSET2 + ".synsetid";
 				table = "lexrelations AS " + WordNetContract.RELATION + ' ' + //
 						"INNER JOIN relations USING (relationid) " + //
 						"INNER JOIN synsets AS " + WordNetContract.SYNSET2 + " ON " + WordNetContract.RELATION + ".synset2id = " + WordNetContract.SYNSET2 + ".synsetid " + //
@@ -272,6 +272,7 @@ public class QueriesUnitTest
 						"LEFT JOIN senses AS " + WordNetContract.SENSE + " ON " + WordNetContract.SYNSET2 + ".synsetid = " + WordNetContract.SENSE + ".synsetid " + //
 						"LEFT JOIN words AS " + WordNetContract.WORD2 + " USING (wordid)";
 				projection = BaseProvider.appendProjection(projection, "GROUP_CONCAT(DISTINCT " + WordNetContract.WORD2 + ".word) AS " + WordNetContract.LexRelations_Senses_Words_X.MEMBERS2);
+				groupBy = WordNetContract.SYNSET2 + ".synsetid";
 				break;
 
 			case WordNetProvider.SENSES_VFRAMES:
@@ -294,15 +295,17 @@ public class QueriesUnitTest
 						"LEFT JOIN morphs USING (morphid)";
 				break;
 
-			case WordNetProvider.WORDS_LEXES_MORPHS_BY_WORD:
-				groupBy = "wordid";
-				//$FALL-THROUGH$
-				//noinspection fallthrough
-
 			case WordNetProvider.WORDS_LEXES_MORPHS:
 				table = "words " + //
 						"LEFT JOIN lexes_morphs USING (wordid) " + //
 						"LEFT JOIN morphs USING (morphid)";
+				break;
+
+			case WordNetProvider.WORDS_LEXES_MORPHS_BY_WORD:
+				table = "words " + //
+						"LEFT JOIN lexes_morphs USING (wordid) " + //
+						"LEFT JOIN morphs USING (morphid)";
+				groupBy = "wordid";
 				break;
 
 			default:
@@ -311,7 +314,7 @@ public class QueriesUnitTest
 		return new Result(table, projection, selection, selectionArgs0, groupBy);
 	}
 
-	public Result query12(int code, @NonNull final String uriLast, final String[] projection0, @Nullable final String selection0, final String[] selectionArgs0, final String sortOrder0)
+	public Result query12(int code, @NonNull final String uriLast, final String[] projection0, @Nullable final String selection0, final String[] selectionArgs0, final String sortOrder0, final Function<String, String> subqueryFactory)
 	{
 		String table;
 		String[] projection = projection0;
@@ -430,9 +433,9 @@ public class QueriesUnitTest
 				break;
 
 			case WordNetProvider.SENSES_WORDS_BY_SYNSET:
-				groupBy = Queries.SENSES_WORDS_BY_SYNSET.GROUPBY;
 				table = Queries.SENSES_WORDS_BY_SYNSET.TABLE;
 				projection = BaseProvider.appendProjection(projection, Queries.SENSES_WORDS_BY_SYNSET.PROJECTION[0].replaceAll("#\\{members\\}", WordNetContract.MEMBERS));
+				groupBy = Queries.SENSES_WORDS_BY_SYNSET.GROUPBY;
 				break;
 
 			case WordNetProvider.SENSES_SYNSETS_POSES_DOMAINS:
@@ -444,12 +447,13 @@ public class QueriesUnitTest
 				break;
 
 			case WordNetProvider.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET:
-			{
-				final String subQuery = "SUBQUERY";
+				final String subQuery = subqueryFactory.apply(selection0);
 				table = Queries.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET.TABLE.replaceFirst("#\\{query\\}", subQuery);
 				selection = null;
-			}
-			break;
+				groupBy = Queries.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET.GROUPBY.replaceAll("#\\{query_target_synsetid\\}", BaseModule.TARGET_SYNSETID) //
+						.replaceAll("#\\{query_target_wordid\\}", BaseModule.TARGET_WORDID) //
+						.replaceAll("#\\{query_target_word\\}", BaseModule.TARGET_WORD);
+				break;
 
 			case WordNetProvider.SEMRELATIONS_SYNSETS:
 				table = Queries.SEMRELATIONS_SYNSETS.TABLE;
@@ -460,9 +464,9 @@ public class QueriesUnitTest
 				break;
 
 			case WordNetProvider.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET:
-				groupBy = Queries.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET.GROUPBY;
 				table = Queries.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET.TABLE;
 				projection = BaseProvider.appendProjection(projection, Queries.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET.PROJECTION[0].replaceAll("#\\{members2\\}", WordNetContract.MEMBERS2));
+				groupBy = Queries.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET.GROUPBY;
 				break;
 
 			case WordNetProvider.LEXRELATIONS_SENSES:
@@ -474,9 +478,9 @@ public class QueriesUnitTest
 				break;
 
 			case WordNetProvider.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET:
-				groupBy = Queries.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET.GROUPBY;
 				table = Queries.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET.TABLE;
 				projection = BaseProvider.appendProjection(projection, Queries.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET.PROJECTION[0].replaceAll("#\\{members2\\}", WordNetContract.MEMBERS2));
+				groupBy = Queries.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET.GROUPBY;
 				break;
 
 			case WordNetProvider.SENSES_VFRAMES:
@@ -495,13 +499,13 @@ public class QueriesUnitTest
 				table = Queries.LEXES_MORPHS.TABLE;
 				break;
 
-			case WordNetProvider.WORDS_LEXES_MORPHS_BY_WORD:
-				groupBy = Queries.WORDS_LEXES_MORPHS_BY_WORD.GROUPBY;
-				//$FALL-THROUGH$
-				//noinspection fallthrough
-
 			case WordNetProvider.WORDS_LEXES_MORPHS:
 				table = Queries.WORDS_LEXES_MORPHS.TABLE;
+				break;
+
+			case WordNetProvider.WORDS_LEXES_MORPHS_BY_WORD:
+				table = Queries.WORDS_LEXES_MORPHS.TABLE;
+				groupBy = Queries.WORDS_LEXES_MORPHS_BY_WORD.GROUPBY;
 				break;
 
 			default:
