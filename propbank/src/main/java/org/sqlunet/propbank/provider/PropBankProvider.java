@@ -24,6 +24,7 @@ import org.sqlunet.propbank.provider.PropBankContract.PbWords;
 import org.sqlunet.propbank.provider.PropBankContract.Suggest_FTS_PbWords;
 import org.sqlunet.propbank.provider.PropBankContract.Suggest_PbWords;
 import org.sqlunet.propbank.provider.PropBankContract.Words_PbRoleSets;
+import org.sqlunet.propbank.provider.PropBankDispatcher.Result;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.sql.SqlFormatter;
 
@@ -53,46 +54,25 @@ public class PropBankProvider extends BaseProvider
 		matchURIs();
 	}
 
-	// table codes
-	static private final int PBROLESET = 10;
-	static private final int PBROLESETS = 11;
-
-	// join codes
-	static private final int PBROLESETS_X = 100;
-	static private final int PBROLESETS_X_BY_ROLESET = 101;
-	static private final int WORDS_PBROLESETS = 110;
-	static private final int PBROLESETS_PBROLES = 120;
-	static private final int PBROLESETS_PBEXAMPLES = 130;
-	static private final int PBROLESETS_PBEXAMPLES_BY_EXAMPLE = 131;
-
-	// search text codes
-	static private final int LOOKUP_FTS_EXAMPLES = 501;
-	static private final int LOOKUP_FTS_EXAMPLES_X = 511;
-	static private final int LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE = 512;
-
-	// suggest
-	static private final int SUGGEST_WORDS = 601;
-	static private final int SUGGEST_FTS_WORDS = 602;
-
 	static private void matchURIs()
 	{
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, PbRoleSets.TABLE, PropBankProvider.PBROLESET);
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, PbRoleSets.TABLE, PropBankProvider.PBROLESETS);
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, PbRoleSets_X.TABLE, PropBankProvider.PBROLESETS_X);
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, PbRoleSets_X.TABLE_BY_ROLESET, PropBankProvider.PBROLESETS_X_BY_ROLESET);
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, Words_PbRoleSets.TABLE, PropBankProvider.WORDS_PBROLESETS);
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, PbRoleSets_PbRoles.TABLE, PropBankProvider.PBROLESETS_PBROLES);
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, PbRoleSets_PbExamples.TABLE, PropBankProvider.PBROLESETS_PBEXAMPLES);
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, PbRoleSets_PbExamples.TABLE_BY_EXAMPLE, PropBankProvider.PBROLESETS_PBEXAMPLES_BY_EXAMPLE);
+		uriMatcher.addURI(AUTHORITY, PbRoleSets.TABLE, PropBankDispatcher.PBROLESET);
+		uriMatcher.addURI(AUTHORITY, PbRoleSets.TABLE, PropBankDispatcher.PBROLESETS);
+		uriMatcher.addURI(AUTHORITY, PbRoleSets_X.TABLE, PropBankDispatcher.PBROLESETS_X);
+		uriMatcher.addURI(AUTHORITY, PbRoleSets_X.TABLE_BY_ROLESET, PropBankDispatcher.PBROLESETS_X_BY_ROLESET);
+		uriMatcher.addURI(AUTHORITY, Words_PbRoleSets.TABLE, PropBankDispatcher.WORDS_PBROLESETS);
+		uriMatcher.addURI(AUTHORITY, PbRoleSets_PbRoles.TABLE, PropBankDispatcher.PBROLESETS_PBROLES);
+		uriMatcher.addURI(AUTHORITY, PbRoleSets_PbExamples.TABLE, PropBankDispatcher.PBROLESETS_PBEXAMPLES);
+		uriMatcher.addURI(AUTHORITY, PbRoleSets_PbExamples.TABLE_BY_EXAMPLE, PropBankDispatcher.PBROLESETS_PBEXAMPLES_BY_EXAMPLE);
 
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, Lookup_PbExamples.TABLE + "/", PropBankProvider.LOOKUP_FTS_EXAMPLES);
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, Lookup_PbExamples_X.TABLE + "/", PropBankProvider.LOOKUP_FTS_EXAMPLES_X);
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, Lookup_PbExamples_X.TABLE_BY_EXAMPLE + "/", PropBankProvider.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE);
+		uriMatcher.addURI(AUTHORITY, Lookup_PbExamples.TABLE + "/", PropBankDispatcher.LOOKUP_FTS_EXAMPLES);
+		uriMatcher.addURI(AUTHORITY, Lookup_PbExamples_X.TABLE + "/", PropBankDispatcher.LOOKUP_FTS_EXAMPLES_X);
+		uriMatcher.addURI(AUTHORITY, Lookup_PbExamples_X.TABLE_BY_EXAMPLE + "/", PropBankDispatcher.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE);
 
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, Suggest_PbWords.TABLE + "/*", PropBankProvider.SUGGEST_WORDS);
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, Suggest_PbWords.TABLE + "/", PropBankProvider.SUGGEST_WORDS);
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_PbWords.TABLE + "/*", PropBankProvider.SUGGEST_FTS_WORDS);
-		PropBankProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_PbWords.TABLE + "/", PropBankProvider.SUGGEST_FTS_WORDS);
+		uriMatcher.addURI(AUTHORITY, Suggest_PbWords.TABLE + "/*", PropBankDispatcher.SUGGEST_WORDS);
+		uriMatcher.addURI(AUTHORITY, Suggest_PbWords.TABLE + "/", PropBankDispatcher.SUGGEST_WORDS);
+		uriMatcher.addURI(AUTHORITY, Suggest_FTS_PbWords.TABLE + "/*", PropBankDispatcher.SUGGEST_FTS_WORDS);
+		uriMatcher.addURI(AUTHORITY, Suggest_FTS_PbWords.TABLE + "/", PropBankDispatcher.SUGGEST_FTS_WORDS);
 	}
 
 	@NonNull
@@ -133,34 +113,34 @@ public class PropBankProvider extends BaseProvider
 		switch (PropBankProvider.uriMatcher.match(uri))
 		{
 			// T A B L E S
-			case PBROLESET:
+			case PropBankDispatcher.PBROLESET:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets.TABLE;
-			case PBROLESETS:
+			case PropBankDispatcher.PBROLESETS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets.TABLE;
-			case PBROLESETS_X:
+			case PropBankDispatcher.PBROLESETS_X:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets_X.TABLE;
-			case PBROLESETS_X_BY_ROLESET:
+			case PropBankDispatcher.PBROLESETS_X_BY_ROLESET:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets_X.TABLE_BY_ROLESET;
-			case WORDS_PBROLESETS:
+			case PropBankDispatcher.WORDS_PBROLESETS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_PbRoleSets.TABLE;
-			case PBROLESETS_PBROLES:
+			case PropBankDispatcher.PBROLESETS_PBROLES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets_PbRoles.TABLE;
-			case PBROLESETS_PBEXAMPLES:
+			case PropBankDispatcher.PBROLESETS_PBEXAMPLES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets_PbExamples.TABLE;
-			case PBROLESETS_PBEXAMPLES_BY_EXAMPLE:
+			case PropBankDispatcher.PBROLESETS_PBEXAMPLES_BY_EXAMPLE:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets_PbExamples.TABLE_BY_EXAMPLE;
 
 			// L O O K U P
-			case LOOKUP_FTS_EXAMPLES:
+			case PropBankDispatcher.LOOKUP_FTS_EXAMPLES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_PbExamples.TABLE;
-			case LOOKUP_FTS_EXAMPLES_X:
+			case PropBankDispatcher.LOOKUP_FTS_EXAMPLES_X:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_PbExamples_X.TABLE;
-			case LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
+			case PropBankDispatcher.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_PbExamples_X.TABLE_BY_EXAMPLE;
 
 			// S U G G E S T
-			case SUGGEST_WORDS:
-			case SUGGEST_FTS_WORDS:
+			case PropBankDispatcher.SUGGEST_WORDS:
+			case PropBankDispatcher.SUGGEST_FTS_WORDS:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbWords.TABLE;
 
 			default:
@@ -173,7 +153,7 @@ public class PropBankProvider extends BaseProvider
 	@Nullable
 	@SuppressWarnings("boxing")
 	@Override
-	public Cursor query(@NonNull final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
+	public Cursor query(@NonNull final Uri uri, final String[] projection0, final String selection0, final String[] selectionArgs0, final String sortOrder0)
 	{
 		if (this.db == null)
 		{
@@ -188,151 +168,51 @@ public class PropBankProvider extends BaseProvider
 		}
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI
-		String actualSelection = selection;
-		String actualSortOrder = sortOrder;
 		final int code = PropBankProvider.uriMatcher.match(uri);
 		Log.d(PropBankProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code));
-		String groupBy = null;
-		String table;
-		switch (code)
+
+		Result result;
+		// MAIN
+		result = PropBankDispatcher.queryMain(code, uri.getLastPathSegment(), projection0, selection0, selectionArgs0);
+		if (result == null)
 		{
-			// I T E M
-			// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
-			// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query
-
-			case PBROLESET:
-				table = PbRoleSets.TABLE;
-				if (actualSelection != null)
-				{
-					actualSelection += " AND ";
-				}
-				else
-				{
-					actualSelection = "";
-				}
-				actualSelection += PbRoleSets.ROLESETID + " = ?";
-				break;
-
-			case PBROLESETS:
-				table = PbRoleSets.TABLE;
-				break;
-
-			// J O I N S
-
-			case PBROLESETS_X_BY_ROLESET:
-				groupBy = PbRoleSets_X.ROLESETID;
-				//$FALL-THROUGH$
-				//noinspection fallthrough
-			case PBROLESETS_X:
-				table = "pbrolesets " + //
-						"LEFT JOIN pbrolesetmembers AS " + PropBankContract.MEMBER + " USING (rolesetid) " + //
-						"LEFT JOIN pbwords AS " + PropBankContract.WORD + " ON " + PropBankContract.MEMBER + ".pbwordid = " + PropBankContract.WORD + ".pbwordid";
-				break;
-
-			case WORDS_PBROLESETS:
-				table = "words " + //
-						"INNER JOIN pbwords USING (wordid) " + //
-						"INNER JOIN pbrolesets USING (pbwordid)";
-				break;
-
-			case PBROLESETS_PBROLES:
-				table = "pbrolesets " + //
-						"INNER JOIN pbroles USING (rolesetid) " + //
-						"LEFT JOIN pbfuncs USING (func) " + //
-						"LEFT JOIN pbvnthetas USING (theta)";
-				actualSortOrder = "narg";
-				break;
-
-			case PBROLESETS_PBEXAMPLES_BY_EXAMPLE:
-				groupBy = PropBankContract.EXAMPLE + ".exampleid";
-				//$FALL-THROUGH$
-				//noinspection fallthrough
-			case PBROLESETS_PBEXAMPLES:
-				table = "pbrolesets " + //
-						"INNER JOIN pbexamples AS " + PropBankContract.EXAMPLE + " USING (rolesetid) " + //
-						"LEFT JOIN pbrels AS " + PropBankContract.REL + " USING (exampleid) " + //
-						"LEFT JOIN pbargs AS " + PropBankContract.ARG + " USING (exampleid) " + //
-						"LEFT JOIN pbfuncs AS " + PropBankContract.FUNC + " ON (" + PropBankContract.ARG + ".func = " + PropBankContract.FUNC + ".func) " + //
-						"LEFT JOIN pbaspects USING (aspect) " + //
-						"LEFT JOIN pbforms USING (form) " + //
-						"LEFT JOIN pbtenses USING (tense) " + //
-						"LEFT JOIN pbvoices USING (voice) " + //
-						"LEFT JOIN pbpersons USING (person) " + //
-						"LEFT JOIN pbroles USING (rolesetid,narg) " + //
-						"LEFT JOIN pbvnthetas USING (theta)";
-				actualSortOrder = PropBankContract.EXAMPLE + ".exampleid,narg";
-				break;
-
-			// L O O K U P
-
-			case LOOKUP_FTS_EXAMPLES:
-				table = "pbexamples_text_fts4";
-				break;
-			case LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
-				groupBy = "exampleid";
-				//$FALL-THROUGH$
-				//noinspection fallthrough
-			case LOOKUP_FTS_EXAMPLES_X:
-				table = "pbexamples_text_fts4 " + //
-						"LEFT JOIN pbrolesets USING (rolesetid)";
-				break;
-
-			// S U G G E S T
-
-			case SUGGEST_WORDS:
+			// TEXTSEARCH
+			result = PropBankDispatcher.querySearch(code, projection0, selection0, selectionArgs0);
+		}
+		// MAIN || TEXTSEARCH
+		if (result != null)
+		{
+			final String sql = SQLiteQueryBuilder.buildQueryString(false, result.table, result.projection, result.selection, result.groupBy, null, sortOrder0, null);
+			logSql(sql, selectionArgs0);
+			if (BaseProvider.logSql)
 			{
-				final String last = uri.getLastPathSegment();
-				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(last))
-				{
-					return null;
-				}
-				table = "pbwords";
-				return this.db.query(table, new String[]{"pbwordid AS _id", //
-								"word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
-								"word AS " + SearchManager.SUGGEST_COLUMN_QUERY}, //
-						"word LIKE ? || '%'", //
-						new String[]{last}, null, null, null);
+				Log.d(TAG + "SQL", SqlFormatter.format(sql).toString());
+				Log.d(TAG + "ARG", BaseProvider.argsToString(selectionArgs0));
 			}
 
-			case SUGGEST_FTS_WORDS:
+			// do query
+			try
 			{
-				final String last = uri.getLastPathSegment();
-				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(last))
-				{
-					return null;
-				}
-				table = "pbwords_word_fts4";
-				return this.db.query(table, new String[]{"pbwordid AS _id", //
-								"word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
-								"word AS " + SearchManager.SUGGEST_COLUMN_QUERY}, //
-						"word MATCH ?", //
-						new String[]{last + '*'}, null, null, null);
+				final Cursor cursor = this.db.rawQuery(sql, selectionArgs0);
+				Log.d(TAG + "COUNT", cursor.getCount() + " items");
+				return cursor;
+				//return this.db.query(table, actualProjection, actualSelection, selectionArgs, groupBy, null, sortOrder, null);
 			}
-
-			default:
-			case UriMatcher.NO_MATCH:
-				throw new RuntimeException("Malformed URI " + uri);
+			catch (@NonNull final SQLiteException e)
+			{
+				Log.d(TAG + "SQL", sql);
+				Log.e(TAG, "WordNet provider query failed", e);
+				return null;
+			}
 		}
 
-		final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, actualSortOrder, null);
-		logSql(sql, selectionArgs);
-		if (BaseProvider.logSql)
+		// SUGGEST
+		result = PropBankDispatcher.querySuggest(code, uri.getLastPathSegment());
+		if (result != null)
 		{
-			Log.d(PropBankProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
-			Log.d(PropBankProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
+			return this.db.query(result.table, result.projection, result.selection, result.selectionArgs, result.groupBy, null, null);
 		}
-
-		// do query
-		try
-		{
-			return this.db.rawQuery(sql, selectionArgs);
-			//return this.db.query(table, projection, actualSelection, selectionArgs, groupBy, null, actualSortOrder, null);
-		}
-		catch (SQLiteException e)
-		{
-			Log.d(TAG + "SQL", sql);
-			Log.e(TAG, "PropBank provider query failed", e);
-			return null;
-		}
+		// UriMatcher.NO_MATCH:
+		throw new RuntimeException("Malformed URI " + uri);
 	}
 }

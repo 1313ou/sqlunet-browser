@@ -31,7 +31,7 @@ import org.sqlunet.wordnet.WordPointer;
 import org.sqlunet.wordnet.browser.SynsetActivity;
 import org.sqlunet.wordnet.browser.WordActivity;
 import org.sqlunet.wordnet.provider.WordNetContract;
-import org.sqlunet.wordnet.provider.WordNetContract.BaseRelations_Senses_Words_X;
+import org.sqlunet.wordnet.provider.WordNetContract.AllRelations_Senses_Words_X;
 import org.sqlunet.wordnet.provider.WordNetContract.Domains;
 import org.sqlunet.wordnet.provider.WordNetContract.LexRelations_Senses_Words_X;
 import org.sqlunet.wordnet.provider.WordNetContract.Lexes_Morphs;
@@ -1011,14 +1011,14 @@ abstract public class BaseModule extends Module
 	 */
 	private void relations(final long synsetId, final long wordId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean deadendParentIfNoResult)
 	{
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(BaseRelations_Senses_Words_X.CONTENT_URI_TABLE));
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(AllRelations_Senses_Words_X.CONTENT_URI_TABLE));
 		final String[] projection = { //
 				WordNetContract.TYPE, Relations.RELATIONID, //
 				Relations.RELATION, //
 				WordNetContract.SYNSET2 + '.' + Synsets.SYNSETID + " AS " + BaseModule.TARGET_SYNSETID, //
 				WordNetContract.SYNSET2 + '.' + Synsets.DEFINITION + " AS " + BaseModule.TARGET_DEFINITION, //
-				"GROUP_CONCAT(" + WordNetContract.WORD + '.' + Words.WORD + ") AS " + BaseRelations_Senses_Words_X.MEMBERS2, //
-				BaseRelations_Senses_Words_X.RECURSES, //
+				"GROUP_CONCAT(" + WordNetContract.WORD + '.' + Words.WORD + ") AS " + AllRelations_Senses_Words_X.MEMBERS2, //
+				AllRelations_Senses_Words_X.RECURSES, //
 				WordNetContract.WORD2 + '.' + Words.WORDID + " AS " + BaseModule.TARGET_WORDID, //
 				WordNetContract.WORD2 + '.' + Words.WORD + " AS " + BaseModule.TARGET_WORD, //
 		};
@@ -1040,8 +1040,8 @@ abstract public class BaseModule extends Module
 			// final int idRelation = cursor.getColumnIndex(Relations.RELATION);
 			final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
 			final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
-			final int idTargetMembers = cursor.getColumnIndex(BaseRelations_Senses_Words_X.MEMBERS2);
-			final int idRecurses = cursor.getColumnIndex(BaseRelations_Senses_Words_X.RECURSES);
+			final int idTargetMembers = cursor.getColumnIndex(AllRelations_Senses_Words_X.MEMBERS2);
+			final int idRecurses = cursor.getColumnIndex(AllRelations_Senses_Words_X.RECURSES);
 			final int idTargetWordId = cursor.getColumnIndex(BaseModule.TARGET_WORDID);
 			final int idTargetWord = cursor.getColumnIndex(BaseModule.TARGET_WORD);
 

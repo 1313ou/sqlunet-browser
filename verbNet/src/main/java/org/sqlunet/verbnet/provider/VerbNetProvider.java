@@ -4,7 +4,6 @@
 
 package org.sqlunet.verbnet.provider;
 
-import android.app.SearchManager;
 import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;
@@ -26,6 +25,7 @@ import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses_VnMembers_X;
 import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses_VnRoles_X;
 import org.sqlunet.verbnet.provider.VerbNetContract.VnWords;
 import org.sqlunet.verbnet.provider.VerbNetContract.Words_VnClasses;
+import org.sqlunet.verbnet.provider.VerbNetDispatcher.Result;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -52,43 +52,23 @@ public class VerbNetProvider extends BaseProvider
 		matchURIs();
 	}
 
-	// table codes
-	static private final int VNCLASS = 10;
-	static private final int VNCLASSES = 11;
-	static private final int VNCLASSES_X_BY_VNCLASS = 20;
-
-	// join codes
-	static private final int WORDS_VNCLASSES = 100;
-	static private final int VNCLASSES_VNMEMBERS_X_BY_WORD = 110;
-	static private final int VNCLASSES_VNROLES_X_BY_VNROLE = 120;
-	static private final int VNCLASSES_VNFRAMES_X_BY_VNFRAME = 130;
-
-	// search text codes
-	static private final int LOOKUP_FTS_EXAMPLES = 501;
-	static private final int LOOKUP_FTS_EXAMPLES_X = 511;
-	static private final int LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE = 512;
-
-	// suggest
-	static private final int SUGGEST_WORDS = 601;
-	static private final int SUGGEST_FTS_WORDS = 602;
-
 	static private void matchURIs()
 	{
-		VerbNetProvider.uriMatcher.addURI(AUTHORITY, VnClasses.TABLE, VerbNetProvider.VNCLASS);
-		VerbNetProvider.uriMatcher.addURI(AUTHORITY, VnClasses.TABLE, VerbNetProvider.VNCLASSES);
-		VerbNetProvider.uriMatcher.addURI(AUTHORITY, Words_VnClasses.TABLE, VerbNetProvider.WORDS_VNCLASSES);
-		VerbNetProvider.uriMatcher.addURI(AUTHORITY, VnClasses_VnMembers_X.TABLE_BY_WORD, VerbNetProvider.VNCLASSES_VNMEMBERS_X_BY_WORD);
-		VerbNetProvider.uriMatcher.addURI(AUTHORITY, VnClasses_VnRoles_X.TABLE_BY_ROLE, VerbNetProvider.VNCLASSES_VNROLES_X_BY_VNROLE);
-		VerbNetProvider.uriMatcher.addURI(AUTHORITY, VnClasses_VnFrames_X.TABLE_BY_FRAME, VerbNetProvider.VNCLASSES_VNFRAMES_X_BY_VNFRAME);
+		uriMatcher.addURI(AUTHORITY, VnClasses.TABLE, VerbNetDispatcher.VNCLASS);
+		uriMatcher.addURI(AUTHORITY, VnClasses.TABLE, VerbNetDispatcher.VNCLASSES);
+		uriMatcher.addURI(AUTHORITY, Words_VnClasses.TABLE, VerbNetDispatcher.WORDS_VNCLASSES);
+		uriMatcher.addURI(AUTHORITY, VnClasses_VnMembers_X.TABLE_BY_WORD, VerbNetDispatcher.VNCLASSES_VNMEMBERS_X_BY_WORD);
+		uriMatcher.addURI(AUTHORITY, VnClasses_VnRoles_X.TABLE_BY_ROLE, VerbNetDispatcher.VNCLASSES_VNROLES_X_BY_VNROLE);
+		uriMatcher.addURI(AUTHORITY, VnClasses_VnFrames_X.TABLE_BY_FRAME, VerbNetDispatcher.VNCLASSES_VNFRAMES_X_BY_VNFRAME);
 
-		VerbNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_VnExamples.TABLE + "/", VerbNetProvider.LOOKUP_FTS_EXAMPLES);
-		VerbNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_VnExamples_X.TABLE + "/", VerbNetProvider.LOOKUP_FTS_EXAMPLES_X);
-		VerbNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_VnExamples_X.TABLE_BY_EXAMPLE + "/", VerbNetProvider.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE);
+		uriMatcher.addURI(AUTHORITY, Lookup_VnExamples.TABLE + "/", VerbNetDispatcher.LOOKUP_FTS_EXAMPLES);
+		uriMatcher.addURI(AUTHORITY, Lookup_VnExamples_X.TABLE + "/", VerbNetDispatcher.LOOKUP_FTS_EXAMPLES_X);
+		uriMatcher.addURI(AUTHORITY, Lookup_VnExamples_X.TABLE_BY_EXAMPLE + "/", VerbNetDispatcher.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE);
 
-		VerbNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_VnWords.TABLE + "/*", VerbNetProvider.SUGGEST_WORDS);
-		VerbNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_VnWords.TABLE + "/", VerbNetProvider.SUGGEST_WORDS);
-		VerbNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_VnWords.TABLE + "/*", VerbNetProvider.SUGGEST_FTS_WORDS);
-		VerbNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FTS_VnWords.TABLE + "/", VerbNetProvider.SUGGEST_FTS_WORDS);
+		uriMatcher.addURI(AUTHORITY, Suggest_VnWords.TABLE + "/*", VerbNetDispatcher.SUGGEST_WORDS);
+		uriMatcher.addURI(AUTHORITY, Suggest_VnWords.TABLE + "/", VerbNetDispatcher.SUGGEST_WORDS);
+		uriMatcher.addURI(AUTHORITY, Suggest_FTS_VnWords.TABLE + "/*", VerbNetDispatcher.SUGGEST_FTS_WORDS);
+		uriMatcher.addURI(AUTHORITY, Suggest_FTS_VnWords.TABLE + "/", VerbNetDispatcher.SUGGEST_FTS_WORDS);
 	}
 
 	@NonNull
@@ -128,34 +108,34 @@ public class VerbNetProvider extends BaseProvider
 		switch (VerbNetProvider.uriMatcher.match(uri))
 		{
 			// I T E M S
-			case VNCLASS:
+			case VerbNetDispatcher.VNCLASS:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + VnClasses.TABLE;
 
 			// T A B L E S
-			case VNCLASSES:
+			case VerbNetDispatcher.VNCLASSES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + VnClasses.TABLE;
 
 			// J O I N S
-			case WORDS_VNCLASSES:
+			case VerbNetDispatcher.WORDS_VNCLASSES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_VnClasses.TABLE;
-			case VNCLASSES_VNMEMBERS_X_BY_WORD:
+			case VerbNetDispatcher.VNCLASSES_VNMEMBERS_X_BY_WORD:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + VnClasses_VnMembers_X.TABLE_BY_WORD;
-			case VNCLASSES_VNROLES_X_BY_VNROLE:
+			case VerbNetDispatcher.VNCLASSES_VNROLES_X_BY_VNROLE:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + VnClasses_VnRoles_X.TABLE_BY_ROLE;
-			case VNCLASSES_VNFRAMES_X_BY_VNFRAME:
+			case VerbNetDispatcher.VNCLASSES_VNFRAMES_X_BY_VNFRAME:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + VnClasses_VnFrames_X.TABLE_BY_FRAME;
 
 			// L O O K U P
-			case LOOKUP_FTS_EXAMPLES:
+			case VerbNetDispatcher.LOOKUP_FTS_EXAMPLES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_VnExamples.TABLE;
-			case LOOKUP_FTS_EXAMPLES_X:
+			case VerbNetDispatcher.LOOKUP_FTS_EXAMPLES_X:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_VnExamples_X.TABLE;
-			case LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
+			case VerbNetDispatcher.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_VnExamples_X.TABLE_BY_EXAMPLE;
 
 			// S U G G E S T
-			case SUGGEST_WORDS:
-			case SUGGEST_FTS_WORDS:
+			case VerbNetDispatcher.SUGGEST_WORDS:
+			case VerbNetDispatcher.SUGGEST_FTS_WORDS:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + VnWords.TABLE;
 
 			default:
@@ -168,7 +148,7 @@ public class VerbNetProvider extends BaseProvider
 	@Nullable
 	@SuppressWarnings("boxing")
 	@Override
-	public Cursor query(@NonNull final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, String sortOrder)
+	public Cursor query(@NonNull final Uri uri, final String[] projection0, final String selection0, final String[] selectionArgs0, String sortOrder0)
 	{
 		if (this.db == null)
 		{
@@ -183,149 +163,51 @@ public class VerbNetProvider extends BaseProvider
 		}
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI
-		String actualSelection = selection;
 		final int code = VerbNetProvider.uriMatcher.match(uri);
 		Log.d(VerbNetProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code));
-		String groupBy = null;
-		String table;
-		switch (code)
+
+		Result result;
+		// MAIN
+		result = VerbNetDispatcher.queryMain(code, uri.getLastPathSegment(), projection0, selection0, selectionArgs0);
+		if (result == null)
 		{
-			// I T E M
-			// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
-			// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query
-
-			case VNCLASS:
-				table = VnClasses.TABLE;
-				if (actualSelection != null)
-				{
-					actualSelection += " AND ";
-				}
-				else
-				{
-					actualSelection = "";
-				}
-				actualSelection += VnClasses.CLASSID + " = " + uri.getLastPathSegment();
-				break;
-
-			case VNCLASSES:
-				table = VnClasses.TABLE;
-				break;
-
-			case VNCLASSES_X_BY_VNCLASS:
-				groupBy = "classid";
-				table = "vnclasses " + //
-						"LEFT JOIN vngroupingmaps USING (classid) " + //
-						"LEFT JOIN vngroupings USING (groupingid)";
-				break;
-
-			// J O I N S
-
-			case WORDS_VNCLASSES:
-				table = "words " + //
-						"INNER JOIN vnwords USING (wordid) " + //
-						"INNER JOIN vnclassmembersenses USING (vnwordid) " + //
-						"LEFT JOIN vnclasses USING (classid)";
-				break;
-
-			case VNCLASSES_VNMEMBERS_X_BY_WORD:
-				groupBy = "vnwordid";
-				table = "vnclassmembersenses " + //
-						"LEFT JOIN vnwords USING (vnwordid) " + //
-						"LEFT JOIN vngroupingmaps USING (classid, vnwordid) " + //
-						"LEFT JOIN vngroupings USING (groupingid) " + //
-						"LEFT JOIN synsets USING (synsetid)";
-				break;
-
-			case VNCLASSES_VNROLES_X_BY_VNROLE:
-				groupBy = "roleid";
-				table = "vnrolemaps " + //
-						"INNER JOIN vnroles USING (roleid) " + //
-						"INNER JOIN vnroletypes USING (roletypeid) " + //
-						"LEFT JOIN vnrestrs USING (restrsid)";
-				break;
-
-			case VNCLASSES_VNFRAMES_X_BY_VNFRAME:
-				groupBy = "frameid";
-				table = "vnframemaps " + //
-						"INNER JOIN vnframes USING (frameid) " + //
-						"LEFT JOIN vnframenames USING (nameid) " + //
-						"LEFT JOIN vnframesubnames USING (subnameid) " + //
-						"LEFT JOIN vnsyntaxes USING (syntaxid) " + //
-						"LEFT JOIN vnsemantics USING (semanticsid) " + //
-						"LEFT JOIN vnexamplemaps USING (frameid) " + //
-						"LEFT JOIN vnexamples USING (exampleid)";
-				break;
-
-			// L O O K U P
-
-			case LOOKUP_FTS_EXAMPLES:
-				table = "vnexamples_example_fts4";
-				break;
-			case LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
-				groupBy = "exampleid";
-				//$FALL-THROUGH$
-				//noinspection fallthrough
-			case LOOKUP_FTS_EXAMPLES_X:
-				table = "vnexamples_example_fts4 " + //
-						"LEFT JOIN vnclasses USING (classid)";
-				break;
-
-			// S U G G E S T
-
-			case SUGGEST_WORDS:
+			// TEXTSEARCH
+			result = VerbNetDispatcher.querySearch(code, projection0, selection0, selectionArgs0);
+		}
+		// MAIN || TEXTSEARCH
+		if (result != null)
+		{
+			final String sql = SQLiteQueryBuilder.buildQueryString(false, result.table, result.projection, result.selection, result.groupBy, null, sortOrder0, null);
+			logSql(sql, selectionArgs0);
+			if (BaseProvider.logSql)
 			{
-				final String last = uri.getLastPathSegment();
-				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(last))
-				{
-					return null;
-				}
-				table = "vnwords";
-				return this.db.query(table, new String[]{"vnwordid AS _id", //
-								"word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
-								"word AS " + SearchManager.SUGGEST_COLUMN_QUERY}, //
-						"word LIKE ? || '%'", //
-						new String[]{last}, null, null, null);
+				Log.d(TAG + "SQL", SqlFormatter.format(sql).toString());
+				Log.d(TAG + "ARG", BaseProvider.argsToString(selectionArgs0));
 			}
 
-			case SUGGEST_FTS_WORDS:
+			// do query
+			try
 			{
-				final String last = uri.getLastPathSegment();
-				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(last))
-				{
-					return null;
-				}
-				table = "vnwords_word_fts4";
-				return this.db.query(table, new String[]{"vnwordid AS _id", //
-								"word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
-								"word AS " + SearchManager.SUGGEST_COLUMN_QUERY}, //
-						"word MATCH ?", //
-						new String[]{last + '*'}, null, null, null);
+				final Cursor cursor = this.db.rawQuery(sql, selectionArgs0);
+				Log.d(TAG + "COUNT", cursor.getCount() + " items");
+				return cursor;
+				//return this.db.query(table, actualProjection, actualSelection, selectionArgs, groupBy, null, sortOrder, null);
 			}
-
-			default:
-			case UriMatcher.NO_MATCH:
-				throw new RuntimeException("Malformed URI " + uri);
+			catch (@NonNull final SQLiteException e)
+			{
+				Log.d(TAG + "SQL", sql);
+				Log.e(TAG, "WordNet provider query failed", e);
+				return null;
+			}
 		}
 
-		final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, sortOrder, null);
-		logSql(sql, selectionArgs);
-		if (BaseProvider.logSql)
+		// SUGGEST
+		result = VerbNetDispatcher.querySuggest(code, uri.getLastPathSegment());
+		if (result != null)
 		{
-			Log.d(VerbNetProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
-			Log.d(VerbNetProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
+			return this.db.query(result.table, result.projection, result.selection, result.selectionArgs, result.groupBy, null, null);
 		}
-
-		// do query
-		try
-		{
-			return this.db.rawQuery(sql, selectionArgs);
-			//return this.db.query(table, projection, actualSelection, selectionArgs, groupBy, null, sortOrder, null);
-		}
-		catch (@NonNull final SQLiteException e)
-		{
-			Log.d(TAG + "SQL", sql);
-			Log.e(VerbNetProvider.TAG, "VerbNet provider query failed", e);
-			return null;
-		}
+		// UriMatcher.NO_MATCH:
+		throw new RuntimeException("Malformed URI " + uri);
 	}
 }

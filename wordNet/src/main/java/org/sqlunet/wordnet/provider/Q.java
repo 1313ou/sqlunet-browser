@@ -1,6 +1,61 @@
 package org.sqlunet.wordnet.provider;
 
-public class Queries {
+public class Q
+{
+
+	public static final String AS_CASEDS="c";
+	public static final String AS_DOMAINS="d";
+	public static final String AS_POSES="p";
+	public static final String AS_RELATIONS="r";
+	public static final String AS_SENSES="s";
+	public static final String AS_SYNSETS="y";
+	public static final String AS_SYNSETS2="y2";
+	public static final String AS_TYPES="t";
+	public static final String AS_WORDS="w";
+	public static final String AS_WORDS2="w2";
+	public static final String CASEDWORD="casedword";
+	public static final String CASEDWORDID="casedwordid";
+	public static final String DEFINITION="definition";
+	public static final String DOMAIN="domain";
+	public static final String DOMAINID="domainid";
+	public static final String DOMAINNAME="domainname";
+	public static final String FRAME="frame";
+	public static final String FRAMEID="frameid";
+	public static final String LEXID="lexid";
+	public static final String LU1ID="lu1id";
+	public static final String LU2ID="lu2id";
+	public static final String LUID="luid";
+	public static final String MEMBERS="members";
+	public static final String MEMBERS2="members2";
+	public static final String MORPH="morph";
+	public static final String MORPHID="morphid";
+	public static final String POS="pos";
+	public static final String POSID="posid";
+	public static final String POSITION="position";
+	public static final String POSITIONID="positionid";
+	public static final String PRONUNCIATION="pronunciation";
+	public static final String PRONUNCIATIONID="pronunciationid";
+	public static final String RECURSES="recurses";
+	public static final String RELATION="relation";
+	public static final String RELATIONID="relationid";
+	public static final String SAMPLE="sample";
+	public static final String SAMPLEID="sampleid";
+	public static final String SAMPLESET="sampleset";
+	public static final String SENSEID="senseid";
+	public static final String SENSEKEY="sensekey";
+	public static final String SENSENUM="sensenum";
+	public static final String SYNSET1ID="synset1id";
+	public static final String SYNSET2ID="synset2id";
+	public static final String SYNSETID="synsetid";
+	public static final String TAGCOUNT="tagcount";
+	public static final String TEMPLATE="template";
+	public static final String TEMPLATEID="templateid";
+	public static final String VARIETY="variety";
+	public static final String WORD="word";
+	public static final String WORD1ID="word1id";
+	public static final String WORD2="word2";
+	public static final String WORD2ID="word2id";
+	public static final String WORDID="wordid";
 
 	static public class ADJPOSITIONS {
 		static public final String TABLE = "adjpositions";
@@ -42,18 +97,6 @@ public class Queries {
 		static public final String TABLE = "lexrelations AS r INNER JOIN relations USING (relationid) INNER JOIN synsets AS y2 ON r.synset2id = y2.synsetid INNER JOIN words AS w ON r.word2id = w.wordid ";
 	}
 
-	static public class LOOKUP_FTS_DEFINITIONS {
-		static public final String TABLE = "synsets_definition_fts4";
-	}
-
-	static public class LOOKUP_FTS_SAMPLES {
-		static public final String TABLE = "samples_sample_fts4";
-	}
-
-	static public class LOOKUP_FTS_WORDS {
-		static public final String TABLE = "words_word_fts4";
-	}
-
 	static public class POSES {
 		static public final String TABLE = "poses";
 	}
@@ -84,7 +127,8 @@ public class Queries {
 		static public final String TABLE = "semrelations AS r INNER JOIN relations USING (relationid) INNER JOIN synsets AS y2 ON r.synset2id = y2.synsetid ";
 	}
 
-	static public class SENSE {
+	static public class SENSE1
+	{
 		static public final String TABLE = "senses";
 	}
 
@@ -118,6 +162,66 @@ public class Queries {
 		static public final String GROUPBY = "synsetid";
 	}
 
+	static public class SYNSET1
+	{
+		static public final String TABLE = "synsets";
+	}
+
+	static public class SYNSETS {
+		static public final String TABLE = "synsets";
+	}
+
+	static public class SYNSETS_POSES_DOMAINS {
+		static public final String TABLE = "synsets AS y LEFT JOIN poses AS p USING (posid) LEFT JOIN domains AS d USING (domainid)";
+	}
+
+	static public class WORD1
+	{
+		static public final String TABLE = "words";
+	}
+
+	static public class WORDS {
+		static public final String TABLE = "words";
+	}
+
+	static public class CASEDWORDS {
+		static public final String TABLE = "casedwords";
+	}
+
+	static public class WORDS_LEXES_MORPHS {
+		static public final String TABLE = "words LEFT JOIN lexes_morphs USING (wordid) LEFT JOIN morphs USING (morphid)";
+	}
+
+	static public class WORDS_LEXES_MORPHS_BY_WORD {
+		static public final String TABLE = "words LEFT JOIN lexes_morphs USING (wordid) LEFT JOIN morphs USING (morphid)";
+		static public final String GROUPBY = "wordid";
+	}
+
+	static public class WORDS_SENSES_CASEDWORDS_SYNSETS {
+		static public final String TABLE = "words AS w LEFT JOIN senses AS s USING (wordid) LEFT JOIN casedwords AS c USING (wordid,casedwordid) LEFT JOIN synsets AS y USING (synsetid)";
+	}
+
+	static public class WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS
+	{
+		static public final String TABLE = "words AS w LEFT JOIN senses AS s USING (wordid) LEFT JOIN casedwords AS c USING (wordid,casedwordid) LEFT JOIN synsets AS y USING (synsetid) LEFT JOIN poses AS p USING (posid) LEFT JOIN domains AS d USING (domainid)";
+	}
+
+	static public class WORDS_SENSES_SYNSETS {
+		static public final String TABLE = "words AS w LEFT JOIN senses AS s USING (wordid) LEFT JOIN synsets AS y USING (synsetid)";
+	}
+
+	static public class LOOKUP_FTS_DEFINITIONS {
+		static public final String TABLE = "synsets_definition_fts4";
+	}
+
+	static public class LOOKUP_FTS_SAMPLES {
+		static public final String TABLE = "samples_sample_fts4";
+	}
+
+	static public class LOOKUP_FTS_WORDS {
+		static public final String TABLE = "words_word_fts4";
+	}
+
 	static public class SUGGEST_FTS_DEFINITIONS {
 		static public final String TABLE = "synsets_definition_fts4";
 		static public final String[] PROJECTION = {"synsetid AS _id","definition AS suggest_text_1","definition AS suggest_intent_query"};
@@ -146,45 +250,4 @@ public class Queries {
 		static public final String[] ARGS = {"#{uri_last}"};
 	}
 
-	static public class SYNSET {
-		static public final String TABLE = "synsets";
-	}
-
-	static public class SYNSETS {
-		static public final String TABLE = "synsets";
-	}
-
-	static public class SYNSETS_POSES_DOMAINS {
-		static public final String TABLE = "synsets AS y LEFT JOIN poses AS p USING (posid) LEFT JOIN domains AS d USING (domainid)";
-	}
-
-	static public class WORD {
-		static public final String TABLE = "words";
-	}
-
-	static public class WORDS {
-		static public final String TABLE = "words";
-	}
-
-	static public class WORDS_LEXES_MORPHS {
-		static public final String TABLE = "words LEFT JOIN lexes_morphs USING (wordid) LEFT JOIN morphs USING (morphid)";
-	}
-
-	static public class WORDS_LEXES_MORPHS_BY_WORD {
-		static public final String TABLE = "words LEFT JOIN lexes_morphs USING (wordid) LEFT JOIN morphs USING (morphid)";
-		static public final String GROUPBY = "wordid";
-	}
-
-	static public class WORDS_SENSES_CASEDWORDS_SYNSETS {
-		static public final String TABLE = "words AS w LEFT JOIN senses AS s USING (wordid) LEFT JOIN casedwords AS c USING (wordid,casedwordid) LEFT JOIN synsets AS y USING (synsetid)";
-	}
-
-	static public class WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS
-	{
-		static public final String TABLE = "words AS w LEFT JOIN senses AS s USING (wordid) LEFT JOIN casedwords AS c USING (wordid,casedwordid) LEFT JOIN synsets AS y USING (synsetid) LEFT JOIN poses AS p USING (posid) LEFT JOIN domains AS d USING (domainid)";
-	}
-
-	static public class WORDS_SENSES_SYNSETS {
-		static public final String TABLE = "words AS w LEFT JOIN senses AS s USING (wordid) LEFT JOIN synsets AS y USING (synsetid)";
-	}
 }

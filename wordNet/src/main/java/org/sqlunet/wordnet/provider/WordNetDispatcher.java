@@ -16,7 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /**
- * WordNet provider
+ * WordNet query dispatcher
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -105,57 +105,58 @@ public class WordNetDispatcher
 		String[] projection = projection0;
 		String selection = selection0;
 		String groupBy = null;
+
 		switch (code)
 		{
 			// T A B L E
 			// table uri : last element is table
 
-			case WordNetDispatcher.WORDS:
-				table = Queries.WORDS.TABLE;
+			case WORDS:
+				table = Q.WORDS.TABLE;
 				break;
 
-			case WordNetDispatcher.SENSES:
-				table = Queries.SENSES.TABLE;
+			case SENSES:
+				table = Q.SENSES.TABLE;
 				break;
 
-			case WordNetDispatcher.SYNSETS:
-				table = Queries.SYNSETS.TABLE;
+			case SYNSETS:
+				table = Q.SYNSETS.TABLE;
 				break;
 
-			case WordNetDispatcher.SEMRELATIONS:
-				table = Queries.SEMRELATIONS.TABLE;
+			case SEMRELATIONS:
+				table = Q.SEMRELATIONS.TABLE;
 				break;
 
-			case WordNetDispatcher.LEXRELATIONS:
-				table = Queries.LEXRELATIONS.TABLE;
+			case LEXRELATIONS:
+				table = Q.LEXRELATIONS.TABLE;
 				break;
 
-			case WordNetDispatcher.RELATIONS:
-				table = Queries.RELATIONS.TABLE;
+			case RELATIONS:
+				table = Q.RELATIONS.TABLE;
 				break;
 
-			case WordNetDispatcher.POSES:
-				table = Queries.POSES.TABLE;
+			case POSES:
+				table = Q.POSES.TABLE;
 				break;
 
-			case WordNetDispatcher.DOMAINS:
-				table = Queries.DOMAINS.TABLE;
+			case DOMAINS:
+				table = Q.DOMAINS.TABLE;
 				break;
 
-			case WordNetDispatcher.ADJPOSITIONS:
-				table = Queries.ADJPOSITIONS.TABLE;
+			case ADJPOSITIONS:
+				table = Q.ADJPOSITIONS.TABLE;
 				break;
 
-			case WordNetDispatcher.SAMPLES:
-				table = Queries.SAMPLES.TABLE;
+			case SAMPLES:
+				table = Q.SAMPLES.TABLE;
 				break;
 
 			// I T E M
 			// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
 			// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query
 
-			case WordNetDispatcher.WORD:
-				table = Queries.WORD.TABLE;
+			case WORD:
+				table = Q.WORDS.TABLE;
 				if (selection != null)
 				{
 					selection += " AND ";
@@ -167,8 +168,8 @@ public class WordNetDispatcher
 				selection += Words.WORDID + " = " + uriLast;
 				break;
 
-			case WordNetDispatcher.SENSE:
-				table = Queries.SENSE.TABLE;
+			case SENSE:
+				table = Q.SENSE1.TABLE;
 				if (selection != null)
 				{
 					selection += " AND ";
@@ -180,8 +181,8 @@ public class WordNetDispatcher
 				selection += Senses.SENSEID + " = " + uriLast;
 				break;
 
-			case WordNetDispatcher.SYNSET:
-				table = Queries.SYNSET.TABLE;
+			case SYNSET:
+				table = Q.SYNSET1.TABLE;
 				if (selection != null)
 				{
 					selection += " AND ";
@@ -195,93 +196,93 @@ public class WordNetDispatcher
 
 			// V I E W S
 
-			case WordNetDispatcher.DICT:
-				table = Queries.DICT.TABLE;
+			case DICT:
+				table = Q.DICT.TABLE;
 				break;
 
 			// J O I N S
 
-			case WordNetDispatcher.WORDS_SENSES_SYNSETS:
-				table = Queries.WORDS_SENSES_SYNSETS.TABLE;
+			case WORDS_SENSES_SYNSETS:
+				table = Q.WORDS_SENSES_SYNSETS.TABLE;
 				break;
 
-			case WordNetDispatcher.WORDS_SENSES_CASEDWORDS_SYNSETS:
-				table = Queries.WORDS_SENSES_CASEDWORDS_SYNSETS.TABLE;
+			case WORDS_SENSES_CASEDWORDS_SYNSETS:
+				table = Q.WORDS_SENSES_CASEDWORDS_SYNSETS.TABLE;
 				break;
 
-			case WordNetDispatcher.WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS:
-				table = Queries.WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS.TABLE;
+			case WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS:
+				table = Q.WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS.TABLE;
 				break;
 
-			case WordNetDispatcher.SENSES_WORDS:
-				table = Queries.SENSES_WORDS.TABLE;
+			case SENSES_WORDS:
+				table = Q.SENSES_WORDS.TABLE;
 				break;
 
-			case WordNetDispatcher.SENSES_WORDS_BY_SYNSET:
-				table = Queries.SENSES_WORDS_BY_SYNSET.TABLE;
-				projection = BaseProvider.appendProjection(projection, Queries.SENSES_WORDS_BY_SYNSET.PROJECTION[0].replaceAll("#\\{members\\}", WordNetContract.MEMBERS));
-				groupBy = Queries.SENSES_WORDS_BY_SYNSET.GROUPBY;
+			case SENSES_WORDS_BY_SYNSET:
+				table = Q.SENSES_WORDS_BY_SYNSET.TABLE;
+				projection = BaseProvider.appendProjection(projection, Q.SENSES_WORDS_BY_SYNSET.PROJECTION[0].replaceAll("#\\{members\\}", WordNetContract.MEMBERS));
+				groupBy = Q.SENSES_WORDS_BY_SYNSET.GROUPBY;
 				break;
 
-			case WordNetDispatcher.SENSES_SYNSETS_POSES_DOMAINS:
-				table = Queries.SENSES_SYNSETS_POSES_DOMAINS.TABLE;
+			case SENSES_SYNSETS_POSES_DOMAINS:
+				table = Q.SENSES_SYNSETS_POSES_DOMAINS.TABLE;
 				break;
 
-			case WordNetDispatcher.SYNSETS_POSES_DOMAINS:
-				table = Queries.SYNSETS_POSES_DOMAINS.TABLE;
+			case SYNSETS_POSES_DOMAINS:
+				table = Q.SYNSETS_POSES_DOMAINS.TABLE;
 				break;
 
-			case WordNetDispatcher.SEMRELATIONS_SYNSETS:
-				table = Queries.SEMRELATIONS_SYNSETS.TABLE;
+			case SEMRELATIONS_SYNSETS:
+				table = Q.SEMRELATIONS_SYNSETS.TABLE;
 				break;
 
-			case WordNetDispatcher.SEMRELATIONS_SYNSETS_X:
-				table = Queries.SEMRELATIONS_SYNSETS_X.TABLE;
+			case SEMRELATIONS_SYNSETS_X:
+				table = Q.SEMRELATIONS_SYNSETS_X.TABLE;
 				break;
 
-			case WordNetDispatcher.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET:
-				table = Queries.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET.TABLE;
-				projection = BaseProvider.appendProjection(projection, Queries.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET.PROJECTION[0].replaceAll("#\\{members2\\}", WordNetContract.MEMBERS2));
-				groupBy = Queries.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET.GROUPBY;
+			case SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET:
+				table = Q.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET.TABLE;
+				projection = BaseProvider.appendProjection(projection, Q.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET.PROJECTION[0].replaceAll("#\\{members2\\}", WordNetContract.MEMBERS2));
+				groupBy = Q.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET.GROUPBY;
 				break;
 
-			case WordNetDispatcher.LEXRELATIONS_SENSES:
-				table = Queries.LEXRELATIONS_SENSES.TABLE;
+			case LEXRELATIONS_SENSES:
+				table = Q.LEXRELATIONS_SENSES.TABLE;
 				break;
 
-			case WordNetDispatcher.LEXRELATIONS_SENSES_X:
-				table = Queries.LEXRELATIONS_SENSES_X.TABLE;
+			case LEXRELATIONS_SENSES_X:
+				table = Q.LEXRELATIONS_SENSES_X.TABLE;
 				break;
 
-			case WordNetDispatcher.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET:
-				table = Queries.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET.TABLE;
-				projection = BaseProvider.appendProjection(projection, Queries.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET.PROJECTION[0].replaceAll("#\\{members2\\}", WordNetContract.MEMBERS2));
-				groupBy = Queries.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET.GROUPBY;
+			case LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET:
+				table = Q.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET.TABLE;
+				projection = BaseProvider.appendProjection(projection, Q.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET.PROJECTION[0].replaceAll("#\\{members2\\}", WordNetContract.MEMBERS2));
+				groupBy = Q.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET.GROUPBY;
 				break;
 
-			case WordNetDispatcher.SENSES_VFRAMES:
-				table = Queries.SENSES_VFRAMES.TABLE;
+			case SENSES_VFRAMES:
+				table = Q.SENSES_VFRAMES.TABLE;
 				break;
 
-			case WordNetDispatcher.SENSES_VTEMPLATES:
-				table = Queries.SENSES_VTEMPLATES.TABLE;
+			case SENSES_VTEMPLATES:
+				table = Q.SENSES_VTEMPLATES.TABLE;
 				break;
 
-			case WordNetDispatcher.SENSES_ADJPOSITIONS:
-				table = Queries.SENSES_ADJPOSITIONS.TABLE;
+			case SENSES_ADJPOSITIONS:
+				table = Q.SENSES_ADJPOSITIONS.TABLE;
 				break;
 
-			case WordNetDispatcher.LEXES_MORPHS:
-				table = Queries.LEXES_MORPHS.TABLE;
+			case LEXES_MORPHS:
+				table = Q.LEXES_MORPHS.TABLE;
 				break;
 
-			case WordNetDispatcher.WORDS_LEXES_MORPHS:
-				table = Queries.WORDS_LEXES_MORPHS.TABLE;
+			case WORDS_LEXES_MORPHS:
+				table = Q.WORDS_LEXES_MORPHS.TABLE;
 				break;
 
-			case WordNetDispatcher.WORDS_LEXES_MORPHS_BY_WORD:
-				table = Queries.WORDS_LEXES_MORPHS.TABLE;
-				groupBy = Queries.WORDS_LEXES_MORPHS_BY_WORD.GROUPBY;
+			case WORDS_LEXES_MORPHS_BY_WORD:
+				table = Q.WORDS_LEXES_MORPHS.TABLE;
+				groupBy = Q.WORDS_LEXES_MORPHS_BY_WORD.GROUPBY;
 				break;
 
 			default:
@@ -292,11 +293,11 @@ public class WordNetDispatcher
 
 	public static Result queryAllRelations(int code, final String[] projection0, @Nullable final String selection0, final String[] selectionArgs0, final Factory subqueryFactory)
 	{
-		if (code == WordNetDispatcher.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET)
+		if (code == ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET)
 		{
 			final String subQuery = subqueryFactory.make(selection0);
-			String table = Queries.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET.TABLE.replaceFirst("#\\{query\\}", subQuery);
-			String groupBy = Queries.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET.GROUPBY.replaceAll("#\\{query_target_synsetid\\}", BaseModule.TARGET_SYNSETID) //
+			String table = Q.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET.TABLE.replaceFirst("#\\{query\\}", subQuery);
+			String groupBy = Q.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET.GROUPBY.replaceAll("#\\{query_target_synsetid\\}", BaseModule.TARGET_SYNSETID) //
 					.replaceAll("#\\{query_target_wordid\\}", BaseModule.TARGET_WORDID) //
 					.replaceAll("#\\{query_target_word\\}", BaseModule.TARGET_WORD);
 			return new Result(table, projection0, null, selectionArgs0, groupBy);
@@ -309,18 +310,16 @@ public class WordNetDispatcher
 		String table;
 		switch (code)
 		{
-			// T E X T S E A R C H
-
-			case WordNetDispatcher.LOOKUP_FTS_WORDS:
-				table = Queries.LOOKUP_FTS_WORDS.TABLE;
+			case LOOKUP_FTS_WORDS:
+				table = Q.LOOKUP_FTS_WORDS.TABLE;
 				break;
 
-			case WordNetDispatcher.LOOKUP_FTS_DEFINITIONS:
-				table = Queries.LOOKUP_FTS_DEFINITIONS.TABLE;
+			case LOOKUP_FTS_DEFINITIONS:
+				table = Q.LOOKUP_FTS_DEFINITIONS.TABLE;
 				break;
 
-			case WordNetDispatcher.LOOKUP_FTS_SAMPLES:
-				table = Queries.LOOKUP_FTS_SAMPLES.TABLE;
+			case LOOKUP_FTS_SAMPLES:
+				table = Q.LOOKUP_FTS_SAMPLES.TABLE;
 				break;
 
 			default:
@@ -337,55 +336,55 @@ public class WordNetDispatcher
 		String[] selectionArgs;
 		switch (code)
 		{
-			case WordNetDispatcher.SUGGEST_WORDS:
+			case SUGGEST_WORDS:
 			{
 				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(uriLast))
 				{
 					return null;
 				}
-				projection = Queries.SUGGEST_WORDS.PROJECTION;
-				selection = Queries.SUGGEST_WORDS.SELECTION;
-				selectionArgs = new String[]{Queries.SUGGEST_WORDS.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
-				table = Queries.SUGGEST_WORDS.TABLE;
+				projection = Q.SUGGEST_WORDS.PROJECTION;
+				selection = Q.SUGGEST_WORDS.SELECTION;
+				selectionArgs = new String[]{Q.SUGGEST_WORDS.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
+				table = Q.SUGGEST_WORDS.TABLE;
 				break;
 			}
 
-			case WordNetDispatcher.SUGGEST_FTS_WORDS:
+			case SUGGEST_FTS_WORDS:
 			{
 				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(uriLast))
 				{
 					return null;
 				}
-				projection = Queries.SUGGEST_FTS_WORDS.PROJECTION;
-				selection = Queries.SUGGEST_FTS_WORDS.SELECTION;
-				selectionArgs = new String[]{Queries.SUGGEST_FTS_WORDS.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
-				table = Queries.SUGGEST_FTS_WORDS.TABLE;
+				projection = Q.SUGGEST_FTS_WORDS.PROJECTION;
+				selection = Q.SUGGEST_FTS_WORDS.SELECTION;
+				selectionArgs = new String[]{Q.SUGGEST_FTS_WORDS.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
+				table = Q.SUGGEST_FTS_WORDS.TABLE;
 				break;
 			}
 
-			case WordNetDispatcher.SUGGEST_FTS_DEFINITIONS:
+			case SUGGEST_FTS_DEFINITIONS:
 			{
 				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(uriLast))
 				{
 					return null;
 				}
-				projection = Queries.SUGGEST_FTS_DEFINITIONS.PROJECTION;
-				selection = Queries.SUGGEST_FTS_DEFINITIONS.SELECTION;
-				selectionArgs = new String[]{Queries.SUGGEST_FTS_DEFINITIONS.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
-				table = Queries.SUGGEST_FTS_DEFINITIONS.TABLE;
+				projection = Q.SUGGEST_FTS_DEFINITIONS.PROJECTION;
+				selection = Q.SUGGEST_FTS_DEFINITIONS.SELECTION;
+				selectionArgs = new String[]{Q.SUGGEST_FTS_DEFINITIONS.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
+				table = Q.SUGGEST_FTS_DEFINITIONS.TABLE;
 				break;
 			}
 
-			case WordNetDispatcher.SUGGEST_FTS_SAMPLES:
+			case SUGGEST_FTS_SAMPLES:
 			{
 				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(uriLast))
 				{
 					return null;
 				}
-				table = Queries.SUGGEST_FTS_SAMPLES.TABLE;
-				projection = Queries.SUGGEST_FTS_SAMPLES.PROJECTION;
-				selection = Queries.SUGGEST_FTS_SAMPLES.SELECTION;
-				selectionArgs = new String[]{Queries.SUGGEST_FTS_SAMPLES.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
+				table = Q.SUGGEST_FTS_SAMPLES.TABLE;
+				projection = Q.SUGGEST_FTS_SAMPLES.PROJECTION;
+				selection = Q.SUGGEST_FTS_SAMPLES.SELECTION;
+				selectionArgs = new String[]{Q.SUGGEST_FTS_SAMPLES.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
 				break;
 			}
 
