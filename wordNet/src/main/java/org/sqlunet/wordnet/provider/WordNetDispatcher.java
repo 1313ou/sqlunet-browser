@@ -156,7 +156,7 @@ public class WordNetDispatcher
 			// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query
 
 			case WORD:
-				table = Q.WORDS.TABLE;
+				table = Q.WORD1.TABLE;
 				if (selection != null)
 				{
 					selection += " AND ";
@@ -165,7 +165,8 @@ public class WordNetDispatcher
 				{
 					selection = "";
 				}
-				selection += Words.WORDID + " = " + uriLast;
+				//selection += Q.WORDID + " = " + uriLast;
+				selection += Q.WORD1.SELECTION.replaceAll("#\\{uri_last\\}", uriLast);
 				break;
 
 			case SENSE:
@@ -178,7 +179,8 @@ public class WordNetDispatcher
 				{
 					selection = "";
 				}
-				selection += Senses.SENSEID + " = " + uriLast;
+				//selection += Q.SENSEID + " = " + uriLast;
+				selection += Q.SENSE1.SELECTION.replaceAll("#\\{uri_last\\}", uriLast);
 				break;
 
 			case SYNSET:
@@ -191,7 +193,8 @@ public class WordNetDispatcher
 				{
 					selection = "";
 				}
-				selection += Synsets.SYNSETID + " = " + uriLast;
+				//selection += Q.SYNSETID + " = " + uriLast;
+				selection += Q.SYNSET1.SELECTION.replaceAll("#\\{uri_last\\}", uriLast);
 				break;
 
 			// V I E W S
@@ -342,10 +345,10 @@ public class WordNetDispatcher
 				{
 					return null;
 				}
+				table = Q.SUGGEST_WORDS.TABLE;
 				projection = Q.SUGGEST_WORDS.PROJECTION;
 				selection = Q.SUGGEST_WORDS.SELECTION;
 				selectionArgs = new String[]{Q.SUGGEST_WORDS.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
-				table = Q.SUGGEST_WORDS.TABLE;
 				break;
 			}
 
@@ -355,10 +358,10 @@ public class WordNetDispatcher
 				{
 					return null;
 				}
+				table = Q.SUGGEST_FTS_WORDS.TABLE;
 				projection = Q.SUGGEST_FTS_WORDS.PROJECTION;
 				selection = Q.SUGGEST_FTS_WORDS.SELECTION;
 				selectionArgs = new String[]{Q.SUGGEST_FTS_WORDS.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
-				table = Q.SUGGEST_FTS_WORDS.TABLE;
 				break;
 			}
 
@@ -368,10 +371,10 @@ public class WordNetDispatcher
 				{
 					return null;
 				}
+				table = Q.SUGGEST_FTS_DEFINITIONS.TABLE;
 				projection = Q.SUGGEST_FTS_DEFINITIONS.PROJECTION;
 				selection = Q.SUGGEST_FTS_DEFINITIONS.SELECTION;
 				selectionArgs = new String[]{Q.SUGGEST_FTS_DEFINITIONS.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
-				table = Q.SUGGEST_FTS_DEFINITIONS.TABLE;
 				break;
 			}
 

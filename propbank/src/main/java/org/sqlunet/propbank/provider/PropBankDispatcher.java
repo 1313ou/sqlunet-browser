@@ -6,7 +6,6 @@ package org.sqlunet.propbank.provider;
 
 import android.app.SearchManager;
 
-import org.sqlunet.propbank.provider.PropBankContract.PbRoleSets;
 import org.sqlunet.propbank.provider.PropBankContract.PbRoleSets_X;
 
 /**
@@ -63,12 +62,18 @@ public class PropBankDispatcher
 
 		switch (code)
 		{
+			// T A B L E S
+
+			case PBROLESETS:
+				table = Q.PBROLESETS.TABLE;
+				break;
+
 			// I T E M
 			// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
 			// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query
 
 			case PBROLESET:
-				table = PbRoleSets.TABLE;
+				table = Q.PBROLESET.TABLE;
 				if (selection != null)
 				{
 					selection += " AND ";
@@ -77,61 +82,41 @@ public class PropBankDispatcher
 				{
 					selection = "";
 				}
-				selection += PbRoleSets.ROLESETID + " = ?";
-				break;
-
-			case PBROLESETS:
-				table = PbRoleSets.TABLE;
+				selection += Q.PBROLESET.SELECTION;
 				break;
 
 			// J O I N S
 
 			case PBROLESETS_X_BY_ROLESET:
+				table = Q.PBROLESETS_X.TABLE;
 				groupBy = PbRoleSets_X.ROLESETID;
-				//$FALL-THROUGH$
-				//noinspection fallthrough
+				break;
+
 			case PBROLESETS_X:
-				table = "pbrolesets " + //
-						"LEFT JOIN pbrolesetmembers AS " + PropBankContract.MEMBER + " USING (rolesetid) " + //
-						"LEFT JOIN pbwords AS " + PropBankContract.WORD + " ON " + PropBankContract.MEMBER + ".pbwordid = " + PropBankContract.WORD + ".pbwordid";
+				table = Q.PBROLESETS_X.TABLE;
 				break;
 
 			case WORDS_PBROLESETS:
-				table = "words " + //
-						"INNER JOIN pbwords USING (wordid) " + //
-						"INNER JOIN pbrolesets USING (pbwordid)";
+				table = Q.WORDS_PBROLESETS.TABLE;
 				break;
 
 			case PBROLESETS_PBROLES:
-				table = "pbrolesets " + //
-						"INNER JOIN pbroles USING (rolesetid) " + //
-						"LEFT JOIN pbfuncs USING (func) " + //
-						"LEFT JOIN pbvnthetas USING (theta)";
+				table = Q.PBROLESETS_PBROLES.TABLE;
 				break;
 
 			case PBROLESETS_PBEXAMPLES_BY_EXAMPLE:
-				groupBy = PropBankContract.EXAMPLE + ".exampleid";
-				//$FALL-THROUGH$
-				//noinspection fallthrough
+				table = Q.PBROLESETS_PBEXAMPLES_BY_EXAMPLE.TABLE;
+				groupBy = Q.PBROLESETS_PBEXAMPLES_BY_EXAMPLE.GROUPBY;
+				break;
+
 			case PBROLESETS_PBEXAMPLES:
-				table = "pbrolesets " + //
-						"INNER JOIN pbexamples AS " + PropBankContract.EXAMPLE + " USING (rolesetid) " + //
-						"LEFT JOIN pbrels AS " + PropBankContract.REL + " USING (exampleid) " + //
-						"LEFT JOIN pbargs AS " + PropBankContract.ARG + " USING (exampleid) " + //
-						"LEFT JOIN pbfuncs AS " + PropBankContract.FUNC + " ON (" + PropBankContract.ARG + ".func = " + PropBankContract.FUNC + ".func) " + //
-						"LEFT JOIN pbaspects USING (aspect) " + //
-						"LEFT JOIN pbforms USING (form) " + //
-						"LEFT JOIN pbtenses USING (tense) " + //
-						"LEFT JOIN pbvoices USING (voice) " + //
-						"LEFT JOIN pbpersons USING (person) " + //
-						"LEFT JOIN pbroles USING (rolesetid,narg) " + //
-						"LEFT JOIN pbvnthetas USING (theta)";
+				table = Q.PBROLESETS_PBEXAMPLES.TABLE;
 				break;
 
 			default:
 				return null;
 		}
-		return new Result(table, projection0, selection0, selectionArgs0, groupBy);
+		return new Result(table, projection0, selection, selectionArgs0, groupBy);
 	}
 
 	public static Result querySearch(final int code, final String[] projection0, final String selection0, final String[] selectionArgs0)
@@ -142,15 +127,16 @@ public class PropBankDispatcher
 		switch (code)
 		{
 			case LOOKUP_FTS_EXAMPLES:
-				table = "pbexamples_text_fts4";
+				table = Q.LOOKUP_FTS_EXAMPLES.TABLE;
 				break;
+
 			case LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
-				groupBy = "exampleid";
-				//$FALL-THROUGH$
-				//noinspection fallthrough
+				table = Q.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE.TABLE;
+				groupBy = Q.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE.GROUPBY;
+				break;
+
 			case LOOKUP_FTS_EXAMPLES_X:
-				table = "pbexamples_text_fts4 " + //
-						"LEFT JOIN pbrolesets USING (rolesetid)";
+				table = Q.LOOKUP_FTS_EXAMPLES_X.TABLE;
 				break;
 
 			default:
@@ -174,12 +160,12 @@ public class PropBankDispatcher
 				{
 					return null;
 				}
-				table = "pbwords";
-				projection = new String[]{"pbwordid AS _id", //
-						"word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
-						"word AS " + SearchManager.SUGGEST_COLUMN_QUERY};
-				selection = "word LIKE ? || '%'";
-				selectionArgs = new String[]{uriLast};
+				table = Q.SUGGEST_WORDS.TABLE;
+				projection = Q.SUGGEST_WORDS.PROJECTION;
+				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}", SearchManager.SUGGEST_COLUMN_TEXT_1);
+				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}", SearchManager.SUGGEST_COLUMN_QUERY);
+				selection = Q.SUGGEST_WORDS.SELECTION;
+				selectionArgs = new String[]{Q.SUGGEST_WORDS.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
 				break;
 			}
 
@@ -189,12 +175,12 @@ public class PropBankDispatcher
 				{
 					return null;
 				}
-				table = "pbwords_word_fts4";
-				projection = new String[]{"pbwordid AS _id", //
-						"word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
-						"word AS " + SearchManager.SUGGEST_COLUMN_QUERY};
-				selection = "word MATCH ?";
-				selectionArgs = new String[]{uriLast + '*'};
+				table = Q.SUGGEST_FTS_WORDS.TABLE;
+				projection = Q.SUGGEST_FTS_WORDS.PROJECTION;
+				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}", SearchManager.SUGGEST_COLUMN_TEXT_1);
+				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}", SearchManager.SUGGEST_COLUMN_QUERY);
+				selection = Q.SUGGEST_FTS_WORDS.SELECTION;
+				selectionArgs = new String[]{Q.SUGGEST_FTS_WORDS.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
 				break;
 			}
 

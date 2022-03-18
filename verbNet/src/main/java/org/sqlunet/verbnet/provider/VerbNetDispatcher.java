@@ -6,8 +6,6 @@ package org.sqlunet.verbnet.provider;
 
 import android.app.SearchManager;
 
-import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses;
-
 /**
  * VerbNet query dispatcher
  *
@@ -56,14 +54,24 @@ public class VerbNetDispatcher
 	public static Result queryMain(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		String table;
-		String[] projection = projection0;
 		String selection = selection0;
 		String groupBy = null;
 
 		switch (code)
 		{
+			case VNCLASSES:
+				table = Q.VNCLASSES.TABLE;
+				break;
+
+			case VNCLASSES_X_BY_VNCLASS:
+				table = Q.VNCLASSES_X_BY_VNCLASS.TABLE;
+				groupBy = Q.VNCLASSES_X_BY_VNCLASS.GROUPBY;
+				break;
+
+			// I T E M S
+
 			case VNCLASS:
-				table = VnClasses.TABLE;
+				table = Q.VNCLASS.TABLE;
 				if (selection != null)
 				{
 					selection += " AND ";
@@ -72,106 +80,34 @@ public class VerbNetDispatcher
 				{
 					selection = "";
 				}
-				selection += VnClasses.CLASSID + " = " + uriLast;
-				break;
-
-			case VNCLASSES:
-				table = VnClasses.TABLE;
-				break;
-
-			case VNCLASSES_X_BY_VNCLASS:
-				groupBy = "classid";
-				table = "vnclasses " + //
-						"LEFT JOIN vngroupingmaps USING (classid) " + //
-						"LEFT JOIN vngroupings USING (groupingid)";
+				selection += Q.VNCLASS.SELECTION.replaceAll("#\\{uri_last\\}", uriLast);
 				break;
 
 			// J O I N S
 
 			case WORDS_VNCLASSES:
-				table = "words " + //
-						"INNER JOIN vnwords USING (wordid) " + //
-						"INNER JOIN vnclassmembersenses USING (vnwordid) " + //
-						"LEFT JOIN vnclasses USING (classid)";
+				table = Q.WORDS_VNCLASSES.TABLE;
 				break;
 
 			case VNCLASSES_VNMEMBERS_X_BY_WORD:
-				groupBy = "vnwordid";
-				table = "vnclassmembersenses " + //
-						"LEFT JOIN vnwords USING (vnwordid) " + //
-						"LEFT JOIN vngroupingmaps USING (classid, vnwordid) " + //
-						"LEFT JOIN vngroupings USING (groupingid) " + //
-						"LEFT JOIN synsets USING (synsetid)";
+				table = Q.VNCLASSES_VNMEMBERS_X_BY_WORD.TABLE;
+				groupBy = Q.VNWORDID;
 				break;
 
 			case VNCLASSES_VNROLES_X_BY_VNROLE:
-				groupBy = "roleid";
-				table = "vnrolemaps " + //
-						"INNER JOIN vnroles USING (roleid) " + //
-						"INNER JOIN vnroletypes USING (roletypeid) " + //
-						"LEFT JOIN vnrestrs USING (restrsid)";
+				table = Q.VNCLASSES_VNROLES_X_BY_VNROLE.TABLE;
+				groupBy = Q.ROLEID;
 				break;
 
 			case VNCLASSES_VNFRAMES_X_BY_VNFRAME:
-				groupBy = "frameid";
-				table = "vnframemaps " + //
-						"INNER JOIN vnframes USING (frameid) " + //
-						"LEFT JOIN vnframenames USING (nameid) " + //
-						"LEFT JOIN vnframesubnames USING (subnameid) " + //
-						"LEFT JOIN vnsyntaxes USING (syntaxid) " + //
-						"LEFT JOIN vnsemantics USING (semanticsid) " + //
-						"LEFT JOIN vnexamplemaps USING (frameid) " + //
-						"LEFT JOIN vnexamples USING (exampleid)";
+				table = Q.VNCLASSES_VNFRAMES_X_BY_VNFRAME.TABLE;
+				groupBy = Q.FRAMEID;
 				break;
-
-			// L O O K U P
-
-			case LOOKUP_FTS_EXAMPLES:
-				table = "vnexamples_example_fts4";
-				break;
-
-			case LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
-				groupBy = "exampleid";
-				//$FALL-THROUGH$
-				//noinspection fallthrough
-
-			case LOOKUP_FTS_EXAMPLES_X:
-				table = "vnexamples_example_fts4 " + //
-						"LEFT JOIN vnclasses USING (classid)";
-				break;
-
-			// S U G G E S T
-
-			case SUGGEST_WORDS:
-			{
-				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(uriLast))
-				{
-					return null;
-				}
-				table = "vnwords";
-				projection = new String[]{"vnwordid AS _id", //
-						"word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
-						"word AS " + SearchManager.SUGGEST_COLUMN_QUERY}; //
-				selection = "word LIKE ? || '%'";
-			}
-
-			case SUGGEST_FTS_WORDS:
-			{
-				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(uriLast))
-				{
-					return null;
-				}
-				table = "vnwords_word_fts4";
-				projection = new String[]{"vnwordid AS _id", //
-						"word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
-						"word AS " + SearchManager.SUGGEST_COLUMN_QUERY};
-				selection =	"word MATCH ?";
-			}
 
 			default:
 				return null;
 		}
-		return new Result(table, projection, selection, selectionArgs0, groupBy);
+		return new Result(table, projection0, selection, selectionArgs0, groupBy);
 	}
 
 	public static Result querySearch(final int code, final String[] projection0, final String selection0, final String[] selectionArgs0)
@@ -182,17 +118,16 @@ public class VerbNetDispatcher
 		switch (code)
 		{
 			case LOOKUP_FTS_EXAMPLES:
-				table = "vnexamples_example_fts4";
+				table = Q.LOOKUP_FTS_EXAMPLES.TABLE;
 				break;
 
 			case LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
-				groupBy = "exampleid";
-				//$FALL-THROUGH$
-				//noinspection fallthrough
+				table = Q.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE.TABLE;
+				groupBy = Q.EXAMPLEID;
+				break;
 
 			case LOOKUP_FTS_EXAMPLES_X:
-				table = "vnexamples_example_fts4 " + //
-						"LEFT JOIN vnclasses USING (classid)";
+				table = Q.LOOKUP_FTS_EXAMPLES_X.TABLE;
 				break;
 
 			default:
@@ -216,12 +151,12 @@ public class VerbNetDispatcher
 				{
 					return null;
 				}
-				table = "vnwords";
-				projection = new String[]{"vnwordid AS _id", //
-						"word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
-						"word AS " + SearchManager.SUGGEST_COLUMN_QUERY}; //
-				selection = "word LIKE ? || '%'";
-				selectionArgs = new String[]{uriLast};
+				table = Q.SUGGEST_WORDS.TABLE;
+				projection = Q.SUGGEST_WORDS.PROJECTION;
+				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}", SearchManager.SUGGEST_COLUMN_TEXT_1);
+				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}", SearchManager.SUGGEST_COLUMN_QUERY);
+				selection = Q.SUGGEST_WORDS.SELECTION;
+				selectionArgs = new String[]{Q.SUGGEST_WORDS.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
 				break;
 			}
 
@@ -231,12 +166,12 @@ public class VerbNetDispatcher
 				{
 					return null;
 				}
-				table = "vnwords_word_fts4";
-				projection = new String[]{"vnwordid AS _id", //
-						"word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
-						"word AS " + SearchManager.SUGGEST_COLUMN_QUERY};
-				selection =	"word MATCH ?";
-				selectionArgs = new String[]{uriLast + '*'};
+				table = Q.SUGGEST_FTS_WORDS.TABLE;
+				projection = Q.SUGGEST_FTS_WORDS.PROJECTION;
+				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}", SearchManager.SUGGEST_COLUMN_TEXT_1);
+				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}", SearchManager.SUGGEST_COLUMN_QUERY);
+				selection = Q.SUGGEST_FTS_WORDS.SELECTION;
+				selectionArgs = new String[]{Q.SUGGEST_FTS_WORDS.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
 				break;
 			}
 

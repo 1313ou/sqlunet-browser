@@ -17,10 +17,19 @@ public class Q
 	public static final String AS_WORDS = "w";
 	public static final String AS_WORDS2 = "w2";
 
+	public static final String NULLSYNSET = "null";
+	public static final String CLASSES = "classes";
+	public static final String DEFINITIONS = "definitions";
+	public static final String FRAMES = "frames";
+	public static final String EXAMPLES = "examples";
+	public static final String GROUPINGS = "groupings";
+	public static final String MEMBERS = "members";
+	public static final String MEMBERS2 = "members2";
+
 	public static final String CLASS = "class";
-	public static final String CLASS_FRAME_ID = "class_frame_id";
 	public static final String CLASSID = "classid";
 	public static final String CLASSTAG = "classtag";
+	public static final String DEFINITION = "definition";
 	public static final String EXAMPLE = "example";
 	public static final String EXAMPLEID = "exampleid";
 	public static final String FRAMEID = "frameid";
@@ -31,10 +40,8 @@ public class Q
 	public static final String GROUPING = "grouping";
 	public static final String GROUPINGID = "groupingid";
 	public static final String ISSYN = "issyn";
-	public static final String MEMBER_GROUPING_ID = "member_grouping_id";
-	public static final String MEMBERS = "members";
-	public static final String MEMBERS2 = "members2";
 	public static final String NUMBER = "number";
+	public static final String POSID = "posid";
 	public static final String PREDICATE = "predicate";
 	public static final String PREDICATEID = "predicateid";
 	public static final String QUALITY = "quality";
@@ -56,7 +63,6 @@ public class Q
 	public static final String SYNTAXID = "syntaxid";
 	public static final String VNWORDID = "vnwordid";
 	public static final String WORD = "word";
-	public static final String WORD2 = "word2";
 	public static final String WORDID = "wordid";
 	public static final String XTAG = "xtag";
 
@@ -73,7 +79,7 @@ public class Q
 	static public class VNCLASS
 	{
 		static public final String TABLE = "vn_classes";
-		static public final String SELECTION = "classid = URI_PATH_SEGMENT";
+		static public final String SELECTION = "classid = #{uri_last}";
 	}
 
 	static public class VNCLASSES
@@ -112,7 +118,7 @@ public class Q
 
 	static public class WORDS_VNCLASSES
 	{
-		static public final String TABLE = "wnwords INNER JOIN vn_words USING (wordid) INNER JOIN vn_members_senses USING (vnwordid) LEFT JOIN vn_classes USING (classid)";
+		static public final String TABLE = "words INNER JOIN vn_words USING (wordid) INNER JOIN vn_members_senses USING (vnwordid) LEFT JOIN vn_classes USING (classid)";
 	}
 
 	static public class LOOKUP_FTS_EXAMPLES
@@ -134,7 +140,7 @@ public class Q
 	static public class SUGGEST_WORDS
 	{
 		static public final String TABLE = "vn_words";
-		static public final String[] PROJECTION = {"vnwordid AS _id", "word AS SearchManager.SUGGEST_COLUMN_TEXT_1", "word AS SearchManager.SUGGEST_COLUMN_QUERY"};
+		static public final String[] PROJECTION = {"vnwordid AS _id", "word AS #{suggest_text_1}", "word AS #{suggest_query}"};
 		static public final String SELECTION = "word LIKE ? || '%'";
 		static public final String[] ARGS = {"#{uri_last}"};
 	}
@@ -142,7 +148,7 @@ public class Q
 	static public class SUGGEST_FTS_WORDS
 	{
 		static public final String TABLE = "vn_words_word_fts4";
-		static public final String[] PROJECTION = {"vnwordid AS _id", "word AS SearchManager.SUGGEST_COLUMN_TEXT_1", "word AS SearchManager.SUGGEST_COLUMN_QUERY"};
+		static public final String[] PROJECTION = {"vnwordid AS _id", "word AS #{suggest_text_1}", "word AS #{suggest_query}"};
 		static public final String SELECTION = "word MATCH ?";
 		static public final String[] ARGS = {"#{uri_last}*"};
 	}

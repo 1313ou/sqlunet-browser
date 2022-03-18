@@ -130,6 +130,7 @@ public class Q
 	static public class SENSE1
 	{
 		static public final String TABLE = "senses";
+		static public final String SELECTION = "senseid = #{uri_last}";
 	}
 
 	static public class SENSES {
@@ -165,6 +166,7 @@ public class Q
 	static public class SYNSET1
 	{
 		static public final String TABLE = "synsets";
+		static public final String SELECTION = "synsetid = #{uri_last}";
 	}
 
 	static public class SYNSETS {
@@ -178,6 +180,7 @@ public class Q
 	static public class WORD1
 	{
 		static public final String TABLE = "words";
+		static public final String SELECTION = "wordid = #{uri_last}";
 	}
 
 	static public class WORDS {

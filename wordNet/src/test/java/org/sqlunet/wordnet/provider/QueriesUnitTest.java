@@ -380,7 +380,6 @@ public class QueriesUnitTest
 
 			case WordNetDispatcher.SUGGEST_FTS_SAMPLES:
 			{
-				final String last = uriLast;
 				//				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(last))
 				//				{
 				//					return false;
@@ -389,7 +388,7 @@ public class QueriesUnitTest
 						"sample AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
 						"sample AS " + SearchManager.SUGGEST_COLUMN_QUERY};
 				selection = "sample MATCH ?";
-				selectionArgs = new String[]{last + '*'};
+				selectionArgs = new String[]{uriLast + '*'};
 				table = "samples_sample_fts4";
 				break;
 			}

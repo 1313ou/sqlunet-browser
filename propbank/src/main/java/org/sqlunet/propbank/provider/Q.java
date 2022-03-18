@@ -16,6 +16,10 @@ public class Q
 	public static final String AS_WORDS = "w";
 	public static final String AS_WORDS2 = "w2";
 
+	public static final String ALIASES = "aliases";
+	public static final String ARGS = "args";
+	public static final String ROLESETS = "rolesets";
+
 	public static final String ARG = "arg";
 	public static final String ARGID = "argid";
 	public static final String AS_ARGS = "a";
@@ -64,6 +68,11 @@ public class Q
 	public static final String WORD2 = "word2";
 	public static final String WORDID = "wordid";
 
+	static public class PBWORDS
+	{
+		static public final String TABLE = "pb_words";
+	}
+
 	static public class PBROLESET
 	{
 		static public final String TABLE = "pb_rolesets";
@@ -110,7 +119,7 @@ public class Q
 	static public class SUGGEST_FTS_WORDS
 	{
 		static public final String TABLE = "pb_words_word_fts4";
-		static public final String[] PROJECTION = {"pbwordid AS _id", "word AS SearchManager.SUGGEST_COLUMN_COLUMN_TEXT_1", "word AS SearchManager.SUGGEST_COLUMN_COLUMN_QUERY"};
+		static public final String[] PROJECTION = {"pbwordid AS _id", "word AS #{suggest_text_1}", "word AS #{suggest_query}"};
 		static public final String SELECTION = "word MATCH ?";
 		static public final String[] ARGS = {"#{uri_last}*"};
 	}
@@ -118,7 +127,7 @@ public class Q
 	static public class SUGGEST_WORDS
 	{
 		static public final String TABLE = "pb_words";
-		static public final String[] PROJECTION = {"pbwordid AS _id", "word AS SearchManager.SUGGEST_COLUMN_TEXT_1", "word AS SearchManager.SUGGEST_COLUMN_COLUMN_QUERY"};
+		static public final String[] PROJECTION = {"pbwordid AS _id", "word AS #{suggest_text_1}", "word AS #{suggest_query}"};
 		static public final String SELECTION = "word LIKE ? || '%'";
 		static public final String[] ARGS = {"#{uri_last}"};
 	}
@@ -138,5 +147,4 @@ public class Q
 		static public final String TABLE = "pb_examples_text_fts4 LEFT JOIN pb_rolesets USING (rolesetid)";
 		static public final String GROUPBY = "exampleid";
 	}
-
 }

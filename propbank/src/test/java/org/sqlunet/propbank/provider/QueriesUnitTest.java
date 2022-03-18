@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 public class QueriesUnitTest
 {
-	private final int[] codes = {};
+	private final int[] codes = {PropBankDispatcher.PBROLESET, PropBankDispatcher.PBROLESETS, PropBankDispatcher.PBROLESETS_X, PropBankDispatcher.PBROLESETS_X_BY_ROLESET, PropBankDispatcher.WORDS_PBROLESETS, PropBankDispatcher.PBROLESETS_PBROLES, PropBankDispatcher.PBROLESETS_PBEXAMPLES, PropBankDispatcher.PBROLESETS_PBEXAMPLES_BY_EXAMPLE, PropBankDispatcher.LOOKUP_FTS_EXAMPLES, PropBankDispatcher.LOOKUP_FTS_EXAMPLES_X, PropBankDispatcher.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE, PropBankDispatcher.SUGGEST_WORDS, PropBankDispatcher.SUGGEST_FTS_WORDS,};
 	private final String uriLast = "LAST";
 	private final String[] projection = {"PROJ1", "PROJ2", "PROJ3"};
 	private final String selection = "SEL";
@@ -28,8 +28,8 @@ public class QueriesUnitTest
 
 	private void queriesLegacyAgainstProvider(final int code, final String uriLast, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
 	{
-		Result r1 = queryLegacyMain(code, uriLast, projection, selection, selectionArgs);
-		Result r2 = queryProviderMain(code, uriLast, projection, selection, selectionArgs);
+		Result r1 = queryLegacy(code, uriLast, projection, selection, selectionArgs);
+		Result r2 = queryProvider(code, uriLast, projection, selection, selectionArgs);
 		check(code, r1, r2);
 	}
 
@@ -37,12 +37,40 @@ public class QueriesUnitTest
 	{
 	}
 
+	public static Result queryProvider(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
+	{
+		Result r = queryProviderMain(code, uriLast, projection0, selection0, selectionArgs0);
+		if (r == null)
+		{
+			r = queryProviderSearch(code, projection0, selection0, selectionArgs0);
+			if (r == null)
+			{
+				r = queryProviderSuggest(code, uriLast);
+			}
+		}
+		return r;
+	}
+
+	public static Result queryLegacy(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
+	{
+		Result r = queryLegacyMain(code, uriLast, projection0, selection0, selectionArgs0);
+		if (r == null)
+		{
+			r = queryLegacySearch(code, projection0, selection0, selectionArgs0);
+			if (r == null)
+			{
+				r = queryLegacySuggest(code, uriLast);
+			}
+		}
+		return r;
+	}
+
 	public static Result queryProviderMain(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		return PropBankDispatcher.queryMain(code, uriLast, projection0, selection0, selectionArgs0);
 	}
 
-	public static Result queryProviderSearch(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
+	public static Result queryProviderSearch(final int code, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		return PropBankDispatcher.querySearch(code, projection0, selection0, selectionArgs0);
 	}
@@ -87,23 +115,24 @@ public class QueriesUnitTest
 				groupBy = PropBankContract.PbRoleSets_X.ROLESETID;
 				//$FALL-THROUGH$
 				//noinspection fallthrough
+
 			case PropBankDispatcher.PBROLESETS_X:
-				table = "pbrolesets " + //
-						"LEFT JOIN pbrolesetmembers AS " + PropBankContract.MEMBER + " USING (rolesetid) " + //
-						"LEFT JOIN pbwords AS " + PropBankContract.WORD + " ON " + PropBankContract.MEMBER + ".pbwordid = " + PropBankContract.WORD + ".pbwordid";
+				table = "pb_rolesets " + //
+						"LEFT JOIN pb_members AS " + PropBankContract.MEMBER + " USING (rolesetid) " + //
+						"LEFT JOIN pb_words AS " + PropBankContract.WORD + " ON " + PropBankContract.MEMBER + ".pbwordid = " + PropBankContract.WORD + ".pbwordid";
 				break;
 
 			case PropBankDispatcher.WORDS_PBROLESETS:
 				table = "words " + //
-						"INNER JOIN pbwords USING (wordid) " + //
-						"INNER JOIN pbrolesets USING (pbwordid)";
+						"INNER JOIN pb_words USING (wordid) " + //
+						"INNER JOIN pb_rolesets USING (pbwordid)";
 				break;
 
 			case PropBankDispatcher.PBROLESETS_PBROLES:
-				table = "pbrolesets " + //
-						"INNER JOIN pbroles USING (rolesetid) " + //
-						"LEFT JOIN pbfuncs USING (func) " + //
-						"LEFT JOIN pbvnthetas USING (theta)";
+				table = "pb_rolesets " + //
+						"INNER JOIN pb_roles USING (rolesetid) " + //
+						"LEFT JOIN pb_funcs USING (func) " + //
+						"LEFT JOIN pb_thetas USING (theta)";
 				break;
 
 			case PropBankDispatcher.PBROLESETS_PBEXAMPLES_BY_EXAMPLE:
@@ -111,24 +140,24 @@ public class QueriesUnitTest
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case PropBankDispatcher.PBROLESETS_PBEXAMPLES:
-				table = "pbrolesets " + //
-						"INNER JOIN pbexamples AS " + PropBankContract.EXAMPLE + " USING (rolesetid) " + //
-						"LEFT JOIN pbrels AS " + PropBankContract.REL + " USING (exampleid) " + //
-						"LEFT JOIN pbargs AS " + PropBankContract.ARG + " USING (exampleid) " + //
-						"LEFT JOIN pbfuncs AS " + PropBankContract.FUNC + " ON (" + PropBankContract.ARG + ".func = " + PropBankContract.FUNC + ".func) " + //
-						"LEFT JOIN pbaspects USING (aspect) " + //
-						"LEFT JOIN pbforms USING (form) " + //
-						"LEFT JOIN pbtenses USING (tense) " + //
-						"LEFT JOIN pbvoices USING (voice) " + //
-						"LEFT JOIN pbpersons USING (person) " + //
-						"LEFT JOIN pbroles USING (rolesetid,narg) " + //
-						"LEFT JOIN pbvnthetas USING (theta)";
+				table = "pb_rolesets " + //
+						"INNER JOIN pb_examples AS " + PropBankContract.EXAMPLE + " USING (rolesetid) " + //
+						"LEFT JOIN pb_rels AS " + PropBankContract.REL + " USING (exampleid) " + //
+						"LEFT JOIN pb_args AS " + PropBankContract.ARG + " USING (exampleid) " + //
+						"LEFT JOIN pb_funcs AS " + PropBankContract.FUNC + " ON (" + PropBankContract.ARG + ".func = " + PropBankContract.FUNC + ".func) " + //
+						"LEFT JOIN pb_aspects USING (aspect) " + //
+						"LEFT JOIN pb_forms USING (form) " + //
+						"LEFT JOIN pb_tenses USING (tense) " + //
+						"LEFT JOIN pb_voices USING (voice) " + //
+						"LEFT JOIN pb_persons USING (person) " + //
+						"LEFT JOIN pb_roles USING (rolesetid,arg) " + //
+						"LEFT JOIN pb_thetas USING (theta)";
 				break;
 
 			default:
 				return null;
 		}
-		return new PropBankDispatcher.Result(table, projection0, selection0, selectionArgs0, groupBy);
+		return new PropBankDispatcher.Result(table, projection0, selection, selectionArgs0, groupBy);
 	}
 
 	public static Result queryLegacySearch(final int code, final String[] projection0, final String selection0, final String[] selectionArgs0)
@@ -139,15 +168,15 @@ public class QueriesUnitTest
 		switch (code)
 		{
 			case PropBankDispatcher.LOOKUP_FTS_EXAMPLES:
-				table = "pbexamples_text_fts4";
+				table = "pb_examples_text_fts4";
 				break;
 			case PropBankDispatcher.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
 				groupBy = "exampleid";
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case PropBankDispatcher.LOOKUP_FTS_EXAMPLES_X:
-				table = "pbexamples_text_fts4 " + //
-						"LEFT JOIN pbrolesets USING (rolesetid)";
+				table = "pb_examples_text_fts4 " + //
+						"LEFT JOIN pb_rolesets USING (rolesetid)";
 				break;
 
 			default:
@@ -171,7 +200,7 @@ public class QueriesUnitTest
 				{
 					return null;
 				}
-				table = "pbwords";
+				table = "pb_words";
 				projection = new String[]{"pbwordid AS _id", //
 						"word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
 						"word AS " + SearchManager.SUGGEST_COLUMN_QUERY};
@@ -186,7 +215,7 @@ public class QueriesUnitTest
 				{
 					return null;
 				}
-				table = "pbwords_word_fts4";
+				table = "pb_words_word_fts4";
 				projection = new String[]{"pbwordid AS _id", //
 						"word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
 						"word AS " + SearchManager.SUGGEST_COLUMN_QUERY};
