@@ -17,6 +17,7 @@ import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.sql.SqlFormatter;
 import org.sqlunet.syntagnet.provider.SyntagNetContract.SnCollocations;
 import org.sqlunet.syntagnet.provider.SyntagNetContract.SnCollocations_X;
+import org.sqlunet.syntagnet.provider.SyntagNetDispatcher.Result;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -44,16 +45,10 @@ public class SyntagNetProvider extends BaseProvider
 		matchURIs();
 	}
 
-	// table codes
-	static private final int COLLOCATIONS = 10;
-
-	// join codes
-	static private final int COLLOCATIONS_X = 100;
-
 	static private void matchURIs()
 	{
-		SyntagNetProvider.uriMatcher.addURI(AUTHORITY, SnCollocations.TABLE, SyntagNetProvider.COLLOCATIONS);
-		SyntagNetProvider.uriMatcher.addURI(AUTHORITY, SnCollocations_X.TABLE, SyntagNetProvider.COLLOCATIONS_X);
+		uriMatcher.addURI(AUTHORITY, SnCollocations.TABLE, SyntagNetDispatcher.COLLOCATIONS);
+		uriMatcher.addURI(AUTHORITY, SnCollocations_X.TABLE, SyntagNetDispatcher.COLLOCATIONS_X);
 	}
 
 	@NonNull
@@ -91,12 +86,12 @@ public class SyntagNetProvider extends BaseProvider
 	@Override
 	public String getType(@NonNull final Uri uri)
 	{
-		switch (SyntagNetProvider.uriMatcher.match(uri))
+		switch (uriMatcher.match(uri))
 		{
 			// T A B L E S
-			case COLLOCATIONS:
+			case SyntagNetDispatcher.COLLOCATIONS:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + SnCollocations.TABLE;
-			case COLLOCATIONS_X:
+			case SyntagNetDispatcher.COLLOCATIONS_X:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + SnCollocations_X.TABLE;
 
 			default:
@@ -109,7 +104,7 @@ public class SyntagNetProvider extends BaseProvider
 	@Nullable
 	@SuppressWarnings("boxing")
 	@Override
-	public Cursor query(@NonNull final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
+	public Cursor query(@NonNull final Uri uri, final String[] projection0, final String selection0, final String[] selectionArgs0, final String sortOrder0)
 	{
 		if (this.db == null)
 		{
@@ -122,69 +117,37 @@ public class SyntagNetProvider extends BaseProvider
 				return null;
 			}
 		}
+		final int code = uriMatcher.match(uri);
+		Log.d(TAG + "URI", String.format("%s (code %s)\n", uri, code));
 
-		// choose the table to query and a sort order based on the code returned for the incoming URI
-		String actualSelection = selection;
-		@SuppressWarnings("UnnecessaryLocalVariable") String actualSortOrder = sortOrder;
-		final int code = SyntagNetProvider.uriMatcher.match(uri);
-		Log.d(SyntagNetProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code));
-		String groupBy = null;
-		String table;
-		switch (code)
+		Result result = SyntagNetDispatcher.queryMain(code, uri.getLastPathSegment(), projection0, selection0, selectionArgs0);
+
+		if (result != null)
 		{
-			// I T E M
-			// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
-			// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query
+			final String sql = SQLiteQueryBuilder.buildQueryString(false, result.table, result.projection, result.selection, result.groupBy, null, sortOrder0, null);
+			logSql(sql, selectionArgs0);
+			if (BaseProvider.logSql)
+			{
+				Log.d(TAG + "SQL", SqlFormatter.format(sql).toString());
+				Log.d(TAG + "ARG", BaseProvider.argsToString(selectionArgs0));
+			}
 
-			case COLLOCATIONS:
-				table = SnCollocations.TABLE;
-				if (actualSelection != null)
-				{
-					actualSelection += " AND ";
-				}
-				else
-				{
-					actualSelection = "";
-				}
-				actualSelection += SnCollocations.COLLOCATIONID + " = ?";
-				break;
-
-			// J O I N S
-
-			case COLLOCATIONS_X:
-				table = "syntagms " + //
-						"JOIN words AS " + SyntagNetContract.W1 + " ON (word1id = " + SyntagNetContract.W1 + ".wordid) " + //
-						"JOIN words AS " + SyntagNetContract.W2 + " ON (word2id = " + SyntagNetContract.W2 + ".wordid) " + //
-						"JOIN synsets AS " + SyntagNetContract.S1 + " ON (synset1id = " + SyntagNetContract.S1 + ".synsetid) " + //
-						"JOIN synsets AS " + SyntagNetContract.S2 + " ON (synset2id = " + SyntagNetContract.S2 + ".synsetid)";
-				break;
-
-
-			default:
-			case UriMatcher.NO_MATCH:
-				throw new RuntimeException("Malformed URI " + uri);
+			// do query
+			try
+			{
+				final Cursor cursor = this.db.rawQuery(sql, selectionArgs0);
+				Log.d(TAG + "COUNT", cursor.getCount() + " items");
+				return cursor;
+				//return this.db.query(table, actualProjection, actualSelection, selectionArgs, groupBy, null, sortOrder, null);
+			}
+			catch (@NonNull final SQLiteException e)
+			{
+				Log.d(TAG + "SQL", sql);
+				Log.e(TAG, "WordNet provider query failed", e);
+				return null;
+			}
 		}
-
-		//noinspection ConstantConditions
-		final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, actualSelection, groupBy, null, actualSortOrder, null);
-		logSql(sql, selectionArgs);
-		if (BaseProvider.logSql)
-		{
-			Log.d(SyntagNetProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
-			Log.d(SyntagNetProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
-		}
-
-		// do query
-		try
-		{
-			return this.db.rawQuery(sql, selectionArgs);
-			//return this.db.query(table, projection, actualSelection, selectionArgs, groupBy, null, actualSortOrder, null);
-		}
-		catch (SQLiteException e)
-		{
-			Log.d(TAG + "SQL", sql);
-			Log.e(TAG, "SyntagNet provider query failed", e);
-			return null;
-		}
+		// UriMatcher.NO_MATCH:
+		throw new RuntimeException("Malformed URI " + uri);
 	}
 }
