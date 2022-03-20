@@ -30,12 +30,11 @@ public class SyntagNetDispatcher
 	{
 		String table;
 		String selection = selection0;
-		String groupBy = null;
 
 		switch (code)
 		{
-			case SyntagNetDispatcher.COLLOCATIONS:
-				table = SyntagNetContract.SnCollocations.TABLE;
+			case COLLOCATIONS:
+				table = Q.COLLOCATIONS.TABLE;
 				if (selection != null)
 				{
 					selection += " AND ";
@@ -44,22 +43,18 @@ public class SyntagNetDispatcher
 				{
 					selection = "";
 				}
-				selection += SyntagNetContract.SnCollocations.COLLOCATIONID + " = ?";
+				selection += Q.COLLOCATIONS.SELECTION;
 				break;
 
 			// J O I N S
 
-			case SyntagNetDispatcher.COLLOCATIONS_X:
-				table = "syntagms " + //
-						"JOIN words AS " + SyntagNetContract.W1 + " ON (word1id = " + SyntagNetContract.W1 + ".wordid) " + //
-						"JOIN words AS " + SyntagNetContract.W2 + " ON (word2id = " + SyntagNetContract.W2 + ".wordid) " + //
-						"JOIN synsets AS " + SyntagNetContract.S1 + " ON (synset1id = " + SyntagNetContract.S1 + ".synsetid) " + //
-						"JOIN synsets AS " + SyntagNetContract.S2 + " ON (synset2id = " + SyntagNetContract.S2 + ".synsetid)";
+			case COLLOCATIONS_X:
+				table =Q.COLLOCATIONS_X.TABLE;
 				break;
 
 			default:
 				return null;
 		}
-		return new Result(table, projection0, selection, selectionArgs0, groupBy);
+		return new Result(table, projection0, selection, selectionArgs0, null);
 	}
 }
