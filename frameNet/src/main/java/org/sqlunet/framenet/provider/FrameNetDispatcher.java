@@ -79,19 +79,19 @@ public class FrameNetDispatcher
 			// table uri : last element is table
 
 			case FrameNetDispatcher.LEXUNITS:
-				table = FrameNetContract.LexUnits.TABLE;
+				table = Q.LEXUNITS.TABLE;
 				break;
 
 			case FrameNetDispatcher.FRAMES:
-				table = FrameNetContract.Frames.TABLE;
+				table = Q.FRAMES.TABLE;
 				break;
 
 			case FrameNetDispatcher.ANNOSETS:
-				table = FrameNetContract.AnnoSets.TABLE;
+				table = Q.ANNOSETS.TABLE;
 				break;
 
 			case FrameNetDispatcher.SENTENCES:
-				table = FrameNetContract.Sentences.TABLE;
+				table = Q.SENTENCES.TABLE;
 				break;
 
 			// I T E M
@@ -108,7 +108,7 @@ public class FrameNetDispatcher
 				{
 					selection = "";
 				}
-				selection += FrameNetContract.LexUnits.LUID + " = " + uriLast;
+				selection += Q.LUID + " = " + uriLast;
 				break;
 
 			case FrameNetDispatcher.FRAME:
@@ -121,11 +121,11 @@ public class FrameNetDispatcher
 				{
 					selection = "";
 				}
-				selection += FrameNetContract.Frames.FRAMEID + " = " + uriLast;
+				selection += Q.FRAMEID + " = " + uriLast;
 				break;
 
 			case FrameNetDispatcher.SENTENCE:
-				table = Q.SENTENCES.TABLE;
+				table = Q.SENTENCE.TABLE;
 				if (selection != null)
 				{
 					selection += " AND ";
@@ -134,11 +134,11 @@ public class FrameNetDispatcher
 				{
 					selection = "";
 				}
-				selection += FrameNetContract.Sentences.SENTENCEID + " = " + uriLast;
+				selection += Q.SENTENCEID + " = " + uriLast;
 				break;
 
 			case FrameNetDispatcher.ANNOSET:
-				table = Q.ANNOSETS.TABLE;
+				table = Q.ANNOSET.TABLE;
 				if (selection != null)
 				{
 					selection += " AND ";
@@ -147,7 +147,7 @@ public class FrameNetDispatcher
 				{
 					selection = "";
 				}
-				selection += FrameNetContract.AnnoSets.ANNOSETID + " = " + uriLast;
+				selection += Q.ANNOSETID + " = " + uriLast;
 				break;
 
 			// J O I N S
@@ -304,8 +304,8 @@ public class FrameNetDispatcher
 				}
 				table = Q.SUGGEST_WORDS.TABLE;
 				projection = Q.SUGGEST_WORDS.PROJECTION;
-				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}",SearchManager.SUGGEST_COLUMN_TEXT_1);
-				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}",SearchManager.SUGGEST_COLUMN_QUERY);
+				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}", SearchManager.SUGGEST_COLUMN_TEXT_1);
+				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}", SearchManager.SUGGEST_COLUMN_QUERY);
 				selection = Q.SUGGEST_WORDS.SELECTION;
 				selectionArgs = new String[]{uriLast};
 				break;
@@ -319,8 +319,8 @@ public class FrameNetDispatcher
 				}
 				table = Q.SUGGEST_FTS_WORDS.TABLE;
 				projection = Q.SUGGEST_FTS_WORDS.PROJECTION;
-				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}",SearchManager.SUGGEST_COLUMN_TEXT_1);
-				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}",SearchManager.SUGGEST_COLUMN_QUERY);
+				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}", SearchManager.SUGGEST_COLUMN_TEXT_1);
+				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}", SearchManager.SUGGEST_COLUMN_QUERY);
 				selection = Q.SUGGEST_FTS_WORDS.SELECTION;
 				selectionArgs = new String[]{uriLast + '*'};
 				break;
