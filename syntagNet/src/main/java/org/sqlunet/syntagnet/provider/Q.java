@@ -60,6 +60,10 @@ public class Q
 
 	static public class COLLOCATIONS_X
 	{
-		static public final String TABLE = "sn_syntagms JOIN words AS w1 ON (word1id = w1.wordid) JOIN words AS w2 ON (word2id = w2.wordid) JOIN synsets AS y1 ON (synset1id = y1.synsetid) JOIN synsets AS y2 ON (synset2id = y2.synsetid)";
+		static public final String TABLE = "sn_syntagms " +
+				"JOIN words AS w1 ON (word1id = w1.wordid) " +
+				"JOIN words AS w2 ON (word2id = w2.wordid) " +
+				"JOIN synsets AS y1 ON (synset1id = y1.synsetid) " +
+				"JOIN synsets AS y2 ON (synset2id = y2.synsetid)";
 	}
 }

@@ -170,37 +170,37 @@ public class QueriesUnitTest
 			case FrameNetDispatcher.LEXUNITS_OR_FRAMES:
 				table = "(" + //
 						"SELECT fnwordid + 10000 AS " + FrameNetContract.LexUnits_or_Frames.ID + ", luid AS " + FrameNetContract.LexUnits_or_Frames.FNID + ", fnwordid AS " + FrameNetContract.LexUnits_or_Frames.FNWORDID + ", wordid AS " + FrameNetContract.LexUnits_or_Frames.WORDID + ", word AS " + FrameNetContract.LexUnits_or_Frames.WORD + ", lexunit AS " + FrameNetContract.LexUnits_or_Frames.NAME + ", frame AS " + FrameNetContract.LexUnits_or_Frames.FRAMENAME + ", frameid AS " + FrameNetContract.LexUnits_or_Frames.FRAMEID + ", 0 AS " + FrameNetContract.LexUnits_or_Frames.ISFRAME + " " + //
-						"FROM fnwords " + //
-						"INNER JOIN fnlexemes USING (fnwordid) " + //
-						"INNER JOIN fnlexunits AS " + FrameNetContract.LU + " USING (luid) " + //
-						"INNER JOIN fnframes AS " + FrameNetContract.FRAME + " USING (frameid) " + //
+						"FROM fn_words " + //
+						"INNER JOIN fn_lexemes USING (fnwordid) " + //
+						"INNER JOIN fn_lexunits AS " + FrameNetContract.LU + " USING (luid) " + //
+						"INNER JOIN fn_frames AS " + FrameNetContract.FRAME + " USING (frameid) " + //
 						"UNION " + //
 						"SELECT frameid AS " + FrameNetContract.LexUnits_or_Frames.ID + ", frameid AS " + FrameNetContract.LexUnits_or_Frames.FNID + ", 0 AS " + FrameNetContract.LexUnits_or_Frames.FNWORDID + ", 0 AS " + FrameNetContract.LexUnits_or_Frames.WORDID + ", frame AS " + FrameNetContract.LexUnits_or_Frames.WORD + ", frame AS " + FrameNetContract.LexUnits_or_Frames.NAME + ", frame AS " + FrameNetContract.LexUnits_or_Frames.FRAMENAME + ", frameid AS " + FrameNetContract.LexUnits_or_Frames.FRAMEID + ", 1 AS " + FrameNetContract.LexUnits_or_Frames.ISFRAME + " " + //
-						"FROM fnframes " + //
+						"FROM fn_frames " + //
 						")";
 				break;
 
 			case FrameNetDispatcher.FRAMES_X_BY_FRAME:
 				groupBy = "frameid";
-				table = "fnframes " + //
-						"LEFT JOIN fnframes_semtypes USING (frameid) " + //
-						"LEFT JOIN fnsemtypes USING (semtypeid)";
+				table = "fn_frames " + //
+						"LEFT JOIN fn_frames_semtypes USING (frameid) " + //
+						"LEFT JOIN fn_semtypes USING (semtypeid)";
 				break;
 
 			case FrameNetDispatcher.FRAMES_RELATED:
-				table = "fnframes_related AS " + FrameNetContract.RELATED + ' ' + //
-						"LEFT JOIN fnframes AS " + FrameNetContract.SRC + " USING (frameid) " + //
-						"LEFT JOIN fnframes AS " + FrameNetContract.DEST + " ON (frame2id = " + FrameNetContract.DEST + ".frameid) " + //  //  //
-						"LEFT JOIN fnframerelations USING (relationid)";
+				table = "fn_frames_related AS " + FrameNetContract.RELATED + ' ' + //
+						"LEFT JOIN fn_frames AS " + FrameNetContract.SRC + " USING (frameid) " + //
+						"LEFT JOIN fn_frames AS " + FrameNetContract.DEST + " ON (frame2id = " + FrameNetContract.DEST + ".frameid) " + //  //  //
+						"LEFT JOIN fn_framerelations USING (relationid)";
 				break;
 
 			case FrameNetDispatcher.LEXUNITS_X_BY_LEXUNIT:
 				groupBy = "luid";
-				table = "fnlexunits AS " + FrameNetContract.LU + ' ' + //
-						"LEFT JOIN fnframes AS " + FrameNetContract.FRAME + " USING (frameid) " + //
-						"LEFT JOIN fnposes AS " + FrameNetContract.POS + " ON (" + FrameNetContract.LU + ".posid = " + FrameNetContract.POS + ".posid) " + //
-						"LEFT JOIN fnfetypes AS " + FrameNetContract.FETYPE + " ON (incorporatedfetypeid = " + FrameNetContract.FETYPE + ".fetypeid) " + //
-						"LEFT JOIN fnfes AS " + FrameNetContract.FE + " ON (incorporatedfeid = " + FrameNetContract.FE + ".feid)";
+				table = "fn_lexunits AS " + FrameNetContract.LU + ' ' + //
+						"LEFT JOIN fn_frames AS " + FrameNetContract.FRAME + " USING (frameid) " + //
+						"LEFT JOIN fn_poses AS " + FrameNetContract.POS + " ON (" + FrameNetContract.LU + ".posid = " + FrameNetContract.POS + ".posid) " + //
+						"LEFT JOIN fn_fetypes AS " + FrameNetContract.FETYPE + " ON (incorporatedfetypeid = " + FrameNetContract.FETYPE + ".fetypeid) " + //
+						"LEFT JOIN fn_fes AS " + FrameNetContract.FE + " ON (incorporatedfeid = " + FrameNetContract.FE + ".feid)";
 				break;
 
 			case FrameNetDispatcher.SENTENCES_LAYERS_X:
@@ -211,13 +211,13 @@ public class QueriesUnitTest
 						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||" + //
 						"CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||" + //
 						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS " + FrameNetContract.Sentences_Layers_X.LAYERANNOTATIONS + ' ' + //
-						"FROM fnsentences " + //
-						"LEFT JOIN fnannosets USING (sentenceid) " + //
-						"LEFT JOIN fnlayers USING (annosetid) " + //
-						"LEFT JOIN fnlayertypes USING (layertypeid) " + //
-						"LEFT JOIN fnlabels USING (layerid) " + //
-						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //
-						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //
+						"FROM fn_sentences " + //
+						"LEFT JOIN fn_annosets USING (sentenceid) " + //
+						"LEFT JOIN fn_layers USING (annosetid) " + //
+						"LEFT JOIN fn_layertypes USING (layertypeid) " + //
+						"LEFT JOIN fn_labels USING (layerid) " + //
+						"LEFT JOIN fn_labeltypes USING (labeltypeid) " + //
+						"LEFT JOIN fn_labelitypes USING (labelitypeid) " + //
 						"WHERE sentenceid = ? AND labeltypeid IS NOT NULL " + //
 						"GROUP BY layerid " + //
 						"ORDER BY rank,layerid,start,end)";
@@ -231,13 +231,13 @@ public class QueriesUnitTest
 						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||" + //
 						"CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||" + //
 						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS " + FrameNetContract.AnnoSets_Layers_X.LAYERANNOTATIONS + ' ' + //
-						"FROM fnannosets " + //
-						"LEFT JOIN fnsentences USING (sentenceid) " + //
-						"LEFT JOIN fnlayers USING (annosetid) " + //
-						"LEFT JOIN fnlayertypes USING (layertypeid) " + //
-						"LEFT JOIN fnlabels USING (layerid) " + //
-						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //
-						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //
+						"FROM fn_annosets " + //
+						"LEFT JOIN fn_sentences USING (sentenceid) " + //
+						"LEFT JOIN fn_layers USING (annosetid) " + //
+						"LEFT JOIN fn_layertypes USING (layertypeid) " + //
+						"LEFT JOIN fn_labels USING (layerid) " + //
+						"LEFT JOIN fn_labeltypes USING (labeltypeid) " + //
+						"LEFT JOIN fn_labelitypes USING (labelitypeid) " + //
 						"WHERE annosetid = ? AND labeltypeid IS NOT NULL " + //
 						"GROUP BY layerid " + //
 						"ORDER BY rank,layerid,start,end)";
@@ -251,14 +251,14 @@ public class QueriesUnitTest
 						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||" + //
 						"CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||" + //
 						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS " + FrameNetContract.Patterns_Layers_X.LAYERANNOTATIONS + ' ' + //
-						"FROM fnpatterns_annosets " + //
-						"LEFT JOIN fnannosets USING (annosetid) " + //
-						"LEFT JOIN fnsentences USING (sentenceid) " + //
-						"LEFT JOIN fnlayers USING (annosetid) " + //
-						"LEFT JOIN fnlayertypes USING (layertypeid) " + //
-						"LEFT JOIN fnlabels USING (layerid) " + //
-						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //
-						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //
+						"FROM fn_grouppatterns_annosets " + //
+						"LEFT JOIN fn_annosets USING (annosetid) " + //
+						"LEFT JOIN fn_sentences USING (sentenceid) " + //
+						"LEFT JOIN fn_layers USING (annosetid) " + //
+						"LEFT JOIN fn_layertypes USING (layertypeid) " + //
+						"LEFT JOIN fn_labels USING (layerid) " + //
+						"LEFT JOIN fn_labeltypes USING (labeltypeid) " + //
+						"LEFT JOIN fn_labelitypes USING (labelitypeid) " + //
 						"WHERE patternid = ? AND labeltypeid IS NOT NULL " + //
 						"GROUP BY layerid " + //
 						"ORDER BY rank,layerid,start,end)";
@@ -272,14 +272,14 @@ public class QueriesUnitTest
 						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||" + //
 						"CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||" + //
 						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS " + FrameNetContract.ValenceUnits_Layers_X.LAYERANNOTATIONS + ' ' + //
-						"FROM fnvalenceunits_annosets " + //
-						"LEFT JOIN fnannosets USING (annosetid) " + //
-						"LEFT JOIN fnsentences USING (sentenceid) " + //
-						"LEFT JOIN fnlayers USING (annosetid) " + //
-						"LEFT JOIN fnlayertypes USING (layertypeid) " + //
-						"LEFT JOIN fnlabels USING (layerid) " + //
-						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //
-						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //
+						"FROM fn_valenceunits_annosets " + //
+						"LEFT JOIN fn_annosets USING (annosetid) " + //
+						"LEFT JOIN fn_sentences USING (sentenceid) " + //
+						"LEFT JOIN fn_layers USING (annosetid) " + //
+						"LEFT JOIN fn_layertypes USING (layertypeid) " + //
+						"LEFT JOIN fn_labels USING (layerid) " + //
+						"LEFT JOIN fn_labeltypes USING (labeltypeid) " + //
+						"LEFT JOIN fn_labelitypes USING (labelitypeid) " + //
 						"WHERE vuid = ? AND labeltypeid IS NOT NULL " + //
 						"GROUP BY layerid " + //
 						"ORDER BY rank,layerid,start,end)";
@@ -287,13 +287,13 @@ public class QueriesUnitTest
 
 			case FrameNetDispatcher.WORDS_LEXUNITS_FRAMES:
 				table = "words " + //
-						"INNER JOIN fnwords USING (wordid) " + //
-						"INNER JOIN fnlexemes USING (fnwordid) " + //
-						"INNER JOIN fnlexunits AS " + FrameNetContract.LU + " USING (luid) " + //
-						"LEFT JOIN fnframes USING (frameid) " + //
-						"LEFT JOIN fnposes AS " + FrameNetContract.POS + " ON (" + FrameNetContract.LU + ".posid = " + FrameNetContract.POS + ".posid) " + //
-						"LEFT JOIN fnfes AS " + FrameNetContract.FE + " ON (incorporatedfeid = feid) " + //
-						"LEFT JOIN fnfetypes AS " + FrameNetContract.FETYPE + " ON (incorporatedfetypeid = " + FrameNetContract.FE + ".fetypeid)";
+						"INNER JOIN fn_words USING (wordid) " + //
+						"INNER JOIN fn_lexemes USING (fnwordid) " + //
+						"INNER JOIN fn_lexunits AS " + FrameNetContract.LU + " USING (luid) " + //
+						"LEFT JOIN fn_frames USING (frameid) " + //
+						"LEFT JOIN fn_poses AS " + FrameNetContract.POS + " ON (" + FrameNetContract.LU + ".posid = " + FrameNetContract.POS + ".posid) " + //
+						"LEFT JOIN fn_fes AS " + FrameNetContract.FE + " ON (incorporatedfeid = feid) " + //
+						"LEFT JOIN fn_fetypes AS " + FrameNetContract.FETYPE + " ON (incorporatedfetypeid = " + FrameNetContract.FE + ".fetypeid)";
 				break;
 
 			case FrameNetDispatcher.FRAMES_FES_BY_FE:
@@ -301,12 +301,12 @@ public class QueriesUnitTest
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case FrameNetDispatcher.FRAMES_FES:
-				table = "fnframes " + //
-						"INNER JOIN fnfes USING (frameid) " + //
-						"LEFT JOIN fnfetypes USING (fetypeid) " + //
-						"LEFT JOIN fncoretypes USING (coretypeid) " + //
-						"LEFT JOIN fnfes_semtypes USING (feid) " + //
-						"LEFT JOIN fnsemtypes USING (semtypeid)";
+				table = "fn_frames " + //
+						"INNER JOIN fn_fes USING (frameid) " + //
+						"LEFT JOIN fn_fetypes USING (fetypeid) " + //
+						"LEFT JOIN fn_coretypes USING (coretypeid) " + //
+						"LEFT JOIN fn_fes_semtypes USING (feid) " + //
+						"LEFT JOIN fn_semtypes USING (semtypeid)";
 				break;
 
 			case FrameNetDispatcher.LEXUNITS_SENTENCES_BY_SENTENCE:
@@ -314,10 +314,10 @@ public class QueriesUnitTest
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case FrameNetDispatcher.LEXUNITS_SENTENCES:
-				table = "fnlexunits AS " + FrameNetContract.LU + ' ' + //
-						"LEFT JOIN fnsubcorpuses USING (luid) " + //
-						"LEFT JOIN fnsubcorpuses_sentences USING (subcorpusid) " + //
-						"INNER JOIN fnsentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid)";
+				table = "fn_lexunits AS " + FrameNetContract.LU + ' ' + //
+						"LEFT JOIN fn_subcorpuses USING (luid) " + //
+						"LEFT JOIN fn_subcorpuses_sentences USING (subcorpusid) " + //
+						"INNER JOIN fn_sentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid)";
 				break;
 
 			case FrameNetDispatcher.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE:
@@ -325,29 +325,29 @@ public class QueriesUnitTest
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case FrameNetDispatcher.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS:
-				table = "fnlexunits AS " + FrameNetContract.LU + ' ' + //
-						"LEFT JOIN fnsubcorpuses USING (luid) " + //
-						"LEFT JOIN fnsubcorpuses_sentences USING (subcorpusid) " + //
-						"INNER JOIN fnsentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid) " + //
-						"LEFT JOIN fnannosets USING (sentenceid) " + //
-						"LEFT JOIN fnlayers USING (annosetid) " + //
-						"LEFT JOIN fnlayertypes USING (layertypeid) " + //
-						"LEFT JOIN fnlabels USING (layerid) " + //
-						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //
-						"LEFT JOIN fnlabelitypes USING (labelitypeid)";
+				table = "fn_lexunits AS " + FrameNetContract.LU + ' ' + //
+						"LEFT JOIN fn_subcorpuses USING (luid) " + //
+						"LEFT JOIN fn_subcorpuses_sentences USING (subcorpusid) " + //
+						"INNER JOIN fn_sentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid) " + //
+						"LEFT JOIN fn_annosets USING (sentenceid) " + //
+						"LEFT JOIN fn_layers USING (annosetid) " + //
+						"LEFT JOIN fn_layertypes USING (layertypeid) " + //
+						"LEFT JOIN fn_labels USING (layerid) " + //
+						"LEFT JOIN fn_labeltypes USING (labeltypeid) " + //
+						"LEFT JOIN fn_labelitypes USING (labelitypeid)";
 				break;
 
 			case FrameNetDispatcher.LEXUNITS_GOVERNORS:
-				table = "fnlexunits " + //
-						"INNER JOIN fnlexunits_governors USING (luid) " + //
-						"INNER JOIN fngovernors USING (governorid) " + //
-						"LEFT JOIN fnwords USING (fnwordid)";
+				table = "fn_lexunits " + //
+						"INNER JOIN fn_lexunits_governors USING (luid) " + //
+						"INNER JOIN fn_governors USING (governorid) " + //
+						"LEFT JOIN fn_words USING (fnwordid)";
 				break;
 
 			case FrameNetDispatcher.GOVERNORS_ANNOSETS:
-				table = "fngovernors_annosets " + //
-						"LEFT JOIN fnannosets USING (annosetid) " + //
-						"LEFT JOIN fnsentences USING (sentenceid)";
+				table = "fn_governors_annosets " + //
+						"LEFT JOIN fn_annosets USING (annosetid) " + //
+						"LEFT JOIN fn_sentences USING (sentenceid)";
 				break;
 
 			case FrameNetDispatcher.LEXUNITS_REALIZATIONS_BY_REALIZATION:
@@ -355,12 +355,12 @@ public class QueriesUnitTest
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case FrameNetDispatcher.LEXUNITS_REALIZATIONS:
-				table = "fnlexunits " + //
-						"INNER JOIN fnferealizations USING (luid) " + //
-						"LEFT JOIN fnvalenceunits USING (ferid) " + //
-						"LEFT JOIN fnfetypes USING (fetypeid) " + //
-						"LEFT JOIN fngftypes USING (gfid) " + //
-						"LEFT JOIN fnpttypes USING (ptid)";
+				table = "fn_lexunits " + //
+						"INNER JOIN fn_ferealizations USING (luid) " + //
+						"LEFT JOIN fn_valenceunits USING (ferid) " + //
+						"LEFT JOIN fn_fetypes USING (fetypeid) " + //
+						"LEFT JOIN fn_gftypes USING (gfid) " + //
+						"LEFT JOIN fn_pttypes USING (ptid)";
 				break;
 
 			case FrameNetDispatcher.LEXUNITS_GROUPREALIZATIONS_BY_PATTERN:
@@ -368,26 +368,26 @@ public class QueriesUnitTest
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case FrameNetDispatcher.LEXUNITS_GROUPREALIZATIONS:
-				table = "fnlexunits " + //
-						"INNER JOIN fnfegrouprealizations USING (luid) " + //
-						"LEFT JOIN fnpatterns USING (fegrid) " + //
-						"LEFT JOIN fnpatterns_valenceunits USING (patternid) " + //
-						"LEFT JOIN fnvalenceunits USING (vuid) " + //
-						"LEFT JOIN fnfetypes USING (fetypeid) " + //
-						"LEFT JOIN fngftypes USING (gfid) " + //
-						"LEFT JOIN fnpttypes USING (ptid)";
+				table = "fn_lexunits " + //
+						"INNER JOIN fn_fegrouprealizations USING (luid) " + //
+						"LEFT JOIN fn_grouppatterns USING (fegrid) " + //
+						"LEFT JOIN fn_grouppatterns_patterns USING (patternid) " + //
+						"LEFT JOIN fn_valenceunits USING (vuid) " + //
+						"LEFT JOIN fn_fetypes USING (fetypeid) " + //
+						"LEFT JOIN fn_gftypes USING (gfid) " + //
+						"LEFT JOIN fn_pttypes USING (ptid)";
 				break;
 
 			case FrameNetDispatcher.PATTERNS_SENTENCES:
-				table = "fnpatterns_annosets " + //
-						"LEFT JOIN fnannosets AS " + FrameNetContract.ANNOSET + " USING (annosetid) " + //
-						"LEFT JOIN fnsentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid)";
+				table = "fn_grouppatterns_annosets " + //
+						"LEFT JOIN fn_annosets AS " + FrameNetContract.ANNOSET + " USING (annosetid) " + //
+						"LEFT JOIN fn_sentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid)";
 				break;
 
 			case FrameNetDispatcher.VALENCEUNITS_SENTENCES:
-				table = "fnvalenceunits_annosets " + //
-						"LEFT JOIN fnannosets AS " + FrameNetContract.ANNOSET + " USING (annosetid) " + //
-						"LEFT JOIN fnsentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid)";
+				table = "fn_valenceunits_annosets " + //
+						"LEFT JOIN fn_annosets AS " + FrameNetContract.ANNOSET + " USING (annosetid) " + //
+						"LEFT JOIN fn_sentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid)";
 				break;
 
 			default:
@@ -404,11 +404,11 @@ public class QueriesUnitTest
 		switch (code)
 		{
 			case FrameNetDispatcher.LOOKUP_FTS_WORDS:
-				table = "fnwords_word_fts4";
+				table = "fn_words_word_fts4";
 				break;
 
 			case FrameNetDispatcher.LOOKUP_FTS_SENTENCES:
-				table = "fnsentences_text_fts4";
+				table = "fn_sentences_text_fts4";
 				break;
 
 			case FrameNetDispatcher.LOOKUP_FTS_SENTENCES_X_BY_SENTENCE:
@@ -418,9 +418,9 @@ public class QueriesUnitTest
 				//noinspection fallthrough
 
 			case FrameNetDispatcher.LOOKUP_FTS_SENTENCES_X:
-				table = "fnsentences_text_fts4 " + //
-						"LEFT JOIN fnframes USING (frameid) " + //
-						"LEFT JOIN fnlexunits USING (frameid,luid)";
+				table = "fn_sentences_text_fts4 " + //
+						"LEFT JOIN fn_frames USING (frameid) " + //
+						"LEFT JOIN fn_lexunits USING (frameid,luid)";
 				break;
 
 			default:
@@ -444,7 +444,7 @@ public class QueriesUnitTest
 				{
 					return null;
 				}
-				table = "fnwords";
+				table = "fn_words";
 				projection = new String[]{"fnwordid AS _id", //
 						"word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
 						"word AS " + SearchManager.SUGGEST_COLUMN_QUERY};
@@ -459,7 +459,7 @@ public class QueriesUnitTest
 				{
 					return null;
 				}
-				table = "fnwords_word_fts4";
+				table = "fn_words_word_fts4";
 				projection = new String[]{"fnwordid AS _id", //
 						"word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
 						"word AS " + SearchManager.SUGGEST_COLUMN_QUERY};

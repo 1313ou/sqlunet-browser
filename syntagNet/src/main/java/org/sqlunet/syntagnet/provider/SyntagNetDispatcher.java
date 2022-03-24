@@ -49,7 +49,7 @@ public class SyntagNetDispatcher
 			// J O I N S
 
 			case COLLOCATIONS_X:
-				table =Q.COLLOCATIONS_X.TABLE;
+				table = Q.COLLOCATIONS_X.TABLE;
 				break;
 
 			default:

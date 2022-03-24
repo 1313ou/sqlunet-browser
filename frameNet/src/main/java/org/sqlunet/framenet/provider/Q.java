@@ -120,6 +120,17 @@ public class Q
 		public static final String WORD2="word2";
 		public static final String WORDID="wordid";
 
+	public static final String TYPE="type";
+	public static final String GLOSS="gloss";
+	public static final String A_FRAMES="frames";
+	public static final String A_LEXUNITS="lexunits";
+	public static final String SEMTYPES="semtypes";
+	public static final String A_ANNOSETS="annosets";
+	public static final String FERS="fers";
+	public static final String GROUPREALIZATION="grouprealization";
+	public static final String A_GROUPREALIZATIONS="grouprealizations";
+	public static final String TOTALS="totals";
+
 		static public class LEXUNITS {
 			static public final String TABLE = "fn_lexunits";
 		}
@@ -153,7 +164,7 @@ public class Q
 		}
 
 		static public class LEXUNITS_OR_FRAMES {
-			static public final String TABLE = "(SELECT fnwordid + 10000 AS _id, luid AS fnid, fnwordid AS fnwordid, wordid AS wordid, word AS word, lexunit AS frame, frame AS frame, frameid AS frameid, 0 AS isframe FROM fn_words INNER JOIN fn_lexemes USING (fnwordid) INNER JOIN fn_lexunits AS lu USING (luid) INNER JOIN fn_frames AS fr USING (frameid) UNION SELECT frameid AS _id, frameid AS fnid, 0 AS fnwordid, 0 AS wordid, frame AS word, frame AS frame, frame AS frame, frameid AS frameid, 1 AS isframe FROM fn_frames )";
+			static public final String TABLE = "(SELECT fnwordid + 10000 AS _id, luid AS fnid, fnwordid AS fnwordid, wordid AS wordid, word AS word, lexunit AS name, frame AS frame, frameid AS frameid, 0 AS isframe FROM fn_words INNER JOIN fn_lexemes USING (fnwordid) INNER JOIN fn_lexunits AS lu USING (luid) INNER JOIN fn_frames AS fr USING (frameid) UNION SELECT frameid AS _id, frameid AS fnid, 0 AS fnwordid, 0 AS wordid, frame AS word, frame AS name, frame AS frame, frameid AS frameid, 1 AS isframe FROM fn_frames )";
 		}
 
 		static public class FRAMES_X_BY_FRAME {
@@ -171,7 +182,7 @@ public class Q
 		}
 
 		static public class SENTENCES_LAYERS_X {
-			static public final String TABLE = "(SELECT annosetid,sentenceid,layerid,layertype,rank,GROUP_CONCAT(start||':'||end||':'||fn_labeltypes||':'||CASE WHEN fn_labelitypes IS NULL THEN '' ELSE labelitype END||':'||CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS annotations FROM fn_sentences LEFT JOIN fn_annosets USING (sentenceid) LEFT JOIN fn_layers USING (annosetid) LEFT JOIN fn_layertypes USING (layertypeid) LEFT JOIN fn_labels USING (layerid) LEFT JOIN fn_labeltypes USING (labeltypeid) LEFT JOIN fn_labelitypes USING (labelitypeid) WHERE sentenceid = ? AND labeltypeid IS NOT NULL GROUP BY layerid ORDER BY rank,layerid,start,end)";
+			static public final String TABLE = "(SELECT annosetid,sentenceid,layerid,layertype,rank,GROUP_CONCAT(start||':'||end||':'||labeltype||':'||CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS annotations FROM fn_sentences LEFT JOIN fn_annosets USING (sentenceid) LEFT JOIN fn_layers USING (annosetid) LEFT JOIN fn_layertypes USING (layertypeid) LEFT JOIN fn_labels USING (layerid) LEFT JOIN fn_labeltypes USING (labeltypeid) LEFT JOIN fn_labelitypes USING (labelitypeid) WHERE sentenceid = ? AND labeltypeid IS NOT NULL GROUP BY layerid ORDER BY rank,layerid,start,end)";
 		}
 
 		static public class ANNOSETS_LAYERS_X {
@@ -187,7 +198,7 @@ public class Q
 		}
 
 		static public class WORDS_LEXUNITS_FRAMES {
-			static public final String TABLE = "fn_words INNER JOIN fn_words USING (wordid) INNER JOIN fn_lexemes USING (wordid) INNER JOIN fn_lexunits AS lu USING (luid) LEFT JOIN fn_frames USING (frameid) LEFT JOIN fn_poses AS p ON (lu.posid = p.posid) LEFT JOIN fn_fes AS fe ON (incorporatedfeid = feid) LEFT JOIN fn_fetypes AS ft ON (incorporatedfetypeid = fe.fetypeid)";
+			static public final String TABLE = "words INNER JOIN fn_words USING (wordid) INNER JOIN fn_lexemes USING (fnwordid) INNER JOIN fn_lexunits AS lu USING (luid) LEFT JOIN fn_frames USING (frameid) LEFT JOIN fn_poses AS p ON (lu.posid = p.posid) LEFT JOIN fn_fes AS fe ON (incorporatedfeid = feid) LEFT JOIN fn_fetypes AS ft ON (incorporatedfetypeid = fe.fetypeid)";
 		}
 
 		static public class FRAMES_FES_BY_FE {
@@ -218,7 +229,7 @@ public class Q
 		}
 
 		static public class LEXUNITS_GOVERNORS {
-			static public final String TABLE = "fn_lexunits INNER JOIN fn_lexunits_governors USING (luid) INNER JOIN fn_governors USING (governorid) LEFT JOIN fn_words USING (wordid)";
+			static public final String TABLE = "fn_lexunits INNER JOIN fn_lexunits_governors USING (luid) INNER JOIN fn_governors USING (governorid) LEFT JOIN fn_words USING (fnwordid)";
 		}
 
 		static public class GOVERNORS_ANNOSETS {
@@ -270,14 +281,14 @@ public class Q
 
 		static public class SUGGEST_WORDS {
 			static public final String TABLE = "fn_words";
-			static public final String[] PROJECTION = {"wordid AS _id","word AS SearchManager.SUGGEST_COLUMN_TEXT_1","word AS SearchManager.SUGGEST_COLUMN_QUERY"};
+			static public final String[] PROJECTION = {"fnwordid AS _id","word AS #{suggest_text_1}","word AS #{suggest_query}"};
 			static public final String SELECTION = "word LIKE ? || '%'";
 			static public final String[] ARGS = {"#{uri_last}"};
 		}
 
 		static public class SUGGEST_FTS_WORDS {
 			static public final String TABLE = "fn_words_word_fts4";
-			static public final String[] PROJECTION = {"wordid AS _id","word AS SearchManager.SUGGEST_COLUMN_TEXT_1","word AS SearchManager.SUGGEST_COLUMN_QUERY"};
+			static public final String[] PROJECTION = {"fnwordid AS _id","word AS #{suggest_text_1}","word AS #{suggest_query}"};
 			static public final String SELECTION = "word MATCH ?";
 			static public final String[] ARGS = {"#{uri_last}*"};
 		}

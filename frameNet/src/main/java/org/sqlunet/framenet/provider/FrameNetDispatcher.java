@@ -99,7 +99,7 @@ public class FrameNetDispatcher
 			// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query
 
 			case FrameNetDispatcher.LEXUNIT:
-				table = FrameNetContract.LexUnits.TABLE;
+				table = Q.LEXUNITS.TABLE;
 				if (selection != null)
 				{
 					selection += " AND ";
@@ -112,7 +112,7 @@ public class FrameNetDispatcher
 				break;
 
 			case FrameNetDispatcher.FRAME:
-				table = FrameNetContract.Frames.TABLE;
+				table = Q.FRAMES.TABLE;
 				if (selection != null)
 				{
 					selection += " AND ";
@@ -125,7 +125,7 @@ public class FrameNetDispatcher
 				break;
 
 			case FrameNetDispatcher.SENTENCE:
-				table = FrameNetContract.Sentences.TABLE;
+				table = Q.SENTENCES.TABLE;
 				if (selection != null)
 				{
 					selection += " AND ";
@@ -138,7 +138,7 @@ public class FrameNetDispatcher
 				break;
 
 			case FrameNetDispatcher.ANNOSET:
-				table = FrameNetContract.AnnoSets.TABLE;
+				table = Q.ANNOSETS.TABLE;
 				if (selection != null)
 				{
 					selection += " AND ";
@@ -153,227 +153,102 @@ public class FrameNetDispatcher
 			// J O I N S
 
 			case FrameNetDispatcher.LEXUNITS_OR_FRAMES:
-				table = "(" + //
-						"SELECT fnwordid + 10000 AS " + FrameNetContract.LexUnits_or_Frames.ID + ", luid AS " + FrameNetContract.LexUnits_or_Frames.FNID + ", fnwordid AS " + FrameNetContract.LexUnits_or_Frames.FNWORDID + ", wordid AS " + FrameNetContract.LexUnits_or_Frames.WORDID + ", word AS " + FrameNetContract.LexUnits_or_Frames.WORD + ", lexunit AS " + FrameNetContract.LexUnits_or_Frames.NAME + ", frame AS " + FrameNetContract.LexUnits_or_Frames.FRAMENAME + ", frameid AS " + FrameNetContract.LexUnits_or_Frames.FRAMEID + ", 0 AS " + FrameNetContract.LexUnits_or_Frames.ISFRAME + " " + //
-						"FROM fnwords " + //
-						"INNER JOIN fnlexemes USING (fnwordid) " + //
-						"INNER JOIN fnlexunits AS " + FrameNetContract.LU + " USING (luid) " + //
-						"INNER JOIN fnframes AS " + FrameNetContract.FRAME + " USING (frameid) " + //
-						"UNION " + //
-						"SELECT frameid AS " + FrameNetContract.LexUnits_or_Frames.ID + ", frameid AS " + FrameNetContract.LexUnits_or_Frames.FNID + ", 0 AS " + FrameNetContract.LexUnits_or_Frames.FNWORDID + ", 0 AS " + FrameNetContract.LexUnits_or_Frames.WORDID + ", frame AS " + FrameNetContract.LexUnits_or_Frames.WORD + ", frame AS " + FrameNetContract.LexUnits_or_Frames.NAME + ", frame AS " + FrameNetContract.LexUnits_or_Frames.FRAMENAME + ", frameid AS " + FrameNetContract.LexUnits_or_Frames.FRAMEID + ", 1 AS " + FrameNetContract.LexUnits_or_Frames.ISFRAME + " " + //
-						"FROM fnframes " + //
-						")";
+				table = Q.LEXUNITS_OR_FRAMES.TABLE;
 				break;
 
 			case FrameNetDispatcher.FRAMES_X_BY_FRAME:
-				groupBy = "frameid";
-				table = "fnframes " + //
-						"LEFT JOIN fnframes_semtypes USING (frameid) " + //
-						"LEFT JOIN fnsemtypes USING (semtypeid)";
+				table = Q.FRAMES_X_BY_FRAME.TABLE;
+				groupBy = Q.FRAMEID;
 				break;
 
 			case FrameNetDispatcher.FRAMES_RELATED:
-				table = "fnframes_related AS " + FrameNetContract.RELATED + ' ' + //
-						"LEFT JOIN fnframes AS " + FrameNetContract.SRC + " USING (frameid) " + //
-						"LEFT JOIN fnframes AS " + FrameNetContract.DEST + " ON (frame2id = " + FrameNetContract.DEST + ".frameid) " + //  //  //
-						"LEFT JOIN fnframerelations USING (relationid)";
+				table = Q.FRAMES_RELATED.TABLE;
 				break;
 
 			case FrameNetDispatcher.LEXUNITS_X_BY_LEXUNIT:
-				groupBy = "luid";
-				table = "fnlexunits AS " + FrameNetContract.LU + ' ' + //
-						"LEFT JOIN fnframes AS " + FrameNetContract.FRAME + " USING (frameid) " + //
-						"LEFT JOIN fnposes AS " + FrameNetContract.POS + " ON (" + FrameNetContract.LU + ".posid = " + FrameNetContract.POS + ".posid) " + //
-						"LEFT JOIN fnfetypes AS " + FrameNetContract.FETYPE + " ON (incorporatedfetypeid = " + FrameNetContract.FETYPE + ".fetypeid) " + //
-						"LEFT JOIN fnfes AS " + FrameNetContract.FE + " ON (incorporatedfeid = " + FrameNetContract.FE + ".feid)";
+				table = Q.LEXUNITS_X_BY_LEXUNIT.TABLE;
+				groupBy = Q.LUID;
 				break;
 
 			case FrameNetDispatcher.SENTENCES_LAYERS_X:
-				table = "(SELECT annosetid,sentenceid,layerid,layertype,rank," + //
-						"GROUP_CONCAT(start||':'||" + //
-						"end||':'||" + //
-						"labeltype||':'||" + //
-						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||" + //
-						"CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||" + //
-						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS " + FrameNetContract.Sentences_Layers_X.LAYERANNOTATIONS + ' ' + //
-						"FROM fnsentences " + //
-						"LEFT JOIN fnannosets USING (sentenceid) " + //
-						"LEFT JOIN fnlayers USING (annosetid) " + //
-						"LEFT JOIN fnlayertypes USING (layertypeid) " + //
-						"LEFT JOIN fnlabels USING (layerid) " + //
-						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //
-						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //
-						"WHERE sentenceid = ? AND labeltypeid IS NOT NULL " + //
-						"GROUP BY layerid " + //
-						"ORDER BY rank,layerid,start,end)";
+				table = Q.SENTENCES_LAYERS_X.TABLE;
 				break;
 
 			case FrameNetDispatcher.ANNOSETS_LAYERS_X:
-				table = "(SELECT sentenceid,text,layerid,layertype,rank," + //
-						"GROUP_CONCAT(start||':'||" + //
-						"end||':'||" + //
-						"labeltype||':'||" + //
-						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||" + //
-						"CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||" + //
-						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS " + FrameNetContract.AnnoSets_Layers_X.LAYERANNOTATIONS + ' ' + //
-						"FROM fnannosets " + //
-						"LEFT JOIN fnsentences USING (sentenceid) " + //
-						"LEFT JOIN fnlayers USING (annosetid) " + //
-						"LEFT JOIN fnlayertypes USING (layertypeid) " + //
-						"LEFT JOIN fnlabels USING (layerid) " + //
-						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //
-						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //
-						"WHERE annosetid = ? AND labeltypeid IS NOT NULL " + //
-						"GROUP BY layerid " + //
-						"ORDER BY rank,layerid,start,end)";
+				table = Q.ANNOSETS_LAYERS_X.TABLE;
 				break;
 
 			case FrameNetDispatcher.PATTERNS_LAYERS_X:
-				table = "(SELECT annosetid,sentenceid,text,layerid,layertype,rank," + //
-						"GROUP_CONCAT(start||':'||" + //
-						"end||':'||" + //
-						"labeltype||':'||" + //
-						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||" + //
-						"CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||" + //
-						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS " + FrameNetContract.Patterns_Layers_X.LAYERANNOTATIONS + ' ' + //
-						"FROM fnpatterns_annosets " + //
-						"LEFT JOIN fnannosets USING (annosetid) " + //
-						"LEFT JOIN fnsentences USING (sentenceid) " + //
-						"LEFT JOIN fnlayers USING (annosetid) " + //
-						"LEFT JOIN fnlayertypes USING (layertypeid) " + //
-						"LEFT JOIN fnlabels USING (layerid) " + //
-						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //
-						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //
-						"WHERE patternid = ? AND labeltypeid IS NOT NULL " + //
-						"GROUP BY layerid " + //
-						"ORDER BY rank,layerid,start,end)";
+				table = Q.PATTERNS_LAYERS_X.TABLE;
 				break;
 
 			case FrameNetDispatcher.VALENCEUNITS_LAYERS_X:
-				table = "(SELECT annosetid,sentenceid,text,layerid,layertype,rank," + //
-						"GROUP_CONCAT(start||':'||" + //
-						"end||':'||" + //
-						"labeltype||':'||" + //
-						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||" + //
-						"CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||" + //
-						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS " + FrameNetContract.ValenceUnits_Layers_X.LAYERANNOTATIONS + ' ' + //
-						"FROM fnvalenceunits_annosets " + //
-						"LEFT JOIN fnannosets USING (annosetid) " + //
-						"LEFT JOIN fnsentences USING (sentenceid) " + //
-						"LEFT JOIN fnlayers USING (annosetid) " + //
-						"LEFT JOIN fnlayertypes USING (layertypeid) " + //
-						"LEFT JOIN fnlabels USING (layerid) " + //
-						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //
-						"LEFT JOIN fnlabelitypes USING (labelitypeid) " + //
-						"WHERE vuid = ? AND labeltypeid IS NOT NULL " + //
-						"GROUP BY layerid " + //
-						"ORDER BY rank,layerid,start,end)";
+				table = Q.VALENCEUNITS_LAYERS_X.TABLE;
 				break;
 
 			case FrameNetDispatcher.WORDS_LEXUNITS_FRAMES:
-				table = "words " + //
-						"INNER JOIN fnwords USING (wordid) " + //
-						"INNER JOIN fnlexemes USING (fnwordid) " + //
-						"INNER JOIN fnlexunits AS " + FrameNetContract.LU + " USING (luid) " + //
-						"LEFT JOIN fnframes USING (frameid) " + //
-						"LEFT JOIN fnposes AS " + FrameNetContract.POS + " ON (" + FrameNetContract.LU + ".posid = " + FrameNetContract.POS + ".posid) " + //
-						"LEFT JOIN fnfes AS " + FrameNetContract.FE + " ON (incorporatedfeid = feid) " + //
-						"LEFT JOIN fnfetypes AS " + FrameNetContract.FETYPE + " ON (incorporatedfetypeid = " + FrameNetContract.FE + ".fetypeid)";
+				table = Q.WORDS_LEXUNITS_FRAMES.TABLE;
 				break;
 
 			case FrameNetDispatcher.FRAMES_FES_BY_FE:
-				groupBy = "feid";
-				//$FALL-THROUGH$
-				//noinspection fallthrough
+				table = Q.FRAMES_FES_BY_FE.TABLE;
+				groupBy = Q.FEID;
+				break;
+
 			case FrameNetDispatcher.FRAMES_FES:
-				table = "fnframes " + //
-						"INNER JOIN fnfes USING (frameid) " + //
-						"LEFT JOIN fnfetypes USING (fetypeid) " + //
-						"LEFT JOIN fncoretypes USING (coretypeid) " + //
-						"LEFT JOIN fnfes_semtypes USING (feid) " + //
-						"LEFT JOIN fnsemtypes USING (semtypeid)";
+				table = Q.FRAMES_FES.TABLE;
 				break;
 
 			case FrameNetDispatcher.LEXUNITS_SENTENCES_BY_SENTENCE:
-				groupBy = FrameNetContract.SENTENCE + ".sentenceid";
-				//$FALL-THROUGH$
-				//noinspection fallthrough
+				table = Q.LEXUNITS_SENTENCES_BY_SENTENCE.TABLE;
+				groupBy = Q.AS_SENTENCES + '.' + Q.SENTENCEID;
+				break;
+
 			case FrameNetDispatcher.LEXUNITS_SENTENCES:
-				table = "fnlexunits AS " + FrameNetContract.LU + ' ' + //
-						"LEFT JOIN fnsubcorpuses USING (luid) " + //
-						"LEFT JOIN fnsubcorpuses_sentences USING (subcorpusid) " + //
-						"INNER JOIN fnsentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid)";
+				table = Q.LEXUNITS_SENTENCES.TABLE;
 				break;
 
 			case FrameNetDispatcher.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE:
-				//noinspection DuplicateBranchesInSwitch
-				groupBy = FrameNetContract.SENTENCE + ".sentenceid";
-				//$FALL-THROUGH$
-				//noinspection fallthrough
+				table = Q.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE.TABLE;
+				groupBy = Q.AS_SENTENCES + '.' + Q.SENTENCEID;
+				break;
+
 			case FrameNetDispatcher.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS:
-				table = "fnlexunits AS " + FrameNetContract.LU + ' ' + //
-						"LEFT JOIN fnsubcorpuses USING (luid) " + //
-						"LEFT JOIN fnsubcorpuses_sentences USING (subcorpusid) " + //
-						"INNER JOIN fnsentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid) " + //
-						"LEFT JOIN fnannosets USING (sentenceid) " + //
-						"LEFT JOIN fnlayers USING (annosetid) " + //
-						"LEFT JOIN fnlayertypes USING (layertypeid) " + //
-						"LEFT JOIN fnlabels USING (layerid) " + //
-						"LEFT JOIN fnlabeltypes USING (labeltypeid) " + //
-						"LEFT JOIN fnlabelitypes USING (labelitypeid)";
+				table = Q.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS.TABLE;
 				break;
 
 			case FrameNetDispatcher.LEXUNITS_GOVERNORS:
-				table = "fnlexunits " + //
-						"INNER JOIN fnlexunits_governors USING (luid) " + //
-						"INNER JOIN fngovernors USING (governorid) " + //
-						"LEFT JOIN fnwords USING (fnwordid)";
+				table = Q.LEXUNITS_GOVERNORS.TABLE;
 				break;
 
 			case FrameNetDispatcher.GOVERNORS_ANNOSETS:
-				table = "fngovernors_annosets " + //
-						"LEFT JOIN fnannosets USING (annosetid) " + //
-						"LEFT JOIN fnsentences USING (sentenceid)";
+				table = Q.GOVERNORS_ANNOSETS.TABLE;
 				break;
 
 			case FrameNetDispatcher.LEXUNITS_REALIZATIONS_BY_REALIZATION:
-				groupBy = "ferid";
-				//$FALL-THROUGH$
-				//noinspection fallthrough
+				table = Q.LEXUNITS_REALIZATIONS_BY_REALIZATION.TABLE;
+				groupBy = Q.FERID;
+				break;
+
 			case FrameNetDispatcher.LEXUNITS_REALIZATIONS:
-				table = "fnlexunits " + //
-						"INNER JOIN fnferealizations USING (luid) " + //
-						"LEFT JOIN fnvalenceunits USING (ferid) " + //
-						"LEFT JOIN fnfetypes USING (fetypeid) " + //
-						"LEFT JOIN fngftypes USING (gfid) " + //
-						"LEFT JOIN fnpttypes USING (ptid)";
+				table = Q.LEXUNITS_REALIZATIONS.TABLE;
 				break;
 
 			case FrameNetDispatcher.LEXUNITS_GROUPREALIZATIONS_BY_PATTERN:
-				groupBy = "patternid";
-				//$FALL-THROUGH$
-				//noinspection fallthrough
+				table = Q.LEXUNITS_GROUPREALIZATIONS_BY_PATTERN.TABLE;
+				groupBy = Q.PATTERNID;
+				break;
+
 			case FrameNetDispatcher.LEXUNITS_GROUPREALIZATIONS:
-				table = "fnlexunits " + //
-						"INNER JOIN fnfegrouprealizations USING (luid) " + //
-						"LEFT JOIN fnpatterns USING (fegrid) " + //
-						"LEFT JOIN fnpatterns_valenceunits USING (patternid) " + //
-						"LEFT JOIN fnvalenceunits USING (vuid) " + //
-						"LEFT JOIN fnfetypes USING (fetypeid) " + //
-						"LEFT JOIN fngftypes USING (gfid) " + //
-						"LEFT JOIN fnpttypes USING (ptid)";
+				table = Q.LEXUNITS_GROUPREALIZATIONS.TABLE;
 				break;
 
 			case FrameNetDispatcher.PATTERNS_SENTENCES:
-				table = "fnpatterns_annosets " + //
-						"LEFT JOIN fnannosets AS " + FrameNetContract.ANNOSET + " USING (annosetid) " + //
-						"LEFT JOIN fnsentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid)";
+				table = Q.PATTERNS_SENTENCES.TABLE;
 				break;
 
 			case FrameNetDispatcher.VALENCEUNITS_SENTENCES:
-				table = "fnvalenceunits_annosets " + //
-						"LEFT JOIN fnannosets AS " + FrameNetContract.ANNOSET + " USING (annosetid) " + //
-						"LEFT JOIN fnsentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid)";
+				table = Q.VALENCEUNITS_SENTENCES.TABLE;
 				break;
 
 			default:
@@ -390,23 +265,20 @@ public class FrameNetDispatcher
 		switch (code)
 		{
 			case FrameNetDispatcher.LOOKUP_FTS_WORDS:
-				table = "fnwords_word_fts4";
+				table = Q.LOOKUP_FTS_WORDS.TABLE;
 				break;
 
 			case FrameNetDispatcher.LOOKUP_FTS_SENTENCES:
-				table = "fnsentences_text_fts4";
+				table = Q.LOOKUP_FTS_SENTENCES.TABLE;
 				break;
 
 			case FrameNetDispatcher.LOOKUP_FTS_SENTENCES_X_BY_SENTENCE:
-				groupBy = "sentenceid";
-				//addProjection(projection, "GROUP_CONCAT(DISTINCT  frame || '@' || frameid)", "GROUP_CONCAT(DISTINCT  lexunit || '@' || luid)");
-				//$FALL-THROUGH$
-				//noinspection fallthrough
+				table = Q.LOOKUP_FTS_SENTENCES_X_BY_SENTENCE.TABLE;
+				groupBy = Q.SENTENCEID;
+				break;
 
 			case FrameNetDispatcher.LOOKUP_FTS_SENTENCES_X:
-				table = "fnsentences_text_fts4 " + //
-						"LEFT JOIN fnframes USING (frameid) " + //
-						"LEFT JOIN fnlexunits USING (frameid,luid)";
+				table = Q.LOOKUP_FTS_SENTENCES_X.TABLE;
 				break;
 
 			default:
@@ -430,11 +302,11 @@ public class FrameNetDispatcher
 				{
 					return null;
 				}
-				table = "fnwords";
-				projection = new String[]{"fnwordid AS _id", //
-						"word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
-						"word AS " + SearchManager.SUGGEST_COLUMN_QUERY};
-				selection = "word LIKE ? || '%'";
+				table = Q.SUGGEST_WORDS.TABLE;
+				projection = Q.SUGGEST_WORDS.PROJECTION;
+				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}",SearchManager.SUGGEST_COLUMN_TEXT_1);
+				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}",SearchManager.SUGGEST_COLUMN_QUERY);
+				selection = Q.SUGGEST_WORDS.SELECTION;
 				selectionArgs = new String[]{uriLast};
 				break;
 			}
@@ -445,11 +317,11 @@ public class FrameNetDispatcher
 				{
 					return null;
 				}
-				table = "fnwords_word_fts4";
-				projection = new String[]{"fnwordid AS _id", //
-						"word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
-						"word AS " + SearchManager.SUGGEST_COLUMN_QUERY};
-				selection = "word MATCH ?";
+				table = Q.SUGGEST_FTS_WORDS.TABLE;
+				projection = Q.SUGGEST_FTS_WORDS.PROJECTION;
+				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}",SearchManager.SUGGEST_COLUMN_TEXT_1);
+				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}",SearchManager.SUGGEST_COLUMN_QUERY);
+				selection = Q.SUGGEST_FTS_WORDS.SELECTION;
 				selectionArgs = new String[]{uriLast + '*'};
 				break;
 			}
