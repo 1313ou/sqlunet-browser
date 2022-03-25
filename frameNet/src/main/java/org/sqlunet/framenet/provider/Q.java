@@ -194,7 +194,12 @@ public class Q
 
 	static public class LEXUNITS_X_BY_LEXUNIT
 	{
-		static public final String TABLE = "fn_lexunits AS lu LEFT JOIN fn_frames AS fr USING (frameid) LEFT JOIN fn_poses AS p ON (lu.posid = p.posid) LEFT JOIN fn_fetypes AS ft ON (incorporatedfetypeid = ft.fetypeid) LEFT JOIN fn_fes AS fe ON (incorporatedfeid = fe.feid)";
+		static public final String TABLE = "fn_lexunits AS lu " +
+				"LEFT JOIN fn_frames AS fr USING (frameid) " +
+				"LEFT JOIN fn_poses AS p ON (lu.posid = p.posid) " +
+				"LEFT JOIN fn_fetypes AS ft ON (incorporatedfetypeid = ft.fetypeid) " +
+				//"LEFT JOIN fn_fes AS fe ON (incorporatedfeid = fe.feid)";
+				"LEFT JOIN fn_fes AS fe ON (fr.frameid = fe.frameid AND incorporatedfetypeid = fe.fetypeid)";
 		static public final String GROUPBY = "luid";
 	}
 
@@ -268,7 +273,13 @@ public class Q
 
 	static public class LEXUNITS_REALIZATIONS_BY_REALIZATION
 	{
-		static public final String TABLE = "fn_lexunits INNER JOIN fn_ferealizations USING (luid) LEFT JOIN fn_valenceunits USING (ferid) LEFT JOIN fn_fetypes USING (fetypeid) LEFT JOIN fn_gftypes USING (gfid) LEFT JOIN fn_pttypes USING (ptid)";
+		static public final String TABLE = "fn_lexunits " +
+				"INNER JOIN fn_ferealizations USING (luid) " +
+				"LEFT JOIN fn_ferealizations_valenceunits USING (ferid) " +
+				"LEFT JOIN fn_valenceunits USING (vuid) " +
+				"LEFT JOIN fn_fetypes USING (fetypeid) " +
+				"LEFT JOIN fn_gftypes USING (gfid) " +
+				"LEFT JOIN fn_pttypes USING (ptid)";
 		static public final String GROUPBY = "ferid";
 	}
 
