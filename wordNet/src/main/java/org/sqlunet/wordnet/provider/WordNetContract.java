@@ -272,7 +272,7 @@ public class WordNetContract
 
 	static public final class Senses_VerbTemplates
 	{
-		static public final String TABLE = Q.SENSES_VTEMPLATES.TABLE;
+		static public final String TABLE = "senses_vtemplates";
 		static public final String CONTENT_URI_TABLE = Senses_VerbTemplates.TABLE;
 		static public final String SYNSETID = Q.SYNSETID;
 		static public final String WORDID = Q.WORDID;
@@ -281,7 +281,7 @@ public class WordNetContract
 
 	static public final class Senses_AdjPositions
 	{
-		static public final String TABLE = Q.SENSES_ADJPOSITIONS.TABLE;
+		static public final String TABLE = "senses_adjpositions";
 		static public final String CONTENT_URI_TABLE = Senses_AdjPositions.TABLE;
 		static public final String SYNSETID = Q.SYNSETID;
 		static public final String WORDID = Q.WORDID;
@@ -291,7 +291,7 @@ public class WordNetContract
 
 	static public final class Lexes_Morphs
 	{
-		static public final String TABLE = Q.LEXES_MORPHS.TABLE;
+		static public final String TABLE = "lexes_morphs";
 		static public final String CONTENT_URI_TABLE = Lexes_Morphs.TABLE;
 		static public final String WORDID = Q.WORDID;
 		static public final String MORPH = Q.MORPH;

@@ -44,8 +44,8 @@ public class PropBankContract
 
 	static public final class PbRoleSets_X
 	{
-		static public final String TABLE = Q.PBROLESETS_X.TABLE;
-		static public final String TABLE_BY_ROLESET = Q.PBROLESETS_X_BY_ROLESET.TABLE;
+		static public final String TABLE = "pbrolesets_x";
+		static public final String TABLE_BY_ROLESET = "pbrolesets_x_by_roleset";
 		static public final String CONTENT_URI_TABLE = PbRoleSets_X.TABLE_BY_ROLESET;
 		static public final String ROLESETID = Q.ROLESETID;
 		static public final String ROLESETNAME = Q.ROLESETNAME;
@@ -57,7 +57,7 @@ public class PropBankContract
 
 	static public final class Words_PbRoleSets
 	{
-		static public final String TABLE = Q.WORDS_PBROLESETS.TABLE;
+		static public final String TABLE = "words_pbrolesets";
 		static public final String CONTENT_URI_TABLE = Words_PbRoleSets.TABLE;
 		static public final String WORDID = Q.WORDID;
 		static public final String POS = Q.POS;
@@ -69,7 +69,7 @@ public class PropBankContract
 
 	static public final class PbRoleSets_PbRoles
 	{
-		static public final String TABLE = Q.PBROLESETS_PBROLES.TABLE;
+		static public final String TABLE = "pbrolesets_pbroles";
 		static public final String CONTENT_URI_TABLE = PbRoleSets_PbRoles.TABLE;
 		static public final String ROLESETID = Q.ROLESETID;
 		static public final String ROLEID = Q.ROLEID;
@@ -81,8 +81,8 @@ public class PropBankContract
 
 	static public final class PbRoleSets_PbExamples
 	{
-		static public final String TABLE = Q.PBROLESETS_PBEXAMPLES.TABLE;
-		static public final String TABLE_BY_EXAMPLE = Q.PBROLESETS_PBEXAMPLES_BY_EXAMPLE.TABLE;
+		static public final String TABLE = "pbrolesets_pbexamples";
+		static public final String TABLE_BY_EXAMPLE = "pbrolesets_pbexamples_by_example";
 		static public final String CONTENT_URI_TABLE = PbRoleSets_PbExamples.TABLE_BY_EXAMPLE;
 		static public final String ROLESETID = Q.ROLESETID;
 		static public final String TEXT = Q.TEXT;
@@ -103,7 +103,7 @@ public class PropBankContract
 
 	static public final class Lookup_PbExamples
 	{
-		static public final String TABLE = Q.LOOKUP_FTS_EXAMPLES.TABLE;
+		static public final String TABLE = "fts_pbexamples";
 		static public final String CONTENT_URI_TABLE = Lookup_PbExamples.TABLE;
 		static public final String EXAMPLEID = Q.EXAMPLEID;
 		static public final String TEXT = Q.TEXT;
@@ -112,8 +112,8 @@ public class PropBankContract
 
 	static public final class Lookup_PbExamples_X
 	{
-		static public final String TABLE = Q.LOOKUP_FTS_EXAMPLES_X.TABLE;
-		static public final String TABLE_BY_EXAMPLE = Q.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE.TABLE;
+		static public final String TABLE = "fts_pbexamples_x";
+		static public final String TABLE_BY_EXAMPLE = "fts_pbexamples_x_by_examples";
 		static public final String CONTENT_URI_TABLE = Lookup_PbExamples_X.TABLE_BY_EXAMPLE;
 		static public final String EXAMPLEID = Q.EXAMPLEID;
 		static public final String TEXT = Q.TEXT;
@@ -124,7 +124,7 @@ public class PropBankContract
 
 	static public final class Suggest_PbWords
 	{
-		static final String SEARCH_WORD_PATH = Q.SUGGEST_WORDS.TABLE;
+		static final String SEARCH_WORD_PATH = "suggest_pbword";
 		static public final String TABLE = Suggest_PbWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 		static public final String PBWORDID = Q.PBWORDID;
 		static public final String WORDID = Q.WORDID;
@@ -133,7 +133,7 @@ public class PropBankContract
 
 	static public final class Suggest_FTS_PbWords
 	{
-		static final String SEARCH_WORD_PATH = Q.SUGGEST_FTS_WORDS.TABLE;
+		static final String SEARCH_WORD_PATH = "suggest_fts_pbword";
 		static public final String TABLE = Suggest_FTS_PbWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 		static public final String PBWORDID = Q.PBWORDID;
 		static public final String WORDID = Q.WORDID;

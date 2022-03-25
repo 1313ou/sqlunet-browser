@@ -204,7 +204,7 @@ public class QueriesUnitTest
 				{
 					return null;
 				}
-				table = "vn_words";
+				table = "vn_words INNER JOIN words USING (wordid)";
 				projection = new String[]{"vnwordid AS _id", //
 						"word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
 						"word AS " + SearchManager.SUGGEST_COLUMN_QUERY}; //

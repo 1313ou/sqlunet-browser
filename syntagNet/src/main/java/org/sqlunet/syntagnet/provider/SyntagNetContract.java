@@ -41,7 +41,7 @@ public class SyntagNetContract
 
 	static public final class SnCollocations_X
 	{
-		static public final String TABLE = Q.COLLOCATIONS_X.TABLE;
+		static public final String TABLE = "syntagms_x";
 		static public final String CONTENT_URI_TABLE = SnCollocations_X.TABLE;
 		static public final String COLLOCATIONID = Q.SYNTAGMID;
 		static public final String WORD1ID = Q.WORD1ID;
@@ -49,7 +49,7 @@ public class SyntagNetContract
 		static public final String SYNSET1ID = Q.SYNSET1ID;
 		static public final String SYNSET2ID = Q.SYNSET2ID;
 		static public final String WORD = Q.WORD;
-		static public final String POS = Q.POS;
+		static public final String POS = Q.POSID;
 		static public final String DEFINITION = Q.DEFINITION;
 	}
 }

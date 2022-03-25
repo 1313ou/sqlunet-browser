@@ -218,12 +218,12 @@ public class XSqlUNetProvider extends BaseProvider
 				table = "words AS " + XSqlUNetContract.WORD + ' ' + //
 						"LEFT JOIN senses AS " + XSqlUNetContract.SENSE + " USING (wordid) " + //
 						"LEFT JOIN synsets AS " + XSqlUNetContract.SYNSET + " USING (synsetid) " + //
-						"LEFT JOIN postypes AS " + XSqlUNetContract.POS + " USING (pos) " + //
+						"LEFT JOIN poses AS " + XSqlUNetContract.POSID + " USING (posid) " + //
 						"LEFT JOIN casedwords USING (wordid,casedwordid) " + //
 						"LEFT JOIN domains USING (domainid) " + //
-						"LEFT JOIN fnwords USING (wordid) " + //
-						"LEFT JOIN vnwords USING (wordid) " + //
-						"LEFT JOIN pbwords USING (wordid)";
+						"LEFT JOIN fn_words USING (wordid) " + //
+						"LEFT JOIN vn_words USING (wordid) " + //
+						"LEFT JOIN pb_words USING (wordid)";
 				groupBy = "synsetid";
 				break;
 
@@ -231,19 +231,19 @@ public class XSqlUNetProvider extends BaseProvider
 				table = "words AS " + XSqlUNetContract.WORD + ' ' + //
 						"LEFT JOIN senses AS " + XSqlUNetContract.SENSE + " USING (wordid) " + //
 						"LEFT JOIN synsets AS " + XSqlUNetContract.SYNSET + " USING (synsetid) " + //
-						"LEFT JOIN postypes AS " + XSqlUNetContract.POS + " USING (pos) " + //
+						"LEFT JOIN poses AS " + XSqlUNetContract.POSID + " USING (posid) " + //
 						"LEFT JOIN casedwords USING (wordid,casedwordid) " + //
 						"LEFT JOIN domains USING (domainid) " + //
-						"LEFT JOIN vnwords USING (wordid) " + //
-						"LEFT JOIN pbwords USING (wordid)";
+						"LEFT JOIN vn_words USING (wordid) " + //
+						"LEFT JOIN pb_words USING (wordid)";
 				groupBy = "synsetid";
 				break;
 
 			case WORDS_VNWORDS_VNCLASSES:
 			{
-				table = "vnwords INNER JOIN " + //
-						"vnclassmembersenses USING (vnwordid) " + //
-						"INNER JOIN vnclasses AS " + XSqlUNetContract.CLASS + " USING (classid) " + //
+				table = "vn_words " + //
+						"INNER JOIN vn_members_senses USING (wordid) " + //
+						"INNER JOIN vn_classes AS " + XSqlUNetContract.CLASS + " USING (classid) " + //
 						"LEFT JOIN synsets USING (synsetid)";
 				groupBy = "wordid,synsetid,classid";
 				break;
@@ -252,11 +252,11 @@ public class XSqlUNetProvider extends BaseProvider
 			case WORDS_VNWORDS_VNCLASSES_U:
 			{
 				final String table1 = "pmvn " + //
-						"INNER JOIN vnclasses USING (classid) " + //
+						"INNER JOIN vn_classes USING (classid) " + //
 						"LEFT JOIN synsets USING (synsetid)";
-				final String table2 = "vnwords INNER JOIN " + //
-						"vnclassmembersenses USING (vnwordid) " + //
-						"INNER JOIN vnclasses USING (classid)";
+				final String table2 = "vn_words " + //
+						"INNER JOIN vn_members_senses USING (vnwordid) " + //
+						"INNER JOIN vn_classes USING (classid)";
 				final String[] unionProjection = {"wordid", "synsetid", "classid", "class", "classtag", "definition"};
 				@SuppressWarnings("UnnecessaryLocalVariable") final String[] table1Projection = unionProjection;
 				final String[] table2Projection = {"wordid", "synsetid", "classid", "class", "classtag"};
@@ -269,8 +269,8 @@ public class XSqlUNetProvider extends BaseProvider
 
 			case WORDS_PBWORDS_PBROLESETS:
 			{
-				table = "pbwords " + //
-						"INNER JOIN pbrolesets AS " + XSqlUNetContract.CLASS + " USING (pbwordid)";
+				table = "pb_words " + //
+						"INNER JOIN pb_rolesets AS " + XSqlUNetContract.CLASS + " USING (pbwordid)";
 				groupBy = "wordid,synsetid,rolesetid";
 				break;
 			}
@@ -278,10 +278,10 @@ public class XSqlUNetProvider extends BaseProvider
 			case WORDS_PBWORDS_PBROLESETS_U:
 			{
 				final String table1 = "pmpb " + //
-						"INNER JOIN pbrolesets USING (rolesetid) " + //
+						"INNER JOIN pb_rolesets USING (rolesetid) " + //
 						"LEFT JOIN synsets USING (synsetid)";
-				final String table2 = "pbwords " + //
-						"INNER JOIN pbrolesets USING (pbwordid)";
+				final String table2 = "pb_words " + //
+						"INNER JOIN pb_rolesets USING (pbwordid)";
 				final String[] unionProjection = {"wordid", "synsetid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr", "definition"};
 				@SuppressWarnings("UnnecessaryLocalVariable") final String[] table1Projection = unionProjection;
 				final String[] table2Projection = {"wordid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr"};
@@ -295,13 +295,13 @@ public class XSqlUNetProvider extends BaseProvider
 			case WORDS_FNWORDS_FNFRAMES_U:
 			{
 				final String table1 = "pmfn " + //
-						"INNER JOIN fnframes USING (frameid) " + //
-						"LEFT JOIN fnlexunits USING (luid,frameid) " + //
+						"INNER JOIN fn_frames USING (frameid) " + //
+						"LEFT JOIN fn_lexunits USING (luid,frameid) " + //
 						"LEFT JOIN synsets USING (synsetid)";
 				final String table2 = "fnwords " + //
-						"INNER JOIN fnlexemes USING (fnwordid) " + //
-						"INNER JOIN fnlexunits USING (luid,posid) " + //
-						"INNER JOIN fnframes USING (frameid)";
+						"INNER JOIN fn_lexemes USING (fnwordid) " + //
+						"INNER JOIN fn_lexunits USING (luid,posid) " + //
+						"INNER JOIN fn_frames USING (frameid)";
 				final String[] unionProjection = {"wordid", "synsetid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition", "definition"};
 				@SuppressWarnings("UnnecessaryLocalVariable") final String[] table1Projection = unionProjection;
 				final String[] table2Projection = {"wordid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition"};
@@ -312,9 +312,11 @@ public class XSqlUNetProvider extends BaseProvider
 				return raw(query, selectionArgs);
 			}
 
-			default:
 			case UriMatcher.NO_MATCH:
 				throw new RuntimeException("Malformed URI " + uri);
+
+			default:
+				return null;
 		}
 
 		final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);

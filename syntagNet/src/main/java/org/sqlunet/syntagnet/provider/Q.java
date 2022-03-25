@@ -49,7 +49,7 @@ public class Q
 	public static final String WORD2ID = "word2id";
 	public static final String WORDID = "wordid";
 
-	public static final String POS = "pos";
+	public static final String POSID = "posid";
 	public static final String DEFINITION = "definition";
 
 	static public class COLLOCATIONS

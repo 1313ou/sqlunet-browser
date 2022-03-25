@@ -22,7 +22,7 @@ class SqLiteDialect
 			"LEFT JOIN bncspwrs USING (wordid, pos) " + //
 			"LEFT JOIN bncconvtasks USING (wordid, pos) " + //
 			"LEFT JOIN bncimaginfs USING (wordid, pos) " + //
-			"LEFT JOIN postypes USING (pos) ";
+			"LEFT JOIN poses USING (pos) ";
 
 	@NonNull
 	static String BNCWordPosQuery = SqLiteDialect.BNCBaseWordQuery + //
@@ -44,7 +44,7 @@ class SqLiteDialect
 			"LEFT JOIN bncspwrs USING (wordid, pos) " + //
 			"LEFT JOIN bncconvtasks USING (wordid, pos) " + //
 			"LEFT JOIN bncimaginfs USING (wordid, pos) " + //
-			"LEFT JOIN postypes USING (pos) ";
+			"LEFT JOIN poses USING (pos) ";
 
 	static final String BNCQueryFromWordIdAndPos = SqLiteDialect.BNCBaseQuery + //
 			"WHERE wordid = ? AND pos = ?;";

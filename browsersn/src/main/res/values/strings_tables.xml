@@ -28,7 +28,7 @@
 		<item>lexes_morphs</item>
 
 		<!-- syntagnet -->
-		<item>syntagms</item>
+		<item>sn_syntagms</item>
 
 		<!-- bnc -->
 		<item>bnc_bncs</item>

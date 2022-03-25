@@ -79,7 +79,7 @@ public class QueriesUnitTest
 			// J O I N S
 
 			case SyntagNetDispatcher.COLLOCATIONS_X:
-				table = "syntagms " + //
+				table = "sn_syntagms " + //
 						"JOIN words AS " + SyntagNetContract.W1 + " ON (word1id = " + SyntagNetContract.W1 + ".wordid) " + //
 						"JOIN words AS " + SyntagNetContract.W2 + " ON (word2id = " + SyntagNetContract.W2 + ".wordid) " + //
 						"JOIN synsets AS " + SyntagNetContract.S1 + " ON (synset1id = " + SyntagNetContract.S1 + ".synsetid) " + //

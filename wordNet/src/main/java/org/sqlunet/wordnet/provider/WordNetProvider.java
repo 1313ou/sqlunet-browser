@@ -187,96 +187,96 @@ public class WordNetProvider extends BaseProvider
 		{
 			// T A B L E S
 
-			case  WordNetDispatcher.WORDS:
-			case  WordNetDispatcher.WORD:
+			case WordNetDispatcher.WORDS:
+			case WordNetDispatcher.WORD:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words.TABLE;
-			case  WordNetDispatcher.SENSES:
+			case WordNetDispatcher.SENSES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Senses.TABLE;
-			case  WordNetDispatcher.SENSE:
+			case WordNetDispatcher.SENSE:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Senses.TABLE;
-			case  WordNetDispatcher.SYNSETS:
+			case WordNetDispatcher.SYNSETS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Synsets.TABLE;
-			case  WordNetDispatcher.SYNSET:
+			case WordNetDispatcher.SYNSET:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Synsets.TABLE;
-			case  WordNetDispatcher.SEMRELATIONS:
+			case WordNetDispatcher.SEMRELATIONS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + SemRelations.TABLE;
-			case  WordNetDispatcher.LEXRELATIONS:
+			case WordNetDispatcher.LEXRELATIONS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + LexRelations.TABLE;
-			case  WordNetDispatcher.RELATIONS:
+			case WordNetDispatcher.RELATIONS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Relations.TABLE;
-			case  WordNetDispatcher.POSES:
+			case WordNetDispatcher.POSES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Poses.TABLE;
-			case  WordNetDispatcher.ADJPOSITIONS:
+			case WordNetDispatcher.ADJPOSITIONS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + AdjPositions.TABLE;
-			case  WordNetDispatcher.DOMAINS:
+			case WordNetDispatcher.DOMAINS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Domains.TABLE;
-			case  WordNetDispatcher.SAMPLES:
+			case WordNetDispatcher.SAMPLES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Samples.TABLE;
 
 			// V I E W S
 
-			case  WordNetDispatcher.DICT:
+			case WordNetDispatcher.DICT:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Dict.TABLE;
-			case  WordNetDispatcher.WORDS_SENSES_SYNSETS:
+			case WordNetDispatcher.WORDS_SENSES_SYNSETS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_Senses_Synsets.TABLE;
-			case  WordNetDispatcher.WORDS_SENSES_CASEDWORDS_SYNSETS:
+			case WordNetDispatcher.WORDS_SENSES_CASEDWORDS_SYNSETS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_Senses_CasedWords_Synsets.TABLE;
-			case  WordNetDispatcher.WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS:
+			case WordNetDispatcher.WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_Senses_CasedWords_Synsets_Poses_Domains.TABLE;
 
 			// J O I N S
 
-			case  WordNetDispatcher.SENSES_WORDS:
+			case WordNetDispatcher.SENSES_WORDS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Senses_Words.TABLE;
-			case  WordNetDispatcher.SENSES_WORDS_BY_SYNSET:
+			case WordNetDispatcher.SENSES_WORDS_BY_SYNSET:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Senses_Words.TABLE_BY_SYNSET;
-			case  WordNetDispatcher.SENSES_SYNSETS_POSES_DOMAINS:
+			case WordNetDispatcher.SENSES_SYNSETS_POSES_DOMAINS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Senses_Synsets_Poses_Domains.TABLE;
-			case  WordNetDispatcher.SYNSETS_POSES_DOMAINS:
+			case WordNetDispatcher.SYNSETS_POSES_DOMAINS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Synsets_Poses_Domains.TABLE;
-			case  WordNetDispatcher.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET:
+			case WordNetDispatcher.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + AllRelations_Senses_Words_X.TABLE_BY_SYNSET;
-			case  WordNetDispatcher.SEMRELATIONS_SYNSETS:
+			case WordNetDispatcher.SEMRELATIONS_SYNSETS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + SemRelations_Synsets.TABLE;
-			case  WordNetDispatcher.SEMRELATIONS_SYNSETS_X:
+			case WordNetDispatcher.SEMRELATIONS_SYNSETS_X:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + SemRelations_Synsets_X.TABLE;
-			case  WordNetDispatcher.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET:
+			case WordNetDispatcher.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + SemRelations_Synsets_Words_X.TABLE_BY_SYNSET;
-			case  WordNetDispatcher.LEXRELATIONS_SENSES:
+			case WordNetDispatcher.LEXRELATIONS_SENSES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + LexRelations_Senses.TABLE;
-			case  WordNetDispatcher.LEXRELATIONS_SENSES_X:
+			case WordNetDispatcher.LEXRELATIONS_SENSES_X:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + LexRelations_Senses_X.TABLE;
-			case  WordNetDispatcher.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET:
+			case WordNetDispatcher.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + LexRelations_Senses_Words_X.TABLE_BY_SYNSET;
-			case  WordNetDispatcher.SENSES_VFRAMES:
+			case WordNetDispatcher.SENSES_VFRAMES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Senses_VerbFrames.TABLE;
-			case  WordNetDispatcher.SENSES_VTEMPLATES:
+			case WordNetDispatcher.SENSES_VTEMPLATES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Senses_VerbTemplates.TABLE;
-			case  WordNetDispatcher.SENSES_ADJPOSITIONS:
+			case WordNetDispatcher.SENSES_ADJPOSITIONS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Senses_AdjPositions.TABLE;
-			case  WordNetDispatcher.LEXES_MORPHS:
+			case WordNetDispatcher.LEXES_MORPHS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lexes_Morphs.TABLE;
-			case  WordNetDispatcher.WORDS_LEXES_MORPHS:
+			case WordNetDispatcher.WORDS_LEXES_MORPHS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_Lexes_Morphs.TABLE;
-			case  WordNetDispatcher.WORDS_LEXES_MORPHS_BY_WORD:
+			case WordNetDispatcher.WORDS_LEXES_MORPHS_BY_WORD:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_Lexes_Morphs.TABLE_BY_WORD;
 
 			// T E X T   L O O K U P S
 
-			case  WordNetDispatcher.LOOKUP_FTS_WORDS:
+			case WordNetDispatcher.LOOKUP_FTS_WORDS:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words.TABLE;
-			case  WordNetDispatcher.LOOKUP_FTS_DEFINITIONS:
+			case WordNetDispatcher.LOOKUP_FTS_DEFINITIONS:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Synsets.TABLE;
-			case  WordNetDispatcher.LOOKUP_FTS_SAMPLES:
+			case WordNetDispatcher.LOOKUP_FTS_SAMPLES:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Samples.TABLE;
 
 			// S E A R C H
 
-			case  WordNetDispatcher.SUGGEST_FTS_WORDS:
+			case WordNetDispatcher.SUGGEST_FTS_WORDS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words.TABLE;
-			case  WordNetDispatcher.SUGGEST_FTS_DEFINITIONS:
+			case WordNetDispatcher.SUGGEST_FTS_DEFINITIONS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Synsets.TABLE;
-			case  WordNetDispatcher.SUGGEST_FTS_SAMPLES:
+			case WordNetDispatcher.SUGGEST_FTS_SAMPLES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Samples.TABLE;
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");
@@ -321,6 +321,10 @@ public class WordNetProvider extends BaseProvider
 
 		final int code = WordNetProvider.uriMatcher.match(uri);
 		Log.d(WordNetProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code));
+		if (code == UriMatcher.NO_MATCH)
+		{
+			throw new RuntimeException("Malformed URI " + uri);
+		}
 
 		Result result;
 		// MAIN
@@ -368,8 +372,7 @@ public class WordNetProvider extends BaseProvider
 		{
 			return this.db.query(result.table, result.projection, result.selection, result.selectionArgs, result.groupBy, null, null);
 		}
-		// UriMatcher.NO_MATCH:
-		throw new RuntimeException("Malformed URI " + uri);
+		return null;
 	}
 
 	// S U B Q U E R Y

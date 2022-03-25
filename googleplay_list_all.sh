@@ -14,6 +14,6 @@ source define_colors.sh
 
 for p in ${packages}; do
 	echo -e "${YELLOW}${p}${RESET}"
-	python googleplay_list.py ${p}
+	python2 googleplay_list.py ${p}
 	echo
 done

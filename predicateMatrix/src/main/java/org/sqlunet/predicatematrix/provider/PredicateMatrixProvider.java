@@ -121,6 +121,11 @@ public class PredicateMatrixProvider extends BaseProvider
 		// choose the table to query and a sort order based on the code returned for the incoming URI
 		final int code = PredicateMatrixProvider.uriMatcher.match(uri);
 		Log.d(PredicateMatrixProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code));
+		if (code == UriMatcher.NO_MATCH)
+		{
+			throw new RuntimeException("Malformed URI " + uri);
+		}
+
 		String table;
 		switch (code)
 		{
@@ -153,8 +158,7 @@ public class PredicateMatrixProvider extends BaseProvider
 				break;
 
 			default:
-			case UriMatcher.NO_MATCH:
-				throw new RuntimeException("Malformed URI " + uri);
+				return null;
 		}
 
 		final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, null, null, sortOrder, null);

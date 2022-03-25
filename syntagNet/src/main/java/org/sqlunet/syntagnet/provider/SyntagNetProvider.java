@@ -119,6 +119,10 @@ public class SyntagNetProvider extends BaseProvider
 		}
 		final int code = uriMatcher.match(uri);
 		Log.d(TAG + "URI", String.format("%s (code %s)\n", uri, code));
+		if (code == UriMatcher.NO_MATCH)
+		{
+			throw new RuntimeException("Malformed URI " + uri);
+		}
 
 		Result result = SyntagNetDispatcher.queryMain(code, uri.getLastPathSegment(), projection0, selection0, selectionArgs0);
 
@@ -147,7 +151,6 @@ public class SyntagNetProvider extends BaseProvider
 				return null;
 			}
 		}
-		// UriMatcher.NO_MATCH:
-		throw new RuntimeException("Malformed URI " + uri);
+		return null;
 	}
 }

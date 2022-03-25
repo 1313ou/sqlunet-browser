@@ -29,21 +29,20 @@
 
 		<!-- verbnet -->
 		<item>vn_classes</item>
-		<item>vn_classmembers</item>
-		<item>vn_classmembersenses</item>
-		<item>vn_examplemaps</item>
+		<item>vn_members</item>
+		<item>vn_members_senses</item>
+		<item>vn_frames_examples</item>
 		<item>vn_examples</item>
-		<item>vn_framemaps</item>
+		<item>vn_classes_frames</item>
 		<item>vn_framenames</item>
 		<item>vn_frames</item>
 		<item>vn_framesubnames</item>
-		<item>vn_groupingmaps</item>
+		<item>vn_members_groupings</item>
 		<item>vn_groupings</item>
-		<item>vn_predicatemaps</item>
+		<item>vn_predicates_semantics</item>
 		<item>vn_predicates</item>
 		<item>vn_restrs</item>
 		<item>vn_restrtypes</item>
-		<item>vn_rolemaps</item>
 		<item>vn_roles</item>
 		<item>vn_roletypes</item>
 		<item>vn_semantics</item>
@@ -57,15 +56,15 @@
 		<item>pb_examples</item>
 		<item>pb_forms</item>
 		<item>pb_funcs</item>
+		<item>pb_members</item>
 		<item>pb_persons</item>
 		<item>pb_rels</item>
 		<item>pb_roles</item>
-		<item>pb_rolesetmembers</item>
 		<item>pb_rolesets</item>
 		<item>pb_tenses</item>
-		<item>pb_vnclassmaps</item>
-		<item>pb_vnrolemaps</item>
-		<item>pb_vnthetas</item>
+		<item>pb_pbrolesets_vnclasses</item>
+		<item>pb_pbroles_vnroles</item>
+		<item>pb_thetas</item>
 		<item>pb_voices</item>
 		<item>pb_words</item>
 
@@ -85,17 +84,17 @@
 		<item>index_samples_synsetid</item>
 
 		<!-- verbnet -->
-		<item>index_vnwords_wordid</item>
-		<item>index_vnrolemaps_classid</item>
-		<item>index_vnframemaps_classid</item>
+		<item>index_vn_words_wordid</item>
+		<item>index_vn_roles_classid</item>
+		<item>index_vn_classes_frames_classid</item>
 
 		<!-- propbank -->
-		<item>index_pbwords_wordid</item>
-		<item>index_pbrolesets_pbwordid</item>
-		<item>index_pbroles_rolesetid</item>
-		<item>index_pbexamples_rolesetid</item>
-		<item>index_pbrels_exampleid</item>
-		<item>index_pbargs_exampleid</item>
+		<item>index_pb_words_wordid</item>
+		<item>index_pb_rolesets_pbwordid</item>
+		<item>index_pb_roles_rolesetid</item>
+		<item>index_pb_examples_rolesetid</item>
+		<item>index_pb_rels_exampleid</item>
+		<item>index_pb_args_exampleid</item>
 
 	</string-array>
 

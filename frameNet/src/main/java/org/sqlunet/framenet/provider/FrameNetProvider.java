@@ -252,6 +252,10 @@ public class FrameNetProvider extends BaseProvider
 		// choose the table to query and a sort order based on the code returned for the incoming URI
 		final int code = FrameNetProvider.uriMatcher.match(uri);
 		Log.d(FrameNetProvider.TAG + "URI", String.format("%s (code %s)", uri, code));
+		if (code == UriMatcher.NO_MATCH)
+		{
+			throw new RuntimeException("Malformed URI " + uri);
+		}
 
 		Result result;
 		// MAIN
@@ -294,7 +298,6 @@ public class FrameNetProvider extends BaseProvider
 		{
 			return this.db.query(result.table, result.projection, result.selection, result.selectionArgs, result.groupBy, null, null);
 		}
-		// UriMatcher.NO_MATCH:
-		throw new RuntimeException("Malformed URI " + uri);
+		return null;
 	}
 }

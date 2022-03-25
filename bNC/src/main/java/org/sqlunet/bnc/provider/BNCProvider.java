@@ -127,6 +127,10 @@ public class BNCProvider extends BaseProvider
 		// choose the table to query and a sort order based on the code returned for the incoming URI
 		final int code = BNCProvider.uriMatcher.match(uri);
 		Log.d(BNCProvider.TAG + "URI", String.format("%s (code %s)", uri, code));
+		if (code == UriMatcher.NO_MATCH)
+		{
+			throw new RuntimeException("Malformed URI " + uri);
+		}
 
 		String table;
 		String table2;
@@ -165,8 +169,7 @@ public class BNCProvider extends BaseProvider
 				break;
 
 			default:
-			case UriMatcher.NO_MATCH:
-				throw new RuntimeException("Malformed URI " + uri);
+				return null;
 		}
 
 		assert equals(table, table2) : table + "!=" + table2;

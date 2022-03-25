@@ -685,7 +685,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		};
 		final String selection = XSqlUNetContract.WORD + '.' + Words_FnWords_PbWords_VnWords.WORD + " = ?";
 		final String[] selectionArgs = {XSelectorsFragment.this.word};
-		final String sortOrder = XSqlUNetContract.POS + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
+		final String sortOrder = XSqlUNetContract.POSID + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
 		this.wordIdFromWordModel.loadData(uri, projection, selection, selectionArgs, sortOrder, this::wordIdFromWordPostProcess);
 	}
 

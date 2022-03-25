@@ -95,7 +95,7 @@ public class Q
 
 	static public class VNCLASSES_VNMEMBERS_X_BY_WORD
 	{
-		static public final String TABLE = "vn_members_senses LEFT JOIN vn_words USING (vnwordid) LEFT JOIN vn_members_groupings USING (classid, vnwordid) LEFT JOIN vn_groupings USING (groupingid) LEFT JOIN synsets USING (synsetid)";
+		static public final String TABLE = "words INNER JOIN vn_members_senses USING (wordid) LEFT JOIN vn_members_groupings USING (classid, vnwordid) LEFT JOIN vn_groupings USING (groupingid) LEFT JOIN synsets USING (synsetid)";
 		static public final String GROUPBY = "vnwordid";
 	}
 
@@ -139,7 +139,7 @@ public class Q
 
 	static public class SUGGEST_WORDS
 	{
-		static public final String TABLE = "vn_words";
+		static public final String TABLE = "vn_words INNER JOIN words USING (wordid)";
 		static public final String[] PROJECTION = {"vnwordid AS _id", "word AS #{suggest_text_1}", "word AS #{suggest_query}"};
 		static public final String SELECTION = "word LIKE ? || '%'";
 		static public final String[] ARGS = {"#{uri_last}"};

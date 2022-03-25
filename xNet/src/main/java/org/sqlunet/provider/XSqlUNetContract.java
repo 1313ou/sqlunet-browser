@@ -16,7 +16,7 @@ public final class XSqlUNetContract
 	static public final String WORD = "w";
 	static public final String SENSE = "s";
 	static public final String SYNSET = "y";
-	static public final String POS = "p";
+	static public final String POSID = "p";
 	static public final String CLASS = "c";
 
 	// Word cross reference

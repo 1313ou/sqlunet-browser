@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 #
 # Copyright 2014 Google Inc. All Rights Reserved.
 #
@@ -38,7 +38,7 @@ def main(argv):
 
     # Process flags and read their values.
     package_name = flags.package_name
-    print 'PACKAGE %s' % package_name      
+    print ('PACKAGE %s' % package_name)
 
     try:
         # get edit id
@@ -53,13 +53,13 @@ def main(argv):
         ).execute()
 
         # iterate on apks
-        print 'APKs'
+        print ('APKs')
         for apk in apks_result['apks']:
             #print apk
-            print 'versionCode: %s, binary.sha1: %s' % (
+            print ('versionCode: %s, binary.sha1: %s' % (
                 apk['versionCode'], 
                 apk['binary']['sha1']
-            )
+            ))
 
         # get bundles
         bundles_result = service.edits().bundles().list(
@@ -68,13 +68,13 @@ def main(argv):
         ).execute()
 
         # iterate on bundles
-        print 'BUNDLEs'
+        print ('BUNDLEs')
         for bundle in bundles_result['bundles']:
             #print bundle
-            print 'versionCode: %s, sha1: %s' % (
+            print ( 'versionCode: %s, sha1: %s' % (
                 bundle['versionCode'],
                 bundle['sha1'],
-            )
+            ))
 
         # get tracks
         tracks_result = service.edits().tracks().list(
@@ -83,19 +83,19 @@ def main(argv):
         ).execute()
 
         # iterate on tracks
-        print 'TRACKS'
+        print ('TRACKS')
         for track in tracks_result['tracks']:
-            #print track
-            print 'track: %s' % (
-                track['track']
+            #print ( track)
+            print( 'track: %s' % (
+                track['track'])
             ),
             # iterate on track releases
             for release in track['releases']:
-                print 'release: %s, status: %s, versionCodes: %s' % (
+                print ( 'release: %s, status: %s, versionCodes: %s' % (
                     release['name'], 
                     release['status'], 
                     release['versionCodes']
-              )
+              ))
 
     except client.AccessTokenRefreshError:
         print ('The credentials have been revoked or expired, please re-run the application to re-authorize')
