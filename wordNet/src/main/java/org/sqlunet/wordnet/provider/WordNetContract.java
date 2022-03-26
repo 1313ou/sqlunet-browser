@@ -16,44 +16,31 @@ public class WordNetContract
 	// A L I A S E S
 
 	// refers to actual table
-	public static String AS_WORDS = Q.AS_WORDS;
-	public static String AS_SENSES = Q.AS_SENSES;
-	public static String AS_SYNSETS = Q.AS_SYNSETS;
-	public static String AS_RELATIONS = Q.AS_RELATIONS;
-	public static String AS_WORDS2 = Q.AS_WORDS2;
-	public static String AS_SYNSETS2 = Q.AS_SYNSETS2;
-	public static String AS_POSES = Q.AS_POSES;
-	public static String AS_CASEDS = Q.AS_CASEDS;
-	public static String AS_DOMAINS = Q.AS_DOMAINS;
+	public static String AS_WORDS = V.AS_WORDS;
+	public static String AS_SENSES = V.AS_SENSES;
+	public static String AS_SYNSETS = V.AS_SYNSETS;
+	public static String AS_RELATIONS = V.AS_RELATIONS;
+	public static String AS_WORDS2 = V.AS_WORDS2;
+	public static String AS_SYNSETS2 = V.AS_SYNSETS2;
+	public static String AS_POSES = V.AS_POSES;
+	public static String AS_CASEDS = V.AS_CASEDS;
+	public static String AS_DOMAINS = V.AS_DOMAINS;
 
 	// refers to artifact column
-	public static String MEMBERS = Q.MEMBERS;
-	public static String MEMBERS2 = Q.MEMBERS2;
-	public static String RELATIONTYPE = Q.RELATIONTYPE; // type discriminator column for relations whose values are in ["sem","lex"]
+	public static String MEMBERS = V.MEMBERS;
+	public static String MEMBERS2 = V.MEMBERS2;
+	public static String RELATIONTYPE = V.RELATIONTYPE; // type discriminator column for relations whose values are in ["sem","lex"]
 
 	// T A B L E S
-
-	public interface Words
-	{
-		String TABLE = Q.WORDS.TABLE;
-		String CONTENT_URI_TABLE = Words.TABLE;
-		String WORDID = Q.WORDID;
-		String WORD = Q.WORD;
-		/*
-		CREATE TABLE ${words.table} (
-		${words.wordid} INT         NOT NULL,
-		${words.word}   VARCHAR(80) NOT NULL)
-		 */
-	}
 
 	public interface Lexes
 	{
 		String TABLE = Q.LEXES.TABLE;
 		String CONTENT_URI_TABLE = Words.TABLE;
-		String LUID = Q.LUID;
-		String POSID = Q.POSID;
-		String WORDID = Q.WORDID;
-		String CASEDWORDID = Q.CASEDWORDID;
+		String LUID = V.LUID;
+		String POSID = V.POSID;
+		String WORDID = V.WORDID;
+		String CASEDWORDID = V.CASEDWORDID;
 		/*
 		CREATE TABLE ${lexes.table} (
 		${lexes.luid}        INT                       NOT NULL,
@@ -63,13 +50,26 @@ public class WordNetContract
 	    */
 	}
 
+	public interface Words
+	{
+		String TABLE = Q.WORDS.TABLE;
+		String CONTENT_URI_TABLE = Words.TABLE;
+		String WORDID = V.WORDID;
+		String WORD = V.WORD;
+		/*
+		CREATE TABLE ${words.table} (
+		${words.wordid} INT         NOT NULL,
+		${words.word}   VARCHAR(80) NOT NULL)
+		 */
+	}
+
 	public interface CasedWords
 	{
 		String TABLE = Q.CASEDWORDS.TABLE;
 		String CONTENT_URI_TABLE = CasedWords.TABLE;
-		String CASEDWORDID = Q.CASEDWORDID;
-		String WORDID = Q.WORDID;
-		String CASEDWORD = Q.CASEDWORD;
+		String CASEDWORDID = V.CASEDWORDID;
+		String WORDID = V.WORDID;
+		String CASEDWORD = V.CASEDWORD;
 		/*
 		CREATE TABLE ${casedwords.table} (
 		${casedwords.casedwordid} INT                                             NOT NULL,
@@ -82,8 +82,8 @@ public class WordNetContract
 	{
 		String TABLE = Q.MORPHS.TABLE;
 		String CONTENT_URI_TABLE = Morphs.TABLE;
-		String MORPHID = Q.MORPHID;
-		String MORPH = Q.MORPH;
+		String MORPHID = V.MORPHID;
+		String MORPH = V.MORPH;
 		/*
 		CREATE TABLE ${morphs.table} (
 		${morphs.morphid} INT         NOT NULL,
@@ -91,19 +91,32 @@ public class WordNetContract
 		 */
 	}
 
+	public interface Pronunciations
+	{
+		String TABLE = Q.PRONUNCIATIONS.TABLE;
+		String CONTENT_URI_TABLE = Pronunciations.TABLE;
+		String PRONUNCIATIONID = V.PRONUNCIATIONID;
+		String PRONUNCIATION = V.PRONUNCIATION;
+		/*
+		CREATE TABLE ${pronunciations.table} (
+		${pronunciations.pronunciationid} INT         NOT NULL,
+		${pronunciations.pronunciation}   VARCHAR(50) NOT NULL)
+	 */
+	}
+
 	public interface Senses
 	{
 		String TABLE = Q.SENSES.TABLE;
 		String CONTENT_URI_TABLE = Senses.TABLE;
-		String SENSEID = Q.SENSEID;
-		String SENSEKEY = Q.SENSEKEY;
-		String SYNSETID = Q.SYNSETID;
-		String WORDID = Q.WORDID;
-		String LUID = Q.LUID;
-		String CASEDWORDID = Q.CASEDWORDID;
-		String LEXID = Q.LEXID;
-		String SENSENUM = Q.SENSENUM;
-		String TAGCOUNT = Q.TAGCOUNT;
+		String SENSEID = V.SENSEID;
+		String SENSEKEY = V.SENSEKEY;
+		String SYNSETID = V.SYNSETID;
+		String WORDID = V.WORDID;
+		String LUID = V.LUID;
+		String CASEDWORDID = V.CASEDWORDID;
+		String LEXID = V.LEXID;
+		String SENSENUM = V.SENSENUM;
+		String TAGCOUNT = V.TAGCOUNT;
 		/*
 		CREATE TABLE ${senses.table} (
 		${senses.senseid}     INT                                               NOT NULL,
@@ -122,10 +135,10 @@ public class WordNetContract
 	{
 		String TABLE = Q.SYNSETS.TABLE;
 		String CONTENT_URI_TABLE = Synsets.TABLE;
-		String SYNSETID = Q.SYNSETID;
-		String POSID = Q.POSID;
-		String DOMAINID = Q.DOMAINID;
-		String DEFINITION = Q.DEFINITION;
+		String SYNSETID = V.SYNSETID;
+		String POSID = V.POSID;
+		String DOMAINID = V.DOMAINID;
+		String DEFINITION = V.DEFINITION;
 		/*
 		CREATE TABLE ${synsets.table} (
 		${synsets.synsetid}   INT                       NOT NULL,
@@ -139,9 +152,9 @@ public class WordNetContract
 	{
 		String TABLE = Q.SEMRELATIONS.TABLE;
 		String CONTENT_URI_TABLE = SemRelations.TABLE;
-		String SYNSET1ID = Q.SYNSET1ID;
-		String SYNSET2ID = Q.SYNSET2ID;
-		String RELATIONID = Q.RELATIONID;
+		String SYNSET1ID = V.SYNSET1ID;
+		String SYNSET2ID = V.SYNSET2ID;
+		String RELATIONID = V.RELATIONID;
 		/*
 		CREATE TABLE ${semrelations.table} (
 		${semrelations.synset1id}  INT NOT NULL,
@@ -154,11 +167,13 @@ public class WordNetContract
 	{
 		String TABLE = Q.LEXRELATIONS.TABLE;
 		String CONTENT_URI_TABLE = LexRelations.TABLE;
-		String WORD1ID = Q.WORD1ID;
-		String SYNSET1ID = Q.SYNSET1ID;
-		String WORD2ID = Q.WORD2ID;
-		String SYNSET2ID = Q.SYNSET2ID;
-		String RELATIONID = Q.RELATIONID;
+		String WORD1ID = V.WORD1ID;
+		String LU1D = V.LU1ID;
+		String SYNSET1ID = V.SYNSET1ID;
+		String WORD2ID = V.WORD2ID;
+		String LU2D = V.LU2ID;
+		String SYNSET2ID = V.SYNSET2ID;
+		String RELATIONID = V.RELATIONID;
 		/*
 		CREATE TABLE ${lexrelations.table} (
 		${lexrelations.synset1id}  INT NOT NULL,
@@ -175,9 +190,9 @@ public class WordNetContract
 	{
 		String TABLE = Q.RELATIONS.TABLE;
 		String CONTENT_URI_TABLE = Relations.TABLE;
-		String RELATIONID = Q.RELATIONID;
-		String RELATION = Q.RELATION;
-		String RECURSES = Q.RECURSES;
+		String RELATIONID = V.RELATIONID;
+		String RELATION = V.RELATION;
+		String RECURSES = V.RECURSES;
 
 		String RECURSESSTR = RECURSES;
 		String RECURSESSELECT = "CASE WHEN " + RECURSES + " <> 0 THEN 'recurses' ELSE '' END) AS " + RECURSESSTR;
@@ -193,8 +208,8 @@ public class WordNetContract
 	{
 		String TABLE = Q.POSES.TABLE;
 		String CONTENT_URI_TABLE = Poses.TABLE;
-		String POSID = Q.POSID;
-		String POS = Q.POS;
+		String POSID = V.POSID;
+		String POS = V.POS;
 		/*
 		CREATE TABLE ${poses.table} (
 		${poses.posid} ENUM('n','v','a','r','s') NOT NULL,
@@ -206,8 +221,8 @@ public class WordNetContract
 	{
 		String TABLE = Q.ADJPOSITIONS.TABLE;
 		String CONTENT_URI_TABLE = AdjPositions.TABLE;
-		String POSITIONID = Q.POSITIONID;
-		String POSITION = Q.POSITION;
+		String POSITIONID = V.POSITIONID;
+		String POSITION = V.POSITION;
 		/*
 		CREATE TABLE ${adjpositions.table} (
 		${adjpositions.positionid} ENUM('a','p','ip') NOT NULL,
@@ -219,10 +234,10 @@ public class WordNetContract
 	{
 		String TABLE = Q.DOMAINS.TABLE;
 		String CONTENT_URI_TABLE = Domains.TABLE;
-		String DOMAINID = Q.DOMAINID;
-		String DOMAIN = Q.DOMAIN;
-		String DOMAINNAME = Q.DOMAINNAME;
-		String POSID = Q.POSID;
+		String DOMAINID = V.DOMAINID;
+		String DOMAIN = V.DOMAIN;
+		String DOMAINNAME = V.DOMAINNAME;
+		String POSID = V.POSID;
 		/*
 		CREATE TABLE ${domains.table} (
 		${domains.domainid}   INT                       NOT NULL,
@@ -236,9 +251,9 @@ public class WordNetContract
 	{
 		String TABLE = Q.SAMPLES.TABLE;
 		String CONTENT_URI_TABLE = Samples.TABLE;
-		String SAMPLEID = Q.SAMPLEID;
-		String SAMPLE = Q.SAMPLE;
-		String SYNSETID = Q.SYNSETID;
+		String SAMPLEID = V.SAMPLEID;
+		String SAMPLE = V.SAMPLE;
+		String SYNSETID = V.SYNSETID;
 		/*
 		CREATE TABLE ${samples.table} (
 		${samples.sampleid} INT        NOT NULL,
@@ -251,8 +266,8 @@ public class WordNetContract
 	{
 		String TABLE = Q.VFRAMES.TABLE;
 		String CONTENT_URI_TABLE = VerbFrames.TABLE;
-		String FRAMEID = Q.FRAMEID;
-		String FRAME = Q.FRAME;
+		String FRAMEID = V.FRAMEID;
+		String FRAME = V.FRAME;
 		/*
 		CREATE TABLE ${vframes.table} (
 		${vframes.frameid} INT         NOT NULL,
@@ -264,13 +279,80 @@ public class WordNetContract
 	{
 		String TABLE = Q.VTEMPLATES.TABLE;
 		String CONTENT_URI_TABLE = VerbTemplates.TABLE;
-		String TEMPLATEID = Q.TEMPLATEID;
-		String TEMPLATE = Q.TEMPLATE;
+		String TEMPLATEID = V.TEMPLATEID;
+		String TEMPLATE = V.TEMPLATE;
 		/*
 		CREATE TABLE ${vtemplates.table} (
 		${vtemplates.templateid} INT        NOT NULL,
 		${vtemplates.template}   MEDIUMTEXT NOT NULL)
 		*/
+	}
+
+	public interface Senses_VerbFrames extends Senses, VerbFrames
+	{
+		String TABLE = "senses_vframes";
+		String CONTENT_URI_TABLE = Senses_VerbFrames.TABLE;
+		/*
+		CREATE TABLE ${senses_vframes.table} (
+		${senses_vframes.synsetid} INT NOT NULL,
+		${senses_vframes.luid}     INT NOT NULL,
+		${senses_vframes.wordid}   INT NOT NULL,
+		${senses_vframes.frameid}  INT NOT NULL)
+		 */
+	}
+
+	public interface Senses_VerbTemplates extends Senses, VerbTemplates
+	{
+		String TABLE = "senses_vtemplates";
+		String CONTENT_URI_TABLE = Senses_VerbTemplates.TABLE;
+		/*
+		CREATE TABLE ${senses_vtemplates.table} (
+		${senses_vtemplates.synsetid}   INT NOT NULL,
+		${senses_vtemplates.luid}       INT NOT NULL,
+		${senses_vtemplates.wordid}     INT NOT NULL,
+		${senses_vtemplates.templateid} INT NOT NULL)
+		 */
+	}
+
+	public interface Senses_AdjPositions extends Senses, AdjPositions
+	{
+		String TABLE = "senses_adjpositions";
+		String CONTENT_URI_TABLE = Senses_AdjPositions.TABLE;
+		/*
+		CREATE TABLE ${senses_adjpositions.table} (
+		${senses_adjpositions.synsetid}   INT                NOT NULL,
+		${senses_adjpositions.luid}       INT                NOT NULL,
+		${senses_adjpositions.wordid}     INT                NOT NULL,
+		${senses_adjpositions.positionid} ENUM('a','p','ip') NOT NULL)
+		 */
+	}
+
+	public interface Lexes_Morphs extends Lexes, Morphs
+	{
+		String TABLE = "lexes_morphs";
+		String CONTENT_URI_TABLE = Lexes_Morphs.TABLE;
+		/*
+		CREATE TABLE ${lexes_morphs.table} (
+		${lexes_morphs.luid}    INT                       NOT NULL,
+		${lexes_morphs.wordid}  INT                       NOT NULL,
+		${lexes_morphs.posid}   ENUM('n','v','a','r','s') NOT NULL,
+		${lexes_morphs.morphid} INT                       NOT NULL)
+		 */
+	}
+
+	public interface Lexes_Pronunciations extends Lexes, Pronunciations
+	{
+		String TABLE = "lexes_pronunciations";
+		String CONTENT_URI_TABLE = Lexes_Pronunciations.TABLE;
+		String VARIETY = V.VARIETY;
+		/*
+		CREATE TABLE ${lexes_pronunciations.table} (
+		${lexes_pronunciations.luid}            INT                       NOT NULL,
+		${lexes_pronunciations.wordid}          INT                       NOT NULL,
+		${lexes_pronunciations.posid}           ENUM('n','v','a','r','s') NOT NULL,
+		${lexes_pronunciations.pronunciationid} INT                       NOT NULL,
+		${lexes_pronunciations.variety}         VARCHAR(2)                DEFAULT NULL)
+		 */
 	}
 
 	// A R T I F A C T   T A B L E S
@@ -312,7 +394,7 @@ public class WordNetContract
 		String CONTENT_URI_TABLE_BY_SYNSET = Senses_Words.TABLE_BY_SYNSET;
 		String WORDID = Words.WORDID;
 
-		String MEMBERS = Q.MEMBERS;
+		String MEMBERS = V.MEMBERS;
 	}
 
 	public interface Senses_Synsets_Poses_Domains extends Senses, Synsets, Poses, Domains
@@ -333,7 +415,7 @@ public class WordNetContract
 		String CONTENT_URI_TABLE = AllRelations_Senses_Words_X.TABLE_BY_SYNSET;
 
 		String MEMBERS2 = WordNetContract.MEMBERS2;
-		String RECURSES = Q.RECURSES;
+		String RECURSES = V.RECURSES;
 	}
 
 	public interface SemRelations_Synsets extends SemRelations, Synsets
@@ -374,30 +456,6 @@ public class WordNetContract
 		String CONTENT_URI_TABLE = LexRelations_Senses_Words_X.TABLE_BY_SYNSET;
 
 		String MEMBERS2 = WordNetContract.MEMBERS2;
-	}
-
-	public interface Senses_VerbFrames extends Senses, VerbFrames
-	{
-		String TABLE = "senses_vframes";
-		String CONTENT_URI_TABLE = Senses_VerbFrames.TABLE;
-	}
-
-	public interface Senses_VerbTemplates extends Senses, VerbTemplates
-	{
-		String TABLE = "senses_vtemplates";
-		String CONTENT_URI_TABLE = Senses_VerbTemplates.TABLE;
-	}
-
-	public interface Senses_AdjPositions extends Senses, AdjPositions
-	{
-		String TABLE = "senses_adjpositions";
-		String CONTENT_URI_TABLE = Senses_AdjPositions.TABLE;
-	}
-
-	public interface Lexes_Morphs extends Lexes, Morphs
-	{
-		String TABLE = "lexes_morphs";
-		String CONTENT_URI_TABLE = Lexes_Morphs.TABLE;
 	}
 
 	public interface Words_Lexes_Morphs extends Words, Lexes, Morphs
