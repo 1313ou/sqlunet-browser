@@ -181,107 +181,107 @@ public class QueriesUnitTest
 			// J O I N S
 
 			case WordNetDispatcher.WORDS_SENSES_SYNSETS:
-				table = "words AS " + WordNetContract.WORD + " " + //
-						"LEFT JOIN senses AS " + WordNetContract.SENSE + " USING (wordid) " + //
-						"LEFT JOIN synsets AS " + WordNetContract.SYNSET + " USING (synsetid)";
+				table = "words AS " + WordNetContract.AS_WORDS + " " + //
+						"LEFT JOIN senses AS " + WordNetContract.AS_SENSES + " USING (wordid) " + //
+						"LEFT JOIN synsets AS " + WordNetContract.AS_SYNSETS + " USING (synsetid)";
 				break;
 
 			case WordNetDispatcher.WORDS_SENSES_CASEDWORDS_SYNSETS:
-				table = "words AS " + WordNetContract.WORD + " " + //
-						"LEFT JOIN senses AS " + WordNetContract.SENSE + " USING (wordid) " + //
-						"LEFT JOIN casedwords AS " + WordNetContract.CASED + " USING (wordid,casedwordid) " + //
-						"LEFT JOIN synsets AS " + WordNetContract.SYNSET + " USING (synsetid)";
+				table = "words AS " + WordNetContract.AS_WORDS + " " + //
+						"LEFT JOIN senses AS " + WordNetContract.AS_SENSES + " USING (wordid) " + //
+						"LEFT JOIN casedwords AS " + WordNetContract.AS_CASEDS + " USING (wordid,casedwordid) " + //
+						"LEFT JOIN synsets AS " + WordNetContract.AS_SYNSETS + " USING (synsetid)";
 				break;
 
 			case WordNetDispatcher.WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS:
-				table = "words AS " + WordNetContract.WORD + " " + //
-						"LEFT JOIN senses AS " + WordNetContract.SENSE + " USING (wordid) " + //
-						"LEFT JOIN casedwords AS " + WordNetContract.CASED + " USING (wordid,casedwordid) " + //
-						"LEFT JOIN synsets AS " + WordNetContract.SYNSET + " USING (synsetid) " + //
-						"LEFT JOIN poses AS " + WordNetContract.POS + " USING (posid) " + //
-						"LEFT JOIN domains AS " + WordNetContract.DOMAIN + " USING (domainid)";
+				table = "words AS " + WordNetContract.AS_WORDS + " " + //
+						"LEFT JOIN senses AS " + WordNetContract.AS_SENSES + " USING (wordid) " + //
+						"LEFT JOIN casedwords AS " + WordNetContract.AS_CASEDS + " USING (wordid,casedwordid) " + //
+						"LEFT JOIN synsets AS " + WordNetContract.AS_SYNSETS + " USING (synsetid) " + //
+						"LEFT JOIN poses AS " + WordNetContract.AS_POSES + " USING (posid) " + //
+						"LEFT JOIN domains AS " + WordNetContract.AS_DOMAINS + " USING (domainid)";
 				break;
 
 			case WordNetDispatcher.SENSES_WORDS:
-				table = "senses AS " + WordNetContract.SENSE + " " + //
-						"LEFT JOIN words AS " + WordNetContract.WORD + " USING (wordid)";
+				table = "senses AS " + WordNetContract.AS_SENSES + " " + //
+						"LEFT JOIN words AS " + WordNetContract.AS_WORDS + " USING (wordid)";
 				break;
 
 			case WordNetDispatcher.SENSES_WORDS_BY_SYNSET:
-				table = "senses AS " + WordNetContract.SENSE + " " + //
-						"LEFT JOIN words AS " + WordNetContract.WORD + " USING (wordid)";
+				table = "senses AS " + WordNetContract.AS_SENSES + " " + //
+						"LEFT JOIN words AS " + WordNetContract.AS_WORDS + " USING (wordid)";
 				projection = BaseProvider.appendProjection(projection, "GROUP_CONCAT(words.word, ', ' ) AS " + WordNetContract.Senses_Words.MEMBERS);
 				groupBy = "synsetid";
 				break;
 
 			case WordNetDispatcher.SENSES_SYNSETS_POSES_DOMAINS:
-				table = "senses AS " + WordNetContract.SENSE + " " + //
-						"INNER JOIN synsets AS " + WordNetContract.SYNSET + " USING (synsetid) " + //
-						"LEFT JOIN poses AS " + WordNetContract.POS + " USING (posid) " + //
-						"LEFT JOIN domains AS " + WordNetContract.DOMAIN + " USING (domainid)";
+				table = "senses AS " + WordNetContract.AS_SENSES + " " + //
+						"INNER JOIN synsets AS " + WordNetContract.AS_SYNSETS + " USING (synsetid) " + //
+						"LEFT JOIN poses AS " + WordNetContract.AS_POSES + " USING (posid) " + //
+						"LEFT JOIN domains AS " + WordNetContract.AS_DOMAINS + " USING (domainid)";
 				break;
 
 			case WordNetDispatcher.SYNSETS_POSES_DOMAINS:
-				table = "synsets AS " + WordNetContract.SYNSET + " " + //
-						"LEFT JOIN poses AS " + WordNetContract.POS + " USING (posid) " + //
-						"LEFT JOIN domains AS " + WordNetContract.DOMAIN + " USING (domainid)";
+				table = "synsets AS " + WordNetContract.AS_SYNSETS + " " + //
+						"LEFT JOIN poses AS " + WordNetContract.AS_POSES + " USING (posid) " + //
+						"LEFT JOIN domains AS " + WordNetContract.AS_DOMAINS + " USING (domainid)";
 				break;
 
 			case WordNetDispatcher.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET:
 				final String subQuery = subqueryFactory.make(selection0);
-				table = "( " + subQuery + " ) AS " + WordNetContract.RELATION + ' ' + //
+				table = "( " + subQuery + " ) AS " + WordNetContract.AS_RELATIONS + ' ' + //
 						"INNER JOIN relations USING (relationid) " + //
-						"INNER JOIN synsets AS " + WordNetContract.SYNSET2 + " ON " + WordNetContract.RELATION + ".synset2id = " + WordNetContract.SYNSET2 + ".synsetid " + //
-						"LEFT JOIN senses ON " + WordNetContract.SYNSET2 + ".synsetid = senses.synsetid " + //
-						"LEFT JOIN words AS " + WordNetContract.WORD + " USING (wordid) " + //
-						"LEFT JOIN words AS " + WordNetContract.WORD2 + " ON " + WordNetContract.RELATION + ".word2id = " + WordNetContract.WORD2 + ".wordid";
+						"INNER JOIN synsets AS " + WordNetContract.AS_SYNSETS2 + " ON " + WordNetContract.AS_RELATIONS + ".synset2id = " + WordNetContract.AS_SYNSETS2 + ".synsetid " + //
+						"LEFT JOIN senses ON " + WordNetContract.AS_SYNSETS2 + ".synsetid = senses.synsetid " + //
+						"LEFT JOIN words AS " + WordNetContract.AS_WORDS + " USING (wordid) " + //
+						"LEFT JOIN words AS " + WordNetContract.AS_WORDS2 + " ON " + WordNetContract.AS_RELATIONS + ".word2id = " + WordNetContract.AS_WORDS2 + ".wordid";
 				selection = null;
-				groupBy = BaseModule.TARGET_SYNSETID + "," + WordNetContract.TYPE + ",relation,relationid," + BaseModule.TARGET_WORDID + ',' + BaseModule.TARGET_WORD;
+				groupBy = BaseModule.TARGET_SYNSETID + "," + WordNetContract.RELATIONTYPE + ",relation,relationid," + BaseModule.TARGET_WORDID + ',' + BaseModule.TARGET_WORD;
 				break;
 
 			case WordNetDispatcher.SEMRELATIONS_SYNSETS:
-				table = "semrelations AS " + WordNetContract.RELATION + ' ' + //
-						"INNER JOIN synsets AS " + WordNetContract.SYNSET2 + " ON " + WordNetContract.RELATION + ".synset2id = " + WordNetContract.SYNSET2 + ".synsetid";
+				table = "semrelations AS " + WordNetContract.AS_RELATIONS + ' ' + //
+						"INNER JOIN synsets AS " + WordNetContract.AS_SYNSETS2 + " ON " + WordNetContract.AS_RELATIONS + ".synset2id = " + WordNetContract.AS_SYNSETS2 + ".synsetid";
 				break;
 
 			case WordNetDispatcher.SEMRELATIONS_SYNSETS_X:
-				table = "semrelations AS " + WordNetContract.RELATION + ' ' + //
+				table = "semrelations AS " + WordNetContract.AS_RELATIONS + ' ' + //
 						"INNER JOIN relations USING (relationid) " + //
-						"INNER JOIN synsets AS " + WordNetContract.SYNSET2 + " ON " + WordNetContract.RELATION + ".synset2id = " + WordNetContract.SYNSET2 + ".synsetid ";
+						"INNER JOIN synsets AS " + WordNetContract.AS_SYNSETS2 + " ON " + WordNetContract.AS_RELATIONS + ".synset2id = " + WordNetContract.AS_SYNSETS2 + ".synsetid ";
 				break;
 
 			case WordNetDispatcher.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET:
-				table = "semrelations AS " + WordNetContract.RELATION + ' ' + //
+				table = "semrelations AS " + WordNetContract.AS_RELATIONS + ' ' + //
 						"INNER JOIN relations USING (relationid) " + //
-						"INNER JOIN synsets AS " + WordNetContract.SYNSET2 + " ON " + WordNetContract.RELATION + ".synset2id = " + WordNetContract.SYNSET2 + ".synsetid " + //
-						"LEFT JOIN senses ON " + WordNetContract.SYNSET2 + ".synsetid = senses.synsetid " + //
+						"INNER JOIN synsets AS " + WordNetContract.AS_SYNSETS2 + " ON " + WordNetContract.AS_RELATIONS + ".synset2id = " + WordNetContract.AS_SYNSETS2 + ".synsetid " + //
+						"LEFT JOIN senses ON " + WordNetContract.AS_SYNSETS2 + ".synsetid = senses.synsetid " + //
 						"LEFT JOIN words USING (wordid)";
 				projection = BaseProvider.appendProjection(projection, "GROUP_CONCAT(words.word, ', ' ) AS " + WordNetContract.SemRelations_Synsets_Words_X.MEMBERS2);
-				groupBy = WordNetContract.SYNSET2 + ".synsetid";
+				groupBy = WordNetContract.AS_SYNSETS2 + ".synsetid";
 				break;
 
 			case WordNetDispatcher.LEXRELATIONS_SENSES:
-				table = "lexrelations AS " + WordNetContract.RELATION + ' ' + //
-						"INNER JOIN synsets AS " + WordNetContract.SYNSET2 + " ON " + WordNetContract.RELATION + ".synset2id = " + WordNetContract.SYNSET2 + ".synsetid " + //
-						"INNER JOIN words AS " + WordNetContract.WORD + " ON " + WordNetContract.RELATION + ".word2id = " + WordNetContract.WORD + ".wordid";
+				table = "lexrelations AS " + WordNetContract.AS_RELATIONS + ' ' + //
+						"INNER JOIN synsets AS " + WordNetContract.AS_SYNSETS2 + " ON " + WordNetContract.AS_RELATIONS + ".synset2id = " + WordNetContract.AS_SYNSETS2 + ".synsetid " + //
+						"INNER JOIN words AS " + WordNetContract.AS_WORDS + " ON " + WordNetContract.AS_RELATIONS + ".word2id = " + WordNetContract.AS_WORDS + ".wordid";
 				break;
 
 			case WordNetDispatcher.LEXRELATIONS_SENSES_X:
-				table = "lexrelations AS " + WordNetContract.RELATION + ' ' + //
+				table = "lexrelations AS " + WordNetContract.AS_RELATIONS + ' ' + //
 						"INNER JOIN relations USING (relationid) " + //
-						"INNER JOIN synsets AS " + WordNetContract.SYNSET2 + " ON " + WordNetContract.RELATION + ".synset2id = " + WordNetContract.SYNSET2 + ".synsetid " + //
-						"INNER JOIN words AS " + WordNetContract.WORD + " ON " + WordNetContract.RELATION + ".word2id = " + WordNetContract.WORD + ".wordid ";
+						"INNER JOIN synsets AS " + WordNetContract.AS_SYNSETS2 + " ON " + WordNetContract.AS_RELATIONS + ".synset2id = " + WordNetContract.AS_SYNSETS2 + ".synsetid " + //
+						"INNER JOIN words AS " + WordNetContract.AS_WORDS + " ON " + WordNetContract.AS_RELATIONS + ".word2id = " + WordNetContract.AS_WORDS + ".wordid ";
 				break;
 
 			case WordNetDispatcher.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET:
-				table = "lexrelations AS " + WordNetContract.RELATION + ' ' + //
+				table = "lexrelations AS " + WordNetContract.AS_RELATIONS + ' ' + //
 						"INNER JOIN relations USING (relationid) " + //
-						"INNER JOIN synsets AS " + WordNetContract.SYNSET2 + " ON " + WordNetContract.RELATION + ".synset2id = " + WordNetContract.SYNSET2 + ".synsetid " + //
-						"INNER JOIN words AS " + WordNetContract.WORD + " ON " + WordNetContract.RELATION + ".word2id = " + WordNetContract.WORD + ".wordid " + //
-						"LEFT JOIN senses AS " + WordNetContract.SENSE + " ON " + WordNetContract.SYNSET2 + ".synsetid = " + WordNetContract.SENSE + ".synsetid " + //
-						"LEFT JOIN words AS " + WordNetContract.WORD2 + " USING (wordid)";
-				projection = BaseProvider.appendProjection(projection, "GROUP_CONCAT(DISTINCT " + WordNetContract.WORD2 + ".word) AS " + WordNetContract.LexRelations_Senses_Words_X.MEMBERS2);
-				groupBy = WordNetContract.SYNSET2 + ".synsetid";
+						"INNER JOIN synsets AS " + WordNetContract.AS_SYNSETS2 + " ON " + WordNetContract.AS_RELATIONS + ".synset2id = " + WordNetContract.AS_SYNSETS2 + ".synsetid " + //
+						"INNER JOIN words AS " + WordNetContract.AS_WORDS + " ON " + WordNetContract.AS_RELATIONS + ".word2id = " + WordNetContract.AS_WORDS + ".wordid " + //
+						"LEFT JOIN senses AS " + WordNetContract.AS_SENSES + " ON " + WordNetContract.AS_SYNSETS2 + ".synsetid = " + WordNetContract.AS_SENSES + ".synsetid " + //
+						"LEFT JOIN words AS " + WordNetContract.AS_WORDS2 + " USING (wordid)";
+				projection = BaseProvider.appendProjection(projection, "GROUP_CONCAT(DISTINCT " + WordNetContract.AS_WORDS2 + ".word) AS " + WordNetContract.LexRelations_Senses_Words_X.MEMBERS2);
+				groupBy = WordNetContract.AS_SYNSETS2 + ".synsetid";
 				break;
 
 			case WordNetDispatcher.SENSES_VFRAMES:

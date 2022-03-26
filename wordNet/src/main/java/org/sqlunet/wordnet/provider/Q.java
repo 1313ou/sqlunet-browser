@@ -2,7 +2,7 @@ package org.sqlunet.wordnet.provider;
 
 public class Q
 {
-
+	// table aliases
 	public static final String AS_CASEDS="c";
 	public static final String AS_DOMAINS="d";
 	public static final String AS_POSES="p";
@@ -10,9 +10,10 @@ public class Q
 	public static final String AS_SENSES="s";
 	public static final String AS_SYNSETS="y";
 	public static final String AS_SYNSETS2="y2";
-	public static final String AS_TYPES="t";
 	public static final String AS_WORDS="w";
 	public static final String AS_WORDS2="w2";
+
+	// columns
 	public static final String CASEDWORD="casedword";
 	public static final String CASEDWORDID="casedwordid";
 	public static final String DEFINITION="definition";
@@ -25,8 +26,6 @@ public class Q
 	public static final String LU1ID="lu1id";
 	public static final String LU2ID="lu2id";
 	public static final String LUID="luid";
-	public static final String MEMBERS="members";
-	public static final String MEMBERS2="members2";
 	public static final String MORPH="morph";
 	public static final String MORPHID="morphid";
 	public static final String POS="pos";
@@ -40,7 +39,6 @@ public class Q
 	public static final String RELATIONID="relationid";
 	public static final String SAMPLE="sample";
 	public static final String SAMPLEID="sampleid";
-	public static final String SAMPLESET="sampleset";
 	public static final String SENSEID="senseid";
 	public static final String SENSEKEY="sensekey";
 	public static final String SENSENUM="sensenum";
@@ -57,6 +55,12 @@ public class Q
 	public static final String WORD2ID="word2id";
 	public static final String WORDID="wordid";
 
+	// artifact columns
+	public static final String RELATIONTYPE="relationtype";
+	public static final String SAMPLESET="sampleset";
+	public static final String MEMBERS="members";
+	public static final String MEMBERS2="members2";
+
 	static public class ADJPOSITIONS {
 		static public final String TABLE = "adjpositions";
 	}
@@ -64,7 +68,7 @@ public class Q
 	static public class ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET
 	{
 		static public final String TABLE = "( #{query} ) AS r INNER JOIN relations USING (relationid) INNER JOIN synsets AS y2 ON r.synset2id = y2.synsetid LEFT JOIN senses ON y2.synsetid = senses.synsetid LEFT JOIN words AS w USING (wordid) LEFT JOIN words AS w2 ON r.word2id = w2.wordid";
-		static public final String GROUPBY = "#{query_target_synsetid},t,relation,relationid,#{query_target_wordid},#{query_target_word}";
+		static public final String GROUPBY = "#{query_target_synsetid},relationtype,relation,relationid,#{query_target_wordid},#{query_target_word}";
 	}
 
 	static public class DICT {
@@ -73,6 +77,10 @@ public class Q
 
 	static public class DOMAINS {
 		static public final String TABLE = "domains";
+	}
+
+	static public class LEXES {
+		static public final String TABLE = "lexes";
 	}
 
 	static public class LEXES_MORPHS {
@@ -189,6 +197,18 @@ public class Q
 
 	static public class CASEDWORDS {
 		static public final String TABLE = "casedwords";
+	}
+
+	static public class MORPHS {
+		static public final String TABLE = "morphs";
+	}
+
+	static public class VFRAMES {
+		static public final String TABLE = "vframes";
+	}
+
+	static public class VTEMPLATES {
+		static public final String TABLE = "vtemplates";
 	}
 
 	static public class WORDS_LEXES_MORPHS {

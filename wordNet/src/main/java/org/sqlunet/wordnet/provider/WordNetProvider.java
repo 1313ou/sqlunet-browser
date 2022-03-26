@@ -389,22 +389,22 @@ public class WordNetProvider extends BaseProvider
 		final String lexTable = LexRelations.TABLE;
 		final String[] projection1 = { //
 				SemRelations.RELATIONID, //
-				SemRelations.SYNSETID1, //
-				SemRelations.SYNSETID2, //
+				SemRelations.SYNSET1ID, //
+				SemRelations.SYNSET2ID, //
 		};
 		final String[] projection2 = { //
 				LexRelations.RELATIONID, //
-				LexRelations.WORDID1, //
-				LexRelations.SYNSETID1, //
-				LexRelations.WORDID2, //
-				LexRelations.SYNSETID2, //
+				LexRelations.WORD1ID, //
+				LexRelations.SYNSET1ID, //
+				LexRelations.WORD2ID, //
+				LexRelations.SYNSET2ID, //
 		};
 		final String[] unionProjection = { //
 				AllRelations.RELATIONID, //
-				AllRelations.WORDID1, //
-				AllRelations.SYNSETID1, //
-				AllRelations.WORDID2, //
-				AllRelations.SYNSETID2, //
+				AllRelations.WORD1ID, //
+				AllRelations.SYNSET1ID, //
+				AllRelations.WORD2ID, //
+				AllRelations.SYNSET2ID, //
 		};
 		assert selection0 != null;
 		final String[] selections = selection0.split("/\\*\\*/\\|/\\*\\*/");
@@ -413,7 +413,7 @@ public class WordNetProvider extends BaseProvider
 				projection1, //
 				projection2, //
 				unionProjection, //
-				WordNetContract.TYPE, //
+				WordNetContract.RELATIONTYPE, //
 				"sem", //
 				"lex", //
 				selections[0], //
@@ -450,7 +450,7 @@ public class WordNetProvider extends BaseProvider
 			final String selection1, //
 			final String selection2)
 	{
-		final String[] actualUnionProjection = BaseProvider.appendProjection(unionProjection, WordNetContract.TYPE);
+		final String[] actualUnionProjection = BaseProvider.appendProjection(unionProjection, WordNetContract.RELATIONTYPE);
 		final List<String> table1ProjectionList = Arrays.asList(projection1);
 		final List<String> table2ProjectionList = Arrays.asList(projection2);
 
@@ -473,7 +473,7 @@ public class WordNetProvider extends BaseProvider
 		final String actualSelection2 = makeSelection(projection2, selection2);
 		final SQLiteQueryBuilder subQueryBuilder2 = new SQLiteQueryBuilder();
 		subQueryBuilder2.setTables(table2);
-		final String subQuery2 = subQueryBuilder2.buildUnionSubQuery(WordNetContract.TYPE, //
+		final String subQuery2 = subQueryBuilder2.buildUnionSubQuery(WordNetContract.RELATIONTYPE, //
 				actualUnionProjection, //
 				new HashSet<>(table2ProjectionList), //
 				0, //

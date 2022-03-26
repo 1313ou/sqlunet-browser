@@ -226,7 +226,7 @@ public class SensesFragment extends ListFragment
 						WordNetContract.Senses.SENSENUM, //
 						WordNetContract.Domains.DOMAIN, //
 						WordNetContract.Synsets.DEFINITION, //
-						WordNetContract.CasedWords.CASED, //
+						WordNetContract.CasedWords.CASEDWORD, //
 						WordNetContract.Senses.TAGCOUNT, //
 						WordNetContract.Senses.LEXID, //
 						WordNetContract.Senses.SENSEKEY, //
@@ -333,8 +333,8 @@ public class SensesFragment extends ListFragment
 				Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION, //
 				Words_Senses_CasedWords_Synsets_Poses_Domains.POS, //
 				Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN, //
-				Words_Senses_CasedWords_Synsets_Poses_Domains.CASED};
-		final String selection = WordNetContract.WORD + '.' + Words_Senses_CasedWords_Synsets_Poses_Domains.WORD + " = ?";
+				Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD};
+		final String selection = WordNetContract.AS_WORDS + '.' + Words_Senses_CasedWords_Synsets_Poses_Domains.WORD + " = ?";
 		final String[] selectionArgs = {this.word};
 		final String sortOrder = Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + ',' + Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM;
 		this.dataModel.loadData(uri, projection, selection, selectionArgs, sortOrder, this::wordIdFromWordPostProcess);
@@ -408,7 +408,7 @@ public class SensesFragment extends ListFragment
 				// column indexes
 				final int idSynsetId = cursor.getColumnIndex(WordNetContract.Synsets.SYNSETID);
 				final int idPos = cursor.getColumnIndex(WordNetContract.Poses.POS);
-				final int idCased = cursor.getColumnIndex(WordNetContract.CasedWords.CASED);
+				final int idCased = cursor.getColumnIndex(WordNetContract.CasedWords.CASEDWORD);
 
 				// retrieve
 				final long synsetId = cursor.isNull(idSynsetId) ? 0 : cursor.getLong(idSynsetId);

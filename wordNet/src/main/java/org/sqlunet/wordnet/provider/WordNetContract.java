@@ -15,358 +15,451 @@ public class WordNetContract
 {
 	// A L I A S E S
 
-	static public final String WORD = "w";
-	static public final String SENSE = "s";
-	static public final String SYNSET = "y";
-	static public final String TYPE = "t";
-	static public final String RELATION = "r";
-	static public final String WORD2 = "w2";
-	static public final String SYNSET2 = "y2";
-	static public final String POS = "p";
-	static public final String CASED = "c";
-	static public final String DOMAIN = "d";
+	// refers to actual table
+	public static String AS_WORDS = Q.AS_WORDS;
+	public static String AS_SENSES = Q.AS_SENSES;
+	public static String AS_SYNSETS = Q.AS_SYNSETS;
+	public static String AS_RELATIONS = Q.AS_RELATIONS;
+	public static String AS_WORDS2 = Q.AS_WORDS2;
+	public static String AS_SYNSETS2 = Q.AS_SYNSETS2;
+	public static String AS_POSES = Q.AS_POSES;
+	public static String AS_CASEDS = Q.AS_CASEDS;
+	public static String AS_DOMAINS = Q.AS_DOMAINS;
 
-	static public final String MEMBERS = "members";
-	static public final String MEMBERS2 = "members2";
-	static public final String RECURSES = "recurses";
+	// refers to artifact column
+	public static String MEMBERS = Q.MEMBERS;
+	public static String MEMBERS2 = Q.MEMBERS2;
+	public static String RELATIONTYPE = Q.RELATIONTYPE; // type discriminator column for relations whose values are in ["sem","lex"]
 
 	// T A B L E S
 
-	static public final class Words
+	public interface Words
 	{
-		static public final String TABLE = Q.WORDS.TABLE;
-		static public final String CONTENT_URI_TABLE = Words.TABLE;
-		static public final String WORDID = Q.WORDID;
-		static public final String WORD = Q.WORD;
+		String TABLE = Q.WORDS.TABLE;
+		String CONTENT_URI_TABLE = Words.TABLE;
+		String WORDID = Q.WORDID;
+		String WORD = Q.WORD;
+		/*
+		CREATE TABLE ${words.table} (
+		${words.wordid} INT         NOT NULL,
+		${words.word}   VARCHAR(80) NOT NULL)
+		 */
 	}
 
-	static public final class CasedWords
+	public interface Lexes
 	{
-		static public final String TABLE = Q.CASEDWORDS.TABLE;
-		static public final String CONTENT_URI_TABLE = CasedWords.TABLE;
-		static public final String CASEDWORDID = Q.CASEDWORDID;
-		static public final String WORDID = Q.WORDID;
-		static public final String CASED = Q.CASEDWORD;
+		String TABLE = Q.LEXES.TABLE;
+		String CONTENT_URI_TABLE = Words.TABLE;
+		String LUID = Q.LUID;
+		String POSID = Q.POSID;
+		String WORDID = Q.WORDID;
+		String CASEDWORDID = Q.CASEDWORDID;
+		/*
+		CREATE TABLE ${lexes.table} (
+		${lexes.luid}        INT                       NOT NULL,
+		${lexes.posid}       ENUM('n','v','a','r','s') NOT NULL,
+		${lexes.wordid}      INT                       NOT NULL,
+		${lexes.casedwordid} INT                       NULL)
+	    */
 	}
 
-	static public final class Senses
+	public interface CasedWords
 	{
-		static public final String TABLE = Q.SENSES.TABLE;
-		static public final String CONTENT_URI_TABLE = Senses.TABLE;
-		static public final String WORDID = Q.WORDID;
-		static public final String SYNSETID = Q.SYNSETID;
-		static public final String CASEDWORDID = Q.CASEDWORDID;
-		static public final String SENSEID = Q.SENSEID;
-		static public final String SENSENUM = Q.SENSENUM;
-		static public final String SENSEKEY = Q.SENSEKEY;
-		static public final String LEXID = Q.LEXID;
-		static public final String TAGCOUNT = Q.TAGCOUNT;
+		String TABLE = Q.CASEDWORDS.TABLE;
+		String CONTENT_URI_TABLE = CasedWords.TABLE;
+		String CASEDWORDID = Q.CASEDWORDID;
+		String WORDID = Q.WORDID;
+		String CASEDWORD = Q.CASEDWORD;
+		/*
+		CREATE TABLE ${casedwords.table} (
+		${casedwords.casedwordid} INT                                             NOT NULL,
+		${casedwords.wordid}      INT                                             NOT NULL ,
+		${casedwords.casedword}   VARCHAR(80) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL)
+		 */
 	}
 
-	static public final class Synsets
+	public interface Morphs
 	{
-		static public final String TABLE = Q.SYNSETS.TABLE;
-		static public final String CONTENT_URI_TABLE = Synsets.TABLE;
-		static public final String SYNSETID = Q.SYNSETID;
-		static public final String POSID = Q.POSID;
-		static public final String SENSEID = Q.SENSEID;
-		static public final String DOMAINID = Q.DOMAINID;
-		static public final String DEFINITION = Q.DEFINITION;
+		String TABLE = Q.MORPHS.TABLE;
+		String CONTENT_URI_TABLE = Morphs.TABLE;
+		String MORPHID = Q.MORPHID;
+		String MORPH = Q.MORPH;
+		/*
+		CREATE TABLE ${morphs.table} (
+		${morphs.morphid} INT         NOT NULL,
+		${morphs.morph}   VARCHAR(70) NOT NULL)
+		 */
 	}
 
-	static public final class AllRelations
+	public interface Senses
 	{
-		static public final String TABLE = "allrelations";
-		static public final String CONTENT_URI_TABLE = AllRelations.TABLE;
-		static public final String WORDID1 = Q.WORD1ID;
-		static public final String SYNSETID1 = Q.SYNSET1ID;
-		static public final String WORDID2 = Q.WORD2ID;
-		static public final String SYNSETID2 = Q.SYNSET2ID;
-		static public final String RELATIONID = Q.RELATIONID;
+		String TABLE = Q.SENSES.TABLE;
+		String CONTENT_URI_TABLE = Senses.TABLE;
+		String SENSEID = Q.SENSEID;
+		String SENSEKEY = Q.SENSEKEY;
+		String SYNSETID = Q.SYNSETID;
+		String WORDID = Q.WORDID;
+		String LUID = Q.LUID;
+		String CASEDWORDID = Q.CASEDWORDID;
+		String LEXID = Q.LEXID;
+		String SENSENUM = Q.SENSENUM;
+		String TAGCOUNT = Q.TAGCOUNT;
+		/*
+		CREATE TABLE ${senses.table} (
+		${senses.senseid}     INT                                               NOT NULL,
+		${senses.sensekey}    VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_bin  DEFAULT NULL,
+		${senses.synsetid}    INT                                               NOT NULL,
+		${senses.luid}        INT                                               NOT NULL,
+		${senses.wordid}      INT                                               NOT NULL,
+		${senses.casedwordid} INT                                               DEFAULT NULL,
+		${senses.lexid}       INT                                               NOT NULL,
+		${senses.sensenum}    INT                                               DEFAULT NULL,
+		${senses.tagcount}    INT                                               DEFAULT NULL)
+		 */
 	}
 
-	static public final class SemRelations
+	public interface Synsets
 	{
-		static public final String TABLE = Q.SEMRELATIONS.TABLE;
-		static public final String CONTENT_URI_TABLE = SemRelations.TABLE;
-		static public final String SYNSETID1 = Q.SYNSET1ID;
-		static public final String SYNSETID2 = Q.SYNSET2ID;
-		static public final String RELATIONID = Q.RELATIONID;
+		String TABLE = Q.SYNSETS.TABLE;
+		String CONTENT_URI_TABLE = Synsets.TABLE;
+		String SYNSETID = Q.SYNSETID;
+		String POSID = Q.POSID;
+		String DOMAINID = Q.DOMAINID;
+		String DEFINITION = Q.DEFINITION;
+		/*
+		CREATE TABLE ${synsets.table} (
+		${synsets.synsetid}   INT                       NOT NULL,
+		${synsets.posid}      ENUM('n','v','a','r','s') NOT NULL,
+		${synsets.domainid}   INT                       NOT NULL,
+		${synsets.definition} MEDIUMTEXT                NOT NULL)
+		 */
 	}
 
-	static public final class LexRelations
+	public interface SemRelations
 	{
-		static public final String TABLE = Q.LEXRELATIONS.TABLE;
-		static public final String CONTENT_URI_TABLE = LexRelations.TABLE;
-		static public final String WORDID1 = Q.WORD1ID;
-		static public final String SYNSETID1 = Q.SYNSET1ID;
-		static public final String WORDID2 = Q.WORD2ID;
-		static public final String SYNSETID2 = Q.SYNSET2ID;
-		static public final String RELATIONID = Q.RELATIONID;
+		String TABLE = Q.SEMRELATIONS.TABLE;
+		String CONTENT_URI_TABLE = SemRelations.TABLE;
+		String SYNSET1ID = Q.SYNSET1ID;
+		String SYNSET2ID = Q.SYNSET2ID;
+		String RELATIONID = Q.RELATIONID;
+		/*
+		CREATE TABLE ${semrelations.table} (
+		${semrelations.synset1id}  INT NOT NULL,
+		${semrelations.synset2id}  INT NOT NULL,
+		${semrelations.relationid} INT NOT NULL)
+		 */
 	}
 
-	static public final class Relations
+	public interface LexRelations
 	{
-		static public final String TABLE = Q.RELATIONS.TABLE;
-		static public final String CONTENT_URI_TABLE = Relations.TABLE;
-		static public final String RELATIONID = Q.RELATIONID;
-		static public final String RELATION = Q.RELATION;
-		static public final String RECURSES = Q.RECURSES;
-		static public final String RECURSESSTR = RECURSES;
-		static public final String RECURSESSELECT = "CASE WHEN " + RECURSES + " <> 0 THEN 'recurses' ELSE '' END) AS " + RECURSESSTR;
+		String TABLE = Q.LEXRELATIONS.TABLE;
+		String CONTENT_URI_TABLE = LexRelations.TABLE;
+		String WORD1ID = Q.WORD1ID;
+		String SYNSET1ID = Q.SYNSET1ID;
+		String WORD2ID = Q.WORD2ID;
+		String SYNSET2ID = Q.SYNSET2ID;
+		String RELATIONID = Q.RELATIONID;
+		/*
+		CREATE TABLE ${lexrelations.table} (
+		${lexrelations.synset1id}  INT NOT NULL,
+		${lexrelations.lu1id}      INT NOT NULL,
+		${lexrelations.word1id}    INT NOT NULL,
+		${lexrelations.synset2id}  INT NOT NULL,
+		${lexrelations.lu2id}      INT NOT NULL,
+		${lexrelations.word2id}    INT NOT NULL,
+		${lexrelations.relationid} INT NOT NULL)
+		 */
 	}
 
-	static public final class Poses
+	public interface Relations
 	{
-		static public final String TABLE = Q.POSES.TABLE;
-		static public final String CONTENT_URI_TABLE = Poses.TABLE;
-		static public final String POSID = Q.POSID;
-		static public final String POS = Q.POS;
+		String TABLE = Q.RELATIONS.TABLE;
+		String CONTENT_URI_TABLE = Relations.TABLE;
+		String RELATIONID = Q.RELATIONID;
+		String RELATION = Q.RELATION;
+		String RECURSES = Q.RECURSES;
+
+		String RECURSESSTR = RECURSES;
+		String RECURSESSELECT = "CASE WHEN " + RECURSES + " <> 0 THEN 'recurses' ELSE '' END) AS " + RECURSESSTR;
+		/*
+		CREATE TABLE ${relations.table} (
+		${relations.relationid} INT         NOT NULL,
+		${relations.relation}   VARCHAR(50) NOT NULL,
+		${relations.recurses}   TINYINT(1)  NOT NULL)
+		 */
 	}
 
-	static public final class AdjPositions
+	public interface Poses
 	{
-		static public final String TABLE = Q.ADJPOSITIONS.TABLE;
-		static public final String CONTENT_URI_TABLE = AdjPositions.TABLE;
-		static public final String POSITIONID = Q.POSITIONID;
-		static public final String POSITION = Q.POSITION;
+		String TABLE = Q.POSES.TABLE;
+		String CONTENT_URI_TABLE = Poses.TABLE;
+		String POSID = Q.POSID;
+		String POS = Q.POS;
+		/*
+		CREATE TABLE ${poses.table} (
+		${poses.posid} ENUM('n','v','a','r','s') NOT NULL,
+		${poses.pos}   VARCHAR(20)               NOT NULL)
+		 */
 	}
 
-	static public final class Domains
+	public interface AdjPositions
 	{
-		static public final String TABLE = Q.DOMAINS.TABLE;
-		static public final String CONTENT_URI_TABLE = Domains.TABLE;
-		static public final String DOMAINID = Q.DOMAINID;
-		static public final String DOMAIN = Q.DOMAIN;
-		static public final String DOMAINNAME = Q.DOMAINNAME;
-		static public final String POSID = Q.POSID;
+		String TABLE = Q.ADJPOSITIONS.TABLE;
+		String CONTENT_URI_TABLE = AdjPositions.TABLE;
+		String POSITIONID = Q.POSITIONID;
+		String POSITION = Q.POSITION;
+		/*
+		CREATE TABLE ${adjpositions.table} (
+		${adjpositions.positionid} ENUM('a','p','ip') NOT NULL,
+		${adjpositions.position}   VARCHAR(24)        NOT NULL)
+		 */
 	}
 
-	static public final class Samples
+	public interface Domains
 	{
-		static public final String TABLE = Q.SAMPLES.TABLE;
-		static public final String CONTENT_URI_TABLE = Samples.TABLE;
-		static public final String SYNSETID = Q.SYNSETID;
-		static public final String SAMPLEID = Q.SAMPLEID;
-		static public final String SAMPLE = Q.SAMPLE;
+		String TABLE = Q.DOMAINS.TABLE;
+		String CONTENT_URI_TABLE = Domains.TABLE;
+		String DOMAINID = Q.DOMAINID;
+		String DOMAIN = Q.DOMAIN;
+		String DOMAINNAME = Q.DOMAINNAME;
+		String POSID = Q.POSID;
+		/*
+		CREATE TABLE ${domains.table} (
+		${domains.domainid}   INT                       NOT NULL,
+		${domains.domain}     VARCHAR(32)               NOT NULL,
+		${domains.domainname} VARCHAR(32)               NOT NULL,
+		${domains.posid}      ENUM('n','v','a','r','s') NOT NULL)
+		 */
+	}
+
+	public interface Samples
+	{
+		String TABLE = Q.SAMPLES.TABLE;
+		String CONTENT_URI_TABLE = Samples.TABLE;
+		String SAMPLEID = Q.SAMPLEID;
+		String SAMPLE = Q.SAMPLE;
+		String SYNSETID = Q.SYNSETID;
+		/*
+		CREATE TABLE ${samples.table} (
+		${samples.sampleid} INT        NOT NULL,
+		${samples.sample}   MEDIUMTEXT NOT NULL,
+		${samples.synsetid} INT        NOT NULL)
+		 */
+	}
+
+	public interface VerbFrames
+	{
+		String TABLE = Q.VFRAMES.TABLE;
+		String CONTENT_URI_TABLE = VerbFrames.TABLE;
+		String FRAMEID = Q.FRAMEID;
+		String FRAME = Q.FRAME;
+		/*
+		CREATE TABLE ${vframes.table} (
+		${vframes.frameid} INT         NOT NULL,
+		${vframes.frame}   VARCHAR(50) NOT NULL)
+)		 */
+	}
+
+	public interface VerbTemplates
+	{
+		String TABLE = Q.VTEMPLATES.TABLE;
+		String CONTENT_URI_TABLE = VerbTemplates.TABLE;
+		String TEMPLATEID = Q.TEMPLATEID;
+		String TEMPLATE = Q.TEMPLATE;
+		/*
+		CREATE TABLE ${vtemplates.table} (
+		${vtemplates.templateid} INT        NOT NULL,
+		${vtemplates.template}   MEDIUMTEXT NOT NULL)
+		*/
+	}
+
+	// A R T I F A C T   T A B L E S
+
+	public interface AllRelations extends LexRelations
+	{
+		String TABLE = "allrelations";
+		String CONTENT_URI_TABLE = AllRelations.TABLE;
 	}
 
 	// J O I N S
 
-	static public final class Words_Senses_Synsets
+	public interface Words_Senses_Synsets extends Words, Senses, Synsets
 	{
-		static public final String TABLE = "words_senses_synsets";
+		String TABLE = "words_senses_synsets";
 	}
 
-	static public final class Words_Senses_CasedWords_Synsets
+	public interface Words_Senses_CasedWords_Synsets extends Words, CasedWords, Senses, Synsets
 	{
-		static public final String TABLE = "words_senses_casedwords_synsets";
-		static public final String CONTENT_URI_TABLE = Words_Senses_CasedWords_Synsets.TABLE;
+		String TABLE = "words_senses_casedwords_synsets";
+		String CONTENT_URI_TABLE = Words_Senses_CasedWords_Synsets.TABLE;
 	}
 
-	static public final class Words_Senses_CasedWords_Synsets_Poses_Domains
+	public interface Words_Senses_CasedWords_Synsets_Poses_Domains extends Words, CasedWords, Senses, Synsets, Poses, Domains
 	{
-		static public final String TABLE = "words_senses_casedwords_synsets_poses_domains";
-		static public final String CONTENT_URI_TABLE = Words_Senses_CasedWords_Synsets_Poses_Domains.TABLE;
-		static public final String WORD = Q.WORD;
-		static public final String CASED = Q.CASEDWORD;
-		static public final String WORDID = Q.WORDID;
-		static public final String SYNSETID = Q.SYNSETID;
-		static public final String SENSEID = Q.SENSEID;
-		static public final String SENSENUM = Q.SENSENUM;
-		static public final String SENSEKEY = Q.SENSEKEY;
-		static public final String DEFINITION = Q.DEFINITION;
-		static public final String LEXID = Q.LEXID;
-		static public final String DOMAIN = Q.DOMAIN;
-		static public final String POSID = Q.POSID;
-		static public final String POS = Q.POS;
-		static public final String TAGCOUNT = Q.TAGCOUNT;
+		String TABLE = "words_senses_casedwords_synsets_poses_domains";
+		String CONTENT_URI_TABLE = Words_Senses_CasedWords_Synsets_Poses_Domains.TABLE;
+		String SYNSETID = Synsets.SYNSETID;
+		String WORDID = Words.WORDID;
+		String CASEDWORD = CasedWords.CASEDWORD;
+		String POSID = Poses.POSID;
 	}
 
-	static public final class Senses_Words
+	public interface Senses_Words extends Words, Senses
 	{
-		static public final String TABLE = "senses_words";
-		static public final String TABLE_BY_SYNSET = "senses_words_by_synset";
-		static public final String CONTENT_URI_TABLE = Senses_Words.TABLE;
-		static public final String CONTENT_URI_TABLE_BY_SYNSET = Senses_Words.TABLE_BY_SYNSET;
-		static public final String SYNSETID = Q.SYNSETID;
-		static public final String WORDID = Q.WORDID;
-		static public final String MEMBER = Q.WORD;
-		static public final String MEMBERS = Q.MEMBERS;
+		String TABLE = "senses_words";
+		String TABLE_BY_SYNSET = "senses_words_by_synset";
+		String CONTENT_URI_TABLE = Senses_Words.TABLE;
+		String CONTENT_URI_TABLE_BY_SYNSET = Senses_Words.TABLE_BY_SYNSET;
+		String WORDID = Words.WORDID;
+
+		String MEMBERS = Q.MEMBERS;
 	}
 
-	static public final class Senses_Synsets_Poses_Domains
+	public interface Senses_Synsets_Poses_Domains extends Senses, Synsets, Poses, Domains
 	{
-		static public final String TABLE = "senses_synsets_poses_domains";
-		static public final String CONTENT_URI_TABLE = Senses_Synsets_Poses_Domains.TABLE;
+		String TABLE = "senses_synsets_poses_domains";
+		String CONTENT_URI_TABLE = Senses_Synsets_Poses_Domains.TABLE;
 	}
 
-	static public final class Synsets_Poses_Domains
+	public interface Synsets_Poses_Domains extends Synsets, Poses, Domains
 	{
-		static public final String TABLE = "synsets_poses_domains";
-		static public final String CONTENT_URI_TABLE = Synsets_Poses_Domains.TABLE;
-		static public final String SYNSETID = Q.SYNSETID;
+		String TABLE = "synsets_poses_domains";
+		String CONTENT_URI_TABLE = Synsets_Poses_Domains.TABLE;
 	}
 
-	static public final class AllRelations_Senses_Words_X
+	public interface AllRelations_Senses_Words_X extends AllRelations, Senses, Words
 	{
-		static public final String TABLE_BY_SYNSET = "allrelations_senses_relations_senses_words_by_synset";
-		static public final String CONTENT_URI_TABLE = AllRelations_Senses_Words_X.TABLE_BY_SYNSET;
-		static public final String SYNSET1ID = Q.SYNSET1ID;
-		static public final String SYNSET2ID = Q.SYNSET2ID;
-		static public final String MEMBERS2 = WordNetContract.MEMBERS2;
-		static public final String RECURSES = Q.RECURSES;
+		String TABLE_BY_SYNSET = "allrelations_senses_relations_senses_words_by_synset";
+		String CONTENT_URI_TABLE = AllRelations_Senses_Words_X.TABLE_BY_SYNSET;
+
+		String MEMBERS2 = WordNetContract.MEMBERS2;
+		String RECURSES = Q.RECURSES;
 	}
 
-	static public final class SemRelations_Synsets
+	public interface SemRelations_Synsets extends SemRelations, Synsets
 	{
-		static public final String TABLE = "semrelations_synsets";
-		static public final String CONTENT_URI_TABLE = SemRelations_Synsets.TABLE;
+		String TABLE = "semrelations_synsets";
+		String CONTENT_URI_TABLE = SemRelations_Synsets.TABLE;
 	}
 
-	static public final class SemRelations_Synsets_X
+	public interface SemRelations_Synsets_X extends SemRelations_Synsets, Relations
 	{
-		static public final String TABLE = "semrelations_synsets_relations";
-		static public final String CONTENT_URI_TABLE = SemRelations_Synsets_X.TABLE;
+		String TABLE = "semrelations_synsets_relations";
+		String CONTENT_URI_TABLE = SemRelations_Synsets_X.TABLE;
 	}
 
-	static public final class SemRelations_Synsets_Words_X
+	public interface SemRelations_Synsets_Words_X extends SemRelations_Synsets, Words, Relations
 	{
-		static public final String TABLE_BY_SYNSET = "semrelations_synsets_relations_senses_words_by_synset";
-		static public final String CONTENT_URI_TABLE = SemRelations_Synsets_Words_X.TABLE_BY_SYNSET;
-		static public final String SYNSET1ID = Q.SYNSET1ID;
-		static public final String SYNSET2ID = Q.SYNSET2ID;
-		static public final String MEMBERS2 = WordNetContract.MEMBERS2;
-		static public final String RECURSES = Q.RECURSES;
+		String TABLE_BY_SYNSET = "semrelations_synsets_relations_senses_words_by_synset";
+		String CONTENT_URI_TABLE = SemRelations_Synsets_Words_X.TABLE_BY_SYNSET;
+
+		String MEMBERS2 = WordNetContract.MEMBERS2;
 	}
 
-	static public final class LexRelations_Senses
+	public interface LexRelations_Senses extends LexRelations, Senses
 	{
-		static public final String TABLE = "lexrelations_synsets_words";
-		static public final String CONTENT_URI_TABLE = LexRelations_Senses.TABLE;
+		String TABLE = "lexrelations_synsets_words";
+		String CONTENT_URI_TABLE = LexRelations_Senses.TABLE;
 	}
 
-	static public final class LexRelations_Senses_X
+	public interface LexRelations_Senses_X extends LexRelations_Senses
 	{
-		static public final String TABLE = "lexrelations_synsets_words_relations";
-		static public final String CONTENT_URI_TABLE = LexRelations_Senses_X.TABLE;
+		String TABLE = "lexrelations_synsets_words_relations";
+		String CONTENT_URI_TABLE = LexRelations_Senses_X.TABLE;
 	}
 
-	static public final class LexRelations_Senses_Words_X
+	public interface LexRelations_Senses_Words_X extends LexRelations_Senses, Words
 	{
-		static public final String TABLE_BY_SYNSET = "lexrelations_synsets_words_relations_senses_words_by_synset";
-		static public final String CONTENT_URI_TABLE = LexRelations_Senses_Words_X.TABLE_BY_SYNSET;
-		static public final String SYNSET1ID = Q.SYNSET1ID;
-		static public final String SYNSET2ID = Q.SYNSET2ID;
-		static public final String MEMBERS2 = WordNetContract.MEMBERS2;
+		String TABLE_BY_SYNSET = "lexrelations_synsets_words_relations_senses_words_by_synset";
+		String CONTENT_URI_TABLE = LexRelations_Senses_Words_X.TABLE_BY_SYNSET;
+
+		String MEMBERS2 = WordNetContract.MEMBERS2;
 	}
 
-	static public final class Senses_VerbFrames
+	public interface Senses_VerbFrames extends Senses, VerbFrames
 	{
-		static public final String TABLE = "senses_vframes";
-		static public final String CONTENT_URI_TABLE = Senses_VerbFrames.TABLE;
-		static public final String SYNSETID = Q.SYNSETID;
-		static public final String WORDID = Q.WORDID;
-		static public final String FRAME = Q.FRAME;
+		String TABLE = "senses_vframes";
+		String CONTENT_URI_TABLE = Senses_VerbFrames.TABLE;
 	}
 
-	static public final class Senses_VerbTemplates
+	public interface Senses_VerbTemplates extends Senses, VerbTemplates
 	{
-		static public final String TABLE = "senses_vtemplates";
-		static public final String CONTENT_URI_TABLE = Senses_VerbTemplates.TABLE;
-		static public final String SYNSETID = Q.SYNSETID;
-		static public final String WORDID = Q.WORDID;
-		static public final String TEMPLATE = Q.TEMPLATE;
+		String TABLE = "senses_vtemplates";
+		String CONTENT_URI_TABLE = Senses_VerbTemplates.TABLE;
 	}
 
-	static public final class Senses_AdjPositions
+	public interface Senses_AdjPositions extends Senses, AdjPositions
 	{
-		static public final String TABLE = "senses_adjpositions";
-		static public final String CONTENT_URI_TABLE = Senses_AdjPositions.TABLE;
-		static public final String SYNSETID = Q.SYNSETID;
-		static public final String WORDID = Q.WORDID;
-		static public final String POSITIONID = Q.POSITIONID;
-		static public final String POSITION = Q.POSITION;
+		String TABLE = "senses_adjpositions";
+		String CONTENT_URI_TABLE = Senses_AdjPositions.TABLE;
 	}
 
-	static public final class Lexes_Morphs
+	public interface Lexes_Morphs extends Lexes, Morphs
 	{
-		static public final String TABLE = "lexes_morphs";
-		static public final String CONTENT_URI_TABLE = Lexes_Morphs.TABLE;
-		static public final String WORDID = Q.WORDID;
-		static public final String MORPH = Q.MORPH;
-		static public final String POSID = Q.POSID;
+		String TABLE = "lexes_morphs";
+		String CONTENT_URI_TABLE = Lexes_Morphs.TABLE;
 	}
 
-	static public final class Words_Lexes_Morphs
+	public interface Words_Lexes_Morphs extends Words, Lexes, Morphs
 	{
-		static public final String TABLE = "words_lexes_morphs";
-		static public final String TABLE_BY_WORD = "words_lexes_morphs_by_word";
-		static public final String CONTENT_URI_TABLE = Words_Lexes_Morphs.TABLE;
-		static public final String CONTENT_URI_TABLE_BY_WORD = Words_Lexes_Morphs.TABLE_BY_WORD;
-		static public final String WORD = Q.WORD;
-		static public final String WORDID = Q.WORDID;
-		static public final String MORPH = Q.MORPH;
-		static public final String POSID = Q.POSID;
+		String TABLE = "words_lexes_morphs";
+		String TABLE_BY_WORD = "words_lexes_morphs_by_word";
+		String CONTENT_URI_TABLE = Words_Lexes_Morphs.TABLE;
+		String CONTENT_URI_TABLE_BY_WORD = Words_Lexes_Morphs.TABLE_BY_WORD;
+		String WORDID = Words.WORDID;
 	}
 
 	// V I E W S
 
-	static public final class Dict
+	public interface Dict
 	{
-		static public final String TABLE = "dict";
-		static public final String CONTENT_URI_TABLE = Dict.TABLE;
+		String TABLE = "dict";
+		String CONTENT_URI_TABLE = Dict.TABLE;
 	}
 
 	// T E X T S E A R C H
 
-	static public final class Lookup_Words
+	public interface Lookup_Words extends Words
 	{
-		static public final String TABLE = "fts_words";
-		static public final String CONTENT_URI_TABLE = Lookup_Words.TABLE;
-		static public final String WORDID = Q.WORDID;
-		static public final String WORD = Q.WORD;
+		String TABLE = "fts_words";
+		String CONTENT_URI_TABLE = Lookup_Words.TABLE;
 	}
 
-	static public final class Lookup_Definitions
+	public interface Lookup_Definitions extends Synsets
 	{
-		static public final String TABLE = "fts_definitions";
-		static public final String CONTENT_URI_TABLE = Lookup_Definitions.TABLE;
-		static public final String SYNSETID = Q.SYNSETID;
-		static public final String DEFINITION = Q.DEFINITION;
+		String TABLE = "fts_definitions";
+		String CONTENT_URI_TABLE = Lookup_Definitions.TABLE;
 	}
 
-	static public final class Lookup_Samples
+	public interface Lookup_Samples extends Samples
 	{
-		static public final String TABLE = "fts_samples";
-		static public final String CONTENT_URI_TABLE = Lookup_Samples.TABLE;
-		static public final String SYNSETID = Q.SYNSETID;
-		static public final String SAMPLE = Q.SAMPLE;
+		String TABLE = "fts_samples";
+		String CONTENT_URI_TABLE = Lookup_Samples.TABLE;
 	}
 
 	// S U G G E S T
 
-	static public final class Suggest_Words
+	public interface Suggest_Words extends Words
 	{
 		static final String SEARCH_WORD_PATH = "suggest_word";
-		static public final String TABLE = Suggest_Words.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
+		String TABLE = Suggest_Words.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 	}
 
-	static public final class Suggest_FTS_Words
+	public interface Suggest_FTS_Words extends Words
 	{
 		static final String SEARCH_WORD_PATH = "suggest_fts_word";
-		static public final String TABLE = Suggest_FTS_Words.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
+		String TABLE = Suggest_FTS_Words.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 	}
 
-	static public final class Suggest_FTS_Definitions
+	public interface Suggest_FTS_Definitions extends Synsets
 	{
 		static final String SEARCH_DEFINITION_PATH = "suggest_fts_definition";
-		static public final String TABLE = Suggest_FTS_Definitions.SEARCH_DEFINITION_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
+		String TABLE = Suggest_FTS_Definitions.SEARCH_DEFINITION_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 	}
 
-	static public final class Suggest_FTS_Samples
+	public interface Suggest_FTS_Samples extends Samples
 	{
 		static final String SEARCH_SAMPLE_PATH = "suggest_fts_definition";
-		static public final String TABLE = Suggest_FTS_Samples.SEARCH_SAMPLE_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
+		String TABLE = Suggest_FTS_Samples.SEARCH_SAMPLE_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 	}
 }

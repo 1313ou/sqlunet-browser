@@ -788,7 +788,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS " + Words_XNet_U.XID, //
 				"NULL AS " + Words_XNet_U.XCLASSID, //
 				"NULL AS " + Words_XNet_U.XMEMBERID, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORD + "|| '.' ||" + WordNetContract.POS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + " AS " + Words_XNet_U.XNAME, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORD + "|| '.' ||" + WordNetContract.AS_POSES + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + " AS " + Words_XNet_U.XNAME, //
 				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN + " AS " + Words_XNet_U.XHEADER, //
 				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY + " AS " + Words_XNet_U.XINFO, //
 				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION + " AS " + Words_XNet_U.XDEFINITION, //
