@@ -17,8 +17,6 @@ import androidx.annotation.NonNull;
  */
 public class SenseFragment extends SynsetFragment
 {
-	// static private final String TAG = "SenseF";
-
 	/**
 	 * Constructor
 	 */

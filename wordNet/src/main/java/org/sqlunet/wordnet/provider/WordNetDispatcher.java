@@ -7,10 +7,6 @@ package org.sqlunet.wordnet.provider;
 import android.app.SearchManager;
 
 import org.sqlunet.provider.BaseProvider;
-import org.sqlunet.wordnet.loaders.BaseModule;
-import org.sqlunet.wordnet.provider.WordNetContract.Senses;
-import org.sqlunet.wordnet.provider.WordNetContract.Synsets;
-import org.sqlunet.wordnet.provider.WordNetContract.Words;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -223,7 +219,7 @@ public class WordNetDispatcher
 
 			case SENSES_WORDS_BY_SYNSET:
 				table = Q.SENSES_WORDS_BY_SYNSET.TABLE;
-				projection = BaseProvider.appendProjection(projection, Q.SENSES_WORDS_BY_SYNSET.PROJECTION[0].replaceAll("#\\{members\\}", WordNetContract.MEMBERS));
+				projection = BaseProvider.appendProjection(projection, Q.SENSES_WORDS_BY_SYNSET.PROJECTION);
 				groupBy = Q.SENSES_WORDS_BY_SYNSET.GROUPBY;
 				break;
 
@@ -245,7 +241,7 @@ public class WordNetDispatcher
 
 			case SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET:
 				table = Q.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET.TABLE;
-				projection = BaseProvider.appendProjection(projection, Q.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET.PROJECTION[0].replaceAll("#\\{members2\\}", WordNetContract.MEMBERS2));
+				projection = BaseProvider.appendProjection(projection, Q.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET.PROJECTION);
 				groupBy = Q.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET.GROUPBY;
 				break;
 
@@ -259,7 +255,7 @@ public class WordNetDispatcher
 
 			case LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET:
 				table = Q.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET.TABLE;
-				projection = BaseProvider.appendProjection(projection, Q.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET.PROJECTION[0].replaceAll("#\\{members2\\}", WordNetContract.MEMBERS2));
+				projection = BaseProvider.appendProjection(projection, Q.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET.PROJECTION);
 				groupBy = Q.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET.GROUPBY;
 				break;
 
@@ -300,9 +296,7 @@ public class WordNetDispatcher
 		{
 			final String subQuery = subqueryFactory.make(selection0);
 			String table = Q.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET.TABLE.replaceFirst("#\\{query\\}", subQuery);
-			String groupBy = Q.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET.GROUPBY.replaceAll("#\\{query_target_synsetid\\}", BaseModule.TARGET_SYNSETID) //
-					.replaceAll("#\\{query_target_wordid\\}", BaseModule.TARGET_WORDID) //
-					.replaceAll("#\\{query_target_word\\}", BaseModule.TARGET_WORD);
+			String groupBy = Q.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET.GROUPBY;
 			return new Result(table, projection0, null, selectionArgs0, groupBy);
 		}
 		return null;
@@ -347,6 +341,8 @@ public class WordNetDispatcher
 				}
 				table = Q.SUGGEST_WORDS.TABLE;
 				projection = Q.SUGGEST_WORDS.PROJECTION;
+				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}",SearchManager.SUGGEST_COLUMN_TEXT_1);
+				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}",SearchManager.SUGGEST_COLUMN_QUERY);
 				selection = Q.SUGGEST_WORDS.SELECTION;
 				selectionArgs = new String[]{Q.SUGGEST_WORDS.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
 				break;
@@ -360,6 +356,8 @@ public class WordNetDispatcher
 				}
 				table = Q.SUGGEST_FTS_WORDS.TABLE;
 				projection = Q.SUGGEST_FTS_WORDS.PROJECTION;
+				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}",SearchManager.SUGGEST_COLUMN_TEXT_1);
+				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}",SearchManager.SUGGEST_COLUMN_QUERY);
 				selection = Q.SUGGEST_FTS_WORDS.SELECTION;
 				selectionArgs = new String[]{Q.SUGGEST_FTS_WORDS.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
 				break;
@@ -373,6 +371,8 @@ public class WordNetDispatcher
 				}
 				table = Q.SUGGEST_FTS_DEFINITIONS.TABLE;
 				projection = Q.SUGGEST_FTS_DEFINITIONS.PROJECTION;
+				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}",SearchManager.SUGGEST_COLUMN_TEXT_1);
+				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}",SearchManager.SUGGEST_COLUMN_QUERY);
 				selection = Q.SUGGEST_FTS_DEFINITIONS.SELECTION;
 				selectionArgs = new String[]{Q.SUGGEST_FTS_DEFINITIONS.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
 				break;
@@ -386,6 +386,8 @@ public class WordNetDispatcher
 				}
 				table = Q.SUGGEST_FTS_SAMPLES.TABLE;
 				projection = Q.SUGGEST_FTS_SAMPLES.PROJECTION;
+				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}",SearchManager.SUGGEST_COLUMN_TEXT_1);
+				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}",SearchManager.SUGGEST_COLUMN_QUERY);
 				selection = Q.SUGGEST_FTS_SAMPLES.SELECTION;
 				selectionArgs = new String[]{Q.SUGGEST_FTS_SAMPLES.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
 				break;

@@ -4,7 +4,6 @@ import android.app.SearchManager;
 
 import org.junit.Test;
 import org.sqlunet.provider.BaseProvider;
-import org.sqlunet.wordnet.loaders.BaseModule;
 import org.sqlunet.wordnet.provider.WordNetDispatcher.Factory;
 import org.sqlunet.wordnet.provider.WordNetDispatcher.Result;
 
@@ -236,7 +235,7 @@ public class QueriesUnitTest
 						"LEFT JOIN words AS " + WordNetContract.AS_WORDS + " USING (wordid) " + //
 						"LEFT JOIN words AS " + WordNetContract.AS_WORDS2 + " ON " + WordNetContract.AS_RELATIONS + ".word2id = " + WordNetContract.AS_WORDS2 + ".wordid";
 				selection = null;
-				groupBy = BaseModule.TARGET_SYNSETID + "," + WordNetContract.RELATIONTYPE + ",relation,relationid," + BaseModule.TARGET_WORDID + ',' + BaseModule.TARGET_WORD;
+				groupBy = V.SYNSET2ID + "," + WordNetContract.RELATIONTYPE + ",relation,relationid," + V.WORD2ID + ',' + V.WORD2;
 				break;
 
 			case WordNetDispatcher.SEMRELATIONS_SYNSETS:
@@ -536,9 +535,7 @@ public class QueriesUnitTest
 				final String subQuery = subqueryFactory.make(selection0);
 				table = Q.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET.TABLE.replaceFirst("#\\{query\\}", subQuery);
 				selection = null;
-				groupBy = Q.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET.GROUPBY.replaceAll("#\\{query_target_synsetid\\}", BaseModule.TARGET_SYNSETID) //
-						.replaceAll("#\\{query_target_wordid\\}", BaseModule.TARGET_WORDID) //
-						.replaceAll("#\\{query_target_word\\}", BaseModule.TARGET_WORD);
+				groupBy = Q.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET.GROUPBY;
 				break;
 
 			case WordNetDispatcher.SEMRELATIONS_SYNSETS:

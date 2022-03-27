@@ -356,7 +356,6 @@ public class WordNetProvider extends BaseProvider
 				final Cursor cursor = this.db.rawQuery(sql, selectionArgs0);
 				Log.d(TAG + "COUNT", cursor.getCount() + " items");
 				return cursor;
-				//return this.db.query(table, actualProjection, actualSelection, selectionArgs, groupBy, null, sortOrder, null);
 			}
 			catch (@NonNull final SQLiteException e)
 			{
@@ -408,7 +407,7 @@ public class WordNetProvider extends BaseProvider
 		};
 		assert selection0 != null;
 		final String[] selections = selection0.split("/\\*\\*/\\|/\\*\\*/");
-		final String subQuery = makeQuery(semTable, //
+		return makeQuery(semTable, //
 				lexTable, //
 				projection1, //
 				projection2, //
@@ -418,7 +417,6 @@ public class WordNetProvider extends BaseProvider
 				"lex", //
 				selections[0], //
 				selections[1]);
-		return subQuery;
 	}
 
 	/**

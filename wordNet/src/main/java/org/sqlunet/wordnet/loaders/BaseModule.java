@@ -30,6 +30,7 @@ import org.sqlunet.wordnet.SynsetPointer;
 import org.sqlunet.wordnet.WordPointer;
 import org.sqlunet.wordnet.browser.SynsetActivity;
 import org.sqlunet.wordnet.browser.WordActivity;
+import org.sqlunet.wordnet.provider.V;
 import org.sqlunet.wordnet.provider.WordNetContract;
 import org.sqlunet.wordnet.provider.WordNetContract.AllRelations_Senses_Words_X;
 import org.sqlunet.wordnet.provider.WordNetContract.Domains;
@@ -817,11 +818,6 @@ abstract public class BaseModule extends Module
 				final String member = cursor.getString(idMember);
 
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
-				// final String formattedWord = String.format(Locale.ENGLISH, "[%d] %s", i++, word);
-				// sb.append(formattedWord);
-				// sb.append(Integer.toString(i++));
-				// sb.append('-');
-				// sb.append(word);
 				Spanner.append(sb, member, 0, WordNetFactories.membersFactory);
 
 				// result
@@ -881,7 +877,6 @@ abstract public class BaseModule extends Module
 			else
 			{
 				final int wordId = cursor.getColumnIndex(Words.WORD);
-				// int i = 1;
 				do
 				{
 					final String word = cursor.getString(wordId);
@@ -889,13 +884,8 @@ abstract public class BaseModule extends Module
 					{
 						sb.append('\n');
 					}
-					// final String formattedWord = String.format(Locale.ENGLISH, "[%d] %s", i++, word);
-					// sb.append(formattedWord);
 					Spanner.appendImage(sb, BaseModule.this.memberDrawable);
 					sb.append(' ');
-					// sb.append(Integer.toString(i++));
-					// sb.append('-');
-					// sb.append(word);
 					Spanner.append(sb, word, 0, WordNetFactories.membersFactory);
 				}
 				while (cursor.moveToNext());
@@ -995,12 +985,6 @@ abstract public class BaseModule extends Module
 
 	// R E L A T I O N S
 
-	static public final String TARGET_SYNSETID = "d_synsetid";
-	@SuppressWarnings("WeakerAccess")
-	static public final String TARGET_DEFINITION = "d_definition";
-	static public final String TARGET_WORD = "d_word";
-	static public final String TARGET_WORDID = "d_wordid";
-
 	/**
 	 * Relations (union)
 	 *
@@ -1015,12 +999,12 @@ abstract public class BaseModule extends Module
 		final String[] projection = { //
 				WordNetContract.RELATIONTYPE, Relations.RELATIONID, //
 				Relations.RELATION, //
-				WordNetContract.AS_SYNSETS2 + '.' + Synsets.SYNSETID + " AS " + BaseModule.TARGET_SYNSETID, //
-				WordNetContract.AS_SYNSETS2 + '.' + Synsets.DEFINITION + " AS " + BaseModule.TARGET_DEFINITION, //
+				WordNetContract.AS_SYNSETS2 + '.' + Synsets.SYNSETID + " AS " + V.SYNSET2ID, //
+				WordNetContract.AS_SYNSETS2 + '.' + Synsets.DEFINITION + " AS " + V.DEFINITION2, //
 				"GROUP_CONCAT(" + WordNetContract.AS_WORDS + '.' + Words.WORD + ") AS " + AllRelations_Senses_Words_X.MEMBERS2, //
 				AllRelations_Senses_Words_X.RECURSES, //
-				WordNetContract.AS_WORDS2 + '.' + Words.WORDID + " AS " + BaseModule.TARGET_WORDID, //
-				WordNetContract.AS_WORDS2 + '.' + Words.WORD + " AS " + BaseModule.TARGET_WORD, //
+				WordNetContract.AS_WORDS2 + '.' + Words.WORDID + " AS " + V.WORD2ID, //
+				WordNetContract.AS_WORDS2 + '.' + Words.WORD + " AS " + V.WORD2, //
 		};
 		final String selection = "synset1id = ? /**/|/**/ synset1id = ? AND word1id = ?";
 		final String[] selectionArgs = {Long.toString(synsetId), Long.toString(synsetId), Long.toString(wordId)};
@@ -1038,12 +1022,12 @@ abstract public class BaseModule extends Module
 
 			final int idRelationId = cursor.getColumnIndex(Relations.RELATIONID);
 			// final int idRelation = cursor.getColumnIndex(Relations.RELATION);
-			final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
-			final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
+			final int idTargetSynsetId = cursor.getColumnIndex(V.SYNSET2ID);
+			final int idTargetDefinition = cursor.getColumnIndex(V.DEFINITION2);
 			final int idTargetMembers = cursor.getColumnIndex(AllRelations_Senses_Words_X.MEMBERS2);
 			final int idRecurses = cursor.getColumnIndex(AllRelations_Senses_Words_X.RECURSES);
-			final int idTargetWordId = cursor.getColumnIndex(BaseModule.TARGET_WORDID);
-			final int idTargetWord = cursor.getColumnIndex(BaseModule.TARGET_WORD);
+			final int idTargetWordId = cursor.getColumnIndex(V.WORD2ID);
+			final int idTargetWord = cursor.getColumnIndex(V.WORD2);
 
 			do
 			{
@@ -1116,8 +1100,8 @@ abstract public class BaseModule extends Module
 		final String[] projection = { //
 				Relations.RELATIONID, //
 				Relations.RELATION, //
-				WordNetContract.AS_SYNSETS2 + '.' + Synsets.SYNSETID + " AS " + BaseModule.TARGET_SYNSETID, //
-				WordNetContract.AS_SYNSETS2 + '.' + Synsets.DEFINITION + " AS " + BaseModule.TARGET_DEFINITION, //
+				WordNetContract.AS_SYNSETS2 + '.' + Synsets.SYNSETID + " AS " + V.SYNSET2ID, //
+				WordNetContract.AS_SYNSETS2 + '.' + Synsets.DEFINITION + " AS " + V.DEFINITION2, //
 				Relations.RECURSES, //
 		};
 		final String selection = WordNetContract.AS_RELATIONS + '.' + SemRelations_Synsets_Words_X.SYNSET1ID + " = ?";  ////
@@ -1136,8 +1120,8 @@ abstract public class BaseModule extends Module
 
 			// final int idRelation = cursor.getColumnIndex(Relations.RELATION);
 			final int idRelationId = cursor.getColumnIndex(Relations.RELATIONID);
-			final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
-			final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
+			final int idTargetSynsetId = cursor.getColumnIndex(V.SYNSET2ID);
+			final int idTargetDefinition = cursor.getColumnIndex(V.DEFINITION2);
 			final int idTargetMembers = cursor.getColumnIndex(SemRelations_Synsets_Words_X.MEMBERS2);
 			final int idRecurses = cursor.getColumnIndex(SemRelations_Synsets_Words_X.RECURSES);
 
@@ -1202,8 +1186,8 @@ abstract public class BaseModule extends Module
 		final String[] projection = { //
 				Relations.RELATIONID, //
 				Relations.RELATION, //
-				WordNetContract.AS_SYNSETS2 + '.' + Synsets.SYNSETID + " AS " + BaseModule.TARGET_SYNSETID, //
-				WordNetContract.AS_SYNSETS2 + '.' + Synsets.DEFINITION + " AS " + BaseModule.TARGET_DEFINITION, //
+				WordNetContract.AS_SYNSETS2 + '.' + Synsets.SYNSETID + " AS " + V.SYNSET2ID, //
+				WordNetContract.AS_SYNSETS2 + '.' + Synsets.DEFINITION + " AS " + V.DEFINITION2, //
 				Relations.RECURSES, //
 		};
 		final String selection = WordNetContract.AS_RELATIONS + '.' + SemRelations_Synsets_Words_X.SYNSET1ID + " = ? AND " + Relations.RELATIONID + " = ?";
@@ -1221,8 +1205,8 @@ abstract public class BaseModule extends Module
 
 			// final int idRelationId = cursor.getColumnIndex(Relations.RELATIONID);
 			// final int idRelation = cursor.getColumnIndex(Relations.RELATION);
-			final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
-			final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
+			final int idTargetSynsetId = cursor.getColumnIndex(V.SYNSET2ID);
+			final int idTargetDefinition = cursor.getColumnIndex(V.DEFINITION2);
 			final int idTargetMembers = cursor.getColumnIndex(SemRelations_Synsets_Words_X.MEMBERS2);
 			final int idRecurses = cursor.getColumnIndex(SemRelations_Synsets_Words_X.RECURSES);
 
@@ -1298,10 +1282,10 @@ abstract public class BaseModule extends Module
 		final String[] projection = { //
 				Relations.RELATIONID, //
 				Relations.RELATION, //
-				WordNetContract.AS_SYNSETS2 + '.' + Synsets.SYNSETID + " AS " + BaseModule.TARGET_SYNSETID, //
-				WordNetContract.AS_SYNSETS2 + '.' + Synsets.DEFINITION + " AS " + BaseModule.TARGET_DEFINITION, //
-				WordNetContract.AS_WORDS + '.' + Words.WORDID + " AS " + BaseModule.TARGET_WORDID, //
-				WordNetContract.AS_WORDS + '.' + Words.WORD + " AS " + BaseModule.TARGET_WORD, //
+				WordNetContract.AS_SYNSETS2 + '.' + Synsets.SYNSETID + " AS " + V.SYNSET2ID, //
+				WordNetContract.AS_SYNSETS2 + '.' + Synsets.DEFINITION + " AS " + V.DEFINITION2, //
+				WordNetContract.AS_WORDS + '.' + Words.WORDID + " AS " + V.WORD2ID, //
+				WordNetContract.AS_WORDS + '.' + Words.WORD + " AS " + V.WORD2, //
 		};
 		final String selection = WordNetContract.AS_RELATIONS + ".synset1id = ? AND " + WordNetContract.AS_RELATIONS + ".word1id = ?";
 		final String[] selectionArgs = {Long.toString(synsetId), Long.toString(wordId)};
@@ -1319,18 +1303,16 @@ abstract public class BaseModule extends Module
 
 			// final int idRelation = cursor.getColumnIndex(Relations.RELATION);
 			final int idRelationId = cursor.getColumnIndex(Relations.RELATIONID);
-			final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
-			final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
+			final int idTargetSynsetId = cursor.getColumnIndex(V.SYNSET2ID);
+			final int idTargetDefinition = cursor.getColumnIndex(V.DEFINITION2);
 			final int idTargetMembers = cursor.getColumnIndex(LexRelations_Senses_Words_X.MEMBERS2);
-			final int idTargetWordId = cursor.getColumnIndex(BaseModule.TARGET_WORDID);
-			final int idTargetWord = cursor.getColumnIndex(BaseModule.TARGET_WORD);
+			final int idTargetWordId = cursor.getColumnIndex(V.WORD2ID);
+			final int idTargetWord = cursor.getColumnIndex(V.WORD2);
 
 			do
 			{
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
 
-				// final String relation = cursor.getString(idRelation);
-				// final String targetWordId = cursor.getString(idTargetWordId);
 				final int relationId = cursor.getInt(idRelationId);
 				final long targetSynsetId = cursor.getLong(idTargetSynsetId);
 				final String targetDefinition = cursor.getString(idTargetDefinition);
@@ -1340,22 +1322,12 @@ abstract public class BaseModule extends Module
 				{
 					targetMembers = targetMembers.replaceAll("\\b" + targetWord + "\\b", targetWord + '*');
 				}
-				// final String formattedTarget = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synset %s) {%s}", relation, targetWord, targetWordId,targetDefinition, targetSynsetId, targetMembers);
 
 				if (sb.length() != 0)
 				{
 					sb.append('\n');
 				}
-				// Spanner.appendImage(sb, getRelationDrawable(relationId));
-				// sb.append(formattedTarget);
-				// sb.append(' ');
 				Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
-				// Spanner.append(sb, targetLWord, 0, WordNetFactories.wordFactory);
-				// sb.append(" in ");
-				// sb.append(' ');
-				// sb.append('{');
-				// Spanner.append(sb, members2CursorToTreeModel, 0, WordNetFactories.membersFactory);
-				// sb.append('}');
 				sb.append(' ');
 				Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
 
@@ -1395,10 +1367,10 @@ abstract public class BaseModule extends Module
 		final String[] projection = { //
 				Relations.RELATIONID, //
 				Relations.RELATION, //
-				WordNetContract.AS_SYNSETS2 + '.' + Synsets.SYNSETID + " AS " + BaseModule.TARGET_SYNSETID, //
-				WordNetContract.AS_SYNSETS2 + '.' + Synsets.DEFINITION + " AS " + BaseModule.TARGET_DEFINITION, //
-				WordNetContract.AS_WORDS + '.' + Words.WORDID + " AS " + BaseModule.TARGET_WORDID, //
-				WordNetContract.AS_WORDS + '.' + Words.WORD + " AS " + BaseModule.TARGET_WORD, //
+				WordNetContract.AS_SYNSETS2 + '.' + Synsets.SYNSETID + " AS " + V.SYNSET2ID, //
+				WordNetContract.AS_SYNSETS2 + '.' + Synsets.DEFINITION + " AS " + V.DEFINITION2, //
+				WordNetContract.AS_WORDS + '.' + Words.WORDID + " AS " + V.WORD2ID, //
+				WordNetContract.AS_WORDS + '.' + Words.WORD + " AS " + V.WORD2, //
 		};
 		final String selection = WordNetContract.AS_RELATIONS + '.' + LexRelations_Senses_Words_X.SYNSET1ID + " = ?";  ////
 		final String[] selectionArgs = {Long.toString(synsetId)};
@@ -1413,20 +1385,14 @@ abstract public class BaseModule extends Module
 		{
 			final TreeOps changedList = new TreeOps(NEWTREE, parent);
 
-			// final int idRelation = cursor.getColumnIndex(Relations.RELATION);
-			// final int idTargetSynsetId = cursor.getColumnIndex(BaseModule.TARGET_SYNSETID);
-			// final int idTargetWordId = cursor.getColumnIndex(BaseModule.TARGET_WORDID);
 			final int idRelationId = cursor.getColumnIndex(Relations.RELATIONID);
-			final int idTargetDefinition = cursor.getColumnIndex(BaseModule.TARGET_DEFINITION);
+			final int idTargetDefinition = cursor.getColumnIndex(V.DEFINITION2);
 			final int idTargetMembers = cursor.getColumnIndex(LexRelations_Senses_Words_X.MEMBERS2);
-			final int idTargetWord = cursor.getColumnIndex(BaseModule.TARGET_WORD);
+			final int idTargetWord = cursor.getColumnIndex(V.WORD2);
 
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
 			do
 			{
-				// final String relation = cursor.getString(idRelation);
-				// final String targetSynsetId = cursor.getString(idTargetSynsetId);
-				// final String targetWordId = cursor.getString(idTargetWordId);
 				final int relationId = cursor.getInt(idRelationId);
 				final String targetDefinition = cursor.getString(idTargetDefinition);
 				final String targetWord = cursor.getString(idTargetWord);
@@ -1435,15 +1401,11 @@ abstract public class BaseModule extends Module
 				{
 					targetMembers = targetMembers.replaceAll("\\b" + targetWord + "\\b", targetWord + '*');
 				}
-				// final String formattedTarget = String.format(Locale.ENGLISH, "[%s] %s (%s)\n\t%s (synset %s) {%s}", relation, targetWord, targetWordId, targetDefinition, targetSynsetId, targetMembers);
 
 				if (sb.length() != 0)
 				{
 					sb.append('\n');
 				}
-				// Spanner.appendImage(sb, getRelationDrawable(relationId));
-				// sb.append(formattedTarget);
-				// sb.append(' ');
 				Spanner.append(sb, targetWord, 0, WordNetFactories.wordFactory);
 				sb.append(" in ");
 				sb.append(' ');

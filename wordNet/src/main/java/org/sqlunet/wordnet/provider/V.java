@@ -55,7 +55,9 @@ public class V
 	public static final String WORDID = "wordid";
 
 	// artifact columns
-	public static final String RELATIONTYPE = "relationtype";
 	public static final String MEMBERS = "members";
+	public static final String RELATIONTYPE = "relationtype";
+	static public final String WORD2 = "word2";
 	public static final String MEMBERS2 = "members2";
+	static public final String DEFINITION2 = "definition2";
 }

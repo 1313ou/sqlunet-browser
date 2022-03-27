@@ -189,7 +189,7 @@ public class QV
 	{
 		static public final String TABLE = "${senses.table} AS ${as_senses} " +
 				"LEFT JOIN ${words.table} AS ${as_words} USING (${words.wordid})";
-		static public final String[] PROJECTION = {"GROUP_CONCAT(${words.table}.${words.word}, ', ' ) AS #{members}"};
+		static public final String[] PROJECTION = {"GROUP_CONCAT(${words.table}.${words.word}, ', ' ) AS ${members}"};
 		static public final String GROUPBY = "${synsets.synsetid}";
 	}
 
@@ -216,10 +216,11 @@ public class QV
 	{
 		static public final String TABLE = "( #{query} ) AS ${as_relations} " +
 				"INNER JOIN ${relations.table} USING (${relations.relationid}) " +
-				"INNER JOIN ${synsets.table} AS ${as_synsets2} ON ${as_relations}.${baserelations.synset2id} = ${as_synsets2}.${synsets.synsetid} LEFT JOIN ${senses.table} ON ${as_synsets2}.${synsets.synsetid} = ${senses.table}.${senses.synsetid} " +
+			"INNER JOIN ${synsets.table} AS ${as_synsets2} ON ${as_relations}.${allrelations.synset2id} = ${as_synsets2}.${synsets.synsetid} " +
+				"LEFT JOIN ${senses.table} ON ${as_synsets2}.${synsets.synsetid} = ${senses.table}.${senses.synsetid} " +
 				"LEFT JOIN ${words.table} AS ${as_words} USING (${words.wordid}) " +
-				"LEFT JOIN ${words.table} AS ${as_words2} ON ${as_relations}.${baserelations.word2id} = ${as_words2}.${words.wordid}";
-		static public final String GROUPBY = "#{query_target_synsetid},${relationtype},${relations.relation},${relations.relationid},#{query_target_wordid},#{query_target_word}";
+			"LEFT JOIN ${words.table} AS ${as_words2} ON ${as_relations}.${allrelations.word2id} = ${as_words2}.${words.wordid}";
+		static public final String GROUPBY = "${synset2id},${relationtype},${relations.relation},${relations.relationid},${word2id},${word2}";
 	}
 
 	static public class SEMRELATIONS_SYNSETS
@@ -242,7 +243,7 @@ public class QV
 				"INNER JOIN ${synsets.table} AS ${as_synsets2} ON ${as_relations}.${semrelations.synset2id} = ${as_synsets2}.${synsets.synsetid} " +
 				"LEFT JOIN ${senses.table} ON ${as_synsets2}.${synsets.synsetid} = ${senses.table}.${senses.synsetid} " +
 				"LEFT JOIN ${words.table} USING (${words.wordid})";
-		static public final String[] PROJECTION = {"GROUP_CONCAT(${words.table}.${words.word}, ', ' ) AS #{members2}"};
+		static public final String[] PROJECTION = {"GROUP_CONCAT(${words.table}.${words.word}, ', ' ) AS ${members2}"};
 		static public final String GROUPBY = "${as_synsets2}.${synsets.synsetid}";
 	}
 
@@ -257,7 +258,8 @@ public class QV
 	{
 		static public final String TABLE = "${lexrelations.table} AS ${as_relations} " +
 				"INNER JOIN ${relations.table} USING (${relations.relationid}) " +
-				"INNER JOIN ${synsets.table} AS ${as_synsets2} ON ${as_relations}.${lexrelations.synset2id} = ${as_synsets2}.${synsets.synsetid} INNER JOIN ${words.table} AS ${as_words} ON ${as_relations}.${lexrelations.word2id} = ${as_words}.${words.wordid} ";
+				"INNER JOIN ${synsets.table} AS ${as_synsets2} ON ${as_relations}.${lexrelations.synset2id} = ${as_synsets2}.${synsets.synsetid} " +
+				"INNER JOIN ${words.table} AS ${as_words} ON ${as_relations}.${lexrelations.word2id} = ${as_words}.${words.wordid} ";
 	}
 
 	static public class LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET
@@ -268,7 +270,7 @@ public class QV
 				"INNER JOIN ${words.table} AS ${as_words} ON ${as_relations}.${lexrelations.word2id} = ${as_words}.${words.wordid} " +
 				"LEFT JOIN ${senses.table} AS ${as_senses} ON ${as_synsets2}.${senses.synsetid} = ${as_senses}.${senses.synsetid} " +
 				"LEFT JOIN ${words.table} AS ${as_words2} USING (${words.wordid})";
-		static public final String[] PROJECTION = {"GROUP_CONCAT(DISTINCT ${as_words2}.${words.word}) AS #{members2}"};
+		static public final String[] PROJECTION = {"GROUP_CONCAT(DISTINCT ${as_words2}.${words.word}) AS ${members2}"};
 		static public final String GROUPBY = "${as_synsets2}.${synsets.synsetid}";
 	}
 
@@ -294,7 +296,7 @@ public class QV
 	static public class SUGGEST_FTS_DEFINITIONS
 	{
 		static public final String TABLE = "@{synsets.table}_@{synsets.definition}_fts4";
-		static public final String[] PROJECTION = {"${synsets.synsetid} AS _id", "${synsets.definition} AS SearchManager.SUGGEST_COLUMN_TEXT_1", "${synsets.definition} AS SearchManager.SUGGEST_COLUMN_QUERY"};
+		static public final String[] PROJECTION = {"${synsets.synsetid} AS _id", "${synsets.definition} AS #{suggest_text_1}", "${synsets.definition} AS #{suggest_query}"};
 		static public final String SELECTION = "${synsets.definition} MATCH ?";
 		static public final String[] ARGS = {"#{uri_last}*"};
 	}
@@ -302,7 +304,7 @@ public class QV
 	static public class SUGGEST_FTS_SAMPLES
 	{
 		static public final String TABLE = "@{samples.table}_@{samples.sample}_fts4";
-		static public final String[] PROJECTION = {"${samples.sampleid} AS _id", "${samples.sample} AS SearchManager.SUGGEST_COLUMN_TEXT_1", "${samples.sample} AS SearchManager.SUGGEST_COLUMN_QUERY"};
+		static public final String[] PROJECTION = {"${samples.sampleid} AS _id", "${samples.sample} AS #{suggest_text_1}", "${samples.sample} AS #{suggest_query}"};
 		static public final String SELECTION = "${samples.sample} MATCH ?";
 		static public final String[] ARGS = {"#{uri_last}*"};
 	}
@@ -310,7 +312,7 @@ public class QV
 	static public class SUGGEST_FTS_WORDS
 	{
 		static public final String TABLE = "@{words.table}_@{words.word}_fts4";
-		static public final String[] PROJECTION = {"${words.wordid} AS _id", "${words.word} AS SearchManager.SUGGEST_COLUMN_TEXT_1", "${words.word} AS SearchManager.SUGGEST_COLUMN_QUERY"};
+		static public final String[] PROJECTION = {"${words.wordid} AS _id", "${words.word} AS #{suggest_text_1}", "${words.word} AS #{suggest_query}"};
 		static public final String SELECTION = "${words.word} MATCH ?";
 		static public final String[] ARGS = {"#{uri_last}*"};
 	}
@@ -318,7 +320,7 @@ public class QV
 	static public class SUGGEST_WORDS
 	{
 		static public final String TABLE = "${words.table}";
-		static public final String[] PROJECTION = {"${words.wordid} AS _id", "${words.word} AS SearchManager.SUGGEST_COLUMN_TEXT_1", "${words.word} AS SearchManager.SUGGEST_COLUMN_QUERY"};
+		static public final String[] PROJECTION = {"${words.wordid} AS _id", "${words.word} AS #{suggest_text_1}", "${words.word} AS #{suggest_query}"};
 		static public final String SELECTION = "${words.word} LIKE ? || '%'";
 		static public final String[] ARGS = {"#{uri_last}"};
 	}

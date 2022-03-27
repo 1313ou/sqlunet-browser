@@ -16,6 +16,7 @@ import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.xnet.R;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -52,7 +53,7 @@ abstract public class TreeFragment extends Fragment
 	@StringRes
 	protected int headerId;
 
-	@IdRes
+	@DrawableRes
 	protected int iconId;
 
 	/**

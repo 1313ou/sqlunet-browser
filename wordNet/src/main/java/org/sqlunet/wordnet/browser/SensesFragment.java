@@ -101,13 +101,6 @@ public class SensesFragment extends ListFragment
 
 	// --activate--
 
-	//	@Override
-	//	public void onAttach(@NonNull final Context context)
-	//	{
-	//		super.onAttach(context);
-	//		Log.d(TAG, "lifecycle: onAttach (1) " + this);
-	//	}
-
 	@Override
 	public void onCreate(final Bundle savedInstanceState)
 	{
@@ -155,59 +148,15 @@ public class SensesFragment extends ListFragment
 		makeModels();
 	}
 
-	//	@Override
-	//	public void onActivityCreated(@Nullable final Bundle savedInstanceState)
-	//	{
-	//		super.onActivityCreated(savedInstanceState);
-	//		Log.d(TAG, "lifecycle: onActivityCreated (5) " + this);
-	//	}
-
 	@Override
 	public void onStart()
 	{
 		super.onStart();
 		Log.d(TAG, "lifecycle: onStart (6) " + this);
-
-		// load the contents
-		// final MutableLiveData<Cursor> idLiveData = dataModel.getMutableData();
-		//  final Cursor idCursor = idLiveData.getValue();
-		//  if (idCursor != null && !idCursor.isClosed())
-		//  {
-		//   	idLiveData.setValue(idCursor);
-		//  }
-		//  else
 		load();
 	}
 
 	// --deactivate--
-
-	//	@Override
-	//	public void onStop()
-	//	{
-	//		super.onStop();
-	//		Log.d(TAG, "lifecycle: onStop(-4) " + this);
-	//	}
-
-	//	@Override
-	//	public void onDestroyView()
-	//	{
-	//		super.onDestroyView();
-	//		Log.d(TAG, "lifecycle: onDestroyView (-3) " + this);
-	//	}
-
-	//	@Override
-	//	public void onDestroy()
-	//	{
-	//		super.onDestroy();
-	//		Log.d(TAG, "lifecycle: onDestroy (-2) " + this);
-	//	}
-
-	//	@Override
-	//	public void onDetach()
-	//	{
-	//		super.onDetach();
-	//		Log.d(TAG, "lifecycle: onDetach (-1) " + this);
-	//	}
 
 	// H E L P E R S
 
