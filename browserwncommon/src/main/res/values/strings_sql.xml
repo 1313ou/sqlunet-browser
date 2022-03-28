@@ -10,23 +10,36 @@
 
 	<string-array name="sql_statement_titles" tools:ignore="InconsistentArrays">
 		<item>[SELECT OPERATION]</item>
-		<item>Create all indexes</item>
-		<item>Prepare WordNet text search</item>
 		<item>Create WordNet indexes</item>
+		<item>Prepare WordNet text search</item>
 		<item>Drop WordNet indexes</item>
 		<item>Drop WordNet text search</item>
 	</string-array>
 	<string-array name="sql_statements_values" formatted="false" tools:ignore="InconsistentArrays">
 		<item/>
 		<item>
-			CREATE INDEX IF NOT EXISTS uk_words_word ON words(word);
+			CREATE INDEX IF NOT EXISTS pk_lexes ON lexes (luid);
+			CREATE INDEX IF NOT EXISTS pk_words ON words (wordid);
+			CREATE INDEX IF NOT EXISTS k_words_word ON words(word);
 			CREATE INDEX IF NOT EXISTS k_senses_wordid ON senses(wordid);
 			CREATE INDEX IF NOT EXISTS k_senses_synsetid ON senses(synsetid);
-			CREATE INDEX IF NOT EXISTS k_synsets_synsetid ON synsets(synsetid);
-			CREATE INDEX IF NOT EXISTS k_casedwords_wordid_casedwordid ON casedwords(wordid,casedwordid);
+			CREATE INDEX IF NOT EXISTS pk_synsets ON synsets (synsetid);
+			CREATE INDEX IF NOT EXISTS pk_casedwords ON casedwords (casedwordid);
+			CREATE INDEX IF NOT EXISTS k_casedwords_wordid ON casedwords(wordid);
 			CREATE INDEX IF NOT EXISTS k_semrelations_synset1id ON semrelations(synset1id);
 			CREATE INDEX IF NOT EXISTS k_semrelations_relationid ON semrelations(relationid);
-			CREATE INDEX IF NOT EXISTS k_samples_synsetid ON samples(synsetid);</item>
+			CREATE INDEX IF NOT EXISTS k_lexrelations_synset1id ON lexrelations(synset1id);
+			CREATE INDEX IF NOT EXISTS k_lexrelations_word1id ON lexrelations(synset1id);
+			CREATE INDEX IF NOT EXISTS k_lexrelations_relationid ON lexrelations(relationid);
+			CREATE INDEX IF NOT EXISTS pk_relations ON relations (relationid);
+			CREATE INDEX IF NOT EXISTS pk_morphs ON morphs (morphid);
+			CREATE INDEX IF NOT EXISTS pk_pronunciations ON pronunciations (pronunciationid);
+			CREATE INDEX IF NOT EXISTS pk_samples ON samples (synsetid,sampleid);
+			CREATE INDEX IF NOT EXISTS pk_vframes ON vframes (frameid);
+			CREATE INDEX IF NOT EXISTS pk_vtemplates ON vtemplates (templateid);
+			CREATE INDEX IF NOT EXISTS pk_domains ON domains (domainid);
+			CREATE INDEX IF NOT EXISTS k_samples_synsetid ON samples(synsetid);
+			CREATE INDEX IF NOT EXISTS pk_lexes_morphs_wordid ON lexes_morphs (wordid);</item>
 		<item>
 			CREATE VIRTUAL TABLE IF NOT EXISTS words_word_fts4 USING fts4(wordid INTEGER not null, word);
 			INSERT INTO words_word_fts4 SELECT wordid, word from words;
@@ -35,23 +48,28 @@
 			CREATE VIRTUAL TABLE IF NOT EXISTS samples_sample_fts4 USING fts4(synsetid INTEGER not null, sample);
 			INSERT INTO samples_sample_fts4 SELECT synsetid, sample from samples;</item>
 		<item>
-			CREATE INDEX IF NOT EXISTS uk_words_word ON words(word);
-			CREATE INDEX IF NOT EXISTS k_senses_wordid ON senses(wordid);
-			CREATE INDEX IF NOT EXISTS k_senses_synsetid ON senses(synsetid);
-			CREATE INDEX IF NOT EXISTS k_synsets_synsetid ON synsets(synsetid);
-			CREATE INDEX IF NOT EXISTS k_casedwords_wordid_casedwordid ON casedwords(wordid,casedwordid);
-			CREATE INDEX IF NOT EXISTS k_semrelations_synset1id ON semrelations(synset1id);
-			CREATE INDEX IF NOT EXISTS k_semrelations_relationid ON semrelations(relationid);
-			CREATE INDEX IF NOT EXISTS k_samples_synsetid ON samples(synsetid);</item>
-		<item>
-			DROP INDEX IF EXISTS uk_words_word;
+			DROP INDEX IF EXISTS pk_lexes;
+			DROP INDEX IF EXISTS pk_words;
+			DROP INDEX IF EXISTS k_words_word;
 			DROP INDEX IF EXISTS k_senses_wordid;
 			DROP INDEX IF EXISTS k_senses_synsetid;
-			DROP INDEX IF EXISTS k_synsets_synsetid;
-			DROP INDEX IF EXISTS k_casedwords_wordid_casedwordid;
+			DROP INDEX IF EXISTS pk_synsets;
+			DROP INDEX IF EXISTS pk_casedwords;
+			DROP INDEX IF EXISTS k_casedwords_wordid;
 			DROP INDEX IF EXISTS k_semrelations_synset1id;
 			DROP INDEX IF EXISTS k_semrelations_relationid;
-			DROP INDEX IF EXISTS k_samples_synsetid;</item>
+			DROP INDEX IF EXISTS k_lexrelations_synset1id;
+			DROP INDEX IF EXISTS k_lexrelations_word1id;
+			DROP INDEX IF EXISTS k_lexrelations_relationid;
+			DROP INDEX IF EXISTS pk_relations;
+			DROP INDEX IF EXISTS pk_morphs;
+			DROP INDEX IF EXISTS pk_pronunciations;
+			DROP INDEX IF EXISTS pk_samples;
+			DROP INDEX IF EXISTS pk_vframes;
+			DROP INDEX IF EXISTS pk_vtemplates;
+			DROP INDEX IF EXISTS pk_domains;
+			DROP INDEX IF EXISTS k_samples_synsetid;
+			DROP INDEX IF EXISTS pk_lexes_morphs_wordid;</item>
 		<item>
 			DROP TABLE IF EXISTS words_word_fts4;
 			DROP TABLE IF EXISTS synsets_definition_fts4;

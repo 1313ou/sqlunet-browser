@@ -27,14 +27,28 @@
 		<item>sources</item>
 	</string-array>
 	<string-array name="required_indexes" tools:ignore="InconsistentArrays">
-		<item>index_words_word</item>
-		<item>index_senses_wordid</item>
-		<item>index_senses_synsetid</item>
-		<item>index_synsets_synsetid</item>
-		<item>index_casedwords_wordid_casedwordid</item>
-		<item>index_semrelations_synset1id</item>
-		<item>index_semrelations_relationid</item>
-		<item>index_samples_synsetid</item>
+		<item>pk_lexes</item>
+		<item>pk_words</item>
+		<item>k_words_word</item>
+		<item>k_senses_wordid</item>
+		<item>k_senses_synsetid</item>
+		<item>pk_synsets</item>
+		<item>pk_casedwords</item>
+		<item>k_casedwords_wordid</item>
+		<item>k_semrelations_synset1id</item>
+		<item>k_semrelations_relationid</item>
+		<item>k_lexrelations_synset1id</item>
+		<item>k_lexrelations_word1id</item>
+		<item>k_lexrelations_relationid</item>
+		<item>pk_relations</item>
+		<item>pk_morphs</item>
+		<item>pk_pronunciations</item>
+		<item>pk_samples</item>
+		<item>pk_vframes</item>
+		<item>pk_vtemplates</item>
+		<item>pk_domains</item>
+		<item>k_samples_synsetid</item>
+		<item>pk_lexes_morphs_wordid</item>
 	</string-array>
 	<string-array name="required_texts_wn">
 		<item>words_word_fts4</item>

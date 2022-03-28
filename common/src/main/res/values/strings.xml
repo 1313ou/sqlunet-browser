@@ -30,6 +30,7 @@
 	<string name="action_update">Update</string>
 	<string name="action_sql">SQL</string>
 	<string name="action_diagnostics">Diagnostics</string>
+	<string name="action_logs">Logs</string>
 	<!-- setup -->
 	<string name="action_setup">Set up</string>
 	<!-- setup from file -->
@@ -90,6 +91,7 @@
 	<string name="title_activity_browse2">Data</string>
 	<string name="title_activity_table">Table</string>
 	<string name="title_activity_diagnostics">Diagnostics</string>
+	<string name="title_activity_logs">Logs</string>
 
 	<string name="title_dialog_select_email">Choose an Email client</string>
 	<string name="title_dialog_sql">SQL</string>

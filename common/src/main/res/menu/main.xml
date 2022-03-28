@@ -87,6 +87,11 @@
 				android:title="@string/action_diagnostics"
 				app:showAsAction="never"
 				tools:ignore="AppCompatResource" />
+			<item
+				android:id="@+id/action_logs"
+				android:title="@string/action_logs"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
 		</menu>
 	</item>
 
