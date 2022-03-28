@@ -21,13 +21,7 @@ class Domain
 	/**
 	 * <code>pos</code> pos id
 	 */
-	public final int pos;
-
-	/**
-	 * <code>posName</code> part-of-speech
-	 */
-	@NonNull
-	public final String posName;
+	public final int posId;
 
 	/**
 	 * <code>domainName</code> domain name
@@ -46,22 +40,8 @@ class Domain
 	{
 		super();
 		this.id = id;
-		this.pos = pos;
-		this.posName = getPosName(name);
+		this.posId = pos;
 		this.domainName = getDomainName(name);
-	}
-
-	/**
-	 * Get part-of-speech name
-	 *
-	 * @param string full domain name
-	 * @return the part-of-speech name
-	 */
-	@NonNull
-	private String getPosName(@NonNull final String string)
-	{
-		final int index = string.indexOf('.');
-		return index == -1 ? string : string.substring(0, index);
 	}
 
 	/**

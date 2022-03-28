@@ -197,12 +197,12 @@ class Mapping
 	 * @return part-of-speech name
 	 */
 	@NonNull
-	static public String getPosName(final int domainId)
+	static public String getDomainPosName(final int domainId)
 	{
 		try
 		{
 			final Domain domain = Mapping.domains.get(domainId);
-			return domain.posName;
+			return getPosName(domain.posId);
 		}
 		catch (@NonNull final IndexOutOfBoundsException e)
 		{
@@ -272,19 +272,38 @@ class Mapping
 		switch (posName)
 		{
 			case "noun":
-				//
 				return 'n';
 			case "verb":
-				//
 				return 'v';
 			case "adj":
-				//
 				return 'a';
 			case "adv":
-				//
 				return 'r';
 		}
 		return Mapping.ANYTYPE;
+	}
+
+	/**
+	 * Find part-of-speech id (n,v,a,r) from part-of-speech name
+	 *
+	 * @param posId target part-of-speech id
+	 * @return part-of-speech name or null if not found
+	 */
+	@Nullable
+	static public String getPosName(final int posId)
+	{
+		switch (posId)
+		{
+			case 'n':
+				return "noun";
+			case 'v':
+				return "verb";
+			case 'a':
+				return "adj";
+			case 'r':
+				return "adv";
+		}
+		return null;
 	}
 
 	/**

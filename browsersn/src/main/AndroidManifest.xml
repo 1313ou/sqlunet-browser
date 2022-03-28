@@ -351,6 +351,16 @@
 		</activity>
 
 		<activity
+			android:name="org.sqlunet.browser.config.LogsActivity"
+			android:label="@string/title_activity_logs"
+			android:parentActivityName="org.sqlunet.browser.MainActivity"
+			tools:ignore="UnusedAttribute">
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value="org.sqlunet.browser.MainActivity" />
+		</activity>
+
+		<activity
 			android:name="org.sqlunet.browser.AboutActivity"
 			android:label="@string/title_activity_about"
 			android:parentActivityName="org.sqlunet.browser.MainActivity"

@@ -1774,11 +1774,11 @@ abstract public class BaseModule extends Module
 			case 16:
 				return R.drawable.ic_substance_meronym;
 			case 21:
-				return R.drawable.ic_entail;
+				return R.drawable.ic_entails;
 			case 22:
 				return R.drawable.ic_entailed;
 			case 23:
-				return R.drawable.ic_cause;
+				return R.drawable.ic_causes;
 			case 24:
 				return R.drawable.ic_caused;
 			case 30:
@@ -1798,17 +1798,17 @@ abstract public class BaseModule extends Module
 			case 81:
 				return R.drawable.ic_derivation;
 			case 91:
-				return R.drawable.ic_domain_category;
+				return R.drawable.ic_domain_topic;
 			case 92:
-				return R.drawable.ic_domain_member_category;
+				return R.drawable.ic_domain_member_topic;
 			case 93:
 				return R.drawable.ic_domain_region;
 			case 94:
 				return R.drawable.ic_domain_member_region;
 			case 95:
-				return R.drawable.ic_domain_usage;
+				return R.drawable.ic_exemplifies;
 			case 96:
-				return R.drawable.ic_domain_member_usage;
+				return R.drawable.ic_exemplified;
 			case 97:
 				return R.drawable.ic_domain;
 			case 98:

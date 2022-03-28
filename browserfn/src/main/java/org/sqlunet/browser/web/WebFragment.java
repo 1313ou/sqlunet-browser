@@ -64,7 +64,7 @@ public class WebFragment extends Fragment
 
 	static private final String SQLUNET_NS = "http://org.sqlunet";
 
-	static private class WebDocumentStringLoader implements DocumentStringLoader
+	private class WebDocumentStringLoader implements DocumentStringLoader
 	{
 		@NonNull
 		final Context context;
@@ -168,7 +168,7 @@ public class WebFragment extends Fragment
 				}
 
 				// stringify
-				return WebFragment.docsToString(this.data, this.xml, isSelector, fnDomDoc);
+				return docsToString(this.data, this.xml, isSelector, fnDomDoc);
 			}
 			catch (@NonNull final Exception e)
 			{
@@ -411,7 +411,7 @@ public class WebFragment extends Fragment
 	 * @param fnDomDoc   framenet document
 	 * @return string
 	 */
-	static private String docsToString(@SuppressWarnings("UnusedParameters") final String word,  //
+	private String docsToString(@SuppressWarnings("UnusedParameters") final String word,  //
 			final boolean xml,  //
 			final boolean isSelector,  //
 			@Nullable final Document fnDomDoc)
@@ -436,7 +436,7 @@ public class WebFragment extends Fragment
 			data = DomTransformer.docToXml(rootDomDoc);
 			if (BuildConfig.DEBUG)
 			{
-				LogUtils.writeLog(data, false, null);
+				LogUtils.writeLog(data, false, requireContext(),null);
 				final URL xsd = DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd");
 				assert xsd != null;
 				DomValidator.validateStrings(xsd, data);
@@ -495,8 +495,8 @@ public class WebFragment extends Fragment
 				final URL xsd = DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd");
 				assert xsd != null;
 				DomValidator.validateDocs(xsd, fnDomDoc);
-				LogUtils.writeLog(false, null, fnDomDoc);
-				LogUtils.writeLog(data, false, null);
+				LogUtils.writeLog(false, requireContext(),null, fnDomDoc);
+				LogUtils.writeLog(data, false, requireContext(),null);
 				Log.d(TAG, "output=\n" + data);
 			}
 		}

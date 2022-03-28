@@ -139,6 +139,12 @@ public abstract class BaseSettingsActivity extends AppCompatActivity implements 
 			startActivity(intent);
 			return true;
 		}
+		else if (itemId == R.id.action_logs)
+		{
+			final Intent intent = new Intent(this, LogsActivity.class);
+			startActivity(intent);
+			return true;
+		}
 		return super.onOptionsItemSelected(item);
 	}
 

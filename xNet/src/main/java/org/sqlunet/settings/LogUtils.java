@@ -4,7 +4,7 @@
 
 package org.sqlunet.settings;
 
-import android.os.Environment;
+import android.content.Context;
 import android.util.Log;
 
 import org.sqlunet.dom.DomTransformer;
@@ -32,13 +32,15 @@ public class LogUtils
 	 *
 	 * @param text     text to write
 	 * @param append   whether to append to file
+	 * @param context  context
 	 * @param fileName file name
 	 */
 	@Nullable
-	static public String writeLog(final CharSequence text, final boolean append, @Nullable final String fileName)
+	static public String writeLog(final CharSequence text, final boolean append, @NonNull Context context, @Nullable final String fileName)
 	{
-		final File storage = Environment.getDataDirectory();
+		final File storage = context.getCacheDir();
 		final File logFile = new File(storage, fileName != null ? fileName : "sqlunet.log");
+		// Log.d(TAG, "log " + logFile.getAbsolutePath());
 		try
 		{
 			//noinspection ResultOfMethodCallIgnored
@@ -46,7 +48,7 @@ public class LogUtils
 		}
 		catch (IOException e)
 		{
-			Log.e(TAG, "Cannot create file", e);
+			Log.e(TAG, "Cannot create file " + logFile, e);
 			return null;
 		}
 		try
@@ -70,11 +72,13 @@ public class LogUtils
 	 * Write long text to log file
 	 *
 	 * @param append    whether to append to file
+	 * @param context   context
 	 * @param fileName0 file name
+	 * @param docs      documents
 	 */
 	@Nullable
 	@SuppressWarnings("UnusedReturnValue")
-	static public String writeLog(@SuppressWarnings("SameParameterValue") final boolean append, @Nullable @SuppressWarnings("SameParameterValue") final String fileName0, @NonNull final Document... docs)
+	static public String writeLog(@SuppressWarnings("SameParameterValue") final boolean append, @NonNull Context context, @Nullable @SuppressWarnings("SameParameterValue") final String fileName0, @NonNull final Document... docs)
 	{
 		final String fileName = fileName0 != null ? fileName0 : "sqlunetx.log";
 		final StringBuilder sb = new StringBuilder();
@@ -86,6 +90,6 @@ public class LogUtils
 			}
 		}
 		final String data = sb.toString();
-		return writeLog(data, append, fileName);
+		return writeLog(data, append, context, fileName);
 	}
 }

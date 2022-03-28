@@ -68,7 +68,7 @@ public class WebFragment extends Fragment
 
 	static private final String SQLUNET_NS = "http://org.sqlunet";
 
-	static private class WebDocumentStringLoader implements DocumentStringLoader
+	private class WebDocumentStringLoader implements DocumentStringLoader
 	{
 		@NonNull
 		final Context context;
@@ -146,7 +146,7 @@ public class WebFragment extends Fragment
 									final Long xClassId = xPointer.getXClassId();
 									// final Long xMemberId = xpointer.getXMemberId();
 									final long wordId = xPointer.getWordId();
-									final Long synsetId = xPointer.getSynsetId();
+									final long synsetId = xPointer.getSynsetId();
 									if (xSources == null || xSources.contains("wn")) //
 									{
 										wnDomDoc = new WordNetImplementation().querySenseDoc(db, wordId, synsetId);
@@ -221,7 +221,7 @@ public class WebFragment extends Fragment
 				}
 
 				// stringify
-				return WebFragment.docsToString(this.data, this.xml, isSelector, wnDomDoc, vnDomDoc, pbDomDoc);
+				return docsToString(this.data, this.xml, isSelector, wnDomDoc, vnDomDoc, pbDomDoc);
 			}
 			catch (@NonNull final Exception e)
 			{
@@ -464,7 +464,7 @@ public class WebFragment extends Fragment
 	 * @param pbDomDoc   propbank document
 	 * @return string
 	 */
-	static private String docsToString(@SuppressWarnings("UnusedParameters") final String word,  //
+	private String docsToString(@SuppressWarnings("UnusedParameters") final String word,  //
 			final boolean xml,  //
 			final boolean isSelector,  //
 			@Nullable final Document wnDomDoc,  //
@@ -498,7 +498,7 @@ public class WebFragment extends Fragment
 			data = DomTransformer.docToXml(rootDomDoc);
 			if (BuildConfig.DEBUG)
 			{
-				LogUtils.writeLog(data, false, null);
+				LogUtils.writeLog(data, false, requireContext(),null);
 				final URL xsd = DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd");
 				assert xsd != null;
 				DomValidator.validateStrings(xsd, data);
@@ -577,8 +577,8 @@ public class WebFragment extends Fragment
 				final URL xsd = DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd");
 				assert xsd != null;
 				DomValidator.validateDocs(xsd, wnDomDoc, vnDomDoc, pbDomDoc);
-				LogUtils.writeLog(false, null, wnDomDoc, vnDomDoc, pbDomDoc);
-				LogUtils.writeLog(data, false, null);
+				LogUtils.writeLog(false, requireContext(),null, wnDomDoc, vnDomDoc, pbDomDoc);
+				LogUtils.writeLog(data, false, requireContext(),null);
 				Log.d(TAG, "output=\n" + data);
 			}
 		}

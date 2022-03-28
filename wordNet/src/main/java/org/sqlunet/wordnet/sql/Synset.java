@@ -163,7 +163,7 @@ class Synset extends BasicSynset
 	@NonNull
 	public String getPosName()
 	{
-		return Mapping.getPosName(this.domainId);
+		return Mapping.getDomainPosName(this.domainId);
 	}
 
 	/**

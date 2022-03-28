@@ -20,6 +20,7 @@ import com.bbou.rate.AppRate;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.browser.config.DiagnosticsActivity;
 import org.sqlunet.browser.config.DownloadActivity;
+import org.sqlunet.browser.config.LogsActivity;
 import org.sqlunet.browser.config.SettingsActivity;
 import org.sqlunet.browser.config.SetupActivity;
 import org.sqlunet.browser.config.SetupAsset;
@@ -259,6 +260,10 @@ public class MenuHandler
 		else if (itemId == R.id.action_diagnostics)
 		{
 			intent = new Intent(activity, DiagnosticsActivity.class);
+		}
+		else if (itemId == R.id.action_logs)
+		{
+			intent = new Intent(activity, LogsActivity.class);
 		}
 
 		// change data
