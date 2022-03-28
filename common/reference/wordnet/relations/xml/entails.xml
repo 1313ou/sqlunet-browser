@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <link
-	name="Entail"
-	id="entail"
+	name="Entails"
+	id="entails"
 	type="semantic"
 	v="true">
 
-	<img src="entail.png" />
+	<img src="entails.png" />
 
 	<description>
 		<span>Entailment.</span>
@@ -113,6 +113,6 @@
 		</example>
 	</examples>
 
-	<see tag="cause"></see>
+	<see tag="causes"></see>
 
 </link>

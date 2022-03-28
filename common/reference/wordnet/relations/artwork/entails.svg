@@ -2,7 +2,7 @@
 
 <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg"
 	xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.0" width="128" height="128" id="svg2"
-	inkscape:version="0.92.1 r15371" sodipodi:docname="cause.svg" inkscape:export-filename="/home/bbou/Desktop/stale.png" inkscape:export-xdpi="11.25" inkscape:export-ydpi="11.25">
+	inkscape:version="0.92.1 r15371" sodipodi:docname="entails.svg" inkscape:export-filename="/home/bbou/Desktop/stale.png" inkscape:export-xdpi="11.25" inkscape:export-ydpi="11.25">
 	<metadata id="metadata23">
 		<rdf:RDF>
 			<cc:Work rdf:about="">
@@ -12,8 +12,8 @@
 			</cc:Work>
 		</rdf:RDF>
 	</metadata>
-	<sodipodi:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-width="1036" inkscape:window-height="567"
-		id="namedview21" showgrid="false" inkscape:zoom="0.76367188" inkscape:cx="-201.0844" inkscape:cy="64" inkscape:window-x="830" inkscape:window-y="237" inkscape:window-maximized="0" inkscape:current-layer="svg2" />
+	<sodipodi:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-width="779" inkscape:window-height="548"
+		id="namedview21" showgrid="false" inkscape:zoom="2.5703125" inkscape:cx="64" inkscape:cy="64" inkscape:window-x="1106" inkscape:window-y="91" inkscape:window-maximized="0" inkscape:current-layer="svg2" />
 	<defs id="defs5">
 		<linearGradient id="linearGradient2816">
 			<stop style="stop-color:#f07836;stop-opacity:1;" offset="0" id="stop2818" />
@@ -29,15 +29,14 @@
 		<linearGradient inkscape:collect="always" xlink:href="#linearGradient2816" id="linearGradient3843" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.69631731,0,0,0.73642635,28.971376,23.90669)" x1="31.5" y1="63" x2="31.5" y2="12" />
 	</defs>
 	<g transform="translate(-0.03628565,-994.70626)" id="layer1" inkscape:label="Layer 1">
-		<path id="path1873-6" style="fill:#ffa500;fill-opacity:1;fill-rule:nonzero;stroke:#ff8c00;stroke-width:2.13904333;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+		<path id="path1873" style="fill:#ffa500;fill-opacity:1;fill-rule:nonzero;stroke:#ff8c00;stroke-width:2.13904333;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
 			d="m 126.12111,1058.7329 a 62.08483,62.45529 0 0 1 -124.1696487,0 62.08483,62.45529 0 1 1 124.1696487,0 z" inkscape:connector-curvature="0" />
 	</g>
-	<text xml:space="preserve"
-		style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12.80000019px;line-height:0%;font-family:'Arial Black';-inkscape-font-specification:'Arial Black, Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.06666672"
-		x="28.002094" y="91.450203" id="text2995" transform="scale(0.83030756,1.204373)"><tspan
-       sodipodi:role="line"
-       id="tspan3004"
-       x="28.002094"
-       y="91.450203"
-       style="font-size:120.43373108px;line-height:1.25;stroke-width:1.06666672">➡ </tspan></text>
+	<g aria-label="⇒" transform="matrix(0.76141768,0,0,1.3133396,-0.5288721,-4.012606e-6)"
+		style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.39640045px;line-height:0%;font-family:'Arial Black';-inkscape-font-specification:'Arial Black, Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.1997"
+		id="text2995">
+		<path
+			d="m 116.83397,54.140014 5.40928,-5.409279 -5.40928,-5.409279 H 29.997006 V 31.781661 h 75.297164 l -5.986268,-5.986269 10.457938,-10.45794 c 11.61262,11.452944 22.53411,22.84365 34.98716,33.998412 L 109.76584,82.124018 99.307902,71.666079 105.29417,65.67981 H 29.997006 V 54.140014 Z"
+			style="font-size:147.7093811px;line-height:1.25;stroke-width:1.1997" id="path32" inkscape:connector-curvature="0" sodipodi:nodetypes="ccccccccccccccc" />
+	</g>
 </svg>

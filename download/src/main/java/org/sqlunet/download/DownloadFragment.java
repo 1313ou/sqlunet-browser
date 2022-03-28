@@ -71,7 +71,7 @@ public class DownloadFragment extends BaseDownloadFragment
 	protected Boolean success;
 
 	/**
-	 * Cause
+	 * Causes
 	 */
 	@Nullable
 	protected String cause;

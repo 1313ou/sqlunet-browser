@@ -227,7 +227,7 @@
 	</xsl:template>
 
 	<!-- semantic -->
-	<xsl:template match="wn:hypernym|wn:hyponym|wn:instance_hypernym|wn:instance_hyponym|wn:part_meronym|wn:part_holonym|wn:substance_meronym|wn:substance_holonym|wn:member_meronym|wn:member_holonym|wn:entail|wn:cause|wn:similar|wn:attribute">
+	<xsl:template match="wn:hypernym|wn:hyponym|wn:instance_hypernym|wn:instance_hyponym|wn:part_meronym|wn:part_holonym|wn:substance_meronym|wn:substance_holonym|wn:member_meronym|wn:member_holonym|wn:entails|wn:cause|wn:similar|wn:attribute">
 		<xsl:call-template name="_relation">
 			<xsl:with-param name="type" select="name()" />
 			<xsl:with-param name="relationclass" select="'[sem]'" />
@@ -243,7 +243,7 @@
 	</xsl:template>
 
 	<!-- both -->
-	<xsl:template match="wn:also|wn:verb_group|wn:domain_category|wn:domain_member_category|wn:domain_region|wn:domain_member_region|wn:domain_usage|wn:domain_member_usage">
+	<xsl:template match="wn:also|wn:verb_group|wn:domain_topic|wn:domain_member_topic|wn:domain_region|wn:domain_member_region|wn:exemplifies|wn:is_exemplified_by">
 		<xsl:call-template name="_relation">
 			<xsl:with-param name="type" select="name()" />
 			<xsl:with-param name="relationclass" select="'[both]'" />

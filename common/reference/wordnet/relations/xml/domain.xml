@@ -21,20 +21,20 @@
 		<example>
 			<from>mitzvah</from>
 			<to>judaism</to>
-			<gloss>domain category</gloss>
-			<img src="domain.category.png" />
+			<gloss>domain topic</gloss>
+			<img src="domain.topic.png" />
 		</example>
 		<example>
 			<from>cell</from>
 			<to>biology</to>
-			<gloss>domain category</gloss>
-			<img src="domain.category.png" />
+			<gloss>domain topic</gloss>
+			<img src="domain.topic.png" />
 		</example>
 		<example>
 			<from>plant</from>
 			<to>botany</to>
-			<gloss>domain category</gloss>
-			<img src="domain.category.png" />
+			<gloss>domain topic</gloss>
+			<img src="domain.topic.png" />
 		</example>
 
 		<example>
@@ -77,20 +77,20 @@
 		<example>
 			<from>snafu</from>
 			<to>acronym</to>
-			<gloss>domain usage</gloss>
-			<img src="domain.usage.png" />
+			<gloss>exemplifies</gloss>
+			<img src="exemplifies.png" />
 		</example>
 		<example>
 			<from>neutralization</from>
 			<to>euphemism</to>
-			<gloss>domain usage</gloss>
-			<img src="domain.usage.png" />
+			<gloss>exemplifies</gloss>
+			<img src="exemplifies.png" />
 		</example>
 		<example>
 			<from>scrabble</from>
 			<to>trademark</to>
-			<gloss>domain usage</gloss>
-			<img src="domain.usage.png" />
+			<gloss>exemplifies</gloss>
+			<img src="exemplifies.png" />
 		</example>
 
 	</examples>

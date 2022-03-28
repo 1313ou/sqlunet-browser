@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <link
-	name="Cause"
-	id="cause"
+	name="Causes"
+	id="causes"
 	type="semantic"
 	v="true">
 
-	<img src="cause.png" />
+	<img src="causes.png" />
 
 	<description>
-		<span>Cause</span>
+		<span>Causes</span>
 	</description>
 
 	<logical>
@@ -68,7 +68,7 @@
 		</example>
 	</examples>
 
-	<see tag="entail"></see>
+	<see tag="entails"></see>
 
 </link>
 

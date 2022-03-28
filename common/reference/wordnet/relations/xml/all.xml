@@ -732,15 +732,15 @@
 
 
 	<link
-		name="Cause"
-		id="cause"
+		name="Causes"
+		id="causes"
 		type="semantic"
 		v="true">
 
-		<img src="cause.png" />
+		<img src="causes.png" />
 
 		<description>
-			<span>Cause</span>
+			<span>Causes</span>
 		</description>
 
 		<logical>
@@ -799,7 +799,7 @@
 			</example>
 		</examples>
 
-		<see tag="entail"></see>
+		<see tag="entails"></see>
 
 	</link>
 
@@ -878,12 +878,12 @@
 
 
 	<link
-		name="Entail"
-		id="entail"
+		name="Entails"
+		id="entails"
 		type="semantic"
 		v="true">
 
-		<img src="entail.png" />
+		<img src="entails.png" />
 
 		<description>
 			<span>Entailment.</span>
@@ -990,7 +990,7 @@
 			</example>
 		</examples>
 
-		<see tag="cause"></see>
+		<see tag="causes"></see>
 
 	</link>
 
@@ -1520,20 +1520,20 @@
 			<example>
 				<from>mitzvah</from>
 				<to>judaism</to>
-				<gloss>domain category</gloss>
-				<img src="domain.category.png" />
+				<gloss>domain topic</gloss>
+				<img src="domain.topic.png" />
 			</example>
 			<example>
 				<from>cell</from>
 				<to>biology</to>
-				<gloss>domain category</gloss>
-				<img src="domain.category.png" />
+				<gloss>domain topic</gloss>
+				<img src="domain.topic.png" />
 			</example>
 			<example>
 				<from>plant</from>
 				<to>botany</to>
-				<gloss>domain category</gloss>
-				<img src="domain.category.png" />
+				<gloss>domain topic</gloss>
+				<img src="domain.topic.png" />
 			</example>
 
 			<example>
@@ -1576,20 +1576,20 @@
 			<example>
 				<from>snafu</from>
 				<to>acronym</to>
-				<gloss>domain usage</gloss>
-				<img src="domain.usage.png" />
+				<gloss>exemplifies</gloss>
+				<img src="exemplifies.png" />
 			</example>
 			<example>
 				<from>neutralization</from>
 				<to>euphemism</to>
-				<gloss>domain usage</gloss>
-				<img src="domain.usage.png" />
+				<gloss>exemplifies</gloss>
+				<img src="exemplifies.png" />
 			</example>
 			<example>
 				<from>scrabble</from>
 				<to>trademark</to>
-				<gloss>domain usage</gloss>
-				<img src="domain.usage.png" />
+				<gloss>exemplifies</gloss>
+				<img src="exemplifies.png" />
 			</example>
 
 		</examples>
@@ -1618,50 +1618,50 @@
 			<example>
 				<from>cooking</from>
 				<to>marinate</to>
-				<gloss>domain member category</gloss>
-				<img src="domain.member.category.png" />
+				<gloss>domain member topic</gloss>
+				<img src="domain.member.topic.png" />
 			</example>
 			<example>
 				<from>cooking</from>
 				<to>reduce</to>
-				<gloss>domain member category</gloss>
-				<img src="domain.member.category.png" />
+				<gloss>domain member topic</gloss>
+				<img src="domain.member.topic.png" />
 			</example>
 			<example>
 				<from>cooking</from>
 				<to>bake</to>
-				<gloss>domain member category</gloss>
-				<img src="domain.member.category.png" />
+				<gloss>domain member topic</gloss>
+				<img src="domain.member.topic.png" />
 			</example>
 			<example>
 				<from>cooking</from>
 				<to>souse</to>
-				<gloss>domain member category</gloss>
-				<img src="domain.member.category.png" />
+				<gloss>domain member topic</gloss>
+				<img src="domain.member.topic.png" />
 			</example>
 			<example>
 				<from>music</from>
 				<to>sing</to>
-				<gloss>domain member category</gloss>
-				<img src="domain.member.category.png" />
+				<gloss>domain member topic</gloss>
+				<img src="domain.member.topic.png" />
 			</example>
 			<example>
 				<from>music</from>
 				<to>psalm</to>
-				<gloss>domain member category</gloss>
-				<img src="domain.member.category.png" />
+				<gloss>domain member topic</gloss>
+				<img src="domain.member.topic.png" />
 			</example>
 			<example>
 				<from>music</from>
 				<to>hymn</to>
-				<gloss>domain member category</gloss>
-				<img src="domain.member.category.png" />
+				<gloss>domain member topic</gloss>
+				<img src="domain.member.topic.png" />
 			</example>
 			<example>
 				<from>music</from>
 				<to>choir</to>
-				<gloss>domain member category</gloss>
-				<img src="domain.member.category.png" />
+				<gloss>domain member topic</gloss>
+				<img src="domain.member.topic.png" />
 			</example>
 
 			<example>
@@ -1686,20 +1686,20 @@
 			<example>
 				<from>portmanteau word</from>
 				<to>motel</to>
-				<gloss>domain member usage</gloss>
-				<img src="domain.member.usage.png" />
+				<gloss>is exemplified by</gloss>
+				<img src="exemplified.png" />
 			</example>
 			<example>
 				<from>plural</from>
 				<to>high jinx</to>
-				<gloss>domain member usage</gloss>
-				<img src="domain.member.usage.png" />
+				<gloss>is exemplified by</gloss>
+				<img src="exemplified.png" />
 			</example>
 			<example>
 				<from>idiom</from>
 				<to>like clockwork</to>
-				<gloss>domain member usage</gloss>
-				<img src="domain.member.usage.png" />
+				<gloss>is exemplified by</gloss>
+				<img src="exemplified.png" />
 			</example>
 
 		</examples>

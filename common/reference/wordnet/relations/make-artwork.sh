@@ -17,7 +17,7 @@ adj="similar attribute"
 adv="adjderived"
 deriv="derivation"
 misc="alsosee pertainym synonym"
-domain="domain domain.member domain.category domain.member.category domain.region domain.member.region domain.term domain.member.term exemplifies is_exemplified_by"
+domain="domain domain.member domain.topic domain.member.topic domain.region domain.member.region domain.term domain.member.term exemplifies is_exemplified_by"
 
 pos="pos pos.n pos.v pos.a pos.s pos.r"
 utils="focus category sense synonym synset members links item other ${pos}"

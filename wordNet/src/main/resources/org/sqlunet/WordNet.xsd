@@ -80,8 +80,10 @@
 			<xs:enumeration value='member meronym' />
 			<xs:enumeration value='substance holonym' />
 			<xs:enumeration value='substance meronym' />
-			<xs:enumeration value='entail' />
-			<xs:enumeration value='cause' />
+			<xs:enumeration value='entails' />
+			<xs:enumeration value='is entailed by' />
+			<xs:enumeration value='causes' />
+			<xs:enumeration value='is caused by' />
 			<xs:enumeration value='antonym' />
 			<xs:enumeration value='similar' />
 			<xs:enumeration value='also' />
@@ -90,14 +92,15 @@
 			<xs:enumeration value='participle' />
 			<xs:enumeration value='pertainym' />
 			<xs:enumeration value='derivation' />
-			<xs:enumeration value='domain category' />
-			<xs:enumeration value='domain member category' />
+			<xs:enumeration value='domain topic' />
+			<xs:enumeration value='domain member topic' />
 			<xs:enumeration value='domain region' />
 			<xs:enumeration value='domain member region' />
-			<xs:enumeration value='domain usage' />
-			<xs:enumeration value='domain member usage' />
+			<xs:enumeration value='exemplifies' />
+			<xs:enumeration value='is exemplified by' />
 			<xs:enumeration value='domain' />
 			<xs:enumeration value='member' />
+			<xs:enumeration value='other' />
 		</xs:restriction>
 	</xs:simpleType>
 
@@ -236,9 +239,13 @@
 
 	<xs:element name='meronym' type="semrelationType" />
 
-	<xs:element name='cause' type="semrelationType" />
+	<xs:element name='causes' type="semrelationType" />
 
-	<xs:element name='entail' type="semrelationType" />
+	<xs:element name='is_caused_by' type="semrelationType" />
+
+	<xs:element name='entails' type="semrelationType" />
+
+	<xs:element name='is_entailed_by' type="semrelationType" />
 
 	<xs:element name='antonym' type="lexrelationType" />
 
@@ -256,17 +263,17 @@
 
 	<xs:element name='derivation' type="lexrelationType" />
 
-	<xs:element name='domain_category' type="bothrelationType" />
+	<xs:element name='domain_topic' type="bothrelationType" />
 
-	<xs:element name='domain_member_category' type="bothrelationType" />
+	<xs:element name='domain_member_topic' type="bothrelationType" />
 
 	<xs:element name='domain_region' type="bothrelationType" />
 
 	<xs:element name='domain_member_region' type="bothrelationType" />
 
-	<xs:element name='domain_usage' type="bothrelationType" />
+	<xs:element name='exemplifies' type="bothrelationType" />
 
-	<xs:element name='domain_member_usage' type="bothrelationType" />
+	<xs:element name='is_exemplified_by' type="bothrelationType" />
 
 	<xs:element name='relations'>
 		<xs:complexType>
@@ -281,8 +288,10 @@
 				<xs:element minOccurs='0' ref='member_meronym' />
 				<xs:element minOccurs='0' ref='substance_holonym' />
 				<xs:element minOccurs='0' ref='substance_meronym' />
-				<xs:element minOccurs='0' ref='entail' />
-				<xs:element minOccurs='0' ref='cause' />
+				<xs:element minOccurs='0' ref='entails' />
+				<xs:element minOccurs='0' ref='is_entailed_by' />
+				<xs:element minOccurs='0' ref='causes' />
+				<xs:element minOccurs='0' ref='is_caused_by' />
 				<xs:element minOccurs='0' ref='antonym' />
 				<xs:element minOccurs='0' ref='similar' />
 				<xs:element minOccurs='0' ref='also' />
@@ -291,12 +300,12 @@
 				<xs:element minOccurs='0' ref='participle' />
 				<xs:element minOccurs='0' ref='pertainym' />
 				<xs:element minOccurs='0' ref='derivation' />
-				<xs:element minOccurs='0' ref='domain_category' />
-				<xs:element minOccurs='0' ref='domain_member_category' />
+				<xs:element minOccurs='0' ref='domain_topic' />
+				<xs:element minOccurs='0' ref='domain_member_topic' />
 				<xs:element minOccurs='0' ref='domain_region' />
 				<xs:element minOccurs='0' ref='domain_member_region' />
-				<xs:element minOccurs='0' ref='domain_usage' />
-				<xs:element minOccurs='0' ref='domain_member_usage' />
+				<xs:element minOccurs='0' ref='exemplifies' />
+				<xs:element minOccurs='0' ref='is_exemplified_by' />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
