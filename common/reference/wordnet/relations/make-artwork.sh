@@ -12,12 +12,12 @@ mkdir -p ${whereto}
 
 hierarchy="hypernym hyponym instance.hypernym instance.hyponym holonym meronym member.holonym member.meronym part.holonym part.meronym substance.holonym substance.meronym"
 lex="antonym"
-verb="cause caused entail entailed verb.group participle"
+verb="causes caused entails entailed verb.group participle"
 adj="similar attribute"
 adv="adjderived"
 deriv="derivation"
 misc="alsosee pertainym synonym"
-domain="domain domain.member domain.category domain.member.category domain.region domain.member.region domain.term domain.member.term domain.usage domain.member.usage"
+domain="domain domain.member domain.category domain.member.category domain.region domain.member.region domain.term domain.member.term exemplifies is_exemplified_by"
 
 pos="pos pos.n pos.v pos.a pos.s pos.r"
 utils="focus category sense synonym synset members links item other ${pos}"

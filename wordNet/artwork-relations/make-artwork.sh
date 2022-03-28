@@ -26,10 +26,10 @@ adjderived
 also
 antonym
 attribute
-cause
+causes
 caused
 derivation
-entail
+entails
 entailed
 holonym
 hypernym
@@ -58,16 +58,16 @@ verb_group
 "
 
 list_fore_dom="
-domain_category
-domain_member_category
-domain_member_region
-domain_member
-domain_member_term
-domain_member_usage
-domain_region
 domain
+domain_member
+domain_topic
+domain_member_topic
+domain_region
+domain_member_region
 domain_term
-domain_usage
+domain_member_term
+exemplifies
+exemplified
 "
 
 list_fore_pos="
