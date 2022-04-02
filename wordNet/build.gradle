@@ -3,7 +3,7 @@
  */
 
 plugins {
-    id 'org.sqlunet.plugin.querybuilder' version '1.0-SNAPSHOT'
+    id 'org.sqlunet.plugin.querybuilder' version '1.0.0'
     id 'com.android.library'
 }
 

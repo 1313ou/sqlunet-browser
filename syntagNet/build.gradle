@@ -2,7 +2,10 @@
  * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
-apply plugin: 'com.android.library'
+plugins {
+    id 'org.sqlunet.plugin.querybuilder' version '1.0.0'
+    id 'com.android.library'
+}
 
 android {
 
@@ -37,4 +40,43 @@ dependencies {
     implementation 'com.google.android.material:material:1.5.0'
 
     testImplementation 'junit:junit:4.13.2'
+}
+
+def protoSrcDir = new File(projectDir, "/src/proto")
+def generatedSrcDir = new File(buildDir, "generated/source/queries")
+
+android {
+
+    sourceSets {
+
+        main {
+            java.srcDirs += generatedSrcDir
+        }
+    }
+}
+
+querybuilder_args {
+
+    inDir = "${protoSrcDir}/syntagnet"
+    factory = "Factory.java"
+    variables = ["Names.properties", "NamesExtra.properties"]
+    instantiates = ["SqLiteDialect.java"]
+
+    outDir = "${generatedSrcDir}"
+    v = "V"
+    q = "Q"
+    qv = "QV"
+    qPackage = "org.sqlunet.syntagnet.provider"
+    instantiateDest = "org.sqlunet.syntagnet.sql"
+}
+
+task generateAll {
+    dependsOn('generateQV')
+            .dependsOn('generateQ')
+            .dependsOn('generateV')
+            .dependsOn('instantiate')
+}
+
+preBuild {
+    dependsOn('generateAll')
 }

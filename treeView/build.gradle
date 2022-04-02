@@ -2,7 +2,10 @@
  * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
-apply plugin: 'com.android.library'
+plugins {
+    id 'org.sqlunet.plugin.querybuilder' version '1.0.0'
+    id 'com.android.library'
+}
 
 android {
 
