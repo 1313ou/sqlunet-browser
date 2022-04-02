@@ -1,3 +1,11 @@
+pluginManagement {
+    repositories {
+        mavenLocal()
+        gradlePluginPortal()
+    }
+}
+rootProject.name = 'semantikos'
+
 include ':concurrency'
 include ':expandableListFragment', ':rate'
 include ':others'
