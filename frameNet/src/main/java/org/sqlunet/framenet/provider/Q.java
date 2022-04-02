@@ -285,7 +285,13 @@ public class Q
 
 	static public class LEXUNITS_REALIZATIONS
 	{
-		static public final String TABLE = "fn_lexunits INNER JOIN fn_ferealizations USING (luid) LEFT JOIN fn_valenceunits USING (ferid) LEFT JOIN fn_fetypes USING (fetypeid) LEFT JOIN fn_gftypes USING (gfid) LEFT JOIN fn_pttypes USING (ptid)";
+		static public final String TABLE = "fn_lexunits " +
+				"INNER JOIN fn_ferealizations USING (luid) " +
+				"LEFT JOIN fn_ferealizations_valenceunits USING (ferid) " +
+				"LEFT JOIN fn_valenceunits USING (vuid) " +
+				"LEFT JOIN fn_fetypes USING (fetypeid) " +
+				"LEFT JOIN fn_gftypes USING (gfid) " +
+				"LEFT JOIN fn_pttypes USING (ptid)";
 	}
 
 	static public class LEXUNITS_GROUPREALIZATIONS_BY_PATTERN

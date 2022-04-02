@@ -129,8 +129,8 @@ public class QueriesUnitTest
 
 			case VerbNetDispatcher.VNCLASSES_VNMEMBERS_X_BY_WORD:
 				groupBy = "vnwordid";
-				table = "vn_members_senses " + //
-						"LEFT JOIN vn_words USING (vnwordid) " + //
+				table = "words " +
+						"INNER JOIN vn_members_senses USING (wordid) " +
 						"LEFT JOIN vn_members_groupings USING (classid, vnwordid) " + //
 						"LEFT JOIN vn_groupings USING (groupingid) " + //
 						"LEFT JOIN synsets USING (synsetid)";

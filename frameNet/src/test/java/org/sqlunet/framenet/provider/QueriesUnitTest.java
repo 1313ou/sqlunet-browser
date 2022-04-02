@@ -200,7 +200,7 @@ public class QueriesUnitTest
 						"LEFT JOIN fn_frames AS " + FrameNetContract.FRAME + " USING (frameid) " + //
 						"LEFT JOIN fn_poses AS " + FrameNetContract.POS + " ON (" + FrameNetContract.LU + ".posid = " + FrameNetContract.POS + ".posid) " + //
 						"LEFT JOIN fn_fetypes AS " + FrameNetContract.FETYPE + " ON (incorporatedfetypeid = " + FrameNetContract.FETYPE + ".fetypeid) " + //
-						"LEFT JOIN fn_fes AS " + FrameNetContract.FE + " ON (incorporatedfeid = " + FrameNetContract.FE + ".feid)";
+						"LEFT JOIN fn_fes AS " + FrameNetContract.FE + " ON (" + FrameNetContract.FRAME + ".frameid = " + FrameNetContract.FE + ".frameid AND incorporatedfetypeid = " + FrameNetContract.FE + ".fetypeid)";
 				break;
 
 			case FrameNetDispatcher.SENTENCES_LAYERS_X:
@@ -357,7 +357,8 @@ public class QueriesUnitTest
 			case FrameNetDispatcher.LEXUNITS_REALIZATIONS:
 				table = "fn_lexunits " + //
 						"INNER JOIN fn_ferealizations USING (luid) " + //
-						"LEFT JOIN fn_valenceunits USING (ferid) " + //
+						"LEFT JOIN fn_ferealizations_valenceunits USING (ferid) " +
+						"LEFT JOIN fn_valenceunits USING (vuid) " +
 						"LEFT JOIN fn_fetypes USING (fetypeid) " + //
 						"LEFT JOIN fn_gftypes USING (gfid) " + //
 						"LEFT JOIN fn_pttypes USING (ptid)";
