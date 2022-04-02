@@ -614,6 +614,8 @@ public class QueriesUnitTest
 				//					return false;
 				//				}
 				projection = Q.SUGGEST_WORDS.PROJECTION;
+				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}",SearchManager.SUGGEST_COLUMN_TEXT_1);
+				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}",SearchManager.SUGGEST_COLUMN_QUERY);
 				selection = Q.SUGGEST_WORDS.SELECTION;
 				selectionArgs = new String[]{Q.SUGGEST_WORDS.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
 				table = Q.SUGGEST_WORDS.TABLE;
@@ -627,6 +629,8 @@ public class QueriesUnitTest
 				//					return false;
 				//				}
 				projection = Q.SUGGEST_FTS_WORDS.PROJECTION;
+				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}",SearchManager.SUGGEST_COLUMN_TEXT_1);
+				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}",SearchManager.SUGGEST_COLUMN_QUERY);
 				selection = Q.SUGGEST_FTS_WORDS.SELECTION;
 				selectionArgs = new String[]{Q.SUGGEST_FTS_WORDS.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
 				table = Q.SUGGEST_FTS_WORDS.TABLE;
@@ -636,6 +640,8 @@ public class QueriesUnitTest
 			case WordNetDispatcher.SUGGEST_FTS_DEFINITIONS:
 			{
 				projection = Q.SUGGEST_FTS_DEFINITIONS.PROJECTION;
+				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}",SearchManager.SUGGEST_COLUMN_TEXT_1);
+				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}",SearchManager.SUGGEST_COLUMN_QUERY);
 				selection = Q.SUGGEST_FTS_DEFINITIONS.SELECTION;
 				selectionArgs = new String[]{Q.SUGGEST_FTS_DEFINITIONS.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
 				table = Q.SUGGEST_FTS_DEFINITIONS.TABLE;
@@ -649,6 +655,8 @@ public class QueriesUnitTest
 				//					return false;
 				//				}
 				projection = Q.SUGGEST_FTS_SAMPLES.PROJECTION;
+				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}",SearchManager.SUGGEST_COLUMN_TEXT_1);
+				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}",SearchManager.SUGGEST_COLUMN_QUERY);
 				selection = Q.SUGGEST_FTS_SAMPLES.SELECTION;
 				selectionArgs = new String[]{Q.SUGGEST_FTS_SAMPLES.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
 				table = Q.SUGGEST_FTS_SAMPLES.TABLE;
