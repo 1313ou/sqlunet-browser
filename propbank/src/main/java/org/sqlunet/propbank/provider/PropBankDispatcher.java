@@ -73,7 +73,7 @@ public class PropBankDispatcher
 			// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query
 
 			case PBROLESET:
-				table = Q.PBROLESET.TABLE;
+				table = Q.PBROLESET1.TABLE;
 				if (selection != null)
 				{
 					selection += " AND ";
@@ -82,7 +82,7 @@ public class PropBankDispatcher
 				{
 					selection = "";
 				}
-				selection += Q.PBROLESET.SELECTION;
+				selection += Q.PBROLESET1.SELECTION;
 				break;
 
 			// J O I N S

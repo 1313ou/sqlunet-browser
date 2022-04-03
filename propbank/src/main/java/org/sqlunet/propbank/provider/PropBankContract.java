@@ -18,8 +18,8 @@ public class PropBankContract
 
 	static public final String EXAMPLE = "e";
 	static public final String REL = "r";
-	static public final String FUNC = "f";
-	static public final String ARG = "a";
+	static public final String FUNC = "fu";
+	static public final String ARG = "ar";
 	static public final String WORD = "w";
 	static public final String MEMBER = "m";
 
@@ -27,19 +27,19 @@ public class PropBankContract
 	{
 		static public final String TABLE = Q.PBWORDS.TABLE;
 		static public final String CONTENT_URI_TABLE = PbWords.TABLE;
-		static public final String PBWORDID = Q.PBWORDID;
-		static public final String WORDID = Q.WORDID;
-		static public final String WORD = Q.WORD;
+		static public final String PBWORDID = V.PBWORDID;
+		static public final String WORDID = V.WORDID;
+		static public final String WORD = V.WORD;
 	}
 
 	static public final class PbRoleSets
 	{
-		static public final String TABLE = Q.PBROLESET.TABLE;
+		static public final String TABLE = Q.PBROLESET1.TABLE;
 		static public final String CONTENT_URI_TABLE = PbRoleSets.TABLE;
-		static public final String ROLESETID = Q.ROLESETID;
-		static public final String ROLESETNAME = Q.ROLESETNAME;
-		static public final String ROLESETDESC = Q.ROLESETDESCR;
-		static public final String ROLESETHEAD = Q.ROLESETHEAD;
+		static public final String ROLESETID = V.ROLESETID;
+		static public final String ROLESETNAME = V.ROLESETNAME;
+		static public final String ROLESETDESC = V.ROLESETDESCR;
+		static public final String ROLESETHEAD = V.ROLESETHEAD;
 	}
 
 	static public final class PbRoleSets_X
@@ -47,36 +47,36 @@ public class PropBankContract
 		static public final String TABLE = "pbrolesets_x";
 		static public final String TABLE_BY_ROLESET = "pbrolesets_x_by_roleset";
 		static public final String CONTENT_URI_TABLE = PbRoleSets_X.TABLE_BY_ROLESET;
-		static public final String ROLESETID = Q.ROLESETID;
-		static public final String ROLESETNAME = Q.ROLESETNAME;
-		static public final String ROLESETDESC = Q.ROLESETDESCR;
-		static public final String ROLESETHEAD = Q.ROLESETHEAD;
-		static public final String WORD = Q.WORD;
-		static public final String ALIASES = Q.ALIASES;
+		static public final String ROLESETID = V.ROLESETID;
+		static public final String ROLESETNAME = V.ROLESETNAME;
+		static public final String ROLESETDESC = V.ROLESETDESCR;
+		static public final String ROLESETHEAD = V.ROLESETHEAD;
+		static public final String WORD = V.WORD;
+		static public final String ALIASES = V.ALIASES;
 	}
 
 	static public final class Words_PbRoleSets
 	{
 		static public final String TABLE = "words_pbrolesets";
 		static public final String CONTENT_URI_TABLE = Words_PbRoleSets.TABLE;
-		static public final String WORDID = Q.WORDID;
-		static public final String POS = Q.POS;
-		static public final String ROLESETID = Q.ROLESETID;
-		static public final String ROLESETNAME = Q.ROLESETNAME;
-		static public final String ROLESETDESC = Q.ROLESETDESCR;
-		static public final String ROLESETHEAD = Q.ROLESETHEAD;
+		static public final String WORDID = V.WORDID;
+		static public final String POS = V.POS;
+		static public final String ROLESETID = V.ROLESETID;
+		static public final String ROLESETNAME = V.ROLESETNAME;
+		static public final String ROLESETDESC = V.ROLESETDESCR;
+		static public final String ROLESETHEAD = V.ROLESETHEAD;
 	}
 
 	static public final class PbRoleSets_PbRoles
 	{
 		static public final String TABLE = "pbrolesets_pbroles";
 		static public final String CONTENT_URI_TABLE = PbRoleSets_PbRoles.TABLE;
-		static public final String ROLESETID = Q.ROLESETID;
-		static public final String ROLEID = Q.ROLEID;
-		static public final String ROLEDESCR = Q.ROLEDESCR;
-		static public final String NARG = Q.ARG;
-		static public final String FUNCNAME = Q.FUNC;
-		static public final String THETANAME = Q.THETA;
+		static public final String ROLESETID = V.ROLESETID;
+		static public final String ROLEID = V.ROLEID;
+		static public final String ROLEDESCR = V.ROLEDESCR;
+		static public final String NARG = V.ARG;
+		static public final String FUNCNAME = V.FUNC;
+		static public final String THETANAME = V.THETA;
 	}
 
 	static public final class PbRoleSets_PbExamples
@@ -84,30 +84,30 @@ public class PropBankContract
 		static public final String TABLE = "pbrolesets_pbexamples";
 		static public final String TABLE_BY_EXAMPLE = "pbrolesets_pbexamples_by_example";
 		static public final String CONTENT_URI_TABLE = PbRoleSets_PbExamples.TABLE_BY_EXAMPLE;
-		static public final String ROLESETID = Q.ROLESETID;
-		static public final String TEXT = Q.TEXT;
-		static public final String REL = Q.REL;
-		static public final String NARG = Q.ARG;
-		static public final String FUNCNAME = Q.FUNC;
-		static public final String ROLEDESCR = Q.ROLEDESCR;
-		static public final String THETANAME = Q.THETA;
-		static public final String ARG = Q.ARG;
-		static public final String ARGS = Q.ARGS;
-		static public final String EXAMPLEID = Q.EXAMPLEID;
-		static public final String ASPECTNAME = Q.ASPECT;
-		static public final String FORMNAME = Q.FORM;
-		static public final String TENSENAME = Q.TENSE;
-		static public final String VOICENAME = Q.VOICE;
-		static public final String PERSONNAME = Q.PERSON;
+		static public final String ROLESETID = V.ROLESETID;
+		static public final String TEXT = V.TEXT;
+		static public final String REL = V.REL;
+		static public final String NARG = V.ARG;
+		static public final String FUNCNAME = V.FUNC;
+		static public final String ROLEDESCR = V.ROLEDESCR;
+		static public final String THETANAME = V.THETA;
+		static public final String ARG = V.ARG;
+		static public final String ARGS = V.ARGS;
+		static public final String EXAMPLEID = V.EXAMPLEID;
+		static public final String ASPECTNAME = V.ASPECT;
+		static public final String FORMNAME = V.FORM;
+		static public final String TENSENAME = V.TENSE;
+		static public final String VOICENAME = V.VOICE;
+		static public final String PERSONNAME = V.PERSON;
 	}
 
 	static public final class Lookup_PbExamples
 	{
 		static public final String TABLE = "fts_pbexamples";
 		static public final String CONTENT_URI_TABLE = Lookup_PbExamples.TABLE;
-		static public final String EXAMPLEID = Q.EXAMPLEID;
-		static public final String TEXT = Q.TEXT;
-		static public final String ROLESETID = Q.ROLESETID;
+		static public final String EXAMPLEID = V.EXAMPLEID;
+		static public final String TEXT = V.TEXT;
+		static public final String ROLESETID = V.ROLESETID;
 	}
 
 	static public final class Lookup_PbExamples_X
@@ -115,28 +115,28 @@ public class PropBankContract
 		static public final String TABLE = "fts_pbexamples_x";
 		static public final String TABLE_BY_EXAMPLE = "fts_pbexamples_x_by_examples";
 		static public final String CONTENT_URI_TABLE = Lookup_PbExamples_X.TABLE_BY_EXAMPLE;
-		static public final String EXAMPLEID = Q.EXAMPLEID;
-		static public final String TEXT = Q.TEXT;
-		static public final String ROLESETID = Q.ROLESETID;
-		static public final String ROLESET = Q.ROLESETNAME;
-		static public final String ROLESETS = Q.ROLESETS;
+		static public final String EXAMPLEID = V.EXAMPLEID;
+		static public final String TEXT = V.TEXT;
+		static public final String ROLESETID = V.ROLESETID;
+		static public final String ROLESET = V.ROLESETNAME;
+		static public final String ROLESETS = V.ROLESETS;
 	}
 
 	static public final class Suggest_PbWords
 	{
 		static final String SEARCH_WORD_PATH = "suggest_pbword";
 		static public final String TABLE = Suggest_PbWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
-		static public final String PBWORDID = Q.PBWORDID;
-		static public final String WORDID = Q.WORDID;
-		static public final String WORD = Q.WORD;
+		static public final String PBWORDID = V.PBWORDID;
+		static public final String WORDID = V.WORDID;
+		static public final String WORD = V.WORD;
 	}
 
 	static public final class Suggest_FTS_PbWords
 	{
 		static final String SEARCH_WORD_PATH = "suggest_fts_pbword";
 		static public final String TABLE = Suggest_FTS_PbWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
-		static public final String PBWORDID = Q.PBWORDID;
-		static public final String WORDID = Q.WORDID;
-		static public final String WORD = Q.WORD;
+		static public final String PBWORDID = V.PBWORDID;
+		static public final String WORDID = V.WORDID;
+		static public final String WORD = V.WORD;
 	}
 }

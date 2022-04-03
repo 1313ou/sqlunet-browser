@@ -51,6 +51,10 @@ android {
         main {
             java.srcDirs += generatedSrcDir
         }
+
+        test {
+            java.srcDirs += generatedSrcDir
+        }
     }
 }
 
