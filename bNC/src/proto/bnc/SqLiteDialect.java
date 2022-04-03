@@ -2,7 +2,7 @@
  * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
-package org.sqlunet.bnc;
+package org.sqlunet.bnc.sql;
 
 class SqLiteDialect
 {
@@ -16,7 +16,7 @@ class SqLiteDialect
 			"${spwrs.table}.${bncs.freq2},${spwrs.table}.${bncs.range2},${spwrs.table}.${bncs.disp2}," + //
 			"${bncs.wordid} " + //
 			"FROM ${wnwords.table} " + //
-			"LEFT JOIN ${bncs.table} USING (wnwords.wordid) " + //
+			"LEFT JOIN ${bncs.table} USING (${wnwords.wordid}) " + //
 			"LEFT JOIN ${spwrs.table} USING (${wnwords.wordid},${wnposes.posid}) " + //
 			"LEFT JOIN ${convtasks.table} USING (${wnwords.wordid},${wnposes.posid}) " + //
 			"LEFT JOIN ${imaginfs.table} USING (${wnwords.wordid},${wnposes.posid}) " + //
