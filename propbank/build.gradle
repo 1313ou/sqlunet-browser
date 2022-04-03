@@ -30,8 +30,8 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':treeView')
     implementation project(path: ':xNet')
+    implementation project(path: ':treeView')
 
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
@@ -39,6 +39,17 @@ dependencies {
     implementation 'com.google.android.material:material:1.5.0'
 
     testImplementation 'junit:junit:4.13.2'
+}
+
+task dumpSourceSets() {
+    doLast {
+        android.sourceSets.each { srcSet ->
+            println "[" + srcSet.name + "]"
+            print "-->Source directories: " + srcSet.java.srcDirs + "\n"
+            print "-->Resource directories: " + srcSet.resources.srcDirs + "\n"
+            println ""
+        }
+    }
 }
 
 def protoSrcDir = new File(projectDir, "/src/proto")
