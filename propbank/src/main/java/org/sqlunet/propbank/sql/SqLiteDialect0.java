@@ -7,7 +7,7 @@ package org.sqlunet.propbank.sql;
 /**
  * SQL dialect for PropBank
  */
-class SqLiteDialect
+class SqLiteDialect0
 {
 	// ROLE SETS
 	// query for role set from role set id
@@ -44,7 +44,7 @@ class SqLiteDialect
 	// EXAMPLES
 	// query for examples rel(n~arg|n~arg|..)
 	static final String PropBankExamplesQueryFromRoleSetId = //
-			"SELECT exampleid,text,rel,GROUP_CONCAT(narg||'~'||" + //
+			"SELECT exampleid,text,rel,GROUP_CONCAT(nargid||'~'||" + //
 					"(CASE WHEN func IS NULL THEN '*' ELSE func END)||'~'||" + //
 					"roledescr||'~'||" + //
 					"(CASE WHEN theta IS NULL THEN '*' ELSE theta END)||'~'||" + //
@@ -60,9 +60,9 @@ class SqLiteDialect
 					"LEFT JOIN pb_tenses USING (tense) " + //
 					"LEFT JOIN pb_voices USING (voice) " + //
 					"LEFT JOIN pb_persons USING (person) " + //
-					"LEFT JOIN pb_roles USING (rolesetid,narg) " + //
+					"LEFT JOIN pb_roles USING (rolesetid,nargid) " + //
 					"LEFT JOIN pb_thetas USING (theta) " + //
 					"WHERE rolesetid = ? " + //
 					"GROUP BY e.exampleid " + //
-					"ORDER BY e.exampleid,narg;";
+					"ORDER BY e.exampleid,nargid;";
 }

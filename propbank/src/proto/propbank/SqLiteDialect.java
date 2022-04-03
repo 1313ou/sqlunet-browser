@@ -2,7 +2,7 @@
  * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
-package org.sqlunet.pb;
+package org.sqlunet.propbank.sql;
 
 /**
  * SQL dialect for PropBank
@@ -44,7 +44,7 @@ class SqLiteDialect
 	// EXAMPLES
 	// query for examples rel(n~arg|n~arg|..)
 	static final String PropBankExamplesQueryFromRoleSetId = //
-			"SELECT ${examples.exampleid},${examples.text},${rels.rel},GROUP_CONCAT(${args.arg}||'~'||" + //
+			"SELECT ${examples.exampleid},${examples.text},${rels.rel},GROUP_CONCAT(${args.nargid}||'~'||" + //
 					"(CASE WHEN ${funcs.func} IS NULL THEN '*' ELSE ${funcs.func} END)||'~'||" + //
 					"${roles.roledescr}||'~'||" + //
 					"(CASE WHEN ${thetas.theta} IS NULL THEN '*' ELSE ${thetas.theta} END)||'~'||" + //
@@ -60,9 +60,9 @@ class SqLiteDialect
 					"LEFT JOIN ${tenses.table} USING (${tenses.tense}) " + //
 					"LEFT JOIN ${voices.table} USING (${voices.voice}) " + //
 					"LEFT JOIN ${persons.table} USING (${persons.person}) " + //
-					"LEFT JOIN ${roles.table} USING (${rolesets.rolesetid},${args.argid}) " + //
+					"LEFT JOIN ${roles.table} USING (${rolesets.rolesetid},${args.nargid}) " + //
 					"LEFT JOIN ${thetas.table} USING (${thetas.theta}) " + //
 					"WHERE ${rolesets.rolesetid} = ? " + //
 					"GROUP BY ${as_examples}.${examples.exampleid} " + //
-					"ORDER BY ${as_examples}.${examples.exampleid},${args.arg};";
+					"ORDER BY ${as_examples}.${examples.exampleid},${args.nargid};";
 }
