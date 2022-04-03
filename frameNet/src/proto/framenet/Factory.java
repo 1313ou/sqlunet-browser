@@ -56,6 +56,10 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 				table = "${sentences.table}";
 				break;
 
+			case WORDS:
+				table = "${words.table}";
+				break;
+
 			// I T E M
 			// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
 			// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query
@@ -89,13 +93,13 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 								"SELECT %s AS %s, %s AS %s, 0 AS %s, 0 AS %s, %s AS %s, %s AS %s, %s AS %s, %s AS %s, 1 AS %s " + // 8
 								"FROM %s " + // 9
 								")", //
-						"${words.fnwordid}", "10000", "${_id}", "${lexunits.luid}", "${fnid}", "${words.fnwordid}", "${words.fnwordid}", "${words.wordid}", "${words.wordid}", "${words.word}", "${words.word}", "${lexunits.lexunit}", "${frames.frame}", "${frames.frame}", "${frames.frame}", "${frames.frameid}", "${frames.frameid}", "${isframe}", // 2
+						"${words.fnwordid}", "10000", "${_id}", "${lexunits.luid}", "${fnid}", "${words.fnwordid}", "${words.fnwordid}", "${words.wordid}", "${words.wordid}", "${words.word}", "${words.word}", "${lexunits.lexunit}", "${name}", "${frames.frame}", "${frames.frame}", "${frames.frameid}", "${frames.frameid}", "${isframe}", // 2
 						"${words.table}", // 3
 						"${lexemes.table}", "${words.fnwordid}", // 4
 						"${lexunits.table}", "${as_lexunits}", "${lexunits.luid}", // 5
 						"${frames.table}", "${as_frames}", "${frames.frameid}", // 6
 						// 7
-						"${frames.frameid}", "${_id}", "${frames.frameid}", "${fnid}", "${words.fnwordid}", "${words.wordid}", "${frames.frame}", "${words.word}", "${frames.frame}", "${frames.frame}", "${name}", "${frames.frame}", "${frames.frameid}", "${frames.frameid}", "${isframe}", // 8
+						"${frames.frameid}", "${_id}", "${frames.frameid}", "${fnid}", "${words.fnwordid}", "${words.wordid}", "${frames.frame}", "${words.word}", "${frames.frame}", "${name}", "${frames.frame}", "${frames.frame}", "${frames.frameid}", "${frames.frameid}", "${isframe}", // 8
 						"${frames.table}"); // 9
 				break;
 
@@ -125,12 +129,12 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 								"LEFT JOIN %s AS %s USING (%s) " + //
 								"LEFT JOIN %s AS %s ON (%s.%s = %s.%s) " + //
 								"LEFT JOIN %s AS %s ON (%s = %s.%s) " + //
-								"LEFT JOIN %s AS %s ON (%s = %s.%s)", //
+								"LEFT JOIN %s AS %s ON (%s.%s = %s.%s AND %s = %s.%s)", //
 						"${lexunits.table}", "${as_lexunits}", //
 						"${frames.table}", "${as_frames}", "${frames.frameid}", //
 						"${poses.table}", "${as_poses}", "${as_lexunits}", "${poses.posid}", "${as_poses}", "${poses.posid}", //
 						"${fetypes.table}", "${as_fetypes}", "${lexunits.incorporatedfetypeid}", "${as_fetypes}", "${fetypes.fetypeid}", //
-						"${fes.table}", "${as_fes}", "${lexunits.incorporatedfeid}", "${as_fes}", "${fes.feid}");
+						"${fes.table}", "${as_fes}", "${as_frames}", "${frames.frameid}", "${as_fes}", "${frames.frameid}", "${lexunits.incorporatedfetypeid}", "${as_fes}", "${fes.fetypeid}");
 				groupBy = "${lexunits.luid}";
 				break;
 
@@ -391,18 +395,20 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case LEXUNITS_REALIZATIONS:
-				table = String.format("%s " + //
-								"INNER JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s)", //
-						"${lexunits.table}", //
-						"${ferealizations.table}", "${lexunits.luid}", //
-						"${valenceunits.table}", "${ferealizations.ferid}", //
-						"${fetypes.table}", "${fetypes.fetypeid}", //
-						"${gftypes.table}", "${gftypes.gfid}", //
-						"${pttypes.table}", "${pttypes.ptid}");
+				table = String.format("%s " + // 1
+								"INNER JOIN %s USING (%s) " + // 2
+								"LEFT JOIN %s USING (%s) " + // 3
+								"LEFT JOIN %s USING (%s) " + // 4
+								"LEFT JOIN %s USING (%s) " + // 5
+								"LEFT JOIN %s USING (%s) " + // 6
+								"LEFT JOIN %s USING (%s)", // 7
+						"${lexunits.table}", // 1
+						"${ferealizations.table}", "${lexunits.luid}", // 2
+						"${ferealizations_valenceunits.table}", "${ferealizations.ferid}", // 3
+						"${valenceunits.table}", "${valenceunits.vuid}", // 4
+						"${fetypes.table}", "${fetypes.fetypeid}", // 5
+						"${gftypes.table}", "${gftypes.gfid}", // 6
+						"${pttypes.table}", "${pttypes.ptid}"); // 7
 				break;
 
 			case LEXUNITS_GROUPREALIZATIONS_BY_PATTERN:
@@ -414,20 +420,20 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 								"INNER JOIN %s USING (%s) " + // 2
 								"LEFT JOIN %s USING (%s) " + // 3
 								"LEFT JOIN %s USING (%s) " + // 4
-								"INNER JOIN %s USING (%s,%s) " + // 4 bis, TODO check
-								"INNER JOIN %s USING (%s) " + // 5
+								//"LEFT JOIN %s USING (%s,%s) " + // 5
 								"LEFT JOIN %s USING (%s) " + // 6
 								"LEFT JOIN %s USING (%s) " + // 7
-								"LEFT JOIN %s USING (%s)", // 8
+								"LEFT JOIN %s USING (%s) " + // 8
+								"LEFT JOIN %s USING (%s)", // 9
 						"${lexunits.table}", // 1
 						"${fegrouprealizations.table}", "${lexunits.luid}", // 2
 						"${grouppatterns.table}", "${fegrouprealizations.fegrid}", // 3
 						"${grouppatterns_patterns.table}", "${grouppatterns.patternid}", // 4
-						"${ferealizations_valenceunits.table}","${ferealizations.ferid}","${valenceunits.vuid}", // 4 bis, TODO check
-						"${valenceunits.table}", "${valenceunits.vuid}", // 5
-						"${fetypes.table}", "${fetypes.fetypeid}", // 6
-						"${gftypes.table}", "${gftypes.gfid}", // 7
-						"${pttypes.table}", "${pttypes.ptid}"); // 8
+						//"${ferealizations_valenceunits.table}","${ferealizations.ferid}","${valenceunits.vuid}", // 5
+						"${valenceunits.table}", "${valenceunits.vuid}", // 6
+						"${fetypes.table}", "${fetypes.fetypeid}", // 7
+						"${gftypes.table}", "${gftypes.gfid}", // 8
+						"${pttypes.table}", "${pttypes.ptid}"); // 9
 				break;
 
 			case PATTERNS_SENTENCES:
@@ -479,7 +485,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 			{
 				table = "${words.table}";
 				projection = new String[]{String.format("%s AS _id", "${words.fnwordid}"), //
-						String.format("%s AS %s", "${words.word}", "#{suggest_text_1}}"), //
+						String.format("%s AS %s", "${words.word}", "#{suggest_text_1}"), //
 						String.format("%s AS %s", "${words.word}", "#{suggest_query}")};
 				selection = String.format("%s LIKE ? || '%%'", "${words.word}");
 				selectionArgs = new String[]{String.format("%s", last)};
@@ -500,13 +506,17 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 			default:
 				return null;
 		}
-		return new String[]{ //
-				quote(table), //
-				projection == null ? null : "{" + Arrays.stream(projection).map(Factory::quote).collect(Collectors.joining(",")) + "}", //
-				quote(selection), //
-				selectionArgs == null ? null : "{" + Arrays.stream(selectionArgs).map(Factory::quote).collect(Collectors.joining(",")) + "}", //
-				quote(groupBy), //
-				quote(sortOrder)};
+		return new String[]
+
+				{ //
+						quote(table), //
+						projection == null ? null : "{" + Arrays.stream(projection).map(Factory::quote).collect(Collectors.joining(",")) + "}", //
+						quote(selection), //
+						selectionArgs == null ? null : "{" + Arrays.stream(selectionArgs).map(Factory::quote).collect(Collectors.joining(",")) + "}", //
+						quote(groupBy), //
+						quote(sortOrder)}
+
+				;
 	}
 
 	@Override
@@ -517,7 +527,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 
 	private enum Key
 	{
-		LEXUNITS, FRAMES, ANNOSETS, SENTENCES, //
+		LEXUNITS, FRAMES, ANNOSETS, SENTENCES, WORDS,//
 		LEXUNIT1, FRAME1, SENTENCE1, ANNOSET1, //
 		LEXUNITS_OR_FRAMES, //
 		FRAMES_X_BY_FRAME, FRAMES_RELATED, //

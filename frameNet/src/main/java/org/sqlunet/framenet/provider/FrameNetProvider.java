@@ -15,7 +15,7 @@ import android.util.Log;
 
 import org.sqlunet.framenet.provider.FrameNetContract.AnnoSets;
 import org.sqlunet.framenet.provider.FrameNetContract.AnnoSets_Layers_X;
-import org.sqlunet.framenet.provider.FrameNetContract.FnWords;
+import org.sqlunet.framenet.provider.FrameNetContract.Words;
 import org.sqlunet.framenet.provider.FrameNetContract.Frames;
 import org.sqlunet.framenet.provider.FrameNetContract.Frames_FEs;
 import org.sqlunet.framenet.provider.FrameNetContract.Frames_Related;
@@ -211,7 +211,7 @@ public class FrameNetProvider extends BaseProvider
 
 			// L O O K U P
 			case FrameNetDispatcher.LOOKUP_FTS_WORDS:
-				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + FnWords.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words.TABLE;
 			case FrameNetDispatcher.LOOKUP_FTS_SENTENCES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_FnSentences.TABLE;
 			case FrameNetDispatcher.LOOKUP_FTS_SENTENCES_X:
@@ -221,9 +221,9 @@ public class FrameNetProvider extends BaseProvider
 
 			// S U G G E S T
 			case FrameNetDispatcher.SUGGEST_WORDS:
-				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + FnWords.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words.TABLE;
 			case FrameNetDispatcher.SUGGEST_FTS_WORDS:
-				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + FnWords.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words.TABLE;
 
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");

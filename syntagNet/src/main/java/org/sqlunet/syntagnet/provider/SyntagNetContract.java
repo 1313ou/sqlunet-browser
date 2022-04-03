@@ -31,25 +31,25 @@ public class SyntagNetContract
 	{
 		static public final String TABLE = Q.COLLOCATIONS.TABLE;
 		static public final String CONTENT_URI_TABLE = SnCollocations.TABLE;
-		static public final String COLLOCATIONID = Q.SYNTAGMID;
-		static public final String WORD1ID = Q.WORD1ID;
-		static public final String WORD2ID = Q.WORD2ID;
-		static public final String SYNSET1ID = Q.SYNSET1ID;
-		static public final String SYNSET2ID = Q.SYNSET2ID;
-		static public final String WORD = Q.WORD;
+		static public final String COLLOCATIONID = V.SYNTAGMID;
+		static public final String WORD1ID = V.WORD1ID;
+		static public final String WORD2ID = V.WORD2ID;
+		static public final String SYNSET1ID = V.SYNSET1ID;
+		static public final String SYNSET2ID = V.SYNSET2ID;
+		static public final String WORD = V.WORD;
 	}
 
 	static public final class SnCollocations_X
 	{
 		static public final String TABLE = "syntagms_x";
 		static public final String CONTENT_URI_TABLE = SnCollocations_X.TABLE;
-		static public final String COLLOCATIONID = Q.SYNTAGMID;
-		static public final String WORD1ID = Q.WORD1ID;
-		static public final String WORD2ID = Q.WORD2ID;
-		static public final String SYNSET1ID = Q.SYNSET1ID;
-		static public final String SYNSET2ID = Q.SYNSET2ID;
-		static public final String WORD = Q.WORD;
-		static public final String POS = Q.POSID;
-		static public final String DEFINITION = Q.DEFINITION;
+		static public final String COLLOCATIONID = V.SYNTAGMID;
+		static public final String WORD1ID = V.WORD1ID;
+		static public final String WORD2ID = V.WORD2ID;
+		static public final String SYNSET1ID = V.SYNSET1ID;
+		static public final String SYNSET2ID = V.SYNSET2ID;
+		static public final String WORD = V.WORD;
+		static public final String POS = V.POSID;
+		static public final String DEFINITION = V.DEFINITION;
 	}
 }

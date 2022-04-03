@@ -99,7 +99,7 @@ public class FrameNetDispatcher
 			// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query
 
 			case FrameNetDispatcher.LEXUNIT:
-				table = Q.LEXUNITS.TABLE;
+				table = Q.LEXUNIT1.TABLE;
 				if (selection != null)
 				{
 					selection += " AND ";
@@ -108,11 +108,11 @@ public class FrameNetDispatcher
 				{
 					selection = "";
 				}
-				selection += Q.LUID + " = " + uriLast;
+				selection += V.LUID + " = " + uriLast;
 				break;
 
 			case FrameNetDispatcher.FRAME:
-				table = Q.FRAMES.TABLE;
+				table = Q.FRAME1.TABLE;
 				if (selection != null)
 				{
 					selection += " AND ";
@@ -121,11 +121,11 @@ public class FrameNetDispatcher
 				{
 					selection = "";
 				}
-				selection += Q.FRAMEID + " = " + uriLast;
+				selection += V.FRAMEID + " = " + uriLast;
 				break;
 
 			case FrameNetDispatcher.SENTENCE:
-				table = Q.SENTENCE.TABLE;
+				table = Q.SENTENCE1.TABLE;
 				if (selection != null)
 				{
 					selection += " AND ";
@@ -134,11 +134,11 @@ public class FrameNetDispatcher
 				{
 					selection = "";
 				}
-				selection += Q.SENTENCEID + " = " + uriLast;
+				selection += V.SENTENCEID + " = " + uriLast;
 				break;
 
 			case FrameNetDispatcher.ANNOSET:
-				table = Q.ANNOSET.TABLE;
+				table = Q.ANNOSET1.TABLE;
 				if (selection != null)
 				{
 					selection += " AND ";
@@ -147,7 +147,7 @@ public class FrameNetDispatcher
 				{
 					selection = "";
 				}
-				selection += Q.ANNOSETID + " = " + uriLast;
+				selection += V.ANNOSETID + " = " + uriLast;
 				break;
 
 			// J O I N S
@@ -158,7 +158,7 @@ public class FrameNetDispatcher
 
 			case FrameNetDispatcher.FRAMES_X_BY_FRAME:
 				table = Q.FRAMES_X_BY_FRAME.TABLE;
-				groupBy = Q.FRAMEID;
+				groupBy = V.FRAMEID;
 				break;
 
 			case FrameNetDispatcher.FRAMES_RELATED:
@@ -167,7 +167,7 @@ public class FrameNetDispatcher
 
 			case FrameNetDispatcher.LEXUNITS_X_BY_LEXUNIT:
 				table = Q.LEXUNITS_X_BY_LEXUNIT.TABLE;
-				groupBy = Q.LUID;
+				groupBy = V.LUID;
 				break;
 
 			case FrameNetDispatcher.SENTENCES_LAYERS_X:
@@ -192,7 +192,7 @@ public class FrameNetDispatcher
 
 			case FrameNetDispatcher.FRAMES_FES_BY_FE:
 				table = Q.FRAMES_FES_BY_FE.TABLE;
-				groupBy = Q.FEID;
+				groupBy = V.FEID;
 				break;
 
 			case FrameNetDispatcher.FRAMES_FES:
@@ -201,7 +201,7 @@ public class FrameNetDispatcher
 
 			case FrameNetDispatcher.LEXUNITS_SENTENCES_BY_SENTENCE:
 				table = Q.LEXUNITS_SENTENCES_BY_SENTENCE.TABLE;
-				groupBy = Q.AS_SENTENCES + '.' + Q.SENTENCEID;
+				groupBy = V.AS_SENTENCES + '.' + V.SENTENCEID;
 				break;
 
 			case FrameNetDispatcher.LEXUNITS_SENTENCES:
@@ -210,7 +210,7 @@ public class FrameNetDispatcher
 
 			case FrameNetDispatcher.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE:
 				table = Q.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE.TABLE;
-				groupBy = Q.AS_SENTENCES + '.' + Q.SENTENCEID;
+				groupBy = V.AS_SENTENCES + '.' + V.SENTENCEID;
 				break;
 
 			case FrameNetDispatcher.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS:
@@ -227,7 +227,7 @@ public class FrameNetDispatcher
 
 			case FrameNetDispatcher.LEXUNITS_REALIZATIONS_BY_REALIZATION:
 				table = Q.LEXUNITS_REALIZATIONS_BY_REALIZATION.TABLE;
-				groupBy = Q.FERID;
+				groupBy = V.FERID;
 				break;
 
 			case FrameNetDispatcher.LEXUNITS_REALIZATIONS:
@@ -236,7 +236,7 @@ public class FrameNetDispatcher
 
 			case FrameNetDispatcher.LEXUNITS_GROUPREALIZATIONS_BY_PATTERN:
 				table = Q.LEXUNITS_GROUPREALIZATIONS_BY_PATTERN.TABLE;
-				groupBy = Q.PATTERNID;
+				groupBy = V.PATTERNID;
 				break;
 
 			case FrameNetDispatcher.LEXUNITS_GROUPREALIZATIONS:
@@ -274,7 +274,7 @@ public class FrameNetDispatcher
 
 			case FrameNetDispatcher.LOOKUP_FTS_SENTENCES_X_BY_SENTENCE:
 				table = Q.LOOKUP_FTS_SENTENCES_X_BY_SENTENCE.TABLE;
-				groupBy = Q.SENTENCEID;
+				groupBy = V.SENTENCEID;
 				break;
 
 			case FrameNetDispatcher.LOOKUP_FTS_SENTENCES_X:
