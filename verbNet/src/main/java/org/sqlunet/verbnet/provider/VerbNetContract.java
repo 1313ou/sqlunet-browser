@@ -17,85 +17,85 @@ public class VerbNetContract
 	{
 		static public final String TABLE = Q.WORDS.TABLE;
 		static public final String CONTENT_URI_TABLE = VnWords.TABLE;
-		static public final String VNWORDID = Q.VNWORDID;
-		static public final String WORDID = Q.WORDID;
-		static public final String WORD = Q.WORD;
+		static public final String VNWORDID = V.VNWORDID;
+		static public final String WORDID = V.WORDID;
+		static public final String WORD = V.WORD;
 	}
 
 	static public final class VnClasses
 	{
 		static public final String TABLE = Q.VNCLASSES.TABLE;
 		static public final String CONTENT_URI_TABLE = VnClasses.TABLE;
-		static public final String WORDID = Q.WORDID;
-		static public final String POS = Q.POSID;
-		static public final String CLASSID = Q.CLASSID;
-		static public final String CLASS = Q.CLASS;
-		static public final String CLASSTAG = Q.CLASSTAG;
+		static public final String WORDID = V.WORDID;
+		static public final String POS = V.POSID;
+		static public final String CLASSID = V.CLASSID;
+		static public final String CLASS = V.CLASS;
+		static public final String CLASSTAG = V.CLASSTAG;
 	}
 
 	static public final class Words_VnClasses
 	{
 		static public final String TABLE = "words_vnclasses";
 		static public final String CONTENT_URI_TABLE = Words_VnClasses.TABLE;
-		static public final String WORDID = Q.WORDID;
-		static public final String SYNSETID = Q.SYNSETID;
-		static public final String CLASSID = Q.CLASSID;
-		static public final String CLASS = Q.CLASS;
-		static public final String CLASSTAG = Q.CLASSTAG;
-		static public final String SENSENUM = Q.SENSENUM;
-		static public final String SENSEKEY = Q.SENSEKEY;
-		static public final String QUALITY = Q.QUALITY;
-		static public final String NULLSYNSET = Q.NULLSYNSET;
+		static public final String WORDID = V.WORDID;
+		static public final String SYNSETID = V.SYNSETID;
+		static public final String CLASSID = V.CLASSID;
+		static public final String CLASS = V.CLASS;
+		static public final String CLASSTAG = V.CLASSTAG;
+		static public final String SENSENUM = V.SENSENUM;
+		static public final String SENSEKEY = V.SENSEKEY;
+		static public final String QUALITY = V.QUALITY;
+		static public final String NULLSYNSET = V.NULLSYNSET;
 	}
 
 	static public final class VnClasses_VnMembers_X
 	{
 		static public final String TABLE_BY_WORD = "vnclasses_vnmembers_x_by_word";
 		static public final String CONTENT_URI_TABLE = VnClasses_VnMembers_X.TABLE_BY_WORD;
-		static public final String CLASSID = Q.CLASSID;
-		static public final String VNWORDID = Q.VNWORDID;
-		static public final String WORDID = Q.WORDID;
-		static public final String WORD = Q.WORD;
-		static public final String DEFINITIONS = Q.DEFINITIONS;
-		static public final String GROUPINGS = Q.GROUPINGS;
-		static public final String DEFINITION = Q.DEFINITION;
-		static public final String GROUPING = Q.GROUPING;
+		static public final String CLASSID = V.CLASSID;
+		static public final String VNWORDID = V.VNWORDID;
+		static public final String WORDID = V.WORDID;
+		static public final String WORD = V.WORD;
+		static public final String DEFINITIONS = V.DEFINITIONS;
+		static public final String GROUPINGS = V.GROUPINGS;
+		static public final String DEFINITION = V.DEFINITION;
+		static public final String GROUPING = V.GROUPING;
 	}
 
 	static public final class VnClasses_VnRoles_X
 	{
 		static public final String TABLE_BY_ROLE = "vnclasses_vnroles_x_by_vnrole";
 		static public final String CONTENT_URI_TABLE = VnClasses_VnRoles_X.TABLE_BY_ROLE;
-		static public final String CLASSID = Q.CLASSID;
-		static public final String ROLEID = Q.ROLEID;
-		static public final String ROLETYPE = Q.ROLETYPE;
-		static public final String RESTRS = Q.RESTRS;
+		static public final String CLASSID = V.CLASSID;
+		static public final String ROLEID = V.ROLEID;
+		static public final String ROLETYPE = V.ROLETYPE;
+		static public final String RESTRS = V.RESTRS;
 	}
 
 	static public final class VnClasses_VnFrames_X
 	{
 		static public final String TABLE_BY_FRAME = "vnclasses_vnframes_x_by_vnframe";
 		static public final String CONTENT_URI_TABLE = VnClasses_VnFrames_X.TABLE_BY_FRAME;
-		static public final String CLASSID = Q.CLASSID;
-		static public final String FRAMEID = Q.FRAMEID;
-		static public final String FRAMENAME = Q.FRAMENAME;
-		static public final String FRAMESUBNAME = Q.FRAMESUBNAME;
-		static public final String SYNTAX = Q.SYNTAX;
-		static public final String SEMANTICS = Q.SEMANTICS;
-		static public final String NUMBER = Q.NUMBER;
-		static public final String XTAG = Q.XTAG;
-		static public final String EXAMPLE = Q.EXAMPLE;
-		static public final String EXAMPLES = Q.EXAMPLES;
+		static public final String CLASSID = V.CLASSID;
+		static public final String FRAMEID = V.FRAMEID;
+		static public final String FRAMENAME = V.FRAMENAME;
+		static public final String FRAMESUBNAME = V.FRAMESUBNAME;
+		static public final String SYNTAX = V.SYNTAX;
+		static public final String SEMANTICS = V.SEMANTICS;
+		static public final String NUMBER = V.NUMBER;
+		static public final String XTAG = V.XTAG;
+		static public final String EXAMPLE = V.EXAMPLE;
+		static public final String EXAMPLES = V.EXAMPLES;
 	}
 
 	static public final class Lookup_VnExamples
 	{
 		static public final String TABLE = "fts_vnexamples";
 		static public final String CONTENT_URI_TABLE = Lookup_VnExamples.TABLE;
-		static public final String EXAMPLEID = Q.EXAMPLEID;
-		static public final String EXAMPLE = Q.EXAMPLE;
-		static public final String CLASSID = Q.CLASSID;
-		static public final String FRAMEID = Q.FRAMEID;
+		static public final String EXAMPLEID = V.EXAMPLEID;
+		static public final String EXAMPLE = V.EXAMPLE;
+		static public final String CLASSID = V.CLASSID;
+		static public final String FRAMEID = V.FRAMEID;
 	}
 
 	static public final class Lookup_VnExamples_X
@@ -103,30 +103,30 @@ public class VerbNetContract
 		static public final String TABLE = "fts_vnexamples_x";
 		static public final String TABLE_BY_EXAMPLE = "fts_vnexamples_x_by_example";
 		static public final String CONTENT_URI_TABLE = Lookup_VnExamples_X.TABLE_BY_EXAMPLE;
-		static public final String EXAMPLEID = Q. EXAMPLEID;
-		static public final String EXAMPLE =  Q.EXAMPLE;
-		static public final String CLASSID =  Q.CLASSID;
-		static public final String CLASS =  Q.CLASS;
-		static public final String FRAMEID =  Q.FRAMEID;
-		static public final String CLASSES =  Q.CLASSES;
-		static public final String FRAMES =  Q.FRAMES;
+		static public final String EXAMPLEID = V. EXAMPLEID;
+		static public final String EXAMPLE =  V.EXAMPLE;
+		static public final String CLASSID =  V.CLASSID;
+		static public final String CLASS =  V.CLASS;
+		static public final String FRAMEID =  V.FRAMEID;
+		static public final String CLASSES =  V.CLASSES;
+		static public final String FRAMES =  V.FRAMES;
 	}
 
 	static public final class Suggest_VnWords
 	{
 		static final String SEARCH_WORD_PATH = "suggest_vnword";
 		static public final String TABLE = Suggest_VnWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
-		static public final String VNWORDID =  Q.VNWORDID;
-		static public final String WORDID =  Q.WORDID;
-		static public final String WORD =  Q.WORD;
+		static public final String VNWORDID =  V.VNWORDID;
+		static public final String WORDID =  V.WORDID;
+		static public final String WORD =  V.WORD;
 	}
 
 	static public final class Suggest_FTS_VnWords
 	{
 		static final String SEARCH_WORD_PATH = "suggest_fts_vnword";
 		static public final String TABLE = Suggest_FTS_VnWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
-		static public final String VNWORDID =  Q.VNWORDID;
-		static public final String WORDID =  Q.WORDID;
-		static public final String WORD = Q.WORD;
+		static public final String VNWORDID =  V.VNWORDID;
+		static public final String WORDID =  V.WORDID;
+		static public final String WORD = V.WORD;
 	}
 }

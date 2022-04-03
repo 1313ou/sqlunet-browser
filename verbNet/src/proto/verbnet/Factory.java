@@ -77,9 +77,9 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 			// J O I N S
 
 			case WORDS_VNCLASSES:
-				table = String.format("%s " + //
-								"INNER JOIN %s USING (%s) " + //
-								"INNER JOIN %s USING (%s) " + //
+				table = String.format("%s " +//
+								"INNER JOIN %s USING (%s) " +//
+								"INNER JOIN %s USING (%s) " +//
 								"LEFT JOIN %s USING (%s)", //
 						"${wnwords.table}", //
 						"${words.table}", "${wnwords.wordid}", //
@@ -89,17 +89,19 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 
 			case VNCLASSES_VNMEMBERS_X_BY_WORD:
 				table = String.format("%s " + //
-								"LEFT JOIN %s USING (%s) " + //
+								"INNER JOIN %s USING (%s) " + //
 								"LEFT JOIN %s USING (%s, %s) " + //
 								"LEFT JOIN %s USING (%s) " + //
 								"LEFT JOIN %s USING (%s)", //
-						"${members_senses.table}", //
-						"${words.table}", "${words.vnwordid}", //
+						"${wnwords.table}", //
+						"${members_senses.table}", "${wnwords.wordid}", //
 						"${members_groupings.table}", "${members.classid}", "${members.vnwordid}", //
 						"${groupings.table}", "${groupings.groupingid}", //
 						"${wnsynsets.table}", "${wnsynsets.synsetid}");
+
 				groupBy = "${words.vnwordid}";
 				break;
+
 
 			case VNCLASSES_VNROLES_X_BY_VNROLE:
 				table = String.format("%s " + //
@@ -154,10 +156,13 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 
 			case SUGGEST_WORDS:
 			{
-				table = "${words.table}";
+				table = String.format("%s " + //
+								"INNER JOIN %s USING (%s)", //
+						"${words.table}", //
+						"${wnwords.table}", "${wnwords.wordid}");
 				projection = new String[]{String.format("%s AS _id", "${words.vnwordid}"), //
-						String.format("%s AS " + "SearchManager.SUGGEST_COLUMN_TEXT_1", "${words.word}"), //
-						String.format("%s AS " + "SearchManager.SUGGEST_COLUMN_QUERY", "${words.word}")}; //
+						String.format("%s AS #{suggest_text_1}", "${words.word}"), //
+						String.format("%s AS #{suggest_query}", "${words.word}")}; //
 				selection = String.format("%s LIKE ? || '%%'", "${words.word}");
 				selectionArgs = new String[]{last};
 				break;
@@ -167,8 +172,8 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 			{
 				table = String.format("%s_%s_fts4", "${words.table}", "${words.word}");
 				projection = new String[]{String.format("%s AS _id", "${words.vnwordid}"),//
-						String.format("%s AS " + "SearchManager.SUGGEST_COLUMN_TEXT_1", "${words.word}"), //
-						String.format("%s AS " + "SearchManager.SUGGEST_COLUMN_QUERY", "${words.word}")}; //
+						String.format("%s AS #{suggest_text_1}", "${words.word}"), //
+						String.format("%s AS #{suggest_query}", "${words.word}")}; //
 				selection = String.format("%s MATCH ?", "${words.word}");
 				selectionArgs = new String[]{last + '*'};
 				break;
@@ -199,7 +204,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 		VNCLASS1, //
 		WORDS_VNCLASSES, //
 		VNCLASSES_X_BY_VNCLASS, VNCLASSES_VNMEMBERS_X_BY_WORD, VNCLASSES_VNROLES_X_BY_VNROLE, VNCLASSES_VNFRAMES_X_BY_VNFRAME, //
-		LOOKUP_FTS_EXAMPLES, LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE, LOOKUP_FTS_EXAMPLES_X, //
+		LOOKUP_FTS_EXAMPLES, LOOKUP_FTS_EXAMPLES_X, LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE, //
 		SUGGEST_WORDS, SUGGEST_FTS_WORDS,
 	}
 

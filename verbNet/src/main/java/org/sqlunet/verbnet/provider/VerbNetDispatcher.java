@@ -14,7 +14,7 @@ import android.app.SearchManager;
 public class VerbNetDispatcher
 {
 	// table codes
-	static final int VNCLASS = 10;
+	static final int VNCLASS1 = 10;
 	static final int VNCLASSES = 11;
 	static final int VNCLASSES_X_BY_VNCLASS = 20;
 
@@ -70,8 +70,8 @@ public class VerbNetDispatcher
 
 			// I T E M S
 
-			case VNCLASS:
-				table = Q.VNCLASS.TABLE;
+			case VNCLASS1:
+				table = Q.VNCLASS1.TABLE;
 				if (selection != null)
 				{
 					selection += " AND ";
@@ -80,7 +80,7 @@ public class VerbNetDispatcher
 				{
 					selection = "";
 				}
-				selection += Q.VNCLASS.SELECTION.replaceAll("#\\{uri_last\\}", uriLast);
+				selection += Q.VNCLASS1.SELECTION.replaceAll("#\\{uri_last\\}", uriLast);
 				break;
 
 			// J O I N S
@@ -91,17 +91,17 @@ public class VerbNetDispatcher
 
 			case VNCLASSES_VNMEMBERS_X_BY_WORD:
 				table = Q.VNCLASSES_VNMEMBERS_X_BY_WORD.TABLE;
-				groupBy = Q.VNWORDID;
+				groupBy = V.VNWORDID;
 				break;
 
 			case VNCLASSES_VNROLES_X_BY_VNROLE:
 				table = Q.VNCLASSES_VNROLES_X_BY_VNROLE.TABLE;
-				groupBy = Q.ROLEID;
+				groupBy = V.ROLEID;
 				break;
 
 			case VNCLASSES_VNFRAMES_X_BY_VNFRAME:
 				table = Q.VNCLASSES_VNFRAMES_X_BY_VNFRAME.TABLE;
-				groupBy = Q.FRAMEID;
+				groupBy = V.FRAMEID;
 				break;
 
 			default:
@@ -123,7 +123,7 @@ public class VerbNetDispatcher
 
 			case LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
 				table = Q.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE.TABLE;
-				groupBy = Q.EXAMPLEID;
+				groupBy = V.EXAMPLEID;
 				break;
 
 			case LOOKUP_FTS_EXAMPLES_X:

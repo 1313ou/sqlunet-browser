@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 public class QueriesUnitTest
 {
-	private final int[] codes = {VerbNetDispatcher.VNCLASS, VerbNetDispatcher.VNCLASSES, VerbNetDispatcher.VNCLASSES_X_BY_VNCLASS, VerbNetDispatcher.WORDS_VNCLASSES, VerbNetDispatcher.VNCLASSES_VNMEMBERS_X_BY_WORD, VerbNetDispatcher.VNCLASSES_VNROLES_X_BY_VNROLE, VerbNetDispatcher.VNCLASSES_VNFRAMES_X_BY_VNFRAME, VerbNetDispatcher.LOOKUP_FTS_EXAMPLES, VerbNetDispatcher.LOOKUP_FTS_EXAMPLES_X, VerbNetDispatcher.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE, VerbNetDispatcher.SUGGEST_WORDS, VerbNetDispatcher.SUGGEST_FTS_WORDS,};
+	private final int[] codes = {VerbNetDispatcher.VNCLASS1, VerbNetDispatcher.VNCLASSES, VerbNetDispatcher.VNCLASSES_X_BY_VNCLASS, VerbNetDispatcher.WORDS_VNCLASSES, VerbNetDispatcher.VNCLASSES_VNMEMBERS_X_BY_WORD, VerbNetDispatcher.VNCLASSES_VNROLES_X_BY_VNROLE, VerbNetDispatcher.VNCLASSES_VNFRAMES_X_BY_VNFRAME, VerbNetDispatcher.LOOKUP_FTS_EXAMPLES, VerbNetDispatcher.LOOKUP_FTS_EXAMPLES_X, VerbNetDispatcher.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE, VerbNetDispatcher.SUGGEST_WORDS, VerbNetDispatcher.SUGGEST_FTS_WORDS,};
 	private final String uriLast = "LAST";
 	private final String[] projection = {"PROJ1", "PROJ2", "PROJ3"};
 	private final String selection = "SEL";
@@ -105,7 +105,7 @@ public class QueriesUnitTest
 
 			// I T E M S
 
-			case VerbNetDispatcher.VNCLASS:
+			case VerbNetDispatcher.VNCLASS1:
 				table = VerbNetContract.VnClasses.TABLE;
 				if (selection != null)
 				{

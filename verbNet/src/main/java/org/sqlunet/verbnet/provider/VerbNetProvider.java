@@ -54,7 +54,7 @@ public class VerbNetProvider extends BaseProvider
 
 	static private void matchURIs()
 	{
-		uriMatcher.addURI(AUTHORITY, VnClasses.TABLE, VerbNetDispatcher.VNCLASS);
+		uriMatcher.addURI(AUTHORITY, VnClasses.TABLE, VerbNetDispatcher.VNCLASS1);
 		uriMatcher.addURI(AUTHORITY, VnClasses.TABLE, VerbNetDispatcher.VNCLASSES);
 		uriMatcher.addURI(AUTHORITY, Words_VnClasses.TABLE, VerbNetDispatcher.WORDS_VNCLASSES);
 		uriMatcher.addURI(AUTHORITY, VnClasses_VnMembers_X.TABLE_BY_WORD, VerbNetDispatcher.VNCLASSES_VNMEMBERS_X_BY_WORD);
@@ -108,7 +108,7 @@ public class VerbNetProvider extends BaseProvider
 		switch (VerbNetProvider.uriMatcher.match(uri))
 		{
 			// I T E M S
-			case VerbNetDispatcher.VNCLASS:
+			case VerbNetDispatcher.VNCLASS1:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + VnClasses.TABLE;
 
 			// T A B L E S
