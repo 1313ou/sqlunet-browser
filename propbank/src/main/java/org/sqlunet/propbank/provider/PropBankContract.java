@@ -74,7 +74,7 @@ public class PropBankContract
 		static public final String ROLESETID = V.ROLESETID;
 		static public final String ROLEID = V.ROLEID;
 		static public final String ROLEDESCR = V.ROLEDESCR;
-		static public final String NARG = V.ARG;
+		static public final String NARG = V.NARGID;
 		static public final String FUNCNAME = V.FUNC;
 		static public final String THETANAME = V.THETA;
 	}
@@ -87,7 +87,7 @@ public class PropBankContract
 		static public final String ROLESETID = V.ROLESETID;
 		static public final String TEXT = V.TEXT;
 		static public final String REL = V.REL;
-		static public final String NARG = V.ARG;
+		static public final String NARG = V.NARGID;
 		static public final String FUNCNAME = V.FUNC;
 		static public final String ROLEDESCR = V.ROLEDESCR;
 		static public final String THETANAME = V.THETA;

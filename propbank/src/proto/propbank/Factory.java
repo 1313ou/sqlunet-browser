@@ -88,8 +88,8 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 								"LEFT JOIN %s USING (%s)", //
 						"${rolesets.table}", //
 						"${roles.table}", "${rolesets.rolesetid}", //
-						"${funcs.table}", "${funcs.func}", //
-						"${thetas.table}", "${thetas.theta}");
+						"${funcs.table}", "${funcs.funcid}", //
+						"${thetas.table}", "${thetas.thetaid}");
 				sortOrder = "${roles.nargid}";
 				break;
 
@@ -99,7 +99,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 				//noinspection fallthrough
 
 			case PBROLESETS_PBEXAMPLES:
-				table = String.format("%s " + //
+				table = String.format("%s " + // 1
 								"INNER JOIN %s AS %s USING (%s) " + //
 								"LEFT JOIN %s AS %s USING (%s) " + //
 								"LEFT JOIN %s AS %s USING (%s) " + //
@@ -111,18 +111,18 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 								"LEFT JOIN %s USING (%s) " + //
 								"LEFT JOIN %s USING (%s,%s) " + //
 								"LEFT JOIN %s USING (%s)", //
-						"${rolesets.table}", //
-						"${examples.table}", "${as_examples}", "${rolesets.rolesetid}", //
-						"${rels.table}", "${as_relations}", "${examples.exampleid}", //
-						"${args.table}", "${as_args}", "${examples.exampleid}", //
-						"${funcs.table}", "${as_funcs}", "${as_args}", "${funcs.func}", "${as_funcs}", "${funcs.func}", //
-						"${aspects.table}", "${aspects.aspect}", //
-						"${forms.table}", "${forms.form}", //
-						"${tenses.table}", "${tenses.tense}", //
-						"${voices.table}", "${voices.voice}", //
-						"${persons.table}", "${persons.person}", //
-						"${roles.table}", "${rolesets.rolesetid}", "${args.arg}", //
-						"${thetas.table}", "${thetas.theta}");
+						"${rolesets.table}", // 1
+						"${examples.table}", "${as_examples}", "${rolesets.rolesetid}", // 2
+						"${rels.table}", "${as_relations}", "${examples.exampleid}", // 3
+						"${args.table}", "${as_args}", "${examples.exampleid}", // 4
+						"${funcs.table}", "${as_funcs}", "${as_args}", "${funcs.funcid}", "${as_funcs}", "${funcs.funcid}", // 5
+						"${aspects.table}", "${aspects.aspectid}", // 6
+						"${forms.table}", "${forms.formid}", // 7
+						"${tenses.table}", "${tenses.tenseid}", // 8
+						"${voices.table}", "${voices.voiceid}", // 9
+						"${persons.table}", "${persons.personid}", // 10
+						"${roles.table}", "${rolesets.rolesetid}", "${args.nargid}", // 11
+						"${thetas.table}", "${thetas.thetaid}");
 				sortOrder = String.format("%s.%s,%s", "${as_examples}", "${examples.exampleid}", "${args.arg}");
 				break;
 
