@@ -43,7 +43,7 @@
 		<item>fn_semtypes</item>
 		<item>fn_semtypes_supers</item>
 		<item>fn_sentences</item>
-<!--		<item>fn_statuses</item>-->
+		<!-- <item>fn_statuses</item>-->
 		<item>fn_subcorpuses</item>
 		<item>fn_subcorpuses_sentences</item>
 		<item>fn_valenceunits</item>
@@ -52,23 +52,23 @@
 		<item>sources</item>
 	</string-array>
 	<string-array name="required_indexes" tools:ignore="InconsistentArrays">
-		<item>index_fn_words_wordid</item>
-		<item>index_fn_frames_related_frameid</item>
-		<item>index_fn_frames_related_frame2id</item>
-		<item>index_fn_lexemes_fnwordid</item>
-		<item>index_fn_fes_frameid</item>
-		<item>index_fn_ferealizations_luid</item>
-		<item>index_fn_valenceunits_vuid</item>
-		<item>index_fn_fegrouprealizations_luid</item>
-		<item>index_fn_grouppatterns_patterns_patternid</item>
-		<item>index_fn_grouppatterns_fegrid</item>
-		<item>index_fn_subcorpuses_luid</item>
-		<item>index_fn_annosets_sentenceid</item>
-		<item>index_fn_layers_annosetid</item>
-		<item>index_fn_labels_layerid</item>
+		<item>pk_fn_words</item>
+		<item>k_fn_frames_related_frameid</item>
+		<item>k_fn_frames_related_frame2id</item>
+		<item>k_fn_lexemes_fnwordid</item>
+		<item>k_fn_fes_frameid</item>
+		<item>k_fn_ferealizations_luid</item>
+		<item>k_fn_valenceunits_vuid</item>
+		<item>k_fn_fegrouprealizations_luid</item>
+		<item>k_fn_grouppatterns_patterns_patternid</item>
+		<item>k_fn_grouppatterns_fegrid</item>
+		<item>k_fn_subcorpuses_luid</item>
+		<item>k_fn_annosets_sentenceid</item>
+		<item>k_fn_layers_annosetid</item>
+		<item>k_fn_labels_layerid</item>
 	</string-array>
 	<string-array name="required_texts_fn">
-		<item>fnsentences_text_fts4</item>
+		<item>fn_sentences_text_fts4</item>
 	</string-array>
 
 </resources>

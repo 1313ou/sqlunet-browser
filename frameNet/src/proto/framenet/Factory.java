@@ -143,9 +143,10 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 								"GROUP_CONCAT(%s||':'||" + // 2
 								"%s||':'||" + // 3
 								"%s||':'||" + // 4
-								"CASE WHEN %s IS NULL THEN '' ELSE %s END||':'||" + // 5
-								"CASE WHEN %s IS NULL THEN '' ELSE %s END||':'||" + // 6
-								"CASE WHEN %s IS NULL THEN '' ELSE %s END,'|') AS %s " + // 7
+								"CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 5
+								// "||':'||CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 6
+								// "||':'||CASE WHEN %s IS NULL THEN '' ELSE %s END + // 7
+								",'|') AS %s " + // 2bis
 								"FROM %s " + // 8
 								"LEFT JOIN %s USING (%s) " + // 9
 								"LEFT JOIN %s USING (%s) " + // 10
@@ -161,8 +162,9 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 						"${labels.end}", // 3
 						"${labeltypes.labeltype}", // 4
 						"${labelitypes.labelitype}", "${labelitypes.labelitype}", // 5
-						"${labels.bgcolor}", "${labels.bgcolor}", // 6
-						"${labels.fgcolor}", "${labels.fgcolor}", "${annotations}", // 7
+						// "${labels.bgcolor}", "${labels.bgcolor}", // 6
+						// "${labels.fgcolor}", "${labels.fgcolor}", // 7
+						"${annotations}", // 2bis
 						"${sentences.table}", // 8
 						"${annosets.table}", "${sentences.sentenceid}", // 9
 						"${layers.table}", "${annosets.annosetid}", // 10
@@ -176,118 +178,124 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 				break;
 
 			case ANNOSETS_LAYERS_X:
-				table = String.format("(SELECT %s,%s,%s,%s,%s," + //
-								"GROUP_CONCAT(%s||':'||" + //
-								"%s||':'||" + //
-								"%s||':'||" + //
-								"CASE WHEN %s IS NULL THEN '' ELSE %s END||':'||" + //
-								"CASE WHEN %s IS NULL THEN '' ELSE %s END||':'||" + //
-								"CASE WHEN %s IS NULL THEN '' ELSE %s END,'|') AS %s " + //
-								"FROM %s " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"WHERE %s = ? AND %s IS NOT NULL " + //
-								"GROUP BY %s " + //
-								"ORDER BY %s,%s,%s,%s)", //
-						"${sentences.sentenceid}", "${sentences.text}", "${layers.layerid}", "${layertypes.layertype}", "${layers.rank}", //
-						"${labels.start}", //
-						"${labels.end}", //
-						"${labeltypes.labeltype}", //
-						"${labelitypes.labelitype}", "${labelitypes.labelitype}", //
-						"${labels.bgcolor}", "${labels.bgcolor}", //
-						"${labels.fgcolor}", "${labels.fgcolor}", "${annotations}", //
-						"${annosets.table}", //
-						"${sentences.table}", "${sentences.sentenceid}", //
-						"${layers.table}", "${annosets.annosetid}", //
-						"${layertypes.table}", "${layertypes.layertypeid}", //
-						"${labels.table}", "${layers.layerid}", //
-						"${labeltypes.table}", "${labeltypes.labeltypeid}", //
-						"${labelitypes.table}", "${labelitypes.labelitypeid}", //
-						"${annosets.annosetid}", "${labeltypes.labeltypeid}", //
-						"${layers.layerid}", //
-						"${layers.rank}", "${layers.layerid}", "${labels.start}", "${labels.end}");
+				table = String.format("(SELECT %s,%s,%s,%s,%s," + // 1
+								"GROUP_CONCAT(%s||':'||" + // 2
+								"%s||':'||" + // 3
+								"%s||':'||" + // 4
+								"CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 5
+								// "||':'||CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 6
+								// "||':'||CASE WHEN %s IS NULL THEN '' ELSE %s END
+								",'|') AS %s " + // 2bis
+								"FROM %s " + // 8
+								"LEFT JOIN %s USING (%s) " + // 9
+								"LEFT JOIN %s USING (%s) " + // 10
+								"LEFT JOIN %s USING (%s) " + // 11
+								"LEFT JOIN %s USING (%s) " + // 12
+								"LEFT JOIN %s USING (%s) " + // 13
+								"LEFT JOIN %s USING (%s) " + // 14
+								"WHERE %s = ? AND %s IS NOT NULL " + // 15
+								"GROUP BY %s " + // 16
+								"ORDER BY %s,%s,%s,%s)", // 17
+						"${sentences.sentenceid}", "${sentences.text}", "${layers.layerid}", "${layertypes.layertype}", "${layers.rank}", // 1
+						"${labels.start}", // 2
+						"${labels.end}", // 3
+						"${labeltypes.labeltype}", // 4
+						"${labelitypes.labelitype}", "${labelitypes.labelitype}", // 5
+						// "${labels.bgcolor}", "${labels.bgcolor}", // 6
+						// "${labels.fgcolor}", "${labels.fgcolor}", // 7
+						"${annotations}", // 2bis
+						"${annosets.table}", // 8
+						"${sentences.table}", "${sentences.sentenceid}", // 9
+						"${layers.table}", "${annosets.annosetid}", // 10
+						"${layertypes.table}", "${layertypes.layertypeid}", // 11
+						"${labels.table}", "${layers.layerid}", // 12
+						"${labeltypes.table}", "${labeltypes.labeltypeid}", // 13
+						"${labelitypes.table}", "${labelitypes.labelitypeid}", // 14
+						"${annosets.annosetid}", "${labeltypes.labeltypeid}", // 15
+						"${layers.layerid}", // 16
+						"${layers.rank}", "${layers.layerid}", "${labels.start}", "${labels.end}"); // 17
 				break;
 
 			case PATTERNS_LAYERS_X:
-				table = String.format("(SELECT %s,%s,%s,%s,%s,%s," + //
-								"GROUP_CONCAT(%s||':'||" + //
-								"%s||':'||" + //
-								"%s||':'||" + //
-								"CASE WHEN %s IS NULL THEN '' ELSE %s END||':'||" + //
-								"CASE WHEN %s IS NULL THEN '' ELSE %s END||':'||" + //
-								"CASE WHEN %s IS NULL THEN '' ELSE %s END,'|') AS %s " +//
-								"FROM %s " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"WHERE %s = ? AND %s IS NOT NULL " + //
-								"GROUP BY %s " + //
-								"ORDER BY %s,%s,%s,%s)", //
-						"${annosets.annosetid}", "${sentences.sentenceid}", "${sentences.text}", "${layers.layerid}", "${layertypes.layertype}", "${layers.rank}", //
-						"${labels.start}", //
-						"${labels.end}", //
-						"${labeltypes.labeltype}", //
-						"${labelitypes.labelitype}", "${labelitypes.labelitype}", //
-						"${labels.bgcolor}", "${labels.bgcolor}", //
-						"${labels.fgcolor}", "${labels.fgcolor}", "${annotations}", //
-						"${grouppatterns_annosets.table}", //
-						"${annosets.table}", "${annosets.annosetid}", //
-						"${sentences.table}", "${sentences.sentenceid}", //
-						"${layers.table}", "${annosets.annosetid}", //
-						"${layertypes.table}", "${layertypes.layertypeid}", //
-						"${labels.table}", "${layers.layerid}", //
-						"${labeltypes.table}", "${labeltypes.labeltypeid}", //
-						"${labelitypes.table}", "${labelitypes.labelitypeid}", //
-						"${grouppatterns.patternid}", "${labeltypes.labeltypeid}", //
-						"${layers.layerid}", //
-						"${layers.rank}", "${layers.layerid}", "${labels.start}", "${labels.end}");
+				table = String.format("(SELECT %s,%s,%s,%s,%s,%s," + // 1
+								"GROUP_CONCAT(%s||':'||" + // 2
+								"%s||':'||" + // 3
+								"%s||':'||" + // 4
+								"CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 5
+								// "||':'||CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 6
+								// "||':'||CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 7
+								",'|') AS %s " + // 2bis
+								"FROM %s " + // 8
+								"LEFT JOIN %s USING (%s) " + // 9
+								"LEFT JOIN %s USING (%s) " + // 10
+								"LEFT JOIN %s USING (%s) " + // 11
+								"LEFT JOIN %s USING (%s) " + // 12
+								"LEFT JOIN %s USING (%s) " + // 13
+								"LEFT JOIN %s USING (%s) " + // 14
+								"LEFT JOIN %s USING (%s) " + // 15
+								"WHERE %s = ? AND %s IS NOT NULL " + // 16
+								"GROUP BY %s " + // 17
+								"ORDER BY %s,%s,%s,%s)", // 18
+						"${annosets.annosetid}", "${sentences.sentenceid}", "${sentences.text}", "${layers.layerid}", "${layertypes.layertype}", "${layers.rank}", // 1
+						"${labels.start}", // 2
+						"${labels.end}", // 3
+						"${labeltypes.labeltype}", // 4
+						"${labelitypes.labelitype}", "${labelitypes.labelitype}", // 5
+						// "${labels.bgcolor}", "${labels.bgcolor}", // 6
+						// "${labels.fgcolor}", "${labels.fgcolor}", // 7
+						"${annotations}", // 2bis
+						"${grouppatterns_annosets.table}", // 8
+						"${annosets.table}", "${annosets.annosetid}", // 9
+						"${sentences.table}", "${sentences.sentenceid}", // 10
+						"${layers.table}", "${annosets.annosetid}", // 11
+						"${layertypes.table}", "${layertypes.layertypeid}", // 12
+						"${labels.table}", "${layers.layerid}", // 13
+						"${labeltypes.table}", "${labeltypes.labeltypeid}", // 14
+						"${labelitypes.table}", "${labelitypes.labelitypeid}", // 15
+						"${grouppatterns.patternid}", "${labeltypes.labeltypeid}", // 16
+						"${layers.layerid}", // 17
+						"${layers.rank}", "${layers.layerid}", "${labels.start}", "${labels.end}"); // 18
 				break;
 
 			case VALENCEUNITS_LAYERS_X:
-				table = String.format("(SELECT %s,%s,%s,%s,%s,%s," + //
-								"GROUP_CONCAT(%s||':'||" + //
-								"%s||':'||" + //
-								"%s||':'||" + //
-								"CASE WHEN %s IS NULL THEN '' ELSE %s END||':'||" + //
-								"CASE WHEN %s IS NULL THEN '' ELSE %s END||':'||" + //
-								"CASE WHEN %s IS NULL THEN '' ELSE %s END,'|') AS %s " + //
-								"FROM %s " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"WHERE %s = ? AND %s IS NOT NULL " + //
-								"GROUP BY %s " + //
-								"ORDER BY %s,%s,%s,%s)", //
-						"${annosets.annosetid}", "${sentences.sentenceid}", "${sentences.text}", "${layers.layerid}", "${layertypes.layertype}", "${layers.rank}", //
-						"${labels.start}", //
-						"${labels.end}", //
-						"${labeltypes.labeltype}", //
-						"${labelitypes.labelitype}", "${labelitypes.labelitype}", //
-						"${labels.bgcolor}", "${labels.bgcolor}", //
-						"${labels.fgcolor}", "${labels.fgcolor}", "${annotations}", //
-						"${valenceunits_annosets.table}", //
-						"${annosets.table}", "${annosets.annosetid}", //
-						"${sentences.table}", "${sentences.sentenceid}", //
-						"${layers.table}", "${annosets.annosetid}", //
-						"${layertypes.table}", "${layertypes.layertypeid}", //
-						"${labels.table}", "${layers.layerid}", //
-						"${labeltypes.table}", "${labeltypes.labeltypeid}", //
-						"${labelitypes.table}", "${labelitypes.labelitypeid}", //
-						"${valenceunits.vuid}", "${labeltypes.labeltypeid}", //
-						"${layers.layerid}", //
-						"${layers.rank}", "${layers.layerid}", "${labels.start}", "${labels.end}");
+				table = String.format("(SELECT %s,%s,%s,%s,%s,%s," + // 1
+								"GROUP_CONCAT(%s||':'||" + // 2
+								"%s||':'||" + // 3
+								"%s||':'||" + // 4
+								"CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 5
+								// "||':'||CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 6
+								// "||':'||CASE WHEN %s IS NULL THEN '' ELSE %s END" + // 7
+								",'|') AS %s " + // 2bis
+								"FROM %s " + // 8
+								"LEFT JOIN %s USING (%s) " + // 9
+								"LEFT JOIN %s USING (%s) " + // 10
+								"LEFT JOIN %s USING (%s) " + // 11
+								"LEFT JOIN %s USING (%s) " + // 12
+								"LEFT JOIN %s USING (%s) " + // 13
+								"LEFT JOIN %s USING (%s) " + // 14
+								"LEFT JOIN %s USING (%s) " + // 15
+								"WHERE %s = ? AND %s IS NOT NULL " + // 16
+								"GROUP BY %s " + // 17
+								"ORDER BY %s,%s,%s,%s)", // 18
+						"${annosets.annosetid}", "${sentences.sentenceid}", "${sentences.text}", "${layers.layerid}", "${layertypes.layertype}", "${layers.rank}", // 1
+						"${labels.start}", // 2
+						"${labels.end}", // 3
+						"${labeltypes.labeltype}", // 4
+						"${labelitypes.labelitype}", "${labelitypes.labelitype}", // 5
+						// "${labels.bgcolor}", "${labels.bgcolor}", // 6
+						// "${labels.fgcolor}", "${labels.fgcolor}", // 7
+						"${annotations}", // 2bis
+						"${valenceunits_annosets.table}", // 8
+						"${annosets.table}", "${annosets.annosetid}", // 9
+						"${sentences.table}", "${sentences.sentenceid}", // 10
+						"${layers.table}", "${annosets.annosetid}", // 11
+						"${layertypes.table}", "${layertypes.layertypeid}", // 12
+						"${labels.table}", "${layers.layerid}", // 13
+						"${labeltypes.table}", "${labeltypes.labeltypeid}", // 14
+						"${labelitypes.table}", "${labelitypes.labelitypeid}", // 15
+						"${valenceunits.vuid}", "${labeltypes.labeltypeid}", // 16
+						"${layers.layerid}", // 17
+						"${layers.rank}", "${layers.layerid}", "${labels.start}", "${labels.end}"); // 18
 				break;
 
 			case WORDS_LEXUNITS_FRAMES:
