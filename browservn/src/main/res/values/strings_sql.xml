@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
@@ -24,70 +23,78 @@
 		<item>Drop PropBank text search</item>
 	</string-array>
 	<string-array name="sql_statements_values" formatted="false" tools:ignore="InconsistentArrays" tools:keep="@array/sql_statements_values">
-		<item/>
+		<item />
 		<item>
-			CREATE INDEX IF NOT EXISTS index_words_word ON words(word);
-			CREATE INDEX IF NOT EXISTS index_senses_wordid ON senses(wordid);
-			CREATE INDEX IF NOT EXISTS index_senses_synsetid ON senses(synsetid);
-			CREATE INDEX IF NOT EXISTS index_synsets_synsetid ON synsets(synsetid);
-			CREATE INDEX IF NOT EXISTS index_casedwords_wordid_casedwordid ON casedwords(wordid,casedwordid);
-			CREATE INDEX IF NOT EXISTS index_samples_synsetid ON samples(synsetid);
-			CREATE INDEX IF NOT EXISTS index_vnwords_wordid ON vnwords(wordid);
-			CREATE INDEX IF NOT EXISTS index_vnrolemaps_classid ON vnrolemaps(classid);
-			CREATE INDEX IF NOT EXISTS index_vnframemaps_classid ON vnframemaps(classid);
-			CREATE INDEX IF NOT EXISTS index_pbwords_wordid ON pbwords(wordid);
-			CREATE INDEX IF NOT EXISTS index_pbrolesets_pbwordid ON pbrolesets(pbwordid);
-			CREATE INDEX IF NOT EXISTS index_pbroles_rolesetid ON pbroles(rolesetid);
-			CREATE INDEX IF NOT EXISTS index_pbexamples_rolesetid ON pbexamples(rolesetid);
-			CREATE INDEX IF NOT EXISTS index_pbrels_exampleid ON pbrels(exampleid);
-			CREATE INDEX IF NOT EXISTS index_pbargs_exampleid ON pbargs(exampleid);</item>
+			<!-- wordnet -->
+			CREATE INDEX IF NOT EXISTS k_words_word ON words(word);
+			CREATE INDEX IF NOT EXISTS k_senses_wordid ON senses(wordid);
+			CREATE INDEX IF NOT EXISTS k_senses_synsetid ON senses(synsetid);
+			CREATE INDEX IF NOT EXISTS pk_synsets_synsetid ON synsets(synsetid);
+			CREATE INDEX IF NOT EXISTS k_casedwords_wordid_casedwordid ON casedwords(wordid,casedwordid);
+			CREATE INDEX IF NOT EXISTS k_samples_synsetid ON samples(synsetid);
+			<!-- verbnet -->
+			CREATE INDEX IF NOT EXISTS k_vn_words_wordid ON vn_words(wordid);
+			CREATE INDEX IF NOT EXISTS k_vn_roles_classid ON vn_roles(classid);
+			CREATE INDEX IF NOT EXISTS k_vn_frames_examples_classid ON vn_frames_examples(classid);
+			<!-- propbank -->
+			CREATE INDEX IF NOT EXISTS k_pb_words_wordid ON pb_words(wordid);
+			CREATE INDEX IF NOT EXISTS k_pb_rolesets_pbwordid ON pb_rolesets(pbwordid);
+			CREATE INDEX IF NOT EXISTS k_pb_roles_rolesetid ON pb_roles(rolesetid);
+			CREATE INDEX IF NOT EXISTS k_pb_examples_rolesetid ON pb_examples(rolesetid);
+			CREATE INDEX IF NOT EXISTS k_pb_rels_exampleid ON pb_rels(exampleid);
+			CREATE INDEX IF NOT EXISTS k_pb_args_exampleid ON pb_args(exampleid);</item>
 		<item>
-			CREATE VIRTUAL TABLE IF NOT EXISTS vnexamples_example_fts4 USING fts4(exampleid INTEGER not null, frameid INTEGER, classid INTEGER, example);
-			INSERT INTO vnexamples_example_fts4 SELECT exampleid, frameid, classid, example FROM vnexamples INNER JOIN vnexamplemaps USING (exampleid) INNER JOIN vnframes USING (frameid) INNER JOIN vnframemaps USING (frameid) INNER JOIN vnclasses USING (classid);</item>
+			<!-- verbnet textsearch -->
+			CREATE VIRTUAL TABLE IF NOT EXISTS vn_examples_example_fts4 USING fts4(exampleid INTEGER not null, frameid INTEGER, classid INTEGER, example);
+			INSERT INTO vn_examples_example_fts4 SELECT exampleid, frameid, classid, example FROM vn_examples INNER JOIN vn_frames_examples USING (exampleid) INNER JOIN vn_frames USING (frameid) INNER JOIN vn_classes_frames USING (frameid) INNER JOIN vn_classes USING (classid);</item>
 		<item>
-			CREATE VIRTUAL TABLE IF NOT EXISTS pbexamples_text_fts4 USING fts4(exampleid INTEGER not null, rolesetid INTEGER not null, text);
-			INSERT INTO pbexamples_text_fts4 SELECT exampleid, rolesetid, text from pbexamples;</item>
+			<!-- propbank textsearch -->
+			CREATE VIRTUAL TABLE IF NOT EXISTS pb_examples_text_fts4 USING fts4(exampleid INTEGER not null, rolesetid INTEGER not null, text);
+			INSERT INTO pb_examples_text_fts4 SELECT exampleid, rolesetid, text from pb_examples;</item>
 		<item>
-			CREATE INDEX IF NOT EXISTS index_words_word ON words(word);
-			CREATE INDEX IF NOT EXISTS index_senses_wordid ON senses(wordid);
-			CREATE INDEX IF NOT EXISTS index_senses_synsetid ON senses(synsetid);
-			CREATE INDEX IF NOT EXISTS index_synsets_synsetid ON synsets(synsetid);
-			CREATE INDEX IF NOT EXISTS index_casedwords_wordid_casedwordid ON casedwords(wordid,casedwordid);
-			CREATE INDEX IF NOT EXISTS index_samples_synsetid ON samples(synsetid);</item>
+			<!-- wordnet -->
+			CREATE INDEX IF NOT EXISTS k_words_word ON words(word);
+			CREATE INDEX IF NOT EXISTS k_senses_wordid ON senses(wordid);
+			CREATE INDEX IF NOT EXISTS k_senses_synsetid ON senses(synsetid);
+			CREATE INDEX IF NOT EXISTS k_synsets_synsetid ON synsets(synsetid);
+			CREATE INDEX IF NOT EXISTS k_casedwords_wordid_casedwordid ON casedwords(wordid,casedwordid);
+			CREATE INDEX IF NOT EXISTS k_samples_synsetid ON samples(synsetid);</item>
 		<item>
-			DROP INDEX IF EXISTS index_words_word;
-			DROP INDEX IF EXISTS index_senses_wordid;
-			DROP INDEX IF EXISTS index_senses_synsetid;
-			DROP INDEX IF EXISTS index_synsets_synsetid;
-			DROP INDEX IF EXISTS index_casedwords_wordid_casedwordid;
-			DROP INDEX IF EXISTS index_samples_synsetid;</item>
+			DROP INDEX IF EXISTS k_words_word;
+			DROP INDEX IF EXISTS k_senses_wordid;
+			DROP INDEX IF EXISTS k_senses_synsetid;
+			DROP INDEX IF EXISTS k_synsets_synsetid;
+			DROP INDEX IF EXISTS k_casedwords_wordid_casedwordid;
+			DROP INDEX IF EXISTS k_samples_synsetid;</item>
 		<item>
-			CREATE INDEX IF NOT EXISTS index_vnwords_wordid ON vnwords(wordid);
-			CREATE INDEX IF NOT EXISTS index_vnrolemaps_classid ON vnrolemaps(classid);
-			CREATE INDEX IF NOT EXISTS index_vnframemaps_classid ON vnframemaps(classid);</item>
+			<!-- verbnet -->
+			CREATE INDEX IF NOT EXISTS k_vn_words_wordid ON vn_words(wordid);
+			CREATE INDEX IF NOT EXISTS k_vn_roles_classid ON vn_roles(classid);
+			CREATE INDEX IF NOT EXISTS k_vn_frames_examples_classid ON vn_frames_examples(classid);</item>
 		<item>
-			DROP INDEX IF EXISTS index_vnwords_wordid;
-			DROP INDEX IF EXISTS index_vngroupingmaps_vnwordid;
-			DROP INDEX IF EXISTS index_vnrolemaps_classid;
-			DROP INDEX IF EXISTS index_vnframemaps_classid;</item>
+			DROP INDEX IF EXISTS k_vn_words_wordid;
+			DROP INDEX IF EXISTS k_vn_members_groupings_vnwordid;
+			DROP INDEX IF EXISTS k_vn_roles_classid;
+			DROP INDEX IF EXISTS k_vn_frames_examples_classid;</item>
 		<item>
-			CREATE INDEX IF NOT EXISTS index_pbwords_wordid ON pbwords(wordid);
-			CREATE INDEX IF NOT EXISTS index_pbrolesets_pbwordid ON pbrolesets(pbwordid);
-			CREATE INDEX IF NOT EXISTS index_pbroles_rolesetid ON pbroles(rolesetid);
-			CREATE INDEX IF NOT EXISTS index_pbexamples_rolesetid ON pbexamples(rolesetid);
-			CREATE INDEX IF NOT EXISTS index_pbrels_exampleid ON pbrels(exampleid);
-			CREATE INDEX IF NOT EXISTS index_pbargs_exampleid ON pbargs(exampleid);</item>
+			<!-- propbank -->
+			CREATE INDEX IF NOT EXISTS k_pb_words_wordid ON pb_words(wordid);
+			CREATE INDEX IF NOT EXISTS k_pb_rolesets_pbwordid ON pb_rolesets(pbwordid);
+			CREATE INDEX IF NOT EXISTS k_pb_roles_rolesetid ON pb_roles(rolesetid);
+			CREATE INDEX IF NOT EXISTS k_pb_examples_rolesetid ON pb_examples(rolesetid);
+			CREATE INDEX IF NOT EXISTS k_pb_rels_exampleid ON pb_rels(exampleid);
+			CREATE INDEX IF NOT EXISTS k_pb_args_exampleid ON pb_args(exampleid);</item>
 		<item>
-			DROP INDEX IF EXISTS index_pbwords_wordid;
-			DROP INDEX IF EXISTS index_pbrolesets_pbwordid;
-			DROP INDEX IF EXISTS index_pbroles_rolesetid;
-			DROP INDEX IF EXISTS index_pbexamples_rolesetid;
-			DROP INDEX IF EXISTS index_pbrels_exampleid;
-			DROP INDEX IF EXISTS index_pbargs_exampleid;</item>
+			DROP INDEX IF EXISTS k_pb_words_wordid;
+			DROP INDEX IF EXISTS k_pb_rolesets_pbwordid;
+			DROP INDEX IF EXISTS k_pb_roles_rolesetid;
+			DROP INDEX IF EXISTS k_pb_examples_rolesetid;
+			DROP INDEX IF EXISTS k_pb_rels_exampleid;
+			DROP INDEX IF EXISTS k_pb_args_exampleid;</item>
 		<item>
-			DROP TABLE IF EXISTS vnexamples_example_fts4;</item>
+			DROP TABLE IF EXISTS vn_examples_example_fts4;</item>
 		<item>
-			DROP TABLE IF EXISTS pbexamples_text_fts4;</item>
+			DROP TABLE IF EXISTS pb_examples_text_fts4;</item>
 	</string-array>
 
 </resources>

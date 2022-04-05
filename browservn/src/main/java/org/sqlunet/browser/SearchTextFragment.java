@@ -158,7 +158,7 @@ public class SearchTextFragment extends BaseSearchFragment
 			case 0:
 				searchUri = VerbNetProvider.makeUri(VerbNetContract.Lookup_VnExamples_X.CONTENT_URI_TABLE);
 				id = VerbNetContract.Lookup_VnExamples_X.EXAMPLEID;
-				idType = "vnexample";
+				idType = "vn_example";
 				target = VerbNetContract.Lookup_VnExamples_X.EXAMPLE;
 				columns = new String[]{VerbNetContract.Lookup_VnExamples_X.EXAMPLE};
 				hiddenColumns = new String[]{ //
@@ -168,7 +168,7 @@ public class SearchTextFragment extends BaseSearchFragment
 			case 1:
 				searchUri = PropBankProvider.makeUri(PropBankContract.Lookup_PbExamples_X.CONTENT_URI_TABLE);
 				id = PropBankContract.Lookup_PbExamples_X.EXAMPLEID;
-				idType = "pbexample";
+				idType = "pb_example";
 				target = PropBankContract.Lookup_PbExamples_X.TEXT;
 				columns = new String[]{PropBankContract.Lookup_PbExamples_X.TEXT};
 				hiddenColumns = new String[]{ //
