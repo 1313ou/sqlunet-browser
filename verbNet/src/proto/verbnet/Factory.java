@@ -98,10 +98,8 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 						"${members_groupings.table}", "${members.classid}", "${members.vnwordid}", //
 						"${groupings.table}", "${groupings.groupingid}", //
 						"${wnsynsets.table}", "${wnsynsets.synsetid}");
-
 				groupBy = "${words.vnwordid}";
 				break;
-
 
 			case VNCLASSES_VNROLES_X_BY_VNROLE:
 				table = String.format("%s " + //

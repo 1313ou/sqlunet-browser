@@ -21,6 +21,8 @@
 		<item>Drop PropBank indexes</item>
 		<item>Drop VerbNet text search</item>
 		<item>Drop PropBank text search</item>
+		<item>Prepare wordNet text search</item>
+		<item>Drop WordNet text search</item>
 	</string-array>
 	<string-array name="sql_statements_values" formatted="false" tools:ignore="InconsistentArrays" tools:keep="@array/sql_statements_values">
 		<item />
@@ -95,6 +97,11 @@
 			DROP TABLE IF EXISTS vn_examples_example_fts4;</item>
 		<item>
 			DROP TABLE IF EXISTS pb_examples_text_fts4;</item>
+		<item>
+			CREATE VIRTUAL TABLE IF NOT EXISTS words_word_fts4 USING fts4(wordid INTEGER not null, word);
+			INSERT INTO words_word_fts4 SELECT wordid, word from words;</item>
+		<item>
+			DROP TABLE IF EXISTS words_word_fts4;</item>
 	</string-array>
 
 </resources>

@@ -171,7 +171,7 @@ public class Factory implements Function<String,String[]>, Supplier<String[]>
 								"LEFT JOIN %s AS %s USING (%s)", //
 						"${senses.table}", "${as_senses}", //
 						"${words.table}", "${as_words}", "${words.wordid}");
-				projection = new String[]{String.format("GROUP_CONCAT(%s.%s, ', ' ) AS %s", "${words.table}", "${words.word}", MEMBERS)};
+				projection = new String[]{String.format("GROUP_CONCAT(DISTINCT %s.%s) AS %s", "${as_words}", "${words.word}", MEMBERS)};
 				groupBy = "${synsets.synsetid}";
 				break;
 
@@ -234,13 +234,13 @@ public class Factory implements Function<String,String[]>, Supplier<String[]>
 								"INNER JOIN %s USING (%s) " + // 2
 								"INNER JOIN %s AS %s ON %s.%s = %s.%s " + // 3
 								"LEFT JOIN %s ON %s.%s = %s.%s " + // 4
-								"LEFT JOIN %s USING (%s)", // 5
+								"LEFT JOIN %s AS %s USING (%s)", // 5
 						"${semrelations.table}", "${as_relations}", // 1
 						"${relations.table}", "${relations.relationid}", // 2
 						"${synsets.table}", "${as_synsets2}", "${as_relations}", "${semrelations.synset2id}", "${as_synsets2}", "${synsets.synsetid}", // 3
 						"${senses.table}", "${as_synsets2}", "${synsets.synsetid}", "${senses.table}", "${senses.synsetid}", // 4
-						"${words.table}", "${words.wordid}"); //5
-				projection =  new String[]{ String.format("GROUP_CONCAT(%s.%s, ', ' ) AS %s", "${words.table}", "${words.word}", MEMBERS2)};
+						"${words.table}", "${as_words2}", "${words.wordid}"); //5
+				projection =  new String[]{ String.format("GROUP_CONCAT(DISTINCT %s.%s) AS %s", "${as_words2}", "${words.word}", MEMBERS2)};
 				groupBy = String.format("%s.%s", "${as_synsets2}", "${synsets.synsetid}");
 				break;
 

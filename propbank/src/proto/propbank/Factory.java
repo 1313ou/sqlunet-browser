@@ -99,7 +99,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 				//noinspection fallthrough
 
 			case PBROLESETS_PBEXAMPLES:
-				table = String.format("%s " + // 1
+				table = String.format("%s " + //
 								"INNER JOIN %s AS %s USING (%s) " + //
 								"LEFT JOIN %s AS %s USING (%s) " + //
 								"LEFT JOIN %s AS %s USING (%s) " + //
@@ -148,7 +148,10 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 
 			case SUGGEST_WORDS:
 			{
-				table = "${words.table}";
+				table = String.format("%s " + //
+								"INNER JOIN %s USING (%s)", //
+						"${words.table}", //
+						"${wnwords.table}", "${wnwords.wordid}");
 				projection = new String[]{String.format("%s AS _id", "${words.pbwordid}"), //
 						String.format("%s AS #{suggest_text_1}", "${words.word}"), //
 						String.format("%s AS #{suggest_query}", "${words.word}")}; //

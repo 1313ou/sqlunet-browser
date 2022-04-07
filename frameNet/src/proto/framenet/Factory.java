@@ -299,22 +299,24 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 				break;
 
 			case WORDS_LEXUNITS_FRAMES:
-				table = String.format("%s " + //
-								"INNER JOIN %s USING (%s) " + //
-								"INNER JOIN %s USING (%s) " + //
-								"INNER JOIN %s AS %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s AS %s ON (%s.%s = %s.%s) " + //
-								"LEFT JOIN %s AS %s ON (%s = %s) " + //
-								"LEFT JOIN %s AS %s ON (%s = %s.%s)", //
-						"${wnwords.table}", //
-						"${words.table}", "${words.wordid}", //
-						"${lexemes.table}", "${words.fnwordid}", //
-						"${lexunits.table}", "${as_lexunits}", "${lexunits.luid}", //
-						"${frames.table}", "${frames.frameid}", //
-						"${poses.table}", "${as_poses}", "${as_lexunits}", "${poses.posid}", "${as_poses}", "${poses.posid}", //
-						"${fes.table}", "${as_fes}", "${lexunits.incorporatedfeid}", "${fes.feid}", //
-						"${fetypes.table}", "${as_fetypes}", "${lexunits.incorporatedfetypeid}", "${as_fes}", "${fetypes.fetypeid}");
+				table = String.format("%s " + // 1
+								// "INNER JOIN %s USING (%s) " + // 2
+								"INNER JOIN %s USING (%s) " + // 3
+								"INNER JOIN %s AS %s USING (%s) " + // 4
+								"LEFT JOIN %s AS %s USING (%s) " + // 5
+								"LEFT JOIN %s AS %s ON (%s.%s = %s.%s) " + // 6
+								"LEFT JOIN %s AS %s ON (%s = %s.%s) " + // 7
+								"LEFT JOIN %s AS %s ON (%s.%s = %s.%s AND %s = %s.%s)", // 8
+						"${words.table}", // 1
+						// "${wnwords.table}", // 1
+						// "${words.table}", "${words.wordid}", // 2
+						"${lexemes.table}", "${words.fnwordid}", // 3
+						"${lexunits.table}", "${as_lexunits}", "${lexunits.luid}", // 4
+						"${frames.table}", "${as_frames}", "${frames.frameid}", // 5
+						"${poses.table}", "${as_poses}", "${as_lexunits}", "${poses.posid}", "${as_poses}", "${poses.posid}", // 6
+						"${fetypes.table}", "${as_fetypes}", "${lexunits.incorporatedfetypeid}", "${as_fetypes}", "${fetypes.fetypeid}", // 7
+						"${fes.table}", "${as_fes}", "${as_frames}", "${frames.frameid}", "${as_fes}", "${frames.frameid}", "${lexunits.incorporatedfetypeid}", "${as_fes}", "${fes.fetypeid}"); // 8
+				groupBy = "${lexunits.luid}";
 				break;
 
 			case FRAMES_FES_BY_FE:
@@ -514,17 +516,13 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 			default:
 				return null;
 		}
-		return new String[]
-
-				{ //
+		return new String[]	{ //
 						quote(table), //
 						projection == null ? null : "{" + Arrays.stream(projection).map(Factory::quote).collect(Collectors.joining(",")) + "}", //
 						quote(selection), //
 						selectionArgs == null ? null : "{" + Arrays.stream(selectionArgs).map(Factory::quote).collect(Collectors.joining(",")) + "}", //
 						quote(groupBy), //
-						quote(sortOrder)}
-
-				;
+						quote(sortOrder)};
 	}
 
 	@Override
