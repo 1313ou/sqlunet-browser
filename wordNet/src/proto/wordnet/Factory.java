@@ -378,7 +378,7 @@ public class Factory implements Function<String,String[]>, Supplier<String[]>
 			{
 				table = String.format("%s_%s_fts4", "@{samples.table}", "@{samples.sample}");
 				projection = new String[]{ //
-						String.format("%s AS _id", "${samples.sampleid}"), //
+						String.format("%s AS _id", "${synsets.synsetid}"), //
 						String.format("%s AS %s", "${samples.sample}", "#{suggest_text_1}"), //
 						String.format("%s AS %s", "${samples.sample}", "#{suggest_query}")};
 				selection = String.format("%s MATCH ?", "${samples.sample}");
