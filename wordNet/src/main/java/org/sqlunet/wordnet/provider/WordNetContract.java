@@ -499,25 +499,25 @@ public class WordNetContract
 
 	public interface Suggest_Words extends Words
 	{
-		static final String SEARCH_WORD_PATH = "suggest_word";
+		String SEARCH_WORD_PATH = "suggest_word";
 		String TABLE = Suggest_Words.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 	}
 
 	public interface Suggest_FTS_Words extends Words
 	{
-		static final String SEARCH_WORD_PATH = "suggest_fts_word";
+		String SEARCH_WORD_PATH = "suggest_fts_word";
 		String TABLE = Suggest_FTS_Words.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 	}
 
 	public interface Suggest_FTS_Definitions extends Synsets
 	{
-		static final String SEARCH_DEFINITION_PATH = "suggest_fts_definition";
+		String SEARCH_DEFINITION_PATH = "suggest_fts_definition";
 		String TABLE = Suggest_FTS_Definitions.SEARCH_DEFINITION_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 	}
 
 	public interface Suggest_FTS_Samples extends Samples
 	{
-		static final String SEARCH_SAMPLE_PATH = "suggest_fts_definition";
+		String SEARCH_SAMPLE_PATH = "suggest_fts_definition";
 		String TABLE = Suggest_FTS_Samples.SEARCH_SAMPLE_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 	}
 }
