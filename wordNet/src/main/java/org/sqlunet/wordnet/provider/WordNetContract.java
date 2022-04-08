@@ -357,10 +357,10 @@ public class WordNetContract
 
 	// A R T I F A C T   T A B L E S
 
-	public interface AllRelations extends LexRelations
+	public interface AnyRelations extends LexRelations
 	{
-		String TABLE = "allrelations";
-		String CONTENT_URI_TABLE = AllRelations.TABLE;
+		String TABLE = "anyrelations";
+		String CONTENT_URI_TABLE = AnyRelations.TABLE;
 	}
 
 	// J O I N S
@@ -409,10 +409,10 @@ public class WordNetContract
 		String CONTENT_URI_TABLE = Synsets_Poses_Domains.TABLE;
 	}
 
-	public interface AllRelations_Senses_Words_X extends AllRelations, Senses, Words
+	public interface AnyRelations_Senses_Words_X extends AnyRelations, Senses, Words
 	{
-		String TABLE_BY_SYNSET = "allrelations_senses_relations_senses_words_by_synset";
-		String CONTENT_URI_TABLE = AllRelations_Senses_Words_X.TABLE_BY_SYNSET;
+		String TABLE_BY_SYNSET = "anyrelations_senses_relations_senses_words_by_synset";
+		String CONTENT_URI_TABLE = AnyRelations_Senses_Words_X.TABLE_BY_SYNSET;
 
 		String MEMBERS2 = WordNetContract.MEMBERS2;
 		String RECURSES = V.RECURSES;

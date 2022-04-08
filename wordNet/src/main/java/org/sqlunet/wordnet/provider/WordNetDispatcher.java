@@ -45,7 +45,7 @@ public class WordNetDispatcher
 	static final int SENSES_SYNSETS_POSES_DOMAINS = 330;
 	static final int SYNSETS_POSES_DOMAINS = 340;
 
-	static final int ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET = 400;
+	static final int ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET = 400;
 	static final int SEMRELATIONS_SYNSETS = 410;
 	static final int SEMRELATIONS_SYNSETS_X = 411;
 	static final int SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET = 412;
@@ -290,13 +290,13 @@ public class WordNetDispatcher
 		return new Result(table, projection, selection, selectionArgs0, groupBy);
 	}
 
-	public static Result queryAllRelations(int code, final String[] projection0, @Nullable final String selection0, final String[] selectionArgs0, final Factory subqueryFactory)
+	public static Result queryAnyRelations(int code, final String[] projection0, @Nullable final String selection0, final String[] selectionArgs0, final Factory subqueryFactory)
 	{
-		if (code == ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET)
+		if (code == ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET)
 		{
-			final String subQuery = subqueryFactory.make(selection0);
-			String table = Q.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET.TABLE.replaceFirst("#\\{query\\}", subQuery);
-			String groupBy = Q.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET.GROUPBY;
+			// final String subQuery = subqueryFactory.make(selection0);
+			String table = Q.ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET.TABLE /* .replaceFirst("#\\{query\\}", subQuery) */;
+			String groupBy = Q.ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET.GROUPBY;
 			return new Result(table, projection0, null, selectionArgs0, groupBy);
 		}
 		return null;

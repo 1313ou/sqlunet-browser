@@ -164,7 +164,7 @@ public class QueriesLegacy
 						"LEFT JOIN domains AS " + WordNetContract.AS_DOMAINS + " USING (domainid)";
 				break;
 
-			case WordNetDispatcher.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET:
+			case WordNetDispatcher.ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET:
 				final String subQuery = subqueryFactory.make(selection0);
 				table = "( " + subQuery + " ) AS " + WordNetContract.AS_RELATIONS + ' ' + //
 						"INNER JOIN relations USING (relationid) " + //

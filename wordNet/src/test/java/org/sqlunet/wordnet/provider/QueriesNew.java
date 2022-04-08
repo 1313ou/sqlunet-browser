@@ -147,11 +147,11 @@ public class QueriesNew
 				table = Q.SYNSETS_POSES_DOMAINS.TABLE;
 				break;
 
-			case WordNetDispatcher.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET:
+			case WordNetDispatcher.ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET:
 				final String subQuery = subqueryFactory.make(selection0);
-				table = Q.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET.TABLE.replaceFirst("#\\{query\\}", subQuery);
+				table = Q.ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET.TABLE.replaceFirst("#\\{query\\}", subQuery);
 				selection = null;
-				groupBy = Q.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET.GROUPBY;
+				groupBy = Q.ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET.GROUPBY;
 				break;
 
 			case WordNetDispatcher.SEMRELATIONS_SYNSETS:

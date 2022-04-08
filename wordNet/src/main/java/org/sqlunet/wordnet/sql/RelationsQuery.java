@@ -18,7 +18,7 @@ class RelationsQuery extends DBQuery
 	/**
 	 * <code>QUERY</code> is the SQL statement
 	 */
-	static private final String QUERY = SqLiteDialect.AllRelationsQuery;
+	static private final String QUERY = SqLiteDialect.RelationsQuery;
 
 	/**
 	 * Constructor

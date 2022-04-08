@@ -18,8 +18,8 @@ import android.util.Log;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.sql.SqlFormatter;
 import org.sqlunet.wordnet.provider.WordNetContract.AdjPositions;
-import org.sqlunet.wordnet.provider.WordNetContract.AllRelations;
-import org.sqlunet.wordnet.provider.WordNetContract.AllRelations_Senses_Words_X;
+import org.sqlunet.wordnet.provider.WordNetContract.AnyRelations;
+import org.sqlunet.wordnet.provider.WordNetContract.AnyRelations_Senses_Words_X;
 import org.sqlunet.wordnet.provider.WordNetContract.Dict;
 import org.sqlunet.wordnet.provider.WordNetContract.Domains;
 import org.sqlunet.wordnet.provider.WordNetContract.LexRelations;
@@ -114,7 +114,7 @@ public class WordNetProvider extends BaseProvider
 		uriMatcher.addURI(AUTHORITY, Senses_Synsets_Poses_Domains.TABLE, WordNetDispatcher.SENSES_SYNSETS_POSES_DOMAINS);
 		uriMatcher.addURI(AUTHORITY, Synsets_Poses_Domains.TABLE, WordNetDispatcher.SYNSETS_POSES_DOMAINS);
 
-		uriMatcher.addURI(AUTHORITY, AllRelations_Senses_Words_X.TABLE_BY_SYNSET, WordNetDispatcher.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET);
+		uriMatcher.addURI(AUTHORITY, AnyRelations_Senses_Words_X.TABLE_BY_SYNSET, WordNetDispatcher.ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET);
 
 		uriMatcher.addURI(AUTHORITY, SemRelations_Synsets.TABLE, WordNetDispatcher.SEMRELATIONS_SYNSETS);
 		uriMatcher.addURI(AUTHORITY, SemRelations_Synsets_X.TABLE, WordNetDispatcher.SEMRELATIONS_SYNSETS_X);
@@ -234,8 +234,8 @@ public class WordNetProvider extends BaseProvider
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Senses_Synsets_Poses_Domains.TABLE;
 			case WordNetDispatcher.SYNSETS_POSES_DOMAINS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Synsets_Poses_Domains.TABLE;
-			case WordNetDispatcher.ALLRELATIONS_SENSES_WORDS_X_BY_SYNSET:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + AllRelations_Senses_Words_X.TABLE_BY_SYNSET;
+			case WordNetDispatcher.ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET:
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + AnyRelations_Senses_Words_X.TABLE_BY_SYNSET;
 			case WordNetDispatcher.SEMRELATIONS_SYNSETS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + SemRelations_Synsets.TABLE;
 			case WordNetDispatcher.SEMRELATIONS_SYNSETS_X:
@@ -332,7 +332,7 @@ public class WordNetProvider extends BaseProvider
 		if (result == null)
 		{
 			// RELATIONS
-			result = WordNetDispatcher.queryAllRelations(code, projection0, selection0, selectionArgs0, this::makeAllRelationsSubQuery);
+			result = WordNetDispatcher.queryAnyRelations(code, projection0, selection0, selectionArgs0, this::makeAnyRelationsSubQuery);
 			if (result == null)
 			{
 				// TEXTSEARCH
@@ -377,12 +377,12 @@ public class WordNetProvider extends BaseProvider
 	// S U B Q U E R Y
 
 	/**
-	 * All relations subquery
+	 * Any relations subquery
 	 *
 	 * @param selection0 input selection
 	 * @return all relations subquery
 	 */
-	private String makeAllRelationsSubQuery(final String selection0)
+	private String makeAnyRelationsSubQuery(final String selection0)
 	{
 		final String semTable = SemRelations.TABLE;
 		final String lexTable = LexRelations.TABLE;
@@ -399,11 +399,11 @@ public class WordNetProvider extends BaseProvider
 				LexRelations.SYNSET2ID, //
 		};
 		final String[] unionProjection = { //
-				AllRelations.RELATIONID, //
-				AllRelations.WORD1ID, //
-				AllRelations.SYNSET1ID, //
-				AllRelations.WORD2ID, //
-				AllRelations.SYNSET2ID, //
+				AnyRelations.RELATIONID, //
+				AnyRelations.WORD1ID, //
+				AnyRelations.SYNSET1ID, //
+				AnyRelations.WORD2ID, //
+				AnyRelations.SYNSET2ID, //
 		};
 		assert selection0 != null;
 		final String[] selections = selection0.split("/\\*\\*/\\|/\\*\\*/");

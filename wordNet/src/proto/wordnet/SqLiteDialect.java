@@ -12,13 +12,13 @@ package org.sqlunet.wordnet.sql;
 class SqLiteDialect
 {
 	// query for domains enumeration
-	static final String AllDomainsQuery = //
+	static final String DomainsQuery = //
 			"SELECT ${domains.domainid}, ${domains.domain}, ${domains.posid} " +  //
 			"FROM ${domains.table} " +  //
 			"ORDER BY ${domains.domainid};";
 
 	// query for relations enumeration
-	static final String AllRelationsQuery = //
+	static final String RelationsQuery = //
 			"SELECT ${relations.relationid}, ${relations.relation}, ${relations.recurses} " +  //
 			"FROM ${relations.table} " +  //
 			"ORDER BY ${relations.relationid};";
@@ -124,4 +124,5 @@ class SqLiteDialect
 			"WHERE ${lexrelations.synset1id} = ? AND ${relations.relationid} = ? AND CASE ? WHEN 0 THEN 1 ELSE ${lexrelations.word1id} = ? END " + //
 			"GROUP BY ${synsets.synsetid} " + //
 			"ORDER BY 1, 2;";
+
 }

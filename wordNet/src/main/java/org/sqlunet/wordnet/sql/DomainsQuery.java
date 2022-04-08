@@ -18,7 +18,7 @@ class DomainsQuery extends DBQuery
 	/**
 	 * <code>QUERY</code> is the SQL statement
 	 */
-	static private final String QUERY = SqLiteDialect.AllDomainsQuery; // ;
+	static private final String QUERY = SqLiteDialect.DomainsQuery; // ;
 
 	/**
 	 * Constructor
