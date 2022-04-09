@@ -174,7 +174,7 @@ abstract public class Status
 			{
 				if (!tablesAndIndexes.contains(target))
 				{
-					Log.d(TAG, "ABSENT " + target);
+					Log.e(TAG, "Absent " + target);
 				}
 			}
 		}

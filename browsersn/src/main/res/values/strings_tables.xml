@@ -44,18 +44,18 @@
 	<string-array name="required_indexes" tools:ignore="InconsistentArrays">
 
 		<!-- wordnet -->
-		<item>index_words_word</item>
-		<item>index_senses_wordid</item>
-		<item>index_senses_synsetid</item>
-		<item>index_synsets_synsetid</item>
-		<item>index_casedwords_wordid_casedwordid</item>
-		<item>index_semrelations_synset1id</item>
-		<item>index_semrelations_relationid</item>
-		<item>index_samples_synsetid</item>
+		<item>pk_words</item>
+		<item>pk_synsets</item>
+		<item>k_senses_wordid</item>
+		<item>k_senses_synsetid</item>
+		<item>k_casedwords_wordid</item>
+		<item>k_semrelations_synset1id</item>
+		<item>k_semrelations_relationid</item>
+		<item>k_samples_synsetid</item>
 
 		<!-- syntagnet -->
-		<item>index_syntagms_synset1id_word1id</item>
-		<item>index_syntagms_synset2id_word2id</item>
+		<item>k_sn_syntagms_word1id</item>
+		<item>k_sn_syntagms_word2id</item>
 
 	</string-array>
 
