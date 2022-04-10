@@ -7,9 +7,12 @@
 	<integer name="size_sqlunet_db" tools:keep="@integer/size_sqlunet_db">539594752</integer>
 	<integer name="size_sqlunet_db_zip" tools:keep="@integer/size_sqlunet_db_zip">181779860</integer>
 	<integer name="size_sqlunet_sql_zip" tools:keep="@integer/size_sqlunet_sql_zip">119924605</integer>
-
+	<integer name="size_db_working_total">720359424</integer>
 	<integer name="size_searchtext" tools:keep="@integer/size_searchtext">180764672</integer>
 
-<!--	<integer name="size_db_working_total">720359424</integer>-->
+	<integer name="size_searchtext_wn">34979840</integer>
+	<integer name="size_searchtext_vn">42831872</integer>
+	<integer name="size_searchtext_pb">42831872</integer>
+	<integer name="size_searchtext_fn">121630720</integer>
 
 </resources>

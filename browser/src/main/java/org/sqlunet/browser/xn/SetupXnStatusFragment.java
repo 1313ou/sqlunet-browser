@@ -22,6 +22,7 @@ import org.sqlunet.browser.Info;
 import org.sqlunet.browser.R;
 import org.sqlunet.browser.config.SetupDatabaseActivity;
 import org.sqlunet.browser.config.SetupDatabaseFragment;
+import org.sqlunet.browser.config.Utils;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
 
@@ -152,11 +153,24 @@ public class SetupXnStatusFragment extends org.sqlunet.browser.config.SetupStatu
 						getString(R.string.title_status), getString(R.string.status_database_exists), //
 						getString(R.string.title_status), getString(existsTables ? R.string.status_data_exists : R.string.status_data_not_exists), //
 						getString(R.string.title_free), free, //
-						getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
-						getString(R.string.size_expected) + ' ' +  //
-								getString(R.string.text_search) + ' ' + getString(R.string.wordnet) + '/' + getString(R.string.verbnet) + '/' + getString(R.string.propbank) + '/' + getString(R.string.framenet),  //
-						getString(R.string.hr_size_searchtext) + " (" + getString(R.string.hr_size_searchtext_wn) + '+' + getString(R.string.hr_size_searchtext_vn) + '+' + getString(R.string.hr_size_searchtext_pb) + '+' + getString(R.string.hr_size_searchtext_fn) + ')', //
-						getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
+						getString(R.string.size_expected), Utils.hrSize(R.integer.size_sqlunet_db, requireContext()), //
+						String.format("%s %s %s/%s/%s/%s", //
+								getString(R.string.size_expected), //
+								getString(R.string.text_search), //
+								getString(R.string.wordnet), //
+								getString(R.string.verbnet), //
+								getString(R.string.propbank), //
+								getString(R.string.framenet)), //
+						String.format("%s (%s + %s + %s + %s)", //
+								Utils.hrSize(R.integer.size_searchtext, requireContext()), //
+								Utils.hrSize(R.integer.size_searchtext_wn, requireContext()), //
+								Utils.hrSize(R.integer.size_searchtext_vn, requireContext()), //
+								Utils.hrSize(R.integer.size_searchtext_pb, requireContext()), //
+								Utils.hrSize(R.integer.size_searchtext_fn, requireContext())), //
+						String.format("%s %s %s", //
+								getString(R.string.size_expected), //
+								getString(R.string.total), //
+								Utils.hrSize(R.integer.size_db_working_total, requireContext())), //
 						getString(R.string.size_current), hrSize);
 			}
 			else
@@ -166,9 +180,25 @@ public class SetupXnStatusFragment extends org.sqlunet.browser.config.SetupStatu
 						getString(R.string.title_from), source, //
 						getString(R.string.title_database), database, //
 						getString(R.string.title_free), free, //
-						getString(R.string.size_expected) + ' ' + getString(R.string.text_search) + ' ' + getString(R.string.wordnet) + '/' + getString(R.string.verbnet) + '/' + getString(R.string.propbank) + '/' + getString(R.string.framenet), getString(R.string.hr_size_searchtext) + " (" + getString(R.string.hr_size_searchtext_wn) + '+' + getString(R.string.hr_size_searchtext_vn) + '+' + getString(R.string.hr_size_searchtext_pb) + '+' + getString(R.string.hr_size_searchtext_fn) + ')', //
-						getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
-						getString(R.string.title_status), getString(R.string.status_database_not_exists));
+						String.format("%s %s %s/%s/%s/%s", //
+								getString(R.string.size_expected), //
+								getString(R.string.text_search), //
+								getString(R.string.wordnet), //
+								getString(R.string.verbnet), //
+								getString(R.string.propbank), //
+								getString(R.string.framenet)), //
+						String.format("%s  (%s + %s + %s + %s)", //
+								Utils.hrSize(R.integer.size_searchtext, requireContext()), //
+								Utils.hrSize(R.integer.size_searchtext_wn, requireContext()), //
+								Utils.hrSize(R.integer.size_searchtext_vn, requireContext()), //
+								Utils.hrSize(R.integer.size_searchtext_pb, requireContext()), //
+								Utils.hrSize(R.integer.size_searchtext_fn, requireContext())), //
+						String.format("%s %s", //
+								getString(R.string.size_expected), //
+								getString(R.string.total)), //
+						Utils.hrSize(R.integer.size_db_working_total, requireContext()), //
+						getString(R.string.title_status), //
+						getString(R.string.status_database_not_exists));
 			}
 		});
 		return view;

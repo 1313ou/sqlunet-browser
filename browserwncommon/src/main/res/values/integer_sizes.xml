@@ -5,12 +5,11 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<integer name="size_sqlunet_db" tools:keep="@integer/size_sqlunet_db">65818624</integer> <!-- sqlunet-wn.db -->
-	<integer name="size_sqlunet_db_zip" tools:keep="@integer/size_sqlunet_db_zip">27719001</integer> <!-- sqlunet-wn.db.zip -->
-	<integer name="size_sqlunet_sql_zip" tools:keep="@integer/size_sqlunet_sql_zip">12038180</integer> <!-- sqlunet-wn.sql.zip -->
-
-	<integer name="size_searchtext" tools:keep="@integer/size_searchtext">34959360</integer>
-
-	<integer name="size_db_working_total">100777984</integer>
+	<integer name='size_db_working_total' tools:keep='@string/size_db_working_total'>0</integer>
+	<integer name='size_core' tools:keep='@string/size_core'>0</integer>
+	<integer name='size_searchtext' tools:keep='@string/size_searchtext'>0</integer>
+	<integer name='size_indexes' tools:keep='@string/size_indexes'>0</integer>
+	<integer name='size_sqlunet_db' tools:keep='@string/size_sqlunet_db'>0</integer> <!-- sqlunet-xxx.db -->
+	<integer name='size_sqlunet_db_zip' tools:keep='@string/size_sqlunet_db_zip'>0</integer> <!-- sqlunet-xxx.db.zip -->
 
 </resources>

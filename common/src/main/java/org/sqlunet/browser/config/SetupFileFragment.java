@@ -309,8 +309,8 @@ public class SetupFileFragment extends BaseTaskFragment
 		Info.build(sb, //
 				getString(R.string.title_database), database, //
 				getString(R.string.title_status), getString(databaseExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
-				getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
-				getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
+				getString(R.string.size_expected), Utils.hrSize(R.integer.size_sqlunet_db, requireContext()), //
+				getString(R.string.size_expected) + ' ' + getString(R.string.total), Utils.hrSize(R.integer.size_db_working_total, requireContext()), //
 				getString(R.string.title_free), free, //
 				getString(R.string.title_from), fromPath, //
 				getString(R.string.title_status), getString(sourceExists ? R.string.status_source_exists : R.string.status_source_not_exists));
@@ -343,8 +343,8 @@ public class SetupFileFragment extends BaseTaskFragment
 		Info.build(sb, //
 				getString(R.string.title_database), database, //
 				getString(R.string.title_status), getString(databaseExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
-				getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
-				getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
+				getString(R.string.size_expected), Utils.hrSize(R.integer.size_sqlunet_db, requireContext()), //
+				getString(R.string.size_expected) + ' ' + getString(R.string.total), Utils.hrSize(R.integer.size_db_working_total, requireContext()), //
 				getString(R.string.title_free), free, //
 				getString(R.string.title_from), fromPath, //
 				getString(R.string.title_status), getString(sourceExists ? R.string.status_source_exists : R.string.status_source_not_exists));
@@ -399,8 +399,8 @@ public class SetupFileFragment extends BaseTaskFragment
 		Info.build(sb, //
 				getString(R.string.title_from), from, //
 				getString(R.string.title_to), to, //
-				getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db), //
-				getString(R.string.size_expected) + ' ' + getString(R.string.total), getString(R.string.hr_size_db_working_total), //
+				getString(R.string.size_expected), Utils.hrSize(R.integer.size_sqlunet_db, requireContext()), //
+				getString(R.string.size_expected) + ' ' + getString(R.string.total), Utils.hrSize(R.integer.size_db_working_total, requireContext()), //
 				getString(R.string.title_free), free, //
 				getString(R.string.title_status), getString(targetExists ? R.string.status_local_exists : R.string.status_local_not_exists));
 		return sb;
@@ -426,7 +426,7 @@ public class SetupFileFragment extends BaseTaskFragment
 		Info.build(sb, //
 				getString(R.string.title_from), from, //
 				getString(R.string.title_to), to, //
-				getString(R.string.size_expected), getString(R.string.hr_size_sqlunet_db_zip), //
+				getString(R.string.size_expected), Utils.hrSize(R.integer.size_sqlunet_db_zip, requireContext()), //
 				getString(R.string.title_free), free, //
 				getString(R.string.title_status), getString(targetExists ? R.string.status_local_exists : R.string.status_local_not_exists));
 		return sb;
