@@ -48,15 +48,15 @@ public class Utils
 	@SuppressLint("DefaultLocale")
 	static private String hrSize(long x0)
 	{
-		long x = x0;
+		float x = x0;
 		for (String unit : units)
 		{
 			if (x > -1024.0 && x < 1024.0)
 			{
 				return String.format(f, Math.round(x), unit);
 			}
+			x /= 1024.0;
 		}
-		x /= 1024.0;
 		return String.format(f, Math.round(x), "TB");
 	}
 
