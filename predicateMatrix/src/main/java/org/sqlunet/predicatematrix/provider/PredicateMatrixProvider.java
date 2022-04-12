@@ -42,16 +42,10 @@ public class PredicateMatrixProvider extends BaseProvider
 		matchURIs();
 	}
 
-	// table codes
-	static private final int PM = 10;
-
-	// join codes
-	static private final int PM_X = 11;
-
 	static private void matchURIs()
 	{
-		PredicateMatrixProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrixContract.Pm.TABLE, PredicateMatrixProvider.PM);
-		PredicateMatrixProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrixContract.Pm_X.TABLE, PredicateMatrixProvider.PM_X);
+		PredicateMatrixProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrixContract.Pm.TABLE, PredicateMatrixDispatcher.PM);
+		PredicateMatrixProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrixContract.Pm_X.TABLE, PredicateMatrixDispatcher.PM_X);
 	}
 
 	@NonNull
@@ -90,9 +84,9 @@ public class PredicateMatrixProvider extends BaseProvider
 	{
 		switch (PredicateMatrixProvider.uriMatcher.match(uri))
 		{
-			case PM:
+			case PredicateMatrixDispatcher.PM:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PredicateMatrixContract.Pm.TABLE;
-			case PM_X:
+			case PredicateMatrixDispatcher.PM_X:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PredicateMatrixContract.Pm_X.TABLE;
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");
@@ -136,11 +130,11 @@ public class PredicateMatrixProvider extends BaseProvider
 
 			// J O I N S
 
-			case PM:
+			case PredicateMatrixDispatcher.PM:
 				table = Pm.TABLE;
 				break;
 
-			case PM_X:
+			case PredicateMatrixDispatcher.PM_X:
 				table = "pm " + //
 						"LEFT JOIN pmroles AS " + PredicateMatrixContract.PMROLE + " USING (pmroleid) " + //
 						"LEFT JOIN pmpredicates AS " + PredicateMatrixContract.PMPREDICATE + " USING (pmpredid) " + //

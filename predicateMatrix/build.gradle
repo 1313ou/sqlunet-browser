@@ -2,7 +2,10 @@
  * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
-apply plugin: 'com.android.library'
+plugins {
+    id 'org.sqlunet.plugin.querybuilder' version '1.0.0'
+    id 'com.android.library'
+}
 
 android {
 
@@ -39,4 +42,58 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.3.0'
 
     testImplementation 'junit:junit:4.13.2'
+}
+
+task dumpSourceSets() {
+    doLast {
+        android.sourceSets.each { srcSet ->
+            println "[" + srcSet.name + "]"
+            print "-->Source directories: " + srcSet.java.srcDirs + "\n"
+            print "-->Resource directories: " + srcSet.resources.srcDirs + "\n"
+            println ""
+        }
+    }
+}
+
+def protoSrcDir = new File(projectDir, "/src/proto")
+def generatedSrcDir = new File(buildDir, "generated/source/queries")
+
+android {
+
+    sourceSets {
+
+        main {
+            java.srcDirs += generatedSrcDir
+        }
+
+        test {
+            java.srcDirs += generatedSrcDir
+        }
+    }
+}
+
+querybuilder_args {
+
+    inDir = "${protoSrcDir}/predicatematrix"
+    factory = "Factory.java"
+    variables = ["Names.properties", "NamesExtra.properties"]
+    instantiates = ["SqLiteDialect.java"]
+
+    outDir = "${generatedSrcDir}"
+    v = "V"
+    q = "Q"
+    qv = "QV"
+    qPackage = "org.sqlunet.predicatematrix.provider"
+    instantiateDest = "org.sqlunet.predicatematrix.sql"
+}
+
+task generateAll {
+    dependsOn('generateQV')
+            .dependsOn('generateQ')
+            .dependsOn('generateV')
+            .dependsOn('instantiate')
+}
+
+preBuild {
+    dependsOn('generateAll')
 }
