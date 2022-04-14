@@ -33,6 +33,7 @@ public class XSqlUNetDispatcher
 		String selection = null;
 		String[] selectionArgs = null;
 		String groupBy = null;
+		String orderBy = null;
 
 		switch (code)
 		{
@@ -160,7 +161,7 @@ public class XSqlUNetDispatcher
 			default:
 				return null;
 		}
-		return new Result(table, projection, selection, selectionArgs, groupBy);
+		return new Result(table, projection, selection, selectionArgs, groupBy, orderBy);
 	}
 
 	static public class Result
@@ -170,14 +171,16 @@ public class XSqlUNetDispatcher
 		final String selection;
 		final String[] selectionArgs;
 		final String groupBy;
+		final String orderBy;
 
-		public Result(final String table, final String[] projection, final String selection, final String[] selectionArgs, final String groupBy)
+		public Result(final String table, final String[] projection, final String selection, final String[] selectionArgs, final String groupBy, final String orderBy)
 		{
 			this.table = table;
 			this.projection = projection;
 			this.selection = selection;
 			this.selectionArgs = selectionArgs;
 			this.groupBy = groupBy;
+			this.orderBy = orderBy;
 		}
 	}
 
