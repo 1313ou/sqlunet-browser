@@ -17,15 +17,20 @@ public class QueriesUnitTest
 	@Test
 	public void queriesUnion()
 	{
-		int code = XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_U;
-		Result r1 = QueriesLegacy.queryLegacy(code, uriLast, projection, selection, selectionArgs);
-		System.out.println(r1.table);
-		System.out.println(Arrays.toString(r1.projection));
-		System.out.println(r1.selection);
-		System.out.println(Arrays.toString(r1.selectionArgs));
-		System.out.println(r1.groupBy);
+		for (int code : new int[]{XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_U, XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_U, XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_U})
+		{
+			System.out.println("CODE: " + code);
+			Result r = QueriesLegacy.queryLegacy(code, uriLast, projection, selection, selectionArgs);
+			System.out.println("table :" + r.table);
+			System.out.println("projection :" + Arrays.toString(r.projection));
+			System.out.println("selection :" + r.selection);
+			System.out.println("args :" + Arrays.toString(r.selectionArgs));
+			System.out.println("groupby :" + r.groupBy);
+			System.out.println();
+		}
 	}
 
+	@Test
 	public void queriesLegacyAgainstProvider()
 	{
 		for (int i = 0; i < codes.length; i++)

@@ -1,8 +1,5 @@
 package org.sqlunet.provider;
 
-import android.database.sqlite.SQLiteQueryBuilder;
-import android.text.TextUtils;
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -29,9 +26,9 @@ public class XSqlUNetDispatcher
 	public static Result queryMain(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		String table = null;
-		String[] projection = null;
-		String selection = null;
-		String[] selectionArgs = null;
+		String[] projection = projection0;
+		String selection = selection0;
+		String[] selectionArgs = selectionArgs0;
 		String groupBy = null;
 		String orderBy = null;
 
@@ -98,6 +95,14 @@ public class XSqlUNetDispatcher
 				break;
 			}
 
+			case XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS:
+			{
+				table = "pb_words " + //
+						"INNER JOIN pb_rolesets AS " + XSqlUNetContract.CLASS + " USING (pbwordid)";
+				groupBy = "wordid,synsetid,rolesetid";
+				break;
+			}
+
 			case XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_U:
 			{
 				final String table1 = "pmvn " + //
@@ -110,17 +115,7 @@ public class XSqlUNetDispatcher
 				final String[] table1Projection = unionProjection;
 				final String[] table2Projection = {"wordid", "synsetid", "classid", "class", "classtag"};
 				final String[] groupByArray = {"wordid", "synsetid", "classid"};
-				//final String query = makeQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, groupByArray, sortOrder, "vn");
-				//Log.d(XSqlUNetProvider.TAG + "PM-VN", query);
-				break;
-			}
-
-			case XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS:
-			{
-				table = "pb_words " + //
-						"INNER JOIN pb_rolesets AS " + XSqlUNetContract.CLASS + " USING (pbwordid)";
-				groupBy = "wordid,synsetid,rolesetid";
-				break;
+				return makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray, orderBy, "vn");
 			}
 
 			case XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_U:
@@ -134,9 +129,7 @@ public class XSqlUNetDispatcher
 				final String[] table1Projection = unionProjection;
 				final String[] table2Projection = {"wordid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr"};
 				final String[] groupByArray = {"wordid", "synsetid", "rolesetid"};
-				//final String query = makeQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, groupByArray, sortOrder, "pb");
-				//Log.d(XSqlUNetProvider.TAG + "PM-PB", query);
-				break;
+				return makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray, orderBy, "pb");
 			}
 
 			case XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_U:
@@ -153,9 +146,7 @@ public class XSqlUNetDispatcher
 				final String[] table1Projection = unionProjection;
 				final String[] table2Projection = {"wordid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition"};
 				final String[] groupByArray = {"wordid", "synsetid", "frameid"};
-				//final String query = makeQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, groupByArray, sortOrder, "fn");
-				//Log.d(XSqlUNetProvider.TAG + "PM-FN", query);
-				break;
+				return makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray,  orderBy, "fn");
 			}
 
 			default:
@@ -182,6 +173,193 @@ public class XSqlUNetDispatcher
 			this.groupBy = groupBy;
 			this.orderBy = orderBy;
 		}
+	}
+
+	/**
+	 * Make union query
+	 *
+	 * @param table1           table1
+	 * @param table2           table2
+	 * @param table1Projection table1 projection
+	 * @param table2Projection table2 projection
+	 * @param unionProjection  union projection
+	 * @param projection       final projection
+	 * @param selection        selection
+	 * @param selectionArgs    selection arguments
+	 * @param groupBys         group by
+	 * @param sortOrder        sort
+	 * @param tag              tag
+	 * @return result
+	 */
+	static Result makeUnionQuery(final String table1, final String table2, //
+			final String[] table1Projection, final String[] table2Projection, //
+			final String[] unionProjection, //
+			@NonNull final String[] projection, //
+			final String selection, //
+			final String[] selectionArgs, //
+			final String[] groupBys, final String sortOrder, final String tag)
+	{
+		// embbedded
+		final String uQuery = makeEmbeddedQuery(table1, table2, //
+				table1Projection, table2Projection, //
+				unionProjection, selection, //
+				tag);
+
+		// table
+		final String table = ('(' + uQuery + ')');
+
+		// group by
+		String[] actualGroupBys = groupBys;
+		if (actualGroupBys == null)
+		{
+			actualGroupBys = new String[projection.length];
+			for (int i = 0; i < projection.length; i++)
+			{
+				actualGroupBys[i] = projection[i].replaceFirst("\\sAS\\s*.*$", "");
+			}
+		}
+		final String groupBy = join(",", actualGroupBys);
+
+		// args
+		final String[] selectionArgs2 = unfoldSelectionArgs(selectionArgs);
+
+		return new Result(table, projection, selection, selectionArgs2, groupBy, sortOrder);
+	}
+
+	/**
+	 * Make embedded union query
+	 *
+	 * @param table1           table1
+	 * @param table2           table2
+	 * @param table1Projection table1 projection
+	 * @param table2Projection table2 projection
+	 * @param unionProjection  union projection
+	 * @param selection        selection
+	 * @param tag              tag
+	 * @return union sql
+	 */
+	private static String makeEmbeddedQuery(final String table1, final String table2, //
+			final String[] table1Projection, final String[] table2Projection, //
+			final String[] unionProjection, final String selection, //
+			final String tag)
+	{
+		final String[] actualUnionProjection = BaseProvider.appendProjection(unionProjection, "source");
+		final List<String> table1ProjectionList = Arrays.asList(table1Projection);
+		final List<String> table2ProjectionList = Arrays.asList(table2Projection);
+
+		// predicate matrix
+		final SQLiteQueryBuilder pmSubQueryBuilder = new SQLiteQueryBuilder();
+		pmSubQueryBuilder.setTables(table1);
+		final String pmSubquery = pmSubQueryBuilder.buildUnionSubQuery("source", //
+				actualUnionProjection, //
+				new HashSet<>(table1ProjectionList), //
+				0, //
+				"pm" + tag, //
+				selection, //
+				null, //
+				null);
+
+		// sqlunet table
+		final SQLiteQueryBuilder sqlunetSubQueryBuilder = new SQLiteQueryBuilder();
+		sqlunetSubQueryBuilder.setTables(table2);
+		final String sqlunetSubquery = sqlunetSubQueryBuilder.buildUnionSubQuery("source", //
+				actualUnionProjection, //
+				new HashSet<>(table2ProjectionList), //
+				0, //
+				tag, //
+				selection, //
+				null, //
+				null);
+
+		// union
+		final SQLiteQueryBuilder uQueryBuilder = new SQLiteQueryBuilder();
+		uQueryBuilder.setDistinct(true);
+		final String uQuery = uQueryBuilder.buildUnionQuery(new String[]{pmSubquery, sqlunetSubquery}, null, null);
+		return uQuery;
+	}
+
+	/**
+	 * Make args
+	 *
+	 * @param selectionArgs selection arguments
+	 * @return cursor
+	 */
+	private static String[] unfoldSelectionArgs(@NonNull final String... selectionArgs)
+	{
+		final String[] selectionArgs2 = new String[2 * selectionArgs.length];
+		for (int i = 0; i < selectionArgs.length; i++)
+		{
+			selectionArgs2[2 * i] = selectionArgs2[2 * i + 1] = selectionArgs[i];
+		}
+		return selectionArgs2;
+	}
+
+	// Avoid either TextUtils.join (Android dependency) or String.join(API)
+	private static String join(final CharSequence delimiter, final CharSequence[] tokens)
+	{
+		final int length = tokens.length;
+		if (length == 0)
+		{
+			return "";
+		}
+		final StringBuilder sb = new StringBuilder();
+		sb.append(tokens[0]);
+		for (int i = 1; i < length; i++)
+		{
+			sb.append(delimiter);
+			sb.append(tokens[i]);
+		}
+		return sb.toString();
+	}
+
+	/**
+	 * Make union query
+	 *
+	 * @param table1           table1
+	 * @param table2           table2
+	 * @param table1Projection table1 projection
+	 * @param table2Projection table2 projection
+	 * @param unionProjection  union projection
+	 * @param projection       final projection
+	 * @param selection        selection
+	 * @param groupBys         group by
+	 * @param sortOrder        sort
+	 * @param tag              tag
+	 * @return union sql
+	 */
+	static String makeQuerySql(final String table1, final String table2, //
+			final String[] table1Projection, final String[] table2Projection, //
+			final String[] unionProjection, @NonNull final String[] projection, //
+			final String selection, //
+			final String[] groupBys, final String sortOrder, final String tag)
+	{
+		final String embeddedQuery = makeEmbeddedQuery(table1, table2, //
+				table1Projection, table2Projection, //
+				unionProjection, selection, //
+				tag);
+
+		// embed
+		final SQLiteQueryBuilder embeddingQueryBuilder = new SQLiteQueryBuilder();
+
+		// table
+		embeddingQueryBuilder.setTables('(' + embeddedQuery + ')');
+
+		// projection
+		final String[] resultProjection = BaseProvider.prependProjection(projection, "GROUP_CONCAT(DISTINCT source) AS sources");
+
+		// group by
+		String[] actualGroupBys = groupBys;
+		if (actualGroupBys == null)
+		{
+			actualGroupBys = new String[projection.length];
+			for (int i = 0; i < projection.length; i++)
+			{
+				actualGroupBys[i] = projection[i].replaceFirst("\\sAS\\s*.*$", "");
+			}
+		}
+		String groupBy = join(",", actualGroupBys);
+
+		return embeddingQueryBuilder.buildQuery(resultProjection, null, groupBy, null, sortOrder, null);
 	}
 
 	/**
@@ -253,23 +431,7 @@ public class XSqlUNetDispatcher
 				actualGroupBys[i] = projection[i].replaceFirst("\\sAS\\s*.*$", "");
 			}
 		}
-		String groupBy = TextUtils.join(",", actualGroupBys);
+		String groupBy = join(",", actualGroupBys);
 		return embeddingQueryBuilder.buildQuery(resultProjection, null, groupBy, null, sortOrder, null);
-	}
-
-	/**
-	 * Make args
-	 *
-	 * @param selectionArgs selection arguments
-	 * @return cursor
-	 */
-	static String[] makeSelectionArgs(@NonNull final String... selectionArgs)
-	{
-		final String[] selectionArgs2 = new String[2 * selectionArgs.length];
-		for (int i = 0; i < selectionArgs.length; i++)
-		{
-			selectionArgs2[2 * i] = selectionArgs2[2 * i + 1] = selectionArgs[i];
-		}
-		return selectionArgs2;
 	}
 }
