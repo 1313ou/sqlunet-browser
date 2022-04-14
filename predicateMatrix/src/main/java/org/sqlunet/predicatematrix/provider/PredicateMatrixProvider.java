@@ -123,7 +123,6 @@ public class PredicateMatrixProvider extends BaseProvider
 		String table;
 		switch (code)
 		{
-
 			// I T E M
 			// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
 			// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query

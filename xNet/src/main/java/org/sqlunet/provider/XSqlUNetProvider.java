@@ -244,7 +244,7 @@ public class XSqlUNetProvider extends BaseProvider
 						"INNER JOIN vn_members_senses USING (vnwordid) " + //
 						"INNER JOIN vn_classes USING (classid)";
 				final String[] unionProjection = {"wordid", "synsetid", "classid", "class", "classtag", "definition"};
-				@SuppressWarnings("UnnecessaryLocalVariable") final String[] table1Projection = unionProjection;
+				final String[] table1Projection = unionProjection;
 				final String[] table2Projection = {"wordid", "synsetid", "classid", "class", "classtag"};
 				final String[] groupByArray = {"wordid", "synsetid", "classid"};
 				assert projection != null;
@@ -269,7 +269,7 @@ public class XSqlUNetProvider extends BaseProvider
 				final String table2 = "pb_words " + //
 						"INNER JOIN pb_rolesets USING (pbwordid)";
 				final String[] unionProjection = {"wordid", "synsetid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr", "definition"};
-				@SuppressWarnings("UnnecessaryLocalVariable") final String[] table1Projection = unionProjection;
+				final String[] table1Projection = unionProjection;
 				final String[] table2Projection = {"wordid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr"};
 				final String[] groupByArray = {"wordid", "synsetid", "rolesetid"};
 				assert projection != null;
@@ -289,7 +289,7 @@ public class XSqlUNetProvider extends BaseProvider
 						"INNER JOIN fn_lexunits USING (luid,posid) " + //
 						"INNER JOIN fn_frames USING (frameid)";
 				final String[] unionProjection = {"wordid", "synsetid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition", "definition"};
-				@SuppressWarnings("UnnecessaryLocalVariable") final String[] table1Projection = unionProjection;
+				final String[] table1Projection = unionProjection;
 				final String[] table2Projection = {"wordid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition"};
 				final String[] groupByArray = {"wordid", "synsetid", "frameid"};
 				assert projection != null;

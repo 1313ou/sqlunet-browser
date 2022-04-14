@@ -15,6 +15,17 @@ public class QueriesUnitTest
 	private final String sortOrder = "SORT";
 
 	@Test
+	public void queriesUnion()
+	{
+		int code = XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_U;
+		Result r1 = QueriesLegacy.queryLegacy(code, uriLast, projection, selection, selectionArgs);
+		System.out.println(r1.table);
+		System.out.println(Arrays.toString(r1.projection));
+		System.out.println(r1.selection);
+		System.out.println(Arrays.toString(r1.selectionArgs));
+		System.out.println(r1.groupBy);
+	}
+
 	public void queriesLegacyAgainstProvider()
 	{
 		for (int i = 0; i < codes.length; i++)
