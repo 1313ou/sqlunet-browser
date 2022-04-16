@@ -30,8 +30,8 @@ public class QueriesLegacy
 			case XSqlUNetDispatcher.PREDICATEMATRIX:
 				// table = "pm";
 				table = "pmvn " + //
-						"LEFT JOIN pnpb USING (wordid)" + //
-						"LEFT JOIN pnfn USING (wordid)" //
+						"LEFT JOIN pmpb USING (wordid) " + //
+						"LEFT JOIN pmfn USING (wordid)" //
 				;
 				break;
 
@@ -132,7 +132,7 @@ public class QueriesLegacy
 						"INNER JOIN fn_frames USING (frameid) " + //
 						"LEFT JOIN fn_lexunits USING (luid,frameid) " + //
 						"LEFT JOIN synsets USING (synsetid)";
-				final String table2 = "fnwords " + //
+				final String table2 = "fn_words " + //
 						"INNER JOIN fn_lexemes USING (fnwordid) " + //
 						"INNER JOIN fn_lexunits USING (luid,posid) " + //
 						"INNER JOIN fn_frames USING (frameid)";
@@ -142,6 +142,98 @@ public class QueriesLegacy
 				final String[] groupByArray = {"wordid", "synsetid", "frameid"};
 				return XSqlUNetDispatcher.makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray, sortOrder, "fn");
 			}
+
+			case XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_1:
+				table = "pmvn " + //
+						"INNER JOIN vn_classes USING (classid) " + //
+						"LEFT JOIN synsets USING (synsetid)";
+				projection = new String[]{"wordid", "synsetid", "classid", "class", "classtag", "definition"};
+				break;
+
+			case XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_2:
+				table = "vn_words " + //
+						"INNER JOIN vn_members_senses USING (vnwordid) " + //
+						"INNER JOIN vn_classes USING (classid)";
+				projection = new String[]{"wordid", "synsetid", "classid", "class", "classtag"};
+				break;
+
+			case XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_1U2:
+				table = "( " + //
+						"SELECT wordid, synsetid, classid, class, classtag, definition, 'pmvn' AS source " + //
+						"FROM pmvn " + //
+						"INNER JOIN vn_classes USING (classid) " + //
+						"LEFT JOIN synsets USING (synsetid) " + //
+						"WHERE (#{selection}) " + //
+						"UNION " + //
+						"SELECT wordid, synsetid, classid, class, classtag, NULL AS definition, 'vn' AS source " + //
+						"FROM vn_words " + //
+						"INNER JOIN vn_members_senses USING (vnwordid) " + //
+						"INNER JOIN vn_classes USING (classid) " + //
+						"WHERE (#{selection}) " +
+						")";
+				break;
+
+			case XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_1:
+				table = "pmpb " + //
+						"INNER JOIN pb_rolesets USING (rolesetid) " + //
+						"LEFT JOIN synsets USING (synsetid)";
+				projection = new String[]{"wordid", "synsetid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr", "definition"};
+				break;
+
+			case XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_2:
+				table = "pb_words " + //
+						"INNER JOIN pb_rolesets USING (pbwordid)";
+				projection = new String[]{"wordid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr"};
+				break;
+
+			case XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_1U2:
+				table = "( " +
+						"SELECT wordid, synsetid, rolesetid, rolesetname, rolesethead, rolesetdescr, definition, 'pmpb' AS source " + //
+						"FROM pmpb " + //
+						"INNER JOIN pb_rolesets USING (rolesetid) " + //
+						"LEFT JOIN synsets USING (synsetid) " + //
+						"WHERE (#{selection}) " + //
+						"UNION " + //
+						"SELECT wordid, NULL AS synsetid, rolesetid, rolesetname, rolesethead, rolesetdescr, NULL AS definition, 'pb' AS source " + //
+						"FROM pb_words " + //
+						"INNER JOIN pb_rolesets USING (pbwordid) " + //
+						"WHERE (#{selection}) " + //
+						")";
+				break;
+
+			case XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_1:
+				table = "pmfn " + //
+						"INNER JOIN fn_frames USING (frameid) " + //
+						"LEFT JOIN fn_lexunits USING (luid,frameid) " + //
+						"LEFT JOIN synsets USING (synsetid)";
+				projection = new String[]{"wordid", "synsetid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition", "definition"};
+				break;
+
+			case XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_2:
+				table = "fn_words " + //
+						"INNER JOIN fn_lexemes USING (fnwordid) " + //
+						"INNER JOIN fn_lexunits USING (luid,posid) " + //
+						"INNER JOIN fn_frames USING (frameid)";
+				projection = new String[]{"wordid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition"};
+				break;
+
+			case XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_1U2:
+				table = "( " + //
+						"SELECT wordid, synsetid, frameid, frame, framedefinition, luid, lexunit, ludefinition, definition, 'pmfn' AS source " + //
+                        "FROM pmfn " + //
+						"INNER JOIN fn_frames USING (frameid) " + //
+						"LEFT JOIN fn_lexunits USING (luid,frameid) " + //
+						"LEFT JOIN synsets USING (synsetid) " + //
+						"WHERE (#{selection}) " + //
+						"UNION " + //
+						"SELECT wordid, NULL AS synsetid, frameid, frame, framedefinition, luid, lexunit, ludefinition, NULL AS definition, 'fn' AS source " + //
+						"FROM fn_words " + //
+						"INNER JOIN fn_lexemes USING (fnwordid) " + //
+						"INNER JOIN fn_lexunits USING (luid,posid) " + //
+						"INNER JOIN fn_frames USING (frameid) " + //
+						"WHERE (#{selection}) " + //
+						")";
+				break;
 
 			default:
 				return null;

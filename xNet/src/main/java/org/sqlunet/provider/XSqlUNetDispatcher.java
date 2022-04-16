@@ -1,5 +1,8 @@
 package org.sqlunet.provider;
 
+import org.sqlunet.xnet.provider.Q;
+import org.sqlunet.xnet.provider.V;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -18,14 +21,23 @@ public class XSqlUNetDispatcher
 	static protected final int WORDS_PBWORDS_VNWORDS = 101;
 	static protected final int WORDS_VNWORDS_VNCLASSES = 310;
 	static protected final int WORDS_VNWORDS_VNCLASSES_U = 311;
+	static protected final int WORDS_VNWORDS_VNCLASSES_1 = 312;
+	static protected final int WORDS_VNWORDS_VNCLASSES_2 = 313;
+	static protected final int WORDS_VNWORDS_VNCLASSES_1U2 = 314;
 	static protected final int WORDS_PBWORDS_PBROLESETS = 320;
 	static protected final int WORDS_PBWORDS_PBROLESETS_U = 321;
+	static protected final int WORDS_PBWORDS_PBROLESETS_1 = 322;
+	static protected final int WORDS_PBWORDS_PBROLESETS_2 = 323;
+	static protected final int WORDS_PBWORDS_PBROLESETS_1U2 = 324;
 	static protected final int WORDS_FNWORDS_FNFRAMES_U = 331;
+	static protected final int WORDS_FNWORDS_FNFRAMES_1 = 332;
+	static protected final int WORDS_FNWORDS_FNFRAMES_2 = 333;
+	static protected final int WORDS_FNWORDS_FNFRAMES_1U2 = 334;
 	static protected final int SOURCES = 400;
 
 	public static Result queryMain(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
-		String table = null;
+		String table;
 		String[] projection = projection0;
 		String selection = selection0;
 		String[] selectionArgs = selectionArgs0;
@@ -36,117 +48,144 @@ public class XSqlUNetDispatcher
 		{
 			case XSqlUNetDispatcher.PREDICATEMATRIX:
 				// table = "pm";
-				table = "pmvn " + //
-						"LEFT JOIN pnpb USING (wordid)" + //
-						"LEFT JOIN pnfn USING (wordid)" //
-				;
+				table = Q.PREDICATEMATRIX.TABLE;
 				break;
 
 			case XSqlUNetDispatcher.PREDICATEMATRIX_VERBNET:
-				table = "pmvn";
+				table = Q.PREDICATEMATRIX_VERBNET.TABLE;
 				break;
 
 			case XSqlUNetDispatcher.PREDICATEMATRIX_PROPBANK:
-				table = "pmpb";
+				table = Q.PREDICATEMATRIX_PROPBANK.TABLE;
 				break;
 
 			case XSqlUNetDispatcher.PREDICATEMATRIX_FRAMENET:
-				table = "pmfn";
+				table = Q.PREDICATEMATRIX_FRAMENET.TABLE;
 				break;
 
 			case XSqlUNetDispatcher.SOURCES:
-				table = "sources";
+				table = Q.SOURCES.TABLE;
 				break;
 
 			// J O I N S
 
 			case XSqlUNetDispatcher.WORDS_FNWORDS_PBWORDS_VNWORDS:
-				table = "words AS " + XSqlUNetContract.WORD + ' ' + //
-						"LEFT JOIN senses AS " + XSqlUNetContract.SENSE + " USING (wordid) " + //
-						"LEFT JOIN synsets AS " + XSqlUNetContract.SYNSET + " USING (synsetid) " + //
-						"LEFT JOIN poses AS " + XSqlUNetContract.POSID + " USING (posid) " + //
-						"LEFT JOIN casedwords USING (wordid,casedwordid) " + //
-						"LEFT JOIN domains USING (domainid) " + //
-						"LEFT JOIN fn_words USING (wordid) " + //
-						"LEFT JOIN vn_words USING (wordid) " + //
-						"LEFT JOIN pb_words USING (wordid)";
-				groupBy = "synsetid";
+				table = Q.WORDS_FNWORDS_PBWORDS_VNWORDS.TABLE;
+				groupBy = V.SYNSETID;
 				break;
 
 			case XSqlUNetDispatcher.WORDS_PBWORDS_VNWORDS:
-				table = "words AS " + XSqlUNetContract.WORD + ' ' + //
-						"LEFT JOIN senses AS " + XSqlUNetContract.SENSE + " USING (wordid) " + //
-						"LEFT JOIN synsets AS " + XSqlUNetContract.SYNSET + " USING (synsetid) " + //
-						"LEFT JOIN poses AS " + XSqlUNetContract.POSID + " USING (posid) " + //
-						"LEFT JOIN casedwords USING (wordid,casedwordid) " + //
-						"LEFT JOIN domains USING (domainid) " + //
-						"LEFT JOIN vn_words USING (wordid) " + //
-						"LEFT JOIN pb_words USING (wordid)";
-				groupBy = "synsetid";
+				table = Q.WORDS_PBWORDS_VNWORDS.TABLE;
+				groupBy = V.SYNSETID;
 				break;
 
 			case XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES:
 			{
-				table = "vn_words " + //
-						"INNER JOIN vn_members_senses USING (wordid) " + //
-						"INNER JOIN vn_classes AS " + XSqlUNetContract.CLASS + " USING (classid) " + //
-						"LEFT JOIN synsets USING (synsetid)";
-				groupBy = "wordid,synsetid,classid";
+				table = Q.WORDS_VNWORDS_VNCLASSES.TABLE;
+				groupBy = String.format("%s,%s,%s", V.WORDID, V.SYNSETID, V.CLASSID);
 				break;
 			}
 
 			case XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS:
 			{
-				table = "pb_words " + //
-						"INNER JOIN pb_rolesets AS " + XSqlUNetContract.CLASS + " USING (pbwordid)";
-				groupBy = "wordid,synsetid,rolesetid";
+				table = Q.WORDS_PBWORDS_PBROLESETS.TABLE;
+				groupBy = String.format("%s,%s,%s", V.WORDID, V.SYNSETID, V.ROLESETID);
 				break;
 			}
 
+			// U
+
+			case WORDS_VNWORDS_VNCLASSES_1:
+				table = Q.WORDS_VNWORDS_VNCLASSES_1.TABLE;
+				projection = Q.WORDS_VNWORDS_VNCLASSES_1.PROJECTION;
+				break;
+
+			case WORDS_VNWORDS_VNCLASSES_2:
+				table = Q.WORDS_VNWORDS_VNCLASSES_2.TABLE;
+				projection = Q.WORDS_VNWORDS_VNCLASSES_2.PROJECTION;
+				break;
+
+			case WORDS_VNWORDS_VNCLASSES_1U2:
+				table = Q.WORDS_VNWORDS_VNCLASSES_1U2.TABLE; //.replaceAll("#\\{selection\\}", selection);
+				break;
+
 			case XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_U:
 			{
-				final String table1 = "pmvn " + //
-						"INNER JOIN vn_classes USING (classid) " + //
-						"LEFT JOIN synsets USING (synsetid)";
-				final String table2 = "vn_words " + //
-						"INNER JOIN vn_members_senses USING (vnwordid) " + //
-						"INNER JOIN vn_classes USING (classid)";
-				final String[] unionProjection = {"wordid", "synsetid", "classid", "class", "classtag", "definition"};
-				final String[] table1Projection = unionProjection;
-				final String[] table2Projection = {"wordid", "synsetid", "classid", "class", "classtag"};
-				final String[] groupByArray = {"wordid", "synsetid", "classid"};
+				/*
+				final String table1 = Q.WORDS_VNWORDS_VNCLASSES_1.TABLE;
+				final String table2 = Q.WORDS_VNWORDS_VNCLASSES_2.TABLE;
+				final String[] table1Projection = Q.WORDS_VNWORDS_VNCLASSES_1.PROJECTION;
+				final String[] table2Projection = Q.WORDS_VNWORDS_VNCLASSES_2.PROJECTION;
+				final String[] unionProjection = table1Projection;
+				final String[] groupByArray = {V.WORDID, V.SYNSETID, V.CLASSID};
 				return makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray, orderBy, "vn");
+				*/
+				table = Q.WORDS_VNWORDS_VNCLASSES_1U2.TABLE.replaceAll("#\\{selection\\}", selection);
+				selectionArgs = unfoldSelectionArgs(selectionArgs);
+				groupBy = String.format("%s,%s,%s", V.WORDID, V.SYNSETID, V.CLASSID);
+				break;
 			}
+
+			case WORDS_PBWORDS_PBROLESETS_1:
+				table = Q.WORDS_PBWORDS_PBROLESETS_1.TABLE;
+				projection = Q.WORDS_PBWORDS_PBROLESETS_1.PROJECTION;
+				break;
+
+			case WORDS_PBWORDS_PBROLESETS_2:
+				table = Q.WORDS_PBWORDS_PBROLESETS_2.TABLE;
+				projection = Q.WORDS_PBWORDS_PBROLESETS_2.PROJECTION;
+				break;
+
+			case WORDS_PBWORDS_PBROLESETS_1U2:
+				table = Q.WORDS_PBWORDS_PBROLESETS_1U2.TABLE; //.replaceAll("#\\{selection\\}", selection);
+				break;
 
 			case XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_U:
 			{
-				final String table1 = "pmpb " + //
-						"INNER JOIN pb_rolesets USING (rolesetid) " + //
-						"LEFT JOIN synsets USING (synsetid)";
-				final String table2 = "pb_words " + //
-						"INNER JOIN pb_rolesets USING (pbwordid)";
-				final String[] unionProjection = {"wordid", "synsetid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr", "definition"};
-				final String[] table1Projection = unionProjection;
-				final String[] table2Projection = {"wordid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr"};
-				final String[] groupByArray = {"wordid", "synsetid", "rolesetid"};
+				/*
+				final String table1 = Q.WORDS_PBWORDS_PBROLESETS_1.TABLE;
+				final String table2 = Q.WORDS_PBWORDS_PBROLESETS_2.TABLE;
+				final String[] table1Projection = Q.WORDS_PBWORDS_PBROLESETS_1.PROJECTION;
+				final String[] table2Projection = Q.WORDS_PBWORDS_PBROLESETS_2.PROJECTION;
+				final String[] unionProjection = table1Projection;
+				final String[] groupByArray = {V.WORDID, V.SYNSETID, V.ROLESETID};
 				return makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray, orderBy, "pb");
+				*/
+				table = Q.WORDS_PBWORDS_PBROLESETS_1U2.TABLE.replaceAll("#\\{selection\\}", selection);
+				selectionArgs = unfoldSelectionArgs(selectionArgs);
+				groupBy = String.format("%s,%s,%s", V.WORDID, V.SYNSETID, V.ROLESETID);
+				break;
 			}
+
+			case WORDS_FNWORDS_FNFRAMES_1:
+				table = Q.WORDS_FNWORDS_FNFRAMES_1.TABLE;
+				projection = Q.WORDS_FNWORDS_FNFRAMES_1.PROJECTION;
+				break;
+
+			case WORDS_FNWORDS_FNFRAMES_2:
+				table = Q.WORDS_FNWORDS_FNFRAMES_2.TABLE;
+				projection = Q.WORDS_FNWORDS_FNFRAMES_2.PROJECTION;
+				break;
+
+			case WORDS_FNWORDS_FNFRAMES_1U2:
+				table = Q.WORDS_FNWORDS_FNFRAMES_1U2.TABLE; //.replaceAll("\\$\\{selection\\}", selection);
+				break;
 
 			case XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_U:
 			{
-				final String table1 = "pmfn " + //
-						"INNER JOIN fn_frames USING (frameid) " + //
-						"LEFT JOIN fn_lexunits USING (luid,frameid) " + //
-						"LEFT JOIN synsets USING (synsetid)";
-				final String table2 = "fnwords " + //
-						"INNER JOIN fn_lexemes USING (fnwordid) " + //
-						"INNER JOIN fn_lexunits USING (luid,posid) " + //
-						"INNER JOIN fn_frames USING (frameid)";
-				final String[] unionProjection = {"wordid", "synsetid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition", "definition"};
-				final String[] table1Projection = unionProjection;
-				final String[] table2Projection = {"wordid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition"};
-				final String[] groupByArray = {"wordid", "synsetid", "frameid"};
-				return makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray,  orderBy, "fn");
+				/*
+				final String table1 = Q.WORDS_FNWORDS_FNFRAMES_1.TABLE;
+				final String table2 = Q.WORDS_FNWORDS_FNFRAMES_2.TABLE;
+				final String[] table1Projection = Q.WORDS_FNWORDS_FNFRAMES_1.PROJECTION;
+				final String[] table2Projection = Q.WORDS_FNWORDS_FNFRAMES_2.PROJECTION;
+				final String[] unionProjection = table1Projection;
+				final String[] groupByArray = {V.WORDID, V.SYNSETID, V.FRAMEID};
+				return makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray, orderBy, "fn");
+				*/
+				table = Q.WORDS_FNWORDS_FNFRAMES_1U2.TABLE.replaceAll("#\\{selection\\}", selection);
+				selectionArgs = unfoldSelectionArgs(selectionArgs);
+				groupBy = String.format("%s,%s,%s", V.WORDID, V.SYNSETID, V.FRAMEID);
+				break;
 			}
 
 			default:
@@ -206,7 +245,7 @@ public class XSqlUNetDispatcher
 				tag);
 
 		// table
-		final String table = ('(' + uQuery + ')');
+		final String table = ("( " + uQuery + " )");
 
 		// group by
 		String[] actualGroupBys = groupBys;
@@ -237,6 +276,14 @@ public class XSqlUNetDispatcher
 	 * @param selection        selection
 	 * @param tag              tag
 	 * @return union sql
+	 * <p>
+	 * SELECT PROJ1, 'pm[tag]' AS source
+	 * FROM TABLE1
+	 * WHERE (#{selection})
+	 * UNION
+	 * SELECT PROJ2, '[tag]' AS source
+	 * FROM TABLE2
+	 * WHERE (#{selection})
 	 */
 	private static String makeEmbeddedQuery(final String table1, final String table2, //
 			final String[] table1Projection, final String[] table2Projection, //
@@ -294,7 +341,14 @@ public class XSqlUNetDispatcher
 		return selectionArgs2;
 	}
 
-	// Avoid either TextUtils.join (Android dependency) or String.join(API)
+	/**
+	 * Join strings
+	 * Avoid using either TextUtils.join (Android dependency) or String.join(API)
+	 *
+	 * @param delimiter delimiter
+	 * @param tokens    tokens
+	 * @return joined
+	 */
 	private static String join(final CharSequence delimiter, final CharSequence[] tokens)
 	{
 		final int length = tokens.length;
@@ -377,7 +431,7 @@ public class XSqlUNetDispatcher
 	 * @param tag              tag
 	 * @return union sql
 	 */
-	static String makeQuery(final String table1, final String table2, //
+	static String makeQuerySql0(final String table1, final String table2, //
 			final String[] table1Projection, final String[] table2Projection, //
 			final String[] unionProjection, @NonNull final String[] projection, //
 			final String selection, //

@@ -7,7 +7,11 @@ import java.util.Arrays;
 
 public class QueriesUnitTest
 {
-	private final int[] codes = {XSqlUNetDispatcher.PREDICATEMATRIX, XSqlUNetDispatcher.PREDICATEMATRIX_VERBNET, XSqlUNetDispatcher.PREDICATEMATRIX_PROPBANK, XSqlUNetDispatcher.PREDICATEMATRIX_FRAMENET, XSqlUNetDispatcher.WORDS_FNWORDS_PBWORDS_VNWORDS, XSqlUNetDispatcher.WORDS_PBWORDS_VNWORDS, XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES, XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_U, XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS, XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_U, XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_U, XSqlUNetDispatcher.SOURCES,};
+	private final int[] codes = {XSqlUNetDispatcher.PREDICATEMATRIX, XSqlUNetDispatcher.PREDICATEMATRIX_VERBNET, XSqlUNetDispatcher.PREDICATEMATRIX_PROPBANK, XSqlUNetDispatcher.PREDICATEMATRIX_FRAMENET, XSqlUNetDispatcher.WORDS_FNWORDS_PBWORDS_VNWORDS, XSqlUNetDispatcher.WORDS_PBWORDS_VNWORDS, XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES, XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_U, XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS, XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_U, XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_U, XSqlUNetDispatcher.SOURCES, //
+			XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_1, XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_2, XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_1U2, XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_U, //
+			XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_1, XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_2, XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_1U2, XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_U, //
+			XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_1, XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_2, XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_1U2, XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_U,};
+
 	private final String uriLast = "LAST";
 	private final String[] projection = {"PROJ1", "PROJ2", "PROJ3"};
 	private final String selection = "SEL";
@@ -31,11 +35,19 @@ public class QueriesUnitTest
 	}
 
 	@Test
+	public void queriesUnionLegacyAgainstProvider()
+	{
+		for (int code : new int[]{XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_U, XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_U, XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_U})
+		{
+			queriesLegacyAgainstProvider(code, uriLast, projection, selection, selectionArgs, sortOrder);
+		}
+	}
+
+	@Test
 	public void queriesLegacyAgainstProvider()
 	{
-		for (int i = 0; i < codes.length; i++)
+		for (int code : codes)
 		{
-			int code = codes[i];
 			queriesLegacyAgainstProvider(code, uriLast, projection, selection, selectionArgs, sortOrder);
 		}
 	}
@@ -60,11 +72,11 @@ public class QueriesUnitTest
 
 	private void check(final int code, final Result r1, final Result r2)
 	{
-		assert equals(r1.table, r2.table) : "Code=" + code + "\n" + r1.table + "\n!=\n" + r2.table;
-		assert Arrays.equals(r1.projection, r2.projection) : "Code=" + code + "\n" + Arrays.toString(r1.projection) + "\n!=\n" + Arrays.toString(r2.projection);
-		assert equals(r1.selection, r2.selection) : "Code=" + code + "\n" + r1.selection + "\n!=\n" + r2.selection;
-		assert Arrays.equals(r1.selectionArgs, r2.selectionArgs) : "Code=" + code + "\n" + Arrays.toString(r1.selectionArgs) + "\n!=\n" + Arrays.toString(r2.selectionArgs);
-		assert equals(r1.groupBy, r2.groupBy) : "Code=" + code + "\n" + r1.groupBy + "\n!=\n" + r2.groupBy;
+		assert equals(r1.table, r2.table) : "Code=" + code + " table " + "\n" + r1.table + "\n!=\n" + r2.table;
+		assert Arrays.equals(r1.projection, r2.projection) : "Code=" + code + " projection " + "\n" + Arrays.toString(r1.projection) + "\n!=\n" + Arrays.toString(r2.projection);
+		assert equals(r1.selection, r2.selection) : "Code=" + code + " selection " + "\n" + r1.selection + "\n!=\n" + r2.selection;
+		assert Arrays.equals(r1.selectionArgs, r2.selectionArgs) : "Code=" + code + " args " + "\n" + Arrays.toString(r1.selectionArgs) + "\n!=\n" + Arrays.toString(r2.selectionArgs);
+		assert equals(r1.groupBy, r2.groupBy) : "Code=" + code + " group by " + "\n" + r1.groupBy + "\n!=\n" + r2.groupBy;
 	}
 
 	private static boolean equals(Object a, Object b)

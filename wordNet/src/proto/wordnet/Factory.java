@@ -448,7 +448,7 @@ public class Factory implements Function<String,String[]>, Supplier<String[]>
 		String groupBy = null;
 		String sortOrder = null;
 
-	private static String quote(String str)
+		private static String quote(String str)
 	{
 		return str == null ? null : String.format("\"%s\"", str);
 	}
