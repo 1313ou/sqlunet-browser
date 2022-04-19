@@ -5,6 +5,26 @@ import org.sqlunet.xnet.provider.V;
 
 public class XSqlUNetDispatcher
 {
+	static public class Result
+	{
+		final String table;
+		final String[] projection;
+		final String selection;
+		final String[] selectionArgs;
+		final String groupBy;
+		final String orderBy;
+
+		public Result(final String table, final String[] projection, final String selection, final String[] selectionArgs, final String groupBy, final String orderBy)
+		{
+			this.table = table;
+			this.projection = projection;
+			this.selection = selection;
+			this.selectionArgs = selectionArgs;
+			this.groupBy = groupBy;
+			this.orderBy = orderBy;
+		}
+	}
+
 	// table codes
 	static protected final int PREDICATEMATRIX = 200;
 	static protected final int PREDICATEMATRIX_VERBNET = 210;
@@ -115,6 +135,7 @@ public class XSqlUNetDispatcher
 				return Utils.makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray, orderBy, "vn");
 				*/
 				table = Q.WORDS_VNWORDS_VNCLASSES_1U2.TABLE.replaceAll("#\\{selection\\}", selection);
+				selection = null;
 				selectionArgs = Utils.unfoldSelectionArgs(selectionArgs);
 				groupBy = String.format("%s,%s,%s", V.WORDID, V.SYNSETID, V.CLASSID);
 				break;
@@ -146,6 +167,7 @@ public class XSqlUNetDispatcher
 				return Utils.makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray, orderBy, "pb");
 				*/
 				table = Q.WORDS_PBWORDS_PBROLESETS_1U2.TABLE.replaceAll("#\\{selection\\}", selection);
+				selection = null;
 				selectionArgs = Utils.unfoldSelectionArgs(selectionArgs);
 				groupBy = String.format("%s,%s,%s", V.WORDID, V.SYNSETID, V.ROLESETID);
 				break;
@@ -177,6 +199,7 @@ public class XSqlUNetDispatcher
 				return Utils.makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray, orderBy, "fn");
 				*/
 				table = Q.WORDS_FNWORDS_FNFRAMES_1U2.TABLE.replaceAll("#\\{selection\\}", selection);
+				selection = null;
 				selectionArgs = Utils.unfoldSelectionArgs(selectionArgs);
 				groupBy = String.format("%s,%s,%s", V.WORDID, V.SYNSETID, V.FRAMEID);
 				break;
@@ -186,25 +209,5 @@ public class XSqlUNetDispatcher
 				return null;
 		}
 		return new Result(table, projection, selection, selectionArgs, groupBy, orderBy);
-	}
-
-	static public class Result
-	{
-		final String table;
-		final String[] projection;
-		final String selection;
-		final String[] selectionArgs;
-		final String groupBy;
-		final String orderBy;
-
-		public Result(final String table, final String[] projection, final String selection, final String[] selectionArgs, final String groupBy, final String orderBy)
-		{
-			this.table = table;
-			this.projection = projection;
-			this.selection = selection;
-			this.selectionArgs = selectionArgs;
-			this.groupBy = groupBy;
-			this.orderBy = orderBy;
-		}
 	}
 }

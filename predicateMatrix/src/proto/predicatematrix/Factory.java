@@ -61,23 +61,23 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 				break;
 
 			case PM_X:
-				table = "pm " + //
-						"LEFT JOIN s{pm_roles.table}      AS s{as_pmroles}      USING (s{pm_roles.roleid}) " + //
-						"LEFT JOIN s{pm_predicates.table} AS s{as_pmpredicates} USING (s{pm_predicates.predid}) " + //
-						"LEFT JOIN ${synsets.table]                             USING (${synsets.synsetid}) " + //
+				table = "${pms.table} " + //
+						"LEFT JOIN ${roles.table} AS ${as_pmroles} USING (${roles.roleid}) " + //
+						"LEFT JOIN ${predicates.table} AS ${as_pmpredicates} USING (${predicates.predid}) " + //
+						"LEFT JOIN ${wn_synsets.table] USING (${wn_synsets.synsetid}) " + //
 
-						"LEFT JOIN s{vn_classes.table}    AS s{as_vnclasses}    ON s{vnclasses.classid}          = s{as_vnclasses}.s{vnclasses.classid} " + //
-						"LEFT JOIN s{vn_roles.table}      AS s{as_vnroles}      ON s{vnroleid}                   = s{as_vnroles}.s{vnroles.roleid} " + //
-						"LEFT JOIN s{vn_roletypes.table}  AS s{as_vnroletypes}  ON s{vnroletypes.roletypeid}     = s{as_vnroletypes}.s{vnroletypes.roletypeid} " + //
+						"LEFT JOIN ${vn_classes.table} AS ${as_vnclasses} ON ${vn_classes.classid} = ${as_vnclasses}.${vn_classes.classid} " + //
+						"LEFT JOIN ${vn_roles.table} AS ${as_vnroles} ON ${vn_roles.vnroleid} = ${as_vnroles}.${vn_roles.vnroleid} " + //
+						"LEFT JOIN ${vn_roletypes.table} AS ${as_vnroletypes} ON ${vn_roletypes.roletypeid} = ${as_vnroletypes}.${vn_roletypes.roletypeid} " + //
 
-						"LEFT JOIN s{pb_rolesets.table}   AS s{as_pbrolesets}   ON ${pbrolesets.rolesetid}       = s{as_pbrolesets}.s{pbrolesets.rolesetid} " + //
-						"LEFT JOIN s{pb_roles.table}      AS s{as_pbroles}      ON s{pbroles.roleid}             = s{as_pbroles}.s{pbroles.roleid} " + //
-						"LEFT JOIN s{pb_argns.table}      AS s{as_pbargs}       ON s{as_pbroles}.s{pbnargs.narg} = s{as_pbargs}.${pbargs.narg} " + //
+						"LEFT JOIN ${pb_rolesets.table} AS ${as_pbrolesets} ON ${pb_rolesets.rolesetid} = ${as_pbrolesets}.${pb_rolesets.rolesetid} " + //
+						"LEFT JOIN ${pb_roles.table} AS ${as_pbroles} ON ${pb_roles.pbroleid} = ${as_pbroles}.${pb_roles.pbroleid} " + //
+						"LEFT JOIN ${pb_argns.table} AS ${as_pbargs} ON ${as_pbroles}.${pb_argns.nargid} = ${as_pbargs}.${pb_argns.nargid} " + //
 
-						"LEFT JOIN s{fn_frames.table}     AS s{as_fnframes}     ON s{fnframes.frameid}           = s{as_fnframes}.${fnframes.frameid} " + //
-						"LEFT JOIN s{fn_fes.table}        AS s{as_fnfes}        ON s{fnfes.feid}                 = s{as_fnfes}.s{fnfes.feid} " + //
-						"LEFT JOIN s{fn_fetypes.table}    AS s{as_fnfetypes}    ON s{as_fnfes}.s{fetypeid}       = s{as_fnfetypes}.s{fnfetypes.fetypeid} " + //
-						"LEFT JOIN s{fn_lexunits.table}   AS s{as_fnlus}        ON s{fnlexunits.luid}            = s{as_fnlus}.s{fnlexunits.luid}";
+						"LEFT JOIN ${fn_frames.table} AS ${as_fnframes} ON ${fn_frames.frameid} = ${as_fnframes}.${fn_frames.frameid} " + //
+						"LEFT JOIN ${fn_fes.table} AS ${as_fnfes} ON ${fn_fes.feid} = ${as_fnfes}.${fn_fes.feid} " + //
+						"LEFT JOIN ${fn_fetypes.table} AS ${as_fnfetypes} ON ${as_fnfes}.${fn_fetypes.fetypeid} = ${as_fnfetypes}.${fn_fetypes.fetypeid} " + //
+						"LEFT JOIN ${fn_lexunits.table} AS ${as_fnlus} ON ${fn_lexunits.luid} = ${as_fnlus}.${fn_lexunits.luid}";
 				break;
 
 			default:

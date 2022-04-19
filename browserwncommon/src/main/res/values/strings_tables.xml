@@ -24,9 +24,13 @@
 		<item>senses_vtemplates</item>
 		<item>senses_adjpositions</item>
 		<item>lexes_morphs</item>
-		<item>sources</item>
+		<!-- sources -->
+		<!-- <item>sources</item> -->
 	</string-array>
+
 	<string-array name="required_indexes" tools:ignore="InconsistentArrays">
+
+		<!-- wordnet -->
 		<item>pk_lexes</item>
 		<item>pk_words</item>
 		<item>k_words_word</item>
@@ -49,7 +53,15 @@
 		<item>pk_domains</item>
 		<item>k_samples_synsetid</item>
 		<item>pk_lexes_morphs_wordid</item>
+
+		<!-- bnc -->
+		<item>k_bnc_bncs_wordid_posid</item>
+		<item>k_bnc_spwrs_wordid_posid</item>
+		<item>k_bnc_convtasks_wordid_posid</item>
+		<item>k_bnc_imaginfs_wordid_posid</item>
+
 	</string-array>
+
 	<string-array name="required_texts_wn">
 		<item>words_word_fts4</item>
 		<item>synsets_definition_fts4</item>

@@ -9,18 +9,18 @@
 		<!-- wordnet -->
 		<item>words</item>
 		<item>casedwords</item>
-		<item>morphs</item>
-		<item>poses</item>
 		<item>senses</item>
 		<item>synsets</item>
-		<item>samples</item>
-		<item>adjpositions</item>
+		<item>poses</item>
 		<item>domains</item>
+		<item>relations</item>
+		<item>morphs</item>
+		<item>samples</item>
 		<item>vframes</item>
 		<item>vtemplates</item>
-		<item>relations</item>
-		<item>semrelations</item>
+		<item>adjpositions</item>
 		<item>lexrelations</item>
+		<item>semrelations</item>
 		<item>senses_vframes</item>
 		<item>senses_vtemplates</item>
 		<item>senses_adjpositions</item>
@@ -28,21 +28,20 @@
 
 		<!-- verbnet -->
 		<item>vn_classes</item>
-		<item>vn_classmembers</item>
-		<item>vn_classmembersenses</item>
-		<item>vn_examplemaps</item>
+		<item>vn_members</item>
+		<item>vn_members_senses</item>
+		<item>vn_frames_examples</item>
 		<item>vn_examples</item>
-		<item>vn_framemaps</item>
+		<item>vn_classes_frames</item>
 		<item>vn_framenames</item>
 		<item>vn_frames</item>
 		<item>vn_framesubnames</item>
-		<item>vn_groupingmaps</item>
+		<item>vn_members_groupings</item>
 		<item>vn_groupings</item>
-		<item>vn_predicatemaps</item>
+		<item>vn_predicates_semantics</item>
 		<item>vn_predicates</item>
 		<item>vn_restrs</item>
 		<item>vn_restrtypes</item>
-		<item>vn_rolemaps</item>
 		<item>vn_roles</item>
 		<item>vn_roletypes</item>
 		<item>vn_semantics</item>
@@ -54,18 +53,17 @@
 		<item>pb_args</item>
 		<item>pb_aspects</item>
 		<item>pb_examples</item>
-		<item>pb_fnframemaps</item>
 		<item>pb_forms</item>
 		<item>pb_funcs</item>
+		<item>pb_members</item>
 		<item>pb_persons</item>
 		<item>pb_rels</item>
 		<item>pb_roles</item>
-		<item>pb_rolesetmembers</item>
 		<item>pb_rolesets</item>
 		<item>pb_tenses</item>
-		<item>pb_vnclassmaps</item>
-		<item>pb_vnrolemaps</item>
-		<item>pb_vnthetas</item>
+		<item>pb_pbrolesets_vnclasses</item>
+		<item>pb_pbroles_vnroles</item>
+		<item>pb_thetas</item>
 		<item>pb_voices</item>
 		<item>pb_words</item>
 
@@ -75,13 +73,13 @@
 		<item>fn_corpuses</item>
 		<item>fn_cxns</item>
 		<item>fn_documents</item>
-		<item>fn_fegrouprealizations</item>
-		<item>fn_fegrouprealizations_fes</item>
 		<item>fn_ferealizations</item>
 		<item>fn_fes</item>
 		<item>fn_fes_excluded</item>
 		<item>fn_fes_required</item>
 		<item>fn_fes_semtypes</item>
+		<item>fn_fes_fegrouprealizations</item>
+		<item>fn_fegrouprealizations</item>
 		<item>fn_fetypes</item>
 		<item>fn_framerelations</item>
 		<item>fn_frames</item>
@@ -99,15 +97,15 @@
 		<item>fn_lexunits</item>
 		<item>fn_lexunits_governors</item>
 		<item>fn_lexunits_semtypes</item>
-		<item>fn_patterns</item>
-		<item>fn_patterns_annosets</item>
-		<item>fn_patterns_valenceunits</item>
+		<item>fn_grouppatterns</item>
+		<item>fn_grouppatterns_annosets</item>
+		<item>fn_grouppatterns_patterns</item>
 		<item>fn_poses</item>
 		<item>fn_pttypes</item>
 		<item>fn_semtypes</item>
 		<item>fn_semtypes_supers</item>
 		<item>fn_sentences</item>
-		<item>fn_statuses</item>
+		<!-- <item>fn_statuses</item>-->
 		<item>fn_subcorpuses</item>
 		<item>fn_subcorpuses_sentences</item>
 		<item>fn_valenceunits</item>
@@ -115,13 +113,13 @@
 		<item>fn_words</item>
 
 		<!-- predicate matrix -->
-		<item>pm</item>
-		<item>pm_predicates</item>
+		<item>pm_pms</item>
 		<item>pm_roles</item>
+		<item>pm_predicates</item>
 		<!-- predicate matrix DERIVED -->
-		<!-- <item>pmvn</item> -->
-		<!-- <item>pmpb</item> -->
-		<!-- <item>pmfn</item> -->
+<!--		<item>pmvn</item>-->
+<!--		<item>pmpb</item>-->
+<!--		<item>pmfn</item>-->
 
 		<!-- bnc -->
 		<item>bnc_bncs</item>
@@ -130,62 +128,84 @@
 		<item>bnc_spwrs</item>
 
 		<!-- sources -->
-		<item>sources</item>
+		<!-- <item>sources</item> -->
 
 	</string-array>
 
 	<string-array name="required_indexes" tools:ignore="InconsistentArrays">
 
 		<!-- wordnet -->
-		<item>index_words_word</item>
-		<item>index_senses_wordid</item>
-		<item>index_senses_synsetid</item>
-		<item>index_synsets_synsetid</item>
-		<item>index_casedwords_wordid_casedwordid</item>
-		<item>index_semrelations_synset1id</item>
-		<item>index_semrelations_relationid</item>
-		<item>index_samples_synsetid</item>
+		<item>pk_lexes</item>
+		<item>pk_words</item>
+		<item>k_words_word</item>
+		<item>k_senses_wordid</item>
+		<item>k_senses_synsetid</item>
+		<item>pk_synsets</item>
+		<item>pk_casedwords</item>
+		<item>k_casedwords_wordid</item>
+		<item>k_semrelations_synset1id</item>
+		<item>k_semrelations_relationid</item>
+		<item>k_lexrelations_synset1id</item>
+		<item>k_lexrelations_word1id</item>
+		<item>k_lexrelations_relationid</item>
+		<item>pk_relations</item>
+		<item>pk_morphs</item>
+		<item>pk_pronunciations</item>
+		<item>pk_samples</item>
+		<item>pk_vframes</item>
+		<item>pk_vtemplates</item>
+		<item>pk_domains</item>
+		<item>k_samples_synsetid</item>
+		<item>pk_lexes_morphs_wordid</item>
 
 		<!-- verbnet -->
-		<item>index_vnwords_wordid</item>
-		<item>index_vnrolemaps_classid</item>
-		<item>index_vnframemaps_classid</item>
+		<item>pk_vn_words</item>
+		<item>k_vn_words_wordid</item>
+		<item>k_vn_roles_classid</item>
+		<item>k_vn_classes_frames_classid</item>
 
 		<!-- propbank -->
-		<item>index_pbwords_wordid</item>
-		<item>index_pbrolesets_pbwordid</item>
-		<item>index_pbroles_rolesetid</item>
-		<item>index_pbexamples_rolesetid</item>
-		<item>index_pbrels_exampleid</item>
-		<item>index_pbargs_exampleid</item>
+		<item>pk_pb_words</item>
+		<item>k_pb_words_wordid</item>
+		<item>k_pb_rolesets_pbwordid</item>
+		<item>k_pb_roles_rolesetid</item>
+		<item>k_pb_examples_rolesetid</item>
+		<item>k_pb_rels_exampleid</item>
+		<item>k_pb_args_exampleid</item>
 
 		<!-- framenet -->
-		<item>index_fnwords_wordid</item>
-		<item>index_fnframes_related_frameid</item>
-		<item>index_fnframes_related_frame2id</item>
-		<item>index_fnlexemes_fnwordid</item>
-		<item>index_fnfes_frameid</item>
-		<item>index_fnferealizations_luid</item>
-		<item>index_fnvalenceunits_ferid</item>
-		<item>index_fnfegrouprealizations_luid</item>
-		<item>index_fnpatterns_valenceunits_patternid</item>
-		<item>index_fnpatterns_fegrid</item>
-		<item>index_fnsubcorpuses_luid</item>
-		<item>index_fnannosets_sentenceid</item>
-		<item>index_fnlayers_annosetid</item>
-		<item>index_fnlabels_layerid</item>
+		<item>pk_fn_words</item>
+		<item>k_fn_frames_related_frameid</item>
+		<item>k_fn_frames_related_frame2id</item>
+		<item>k_fn_lexemes_fnwordid</item>
+		<item>k_fn_fes_frameid</item>
+		<item>k_fn_ferealizations_luid</item>
+		<item>k_fn_valenceunits_vuid</item>
+		<item>k_fn_fegrouprealizations_luid</item>
+		<item>k_fn_grouppatterns_patterns_patternid</item>
+		<item>k_fn_grouppatterns_fegrid</item>
+		<item>k_fn_subcorpuses_luid</item>
+		<item>k_fn_annosets_sentenceid</item>
+		<item>k_fn_layers_annosetid</item>
+		<item>k_fn_labels_layerid</item>
+
+		<!-- bnc -->
+		<item>k_bnc_bncs_wordid_posid</item>
+		<item>k_bnc_spwrs_wordid_posid</item>
+		<item>k_bnc_convtasks_wordid_posid</item>
+		<item>k_bnc_imaginfs_wordid_posid</item>
 
 		<!-- predicate matrix -->
-		<item>index_pm_wordid</item>
-		<item>index_pm_synsetid</item>
-		<item>index_pm_word</item>
+		<item>k_pm_pms_wordid</item>
+		<item>k_pm_pms_synsetid</item>
+		<item>k_pm_pms_word</item>
 
 	</string-array>
 
 	<string-array name="required_pm">
-		<item>pmvn</item>
-		<item>pmpb</item>
-		<item>pmfn</item>
+		<item>pm_vn</item>
+		<item>pm_pb</item>
+		<item>pm_fn</item>
 	</string-array>
 
 	<string-array name="required_texts_wn">
@@ -195,15 +215,15 @@
 	</string-array>
 
 	<string-array name="required_texts_vn">
-		<item>vnexamples_example_fts4</item>
+		<item>vn_examples_example_fts4</item>
 	</string-array>
 
 	<string-array name="required_texts_pb">
-		<item>pbexamples_text_fts4</item>
+		<item>pb_examples_text_fts4</item>
 	</string-array>
 
 	<string-array name="required_texts_fn">
-		<item>fnsentences_text_fts4</item>
+		<item>fn_sentences_text_fts4</item>
 	</string-array>
 
 </resources>

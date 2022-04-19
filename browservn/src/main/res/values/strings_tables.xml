@@ -69,7 +69,7 @@
 		<item>pb_words</item>
 
 		<!-- sources -->
-		<item>sources</item>
+		<!-- <item>sources</item> -->
 
 	</string-array>
 
@@ -84,17 +84,25 @@
 		<item>k_samples_synsetid</item>
 
 		<!-- verbnet -->
+		<item>pk_vn_words</item>
 		<item>k_vn_words_wordid</item>
 		<item>k_vn_roles_classid</item>
 		<item>k_vn_classes_frames_classid</item>
 
 		<!-- propbank -->
+		<item>pk_pb_words</item>
 		<item>k_pb_words_wordid</item>
 		<item>k_pb_rolesets_pbwordid</item>
 		<item>k_pb_roles_rolesetid</item>
 		<item>k_pb_examples_rolesetid</item>
 		<item>k_pb_rels_exampleid</item>
 		<item>k_pb_args_exampleid</item>
+
+		<!-- bnc -->
+		<item>k_bnc_bncs_wordid_posid</item>
+		<item>k_bnc_spwrs_wordid_posid</item>
+		<item>k_bnc_convtasks_wordid_posid</item>
+		<item>k_bnc_imaginfs_wordid_posid</item>
 
 	</string-array>
 

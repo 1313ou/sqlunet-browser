@@ -2,12 +2,6 @@ package org.sqlunet.provider;
 
 import org.sqlunet.provider.XSqlUNetDispatcher.Result;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-
-import androidx.annotation.NonNull;
-
 public class QueriesLegacy
 {
 	public static Result queryLegacy(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
@@ -109,7 +103,7 @@ public class QueriesLegacy
 				final String[] table1Projection = unionProjection;
 				final String[] table2Projection = {"wordid", "synsetid", "classid", "class", "classtag"};
 				final String[] groupByArray = {"wordid", "synsetid", "classid"};
-				return XSqlUNetDispatcher.makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray, sortOrder, "vn");
+				return Utils.makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray, sortOrder, "vn");
 			}
 
 			case XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_U:
@@ -123,7 +117,7 @@ public class QueriesLegacy
 				final String[] table1Projection = unionProjection;
 				final String[] table2Projection = {"wordid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr"};
 				final String[] groupByArray = {"wordid", "synsetid", "rolesetid"};
-				return XSqlUNetDispatcher.makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray, sortOrder, "pb");
+				return Utils.makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray, sortOrder, "pb");
 			}
 
 			case XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_U:
@@ -140,7 +134,7 @@ public class QueriesLegacy
 				final String[] table1Projection = unionProjection;
 				final String[] table2Projection = {"wordid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition"};
 				final String[] groupByArray = {"wordid", "synsetid", "frameid"};
-				return XSqlUNetDispatcher.makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray, sortOrder, "fn");
+				return Utils.makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray, sortOrder, "fn");
 			}
 
 			case XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_1:
@@ -169,8 +163,7 @@ public class QueriesLegacy
 						"FROM vn_words " + //
 						"INNER JOIN vn_members_senses USING (vnwordid) " + //
 						"INNER JOIN vn_classes USING (classid) " + //
-						"WHERE (#{selection}) " +
-						")";
+						"WHERE (#{selection}) " + ")";
 				break;
 
 			case XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_1:
@@ -187,8 +180,7 @@ public class QueriesLegacy
 				break;
 
 			case XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_1U2:
-				table = "( " +
-						"SELECT wordid, synsetid, rolesetid, rolesetname, rolesethead, rolesetdescr, definition, 'pmpb' AS source " + //
+				table = "( " + "SELECT wordid, synsetid, rolesetid, rolesetname, rolesethead, rolesetdescr, definition, 'pmpb' AS source " + //
 						"FROM pmpb " + //
 						"INNER JOIN pb_rolesets USING (rolesetid) " + //
 						"LEFT JOIN synsets USING (synsetid) " + //
@@ -220,7 +212,7 @@ public class QueriesLegacy
 			case XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_1U2:
 				table = "( " + //
 						"SELECT wordid, synsetid, frameid, frame, framedefinition, luid, lexunit, ludefinition, definition, 'pmfn' AS source " + //
-                        "FROM pmfn " + //
+						"FROM pmfn " + //
 						"INNER JOIN fn_frames USING (frameid) " + //
 						"LEFT JOIN fn_lexunits USING (luid,frameid) " + //
 						"LEFT JOIN synsets USING (synsetid) " + //

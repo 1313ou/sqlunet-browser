@@ -6,6 +6,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<string-array name="required_tables" tools:ignore="InconsistentArrays">
+
+		<!-- framenet -->
 		<item>fn_annosets</item>
 		<item>fn_coretypes</item>
 		<item>fn_corpuses</item>
@@ -49,8 +51,12 @@
 		<item>fn_valenceunits</item>
 		<item>fn_valenceunits_annosets</item>
 		<item>fn_words</item>
-		<item>sources</item>
+
+		<!-- sources -->
+		<!-- <item>sources</item> -->
+
 	</string-array>
+
 	<string-array name="required_indexes" tools:ignore="InconsistentArrays">
 		<item>pk_fn_words</item>
 		<item>k_fn_frames_related_frameid</item>
@@ -67,6 +73,7 @@
 		<item>k_fn_layers_annosetid</item>
 		<item>k_fn_labels_layerid</item>
 	</string-array>
+
 	<string-array name="required_texts_fn">
 		<item>fn_sentences_text_fts4</item>
 	</string-array>

@@ -873,7 +873,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				"rowid AS _id",};
 		final String selection = XSqlUNetContract.Words_FnWords_FnFrames_U.WORDID + " = ?";
 		final String[] selectionArgs = {Long.toString(wordId)};
-		final String sortOrder = XSqlUNetContract.Words_FnWords_FnFrames_U.LUID + ' ' + "IS NULL" + ',' + XSqlUNetContract.Words_FnWords_FnFrames_U.SOURCES + ',' + XSqlUNetContract.Words_FnWords_FnFrames_U.FRAMEID;
+		final String sortOrder = XSqlUNetContract.Words_FnWords_FnFrames_U.LUID + ' ' + "IS NULL" + ',' + XSqlUNetContract.Words_FnWords_FnFrames_U.SOURCE + ',' + XSqlUNetContract.Words_FnWords_FnFrames_U.FRAMEID;
 		this.fnFromWordIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
 	}
 

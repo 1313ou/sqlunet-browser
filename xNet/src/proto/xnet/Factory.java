@@ -401,7 +401,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 			case WORDS_VNWORDS_VNCLASSES:
 			{
 				r.table = "${vn_words.table} " + //
-						"INNER JOIN ${vn_members_senses.table} USING (${words.wordid}) " + //
+						"INNER JOIN ${vn_members_senses.table} USING (${vn_words.vnwordid},${words.wordid}) " + //
 						"INNER JOIN ${vn_classes.table} AS ${as_classes} USING (${vn_classes.classid}) " + //
 						"LEFT JOIN ${synsets.table} USING (${synsets.synsetid})";
 				r.groupBy = "${words.wordid},${synsets.synsetid},${vn_classes.classid}";
@@ -439,7 +439,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 			case WORDS_VNWORDS_VNCLASSES_2:
 			{
 				r.table = "${vn_words.table} " + //
-						"INNER JOIN ${vn_members_senses.table} USING (${vn_words.vnwordid}) " + //
+						"INNER JOIN ${vn_members_senses.table} USING (${vn_words.vnwordid},${words.wordid}) " + //
 						"INNER JOIN ${vn_classes.table} USING (${vn_classes.classid})";
 				r.projection = new String[]{"wordid", "synsetid", "classid", "class", "classtag"};
 				break;

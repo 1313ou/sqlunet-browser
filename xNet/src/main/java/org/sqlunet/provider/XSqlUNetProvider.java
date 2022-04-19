@@ -26,6 +26,7 @@ import org.sqlunet.provider.XSqlUNetContract.Words_PbWords_PbRoleSets_U;
 import org.sqlunet.provider.XSqlUNetContract.Words_PbWords_VnWords;
 import org.sqlunet.provider.XSqlUNetContract.Words_VnWords_VnClasses;
 import org.sqlunet.provider.XSqlUNetContract.Words_VnWords_VnClasses_U;
+import org.sqlunet.provider.XSqlUNetDispatcher.Result;
 import org.sqlunet.sql.SqlFormatter;
 
 import java.util.Arrays;
@@ -144,6 +145,68 @@ public class XSqlUNetProvider extends BaseProvider
 	 * Query
 	 *
 	 * @param uri           uri
+	 * @param projection0    projection
+	 * @param selection0     selection
+	 * @param selectionArgs0 selection arguments
+	 * @param sortOrder0     sort order
+	 * @return cursor
+	 */
+	@Nullable
+	@Override
+	public Cursor query(@NonNull final Uri uri, @Nullable final String[] projection0, final String selection0, final String[] selectionArgs0, final String sortOrder0)
+	{
+		if (this.db == null)
+		{
+			try
+			{
+				openReadOnly();
+			}
+			catch (SQLiteCantOpenDatabaseException e)
+			{
+				return null;
+			}
+		}
+
+		// choose the table to query and a sort order based on the code returned for the incoming URI
+		final int code = XSqlUNetProvider.uriMatcher.match(uri);
+		Log.d(XSqlUNetProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code));
+		if (code == UriMatcher.NO_MATCH)
+		{
+			throw new RuntimeException("Malformed URI " + uri);
+		}
+
+		Result result = XSqlUNetDispatcher.queryMain(code, uri.getLastPathSegment(), projection0, selection0, selectionArgs0);
+		if (result != null)
+		{
+			final String sql = SQLiteQueryBuilder.buildQueryString(false, result.table, result.projection, result.selection, result.groupBy, null, sortOrder0, null);
+			logSql(sql, result.selectionArgs == null ? selectionArgs0 : result.selectionArgs);
+			if (BaseProvider.logSql)
+			{
+				Log.d(TAG + "SQL", SqlFormatter.format(sql).toString());
+				Log.d(TAG + "ARG", BaseProvider.argsToString(result.selectionArgs == null ? selectionArgs0 : result.selectionArgs));
+			}
+
+			// do query
+			try
+			{
+				final Cursor cursor = this.db.rawQuery(sql, result.selectionArgs == null ? selectionArgs0 : result.selectionArgs);
+				Log.d(TAG + "COUNT", cursor.getCount() + " items");
+				return cursor;
+				//return this.db.query(table, actualProjection, actualSelection, selectionArgs, groupBy, null, sortOrder, null);
+			}
+			catch (@NonNull final SQLiteException e)
+			{
+				Log.d(TAG + "SQL", sql);
+				Log.e(TAG, "WordNet provider query failed", e);
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Query
+	 *
+	 * @param uri           uri
 	 * @param projection    projection
 	 * @param selection     selection
 	 * @param selectionArgs selection arguments
@@ -151,9 +214,7 @@ public class XSqlUNetProvider extends BaseProvider
 	 * @return cursor
 	 */
 	@Nullable
-	@SuppressWarnings("boxing")
-	@Override
-	public Cursor query(@NonNull final Uri uri, @Nullable final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
+	public Cursor query0(@NonNull final Uri uri, @Nullable final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
 	{
 		if (this.db == null)
 		{

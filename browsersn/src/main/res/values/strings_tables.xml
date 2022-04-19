@@ -37,7 +37,7 @@
 		<item>bnc_spwrs</item>
 
 		<!-- sources -->
-		<item>sources</item>
+		<!-- <item>sources</item> -->
 
 	</string-array>
 
@@ -56,6 +56,12 @@
 		<!-- syntagnet -->
 		<item>k_sn_syntagms_word1id</item>
 		<item>k_sn_syntagms_word2id</item>
+
+		<!-- bnc -->
+		<item>k_bnc_bncs_wordid_posid</item>
+		<item>k_bnc_spwrs_wordid_posid</item>
+		<item>k_bnc_convtasks_wordid_posid</item>
+		<item>k_bnc_imaginfs_wordid_posid</item>
 
 	</string-array>
 

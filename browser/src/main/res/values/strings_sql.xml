@@ -42,53 +42,53 @@
 	<string-array name="sql_statements_values" formatted="false" tools:ignore="InconsistentArrays" tools:keep="@array/sql_statements_values">
 		<item />
 		<item>
-			CREATE INDEX IF NOT EXISTS index_words_words ON words(word);
-			CREATE INDEX IF NOT EXISTS index_senses_wordid ON senses(wordid);
-			CREATE INDEX IF NOT EXISTS index_senses_synsetid ON senses(synsetid);
-			CREATE INDEX IF NOT EXISTS index_synsets_synsetid ON synsets(synsetid);
-			CREATE INDEX IF NOT EXISTS index_casedwords_wordid_casedwordid ON casedwords(wordid,casedwordid);
-			CREATE INDEX IF NOT EXISTS index_semrelations_synset1id ON semrelations(synset1id);
-			CREATE INDEX IF NOT EXISTS index_semrelations_relationid ON semrelations(relationid);
-			CREATE INDEX IF NOT EXISTS index_samples_synsetid ON samples(synsetid);
-			CREATE INDEX IF NOT EXISTS index_vnwords_wordid ON vnwords(wordid);
-			CREATE INDEX IF NOT EXISTS index_vnrolemaps_classid ON vnrolemaps(classid);
-			CREATE INDEX IF NOT EXISTS index_vnframemaps_classid ON vnframemaps(classid);
-			CREATE INDEX IF NOT EXISTS index_pbwords_wordid ON pbwords(wordid);
-			CREATE INDEX IF NOT EXISTS index_pbrolesets_pbwordid ON pbrolesets(pbwordid);
-			CREATE INDEX IF NOT EXISTS index_pbroles_rolesetid ON pbroles(rolesetid);
-			CREATE INDEX IF NOT EXISTS index_pbexamples_rolesetid ON pbexamples(rolesetid);
-			CREATE INDEX IF NOT EXISTS index_pbrels_exampleid ON pbrels(exampleid);
-			CREATE INDEX IF NOT EXISTS index_pbargs_exampleid ON pbargs(exampleid);
-			CREATE INDEX IF NOT EXISTS index_fnwords_wordid ON fnwords(wordid);
-			CREATE INDEX IF NOT EXISTS index_fnframes_related_frameid ON fnframes_related(frameid);
-			CREATE INDEX IF NOT EXISTS index_fnframes_related_frame2id ON fnframes_related(frame2id);
-			CREATE INDEX IF NOT EXISTS index_fnlexemes_fnwordid ON fnlexemes(fnwordid);
-			CREATE INDEX IF NOT EXISTS index_fnfes_frameid ON fnfes(frameid);
-			CREATE INDEX IF NOT EXISTS index_fnferealizations_luid ON fnferealizations(luid);
-			CREATE INDEX IF NOT EXISTS index_fnvalenceunits_ferid ON fnvalenceunits(ferid);
-			CREATE INDEX IF NOT EXISTS index_fnfegrouprealizations_luid ON fnfegrouprealizations(luid);
-			CREATE INDEX IF NOT EXISTS index_fnpatterns_valenceunits_patternid ON fnpatterns_valenceunits(patternid);
-			CREATE INDEX IF NOT EXISTS index_fnpatterns_fegrid ON fnpatterns(fegrid);
-			CREATE INDEX IF NOT EXISTS index_fnsubcorpuses_luid ON fnsubcorpuses(luid);
-			CREATE INDEX IF NOT EXISTS index_fnannosets_sentenceid ON fnannosets(sentenceid);
-			CREATE INDEX IF NOT EXISTS index_fnlayers_annosetid ON fnlayers (annosetid);
-			CREATE INDEX IF NOT EXISTS index_fnlabels_layerid ON fnlabels(layerid);
-			CREATE INDEX IF NOT EXISTS index_pm_wordid ON pm(wordid);
-			CREATE INDEX IF NOT EXISTS index_pm_synsetid ON pm(synsetid);
-			CREATE INDEX IF NOT EXISTS index_pm_word ON pm(word);</item>
+			CREATE INDEX IF NOT EXISTS k_words_words ON words(word);
+			CREATE INDEX IF NOT EXISTS k_senses_wordid ON senses(wordid);
+			CREATE INDEX IF NOT EXISTS k_senses_synsetid ON senses(synsetid);
+			CREATE INDEX IF NOT EXISTS pk_synsets ON synsets(synsetid);
+			CREATE INDEX IF NOT EXISTS k_casedwords_wordid_casedwordid ON casedwords(wordid,casedwordid);
+			CREATE INDEX IF NOT EXISTS k_semrelations_synset1id ON semrelations(synset1id);
+			CREATE INDEX IF NOT EXISTS k_semrelations_relationid ON semrelations(relationid);
+			CREATE INDEX IF NOT EXISTS k_samples_synsetid ON samples(synsetid);
+			CREATE INDEX IF NOT EXISTS k_vnwords_wordid ON vnwords(wordid);
+			CREATE INDEX IF NOT EXISTS k_vnrolemaps_classid ON vnrolemaps(classid);
+			CREATE INDEX IF NOT EXISTS k_vnframemaps_classid ON vnframemaps(classid);
+			CREATE INDEX IF NOT EXISTS k_pbwords_wordid ON pbwords(wordid);
+			CREATE INDEX IF NOT EXISTS k_pbrolesets_pbwordid ON pbrolesets(pbwordid);
+			CREATE INDEX IF NOT EXISTS k_pbroles_rolesetid ON pbroles(rolesetid);
+			CREATE INDEX IF NOT EXISTS k_pbexamples_rolesetid ON pbexamples(rolesetid);
+			CREATE INDEX IF NOT EXISTS k_pbrels_exampleid ON pbrels(exampleid);
+			CREATE INDEX IF NOT EXISTS k_pbargs_exampleid ON pbargs(exampleid);
+			CREATE INDEX IF NOT EXISTS k_fnwords_wordid ON fnwords(wordid);
+			CREATE INDEX IF NOT EXISTS k_fnframes_related_frameid ON fnframes_related(frameid);
+			CREATE INDEX IF NOT EXISTS k_fnframes_related_frame2id ON fnframes_related(frame2id);
+			CREATE INDEX IF NOT EXISTS k_fnlexemes_fnwordid ON fnlexemes(fnwordid);
+			CREATE INDEX IF NOT EXISTS k_fnfes_frameid ON fnfes(frameid);
+			CREATE INDEX IF NOT EXISTS k_fnferealizations_luid ON fnferealizations(luid);
+			CREATE INDEX IF NOT EXISTS k_fnvalenceunits_ferid ON fnvalenceunits(ferid);
+			CREATE INDEX IF NOT EXISTS k_fnfegrouprealizations_luid ON fnfegrouprealizations(luid);
+			CREATE INDEX IF NOT EXISTS k_fnpatterns_valenceunits_patternid ON fnpatterns_valenceunits(patternid);
+			CREATE INDEX IF NOT EXISTS k_fnpatterns_fegrid ON fnpatterns(fegrid);
+			CREATE INDEX IF NOT EXISTS k_fnsubcorpuses_luid ON fnsubcorpuses(luid);
+			CREATE INDEX IF NOT EXISTS k_fnannosets_sentenceid ON fnannosets(sentenceid);
+			CREATE INDEX IF NOT EXISTS k_fnlayers_annosetid ON fnlayers (annosetid);
+			CREATE INDEX IF NOT EXISTS k_fnlabels_layerid ON fnlabels(layerid);
+			CREATE INDEX IF NOT EXISTS k_pm_wordid ON pm(wordid);
+			CREATE INDEX IF NOT EXISTS k_pm_synsetid ON pm(synsetid);
+			CREATE INDEX IF NOT EXISTS k_pm_word ON pm(word);</item>
 		<item>
-			DROP TABLE IF EXISTS pmvn;
-			CREATE TABLE IF NOT EXISTS pmvn (pmid INTEGER primary key,wordid INTEGER,synsetid INTEGER,vnwordid INTEGER,classid INTEGER);
-			INSERT INTO pmvn (pmid,wordid,synsetid,vnwordid,classid) SELECT pmid,wordid,synsetid,vnwordid,vnclassid FROM pm WHERE vnclassid IS NOT NULL;
-			DELETE FROM pmvn WHERE pmid NOT IN (SELECT MIN(pmid) FROM pmvn GROUP BY wordid,synsetid,vnwordid,classid);
-			DROP TABLE IF EXISTS pmpb;
-			CREATE TABLE IF NOT EXISTS pmpb (pmid INTEGER primary key,wordid INTEGER,synsetid INTEGER,pbwordid INTEGER,rolesetid INTEGER);
-			INSERT INTO pmpb (pmid,wordid,synsetid,pbwordid,rolesetid) SELECT pmid,wordid,synsetid,pbwordid,pbrolesetid FROM pm WHERE pbrolesetid IS NOT NULL;
-			DELETE FROM pmpb WHERE pmid NOT IN (SELECT MIN(pmid) FROM pmpb GROUP BY wordid,synsetid,pbwordid,rolesetid);
-			DROP TABLE IF EXISTS pmfn;
-			CREATE TABLE IF NOT EXISTS pmfn (pmid INTEGER primary key,wordid INTEGER,synsetid INTEGER,fnwordid INTEGER,luid INTEGER,frameid INTEGER);
-			INSERT INTO pmfn (pmid,wordid,synsetid,fnwordid,luid,frameid) SELECT pmid,wordid,synsetid,fnwordid,fnluid,fnframeid FROM pm WHERE fnframeid IS NOT NULL;
-			DELETE FROM pmfn WHERE pmid NOT IN (SELECT MIN(pmid) FROM pmfn GROUP BY wordid,synsetid,fnwordid,luid,frameid);</item>
+			DROP TABLE IF EXISTS pm_vn;
+			CREATE TABLE IF NOT EXISTS pm_vn (pmid INTEGER PRIMARY KEY,wordid INTEGER,synsetid INTEGER,vnwordid INTEGER,classid INTEGER);
+			INSERT INTO pm_vn (pmid,wordid,synsetid,vnwordid,classid) SELECT pmid,wordid,synsetid,vnwordid,vnclassid FROM pm_pms WHERE vnclassid IS NOT NULL;
+			DELETE FROM pm_vn WHERE pmid NOT IN (SELECT MIN(pmid) FROM pm_vn GROUP BY wordid,synsetid,vnwordid,classid);
+			DROP TABLE IF EXISTS pm_pb;
+			CREATE TABLE IF NOT EXISTS pm_pb (pmid INTEGER PRIMARY KEY,wordid INTEGER,synsetid INTEGER,pbwordid INTEGER,rolesetid INTEGER);
+			INSERT INTO pm_pb (pmid,wordid,synsetid,pbwordid,rolesetid) SELECT pmid,wordid,synsetid,pbwordid,pbrolesetid FROM pm_pms WHERE pbrolesetid IS NOT NULL;
+			DELETE FROM pm_pb WHERE pmid NOT IN (SELECT MIN(pmid) FROM pm_pb GROUP BY wordid,synsetid,pbwordid,rolesetid);
+			DROP TABLE IF EXISTS pm_fn;
+			CREATE TABLE IF NOT EXISTS pm_fn (pmid INTEGER PRIMARY KEY,wordid INTEGER,synsetid INTEGER,fnwordid INTEGER,luid INTEGER,frameid INTEGER);
+			INSERT INTO pm_fn (pmid,wordid,synsetid,fnwordid,luid,frameid) SELECT pmid,wordid,synsetid,fnwordid,fnluid,fnframeid FROM pm_pms WHERE fnframeid IS NOT NULL;
+			DELETE FROM pm_fn WHERE pmid NOT IN (SELECT MIN(pmid) FROM pm_fn GROUP BY wordid,synsetid,fnwordid,luid,frameid);</item>
 		<item>
 			CREATE VIRTUAL TABLE IF NOT EXISTS words_word_fts4 USING fts4(wordid INTEGER not null, word);
 			INSERT INTO words_word_fts4 SELECT wordid, word from words;
@@ -97,105 +97,105 @@
 			CREATE VIRTUAL TABLE IF NOT EXISTS samples_sample_fts4 USING fts4(synsetid INTEGER not null, sample);
 			INSERT INTO samples_sample_fts4 SELECT synsetid, sample from samples;</item>
 		<item>
-			CREATE VIRTUAL TABLE IF NOT EXISTS vnexamples_example_fts4 USING fts4(exampleid INTEGER not null, frameid INTEGER, classid INTEGER, example);
-			INSERT INTO vnexamples_example_fts4 SELECT exampleid, frameid, classid, example FROM vnexamples INNER JOIN vnexamplemaps USING (exampleid) INNER JOIN vnframes USING (frameid) INNER JOIN vnframemaps USING (frameid) INNER JOIN vnclasses USING (classid);</item>
+			CREATE VIRTUAL TABLE IF NOT EXISTS vn_examples_example_fts4 USING fts4(exampleid INTEGER not null, frameid INTEGER, classid INTEGER, example);
+			INSERT INTO vn_examples_example_fts4 SELECT exampleid, frameid, classid, example FROM vnexamples INNER JOIN vnexamplemaps USING (exampleid) INNER JOIN vnframes USING (frameid) INNER JOIN vnframemaps USING (frameid) INNER JOIN vnclasses USING (classid);</item>
 		<item>
-			CREATE VIRTUAL TABLE IF NOT EXISTS pbexamples_text_fts4 USING fts4(exampleid INTEGER not null, rolesetid INTEGER not null, text);
-			INSERT INTO pbexamples_text_fts4 SELECT exampleid, rolesetid, text from pbexamples;</item>
+			CREATE VIRTUAL TABLE IF NOT EXISTS pb_examples_text_fts4 USING fts4(exampleid INTEGER not null, rolesetid INTEGER not null, text);
+			INSERT INTO pb_examples_text_fts4 SELECT exampleid, rolesetid, text from pbexamples;</item>
 		<item>
-			CREATE VIRTUAL TABLE IF NOT EXISTS fnsentences_text_fts4 USING fts4(sentenceid INTEGER not null, annosetid INTEGER, frameid INTEGER, luid INTEGER, text);
-			INSERT INTO fnsentences_text_fts4 SELECT sentenceid, annosetid, f.frameid, luid, text FROM fnsentences INNER JOIN fnannosets USING (sentenceid) LEFT JOIN fnframes AS f USING (frameid) LEFT JOIN fnlexunits AS l USING (luid) WHERE f.frameid IS NOT NULL;</item>
+			CREATE VIRTUAL TABLE IF NOT EXISTS fn_sentences_text_fts4 USING fts4(sentenceid INTEGER not null, annosetid INTEGER, frameid INTEGER, luid INTEGER, text);
+			INSERT INTO fn_sentences_text_fts4 SELECT sentenceid, annosetid, f.frameid, luid, text FROM fnsentences INNER JOIN fnannosets USING (sentenceid) LEFT JOIN fnframes AS f USING (frameid) LEFT JOIN fnlexunits AS l USING (luid) WHERE f.frameid IS NOT NULL;</item>
 		<item>
-			CREATE INDEX IF NOT EXISTS index_words_word ON words(word);
-			CREATE INDEX IF NOT EXISTS index_senses_wordid ON senses(wordid);
-			CREATE INDEX IF NOT EXISTS index_senses_synsetid ON senses(synsetid);
-			CREATE INDEX IF NOT EXISTS index_synsets_synsetid ON synsets(synsetid);
-			CREATE INDEX IF NOT EXISTS index_casedwords_wordid_casedwordid ON casedwords(wordid,casedwordid);
-			CREATE INDEX IF NOT EXISTS index_semrelations_synset1id ON semrelations(synset1id);
-			CREATE INDEX IF NOT EXISTS index_semrelations_relationid ON semrelations(relationid);
-			CREATE INDEX IF NOT EXISTS index_samples_synsetid ON samples(synsetid);</item>
+			CREATE INDEX IF NOT EXISTS k_words_word ON words(word);
+			CREATE INDEX IF NOT EXISTS k_senses_wordid ON senses(wordid);
+			CREATE INDEX IF NOT EXISTS k_senses_synsetid ON senses(synsetid);
+			CREATE INDEX IF NOT EXISTS k_synsets_synsetid ON synsets(synsetid);
+			CREATE INDEX IF NOT EXISTS k_casedwords_wordid_casedwordid ON casedwords(wordid,casedwordid);
+			CREATE INDEX IF NOT EXISTS k_semrelations_synset1id ON semrelations(synset1id);
+			CREATE INDEX IF NOT EXISTS k_semrelations_relationid ON semrelations(relationid);
+			CREATE INDEX IF NOT EXISTS k_samples_synsetid ON samples(synsetid);</item>
 		<item>
-			DROP INDEX IF EXISTS index_words_word;
-			DROP INDEX IF EXISTS index_senses_wordid;
-			DROP INDEX IF EXISTS index_senses_synsetid;
-			DROP INDEX IF EXISTS index_synsets_synsetid;
-			DROP INDEX IF EXISTS index_casedwords_wordid_casedwordid;
-			DROP INDEX IF EXISTS index_semrelations_synset1id
-			DROP INDEX IF EXISTS index_semrelations_relationid;
-			DROP INDEX IF EXISTS index_samples_synsetid;</item>
+			DROP INDEX IF EXISTS k_words_word;
+			DROP INDEX IF EXISTS k_senses_wordid;
+			DROP INDEX IF EXISTS k_senses_synsetid;
+			DROP INDEX IF EXISTS k_synsets_synsetid;
+			DROP INDEX IF EXISTS k_casedwords_wordid_casedwordid;
+			DROP INDEX IF EXISTS k_semrelations_synset1id
+			DROP INDEX IF EXISTS k_semrelations_relationid;
+			DROP INDEX IF EXISTS k_samples_synsetid;</item>
 		<item>
-			CREATE INDEX IF NOT EXISTS index_vnwords_wordid ON vnwords(wordid);
-			CREATE INDEX IF NOT EXISTS index_vnrolemaps_classid ON vnrolemaps(classid);
-			CREATE INDEX IF NOT EXISTS index_vnframemaps_classid ON vnframemaps(classid);</item>
+			CREATE INDEX IF NOT EXISTS k_vn_words_wordid ON vnwords(wordid);
+			CREATE INDEX IF NOT EXISTS k_vn_rolemaps_classid ON vnrolemaps(classid);
+			CREATE INDEX IF NOT EXISTS k_vn_framemaps_classid ON vnframemaps(classid);</item>
 		<item>
-			DROP INDEX IF EXISTS index_vnwords_wordid;
-			DROP INDEX IF EXISTS index_vngroupingmaps_vnwordid;
-			DROP INDEX IF EXISTS index_vnrolemaps_classid;
-			DROP INDEX IF EXISTS index_vnframemaps_classid;</item>
+			DROP INDEX IF EXISTS k_vn_words_wordid;
+			DROP INDEX IF EXISTS k_vn_groupingmaps_vnwordid;
+			DROP INDEX IF EXISTS k_vn_rolemaps_classid;
+			DROP INDEX IF EXISTS k_vn_framemaps_classid;</item>
 		<item>
-			CREATE INDEX IF NOT EXISTS index_pbwords_wordid ON pbwords(wordid);
-			CREATE INDEX IF NOT EXISTS index_pbrolesets_pbwordid ON pbrolesets(pbwordid);
-			CREATE INDEX IF NOT EXISTS index_pbroles_rolesetid ON pbroles(rolesetid);
-			CREATE INDEX IF NOT EXISTS index_pbexamples_rolesetid ON pbexamples(rolesetid);
-			CREATE INDEX IF NOT EXISTS index_pbrels_exampleid ON pbrels(exampleid);
-			CREATE INDEX IF NOT EXISTS index_pbargs_exampleid ON pbargs(exampleid);</item>
+			CREATE INDEX IF NOT EXISTS k_pb_words_wordid ON pbwords(wordid);
+			CREATE INDEX IF NOT EXISTS k_pb_rolesets_pbwordid ON pbrolesets(pbwordid);
+			CREATE INDEX IF NOT EXISTS k_pb_roles_rolesetid ON pbroles(rolesetid);
+			CREATE INDEX IF NOT EXISTS k_pb_examples_rolesetid ON pbexamples(rolesetid);
+			CREATE INDEX IF NOT EXISTS k_pb_rels_exampleid ON pbrels(exampleid);
+			CREATE INDEX IF NOT EXISTS k_pb_args_exampleid ON pbargs(exampleid);</item>
 		<item>
-			DROP INDEX IF EXISTS index_pbwords_wordid;
-			DROP INDEX IF EXISTS index_pbrolesets_pbwordid;
-			DROP INDEX IF EXISTS index_pbroles_rolesetid;
-			DROP INDEX IF EXISTS index_pbexamples_rolesetid;
-			DROP INDEX IF EXISTS index_pbrels_exampleid;
-			DROP INDEX IF EXISTS index_pbargs_exampleid;</item>
+			DROP INDEX IF EXISTS k_pb_words_wordid;
+			DROP INDEX IF EXISTS k_pb_rolesets_pbwordid;
+			DROP INDEX IF EXISTS k_pb_roles_rolesetid;
+			DROP INDEX IF EXISTS k_pb_examples_rolesetid;
+			DROP INDEX IF EXISTS k_pb_rels_exampleid;
+			DROP INDEX IF EXISTS k_pb_args_exampleid;</item>
 		<item>
-			CREATE INDEX IF NOT EXISTS index_fnwords_wordid ON fnwords(wordid);
-			CREATE INDEX IF NOT EXISTS index_fnframes_related_frameid ON fnframes_related(frameid);
-			CREATE INDEX IF NOT EXISTS index_fnframes_related_frame2id ON fnframes_related(frame2id);
-			CREATE INDEX IF NOT EXISTS index_fnlexemes_fnwordid ON fnlexemes(fnwordid);
-			CREATE INDEX IF NOT EXISTS index_fnfes_frameid ON fnfes(frameid);
-			CREATE INDEX IF NOT EXISTS index_fnferealizations_luid ON fnferealizations(luid);
-			CREATE INDEX IF NOT EXISTS index_fnvalenceunits_ferid ON fnvalenceunits(ferid);
-			CREATE INDEX IF NOT EXISTS index_fnfegrouprealizations_luid ON fnfegrouprealizations(luid);
-			CREATE INDEX IF NOT EXISTS index_fnpatterns_valenceunits_patternid ON fnpatterns_valenceunits(patternid);
-			CREATE INDEX IF NOT EXISTS index_fnpatterns_fegrid ON fnpatterns(fegrid);
-			CREATE INDEX IF NOT EXISTS index_fnsubcorpuses_luid ON fnsubcorpuses(luid);
-			CREATE INDEX IF NOT EXISTS index_fnannosets_sentenceid ON fnannosets(sentenceid);
-			CREATE INDEX IF NOT EXISTS index_fnlayers_annosetid ON fnlayers (annosetid);
-			CREATE INDEX IF NOT EXISTS index_fnlabels_layerid ON fnlabels(layerid);</item>
+			CREATE INDEX IF NOT EXISTS k_fn_words_wordid ON fnwords(wordid);
+			CREATE INDEX IF NOT EXISTS k_fn_frames_related_frameid ON fnframes_related(frameid);
+			CREATE INDEX IF NOT EXISTS k_fn_frames_related_frame2id ON fnframes_related(frame2id);
+			CREATE INDEX IF NOT EXISTS k_fn_lexemes_fnwordid ON fnlexemes(fnwordid);
+			CREATE INDEX IF NOT EXISTS k_fn_fes_frameid ON fnfes(frameid);
+			CREATE INDEX IF NOT EXISTS k_fn_ferealizations_luid ON fnferealizations(luid);
+			CREATE INDEX IF NOT EXISTS k_fn_valenceunits_ferid ON fnvalenceunits(ferid);
+			CREATE INDEX IF NOT EXISTS k_fn_fegrouprealizations_luid ON fnfegrouprealizations(luid);
+			CREATE INDEX IF NOT EXISTS k_fn_patterns_valenceunits_patternid ON fnpatterns_valenceunits(patternid);
+			CREATE INDEX IF NOT EXISTS k_fn_patterns_fegrid ON fnpatterns(fegrid);
+			CREATE INDEX IF NOT EXISTS k_fn_subcorpuses_luid ON fnsubcorpuses(luid);
+			CREATE INDEX IF NOT EXISTS k_fn_annosets_sentenceid ON fnannosets(sentenceid);
+			CREATE INDEX IF NOT EXISTS k_fn_layers_annosetid ON fnlayers (annosetid);
+			CREATE INDEX IF NOT EXISTS k_fn_labels_layerid ON fnlabels(layerid);</item>
 		<item>
-			DROP INDEX IF EXISTS index_fnwords_wordid;
-			DROP INDEX IF EXISTS index_fnframes_related_frameid;
-			DROP INDEX IF EXISTS index_fnframes_related_frame2id;
-			DROP INDEX IF EXISTS index_fnlexemes_fnwordid;
-			DROP INDEX IF EXISTS index_fnfes_frameid;
-			DROP INDEX IF EXISTS index_fnferealizations_luid;
-			DROP INDEX IF EXISTS index_fnvalenceunits_ferid;
-			DROP INDEX IF EXISTS index_fnfegrouprealizations_luid;
-			DROP INDEX IF EXISTS index_fnpatterns_valenceunits_patternid;
-			DROP INDEX IF EXISTS index_fnpatterns_fegrid;
-			DROP INDEX IF EXISTS index_fnsubcorpuses_luid;
-			DROP INDEX IF EXISTS index_fnannosets_sentenceid;
-			DROP INDEX IF EXISTS index_fnlayers_annosetid;
-			DROP INDEX IF EXISTS index_fnlabels_layerid;</item>
+			DROP INDEX IF EXISTS k_fn_words_wordid;
+			DROP INDEX IF EXISTS k_fn_frames_related_frameid;
+			DROP INDEX IF EXISTS k_fn_frames_related_frame2id;
+			DROP INDEX IF EXISTS k_fn_lexemes_fnwordid;
+			DROP INDEX IF EXISTS k_fn_fes_frameid;
+			DROP INDEX IF EXISTS k_fn_ferealizations_luid;
+			DROP INDEX IF EXISTS k_fn_valenceunits_ferid;
+			DROP INDEX IF EXISTS k_fn_fegrouprealizations_luid;
+			DROP INDEX IF EXISTS k_fn_patterns_valenceunits_patternid;
+			DROP INDEX IF EXISTS k_fn_patterns_fegrid;
+			DROP INDEX IF EXISTS k_fn_subcorpuses_luid;
+			DROP INDEX IF EXISTS k_fn_annosets_sentenceid;
+			DROP INDEX IF EXISTS k_fn_layers_annosetid;
+			DROP INDEX IF EXISTS k_fn_labels_layerid;</item>
 		<item>
-			CREATE INDEX IF NOT EXISTS index_pm_wordid ON pm(wordid);
-			CREATE INDEX IF NOT EXISTS index_pm_synsetid ON pm(synsetid);
-			CREATE INDEX IF NOT EXISTS index_pm_word ON pm(word);</item>
+			CREATE INDEX IF NOT EXISTS k_pm_pms_wordid ON pm(wordid);
+			CREATE INDEX IF NOT EXISTS k_pm_pms_synsetid ON pm(synsetid);
+			CREATE INDEX IF NOT EXISTS k_pm_pms_word ON pm(word);</item>
 		<item>
-			DROP INDEX IF EXISTS index_pm_wordid;
-			DROP INDEX IF EXISTS index_pm_synsetid;
-			DROP INDEX IF EXISTS index_pm_word;</item>
+			DROP INDEX IF EXISTS index_pm_pms_wordid;
+			DROP INDEX IF EXISTS index_pm_pms_synsetid;
+			DROP INDEX IF EXISTS index_pm_pms_word;</item>
 		<item>
 			DROP TABLE IF EXISTS words_word_fts4;
 			DROP TABLE IF EXISTS synsets_definition_fts4;
 			DROP TABLE IF EXISTS samples_sample_fts4;</item>
 		<item>
-			DROP TABLE IF EXISTS vnexamples_example_fts4;</item>
+			DROP TABLE IF EXISTS vn_examples_example_fts4;</item>
 		<item>
-			DROP TABLE IF EXISTS pbexamples_text_fts4;</item>
+			DROP TABLE IF EXISTS pb_examples_text_fts4;</item>
 		<item>
-			DROP TABLE IF EXISTS fnsentences_text_fts4;</item>
+			DROP TABLE IF EXISTS fn_sentences_text_fts4;</item>
 		<item>
-			DROP TABLE IF EXISTS pm;
+			DROP TABLE IF EXISTS pms;
 			DROP TABLE IF EXISTS pmroles;
 			DROP TABLE IF EXISTS pmpredicates;</item>
 		<item>
