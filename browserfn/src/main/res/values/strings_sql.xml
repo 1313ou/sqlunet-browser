@@ -19,55 +19,60 @@
 	<string-array name="sql_statements_values" formatted="false" tools:ignore="InconsistentArrays" tools:keep="@array/sql_statements_values">
 		<item/>
 		<item>
-			CREATE INDEX IF NOT EXISTS k_fn_words_wordid ON fn_words(wordid);
-			CREATE INDEX IF NOT EXISTS k_fn_frames_related_frameid ON fn_frames_related(frameid);
-			CREATE INDEX IF NOT EXISTS k_fn_frames_related_frame2id ON fn_frames_related(frame2id);
-			CREATE INDEX IF NOT EXISTS k_fn_lexemes_fnwordid ON fn_lexemes(fnwordid);
-			CREATE INDEX IF NOT EXISTS k_fn_fes_frameid ON fn_fes(frameid);
-			CREATE INDEX IF NOT EXISTS k_fn_ferealizations_luid ON fn_ferealizations(luid);
-			CREATE INDEX IF NOT EXISTS k_fn_valenceunits_ferid ON fn_valenceunits(ferid);
-			CREATE INDEX IF NOT EXISTS k_fn_fegrouprealizations_luid ON fn_fegrouprealizations(luid);
-			CREATE INDEX IF NOT EXISTS k_fn_grouppatterns_patterns_patternid ON fn_grouppatterns_patterns(patternid);
-			CREATE INDEX IF NOT EXISTS k_fn_grouppatterns_fegrid ON fn_grouppatterns(fegrid);
-			CREATE INDEX IF NOT EXISTS k_fn_subcorpuses_luid ON fn_subcorpuses(luid);
-			CREATE INDEX IF NOT EXISTS k_fn_annosets_sentenceid ON fn_annosets(sentenceid);
-			CREATE INDEX IF NOT EXISTS k_fn_layers_annosetid ON fn_layers (annosetid);
-			CREATE INDEX IF NOT EXISTS k_fn_labels_layerid ON fn_labels(layerid);</item>
+			<!-- framenet -->
+			CREATE INDEX IF NOT EXISTS `k_fn_words_wordid` ON `fn_words`(`wordid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_frames_related_frameid` ON `fn_frames_related`(`frameid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_frames_related_frame2id` ON `fn_frames_related`(`frame2id`);
+			CREATE INDEX IF NOT EXISTS `k_fn_lexemes_fnwordid` ON `fn_lexemes`(`fnwordid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_fes_frameid` ON `fn_fes`(`frameid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_ferealizations_luid` ON `fn_ferealizations`(`luid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_valenceunits_ferid` ON `fn_valenceunits`(`ferid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_fegrouprealizations_luid` ON `fn_fegrouprealizations`(`luid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_grouppatterns_patterns_patternid` ON `fn_grouppatterns_patterns`(`patternid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_grouppatterns_fegrid` ON `fn_grouppatterns`(`fegrid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_subcorpuses_luid` ON `fn_subcorpuses`(`luid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_annosets_sentenceid` ON `fn_annosets`(`sentenceid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_layers_annosetid` ON `fn_layers` (`annosetid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_labels_layerid` ON `fn_labels`(`layerid`);</item>
 		<item>
-			CREATE VIRTUAL TABLE IF NOT EXISTS fn_sentences_text_fts4 USING fts4(sentenceid INTEGER not null, annosetid INTEGER, frameid INTEGER, luid INTEGER, text);
-			INSERT INTO fn_sentences_text_fts4 SELECT sentenceid, annosetid, f.frameid, luid, text FROM fn_sentences INNER JOIN fn_annosets USING (sentenceid) LEFT JOIN fn_frames AS f USING (frameid) LEFT JOIN fn_lexunits AS l USING (luid) WHERE f.frameid IS NOT NULL;</item>
+			<!-- framenet text search-->
+			CREATE VIRTUAL TABLE IF NOT EXISTS `fn_sentences_text_fts4` USING fts4(`sentenceid` INTEGER NOT NULL, `annosetid` INTEGER, `frameid` INTEGER, `luid` INTEGER, `text`);
+			INSERT INTO `fn_sentences_text_fts4` SELECT `sentenceid`, `annosetid`, `f`.`frameid`, `luid`, `text` FROM `fn_sentences` INNER JOIN `fn_annosets` USING (`sentenceid`) LEFT JOIN `fn_frames` AS `f` USING (`frameid`) LEFT JOIN `fn_lexunits` AS `l` USING (`luid`) WHERE `f`.`frameid` IS NOT NULL;</item>
 		<item>
-			CREATE INDEX IF NOT EXISTS k_fn_words_wordid ON fn_words(wordid);
-			CREATE INDEX IF NOT EXISTS k_fn_frames_related_frameid ON fn_frames_related(frameid);
-			CREATE INDEX IF NOT EXISTS k_fn_frames_related_frame2id ON fn_frames_related(frame2id);
-			CREATE INDEX IF NOT EXISTS k_fn_lexemes_fnwordid ON fn_lexemes(fnwordid);
-			CREATE INDEX IF NOT EXISTS k_fn_fes_frameid ON fn_fes(frameid);
-			CREATE INDEX IF NOT EXISTS k_fn_ferealizations_luid ON fn_ferealizations(luid);
-			CREATE INDEX IF NOT EXISTS k_fn_valenceunits_ferid ON fn_valenceunits(ferid);
-			CREATE INDEX IF NOT EXISTS k_fn_fegrouprealizations_luid ON fn_fegrouprealizations(luid);
-			CREATE INDEX IF NOT EXISTS k_fn_grouppatterns_patterns_patternid ON fn_grouppatterns_patterns(patternid);
-			CREATE INDEX IF NOT EXISTS k_fn_grouppatterns_fegrid ON fn_grouppatterns(fegrid);
-			CREATE INDEX IF NOT EXISTS k_fn_subcorpuses_luid ON fn_subcorpuses(luid);
-			CREATE INDEX IF NOT EXISTS k_fn_annosets_sentenceid ON fn_annosets(sentenceid);
-			CREATE INDEX IF NOT EXISTS k_fn_layers_annosetid ON fn_layers (annosetid);
-			CREATE INDEX IF NOT EXISTS k_fn_labels_layerid ON fn_labels(layerid);</item>
+			<!-- framenet -->
+			CREATE INDEX IF NOT EXISTS `k_fn_words_wordid` ON `fn_words`(`wordid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_frames_related_frameid` ON `fn_frames_related`(`frameid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_frames_related_frame2id` ON `fn_frames_related`(`frame2id`);
+			CREATE INDEX IF NOT EXISTS `k_fn_lexemes_fnwordid` ON `fn_lexemes`(`fnwordid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_fes_frameid` ON `fn_fes`(`frameid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_ferealizations_luid` ON `fn_ferealizations`(`luid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_valenceunits_ferid` ON `fn_valenceunits`(`ferid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_fegrouprealizations_luid` ON `fn_fegrouprealizations`(`luid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_grouppatterns_patterns_patternid` ON `fn_grouppatterns_patterns`(`patternid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_grouppatterns_fegrid` ON `fn_grouppatterns`(`fegrid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_subcorpuses_luid` ON `fn_subcorpuses`(`luid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_annosets_sentenceid` ON `fn_annosets`(`sentenceid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_layers_annosetid` ON `fn_layers` (`annosetid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_labels_layerid` ON `fn_labels`(`layerid`);</item>
 		<item>
-			DROP INDEX IF EXISTS k_fn_words_wordid;
-			DROP INDEX IF EXISTS k_fn_frames_related_frameid;
-			DROP INDEX IF EXISTS k_fn_frames_related_frame2id;
-			DROP INDEX IF EXISTS k_fn_lexemes_fnwordid;
-			DROP INDEX IF EXISTS k_fn_fes_frameid;
-			DROP INDEX IF EXISTS k_fn_ferealizations_luid;
-			DROP INDEX IF EXISTS k_fn_valenceunits_ferid;
-			DROP INDEX IF EXISTS k_fn_fegrouprealizations_luid;
-			DROP INDEX IF EXISTS k_fn_grouppatterns_patterns_patternid;
-			DROP INDEX IF EXISTS k_fn_grouppatterns_fegrid;
-			DROP INDEX IF EXISTS k_fn_subcorpuses_luid;
-			DROP INDEX IF EXISTS k_fn_annosets_sentenceid;
-			DROP INDEX IF EXISTS k_fn_layers_annosetid;
-			DROP INDEX IF EXISTS k_fn_labels_layerid;</item>
+			<!-- drop framenet indexes -->
+			DROP INDEX IF EXISTS `k_fn_words_wordid`;
+			DROP INDEX IF EXISTS `k_fn_frames_related_frameid`;
+			DROP INDEX IF EXISTS `k_fn_frames_related_frame2id`;
+			DROP INDEX IF EXISTS `k_fn_lexemes_fnwordid`;
+			DROP INDEX IF EXISTS `k_fn_fes_frameid`;
+			DROP INDEX IF EXISTS `k_fn_ferealizations_luid`;
+			DROP INDEX IF EXISTS `k_fn_valenceunits_ferid`;
+			DROP INDEX IF EXISTS `k_fn_fegrouprealizations_luid`;
+			DROP INDEX IF EXISTS `k_fn_grouppatterns_patterns_patternid`;
+			DROP INDEX IF EXISTS `k_fn_grouppatterns_fegrid`;
+			DROP INDEX IF EXISTS `k_fn_subcorpuses_luid`;
+			DROP INDEX IF EXISTS `k_fn_annosets_sentenceid`;
+			DROP INDEX IF EXISTS `k_fn_layers_annosetid`;
+			DROP INDEX IF EXISTS `k_fn_labels_layerid`;</item>
 		<item>
-			DROP TABLE IF EXISTS fn_sentences_text_fts4;</item>
+			<!-- drop framenet text search -->
+			DROP TABLE IF EXISTS `fn_sentences_text_fts4`;</item>
 	</string-array>
 
 </resources>

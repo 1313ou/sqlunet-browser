@@ -28,80 +28,236 @@
 		<item />
 		<item>
 			<!-- wordnet -->
-			CREATE INDEX IF NOT EXISTS k_words_word ON words(word);
-			CREATE INDEX IF NOT EXISTS k_senses_wordid ON senses(wordid);
-			CREATE INDEX IF NOT EXISTS k_senses_synsetid ON senses(synsetid);
-			CREATE INDEX IF NOT EXISTS pk_synsets_synsetid ON synsets(synsetid);
-			CREATE INDEX IF NOT EXISTS k_casedwords_wordid_casedwordid ON casedwords(wordid,casedwordid);
-			CREATE INDEX IF NOT EXISTS k_samples_synsetid ON samples(synsetid);
-			<!-- verbnet -->
-			CREATE INDEX IF NOT EXISTS k_vn_words_wordid ON vn_words(wordid);
-			CREATE INDEX IF NOT EXISTS k_vn_roles_classid ON vn_roles(classid);
-			CREATE INDEX IF NOT EXISTS k_vn_frames_examples_classid ON vn_frames_examples(classid);
+			CREATE INDEX IF NOT EXISTS `pk_lexes` ON `lexes` (`luid`);
+			CREATE INDEX IF NOT EXISTS `pk_words` ON `words` (`wordid`);
+			CREATE INDEX IF NOT EXISTS `k_words_word` ON `words`(`word`);
+			CREATE INDEX IF NOT EXISTS `k_senses_wordid` ON `senses`(`wordid`);
+			CREATE INDEX IF NOT EXISTS `k_senses_synsetid` ON `senses`(`synsetid`);
+			CREATE INDEX IF NOT EXISTS `pk_synsets` ON `synsets` (`synsetid`);
+			CREATE INDEX IF NOT EXISTS `pk_casedwords` ON `casedwords` (`casedwordid`);
+			CREATE INDEX IF NOT EXISTS `k_casedwords_wordid` ON `casedwords`(`wordid`);
+			CREATE INDEX IF NOT EXISTS `k_semrelations_synset1id` ON `semrelations`(`synset1id`);
+			CREATE INDEX IF NOT EXISTS `k_semrelations_relationid` ON `semrelations`(`relationid`);
+			CREATE INDEX IF NOT EXISTS `k_lexrelations_synset1id` ON `lexrelations`(`synset1id`);
+			CREATE INDEX IF NOT EXISTS `k_lexrelations_word1id` ON `lexrelations`(`synset1id`);
+			CREATE INDEX IF NOT EXISTS `k_lexrelations_relationid` ON `lexrelations`(`relationid`);
+			CREATE INDEX IF NOT EXISTS `pk_relations` ON `relations` (`relationid`);
+			CREATE INDEX IF NOT EXISTS `pk_morphs` ON `morphs` (`morphid`);
+			CREATE INDEX IF NOT EXISTS `pk_pronunciations` ON `pronunciations` (`pronunciationid`);
+			CREATE INDEX IF NOT EXISTS `pk_samples` ON `samples` (`synsetid`,`sampleid`);
+			CREATE INDEX IF NOT EXISTS `pk_vframes` ON `vframes` (`frameid`);
+			CREATE INDEX IF NOT EXISTS `pk_vtemplates` ON `vtemplates` (`templateid`);
+			CREATE INDEX IF NOT EXISTS `pk_domains` ON `domains` (`domainid`);
+			CREATE INDEX IF NOT EXISTS `k_samples_synsetid` ON `samples`(`synsetid`);
+			CREATE INDEX IF NOT EXISTS `pk_lexes_morphs_wordid` ON `lexes_morphs` (`wordid`);
+			<!--verbnet -->
+			CREATE INDEX IF NOT EXISTS `pk_vn_classes` ON `vn_classes` (`classid`);
+			CREATE INDEX IF NOT EXISTS `k_vn_classes_frames_classid` ON `vn_classes_frames`(`classid`);
+			CREATE INDEX IF NOT EXISTS `k_vn_roles_classid` ON `vn_roles`(`classid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_roles` ON `vn_roles` (`roleid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_roletypes` ON `vn_roletypes` (`roletypeid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_restrs` ON `vn_restrs` (`restrsid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_restrtypes` ON `vn_restrtypes` (`restrid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_framenames` ON `vn_framenames` (`framenameid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_frames` ON `vn_frames` (`frameid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_framesubnames` ON `vn_framesubnames` (`framesubnameid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_frames_examples` ON `vn_frames_examples` (`frameid`,`exampleid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_examples` ON `vn_examples` (`exampleid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_predicates` ON `vn_predicates` (`predicateid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_predicates_semantics` ON `vn_predicates_semantics` (`predicateid`,`semanticsid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_semantics` ON `vn_semantics` (`semanticsid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_syntaxes` ON `vn_syntaxes` (`syntaxid`);
+			CREATE INDEX IF NOT EXISTS `k_vn_members_groupings_classid` ON `vn_members_groupings` (`classid`);
+			CREATE INDEX IF NOT EXISTS `k_vn_members_groupings_vnwordid` ON `vn_members_groupings` (`vnwordid`);
+			CREATE INDEX IF NOT EXISTS `k_vn_members_senses_vnwordid` ON `vn_members_senses` (`vnwordid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_groupings` ON `vn_groupings` (`groupingid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_words` ON `vn_words` (`vnwordid`);
+			CREATE INDEX IF NOT EXISTS `k_vn_words_wordid` ON `vn_words`(`wordid`);
 			<!-- propbank -->
-			CREATE INDEX IF NOT EXISTS k_pb_words_wordid ON pb_words(wordid);
-			CREATE INDEX IF NOT EXISTS k_pb_rolesets_pbwordid ON pb_rolesets(pbwordid);
-			CREATE INDEX IF NOT EXISTS k_pb_roles_rolesetid ON pb_roles(rolesetid);
-			CREATE INDEX IF NOT EXISTS k_pb_examples_rolesetid ON pb_examples(rolesetid);
-			CREATE INDEX IF NOT EXISTS k_pb_rels_exampleid ON pb_rels(exampleid);
-			CREATE INDEX IF NOT EXISTS k_pb_args_exampleid ON pb_args(exampleid);</item>
+			CREATE INDEX IF NOT EXISTS `pk_pb_rolesets` ON `pb_rolesets` (`rolesetid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_roles` ON `pb_roles` (`roleid`);
+			CREATE INDEX IF NOT EXISTS `k_pb_roles_rolesetid` ON `pb_roles`(`rolesetid`);
+			CREATE INDEX IF NOT EXISTS `k_pb_rels_exampleid` ON `pb_rels`(`exampleid`);
+			CREATE INDEX IF NOT EXISTS `k_pb_args_exampleid` ON `pb_args`(`exampleid`);
+			CREATE INDEX IF NOT EXISTS `k_pb_examples_rolesetid` ON `pb_examples`(`rolesetid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_examples` ON `pb_examples` (`exampleid`);
+			CREATE INDEX IF NOT EXISTS `k_pb_rolesets_pbwordid` ON `pb_rolesets`(`pbwordid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_rels` ON `pb_rels` (`relid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_args` ON `pb_args` (`argid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_thetas` ON `pb_thetas` (`thetaid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_argns` ON `pb_argns` (`nargid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_aspects` ON `pb_aspects` (`aspectid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_forms` ON `pb_forms` (`formid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_funcs` ON `pb_funcs` (`funcid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_persons` ON `pb_persons` (`personid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_tenses` ON `pb_tenses` (`tenseid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_voices` ON `pb_voices` (`voiceid`);
+			CREATE INDEX IF NOT EXISTS `k_pb_members_rolesetid` ON `pb_members` (`rolesetid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_words` ON `pb_words` (`pbwordid`);
+			CREATE INDEX IF NOT EXISTS `k_pb_words_wordid` ON `pb_words` (`wordid`);</item>
 		<item>
 			<!-- verbnet textsearch -->
-			CREATE VIRTUAL TABLE IF NOT EXISTS vn_examples_example_fts4 USING fts4(exampleid INTEGER not null, frameid INTEGER, classid INTEGER, example);
-			INSERT INTO vn_examples_example_fts4 SELECT exampleid, frameid, classid, example FROM vn_examples INNER JOIN vn_frames_examples USING (exampleid) INNER JOIN vn_frames USING (frameid) INNER JOIN vn_classes_frames USING (frameid) INNER JOIN vn_classes USING (classid);</item>
+			CREATE VIRTUAL TABLE IF NOT EXISTS `vn_examples_example_fts4` USING fts4(`exampleid` INTEGER NOT NULL, `frameid` INTEGER, `classid` INTEGER, `example`);
+			INSERT INTO `vn_examples_example_fts4` SELECT `exampleid`, `frameid`, `classid`, `example` FROM `vn_examples` INNER JOIN `vn_frames_examples` USING (`exampleid`) INNER JOIN `vn_frames` USING (`frameid`) INNER JOIN `vn_classes_frames` USING (`frameid`) INNER JOIN `vn_classes` USING (`classid`);</item>
 		<item>
 			<!-- propbank textsearch -->
-			CREATE VIRTUAL TABLE IF NOT EXISTS pb_examples_text_fts4 USING fts4(exampleid INTEGER not null, rolesetid INTEGER not null, text);
-			INSERT INTO pb_examples_text_fts4 SELECT exampleid, rolesetid, text from pb_examples;</item>
+			CREATE VIRTUAL TABLE IF NOT EXISTS `pb_examples_text_fts4` USING fts4(`exampleid` INTEGER NOT NNULL, `rolesetid` INTEGER NOT NULL, `text`);
+			INSERT INTO `pb_examples_text_fts4` SELECT `exampleid`, `rolesetid`, `text` FROM `pb_examples`;</item>
 		<item>
-			<!-- wordnet -->
-			CREATE INDEX IF NOT EXISTS k_words_word ON words(word);
-			CREATE INDEX IF NOT EXISTS k_senses_wordid ON senses(wordid);
-			CREATE INDEX IF NOT EXISTS k_senses_synsetid ON senses(synsetid);
-			CREATE INDEX IF NOT EXISTS k_synsets_synsetid ON synsets(synsetid);
-			CREATE INDEX IF NOT EXISTS k_casedwords_wordid_casedwordid ON casedwords(wordid,casedwordid);
-			CREATE INDEX IF NOT EXISTS k_samples_synsetid ON samples(synsetid);</item>
+			<!-- wordnet indexes -->
+			CREATE INDEX IF NOT EXISTS `pk_lexes` ON `lexes` (`luid`);
+			CREATE INDEX IF NOT EXISTS `pk_words` ON `words` (`wordid`);
+			CREATE INDEX IF NOT EXISTS `k_words_word` ON `words`(`word`);
+			CREATE INDEX IF NOT EXISTS `k_senses_wordid` ON `senses`(`wordid`);
+			CREATE INDEX IF NOT EXISTS `k_senses_synsetid` ON `senses`(`synsetid`);
+			CREATE INDEX IF NOT EXISTS `pk_synsets` ON `synsets` (`synsetid`);
+			CREATE INDEX IF NOT EXISTS `pk_casedwords` ON `casedwords` (`casedwordid`);
+			CREATE INDEX IF NOT EXISTS `k_casedwords_wordid` ON `casedwords`(`wordid`);
+			CREATE INDEX IF NOT EXISTS `k_semrelations_synset1id` ON `semrelations`(`synset1id`);
+			CREATE INDEX IF NOT EXISTS `k_semrelations_relationid` ON `semrelations`(`relationid`);
+			CREATE INDEX IF NOT EXISTS `k_lexrelations_synset1id` ON `lexrelations`(`synset1id`);
+			CREATE INDEX IF NOT EXISTS `k_lexrelations_word1id` ON `lexrelations`(`synset1id`);
+			CREATE INDEX IF NOT EXISTS `k_lexrelations_relationid` ON `lexrelations`(`relationid`);
+			CREATE INDEX IF NOT EXISTS `pk_relations` ON `relations` (`relationid`);
+			CREATE INDEX IF NOT EXISTS `pk_morphs` ON `morphs` (`morphid`);
+			CREATE INDEX IF NOT EXISTS `pk_pronunciations` ON `pronunciations` (`pronunciationid`);
+			CREATE INDEX IF NOT EXISTS `pk_samples` ON `samples` (`synsetid`,`sampleid`);
+			CREATE INDEX IF NOT EXISTS `pk_vframes` ON `vframes` (`frameid`);
+			CREATE INDEX IF NOT EXISTS `pk_vtemplates` ON `vtemplates` (`templateid`);
+			CREATE INDEX IF NOT EXISTS `pk_domains` ON `domains` (`domainid`);
+			CREATE INDEX IF NOT EXISTS `k_samples_synsetid` ON `samples`(`synsetid`);
+			CREATE INDEX IF NOT EXISTS `pk_lexes_morphs_wordid` ON `lexes_morphs` (`wordid`);</item>
 		<item>
-			DROP INDEX IF EXISTS k_words_word;
-			DROP INDEX IF EXISTS k_senses_wordid;
-			DROP INDEX IF EXISTS k_senses_synsetid;
-			DROP INDEX IF EXISTS k_synsets_synsetid;
-			DROP INDEX IF EXISTS k_casedwords_wordid_casedwordid;
-			DROP INDEX IF EXISTS k_samples_synsetid;</item>
+			<!-- drop wordnet indexes -->
+			DROP INDEX IF EXISTS `pk_lexes`;
+			DROP INDEX IF EXISTS `pk_words`;
+			DROP INDEX IF EXISTS `k_words_word`;
+			DROP INDEX IF EXISTS `k_senses_wordid`;
+			DROP INDEX IF EXISTS `k_senses_synsetid`;
+			DROP INDEX IF EXISTS `pk_synsets`;
+			DROP INDEX IF EXISTS `pk_casedwords`;
+			DROP INDEX IF EXISTS `k_casedwords_wordid`;
+			DROP INDEX IF EXISTS `k_semrelations_synset1id`;
+			DROP INDEX IF EXISTS `k_semrelations_relationid`;
+			DROP INDEX IF EXISTS `k_lexrelations_synset1id`;
+			DROP INDEX IF EXISTS `k_lexrelations_word1id`;
+			DROP INDEX IF EXISTS `k_lexrelations_relationid`;
+			DROP INDEX IF EXISTS `pk_relations`;
+			DROP INDEX IF EXISTS `pk_morphs`;
+			DROP INDEX IF EXISTS `pk_pronunciations`;
+			DROP INDEX IF EXISTS `pk_samples`;
+			DROP INDEX IF EXISTS `pk_vframes`;
+			DROP INDEX IF EXISTS `pk_vtemplates`;
+			DROP INDEX IF EXISTS `pk_domains`;
+			DROP INDEX IF EXISTS `k_samples_synsetid`;
+			DROP INDEX IF EXISTS `pk_lexes_morphs_wordid`;</item>
 		<item>
-			<!-- verbnet -->
-			CREATE INDEX IF NOT EXISTS k_vn_words_wordid ON vn_words(wordid);
-			CREATE INDEX IF NOT EXISTS k_vn_roles_classid ON vn_roles(classid);
-			CREATE INDEX IF NOT EXISTS k_vn_frames_examples_classid ON vn_frames_examples(classid);</item>
+			<!-- verbnet indexes -->
+			CREATE INDEX IF NOT EXISTS `pk_vn_classes` ON `vn_classes` (`classid`);
+			CREATE INDEX IF NOT EXISTS `k_vn_classes_frames_classid` ON `vn_classes_frames`(`classid`);
+			CREATE INDEX IF NOT EXISTS `k_vn_roles_classid` ON `vn_roles`(`classid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_roles` ON `vn_roles` (`roleid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_roletypes` ON `vn_roletypes` (`roletypeid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_restrs` ON `vn_restrs` (`restrsid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_restrtypes` ON `vn_restrtypes` (`restrid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_framenames` ON `vn_framenames` (`framenameid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_frames` ON `vn_frames` (`frameid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_framesubnames` ON `vn_framesubnames` (`framesubnameid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_frames_examples` ON `vn_frames_examples` (`frameid`,`exampleid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_examples` ON `vn_examples` (`exampleid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_predicates` ON `vn_predicates` (`predicateid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_predicates_semantics` ON `vn_predicates_semantics` (`predicateid`,`semanticsid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_semantics` ON `vn_semantics` (`semanticsid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_syntaxes` ON `vn_syntaxes` (`syntaxid`);
+			CREATE INDEX IF NOT EXISTS `k_vn_members_groupings_classid` ON `vn_members_groupings` (`classid`);
+			CREATE INDEX IF NOT EXISTS `k_vn_members_groupings_vnwordid` ON `vn_members_groupings` (`vnwordid`);
+			CREATE INDEX IF NOT EXISTS `k_vn_members_senses_vnwordid` ON `vn_members_senses` (`vnwordid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_groupings` ON `vn_groupings` (`groupingid`);
+			CREATE INDEX IF NOT EXISTS `pk_vn_words` ON `vn_words` (`vnwordid`);
+			CREATE INDEX IF NOT EXISTS `k_vn_words_wordid` ON `vn_words`(`wordid`)</item>
 		<item>
-			DROP INDEX IF EXISTS k_vn_words_wordid;
-			DROP INDEX IF EXISTS k_vn_members_groupings_vnwordid;
-			DROP INDEX IF EXISTS k_vn_roles_classid;
-			DROP INDEX IF EXISTS k_vn_frames_examples_classid;</item>
+			<!-- drop verbnet indexes -->
+			DROP INDEX IF EXISTS `pk_vn_classes`;
+			DROP INDEX IF EXISTS `k_vn_classes_frames_classid`;
+			DROP INDEX IF EXISTS `k_vn_roles_classid`;
+			DROP INDEX IF EXISTS `pk_vn_roles`;
+			DROP INDEX IF EXISTS `pk_vn_roletypes`;
+			DROP INDEX IF EXISTS `pk_vn_restrs`;
+			DROP INDEX IF EXISTS `pk_vn_restrtypes`;
+			DROP INDEX IF EXISTS `pk_vn_framenames`;
+			DROP INDEX IF EXISTS `pk_vn_frames`;
+			DROP INDEX IF EXISTS `pk_vn_framesubnames`;
+			DROP INDEX IF EXISTS `pk_vn_frames_examples`;
+			DROP INDEX IF EXISTS `pk_vn_examples`;
+			DROP INDEX IF EXISTS `pk_vn_predicates`;
+			DROP INDEX IF EXISTS `pk_vn_predicates_semantics`;
+			DROP INDEX IF EXISTS `pk_vn_semantics`;
+			DROP INDEX IF EXISTS `pk_vn_syntaxes`;
+			DROP INDEX IF EXISTS `k_vn_members_groupings_classid`;
+			DROP INDEX IF EXISTS `k_vn_members_groupings_vnwordid`;
+			DROP INDEX IF EXISTS `k_vn_members_senses_vnwordid`;
+			DROP INDEX IF EXISTS `pk_vn_groupings`;
+			DROP INDEX IF EXISTS `pk_vn_words`;
+			DROP INDEX IF EXISTS `k_vn_words_wordid`;</item>
 		<item>
-			<!-- propbank -->
-			CREATE INDEX IF NOT EXISTS k_pb_words_wordid ON pb_words(wordid);
-			CREATE INDEX IF NOT EXISTS k_pb_rolesets_pbwordid ON pb_rolesets(pbwordid);
-			CREATE INDEX IF NOT EXISTS k_pb_roles_rolesetid ON pb_roles(rolesetid);
-			CREATE INDEX IF NOT EXISTS k_pb_examples_rolesetid ON pb_examples(rolesetid);
-			CREATE INDEX IF NOT EXISTS k_pb_rels_exampleid ON pb_rels(exampleid);
-			CREATE INDEX IF NOT EXISTS k_pb_args_exampleid ON pb_args(exampleid);</item>
+			<!-- propbank indexes -->
+			CREATE INDEX IF NOT EXISTS `pk_pb_rolesets` ON `pb_rolesets` (`rolesetid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_roles` ON `pb_roles` (`roleid`);
+			CREATE INDEX IF NOT EXISTS `k_pb_roles_rolesetid` ON `pb_roles`(`rolesetid`);
+			CREATE INDEX IF NOT EXISTS `k_pb_rels_exampleid` ON `pb_rels`(`exampleid`);
+			CREATE INDEX IF NOT EXISTS `k_pb_args_exampleid` ON `pb_args`(`exampleid`);
+			CREATE INDEX IF NOT EXISTS `k_pb_examples_rolesetid` ON `pb_examples`(`rolesetid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_examples` ON `pb_examples` (`exampleid`);
+			CREATE INDEX IF NOT EXISTS `k_pb_rolesets_pbwordid` ON `pb_rolesets`(`pbwordid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_rels` ON `pb_rels` (`relid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_args` ON `pb_args` (`argid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_thetas` ON `pb_thetas` (`thetaid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_argns` ON `pb_argns` (`nargid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_aspects` ON `pb_aspects` (`aspectid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_forms` ON `pb_forms` (`formid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_funcs` ON `pb_funcs` (`funcid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_persons` ON `pb_persons` (`personid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_tenses` ON `pb_tenses` (`tenseid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_voices` ON `pb_voices` (`voiceid`);
+			CREATE INDEX IF NOT EXISTS `k_pb_members_rolesetid` ON `pb_members` (`rolesetid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_words` ON `pb_words` (`pbwordid`);
+			CREATE INDEX IF NOT EXISTS `k_pb_words_wordid` ON `pb_words` (`wordid`);</item>
 		<item>
-			DROP INDEX IF EXISTS k_pb_words_wordid;
-			DROP INDEX IF EXISTS k_pb_rolesets_pbwordid;
-			DROP INDEX IF EXISTS k_pb_roles_rolesetid;
-			DROP INDEX IF EXISTS k_pb_examples_rolesetid;
-			DROP INDEX IF EXISTS k_pb_rels_exampleid;
-			DROP INDEX IF EXISTS k_pb_args_exampleid;</item>
+			<!-- drop propbank indexes -->
+			DROP INDEX IF EXISTS `pk_pb_rolesets`;
+			DROP INDEX IF EXISTS `pk_pb_roles`;
+			DROP INDEX IF EXISTS `k_pb_roles_rolesetid`;
+			DROP INDEX IF EXISTS `k_pb_rels_exampleid`;
+			DROP INDEX IF EXISTS `k_pb_args_exampleid`;
+			DROP INDEX IF EXISTS `k_pb_examples_rolesetid`;
+			DROP INDEX IF EXISTS `pk_pb_examples`;
+			DROP INDEX IF EXISTS `k_pb_rolesets_pbwordid`;
+			DROP INDEX IF EXISTS `pk_pb_rels`;
+			DROP INDEX IF EXISTS `pk_pb_args`;
+			DROP INDEX IF EXISTS `pk_pb_thetas`;
+			DROP INDEX IF EXISTS `pk_pb_argns`;
+			DROP INDEX IF EXISTS `pk_pb_aspects`;
+			DROP INDEX IF EXISTS `pk_pb_forms`;
+			DROP INDEX IF EXISTS `pk_pb_funcs`;
+			DROP INDEX IF EXISTS `pk_pb_persons`;
+			DROP INDEX IF EXISTS `pk_pb_tenses`;
+			DROP INDEX IF EXISTS `pk_pb_voices`;
+			DROP INDEX IF EXISTS `k_pb_members_rolesetid`;
+			DROP INDEX IF EXISTS `pk_pb_words`;
+			DROP INDEX IF EXISTS `k_pb_words_wordid`;</item>
 		<item>
-			DROP TABLE IF EXISTS vn_examples_example_fts4;</item>
+			<!-- drop verbnet text search -->
+			DROP TABLE IF EXISTS `vn_examples_example_fts4`;</item>
 		<item>
-			DROP TABLE IF EXISTS pb_examples_text_fts4;</item>
+			<!-- drop propbank text search -->
+			DROP TABLE IF EXISTS `pb_examples_text_fts4`;</item>
 		<item>
-			CREATE VIRTUAL TABLE IF NOT EXISTS words_word_fts4 USING fts4(wordid INTEGER not null, word);
-			INSERT INTO words_word_fts4 SELECT wordid, word from words;</item>
+			<!-- wordnet text search -->
+			CREATE VIRTUAL TABLE IF NOT EXISTS `words_word_fts4` USING fts4(`wordid` INTEGER NOT NULL, `word`);
+			INSERT INTO `words_word_fts4` SELECT `wordid`, `word` FROM `words`;</item>
 		<item>
-			DROP TABLE IF EXISTS words_word_fts4;</item>
+			<!-- drop wordnet text search -->
+			DROP TABLE IF EXISTS `words_word_fts4`;</item>
 	</string-array>
 
 </resources>
