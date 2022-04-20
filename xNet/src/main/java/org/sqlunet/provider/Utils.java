@@ -30,7 +30,7 @@ public class Utils
 			final String[] table1Projection, final String[] table2Projection, //
 			final String[] unionProjection, //
 			@NonNull final String[] projection, //
-			final String selection, //
+			String selection, //
 			final String[] selectionArgs, //
 			final String[] groupBys, final String sortOrder, final String tag)
 	{
@@ -39,6 +39,7 @@ public class Utils
 				table1Projection, table2Projection, //
 				unionProjection, selection, //
 				tag);
+		selection = null;
 
 		// table
 		final String table = ("( " + uQuery + " )");

@@ -147,7 +147,7 @@ public class QueriesLegacy
 			case WordNetDispatcher.SENSES_WORDS_BY_SYNSET:
 				table = "senses AS " + WordNetContract.AS_SENSES + " " + //
 						"LEFT JOIN words AS " + WordNetContract.AS_WORDS + " USING (wordid)";
-				projection = BaseProvider.appendProjection(projection, "GROUP_CONCAT(words.word, ', ' ) AS " + WordNetContract.Senses_Words.MEMBERS);
+				projection = BaseProvider.appendProjection(projection, "GROUP_CONCAT(DISTINCT " + WordNetContract.AS_WORDS + ".word) AS " + WordNetContract.Senses_Words.MEMBERS);
 				groupBy = "synsetid";
 				break;
 

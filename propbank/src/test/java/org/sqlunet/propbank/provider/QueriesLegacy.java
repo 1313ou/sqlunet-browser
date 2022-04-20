@@ -74,8 +74,8 @@ public class QueriesLegacy
 			case PropBankDispatcher.PBROLESETS_PBROLES:
 				table = "pb_rolesets " + //
 						"INNER JOIN pb_roles USING (rolesetid) " + //
-						"LEFT JOIN pb_funcs USING (func) " + //
-						"LEFT JOIN pb_thetas USING (theta)";
+						"LEFT JOIN pb_funcs USING (funcid) " + //
+						"LEFT JOIN pb_thetas USING (thetaid)";
 				break;
 
 			case PropBankDispatcher.PBROLESETS_PBEXAMPLES_BY_EXAMPLE:
@@ -87,14 +87,14 @@ public class QueriesLegacy
 						"INNER JOIN pb_examples AS " + PropBankContract.EXAMPLE + " USING (rolesetid) " + //
 						"LEFT JOIN pb_rels AS " + PropBankContract.REL + " USING (exampleid) " + //
 						"LEFT JOIN pb_args AS " + PropBankContract.ARG + " USING (exampleid) " + //
-						"LEFT JOIN pb_funcs AS " + PropBankContract.FUNC + " ON (" + PropBankContract.ARG + ".func = " + PropBankContract.FUNC + ".func) " + //
-						"LEFT JOIN pb_aspects USING (aspect) " + //
-						"LEFT JOIN pb_forms USING (form) " + //
-						"LEFT JOIN pb_tenses USING (tense) " + //
-						"LEFT JOIN pb_voices USING (voice) " + //
-						"LEFT JOIN pb_persons USING (person) " + //
-						"LEFT JOIN pb_roles USING (rolesetid,arg) " + //
-						"LEFT JOIN pb_thetas USING (theta)";
+						"LEFT JOIN pb_funcs AS " + PropBankContract.FUNC + " ON (" + PropBankContract.ARG + ".funcid = " + PropBankContract.FUNC + ".funcid) " + //
+						"LEFT JOIN pb_aspects USING (aspectid) " + //
+						"LEFT JOIN pb_forms USING (formid) " + //
+						"LEFT JOIN pb_tenses USING (tenseid) " + //
+						"LEFT JOIN pb_voices USING (voiceid) " + //
+						"LEFT JOIN pb_persons USING (personid) " + //
+						"LEFT JOIN pb_roles USING (rolesetid,nargid) " + //
+						"LEFT JOIN pb_thetas USING (thetaid)";
 				break;
 
 			default:
@@ -143,7 +143,7 @@ public class QueriesLegacy
 				{
 					return null;
 				}
-				table = "pb_words";
+				table = "pb_words INNER JOIN words USING (wordid)";
 				projection = new String[]{"pbwordid AS _id", //
 						"word AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
 						"word AS " + SearchManager.SUGGEST_COLUMN_QUERY};

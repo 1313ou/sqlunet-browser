@@ -150,9 +150,10 @@ public class QueriesLegacy
 						"GROUP_CONCAT(start||':'||" + //
 						"end||':'||" + //
 						"labeltype||':'||" + //
-						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||" + //
-						"CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||" + //
-						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS " + FrameNetContract.Sentences_Layers_X.LAYERANNOTATIONS + ' ' + //
+						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END" + //
+						//"||':'||CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END" + //
+						//"||':'||CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END" +
+						",'|') AS " + FrameNetContract.Sentences_Layers_X.LAYERANNOTATIONS + ' ' + //
 						"FROM fn_sentences " + //
 						"LEFT JOIN fn_annosets USING (sentenceid) " + //
 						"LEFT JOIN fn_layers USING (annosetid) " + //
@@ -170,9 +171,10 @@ public class QueriesLegacy
 						"GROUP_CONCAT(start||':'||" + //
 						"end||':'||" + //
 						"labeltype||':'||" + //
-						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||" + //
-						"CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||" + //
-						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS " + FrameNetContract.AnnoSets_Layers_X.LAYERANNOTATIONS + ' ' + //
+						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END" + //
+						//"||':'||CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END" + //
+						//"||':'||CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END" +
+						",'|') AS " + FrameNetContract.AnnoSets_Layers_X.LAYERANNOTATIONS + ' ' + //
 						"FROM fn_annosets " + //
 						"LEFT JOIN fn_sentences USING (sentenceid) " + //
 						"LEFT JOIN fn_layers USING (annosetid) " + //
@@ -190,9 +192,10 @@ public class QueriesLegacy
 						"GROUP_CONCAT(start||':'||" + //
 						"end||':'||" + //
 						"labeltype||':'||" + //
-						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||" + //
-						"CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||" + //
-						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS " + FrameNetContract.Patterns_Layers_X.LAYERANNOTATIONS + ' ' + //
+						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END" + //
+						//"||':'||CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END" + //
+						//"||':'||CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END" +
+						",'|') AS " + FrameNetContract.Patterns_Layers_X.LAYERANNOTATIONS + ' ' + //
 						"FROM fn_grouppatterns_annosets " + //
 						"LEFT JOIN fn_annosets USING (annosetid) " + //
 						"LEFT JOIN fn_sentences USING (sentenceid) " + //
@@ -211,9 +214,10 @@ public class QueriesLegacy
 						"GROUP_CONCAT(start||':'||" + //
 						"end||':'||" + //
 						"labeltype||':'||" + //
-						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END||':'||" + //
-						"CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END||':'||" + //
-						"CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END,'|') AS " + FrameNetContract.ValenceUnits_Layers_X.LAYERANNOTATIONS + ' ' + //
+						"CASE WHEN labelitype IS NULL THEN '' ELSE labelitype END" + //
+						//"||':'||CASE WHEN bgcolor IS NULL THEN '' ELSE bgcolor END" + //
+						//"||':'||CASE WHEN fgcolor IS NULL THEN '' ELSE fgcolor END" +
+						",'|') AS " + FrameNetContract.ValenceUnits_Layers_X.LAYERANNOTATIONS + ' ' + //
 						"FROM fn_valenceunits_annosets " + //
 						"LEFT JOIN fn_annosets USING (annosetid) " + //
 						"LEFT JOIN fn_sentences USING (sentenceid) " + //
@@ -228,14 +232,13 @@ public class QueriesLegacy
 				break;
 
 			case FrameNetDispatcher.WORDS_LEXUNITS_FRAMES:
-				table = "words " + //
-						"INNER JOIN fn_words USING (wordid) " + //
+				table = "fn_words " + //
 						"INNER JOIN fn_lexemes USING (fnwordid) " + //
 						"INNER JOIN fn_lexunits AS " + FrameNetContract.LU + " USING (luid) " + //
-						"LEFT JOIN fn_frames USING (frameid) " + //
+						"LEFT JOIN fn_frames AS "+ FrameNetContract.FRAME + " USING (frameid) " + //
 						"LEFT JOIN fn_poses AS " + FrameNetContract.POS + " ON (" + FrameNetContract.LU + ".posid = " + FrameNetContract.POS + ".posid) " + //
-						"LEFT JOIN fn_fes AS " + FrameNetContract.FE + " ON (incorporatedfeid = feid) " + //
-						"LEFT JOIN fn_fetypes AS " + FrameNetContract.FETYPE + " ON (incorporatedfetypeid = " + FrameNetContract.FE + ".fetypeid)";
+						"LEFT JOIN fn_fetypes AS " + FrameNetContract.FETYPE + " ON (incorporatedfetypeid = " + FrameNetContract.FETYPE + ".fetypeid) " + //
+						"LEFT JOIN fn_fes AS " + FrameNetContract.FE + " ON ("+ FrameNetContract.FRAME + ".frameid = " + FrameNetContract.FE + ".frameid AND incorporatedfetypeid = " + FrameNetContract.FE + ".fetypeid)";
 				break;
 
 			case FrameNetDispatcher.FRAMES_FES_BY_FE:

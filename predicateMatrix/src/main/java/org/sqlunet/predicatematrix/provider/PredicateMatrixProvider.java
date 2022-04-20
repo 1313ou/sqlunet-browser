@@ -13,7 +13,7 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.util.Log;
 
-import org.sqlunet.predicatematrix.provider.PredicateMatrixContract.Pm;
+import org.sqlunet.predicatematrix.provider.PredicateMatrixDispatcher.Result;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.sql.SqlFormatter;
 
@@ -98,7 +98,7 @@ public class PredicateMatrixProvider extends BaseProvider
 	@Nullable
 	@SuppressWarnings("boxing")
 	@Override
-	public Cursor query(@NonNull final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
+	public Cursor query(@NonNull final Uri uri, final String[] projection0, final String selection0, final String[] selectionArgs0, final String sortOrder0)
 	{
 		if (this.db == null)
 		{
@@ -120,59 +120,31 @@ public class PredicateMatrixProvider extends BaseProvider
 			throw new RuntimeException("Malformed URI " + uri);
 		}
 
-		String table;
-		switch (code)
+		Result result = PredicateMatrixDispatcher.queryMain(code, uri.getLastPathSegment(), projection0, selection0, selectionArgs0);
+
+		if (result != null)
 		{
-			// I T E M
-			// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
-			// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query
 
-			// J O I N S
+			final String sql = SQLiteQueryBuilder.buildQueryString(false, result.table, result.projection, result.selection, result.groupBy, null, sortOrder0, null);
+			logSql(sql, selectionArgs0);
+			if (BaseProvider.logSql)
+			{
+				Log.d(PredicateMatrixProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
+				Log.d(PredicateMatrixProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs0));
+			}
 
-			case PredicateMatrixDispatcher.PM:
-				table = Pm.TABLE;
-				break;
-
-			case PredicateMatrixDispatcher.PM_X:
-				table = "pm " + //
-						"LEFT JOIN pmroles AS " + PredicateMatrixContract.PMROLE + " USING (pmroleid) " + //
-						"LEFT JOIN pmpredicates AS " + PredicateMatrixContract.PMPREDICATE + " USING (pmpredid) " + //
-						"LEFT JOIN synsets USING (synsetid) " + //
-						"LEFT JOIN vnclasses AS " + PredicateMatrixContract.VNCLASS + " ON vnclassid = " + PredicateMatrixContract.VNCLASS + ".classid " + //
-						"LEFT JOIN vnroles AS " + PredicateMatrixContract.VNROLE + " ON vnroleid = " + PredicateMatrixContract.VNROLE + ".roleid " + //
-						"LEFT JOIN vnroletypes AS " + PredicateMatrixContract.VNROLETYPE + " ON " + PredicateMatrixContract.VNROLE + ".roletypeid = " + PredicateMatrixContract.VNROLETYPE + ".roletypeid " + //
-						"LEFT JOIN pbrolesets AS " + PredicateMatrixContract.PBROLESET + " ON pbrolesetid = " + PredicateMatrixContract.PBROLESET + ".rolesetid " + //
-						"LEFT JOIN pbroles AS " + PredicateMatrixContract.PBROLE + " ON pbroleid = " + PredicateMatrixContract.PBROLE + ".roleid " + //
-						"LEFT JOIN pbargns AS " + PredicateMatrixContract.PBARG + " ON " + PredicateMatrixContract.PBROLE + ".narg = " + PredicateMatrixContract.PBARG + ".narg " + //
-						"LEFT JOIN fnframes AS " + PredicateMatrixContract.FNFRAME + " ON fnframeid = " + PredicateMatrixContract.FNFRAME + ".frameid " + //
-						"LEFT JOIN fnfes AS " + PredicateMatrixContract.FNFE + " ON fnfeid = " + PredicateMatrixContract.FNFE + ".feid " + //
-						"LEFT JOIN fnfetypes AS " + PredicateMatrixContract.FNFETYPE + " ON " + PredicateMatrixContract.FNFE + ".fetypeid = " + PredicateMatrixContract.FNFETYPE + ".fetypeid " + //
-						"LEFT JOIN fnlexunits AS " + PredicateMatrixContract.FNLU + " ON fnluid = " + PredicateMatrixContract.FNLU + ".luid";
-				break;
-
-			default:
-				return null;
+			// do query
+			try
+			{
+				return this.db.rawQuery(sql, selectionArgs0);
+				//return this.db.query(table, projection, selection, selectionArgs, null, null, sortOrder, null);
+			}
+			catch (SQLiteException e)
+			{
+				Log.d(TAG + "SQL", sql);
+				Log.e(TAG, "PropBank provider query failed", e);
+			}
 		}
-
-		final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, null, null, sortOrder, null);
-		logSql(sql, selectionArgs);
-		if (BaseProvider.logSql)
-		{
-			Log.d(PredicateMatrixProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
-			Log.d(PredicateMatrixProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
-		}
-
-		// do query
-		try
-		{
-			return this.db.rawQuery(sql, selectionArgs);
-			//return this.db.query(table, projection, selection, selectionArgs, null, null, sortOrder, null);
-		}
-		catch (SQLiteException e)
-		{
-			Log.d(TAG + "SQL", sql);
-			Log.e(TAG, "PropBank provider query failed", e);
-			return null;
-		}
+		return null;
 	}
 }
