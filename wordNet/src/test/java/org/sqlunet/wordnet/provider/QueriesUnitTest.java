@@ -23,14 +23,13 @@ public class QueriesUnitTest
 	private final String selection = "SEL";
 	private final String[] selectionArgs = {"ARG1", "ARG2", "ARG3"};
 	private final String sortOrder = "SORT";
-	private final Factory factory = s -> "SUBQUERY";
+	private final Factory factory = s -> Q.ANYRELATIONS_QUERY.TABLE;
 
 	@Test
 	public void queriesLegacyAgainstNew()
 	{
-		for (int i = 0; i < codes.length; i++)
+		for (int code : codes)
 		{
-			int code = codes[i];
 			queryLegacyAgainstNew(code, uriLast, projection, selection, selectionArgs, sortOrder);
 		}
 	}
@@ -38,9 +37,8 @@ public class QueriesUnitTest
 	@Test
 	public void queriesLegacyAgainstProvider()
 	{
-		for (int i = 0; i < codes.length; i++)
+		for (int code : codes)
 		{
-			int code = codes[i];
 			queryLegacyAgainstProvider(code, uriLast, projection, selection, selectionArgs, sortOrder);
 		}
 	}
@@ -48,9 +46,8 @@ public class QueriesUnitTest
 	@Test
 	public void queriesNewAgainstProvider()
 	{
-		for (int i = 0; i < codes.length; i++)
+		for (int code : codes)
 		{
-			int code = codes[i];
 			queryNewAgainstProvider(code, uriLast, projection, selection, selectionArgs, sortOrder);
 		}
 	}
@@ -81,7 +78,7 @@ public class QueriesUnitTest
 		Result r = WordNetDispatcher.queryMain(code, uriLast, projection0, selection0, selectionArgs0);
 		if (r == null)
 		{
-			r = WordNetDispatcher.queryAnyRelations(code, projection0, selection0, selectionArgs0, subqueryFactory);
+			r = WordNetDispatcher.queryAnyRelations(code, projection0, selection0, selectionArgs0);
 			if (r == null)
 			{
 				r = WordNetDispatcher.querySearch(code, projection0, selection0, selectionArgs0);

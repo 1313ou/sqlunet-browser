@@ -290,12 +290,11 @@ public class WordNetDispatcher
 		return new Result(table, projection, selection, selectionArgs0, groupBy);
 	}
 
-	public static Result queryAnyRelations(int code, final String[] projection0, @Nullable final String selection0, final String[] selectionArgs0, final Factory subqueryFactory)
+	public static Result queryAnyRelations(int code, final String[] projection0, @Nullable final String selection0, final String[] selectionArgs0)
 	{
 		if (code == ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET)
 		{
-			// final String subQuery = subqueryFactory.make(selection0);
-			String table = Q.ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET.TABLE /* .replaceFirst("#\\{query\\}", subQuery) */;
+			String table = Q.ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET.TABLE;
 			String groupBy = Q.ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET.GROUPBY;
 			return new Result(table, projection0, null, selectionArgs0, groupBy);
 		}

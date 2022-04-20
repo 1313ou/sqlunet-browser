@@ -332,7 +332,7 @@ public class WordNetProvider extends BaseProvider
 		if (result == null)
 		{
 			// RELATIONS
-			result = WordNetDispatcher.queryAnyRelations(code, projection0, selection0, selectionArgs0, this::makeAnyRelationsSubQuery);
+			result = WordNetDispatcher.queryAnyRelations(code, projection0, selection0, selectionArgs0);
 			if (result == null)
 			{
 				// TEXTSEARCH

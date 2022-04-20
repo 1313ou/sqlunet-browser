@@ -192,8 +192,8 @@ public class QueriesLegacy
 						"INNER JOIN relations USING (relationid) " + //
 						"INNER JOIN synsets AS " + WordNetContract.AS_SYNSETS2 + " ON " + WordNetContract.AS_RELATIONS + ".synset2id = " + WordNetContract.AS_SYNSETS2 + ".synsetid " + //
 						"LEFT JOIN senses ON " + WordNetContract.AS_SYNSETS2 + ".synsetid = senses.synsetid " + //
-						"LEFT JOIN words USING (wordid)";
-				projection = BaseProvider.appendProjection(projection, "GROUP_CONCAT(words.word, ', ' ) AS " + WordNetContract.SemRelations_Synsets_Words_X.MEMBERS2);
+						"LEFT JOIN words AS " + WordNetContract.AS_WORDS2 + " USING (wordid)";
+				projection = BaseProvider.appendProjection(projection, "GROUP_CONCAT(DISTINCT " + WordNetContract.AS_WORDS2 + ".word) AS " + WordNetContract.SemRelations_Synsets_Words_X.MEMBERS2);
 				groupBy = WordNetContract.AS_SYNSETS2 + ".synsetid";
 				break;
 
@@ -321,7 +321,7 @@ public class QueriesLegacy
 				//				{
 				//					return false;
 				//				}
-				projection = new String[]{"sampleid AS _id", //
+				projection = new String[]{"synsetid AS _id", //
 						"sample AS " + SearchManager.SUGGEST_COLUMN_TEXT_1, //
 						"sample AS " + SearchManager.SUGGEST_COLUMN_QUERY};
 				selection = "sample MATCH ?";
