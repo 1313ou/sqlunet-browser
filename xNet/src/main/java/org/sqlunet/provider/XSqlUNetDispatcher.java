@@ -135,6 +135,7 @@ public class XSqlUNetDispatcher
 				return Utils.makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray, orderBy, "vn");
 				*/
 				table = Q.WORDS_VNWORDS_VNCLASSES_1U2.TABLE.replaceAll("#\\{selection\\}", selection);
+				projection = BaseProvider.prependProjection(projection, "GROUP_CONCAT(DISTINCT source) AS sources");
 				selection = null;
 				selectionArgs = Utils.unfoldSelectionArgs(selectionArgs);
 				groupBy = String.format("%s,%s,%s", V.WORDID, V.SYNSETID, V.CLASSID);
@@ -167,6 +168,7 @@ public class XSqlUNetDispatcher
 				return Utils.makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray, orderBy, "pb");
 				*/
 				table = Q.WORDS_PBWORDS_PBROLESETS_1U2.TABLE.replaceAll("#\\{selection\\}", selection);
+				projection = BaseProvider.prependProjection(projection, "GROUP_CONCAT(DISTINCT source) AS sources");
 				selection = null;
 				selectionArgs = Utils.unfoldSelectionArgs(selectionArgs);
 				groupBy = String.format("%s,%s,%s", V.WORDID, V.SYNSETID, V.ROLESETID);
@@ -199,6 +201,7 @@ public class XSqlUNetDispatcher
 				return Utils.makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray, orderBy, "fn");
 				*/
 				table = Q.WORDS_FNWORDS_FNFRAMES_1U2.TABLE.replaceAll("#\\{selection\\}", selection);
+				projection = BaseProvider.prependProjection(projection, "GROUP_CONCAT(DISTINCT source) AS sources");
 				selection = null;
 				selectionArgs = Utils.unfoldSelectionArgs(selectionArgs);
 				groupBy = String.format("%s,%s,%s", V.WORDID, V.SYNSETID, V.FRAMEID);

@@ -158,18 +158,24 @@ public class Utils
 		final String[] resultProjection = BaseProvider.prependProjection(projection, "GROUP_CONCAT(DISTINCT source) AS sources");
 
 		// group by
-		String[] actualGroupBys = groupBys;
-		if (actualGroupBys == null)
-		{
-			actualGroupBys = new String[projection.length];
-			for (int i = 0; i < projection.length; i++)
-			{
-				actualGroupBys[i] = projection[i].replaceFirst("\\sAS\\s*.*$", "");
-			}
-		}
-		String groupBy = join(",", actualGroupBys);
+		String groupBy = makeGroupBys(groupBys, projection);
 
 		return embeddingQueryBuilder.buildQuery(resultProjection, null, groupBy, null, sortOrder, null);
+	}
+
+	public static String makeGroupBys(String[] groupBys0, String[] projection)
+	{
+		// group by
+		String[] groupBys = groupBys0;
+		if (groupBys == null)
+		{
+			groupBys = new String[projection.length];
+			for (int i = 0; i < projection.length; i++)
+			{
+				groupBys[i] = projection[i].replaceFirst("\\sAS\\s*.*$", "");
+			}
+		}
+		return join(",", groupBys);
 	}
 
 	/**
