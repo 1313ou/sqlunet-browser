@@ -30,7 +30,7 @@ public class PredicateMatrixContract
 	{
 		static public final String PMID = "pmid";
 		static public final String PMROLEID = "pmroleid";
-		static public final String PMPREDICATEID = "pmpredicateid";
+		static public final String PMPREDICATEID = "predicateid";
 		static public final String PMPREDICATE = "predicate";
 		static public final String PMROLE = "role";
 		static public final String PMPOS = "pos";
