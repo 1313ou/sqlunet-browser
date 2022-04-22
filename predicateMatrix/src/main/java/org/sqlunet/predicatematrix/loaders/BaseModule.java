@@ -199,7 +199,7 @@ abstract class BaseModule extends Module
 		/**
 		 * PredicateMatrix predicate id
 		 */
-		final long pmPredId;
+		final long pmPredicateId;
 
 		/**
 		 * PredicateMatrix role id
@@ -224,15 +224,15 @@ abstract class BaseModule extends Module
 		/**
 		 * Constructor
 		 *
-		 * @param pmPredId    PredicateMatrix predicate id
-		 * @param pmRoleId    PredicateMatrix role id
-		 * @param pmPredicate predicate
-		 * @param pmRole      PredicateMatrix role
-		 * @param pmPos       PredicateMatrix pos
+		 * @param pmPredicateId PredicateMatrix predicate id
+		 * @param pmRoleId      PredicateMatrix role id
+		 * @param pmPredicate   predicate
+		 * @param pmRole        PredicateMatrix role
+		 * @param pmPos         PredicateMatrix pos
 		 */
-		PmRole(final long pmPredId, final long pmRoleId, final String pmPredicate, final String pmRole, final String pmPos)
+		PmRole(final long pmPredicateId, final long pmRoleId, final String pmPredicate, final String pmRole, final String pmPos)
 		{
-			this.pmPredId = pmPredId;
+			this.pmPredicateId = pmPredicateId;
 			this.pmRoleId = pmRoleId;
 			this.pmPredicate = pmPredicate;
 			this.pmRole = pmRole;
@@ -246,9 +246,9 @@ abstract class BaseModule extends Module
 			{
 				return this.pmPos.charAt(0) > another.pmPos.charAt(0) ? 1 : -1;
 			}
-			if (this.pmPredId != another.pmPredId)
+			if (this.pmPredicateId != another.pmPredicateId)
 			{
-				return this.pmPredId > another.pmPredId ? 1 : -1;
+				return this.pmPredicateId > another.pmPredicateId ? 1 : -1;
 			}
 			if (this.pmRoleId != another.pmRoleId)
 			{
@@ -265,13 +265,13 @@ abstract class BaseModule extends Module
 				return false;
 			}
 			final PmRole pmdata2 = (PmRole) another;
-			return this.pmPos.charAt(0) == pmdata2.pmPos.charAt(0) && this.pmRoleId == pmdata2.pmRoleId && this.pmPredId == pmdata2.pmPredId;
+			return this.pmPos.charAt(0) == pmdata2.pmPos.charAt(0) && this.pmRoleId == pmdata2.pmRoleId && this.pmPredicateId == pmdata2.pmPredicateId;
 		}
 
 		@Override
 		public int hashCode()
 		{
-			return (int) (17 * (int) this.pmPos.charAt(0) + 19 * this.pmRoleId + 3 * this.pmPredId);
+			return (int) (17 * (int) this.pmPos.charAt(0) + 19 * this.pmRoleId + 3 * this.pmPredicateId);
 		}
 
 		@SuppressWarnings("WeakerAccess")
@@ -316,7 +316,7 @@ abstract class BaseModule extends Module
 		@NonNull
 		String toRoleData()
 		{
-			return this.pmPos + '-' + this.pmRoleId + '-' + this.pmPredId;
+			return this.pmPos + '-' + this.pmRoleId + '-' + this.pmPredicateId;
 		}
 	}
 
@@ -333,16 +333,16 @@ abstract class BaseModule extends Module
 		/**
 		 * Constructor
 		 *
-		 * @param pmId        PredicateMatrix row id
-		 * @param pmPredId    PredicateMatrix predicate id
-		 * @param pmRoleId    PredicateMatrix role id
-		 * @param pmPredicate PredicateMatrix predicate
-		 * @param pmRole      PredicateMatrix role
-		 * @param pmPos       PredicateMatrix pos
+		 * @param pmId          PredicateMatrix row id
+		 * @param pmPredicateId PredicateMatrix predicate id
+		 * @param pmRoleId      PredicateMatrix role id
+		 * @param pmPredicate   PredicateMatrix predicate
+		 * @param pmRole        PredicateMatrix role
+		 * @param pmPos         PredicateMatrix pos
 		 */
-		PmRow(final long pmId, final long pmPredId, final long pmRoleId, final String pmPredicate, final String pmRole, final String pmPos)
+		PmRow(final long pmId, final long pmPredicateId, final long pmRoleId, final String pmPredicate, final String pmRole, final String pmPos)
 		{
-			super(pmPredId, pmRoleId, pmPredicate, pmRole, pmPos);
+			super(pmPredicateId, pmRoleId, pmPredicate, pmRole, pmPos);
 			this.pmId = pmId;
 		}
 
@@ -770,7 +770,7 @@ abstract class BaseModule extends Module
 			final String[] projection = { //
 					PredicateMatrix.PMID, //
 					PredicateMatrix.PMROLEID, //
-					PredicateMatrix.PMPREDID, //
+					PredicateMatrix.PMPREDICATEID, //
 					PredicateMatrix.PMPREDICATE, //
 					PredicateMatrix.PMROLE, //
 					PredicateMatrixContract.PMROLE + '.' + PredicateMatrix.PMPOS, //
@@ -790,8 +790,8 @@ abstract class BaseModule extends Module
 					Pm_X.PBROLESETHEAD, //
 					Pm_X.PBROLEID, //
 					Pm_X.PBROLEDESCR, //
-					PredicateMatrixContract.PBARG + '.' + Pm_X.PBROLENARG, //
-					Pm_X.PBROLENARGDESCR, //
+					PredicateMatrixContract.PBARG + '.' + Pm_X.PBROLEARGTYPE, //
+					Pm_X.PBROLEARGTYPE, //
 
 					PredicateMatrix.FRAMEID, //
 					Pm_X.FRAME, //
@@ -818,7 +818,7 @@ abstract class BaseModule extends Module
 				// column indices
 				final int idPmId = cursor.getColumnIndex(PredicateMatrix.PMID);
 				final int idPmRoleId = cursor.getColumnIndex(PredicateMatrix.PMROLEID);
-				final int idPmPredId = cursor.getColumnIndex(PredicateMatrix.PMPREDID);
+				final int idPmPredicateId = cursor.getColumnIndex(PredicateMatrix.PMPREDICATEID);
 				final int idPmPredicate = cursor.getColumnIndex(PredicateMatrix.PMPREDICATE);
 				final int idPmRole = cursor.getColumnIndex(PredicateMatrix.PMROLE);
 				final int idPmPos = cursor.getColumnIndex(PredicateMatrix.PMPOS);
@@ -838,10 +838,10 @@ abstract class BaseModule extends Module
 				final int idPbRoleSet = cursor.getColumnIndex(Pm_X.PBROLESETNAME);
 				final int idPbRoleSetDescr = cursor.getColumnIndex(Pm_X.PBROLESETDESCR);
 				final int idPbRoleId = cursor.getColumnIndex(Pm_X.PBROLEID);
-				final int idPbRole = cursor.getColumnIndex(Pm_X.PBROLENARG);
+				final int idPbRole = cursor.getColumnIndex(Pm_X.PBROLEARGTYPE);
 				final int idPbRoleDescr = cursor.getColumnIndex(Pm_X.PBROLEDESCR);
 				// final int idPbRoleSetHead = cursor.getColumnIndex(Pm_X.PBROLESETHEAD);
-				// final int idPbRoleNArgDescr = cursor.getColumnIndex(Pm_X.PBROLENARGDESCR);
+				// final int idPbRoleArgType = cursor.getColumnIndex(Pm_X.PBROLEARGTYPE);
 
 				final int idFnFrameId = cursor.getColumnIndex(PredicateMatrix.FRAMEID);
 				final int idFnFrame = cursor.getColumnIndex(Pm_X.FRAME);
@@ -860,11 +860,11 @@ abstract class BaseModule extends Module
 					// data
 					final long pmId = cursor.getLong(idPmId);
 					final long pmRoleId = cursor.getLong(idPmRoleId);
-					final long pmPredId = cursor.getLong(idPmPredId);
+					final long pmPredicateId = cursor.getLong(idPmPredicateId);
 					final String pmPredicate = cursor.getString(idPmPredicate);
 					final String pmRole = cursor.getString(idPmRole);
 					final String pmPos = cursor.getString(idPmPos);
-					final PmRow pmRow = new PmRow(pmId, pmPredId, pmRoleId, pmPredicate, pmRole, pmPos);
+					final PmRow pmRow = new PmRow(pmId, pmPredicateId, pmRoleId, pmPredicate, pmRole, pmPos);
 
 					// final String word = cursor.getString(idWord);
 					final long synsetId = cursor.getLong(idSynsetId);

@@ -264,10 +264,10 @@
 
 	<xsl:template match="vn:arg">
 		<!-- <SPAN class="vnarg"> -->
-		<!-- <xsl:value-of select="./@narg" /> -->
+		<!-- <xsl:value-of select="./@argtype" /> -->
 		<!-- </SPAN> -->
 		<!-- <xsl:text><![CDATA[ ]]></xsl:text> -->
-		<xsl:if test="./@narg &gt; 1">
+		<xsl:if test="./@argtype &gt; 1">
 			<xsl:text><![CDATA[, ]]></xsl:text>
 		</xsl:if>
 		<xsl:element name="span">

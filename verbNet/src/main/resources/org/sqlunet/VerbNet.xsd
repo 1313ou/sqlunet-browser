@@ -150,7 +150,7 @@
 	<xs:element name='arg'>
 		<xs:complexType>
 			<xs:attribute name='value' type='xs:string' use='required' />
-			<xs:attribute name='narg' type='xs:string' use='required' />
+			<xs:attribute name='argtype' type='xs:string' use='required' />
 		</xs:complexType>
 	</xs:element>
 

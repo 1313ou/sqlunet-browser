@@ -33,18 +33,18 @@ class SqLiteDialect
 	// ROLES
 	// query for roles
 	static final String PropBankRolesQueryFromRoleSetId = //
-			"SELECT ${roles.roleid},${roles.roledescr},${argns.nargid},${funcs.func},${thetas.thetaid} " + //
+			"SELECT ${roles.roleid},${roles.roledescr},${argtypes.argtypeid},${funcs.func},${thetas.thetaid} " + //
 					"FROM ${rolesets.table} " + //
 					"INNER JOIN ${roles.table} USING (${rolesets.rolesetid}) " + //
 					"LEFT JOIN ${funcs.table} USING (${funcs.funcid}) " + //
 					"LEFT JOIN ${thetas.table} USING (${thetas.theta}) " + //
 					"WHERE ${rolesets.rolesetid} = ? " + //
-					"ORDER BY ${argns.nargid};";
+					"ORDER BY ${argtypes.argtypeid};";
 
 	// EXAMPLES
 	// query for examples rel(n~arg|n~arg|..)
 	static final String PropBankExamplesQueryFromRoleSetId = //
-			"SELECT ${examples.exampleid},${examples.text},${rels.rel},GROUP_CONCAT(${args.nargid}||'~'||" + //
+			"SELECT ${examples.exampleid},${examples.text},${rels.rel},GROUP_CONCAT(${args.argtypeid}||'~'||" + //
 					"(CASE WHEN ${funcs.func} IS NULL THEN '*' ELSE ${funcs.func} END)||'~'||" + //
 					"${roles.roledescr}||'~'||" + //
 					"(CASE WHEN ${thetas.theta} IS NULL THEN '*' ELSE ${thetas.theta} END)||'~'||" + //
@@ -60,9 +60,9 @@ class SqLiteDialect
 					"LEFT JOIN ${tenses.table} USING (${tenses.tense}) " + //
 					"LEFT JOIN ${voices.table} USING (${voices.voice}) " + //
 					"LEFT JOIN ${persons.table} USING (${persons.person}) " + //
-					"LEFT JOIN ${roles.table} USING (${rolesets.rolesetid},${args.nargid}) " + //
+					"LEFT JOIN ${roles.table} USING (${rolesets.rolesetid},${args.argtypeid}) " + //
 					"LEFT JOIN ${thetas.table} USING (${thetas.theta}) " + //
 					"WHERE ${rolesets.rolesetid} = ? " + //
 					"GROUP BY ${as_examples}.${examples.exampleid} " + //
-					"ORDER BY ${as_examples}.${examples.exampleid},${args.nargid};";
+					"ORDER BY ${as_examples}.${examples.exampleid},${args.argtypeid};";
 }

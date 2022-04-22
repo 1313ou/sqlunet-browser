@@ -335,9 +335,9 @@ abstract class BaseModule extends Module
 		final String[] projection = { //
 				PbRoleSets_PbRoles.ROLEID, //
 				PbRoleSets_PbRoles.ROLEDESCR, //
-				PbRoleSets_PbRoles.NARG, //
-				PbRoleSets_PbRoles.FUNCNAME, //
-				PbRoleSets_PbRoles.THETANAME, //
+				PbRoleSets_PbRoles.ARGTYPE, //
+				PbRoleSets_PbRoles.FUNC, //
+				PbRoleSets_PbRoles.THETA, //
 		};
 		final String selection = PbRoleSets_PbRoles.ROLESETID + "= ?";
 		final String[] selectionArgs = {Long.toString(roleSetId)};
@@ -353,9 +353,9 @@ abstract class BaseModule extends Module
 			// column indices
 			// final int idRoleId = cursor.getColumnIndex(PbRoleSets_PbRoles.ROLEID);
 			final int idRoleDescr = cursor.getColumnIndex(PbRoleSets_PbRoles.ROLEDESCR);
-			final int idFunc = cursor.getColumnIndex(PbRoleSets_PbRoles.FUNCNAME);
-			final int idTheta = cursor.getColumnIndex(PbRoleSets_PbRoles.THETANAME);
-			final int idNArg = cursor.getColumnIndex(PropBankContract.PbRoleSets_PbRoles.NARG);
+			final int idFunc = cursor.getColumnIndex(PbRoleSets_PbRoles.FUNC);
+			final int idTheta = cursor.getColumnIndex(PbRoleSets_PbRoles.THETA);
+			final int idArgType = cursor.getColumnIndex(PropBankContract.PbRoleSets_PbRoles.ARGTYPE);
 
 			// read cursor
 			while (true)
@@ -363,7 +363,7 @@ abstract class BaseModule extends Module
 				// data
 
 				// n
-				sb.append(cursor.getString(idNArg));
+				sb.append(cursor.getString(idArgType));
 				sb.append(' ');
 
 				// role
@@ -432,7 +432,7 @@ abstract class BaseModule extends Module
 				PbRoleSets_PbExamples.TEXT, //
 				PbRoleSets_PbExamples.REL, //
 				"GROUP_CONCAT(" + //
-						PbRoleSets_PbExamples.NARG + //
+						PbRoleSets_PbExamples.ARGTYPE + //
 						"||'~'" + //
 						"||(CASE WHEN " + PbRoleSets_PbExamples.FUNCNAME + " IS NULL THEN '*' ELSE " + PbRoleSets_PbExamples.FUNCNAME + " END)" + //
 						"||'~'" + //
@@ -449,7 +449,7 @@ abstract class BaseModule extends Module
 		};
 		final String selection = PbRoleSets_PbExamples.ROLESETID + "= ?";
 		final String[] selectionArgs = {Long.toString(roleSetId)};
-		final String sortOrder = PbRoleSets_PbExamples.EXAMPLEID + ',' + PbRoleSets_PbExamples.NARG;
+		final String sortOrder = PbRoleSets_PbExamples.EXAMPLEID + ',' + PbRoleSets_PbExamples.ARGTYPE;
 		this.examplesFromRoleSetIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> examplesCursorToTreeModel(cursor, parent));
 	}
 

@@ -90,7 +90,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 						"${roles.table}", "${rolesets.rolesetid}", //
 						"${funcs.table}", "${funcs.funcid}", //
 						"${thetas.table}", "${thetas.thetaid}");
-				sortOrder = "${roles.nargid}";
+				sortOrder = "${roles.argtypeid}";
 				break;
 
 			case PBROLESETS_PBEXAMPLES_BY_EXAMPLE:
@@ -121,7 +121,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 						"${tenses.table}", "${tenses.tenseid}", // 8
 						"${voices.table}", "${voices.voiceid}", // 9
 						"${persons.table}", "${persons.personid}", // 10
-						"${roles.table}", "${rolesets.rolesetid}", "${args.nargid}", // 11
+						"${roles.table}", "${rolesets.rolesetid}", "${args.argtypeid}", // 11
 						"${thetas.table}", "${thetas.thetaid}");
 				sortOrder = String.format("%s.%s,%s", "${as_examples}", "${examples.exampleid}", "${args.arg}");
 				break;

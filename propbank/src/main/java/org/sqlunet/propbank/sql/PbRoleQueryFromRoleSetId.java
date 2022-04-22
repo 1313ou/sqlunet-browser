@@ -74,7 +74,7 @@ class PbRoleQueryFromRoleSetId extends DBQuery
 	 *
 	 * @return role N
 	 */
-	public String getNArg()
+	public String getArgType()
 	{
 		assert this.cursor != null;
 		return this.cursor.getString(2);

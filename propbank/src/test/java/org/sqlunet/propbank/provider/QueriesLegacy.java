@@ -93,7 +93,7 @@ public class QueriesLegacy
 						"LEFT JOIN pb_tenses USING (tenseid) " + //
 						"LEFT JOIN pb_voices USING (voiceid) " + //
 						"LEFT JOIN pb_persons USING (personid) " + //
-						"LEFT JOIN pb_roles USING (rolesetid,nargid) " + //
+						"LEFT JOIN pb_roles USING (rolesetid,argtypeid) " + //
 						"LEFT JOIN pb_thetas USING (thetaid)";
 				break;
 

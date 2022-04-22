@@ -31,7 +31,7 @@ class PbRole
 	/**
 	 * Role N arg
 	 */
-	public final String nArg;
+	public final String argType;
 
 	/**
 	 * Role F
@@ -48,16 +48,16 @@ class PbRole
 	 *
 	 * @param roleId    role id
 	 * @param roleDescr role description
-	 * @param nArg      role N
-	 * @param roleFunc  role F
+	 * @param argType   role arg type
+	 * @param roleFunc  role f
 	 * @param roleTheta role theta
 	 */
-	private PbRole(final long roleId, final String roleDescr, final String nArg, final String roleFunc, final String roleTheta)
+	private PbRole(final long roleId, final String roleDescr, final String argType, final String roleFunc, final String roleTheta)
 	{
 		super();
 		this.roleId = roleId;
 		this.roleDescr = roleDescr;
-		this.nArg = nArg;
+		this.argType = argType;
 		this.roleFunc = roleFunc;
 		this.roleTheta = roleTheta;
 	}
@@ -83,10 +83,10 @@ class PbRole
 			{
 				final long roleId = query.getRoleId();
 				final String roleDescr = query.getRoleDescr();
-				final String nArg = query.getNArg();
+				final String roleArgType = query.getArgType();
 				final String roleFunc = query.getRoleFunc();
 				final String roleTheta = query.getRoleTheta();
-				result.add(new PbRole(roleId, roleDescr, nArg, roleFunc, roleTheta));
+				result.add(new PbRole(roleId, roleDescr, roleArgType, roleFunc, roleTheta));
 			}
 		}
 		finally

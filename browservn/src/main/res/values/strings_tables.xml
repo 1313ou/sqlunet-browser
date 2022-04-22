@@ -50,7 +50,7 @@
 		<item>vn_words</item>
 
 		<!-- propbank -->
-		<item>pb_argns</item>
+		<item>pb_argtypes</item>
 		<item>pb_args</item>
 		<item>pb_aspects</item>
 		<item>pb_examples</item>

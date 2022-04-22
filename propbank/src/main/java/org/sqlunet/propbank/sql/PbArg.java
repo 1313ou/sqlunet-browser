@@ -14,9 +14,9 @@ import java.util.Locale;
 class PbArg
 {
 	/**
-	 * Argument n
+	 * Argument type
 	 */
-	public final String nArg;
+	public final String argType;
 
 	/**
 	 * Argument f
@@ -41,15 +41,15 @@ class PbArg
 	/**
 	 * Constructor
 	 *
-	 * @param nArg        n
+	 * @param argType     n
 	 * @param f           f
 	 * @param description description
 	 * @param vnTheta     VerbNet theta
 	 * @param subText     sub text
 	 */
-	private PbArg(final String nArg, final String f, final String description, final String vnTheta, final String subText)
+	private PbArg(final String argType, final String f, final String description, final String vnTheta, final String subText)
 	{
-		this.nArg = nArg;
+		this.argType = argType;
 		this.f = f;
 		this.vnTheta = vnTheta;
 		this.description = description;

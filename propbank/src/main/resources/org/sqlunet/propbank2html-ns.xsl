@@ -88,7 +88,7 @@
 			<SPAN class="pbrolelabel">
 				<!-- <xsl:text><![CDATA[role]]></xsl:text> -->
 				<!-- <xsl:text><![CDATA[ #]]></xsl:text> -->
-				<!-- <xsl:value-of select="./@narg" /> -->
+				<!-- <xsl:value-of select="./@argtype" /> -->
 				<!-- <![CDATA[ ]]> -->
 				<SPAN class="pbrolename">
 					<xsl:value-of select="./text()" />

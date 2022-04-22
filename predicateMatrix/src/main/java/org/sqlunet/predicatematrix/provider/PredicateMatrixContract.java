@@ -30,7 +30,7 @@ public class PredicateMatrixContract
 	{
 		static public final String PMID = "pmid";
 		static public final String PMROLEID = "pmroleid";
-		static public final String PMPREDID = "pmpredid";
+		static public final String PMPREDICATEID = "pmpredicateid";
 		static public final String PMPREDICATE = "predicate";
 		static public final String PMROLE = "role";
 		static public final String PMPOS = "pos";
@@ -69,8 +69,8 @@ public class PredicateMatrixContract
 		static public final String PBROLESETDESCR = "rolesetdescr";
 		static public final String PBROLESETHEAD = "rolesethead";
 		static public final String PBROLEDESCR = "roledescr";
-		static public final String PBROLENARG = "narg";
-		static public final String PBROLENARGDESCR = "nargdescr";
+		static public final String PBROLEARGTYPEID = "argtypeid";
+		static public final String PBROLEARGTYPE = "argtype";
 		static public final String FRAME = "frame";
 		static public final String FRAMEDEFINITION = "framedefinition";
 		static public final String LEXUNIT = "lexunit";

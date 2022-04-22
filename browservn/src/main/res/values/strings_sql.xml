@@ -85,7 +85,7 @@
 			CREATE INDEX IF NOT EXISTS `pk_pb_rels` ON `pb_rels` (`relid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_args` ON `pb_args` (`argid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_thetas` ON `pb_thetas` (`thetaid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_argns` ON `pb_argns` (`nargid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_argtypes` ON `pb_argtypes` (`argtypeid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_aspects` ON `pb_aspects` (`aspectid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_forms` ON `pb_forms` (`formid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_funcs` ON `pb_funcs` (`funcid`);
@@ -212,7 +212,7 @@
 			CREATE INDEX IF NOT EXISTS `pk_pb_rels` ON `pb_rels` (`relid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_args` ON `pb_args` (`argid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_thetas` ON `pb_thetas` (`thetaid`);
-			CREATE INDEX IF NOT EXISTS `pk_pb_argns` ON `pb_argns` (`nargid`);
+			CREATE INDEX IF NOT EXISTS `pk_pb_argtypes` ON `pb_argtypes` (`argtypeid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_aspects` ON `pb_aspects` (`aspectid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_forms` ON `pb_forms` (`formid`);
 			CREATE INDEX IF NOT EXISTS `pk_pb_funcs` ON `pb_funcs` (`funcid`);
@@ -235,7 +235,7 @@
 			DROP INDEX IF EXISTS `pk_pb_rels`;
 			DROP INDEX IF EXISTS `pk_pb_args`;
 			DROP INDEX IF EXISTS `pk_pb_thetas`;
-			DROP INDEX IF EXISTS `pk_pb_argns`;
+			DROP INDEX IF EXISTS `pk_pb_argtypes`;
 			DROP INDEX IF EXISTS `pk_pb_aspects`;
 			DROP INDEX IF EXISTS `pk_pb_forms`;
 			DROP INDEX IF EXISTS `pk_pb_funcs`;

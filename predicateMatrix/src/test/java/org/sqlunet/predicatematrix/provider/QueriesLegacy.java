@@ -31,7 +31,7 @@ public class QueriesLegacy
 			case PredicateMatrixDispatcher.PM_X:
 				table = "pm_pms " + //
 						"LEFT JOIN pm_roles AS " + PredicateMatrixContract.PMROLE + " USING (pmroleid) " + //
-						"LEFT JOIN pm_predicates AS " + PredicateMatrixContract.PMPREDICATE + " USING (predid) " + //
+						"LEFT JOIN pm_predicates AS " + PredicateMatrixContract.PMPREDICATE + " USING (predicateid) " + //
 						"LEFT JOIN synsets USING (synsetid) " + //
 
 						"LEFT JOIN vn_classes AS " + PredicateMatrixContract.VNCLASS + " ON vnclassid = " + PredicateMatrixContract.VNCLASS + ".vnclassid " + //
@@ -40,7 +40,7 @@ public class QueriesLegacy
 
 						"LEFT JOIN pb_rolesets AS " + PredicateMatrixContract.PBROLESET + " ON pbrolesetid = " + PredicateMatrixContract.PBROLESET + ".pbrolesetid " + //
 						"LEFT JOIN pb_roles AS " + PredicateMatrixContract.PBROLE + " ON pbroleid = " + PredicateMatrixContract.PBROLE + ".pbroleid " + //
-						"LEFT JOIN pb_argns AS " + PredicateMatrixContract.PBARG + " ON " + PredicateMatrixContract.PBROLE + ".nargid = " + PredicateMatrixContract.PBARG + ".nargid " + //
+						"LEFT JOIN pb_argtypes AS " + PredicateMatrixContract.PBARG + " ON " + PredicateMatrixContract.PBROLE + ".argtypeid = " + PredicateMatrixContract.PBARG + ".argtypeid " + //
 
 						"LEFT JOIN fn_frames AS " + PredicateMatrixContract.FNFRAME + " ON fnframeid = " + PredicateMatrixContract.FNFRAME + ".fnframeid " + //
 						"LEFT JOIN fn_fes AS " + PredicateMatrixContract.FNFE + " ON fnfeid = " + PredicateMatrixContract.FNFE + ".fnfeid " + //

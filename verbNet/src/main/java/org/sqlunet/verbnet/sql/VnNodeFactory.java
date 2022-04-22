@@ -319,7 +319,7 @@ class VnNodeFactory extends NodeFactory
 				}
 				final Element argElement = NodeFactory.makeNode(doc, parent, "arg", null);
 				argElement.setAttribute("value", arg);
-				argElement.setAttribute("narg", Integer.toString(i++));
+				argElement.setAttribute("argtype", Integer.toString(i++));
 				// argElement.setTextContent(arg);
 			}
 		}

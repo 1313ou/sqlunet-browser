@@ -98,7 +98,7 @@ class PbNodeFactory extends NodeFactory
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "role", null);
 		NodeFactory.makeAttribute(element, "roleid", Long.toString(role.roleId));
-		NodeFactory.makeAttribute(element, "narg", role.nArg);
+		NodeFactory.makeAttribute(element, "argtype", role.argType);
 		NodeFactory.makeAttribute(element, "theta", role.roleTheta);
 		NodeFactory.makeAttribute(element, "func", role.roleFunc);
 		NodeFactory.makeText(doc, element, role.roleDescr);
@@ -138,7 +138,7 @@ class PbNodeFactory extends NodeFactory
 			for (final PbArg arg : example.args)
 			{
 				final Element element3 = NodeFactory.makeNode(doc, element, "arg", null);
-				NodeFactory.makeAttribute(element3, "narg", arg.nArg);
+				NodeFactory.makeAttribute(element3, "argtype", arg.argType);
 				if (arg.f != null)
 				{
 					NodeFactory.makeAttribute(element3, "f", arg.f);
