@@ -66,10 +66,12 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 			case PBROLESETS_X:
 				table = String.format("%s " + //
 								"LEFT JOIN %s AS %s USING (%s) " + //
-								"LEFT JOIN %s AS %s ON %s.%s = %s.%s", //
+								"LEFT JOIN %s AS %s USING (%s) " + //
+								"LEFT JOIN %s AS %s USING (%s)", //
 						"${rolesets.table}", //
 						"${members.table}", "${as_members}", "${rolesets.rolesetid}", //
-						"${words.table}", "${as_words}", "${as_members}", "${words.pbwordid}", "${as_words}", "${words.pbwordid}");
+						"${words.table}", "${as_pbwords}", "${words.pbwordid}", //
+						"${wnwords.table}", "${as_words}", "${wnwords.wordid}");
 				break;
 
 			case WORDS_PBROLESETS:
@@ -85,9 +87,11 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 				table = String.format("%s " + //
 								"INNER JOIN %s USING (%s) " + //
 								"LEFT JOIN %s USING (%s) " + //
+								"LEFT JOIN %s USING (%s) " + //
 								"LEFT JOIN %s USING (%s)", //
 						"${rolesets.table}", //
 						"${roles.table}", "${rolesets.rolesetid}", //
+						"${argtypes.table}", "${argtypes.argtypeid}", //
 						"${funcs.table}", "${funcs.funcid}", //
 						"${thetas.table}", "${thetas.thetaid}");
 				sortOrder = "${roles.argtypeid}";
@@ -99,30 +103,32 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 				//noinspection fallthrough
 
 			case PBROLESETS_PBEXAMPLES:
-				table = String.format("%s " + //
-								"INNER JOIN %s AS %s USING (%s) " + //
-								"LEFT JOIN %s AS %s USING (%s) " + //
-								"LEFT JOIN %s AS %s USING (%s) " + //
-								"LEFT JOIN %s AS %s ON (%s.%s = %s.%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s,%s) " + //
-								"LEFT JOIN %s USING (%s)", //
+				table = String.format("%s " + // 1
+								"INNER JOIN %s AS %s USING (%s) " + // 2
+								"LEFT JOIN %s AS %s USING (%s) " + // 3
+								"LEFT JOIN %s AS %s USING (%s) " + // 4
+								"LEFT JOIN %s USING (%s) " + // 5
+								"LEFT JOIN %s AS %s ON (%s.%s = %s.%s) " + // 6
+								"LEFT JOIN %s USING (%s) " + // 7
+								"LEFT JOIN %s USING (%s) " + // 8
+								"LEFT JOIN %s USING (%s) " + // 9
+								"LEFT JOIN %s USING (%s) " + // 10
+								"LEFT JOIN %s USING (%s) " + // 11
+								"LEFT JOIN %s USING (%s,%s) " + // 12
+								"LEFT JOIN %s USING (%s)", // 13
 						"${rolesets.table}", // 1
 						"${examples.table}", "${as_examples}", "${rolesets.rolesetid}", // 2
 						"${rels.table}", "${as_relations}", "${examples.exampleid}", // 3
 						"${args.table}", "${as_args}", "${examples.exampleid}", // 4
-						"${funcs.table}", "${as_funcs}", "${as_args}", "${funcs.funcid}", "${as_funcs}", "${funcs.funcid}", // 5
-						"${aspects.table}", "${aspects.aspectid}", // 6
-						"${forms.table}", "${forms.formid}", // 7
-						"${tenses.table}", "${tenses.tenseid}", // 8
-						"${voices.table}", "${voices.voiceid}", // 9
-						"${persons.table}", "${persons.personid}", // 10
-						"${roles.table}", "${rolesets.rolesetid}", "${args.argtypeid}", // 11
-						"${thetas.table}", "${thetas.thetaid}");
+						"${argtypes.table}", "${argtypes.argtypeid}", // 5
+						"${funcs.table}", "${as_funcs}", "${as_args}", "${funcs.funcid}", "${as_funcs}", "${funcs.funcid}", // 6
+						"${aspects.table}", "${aspects.aspectid}", // 7
+						"${forms.table}", "${forms.formid}", // 8
+						"${tenses.table}", "${tenses.tenseid}", // 9
+						"${voices.table}", "${voices.voiceid}", // 10
+						"${persons.table}", "${persons.personid}", // 11
+						"${roles.table}", "${rolesets.rolesetid}", "${args.argtypeid}", // 12
+						"${thetas.table}", "${thetas.thetaid}"); // 13
 				sortOrder = String.format("%s.%s,%s", "${as_examples}", "${examples.exampleid}", "${args.arg}");
 				break;
 
