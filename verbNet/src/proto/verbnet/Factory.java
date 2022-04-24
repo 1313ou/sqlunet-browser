@@ -77,27 +77,27 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 			// J O I N S
 
 			case WORDS_VNCLASSES:
-				table = String.format("%s " +//
-								"INNER JOIN %s USING (%s) " +//
-								"INNER JOIN %s USING (%s) " +//
-								"LEFT JOIN %s USING (%s)", //
-						"${wnwords.table}", //
-						"${words.table}", "${wnwords.wordid}", //
-						"${members_senses.table}", "${words.vnwordid}", //
-						"${classes.table}", "${classes.classid}");
+				table = String.format("%s " +// 1
+								"INNER JOIN %s USING (%s) " + // 2
+								"INNER JOIN %s USING (%s, %s) " + // 3
+								"LEFT JOIN %s USING (%s)", // 4
+						"${wnwords.table}", // 1
+						"${words.table}", "${wnwords.wordid}", // 2
+						"${members_senses.table}", "${words.vnwordid}", "${wnwords.wordid}", // 3
+						"${classes.table}", "${classes.classid}"); // 4
 				break;
 
 			case VNCLASSES_VNMEMBERS_X_BY_WORD:
-				table = String.format("%s " + //
-								"INNER JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s, %s) " + //
-								"LEFT JOIN %s USING (%s) " + //
-								"LEFT JOIN %s USING (%s)", //
-						"${wnwords.table}", //
-						"${members_senses.table}", "${wnwords.wordid}", //
-						"${members_groupings.table}", "${members.classid}", "${members.vnwordid}", //
-						"${groupings.table}", "${groupings.groupingid}", //
-						"${wnsynsets.table}", "${wnsynsets.synsetid}");
+				table = String.format("%s " + // 1
+								"INNER JOIN %s USING (%s, %s) " + // 2
+								"LEFT JOIN %s USING (%s, %s) " + // 3
+								"LEFT JOIN %s USING (%s) " + // 4
+								"LEFT JOIN %s USING (%s)", // 5
+						"${wnwords.table}", // 1
+						"${members_senses.table}", "${words.vnwordid}", "${wnwords.wordid}", // 2
+						"${members_groupings.table}", "${members.classid}", "${words.vnwordid}", // 3
+						"${groupings.table}", "${groupings.groupingid}", // 4
+						"${wnsynsets.table}", "${wnsynsets.synsetid}"); // 5
 				groupBy = "${words.vnwordid}";
 				break;
 
