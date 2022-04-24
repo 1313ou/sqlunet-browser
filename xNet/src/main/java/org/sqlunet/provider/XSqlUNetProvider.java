@@ -265,7 +265,7 @@ public class XSqlUNetProvider extends BaseProvider
 				table = "words AS " + XSqlUNetContract.WORD + ' ' + //
 						"LEFT JOIN senses AS " + XSqlUNetContract.SENSE + " USING (wordid) " + //
 						"LEFT JOIN synsets AS " + XSqlUNetContract.SYNSET + " USING (synsetid) " + //
-						"LEFT JOIN poses AS " + XSqlUNetContract.POSID + " USING (posid) " + //
+						"LEFT JOIN poses AS " + XSqlUNetContract.POS + " USING (posid) " + //
 						"LEFT JOIN casedwords USING (wordid,casedwordid) " + //
 						"LEFT JOIN domains USING (domainid) " + //
 						"LEFT JOIN fn_words USING (wordid) " + //
@@ -278,7 +278,7 @@ public class XSqlUNetProvider extends BaseProvider
 				table = "words AS " + XSqlUNetContract.WORD + ' ' + //
 						"LEFT JOIN senses AS " + XSqlUNetContract.SENSE + " USING (wordid) " + //
 						"LEFT JOIN synsets AS " + XSqlUNetContract.SYNSET + " USING (synsetid) " + //
-						"LEFT JOIN poses AS " + XSqlUNetContract.POSID + " USING (posid) " + //
+						"LEFT JOIN poses AS " + XSqlUNetContract.POS + " USING (posid) " + //
 						"LEFT JOIN casedwords USING (wordid,casedwordid) " + //
 						"LEFT JOIN domains USING (domainid) " + //
 						"LEFT JOIN vn_words USING (wordid) " + //

@@ -226,7 +226,7 @@ public class SelectorsFragment extends ListFragment
 						Words_FnWords_PbWords_VnWords.DEFINITION, //
 						Words_FnWords_PbWords_VnWords.CASED, //
 						Words_FnWords_PbWords_VnWords.TAGCOUNT, //
-						Words_FnWords_PbWords_VnWords.LEXID, //
+						Words_FnWords_PbWords_VnWords.LUID, //
 						Words_FnWords_PbWords_VnWords.SENSEKEY, //
 						Words_FnWords_PbWords_VnWords.WORDID, //
 						Words_FnWords_PbWords_VnWords.SYNSETID, //
@@ -331,12 +331,12 @@ public class SelectorsFragment extends ListFragment
 				Words_FnWords_PbWords_VnWords.SENSEID, //
 				Words_FnWords_PbWords_VnWords.SENSENUM, //
 				Words_FnWords_PbWords_VnWords.SENSEKEY, //
-				Words_FnWords_PbWords_VnWords.LEXID, //
+				Words_FnWords_PbWords_VnWords.LUID, //
 				Words_FnWords_PbWords_VnWords.TAGCOUNT, //
 				Words_FnWords_PbWords_VnWords.SYNSETID, //
 				Words_FnWords_PbWords_VnWords.DEFINITION, //
-				XSqlUNetContract.SYNSET + '.' + Words_FnWords_PbWords_VnWords.POS, //
-				Words_FnWords_PbWords_VnWords.POSNAME, //
+				XSqlUNetContract.POS + '.' + Words_FnWords_PbWords_VnWords.POSID, //
+				Words_FnWords_PbWords_VnWords.POS, //
 				Words_FnWords_PbWords_VnWords.DOMAIN, //
 				Words_FnWords_PbWords_VnWords.CASED, //
 				Words_FnWords_PbWords_VnWords.FNWORDID, //
@@ -345,7 +345,7 @@ public class SelectorsFragment extends ListFragment
 		};
 		final String selection = XSqlUNetContract.WORD + '.' + Words_FnWords_PbWords_VnWords.WORD + " = ?"; ////
 		final String[] selectionArgs = {this.word};
-		final String sortOrder = XSqlUNetContract.SYNSET + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
+		final String sortOrder = XSqlUNetContract.POS + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
 		this.dataModel.loadData(uri, projection, selection, selectionArgs, sortOrder, this::wordIdFromWordPostProcess);
 	}
 
@@ -416,7 +416,7 @@ public class SelectorsFragment extends ListFragment
 			{
 				// column indexes
 				final int idSynsetId = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.SYNSETID);
-				final int idPos = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.POSNAME);
+				final int idPos = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.POS);
 				final int idCased = cursor.getColumnIndex(Words_FnWords_PbWords_VnWords.CASED);
 
 				// retrieve

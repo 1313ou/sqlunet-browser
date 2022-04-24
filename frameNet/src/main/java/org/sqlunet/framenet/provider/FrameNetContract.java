@@ -32,7 +32,7 @@ public class FrameNetContract
 		static public final String CONTENT_URI_TABLE = Words.TABLE;
 		static public final String FNWORDID = V.FNWORDID;
 		static public final String WORDID = V.WORDID;
-		static public final String WORD = V.WORD;
+		//static public final String WORD = V.WORD;
 	}
 
 	static public final class LexUnits
@@ -295,7 +295,7 @@ public class FrameNetContract
 		static public final String GOVERNORID = V.GOVERNORID;
 		static public final String GOVERNORTYPE = V.GOVERNORTYPE;
 		static public final String FNWORDID = V.FNWORDID;
-		static public final String FNWORD = V.WORD;
+		static public final String WORD = V.WORD;
 	}
 
 	static public final class LexUnits_FERealizations_ValenceUnits

@@ -1104,7 +1104,7 @@ abstract public class BaseModule extends Module
 				LexUnits_Governors.GOVERNORID, //
 				LexUnits_Governors.GOVERNORTYPE, //
 				LexUnits_Governors.FNWORDID, //
-				LexUnits_Governors.FNWORD, //
+				LexUnits_Governors.WORD, //
 		};
 		final String selection = LexUnits_Governors.LUID + " = ?";
 		final String[] selectionArgs = {Long.toString(luId)};
@@ -1123,7 +1123,7 @@ abstract public class BaseModule extends Module
 			// column indices
 			final int idGovernorId = cursor.getColumnIndex(LexUnits_Governors.GOVERNORID);
 			final int idGovernorType = cursor.getColumnIndex(LexUnits_Governors.GOVERNORTYPE);
-			final int idWord = cursor.getColumnIndex(LexUnits_Governors.FNWORD);
+			final int idWord = cursor.getColumnIndex(LexUnits_Governors.WORD);
 			final int idWordId = cursor.getColumnIndex(LexUnits_Governors.FNWORDID);
 
 			// data

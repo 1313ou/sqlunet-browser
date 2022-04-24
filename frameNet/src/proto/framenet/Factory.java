@@ -82,6 +82,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 
 			// J O I N S
 
+			/*
 			case LEXUNITS_OR_FRAMES:
 				table = String.format("(" + // 1
 								"SELECT %s + %s AS %s, %s AS %s, %s AS %s, %s AS %s, %s AS %s, %s AS %s, %s AS %s, %s AS %s, 0 AS %s " + // 2
@@ -95,6 +96,30 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 								")", //
 						"${words.fnwordid}", "10000", "${_id}", "${lexunits.luid}", "${fnid}", "${words.fnwordid}", "${words.fnwordid}", "${words.wordid}", "${words.wordid}", "${words.word}", "${words.word}", "${lexunits.lexunit}", "${name}", "${frames.frame}", "${frames.frame}", "${frames.frameid}", "${frames.frameid}", "${isframe}", // 2
 						"${words.table}", // 3
+						"${lexemes.table}", "${words.fnwordid}", // 4
+						"${lexunits.table}", "${as_lexunits}", "${lexunits.luid}", // 5
+						"${frames.table}", "${as_frames}", "${frames.frameid}", // 6
+						// 7
+						"${frames.frameid}", "${_id}", "${frames.frameid}", "${fnid}", "${words.fnwordid}", "${words.wordid}", "${frames.frame}", "${words.word}", "${frames.frame}", "${name}", "${frames.frame}", "${frames.frame}", "${frames.frameid}", "${frames.frameid}", "${isframe}", // 8
+						"${frames.table}"); // 9
+				break;
+			*/
+
+			case LEXUNITS_OR_FRAMES:
+				table = String.format("(" + // 1
+								"SELECT %s + %s AS %s, %s AS %s, %s AS %s, %s AS %s, %s AS %s, %s AS %s, %s AS %s, %s AS %s, 0 AS %s " + // 2
+								"FROM %s " + // 3
+								"INNER JOIN %s USING (%s) " + // 3b
+								"INNER JOIN %s USING (%s) " + // 4
+								"INNER JOIN %s AS %s USING (%s) " + // 5
+								"INNER JOIN %s AS %s USING (%s) " + // 6
+								"UNION " + // 7
+								"SELECT %s AS %s, %s AS %s, 0 AS %s, 0 AS %s, %s AS %s, %s AS %s, %s AS %s, %s AS %s, 1 AS %s " + // 8
+								"FROM %s " + // 9
+								")", //
+						"${words.fnwordid}", "10000", "${_id}", "${lexunits.luid}", "${fnid}", "${words.fnwordid}", "${words.fnwordid}", "${words.wordid}", "${words.wordid}", "${words.word}", "${words.word}", "${lexunits.lexunit}", "${name}", "${frames.frame}", "${frames.frame}", "${frames.frameid}", "${frames.frameid}", "${isframe}", // 2
+						"${words.table}", // 3
+						"${wnwords.table}", "${wnwords.wordid}", // 3b
 						"${lexemes.table}", "${words.fnwordid}", // 4
 						"${lexunits.table}", "${as_lexunits}", "${lexunits.luid}", // 5
 						"${frames.table}", "${as_frames}", "${frames.frameid}", // 6
@@ -298,9 +323,9 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 						"${layers.rank}", "${layers.layerid}", "${labels.start}", "${labels.end}"); // 18
 				break;
 
+			/*
 			case WORDS_LEXUNITS_FRAMES:
 				table = String.format("%s " + // 1
-								// "INNER JOIN %s USING (%s) " + // 2
 								"INNER JOIN %s USING (%s) " + // 3
 								"INNER JOIN %s AS %s USING (%s) " + // 4
 								"LEFT JOIN %s AS %s USING (%s) " + // 5
@@ -308,8 +333,27 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 								"LEFT JOIN %s AS %s ON (%s = %s.%s) " + // 7
 								"LEFT JOIN %s AS %s ON (%s.%s = %s.%s AND %s = %s.%s)", // 8
 						"${words.table}", // 1
-						// "${wnwords.table}", // 1
-						// "${words.table}", "${words.wordid}", // 2
+						"${lexemes.table}", "${words.fnwordid}", // 3
+						"${lexunits.table}", "${as_lexunits}", "${lexunits.luid}", // 4
+						"${frames.table}", "${as_frames}", "${frames.frameid}", // 5
+						"${poses.table}", "${as_poses}", "${as_lexunits}", "${poses.posid}", "${as_poses}", "${poses.posid}", // 6
+						"${fetypes.table}", "${as_fetypes}", "${lexunits.incorporatedfetypeid}", "${as_fetypes}", "${fetypes.fetypeid}", // 7
+						"${fes.table}", "${as_fes}", "${as_frames}", "${frames.frameid}", "${as_fes}", "${frames.frameid}", "${lexunits.incorporatedfetypeid}", "${as_fes}", "${fes.fetypeid}"); // 8
+				groupBy = "${lexunits.luid}";
+				break;
+			*/
+
+			case WORDS_LEXUNITS_FRAMES:
+				table = String.format("%s " + // 1
+								"INNER JOIN %s USING (%s) " + // 2
+								"INNER JOIN %s USING (%s) " + // 3
+								"INNER JOIN %s AS %s USING (%s) " + // 4
+								"LEFT JOIN %s AS %s USING (%s) " + // 5
+								"LEFT JOIN %s AS %s ON (%s.%s = %s.%s) " + // 6
+								"LEFT JOIN %s AS %s ON (%s = %s.%s) " + // 7
+								"LEFT JOIN %s AS %s ON (%s.%s = %s.%s AND %s = %s.%s)", // 8
+						"${words.table}", // 1
+						"${wnwords.table}", "${wnwords.wordid}", // 2
 						"${lexemes.table}", "${words.fnwordid}", // 3
 						"${lexunits.table}", "${as_lexunits}", "${lexunits.luid}", // 4
 						"${frames.table}", "${as_frames}", "${frames.frameid}", // 5
@@ -380,6 +424,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 						"${labelitypes.table}", "${labelitypes.labelitypeid}");
 				break;
 
+			/*
 			case LEXUNITS_GOVERNORS:
 				table = String.format("%s " + //
 								"INNER JOIN %s USING (%s) " + //
@@ -389,6 +434,20 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 						"${lexunits_governors.table}", "${lexunits.luid}", //
 						"${governors.table}", "${governors.governorid}", //
 						"${words.table}", "${words.fnwordid}");
+				break;
+			*/
+			case LEXUNITS_GOVERNORS:
+				table = String.format("%s " + //
+								"INNER JOIN %s USING (%s) " + //
+								"INNER JOIN %s USING (%s) " + //
+								"INNER JOIN %s USING (%s) " + //
+								"LEFT JOIN %s USING (%s)", //
+						"${lexunits.table}", //
+						"${lexunits_governors.table}", "${lexunits.luid}", //
+						"${governors.table}", "${governors.governorid}", //
+						"${words.table}", "${words.fnwordid}", //
+						"${wnwords.table}", "${wnwords.wordid}" //
+						);
 				break;
 
 			case GOVERNORS_ANNOSETS:
