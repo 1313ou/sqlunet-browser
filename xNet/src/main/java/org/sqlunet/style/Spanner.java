@@ -122,7 +122,7 @@ public class Spanner
 	@SuppressWarnings("unchecked")
 	static void setSpan(@NonNull @SuppressWarnings("TypeMayBeWeakened") final SpannableStringBuilder sb, final int from, final int to, @Nullable final Object spans)
 	{
-		if (spans != null && from != to)
+		if (spans != null && to - from > 0)
 		{
 			if (spans instanceof Object[])
 			{
@@ -159,10 +159,13 @@ public class Spanner
 	 */
 	static public void setSpan(@NonNull final SpannableStringBuilder sb, final int from, final int to, @SuppressWarnings("SameParameterValue") final long flags, @NonNull final SpanFactory... factories)
 	{
-		for (final SpanFactory spanFactory : factories)
+		if (to - from > 0)
 		{
-			final Object spans = spanFactory.make(flags);
-			Spanner.setSpan(sb, from, to, spans);
+			for (final SpanFactory spanFactory : factories)
+			{
+				final Object spans = spanFactory.make(flags);
+				Spanner.setSpan(sb, from, to, spans);
+			}
 		}
 	}
 
