@@ -37,7 +37,7 @@ class SqLiteDialect
 					"FROM ${rolesets.table} " + //
 					"INNER JOIN ${roles.table} USING (${rolesets.rolesetid}) " + //
 					"LEFT JOIN ${funcs.table} USING (${funcs.funcid}) " + //
-					"LEFT JOIN ${thetas.table} USING (${thetas.theta}) " + //
+					"LEFT JOIN ${thetas.table} USING (${thetas.thetaid}) " + //
 					"WHERE ${rolesets.rolesetid} = ? " + //
 					"ORDER BY ${argtypes.argtypeid};";
 
@@ -54,14 +54,14 @@ class SqLiteDialect
 					"INNER JOIN ${examples.table} AS ${as_examples} USING (${rolesets.rolesetid}) " + //
 					"LEFT JOIN ${rels.table} AS ${as_relations} USING (${examples.exampleid}) " + //
 					"LEFT JOIN ${args.table} AS ${as_args} USING (${examples.exampleid}) " + //
-					"LEFT JOIN ${funcs.table} AS ${as_funcs} ON (${as_args}.${funcs.func} = ${as_funcs}.${funcs.func}) " + //
-					"LEFT JOIN ${aspects.table} USING (${aspects.aspect}) " + //
-					"LEFT JOIN ${forms.table} USING (${forms.form}) " + //
-					"LEFT JOIN ${tenses.table} USING (${tenses.tense}) " + //
-					"LEFT JOIN ${voices.table} USING (${voices.voice}) " + //
-					"LEFT JOIN ${persons.table} USING (${persons.person}) " + //
+					"LEFT JOIN ${funcs.table} AS ${as_funcs} USING (${funcs.funcid}) " + //
+					"LEFT JOIN ${aspects.table} USING (${aspects.aspectid}) " + //
+					"LEFT JOIN ${forms.table} USING (${forms.formid}) " + //
+					"LEFT JOIN ${tenses.table} USING (${tenses.tenseid}) " + //
+					"LEFT JOIN ${voices.table} USING (${voices.voiceid}) " + //
+					"LEFT JOIN ${persons.table} USING (${persons.personid}) " + //
 					"LEFT JOIN ${roles.table} USING (${rolesets.rolesetid},${args.argtypeid}) " + //
-					"LEFT JOIN ${thetas.table} USING (${thetas.theta}) " + //
+					"LEFT JOIN ${thetas.table} USING (${thetas.thetaid}) " + //
 					"WHERE ${rolesets.rolesetid} = ? " + //
 					"GROUP BY ${as_examples}.${examples.exampleid} " + //
 					"ORDER BY ${as_examples}.${examples.exampleid},${args.argtypeid};";
