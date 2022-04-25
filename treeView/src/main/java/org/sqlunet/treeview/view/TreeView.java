@@ -69,7 +69,7 @@ NestedScrollView/ScrollView2D
  */
 public class TreeView
 {
-	// private static final String TAG = "TreeView";
+	private static final String TAG = "TreeView";
 
 	static private final String NODES_PATH_SEPARATOR = ";";
 
@@ -693,9 +693,9 @@ public class TreeView
 		final ViewGroup childrenView = controller.getChildrenView();
 		if (childrenView == null)
 		{
-			// Log.e(TAG, "Node to expand has no view " + node);
-			// return;
-			throw new RuntimeException("Node to expand has no children view " + node);
+			Log.e(TAG, "Node to expand has no view " + node);
+			return null;
+			//throw new RuntimeException("Node to expand has no children view " + node);
 		}
 
 		// clear all children views
