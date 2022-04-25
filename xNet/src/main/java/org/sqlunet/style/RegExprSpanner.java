@@ -148,10 +148,12 @@ public class RegExprSpanner extends Spanner
 					// Log.d(SpanReplacer.TAG, '"' + matcher.group(i + 1) + '"');
 					final int start = from + matcher.start(i + 1);
 					final int end = from + matcher.end(i + 1);
-
-					// span
-					final Object startSpans = this.spanFactories[i].make(flags);
-					Spanner.applySpans(sb, start, end, startSpans);
+					if (end - start > 0)
+					{
+						// span
+						final Object startSpans = this.spanFactories[i].make(flags);
+						Spanner.applySpans(sb, start, end, startSpans);
+					}
 				}
 			}
 		}
