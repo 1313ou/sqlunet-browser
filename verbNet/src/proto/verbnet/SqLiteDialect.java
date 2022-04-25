@@ -24,7 +24,7 @@ class SqLiteDialect
 			"SELECT ${wnwords.wordid}, (${wnsynsets.synsetid} IS NULL) AS ${nullsynset}, ${wnsynsets.synsetid}, ${wnsynsets.definition}, ${wnsynsets.domainid}, ${classes.classid}, ${classes.class}, ${classes.classtag} " + //
 					"FROM ${wnwords.table} AS ${as_words} " + //
 					"INNER JOIN ${words.table} USING (${wnwords.wordid}) " + //
-					"LEFT JOIN ${members_senses.table} USING (${words.vnwordid}) " + //
+					"LEFT JOIN ${members_senses.table} USING (${words.vnwordid},${wnwords.wordid}) " + //
 					"LEFT JOIN ${wnsynsets.table} USING (${wnsynsets.synsetid}) " + //
 					"LEFT JOIN ${classes.table} USING (${classes.classid}) " + //
 					"WHERE ${wnsynsets.posid} = 'v' AND ${as_words}.${wnwords.word} = ? " + //
@@ -35,7 +35,7 @@ class SqLiteDialect
 			"SELECT ${classes.classid}, ${classes.class}, (${wnsynsets.synsetid} IS NULL) AS ${nullsynset}, ${wnsynsets.definition}, ${members_senses.sensenum}, ${members_senses.sensekey}, ${members_senses.quality}, GROUP_CONCAT(${groupings.grouping}, '|') AS ${groupings} " + //
 					"FROM ${wnwords.table} " + //
 					"INNER JOIN ${words.table} USING (${wnwords.wordid}) " + //
-					"INNER JOIN ${members_senses.table} USING (${words.vnwordid}) " + //
+					"INNER JOIN ${members_senses.table} USING (${words.vnwordid},${wnwords.wordid}) " + //
 					"LEFT JOIN ${classes.table} USING (${classes.classid}) " + //
 					"LEFT JOIN ${members_groupings.table} USING (${classes.classid}, ${words.vnwordid}) " + //
 					"LEFT JOIN ${groupings.table} USING (${groupings.groupingid}) " + //
@@ -55,7 +55,7 @@ class SqLiteDialect
 			"SELECT ${roles.roleid}, ${roletypes.roletypeid}, ${roletypes.roletype}, ${restrs.restrs}, ${classes.classid}, (${wnsynsets.synsetid} IS NULL) AS ${nullsynset}, ${wnwords.wordid}, ${wnsynsets.synsetid}, ${members_senses.quality} " + //
 					"FROM ${wnwords.table} " + //
 					"INNER JOIN ${words.table} USING (${wnwords.wordid}) " + //
-					"LEFT JOIN ${members_senses.table} USING (${words.vnwordid}) " + //
+					"LEFT JOIN ${members_senses.table} USING (${words.vnwordid},${wnwords.wordid}) " + //
 					"INNER JOIN ${roles.table} USING (${classes.classid}) " + //
 					"INNER JOIN ${roletypes.table} USING (${roletypes.roletypeid}) " + //
 					"LEFT JOIN ${restrs.table} USING (${restrs.restrsid}) " + //
@@ -79,7 +79,7 @@ class SqLiteDialect
 			"SELECT ${frames.frameid}, ${frames.number}, ${frames.xtag}, ${framenames.framename}, ${framesubnames.framesubname}, ${syntaxes.syntax}, ${semantics.semantics}, GROUP_CONCAT(${examples.example} , '|') AS ${sampleset},${classes.classid},(${wnsynsets.synsetid} IS NULL) AS ${nullsynset},${wnsynsets.synsetid},${wnwords.wordid},${members_senses.quality} " + //
 					"FROM ${wnwords.table} " + //
 					"INNER JOIN ${words.table} USING (${wnwords.wordid}) " + //
-					"LEFT JOIN ${members_senses.table} USING (${words.vnwordid}) " + //
+					"LEFT JOIN ${members_senses.table} USING (${words.vnwordid},${wnwords.wordid}) " + //
 					"INNER JOIN ${classes_frames.table} USING (${classes.classid}) " + //
 					"INNER JOIN ${frames.table} USING (${frames.frameid}) " + //
 					"LEFT JOIN ${framenames.table} USING (${framenames.framenameid}) " + //
