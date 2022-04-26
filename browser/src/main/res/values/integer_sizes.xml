@@ -4,15 +4,20 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<integer name="size_sqlunet_db" tools:keep="@integer/size_sqlunet_db">539594752</integer>
-	<integer name="size_sqlunet_db_zip" tools:keep="@integer/size_sqlunet_db_zip">181779860</integer>
-	<integer name="size_sqlunet_sql_zip" tools:keep="@integer/size_sqlunet_sql_zip">119924605</integer>
-	<integer name="size_db_working_total">720359424</integer>
-	<integer name="size_searchtext" tools:keep="@integer/size_searchtext">180764672</integer>
+	<integer name='size_db_working_total' tools:keep='@string/size_db_working_total'>784019456</integer>
+	<integer name='size_core' tools:keep='@string/size_core'>324231168</integer>
+	<integer name='size_indexes' tools:keep='@string/size_indexes'>271429632</integer>
+	<integer name='size_searchtext' tools:keep='@string/size_searchtext'>188334080</integer>
+	<integer name='size_sqlunet_db' tools:keep='@string/size_sqlunet_db'>595705856</integer> <!-- sqlunet.db -->
+	<integer name='size_sqlunet_db_zip' tools:keep='@string/size_sqlunet_db_zip'>236079325</integer> <!-- sqlunet.db.zip -->
 
-	<integer name="size_searchtext_wn">34979840</integer>
-	<integer name="size_searchtext_vn">42831872</integer>
-	<integer name="size_searchtext_pb">42831872</integer>
-	<integer name="size_searchtext_fn">121630720</integer>
+	<integer name="size_searchtext_wn" tools:keep='@string/size_searchtext_wn'>60219392</integer>
+	<integer name='size_searchtext_words' tools:keep='@string/size_searchtext_words'>9781248</integer>
+	<integer name='size_searchtext_samples' tools:keep='@string/size_searchtext_samples'>12234752</integer>
+	<integer name='size_searchtext_synsets' tools:keep='@string/size_searchtext_synsets'>38203392</integer>
+
+	<integer name='size_searchtext_vn' tools:keep='@string/size_searchtext_vn'>344064</integer>
+	<integer name='size_searchtext_pb' tools:keep='@string/size_searchtext_pb'>6660096</integer>
+	<integer name='size_searchtext_fn' tools:keep='@string/size_searchtext_fn'>121110528</integer>
 
 </resources>
