@@ -101,9 +101,10 @@ def query(sql, consume):
 	consume(rows)
 	cursor.close()
 
-db=sys.argv[1]
-dbf=sys.argv[2]
-dbfz=sys.argv[3]
+where="data2/"
+db=where+sys.argv[1]
+dbf=where+sys.argv[2]
+dbfz=where+sys.argv[3]
 extra=sys.argv[4:]
 connection = sqlite3.connect(db)
 
@@ -141,8 +142,8 @@ for ts in extra:
 	print(extra)
 	print(sql)
 	query(sql_total_fts_extra_table_size % extra, lambda r: outRes(r,
-		"<integer name='size_%s_searchtext' tools:keep='@string/size_%s_searchtext'>%%s</integer>" % (ts,ts),
-		"<string name='hr_size_%s_searchtext' tools:keep='@string/hr_size_%s_searchtext'>%%s</string>" % (ts,ts),))
+		"<integer name='size_searchtext_%s' tools:keep='@string/size_searchtext_%s'>%%s</integer>" % (ts,ts),
+		"<string name='hr_size_searchtext_%s' tools:keep='@string/hr_size_searchtext_%s'>%%s</string>" % (ts,ts),))
 
 filesizeRes(dbf,
 	"<integer name='size_sqlunet_db' tools:keep='@string/size_sqlunet_db'>%s</integer> <!-- %s -->",
