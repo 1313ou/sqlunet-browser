@@ -82,8 +82,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 
 			// J O I N S
 
-			/*
-			case LEXUNITS_OR_FRAMES:
+			case LEXUNITS_OR_FRAMES_FN:
 				table = String.format("(" + // 1
 								"SELECT %s + %s AS %s, %s AS %s, %s AS %s, %s AS %s, %s AS %s, %s AS %s, %s AS %s, %s AS %s, 0 AS %s " + // 2
 								"FROM %s " + // 3
@@ -103,7 +102,6 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 						"${frames.frameid}", "${_id}", "${frames.frameid}", "${fnid}", "${words.fnwordid}", "${words.wordid}", "${frames.frame}", "${words.word}", "${frames.frame}", "${name}", "${frames.frame}", "${frames.frame}", "${frames.frameid}", "${frames.frameid}", "${isframe}", // 8
 						"${frames.table}"); // 9
 				break;
-			*/
 
 			case LEXUNITS_OR_FRAMES:
 				table = String.format("(" + // 1
@@ -323,8 +321,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 						"${layers.rank}", "${layers.layerid}", "${labels.start}", "${labels.end}"); // 18
 				break;
 
-			/*
-			case WORDS_LEXUNITS_FRAMES:
+			case WORDS_LEXUNITS_FRAMES_FN:
 				table = String.format("%s " + // 1
 								"INNER JOIN %s USING (%s) " + // 3
 								"INNER JOIN %s AS %s USING (%s) " + // 4
@@ -341,7 +338,6 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 						"${fes.table}", "${as_fes}", "${as_frames}", "${frames.frameid}", "${as_fes}", "${frames.frameid}", "${lexunits.incorporatedfetypeid}", "${as_fes}", "${fes.fetypeid}"); // 8
 				groupBy = "${lexunits.luid}";
 				break;
-			*/
 
 			case WORDS_LEXUNITS_FRAMES:
 				table = String.format("%s " + // 1
@@ -424,8 +420,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 						"${labelitypes.table}", "${labelitypes.labelitypeid}");
 				break;
 
-			/*
-			case LEXUNITS_GOVERNORS:
+			case LEXUNITS_GOVERNORS_FN:
 				table = String.format("%s " + //
 								"INNER JOIN %s USING (%s) " + //
 								"INNER JOIN %s USING (%s) " + //
@@ -435,7 +430,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 						"${governors.table}", "${governors.governorid}", //
 						"${words.table}", "${words.fnwordid}");
 				break;
-			*/
+
 			case LEXUNITS_GOVERNORS:
 				table = String.format("%s " + //
 								"INNER JOIN %s USING (%s) " + //
@@ -594,12 +589,12 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 	{
 		LEXUNITS, FRAMES, ANNOSETS, SENTENCES, WORDS,//
 		LEXUNIT1, FRAME1, SENTENCE1, ANNOSET1, //
-		LEXUNITS_OR_FRAMES, //
+		LEXUNITS_OR_FRAMES, LEXUNITS_OR_FRAMES_FN, //
 		FRAMES_X_BY_FRAME, FRAMES_RELATED, //
 		FRAMES_FES, FRAMES_FES_BY_FE, //
-		WORDS_LEXUNITS_FRAMES, LEXUNITS_X_BY_LEXUNIT, //
+		WORDS_LEXUNITS_FRAMES, WORDS_LEXUNITS_FRAMES_FN, LEXUNITS_X_BY_LEXUNIT, //
 		LEXUNITS_SENTENCES, LEXUNITS_SENTENCES_BY_SENTENCE, LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE, LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS, //
-		LEXUNITS_GOVERNORS, GOVERNORS_ANNOSETS, //
+		LEXUNITS_GOVERNORS, LEXUNITS_GOVERNORS_FN, GOVERNORS_ANNOSETS, //
 		LEXUNITS_REALIZATIONS, LEXUNITS_REALIZATIONS_BY_REALIZATION, //
 		LEXUNITS_GROUPREALIZATIONS, LEXUNITS_GROUPREALIZATIONS_BY_PATTERN, SENTENCES_LAYERS_X, ANNOSETS_LAYERS_X, PATTERNS_LAYERS_X, VALENCEUNITS_LAYERS_X, //
 		PATTERNS_SENTENCES, VALENCEUNITS_SENTENCES, //

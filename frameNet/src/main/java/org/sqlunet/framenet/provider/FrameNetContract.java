@@ -69,6 +69,8 @@ public class FrameNetContract
 	{
 		static public final String TABLE = "fnlexunits_or_fnframe";
 		static public final String CONTENT_URI_TABLE = LexUnits_or_Frames.TABLE;
+		static public final String TABLE_FN = "fnlexunits_or_fnframe_fn";
+		static public final String CONTENT_URI_TABLE_FN = LexUnits_or_Frames.TABLE_FN;
 		static public final String ID = V._ID;
 		static public final String FNID = V.FNID;
 		static public final String FNWORDID = V.FNWORDID;
@@ -209,6 +211,8 @@ public class FrameNetContract
 	{
 		static public final String TABLE = "words_fnlexunits";
 		static public final String CONTENT_URI_TABLE = Words_LexUnits_Frames.TABLE;
+		static public final String TABLE_FN = "words_fnlexunits_fn";
+		static public final String CONTENT_URI_TABLE_FN = Words_LexUnits_Frames.TABLE_FN;
 		static public final String WORDID = V.WORDID;
 		static public final String LUID = V.LUID;
 		static public final String LEXUNIT = V.LEXUNIT;
@@ -291,6 +295,8 @@ public class FrameNetContract
 	{
 		static public final String TABLE = "fnlexunits_fngovernors";
 		static public final String CONTENT_URI_TABLE = LexUnits_Governors.TABLE;
+		static public final String TABLE_FN = "fnlexunits_fngovernors_fn";
+		static public final String CONTENT_URI_TABLE_FN = LexUnits_Governors.TABLE_FN;
 		static public final String LUID = V.LUID;
 		static public final String GOVERNORID = V.GOVERNORID;
 		static public final String GOVERNORTYPE = V.GOVERNORTYPE;

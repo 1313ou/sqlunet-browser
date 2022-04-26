@@ -962,7 +962,7 @@ abstract public class BaseModule extends Module
 	 */
 	void lexUnitsForWordAndPos(final long wordId, @Nullable final Character pos, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(FrameNetProvider.makeUri(Words_LexUnits_Frames.CONTENT_URI_TABLE));
+		final Uri uri = Uri.parse(FrameNetProvider.makeUri(Words_LexUnits_Frames.CONTENT_URI_TABLE_FN));
 		final String[] projection = { //
 				Words_LexUnits_Frames.LUID, //
 				Words_LexUnits_Frames.LEXUNIT, //
@@ -1098,7 +1098,7 @@ abstract public class BaseModule extends Module
 	 */
 	private void governorsForLexUnit(final long luId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(FrameNetProvider.makeUri(LexUnits_Governors.CONTENT_URI_TABLE));
+		final Uri uri = Uri.parse(FrameNetProvider.makeUri(LexUnits_Governors.CONTENT_URI_TABLE_FN));
 		final String[] projection = { //
 				LexUnits_Governors.LUID, //
 				LexUnits_Governors.GOVERNORID, //

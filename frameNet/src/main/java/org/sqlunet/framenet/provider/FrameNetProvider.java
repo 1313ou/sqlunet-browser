@@ -77,6 +77,7 @@ public class FrameNetProvider extends BaseProvider
 		FrameNetProvider.uriMatcher.addURI(AUTHORITY, LexUnits.TABLE, FrameNetDispatcher.LEXUNITS);
 		FrameNetProvider.uriMatcher.addURI(AUTHORITY, LexUnits_X.TABLE_BY_LEXUNIT, FrameNetDispatcher.LEXUNITS_X_BY_LEXUNIT);
 		FrameNetProvider.uriMatcher.addURI(AUTHORITY, LexUnits_or_Frames.TABLE, FrameNetDispatcher.LEXUNITS_OR_FRAMES);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, LexUnits_or_Frames.TABLE_FN, FrameNetDispatcher.LEXUNITS_OR_FRAMES_FN);
 		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Frames.TABLE, FrameNetDispatcher.FRAME);
 		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Frames.TABLE, FrameNetDispatcher.FRAMES);
 		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Frames_X.TABLE_BY_FRAME, FrameNetDispatcher.FRAMES_X_BY_FRAME);
@@ -90,6 +91,7 @@ public class FrameNetProvider extends BaseProvider
 		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Patterns_Layers_X.TABLE, FrameNetDispatcher.PATTERNS_LAYERS_X);
 		FrameNetProvider.uriMatcher.addURI(AUTHORITY, ValenceUnits_Layers_X.TABLE, FrameNetDispatcher.VALENCEUNITS_LAYERS_X);
 		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Words_LexUnits_Frames.TABLE, FrameNetDispatcher.WORDS_LEXUNITS_FRAMES);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Words_LexUnits_Frames.TABLE_FN, FrameNetDispatcher.WORDS_LEXUNITS_FRAMES_FN);
 		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Frames_FEs.TABLE, FrameNetDispatcher.FRAMES_FES);
 		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Frames_FEs.TABLE_BY_FE, FrameNetDispatcher.FRAMES_FES_BY_FE);
 		FrameNetProvider.uriMatcher.addURI(AUTHORITY, LexUnits_Sentences.TABLE, FrameNetDispatcher.LEXUNITS_SENTENCES);
@@ -97,6 +99,7 @@ public class FrameNetProvider extends BaseProvider
 		FrameNetProvider.uriMatcher.addURI(AUTHORITY, LexUnits_Sentences_AnnoSets_Layers_Labels.TABLE, FrameNetDispatcher.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS);
 		FrameNetProvider.uriMatcher.addURI(AUTHORITY, LexUnits_Sentences_AnnoSets_Layers_Labels.TABLE_BY_SENTENCE, FrameNetDispatcher.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE);
 		FrameNetProvider.uriMatcher.addURI(AUTHORITY, LexUnits_Governors.TABLE, FrameNetDispatcher.LEXUNITS_GOVERNORS);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, LexUnits_Governors.TABLE_FN, FrameNetDispatcher.LEXUNITS_GOVERNORS_FN);
 		FrameNetProvider.uriMatcher.addURI(AUTHORITY, LexUnits_FERealizations_ValenceUnits.TABLE, FrameNetDispatcher.LEXUNITS_REALIZATIONS);
 		FrameNetProvider.uriMatcher.addURI(AUTHORITY, LexUnits_FERealizations_ValenceUnits.TABLE_BY_REALIZATION, FrameNetDispatcher.LEXUNITS_REALIZATIONS_BY_REALIZATION);
 		FrameNetProvider.uriMatcher.addURI(AUTHORITY, LexUnits_FEGroupRealizations_Patterns_ValenceUnits.TABLE, FrameNetDispatcher.LEXUNITS_GROUPREALIZATIONS);
@@ -162,6 +165,8 @@ public class FrameNetProvider extends BaseProvider
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + LexUnits_X.TABLE_BY_LEXUNIT;
 			case FrameNetDispatcher.LEXUNITS_OR_FRAMES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + LexUnits_or_Frames.TABLE;
+			case FrameNetDispatcher.LEXUNITS_OR_FRAMES_FN:
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + LexUnits_or_Frames.TABLE_FN;
 			case FrameNetDispatcher.FRAME:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Frames.TABLE;
 			case FrameNetDispatcher.FRAMES:
@@ -188,12 +193,16 @@ public class FrameNetProvider extends BaseProvider
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + ValenceUnits_Layers_X.TABLE;
 			case FrameNetDispatcher.WORDS_LEXUNITS_FRAMES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_LexUnits_Frames.TABLE;
+			case FrameNetDispatcher.WORDS_LEXUNITS_FRAMES_FN:
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_LexUnits_Frames.TABLE_FN;
 			case FrameNetDispatcher.FRAMES_FES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Frames_FEs.TABLE;
 			case FrameNetDispatcher.LEXUNITS_SENTENCES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + LexUnits_Sentences.TABLE;
 			case FrameNetDispatcher.LEXUNITS_GOVERNORS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + LexUnits_Governors.TABLE;
+			case FrameNetDispatcher.LEXUNITS_GOVERNORS_FN:
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + LexUnits_Governors.TABLE_FN;
 			case FrameNetDispatcher.LEXUNITS_REALIZATIONS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + LexUnits_FERealizations_ValenceUnits.TABLE;
 			case FrameNetDispatcher.LEXUNITS_REALIZATIONS_BY_REALIZATION:

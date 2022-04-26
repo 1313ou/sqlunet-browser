@@ -300,7 +300,7 @@ public class SelectorsFragment extends ListFragment
 	private void load()
 	{
 		// load the contents
-		final Uri uri = Uri.parse(FrameNetProvider.makeUri(LexUnits_or_Frames.CONTENT_URI_TABLE));
+		final Uri uri = Uri.parse(FrameNetProvider.makeUri(LexUnits_or_Frames.CONTENT_URI_TABLE_FN));
 		final String[] projection = { //
 				LexUnits_or_Frames.ID, //
 				LexUnits_or_Frames.FNID, //

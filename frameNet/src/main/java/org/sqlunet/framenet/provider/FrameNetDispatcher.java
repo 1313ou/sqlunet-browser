@@ -26,7 +26,9 @@ public class FrameNetDispatcher
 
 	// join codes
 	static final int WORDS_LEXUNITS_FRAMES = 100;
-	static final int LEXUNITS_OR_FRAMES = 101;
+	static final int WORDS_LEXUNITS_FRAMES_FN = 101;
+	static final int LEXUNITS_OR_FRAMES = 110;
+	static final int LEXUNITS_OR_FRAMES_FN = 111;
 	static final int FRAMES_FES = 200;
 	static final int FRAMES_FES_BY_FE = 201;
 	static final int LEXUNITS_SENTENCES = 300;
@@ -34,6 +36,7 @@ public class FrameNetDispatcher
 	static final int LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS = 310;
 	static final int LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE = 311;
 	static final int LEXUNITS_GOVERNORS = 410;
+	static final int LEXUNITS_GOVERNORS_FN = 411;
 	static final int LEXUNITS_REALIZATIONS = 420;
 	static final int LEXUNITS_REALIZATIONS_BY_REALIZATION = 421;
 	static final int LEXUNITS_GROUPREALIZATIONS = 430;
@@ -156,6 +159,10 @@ public class FrameNetDispatcher
 				table = Q.LEXUNITS_OR_FRAMES.TABLE;
 				break;
 
+			case FrameNetDispatcher.LEXUNITS_OR_FRAMES_FN:
+				table = Q.LEXUNITS_OR_FRAMES_FN.TABLE;
+				break;
+
 			case FrameNetDispatcher.FRAMES_X_BY_FRAME:
 				table = Q.FRAMES_X_BY_FRAME.TABLE;
 				groupBy = V.FRAMEID;
@@ -190,6 +197,10 @@ public class FrameNetDispatcher
 				table = Q.WORDS_LEXUNITS_FRAMES.TABLE;
 				break;
 
+			case FrameNetDispatcher.WORDS_LEXUNITS_FRAMES_FN:
+				table = Q.WORDS_LEXUNITS_FRAMES_FN.TABLE;
+				break;
+
 			case FrameNetDispatcher.FRAMES_FES_BY_FE:
 				table = Q.FRAMES_FES_BY_FE.TABLE;
 				groupBy = V.FEID;
@@ -219,6 +230,10 @@ public class FrameNetDispatcher
 
 			case FrameNetDispatcher.LEXUNITS_GOVERNORS:
 				table = Q.LEXUNITS_GOVERNORS.TABLE;
+				break;
+
+			case FrameNetDispatcher.LEXUNITS_GOVERNORS_FN:
+				table = Q.LEXUNITS_GOVERNORS_FN.TABLE;
 				break;
 
 			case FrameNetDispatcher.GOVERNORS_ANNOSETS:
