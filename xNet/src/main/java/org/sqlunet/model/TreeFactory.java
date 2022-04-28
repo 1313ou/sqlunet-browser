@@ -7,7 +7,6 @@ package org.sqlunet.model;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.SpannableStringBuilder;
-import android.util.Log;
 
 import org.sqlunet.treeview.control.ColdQueryController;
 import org.sqlunet.treeview.control.CompositeValue;

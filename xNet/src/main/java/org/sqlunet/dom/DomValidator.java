@@ -135,7 +135,7 @@ public class DomValidator
 		final SchemaFactory schemaFactory = new mf.org.apache.xerces.jaxp.validation.XMLSchemaFactory();
 		final Schema schema = schemaFactory.newSchema(xsdUrl);
 		final Validator validator = schema.newValidator();
-		Log.i(TAG, "validator " + xsdUrl.toString());
+		Log.i(TAG, "validator " + xsdUrl);
 		return validator;
 	}
 

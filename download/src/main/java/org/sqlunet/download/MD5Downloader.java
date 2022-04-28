@@ -60,7 +60,7 @@ class MD5Downloader extends Task<String, Void, String>
 		{
 			// connect
 			final URL url = new URL(md5Arg);
-			Log.d(MD5Downloader.TAG, "Get " + url.toString());
+			Log.d(MD5Downloader.TAG, "Get " + url);
 			final URLConnection connection = url.openConnection();
 			connection.connect();
 

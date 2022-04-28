@@ -2,10 +2,7 @@ package org.sqlunet.verbnet.provider;
 
 import android.app.SearchManager;
 
-import org.junit.Test;
 import org.sqlunet.verbnet.provider.VerbNetDispatcher.Result;
-
-import java.util.Arrays;
 
 public class QueriesLegacy
 {

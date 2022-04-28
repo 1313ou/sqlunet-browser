@@ -4,7 +4,6 @@
 
 package org.sqlunet.propbank.provider;
 
-import android.app.SearchManager;
 import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;

@@ -6,13 +6,12 @@ public class QueriesLegacy
 {
 	public static Result queryLegacy(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
-		Result r = queryLegacyMain(code, uriLast, projection0, selection0, selectionArgs0);
-		return r;
+		return queryLegacyMain(code, uriLast, projection0, selection0, selectionArgs0);
 	}
 
 	public static Result queryLegacyMain(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
-		String table = null;
+		String table;
 		String[] projection = projection0;
 		String selection = selection0;
 		String[] selectionArgs = selectionArgs0;
@@ -51,7 +50,7 @@ public class QueriesLegacy
 				table = "words AS " + XSqlUNetContract.WORD + ' ' + //
 						"LEFT JOIN senses AS " + XSqlUNetContract.SENSE + " USING (wordid) " + //
 						"LEFT JOIN synsets AS " + XSqlUNetContract.SYNSET + " USING (synsetid) " + //
-						"LEFT JOIN poses AS " + XSqlUNetContract.POSID + " USING (posid) " + //
+						"LEFT JOIN poses AS " + XSqlUNetContract.POS + " USING (posid) " + //
 						"LEFT JOIN casedwords USING (wordid,casedwordid) " + //
 						"LEFT JOIN domains USING (domainid) " + //
 						"LEFT JOIN fn_words USING (wordid) " + //
@@ -64,7 +63,7 @@ public class QueriesLegacy
 				table = "words AS " + XSqlUNetContract.WORD + ' ' + //
 						"LEFT JOIN senses AS " + XSqlUNetContract.SENSE + " USING (wordid) " + //
 						"LEFT JOIN synsets AS " + XSqlUNetContract.SYNSET + " USING (synsetid) " + //
-						"LEFT JOIN poses AS " + XSqlUNetContract.POSID + " USING (posid) " + //
+						"LEFT JOIN poses AS " + XSqlUNetContract.POS + " USING (posid) " + //
 						"LEFT JOIN casedwords USING (wordid,casedwordid) " + //
 						"LEFT JOIN domains USING (domainid) " + //
 						"LEFT JOIN vn_words USING (wordid) " + //

@@ -5,7 +5,6 @@
 package org.sqlunet.browser;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,6 @@ import org.sqlunet.treeview.view.TreeView;
 import org.sqlunet.xnet.R;
 
 import androidx.annotation.DrawableRes;
-import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -96,10 +94,10 @@ abstract public class TreeFragment extends Fragment
 		treeContainer.addView(this.treeView.makeView());
 
 		// saved state
-		if (savedInstanceState != null)
-		{
+		//if (savedInstanceState != null)
+		//{
 			// Log.d(TAG, "Restore instance state " + this);
-		}
+		//}
 
 		return view;
 	}

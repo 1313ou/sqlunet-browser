@@ -12,7 +12,7 @@ public class QueriesLegacy
 
 	public static Result queryLegacyMain(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
-		String table = null;
+		String table;
 		String[] projection = projection0;
 		String selection = selection0;
 		String[] selectionArgs = selectionArgs0;

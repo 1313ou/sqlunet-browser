@@ -1,9 +1,6 @@
 package org.sqlunet.wordnet.provider;
 
-import android.app.SearchManager;
-
 import org.junit.Test;
-import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.wordnet.provider.WordNetDispatcher.Factory;
 import org.sqlunet.wordnet.provider.WordNetDispatcher.Result;
 
@@ -62,18 +59,18 @@ public class QueriesUnitTest
 	public void queryLegacyAgainstProvider(int code, @NonNull final String uriLast, final String[] projection, @Nullable final String selection, final String[] selectionArgs, final String sortOrder)
 	{
 		Result r1 = QueriesLegacy.queryLegacy(code, uriLast, projection, selection, selectionArgs, sortOrder, factory);
-		Result r2 = queryProvider(code, uriLast, projection, selection, selectionArgs, sortOrder, factory);
+		Result r2 = queryProvider(code, uriLast, projection, selection, selectionArgs, sortOrder);
 		check(code, r1, r2);
 	}
 
 	public void queryNewAgainstProvider(int code, @NonNull final String uriLast, final String[] projection, @Nullable final String selection, final String[] selectionArgs, final String sortOrder)
 	{
 		Result r1 = QueriesNew.queryNew(code, uriLast, projection, selection, selectionArgs, sortOrder, factory);
-		Result r2 = queryProvider(code, uriLast, projection, selection, selectionArgs, sortOrder, factory);
+		Result r2 = queryProvider(code, uriLast, projection, selection, selectionArgs, sortOrder);
 		check(code, r1, r2);
 	}
 
-	public Result queryProvider(int code, @NonNull final String uriLast, final String[] projection0, @Nullable final String selection0, final String[] selectionArgs0, final String sortOrder0, final Factory subqueryFactory)
+	public Result queryProvider(int code, @NonNull final String uriLast, final String[] projection0, @Nullable final String selection0, final String[] selectionArgs0, final String sortOrder0)
 	{
 		Result r = WordNetDispatcher.queryMain(code, uriLast, projection0, selection0, selectionArgs0);
 		if (r == null)

@@ -283,7 +283,7 @@ public class DownloadService extends JobIntentService
 		{
 			// connection
 			final URL url = new URL(this.fromUrl);
-			Log.d(TAG, "Get " + url.toString());
+			Log.d(TAG, "Get " + url);
 			URLConnection connection = url.openConnection();
 			connection.setConnectTimeout(TIMEOUT_S * 1000);
 

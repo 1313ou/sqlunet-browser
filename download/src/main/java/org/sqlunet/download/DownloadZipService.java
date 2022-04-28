@@ -74,7 +74,7 @@ public class DownloadZipService extends DownloadService
 		{
 			// connection
 			final URL url = new URL(this.fromUrl);
-			Log.d(TAG, "Get " + url.toString());
+			Log.d(TAG, "Get " + url);
 			URLConnection connection = url.openConnection();
 			connection.setConnectTimeout(TIMEOUT_S * 1000);
 			// connection.addRequestProperty("If-None-Match", "*"); // returns HTTP 304 Not Modified

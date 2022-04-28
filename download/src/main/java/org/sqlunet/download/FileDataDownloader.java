@@ -60,7 +60,7 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 		{
 			// url
 			final URL url = new URL(urlString);
-			Log.d(TAG, "Get " + url.toString());
+			Log.d(TAG, "Get " + url);
 
 			// connection
 			URLConnection connection = url.openConnection();
@@ -238,7 +238,7 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 			// result
 			intent.putExtra(UpdateFragment.UP_SOURCE_ARG, downloadSourceUrl);
 			intent.putExtra(UpdateFragment.UP_DATE_ARG, srcDate == null ? "n/a" : srcDate.toString());
-			intent.putExtra(UpdateFragment.UP_SIZE_ARG, srcSize == null ? "n/a" : srcSize.toString() + " bytes");
+			intent.putExtra(UpdateFragment.UP_SIZE_ARG, srcSize == null ? "n/a" : srcSize + " bytes");
 			intent.putExtra(UpdateFragment.UP_ETAG_ARG, srcEtag == null ? "n/a" : srcEtag);
 			intent.putExtra(UpdateFragment.UP_VERSION_ARG, srcVersion == null ? "n/a" : srcVersion);
 			intent.putExtra(UpdateFragment.UP_STATIC_VERSION_ARG, srcStaticVersion == null ? "n/a" : srcStaticVersion);
@@ -246,10 +246,10 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 			intent.putExtra(UpdateFragment.DOWN_NAME_ARG, name);
 			intent.putExtra(UpdateFragment.DOWN_TARGET_ARG, cache + '/' + name);
 			intent.putExtra(UpdateFragment.DOWN_DATE_ARG, downDate == null ? "n/a" : downDate.toString());
-			intent.putExtra(UpdateFragment.DOWN_SIZE_ARG, downSize == null ? "n/a" : downSize.toString() + " bytes");
+			intent.putExtra(UpdateFragment.DOWN_SIZE_ARG, downSize == null ? "n/a" : downSize + " bytes");
 			intent.putExtra(UpdateFragment.DOWN_SOURCE_ARG, downSource);
 			intent.putExtra(UpdateFragment.DOWN_SOURCE_DATE_ARG, downSourceDate == null ? "n/a" : downSourceDate.toString());
-			intent.putExtra(UpdateFragment.DOWN_SOURCE_SIZE_ARG, downSourceSize == null ? "n/a" : downSourceSize.toString() + " bytes");
+			intent.putExtra(UpdateFragment.DOWN_SOURCE_SIZE_ARG, downSourceSize == null ? "n/a" : downSourceSize + " bytes");
 			intent.putExtra(UpdateFragment.DOWN_SOURCE_ETAG_ARG, downSourceEtag == null ? "n/a" : downSourceEtag);
 			intent.putExtra(UpdateFragment.DOWN_SOURCE_VERSION_ARG, downSourceVersion == null ? "n/a" : downSourceVersion);
 			intent.putExtra(UpdateFragment.DOWN_SOURCE_STATIC_VERSION_ARG, downSourceVersion == null ? "n/a" : downSourceStaticVersion);

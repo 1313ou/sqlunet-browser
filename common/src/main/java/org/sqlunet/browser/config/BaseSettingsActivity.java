@@ -164,7 +164,7 @@ public abstract class BaseSettingsActivity extends AppCompatActivity implements 
 	// U T I L S
 
 	@Override
-	public boolean onPreferenceStartFragment(PreferenceFragmentCompat caller, @NonNull Preference pref)
+	public boolean onPreferenceStartFragment(@NonNull PreferenceFragmentCompat caller, @NonNull Preference pref)
 	{
 		// Instantiate the new Fragment
 		final Bundle args = pref.getExtras();

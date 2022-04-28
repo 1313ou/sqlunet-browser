@@ -1,7 +1,5 @@
 package org.sqlunet.framenet.provider;
 
-import android.app.SearchManager;
-
 import org.junit.Test;
 import org.sqlunet.framenet.provider.FrameNetDispatcher.Result;
 
@@ -12,23 +10,25 @@ public class QueriesUnitTest
 {
 	private final int[] codes = {FrameNetDispatcher.LEXUNIT, FrameNetDispatcher.LEXUNITS, FrameNetDispatcher.LEXUNITS_X_BY_LEXUNIT, FrameNetDispatcher.FRAME, FrameNetDispatcher.FRAMES, FrameNetDispatcher.FRAMES_X_BY_FRAME, FrameNetDispatcher.FRAMES_RELATED, FrameNetDispatcher.SENTENCE, FrameNetDispatcher.SENTENCES, FrameNetDispatcher.ANNOSET, FrameNetDispatcher.ANNOSETS, FrameNetDispatcher.SENTENCES_LAYERS_X, FrameNetDispatcher.ANNOSETS_LAYERS_X, FrameNetDispatcher.PATTERNS_LAYERS_X, FrameNetDispatcher.VALENCEUNITS_LAYERS_X, FrameNetDispatcher.PATTERNS_SENTENCES, FrameNetDispatcher.VALENCEUNITS_SENTENCES, FrameNetDispatcher.GOVERNORS_ANNOSETS, FrameNetDispatcher.WORDS_LEXUNITS_FRAMES, FrameNetDispatcher.LEXUNITS_OR_FRAMES, FrameNetDispatcher.FRAMES_FES, FrameNetDispatcher.FRAMES_FES_BY_FE, FrameNetDispatcher.LEXUNITS_SENTENCES, FrameNetDispatcher.LEXUNITS_SENTENCES_BY_SENTENCE, FrameNetDispatcher.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS, FrameNetDispatcher.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE, FrameNetDispatcher.LEXUNITS_GOVERNORS, FrameNetDispatcher.LEXUNITS_REALIZATIONS, FrameNetDispatcher.LEXUNITS_REALIZATIONS_BY_REALIZATION, FrameNetDispatcher.LEXUNITS_GROUPREALIZATIONS, FrameNetDispatcher.LEXUNITS_GROUPREALIZATIONS_BY_PATTERN, FrameNetDispatcher.LOOKUP_FTS_WORDS, FrameNetDispatcher.LOOKUP_FTS_SENTENCES, FrameNetDispatcher.LOOKUP_FTS_SENTENCES_X, FrameNetDispatcher.LOOKUP_FTS_SENTENCES_X_BY_SENTENCE, FrameNetDispatcher.SUGGEST_WORDS, FrameNetDispatcher.SUGGEST_FTS_WORDS,};
 
+	@SuppressWarnings("FieldCanBeLocal")
 	private final String uriLast = "LAST";
 	private final String[] projection = {"PROJ1", "PROJ2", "PROJ3"};
+	@SuppressWarnings("FieldCanBeLocal")
 	private final String selection = "SEL";
 	private final String[] selectionArgs = {"ARG1", "ARG2", "ARG3"};
+	@SuppressWarnings("FieldCanBeLocal")
 	private final String sortOrder = "SORT";
 
 	@Test
 	public void queriesLegacyAgainstProvider()
 	{
-		for (int i = 0; i < codes.length; i++)
+		for (int code : codes)
 		{
-			int code = codes[i];
 			queriesLegacyAgainstProvider(code, uriLast, projection, selection, selectionArgs, sortOrder);
 		}
 	}
 
-	private void queriesLegacyAgainstProvider(final int code, final String uriLast, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
+	private void queriesLegacyAgainstProvider(final int code, @SuppressWarnings("SameParameterValue") final String uriLast, final String[] projection, @SuppressWarnings("SameParameterValue") final String selection, final String[] selectionArgs, @SuppressWarnings("SameParameterValue") final String sortOrder)
 	{
 		Result r1 = QueriesLegacy.queryLegacy(code, uriLast, projection, selection, selectionArgs);
 		Result r2 = queryProvider(code, uriLast, projection, selection, selectionArgs);

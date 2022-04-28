@@ -4,7 +4,6 @@
 
 package org.sqlunet.view;
 
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 

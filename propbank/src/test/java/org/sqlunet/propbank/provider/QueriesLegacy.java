@@ -2,10 +2,7 @@ package org.sqlunet.propbank.provider;
 
 import android.app.SearchManager;
 
-import org.junit.Test;
 import org.sqlunet.propbank.provider.PropBankDispatcher.Result;
-
-import java.util.Arrays;
 
 public class QueriesLegacy
 {

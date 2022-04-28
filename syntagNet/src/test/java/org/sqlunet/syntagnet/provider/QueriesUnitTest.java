@@ -9,23 +9,25 @@ public class QueriesUnitTest
 {
 	private final int[] codes = {SyntagNetDispatcher.COLLOCATIONS, SyntagNetDispatcher.COLLOCATIONS_X};
 
+	@SuppressWarnings("FieldCanBeLocal")
 	private final String uriLast = "LAST";
 	private final String[] projection = {"PROJ1", "PROJ2", "PROJ3"};
+	@SuppressWarnings("FieldCanBeLocal")
 	private final String selection = "SEL";
 	private final String[] selectionArgs = {"ARG1", "ARG2", "ARG3"};
+	@SuppressWarnings("FieldCanBeLocal")
 	private final String sortOrder = "SORT";
 
 	@Test
 	public void queriesLegacyAgainstProvider()
 	{
-		for (int i = 0; i < codes.length; i++)
+		for (int code : codes)
 		{
-			int code = codes[i];
 			queriesLegacyAgainstProvider(code, uriLast, projection, selection, selectionArgs, sortOrder);
 		}
 	}
 
-	private void queriesLegacyAgainstProvider(final int code, final String uriLast, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
+	private void queriesLegacyAgainstProvider(final int code, @SuppressWarnings("SameParameterValue") final String uriLast, final String[] projection, @SuppressWarnings("SameParameterValue") final String selection, final String[] selectionArgs, @SuppressWarnings("SameParameterValue") final String sortOrder)
 	{
 		Result r1 = QueriesLegacy.queryLegacy(code, uriLast, projection, selection, selectionArgs);
 		Result r2 = queryProvider(code, uriLast, projection, selection, selectionArgs);
@@ -34,8 +36,7 @@ public class QueriesUnitTest
 
 	public static Result queryProvider(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
-		Result r = queryProviderMain(code, uriLast, projection0, selection0, selectionArgs0);
-		return r;
+		return queryProviderMain(code, uriLast, projection0, selection0, selectionArgs0);
 	}
 
 	public static Result queryProviderMain(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)

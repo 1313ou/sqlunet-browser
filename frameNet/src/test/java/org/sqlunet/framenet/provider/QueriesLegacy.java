@@ -2,11 +2,7 @@ package org.sqlunet.framenet.provider;
 
 import android.app.SearchManager;
 
-import org.junit.Test;
 import org.sqlunet.framenet.provider.FrameNetDispatcher.Result;
-
-import java.util.Arrays;
-import java.util.Objects;
 
 public class QueriesLegacy
 {

@@ -16,20 +16,20 @@ public class WordNetContract
 	// A L I A S E S
 
 	// refers to actual table
-	public static String AS_WORDS = V.AS_WORDS;
-	public static String AS_SENSES = V.AS_SENSES;
-	public static String AS_SYNSETS = V.AS_SYNSETS;
-	public static String AS_RELATIONS = V.AS_RELATIONS;
-	public static String AS_WORDS2 = V.AS_WORDS2;
-	public static String AS_SYNSETS2 = V.AS_SYNSETS2;
-	public static String AS_POSES = V.AS_POSES;
-	public static String AS_CASEDS = V.AS_CASEDS;
-	public static String AS_DOMAINS = V.AS_DOMAINS;
+	public static final String AS_WORDS = V.AS_WORDS;
+	public static final String AS_SENSES = V.AS_SENSES;
+	public static final String AS_SYNSETS = V.AS_SYNSETS;
+	public static final String AS_RELATIONS = V.AS_RELATIONS;
+	public static final String AS_WORDS2 = V.AS_WORDS2;
+	public static final String AS_SYNSETS2 = V.AS_SYNSETS2;
+	public static final String AS_POSES = V.AS_POSES;
+	public static final String AS_CASEDS = V.AS_CASEDS;
+	public static final String AS_DOMAINS = V.AS_DOMAINS;
 
 	// refers to artifact column
-	public static String MEMBERS = V.MEMBERS;
-	public static String MEMBERS2 = V.MEMBERS2;
-	public static String RELATIONTYPE = V.RELATIONTYPE; // type discriminator column for relations whose values are in ["sem","lex"]
+	public static final String MEMBERS = V.MEMBERS;
+	public static final String MEMBERS2 = V.MEMBERS2;
+	public static final String RELATIONTYPE = V.RELATIONTYPE; // type discriminator column for relations whose values are in ["sem","lex"]
 
 	// T A B L E S
 

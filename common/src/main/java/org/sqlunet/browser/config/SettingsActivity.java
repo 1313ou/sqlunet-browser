@@ -362,7 +362,7 @@ public class SettingsActivity extends BaseSettingsActivity
 		}
 
 		@Override
-		public void onDisplayPreferenceDialog(final Preference preference)
+		public void onDisplayPreferenceDialog(@NonNull final Preference preference)
 		{
 			if (!OpenEditTextPreference.onDisplayPreferenceDialog(this, preference))
 			{

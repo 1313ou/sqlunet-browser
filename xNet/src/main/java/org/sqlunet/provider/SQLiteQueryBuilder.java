@@ -15,8 +15,8 @@ public class SQLiteQueryBuilder
 	private String mTables = "";
 	private StringBuilder mWhereClause = null;  // lazily created
 	private boolean mDistinct;
-	private Map<String, String> mProjectionMap = null;
-	private Collection<Pattern> mProjectionGreylist = null;
+	private final Map<String, String> mProjectionMap = null;
+	private final Collection<Pattern> mProjectionGreylist = null;
 	private int mStrictFlags;
 
 	static boolean isEmpty(CharSequence s)

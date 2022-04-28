@@ -132,7 +132,7 @@ public class Storage
 		{
 			if (dir.status == 0)
 			{
-				Log.d(TAG, "Select " + dir.toString());
+				Log.d(TAG, "Select " + dir);
 				return dir.dir.getFile();
 			}
 		}

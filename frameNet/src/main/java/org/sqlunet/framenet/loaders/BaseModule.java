@@ -1513,7 +1513,7 @@ abstract public class BaseModule extends Module
 							final int idAnnoSetId = cursor.getColumnIndex(LexUnits_Sentences_AnnoSets_Layers_Labels.ANNOSETID);
 							final long annoSetId = cursor.getLong(idAnnoSetId);
 							Log.d(TAG, "annoSetId=" + annoSetId + "annotations=" + annotations + "label=" + label + "text=" + text);
-							subtext = label.toString() + " ERROR [" + label.from + ',' + label.to + ']';
+							subtext = label + " ERROR [" + label.from + ',' + label.to + ']';
 						}
 						else
 						{
@@ -1801,7 +1801,7 @@ abstract public class BaseModule extends Module
 						if (from < 0 || to > len || from > to)
 						{
 							Log.d(TAG, "annotations=" + annotations + "label=" + label + "text=" + sentenceText);
-							subtext = label.toString() + " ERROR [" + label.from + ',' + label.to + ']';
+							subtext = label + " ERROR [" + label.from + ',' + label.to + ']';
 						}
 						else
 						{
@@ -2096,7 +2096,7 @@ abstract public class BaseModule extends Module
 						if (from < 0 || to > len || from > to)
 						{
 							Log.d(TAG, "annoSetId=" + annoSetId + "annotations=" + annotations + "label=" + label + "text=" + text);
-							subtext = label.toString() + " ERROR [" + label.from + ',' + label.to + ']';
+							subtext = label + " ERROR [" + label.from + ',' + label.to + ']';
 						}
 						else
 						{

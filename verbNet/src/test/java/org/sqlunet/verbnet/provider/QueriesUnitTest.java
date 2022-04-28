@@ -8,23 +8,25 @@ import java.util.Arrays;
 public class QueriesUnitTest
 {
 	private final int[] codes = {VerbNetDispatcher.VNCLASS1, VerbNetDispatcher.VNCLASSES, VerbNetDispatcher.VNCLASSES_X_BY_VNCLASS, VerbNetDispatcher.WORDS_VNCLASSES, VerbNetDispatcher.VNCLASSES_VNMEMBERS_X_BY_WORD, VerbNetDispatcher.VNCLASSES_VNROLES_X_BY_VNROLE, VerbNetDispatcher.VNCLASSES_VNFRAMES_X_BY_VNFRAME, VerbNetDispatcher.LOOKUP_FTS_EXAMPLES, VerbNetDispatcher.LOOKUP_FTS_EXAMPLES_X, VerbNetDispatcher.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE, VerbNetDispatcher.SUGGEST_WORDS, VerbNetDispatcher.SUGGEST_FTS_WORDS,};
+	@SuppressWarnings("FieldCanBeLocal")
 	private final String uriLast = "LAST";
 	private final String[] projection = {"PROJ1", "PROJ2", "PROJ3"};
+	@SuppressWarnings("FieldCanBeLocal")
 	private final String selection = "SEL";
 	private final String[] selectionArgs = {"ARG1", "ARG2", "ARG3"};
+	@SuppressWarnings("FieldCanBeLocal")
 	private final String sortOrder = "SORT";
 
 	@Test
 	public void queriesLegacyAgainstProvider()
 	{
-		for (int i = 0; i < codes.length; i++)
+		for (int code : codes)
 		{
-			int code = codes[i];
 			queriesLegacyAgainstProvider(code, uriLast, projection, selection, selectionArgs, sortOrder);
 		}
 	}
 
-	private void queriesLegacyAgainstProvider(final int code, final String uriLast, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
+	private void queriesLegacyAgainstProvider(final int code, @SuppressWarnings("SameParameterValue") final String uriLast, final String[] projection, @SuppressWarnings("SameParameterValue") final String selection, final String[] selectionArgs, @SuppressWarnings("SameParameterValue") final String sortOrder)
 	{
 		Result r1 = QueriesLegacy.queryLegacy(code, uriLast, projection, selection, selectionArgs);
 		Result r2 = queryProvider(code, uriLast, projection, selection, selectionArgs);

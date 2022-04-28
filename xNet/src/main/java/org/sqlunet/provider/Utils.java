@@ -118,8 +118,7 @@ public class Utils
 		// union
 		final SQLiteQueryBuilder uQueryBuilder = new SQLiteQueryBuilder();
 		uQueryBuilder.setDistinct(true);
-		final String uQuery = uQueryBuilder.buildUnionQuery(new String[]{pmSubquery, sqlunetSubquery}, null, null);
-		return uQuery;
+		return uQueryBuilder.buildUnionQuery(new String[]{pmSubquery, sqlunetSubquery}, null, null);
 	}
 
 	/**
@@ -260,7 +259,7 @@ public class Utils
 	 * @param tokens    tokens
 	 * @return joined
 	 */
-	private static String join(final CharSequence delimiter, final CharSequence[] tokens)
+	private static String join(@SuppressWarnings("SameParameterValue") final CharSequence delimiter, final CharSequence[] tokens)
 	{
 		final int length = tokens.length;
 		if (length == 0)
