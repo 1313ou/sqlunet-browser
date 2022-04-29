@@ -21,23 +21,28 @@ class FnLexUnitQueryFromWordId extends DBQuery
 	 * <code>QUERY</code> is the SQL statement
 	 */
 	static private final String QUERY = SqLiteDialect.FrameNetLexUnitQueryFromWordId;
+	static private final String QUERYFN = SqLiteDialect.FnFrameNetLexUnitQueryFromWordId;
 
 	/**
 	 * <code>QUERYWITHPOS</code> is the SQL statement with Pos input
 	 */
 	static private final String QUERYWITHPOS = SqLiteDialect.FrameNetLexUnitQueryFromWordIdAndPos;
+	static private final String QUERYWITHPOSFN = SqLiteDialect.FnFrameNetLexUnitQueryFromWordIdAndPos;
 
 	/**
 	 * Constructor
 	 *
 	 * @param connection connection
+	 * @param standalone standalone query
 	 * @param wordId     target word id
 	 * @param pos        target pos or null
 	 */
 	@SuppressWarnings("boxing")
-	public FnLexUnitQueryFromWordId(final SQLiteDatabase connection, final long wordId, @Nullable final Character pos)
+	public FnLexUnitQueryFromWordId(final SQLiteDatabase connection, final boolean standalone, final long wordId, @Nullable final Character pos)
 	{
-		super(connection, pos != null ? FnLexUnitQueryFromWordId.QUERYWITHPOS : FnLexUnitQueryFromWordId.QUERY);
+		super(connection, pos != null ?
+				(standalone ? FnLexUnitQueryFromWordId.QUERYWITHPOSFN : FnLexUnitQueryFromWordId.QUERYWITHPOS) :
+				(standalone ? FnLexUnitQueryFromWordId.QUERYFN : FnLexUnitQueryFromWordId.QUERY));
 		setParams(wordId, pos != null ? pos.toString().toUpperCase() : null);
 	}
 

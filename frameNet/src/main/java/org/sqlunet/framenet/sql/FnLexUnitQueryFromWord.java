@@ -19,16 +19,18 @@ class FnLexUnitQueryFromWord extends DBQuery
 	 * <code>QUERY</code> is the SQL statement
 	 */
 	static private final String QUERY = SqLiteDialect.FrameNetLexUnitQueryFromWord;
+	static private final String QUERYFN = SqLiteDialect.FnFrameNetLexUnitQueryFromWord;
 
 	/**
 	 * Constructor
 	 *
 	 * @param connection connection
+	 * @param standalone standalone query
 	 * @param word       target word
 	 */
-	public FnLexUnitQueryFromWord(final SQLiteDatabase connection, final String word)
+	public FnLexUnitQueryFromWord(final SQLiteDatabase connection, final boolean standalone, final String word)
 	{
-		super(connection, FnLexUnitQueryFromWord.QUERY);
+		super(connection, standalone ? FnLexUnitQueryFromWord.QUERYFN : FnLexUnitQueryFromWord.QUERY);
 		setParams(word);
 	}
 

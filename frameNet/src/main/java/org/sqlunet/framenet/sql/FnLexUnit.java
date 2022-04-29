@@ -136,7 +136,7 @@ public class FnLexUnit
 		FnLexUnitQueryFromWord query = null;
 		try
 		{
-			query = new FnLexUnitQueryFromWord(connection, word);
+			query = new FnLexUnitQueryFromWord(connection, false, word);
 			query.execute();
 
 			long wordId = 0;
@@ -181,7 +181,7 @@ public class FnLexUnit
 		FnLexUnitQueryFromFnWord query = null;
 		try
 		{
-			query = new FnLexUnitQueryFromFnWord(connection, fnWord);
+			query = new FnLexUnitQueryFromFnWord(connection, true, fnWord);
 			query.execute();
 
 			long fnWordId = 0;
@@ -227,7 +227,7 @@ public class FnLexUnit
 		FnLexUnitQueryFromWordId query = null;
 		try
 		{
-			query = new FnLexUnitQueryFromWordId(connection, wordId, pos);
+			query = new FnLexUnitQueryFromWordId(connection, false, wordId, pos);
 			query.execute();
 
 			while (query.next())
@@ -270,7 +270,7 @@ public class FnLexUnit
 		FnLexUnitQueryFromFnWordId query = null;
 		try
 		{
-			query = new FnLexUnitQueryFromFnWordId(connection, fnWordId, pos);
+			query = new FnLexUnitQueryFromFnWordId(connection, true, fnWordId, pos);
 			query.execute();
 
 			while (query.next())

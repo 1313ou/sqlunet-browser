@@ -32,6 +32,15 @@ class SqLiteDialect
 					"LEFT JOIN ${poses.table} AS ${as_poses} USING (${poses.posid}) " + //
 					"LEFT JOIN ${fetypes.table} ON (${lexunits.incorporatedfetypeid} = ${fetypes.fetypeid}) " + //
 					"WHERE ${as_words}.${wnwords.word} = ?";
+	static public final String FnFrameNetLexUnitQueryFromWord = //
+			"SELECT ${words.fnwordid},${lexunits.luid},${lexunits.lexunit},${poses.pos},${lexunits.ludefinition},${lexunits.ludict},${fetypes.fetype} AS ${incorporatedfe},${frames.frameid},${frames.frame},${frames.framedefinition} " + //
+					"FROM ${words.table} " + //
+					"INNER JOIN ${lexemes.table} USING (${words.fnwordid}) " + //
+					"INNER JOIN ${lexunits.table} AS ${as_lexunits} USING (${lexunits.luid},${poses.posid}) " + //
+					"LEFT JOIN ${frames.table} USING (${frames.frameid}) " + //
+					"LEFT JOIN ${poses.table} AS ${as_poses} USING (${poses.posid}) " + //
+					"LEFT JOIN ${fetypes.table} ON (${lexunits.incorporatedfetypeid} = ${fetypes.fetypeid}) " + //
+					"WHERE ${as_words}.${words.word} = ?";
 	// lex units from fn word
 	static public final String FrameNetLexUnitQueryFromFnWord = //
 			"SELECT ${wnwords.wordid},${lexunits.luid},${lexunits.lexunit},${poses.posid},${lexunits.ludefinition},${lexunits.ludict},${fetypes.fetype} AS ${incorporatedfe},${frames.frameid},${frames.frame},${frames.framedefinition} " + //
@@ -42,6 +51,15 @@ class SqLiteDialect
 					"LEFT JOIN ${poses.table} AS ${as_poses} USING (${poses.posid}) " + //
 					"LEFT JOIN ${fetypes.table} ON (${lexunits.incorporatedfetypeid} = ${fetypes.fetypeid}) " + //
 					"WHERE ${as_words}.${wnwords.word} = ?";
+	static public final String FnFrameNetLexUnitQueryFromFnWord = //
+			"SELECT ${words.fnwordid},${lexunits.luid},${lexunits.lexunit},${poses.posid},${lexunits.ludefinition},${lexunits.ludict},${fetypes.fetype} AS ${incorporatedfe},${frames.frameid},${frames.frame},${frames.framedefinition} " + //
+					"FROM ${words.table} AS ${as_words} " + //
+					"INNER JOIN ${lexemes.table} USING (${words.fnwordid}) " + //
+					"INNER JOIN ${lexunits.table} AS ${as_lexunits} USING (${lexunits.luid},${poses.posid}) " + //
+					"LEFT JOIN ${frames.table} USING (${frames.frameid}) " + //
+					"LEFT JOIN ${poses.table} AS ${as_poses} USING (${poses.posid}) " + //
+					"LEFT JOIN ${fetypes.table} ON (${lexunits.incorporatedfetypeid} = ${fetypes.fetypeid}) " + //
+					"WHERE ${as_words}.${words.word} = ?";
 	// lex units from word id
 	static public final String FrameNetLexUnitQueryFromWordId = //
 			"SELECT ${lexunits.luid},${lexunits.lexunit},${poses.posid},${lexunits.ludefinition},${lexunits.ludict},${fetypes.fetype} AS ${incorporatedfe},${frames.frameid},${frames.frame},${frames.framedefinition} " + //
@@ -54,6 +72,16 @@ class SqLiteDialect
 					"LEFT JOIN ${fetypes.table} ON (${lexunits.incorporatedfetypeid} = ${fetypes.fetypeid}) " + //
 					"WHERE ${wnwords.wordid} = ? " + //
 					"ORDER BY ${frames.frame};";
+	static public final String FnFrameNetLexUnitQueryFromWordId = //
+			"SELECT ${lexunits.luid},${lexunits.lexunit},${poses.posid},${lexunits.ludefinition},${lexunits.ludict},${fetypes.fetype} AS ${incorporatedfe},${frames.frameid},${frames.frame},${frames.framedefinition} " + //
+					"FROM ${words.table} " + //
+					"INNER JOIN ${lexemes.table} USING (${words.fnwordid}) " + //
+					"INNER JOIN ${lexunits.table} AS ${as_lexunits} USING (${lexunits.luid},${poses.posid}) " + //
+					"LEFT JOIN ${frames.table} USING (${frames.frameid}) " + //
+					"LEFT JOIN ${poses.table} AS ${as_poses} USING (${poses.posid}) " + //
+					"LEFT JOIN ${fetypes.table} ON (${lexunits.incorporatedfetypeid} = ${fetypes.fetypeid}) " + //
+					"WHERE ${words.fnwordid} = ? " + //
+					"ORDER BY ${frames.frame};";
 	// lex units from fn word id
 	static public final String FrameNetLexUnitQueryFromFnWordId = //
 			"SELECT ${lexunits.luid},${lexunits.lexunit},${poses.posid},${lexunits.ludefinition},${lexunits.ludict},${fetypes.fetype} AS ${incorporatedfe},${frames.frameid},${frames.frame},${frames.framedefinition} " + //
@@ -64,6 +92,16 @@ class SqLiteDialect
 					"LEFT JOIN ${poses.table} AS ${as_poses} USING (${poses.posid}) " + //
 					"LEFT JOIN ${fetypes.table} ON (${lexunits.incorporatedfetypeid} = ${fetypes.fetypeid}) " + //
 					"WHERE ${wnwords.wordid} = ? " + //
+					"ORDER BY ${frames.frame};";
+	static public final String FnFrameNetLexUnitQueryFromFnWordId = //
+			"SELECT ${lexunits.luid},${lexunits.lexunit},${poses.posid},${lexunits.ludefinition},${lexunits.ludict},${fetypes.fetype} AS ${incorporatedfe},${frames.frameid},${frames.frame},${frames.framedefinition} " + //
+					"FROM ${words.table} " + //
+					"INNER JOIN ${lexemes.table} USING (${words.fnwordid}) " + //
+					"INNER JOIN ${lexunits.table} AS ${as_lexunits} USING (${lexunits.luid},${poses.posid}) " + //
+					"LEFT JOIN ${frames.table} USING (${frames.frameid}) " + //
+					"LEFT JOIN ${poses.table} AS ${as_poses} USING (${poses.posid}) " + //
+					"LEFT JOIN ${fetypes.table} ON (${lexunits.incorporatedfetypeid} = ${fetypes.fetypeid}) " + //
+					"WHERE ${words.fnwordid} = ? " + //
 					"ORDER BY ${frames.frame};";
 	// lex units from word id and pos
 	static public final String FrameNetLexUnitQueryFromWordIdAndPos = //
@@ -77,6 +115,16 @@ class SqLiteDialect
 					"LEFT JOIN ${fetypes.table} ON (${lexunits.incorporatedfetypeid} = ${fetypes.fetypeid}) " + //
 					"WHERE ${{wnwords.wordid} = ? AND ${as_poses}.${poses.posid} = ? " + //
 					"ORDER BY ${frames.frame};";
+	static public final String FnFrameNetLexUnitQueryFromWordIdAndPos = //
+			"SELECT ${lexunits.luid},${lexunits.lexunit},${poses.posid},${lexunits.ludefinition},${lexunits.ludict},${fetypes.fetype} AS ${incorporatedfe},${frames.frameid},${frames.frame},${frames.framedefinition} " + //
+					"FROM ${words.table} " + //
+					"INNER JOIN ${lexemes.table} USING (${words.fnwordid}) " + //
+					"INNER JOIN ${lexunits.table} AS ${as_lexunits} USING (${lexunits.luid},${poses.posid}) " + //
+					"LEFT JOIN ${frames.table} USING (${frames.frameid}) " + //
+					"LEFT JOIN ${poses.table} AS ${as_poses} USING (${poses.posid}) " + //
+					"LEFT JOIN ${fetypes.table} ON (${lexunits.incorporatedfetypeid} = ${fetypes.fetypeid}) " + //
+					"WHERE ${{words.wordid} = ? AND ${as_poses}.${poses.posid} = ? " + //
+					"ORDER BY ${frames.frame};";
 	// lex units from word id and pos
 	static public final String FrameNetLexUnitQueryFromFnWordIdAndPos = //
 			"SELECT ${lexunits.luid},${lexunits.lexunit},${poses.posid},${lexunits.ludefinition},${lexunits.ludict},${fetypes.fetype} AS ${incorporatedfe},${frames.frameid},${frames.frame},${frames.framedefinition} " + //
@@ -87,6 +135,16 @@ class SqLiteDialect
 					"LEFT JOIN ${poses.table} AS ${as_poses} USING (${poses.posid}) " + //
 					"LEFT JOIN ${fetypes.table} ON (${lexunits.incorporatedfetypeid} = ${fetypes.fetypeid}) " + //
 					"WHERE ${wnwords.wordid} = ? AND ${as_poses}.${poses.posid} = ? " + //
+					"ORDER BY ${frames.frame};";
+	static public final String FnFrameNetLexUnitQueryFromFnWordIdAndPos = //
+			"SELECT ${lexunits.luid},${lexunits.lexunit},${poses.posid},${lexunits.ludefinition},${lexunits.ludict},${fetypes.fetype} AS ${incorporatedfe},${frames.frameid},${frames.frame},${frames.framedefinition} " + //
+					"FROM ${words.table} " + //
+					"INNER JOIN ${lexemes.table} USING (${words.fnwordid}) " + //
+					"INNER JOIN ${lexunits.table} AS ${as_lexunits} USING (${lexunits.luid},${poses.posid}) " + //
+					"LEFT JOIN ${frames.table} USING (${frames.frameid}) " + //
+					"LEFT JOIN ${poses.table} AS ${as_poses} USING (${poses.posid}) " + //
+					"LEFT JOIN ${fetypes.table} ON (${lexunits.incorporatedfetypeid} = ${fetypes.fetypeid}) " + //
+					"WHERE ${words.fnwordid} = ? AND ${as_poses}.${poses.posid} = ? " + //
 					"ORDER BY ${frames.frame};";
 	// lex units from frame id
 	static public final String FrameNetLexUnitQueryFromFrameId = //
