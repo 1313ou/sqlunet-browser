@@ -59,7 +59,8 @@ public class QueriesLegacy
 			case PropBankDispatcher.PBROLESETS_X:
 				table = "pb_rolesets " + //
 						"LEFT JOIN pb_members AS " + PropBankContract.MEMBER + " USING (rolesetid) " + //
-						"LEFT JOIN pb_words AS " + PropBankContract.WORD + " ON " + PropBankContract.MEMBER + ".pbwordid = " + PropBankContract.WORD + ".pbwordid";
+						"LEFT JOIN pb_words AS " + PropBankContract.PBWORD + " USING (pbwordid) " + //
+						"LEFT JOIN words AS " + PropBankContract.WORD + " USING (wordid)";
 				break;
 
 			case PropBankDispatcher.WORDS_PBROLESETS:
@@ -71,6 +72,7 @@ public class QueriesLegacy
 			case PropBankDispatcher.PBROLESETS_PBROLES:
 				table = "pb_rolesets " + //
 						"INNER JOIN pb_roles USING (rolesetid) " + //
+						"LEFT JOIN pb_argtypes USING (argtypeid) " + //
 						"LEFT JOIN pb_funcs USING (funcid) " + //
 						"LEFT JOIN pb_thetas USING (thetaid)";
 				break;
@@ -84,6 +86,7 @@ public class QueriesLegacy
 						"INNER JOIN pb_examples AS " + PropBankContract.EXAMPLE + " USING (rolesetid) " + //
 						"LEFT JOIN pb_rels AS " + PropBankContract.REL + " USING (exampleid) " + //
 						"LEFT JOIN pb_args AS " + PropBankContract.ARG + " USING (exampleid) " + //
+						"LEFT JOIN pb_argtypes USING (argtypeid) " + //
 						"LEFT JOIN pb_funcs AS " + PropBankContract.FUNC + " ON (" + PropBankContract.ARG + ".funcid = " + PropBankContract.FUNC + ".funcid) " + //
 						"LEFT JOIN pb_aspects USING (aspectid) " + //
 						"LEFT JOIN pb_forms USING (formid) " + //

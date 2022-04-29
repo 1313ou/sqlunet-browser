@@ -109,6 +109,7 @@ public class QueriesLegacy
 				table = "(" + //
 						"SELECT fnwordid + 10000 AS " + FrameNetContract.LexUnits_or_Frames.ID + ", luid AS " + FrameNetContract.LexUnits_or_Frames.FNID + ", fnwordid AS " + FrameNetContract.LexUnits_or_Frames.FNWORDID + ", wordid AS " + FrameNetContract.LexUnits_or_Frames.WORDID + ", word AS " + FrameNetContract.LexUnits_or_Frames.WORD + ", lexunit AS " + FrameNetContract.LexUnits_or_Frames.NAME + ", frame AS " + FrameNetContract.LexUnits_or_Frames.FRAMENAME + ", frameid AS " + FrameNetContract.LexUnits_or_Frames.FRAMEID + ", 0 AS " + FrameNetContract.LexUnits_or_Frames.ISFRAME + " " + //
 						"FROM fn_words " + //
+						"INNER JOIN words USING (wordid) " + //
 						"INNER JOIN fn_lexemes USING (fnwordid) " + //
 						"INNER JOIN fn_lexunits AS " + FrameNetContract.LU + " USING (luid) " + //
 						"INNER JOIN fn_frames AS " + FrameNetContract.FRAME + " USING (frameid) " + //
@@ -229,6 +230,7 @@ public class QueriesLegacy
 
 			case FrameNetDispatcher.WORDS_LEXUNITS_FRAMES:
 				table = "fn_words " + //
+						"INNER JOIN words USING (wordid) " + //
 						"INNER JOIN fn_lexemes USING (fnwordid) " + //
 						"INNER JOIN fn_lexunits AS " + FrameNetContract.LU + " USING (luid) " + //
 						"LEFT JOIN fn_frames AS "+ FrameNetContract.FRAME + " USING (frameid) " + //
@@ -282,7 +284,8 @@ public class QueriesLegacy
 				table = "fn_lexunits " + //
 						"INNER JOIN fn_lexunits_governors USING (luid) " + //
 						"INNER JOIN fn_governors USING (governorid) " + //
-						"LEFT JOIN fn_words USING (fnwordid)";
+						"INNER JOIN fn_words USING (fnwordid) " + //
+						"LEFT JOIN words USING (wordid)";
 				break;
 
 			case FrameNetDispatcher.GOVERNORS_ANNOSETS:

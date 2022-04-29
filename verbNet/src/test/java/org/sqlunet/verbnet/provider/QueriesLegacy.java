@@ -63,14 +63,15 @@ public class QueriesLegacy
 			case VerbNetDispatcher.WORDS_VNCLASSES:
 				table = "words " + //
 						"INNER JOIN vn_words USING (wordid) " + //
-						"INNER JOIN vn_members_senses USING (vnwordid) " + //
+						"INNER JOIN vn_members_senses USING (vnwordid, wordid) " + //
 						"LEFT JOIN vn_classes USING (classid)";
 				break;
 
 			case VerbNetDispatcher.VNCLASSES_VNMEMBERS_X_BY_WORD:
 				groupBy = "vnwordid";
 				table = "words " +
-						"INNER JOIN vn_members_senses USING (wordid) " +
+						"INNER JOIN vn_words USING (wordid) " +
+						"INNER JOIN vn_members_senses USING (vnwordid, wordid) " +
 						"LEFT JOIN vn_members_groupings USING (classid, vnwordid) " + //
 						"LEFT JOIN vn_groupings USING (groupingid) " + //
 						"LEFT JOIN synsets USING (synsetid)";
