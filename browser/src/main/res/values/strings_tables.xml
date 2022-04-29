@@ -190,10 +190,10 @@
 		<item>k_fn_labels_layerid</item>
 
 		<!-- bnc -->
-		<item>k_bnc_bncs_wordid_posid</item>
-		<item>k_bnc_spwrs_wordid_posid</item>
-		<item>k_bnc_convtasks_wordid_posid</item>
-		<item>k_bnc_imaginfs_wordid_posid</item>
+		<item>k_bnc_bncs_posid_wordid</item>
+		<item>k_bnc_spwrs_posid_wordid</item>
+		<item>k_bnc_convtasks_posid_wordid</item>
+		<item>k_bnc_imaginfs_posid_wordid</item>
 
 		<!-- predicate matrix -->
 		<item>k_pm_pms_wordid</item>
