@@ -21,6 +21,7 @@ public class PropBankContract
 	static public final String FUNC = "fu";
 	static public final String ARG = "ar";
 	static public final String WORD = "w";
+	static public final String PBWORD = "p";
 	static public final String MEMBER = "m";
 
 	static public final class PbWords
