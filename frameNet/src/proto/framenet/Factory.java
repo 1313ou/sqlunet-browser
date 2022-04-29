@@ -139,7 +139,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 			case FRAMES_RELATED:
 				table = String.format("%s AS %s " + //
 								"LEFT JOIN %s AS %s USING (%s) " + //
-								"LEFT JOIN %s AS %s ON (%s = %s.%s) " + //  //  //
+								"LEFT JOIN %s AS %s ON (%s = %s.%s) " + //
 								"LEFT JOIN %s USING (%s)", //
 						"${frames_related.table}", "${as_related_frames}", //
 						"${frames.table}", "${src_frame}", "${frames.frameid}", //
