@@ -102,6 +102,7 @@ public class QueriesLegacy
 				final String[] table1Projection = unionProjection;
 				final String[] table2Projection = {"wordid", "synsetid", "classid", "class", "classtag"};
 				final String[] groupByArray = {"wordid", "synsetid", "classid"};
+				projection = BaseProvider.prependProjection(projection, "GROUP_CONCAT(DISTINCT source) AS sources");
 				return Utils.makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray, sortOrder, "vn");
 			}
 
@@ -116,6 +117,7 @@ public class QueriesLegacy
 				final String[] table1Projection = unionProjection;
 				final String[] table2Projection = {"wordid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr"};
 				final String[] groupByArray = {"wordid", "synsetid", "rolesetid"};
+				projection = BaseProvider.prependProjection(projection, "GROUP_CONCAT(DISTINCT source) AS sources");
 				return Utils.makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray, sortOrder, "pb");
 			}
 
@@ -133,6 +135,7 @@ public class QueriesLegacy
 				final String[] table1Projection = unionProjection;
 				final String[] table2Projection = {"wordid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition"};
 				final String[] groupByArray = {"wordid", "synsetid", "frameid"};
+				projection = BaseProvider.prependProjection(projection, "GROUP_CONCAT(DISTINCT source) AS sources");
 				return Utils.makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray, sortOrder, "fn");
 			}
 
