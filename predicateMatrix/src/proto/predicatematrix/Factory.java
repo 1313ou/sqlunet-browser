@@ -14,33 +14,11 @@ import java.util.stream.Collectors;
  */
 public class Factory implements Function<String, String[]>, Supplier<String[]>
 {
-	static public final String TABLE = "pm";
-
-	static public final String AS_PMROLES = "mr";
-	static public final String AS_PMPREDICATES = "mp";
-	static public final String AS_VNCLASSES = "vc";
-	static public final String AS_VNROLES = "vr";
-	static public final String AS_VNROLETYPES = "vt";
-	static public final String AS_PBROLESETS = "pc";
-	static public final String AS_PBROLES = "pr";
-	static public final String AS_PBARGS = "pa";
-	static public final String AS_FNFRAMES = "ff";
-	static public final String AS_FNFES = "fe";
-	static public final String AS_FNFETYPES = "ft";
-	static public final String AS_FNLUS = "fu";
-
-	// C O N S T R U C T O R
-
 	/**
 	 * Constructor
 	 */
 	public Factory()
 	{
-	}
-
-	private static String quote(String str)
-	{
-		return str == null ? null : String.format("\"%s\"", str);
 	}
 
 	@Override
@@ -57,7 +35,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 		switch (key)
 		{
 			case PM:
-				table = TABLE;
+				table = "${pms.table}";
 				break;
 
 			case PM_X:
@@ -98,9 +76,13 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 		return Arrays.stream(Key.values()).map(Enum::name).toArray(String[]::new);
 	}
 
-
 	private enum Key
 	{
 		PM, PM_X
+	}
+
+	private static String quote(String str)
+	{
+		return str == null ? null : String.format("\"%s\"", str);
 	}
 }
