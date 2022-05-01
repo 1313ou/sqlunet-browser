@@ -34,7 +34,8 @@ android {
         }
     }
 
-    assetPacks = [":dbvn_wn31_asset", ":dbvn_ewn_asset"]
+    //assetPacks = [":dbvn_wn31_asset", ":dbvn_ewn_asset"]
+    assetPacks = [":dbvn_ewn_asset"]
 
     signingConfigs {
         sqlunet {
