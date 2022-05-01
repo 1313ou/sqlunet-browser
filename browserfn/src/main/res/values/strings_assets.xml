@@ -4,7 +4,7 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="asset_primary_name" tools:keep="@string/asset_primary_name">WordNet 3.1</string>
-	<string name="asset_alt_name" tools:keep="@string/asset_alt_name">English Wordnet</string>
+	<string name="asset_primary_name" tools:keep="@string/asset_primary_name">English Wordnet</string>
+	<string name="asset_alt_name" tools:keep="@string/asset_alt_name">WordNet 3.1</string>
 
 </resources>

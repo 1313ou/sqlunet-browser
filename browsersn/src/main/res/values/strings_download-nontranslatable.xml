@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE resources [
 	<!ENTITY bbuser "semantikos2">
-	<!ENTITY bbrepo "semantikos2">
-	<!ENTITY bbcommit "47a58add76ecd6ca74603c8da461145d82272cd5">
+	<!ENTITY bbrepo "semantikos22">
+	<!ENTITY bbcommit "219d4e857650728129211d370cacf5d81c3cbfa1">
 	]>
 
 <!--
@@ -18,16 +18,13 @@
 	<string name="pref_default_entry_index" translatable="false" tools:keep="@string/pref_default_entry_index">sqlunet-sn-index.sql</string>
 
 	<!-- sites -->
-	<string name="pref_bitbucket_31_site_url" translatable="false" tools:keep="@string/pref_bitbucket_31_site_url">https://bitbucket.org/&bbuser;/&bbrepo;/raw/&bbcommit;/31</string>
-	<string name="pref_bitbucket_XX_site_url" translatable="false" tools:keep="@string/pref_bitbucket_XX_site_url">https://bitbucket.org/&bbuser;/&bbrepo;/raw/&bbcommit;/XX</string>
-	<string name="pref_default_download_site_url" translatable="false" tools:keep="@string/pref_default_download_site_url">@string/pref_bitbucket_31_site_url</string>
+	<string name="pref_bitbucket_XX_site_url" translatable="false" tools:keep="@string/pref_bitbucket_XX_site_url">https://bitbucket.org/&bbuser;/&bbrepo;/raw/&bbcommit;</string>
+	<string name="pref_sourceforge_XX_site_url" translatable="false" tools:keep="@string/pref_sourceforge_XX_site_url">https://sourceforge.net/projects/sqlunet/files/semantikos2/1</string>
+
+	<string name="pref_default_download_site_url" translatable="false" tools:keep="@string/pref_default_download_site_url">@string/pref_bitbucket_XX_site_url</string>
 	<string-array name="pref_download_site_urls" translatable="false" tools:ignore="InconsistentArrays" tools:keep="@array/pref_download_site_urls">
-		<item>@string/pref_bitbucket_31_site_url</item>
 		<item>@string/pref_bitbucket_XX_site_url</item>
-		<item>@string/pref_sourceforge_600_31_site_url</item>
-		<item>@string/pref_sourceforge_600_XX_site_url</item>
-		<item>@string/pref_sourceforge_520_site_url</item>
-		<item>@string/pref_sourceforge_520_alias_site_url</item>
+		<item>@string/pref_sourceforge_XX_site_url</item>
 	</string-array>
 
 </resources>

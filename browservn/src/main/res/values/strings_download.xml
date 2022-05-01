@@ -6,12 +6,8 @@
 
 	<!-- sites -->
 	<string-array name="pref_download_site_labels" tools:ignore="InconsistentArrays" tools:keep="@array/pref_download_site_labels">
-		<item>WordNet 3.1 core (Bitbucket, zipped) </item>
-		<item>English WordNet 2020 core (Bitbucket, zipped)</item>
-		<item>WordNet 3.1 core (Sourceforge) </item>
-		<item>English WordNet 2020 core (Sourceforge)</item>
-		<item>WordNet 3.1 or English WordNet 2020 cores (Sourceforge, initial repo)</item>
-		<item>WordNet 3.1 or English WordNet 2020 cores (Sourceforge, initial repo alias)</item>
+		<item>English WordNet 2021 core (Bitbucket, zipped)</item>
+		<item>English WordNet 2021 core (Sourceforge, zipped)</item>
 	</string-array>
 
 </resources>
