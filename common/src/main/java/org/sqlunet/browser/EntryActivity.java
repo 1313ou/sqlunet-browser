@@ -12,8 +12,10 @@ import android.util.Log;
 
 import org.sqlunet.browser.config.LoadActivity;
 import org.sqlunet.browser.config.SetupAsset;
+import org.sqlunet.browser.config.SetupDatabaseTasks;
 import org.sqlunet.browser.config.Status;
 import org.sqlunet.settings.Settings;
+import org.sqlunet.settings.StorageSettings;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -44,7 +46,22 @@ public class EntryActivity extends AppCompatActivity
 		Log.d(TAG, "lifecycle: OnCreate()");
 
 		// clear (some/all) settings on first run of this version
-		Settings.clearSettingsOnUpgrade(this);
+		Long build = Settings.isUpgrade(this);
+		if (build != null)
+		{
+			boolean success = SetupDatabaseTasks.deleteDatabase(this, StorageSettings.getDatabasePath(this));
+			if (success)
+			{
+				Log.d(TAG, "Deleted database");
+			}
+			else
+			{
+				Log.e(TAG, "Error deleting database");
+			}
+
+			org.sqlunet.download.Settings.unrecordDb(this);
+			Settings.onUpgrade(this, build);
+		}
 
 		// settings
 		Settings.updateGlobals(this);

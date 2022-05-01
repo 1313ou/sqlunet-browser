@@ -482,14 +482,13 @@ public class Settings
 	}
 
 	/**
-	 * Clear settings on upgrade
+	 * Is upgrade
 	 *
 	 * @param context context
-	 * @return build version
+	 * @return new build version if changed, null otherwise
 	 */
-	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
 	@SuppressWarnings({"UnusedReturnValue"})
-	public static long clearSettingsOnUpgrade(@NonNull final Context context)
+	public static Long isUpgrade(@NonNull final Context context)
 	{
 		// recorded version
 		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -523,19 +522,32 @@ public class Settings
 		}
 
 		// upgrade test
-		if (version < build)
-		{
-			prefs.edit() //
-					// clear all settings
-					// .clear()
-					// clear some settings
-					.remove(PREF_DOWNLOADER) //
-					.remove(PREF_DOWNLOAD_SITE) //
-					.remove(PREF_DOWNLOAD_DBFILE) //
-					// flag as 'has run'
-					.putLong(Settings.PREF_VERSION, build).apply();
-		}
-		return build;
+		return version < build ? build : null;
+	}
+
+	/**
+	 * Clear settings on upgrade
+	 *
+	 * @param context context
+	 */
+	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
+	@SuppressWarnings({"UnusedReturnValue"})
+	public static void onUpgrade(@NonNull final Context context, long build)
+	{
+		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		prefs //
+				.edit() //
+				// clear all settings
+				// .clear()
+
+				// clear some settings
+				.remove(PREF_DOWNLOADER) //
+				.remove(PREF_DOWNLOAD_SITE) //
+				.remove(PREF_DOWNLOAD_DBFILE) //
+
+				// flag as 'has run'
+				.putLong(Settings.PREF_VERSION, build) //
+				.apply();
 	}
 
 	/**
