@@ -40,6 +40,7 @@
 				android:title="@string/action_asset_dispose"
 				app:showAsAction="never"
 				tools:ignore="AppCompatResource" />
+			<!--
 			<item
 				android:id="@+id/action_assets"
 				android:title="@string/action_assets"
@@ -67,6 +68,7 @@
 						tools:ignore="AppCompatResource" />
 				</menu>
 			</item>
+			-->
 			<item
 				android:id="@+id/action_download"
 				android:title="@string/action_download"

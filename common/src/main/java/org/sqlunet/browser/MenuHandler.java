@@ -284,6 +284,7 @@ public class MenuHandler
 			SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null, null);
 			return true;
 		}
+		/*
 		else if (itemId == R.id.action_asset_deliver_primary)
 		{
 			final String asset = activity.getString(R.string.asset_primary);
@@ -311,11 +312,13 @@ public class MenuHandler
 			}
 			return true;
 		}
+		*/
 		else if (itemId == R.id.action_asset_dispose)
 		{
 			SetupAsset.disposeAsset(Settings.getAssetPack(activity), activity);
 			return true;
 		}
+		/*
 		else if (itemId == R.id.action_asset_dispose_primary)
 		{
 			SetupAsset.disposeAsset(activity.getString(R.string.asset_primary), activity);
@@ -330,6 +333,7 @@ public class MenuHandler
 			}
 			return true;
 		}
+		*/
 
 		// others
 		else if (itemId == R.id.action_appsettings)
@@ -370,6 +374,7 @@ public class MenuHandler
 		return true;
 	}
 
+	/*
 	static public void populateAssets(@NonNull Context context, @NonNull Menu menu)
 	{
 		MenuItem menuItem = menu.findItem(R.id.action_assets);
@@ -386,6 +391,7 @@ public class MenuHandler
 			}
 		}
 	}
+	*/
 
 	static private void setAssetActionTitle(@NonNull final Resources res, @Nullable final MenuItem menuItem, @StringRes int formatId, @StringRes int assetNameId)
 	{

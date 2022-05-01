@@ -72,10 +72,12 @@ public class Browse2Activity extends AbstractBrowse2Activity
 		return MenuHandler.menuDispatch(this, item);
 	}
 
+	/*
 	@Override
 	public boolean onPrepareOptionsMenu(final Menu menu)
 	{
 		MenuHandler.populateAssets(this, menu);
 		return super.onPrepareOptionsMenu(menu);
 	}
+	*/
 }
