@@ -24,7 +24,7 @@ PACKAGE=org.sqlunet.browser.wn
 AAB=browserwn
 
 echo -e "${Y}${PACKAGE}${Z}"
-python googleplay_upload_aab.py \
+python2 googleplay_upload_aab.py \
 	${PACKAGE} \
 	"${RELEASE_NAME}" \
 	"${RECENT_CHANGES}" \

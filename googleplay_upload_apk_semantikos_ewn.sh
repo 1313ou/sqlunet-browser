@@ -14,7 +14,7 @@ DIR=dist/releases
 PACKAGE=org.sqlunet.browser.ewn
 APK=browserewn
 
-python googleplay_upload_apk.py \
+python2 googleplay_upload_apk.py \
 	${PACKAGE} \
 	"${RELEASE_NAME}" \
 	"${RECENT_CHANGES}" \

@@ -32,7 +32,7 @@ echo "RECENT_CHANGES ${RECENT_CHANGES}"
 read -p "Are you sure? " -n 1 -r
 echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-	python googleplay_move.py \
+	python2 googleplay_move.py \
 		${PACKAGE} \
 		${TRACK} \
 		"${RELEASE_NAME}" \
