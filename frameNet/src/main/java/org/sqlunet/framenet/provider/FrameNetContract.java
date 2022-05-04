@@ -112,8 +112,6 @@ public class FrameNetContract
 		static public final String FRAME2ID = V.FRAME2ID;
 		static public final String RELATIONID = V.RELATIONID;
 		static public final String RELATION = V.RELATION;
-		static public final String RELATIONTYPE = V.TYPE;
-		static public final String RELATIONGLOSS = V.GLOSS;
 	}
 
 	static public final class Sentences

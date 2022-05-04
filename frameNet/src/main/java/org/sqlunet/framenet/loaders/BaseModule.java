@@ -63,16 +63,18 @@ import org.sqlunet.view.TreeOp.TreeOps;
 import org.sqlunet.view.TreeOpExecute;
 
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWTREE;
 import static org.sqlunet.view.TreeOp.TreeOpCode.NEWCHILD;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWUNIQUE;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWMAIN;
 import static org.sqlunet.view.TreeOp.TreeOpCode.NEWEXTRA;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWMAIN;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWTREE;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWUNIQUE;
 import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
 
 /**
@@ -402,6 +404,38 @@ abstract public class BaseModule extends Module
 		return changed;
 	}
 
+	private static final int[] FRAMERELATION_RANK = { //
+			20,  // 1  - Has Subframe(s)
+			11,  // 2  - Inherits from
+			60,  // 3  - Is Causative of
+			70,  // 4  - Is Inchoative of
+			10,  // 5  - Is Inherited by
+			51,  // 6  - Is Perspectivized in
+			41,  // 7  - Is Preceded by
+			31,  // 8  - Is Used by
+			50,  // 9  - Perspective on
+			40,  // 10 - Precedes
+			80,  // 11 - See also
+			21,  // 12 - Subframe of
+			30,  // 13 - Uses
+	};
+
+	private static final String[] FRAMERELATION_GLOSS = { //
+			"%s has %s as subframe", // 1  - Has Subframe(s)
+			"%s inherits %s", // 2  - Inherits from
+			"%s is causative of %s", // 3  - Is Causative of
+			"%s is inchoative of %s", // 4  - Is Inchoative of
+			"%s is inherited by %s", // 5  - Is Inherited by
+			"%s is perspectivized in %s", // 6  - Is Perspectivized in
+			"%s is preceded by %s", // 7  - Is Preceded by
+			"%s is used by %s", // 8  - Is Used by
+			"%s perspectivizes %s", // 9  - Perspective on
+			"%s precedes %s", // 10 - Precedes
+			"%s has see-also relation to %s", // 11 - See also
+			"%s is subframe of %s", // 12 - Subframe of
+			"%s uses %s", // 13 - Uses
+	};
+
 	/**
 	 * Related frames
 	 *
@@ -418,12 +452,10 @@ abstract public class BaseModule extends Module
 				FrameNetContract.DEST + '.' + Frames_Related.FRAME + " AS " + "f2", //
 				Frames_Related.RELATIONID, //
 				Frames_Related.RELATION, //
-				Frames_Related.RELATIONGLOSS, //
 		};
 		final String selection = FrameNetContract.RELATED + '.' + Frames_Related.FRAMEID + " = ?" + " OR " + FrameNetContract.RELATED + '.' + Frames_Related.FRAME2ID + " = ?";
 		final String[] selectionArgs = {Long.toString(frameId), Long.toString(frameId)};
-		final String sortOrder = Frames_Related.RELATIONTYPE;
-		this.relatedFramesFromFrameIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> relatedFramesCursorToTreeModel(cursor, frameId, parent));
+		this.relatedFramesFromFrameIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> relatedFramesCursorToTreeModel(cursor, frameId, parent));
 	}
 
 	@NonNull
@@ -443,10 +475,10 @@ abstract public class BaseModule extends Module
 			final int idFrame = cursor.getColumnIndex("f1");
 			final int idFrame2Id = cursor.getColumnIndex("i2");
 			final int idFrame2 = cursor.getColumnIndex("f2");
-			// final int idRelation = cursor.getColumnIndex(Frames_Related.RELATION);
 			final int idRelationId = cursor.getColumnIndex(Frames_Related.RELATIONID);
-			final int idRelationGloss = cursor.getColumnIndex(Frames_Related.RELATIONGLOSS);
+			// final int idRelation = cursor.getColumnIndex(Frames_Related.RELATION);
 
+			Map<Integer, TreeNode> relatedNodes = new TreeMap<>();
 			do
 			{
 				final Editable sb = new SpannableStringBuilder();
@@ -457,8 +489,8 @@ abstract public class BaseModule extends Module
 				final int relationId = cursor.getInt(idRelationId);
 				final String frame1 = cursor.getString(idFrame);
 				final String frame2 = cursor.getString(idFrame2);
-				// String relation = cursor.getString(idRelation).toLowerCase(Locale.ENGLISH);
-				final String gloss = cursor.getString(idRelationGloss);
+				// final String relation = cursor.getString(idRelation);
+				final String gloss = FRAMERELATION_GLOSS[relationId - 1];
 
 				// related
 				if (VERBOSE)
@@ -509,14 +541,21 @@ abstract public class BaseModule extends Module
 				sbr.replace(position, position + 2, sb1);
 				position = sbr.toString().indexOf("%s");
 				sbr.replace(position, position + 2, sb2);
+
 				sb.append(sbr);
 
 				// result
 				long targetFrameId = slot1 ? frame2Id : frame1Id;
-				final TreeNode memberNode = TreeFactory.makeLinkNode(sb, R.drawable.roleclass, false, new FnFrameLink(targetFrameId)).addTo(parent);
-				changedList.add(NEWCHILD, memberNode);
+				final TreeNode memberNode = TreeFactory.makeLinkNode(sb, R.drawable.roleclass, false, new FnFrameLink(targetFrameId));
+				relatedNodes.put(FRAMERELATION_RANK[relationId], memberNode);
 			}
 			while (cursor.moveToNext());
+
+			for (TreeNode relatedNode : relatedNodes.values())
+			{
+				relatedNode.addTo(parent);
+				changedList.add(NEWCHILD, relatedNode);
+			}
 			changed = changedList.toArray();
 		}
 		else
