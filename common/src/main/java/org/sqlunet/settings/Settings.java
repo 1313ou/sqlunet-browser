@@ -485,10 +485,11 @@ public class Settings
 	 * Is upgrade
 	 *
 	 * @param context context
-	 * @return new build version if changed, null otherwise
+	 * @return [old build,new build]
 	 */
 	@SuppressWarnings({"UnusedReturnValue"})
-	public static Long isUpgrade(@NonNull final Context context)
+	@NonNull
+	public static long[] isUpgrade(@NonNull final Context context)
 	{
 		// recorded version
 		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -521,8 +522,8 @@ public class Settings
 			//
 		}
 
-		// upgrade test
-		return version < build ? build : null;
+		// result
+		return new long[]{version, build};
 	}
 
 	/**
