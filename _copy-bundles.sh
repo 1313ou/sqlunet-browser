@@ -17,28 +17,31 @@ distribtag=(
 [vn]=-vn
 [fn]=-fn
 [sn]=-sn
+[wn31]=-wn
 )
 declare -A dstdir
 dstdir=(
-[all]=db_ewn_asset
-[ewn]=dbewn_ewn_asset
-[vn]=dbvn_ewn_asset
-[fn]=dbfn_ewn_asset
-[sn]=dbsn_ewn_asset
+[all]=db_ewn_asset/src/main/assets/XX
+[ewn]=dbewn_ewn_asset/src/main/assets/XX
+[vn]=dbvn_ewn_asset/src/main/assets/XX
+[fn]=dbfn_ewn_asset/src/main/assets/XX
+[sn]=dbsn_ewn_asset/src/main/assets/XX
+[wn31]=dbwn_wn31_asset/src/main/assets/31
 )
 declare -A srcdir
 srcdir=(
 [all]=db
-[ewn]=db_oewn
-[vn]=db_vn
-[fn]=db_fn
-[sn]=db_sn
+[ewn]=db-oewn
+[vn]=db-vn
+[fn]=db-fn
+[sn]=db-sn
+[wn31]=db-wn31
 )
 
 for k in ${!distribtag[@]}; do
   m=${distribtag[$k]}
   src=${from}/${srcdir[$k]}
-  dst=${dstdir[$k]}/src/main/assets/XX
+  dst=${dstdir[$k]}
   if [ ! -e "${src}" ]; then
     echo -e "${R}${src}${Z}"
     continue
@@ -48,21 +51,20 @@ for k in ${!distribtag[@]}; do
     continue
     fi
 
-  echo -e "${G}${src}${Z} -> ${G}${dst}${Z}"
-	[ -e ${src}/distrib${m}.hsize ] || echo -e "${R}[SRC]${m} hsize${Z}"
-  [ -e ${src}/distrib${m}.size ] || echo -e "${R}[SRC]${m} size${Z}"
-  [ -e ${src}/distrib${m}.md5 ] || echo -e "${R}[SRC]${m} md5${Z}"
-  [ -e ${src}/sqlunet${m}.db.zip.md5 ] || echo -e "${R}[SRC]${m} md5zip${Z}"
-  [ -e ${src}/sqlunet${m}.db.zip ] || echo -e "${R}[SRC]${m} zip${Z}"
+echo -e "${G}${src}${Z} -> ${G}${dst}${Z}"
+[ -e ${src}/distrib${m}.hsize ] || echo -e "${R}[SRC]${m} hsize${Z}"
+[ -e ${src}/distrib${m}.size ] || echo -e "${R}[SRC]${m} size${Z}"
+[ -e ${src}/distrib${m}.md5 ] || echo -e "${R}[SRC]${m} md5${Z}"
+[ -e ${src}/sqlunet${m}.db.zip.md5 ] || echo -e "${R}[SRC]${m} md5zip${Z}"
+[ -e ${src}/sqlunet${m}.db.zip ] || echo -e "${R}[SRC]${m} zip${Z}"
 
-	mkdir -p ${dst}
+mkdir -p ${dst}
 
-	cp ${src}/distrib${m}.hsize ${dst}
-  cp ${src}/distrib${m}.size ${dst}
-  cp ${src}/distrib${m}.md5 ${dst}
-  cp ${src}/sqlunet${m}.db.zip ${dst}
-  cp ${src}/sqlunet${m}.db.zip.md5 ${dst}
+cp ${src}/distrib${m}.hsize ${dst}
+cp ${src}/distrib${m}.size ${dst}
+cp ${src}/distrib${m}.md5 ${dst}
+cp ${src}/sqlunet${m}.db.zip ${dst}
+cp ${src}/sqlunet${m}.db.zip.md5 ${dst}
 
 done
-
 
