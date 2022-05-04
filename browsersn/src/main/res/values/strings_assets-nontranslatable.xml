@@ -10,8 +10,10 @@
 	<string name="asset_dir_primary" translatable="false" tools:keep="@string/asset_dir_primary">XX</string>
 	<string name="asset_zip_primary" translatable="false" tools:keep="@string/asset_zip_primary">sqlunet-sn.db.zip</string>
 
+	<!--
 	<string name="asset_alt" translatable="false" tools:keep="@string/asset_alt">dbsn_wn31_asset</string>
 	<string name="asset_dir_alt" translatable="false" tools:keep="@string/asset_dir_alt">31</string>
 	<string name="asset_zip_alt" translatable="false" tools:keep="@string/asset_zip_alt">sqlunet-sn.db.zip</string>
+	-->
 
 </resources>
