@@ -61,6 +61,7 @@
 	</PreferenceCategory>
 
 	<!-- Alt -->
+	<!--
 	<PreferenceCategory android:title="@string/pref_asset_alt_category">
 		<Preference
 			android:defaultValue="true"
@@ -90,5 +91,6 @@
 			android:title="@string/pref_title_asset_zip_entry_alt"
 			app:singleLineTitle="false" />
 	</PreferenceCategory>
+	-->
 
 </PreferenceScreen>
