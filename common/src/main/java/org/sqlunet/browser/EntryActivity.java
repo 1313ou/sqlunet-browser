@@ -46,21 +46,24 @@ public class EntryActivity extends AppCompatActivity
 		Log.d(TAG, "lifecycle: OnCreate()");
 
 		// clear (some/all) settings on first run of this version
-		Long build = Settings.isUpgrade(this);
-		if (build != null)
+		long[] upgrade = Settings.isUpgrade(this); // upgrade[0]=recorded version, upgrade[1]=this build
+		if (upgrade[0] < upgrade[1])
 		{
-			boolean success = SetupDatabaseTasks.deleteDatabase(this, StorageSettings.getDatabasePath(this));
-			if (success)
+			if (upgrade[1] < 94)
 			{
-				Log.d(TAG, "Deleted database");
-			}
-			else
-			{
-				Log.e(TAG, "Error deleting database");
+				boolean success = SetupDatabaseTasks.deleteDatabase(this, StorageSettings.getDatabasePath(this));
+				if (success)
+				{
+					Log.d(TAG, "Deleted database");
+				}
+				else
+				{
+					Log.e(TAG, "Error deleting database");
+				}
+				org.sqlunet.download.Settings.unrecordDb(this);
 			}
 
-			org.sqlunet.download.Settings.unrecordDb(this);
-			Settings.onUpgrade(this, build);
+			Settings.onUpgrade(this, upgrade[1]);
 		}
 
 		// settings
