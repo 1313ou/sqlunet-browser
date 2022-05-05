@@ -173,16 +173,9 @@ abstract class BaseModule extends Module
 	 */
 	void roleSet(final long roleSetId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(PropBankProvider.makeUri(PbRoleSets_X.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				PbRoleSets_X.ROLESETID, //
-				PbRoleSets_X.ROLESETNAME, //
-				PbRoleSets_X.ROLESETHEAD, //
-				PbRoleSets_X.ROLESETDESC, //
-				"GROUP_CONCAT(" + PbRoleSets_X.WORD + ") AS " + PbRoleSets_X.ALIASES};
-		final String selection = PbRoleSets_X.ROLESETID + " = ?";
-		final String[] selectionArgs = {Long.toString(roleSetId)};
-		this.pbRoleSetFromRoleSetIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> roleSetCursorToTreeModel(cursor, roleSetId, parent));
+		final ContentProviderSql sql = Queries.prepareRoleSet(roleSetId);
+		final Uri uri = Uri.parse(PropBankProvider.makeUri(sql.providerUri));
+		this.pbRoleSetFromRoleSetIdModel.loadData(uri, sql, cursor -> roleSetCursorToTreeModel(cursor, roleSetId, parent));
 	}
 
 	private TreeOp[] roleSetCursorToTreeModel(@NonNull final Cursor cursor, final long roleSetId, @NonNull final TreeNode parent)
@@ -251,16 +244,9 @@ abstract class BaseModule extends Module
 	 */
 	void roleSets(final long wordId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(PropBankProvider.makeUri(Words_PbRoleSets.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				Words_PbRoleSets.ROLESETID, //
-				Words_PbRoleSets.ROLESETNAME, //
-				Words_PbRoleSets.ROLESETHEAD, //
-				Words_PbRoleSets.ROLESETDESC, //
-		};
-		final String selection = Words_PbRoleSets.WORDID + " = ?";
-		final String[] selectionArgs = {Long.toString(wordId)};
-		this.roleSetsFromWordIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> roleSetsCursorToTreeModel(cursor, parent));
+		final ContentProviderSql sql = Queries.prepareRoleSets(wordId);
+		final Uri uri = Uri.parse(PropBankProvider.makeUri(sql.providerUri));
+		this.roleSetsFromWordIdModel.loadData(uri, sql, cursor -> roleSetsCursorToTreeModel(cursor, parent));
 	}
 
 	@NonNull
@@ -331,17 +317,9 @@ abstract class BaseModule extends Module
 	 */
 	private void roles(final int roleSetId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(PropBankProvider.makeUri(PbRoleSets_PbRoles.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				PbRoleSets_PbRoles.ROLEID, //
-				PbRoleSets_PbRoles.ROLEDESCR, //
-				PbRoleSets_PbRoles.ARGTYPE, //
-				PbRoleSets_PbRoles.FUNC, //
-				PbRoleSets_PbRoles.THETA, //
-		};
-		final String selection = PbRoleSets_PbRoles.ROLESETID + "= ?";
-		final String[] selectionArgs = {Long.toString(roleSetId)};
-		this.rolesFromRoleSetIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> rolesCursorToTreeModel(cursor, parent));
+		final ContentProviderSql sql = Queries.prepareRoles(roleSetId);
+		final Uri uri = Uri.parse(PropBankProvider.makeUri(sql.providerUri));
+		this.rolesFromRoleSetIdModel.loadData(uri, sql, cursor -> rolesCursorToTreeModel(cursor, parent));
 	}
 
 	private TreeOp[] rolesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -427,30 +405,9 @@ abstract class BaseModule extends Module
 	 */
 	private void examples(final int roleSetId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(PropBankProvider.makeUri(PbRoleSets_PbExamples.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				PbRoleSets_PbExamples.TEXT, //
-				PbRoleSets_PbExamples.REL, //
-				"GROUP_CONCAT(" + //
-						PbRoleSets_PbExamples.ARGTYPE + //
-						"||'~'" + //
-						"||(CASE WHEN " + PbRoleSets_PbExamples.FUNCNAME + " IS NULL THEN '*' ELSE " + PbRoleSets_PbExamples.FUNCNAME + " END)" + //
-						"||'~'" + //
-						"||" + PbRoleSets_PbExamples.ROLEDESCR + //
-						"||'~'" + //
-						"||(CASE WHEN " + PbRoleSets_PbExamples.THETANAME + " IS NULL THEN '*' ELSE " + PbRoleSets_PbExamples.THETANAME + " END)" + //
-						"||'~'" + //
-						"||" + PbRoleSets_PbExamples.ARG + ",'|') AS " + PbRoleSets_PbExamples.ARGS, //
-				PbRoleSets_PbExamples.ASPECTNAME, //
-				PbRoleSets_PbExamples.FORMNAME, //
-				PbRoleSets_PbExamples.TENSENAME, //
-				PbRoleSets_PbExamples.VOICENAME, //
-				PbRoleSets_PbExamples.PERSONNAME, //
-		};
-		final String selection = PbRoleSets_PbExamples.ROLESETID + "= ?";
-		final String[] selectionArgs = {Long.toString(roleSetId)};
-		final String sortOrder = PbRoleSets_PbExamples.EXAMPLEID + ',' + PbRoleSets_PbExamples.ARGTYPE;
-		this.examplesFromRoleSetIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> examplesCursorToTreeModel(cursor, parent));
+		final ContentProviderSql sql = Queries.prepareExamples(roleSetId);
+		final Uri uri = Uri.parse(PropBankProvider.makeUri(sql.providerUri));
+		this.examplesFromRoleSetIdModel.loadData(uri, sql, cursor -> examplesCursorToTreeModel(cursor, parent));
 	}
 
 	private TreeOp[] examplesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)

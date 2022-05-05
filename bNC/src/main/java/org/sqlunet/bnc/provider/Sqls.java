@@ -1,6 +1,6 @@
 package org.sqlunet.bnc.provider;
 
-public class Queries
+public class Sqls
 {
 	static public class BNCS
 	{

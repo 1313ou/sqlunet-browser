@@ -109,23 +109,9 @@ abstract class BaseModule extends Module
 	 */
 	void collocation(final long collocationId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(SyntagNetProvider.makeUri(SnCollocations_X.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				SnCollocations_X.COLLOCATIONID, //
-				SnCollocations_X.WORD1ID, //
-				SnCollocations_X.WORD2ID, //
-				SnCollocations_X.SYNSET1ID, //
-				SnCollocations_X.SYNSET2ID, //
-				SyntagNetContract.W1 + '.' + SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD1, //
-				SyntagNetContract.W2 + '.' + SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD2, //
-				SyntagNetContract.S1 + '.' + SnCollocations_X.DEFINITION + " AS " + SyntagNetContract.DEFINITION1, //
-				SyntagNetContract.S2 + '.' + SnCollocations_X.DEFINITION + " AS " + SyntagNetContract.DEFINITION2, //
-				SyntagNetContract.S1 + '.' + SnCollocations_X.POS + " AS " + SyntagNetContract.POS1, //
-				SyntagNetContract.S2 + '.' + SnCollocations_X.POS + " AS " + SyntagNetContract.POS2, //
-		};
-		final String selection = SnCollocations_X.COLLOCATIONID + " = ?";
-		final String[] selectionArgs = {Long.toString(collocationId)};
-		this.collocationFromCollocationIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> collocationCursorToTreeModel(cursor, parent));
+		final ContentProviderSql sql = Queries.prepareCollocation(collocationId);
+		final Uri uri = Uri.parse(SyntagNetProvider.makeUri(sql.providerUri));
+		this.collocationFromCollocationIdModel.loadData(uri, sql, cursor -> collocationCursorToTreeModel(cursor, parent));
 	}
 
 	/**
@@ -139,29 +125,9 @@ abstract class BaseModule extends Module
 	 */
 	void collocations(final Long word1Id, @Nullable final Long word2Id, final Long synset1Id, final Long synset2Id, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(SyntagNetProvider.makeUri(SnCollocations_X.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				SnCollocations_X.COLLOCATIONID, //
-				SnCollocations_X.WORD1ID, //
-				SnCollocations_X.WORD1ID, //
-				SnCollocations_X.WORD2ID, //
-				SnCollocations_X.SYNSET1ID, //
-				SnCollocations_X.SYNSET2ID, //
-				SyntagNetContract.W1 + '.' + SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD1, //
-				SyntagNetContract.W2 + '.' + SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD2, //
-				SyntagNetContract.S1 + '.' + SnCollocations_X.DEFINITION + " AS " + SyntagNetContract.DEFINITION1, //
-				SyntagNetContract.S2 + '.' + SnCollocations_X.DEFINITION + " AS " + SyntagNetContract.DEFINITION2, //
-				SyntagNetContract.S1 + '.' + SnCollocations_X.POS + " AS " + SyntagNetContract.POS1, //
-				SyntagNetContract.S2 + '.' + SnCollocations_X.POS + " AS " + SyntagNetContract.POS2, //
-		};
-		final String selection = selection(word1Id, word2Id, synset1Id, synset2Id);
-		final String[] selectionArgs = selectionArgs(word1Id, word2Id, synset1Id, synset2Id, word2Id);
-		String sortOrder = SyntagNetContract.W1 + '.' + SnCollocations_X.WORD + ',' + SyntagNetContract.W2 + '.' + SnCollocations_X.WORD;
-		if (word2Id != null)
-		{
-			sortOrder = SnCollocations_X.WORD2ID + " = ?" + ',' + sortOrder;
-		}
-		this.collocationFromCollocationIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> collocationsCursorToTreeModel(cursor, parent));
+		final ContentProviderSql sql = Queries.prepareCollocations(word1Id, word2Id, synset1Id, synset2Id);
+		final Uri uri = Uri.parse(SyntagNetProvider.makeUri(sql.providerUri));
+		this.collocationFromCollocationIdModel.loadData(uri, sql, cursor -> collocationsCursorToTreeModel(cursor, parent));
 	}
 
 	/**
@@ -172,18 +138,9 @@ abstract class BaseModule extends Module
 	 */
 	void collocations(final long wordId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(SyntagNetProvider.makeUri(SnCollocations_X.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				SnCollocations_X.WORD1ID, //
-				SnCollocations_X.WORD2ID, //
-				SnCollocations_X.SYNSET1ID, //
-				SnCollocations_X.SYNSET2ID, //
-				SyntagNetContract.WORD1, //
-				SyntagNetContract.WORD2,};
-		final String selection = SnCollocations_X.WORD1ID + " = ? OR " + SnCollocations_X.WORD2ID + " = ?";
-		final String[] selectionArgs = {Long.toString(wordId), Long.toString(wordId), Long.toString(wordId)};
-		final String sortOrder = SnCollocations_X.WORD2ID + " = ?" + ',' + SyntagNetContract.W1 + '.' + SnCollocations_X.WORD + ',' + SyntagNetContract.W2 + '.' + SnCollocations_X.WORD;
-		this.collocationsFromWordIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> collocationsCursorToTreeModel(cursor, parent));
+		final ContentProviderSql sql = Queries.prepareCollocations(wordId);
+		final Uri uri = Uri.parse(SyntagNetProvider.makeUri(sql.providerUri));
+		this.collocationsFromWordIdModel.loadData(uri, sql, cursor -> collocationsCursorToTreeModel(cursor, parent));
 	}
 
 	/**
@@ -193,18 +150,9 @@ abstract class BaseModule extends Module
 	 */
 	void collocations(final String word, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(SyntagNetProvider.makeUri(SnCollocations_X.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				SnCollocations_X.WORD1ID, //
-				SnCollocations_X.WORD2ID, //
-				SnCollocations_X.SYNSET1ID, //
-				SnCollocations_X.SYNSET2ID, //
-				SyntagNetContract.WORD1, //
-				SyntagNetContract.WORD2,};
-		final String selection = SnCollocations_X.WORD1ID + " = ? OR " + SnCollocations_X.WORD2ID + " = ?";
-		final String[] selectionArgs = {word};
-		final String sortOrder = SnCollocations_X.WORD2ID + " = ?" + ',' + SyntagNetContract.W1 + '.' + SnCollocations_X.WORD + ',' + SyntagNetContract.W2 + '.' + SnCollocations_X.WORD;
-		this.collocationsFromWordModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> collocationsCursorToTreeModel(cursor, parent));
+		final ContentProviderSql sql = Queries.prepareCollocations(word);
+		final Uri uri = Uri.parse(SyntagNetProvider.makeUri(sql.providerUri));
+		this.collocationsFromWordModel.loadData(uri, sql, cursor -> collocationsCursorToTreeModel(cursor, parent));
 	}
 
 	private TreeOp[] collocationCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -273,66 +221,6 @@ abstract class BaseModule extends Module
 
 		cursor.close();
 		return changed;
-	}
-
-	/**
-	 * Make selection. When both arg1 and arg2 are equal, take it to mean the position (after, before) is indifferent (so OR)
-	 *
-	 * @param word1Id   word 1 id
-	 * @param word2Id   word 2 id
-	 * @param synset1Id synset 1 id
-	 * @param synset2Id synset 2 id
-	 * @return selection string
-	 */
-	@NonNull
-	private String selection(@Nullable final Long word1Id, @Nullable final Long word2Id, @Nullable final Long synset1Id, @Nullable final Long synset2Id)
-	{
-		String wordSelection1 = word1Id == null ? "" : SnCollocations_X.WORD1ID + " = ?";
-		String wordSelection2 = word2Id == null ? "" : SnCollocations_X.WORD2ID + " = ?";
-		String wordSelection = wordSelection1.isEmpty() || wordSelection2.isEmpty() ? wordSelection1 + wordSelection2 : wordSelection1 + (word1Id.equals(word2Id) ? " OR " : " AND ") + wordSelection2;
-
-		String synsetSelection1 = synset1Id == null ? "" : SnCollocations_X.SYNSET1ID + " = ?";
-		String synsetSelection2 = synset2Id == null ? "" : SnCollocations_X.SYNSET2ID + " = ?";
-		String synsetSelection = synsetSelection1.isEmpty() || synsetSelection2.isEmpty() ? synsetSelection1 + synsetSelection2 : synsetSelection1 + (synset1Id.equals(synset2Id) ? " OR " : " AND ") + synsetSelection2;
-
-		return wordSelection.isEmpty() || synsetSelection.isEmpty() ? (wordSelection + synsetSelection) : ('(' + wordSelection + ") AND (" + synsetSelection + ')');
-	}
-
-	/**
-	 * Make selection arguments
-	 *
-	 * @param word1Id   word 1 id
-	 * @param word2Id   word 2 id
-	 * @param synset1Id synset 1 id
-	 * @param synset2Id synset 2 id
-	 * @param orderId   id param used in order clause
-	 * @return selection arguments
-	 */
-	@NonNull
-	private String[] selectionArgs(@Nullable final Long word1Id, @Nullable final Long word2Id, @Nullable final Long synset1Id, @Nullable final Long synset2Id, @Nullable final Long orderId)
-	{
-		List<String> args = new ArrayList<>();
-		if (word1Id != null)
-		{
-			args.add(Long.toString(word1Id));
-		}
-		if (word2Id != null)
-		{
-			args.add(Long.toString(word2Id));
-		}
-		if (synset1Id != null)
-		{
-			args.add(Long.toString(synset1Id));
-		}
-		if (synset2Id != null)
-		{
-			args.add(Long.toString(synset2Id));
-		}
-		if (orderId != null)
-		{
-			args.add(Long.toString(orderId));
-		}
-		return args.toArray(new String[0]);
 	}
 
 	@SuppressLint("DefaultLocale")

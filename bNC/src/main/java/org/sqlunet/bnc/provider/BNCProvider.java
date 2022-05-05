@@ -143,7 +143,7 @@ public class BNCProvider extends BaseProvider
 
 			case BNC:
 				table = BNCContract.BNCs.TABLE;
-				table2 = Queries.BNCS.TABLE;
+				table2 = Sqls.BNCS.TABLE;
 				if (actualSelection != null)
 				{
 					actualSelection += " AND ";
@@ -154,7 +154,7 @@ public class BNCProvider extends BaseProvider
 				}
 				actualSelection2 = actualSelection;
 				actualSelection += BNCContract.BNCs.POSID + " = ?";
-				actualSelection2 += Queries.BNCS.SELECTION;
+				actualSelection2 += Sqls.BNCS.SELECTION;
 
 				break;
 
@@ -165,7 +165,7 @@ public class BNCProvider extends BaseProvider
 						"LEFT JOIN bnc_spwrs USING (wordid, posid) " + //
 						"LEFT JOIN bnc_convtasks USING (wordid, posid) " + //
 						"LEFT JOIN bnc_imaginfs USING (wordid, posid) ";
-				table2 = Queries.WORDS_BNCS.TABLE;
+				table2 = Sqls.WORDS_BNCS.TABLE;
 				break;
 
 			default:
