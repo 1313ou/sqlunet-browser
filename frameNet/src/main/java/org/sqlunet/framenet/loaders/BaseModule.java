@@ -28,7 +28,6 @@ import org.sqlunet.framenet.Utils;
 import org.sqlunet.framenet.browser.FnFrameActivity;
 import org.sqlunet.framenet.browser.FnLexUnitActivity;
 import org.sqlunet.framenet.browser.FnSentenceActivity;
-import org.sqlunet.framenet.provider.FrameNetContract;
 import org.sqlunet.framenet.provider.FrameNetContract.AnnoSets_Layers_X;
 import org.sqlunet.framenet.provider.FrameNetContract.Frames_FEs;
 import org.sqlunet.framenet.provider.FrameNetContract.Frames_Related;
@@ -91,10 +90,6 @@ abstract public class BaseModule extends Module
 	 */
 	static private boolean VERBOSE = false;
 
-	/**
-	 * Focused layer name
-	 */
-	static private final String FOCUSLAYER = "FE"; // "Target";
 	// agents
 
 	/**
@@ -323,19 +318,9 @@ abstract public class BaseModule extends Module
 	 */
 	void frame(final long frameId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(FrameNetProvider.makeUri(Frames_X.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				Frames_X.FRAMEID, //
-				Frames_X.FRAME, //
-				Frames_X.FRAMEDEFINITION, //
-				Frames_X.SEMTYPE, //
-				Frames_X.SEMTYPEABBREV, //
-				Frames_X.SEMTYPEDEFINITION, //
-		};
-		final String selection = Frames_X.FRAMEID + " = ?";
-		final String[] selectionArgs = {Long.toString(frameId)};
-		final String sortOrder = Frames_X.FRAME;
-		this.frameFromFrameIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> frameCursorToTreeModel(cursor, frameId, parent));
+		final ContentProviderSql sql = Queries.prepareFrame(frameId);
+		final Uri uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri));
+		this.frameFromFrameIdModel.loadData(uri, sql, cursor -> frameCursorToTreeModel(cursor, frameId, parent));
 	}
 
 	private TreeOp[] frameCursorToTreeModel(@NonNull final Cursor cursor, final long frameId, @NonNull final TreeNode parent)
@@ -444,18 +429,9 @@ abstract public class BaseModule extends Module
 	 */
 	private void relatedFrames(final long frameId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(FrameNetProvider.makeUri(Frames_Related.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				FrameNetContract.SRC + '.' + Frames_Related.FRAMEID + " AS " + "i1", //
-				FrameNetContract.SRC + '.' + Frames_Related.FRAME + " AS " + "f1", //
-				FrameNetContract.DEST + '.' + Frames_Related.FRAMEID + " AS " + "i2", //
-				FrameNetContract.DEST + '.' + Frames_Related.FRAME + " AS " + "f2", //
-				Frames_Related.RELATIONID, //
-				Frames_Related.RELATION, //
-		};
-		final String selection = FrameNetContract.RELATED + '.' + Frames_Related.FRAMEID + " = ?" + " OR " + FrameNetContract.RELATED + '.' + Frames_Related.FRAME2ID + " = ?";
-		final String[] selectionArgs = {Long.toString(frameId), Long.toString(frameId)};
-		this.relatedFramesFromFrameIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> relatedFramesCursorToTreeModel(cursor, frameId, parent));
+		final ContentProviderSql sql = Queries.prepareRelatedFrames(frameId);
+		final Uri uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri));
+		this.relatedFramesFromFrameIdModel.loadData(uri, sql, cursor -> relatedFramesCursorToTreeModel(cursor, frameId, parent));
 	}
 
 	@NonNull
@@ -578,21 +554,9 @@ abstract public class BaseModule extends Module
 	 */
 	private void fesForFrame(final int frameId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(FrameNetProvider.makeUri(Frames_FEs.CONTENT_URI_TABLE_BY_FE));
-		final String[] projection = { //
-				Frames_FEs.FETYPEID, //
-				Frames_FEs.FETYPE, //
-				Frames_FEs.FEABBREV, //
-				Frames_FEs.FEDEFINITION, //
-				"GROUP_CONCAT(" + Frames_FEs.SEMTYPE + ",'|') AS " + Frames_FEs.SEMTYPES, //
-				Frames_FEs.CORETYPEID, //
-				Frames_FEs.CORETYPE, //
-				Frames_FEs.CORESET, //
-		};
-		final String selection = Frames_FEs.FRAMEID + " = ? ";
-		final String[] selectionArgs = {Integer.toString(frameId)};
-		final String sortOrder = Frames_FEs.CORETYPEID + ',' + Frames_FEs.FETYPE;
-		this.fesFromFrameIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> fesCursorToTreeModel(cursor, parent));
+		final ContentProviderSql sql = Queries.prepareFesForFrame(frameId);
+		final Uri uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri));
+		this.fesFromFrameIdModel.loadData(uri, sql, cursor -> fesCursorToTreeModel(cursor, parent));
 	}
 
 	@NonNull
@@ -707,21 +671,9 @@ abstract public class BaseModule extends Module
 	 */
 	void lexUnit(final long luId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean withFrame, @SuppressWarnings("SameParameterValue") final boolean withFes)
 	{
-		final Uri uri = Uri.parse(FrameNetProvider.makeUri(LexUnits_X.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				LexUnits_X.LUID, //
-				LexUnits_X.LEXUNIT, //
-				LexUnits_X.LUDEFINITION, //
-				LexUnits_X.LUDICT, //
-				LexUnits_X.INCORPORATEDFETYPE, //
-				LexUnits_X.INCORPORATEDFEDEFINITION, //
-				FrameNetContract.LU + '.' + LexUnits_X.POSID, //
-				FrameNetContract.LU + '.' + LexUnits_X.FRAMEID, //
-				LexUnits_X.FRAME, //
-		};
-		final String selection = LexUnits_X.LUID + " = ?";
-		final String[] selectionArgs = {Long.toString(luId)};
-		this.lexUnitFromLuIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> lexUnitCursorToTreeModel(cursor, luId, parent, withFrame, withFes));
+		final ContentProviderSql sql = Queries.prepareLexUnit(luId);
+		final Uri uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri));
+		this.lexUnitFromLuIdModel.loadData(uri, sql, cursor -> lexUnitCursorToTreeModel(cursor, luId, parent, withFrame, withFes));
 	}
 
 	@NonNull
@@ -857,21 +809,9 @@ abstract public class BaseModule extends Module
 	 */
 	private void lexUnitsForFrame(final long frameId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean withFrame)
 	{
-		final Uri uri = Uri.parse(FrameNetProvider.makeUri(LexUnits_X.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				LexUnits_X.LUID, //
-				LexUnits_X.LEXUNIT, //
-				FrameNetContract.LU + '.' + LexUnits_X.FRAMEID, //
-				FrameNetContract.LU + '.' + LexUnits_X.POSID, //
-				LexUnits_X.LUDEFINITION, //
-				LexUnits_X.LUDICT, //
-				LexUnits_X.INCORPORATEDFETYPE, //
-				LexUnits_X.INCORPORATEDFEDEFINITION, //
-		};
-		final String selection = FrameNetContract.FRAME + '.' + LexUnits_X.FRAMEID + " = ?";
-		final String[] selectionArgs = {Long.toString(frameId)};
-		final String sortOrder = LexUnits_X.LEXUNIT;
-		this.lexUnitsFromFrameIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> lexUnitsCursorToTreeModel(cursor, frameId, parent, withFrame));
+		final ContentProviderSql sql = Queries.prepareLexUnitsForFrame(frameId);
+		final Uri uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri));
+		this.lexUnitsFromFrameIdModel.loadData(uri, sql, cursor -> lexUnitsCursorToTreeModel(cursor, frameId, parent, withFrame));
 	}
 
 	@NonNull
@@ -1001,23 +941,9 @@ abstract public class BaseModule extends Module
 	 */
 	void lexUnitsForWordAndPos(final long wordId, @Nullable final Character pos, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(FrameNetProvider.makeUri(Words_LexUnits_Frames.CONTENT_URI_TABLE_FN));
-		final String[] projection = { //
-				Words_LexUnits_Frames.LUID, //
-				Words_LexUnits_Frames.LEXUNIT, //
-				FrameNetContract.LU + '.' + Words_LexUnits_Frames.FRAMEID, //
-				FrameNetContract.LU + '.' + Words_LexUnits_Frames.POSID, //
-				Words_LexUnits_Frames.LUDEFINITION, //
-				Words_LexUnits_Frames.LUDICT, //
-				Words_LexUnits_Frames.INCORPORATEDFETYPE, //
-				Words_LexUnits_Frames.INCORPORATEDFEDEFINITION, //
-		};
-		final String selection = pos == null ?  //
-				Words_LexUnits_Frames.WORDID + " = ?" :  //
-				Words_LexUnits_Frames.WORDID + " = ? AND " + FrameNetContract.POS + '.' + Words_LexUnits_Frames.POS + " = ?";
-		final String[] selectionArgs = pos == null ? new String[]{Long.toString(wordId)} : new String[]{Long.toString(wordId), pos.toString().toUpperCase()};
-		final String sortOrder = Words_LexUnits_Frames.FRAME + ',' + Words_LexUnits_Frames.LUID;
-		this.lexUnitsFromWordIdPosModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> lexUnitsFromWordIdPosCursorToTreeModel(cursor, parent));
+		final ContentProviderSql sql = Queries.prepareLexUnitsForWordAndPos(wordId, pos);
+		final Uri uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri));
+		this.lexUnitsFromWordIdPosModel.loadData(uri, sql, cursor -> lexUnitsFromWordIdPosCursorToTreeModel(cursor, parent));
 	}
 
 	@NonNull
@@ -1137,18 +1063,9 @@ abstract public class BaseModule extends Module
 	 */
 	private void governorsForLexUnit(final long luId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(FrameNetProvider.makeUri(LexUnits_Governors.CONTENT_URI_TABLE_FN));
-		final String[] projection = { //
-				LexUnits_Governors.LUID, //
-				LexUnits_Governors.GOVERNORID, //
-				LexUnits_Governors.GOVERNORTYPE, //
-				LexUnits_Governors.FNWORDID, //
-				LexUnits_Governors.WORD, //
-		};
-		final String selection = LexUnits_Governors.LUID + " = ?";
-		final String[] selectionArgs = {Long.toString(luId)};
-		final String sortOrder = LexUnits_Governors.GOVERNORID;
-		this.governorsFromLuIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> governorsCursorToTreeModel(cursor, parent));
+		final ContentProviderSql sql = Queries.prepareGovernorsForLexUnit(luId);
+		final Uri uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri));
+		this.governorsFromLuIdModel.loadData(uri, sql, cursor -> governorsCursorToTreeModel(cursor, parent));
 	}
 
 	@NonNull
@@ -1215,22 +1132,9 @@ abstract public class BaseModule extends Module
 	 */
 	private void realizationsForLexicalUnit(final long luId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(FrameNetProvider.makeUri(LexUnits_FERealizations_ValenceUnits.CONTENT_URI_TABLE_BY_REALIZATION));
-		final String[] projection = { //
-				LexUnits_FERealizations_ValenceUnits.LUID, //
-				LexUnits_FERealizations_ValenceUnits.FERID, //
-				LexUnits_FERealizations_ValenceUnits.FETYPE, //
-				"GROUP_CONCAT(IFNULL(" +  //
-						LexUnits_FERealizations_ValenceUnits.PT + ",'') || ':' || IFNULL(" + //
-						LexUnits_FERealizations_ValenceUnits.GF + ",'') || ':' || " +  //
-						LexUnits_FERealizations_ValenceUnits.VUID + ") AS " +  //
-						LexUnits_FERealizations_ValenceUnits.FERS, //
-				LexUnits_FERealizations_ValenceUnits.TOTAL, //
-		};
-		final String selection = LexUnits_FERealizations_ValenceUnits.LUID + " = ?";
-		final String[] selectionArgs = {Long.toString(luId)};
-		final String sortOrder = LexUnits_FERealizations_ValenceUnits.FERID;
-		this.realizationsFromLuIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> realizationsCursorToTreeModel(cursor, parent));
+		final ContentProviderSql sql = Queries.prepareRealizationsForLexicalUnit(luId);
+		final Uri uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri));
+		this.realizationsFromLuIdModel.loadData(uri, sql, cursor -> realizationsCursorToTreeModel(cursor, parent));
 	}
 
 	@NonNull
@@ -1328,20 +1232,9 @@ abstract public class BaseModule extends Module
 	 */
 	private void groupRealizationsForLexUnit(final long luId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(FrameNetProvider.makeUri(LexUnits_FEGroupRealizations_Patterns_ValenceUnits.CONTENT_URI_TABLE_BY_PATTERN));
-		final String[] projection = { //
-				LexUnits_FEGroupRealizations_Patterns_ValenceUnits.LUID, //
-				LexUnits_FEGroupRealizations_Patterns_ValenceUnits.FEGRID, //
-				LexUnits_FEGroupRealizations_Patterns_ValenceUnits.PATTERNID, //
-				"GROUP_CONCAT(" + //
-						LexUnits_FEGroupRealizations_Patterns_ValenceUnits.FETYPE + " || '.' || " + //
-						LexUnits_FEGroupRealizations_Patterns_ValenceUnits.PT + " || '.'|| IFNULL(" + //
-						LexUnits_FEGroupRealizations_Patterns_ValenceUnits.GF + ", '--')) AS " + //
-						LexUnits_FEGroupRealizations_Patterns_ValenceUnits.GROUPREALIZATIONS,};
-		final String selection = LexUnits_FEGroupRealizations_Patterns_ValenceUnits.LUID + " = ?";
-		final String[] selectionArgs = {Long.toString(luId)};
-		//final String sortOrder = LexUnits_FEGroupRealizations_Patterns_ValenceUnits.FEGRID;
-		this.groupRealizationsFromLuIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> groupRealizationsCursorToTreeModel(cursor, parent));
+		final ContentProviderSql sql = Queries.prepareGroupRealizationsForLexUnit(luId);
+		final Uri uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri));
+		this.groupRealizationsFromLuIdModel.loadData(uri, sql, cursor -> groupRealizationsCursorToTreeModel(cursor, parent));
 	}
 
 	@NonNull
@@ -1474,31 +1367,9 @@ abstract public class BaseModule extends Module
 	 */
 	private void sentencesForLexUnit(final long luId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(FrameNetProvider.makeUri(LexUnits_Sentences_AnnoSets_Layers_Labels.CONTENT_URI_TABLE_BY_SENTENCE));
-		final String[] projection = { //
-				LexUnits_Sentences_AnnoSets_Layers_Labels.SENTENCEID, //
-				LexUnits_Sentences_AnnoSets_Layers_Labels.TEXT, //
-				LexUnits_Sentences_AnnoSets_Layers_Labels.LAYERTYPE, //
-				LexUnits_Sentences_AnnoSets_Layers_Labels.RANK, //
-				"GROUP_CONCAT(" + //
-						LexUnits_Sentences_AnnoSets_Layers_Labels.START + "||':'||" + //
-						LexUnits_Sentences_AnnoSets_Layers_Labels.END + "||':'||" + //
-						LexUnits_Sentences_AnnoSets_Layers_Labels.LABELTYPE + "||':'||" + //
-						"CASE WHEN " + LexUnits_Sentences_AnnoSets_Layers_Labels.LABELITYPE + " IS NULL THEN '' ELSE " + LexUnits_Sentences_AnnoSets_Layers_Labels.LABELITYPE + " END||':'||" + //
-						//"CASE WHEN " + LexUnits_Sentences_AnnoSets_Layers_Labels.BGCOLOR + " IS NULL THEN '' ELSE " + LexUnits_Sentences_AnnoSets_Layers_Labels.BGCOLOR + " END||':'||" + //
-						"''||':'||" + //
-						//"CASE WHEN " + LexUnits_Sentences_AnnoSets_Layers_Labels.FGCOLOR + " IS NULL THEN '' ELSE " + LexUnits_Sentences_AnnoSets_Layers_Labels.FGCOLOR + " END" + //
-						"''" + //
-						",'|')" + //
-						" AS " + LexUnits_Sentences_AnnoSets_Layers_Labels.LAYERANNOTATION, //
-		};
-		final String selection = FrameNetContract.LU + '.' + LexUnits_Sentences_AnnoSets_Layers_Labels.LUID + " = ? AND " + LexUnits_Sentences_AnnoSets_Layers_Labels.LAYERTYPE + " = ?";
-		final String[] selectionArgs = {Long.toString(luId), BaseModule.FOCUSLAYER};
-		final String sortOrder = LexUnits_Sentences_AnnoSets_Layers_Labels.CORPUSID + ',' + //
-				LexUnits_Sentences_AnnoSets_Layers_Labels.DOCUMENTID + ',' + //
-				LexUnits_Sentences_AnnoSets_Layers_Labels.PARAGNO + ',' + //
-				LexUnits_Sentences_AnnoSets_Layers_Labels.SENTNO;
-		this.sentencesFromLuIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> sentencesCursor1ToTreeModel(cursor, parent));
+		final ContentProviderSql sql = Queries.prepareSentencesForLexUnit(luId);
+		final Uri uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri));
+		this.sentencesFromLuIdModel.loadData(uri, sql, cursor -> sentencesCursor1ToTreeModel(cursor, parent));
 	}
 
 	@NonNull
@@ -1610,16 +1481,9 @@ abstract public class BaseModule extends Module
 	 */
 	private void sentencesForPattern(final long patternId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(FrameNetProvider.makeUri(Patterns_Sentences.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				Patterns_Sentences.ANNOSETID, //
-				Patterns_Sentences.SENTENCEID, //
-				Patterns_Sentences.TEXT, //
-		};
-		final String selection = Patterns_Sentences.PATTERNID + " = ?";
-		final String[] selectionArgs = {Long.toString(patternId)};
-		final String sortOrder = Patterns_Sentences.SENTENCEID;
-		this.sentencesFromPatternIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> sentencesCursor2ToTreeModel(cursor, parent));
+		final ContentProviderSql sql = Queries.prepareSentencesForPattern(patternId);
+		final Uri uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri));
+		this.sentencesFromPatternIdModel.loadData(uri, sql, cursor -> sentencesCursor2ToTreeModel(cursor, parent));
 	}
 
 	@NonNull
@@ -1679,16 +1543,9 @@ abstract public class BaseModule extends Module
 	 */
 	private void sentencesForValenceUnit(final long vuId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(FrameNetProvider.makeUri(ValenceUnits_Sentences.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				Patterns_Sentences.ANNOSETID, //
-				Patterns_Sentences.SENTENCEID, //
-				Patterns_Sentences.TEXT, //
-		};
-		final String selection = ValenceUnits_Sentences.VUID + " = ?";
-		final String[] selectionArgs = {Long.toString(vuId)};
-		final String sortOrder = ValenceUnits_Sentences.SENTENCEID;
-		this.sentencesFromVuIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> sentencesCursor3ToTreeModel(cursor, parent));
+		final ContentProviderSql sql = Queries.prepareSentencesForValenceUnit(vuId);
+		final Uri uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri));
+		this.sentencesFromVuIdModel.loadData(uri, sql, cursor -> sentencesCursor3ToTreeModel(cursor, parent));
 	}
 
 	@NonNull
@@ -1751,18 +1608,9 @@ abstract public class BaseModule extends Module
 	 */
 	void annoSet(final long annoSetId, @NonNull final TreeNode parent, final boolean withSentence)
 	{
-		final Uri uri = Uri.parse(FrameNetProvider.makeUri(AnnoSets_Layers_X.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				AnnoSets_Layers_X.SENTENCEID, //
-				AnnoSets_Layers_X.SENTENCETEXT, //
-				AnnoSets_Layers_X.LAYERID, //
-				AnnoSets_Layers_X.LAYERTYPE, //
-				AnnoSets_Layers_X.RANK, //
-				AnnoSets_Layers_X.LAYERANNOTATIONS, //
-		};
-		// final String selection = null; // embedded selection
-		final String[] selectionArgs = {Long.toString(annoSetId)};
-		this.annoSetFromAnnoSetIdModel.loadData(uri, projection, null, selectionArgs, null, cursor -> annoSetCursorToTreeModel(cursor, parent, withSentence));
+		final ContentProviderSql sql = Queries.prepareAnnoSet(annoSetId);
+		final Uri uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri));
+		this.annoSetFromAnnoSetIdModel.loadData(uri, sql, cursor -> annoSetCursorToTreeModel(cursor, parent, withSentence));
 	}
 
 	private TreeOp[] annoSetCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean withSentence)
@@ -1893,16 +1741,9 @@ abstract public class BaseModule extends Module
 	 */
 	private void annoSetsForGovernor(final long governorId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(FrameNetProvider.makeUri(Governors_AnnoSets_Sentences.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				Governors_AnnoSets_Sentences.GOVERNORID, //
-				Governors_AnnoSets_Sentences.ANNOSETID, //
-				Governors_AnnoSets_Sentences.SENTENCEID, //
-				Governors_AnnoSets_Sentences.TEXT, //
-		};
-		final String selection = Governors_AnnoSets_Sentences.GOVERNORID + " = ?";
-		final String[] selectionArgs = {Long.toString(governorId)};
-		this.annoSetsFromGovernorIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> annoSetsCursor1ToTreeModel(cursor, parent));
+		final ContentProviderSql sql = Queries.prepareAnnoSetsForGovernor(governorId);
+		final Uri uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri));
+		this.annoSetsFromGovernorIdModel.loadData(uri, sql, cursor -> annoSetsCursor1ToTreeModel(cursor, parent));
 	}
 
 	@NonNull
@@ -1965,19 +1806,9 @@ abstract public class BaseModule extends Module
 	 */
 	void annoSetsForPattern(final long patternId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(FrameNetProvider.makeUri(Patterns_Layers_X.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				Patterns_Layers_X.ANNOSETID, //
-				Patterns_Layers_X.SENTENCEID, //
-				Patterns_Layers_X.SENTENCETEXT, //
-				Patterns_Layers_X.LAYERID, //
-				Patterns_Layers_X.LAYERTYPE, //
-				Patterns_Layers_X.RANK, //
-				Patterns_Layers_X.LAYERANNOTATIONS, //
-		};
-		// final String selection = null; // embedded selection
-		final String[] selectionArgs = {Long.toString(patternId)};
-		this.annoSetsFromPatternIdModel.loadData(uri, projection, null, selectionArgs, null, cursor -> annoSetsCursor2ToTreeModel(cursor, parent));
+		final ContentProviderSql sql = Queries.prepareAnnoSetsForPattern(patternId);
+		final Uri uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri));
+		this.annoSetsFromPatternIdModel.loadData(uri, sql, cursor -> annoSetsCursor2ToTreeModel(cursor, parent));
 	}
 
 	@NonNull
@@ -2004,19 +1835,9 @@ abstract public class BaseModule extends Module
 	 */
 	void annoSetsForValenceUnit(final long vuId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(FrameNetProvider.makeUri(ValenceUnits_Layers_X.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				ValenceUnits_Layers_X.ANNOSETID, //
-				ValenceUnits_Layers_X.SENTENCEID, //
-				ValenceUnits_Layers_X.SENTENCETEXT, //
-				ValenceUnits_Layers_X.LAYERID, //
-				ValenceUnits_Layers_X.LAYERTYPE, //
-				ValenceUnits_Layers_X.RANK, //
-				ValenceUnits_Layers_X.LAYERANNOTATIONS, //
-		};
-		// final String selection = null; // embedded selection
-		final String[] selectionArgs = {Long.toString(vuId)};
-		this.annoSetsFromVuIdModel.loadData(uri, projection, null, selectionArgs, null, cursor -> annoSetsCursor3ToTreeModel(cursor, parent));
+		final ContentProviderSql sql = Queries.prepareAnnoSetsForValenceUnit(vuId);
+		final Uri uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri));
+		this.annoSetsFromVuIdModel.loadData(uri, sql, cursor -> annoSetsCursor3ToTreeModel(cursor, parent));
 	}
 
 	@NonNull
@@ -2198,19 +2019,9 @@ abstract public class BaseModule extends Module
 	 */
 	void layersForSentence(final long sentenceId, final String text, @NonNull final TreeNode parent)
 	{
-		// Log.d(TAG, "sentence " + sentenceId);
-
-		final Uri uri = Uri.parse(FrameNetProvider.makeUri(Sentences_Layers_X.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				Sentences_Layers_X.ANNOSETID, //
-				Sentences_Layers_X.LAYERID, //
-				Sentences_Layers_X.LAYERTYPE, //
-				Sentences_Layers_X.RANK, //
-				Sentences_Layers_X.LAYERANNOTATIONS, //
-		};
-		// final String selection = null; // embedded selection
-		final String[] selectionArgs = {Long.toString(sentenceId)};
-		this.layersFromSentenceIdModel.loadData(uri, projection, null, selectionArgs, null, cursor -> layersCursorToTreeModel(cursor, text, parent));
+		final ContentProviderSql sql = Queries.prepareLayersForSentence(sentenceId);
+		final Uri uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri));
+		this.layersFromSentenceIdModel.loadData(uri, sql, cursor -> layersCursorToTreeModel(cursor, text, parent));
 	}
 
 	@NonNull
