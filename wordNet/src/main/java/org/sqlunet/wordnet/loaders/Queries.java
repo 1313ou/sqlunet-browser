@@ -1,12 +1,34 @@
 package org.sqlunet.wordnet.loaders;
 
 import org.sqlunet.browser.Module;
+import org.sqlunet.provider.XSqlUNetContract;
 import org.sqlunet.wordnet.provider.V;
 import org.sqlunet.wordnet.provider.WordNetContract;
 
 public class Queries
 {
 	static final String ALLMORPHS = "allmorphs";
+
+	public static Module.ContentProviderSql prepareWn(final long wordId)
+	{
+		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
+		providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CONTENT_URI_TABLE;
+		providerSql.projection = new String[]{ //
+				"'wn' AS " + XSqlUNetContract.Words_XNet_U.SOURCES, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS " + XSqlUNetContract.Words_XNet_U.XID, //
+				"NULL AS " + XSqlUNetContract.Words_XNet_U.XCLASSID, //
+				"NULL AS " + XSqlUNetContract.Words_XNet_U.XMEMBERID, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORD + "|| '.' ||" + WordNetContract.AS_POSES + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + " AS " + XSqlUNetContract.Words_XNet_U.XNAME, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN + " AS " + XSqlUNetContract.Words_XNet_U.XHEADER, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY + " AS " + XSqlUNetContract.Words_XNet_U.XINFO, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION + " AS " + XSqlUNetContract.Words_XNet_U.XDEFINITION, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS _id"};
+		providerSql.selection = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID + " = ?";
+		providerSql.selectionArgs = new String[]{Long.toString(wordId)};
+		return providerSql;
+	}
 
 	public static Module.ContentProviderSql prepareWord(final long wordId)
 	{

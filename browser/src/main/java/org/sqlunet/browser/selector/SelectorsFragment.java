@@ -20,11 +20,12 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
+import org.sqlunet.browser.Module;
 import org.sqlunet.browser.PositionViewModel;
 import org.sqlunet.browser.R;
 import org.sqlunet.browser.SqlunetViewModel;
+import org.sqlunet.loaders.Queries;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.provider.XSqlUNetContract;
 import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_PbWords_VnWords;
 import org.sqlunet.provider.XSqlUNetProvider;
 
@@ -324,29 +325,9 @@ public class SelectorsFragment extends ListFragment
 	private void load()
 	{
 		// load the contents
-		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(Words_FnWords_PbWords_VnWords.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				Words_FnWords_PbWords_VnWords.SYNSETID + " AS _id", //
-				Words_FnWords_PbWords_VnWords.WORDID, //
-				Words_FnWords_PbWords_VnWords.SENSEID, //
-				Words_FnWords_PbWords_VnWords.SENSENUM, //
-				Words_FnWords_PbWords_VnWords.SENSEKEY, //
-				Words_FnWords_PbWords_VnWords.LUID, //
-				Words_FnWords_PbWords_VnWords.TAGCOUNT, //
-				Words_FnWords_PbWords_VnWords.SYNSETID, //
-				Words_FnWords_PbWords_VnWords.DEFINITION, //
-				XSqlUNetContract.POS + '.' + Words_FnWords_PbWords_VnWords.POSID, //
-				Words_FnWords_PbWords_VnWords.POS, //
-				Words_FnWords_PbWords_VnWords.DOMAIN, //
-				Words_FnWords_PbWords_VnWords.CASED, //
-				Words_FnWords_PbWords_VnWords.FNWORDID, //
-				Words_FnWords_PbWords_VnWords.VNWORDID, //
-				Words_FnWords_PbWords_VnWords.PBWORDID, //
-		};
-		final String selection = XSqlUNetContract.WORD + '.' + Words_FnWords_PbWords_VnWords.WORD + " = ?"; ////
-		final String[] selectionArgs = {this.word};
-		final String sortOrder = XSqlUNetContract.POS + '.' + Words_FnWords_PbWords_VnWords.POS + ',' + Words_FnWords_PbWords_VnWords.SENSENUM;
-		this.dataModel.loadData(uri, projection, selection, selectionArgs, sortOrder, this::wordIdFromWordPostProcess);
+		final Module.ContentProviderSql sql = Queries.prepareWordX(this.word);
+		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(sql.providerUri));
+		this.dataModel.loadData(uri, sql, this::wordIdFromWordPostProcess);
 	}
 
 	/**

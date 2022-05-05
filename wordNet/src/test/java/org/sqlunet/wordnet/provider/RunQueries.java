@@ -34,5 +34,6 @@ public class RunQueries
 		sql = Queries.prepareAdjPosition(0);
 		sql = Queries.prepareAdjPosition(0, 0);
 		sql = Queries.prepareMorphs(0);
+		sql = Queries.prepareWn(0);
 	}
 }
