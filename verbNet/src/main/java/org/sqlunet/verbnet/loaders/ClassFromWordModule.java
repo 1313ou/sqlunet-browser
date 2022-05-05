@@ -28,8 +28,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWTREE;
 import static org.sqlunet.view.TreeOp.TreeOpCode.NEWCHILD;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWTREE;
 import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
 
 /**
@@ -118,31 +118,9 @@ public class ClassFromWordModule extends BaseModule
 	 */
 	private void vnClasses(final long wordId, @Nullable final Long synsetId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(VerbNetProvider.makeUri(Words_VnClasses.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				Words_VnClasses.CLASSID, //
-				Words_VnClasses.CLASS, //
-				Words_VnClasses.CLASSTAG, //
-				"(" + Words_VnClasses.SYNSETID + " IS NULL) AS " + Words_VnClasses.NULLSYNSET, //
-				Words_VnClasses.SENSENUM, //
-				Words_VnClasses.SENSEKEY, //
-				Words_VnClasses.QUALITY, //
-		};
-		String selection = Words_VnClasses.WORDID + " = ?";
-		String[] selectionArgs;
-		if (synsetId != null && synsetId != 0)
-		{
-			selection += " AND (" + Words_VnClasses.SYNSETID + " = ? OR " + Words_VnClasses.SYNSETID + " IS NULL)";
-			selectionArgs = new String[]{ //
-					Long.toString(wordId), //
-					Long.toString(synsetId)};
-		}
-		else
-		{
-			selectionArgs = new String[]{ //
-					Long.toString(wordId)};
-		}
-		this.vnClassesFromWordIdSynsetIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> vnClassesCursorToTreeModel(cursor, parent));
+		final ContentProviderSql sql = Queries.prepareVnClasses(wordId, synsetId);
+		final Uri uri = Uri.parse(VerbNetProvider.makeUri(sql.providerUri));
+		this.vnClassesFromWordIdSynsetIdModel.loadData(uri, sql, cursor -> vnClassesCursorToTreeModel(cursor, parent));
 	}
 
 	@NonNull

@@ -74,4 +74,9 @@ public class SqlunetViewModel extends AndroidViewModel
 			}
 		}.execute();
 	}
+
+	public void loadData(@NonNull final Uri uri, @NonNull final Module.ContentProviderSql sql, @Nullable final PostProcessor postProcessor)
+	{
+		loadData(uri, sql.projection, sql.selection, sql.selectionArgs, sql.sortBy, postProcessor);
+	}
 }

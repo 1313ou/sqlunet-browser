@@ -3,6 +3,8 @@ package org.sqlunet.verbnet.loaders;
 import org.sqlunet.browser.Module;
 import org.sqlunet.verbnet.provider.VerbNetContract;
 
+import androidx.annotation.Nullable;
+
 public class Queries
 {
 	public static Module.ContentProviderSql prepareVnClass(final long classId)
@@ -16,6 +18,35 @@ public class Queries
 		};
 		providerSql.selection = VerbNetContract.VnClasses.CLASSID + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(classId)};
+		return providerSql;
+	}
+
+	public static Module.ContentProviderSql prepareVnClasses(final long wordId, @Nullable final Long synsetId)
+	{
+		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
+		providerSql.providerUri = VerbNetContract.Words_VnClasses.CONTENT_URI_TABLE;
+		providerSql.projection = new String[]{ //
+				VerbNetContract.Words_VnClasses.CLASSID, //
+				VerbNetContract.Words_VnClasses.CLASS, //
+				VerbNetContract.Words_VnClasses.CLASSTAG, //
+				"(" + VerbNetContract.Words_VnClasses.SYNSETID + " IS NULL) AS " + VerbNetContract.Words_VnClasses.NULLSYNSET, //
+				VerbNetContract.Words_VnClasses.SENSENUM, //
+				VerbNetContract.Words_VnClasses.SENSEKEY, //
+				VerbNetContract.Words_VnClasses.QUALITY, //
+		};
+		providerSql.selection = VerbNetContract.Words_VnClasses.WORDID + " = ?";
+		if (synsetId != null && synsetId != 0)
+		{
+			providerSql.selection += " AND (" + VerbNetContract.Words_VnClasses.SYNSETID + " = ? OR " + VerbNetContract.Words_VnClasses.SYNSETID + " IS NULL)";
+			providerSql.selectionArgs = new String[]{ //
+					Long.toString(wordId), //
+					Long.toString(synsetId)};
+		}
+		else
+		{
+			providerSql.selectionArgs = new String[]{ //
+					Long.toString(wordId)};
+		}
 		return providerSql;
 	}
 
@@ -33,7 +64,7 @@ public class Queries
 		};
 		providerSql.selection = VerbNetContract.VnClasses_VnRoles_X.CLASSID + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(classId)};
-		final String sortOrder = VerbNetContract.VnClasses_VnMembers_X.WORD;
+		providerSql.sortBy = VerbNetContract.VnClasses_VnMembers_X.WORD;
 		return providerSql;
 	}
 

@@ -20,11 +20,13 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
+import org.sqlunet.browser.Module;
 import org.sqlunet.browser.PositionViewModel;
 import org.sqlunet.browser.SqlunetViewModel;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.wordnet.R;
 import org.sqlunet.wordnet.SensePointer;
+import org.sqlunet.wordnet.loaders.Queries;
 import org.sqlunet.wordnet.provider.WordNetContract;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains;
 import org.sqlunet.wordnet.provider.WordNetProvider;
@@ -153,7 +155,7 @@ public class SensesFragment extends ListFragment
 	{
 		super.onStart();
 		Log.d(TAG, "lifecycle: onStart (6) " + this);
-		load();
+		senses();
 	}
 
 	// --deactivate--
@@ -266,27 +268,12 @@ public class SensesFragment extends ListFragment
 	/**
 	 * Load data from word
 	 */
-	private void load()
+	private void senses()
 	{
 		// load the contents
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(Words_Senses_CasedWords_Synsets_Poses_Domains.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				WordNetContract.Synsets.SYNSETID + " AS _id", //
-				WordNetContract.Words.WORDID, //
-				Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEID, //
-				Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM, //
-				Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY, //
-				Words_Senses_CasedWords_Synsets_Poses_Domains.LEXID, //
-				Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT, //
-				Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID, //
-				Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION, //
-				Words_Senses_CasedWords_Synsets_Poses_Domains.POS, //
-				Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN, //
-				Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD};
-		final String selection = WordNetContract.AS_WORDS + '.' + Words_Senses_CasedWords_Synsets_Poses_Domains.WORD + " = ?";
-		final String[] selectionArgs = {this.word};
-		final String sortOrder = Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + ',' + Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM;
-		this.dataModel.loadData(uri, projection, selection, selectionArgs, sortOrder, this::wordIdFromWordPostProcess);
+		final Module.ContentProviderSql sql = Queries.prepareSenses(word);
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
+		this.dataModel.loadData(uri, sql, this::wordIdFromWordPostProcess);
 	}
 
 	/**
