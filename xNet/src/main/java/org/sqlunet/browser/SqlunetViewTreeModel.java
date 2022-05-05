@@ -64,4 +64,9 @@ public class SqlunetViewTreeModel extends AndroidViewModel
 			}
 		}.execute();
 	}
+
+	public void loadData(@NonNull final Uri uri, @NonNull final Module.ContentProviderSql sql, @NonNull final ToTreeOps treeConverter)
+	{
+		loadData(uri, sql.projection, sql.selection, sql.selectionArgs, sql.sortBy, treeConverter);
+	}
 }
