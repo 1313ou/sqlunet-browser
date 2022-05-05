@@ -186,6 +186,19 @@ public class Queries
 		return providerSql;
 	}
 
+	public static Module.ContentProviderSql prepareSentence(final long sentenceId)
+	{
+		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
+		providerSql.providerUri = FrameNetContract.Sentences.CONTENT_URI_TABLE;
+		providerSql.projection = new String[]{ //
+				FrameNetContract.Sentences.SENTENCEID, //
+				FrameNetContract.Sentences.TEXT, //
+		};
+		providerSql.selection = FrameNetContract.Sentences.SENTENCEID + " = ?";
+		providerSql.selectionArgs = new String[]{Long.toString(sentenceId)};
+		return providerSql;
+	}
+
 	public static Module.ContentProviderSql prepareSentencesForLexUnit(final long luId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();

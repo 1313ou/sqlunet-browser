@@ -19,6 +19,7 @@ public class RunQueries
 		sql = Queries.prepareGovernorsForLexUnit(0);
 		sql = Queries.prepareRealizationsForLexicalUnit(0);
 		sql = Queries.prepareGroupRealizationsForLexUnit(0);
+		sql = Queries.prepareSentence(0);
 		sql = Queries.prepareSentencesForLexUnit(0);
 		sql = Queries.prepareSentencesForPattern(0);
 		sql = Queries.prepareSentencesForValenceUnit(0);

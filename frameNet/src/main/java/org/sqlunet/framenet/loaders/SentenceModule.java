@@ -103,14 +103,9 @@ public class SentenceModule extends BaseModule
 	 */
 	private void sentence(final long sentenceId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(FrameNetProvider.makeUri(Sentences.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				Sentences.SENTENCEID, //
-				Sentences.TEXT, //
-		};
-		final String selection = Sentences.SENTENCEID + " = ?";
-		final String[] selectionArgs = {Long.toString(sentenceId)};
-		this.sentenceFromSentenceIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> sentenceCursorToTreeModel(cursor, parent));
+		final ContentProviderSql sql = Queries.prepareSentence(sentenceId);
+		final Uri uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri));
+		this.sentenceFromSentenceIdModel.loadData(uri, sql, cursor -> sentenceCursorToTreeModel(cursor, parent));
 	}
 
 	private TreeOp[] sentenceCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
