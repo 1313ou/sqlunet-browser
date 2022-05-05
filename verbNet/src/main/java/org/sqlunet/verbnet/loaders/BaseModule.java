@@ -35,11 +35,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWTREE;
 import static org.sqlunet.view.TreeOp.TreeOpCode.NEWCHILD;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWUNIQUE;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWMAIN;
 import static org.sqlunet.view.TreeOp.TreeOpCode.NEWEXTRA;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWMAIN;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWTREE;
+import static org.sqlunet.view.TreeOp.TreeOpCode.NEWUNIQUE;
 import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
 
 /**
@@ -203,15 +203,9 @@ abstract class BaseModule extends Module
 	 */
 	void vnClass(final long classId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(VerbNetProvider.makeUri(VnClasses.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				VnClasses.CLASSID, //
-				VnClasses.CLASS, //
-				VnClasses.CLASSTAG, //
-		};
-		final String selection = VnClasses.CLASSID + " = ?";
-		final String[] selectionArgs = {Long.toString(classId)};
-		this.vnClassFromClassIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> vnClassCursorToTreeModel(cursor, classId, parent));
+		final ContentProviderSql sql = Queries.prepareVnClass(classId);
+		final Uri uri = Uri.parse(VerbNetProvider.makeUri(sql.providerUri));
+		this.vnClassFromClassIdModel.loadData(uri, sql, cursor -> vnClassCursorToTreeModel(cursor, classId, parent));
 	}
 
 	private TreeOp[] vnClassCursorToTreeModel(@NonNull final Cursor cursor, final long classId, @NonNull final TreeNode parent)
@@ -275,19 +269,9 @@ abstract class BaseModule extends Module
 	 */
 	private void vnMembers(final int classId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(VerbNetProvider.makeUri(VnClasses_VnMembers_X.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				VnClasses_VnMembers_X.WORDID, //
-				VnClasses_VnMembers_X.VNWORDID, //
-				VnClasses_VnMembers_X.WORD, //
-				"REPLACE(REPLACE(GROUP_CONCAT(DISTINCT REPLACE(" + VnClasses_VnMembers_X.DEFINITION + ",',','#')),',','|'),'#',',') AS " + VnClasses_VnMembers_X.DEFINITIONS, //
-				"GROUP_CONCAT(DISTINCT " + VnClasses_VnMembers_X.GROUPING + ") AS " + VnClasses_VnMembers_X.GROUPINGS, //
-				VnClasses_VnMembers_X.CLASSID, //
-		};
-		final String selection = VnClasses_VnRoles_X.CLASSID + " = ?";
-		final String[] selectionArgs = {Long.toString(classId)};
-		final String sortOrder = VnClasses_VnMembers_X.WORD;
-		this.vnMembersFromClassIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> vnMembersCursorToTreeModel(cursor, parent));
+		final ContentProviderSql sql = Queries.prepareVnMembers(classId);
+		final Uri uri = Uri.parse(VerbNetProvider.makeUri(sql.providerUri));
+		this.vnMembersFromClassIdModel.loadData(uri, sql, cursor -> vnMembersCursorToTreeModel(cursor, parent));
 	}
 
 	@NonNull
@@ -402,16 +386,9 @@ abstract class BaseModule extends Module
 	 */
 	private void vnRoles(final int classId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(VerbNetProvider.makeUri(VnClasses_VnRoles_X.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				VnClasses_VnRoles_X.ROLEID, //
-				VnClasses_VnRoles_X.ROLETYPE, //
-				VnClasses_VnRoles_X.RESTRS, //
-				VnClasses_VnRoles_X.CLASSID, //
-		};
-		final String selection = VnClasses_VnRoles_X.CLASSID + " = ?";
-		final String[] selectionArgs = {Long.toString(classId)};
-		this.vnRolesFromClassIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> vnRolesCursorToTreeModel(cursor, parent));
+		final ContentProviderSql sql = Queries.prepareVnRoles(classId);
+		final Uri uri = Uri.parse(VerbNetProvider.makeUri(sql.providerUri));
+		this.vnRolesFromClassIdModel.loadData(uri, sql, cursor -> vnRolesCursorToTreeModel(cursor, parent));
 	}
 
 	private TreeOp[] vnRolesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
@@ -474,21 +451,9 @@ abstract class BaseModule extends Module
 
 	private void vnFrames(final int classId, @NonNull final TreeNode parent)
 	{
-		final Uri uri = Uri.parse(VerbNetProvider.makeUri(VnClasses_VnFrames_X.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				VnClasses_VnFrames_X.FRAMEID, //
-				VnClasses_VnFrames_X.NUMBER, //
-				VnClasses_VnFrames_X.XTAG, //
-				VnClasses_VnFrames_X.FRAMENAME, //
-				VnClasses_VnFrames_X.FRAMESUBNAME, //
-				VnClasses_VnFrames_X.SYNTAX, //
-				VnClasses_VnFrames_X.SEMANTICS, //
-				"GROUP_CONCAT(" + VnClasses_VnFrames_X.EXAMPLE + " , '|') AS " + VnClasses_VnFrames_X.EXAMPLES, //
-				VnClasses_VnFrames_X.CLASSID, //
-		};
-		final String selection = VnClasses_VnFrames_X.CLASSID + " = ?";
-		final String[] selectionArgs = {Long.toString(classId)};
-		this.vnFramesFromClassIdModel.loadData(uri, projection, selection, selectionArgs, null, cursor -> vnFramesToView(cursor, parent));
+		final ContentProviderSql sql = Queries.prepareVnFrames(classId);
+		final Uri uri = Uri.parse(VerbNetProvider.makeUri(sql.providerUri));
+		this.vnFramesFromClassIdModel.loadData(uri, sql, cursor -> vnFramesToView(cursor, parent));
 	}
 
 	private TreeOp[] vnFramesToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)

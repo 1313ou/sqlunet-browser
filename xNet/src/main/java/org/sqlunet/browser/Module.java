@@ -4,6 +4,7 @@
 
 package org.sqlunet.browser;
 
+import android.net.Uri;
 import android.os.Parcelable;
 
 import org.sqlunet.treeview.model.TreeNode;
@@ -18,6 +19,28 @@ import androidx.annotation.NonNull;
 public abstract class Module
 {
 	// static private final String TAG = "Module";
+
+	public static class ContentProviderSql
+	{
+		public String providerUri;
+		public String[] projection;
+		public String selection;
+		public String[] selectionArgs;
+		public String sortBy;
+
+		public ContentProviderSql()
+		{
+		}
+
+		public ContentProviderSql(final String providerUri, final String[] projection, final String selection, final String[] selectionArgs, final String sortBy)
+		{
+			this.providerUri = providerUri;
+			this.projection = projection;
+			this.selection = selection;
+			this.selectionArgs = selectionArgs;
+			this.sortBy = sortBy;
+		}
+	}
 
 	/**
 	 * Fragment
