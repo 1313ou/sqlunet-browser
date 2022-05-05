@@ -19,6 +19,7 @@
 	<integer name='size_sqlunet_db' tools:keep='@string/size_sqlunet_db'>593149952</integer> <!-- sqlunet.db -->
 	<integer name='size_sqlunet_db_zip' tools:keep='@string/size_sqlunet_db_zip'>235249634</integer> <!-- sqlunet.db.zip -->
 
+	<integer name='size_wn_searchtext' tools:keep='@string/size_wn_searchtext'>35827712</integer>
 	<integer name='size_vn_searchtext' tools:keep='@string/size_vn_searchtext'>598016</integer>
 	<integer name='size_pb_searchtext' tools:keep='@string/size_pb_searchtext'>7184384</integer>
 	<integer name='size_fn_searchtext' tools:keep='@string/size_fn_searchtext'>121110528</integer>
