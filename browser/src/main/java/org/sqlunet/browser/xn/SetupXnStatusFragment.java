@@ -163,10 +163,10 @@ public class SetupXnStatusFragment extends org.sqlunet.browser.config.SetupStatu
 								getString(R.string.framenet)), //
 						String.format("%s (%s + %s + %s + %s)", //
 								Utils.hrSize(R.integer.size_searchtext, requireContext()), //
-								Utils.hrSize(R.integer.size_searchtext_wn, requireContext()), //
-								Utils.hrSize(R.integer.size_searchtext_vn, requireContext()), //
-								Utils.hrSize(R.integer.size_searchtext_pb, requireContext()), //
-								Utils.hrSize(R.integer.size_searchtext_fn, requireContext())), //
+								Utils.hrSize(R.integer.size_wn_searchtext, requireContext()), //
+								Utils.hrSize(R.integer.size_vn_searchtext, requireContext()), //
+								Utils.hrSize(R.integer.size_pb_searchtext, requireContext()), //
+								Utils.hrSize(R.integer.size_fn_searchtext, requireContext())), //
 						String.format("%s %s %s", //
 								getString(R.string.size_expected), //
 								getString(R.string.total), //
@@ -189,10 +189,10 @@ public class SetupXnStatusFragment extends org.sqlunet.browser.config.SetupStatu
 								getString(R.string.framenet)), //
 						String.format("%s  (%s + %s + %s + %s)", //
 								Utils.hrSize(R.integer.size_searchtext, requireContext()), //
-								Utils.hrSize(R.integer.size_searchtext_wn, requireContext()), //
-								Utils.hrSize(R.integer.size_searchtext_vn, requireContext()), //
-								Utils.hrSize(R.integer.size_searchtext_pb, requireContext()), //
-								Utils.hrSize(R.integer.size_searchtext_fn, requireContext())), //
+								Utils.hrSize(R.integer.size_wn_searchtext, requireContext()), //
+								Utils.hrSize(R.integer.size_vn_searchtext, requireContext()), //
+								Utils.hrSize(R.integer.size_pb_searchtext, requireContext()), //
+								Utils.hrSize(R.integer.size_fn_searchtext, requireContext())), //
 						String.format("%s %s", //
 								getString(R.string.size_expected), //
 								getString(R.string.total)), //
