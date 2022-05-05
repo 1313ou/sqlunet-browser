@@ -20,7 +20,6 @@ import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.framenet.browser.FnFrameActivity;
 import org.sqlunet.model.TreeFactory;
 import org.sqlunet.predicatematrix.R;
-import org.sqlunet.predicatematrix.provider.PredicateMatrixContract;
 import org.sqlunet.predicatematrix.provider.PredicateMatrixContract.Pm_X;
 import org.sqlunet.predicatematrix.provider.PredicateMatrixContract.PredicateMatrix;
 import org.sqlunet.predicatematrix.provider.PredicateMatrixProvider;
@@ -116,22 +115,8 @@ abstract class BaseModule extends Module
 	@SuppressWarnings("UnusedReturnValue")
 	void fromWord(final String word, final TreeNode parent, final Displayer displayer)
 	{
-		new PmProcessOnIteration(parent, displayer)
-		{
-			@NonNull
-			@Override
-			protected String getSelection()
-			{
-				return PredicateMatrix.WORD + "= ?";
-			}
-
-			@NonNull
-			@Override
-			protected String[] getSelectionArgs()
-			{
-				return new String[]{word};
-			}
-		}.run(this.fragment);
+		final ContentProviderSql sql = Queries.preparePmFromWord(word, displayer.getRequiredOrder());
+		new PmProcessOnIteration(parent, displayer).run(sql, this.fragment);
 	}
 
 	/**
@@ -143,22 +128,9 @@ abstract class BaseModule extends Module
 	@SuppressWarnings("UnusedReturnValue")
 	void fromWordGrouped(final String word, final TreeNode parent)
 	{
-		new PmProcessGrouped(parent, new DisplayerByPmRole())
-		{
-			@NonNull
-			@Override
-			protected String getSelection()
-			{
-				return PredicateMatrix.WORD + "= ?";
-			}
-
-			@NonNull
-			@Override
-			protected String[] getSelectionArgs()
-			{
-				return new String[]{word};
-			}
-		}.run(this.fragment);
+		final Displayer displayer = new DisplayerByPmRole();
+		final ContentProviderSql sql = Queries.preparePmFromWordGrouped(word, displayer.getRequiredOrder());
+		new PmProcessGrouped(parent, displayer).run(sql, this.fragment);
 	}
 
 	/**
@@ -171,22 +143,8 @@ abstract class BaseModule extends Module
 	@SuppressWarnings("UnusedReturnValue")
 	void fromRoleId(final long pmRoleId, final TreeNode parent, final Displayer displayer)
 	{
-		new PmProcessOnIteration(parent, displayer)
-		{
-			@NonNull
-			@Override
-			protected String getSelection()
-			{
-				return PredicateMatrix.PMROLEID + "= ?";
-			}
-
-			@NonNull
-			@Override
-			protected String[] getSelectionArgs()
-			{
-				return new String[]{Long.toString(pmRoleId)};
-			}
-		}.run(this.fragment);
+		final ContentProviderSql sql = Queries.preparePmFromRoleId(pmRoleId, displayer.getRequiredOrder());
+		new PmProcessOnIteration(parent, displayer).run(sql, this.fragment);
 	}
 
 	// D A T A
@@ -745,69 +703,11 @@ abstract class BaseModule extends Module
 			this.changedList = new TreeOps(NEWTREE, parent);
 		}
 
-		/**
-		 * Selection
-		 *
-		 * @return selection
-		 */
-		@SuppressWarnings({"WeakerAccess", "EmptyMethod"})
-		@NonNull
-		abstract protected String getSelection();
-
-		/**
-		 * Selection arguments
-		 *
-		 * @return selection arguments
-		 */
-		@SuppressWarnings({"WeakerAccess", "EmptyMethod"})
-		@NonNull
-		abstract protected String[] getSelectionArgs();
-
 		@SuppressWarnings("WeakerAccess")
-		public void run(final TreeFragment fragment)
+		public void run(final ContentProviderSql sql, final TreeFragment fragment)
 		{
-			final Uri uri = Uri.parse(PredicateMatrixProvider.makeUri(Pm_X.CONTENT_URI_TABLE));
-			final String[] projection = { //
-					PredicateMatrix.PMID, //
-					PredicateMatrix.PMROLEID, //
-					PredicateMatrix.PMPREDICATEID, //
-					PredicateMatrix.PMPREDICATE, //
-					PredicateMatrix.PMROLE, //
-					PredicateMatrixContract.PMROLE + '.' + PredicateMatrix.PMPOS, //
-
-					PredicateMatrix.WORD, //
-					PredicateMatrix.SYNSETID, //
-					Pm_X.DEFINITION, //
-
-					PredicateMatrix.VNCLASSID, //
-					Pm_X.VNCLASS, //
-					PredicateMatrixContract.VNROLETYPE + '.' + Pm_X.VNROLETYPEID, //
-					Pm_X.VNROLETYPE, //
-
-					PredicateMatrix.PBROLESETID, //
-					Pm_X.PBROLESETNAME, //
-					Pm_X.PBROLESETDESCR, //
-					Pm_X.PBROLESETHEAD, //
-					Pm_X.PBROLEID, //
-					Pm_X.PBROLEDESCR, //
-					PredicateMatrixContract.PBARG + '.' + Pm_X.PBROLEARGTYPE, //
-					Pm_X.PBROLEARGTYPE, //
-
-					PredicateMatrix.FRAMEID, //
-					Pm_X.FRAME, //
-					Pm_X.FRAMEDEFINITION, //
-					Pm_X.LEXUNIT, //
-					Pm_X.LUDEFINITION, //
-					Pm_X.LUDICT, //
-					PredicateMatrixContract.FNFETYPE + '.' + Pm_X.FETYPEID, //
-					Pm_X.FETYPE, //
-					Pm_X.FEABBREV, //
-					Pm_X.FEDEFINITION, //
-			};
-			final String selection = getSelection();
-			final String[] selectionArgs = getSelectionArgs();
-			final String sortOrder = this.displayer.getRequiredOrder();
-			BaseModule.this.model.loadData(uri, projection, selection, selectionArgs, sortOrder, cursor -> pmCursorToTreeModel(cursor, parent));
+			final Uri uri = Uri.parse(PredicateMatrixProvider.makeUri(sql.providerUri));
+			BaseModule.this.model.loadData(uri, sql, cursor -> pmCursorToTreeModel(cursor, parent));
 		}
 
 		@NonNull
@@ -927,7 +827,7 @@ abstract class BaseModule extends Module
 	/**
 	 * Processor of data based on grouping rows
 	 */
-	abstract class PmProcessGrouped extends PmProcess
+	class PmProcessGrouped extends PmProcess
 	{
 		/**
 		 * Role ids
@@ -1123,7 +1023,7 @@ abstract class BaseModule extends Module
 	/**
 	 * Processor of data based on row iteration
 	 */
-	abstract class PmProcessOnIteration extends PmProcess
+	class PmProcessOnIteration extends PmProcess
 	{
 		/**
 		 * Constructor
