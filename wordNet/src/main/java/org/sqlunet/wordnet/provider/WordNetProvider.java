@@ -347,13 +347,13 @@ public class WordNetProvider extends BaseProvider
 			if (BaseProvider.logSql)
 			{
 				Log.d(WordNetProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
-				Log.d(WordNetProvider.TAG + "ARG", BaseProvider.argsToString(selectionArgs0));
+				Log.d(WordNetProvider.TAG + "ARG", BaseProvider.argsToString(result.selectionArgs == null ? selectionArgs0 : result.selectionArgs));
 			}
 
 			// do query
 			try
 			{
-				final Cursor cursor = this.db.rawQuery(sql, selectionArgs0);
+				final Cursor cursor = this.db.rawQuery(sql, result.selectionArgs == null ? selectionArgs0 : result.selectionArgs);
 				Log.d(TAG + "COUNT", cursor.getCount() + " items");
 				return cursor;
 			}
@@ -361,8 +361,8 @@ public class WordNetProvider extends BaseProvider
 			{
 				Log.d(TAG + "SQL", sql);
 				Log.e(TAG, "WordNet provider query failed", e);
-				return null;
 			}
+			return null;
 		}
 
 		// SUGGEST

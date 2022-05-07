@@ -130,14 +130,15 @@ public class PredicateMatrixProvider extends BaseProvider
 			if (BaseProvider.logSql)
 			{
 				Log.d(PredicateMatrixProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
-				Log.d(PredicateMatrixProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs0));
+				Log.d(PredicateMatrixProvider.TAG + "ARGS", BaseProvider.argsToString(result.selectionArgs == null ? selectionArgs0 : result.selectionArgs));
 			}
 
 			// do query
 			try
 			{
-				return this.db.rawQuery(sql, selectionArgs0);
-				//return this.db.query(table, projection, selection, selectionArgs, null, null, sortOrder, null);
+				final Cursor cursor = this.db.rawQuery(sql, result.selectionArgs == null ? selectionArgs0 : result.selectionArgs);
+				Log.d(TAG + "COUNT", cursor.getCount() + " items");
+				return cursor;
 			}
 			catch (SQLiteException e)
 			{
