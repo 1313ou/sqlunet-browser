@@ -4,7 +4,6 @@ import org.junit.Test;
 import org.sqlunet.browser.Module;
 import org.sqlunet.framenet.loaders.Queries;
 import org.sqlunet.provider.SQLiteQueryBuilder;
-import org.sqlunet.provider.XSqlUNetDispatcher;
 import org.sqlunet.test.SqlProcessor;
 
 import java.sql.SQLException;
@@ -45,7 +44,7 @@ public class RunQueries
 		{
 			processor.process(sql);
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			System.err.println(providerSql);
 			throw e;
@@ -71,40 +70,52 @@ public class RunQueries
 			case "lexunits":
 				return 11;
 			case "lexunits_x_by_lexunit":
+			case "fnlexunits_x_by_lexunit":
 				return 12;
 			case "frame":
 				return 20;
 			case "frames":
 				return 21;
 			case "frames_x_by_frame":
+			case "fnframes_x_by_frame":
 				return 23;
 			case "frames_related":
+			case "fnframes_related":
 				return 25;
 			case "sentence":
 				return 30;
 			case "sentences":
+			case "fn_sentences":
 				return 31;
 			case "annoset":
 				return 40;
 			case "annosets":
 				return 41;
 			case "sentences_layers_x":
+			case "fnsentences_fnlayers_x":
 				return 50;
 			case "annosets_layers_x":
+			case "fnannosets_fnlayers_x":
 				return 51;
 			case "patterns_layers_x":
+			case "fnpatterns_fnlayers_x":
 				return 52;
 			case "valenceunits_layers_x":
+			case "fnvalenceunits_fnlayers_x":
 				return 53;
 			case "patterns_sentences":
+			case "fnpatterns_annosets":
 				return 61;
 			case "valenceunits_sentences":
+			case "fnvalenceunits_annosets":
 				return 62;
 			case "governors_annosets":
+			case "fngovernors_annosets_sentences":
 				return 70;
 			case "words_lexunits_frames":
 				return 100;
 			case "words_lexunits_frames_fn":
+			case "words_fnlexunits_fn":
 				return 101;
 			case "lexunits_or_frames":
 				return 110;
@@ -113,6 +124,7 @@ public class RunQueries
 			case "frames_fes":
 				return 200;
 			case "frames_fes_by_fe":
+			case "fnframes_fnfes/fe":
 				return 201;
 			case "lexunits_sentences":
 				return 300;
@@ -121,18 +133,22 @@ public class RunQueries
 			case "lexunits_sentences_annosets_layers_labels":
 				return 310;
 			case "lexunits_sentences_annosets_layers_labels_by_sentence":
+			case "fnlexunits_fnsentences_fnannosets_fnlayers_fnlabels/sentence":
 				return 311;
 			case "lexunits_governors":
 				return 410;
 			case "lexunits_governors_fn":
+			case "fnlexunits_fngovernors_fn":
 				return 411;
 			case "lexunits_realizations":
 				return 420;
 			case "lexunits_realizations_by_realization":
+			case "fnlexunits_fnferealizations_fnvalenceunits/realization":
 				return 421;
 			case "lexunits_grouprealizations":
 				return 430;
 			case "lexunits_grouprealizations_by_pattern":
+			case "fnlexunits_fnferealizations_fnpatterns_fnvalenceunits/pattern":
 				return 431;
 			case "lookup_fts_words":
 				return 510;

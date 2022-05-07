@@ -42,12 +42,17 @@ public class RunQueries
 
 	private static String toSql(final int code, final Module.ContentProviderSql providerSql)
 	{
-		XSqlUNetDispatcher.Result r = XSqlUNetDispatcher.queryMain(code, null, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
+		VerbNetDispatcher.Result r = VerbNetDispatcher.queryMain(code, null, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
+		if (r == null)
+		{
+			// TEXTSEARCH
+			r = VerbNetDispatcher.querySearch(code, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
+		}
 		if (r == null)
 		{
 			throw new IllegalArgumentException("Illegal query code: " + code);
 		}
-		return SQLiteQueryBuilder.buildQueryString(false, r.table, r.projection, r.selection, r.groupBy, null, r.orderBy, null);
+		return SQLiteQueryBuilder.buildQueryString(false, r.table, r.projection, r.selection, r.groupBy, null, null, null);
 	}
 
 	private int uriToCode(final String providerUri)
@@ -57,6 +62,7 @@ public class RunQueries
 			case "vnclass1":
 				return 10;
 			case "vnclasses":
+			case "vn_classes":
 				return 11;
 			case "vnclasses_x_by_vnclass":
 				return 20;

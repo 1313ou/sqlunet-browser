@@ -55,6 +55,7 @@ public class RunQueries
 			case "collocations":
 				return 10;
 			case "collocations_x":
+			case "syntagms_x":
 				return 100;
 			default:
 				throw new IllegalArgumentException("Illegal uri: " + providerUri);
