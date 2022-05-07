@@ -206,14 +206,14 @@ public class SearchTextFragment extends BaseSearchFragment
 				database = "pb";
 				break;
 			case 5:
-				searchUri = FrameNetProvider.makeUri(FrameNetContract.Lookup_FnSentences_X.CONTENT_URI_TABLE);
-				id = FrameNetContract.Lookup_FnSentences_X.SENTENCEID;
+				searchUri = FrameNetProvider.makeUri(FrameNetContract.Lookup_FTS_FnSentences_X.CONTENT_URI_TABLE_BY_SENTENCE);
+				id = FrameNetContract.Lookup_FTS_FnSentences_X.SENTENCEID;
 				idType = "fnsentence";
-				target = FrameNetContract.Lookup_FnSentences_X.TEXT;
-				columns = new String[]{FrameNetContract.Lookup_FnSentences_X.TEXT};
-				hiddenColumns = new String[]{FrameNetContract.Lookup_FnSentences_X.SENTENCEID, //
-						"GROUP_CONCAT(DISTINCT  frame || '@' || frameid) AS " + FrameNetContract.Lookup_FnSentences_X.FRAMES, //
-						"GROUP_CONCAT(DISTINCT  lexunit || '@' || luid) AS " + FrameNetContract.Lookup_FnSentences_X.LEXUNITS};
+				target = FrameNetContract.Lookup_FTS_FnSentences_X.TEXT;
+				columns = new String[]{FrameNetContract.Lookup_FTS_FnSentences_X.TEXT};
+				hiddenColumns = new String[]{FrameNetContract.Lookup_FTS_FnSentences_X.SENTENCEID, //
+						"GROUP_CONCAT(DISTINCT  frame || '@' || frameid) AS " + FrameNetContract.Lookup_FTS_FnSentences_X.FRAMES, //
+						"GROUP_CONCAT(DISTINCT  lexunit || '@' || luid) AS " + FrameNetContract.Lookup_FTS_FnSentences_X.LEXUNITS};
 				database = "fn";
 				break;
 			default:

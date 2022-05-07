@@ -15,7 +15,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareFrame(final long frameId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = FrameNetContract.Frames_X.CONTENT_URI_TABLE;
+		providerSql.providerUri = FrameNetContract.Frames_X.CONTENT_URI_TABLE_BY_FRAME;
 		providerSql.projection = new String[]{ //
 				FrameNetContract.Frames_X.FRAMEID, //
 				FrameNetContract.Frames_X.FRAME, //

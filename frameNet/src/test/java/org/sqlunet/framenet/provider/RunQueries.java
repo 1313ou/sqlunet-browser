@@ -67,100 +67,83 @@ public class RunQueries
 		{
 			case "lexunit":
 				return 10;
-			case "lexunits":
+			case FrameNetContract.LexUnits.CONTENT_URI_TABLE:
 				return 11;
-			case "lexunits_x_by_lexunit":
-			case "fnlexunits_x_by_lexunit":
+			case FrameNetContract.LexUnits_X.CONTENT_URI_TABLE:
 				return 12;
 			case "frame":
 				return 20;
-			case "frames":
+			case FrameNetContract.Frames.CONTENT_URI_TABLE:
 				return 21;
-			case "frames_x_by_frame":
-			case "fnframes_x_by_frame":
+			case FrameNetContract.Frames_X.CONTENT_URI_TABLE_BY_FRAME:
 				return 23;
-			case "frames_related":
-			case "fnframes_related":
+			case FrameNetContract.Frames_Related.CONTENT_URI_TABLE:
 				return 25;
 			case "sentence":
 				return 30;
-			case "sentences":
-			case "fn_sentences":
+			case FrameNetContract.Sentences.CONTENT_URI_TABLE:
 				return 31;
 			case "annoset":
 				return 40;
-			case "annosets":
+			case FrameNetContract.AnnoSets.CONTENT_URI_TABLE:
 				return 41;
-			case "sentences_layers_x":
-			case "fnsentences_fnlayers_x":
+			case FrameNetContract.Sentences_Layers_X.CONTENT_URI_TABLE:
 				return 50;
-			case "annosets_layers_x":
-			case "fnannosets_fnlayers_x":
+			case FrameNetContract.AnnoSets_Layers_X.CONTENT_URI_TABLE:
 				return 51;
-			case "patterns_layers_x":
-			case "fnpatterns_fnlayers_x":
+			case FrameNetContract.Patterns_Layers_X.CONTENT_URI_TABLE:
 				return 52;
-			case "valenceunits_layers_x":
-			case "fnvalenceunits_fnlayers_x":
+			case FrameNetContract.ValenceUnits_Layers_X.CONTENT_URI_TABLE:
 				return 53;
-			case "patterns_sentences":
-			case "fnpatterns_annosets":
+			case FrameNetContract.Patterns_Sentences.CONTENT_URI_TABLE:
 				return 61;
-			case "valenceunits_sentences":
-			case "fnvalenceunits_annosets":
+			case FrameNetContract.ValenceUnits_Sentences.CONTENT_URI_TABLE:
 				return 62;
-			case "governors_annosets":
-			case "fngovernors_annosets_sentences":
+			case FrameNetContract.Governors_AnnoSets_Sentences.CONTENT_URI_TABLE:
 				return 70;
-			case "words_lexunits_frames":
+			case FrameNetContract.Words_LexUnits_Frames.CONTENT_URI_TABLE:
 				return 100;
-			case "words_lexunits_frames_fn":
-			case "words_fnlexunits_fn":
+			case FrameNetContract.Words_LexUnits_Frames.CONTENT_URI_TABLE_FN:
 				return 101;
-			case "lexunits_or_frames":
+			case FrameNetContract.LexUnits_or_Frames.CONTENT_URI_TABLE:
 				return 110;
-			case "lexunits_or_frames_fn":
+			case FrameNetContract.LexUnits_or_Frames.CONTENT_URI_TABLE_FN:
 				return 111;
-			case "frames_fes":
+			case FrameNetContract.Frames_FEs.CONTENT_URI_TABLE:
 				return 200;
-			case "frames_fes_by_fe":
-			case "fnframes_fnfes/fe":
+			case FrameNetContract.Frames_FEs.CONTENT_URI_TABLE_BY_FE:
 				return 201;
-			case "lexunits_sentences":
+			case FrameNetContract.LexUnits_Sentences.CONTENT_URI_TABLE:
 				return 300;
-			case "lexunits_sentences_by_sentence":
+			case FrameNetContract.LexUnits_Sentences.CONTENT_URI_TABLE_BY_SENTENCE:
 				return 301;
-			case "lexunits_sentences_annosets_layers_labels":
+			case FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.CONTENT_URI_TABLE:
 				return 310;
-			case "lexunits_sentences_annosets_layers_labels_by_sentence":
-			case "fnlexunits_fnsentences_fnannosets_fnlayers_fnlabels/sentence":
+			case FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.CONTENT_URI_TABLE_BY_SENTENCE:
 				return 311;
-			case "lexunits_governors":
+			case FrameNetContract.LexUnits_Governors.CONTENT_URI_TABLE:
 				return 410;
-			case "lexunits_governors_fn":
-			case "fnlexunits_fngovernors_fn":
+			case  FrameNetContract.LexUnits_Governors.CONTENT_URI_TABLE_FN:
 				return 411;
-			case "lexunits_realizations":
+			case FrameNetContract.LexUnits_FERealizations_ValenceUnits.CONTENT_URI_TABLE:
 				return 420;
-			case "lexunits_realizations_by_realization":
-			case "fnlexunits_fnferealizations_fnvalenceunits/realization":
+			case FrameNetContract.LexUnits_FERealizations_ValenceUnits.CONTENT_URI_TABLE_BY_REALIZATION:
 				return 421;
-			case "lexunits_grouprealizations":
+			case FrameNetContract.LexUnits_FEGroupRealizations_Patterns_ValenceUnits.CONTENT_URI_TABLE:
 				return 430;
-			case "lexunits_grouprealizations_by_pattern":
-			case "fnlexunits_fnferealizations_fnpatterns_fnvalenceunits/pattern":
+			case FrameNetContract.LexUnits_FEGroupRealizations_Patterns_ValenceUnits.CONTENT_URI_TABLE_BY_PATTERN:
 				return 431;
-			case "lookup_fts_words":
+			case FrameNetContract.Lookup_FTS_FnWords.CONTENT_URI_TABLE:
 				return 510;
-			case "lookup_fts_sentences":
+			case FrameNetContract.Lookup_FTS_FnSentences.CONTENT_URI_TABLE:
 				return 511;
-			case "lookup_fts_sentences_x":
+			case FrameNetContract.Lookup_FTS_FnSentences_X.CONTENT_URI_TABLE:
 				return 512;
-			case "lookup_fts_sentences_x_by_sentence":
+			case FrameNetContract.Lookup_FTS_FnSentences_X.CONTENT_URI_TABLE_BY_SENTENCE:
 				return 513;
-			case "suggest_words":
+			case FrameNetContract.Suggest_FnWords.SEARCH_WORD_PATH:
 				return 601;
-			case "suggest_fts_words":
+			case FrameNetContract.Suggest_FTS_FnWords.SEARCH_WORD_PATH:
 				return 602;
 			default:
 				throw new IllegalArgumentException("Illegal uri: " + providerUri);

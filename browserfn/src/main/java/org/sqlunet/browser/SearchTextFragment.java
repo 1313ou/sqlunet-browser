@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.sqlunet.browser.fn.R;
-import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnSentences_X;
+import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FTS_FnSentences_X;
 import org.sqlunet.framenet.provider.FrameNetProvider;
 import org.sqlunet.provider.ProviderArgs;
 
@@ -120,14 +120,14 @@ public class SearchTextFragment extends BaseSearchFragment
 		String database;
 		if (modePosition == 0)
 		{
-			searchUri = FrameNetProvider.makeUri(Lookup_FnSentences_X.CONTENT_URI_TABLE);
-			id = Lookup_FnSentences_X.SENTENCEID;
+			searchUri = FrameNetProvider.makeUri(Lookup_FTS_FnSentences_X.CONTENT_URI_TABLE_BY_SENTENCE);
+			id = Lookup_FTS_FnSentences_X.SENTENCEID;
 			idType = "fnsentence";
-			target = Lookup_FnSentences_X.TEXT;
-			columns = new String[]{Lookup_FnSentences_X.TEXT};
-			hiddenColumns = new String[]{Lookup_FnSentences_X.SENTENCEID, //
-					"GROUP_CONCAT(DISTINCT  frame || '@' || frameid) AS " + Lookup_FnSentences_X.FRAMES, //
-					"GROUP_CONCAT(DISTINCT  lexunit || '@' || luid) AS " + Lookup_FnSentences_X.LEXUNITS};
+			target = Lookup_FTS_FnSentences_X.TEXT;
+			columns = new String[]{Lookup_FTS_FnSentences_X.TEXT};
+			hiddenColumns = new String[]{Lookup_FTS_FnSentences_X.SENTENCEID, //
+					"GROUP_CONCAT(DISTINCT  frame || '@' || frameid) AS " + Lookup_FTS_FnSentences_X.FRAMES, //
+					"GROUP_CONCAT(DISTINCT  lexunit || '@' || luid) AS " + Lookup_FTS_FnSentences_X.LEXUNITS};
 			database = "fn";
 		}
 		else

@@ -294,9 +294,9 @@ public class TextFragment extends AbstractTableFragment
 				case "fn":
 					//
 				{
-					final int idFrames = cursor.getColumnIndex(FrameNetContract.Lookup_FnSentences_X.FRAMES);
-					final int idLexUnits = cursor.getColumnIndex(FrameNetContract.Lookup_FnSentences_X.LEXUNITS);
-					final int idSentenceId = cursor.getColumnIndex(FrameNetContract.Lookup_FnSentences_X.SENTENCEID);
+					final int idFrames = cursor.getColumnIndex(FrameNetContract.Lookup_FTS_FnSentences_X.FRAMES);
+					final int idLexUnits = cursor.getColumnIndex(FrameNetContract.Lookup_FTS_FnSentences_X.LEXUNITS);
+					final int idSentenceId = cursor.getColumnIndex(FrameNetContract.Lookup_FTS_FnSentences_X.SENTENCEID);
 					final String frames = cursor.getString(idFrames);
 					final String lexUnits = cursor.getString(idLexUnits);
 					final String sentence = "sentence@" + cursor.getString(idSentenceId);

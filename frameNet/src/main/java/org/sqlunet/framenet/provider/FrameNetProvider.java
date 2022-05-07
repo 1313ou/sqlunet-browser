@@ -29,9 +29,9 @@ import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_Sentences;
 import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels;
 import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_X;
 import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_or_Frames;
-import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnSentences;
-import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnSentences_X;
-import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FnWords;
+import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FTS_FnSentences;
+import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FTS_FnSentences_X;
+import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FTS_FnWords;
 import org.sqlunet.framenet.provider.FrameNetContract.Patterns_Layers_X;
 import org.sqlunet.framenet.provider.FrameNetContract.Patterns_Sentences;
 import org.sqlunet.framenet.provider.FrameNetContract.Sentences;
@@ -108,11 +108,11 @@ public class FrameNetProvider extends BaseProvider
 		FrameNetProvider.uriMatcher.addURI(AUTHORITY, ValenceUnits_Sentences.TABLE, FrameNetDispatcher.VALENCEUNITS_SENTENCES);
 		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Governors_AnnoSets_Sentences.TABLE, FrameNetDispatcher.GOVERNORS_ANNOSETS);
 
-		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_FnWords.TABLE + "/*", FrameNetDispatcher.LOOKUP_FTS_WORDS);
-		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_FnWords.TABLE + "/", FrameNetDispatcher.LOOKUP_FTS_WORDS);
-		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_FnSentences.TABLE + "/", FrameNetDispatcher.LOOKUP_FTS_SENTENCES);
-		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_FnSentences_X.TABLE + "/", FrameNetDispatcher.LOOKUP_FTS_SENTENCES_X);
-		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_FnSentences_X.TABLE_BY_SENTENCE + "/", FrameNetDispatcher.LOOKUP_FTS_SENTENCES_X_BY_SENTENCE);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_FTS_FnWords.TABLE + "/*", FrameNetDispatcher.LOOKUP_FTS_WORDS);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_FTS_FnWords.TABLE + "/", FrameNetDispatcher.LOOKUP_FTS_WORDS);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_FTS_FnSentences.TABLE + "/", FrameNetDispatcher.LOOKUP_FTS_SENTENCES);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_FTS_FnSentences_X.TABLE + "/", FrameNetDispatcher.LOOKUP_FTS_SENTENCES_X);
+		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Lookup_FTS_FnSentences_X.TABLE_BY_SENTENCE + "/", FrameNetDispatcher.LOOKUP_FTS_SENTENCES_X_BY_SENTENCE);
 
 		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FnWords.TABLE + "/*", FrameNetDispatcher.SUGGEST_WORDS);
 		FrameNetProvider.uriMatcher.addURI(AUTHORITY, Suggest_FnWords.TABLE + "/", FrameNetDispatcher.SUGGEST_WORDS);
@@ -222,11 +222,11 @@ public class FrameNetProvider extends BaseProvider
 			case FrameNetDispatcher.LOOKUP_FTS_WORDS:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words.TABLE;
 			case FrameNetDispatcher.LOOKUP_FTS_SENTENCES:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_FnSentences.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_FTS_FnSentences.TABLE;
 			case FrameNetDispatcher.LOOKUP_FTS_SENTENCES_X:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_FnSentences_X.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_FTS_FnSentences_X.TABLE;
 			case FrameNetDispatcher.LOOKUP_FTS_SENTENCES_X_BY_SENTENCE:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_FnSentences_X.TABLE_BY_SENTENCE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_FTS_FnSentences_X.TABLE_BY_SENTENCE;
 
 			// S U G G E S T
 			case FrameNetDispatcher.SUGGEST_WORDS:
