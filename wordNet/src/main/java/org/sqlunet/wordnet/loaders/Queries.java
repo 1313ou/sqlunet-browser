@@ -159,7 +159,7 @@ public class Queries
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
 		providerSql.providerUri = membersGrouped ? WordNetContract.Senses_Words.CONTENT_URI_TABLE_BY_SYNSET : WordNetContract.Senses_Words.CONTENT_URI_TABLE;
 		providerSql.projection = membersGrouped ? //
-				new String[]{WordNetContract.Senses_Words.MEMBERS} : new String[]{WordNetContract.Words.WORD};
+				new String[]{WordNetContract.Senses_Words.SYNSETID} : new String[]{WordNetContract.Words.WORD};
 		providerSql.selection = WordNetContract.Senses_Words.SYNSETID + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(synsetId)};
 		providerSql.sortBy = WordNetContract.Words.WORD;
