@@ -129,26 +129,24 @@ public class SyntagNetProvider extends BaseProvider
 		if (result != null)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, result.table, result.projection, result.selection, result.groupBy, null, sortOrder0, null);
-			logSql(sql, selectionArgs0);
+			logSql(sql, result.selectionArgs);
 			if (BaseProvider.logSql)
 			{
 				Log.d(TAG + "SQL", SqlFormatter.format(sql).toString());
-				Log.d(TAG + "ARG", BaseProvider.argsToString(selectionArgs0));
+				Log.d(TAG + "ARG", BaseProvider.argsToString(result.selectionArgs == null ? selectionArgs0 : result.selectionArgs));
 			}
 
 			// do query
 			try
 			{
-				final Cursor cursor = this.db.rawQuery(sql, selectionArgs0);
+				final Cursor cursor = this.db.rawQuery(sql, result.selectionArgs == null ? selectionArgs0 : result.selectionArgs);
 				Log.d(TAG + "COUNT", cursor.getCount() + " items");
 				return cursor;
-				//return this.db.query(table, actualProjection, actualSelection, selectionArgs, groupBy, null, sortOrder, null);
 			}
 			catch (@NonNull final SQLiteException e)
 			{
 				Log.d(TAG + "SQL", sql);
 				Log.e(TAG, "WordNet provider query failed", e);
-				return null;
 			}
 		}
 		return null;
