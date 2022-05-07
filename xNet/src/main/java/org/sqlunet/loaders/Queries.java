@@ -7,6 +7,23 @@ public class Queries
 {
 	static private final String GROUPID_COLUMN = "_id";
 
+	public static Module.ContentProviderSql prepareWord(final String word)
+	{
+		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
+		providerSql.providerUri = XSqlUNetContract.Words_FnWords_PbWords_VnWords.CONTENT_URI_TABLE;
+		providerSql.projection = new String[]{ //
+				XSqlUNetContract.Words_FnWords_PbWords_VnWords.SYNSETID + " AS " + GROUPID_COLUMN, //
+				XSqlUNetContract.Words_FnWords_PbWords_VnWords.WORDID, //
+				XSqlUNetContract.Words_FnWords_PbWords_VnWords.FNWORDID, //
+				XSqlUNetContract.Words_FnWords_PbWords_VnWords.VNWORDID, //
+				XSqlUNetContract.Words_FnWords_PbWords_VnWords.PBWORDID, //
+		};
+		providerSql.selection = XSqlUNetContract.WORD + '.' + XSqlUNetContract.Words_FnWords_PbWords_VnWords.WORD + " = ?";
+		providerSql.selectionArgs = new String[]{word};
+		providerSql.sortBy = XSqlUNetContract.POS + '.' + XSqlUNetContract.Words_FnWords_PbWords_VnWords.POS + ',' + XSqlUNetContract.Words_FnWords_PbWords_VnWords.SENSENUM;
+		return providerSql;
+	}
+
 	public static Module.ContentProviderSql prepareWordX(final String word)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -25,23 +42,6 @@ public class Queries
 				XSqlUNetContract.Words_FnWords_PbWords_VnWords.POS, //
 				XSqlUNetContract.Words_FnWords_PbWords_VnWords.DOMAIN, //
 				XSqlUNetContract.Words_FnWords_PbWords_VnWords.CASED, //
-				XSqlUNetContract.Words_FnWords_PbWords_VnWords.FNWORDID, //
-				XSqlUNetContract.Words_FnWords_PbWords_VnWords.VNWORDID, //
-				XSqlUNetContract.Words_FnWords_PbWords_VnWords.PBWORDID, //
-		};
-		providerSql.selection = XSqlUNetContract.WORD + '.' + XSqlUNetContract.Words_FnWords_PbWords_VnWords.WORD + " = ?";
-		providerSql.selectionArgs = new String[]{word};
-		providerSql.sortBy = XSqlUNetContract.POS + '.' + XSqlUNetContract.Words_FnWords_PbWords_VnWords.POS + ',' + XSqlUNetContract.Words_FnWords_PbWords_VnWords.SENSENUM;
-		return providerSql;
-	}
-
-	public static Module.ContentProviderSql prepareWord(final String word)
-	{
-		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = XSqlUNetContract.Words_FnWords_PbWords_VnWords.CONTENT_URI_TABLE;
-		providerSql.projection = new String[]{ //
-				XSqlUNetContract.Words_FnWords_PbWords_VnWords.SYNSETID + " AS " + GROUPID_COLUMN, //
-				XSqlUNetContract.Words_FnWords_PbWords_VnWords.WORDID, //
 				XSqlUNetContract.Words_FnWords_PbWords_VnWords.FNWORDID, //
 				XSqlUNetContract.Words_FnWords_PbWords_VnWords.VNWORDID, //
 				XSqlUNetContract.Words_FnWords_PbWords_VnWords.PBWORDID, //

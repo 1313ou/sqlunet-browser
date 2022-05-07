@@ -194,7 +194,7 @@ public final class XSqlUNetContract
 
 	static public final class Words_VnWords_VnClasses_U
 	{
-		static public final String TABLE = "U_words_vnwords_vnclasses";
+		static public final String TABLE = "words_vnwords_vnclasses_u";
 		static public final String CONTENT_URI_TABLE = Words_VnWords_VnClasses_U.TABLE;
 		static public final String WORDID = V.WORDID;
 		static public final String SYNSETID = V.SYNSETID;
@@ -209,7 +209,7 @@ public final class XSqlUNetContract
 
 	static public final class Words_PbWords_PbRoleSets_U
 	{
-		static public final String TABLE = "U_words_pbwords_pbrolesets";
+		static public final String TABLE = "words_pbwords_pbrolesets_u";
 		static public final String CONTENT_URI_TABLE = Words_PbWords_PbRoleSets_U.TABLE;
 		static public final String WORDID = V.WORDID;
 		static public final String SYNSETID = V.SYNSETID;
@@ -224,7 +224,7 @@ public final class XSqlUNetContract
 
 	static public final class Words_FnWords_FnFrames_U
 	{
-		static public final String TABLE = "U_words_fnwords_fnframes";
+		static public final String TABLE = "words_fnwords_fnframes_u";
 		static public final String CONTENT_URI_TABLE = Words_FnWords_FnFrames_U.TABLE;
 		static public final String WORDID = V.WORDID;
 		static public final String SYNSETID = V.SYNSETID;

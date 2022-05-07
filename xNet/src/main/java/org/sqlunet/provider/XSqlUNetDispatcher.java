@@ -7,12 +7,12 @@ public class XSqlUNetDispatcher
 {
 	static public class Result
 	{
-		final String table;
-		final String[] projection;
-		final String selection;
-		final String[] selectionArgs;
-		final String groupBy;
-		final String orderBy;
+		public final String table;
+		public final String[] projection;
+		public final String selection;
+		public final String[] selectionArgs;
+		public final String groupBy;
+		public final String orderBy;
 
 		public Result(final String table, final String[] projection, final String selection, final String[] selectionArgs, final String groupBy, final String orderBy)
 		{
