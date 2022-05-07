@@ -50,9 +50,9 @@ public class RunQueries
 	{
 		switch (providerUri)
 		{
-			case "bnc_bncs":
+			case BNCContract.BNCs.CONTENT_URI_TABLE:
 				return 11;
-			case "words_bncs":
+			case BNCContract.Words_BNCs.CONTENT_URI_TABLE:
 				return 100;
 			default:
 				throw new IllegalArgumentException("Illegal uri: " + providerUri);

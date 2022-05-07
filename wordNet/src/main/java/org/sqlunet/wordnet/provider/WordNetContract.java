@@ -54,6 +54,7 @@ public class WordNetContract
 	{
 		String TABLE = Q.WORDS.TABLE;
 		String CONTENT_URI_TABLE = Words.TABLE;
+		String CONTENT_URI_TABLE1 = "word";
 		String WORDID = V.WORDID;
 		String WORD = V.WORD;
 		/*
@@ -108,6 +109,7 @@ public class WordNetContract
 	{
 		String TABLE = Q.SENSES.TABLE;
 		String CONTENT_URI_TABLE = Senses.TABLE;
+		String CONTENT_URI_TABLE1 = "sense";
 		String SENSEID = V.SENSEID;
 		String SENSEKEY = V.SENSEKEY;
 		String SYNSETID = V.SYNSETID;
@@ -135,6 +137,7 @@ public class WordNetContract
 	{
 		String TABLE = Q.SYNSETS.TABLE;
 		String CONTENT_URI_TABLE = Synsets.TABLE;
+		String CONTENT_URI_TABLE1 = "synset";
 		String SYNSETID = V.SYNSETID;
 		String POSID = V.POSID;
 		String DOMAINID = V.DOMAINID;
@@ -368,6 +371,7 @@ public class WordNetContract
 	public interface Words_Senses_Synsets extends Words, Senses, Synsets
 	{
 		String TABLE = "words_senses_synsets";
+		String CONTENT_URI_TABLE = Words_Senses_Synsets.TABLE;
 	}
 
 	public interface Words_Senses_CasedWords_Synsets extends Words, CasedWords, Senses, Synsets
@@ -410,8 +414,8 @@ public class WordNetContract
 
 	public interface AnyRelations_Senses_Words_X extends AnyRelations, Senses, Words
 	{
-		String TABLE_BY_SYNSET = "anyrelations_senses_relations_senses_words_by_synset";
-		String CONTENT_URI_TABLE = AnyRelations_Senses_Words_X.TABLE_BY_SYNSET;
+		String TABLE_BY_SYNSET = "anyrelations_senses_words_x_by_synset";
+		String CONTENT_URI_TABLE_BY_SYNSET = AnyRelations_Senses_Words_X.TABLE_BY_SYNSET;
 		String MEMBERS2 = WordNetContract.MEMBERS2;
 		String RECURSES = V.RECURSES;
 	}
@@ -430,8 +434,8 @@ public class WordNetContract
 
 	public interface SemRelations_Synsets_Words_X extends SemRelations_Synsets, Words, Relations
 	{
-		String TABLE_BY_SYNSET = "semrelations_synsets_relations_senses_words_by_synset";
-		String CONTENT_URI_TABLE = SemRelations_Synsets_Words_X.TABLE_BY_SYNSET;
+		String TABLE_BY_SYNSET = "semrelations_synsets_words_x_by_synset";
+		String CONTENT_URI_TABLE_BY_SYNSET = SemRelations_Synsets_Words_X.TABLE_BY_SYNSET;
 		String MEMBERS2 = WordNetContract.MEMBERS2;
 	}
 
@@ -449,8 +453,8 @@ public class WordNetContract
 
 	public interface LexRelations_Senses_Words_X extends LexRelations_Senses, Words
 	{
-		String TABLE_BY_SYNSET = "lexrelations_synsets_words_relations_senses_words_by_synset";
-		String CONTENT_URI_TABLE = LexRelations_Senses_Words_X.TABLE_BY_SYNSET;
+		String TABLE_BY_SYNSET = "lexrelations_senses_words_x_by_synset";
+		String CONTENT_URI_TABLE_BY_SYNSET = LexRelations_Senses_Words_X.TABLE_BY_SYNSET;
 		String MEMBERS2 = WordNetContract.MEMBERS2;
 	}
 
@@ -513,7 +517,7 @@ public class WordNetContract
 
 	public interface Suggest_FTS_Samples extends Samples
 	{
-		String SEARCH_SAMPLE_PATH = "suggest_fts_definition";
+		String SEARCH_SAMPLE_PATH = "suggest_fts_sample";
 		String TABLE = Suggest_FTS_Samples.SEARCH_SAMPLE_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 	}
 }

@@ -59,30 +59,29 @@ public class RunQueries
 	{
 		switch (providerUri)
 		{
-			case "vnclass1":
+			case VerbNetContract.VnClasses.CONTENT_URI_TABLE1:
 				return 10;
-			case "vnclasses":
-			case "vn_classes":
+			case VerbNetContract.VnClasses.CONTENT_URI_TABLE:
 				return 11;
-			case "vnclasses_x_by_vnclass":
+			case VerbNetContract.VnClasses_X.CONTENT_URI_TABLE_BY_VN_CLASS:
 				return 20;
-			case "words_vnclasses":
+			case VerbNetContract.Words_VnClasses.CONTENT_URI_TABLE:
 				return 100;
-			case "vnclasses_vnmembers_x_by_word":
+			case VerbNetContract.VnClasses_VnMembers_X.CONTENT_URI_TABLE:
 				return 110;
-			case "vnclasses_vnroles_x_by_vnrole":
+			case VerbNetContract.VnClasses_VnRoles_X.CONTENT_URI_TABLE:
 				return 120;
-			case "vnclasses_vnframes_x_by_vnframe":
+			case VerbNetContract.VnClasses_VnFrames_X.CONTENT_URI_TABLE:
 				return 130;
-			case "lookup_fts_examples":
+			case VerbNetContract.Lookup_VnExamples.CONTENT_URI_TABLE:
 				return 501;
-			case "lookup_fts_examples_x":
+			case VerbNetContract.Lookup_VnExamples_X.CONTENT_URI_TABLE:
 				return 511;
-			case "lookup_fts_examples_x_by_example":
+			case VerbNetContract.Lookup_VnExamples_X.CONTENT_URI_TABLE_BY_EXAMPLE:
 				return 512;
-			case "suggest_words":
+			case VerbNetContract.Suggest_VnWords.SEARCH_WORD_PATH:
 				return 601;
-			case "suggest_fts_words":
+			case VerbNetContract.Suggest_FTS_VnWords.SEARCH_WORD_PATH:
 				return 602;
 			default:
 				throw new IllegalArgumentException("Illegal uri: " + providerUri);

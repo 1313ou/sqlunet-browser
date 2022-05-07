@@ -50,7 +50,7 @@ public class RunQueries
 		{
 			processor.process(sql);
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			System.err.println(providerSql);
 			throw e;
@@ -81,90 +81,87 @@ public class RunQueries
 	{
 		switch (providerUri)
 		{
-			case "words":
+			case WordNetContract.Words.CONTENT_URI_TABLE:
 				return 10;
-			case "word":
+			case WordNetContract.Words.CONTENT_URI_TABLE1:
 				return 11;
-			case "senses":
+			case WordNetContract.Senses.CONTENT_URI_TABLE:
 				return 20;
-			case "sense":
+			case WordNetContract.Senses.CONTENT_URI_TABLE1:
 				return 21;
-			case "synsets":
+			case WordNetContract.Synsets.CONTENT_URI_TABLE:
 				return 30;
-			case "synset":
+			case WordNetContract.Synsets.CONTENT_URI_TABLE1:
 				return 31;
-			case "semrelations":
+			case WordNetContract.SemRelations.CONTENT_URI_TABLE:
 				return 40;
-			case "lexrelations":
+			case WordNetContract.LexRelations.CONTENT_URI_TABLE:
 				return 50;
-			case "relations":
+			case WordNetContract.Relations.CONTENT_URI_TABLE:
 				return 60;
-			case "poses":
+			case WordNetContract.Poses.CONTENT_URI_TABLE:
 				return 70;
-			case "domains":
+			case WordNetContract.Domains.CONTENT_URI_TABLE:
 				return 80;
-			case "adjpositions":
+			case WordNetContract.AdjPositions.CONTENT_URI_TABLE:
 				return 90;
-			case "samples":
+			case WordNetContract.Samples.CONTENT_URI_TABLE:
 				return 100;
-			case "dict":
+			case WordNetContract.Dict.CONTENT_URI_TABLE:
 				return 200;
-			case "words_senses_synsets":
+			case WordNetContract.Words_Senses_Synsets.CONTENT_URI_TABLE:
 				return 310;
-			case "words_senses_casedwords_synsets":
+			case WordNetContract.Words_Senses_CasedWords_Synsets.CONTENT_URI_TABLE:
 				return 311;
-			case "words_senses_casedwords_synsets_poses_domains":
+			case WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CONTENT_URI_TABLE:
 				return 312;
-			case "senses_words":
+			case WordNetContract.Senses_Words.CONTENT_URI_TABLE:
 				return 320;
-			case "senses_words_by_synset":
+			case WordNetContract.Senses_Words.CONTENT_URI_TABLE_BY_SYNSET:
 				return 321;
-			case "senses_synsets_poses_domains":
+			case WordNetContract.Senses_Synsets_Poses_Domains.CONTENT_URI_TABLE:
 				return 330;
-			case "synsets_poses_domains":
+			case WordNetContract.Synsets_Poses_Domains.CONTENT_URI_TABLE:
 				return 340;
-			case "anyrelations_senses_words_x_by_synset":
-			case "anyrelations_senses_relations_senses_words_by_synset":
+			case WordNetContract.AnyRelations_Senses_Words_X.CONTENT_URI_TABLE_BY_SYNSET:
 				return 400;
-			case "semrelations_synsets":
+			case WordNetContract.SemRelations_Synsets.CONTENT_URI_TABLE:
 				return 410;
-			case "semrelations_synsets_x":
+			case WordNetContract.SemRelations_Synsets_X.CONTENT_URI_TABLE:
 				return 411;
-			case "semrelations_synsets_words_x_by_synset":
-			case "semrelations_synsets_relations_senses_words_by_synset":
+			case WordNetContract.SemRelations_Synsets_Words_X.CONTENT_URI_TABLE_BY_SYNSET:
 				return 412;
-			case "lexrelations_senses":
+			case WordNetContract.LexRelations_Senses.CONTENT_URI_TABLE:
 				return 420;
-			case "lexrelations_senses_x":
+			case WordNetContract.LexRelations_Senses_X.CONTENT_URI_TABLE:
 				return 421;
-			case "lexrelations_senses_words_x_by_synset":
-			case "lexrelations_synsets_words_relations_senses_words_by_synset":
+			case WordNetContract.LexRelations_Senses_Words_X.CONTENT_URI_TABLE_BY_SYNSET:
 				return 422;
-			case "senses_vframes":
+			case WordNetContract.Senses_VerbFrames.CONTENT_URI_TABLE:
 				return 510;
-			case "senses_vtemplates":
+			case WordNetContract.Senses_VerbTemplates.CONTENT_URI_TABLE:
 				return 515;
-			case "senses_adjpositions":
+			case WordNetContract.Senses_AdjPositions.CONTENT_URI_TABLE:
 				return 520;
-			case "lexes_morphs":
+			case WordNetContract.Lexes_Morphs.CONTENT_URI_TABLE:
 				return 530;
-			case "words_lexes_morphs":
+			case WordNetContract.Words_Lexes_Morphs.CONTENT_URI_TABLE:
 				return 541;
-			case "words_lexes_morphs_by_word":
+			case WordNetContract.Words_Lexes_Morphs.CONTENT_URI_TABLE_BY_WORD:
 				return 542;
-			case "lookup_fts_words":
+			case WordNetContract.Lookup_Words.CONTENT_URI_TABLE:
 				return 810;
-			case "lookup_fts_definitions":
+			case WordNetContract.Lookup_Definitions.CONTENT_URI_TABLE:
 				return 820;
-			case "lookup_fts_samples":
+			case WordNetContract.Lookup_Samples.CONTENT_URI_TABLE:
 				return 830;
-			case "suggest_words":
+			case WordNetContract.Suggest_Words.SEARCH_WORD_PATH:
 				return 900;
-			case "suggest_fts_words":
+			case WordNetContract.Suggest_FTS_Words.SEARCH_WORD_PATH:
 				return 910;
-			case "suggest_fts_definitions":
+			case WordNetContract.Suggest_FTS_Definitions.SEARCH_DEFINITION_PATH:
 				return 920;
-			case "suggest_fts_samples":
+			case WordNetContract.Suggest_FTS_Samples.SEARCH_SAMPLE_PATH:
 				return 930;
 			default:
 				throw new IllegalArgumentException("Illegal uri: " + providerUri);

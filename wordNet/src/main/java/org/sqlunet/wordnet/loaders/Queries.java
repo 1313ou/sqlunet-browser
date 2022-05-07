@@ -183,7 +183,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareRelations(final long synsetId, final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.AnyRelations_Senses_Words_X.CONTENT_URI_TABLE;
+		providerSql.providerUri = WordNetContract.AnyRelations_Senses_Words_X.CONTENT_URI_TABLE_BY_SYNSET;
 		providerSql.projection = new String[]{ //
 				WordNetContract.RELATIONTYPE, WordNetContract.Relations.RELATIONID, //
 				WordNetContract.Relations.RELATION, //
@@ -203,7 +203,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareSemRelations(final long synsetId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.SemRelations_Synsets_Words_X.CONTENT_URI_TABLE;
+		providerSql.providerUri = WordNetContract.SemRelations_Synsets_Words_X.CONTENT_URI_TABLE_BY_SYNSET;
 		providerSql.projection = new String[]{ //
 				WordNetContract.Relations.RELATIONID, //
 				WordNetContract.Relations.RELATION, //
@@ -220,7 +220,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareSemRelations(final long synsetId, final int relationId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.SemRelations_Synsets_Words_X.CONTENT_URI_TABLE;
+		providerSql.providerUri = WordNetContract.SemRelations_Synsets_Words_X.CONTENT_URI_TABLE_BY_SYNSET;
 		providerSql.projection = new String[]{ //
 				WordNetContract.Relations.RELATIONID, //
 				WordNetContract.Relations.RELATION, //
@@ -236,7 +236,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareLexRelations(final long synsetId, final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.LexRelations_Senses_Words_X.CONTENT_URI_TABLE;
+		providerSql.providerUri = WordNetContract.LexRelations_Senses_Words_X.CONTENT_URI_TABLE_BY_SYNSET;
 		providerSql.projection = new String[]{ //
 				WordNetContract.Relations.RELATIONID, //
 				WordNetContract.Relations.RELATION, //
@@ -254,7 +254,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareLexRelations(final long synsetId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.LexRelations_Senses_Words_X.CONTENT_URI_TABLE;
+		providerSql.providerUri = WordNetContract.LexRelations_Senses_Words_X.CONTENT_URI_TABLE_BY_SYNSET;
 		providerSql.projection = new String[]{ //
 				WordNetContract.Relations.RELATIONID, //
 				WordNetContract.Relations.RELATION, //

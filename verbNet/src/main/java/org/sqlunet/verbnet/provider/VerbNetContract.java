@@ -26,6 +26,18 @@ public class VerbNetContract
 	{
 		static public final String TABLE = Q.VNCLASSES.TABLE;
 		static public final String CONTENT_URI_TABLE = VnClasses.TABLE;
+		static public final String CONTENT_URI_TABLE1 = "vn_class1";
+		static public final String WORDID = V.WORDID;
+		static public final String POS = V.POSID;
+		static public final String CLASSID = V.CLASSID;
+		static public final String CLASS = V.CLASS;
+		static public final String CLASSTAG = V.CLASSTAG;
+	}
+
+	static public final class VnClasses_X
+	{
+		static public final String TABLE ="vnclasses_x_by_vnclass";
+		static public final String CONTENT_URI_TABLE_BY_VN_CLASS = VnClasses_X.TABLE;
 		static public final String WORDID = V.WORDID;
 		static public final String POS = V.POSID;
 		static public final String CLASSID = V.CLASSID;
@@ -102,7 +114,8 @@ public class VerbNetContract
 	{
 		static public final String TABLE = "fts_vnexamples_x";
 		static public final String TABLE_BY_EXAMPLE = "fts_vnexamples_x_by_example";
-		static public final String CONTENT_URI_TABLE = Lookup_VnExamples_X.TABLE_BY_EXAMPLE;
+		static public final String CONTENT_URI_TABLE = Lookup_VnExamples_X.TABLE;
+		static public final String CONTENT_URI_TABLE_BY_EXAMPLE = Lookup_VnExamples_X.TABLE_BY_EXAMPLE;
 		static public final String EXAMPLEID = V. EXAMPLEID;
 		static public final String EXAMPLE =  V.EXAMPLE;
 		static public final String CLASSID =  V.CLASSID;

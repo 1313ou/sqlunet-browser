@@ -52,31 +52,31 @@ public class RunQueries
 	{
 		switch (providerUri)
 		{
-			case "pbroleset":
+			case PropBankContract.PbRoleSets.CONTENT_URI_TABLE1:
 				return 10;
-			case "pbrolesets":
+			case PropBankContract.PbRoleSets.CONTENT_URI_TABLE:
 				return 11;
-			case "pbrolesets_x":
+			case PropBankContract.PbRoleSets_X.CONTENT_URI_TABLE:
 				return 100;
-			case "pbrolesets_x_by_roleset":
+			case PropBankContract.PbRoleSets_X.CONTENT_URI_TABLE_BY_ROLESET:
 				return 101;
-			case "words_pbrolesets":
+			case PropBankContract.Words_PbRoleSets.CONTENT_URI_TABLE:
 				return 110;
-			case "pbrolesets_pbroles":
+			case PropBankContract.PbRoleSets_PbRoles.CONTENT_URI_TABLE:
 				return 120;
-			case "pbrolesets_pbexamples":
+			case PropBankContract.PbRoleSets_PbExamples.CONTENT_URI_TABLE:
 				return 130;
-			case "pbrolesets_pbexamples_by_example":
+			case PropBankContract.PbRoleSets_PbExamples.CONTENT_URI_TABLE_BY_EXAMPLE:
 				return 131;
-			case "lookup_fts_examples":
+			case PropBankContract.Lookup_PbExamples.CONTENT_URI_TABLE:
 				return 501;
-			case "lookup_fts_examples_x":
+			case PropBankContract.Lookup_PbExamples_X.CONTENT_URI_TABLE:
 				return 511;
-			case "lookup_fts_examples_x_by_example":
+			case PropBankContract.Lookup_PbExamples_X.CONTENT_URI_TABLE_BY_EXAMPLE:
 				return 512;
-			case "suggest_words":
+			case PropBankContract.Suggest_PbWords.SEARCH_WORD_PATH:
 				return 601;
-			case "suggest_fts_words":
+			case PropBankContract.Suggest_FTS_PbWords.SEARCH_WORD_PATH:
 				return 602;
 			default:
 				throw new IllegalArgumentException("Illegal uri: " + providerUri);
