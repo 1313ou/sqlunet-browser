@@ -52,10 +52,9 @@ public class RunQueries
 	{
 		switch (providerUri)
 		{
-			case "collocations":
+			case SyntagNetContract.SnCollocations.CONTENT_URI_TABLE:
 				return 10;
-			case "collocations_x":
-			case "syntagms_x":
+			case SyntagNetContract.SnCollocations_X.CONTENT_URI_TABLE:
 				return 100;
 			default:
 				throw new IllegalArgumentException("Illegal uri: " + providerUri);

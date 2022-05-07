@@ -41,7 +41,7 @@ public class SyntagNetContract
 
 	static public final class SnCollocations_X
 	{
-		static public final String TABLE = "syntagms_x";
+		static public final String TABLE = "sn_syntagms_x";
 		static public final String CONTENT_URI_TABLE = SnCollocations_X.TABLE;
 		static public final String COLLOCATIONID = V.SYNTAGMID;
 		static public final String WORD1ID = V.WORD1ID;

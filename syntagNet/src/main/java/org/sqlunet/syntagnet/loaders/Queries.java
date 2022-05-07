@@ -70,8 +70,8 @@ public class Queries
 				SyntagNetContract.SnCollocations_X.WORD2ID, //
 				SyntagNetContract.SnCollocations_X.SYNSET1ID, //
 				SyntagNetContract.SnCollocations_X.SYNSET2ID, //
-				SyntagNetContract.WORD1, //
-				SyntagNetContract.WORD2,};
+				SyntagNetContract.W1 + '.' + SyntagNetContract.SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD1, //
+				SyntagNetContract.W2 + '.' + SyntagNetContract.SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD2,};
 		providerSql.selection = SyntagNetContract.SnCollocations_X.WORD1ID + " = ? OR " + SyntagNetContract.SnCollocations_X.WORD2ID + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(wordId), Long.toString(wordId), Long.toString(wordId)};
 		providerSql.sortBy = SyntagNetContract.SnCollocations_X.WORD2ID + " = ?" + ',' + SyntagNetContract.W1 + '.' + SyntagNetContract.SnCollocations_X.WORD + ',' + SyntagNetContract.W2 + '.' + SyntagNetContract.SnCollocations_X.WORD;
@@ -87,8 +87,8 @@ public class Queries
 				SyntagNetContract.SnCollocations_X.WORD2ID, //
 				SyntagNetContract.SnCollocations_X.SYNSET1ID, //
 				SyntagNetContract.SnCollocations_X.SYNSET2ID, //
-				SyntagNetContract.WORD1, //
-				SyntagNetContract.WORD2,};
+				SyntagNetContract.W1 + '.' + SyntagNetContract.SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD1, //
+				SyntagNetContract.W2 + '.' + SyntagNetContract.SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD2,};
 		providerSql.selection = SyntagNetContract.SnCollocations_X.WORD1ID + " = ? OR " + SyntagNetContract.SnCollocations_X.WORD2ID + " = ?";
 		providerSql.selectionArgs = new String[]{word};
 		providerSql.sortBy = SyntagNetContract.SnCollocations_X.WORD2ID + " = ?" + ',' + SyntagNetContract.W1 + '.' + SyntagNetContract.SnCollocations_X.WORD + ',' + SyntagNetContract.W2 + '.' + SyntagNetContract.SnCollocations_X.WORD;
