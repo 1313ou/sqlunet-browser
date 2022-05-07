@@ -9,6 +9,8 @@ import android.os.Parcelable;
 
 import org.sqlunet.treeview.model.TreeNode;
 
+import java.util.Arrays;
+
 import androidx.annotation.NonNull;
 
 /**
@@ -39,6 +41,12 @@ public abstract class Module
 			this.selection = selection;
 			this.selectionArgs = selectionArgs;
 			this.sortBy = sortBy;
+		}
+
+		@Override
+		public String toString()
+		{
+			return "ContentProviderSql{" + "providerUri='" + providerUri + '\'' + ", projection=" + Arrays.toString(projection) + ", selection='" + selection + '\'' + ", selectionArgs=" + Arrays.toString(selectionArgs) + ", sortBy='" + sortBy + '\'' + '}';
 		}
 	}
 
