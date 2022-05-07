@@ -71,7 +71,7 @@ public class Queries
 				XSqlUNetContract.Words_VnWords_VnClasses_U.CLASS + " AS " + XSqlUNetContract.Words_XNet_U.XHEADER, //
 				XSqlUNetContract.Words_VnWords_VnClasses_U.CLASSTAG + " AS " + XSqlUNetContract.Words_XNet_U.XINFO, //
 				XSqlUNetContract.Words_VnWords_VnClasses_U.DEFINITION + " AS " + XSqlUNetContract.Words_XNet_U.XDEFINITION, //
-				"rowid AS _id",};
+				"RANDOM() AS _id",};
 		providerSql.selection = XSqlUNetContract.Words_VnWords_VnClasses_U.WORDID + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(wordId)};
 		providerSql.sortBy = XSqlUNetContract.Words_VnWords_VnClasses_U.CLASSID;
@@ -98,7 +98,7 @@ public class Queries
 				//Words_PbWords_PbRoleSets_U.ROLESETHEAD + " AS " + Words_XNet_U.XHEADER, //
 				XSqlUNetContract.Words_PbWords_PbRoleSets_U.ROLESETDESCR + " AS " + XSqlUNetContract.Words_XNet_U.XINFO, //
 				XSqlUNetContract.Words_PbWords_PbRoleSets_U.DEFINITION + " AS " + XSqlUNetContract.Words_XNet_U.XDEFINITION, //
-				"rowid AS _id",};
+				"RANDOM() AS _id",};
 		providerSql.selection = XSqlUNetContract.Words_PbWords_PbRoleSets_U.WORDID + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(wordId)};
 		providerSql.sortBy = XSqlUNetContract.Words_PbWords_PbRoleSets_U.ROLESETID;
@@ -124,7 +124,7 @@ public class Queries
 				XSqlUNetContract.Words_FnWords_FnFrames_U.FRAME + " AS " + XSqlUNetContract.Words_XNet_U.XHEADER, //
 				"GROUP_CONCAT(" + XSqlUNetContract.Words_FnWords_FnFrames_U.LUDEFINITION + ",'\n') AS " + XSqlUNetContract.Words_XNet_U.XINFO, //
 				XSqlUNetContract.Words_FnWords_FnFrames_U.DEFINITION + " AS " + XSqlUNetContract.Words_XNet_U.XDEFINITION, //
-				"rowid AS _id",};
+				"RANDOM() AS _id",};
 		providerSql.selection = XSqlUNetContract.Words_FnWords_FnFrames_U.WORDID + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(wordId)};
 		providerSql.sortBy = XSqlUNetContract.Words_FnWords_FnFrames_U.LUID + ' ' + "IS NULL" + ',' + XSqlUNetContract.Words_FnWords_FnFrames_U.SOURCE + ',' + XSqlUNetContract.Words_FnWords_FnFrames_U.FRAMEID;
