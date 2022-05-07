@@ -105,7 +105,7 @@ public class FrameNetContract
 
 	static public final class Frames_Related
 	{
-		static public final String TABLE = Q.FRAMES_RELATED.TABLE;
+		static public final String TABLE = "fnframes_related";
 		static public final String CONTENT_URI_TABLE = Frames_Related.TABLE;
 		static public final String FRAMEID = V.FRAMEID;
 		static public final String FRAME = V.FRAME;
