@@ -1,8 +1,8 @@
 package org.sqlunet.wordnet.provider;
 
 import org.junit.Test;
-import org.sqlunet.wordnet.provider.WordNetDispatcher.Factory;
-import org.sqlunet.wordnet.provider.WordNetDispatcher.Result;
+import org.sqlunet.wordnet.provider.WordNetControl.Factory;
+import org.sqlunet.wordnet.provider.WordNetControl.Result;
 
 import java.util.Arrays;
 
@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
  */
 public class QueriesUnitTest
 {
-	private final int[] codes = {WordNetDispatcher.WORDS, WordNetDispatcher.WORD, WordNetDispatcher.SENSES, WordNetDispatcher.SENSE, WordNetDispatcher.SYNSETS, WordNetDispatcher.SYNSET, WordNetDispatcher.SEMRELATIONS, WordNetDispatcher.LEXRELATIONS, WordNetDispatcher.RELATIONS, WordNetDispatcher.POSES, WordNetDispatcher.DOMAINS, WordNetDispatcher.ADJPOSITIONS, WordNetDispatcher.SAMPLES, WordNetDispatcher.DICT, WordNetDispatcher.WORDS_SENSES_SYNSETS, WordNetDispatcher.WORDS_SENSES_CASEDWORDS_SYNSETS, WordNetDispatcher.WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS, WordNetDispatcher.SENSES_WORDS, WordNetDispatcher.SENSES_WORDS_BY_SYNSET, WordNetDispatcher.SENSES_SYNSETS_POSES_DOMAINS, WordNetDispatcher.SYNSETS_POSES_DOMAINS, WordNetDispatcher.ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET, WordNetDispatcher.SEMRELATIONS_SYNSETS, WordNetDispatcher.SEMRELATIONS_SYNSETS_X, WordNetDispatcher.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET, WordNetDispatcher.LEXRELATIONS_SENSES, WordNetDispatcher.LEXRELATIONS_SENSES_X, WordNetDispatcher.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET, WordNetDispatcher.SENSES_VFRAMES, WordNetDispatcher.SENSES_VTEMPLATES, WordNetDispatcher.SENSES_ADJPOSITIONS, WordNetDispatcher.LEXES_MORPHS, WordNetDispatcher.WORDS_LEXES_MORPHS, WordNetDispatcher.WORDS_LEXES_MORPHS_BY_WORD, WordNetDispatcher.LOOKUP_FTS_WORDS, WordNetDispatcher.LOOKUP_FTS_DEFINITIONS, WordNetDispatcher.LOOKUP_FTS_SAMPLES, WordNetDispatcher.SUGGEST_WORDS, WordNetDispatcher.SUGGEST_FTS_WORDS, WordNetDispatcher.SUGGEST_FTS_DEFINITIONS, WordNetDispatcher.SUGGEST_FTS_SAMPLES,};
+	private final int[] codes = {WordNetControl.WORDS, WordNetControl.WORD, WordNetControl.SENSES, WordNetControl.SENSE, WordNetControl.SYNSETS, WordNetControl.SYNSET, WordNetControl.SEMRELATIONS, WordNetControl.LEXRELATIONS, WordNetControl.RELATIONS, WordNetControl.POSES, WordNetControl.DOMAINS, WordNetControl.ADJPOSITIONS, WordNetControl.SAMPLES, WordNetControl.DICT, WordNetControl.WORDS_SENSES_SYNSETS, WordNetControl.WORDS_SENSES_CASEDWORDS_SYNSETS, WordNetControl.WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS, WordNetControl.SENSES_WORDS, WordNetControl.SENSES_WORDS_BY_SYNSET, WordNetControl.SENSES_SYNSETS_POSES_DOMAINS, WordNetControl.SYNSETS_POSES_DOMAINS, WordNetControl.ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET, WordNetControl.SEMRELATIONS_SYNSETS, WordNetControl.SEMRELATIONS_SYNSETS_X, WordNetControl.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET, WordNetControl.LEXRELATIONS_SENSES, WordNetControl.LEXRELATIONS_SENSES_X, WordNetControl.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET, WordNetControl.SENSES_VFRAMES, WordNetControl.SENSES_VTEMPLATES, WordNetControl.SENSES_ADJPOSITIONS, WordNetControl.LEXES_MORPHS, WordNetControl.WORDS_LEXES_MORPHS, WordNetControl.WORDS_LEXES_MORPHS_BY_WORD, WordNetControl.LOOKUP_FTS_WORDS, WordNetControl.LOOKUP_FTS_DEFINITIONS, WordNetControl.LOOKUP_FTS_SAMPLES, WordNetControl.SUGGEST_WORDS, WordNetControl.SUGGEST_FTS_WORDS, WordNetControl.SUGGEST_FTS_DEFINITIONS, WordNetControl.SUGGEST_FTS_SAMPLES,};
 	private final String uriLast = "LAST";
 	private final String[] projection = {"PROJ1", "PROJ2", "PROJ3"};
 	private final String selection = "SEL";
@@ -72,16 +72,16 @@ public class QueriesUnitTest
 
 	public Result queryProvider(int code, @NonNull final String uriLast, final String[] projection0, @Nullable final String selection0, final String[] selectionArgs0, final String sortOrder0)
 	{
-		Result r = WordNetDispatcher.queryMain(code, uriLast, projection0, selection0, selectionArgs0);
+		Result r = WordNetControl.queryMain(code, uriLast, projection0, selection0, selectionArgs0);
 		if (r == null)
 		{
-			r = WordNetDispatcher.queryAnyRelations(code, projection0, selection0, selectionArgs0);
+			r = WordNetControl.queryAnyRelations(code, projection0, selection0, selectionArgs0);
 			if (r == null)
 			{
-				r = WordNetDispatcher.querySearch(code, projection0, selection0, selectionArgs0);
+				r = WordNetControl.querySearch(code, projection0, selection0, selectionArgs0);
 				if (r == null)
 				{
-					r = WordNetDispatcher.querySuggest(code, uriLast);
+					r = WordNetControl.querySuggest(code, uriLast);
 				}
 			}
 		}

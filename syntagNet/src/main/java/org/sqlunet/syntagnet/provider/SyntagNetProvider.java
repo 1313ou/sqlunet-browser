@@ -17,7 +17,7 @@ import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.sql.SqlFormatter;
 import org.sqlunet.syntagnet.provider.SyntagNetContract.SnCollocations;
 import org.sqlunet.syntagnet.provider.SyntagNetContract.SnCollocations_X;
-import org.sqlunet.syntagnet.provider.SyntagNetDispatcher.Result;
+import org.sqlunet.syntagnet.provider.SyntagNetControl.Result;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -47,8 +47,8 @@ public class SyntagNetProvider extends BaseProvider
 
 	static private void matchURIs()
 	{
-		uriMatcher.addURI(AUTHORITY, SnCollocations.TABLE, SyntagNetDispatcher.COLLOCATIONS);
-		uriMatcher.addURI(AUTHORITY, SnCollocations_X.TABLE, SyntagNetDispatcher.COLLOCATIONS_X);
+		uriMatcher.addURI(AUTHORITY, SnCollocations.TABLE, SyntagNetControl.COLLOCATIONS);
+		uriMatcher.addURI(AUTHORITY, SnCollocations_X.TABLE, SyntagNetControl.COLLOCATIONS_X);
 	}
 
 	@NonNull
@@ -89,9 +89,9 @@ public class SyntagNetProvider extends BaseProvider
 		switch (uriMatcher.match(uri))
 		{
 			// T A B L E S
-			case SyntagNetDispatcher.COLLOCATIONS:
+			case SyntagNetControl.COLLOCATIONS:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + SnCollocations.TABLE;
-			case SyntagNetDispatcher.COLLOCATIONS_X:
+			case SyntagNetControl.COLLOCATIONS_X:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + SnCollocations_X.TABLE;
 
 			default:
@@ -124,7 +124,7 @@ public class SyntagNetProvider extends BaseProvider
 			throw new RuntimeException("Malformed URI " + uri);
 		}
 
-		Result result = SyntagNetDispatcher.queryMain(code, uri.getLastPathSegment(), projection0, selection0, selectionArgs0);
+		Result result = SyntagNetControl.queryMain(code, uri.getLastPathSegment(), projection0, selection0, selectionArgs0);
 
 		if (result != null)
 		{

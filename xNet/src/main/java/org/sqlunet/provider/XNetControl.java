@@ -3,7 +3,12 @@ package org.sqlunet.provider;
 import org.sqlunet.xnet.provider.Q;
 import org.sqlunet.xnet.provider.V;
 
-public class XSqlUNetDispatcher
+/**
+ * XNet query control
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
+public class XNetControl
 {
 	static public class Result
 	{
@@ -60,47 +65,47 @@ public class XSqlUNetDispatcher
 
 		switch (code)
 		{
-			case XSqlUNetDispatcher.PREDICATEMATRIX:
+			case XNetControl.PREDICATEMATRIX:
 				// table = "pm";
 				table = Q.PREDICATEMATRIX.TABLE;
 				break;
 
-			case XSqlUNetDispatcher.PREDICATEMATRIX_VERBNET:
+			case XNetControl.PREDICATEMATRIX_VERBNET:
 				table = Q.PREDICATEMATRIX_VERBNET.TABLE;
 				break;
 
-			case XSqlUNetDispatcher.PREDICATEMATRIX_PROPBANK:
+			case XNetControl.PREDICATEMATRIX_PROPBANK:
 				table = Q.PREDICATEMATRIX_PROPBANK.TABLE;
 				break;
 
-			case XSqlUNetDispatcher.PREDICATEMATRIX_FRAMENET:
+			case XNetControl.PREDICATEMATRIX_FRAMENET:
 				table = Q.PREDICATEMATRIX_FRAMENET.TABLE;
 				break;
 
-			case XSqlUNetDispatcher.SOURCES:
+			case XNetControl.SOURCES:
 				table = Q.SOURCES.TABLE;
 				break;
 
 			// J O I N S
 
-			case XSqlUNetDispatcher.WORDS_FNWORDS_PBWORDS_VNWORDS:
+			case XNetControl.WORDS_FNWORDS_PBWORDS_VNWORDS:
 				table = Q.WORDS_FNWORDS_PBWORDS_VNWORDS.TABLE;
 				groupBy = V.SYNSETID;
 				break;
 
-			case XSqlUNetDispatcher.WORDS_PBWORDS_VNWORDS:
+			case XNetControl.WORDS_PBWORDS_VNWORDS:
 				table = Q.WORDS_PBWORDS_VNWORDS.TABLE;
 				groupBy = V.SYNSETID;
 				break;
 
-			case XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES:
+			case XNetControl.WORDS_VNWORDS_VNCLASSES:
 			{
 				table = Q.WORDS_VNWORDS_VNCLASSES.TABLE;
 				groupBy = String.format("%s,%s,%s", V.WORDID, V.SYNSETID, V.CLASSID);
 				break;
 			}
 
-			case XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS:
+			case XNetControl.WORDS_PBWORDS_PBROLESETS:
 			{
 				table = Q.WORDS_PBWORDS_PBROLESETS.TABLE;
 				groupBy = String.format("%s,%s,%s", V.WORDID, V.SYNSETID, V.ROLESETID);
@@ -123,7 +128,7 @@ public class XSqlUNetDispatcher
 				table = Q.WORDS_VNWORDS_VNCLASSES_1U2.TABLE; //.replaceAll("#\\{selection\\}", selection);
 				break;
 
-			case XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_U:
+			case XNetControl.WORDS_VNWORDS_VNCLASSES_U:
 			{
 				/*
 				final String table1 = Q.WORDS_VNWORDS_VNCLASSES_1.TABLE;
@@ -156,7 +161,7 @@ public class XSqlUNetDispatcher
 				table = Q.WORDS_PBWORDS_PBROLESETS_1U2.TABLE; //.replaceAll("#\\{selection\\}", selection);
 				break;
 
-			case XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_U:
+			case XNetControl.WORDS_PBWORDS_PBROLESETS_U:
 			{
 				/*
 				final String table1 = Q.WORDS_PBWORDS_PBROLESETS_1.TABLE;
@@ -189,7 +194,7 @@ public class XSqlUNetDispatcher
 				table = Q.WORDS_FNWORDS_FNFRAMES_1U2.TABLE; //.replaceAll("\\$\\{selection\\}", selection);
 				break;
 
-			case XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_U:
+			case XNetControl.WORDS_FNWORDS_FNFRAMES_U:
 			{
 				/*
 				final String table1 = Q.WORDS_FNWORDS_FNFRAMES_1.TABLE;

@@ -2,7 +2,12 @@ package org.sqlunet.framenet.provider;
 
 import android.app.SearchManager;
 
-public class FrameNetDispatcher
+/**
+ * FrameNet query control
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
+public class FrameNetControl
 {
 	// table codes
 	static final int LEXUNIT = 10;
@@ -81,19 +86,19 @@ public class FrameNetDispatcher
 			// T A B L E
 			// table uri : last element is table
 
-			case FrameNetDispatcher.LEXUNITS:
+			case FrameNetControl.LEXUNITS:
 				table = Q.LEXUNITS.TABLE;
 				break;
 
-			case FrameNetDispatcher.FRAMES:
+			case FrameNetControl.FRAMES:
 				table = Q.FRAMES.TABLE;
 				break;
 
-			case FrameNetDispatcher.ANNOSETS:
+			case FrameNetControl.ANNOSETS:
 				table = Q.ANNOSETS.TABLE;
 				break;
 
-			case FrameNetDispatcher.SENTENCES:
+			case FrameNetControl.SENTENCES:
 				table = Q.SENTENCES.TABLE;
 				break;
 
@@ -101,7 +106,7 @@ public class FrameNetDispatcher
 			// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
 			// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query
 
-			case FrameNetDispatcher.LEXUNIT:
+			case FrameNetControl.LEXUNIT:
 				table = Q.LEXUNIT1.TABLE;
 				if (selection != null)
 				{
@@ -114,7 +119,7 @@ public class FrameNetDispatcher
 				selection += V.LUID + " = " + uriLast;
 				break;
 
-			case FrameNetDispatcher.FRAME:
+			case FrameNetControl.FRAME:
 				table = Q.FRAME1.TABLE;
 				if (selection != null)
 				{
@@ -127,7 +132,7 @@ public class FrameNetDispatcher
 				selection += V.FRAMEID + " = " + uriLast;
 				break;
 
-			case FrameNetDispatcher.SENTENCE:
+			case FrameNetControl.SENTENCE:
 				table = Q.SENTENCE1.TABLE;
 				if (selection != null)
 				{
@@ -140,7 +145,7 @@ public class FrameNetDispatcher
 				selection += V.SENTENCEID + " = " + uriLast;
 				break;
 
-			case FrameNetDispatcher.ANNOSET:
+			case FrameNetControl.ANNOSET:
 				table = Q.ANNOSET1.TABLE;
 				if (selection != null)
 				{
@@ -155,114 +160,114 @@ public class FrameNetDispatcher
 
 			// J O I N S
 
-			case FrameNetDispatcher.LEXUNITS_OR_FRAMES:
+			case FrameNetControl.LEXUNITS_OR_FRAMES:
 				table = Q.LEXUNITS_OR_FRAMES.TABLE;
 				break;
 
-			case FrameNetDispatcher.LEXUNITS_OR_FRAMES_FN:
+			case FrameNetControl.LEXUNITS_OR_FRAMES_FN:
 				table = Q.LEXUNITS_OR_FRAMES_FN.TABLE;
 				break;
 
-			case FrameNetDispatcher.FRAMES_X_BY_FRAME:
+			case FrameNetControl.FRAMES_X_BY_FRAME:
 				table = Q.FRAMES_X_BY_FRAME.TABLE;
 				groupBy = V.FRAMEID;
 				break;
 
-			case FrameNetDispatcher.FRAMES_RELATED:
+			case FrameNetControl.FRAMES_RELATED:
 				table = Q.FRAMES_RELATED.TABLE;
 				break;
 
-			case FrameNetDispatcher.LEXUNITS_X_BY_LEXUNIT:
+			case FrameNetControl.LEXUNITS_X_BY_LEXUNIT:
 				table = Q.LEXUNITS_X_BY_LEXUNIT.TABLE;
 				groupBy = V.LUID;
 				break;
 
-			case FrameNetDispatcher.SENTENCES_LAYERS_X:
+			case FrameNetControl.SENTENCES_LAYERS_X:
 				table = Q.SENTENCES_LAYERS_X.TABLE;
 				break;
 
-			case FrameNetDispatcher.ANNOSETS_LAYERS_X:
+			case FrameNetControl.ANNOSETS_LAYERS_X:
 				table = Q.ANNOSETS_LAYERS_X.TABLE;
 				break;
 
-			case FrameNetDispatcher.PATTERNS_LAYERS_X:
+			case FrameNetControl.PATTERNS_LAYERS_X:
 				table = Q.PATTERNS_LAYERS_X.TABLE;
 				break;
 
-			case FrameNetDispatcher.VALENCEUNITS_LAYERS_X:
+			case FrameNetControl.VALENCEUNITS_LAYERS_X:
 				table = Q.VALENCEUNITS_LAYERS_X.TABLE;
 				break;
 
-			case FrameNetDispatcher.WORDS_LEXUNITS_FRAMES:
+			case FrameNetControl.WORDS_LEXUNITS_FRAMES:
 				table = Q.WORDS_LEXUNITS_FRAMES.TABLE;
 				break;
 
-			case FrameNetDispatcher.WORDS_LEXUNITS_FRAMES_FN:
+			case FrameNetControl.WORDS_LEXUNITS_FRAMES_FN:
 				table = Q.WORDS_LEXUNITS_FRAMES_FN.TABLE;
 				break;
 
-			case FrameNetDispatcher.FRAMES_FES_BY_FE:
+			case FrameNetControl.FRAMES_FES_BY_FE:
 				table = Q.FRAMES_FES_BY_FE.TABLE;
 				groupBy = V.FEID;
 				break;
 
-			case FrameNetDispatcher.FRAMES_FES:
+			case FrameNetControl.FRAMES_FES:
 				table = Q.FRAMES_FES.TABLE;
 				break;
 
-			case FrameNetDispatcher.LEXUNITS_SENTENCES_BY_SENTENCE:
+			case FrameNetControl.LEXUNITS_SENTENCES_BY_SENTENCE:
 				table = Q.LEXUNITS_SENTENCES_BY_SENTENCE.TABLE;
 				groupBy = V.AS_SENTENCES + '.' + V.SENTENCEID;
 				break;
 
-			case FrameNetDispatcher.LEXUNITS_SENTENCES:
+			case FrameNetControl.LEXUNITS_SENTENCES:
 				table = Q.LEXUNITS_SENTENCES.TABLE;
 				break;
 
-			case FrameNetDispatcher.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE:
+			case FrameNetControl.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE:
 				table = Q.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE.TABLE;
 				groupBy = V.AS_SENTENCES + '.' + V.SENTENCEID;
 				break;
 
-			case FrameNetDispatcher.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS:
+			case FrameNetControl.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS:
 				table = Q.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS.TABLE;
 				break;
 
-			case FrameNetDispatcher.LEXUNITS_GOVERNORS:
+			case FrameNetControl.LEXUNITS_GOVERNORS:
 				table = Q.LEXUNITS_GOVERNORS.TABLE;
 				break;
 
-			case FrameNetDispatcher.LEXUNITS_GOVERNORS_FN:
+			case FrameNetControl.LEXUNITS_GOVERNORS_FN:
 				table = Q.LEXUNITS_GOVERNORS_FN.TABLE;
 				break;
 
-			case FrameNetDispatcher.GOVERNORS_ANNOSETS:
+			case FrameNetControl.GOVERNORS_ANNOSETS:
 				table = Q.GOVERNORS_ANNOSETS.TABLE;
 				break;
 
-			case FrameNetDispatcher.LEXUNITS_REALIZATIONS_BY_REALIZATION:
+			case FrameNetControl.LEXUNITS_REALIZATIONS_BY_REALIZATION:
 				table = Q.LEXUNITS_REALIZATIONS_BY_REALIZATION.TABLE;
 				groupBy = V.FERID;
 				break;
 
-			case FrameNetDispatcher.LEXUNITS_REALIZATIONS:
+			case FrameNetControl.LEXUNITS_REALIZATIONS:
 				table = Q.LEXUNITS_REALIZATIONS.TABLE;
 				break;
 
-			case FrameNetDispatcher.LEXUNITS_GROUPREALIZATIONS_BY_PATTERN:
+			case FrameNetControl.LEXUNITS_GROUPREALIZATIONS_BY_PATTERN:
 				table = Q.LEXUNITS_GROUPREALIZATIONS_BY_PATTERN.TABLE;
 				groupBy = V.PATTERNID;
 				break;
 
-			case FrameNetDispatcher.LEXUNITS_GROUPREALIZATIONS:
+			case FrameNetControl.LEXUNITS_GROUPREALIZATIONS:
 				table = Q.LEXUNITS_GROUPREALIZATIONS.TABLE;
 				break;
 
-			case FrameNetDispatcher.PATTERNS_SENTENCES:
+			case FrameNetControl.PATTERNS_SENTENCES:
 				table = Q.PATTERNS_SENTENCES.TABLE;
 				break;
 
-			case FrameNetDispatcher.VALENCEUNITS_SENTENCES:
+			case FrameNetControl.VALENCEUNITS_SENTENCES:
 				table = Q.VALENCEUNITS_SENTENCES.TABLE;
 				break;
 
@@ -279,20 +284,20 @@ public class FrameNetDispatcher
 
 		switch (code)
 		{
-			case FrameNetDispatcher.LOOKUP_FTS_WORDS:
+			case FrameNetControl.LOOKUP_FTS_WORDS:
 				table = Q.LOOKUP_FTS_WORDS.TABLE;
 				break;
 
-			case FrameNetDispatcher.LOOKUP_FTS_SENTENCES:
+			case FrameNetControl.LOOKUP_FTS_SENTENCES:
 				table = Q.LOOKUP_FTS_SENTENCES.TABLE;
 				break;
 
-			case FrameNetDispatcher.LOOKUP_FTS_SENTENCES_X_BY_SENTENCE:
+			case FrameNetControl.LOOKUP_FTS_SENTENCES_X_BY_SENTENCE:
 				table = Q.LOOKUP_FTS_SENTENCES_X_BY_SENTENCE.TABLE;
 				groupBy = V.SENTENCEID;
 				break;
 
-			case FrameNetDispatcher.LOOKUP_FTS_SENTENCES_X:
+			case FrameNetControl.LOOKUP_FTS_SENTENCES_X:
 				table = Q.LOOKUP_FTS_SENTENCES_X.TABLE;
 				break;
 
@@ -311,7 +316,7 @@ public class FrameNetDispatcher
 
 		switch (code)
 		{
-			case FrameNetDispatcher.SUGGEST_WORDS:
+			case FrameNetControl.SUGGEST_WORDS:
 			{
 				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(uriLast))
 				{
@@ -326,7 +331,7 @@ public class FrameNetDispatcher
 				break;
 			}
 
-			case FrameNetDispatcher.SUGGEST_FTS_WORDS:
+			case FrameNetControl.SUGGEST_FTS_WORDS:
 			{
 				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(uriLast))
 				{

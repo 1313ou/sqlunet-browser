@@ -13,7 +13,7 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.util.Log;
 
-import org.sqlunet.bnc.provider.BNCDispatcher.Result;
+import org.sqlunet.bnc.provider.BNCControl.Result;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.sql.SqlFormatter;
 
@@ -44,8 +44,8 @@ public class BNCProvider extends BaseProvider
 
 	static private void matchURIs()
 	{
-		BNCProvider.uriMatcher.addURI(AUTHORITY, BNCContract.BNCs.TABLE, BNCDispatcher.BNC);
-		BNCProvider.uriMatcher.addURI(AUTHORITY, BNCContract.Words_BNCs.TABLE, BNCDispatcher.WORDS_BNC);
+		BNCProvider.uriMatcher.addURI(AUTHORITY, BNCContract.BNCs.TABLE, BNCControl.BNC);
+		BNCProvider.uriMatcher.addURI(AUTHORITY, BNCContract.Words_BNCs.TABLE, BNCControl.WORDS_BNC);
 	}
 
 	@NonNull
@@ -85,11 +85,11 @@ public class BNCProvider extends BaseProvider
 		switch (BNCProvider.uriMatcher.match(uri))
 		{
 			// TABLES
-			case BNCDispatcher.BNC:
+			case BNCControl.BNC:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + BNCContract.BNCs.TABLE;
 
 			// JOINS
-			case BNCDispatcher.WORDS_BNC:
+			case BNCControl.WORDS_BNC:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + BNCContract.Words_BNCs.TABLE;
 
 			default:
@@ -125,7 +125,7 @@ public class BNCProvider extends BaseProvider
 			throw new RuntimeException("Malformed URI " + uri);
 		}
 
-		Result result = BNCDispatcher.queryMain(code, uri.getLastPathSegment(), projection0, selection0, selectionArgs0);
+		Result result = BNCControl.queryMain(code, uri.getLastPathSegment(), projection0, selection0, selectionArgs0);
 		if (result != null)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, result.table, result.projection, result.selection, result.groupBy, null, sortOrder0, null);

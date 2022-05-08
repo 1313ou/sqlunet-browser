@@ -2,27 +2,30 @@
  * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
-package org.sqlunet.verbnet.provider;
+package org.sqlunet.propbank.provider;
 
 import android.app.SearchManager;
 
+import org.sqlunet.propbank.provider.PropBankContract.PbRoleSets_X;
+
 /**
- * VerbNet query dispatcher
+ * PropBank query control
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class VerbNetDispatcher
+public class PropBankControl
 {
 	// table codes
-	static final int VNCLASS1 = 10;
-	static final int VNCLASSES = 11;
-	static final int VNCLASSES_X_BY_VNCLASS = 20;
+	static final int PBROLESET = 10;
+	static final int PBROLESETS = 11;
 
 	// join codes
-	static final int WORDS_VNCLASSES = 100;
-	static final int VNCLASSES_VNMEMBERS_X_BY_WORD = 110;
-	static final int VNCLASSES_VNROLES_X_BY_VNROLE = 120;
-	static final int VNCLASSES_VNFRAMES_X_BY_VNFRAME = 130;
+	static final int PBROLESETS_X = 100;
+	static final int PBROLESETS_X_BY_ROLESET = 101;
+	static final int WORDS_PBROLESETS = 110;
+	static final int PBROLESETS_PBROLES = 120;
+	static final int PBROLESETS_PBEXAMPLES = 130;
+	static final int PBROLESETS_PBEXAMPLES_BY_EXAMPLE = 131;
 
 	// search text codes
 	static final int LOOKUP_FTS_EXAMPLES = 501;
@@ -59,19 +62,18 @@ public class VerbNetDispatcher
 
 		switch (code)
 		{
-			case VNCLASSES:
-				table = Q.VNCLASSES.TABLE;
+			// T A B L E S
+
+			case PBROLESETS:
+				table = Q.PBROLESETS.TABLE;
 				break;
 
-			case VNCLASSES_X_BY_VNCLASS:
-				table = Q.VNCLASSES_X_BY_VNCLASS.TABLE;
-				groupBy = Q.VNCLASSES_X_BY_VNCLASS.GROUPBY;
-				break;
+			// I T E M
+			// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
+			// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query
 
-			// I T E M S
-
-			case VNCLASS1:
-				table = Q.VNCLASS1.TABLE;
+			case PBROLESET:
+				table = Q.PBROLESET1.TABLE;
 				if (selection != null)
 				{
 					selection += " AND ";
@@ -80,28 +82,35 @@ public class VerbNetDispatcher
 				{
 					selection = "";
 				}
-				selection += Q.VNCLASS1.SELECTION.replaceAll("#\\{uri_last\\}", uriLast);
+				selection += Q.PBROLESET1.SELECTION;
 				break;
 
 			// J O I N S
 
-			case WORDS_VNCLASSES:
-				table = Q.WORDS_VNCLASSES.TABLE;
+			case PBROLESETS_X_BY_ROLESET:
+				table = Q.PBROLESETS_X.TABLE;
+				groupBy = PbRoleSets_X.ROLESETID;
 				break;
 
-			case VNCLASSES_VNMEMBERS_X_BY_WORD:
-				table = Q.VNCLASSES_VNMEMBERS_X_BY_WORD.TABLE;
-				groupBy = V.VNWORDID;
+			case PBROLESETS_X:
+				table = Q.PBROLESETS_X.TABLE;
 				break;
 
-			case VNCLASSES_VNROLES_X_BY_VNROLE:
-				table = Q.VNCLASSES_VNROLES_X_BY_VNROLE.TABLE;
-				groupBy = V.ROLEID;
+			case WORDS_PBROLESETS:
+				table = Q.WORDS_PBROLESETS.TABLE;
 				break;
 
-			case VNCLASSES_VNFRAMES_X_BY_VNFRAME:
-				table = Q.VNCLASSES_VNFRAMES_X_BY_VNFRAME.TABLE;
-				groupBy = V.FRAMEID;
+			case PBROLESETS_PBROLES:
+				table = Q.PBROLESETS_PBROLES.TABLE;
+				break;
+
+			case PBROLESETS_PBEXAMPLES_BY_EXAMPLE:
+				table = Q.PBROLESETS_PBEXAMPLES_BY_EXAMPLE.TABLE;
+				groupBy = Q.PBROLESETS_PBEXAMPLES_BY_EXAMPLE.GROUPBY;
+				break;
+
+			case PBROLESETS_PBEXAMPLES:
+				table = Q.PBROLESETS_PBEXAMPLES.TABLE;
 				break;
 
 			default:
@@ -123,7 +132,7 @@ public class VerbNetDispatcher
 
 			case LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
 				table = Q.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE.TABLE;
-				groupBy = V.EXAMPLEID;
+				groupBy = Q.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE.GROUPBY;
 				break;
 
 			case LOOKUP_FTS_EXAMPLES_X:

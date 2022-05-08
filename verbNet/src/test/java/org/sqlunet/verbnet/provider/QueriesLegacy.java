@@ -2,7 +2,7 @@ package org.sqlunet.verbnet.provider;
 
 import android.app.SearchManager;
 
-import org.sqlunet.verbnet.provider.VerbNetDispatcher.Result;
+import org.sqlunet.verbnet.provider.VerbNetControl.Result;
 
 public class QueriesLegacy
 {
@@ -32,11 +32,11 @@ public class QueriesLegacy
 		{
 			// T A B L E S
 
-			case VerbNetDispatcher.VNCLASSES:
+			case VerbNetControl.VNCLASSES:
 				table = VerbNetContract.VnClasses.TABLE;
 				break;
 
-			case VerbNetDispatcher.VNCLASSES_X_BY_VNCLASS:
+			case VerbNetControl.VNCLASSES_X_BY_VNCLASS:
 				groupBy = "classid";
 				table = "vn_classes " + //
 						"LEFT JOIN vn_members_groupings USING (classid) " + //
@@ -45,7 +45,7 @@ public class QueriesLegacy
 
 			// I T E M S
 
-			case VerbNetDispatcher.VNCLASS1:
+			case VerbNetControl.VNCLASS1:
 				table = VerbNetContract.VnClasses.TABLE;
 				if (selection != null)
 				{
@@ -60,14 +60,14 @@ public class QueriesLegacy
 
 			// J O I N S
 
-			case VerbNetDispatcher.WORDS_VNCLASSES:
+			case VerbNetControl.WORDS_VNCLASSES:
 				table = "words " + //
 						"INNER JOIN vn_words USING (wordid) " + //
 						"INNER JOIN vn_members_senses USING (vnwordid, wordid) " + //
 						"LEFT JOIN vn_classes USING (classid)";
 				break;
 
-			case VerbNetDispatcher.VNCLASSES_VNMEMBERS_X_BY_WORD:
+			case VerbNetControl.VNCLASSES_VNMEMBERS_X_BY_WORD:
 				groupBy = "vnwordid";
 				table = "words " +
 						"INNER JOIN vn_words USING (wordid) " +
@@ -77,7 +77,7 @@ public class QueriesLegacy
 						"LEFT JOIN synsets USING (synsetid)";
 				break;
 
-			case VerbNetDispatcher.VNCLASSES_VNROLES_X_BY_VNROLE:
+			case VerbNetControl.VNCLASSES_VNROLES_X_BY_VNROLE:
 				groupBy = "roleid";
 				table = "vn_classes " + //
 						"INNER JOIN vn_roles USING (classid) " + //
@@ -85,7 +85,7 @@ public class QueriesLegacy
 						"LEFT JOIN vn_restrs USING (restrsid)";
 				break;
 
-			case VerbNetDispatcher.VNCLASSES_VNFRAMES_X_BY_VNFRAME:
+			case VerbNetControl.VNCLASSES_VNFRAMES_X_BY_VNFRAME:
 				groupBy = "frameid";
 				table = "vn_classes_frames " + //
 						"INNER JOIN vn_frames USING (frameid) " + //
@@ -110,16 +110,16 @@ public class QueriesLegacy
 
 		switch (code)
 		{
-			case VerbNetDispatcher.LOOKUP_FTS_EXAMPLES:
+			case VerbNetControl.LOOKUP_FTS_EXAMPLES:
 				table = "vn_examples_example_fts4";
 				break;
 
-			case VerbNetDispatcher.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
+			case VerbNetControl.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
 				groupBy = "exampleid";
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 
-			case VerbNetDispatcher.LOOKUP_FTS_EXAMPLES_X:
+			case VerbNetControl.LOOKUP_FTS_EXAMPLES_X:
 				table = "vn_examples_example_fts4 " + //
 						"LEFT JOIN vn_classes USING (classid)";
 				break;
@@ -139,7 +139,7 @@ public class QueriesLegacy
 
 		switch (code)
 		{
-			case VerbNetDispatcher.SUGGEST_WORDS:
+			case VerbNetControl.SUGGEST_WORDS:
 			{
 				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(uriLast))
 				{
@@ -154,7 +154,7 @@ public class QueriesLegacy
 				break;
 			}
 
-			case VerbNetDispatcher.SUGGEST_FTS_WORDS:
+			case VerbNetControl.SUGGEST_FTS_WORDS:
 			{
 				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(uriLast))
 				{

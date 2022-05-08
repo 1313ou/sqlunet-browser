@@ -3,7 +3,6 @@ package org.sqlunet.syntagnet.provider;
 import org.junit.Test;
 import org.sqlunet.browser.Module;
 import org.sqlunet.provider.SQLiteQueryBuilder;
-import org.sqlunet.provider.XSqlUNetDispatcher;
 import org.sqlunet.syntagnet.loaders.Queries;
 import org.sqlunet.test.SqlProcessor;
 
@@ -40,7 +39,7 @@ public class RunQueries
 
 	private static String toSql(final int code, final Module.ContentProviderSql providerSql)
 	{
-		SyntagNetDispatcher.Result r = SyntagNetDispatcher.queryMain(code, null, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
+		SyntagNetControl.Result r = SyntagNetControl.queryMain(code, null, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
 		if (r == null)
 		{
 			throw new IllegalArgumentException("Illegal query code: " + code);
@@ -53,9 +52,9 @@ public class RunQueries
 		switch (providerUri)
 		{
 			case SyntagNetContract.SnCollocations.CONTENT_URI_TABLE:
-				return SyntagNetDispatcher.COLLOCATIONS;
+				return SyntagNetControl.COLLOCATIONS;
 			case SyntagNetContract.SnCollocations_X.CONTENT_URI_TABLE:
-				return SyntagNetDispatcher.COLLOCATIONS_X;
+				return SyntagNetControl.COLLOCATIONS_X;
 			default:
 				throw new IllegalArgumentException("Illegal uri: " + providerUri);
 		}

@@ -3,8 +3,8 @@ package org.sqlunet.wordnet.provider;
 import android.app.SearchManager;
 
 import org.sqlunet.provider.BaseProvider;
-import org.sqlunet.wordnet.provider.WordNetDispatcher.Factory;
-import org.sqlunet.wordnet.provider.WordNetDispatcher.Result;
+import org.sqlunet.wordnet.provider.WordNetControl.Factory;
+import org.sqlunet.wordnet.provider.WordNetControl.Result;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,43 +26,43 @@ public class QueriesLegacy
 			// T A B L E
 			// table uri : last element is table
 
-			case WordNetDispatcher.WORDS:
+			case WordNetControl.WORDS:
 				table = WordNetContract.Words.TABLE;
 				break;
 
-			case WordNetDispatcher.SENSES:
+			case WordNetControl.SENSES:
 				table = WordNetContract.Senses.TABLE;
 				break;
 
-			case WordNetDispatcher.SYNSETS:
+			case WordNetControl.SYNSETS:
 				table = WordNetContract.Synsets.TABLE;
 				break;
 
-			case WordNetDispatcher.SEMRELATIONS:
+			case WordNetControl.SEMRELATIONS:
 				table = WordNetContract.SemRelations.TABLE;
 				break;
 
-			case WordNetDispatcher.LEXRELATIONS:
+			case WordNetControl.LEXRELATIONS:
 				table = WordNetContract.LexRelations.TABLE;
 				break;
 
-			case WordNetDispatcher.RELATIONS:
+			case WordNetControl.RELATIONS:
 				table = WordNetContract.Relations.TABLE;
 				break;
 
-			case WordNetDispatcher.POSES:
+			case WordNetControl.POSES:
 				table = WordNetContract.Poses.TABLE;
 				break;
 
-			case WordNetDispatcher.DOMAINS:
+			case WordNetControl.DOMAINS:
 				table = WordNetContract.Domains.TABLE;
 				break;
 
-			case WordNetDispatcher.ADJPOSITIONS:
+			case WordNetControl.ADJPOSITIONS:
 				table = WordNetContract.AdjPositions.TABLE;
 				break;
 
-			case WordNetDispatcher.SAMPLES:
+			case WordNetControl.SAMPLES:
 				table = WordNetContract.Samples.TABLE;
 				break;
 
@@ -70,7 +70,7 @@ public class QueriesLegacy
 			// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
 			// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query
 
-			case WordNetDispatcher.WORD:
+			case WordNetControl.WORD:
 				table = WordNetContract.Words.TABLE;
 				if (selection != null)
 				{
@@ -83,7 +83,7 @@ public class QueriesLegacy
 				selection += WordNetContract.Words.WORDID + " = " + uriLast;
 				break;
 
-			case WordNetDispatcher.SENSE:
+			case WordNetControl.SENSE:
 				table = WordNetContract.Senses.TABLE;
 				if (selection != null)
 				{
@@ -96,7 +96,7 @@ public class QueriesLegacy
 				selection += WordNetContract.Senses.SENSEID + " = " + uriLast;
 				break;
 
-			case WordNetDispatcher.SYNSET:
+			case WordNetControl.SYNSET:
 				table = WordNetContract.Synsets.TABLE;
 				if (selection != null)
 				{
@@ -111,26 +111,26 @@ public class QueriesLegacy
 
 			// V I E W S
 
-			case WordNetDispatcher.DICT:
+			case WordNetControl.DICT:
 				table = WordNetContract.Dict.TABLE;
 				break;
 
 			// J O I N S
 
-			case WordNetDispatcher.WORDS_SENSES_SYNSETS:
+			case WordNetControl.WORDS_SENSES_SYNSETS:
 				table = "words AS " + WordNetContract.AS_WORDS + " " + //
 						"LEFT JOIN senses AS " + WordNetContract.AS_SENSES + " USING (wordid) " + //
 						"LEFT JOIN synsets AS " + WordNetContract.AS_SYNSETS + " USING (synsetid)";
 				break;
 
-			case WordNetDispatcher.WORDS_SENSES_CASEDWORDS_SYNSETS:
+			case WordNetControl.WORDS_SENSES_CASEDWORDS_SYNSETS:
 				table = "words AS " + WordNetContract.AS_WORDS + " " + //
 						"LEFT JOIN senses AS " + WordNetContract.AS_SENSES + " USING (wordid) " + //
 						"LEFT JOIN casedwords AS " + WordNetContract.AS_CASEDS + " USING (wordid,casedwordid) " + //
 						"LEFT JOIN synsets AS " + WordNetContract.AS_SYNSETS + " USING (synsetid)";
 				break;
 
-			case WordNetDispatcher.WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS:
+			case WordNetControl.WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS:
 				table = "words AS " + WordNetContract.AS_WORDS + " " + //
 						"LEFT JOIN senses AS " + WordNetContract.AS_SENSES + " USING (wordid) " + //
 						"LEFT JOIN casedwords AS " + WordNetContract.AS_CASEDS + " USING (wordid,casedwordid) " + //
@@ -139,32 +139,32 @@ public class QueriesLegacy
 						"LEFT JOIN domains AS " + WordNetContract.AS_DOMAINS + " USING (domainid)";
 				break;
 
-			case WordNetDispatcher.SENSES_WORDS:
+			case WordNetControl.SENSES_WORDS:
 				table = "senses AS " + WordNetContract.AS_SENSES + " " + //
 						"LEFT JOIN words AS " + WordNetContract.AS_WORDS + " USING (wordid)";
 				break;
 
-			case WordNetDispatcher.SENSES_WORDS_BY_SYNSET:
+			case WordNetControl.SENSES_WORDS_BY_SYNSET:
 				table = "senses AS " + WordNetContract.AS_SENSES + " " + //
 						"LEFT JOIN words AS " + WordNetContract.AS_WORDS + " USING (wordid)";
 				projection = BaseProvider.appendProjection(projection, "GROUP_CONCAT(DISTINCT " + WordNetContract.AS_WORDS + ".word) AS " + WordNetContract.Senses_Words.MEMBERS);
 				groupBy = "synsetid";
 				break;
 
-			case WordNetDispatcher.SENSES_SYNSETS_POSES_DOMAINS:
+			case WordNetControl.SENSES_SYNSETS_POSES_DOMAINS:
 				table = "senses AS " + WordNetContract.AS_SENSES + " " + //
 						"INNER JOIN synsets AS " + WordNetContract.AS_SYNSETS + " USING (synsetid) " + //
 						"LEFT JOIN poses AS " + WordNetContract.AS_POSES + " USING (posid) " + //
 						"LEFT JOIN domains AS " + WordNetContract.AS_DOMAINS + " USING (domainid)";
 				break;
 
-			case WordNetDispatcher.SYNSETS_POSES_DOMAINS:
+			case WordNetControl.SYNSETS_POSES_DOMAINS:
 				table = "synsets AS " + WordNetContract.AS_SYNSETS + " " + //
 						"LEFT JOIN poses AS " + WordNetContract.AS_POSES + " USING (posid) " + //
 						"LEFT JOIN domains AS " + WordNetContract.AS_DOMAINS + " USING (domainid)";
 				break;
 
-			case WordNetDispatcher.ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET:
+			case WordNetControl.ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET:
 				final String subQuery = subqueryFactory.make(selection0);
 				table = "( " + subQuery + " ) AS " + WordNetContract.AS_RELATIONS + ' ' + //
 						"INNER JOIN relations USING (relationid) " + //
@@ -176,18 +176,18 @@ public class QueriesLegacy
 				groupBy = V.SYNSET2ID + "," + WordNetContract.RELATIONTYPE + ",relation,relationid," + V.WORD2ID + ',' + V.WORD2;
 				break;
 
-			case WordNetDispatcher.SEMRELATIONS_SYNSETS:
+			case WordNetControl.SEMRELATIONS_SYNSETS:
 				table = "semrelations AS " + WordNetContract.AS_RELATIONS + ' ' + //
 						"INNER JOIN synsets AS " + WordNetContract.AS_SYNSETS2 + " ON " + WordNetContract.AS_RELATIONS + ".synset2id = " + WordNetContract.AS_SYNSETS2 + ".synsetid";
 				break;
 
-			case WordNetDispatcher.SEMRELATIONS_SYNSETS_X:
+			case WordNetControl.SEMRELATIONS_SYNSETS_X:
 				table = "semrelations AS " + WordNetContract.AS_RELATIONS + ' ' + //
 						"INNER JOIN relations USING (relationid) " + //
 						"INNER JOIN synsets AS " + WordNetContract.AS_SYNSETS2 + " ON " + WordNetContract.AS_RELATIONS + ".synset2id = " + WordNetContract.AS_SYNSETS2 + ".synsetid ";
 				break;
 
-			case WordNetDispatcher.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET:
+			case WordNetControl.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET:
 				table = "semrelations AS " + WordNetContract.AS_RELATIONS + ' ' + //
 						"INNER JOIN relations USING (relationid) " + //
 						"INNER JOIN synsets AS " + WordNetContract.AS_SYNSETS2 + " ON " + WordNetContract.AS_RELATIONS + ".synset2id = " + WordNetContract.AS_SYNSETS2 + ".synsetid " + //
@@ -197,20 +197,20 @@ public class QueriesLegacy
 				groupBy = WordNetContract.AS_SYNSETS2 + ".synsetid";
 				break;
 
-			case WordNetDispatcher.LEXRELATIONS_SENSES:
+			case WordNetControl.LEXRELATIONS_SENSES:
 				table = "lexrelations AS " + WordNetContract.AS_RELATIONS + ' ' + //
 						"INNER JOIN synsets AS " + WordNetContract.AS_SYNSETS2 + " ON " + WordNetContract.AS_RELATIONS + ".synset2id = " + WordNetContract.AS_SYNSETS2 + ".synsetid " + //
 						"INNER JOIN words AS " + WordNetContract.AS_WORDS + " ON " + WordNetContract.AS_RELATIONS + ".word2id = " + WordNetContract.AS_WORDS + ".wordid";
 				break;
 
-			case WordNetDispatcher.LEXRELATIONS_SENSES_X:
+			case WordNetControl.LEXRELATIONS_SENSES_X:
 				table = "lexrelations AS " + WordNetContract.AS_RELATIONS + ' ' + //
 						"INNER JOIN relations USING (relationid) " + //
 						"INNER JOIN synsets AS " + WordNetContract.AS_SYNSETS2 + " ON " + WordNetContract.AS_RELATIONS + ".synset2id = " + WordNetContract.AS_SYNSETS2 + ".synsetid " + //
 						"INNER JOIN words AS " + WordNetContract.AS_WORDS + " ON " + WordNetContract.AS_RELATIONS + ".word2id = " + WordNetContract.AS_WORDS + ".wordid ";
 				break;
 
-			case WordNetDispatcher.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET:
+			case WordNetControl.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET:
 				table = "lexrelations AS " + WordNetContract.AS_RELATIONS + ' ' + //
 						"INNER JOIN relations USING (relationid) " + //
 						"INNER JOIN synsets AS " + WordNetContract.AS_SYNSETS2 + " ON " + WordNetContract.AS_RELATIONS + ".synset2id = " + WordNetContract.AS_SYNSETS2 + ".synsetid " + //
@@ -221,33 +221,33 @@ public class QueriesLegacy
 				groupBy = WordNetContract.AS_SYNSETS2 + ".synsetid";
 				break;
 
-			case WordNetDispatcher.SENSES_VFRAMES:
+			case WordNetControl.SENSES_VFRAMES:
 				table = "senses_vframes " + //
 						"LEFT JOIN vframes USING (frameid)";
 				break;
 
-			case WordNetDispatcher.SENSES_VTEMPLATES:
+			case WordNetControl.SENSES_VTEMPLATES:
 				table = "senses_vtemplates " + //
 						"LEFT JOIN vtemplates USING (templateid)";
 				break;
 
-			case WordNetDispatcher.SENSES_ADJPOSITIONS:
+			case WordNetControl.SENSES_ADJPOSITIONS:
 				table = "senses_adjpositions " + //
 						"LEFT JOIN adjpositions USING (positionid)";
 				break;
 
-			case WordNetDispatcher.LEXES_MORPHS:
+			case WordNetControl.LEXES_MORPHS:
 				table = "lexes_morphs " + //
 						"LEFT JOIN morphs USING (morphid)";
 				break;
 
-			case WordNetDispatcher.WORDS_LEXES_MORPHS:
+			case WordNetControl.WORDS_LEXES_MORPHS:
 				table = "words " + //
 						"LEFT JOIN lexes_morphs USING (wordid) " + //
 						"LEFT JOIN morphs USING (morphid)";
 				break;
 
-			case WordNetDispatcher.WORDS_LEXES_MORPHS_BY_WORD:
+			case WordNetControl.WORDS_LEXES_MORPHS_BY_WORD:
 				table = "words " + //
 						"LEFT JOIN lexes_morphs USING (wordid) " + //
 						"LEFT JOIN morphs USING (morphid)";
@@ -256,21 +256,21 @@ public class QueriesLegacy
 
 			// T E X T S E A R C H
 
-			case WordNetDispatcher.LOOKUP_FTS_WORDS:
+			case WordNetControl.LOOKUP_FTS_WORDS:
 				table = "words_word_fts4";
 				break;
 
-			case WordNetDispatcher.LOOKUP_FTS_DEFINITIONS:
+			case WordNetControl.LOOKUP_FTS_DEFINITIONS:
 				table = "synsets_definition_fts4";
 				break;
 
-			case WordNetDispatcher.LOOKUP_FTS_SAMPLES:
+			case WordNetControl.LOOKUP_FTS_SAMPLES:
 				table = "samples_sample_fts4";
 				break;
 
 			// S U G G E S T
 
-			case WordNetDispatcher.SUGGEST_WORDS:
+			case WordNetControl.SUGGEST_WORDS:
 			{
 				//				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(last))
 				//				{
@@ -285,7 +285,7 @@ public class QueriesLegacy
 				break;
 			}
 
-			case WordNetDispatcher.SUGGEST_FTS_WORDS:
+			case WordNetControl.SUGGEST_FTS_WORDS:
 			{
 				//				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(last))
 				//				{
@@ -300,7 +300,7 @@ public class QueriesLegacy
 				break;
 			}
 
-			case WordNetDispatcher.SUGGEST_FTS_DEFINITIONS:
+			case WordNetControl.SUGGEST_FTS_DEFINITIONS:
 			{
 				//				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(last))
 				//				{
@@ -315,7 +315,7 @@ public class QueriesLegacy
 				break;
 			}
 
-			case WordNetDispatcher.SUGGEST_FTS_SAMPLES:
+			case WordNetControl.SUGGEST_FTS_SAMPLES:
 			{
 				//				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(last))
 				//				{

@@ -39,7 +39,7 @@ public class RunQueries
 
 	private static String toSql(final int code, final Module.ContentProviderSql providerSql)
 	{
-		XSqlUNetDispatcher.Result r = XSqlUNetDispatcher.queryMain(code, null, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
+		XNetControl.Result r = XNetControl.queryMain(code, null, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
 		if (r == null)
 		{
 			throw new IllegalArgumentException("Illegal query code: " + code);
@@ -51,48 +51,48 @@ public class RunQueries
 	{
 		switch (providerUri)
 		{
-			case XSqlUNetContract.PredicateMatrix.CONTENT_URI_TABLE:
-				return XSqlUNetDispatcher.PREDICATEMATRIX;
-			case XSqlUNetContract.PredicateMatrix_VerbNet.CONTENT_URI_TABLE:
-				return XSqlUNetDispatcher.PREDICATEMATRIX_VERBNET;
-			case XSqlUNetContract.PredicateMatrix_PropBank.CONTENT_URI_TABLE:
-				return XSqlUNetDispatcher.PREDICATEMATRIX_PROPBANK;
-			case XSqlUNetContract.PredicateMatrix_FrameNet.CONTENT_URI_TABLE:
-				return XSqlUNetDispatcher.PREDICATEMATRIX_FRAMENET;
-			case XSqlUNetContract.Words_FnWords_PbWords_VnWords.CONTENT_URI_TABLE:
-				return XSqlUNetDispatcher.WORDS_FNWORDS_PBWORDS_VNWORDS;
-			case XSqlUNetContract.Words_PbWords_VnWords.CONTENT_URI_TABLE:
-				return XSqlUNetDispatcher.WORDS_PBWORDS_VNWORDS;
-			case XSqlUNetContract.Words_VnWords_VnClasses.CONTENT_URI_TABLE:
-				return XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES;
-			case XSqlUNetContract.Words_VnWords_VnClasses_U.CONTENT_URI_TABLE:
-				return XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_U;
-			case XSqlUNetContract.Words_VnWords_VnClasses_1.CONTENT_URI_TABLE:
-				return XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_1;
-			case XSqlUNetContract.Words_VnWords_VnClasses_2.CONTENT_URI_TABLE:
-				return XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_2;
-			case XSqlUNetContract.Words_VnWords_VnClasses_1U2.CONTENT_URI_TABLE:
-				return XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_1U2;
-			case XSqlUNetContract.Words_PbWords_PbRoleSets.CONTENT_URI_TABLE:
-				return XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS;
-			case XSqlUNetContract.Words_PbWords_PbRoleSets_U.CONTENT_URI_TABLE:
-				return XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_U;
-			case XSqlUNetContract.Words_PbWords_PbRoleSets_1.CONTENT_URI_TABLE:
-				return XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_1;
-			case XSqlUNetContract.Words_PbWords_PbRoleSets_2.CONTENT_URI_TABLE:
-				return XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_2;
-			case XSqlUNetContract.Words_PbWords_PbRoleSets_1U2.CONTENT_URI_TABLE:
-				return XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_1U2;
-			case XSqlUNetContract.Words_FnWords_FnFrames_U.CONTENT_URI_TABLE:
-				return XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_U;
-			case XSqlUNetContract.Words_FnWords_FnFrames_1U2.CONTENT_URI_TABLE:
-				return XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_1U2;
-			case XSqlUNetContract.Words_FnWords_FnFrames_1.CONTENT_URI_TABLE:
-				return XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_1;
-			case XSqlUNetContract.Words_FnWords_FnFrames_2.CONTENT_URI_TABLE:
-				return XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_2;
-			case XSqlUNetContract.Sources.CONTENT_URI_TABLE:
-				return XSqlUNetDispatcher.SOURCES;
+			case XNetContract.PredicateMatrix.CONTENT_URI_TABLE:
+				return XNetControl.PREDICATEMATRIX;
+			case XNetContract.PredicateMatrix_VerbNet.CONTENT_URI_TABLE:
+				return XNetControl.PREDICATEMATRIX_VERBNET;
+			case XNetContract.PredicateMatrix_PropBank.CONTENT_URI_TABLE:
+				return XNetControl.PREDICATEMATRIX_PROPBANK;
+			case XNetContract.PredicateMatrix_FrameNet.CONTENT_URI_TABLE:
+				return XNetControl.PREDICATEMATRIX_FRAMENET;
+			case XNetContract.Words_FnWords_PbWords_VnWords.CONTENT_URI_TABLE:
+				return XNetControl.WORDS_FNWORDS_PBWORDS_VNWORDS;
+			case XNetContract.Words_PbWords_VnWords.CONTENT_URI_TABLE:
+				return XNetControl.WORDS_PBWORDS_VNWORDS;
+			case XNetContract.Words_VnWords_VnClasses.CONTENT_URI_TABLE:
+				return XNetControl.WORDS_VNWORDS_VNCLASSES;
+			case XNetContract.Words_VnWords_VnClasses_U.CONTENT_URI_TABLE:
+				return XNetControl.WORDS_VNWORDS_VNCLASSES_U;
+			case XNetContract.Words_VnWords_VnClasses_1.CONTENT_URI_TABLE:
+				return XNetControl.WORDS_VNWORDS_VNCLASSES_1;
+			case XNetContract.Words_VnWords_VnClasses_2.CONTENT_URI_TABLE:
+				return XNetControl.WORDS_VNWORDS_VNCLASSES_2;
+			case XNetContract.Words_VnWords_VnClasses_1U2.CONTENT_URI_TABLE:
+				return XNetControl.WORDS_VNWORDS_VNCLASSES_1U2;
+			case XNetContract.Words_PbWords_PbRoleSets.CONTENT_URI_TABLE:
+				return XNetControl.WORDS_PBWORDS_PBROLESETS;
+			case XNetContract.Words_PbWords_PbRoleSets_U.CONTENT_URI_TABLE:
+				return XNetControl.WORDS_PBWORDS_PBROLESETS_U;
+			case XNetContract.Words_PbWords_PbRoleSets_1.CONTENT_URI_TABLE:
+				return XNetControl.WORDS_PBWORDS_PBROLESETS_1;
+			case XNetContract.Words_PbWords_PbRoleSets_2.CONTENT_URI_TABLE:
+				return XNetControl.WORDS_PBWORDS_PBROLESETS_2;
+			case XNetContract.Words_PbWords_PbRoleSets_1U2.CONTENT_URI_TABLE:
+				return XNetControl.WORDS_PBWORDS_PBROLESETS_1U2;
+			case XNetContract.Words_FnWords_FnFrames_U.CONTENT_URI_TABLE:
+				return XNetControl.WORDS_FNWORDS_FNFRAMES_U;
+			case XNetContract.Words_FnWords_FnFrames_1U2.CONTENT_URI_TABLE:
+				return XNetControl.WORDS_FNWORDS_FNFRAMES_1U2;
+			case XNetContract.Words_FnWords_FnFrames_1.CONTENT_URI_TABLE:
+				return XNetControl.WORDS_FNWORDS_FNFRAMES_1;
+			case XNetContract.Words_FnWords_FnFrames_2.CONTENT_URI_TABLE:
+				return XNetControl.WORDS_FNWORDS_FNFRAMES_2;
+			case XNetContract.Sources.CONTENT_URI_TABLE:
+				return XNetControl.SOURCES;
 			default:
 				throw new IllegalArgumentException("Illegal uri: " + providerUri);
 		}

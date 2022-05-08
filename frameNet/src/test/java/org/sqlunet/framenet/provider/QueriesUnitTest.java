@@ -1,14 +1,14 @@
 package org.sqlunet.framenet.provider;
 
 import org.junit.Test;
-import org.sqlunet.framenet.provider.FrameNetDispatcher.Result;
+import org.sqlunet.framenet.provider.FrameNetControl.Result;
 
 import java.util.Arrays;
 import java.util.Objects;
 
 public class QueriesUnitTest
 {
-	private final int[] codes = {FrameNetDispatcher.LEXUNIT, FrameNetDispatcher.LEXUNITS, FrameNetDispatcher.LEXUNITS_X_BY_LEXUNIT, FrameNetDispatcher.FRAME, FrameNetDispatcher.FRAMES, FrameNetDispatcher.FRAMES_X_BY_FRAME, FrameNetDispatcher.FRAMES_RELATED, FrameNetDispatcher.SENTENCE, FrameNetDispatcher.SENTENCES, FrameNetDispatcher.ANNOSET, FrameNetDispatcher.ANNOSETS, FrameNetDispatcher.SENTENCES_LAYERS_X, FrameNetDispatcher.ANNOSETS_LAYERS_X, FrameNetDispatcher.PATTERNS_LAYERS_X, FrameNetDispatcher.VALENCEUNITS_LAYERS_X, FrameNetDispatcher.PATTERNS_SENTENCES, FrameNetDispatcher.VALENCEUNITS_SENTENCES, FrameNetDispatcher.GOVERNORS_ANNOSETS, FrameNetDispatcher.WORDS_LEXUNITS_FRAMES, FrameNetDispatcher.LEXUNITS_OR_FRAMES, FrameNetDispatcher.FRAMES_FES, FrameNetDispatcher.FRAMES_FES_BY_FE, FrameNetDispatcher.LEXUNITS_SENTENCES, FrameNetDispatcher.LEXUNITS_SENTENCES_BY_SENTENCE, FrameNetDispatcher.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS, FrameNetDispatcher.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE, FrameNetDispatcher.LEXUNITS_GOVERNORS, FrameNetDispatcher.LEXUNITS_REALIZATIONS, FrameNetDispatcher.LEXUNITS_REALIZATIONS_BY_REALIZATION, FrameNetDispatcher.LEXUNITS_GROUPREALIZATIONS, FrameNetDispatcher.LEXUNITS_GROUPREALIZATIONS_BY_PATTERN, FrameNetDispatcher.LOOKUP_FTS_WORDS, FrameNetDispatcher.LOOKUP_FTS_SENTENCES, FrameNetDispatcher.LOOKUP_FTS_SENTENCES_X, FrameNetDispatcher.LOOKUP_FTS_SENTENCES_X_BY_SENTENCE, FrameNetDispatcher.SUGGEST_WORDS, FrameNetDispatcher.SUGGEST_FTS_WORDS,};
+	private final int[] codes = {FrameNetControl.LEXUNIT, FrameNetControl.LEXUNITS, FrameNetControl.LEXUNITS_X_BY_LEXUNIT, FrameNetControl.FRAME, FrameNetControl.FRAMES, FrameNetControl.FRAMES_X_BY_FRAME, FrameNetControl.FRAMES_RELATED, FrameNetControl.SENTENCE, FrameNetControl.SENTENCES, FrameNetControl.ANNOSET, FrameNetControl.ANNOSETS, FrameNetControl.SENTENCES_LAYERS_X, FrameNetControl.ANNOSETS_LAYERS_X, FrameNetControl.PATTERNS_LAYERS_X, FrameNetControl.VALENCEUNITS_LAYERS_X, FrameNetControl.PATTERNS_SENTENCES, FrameNetControl.VALENCEUNITS_SENTENCES, FrameNetControl.GOVERNORS_ANNOSETS, FrameNetControl.WORDS_LEXUNITS_FRAMES, FrameNetControl.LEXUNITS_OR_FRAMES, FrameNetControl.FRAMES_FES, FrameNetControl.FRAMES_FES_BY_FE, FrameNetControl.LEXUNITS_SENTENCES, FrameNetControl.LEXUNITS_SENTENCES_BY_SENTENCE, FrameNetControl.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS, FrameNetControl.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE, FrameNetControl.LEXUNITS_GOVERNORS, FrameNetControl.LEXUNITS_REALIZATIONS, FrameNetControl.LEXUNITS_REALIZATIONS_BY_REALIZATION, FrameNetControl.LEXUNITS_GROUPREALIZATIONS, FrameNetControl.LEXUNITS_GROUPREALIZATIONS_BY_PATTERN, FrameNetControl.LOOKUP_FTS_WORDS, FrameNetControl.LOOKUP_FTS_SENTENCES, FrameNetControl.LOOKUP_FTS_SENTENCES_X, FrameNetControl.LOOKUP_FTS_SENTENCES_X_BY_SENTENCE, FrameNetControl.SUGGEST_WORDS, FrameNetControl.SUGGEST_FTS_WORDS,};
 
 	@SuppressWarnings("FieldCanBeLocal")
 	private final String uriLast = "LAST";
@@ -51,17 +51,17 @@ public class QueriesUnitTest
 
 	public static Result queryProviderMain(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
-		return FrameNetDispatcher.queryMain(code, uriLast, projection0, selection0, selectionArgs0);
+		return FrameNetControl.queryMain(code, uriLast, projection0, selection0, selectionArgs0);
 	}
 
 	public static Result queryProviderSearch(final int code, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
-		return FrameNetDispatcher.querySearch(code, projection0, selection0, selectionArgs0);
+		return FrameNetControl.querySearch(code, projection0, selection0, selectionArgs0);
 	}
 
 	public static Result queryProviderSuggest(final int code, final String uriLast)
 	{
-		return FrameNetDispatcher.querySuggest(code, uriLast);
+		return FrameNetControl.querySuggest(code, uriLast);
 	}
 
 	private void check(final int code, final Result r1, final Result r2)

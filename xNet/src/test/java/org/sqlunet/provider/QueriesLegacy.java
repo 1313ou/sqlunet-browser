@@ -1,6 +1,6 @@
 package org.sqlunet.provider;
 
-import org.sqlunet.provider.XSqlUNetDispatcher.Result;
+import org.sqlunet.provider.XNetControl.Result;
 
 public class QueriesLegacy
 {
@@ -20,7 +20,7 @@ public class QueriesLegacy
 
 		switch (code)
 		{
-			case XSqlUNetDispatcher.PREDICATEMATRIX:
+			case XNetControl.PREDICATEMATRIX:
 				// table = "pm_pms";
 				table = "pm_vn " + //
 						"LEFT JOIN pm_pb USING (wordid) " + //
@@ -28,29 +28,29 @@ public class QueriesLegacy
 				;
 				break;
 
-			case XSqlUNetDispatcher.PREDICATEMATRIX_VERBNET:
+			case XNetControl.PREDICATEMATRIX_VERBNET:
 				table = "pm_vn";
 				break;
 
-			case XSqlUNetDispatcher.PREDICATEMATRIX_PROPBANK:
+			case XNetControl.PREDICATEMATRIX_PROPBANK:
 				table = "pm_pb";
 				break;
 
-			case XSqlUNetDispatcher.PREDICATEMATRIX_FRAMENET:
+			case XNetControl.PREDICATEMATRIX_FRAMENET:
 				table = "pm_fn";
 				break;
 
-			case XSqlUNetDispatcher.SOURCES:
+			case XNetControl.SOURCES:
 				table = "sources";
 				break;
 
 			// J O I N S
 
-			case XSqlUNetDispatcher.WORDS_FNWORDS_PBWORDS_VNWORDS:
-				table = "words AS " + XSqlUNetContract.WORD + ' ' + //
-						"LEFT JOIN senses AS " + XSqlUNetContract.SENSE + " USING (wordid) " + //
-						"LEFT JOIN synsets AS " + XSqlUNetContract.SYNSET + " USING (synsetid) " + //
-						"LEFT JOIN poses AS " + XSqlUNetContract.POS + " USING (posid) " + //
+			case XNetControl.WORDS_FNWORDS_PBWORDS_VNWORDS:
+				table = "words AS " + XNetContract.WORD + ' ' + //
+						"LEFT JOIN senses AS " + XNetContract.SENSE + " USING (wordid) " + //
+						"LEFT JOIN synsets AS " + XNetContract.SYNSET + " USING (synsetid) " + //
+						"LEFT JOIN poses AS " + XNetContract.POS + " USING (posid) " + //
 						"LEFT JOIN casedwords USING (wordid,casedwordid) " + //
 						"LEFT JOIN domains USING (domainid) " + //
 						"LEFT JOIN fn_words USING (wordid) " + //
@@ -59,11 +59,11 @@ public class QueriesLegacy
 				groupBy = "synsetid";
 				break;
 
-			case XSqlUNetDispatcher.WORDS_PBWORDS_VNWORDS:
-				table = "words AS " + XSqlUNetContract.WORD + ' ' + //
-						"LEFT JOIN senses AS " + XSqlUNetContract.SENSE + " USING (wordid) " + //
-						"LEFT JOIN synsets AS " + XSqlUNetContract.SYNSET + " USING (synsetid) " + //
-						"LEFT JOIN poses AS " + XSqlUNetContract.POS + " USING (posid) " + //
+			case XNetControl.WORDS_PBWORDS_VNWORDS:
+				table = "words AS " + XNetContract.WORD + ' ' + //
+						"LEFT JOIN senses AS " + XNetContract.SENSE + " USING (wordid) " + //
+						"LEFT JOIN synsets AS " + XNetContract.SYNSET + " USING (synsetid) " + //
+						"LEFT JOIN poses AS " + XNetContract.POS + " USING (posid) " + //
 						"LEFT JOIN casedwords USING (wordid,casedwordid) " + //
 						"LEFT JOIN domains USING (domainid) " + //
 						"LEFT JOIN vn_words USING (wordid) " + //
@@ -72,25 +72,25 @@ public class QueriesLegacy
 				break;
 
 
-			case XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES:
+			case XNetControl.WORDS_VNWORDS_VNCLASSES:
 			{
 				table = "vn_words " + //
 						"INNER JOIN vn_members_senses USING (vnwordid,wordid) " + //
-						"INNER JOIN vn_classes AS " + XSqlUNetContract.CLASS + " USING (classid) " + //
+						"INNER JOIN vn_classes AS " + XNetContract.CLASS + " USING (classid) " + //
 						"LEFT JOIN synsets USING (synsetid)";
 				groupBy = "wordid,synsetid,classid";
 				break;
 			}
 
-			case XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS:
+			case XNetControl.WORDS_PBWORDS_PBROLESETS:
 			{
 				table = "pb_words " + //
-						"INNER JOIN pb_rolesets AS " + XSqlUNetContract.CLASS + " USING (pbwordid)";
+						"INNER JOIN pb_rolesets AS " + XNetContract.CLASS + " USING (pbwordid)";
 				groupBy = "wordid,synsetid,rolesetid";
 				break;
 			}
 
-			case XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_U:
+			case XNetControl.WORDS_VNWORDS_VNCLASSES_U:
 			{
 				final String table1 = "pm_vn " + //
 						"INNER JOIN vn_classes USING (classid) " + //
@@ -106,7 +106,7 @@ public class QueriesLegacy
 				return Utils.makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray, sortOrder, "vn");
 			}
 
-			case XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_U:
+			case XNetControl.WORDS_PBWORDS_PBROLESETS_U:
 			{
 				final String table1 = "pm_pb " + //
 						"INNER JOIN pb_rolesets USING (rolesetid) " + //
@@ -121,7 +121,7 @@ public class QueriesLegacy
 				return Utils.makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray, sortOrder, "pb");
 			}
 
-			case XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_U:
+			case XNetControl.WORDS_FNWORDS_FNFRAMES_U:
 			{
 				final String table1 = "pm_fn " + //
 						"INNER JOIN fn_frames USING (frameid) " + //
@@ -139,21 +139,21 @@ public class QueriesLegacy
 				return Utils.makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray, sortOrder, "fn");
 			}
 
-			case XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_1:
+			case XNetControl.WORDS_VNWORDS_VNCLASSES_1:
 				table = "pm_vn " + //
 						"INNER JOIN vn_classes USING (classid) " + //
 						"LEFT JOIN synsets USING (synsetid)";
 				projection = new String[]{"wordid", "synsetid", "classid", "class", "classtag", "definition"};
 				break;
 
-			case XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_2:
+			case XNetControl.WORDS_VNWORDS_VNCLASSES_2:
 				table = "vn_words " + //
 						"INNER JOIN vn_members_senses USING (vnwordid,wordid) " + //
 						"INNER JOIN vn_classes USING (classid)";
 				projection = new String[]{"wordid", "synsetid", "classid", "class", "classtag"};
 				break;
 
-			case XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_1U2:
+			case XNetControl.WORDS_VNWORDS_VNCLASSES_1U2:
 				table = "( " + //
 						"SELECT wordid, synsetid, classid, class, classtag, definition, 'pmvn' AS source " + //
 						"FROM pm_vn " + //
@@ -168,20 +168,20 @@ public class QueriesLegacy
 						"WHERE (#{selection}) " + ")";
 				break;
 
-			case XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_1:
+			case XNetControl.WORDS_PBWORDS_PBROLESETS_1:
 				table = "pm_pb " + //
 						"INNER JOIN pb_rolesets USING (rolesetid) " + //
 						"LEFT JOIN synsets USING (synsetid)";
 				projection = new String[]{"wordid", "synsetid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr", "definition"};
 				break;
 
-			case XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_2:
+			case XNetControl.WORDS_PBWORDS_PBROLESETS_2:
 				table = "pb_words " + //
 						"INNER JOIN pb_rolesets USING (pbwordid)";
 				projection = new String[]{"wordid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr"};
 				break;
 
-			case XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_1U2:
+			case XNetControl.WORDS_PBWORDS_PBROLESETS_1U2:
 				table = "( " + "SELECT wordid, synsetid, rolesetid, rolesetname, rolesethead, rolesetdescr, definition, 'pmpb' AS source " + //
 						"FROM pm_pb " + //
 						"INNER JOIN pb_rolesets USING (rolesetid) " + //
@@ -195,7 +195,7 @@ public class QueriesLegacy
 						")";
 				break;
 
-			case XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_1:
+			case XNetControl.WORDS_FNWORDS_FNFRAMES_1:
 				table = "pm_fn " + //
 						"INNER JOIN fn_frames USING (frameid) " + //
 						"LEFT JOIN fn_lexunits USING (luid,frameid) " + //
@@ -203,7 +203,7 @@ public class QueriesLegacy
 				projection = new String[]{"wordid", "synsetid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition", "definition"};
 				break;
 
-			case XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_2:
+			case XNetControl.WORDS_FNWORDS_FNFRAMES_2:
 				table = "fn_words " + //
 						"INNER JOIN fn_lexemes USING (fnwordid) " + //
 						"INNER JOIN fn_lexunits USING (luid,posid) " + //
@@ -211,7 +211,7 @@ public class QueriesLegacy
 				projection = new String[]{"wordid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition"};
 				break;
 
-			case XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_1U2:
+			case XNetControl.WORDS_FNWORDS_FNFRAMES_1U2:
 				table = "( " + //
 						"SELECT wordid, synsetid, frameid, frame, framedefinition, luid, lexunit, ludefinition, definition, 'pmfn' AS source " + //
 						"FROM pm_fn " + //

@@ -2,7 +2,7 @@ package org.sqlunet.propbank.provider;
 
 import android.app.SearchManager;
 
-import org.sqlunet.propbank.provider.PropBankDispatcher.Result;
+import org.sqlunet.propbank.provider.PropBankControl.Result;
 
 public class QueriesLegacy
 {
@@ -32,7 +32,7 @@ public class QueriesLegacy
 			// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
 			// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query
 
-			case PropBankDispatcher.PBROLESET:
+			case PropBankControl.PBROLESET:
 				table = PropBankContract.PbRoleSets.TABLE;
 				if (selection != null)
 				{
@@ -45,31 +45,31 @@ public class QueriesLegacy
 				selection += PropBankContract.PbRoleSets.ROLESETID + " = ?";
 				break;
 
-			case PropBankDispatcher.PBROLESETS:
+			case PropBankControl.PBROLESETS:
 				table = PropBankContract.PbRoleSets.TABLE;
 				break;
 
 			// J O I N S
 
-			case PropBankDispatcher.PBROLESETS_X_BY_ROLESET:
+			case PropBankControl.PBROLESETS_X_BY_ROLESET:
 				groupBy = PropBankContract.PbRoleSets_X.ROLESETID;
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 
-			case PropBankDispatcher.PBROLESETS_X:
+			case PropBankControl.PBROLESETS_X:
 				table = "pb_rolesets " + //
 						"LEFT JOIN pb_members AS " + PropBankContract.MEMBER + " USING (rolesetid) " + //
 						"LEFT JOIN pb_words AS " + PropBankContract.PBWORD + " USING (pbwordid) " + //
 						"LEFT JOIN words AS " + PropBankContract.WORD + " USING (wordid)";
 				break;
 
-			case PropBankDispatcher.WORDS_PBROLESETS:
+			case PropBankControl.WORDS_PBROLESETS:
 				table = "words " + //
 						"INNER JOIN pb_words USING (wordid) " + //
 						"INNER JOIN pb_rolesets USING (pbwordid)";
 				break;
 
-			case PropBankDispatcher.PBROLESETS_PBROLES:
+			case PropBankControl.PBROLESETS_PBROLES:
 				table = "pb_rolesets " + //
 						"INNER JOIN pb_roles USING (rolesetid) " + //
 						"LEFT JOIN pb_argtypes USING (argtypeid) " + //
@@ -77,11 +77,11 @@ public class QueriesLegacy
 						"LEFT JOIN pb_thetas USING (thetaid)";
 				break;
 
-			case PropBankDispatcher.PBROLESETS_PBEXAMPLES_BY_EXAMPLE:
+			case PropBankControl.PBROLESETS_PBEXAMPLES_BY_EXAMPLE:
 				groupBy = PropBankContract.EXAMPLE + ".exampleid";
 				//$FALL-THROUGH$
 				//noinspection fallthrough
-			case PropBankDispatcher.PBROLESETS_PBEXAMPLES:
+			case PropBankControl.PBROLESETS_PBEXAMPLES:
 				table = "pb_rolesets " + //
 						"INNER JOIN pb_examples AS " + PropBankContract.EXAMPLE + " USING (rolesetid) " + //
 						"LEFT JOIN pb_rels AS " + PropBankContract.REL + " USING (exampleid) " + //
@@ -110,14 +110,14 @@ public class QueriesLegacy
 
 		switch (code)
 		{
-			case PropBankDispatcher.LOOKUP_FTS_EXAMPLES:
+			case PropBankControl.LOOKUP_FTS_EXAMPLES:
 				table = "pb_examples_text_fts4";
 				break;
-			case PropBankDispatcher.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
+			case PropBankControl.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
 				groupBy = "exampleid";
 				//$FALL-THROUGH$
 				//noinspection fallthrough
-			case PropBankDispatcher.LOOKUP_FTS_EXAMPLES_X:
+			case PropBankControl.LOOKUP_FTS_EXAMPLES_X:
 				table = "pb_examples_text_fts4 " + //
 						"LEFT JOIN pb_rolesets USING (rolesetid)";
 				break;
@@ -137,7 +137,7 @@ public class QueriesLegacy
 
 		switch (code)
 		{
-			case PropBankDispatcher.SUGGEST_WORDS:
+			case PropBankControl.SUGGEST_WORDS:
 			{
 				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(uriLast))
 				{
@@ -152,7 +152,7 @@ public class QueriesLegacy
 				break;
 			}
 
-			case PropBankDispatcher.SUGGEST_FTS_WORDS:
+			case PropBankControl.SUGGEST_FTS_WORDS:
 			{
 				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(uriLast))
 				{

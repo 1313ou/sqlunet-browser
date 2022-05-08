@@ -23,7 +23,7 @@ import org.sqlunet.propbank.provider.PropBankContract.PbWords;
 import org.sqlunet.propbank.provider.PropBankContract.Suggest_FTS_PbWords;
 import org.sqlunet.propbank.provider.PropBankContract.Suggest_PbWords;
 import org.sqlunet.propbank.provider.PropBankContract.Words_PbRoleSets;
-import org.sqlunet.propbank.provider.PropBankDispatcher.Result;
+import org.sqlunet.propbank.provider.PropBankControl.Result;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.sql.SqlFormatter;
 
@@ -55,23 +55,23 @@ public class PropBankProvider extends BaseProvider
 
 	static private void matchURIs()
 	{
-		uriMatcher.addURI(AUTHORITY, PbRoleSets.TABLE, PropBankDispatcher.PBROLESET);
-		uriMatcher.addURI(AUTHORITY, PbRoleSets.TABLE, PropBankDispatcher.PBROLESETS);
-		uriMatcher.addURI(AUTHORITY, PbRoleSets_X.TABLE, PropBankDispatcher.PBROLESETS_X);
-		uriMatcher.addURI(AUTHORITY, PbRoleSets_X.TABLE_BY_ROLESET, PropBankDispatcher.PBROLESETS_X_BY_ROLESET);
-		uriMatcher.addURI(AUTHORITY, Words_PbRoleSets.TABLE, PropBankDispatcher.WORDS_PBROLESETS);
-		uriMatcher.addURI(AUTHORITY, PbRoleSets_PbRoles.TABLE, PropBankDispatcher.PBROLESETS_PBROLES);
-		uriMatcher.addURI(AUTHORITY, PbRoleSets_PbExamples.TABLE, PropBankDispatcher.PBROLESETS_PBEXAMPLES);
-		uriMatcher.addURI(AUTHORITY, PbRoleSets_PbExamples.TABLE_BY_EXAMPLE, PropBankDispatcher.PBROLESETS_PBEXAMPLES_BY_EXAMPLE);
+		uriMatcher.addURI(AUTHORITY, PbRoleSets.TABLE, PropBankControl.PBROLESET);
+		uriMatcher.addURI(AUTHORITY, PbRoleSets.TABLE, PropBankControl.PBROLESETS);
+		uriMatcher.addURI(AUTHORITY, PbRoleSets_X.TABLE, PropBankControl.PBROLESETS_X);
+		uriMatcher.addURI(AUTHORITY, PbRoleSets_X.TABLE_BY_ROLESET, PropBankControl.PBROLESETS_X_BY_ROLESET);
+		uriMatcher.addURI(AUTHORITY, Words_PbRoleSets.TABLE, PropBankControl.WORDS_PBROLESETS);
+		uriMatcher.addURI(AUTHORITY, PbRoleSets_PbRoles.TABLE, PropBankControl.PBROLESETS_PBROLES);
+		uriMatcher.addURI(AUTHORITY, PbRoleSets_PbExamples.TABLE, PropBankControl.PBROLESETS_PBEXAMPLES);
+		uriMatcher.addURI(AUTHORITY, PbRoleSets_PbExamples.TABLE_BY_EXAMPLE, PropBankControl.PBROLESETS_PBEXAMPLES_BY_EXAMPLE);
 
-		uriMatcher.addURI(AUTHORITY, Lookup_PbExamples.TABLE + "/", PropBankDispatcher.LOOKUP_FTS_EXAMPLES);
-		uriMatcher.addURI(AUTHORITY, Lookup_PbExamples_X.TABLE + "/", PropBankDispatcher.LOOKUP_FTS_EXAMPLES_X);
-		uriMatcher.addURI(AUTHORITY, Lookup_PbExamples_X.TABLE_BY_EXAMPLE + "/", PropBankDispatcher.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE);
+		uriMatcher.addURI(AUTHORITY, Lookup_PbExamples.TABLE + "/", PropBankControl.LOOKUP_FTS_EXAMPLES);
+		uriMatcher.addURI(AUTHORITY, Lookup_PbExamples_X.TABLE + "/", PropBankControl.LOOKUP_FTS_EXAMPLES_X);
+		uriMatcher.addURI(AUTHORITY, Lookup_PbExamples_X.TABLE_BY_EXAMPLE + "/", PropBankControl.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE);
 
-		uriMatcher.addURI(AUTHORITY, Suggest_PbWords.TABLE + "/*", PropBankDispatcher.SUGGEST_WORDS);
-		uriMatcher.addURI(AUTHORITY, Suggest_PbWords.TABLE + "/", PropBankDispatcher.SUGGEST_WORDS);
-		uriMatcher.addURI(AUTHORITY, Suggest_FTS_PbWords.TABLE + "/*", PropBankDispatcher.SUGGEST_FTS_WORDS);
-		uriMatcher.addURI(AUTHORITY, Suggest_FTS_PbWords.TABLE + "/", PropBankDispatcher.SUGGEST_FTS_WORDS);
+		uriMatcher.addURI(AUTHORITY, Suggest_PbWords.TABLE + "/*", PropBankControl.SUGGEST_WORDS);
+		uriMatcher.addURI(AUTHORITY, Suggest_PbWords.TABLE + "/", PropBankControl.SUGGEST_WORDS);
+		uriMatcher.addURI(AUTHORITY, Suggest_FTS_PbWords.TABLE + "/*", PropBankControl.SUGGEST_FTS_WORDS);
+		uriMatcher.addURI(AUTHORITY, Suggest_FTS_PbWords.TABLE + "/", PropBankControl.SUGGEST_FTS_WORDS);
 	}
 
 	@NonNull
@@ -112,34 +112,34 @@ public class PropBankProvider extends BaseProvider
 		switch (PropBankProvider.uriMatcher.match(uri))
 		{
 			// T A B L E S
-			case PropBankDispatcher.PBROLESET:
+			case PropBankControl.PBROLESET:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets.TABLE;
-			case PropBankDispatcher.PBROLESETS:
+			case PropBankControl.PBROLESETS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets.TABLE;
-			case PropBankDispatcher.PBROLESETS_X:
+			case PropBankControl.PBROLESETS_X:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets_X.TABLE;
-			case PropBankDispatcher.PBROLESETS_X_BY_ROLESET:
+			case PropBankControl.PBROLESETS_X_BY_ROLESET:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets_X.TABLE_BY_ROLESET;
-			case PropBankDispatcher.WORDS_PBROLESETS:
+			case PropBankControl.WORDS_PBROLESETS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_PbRoleSets.TABLE;
-			case PropBankDispatcher.PBROLESETS_PBROLES:
+			case PropBankControl.PBROLESETS_PBROLES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets_PbRoles.TABLE;
-			case PropBankDispatcher.PBROLESETS_PBEXAMPLES:
+			case PropBankControl.PBROLESETS_PBEXAMPLES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets_PbExamples.TABLE;
-			case PropBankDispatcher.PBROLESETS_PBEXAMPLES_BY_EXAMPLE:
+			case PropBankControl.PBROLESETS_PBEXAMPLES_BY_EXAMPLE:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets_PbExamples.TABLE_BY_EXAMPLE;
 
 			// L O O K U P
-			case PropBankDispatcher.LOOKUP_FTS_EXAMPLES:
+			case PropBankControl.LOOKUP_FTS_EXAMPLES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_PbExamples.TABLE;
-			case PropBankDispatcher.LOOKUP_FTS_EXAMPLES_X:
+			case PropBankControl.LOOKUP_FTS_EXAMPLES_X:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_PbExamples_X.TABLE;
-			case PropBankDispatcher.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
+			case PropBankControl.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_PbExamples_X.TABLE_BY_EXAMPLE;
 
 			// S U G G E S T
-			case PropBankDispatcher.SUGGEST_WORDS:
-			case PropBankDispatcher.SUGGEST_FTS_WORDS:
+			case PropBankControl.SUGGEST_WORDS:
+			case PropBankControl.SUGGEST_FTS_WORDS:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbWords.TABLE;
 
 			default:
@@ -176,11 +176,11 @@ public class PropBankProvider extends BaseProvider
 
 		Result result;
 		// MAIN
-		result = PropBankDispatcher.queryMain(code, uri.getLastPathSegment(), projection0, selection0, selectionArgs0);
+		result = PropBankControl.queryMain(code, uri.getLastPathSegment(), projection0, selection0, selectionArgs0);
 		if (result == null)
 		{
 			// TEXTSEARCH
-			result = PropBankDispatcher.querySearch(code, projection0, selection0, selectionArgs0);
+			result = PropBankControl.querySearch(code, projection0, selection0, selectionArgs0);
 		}
 		// MAIN || TEXTSEARCH
 		if (result != null)
@@ -209,7 +209,7 @@ public class PropBankProvider extends BaseProvider
 		}
 
 		// SUGGEST
-		result = PropBankDispatcher.querySuggest(code, uri.getLastPathSegment());
+		result = PropBankControl.querySuggest(code, uri.getLastPathSegment());
 		if (result != null)
 		{
 			return this.db.query(result.table, result.projection, result.selection, result.selectionArgs, result.groupBy, null, null);

@@ -7,7 +7,6 @@ import org.sqlunet.provider.SQLiteQueryBuilder;
 import org.sqlunet.test.SqlProcessor;
 
 import java.sql.SQLException;
-import java.util.Properties;
 
 public class RunQueries
 {
@@ -38,7 +37,7 @@ public class RunQueries
 
 	private static String toSql(final int code, final Module.ContentProviderSql providerSql)
 	{
-		BNCDispatcher.Result r = BNCDispatcher.queryMain(code, null, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
+		BNCControl.Result r = BNCControl.queryMain(code, null, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
 		if (r == null)
 		{
 			throw new IllegalArgumentException("Illegal query code: " + code);
@@ -51,9 +50,9 @@ public class RunQueries
 		switch (providerUri)
 		{
 			case BNCContract.BNCs.CONTENT_URI_TABLE:
-				return  BNCDispatcher.BNC;
+				return  BNCControl.BNC;
 			case BNCContract.Words_BNCs.CONTENT_URI_TABLE:
-				return BNCDispatcher.WORDS_BNC;
+				return BNCControl.WORDS_BNC;
 			default:
 				throw new IllegalArgumentException("Illegal uri: " + providerUri);
 		}

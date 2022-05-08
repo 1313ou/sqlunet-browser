@@ -1,13 +1,13 @@
 package org.sqlunet.verbnet.provider;
 
 import org.junit.Test;
-import org.sqlunet.verbnet.provider.VerbNetDispatcher.Result;
+import org.sqlunet.verbnet.provider.VerbNetControl.Result;
 
 import java.util.Arrays;
 
 public class QueriesUnitTest
 {
-	private final int[] codes = {VerbNetDispatcher.VNCLASS1, VerbNetDispatcher.VNCLASSES, VerbNetDispatcher.VNCLASSES_X_BY_VNCLASS, VerbNetDispatcher.WORDS_VNCLASSES, VerbNetDispatcher.VNCLASSES_VNMEMBERS_X_BY_WORD, VerbNetDispatcher.VNCLASSES_VNROLES_X_BY_VNROLE, VerbNetDispatcher.VNCLASSES_VNFRAMES_X_BY_VNFRAME, VerbNetDispatcher.LOOKUP_FTS_EXAMPLES, VerbNetDispatcher.LOOKUP_FTS_EXAMPLES_X, VerbNetDispatcher.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE, VerbNetDispatcher.SUGGEST_WORDS, VerbNetDispatcher.SUGGEST_FTS_WORDS,};
+	private final int[] codes = {VerbNetControl.VNCLASS1, VerbNetControl.VNCLASSES, VerbNetControl.VNCLASSES_X_BY_VNCLASS, VerbNetControl.WORDS_VNCLASSES, VerbNetControl.VNCLASSES_VNMEMBERS_X_BY_WORD, VerbNetControl.VNCLASSES_VNROLES_X_BY_VNROLE, VerbNetControl.VNCLASSES_VNFRAMES_X_BY_VNFRAME, VerbNetControl.LOOKUP_FTS_EXAMPLES, VerbNetControl.LOOKUP_FTS_EXAMPLES_X, VerbNetControl.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE, VerbNetControl.SUGGEST_WORDS, VerbNetControl.SUGGEST_FTS_WORDS,};
 	@SuppressWarnings("FieldCanBeLocal")
 	private final String uriLast = "LAST";
 	private final String[] projection = {"PROJ1", "PROJ2", "PROJ3"};
@@ -49,17 +49,17 @@ public class QueriesUnitTest
 
 	public static Result queryProviderMain(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
-		return VerbNetDispatcher.queryMain(code, uriLast, projection0, selection0, selectionArgs0);
+		return VerbNetControl.queryMain(code, uriLast, projection0, selection0, selectionArgs0);
 	}
 
 	public static Result queryProviderSearch(final int code, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
-		return VerbNetDispatcher.querySearch(code, projection0, selection0, selectionArgs0);
+		return VerbNetControl.querySearch(code, projection0, selection0, selectionArgs0);
 	}
 
 	public static Result queryProviderSuggest(final int code, final String uriLast)
 	{
-		return VerbNetDispatcher.querySuggest(code, uriLast);
+		return VerbNetControl.querySuggest(code, uriLast);
 	}
 
 	private void check(final int code, final Result r1, final Result r2)

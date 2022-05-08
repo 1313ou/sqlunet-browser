@@ -2,7 +2,7 @@ package org.sqlunet.framenet.provider;
 
 import android.app.SearchManager;
 
-import org.sqlunet.framenet.provider.FrameNetDispatcher.Result;
+import org.sqlunet.framenet.provider.FrameNetControl.Result;
 
 public class QueriesLegacy
 {
@@ -31,19 +31,19 @@ public class QueriesLegacy
 			// T A B L E
 			// table uri : last element is table
 
-			case FrameNetDispatcher.LEXUNITS:
+			case FrameNetControl.LEXUNITS:
 				table = FrameNetContract.LexUnits.TABLE;
 				break;
 
-			case FrameNetDispatcher.FRAMES:
+			case FrameNetControl.FRAMES:
 				table = FrameNetContract.Frames.TABLE;
 				break;
 
-			case FrameNetDispatcher.ANNOSETS:
+			case FrameNetControl.ANNOSETS:
 				table = FrameNetContract.AnnoSets.TABLE;
 				break;
 
-			case FrameNetDispatcher.SENTENCES:
+			case FrameNetControl.SENTENCES:
 				table = FrameNetContract.Sentences.TABLE;
 				break;
 
@@ -51,7 +51,7 @@ public class QueriesLegacy
 			// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
 			// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query
 
-			case FrameNetDispatcher.LEXUNIT:
+			case FrameNetControl.LEXUNIT:
 				table = FrameNetContract.LexUnits.TABLE;
 				if (selection != null)
 				{
@@ -64,7 +64,7 @@ public class QueriesLegacy
 				selection += FrameNetContract.LexUnits.LUID + " = " + uriLast;
 				break;
 
-			case FrameNetDispatcher.FRAME:
+			case FrameNetControl.FRAME:
 				table = FrameNetContract.Frames.TABLE;
 				if (selection != null)
 				{
@@ -77,7 +77,7 @@ public class QueriesLegacy
 				selection += FrameNetContract.Frames.FRAMEID + " = " + uriLast;
 				break;
 
-			case FrameNetDispatcher.SENTENCE:
+			case FrameNetControl.SENTENCE:
 				table = FrameNetContract.Sentences.TABLE;
 				if (selection != null)
 				{
@@ -90,7 +90,7 @@ public class QueriesLegacy
 				selection += FrameNetContract.Sentences.SENTENCEID + " = " + uriLast;
 				break;
 
-			case FrameNetDispatcher.ANNOSET:
+			case FrameNetControl.ANNOSET:
 				table = FrameNetContract.AnnoSets.TABLE;
 				if (selection != null)
 				{
@@ -105,7 +105,7 @@ public class QueriesLegacy
 
 			// J O I N S
 
-			case FrameNetDispatcher.LEXUNITS_OR_FRAMES:
+			case FrameNetControl.LEXUNITS_OR_FRAMES:
 				table = "(" + //
 						"SELECT fnwordid + 10000 AS " + FrameNetContract.LexUnits_or_Frames.ID + ", luid AS " + FrameNetContract.LexUnits_or_Frames.FNID + ", fnwordid AS " + FrameNetContract.LexUnits_or_Frames.FNWORDID + ", wordid AS " + FrameNetContract.LexUnits_or_Frames.WORDID + ", word AS " + FrameNetContract.LexUnits_or_Frames.WORD + ", lexunit AS " + FrameNetContract.LexUnits_or_Frames.NAME + ", frame AS " + FrameNetContract.LexUnits_or_Frames.FRAMENAME + ", frameid AS " + FrameNetContract.LexUnits_or_Frames.FRAMEID + ", 0 AS " + FrameNetContract.LexUnits_or_Frames.ISFRAME + " " + //
 						"FROM fn_words " + //
@@ -119,21 +119,21 @@ public class QueriesLegacy
 						")";
 				break;
 
-			case FrameNetDispatcher.FRAMES_X_BY_FRAME:
+			case FrameNetControl.FRAMES_X_BY_FRAME:
 				groupBy = "frameid";
 				table = "fn_frames " + //
 						"LEFT JOIN fn_frames_semtypes USING (frameid) " + //
 						"LEFT JOIN fn_semtypes USING (semtypeid)";
 				break;
 
-			case FrameNetDispatcher.FRAMES_RELATED:
+			case FrameNetControl.FRAMES_RELATED:
 				table = "fn_frames_related AS " + FrameNetContract.RELATED + ' ' + //
 						"LEFT JOIN fn_frames AS " + FrameNetContract.SRC + " USING (frameid) " + //
 						"LEFT JOIN fn_frames AS " + FrameNetContract.DEST + " ON (frame2id = " + FrameNetContract.DEST + ".frameid) " + //  //  //
 						"LEFT JOIN fn_framerelations USING (relationid)";
 				break;
 
-			case FrameNetDispatcher.LEXUNITS_X_BY_LEXUNIT:
+			case FrameNetControl.LEXUNITS_X_BY_LEXUNIT:
 				groupBy = "luid";
 				table = "fn_lexunits AS " + FrameNetContract.LU + ' ' + //
 						"LEFT JOIN fn_frames AS " + FrameNetContract.FRAME + " USING (frameid) " + //
@@ -142,7 +142,7 @@ public class QueriesLegacy
 						"LEFT JOIN fn_fes AS " + FrameNetContract.FE + " ON (" + FrameNetContract.FRAME + ".frameid = " + FrameNetContract.FE + ".frameid AND incorporatedfetypeid = " + FrameNetContract.FE + ".fetypeid)";
 				break;
 
-			case FrameNetDispatcher.SENTENCES_LAYERS_X:
+			case FrameNetControl.SENTENCES_LAYERS_X:
 				table = "(SELECT annosetid,sentenceid,layerid,layertype,rank," + //
 						"GROUP_CONCAT(start||':'||" + //
 						"end||':'||" + //
@@ -163,7 +163,7 @@ public class QueriesLegacy
 						"ORDER BY rank,layerid,start,end)";
 				break;
 
-			case FrameNetDispatcher.ANNOSETS_LAYERS_X:
+			case FrameNetControl.ANNOSETS_LAYERS_X:
 				table = "(SELECT sentenceid,text,layerid,layertype,rank," + //
 						"GROUP_CONCAT(start||':'||" + //
 						"end||':'||" + //
@@ -184,7 +184,7 @@ public class QueriesLegacy
 						"ORDER BY rank,layerid,start,end)";
 				break;
 
-			case FrameNetDispatcher.PATTERNS_LAYERS_X:
+			case FrameNetControl.PATTERNS_LAYERS_X:
 				table = "(SELECT annosetid,sentenceid,text,layerid,layertype,rank," + //
 						"GROUP_CONCAT(start||':'||" + //
 						"end||':'||" + //
@@ -206,7 +206,7 @@ public class QueriesLegacy
 						"ORDER BY rank,layerid,start,end)";
 				break;
 
-			case FrameNetDispatcher.VALENCEUNITS_LAYERS_X:
+			case FrameNetControl.VALENCEUNITS_LAYERS_X:
 				table = "(SELECT annosetid,sentenceid,text,layerid,layertype,rank," + //
 						"GROUP_CONCAT(start||':'||" + //
 						"end||':'||" + //
@@ -228,7 +228,7 @@ public class QueriesLegacy
 						"ORDER BY rank,layerid,start,end)";
 				break;
 
-			case FrameNetDispatcher.WORDS_LEXUNITS_FRAMES:
+			case FrameNetControl.WORDS_LEXUNITS_FRAMES:
 				table = "fn_words " + //
 						"INNER JOIN words USING (wordid) " + //
 						"INNER JOIN fn_lexemes USING (fnwordid) " + //
@@ -239,11 +239,11 @@ public class QueriesLegacy
 						"LEFT JOIN fn_fes AS " + FrameNetContract.FE + " ON ("+ FrameNetContract.FRAME + ".frameid = " + FrameNetContract.FE + ".frameid AND incorporatedfetypeid = " + FrameNetContract.FE + ".fetypeid)";
 				break;
 
-			case FrameNetDispatcher.FRAMES_FES_BY_FE:
+			case FrameNetControl.FRAMES_FES_BY_FE:
 				groupBy = "feid";
 				//$FALL-THROUGH$
 				//noinspection fallthrough
-			case FrameNetDispatcher.FRAMES_FES:
+			case FrameNetControl.FRAMES_FES:
 				table = "fn_frames " + //
 						"INNER JOIN fn_fes USING (frameid) " + //
 						"LEFT JOIN fn_fetypes USING (fetypeid) " + //
@@ -252,22 +252,22 @@ public class QueriesLegacy
 						"LEFT JOIN fn_semtypes USING (semtypeid)";
 				break;
 
-			case FrameNetDispatcher.LEXUNITS_SENTENCES_BY_SENTENCE:
+			case FrameNetControl.LEXUNITS_SENTENCES_BY_SENTENCE:
 				groupBy = FrameNetContract.SENTENCE + ".sentenceid";
 				//$FALL-THROUGH$
 				//noinspection fallthrough
-			case FrameNetDispatcher.LEXUNITS_SENTENCES:
+			case FrameNetControl.LEXUNITS_SENTENCES:
 				table = "fn_lexunits AS " + FrameNetContract.LU + ' ' + //
 						"LEFT JOIN fn_subcorpuses USING (luid) " + //
 						"LEFT JOIN fn_subcorpuses_sentences USING (subcorpusid) " + //
 						"INNER JOIN fn_sentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid)";
 				break;
 
-			case FrameNetDispatcher.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE:
+			case FrameNetControl.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE:
 				groupBy = FrameNetContract.SENTENCE + ".sentenceid";
 				//$FALL-THROUGH$
 				//noinspection fallthrough
-			case FrameNetDispatcher.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS:
+			case FrameNetControl.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS:
 				table = "fn_lexunits AS " + FrameNetContract.LU + ' ' + //
 						"LEFT JOIN fn_subcorpuses USING (luid) " + //
 						"LEFT JOIN fn_subcorpuses_sentences USING (subcorpusid) " + //
@@ -280,7 +280,7 @@ public class QueriesLegacy
 						"LEFT JOIN fn_labelitypes USING (labelitypeid)";
 				break;
 
-			case FrameNetDispatcher.LEXUNITS_GOVERNORS:
+			case FrameNetControl.LEXUNITS_GOVERNORS:
 				table = "fn_lexunits " + //
 						"INNER JOIN fn_lexunits_governors USING (luid) " + //
 						"INNER JOIN fn_governors USING (governorid) " + //
@@ -288,17 +288,17 @@ public class QueriesLegacy
 						"LEFT JOIN words USING (wordid)";
 				break;
 
-			case FrameNetDispatcher.GOVERNORS_ANNOSETS:
+			case FrameNetControl.GOVERNORS_ANNOSETS:
 				table = "fn_governors_annosets " + //
 						"LEFT JOIN fn_annosets USING (annosetid) " + //
 						"LEFT JOIN fn_sentences USING (sentenceid)";
 				break;
 
-			case FrameNetDispatcher.LEXUNITS_REALIZATIONS_BY_REALIZATION:
+			case FrameNetControl.LEXUNITS_REALIZATIONS_BY_REALIZATION:
 				groupBy = "ferid";
 				//$FALL-THROUGH$
 				//noinspection fallthrough
-			case FrameNetDispatcher.LEXUNITS_REALIZATIONS:
+			case FrameNetControl.LEXUNITS_REALIZATIONS:
 				table = "fn_lexunits " + //
 						"INNER JOIN fn_ferealizations USING (luid) " + //
 						"LEFT JOIN fn_ferealizations_valenceunits USING (ferid) " +
@@ -308,11 +308,11 @@ public class QueriesLegacy
 						"LEFT JOIN fn_pttypes USING (ptid)";
 				break;
 
-			case FrameNetDispatcher.LEXUNITS_GROUPREALIZATIONS_BY_PATTERN:
+			case FrameNetControl.LEXUNITS_GROUPREALIZATIONS_BY_PATTERN:
 				groupBy = "patternid";
 				//$FALL-THROUGH$
 				//noinspection fallthrough
-			case FrameNetDispatcher.LEXUNITS_GROUPREALIZATIONS:
+			case FrameNetControl.LEXUNITS_GROUPREALIZATIONS:
 				table = "fn_lexunits " + //
 						"INNER JOIN fn_fegrouprealizations USING (luid) " + //
 						"LEFT JOIN fn_grouppatterns USING (fegrid) " + //
@@ -323,13 +323,13 @@ public class QueriesLegacy
 						"LEFT JOIN fn_pttypes USING (ptid)";
 				break;
 
-			case FrameNetDispatcher.PATTERNS_SENTENCES:
+			case FrameNetControl.PATTERNS_SENTENCES:
 				table = "fn_grouppatterns_annosets " + //
 						"LEFT JOIN fn_annosets AS " + FrameNetContract.ANNOSET + " USING (annosetid) " + //
 						"LEFT JOIN fn_sentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid)";
 				break;
 
-			case FrameNetDispatcher.VALENCEUNITS_SENTENCES:
+			case FrameNetControl.VALENCEUNITS_SENTENCES:
 				table = "fn_valenceunits_annosets " + //
 						"LEFT JOIN fn_annosets AS " + FrameNetContract.ANNOSET + " USING (annosetid) " + //
 						"LEFT JOIN fn_sentences AS " + FrameNetContract.SENTENCE + " USING (sentenceid)";
@@ -348,21 +348,21 @@ public class QueriesLegacy
 
 		switch (code)
 		{
-			case FrameNetDispatcher.LOOKUP_FTS_WORDS:
+			case FrameNetControl.LOOKUP_FTS_WORDS:
 				table = "fn_words_word_fts4";
 				break;
 
-			case FrameNetDispatcher.LOOKUP_FTS_SENTENCES:
+			case FrameNetControl.LOOKUP_FTS_SENTENCES:
 				table = "fn_sentences_text_fts4";
 				break;
 
-			case FrameNetDispatcher.LOOKUP_FTS_SENTENCES_X_BY_SENTENCE:
+			case FrameNetControl.LOOKUP_FTS_SENTENCES_X_BY_SENTENCE:
 				groupBy = "sentenceid";
 				//addProjection(projection, "GROUP_CONCAT(DISTINCT  frame || '@' || frameid)", "GROUP_CONCAT(DISTINCT  lexunit || '@' || luid)");
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 
-			case FrameNetDispatcher.LOOKUP_FTS_SENTENCES_X:
+			case FrameNetControl.LOOKUP_FTS_SENTENCES_X:
 				table = "fn_sentences_text_fts4 " + //
 						"LEFT JOIN fn_frames USING (frameid) " + //
 						"LEFT JOIN fn_lexunits USING (frameid,luid)";
@@ -383,7 +383,7 @@ public class QueriesLegacy
 
 		switch (code)
 		{
-			case FrameNetDispatcher.SUGGEST_WORDS:
+			case FrameNetControl.SUGGEST_WORDS:
 			{
 				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(uriLast))
 				{
@@ -398,7 +398,7 @@ public class QueriesLegacy
 				break;
 			}
 
-			case FrameNetDispatcher.SUGGEST_FTS_WORDS:
+			case FrameNetControl.SUGGEST_FTS_WORDS:
 			{
 				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(uriLast))
 				{

@@ -1,6 +1,11 @@
 package org.sqlunet.predicatematrix.provider;
 
-public class PredicateMatrixDispatcher
+/**
+ * PredicateMatrix query control
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
+public class PredicateMatrixControl
 {
 	// table codes
 	static protected final int PM = 10;
@@ -22,11 +27,11 @@ public class PredicateMatrixDispatcher
 
 			// J O I N S
 
-			case PredicateMatrixDispatcher.PM:
+			case PredicateMatrixControl.PM:
 				table = Q.PM.TABLE;
 				break;
 
-			case PredicateMatrixDispatcher.PM_X:
+			case PredicateMatrixControl.PM_X:
 				table = Q.PM_X.TABLE;
 				break;
 

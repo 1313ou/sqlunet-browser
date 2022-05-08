@@ -29,8 +29,8 @@ import org.sqlunet.browser.SqlunetViewModel;
 import org.sqlunet.browser.xn.Settings;
 import org.sqlunet.loaders.Queries;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_PbWords_VnWords;
-import org.sqlunet.provider.XSqlUNetContract.Words_XNet_U;
+import org.sqlunet.provider.XNetContract.Words_FnWords_PbWords_VnWords;
+import org.sqlunet.provider.XNetContract.Words_XNet_U;
 import org.sqlunet.provider.XSqlUNetProvider;
 import org.sqlunet.wordnet.provider.WordNetProvider;
 

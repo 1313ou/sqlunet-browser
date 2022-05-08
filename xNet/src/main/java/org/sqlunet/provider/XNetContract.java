@@ -11,7 +11,7 @@ import org.sqlunet.xnet.provider.V;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public final class XSqlUNetContract
+public final class XNetContract
 {
 	// A L I A S E S
 

@@ -60,14 +60,14 @@ public class CursorDump
 		}
 		if (cursor.moveToFirst())
 		{
-			final int idWordId = cursor.getColumnIndex(XSqlUNetContract.Words_XNet_U.WORDID);
-			final int idSynsetId = cursor.getColumnIndex(XSqlUNetContract.Words_XNet_U.SYNSETID);
-			final int idXId = cursor.getColumnIndex(XSqlUNetContract.Words_XNet_U.XID);
-			final int idXName = cursor.getColumnIndex(XSqlUNetContract.Words_XNet_U.XNAME);
-			final int idXHeader = cursor.getColumnIndex(XSqlUNetContract.Words_XNet_U.XHEADER);
-			final int idXInfo = cursor.getColumnIndex(XSqlUNetContract.Words_XNet_U.XINFO);
-			final int idDefinition = cursor.getColumnIndex(XSqlUNetContract.Words_XNet_U.XDEFINITION);
-			final int idSources = cursor.getColumnIndex(XSqlUNetContract.Words_XNet_U.SOURCES);
+			final int idWordId = cursor.getColumnIndex(XNetContract.Words_XNet_U.WORDID);
+			final int idSynsetId = cursor.getColumnIndex(XNetContract.Words_XNet_U.SYNSETID);
+			final int idXId = cursor.getColumnIndex(XNetContract.Words_XNet_U.XID);
+			final int idXName = cursor.getColumnIndex(XNetContract.Words_XNet_U.XNAME);
+			final int idXHeader = cursor.getColumnIndex(XNetContract.Words_XNet_U.XHEADER);
+			final int idXInfo = cursor.getColumnIndex(XNetContract.Words_XNet_U.XINFO);
+			final int idDefinition = cursor.getColumnIndex(XNetContract.Words_XNet_U.XDEFINITION);
+			final int idSources = cursor.getColumnIndex(XNetContract.Words_XNet_U.SOURCES);
 
 			do
 			{

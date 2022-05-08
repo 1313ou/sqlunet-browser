@@ -26,7 +26,7 @@ import org.sqlunet.browser.R;
 import org.sqlunet.browser.SqlunetViewModel;
 import org.sqlunet.loaders.Queries;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.provider.XSqlUNetContract.Words_FnWords_PbWords_VnWords;
+import org.sqlunet.provider.XNetContract.Words_FnWords_PbWords_VnWords;
 import org.sqlunet.provider.XSqlUNetProvider;
 
 import java.util.Locale;

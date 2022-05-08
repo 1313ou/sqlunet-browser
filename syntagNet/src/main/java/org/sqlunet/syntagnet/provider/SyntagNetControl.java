@@ -1,12 +1,17 @@
-package org.sqlunet.bnc.provider;
+package org.sqlunet.syntagnet.provider;
 
-public class BNCDispatcher
+/**
+ * SyntagNet query control
+ *
+ * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ */
+public class SyntagNetControl
 {
 	// table codes
-	static final int BNC = 11;
+	static final int COLLOCATIONS = 10;
 
-	// join tables
-	static final int WORDS_BNC = 100;
+	// join codes
+	static final int COLLOCATIONS_X = 100;
 
 	static public class Result
 	{
@@ -33,8 +38,8 @@ public class BNCDispatcher
 
 		switch (code)
 		{
-			case BNC:
-				table = Q.BNCS.TABLE;
+			case COLLOCATIONS:
+				table = Q.COLLOCATIONS.TABLE;
 				if (selection != null)
 				{
 					selection += " AND ";
@@ -43,13 +48,13 @@ public class BNCDispatcher
 				{
 					selection = "";
 				}
-				selection += Q.BNCS.SELECTION;
+				selection += Q.COLLOCATIONS.SELECTION;
 				break;
 
 			// J O I N S
 
-			case WORDS_BNC:
-				table = Q.WORDS_BNCS.TABLE;
+			case COLLOCATIONS_X:
+				table = Q.COLLOCATIONS_X.TABLE;
 				break;
 
 			default:

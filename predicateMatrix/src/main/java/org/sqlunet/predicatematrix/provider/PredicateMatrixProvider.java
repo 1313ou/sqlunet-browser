@@ -13,7 +13,7 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.util.Log;
 
-import org.sqlunet.predicatematrix.provider.PredicateMatrixDispatcher.Result;
+import org.sqlunet.predicatematrix.provider.PredicateMatrixControl.Result;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.sql.SqlFormatter;
 
@@ -44,8 +44,8 @@ public class PredicateMatrixProvider extends BaseProvider
 
 	static private void matchURIs()
 	{
-		PredicateMatrixProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrixContract.Pm.TABLE, PredicateMatrixDispatcher.PM);
-		PredicateMatrixProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrixContract.Pm_X.TABLE, PredicateMatrixDispatcher.PM_X);
+		PredicateMatrixProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrixContract.Pm.TABLE, PredicateMatrixControl.PM);
+		PredicateMatrixProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrixContract.Pm_X.TABLE, PredicateMatrixControl.PM_X);
 	}
 
 	@NonNull
@@ -84,9 +84,9 @@ public class PredicateMatrixProvider extends BaseProvider
 	{
 		switch (PredicateMatrixProvider.uriMatcher.match(uri))
 		{
-			case PredicateMatrixDispatcher.PM:
+			case PredicateMatrixControl.PM:
 				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PredicateMatrixContract.Pm.TABLE;
-			case PredicateMatrixDispatcher.PM_X:
+			case PredicateMatrixControl.PM_X:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PredicateMatrixContract.Pm_X.TABLE;
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");
@@ -120,7 +120,7 @@ public class PredicateMatrixProvider extends BaseProvider
 			throw new RuntimeException("Malformed URI " + uri);
 		}
 
-		Result result = PredicateMatrixDispatcher.queryMain(code, uri.getLastPathSegment(), projection0, selection0, selectionArgs0);
+		Result result = PredicateMatrixControl.queryMain(code, uri.getLastPathSegment(), projection0, selection0, selectionArgs0);
 
 		if (result != null)
 		{

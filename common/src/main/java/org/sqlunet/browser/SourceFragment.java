@@ -12,7 +12,7 @@ import android.widget.ListAdapter;
 import android.widget.SimpleCursorAdapter;
 
 import org.sqlunet.browser.common.R;
-import org.sqlunet.provider.XSqlUNetContract.Sources;
+import org.sqlunet.provider.XNetContract.Sources;
 import org.sqlunet.provider.XSqlUNetProvider;
 
 import androidx.annotation.NonNull;

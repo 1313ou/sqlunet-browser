@@ -41,11 +41,11 @@ public class RunQueries
 
 	private static String toSql(final int code, final Module.ContentProviderSql providerSql)
 	{
-		VerbNetDispatcher.Result r = VerbNetDispatcher.queryMain(code, null, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
+		VerbNetControl.Result r = VerbNetControl.queryMain(code, null, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
 		if (r == null)
 		{
 			// TEXTSEARCH
-			r = VerbNetDispatcher.querySearch(code, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
+			r = VerbNetControl.querySearch(code, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
 		}
 		if (r == null)
 		{
@@ -59,29 +59,29 @@ public class RunQueries
 		switch (providerUri)
 		{
 			case VerbNetContract.VnClasses.CONTENT_URI_TABLE1:
-				return VerbNetDispatcher.VNCLASS1;
+				return VerbNetControl.VNCLASS1;
 			case VerbNetContract.VnClasses.CONTENT_URI_TABLE:
-				return VerbNetDispatcher.VNCLASSES;
+				return VerbNetControl.VNCLASSES;
 			case VerbNetContract.VnClasses_X.CONTENT_URI_TABLE_BY_VN_CLASS:
-				return VerbNetDispatcher.VNCLASSES_X_BY_VNCLASS;
+				return VerbNetControl.VNCLASSES_X_BY_VNCLASS;
 			case VerbNetContract.Words_VnClasses.CONTENT_URI_TABLE:
-				return VerbNetDispatcher.WORDS_VNCLASSES;
+				return VerbNetControl.WORDS_VNCLASSES;
 			case VerbNetContract.VnClasses_VnMembers_X.CONTENT_URI_TABLE:
-				return VerbNetDispatcher.VNCLASSES_VNMEMBERS_X_BY_WORD;
+				return VerbNetControl.VNCLASSES_VNMEMBERS_X_BY_WORD;
 			case VerbNetContract.VnClasses_VnRoles_X.CONTENT_URI_TABLE:
-				return VerbNetDispatcher.VNCLASSES_VNROLES_X_BY_VNROLE;
+				return VerbNetControl.VNCLASSES_VNROLES_X_BY_VNROLE;
 			case VerbNetContract.VnClasses_VnFrames_X.CONTENT_URI_TABLE:
-				return VerbNetDispatcher.VNCLASSES_VNFRAMES_X_BY_VNFRAME;
+				return VerbNetControl.VNCLASSES_VNFRAMES_X_BY_VNFRAME;
 			case VerbNetContract.Lookup_VnExamples.CONTENT_URI_TABLE:
-				return VerbNetDispatcher.LOOKUP_FTS_EXAMPLES;
+				return VerbNetControl.LOOKUP_FTS_EXAMPLES;
 			case VerbNetContract.Lookup_VnExamples_X.CONTENT_URI_TABLE:
-				return VerbNetDispatcher.LOOKUP_FTS_EXAMPLES_X;
+				return VerbNetControl.LOOKUP_FTS_EXAMPLES_X;
 			case VerbNetContract.Lookup_VnExamples_X.CONTENT_URI_TABLE_BY_EXAMPLE:
-				return VerbNetDispatcher.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE;
+				return VerbNetControl.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE;
 			case VerbNetContract.Suggest_VnWords.SEARCH_WORD_PATH:
-				return VerbNetDispatcher.SUGGEST_WORDS;
+				return VerbNetControl.SUGGEST_WORDS;
 			case VerbNetContract.Suggest_FTS_VnWords.SEARCH_WORD_PATH:
-				return VerbNetDispatcher.SUGGEST_FTS_WORDS;
+				return VerbNetControl.SUGGEST_FTS_WORDS;
 			default:
 				throw new IllegalArgumentException("Illegal uri: " + providerUri);
 		}

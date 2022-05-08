@@ -12,11 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /**
- * WordNet query dispatcher
+ * WordNet query control
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class WordNetDispatcher
+public class WordNetControl
 {
 	// table codes
 	static final int WORDS = 10;

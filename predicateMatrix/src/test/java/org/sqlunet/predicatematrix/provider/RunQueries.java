@@ -38,7 +38,7 @@ public class RunQueries
 
 	private static String toSql(final int code, final Module.ContentProviderSql providerSql)
 	{
-		PredicateMatrixDispatcher.Result r = PredicateMatrixDispatcher.queryMain(code, null, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
+		PredicateMatrixControl.Result r = PredicateMatrixControl.queryMain(code, null, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
 		if (r == null)
 		{
 			throw new IllegalArgumentException("Illegal query code: " + code);
@@ -51,9 +51,9 @@ public class RunQueries
 		switch (providerUri)
 		{
 			case PredicateMatrixContract.Pm.CONTENT_URI_TABLE:
-				return PredicateMatrixDispatcher.PM;
+				return PredicateMatrixControl.PM;
 			case PredicateMatrixContract.Pm_X.CONTENT_URI_TABLE:
-				return PredicateMatrixDispatcher.PM_X;
+				return PredicateMatrixControl.PM_X;
 			default:
 				throw new IllegalArgumentException("Illegal uri: " + providerUri);
 		}

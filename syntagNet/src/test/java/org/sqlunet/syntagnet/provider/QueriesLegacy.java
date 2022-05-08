@@ -1,6 +1,6 @@
 package org.sqlunet.syntagnet.provider;
 
-import org.sqlunet.syntagnet.provider.SyntagNetDispatcher.Result;
+import org.sqlunet.syntagnet.provider.SyntagNetControl.Result;
 
 public class QueriesLegacy
 {
@@ -19,7 +19,7 @@ public class QueriesLegacy
 
 		switch (code)
 		{
-			case SyntagNetDispatcher.COLLOCATIONS:
+			case SyntagNetControl.COLLOCATIONS:
 				table = SyntagNetContract.SnCollocations.TABLE;
 				if (selection != null)
 				{
@@ -34,7 +34,7 @@ public class QueriesLegacy
 
 			// J O I N S
 
-			case SyntagNetDispatcher.COLLOCATIONS_X:
+			case SyntagNetControl.COLLOCATIONS_X:
 				table = "sn_syntagms " + //
 						"JOIN words AS " + SyntagNetContract.W1 + " ON (word1id = " + SyntagNetContract.W1 + ".wordid) " + //
 						"JOIN words AS " + SyntagNetContract.W2 + " ON (word2id = " + SyntagNetContract.W2 + ".wordid) " + //

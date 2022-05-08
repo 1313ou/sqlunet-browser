@@ -1,6 +1,6 @@
 package org.sqlunet.provider;
 
-import org.sqlunet.provider.XSqlUNetDispatcher.Result;
+import org.sqlunet.provider.XNetControl.Result;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -59,7 +59,7 @@ public class Utils
 		// args
 		final String[] selectionArgs2 = unfoldSelectionArgs(selectionArgs);
 
-		return new XSqlUNetDispatcher.Result(table, projection, selection, selectionArgs2, groupBy, sortOrder);
+		return new XNetControl.Result(table, projection, selection, selectionArgs2, groupBy, sortOrder);
 	}
 
 	/**

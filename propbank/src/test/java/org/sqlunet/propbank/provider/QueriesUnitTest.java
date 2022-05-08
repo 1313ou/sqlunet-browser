@@ -1,13 +1,13 @@
 package org.sqlunet.propbank.provider;
 
 import org.junit.Test;
-import org.sqlunet.propbank.provider.PropBankDispatcher.Result;
+import org.sqlunet.propbank.provider.PropBankControl.Result;
 
 import java.util.Arrays;
 
 public class QueriesUnitTest
 {
-	private final int[] codes = {PropBankDispatcher.PBROLESET, PropBankDispatcher.PBROLESETS, PropBankDispatcher.PBROLESETS_X, PropBankDispatcher.PBROLESETS_X_BY_ROLESET, PropBankDispatcher.WORDS_PBROLESETS, PropBankDispatcher.PBROLESETS_PBROLES, PropBankDispatcher.PBROLESETS_PBEXAMPLES, PropBankDispatcher.PBROLESETS_PBEXAMPLES_BY_EXAMPLE, PropBankDispatcher.LOOKUP_FTS_EXAMPLES, PropBankDispatcher.LOOKUP_FTS_EXAMPLES_X, PropBankDispatcher.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE, PropBankDispatcher.SUGGEST_WORDS, PropBankDispatcher.SUGGEST_FTS_WORDS,};
+	private final int[] codes = {PropBankControl.PBROLESET, PropBankControl.PBROLESETS, PropBankControl.PBROLESETS_X, PropBankControl.PBROLESETS_X_BY_ROLESET, PropBankControl.WORDS_PBROLESETS, PropBankControl.PBROLESETS_PBROLES, PropBankControl.PBROLESETS_PBEXAMPLES, PropBankControl.PBROLESETS_PBEXAMPLES_BY_EXAMPLE, PropBankControl.LOOKUP_FTS_EXAMPLES, PropBankControl.LOOKUP_FTS_EXAMPLES_X, PropBankControl.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE, PropBankControl.SUGGEST_WORDS, PropBankControl.SUGGEST_FTS_WORDS,};
 	@SuppressWarnings("FieldCanBeLocal")
 	private final String uriLast = "LAST";
 	private final String[] projection = {"PROJ1", "PROJ2", "PROJ3"};
@@ -49,17 +49,17 @@ public class QueriesUnitTest
 
 	public static Result queryProviderMain(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
-		return PropBankDispatcher.queryMain(code, uriLast, projection0, selection0, selectionArgs0);
+		return PropBankControl.queryMain(code, uriLast, projection0, selection0, selectionArgs0);
 	}
 
 	public static Result queryProviderSearch(final int code, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
-		return PropBankDispatcher.querySearch(code, projection0, selection0, selectionArgs0);
+		return PropBankControl.querySearch(code, projection0, selection0, selectionArgs0);
 	}
 
 	public static Result queryProviderSuggest(final int code, final String uriLast)
 	{
-		return PropBankDispatcher.querySuggest(code, uriLast);
+		return PropBankControl.querySuggest(code, uriLast);
 	}
 
 	private void check(final int code, final Result r1, final Result r2)

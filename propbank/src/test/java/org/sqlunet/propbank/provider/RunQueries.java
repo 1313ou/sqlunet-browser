@@ -4,7 +4,6 @@ import org.junit.Test;
 import org.sqlunet.browser.Module;
 import org.sqlunet.propbank.loaders.Queries;
 import org.sqlunet.provider.SQLiteQueryBuilder;
-import org.sqlunet.provider.XSqlUNetDispatcher;
 import org.sqlunet.test.SqlProcessor;
 
 import java.sql.SQLException;
@@ -40,7 +39,7 @@ public class RunQueries
 
 	private static String toSql(final int code, final Module.ContentProviderSql providerSql)
 	{
-		PropBankDispatcher.Result r = PropBankDispatcher.queryMain(code, null, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
+		PropBankControl.Result r = PropBankControl.queryMain(code, null, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
 		if (r == null)
 		{
 			throw new IllegalArgumentException("Illegal query code: " + code);
@@ -53,31 +52,31 @@ public class RunQueries
 		switch (providerUri)
 		{
 			case PropBankContract.PbRoleSets.CONTENT_URI_TABLE1:
-				return PropBankDispatcher.PBROLESET;
+				return PropBankControl.PBROLESET;
 			case PropBankContract.PbRoleSets.CONTENT_URI_TABLE:
-				return PropBankDispatcher.PBROLESETS;
+				return PropBankControl.PBROLESETS;
 			case PropBankContract.PbRoleSets_X.CONTENT_URI_TABLE:
-				return PropBankDispatcher.PBROLESETS_X;
+				return PropBankControl.PBROLESETS_X;
 			case PropBankContract.PbRoleSets_X.CONTENT_URI_TABLE_BY_ROLESET:
-				return PropBankDispatcher.PBROLESETS_X_BY_ROLESET;
+				return PropBankControl.PBROLESETS_X_BY_ROLESET;
 			case PropBankContract.Words_PbRoleSets.CONTENT_URI_TABLE:
-				return PropBankDispatcher.WORDS_PBROLESETS;
+				return PropBankControl.WORDS_PBROLESETS;
 			case PropBankContract.PbRoleSets_PbRoles.CONTENT_URI_TABLE:
-				return PropBankDispatcher.PBROLESETS_PBROLES;
+				return PropBankControl.PBROLESETS_PBROLES;
 			case PropBankContract.PbRoleSets_PbExamples.CONTENT_URI_TABLE:
-				return PropBankDispatcher.PBROLESETS_PBEXAMPLES;
+				return PropBankControl.PBROLESETS_PBEXAMPLES;
 			case PropBankContract.PbRoleSets_PbExamples.CONTENT_URI_TABLE_BY_EXAMPLE:
-				return PropBankDispatcher.PBROLESETS_PBEXAMPLES_BY_EXAMPLE;
+				return PropBankControl.PBROLESETS_PBEXAMPLES_BY_EXAMPLE;
 			case PropBankContract.Lookup_PbExamples.CONTENT_URI_TABLE:
-				return PropBankDispatcher.LOOKUP_FTS_EXAMPLES;
+				return PropBankControl.LOOKUP_FTS_EXAMPLES;
 			case PropBankContract.Lookup_PbExamples_X.CONTENT_URI_TABLE:
-				return PropBankDispatcher.LOOKUP_FTS_EXAMPLES_X;
+				return PropBankControl.LOOKUP_FTS_EXAMPLES_X;
 			case PropBankContract.Lookup_PbExamples_X.CONTENT_URI_TABLE_BY_EXAMPLE:
-				return PropBankDispatcher.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE;
+				return PropBankControl.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE;
 			case PropBankContract.Suggest_PbWords.SEARCH_WORD_PATH:
-				return PropBankDispatcher.SUGGEST_WORDS;
+				return PropBankControl.SUGGEST_WORDS;
 			case PropBankContract.Suggest_FTS_PbWords.SEARCH_WORD_PATH:
-				return PropBankDispatcher.SUGGEST_FTS_WORDS;
+				return PropBankControl.SUGGEST_FTS_WORDS;
 			default:
 				throw new IllegalArgumentException("Illegal uri: " + providerUri);
 		}

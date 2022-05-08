@@ -59,15 +59,15 @@ public class RunQueries
 
 	private static String toSql(final int code, final Module.ContentProviderSql providerSql)
 	{
-		WordNetDispatcher.Result r = WordNetDispatcher.queryMain(code, null, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
+		WordNetControl.Result r = WordNetControl.queryMain(code, null, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
 		if (r == null)
 		{
 			// RELATIONS
-			r = WordNetDispatcher.queryAnyRelations(code, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
+			r = WordNetControl.queryAnyRelations(code, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
 			if (r == null)
 			{
 				// TEXTSEARCH
-				r = WordNetDispatcher.querySearch(code, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
+				r = WordNetControl.querySearch(code, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
 			}
 		}
 		if (r == null)
@@ -82,87 +82,87 @@ public class RunQueries
 		switch (providerUri)
 		{
 			case WordNetContract.Words.CONTENT_URI_TABLE:
-				return WordNetDispatcher.WORDS;
+				return WordNetControl.WORDS;
 			case WordNetContract.Words.CONTENT_URI_TABLE1:
-				return WordNetDispatcher.WORD;
+				return WordNetControl.WORD;
 			case WordNetContract.Senses.CONTENT_URI_TABLE:
-				return WordNetDispatcher.SENSES;
+				return WordNetControl.SENSES;
 			case WordNetContract.Senses.CONTENT_URI_TABLE1:
-				return WordNetDispatcher.SENSE;
+				return WordNetControl.SENSE;
 			case WordNetContract.Synsets.CONTENT_URI_TABLE:
-				return WordNetDispatcher.SYNSETS;
+				return WordNetControl.SYNSETS;
 			case WordNetContract.Synsets.CONTENT_URI_TABLE1:
-				return WordNetDispatcher.SYNSET;
+				return WordNetControl.SYNSET;
 			case WordNetContract.SemRelations.CONTENT_URI_TABLE:
-				return WordNetDispatcher.SEMRELATIONS;
+				return WordNetControl.SEMRELATIONS;
 			case WordNetContract.LexRelations.CONTENT_URI_TABLE:
-				return WordNetDispatcher.LEXRELATIONS;
+				return WordNetControl.LEXRELATIONS;
 			case WordNetContract.Relations.CONTENT_URI_TABLE:
-				return WordNetDispatcher.RELATIONS;
+				return WordNetControl.RELATIONS;
 			case WordNetContract.Poses.CONTENT_URI_TABLE:
-				return WordNetDispatcher.POSES;
+				return WordNetControl.POSES;
 			case WordNetContract.Domains.CONTENT_URI_TABLE:
-				return WordNetDispatcher.DOMAINS;
+				return WordNetControl.DOMAINS;
 			case WordNetContract.AdjPositions.CONTENT_URI_TABLE:
-				return WordNetDispatcher.ADJPOSITIONS;
+				return WordNetControl.ADJPOSITIONS;
 			case WordNetContract.Samples.CONTENT_URI_TABLE:
-				return WordNetDispatcher.SAMPLES;
+				return WordNetControl.SAMPLES;
 			case WordNetContract.Dict.CONTENT_URI_TABLE:
-				return WordNetDispatcher.DICT;
+				return WordNetControl.DICT;
 			case WordNetContract.Words_Senses_Synsets.CONTENT_URI_TABLE:
-				return WordNetDispatcher.WORDS_SENSES_SYNSETS;
+				return WordNetControl.WORDS_SENSES_SYNSETS;
 			case WordNetContract.Words_Senses_CasedWords_Synsets.CONTENT_URI_TABLE:
-				return WordNetDispatcher.WORDS_SENSES_CASEDWORDS_SYNSETS;
+				return WordNetControl.WORDS_SENSES_CASEDWORDS_SYNSETS;
 			case WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CONTENT_URI_TABLE:
-				return WordNetDispatcher.WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS;
+				return WordNetControl.WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS;
 			case WordNetContract.Senses_Words.CONTENT_URI_TABLE:
-				return WordNetDispatcher.SENSES_WORDS;
+				return WordNetControl.SENSES_WORDS;
 			case WordNetContract.Senses_Words.CONTENT_URI_TABLE_BY_SYNSET:
-				return WordNetDispatcher.SENSES_WORDS_BY_SYNSET;
+				return WordNetControl.SENSES_WORDS_BY_SYNSET;
 			case WordNetContract.Senses_Synsets_Poses_Domains.CONTENT_URI_TABLE:
-				return WordNetDispatcher.SENSES_SYNSETS_POSES_DOMAINS;
+				return WordNetControl.SENSES_SYNSETS_POSES_DOMAINS;
 			case WordNetContract.Synsets_Poses_Domains.CONTENT_URI_TABLE:
-				return WordNetDispatcher.SYNSETS_POSES_DOMAINS;
+				return WordNetControl.SYNSETS_POSES_DOMAINS;
 			case WordNetContract.AnyRelations_Senses_Words_X.CONTENT_URI_TABLE_BY_SYNSET:
-				return WordNetDispatcher.ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET;
+				return WordNetControl.ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET;
 			case WordNetContract.SemRelations_Synsets.CONTENT_URI_TABLE:
-				return WordNetDispatcher.SEMRELATIONS_SYNSETS;
+				return WordNetControl.SEMRELATIONS_SYNSETS;
 			case WordNetContract.SemRelations_Synsets_X.CONTENT_URI_TABLE:
-				return WordNetDispatcher.SEMRELATIONS_SYNSETS_X;
+				return WordNetControl.SEMRELATIONS_SYNSETS_X;
 			case WordNetContract.SemRelations_Synsets_Words_X.CONTENT_URI_TABLE_BY_SYNSET:
-				return WordNetDispatcher.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET;
+				return WordNetControl.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET;
 			case WordNetContract.LexRelations_Senses.CONTENT_URI_TABLE:
-				return WordNetDispatcher.LEXRELATIONS_SENSES;
+				return WordNetControl.LEXRELATIONS_SENSES;
 			case WordNetContract.LexRelations_Senses_X.CONTENT_URI_TABLE:
-				return WordNetDispatcher.LEXRELATIONS_SENSES_X;
+				return WordNetControl.LEXRELATIONS_SENSES_X;
 			case WordNetContract.LexRelations_Senses_Words_X.CONTENT_URI_TABLE_BY_SYNSET:
-				return WordNetDispatcher.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET;
+				return WordNetControl.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET;
 			case WordNetContract.Senses_VerbFrames.CONTENT_URI_TABLE:
-				return WordNetDispatcher.SENSES_VFRAMES;
+				return WordNetControl.SENSES_VFRAMES;
 			case WordNetContract.Senses_VerbTemplates.CONTENT_URI_TABLE:
-				return WordNetDispatcher.SENSES_VTEMPLATES;
+				return WordNetControl.SENSES_VTEMPLATES;
 			case WordNetContract.Senses_AdjPositions.CONTENT_URI_TABLE:
-				return WordNetDispatcher.SENSES_ADJPOSITIONS;
+				return WordNetControl.SENSES_ADJPOSITIONS;
 			case WordNetContract.Lexes_Morphs.CONTENT_URI_TABLE:
-				return WordNetDispatcher.LEXES_MORPHS;
+				return WordNetControl.LEXES_MORPHS;
 			case WordNetContract.Words_Lexes_Morphs.CONTENT_URI_TABLE:
-				return WordNetDispatcher.WORDS_LEXES_MORPHS;
+				return WordNetControl.WORDS_LEXES_MORPHS;
 			case WordNetContract.Words_Lexes_Morphs.CONTENT_URI_TABLE_BY_WORD:
-				return WordNetDispatcher.WORDS_LEXES_MORPHS_BY_WORD;
+				return WordNetControl.WORDS_LEXES_MORPHS_BY_WORD;
 			case WordNetContract.Lookup_Words.CONTENT_URI_TABLE:
-				return WordNetDispatcher.LOOKUP_FTS_WORDS;
+				return WordNetControl.LOOKUP_FTS_WORDS;
 			case WordNetContract.Lookup_Definitions.CONTENT_URI_TABLE:
-				return WordNetDispatcher.LOOKUP_FTS_DEFINITIONS;
+				return WordNetControl.LOOKUP_FTS_DEFINITIONS;
 			case WordNetContract.Lookup_Samples.CONTENT_URI_TABLE:
-				return WordNetDispatcher.LOOKUP_FTS_SAMPLES;
+				return WordNetControl.LOOKUP_FTS_SAMPLES;
 			case WordNetContract.Suggest_Words.SEARCH_WORD_PATH:
-				return WordNetDispatcher.SUGGEST_WORDS;
+				return WordNetControl.SUGGEST_WORDS;
 			case WordNetContract.Suggest_FTS_Words.SEARCH_WORD_PATH:
-				return WordNetDispatcher.SUGGEST_FTS_WORDS;
+				return WordNetControl.SUGGEST_FTS_WORDS;
 			case WordNetContract.Suggest_FTS_Definitions.SEARCH_DEFINITION_PATH:
-				return WordNetDispatcher.SUGGEST_FTS_DEFINITIONS;
+				return WordNetControl.SUGGEST_FTS_DEFINITIONS;
 			case WordNetContract.Suggest_FTS_Samples.SEARCH_SAMPLE_PATH:
-				return WordNetDispatcher.SUGGEST_FTS_SAMPLES;
+				return WordNetControl.SUGGEST_FTS_SAMPLES;
 			default:
 				throw new IllegalArgumentException("Illegal uri: " + providerUri);
 		}

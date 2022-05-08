@@ -1,6 +1,6 @@
 package org.sqlunet.bnc.provider;
 
-import org.sqlunet.bnc.provider.BNCDispatcher.Result;
+import org.sqlunet.bnc.provider.BNCControl.Result;
 
 public class QueriesLegacy
 {
@@ -19,7 +19,7 @@ public class QueriesLegacy
 
 		switch (code)
 		{
-			case BNCDispatcher.BNC:
+			case BNCControl.BNC:
 				table = BNCContract.BNCs.TABLE;
 				if (selection != null)
 				{
@@ -34,7 +34,7 @@ public class QueriesLegacy
 
 			// J O I N S
 
-			case BNCDispatcher.WORDS_BNC:
+			case BNCControl.WORDS_BNC:
 				table = "bnc_bncs " + //
 						"LEFT JOIN bnc_spwrs USING (wordid, posid) " + //
 						"LEFT JOIN bnc_convtasks USING (wordid, posid) " + //

@@ -1,6 +1,6 @@
 package org.sqlunet.predicatematrix.provider;
 
-import org.sqlunet.predicatematrix.provider.PredicateMatrixDispatcher.Result;
+import org.sqlunet.predicatematrix.provider.PredicateMatrixControl.Result;
 
 public class QueriesLegacy
 {
@@ -22,13 +22,13 @@ public class QueriesLegacy
 		{
 			// T A B L E
 
-			case PredicateMatrixDispatcher.PM:
+			case PredicateMatrixControl.PM:
 				table = PredicateMatrixContract.Pm.TABLE;
 				break;
 
 			// J O I N S
 
-			case PredicateMatrixDispatcher.PM_X:
+			case PredicateMatrixControl.PM_X:
 				table = "pm_pms " + //
 						"LEFT JOIN pm_roles AS " + PredicateMatrixContract.PMROLE + " USING (pmroleid) " + //
 						"LEFT JOIN pm_predicates AS " + PredicateMatrixContract.PMPREDICATE + " USING (predicateid) " + //

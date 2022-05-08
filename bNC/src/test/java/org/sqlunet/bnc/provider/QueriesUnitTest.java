@@ -1,13 +1,13 @@
 package org.sqlunet.bnc.provider;
 
 import org.junit.Test;
-import org.sqlunet.bnc.provider.BNCDispatcher.Result;
+import org.sqlunet.bnc.provider.BNCControl.Result;
 
 import java.util.Arrays;
 
 public class QueriesUnitTest
 {
-	private final int[] codes = {BNCDispatcher.BNC, BNCDispatcher.WORDS_BNC};
+	private final int[] codes = {BNCControl.BNC, BNCControl.WORDS_BNC};
 
 	@SuppressWarnings("FieldCanBeLocal")
 	private final String uriLast = "LAST";
@@ -41,7 +41,7 @@ public class QueriesUnitTest
 
 	public static Result queryProviderMain(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
-		return BNCDispatcher.queryMain(code, uriLast, projection0, selection0, selectionArgs0);
+		return BNCControl.queryMain(code, uriLast, projection0, selection0, selectionArgs0);
 	}
 
 	private void check(final int code, final Result r1, final Result r2)

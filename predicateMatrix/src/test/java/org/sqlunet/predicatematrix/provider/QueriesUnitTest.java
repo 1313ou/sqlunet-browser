@@ -1,13 +1,13 @@
 package org.sqlunet.predicatematrix.provider;
 
 import org.junit.Test;
-import org.sqlunet.predicatematrix.provider.PredicateMatrixDispatcher.Result;
+import org.sqlunet.predicatematrix.provider.PredicateMatrixControl.Result;
 
 import java.util.Arrays;
 
 public class QueriesUnitTest
 {
-	private final int[] codes = {PredicateMatrixDispatcher.PM, PredicateMatrixDispatcher.PM_X};
+	private final int[] codes = {PredicateMatrixControl.PM, PredicateMatrixControl.PM_X};
 	@SuppressWarnings("FieldCanBeLocal")
 	private final String uriLast = "LAST";
 	private final String[] projection = {"PROJ1", "PROJ2", "PROJ3"};
@@ -41,7 +41,7 @@ public class QueriesUnitTest
 
 	public static Result queryProviderMain(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
-		return PredicateMatrixDispatcher.queryMain(code, uriLast, projection0, selection0, selectionArgs0);
+		return PredicateMatrixControl.queryMain(code, uriLast, projection0, selection0, selectionArgs0);
 	}
 
 	private void check(final int code, final Result r1, final Result r2)
