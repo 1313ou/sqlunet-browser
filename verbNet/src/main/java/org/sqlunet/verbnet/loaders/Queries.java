@@ -53,7 +53,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareVnMembers(final int classId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = VerbNetContract.VnClasses_VnMembers_X.URI;
+		providerSql.providerUri = VerbNetContract.VnClasses_VnMembers_X.URI_BY_WORD;
 		providerSql.projection = new String[]{ //
 				VerbNetContract.VnClasses_VnMembers_X.WORDID, //
 				VerbNetContract.VnClasses_VnMembers_X.VNWORDID, //
@@ -71,7 +71,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareVnRoles(final int classId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = VerbNetContract.VnClasses_VnRoles_X.URI;
+		providerSql.providerUri = VerbNetContract.VnClasses_VnRoles_X.URI_BY_ROLE;
 		providerSql.projection = new String[]{ //
 				VerbNetContract.VnClasses_VnRoles_X.ROLEID, //
 				VerbNetContract.VnClasses_VnRoles_X.ROLETYPE, //
@@ -86,7 +86,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareVnFrames(final int classId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = VerbNetContract.VnClasses_VnFrames_X.URI;
+		providerSql.providerUri = VerbNetContract.VnClasses_VnFrames_X.URI_BY_FRAME;
 		providerSql.projection = new String[]{ //
 				VerbNetContract.VnClasses_VnFrames_X.FRAMEID, //
 				VerbNetContract.VnClasses_VnFrames_X.NUMBER, //

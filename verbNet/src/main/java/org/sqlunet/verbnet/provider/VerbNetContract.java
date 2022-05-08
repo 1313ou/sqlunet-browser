@@ -13,133 +13,127 @@ import android.app.SearchManager;
  */
 public class VerbNetContract
 {
-	static public final class VnWords
+	public interface VnWords
 	{
-		static public final String TABLE = Q.WORDS.TABLE;
-		static public final String URI = VnWords.TABLE;
-		static public final String VNWORDID = V.VNWORDID;
-		static public final String WORDID = V.WORDID;
-		static public final String WORD = V.WORD;
+		String TABLE = Q.WORDS.TABLE;
+		String URI = VnWords.TABLE;
+		String VNWORDID = V.VNWORDID;
+		String WORDID = V.WORDID;
+		String WORD = V.WORD;
 	}
 
-	static public final class VnClasses
+	public interface VnClasses
 	{
-		static public final String TABLE = Q.VNCLASSES.TABLE;
-		static public final String URI = VnClasses.TABLE;
-		static public final String URI1 = "vn_class1";
-		static public final String WORDID = V.WORDID;
-		static public final String POS = V.POSID;
-		static public final String CLASSID = V.CLASSID;
-		static public final String CLASS = V.CLASS;
-		static public final String CLASSTAG = V.CLASSTAG;
+		String TABLE = Q.VNCLASSES.TABLE;
+		String URI = VnClasses.TABLE;
+		String URI1 = "vn_class1";
+		String WORDID = V.WORDID;
+		String POS = V.POSID;
+		String CLASSID = V.CLASSID;
+		String CLASS = V.CLASS;
+		String CLASSTAG = V.CLASSTAG;
 	}
 
-	static public final class VnClasses_X
+	public interface VnClasses_X
 	{
-		static public final String TABLE ="vnclasses_x_by_vnclass";
-		static public final String URI_BY_VN_CLASS = VnClasses_X.TABLE;
-		static public final String WORDID = V.WORDID;
-		static public final String POS = V.POSID;
-		static public final String CLASSID = V.CLASSID;
-		static public final String CLASS = V.CLASS;
-		static public final String CLASSTAG = V.CLASSTAG;
+		String URI_BY_VNCLASS ="vnclasses_x_by_vnclass";
+		String WORDID = V.WORDID;
+		String POS = V.POSID;
+		String CLASSID = V.CLASSID;
+		String CLASS = V.CLASS;
+		String CLASSTAG = V.CLASSTAG;
 	}
 
-	static public final class Words_VnClasses
+	public interface Words_VnClasses
 	{
-		static public final String TABLE = "words_vnclasses";
-		static public final String URI = Words_VnClasses.TABLE;
-		static public final String WORDID = V.WORDID;
-		static public final String SYNSETID = V.SYNSETID;
-		static public final String CLASSID = V.CLASSID;
-		static public final String CLASS = V.CLASS;
-		static public final String CLASSTAG = V.CLASSTAG;
-		static public final String SENSENUM = V.SENSENUM;
-		static public final String SENSEKEY = V.SENSEKEY;
-		static public final String QUALITY = V.QUALITY;
-		static public final String NULLSYNSET = V.NULLSYNSET;
+		String TABLE = "words_vnclasses";
+		String URI = Words_VnClasses.TABLE;
+		String WORDID = V.WORDID;
+		String SYNSETID = V.SYNSETID;
+		String CLASSID = V.CLASSID;
+		String CLASS = V.CLASS;
+		String CLASSTAG = V.CLASSTAG;
+		String SENSENUM = V.SENSENUM;
+		String SENSEKEY = V.SENSEKEY;
+		String QUALITY = V.QUALITY;
+		String NULLSYNSET = V.NULLSYNSET;
 	}
 
-	static public final class VnClasses_VnMembers_X
+	public interface VnClasses_VnMembers_X
 	{
-		static public final String TABLE_BY_WORD = "vnclasses_vnmembers_x_by_word";
-		static public final String URI = VnClasses_VnMembers_X.TABLE_BY_WORD;
-		static public final String CLASSID = V.CLASSID;
-		static public final String VNWORDID = V.VNWORDID;
-		static public final String WORDID = V.WORDID;
-		static public final String WORD = V.WORD;
-		static public final String DEFINITIONS = V.DEFINITIONS;
-		static public final String GROUPINGS = V.GROUPINGS;
-		static public final String DEFINITION = V.DEFINITION;
-		static public final String GROUPING = V.GROUPING;
+		String URI_BY_WORD = "vnclasses_vnmembers_x_by_word";
+		String CLASSID = V.CLASSID;
+		String VNWORDID = V.VNWORDID;
+		String WORDID = V.WORDID;
+		String WORD = V.WORD;
+		String DEFINITIONS = V.DEFINITIONS;
+		String GROUPINGS = V.GROUPINGS;
+		String DEFINITION = V.DEFINITION;
+		String GROUPING = V.GROUPING;
 	}
 
-	static public final class VnClasses_VnRoles_X
+	public interface VnClasses_VnRoles_X
 	{
-		static public final String TABLE_BY_ROLE = "vnclasses_vnroles_x_by_vnrole";
-		static public final String URI = VnClasses_VnRoles_X.TABLE_BY_ROLE;
-		static public final String CLASSID = V.CLASSID;
-		static public final String ROLEID = V.ROLEID;
-		static public final String ROLETYPE = V.ROLETYPE;
-		static public final String RESTRS = V.RESTRS;
+		String URI_BY_ROLE = "vnclasses_vnroles_x_by_vnrole";
+		String CLASSID = V.CLASSID;
+		String ROLEID = V.ROLEID;
+		String ROLETYPE = V.ROLETYPE;
+		String RESTRS = V.RESTRS;
 	}
 
-	static public final class VnClasses_VnFrames_X
+	public interface VnClasses_VnFrames_X
 	{
-		static public final String TABLE_BY_FRAME = "vnclasses_vnframes_x_by_vnframe";
-		static public final String URI = VnClasses_VnFrames_X.TABLE_BY_FRAME;
-		static public final String CLASSID = V.CLASSID;
-		static public final String FRAMEID = V.FRAMEID;
-		static public final String FRAMENAME = V.FRAMENAME;
-		static public final String FRAMESUBNAME = V.FRAMESUBNAME;
-		static public final String SYNTAX = V.SYNTAX;
-		static public final String SEMANTICS = V.SEMANTICS;
-		static public final String NUMBER = V.NUMBER;
-		static public final String XTAG = V.XTAG;
-		static public final String EXAMPLE = V.EXAMPLE;
-		static public final String EXAMPLES = V.EXAMPLES;
+		String URI_BY_FRAME = "vnclasses_vnframes_x_by_vnframe";
+		String CLASSID = V.CLASSID;
+		String FRAMEID = V.FRAMEID;
+		String FRAMENAME = V.FRAMENAME;
+		String FRAMESUBNAME = V.FRAMESUBNAME;
+		String SYNTAX = V.SYNTAX;
+		String SEMANTICS = V.SEMANTICS;
+		String NUMBER = V.NUMBER;
+		String XTAG = V.XTAG;
+		String EXAMPLE = V.EXAMPLE;
+		String EXAMPLES = V.EXAMPLES;
 	}
 
-	static public final class Lookup_VnExamples
+	public interface Lookup_VnExamples
 	{
-		static public final String TABLE = "fts_vnexamples";
-		static public final String URI = Lookup_VnExamples.TABLE;
-		static public final String EXAMPLEID = V.EXAMPLEID;
-		static public final String EXAMPLE = V.EXAMPLE;
-		static public final String CLASSID = V.CLASSID;
-		static public final String FRAMEID = V.FRAMEID;
+		String TABLE = Q.LOOKUP_FTS_EXAMPLES.TABLE;
+		String URI = TABLE;
+		String EXAMPLEID = V.EXAMPLEID;
+		String EXAMPLE = V.EXAMPLE;
+		String CLASSID = V.CLASSID;
+		String FRAMEID = V.FRAMEID;
 	}
 
-	static public final class Lookup_VnExamples_X
+	public interface Lookup_VnExamples_X
 	{
-		static public final String TABLE = "fts_vnexamples_x";
-		static public final String TABLE_BY_EXAMPLE = "fts_vnexamples_x_by_example";
-		static public final String URI = Lookup_VnExamples_X.TABLE;
-		static public final String URI_BY_EXAMPLE = Lookup_VnExamples_X.TABLE_BY_EXAMPLE;
-		static public final String EXAMPLEID = V. EXAMPLEID;
-		static public final String EXAMPLE =  V.EXAMPLE;
-		static public final String CLASSID =  V.CLASSID;
-		static public final String CLASS =  V.CLASS;
-		static public final String FRAMEID =  V.FRAMEID;
-		static public final String CLASSES =  V.CLASSES;
-		static public final String FRAMES =  V.FRAMES;
+		String URI = "fts_vnexamples_x";
+		String URI_BY_EXAMPLE = "fts_vnexamples_x_by_example";
+		String EXAMPLEID = V. EXAMPLEID;
+		String EXAMPLE =  V.EXAMPLE;
+		String CLASSID =  V.CLASSID;
+		String CLASS =  V.CLASS;
+		String FRAMEID =  V.FRAMEID;
+		String CLASSES =  V.CLASSES;
+		String FRAMES =  V.FRAMES;
 	}
 
-	static public final class Suggest_VnWords
+	public interface Suggest_VnWords
 	{
-		static final String SEARCH_WORD_PATH = "suggest_vnword";
-		static public final String TABLE = Suggest_VnWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
-		static public final String VNWORDID =  V.VNWORDID;
-		static public final String WORDID =  V.WORDID;
-		static public final String WORD =  V.WORD;
+		String SEARCH_WORD_PATH = "suggest_vnword";
+		String URI = SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
+		String VNWORDID =  V.VNWORDID;
+		String WORDID =  V.WORDID;
+		String WORD =  V.WORD;
 	}
 
-	static public final class Suggest_FTS_VnWords
+	public interface Suggest_FTS_VnWords
 	{
 		static final String SEARCH_WORD_PATH = "suggest_fts_vnword";
-		static public final String TABLE = Suggest_FTS_VnWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
-		static public final String VNWORDID =  V.VNWORDID;
-		static public final String WORDID =  V.WORDID;
-		static public final String WORD = V.WORD;
+		String URI = SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
+		String VNWORDID =  V.VNWORDID;
+		String WORDID =  V.WORDID;
+		String WORD = V.WORD;
 	}
 }

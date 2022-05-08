@@ -63,15 +63,15 @@ public class RunQueries
 				return VerbNetControl.VNCLASS1;
 			case VerbNetContract.VnClasses.URI:
 				return VerbNetControl.VNCLASSES;
-			case VerbNetContract.VnClasses_X.URI_BY_VN_CLASS:
+			case VerbNetContract.VnClasses_X.URI_BY_VNCLASS:
 				return VerbNetControl.VNCLASSES_X_BY_VNCLASS;
 			case VerbNetContract.Words_VnClasses.URI:
 				return VerbNetControl.WORDS_VNCLASSES;
-			case VerbNetContract.VnClasses_VnMembers_X.URI:
+			case VerbNetContract.VnClasses_VnMembers_X.URI_BY_WORD:
 				return VerbNetControl.VNCLASSES_VNMEMBERS_X_BY_WORD;
-			case VerbNetContract.VnClasses_VnRoles_X.URI:
+			case VerbNetContract.VnClasses_VnRoles_X.URI_BY_ROLE:
 				return VerbNetControl.VNCLASSES_VNROLES_X_BY_VNROLE;
-			case VerbNetContract.VnClasses_VnFrames_X.URI:
+			case VerbNetContract.VnClasses_VnFrames_X.URI_BY_FRAME:
 				return VerbNetControl.VNCLASSES_VNFRAMES_X_BY_VNFRAME;
 			case VerbNetContract.Lookup_VnExamples.URI:
 				return VerbNetControl.LOOKUP_FTS_EXAMPLES;
