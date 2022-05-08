@@ -22,6 +22,7 @@ public class RunQueries
 
 	private void process(final SqlProcessor processor, final Module.ContentProviderSql providerSql) throws SQLException
 	{
+		System.out.println("URI: " + providerSql.providerUri);
 		final int code = uriToCode(providerSql.providerUri);
 		final String sql = toSql(code, providerSql);
 		try
@@ -49,9 +50,9 @@ public class RunQueries
 	{
 		switch (providerUri)
 		{
-			case BNCContract.BNCs.CONTENT_URI_TABLE:
+			case BNCContract.BNCs.URI:
 				return  BNCControl.BNC;
-			case BNCContract.Words_BNCs.CONTENT_URI_TABLE:
+			case BNCContract.Words_BNCs.URI:
 				return BNCControl.WORDS_BNC;
 			default:
 				throw new IllegalArgumentException("Illegal uri: " + providerUri);

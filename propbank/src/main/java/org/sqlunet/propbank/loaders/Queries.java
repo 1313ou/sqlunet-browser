@@ -8,7 +8,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareRoleSet(final long roleSetId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = PropBankContract.PbRoleSets_X.CONTENT_URI_TABLE;
+		providerSql.providerUri = PropBankContract.PbRoleSets_X.URI;
 		providerSql.projection = new String[]{ //
 				PropBankContract.PbRoleSets_X.ROLESETID, //
 				PropBankContract.PbRoleSets_X.ROLESETNAME, //
@@ -23,7 +23,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareRoleSets(final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = PropBankContract.Words_PbRoleSets.CONTENT_URI_TABLE;
+		providerSql.providerUri = PropBankContract.Words_PbRoleSets.URI;
 		providerSql.projection = new String[]{ //
 				PropBankContract.Words_PbRoleSets.ROLESETID, //
 				PropBankContract.Words_PbRoleSets.ROLESETNAME, //
@@ -38,7 +38,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareRoles(final int roleSetId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = PropBankContract.PbRoleSets_PbRoles.CONTENT_URI_TABLE;
+		providerSql.providerUri = PropBankContract.PbRoleSets_PbRoles.URI;
 		providerSql.projection = new String[]{ //
 				PropBankContract.PbRoleSets_PbRoles.ROLEID, //
 				PropBankContract.PbRoleSets_PbRoles.ROLEDESCR, //
@@ -54,7 +54,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareExamples(final int roleSetId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = PropBankContract.PbRoleSets_PbExamples.CONTENT_URI_TABLE;
+		providerSql.providerUri = PropBankContract.PbRoleSets_PbExamples.URI;
 		providerSql.projection = new String[]{ //
 				PropBankContract.PbRoleSets_PbExamples.TEXT, //
 				PropBankContract.PbRoleSets_PbExamples.REL, //

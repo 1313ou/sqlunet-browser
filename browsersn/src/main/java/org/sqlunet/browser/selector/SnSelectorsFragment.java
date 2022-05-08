@@ -22,11 +22,13 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
+import org.sqlunet.browser.Module;
 import org.sqlunet.browser.PositionViewModel;
 import org.sqlunet.browser.Selectors;
 import org.sqlunet.browser.SqlunetViewModel;
 import org.sqlunet.browser.sn.R;
 import org.sqlunet.provider.ProviderArgs;
+import org.sqlunet.syntagnet.loaders.Queries;
 import org.sqlunet.syntagnet.provider.SyntagNetContract;
 import org.sqlunet.syntagnet.provider.SyntagNetContract.SnCollocations_X;
 import org.sqlunet.syntagnet.provider.SyntagNetProvider;
@@ -277,7 +279,7 @@ public class SnSelectorsFragment extends ListFragment
 	 */
 	private long queryId(final String query)
 	{
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(Words.CONTENT_URI_TABLE));
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(Words.URI));
 		final String[] projection = {Words.WORDID,};
 		final String selection = Words.WORD + " = ?"; //
 		final String[] selectionArgs = {query};
@@ -402,22 +404,9 @@ public class SnSelectorsFragment extends ListFragment
 	private void load()
 	{
 		// load the contents
-		final Uri uri = Uri.parse(SyntagNetProvider.makeUri(SnCollocations_X.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				SnCollocations_X.COLLOCATIONID + " AS _id", //
-				SnCollocations_X.WORD1ID, //
-				SnCollocations_X.WORD2ID, //
-				SnCollocations_X.SYNSET1ID, //
-				SnCollocations_X.SYNSET2ID, //
-				SyntagNetContract.W1 + '.' + SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD1, //
-				SyntagNetContract.W2 + '.' + SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD2, //
-				SyntagNetContract.S1 + '.' + SnCollocations_X.POS + " AS " + SyntagNetContract.POS1, //
-				SyntagNetContract.S2 + '.' + SnCollocations_X.POS + " AS " + SyntagNetContract.POS2, //
-		};
-		final String selection = SnCollocations_X.WORD1ID + " = ? OR " + SnCollocations_X.WORD2ID + " = ?"; //
-		final String[] selectionArgs = {Long.toString(SnSelectorsFragment.this.wordId), Long.toString(SnSelectorsFragment.this.wordId), Long.toString(SnSelectorsFragment.this.wordId)};
-		final String sortOrder = SnCollocations_X.WORD2ID + " = ?" + ',' + SyntagNetContract.W1 + '.' + SnCollocations_X.WORD + ',' + SyntagNetContract.W2 + '.' + SnCollocations_X.WORD;
-		this.dataModel.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
+		final Module.ContentProviderSql sql = Queries.prepareSnSelect(SnSelectorsFragment.this.wordId);
+		final Uri uri = Uri.parse(SyntagNetProvider.makeUri(sql.providerUri));
+		this.dataModel.loadData(uri, sql, null);
 	}
 
 	// L I S T E N E R

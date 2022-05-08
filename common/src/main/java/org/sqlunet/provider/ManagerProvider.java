@@ -157,7 +157,7 @@ public class ManagerProvider extends BaseProvider
 	static public Collection<String> getTables(@NonNull final Context context)
 	{
 		final Collection<String> tables = new ArrayList<>();
-		final Uri uri = Uri.parse(makeUri(TablesAndIndices.CONTENT_URI_TABLE));
+		final Uri uri = Uri.parse(makeUri(TablesAndIndices.URI));
 		final String[] projection = {TablesAndIndices.TYPE, TablesAndIndices.NAME};
 		final String selection = TablesAndIndices.TYPE + " = 'table' AND name NOT IN ('sqlite_sequence', 'android_metadata' )";
 		final String[] selectionArgs = {};

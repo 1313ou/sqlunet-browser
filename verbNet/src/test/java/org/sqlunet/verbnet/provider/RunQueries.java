@@ -26,6 +26,7 @@ public class RunQueries
 
 	private void process(final SqlProcessor processor, final Module.ContentProviderSql providerSql) throws SQLException
 	{
+		System.out.println("URI: " + providerSql.providerUri);
 		final int code = uriToCode(providerSql.providerUri);
 		final String sql = toSql(code, providerSql);
 		try
@@ -58,25 +59,25 @@ public class RunQueries
 	{
 		switch (providerUri)
 		{
-			case VerbNetContract.VnClasses.CONTENT_URI_TABLE1:
+			case VerbNetContract.VnClasses.URI1:
 				return VerbNetControl.VNCLASS1;
-			case VerbNetContract.VnClasses.CONTENT_URI_TABLE:
+			case VerbNetContract.VnClasses.URI:
 				return VerbNetControl.VNCLASSES;
-			case VerbNetContract.VnClasses_X.CONTENT_URI_TABLE_BY_VN_CLASS:
+			case VerbNetContract.VnClasses_X.URI_BY_VN_CLASS:
 				return VerbNetControl.VNCLASSES_X_BY_VNCLASS;
-			case VerbNetContract.Words_VnClasses.CONTENT_URI_TABLE:
+			case VerbNetContract.Words_VnClasses.URI:
 				return VerbNetControl.WORDS_VNCLASSES;
-			case VerbNetContract.VnClasses_VnMembers_X.CONTENT_URI_TABLE:
+			case VerbNetContract.VnClasses_VnMembers_X.URI:
 				return VerbNetControl.VNCLASSES_VNMEMBERS_X_BY_WORD;
-			case VerbNetContract.VnClasses_VnRoles_X.CONTENT_URI_TABLE:
+			case VerbNetContract.VnClasses_VnRoles_X.URI:
 				return VerbNetControl.VNCLASSES_VNROLES_X_BY_VNROLE;
-			case VerbNetContract.VnClasses_VnFrames_X.CONTENT_URI_TABLE:
+			case VerbNetContract.VnClasses_VnFrames_X.URI:
 				return VerbNetControl.VNCLASSES_VNFRAMES_X_BY_VNFRAME;
-			case VerbNetContract.Lookup_VnExamples.CONTENT_URI_TABLE:
+			case VerbNetContract.Lookup_VnExamples.URI:
 				return VerbNetControl.LOOKUP_FTS_EXAMPLES;
-			case VerbNetContract.Lookup_VnExamples_X.CONTENT_URI_TABLE:
+			case VerbNetContract.Lookup_VnExamples_X.URI:
 				return VerbNetControl.LOOKUP_FTS_EXAMPLES_X;
-			case VerbNetContract.Lookup_VnExamples_X.CONTENT_URI_TABLE_BY_EXAMPLE:
+			case VerbNetContract.Lookup_VnExamples_X.URI_BY_EXAMPLE:
 				return VerbNetControl.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE;
 			case VerbNetContract.Suggest_VnWords.SEARCH_WORD_PATH:
 				return VerbNetControl.SUGGEST_WORDS;

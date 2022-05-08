@@ -156,7 +156,7 @@ public class SearchTextFragment extends BaseSearchFragment
 		switch (modePosition)
 		{
 			case 0:
-				searchUri = VerbNetProvider.makeUri(VerbNetContract.Lookup_VnExamples_X.CONTENT_URI_TABLE);
+				searchUri = VerbNetProvider.makeUri(VerbNetContract.Lookup_VnExamples_X.URI);
 				id = VerbNetContract.Lookup_VnExamples_X.EXAMPLEID;
 				idType = "vn_example";
 				target = VerbNetContract.Lookup_VnExamples_X.EXAMPLE;
@@ -166,7 +166,7 @@ public class SearchTextFragment extends BaseSearchFragment
 				database = "vn";
 				break;
 			case 1:
-				searchUri = PropBankProvider.makeUri(PropBankContract.Lookup_PbExamples_X.CONTENT_URI_TABLE);
+				searchUri = PropBankProvider.makeUri(PropBankContract.Lookup_PbExamples_X.URI);
 				id = PropBankContract.Lookup_PbExamples_X.EXAMPLEID;
 				idType = "pb_example";
 				target = PropBankContract.Lookup_PbExamples_X.TEXT;

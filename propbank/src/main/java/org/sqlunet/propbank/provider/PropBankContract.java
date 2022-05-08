@@ -27,7 +27,7 @@ public class PropBankContract
 	static public final class PbWords
 	{
 		static public final String TABLE = Q.PBWORDS.TABLE;
-		static public final String CONTENT_URI_TABLE = PbWords.TABLE;
+		static public final String URI = PbWords.TABLE;
 		static public final String PBWORDID = V.PBWORDID;
 		static public final String WORDID = V.WORDID;
 		static public final String WORD = V.WORD;
@@ -36,8 +36,8 @@ public class PropBankContract
 	static public final class PbRoleSets
 	{
 		static public final String TABLE = Q.PBROLESET1.TABLE;
-		static public final String CONTENT_URI_TABLE = PbRoleSets.TABLE;
-		static public final String CONTENT_URI_TABLE1 = "word";
+		static public final String URI = PbRoleSets.TABLE;
+		static public final String URI1 = "word";
 		static public final String ROLESETID = V.ROLESETID;
 		static public final String ROLESETNAME = V.ROLESETNAME;
 		static public final String ROLESETDESC = V.ROLESETDESCR;
@@ -48,8 +48,8 @@ public class PropBankContract
 	{
 		static public final String TABLE = "pbrolesets_x";
 		static public final String TABLE_BY_ROLESET = "pbrolesets_x_by_roleset";
-		static public final String CONTENT_URI_TABLE = PbRoleSets_X.TABLE;
-		static public final String CONTENT_URI_TABLE_BY_ROLESET = PbRoleSets_X.TABLE_BY_ROLESET;
+		static public final String URI = PbRoleSets_X.TABLE;
+		static public final String URI_BY_ROLESET = PbRoleSets_X.TABLE_BY_ROLESET;
 		static public final String ROLESETID = V.ROLESETID;
 		static public final String ROLESETNAME = V.ROLESETNAME;
 		static public final String ROLESETDESC = V.ROLESETDESCR;
@@ -61,7 +61,7 @@ public class PropBankContract
 	static public final class Words_PbRoleSets
 	{
 		static public final String TABLE = "words_pbrolesets";
-		static public final String CONTENT_URI_TABLE = Words_PbRoleSets.TABLE;
+		static public final String URI = Words_PbRoleSets.TABLE;
 		static public final String WORDID = V.WORDID;
 		static public final String POS = V.POS;
 		static public final String ROLESETID = V.ROLESETID;
@@ -73,7 +73,7 @@ public class PropBankContract
 	static public final class PbRoleSets_PbRoles
 	{
 		static public final String TABLE = "pbrolesets_pbroles";
-		static public final String CONTENT_URI_TABLE = PbRoleSets_PbRoles.TABLE;
+		static public final String URI = PbRoleSets_PbRoles.TABLE;
 		static public final String ROLESETID = V.ROLESETID;
 		static public final String ROLEID = V.ROLEID;
 		static public final String ROLEDESCR = V.ROLEDESCR;
@@ -86,8 +86,8 @@ public class PropBankContract
 	{
 		static public final String TABLE = "pbrolesets_pbexamples";
 		static public final String TABLE_BY_EXAMPLE = "pbrolesets_pbexamples_by_example";
-		static public final String CONTENT_URI_TABLE = PbRoleSets_PbExamples.TABLE;
-		static public final String CONTENT_URI_TABLE_BY_EXAMPLE = PbRoleSets_PbExamples.TABLE_BY_EXAMPLE;
+		static public final String URI = PbRoleSets_PbExamples.TABLE;
+		static public final String URI_BY_EXAMPLE = PbRoleSets_PbExamples.TABLE_BY_EXAMPLE;
 		static public final String ROLESETID = V.ROLESETID;
 		static public final String TEXT = V.TEXT;
 		static public final String REL = V.REL;
@@ -108,7 +108,7 @@ public class PropBankContract
 	static public final class Lookup_PbExamples
 	{
 		static public final String TABLE = "fts_pbexamples";
-		static public final String CONTENT_URI_TABLE = Lookup_PbExamples.TABLE;
+		static public final String URI = Lookup_PbExamples.TABLE;
 		static public final String EXAMPLEID = V.EXAMPLEID;
 		static public final String TEXT = V.TEXT;
 		static public final String ROLESETID = V.ROLESETID;
@@ -118,8 +118,8 @@ public class PropBankContract
 	{
 		static public final String TABLE = "fts_pbexamples_x";
 		static public final String TABLE_BY_EXAMPLE = "fts_pbexamples_x_by_examples";
-		static public final String CONTENT_URI_TABLE = Lookup_PbExamples_X.TABLE;
-		static public final String CONTENT_URI_TABLE_BY_EXAMPLE = Lookup_PbExamples_X.TABLE_BY_EXAMPLE;
+		static public final String URI = Lookup_PbExamples_X.TABLE;
+		static public final String URI_BY_EXAMPLE = Lookup_PbExamples_X.TABLE_BY_EXAMPLE;
 		static public final String EXAMPLEID = V.EXAMPLEID;
 		static public final String TEXT = V.TEXT;
 		static public final String ROLESETID = V.ROLESETID;

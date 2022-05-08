@@ -159,7 +159,7 @@ public class SearchTextFragment extends BaseSearchFragment
 		switch (modePosition)
 		{
 			case 0:
-				searchUri = WordNetProvider.makeUri(WordNetContract.Lookup_Definitions.CONTENT_URI_TABLE);
+				searchUri = WordNetProvider.makeUri(WordNetContract.Lookup_Definitions.URI);
 				id = WordNetContract.Lookup_Definitions.SYNSETID;
 				idType = "synset";
 				target = WordNetContract.Lookup_Definitions.DEFINITION;
@@ -168,7 +168,7 @@ public class SearchTextFragment extends BaseSearchFragment
 				database = "wn";
 				break;
 			case 1:
-				searchUri = WordNetProvider.makeUri(WordNetContract.Lookup_Samples.CONTENT_URI_TABLE);
+				searchUri = WordNetProvider.makeUri(WordNetContract.Lookup_Samples.URI);
 				id = WordNetContract.Lookup_Samples.SYNSETID;
 				idType = "synset";
 				target = WordNetContract.Lookup_Samples.SAMPLE;
@@ -177,7 +177,7 @@ public class SearchTextFragment extends BaseSearchFragment
 				database = "wn";
 				break;
 			case 2:
-				searchUri = WordNetProvider.makeUri(WordNetContract.Lookup_Words.CONTENT_URI_TABLE);
+				searchUri = WordNetProvider.makeUri(WordNetContract.Lookup_Words.URI);
 				id = WordNetContract.Lookup_Words.WORDID;
 				idType = "word";
 				target = WordNetContract.Lookup_Words.WORD;
@@ -186,7 +186,7 @@ public class SearchTextFragment extends BaseSearchFragment
 				database = "wn";
 				break;
 			case 3:
-				searchUri = VerbNetProvider.makeUri(VerbNetContract.Lookup_VnExamples_X.CONTENT_URI_TABLE);
+				searchUri = VerbNetProvider.makeUri(VerbNetContract.Lookup_VnExamples_X.URI);
 				id = VerbNetContract.Lookup_VnExamples_X.EXAMPLEID;
 				idType = "vnexample";
 				target = VerbNetContract.Lookup_VnExamples_X.EXAMPLE;
@@ -196,7 +196,7 @@ public class SearchTextFragment extends BaseSearchFragment
 				database = "vn";
 				break;
 			case 4:
-				searchUri = PropBankProvider.makeUri(PropBankContract.Lookup_PbExamples_X.CONTENT_URI_TABLE);
+				searchUri = PropBankProvider.makeUri(PropBankContract.Lookup_PbExamples_X.URI);
 				id = PropBankContract.Lookup_PbExamples_X.EXAMPLEID;
 				idType = "pbexample";
 				target = PropBankContract.Lookup_PbExamples_X.TEXT;
@@ -206,7 +206,7 @@ public class SearchTextFragment extends BaseSearchFragment
 				database = "pb";
 				break;
 			case 5:
-				searchUri = FrameNetProvider.makeUri(FrameNetContract.Lookup_FTS_FnSentences_X.CONTENT_URI_TABLE_BY_SENTENCE);
+				searchUri = FrameNetProvider.makeUri(FrameNetContract.Lookup_FTS_FnSentences_X.URI_BY_SENTENCE);
 				id = FrameNetContract.Lookup_FTS_FnSentences_X.SENTENCEID;
 				idType = "fnsentence";
 				target = FrameNetContract.Lookup_FTS_FnSentences_X.TEXT;

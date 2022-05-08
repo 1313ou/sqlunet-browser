@@ -20,17 +20,19 @@ public class RunQueries
 		process(processor, Queries.prepareCollocations(0L, 0L, 0L, 0L));
 		process(processor, Queries.prepareCollocations(0));
 		process(processor, Queries.prepareCollocations("w"));
+		process(processor, Queries.prepareSnSelect(0));
 	}
 
 	private void process(final SqlProcessor processor, final Module.ContentProviderSql providerSql) throws SQLException
 	{
+		System.out.println("URI: " + providerSql.providerUri);
 		final int code = uriToCode(providerSql.providerUri);
 		final String sql = toSql(code, providerSql);
 		try
 		{
 			processor.process(sql);
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			System.err.println(providerSql);
 			throw e;
@@ -51,9 +53,9 @@ public class RunQueries
 	{
 		switch (providerUri)
 		{
-			case SyntagNetContract.SnCollocations.CONTENT_URI_TABLE:
+			case SyntagNetContract.SnCollocations.URI:
 				return SyntagNetControl.COLLOCATIONS;
-			case SyntagNetContract.SnCollocations_X.CONTENT_URI_TABLE:
+			case SyntagNetContract.SnCollocations_X.URI:
 				return SyntagNetControl.COLLOCATIONS_X;
 			default:
 				throw new IllegalArgumentException("Illegal uri: " + providerUri);

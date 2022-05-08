@@ -154,7 +154,7 @@ public class SearchTextFragment extends BaseSearchFragment
 		switch (modePosition)
 		{
 			case 0:
-				searchUri = WordNetProvider.makeUri(WordNetContract.Lookup_Definitions.CONTENT_URI_TABLE);
+				searchUri = WordNetProvider.makeUri(WordNetContract.Lookup_Definitions.URI);
 				id = WordNetContract.Lookup_Definitions.SYNSETID;
 				idType = "synset";
 				target = WordNetContract.Lookup_Definitions.DEFINITION;
@@ -163,7 +163,7 @@ public class SearchTextFragment extends BaseSearchFragment
 				database = "wn";
 				break;
 			case 1:
-				searchUri = WordNetProvider.makeUri(WordNetContract.Lookup_Samples.CONTENT_URI_TABLE);
+				searchUri = WordNetProvider.makeUri(WordNetContract.Lookup_Samples.URI);
 				id = WordNetContract.Lookup_Samples.SYNSETID;
 				idType = "synset";
 				target = WordNetContract.Lookup_Samples.SAMPLE;
@@ -172,7 +172,7 @@ public class SearchTextFragment extends BaseSearchFragment
 				database = "wn";
 				break;
 			case 2:
-				searchUri = WordNetProvider.makeUri(WordNetContract.Lookup_Words.CONTENT_URI_TABLE);
+				searchUri = WordNetProvider.makeUri(WordNetContract.Lookup_Words.URI);
 				id = WordNetContract.Lookup_Words.WORDID;
 				idType = "word";
 				target = WordNetContract.Lookup_Words.WORD;

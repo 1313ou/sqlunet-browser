@@ -2,6 +2,7 @@ package org.sqlunet.syntagnet.loaders;
 
 import org.sqlunet.browser.Module;
 import org.sqlunet.syntagnet.provider.SyntagNetContract;
+import org.sqlunet.wordnet.provider.WordNetContract;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,10 +12,31 @@ import androidx.annotation.Nullable;
 
 public class Queries
 {
+	public static Module.ContentProviderSql prepareSnSelect(final long wordId)
+	{
+		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
+		providerSql.providerUri = SyntagNetContract.SnCollocations_X.URI;
+		providerSql.projection = new  String[]{ //
+				SyntagNetContract.SnCollocations_X.COLLOCATIONID + " AS _id", //
+				SyntagNetContract.SnCollocations_X.WORD1ID, //
+				SyntagNetContract.SnCollocations_X.WORD2ID, //
+				SyntagNetContract.SnCollocations_X.SYNSET1ID, //
+				SyntagNetContract.SnCollocations_X.SYNSET2ID, //
+				SyntagNetContract.W1 + '.' + SyntagNetContract.SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD1, //
+				SyntagNetContract.W2 + '.' + SyntagNetContract.SnCollocations_X.WORD + " AS " + SyntagNetContract.WORD2, //
+				SyntagNetContract.S1 + '.' + SyntagNetContract.SnCollocations_X.POS + " AS " + SyntagNetContract.POS1, //
+				SyntagNetContract.S2 + '.' + SyntagNetContract.SnCollocations_X.POS + " AS " + SyntagNetContract.POS2, //
+		};
+		providerSql.selection = SyntagNetContract.SnCollocations_X.WORD1ID + " = ? OR " + SyntagNetContract.SnCollocations_X.WORD2ID + " = ?"; //
+		providerSql.selectionArgs = new  String[]{Long.toString(wordId), Long.toString(wordId), Long.toString(wordId)};
+		providerSql.sortBy = SyntagNetContract.SnCollocations_X.WORD2ID + " = ?" + ',' + SyntagNetContract.W1 + '.' + SyntagNetContract.SnCollocations_X.WORD + ',' + SyntagNetContract.W2 + '.' + SyntagNetContract.SnCollocations_X.WORD;
+		return providerSql;
+	}
+
 	public static Module.ContentProviderSql prepareCollocation(final long collocationId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = SyntagNetContract.SnCollocations_X.CONTENT_URI_TABLE;
+		providerSql.providerUri = SyntagNetContract.SnCollocations_X.URI;
 		providerSql.projection = new String[]{ //
 				SyntagNetContract.SnCollocations_X.COLLOCATIONID, //
 				SyntagNetContract.SnCollocations_X.WORD1ID, //
@@ -36,7 +58,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareCollocations(final Long word1Id, @Nullable final Long word2Id, final Long synset1Id, final Long synset2Id)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = SyntagNetContract.SnCollocations_X.CONTENT_URI_TABLE;
+		providerSql.providerUri = SyntagNetContract.SnCollocations_X.URI;
 		providerSql.projection = new String[]{ //
 				SyntagNetContract.SnCollocations_X.COLLOCATIONID, //
 				SyntagNetContract.SnCollocations_X.WORD1ID, //
@@ -64,7 +86,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareCollocations(final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = SyntagNetContract.SnCollocations_X.CONTENT_URI_TABLE;
+		providerSql.providerUri = SyntagNetContract.SnCollocations_X.URI;
 		providerSql.projection = new String[]{ //
 				SyntagNetContract.SnCollocations_X.WORD1ID, //
 				SyntagNetContract.SnCollocations_X.WORD2ID, //
@@ -81,7 +103,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareCollocations(final String word)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = SyntagNetContract.SnCollocations_X.CONTENT_URI_TABLE;
+		providerSql.providerUri = SyntagNetContract.SnCollocations_X.URI;
 		providerSql.projection = new String[]{ //
 				SyntagNetContract.SnCollocations_X.WORD1ID, //
 				SyntagNetContract.SnCollocations_X.WORD2ID, //

@@ -21,11 +21,13 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import org.sqlunet.Pointer;
+import org.sqlunet.browser.Module;
 import org.sqlunet.browser.PositionViewModel;
 import org.sqlunet.browser.SqlunetViewModel;
 import org.sqlunet.browser.fn.R;
 import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.framenet.FnLexUnitPointer;
+import org.sqlunet.framenet.loaders.Queries;
 import org.sqlunet.framenet.provider.FrameNetContract.LexUnits_or_Frames;
 import org.sqlunet.framenet.provider.FrameNetProvider;
 import org.sqlunet.provider.ProviderArgs;
@@ -47,8 +49,6 @@ import androidx.lifecycle.ViewModelProvider;
 public class SelectorsFragment extends ListFragment
 {
 	static private final String TAG = "SelectorsF";
-
-	private static final String ISLIKE = "islike";
 
 	/**
 	 * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
@@ -228,7 +228,7 @@ public class SelectorsFragment extends ListFragment
 
 			if (view instanceof TextView)
 			{
-				final int idIsLike = cursor.getColumnIndex(ISLIKE);
+				final int idIsLike = cursor.getColumnIndex(Queries.ISLIKE);
 				final int idName = cursor.getColumnIndex(LexUnits_or_Frames.NAME);
 
 				String text = cursor.getString(columnIndex);
@@ -300,23 +300,9 @@ public class SelectorsFragment extends ListFragment
 	private void load()
 	{
 		// load the contents
-		final Uri uri = Uri.parse(FrameNetProvider.makeUri(LexUnits_or_Frames.CONTENT_URI_TABLE_FN));
-		final String[] projection = { //
-				LexUnits_or_Frames.ID, //
-				LexUnits_or_Frames.FNID, //
-				LexUnits_or_Frames.FNWORDID, //
-				LexUnits_or_Frames.WORDID, //
-				LexUnits_or_Frames.WORD, //
-				LexUnits_or_Frames.NAME, //
-				LexUnits_or_Frames.FRAMENAME, //
-				LexUnits_or_Frames.FRAMEID, //
-				LexUnits_or_Frames.ISFRAME, //
-				LexUnits_or_Frames.WORD + "<>'" + SelectorsFragment.this.word + "' AS " + ISLIKE, //
-		};
-		final String selection = LexUnits_or_Frames.WORD + " LIKE ? || '%'";
-		final String[] selectionArgs = {SelectorsFragment.this.word};
-		final String sortOrder = LexUnits_or_Frames.ISFRAME + ',' + LexUnits_or_Frames.WORD + ',' + LexUnits_or_Frames.ID;
-		this.dataModel.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
+		final Module.ContentProviderSql sql = Queries.prepareSelect(SelectorsFragment.this.word);
+		final Uri uri = Uri.parse(FrameNetProvider.makeUri(sql.providerUri));
+		this.dataModel.loadData(uri, sql, null);
 	}
 
 	// L I S T E N E R

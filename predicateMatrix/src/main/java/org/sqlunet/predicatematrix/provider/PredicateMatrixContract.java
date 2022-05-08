@@ -53,13 +53,13 @@ public class PredicateMatrixContract
 	static public final class Pm extends PredicateMatrix
 	{
 		static public final String TABLE = "pm";
-		static public final String CONTENT_URI_TABLE = Pm.TABLE;
+		static public final String URI = Pm.TABLE;
 	}
 
 	static public final class Pm_X extends PredicateMatrix
 	{
 		static public final String TABLE = "pm_x";
-		static public final String CONTENT_URI_TABLE = Pm_X.TABLE;
+		static public final String URI = Pm_X.TABLE;
 		static public final String DEFINITION = "definition";
 		static public final String VNCLASS = "class";
 		static public final String VNROLERESTRID = "restrsid";

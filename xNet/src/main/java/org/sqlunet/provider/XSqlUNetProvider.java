@@ -55,18 +55,18 @@ public class XSqlUNetProvider extends BaseProvider
 
 	static private void matchURIs()
 	{
-		uriMatcher.addURI(AUTHORITY, Words_FnWords_PbWords_VnWords.TABLE, XNetControl.WORDS_FNWORDS_PBWORDS_VNWORDS);
-		uriMatcher.addURI(AUTHORITY, Words_PbWords_VnWords.TABLE, XNetControl.WORDS_PBWORDS_VNWORDS);
-		uriMatcher.addURI(AUTHORITY, PredicateMatrix.TABLE, XNetControl.PREDICATEMATRIX);
-		uriMatcher.addURI(AUTHORITY, PredicateMatrix_VerbNet.TABLE, XNetControl.PREDICATEMATRIX_VERBNET);
-		uriMatcher.addURI(AUTHORITY, PredicateMatrix_PropBank.TABLE, XNetControl.PREDICATEMATRIX_PROPBANK);
-		uriMatcher.addURI(AUTHORITY, PredicateMatrix_FrameNet.TABLE, XNetControl.PREDICATEMATRIX_FRAMENET);
-		uriMatcher.addURI(AUTHORITY, Words_VnWords_VnClasses.TABLE, XNetControl.WORDS_VNWORDS_VNCLASSES);
-		uriMatcher.addURI(AUTHORITY, Words_VnWords_VnClasses_U.TABLE, XNetControl.WORDS_VNWORDS_VNCLASSES_U);
-		uriMatcher.addURI(AUTHORITY, Words_PbWords_PbRoleSets.TABLE, XNetControl.WORDS_PBWORDS_PBROLESETS);
-		uriMatcher.addURI(AUTHORITY, Words_PbWords_PbRoleSets_U.TABLE, XNetControl.WORDS_PBWORDS_PBROLESETS_U);
-		uriMatcher.addURI(AUTHORITY, Words_FnWords_FnFrames_U.TABLE, XNetControl.WORDS_FNWORDS_FNFRAMES_U);
-		uriMatcher.addURI(AUTHORITY, XNetContract.Sources.TABLE, XNetControl.SOURCES);
+		uriMatcher.addURI(AUTHORITY, Words_FnWords_PbWords_VnWords.URI, XNetControl.WORDS_FNWORDS_PBWORDS_VNWORDS);
+		uriMatcher.addURI(AUTHORITY, Words_PbWords_VnWords.URI, XNetControl.WORDS_PBWORDS_VNWORDS);
+		uriMatcher.addURI(AUTHORITY, PredicateMatrix.URI, XNetControl.PREDICATEMATRIX);
+		uriMatcher.addURI(AUTHORITY, PredicateMatrix_VerbNet.URI, XNetControl.PREDICATEMATRIX_VERBNET);
+		uriMatcher.addURI(AUTHORITY, PredicateMatrix_PropBank.URI, XNetControl.PREDICATEMATRIX_PROPBANK);
+		uriMatcher.addURI(AUTHORITY, PredicateMatrix_FrameNet.URI, XNetControl.PREDICATEMATRIX_FRAMENET);
+		uriMatcher.addURI(AUTHORITY, Words_VnWords_VnClasses.URI, XNetControl.WORDS_VNWORDS_VNCLASSES);
+		uriMatcher.addURI(AUTHORITY, Words_VnWords_VnClasses_U.URI, XNetControl.WORDS_VNWORDS_VNCLASSES_U);
+		uriMatcher.addURI(AUTHORITY, Words_PbWords_PbRoleSets.URI, XNetControl.WORDS_PBWORDS_PBROLESETS);
+		uriMatcher.addURI(AUTHORITY, Words_PbWords_PbRoleSets_U.URI, XNetControl.WORDS_PBWORDS_PBROLESETS_U);
+		uriMatcher.addURI(AUTHORITY, Words_FnWords_FnFrames_U.URI, XNetControl.WORDS_FNWORDS_FNFRAMES_U);
+		uriMatcher.addURI(AUTHORITY, XNetContract.Sources.URI, XNetControl.SOURCES);
 	}
 
 	@NonNull
@@ -106,29 +106,29 @@ public class XSqlUNetProvider extends BaseProvider
 		switch (uriMatcher.match(uri))
 		{
 			case XNetControl.WORDS_FNWORDS_PBWORDS_VNWORDS:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_FnWords_PbWords_VnWords.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_FnWords_PbWords_VnWords.URI;
 			case XNetControl.WORDS_PBWORDS_VNWORDS:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_PbWords_VnWords.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_PbWords_VnWords.URI;
 			case XNetControl.PREDICATEMATRIX:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PredicateMatrix.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PredicateMatrix.URI;
 			case XNetControl.PREDICATEMATRIX_VERBNET:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PredicateMatrix_VerbNet.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PredicateMatrix_VerbNet.URI;
 			case XNetControl.PREDICATEMATRIX_PROPBANK:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PredicateMatrix_PropBank.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PredicateMatrix_PropBank.URI;
 			case XNetControl.PREDICATEMATRIX_FRAMENET:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PredicateMatrix_FrameNet.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PredicateMatrix_FrameNet.URI;
 			case XNetControl.WORDS_VNWORDS_VNCLASSES:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_VnWords_VnClasses.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_VnWords_VnClasses.URI;
 			case XNetControl.WORDS_VNWORDS_VNCLASSES_U:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_VnWords_VnClasses_U.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_VnWords_VnClasses_U.URI;
 			case XNetControl.WORDS_PBWORDS_PBROLESETS:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_PbWords_PbRoleSets.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_PbWords_PbRoleSets.URI;
 			case XNetControl.WORDS_PBWORDS_PBROLESETS_U:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_PbWords_PbRoleSets_U.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_PbWords_PbRoleSets_U.URI;
 			case XNetControl.WORDS_FNWORDS_FNFRAMES_U:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_FnWords_FnFrames_U.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_FnWords_FnFrames_U.URI;
 			case XNetControl.SOURCES:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Sources.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Sources.URI;
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");
 		}

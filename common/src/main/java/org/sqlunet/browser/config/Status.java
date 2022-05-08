@@ -128,7 +128,7 @@ abstract public class Status
 				+ "ELSE " + ManagerContract.TablesAndIndices.TYPE + " END ASC," //
 				+ ManagerContract.TablesAndIndices.NAME + " ASC";
 		final Cursor cursor = context.getContentResolver().query( //
-				Uri.parse(ManagerProvider.makeUri(TablesAndIndices.CONTENT_URI_TABLE)), //
+				Uri.parse(ManagerProvider.makeUri(TablesAndIndices.URI)), //
 				new String[]{TablesAndIndices.TYPE, TablesAndIndices.NAME}, // projection
 				"name NOT LIKE 'sqlite_%' AND name NOT LIKE 'android_%'", // selection criteria //
 				null, //

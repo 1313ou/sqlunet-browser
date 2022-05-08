@@ -4,6 +4,7 @@
 
 package org.sqlunet.provider;
 
+import org.sqlunet.xnet.provider.Q;
 import org.sqlunet.xnet.provider.V;
 
 /**
@@ -15,282 +16,262 @@ public final class XNetContract
 {
 	// A L I A S E S
 
-	static public final String WORD = "w";
-	static public final String SENSE = "s";
-	static public final String SYNSET = "y";
-	static public final String POS = "p";
-	static public final String CLASS = "c";
+	public static final String AS_WORD = "w";
+	public static final String AS_SENSE = "s";
+	public static final String AS_SYNSET = "y";
+	public static final String AS_POS = "p";
+	public static final String AS_CLASS = "c";
 
 	// Word cross reference
 
-	static public final class Words_FnWords_PbWords_VnWords
+	public interface Words_FnWords_PbWords_VnWords
 	{
-		static public final String TABLE = "words_fnwords_pbwords_vnwords";
-		static public final String CONTENT_URI_TABLE = Words_FnWords_PbWords_VnWords.TABLE;
-		static public final String WORD = V.WORD;
-		static public final String WORDID = V.WORDID;
-		static public final String FNWORDID = V.FNWORDID;
-		static public final String PBWORDID = V.PBWORDID;
-		static public final String VNWORDID = V.VNWORDID;
-		static public final String SYNSETID = V.SYNSETID;
-		static public final String LUID = V.LUID;
-		static public final String SENSEID = V.SENSEID;
-		static public final String SENSENUM = V.SENSENUM;
-		static public final String SENSEKEY = V.SENSEKEY;
-		static public final String POSID = V.POSID;
-		static public final String POS = V.POS;
-		static public final String DOMAIN = V.DOMAIN;
-		static public final String DEFINITION = V.DEFINITION;
-		static public final String CASED = V.CASEDWORD;
-		static public final String TAGCOUNT = V.TAGCOUNT;
-		static public final String SOURCES = V.SOURCES;
+		String URI = "words_fnwords_pbwords_vnwords";
+		String WORD = V.WORD;
+		String WORDID = V.WORDID;
+		String FNWORDID = V.FNWORDID;
+		String PBWORDID = V.PBWORDID;
+		String VNWORDID = V.VNWORDID;
+		String SYNSETID = V.SYNSETID;
+		String LUID = V.LUID;
+		String SENSEID = V.SENSEID;
+		String SENSENUM = V.SENSENUM;
+		String SENSEKEY = V.SENSEKEY;
+		String POSID = V.POSID;
+		String POS = V.POS;
+		String DOMAIN = V.DOMAIN;
+		String DEFINITION = V.DEFINITION;
+		String CASED = V.CASEDWORD;
+		String TAGCOUNT = V.TAGCOUNT;
+		String SOURCES = V.SOURCES;
 	}
 
-	static public final class Words_PbWords_VnWords
+	public interface Words_PbWords_VnWords
 	{
-		static public final String TABLE = "words_pbwords_vnwords";
-		static public final String CONTENT_URI_TABLE = Words_PbWords_VnWords.TABLE;
-		static public final String WORD = V.WORD;
-		static public final String WORDID = V.WORDID;
-		static public final String PBWORDID = V.PBWORDID;
-		static public final String VNWORDID = V.VNWORDID;
-		static public final String SYNSETID = V.SYNSETID;
-		static public final String LUID = V.LUID;
-		static public final String SENSEID = V.SENSEID;
-		static public final String SENSENUM = V.SENSENUM;
-		static public final String SENSEKEY = V.SENSEKEY;
-		static public final String POSID = V.POSID;
-		static public final String POS = V.POS;
-		static public final String DOMAIN = V.DOMAIN;
-		static public final String DEFINITION = V.DEFINITION;
-		static public final String CASEDWORD = V.CASEDWORD;
-		static public final String TAGCOUNT = V.TAGCOUNT;
-		static public final String SOURCES = V.SOURCES;
+		String URI = "words_pbwords_vnwords";
+		String WORD = V.WORD;
+		String WORDID = V.WORDID;
+		String PBWORDID = V.PBWORDID;
+		String VNWORDID = V.VNWORDID;
+		String SYNSETID = V.SYNSETID;
+		String LUID = V.LUID;
+		String SENSEID = V.SENSEID;
+		String SENSENUM = V.SENSENUM;
+		String SENSEKEY = V.SENSEKEY;
+		String POSID = V.POSID;
+		String POS = V.POS;
+		String DOMAIN = V.DOMAIN;
+		String DEFINITION = V.DEFINITION;
+		String CASEDWORD = V.CASEDWORD;
+		String TAGCOUNT = V.TAGCOUNT;
+		String SOURCES = V.SOURCES;
 	}
 
-	static public final class Words_VnWords_VnClasses
+	public interface Words_VnWords_VnClasses
 	{
-		static public final String TABLE = "words_vnwords_vnclasses";
-		static public final String CONTENT_URI_TABLE = Words_VnWords_VnClasses.TABLE;
-		static public final String WORDID = V.WORDID;
-		static public final String SYNSETID = V.SYNSETID;
-		static public final String VNWORDID = V.VNWORDID;
-		static public final String CLASSID = V.CLASSID;
-		static public final String CLASS = V.CLASS;
-		static public final String CLASSTAG = V.CLASSTAG;
-		static public final String DEFINITION = V.DEFINITION;
-		static public final String SOURCE = V.SOURCE;
-		static public final String SOURCES = V.SOURCES;
+		String URI = "words_vnwords_vnclasses";
+		String WORDID = V.WORDID;
+		String SYNSETID = V.SYNSETID;
+		String VNWORDID = V.VNWORDID;
+		String CLASSID = V.CLASSID;
+		String CLASS = V.CLASS;
+		String CLASSTAG = V.CLASSTAG;
+		String DEFINITION = V.DEFINITION;
+		String SOURCE = V.SOURCE;
+		String SOURCES = V.SOURCES;
 	}
 
-	static public final class Words_PbWords_PbRoleSets
+	public interface Words_PbWords_PbRoleSets
 	{
-		static public final String TABLE = "words_pbwords_pbrolesets";
-		static public final String CONTENT_URI_TABLE = Words_PbWords_PbRoleSets.TABLE;
-		static public final String WORDID = V.WORDID;
-		static public final String SYNSETID = V.SYNSETID;
-		static public final String ROLESETID = V.ROLESETID;
-		static public final String ROLESETNAME = V.ROLESETNAME;
-		static public final String ROLESETHEAD = V.ROLESETHEAD;
-		static public final String ROLESETDESCR = V.ROLESETDESCR;
-		static public final String DEFINITION = V.DEFINITION;
-		static public final String SOURCE = V.SOURCE;
-		static public final String SOURCES = V.SOURCES;
+		String URI = "words_pbwords_pbrolesets";
+		String WORDID = V.WORDID;
+		String SYNSETID = V.SYNSETID;
+		String ROLESETID = V.ROLESETID;
+		String ROLESETNAME = V.ROLESETNAME;
+		String ROLESETHEAD = V.ROLESETHEAD;
+		String ROLESETDESCR = V.ROLESETDESCR;
+		String DEFINITION = V.DEFINITION;
+		String SOURCE = V.SOURCE;
+		String SOURCES = V.SOURCES;
 	}
 
-	static public final class Words_XNet
+	public interface Words_XNet
 	{
-		static public final String WORDID = V.WORDID;
-		static public final String SYNSETID = V.SYNSETID;
-		static public final String XID = V.XID;
-		static public final String XCLASSID = V.XCLASSID;
-		static public final String XMEMBERID = V.XMEMBERID;
-		static public final String XNAME = V.XNAME;
-		static public final String XHEADER = V.XHEADER;
-		static public final String XINFO = V.XINFO;
-		static public final String XDEFINITION = V.XDEFINITION;
-		static public final String SOURCE = V.SOURCE;
-		static public final String SOURCES = V.SOURCES;
+		String WORDID = V.WORDID;
+		String SYNSETID = V.SYNSETID;
+		String XID = V.XID;
+		String XCLASSID = V.XCLASSID;
+		String XMEMBERID = V.XMEMBERID;
+		String XNAME = V.XNAME;
+		String XHEADER = V.XHEADER;
+		String XINFO = V.XINFO;
+		String XDEFINITION = V.XDEFINITION;
+		String SOURCE = V.SOURCE;
+		String SOURCES = V.SOURCES;
 	}
 
 	// Sources
 
-	static public final class Sources
+	public interface Sources
 	{
-		static public final String TABLE = "sources";
-		static public final String CONTENT_URI_TABLE = Sources.TABLE;
-		static public final String ID = "idsource";
-		static public final String NAME = "name";
-		static public final String VERSION = "version";
-		static public final String URL = "url";
-		static public final String PROVIDER = "provider";
-		static public final String REFERENCE = "reference";
+		String TABLE = "sources";
+		String URI = Sources.TABLE;
+		String ID = "idsource";
+		String NAME = "name";
+		String VERSION = "version";
+		String URL = "url";
+		String PROVIDER = "provider";
+		String REFERENCE = "reference";
 	}
 
 	// PredicateMatrix
 
-	static public final class PredicateMatrix
+	public interface PredicateMatrix
 	{
-		static public final String TABLE = "pm";
-		static public final String CONTENT_URI_TABLE = PredicateMatrix.TABLE;
-		static public final String WORDID = V.WORDID;
-		static public final String SYNSETID = V.SYNSETID;
-		static public final String VNWORDID = V.VNWORDID;
-		static public final String VNCLASSID = V.CLASSID;
-		static public final String PBWORDID = V.PBWORDID;
-		static public final String PBROLESETID = V.ROLESETID;
-		static public final String FNWORDID = V.FNWORDID;
-		static public final String LUID = V.LUID;
-		static public final String FRAMEID = V.FRAMEID;
+		String URI = "pm";
+		String WORDID = V.WORDID;
+		String SYNSETID = V.SYNSETID;
+		String VNWORDID = V.VNWORDID;
+		String VNCLASSID = V.CLASSID;
+		String PBWORDID = V.PBWORDID;
+		String PBROLESETID = V.ROLESETID;
+		String FNWORDID = V.FNWORDID;
+		String LUID = V.LUID;
+		String FRAMEID = V.FRAMEID;
 	}
 
-	static public final class PredicateMatrix_VerbNet
+	public interface PredicateMatrix_VerbNet
 	{
-		static public final String TABLE = "predicatematrix_verbnet";
-		static public final String CONTENT_URI_TABLE = PredicateMatrix_VerbNet.TABLE;
-		static public final String WORDID = V.WORDID;
-		static public final String SYNSETID = V.SYNSETID;
-		static public final String VNWORDID = V.VNWORDID;
-		static public final String CLASSID = V.CLASSID;
+		String URI = "predicatematrix_verbnet";
+		String WORDID = V.WORDID;
+		String SYNSETID = V.SYNSETID;
+		String VNWORDID = V.VNWORDID;
+		String CLASSID = V.CLASSID;
 	}
 
-	static public final class PredicateMatrix_PropBank
+	public interface PredicateMatrix_PropBank
 	{
-		static public final String TABLE = "predicatematrix_propbank";
-		static public final String CONTENT_URI_TABLE = PredicateMatrix_PropBank.TABLE;
-		static public final String WORDID = V.WORDID;
-		static public final String SYNSETID = V.SYNSETID;
-		static public final String PBWORDID = V.PBWORDID;
-		static public final String ROLESETID = V.ROLESETID;
+		String URI = "predicatematrix_propbank";
+		String WORDID = V.WORDID;
+		String SYNSETID = V.SYNSETID;
+		String PBWORDID = V.PBWORDID;
+		String ROLESETID = V.ROLESETID;
 	}
 
-	static public final class PredicateMatrix_FrameNet
+	public interface PredicateMatrix_FrameNet
 	{
-		static public final String TABLE = "predicatematrix_framenet";
-		static public final String CONTENT_URI_TABLE = PredicateMatrix_FrameNet.TABLE;
-		static public final String WORDID = V.WORDID;
-		static public final String SYNSETID = V.SYNSETID;
-		static public final String FNWORDID = V.FNWORDID;
-		static public final String LUID = V.LUID;
-		static public final String FRAMEID = V.FRAMEID;
+		String URI = "predicatematrix_framenet";
+		String WORDID = V.WORDID;
+		String SYNSETID = V.SYNSETID;
+		String FNWORDID = V.FNWORDID;
+		String LUID = V.LUID;
+		String FRAMEID = V.FRAMEID;
 	}
 
 	// PredicateMatrix unions
 
-	static public final class Words_XNet_U
+	public interface Words_XNet_U
 	{
-		static public final String WORDID = V.WORDID;
-		static public final String SYNSETID = V.SYNSETID;
-		static public final String XID = V.XID;
-		static public final String XCLASSID = V.XCLASSID;
-		static public final String XMEMBERID = V.XMEMBERID;
-		static public final String XNAME = V.XNAME;
-		static public final String XHEADER = V.XHEADER;
-		static public final String XINFO = V.XINFO;
-		static public final String XDEFINITION = V.XDEFINITION;
-		static public final String SOURCE = V.SOURCE;
-		static public final String SOURCES = V.SOURCES;
+		String WORDID = V.WORDID;
+		String SYNSETID = V.SYNSETID;
+		String XID = V.XID;
+		String XCLASSID = V.XCLASSID;
+		String XMEMBERID = V.XMEMBERID;
+		String XNAME = V.XNAME;
+		String XHEADER = V.XHEADER;
+		String XINFO = V.XINFO;
+		String XDEFINITION = V.XDEFINITION;
+		String SOURCE = V.SOURCE;
+		String SOURCES = V.SOURCES;
 	}
 
-	static public final class Words_VnWords_VnClasses_U
+	public interface Words_VnWords_VnClasses_U
 	{
-		static public final String TABLE = "words_vnwords_vnclasses_u";
-		static public final String CONTENT_URI_TABLE = Words_VnWords_VnClasses_U.TABLE;
-		static public final String WORDID = V.WORDID;
-		static public final String SYNSETID = V.SYNSETID;
-		static public final String VNWORDID = V.VNWORDID;
-		static public final String CLASSID = V.CLASSID;
-		static public final String CLASS = V.CLASS;
-		static public final String CLASSTAG = V.CLASSTAG;
-		static public final String DEFINITION = V.DEFINITION;
-		static public final String SOURCE = V.SOURCE;
-		static public final String SOURCES = V.SOURCES;
+		String URI = "words_vnwords_vnclasses_u";
+		String WORDID = V.WORDID;
+		String SYNSETID = V.SYNSETID;
+		String VNWORDID = V.VNWORDID;
+		String CLASSID = V.CLASSID;
+		String CLASS = V.CLASS;
+		String CLASSTAG = V.CLASSTAG;
+		String DEFINITION = V.DEFINITION;
+		String SOURCE = V.SOURCE;
+		String SOURCES = V.SOURCES;
 	}
 
-	static public final class Words_VnWords_VnClasses_1U2
+	public interface Words_VnWords_VnClasses_1U2
 	{
-		static public final String TABLE = "words_vnwords_vnclasses_1u2";
-		static public final String CONTENT_URI_TABLE = Words_VnWords_VnClasses_1U2.TABLE;
+		String URI = "words_vnwords_vnclasses_1u2";
 	}
 
-	static public final class Words_VnWords_VnClasses_1
+	public interface Words_VnWords_VnClasses_1
 	{
-		static public final String TABLE = "words_vnwords_vnclasses_1";
-		static public final String CONTENT_URI_TABLE = Words_VnWords_VnClasses_1.TABLE;
+		String URI = "words_vnwords_vnclasses_1";
 	}
 
-	static public final class Words_VnWords_VnClasses_2
+	public interface Words_VnWords_VnClasses_2
 	{
-		static public final String TABLE = "words_vnwords_vnclasses_2";
-		static public final String CONTENT_URI_TABLE = Words_VnWords_VnClasses_2.TABLE;
+		String URI = "words_vnwords_vnclasses_2";
 	}
 
-	static public final class Words_PbWords_PbRoleSets_U
+	public interface Words_PbWords_PbRoleSets_U
 	{
-		static public final String TABLE = "words_pbwords_pbrolesets_u";
-		static public final String CONTENT_URI_TABLE = Words_PbWords_PbRoleSets_U.TABLE;
-		static public final String WORDID = V.WORDID;
-		static public final String SYNSETID = V.SYNSETID;
-		static public final String ROLESETID = V.ROLESETID;
-		static public final String ROLESETNAME = V.ROLESETNAME;
-		static public final String ROLESETHEAD = V.ROLESETHEAD;
-		static public final String ROLESETDESCR = V.ROLESETDESCR;
-		static public final String DEFINITION = V.DEFINITION;
-		static public final String SOURCE = V.SOURCE;
-		static public final String SOURCES = V.SOURCES;
+		String URI = "words_pbwords_pbrolesets_u";
+		String WORDID = V.WORDID;
+		String SYNSETID = V.SYNSETID;
+		String ROLESETID = V.ROLESETID;
+		String ROLESETNAME = V.ROLESETNAME;
+		String ROLESETHEAD = V.ROLESETHEAD;
+		String ROLESETDESCR = V.ROLESETDESCR;
+		String DEFINITION = V.DEFINITION;
+		String SOURCE = V.SOURCE;
+		String SOURCES = V.SOURCES;
 	}
 
-	static public final class Words_PbWords_PbRoleSets_1
+	public interface Words_PbWords_PbRoleSets_1
 	{
-		static public final String TABLE = "words_pbwords_pbrolesets_1";
-		static public final String CONTENT_URI_TABLE = Words_PbWords_PbRoleSets_1.TABLE;
+		String URI = "words_pbwords_pbrolesets_1";
 	}
 
-	static public final class Words_PbWords_PbRoleSets_2
+	public interface Words_PbWords_PbRoleSets_2
 	{
-		static public final String TABLE = "words_pbwords_pbrolesets_2";
-		static public final String CONTENT_URI_TABLE = Words_PbWords_PbRoleSets_2.TABLE;
+		String URI = "words_pbwords_pbrolesets_2";
 	}
 
-	static public final class Words_PbWords_PbRoleSets_1U2
+	public interface Words_PbWords_PbRoleSets_1U2
 	{
-		static public final String TABLE = "words_pbwords_pbrolesets_1u2";
-		static public final String CONTENT_URI_TABLE = Words_PbWords_PbRoleSets_1U2.TABLE;
+		String URI = "words_pbwords_pbrolesets_1u2";
 	}
 
-	static public final class Words_FnWords_FnFrames_U
+	public interface Words_FnWords_FnFrames_U
 	{
-		static public final String TABLE = "words_fnwords_fnframes_u";
-		static public final String CONTENT_URI_TABLE = Words_FnWords_FnFrames_U.TABLE;
-		static public final String WORDID = V.WORDID;
-		static public final String SYNSETID = V.SYNSETID;
-		static public final String FNWORDID = V.FNWORDID;
-		static public final String FRAMEID = V.FRAMEID;
-		static public final String FRAME = V.FRAME;
-		static public final String FRAMEDEFINITION = V.FRAMEDEFINITION;
-		static public final String LUID = V.LUID;
-		static public final String LEXUNIT = V.LEXUNIT;
-		static public final String LUDEFINITION = V.LUDEFINITION;
-		static public final String DEFINITION = V.DEFINITION;
-		static public final String SOURCE = V.SOURCE;
-		static public final String SOURCES = V.SOURCES;
+		String URI = "words_fnwords_fnframes_u";
+		String WORDID = V.WORDID;
+		String SYNSETID = V.SYNSETID;
+		String FNWORDID = V.FNWORDID;
+		String FRAMEID = V.FRAMEID;
+		String FRAME = V.FRAME;
+		String FRAMEDEFINITION = V.FRAMEDEFINITION;
+		String LUID = V.LUID;
+		String LEXUNIT = V.LEXUNIT;
+		String LUDEFINITION = V.LUDEFINITION;
+		String DEFINITION = V.DEFINITION;
+		String SOURCE = V.SOURCE;
+		String SOURCES = V.SOURCES;
 	}
 
-	static public final class Words_FnWords_FnFrames_1U2
+	public interface Words_FnWords_FnFrames_1U2
 	{
-		static public final String TABLE = "words_fnwords_fnframes_1u2";
-		static public final String CONTENT_URI_TABLE = Words_FnWords_FnFrames_1U2.TABLE;
+		String URI = "words_fnwords_fnframes_1u2";
 	}
 
-	static public final class Words_FnWords_FnFrames_1
+	public interface Words_FnWords_FnFrames_1
 	{
-		static public final String TABLE = "words_fnwords_fnframes_1";
-		static public final String CONTENT_URI_TABLE = Words_FnWords_FnFrames_1.TABLE;
+		String URI = "words_fnwords_fnframes_1";
 	}
 
-	static public final class Words_FnWords_FnFrames_2
+	public interface Words_FnWords_FnFrames_2
 	{
-		static public final String TABLE = "words_fnwords_fnframes_2";
-		static public final String CONTENT_URI_TABLE = Words_FnWords_FnFrames_2.TABLE;
+		String URI = "words_fnwords_fnframes_2";
 	}
 }

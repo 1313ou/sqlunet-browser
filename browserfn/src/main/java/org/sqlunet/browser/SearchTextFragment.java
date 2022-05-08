@@ -120,7 +120,7 @@ public class SearchTextFragment extends BaseSearchFragment
 		String database;
 		if (modePosition == 0)
 		{
-			searchUri = FrameNetProvider.makeUri(Lookup_FTS_FnSentences_X.CONTENT_URI_TABLE_BY_SENTENCE);
+			searchUri = FrameNetProvider.makeUri(Lookup_FTS_FnSentences_X.URI_BY_SENTENCE);
 			id = Lookup_FTS_FnSentences_X.SENTENCEID;
 			idType = "fnsentence";
 			target = Lookup_FTS_FnSentences_X.TEXT;

@@ -28,7 +28,7 @@ public class ManagerContract
 	static public Intent makeTablesAndIndexesIntent(final Context context)
 	{
 		final Intent intent = new Intent(context, TableActivity.class);
-		intent.putExtra(ProviderArgs.ARG_QUERYURI, ManagerProvider.makeUri(TablesAndIndices.CONTENT_URI_TABLE));
+		intent.putExtra(ProviderArgs.ARG_QUERYURI, ManagerProvider.makeUri(TablesAndIndices.URI));
 		intent.putExtra(ProviderArgs.ARG_QUERYID, "rowid");
 		intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{"rowid", TablesAndIndices.TYPE, TablesAndIndices.NAME});
 		final String order = "CASE " //
@@ -48,7 +48,7 @@ public class ManagerContract
 	static public final class TablesAndIndices
 	{
 		static public final String TABLE = "sqlite_master";
-		static public final String CONTENT_URI_TABLE = TablesAndIndices.TABLE;
+		static public final String URI = TablesAndIndices.TABLE;
 		static public final String NAME = "name";
 		static public final String TYPE = "type";
 	}

@@ -59,7 +59,7 @@ public class SourceFragment extends ListFragment
 		super.onStart();
 
 		// load the contents
-		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(Sources.CONTENT_URI_TABLE));
+		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(Sources.URI));
 		final String[] projection = {Sources.ID + " AS _id", Sources.NAME, Sources.VERSION, Sources.URL, Sources.PROVIDER, Sources.REFERENCE};
 		final String sortOrder = Sources.ID;
 		this.model.loadData(uri, projection, null, null, sortOrder, null);

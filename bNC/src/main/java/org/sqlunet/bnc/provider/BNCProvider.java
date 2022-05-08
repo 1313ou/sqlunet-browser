@@ -44,8 +44,8 @@ public class BNCProvider extends BaseProvider
 
 	static private void matchURIs()
 	{
-		BNCProvider.uriMatcher.addURI(AUTHORITY, BNCContract.BNCs.TABLE, BNCControl.BNC);
-		BNCProvider.uriMatcher.addURI(AUTHORITY, BNCContract.Words_BNCs.TABLE, BNCControl.WORDS_BNC);
+		BNCProvider.uriMatcher.addURI(AUTHORITY, BNCContract.BNCs.URI, BNCControl.BNC);
+		BNCProvider.uriMatcher.addURI(AUTHORITY, BNCContract.Words_BNCs.URI, BNCControl.WORDS_BNC);
 	}
 
 	@NonNull
@@ -86,11 +86,11 @@ public class BNCProvider extends BaseProvider
 		{
 			// TABLES
 			case BNCControl.BNC:
-				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + BNCContract.BNCs.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + BNCContract.BNCs.URI;
 
 			// JOINS
 			case BNCControl.WORDS_BNC:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + BNCContract.Words_BNCs.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + BNCContract.Words_BNCs.URI;
 
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");

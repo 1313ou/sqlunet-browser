@@ -9,10 +9,60 @@ public class Queries
 {
 	static final String ALLMORPHS = "allmorphs";
 
+	public static Module.ContentProviderSql prepareSelect(final String word)
+	{
+		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
+		providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.URI;
+		providerSql.projection = new String[]{ //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS _id", //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEID, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.LEXID, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION, //
+				WordNetContract.AS_SYNSETS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POS, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD, //
+		};
+		providerSql.selection = WordNetContract.AS_WORDS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORD + " = ?"; ////
+		providerSql.selectionArgs = new String[]{word};
+		providerSql.sortBy = WordNetContract.AS_SYNSETS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM;
+		return providerSql;
+	}
+
+	public static Module.ContentProviderSql prepareSelect2(final String word)
+	{
+		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
+		providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.URI;
+		providerSql.projection = new String[]{ //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS _id", //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEID, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.LEXID, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION, //
+				WordNetContract.AS_SYNSETS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POS, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD, //
+		};
+		providerSql.selection = WordNetContract.AS_WORDS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORD + " = ?"; ////
+		providerSql.selectionArgs = new String[]{word};
+		providerSql.sortBy = WordNetContract.AS_SYNSETS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM;
+		return providerSql;
+	}
+
 	public static Module.ContentProviderSql prepareWn(final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CONTENT_URI_TABLE;
+		providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.URI;
 		providerSql.projection = new String[]{ //
 				"'wn' AS " + XNetContract.Words_XNet_U.SOURCES, //
 				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID, //
@@ -33,7 +83,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareWord(final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.Words_Lexes_Morphs.CONTENT_URI_TABLE_BY_WORD;
+		providerSql.providerUri = WordNetContract.Words_Lexes_Morphs.URI_BY_WORD;
 		providerSql.projection = new String[]{ //
 				WordNetContract.Words_Lexes_Morphs.WORD, //
 				WordNetContract.Words_Lexes_Morphs.WORDID, //
@@ -46,7 +96,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareSenses(final String word)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CONTENT_URI_TABLE;
+		providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.URI;
 		providerSql.projection = new String[]{ //
 				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS _id", //
 				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID, //
@@ -69,7 +119,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareSenses(final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CONTENT_URI_TABLE;
+		providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.URI;
 		providerSql.projection = new String[]{ //
 				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS _id", //
 				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID, //
@@ -92,7 +142,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareSense(final long senseId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.Senses.CONTENT_URI_TABLE;
+		providerSql.providerUri = WordNetContract.Senses.URI;
 		providerSql.projection = new String[]{ //
 				WordNetContract.Senses.WORDID, //
 				WordNetContract.Senses.SYNSETID, //
@@ -105,7 +155,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareSense(final String senseKey)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.Senses.CONTENT_URI_TABLE;
+		providerSql.providerUri = WordNetContract.Senses.URI;
 		providerSql.projection = new String[]{ //
 				WordNetContract.Senses.WORDID, //
 				WordNetContract.Senses.SYNSETID, //
@@ -118,7 +168,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareSense(final long synsetId, final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.Synsets_Poses_Domains.CONTENT_URI_TABLE;
+		providerSql.providerUri = WordNetContract.Synsets_Poses_Domains.URI;
 		providerSql.projection = new String[]{ //
 				WordNetContract.Synsets.DEFINITION, //
 				WordNetContract.Poses.POS, //
@@ -132,7 +182,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareSynset(final long synsetId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.Synsets_Poses_Domains.CONTENT_URI_TABLE;
+		providerSql.providerUri = WordNetContract.Synsets_Poses_Domains.URI;
 		providerSql.projection = new String[]{ //
 				WordNetContract.Synsets.DEFINITION, //
 				WordNetContract.Poses.POS, //
@@ -146,7 +196,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareMembers(final long synsetId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.Senses_Words.CONTENT_URI_TABLE;
+		providerSql.providerUri = WordNetContract.Senses_Words.URI;
 		providerSql.projection = new String[]{WordNetContract.Senses_Words.WORDID, WordNetContract.Senses_Words.WORD};
 		providerSql.selection = WordNetContract.Senses_Words.SYNSETID + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(synsetId)};
@@ -157,7 +207,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareMembers2(final long synsetId, final boolean membersGrouped)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = membersGrouped ? WordNetContract.Senses_Words.CONTENT_URI_TABLE_BY_SYNSET : WordNetContract.Senses_Words.CONTENT_URI_TABLE;
+		providerSql.providerUri = membersGrouped ? WordNetContract.Senses_Words.URI_BY_SYNSET : WordNetContract.Senses_Words.URI;
 		providerSql.projection = membersGrouped ? //
 				new String[]{WordNetContract.Senses_Words.SYNSETID} : new String[]{WordNetContract.Words.WORD};
 		providerSql.selection = WordNetContract.Senses_Words.SYNSETID + " = ?";
@@ -169,7 +219,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareSamples(final long synsetId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.Samples.CONTENT_URI_TABLE;
+		providerSql.providerUri = WordNetContract.Samples.URI;
 		providerSql.projection = new String[]{ //
 				WordNetContract.Samples.SAMPLEID, //
 				WordNetContract.Samples.SAMPLE, //
@@ -183,7 +233,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareRelations(final long synsetId, final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.AnyRelations_Senses_Words_X.CONTENT_URI_TABLE_BY_SYNSET;
+		providerSql.providerUri = WordNetContract.AnyRelations_Senses_Words_X.URI_BY_SYNSET;
 		providerSql.projection = new String[]{ //
 				WordNetContract.RELATIONTYPE, WordNetContract.Relations.RELATIONID, //
 				WordNetContract.Relations.RELATION, //
@@ -203,7 +253,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareSemRelations(final long synsetId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.SemRelations_Synsets_Words_X.CONTENT_URI_TABLE_BY_SYNSET;
+		providerSql.providerUri = WordNetContract.SemRelations_Synsets_Words_X.URI_BY_SYNSET;
 		providerSql.projection = new String[]{ //
 				WordNetContract.Relations.RELATIONID, //
 				WordNetContract.Relations.RELATION, //
@@ -220,7 +270,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareSemRelations(final long synsetId, final int relationId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.SemRelations_Synsets_Words_X.CONTENT_URI_TABLE_BY_SYNSET;
+		providerSql.providerUri = WordNetContract.SemRelations_Synsets_Words_X.URI_BY_SYNSET;
 		providerSql.projection = new String[]{ //
 				WordNetContract.Relations.RELATIONID, //
 				WordNetContract.Relations.RELATION, //
@@ -236,7 +286,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareLexRelations(final long synsetId, final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.LexRelations_Senses_Words_X.CONTENT_URI_TABLE_BY_SYNSET;
+		providerSql.providerUri = WordNetContract.LexRelations_Senses_Words_X.URI_BY_SYNSET;
 		providerSql.projection = new String[]{ //
 				WordNetContract.Relations.RELATIONID, //
 				WordNetContract.Relations.RELATION, //
@@ -254,7 +304,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareLexRelations(final long synsetId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.LexRelations_Senses_Words_X.CONTENT_URI_TABLE_BY_SYNSET;
+		providerSql.providerUri = WordNetContract.LexRelations_Senses_Words_X.URI_BY_SYNSET;
 		providerSql.projection = new String[]{ //
 				WordNetContract.Relations.RELATIONID, //
 				WordNetContract.Relations.RELATION, //
@@ -271,7 +321,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareVFrames(final long synsetId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.Senses_VerbFrames.CONTENT_URI_TABLE;
+		providerSql.providerUri = WordNetContract.Senses_VerbFrames.URI;
 		providerSql.projection = new String[]{WordNetContract.Senses_VerbFrames.FRAME};
 		providerSql.selection = WordNetContract.Senses_VerbFrames.SYNSETID + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(synsetId)};
@@ -281,7 +331,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareVFrames(final long synsetId, final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.Senses_VerbFrames.CONTENT_URI_TABLE;
+		providerSql.providerUri = WordNetContract.Senses_VerbFrames.URI;
 		providerSql.projection = new String[]{WordNetContract.Senses_VerbFrames.FRAME};
 		providerSql.selection = WordNetContract.Senses_VerbFrames.SYNSETID + " = ? AND " + WordNetContract.Senses_VerbFrames.WORDID + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(synsetId), Long.toString(wordId)};
@@ -291,7 +341,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareVTemplates(final long synsetId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.Senses_VerbTemplates.CONTENT_URI_TABLE;
+		providerSql.providerUri = WordNetContract.Senses_VerbTemplates.URI;
 		providerSql.projection = new String[]{WordNetContract.Senses_VerbTemplates.TEMPLATE};
 		providerSql.selection = WordNetContract.Senses_VerbTemplates.SYNSETID + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(synsetId)};
@@ -301,7 +351,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareVTemplates(final long synsetId, final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.Senses_VerbTemplates.CONTENT_URI_TABLE;
+		providerSql.providerUri = WordNetContract.Senses_VerbTemplates.URI;
 		providerSql.projection = new String[]{WordNetContract.Senses_VerbTemplates.TEMPLATE};
 		providerSql.selection = WordNetContract.Senses_VerbTemplates.SYNSETID + " = ? AND " + WordNetContract.Senses_VerbTemplates.WORDID + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(synsetId), Long.toString(wordId)};
@@ -311,7 +361,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareAdjPosition(final long synsetId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.Senses_AdjPositions.CONTENT_URI_TABLE;
+		providerSql.providerUri = WordNetContract.Senses_AdjPositions.URI;
 		providerSql.projection = new String[]{WordNetContract.Senses_AdjPositions.POSITION};
 		providerSql.selection = WordNetContract.Senses_AdjPositions.SYNSETID + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(synsetId)};
@@ -321,7 +371,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareAdjPosition(final long synsetId, final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.Senses_AdjPositions.CONTENT_URI_TABLE;
+		providerSql.providerUri = WordNetContract.Senses_AdjPositions.URI;
 		providerSql.projection = new String[]{WordNetContract.Senses_AdjPositions.POSITION};
 		providerSql.selection = WordNetContract.Senses_AdjPositions.SYNSETID + " = ? AND " + WordNetContract.Senses_AdjPositions.WORDID + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(synsetId), Long.toString(wordId)};
@@ -331,7 +381,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareMorphs(final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.Lexes_Morphs.CONTENT_URI_TABLE;
+		providerSql.providerUri = WordNetContract.Lexes_Morphs.URI;
 		providerSql.projection = new String[]{WordNetContract.Lexes_Morphs.POSID, WordNetContract.Lexes_Morphs.MORPH};
 		providerSql.selection = WordNetContract.Lexes_Morphs.WORDID + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(wordId)};

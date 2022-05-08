@@ -40,10 +40,13 @@ public class RunQueries
 		process(processor, Queries.prepareAdjPosition(0, 0));
 		process(processor, Queries.prepareMorphs(0));
 		process(processor, Queries.prepareWn(0));
+		process(processor, Queries.prepareSelect("w"));
+		process(processor, Queries.prepareSelect2("w"));
 	}
 
 	private void process(final SqlProcessor processor, final Module.ContentProviderSql providerSql) throws SQLException
 	{
+		System.out.println("URI: " + providerSql.providerUri);
 		final int code = uriToCode(providerSql.providerUri);
 		final String sql = toSql(code, providerSql);
 		try
@@ -81,79 +84,79 @@ public class RunQueries
 	{
 		switch (providerUri)
 		{
-			case WordNetContract.Words.CONTENT_URI_TABLE:
+			case WordNetContract.Words.URI:
 				return WordNetControl.WORDS;
-			case WordNetContract.Words.CONTENT_URI_TABLE1:
+			case WordNetContract.Words.URI1:
 				return WordNetControl.WORD;
-			case WordNetContract.Senses.CONTENT_URI_TABLE:
+			case WordNetContract.Senses.URI:
 				return WordNetControl.SENSES;
-			case WordNetContract.Senses.CONTENT_URI_TABLE1:
+			case WordNetContract.Senses.URI1:
 				return WordNetControl.SENSE;
-			case WordNetContract.Synsets.CONTENT_URI_TABLE:
+			case WordNetContract.Synsets.URI:
 				return WordNetControl.SYNSETS;
-			case WordNetContract.Synsets.CONTENT_URI_TABLE1:
+			case WordNetContract.Synsets.URI1:
 				return WordNetControl.SYNSET;
-			case WordNetContract.SemRelations.CONTENT_URI_TABLE:
+			case WordNetContract.SemRelations.URI:
 				return WordNetControl.SEMRELATIONS;
-			case WordNetContract.LexRelations.CONTENT_URI_TABLE:
+			case WordNetContract.LexRelations.URI:
 				return WordNetControl.LEXRELATIONS;
-			case WordNetContract.Relations.CONTENT_URI_TABLE:
+			case WordNetContract.Relations.URI:
 				return WordNetControl.RELATIONS;
-			case WordNetContract.Poses.CONTENT_URI_TABLE:
+			case WordNetContract.Poses.URI:
 				return WordNetControl.POSES;
-			case WordNetContract.Domains.CONTENT_URI_TABLE:
+			case WordNetContract.Domains.URI:
 				return WordNetControl.DOMAINS;
-			case WordNetContract.AdjPositions.CONTENT_URI_TABLE:
+			case WordNetContract.AdjPositions.URI:
 				return WordNetControl.ADJPOSITIONS;
-			case WordNetContract.Samples.CONTENT_URI_TABLE:
+			case WordNetContract.Samples.URI:
 				return WordNetControl.SAMPLES;
-			case WordNetContract.Dict.CONTENT_URI_TABLE:
+			case WordNetContract.Dict.URI:
 				return WordNetControl.DICT;
-			case WordNetContract.Words_Senses_Synsets.CONTENT_URI_TABLE:
+			case WordNetContract.Words_Senses_Synsets.URI:
 				return WordNetControl.WORDS_SENSES_SYNSETS;
-			case WordNetContract.Words_Senses_CasedWords_Synsets.CONTENT_URI_TABLE:
+			case WordNetContract.Words_Senses_CasedWords_Synsets.URI:
 				return WordNetControl.WORDS_SENSES_CASEDWORDS_SYNSETS;
-			case WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CONTENT_URI_TABLE:
+			case WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.URI:
 				return WordNetControl.WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS;
-			case WordNetContract.Senses_Words.CONTENT_URI_TABLE:
+			case WordNetContract.Senses_Words.URI:
 				return WordNetControl.SENSES_WORDS;
-			case WordNetContract.Senses_Words.CONTENT_URI_TABLE_BY_SYNSET:
+			case WordNetContract.Senses_Words.URI_BY_SYNSET:
 				return WordNetControl.SENSES_WORDS_BY_SYNSET;
-			case WordNetContract.Senses_Synsets_Poses_Domains.CONTENT_URI_TABLE:
+			case WordNetContract.Senses_Synsets_Poses_Domains.URI:
 				return WordNetControl.SENSES_SYNSETS_POSES_DOMAINS;
-			case WordNetContract.Synsets_Poses_Domains.CONTENT_URI_TABLE:
+			case WordNetContract.Synsets_Poses_Domains.URI:
 				return WordNetControl.SYNSETS_POSES_DOMAINS;
-			case WordNetContract.AnyRelations_Senses_Words_X.CONTENT_URI_TABLE_BY_SYNSET:
+			case WordNetContract.AnyRelations_Senses_Words_X.URI_BY_SYNSET:
 				return WordNetControl.ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET;
-			case WordNetContract.SemRelations_Synsets.CONTENT_URI_TABLE:
+			case WordNetContract.SemRelations_Synsets.URI:
 				return WordNetControl.SEMRELATIONS_SYNSETS;
-			case WordNetContract.SemRelations_Synsets_X.CONTENT_URI_TABLE:
+			case WordNetContract.SemRelations_Synsets_X.URI:
 				return WordNetControl.SEMRELATIONS_SYNSETS_X;
-			case WordNetContract.SemRelations_Synsets_Words_X.CONTENT_URI_TABLE_BY_SYNSET:
+			case WordNetContract.SemRelations_Synsets_Words_X.URI_BY_SYNSET:
 				return WordNetControl.SEMRELATIONS_SYNSETS_WORDS_X_BY_SYNSET;
-			case WordNetContract.LexRelations_Senses.CONTENT_URI_TABLE:
+			case WordNetContract.LexRelations_Senses.URI:
 				return WordNetControl.LEXRELATIONS_SENSES;
-			case WordNetContract.LexRelations_Senses_X.CONTENT_URI_TABLE:
+			case WordNetContract.LexRelations_Senses_X.URI:
 				return WordNetControl.LEXRELATIONS_SENSES_X;
-			case WordNetContract.LexRelations_Senses_Words_X.CONTENT_URI_TABLE_BY_SYNSET:
+			case WordNetContract.LexRelations_Senses_Words_X.URI_BY_SYNSET:
 				return WordNetControl.LEXRELATIONS_SENSES_WORDS_X_BY_SYNSET;
-			case WordNetContract.Senses_VerbFrames.CONTENT_URI_TABLE:
+			case WordNetContract.Senses_VerbFrames.URI:
 				return WordNetControl.SENSES_VFRAMES;
-			case WordNetContract.Senses_VerbTemplates.CONTENT_URI_TABLE:
+			case WordNetContract.Senses_VerbTemplates.URI:
 				return WordNetControl.SENSES_VTEMPLATES;
-			case WordNetContract.Senses_AdjPositions.CONTENT_URI_TABLE:
+			case WordNetContract.Senses_AdjPositions.URI:
 				return WordNetControl.SENSES_ADJPOSITIONS;
-			case WordNetContract.Lexes_Morphs.CONTENT_URI_TABLE:
+			case WordNetContract.Lexes_Morphs.URI:
 				return WordNetControl.LEXES_MORPHS;
-			case WordNetContract.Words_Lexes_Morphs.CONTENT_URI_TABLE:
+			case WordNetContract.Words_Lexes_Morphs.URI:
 				return WordNetControl.WORDS_LEXES_MORPHS;
-			case WordNetContract.Words_Lexes_Morphs.CONTENT_URI_TABLE_BY_WORD:
+			case WordNetContract.Words_Lexes_Morphs.URI_BY_WORD:
 				return WordNetControl.WORDS_LEXES_MORPHS_BY_WORD;
-			case WordNetContract.Lookup_Words.CONTENT_URI_TABLE:
+			case WordNetContract.Lookup_Words.URI:
 				return WordNetControl.LOOKUP_FTS_WORDS;
-			case WordNetContract.Lookup_Definitions.CONTENT_URI_TABLE:
+			case WordNetContract.Lookup_Definitions.URI:
 				return WordNetControl.LOOKUP_FTS_DEFINITIONS;
-			case WordNetContract.Lookup_Samples.CONTENT_URI_TABLE:
+			case WordNetContract.Lookup_Samples.URI:
 				return WordNetControl.LOOKUP_FTS_SAMPLES;
 			case WordNetContract.Suggest_Words.SEARCH_WORD_PATH:
 				return WordNetControl.SUGGEST_WORDS;

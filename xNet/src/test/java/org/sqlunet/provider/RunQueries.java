@@ -20,10 +20,14 @@ public class RunQueries
 		process(processor, Queries.prepareVn(0));
 		process(processor, Queries.preparePb(0));
 		process(processor, Queries.prepareFn(0));
+		process(processor, Queries.prepareVnSelect(0));
+		process(processor, Queries.preparePbSelect(0));
+		process(processor, Queries.prepareVnWordSelect("w"));
 	}
 
 	private void process(final SqlProcessor processor, final Module.ContentProviderSql providerSql) throws SQLException
 	{
+		System.out.println("URI: " + providerSql.providerUri);
 		final int code = uriToCode(providerSql.providerUri);
 		final String sql = toSql(code, providerSql);
 		try
@@ -51,47 +55,47 @@ public class RunQueries
 	{
 		switch (providerUri)
 		{
-			case XNetContract.PredicateMatrix.CONTENT_URI_TABLE:
+			case XNetContract.PredicateMatrix.URI:
 				return XNetControl.PREDICATEMATRIX;
-			case XNetContract.PredicateMatrix_VerbNet.CONTENT_URI_TABLE:
+			case XNetContract.PredicateMatrix_VerbNet.URI:
 				return XNetControl.PREDICATEMATRIX_VERBNET;
-			case XNetContract.PredicateMatrix_PropBank.CONTENT_URI_TABLE:
+			case XNetContract.PredicateMatrix_PropBank.URI:
 				return XNetControl.PREDICATEMATRIX_PROPBANK;
-			case XNetContract.PredicateMatrix_FrameNet.CONTENT_URI_TABLE:
+			case XNetContract.PredicateMatrix_FrameNet.URI:
 				return XNetControl.PREDICATEMATRIX_FRAMENET;
-			case XNetContract.Words_FnWords_PbWords_VnWords.CONTENT_URI_TABLE:
+			case XNetContract.Words_FnWords_PbWords_VnWords.URI:
 				return XNetControl.WORDS_FNWORDS_PBWORDS_VNWORDS;
-			case XNetContract.Words_PbWords_VnWords.CONTENT_URI_TABLE:
+			case XNetContract.Words_PbWords_VnWords.URI:
 				return XNetControl.WORDS_PBWORDS_VNWORDS;
-			case XNetContract.Words_VnWords_VnClasses.CONTENT_URI_TABLE:
+			case XNetContract.Words_VnWords_VnClasses.URI:
 				return XNetControl.WORDS_VNWORDS_VNCLASSES;
-			case XNetContract.Words_VnWords_VnClasses_U.CONTENT_URI_TABLE:
+			case XNetContract.Words_VnWords_VnClasses_U.URI:
 				return XNetControl.WORDS_VNWORDS_VNCLASSES_U;
-			case XNetContract.Words_VnWords_VnClasses_1.CONTENT_URI_TABLE:
+			case XNetContract.Words_VnWords_VnClasses_1.URI:
 				return XNetControl.WORDS_VNWORDS_VNCLASSES_1;
-			case XNetContract.Words_VnWords_VnClasses_2.CONTENT_URI_TABLE:
+			case XNetContract.Words_VnWords_VnClasses_2.URI:
 				return XNetControl.WORDS_VNWORDS_VNCLASSES_2;
-			case XNetContract.Words_VnWords_VnClasses_1U2.CONTENT_URI_TABLE:
+			case XNetContract.Words_VnWords_VnClasses_1U2.URI:
 				return XNetControl.WORDS_VNWORDS_VNCLASSES_1U2;
-			case XNetContract.Words_PbWords_PbRoleSets.CONTENT_URI_TABLE:
+			case XNetContract.Words_PbWords_PbRoleSets.URI:
 				return XNetControl.WORDS_PBWORDS_PBROLESETS;
-			case XNetContract.Words_PbWords_PbRoleSets_U.CONTENT_URI_TABLE:
+			case XNetContract.Words_PbWords_PbRoleSets_U.URI:
 				return XNetControl.WORDS_PBWORDS_PBROLESETS_U;
-			case XNetContract.Words_PbWords_PbRoleSets_1.CONTENT_URI_TABLE:
+			case XNetContract.Words_PbWords_PbRoleSets_1.URI:
 				return XNetControl.WORDS_PBWORDS_PBROLESETS_1;
-			case XNetContract.Words_PbWords_PbRoleSets_2.CONTENT_URI_TABLE:
+			case XNetContract.Words_PbWords_PbRoleSets_2.URI:
 				return XNetControl.WORDS_PBWORDS_PBROLESETS_2;
-			case XNetContract.Words_PbWords_PbRoleSets_1U2.CONTENT_URI_TABLE:
+			case XNetContract.Words_PbWords_PbRoleSets_1U2.URI:
 				return XNetControl.WORDS_PBWORDS_PBROLESETS_1U2;
-			case XNetContract.Words_FnWords_FnFrames_U.CONTENT_URI_TABLE:
+			case XNetContract.Words_FnWords_FnFrames_U.URI:
 				return XNetControl.WORDS_FNWORDS_FNFRAMES_U;
-			case XNetContract.Words_FnWords_FnFrames_1U2.CONTENT_URI_TABLE:
+			case XNetContract.Words_FnWords_FnFrames_1U2.URI:
 				return XNetControl.WORDS_FNWORDS_FNFRAMES_1U2;
-			case XNetContract.Words_FnWords_FnFrames_1.CONTENT_URI_TABLE:
+			case XNetContract.Words_FnWords_FnFrames_1.URI:
 				return XNetControl.WORDS_FNWORDS_FNFRAMES_1;
-			case XNetContract.Words_FnWords_FnFrames_2.CONTENT_URI_TABLE:
+			case XNetContract.Words_FnWords_FnFrames_2.URI:
 				return XNetControl.WORDS_FNWORDS_FNFRAMES_2;
-			case XNetContract.Sources.CONTENT_URI_TABLE:
+			case XNetContract.Sources.URI:
 				return XNetControl.SOURCES;
 			default:
 				throw new IllegalArgumentException("Illegal uri: " + providerUri);

@@ -24,6 +24,7 @@ public class RunQueries
 
 	private void process(final SqlProcessor processor, final Module.ContentProviderSql providerSql) throws SQLException
 	{
+		System.out.println("URI: " + providerSql.providerUri);
 		final int code = uriToCode(providerSql.providerUri);
 		final String sql = toSql(code, providerSql);
 		try
@@ -51,27 +52,27 @@ public class RunQueries
 	{
 		switch (providerUri)
 		{
-			case PropBankContract.PbRoleSets.CONTENT_URI_TABLE1:
+			case PropBankContract.PbRoleSets.URI1:
 				return PropBankControl.PBROLESET;
-			case PropBankContract.PbRoleSets.CONTENT_URI_TABLE:
+			case PropBankContract.PbRoleSets.URI:
 				return PropBankControl.PBROLESETS;
-			case PropBankContract.PbRoleSets_X.CONTENT_URI_TABLE:
+			case PropBankContract.PbRoleSets_X.URI:
 				return PropBankControl.PBROLESETS_X;
-			case PropBankContract.PbRoleSets_X.CONTENT_URI_TABLE_BY_ROLESET:
+			case PropBankContract.PbRoleSets_X.URI_BY_ROLESET:
 				return PropBankControl.PBROLESETS_X_BY_ROLESET;
-			case PropBankContract.Words_PbRoleSets.CONTENT_URI_TABLE:
+			case PropBankContract.Words_PbRoleSets.URI:
 				return PropBankControl.WORDS_PBROLESETS;
-			case PropBankContract.PbRoleSets_PbRoles.CONTENT_URI_TABLE:
+			case PropBankContract.PbRoleSets_PbRoles.URI:
 				return PropBankControl.PBROLESETS_PBROLES;
-			case PropBankContract.PbRoleSets_PbExamples.CONTENT_URI_TABLE:
+			case PropBankContract.PbRoleSets_PbExamples.URI:
 				return PropBankControl.PBROLESETS_PBEXAMPLES;
-			case PropBankContract.PbRoleSets_PbExamples.CONTENT_URI_TABLE_BY_EXAMPLE:
+			case PropBankContract.PbRoleSets_PbExamples.URI_BY_EXAMPLE:
 				return PropBankControl.PBROLESETS_PBEXAMPLES_BY_EXAMPLE;
-			case PropBankContract.Lookup_PbExamples.CONTENT_URI_TABLE:
+			case PropBankContract.Lookup_PbExamples.URI:
 				return PropBankControl.LOOKUP_FTS_EXAMPLES;
-			case PropBankContract.Lookup_PbExamples_X.CONTENT_URI_TABLE:
+			case PropBankContract.Lookup_PbExamples_X.URI:
 				return PropBankControl.LOOKUP_FTS_EXAMPLES_X;
-			case PropBankContract.Lookup_PbExamples_X.CONTENT_URI_TABLE_BY_EXAMPLE:
+			case PropBankContract.Lookup_PbExamples_X.URI_BY_EXAMPLE:
 				return PropBankControl.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE;
 			case PropBankContract.Suggest_PbWords.SEARCH_WORD_PATH:
 				return PropBankControl.SUGGEST_WORDS;

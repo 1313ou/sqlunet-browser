@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
+import org.sqlunet.browser.Module;
 import org.sqlunet.browser.PositionViewModel;
 import org.sqlunet.browser.SqlunetViewModel;
 import org.sqlunet.browser.wn.lib.R;
@@ -318,26 +319,9 @@ public class SelectorsFragment extends ListFragment
 	private void load()
 	{
 		// load the contents
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(Words_Senses_CasedWords_Synsets_Poses_Domains.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS _id", //
-				Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID, //
-				Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEID, //
-				Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM, //
-				Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY, //
-				Words_Senses_CasedWords_Synsets_Poses_Domains.LEXID, //
-				Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT, //
-				Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID, //
-				Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION, //
-				WordNetContract.AS_SYNSETS + '.' + Words_Senses_CasedWords_Synsets_Poses_Domains.POSID, //
-				Words_Senses_CasedWords_Synsets_Poses_Domains.POS, //
-				Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN, //
-				Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD, //
-		};
-		final String selection = WordNetContract.AS_WORDS + '.' + Words_Senses_CasedWords_Synsets_Poses_Domains.WORD + " = ?"; ////
-		final String[] selectionArgs = {SelectorsFragment.this.word};
-		final String sortOrder = WordNetContract.AS_SYNSETS + '.' + Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + ',' + Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM;
-		this.dataModel.loadData(uri, projection, selection, selectionArgs, sortOrder, this::wordIdFromWordPostProcess);
+		final Module.ContentProviderSql sql = new Module.ContentProviderSql();
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
+		this.dataModel.loadData(uri, sql, this::wordIdFromWordPostProcess);
 	}
 
 	/**

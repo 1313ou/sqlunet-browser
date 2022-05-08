@@ -10,12 +10,39 @@ public class Queries
 	/**
 	 * Focused layer name
 	 */
-	static public final String FOCUSLAYER = "FE"; // "Target";
+	public static final String FOCUSLAYER = "FE"; // "Target";
+
+	/**
+	 * Is like artifact column
+	 */
+	public static final String ISLIKE = "islike";
+
+	public static Module.ContentProviderSql prepareSelect(final String word)
+	{
+		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
+		providerSql.providerUri = FrameNetContract.LexUnits_or_Frames.URI_FN;
+		providerSql.projection = new String[]{ //
+				FrameNetContract.LexUnits_or_Frames.ID, //
+				FrameNetContract.LexUnits_or_Frames.FNID, //
+				FrameNetContract.LexUnits_or_Frames.FNWORDID, //
+				FrameNetContract.LexUnits_or_Frames.WORDID, //
+				FrameNetContract.LexUnits_or_Frames.WORD, //
+				FrameNetContract.LexUnits_or_Frames.NAME, //
+				FrameNetContract.LexUnits_or_Frames.FRAMENAME, //
+				FrameNetContract.LexUnits_or_Frames.FRAMEID, //
+				FrameNetContract.LexUnits_or_Frames.ISFRAME, //
+				FrameNetContract.LexUnits_or_Frames.WORD + "<>'" + word + "' AS " + ISLIKE, //
+		};
+		providerSql.selection = FrameNetContract.LexUnits_or_Frames.WORD + " LIKE ? || '%'";
+		providerSql.selectionArgs = new String[]{word};
+		providerSql.sortBy = FrameNetContract.LexUnits_or_Frames.ISFRAME + ',' + FrameNetContract.LexUnits_or_Frames.WORD + ',' + FrameNetContract.LexUnits_or_Frames.ID;
+		return providerSql;
+	}
 
 	public static Module.ContentProviderSql prepareFrame(final long frameId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = FrameNetContract.Frames_X.CONTENT_URI_TABLE_BY_FRAME;
+		providerSql.providerUri = FrameNetContract.Frames_X.URI_BY_FRAME;
 		providerSql.projection = new String[]{ //
 				FrameNetContract.Frames_X.FRAMEID, //
 				FrameNetContract.Frames_X.FRAME, //
@@ -33,7 +60,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareRelatedFrames(final long frameId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = FrameNetContract.Frames_Related.CONTENT_URI_TABLE;
+		providerSql.providerUri = FrameNetContract.Frames_Related.URI;
 		providerSql.projection = new String[]{ //
 				FrameNetContract.SRC + '.' + FrameNetContract.Frames_Related.FRAMEID + " AS " + "i1", //
 				FrameNetContract.SRC + '.' + FrameNetContract.Frames_Related.FRAME + " AS " + "f1", //
@@ -50,7 +77,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareFesForFrame(final int frameId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = FrameNetContract.Frames_FEs.CONTENT_URI_TABLE_BY_FE;
+		providerSql.providerUri = FrameNetContract.Frames_FEs.URI_BY_FE;
 		providerSql.projection = new String[]{ //
 				FrameNetContract.Frames_FEs.FETYPEID, //
 				FrameNetContract.Frames_FEs.FETYPE, //
@@ -70,7 +97,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareLexUnit(final long luId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = FrameNetContract.LexUnits_X.CONTENT_URI_TABLE;
+		providerSql.providerUri = FrameNetContract.LexUnits_X.URI;
 		providerSql.projection = new String[]{ //
 				FrameNetContract.LexUnits_X.LUID, //
 				FrameNetContract.LexUnits_X.LEXUNIT, //
@@ -90,7 +117,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareLexUnitsForFrame(final long frameId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = FrameNetContract.LexUnits_X.CONTENT_URI_TABLE;
+		providerSql.providerUri = FrameNetContract.LexUnits_X.URI;
 		providerSql.projection = new String[]{ //
 				FrameNetContract.LexUnits_X.LUID, //
 				FrameNetContract.LexUnits_X.LEXUNIT, //
@@ -110,7 +137,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareLexUnitsForWordAndPos(final long wordId, @Nullable final Character pos)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = FrameNetContract.Words_LexUnits_Frames.CONTENT_URI_TABLE_FN;
+		providerSql.providerUri = FrameNetContract.Words_LexUnits_Frames.URI_FN;
 		providerSql.projection = new String[]{ //
 				FrameNetContract.Words_LexUnits_Frames.LUID, //
 				FrameNetContract.Words_LexUnits_Frames.LEXUNIT, //
@@ -132,7 +159,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareGovernorsForLexUnit(final long luId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = FrameNetContract.LexUnits_Governors.CONTENT_URI_TABLE_FN;
+		providerSql.providerUri = FrameNetContract.LexUnits_Governors.URI_FN;
 		providerSql.projection = new String[]{ //
 				FrameNetContract.LexUnits_Governors.LUID, //
 				FrameNetContract.LexUnits_Governors.GOVERNORID, //
@@ -149,7 +176,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareRealizationsForLexicalUnit(final long luId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = FrameNetContract.LexUnits_FERealizations_ValenceUnits.CONTENT_URI_TABLE_BY_REALIZATION;
+		providerSql.providerUri = FrameNetContract.LexUnits_FERealizations_ValenceUnits.URI_BY_REALIZATION;
 		providerSql.projection = new String[]{ //
 				FrameNetContract.LexUnits_FERealizations_ValenceUnits.LUID, //
 				FrameNetContract.LexUnits_FERealizations_ValenceUnits.FERID, //
@@ -170,7 +197,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareGroupRealizationsForLexUnit(final long luId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = FrameNetContract.LexUnits_FEGroupRealizations_Patterns_ValenceUnits.CONTENT_URI_TABLE_BY_PATTERN;
+		providerSql.providerUri = FrameNetContract.LexUnits_FEGroupRealizations_Patterns_ValenceUnits.URI_BY_PATTERN;
 		providerSql.projection = new String[]{ //
 				FrameNetContract.LexUnits_FEGroupRealizations_Patterns_ValenceUnits.LUID, //
 				FrameNetContract.LexUnits_FEGroupRealizations_Patterns_ValenceUnits.FEGRID, //
@@ -189,7 +216,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareSentence(final long sentenceId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = FrameNetContract.Sentences.CONTENT_URI_TABLE;
+		providerSql.providerUri = FrameNetContract.Sentences.URI;
 		providerSql.projection = new String[]{ //
 				FrameNetContract.Sentences.SENTENCEID, //
 				FrameNetContract.Sentences.TEXT, //
@@ -202,7 +229,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareSentencesForLexUnit(final long luId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.CONTENT_URI_TABLE_BY_SENTENCE;
+		providerSql.providerUri = FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.URI_BY_SENTENCE;
 		providerSql.projection = new String[]{ //
 				FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.SENTENCEID, //
 				FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.TEXT, //
@@ -232,7 +259,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareSentencesForPattern(final long patternId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = FrameNetContract.Patterns_Sentences.CONTENT_URI_TABLE;
+		providerSql.providerUri = FrameNetContract.Patterns_Sentences.URI;
 		providerSql.projection = new String[]{ //
 				FrameNetContract.Patterns_Sentences.ANNOSETID, //
 				FrameNetContract.Patterns_Sentences.SENTENCEID, //
@@ -247,7 +274,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareSentencesForValenceUnit(final long vuId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = FrameNetContract.ValenceUnits_Sentences.CONTENT_URI_TABLE;
+		providerSql.providerUri = FrameNetContract.ValenceUnits_Sentences.URI;
 		providerSql.projection = new String[]{ //
 				FrameNetContract.Patterns_Sentences.ANNOSETID, //
 				FrameNetContract.Patterns_Sentences.SENTENCEID, //
@@ -262,7 +289,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareAnnoSet(final long annoSetId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = FrameNetContract.AnnoSets_Layers_X.CONTENT_URI_TABLE;
+		providerSql.providerUri = FrameNetContract.AnnoSets_Layers_X.URI;
 		providerSql.projection = new String[]{ //
 				FrameNetContract.AnnoSets_Layers_X.SENTENCEID, //
 				FrameNetContract.AnnoSets_Layers_X.SENTENCETEXT, //
@@ -279,7 +306,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareAnnoSetsForGovernor(final long governorId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = FrameNetContract.Governors_AnnoSets_Sentences.CONTENT_URI_TABLE;
+		providerSql.providerUri = FrameNetContract.Governors_AnnoSets_Sentences.URI;
 		providerSql.projection = new String[]{ //
 				FrameNetContract.Governors_AnnoSets_Sentences.GOVERNORID, //
 				FrameNetContract.Governors_AnnoSets_Sentences.ANNOSETID, //
@@ -294,7 +321,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareAnnoSetsForPattern(final long patternId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = FrameNetContract.Patterns_Layers_X.CONTENT_URI_TABLE;
+		providerSql.providerUri = FrameNetContract.Patterns_Layers_X.URI;
 		providerSql.projection = new String[]{ //
 				FrameNetContract.Patterns_Layers_X.ANNOSETID, //
 				FrameNetContract.Patterns_Layers_X.SENTENCEID, //
@@ -312,7 +339,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareAnnoSetsForValenceUnit(final long vuId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = FrameNetContract.ValenceUnits_Layers_X.CONTENT_URI_TABLE;
+		providerSql.providerUri = FrameNetContract.ValenceUnits_Layers_X.URI;
 		providerSql.projection = new String[]{ //
 				FrameNetContract.ValenceUnits_Layers_X.ANNOSETID, //
 				FrameNetContract.ValenceUnits_Layers_X.SENTENCEID, //
@@ -330,7 +357,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareLayersForSentence(final long sentenceId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = FrameNetContract.Sentences_Layers_X.CONTENT_URI_TABLE;
+		providerSql.providerUri = FrameNetContract.Sentences_Layers_X.URI;
 		providerSql.projection = new String[]{ //
 				FrameNetContract.Sentences_Layers_X.ANNOSETID, //
 				FrameNetContract.Sentences_Layers_X.LAYERID, //

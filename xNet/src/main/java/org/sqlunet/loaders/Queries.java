@@ -10,7 +10,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareWord(final String word)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = XNetContract.Words_FnWords_PbWords_VnWords.CONTENT_URI_TABLE;
+		providerSql.providerUri = XNetContract.Words_FnWords_PbWords_VnWords.URI;
 		providerSql.projection = new String[]{ //
 				XNetContract.Words_FnWords_PbWords_VnWords.SYNSETID + " AS " + GROUPID_COLUMN, //
 				XNetContract.Words_FnWords_PbWords_VnWords.WORDID, //
@@ -18,16 +18,16 @@ public class Queries
 				XNetContract.Words_FnWords_PbWords_VnWords.VNWORDID, //
 				XNetContract.Words_FnWords_PbWords_VnWords.PBWORDID, //
 		};
-		providerSql.selection = XNetContract.WORD + '.' + XNetContract.Words_FnWords_PbWords_VnWords.WORD + " = ?";
+		providerSql.selection = XNetContract.AS_WORD + '.' + XNetContract.Words_FnWords_PbWords_VnWords.WORD + " = ?";
 		providerSql.selectionArgs = new String[]{word};
-		providerSql.sortBy = XNetContract.POS + '.' + XNetContract.Words_FnWords_PbWords_VnWords.POS + ',' + XNetContract.Words_FnWords_PbWords_VnWords.SENSENUM;
+		providerSql.sortBy = XNetContract.AS_POS + '.' + XNetContract.Words_FnWords_PbWords_VnWords.POS + ',' + XNetContract.Words_FnWords_PbWords_VnWords.SENSENUM;
 		return providerSql;
 	}
 
 	public static Module.ContentProviderSql prepareWordX(final String word)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = XNetContract.Words_FnWords_PbWords_VnWords.CONTENT_URI_TABLE;
+		providerSql.providerUri = XNetContract.Words_FnWords_PbWords_VnWords.URI;
 		providerSql.projection = new String[]{ //
 				XNetContract.Words_FnWords_PbWords_VnWords.SYNSETID + " AS _id", //
 				XNetContract.Words_FnWords_PbWords_VnWords.WORDID, //
@@ -38,7 +38,7 @@ public class Queries
 				XNetContract.Words_FnWords_PbWords_VnWords.TAGCOUNT, //
 				XNetContract.Words_FnWords_PbWords_VnWords.SYNSETID, //
 				XNetContract.Words_FnWords_PbWords_VnWords.DEFINITION, //
-				XNetContract.POS + '.' + XNetContract.Words_FnWords_PbWords_VnWords.POSID, //
+				XNetContract.AS_POS + '.' + XNetContract.Words_FnWords_PbWords_VnWords.POSID, //
 				XNetContract.Words_FnWords_PbWords_VnWords.POS, //
 				XNetContract.Words_FnWords_PbWords_VnWords.DOMAIN, //
 				XNetContract.Words_FnWords_PbWords_VnWords.CASED, //
@@ -46,9 +46,9 @@ public class Queries
 				XNetContract.Words_FnWords_PbWords_VnWords.VNWORDID, //
 				XNetContract.Words_FnWords_PbWords_VnWords.PBWORDID, //
 		};
-		providerSql.selection = XNetContract.WORD + '.' + XNetContract.Words_FnWords_PbWords_VnWords.WORD + " = ?";
+		providerSql.selection = XNetContract.AS_WORD + '.' + XNetContract.Words_FnWords_PbWords_VnWords.WORD + " = ?";
 		providerSql.selectionArgs = new String[]{word};
-		providerSql.sortBy = XNetContract.POS + '.' + XNetContract.Words_FnWords_PbWords_VnWords.POS + ',' + XNetContract.Words_FnWords_PbWords_VnWords.SENSENUM;
+		providerSql.sortBy = XNetContract.AS_POS + '.' + XNetContract.Words_FnWords_PbWords_VnWords.POS + ',' + XNetContract.Words_FnWords_PbWords_VnWords.SENSENUM;
 		return providerSql;
 	}
 
@@ -60,7 +60,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareVn(final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = XNetContract.Words_VnWords_VnClasses_U.CONTENT_URI_TABLE;
+		providerSql.providerUri = XNetContract.Words_VnWords_VnClasses_U.URI;
 		providerSql.projection = new String[]{ //
 				XNetContract.Words_VnWords_VnClasses_U.WORDID, //
 				XNetContract.Words_VnWords_VnClasses_U.SYNSETID, //
@@ -78,6 +78,44 @@ public class Queries
 		return providerSql;
 	}
 
+	public static Module.ContentProviderSql prepareVnSelect(final long wordId)
+	{
+		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
+		providerSql.providerUri = XNetContract.Words_VnWords_VnClasses.URI;
+		providerSql.projection = new String[]{ //
+				XNetContract.Words_VnWords_VnClasses.WORDID, //
+				XNetContract.Words_VnWords_VnClasses.SYNSETID, //
+				XNetContract.Words_VnWords_VnClasses.CLASSID + " AS " + XNetContract.Words_XNet.XID, //
+				XNetContract.Words_VnWords_VnClasses.CLASSID + " AS " + XNetContract.Words_XNet.XCLASSID, //
+				"NULL AS " + XNetContract.Words_XNet.XMEMBERID, //
+				"TRIM(" + XNetContract.Words_VnWords_VnClasses.CLASS + ",'-.0123456789')" + " AS " + XNetContract.Words_XNet.XNAME, //
+				XNetContract.Words_VnWords_VnClasses.CLASS + " AS " + XNetContract.Words_XNet.XHEADER, //
+				XNetContract.Words_VnWords_VnClasses.CLASSTAG + " AS " + XNetContract.Words_XNet.XINFO, //
+				XNetContract.Words_VnWords_VnClasses.DEFINITION + " AS " + XNetContract.Words_XNet.XDEFINITION, //
+				"'vn' AS " + XNetContract.Words_XNet.SOURCES, //
+				XNetContract.AS_CLASS + ".rowid AS _id",};
+		providerSql.selection = XNetContract.Words_VnWords_VnClasses.WORDID + " = ?";
+		providerSql.selectionArgs = new String[]{Long.toString(wordId)};
+		providerSql.sortBy = XNetContract.Words_VnWords_VnClasses.CLASSID;
+		return providerSql;
+	}
+
+	public static Module.ContentProviderSql prepareVnWordSelect(final String word)
+	{
+		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
+		providerSql.providerUri = XNetContract.Words_PbWords_VnWords.URI;
+		providerSql.projection = new String[]{ //
+				XNetContract.Words_PbWords_VnWords.SYNSETID + " AS " + GROUPID_COLUMN, //
+				XNetContract.Words_PbWords_VnWords.WORDID, //
+				XNetContract.Words_PbWords_VnWords.VNWORDID, //
+				XNetContract.Words_PbWords_VnWords.PBWORDID, //
+		};
+		providerSql.selection = XNetContract.AS_WORD + '.' + XNetContract.Words_PbWords_VnWords.WORD + " = ?";
+		providerSql.selectionArgs = new String[]{word};
+		providerSql.sortBy = XNetContract.AS_POS + '.' + XNetContract.Words_PbWords_VnWords.POSID + ',' + XNetContract.Words_PbWords_VnWords.SENSENUM;
+		return providerSql;
+	}
+
 	/**
 	 * Load PropBank data
 	 *
@@ -86,7 +124,7 @@ public class Queries
 	public static Module.ContentProviderSql preparePb(final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = XNetContract.Words_PbWords_PbRoleSets_U.CONTENT_URI_TABLE;
+		providerSql.providerUri = XNetContract.Words_PbWords_PbRoleSets_U.URI;
 		providerSql.projection = new String[]{ //
 				XNetContract.Words_PbWords_PbRoleSets_U.WORDID, //
 				XNetContract.Words_PbWords_PbRoleSets_U.SYNSETID, //
@@ -105,6 +143,29 @@ public class Queries
 		return providerSql;
 	}
 
+	public static Module.ContentProviderSql preparePbSelect(final long wordId)
+	{
+		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
+		providerSql.providerUri = XNetContract.Words_PbWords_PbRoleSets.URI;
+		providerSql.projection = new String[]{ //
+				XNetContract.Words_PbWords_PbRoleSets.WORDID, //
+				"NULL AS " + XNetContract.Words_PbWords_PbRoleSets.SYNSETID, //
+				XNetContract.Words_PbWords_PbRoleSets.ROLESETID + " AS " + XNetContract.Words_XNet.XID, //
+				XNetContract.Words_PbWords_PbRoleSets.ROLESETID + " AS " + XNetContract.Words_XNet.XCLASSID, //
+				"NULL AS " + XNetContract.Words_XNet.XMEMBERID, //
+				"TRIM(" + XNetContract.Words_PbWords_PbRoleSets.ROLESETNAME + ",'.0123456789')" + " AS " + XNetContract.Words_XNet.XNAME, //
+				XNetContract.Words_PbWords_PbRoleSets.ROLESETNAME + " AS " + XNetContract.Words_XNet.XHEADER, //
+				//Words_PbWords_PbRoleSets.ROLESETHEAD + " AS " + Words_XNet.XHEADER, //
+				XNetContract.Words_PbWords_PbRoleSets.ROLESETDESCR + " AS " + XNetContract.Words_XNet.XINFO, //
+				"NULL AS " + XNetContract.Words_XNet.XDEFINITION, //
+				"'pb' AS " + XNetContract.Words_XNet.SOURCES, //
+				XNetContract.AS_CLASS + ".rowid AS _id",};
+		providerSql.selection = XNetContract.Words_PbWords_PbRoleSets.WORDID + " = ?";
+		providerSql.selectionArgs = new String[]{Long.toString(wordId)};
+		providerSql.sortBy = XNetContract.Words_PbWords_PbRoleSets.ROLESETID;
+		return providerSql;
+	}
+
 	/**
 	 * Load FrameNet data
 	 *
@@ -113,7 +174,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareFn(final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = XNetContract.Words_FnWords_FnFrames_U.CONTENT_URI_TABLE;
+		providerSql.providerUri = XNetContract.Words_FnWords_FnFrames_U.URI;
 		providerSql.projection = new String[]{ //
 				XNetContract.Words_FnWords_FnFrames_U.WORDID, //
 				XNetContract.Words_FnWords_FnFrames_U.SYNSETID, //

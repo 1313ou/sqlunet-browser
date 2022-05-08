@@ -23,6 +23,7 @@ public class RunQueries
 
 	private void process(final SqlProcessor processor, final Module.ContentProviderSql providerSql) throws SQLException
 	{
+		System.out.println("URI: " + providerSql.providerUri);
 		final int code = uriToCode(providerSql.providerUri);
 		final String sql = toSql(code, providerSql);
 		try
@@ -50,9 +51,9 @@ public class RunQueries
 	{
 		switch (providerUri)
 		{
-			case PredicateMatrixContract.Pm.CONTENT_URI_TABLE:
+			case PredicateMatrixContract.Pm.URI:
 				return PredicateMatrixControl.PM;
-			case PredicateMatrixContract.Pm_X.CONTENT_URI_TABLE:
+			case PredicateMatrixContract.Pm_X.URI:
 				return PredicateMatrixControl.PM_X;
 			default:
 				throw new IllegalArgumentException("Illegal uri: " + providerUri);

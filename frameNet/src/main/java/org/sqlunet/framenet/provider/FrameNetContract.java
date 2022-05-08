@@ -29,7 +29,7 @@ public class FrameNetContract
 	static public final class Words
 	{
 		static public final String TABLE = Q.WORDS.TABLE;
-		static public final String CONTENT_URI_TABLE = Words.TABLE;
+		static public final String URI = Words.TABLE;
 		static public final String FNWORDID = V.FNWORDID;
 		static public final String WORDID = V.WORDID;
 		//static public final String WORD = V.WORD;
@@ -39,8 +39,8 @@ public class FrameNetContract
 	{
 		static public final String TABLE = Q.LEXUNITS.TABLE;
 		static public final String TABLE1 = "lexunit";
-		static public final String CONTENT_URI_TABLE = LexUnits.TABLE;
-		static public final String CONTENT_URI_TABLE1 = LexUnits.TABLE1;
+		static public final String URI = LexUnits.TABLE;
+		static public final String URI1 = LexUnits.TABLE1;
 		static public final String LUID = V.LUID;
 		static public final String CONTENTS = V.LUID;
 		static public final String LEXUNIT = V.LEXUNIT;
@@ -52,7 +52,7 @@ public class FrameNetContract
 	static public final class LexUnits_X
 	{
 		static public final String TABLE_BY_LEXUNIT = "lexunits_x_by_lexunit";
-		static public final String CONTENT_URI_TABLE = LexUnits_X.TABLE_BY_LEXUNIT;
+		static public final String URI = LexUnits_X.TABLE_BY_LEXUNIT;
 		static public final String LUID = V.LUID;
 		static public final String CONTENTS = V.LUID;
 		static public final String LEXUNIT = V.LEXUNIT;
@@ -70,9 +70,9 @@ public class FrameNetContract
 	static public final class LexUnits_or_Frames
 	{
 		static public final String TABLE = "lexunits_or_frame";
-		static public final String CONTENT_URI_TABLE = LexUnits_or_Frames.TABLE;
+		static public final String URI = LexUnits_or_Frames.TABLE;
 		static public final String TABLE_FN = "lexunits_or_frame_fn";
-		static public final String CONTENT_URI_TABLE_FN = LexUnits_or_Frames.TABLE_FN;
+		static public final String URI_FN = LexUnits_or_Frames.TABLE_FN;
 		static public final String ID = V._ID;
 		static public final String FNID = V.FNID;
 		static public final String FNWORDID = V.FNWORDID;
@@ -88,8 +88,8 @@ public class FrameNetContract
 	{
 		static public final String TABLE = Q.FRAMES.TABLE;
 		static public final String TABLE1 = "frame";
-		static public final String CONTENT_URI_TABLE = Frames.TABLE;
-		static public final String CONTENT_URI_TABLE1 = Frames.TABLE1;
+		static public final String URI = Frames.TABLE;
+		static public final String URI1 = Frames.TABLE1;
 		static public final String FRAMEID = V.FRAMEID;
 		static public final String CONTENTS = V.FRAMEID;
 	}
@@ -98,8 +98,8 @@ public class FrameNetContract
 	{
 		static public final String TABLE = "frames_x";
 		static public final String TABLE_BY_FRAME = "frames_x_by_frame";
-		static public final String CONTENT_URI_TABLE = Frames_X.TABLE;
-		static public final String CONTENT_URI_TABLE_BY_FRAME = Frames_X.TABLE_BY_FRAME;
+		static public final String URI = Frames_X.TABLE;
+		static public final String URI_BY_FRAME = Frames_X.TABLE_BY_FRAME;
 		static public final String FRAMEID = V.FRAMEID;
 		static public final String CONTENTS = V.FRAMEID;
 		static public final String FRAME = V.FRAME;
@@ -112,7 +112,7 @@ public class FrameNetContract
 	static public final class Frames_Related
 	{
 		static public final String TABLE = "frames_related";
-		static public final String CONTENT_URI_TABLE = Frames_Related.TABLE;
+		static public final String URI = Frames_Related.TABLE;
 		static public final String FRAMEID = V.FRAMEID;
 		static public final String FRAME = V.FRAME;
 		static public final String FRAME2ID = V.FRAME2ID;
@@ -124,8 +124,8 @@ public class FrameNetContract
 	{
 		static public final String TABLE = Q.SENTENCES.TABLE;
 		static public final String TABLE1 = "sentence";
-		static public final String CONTENT_URI_TABLE = Sentences.TABLE;
-		static public final String CONTENT_URI_TABLE1 = Sentences.TABLE1;
+		static public final String URI = Sentences.TABLE;
+		static public final String URI1 = Sentences.TABLE1;
 		static public final String SENTENCEID = V.SENTENCEID;
 		static public final String TEXT = V.TEXT;
 	}
@@ -134,8 +134,8 @@ public class FrameNetContract
 	{
 		static public final String TABLE = Q.ANNOSETS.TABLE;
 		static public final String TABLE1 = "annoset";
-		static public final String CONTENT_URI_TABLE = AnnoSets.TABLE;
-		static public final String CONTENT_URI_TABLE1 = AnnoSets.TABLE1;
+		static public final String URI = AnnoSets.TABLE;
+		static public final String URI1 = AnnoSets.TABLE1;
 		static public final String ANNOSETID = V.ANNOSETID;
 		static public final String CONTENTS = V.ANNOSETID;
 	}
@@ -143,7 +143,7 @@ public class FrameNetContract
 	static public final class Sentences_Layers_X
 	{
 		static public final String TABLE = "sentences_layers_x";
-		static public final String CONTENT_URI_TABLE = Sentences_Layers_X.TABLE;
+		static public final String URI = Sentences_Layers_X.TABLE;
 		static public final String SENTENCEID = V.SENTENCEID;
 		static public final String ANNOSETID = V.ANNOSETID;
 		static public final String LAYERID = V.LAYERID;
@@ -161,7 +161,7 @@ public class FrameNetContract
 	static public final class AnnoSets_Layers_X
 	{
 		static public final String TABLE = "annosets_layers_x";
-		static public final String CONTENT_URI_TABLE = AnnoSets_Layers_X.TABLE;
+		static public final String URI = AnnoSets_Layers_X.TABLE;
 		static public final String ANNOSETID = V.ANNOSETID;
 		static public final String SENTENCEID = V.SENTENCEID;
 		static public final String SENTENCETEXT = V.TEXT;
@@ -180,7 +180,7 @@ public class FrameNetContract
 	static public final class Patterns_Layers_X
 	{
 		static public final String TABLE = "patterns_layers_x";
-		static public final String CONTENT_URI_TABLE = Patterns_Layers_X.TABLE;
+		static public final String URI = Patterns_Layers_X.TABLE;
 		static public final String ANNOSETID = V.ANNOSETID;
 		static public final String SENTENCEID = V.SENTENCEID;
 		static public final String SENTENCETEXT = V.TEXT;
@@ -199,7 +199,7 @@ public class FrameNetContract
 	static public final class ValenceUnits_Layers_X
 	{
 		static public final String TABLE = "valenceunits_layers_x";
-		static public final String CONTENT_URI_TABLE = ValenceUnits_Layers_X.TABLE;
+		static public final String URI = ValenceUnits_Layers_X.TABLE;
 		static public final String ANNOSETID = V.ANNOSETID;
 		static public final String SENTENCEID = V.SENTENCEID;
 		static public final String SENTENCETEXT = V.TEXT;
@@ -218,9 +218,9 @@ public class FrameNetContract
 	static public final class Words_LexUnits_Frames
 	{
 		static public final String TABLE = "words_lexunits";
-		static public final String CONTENT_URI_TABLE = Words_LexUnits_Frames.TABLE;
+		static public final String URI = Words_LexUnits_Frames.TABLE;
 		static public final String TABLE_FN = "words_lexunits_fn";
-		static public final String CONTENT_URI_TABLE_FN = Words_LexUnits_Frames.TABLE_FN;
+		static public final String URI_FN = Words_LexUnits_Frames.TABLE_FN;
 		static public final String WORDID = V.WORDID;
 		static public final String LUID = V.LUID;
 		static public final String LEXUNIT = V.LEXUNIT;
@@ -242,8 +242,8 @@ public class FrameNetContract
 	{
 		static public final String TABLE = "frames_fes";
 		static public final String TABLE_BY_FE = TABLE + "by_fe";
-		static public final String CONTENT_URI_TABLE = Frames_FEs.TABLE;
-		static public final String CONTENT_URI_TABLE_BY_FE = Frames_FEs.TABLE_BY_FE;
+		static public final String URI = Frames_FEs.TABLE;
+		static public final String URI_BY_FE = Frames_FEs.TABLE_BY_FE;
 		static public final String FRAMEID = V.FRAMEID;
 		static public final String FETYPEID = V.FETYPEID;
 		static public final String FETYPE = V.FETYPE;
@@ -260,8 +260,8 @@ public class FrameNetContract
 	{
 		static public final String TABLE = "fnframes_fnsentences";
 		static public final String TABLE_BY_SENTENCE = TABLE + "/sentence";
-		static public final String CONTENT_URI_TABLE = LexUnits_Sentences.TABLE;
-		static public final String CONTENT_URI_TABLE_BY_SENTENCE = LexUnits_Sentences.TABLE_BY_SENTENCE;
+		static public final String URI = LexUnits_Sentences.TABLE;
+		static public final String URI_BY_SENTENCE = LexUnits_Sentences.TABLE_BY_SENTENCE;
 		static public final String LUID = V.LUID;
 		static public final String FRAMEID = V.FRAMEID;
 		static public final String SENTENCEID = V.SENTENCEID;
@@ -276,8 +276,8 @@ public class FrameNetContract
 	{
 		static public final String TABLE = "fnlexunits_fnsentences_fnannosets_fnlayers_fnlabels";
 		static public final String TABLE_BY_SENTENCE = TABLE + "/sentence";
-		static public final String CONTENT_URI_TABLE = LexUnits_Sentences_AnnoSets_Layers_Labels.TABLE;
-		static public final String CONTENT_URI_TABLE_BY_SENTENCE = LexUnits_Sentences_AnnoSets_Layers_Labels.TABLE_BY_SENTENCE;
+		static public final String URI = LexUnits_Sentences_AnnoSets_Layers_Labels.TABLE;
+		static public final String URI_BY_SENTENCE = LexUnits_Sentences_AnnoSets_Layers_Labels.TABLE_BY_SENTENCE;
 		static public final String LUID = V.LUID;
 		static public final String FRAMEID = V.FRAMEID;
 		static public final String SENTENCEID = V.SENTENCEID;
@@ -302,9 +302,9 @@ public class FrameNetContract
 	static public final class LexUnits_Governors
 	{
 		static public final String TABLE = "fnlexunits_fngovernors";
-		static public final String CONTENT_URI_TABLE = LexUnits_Governors.TABLE;
+		static public final String URI = LexUnits_Governors.TABLE;
 		static public final String TABLE_FN = "fnlexunits_fngovernors_fn";
-		static public final String CONTENT_URI_TABLE_FN = LexUnits_Governors.TABLE_FN;
+		static public final String URI_FN = LexUnits_Governors.TABLE_FN;
 		static public final String LUID = V.LUID;
 		static public final String GOVERNORID = V.GOVERNORID;
 		static public final String GOVERNORTYPE = V.GOVERNORTYPE;
@@ -316,8 +316,8 @@ public class FrameNetContract
 	{
 		static public final String TABLE = "lexunits_ferealizations_valenceunits";
 		static public final String TABLE_BY_REALIZATION = TABLE + "by_realization";
-		static public final String CONTENT_URI_TABLE = LexUnits_FERealizations_ValenceUnits.TABLE;
-		static public final String CONTENT_URI_TABLE_BY_REALIZATION = LexUnits_FERealizations_ValenceUnits.TABLE_BY_REALIZATION;
+		static public final String URI = LexUnits_FERealizations_ValenceUnits.TABLE;
+		static public final String URI_BY_REALIZATION = LexUnits_FERealizations_ValenceUnits.TABLE_BY_REALIZATION;
 		static public final String LUID = V.LUID;
 		static public final String FERID = V.FERID;
 		static public final String FETYPE = V.FETYPE;
@@ -332,8 +332,8 @@ public class FrameNetContract
 	{
 		static public final String TABLE = "lexunits_fegrouprealizations_patterns_valenceunits";
 		static public final String TABLE_BY_PATTERN = TABLE + "_by_pattern";
-		static public final String CONTENT_URI_TABLE = LexUnits_FEGroupRealizations_Patterns_ValenceUnits.TABLE;
-		static public final String CONTENT_URI_TABLE_BY_PATTERN = LexUnits_FEGroupRealizations_Patterns_ValenceUnits.TABLE_BY_PATTERN;
+		static public final String URI = LexUnits_FEGroupRealizations_Patterns_ValenceUnits.TABLE;
+		static public final String URI_BY_PATTERN = LexUnits_FEGroupRealizations_Patterns_ValenceUnits.TABLE_BY_PATTERN;
 		static public final String LUID = V.LUID;
 		static public final String FEGRID = V.FEGRID;
 		static public final String FETYPE = V.FETYPE;
@@ -350,7 +350,7 @@ public class FrameNetContract
 	static public final class Patterns_Sentences
 	{
 		static public final String TABLE = "patterns_sentences";
-		static public final String CONTENT_URI_TABLE = Patterns_Sentences.TABLE;
+		static public final String URI = Patterns_Sentences.TABLE;
 		static public final String PATTERNID = V.PATTERNID;
 		static public final String ANNOSETID = V.ANNOSETID;
 		static public final String SENTENCEID = V.SENTENCEID;
@@ -360,7 +360,7 @@ public class FrameNetContract
 	static public final class ValenceUnits_Sentences
 	{
 		static public final String TABLE = "valenceunits_sentences";
-		static public final String CONTENT_URI_TABLE = ValenceUnits_Sentences.TABLE;
+		static public final String URI = ValenceUnits_Sentences.TABLE;
 		static public final String VUID = V.VUID;
 		static public final String ANNOSETID = V.ANNOSETID;
 		static public final String SENTENCEID = V.SENTENCEID;
@@ -370,7 +370,7 @@ public class FrameNetContract
 	static public final class Governors_AnnoSets_Sentences
 	{
 		static public final String TABLE = "governors_annosets_sentences";
-		static public final String CONTENT_URI_TABLE = Governors_AnnoSets_Sentences.TABLE;
+		static public final String URI = Governors_AnnoSets_Sentences.TABLE;
 		static public final String GOVERNORID = V.GOVERNORID;
 		static public final String ANNOSETID = V.ANNOSETID;
 		static public final String SENTENCEID = V.SENTENCEID;
@@ -380,7 +380,7 @@ public class FrameNetContract
 	static public final class Lookup_FTS_FnWords
 	{
 		static public final String TABLE = "fts_fnwords";
-		static public final String CONTENT_URI_TABLE = Lookup_FTS_FnWords.TABLE;
+		static public final String URI = Lookup_FTS_FnWords.TABLE;
 		static public final String FNWORDID = V.FNWORDID;
 		static public final String WORDID = V.WORDID;
 		static public final String WORD = V.WORD;
@@ -389,7 +389,7 @@ public class FrameNetContract
 	static public final class Lookup_FTS_FnSentences
 	{
 		static public final String TABLE = "fts_sentences";
-		static public final String CONTENT_URI_TABLE = Lookup_FTS_FnSentences.TABLE;
+		static public final String URI = Lookup_FTS_FnSentences.TABLE;
 		static public final String SENTENCEID = V.SENTENCEID;
 		static public final String TEXT = V.TEXT;
 		static public final String FRAMEID = V.FRAMEID;
@@ -401,8 +401,8 @@ public class FrameNetContract
 	{
 		static public final String TABLE = "fts_sentences_x";
 		static public final String TABLE_BY_SENTENCE = "fts_fnsentences_x_by_sentence";
-		static public final String CONTENT_URI_TABLE = Lookup_FTS_FnSentences_X.TABLE;
-		static public final String CONTENT_URI_TABLE_BY_SENTENCE = Lookup_FTS_FnSentences_X.TABLE_BY_SENTENCE;
+		static public final String URI = Lookup_FTS_FnSentences_X.TABLE;
+		static public final String URI_BY_SENTENCE = Lookup_FTS_FnSentences_X.TABLE_BY_SENTENCE;
 		static public final String SENTENCEID = V.SENTENCEID;
 		static public final String TEXT = V.TEXT;
 		static public final String FRAMEID = V.FRAMEID;

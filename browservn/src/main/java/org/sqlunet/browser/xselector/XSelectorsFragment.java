@@ -22,9 +22,11 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.SimpleCursorTreeAdapter;
 
+import org.sqlunet.browser.Module;
 import org.sqlunet.browser.SqlunetViewModel;
 import org.sqlunet.browser.vn.R;
 import org.sqlunet.browser.vn.Settings;
+import org.sqlunet.loaders.Queries;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.provider.XNetContract;
 import org.sqlunet.provider.XNetContract.Words_PbWords_VnWords;
@@ -554,17 +556,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 	private void load()
 	{
 		// load the contents
-		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(XNetContract.Words_PbWords_VnWords.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				Words_PbWords_VnWords.SYNSETID + " AS " + GROUPID_COLUMN, //
-				Words_PbWords_VnWords.WORDID, //
-				Words_PbWords_VnWords.VNWORDID, //
-				Words_PbWords_VnWords.PBWORDID, //
-		};
-		final String selection = XNetContract.WORD + '.' + Words_PbWords_VnWords.WORD + " = ?";
-		final String[] selectionArgs = {XSelectorsFragment.this.word};
-		final String sortOrder = XNetContract.POS + '.' + Words_PbWords_VnWords.POSID + ',' + Words_PbWords_VnWords.SENSENUM;
-		this.wordIdFromWordModel.loadData(uri, projection, selection, selectionArgs, sortOrder, this::wordIdFromWordPostProcess);
+		final Module.ContentProviderSql sql = Queries.prepareVnWordSelect(XSelectorsFragment.this.word);
+		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(sql.providerUri));
+		this.wordIdFromWordModel.loadData(uri, sql, this::wordIdFromWordPostProcess);
 	}
 
 	/**
@@ -632,23 +626,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 */
 	private void loadVn(final long wordId)
 	{
-		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(XNetContract.Words_VnWords_VnClasses.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				XNetContract.Words_VnWords_VnClasses.WORDID, //
-				XNetContract.Words_VnWords_VnClasses.SYNSETID, //
-				XNetContract.Words_VnWords_VnClasses.CLASSID + " AS " + Words_XNet.XID, //
-				XNetContract.Words_VnWords_VnClasses.CLASSID + " AS " + Words_XNet.XCLASSID, //
-				"NULL AS " + Words_XNet.XMEMBERID, //
-				"TRIM(" + XNetContract.Words_VnWords_VnClasses.CLASS + ",'-.0123456789')" + " AS " + Words_XNet.XNAME, //
-				XNetContract.Words_VnWords_VnClasses.CLASS + " AS " + Words_XNet.XHEADER, //
-				XNetContract.Words_VnWords_VnClasses.CLASSTAG + " AS " + Words_XNet.XINFO, //
-				XNetContract.Words_VnWords_VnClasses.DEFINITION + " AS " + Words_XNet.XDEFINITION, //
-				"'vn' AS " + Words_XNet.SOURCES, //
-				XNetContract.CLASS + ".rowid AS _id",};
-		final String selection = XNetContract.Words_VnWords_VnClasses.WORDID + " = ?";
-		final String[] selectionArgs = {Long.toString(wordId)};
-		final String sortOrder = XNetContract.Words_VnWords_VnClasses.CLASSID;
-		this.vnFromWordIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
+		final Module.ContentProviderSql sql = Queries.prepareVnSelect(wordId);
+		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(sql.providerUri));
+		this.vnFromWordIdModel.loadData(uri, sql, null);
 	}
 
 	/**
@@ -658,24 +638,9 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 */
 	private void loadPb(final long wordId)
 	{
-		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(XNetContract.Words_PbWords_PbRoleSets.CONTENT_URI_TABLE));
-		final String[] projection = { //
-				XNetContract.Words_PbWords_PbRoleSets.WORDID, //
-				"NULL AS " + XNetContract.Words_PbWords_PbRoleSets.SYNSETID, //
-				XNetContract.Words_PbWords_PbRoleSets.ROLESETID + " AS " + Words_XNet.XID, //
-				XNetContract.Words_PbWords_PbRoleSets.ROLESETID + " AS " + Words_XNet.XCLASSID, //
-				"NULL AS " + Words_XNet.XMEMBERID, //
-				"TRIM(" + XNetContract.Words_PbWords_PbRoleSets.ROLESETNAME + ",'.0123456789')" + " AS " + Words_XNet.XNAME, //
-				XNetContract.Words_PbWords_PbRoleSets.ROLESETNAME + " AS " + Words_XNet.XHEADER, //
-				//Words_PbWords_PbRoleSets.ROLESETHEAD + " AS " + Words_XNet.XHEADER, //
-				XNetContract.Words_PbWords_PbRoleSets.ROLESETDESCR + " AS " + Words_XNet.XINFO, //
-				"NULL AS " + Words_XNet.XDEFINITION, //
-				"'pb' AS " + Words_XNet.SOURCES, //
-				XNetContract.CLASS + ".rowid AS _id",};
-		final String selection = XNetContract.Words_PbWords_PbRoleSets.WORDID + " = ?";
-		final String[] selectionArgs = {Long.toString(wordId)};
-		final String sortOrder = XNetContract.Words_PbWords_PbRoleSets.ROLESETID;
-		this.pbFromWordIdModel.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
+		final Module.ContentProviderSql sql = Queries.preparePbSelect(wordId);
+		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(sql.providerUri));
+		this.pbFromWordIdModel.loadData(uri, sql, null);
 	}
 
 	// L I S T E N E R

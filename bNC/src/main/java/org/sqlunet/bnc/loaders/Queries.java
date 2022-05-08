@@ -10,7 +10,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareBnc(final long wordId, @Nullable final Character pos)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = Words_BNCs.CONTENT_URI_TABLE;
+		providerSql.providerUri = Words_BNCs.URI;
 		providerSql.projection = new String[]{Words_BNCs.POSID, Words_BNCs.FREQ, Words_BNCs.RANGE, Words_BNCs.DISP, //
 				Words_BNCs.BNCCONVTASKS + '.' + Words_BNCs.FREQ1 + " AS " + Words_BNCs.BNCCONVTASKS + Words_BNCs.FREQ1, //
 				Words_BNCs.BNCCONVTASKS + '.' + Words_BNCs.RANGE1 + " AS " + Words_BNCs.BNCCONVTASKS + Words_BNCs.RANGE1, //

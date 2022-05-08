@@ -35,7 +35,7 @@ public class Queries
 	private static Module.ContentProviderSql preparePm()
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = PredicateMatrixContract.Pm_X.CONTENT_URI_TABLE;
+		providerSql.providerUri = PredicateMatrixContract.Pm_X.URI;
 		providerSql.projection = new String[]{ //
 				PredicateMatrixContract.PredicateMatrix.PMID, //
 				PredicateMatrixContract.PredicateMatrix.PMROLEID, //

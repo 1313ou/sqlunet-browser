@@ -140,7 +140,7 @@ public class BrowseFragment extends BaseSearchFragment
 		if (R.id.action_table_domains == itemId)
 		{
 			intent = new Intent(context, TableActivity.class);
-			intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(Domains.CONTENT_URI_TABLE));
+			intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(Domains.URI));
 			intent.putExtra(ProviderArgs.ARG_QUERYID, Domains.DOMAINID);
 			intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{Domains.DOMAINID, Domains.DOMAIN, Domains.POSID});
 			intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table3);
@@ -148,7 +148,7 @@ public class BrowseFragment extends BaseSearchFragment
 		else if (R.id.action_table_poses == itemId)
 		{
 			intent = new Intent(context, TableActivity.class);
-			intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(Poses.CONTENT_URI_TABLE));
+			intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(Poses.URI));
 			intent.putExtra(ProviderArgs.ARG_QUERYID, Poses.POSID);
 			intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{Poses.POSID, Poses.POS});
 			intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table2);
@@ -156,7 +156,7 @@ public class BrowseFragment extends BaseSearchFragment
 		else if (R.id.action_table_adjpositions == itemId)
 		{
 			intent = new Intent(context, TableActivity.class);
-			intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(AdjPositions.CONTENT_URI_TABLE));
+			intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(AdjPositions.URI));
 			intent.putExtra(ProviderArgs.ARG_QUERYID, AdjPositions.POSITIONID);
 			intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{AdjPositions.POSITIONID, AdjPositions.POSITION});
 			intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table2);
@@ -164,7 +164,7 @@ public class BrowseFragment extends BaseSearchFragment
 		else if (R.id.action_table_relations == itemId)
 		{
 			intent = new Intent(context, TableActivity.class);
-			intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(Relations.CONTENT_URI_TABLE));
+			intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(Relations.URI));
 			intent.putExtra(ProviderArgs.ARG_QUERYID, Relations.RELATIONID);
 			intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{Relations.RELATIONID, Relations.RELATION, Relations.RECURSESSELECT});
 			intent.putExtra(ProviderArgs.ARG_QUERYSORT, Relations.RELATIONID + " ASC");
