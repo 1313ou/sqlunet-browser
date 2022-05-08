@@ -51,9 +51,9 @@ public class RunQueries
 		switch (providerUri)
 		{
 			case BNCContract.BNCs.CONTENT_URI_TABLE:
-				return 11;
+				return  BNCDispatcher.BNC;
 			case BNCContract.Words_BNCs.CONTENT_URI_TABLE:
-				return 100;
+				return BNCDispatcher.WORDS_BNC;
 			default:
 				throw new IllegalArgumentException("Illegal uri: " + providerUri);
 		}

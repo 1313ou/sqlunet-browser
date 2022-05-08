@@ -3,7 +3,6 @@ package org.sqlunet.verbnet.provider;
 import org.junit.Test;
 import org.sqlunet.browser.Module;
 import org.sqlunet.provider.SQLiteQueryBuilder;
-import org.sqlunet.provider.XSqlUNetDispatcher;
 import org.sqlunet.test.SqlProcessor;
 import org.sqlunet.verbnet.loaders.Queries;
 
@@ -33,7 +32,7 @@ public class RunQueries
 		{
 			processor.process(sql);
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			System.err.println(providerSql);
 			throw e;
@@ -60,29 +59,29 @@ public class RunQueries
 		switch (providerUri)
 		{
 			case VerbNetContract.VnClasses.CONTENT_URI_TABLE1:
-				return 10;
+				return VerbNetDispatcher.VNCLASS1;
 			case VerbNetContract.VnClasses.CONTENT_URI_TABLE:
-				return 11;
+				return VerbNetDispatcher.VNCLASSES;
 			case VerbNetContract.VnClasses_X.CONTENT_URI_TABLE_BY_VN_CLASS:
-				return 20;
+				return VerbNetDispatcher.VNCLASSES_X_BY_VNCLASS;
 			case VerbNetContract.Words_VnClasses.CONTENT_URI_TABLE:
-				return 100;
+				return VerbNetDispatcher.WORDS_VNCLASSES;
 			case VerbNetContract.VnClasses_VnMembers_X.CONTENT_URI_TABLE:
-				return 110;
+				return VerbNetDispatcher.VNCLASSES_VNMEMBERS_X_BY_WORD;
 			case VerbNetContract.VnClasses_VnRoles_X.CONTENT_URI_TABLE:
-				return 120;
+				return VerbNetDispatcher.VNCLASSES_VNROLES_X_BY_VNROLE;
 			case VerbNetContract.VnClasses_VnFrames_X.CONTENT_URI_TABLE:
-				return 130;
+				return VerbNetDispatcher.VNCLASSES_VNFRAMES_X_BY_VNFRAME;
 			case VerbNetContract.Lookup_VnExamples.CONTENT_URI_TABLE:
-				return 501;
+				return VerbNetDispatcher.LOOKUP_FTS_EXAMPLES;
 			case VerbNetContract.Lookup_VnExamples_X.CONTENT_URI_TABLE:
-				return 511;
+				return VerbNetDispatcher.LOOKUP_FTS_EXAMPLES_X;
 			case VerbNetContract.Lookup_VnExamples_X.CONTENT_URI_TABLE_BY_EXAMPLE:
-				return 512;
+				return VerbNetDispatcher.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE;
 			case VerbNetContract.Suggest_VnWords.SEARCH_WORD_PATH:
-				return 601;
+				return VerbNetDispatcher.SUGGEST_WORDS;
 			case VerbNetContract.Suggest_FTS_VnWords.SEARCH_WORD_PATH:
-				return 602;
+				return VerbNetDispatcher.SUGGEST_FTS_WORDS;
 			default:
 				throw new IllegalArgumentException("Illegal uri: " + providerUri);
 		}

@@ -53,31 +53,31 @@ public class RunQueries
 		switch (providerUri)
 		{
 			case PropBankContract.PbRoleSets.CONTENT_URI_TABLE1:
-				return 10;
+				return PropBankDispatcher.PBROLESET;
 			case PropBankContract.PbRoleSets.CONTENT_URI_TABLE:
-				return 11;
+				return PropBankDispatcher.PBROLESETS;
 			case PropBankContract.PbRoleSets_X.CONTENT_URI_TABLE:
-				return 100;
+				return PropBankDispatcher.PBROLESETS_X;
 			case PropBankContract.PbRoleSets_X.CONTENT_URI_TABLE_BY_ROLESET:
-				return 101;
+				return PropBankDispatcher.PBROLESETS_X_BY_ROLESET;
 			case PropBankContract.Words_PbRoleSets.CONTENT_URI_TABLE:
-				return 110;
+				return PropBankDispatcher.WORDS_PBROLESETS;
 			case PropBankContract.PbRoleSets_PbRoles.CONTENT_URI_TABLE:
-				return 120;
+				return PropBankDispatcher.PBROLESETS_PBROLES;
 			case PropBankContract.PbRoleSets_PbExamples.CONTENT_URI_TABLE:
-				return 130;
+				return PropBankDispatcher.PBROLESETS_PBEXAMPLES;
 			case PropBankContract.PbRoleSets_PbExamples.CONTENT_URI_TABLE_BY_EXAMPLE:
-				return 131;
+				return PropBankDispatcher.PBROLESETS_PBEXAMPLES_BY_EXAMPLE;
 			case PropBankContract.Lookup_PbExamples.CONTENT_URI_TABLE:
-				return 501;
+				return PropBankDispatcher.LOOKUP_FTS_EXAMPLES;
 			case PropBankContract.Lookup_PbExamples_X.CONTENT_URI_TABLE:
-				return 511;
+				return PropBankDispatcher.LOOKUP_FTS_EXAMPLES_X;
 			case PropBankContract.Lookup_PbExamples_X.CONTENT_URI_TABLE_BY_EXAMPLE:
-				return 512;
+				return PropBankDispatcher.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE;
 			case PropBankContract.Suggest_PbWords.SEARCH_WORD_PATH:
-				return 601;
+				return PropBankDispatcher.SUGGEST_WORDS;
 			case PropBankContract.Suggest_FTS_PbWords.SEARCH_WORD_PATH:
-				return 602;
+				return PropBankDispatcher.SUGGEST_FTS_WORDS;
 			default:
 				throw new IllegalArgumentException("Illegal uri: " + providerUri);
 		}

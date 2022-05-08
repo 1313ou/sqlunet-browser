@@ -207,6 +207,24 @@ public final class XSqlUNetContract
 		static public final String SOURCES = V.SOURCES;
 	}
 
+	static public final class Words_VnWords_VnClasses_1U2
+	{
+		static public final String TABLE = "words_vnwords_vnclasses_1u2";
+		static public final String CONTENT_URI_TABLE = Words_VnWords_VnClasses_1U2.TABLE;
+	}
+
+	static public final class Words_VnWords_VnClasses_1
+	{
+		static public final String TABLE = "words_vnwords_vnclasses_1";
+		static public final String CONTENT_URI_TABLE = Words_VnWords_VnClasses_1.TABLE;
+	}
+
+	static public final class Words_VnWords_VnClasses_2
+	{
+		static public final String TABLE = "words_vnwords_vnclasses_2";
+		static public final String CONTENT_URI_TABLE = Words_VnWords_VnClasses_2.TABLE;
+	}
+
 	static public final class Words_PbWords_PbRoleSets_U
 	{
 		static public final String TABLE = "words_pbwords_pbrolesets_u";
@@ -220,6 +238,24 @@ public final class XSqlUNetContract
 		static public final String DEFINITION = V.DEFINITION;
 		static public final String SOURCE = V.SOURCE;
 		static public final String SOURCES = V.SOURCES;
+	}
+
+	static public final class Words_PbWords_PbRoleSets_1
+	{
+		static public final String TABLE = "words_pbwords_pbrolesets_1";
+		static public final String CONTENT_URI_TABLE = Words_PbWords_PbRoleSets_1.TABLE;
+	}
+
+	static public final class Words_PbWords_PbRoleSets_2
+	{
+		static public final String TABLE = "words_pbwords_pbrolesets_2";
+		static public final String CONTENT_URI_TABLE = Words_PbWords_PbRoleSets_2.TABLE;
+	}
+
+	static public final class Words_PbWords_PbRoleSets_1U2
+	{
+		static public final String TABLE = "words_pbwords_pbrolesets_1u2";
+		static public final String CONTENT_URI_TABLE = Words_PbWords_PbRoleSets_1U2.TABLE;
 	}
 
 	static public final class Words_FnWords_FnFrames_U
@@ -238,5 +274,23 @@ public final class XSqlUNetContract
 		static public final String DEFINITION = V.DEFINITION;
 		static public final String SOURCE = V.SOURCE;
 		static public final String SOURCES = V.SOURCES;
+	}
+
+	static public final class Words_FnWords_FnFrames_1U2
+	{
+		static public final String TABLE = "words_fnwords_fnframes_1u2";
+		static public final String CONTENT_URI_TABLE = Words_FnWords_FnFrames_1U2.TABLE;
+	}
+
+	static public final class Words_FnWords_FnFrames_1
+	{
+		static public final String TABLE = "words_fnwords_fnframes_1";
+		static public final String CONTENT_URI_TABLE = Words_FnWords_FnFrames_1.TABLE;
+	}
+
+	static public final class Words_FnWords_FnFrames_2
+	{
+		static public final String TABLE = "words_fnwords_fnframes_2";
+		static public final String CONTENT_URI_TABLE = Words_FnWords_FnFrames_2.TABLE;
 	}
 }

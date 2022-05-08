@@ -51,9 +51,9 @@ public class RunQueries
 		switch (providerUri)
 		{
 			case PredicateMatrixContract.Pm.CONTENT_URI_TABLE:
-				return 10;
+				return PredicateMatrixDispatcher.PM;
 			case PredicateMatrixContract.Pm_X.CONTENT_URI_TABLE:
-				return 11;
+				return PredicateMatrixDispatcher.PM_X;
 			default:
 				throw new IllegalArgumentException("Illegal uri: " + providerUri);
 		}

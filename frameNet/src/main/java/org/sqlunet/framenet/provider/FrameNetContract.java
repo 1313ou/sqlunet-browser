@@ -38,7 +38,9 @@ public class FrameNetContract
 	static public final class LexUnits
 	{
 		static public final String TABLE = Q.LEXUNITS.TABLE;
+		static public final String TABLE1 = "lexunit";
 		static public final String CONTENT_URI_TABLE = LexUnits.TABLE;
+		static public final String CONTENT_URI_TABLE1 = LexUnits.TABLE1;
 		static public final String LUID = V.LUID;
 		static public final String CONTENTS = V.LUID;
 		static public final String LEXUNIT = V.LEXUNIT;
@@ -85,7 +87,9 @@ public class FrameNetContract
 	static public final class Frames
 	{
 		static public final String TABLE = Q.FRAMES.TABLE;
+		static public final String TABLE1 = "frame";
 		static public final String CONTENT_URI_TABLE = Frames.TABLE;
+		static public final String CONTENT_URI_TABLE1 = Frames.TABLE1;
 		static public final String FRAMEID = V.FRAMEID;
 		static public final String CONTENTS = V.FRAMEID;
 	}
@@ -119,7 +123,9 @@ public class FrameNetContract
 	static public final class Sentences
 	{
 		static public final String TABLE = Q.SENTENCES.TABLE;
+		static public final String TABLE1 = "sentence";
 		static public final String CONTENT_URI_TABLE = Sentences.TABLE;
+		static public final String CONTENT_URI_TABLE1 = Sentences.TABLE1;
 		static public final String SENTENCEID = V.SENTENCEID;
 		static public final String TEXT = V.TEXT;
 	}
@@ -127,7 +133,9 @@ public class FrameNetContract
 	static public final class AnnoSets
 	{
 		static public final String TABLE = Q.ANNOSETS.TABLE;
+		static public final String TABLE1 = "annoset";
 		static public final String CONTENT_URI_TABLE = AnnoSets.TABLE;
+		static public final String CONTENT_URI_TABLE1 = AnnoSets.TABLE1;
 		static public final String ANNOSETID = V.ANNOSETID;
 		static public final String CONTENTS = V.ANNOSETID;
 	}

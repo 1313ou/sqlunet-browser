@@ -30,7 +30,7 @@ public class RunQueries
 		{
 			processor.process(sql);
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			System.err.println(providerSql);
 			throw e;
@@ -51,48 +51,48 @@ public class RunQueries
 	{
 		switch (providerUri)
 		{
-			case "predicatematrix":
-				return 200;
-			case "predicatematrix_verbnet":
-				return 210;
-			case "predicatematrix_propbank":
-				return 220;
-			case "predicatematrix_framenet":
-				return 230;
-			case "words_fnwords_pbwords_vnwords":
-				return 100;
-			case "words_pbwords_vnwords":
-				return 101;
-			case "words_vnwords_vnclasses":
-				return 310;
-			case "words_vnwords_vnclasses_u":
-				return 311;
-			case "words_vnwords_vnclasses_1":
-				return 312;
-			case "words_vnwords_vnclasses_2":
-				return 313;
-			case "words_vnwords_vnclasses_1u2":
-				return 314;
-			case "words_pbwords_pbrolesets":
-				return 320;
-			case "words_pbwords_pbrolesets_u":
-				return 321;
-			case "words_pbwords_pbrolesets_1":
-				return 322;
-			case "words_pbwords_pbrolesets_2":
-				return 323;
-			case "words_pbwords_pbrolesets_1u2":
-				return 324;
-			case "words_fnwords_fnframes_u":
-				return 331;
-			case "words_fnwords_fnframes_1":
-				return 332;
-			case "words_fnwords_fnframes_2":
-				return 333;
-			case "words_fnwords_fnframes_1u2":
-				return 334;
-			case "sources":
-				return 400;
+			case XSqlUNetContract.PredicateMatrix.CONTENT_URI_TABLE:
+				return XSqlUNetDispatcher.PREDICATEMATRIX;
+			case XSqlUNetContract.PredicateMatrix_VerbNet.CONTENT_URI_TABLE:
+				return XSqlUNetDispatcher.PREDICATEMATRIX_VERBNET;
+			case XSqlUNetContract.PredicateMatrix_PropBank.CONTENT_URI_TABLE:
+				return XSqlUNetDispatcher.PREDICATEMATRIX_PROPBANK;
+			case XSqlUNetContract.PredicateMatrix_FrameNet.CONTENT_URI_TABLE:
+				return XSqlUNetDispatcher.PREDICATEMATRIX_FRAMENET;
+			case XSqlUNetContract.Words_FnWords_PbWords_VnWords.CONTENT_URI_TABLE:
+				return XSqlUNetDispatcher.WORDS_FNWORDS_PBWORDS_VNWORDS;
+			case XSqlUNetContract.Words_PbWords_VnWords.CONTENT_URI_TABLE:
+				return XSqlUNetDispatcher.WORDS_PBWORDS_VNWORDS;
+			case XSqlUNetContract.Words_VnWords_VnClasses.CONTENT_URI_TABLE:
+				return XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES;
+			case XSqlUNetContract.Words_VnWords_VnClasses_U.CONTENT_URI_TABLE:
+				return XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_U;
+			case XSqlUNetContract.Words_VnWords_VnClasses_1.CONTENT_URI_TABLE:
+				return XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_1;
+			case XSqlUNetContract.Words_VnWords_VnClasses_2.CONTENT_URI_TABLE:
+				return XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_2;
+			case XSqlUNetContract.Words_VnWords_VnClasses_1U2.CONTENT_URI_TABLE:
+				return XSqlUNetDispatcher.WORDS_VNWORDS_VNCLASSES_1U2;
+			case XSqlUNetContract.Words_PbWords_PbRoleSets.CONTENT_URI_TABLE:
+				return XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS;
+			case XSqlUNetContract.Words_PbWords_PbRoleSets_U.CONTENT_URI_TABLE:
+				return XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_U;
+			case XSqlUNetContract.Words_PbWords_PbRoleSets_1.CONTENT_URI_TABLE:
+				return XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_1;
+			case XSqlUNetContract.Words_PbWords_PbRoleSets_2.CONTENT_URI_TABLE:
+				return XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_2;
+			case XSqlUNetContract.Words_PbWords_PbRoleSets_1U2.CONTENT_URI_TABLE:
+				return XSqlUNetDispatcher.WORDS_PBWORDS_PBROLESETS_1U2;
+			case XSqlUNetContract.Words_FnWords_FnFrames_U.CONTENT_URI_TABLE:
+				return XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_U;
+			case XSqlUNetContract.Words_FnWords_FnFrames_1U2.CONTENT_URI_TABLE:
+				return XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_1U2;
+			case XSqlUNetContract.Words_FnWords_FnFrames_1.CONTENT_URI_TABLE:
+				return XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_1;
+			case XSqlUNetContract.Words_FnWords_FnFrames_2.CONTENT_URI_TABLE:
+				return XSqlUNetDispatcher.WORDS_FNWORDS_FNFRAMES_2;
+			case XSqlUNetContract.Sources.CONTENT_URI_TABLE:
+				return XSqlUNetDispatcher.SOURCES;
 			default:
 				throw new IllegalArgumentException("Illegal uri: " + providerUri);
 		}

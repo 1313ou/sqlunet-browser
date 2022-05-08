@@ -65,86 +65,86 @@ public class RunQueries
 	{
 		switch (providerUri)
 		{
-			case "lexunit":
-				return 10;
+			case FrameNetContract.LexUnits.CONTENT_URI_TABLE1:
+				return FrameNetDispatcher.LEXUNIT;
 			case FrameNetContract.LexUnits.CONTENT_URI_TABLE:
-				return 11;
+				return FrameNetDispatcher.LEXUNITS;
 			case FrameNetContract.LexUnits_X.CONTENT_URI_TABLE:
-				return 12;
-			case "frame":
-				return 20;
+				return FrameNetDispatcher.LEXUNITS_X_BY_LEXUNIT;
+			case FrameNetContract.Frames.CONTENT_URI_TABLE1:
+				return FrameNetDispatcher.FRAME;
 			case FrameNetContract.Frames.CONTENT_URI_TABLE:
-				return 21;
+				return FrameNetDispatcher.FRAMES;
 			case FrameNetContract.Frames_X.CONTENT_URI_TABLE_BY_FRAME:
-				return 23;
+				return FrameNetDispatcher.FRAMES_X_BY_FRAME;
 			case FrameNetContract.Frames_Related.CONTENT_URI_TABLE:
-				return 25;
-			case "sentence":
-				return 30;
+				return FrameNetDispatcher.FRAMES_RELATED;
+			case FrameNetContract.Sentences.CONTENT_URI_TABLE1:
+				return FrameNetDispatcher.SENTENCE;
 			case FrameNetContract.Sentences.CONTENT_URI_TABLE:
-				return 31;
-			case "annoset":
-				return 40;
+				return FrameNetDispatcher.SENTENCES;
+			case FrameNetContract.AnnoSets.CONTENT_URI_TABLE1:
+				return FrameNetDispatcher.ANNOSET;
 			case FrameNetContract.AnnoSets.CONTENT_URI_TABLE:
-				return 41;
+				return FrameNetDispatcher.ANNOSETS;
 			case FrameNetContract.Sentences_Layers_X.CONTENT_URI_TABLE:
-				return 50;
+				return FrameNetDispatcher.SENTENCES_LAYERS_X;
 			case FrameNetContract.AnnoSets_Layers_X.CONTENT_URI_TABLE:
-				return 51;
+				return FrameNetDispatcher.ANNOSETS_LAYERS_X;
 			case FrameNetContract.Patterns_Layers_X.CONTENT_URI_TABLE:
-				return 52;
+				return FrameNetDispatcher.PATTERNS_LAYERS_X;
 			case FrameNetContract.ValenceUnits_Layers_X.CONTENT_URI_TABLE:
-				return 53;
+				return FrameNetDispatcher.VALENCEUNITS_LAYERS_X;
 			case FrameNetContract.Patterns_Sentences.CONTENT_URI_TABLE:
-				return 61;
+				return FrameNetDispatcher.PATTERNS_SENTENCES;
 			case FrameNetContract.ValenceUnits_Sentences.CONTENT_URI_TABLE:
-				return 62;
+				return FrameNetDispatcher.VALENCEUNITS_SENTENCES;
 			case FrameNetContract.Governors_AnnoSets_Sentences.CONTENT_URI_TABLE:
-				return 70;
+				return FrameNetDispatcher.GOVERNORS_ANNOSETS;
 			case FrameNetContract.Words_LexUnits_Frames.CONTENT_URI_TABLE:
-				return 100;
+				return FrameNetDispatcher.WORDS_LEXUNITS_FRAMES;
 			case FrameNetContract.Words_LexUnits_Frames.CONTENT_URI_TABLE_FN:
-				return 101;
+				return FrameNetDispatcher.WORDS_LEXUNITS_FRAMES_FN;
 			case FrameNetContract.LexUnits_or_Frames.CONTENT_URI_TABLE:
-				return 110;
+				return FrameNetDispatcher.LEXUNITS_OR_FRAMES;
 			case FrameNetContract.LexUnits_or_Frames.CONTENT_URI_TABLE_FN:
-				return 111;
+				return FrameNetDispatcher.LEXUNITS_OR_FRAMES_FN;
 			case FrameNetContract.Frames_FEs.CONTENT_URI_TABLE:
-				return 200;
+				return FrameNetDispatcher.FRAMES_FES;
 			case FrameNetContract.Frames_FEs.CONTENT_URI_TABLE_BY_FE:
-				return 201;
+				return FrameNetDispatcher.FRAMES_FES_BY_FE;
 			case FrameNetContract.LexUnits_Sentences.CONTENT_URI_TABLE:
-				return 300;
+				return FrameNetDispatcher.LEXUNITS_SENTENCES;
 			case FrameNetContract.LexUnits_Sentences.CONTENT_URI_TABLE_BY_SENTENCE:
-				return 301;
+				return FrameNetDispatcher.LEXUNITS_SENTENCES_BY_SENTENCE;
 			case FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.CONTENT_URI_TABLE:
-				return 310;
+				return FrameNetDispatcher.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS;
 			case FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.CONTENT_URI_TABLE_BY_SENTENCE:
-				return 311;
+				return FrameNetDispatcher.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE;
 			case FrameNetContract.LexUnits_Governors.CONTENT_URI_TABLE:
-				return 410;
-			case  FrameNetContract.LexUnits_Governors.CONTENT_URI_TABLE_FN:
-				return 411;
+				return FrameNetDispatcher.LEXUNITS_GOVERNORS;
+			case FrameNetContract.LexUnits_Governors.CONTENT_URI_TABLE_FN:
+				return FrameNetDispatcher.LEXUNITS_GOVERNORS_FN;
 			case FrameNetContract.LexUnits_FERealizations_ValenceUnits.CONTENT_URI_TABLE:
-				return 420;
+				return FrameNetDispatcher.LEXUNITS_REALIZATIONS;
 			case FrameNetContract.LexUnits_FERealizations_ValenceUnits.CONTENT_URI_TABLE_BY_REALIZATION:
-				return 421;
+				return FrameNetDispatcher.LEXUNITS_REALIZATIONS_BY_REALIZATION;
 			case FrameNetContract.LexUnits_FEGroupRealizations_Patterns_ValenceUnits.CONTENT_URI_TABLE:
-				return 430;
+				return FrameNetDispatcher.LEXUNITS_GROUPREALIZATIONS;
 			case FrameNetContract.LexUnits_FEGroupRealizations_Patterns_ValenceUnits.CONTENT_URI_TABLE_BY_PATTERN:
-				return 431;
+				return FrameNetDispatcher.LEXUNITS_GROUPREALIZATIONS_BY_PATTERN;
 			case FrameNetContract.Lookup_FTS_FnWords.CONTENT_URI_TABLE:
-				return 510;
+				return FrameNetDispatcher.LOOKUP_FTS_WORDS;
 			case FrameNetContract.Lookup_FTS_FnSentences.CONTENT_URI_TABLE:
-				return 511;
+				return FrameNetDispatcher.LOOKUP_FTS_SENTENCES;
 			case FrameNetContract.Lookup_FTS_FnSentences_X.CONTENT_URI_TABLE:
-				return 512;
+				return FrameNetDispatcher.LOOKUP_FTS_SENTENCES_X;
 			case FrameNetContract.Lookup_FTS_FnSentences_X.CONTENT_URI_TABLE_BY_SENTENCE:
-				return 513;
+				return FrameNetDispatcher.LOOKUP_FTS_SENTENCES_X_BY_SENTENCE;
 			case FrameNetContract.Suggest_FnWords.SEARCH_WORD_PATH:
-				return 601;
+				return FrameNetDispatcher.SUGGEST_WORDS;
 			case FrameNetContract.Suggest_FTS_FnWords.SEARCH_WORD_PATH:
-				return 602;
+				return FrameNetDispatcher.SUGGEST_FTS_WORDS;
 			default:
 				throw new IllegalArgumentException("Illegal uri: " + providerUri);
 		}
