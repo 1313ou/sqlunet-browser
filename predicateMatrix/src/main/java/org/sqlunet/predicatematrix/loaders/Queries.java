@@ -42,7 +42,7 @@ public class Queries
 				PredicateMatrixContract.PredicateMatrix.PMPREDICATEID, //
 				PredicateMatrixContract.PredicateMatrix.PMPREDICATE, //
 				PredicateMatrixContract.PredicateMatrix.PMROLE, //
-				PredicateMatrixContract.PMROLE + '.' + PredicateMatrixContract.PredicateMatrix.PMPOS, //
+				PredicateMatrixContract.AS_PMROLES + '.' + PredicateMatrixContract.PredicateMatrix.PMPOS, //
 
 				PredicateMatrixContract.PredicateMatrix.WORD, //
 				PredicateMatrixContract.PredicateMatrix.SYNSETID, //
@@ -50,7 +50,7 @@ public class Queries
 
 				PredicateMatrixContract.PredicateMatrix.VNCLASSID, //
 				PredicateMatrixContract.Pm_X.VNCLASS, //
-				PredicateMatrixContract.VNROLETYPE + '.' + PredicateMatrixContract.Pm_X.VNROLETYPEID, //
+				PredicateMatrixContract.AS_VNROLETYPES + '.' + PredicateMatrixContract.Pm_X.VNROLETYPEID, //
 				PredicateMatrixContract.Pm_X.VNROLETYPE, //
 
 				PredicateMatrixContract.PredicateMatrix.PBROLESETID, //
@@ -59,7 +59,7 @@ public class Queries
 				PredicateMatrixContract.Pm_X.PBROLESETHEAD, //
 				PredicateMatrixContract.Pm_X.PBROLEID, //
 				PredicateMatrixContract.Pm_X.PBROLEDESCR, //
-				PredicateMatrixContract.PBARG + '.' + PredicateMatrixContract.Pm_X.PBROLEARGTYPE, //
+				PredicateMatrixContract.AS_PBARGS + '.' + PredicateMatrixContract.Pm_X.PBROLEARGTYPE, //
 				PredicateMatrixContract.Pm_X.PBROLEARGTYPE, //
 
 				PredicateMatrixContract.PredicateMatrix.FRAMEID, //
@@ -68,7 +68,7 @@ public class Queries
 				PredicateMatrixContract.Pm_X.LEXUNIT, //
 				PredicateMatrixContract.Pm_X.LUDEFINITION, //
 				PredicateMatrixContract.Pm_X.LUDICT, //
-				PredicateMatrixContract.FNFETYPE + '.' + PredicateMatrixContract.Pm_X.FETYPEID, //
+				PredicateMatrixContract.AS_FNFETYPES + '.' + PredicateMatrixContract.Pm_X.FETYPEID, //
 				PredicateMatrixContract.Pm_X.FETYPE, //
 				PredicateMatrixContract.Pm_X.FEABBREV, //
 				PredicateMatrixContract.Pm_X.FEDEFINITION, //

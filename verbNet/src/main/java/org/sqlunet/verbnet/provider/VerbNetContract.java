@@ -130,7 +130,7 @@ public class VerbNetContract
 
 	public interface Suggest_FTS_VnWords
 	{
-		static final String SEARCH_WORD_PATH = "suggest_fts_vnword";
+		String SEARCH_WORD_PATH = "suggest_fts_vnword";
 		String URI = SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
 		String VNWORDID =  V.VNWORDID;
 		String WORDID =  V.WORDID;

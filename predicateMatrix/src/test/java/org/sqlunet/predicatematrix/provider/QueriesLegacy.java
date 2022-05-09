@@ -30,22 +30,22 @@ public class QueriesLegacy
 
 			case PredicateMatrixControl.PM_X:
 				table = "pm_pms " + //
-						"LEFT JOIN pm_roles AS " + PredicateMatrixContract.PMROLE + " USING (pmroleid) " + //
-						"LEFT JOIN pm_predicates AS " + PredicateMatrixContract.PMPREDICATE + " USING (predicateid) " + //
+						"LEFT JOIN pm_roles AS " + PredicateMatrixContract.AS_PMROLES + " USING (pmroleid) " + //
+						"LEFT JOIN pm_predicates AS " + PredicateMatrixContract.AS_PMPREDICATES + " USING (predicateid) " + //
 						"LEFT JOIN synsets USING (synsetid) " + //
 
-						"LEFT JOIN vn_classes AS " + PredicateMatrixContract.VNCLASS + " ON vnclassid = " + PredicateMatrixContract.VNCLASS + ".classid " + //
-						"LEFT JOIN vn_roles AS " + PredicateMatrixContract.VNROLE + " ON vnroleid = " + PredicateMatrixContract.VNROLE + ".roleid " + //
-						"LEFT JOIN vn_roletypes AS " + PredicateMatrixContract.VNROLETYPE + " ON " + PredicateMatrixContract.VNROLE + ".roletypeid = " + PredicateMatrixContract.VNROLETYPE + ".roletypeid " + //
+						"LEFT JOIN vn_classes AS " + PredicateMatrixContract.AS_VNCLASSES + " ON vnclassid = " + PredicateMatrixContract.AS_VNCLASSES + ".classid " + //
+						"LEFT JOIN vn_roles AS " + PredicateMatrixContract.AS_VNROLES + " ON vnroleid = " + PredicateMatrixContract.AS_VNROLES + ".roleid " + //
+						"LEFT JOIN vn_roletypes AS " + PredicateMatrixContract.AS_VNROLETYPES + " ON " + PredicateMatrixContract.AS_VNROLES + ".roletypeid = " + PredicateMatrixContract.AS_VNROLETYPES + ".roletypeid " + //
 
-						"LEFT JOIN pb_rolesets AS " + PredicateMatrixContract.PBROLESET + " ON pbrolesetid = " + PredicateMatrixContract.PBROLESET + ".rolesetid " + //
-						"LEFT JOIN pb_roles AS " + PredicateMatrixContract.PBROLE + " ON pbroleid = " + PredicateMatrixContract.PBROLE + ".roleid " + //
-						"LEFT JOIN pb_argtypes AS " + PredicateMatrixContract.PBARG + " ON " + PredicateMatrixContract.PBROLE + ".argtypeid = " + PredicateMatrixContract.PBARG + ".argtypeid " + //
+						"LEFT JOIN pb_rolesets AS " + PredicateMatrixContract.AS_PBROLESETS + " ON pbrolesetid = " + PredicateMatrixContract.AS_PBROLESETS + ".rolesetid " + //
+						"LEFT JOIN pb_roles AS " + PredicateMatrixContract.AS_PBROLES + " ON pbroleid = " + PredicateMatrixContract.AS_PBROLES + ".roleid " + //
+						"LEFT JOIN pb_argtypes AS " + PredicateMatrixContract.AS_PBARGS + " ON " + PredicateMatrixContract.AS_PBROLES + ".argtypeid = " + PredicateMatrixContract.AS_PBARGS + ".argtypeid " + //
 
-						"LEFT JOIN fn_frames AS " + PredicateMatrixContract.FNFRAME + " ON fnframeid = " + PredicateMatrixContract.FNFRAME + ".frameid " + //
-						"LEFT JOIN fn_fes AS " + PredicateMatrixContract.FNFE + " ON fnfeid = " + PredicateMatrixContract.FNFE + ".feid " + //
-						"LEFT JOIN fn_fetypes AS " + PredicateMatrixContract.FNFETYPE + " ON " + PredicateMatrixContract.FNFE + ".fetypeid = " + PredicateMatrixContract.FNFETYPE + ".fetypeid " + //
-						"LEFT JOIN fn_lexunits AS " + PredicateMatrixContract.FNLU + " ON fnluid = " + PredicateMatrixContract.FNLU + ".luid";
+						"LEFT JOIN fn_frames AS " + PredicateMatrixContract.AS_FNFRAMES + " ON fnframeid = " + PredicateMatrixContract.AS_FNFRAMES + ".frameid " + //
+						"LEFT JOIN fn_fes AS " + PredicateMatrixContract.AS_FNFES + " ON fnfeid = " + PredicateMatrixContract.AS_FNFES + ".feid " + //
+						"LEFT JOIN fn_fetypes AS " + PredicateMatrixContract.AS_FNFETYPES + " ON " + PredicateMatrixContract.AS_FNFES + ".fetypeid = " + PredicateMatrixContract.AS_FNFETYPES + ".fetypeid " + //
+						"LEFT JOIN fn_lexunits AS " + PredicateMatrixContract.AS_FNLUS + " ON fnluid = " + PredicateMatrixContract.AS_FNLUS + ".luid";
 				break;
 
 			default:

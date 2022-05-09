@@ -16,132 +16,126 @@ public class PropBankContract
 {
 	// A L I A S E S
 
-	static public final String EXAMPLE = "e";
-	static public final String REL = "r";
-	static public final String FUNC = "fu";
-	static public final String ARG = "ar";
-	static public final String WORD = "w";
-	static public final String PBWORD = "p";
-	static public final String MEMBER = "m";
+	static public final String AS_EXAMPLES = V.AS_EXAMPLES;
+	static public final String AS_RELATIONS = V.AS_RELATIONS;
+	static public final String AS_FUNCS = V.AS_FUNCS;
+	static public final String AS_ARGS = V.AS_ARGS;
+	static public final String AS_WORDs = V.AS_WORDS;
+	static public final String AS_PBWORDS = V.AS_PBWORDS;
+	static public final String AS_MEMBERS = V.AS_MEMBERS;
 
-	static public final class PbWords
+	public interface PbWords
 	{
-		static public final String TABLE = Q.PBWORDS.TABLE;
-		static public final String URI = PbWords.TABLE;
-		static public final String PBWORDID = V.PBWORDID;
-		static public final String WORDID = V.WORDID;
-		static public final String WORD = V.WORD;
+		String TABLE = Q.PBWORDS.TABLE;
+		String URI = TABLE;
+		String PBWORDID = V.PBWORDID;
+		String WORDID = V.WORDID;
+		String WORD = V.WORD;
 	}
 
-	static public final class PbRoleSets
+	public interface PbRoleSets
 	{
-		static public final String TABLE = Q.PBROLESET1.TABLE;
-		static public final String URI = PbRoleSets.TABLE;
-		static public final String URI1 = "word";
-		static public final String ROLESETID = V.ROLESETID;
-		static public final String ROLESETNAME = V.ROLESETNAME;
-		static public final String ROLESETDESC = V.ROLESETDESCR;
-		static public final String ROLESETHEAD = V.ROLESETHEAD;
+		String TABLE = Q.PBROLESET1.TABLE;
+		String URI = TABLE;
+		String URI1 = "roleset";
+		String ROLESETID = V.ROLESETID;
+		String ROLESETNAME = V.ROLESETNAME;
+		String ROLESETDESC = V.ROLESETDESCR;
+		String ROLESETHEAD = V.ROLESETHEAD;
 	}
 
-	static public final class PbRoleSets_X
+	public interface PbRoleSets_X
 	{
-		static public final String TABLE = "pbrolesets_x";
-		static public final String TABLE_BY_ROLESET = "pbrolesets_x_by_roleset";
-		static public final String URI = PbRoleSets_X.TABLE;
-		static public final String URI_BY_ROLESET = PbRoleSets_X.TABLE_BY_ROLESET;
-		static public final String ROLESETID = V.ROLESETID;
-		static public final String ROLESETNAME = V.ROLESETNAME;
-		static public final String ROLESETDESC = V.ROLESETDESCR;
-		static public final String ROLESETHEAD = V.ROLESETHEAD;
-		static public final String WORD = V.WORD;
-		static public final String ALIASES = V.ALIASES;
+		String URI = "rolesets_x";
+		String URI_BY_ROLESET = URI + "_by_roleset";
+		String ROLESETID = V.ROLESETID;
+		String ROLESETNAME = V.ROLESETNAME;
+		String ROLESETDESC = V.ROLESETDESCR;
+		String ROLESETHEAD = V.ROLESETHEAD;
+		String WORD = V.WORD;
+		String ALIASES = V.ALIASES;
 	}
 
-	static public final class Words_PbRoleSets
+	public interface Words_PbRoleSets
 	{
-		static public final String TABLE = "words_pbrolesets";
-		static public final String URI = Words_PbRoleSets.TABLE;
-		static public final String WORDID = V.WORDID;
-		static public final String POS = V.POS;
-		static public final String ROLESETID = V.ROLESETID;
-		static public final String ROLESETNAME = V.ROLESETNAME;
-		static public final String ROLESETDESC = V.ROLESETDESCR;
-		static public final String ROLESETHEAD = V.ROLESETHEAD;
+		String TABLE = "words_rolesets";
+		String URI = Words_PbRoleSets.TABLE;
+		String WORDID = V.WORDID;
+		String POS = V.POS;
+		String ROLESETID = V.ROLESETID;
+		String ROLESETNAME = V.ROLESETNAME;
+		String ROLESETDESC = V.ROLESETDESCR;
+		String ROLESETHEAD = V.ROLESETHEAD;
 	}
 
-	static public final class PbRoleSets_PbRoles
+	public interface PbRoleSets_PbRoles
 	{
-		static public final String TABLE = "pbrolesets_pbroles";
-		static public final String URI = PbRoleSets_PbRoles.TABLE;
-		static public final String ROLESETID = V.ROLESETID;
-		static public final String ROLEID = V.ROLEID;
-		static public final String ROLEDESCR = V.ROLEDESCR;
-		static public final String ARGTYPE = V.ARGTYPE;
-		static public final String FUNC = V.FUNC;
-		static public final String THETA = V.THETA;
+		String TABLE = "rolesets_roles";
+		String URI = PbRoleSets_PbRoles.TABLE;
+		String ROLESETID = V.ROLESETID;
+		String ROLEID = V.ROLEID;
+		String ROLEDESCR = V.ROLEDESCR;
+		String ARGTYPE = V.ARGTYPE;
+		String FUNC = V.FUNC;
+		String THETA = V.THETA;
 	}
 
-	static public final class PbRoleSets_PbExamples
+	public interface PbRoleSets_PbExamples
 	{
-		static public final String TABLE = "pbrolesets_pbexamples";
-		static public final String TABLE_BY_EXAMPLE = "pbrolesets_pbexamples_by_example";
-		static public final String URI = PbRoleSets_PbExamples.TABLE;
-		static public final String URI_BY_EXAMPLE = PbRoleSets_PbExamples.TABLE_BY_EXAMPLE;
-		static public final String ROLESETID = V.ROLESETID;
-		static public final String TEXT = V.TEXT;
-		static public final String REL = V.REL;
-		static public final String ARGTYPE = V.ARGTYPE;
-		static public final String FUNCNAME = V.FUNC;
-		static public final String ROLEDESCR = V.ROLEDESCR;
-		static public final String THETANAME = V.THETA;
-		static public final String ARG = V.ARG;
-		static public final String ARGS = V.ARGS;
-		static public final String EXAMPLEID = V.EXAMPLEID;
-		static public final String ASPECTNAME = V.ASPECT;
-		static public final String FORMNAME = V.FORM;
-		static public final String TENSENAME = V.TENSE;
-		static public final String VOICENAME = V.VOICE;
-		static public final String PERSONNAME = V.PERSON;
+		String URI = "rolesets_examples";
+		String URI_BY_EXAMPLE = URI + "_by_example";
+		String ROLESETID = V.ROLESETID;
+		String TEXT = V.TEXT;
+		String REL = V.REL;
+		String ARGTYPE = V.ARGTYPE;
+		String FUNCNAME = V.FUNC;
+		String ROLEDESCR = V.ROLEDESCR;
+		String THETA = V.THETA;
+		String ARG = V.ARG;
+		String ARGS = V.ARGS;
+		String EXAMPLEID = V.EXAMPLEID;
+		String ASPECT = V.ASPECT;
+		String FORM = V.FORM;
+		String TENSE = V.TENSE;
+		String VOICE = V.VOICE;
+		String PERSON = V.PERSON;
 	}
 
-	static public final class Lookup_PbExamples
+	public interface Lookup_PbExamples
 	{
-		static public final String TABLE = "fts_pbexamples";
-		static public final String URI = Lookup_PbExamples.TABLE;
-		static public final String EXAMPLEID = V.EXAMPLEID;
-		static public final String TEXT = V.TEXT;
-		static public final String ROLESETID = V.ROLESETID;
+		String TABLE = "pb_examples_text_fts4";
+		String URI = TABLE;
+		String EXAMPLEID = V.EXAMPLEID;
+		String TEXT = V.TEXT;
+		String ROLESETID = V.ROLESETID;
 	}
 
-	static public final class Lookup_PbExamples_X
+	public interface Lookup_PbExamples_X
 	{
-		static public final String TABLE = "fts_pbexamples_x";
-		static public final String TABLE_BY_EXAMPLE = "fts_pbexamples_x_by_examples";
-		static public final String URI = Lookup_PbExamples_X.TABLE;
-		static public final String URI_BY_EXAMPLE = Lookup_PbExamples_X.TABLE_BY_EXAMPLE;
-		static public final String EXAMPLEID = V.EXAMPLEID;
-		static public final String TEXT = V.TEXT;
-		static public final String ROLESETID = V.ROLESETID;
-		static public final String ROLESET = V.ROLESETNAME;
-		static public final String ROLESETS = V.ROLESETS;
+		String URI = "pb_examples_text_x_fts4";
+		String URI_BY_EXAMPLE = URI + "_by_examples";
+		String EXAMPLEID = V.EXAMPLEID;
+		String TEXT = V.TEXT;
+		String ROLESETID = V.ROLESETID;
+		String ROLESET = V.ROLESETNAME;
+		String ROLESETS = V.ROLESETS;
 	}
 
-	static public final class Suggest_PbWords
+	public interface Suggest_PbWords
 	{
-		static final String SEARCH_WORD_PATH = "suggest_pbword";
-		static public final String TABLE = Suggest_PbWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
-		static public final String PBWORDID = V.PBWORDID;
-		static public final String WORDID = V.WORDID;
-		static public final String WORD = V.WORD;
+		String SEARCH_WORD_PATH = "suggest_pbword";
+		String URI = Suggest_PbWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
+		String PBWORDID = V.PBWORDID;
+		String WORDID = V.WORDID;
+		String WORD = V.WORD;
 	}
 
-	static public final class Suggest_FTS_PbWords
+	public interface Suggest_FTS_PbWords
 	{
-		static final String SEARCH_WORD_PATH = "suggest_fts_pbword";
-		static public final String TABLE = Suggest_FTS_PbWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
-		static public final String PBWORDID = V.PBWORDID;
-		static public final String WORDID = V.WORDID;
-		static public final String WORD = V.WORD;
+		String SEARCH_WORD_PATH = "suggest_fts_pbword";
+		String URI = Suggest_FTS_PbWords.SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
+		String PBWORDID = V.PBWORDID;
+		String WORDID = V.WORDID;
+		String WORD = V.WORD;
 	}
 }

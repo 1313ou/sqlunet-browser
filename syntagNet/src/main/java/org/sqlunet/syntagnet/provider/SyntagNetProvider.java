@@ -47,8 +47,8 @@ public class SyntagNetProvider extends BaseProvider
 
 	static private void matchURIs()
 	{
-		uriMatcher.addURI(AUTHORITY, SnCollocations.TABLE, SyntagNetControl.COLLOCATIONS);
-		uriMatcher.addURI(AUTHORITY, SnCollocations_X.TABLE, SyntagNetControl.COLLOCATIONS_X);
+		uriMatcher.addURI(AUTHORITY, SnCollocations.URI, SyntagNetControl.COLLOCATIONS);
+		uriMatcher.addURI(AUTHORITY, SnCollocations_X.URI, SyntagNetControl.COLLOCATIONS_X);
 	}
 
 	@NonNull
@@ -90,9 +90,9 @@ public class SyntagNetProvider extends BaseProvider
 		{
 			// T A B L E S
 			case SyntagNetControl.COLLOCATIONS:
-				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + SnCollocations.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + SnCollocations.URI;
 			case SyntagNetControl.COLLOCATIONS_X:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + SnCollocations_X.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + SnCollocations_X.URI;
 
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");

@@ -47,10 +47,10 @@ public class QueriesLegacy
 			// J O I N S
 
 			case XNetControl.WORDS_FNWORDS_PBWORDS_VNWORDS:
-				table = "words AS " + XNetContract.AS_WORD + ' ' + //
-						"LEFT JOIN senses AS " + XNetContract.AS_SENSE + " USING (wordid) " + //
-						"LEFT JOIN synsets AS " + XNetContract.AS_SYNSET + " USING (synsetid) " + //
-						"LEFT JOIN poses AS " + XNetContract.AS_POS + " USING (posid) " + //
+				table = "words AS " + XNetContract.AS_WORDS + ' ' + //
+						"LEFT JOIN senses AS " + XNetContract.AS_SENSES + " USING (wordid) " + //
+						"LEFT JOIN synsets AS " + XNetContract.AS_SYNSETS + " USING (synsetid) " + //
+						"LEFT JOIN poses AS " + XNetContract.AS_POSES + " USING (posid) " + //
 						"LEFT JOIN casedwords USING (wordid,casedwordid) " + //
 						"LEFT JOIN domains USING (domainid) " + //
 						"LEFT JOIN fn_words USING (wordid) " + //
@@ -60,10 +60,10 @@ public class QueriesLegacy
 				break;
 
 			case XNetControl.WORDS_PBWORDS_VNWORDS:
-				table = "words AS " + XNetContract.AS_WORD + ' ' + //
-						"LEFT JOIN senses AS " + XNetContract.AS_SENSE + " USING (wordid) " + //
-						"LEFT JOIN synsets AS " + XNetContract.AS_SYNSET + " USING (synsetid) " + //
-						"LEFT JOIN poses AS " + XNetContract.AS_POS + " USING (posid) " + //
+				table = "words AS " + XNetContract.AS_WORDS + ' ' + //
+						"LEFT JOIN senses AS " + XNetContract.AS_SENSES + " USING (wordid) " + //
+						"LEFT JOIN synsets AS " + XNetContract.AS_SYNSETS + " USING (synsetid) " + //
+						"LEFT JOIN poses AS " + XNetContract.AS_POSES + " USING (posid) " + //
 						"LEFT JOIN casedwords USING (wordid,casedwordid) " + //
 						"LEFT JOIN domains USING (domainid) " + //
 						"LEFT JOIN vn_words USING (wordid) " + //
@@ -76,7 +76,7 @@ public class QueriesLegacy
 			{
 				table = "vn_words " + //
 						"INNER JOIN vn_members_senses USING (vnwordid,wordid) " + //
-						"INNER JOIN vn_classes AS " + XNetContract.AS_CLASS + " USING (classid) " + //
+						"INNER JOIN vn_classes AS " + XNetContract.AS_CLASSES + " USING (classid) " + //
 						"LEFT JOIN synsets USING (synsetid)";
 				groupBy = "wordid,synsetid,classid";
 				break;
@@ -85,7 +85,7 @@ public class QueriesLegacy
 			case XNetControl.WORDS_PBWORDS_PBROLESETS:
 			{
 				table = "pb_words " + //
-						"INNER JOIN pb_rolesets AS " + XNetContract.AS_CLASS + " USING (pbwordid)";
+						"INNER JOIN pb_rolesets AS " + XNetContract.AS_CLASSES + " USING (pbwordid)";
 				groupBy = "wordid,synsetid,rolesetid";
 				break;
 			}

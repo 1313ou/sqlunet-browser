@@ -44,8 +44,8 @@ public class PredicateMatrixProvider extends BaseProvider
 
 	static private void matchURIs()
 	{
-		PredicateMatrixProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrixContract.Pm.TABLE, PredicateMatrixControl.PM);
-		PredicateMatrixProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrixContract.Pm_X.TABLE, PredicateMatrixControl.PM_X);
+		PredicateMatrixProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrixContract.Pm.URI, PredicateMatrixControl.PM);
+		PredicateMatrixProvider.uriMatcher.addURI(AUTHORITY, PredicateMatrixContract.Pm_X.URI, PredicateMatrixControl.PM_X);
 	}
 
 	@NonNull
@@ -85,9 +85,9 @@ public class PredicateMatrixProvider extends BaseProvider
 		switch (PredicateMatrixProvider.uriMatcher.match(uri))
 		{
 			case PredicateMatrixControl.PM:
-				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PredicateMatrixContract.Pm.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PredicateMatrixContract.Pm.URI;
 			case PredicateMatrixControl.PM_X:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PredicateMatrixContract.Pm_X.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PredicateMatrixContract.Pm_X.URI;
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");
 		}

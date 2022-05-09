@@ -65,14 +65,14 @@ public class Queries
 						"||'~'" + //
 						"||" + PropBankContract.PbRoleSets_PbExamples.ROLEDESCR + //
 						"||'~'" + //
-						"||(CASE WHEN " + PropBankContract.PbRoleSets_PbExamples.THETANAME + " IS NULL THEN '*' ELSE " + PropBankContract.PbRoleSets_PbExamples.THETANAME + " END)" + //
+						"||(CASE WHEN " + PropBankContract.PbRoleSets_PbExamples.THETA + " IS NULL THEN '*' ELSE " + PropBankContract.PbRoleSets_PbExamples.THETA + " END)" + //
 						"||'~'" + //
 						"||" + PropBankContract.PbRoleSets_PbExamples.ARG + ",'|') AS " + PropBankContract.PbRoleSets_PbExamples.ARGS, //
-				PropBankContract.PbRoleSets_PbExamples.ASPECTNAME, //
-				PropBankContract.PbRoleSets_PbExamples.FORMNAME, //
-				PropBankContract.PbRoleSets_PbExamples.TENSENAME, //
-				PropBankContract.PbRoleSets_PbExamples.VOICENAME, //
-				PropBankContract.PbRoleSets_PbExamples.PERSONNAME, //
+				PropBankContract.PbRoleSets_PbExamples.ASPECT, //
+				PropBankContract.PbRoleSets_PbExamples.FORM, //
+				PropBankContract.PbRoleSets_PbExamples.TENSE, //
+				PropBankContract.PbRoleSets_PbExamples.VOICE, //
+				PropBankContract.PbRoleSets_PbExamples.PERSON, //
 		};
 		providerSql.selection = PropBankContract.PbRoleSets_PbExamples.ROLESETID + "= ?";
 		providerSql.selectionArgs = new String[]{Long.toString(roleSetId)};

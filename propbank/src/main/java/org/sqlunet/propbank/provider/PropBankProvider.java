@@ -55,23 +55,23 @@ public class PropBankProvider extends BaseProvider
 
 	static private void matchURIs()
 	{
-		uriMatcher.addURI(AUTHORITY, PbRoleSets.TABLE, PropBankControl.PBROLESET);
-		uriMatcher.addURI(AUTHORITY, PbRoleSets.TABLE, PropBankControl.PBROLESETS);
-		uriMatcher.addURI(AUTHORITY, PbRoleSets_X.TABLE, PropBankControl.PBROLESETS_X);
-		uriMatcher.addURI(AUTHORITY, PbRoleSets_X.TABLE_BY_ROLESET, PropBankControl.PBROLESETS_X_BY_ROLESET);
-		uriMatcher.addURI(AUTHORITY, Words_PbRoleSets.TABLE, PropBankControl.WORDS_PBROLESETS);
-		uriMatcher.addURI(AUTHORITY, PbRoleSets_PbRoles.TABLE, PropBankControl.PBROLESETS_PBROLES);
-		uriMatcher.addURI(AUTHORITY, PbRoleSets_PbExamples.TABLE, PropBankControl.PBROLESETS_PBEXAMPLES);
-		uriMatcher.addURI(AUTHORITY, PbRoleSets_PbExamples.TABLE_BY_EXAMPLE, PropBankControl.PBROLESETS_PBEXAMPLES_BY_EXAMPLE);
+		uriMatcher.addURI(AUTHORITY, PbRoleSets.URI, PropBankControl.PBROLESET);
+		uriMatcher.addURI(AUTHORITY, PbRoleSets.URI, PropBankControl.PBROLESETS);
+		uriMatcher.addURI(AUTHORITY, PbRoleSets_X.URI, PropBankControl.PBROLESETS_X);
+		uriMatcher.addURI(AUTHORITY, PbRoleSets_X.URI_BY_ROLESET, PropBankControl.PBROLESETS_X_BY_ROLESET);
+		uriMatcher.addURI(AUTHORITY, Words_PbRoleSets.URI, PropBankControl.WORDS_PBROLESETS);
+		uriMatcher.addURI(AUTHORITY, PbRoleSets_PbRoles.URI, PropBankControl.PBROLESETS_PBROLES);
+		uriMatcher.addURI(AUTHORITY, PbRoleSets_PbExamples.URI, PropBankControl.PBROLESETS_PBEXAMPLES);
+		uriMatcher.addURI(AUTHORITY, PbRoleSets_PbExamples.URI_BY_EXAMPLE, PropBankControl.PBROLESETS_PBEXAMPLES_BY_EXAMPLE);
 
-		uriMatcher.addURI(AUTHORITY, Lookup_PbExamples.TABLE + "/", PropBankControl.LOOKUP_FTS_EXAMPLES);
-		uriMatcher.addURI(AUTHORITY, Lookup_PbExamples_X.TABLE + "/", PropBankControl.LOOKUP_FTS_EXAMPLES_X);
-		uriMatcher.addURI(AUTHORITY, Lookup_PbExamples_X.TABLE_BY_EXAMPLE + "/", PropBankControl.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE);
+		uriMatcher.addURI(AUTHORITY, Lookup_PbExamples.URI + "/", PropBankControl.LOOKUP_FTS_EXAMPLES);
+		uriMatcher.addURI(AUTHORITY, Lookup_PbExamples_X.URI + "/", PropBankControl.LOOKUP_FTS_EXAMPLES_X);
+		uriMatcher.addURI(AUTHORITY, Lookup_PbExamples_X.URI_BY_EXAMPLE + "/", PropBankControl.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE);
 
-		uriMatcher.addURI(AUTHORITY, Suggest_PbWords.TABLE + "/*", PropBankControl.SUGGEST_WORDS);
-		uriMatcher.addURI(AUTHORITY, Suggest_PbWords.TABLE + "/", PropBankControl.SUGGEST_WORDS);
-		uriMatcher.addURI(AUTHORITY, Suggest_FTS_PbWords.TABLE + "/*", PropBankControl.SUGGEST_FTS_WORDS);
-		uriMatcher.addURI(AUTHORITY, Suggest_FTS_PbWords.TABLE + "/", PropBankControl.SUGGEST_FTS_WORDS);
+		uriMatcher.addURI(AUTHORITY, Suggest_PbWords.URI + "/*", PropBankControl.SUGGEST_WORDS);
+		uriMatcher.addURI(AUTHORITY, Suggest_PbWords.URI + "/", PropBankControl.SUGGEST_WORDS);
+		uriMatcher.addURI(AUTHORITY, Suggest_FTS_PbWords.URI + "/*", PropBankControl.SUGGEST_FTS_WORDS);
+		uriMatcher.addURI(AUTHORITY, Suggest_FTS_PbWords.URI + "/", PropBankControl.SUGGEST_FTS_WORDS);
 	}
 
 	@NonNull
@@ -113,34 +113,34 @@ public class PropBankProvider extends BaseProvider
 		{
 			// T A B L E S
 			case PropBankControl.PBROLESET:
-				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets.URI;
 			case PropBankControl.PBROLESETS:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets.URI;
 			case PropBankControl.PBROLESETS_X:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets_X.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets_X.URI;
 			case PropBankControl.PBROLESETS_X_BY_ROLESET:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets_X.TABLE_BY_ROLESET;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets_X.URI_BY_ROLESET;
 			case PropBankControl.WORDS_PBROLESETS:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_PbRoleSets.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_PbRoleSets.URI;
 			case PropBankControl.PBROLESETS_PBROLES:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets_PbRoles.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets_PbRoles.URI;
 			case PropBankControl.PBROLESETS_PBEXAMPLES:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets_PbExamples.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets_PbExamples.URI;
 			case PropBankControl.PBROLESETS_PBEXAMPLES_BY_EXAMPLE:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets_PbExamples.TABLE_BY_EXAMPLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbRoleSets_PbExamples.URI_BY_EXAMPLE;
 
 			// L O O K U P
 			case PropBankControl.LOOKUP_FTS_EXAMPLES:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_PbExamples.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_PbExamples.URI;
 			case PropBankControl.LOOKUP_FTS_EXAMPLES_X:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_PbExamples_X.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_PbExamples_X.URI;
 			case PropBankControl.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
-				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_PbExamples_X.TABLE_BY_EXAMPLE;
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Lookup_PbExamples_X.URI_BY_EXAMPLE;
 
 			// S U G G E S T
 			case PropBankControl.SUGGEST_WORDS:
 			case PropBankControl.SUGGEST_FTS_WORDS:
-				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbWords.TABLE;
+				return BaseProvider.VENDOR + ".android.cursor.item/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + PbWords.URI;
 
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");

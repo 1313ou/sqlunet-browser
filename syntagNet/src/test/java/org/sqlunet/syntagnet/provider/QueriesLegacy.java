@@ -36,10 +36,10 @@ public class QueriesLegacy
 
 			case SyntagNetControl.COLLOCATIONS_X:
 				table = "sn_syntagms " + //
-						"JOIN words AS " + SyntagNetContract.W1 + " ON (word1id = " + SyntagNetContract.W1 + ".wordid) " + //
-						"JOIN words AS " + SyntagNetContract.W2 + " ON (word2id = " + SyntagNetContract.W2 + ".wordid) " + //
-						"JOIN synsets AS " + SyntagNetContract.S1 + " ON (synset1id = " + SyntagNetContract.S1 + ".synsetid) " + //
-						"JOIN synsets AS " + SyntagNetContract.S2 + " ON (synset2id = " + SyntagNetContract.S2 + ".synsetid)";
+						"JOIN words AS " + SyntagNetContract.AS_WORDS1 + " ON (word1id = " + SyntagNetContract.AS_WORDS1 + ".wordid) " + //
+						"JOIN words AS " + SyntagNetContract.AS_WORDS2 + " ON (word2id = " + SyntagNetContract.AS_WORDS2 + ".wordid) " + //
+						"JOIN synsets AS " + SyntagNetContract.AS_SYNSETS1 + " ON (synset1id = " + SyntagNetContract.AS_SYNSETS1 + ".synsetid) " + //
+						"JOIN synsets AS " + SyntagNetContract.AS_SYNSETS2 + " ON (synset2id = " + SyntagNetContract.AS_SYNSETS2 + ".synsetid)";
 				break;
 
 			default:

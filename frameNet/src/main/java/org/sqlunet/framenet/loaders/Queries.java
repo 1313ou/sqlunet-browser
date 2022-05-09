@@ -62,14 +62,14 @@ public class Queries
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
 		providerSql.providerUri = FrameNetContract.Frames_Related.URI;
 		providerSql.projection = new String[]{ //
-				FrameNetContract.SRC + '.' + FrameNetContract.Frames_Related.FRAMEID + " AS " + "i1", //
-				FrameNetContract.SRC + '.' + FrameNetContract.Frames_Related.FRAME + " AS " + "f1", //
-				FrameNetContract.DEST + '.' + FrameNetContract.Frames_Related.FRAMEID + " AS " + "i2", //
-				FrameNetContract.DEST + '.' + FrameNetContract.Frames_Related.FRAME + " AS " + "f2", //
+				FrameNetContract.AS_SRC_FRAMES + '.' + FrameNetContract.Frames_Related.FRAMEID + " AS " + "i1", //
+				FrameNetContract.AS_SRC_FRAMES + '.' + FrameNetContract.Frames_Related.FRAME + " AS " + "f1", //
+				FrameNetContract.AS_DEST_FRAMES + '.' + FrameNetContract.Frames_Related.FRAMEID + " AS " + "i2", //
+				FrameNetContract.AS_DEST_FRAMES + '.' + FrameNetContract.Frames_Related.FRAME + " AS " + "f2", //
 				FrameNetContract.Frames_Related.RELATIONID, //
 				FrameNetContract.Frames_Related.RELATION, //
 		};
-		providerSql.selection = FrameNetContract.RELATED + '.' + FrameNetContract.Frames_Related.FRAMEID + " = ?" + " OR " + FrameNetContract.RELATED + '.' + FrameNetContract.Frames_Related.FRAME2ID + " = ?";
+		providerSql.selection = FrameNetContract.AS_RELATED_FRAMES + '.' + FrameNetContract.Frames_Related.FRAMEID + " = ?" + " OR " + FrameNetContract.AS_RELATED_FRAMES + '.' + FrameNetContract.Frames_Related.FRAME2ID + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(frameId), Long.toString(frameId)};
 		return providerSql;
 	}
@@ -105,8 +105,8 @@ public class Queries
 				FrameNetContract.LexUnits_X.LUDICT, //
 				FrameNetContract.LexUnits_X.INCORPORATEDFETYPE, //
 				FrameNetContract.LexUnits_X.INCORPORATEDFEDEFINITION, //
-				FrameNetContract.LU + '.' + FrameNetContract.LexUnits_X.POSID, //
-				FrameNetContract.LU + '.' + FrameNetContract.LexUnits_X.FRAMEID, //
+				FrameNetContract.AS_LEXUNITS + '.' + FrameNetContract.LexUnits_X.POSID, //
+				FrameNetContract.AS_LEXUNITS + '.' + FrameNetContract.LexUnits_X.FRAMEID, //
 				FrameNetContract.LexUnits_X.FRAME, //
 		};
 		providerSql.selection = FrameNetContract.LexUnits_X.LUID + " = ?";
@@ -121,14 +121,14 @@ public class Queries
 		providerSql.projection = new String[]{ //
 				FrameNetContract.LexUnits_X.LUID, //
 				FrameNetContract.LexUnits_X.LEXUNIT, //
-				FrameNetContract.LU + '.' + FrameNetContract.LexUnits_X.FRAMEID, //
-				FrameNetContract.LU + '.' + FrameNetContract.LexUnits_X.POSID, //
+				FrameNetContract.AS_LEXUNITS + '.' + FrameNetContract.LexUnits_X.FRAMEID, //
+				FrameNetContract.AS_LEXUNITS + '.' + FrameNetContract.LexUnits_X.POSID, //
 				FrameNetContract.LexUnits_X.LUDEFINITION, //
 				FrameNetContract.LexUnits_X.LUDICT, //
 				FrameNetContract.LexUnits_X.INCORPORATEDFETYPE, //
 				FrameNetContract.LexUnits_X.INCORPORATEDFEDEFINITION, //
 		};
-		providerSql.selection = FrameNetContract.FRAME + '.' + FrameNetContract.LexUnits_X.FRAMEID + " = ?";
+		providerSql.selection = FrameNetContract.AS_FRAMES + '.' + FrameNetContract.LexUnits_X.FRAMEID + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(frameId)};
 		providerSql.sortBy = FrameNetContract.LexUnits_X.LEXUNIT;
 		return providerSql;
@@ -141,8 +141,8 @@ public class Queries
 		providerSql.projection = new String[]{ //
 				FrameNetContract.Words_LexUnits_Frames.LUID, //
 				FrameNetContract.Words_LexUnits_Frames.LEXUNIT, //
-				FrameNetContract.LU + '.' + FrameNetContract.Words_LexUnits_Frames.FRAMEID, //
-				FrameNetContract.LU + '.' + FrameNetContract.Words_LexUnits_Frames.POSID, //
+				FrameNetContract.AS_LEXUNITS + '.' + FrameNetContract.Words_LexUnits_Frames.FRAMEID, //
+				FrameNetContract.AS_LEXUNITS + '.' + FrameNetContract.Words_LexUnits_Frames.POSID, //
 				FrameNetContract.Words_LexUnits_Frames.LUDEFINITION, //
 				FrameNetContract.Words_LexUnits_Frames.LUDICT, //
 				FrameNetContract.Words_LexUnits_Frames.INCORPORATEDFETYPE, //
@@ -150,7 +150,7 @@ public class Queries
 		};
 		providerSql.selection = pos == null ?  //
 				FrameNetContract.Words_LexUnits_Frames.WORDID + " = ?" :  //
-				FrameNetContract.Words_LexUnits_Frames.WORDID + " = ? AND " + FrameNetContract.POS + '.' + FrameNetContract.Words_LexUnits_Frames.POS + " = ?";
+				FrameNetContract.Words_LexUnits_Frames.WORDID + " = ? AND " + FrameNetContract.AS_POSES + '.' + FrameNetContract.Words_LexUnits_Frames.POS + " = ?";
 		providerSql.selectionArgs = pos == null ? new String[]{Long.toString(wordId)} : new String[]{Long.toString(wordId), pos.toString().toUpperCase()};
 		providerSql.sortBy = FrameNetContract.Words_LexUnits_Frames.FRAME + ',' + FrameNetContract.Words_LexUnits_Frames.LUID;
 		return providerSql;
@@ -247,7 +247,7 @@ public class Queries
 						",'|')" + //
 						" AS " + FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.LAYERANNOTATION, //
 		};
-		providerSql.selection = FrameNetContract.LU + '.' + FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.LUID + " = ? AND " + FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.LAYERTYPE + " = ?";
+		providerSql.selection = FrameNetContract.AS_LEXUNITS + '.' + FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.LUID + " = ? AND " + FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.LAYERTYPE + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(luId), FOCUSLAYER};
 		providerSql.sortBy = FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.CORPUSID + ',' + //
 				FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels.DOCUMENTID + ',' + //

@@ -58,9 +58,9 @@ public class QueriesLegacy
 
 			case PropBankControl.PBROLESETS_X:
 				table = "pb_rolesets " + //
-						"LEFT JOIN pb_members AS " + PropBankContract.MEMBER + " USING (rolesetid) " + //
-						"LEFT JOIN pb_words AS " + PropBankContract.PBWORD + " USING (pbwordid) " + //
-						"LEFT JOIN words AS " + PropBankContract.WORD + " USING (wordid)";
+						"LEFT JOIN pb_members AS " + PropBankContract.AS_MEMBERS + " USING (rolesetid) " + //
+						"LEFT JOIN pb_words AS " + PropBankContract.AS_PBWORDS + " USING (pbwordid) " + //
+						"LEFT JOIN words AS " + PropBankContract.AS_WORDs + " USING (wordid)";
 				break;
 
 			case PropBankControl.WORDS_PBROLESETS:
@@ -78,16 +78,16 @@ public class QueriesLegacy
 				break;
 
 			case PropBankControl.PBROLESETS_PBEXAMPLES_BY_EXAMPLE:
-				groupBy = PropBankContract.EXAMPLE + ".exampleid";
+				groupBy = PropBankContract.AS_EXAMPLES + ".exampleid";
 				//$FALL-THROUGH$
 				//noinspection fallthrough
 			case PropBankControl.PBROLESETS_PBEXAMPLES:
 				table = "pb_rolesets " + //
-						"INNER JOIN pb_examples AS " + PropBankContract.EXAMPLE + " USING (rolesetid) " + //
-						"LEFT JOIN pb_rels AS " + PropBankContract.REL + " USING (exampleid) " + //
-						"LEFT JOIN pb_args AS " + PropBankContract.ARG + " USING (exampleid) " + //
+						"INNER JOIN pb_examples AS " + PropBankContract.AS_EXAMPLES + " USING (rolesetid) " + //
+						"LEFT JOIN pb_rels AS " + PropBankContract.AS_RELATIONS + " USING (exampleid) " + //
+						"LEFT JOIN pb_args AS " + PropBankContract.AS_ARGS + " USING (exampleid) " + //
 						"LEFT JOIN pb_argtypes USING (argtypeid) " + //
-						"LEFT JOIN pb_funcs AS " + PropBankContract.FUNC + " ON (" + PropBankContract.ARG + ".funcid = " + PropBankContract.FUNC + ".funcid) " + //
+						"LEFT JOIN pb_funcs AS " + PropBankContract.AS_FUNCS + " ON (" + PropBankContract.AS_ARGS + ".funcid = " + PropBankContract.AS_FUNCS + ".funcid) " + //
 						"LEFT JOIN pb_aspects USING (aspectid) " + //
 						"LEFT JOIN pb_forms USING (formid) " + //
 						"LEFT JOIN pb_tenses USING (tenseid) " + //

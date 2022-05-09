@@ -18,9 +18,9 @@ public class Queries
 				XNetContract.Words_FnWords_PbWords_VnWords.VNWORDID, //
 				XNetContract.Words_FnWords_PbWords_VnWords.PBWORDID, //
 		};
-		providerSql.selection = XNetContract.AS_WORD + '.' + XNetContract.Words_FnWords_PbWords_VnWords.WORD + " = ?";
+		providerSql.selection = XNetContract.AS_WORDS + '.' + XNetContract.Words_FnWords_PbWords_VnWords.WORD + " = ?";
 		providerSql.selectionArgs = new String[]{word};
-		providerSql.sortBy = XNetContract.AS_POS + '.' + XNetContract.Words_FnWords_PbWords_VnWords.POS + ',' + XNetContract.Words_FnWords_PbWords_VnWords.SENSENUM;
+		providerSql.sortBy = XNetContract.AS_POSES + '.' + XNetContract.Words_FnWords_PbWords_VnWords.POS + ',' + XNetContract.Words_FnWords_PbWords_VnWords.SENSENUM;
 		return providerSql;
 	}
 
@@ -38,7 +38,7 @@ public class Queries
 				XNetContract.Words_FnWords_PbWords_VnWords.TAGCOUNT, //
 				XNetContract.Words_FnWords_PbWords_VnWords.SYNSETID, //
 				XNetContract.Words_FnWords_PbWords_VnWords.DEFINITION, //
-				XNetContract.AS_POS + '.' + XNetContract.Words_FnWords_PbWords_VnWords.POSID, //
+				XNetContract.AS_POSES + '.' + XNetContract.Words_FnWords_PbWords_VnWords.POSID, //
 				XNetContract.Words_FnWords_PbWords_VnWords.POS, //
 				XNetContract.Words_FnWords_PbWords_VnWords.DOMAIN, //
 				XNetContract.Words_FnWords_PbWords_VnWords.CASED, //
@@ -46,9 +46,9 @@ public class Queries
 				XNetContract.Words_FnWords_PbWords_VnWords.VNWORDID, //
 				XNetContract.Words_FnWords_PbWords_VnWords.PBWORDID, //
 		};
-		providerSql.selection = XNetContract.AS_WORD + '.' + XNetContract.Words_FnWords_PbWords_VnWords.WORD + " = ?";
+		providerSql.selection = XNetContract.AS_WORDS + '.' + XNetContract.Words_FnWords_PbWords_VnWords.WORD + " = ?";
 		providerSql.selectionArgs = new String[]{word};
-		providerSql.sortBy = XNetContract.AS_POS + '.' + XNetContract.Words_FnWords_PbWords_VnWords.POS + ',' + XNetContract.Words_FnWords_PbWords_VnWords.SENSENUM;
+		providerSql.sortBy = XNetContract.AS_POSES + '.' + XNetContract.Words_FnWords_PbWords_VnWords.POS + ',' + XNetContract.Words_FnWords_PbWords_VnWords.SENSENUM;
 		return providerSql;
 	}
 
@@ -93,7 +93,7 @@ public class Queries
 				XNetContract.Words_VnWords_VnClasses.CLASSTAG + " AS " + XNetContract.Words_XNet.XINFO, //
 				XNetContract.Words_VnWords_VnClasses.DEFINITION + " AS " + XNetContract.Words_XNet.XDEFINITION, //
 				"'vn' AS " + XNetContract.Words_XNet.SOURCES, //
-				XNetContract.AS_CLASS + ".rowid AS _id",};
+				XNetContract.AS_CLASSES + ".rowid AS _id",};
 		providerSql.selection = XNetContract.Words_VnWords_VnClasses.WORDID + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(wordId)};
 		providerSql.sortBy = XNetContract.Words_VnWords_VnClasses.CLASSID;
@@ -110,9 +110,9 @@ public class Queries
 				XNetContract.Words_PbWords_VnWords.VNWORDID, //
 				XNetContract.Words_PbWords_VnWords.PBWORDID, //
 		};
-		providerSql.selection = XNetContract.AS_WORD + '.' + XNetContract.Words_PbWords_VnWords.WORD + " = ?";
+		providerSql.selection = XNetContract.AS_WORDS + '.' + XNetContract.Words_PbWords_VnWords.WORD + " = ?";
 		providerSql.selectionArgs = new String[]{word};
-		providerSql.sortBy = XNetContract.AS_POS + '.' + XNetContract.Words_PbWords_VnWords.POSID + ',' + XNetContract.Words_PbWords_VnWords.SENSENUM;
+		providerSql.sortBy = XNetContract.AS_POSES + '.' + XNetContract.Words_PbWords_VnWords.POSID + ',' + XNetContract.Words_PbWords_VnWords.SENSENUM;
 		return providerSql;
 	}
 
@@ -159,7 +159,7 @@ public class Queries
 				XNetContract.Words_PbWords_PbRoleSets.ROLESETDESCR + " AS " + XNetContract.Words_XNet.XINFO, //
 				"NULL AS " + XNetContract.Words_XNet.XDEFINITION, //
 				"'pb' AS " + XNetContract.Words_XNet.SOURCES, //
-				XNetContract.AS_CLASS + ".rowid AS _id",};
+				XNetContract.AS_CLASSES + ".rowid AS _id",};
 		providerSql.selection = XNetContract.Words_PbWords_PbRoleSets.WORDID + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(wordId)};
 		providerSql.sortBy = XNetContract.Words_PbWords_PbRoleSets.ROLESETID;

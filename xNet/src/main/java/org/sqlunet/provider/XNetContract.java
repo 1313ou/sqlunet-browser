@@ -16,13 +16,11 @@ public final class XNetContract
 {
 	// A L I A S E S
 
-	public static final String AS_WORD = "w";
-	public static final String AS_SENSE = "s";
-	public static final String AS_SYNSET = "y";
-	public static final String AS_POS = "p";
-	public static final String AS_CLASS = "c";
-
-	// Word cross reference
+	public static final String AS_WORDS = V.AS_WORD;
+	public static final String AS_SENSES = V.AS_SENSES;
+	public static final String AS_SYNSETS = V.AS_SYNSETS;
+	public static final String AS_POSES = V.AS_POSES;
+	public static final String AS_CLASSES = V.AS_CLASSES;
 
 	public interface Words_FnWords_PbWords_VnWords
 	{
@@ -114,7 +112,7 @@ public final class XNetContract
 
 	public interface Sources
 	{
-		String TABLE = "sources";
+		String TABLE = Q.SOURCES.TABLE;
 		String URI = Sources.TABLE;
 		String ID = "idsource";
 		String NAME = "name";
@@ -128,7 +126,7 @@ public final class XNetContract
 
 	public interface PredicateMatrix
 	{
-		String URI = "pm";
+		String URI = "predicatematrix";
 		String WORDID = V.WORDID;
 		String SYNSETID = V.SYNSETID;
 		String VNWORDID = V.VNWORDID;

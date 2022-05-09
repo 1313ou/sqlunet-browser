@@ -13,72 +13,71 @@ public class PredicateMatrixContract
 {
 	// A L I A S E S
 
-	static public final String PMROLE = "mr";
-	static public final String PMPREDICATE = "mp";
-	static public final String VNCLASS = "vc";
-	static public final String VNROLE = "vr";
-	static public final String VNROLETYPE = "vt";
-	static public final String PBROLESET = "pc";
-	static public final String PBROLE = "pr";
-	static public final String PBARG = "pa";
-	static public final String FNFRAME = "ff";
-	static public final String FNFE = "fe";
-	static public final String FNFETYPE = "ft";
-	static public final String FNLU = "fu";
+	static public final String AS_PMROLES = V.AS_PMROLES;
+	static public final String AS_PMPREDICATES = V.AS_PMPREDICATES;
+	static public final String AS_VNCLASSES = V.AS_VNCLASSES;
+	static public final String AS_VNROLES = V.AS_VNROLES;
+	static public final String AS_VNROLETYPES = V.AS_VNROLETYPES;
+	static public final String AS_PBROLESETS = V.AS_PBROLESETS;
+	static public final String AS_PBROLES = V.AS_PBROLES;
+	static public final String AS_PBARGS = V.AS_PBARGS;
+	static public final String AS_FNFRAMES = V.AS_FNFRAMES;
+	static public final String AS_FNFES = V.AS_FNFES;
+	static public final String AS_FNFETYPES = V.AS_FNFETYPES;
+	static public final String AS_FNLUS = V.AS_FNLUS;
 
-	static public class PredicateMatrix
+	public interface PredicateMatrix
 	{
-		static public final String PMID = "pmid";
-		static public final String PMROLEID = "pmroleid";
-		static public final String PMPREDICATEID = "predicateid";
-		static public final String PMPREDICATE = "predicate";
-		static public final String PMROLE = "role";
-		static public final String PMPOS = "pos";
-		static public final String WORD = "word";
-		static public final String WORDID = "wordid";
-		static public final String SYNSETID = "synsetid";
-		static public final String PMWSOURCE = "wsource";
-		static public final String VNWORDID = "vnwordid";
-		static public final String VNCLASSID = "vnclassid";
-		static public final String VNROLEID = "vnroleid";
-		static public final String PBWORDID = "pbwordid";
-		static public final String PBROLESETID = "pbrolesetid";
-		static public final String PBROLEID = "pbroleid";
-		static public final String FNWORDID = "fnwordid";
-		static public final String FRAMEID = "fnframeid";
-		static public final String LUID = "fnluid";
-		static public final String FEID = "fnfeid";
+		String PMID = V.PMID;
+		String PMROLEID = V.PMROLEID;
+		String PMPREDICATEID = V.PREDICATEID;
+		String PMPREDICATE = V.PREDICATE;
+		String PMROLE = V.ROLE;
+		String PMPOS = V.POS;
+		String WORD = V.WORD;
+		String WORDID = V.WORDID;
+		String SYNSETID = V.SYNSETID;
+		String PMWSOURCE = V.WSOURCE;
+		String VNWORDID = V.VNWORDID;
+		String VNCLASSID = V.VNCLASSID;
+		String VNROLEID = V.VNROLEID;
+		String PBWORDID = V.PBWORDID;
+		String PBROLESETID = V.PBROLESETID;
+		String PBROLEID = V.PBROLEID;
+		String FNWORDID = V.FNWORDID;
+		String FRAMEID = V.FN_FRAMEID;
+		String LUID = V.FN_LUID;
+		String FEID = V.FN_FEID;
 	}
 
-	static public final class Pm extends PredicateMatrix
+	public interface Pm extends PredicateMatrix
 	{
-		static public final String TABLE = "pm";
-		static public final String URI = Pm.TABLE;
+		String TABLE = "pm_pms";
+		String URI = TABLE;
 	}
 
-	static public final class Pm_X extends PredicateMatrix
+	public interface Pm_X extends PredicateMatrix
 	{
-		static public final String TABLE = "pm_x";
-		static public final String URI = Pm_X.TABLE;
-		static public final String DEFINITION = "definition";
-		static public final String VNCLASS = "class";
-		static public final String VNROLERESTRID = "restrsid";
-		static public final String VNROLETYPEID = "roletypeid";
-		static public final String VNROLETYPE = "roletype";
-		static public final String PBROLESETNAME = "rolesetname";
-		static public final String PBROLESETDESCR = "rolesetdescr";
-		static public final String PBROLESETHEAD = "rolesethead";
-		static public final String PBROLEDESCR = "roledescr";
-		static public final String PBROLEARGTYPEID = "argtypeid";
-		static public final String PBROLEARGTYPE = "argtype";
-		static public final String FRAME = "frame";
-		static public final String FRAMEDEFINITION = "framedefinition";
-		static public final String LEXUNIT = "lexunit";
-		static public final String LUDEFINITION = "ludefinition";
-		static public final String LUDICT = "ludict";
-		static public final String FETYPEID = "fetypeid";
-		static public final String FETYPE = "fetype";
-		static public final String FEABBREV = "feabbrev";
-		static public final String FEDEFINITION = "fedefinition";
+		String URI = "pm_x";
+		String DEFINITION = "definition";
+		String VNCLASS = "class";
+		String VNROLERESTRID = "restrsid";
+		String VNROLETYPEID = "roletypeid";
+		String VNROLETYPE = "roletype";
+		String PBROLESETNAME = "rolesetname";
+		String PBROLESETDESCR = "rolesetdescr";
+		String PBROLESETHEAD = "rolesethead";
+		String PBROLEDESCR = "roledescr";
+		String PBROLEARGTYPEID = "argtypeid";
+		String PBROLEARGTYPE = "argtype";
+		String FRAME = "frame";
+		String FRAMEDEFINITION = "framedefinition";
+		String LEXUNIT = "lexunit";
+		String LUDEFINITION = "ludefinition";
+		String LUDICT = "ludict";
+		String FETYPEID = "fetypeid";
+		String FETYPE = "fetype";
+		String FEABBREV = "feabbrev";
+		String FEDEFINITION = "fedefinition";
 	}
 }
