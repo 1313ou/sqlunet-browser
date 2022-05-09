@@ -34,20 +34,24 @@ public class PredicateMatrixContract
 		String PMPREDICATE = V.PREDICATE;
 		String PMROLE = V.ROLE;
 		String PMPOS = V.POS;
+		String PMWSOURCE = V.WSOURCE;
+
 		String WORD = V.WORD;
 		String WORDID = V.WORDID;
 		String SYNSETID = V.SYNSETID;
-		String PMWSOURCE = V.WSOURCE;
+
 		String VNWORDID = V.VNWORDID;
 		String VNCLASSID = V.VNCLASSID;
 		String VNROLEID = V.VNROLEID;
+
 		String PBWORDID = V.PBWORDID;
 		String PBROLESETID = V.PBROLESETID;
 		String PBROLEID = V.PBROLEID;
 		String FNWORDID = V.FNWORDID;
-		String FRAMEID = V.FN_FRAMEID;
-		String LUID = V.FN_LUID;
-		String FEID = V.FN_FEID;
+
+		String FNFRAMEID = V.FN_FRAMEID;
+		String FNLUID = V.FN_LUID;
+		String FNFEID = V.FN_FEID;
 	}
 
 	public interface Pm extends PredicateMatrix
@@ -59,25 +63,27 @@ public class PredicateMatrixContract
 	public interface Pm_X extends PredicateMatrix
 	{
 		String URI = "pm_x";
-		String DEFINITION = "definition";
-		String VNCLASS = "class";
-		String VNROLERESTRID = "restrsid";
-		String VNROLETYPEID = "roletypeid";
-		String VNROLETYPE = "roletype";
-		String PBROLESETNAME = "rolesetname";
-		String PBROLESETDESCR = "rolesetdescr";
-		String PBROLESETHEAD = "rolesethead";
-		String PBROLEDESCR = "roledescr";
-		String PBROLEARGTYPEID = "argtypeid";
-		String PBROLEARGTYPE = "argtype";
-		String FRAME = "frame";
-		String FRAMEDEFINITION = "framedefinition";
-		String LEXUNIT = "lexunit";
-		String LUDEFINITION = "ludefinition";
-		String LUDICT = "ludict";
-		String FETYPEID = "fetypeid";
-		String FETYPE = "fetype";
-		String FEABBREV = "feabbrev";
-		String FEDEFINITION = "fedefinition";
+
+		String DEFINITION = V._DEFINITION;
+
+		String VNCLASS = V._CLASS;
+		String VNROLETYPEID = V._VNROLETYPEID;
+		String VNROLETYPE = V._VNROLETYPE;
+
+		String PBROLESETNAME = V._PBROLESETNAME;
+		String PBROLESETDESCR = V._PBROLESETDESCR;
+		String PBROLESETHEAD = V._PBROLESETHEAD;
+		String PBROLEDESCR = V._PBROLEDESCR;
+		String PBROLEARGTYPE = V._PBARGTYPE;
+
+		String FNFETYPEID = V.FNFETYPEID;
+		String FNFRAME = V._FNFRAME;
+		String FNFRAMEDEFINITION = V._FNFRAMEDEFINITION;
+		String FNLEXUNIT = V._FNLEXUNIT;
+		String FNLUDEFINITION = V._FNLUDEFINITION;
+		String FNLUDICT = V._FNLUDICT;
+		String FNFETYPE = V._FNFETYPE;
+		String FNFEABBREV = V._FNFEABBREV;
+		String FNFEDEFINITION = V._FNFEDEFINITION;
 	}
 }

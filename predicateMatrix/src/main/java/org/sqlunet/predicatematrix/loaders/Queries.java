@@ -62,16 +62,16 @@ public class Queries
 				PredicateMatrixContract.AS_PBARGS + '.' + PredicateMatrixContract.Pm_X.PBROLEARGTYPE, //
 				PredicateMatrixContract.Pm_X.PBROLEARGTYPE, //
 
-				PredicateMatrixContract.PredicateMatrix.FRAMEID, //
-				PredicateMatrixContract.Pm_X.FRAME, //
-				PredicateMatrixContract.Pm_X.FRAMEDEFINITION, //
-				PredicateMatrixContract.Pm_X.LEXUNIT, //
-				PredicateMatrixContract.Pm_X.LUDEFINITION, //
-				PredicateMatrixContract.Pm_X.LUDICT, //
-				PredicateMatrixContract.AS_FNFETYPES + '.' + PredicateMatrixContract.Pm_X.FETYPEID, //
-				PredicateMatrixContract.Pm_X.FETYPE, //
-				PredicateMatrixContract.Pm_X.FEABBREV, //
-				PredicateMatrixContract.Pm_X.FEDEFINITION, //
+				PredicateMatrixContract.PredicateMatrix.FNFRAMEID, //
+				PredicateMatrixContract.Pm_X.FNFRAME, //
+				PredicateMatrixContract.Pm_X.FNFRAMEDEFINITION, //
+				PredicateMatrixContract.Pm_X.FNLEXUNIT, //
+				PredicateMatrixContract.Pm_X.FNLUDEFINITION, //
+				PredicateMatrixContract.Pm_X.FNLUDICT, //
+				PredicateMatrixContract.AS_FNFETYPES + '.' + PredicateMatrixContract.Pm_X.FNFETYPEID, //
+				PredicateMatrixContract.Pm_X.FNFETYPE, //
+				PredicateMatrixContract.Pm_X.FNFEABBREV, //
+				PredicateMatrixContract.Pm_X.FNFEDEFINITION, //
 		};
 		return providerSql;
 	}

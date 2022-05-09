@@ -732,7 +732,6 @@ abstract class BaseModule extends Module
 				final int idVnRoleTypeId = cursor.getColumnIndex(Pm_X.VNROLETYPEID);
 				final int idVnRoleType = cursor.getColumnIndex(Pm_X.VNROLETYPE);
 				// final int idVnRoleId = cursor.getColumnIndex(Pm_X.VNROLEID);
-				// final int idVnRoleRestrsId = cursor.getColumnIndex(Pm_X.VNROLERESTRID);
 
 				final int idPbRoleSetId = cursor.getColumnIndex(PredicateMatrix.PBROLESETID);
 				final int idPbRoleSet = cursor.getColumnIndex(Pm_X.PBROLESETNAME);
@@ -743,10 +742,10 @@ abstract class BaseModule extends Module
 				// final int idPbRoleSetHead = cursor.getColumnIndex(Pm_X.PBROLESETHEAD);
 				// final int idPbRoleArgType = cursor.getColumnIndex(Pm_X.PBROLEARGTYPE);
 
-				final int idFnFrameId = cursor.getColumnIndex(PredicateMatrix.FRAMEID);
-				final int idFnFrame = cursor.getColumnIndex(Pm_X.FRAME);
-				final int idFnFeTypeId = cursor.getColumnIndex(Pm_X.FETYPEID);
-				final int idFnFeType = cursor.getColumnIndex(Pm_X.FETYPE);
+				final int idFnFrameId = cursor.getColumnIndex(PredicateMatrix.FNFRAMEID);
+				final int idFnFrame = cursor.getColumnIndex(Pm_X.FNFRAME);
+				final int idFnFeTypeId = cursor.getColumnIndex(Pm_X.FNFETYPEID);
+				final int idFnFeType = cursor.getColumnIndex(Pm_X.FNFETYPE);
 				// final int idFnFrameDefinition = cursor.getColumnIndex(Pm_X.FRAMEDEFINITION);
 				// final int idFnLexUnit = cursor.getColumnIndex(Pm_X.LEXUNIT);
 				// final int idFnLuDefinition = cursor.getColumnIndex(Pm_X.LUDEFINITION);
