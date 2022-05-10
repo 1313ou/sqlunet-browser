@@ -89,7 +89,7 @@ public class SetupAsset
 					{
 						final String path = packLocation.assetsPath();
 						final String zipFile = new File(new File(path, assetDir), assetZip).getAbsolutePath();
-						observer.setTitle(activity.getString(R.string.action_unzip_from_archive));
+						observer.setTitle(activity.getString(R.string.action_unzip_from_asset));
 						observer.setMessage(zipFile);
 						FileAsyncTask.launchUnzip(activity, observer, zipFile, assetZipEntry, StorageSettings.getDatabasePath(activity), () -> {
 
@@ -125,7 +125,7 @@ public class SetupAsset
 			final String zipFilePath = zipFile.getAbsolutePath();
 			if (zipFile.exists())
 			{
-				observer.setTitle(activity.getString(R.string.action_unzip_from_archive));
+				observer.setTitle(activity.getString(R.string.action_unzip_from_asset));
 				observer.setMessage(zipFilePath);
 				FileAsyncTask.launchUnzip(activity, observer, zipFilePath, assetZipEntry, StorageSettings.getDatabasePath(activity), () -> {
 
@@ -139,7 +139,7 @@ public class SetupAsset
 			}
 			else
 			{
-				observer.setTitle(activity.getString(R.string.action_unzip_from_archive));
+				observer.setTitle(activity.getString(R.string.action_unzip_from_asset));
 				observer.setMessage(activity.getString(R.string.status_error_no_file) + ' ' + zipFilePath);
 			}
 		}

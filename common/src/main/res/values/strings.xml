@@ -36,6 +36,7 @@
 	<!-- setup from file -->
 	<string name="action_copy_from_file">Copy database from &#8230;</string>
 	<string name="action_unzip_from_archive">Unzip database from &#8230;</string>
+	<string name="action_unzip_from_asset">Unzip database from asset</string>
 	<!-- database info -->
 	<string name="action_tables_and_indices">Tables and Indices</string>
 	<!-- file info -->
