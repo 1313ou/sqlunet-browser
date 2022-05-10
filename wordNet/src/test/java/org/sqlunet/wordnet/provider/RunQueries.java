@@ -39,9 +39,9 @@ public class RunQueries
 		process(processor, Queries.prepareAdjPosition(0));
 		process(processor, Queries.prepareAdjPosition(0, 0));
 		process(processor, Queries.prepareMorphs(0));
-		process(processor, Queries.prepareWn(0));
-		process(processor, Queries.prepareSelect("w"));
-		process(processor, Queries.prepareSelect2("w"));
+		process(processor, Queries.prepareWnXSelect(0));
+		process(processor, Queries.prepareWord("w"));
+		process(processor, Queries.prepareSelectSn("w"));
 	}
 
 	private void process(final SqlProcessor processor, final Module.ContentProviderSql providerSql) throws SQLException

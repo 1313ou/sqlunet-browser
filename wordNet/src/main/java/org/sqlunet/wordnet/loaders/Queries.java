@@ -9,57 +9,9 @@ public class Queries
 {
 	static final String ALLMORPHS = "allmorphs";
 
-	public static Module.ContentProviderSql prepareSelect(final String word)
-	{
-		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.URI;
-		providerSql.projection = new String[]{ //
-				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS _id", //
-				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEID, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.LEXID, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION, //
-				WordNetContract.AS_SYNSETS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POS, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD, //
-		};
-		providerSql.selection = WordNetContract.AS_WORDS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORD + " = ?"; ////
-		providerSql.selectionArgs = new String[]{word};
-		providerSql.sortBy = WordNetContract.AS_SYNSETS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM;
-		return providerSql;
-	}
+	// B R O W S E R
 
-	public static Module.ContentProviderSql prepareSelect2(final String word)
-	{
-		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.URI;
-		providerSql.projection = new String[]{ //
-				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS _id", //
-				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEID, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.LEXID, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION, //
-				WordNetContract.AS_SYNSETS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POS, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN, //
-				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD, //
-		};
-		providerSql.selection = WordNetContract.AS_WORDS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORD + " = ?"; ////
-		providerSql.selectionArgs = new String[]{word};
-		providerSql.sortBy = WordNetContract.AS_SYNSETS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM;
-		return providerSql;
-	}
-
-	public static Module.ContentProviderSql prepareWn(final long wordId)
+	public static Module.ContentProviderSql prepareWnXSelect(final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
 		providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.URI;
@@ -77,6 +29,31 @@ public class Queries
 				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS _id"};
 		providerSql.selection = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(wordId)};
+		return providerSql;
+	}
+
+	public static Module.ContentProviderSql prepareWord(final String word)
+	{
+		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
+		providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.URI;
+		providerSql.projection = new String[]{ //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS _id", //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEID, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.LEXID, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION, //
+				WordNetContract.AS_SYNSETS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POS, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD, //
+		};
+		providerSql.selection = WordNetContract.AS_WORDS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORD + " = ?"; ////
+		providerSql.selectionArgs = new String[]{word};
+		providerSql.sortBy = WordNetContract.AS_SYNSETS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM;
 		return providerSql;
 	}
 
@@ -385,6 +362,33 @@ public class Queries
 		providerSql.projection = new String[]{WordNetContract.Lexes_Morphs.POSID, WordNetContract.Lexes_Morphs.MORPH};
 		providerSql.selection = WordNetContract.Lexes_Morphs.WORDID + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(wordId)};
+		return providerSql;
+	}
+
+	// S N   B R O W S E R
+
+	public static Module.ContentProviderSql prepareSelectSn(final String word)
+	{
+		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
+		providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.URI;
+		providerSql.projection = new String[]{ //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS _id", //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEID, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.LEXID, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION, //
+				WordNetContract.AS_SYNSETS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POS, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN, //
+				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD, //
+		};
+		providerSql.selection = WordNetContract.AS_WORDS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORD + " = ?"; ////
+		providerSql.selectionArgs = new String[]{word};
+		providerSql.sortBy = WordNetContract.AS_SYNSETS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM;
 		return providerSql;
 	}
 }

@@ -771,7 +771,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	private void loadWn(final long wordId)
 	{
 		Log.d(TAG, "loadWn " + wordId);
-		final Module.ContentProviderSql sql = org.sqlunet.wordnet.loaders.Queries.prepareWn(wordId);
+		final Module.ContentProviderSql sql = org.sqlunet.wordnet.loaders.Queries.prepareWnXSelect(wordId);
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
 		this.wnFromWordIdModel.loadData(uri, sql, null);
 	}
