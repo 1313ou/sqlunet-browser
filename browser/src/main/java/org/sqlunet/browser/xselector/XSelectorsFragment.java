@@ -675,7 +675,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	private void load()
 	{
 		// load the contents
-		final Module.ContentProviderSql sql = Queries.prepareWord(XSelectorsFragment.this.word);
+		final Module.ContentProviderSql sql = Queries.prepareWordXSelect(XSelectorsFragment.this.word);
 		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(sql.providerUri));
 		this.wordIdFromWordModel.loadData(uri, sql, this::wordIdFromWordPostProcess);
 	}
@@ -784,7 +784,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	private void loadVn(final long wordId)
 	{
 		Log.d(TAG, "loadVn " + wordId);
-		final Module.ContentProviderSql sql = Queries.prepareVn(wordId);
+		final Module.ContentProviderSql sql = Queries.prepareVnXSelect(wordId);
 		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(sql.providerUri));
 		this.vnFromWordIdModel.loadData(uri, sql, null);
 	}
@@ -797,7 +797,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	private void loadPb(final long wordId)
 	{
 		Log.d(TAG, "loadPb " + wordId);
-		final Module.ContentProviderSql sql = Queries.prepareVn(wordId);
+		final Module.ContentProviderSql sql = Queries.preparePbXSelect(wordId);
 		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(sql.providerUri));
 		this.pbFromWordIdModel.loadData(uri, sql, null);
 	}
@@ -810,7 +810,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	private void loadFn(final long wordId)
 	{
 		Log.d(TAG, "loadFn " + wordId);
-		final Module.ContentProviderSql sql = Queries.prepareVn(wordId);
+		final Module.ContentProviderSql sql = Queries.prepareFnXSelect(wordId);
 		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(sql.providerUri));
 		this.fnFromWordIdModel.loadData(uri, sql, null);
 	}

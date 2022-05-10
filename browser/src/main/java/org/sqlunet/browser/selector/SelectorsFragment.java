@@ -325,7 +325,7 @@ public class SelectorsFragment extends ListFragment
 	private void load()
 	{
 		// load the contents
-		final Module.ContentProviderSql sql = Queries.prepareWordX(this.word);
+		final Module.ContentProviderSql sql = Queries.prepareWordSelect(this.word);
 		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(sql.providerUri));
 		this.dataModel.loadData(uri, sql, this::wordIdFromWordPostProcess);
 	}

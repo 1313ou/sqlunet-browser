@@ -70,7 +70,7 @@ public class RunQueries
 				return FrameNetControl.LEXUNIT;
 			case FrameNetContract.LexUnits.URI:
 				return FrameNetControl.LEXUNITS;
-			case FrameNetContract.LexUnits_X.URI:
+			case FrameNetContract.LexUnits_X.URI_BY_LEXUNIT:
 				return FrameNetControl.LEXUNITS_X_BY_LEXUNIT;
 			case FrameNetContract.Frames.URI1:
 				return FrameNetControl.FRAME;

@@ -15,14 +15,14 @@ public class RunQueries
 		String db = System.getProperty("db");
 		System.out.println(db);
 		final SqlProcessor processor = new SqlProcessor(db);
-		process(processor, Queries.prepareWord("w"));
-		process(processor, Queries.prepareWordX("w"));
-		process(processor, Queries.prepareVn(0));
-		process(processor, Queries.preparePb(0));
-		process(processor, Queries.prepareFn(0));
-		process(processor, Queries.prepareVnSelect(0));
-		process(processor, Queries.preparePbSelect(0));
-		process(processor, Queries.prepareVnWordSelect("w"));
+		process(processor, Queries.prepareWordXSelect("w"));
+		process(processor, Queries.prepareWordSelect("w"));
+		process(processor, Queries.prepareVnXSelect(0));
+		process(processor, Queries.preparePbXSelect(0));
+		process(processor, Queries.prepareFnXSelect(0));
+		process(processor, Queries.prepareVnXSelectVn(0));
+		process(processor, Queries.preparePbSelectVn(0));
+		process(processor, Queries.prepareWordXSelectVn("w"));
 	}
 
 	private void process(final SqlProcessor processor, final Module.ContentProviderSql providerSql) throws SQLException

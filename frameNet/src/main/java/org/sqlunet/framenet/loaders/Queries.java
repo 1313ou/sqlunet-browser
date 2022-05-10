@@ -97,7 +97,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareLexUnit(final long luId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = FrameNetContract.LexUnits_X.URI;
+		providerSql.providerUri = FrameNetContract.LexUnits_X.URI_BY_LEXUNIT;
 		providerSql.projection = new String[]{ //
 				FrameNetContract.LexUnits_X.LUID, //
 				FrameNetContract.LexUnits_X.LEXUNIT, //
@@ -117,7 +117,7 @@ public class Queries
 	public static Module.ContentProviderSql prepareLexUnitsForFrame(final long frameId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
-		providerSql.providerUri = FrameNetContract.LexUnits_X.URI;
+		providerSql.providerUri = FrameNetContract.LexUnits_X.URI_BY_LEXUNIT;
 		providerSql.projection = new String[]{ //
 				FrameNetContract.LexUnits_X.LUID, //
 				FrameNetContract.LexUnits_X.LEXUNIT, //
