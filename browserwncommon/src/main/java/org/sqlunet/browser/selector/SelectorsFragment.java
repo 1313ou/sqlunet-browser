@@ -26,7 +26,7 @@ import org.sqlunet.browser.SqlunetViewModel;
 import org.sqlunet.browser.wn.lib.R;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.wordnet.SensePointer;
-import org.sqlunet.wordnet.provider.WordNetContract;
+import org.sqlunet.wordnet.loaders.Queries;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains;
 import org.sqlunet.wordnet.provider.WordNetProvider;
 
@@ -319,7 +319,7 @@ public class SelectorsFragment extends ListFragment
 	private void load()
 	{
 		// load the contents
-		final Module.ContentProviderSql sql = new Module.ContentProviderSql();
+		final Module.ContentProviderSql sql = Queries.prepareWordSelect(word);
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
 		this.dataModel.loadData(uri, sql, this::wordIdFromWordPostProcess);
 	}

@@ -40,7 +40,7 @@ public class RunQueries
 		process(processor, Queries.prepareAdjPosition(0, 0));
 		process(processor, Queries.prepareMorphs(0));
 		process(processor, Queries.prepareWnXSelect(0));
-		process(processor, Queries.prepareWord("w"));
+		process(processor, Queries.prepareWordSelect("w"));
 		process(processor, Queries.prepareSelectSn("w"));
 	}
 
