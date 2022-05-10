@@ -115,7 +115,8 @@ public class FrameNetContract
 
 	public interface Sentences
 	{
-		String URI = Q.SENTENCES.TABLE;
+		String TABLE = Q.SENTENCES.TABLE;
+		String URI = TABLE;
 		String URI1 = "sentence";
 		String SENTENCEID = V.SENTENCEID;
 		String TEXT = V.TEXT;
@@ -123,7 +124,8 @@ public class FrameNetContract
 
 	public interface AnnoSets
 	{
-		String URI = Q.ANNOSETS.TABLE;
+		String TABLE = Q.ANNOSETS.TABLE;
+		String URI = TABLE;
 		String URI1 = "annoset";
 		String ANNOSETID = V.ANNOSETID;
 		String CONTENTS = V.ANNOSETID;
