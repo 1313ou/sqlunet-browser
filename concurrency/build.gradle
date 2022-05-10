@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 
 android {
+    namespace 'org.sqlunet.concurrency'
+
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {

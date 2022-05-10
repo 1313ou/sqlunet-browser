@@ -8,6 +8,7 @@ plugins {
 }
 
 android {
+    namespace 'org.sqlunet.treeview'
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 

@@ -5,6 +5,7 @@
 apply plugin: 'com.android.library'
 
 android {
+    namespace 'android.support.local.app'
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 

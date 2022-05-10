@@ -3,6 +3,8 @@ plugins {
 }
 
 android {
+    namespace 'org.sqlunet.nightmode'
+
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {

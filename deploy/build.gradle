@@ -5,6 +5,8 @@
 apply plugin: 'com.android.library'
 
 android {
+    namespace 'org.sqlunet.deploy'
+
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {

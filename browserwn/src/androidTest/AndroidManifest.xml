@@ -4,8 +4,7 @@
   -->
 
 <manifest
-	xmlns:tools="http://schemas.android.com/tools"
-	package="${applicationId}">
+	xmlns:tools="http://schemas.android.com/tools">
 
 	<uses-sdk
 		tools:overrideLibrary="android_libs.ub_uiautomator"/>

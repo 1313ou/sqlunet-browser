@@ -2,8 +2,7 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<manifest xmlns:tools="http://schemas.android.com/tools"
-	package="org.sqlunet.test">
+<manifest xmlns:tools="http://schemas.android.com/tools">
 
 	<uses-sdk tools:overrideLibrary="android_libs.ub_uiautomator" />
 

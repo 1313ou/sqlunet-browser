@@ -5,6 +5,7 @@
 apply plugin: 'com.android.library'
 
 android {
+    namespace 'org.sqlunet.test'
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
