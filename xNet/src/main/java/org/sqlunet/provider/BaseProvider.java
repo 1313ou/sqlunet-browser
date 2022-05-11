@@ -271,8 +271,8 @@ public abstract class BaseProvider extends ContentProvider
 	public void shutdown()
 	{
 		Log.d(BaseProvider.TAG, "Shutdown " + this.getClass());
+		// super.shutdown();
 		close();
-		super.shutdown();
 	}
 
 	@SuppressWarnings("SameReturnValue")
