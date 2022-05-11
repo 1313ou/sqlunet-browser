@@ -98,12 +98,12 @@ public class AssetPackLoader implements Cancelable
 		// fetch if uninstalled
 		this.assetPackManager //
 				.getPackStates(Collections.singletonList(this.pack)) //
-				.addOnCompleteListener(getStateTask -> {
+				.addOnCompleteListener(task -> {
 
 					try
 					{
 						// state
-						final AssetPackStates states = getStateTask.getResult();
+						final AssetPackStates states = task.getResult();
 						final AssetPackState state = states.packStates().get(this.pack);
 						assert state != null;
 						final int status = state.status();
@@ -126,15 +126,22 @@ public class AssetPackLoader implements Cancelable
 
 									.addOnCompleteListener(fetchTask -> {
 
-										final AssetPackStates fetchAssetPackStates = fetchTask.getResult();
-										final AssetPackState fetchAssetPackState = fetchAssetPackStates.packStates().get(this.pack);
-										assert fetchAssetPackState != null;
-										final int fetchStatus = fetchAssetPackState.status();
-										Log.i(TAG, "OnFetchCompleted " + statusToString(fetchStatus));
-										if (fetchStatus == AssetPackStatus.FAILED)
+										try
 										{
-											int errorCode = fetchAssetPackState.errorCode();
-											Log.e(TAG, "OnFetchCompleted with error " + errorCode + ' ' + errorToString(errorCode));
+											final AssetPackStates fetchAssetPackStates = fetchTask.getResult();
+											final AssetPackState fetchAssetPackState = fetchAssetPackStates.packStates().get(this.pack);
+											assert fetchAssetPackState != null;
+											final int fetchStatus = fetchAssetPackState.status();
+											Log.i(TAG, "OnFetchCompleted " + statusToString(fetchStatus));
+											if (fetchStatus == AssetPackStatus.FAILED)
+											{
+												int errorCode = fetchAssetPackState.errorCode();
+												Log.e(TAG, "OnFetchCompleted with error " + errorCode + ' ' + errorToString(errorCode));
+											}
+										}
+										catch (RuntimeExecutionException e)
+										{
+											Log.e(TAG, "getResult() error", e);
 										}
 									}) //
 									.addOnFailureListener(exception -> Log.i(TAG, "OnFetchFailure " + exception.getMessage())) //
