@@ -375,7 +375,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			}
 		}
 		outState.putInt(STATE_GROUPS, groupState);
-		Log.d(TAG, "save group states " + Integer.toHexString(groupState) + " " + this);
+		Log.d(TAG, "Saved group states " + Integer.toHexString(groupState) + " " + this);
 	}
 
 	@Override
@@ -514,14 +514,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 */
 	public void resetAdapter()
 	{
-		CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
-		assert adapter != null;
-		for (int i = 0; i < adapter.getGroupCount(); i++)
-		{
-			adapter.setChildrenCursor(i, null);
-		}
-		//adapter.setGroupCursor(null);
-		//setListAdapter(null);
+		setListAdapter(null);
 	}
 
 	/**
@@ -539,12 +532,12 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 */
 	public void restoreGroups(@Nullable Integer groupState)
 	{
-		if (groupState == null)
+		if (groupState == null || getListAdapter() == null)
 		{
 			return;
 		}
 		final Handler handler = new Handler(Looper.getMainLooper());
-		Log.d(TAG, "saved position " + Integer.toHexString(groupState) + " " + this);
+		Log.d(TAG, "Restore saved position " + Integer.toHexString(groupState) + " " + this);
 		int groupCount = this.xnCursor.getCount();
 		for (int i = 0; i < groupCount; i++)
 		{
