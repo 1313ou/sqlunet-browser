@@ -96,7 +96,7 @@ public abstract class BaseBrowse2Fragment extends Fragment
 	@Override
 	public void onSaveInstanceState(@NonNull Bundle outState)
 	{
-		Log.d(TAG, "save instance state " + this);
+		Log.d(TAG, "Save instance state " + this);
 		super.onSaveInstanceState(outState);
 		outState.putParcelable(POINTER_STATE, this.pointer);
 	}

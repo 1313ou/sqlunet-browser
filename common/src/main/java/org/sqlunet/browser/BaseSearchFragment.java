@@ -133,7 +133,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	@Override
 	public void onSaveInstanceState(@NonNull final Bundle outState)
 	{
-		Log.d(BaseSearchFragment.TAG, "on save instance");
+		Log.d(BaseSearchFragment.TAG, "Save instance state");
 
 		// always call the superclass so it can save the view hierarchy state
 		super.onSaveInstanceState(outState);

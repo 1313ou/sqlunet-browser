@@ -91,7 +91,7 @@ public class SynsetFragment extends TreeFragment
 	@Override
 	public void onSaveInstanceState(@NonNull final Bundle outState)
 	{
-		Log.d(TAG, "save instance state " + this);
+		Log.d(TAG, "Save instance state " + this);
 		super.onSaveInstanceState(outState);
 		outState.putBoolean(STATE_EXPAND, this.expand);
 	}
