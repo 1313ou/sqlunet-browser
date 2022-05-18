@@ -584,7 +584,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 
 			if (cursor != null && this.wnFromWordIdModel.getData().hasActiveObservers())
 			{
-				// dumpXCursor(cursor);
+				// CursorDump.dumpXCursor(cursor);
 
 				// pass on to list adapter
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
@@ -604,7 +604,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 
 			if (cursor != null && this.vnFromWordIdModel.getData().hasActiveObservers())
 			{
-				// dumpXCursor(cursor);
+				// CursorDump.dumpXCursor(cursor);
 
 				// pass on to list adapter
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
@@ -624,7 +624,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 
 			if (cursor != null && this.pbFromWordIdModel.getData().hasActiveObservers())
 			{
-				// dumpXCursor(cursor);
+				// CursorDump.dumpXCursor(cursor);
 
 				// pass on to list adapter
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
@@ -644,7 +644,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 
 			if (cursor != null && this.fnFromWordIdModel.getData().hasActiveObservers())
 			{
-				// dumpXCursor(cursor);
+				// CursorDump.dumpXCursor(cursor);
 
 				// pass on to list adapter
 				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
