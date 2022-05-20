@@ -176,12 +176,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 			Words_XNet_U.SOURCES,};
 
 	/**
-	 * Xn group cursor
-	 */
-	@NonNull
-	private final MatrixCursor xnCursor;
-
-	/**
 	 * Group positions
 	 */
 	private int[] groupPositions;
@@ -239,7 +233,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 	public XSelectorsFragment()
 	{
 		Log.d(TAG, "lifecycle: Constructor (0) " + this);
-		this.xnCursor = new MatrixCursor(new String[]{GROUPID_COLUMN, GROUPNAME_COLUMN, GROUPICON_COLUMN});
 	}
 
 	// L I F E C Y C L E
@@ -258,7 +251,8 @@ public class XSelectorsFragment extends ExpandableListFragment
 	{
 		super.onCreate(savedInstanceState);
 		Log.d(TAG, "lifecycle: onCreate (2) " + this);
-		// this.setRetainInstance(false); // default
+		//noinspection deprecation
+		this.setRetainInstance(false); // default
 
 		// arguments
 		Bundle args = getArguments();
@@ -272,10 +266,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 		}
 		this.word = query;
 		this.wordId = 0;
-
-		// group cursor populated
-		Log.d(TAG, "make groupCursor");
-		this.groupPositions = populateGroupCursor(requireContext(), this.xnCursor);
 	}
 
 	@Override
@@ -297,8 +287,11 @@ public class XSelectorsFragment extends ExpandableListFragment
 		view.setChoiceMode(this.activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
 
 		// data view models
-		Log.d(TAG, "make models");
 		makeModels();
+
+		// adapter
+		final ExpandableListAdapter adapter = makeAdapter();
+		setListAdapter(adapter);
 	}
 
 	//	@Override
@@ -334,20 +327,19 @@ public class XSelectorsFragment extends ExpandableListFragment
 	//		Log.d(TAG, "lifecycle: onStop(-4) " + this);
 	//	}
 
-	@Override
-	public void onDestroyView()
-	{
-		super.onDestroyView();
-		Log.d(TAG, "lifecycle: onDestroyView (-3) " + this);
-		resetAdapter();
-	}
+	// @Override
+	// public void onDestroyView()
+	// {
+	// 	super.onDestroyView();
+	// 	Log.d(TAG, "lifecycle: onDestroyView (-3) " + this);
+	// }
 
-	//	@Override
-	//	public void onDestroy()
-	//	{
-	//		super.onDestroy();
-	//		Log.d(TAG, "lifecycle: onDestroy (-2) " + this);
-	//	}
+	// @Override
+	// public void onDestroy()
+	// {
+	// 	super.onDestroy();
+	// 	Log.d(TAG, "lifecycle: onDestroy (-2) " + this);
+	// }
 
 	//	@Override
 	//	public void onDetach()
@@ -364,18 +356,24 @@ public class XSelectorsFragment extends ExpandableListFragment
 
 		// serialize and persist the activated group state
 		final ExpandableListView expandableListView = getExpandableListView();
-		assert expandableListView != null;
-		int groupCount = this.xnCursor.getCount();
-		int groupState = 0;
-		for (int i = 0; i < groupCount; i++)
+		if (expandableListView != null)
 		{
-			if (expandableListView.isGroupExpanded(i))
+			final ExpandableListAdapter adapter = getListAdapter();
+			if (adapter != null)
 			{
-				groupState |= (1 << i);
+				int groupCount = adapter.getGroupCount();
+				int groupState = 0;
+				for (int i = 0; i < groupCount; i++)
+				{
+					if (expandableListView.isGroupExpanded(i))
+					{
+						groupState |= (1 << i);
+					}
+				}
+				outState.putInt(STATE_GROUPS, groupState);
+				Log.d(TAG, "Saved group states " + Integer.toHexString(groupState) + " " + this);
 			}
 		}
-		outState.putInt(STATE_GROUPS, groupState);
-		Log.d(TAG, "Saved group states " + Integer.toHexString(groupState) + " " + this);
 	}
 
 	@Override
@@ -386,42 +384,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		this.restoredGroupState = savedInstanceState != null ? savedInstanceState.getInt(STATE_GROUPS) : null;
 	}
 
-	// H E L P E R S
-
-	/**
-	 * Populate group cursor. Requires context to be available
-	 */
-	@NonNull
-	private static int[] populateGroupCursor(@NonNull final Context context, @NonNull final MatrixCursor cursor)
-	{
-		// fill groups
-		int position = 0;
-		int enable = Settings.getAllPref(context);
-
-		int[] groupPositions = new int[]{AdapterView.INVALID_POSITION, AdapterView.INVALID_POSITION, AdapterView.INVALID_POSITION, AdapterView.INVALID_POSITION};
-		if (Settings.Source.WORDNET.test(enable))
-		{
-			groupPositions[GROUPINDEX_WORDNET] = position++;
-			cursor.addRow(new Object[]{GROUPID_WORDNET, "wordnet", Integer.toString(R.drawable.wordnet)});
-		}
-		if (Settings.Source.VERBNET.test(enable))
-		{
-			groupPositions[GROUPINDEX_VERBNET] = position++;
-			cursor.addRow(new Object[]{GROUPID_VERBNET, "verbnet", Integer.toString(R.drawable.verbnet)});
-		}
-		if (Settings.Source.PROPBANK.test(enable))
-		{
-			groupPositions[GROUPINDEX_PROPBANK] = position++;
-			cursor.addRow(new Object[]{GROUPID_PROPBANK, "propbank", Integer.toString(R.drawable.propbank)});
-		}
-		if (Settings.Source.FRAMENET.test(enable))
-		{
-			//noinspection UnusedAssignment
-			groupPositions[GROUPINDEX_FRAMENET] = position++;
-			cursor.addRow(new Object[]{GROUPID_FRAMENET, "framenet", Integer.toString(R.drawable.framenet)});
-		}
-		return groupPositions;
-	}
+	// A D A P T E R
 
 	/**
 	 * Make adapter
@@ -429,27 +392,60 @@ public class XSelectorsFragment extends ExpandableListFragment
 	@NonNull
 	private ExpandableListAdapter makeAdapter()
 	{
-		Log.d(TAG, "make adapter");
+		// group cursor populated
+		Log.d(TAG, "make group cursor");
+		final MatrixCursor groupCursor = new MatrixCursor(new String[]{GROUPID_COLUMN, GROUPNAME_COLUMN, GROUPICON_COLUMN});
+		this.groupPositions = populateGroupCursor(requireContext(), groupCursor);
+		groupCursor.moveToFirst();
 
 		// adapter
-		this.xnCursor.moveToFirst();
-		return new SimpleCursorTreeAdapter(requireContext(), this.xnCursor, R.layout.item_group_xselector, groupFrom, groupTo, R.layout.item_xselector, childFrom, childTo)
+		Log.d(TAG, "make adapter");
+		return new SimpleCursorTreeAdapter(requireContext(), groupCursor, R.layout.item_group_xselector, groupFrom, groupTo, R.layout.item_xselector, childFrom, childTo)
 		{
 			@Nullable
 			@Override
 			protected Cursor getChildrenCursor(@NonNull Cursor groupCursor)
 			{
-				Log.d(TAG, "getChildrenCursor(cursor) query groupId");
-
 				// given the group, return a cursor for all the children within that group
-				int groupId = groupCursor.getInt(groupCursor.getColumnIndexOrThrow(GROUPID_COLUMN));
-				// int groupPosition = groupCursor.getPosition();
-				// String groupName = groupCursor.getString(groupCursor.getColumnIndex(GROUPNAME_COLUMN));
-				// Log.d(TAG, "getChildrenCursor(cursor) group " + groupPosition + ' ' + groupName);
+				String groupName = groupCursor.getString(groupCursor.getColumnIndexOrThrow(GROUPNAME_COLUMN));
+				Log.d(TAG, "getChildrenCursor(cursor) groupName= " + groupName);
+
+				// get cursor
+				Cursor cursor;
+				switch (groupName)
+				{
+					case "wordnet":
+						cursor = wnFromWordIdModel.getData().getValue();
+						break;
+					case "verbnet":
+						cursor = vnFromWordIdModel.getData().getValue();
+						break;
+					case "propbank":
+						cursor = pbFromWordIdModel.getData().getValue();
+						break;
+					case "framenet":
+						cursor = fnFromWordIdModel.getData().getValue();
+						break;
+					default:
+						throw new IllegalArgumentException("Illegal group name " + groupName);
+				}
+				if (cursor != null && !cursor.isClosed())
+				{
+					return cursor;
+				}
 
 				// load
+				int groupId = groupCursor.getInt(groupCursor.getColumnIndexOrThrow(GROUPID_COLUMN));
+				Log.d(TAG, "getChildrenCursor(cursor) groupId=" + groupId);
 				startChildLoader(groupId);
 				return null; // set later when loader completes
+			}
+
+			@Override
+			public void onGroupCollapsed(final int groupPosition)
+			{
+				// super.onGroupCollapsed(groupPosition);
+				// prevent from deactivating cursor
 			}
 
 			@Override
@@ -458,6 +454,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				return true;
 			}
 
+			@Nullable
 			@Override
 			protected void setViewImage(@NonNull ImageView v, @NonNull String value)
 			{
@@ -510,11 +507,38 @@ public class XSelectorsFragment extends ExpandableListFragment
 	}
 
 	/**
-	 * Reset adapter. (Otherwise stale cursors)
+	 * Populate group cursor. Requires context to be available
 	 */
-	public void resetAdapter()
+	@NonNull
+	private static int[] populateGroupCursor(@NonNull final Context context, @NonNull final MatrixCursor cursor)
 	{
-		setListAdapter(null);
+		// fill groups
+		int position = 0;
+		int enable = Settings.getAllPref(context);
+
+		int[] groupPositions = new int[]{AdapterView.INVALID_POSITION, AdapterView.INVALID_POSITION, AdapterView.INVALID_POSITION, AdapterView.INVALID_POSITION};
+		if (Settings.Source.WORDNET.test(enable))
+		{
+			groupPositions[GROUPINDEX_WORDNET] = position++;
+			cursor.addRow(new Object[]{GROUPID_WORDNET, "wordnet", Integer.toString(R.drawable.wordnet)});
+		}
+		if (Settings.Source.VERBNET.test(enable))
+		{
+			groupPositions[GROUPINDEX_VERBNET] = position++;
+			cursor.addRow(new Object[]{GROUPID_VERBNET, "verbnet", Integer.toString(R.drawable.verbnet)});
+		}
+		if (Settings.Source.PROPBANK.test(enable))
+		{
+			groupPositions[GROUPINDEX_PROPBANK] = position++;
+			cursor.addRow(new Object[]{GROUPID_PROPBANK, "propbank", Integer.toString(R.drawable.propbank)});
+		}
+		if (Settings.Source.FRAMENET.test(enable))
+		{
+			//noinspection UnusedAssignment
+			groupPositions[GROUPINDEX_FRAMENET] = position++;
+			cursor.addRow(new Object[]{GROUPID_FRAMENET, "framenet", Integer.toString(R.drawable.framenet)});
+		}
+		return groupPositions;
 	}
 
 	/**
@@ -538,7 +562,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		}
 		final Handler handler = new Handler(Looper.getMainLooper());
 		Log.d(TAG, "Restore saved position " + Integer.toHexString(groupState) + " " + this);
-		int groupCount = this.xnCursor.getCount();
+		int groupCount = getListAdapter().getGroupCount();
 		for (int i = 0; i < groupCount; i++)
 		{
 			if ((groupState & (1 << i)) != 0)
@@ -559,6 +583,8 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 */
 	private void makeModels()
 	{
+		Log.d(TAG, "make models");
+
 		final LifecycleOwner owner = getViewLifecycleOwner();
 		this.wordIdFromWordModel = new ViewModelProvider(this).get("xselectors.wordid(word)", SqlunetViewModel.class);
 		this.wordIdFromWordModel.getData().observe(owner, unusedCursor -> {
@@ -866,7 +892,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			int index = listView.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition, childPosition));
 			listView.setItemChecked(index, true);
 
-			final CursorTreeAdapter adapter = (SimpleCursorTreeAdapter) getListAdapter();
+			final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
 			assert adapter != null;
 			final Cursor cursor = adapter.getChild(groupPosition, childPosition);
 			if (!cursor.isAfterLast())
@@ -934,43 +960,19 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 */
 	private void expandAll()
 	{
-		if (getExpandableListAdapter() == null)
+		final ExpandableListView expandableListView = getExpandableListView();
+		final ExpandableListAdapter adapter = getListAdapter();
+		if (expandableListView == null || adapter == null)
 		{
 			return;
 		}
 
-		final ExpandableListView expandableListView = getExpandableListView();
-		assert expandableListView != null;
-		int count = this.xnCursor.getCount();
+		int count = adapter.getGroupCount();
 		for (int position = 0; position < count; position++)
 		{
 			expandableListView.expandGroup(position);
 		}
 	}
-
-	/*
-	 * Expand or Collapse section
-	 */
-	/*
-	private void expandOrCollapse(int groupPosition, boolean expand)
-	{
-		assert getExpandableListAdapter() != null;
-		final ExpandableListView expandableListView = getExpandableListView();
-		assert expandableListView != null;
-		boolean expanded = expandableListView.isGroupExpanded(groupPosition);
-		Log.d(TAG, "Expanded " + expanded);
-		if (expand && !expanded)
-		{
-			Log.d(TAG, "Expand");
-			expand(groupPosition);
-		}
-		else if (!expand && expanded)
-		{
-			Log.d(TAG, "Collapse");
-			collapse(groupPosition);
-		}
-	}
-	*/
 
 	// H E L P E R
 
