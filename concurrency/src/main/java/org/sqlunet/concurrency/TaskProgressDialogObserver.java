@@ -129,7 +129,7 @@ public class TaskProgressDialogObserver<Progress extends Number> extends TaskObs
 			if (which == DialogInterface.BUTTON_NEGATIVE)
 			{
 				boolean result = TaskProgressDialogObserver.this.task != null && TaskProgressDialogObserver.this.task.cancel(true);
-				Log.d(TAG, "Cancel task @" + Integer.toHexString(this.task.hashCode()) + ' ' + result);
+				Log.d(TAG, "Cancel task @" + Integer.toHexString(this.task == null ? 0 : this.task.hashCode()) + ' ' + result);
 				dialog.dismiss();
 			}
 		});

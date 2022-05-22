@@ -4,7 +4,6 @@
 
 package org.sqlunet.browser;
 
-import android.net.Uri;
 import android.os.Parcelable;
 
 import org.sqlunet.treeview.model.TreeNode;
@@ -43,6 +42,7 @@ public abstract class Module
 			this.sortBy = sortBy;
 		}
 
+		@NonNull
 		@Override
 		public String toString()
 		{

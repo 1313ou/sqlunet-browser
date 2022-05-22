@@ -28,7 +28,6 @@ import org.sqlunet.wordnet.R;
 import org.sqlunet.wordnet.SensePointer;
 import org.sqlunet.wordnet.loaders.Queries;
 import org.sqlunet.wordnet.provider.WordNetContract;
-import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains;
 import org.sqlunet.wordnet.provider.WordNetProvider;
 
 import java.util.Locale;

@@ -734,7 +734,6 @@ public class ScrollView2D extends FrameLayout
 		}
 		if (newFocused != findFocus() && newFocused.requestFocus(directionY))
 		{
-			this.mTwoDScrollViewMovedFocus = true;
 			this.mTwoDScrollViewMovedFocus = false;
 		}
 		return handled;
@@ -1222,7 +1221,6 @@ public class ScrollView2D extends FrameLayout
 
 			if (newFocused != findFocus() && newFocused.requestFocus(movingDown ? View.FOCUS_DOWN : View.FOCUS_UP))
 			{
-				this.mTwoDScrollViewMovedFocus = true;
 				this.mTwoDScrollViewMovedFocus = false;
 			}
 

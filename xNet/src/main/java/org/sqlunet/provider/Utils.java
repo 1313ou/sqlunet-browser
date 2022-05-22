@@ -34,7 +34,7 @@ public class Utils
 			final String[] selectionArgs, //
 			final String[] groupBys, final String sortOrder, final String tag)
 	{
-		// embbedded
+		// embedded
 		final String uQuery = makeEmbeddedQuery(table1, table2, //
 				table1Projection, table2Projection, //
 				unionProjection, selection, //

@@ -27,9 +27,6 @@ import org.sqlunet.view.TreeOpExecute;
 import org.sqlunet.wordnet.loaders.BaseModule.BaseSynsetLink;
 import org.sqlunet.wordnet.loaders.BaseModule.BaseWordLink;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;

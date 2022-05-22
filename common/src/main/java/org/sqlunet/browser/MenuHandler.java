@@ -4,13 +4,11 @@
 
 package org.sqlunet.browser;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import com.bbou.donate.DonateActivity;

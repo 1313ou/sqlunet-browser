@@ -204,7 +204,7 @@ class Mapping
 			final Domain domain = Mapping.domains.get(domainId);
 			return getPosName(domain.posId);
 		}
-		catch (@NonNull final IndexOutOfBoundsException e)
+		catch (@NonNull final IndexOutOfBoundsException | IllegalArgumentException e)
 		{
 			return "domainid." + domainId;
 		}
@@ -289,7 +289,7 @@ class Mapping
 	 * @param posId target part-of-speech id
 	 * @return part-of-speech name or null if not found
 	 */
-	@Nullable
+	@NonNull
 	static public String getPosName(final int posId)
 	{
 		switch (posId)
@@ -303,7 +303,7 @@ class Mapping
 			case 'r':
 				return "adv";
 		}
-		return null;
+		throw new IllegalArgumentException("" + posId);
 	}
 
 	/**

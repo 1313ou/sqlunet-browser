@@ -454,7 +454,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 				return true;
 			}
 
-			@Nullable
 			@Override
 			protected void setViewImage(@NonNull ImageView v, @NonNull String value)
 			{

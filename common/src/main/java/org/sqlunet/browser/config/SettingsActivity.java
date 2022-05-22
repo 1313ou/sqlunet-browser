@@ -5,6 +5,7 @@
 package org.sqlunet.browser.config;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
@@ -132,8 +133,10 @@ public class SettingsActivity extends BaseSettingsActivity
 	{
 		static private final Preference.OnPreferenceChangeListener listener = (preference, value) -> {
 
+			final SharedPreferences sharedPrefs = preference.getSharedPreferences();
+			assert sharedPrefs != null;
 			final String key = preference.getKey();
-			final String prevValue = preference.getSharedPreferences().getString(key, null);
+			final String prevValue = sharedPrefs.getString(key, null);
 			//noinspection EqualsReplaceableByObjectsCall
 			if (value == null ? prevValue != null : !value.equals(prevValue))
 			{

@@ -39,7 +39,7 @@ public class Utils
 				.setPositiveButton(R.string.yes, (dialog, which) -> runnable.run()).setNegativeButton(R.string.no, null).show();
 	}
 
-	// Huamn-readable sizes
+	// Human-readable sizes
 
 	static private final String f = "%d %s";
 

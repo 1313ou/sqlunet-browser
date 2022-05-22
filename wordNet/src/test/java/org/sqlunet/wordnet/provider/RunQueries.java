@@ -62,7 +62,7 @@ public class RunQueries
 
 	private static String toSql(final int code, final Module.ContentProviderSql providerSql)
 	{
-		WordNetControl.Result r = WordNetControl.queryMain(code, null, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
+		WordNetControl.Result r = WordNetControl.queryMain(code, "dummy", providerSql.projection, providerSql.selection, providerSql.selectionArgs);
 		if (r == null)
 		{
 			// RELATIONS

@@ -22,7 +22,7 @@ import static com.bbou.rate.PreferenceHelper.setInstallDate;
 
 public final class AppRate
 {
-	private static AppRate singleton;
+	private static volatile AppRate singleton;
 
 	private final Context context;
 

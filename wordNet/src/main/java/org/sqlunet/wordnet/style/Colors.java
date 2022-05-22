@@ -34,6 +34,6 @@ public class Colors
 		membersForeColor = palette[i++];
 
 		wordBackColor = palette[i++];
-		wordForeColor = palette[i++];
+		wordForeColor = palette[i];
 	}
 }

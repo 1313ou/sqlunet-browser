@@ -23,7 +23,7 @@ public class ConcurrencyInstrumentedTest
 		final Task<Integer, String, Long> task = new Task<Integer, String, Long>()
 		{
 			@Override
-			protected final Long doInBackground(@NonNull final Integer... params)
+			protected Long doInBackground(@NonNull final Integer... params)
 			{
 				long s = 0;
 				for (Integer param : params)
