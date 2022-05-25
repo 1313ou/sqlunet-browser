@@ -12,10 +12,11 @@ import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.test.espresso.IdlingRegistry;
 import androidx.test.espresso.IdlingResource;
+import androidx.test.espresso.matcher.ViewMatchers;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
 public class WaitUntil extends BaseWaitUntil
@@ -52,7 +53,8 @@ public class WaitUntil extends BaseWaitUntil
 		try
 		{
 			IdlingRegistry.getInstance().register(idlingResource);
-			onView(matcher).check(matches(isDisplayed()));
+			//onView(matcher).check(matches(isDisplayed()));
+			onView(matcher).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
 		}
 		finally
 		{
