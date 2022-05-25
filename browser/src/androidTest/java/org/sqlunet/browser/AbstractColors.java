@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.sqlunet.nightmode.NightMode;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -50,7 +51,7 @@ abstract class AbstractColors extends TestCase
 	@Test
 	public void colorContrast() throws Colors.IllegalColorPair
 	{
-		assertTrue(Colors.checkDarkMode(getMode()));
+		assertTrue(NightMode.checkDarkMode(getMode()));
 		testColorsFromResources(this.context, org.sqlunet.browser.common.R.array.palette_ui, false);
 		testColorsFromResources(this.context, org.sqlunet.xnet.R.array.palette, false);
 		testColorsFromResources(this.context, org.sqlunet.wordnet.R.array.palette_wn, false);
@@ -64,7 +65,7 @@ abstract class AbstractColors extends TestCase
 	@Test
 	public void colorContrastXNet()
 	{
-		assertTrue(Colors.checkDarkMode(getMode()));
+		assertTrue(NightMode.checkDarkMode(getMode()));
 		try
 		{
 			testColorsFromResources(this.context, org.sqlunet.browser.common.R.array.palette_ui, true);
