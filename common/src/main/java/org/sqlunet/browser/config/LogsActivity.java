@@ -56,7 +56,7 @@ public class LogsActivity extends AppCompatActivity
 
 			final Intent email = new Intent(Intent.ACTION_SEND);
 			email.putExtra(Intent.EXTRA_EMAIL, new String[]{"semantikos.org@gmail.com"});
-			email.putExtra(Intent.EXTRA_SUBJECT, "Semantikos diagnostics");
+			email.putExtra(Intent.EXTRA_SUBJECT, "Semantikos log");
 			email.putExtra(Intent.EXTRA_TEXT, textView.getText());
 			email.setType("message/rfc822"); // prompts email client only
 
