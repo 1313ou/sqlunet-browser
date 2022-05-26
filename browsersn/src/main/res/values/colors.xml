@@ -15,6 +15,8 @@
 	<color name="onSecondaryColor" tools:keep="@color/onSecondaryColor">#F0F0F0</color>
 
 	<color name="colorHighlightOnBackground" tools:keep="@color/colorHighlightOnBackground">#e46d42</color>
+	<color name="colorHighlight1OnBackground" tools:keep="@color/colorHighlight1OnBackground">#E65100</color>
+	<color name="colorHighlight2OnBackground" tools:keep="@color/colorHighlight2OnBackground">#6F568E</color>
 	<color name="colorDimmedOnBackground" tools:keep="@color/colorDimmedOnBackground">#808080</color>
 
 </resources>

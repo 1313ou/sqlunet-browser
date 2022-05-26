@@ -24,6 +24,8 @@
 
 	<!-- text - variants of colorOnBackground, must display on colorBackground -->
 	<color name="colorHighlightOnBackground">#e46d42</color> <!--  -->
+	<color name="colorHighlight1OnBackground">#880E4F</color> <!--  -->
+	<color name="colorHighlight2OnBackground">#006064</color> <!--  -->
 	<color name="colorDimmedOnBackground">#808080</color> <!--  -->
 
 	<!-- background -->
