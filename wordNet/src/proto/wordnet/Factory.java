@@ -149,11 +149,33 @@ public class Factory implements Function<String,String[]>, Supplier<String[]>
 								"LEFT JOIN %s AS %s USING (%s) " + //
 								"LEFT JOIN %s AS %s USING (%s)", //
 						"${words.table}", "${as_words}", //
-						"${senses.table}", "${as_senses}", "${senses.wordid}", //
+						"${senses.table}", "${as_senses}", "${words.wordid}", //
 						"${casedwords.table}", "${as_caseds}", "${casedwords.wordid}", "${casedwords.casedwordid}", //
 						"${synsets.table}", "${as_synsets}", "${synsets.synsetid}", //
 						"${poses.table}", "${as_poses}", "${poses.posid}", //
 						"${domains.table}", "${as_domains}", "${domains.domainid}");
+				break;
+
+			case WORDS_SENSES_CASEDWORDS_PRONUNCIATIONS_SYNSETS_POSES_DOMAINS:
+				r.table = String.format("%s AS %s " + // 1
+								"INNER JOIN %s AS %s USING (%s) " + // 2
+								"LEFT JOIN %s AS %s USING (%s,%s) " + // 3
+								"LEFT JOIN %s AS %s USING (%s,%s) " + // 4
+								"LEFT JOIN %s USING (%s,%s) " + // 5
+								"LEFT JOIN %s AS %s USING (%s) " + // 6
+								"LEFT JOIN %s AS %s USING (%s) " + // 7
+								"LEFT JOIN %s AS %s USING (%s) " + // 8
+								"LEFT JOIN %s AS %s USING (%s)", // 9
+						"${lexes.table}", "${as_lexes}", // 1
+						"${words.table}", "${as_words}", "${words.wordid}", // 2
+						"${senses.table}", "${as_senses}", "${lexes.luid}", "${words.wordid}", // 3
+						"${casedwords.table}", "${as_caseds}", "${casedwords.wordid}", "${casedwords.casedwordid}", // 4
+						"${lexes_pronunciations.table}", "${lexes.luid}", "${words.wordid}", // 5
+						"${pronunciations.table}", "${as_pronunciations}", "${pronunciations.pronunciationid}", // 6
+						"${synsets.table}", "${as_synsets}", "${synsets.synsetid}", // 7
+						"${poses.table}", "${as_poses}", "${poses.posid}", // 8
+						"${domains.table}", "${as_domains}", "${domains.domainid}"); // 9
+				r.groupBy = "${senses.senseid}";
 				break;
 
 			case SENSES_WORDS:
@@ -428,7 +450,7 @@ public class Factory implements Function<String,String[]>, Supplier<String[]>
 		LEXES_MORPHS, SENSES_VFRAMES, SENSES_VTEMPLATES, SENSES_ADJPOSITIONS, //
 		DICT, //
 		WORD1, SENSE1, SYNSET1, //
-		WORDS_LEXES_MORPHS, WORDS_LEXES_MORPHS_BY_WORD, WORDS_SENSES_SYNSETS, WORDS_SENSES_CASEDWORDS_SYNSETS, WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS, //
+		WORDS_LEXES_MORPHS, WORDS_LEXES_MORPHS_BY_WORD, WORDS_SENSES_SYNSETS, WORDS_SENSES_CASEDWORDS_SYNSETS, WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS, WORDS_SENSES_CASEDWORDS_PRONUNCIATIONS_SYNSETS_POSES_DOMAINS, //
 		SENSES_WORDS, SENSES_WORDS_BY_SYNSET, SENSES_SYNSETS_POSES_DOMAINS, //
 		SYNSETS_POSES_DOMAINS, //
 		ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET, //

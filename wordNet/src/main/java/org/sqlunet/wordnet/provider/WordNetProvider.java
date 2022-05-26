@@ -109,6 +109,7 @@ public class WordNetProvider extends BaseProvider
 		uriMatcher.addURI(AUTHORITY, Words_Senses_Synsets.URI, WordNetControl.WORDS_SENSES_SYNSETS);
 		uriMatcher.addURI(AUTHORITY, Words_Senses_CasedWords_Synsets.URI, WordNetControl.WORDS_SENSES_CASEDWORDS_SYNSETS);
 		uriMatcher.addURI(AUTHORITY, Words_Senses_CasedWords_Synsets_Poses_Domains.URI, WordNetControl.WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS);
+		uriMatcher.addURI(AUTHORITY, WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.URI, WordNetControl.WORDS_SENSES_CASEDWORDS_PRONUNCIATIONS_SYNSETS_POSES_DOMAINS);
 		uriMatcher.addURI(AUTHORITY, Senses_Words.URI, WordNetControl.SENSES_WORDS);
 		uriMatcher.addURI(AUTHORITY, Senses_Words.URI_BY_SYNSET, WordNetControl.SENSES_WORDS_BY_SYNSET);
 		uriMatcher.addURI(AUTHORITY, Senses_Synsets_Poses_Domains.URI, WordNetControl.SENSES_SYNSETS_POSES_DOMAINS);
@@ -223,6 +224,8 @@ public class WordNetProvider extends BaseProvider
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_Senses_CasedWords_Synsets.URI;
 			case WordNetControl.WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_Senses_CasedWords_Synsets_Poses_Domains.URI;
+			case WordNetControl.WORDS_SENSES_CASEDWORDS_PRONUNCIATIONS_SYNSETS_POSES_DOMAINS:
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.URI;
 
 			// J O I N S
 

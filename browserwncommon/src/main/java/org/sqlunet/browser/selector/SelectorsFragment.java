@@ -27,7 +27,7 @@ import org.sqlunet.browser.wn.lib.R;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.wordnet.SensePointer;
 import org.sqlunet.wordnet.loaders.Queries;
-import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains;
+import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains;
 import org.sqlunet.wordnet.provider.WordNetProvider;
 
 import java.util.Locale;
@@ -56,7 +56,7 @@ public class SelectorsFragment extends ListFragment
 		/**
 		 * Callback for when an item has been selected.
 		 */
-		void onItemSelected(SensePointer pointer, String word, String cased, String pos);
+		void onItemSelected(SensePointer pointer, String word, String cased, String pronunciation, String pos);
 	}
 
 	/**
@@ -221,23 +221,25 @@ public class SelectorsFragment extends ListFragment
 		Log.d(TAG, "make adapter");
 		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(requireContext(), R.layout.item_selector, null, //
 				new String[]{ //
-						Words_Senses_CasedWords_Synsets_Poses_Domains.POSID, //
-						Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN, //
-						Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION, //
-						Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD, //
-						Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM, //
-						Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY, //
-						Words_Senses_CasedWords_Synsets_Poses_Domains.LEXID, //
-						Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT, //
-						Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID, //
-						Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID, //
-						Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEID, //
+						Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POSID, //
+						Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.DOMAIN, //
+						Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.DEFINITION, //
+						Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.CASEDWORD, //
+						Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.PRONUNCIATIONS, //
+						Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSENUM, //
+						Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSEKEY, //
+						Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.LEXID, //
+						Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.TAGCOUNT, //
+						Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.WORDID, //
+						Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SYNSETID, //
+						Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSEID, //
 				}, //
 				new int[]{ //
 						R.id.pos, //
 						R.id.domain, //
 						R.id.definition, //
 						R.id.cased, //
+						R.id.pronunciation, //
 						R.id.sensenum, //
 						R.id.sensekey, //
 						R.id.lexid, //
@@ -319,7 +321,7 @@ public class SelectorsFragment extends ListFragment
 	private void load()
 	{
 		// load the contents
-		final Module.ContentProviderSql sql = Queries.prepareWordSelect(word);
+		final Module.ContentProviderSql sql = Queries.prepareWordXSelect(word);
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
 		this.dataModel.loadData(uri, sql, this::wordIdFromWordPostProcess);
 	}
@@ -334,7 +336,7 @@ public class SelectorsFragment extends ListFragment
 	{
 		if (cursor.moveToFirst())
 		{
-			final int idWordId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID);
+			final int idWordId = cursor.getColumnIndex(Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.WORDID);
 			this.wordId = cursor.getLong(idWordId);
 		}
 		// cursor.close();
@@ -386,20 +388,22 @@ public class SelectorsFragment extends ListFragment
 			if (cursor.moveToPosition(position))
 			{
 				// column indexes
-				final int idSynsetId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID);
-				final int idPos = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.POS);
-				final int idCased = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD);
+				final int idSynsetId = cursor.getColumnIndex(Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SYNSETID);
+				final int idPos = cursor.getColumnIndex(Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POS);
+				final int idCased = cursor.getColumnIndex(Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.CASEDWORD);
+				final int idPronunciation = cursor.getColumnIndex(Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.PRONUNCIATIONS);
 
 				// retrieve
 				final long synsetId = cursor.isNull(idSynsetId) ? 0 : cursor.getLong(idSynsetId);
 				final String pos = cursor.getString(idPos);
 				final String cased = cursor.getString(idCased);
+				final String pronunciation = cursor.getString(idPronunciation);
 
 				// pointer
 				final SensePointer pointer = new SensePointer(synsetId, this.wordId);
 
 				// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
-				this.listener.onItemSelected(pointer, this.word, cased, pos);
+				this.listener.onItemSelected(pointer, this.word, cased, pronunciation, pos);
 			}
 		}
 	}

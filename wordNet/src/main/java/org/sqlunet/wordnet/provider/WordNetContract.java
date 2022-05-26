@@ -6,6 +6,8 @@ package org.sqlunet.wordnet.provider;
 
 import android.app.SearchManager;
 
+import org.sqlunet.wordnet.loaders.Queries;
+
 /**
  * WordNet provider contract
  *
@@ -381,6 +383,14 @@ public class WordNetContract
 		String POSID = Poses.POSID;
 	}
 
+	public interface Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains extends Words_Senses_CasedWords_Synsets_Poses_Domains
+	{
+		String URI = "words_senses_casedwords_pronunciations_synsets_poses_domains";
+		String PRONUNCIATION = V.PRONUNCIATION;
+		String VARIETY = V.VARIETY;
+		String PRONUNCIATIONS = Queries.PRONUNCIATIONS;
+	}
+
 	public interface Senses_Words extends Words, Senses
 	{
 		String URI = "senses_words";
@@ -443,6 +453,7 @@ public class WordNetContract
 		String URI = "words_lexes_morphs";
 		String URI_BY_WORD = "words_lexes_morphs_by_word";
 		String WORDID = Words.WORDID;
+		String MORPHS = Queries.MORPHS;
 	}
 
 	// V I E W S

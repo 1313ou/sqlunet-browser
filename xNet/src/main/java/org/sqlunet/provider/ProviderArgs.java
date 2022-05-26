@@ -21,6 +21,7 @@ public final class ProviderArgs
 	static public final String ARG_HINTWORD = "HINTWORD";
 	static public final String ARG_HINTWORDID = "HINTWORDID";
 	static public final String ARG_HINTCASED = "HINTCASED";
+	static public final String ARG_HINTPRONUNCIATION = "HINTPRONUNCIATION";
 	static public final String ARG_HINTNAME = "HINTNAME";
 	static public final String ARG_HINTPOS = "HINTPOS";
 

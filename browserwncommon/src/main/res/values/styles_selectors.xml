@@ -28,6 +28,12 @@
 		<item name="android:textStyle">italic|bold</item>
 	</style>
 
+	<style name="Data.Pronunciation">
+		<item name="android:textColor">?attr/colorHighlightOnBackground</item>
+		<item name="android:textSize">20sp</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+
 	<style name="Data.TagCount">
 		<item name="android:textColor">?attr/colorDimmedOnBackground</item>
 		<item name="android:textSize">12sp</item>

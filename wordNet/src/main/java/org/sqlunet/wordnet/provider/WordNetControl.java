@@ -40,6 +40,7 @@ public class WordNetControl
 	static final int WORDS_SENSES_SYNSETS = 310;
 	static final int WORDS_SENSES_CASEDWORDS_SYNSETS = 311;
 	static final int WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS = 312;
+	static final int WORDS_SENSES_CASEDWORDS_PRONUNCIATIONS_SYNSETS_POSES_DOMAINS = 313;
 	static final int SENSES_WORDS = 320;
 	static final int SENSES_WORDS_BY_SYNSET = 321;
 	static final int SENSES_SYNSETS_POSES_DOMAINS = 330;
@@ -213,6 +214,11 @@ public class WordNetControl
 				table = Q.WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS.TABLE;
 				break;
 
+			case WORDS_SENSES_CASEDWORDS_PRONUNCIATIONS_SYNSETS_POSES_DOMAINS:
+				table = Q.WORDS_SENSES_CASEDWORDS_PRONUNCIATIONS_SYNSETS_POSES_DOMAINS.TABLE;
+				groupBy = Q.WORDS_SENSES_CASEDWORDS_PRONUNCIATIONS_SYNSETS_POSES_DOMAINS.GROUPBY;
+				break;
+
 			case SENSES_WORDS:
 				table = Q.SENSES_WORDS.TABLE;
 				break;
@@ -340,8 +346,8 @@ public class WordNetControl
 				}
 				table = Q.SUGGEST_WORDS.TABLE;
 				projection = Q.SUGGEST_WORDS.PROJECTION;
-				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}",SearchManager.SUGGEST_COLUMN_TEXT_1);
-				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}",SearchManager.SUGGEST_COLUMN_QUERY);
+				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}", SearchManager.SUGGEST_COLUMN_TEXT_1);
+				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}", SearchManager.SUGGEST_COLUMN_QUERY);
 				selection = Q.SUGGEST_WORDS.SELECTION;
 				selectionArgs = new String[]{Q.SUGGEST_WORDS.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
 				break;
@@ -355,8 +361,8 @@ public class WordNetControl
 				}
 				table = Q.SUGGEST_FTS_WORDS.TABLE;
 				projection = Q.SUGGEST_FTS_WORDS.PROJECTION;
-				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}",SearchManager.SUGGEST_COLUMN_TEXT_1);
-				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}",SearchManager.SUGGEST_COLUMN_QUERY);
+				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}", SearchManager.SUGGEST_COLUMN_TEXT_1);
+				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}", SearchManager.SUGGEST_COLUMN_QUERY);
 				selection = Q.SUGGEST_FTS_WORDS.SELECTION;
 				selectionArgs = new String[]{Q.SUGGEST_FTS_WORDS.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
 				break;
@@ -370,8 +376,8 @@ public class WordNetControl
 				}
 				table = Q.SUGGEST_FTS_DEFINITIONS.TABLE;
 				projection = Q.SUGGEST_FTS_DEFINITIONS.PROJECTION;
-				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}",SearchManager.SUGGEST_COLUMN_TEXT_1);
-				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}",SearchManager.SUGGEST_COLUMN_QUERY);
+				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}", SearchManager.SUGGEST_COLUMN_TEXT_1);
+				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}", SearchManager.SUGGEST_COLUMN_QUERY);
 				selection = Q.SUGGEST_FTS_DEFINITIONS.SELECTION;
 				selectionArgs = new String[]{Q.SUGGEST_FTS_DEFINITIONS.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
 				break;
@@ -385,8 +391,8 @@ public class WordNetControl
 				}
 				table = Q.SUGGEST_FTS_SAMPLES.TABLE;
 				projection = Q.SUGGEST_FTS_SAMPLES.PROJECTION;
-				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}",SearchManager.SUGGEST_COLUMN_TEXT_1);
-				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}",SearchManager.SUGGEST_COLUMN_QUERY);
+				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}", SearchManager.SUGGEST_COLUMN_TEXT_1);
+				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}", SearchManager.SUGGEST_COLUMN_QUERY);
 				selection = Q.SUGGEST_FTS_SAMPLES.SELECTION;
 				selectionArgs = new String[]{Q.SUGGEST_FTS_SAMPLES.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
 				break;

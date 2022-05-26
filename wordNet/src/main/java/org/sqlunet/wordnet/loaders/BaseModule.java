@@ -304,7 +304,7 @@ abstract public class BaseModule extends Module
 
 			// final int idWordId = cursor.getColumnIndex(Words.WORDID);
 			final int idWord = cursor.getColumnIndex(Words_Lexes_Morphs.WORD);
-			final int idMorphs = cursor.getColumnIndex(Queries.ALLMORPHS);
+			final int idMorphs = cursor.getColumnIndex(Words_Lexes_Morphs.MORPHS);
 			final String word = cursor.getString(idWord);
 			final String morphs = cursor.getString(idMorphs);
 
