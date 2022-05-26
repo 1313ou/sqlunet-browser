@@ -48,49 +48,57 @@
 
 		<!-- [10] -->
 		<item>@android:color/transparent</item>
-		<item>@color/colorDimmedOnBackground</item>
+		<item>@color/colorHighlight1OnBackground</item>
 
 		<!-- [11] -->
 		<item>@android:color/transparent</item>
-		<item>@color/shadow</item>
+		<item>@color/colorHighlight2OnBackground</item>
 
 		<!-- [12] -->
 		<item>@android:color/transparent</item>
-		<item>@color/info_button_color</item>
+		<item>@color/colorDimmedOnBackground</item>
 
 		<!-- [13] -->
 		<item>@android:color/transparent</item>
-		<item>@color/info_button_activated_color</item>
+		<item>@color/shadow</item>
 
 		<!-- [14] -->
 		<item>@android:color/transparent</item>
-		<item>@color/ok_button_color</item>
+		<item>@color/info_button_color</item>
 
 		<!-- [15] -->
 		<item>@android:color/transparent</item>
-		<item>@color/err_button_color</item>
+		<item>@color/info_button_activated_color</item>
 
 		<!-- [16] -->
+		<item>@android:color/transparent</item>
+		<item>@color/ok_button_color</item>
+
+		<!-- [17] -->
+		<item>@android:color/transparent</item>
+		<item>@color/err_button_color</item>
+
+		<!-- [18] -->
 		<!--		<item>@android:color/transparent</item>-->
 		<!--		<item>@color/swipe_down_1_color</item>-->
 
-		<!-- [17] -->
+		<!-- [19] -->
 		<!--		<item>@android:color/transparent</item>-->
 		<!--		<item>@color/swipe_down_2_color</item>-->
 
-		<!-- [18] -->
+		<!-- [20] -->
 		<!--		<item>@color/info_button_color</item>-->
 		<!--		<item>@color/onSecondaryColor</item>-->
 
-		<!-- [19] -->
+		<!-- [21] -->
 		<!--		<item>@color/info_button_activated_color</item>-->
 		<!--		<item>@color/onSecondaryColor</item>-->
 
-		<!-- [20] -->
+		<!-- [22] -->
 		<!--		<item>@color/err_button_color</item>-->
 		<!--		<item>@color/onSecondaryColor</item>-->
 
-		<!-- [21] -->
+		<!-- [23] -->
 		<!--		<item>@color/activatedBackgroundColor</item>-->
 		<!--		<item>@color/foregroundColor</item>-->
 
