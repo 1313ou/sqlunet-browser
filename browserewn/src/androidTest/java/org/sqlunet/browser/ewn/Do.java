@@ -23,11 +23,13 @@ import java.util.Objects;
 import androidx.annotation.IdRes;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.assertion.ViewAssertions;
+import androidx.test.espresso.matcher.ViewMatchers;
 
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.anything;
@@ -37,7 +39,7 @@ class Do
 {
 	static boolean ensureDownloaded()
 	{
-		boolean notMain = ToBoolean.testAssertion(withId(R.id.drawer_layout), doesNotExist()) || !ToBoolean.test(withId(R.id.drawer_layout), isDisplayed());
+		boolean notMain = ToBoolean.testAssertion(withId(R.id.drawer_layout), doesNotExist()) || !ToBoolean.test(withId(R.id.drawer_layout), withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE));
 		if (notMain)
 		{
 			download();
@@ -57,7 +59,7 @@ class Do
 
 	static void ensureTextSearchSetup(@SuppressWarnings("SameParameterValue") @IdRes int buttonId)
 	{
-		boolean notSet = ToBoolean.testAssertion(withId(buttonId), doesNotExist()) || ToBoolean.test(withId(buttonId), isDisplayed());
+		boolean notSet = ToBoolean.testAssertion(withId(buttonId), doesNotExist()) || ToBoolean.test(withId(buttonId), withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE));
 		if (notSet)
 		{
 			textSearchSetup(buttonId);
@@ -84,7 +86,7 @@ class Do
 			WaitUntil.shown(android.R.id.list);
 
 			final Matcher<View> list = allOf(withId(android.R.id.list), instanceOf(ListView.class));
-			onView(list).check(ViewAssertions.matches(isDisplayed()));
+			onView(list).check(ViewAssertions.matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
 
 			// for all selectors
 			int n = ContainerUtils.getItemCount(list);

@@ -14,6 +14,7 @@ import org.hamcrest.Matcher;
 import java.util.Objects;
 
 import androidx.annotation.IdRes;
+import androidx.test.espresso.matcher.ViewMatchers;
 
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
@@ -22,6 +23,7 @@ import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withChild;
+import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.allOf;
@@ -32,7 +34,7 @@ class Do
 {
 	static boolean ensureDownloaded()
 	{
-		boolean notMain = ToBoolean.testAssertion(withId(R.id.drawer_layout), doesNotExist()) || !ToBoolean.test(withId(R.id.drawer_layout), isDisplayed());
+		boolean notMain = ToBoolean.testAssertion(withId(R.id.drawer_layout), doesNotExist()) || !ToBoolean.test(withId(R.id.drawer_layout), withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE));
 		if (notMain)
 		{
 			download();
@@ -52,7 +54,7 @@ class Do
 
 	static void ensureTextSearchSetup(@SuppressWarnings("SameParameterValue") @IdRes int buttonId)
 	{
-		boolean notSet = ToBoolean.testAssertion(withId(buttonId), doesNotExist()) || ToBoolean.test(withId(buttonId), isDisplayed());
+		boolean notSet = ToBoolean.testAssertion(withId(buttonId), doesNotExist()) || ToBoolean.test(withId(buttonId), withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE));
 		if (notSet)
 		{
 			textSearchSetup(buttonId);
@@ -79,7 +81,7 @@ class Do
 			WaitUntil.shown(android.R.id.list);
 
 			final Matcher<View> list = allOf(withId(android.R.id.list), instanceOf(ListView.class));
-			onView(list).check(matches(isDisplayed()));
+			onView(list).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
 
 			// for all selectors
 			int n = ContainerUtils.getItemCount(list);
@@ -109,7 +111,7 @@ class Do
 			WaitUntil.shown(android.R.id.list);
 
 			final Matcher<View> list = allOf(withId(android.R.id.list), instanceOf(ListView.class));
-			onView(list).check(matches(isDisplayed()));
+			onView(list).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
 
 			// close first
 			onView(withChild(allOf(withId(R.id.xn), instanceOf(TextView.class), withText("wordnet")))) //
@@ -157,7 +159,7 @@ class Do
 			WaitUntil.shown(android.R.id.list);
 
 			final Matcher<View> list = allOf(withId(android.R.id.list), instanceOf(ListView.class));
-			onView(list).check(matches(isDisplayed()));
+			onView(list).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
 			onView(withChild(allOf(withId(R.id.xn), instanceOf(TextView.class), withText("wordnet")))) //
 					.perform(click());
 
