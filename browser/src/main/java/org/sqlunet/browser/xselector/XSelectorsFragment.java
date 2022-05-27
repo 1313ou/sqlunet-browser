@@ -60,7 +60,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		/**
 		 * Callback for when an item has been selected.
 		 */
-		void onItemSelected(XSelectorPointer pointer, String word, String cased, String pos);
+		void onItemSelected(XSelectorPointer pointer, String word, String cased, String pronunciation, String pos);
 	}
 
 	/**
@@ -908,6 +908,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				final long wordId = this.wordId;
 				final String word = this.word;
 				final String cased = this.word;
+				final String pronunciation = null;
 				final long synsetId = cursor.isNull(idSynsetId) ? 0 : cursor.getLong(idSynsetId);
 				final String pos = synsetIdToPos(synsetId);
 				final long xId = cursor.isNull(idXId) ? 0 : cursor.getLong(idXId);
@@ -944,7 +945,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				Log.d(TAG, "pointer=" + pointer);
 
 				// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
-				this.listener.onItemSelected(pointer, word, cased, pos);
+				this.listener.onItemSelected(pointer, word, cased, pronunciation, pos);
 			}
 			// cursor ownership is transferred  to adapter, so do not call
 			// cursor.close();

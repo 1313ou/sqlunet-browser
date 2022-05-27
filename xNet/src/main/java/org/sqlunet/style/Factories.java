@@ -38,6 +38,14 @@ public class Factories
 
 	static public final SpanFactory exampleFactory = flags -> spans(Colors.exampleBackColor, Colors.exampleForeColor, new StyleSpan(Typeface.ITALIC));
 
+	static public final SpanFactory wordFactory = flags -> spans(Colors.wordBackColor, Colors.wordForeColor, new StyleSpan(Typeface.BOLD));
+
+	static public final SpanFactory casedFactory = flags -> spans(Colors.casedBackColor, Colors.casedForeColor, new StyleSpan(Typeface.BOLD));
+
+	static public final SpanFactory pronunciationFactory = flags -> spans(Colors.pronunciationBackColor, Colors.pronunciationForeColor);
+
+	static public final SpanFactory posFactory = flags -> spans(Colors.posBackColor, Colors.posForeColor, new StyleSpan(Typeface.ITALIC));
+
 	static public final SpanFactory boldFactory = flags -> new StyleSpan(Typeface.BOLD);
 
 	static public final SpanFactory italicFactory = flags -> new StyleSpan(Typeface.ITALIC);

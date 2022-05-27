@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.Settings;
@@ -33,10 +34,21 @@ public abstract class BaseBrowse2Fragment extends Fragment
 	Parcelable pointer = null;
 
 	@Nullable
+	String word = null;
+
+	@Nullable
+	String cased = null;
+
+	@Nullable
+	String pronunciation = null;
+
+	@Nullable
 	String pos = null;
 
 	@SuppressWarnings("WeakerAccess")
 	protected int layoutId = R.layout.fragment_browse2_multi;
+
+	protected TextView targetView;
 
 	// C R E A T I O N
 
@@ -84,6 +96,13 @@ public abstract class BaseBrowse2Fragment extends Fragment
 	}
 
 	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
+		targetView = view.findViewById(R.id.target);
+	}
+
+	@Override
 	public void onStart()
 	{
 		super.onStart();
@@ -104,12 +123,18 @@ public abstract class BaseBrowse2Fragment extends Fragment
 	/**
 	 * Search
 	 *
-	 * @param pointer pointer
-	 * @param pos     pos
+	 * @param pointer       pointer
+	 * @param word          word
+	 * @param cased         cased
+	 * @param pronunciation pronunciation
+	 * @param pos           pos
 	 */
-	public void search(final Parcelable pointer, final String pos)
+	public void search(final Parcelable pointer, final String word, final String cased, final String pronunciation, final String pos)
 	{
 		this.pointer = pointer;
+		this.word = word;
+		this.cased = cased;
+		this.pronunciation = pronunciation;
 		this.pos = pos;
 
 		search();

@@ -70,8 +70,11 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 			if (browse2Fragment == null)
 			{
 				browse2Fragment = new Browse2Fragment();
-				final Bundle args2 = new Bundle();
+				Bundle args2 = getArguments();
+				if(args2 == null)
+					args2 = new Bundle();
 				args2.putBoolean(Browse2Fragment.ARG_ALT, false);
+
 				browse2Fragment.setArguments(args2);
 			}
 			manager.beginTransaction() //
@@ -101,7 +104,7 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 			}
 			final Browse2Fragment fragment = (Browse2Fragment) getChildFragmentManager().findFragmentById(R.id.container_browse2);
 			assert fragment != null;
-			fragment.search(pointer, pos);
+			fragment.search(pointer, word, cased, pronunciation, pos);
 		}
 		else
 		{

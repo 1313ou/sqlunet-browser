@@ -22,6 +22,18 @@
 	<color name="dataBackColor">#FFFFFF</color>
 	<color name="dataForeColor">#000000</color>
 
+	<color name="wordBackColor">#FFFFFF</color>
+	<color name="wordForeColor">#000000</color>
+
+	<color name="casedBackColor">#FFFFFF</color>
+	<color name="casedForeColor">#000000</color>
+
+	<color name="pronunciationBackColor">#FFFFFF</color>
+	<color name="pronunciationForeColor">#000000</color>
+
+	<color name="posBackColor">#FFFFFF</color>
+	<color name="posForeColor">#000000</color>
+
 	<!--  TEXT -->
 	<color name="textBackColor">#FFFFFF</color>
 	<color name="textForeColor">#000000</color>
@@ -89,6 +101,18 @@
 
 		<item>@color/dataBackColor</item>
 		<item>@color/dataForeColor</item>
+
+		<item>@color/wordBackColor</item>
+		<item>@color/wordForeColor</item>
+
+		<item>@color/casedBackColor</item>
+		<item>@color/casedForeColor</item>
+
+		<item>@color/pronunciationBackColor</item>
+		<item>@color/pronunciationForeColor</item>
+
+		<item>@color/posBackColor</item>
+		<item>@color/posForeColor</item>
 
 		<!--  TEXT -->
 		<item>@color/textBackColor</item>

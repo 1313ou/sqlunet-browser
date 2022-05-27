@@ -53,7 +53,7 @@ public class Browse2Activity extends AbstractBrowse2Activity
 		final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 		final Browse2Fragment fragment = (Browse2Fragment) getSupportFragmentManager().findFragmentById(R.id.fragment_detail);
 		assert fragment != null;
-		fragment.search(pointer, null);
+		fragment.search(pointer, null, null, null, null);
 	}
 
 	// M E N U

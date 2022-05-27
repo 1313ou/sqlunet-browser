@@ -55,7 +55,7 @@ public class SelectorsFragment extends ListFragment
 		/**
 		 * Callback for when an item has been selected.
 		 */
-		void onItemSelected(SelectorPointer pointer, String word, String cased, String pos);
+		void onItemSelected(SelectorPointer pointer, String word, String cased, String pronunciation, String pos);
 	}
 
 	/**
@@ -404,12 +404,13 @@ public class SelectorsFragment extends ListFragment
 				final long synsetId = cursor.isNull(idSynsetId) ? 0 : cursor.getLong(idSynsetId);
 				final String pos = cursor.getString(idPos);
 				final String cased = cursor.getString(idCased);
+				final String pronunciation = null;
 
 				// pointer
 				final SelectorPointer pointer = new PosSelectorPointer(synsetId, this.wordId, pos.charAt(0));
 
 				// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
-				this.listener.onItemSelected(pointer, this.word, cased, pos);
+				this.listener.onItemSelected(pointer, this.word, cased, pronunciation, pos);
 			}
 		}
 	}

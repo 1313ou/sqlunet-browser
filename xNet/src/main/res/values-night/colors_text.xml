@@ -23,7 +23,19 @@
 	<color name="dataBackColor">#00000000</color>
 	<color name="dataForeColor">#888888</color>
 
-	<!--  TEXT -->
+	<color name="wordBackColor">#00000000</color>
+	<color name="wordForeColor">#FFFFFF</color>
+
+	<color name="casedBackColor">#00000000</color>
+	<color name="casedForeColor">#F3805C</color>
+
+	<color name="pronunciationBackColor">#00000000</color>
+	<color name="pronunciationForeColor">#8C709C</color>
+
+	<color name="posBackColor">#00000000</color>
+	<color name="posForeColor">#888888</color>
+
+	<!--  TEXT -->shakes
 	<color name="textBackColor">#00000000</color>
 	<color name="textForeColor">#888888</color>
 

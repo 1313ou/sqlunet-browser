@@ -6,12 +6,15 @@ package org.sqlunet.browser;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
 
 import org.sqlunet.bnc.browser.BNCFragment;
 import org.sqlunet.browser.web.WebFragment;
 import org.sqlunet.browser.wn.Settings;
 import org.sqlunet.browser.wn.lib.R;
 import org.sqlunet.provider.ProviderArgs;
+import org.sqlunet.style.Factories;
+import org.sqlunet.style.Spanner;
 import org.sqlunet.wordnet.browser.SenseFragment;
 
 import androidx.fragment.app.Fragment;
@@ -40,10 +43,16 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 		}
 		final FragmentManager manager = getChildFragmentManager();
 
+		// target
+		targetView.setText(toTarget());
+
 		// args
 		final int recurse = Settings.getRecursePref(context);
 		final Bundle args = new Bundle();
 		args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, this.pointer);
+		args.putString(ProviderArgs.ARG_HINTWORD, this.word);
+		args.putString(ProviderArgs.ARG_HINTCASED, this.cased);
+		args.putString(ProviderArgs.ARG_HINTPRONUNCIATION, this.pronunciation);
 		args.putString(ProviderArgs.ARG_HINTPOS, this.pos);
 		args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse);
 
@@ -109,5 +118,30 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 						.commit();
 				break;
 		}
+	}
+
+	private CharSequence toTarget()
+	{
+		final SpannableStringBuilder sb = new SpannableStringBuilder();
+		if (cased != null)
+		{
+			sb.append(' ');
+			Spanner.append(sb, cased, 0, Factories.casedFactory);
+		}
+		else
+		{
+			Spanner.append(sb, word, 0, Factories.wordFactory);
+		}
+		if (pronunciation != null)
+		{
+			sb.append(' ');
+			Spanner.append(sb, pronunciation, 0, Factories.pronunciationFactory);
+		}
+		if (pos != null)
+		{
+			sb.append(' ');
+			Spanner.append(sb, pos, 0, Factories.posFactory);
+		}
+		return sb;
 	}
 }

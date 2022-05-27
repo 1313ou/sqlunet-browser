@@ -67,10 +67,13 @@ public class Browse2Activity extends AbstractBrowse2Activity
 
 		//final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
 		final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
+		final String word = args.getString(ProviderArgs.ARG_HINTWORD);
+		final String cased = args.getString(ProviderArgs.ARG_HINTCASED);
+		final String pronunciation = args.getString(ProviderArgs.ARG_HINTPRONUNCIATION);
 		final String pos = args.getString(ProviderArgs.ARG_HINTPOS);
 		final Browse2Fragment fragment = (Browse2Fragment) getSupportFragmentManager().findFragmentByTag("browse2");
 		assert fragment != null;
-		fragment.search(pointer, pos);
+		fragment.search(pointer, word, cased, pronunciation, pos);
 	}
 
 	// M E N U

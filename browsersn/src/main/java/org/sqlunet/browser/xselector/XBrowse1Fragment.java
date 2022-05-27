@@ -94,7 +94,7 @@ public class XBrowse1Fragment extends Fragment implements SelectorsFragment.List
 	 * Callback method from {@link SelectorsFragment.Listener} indicating that the item with the given ID was selected.
 	 */
 	@Override
-	public void onItemSelected(@NonNull final SelectorPointer pointer, final String word, final String cased, final String pos)
+	public void onItemSelected(@NonNull final SelectorPointer pointer, final String word, final String cased, final String pronunciation, final String pos)
 	{
 		final View view = getView();
 		assert view != null;
@@ -107,7 +107,7 @@ public class XBrowse1Fragment extends Fragment implements SelectorsFragment.List
 			}
 			final Browse2Fragment fragment = (Browse2Fragment) getChildFragmentManager().findFragmentById(R.id.container_browse2);
 			assert fragment != null;
-			fragment.search(pointer, pos);
+			fragment.search(pointer, word, cased, pronunciation, pos);
 		}
 		else
 		{
@@ -139,7 +139,7 @@ public class XBrowse1Fragment extends Fragment implements SelectorsFragment.List
 			}
 			final Browse2Fragment fragment = (Browse2Fragment) getChildFragmentManager().findFragmentById(R.id.container_browse2);
 			assert fragment != null;
-			fragment.search(pointer, null);
+			fragment.search(pointer, null, null, null, null);
 		}
 		else
 		{

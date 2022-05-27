@@ -101,7 +101,7 @@ public class SnBrowse1Fragment extends Fragment implements SnSelectorsFragment.L
 			}
 			final Browse2Fragment fragment = (Browse2Fragment) getChildFragmentManager().findFragmentById(R.id.container_browse2);
 			assert fragment != null;
-			fragment.search(pointer, null);
+			fragment.search(pointer, null, null ,null, null);
 		}
 		else
 		{

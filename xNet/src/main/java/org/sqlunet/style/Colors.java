@@ -46,6 +46,18 @@ public class Colors
 	static public int dataBackColor = Color.TRANSPARENT;
 	static public int dataForeColor = Color.TRANSPARENT;
 
+	static public int wordBackColor = Color.TRANSPARENT;
+	static public int wordForeColor = Color.TRANSPARENT;
+
+	static public int casedBackColor = Color.TRANSPARENT;
+	static public int casedForeColor = Color.TRANSPARENT;
+
+	static public int pronunciationBackColor = Color.TRANSPARENT;
+	static public int pronunciationForeColor = Color.TRANSPARENT;
+
+	static public int posBackColor = Color.TRANSPARENT;
+	static public int posForeColor = Color.TRANSPARENT;
+
 	// TEXT
 	static public int textBackColor = Color.TRANSPARENT;
 	static public int textForeColor = Color.TRANSPARENT;
@@ -117,6 +129,18 @@ public class Colors
 
 		dataBackColor = palette[i++];
 		dataForeColor = palette[i++];
+
+		wordBackColor = palette[i++];
+		wordForeColor = palette[i++];
+
+		casedBackColor = palette[i++];
+		casedForeColor = palette[i++];
+
+		pronunciationBackColor = palette[i++];
+		pronunciationForeColor = palette[i++];
+
+		posBackColor = palette[i++];
+		posForeColor = palette[i++];
 
 		// TEXT
 		textBackColor = palette[i++];

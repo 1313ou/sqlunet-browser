@@ -125,7 +125,7 @@ public class XSelectorsFragment extends Fragment implements SelectorsFragment.Li
 	}
 
 	@Override
-	public void onItemSelected(final SelectorPointer pointer, final String word, final String cased, final String pos)
+	public void onItemSelected(final SelectorPointer pointer, final String word, final String cased, final String pronunciation, final String pos)
 	{
 		if (!isAdded())
 		{
