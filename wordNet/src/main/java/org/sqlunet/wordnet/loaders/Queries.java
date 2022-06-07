@@ -56,6 +56,7 @@ public class Queries
 				WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.DOMAIN, //
 				WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.CASEDWORD, //
 				// "GROUP_CONCAT(" + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.PRONUNCIATION + ") AS " + PRONUNCIATIONS, //
+				// "GROUP_CONCAT(CASE WHEN " + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.VARIETY + " IS NULL THEN " + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.PRONUNCIATION + " ELSE '['||" + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.VARIETY + "||'] '||" + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.PRONUNCIATION + " END) AS " + PRONUNCIATIONS, //
 				"GROUP_CONCAT(CASE WHEN " + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.VARIETY + " IS NULL THEN '/'||" + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.PRONUNCIATION + "||'/' ELSE '['||" + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.VARIETY + "||'] '||'/'||" + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.PRONUNCIATION + "||'/' END) AS " + PRONUNCIATIONS, //
 		};
 		providerSql.selection = WordNetContract.AS_WORDS + '.' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.WORD + " = ?"; ////

@@ -1,0 +1,18 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+	<PreferenceCategory app:title="@string/speak_header">
+
+		<org.sqlunet.speak.ListPreference
+			app:key="country"
+			app:title="@string/country_title"
+			app:useSimpleSummaryProvider="true"
+			app:summary="@string/country_summary"/>
+
+		<org.sqlunet.speak.MultiSelectListPreference
+			app:key="voice"
+			app:summary="@string/voices_summary"
+			app:title="@string/voice_title" />
+
+	</PreferenceCategory>
+
+</PreferenceScreen>

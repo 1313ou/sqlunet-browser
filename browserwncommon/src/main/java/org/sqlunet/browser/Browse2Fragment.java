@@ -7,15 +7,23 @@ package org.sqlunet.browser;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
+import android.text.method.LinkMovementMethod;
+import android.util.Log;
 
 import org.sqlunet.bnc.browser.BNCFragment;
 import org.sqlunet.browser.web.WebFragment;
 import org.sqlunet.browser.wn.Settings;
 import org.sqlunet.browser.wn.lib.R;
 import org.sqlunet.provider.ProviderArgs;
+import org.sqlunet.speak.Pronunciation;
+import org.sqlunet.speak.SpeakButton;
+import org.sqlunet.speak.TTS;
+import org.sqlunet.speak.Voices;
 import org.sqlunet.style.Factories;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.wordnet.browser.SenseFragment;
+
+import java.util.List;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -44,6 +52,7 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 		final FragmentManager manager = getChildFragmentManager();
 
 		// target
+		targetView.setMovementMethod(new LinkMovementMethod());
 		targetView.setText(toTarget());
 
 		// args
@@ -132,15 +141,27 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 		{
 			Spanner.append(sb, word, 0, Factories.wordFactory);
 		}
-		if (pronunciation != null)
-		{
-			sb.append(' ');
-			Spanner.append(sb, pronunciation, 0, Factories.pronunciationFactory);
-		}
 		if (pos != null)
 		{
 			sb.append(' ');
 			Spanner.append(sb, pos, 0, Factories.posFactory);
+		}
+		if (pronunciation != null)
+		{
+			List<Pronunciation> pronunciations = Pronunciation.pronunciations(pronunciation);
+			for (Pronunciation p : pronunciations)
+			{
+				String label = p.toString();
+				String ipa = p.ipa;
+				String country = p.variety;
+
+				sb.append('\n');
+				//Spanner.append(sb, p, 0, Factories.pronunciationFactory);
+				SpeakButton.appendClickableImage(sb, org.sqlunet.speak.R.drawable.ic_speak_button, label, () -> {
+					Log.d("Speak", "");
+					TTS.pronounce(requireContext(), word, ipa, country, Voices.findVoiceFor(country, requireContext()));
+				}, requireContext());
+			}
 		}
 		return sb;
 	}

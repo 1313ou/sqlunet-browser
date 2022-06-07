@@ -36,6 +36,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 public class Spanner
 {
 	static private final String TAG = "Spanner";
+
 	/**
 	 * Collapsed marker
 	 */

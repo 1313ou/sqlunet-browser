@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="none">None</string>
+
+	<string name="speak_header">Speak</string>
+	<string name="country_title">Country</string>
+	<string name="country_summary">default country</string>
+	<string name="voice_title">Voice</string>
+	<string name="voices_summary">default voices</string>
+</resources>

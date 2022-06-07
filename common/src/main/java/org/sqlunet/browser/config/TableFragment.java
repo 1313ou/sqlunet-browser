@@ -50,23 +50,25 @@ public class TableFragment extends AbstractTableFragment
 			if (view instanceof TextView)
 			{
 				((TextView) view).setText(value);
+				return true;
 			}
 			else if (view instanceof ImageView)
 			{
 				try
 				{
 					((ImageView) view).setImageResource(Integer.parseInt(value));
+					return true;
 				}
 				catch (@NonNull final NumberFormatException nfe)
 				{
 					((ImageView) view).setImageURI(Uri.parse(value));
+					return true;
 				}
 			}
 			else
 			{
 				throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter");
 			}
-			return true;
 		};
 	}
 }

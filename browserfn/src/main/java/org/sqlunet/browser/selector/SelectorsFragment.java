@@ -235,7 +235,7 @@ public class SelectorsFragment extends ListFragment
 				if (text == null || "0".equals(text))
 				{
 					view.setVisibility(View.GONE);
-					return false;
+					return true;
 				}
 				else
 				{

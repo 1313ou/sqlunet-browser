@@ -61,8 +61,8 @@ android {
 dependencies {
     implementation project(path: ':browserwncommon')
 
-    implementation 'androidx.appcompat:appcompat:1.4.1' // for resources validation
-    implementation 'com.google.android.material:material:1.6.0' // for resource include
+    implementation 'androidx.appcompat:appcompat:1.4.2' // for resources validation
+    implementation 'com.google.android.material:material:1.6.1' // for resource include
 
     // local unit tests (JUnit 4 framework)
     testImplementation project(path: ':browserwncommon')

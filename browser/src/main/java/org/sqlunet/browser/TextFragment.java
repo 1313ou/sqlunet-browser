@@ -127,23 +127,25 @@ public class TextFragment extends AbstractTableFragment
 				final SpannableStringBuilder sb = new SpannableStringBuilder(value);
 				spanner.setSpan(sb, 0, 0);
 				((TextView) view).setText(sb);
+				return true;
 			}
 			else if (view instanceof ImageView)
 			{
 				try
 				{
 					((ImageView) view).setImageResource(Integer.parseInt(value));
+					return true;
 				}
 				catch (@NonNull final NumberFormatException nfe)
 				{
 					((ImageView) view).setImageURI(Uri.parse(value));
+					return true;
 				}
 			}
 			else
 			{
 				throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter");
 			}
-			return true;
 		};
 	}
 

@@ -267,23 +267,25 @@ public class SelectorsFragment extends ListFragment
 			if (view instanceof TextView)
 			{
 				((TextView) view).setText(text);
+				return true;
 			}
 			else if (view instanceof ImageView)
 			{
 				try
 				{
 					((ImageView) view).setImageResource(Integer.parseInt(text));
+					return true;
 				}
 				catch (@NonNull final NumberFormatException nfe)
 				{
 					((ImageView) view).setImageURI(Uri.parse(text));
+					return true;
 				}
 			}
 			else
 			{
 				throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter");
 			}
-			return false;
 		});
 		return adapter;
 	}

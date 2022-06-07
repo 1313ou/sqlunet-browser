@@ -25,6 +25,7 @@ import org.sqlunet.browser.PositionViewModel;
 import org.sqlunet.browser.SqlunetViewModel;
 import org.sqlunet.browser.wn.lib.R;
 import org.sqlunet.provider.ProviderArgs;
+import org.sqlunet.speak.Pronunciation;
 import org.sqlunet.wordnet.SensePointer;
 import org.sqlunet.wordnet.loaders.Queries;
 import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains;
@@ -252,6 +253,14 @@ public class SelectorsFragment extends ListFragment
 		adapter.setViewBinder((view, cursor, columnIndex) -> {
 
 			String text = cursor.getString(columnIndex);
+
+			// pronunciation
+			if (view.getId() == R.id.pronunciation)
+			{
+				text = Pronunciation.sortedPronunciations(text);
+			}
+
+			// visibility
 			if (text == null)
 			{
 				view.setVisibility(View.GONE);
@@ -262,26 +271,29 @@ public class SelectorsFragment extends ListFragment
 				view.setVisibility(View.VISIBLE);
 			}
 
+			// view type
 			if (view instanceof TextView)
 			{
 				((TextView) view).setText(text);
+				return true;
 			}
 			else if (view instanceof ImageView)
 			{
 				try
 				{
 					((ImageView) view).setImageResource(Integer.parseInt(text));
+					return true;
 				}
 				catch (@NonNull final NumberFormatException nfe)
 				{
 					((ImageView) view).setImageURI(Uri.parse(text));
+					return true;
 				}
 			}
 			else
 			{
 				throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter");
 			}
-			return false;
 		});
 		return adapter;
 	}
