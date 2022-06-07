@@ -18,7 +18,6 @@ import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.speak.Pronunciation;
 import org.sqlunet.speak.SpeakButton;
 import org.sqlunet.speak.TTS;
-import org.sqlunet.speak.Voices;
 import org.sqlunet.style.Factories;
 import org.sqlunet.style.Spanner;
 import org.sqlunet.wordnet.browser.SenseFragment;
@@ -151,15 +150,13 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 			List<Pronunciation> pronunciations = Pronunciation.pronunciations(pronunciation);
 			for (Pronunciation p : pronunciations)
 			{
-				String label = p.toString();
-				String ipa = p.ipa;
-				String country = p.variety;
-
+				final String label = p.toString();
+				final String ipa = p.ipa;
+				final String country = p.variety == null ? org.sqlunet.speak.Settings.findCountry(requireContext()) : p.variety;
 				sb.append('\n');
-				//Spanner.append(sb, p, 0, Factories.pronunciationFactory);
 				SpeakButton.appendClickableImage(sb, org.sqlunet.speak.R.drawable.ic_speak_button, label, () -> {
 					Log.d("Speak", "");
-					TTS.pronounce(requireContext(), word, ipa, country, Voices.findVoiceFor(country, requireContext()));
+					TTS.pronounce(requireContext(), word, ipa, country, org.sqlunet.speak.Settings.findVoiceFor(country, requireContext()));
 				}, requireContext());
 			}
 		}
