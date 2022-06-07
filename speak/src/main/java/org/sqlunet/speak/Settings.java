@@ -10,8 +10,15 @@ import java.util.Set;
 
 import androidx.preference.PreferenceManager;
 
-public class Voices
+public class Settings
 {
+	@Nullable
+	public static String findCountry(@NotNull final Context context)
+	{
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		return prefs.getString(SpeakSettingsFragment.COUNTRY_PREF, null);
+	}
+
 	@Nullable
 	public static String findVoiceFor(@Nullable final String country, @NotNull final Context context)
 	{

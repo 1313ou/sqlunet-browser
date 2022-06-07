@@ -40,6 +40,10 @@ public class TTS
 				return new Locale("en", "ZA");
 			case "SG":
 				return new Locale("en", "SG");
+			case "NG":
+				return new Locale("en", "NG");
+			case "IN":
+				return new Locale("en", "IN");
 			default:
 				return DEFAULT_LOCALE;
 		}
