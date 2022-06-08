@@ -31,5 +31,10 @@
 		app:icon="@drawable/ic_settings_database"
 		app:key="pref_header_database"
 		app:title="@string/pref_header_database" />
+	<Preference
+		app:fragment="org.sqlunet.speak.SpeakSettingsFragment"
+		app:icon="@drawable/ic_settings_speak"
+		app:key="pref_header_voice"
+		app:title="@string/pref_header_speak" />
 
 </PreferenceScreen>

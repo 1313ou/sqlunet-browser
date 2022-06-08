@@ -37,7 +37,8 @@ public class XNetControl
 	static protected final int PREDICATEMATRIX_FRAMENET = 230;
 	// join codes
 	static protected final int WORDS_FNWORDS_PBWORDS_VNWORDS = 100;
-	static protected final int WORDS_PBWORDS_VNWORDS = 101;
+	static protected final int WORDS_PRONUNCIATIONS_FNWORDS_PBWORDS_VNWORDS = 101;
+	static protected final int WORDS_PBWORDS_VNWORDS = 110;
 	static protected final int WORDS_VNWORDS_VNCLASSES = 310;
 	static protected final int WORDS_VNWORDS_VNCLASSES_U = 311;
 	static protected final int WORDS_VNWORDS_VNCLASSES_1 = 312;
@@ -90,18 +91,23 @@ public class XNetControl
 
 			case XNetControl.WORDS_FNWORDS_PBWORDS_VNWORDS:
 				table = Q.WORDS_FNWORDS_PBWORDS_VNWORDS.TABLE;
-				groupBy = V.SYNSETID;
+				groupBy = Q.WORDS_FNWORDS_PBWORDS_VNWORDS.GROUPBY;
+				break;
+
+			case XNetControl.WORDS_PRONUNCIATIONS_FNWORDS_PBWORDS_VNWORDS:
+				table = Q.WORDS_PRONUNCIATIONS_FNWORDS_PBWORDS_VNWORDS.TABLE;
+				groupBy = Q.WORDS_PRONUNCIATIONS_FNWORDS_PBWORDS_VNWORDS.GROUPBY;
 				break;
 
 			case XNetControl.WORDS_PBWORDS_VNWORDS:
 				table = Q.WORDS_PBWORDS_VNWORDS.TABLE;
-				groupBy = V.SYNSETID;
+				groupBy = Q.WORDS_PBWORDS_VNWORDS.GROUPBY;
 				break;
 
 			case XNetControl.WORDS_VNWORDS_VNCLASSES:
 			{
 				table = Q.WORDS_VNWORDS_VNCLASSES.TABLE;
-				groupBy = String.format("%s,%s,%s", V.WORDID, V.SYNSETID, V.CLASSID);
+				groupBy = Q.WORDS_VNWORDS_VNCLASSES.GROUPBY;
 				break;
 			}
 

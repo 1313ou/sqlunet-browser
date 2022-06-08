@@ -23,6 +23,7 @@ import org.sqlunet.provider.XNetContract.Words_FnWords_PbWords_VnWords;
 import org.sqlunet.provider.XNetContract.Words_PbWords_PbRoleSets;
 import org.sqlunet.provider.XNetContract.Words_PbWords_PbRoleSets_U;
 import org.sqlunet.provider.XNetContract.Words_PbWords_VnWords;
+import org.sqlunet.provider.XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords;
 import org.sqlunet.provider.XNetContract.Words_VnWords_VnClasses;
 import org.sqlunet.provider.XNetContract.Words_VnWords_VnClasses_U;
 import org.sqlunet.provider.XNetControl.Result;
@@ -56,6 +57,7 @@ public class XSqlUNetProvider extends BaseProvider
 	static private void matchURIs()
 	{
 		uriMatcher.addURI(AUTHORITY, Words_FnWords_PbWords_VnWords.URI, XNetControl.WORDS_FNWORDS_PBWORDS_VNWORDS);
+		uriMatcher.addURI(AUTHORITY, Words_Pronunciations_FnWords_PbWords_VnWords.URI, XNetControl.WORDS_PRONUNCIATIONS_FNWORDS_PBWORDS_VNWORDS);
 		uriMatcher.addURI(AUTHORITY, Words_PbWords_VnWords.URI, XNetControl.WORDS_PBWORDS_VNWORDS);
 		uriMatcher.addURI(AUTHORITY, PredicateMatrix.URI, XNetControl.PREDICATEMATRIX);
 		uriMatcher.addURI(AUTHORITY, PredicateMatrix_VerbNet.URI, XNetControl.PREDICATEMATRIX_VERBNET);
@@ -107,6 +109,8 @@ public class XSqlUNetProvider extends BaseProvider
 		{
 			case XNetControl.WORDS_FNWORDS_PBWORDS_VNWORDS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_FnWords_PbWords_VnWords.URI;
+			case XNetControl.WORDS_PRONUNCIATIONS_FNWORDS_PBWORDS_VNWORDS:
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_Pronunciations_FnWords_PbWords_VnWords.URI;
 			case XNetControl.WORDS_PBWORDS_VNWORDS:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_PbWords_VnWords.URI;
 			case XNetControl.PREDICATEMATRIX:

@@ -128,6 +128,11 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 		}
 	}
 
+	/**
+	 * Search target info
+	 *
+	 * @return styled string
+	 */
 	private CharSequence toTarget()
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();

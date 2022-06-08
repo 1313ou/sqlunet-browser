@@ -4,6 +4,7 @@
 
 package org.sqlunet.provider;
 
+import org.sqlunet.loaders.Queries;
 import org.sqlunet.xnet.provider.Q;
 import org.sqlunet.xnet.provider.V;
 
@@ -16,7 +17,7 @@ public final class XNetContract
 {
 	// A L I A S E S
 
-	public static final String AS_WORDS = V.AS_WORD;
+	public static final String AS_WORDS = V.AS_WORDS;
 	public static final String AS_SENSES = V.AS_SENSES;
 	public static final String AS_SYNSETS = V.AS_SYNSETS;
 	public static final String AS_POSES = V.AS_POSES;
@@ -42,6 +43,14 @@ public final class XNetContract
 		String CASED = V.CASEDWORD;
 		String TAGCOUNT = V.TAGCOUNT;
 		String SOURCES = V.SOURCES;
+	}
+
+	public interface Words_Pronunciations_FnWords_PbWords_VnWords extends Words_FnWords_PbWords_VnWords
+	{
+		String URI = "words_pronunciations_fnwords_pbwords_vnwords";
+		String PRONUNCIATION = V.PRONUNCIATION;
+		String VARIETY = V.VARIETY;
+		String PRONUNCIATIONS = Queries.PRONUNCIATIONS;
 	}
 
 	public interface Words_PbWords_VnWords

@@ -7,6 +7,9 @@ package org.sqlunet.browser;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.text.SpannableStringBuilder;
+import android.text.method.LinkMovementMethod;
+import android.util.Log;
 
 import org.sqlunet.bnc.browser.BNCFragment;
 import org.sqlunet.browser.web.WebFragment;
@@ -16,8 +19,15 @@ import org.sqlunet.browser.xselector.XSelectorsFragment;
 import org.sqlunet.framenet.browser.FrameNetFragment;
 import org.sqlunet.propbank.browser.PropBankFragment;
 import org.sqlunet.provider.ProviderArgs;
+import org.sqlunet.speak.Pronunciation;
+import org.sqlunet.speak.SpeakButton;
+import org.sqlunet.speak.TTS;
+import org.sqlunet.style.Factories;
+import org.sqlunet.style.Spanner;
 import org.sqlunet.verbnet.browser.VerbNetFragment;
 import org.sqlunet.wordnet.browser.SenseFragment;
+
+import java.util.List;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -55,6 +65,10 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 			return;
 		}
 		final FragmentManager manager = getChildFragmentManager();
+
+		// target
+		targetView.setMovementMethod(new LinkMovementMethod());
+		targetView.setText(toTarget());
 
 		// args
 		final int recurse = Settings.getRecursePref(context);
@@ -217,5 +231,45 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 			return xSelectorPointer.wordNetOnly();
 		}
 		return false;
+	}
+
+	/**
+	 * Search target info
+	 *
+	 * @return styled string
+	 */
+	private CharSequence toTarget()
+	{
+		final SpannableStringBuilder sb = new SpannableStringBuilder();
+		if (cased != null)
+		{
+			sb.append(' ');
+			Spanner.append(sb, cased, 0, Factories.casedFactory);
+		}
+		else
+		{
+			Spanner.append(sb, word, 0, Factories.wordFactory);
+		}
+		if (pos != null)
+		{
+			sb.append(' ');
+			Spanner.append(sb, pos, 0, Factories.posFactory);
+		}
+		if (pronunciation != null)
+		{
+			List<Pronunciation> pronunciations = Pronunciation.pronunciations(pronunciation);
+			for (Pronunciation p : pronunciations)
+			{
+				final String label = p.toString();
+				final String ipa = p.ipa;
+				final String country = p.variety == null ? org.sqlunet.speak.Settings.findCountry(requireContext()) : p.variety;
+				sb.append('\n');
+				SpeakButton.appendClickableImage(sb, org.sqlunet.speak.R.drawable.ic_speak_button, label, () -> {
+					Log.d("Speak", "");
+					TTS.pronounce(requireContext(), word, ipa, country, org.sqlunet.speak.Settings.findVoiceFor(country, requireContext()));
+				}, requireContext());
+			}
+		}
+		return sb;
 	}
 }

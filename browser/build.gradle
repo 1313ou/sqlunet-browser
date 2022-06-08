@@ -68,6 +68,7 @@ dependencies {
     implementation project(path: ':download')
     implementation project(path: ':deploy')
     implementation project(path: ':concurrency')
+    implementation project(path: ':speak')
     implementation project(path: ':others')
     implementation project(path: ':donate')
     implementation project(path: ':rate')

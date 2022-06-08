@@ -318,12 +318,6 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 
 	static public final String SELECTION = "#{selection}";
 
-	static public final String AS_WORDS = "w";
-	static public final String AS_SENSES = "s";
-	static public final String AS_SYNSETS = "y";
-	static public final String AS_POSES = "p";
-	static public final String AS_CLASSES = "c";
-
 	// C O N S T R U C T O R
 
 	/**
@@ -374,7 +368,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 			// J O I N S
 
 			case WORDS_FNWORDS_PBWORDS_VNWORDS:
-				r.table = "${words.table} AS " + AS_WORDS + ' ' + //
+				r.table = "${words.table} AS ${as_words} " + //
 						"LEFT JOIN ${senses.table} AS ${as_senses} USING (${words.wordid}) " + //
 						"LEFT JOIN ${synsets.table} AS ${as_synsets} USING (${synsets.synsetid}) " + //
 						"LEFT JOIN ${poses.table} AS ${as_poses} USING (${poses.posid}) " + //
@@ -386,8 +380,25 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 				r.groupBy = "${synsets.synsetid}";
 				break;
 
+			case WORDS_PRONUNCIATIONS_FNWORDS_PBWORDS_VNWORDS:
+				r.table =
+						"${lexes.table} AS ${as_lexes} " + //
+						"INNER JOIN ${words.table} AS ${as_words} USING (${words.wordid}) " + //
+						"LEFT JOIN ${senses.table} AS ${as_senses} USING (${words.wordid},${lexes.luid}) " + //
+						"LEFT JOIN ${synsets.table} AS ${as_synsets} USING (${synsets.synsetid}) " + //
+						"LEFT JOIN ${poses.table} AS ${as_poses} USING (${poses.posid}) " + //
+						"LEFT JOIN ${casedwords.table} USING (${words.wordid},${casedwords.casedwordid}) " + //
+						"LEFT JOIN ${lexes_pronunciations.table} USING (${lexes.luid},${words.wordid}) " + //
+						"LEFT JOIN ${pronunciations.table} AS ${as_pronunciations} USING (${pronunciations.pronunciationid}) " +
+						"LEFT JOIN ${domains.table} USING (${domains.domainid}) " + //
+						"LEFT JOIN ${fn_words.table} USING (${words.wordid}) " + //
+						"LEFT JOIN ${vn_words.table} USING (${words.wordid}) " + //
+						"LEFT JOIN ${pb_words.table} USING (${words.wordid})";
+				r.groupBy = "${synsets.synsetid}";
+				break;
+
 			case WORDS_PBWORDS_VNWORDS:
-				r.table = "${words.table} AS " + AS_WORDS + ' ' + //
+				r.table = "${words.table} AS ${as_words} " + //
 						"LEFT JOIN ${senses.table} AS ${as_senses} USING (${words.wordid}) " + //
 						"LEFT JOIN ${synsets.table} AS ${as_synsets} USING (${synsets.synsetid}) " + //
 						"LEFT JOIN ${poses.table} AS ${as_poses} USING (${poses.posid}) " + //
@@ -432,7 +443,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 				r.table = "${pmvn.table} " + //
 						"INNER JOIN ${vn_classes.table} USING (${vn_classes.classid}) " + //
 						"LEFT JOIN ${synsets.table} USING (${synsets.synsetid})";
-				r.projection = new String[]{"wordid", "synsetid", "classid", "class", "classtag", "definition"};
+				r.projection = new String[]{"${words.wordid}", "${synsets.synsetid}", "${vn_classes.classid}", "${vn_classes.class}", "${vn_classes.classtag}", "${synsets.definition}"};
 				break;
 			}
 
@@ -441,7 +452,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 				r.table = "${vn_words.table} " + //
 						"INNER JOIN ${vn_members_senses.table} USING (${vn_words.vnwordid},${words.wordid}) " + //
 						"INNER JOIN ${vn_classes.table} USING (${vn_classes.classid})";
-				r.projection = new String[]{"wordid", "synsetid", "classid", "class", "classtag"};
+				r.projection = new String[]{"${words.wordid}", "${synsets.synsetid}", "${vn_classes.classid}", "${vn_classes.class}", "${vn_classes.classtag}"};
 				break;
 			}
 
@@ -660,7 +671,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 		PREDICATEMATRIX_VERBNET, //
 		PREDICATEMATRIX_PROPBANK, //
 		PREDICATEMATRIX_FRAMENET, //
-		WORDS_FNWORDS_PBWORDS_VNWORDS, //
+		WORDS_FNWORDS_PBWORDS_VNWORDS, WORDS_PRONUNCIATIONS_FNWORDS_PBWORDS_VNWORDS, //
 
 		WORDS_PBWORDS_VNWORDS, //
 		WORDS_VNWORDS_VNCLASSES, //
