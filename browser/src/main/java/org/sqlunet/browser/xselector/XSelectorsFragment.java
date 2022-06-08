@@ -22,6 +22,7 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.SimpleCursorTreeAdapter;
+import android.widget.TextView;
 
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.R;
@@ -154,6 +155,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 			R.id.xname, //
 			R.id.xheader, //
 			R.id.xinfo, //
+			R.id.xpronunciation, //
 			R.id.xdefinition, //
 			R.id.xsourcestext, //
 			R.id.xsources, //
@@ -163,13 +165,15 @@ public class XSelectorsFragment extends ExpandableListFragment
 	/**
 	 * Target resource
 	 */
-	static private final String[] childFrom = {Words_XNet_U.WORDID, //
+	static private final String[] childFrom = { //
+			Words_XNet_U.WORDID, //
 			Words_XNet_U.SYNSETID, //
 			Words_XNet_U.XID, //
 			Words_XNet_U.XMEMBERID, //
 			Words_XNet_U.XNAME, //
 			Words_XNet_U.XHEADER, //
 			Words_XNet_U.XINFO, //
+			Words_XNet_U.XPRONUNCIATION, //
 			Words_XNet_U.XDEFINITION, //
 			Words_XNet_U.SOURCES, //
 			Words_XNet_U.SOURCES, //
@@ -455,6 +459,25 @@ public class XSelectorsFragment extends ExpandableListFragment
 			}
 
 			@Override
+			public void setViewText(final TextView v, final String text)
+			{
+				int id = v.getId();
+				if (R.id.xpronunciation == id)
+				{
+					Log.d(TAG, "TEXT=" + text);
+				}
+				if (text == null || text.isEmpty())
+				{
+					v.setVisibility(View.GONE);
+				}
+				else
+				{
+					v.setVisibility(View.VISIBLE);
+					super.setViewText(v, text);
+				}
+			}
+
+			@Override
 			protected void setViewImage(@NonNull ImageView v, @NonNull String value)
 			{
 				int id = v.getId();
@@ -693,7 +716,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	private void load()
 	{
 		// load the contents
-		final Module.ContentProviderSql sql = Queries.prepareWordXSelect(XSelectorsFragment.this.word);
+		final Module.ContentProviderSql sql = Queries.prepareWordPronunciationXSelect(XSelectorsFragment.this.word);
 		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(sql.providerUri));
 		this.wordIdFromWordModel.loadData(uri, sql, this::wordIdFromWordPostProcess);
 	}
@@ -789,7 +812,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 	private void loadWn(final long wordId)
 	{
 		Log.d(TAG, "loadWn " + wordId);
-		final Module.ContentProviderSql sql = org.sqlunet.wordnet.loaders.Queries.prepareWnXSelect(wordId);
+		final Module.ContentProviderSql sql = org.sqlunet.wordnet.loaders.Queries.prepareWnPronunciationXSelect(wordId);
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
 		this.wnFromWordIdModel.loadData(uri, sql, null);
 	}

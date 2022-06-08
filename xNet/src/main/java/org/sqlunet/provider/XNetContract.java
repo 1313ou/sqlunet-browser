@@ -187,6 +187,7 @@ public final class XNetContract
 		String XNAME = V.XNAME;
 		String XHEADER = V.XHEADER;
 		String XINFO = V.XINFO;
+		String XPRONUNCIATION = V.XPRONUNCIATION;
 		String XDEFINITION = V.XDEFINITION;
 		String SOURCE = V.SOURCE;
 		String SOURCES = V.SOURCES;

@@ -7,6 +7,8 @@ public class Queries
 {
 	public static final String PRONUNCIATIONS = "pronunciations";
 
+	public static final String AXPRONUNCIATIONS = "xpronunciations";
+
 	private static final String GROUPID_COLUMN = "_id";
 
 	// B R O W S E R
@@ -105,6 +107,33 @@ public class Queries
 	}
 
 	/**
+	 * Load word and pronunciation x data
+	 *
+	 * @param word word
+	 */
+	public static Module.ContentProviderSql prepareWordPronunciationXSelect(final String word)
+	{
+		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
+		providerSql.providerUri = XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.URI;
+		providerSql.projection = new String[]{ //
+				XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.SYNSETID + " AS " + GROUPID_COLUMN, //
+				XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.WORDID, //
+				XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.FNWORDID, //
+				XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.VNWORDID, //
+				XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.PBWORDID, //
+				"GROUP_CONCAT(CASE WHEN " +
+						XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.VARIETY + " IS NULL THEN '/'||" +
+						XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.PRONUNCIATION + "||'/' ELSE '['||" +
+						XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.VARIETY + "||'] '||'/'||" +
+						XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.PRONUNCIATION + "||'/' END) AS " + PRONUNCIATIONS, //
+		};
+		providerSql.selection = XNetContract.AS_WORDS + '.' + XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.WORD + " = ?";
+		providerSql.selectionArgs = new String[]{word};
+		providerSql.sortBy = XNetContract.AS_POSES + '.' + XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.POS + ',' + XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords.SENSENUM;
+		return providerSql;
+	}
+
+	/**
 	 * Load VerbNet x data
 	 *
 	 * @param wordId word id
@@ -123,6 +152,7 @@ public class Queries
 				XNetContract.Words_VnWords_VnClasses_U.CLASS + " AS " + XNetContract.Words_XNet_U.XHEADER, //
 				XNetContract.Words_VnWords_VnClasses_U.CLASSTAG + " AS " + XNetContract.Words_XNet_U.XINFO, //
 				XNetContract.Words_VnWords_VnClasses_U.DEFINITION + " AS " + XNetContract.Words_XNet_U.XDEFINITION, //
+				"NULL AS " + PRONUNCIATIONS, //
 				"RANDOM() AS _id",};
 		providerSql.selection = XNetContract.Words_VnWords_VnClasses_U.WORDID + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(wordId)};
@@ -150,6 +180,7 @@ public class Queries
 				//Words_PbWords_PbRoleSets_U.ROLESETHEAD + " AS " + Words_XNet_U.XHEADER, //
 				XNetContract.Words_PbWords_PbRoleSets_U.ROLESETDESCR + " AS " + XNetContract.Words_XNet_U.XINFO, //
 				XNetContract.Words_PbWords_PbRoleSets_U.DEFINITION + " AS " + XNetContract.Words_XNet_U.XDEFINITION, //
+				"NULL AS " + PRONUNCIATIONS, //
 				"RANDOM() AS _id",};
 		providerSql.selection = XNetContract.Words_PbWords_PbRoleSets_U.WORDID + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(wordId)};
@@ -176,6 +207,7 @@ public class Queries
 				XNetContract.Words_FnWords_FnFrames_U.FRAME + " AS " + XNetContract.Words_XNet_U.XHEADER, //
 				"GROUP_CONCAT(" + XNetContract.Words_FnWords_FnFrames_U.LUDEFINITION + ",'\n') AS " + XNetContract.Words_XNet_U.XINFO, //
 				XNetContract.Words_FnWords_FnFrames_U.DEFINITION + " AS " + XNetContract.Words_XNet_U.XDEFINITION, //
+				"NULL AS " + PRONUNCIATIONS, //
 				"RANDOM() AS _id",};
 		providerSql.selection = XNetContract.Words_FnWords_FnFrames_U.WORDID + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(wordId)};

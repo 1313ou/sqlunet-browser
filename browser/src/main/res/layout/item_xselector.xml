@@ -75,6 +75,13 @@
 		android:textIsSelectable="false" />
 
 	<TextView
+		android:id="@+id/xpronunciation"
+		style="@style/Data.Pronunciation"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textIsSelectable="false" />
+
+	<TextView
 		android:id="@+id/xdefinition"
 		style="@style/Data.XDefinition"
 		android:layout_width="wrap_content"
