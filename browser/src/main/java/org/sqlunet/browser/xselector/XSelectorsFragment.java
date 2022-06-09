@@ -462,10 +462,12 @@ public class XSelectorsFragment extends ExpandableListFragment
 			public void setViewText(final TextView v, final String text)
 			{
 				int id = v.getId();
+				/*
 				if (R.id.xpronunciation == id)
 				{
 					Log.d(TAG, "TEXT=" + text);
 				}
+				 */
 				if (text == null || text.isEmpty())
 				{
 					v.setVisibility(View.GONE);
@@ -924,14 +926,15 @@ public class XSelectorsFragment extends ExpandableListFragment
 				final int idXId = cursor.getColumnIndex(Words_XNet_U.XID);
 				final int idXClassId = cursor.getColumnIndex(Words_XNet_U.XCLASSID);
 				final int idXMemberId = cursor.getColumnIndex(Words_XNet_U.XMEMBERID);
+				final int idXPronunciationId = cursor.getColumnIndex(Words_XNet_U.XPRONUNCIATION);
 				final int idXSources = cursor.getColumnIndex(Words_XNet_U.SOURCES);
 				// final int idWordId = cursor.getColumnIndex(Words_XNet_U.WORDID);
 
 				// data
 				final long wordId = this.wordId;
 				final String word = this.word;
-				final String cased = this.word;
-				final String pronunciation = null;
+				final String cased = this.word.equals(this.word.toLowerCase(Locale.ENGLISH)) ? null : this.word;
+				final String pronunciation = idXPronunciationId == -1 ? null : cursor.getString(idXPronunciationId);
 				final long synsetId = cursor.isNull(idSynsetId) ? 0 : cursor.getLong(idSynsetId);
 				final String pos = synsetIdToPos(synsetId);
 				final long xId = cursor.isNull(idXId) ? 0 : cursor.getLong(idXId);

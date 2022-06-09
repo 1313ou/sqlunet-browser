@@ -723,7 +723,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				// data
 				final long wordId = this.wordId;
 				final String word = this.word;
-				final String cased = this.word;
+				final String cased = this.word.equals(this.word.toLowerCase(Locale.ENGLISH)) ? null : this.word;
 				final String pronunciation = null;
 				final long synsetId = cursor.isNull(idSynsetId) ? 0 : cursor.getLong(idSynsetId);
 				final String pos = synsetIdToPos(synsetId);

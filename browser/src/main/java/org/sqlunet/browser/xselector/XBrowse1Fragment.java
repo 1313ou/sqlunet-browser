@@ -149,6 +149,7 @@ public class XBrowse1Fragment extends Fragment implements XSelectorsFragment.Lis
 			args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse);
 			args.putString(ProviderArgs.ARG_HINTWORD, word);
 			args.putString(ProviderArgs.ARG_HINTCASED, cased);
+			args.putString(ProviderArgs.ARG_HINTPRONUNCIATION, pronunciation);
 			args.putString(ProviderArgs.ARG_HINTPOS, pos);
 			args.putBoolean(Browse2Fragment.ARG_ALT, pointer.getXGroup() != 0);
 			final Intent intent = new Intent(requireContext(), Browse2Activity.class);

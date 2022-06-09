@@ -112,6 +112,7 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 			args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse);
 			args.putString(ProviderArgs.ARG_HINTWORD, word);
 			args.putString(ProviderArgs.ARG_HINTCASED, cased);
+			args.putString(ProviderArgs.ARG_HINTPRONUNCIATION, pronunciation);
 			args.putString(ProviderArgs.ARG_HINTPOS, pos);
 
 			final Intent intent = new Intent(requireContext(), Browse2Activity.class);
