@@ -22,16 +22,17 @@ import android.util.Log;
 import com.android.billingclient.api.AcknowledgePurchaseParams;
 import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.BillingClient.BillingResponseCode;
-import com.android.billingclient.api.BillingClient.SkuType;
 import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.BillingFlowParams;
 import com.android.billingclient.api.BillingResult;
 import com.android.billingclient.api.ConsumeParams;
+import com.android.billingclient.api.ProductDetails;
+import com.android.billingclient.api.ProductDetailsResponseListener;
 import com.android.billingclient.api.Purchase;
+import com.android.billingclient.api.PurchasesResponseListener;
 import com.android.billingclient.api.PurchasesUpdatedListener;
-import com.android.billingclient.api.SkuDetails;
-import com.android.billingclient.api.SkuDetailsParams;
-import com.android.billingclient.api.SkuDetailsResponseListener;
+import com.android.billingclient.api.QueryProductDetailsParams;
+import com.android.billingclient.api.QueryPurchasesParams;
 import com.bbou.donate.R;
 
 import java.io.IOException;
@@ -235,53 +236,50 @@ public class BillingManager implements PurchasesUpdatedListener
 	/**
 	 * Start a purchase flow
 	 *
-	 * @param sku         sku id
+	 * @param productId   product id
 	 * @param billingType billing type
 	 */
-	public void initiatePurchaseFlow(final String sku, @NonNull @SkuType final String billingType)
+	public void initiatePurchaseFlow(final String productId, @NonNull @BillingClient.ProductType final String billingType)
 	{
 		// guard against destroyed client
 		if (this.client == null)
 		{
 			return;
 		}
-		Log.d(TAG, "Getting skuDetails for " + sku);
+		Log.d(TAG, "Getting product details for " + productId);
 
-		// Retrieve a value for "skuDetails" by calling querySkuDetailsAsync().
-		final List<String> skuList = new ArrayList<>();
-		skuList.add(sku);
-		final SkuDetailsParams.Builder builder = SkuDetailsParams.newBuilder() //
-				.setSkusList(skuList) //
-				.setType(billingType);
-		this.client.querySkuDetailsAsync(builder.build(), (billingResult, skuDetailsList) -> {
+		List<QueryProductDetailsParams.Product> productList = new ArrayList<>();
+		productList.add(QueryProductDetailsParams.Product.newBuilder() //
+				.setProductId(productId) //
+				.setProductType(BillingClient.ProductType.INAPP) //
+				.build());
+		QueryProductDetailsParams params = QueryProductDetailsParams.newBuilder() //
+				.setProductList(productList) //
+				.build();
+		this.client.queryProductDetailsAsync(params, (billingResult, productDetailsList) -> {
 
 			int response = billingResult.getResponseCode();
 			if (BillingResponseCode.OK != response)
 			{
-				Log.e(TAG, "Getting skuDetails failed. " + response);
+				Log.e(TAG, "Getting product details failed. " + response);
 				return;
 			}
-			if (skuDetailsList == null)
+			if (productDetailsList.isEmpty())
 			{
-				Log.e(TAG, "Getting skuDetails failed. Null list.");
+				Log.e(TAG, "Getting product details yielded no details for product " + productId);
 				return;
 			}
-			if (skuDetailsList.isEmpty())
-			{
-				Log.e(TAG, "Getting skuDetails yielded no details for sku " + sku);
-				return;
-			}
-			final SkuDetails skuDetails = skuDetailsList.get(0);
-			initiatePurchaseFlow(skuDetails);
+			final ProductDetails productDetails = productDetailsList.get(0);
+			initiatePurchaseFlow(productDetails);
 		});
 	}
 
 	/**
 	 * Start a purchase or subscription replace flow
 	 *
-	 * @param skuDetails sku details
+	 * @param productDetails product details
 	 */
-	private void initiatePurchaseFlow(@NonNull final SkuDetails skuDetails)
+	private void initiatePurchaseFlow(@NonNull final ProductDetails productDetails)
 	{
 		executeServiceRequest(() -> {
 
@@ -291,10 +289,24 @@ public class BillingManager implements PurchasesUpdatedListener
 				return;
 			}
 			Log.d(TAG, "Launching inapp purchase flow.");
-			final BillingFlowParams flowParams = BillingFlowParams.newBuilder().setSkuDetails(skuDetails) //
-					.build();
-			/* final BillingResult billingResult = */
-			this.client.launchBillingFlow(this.activity, flowParams);
+			// Retrieve a value for "productDetails" by calling queryProductDetailsAsync()
+			// Get the offerToken of the selected offer
+			// int selectedOfferIndex = 0;
+			// String offerToken = productDetails.getSubscriptionOfferDetails() //
+			// 		.get(selectedOfferIndex) //
+			// 		.getOfferToken();
+
+			// Set the parameters for the offer that will be presented in the billing flow creating separate productDetailsParamsList variable
+			List<BillingFlowParams.ProductDetailsParams> productDetailsParamsList = new ArrayList<>();
+			productDetailsParamsList.add(BillingFlowParams.ProductDetailsParams.newBuilder() //
+					.setProductDetails(productDetails) //
+			//		.setOfferToken(offerToken) //
+					.build());
+			BillingFlowParams billingFlowParams = BillingFlowParams.newBuilder().setProductDetailsParamsList(productDetailsParamsList).build();
+
+			// launch the billing flow
+			/* BillingResult billingResult = */
+			this.client.launchBillingFlow(this.activity, billingFlowParams);
 		});
 	}
 
@@ -394,18 +406,23 @@ public class BillingManager implements PurchasesUpdatedListener
 
 			assert this.client != null;
 			final long time = System.currentTimeMillis();
-			this.client.queryPurchasesAsync(SkuType.INAPP, (@NonNull BillingResult billingResult, @NonNull List<Purchase> purchasesList) -> {
 
-				Log.d(TAG, "Querying inapp purchases elapsed: " + (System.currentTimeMillis() - time) + "ms");
-				Log.i(TAG, "Querying inapp purchases response: " + billingResult.getResponseCode() + " count: " + purchasesList.size());
+			this.client.queryPurchasesAsync(QueryPurchasesParams.newBuilder().setProductType(BillingClient.ProductType.INAPP).build(), new PurchasesResponseListener()
+			{
+				public void onQueryPurchasesResponse(BillingResult billingResult, List<Purchase> purchasesList)
+				{
+					// Process the result
+					Log.d(TAG, "Querying inapp purchases elapsed: " + (System.currentTimeMillis() - time) + "ms");
+					Log.i(TAG, "Querying inapp purchases response: " + billingResult.getResponseCode() + " count: " + purchasesList.size());
 
-				if (BillingResponseCode.OK == billingResult.getResponseCode())
-				{
-					onQueryPurchasesFinished(purchasesList);
-				}
-				else
-				{
-					Log.e(TAG, "Got an error response trying to query inapp purchases. " + billingResult.getResponseCode());
+					if (BillingResponseCode.OK == billingResult.getResponseCode())
+					{
+						onQueryPurchasesFinished(purchasesList);
+					}
+					else
+					{
+						Log.e(TAG, "Got an error response trying to query inapp purchases. " + billingResult.getResponseCode());
+					}
 				}
 			});
 		});
@@ -439,11 +456,10 @@ public class BillingManager implements PurchasesUpdatedListener
 	/**
 	 * Query details async op
 	 *
-	 * @param itemType sku type
-	 * @param skuList  sku list
-	 * @param listener response listener
+	 * @param productList product list
+	 * @param listener    response listener
 	 */
-	public void querySkuDetails(@NonNull @SkuType final String itemType, @NonNull final List<String> skuList, @NonNull final SkuDetailsResponseListener listener)
+	public void queryDetailsProductDetails(@NonNull final List<QueryProductDetailsParams.Product> productList, @NonNull final ProductDetailsResponseListener listener)
 	{
 		// Creating a runnable from the request to use it inside our connection retry policy below
 		executeServiceRequest(() -> {
@@ -455,10 +471,9 @@ public class BillingManager implements PurchasesUpdatedListener
 			}
 
 			// Query the purchase async
-			SkuDetailsParams.Builder builder = SkuDetailsParams.newBuilder() //
-					.setSkusList(skuList) //
-					.setType(itemType);
-			this.client.querySkuDetailsAsync(builder.build(), listener);
+			QueryProductDetailsParams.Builder builder = QueryProductDetailsParams.newBuilder() //
+					.setProductList(productList);
+			this.client.queryProductDetailsAsync(builder.build(), listener);
 		});
 	}
 
