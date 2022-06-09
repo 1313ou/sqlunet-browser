@@ -7,7 +7,7 @@ public class Queries
 {
 	public static final String PRONUNCIATIONS = "pronunciations";
 
-	public static final String AXPRONUNCIATIONS = "xpronunciations";
+	public static final String XPRONUNCIATIONS = "xpronunciations";
 
 	private static final String GROUPID_COLUMN = "_id";
 

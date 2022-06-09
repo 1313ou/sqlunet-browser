@@ -67,6 +67,7 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 		final FragmentManager manager = getChildFragmentManager();
 
 		// target
+		assert targetView != null;
 		targetView.setMovementMethod(new LinkMovementMethod());
 		targetView.setText(toTarget());
 

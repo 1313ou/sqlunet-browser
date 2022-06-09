@@ -461,8 +461,8 @@ public class XSelectorsFragment extends ExpandableListFragment
 			@Override
 			public void setViewText(final TextView v, final String text)
 			{
-				int id = v.getId();
 				/*
+				int id = v.getId();
 				if (R.id.xpronunciation == id)
 				{
 					Log.d(TAG, "TEXT=" + text);

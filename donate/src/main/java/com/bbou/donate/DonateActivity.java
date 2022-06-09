@@ -120,7 +120,7 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 					sb.append(purchase.getOrderId());
 					sb.append('\n');
 					sb.append("SKUs: ");
-					for (String sku2 : purchase.getSkus())
+					for (String sku2 : purchase.getProducts())
 					{
 						sb.append(sku2);
 						sb.append(' ');
@@ -222,7 +222,7 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 			// build data
 			for (Purchase purchase : updatedPurchases)
 			{
-				for (String sku : purchase.getSkus())
+				for (String sku : purchase.getProducts())
 				{
 					this.skuToPurchase.put(sku, purchase);
 				}
@@ -232,7 +232,7 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 			for (Purchase purchase : this.skuToPurchase.values())
 			{
 				Log.d(TAG, "Update " + purchase.toString());
-				for (String sku : purchase.getSkus())
+				for (String sku : purchase.getProducts())
 				{
 					update(sku, true);
 				}
@@ -292,7 +292,7 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 			{
 				if (purchase.getPurchaseToken().equals(token))
 				{
-					for (String sku : purchase.getSkus())
+					for (String sku : purchase.getProducts())
 					{
 						this.skuToPurchase.remove(sku);
 						update(sku, false);
@@ -309,7 +309,7 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 	{
 		if (this.billingManager != null)
 		{
-			this.billingManager.initiatePurchaseFlow(sku, BillingClient.SkuType.INAPP);
+			this.billingManager.initiatePurchaseFlow(sku, BillingClient.ProductType.INAPP);
 		}
 	}
 
