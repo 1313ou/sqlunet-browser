@@ -584,7 +584,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 		{
 			return;
 		}
-		final Handler handler = new Handler(Looper.getMainLooper());
+		// final Handler handler = new Handler(Looper.getMainLooper());
 		Log.d(TAG, "Restore saved position " + Integer.toHexString(groupState) + " " + this);
 		int groupCount = getListAdapter().getGroupCount();
 		for (int i = 0; i < groupCount; i++)
