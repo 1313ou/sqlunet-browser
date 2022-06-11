@@ -159,7 +159,7 @@ public class AssetLoadFragment extends Fragment implements TaskObserver.Observer
 	public TaskObserver.Observer<Number> setTitle(@NonNull final CharSequence title)
 	{
 		this.titleTextView.setText(title);
-		return null;
+		return this;
 	}
 
 	@NonNull
