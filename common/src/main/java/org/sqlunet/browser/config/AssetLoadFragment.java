@@ -154,7 +154,7 @@ public class AssetLoadFragment extends Fragment implements TaskObserver.Observer
 		this.statusTextView.setText(status);
 	}
 
-	@Nullable
+	@NonNull
 	@Override
 	public TaskObserver.Observer<Number> setTitle(@NonNull final CharSequence title)
 	{
