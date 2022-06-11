@@ -61,7 +61,7 @@ public class TaskObserver
 		 *
 		 * @param title title
 		 */
-		@Nullable
+		@NonNull
 		Observer<Progress> setTitle(@NonNull CharSequence title);
 
 		/**
@@ -106,6 +106,7 @@ public class TaskObserver
 			Log.d(TAG, "Task " + (result ? "succeeded" : "failed"));
 		}
 
+		@NonNull
 		@Override
 		public Observer<Progress> setTitle(@NonNull final CharSequence title)
 		{
