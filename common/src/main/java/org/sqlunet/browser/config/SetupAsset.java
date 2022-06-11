@@ -75,8 +75,9 @@ public class SetupAsset
 		}
 
 		// observer title and message
-		observer.setTitle(activity.getString(R.string.title_dialog_assetload));
-		observer.setMessage(activity.getString(R.string.gloss_asset_delivery_message));
+		observer //
+				.setTitle(activity.getString(R.string.title_dialog_assetload)) //
+				.setMessage(activity.getString(R.string.gloss_asset_delivery_message));
 
 		// deliver asset (returns non null path if already installed)
 		final String path0 = new AssetPackLoader(activity, assetPack) //
@@ -89,9 +90,14 @@ public class SetupAsset
 					{
 						final String path = packLocation.assetsPath();
 						final String zipFile = new File(new File(path, assetDir), assetZip).getAbsolutePath();
-						observer.setTitle(activity.getString(R.string.action_unzip_from_asset));
-						observer.setMessage(zipFile);
-						FileAsyncTask.launchUnzip(activity, observer, zipFile, assetZipEntry, StorageSettings.getDatabasePath(activity), () -> {
+
+						//final TaskObserver.Observer<Number> observer2 = new TaskDialogObserver<>(activity.getSupportFragmentManager());
+						@NonNull final TaskObserver.Observer<Number> observer2 = observer;
+						observer2 //
+								.setTitle(activity.getString(R.string.action_unzip_from_asset)) //
+								.setMessage(zipFile);
+
+						FileAsyncTask.launchUnzip(activity, observer2, zipFile, assetZipEntry, StorageSettings.getDatabasePath(activity), () -> {
 
 							org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
 							Settings.recordDbSource(activity, new File(new File(path, assetDir), assetZip).getAbsolutePath(), -1, -1, null, null, null);
@@ -125,8 +131,9 @@ public class SetupAsset
 			final String zipFilePath = zipFile.getAbsolutePath();
 			if (zipFile.exists())
 			{
-				observer.setTitle(activity.getString(R.string.action_unzip_from_asset));
-				observer.setMessage(zipFilePath);
+				observer //
+						.setTitle(activity.getString(R.string.action_unzip_from_asset)) //
+						.setMessage(zipFilePath);
 				FileAsyncTask.launchUnzip(activity, observer, zipFilePath, assetZipEntry, StorageSettings.getDatabasePath(activity), () -> {
 
 					org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
