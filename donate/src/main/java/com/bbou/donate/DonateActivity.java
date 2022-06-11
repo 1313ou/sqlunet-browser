@@ -16,7 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
-import com.android.billingclient.api.BillingClient;
 import com.android.billingclient.api.Purchase;
 import com.bbou.donate.billing.BillingManager;
 import com.bbou.donate.billing.Skus;
@@ -309,7 +308,7 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 	{
 		if (this.billingManager != null)
 		{
-			this.billingManager.initiatePurchaseFlow(productId, BillingClient.ProductType.INAPP);
+			this.billingManager.initiatePurchaseFlow(productId);
 		}
 	}
 

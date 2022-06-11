@@ -236,9 +236,8 @@ public class BillingManager implements PurchasesUpdatedListener
 	 * Start a purchase flow
 	 *
 	 * @param productId   product id
-	 * @param billingType billing type
 	 */
-	public void initiatePurchaseFlow(final String productId, @NonNull @BillingClient.ProductType final String billingType)
+	public void initiatePurchaseFlow(final String productId)
 	{
 		// guard against destroyed client
 		if (this.client == null)
