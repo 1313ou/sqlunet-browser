@@ -476,11 +476,11 @@ public class XSelectorsFragment extends ExpandableListFragment
 		{
 			if ((groupState & (1 << i)) != 0)
 			{
-				// expand(i);
+				expand(i);
 
-				int finalI = i;
+				//int groupPosition = i;
 				//requireActivity().runOnUiThread(() -> expand(finalI));
-				handler.postDelayed(() -> expand(finalI), 1500);
+				//handler.postDelayed(() -> expand(groupPosition), 1500);
 			}
 		}
 	}
@@ -722,6 +722,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 
 				// data
 				final long wordId = this.wordId;
+				assert this.word != null;
 				final String word = this.word;
 				final String cased = this.word.equals(this.word.toLowerCase(Locale.ENGLISH)) ? null : this.word;
 				final String pronunciation = null;
@@ -753,6 +754,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 				Log.d(TAG, "pointer=" + pointer);
 
 				// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
+				//noinspection ConstantConditions
 				this.listener.onItemSelected(pointer, word, cased, pronunciation, pos);
 			}
 			// cursor ownership is transferred  to adapter, so do not call

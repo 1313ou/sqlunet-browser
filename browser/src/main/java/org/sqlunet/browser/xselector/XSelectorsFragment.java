@@ -591,11 +591,19 @@ public class XSelectorsFragment extends ExpandableListFragment
 		{
 			if ((groupState & (1 << i)) != 0)
 			{
-				// expand(i);
+				expand(i);
 
-				int finalI = i;
+				//int groupPosition = i;
 				//requireActivity().runOnUiThread(() -> expand(finalI));
-				handler.postDelayed(() -> expand(finalI), 1500);
+				//handler.postDelayed(() -> {
+				//	try
+				//	{
+				//		expand(groupPosition);
+				//	}
+				//	catch (IllegalStateException ignored)
+				//	{
+				//	}
+				//}, 1500);
 			}
 		}
 	}
@@ -932,6 +940,7 @@ public class XSelectorsFragment extends ExpandableListFragment
 
 				// data
 				final long wordId = this.wordId;
+				assert this.word != null;
 				final String word = this.word;
 				final String cased = this.word.equals(this.word.toLowerCase(Locale.ENGLISH)) ? null : this.word;
 				final String pronunciation = idXPronunciationId == -1 ? null : cursor.getString(idXPronunciationId);

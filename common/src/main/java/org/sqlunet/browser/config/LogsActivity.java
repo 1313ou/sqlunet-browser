@@ -66,6 +66,7 @@ public class LogsActivity extends AppCompatActivity
 		// logs
 		String fileName = null;
 		final File storage = getCacheDir();
+		//noinspection ConstantConditions
 		final File logFile = new File(storage, fileName != null ? fileName : "sqlunet.log");
 		final String text = readFile(logFile);
 		textView.setText(text);

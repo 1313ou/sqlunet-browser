@@ -99,7 +99,10 @@ public class TaskDialogObserver<Progress extends Number> extends TaskObserver.Ba
 	public void taskFinish(boolean result)
 	{
 		super.taskFinish(result);
-		this.progressDialogFragment.dismissAllowingStateLoss();
+		if (!this.progressDialogFragment.isAdded())
+		{
+			this.progressDialogFragment.dismissAllowingStateLoss();
+		}
 	}
 
 	@NonNull

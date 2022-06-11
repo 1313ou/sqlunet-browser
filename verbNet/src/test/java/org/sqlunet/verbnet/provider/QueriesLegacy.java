@@ -20,6 +20,7 @@ public class QueriesLegacy
 		return r;
 	}
 
+	@SuppressWarnings("UnnecessaryLocalVariable")
 	public static Result queryLegacyMain(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		String table;

@@ -59,7 +59,8 @@ public class Utils
 		// args
 		final String[] selectionArgs2 = unfoldSelectionArgs(selectionArgs);
 
-		return new XNetControl.Result(table, projection, selection, selectionArgs2, groupBy, sortOrder);
+		//noinspection ConstantConditions
+		return new Result(table, projection, selection, selectionArgs2, groupBy, sortOrder);
 	}
 
 	/**

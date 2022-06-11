@@ -35,8 +35,7 @@ public class QueriesUnitTest
 
 	public static Result queryProvider(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
-		Result r = queryProviderMain(code, uriLast, projection0, selection0, selectionArgs0);
-		return r;
+		return queryProviderMain(code, uriLast, projection0, selection0, selectionArgs0);
 	}
 
 	public static Result queryProviderMain(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)

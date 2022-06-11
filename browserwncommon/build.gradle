@@ -51,18 +51,18 @@ android {
 }
 
 dependencies {
-    api project(path: ':common')
-    api project(path: ':expandableListFragment')
-    api project(path: ':assetpacks')
-    api project(path: ':nightmode')
-    api project(path: ':download')
-    api project(path: ':deploy')
-    api project(path: ':speak')
-    api project(path: ':others')
-    api project(path: ':donate')
-    api project(path: ':xNet')
-    api project(path: ':wordNet')
-    api project(path: ':bNC')
+    implementation project(path: ':common')
+    implementation project(path: ':expandableListFragment')
+    implementation project(path: ':assetpacks')
+    implementation project(path: ':nightmode')
+    implementation project(path: ':download')
+    implementation project(path: ':deploy')
+    implementation project(path: ':speak')
+    implementation project(path: ':others')
+    implementation project(path: ':donate')
+    implementation project(path: ':xNet')
+    implementation project(path: ':wordNet')
+    implementation project(path: ':bNC')
 
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"

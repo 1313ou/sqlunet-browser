@@ -37,6 +37,7 @@ public class PredicateMatrixControl
 			default:
 				return null;
 		}
+		//noinspection ConstantConditions
 		return new Result(table, projection0, selection0, selectionArgs0, groupBy);
 	}
 

@@ -9,6 +9,7 @@ public class QueriesLegacy
 		return queryLegacyMain(code, uriLast, projection0, selection0, selectionArgs0);
 	}
 
+	@SuppressWarnings("UnnecessaryLocalVariable")
 	public static Result queryLegacyMain(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		String table;
@@ -103,6 +104,7 @@ public class QueriesLegacy
 				final String[] table2Projection = {"wordid", "synsetid", "classid", "class", "classtag"};
 				final String[] groupByArray = {"wordid", "synsetid", "classid"};
 				projection = BaseProvider.prependProjection(projection, "GROUP_CONCAT(DISTINCT source) AS sources");
+				//noinspection ConstantConditions
 				return Utils.makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray, sortOrder, "vn");
 			}
 
@@ -118,6 +120,7 @@ public class QueriesLegacy
 				final String[] table2Projection = {"wordid", "rolesetid", "rolesetname", "rolesethead", "rolesetdescr"};
 				final String[] groupByArray = {"wordid", "synsetid", "rolesetid"};
 				projection = BaseProvider.prependProjection(projection, "GROUP_CONCAT(DISTINCT source) AS sources");
+				//noinspection ConstantConditions
 				return Utils.makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray, sortOrder, "pb");
 			}
 
@@ -136,6 +139,7 @@ public class QueriesLegacy
 				final String[] table2Projection = {"wordid", "frameid", "frame", "framedefinition", "luid", "lexunit", "ludefinition"};
 				final String[] groupByArray = {"wordid", "synsetid", "frameid"};
 				projection = BaseProvider.prependProjection(projection, "GROUP_CONCAT(DISTINCT source) AS sources");
+				//noinspection ConstantConditions
 				return Utils.makeUnionQuery(table1, table2, table1Projection, table2Projection, unionProjection, projection, selection, selectionArgs, groupByArray, sortOrder, "fn");
 			}
 
@@ -232,6 +236,7 @@ public class QueriesLegacy
 			default:
 				return null;
 		}
+		//noinspection ConstantConditions
 		return new Result(table, projection, selection, selectionArgs, groupBy, sortOrder);
 	}
 }

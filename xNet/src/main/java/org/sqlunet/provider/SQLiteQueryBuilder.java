@@ -48,7 +48,8 @@ public class SQLiteQueryBuilder
 			}
 			return projectionOut;
 		}
-		else if (mProjectionMap != null)
+		else //noinspection ConstantConditions
+			if (mProjectionMap != null)
 		{
 			// Return all columns in projection map.
 			Set<Map.Entry<String, String>> entrySet = mProjectionMap.entrySet();
@@ -88,6 +89,7 @@ public class SQLiteQueryBuilder
 	private String computeSingleProjection(String userColumn)
 	{
 		// When no mapping provided, anything goes
+		//noinspection ConstantConditions
 		if (mProjectionMap == null)
 		{
 			return userColumn;

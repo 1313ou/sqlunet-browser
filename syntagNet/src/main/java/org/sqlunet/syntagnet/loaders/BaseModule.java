@@ -202,7 +202,7 @@ abstract class BaseModule extends Module
 				makeContent(collocationId, word1, word2, word1Id, word2Id, synset1Id, synset2Id, pos1, pos2, definition1, definition2, isSingle, isTargetSecond, parent, changedList);
 
 				// sub nodes
-				//TODO
+				//TODO more node
 				//final TreeNode moreNode = TreeFactory.makeHotQueryNode("More", R.drawable.more, false, new MoreQuery(collocationId)).addTo(parent);
 				//final TreeNode more2Node = TreeFactory.makeQueryNode("More2", R.drawable.more2, false, new More2Query(collocationId)).addTo(parent);
 				//changed = TreeOp.seq(NEWMAIN, node, NEWEXTRA, moreNode, NEWEXTRA, more2Node, NEWTREE, parent);

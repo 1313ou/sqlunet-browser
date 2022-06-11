@@ -222,6 +222,7 @@ public class XNetControl
 			default:
 				return null;
 		}
+		//noinspection ConstantConditions
 		return new Result(table, projection, selection, selectionArgs, groupBy, orderBy);
 	}
 }

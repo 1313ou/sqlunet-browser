@@ -29,7 +29,6 @@ import com.android.billingclient.api.ConsumeParams;
 import com.android.billingclient.api.ProductDetails;
 import com.android.billingclient.api.ProductDetailsResponseListener;
 import com.android.billingclient.api.Purchase;
-import com.android.billingclient.api.PurchasesResponseListener;
 import com.android.billingclient.api.PurchasesUpdatedListener;
 import com.android.billingclient.api.QueryProductDetailsParams;
 import com.android.billingclient.api.QueryPurchasesParams;
@@ -407,22 +406,19 @@ public class BillingManager implements PurchasesUpdatedListener
 			assert this.client != null;
 			final long time = System.currentTimeMillis();
 
-			this.client.queryPurchasesAsync(QueryPurchasesParams.newBuilder().setProductType(BillingClient.ProductType.INAPP).build(), new PurchasesResponseListener()
-			{
-				public void onQueryPurchasesResponse(BillingResult billingResult, List<Purchase> purchasesList)
-				{
-					// Process the result
-					Log.d(TAG, "Querying inapp purchases elapsed: " + (System.currentTimeMillis() - time) + "ms");
-					Log.i(TAG, "Querying inapp purchases response: " + billingResult.getResponseCode() + " count: " + purchasesList.size());
+			this.client.queryPurchasesAsync(QueryPurchasesParams.newBuilder().setProductType(BillingClient.ProductType.INAPP).build(), (billingResult, purchasesList) -> {
 
-					if (BillingResponseCode.OK == billingResult.getResponseCode())
-					{
-						onQueryPurchasesFinished(purchasesList);
-					}
-					else
-					{
-						Log.e(TAG, "Got an error response trying to query inapp purchases. " + billingResult.getResponseCode());
-					}
+				// Process the result
+				Log.d(TAG, "Querying inapp purchases elapsed: " + (System.currentTimeMillis() - time) + "ms");
+				Log.i(TAG, "Querying inapp purchases response: " + billingResult.getResponseCode() + " count: " + purchasesList.size());
+
+				if (BillingResponseCode.OK == billingResult.getResponseCode())
+				{
+					onQueryPurchasesFinished(purchasesList);
+				}
+				else
+				{
+					Log.e(TAG, "Got an error response trying to query inapp purchases. " + billingResult.getResponseCode());
 				}
 			});
 		});

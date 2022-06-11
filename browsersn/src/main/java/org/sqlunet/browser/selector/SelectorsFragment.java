@@ -411,6 +411,7 @@ public class SelectorsFragment extends ListFragment
 				// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
 				for (Listener listener : this.listeners)
 				{
+					//noinspection ConstantConditions
 					listener.onItemSelected(pointer, this.word, cased, pronunciation, pos);
 				}
 			}

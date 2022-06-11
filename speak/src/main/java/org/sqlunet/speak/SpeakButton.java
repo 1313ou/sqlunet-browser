@@ -1,13 +1,18 @@
 package org.sqlunet.speak;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ClickableSpan;
 import android.text.style.DynamicDrawableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
+import android.util.TypedValue;
 import android.view.View;
 
+import androidx.annotation.AttrRes;
+import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -81,6 +86,15 @@ public class SpeakButton
 				listener.run();
 			}
 		};
-		appendImageSpans(sb, caption, span, span2);
+		appendImageSpans(sb, caption, span, span2, new ForegroundColorSpan(fetchColor(context, R.attr.colorHighlight2OnBackground)));
+	}
+
+	@ColorInt
+	static private int fetchColor(@NonNull final Context context, @AttrRes int attr)
+	{
+		final TypedValue typedValue = new TypedValue();
+		final Resources.Theme theme = context.getTheme();
+		theme.resolveAttribute(attr, typedValue, true);
+		return typedValue.data;
 	}
 }
