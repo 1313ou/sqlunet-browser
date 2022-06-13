@@ -67,6 +67,10 @@ dependencies {
     // local unit tests (JUnit 4 framework)
 
     // instrumented tests
+    androidTestImplementation project(path: ':common')
+    androidTestImplementation project(path: ':xNet')
+    androidTestImplementation project(path: ':wordNet')
+    androidTestImplementation project(path: ':bNC')
     androidTestImplementation project(path: ':browserwncommon')
     androidTestImplementation project(path: ':test')
     androidTestImplementation project(path: ':nightmode')
