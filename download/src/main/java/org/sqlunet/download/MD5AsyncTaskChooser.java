@@ -76,7 +76,7 @@ public class MD5AsyncTaskChooser
 			{
 				continue;
 			}
-			final File[] files = dir.listFiles((dir1, name) -> name.matches(".*\\.zip"));
+			final File[] files = dir.listFiles((dir1, name) -> name.matches(".*\\.zip") || name.matches(".*\\.db"));
 			if (files == null)
 			{
 				continue;
@@ -105,7 +105,7 @@ public class MD5AsyncTaskChooser
 			{
 				continue;
 			}
-			final File[] files = dir.listFiles((dir1, name) -> name.matches(".*\\.zip"));
+			final File[] files = dir.listFiles((dir1, name) -> name.matches(".*\\.zip") || name.matches(".*\\.db"));
 			if (files == null)
 			{
 				continue;
