@@ -58,7 +58,7 @@
 	<string name="info_op_drop_database">Drop the database</string>
 	<string name="info_op_execute_import">Execute the import/insert statements to populate the database</string>
 	<string name="info_op_execute_indexes">Execute the indexing statements to speed up queries</string>
-	<string name="info_op_copy_database">Copy the database file</string>
+	<string name="info_op_copy_database">Copy the database file from cache</string>
 	<string name="info_op_unzip_database">Unzip the database file</string>
 	<string name="info_op_download_zipped_database">Download the zipped database file</string>
 	<string name="info_op_md5">Compute the MD5 checksum of file</string>

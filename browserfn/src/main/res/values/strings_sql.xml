@@ -20,56 +20,179 @@
 		<item/>
 		<item>
 			<!-- framenet -->
-			CREATE INDEX IF NOT EXISTS `k_fn_words_wordid` ON `fn_words`(`wordid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_lexunits_governors` ON `fn_lexunits_governors` (`luid`,`governorid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_lexunits` ON `fn_lexunits` (`luid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_lexunits_semtypes` ON `fn_lexunits_semtypes` (`luid`,`semtypeid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_lexemes` ON `fn_lexemes` (`lexemeid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_lexemes_fnwordid` ON `fn_lexemes`(`fnwordid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_frames` ON `fn_frames` (`frameid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_framerelations` ON `fn_framerelations` (`relationid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_frames_related` ON `fn_frames_related` (`frameid`,`frame2id`,`relationid`);
 			CREATE INDEX IF NOT EXISTS `k_fn_frames_related_frameid` ON `fn_frames_related`(`frameid`);
 			CREATE INDEX IF NOT EXISTS `k_fn_frames_related_frame2id` ON `fn_frames_related`(`frame2id`);
-			CREATE INDEX IF NOT EXISTS `k_fn_lexemes_fnwordid` ON `fn_lexemes`(`fnwordid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_frames_semtypes` ON `fn_frames_semtypes` (`frameid`,`semtypeid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_fes_excluded` ON `fn_fes_excluded` (`feid`,`fe2id`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_fes_required` ON `fn_fes_required` (`feid`,`fe2id`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_fes` ON `fn_fes` (`feid`);
 			CREATE INDEX IF NOT EXISTS `k_fn_fes_frameid` ON `fn_fes`(`frameid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_fes_semtypes` ON `fn_fes_semtypes` (`feid`,`semtypeid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_fes_fegrouprealizations` ON `fn_fes_fegrouprealizations` (`feid`,`fetypeid`,`fegrid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_poses` ON `fn_poses` (`posid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_coretypes` ON `fn_coretypes` (`coretypeid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_fetypes` ON `fn_fetypes` (`fetypeid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_semtypes` ON `fn_semtypes` (`semtypeid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_layertypes` ON `fn_layertypes` (`layertypeid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_labeltypes` ON `fn_labeltypes` (`labeltypeid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_labelitypes` ON `fn_labelitypes` (`labelitypeid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_pttypes` ON `fn_pttypes` (`ptid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_gftypes` ON `fn_gftypes` (`gfid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_governors` ON `fn_governors` (`governorid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_annosets` ON `fn_annosets` (`annosetid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_annosets_sentenceid` ON `fn_annosets` (`sentenceid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_sentences` ON `fn_sentences` (`sentenceid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_valenceunits` ON `fn_valenceunits` (`vuid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_layers` ON `fn_layers` (`layerid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_layers_annosetid` ON `fn_layers` (`annosetid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_labels` ON `fn_labels` (`labelid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_labels_layerid` ON `fn_labels`(`layerid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_semtypes_supers` ON `fn_semtypes_supers` (`semtypeid`,`supersemtypeid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_corpuses` ON `fn_corpuses` (`corpusid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_documents` ON `fn_documents` (`documentid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_subcorpuses` ON `fn_subcorpuses` (`subcorpusid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_subcorpuses_luid` ON `fn_subcorpuses` (`luid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_subcorpuses_sentences` ON `fn_subcorpuses_sentences` (`subcorpusid`,`sentenceid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_ferealizations` ON `fn_ferealizations` (`ferid`);
 			CREATE INDEX IF NOT EXISTS `k_fn_ferealizations_luid` ON `fn_ferealizations`(`luid`);
-			CREATE INDEX IF NOT EXISTS `k_fn_valenceunits_ferid` ON `fn_valenceunits`(`ferid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_ferealizations_valenceunits_ferid` ON `fn_ferealizations_valenceunits`(`ferid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_ferealizations_valenceunits_vuid` ON `fn_ferealizations_valenceunits`(`vuid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_fegrouprealizations` ON `fn_fegrouprealizations` (`fegrid`);
 			CREATE INDEX IF NOT EXISTS `k_fn_fegrouprealizations_luid` ON `fn_fegrouprealizations`(`luid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_grouppatterns` ON `fn_grouppatterns` (`patternid`);
 			CREATE INDEX IF NOT EXISTS `k_fn_grouppatterns_patterns_patternid` ON `fn_grouppatterns_patterns`(`patternid`);
 			CREATE INDEX IF NOT EXISTS `k_fn_grouppatterns_fegrid` ON `fn_grouppatterns`(`fegrid`);
-			CREATE INDEX IF NOT EXISTS `k_fn_subcorpuses_luid` ON `fn_subcorpuses`(`luid`);
-			CREATE INDEX IF NOT EXISTS `k_fn_annosets_sentenceid` ON `fn_annosets`(`sentenceid`);
-			CREATE INDEX IF NOT EXISTS `k_fn_layers_annosetid` ON `fn_layers` (`annosetid`);
-			CREATE INDEX IF NOT EXISTS `k_fn_labels_layerid` ON `fn_labels`(`layerid`);</item>
+			CREATE INDEX IF NOT EXISTS `pk_fn_grouppatterns_annosets` ON `fn_grouppatterns_annosets` (`patternid`,`annosetid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_governors_annosets` ON `fn_governors_annosets` (`governorid`,`annosetid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_valenceunits_annosets` ON `fn_valenceunits_annosets` (`vuid`,`annosetid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_valenceunits_vuid` ON `fn_valenceunits`(`vuid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_words` ON `fn_words` (`fnwordid`);</item>
 		<item>
 			<!-- framenet text search-->
 			CREATE VIRTUAL TABLE IF NOT EXISTS `fn_sentences_text_fts4` USING fts4(`sentenceid` INTEGER NOT NULL, `annosetid` INTEGER, `frameid` INTEGER, `luid` INTEGER, `text`);
 			INSERT INTO `fn_sentences_text_fts4` SELECT `sentenceid`, `annosetid`, `f`.`frameid`, `luid`, `text` FROM `fn_sentences` INNER JOIN `fn_annosets` USING (`sentenceid`) LEFT JOIN `fn_frames` AS `f` USING (`frameid`) LEFT JOIN `fn_lexunits` AS `l` USING (`luid`) WHERE `f`.`frameid` IS NOT NULL;</item>
 		<item>
 			<!-- framenet -->
-			CREATE INDEX IF NOT EXISTS `k_fn_words_wordid` ON `fn_words`(`wordid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_lexunits_governors` ON `fn_lexunits_governors` (`luid`,`governorid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_lexunits` ON `fn_lexunits` (`luid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_lexunits_semtypes` ON `fn_lexunits_semtypes` (`luid`,`semtypeid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_lexemes` ON `fn_lexemes` (`lexemeid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_lexemes_fnwordid` ON `fn_lexemes`(`fnwordid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_frames` ON `fn_frames` (`frameid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_framerelations` ON `fn_framerelations` (`relationid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_frames_related` ON `fn_frames_related` (`frameid`,`frame2id`,`relationid`);
 			CREATE INDEX IF NOT EXISTS `k_fn_frames_related_frameid` ON `fn_frames_related`(`frameid`);
 			CREATE INDEX IF NOT EXISTS `k_fn_frames_related_frame2id` ON `fn_frames_related`(`frame2id`);
-			CREATE INDEX IF NOT EXISTS `k_fn_lexemes_fnwordid` ON `fn_lexemes`(`fnwordid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_frames_semtypes` ON `fn_frames_semtypes` (`frameid`,`semtypeid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_fes_excluded` ON `fn_fes_excluded` (`feid`,`fe2id`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_fes_required` ON `fn_fes_required` (`feid`,`fe2id`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_fes` ON `fn_fes` (`feid`);
 			CREATE INDEX IF NOT EXISTS `k_fn_fes_frameid` ON `fn_fes`(`frameid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_fes_semtypes` ON `fn_fes_semtypes` (`feid`,`semtypeid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_fes_fegrouprealizations` ON `fn_fes_fegrouprealizations` (`feid`,`fetypeid`,`fegrid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_poses` ON `fn_poses` (`posid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_coretypes` ON `fn_coretypes` (`coretypeid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_fetypes` ON `fn_fetypes` (`fetypeid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_semtypes` ON `fn_semtypes` (`semtypeid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_layertypes` ON `fn_layertypes` (`layertypeid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_labeltypes` ON `fn_labeltypes` (`labeltypeid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_labelitypes` ON `fn_labelitypes` (`labelitypeid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_pttypes` ON `fn_pttypes` (`ptid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_gftypes` ON `fn_gftypes` (`gfid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_governors` ON `fn_governors` (`governorid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_annosets` ON `fn_annosets` (`annosetid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_annosets_sentenceid` ON `fn_annosets` (`sentenceid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_sentences` ON `fn_sentences` (`sentenceid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_valenceunits` ON `fn_valenceunits` (`vuid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_layers` ON `fn_layers` (`layerid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_layers_annosetid` ON `fn_layers` (`annosetid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_labels` ON `fn_labels` (`labelid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_labels_layerid` ON `fn_labels`(`layerid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_semtypes_supers` ON `fn_semtypes_supers` (`semtypeid`,`supersemtypeid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_corpuses` ON `fn_corpuses` (`corpusid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_documents` ON `fn_documents` (`documentid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_subcorpuses` ON `fn_subcorpuses` (`subcorpusid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_subcorpuses_luid` ON `fn_subcorpuses` (`luid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_subcorpuses_sentences` ON `fn_subcorpuses_sentences` (`subcorpusid`,`sentenceid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_ferealizations` ON `fn_ferealizations` (`ferid`);
 			CREATE INDEX IF NOT EXISTS `k_fn_ferealizations_luid` ON `fn_ferealizations`(`luid`);
-			CREATE INDEX IF NOT EXISTS `k_fn_valenceunits_ferid` ON `fn_valenceunits`(`ferid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_ferealizations_valenceunits_ferid` ON `fn_ferealizations_valenceunits`(`ferid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_ferealizations_valenceunits_vuid` ON `fn_ferealizations_valenceunits`(`vuid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_fegrouprealizations` ON `fn_fegrouprealizations` (`fegrid`);
 			CREATE INDEX IF NOT EXISTS `k_fn_fegrouprealizations_luid` ON `fn_fegrouprealizations`(`luid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_grouppatterns` ON `fn_grouppatterns` (`patternid`);
 			CREATE INDEX IF NOT EXISTS `k_fn_grouppatterns_patterns_patternid` ON `fn_grouppatterns_patterns`(`patternid`);
 			CREATE INDEX IF NOT EXISTS `k_fn_grouppatterns_fegrid` ON `fn_grouppatterns`(`fegrid`);
-			CREATE INDEX IF NOT EXISTS `k_fn_subcorpuses_luid` ON `fn_subcorpuses`(`luid`);
-			CREATE INDEX IF NOT EXISTS `k_fn_annosets_sentenceid` ON `fn_annosets`(`sentenceid`);
-			CREATE INDEX IF NOT EXISTS `k_fn_layers_annosetid` ON `fn_layers` (`annosetid`);
-			CREATE INDEX IF NOT EXISTS `k_fn_labels_layerid` ON `fn_labels`(`layerid`);</item>
+			CREATE INDEX IF NOT EXISTS `pk_fn_grouppatterns_annosets` ON `fn_grouppatterns_annosets` (`patternid`,`annosetid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_governors_annosets` ON `fn_governors_annosets` (`governorid`,`annosetid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_valenceunits_annosets` ON `fn_valenceunits_annosets` (`vuid`,`annosetid`);
+			CREATE INDEX IF NOT EXISTS `k_fn_valenceunits_vuid` ON `fn_valenceunits`(`vuid`);
+			CREATE INDEX IF NOT EXISTS `pk_fn_words` ON `fn_words` (`fnwordid`);</item>
 		<item>
 			<!-- drop framenet indexes -->
-			DROP INDEX IF EXISTS `k_fn_words_wordid`;
+			DROP INDEX IF EXISTS `pk_fn_lexunits_governors`;
+			DROP INDEX IF EXISTS `pk_fn_lexunits`;
+			DROP INDEX IF EXISTS `pk_fn_lexunits_semtypes`;
+			DROP INDEX IF EXISTS `pk_fn_lexemes`;
+			DROP INDEX IF EXISTS `k_fn_lexemes_fnwordid`;
+			DROP INDEX IF EXISTS `pk_fn_frames`;
+			DROP INDEX IF EXISTS `pk_fn_framerelations`;
+			DROP INDEX IF EXISTS `pk_fn_frames_related`;
 			DROP INDEX IF EXISTS `k_fn_frames_related_frameid`;
 			DROP INDEX IF EXISTS `k_fn_frames_related_frame2id`;
-			DROP INDEX IF EXISTS `k_fn_lexemes_fnwordid`;
+			DROP INDEX IF EXISTS `pk_fn_frames_semtypes`;
+			DROP INDEX IF EXISTS `pk_fn_fes_excluded`;
+			DROP INDEX IF EXISTS `pk_fn_fes_required`;
+			DROP INDEX IF EXISTS `pk_fn_fes`;
 			DROP INDEX IF EXISTS `k_fn_fes_frameid`;
+			DROP INDEX IF EXISTS `pk_fn_fes_semtypes`;
+			DROP INDEX IF EXISTS `pk_fn_fes_fegrouprealizations`;
+			DROP INDEX IF EXISTS `pk_fn_poses`;
+			DROP INDEX IF EXISTS `pk_fn_coretypes`;
+			DROP INDEX IF EXISTS `pk_fn_fetypes`;
+			DROP INDEX IF EXISTS `pk_fn_semtypes`;
+			DROP INDEX IF EXISTS `pk_fn_layertypes`;
+			DROP INDEX IF EXISTS `pk_fn_labeltypes`;
+			DROP INDEX IF EXISTS `pk_fn_labelitypes`;
+			DROP INDEX IF EXISTS `pk_fn_pttypes`;
+			DROP INDEX IF EXISTS `pk_fn_gftypes`;
+			DROP INDEX IF EXISTS `pk_fn_governors`;
+			DROP INDEX IF EXISTS `pk_fn_annosets`;
+			DROP INDEX IF EXISTS `k_fn_annosets_sentenceid`;
+			DROP INDEX IF EXISTS `pk_fn_sentences`;
+			DROP INDEX IF EXISTS `pk_fn_valenceunits`;
+			DROP INDEX IF EXISTS `pk_fn_layers`;
+			DROP INDEX IF EXISTS `k_fn_layers_annosetid`;
+			DROP INDEX IF EXISTS `pk_fn_labels`;
+			DROP INDEX IF EXISTS `k_fn_labels_layerid`;
+			DROP INDEX IF EXISTS `pk_fn_semtypes_supers`;
+			DROP INDEX IF EXISTS `pk_fn_corpuses`;
+			DROP INDEX IF EXISTS `pk_fn_documents`;
+			DROP INDEX IF EXISTS `pk_fn_subcorpuses`;
+			DROP INDEX IF EXISTS `k_fn_subcorpuses_luid`;
+			DROP INDEX IF EXISTS `pk_fn_subcorpuses_sentences`;
+			DROP INDEX IF EXISTS `pk_fn_ferealizations`;
 			DROP INDEX IF EXISTS `k_fn_ferealizations_luid`;
-			DROP INDEX IF EXISTS `k_fn_valenceunits_ferid`;
+			DROP INDEX IF EXISTS `k_fn_ferealizations_valenceunits_ferid`;
+			DROP INDEX IF EXISTS `k_fn_ferealizations_valenceunits_vuid`;
+			DROP INDEX IF EXISTS `pk_fn_fegrouprealizations`;
 			DROP INDEX IF EXISTS `k_fn_fegrouprealizations_luid`;
+			DROP INDEX IF EXISTS `pk_fn_grouppatterns`;
 			DROP INDEX IF EXISTS `k_fn_grouppatterns_patterns_patternid`;
 			DROP INDEX IF EXISTS `k_fn_grouppatterns_fegrid`;
-			DROP INDEX IF EXISTS `k_fn_subcorpuses_luid`;
-			DROP INDEX IF EXISTS `k_fn_annosets_sentenceid`;
-			DROP INDEX IF EXISTS `k_fn_layers_annosetid`;
-			DROP INDEX IF EXISTS `k_fn_labels_layerid`;</item>
+			DROP INDEX IF EXISTS `pk_fn_grouppatterns_annosets`;
+			DROP INDEX IF EXISTS `pk_fn_governors_annosets`;
+			DROP INDEX IF EXISTS `pk_fn_valenceunits_annosets`;
+			DROP INDEX IF EXISTS `k_fn_valenceunits_vuid`;
+			DROP INDEX IF EXISTS `pk_fn_words`;</item>
 		<item>
 			<!-- drop framenet text search -->
 			DROP TABLE IF EXISTS `fn_sentences_text_fts4`;</item>
