@@ -578,7 +578,8 @@ public class ExecAsyncTask
 			try (SQLiteDatabase db = SQLiteDatabase.openDatabase(dataBase, null, SQLiteDatabase.CREATE_IF_NECESSARY))
 			{
 				try ( //
-				      ZipInputStream zis = (ZipInputStream) resolver.openInputStream(archiveArg); //
+				      InputStream is = resolver.openInputStream(archiveArg); //
+				      ZipInputStream zis = new ZipInputStream(is); //
 				      InputStreamReader isr = new InputStreamReader(zis); BufferedReader reader = new BufferedReader(isr) //
 				)
 				{
