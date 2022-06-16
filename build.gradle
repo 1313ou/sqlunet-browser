@@ -23,8 +23,8 @@ allprojects {
         versionCode = 98
         versionName = '2.98'
         minSdkVersion = 17
-        targetSdkVersion = 30
-        compileSdkVersion = 31
+        targetSdkVersion = 32
+        compileSdkVersion = 32
         lifecycleVersion = '2.2.0'
         navVersion = '2.4.2'
     }

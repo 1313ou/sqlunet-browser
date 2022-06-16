@@ -85,7 +85,7 @@ public class SettingsActivity extends BaseSettingsActivity
 	@SuppressWarnings("SameReturnValue")
 	static private void populateStorageListPreference(@NonNull final Context context, @NonNull final ListPreference listPref)
 	{
-		final Pair<CharSequence[], CharSequence[]> namesValues = StorageReports.getStyledStorageDirectoriesNamesValues(context);
+		final Pair<CharSequence[], CharSequence[]> namesValues = StorageReports.getStyledStoragesNamesValues(context);
 
 		CharSequence[] entries = namesValues.first;
 		CharSequence[] entryValues = namesValues.second;

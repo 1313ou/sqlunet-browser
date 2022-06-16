@@ -92,6 +92,16 @@ public class StorageUtils
 			}
 			throw new IllegalArgumentException(this.toString());
 		}
+
+		@NonNull
+		public String toShortDisplay()
+		{
+			if (this.equals(AUTO))
+			{
+				return "auto";
+			}
+			return toDisplay();
+		}
 	}
 
 	static public boolean isAuto(final String value)
@@ -126,6 +136,12 @@ public class StorageUtils
 		}
 
 		@NonNull
+		CharSequence getFSValue()
+		{
+			return this.file.getAbsolutePath();
+		}
+
+		@NonNull
 		CharSequence getValue()
 		{
 			if (DirType.AUTO == this.type)
@@ -136,7 +152,7 @@ public class StorageUtils
 		}
 
 		@NonNull
-		CharSequence getExpandedValue()
+		CharSequence getTaggedValue()
 		{
 			if (DirType.AUTO == this.type)
 			{
@@ -407,28 +423,28 @@ public class StorageUtils
 		// P U B L I C
 
 		// top-level public external storage directory
-//		try
-//		{
-//			dir = Environment.getExternalStoragePublicDirectory(Storage.SQLUNETDIR);
-//			result.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY));
-//		}
-//		catch (@NonNull final Throwable e)
-//		{
-//			// top-level public in external
-//			try
-//			{
-//				final File storage = Environment.getExternalStorageDirectory();
-//				if (storage != null)
-//				{
-//					dir = new File(storage, Storage.SQLUNETDIR);
-//					result.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY));
-//				}
-//			}
-//			catch (@NonNull final Throwable e2)
-//			{
-//				//
-//			}
-//		}
+		//		try
+		//		{
+		//			dir = Environment.getExternalStoragePublicDirectory(Storage.SQLUNETDIR);
+		//			result.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY));
+		//		}
+		//		catch (@NonNull final Throwable e)
+		//		{
+		//			// top-level public in external
+		//			try
+		//			{
+		//				final File storage = Environment.getExternalStorageDirectory();
+		//				if (storage != null)
+		//				{
+		//					dir = new File(storage, Storage.SQLUNETDIR);
+		//					result.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY));
+		//				}
+		//			}
+		//			catch (@NonNull final Throwable e2)
+		//			{
+		//				//
+		//			}
+		//		}
 
 		// top-level public external secondary storage directory: not accessible to apps
 

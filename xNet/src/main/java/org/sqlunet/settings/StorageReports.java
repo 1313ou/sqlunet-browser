@@ -27,6 +27,7 @@ import org.sqlunet.xnet.R;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -61,7 +62,7 @@ public class StorageReports
 		Spanner.appendWithSpans(sb, ' ' + dir.dir.getType().toDisplay() + ' ', new BackgroundColorSpan(Colors.dirTypeBackColor), new ForegroundColorSpan(Colors.dirTypeForeColor), new RelativeSizeSpan(ENLARGE));
 		sb.append('\n');
 		// value
-		Spanner.appendWithSpans(sb, dir.dir.getExpandedValue(), Factories.spans(Colors.dirValueBackColor, Colors.dirValueForeColor, new StyleSpan(Typeface.ITALIC)));
+		Spanner.appendWithSpans(sb, dir.dir.getTaggedValue(), Factories.spans(Colors.dirValueBackColor, Colors.dirValueForeColor, new StyleSpan(Typeface.ITALIC)));
 		sb.append('\n');
 		// status
 		final boolean suitable = dir.status == 0 && dir.fitsIn(context);
@@ -143,7 +144,7 @@ public class StorageReports
 	 * @return pair of names and values
 	 */
 	@NonNull
-	static public Pair<CharSequence[], CharSequence[]> getStyledStorageDirectoriesNamesValues(@NonNull final Context context)
+	static public Pair<CharSequence[], CharSequence[]> getXStyledStorageDirectoriesNamesValues(@NonNull final Context context)
 	{
 		final List<CharSequence> names = new ArrayList<>();
 		final List<CharSequence> values = new ArrayList<>();
@@ -171,7 +172,7 @@ public class StorageReports
 	 * @return pair of names and values
 	 */
 	@NonNull
-	static public Pair<CharSequence[], CharSequence[]> getStorageDirectoriesNamesValues(@NonNull final Context context)
+	static public Pair<CharSequence[], CharSequence[]> getStyledStoragesNamesValues(@NonNull final Context context)
 	{
 		final List<CharSequence> names = new ArrayList<>();
 		final List<CharSequence> values = new ArrayList<>();
@@ -199,22 +200,34 @@ public class StorageReports
 	 * @return pair of names and values
 	 */
 	@NonNull
-	static public Pair<CharSequence[], CharSequence[]> get2StorageDirectoriesNamesValues(@NonNull final Context context)
+	static public Pair<CharSequence[], CharSequence[]> getStyledStorageDirectoriesNamesValues(@NonNull final Context context)
 	{
 		final List<CharSequence> names = new ArrayList<>();
 		final List<CharSequence> values = new ArrayList<>();
 		final List<StorageDirectory> dirs = StorageUtils.getSortedStorageDirectories(context);
+
+		int i = 1;
 		for (StorageDirectory dir : dirs)
 		{
-			if (dir.status != 0)
+			if (dir == null)
 			{
 				continue;
 			}
-			// name
-			names.add(dir.toShortString());
-
-			// value
-			values.add(dir.dir.getValue());
+			SpannableStringBuilder name = new SpannableStringBuilder();
+			CharSequence value;
+			DirType type = dir.dir.getType();
+			if (type.equals(DirType.AUTO) || type.equals(DirType.APP_INTERNAL))
+			{
+				value = dir.dir.getFSValue();
+				Report.appendHeader(name, "Files").append(' ').append(type.toShortDisplay()).append(' ').append(StorageUtils.storageFreeAsString(value.toString())).append('\n').append(value);
+			}
+			else
+			{
+				value = dir.dir.getValue();
+				Report.appendHeader(name, "External files[" + i++ + "]").append(' ').append(type.toDisplay()).append(' ').append(StorageUtils.storageFreeAsString(value.toString())).append('\n').append(value);
+			}
+			names.add(name);
+			values.add(value);
 		}
 		return new Pair<>(names.toArray(new CharSequence[0]), values.toArray(new CharSequence[0]));
 	}
@@ -259,16 +272,53 @@ public class StorageReports
 			values.add(value);
 		}
 
-		// public download
-//		dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-//		if (dir != null)
-//		{
-//			value = dir.getAbsolutePath();
-//			name = new SpannableStringBuilder();
-//			Report.appendHeader(name, "Download").append(' ').append(StorageUtils.storageFreeAsString(value.toString())).append('\n').append(value);
-//			names.add(name);
-//			values.add(value);
-//		}
+		// convert to array
+		final CharSequence[] entries = names.toArray(new CharSequence[0]);
+		final CharSequence[] entryValues = values.toArray(new CharSequence[0]);
+
+		return new Pair<>(entries, entryValues);
+	}
+
+	/**
+	 * Get download directories as names and values
+	 *
+	 * @param context context
+	 * @return pair of names and values
+	 */
+	@NonNull
+	static public Pair<CharSequence[], CharSequence[]> getStyledDownloadNamesValues(@NonNull final Context context)
+	{
+		final List<CharSequence> names = new ArrayList<>();
+		final List<CharSequence> values = new ArrayList<>();
+		SpannableStringBuilder name;
+		CharSequence value;
+
+		List<File> dirs = new ArrayList<>();
+		dirs.add(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS));
+		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT)
+		{
+			dirs.addAll(Arrays.asList(context.getExternalFilesDirs(Environment.DIRECTORY_DOWNLOADS)));
+		}
+		else
+		{
+			dirs.add(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS));
+		}
+		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP)
+		{
+			dirs.addAll(Arrays.asList(context.getExternalMediaDirs()));
+		}
+
+		for (File dir : dirs)
+		{
+			if (dir != null)
+			{
+				value = dir.getAbsolutePath();
+				name = new SpannableStringBuilder();
+				Report.appendHeader(name, "Download").append(' ').append(StorageUtils.storageFreeAsString(value.toString())).append('\n').append(value);
+				names.add(name);
+				values.add(value);
+			}
+		}
 
 		// convert to array
 		final CharSequence[] entries = names.toArray(new CharSequence[0]);
@@ -410,6 +460,24 @@ public class StorageReports
 	}
 
 	// S T Y L E D   R E P O R T S
+
+	@SafeVarargs
+	@NonNull
+	static public CharSequence namesValuesToReportStyled(final Pair<CharSequence[], CharSequence[]>... directories)
+	{
+		@SuppressWarnings("TypeMayBeWeakened") final SpannableStringBuilder sb = new SpannableStringBuilder();
+		for (Pair<CharSequence[], CharSequence[]> namesValues : directories)
+		{
+			final CharSequence[] names = namesValues.first;
+			for (CharSequence name : names)
+			{
+				sb.append(name);
+				sb.append('\n');
+			}
+			sb.append('\n');
+		}
+		return sb;
+	}
 
 	/**
 	 * Report on storage dirs
@@ -555,6 +623,7 @@ public class StorageReports
 		appendDir(sb, "files dir", context.getFilesDir());
 		appendDir(sb, "cache dir", context.getCacheDir());
 		appendDir(sb, "obb dir", context.getObbDir());
+		sb.append('\n');
 
 		// external files
 		int i = 1;

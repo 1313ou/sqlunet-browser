@@ -40,7 +40,10 @@
 	<!-- database info -->
 	<string name="action_tables_and_indices">Tables and Indices</string>
 	<!-- file info -->
+	<string name="action_dirs">Directories</string>
 	<string name="action_storage_dirs">Storage dirs</string>
+	<string name="action_cache_dirs">Cache dirs</string>
+	<string name="action_download_dirs">Download dirs</string>
 	<string name="action_storage">Storage</string>
 	<string name="action_md5">MD5</string>
 	<string name="action_md5_of">MD5 of</string>
@@ -88,6 +91,7 @@
 	<string name="title_activity_load">Load</string>
 	<string name="title_activity_download">Download</string>
 	<string name="title_activity_assetload">Asset load</string>
+	<string name="title_activity_operation">Operation</string>
 	<string name="title_activity_selector">Select</string>
 	<string name="title_activity_browse2">Data</string>
 	<string name="title_activity_table">Table</string>

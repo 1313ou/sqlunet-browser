@@ -158,7 +158,7 @@ public class FileAsyncTaskChooser
 			{
 				return;
 			}
-			FileAsyncTask.launchMd5(activity, sourceFile);
+			FileAsyncTask.launchMd5(activity, sourceFile, null);
 		});
 		alert.setNegativeButton(R.string.action_cancel, (dialog, whichButton) -> {
 			// canceled.

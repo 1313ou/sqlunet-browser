@@ -119,7 +119,7 @@ abstract public class BaseDownloadFragment extends AbstractDownloadFragment
 		};
 
 		// unzip as base task
-		final Task<String, Number, Boolean> baseTask = new FileAsyncTask(observer, null, 1000).unzipFromArchive();
+		final Task<String, Number, Boolean> baseTask = new FileAsyncTask(observer, null, 1000).unzipFromArchiveFile(this.unzipDir.getAbsolutePath());
 
 		// run task
 		final Activity activity = getActivity();
@@ -135,7 +135,7 @@ abstract public class BaseDownloadFragment extends AbstractDownloadFragment
 					.setTitle(this.appContext.getString(R.string.action_unzip_from_archive)) //
 					.setMessage(this.downloadedFile.getName());
 			final Task<String, Number, Boolean> task = new ObservedDelegatingTask<>(baseTask, fatObserver);
-			task.execute(this.downloadedFile.getAbsolutePath(), this.unzipDir.getAbsolutePath());
+			task.execute(this.downloadedFile.getAbsolutePath());
 		}
 	}
 

@@ -5,6 +5,7 @@
 package org.sqlunet.download;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.text.SpannableStringBuilder;
 import android.util.Pair;
 import android.widget.RadioButton;
@@ -18,6 +19,7 @@ import org.sqlunet.concurrency.TaskObserver;
 
 import java.io.File;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
@@ -53,74 +55,46 @@ public class MD5AsyncTaskChooser
 	/**
 	 * MD5 from selected file in one of storage directories or caches
 	 *
-	 * @param activity activity
+	 * @param directories directory names-values array
 	 */
-	static public void md5(@NonNull final FragmentActivity activity)
+	static public void md5(@NonNull final FragmentActivity activity, final Pair<CharSequence[], CharSequence[]>... directories)
 	{
-		final Pair<CharSequence[], CharSequence[]> result = StorageReports.getStyledCachesNamesValues(activity);
-		final CharSequence[] names = result.first;
-		final CharSequence[] values = result.second;
-		final Pair<CharSequence[], CharSequence[]> result2 = StorageReports.getStorageDirectoriesNamesValues(activity);
-		final CharSequence[] names2 = result2.first;
-		final CharSequence[] values2 = result2.second;
-
 		int candidateCount = 0;
 		final RadioGroup input = new RadioGroup(activity);
-		for (int i = 0; i < names.length && i < values.length; i++)
+
+		for (Pair<CharSequence[], CharSequence[]> namesValues : directories)
 		{
-			//final CharSequence name = names[i];
-			final CharSequence value = values[i];
-			final String dirValue = value.toString();
-			final File dir = new File(dirValue);
-			if (!dir.exists())
+			final CharSequence[] names = namesValues.first;
+			final CharSequence[] values = namesValues.second;
+			for (int i = 0; i < names.length && i < values.length; i++)
 			{
-				continue;
-			}
-			final File[] files = dir.listFiles((dir1, name) -> name.matches(".*\\.zip") || name.matches(".*\\.db"));
-			if (files == null)
-			{
-				continue;
-			}
-			for (File file : files)
-			{
-				if (file.exists())
+				//final CharSequence name = names[i];
+				final CharSequence value = values[i];
+				final String dirValue = value.toString();
+				final File dir = new File(dirValue);
+				if (!dir.exists())
 				{
-					//final SpannableStringBuilder sb = new SpannableStringBuilder();
-					//Report.appendHeader(sb, name.toString().split("\n")[0]).append('\n').append(file.getAbsolutePath());
-					final RadioButton radioButton = new RadioButton(activity);
-					radioButton.setText(file.getAbsolutePath());
-					radioButton.setTag(file.getAbsolutePath());
-					input.addView(radioButton);
-					candidateCount++;
+					continue;
 				}
-			}
-		}
-		for (int i = 0; i < names2.length && i < values2.length; i++)
-		{
-			//final CharSequence name = names2[i];
-			final CharSequence value = values2[i];
-			final String dirValue = value.toString();
-			final File dir = new File(dirValue);
-			if (!dir.exists())
-			{
-				continue;
-			}
-			final File[] files = dir.listFiles((dir1, name) -> name.matches(".*\\.zip") || name.matches(".*\\.db"));
-			if (files == null)
-			{
-				continue;
-			}
-			for (File file : files)
-			{
-				if (file.exists())
+				//final File[] files = dir.listFiles((dir1, name) -> name.matches(".*\\.zip") || name.matches(".*\\.db"));
+				//final File[] files = dir.listFiles((dir1, name) -> !new File(dir1, name).isDirectory());
+				final File[] files = dir.listFiles();
+				if (files == null)
 				{
-					//final SpannableStringBuilder sb = new SpannableStringBuilder();
-					//Report.appendHeader(sb, name.toString().split("\n")[0]).append('\n').append(file.getAbsolutePath());
-					final RadioButton radioButton = new RadioButton(activity);
-					radioButton.setText(file.getAbsolutePath());
-					radioButton.setTag(file.getAbsolutePath());
-					input.addView(radioButton);
-					candidateCount++;
+					continue;
+				}
+				for (File file : files)
+				{
+					if (file.exists())
+					{
+						//final SpannableStringBuilder sb = new SpannableStringBuilder();
+						//Report.appendHeader(sb, name.toString().split("\n")[0]).append('\n').append(file.getAbsolutePath());
+						final RadioButton radioButton = new RadioButton(activity);
+						radioButton.setText(file.getAbsolutePath());
+						radioButton.setTag(file.getAbsolutePath());
+						input.addView(radioButton);
+						candidateCount++;
+					}
 				}
 			}
 		}

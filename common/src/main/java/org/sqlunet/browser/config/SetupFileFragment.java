@@ -8,7 +8,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
+import android.util.Pair;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -17,10 +21,9 @@ import android.widget.SpinnerAdapter;
 import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.Info;
 import org.sqlunet.browser.common.R;
-import org.sqlunet.download.FileAsyncTaskChooser;
-import org.sqlunet.download.MD5AsyncTaskChooser;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.Storage;
+import org.sqlunet.settings.StorageReports;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
 
@@ -28,6 +31,7 @@ import java.io.File;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.FragmentActivity;
 
 import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_DOWNLOADER_ARG;
@@ -53,7 +57,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	 */
 	public enum Operation
 	{
-		CREATE, DROP, COPY, MD5, DOWNLOAD, DOWNLOADZIPPED, UPDATE;
+		CREATE, DROP, COPY, UNZIP, MD5, DOWNLOAD, DOWNLOADZIPPED, UPDATE;
 
 		/**
 		 * Spinner operations
@@ -77,6 +81,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	 */
 	public SetupFileFragment()
 	{
+		setHasOptionsMenu(true);
 		this.layoutId = R.layout.fragment_setup_file;
 	}
 
@@ -142,15 +147,27 @@ public class SetupFileFragment extends BaseTaskFragment
 					case COPY:
 						if (Permissions.check(activity))
 						{
-							FileAsyncTaskChooser.copyFromFile(activity, StorageSettings.getCacheDir(activity), StorageSettings.getDatabasePath(activity));
-							org.sqlunet.download.Settings.unrecordDb(activity);
+							final Intent intent2 = new Intent(activity, OperationActivity.class);
+							intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_COPY);
+							activity.startActivity(intent2);
+						}
+						break;
+
+					case UNZIP:
+						if (Permissions.check(activity))
+						{
+							final Intent intent2 = new Intent(activity, OperationActivity.class);
+							intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_UNZIP);
+							activity.startActivity(intent2);
 						}
 						break;
 
 					case MD5:
 						if (Permissions.check(activity))
 						{
-							MD5AsyncTaskChooser.md5(activity);
+							final Intent intent2 = new Intent(activity, OperationActivity.class);
+							intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_MD5);
+							activity.startActivity(intent2);
 						}
 						break;
 
@@ -430,5 +447,63 @@ public class SetupFileFragment extends BaseTaskFragment
 				getString(R.string.title_free), free, //
 				getString(R.string.title_status), getString(targetExists ? R.string.status_local_exists : R.string.status_local_not_exists));
 		return sb;
+	}
+
+	// M E NU
+
+	@Override
+	public void onCreateOptionsMenu(@NonNull final Menu menu, @NonNull final MenuInflater inflater)
+	{
+		inflater.inflate(R.menu.setup_file, menu);
+		super.onCreateOptionsMenu(menu, inflater);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
+	{
+		final Context context = requireContext();
+
+		// handle item selection
+		final int itemId = item.getItemId();
+		if (itemId == R.id.action_dirs)
+		{
+			final CharSequence message = StorageReports.reportStyledDirs(context);
+			new AlertDialog.Builder(context) //
+					.setTitle(R.string.action_dirs) //
+					.setMessage(message) //
+					.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
+					.show();
+		}
+		else if (itemId == R.id.action_storage_dirs)
+		{
+			final Pair<CharSequence[], CharSequence[]> dirs = StorageReports.getStyledStorageDirectoriesNamesValues(context);
+			final CharSequence message = StorageReports.namesValuesToReportStyled(dirs);
+			new AlertDialog.Builder(context) //
+					.setTitle(R.string.action_storage_dirs) //
+					.setMessage(message) //
+					.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
+					.show();
+		}
+		else if (itemId == R.id.action_cache_dirs)
+		{
+			final Pair<CharSequence[], CharSequence[]> dirs = StorageReports.getStyledCachesNamesValues(context);
+			final CharSequence message = StorageReports.namesValuesToReportStyled(dirs);
+			new AlertDialog.Builder(context) //
+					.setTitle(R.string.action_cache_dirs) //
+					.setMessage(message) //
+					.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
+					.show();
+		}
+		else if (itemId == R.id.action_download_dirs)
+		{
+			final Pair<CharSequence[], CharSequence[]> dirs = StorageReports.getStyledDownloadNamesValues(context);
+			final CharSequence message = StorageReports.namesValuesToReportStyled(dirs);
+			new AlertDialog.Builder(context) //
+					.setTitle(R.string.action_download_dirs) //
+					.setMessage(message) //
+					.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
+					.show();
+		}
+		return false;
 	}
 }

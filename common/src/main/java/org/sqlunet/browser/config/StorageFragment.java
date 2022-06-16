@@ -8,6 +8,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -120,11 +121,41 @@ public class StorageFragment extends Fragment
 
 		// handle item selection
 		final int itemId = item.getItemId();
-		if (itemId == R.id.action_storage_dirs)
+		if (itemId == R.id.action_dirs)
 		{
 			final CharSequence message = StorageReports.reportStyledDirs(context);
 			new AlertDialog.Builder(context) //
+					.setTitle(R.string.action_dirs) //
+					.setMessage(message) //
+					.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
+					.show();
+		}
+		else if (itemId == R.id.action_storage_dirs)
+		{
+			final Pair<CharSequence[], CharSequence[]> dirs = StorageReports.getStyledStorageDirectoriesNamesValues(context);
+			final CharSequence message = StorageReports.namesValuesToReportStyled(dirs);
+			new AlertDialog.Builder(context) //
 					.setTitle(R.string.action_storage_dirs) //
+					.setMessage(message) //
+					.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
+					.show();
+		}
+		else if (itemId == R.id.action_cache_dirs)
+		{
+			final Pair<CharSequence[], CharSequence[]> dirs = StorageReports.getStyledCachesNamesValues(context);
+			final CharSequence message = StorageReports.namesValuesToReportStyled(dirs);
+			new AlertDialog.Builder(context) //
+					.setTitle(R.string.action_cache_dirs) //
+					.setMessage(message) //
+					.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
+					.show();
+		}
+		else if (itemId == R.id.action_download_dirs)
+		{
+			final Pair<CharSequence[], CharSequence[]> dirs = StorageReports.getStyledDownloadNamesValues(context);
+			final CharSequence message = StorageReports.namesValuesToReportStyled(dirs);
+			new AlertDialog.Builder(context) //
+					.setTitle(R.string.action_download_dirs) //
 					.setMessage(message) //
 					.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
 					.show();

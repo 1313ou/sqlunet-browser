@@ -4,6 +4,8 @@
 
 package org.sqlunet.deploy;
 
+import android.content.ContentResolver;
+import android.net.Uri;
 import android.util.Log;
 
 import org.sqlunet.concurrency.Task;
@@ -19,6 +21,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,6 +45,59 @@ public class ObservedDeploy
 	/**
 	 * Copy from file
 	 *
+	 * @param srcUri      source uri
+	 * @param resolver    content resolver
+	 * @param destFile    destination file
+	 * @param task        async task
+	 * @param publisher   publisher
+	 * @param publishRate publish rate
+	 * @return true if successful
+	 */
+	static synchronized public boolean copyFromUri(@NonNull final Uri srcUri, @NonNull final ContentResolver resolver, @NonNull final String destFile, @NonNull final Task<Uri, Number, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
+	{
+		Log.d(ObservedDeploy.TAG, "Copy from " + srcUri + " to " + destFile);
+
+		try (InputStream in = resolver.openInputStream(srcUri); FileOutputStream out = new FileOutputStream(destFile))
+		{
+			final byte[] buffer = new byte[CHUNK_SIZE];
+			long byteCount = 0;
+			int chunkCount = 0;
+			int readCount;
+			while ((readCount = in.read(buffer)) != -1)
+			{
+				// write
+				out.write(buffer, 0, readCount);
+
+				// count
+				byteCount += readCount;
+				chunkCount++;
+
+				// publish
+				if ((chunkCount % publishRate) == 0)
+				{
+					publisher.publish(byteCount, -1);
+				}
+
+				// cancel hook
+				if (task.isCancelled())
+				{
+					//noinspection BreakStatement
+					break;
+				}
+			}
+			publisher.publish(byteCount, -1);
+			return true;
+		}
+		catch (@NonNull final Exception e)
+		{
+			Log.e(TAG, "While copying", e);
+		}
+		return false;
+	}
+
+	/**
+	 * Copy from file
+	 *
 	 * @param srcFile     source file
 	 * @param destFile    destination file
 	 * @param task        async task
@@ -49,7 +105,7 @@ public class ObservedDeploy
 	 * @param publishRate publish rate
 	 * @return true if successful
 	 */
-	static synchronized public boolean copyFromFile(@NonNull final String srcFile, final String destFile, @NonNull final Task<String, Number, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
+	static synchronized public boolean copyFromFile(@NonNull final String srcFile, @NonNull final String destFile, @NonNull final Task<String, Number, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
 	{
 		Log.d(ObservedDeploy.TAG, "Copy from " + srcFile + " to " + destFile);
 
@@ -97,14 +153,14 @@ public class ObservedDeploy
 	/**
 	 * Unzip entries from archive
 	 *
-	 * @param srcArchive  source archive
+	 * @param srcArchive  source archive file
 	 * @param destDir     destination dir
 	 * @param task        async task
 	 * @param publisher   publisher
 	 * @param publishRate publish rate
 	 * @return true if successful
 	 */
-	static synchronized public boolean unzipFromArchive(final String srcArchive, final String destDir, @NonNull final Task<String, Number, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
+	static synchronized public boolean unzipFromArchiveFile(@NonNull final String srcArchive, @NonNull final String destDir, @NonNull final Task<String, Number, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
 	{
 		Log.d(ObservedDeploy.TAG, "Expand from " + srcArchive + " to " + destDir);
 
@@ -208,6 +264,101 @@ public class ObservedDeploy
 	}
 
 	/**
+	 * Unzip entries from archive
+	 *
+	 * @param srcUri      source archive uri
+	 * @param destDir     destination dir
+	 * @param task        async task
+	 * @param publisher   publisher
+	 * @param publishRate publish rate
+	 * @return true if successful
+	 */
+	static synchronized public boolean unzipFromArchiveUri(@NonNull final Uri srcUri, @NonNull final ContentResolver resolver, @NonNull final String destDir, @NonNull final Task<Uri, Number, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
+	{
+		Log.d(ObservedDeploy.TAG, "Expand from " + srcUri + " to " + destDir);
+
+		try (ZipInputStream zipIn = (ZipInputStream) resolver.openInputStream(srcUri))
+		{
+			ZipEntry zipEntry;
+			while ((zipEntry = zipIn.getNextEntry()) != null)
+			{
+				//Log.d(Deploy.TAG, "Expand zip entry  " + zipEntry.getName());
+				if (zipEntry.isDirectory())
+				{
+					continue;
+				}
+
+				// out
+				final File outFile = new File(destDir + '/' + zipEntry.getName());
+				// Log.d(TAG, outFile + " exist=" + outFile.exists());
+
+				// create all non exists folders else you will hit FileNotFoundException for compressed folder
+				final String parent = outFile.getParent();
+				if (parent != null)
+				{
+					final File dir = new File(parent);
+					boolean created = dir.mkdirs();
+					Log.d(TAG, dir + " created=" + created + " exists=" + dir.exists());
+				}
+
+				// input
+				try (FileOutputStream out = new FileOutputStream(outFile))
+				{
+					long length = zipEntry.getSize();
+
+					// copy
+					final byte[] buffer = new byte[CHUNK_SIZE];
+					long byteCount = 0;
+					int chunkCount = 0;
+					int readCount;
+					while ((readCount = zipIn.read(buffer)) != -1)
+					{
+						// write
+						out.write(buffer, 0, readCount);
+
+						// count
+						byteCount += readCount;
+						chunkCount++;
+
+						// publish
+						if ((chunkCount % publishRate) == 0)
+						{
+							publisher.publish(byteCount, length);
+						}
+
+						// cancel hook
+						if (task.isCancelled())
+						{
+							//noinspection BreakStatement
+							break;
+						}
+					}
+					out.flush();
+					publisher.publish(byteCount, length);
+				}
+				catch (IOException e1)
+				{
+					Log.e(TAG, "While executing from archive", e1);
+				}
+
+				if (outFile.exists())
+				{
+					Log.d(TAG, outFile + " exist=" + outFile.exists());
+					long stamp = zipEntry.getTime();
+					//noinspection ResultOfMethodCallIgnored
+					outFile.setLastModified(stamp);
+				}
+			}
+			return true;
+		}
+		catch (IOException e1)
+		{
+			Log.e(TAG, "While executing from archive", e1);
+		}
+		return false;
+	}
+
+	/**
 	 * Unzip entry from archive
 	 *
 	 * @param srcArchive  source archive
@@ -218,7 +369,7 @@ public class ObservedDeploy
 	 * @param publishRate publish rate
 	 * @return true if successful
 	 */
-	static synchronized public boolean unzipEntryFromArchive(final String srcArchive, final String srcEntry, @NonNull final String destFile, @NonNull final Task<String, Number, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
+	static synchronized public boolean unzipEntryFromArchiveFile(@NonNull final String srcArchive, @NonNull final String srcEntry, @NonNull final String destFile, @NonNull final Task<String, Number, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
 	{
 		Log.d(ObservedDeploy.TAG, "Expand from " + srcArchive + " (entry " + srcEntry + ") to " + destFile);
 
@@ -353,6 +504,60 @@ public class ObservedDeploy
 		catch (@NonNull NoSuchAlgorithmException | IOException e)
 		{
 			Log.e(TAG, srcFile, e);
+			return null;
+		}
+	}
+
+	/**
+	 * MD5 from uri
+	 *
+	 * @param uri         uri
+	 * @param task        async task
+	 * @param publisher   publisher
+	 * @param publishRate publish rate
+	 * @return true if successful
+	 */
+	@Nullable
+	static synchronized public String md5FromUri(@NonNull final Uri uri, @NonNull final ContentResolver resolver, @NonNull final Task<Uri, Number, String> task, @NonNull final Publisher publisher, final int publishRate)
+	{
+		Log.d(TAG, "Md5 uri " + uri);
+		try
+		{
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			try (InputStream in = resolver.openInputStream(uri); DigestInputStream dis = new DigestInputStream(in, md))
+			{
+				final byte[] buffer = new byte[CHUNK_SIZE];
+				long byteCount = 0;
+				int chunkCount = 0;
+				@SuppressWarnings("UnusedAssignment") int readCount = 0;
+
+				// read decorated stream (dis) to EOF as normal
+				while ((readCount = dis.read(buffer)) != -1)
+				{
+					// count
+					byteCount += readCount;
+					chunkCount++;
+
+					// publish
+					if ((chunkCount % publishRate) == 0)
+					{
+						publisher.publish(byteCount, -1);
+					}
+
+					// cancel hook
+					if (task.isCancelled())
+					{
+						//noinspection BreakStatement
+						break;
+					}
+				}
+				byte[] digest = md.digest();
+				return Deploy.digestToString(digest);
+			}
+		}
+		catch (@NonNull NoSuchAlgorithmException | IOException e)
+		{
+			Log.e(TAG, "input stream", e);
 			return null;
 		}
 	}
