@@ -32,6 +32,18 @@ public class FileOperations
 		return null;
 	}
 
+	public static Object execSql(final Uri uri, final OperationActivity activity)
+	{
+		ExecAsyncTask.launchExec(activity, uri, StorageSettings.getDatabasePath(activity), activity::finish);
+		return null;
+	}
+
+	public static Object execZippedSql(final Uri uri, final String entry, final OperationActivity activity)
+	{
+		ExecAsyncTask.launchExecZipped(activity, uri, entry, StorageSettings.getDatabasePath(activity), activity::finish);
+		return null;
+	}
+
 	public static void copy(FragmentActivity activity)
 	{
 		FileAsyncTaskChooser.copyFromFile(activity, StorageSettings.getCacheDir(activity), StorageSettings.getDatabasePath(activity));

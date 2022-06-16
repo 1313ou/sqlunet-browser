@@ -151,7 +151,7 @@ public class ObservedDeploy
 	}
 
 	/**
-	 * Unzip entries from archive
+	 * Unzip entries from archive file
 	 *
 	 * @param srcArchive  source archive file
 	 * @param destDir     destination dir
@@ -264,7 +264,7 @@ public class ObservedDeploy
 	}
 
 	/**
-	 * Unzip entries from archive
+	 * Unzip entries from archive uri
 	 *
 	 * @param srcUri      source archive uri
 	 * @param destDir     destination dir
@@ -359,9 +359,9 @@ public class ObservedDeploy
 	}
 
 	/**
-	 * Unzip entry from archive
+	 * Unzip entry from archive file
 	 *
-	 * @param srcArchive  source archive
+	 * @param srcArchive  source archive file
 	 * @param srcEntry    source entry
 	 * @param destFile    destination file
 	 * @param task        async task
@@ -377,13 +377,29 @@ public class ObservedDeploy
 		try
 		{
 			zipFile = new ZipFile(srcArchive);
+
+			// entry
 			final ZipEntry zipEntry = zipFile.getEntry(srcEntry);
 			if (zipEntry == null)
 			{
 				throw new IOException("Zip entry not found " + srcEntry);
 			}
 
-			try (InputStream in = zipFile.getInputStream(zipEntry); FileOutputStream out = new FileOutputStream(destFile))
+			// out
+			final File outFile = new File(destFile);
+			// Log.d(TAG, outFile + " exist=" + outFile.exists());
+
+			// create all non exists folders else you will hit FileNotFoundException for compressed folder
+			final String parent = outFile.getParent();
+			if (parent != null)
+			{
+				final File dir = new File(parent);
+				boolean created = dir.mkdirs();
+				Log.d(TAG, dir + " created=" + created + " exists=" + dir.exists());
+			}
+
+			// unzip
+			try (InputStream in = zipFile.getInputStream(zipEntry); FileOutputStream out = new FileOutputStream(outFile))
 			{
 				long length = zipEntry.getSize();
 
@@ -421,7 +437,7 @@ public class ObservedDeploy
 				Log.e(TAG, "While executing from archive", e1);
 			}
 
-			File outFile = new File(destFile);
+			// inherit time stamp and return
 			if (outFile.exists())
 			{
 				Log.d(TAG, outFile + " exist=" + outFile.exists());
@@ -448,6 +464,108 @@ public class ObservedDeploy
 					Log.e(TAG, "While closing archive", e);
 				}
 			}
+		}
+		return false;
+	}
+
+	/**
+	 * Unzip entry from archive uri
+	 *
+	 * @param srcUri      source archive uri
+	 * @param srcEntry    source entry
+	 * @param destFile    destination file
+	 * @param task        async task
+	 * @param publisher   publisher
+	 * @param publishRate publish rate
+	 * @return true if successful
+	 */
+	static synchronized public boolean unzipEntryFromArchiveUri(@NonNull final Uri srcUri, @NonNull final String srcEntry, @NonNull final ContentResolver resolver, @NonNull final String destFile, @NonNull final Task<Uri, Number, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
+	{
+		Log.d(ObservedDeploy.TAG, "Expand from " + srcUri + " (entry " + srcEntry + ") to " + destFile);
+
+		try (ZipInputStream zipIn = (ZipInputStream) resolver.openInputStream(srcUri))
+		{
+			ZipEntry zipEntry;
+			while ((zipEntry = zipIn.getNextEntry()) != null)
+			{
+				//Log.d(Deploy.TAG, "Expand zip entry  " + zipEntry.getName());
+				// entry
+				if (zipEntry.isDirectory())
+				{
+					continue;
+				}
+				if (!zipEntry.getName().equals(srcEntry))
+				{
+					continue;
+				}
+
+				// out
+				final File outFile = new File(destFile);
+				// Log.d(TAG, outFile + " exist=" + outFile.exists());
+
+				// create all non exists folders else you will hit FileNotFoundException for compressed folder
+				final String parent = outFile.getParent();
+				if (parent != null)
+				{
+					final File dir = new File(parent);
+					boolean created = dir.mkdirs();
+					Log.d(TAG, dir + " created=" + created + " exists=" + dir.exists());
+				}
+
+				// unzip
+				try (FileOutputStream out = new FileOutputStream(destFile))
+				{
+					long length = zipEntry.getSize();
+
+					// copy
+					final byte[] buffer = new byte[CHUNK_SIZE];
+					long byteCount = 0;
+					int chunkCount = 0;
+					int readCount;
+					while ((readCount = zipIn.read(buffer)) != -1)
+					{
+						// write
+						out.write(buffer, 0, readCount);
+
+						// count
+						byteCount += readCount;
+						chunkCount++;
+
+						// publish
+						if ((chunkCount % publishRate) == 0)
+						{
+							publisher.publish(byteCount, length);
+						}
+
+						// cancel hook
+						if (task.isCancelled())
+						{
+							//noinspection BreakStatement
+							break;
+						}
+					}
+					out.flush();
+					publisher.publish(byteCount, length);
+				}
+				catch (IOException e1)
+				{
+					Log.e(TAG, "While executing from archive", e1);
+				}
+
+				// inherit time stamp and return
+				if (outFile.exists())
+				{
+					Log.d(TAG, outFile + " exist=" + outFile.exists());
+					long stamp = zipEntry.getTime();
+					//noinspection ResultOfMethodCallIgnored
+					outFile.setLastModified(stamp);
+					return true;
+				}
+			}
+		}
+		catch (IOException e)
+		{
+			return false;
 		}
 		return false;
 	}

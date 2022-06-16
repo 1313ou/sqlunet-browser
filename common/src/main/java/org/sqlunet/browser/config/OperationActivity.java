@@ -22,6 +22,10 @@ public class OperationActivity extends AppCompatActivity
 
 	public static final String OP_UNZIP = "op_unzip";
 
+	public static final String OP_EXEC_SQL = "op_exec_sql";
+
+	public static final String OP_EXEC_ZIPPED_SQL = "op_exec_zipped_sql";
+
 	public static final String OP_MD5 = "op_md5";
 
 	private ActivityResultLauncher<Intent> launcher;
@@ -48,14 +52,20 @@ public class OperationActivity extends AppCompatActivity
 		Object result = null;
 		switch (op)
 		{
-			case OP_MD5:
-				result = FileOperations.md5(uri, this);
-				break;
 			case OP_COPY:
 				result = FileOperations.copy(uri, this);
 				break;
 			case OP_UNZIP:
 				result = FileOperations.unzip(uri, this);
+				break;
+			case OP_EXEC_SQL:
+				result = FileOperations.execSql(uri, this);
+				break;
+			case OP_EXEC_ZIPPED_SQL:
+				result = FileOperations.execZippedSql(uri, "sql", this);
+				break;
+			case OP_MD5:
+				result = FileOperations.md5(uri, this);
 				break;
 		}
 		return result;

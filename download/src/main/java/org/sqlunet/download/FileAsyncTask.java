@@ -426,7 +426,7 @@ public class FileAsyncTask
 	static private class AsyncUnzipEntryFromArchiveFile extends Task<String, Number, Boolean> implements ObservedDeploy.Publisher
 	{
 		/**
-		 * Zip entry namae
+		 * Zip entry name
 		 */
 		final String entry;
 
@@ -477,6 +477,104 @@ public class FileAsyncTask
 
 			// outsource it to deploy
 			return ObservedDeploy.unzipEntryFromArchiveFile(srcArchiveArg, this.entry, this.dest, this, this, this.publishRate);
+		}
+
+		@Override
+		protected void onPreExecute()
+		{
+			this.observer.taskStart(this);
+		}
+
+		@Override
+		protected void onProgressUpdate(final Number... params)
+		{
+			this.observer.taskProgress(params[0], params[1], null);
+		}
+
+		@Override
+		protected void onPostExecute(final Boolean result)
+		{
+			this.observer.taskFinish(result);
+			if (this.resultListener != null)
+			{
+				this.resultListener.onResult(result);
+			}
+		}
+
+		@Override
+		protected void onCancelled(final Boolean result)
+		{
+			this.observer.taskFinish(false);
+		}
+
+		@Override
+		public void publish(long current, long total)
+		{
+			publishProgress(current, total);
+		}
+	}
+
+	static private class AsyncUnzipEntryFromArchiveUri extends Task<Uri, Number, Boolean> implements ObservedDeploy.Publisher
+	{
+		/**
+		 * Zip entry name
+		 */
+		final String entry;
+
+		/**
+		 * Destination
+		 */
+		final String dest;
+
+		/**
+		 * Content resolver
+		 */
+		final ContentResolver resolver;
+
+		/**
+		 * Task observer
+		 */
+		final private TaskObserver.Observer<Number> observer;
+
+		/**
+		 * Result listener
+		 */
+		final private ResultListener resultListener;
+
+		/**
+		 * Publish rate
+		 */
+		private final int publishRate;
+
+		/**
+		 * Constructor
+		 *
+		 * @param entry          entry
+		 * @param dest           dest
+		 * @param resolver       resolver
+		 * @param observer       observer
+		 * @param resultListener result listener
+		 * @param publishRate    public rate
+		 */
+		AsyncUnzipEntryFromArchiveUri(final String entry, final String dest, final ContentResolver resolver, final TaskObserver.Observer<Number> observer, final ResultListener resultListener, final int publishRate)
+		{
+			this.entry = entry;
+			this.dest = dest;
+			this.resolver = resolver;
+			this.observer = observer;
+			this.resultListener = resultListener;
+			this.publishRate = publishRate;
+		}
+
+		@NonNull
+		@Override
+		@SuppressWarnings("boxing")
+		protected Boolean doInBackground(final Uri... params)
+		{
+			Uri srcArchiveArg = params[0];
+
+			// outsource it to deploy
+			return ObservedDeploy.unzipEntryFromArchiveUri(srcArchiveArg, this.entry, this.resolver, this.dest, this, this, this.publishRate);
 		}
 
 		@Override
@@ -716,7 +814,7 @@ public class FileAsyncTask
 	}
 
 	/**
-	 * Expand all from zipfile
+	 * Expand all from zip file
 	 */
 	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
@@ -726,13 +824,23 @@ public class FileAsyncTask
 	}
 
 	/**
-	 * Expand all from zipfile
+	 * Expand all from zip uri
 	 */
 	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
 	public Task<Uri, Number, Boolean> unzipFromArchiveUri(final ContentResolver resolver, final String dest)
 	{
 		return new AsyncUnzipFromArchiveUri(dest, resolver, this.observer, this.resultListener, this.publishRate);
+	}
+
+	/**
+	 * Expand entry from zip uri
+	 */
+	@NonNull
+	@SuppressWarnings("UnusedReturnValue")
+	public Task<Uri, Number, Boolean> unzipEntryFromArchiveUri(final ContentResolver resolver, final String entry, final String dest)
+	{
+		return new AsyncUnzipEntryFromArchiveUri(dest, entry, resolver, this.observer, this.resultListener, this.publishRate);
 	}
 
 	// md5
@@ -762,7 +870,7 @@ public class FileAsyncTask
 	// unzip
 
 	/**
-	 * Launch unzipping
+	 * Launch unzipping archive file
 	 *
 	 * @param activity   activity
 	 * @param sourceFile source zip file
@@ -778,23 +886,7 @@ public class FileAsyncTask
 	}
 
 	/**
-	 * Launch unzipping
-	 *
-	 * @param activity  activity
-	 * @param sourceUri source zip uri
-	 * @param dest      database path
-	 * @param whenDone  to run when done
-	 */
-	public static void launchUnzip(@NonNull final FragmentActivity activity, @NonNull final Uri sourceUri, @NonNull final String dest, @Nullable final Runnable whenDone)
-	{
-		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
-				.setTitle(activity.getString(R.string.action_unzip_from_archive)) //
-				.setMessage(sourceUri.toString());
-		launchUnzip(activity, observer, sourceUri, dest, whenDone);
-	}
-
-	/**
-	 * Launch unzipping
+	 * Launch unzipping archive file
 	 *
 	 * @param activity   activity
 	 * @param observer   observer
@@ -822,7 +914,23 @@ public class FileAsyncTask
 	}
 
 	/**
-	 * Launch unzipping
+	 * Launch unzipping archive uri
+	 *
+	 * @param activity  activity
+	 * @param sourceUri source zip uri
+	 * @param dest      database path
+	 * @param whenDone  to run when done
+	 */
+	public static void launchUnzip(@NonNull final FragmentActivity activity, @NonNull final Uri sourceUri, @NonNull final String dest, @Nullable final Runnable whenDone)
+	{
+		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
+				.setTitle(activity.getString(R.string.action_unzip_from_archive)) //
+				.setMessage(sourceUri.toString());
+		launchUnzip(activity, observer, sourceUri, dest, whenDone);
+	}
+
+	/**
+	 * Launch unzipping archive uri
 	 *
 	 * @param activity  activity
 	 * @param observer  observer
@@ -850,7 +958,7 @@ public class FileAsyncTask
 	}
 
 	/**
-	 * Launch unzipping of entry
+	 * Launch unzipping of entry in archive file
 	 *
 	 * @param activity   activity
 	 * @param sourceFile source zip file
@@ -867,7 +975,7 @@ public class FileAsyncTask
 	}
 
 	/**
-	 * Launch unzipping of entry
+	 * Launch unzipping of entry in archive file
 	 *
 	 * @param activity   activity
 	 * @param observer   observer
@@ -892,6 +1000,52 @@ public class FileAsyncTask
 		};
 		final Task<String, Number, Boolean> task = new FileAsyncTask(observer, resultListener, 1000).unzipEntryFromArchiveFile(zipEntry, dest);
 		task.execute(sourceFile);
+		observer.taskUpdate(activity.getString(R.string.status_unzipping) + ' ' + zipEntry);
+	}
+
+	/**
+	 * Launch unzipping of entry in archive uri
+	 *
+	 * @param activity  activity
+	 * @param sourceUri source zip uri
+	 * @param zipEntry  zip entry
+	 * @param dest      database path
+	 * @param whenDone  to run when done
+	 */
+	public static void launchUnzip(@NonNull final FragmentActivity activity, @NonNull final Uri sourceUri, @NonNull final String zipEntry, @NonNull final String dest, @Nullable final Runnable whenDone)
+	{
+		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
+				.setTitle(activity.getString(R.string.action_unzip_from_archive)) //
+				.setMessage(sourceUri.toString());
+		launchUnzip(activity, observer, sourceUri, zipEntry, dest, whenDone);
+	}
+
+	/**
+	 * Launch unzipping of entry in archive uri
+	 *
+	 * @param activity  activity
+	 * @param observer  observer
+	 * @param sourceUri source zip uri
+	 * @param zipEntry  zip entry
+	 * @param dest      database path
+	 * @param whenDone  to run when done
+	 */
+	public static void launchUnzip(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final Uri sourceUri, @NonNull final String zipEntry, @NonNull final String dest, @Nullable final Runnable whenDone)
+	{
+		final FileAsyncTask.ResultListener resultListener = result -> {
+
+			final Boolean success = (Boolean) result;
+			if (success)
+			{
+				Settings.recordDb(activity, sourceUri.toString());
+				if (whenDone != null)
+				{
+					whenDone.run();
+				}
+			}
+		};
+		final Task<Uri, Number, Boolean> task = new FileAsyncTask(observer, resultListener, 1000).unzipEntryFromArchiveUri(activity.getContentResolver(), zipEntry, dest);
+		task.execute(sourceUri);
 		observer.taskUpdate(activity.getString(R.string.status_unzipping) + ' ' + zipEntry);
 	}
 
