@@ -84,11 +84,20 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 
 			// execute
 			final CharSequence sql = sqls[(int) id];
-			final String[] sqlStatements = sql.toString().split(";");
-			// Log.d(TAG, Arrays.toString(sqlStatements));
-			final TaskObserver.Observer<Number> observer = new TaskToastObserver.WithStatus<>(activity, SetupDatabaseFragment.this.status);
-			final Task<Pair<String, String[]>, Number, Boolean> task = new ExecAsyncTask(activity, this::update, observer, 1).fromSql();
-			task.execute(new Pair<>(databasePath, sqlStatements));
+			if (sql == null || sql.length() == 0)
+			{
+				final Intent intent2 = new Intent(activity, OperationActivity.class);
+				intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_EXEC_ZIPPED_SQL);
+				activity.startActivity(intent2);
+			}
+			else
+			{
+				final String[] sqlStatements = sql.toString().split(";");
+				// Log.d(TAG, Arrays.toString(sqlStatements));
+				final TaskObserver.Observer<Number> observer = new TaskToastObserver.WithStatus<>(activity, SetupDatabaseFragment.this.status);
+				final Task<Pair<String, String[]>, Number, Boolean> task = new ExecAsyncTask(activity, this::update, observer, 1).fromSql();
+				task.execute(new Pair<>(databasePath, sqlStatements));
+			}
 		});
 
 		return view;
