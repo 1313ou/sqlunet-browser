@@ -12,7 +12,7 @@ import org.sqlunet.settings.StorageSettings;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
-public class FileOperations
+public class Operations
 {
 	public static Object md5(@NonNull final Uri uri, @NonNull final FragmentActivity activity)
 	{

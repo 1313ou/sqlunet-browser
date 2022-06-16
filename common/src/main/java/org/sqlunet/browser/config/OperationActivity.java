@@ -53,19 +53,19 @@ public class OperationActivity extends AppCompatActivity
 		switch (op)
 		{
 			case OP_COPY:
-				result = FileOperations.copy(uri, this);
+				result = Operations.copy(uri, this);
 				break;
 			case OP_UNZIP:
-				result = FileOperations.unzip(uri, this);
+				result = Operations.unzip(uri, this);
 				break;
 			case OP_EXEC_SQL:
-				result = FileOperations.execSql(uri, this);
+				result = Operations.execSql(uri, this);
 				break;
 			case OP_EXEC_ZIPPED_SQL:
-				result = FileOperations.execZippedSql(uri, "sql", this);
+				result = Operations.execZippedSql(uri, "sql", this);
 				break;
 			case OP_MD5:
-				result = FileOperations.md5(uri, this);
+				result = Operations.md5(uri, this);
 				break;
 		}
 		return result;
