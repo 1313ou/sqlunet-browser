@@ -1,7 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
-  -->
-
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	android:installLocation="preferExternal"
 	android:versionCode="10"
@@ -219,6 +216,17 @@
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value=".MainActivity"/>
+		</activity>
+
+		<activity
+			android:name="org.sqlunet.browser.config.OperationActivity"
+			android:label="@string/title_activity_operation"
+			android:parentActivityName=".MainActivity"
+			android:exported="false"
+			tools:ignore="UnusedAttribute">
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value="org.sqlunet.browser.MainActivity"/>
 		</activity>
 
 		<activity

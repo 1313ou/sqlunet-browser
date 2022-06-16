@@ -39,6 +39,7 @@
 
 		<activity
 			android:name="org.sqlunet.browser.EntryActivity"
+			android:exported="true"
 			android:label="@string/app_name"
 			android:launchMode="singleTask"
 			android:noHistory="true">
@@ -247,6 +248,17 @@
 			<meta-data
 				android:name="android.support.PARENT_ACTIVITY"
 				android:value="org.sqlunet.browser.EntryActivity" />
+		</activity>
+
+		<activity
+			android:name="org.sqlunet.browser.config.OperationActivity"
+			android:label="@string/title_activity_operation"
+			android:parentActivityName=".MainActivity"
+			android:exported="false"
+			tools:ignore="UnusedAttribute">
+			<meta-data
+				android:name="android.support.PARENT_ACTIVITY"
+				android:value="org.sqlunet.browser.MainActivity"/>
 		</activity>
 
 		<activity
