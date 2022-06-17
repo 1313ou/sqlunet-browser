@@ -39,10 +39,8 @@ class FileUtils
 	@Nullable
 	static public Uri copyAssetFile(@NonNull final Context context, @NonNull final String fileName)
 	{
-		AssetManager assetManager = null;
-		try
+		try (AssetManager assetManager = context.getAssets())
 		{
-			assetManager = context.getAssets();
 			final File dir = Storage.getSqlUNetStorage(context);
 
 			//noinspection ResultOfMethodCallIgnored
@@ -53,11 +51,6 @@ class FileUtils
 				return Uri.fromFile(file);
 			}
 			return null;
-		}
-		finally
-		{
-			assert assetManager != null;
-			assetManager.close();
 		}
 	}
 
@@ -71,65 +64,39 @@ class FileUtils
 	 */
 	static private boolean copyAsset(@NonNull final AssetManager assetManager, @NonNull final String assetPath, @NonNull final String toPath)
 	{
-		InputStream in = null;
-		OutputStream out = null;
-		try
+		try (InputStream is = assetManager.open(assetPath))
 		{
-			in = assetManager.open(assetPath);
 			final File f = new File(toPath);
 			if (!f.createNewFile())
 			{
 				return false;
 			}
-			out = new FileOutputStream(f);
-			FileUtils.copyFile(in, out);
-			return true;
+			try (OutputStream os = new FileOutputStream(f))
+			{
+				FileUtils.copyFile(is, os);
+				return true;
+			}
 		}
 		catch (@NonNull final Exception e)
 		{
 			return false;
-		}
-		finally
-		{
-			if (out != null)
-			{
-				try
-				{
-					out.close();
-				}
-				catch (@NonNull final IOException e)
-				{
-					//
-				}
-			}
-			if (in != null)
-			{
-				try
-				{
-					in.close();
-				}
-				catch (@NonNull final IOException e)
-				{
-					//
-				}
-			}
 		}
 	}
 
 	/**
 	 * Copy in stream to out stream
 	 *
-	 * @param in  in stream
-	 * @param out out stream
+	 * @param is in stream
+	 * @param os out stream
 	 * @throws IOException io exception
 	 */
-	static private void copyFile(@NonNull final InputStream in, @NonNull final OutputStream out) throws IOException
+	static private void copyFile(@NonNull final InputStream is, @NonNull final OutputStream os) throws IOException
 	{
 		final byte[] buffer = new byte[1024];
 		int read;
-		while ((read = in.read(buffer)) != -1)
+		while ((read = is.read(buffer)) != -1)
 		{
-			out.write(buffer, 0, read);
+			os.write(buffer, 0, read);
 		}
 	}
 
@@ -170,9 +137,9 @@ class FileUtils
 	 */
 	static private boolean expandZipAsset(@NonNull final AssetManager assetManager, @NonNull final String assetPath, @NonNull final String toPath)
 	{
-		try (InputStream in = assetManager.open(assetPath))
+		try (InputStream is = assetManager.open(assetPath))
 		{
-			FileUtils.expandZip(in, null, new File(toPath));
+			FileUtils.expandZip(is, null, new File(toPath));
 			return true;
 		}
 		catch (@NonNull final Exception e)
@@ -185,14 +152,14 @@ class FileUtils
 	/**
 	 * Expand zip stream to dir
 	 *
-	 * @param in                zip file input stream
+	 * @param is                zip file input stream
 	 * @param pathPrefixFilter0 path prefix filter on entries
 	 * @param destDir           destination dir
 	 * @return dest dir
 	 */
 	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
-	static private File expandZip(@NonNull final InputStream in, @SuppressWarnings("SameParameterValue") final String pathPrefixFilter0, @NonNull final File destDir) throws IOException
+	static private File expandZip(@NonNull final InputStream is, @SuppressWarnings("SameParameterValue") final String pathPrefixFilter0, @NonNull final File destDir) throws IOException
 	{
 		// prefix
 		String pathPrefixFilter = pathPrefixFilter0;
@@ -206,9 +173,7 @@ class FileUtils
 		destDir.mkdir();
 
 		// read and expandContainer entries
-		final ZipInputStream zis = new ZipInputStream(in);
-
-		try
+		try (ZipInputStream zis = new ZipInputStream(is))
 		{
 			// get the zipped file list entry
 			final byte[] buffer = new byte[1024];
@@ -251,23 +216,6 @@ class FileUtils
 				}
 				zis.closeEntry();
 				entry = zis.getNextEntry();
-			}
-		}
-		finally
-		{
-			try
-			{
-				zis.close();
-			}
-			catch (IOException ignored)
-			{
-			}
-			try
-			{
-				in.close();
-			}
-			catch (IOException ignored)
-			{
 			}
 		}
 
