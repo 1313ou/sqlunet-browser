@@ -64,10 +64,8 @@ class Collocation
 		static List<Collocation.WithDefinitionAndPos> makeFromWord(final SQLiteDatabase connection, final String targetWord)
 		{
 			final List<Collocation.WithDefinitionAndPos> result = new ArrayList<>();
-			CollocationQueryFromWord query = null;
-			try
+			try (CollocationQueryFromWord query = new CollocationQueryFromWord(connection, targetWord))
 			{
-				query = new CollocationQueryFromWord(connection, targetWord);
 				query.execute();
 
 				while (query.next())
@@ -76,13 +74,6 @@ class Collocation
 					result.add(collocation);
 				}
 				return result;
-			}
-			finally
-			{
-				if (query != null)
-				{
-					query.release();
-				}
 			}
 		}
 
@@ -97,23 +88,14 @@ class Collocation
 		static List<Collocation.WithDefinitionAndPos> makeFromWordId(final SQLiteDatabase connection, final long targetWordId)
 		{
 			final List<Collocation.WithDefinitionAndPos> result = new ArrayList<>();
-			CollocationQueryFromWordId query = null;
-			try
+			try (CollocationQueryFromWordId query = new CollocationQueryFromWordId(connection, targetWordId))
 			{
-				query = new CollocationQueryFromWordId(connection, targetWordId);
 				query.execute();
 
 				while (query.next())
 				{
 					Collocation.WithDefinitionAndPos collocation = makeCollocationWithDefinitionAndPos(query);
 					result.add(collocation);
-				}
-			}
-			finally
-			{
-				if (query != null)
-				{
-					query.release();
 				}
 			}
 			return result;
@@ -122,32 +104,23 @@ class Collocation
 		/**
 		 * Make sets of SyntagNet collocations from query built from word ids
 		 *
-		 * @param connection connection
-		 * @param targetWordId    is the word id to build query from
-		 * @param targetWord2Id   is the word 2 id to build query from
+		 * @param connection    connection
+		 * @param targetWordId  is the word id to build query from
+		 * @param targetWord2Id is the word 2 id to build query from
 		 * @return list of SyntagNet collocations
 		 */
 		@NonNull
 		static public List<WithDefinitionAndPos> makeFromWordIds(final SQLiteDatabase connection, final long targetWordId, final long targetWord2Id)
 		{
 			final List<Collocation.WithDefinitionAndPos> result = new ArrayList<>();
-			CollocationQueryFromWordIds query = null;
-			try
+			try (CollocationQueryFromWordIds query = new CollocationQueryFromWordIds(connection, targetWordId, targetWord2Id))
 			{
-				query = new CollocationQueryFromWordIds(connection, targetWordId, targetWord2Id);
 				query.execute();
 
 				while (query.next())
 				{
 					Collocation.WithDefinitionAndPos collocation = makeCollocationWithDefinitionAndPos(query);
 					result.add(collocation);
-				}
-			}
-			finally
-			{
-				if (query != null)
-				{
-					query.release();
 				}
 			}
 			return result;
@@ -164,23 +137,14 @@ class Collocation
 		static List<Collocation.WithDefinitionAndPos> makeFromWordIdAndSynsetId(final SQLiteDatabase connection, final long targetWordId, final long targetSynsetId)
 		{
 			final List<Collocation.WithDefinitionAndPos> result = new ArrayList<>();
-			CollocationQueryFromWordIdAndSynsetId query = null;
-			try
+			try (CollocationQueryFromWordIdAndSynsetId query = new CollocationQueryFromWordIdAndSynsetId(connection, targetWordId, targetSynsetId))
 			{
-				query = new CollocationQueryFromWordIdAndSynsetId(connection, targetWordId, targetSynsetId);
 				query.execute();
 
 				while (query.next())
 				{
 					Collocation.WithDefinitionAndPos collocation = makeCollocationWithDefinitionAndPos(query);
 					result.add(collocation);
-				}
-			}
-			finally
-			{
-				if (query != null)
-				{
-					query.release();
 				}
 			}
 			return result;
@@ -200,23 +164,14 @@ class Collocation
 		static public List<WithDefinitionAndPos> makeFromWordIdAndSynsetIds(final SQLiteDatabase connection, final long targetWordId, final long targetSynsetId, final long targetWord2Id, final long targetSynset2Id)
 		{
 			final List<Collocation.WithDefinitionAndPos> result = new ArrayList<>();
-			CollocationQueryFromWordIdsAndSynsetIds query = null;
-			try
+			try (CollocationQueryFromWordIdsAndSynsetIds query = new CollocationQueryFromWordIdsAndSynsetIds(connection, targetWordId, targetSynsetId, targetWord2Id, targetSynset2Id))
 			{
-				query = new CollocationQueryFromWordIdsAndSynsetIds(connection, targetWordId, targetSynsetId, targetWord2Id, targetSynset2Id);
 				query.execute();
 
 				while (query.next())
 				{
 					Collocation.WithDefinitionAndPos collocation = makeCollocationWithDefinitionAndPos(query);
 					result.add(collocation);
-				}
-			}
-			finally
-			{
-				if (query != null)
-				{
-					query.release();
 				}
 			}
 			return result;
@@ -233,23 +188,14 @@ class Collocation
 		static public List<Collocation.WithDefinitionAndPos> make(final SQLiteDatabase connection, final long collocationId)
 		{
 			final List<Collocation.WithDefinitionAndPos> result = new ArrayList<>();
-			CollocationQuery query = null;
-			try
+			try (CollocationQuery query = new CollocationQuery(connection, collocationId))
 			{
-				query = new CollocationQuery(connection, collocationId);
 				query.execute();
 
 				while (query.next())
 				{
 					Collocation.WithDefinitionAndPos collocation = makeCollocationWithDefinitionAndPos(query);
 					result.add(collocation);
-				}
-			}
-			finally
-			{
-				if (query != null)
-				{
-					query.release();
 				}
 			}
 			return result;
@@ -336,10 +282,8 @@ class Collocation
 	public static List<Collocation> makeSelectorFromWord(final SQLiteDatabase connection, final String targetWord)
 	{
 		final List<Collocation> result = new ArrayList<>();
-		CollocationQueryFromWord query = null;
-		try
+		try (CollocationQueryFromWord query = new CollocationQueryFromWord(connection, targetWord))
 		{
-			query = new CollocationQueryFromWord(connection, targetWord);
 			query.execute();
 
 			while (query.next())
@@ -348,13 +292,6 @@ class Collocation
 				result.add(collocation);
 			}
 			return result;
-		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
-			}
 		}
 	}
 
