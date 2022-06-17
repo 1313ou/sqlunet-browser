@@ -7,7 +7,6 @@ package org.sqlunet.browser.config;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -67,13 +66,13 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 		}
 
 		this.runButton.setOnClickListener(v -> {
+
 			// skip first
-			final long id = SetupDatabaseFragment.this.spinner.getSelectedItemId();
+			final long id = spinner.getSelectedItemId();
 			if (id == 0)
 			{
 				return;
 			}
-			SetupDatabaseFragment.this.status.setText(R.string.status_task_running);
 
 			// database path
 			final Activity activity = requireActivity();
@@ -84,7 +83,13 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 
 			// execute
 			final CharSequence sql = sqls[(int) id];
-			if (sql == null || sql.length() == 0)
+			if (sql == null || "EXEC_URI".equals(sql.toString()))
+			{
+				final Intent intent2 = new Intent(activity, OperationActivity.class);
+				intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_EXEC_SQL);
+				activity.startActivity(intent2);
+			}
+			else if ("EXEC_ZIPPED_URI".equals(sql.toString()))
 			{
 				final Intent intent2 = new Intent(activity, OperationActivity.class);
 				intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_EXEC_ZIPPED_SQL);
@@ -92,11 +97,12 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 			}
 			else
 			{
+				status.setText(R.string.status_task_running);
 				final String[] sqlStatements = sql.toString().split(";");
 				// Log.d(TAG, Arrays.toString(sqlStatements));
-				final TaskObserver.Observer<Number> observer = new TaskToastObserver.WithStatus<>(activity, SetupDatabaseFragment.this.status);
-				final Task<Pair<String, String[]>, Number, Boolean> task = new ExecAsyncTask(activity, this::update, observer, 1).fromSql();
-				task.execute(new Pair<>(databasePath, sqlStatements));
+				final TaskObserver.Observer<Number> observer = new TaskToastObserver.WithStatus<>(activity, status);
+				final Task<String[], Number, Boolean> task = new ExecAsyncTask(activity, this::update, observer, 1).fromSql(databasePath);
+				task.execute(sqlStatements);
 			}
 		});
 
@@ -106,7 +112,7 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 	// U P D A T E
 
 	@SuppressWarnings("EmptyMethod")
-	private void update()
+	private void update(Boolean result)
 	{
 	}
 

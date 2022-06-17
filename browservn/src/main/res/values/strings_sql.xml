@@ -25,6 +25,8 @@
 		<item>Drop PropBank text search</item>
 		<item>Prepare WordNet text search</item>
 		<item>Drop WordNet text search</item>
+		<item>@string/action_exec_from_uri</item>
+		<item>@string/action_exec_from_zipped_uri</item>
 	</string-array>
 	<string-array name="sql_statements_values" formatted="false" tools:ignore="InconsistentArrays" tools:keep="@array/sql_statements_values">
 		<item />
@@ -280,6 +282,8 @@
 		<item>
 			<!-- drop wordnet text search -->
 			DROP TABLE IF EXISTS `words_word_fts4`;</item>
+		<item>EXEC_URI</item>
+		<item>EXEC_ZIPPED_URI</item>
 	</string-array>
 
 </resources>

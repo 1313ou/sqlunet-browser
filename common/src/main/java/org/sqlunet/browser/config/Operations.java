@@ -22,25 +22,35 @@ public class Operations
 
 	public static Object copy(@NonNull final Uri uri, @NonNull final FragmentActivity activity)
 	{
-		FileAsyncTask.launchCopy(activity, uri, StorageSettings.getDatabasePath(activity),activity::finish);
+		FileAsyncTask.launchCopy(activity, uri, StorageSettings.getDatabasePath(activity), activity::finish);
 		return null;
 	}
 
 	public static Object unzip(@NonNull final Uri uri, @NonNull final FragmentActivity activity)
 	{
-		FileAsyncTask.launchUnzip(activity, uri, StorageSettings.getDatabasePath(activity), activity::finish);
+		FileAsyncTask.launchUnzip(activity, uri, StorageSettings.getDataDir(activity), activity::finish);
 		return null;
 	}
 
 	public static Object execSql(final Uri uri, final OperationActivity activity)
 	{
-		ExecAsyncTask.launchExec(activity, uri, StorageSettings.getDatabasePath(activity), activity::finish);
+		ExecAsyncTask.launchExecUri(activity, uri, StorageSettings.getDatabasePath(activity), (result) -> {
+			if (result)
+			{
+				activity.finish();
+			}
+		});
 		return null;
 	}
 
 	public static Object execZippedSql(final Uri uri, final String entry, final OperationActivity activity)
 	{
-		ExecAsyncTask.launchExecZipped(activity, uri, entry, StorageSettings.getDatabasePath(activity), activity::finish);
+		ExecAsyncTask.launchExecZippedUri(activity, uri, entry, StorageSettings.getDatabasePath(activity), (result) -> {
+			if (result)
+			{
+				activity.finish();
+			}
+		});
 		return null;
 	}
 

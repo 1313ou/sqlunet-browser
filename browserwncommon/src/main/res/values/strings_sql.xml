@@ -16,6 +16,8 @@
 		<item>Drop WordNet text search</item>
 		<item>Create BNC indexes</item>
 		<item>Drop BNC indexes</item>
+		<item>@string/action_exec_from_uri</item>
+		<item>@string/action_exec_from_zipped_uri</item>
 	</string-array>
 	<string-array name="sql_statements_values" formatted="false" tools:ignore="InconsistentArrays">
 		<item/>
@@ -96,6 +98,8 @@
 			DROP INDEX IF EXISTS `k_bnc_spwrs_wordid_posid`;
 			DROP INDEX IF EXISTS `k_bnc_convtasks_wordid_posid`;
 			DROP INDEX IF EXISTS `k_bnc_imaginfs_wordid_posid`;</item>
+		<item>EXEC_URI</item>
+		<item>EXEC_ZIPPED_URI</item>
 	</string-array>
 
 </resources>

@@ -21,8 +21,6 @@ import android.widget.SpinnerAdapter;
 import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.Info;
 import org.sqlunet.browser.common.R;
-import org.sqlunet.settings.Settings;
-import org.sqlunet.settings.Storage;
 import org.sqlunet.settings.StorageReports;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
@@ -233,6 +231,10 @@ public class SetupFileFragment extends BaseTaskFragment
 					message = statusCopy();
 					break;
 
+				case UNZIP:
+					message = statusUnzip();
+					break;
+
 				case MD5:
 					message = statusMd5();
 					break;
@@ -312,6 +314,7 @@ public class SetupFileFragment extends BaseTaskFragment
 		final String database = StorageSettings.getDatabasePath(context);
 		final String free = StorageUtils.getFree(context, database);
 		final boolean databaseExists = new File(database).exists();
+		/*
 		String fromPath = Settings.getCachePref(context);
 		boolean sourceExists = false;
 		if (fromPath != null)
@@ -319,6 +322,7 @@ public class SetupFileFragment extends BaseTaskFragment
 			fromPath += File.separatorChar + Storage.DBFILE;
 			sourceExists = new File(fromPath).exists();
 		}
+		 */
 
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		sb.append(getString(R.string.info_op_copy_database));
@@ -329,8 +333,11 @@ public class SetupFileFragment extends BaseTaskFragment
 				getString(R.string.size_expected), Utils.hrSize(R.integer.size_sqlunet_db, requireContext()), //
 				getString(R.string.size_expected) + ' ' + getString(R.string.total), Utils.hrSize(R.integer.size_db_working_total, requireContext()), //
 				getString(R.string.title_free), free, //
-				getString(R.string.title_from), fromPath, //
-				getString(R.string.title_status), getString(sourceExists ? R.string.status_source_exists : R.string.status_source_not_exists));
+				"\n", "", //
+				getString(R.string.title_from), //
+				// fromPath, //
+				// getString(R.string.title_status), getString(sourceExists ? R.string.status_source_exists : R.string.status_source_not_exists)
+				getString(R.string.title_selection));
 		return sb;
 	}
 
@@ -346,6 +353,7 @@ public class SetupFileFragment extends BaseTaskFragment
 		final String database = StorageSettings.getDatabasePath(context);
 		final String free = StorageUtils.getFree(context, database);
 		final boolean databaseExists = new File(database).exists();
+		/*
 		String fromPath = Settings.getCachePref(context);
 		boolean sourceExists = false;
 		if (fromPath != null)
@@ -353,6 +361,7 @@ public class SetupFileFragment extends BaseTaskFragment
 			fromPath += File.separatorChar + Storage.DBFILEZIP;
 			sourceExists = new File(fromPath).exists();
 		}
+		*/
 
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		sb.append(getString(R.string.info_op_unzip_database));
@@ -363,8 +372,11 @@ public class SetupFileFragment extends BaseTaskFragment
 				getString(R.string.size_expected), Utils.hrSize(R.integer.size_sqlunet_db, requireContext()), //
 				getString(R.string.size_expected) + ' ' + getString(R.string.total), Utils.hrSize(R.integer.size_db_working_total, requireContext()), //
 				getString(R.string.title_free), free, //
-				getString(R.string.title_from), fromPath, //
-				getString(R.string.title_status), getString(sourceExists ? R.string.status_source_exists : R.string.status_source_not_exists));
+				"\n", "", //
+				getString(R.string.title_from),
+				//fromPath, //
+				//getString(R.string.title_status), getString(sourceExists ? R.string.status_source_exists : R.string.status_source_not_exists)
+				getString(R.string.title_selection));
 		return sb;
 	}
 
@@ -415,6 +427,7 @@ public class SetupFileFragment extends BaseTaskFragment
 		sb.append("\n\n");
 		Info.build(sb, //
 				getString(R.string.title_from), from, //
+				"\n", "", //
 				getString(R.string.title_to), to, //
 				getString(R.string.size_expected), Utils.hrSize(R.integer.size_sqlunet_db, requireContext()), //
 				getString(R.string.size_expected) + ' ' + getString(R.string.total), Utils.hrSize(R.integer.size_db_working_total, requireContext()), //
@@ -442,6 +455,7 @@ public class SetupFileFragment extends BaseTaskFragment
 		sb.append("\n\n");
 		Info.build(sb, //
 				getString(R.string.title_from), from, //
+				"\n", "", //
 				getString(R.string.title_to), to, //
 				getString(R.string.size_expected), Utils.hrSize(R.integer.size_sqlunet_db_zip, requireContext()), //
 				getString(R.string.title_free), free, //

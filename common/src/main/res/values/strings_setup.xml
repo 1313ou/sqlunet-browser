@@ -7,6 +7,7 @@
 	<string name="title_database">Database</string>
 	<string name="title_from">From</string>
 	<string name="title_to">To</string>
+	<string name="title_selection">Selection</string>
 	<string name="title_archive">Archive</string>
 	<string name="title_entry">Entry</string>
 	<string name="title_free">Free space</string>
@@ -52,13 +53,14 @@
 	<string name="action_asset_md5">Asset MD5</string>
 	<string name="action_asset_installed">Asset installed</string>
 
-	<string name="info_op_download_database">Download the almost-ready-to-use database.</string>
+	<string name="info_op_download_database">Download the ready-to-use database.</string>
 	<string name="info_op_download_sqlzip">Download the SQL statements bundled in a Zip archive file\nThe execution of these statements will build the database. The import process may be long.</string>
 	<string name="info_op_create_database">Create an empty database</string>
 	<string name="info_op_drop_database">Drop the database</string>
 	<string name="info_op_execute_import">Execute the import/insert statements to populate the database</string>
 	<string name="info_op_execute_indexes">Execute the indexing statements to speed up queries</string>
-	<string name="info_op_copy_database">Copy the database file from cache</string>
+	<string name="info_op_execute_entry">Entry named \'sql\'</string>
+	<string name="info_op_copy_database">Copy the database file</string>
 	<string name="info_op_unzip_database">Unzip the database file</string>
 	<string name="info_op_download_zipped_database">Download the zipped database file</string>
 	<string name="info_op_md5">Compute the MD5 checksum of file</string>

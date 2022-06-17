@@ -40,6 +40,7 @@
 		<item>Create sampleset View</item>
 		<item>Drop sampleset View</item>
 		<item>@string/action_exec_from_uri</item>
+		<item>@string/action_exec_from_zipped_uri</item>
 	</string-array>
 	<string-array name="sql_statements_values" formatted="false" tools:ignore="InconsistentArrays" tools:keep="@array/sql_statements_values">
 		<item />
@@ -516,6 +517,7 @@
 			CREATE VIEW IF NOT EXISTS `samplesets` AS SELECT `synsetid`, GROUP_CONCAT(`samples`.`sample`, \'|\' ) AS `sampleset` FROM `samples` GROUP BY `synsetid`;</item>
 		<item>
 			DROP VIEW IF EXISTS `samplesets`;</item>
-		<item/>
+		<item>EXEC_URI</item>
+		<item>EXEC_ZIPPED_URI</item>
 	</string-array>
 </resources>

@@ -7,13 +7,18 @@
 	<integer name="sql_statement_do_indexes_position">0</integer>
 	<string name="action_exec_from_file">Execute from File</string>
 	<string name="action_exec_from_uri">Execute from Uri</string>
+	<string name="action_exec_from_zipped_uri">Execute from Uri (Zipped)</string>
 	<string name="status_executing">executing...</string>
 
 	<string-array name="sql_statement_titles">
 		<item>[SELECT OPERATION]</item>
+		<item>@string/action_exec_from_uri</item>
+		<item>@string/action_exec_from_zipped_uri</item>
 	</string-array>
 	<string-array name="sql_statements_values" formatted="false">
 		<item />
+		<item>EXEC_URI</item>
+		<item>EXEC_ZIPPED_URI</item>
 	</string-array>
 
 </resources>
