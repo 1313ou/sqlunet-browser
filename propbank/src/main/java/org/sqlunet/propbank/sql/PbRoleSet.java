@@ -72,10 +72,8 @@ class PbRoleSet
 	static public List<PbRoleSet> makeFromWord(final SQLiteDatabase connection, final String word)
 	{
 		final List<PbRoleSet> result = new ArrayList<>();
-		PbRoleSetQueryFromWord query = null;
-		try
+		try (PbRoleSetQueryFromWord query = new PbRoleSetQueryFromWord(connection, word))
 		{
-			query = new PbRoleSetQueryFromWord(connection, word);
 			query.execute();
 
 			while (query.next())
@@ -88,13 +86,6 @@ class PbRoleSet
 				result.add(new PbRoleSet(roleSetName, roleSetHead, roleSetDescr, roleSetId, wordId));
 			}
 			return result;
-		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
-			}
 		}
 	}
 
@@ -109,10 +100,8 @@ class PbRoleSet
 	static public List<PbRoleSet> makeFromWordId(final SQLiteDatabase connection, final long wordId)
 	{
 		final List<PbRoleSet> result = new ArrayList<>();
-		PbRoleSetQueryFromWordId query = null;
-		try
+		try (PbRoleSetQueryFromWordId query = new PbRoleSetQueryFromWordId(connection, wordId))
 		{
-			query = new PbRoleSetQueryFromWordId(connection, wordId);
 			query.execute();
 
 			while (query.next())
@@ -122,13 +111,6 @@ class PbRoleSet
 				final String roleSetDescr = query.getRoleSetDescr();
 				final long roleSetId = query.getRoleSetId();
 				result.add(new PbRoleSet(roleSetName, roleSetHead, roleSetDescr, roleSetId, wordId));
-			}
-		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
 			}
 		}
 		return result;
@@ -145,10 +127,8 @@ class PbRoleSet
 	static public List<PbRoleSet> make(final SQLiteDatabase connection, final long roleSetId)
 	{
 		final List<PbRoleSet> result = new ArrayList<>();
-		PbRoleSetQuery query = null;
-		try
+		try (PbRoleSetQuery query = new PbRoleSetQuery(connection, roleSetId);)
 		{
-			query = new PbRoleSetQuery(connection, roleSetId);
 			query.execute();
 
 			while (query.next())
@@ -157,13 +137,6 @@ class PbRoleSet
 				final String roleSetHead = query.getRoleSetHead();
 				final String roleSetDescr = query.getRoleSetDescr();
 				result.add(new PbRoleSet(roleSetName, roleSetHead, roleSetDescr, roleSetId, 0));
-			}
-		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
 			}
 		}
 		return result;

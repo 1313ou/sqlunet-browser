@@ -73,10 +73,8 @@ class PbRole
 	static public List<PbRole> make(final SQLiteDatabase connection, final long roleSetId)
 	{
 		final List<PbRole> result = new ArrayList<>();
-		PbRoleQueryFromRoleSetId query = null;
-		try
+		try (PbRoleQueryFromRoleSetId query = new PbRoleQueryFromRoleSetId(connection, roleSetId))
 		{
-			query = new PbRoleQueryFromRoleSetId(connection, roleSetId);
 			query.execute();
 
 			while (query.next())
@@ -87,13 +85,6 @@ class PbRole
 				final String roleFunc = query.getRoleFunc();
 				final String roleTheta = query.getRoleTheta();
 				result.add(new PbRole(roleId, roleDescr, roleArgType, roleFunc, roleTheta));
-			}
-		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
 			}
 		}
 		return result;

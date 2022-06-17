@@ -94,11 +94,8 @@ class PbExample
 	static public List<PbExample> make(final SQLiteDatabase connection, final long roleSetId)
 	{
 		final List<PbExample> result = new ArrayList<>();
-		PbExampleQueryFromRoleSetId query = null;
-
-		try
+		try (PbExampleQueryFromRoleSetId query = new PbExampleQueryFromRoleSetId(connection, roleSetId))
 		{
-			query = new PbExampleQueryFromRoleSetId(connection, roleSetId);
 			query.execute();
 
 			while (query.next())
@@ -115,13 +112,6 @@ class PbExample
 				final String person = query.getPerson();
 
 				result.add(new PbExample(exampleId, text, rel, args, aspect, form, tense, voice, person));
-			}
-		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
 			}
 		}
 		return result;
