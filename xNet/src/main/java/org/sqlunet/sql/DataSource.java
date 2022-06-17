@@ -6,6 +6,8 @@ package org.sqlunet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
 
+import java.io.Closeable;
+
 import androidx.annotation.NonNull;
 
 /**
@@ -13,7 +15,7 @@ import androidx.annotation.NonNull;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class DataSource
+public class DataSource implements AutoCloseable
 {
 	/**
 	 * Database
