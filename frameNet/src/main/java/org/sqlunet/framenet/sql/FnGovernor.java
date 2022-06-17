@@ -58,10 +58,8 @@ class FnGovernor
 	static public List<FnGovernor> make(final SQLiteDatabase connection, final long luId)
 	{
 		final List<FnGovernor> result = new ArrayList<>();
-		FnGovernorQueryFromLexUnitId query = null;
-		try
+		try(FnGovernorQueryFromLexUnitId query = new FnGovernorQueryFromLexUnitId(connection, luId))
 		{
-			query = new FnGovernorQueryFromLexUnitId(connection, luId);
 			query.execute();
 
 			while (query.next())
@@ -71,13 +69,6 @@ class FnGovernor
 				final String governor = query.getGovernor();
 
 				result.add(new FnGovernor(governorId, wordId, governor));
-			}
-		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
 			}
 		}
 		return result;

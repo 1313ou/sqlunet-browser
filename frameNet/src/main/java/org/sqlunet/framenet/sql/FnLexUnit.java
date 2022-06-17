@@ -91,11 +91,8 @@ public class FnLexUnit
 	@Nullable
 	static public FnLexUnit makeFromId(final SQLiteDatabase connection, final long luId)
 	{
-		FnLexUnit result = null;
-		FnLexUnitQuery query = null;
-		try
+		try (FnLexUnitQuery query = new FnLexUnitQuery(connection, luId))
 		{
-			query = new FnLexUnitQuery(connection, luId);
 			query.execute();
 
 			if (query.next())
@@ -109,17 +106,10 @@ public class FnLexUnit
 				final long frameId = query.getFrameId();
 				final String frame = query.getFrame();
 				final String frameDescription = query.getFrameDescription();
-				result = new FnLexUnit(luId, lexUnit, pos, definition, dictionary, incorporatedFe, frameId, frame, frameDescription);
+				return new FnLexUnit(luId, lexUnit, pos, definition, dictionary, incorporatedFe, frameId, frame, frameDescription);
 			}
 		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
-			}
-		}
-		return result;
+		return null;
 	}
 
 	/**
@@ -133,10 +123,8 @@ public class FnLexUnit
 	static public Pair<Long, List<FnLexUnit>> makeFromWord(final SQLiteDatabase connection, final String word)
 	{
 		final List<FnLexUnit> result = new ArrayList<>();
-		FnLexUnitQueryFromWord query = null;
-		try
+		try (FnLexUnitQueryFromWord query = new FnLexUnitQueryFromWord(connection, false, word))
 		{
-			query = new FnLexUnitQueryFromWord(connection, false, word);
 			query.execute();
 
 			long wordId = 0;
@@ -158,13 +146,6 @@ public class FnLexUnit
 			}
 			return new Pair<>(wordId, result);
 		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
-			}
-		}
 	}
 
 	/**
@@ -178,10 +159,8 @@ public class FnLexUnit
 	static public Pair<Long, List<FnLexUnit>> makeFromFnWord(final SQLiteDatabase connection, final String fnWord)
 	{
 		final List<FnLexUnit> result = new ArrayList<>();
-		FnLexUnitQueryFromFnWord query = null;
-		try
+		try (FnLexUnitQueryFromFnWord query = new FnLexUnitQueryFromFnWord(connection, true, fnWord))
 		{
-			query = new FnLexUnitQueryFromFnWord(connection, true, fnWord);
 			query.execute();
 
 			long fnWordId = 0;
@@ -203,13 +182,6 @@ public class FnLexUnit
 			}
 			return new Pair<>(fnWordId, result);
 		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
-			}
-		}
 	}
 
 	/**
@@ -224,10 +196,8 @@ public class FnLexUnit
 	static public List<FnLexUnit> makeFromWordId(final SQLiteDatabase connection, final long wordId, final Character pos)
 	{
 		final List<FnLexUnit> result = new ArrayList<>();
-		FnLexUnitQueryFromWordId query = null;
-		try
+		try (FnLexUnitQueryFromWordId query = new FnLexUnitQueryFromWordId(connection, false, wordId, pos))
 		{
-			query = new FnLexUnitQueryFromWordId(connection, false, wordId, pos);
 			query.execute();
 
 			while (query.next())
@@ -243,13 +213,6 @@ public class FnLexUnit
 				final String frameDescription = query.getFrameDescription();
 
 				result.add(new FnLexUnit(luId, lexUnit, luPos, definition, dictionary, incorporatedFe, frameId, frame, frameDescription));
-			}
-		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
 			}
 		}
 		return result;
@@ -267,10 +230,8 @@ public class FnLexUnit
 	static public List<FnLexUnit> makeFromFnWordId(final SQLiteDatabase connection, final long fnWordId, final Character pos)
 	{
 		final List<FnLexUnit> result = new ArrayList<>();
-		FnLexUnitQueryFromFnWordId query = null;
-		try
+		try (FnLexUnitQueryFromFnWordId query = new FnLexUnitQueryFromFnWordId(connection, true, fnWordId, pos);)
 		{
-			query = new FnLexUnitQueryFromFnWordId(connection, true, fnWordId, pos);
 			query.execute();
 
 			while (query.next())
@@ -288,13 +249,6 @@ public class FnLexUnit
 				result.add(new FnLexUnit(luId, lexUnit, luPos, definition, dictionary, incorporatedFe, frameId, frame, frameDescription));
 			}
 		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
-			}
-		}
 		return result;
 	}
 
@@ -309,10 +263,8 @@ public class FnLexUnit
 	static public List<FnLexUnit> makeFromFrame(final SQLiteDatabase connection, final long frameId)
 	{
 		final List<FnLexUnit> result = new ArrayList<>();
-		FnLexUnitQueryFromFrameId query = null;
-		try
+		try (FnLexUnitQueryFromFrameId query = new FnLexUnitQueryFromFrameId(connection, frameId))
 		{
-			query = new FnLexUnitQueryFromFrameId(connection, frameId);
 			query.execute();
 
 			while (query.next())
@@ -324,13 +276,6 @@ public class FnLexUnit
 				final String dictionary = query.getDictionary();
 				final String incorporatedFe = query.getIncorporatedFe();
 				result.add(new FnLexUnit(luId, lexUnit, pos, definition, dictionary, incorporatedFe, 0, null, null));
-			}
-		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
 			}
 		}
 		return result;

@@ -73,10 +73,8 @@ class FnLayer
 	static public List<FnLayer> makeFromSentence(final SQLiteDatabase connection, final long sentenceId)
 	{
 		List<FnLayer> result = null;
-		FnLayerQueryFromSentenceId query = null;
-		try
+		try (FnLayerQueryFromSentenceId query = new FnLayerQueryFromSentenceId(connection, sentenceId))
 		{
-			query = new FnLayerQueryFromSentenceId(connection, sentenceId);
 			query.execute();
 
 			while (query.next())
@@ -93,13 +91,6 @@ class FnLayer
 				result.add(new FnLayer(layerId, layerType, annoSetId, rank, labels));
 			}
 		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
-			}
-		}
 		return result;
 	}
 
@@ -114,10 +105,8 @@ class FnLayer
 	static public List<FnLayer> makeFromAnnoSet(final SQLiteDatabase connection, final long annoSetId)
 	{
 		List<FnLayer> result = null;
-		FnLayerQueryFromAnnoSetId query = null;
-		try
+		try (FnLayerQueryFromAnnoSetId query = new FnLayerQueryFromAnnoSetId(connection, annoSetId);)
 		{
-			query = new FnLayerQueryFromAnnoSetId(connection, annoSetId);
 			query.execute();
 
 			while (query.next())
@@ -131,13 +120,6 @@ class FnLayer
 					result = new ArrayList<>();
 				}
 				result.add(new FnLayer(layerId, layerType, annoSetId, rank, labels));
-			}
-		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
 			}
 		}
 		return result;

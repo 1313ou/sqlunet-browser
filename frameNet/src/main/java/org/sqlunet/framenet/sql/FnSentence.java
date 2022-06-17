@@ -51,11 +51,8 @@ public class FnSentence
 	@Nullable
 	static public FnSentence make(final SQLiteDatabase connection, final long sentenceId)
 	{
-		FnSentence result = null;
-		FnSentenceQuery query = null;
-		try
+		try (FnSentenceQuery query = new FnSentenceQuery(connection, sentenceId))
 		{
-			query = new FnSentenceQuery(connection, sentenceId);
 			query.execute();
 
 			if (query.next())
@@ -63,17 +60,10 @@ public class FnSentence
 				// final long sentenceId = query.getSentenceId();
 				final String text = query.getText();
 
-				result = new FnSentence(sentenceId, text);
+				return new FnSentence(sentenceId, text);
 			}
 		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
-			}
-		}
-		return result;
+		return null;
 	}
 
 	/**
@@ -87,10 +77,8 @@ public class FnSentence
 	static public List<FnSentence> makeFromLexicalUnit(final SQLiteDatabase connection, final long luId)
 	{
 		final List<FnSentence> result = new ArrayList<>();
-		FnSentenceQueryFromLexUnitId query = null;
-		try
+		try (FnSentenceQueryFromLexUnitId query = new FnSentenceQueryFromLexUnitId(connection, luId))
 		{
-			query = new FnSentenceQueryFromLexUnitId(connection, luId);
 			query.execute();
 
 			while (query.next())
@@ -99,13 +87,6 @@ public class FnSentence
 				final String text = query.getText();
 
 				result.add(new FnSentence(sentenceId, text));
-			}
-		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
 			}
 		}
 		return result;

@@ -47,11 +47,8 @@ public class FnAnnoSet
 	@Nullable
 	static public FnAnnoSet make(final SQLiteDatabase connection, final long annoSetId)
 	{
-		FnAnnoSet result = null;
-		FnAnnoSetQuery query = null;
-		try
+		try (FnAnnoSetQuery query = new FnAnnoSetQuery(connection, annoSetId))
 		{
-			query = new FnAnnoSetQuery(connection, annoSetId);
 			query.execute();
 
 			if (query.next())
@@ -59,16 +56,9 @@ public class FnAnnoSet
 				final long sentenceId = query.getSentenceId();
 				final String text = query.getSentenceText();
 				final FnSentence sentence = new FnSentence(sentenceId, text);
-				result = new FnAnnoSet(annoSetId, sentence);
+				return new FnAnnoSet(annoSetId, sentence);
 			}
 		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
-			}
-		}
-		return result;
+		return null;
 	}
 }

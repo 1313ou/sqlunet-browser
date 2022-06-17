@@ -102,10 +102,9 @@ class FnFrameElement
 	static public List<FnFrameElement> make(final SQLiteDatabase connection, final long frameId)
 	{
 		final List<FnFrameElement> result = new ArrayList<>();
-		FnFrameElementQueryFromFrameId query = null;
-		try
+
+		try(FnFrameElementQueryFromFrameId query = new FnFrameElementQueryFromFrameId(connection, frameId))
 		{
-			query = new FnFrameElementQueryFromFrameId(connection, frameId);
 			query.execute();
 
 			while (query.next())
@@ -121,13 +120,6 @@ class FnFrameElement
 				final int coreSet = query.getCoreSet();
 
 				result.add(new FnFrameElement(feId, feTypeId, feType, feDefinition, feAbbrev, feCoreType, semTypes, isCore, coreSet));
-			}
-		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
 			}
 		}
 		return result;

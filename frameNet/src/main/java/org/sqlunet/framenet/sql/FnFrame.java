@@ -70,11 +70,8 @@ public class FnFrame
 	@Nullable
 	static public FnFrame make(final SQLiteDatabase connection, final long frameId)
 	{
-		FnFrame result = null;
-		FnFrameQuery query = null;
-		try
+		try (FnFrameQuery query = new FnFrameQuery(connection, frameId))
 		{
-			query = new FnFrameQuery(connection, frameId);
 			query.execute();
 
 			if (query.next())
@@ -84,16 +81,9 @@ public class FnFrame
 				// final long frameId = query.getFrameId();
 				final List<FnSemType> semTypes = FnSemType.make(query.getSemTypes());
 				final List<FnRelatedFrame> relatedFrames = FnRelatedFrame.make(query.getRelatedFrames());
-				result = new FnFrame(frameId, frameName, frameDescription, semTypes, relatedFrames);
+				return new FnFrame(frameId, frameName, frameDescription, semTypes, relatedFrames);
 			}
 		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
-			}
-		}
-		return result;
+		return null;
 	}
 }
