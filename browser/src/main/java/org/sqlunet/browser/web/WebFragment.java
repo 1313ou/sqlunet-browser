@@ -102,11 +102,9 @@ public class WebFragment extends Fragment
 		@Override
 		public String getDoc()
 		{
-			DataSource dataSource = null;
-			try
+			try(DataSource dataSource = new DataSource(StorageSettings.getDatabasePath(this.context)))
 			{
 				// data source
-				dataSource = new DataSource(StorageSettings.getDatabasePath(this.context));
 				final SQLiteDatabase db = dataSource.getConnection();
 				WordNetImplementation.init(db);
 
@@ -291,13 +289,6 @@ public class WebFragment extends Fragment
 			catch (@NonNull final Exception e)
 			{
 				Log.e(WebFragment.TAG, "getDoc", e);
-			}
-			finally
-			{
-				if (dataSource != null)
-				{
-					dataSource.close();
-				}
 			}
 			return null;
 		}

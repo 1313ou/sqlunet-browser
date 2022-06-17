@@ -89,11 +89,9 @@ public class WebFragment extends Fragment
 		@Override
 		public String getDoc()
 		{
-			DataSource dataSource = null;
-			try
+			try (DataSource dataSource = new DataSource(StorageSettings.getDatabasePath(this.context)))
 			{
 				// data source
-				dataSource = new DataSource(StorageSettings.getDatabasePath(this.context));
 				final SQLiteDatabase db = dataSource.getConnection();
 
 				// dom documents
@@ -173,13 +171,6 @@ public class WebFragment extends Fragment
 			catch (@NonNull final Exception e)
 			{
 				Log.e(WebFragment.TAG, "getDoc", e);
-			}
-			finally
-			{
-				if (dataSource != null)
-				{
-					dataSource.close();
-				}
 			}
 			return null;
 		}
@@ -436,7 +427,7 @@ public class WebFragment extends Fragment
 			data = DomTransformer.docToXml(rootDomDoc);
 			if (BuildConfig.DEBUG)
 			{
-				LogUtils.writeLog(data, false, requireContext(),null);
+				LogUtils.writeLog(data, false, requireContext(), null);
 				final URL xsd = DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd");
 				assert xsd != null;
 				DomValidator.validateStrings(xsd, data);
@@ -495,8 +486,8 @@ public class WebFragment extends Fragment
 				final URL xsd = DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd");
 				assert xsd != null;
 				DomValidator.validateDocs(xsd, fnDomDoc);
-				LogUtils.writeLog(false, requireContext(),null, fnDomDoc);
-				LogUtils.writeLog(data, false, requireContext(),null);
+				LogUtils.writeLog(false, requireContext(), null, fnDomDoc);
+				LogUtils.writeLog(data, false, requireContext(), null);
 				Log.d(TAG, "output=\n" + data);
 			}
 		}
