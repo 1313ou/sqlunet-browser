@@ -8,6 +8,8 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.io.Closeable;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -17,7 +19,7 @@ import androidx.annotation.Nullable;
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 
-public class DBQuery
+public class DBQuery implements AutoCloseable
 {
 	/**
 	 * <code>statement</code> is the SQL statement
@@ -63,7 +65,7 @@ public class DBQuery
 	/**
 	 * Release resources
 	 */
-	public void release()
+	public void close()
 	{
 		try
 		{
