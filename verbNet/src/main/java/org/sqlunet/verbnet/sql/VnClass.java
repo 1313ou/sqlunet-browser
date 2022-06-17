@@ -55,10 +55,8 @@ public class VnClass
 	@Nullable
 	static public VnClass make(final SQLiteDatabase connection, final long classId)
 	{
-		VnClassQuery query = null;
-		try
+		try (VnClassQuery query = new VnClassQuery(connection, classId))
 		{
-			query = new VnClassQuery(connection, classId);
 			query.execute();
 
 			if (query.next())
@@ -67,13 +65,6 @@ public class VnClass
 				final String groupings = query.getGroupings();
 
 				return new VnClass(className, classId, groupings);
-			}
-		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
 			}
 		}
 		return null;

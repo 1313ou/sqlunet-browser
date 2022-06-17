@@ -102,10 +102,8 @@ class VnClassWithSense
 	static public List<VnClassWithSense> make(final SQLiteDatabase connection, final long wordId, final Long synsetId)
 	{
 		final List<VnClassWithSense> result = new ArrayList<>();
-		VnClassQueryFromSense query = null;
-		try
+		try (VnClassQueryFromSense query = new VnClassQueryFromSense(connection, wordId, synsetId))
 		{
-			query = new VnClassQueryFromSense(connection, wordId, synsetId);
 			query.execute();
 
 			while (query.next())
@@ -120,13 +118,6 @@ class VnClassWithSense
 				final String groupings = query.getGroupings();
 
 				result.add(new VnClassWithSense(className, classId, wordId, synsetSpecificFlag ? synsetId : null, definition, sensenum, sensekey, quality, groupings));
-			}
-		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
 			}
 		}
 		return result;

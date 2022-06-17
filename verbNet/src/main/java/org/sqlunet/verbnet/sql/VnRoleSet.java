@@ -43,14 +43,11 @@ public class VnRoleSet
 	@Nullable
 	static public VnRoleSet make(final SQLiteDatabase connection, final long classId)
 	{
-		VnRoleQueryFromClassId query = null;
-		VnRoleSet roleSet = null;
-
-		try
+		try (VnRoleQueryFromClassId query = new VnRoleQueryFromClassId(connection, classId))
 		{
-			query = new VnRoleQueryFromClassId(connection, classId);
 			query.execute();
 
+			VnRoleSet roleSet = null;
 			while (query.next())
 			{
 				final String roleType = query.getRoleType();
@@ -68,15 +65,8 @@ public class VnRoleSet
 				// addItem role to role set
 				roleSet.roles.add(role);
 			}
+			return roleSet;
 		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
-			}
-		}
-		return roleSet;
 	}
 
 	/**
@@ -91,14 +81,11 @@ public class VnRoleSet
 	@Nullable
 	static public VnRoleSet make(final SQLiteDatabase connection, final long classId, final long wordId, final Long synsetId)
 	{
-		VnRoleQueryFromClassIdAndSense query = null;
-		VnRoleSet roleSet = null;
-
-		try
+		try (VnRoleQueryFromClassIdAndSense query = new VnRoleQueryFromClassIdAndSense(connection, classId, wordId, synsetId))
 		{
-			query = new VnRoleQueryFromClassIdAndSense(connection, classId, wordId, synsetId);
 			query.execute();
 
+			VnRoleSet roleSet = null;
 			while (query.next())
 			{
 				final String roleType = query.getRoleType();
@@ -116,14 +103,7 @@ public class VnRoleSet
 				// addItem role to role set
 				roleSet.roles.add(role);
 			}
+			return roleSet;
 		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
-			}
-		}
-		return roleSet;
 	}
 }

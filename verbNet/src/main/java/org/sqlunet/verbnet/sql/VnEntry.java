@@ -52,16 +52,12 @@ public class VnEntry
 	@Nullable
 	static public VnEntry make(final SQLiteDatabase connection, final String word)
 	{
-		VnEntry entry = null;
-		VnClassQueryFromWordAndPos query = null;
-		try
+		try (VnClassQueryFromWordAndPos query = new VnClassQueryFromWordAndPos(connection, word))
 		{
-			query = new VnClassQueryFromWordAndPos(connection, word);
 			query.execute();
 
 			long wordId = 0;
 			List<VnSynset> synsets = null;
-
 			while (query.next())
 			{
 				wordId = query.getWordId();
@@ -73,16 +69,9 @@ public class VnEntry
 			}
 			if (wordId != 0)
 			{
-				entry = new VnEntry(new BasicWord(word, wordId), synsets);
+				return new VnEntry(new BasicWord(word, wordId), synsets);
 			}
 		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
-			}
-		}
-		return entry;
+		return null;
 	}
 }

@@ -45,14 +45,11 @@ public class VnFrameSet
 	@Nullable
 	static public VnFrameSet make(final SQLiteDatabase connection, final long classId, final long wordId, final Long synsetId)
 	{
-		VnFrameQueryFromClassIdAndSense query = null;
-		VnFrameSet frameSet = null;
-
-		try
+		try (VnFrameQueryFromClassIdAndSense query = new VnFrameQueryFromClassIdAndSense(connection, classId, wordId, synsetId))
 		{
-			query = new VnFrameQueryFromClassIdAndSense(connection, classId, wordId, synsetId);
 			query.execute();
 
+			VnFrameSet frameSet = null;
 			while (query.next())
 			{
 				// data from result set
@@ -80,15 +77,8 @@ public class VnFrameSet
 				// if same class, addItem role to frame set
 				frameSet.frames.add(frame);
 			}
+			return frameSet;
 		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
-			}
-		}
-		return frameSet;
 	}
 
 	/**
@@ -101,14 +91,11 @@ public class VnFrameSet
 	@Nullable
 	static public VnFrameSet make(final SQLiteDatabase connection, final long classId)
 	{
-		VnFrameQueryFromClassId query = null;
-		VnFrameSet frameSet = null;
-
-		try
+		try (VnFrameQueryFromClassId query = new VnFrameQueryFromClassId(connection, classId))
 		{
-			query = new VnFrameQueryFromClassId(connection, classId);
 			query.execute();
 
+			VnFrameSet frameSet = null;
 			while (query.next())
 			{
 				// data from result set
@@ -133,14 +120,7 @@ public class VnFrameSet
 				// if same class, addItem role to frame set
 				frameSet.frames.add(frame);
 			}
+			return frameSet;
 		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
-			}
-		}
-		return frameSet;
 	}
 }
