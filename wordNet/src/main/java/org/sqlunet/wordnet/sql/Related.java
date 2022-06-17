@@ -118,34 +118,25 @@ class Related extends Synset
 	@Override
 	public List<Related> getRelateds(final SQLiteDatabase connection, final long wordId)
 	{
-		RelatedsQueryFromSynsetIdAndRelationId query = null;
-		List<Related> relateds = new ArrayList<>();
-		try
+		try (RelatedsQueryFromSynsetIdAndRelationId query = new RelatedsQueryFromSynsetIdAndRelationId(connection))
 		{
-			query = new RelatedsQueryFromSynsetIdAndRelationId(connection);
 			query.setFromSynset(this.synsetId);
 			query.setFromWord(wordId);
 			query.setRelation(this.relationId);
 			query.execute();
 
+			List<Related> relateds = new ArrayList<>();
 			while (query.next())
 			{
 				final Related related = new Related(query);
 				relateds.add(related);
 			}
+			return relateds;
 		}
 		catch (@NonNull final SQLException e)
 		{
 			Log.e(TAG, "While querying", e);
-			relateds = null;
+			return null;
 		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
-			}
-		}
-		return relateds;
 	}
 }

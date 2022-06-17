@@ -83,14 +83,12 @@ class Mapping
 	static public void initDomains(final SQLiteDatabase connection)
 	{
 		// domain
-		Mapping.domains = new ArrayList<>();
-		Mapping.domainsByName = new HashMap<>();
-		DomainsQuery query = null;
-		try
+		try (DomainsQuery query = new DomainsQuery(connection))
 		{
-			query = new DomainsQuery(connection);
 			query.execute();
 
+			Mapping.domains = new ArrayList<>();
+			Mapping.domainsByName = new HashMap<>();
 			while (query.next())
 			{
 				final int id = query.getId();
@@ -106,13 +104,6 @@ class Mapping
 			Log.e(TAG, "While initializing domains", e);
 			throw new RuntimeException(e);
 		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
-			}
-		}
 	}
 
 	/**
@@ -123,14 +114,12 @@ class Mapping
 	@SuppressLint("DefaultLocale")
 	static public void initRelations(final SQLiteDatabase connection)
 	{
-		Mapping.relationsById = new SparseArray<>();
-		Mapping.relationsByName = new HashMap<>();
-		RelationsQuery query = null;
-		try
+		try (RelationsQuery query = new RelationsQuery(connection))
 		{
-			query = new RelationsQuery(connection);
 			query.execute();
 
+			Mapping.relationsById = new SparseArray<>();
+			Mapping.relationsByName = new HashMap<>();
 			while (query.next())
 			{
 				final int id = query.getId();
@@ -145,13 +134,6 @@ class Mapping
 		{
 			Log.e(TAG, "While initializing relations", e);
 			throw new RuntimeException(e);
-		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
-			}
 		}
 	}
 

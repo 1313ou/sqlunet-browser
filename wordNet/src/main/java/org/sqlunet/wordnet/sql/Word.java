@@ -58,37 +58,27 @@ public class Word extends BasicWord
 	 * Make word
 	 *
 	 * @param connection connection
-	 * @param str      target string
+	 * @param str        target string
 	 * @return Word or null
 	 */
 	@Nullable
 	static public Word make(final SQLiteDatabase connection, final String str)
 	{
-		Word word = null;
-		WordQueryFromWord query = null;
-		try
+		try (WordQueryFromWord query = new WordQueryFromWord(connection, str))
 		{
-			query = new WordQueryFromWord(connection, str);
 			query.execute();
 
 			if (query.next())
 			{
-				word = new Word(query);
+				return new Word(query);
 			}
+			return null;
 		}
 		catch (@NonNull final SQLException e)
 		{
 			Log.e(TAG, "While querying word", e);
-			// word can only be null here
+			return null;
 		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
-			}
-		}
-		return word;
 	}
 
 	/**
@@ -101,31 +91,21 @@ public class Word extends BasicWord
 	@Nullable
 	static public Word make(final SQLiteDatabase connection, final long wordId)
 	{
-		Word word = null;
-		WordQuery query = null;
-		try
+		try (WordQuery query = new WordQuery(connection, wordId))
 		{
-			query = new WordQuery(connection, wordId);
 			query.execute();
 
 			if (query.next())
 			{
-				word = new Word(query);
+				return new Word(query);
 			}
+			return null;
 		}
 		catch (@NonNull final SQLException e)
 		{
 			Log.e(TAG, "While querying word", e);
-			// word can only be null here
+			return null;
 		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
-			}
-		}
-		return word;
 	}
 
 	/**
@@ -137,32 +117,23 @@ public class Word extends BasicWord
 	@Nullable
 	public List<Synset> getSynsets(final SQLiteDatabase connection)
 	{
-		SynsetsQueryFromWordId query = null;
-		List<Synset> synsets = new ArrayList<>();
-		try
+		try (SynsetsQueryFromWordId query = new SynsetsQueryFromWordId(connection, this.id))
 		{
-			query = new SynsetsQueryFromWordId(connection, this.id);
 			query.execute();
 
+			List<Synset> synsets = new ArrayList<>();
 			while (query.next())
 			{
 				final Synset synset = new Synset(query);
 				synsets.add(synset);
 			}
+			return synsets;
 		}
 		catch (@NonNull final SQLException e)
 		{
 			Log.e(TAG, "While querying synsets", e);
-			synsets = null;
+			return null;
 		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
-			}
-		}
-		return synsets;
 	}
 
 	/**
@@ -176,11 +147,8 @@ public class Word extends BasicWord
 	@Nullable
 	public List<Synset> getTypedSynsets(final SQLiteDatabase connection, final int targetType, final boolean domainBased)
 	{
-		SynsetsQueryFromWordIdAndCondition query = null;
-		List<Synset> synsets = new ArrayList<>();
-		try
+		try (SynsetsQueryFromWordIdAndCondition query = new SynsetsQueryFromWordIdAndCondition(connection, domainBased))
 		{
-			query = new SynsetsQueryFromWordIdAndCondition(connection, domainBased);
 			query.setWordId(this.id);
 			if (domainBased)
 			{
@@ -192,24 +160,18 @@ public class Word extends BasicWord
 			}
 			query.execute();
 
+			List<Synset> synsets = new ArrayList<>();
 			while (query.next())
 			{
 				final Synset synset = new Synset(query);
 				synsets.add(synset);
 			}
+			return synsets;
 		}
 		catch (@NonNull final SQLException e)
 		{
 			Log.e(TAG, "While querying typed synsets", e);
-			synsets = null;
+			return null;
 		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
-			}
-		}
-		return synsets;
 	}
 }

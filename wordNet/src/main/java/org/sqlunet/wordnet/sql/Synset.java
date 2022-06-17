@@ -95,33 +95,24 @@ class Synset extends BasicSynset
 	@Nullable
 	public List<Word> getSynsetWords(final SQLiteDatabase connection)
 	{
-		SynsetWordsQuery query = null;
-		List<Word> words = new ArrayList<>();
-		try
+		try (SynsetWordsQuery query = new SynsetWordsQuery(connection, this.synsetId))
 		{
-			query = new SynsetWordsQuery(connection, this.synsetId);
 			query.execute();
 
+			List<Word> words = new ArrayList<>();
 			while (query.next())
 			{
 				final String word = query.getWord();
 				final long id = query.getId();
 				words.add(new Word(word, id));
 			}
+			return words;
 		}
 		catch (@NonNull final SQLException e)
 		{
 			Log.e(TAG, "While querying synset words", e);
-			words = null;
+			return null;
 		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
-			}
-		}
-		return words;
 	}
 
 	/**
@@ -187,34 +178,25 @@ class Synset extends BasicSynset
 	@Nullable
 	public List<Related> getRelateds(final SQLiteDatabase connection, final long wordId)
 	{
-		RelatedsQueryFromSynsetId query = null;
-		List<Related> relateds = new ArrayList<>();
-		try
+		try (RelatedsQueryFromSynsetId query = new RelatedsQueryFromSynsetId(connection))
 		{
-			query = new RelatedsQueryFromSynsetId(connection);
 			query.setFromSynset(this.synsetId);
 			query.setFromWord(wordId);
 			query.execute();
 
+			List<Related> relateds = new ArrayList<>();
 			while (query.next())
 			{
 				final Related related = new Related(query);
 				relateds.add(related);
 			}
+			return relateds;
 		}
 		catch (@NonNull final SQLException e)
 		{
 			Log.e(TAG, "While querying relateds", e);
-			relateds = null;
+			return null;
 		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
-			}
-		}
-		return relateds;
 	}
 
 	/**
@@ -228,34 +210,25 @@ class Synset extends BasicSynset
 	@Nullable
 	public List<Related> getTypedRelateds(final SQLiteDatabase connection, final long wordId, final int relationId)
 	{
-		RelatedsQueryFromSynsetIdAndRelationId query = null;
-		List<Related> relateds = new ArrayList<>();
-		try
+		try (RelatedsQueryFromSynsetIdAndRelationId query = new RelatedsQueryFromSynsetIdAndRelationId(connection))
 		{
-			query = new RelatedsQueryFromSynsetIdAndRelationId(connection);
 			query.setFromSynset(this.synsetId);
 			query.setFromWord(wordId);
 			query.setRelation(relationId);
 			query.execute();
 
+			List<Related> relateds = new ArrayList<>();
 			while (query.next())
 			{
 				final Related related = new Related(query);
 				relateds.add(related);
 			}
+			return relateds;
 		}
 		catch (@NonNull final SQLException e)
 		{
 			Log.e(TAG, "While querying typed relations", e);
-			relateds = null;
+			return null;
 		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
-			}
-		}
-		return relateds;
 	}
 }
