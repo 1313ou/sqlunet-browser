@@ -70,23 +70,15 @@ public class BncData
 	static public List<BncData> makeData(final SQLiteDatabase connection, final String targetWord)
 	{
 		final List<BncData> result = new ArrayList<>();
-		BncQuery query = null;
-		try
+
+		try (BncQuery query = new BncQuery(connection, targetWord))
 		{
-			query = new BncQuery(connection, targetWord);
 			query.execute();
 
 			while (query.next())
 			{
 				final BncData data = query.getData();
 				result.add(data);
-			}
-		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
 			}
 		}
 		return result;
@@ -97,23 +89,15 @@ public class BncData
 	static public List<BncData> makeData(final SQLiteDatabase connection, final long targetWordId, @Nullable final Character targetPos)
 	{
 		final List<BncData> result = new ArrayList<>();
-		BncQuery query = null;
-		try
+
+		try(BncQuery query = targetPos != null ? new BncQuery(connection, targetWordId, targetPos) : new BncQuery(connection, targetWordId))
 		{
-			query = targetPos != null ? new BncQuery(connection, targetWordId, targetPos) : new BncQuery(connection, targetWordId);
 			query.execute();
 
 			while (query.next())
 			{
 				final BncData data = query.getData();
 				result.add(data);
-			}
-		}
-		finally
-		{
-			if (query != null)
-			{
-				query.release();
 			}
 		}
 		return result;
