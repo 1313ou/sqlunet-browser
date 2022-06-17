@@ -4,18 +4,14 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 import android.provider.OpenableColumns;
 import android.util.Log;
 
-import java.io.BufferedReader;
 import java.io.FileDescriptor;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -136,9 +132,9 @@ public class SAFUtils
 	@Nullable
 	public static <R> R applyInputStream(@NonNull Uri uri, ContentResolver resolver, @NonNull Function<InputStream, R> f) throws IOException
 	{
-		try (InputStream inputStream = resolver.openInputStream(uri))
+		try (InputStream is = resolver.openInputStream(uri))
 		{
-			return f.apply(inputStream);
+			return f.apply(is);
 		}
 	}
 }

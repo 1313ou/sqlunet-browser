@@ -355,9 +355,11 @@ public class DownloadService extends JobIntentService
 				staticVersion = connection.getHeaderField("x-static-version");
 			}
 
-			try (InputStream input = new BufferedInputStream(connection.getInputStream(), CHUNK_SIZE); OutputStream output = new FileOutputStream(outFile))
+			try ( //
+			      InputStream is = new BufferedInputStream(connection.getInputStream(), CHUNK_SIZE); //
+			      OutputStream os = new FileOutputStream(outFile)) //
 			{
-				copyStreams(input, output, size);
+				copyStreams(is, os, size);
 			}
 		}
 		finally
@@ -416,20 +418,20 @@ public class DownloadService extends JobIntentService
 	/**
 	 * Copy streams or consume input stream
 	 *
-	 * @param input  input stream
-	 * @param output output stream
-	 * @param total  expected total length
+	 * @param is    input stream
+	 * @param os    output stream
+	 * @param total expected total length
 	 * @throws InterruptedException interrupted exception
 	 * @throws IOException          io exception
 	 */
-	protected void copyStreams(@NonNull final InputStream input, @Nullable final OutputStream output, final long total) throws InterruptedException, IOException
+	protected void copyStreams(@NonNull final InputStream is, @Nullable final OutputStream os, final long total) throws InterruptedException, IOException
 	{
 		// copy streams
 		final byte[] buffer = new byte[1024];
 		long downloaded = 0;
 		int chunks = 0;
 		int count;
-		while ((count = input.read(buffer)) != -1)
+		while ((count = is.read(buffer)) != -1)
 		{
 			downloaded += count;
 
@@ -451,9 +453,9 @@ public class DownloadService extends JobIntentService
 			chunks++;
 
 			// writing data toFile file
-			if (output != null)
+			if (os != null)
 			{
-				output.write(buffer, 0, count);
+				os.write(buffer, 0, count);
 			}
 
 			// interrupted
@@ -471,9 +473,9 @@ public class DownloadService extends JobIntentService
 				throw ie;
 			}
 		}
-		if (output != null)
+		if (os != null)
 		{
-			output.flush();
+			os.flush();
 		}
 	}
 

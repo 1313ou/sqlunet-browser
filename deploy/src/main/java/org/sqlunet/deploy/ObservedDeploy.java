@@ -57,16 +57,18 @@ public class ObservedDeploy
 	{
 		Log.d(ObservedDeploy.TAG, "Copy from " + srcUri + " to " + destFile);
 
-		try (InputStream in = resolver.openInputStream(srcUri); FileOutputStream out = new FileOutputStream(destFile))
+		try ( //
+		      InputStream is = resolver.openInputStream(srcUri); //
+		      FileOutputStream os = new FileOutputStream(destFile)) //
 		{
 			final byte[] buffer = new byte[CHUNK_SIZE];
 			long byteCount = 0;
 			int chunkCount = 0;
 			int readCount;
-			while ((readCount = in.read(buffer)) != -1)
+			while ((readCount = is.read(buffer)) != -1)
 			{
 				// write
-				out.write(buffer, 0, readCount);
+				os.write(buffer, 0, readCount);
 
 				// count
 				byteCount += readCount;
@@ -112,16 +114,18 @@ public class ObservedDeploy
 		File sourceFile = new File(srcFile);
 		long length = sourceFile.length();
 
-		try (FileInputStream in = new FileInputStream(srcFile); FileOutputStream out = new FileOutputStream(destFile))
+		try ( //
+		      FileInputStream is = new FileInputStream(srcFile); //
+		      FileOutputStream os = new FileOutputStream(destFile)) //
 		{
 			final byte[] buffer = new byte[CHUNK_SIZE];
 			long byteCount = 0;
 			int chunkCount = 0;
 			int readCount;
-			while ((readCount = in.read(buffer)) != -1)
+			while ((readCount = is.read(buffer)) != -1)
 			{
 				// write
-				out.write(buffer, 0, readCount);
+				os.write(buffer, 0, readCount);
 
 				// count
 				byteCount += readCount;
@@ -164,11 +168,8 @@ public class ObservedDeploy
 	{
 		Log.d(ObservedDeploy.TAG, "Expand from " + srcArchive + " to " + destDir);
 
-		ZipFile zipFile = null;
-
-		try
+		try(ZipFile zipFile = new ZipFile(srcArchive))
 		{
-			zipFile = new ZipFile(srcArchive);
 			Enumeration<? extends ZipEntry> zipEntries = zipFile.entries();
 			while (zipEntries.hasMoreElements())
 			{
@@ -193,7 +194,9 @@ public class ObservedDeploy
 				}
 
 				// input
-				try (InputStream in = zipFile.getInputStream(zipEntry); FileOutputStream out = new FileOutputStream(outFile))
+				try ( //
+				      InputStream is = zipFile.getInputStream(zipEntry); //
+				      FileOutputStream os = new FileOutputStream(outFile)) //
 				{
 					long length = zipEntry.getSize();
 
@@ -202,10 +205,10 @@ public class ObservedDeploy
 					long byteCount = 0;
 					int chunkCount = 0;
 					int readCount;
-					while ((readCount = in.read(buffer)) != -1)
+					while ((readCount = is.read(buffer)) != -1)
 					{
 						// write
-						out.write(buffer, 0, readCount);
+						os.write(buffer, 0, readCount);
 
 						// count
 						byteCount += readCount;
@@ -224,7 +227,7 @@ public class ObservedDeploy
 							break;
 						}
 					}
-					out.flush();
+					os.flush();
 					publisher.publish(byteCount, length);
 				}
 				catch (IOException e1)
@@ -246,20 +249,6 @@ public class ObservedDeploy
 		{
 			Log.e(TAG, "While executing from archive", e1);
 		}
-		finally
-		{
-			if (zipFile != null)
-			{
-				try
-				{
-					zipFile.close();
-				}
-				catch (IOException e)
-				{
-					Log.e(TAG, "While closing archive", e);
-				}
-			}
-		}
 		return false;
 	}
 
@@ -277,10 +266,13 @@ public class ObservedDeploy
 	{
 		Log.d(ObservedDeploy.TAG, "Expand from " + srcUri + " to " + destDir);
 
-		try (ZipInputStream zipIn = (ZipInputStream) resolver.openInputStream(srcUri))
+		try ( //
+		      InputStream is = resolver.openInputStream(srcUri); //
+		      ZipInputStream zis = new ZipInputStream(is) //
+		)
 		{
 			ZipEntry zipEntry;
-			while ((zipEntry = zipIn.getNextEntry()) != null)
+			while ((zipEntry = zis.getNextEntry()) != null)
 			{
 				//Log.d(Deploy.TAG, "Expand zip entry  " + zipEntry.getName());
 				if (zipEntry.isDirectory())
@@ -302,7 +294,7 @@ public class ObservedDeploy
 				}
 
 				// input
-				try (FileOutputStream out = new FileOutputStream(outFile))
+				try (FileOutputStream os = new FileOutputStream(outFile))
 				{
 					long length = zipEntry.getSize();
 
@@ -311,10 +303,10 @@ public class ObservedDeploy
 					long byteCount = 0;
 					int chunkCount = 0;
 					int readCount;
-					while ((readCount = zipIn.read(buffer)) != -1)
+					while ((readCount = zis.read(buffer)) != -1)
 					{
 						// write
-						out.write(buffer, 0, readCount);
+						os.write(buffer, 0, readCount);
 
 						// count
 						byteCount += readCount;
@@ -333,7 +325,7 @@ public class ObservedDeploy
 							break;
 						}
 					}
-					out.flush();
+					os.flush();
 					publisher.publish(byteCount, length);
 				}
 				catch (IOException e1)
@@ -373,11 +365,8 @@ public class ObservedDeploy
 	{
 		Log.d(ObservedDeploy.TAG, "Expand from " + srcArchive + " (entry " + srcEntry + ") to " + destFile);
 
-		ZipFile zipFile = null;
-		try
+		try(ZipFile zipFile = new ZipFile(srcArchive))
 		{
-			zipFile = new ZipFile(srcArchive);
-
 			// entry
 			final ZipEntry zipEntry = zipFile.getEntry(srcEntry);
 			if (zipEntry == null)
@@ -399,7 +388,9 @@ public class ObservedDeploy
 			}
 
 			// unzip
-			try (InputStream in = zipFile.getInputStream(zipEntry); FileOutputStream out = new FileOutputStream(outFile))
+			try ( //
+			      InputStream is = zipFile.getInputStream(zipEntry); //
+			      FileOutputStream os = new FileOutputStream(outFile)) //
 			{
 				long length = zipEntry.getSize();
 
@@ -407,10 +398,10 @@ public class ObservedDeploy
 				long byteCount = 0;
 				int chunkCount = 0;
 				int readCount;
-				while ((readCount = in.read(buffer)) != -1)
+				while ((readCount = is.read(buffer)) != -1)
 				{
 					// write
-					out.write(buffer, 0, readCount);
+					os.write(buffer, 0, readCount);
 
 					// count
 					byteCount += readCount;
@@ -429,7 +420,7 @@ public class ObservedDeploy
 						break;
 					}
 				}
-				out.flush();
+				os.flush();
 				publisher.publish(byteCount, length);
 			}
 			catch (IOException e1)
@@ -451,20 +442,6 @@ public class ObservedDeploy
 		{
 			return false;
 		}
-		finally
-		{
-			if (zipFile != null)
-			{
-				try
-				{
-					zipFile.close();
-				}
-				catch (IOException e)
-				{
-					Log.e(TAG, "While closing archive", e);
-				}
-			}
-		}
 		return false;
 	}
 
@@ -483,10 +460,13 @@ public class ObservedDeploy
 	{
 		Log.d(ObservedDeploy.TAG, "Expand from " + srcUri + " (entry " + srcEntry + ") to " + destFile);
 
-		try (ZipInputStream zipIn = (ZipInputStream) resolver.openInputStream(srcUri))
+		try ( //
+		      InputStream is = resolver.openInputStream(srcUri); //
+		      ZipInputStream zis = new ZipInputStream(is) //
+		)
 		{
 			ZipEntry zipEntry;
-			while ((zipEntry = zipIn.getNextEntry()) != null)
+			while ((zipEntry = zis.getNextEntry()) != null)
 			{
 				//Log.d(Deploy.TAG, "Expand zip entry  " + zipEntry.getName());
 				// entry
@@ -513,7 +493,7 @@ public class ObservedDeploy
 				}
 
 				// unzip
-				try (FileOutputStream out = new FileOutputStream(destFile))
+				try (FileOutputStream os = new FileOutputStream(destFile))
 				{
 					long length = zipEntry.getSize();
 
@@ -522,10 +502,10 @@ public class ObservedDeploy
 					long byteCount = 0;
 					int chunkCount = 0;
 					int readCount;
-					while ((readCount = zipIn.read(buffer)) != -1)
+					while ((readCount = zis.read(buffer)) != -1)
 					{
 						// write
-						out.write(buffer, 0, readCount);
+						os.write(buffer, 0, readCount);
 
 						// count
 						byteCount += readCount;
@@ -544,7 +524,7 @@ public class ObservedDeploy
 							break;
 						}
 					}
-					out.flush();
+					os.flush();
 					publisher.publish(byteCount, length);
 				}
 				catch (IOException e1)
@@ -642,7 +622,7 @@ public class ObservedDeploy
 		try
 		{
 			MessageDigest md = MessageDigest.getInstance("MD5");
-			try (InputStream in = resolver.openInputStream(uri); DigestInputStream dis = new DigestInputStream(in, md))
+			try (InputStream is = resolver.openInputStream(uri); DigestInputStream dis = new DigestInputStream(is, md))
 			{
 				final byte[] buffer = new byte[CHUNK_SIZE];
 				long byteCount = 0;

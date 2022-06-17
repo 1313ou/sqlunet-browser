@@ -76,7 +76,7 @@ class MD5Downloader extends Task<String, Void, String>
 			}
 
 			// open the reader
-			try (InputStream input = connection.getInputStream(); InputStreamReader isr = new InputStreamReader(input); BufferedReader reader = new BufferedReader(isr))
+			try (InputStream is = connection.getInputStream(); InputStreamReader isr = new InputStreamReader(is); BufferedReader reader = new BufferedReader(isr))
 			{
 				// read
 				String line;

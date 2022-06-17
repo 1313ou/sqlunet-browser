@@ -11,6 +11,7 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -149,11 +150,14 @@ public class DownloadZipService extends DownloadService
 			}
 
 			// streams
-			try (ZipInputStream zInput = new ZipInputStream(connection.getInputStream()); OutputStream output = new FileOutputStream(outFile))
+			try ( //
+			      InputStream is = connection.getInputStream(); //
+			      ZipInputStream zis = new ZipInputStream(is); //
+			      OutputStream os = new FileOutputStream(outFile)) //
 			{
 				// get the entry
 				ZipEntry entry;
-				while ((entry = zInput.getNextEntry()) != null)
+				while ((entry = zis.getNextEntry()) != null)
 				{
 					if (!entry.isDirectory())
 					{
@@ -164,8 +168,8 @@ public class DownloadZipService extends DownloadService
 							date = entry.getTime();
 
 							// copy
-							copyStreams(zInput, output, size);
-							zInput.closeEntry();
+							copyStreams(zis, os, size);
+							zis.closeEntry();
 							done = true;
 							break;
 						}
@@ -175,7 +179,7 @@ public class DownloadZipService extends DownloadService
 						//	copyStreams(zInput, null, zSize);
 						//}
 					}
-					zInput.closeEntry();
+					zis.closeEntry();
 				}
 			}
 		}

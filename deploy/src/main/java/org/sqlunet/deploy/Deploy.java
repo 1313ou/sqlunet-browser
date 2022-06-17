@@ -56,9 +56,9 @@ public class Deploy
 		final File toDir = new File(toPath);
 		//noinspection ResultOfMethodCallIgnored
 		toDir.mkdirs();
-		try (InputStream in = getter.get(fromPath))
+		try (InputStream is = getter.get(fromPath))
 		{
-			expandZipStream(in, null, toDir, flatten);
+			expandZipStream(is, null, toDir, flatten);
 			return true;
 		}
 		catch (@NonNull final Exception ignored)
@@ -70,7 +70,7 @@ public class Deploy
 	/**
 	 * Expand zip stream to dir
 	 *
-	 * @param in               zip file input stream
+	 * @param is               zip file input stream
 	 * @param pathPrefixFilter path prefix filter on entries
 	 * @param toDir            destination dir
 	 * @param flatten          flatten hierarchy (may lead to overwrites)
@@ -78,7 +78,7 @@ public class Deploy
 	 */
 	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
-	static private File expandZipStream(@NonNull final InputStream in, @SuppressWarnings("SameParameterValue") final String pathPrefixFilter, @NonNull final File toDir, final boolean flatten) throws IOException
+	static private File expandZipStream(@NonNull final InputStream is, @SuppressWarnings("SameParameterValue") final String pathPrefixFilter, @NonNull final File toDir, final boolean flatten) throws IOException
 	{
 		// prefix
 		String filter = pathPrefixFilter;
@@ -92,8 +92,7 @@ public class Deploy
 		toDir.mkdir();
 
 		// read and expand entries
-		final ZipInputStream zis = new ZipInputStream(in);
-		try
+		try (ZipInputStream zis = new ZipInputStream(is))
 		{
 			// get the zipped file list entry
 			final byte[] buffer = new byte[1024];
@@ -138,25 +137,6 @@ public class Deploy
 				entry = zis.getNextEntry();
 			}
 		}
-		finally
-		{
-			try
-			{
-				zis.close();
-			}
-			catch (IOException ignored)
-			{
-			}
-
-			try
-			{
-				in.close();
-			}
-			catch (IOException ignored)
-			{
-			}
-		}
-
 		return toDir;
 	}
 
@@ -204,9 +184,12 @@ public class Deploy
 		{
 			return false;
 		}
-		try (InputStream in = getter.get(fromPath); OutputStream out = new FileOutputStream(toPath))
+		try ( //
+		      InputStream is = getter.get(fromPath); //
+		      OutputStream os = new FileOutputStream(toPath) //
+		)
 		{
-			copyStreams(in, out);
+			copyStreams(is, os);
 			return true;
 		}
 		catch (@NonNull final Exception ignored)
@@ -233,9 +216,11 @@ public class Deploy
 		{
 			return false;
 		}
-		try (InputStream in = new FileInputStream(fromPath); OutputStream out = new FileOutputStream(toPath))
+		try ( //
+		      InputStream is = new FileInputStream(fromPath); //
+		      OutputStream os = new FileOutputStream(toPath)) //
 		{
-			copyStreams(in, out);
+			copyStreams(is, os);
 			return true;
 		}
 		catch (@NonNull final Exception ignored)
@@ -247,18 +232,18 @@ public class Deploy
 	/**
 	 * Copy in stream to out stream
 	 *
-	 * @param in  in stream
-	 * @param out out stream
+	 * @param is in stream
+	 * @param os out stream
 	 * @throws IOException io exception
 	 */
 	@SuppressWarnings("WeakerAccess")
-	static private void copyStreams(@NonNull final InputStream in, @NonNull final OutputStream out) throws IOException
+	static private void copyStreams(@NonNull final InputStream is, @NonNull final OutputStream os) throws IOException
 	{
 		final byte[] buffer = new byte[1024];
 		int read;
-		while ((read = in.read(buffer)) != -1)
+		while ((read = is.read(buffer)) != -1)
 		{
-			out.write(buffer, 0, read);
+			os.write(buffer, 0, read);
 		}
 	}
 
