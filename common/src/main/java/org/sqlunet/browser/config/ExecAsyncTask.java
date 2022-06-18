@@ -349,11 +349,17 @@ public class ExecAsyncTask
 						// db.execSQL("PRAGMA temp_store = FILE;");
 
 						// iterate through lines (assuming each insert has its own line and there's no other stuff)
+						boolean status = true;
 						int count = 0;
 						String sql = null;
 						String line;
 						while ((line = reader.readLine()) != null)
 						{
+							if (line.startsWith("-- "))
+							{
+								continue;
+							}
+
 							// accumulator
 							if (sql == null)
 							{
@@ -396,7 +402,8 @@ public class ExecAsyncTask
 							}
 							catch (@NonNull final SQLiteException e)
 							{
-								Log.e(TAG, "SQL update failed: " + e.getMessage());
+								Log.e(TAG, "SQL exec failed: " + e.getMessage());
+								status = false;
 							}
 
 							// accounting
@@ -426,12 +433,13 @@ public class ExecAsyncTask
 							}
 						}
 						publishProgress(count, count);
-						return true;
+						return status;
 					}
 				}
 				catch (IOException e1)
 				{
-					Log.e(TAG, "While executing from archive", e1);
+					Log.e(TAG, "While executing SQL from archive", e1);
+					return false;
 				}
 				finally
 				{
@@ -449,7 +457,6 @@ public class ExecAsyncTask
 				// wake lock
 				wakelock.release();
 			}
-			return false;
 		}
 
 		@Override
@@ -602,11 +609,17 @@ public class ExecAsyncTask
 					// db.execSQL("PRAGMA temp_store = FILE;");
 
 					// iterate through lines (assuming each insert has its own line and there's no other stuff)
+					boolean status = true;
 					int count = 0;
 					String sql = null;
 					String line;
 					while ((line = reader.readLine()) != null)
 					{
+						if (line.startsWith("-- "))
+						{
+							continue;
+						}
+
 						// accumulator
 						if (sql == null)
 						{
@@ -650,6 +663,7 @@ public class ExecAsyncTask
 						catch (@NonNull final SQLiteException e)
 						{
 							Log.e(TAG, "SQL update failed: " + e.getMessage());
+							status = false;
 						}
 
 						// accounting
@@ -679,12 +693,12 @@ public class ExecAsyncTask
 						}
 					}
 					publishProgress(count, count);
-					return true;
+					return status;
 				}
-
 				catch (IOException e1)
 				{
-					Log.e(TAG, "While executing from archive", e1);
+					Log.e(TAG, "While executing SQL from uri", e1);
+					return false;
 				}
 				finally
 				{
@@ -702,7 +716,6 @@ public class ExecAsyncTask
 				// wake lock
 				wakelock.release();
 			}
-			return false;
 		}
 
 		@Override
@@ -915,11 +928,17 @@ public class ExecAsyncTask
 						}
 
 						// iterate through lines (assuming each insert has its own line and there's no other stuff)
+						boolean status = true;
 						int count = 0;
 						String sql = null;
 						String line;
 						while ((line = reader.readLine()) != null)
 						{
+							if (line.startsWith("-- "))
+							{
+								continue;
+							}
+
 							// accumulator
 							if (sql == null)
 							{
@@ -963,6 +982,7 @@ public class ExecAsyncTask
 							catch (@NonNull final SQLiteException e)
 							{
 								Log.e(TAG, "SQL update failed: " + e.getMessage());
+								status = false;
 							}
 
 							// accounting
@@ -993,12 +1013,14 @@ public class ExecAsyncTask
 						}
 
 						publishProgress(count, count);
-						return true;
+						return status;
 					}
+					// found none
+					return false;
 				}
 				catch (IOException e1)
 				{
-					Log.e(TAG, "While executing from archive", e1);
+					Log.e(TAG, "While executing from archive uri", e1);
 					return false;
 				}
 				finally
@@ -1017,7 +1039,6 @@ public class ExecAsyncTask
 				// wake lock
 				wakelock.release();
 			}
-			return false;
 		}
 
 		@Override
