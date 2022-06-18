@@ -16,20 +16,48 @@ import androidx.fragment.app.FragmentActivity;
 
 public class Operations
 {
+	public static void copy(@NonNull final Uri uri, @NonNull final FragmentActivity activity)
+	{
+		FileAsyncTask.launchCopy(activity, uri, StorageSettings.getDatabasePath(activity), (result) -> {
+			if (result)
+			{
+				activity.finish();
+			}
+			else
+			{
+				TextView tv = activity.findViewById(R.id.status);
+				if (tv != null)
+				{
+					tv.setText(R.string.result_fail);
+				}
+			}
+		});
+	}
+
+	public static void unzip(@NonNull final Uri uri, @NonNull final FragmentActivity activity)
+	{
+		FileAsyncTask.launchUnzip(activity, uri, StorageSettings.getDataDir(activity), (result) -> {
+			if (result)
+			{
+				activity.finish();
+			}
+			else
+			{
+				TextView tv = activity.findViewById(R.id.status);
+				if (tv != null)
+				{
+					tv.setText(R.string.result_fail);
+				}
+			}
+		});
+	}
+
 	public static void md5(@NonNull final Uri uri, @NonNull final FragmentActivity activity)
 	{
 		FileAsyncTask.launchMd5(activity, uri, activity::finish);
 	}
 
-	public static void copy(@NonNull final Uri uri, @NonNull final FragmentActivity activity)
-	{
-		FileAsyncTask.launchCopy(activity, uri, StorageSettings.getDatabasePath(activity), activity::finish);
-	}
-
-	public static void unzip(@NonNull final Uri uri, @NonNull final FragmentActivity activity)
-	{
-		FileAsyncTask.launchUnzip(activity, uri, StorageSettings.getDataDir(activity), activity::finish);
-	}
+	// file
 
 	public static void copy(@NonNull FragmentActivity activity)
 	{
@@ -50,6 +78,8 @@ public class Operations
 		final Pair<CharSequence[], CharSequence[]> storageDirs = StorageReports.getStyledStorageDirectoriesNamesValues(activity);
 		MD5AsyncTaskChooser.md5(activity, downloadDirs, cachedDirs, storageDirs);
 	}
+
+	// exec
 
 	public static void execSql(@NonNull final Uri uri, @NonNull final FragmentActivity activity)
 	{

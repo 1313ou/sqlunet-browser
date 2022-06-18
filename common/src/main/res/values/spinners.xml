@@ -19,9 +19,12 @@
 	<string name="title_setup_download">Download database</string>
 	<string name="title_setup_download_zipped">Download zipped database</string>
 	<string name="title_setup_update">Update database &#8230;</string>
-	<string name="title_setup_copy">Copy database from file &#8230;</string>
-	<string name="title_setup_unzip">Unzip database from file &#8230;</string>
-	<string name="title_setup_md5">MD5 checksum &#8230;</string>
+	<string name="title_setup_copy_uri">Copy database from uri &#8230;</string>
+	<string name="title_setup_unzip_uri">Unzip database from uri &#8230;</string>
+	<string name="title_setup_md5_uri">MD5 checksum uri &#8230;</string>
+	<string name="title_setup_copy_file">Copy database from file &#8230;</string>
+	<string name="title_setup_unzip_file">Unzip database from file &#8230;</string>
+	<string name="title_setup_md5_file">MD5 checksum file &#8230;</string>
 	<string-array name="setup_files_titles">
 		<item>@string/title_select</item>
 		<item>@string/title_setup_create</item>
@@ -29,20 +32,26 @@
 		<item>@string/title_setup_download</item>
 		<item>@string/title_setup_download_zipped</item>
 		<item>@string/title_setup_update</item>
-		<item>@string/title_setup_copy</item>
-		<item>@string/title_setup_unzip</item>
-		<item>@string/title_setup_md5</item>
+		<item>@string/title_setup_copy_uri</item>
+		<item>@string/title_setup_unzip_uri</item>
+		<item>@string/title_setup_md5_uri</item>
+		<item>@string/title_setup_copy_file</item>
+		<item>@string/title_setup_unzip_file</item>
+		<item>@string/title_setup_md5_file</item>
 	</string-array>
 	<string-array name="setup_files_values" formatted="false">
 		<item />
 		<item>CREATE</item>
 		<item>DROP</item>
 		<item>DOWNLOAD</item>
-		<item>DOWNLOADZIPPED</item>
+		<item>DOWNLOAD_ZIPPED</item>
 		<item>UPDATE</item>
-		<item>COPY</item>
-		<item>UNZIP</item>
-		<item>MD5</item>
+		<item>COPY_URI</item>
+		<item>UNZIP_URI</item>
+		<item>MD5_URI</item>
+		<item>COPY_FILE</item>
+		<item>UNZIP_FILE</item>
+		<item>MD5_FILE</item>
 	</string-array>
 
 </resources>

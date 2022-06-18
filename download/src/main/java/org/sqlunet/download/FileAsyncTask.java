@@ -18,6 +18,7 @@ import java.io.File;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.util.Consumer;
 import androidx.fragment.app.FragmentActivity;
 
 /**
@@ -877,7 +878,7 @@ public class FileAsyncTask
 	 * @param dest       database path
 	 * @param whenDone   to run when done
 	 */
-	public static void launchUnzip(@NonNull final FragmentActivity activity, @NonNull final String sourceFile, @NonNull final String dest, @Nullable final Runnable whenDone)
+	public static void launchUnzip(@NonNull final FragmentActivity activity, @NonNull final String sourceFile, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
 	{
 		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
 				.setTitle(activity.getString(R.string.action_unzip_from_archive)) //
@@ -894,7 +895,7 @@ public class FileAsyncTask
 	 * @param dest       database path
 	 * @param whenDone   to run when done
 	 */
-	public static void launchUnzip(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final String sourceFile, @NonNull final String dest, @Nullable final Runnable whenDone)
+	public static void launchUnzip(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final String sourceFile, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
 	{
 		final FileAsyncTask.ResultListener resultListener = result -> {
 
@@ -902,10 +903,10 @@ public class FileAsyncTask
 			if (success)
 			{
 				Settings.recordDb(activity, new File(sourceFile));
-				if (whenDone != null)
-				{
-					whenDone.run();
-				}
+			}
+			if (whenDone != null)
+			{
+				whenDone.accept(success);
 			}
 		};
 		final Task<String, Number, Boolean> task = new FileAsyncTask(observer, resultListener, 1000).unzipFromArchiveFile(dest);
@@ -921,7 +922,7 @@ public class FileAsyncTask
 	 * @param dest      database path
 	 * @param whenDone  to run when done
 	 */
-	public static void launchUnzip(@NonNull final FragmentActivity activity, @NonNull final Uri sourceUri, @NonNull final String dest, @Nullable final Runnable whenDone)
+	public static void launchUnzip(@NonNull final FragmentActivity activity, @NonNull final Uri sourceUri, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
 	{
 		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
 				.setTitle(activity.getString(R.string.action_unzip_from_archive)) //
@@ -938,7 +939,7 @@ public class FileAsyncTask
 	 * @param dest      database path
 	 * @param whenDone  to run when done
 	 */
-	public static void launchUnzip(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final Uri sourceUri, @NonNull final String dest, @Nullable final Runnable whenDone)
+	public static void launchUnzip(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final Uri sourceUri, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
 	{
 		final FileAsyncTask.ResultListener resultListener = result -> {
 
@@ -946,10 +947,10 @@ public class FileAsyncTask
 			if (success)
 			{
 				Settings.recordDb(activity, sourceUri.toString());
-				if (whenDone != null)
-				{
-					whenDone.run();
-				}
+			}
+			if (whenDone != null)
+			{
+				whenDone.accept(success);
 			}
 		};
 		final Task<Uri, Number, Boolean> task = new FileAsyncTask(observer, resultListener, 1000).unzipFromArchiveUri(activity.getContentResolver(), dest);
@@ -966,7 +967,7 @@ public class FileAsyncTask
 	 * @param dest       database path
 	 * @param whenDone   to run when done
 	 */
-	public static void launchUnzip(@NonNull final FragmentActivity activity, @NonNull final String sourceFile, @NonNull final String zipEntry, @NonNull final String dest, @Nullable final Runnable whenDone)
+	public static void launchUnzip(@NonNull final FragmentActivity activity, @NonNull final String sourceFile, @NonNull final String zipEntry, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
 	{
 		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
 				.setTitle(activity.getString(R.string.action_unzip_from_archive)) //
@@ -984,7 +985,7 @@ public class FileAsyncTask
 	 * @param dest       database path
 	 * @param whenDone   to run when done
 	 */
-	public static void launchUnzip(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final String sourceFile, @NonNull final String zipEntry, @NonNull final String dest, @Nullable final Runnable whenDone)
+	public static void launchUnzip(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final String sourceFile, @NonNull final String zipEntry, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
 	{
 		final FileAsyncTask.ResultListener resultListener = result -> {
 
@@ -992,10 +993,10 @@ public class FileAsyncTask
 			if (success)
 			{
 				Settings.recordDb(activity, new File(sourceFile));
-				if (whenDone != null)
-				{
-					whenDone.run();
-				}
+			}
+			if (whenDone != null)
+			{
+				whenDone.accept(success);
 			}
 		};
 		final Task<String, Number, Boolean> task = new FileAsyncTask(observer, resultListener, 1000).unzipEntryFromArchiveFile(zipEntry, dest);
@@ -1012,7 +1013,7 @@ public class FileAsyncTask
 	 * @param dest      database path
 	 * @param whenDone  to run when done
 	 */
-	public static void launchUnzip(@NonNull final FragmentActivity activity, @NonNull final Uri sourceUri, @NonNull final String zipEntry, @NonNull final String dest, @Nullable final Runnable whenDone)
+	public static void launchUnzip(@NonNull final FragmentActivity activity, @NonNull final Uri sourceUri, @NonNull final String zipEntry, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
 	{
 		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
 				.setTitle(activity.getString(R.string.action_unzip_from_archive)) //
@@ -1030,7 +1031,7 @@ public class FileAsyncTask
 	 * @param dest      database path
 	 * @param whenDone  to run when done
 	 */
-	public static void launchUnzip(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final Uri sourceUri, @NonNull final String zipEntry, @NonNull final String dest, @Nullable final Runnable whenDone)
+	public static void launchUnzip(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final Uri sourceUri, @NonNull final String zipEntry, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
 	{
 		final FileAsyncTask.ResultListener resultListener = result -> {
 
@@ -1038,10 +1039,10 @@ public class FileAsyncTask
 			if (success)
 			{
 				Settings.recordDb(activity, sourceUri.toString());
-				if (whenDone != null)
-				{
-					whenDone.run();
-				}
+			}
+			if (whenDone != null)
+			{
+				whenDone.accept(success);
 			}
 		};
 		final Task<Uri, Number, Boolean> task = new FileAsyncTask(observer, resultListener, 1000).unzipEntryFromArchiveUri(activity.getContentResolver(), zipEntry, dest);
@@ -1059,7 +1060,7 @@ public class FileAsyncTask
 	 * @param dest       database path
 	 * @param whenDone   to run when done
 	 */
-	public static void launchCopy(@NonNull final FragmentActivity activity, @NonNull final String sourceFile, @NonNull final String dest, @Nullable final Runnable whenDone)
+	public static void launchCopy(@NonNull final FragmentActivity activity, @NonNull final String sourceFile, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
 	{
 		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
 				.setTitle(activity.getString(R.string.action_copy_from_file)) //
@@ -1076,7 +1077,7 @@ public class FileAsyncTask
 	 * @param dest       database path
 	 * @param whenDone   to run when done
 	 */
-	public static void launchCopy(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final String sourceFile, @NonNull final String dest, @Nullable final Runnable whenDone)
+	public static void launchCopy(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final String sourceFile, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
 	{
 		final FileAsyncTask.ResultListener resultListener = result -> {
 
@@ -1087,7 +1088,7 @@ public class FileAsyncTask
 			}
 			if (whenDone != null)
 			{
-				whenDone.run();
+				whenDone.accept(success);
 			}
 		};
 		final Task<String, Number, Boolean> task = new FileAsyncTask(observer, resultListener, 1000).copyFromFile(dest);
@@ -1103,7 +1104,7 @@ public class FileAsyncTask
 	 * @param dest     database path
 	 * @param whenDone to run when done
 	 */
-	public static void launchCopy(@NonNull final FragmentActivity activity, @NonNull final Uri uri, @NonNull final String dest, @Nullable final Runnable whenDone)
+	public static void launchCopy(@NonNull final FragmentActivity activity, @NonNull final Uri uri, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
 	{
 		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
 				.setTitle(activity.getString(R.string.action_copy_from_file)) //
@@ -1120,7 +1121,7 @@ public class FileAsyncTask
 	 * @param dest     database path
 	 * @param whenDone to run when done
 	 */
-	public static void launchCopy(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final Uri uri, @NonNull final String dest, @Nullable final Runnable whenDone)
+	public static void launchCopy(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final Uri uri, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
 	{
 		final FileAsyncTask.ResultListener resultListener = result -> {
 
@@ -1131,7 +1132,7 @@ public class FileAsyncTask
 			}
 			if (whenDone != null)
 			{
-				whenDone.run();
+				whenDone.accept(success);
 			}
 		};
 		final Task<Uri, Number, Boolean> task = new FileAsyncTask(observer, resultListener, 1000).copyFromUri(activity.getContentResolver(), dest);

@@ -97,7 +97,7 @@ public class SetupAsset
 								.setTitle(activity.getString(R.string.action_unzip_from_asset)) //
 								.setMessage(zipFile);
 
-						FileAsyncTask.launchUnzip(activity, observer2, zipFile, assetZipEntry, StorageSettings.getDatabasePath(activity), () -> {
+						FileAsyncTask.launchUnzip(activity, observer2, zipFile, assetZipEntry, StorageSettings.getDatabasePath(activity), (result) -> {
 
 							org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
 							Settings.recordDbSource(activity, new File(new File(path, assetDir), assetZip).getAbsolutePath(), -1, -1, null, null, null);
@@ -134,7 +134,7 @@ public class SetupAsset
 				observer //
 						.setTitle(activity.getString(R.string.action_unzip_from_asset)) //
 						.setMessage(zipFilePath);
-				FileAsyncTask.launchUnzip(activity, observer, zipFilePath, assetZipEntry, StorageSettings.getDatabasePath(activity), () -> {
+				FileAsyncTask.launchUnzip(activity, observer, zipFilePath, assetZipEntry, StorageSettings.getDatabasePath(activity), (result) -> {
 
 					org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
 					Settings.recordDbSource(activity, zipFilePath, -1, -1, null, null, null);

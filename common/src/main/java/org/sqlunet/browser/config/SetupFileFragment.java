@@ -21,6 +21,8 @@ import android.widget.SpinnerAdapter;
 import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.Info;
 import org.sqlunet.browser.common.R;
+import org.sqlunet.download.FileAsyncTaskChooser;
+import org.sqlunet.download.MD5AsyncTaskChooser;
 import org.sqlunet.settings.StorageReports;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
@@ -55,7 +57,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	 */
 	public enum Operation
 	{
-		CREATE, DROP, COPY, UNZIP, MD5, DOWNLOAD, DOWNLOADZIPPED, UPDATE;
+		CREATE, DROP, COPY_URI, UNZIP_URI, MD5_URI, COPY_FILE, UNZIP_FILE, MD5_FILE, DOWNLOAD, DOWNLOAD_ZIPPED, UPDATE;
 
 		/**
 		 * Spinner operations
@@ -142,7 +144,7 @@ public class SetupFileFragment extends BaseTaskFragment
 						});
 						break;
 
-					case COPY:
+					case COPY_URI:
 						if (Permissions.check(activity))
 						{
 							final Intent intent2 = new Intent(activity, OperationActivity.class);
@@ -151,7 +153,7 @@ public class SetupFileFragment extends BaseTaskFragment
 						}
 						break;
 
-					case UNZIP:
+					case UNZIP_URI:
 						if (Permissions.check(activity))
 						{
 							final Intent intent2 = new Intent(activity, OperationActivity.class);
@@ -160,12 +162,33 @@ public class SetupFileFragment extends BaseTaskFragment
 						}
 						break;
 
-					case MD5:
+					case MD5_URI:
 						if (Permissions.check(activity))
 						{
 							final Intent intent2 = new Intent(activity, OperationActivity.class);
 							intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_MD5);
 							activity.startActivity(intent2);
+						}
+						break;
+
+					case COPY_FILE:
+						if (Permissions.check(activity))
+						{
+							Operations.copy(activity);
+						}
+						break;
+
+					case UNZIP_FILE:
+						if (Permissions.check(activity))
+						{
+							Operations.unzip(activity);
+						}
+						break;
+
+					case MD5_FILE:
+						if (Permissions.check(activity))
+						{
+							Operations.md5(activity);
 						}
 						break;
 
@@ -176,7 +199,7 @@ public class SetupFileFragment extends BaseTaskFragment
 						activity.startActivity(intent2);
 						break;
 
-					case DOWNLOADZIPPED:
+					case DOWNLOAD_ZIPPED:
 						final Intent intent3 = new Intent(activity, DownloadActivity.class);
 						intent3.putExtra(DOWNLOAD_DOWNLOADER_ARG, org.sqlunet.download.Settings.Downloader.DOWNLOAD_SERVICE.toString());
 						intent3.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadZippedSource(activity));
@@ -227,15 +250,15 @@ public class SetupFileFragment extends BaseTaskFragment
 					message = statusDrop();
 					break;
 
-				case COPY:
+				case COPY_URI:
 					message = statusCopy();
 					break;
 
-				case UNZIP:
+				case UNZIP_URI:
 					message = statusUnzip();
 					break;
 
-				case MD5:
+				case MD5_URI:
 					message = statusMd5();
 					break;
 
@@ -243,7 +266,7 @@ public class SetupFileFragment extends BaseTaskFragment
 					message = statusDownload();
 					break;
 
-				case DOWNLOADZIPPED:
+				case DOWNLOAD_ZIPPED:
 					message = statusDownloadZipped();
 					break;
 
