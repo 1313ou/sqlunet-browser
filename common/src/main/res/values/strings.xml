@@ -178,6 +178,8 @@
 	<string name="hint_splash_browse">Exploring senses and semantic roles</string>
 	<string name="hint_splash_searchtext">Text search</string>
 	<string name="hint_sql">SQL statements stack</string>
+	<string name="from_uri">from Uri</string>
+	<string name="from_file">from file</string>
 
 	<!-- provider items -->
 	<string name="providers">content providers</string>

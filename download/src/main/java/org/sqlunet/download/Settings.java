@@ -89,6 +89,7 @@ public class Settings
 	// others
 	public static final String STORAGE_DB_DIR = "sqlunet";
 	public static final String HINT_DB_ZIP = "sqlunet.zip";
+	public static final String HINT_DB_ZIP_ENTRY = "sqlunet.db";
 
 	// D A T A B A S E
 

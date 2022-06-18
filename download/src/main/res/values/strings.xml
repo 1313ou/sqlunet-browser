@@ -26,6 +26,8 @@
 
 	<!-- hint -->
 	<string name="hint_unzip_from_archive">Select the zip archive to unzip from</string>
+	<string name="hint_select_archive">Select the archive:</string>
+	<string name="hint_enter_archive_entry">Enter the archive entry:</string>
 	<string name="hint_copy_from_file">Select the file to copy from</string>
 	<string name="hint_md5_of_file">Select the file to md5-checksum</string>
 
@@ -55,7 +57,7 @@
 	<string name="md5_downloaded">Downloaded</string>
 	<string name="md5_computed">Computed</string>
 	<string name="md5_compared">Compared</string>
-	<string name="md5_none">No possible zipped database file in storage</string>
+	<string name="md5_none">No possible candidate file in storage</string>
 
 	<string name="status_download_pending">pending</string>
 	<string name="status_download_running">running</string>

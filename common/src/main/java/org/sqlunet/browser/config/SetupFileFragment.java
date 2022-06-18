@@ -21,8 +21,6 @@ import android.widget.SpinnerAdapter;
 import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.Info;
 import org.sqlunet.browser.common.R;
-import org.sqlunet.download.FileAsyncTaskChooser;
-import org.sqlunet.download.MD5AsyncTaskChooser;
 import org.sqlunet.settings.StorageReports;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
@@ -236,7 +234,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	@Override
 	protected void select(final int position)
 	{
-		CharSequence message = "";
+		SpannableStringBuilder message = null;
 		final Operation op = Operation.fromIndex(position);
 		if (op != null)
 		{
@@ -252,14 +250,29 @@ public class SetupFileFragment extends BaseTaskFragment
 
 				case COPY_URI:
 					message = statusCopy();
+					message.append(requireContext().getString(R.string.from_uri));
+					break;
+				case COPY_FILE:
+					message = statusCopy();
+					message.append(requireContext().getString(R.string.from_file));
 					break;
 
 				case UNZIP_URI:
 					message = statusUnzip();
+					message.append(requireContext().getString(R.string.from_uri));
+					break;
+				case UNZIP_FILE:
+					message = statusUnzip();
+					message.append(requireContext().getString(R.string.from_file));
 					break;
 
 				case MD5_URI:
 					message = statusMd5();
+					message.append(' ' + requireContext().getString(R.string.from_uri));
+					break;
+				case MD5_FILE:
+					message = statusMd5();
+					message.append(' ' + requireContext().getString(R.string.from_file));
 					break;
 
 				case DOWNLOAD:
@@ -273,6 +286,9 @@ public class SetupFileFragment extends BaseTaskFragment
 				case UPDATE:
 					message = statusUpdate();
 					break;
+
+				default:
+					return;
 			}
 		}
 
@@ -285,7 +301,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	 * @return status string
 	 */
 	@NonNull
-	private CharSequence statusCreate()
+	private SpannableStringBuilder statusCreate()
 	{
 		final Context context = requireContext();
 		final String database = StorageSettings.getDatabasePath(context);
@@ -308,7 +324,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	 * @return status string
 	 */
 	@NonNull
-	private CharSequence statusDrop()
+	private SpannableStringBuilder statusDrop()
 	{
 		final Context context = requireContext();
 		final String database = StorageSettings.getDatabasePath(context);
@@ -326,12 +342,12 @@ public class SetupFileFragment extends BaseTaskFragment
 	}
 
 	/**
-	 * Operation status for copy
+	 * Operation status for copy from uri
 	 *
 	 * @return status string
 	 */
 	@NonNull
-	private CharSequence statusCopy()
+	private SpannableStringBuilder statusCopy()
 	{
 		final Context context = requireContext();
 		final String database = StorageSettings.getDatabasePath(context);
@@ -370,7 +386,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	 * @return status string
 	 */
 	@NonNull
-	private CharSequence statusUnzip()
+	private SpannableStringBuilder statusUnzip()
 	{
 		final Context context = requireContext();
 		final String database = StorageSettings.getDatabasePath(context);
@@ -409,7 +425,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	 * @return status string
 	 */
 	@NonNull
-	private CharSequence statusMd5()
+	private SpannableStringBuilder statusMd5()
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		sb.append(getString(R.string.info_op_md5));
@@ -422,7 +438,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	 * @return status string
 	 */
 	@NonNull
-	private CharSequence statusUpdate()
+	private SpannableStringBuilder statusUpdate()
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
 		sb.append(getString(R.string.info_op_drop_database));
@@ -437,7 +453,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	 * @return status string
 	 */
 	@NonNull
-	private CharSequence statusDownload()
+	private SpannableStringBuilder statusDownload()
 	{
 		final Context context = requireContext();
 		final String from = StorageSettings.getDbDownloadSource(context, org.sqlunet.download.Settings.Downloader.isZipDownloaderPref(context));
@@ -465,7 +481,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	 * @return status string
 	 */
 	@NonNull
-	private CharSequence statusDownloadZipped()
+	private SpannableStringBuilder statusDownloadZipped()
 	{
 		final Context context = requireContext();
 		final String from = StorageSettings.getDbDownloadZippedSource(context);

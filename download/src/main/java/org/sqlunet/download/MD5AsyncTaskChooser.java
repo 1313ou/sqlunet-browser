@@ -5,7 +5,6 @@
 package org.sqlunet.download;
 
 import android.app.AlertDialog;
-import android.content.Intent;
 import android.text.SpannableStringBuilder;
 import android.util.Pair;
 import android.widget.RadioButton;
@@ -19,7 +18,6 @@ import org.sqlunet.concurrency.TaskObserver;
 
 import java.io.File;
 
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
@@ -57,53 +55,18 @@ public class MD5AsyncTaskChooser
 	 *
 	 * @param directories directory names-values array
 	 */
+	@SafeVarargs
 	static public void md5(@NonNull final FragmentActivity activity, final Pair<CharSequence[], CharSequence[]>... directories)
 	{
-		int candidateCount = 0;
-		final RadioGroup input = new RadioGroup(activity);
-
-		for (Pair<CharSequence[], CharSequence[]> namesValues : directories)
-		{
-			final CharSequence[] names = namesValues.first;
-			final CharSequence[] values = namesValues.second;
-			for (int i = 0; i < names.length && i < values.length; i++)
-			{
-				//final CharSequence name = names[i];
-				final CharSequence value = values[i];
-				final String dirValue = value.toString();
-				final File dir = new File(dirValue);
-				if (!dir.exists())
-				{
-					continue;
-				}
-				//final File[] files = dir.listFiles((dir1, name) -> name.matches(".*\\.zip") || name.matches(".*\\.db"));
-				//final File[] files = dir.listFiles((dir1, name) -> !new File(dir1, name).isDirectory());
-				final File[] files = dir.listFiles();
-				if (files == null)
-				{
-					continue;
-				}
-				for (File file : files)
-				{
-					if (file.exists())
-					{
-						//final SpannableStringBuilder sb = new SpannableStringBuilder();
-						//Report.appendHeader(sb, name.toString().split("\n")[0]).append('\n').append(file.getAbsolutePath());
-						final RadioButton radioButton = new RadioButton(activity);
-						radioButton.setText(file.getAbsolutePath());
-						radioButton.setTag(file.getAbsolutePath());
-						input.addView(radioButton);
-						candidateCount++;
-					}
-				}
-			}
-		}
-		if (candidateCount == 0)
+		// collect
+		final RadioGroup input = Chooser.collectFiles(activity, directories);
+		if (input == null)
 		{
 			Toast.makeText(activity, R.string.md5_none, Toast.LENGTH_SHORT).show();
 			return;
 		}
 
+		// display targets
 		final AlertDialog.Builder alert = new AlertDialog.Builder(activity); // unguarded, level 1
 		alert.setTitle(R.string.action_md5_ask);
 		alert.setMessage(R.string.hint_md5_of_file);
@@ -111,8 +74,6 @@ public class MD5AsyncTaskChooser
 		alert.setPositiveButton(R.string.action_ok, (dialog, whichButton) -> {
 			dialog.dismiss();
 
-			//final String sourceFile = input0.getText();
-			//final String sourceFile = input.getSelectedItem().toString();
 			int childCount = input.getChildCount();
 			for (int i = 0; i < childCount; i++)
 			{
@@ -122,6 +83,7 @@ public class MD5AsyncTaskChooser
 					final String sourceFile = radioButton.getTag().toString();
 					if (new File(sourceFile).exists())
 					{
+						// process target
 						MD5AsyncTaskChooser.md5(activity, sourceFile, result1 -> {
 
 							if (!activity.isFinishing() && !activity.isDestroyed())

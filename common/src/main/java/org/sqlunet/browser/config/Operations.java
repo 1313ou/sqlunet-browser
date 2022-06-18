@@ -61,13 +61,17 @@ public class Operations
 
 	public static void copy(@NonNull FragmentActivity activity)
 	{
-		FileAsyncTaskChooser.copyFromFile(activity, StorageSettings.getCacheDir(activity), StorageSettings.getDatabasePath(activity));
+		final Pair<CharSequence[], CharSequence[]> downloadDirs = StorageReports.getStyledDownloadNamesValues(activity);
+		final Pair<CharSequence[], CharSequence[]> cachedDirs = StorageReports.getStyledCachesNamesValues(activity);
+		FileAsyncTaskChooser.copyFromFile(activity, StorageSettings.getDatabasePath(activity), downloadDirs, cachedDirs);
 		org.sqlunet.download.Settings.unrecordDb(activity);
 	}
 
 	public static void unzip(@NonNull FragmentActivity activity)
 	{
-		FileAsyncTaskChooser.unzipFromArchive(activity, StorageSettings.getCacheDir(activity), StorageSettings.getDatabasePath(activity));
+		final Pair<CharSequence[], CharSequence[]> downloadDirs = StorageReports.getStyledDownloadNamesValues(activity);
+		final Pair<CharSequence[], CharSequence[]> cachedDirs = StorageReports.getStyledCachesNamesValues(activity);
+		FileAsyncTaskChooser.unzipEntryFromArchive(activity, StorageSettings.getDatabasePath(activity), downloadDirs, cachedDirs);
 		org.sqlunet.download.Settings.unrecordDb(activity);
 	}
 
