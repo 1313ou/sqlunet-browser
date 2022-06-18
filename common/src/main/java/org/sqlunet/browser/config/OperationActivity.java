@@ -10,7 +10,6 @@ import org.sqlunet.browser.common.R;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.arch.core.util.Function;
 import androidx.core.util.Consumer;
 
 public class OperationActivity extends AppCompatActivity
@@ -76,7 +75,7 @@ public class OperationActivity extends AppCompatActivity
 	{
 		super.onCreate(savedInstanceState);
 		launcher = SAFUtils.makeListener(this, consumer);
-		setContentView(R.layout.activity_file_operation);
+		setContentView(R.layout.activity_operation);
 		SAFUtils.pick("*/*", launcher);
 	}
 }

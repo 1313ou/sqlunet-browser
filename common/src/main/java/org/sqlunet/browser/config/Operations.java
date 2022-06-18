@@ -2,7 +2,9 @@ package org.sqlunet.browser.config;
 
 import android.net.Uri;
 import android.util.Pair;
+import android.widget.TextView;
 
+import org.sqlunet.browser.common.R;
 import org.sqlunet.download.FileAsyncTask;
 import org.sqlunet.download.FileAsyncTaskChooser;
 import org.sqlunet.download.MD5AsyncTaskChooser;
@@ -29,43 +31,59 @@ public class Operations
 		FileAsyncTask.launchUnzip(activity, uri, StorageSettings.getDataDir(activity), activity::finish);
 	}
 
-	public static void execSql(final Uri uri, final OperationActivity activity)
+	public static void copy(@NonNull FragmentActivity activity)
+	{
+		FileAsyncTaskChooser.copyFromFile(activity, StorageSettings.getCacheDir(activity), StorageSettings.getDatabasePath(activity));
+		org.sqlunet.download.Settings.unrecordDb(activity);
+	}
+
+	public static void unzip(@NonNull FragmentActivity activity)
+	{
+		FileAsyncTaskChooser.unzipFromArchive(activity, StorageSettings.getCacheDir(activity), StorageSettings.getDatabasePath(activity));
+		org.sqlunet.download.Settings.unrecordDb(activity);
+	}
+
+	public static void md5(@NonNull FragmentActivity activity)
+	{
+		final Pair<CharSequence[], CharSequence[]> downloadDirs = StorageReports.getStyledDownloadNamesValues(activity);
+		final Pair<CharSequence[], CharSequence[]> cachedDirs = StorageReports.getStyledCachesNamesValues(activity);
+		final Pair<CharSequence[], CharSequence[]> storageDirs = StorageReports.getStyledStorageDirectoriesNamesValues(activity);
+		MD5AsyncTaskChooser.md5(activity, downloadDirs, cachedDirs, storageDirs);
+	}
+
+	public static void execSql(@NonNull final Uri uri, @NonNull final FragmentActivity activity)
 	{
 		ExecAsyncTask.launchExecUri(activity, uri, StorageSettings.getDatabasePath(activity), (result) -> {
 			if (result)
 			{
 				activity.finish();
 			}
+			else
+			{
+				TextView tv = activity.findViewById(R.id.status);
+				if (tv != null)
+				{
+					tv.setText(R.string.result_fail);
+				}
+			}
 		});
 	}
 
-	public static void execZippedSql(final Uri uri, final String entry, final OperationActivity activity)
+	public static void execZippedSql(@NonNull final Uri uri, @NonNull final String entry, @NonNull final FragmentActivity activity)
 	{
 		ExecAsyncTask.launchExecZippedUri(activity, uri, entry, StorageSettings.getDatabasePath(activity), (result) -> {
 			if (result)
 			{
 				activity.finish();
 			}
+			else
+			{
+				TextView tv = activity.findViewById(R.id.status);
+				if (tv != null)
+				{
+					tv.setText(R.string.result_fail);
+				}
+			}
 		});
-	}
-
-	public static void copy(FragmentActivity activity)
-	{
-		FileAsyncTaskChooser.copyFromFile(activity, StorageSettings.getCacheDir(activity), StorageSettings.getDatabasePath(activity));
-		org.sqlunet.download.Settings.unrecordDb(activity);
-	}
-
-	public static void unzip(FragmentActivity activity)
-	{
-		FileAsyncTaskChooser.unzipFromArchive(activity, StorageSettings.getCacheDir(activity), StorageSettings.getDatabasePath(activity));
-		org.sqlunet.download.Settings.unrecordDb(activity);
-	}
-
-	public static void md5(FragmentActivity activity)
-	{
-		final Pair<CharSequence[], CharSequence[]> downloadDirs = StorageReports.getStyledDownloadNamesValues(activity);
-		final Pair<CharSequence[], CharSequence[]> cachedDirs = StorageReports.getStyledCachesNamesValues(activity);
-		final Pair<CharSequence[], CharSequence[]> storageDirs = StorageReports.getStyledStorageDirectoriesNamesValues(activity);
-		MD5AsyncTaskChooser.md5(activity, downloadDirs, cachedDirs, storageDirs);
 	}
 }

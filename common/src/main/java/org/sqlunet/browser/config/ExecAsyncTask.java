@@ -157,6 +157,7 @@ public class ExecAsyncTask
 
 				// execute
 				final int total = sqlArgs.length;
+				int successCount = 0;
 				for (int i = 0; i < total; i++)
 				{
 					final String sql = sqlArgs[i].trim();
@@ -167,6 +168,7 @@ public class ExecAsyncTask
 
 					// exec
 					db.execSQL(sql);
+					successCount++;
 					Log.d(ExecAsyncTask.TAG, "SQL " + sql);
 
 					// publish
@@ -187,7 +189,7 @@ public class ExecAsyncTask
 						break;
 					}
 				}
-				publishProgress(total, total);
+				publishProgress(successCount, total);
 				return true;
 			}
 			catch (@NonNull final Exception e)
@@ -351,6 +353,7 @@ public class ExecAsyncTask
 						// iterate through lines (assuming each insert has its own line and there's no other stuff)
 						boolean status = true;
 						int count = 0;
+						int successCount = 0;
 						String sql = null;
 						String line;
 						while ((line = reader.readLine()) != null)
@@ -399,6 +402,7 @@ public class ExecAsyncTask
 							{
 								// exec one sql
 								db.execSQL(sql);
+								successCount++;
 							}
 							catch (@NonNull final SQLiteException e)
 							{
@@ -432,7 +436,7 @@ public class ExecAsyncTask
 								break;
 							}
 						}
-						publishProgress(count, count);
+						publishProgress(successCount, count);
 						return status;
 					}
 				}
@@ -611,6 +615,7 @@ public class ExecAsyncTask
 					// iterate through lines (assuming each insert has its own line and there's no other stuff)
 					boolean status = true;
 					int count = 0;
+					int successCount = 0;
 					String sql = null;
 					String line;
 					while ((line = reader.readLine()) != null)
@@ -659,6 +664,7 @@ public class ExecAsyncTask
 						{
 							// exec one sql
 							db.execSQL(sql);
+							successCount++;
 						}
 						catch (@NonNull final SQLiteException e)
 						{
@@ -692,7 +698,7 @@ public class ExecAsyncTask
 							break;
 						}
 					}
-					publishProgress(count, count);
+					publishProgress(successCount, count);
 					return status;
 				}
 				catch (IOException e1)
@@ -771,7 +777,7 @@ public class ExecAsyncTask
 	 * @param databasePath database path
 	 * @param whenDone     to run when done
 	 */
-	public static void launchExecUri(final OperationActivity activity, final Uri uri, final String databasePath, final Consumer<Boolean> whenDone)
+	public static void launchExecUri(final FragmentActivity activity, final Uri uri, final String databasePath, final Consumer<Boolean> whenDone)
 	{
 		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
 				.setTitle(activity.getString(R.string.action_exec_from_uri)) //
@@ -930,6 +936,7 @@ public class ExecAsyncTask
 						// iterate through lines (assuming each insert has its own line and there's no other stuff)
 						boolean status = true;
 						int count = 0;
+						int successCount = 0;
 						String sql = null;
 						String line;
 						while ((line = reader.readLine()) != null)
@@ -978,6 +985,7 @@ public class ExecAsyncTask
 							{
 								// exec one sql
 								db.execSQL(sql);
+								successCount++;
 							}
 							catch (@NonNull final SQLiteException e)
 							{
@@ -1012,7 +1020,7 @@ public class ExecAsyncTask
 							}
 						}
 
-						publishProgress(count, count);
+						publishProgress(successCount, count);
 						return status;
 					}
 					// found none
