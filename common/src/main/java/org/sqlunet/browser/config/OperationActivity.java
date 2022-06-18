@@ -11,6 +11,7 @@ import org.sqlunet.browser.common.R;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.arch.core.util.Function;
+import androidx.core.util.Consumer;
 
 public class OperationActivity extends AppCompatActivity
 {
@@ -30,7 +31,8 @@ public class OperationActivity extends AppCompatActivity
 
 	private ActivityResultLauncher<Intent> launcher;
 
-	private final Function<Uri, Object> handler = uri -> {
+	private final Consumer<Uri> consumer = uri -> {
+
 		ContentResolver resolver = getContentResolver();
 		String type = SAFUtils.getType(uri, resolver);
 		Log.i(TAG, "Type: " + type);
@@ -49,33 +51,31 @@ public class OperationActivity extends AppCompatActivity
 		}
 		*/
 		String op = getIntent().getStringExtra(ARG_OP);
-		Object result = null;
 		switch (op)
 		{
 			case OP_COPY:
-				result = Operations.copy(uri, this);
+				Operations.copy(uri, this);
 				break;
 			case OP_UNZIP:
-				result = Operations.unzip(uri, this);
+				Operations.unzip(uri, this);
 				break;
 			case OP_EXEC_SQL:
-				result = Operations.execSql(uri, this);
+				Operations.execSql(uri, this);
 				break;
 			case OP_EXEC_ZIPPED_SQL:
-				result = Operations.execZippedSql(uri, "sql", this);
+				Operations.execZippedSql(uri, "sql", this);
 				break;
 			case OP_MD5:
-				result = Operations.md5(uri, this);
+				Operations.md5(uri, this);
 				break;
 		}
-		return result;
 	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		launcher = SAFUtils.makeListener(this, handler);
+		launcher = SAFUtils.makeListener(this, consumer);
 		setContentView(R.layout.activity_file_operation);
 		SAFUtils.pick("*/*", launcher);
 	}

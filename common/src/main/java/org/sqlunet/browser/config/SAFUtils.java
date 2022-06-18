@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.arch.core.util.Function;
+import androidx.core.util.Consumer;
 
 public class SAFUtils
 {
@@ -26,7 +27,7 @@ public class SAFUtils
 
 	// L I S T E N E R
 
-	public static ActivityResultLauncher<Intent> makeListener(final AppCompatActivity activity, final Function<Uri, Object> handler)
+	public static ActivityResultLauncher<Intent> makeListener(final AppCompatActivity activity, final Consumer<Uri> consumer)
 	{
 		return activity.registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
 
@@ -38,8 +39,7 @@ public class SAFUtils
 					Uri uri = resultData.getData();
 					Log.i(TAG, "Uri: " + uri.toString());
 
-					Object object = handler.apply(uri);
-					Log.i(TAG, "Object: " + (object == null ? "null" : object.toString()));
+					consumer.accept(uri);
 				}
 			}
 		});
@@ -47,9 +47,9 @@ public class SAFUtils
 
 	// P I C K
 
-	public static void pick(@NonNull String mimeType, @NonNull ActivityResultLauncher<Intent> launcher)
+	public static void pick(@NonNull final String mimeType, @NonNull final ActivityResultLauncher<Intent> launcher)
 	{
-		Intent intent = new Intent(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT ? Intent.ACTION_OPEN_DOCUMENT : "android.intent.action.OPEN_DOCUMENT");
+		Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
 
 		// Filter to only show results that can be "opened", such as a file (as opposed to a list of contacts or timezones)
 		intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -66,7 +66,7 @@ public class SAFUtils
 	// Q U E R Y
 
 	@Nullable
-	public static String querySize(@NonNull Uri uri, @NonNull ContentResolver resolver)
+	public static String querySize(@NonNull final Uri uri, @NonNull final ContentResolver resolver)
 	{
 		// The query, since it only applies to a single document, will only return one row. There's no need to filter, sort, or select fields, since we want all fields for one document.
 		try (Cursor cursor = resolver.query(uri, null, null, null, null, null))
@@ -94,7 +94,7 @@ public class SAFUtils
 	}
 
 	@Nullable
-	public static String queryName(@NonNull Uri uri, @NonNull ContentResolver resolver)
+	public static String queryName(@NonNull final Uri uri, @NonNull final ContentResolver resolver)
 	{
 		// The query, since it only applies to a single document, will only return one row. There's no need to filter, sort, or select fields, since we want all fields for one document.
 		try (Cursor cursor = resolver.query(uri, null, null, null, null, null))
@@ -111,7 +111,7 @@ public class SAFUtils
 	}
 
 	@Nullable
-	public static String getType(@NonNull Uri uri, @NonNull ContentResolver resolver)
+	public static String getType(@NonNull final Uri uri, @NonNull final ContentResolver resolver)
 	{
 		return resolver.getType(uri);
 	}
@@ -119,7 +119,7 @@ public class SAFUtils
 	// F I L E   D E S C R I P T O R
 
 	@Nullable
-	public static <R> R applyFileDescriptor(@NonNull Uri uri, @NonNull ContentResolver resolver, @NonNull Function<FileDescriptor, R> f) throws IOException
+	public static <R> R applyFileDescriptor(@NonNull final Uri uri, @NonNull final ContentResolver resolver, @NonNull final Function<FileDescriptor, R> f) throws IOException
 	{
 		try (ParcelFileDescriptor parcelFileDescriptor = resolver.openFileDescriptor(uri, "r"))
 		{
@@ -130,7 +130,7 @@ public class SAFUtils
 	// I N P U T S T R E A M
 
 	@Nullable
-	public static <R> R applyInputStream(@NonNull Uri uri, ContentResolver resolver, @NonNull Function<InputStream, R> f) throws IOException
+	public static <R> R applyInputStream(@NonNull Uri uri, final ContentResolver resolver, @NonNull final Function<InputStream, R> f) throws IOException
 	{
 		try (InputStream is = resolver.openInputStream(uri))
 		{
