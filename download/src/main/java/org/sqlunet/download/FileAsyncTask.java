@@ -26,7 +26,7 @@ import androidx.fragment.app.FragmentActivity;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class FileAsyncTask<T>
+public class FileAsyncTask
 {
 	// static private final String TAG = "FileAsyncTask";
 
@@ -38,7 +38,7 @@ public class FileAsyncTask<T>
 	/**
 	 * Result listener
 	 */
-	final private Consumer<T> consumer;
+	final private Consumer<?> consumer;
 
 	/**
 	 * Publish rate
@@ -53,22 +53,17 @@ public class FileAsyncTask<T>
 	 * @param publishRate publish rate
 	 */
 	@SuppressWarnings("WeakerAccess")
-	protected FileAsyncTask(final TaskObserver.Observer<Number> observer, final Consumer<T> consumer, @SuppressWarnings("SameParameterValue") final int publishRate)
+	protected FileAsyncTask(final TaskObserver.Observer<Number> observer, final Consumer<?> consumer, @SuppressWarnings("SameParameterValue") final int publishRate)
 	{
 		this.observer = observer;
 		this.consumer = consumer;
 		this.publishRate = publishRate;
 	}
 
-	private Consumer<Boolean> booleanConsumer()
+	@SuppressWarnings("unchecked")
+	static private <T> Consumer<T> safeCast(Consumer<?> consumer)
 	{
-		//
-		return (Consumer<Boolean>) this.consumer;
-	}
-
-	private Consumer<String> stringConsumer()
-	{
-		return (Consumer<String>) this.consumer;
+		return (Consumer<T>) consumer;
 	}
 
 	// C O R E
@@ -786,7 +781,7 @@ public class FileAsyncTask<T>
 	@NonNull
 	private Task<Uri, Number, Boolean> copyFromUri(final ContentResolver resolver, final String dest)
 	{
-		return new AsyncCopyFromUri(dest, resolver, this.observer, this.booleanConsumer(), this.publishRate);
+		return new AsyncCopyFromUri(dest, resolver, this.observer, safeCast(this.consumer), this.publishRate);
 	}
 
 	/**
@@ -796,7 +791,7 @@ public class FileAsyncTask<T>
 	@SuppressWarnings("WeakerAccess")
 	public Task<String, Number, Boolean> copyFromFile(final String dest)
 	{
-		return new AsyncCopyFromFile(dest, this.observer, this.booleanConsumer(), this.publishRate);
+		return new AsyncCopyFromFile(dest, this.observer, safeCast(this.consumer), this.publishRate);
 	}
 
 	// unzip
@@ -808,7 +803,7 @@ public class FileAsyncTask<T>
 	@SuppressWarnings("WeakerAccess")
 	public Task<String, Number, Boolean> unzipEntryFromArchiveFile(final String entry, final String dest)
 	{
-		return new AsyncUnzipEntryFromArchiveFile(entry, dest, this.observer, this.booleanConsumer(), this.publishRate);
+		return new AsyncUnzipEntryFromArchiveFile(entry, dest, this.observer, safeCast(this.consumer), this.publishRate);
 	}
 
 	/**
@@ -818,7 +813,7 @@ public class FileAsyncTask<T>
 	@SuppressWarnings("UnusedReturnValue")
 	public Task<String, Number, Boolean> unzipFromArchiveFile(final String dest)
 	{
-		return new AsyncUnzipFromArchiveFile(dest, this.observer, this.booleanConsumer(), this.publishRate);
+		return new AsyncUnzipFromArchiveFile(dest, this.observer, safeCast(this.consumer), this.publishRate);
 	}
 
 	/**
@@ -828,7 +823,7 @@ public class FileAsyncTask<T>
 	@SuppressWarnings("UnusedReturnValue")
 	public Task<Uri, Number, Boolean> unzipFromArchiveUri(final ContentResolver resolver, final String dest)
 	{
-		return new AsyncUnzipFromArchiveUri(dest, resolver, this.observer, this.booleanConsumer(), this.publishRate);
+		return new AsyncUnzipFromArchiveUri(dest, resolver, this.observer, safeCast(this.consumer), this.publishRate);
 	}
 
 	/**
@@ -838,7 +833,7 @@ public class FileAsyncTask<T>
 	@SuppressWarnings("UnusedReturnValue")
 	public Task<Uri, Number, Boolean> unzipEntryFromArchiveUri(final ContentResolver resolver, final String entry, final String dest)
 	{
-		return new AsyncUnzipEntryFromArchiveUri(dest, entry, resolver, this.observer, this.booleanConsumer(), this.publishRate);
+		return new AsyncUnzipEntryFromArchiveUri(dest, entry, resolver, this.observer, safeCast(this.consumer), this.publishRate);
 	}
 
 	// md5
@@ -850,7 +845,7 @@ public class FileAsyncTask<T>
 	@SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 	public Task<String, Number, String> md5FromFile()
 	{
-		return new AsyncMd5FromFile(this.observer, this.stringConsumer(), this.publishRate);
+		return new AsyncMd5FromFile(this.observer, safeCast(this.consumer), this.publishRate);
 	}
 
 	/**
@@ -860,7 +855,7 @@ public class FileAsyncTask<T>
 	@SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 	public Task<Uri, Number, String> md5FromUri(@NonNull final ContentResolver resolver)
 	{
-		return new AsyncMd5FromUri(resolver, this.observer, this.stringConsumer(), this.publishRate);
+		return new AsyncMd5FromUri(resolver, this.observer, safeCast(this.consumer), this.publishRate);
 	}
 
 	// L A U N C H E R S
@@ -905,7 +900,7 @@ public class FileAsyncTask<T>
 				whenDone.accept(success);
 			}
 		};
-		final Task<String, Number, Boolean> task = new FileAsyncTask<Boolean>(observer, consumer, 1000).unzipFromArchiveFile(dest);
+		final Task<String, Number, Boolean> task = new FileAsyncTask(observer, consumer, 1000).unzipFromArchiveFile(dest);
 		task.execute(sourceFile);
 		observer.taskUpdate(activity.getString(org.sqlunet.download.R.string.status_unzipping));
 	}
@@ -948,7 +943,7 @@ public class FileAsyncTask<T>
 				whenDone.accept(success);
 			}
 		};
-		final Task<Uri, Number, Boolean> task = new FileAsyncTask<Boolean>(observer, consumer, 1000).unzipFromArchiveUri(activity.getContentResolver(), dest);
+		final Task<Uri, Number, Boolean> task = new FileAsyncTask(observer, consumer, 1000).unzipFromArchiveUri(activity.getContentResolver(), dest);
 		task.execute(sourceUri);
 		observer.taskUpdate(activity.getString(R.string.status_unzipping));
 	}
@@ -993,7 +988,7 @@ public class FileAsyncTask<T>
 				whenDone.accept(success);
 			}
 		};
-		final Task<String, Number, Boolean> task = new FileAsyncTask<Boolean>(observer, consumer, 1000).unzipEntryFromArchiveFile(zipEntry, dest);
+		final Task<String, Number, Boolean> task = new FileAsyncTask(observer, consumer, 1000).unzipEntryFromArchiveFile(zipEntry, dest);
 		task.execute(sourceFile);
 		observer.taskUpdate(activity.getString(R.string.status_unzipping) + ' ' + zipEntry);
 	}
@@ -1038,7 +1033,7 @@ public class FileAsyncTask<T>
 				whenDone.accept(success);
 			}
 		};
-		final Task<Uri, Number, Boolean> task = new FileAsyncTask<Boolean>(observer, consumer, 1000).unzipEntryFromArchiveUri(activity.getContentResolver(), zipEntry, dest);
+		final Task<Uri, Number, Boolean> task = new FileAsyncTask(observer, consumer, 1000).unzipEntryFromArchiveUri(activity.getContentResolver(), zipEntry, dest);
 		task.execute(sourceUri);
 		observer.taskUpdate(activity.getString(R.string.status_unzipping) + ' ' + zipEntry);
 	}
@@ -1083,7 +1078,7 @@ public class FileAsyncTask<T>
 				whenDone.accept(success);
 			}
 		};
-		final Task<String, Number, Boolean> task = new FileAsyncTask<Boolean>(observer, consumer, 1000).copyFromFile(dest);
+		final Task<String, Number, Boolean> task = new FileAsyncTask(observer, consumer, 1000).copyFromFile(dest);
 		task.execute(sourceFile);
 		observer.taskUpdate(activity.getString(R.string.status_copying) + ' ' + sourceFile);
 	}
@@ -1126,7 +1121,7 @@ public class FileAsyncTask<T>
 				whenDone.accept(success);
 			}
 		};
-		final Task<Uri, Number, Boolean> task = new FileAsyncTask<Boolean>(observer, consumer, 1000).copyFromUri(activity.getContentResolver(), dest);
+		final Task<Uri, Number, Boolean> task = new FileAsyncTask(observer, consumer, 1000).copyFromUri(activity.getContentResolver(), dest);
 		task.execute(uri);
 		observer.taskUpdate(activity.getString(R.string.status_copying) + ' ' + uri);
 	}
@@ -1192,7 +1187,7 @@ public class FileAsyncTask<T>
 			});
 			alert2.show();
 		};
-		final Task<String, Number, String> task = new FileAsyncTask<String>(observer, consumer, 1000).md5FromFile();
+		final Task<String, Number, String> task = new FileAsyncTask(observer, consumer, 1000).md5FromFile();
 		task.execute(sourceFile);
 		observer.taskUpdate(activity.getString(R.string.status_md5_checking) + ' ' + sourceFile);
 	}
@@ -1226,7 +1221,7 @@ public class FileAsyncTask<T>
 			});
 			alert2.show();
 		};
-		final Task<Uri, Number, String> task = new FileAsyncTask<String>(observer, consumer, 1000).md5FromUri(activity.getContentResolver());
+		final Task<Uri, Number, String> task = new FileAsyncTask(observer, consumer, 1000).md5FromUri(activity.getContentResolver());
 		task.execute(uri);
 		observer.taskUpdate(activity.getString(R.string.status_md5_checking) + ' ' + "input stream");
 	}
