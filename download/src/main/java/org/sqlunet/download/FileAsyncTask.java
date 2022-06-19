@@ -833,7 +833,7 @@ public class FileAsyncTask
 	@SuppressWarnings("UnusedReturnValue")
 	public Task<Uri, Number, Boolean> unzipEntryFromArchiveUri(final ContentResolver resolver, final String entry, final String dest)
 	{
-		return new AsyncUnzipEntryFromArchiveUri(dest, entry, resolver, this.observer, safeCast(this.consumer), this.publishRate);
+		return new AsyncUnzipEntryFromArchiveUri(entry, dest, resolver, this.observer, safeCast(this.consumer), this.publishRate);
 	}
 
 	// md5
