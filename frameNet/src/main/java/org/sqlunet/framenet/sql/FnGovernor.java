@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Governor
@@ -54,11 +54,11 @@ class FnGovernor
 	 * @param luId       target lex unit id
 	 * @return list of governors
 	 */
-	@NonNull
+	@Nullable
 	static public List<FnGovernor> make(final SQLiteDatabase connection, final long luId)
 	{
-		final List<FnGovernor> result = new ArrayList<>();
-		try(FnGovernorQueryFromLexUnitId query = new FnGovernorQueryFromLexUnitId(connection, luId))
+		List<FnGovernor> result = null;
+		try (FnGovernorQueryFromLexUnitId query = new FnGovernorQueryFromLexUnitId(connection, luId))
 		{
 			query.execute();
 
@@ -67,7 +67,10 @@ class FnGovernor
 				final long governorId = query.getGovernorId();
 				final long wordId = query.getWordId();
 				final String governor = query.getGovernor();
-
+				if (result == null)
+				{
+					result = new ArrayList<>();
+				}
 				result.add(new FnGovernor(governorId, wordId, governor));
 			}
 		}

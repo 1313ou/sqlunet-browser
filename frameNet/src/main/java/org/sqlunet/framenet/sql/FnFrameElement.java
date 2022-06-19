@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /**
@@ -98,12 +97,11 @@ class FnFrameElement
 	 * @param frameId    target frame id
 	 * @return list of FEs
 	 */
-	@NonNull
+	@Nullable
 	static public List<FnFrameElement> make(final SQLiteDatabase connection, final long frameId)
 	{
-		final List<FnFrameElement> result = new ArrayList<>();
-
-		try(FnFrameElementQueryFromFrameId query = new FnFrameElementQueryFromFrameId(connection, frameId))
+		List<FnFrameElement> result = null;
+		try (FnFrameElementQueryFromFrameId query = new FnFrameElementQueryFromFrameId(connection, frameId))
 		{
 			query.execute();
 
@@ -118,7 +116,10 @@ class FnFrameElement
 				final String semTypes = query.getSemTypes();
 				final boolean isCore = query.getIsCore();
 				final int coreSet = query.getCoreSet();
-
+				if (result == null)
+				{
+					result = new ArrayList<>();
+				}
 				result.add(new FnFrameElement(feId, feTypeId, feType, feDefinition, feAbbrev, feCoreType, semTypes, isCore, coreSet));
 			}
 		}

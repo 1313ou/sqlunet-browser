@@ -47,20 +47,44 @@ public class SAFUtils
 
 	// P I C K
 
-	public static void pick(@NonNull final String mimeType, @NonNull final ActivityResultLauncher<Intent> launcher)
+	public static void pick(@NonNull final ActivityResultLauncher<Intent> launcher, @NonNull final String... mimeTypes)
 	{
 		Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
 
 		// Filter to only show results that can be "opened", such as a file (as opposed to a list of contacts or timezones)
 		intent.addCategory(Intent.CATEGORY_OPENABLE);
 
-		// Filter to show only images, using the image MIME data type.
-		// If one wanted to search for ogg vorbis files, the type would be "audio/ogg".
-		// To search for all documents available via installed storage providers,
-		// it would be "*/*".
-		intent.setType(mimeType);
+		// Filter to show only docs of selected type, using the image MIME data type.
+		// To search for all documents available via installed storage providers, it would be "*/*".
+		setType(intent, mimeTypes);
 
 		launcher.launch(intent);
+	}
+
+	private static void setType(@NonNull final Intent intent, @Nullable final String... mimeTypes)
+	{
+		if (mimeTypes == null)
+		{
+			return;
+		}
+
+		// if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
+		// {
+		intent.setType(mimeTypes.length == 1 ? mimeTypes[0] : "*/*");
+		if (mimeTypes.length > 0)
+		{
+			intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
+		}
+		//}
+		// else
+		// {
+		// 	StringBuilder mimeTypesStr = new StringBuilder();
+		// 	for (String mimeType : mimeTypes)
+		// 	{
+		// 		mimeTypesStr.append(mimeType).append("|");
+		// 	}
+		// 	intent.setType(mimeTypesStr.substring(0, mimeTypesStr.length() - 1));
+		// }
 	}
 
 	// Q U E R Y

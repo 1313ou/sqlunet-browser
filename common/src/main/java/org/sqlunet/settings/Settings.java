@@ -43,13 +43,14 @@ public class Settings
 	static public final String PREF_ASSET_PRIMARY_DEFAULT = SetupAsset.PREF_ASSET_PRIMARY_DEFAULT;
 	static public final String PREF_ASSET_AUTO_CLEANUP = SetupAsset.PREF_ASSET_AUTO_CLEANUP;
 	static public final String PREF_DB_FILE = "pref_db_file";
+	static public final String PREF_DB_DATE = "pref_db_date";
+	static public final String PREF_DB_SIZE = "pref_db_size";
 	static public final String PREF_STORAGE = StorageSettings.PREF_STORAGE;
 	static public final String PREF_DOWNLOADER = StorageSettings.PREF_DOWNLOADER;
 	static public final String PREF_DOWNLOAD_SITE = StorageSettings.PREF_DOWNLOAD_SITE;
 	static public final String PREF_DOWNLOAD_DBFILE = StorageSettings.PREF_DOWNLOAD_DBFILE;
 	static public final String PREF_CACHE = StorageSettings.PREF_CACHE;
-	static public final String PREF_DB_DATE = "pref_db_date";
-	static public final String PREF_DB_SIZE = "pref_db_size";
+	static public final String PREF_ZIP_ENTRY = "pref_zip_entry";
 	static public final String PREF_TWO_PANES = "pref_two_panes";
 	static private final String PREF_VERSION = "org.sqlunet.browser.version";
 
@@ -366,6 +367,12 @@ public class Settings
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getString(Settings.PREF_CACHE, null);
+	}
+
+	public static String getZipEntry(final Context context, final String defaultValue)
+	{
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		return sharedPref.getString(Settings.PREF_ZIP_ENTRY, defaultValue);
 	}
 
 	/**

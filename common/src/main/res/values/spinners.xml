@@ -21,6 +21,7 @@
 	<string name="title_setup_update">Update database &#8230;</string>
 	<string name="title_setup_copy_uri">Copy database from uri &#8230;</string>
 	<string name="title_setup_unzip_uri">Unzip database from uri &#8230;</string>
+	<string name="title_setup_unzip_entry_uri">Unzip database from uri entry &#8230;</string>
 	<string name="title_setup_md5_uri">MD5 checksum uri &#8230;</string>
 	<string name="title_setup_copy_file">Copy database from file &#8230;</string>
 	<string name="title_setup_unzip_file">Unzip database from file &#8230;</string>
@@ -34,6 +35,7 @@
 		<item>@string/title_setup_update</item>
 		<item>@string/title_setup_copy_uri</item>
 		<item>@string/title_setup_unzip_uri</item>
+		<item>@string/title_setup_unzip_entry_uri</item>
 		<item>@string/title_setup_md5_uri</item>
 		<item>@string/title_setup_copy_file</item>
 		<item>@string/title_setup_unzip_file</item>
@@ -48,6 +50,7 @@
 		<item>UPDATE</item>
 		<item>COPY_URI</item>
 		<item>UNZIP_URI</item>
+		<item>UNZIP_ENTRY_URI</item>
 		<item>MD5_URI</item>
 		<item>COPY_FILE</item>
 		<item>UNZIP_FILE</item>

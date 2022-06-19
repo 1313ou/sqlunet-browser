@@ -122,7 +122,7 @@ public class FnLexUnit
 	@NonNull
 	static public Pair<Long, List<FnLexUnit>> makeFromWord(final SQLiteDatabase connection, final String word)
 	{
-		final List<FnLexUnit> result = new ArrayList<>();
+		List<FnLexUnit> result = null;
 		try (FnLexUnitQueryFromWord query = new FnLexUnitQueryFromWord(connection, false, word))
 		{
 			query.execute();
@@ -141,7 +141,10 @@ public class FnLexUnit
 				final long frameId = query.getFrameId();
 				final String frame = query.getFrame();
 				final String frameDefinition = query.getFrameDefinition();
-
+				if (result == null)
+				{
+					result = new ArrayList<>();
+				}
 				result.add(new FnLexUnit(luId, lexUnit, pos, definition, dictionary, incorporatedFe, frameId, frame, frameDefinition));
 			}
 			return new Pair<>(wordId, result);
@@ -158,7 +161,7 @@ public class FnLexUnit
 	@NonNull
 	static public Pair<Long, List<FnLexUnit>> makeFromFnWord(final SQLiteDatabase connection, final String fnWord)
 	{
-		final List<FnLexUnit> result = new ArrayList<>();
+		List<FnLexUnit> result = null;
 		try (FnLexUnitQueryFromFnWord query = new FnLexUnitQueryFromFnWord(connection, true, fnWord))
 		{
 			query.execute();
@@ -177,7 +180,10 @@ public class FnLexUnit
 				final long frameId = query.getFrameId();
 				final String frame = query.getFrame();
 				final String frameDefinition = query.getFrameDefinition();
-
+				if (result == null)
+				{
+					result = new ArrayList<>();
+				}
 				result.add(new FnLexUnit(luId, lexUnit, pos, definition, dictionary, incorporatedFe, frameId, frame, frameDefinition));
 			}
 			return new Pair<>(fnWordId, result);
@@ -192,10 +198,10 @@ public class FnLexUnit
 	 * @param pos        pos to build query from, null if any
 	 * @return list of lex units
 	 */
-	@NonNull
+	@Nullable
 	static public List<FnLexUnit> makeFromWordId(final SQLiteDatabase connection, final long wordId, final Character pos)
 	{
-		final List<FnLexUnit> result = new ArrayList<>();
+		List<FnLexUnit> result = null;
 		try (FnLexUnitQueryFromWordId query = new FnLexUnitQueryFromWordId(connection, false, wordId, pos))
 		{
 			query.execute();
@@ -211,7 +217,10 @@ public class FnLexUnit
 				final long frameId = query.getFrameId();
 				final String frame = query.getFrame();
 				final String frameDescription = query.getFrameDescription();
-
+				if (result == null)
+				{
+					result = new ArrayList<>();
+				}
 				result.add(new FnLexUnit(luId, lexUnit, luPos, definition, dictionary, incorporatedFe, frameId, frame, frameDescription));
 			}
 		}
@@ -226,10 +235,10 @@ public class FnLexUnit
 	 * @param pos        pos to build query from, null if any
 	 * @return list of lex units
 	 */
-	@NonNull
+	@Nullable
 	static public List<FnLexUnit> makeFromFnWordId(final SQLiteDatabase connection, final long fnWordId, final Character pos)
 	{
-		final List<FnLexUnit> result = new ArrayList<>();
+		List<FnLexUnit> result = null;
 		try (FnLexUnitQueryFromFnWordId query = new FnLexUnitQueryFromFnWordId(connection, true, fnWordId, pos);)
 		{
 			query.execute();
@@ -245,7 +254,10 @@ public class FnLexUnit
 				final long frameId = query.getFrameId();
 				final String frame = query.getFrame();
 				final String frameDescription = query.getFrameDescription();
-
+				if (result == null)
+				{
+					result = new ArrayList<>();
+				}
 				result.add(new FnLexUnit(luId, lexUnit, luPos, definition, dictionary, incorporatedFe, frameId, frame, frameDescription));
 			}
 		}
@@ -259,10 +271,10 @@ public class FnLexUnit
 	 * @param frameId    frame id
 	 * @return list of lex units
 	 */
-	@NonNull
+	@Nullable
 	static public List<FnLexUnit> makeFromFrame(final SQLiteDatabase connection, final long frameId)
 	{
-		final List<FnLexUnit> result = new ArrayList<>();
+		List<FnLexUnit> result = null;
 		try (FnLexUnitQueryFromFrameId query = new FnLexUnitQueryFromFrameId(connection, frameId))
 		{
 			query.execute();
@@ -275,6 +287,10 @@ public class FnLexUnit
 				final String definition = query.getDefinition();
 				final String dictionary = query.getDictionary();
 				final String incorporatedFe = query.getIncorporatedFe();
+				if (result == null)
+				{
+					result = new ArrayList<>();
+				}
 				result.add(new FnLexUnit(luId, lexUnit, pos, definition, dictionary, incorporatedFe, 0, null, null));
 			}
 		}

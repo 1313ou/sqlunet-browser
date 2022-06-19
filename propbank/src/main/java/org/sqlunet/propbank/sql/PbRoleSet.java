@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * PropBank role set
@@ -68,10 +68,10 @@ class PbRoleSet
 	 * @param word       is the word to build query from
 	 * @return list of PropBank roleSets
 	 */
-	@NonNull
+	@Nullable
 	static public List<PbRoleSet> makeFromWord(final SQLiteDatabase connection, final String word)
 	{
-		final List<PbRoleSet> result = new ArrayList<>();
+		List<PbRoleSet> result = null;
 		try (PbRoleSetQueryFromWord query = new PbRoleSetQueryFromWord(connection, word))
 		{
 			query.execute();
@@ -83,6 +83,10 @@ class PbRoleSet
 				final String roleSetDescr = query.getRoleSetDescr();
 				final long roleSetId = query.getRoleSetId();
 				final long wordId = query.getWordId();
+				if (result == null)
+				{
+					result = new ArrayList<>();
+				}
 				result.add(new PbRoleSet(roleSetName, roleSetHead, roleSetDescr, roleSetId, wordId));
 			}
 			return result;
@@ -96,10 +100,10 @@ class PbRoleSet
 	 * @param wordId     is the word id to build query from
 	 * @return list of PropBank roleSets
 	 */
-	@NonNull
+	@Nullable
 	static public List<PbRoleSet> makeFromWordId(final SQLiteDatabase connection, final long wordId)
 	{
-		final List<PbRoleSet> result = new ArrayList<>();
+		List<PbRoleSet> result = null;
 		try (PbRoleSetQueryFromWordId query = new PbRoleSetQueryFromWordId(connection, wordId))
 		{
 			query.execute();
@@ -110,6 +114,10 @@ class PbRoleSet
 				final String roleSetHead = query.getRoleSetHead();
 				final String roleSetDescr = query.getRoleSetDescr();
 				final long roleSetId = query.getRoleSetId();
+				if (result == null)
+				{
+					result = new ArrayList<>();
+				}
 				result.add(new PbRoleSet(roleSetName, roleSetHead, roleSetDescr, roleSetId, wordId));
 			}
 		}
@@ -123,10 +131,10 @@ class PbRoleSet
 	 * @param roleSetId  is the role set id to build query from
 	 * @return list of PropBank role sets
 	 */
-	@NonNull
+	@Nullable
 	static public List<PbRoleSet> make(final SQLiteDatabase connection, final long roleSetId)
 	{
-		final List<PbRoleSet> result = new ArrayList<>();
+		List<PbRoleSet> result = null;
 		try (PbRoleSetQuery query = new PbRoleSetQuery(connection, roleSetId);)
 		{
 			query.execute();
@@ -136,6 +144,10 @@ class PbRoleSet
 				final String roleSetName = query.getRoleSetName();
 				final String roleSetHead = query.getRoleSetHead();
 				final String roleSetDescr = query.getRoleSetDescr();
+				if (result == null)
+				{
+					result = new ArrayList<>();
+				}
 				result.add(new PbRoleSet(roleSetName, roleSetHead, roleSetDescr, roleSetId, 0));
 			}
 		}

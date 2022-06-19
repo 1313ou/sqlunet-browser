@@ -19,6 +19,7 @@ import org.sqlunet.concurrency.TaskObserver;
 import java.io.File;
 
 import androidx.annotation.NonNull;
+import androidx.core.util.Consumer;
 import androidx.fragment.app.FragmentActivity;
 
 /**
@@ -37,7 +38,7 @@ public class MD5AsyncTaskChooser
 	 * @param path           path
 	 * @param resultListener result listener
 	 */
-	public static void md5(@NonNull final FragmentActivity activity, @NonNull final String path, final FileAsyncTask.ResultListener resultListener)
+	public static void md5(@NonNull final FragmentActivity activity, @NonNull final String path, final Consumer<String> resultListener)
 	{
 		if (activity.isFinishing() || activity.isDestroyed())
 		{
@@ -46,7 +47,7 @@ public class MD5AsyncTaskChooser
 		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
 				.setTitle(activity.getString(R.string.action_md5)) //
 				.setMessage(path);
-		final Task<String, Number, String> task = new FileAsyncTask(observer, resultListener, 1000).md5FromFile();
+		final Task<String, Number, String> task = new FileAsyncTask<>(observer, resultListener, 1000).md5FromFile();
 		task.execute(path);
 	}
 
@@ -84,11 +85,10 @@ public class MD5AsyncTaskChooser
 					if (new File(sourceFile).exists())
 					{
 						// process target
-						MD5AsyncTaskChooser.md5(activity, sourceFile, result1 -> {
+						MD5AsyncTaskChooser.md5(activity, sourceFile, computedResult -> {
 
 							if (!activity.isFinishing() && !activity.isDestroyed())
 							{
-								final String computedResult = (String) result1;
 								final SpannableStringBuilder sb = new SpannableStringBuilder();
 								Report.appendHeader(sb, activity.getString(R.string.md5_computed));
 								sb.append('\n');

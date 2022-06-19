@@ -78,6 +78,11 @@
 	<!-- sql -->
 	<string name="pref_sql_category">SQL</string>
 
+	<!-- misc -->
+	<string name="pref_misc_category">Miscellaneous.</string>
+	<string name="pref_title_zip_entry">Zip entry</string>
+	<string name="pref_description_zip_entry">Zip entry name used in unzip operations</string>
+
 	<!-- FILTER -->
 
 	<string name="pref_header_filter">Filter</string>

@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * VerbNet class with sense
@@ -98,10 +98,10 @@ class VnClassWithSense
 	 * @param synsetId   synset id to build the query from (null if any)
 	 * @return list of VerbNet classes
 	 */
-	@NonNull
+	@Nullable
 	static public List<VnClassWithSense> make(final SQLiteDatabase connection, final long wordId, final Long synsetId)
 	{
-		final List<VnClassWithSense> result = new ArrayList<>();
+		List<VnClassWithSense> result = null;
 		try (VnClassQueryFromSense query = new VnClassQueryFromSense(connection, wordId, synsetId))
 		{
 			query.execute();
@@ -116,7 +116,10 @@ class VnClassWithSense
 				final int sensenum = query.getSenseNum();
 				final float quality = query.getQuality();
 				final String groupings = query.getGroupings();
-
+				if (result == null)
+				{
+					result = new ArrayList<>();
+				}
 				result.add(new VnClassWithSense(className, classId, wordId, synsetSpecificFlag ? synsetId : null, definition, sensenum, sensekey, quality, groupings));
 			}
 		}

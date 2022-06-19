@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * PropBank role
@@ -69,10 +69,10 @@ class PbRole
 	 * @param roleSetId  role set id to build query from
 	 * @return list of PropBank roles
 	 */
-	@NonNull
+	@Nullable
 	static public List<PbRole> make(final SQLiteDatabase connection, final long roleSetId)
 	{
-		final List<PbRole> result = new ArrayList<>();
+		List<PbRole> result = null;
 		try (PbRoleQueryFromRoleSetId query = new PbRoleQueryFromRoleSetId(connection, roleSetId))
 		{
 			query.execute();
@@ -84,6 +84,10 @@ class PbRole
 				final String roleArgType = query.getArgType();
 				final String roleFunc = query.getRoleFunc();
 				final String roleTheta = query.getRoleTheta();
+				if (result == null)
+				{
+					result = new ArrayList<>();
+				}
 				result.add(new PbRole(roleId, roleDescr, roleArgType, roleFunc, roleTheta));
 			}
 		}

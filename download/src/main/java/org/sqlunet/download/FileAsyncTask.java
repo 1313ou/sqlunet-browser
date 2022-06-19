@@ -26,23 +26,9 @@ import androidx.fragment.app.FragmentActivity;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class FileAsyncTask
+public class FileAsyncTask<T>
 {
 	// static private final String TAG = "FileAsyncTask";
-
-	/**
-	 * Result listener interface
-	 */
-	@FunctionalInterface
-	public interface ResultListener
-	{
-		/**
-		 * Done
-		 *
-		 * @param result file/md5 digest/etc
-		 */
-		void onResult(final Object result);
-	}
 
 	/**
 	 * Task observer
@@ -52,7 +38,7 @@ public class FileAsyncTask
 	/**
 	 * Result listener
 	 */
-	final private ResultListener resultListener;
+	final private Consumer<T> consumer;
 
 	/**
 	 * Publish rate
@@ -62,16 +48,27 @@ public class FileAsyncTask
 	/**
 	 * Constructor
 	 *
-	 * @param observer       observer
-	 * @param resultListener result listener
-	 * @param publishRate    publish rate
+	 * @param observer    observer
+	 * @param consumer    result listener
+	 * @param publishRate publish rate
 	 */
 	@SuppressWarnings("WeakerAccess")
-	protected FileAsyncTask(final TaskObserver.Observer<Number> observer, final ResultListener resultListener, @SuppressWarnings("SameParameterValue") final int publishRate)
+	protected FileAsyncTask(final TaskObserver.Observer<Number> observer, final Consumer<T> consumer, @SuppressWarnings("SameParameterValue") final int publishRate)
 	{
 		this.observer = observer;
-		this.resultListener = resultListener;
+		this.consumer = consumer;
 		this.publishRate = publishRate;
+	}
+
+	private Consumer<Boolean> booleanConsumer()
+	{
+		//
+		return (Consumer<Boolean>) this.consumer;
+	}
+
+	private Consumer<String> stringConsumer()
+	{
+		return (Consumer<String>) this.consumer;
 	}
 
 	// C O R E
@@ -96,7 +93,7 @@ public class FileAsyncTask
 		/**
 		 * Result listener
 		 */
-		private final ResultListener resultListener;
+		private final Consumer<Boolean> consumer;
 
 		/**
 		 * Publish rate
@@ -106,16 +103,16 @@ public class FileAsyncTask
 		/**
 		 * Constructor
 		 *
-		 * @param observer       observer
-		 * @param resultListener result listener
-		 * @param publishRate    public rate
+		 * @param observer    observer
+		 * @param consumer    result listener
+		 * @param publishRate public rate
 		 */
-		AsyncCopyFromUri(final String dest, final ContentResolver resolver, final TaskObserver.Observer<Number> observer, final ResultListener resultListener, final int publishRate)
+		AsyncCopyFromUri(final String dest, final ContentResolver resolver, final TaskObserver.Observer<Number> observer, final Consumer<Boolean> consumer, final int publishRate)
 		{
 			this.dest = dest;
 			this.observer = observer;
 			this.resolver = resolver;
-			this.resultListener = resultListener;
+			this.consumer = consumer;
 			this.publishRate = publishRate;
 		}
 
@@ -148,9 +145,9 @@ public class FileAsyncTask
 		protected void onPostExecute(final Boolean result)
 		{
 			this.observer.taskFinish(result);
-			if (this.resultListener != null)
+			if (this.consumer != null)
 			{
-				this.resultListener.onResult(result);
+				this.consumer.accept(result);
 			}
 		}
 
@@ -182,7 +179,7 @@ public class FileAsyncTask
 		/**
 		 * Result listener
 		 */
-		private final ResultListener resultListener;
+		private final Consumer<Boolean> consumer;
 
 		/**
 		 * Publish rate
@@ -192,15 +189,15 @@ public class FileAsyncTask
 		/**
 		 * Constructor
 		 *
-		 * @param observer       observer
-		 * @param resultListener result listener
-		 * @param publishRate    public rate
+		 * @param observer    observer
+		 * @param consumer    result listener
+		 * @param publishRate public rate
 		 */
-		AsyncCopyFromFile(final String dest, final TaskObserver.Observer<Number> observer, final ResultListener resultListener, final int publishRate)
+		AsyncCopyFromFile(final String dest, final TaskObserver.Observer<Number> observer, final Consumer<Boolean> consumer, final int publishRate)
 		{
 			this.dest = dest;
 			this.observer = observer;
-			this.resultListener = resultListener;
+			this.consumer = consumer;
 			this.publishRate = publishRate;
 		}
 
@@ -233,9 +230,9 @@ public class FileAsyncTask
 		protected void onPostExecute(final Boolean result)
 		{
 			this.observer.taskFinish(result);
-			if (this.resultListener != null)
+			if (this.consumer != null)
 			{
-				this.resultListener.onResult(result);
+				this.consumer.accept(result);
 			}
 		}
 
@@ -267,7 +264,7 @@ public class FileAsyncTask
 		/**
 		 * Result listener
 		 */
-		final private ResultListener resultListener;
+		final private Consumer<Boolean> consumer;
 
 		/**
 		 * Publish rate
@@ -277,15 +274,15 @@ public class FileAsyncTask
 		/**
 		 * Constructor
 		 *
-		 * @param observer       observer
-		 * @param resultListener result listener
-		 * @param publishRate    public rate
+		 * @param observer    observer
+		 * @param consumer    result listener
+		 * @param publishRate public rate
 		 */
-		AsyncUnzipFromArchiveFile(final String dest, final TaskObserver.Observer<Number> observer, final ResultListener resultListener, final int publishRate)
+		AsyncUnzipFromArchiveFile(final String dest, final TaskObserver.Observer<Number> observer, final Consumer<Boolean> consumer, final int publishRate)
 		{
 			this.dest = dest;
 			this.observer = observer;
-			this.resultListener = resultListener;
+			this.consumer = consumer;
 			this.publishRate = publishRate;
 		}
 
@@ -316,9 +313,9 @@ public class FileAsyncTask
 		protected void onPostExecute(final Boolean result)
 		{
 			this.observer.taskFinish(result);
-			if (this.resultListener != null)
+			if (this.consumer != null)
 			{
-				this.resultListener.onResult(result);
+				this.consumer.accept(result);
 			}
 		}
 
@@ -355,7 +352,7 @@ public class FileAsyncTask
 		/**
 		 * Result listener
 		 */
-		final private ResultListener resultListener;
+		final private Consumer<Boolean> consumer;
 
 		/**
 		 * Publish rate
@@ -365,16 +362,16 @@ public class FileAsyncTask
 		/**
 		 * Constructor
 		 *
-		 * @param observer       observer
-		 * @param resultListener result listener
-		 * @param publishRate    public rate
+		 * @param observer    observer
+		 * @param consumer    result listener
+		 * @param publishRate public rate
 		 */
-		AsyncUnzipFromArchiveUri(final String dest, final ContentResolver resolver, final TaskObserver.Observer<Number> observer, final ResultListener resultListener, final int publishRate)
+		AsyncUnzipFromArchiveUri(final String dest, final ContentResolver resolver, final TaskObserver.Observer<Number> observer, final Consumer<Boolean> consumer, final int publishRate)
 		{
 			this.dest = dest;
 			this.resolver = resolver;
 			this.observer = observer;
-			this.resultListener = resultListener;
+			this.consumer = consumer;
 			this.publishRate = publishRate;
 		}
 
@@ -405,9 +402,9 @@ public class FileAsyncTask
 		protected void onPostExecute(final Boolean result)
 		{
 			this.observer.taskFinish(result);
-			if (this.resultListener != null)
+			if (this.consumer != null)
 			{
-				this.resultListener.onResult(result);
+				this.consumer.accept(result);
 			}
 		}
 
@@ -444,7 +441,7 @@ public class FileAsyncTask
 		/**
 		 * Result listener
 		 */
-		final private ResultListener resultListener;
+		final private Consumer<Boolean> consumer;
 
 		/**
 		 * Publish rate
@@ -454,18 +451,18 @@ public class FileAsyncTask
 		/**
 		 * Constructor
 		 *
-		 * @param entry          entry
-		 * @param dest           dest
-		 * @param observer       observer
-		 * @param resultListener result listener
-		 * @param publishRate    public rate
+		 * @param entry       entry
+		 * @param dest        dest
+		 * @param observer    observer
+		 * @param consumer    result listener
+		 * @param publishRate public rate
 		 */
-		AsyncUnzipEntryFromArchiveFile(final String entry, final String dest, final TaskObserver.Observer<Number> observer, final ResultListener resultListener, final int publishRate)
+		AsyncUnzipEntryFromArchiveFile(final String entry, final String dest, final TaskObserver.Observer<Number> observer, final Consumer<Boolean> consumer, final int publishRate)
 		{
 			this.entry = entry;
 			this.dest = dest;
 			this.observer = observer;
-			this.resultListener = resultListener;
+			this.consumer = consumer;
 			this.publishRate = publishRate;
 		}
 
@@ -496,9 +493,9 @@ public class FileAsyncTask
 		protected void onPostExecute(final Boolean result)
 		{
 			this.observer.taskFinish(result);
-			if (this.resultListener != null)
+			if (this.consumer != null)
 			{
-				this.resultListener.onResult(result);
+				this.consumer.accept(result);
 			}
 		}
 
@@ -540,7 +537,7 @@ public class FileAsyncTask
 		/**
 		 * Result listener
 		 */
-		final private ResultListener resultListener;
+		final private Consumer<Boolean> consumer;
 
 		/**
 		 * Publish rate
@@ -550,20 +547,20 @@ public class FileAsyncTask
 		/**
 		 * Constructor
 		 *
-		 * @param entry          entry
-		 * @param dest           dest
-		 * @param resolver       resolver
-		 * @param observer       observer
-		 * @param resultListener result listener
-		 * @param publishRate    public rate
+		 * @param entry       entry
+		 * @param dest        dest
+		 * @param resolver    resolver
+		 * @param observer    observer
+		 * @param consumer    result listener
+		 * @param publishRate public rate
 		 */
-		AsyncUnzipEntryFromArchiveUri(final String entry, final String dest, final ContentResolver resolver, final TaskObserver.Observer<Number> observer, final ResultListener resultListener, final int publishRate)
+		AsyncUnzipEntryFromArchiveUri(final String entry, final String dest, final ContentResolver resolver, final TaskObserver.Observer<Number> observer, final Consumer<Boolean> consumer, final int publishRate)
 		{
 			this.entry = entry;
 			this.dest = dest;
 			this.resolver = resolver;
 			this.observer = observer;
-			this.resultListener = resultListener;
+			this.consumer = consumer;
 			this.publishRate = publishRate;
 		}
 
@@ -594,9 +591,9 @@ public class FileAsyncTask
 		protected void onPostExecute(final Boolean result)
 		{
 			this.observer.taskFinish(result);
-			if (this.resultListener != null)
+			if (this.consumer != null)
 			{
-				this.resultListener.onResult(result);
+				this.consumer.accept(result);
 			}
 		}
 
@@ -623,7 +620,7 @@ public class FileAsyncTask
 		/**
 		 * Result listener
 		 */
-		final private ResultListener resultListener;
+		final private Consumer<String> consumer;
 
 		/**
 		 * Publish rate
@@ -633,14 +630,14 @@ public class FileAsyncTask
 		/**
 		 * Constructor
 		 *
-		 * @param observer       observer
-		 * @param resultListener result listener
-		 * @param publishRate    public rate
+		 * @param observer    observer
+		 * @param consumer    result listener
+		 * @param publishRate public rate
 		 */
-		AsyncMd5FromFile(final TaskObserver.Observer<Number> observer, final ResultListener resultListener, final int publishRate)
+		AsyncMd5FromFile(final TaskObserver.Observer<Number> observer, final Consumer<String> consumer, final int publishRate)
 		{
 			this.observer = observer;
-			this.resultListener = resultListener;
+			this.consumer = consumer;
 			this.publishRate = publishRate;
 		}
 
@@ -670,9 +667,9 @@ public class FileAsyncTask
 		protected void onCancelled(final String result)
 		{
 			this.observer.taskFinish(false);
-			if (this.resultListener != null)
+			if (this.consumer != null)
 			{
-				this.resultListener.onResult(null);
+				this.consumer.accept(null);
 			}
 		}
 
@@ -680,9 +677,9 @@ public class FileAsyncTask
 		protected void onPostExecute(@Nullable final String result)
 		{
 			this.observer.taskFinish(result != null);
-			if (this.resultListener != null)
+			if (this.consumer != null)
 			{
-				this.resultListener.onResult(result);
+				this.consumer.accept(result);
 			}
 		}
 
@@ -708,7 +705,7 @@ public class FileAsyncTask
 		/**
 		 * Result listener
 		 */
-		final private ResultListener resultListener;
+		final private Consumer<String> consumer;
 
 		/**
 		 * Publish rate
@@ -718,15 +715,15 @@ public class FileAsyncTask
 		/**
 		 * Constructor
 		 *
-		 * @param observer       observer
-		 * @param resultListener result listener
-		 * @param publishRate    public rate
+		 * @param observer    observer
+		 * @param consumer    result listener
+		 * @param publishRate public rate
 		 */
-		AsyncMd5FromUri(final ContentResolver resolver, final TaskObserver.Observer<Number> observer, final ResultListener resultListener, final int publishRate)
+		AsyncMd5FromUri(final ContentResolver resolver, final TaskObserver.Observer<Number> observer, final Consumer<String> consumer, final int publishRate)
 		{
 			this.resolver = resolver;
 			this.observer = observer;
-			this.resultListener = resultListener;
+			this.consumer = consumer;
 			this.publishRate = publishRate;
 		}
 
@@ -756,9 +753,9 @@ public class FileAsyncTask
 		protected void onCancelled(final String result)
 		{
 			this.observer.taskFinish(false);
-			if (this.resultListener != null)
+			if (this.consumer != null)
 			{
-				this.resultListener.onResult(null);
+				this.consumer.accept(null);
 			}
 		}
 
@@ -766,9 +763,9 @@ public class FileAsyncTask
 		protected void onPostExecute(@Nullable final String result)
 		{
 			this.observer.taskFinish(result != null);
-			if (this.resultListener != null)
+			if (this.consumer != null)
 			{
-				this.resultListener.onResult(result);
+				this.consumer.accept(result);
 			}
 		}
 
@@ -789,7 +786,7 @@ public class FileAsyncTask
 	@NonNull
 	private Task<Uri, Number, Boolean> copyFromUri(final ContentResolver resolver, final String dest)
 	{
-		return new AsyncCopyFromUri(dest, resolver, this.observer, this.resultListener, this.publishRate);
+		return new AsyncCopyFromUri(dest, resolver, this.observer, this.booleanConsumer(), this.publishRate);
 	}
 
 	/**
@@ -799,7 +796,7 @@ public class FileAsyncTask
 	@SuppressWarnings("WeakerAccess")
 	public Task<String, Number, Boolean> copyFromFile(final String dest)
 	{
-		return new AsyncCopyFromFile(dest, this.observer, this.resultListener, this.publishRate);
+		return new AsyncCopyFromFile(dest, this.observer, this.booleanConsumer(), this.publishRate);
 	}
 
 	// unzip
@@ -811,7 +808,7 @@ public class FileAsyncTask
 	@SuppressWarnings("WeakerAccess")
 	public Task<String, Number, Boolean> unzipEntryFromArchiveFile(final String entry, final String dest)
 	{
-		return new AsyncUnzipEntryFromArchiveFile(entry, dest, this.observer, this.resultListener, this.publishRate);
+		return new AsyncUnzipEntryFromArchiveFile(entry, dest, this.observer, this.booleanConsumer(), this.publishRate);
 	}
 
 	/**
@@ -821,7 +818,7 @@ public class FileAsyncTask
 	@SuppressWarnings("UnusedReturnValue")
 	public Task<String, Number, Boolean> unzipFromArchiveFile(final String dest)
 	{
-		return new AsyncUnzipFromArchiveFile(dest, this.observer, this.resultListener, this.publishRate);
+		return new AsyncUnzipFromArchiveFile(dest, this.observer, this.booleanConsumer(), this.publishRate);
 	}
 
 	/**
@@ -831,7 +828,7 @@ public class FileAsyncTask
 	@SuppressWarnings("UnusedReturnValue")
 	public Task<Uri, Number, Boolean> unzipFromArchiveUri(final ContentResolver resolver, final String dest)
 	{
-		return new AsyncUnzipFromArchiveUri(dest, resolver, this.observer, this.resultListener, this.publishRate);
+		return new AsyncUnzipFromArchiveUri(dest, resolver, this.observer, this.booleanConsumer(), this.publishRate);
 	}
 
 	/**
@@ -841,7 +838,7 @@ public class FileAsyncTask
 	@SuppressWarnings("UnusedReturnValue")
 	public Task<Uri, Number, Boolean> unzipEntryFromArchiveUri(final ContentResolver resolver, final String entry, final String dest)
 	{
-		return new AsyncUnzipEntryFromArchiveUri(dest, entry, resolver, this.observer, this.resultListener, this.publishRate);
+		return new AsyncUnzipEntryFromArchiveUri(dest, entry, resolver, this.observer, this.booleanConsumer(), this.publishRate);
 	}
 
 	// md5
@@ -853,7 +850,7 @@ public class FileAsyncTask
 	@SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 	public Task<String, Number, String> md5FromFile()
 	{
-		return new AsyncMd5FromFile(this.observer, this.resultListener, this.publishRate);
+		return new AsyncMd5FromFile(this.observer, this.stringConsumer(), this.publishRate);
 	}
 
 	/**
@@ -863,7 +860,7 @@ public class FileAsyncTask
 	@SuppressWarnings({"UnusedReturnValue", "WeakerAccess"})
 	public Task<Uri, Number, String> md5FromUri(@NonNull final ContentResolver resolver)
 	{
-		return new AsyncMd5FromUri(resolver, this.observer, this.resultListener, this.publishRate);
+		return new AsyncMd5FromUri(resolver, this.observer, this.stringConsumer(), this.publishRate);
 	}
 
 	// L A U N C H E R S
@@ -897,9 +894,8 @@ public class FileAsyncTask
 	 */
 	public static void launchUnzip(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final String sourceFile, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
 	{
-		final FileAsyncTask.ResultListener resultListener = result -> {
+		final Consumer<Boolean> consumer = success -> {
 
-			final Boolean success = (Boolean) result;
 			if (success)
 			{
 				Settings.recordDb(activity, new File(sourceFile));
@@ -909,9 +905,9 @@ public class FileAsyncTask
 				whenDone.accept(success);
 			}
 		};
-		final Task<String, Number, Boolean> task = new FileAsyncTask(observer, resultListener, 1000).unzipFromArchiveFile(dest);
+		final Task<String, Number, Boolean> task = new FileAsyncTask<Boolean>(observer, consumer, 1000).unzipFromArchiveFile(dest);
 		task.execute(sourceFile);
-		observer.taskUpdate(activity.getString(R.string.status_unzipping));
+		observer.taskUpdate(activity.getString(org.sqlunet.download.R.string.status_unzipping));
 	}
 
 	/**
@@ -941,9 +937,8 @@ public class FileAsyncTask
 	 */
 	public static void launchUnzip(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final Uri sourceUri, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
 	{
-		final FileAsyncTask.ResultListener resultListener = result -> {
+		final Consumer<Boolean> consumer = success -> {
 
-			final Boolean success = (Boolean) result;
 			if (success)
 			{
 				Settings.recordDb(activity, sourceUri.toString());
@@ -953,7 +948,7 @@ public class FileAsyncTask
 				whenDone.accept(success);
 			}
 		};
-		final Task<Uri, Number, Boolean> task = new FileAsyncTask(observer, resultListener, 1000).unzipFromArchiveUri(activity.getContentResolver(), dest);
+		final Task<Uri, Number, Boolean> task = new FileAsyncTask<Boolean>(observer, consumer, 1000).unzipFromArchiveUri(activity.getContentResolver(), dest);
 		task.execute(sourceUri);
 		observer.taskUpdate(activity.getString(R.string.status_unzipping));
 	}
@@ -987,9 +982,8 @@ public class FileAsyncTask
 	 */
 	public static void launchUnzip(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final String sourceFile, @NonNull final String zipEntry, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
 	{
-		final FileAsyncTask.ResultListener resultListener = result -> {
+		final Consumer<Boolean> consumer = success -> {
 
-			final Boolean success = (Boolean) result;
 			if (success)
 			{
 				Settings.recordDb(activity, new File(sourceFile));
@@ -999,7 +993,7 @@ public class FileAsyncTask
 				whenDone.accept(success);
 			}
 		};
-		final Task<String, Number, Boolean> task = new FileAsyncTask(observer, resultListener, 1000).unzipEntryFromArchiveFile(zipEntry, dest);
+		final Task<String, Number, Boolean> task = new FileAsyncTask<Boolean>(observer, consumer, 1000).unzipEntryFromArchiveFile(zipEntry, dest);
 		task.execute(sourceFile);
 		observer.taskUpdate(activity.getString(R.string.status_unzipping) + ' ' + zipEntry);
 	}
@@ -1033,9 +1027,8 @@ public class FileAsyncTask
 	 */
 	public static void launchUnzip(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final Uri sourceUri, @NonNull final String zipEntry, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
 	{
-		final FileAsyncTask.ResultListener resultListener = result -> {
+		final Consumer<Boolean> consumer = success -> {
 
-			final Boolean success = (Boolean) result;
 			if (success)
 			{
 				Settings.recordDb(activity, sourceUri.toString());
@@ -1045,7 +1038,7 @@ public class FileAsyncTask
 				whenDone.accept(success);
 			}
 		};
-		final Task<Uri, Number, Boolean> task = new FileAsyncTask(observer, resultListener, 1000).unzipEntryFromArchiveUri(activity.getContentResolver(), zipEntry, dest);
+		final Task<Uri, Number, Boolean> task = new FileAsyncTask<Boolean>(observer, consumer, 1000).unzipEntryFromArchiveUri(activity.getContentResolver(), zipEntry, dest);
 		task.execute(sourceUri);
 		observer.taskUpdate(activity.getString(R.string.status_unzipping) + ' ' + zipEntry);
 	}
@@ -1079,9 +1072,8 @@ public class FileAsyncTask
 	 */
 	public static void launchCopy(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final String sourceFile, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
 	{
-		final FileAsyncTask.ResultListener resultListener = result -> {
+		final Consumer<Boolean> consumer = success -> {
 
-			final Boolean success = (Boolean) result;
 			if (success)
 			{
 				Settings.recordDb(activity, new File(sourceFile));
@@ -1091,7 +1083,7 @@ public class FileAsyncTask
 				whenDone.accept(success);
 			}
 		};
-		final Task<String, Number, Boolean> task = new FileAsyncTask(observer, resultListener, 1000).copyFromFile(dest);
+		final Task<String, Number, Boolean> task = new FileAsyncTask<Boolean>(observer, consumer, 1000).copyFromFile(dest);
 		task.execute(sourceFile);
 		observer.taskUpdate(activity.getString(R.string.status_copying) + ' ' + sourceFile);
 	}
@@ -1123,9 +1115,8 @@ public class FileAsyncTask
 	 */
 	public static void launchCopy(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final Uri uri, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
 	{
-		final FileAsyncTask.ResultListener resultListener = result -> {
+		final Consumer<Boolean> consumer = success -> {
 
-			final Boolean success = (Boolean) result;
 			if (success)
 			{
 				Settings.recordDb(activity, uri.toString());
@@ -1135,7 +1126,7 @@ public class FileAsyncTask
 				whenDone.accept(success);
 			}
 		};
-		final Task<Uri, Number, Boolean> task = new FileAsyncTask(observer, resultListener, 1000).copyFromUri(activity.getContentResolver(), dest);
+		final Task<Uri, Number, Boolean> task = new FileAsyncTask<Boolean>(observer, consumer, 1000).copyFromUri(activity.getContentResolver(), dest);
 		task.execute(uri);
 		observer.taskUpdate(activity.getString(R.string.status_copying) + ' ' + uri);
 	}
@@ -1182,9 +1173,8 @@ public class FileAsyncTask
 	 */
 	public static void launchMd5(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final String sourceFile, @Nullable final Runnable whenDone)
 	{
-		final FileAsyncTask.ResultListener resultListener = result -> {
+		final Consumer<String> consumer = md5 -> {
 
-			final String md5 = (String) result;
 			final AlertDialog.Builder alert2 = new AlertDialog.Builder(activity); // unguarded, level 1
 			if (md5 != null)
 			{
@@ -1202,7 +1192,7 @@ public class FileAsyncTask
 			});
 			alert2.show();
 		};
-		final Task<String, Number, String> task = new FileAsyncTask(observer, resultListener, 1000).md5FromFile();
+		final Task<String, Number, String> task = new FileAsyncTask<String>(observer, consumer, 1000).md5FromFile();
 		task.execute(sourceFile);
 		observer.taskUpdate(activity.getString(R.string.status_md5_checking) + ' ' + sourceFile);
 	}
@@ -1217,9 +1207,8 @@ public class FileAsyncTask
 	 */
 	public static void launchMd5(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final Uri uri, @Nullable final Runnable whenDone)
 	{
-		final FileAsyncTask.ResultListener resultListener = result -> {
+		final Consumer<String> consumer = md5 -> {
 
-			final String md5 = (String) result;
 			final AlertDialog.Builder alert2 = new AlertDialog.Builder(activity); // unguarded, level 1
 			if (md5 != null)
 			{
@@ -1237,7 +1226,7 @@ public class FileAsyncTask
 			});
 			alert2.show();
 		};
-		final Task<Uri, Number, String> task = new FileAsyncTask(observer, resultListener, 1000).md5FromUri(activity.getContentResolver());
+		final Task<Uri, Number, String> task = new FileAsyncTask<String>(observer, consumer, 1000).md5FromUri(activity.getContentResolver());
 		task.execute(uri);
 		observer.taskUpdate(activity.getString(R.string.status_md5_checking) + ' ' + "input stream");
 	}

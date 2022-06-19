@@ -22,11 +22,17 @@ public class OperationActivity extends AppCompatActivity
 
 	public static final String OP_UNZIP = "op_unzip";
 
+	public static final String OP_UNZIP_ENTRY = "op_unzip_entry";
+
 	public static final String OP_EXEC_SQL = "op_exec_sql";
 
 	public static final String OP_EXEC_ZIPPED_SQL = "op_exec_zipped_sql";
 
 	public static final String OP_MD5 = "op_md5";
+
+	public static final String ARG_TYPES = "arg_types";
+
+	public static final String ARG_ZIP_ENTRY = "arg_zip_entry";
 
 	private ActivityResultLauncher<Intent> launcher;
 
@@ -58,11 +64,14 @@ public class OperationActivity extends AppCompatActivity
 			case OP_UNZIP:
 				Operations.unzip(uri, this);
 				break;
+			case OP_UNZIP_ENTRY:
+				Operations.unzipEntry(uri, getIntent().getStringExtra(ARG_ZIP_ENTRY), this);
+				break;
 			case OP_EXEC_SQL:
 				Operations.execSql(uri, this);
 				break;
 			case OP_EXEC_ZIPPED_SQL:
-				Operations.execZippedSql(uri, "sql", this);
+				Operations.execZippedSql(uri, getIntent().getStringExtra(ARG_ZIP_ENTRY), this);
 				break;
 			case OP_MD5:
 				Operations.md5(uri, this);
@@ -76,6 +85,8 @@ public class OperationActivity extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 		launcher = SAFUtils.makeListener(this, consumer);
 		setContentView(R.layout.activity_operation);
-		SAFUtils.pick("*/*", launcher);
+
+		String[] types = getIntent().getStringArrayExtra(ARG_TYPES);
+		SAFUtils.pick(launcher, types);
 	}
 }

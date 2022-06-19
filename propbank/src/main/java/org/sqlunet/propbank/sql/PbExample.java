@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Examples attached to a PropBank role set
@@ -90,10 +90,10 @@ class PbExample
 	 * @param connection connection
 	 * @return list of PropBank examples
 	 */
-	@NonNull
+	@Nullable
 	static public List<PbExample> make(final SQLiteDatabase connection, final long roleSetId)
 	{
-		final List<PbExample> result = new ArrayList<>();
+		List<PbExample> result = null;
 		try (PbExampleQueryFromRoleSetId query = new PbExampleQueryFromRoleSetId(connection, roleSetId))
 		{
 			query.execute();
@@ -110,7 +110,10 @@ class PbExample
 				final String tense = query.getTense();
 				final String voice = query.getVoice();
 				final String person = query.getPerson();
-
+				if (result == null)
+				{
+					result = new ArrayList<>();
+				}
 				result.add(new PbExample(exampleId, text, rel, args, aspect, form, tense, voice, person));
 			}
 		}

@@ -102,10 +102,13 @@ public class BncImplementation implements BncInterface
 	static private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final String targetWord)
 	{
 		final List<BncData> datas = BncData.makeData(connection, targetWord);
-		int i = 1;
-		for (final BncData data : datas)
+		if (datas != null)
 		{
-			BncNodeFactory.makeBncNode(doc, parent, data, i++);
+			int i = 1;
+			for (final BncData data : datas)
+			{
+				BncNodeFactory.makeBncNode(doc, parent, data, i++);
+			}
 		}
 	}
 
@@ -121,10 +124,13 @@ public class BncImplementation implements BncInterface
 	static private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long targetWordId, final Character targetPos)
 	{
 		final List<BncData> datas = BncData.makeData(connection, targetWordId, targetPos);
-		int i = 1;
-		for (final BncData data : datas)
+		if (datas != null)
 		{
-			BncNodeFactory.makeBncNode(doc, parent, data, i++);
+			int i = 1;
+			for (final BncData data : datas)
+			{
+				BncNodeFactory.makeBncNode(doc, parent, data, i++);
+			}
 		}
 	}
 }

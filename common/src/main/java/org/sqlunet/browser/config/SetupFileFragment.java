@@ -21,6 +21,7 @@ import android.widget.SpinnerAdapter;
 import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.Info;
 import org.sqlunet.browser.common.R;
+import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageReports;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
@@ -55,7 +56,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	 */
 	public enum Operation
 	{
-		CREATE, DROP, COPY_URI, UNZIP_URI, MD5_URI, COPY_FILE, UNZIP_FILE, MD5_FILE, DOWNLOAD, DOWNLOAD_ZIPPED, UPDATE;
+		CREATE, DROP, COPY_URI, UNZIP_URI, UNZIP_ENTRY_URI, MD5_URI, COPY_FILE, UNZIP_FILE, MD5_FILE, DOWNLOAD, DOWNLOAD_ZIPPED, UPDATE;
 
 		/**
 		 * Spinner operations
@@ -147,6 +148,7 @@ public class SetupFileFragment extends BaseTaskFragment
 						{
 							final Intent intent2 = new Intent(activity, OperationActivity.class);
 							intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_COPY);
+							intent2.putExtra(OperationActivity.ARG_TYPES, new String[]{"application/vnd.sqlite3"});
 							activity.startActivity(intent2);
 						}
 						break;
@@ -156,6 +158,18 @@ public class SetupFileFragment extends BaseTaskFragment
 						{
 							final Intent intent2 = new Intent(activity, OperationActivity.class);
 							intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_UNZIP);
+							intent2.putExtra(OperationActivity.ARG_TYPES, new String[]{"application/zip"});
+							activity.startActivity(intent2);
+						}
+						break;
+
+					case UNZIP_ENTRY_URI:
+						if (Permissions.check(activity))
+						{
+							final Intent intent2 = new Intent(activity, OperationActivity.class);
+							intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_UNZIP);
+							intent2.putExtra(OperationActivity.ARG_TYPES, new String[]{"application/zip"});
+							intent2.putExtra(OperationActivity.ARG_ZIP_ENTRY, Settings.getZipEntry(requireContext(), StorageSettings.getDbDownloadFile(requireContext())));
 							activity.startActivity(intent2);
 						}
 						break;
@@ -165,6 +179,7 @@ public class SetupFileFragment extends BaseTaskFragment
 						{
 							final Intent intent2 = new Intent(activity, OperationActivity.class);
 							intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_MD5);
+							intent2.putExtra(OperationActivity.ARG_TYPES, new String[]{"*/*"});
 							activity.startActivity(intent2);
 						}
 						break;

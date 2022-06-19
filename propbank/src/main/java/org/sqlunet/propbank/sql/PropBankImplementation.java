@@ -14,6 +14,7 @@ import org.w3c.dom.Node;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Encapsulates PropBank query implementation
@@ -69,12 +70,7 @@ public class PropBankImplementation implements PropBankInterface
 		// NodeFactory.makeWordNode(doc, parent, targetWord, wordId);
 
 		// role sets
-		int i = 1;
-		for (final PbRoleSet roleSet : roleSets)
-		{
-			// role set
-			PbNodeFactory.makePbRoleSetNode(doc, parent, roleSet, i++);
-		}
+		PropBankImplementation.makeSelector(doc, parent, roleSets);
 	}
 
 	// D E T A I L
@@ -91,7 +87,10 @@ public class PropBankImplementation implements PropBankInterface
 	{
 		// role sets
 		final List<PbRoleSet> roleSets = PbRoleSet.makeFromWordId(connection, targetWordId);
-		walk(connection, doc, parent, roleSets);
+		if (roleSets != null)
+		{
+			walk(connection, doc, parent, roleSets);
+		}
 	}
 
 	/**
@@ -106,7 +105,10 @@ public class PropBankImplementation implements PropBankInterface
 	{
 		// role sets
 		final List<PbRoleSet> roleSets = PbRoleSet.make(connection, roleSetId);
-		walk(connection, doc, parent, roleSets);
+		if (roleSets != null)
+		{
+			walk(connection, doc, parent, roleSets);
+		}
 	}
 
 	/**
@@ -128,15 +130,21 @@ public class PropBankImplementation implements PropBankInterface
 
 			// roles
 			final List<PbRole> roles = PbRole.make(connection, roleSet.roleSetId);
-			for (final PbRole role : roles)
+			if (roles != null)
 			{
-				PbNodeFactory.makePbRoleNode(doc, roleSetNode, role);
+				for (final PbRole role : roles)
+				{
+					PbNodeFactory.makePbRoleNode(doc, roleSetNode, role);
+				}
 			}
 			// examples
 			final List<PbExample> examples = PbExample.make(connection, roleSet.roleSetId);
-			for (final PbExample example : examples)
+			if (examples != null)
 			{
-				PbNodeFactory.makePbExampleNode(doc, roleSetNode, example);
+				for (final PbExample example : examples)
+				{
+					PbNodeFactory.makePbExampleNode(doc, roleSetNode, example);
+				}
 			}
 		}
 	}
@@ -148,14 +156,17 @@ public class PropBankImplementation implements PropBankInterface
 	 * @param parent   org.w3c.dom.Node the walk will attach results to
 	 * @param roleSets role sets
 	 */
-	static private void makeSelector(@NonNull final Document doc, final Node parent, @NonNull final Iterable<PbRoleSet> roleSets)
+	static private void makeSelector(@NonNull final Document doc, final Node parent, @Nullable final Iterable<PbRoleSet> roleSets)
 	{
 		// role sets
-		int i = 1;
-		for (final PbRoleSet roleSet : roleSets)
+		if (roleSets != null)
 		{
-			// role set
-			PbNodeFactory.makePbRoleSetNode(doc, parent, roleSet, i++);
+			int i = 1;
+			for (final PbRoleSet roleSet : roleSets)
+			{
+				// role set
+				PbNodeFactory.makePbRoleSetNode(doc, parent, roleSet, i++);
+			}
 		}
 	}
 

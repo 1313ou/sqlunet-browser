@@ -22,6 +22,7 @@ import org.sqlunet.concurrency.TaskObserver;
 import org.sqlunet.concurrency.TaskToastObserver;
 import org.sqlunet.provider.ManagerContract;
 import org.sqlunet.provider.ProviderArgs;
+import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
 
 import androidx.annotation.NonNull;
@@ -87,12 +88,15 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 			{
 				final Intent intent2 = new Intent(activity, OperationActivity.class);
 				intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_EXEC_SQL);
+				intent2.putExtra(OperationActivity.ARG_TYPES, new String[]{"application/sql", "text/plain"});
 				activity.startActivity(intent2);
 			}
 			else if ("EXEC_ZIPPED_URI".equals(sql.toString()))
 			{
 				final Intent intent2 = new Intent(activity, OperationActivity.class);
 				intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_EXEC_ZIPPED_SQL);
+				intent2.putExtra(OperationActivity.ARG_ZIP_ENTRY, Settings.getZipEntry(requireContext(), "sql"));
+				intent2.putExtra(OperationActivity.ARG_TYPES, new String[]{"application/zip"});
 				activity.startActivity(intent2);
 			}
 			else

@@ -52,6 +52,24 @@ public class Operations
 		});
 	}
 
+	public static void unzipEntry(@NonNull final Uri uri, @NonNull final String entry, @NonNull final FragmentActivity activity)
+	{
+		FileAsyncTask.launchUnzip(activity, uri, entry, StorageSettings.getDataDir(activity), (result) -> {
+			if (result)
+			{
+				activity.finish();
+			}
+			else
+			{
+				TextView tv = activity.findViewById(R.id.status);
+				if (tv != null)
+				{
+					tv.setText(R.string.result_fail);
+				}
+			}
+		});
+	}
+
 	public static void md5(@NonNull final Uri uri, @NonNull final FragmentActivity activity)
 	{
 		FileAsyncTask.launchMd5(activity, uri, activity::finish);

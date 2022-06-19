@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /**
@@ -73,10 +72,10 @@ public class FnSentence
 	 * @param luId       is the lex unit id to build query from
 	 * @return list of sentences
 	 */
-	@NonNull
+	@Nullable
 	static public List<FnSentence> makeFromLexicalUnit(final SQLiteDatabase connection, final long luId)
 	{
-		final List<FnSentence> result = new ArrayList<>();
+		List<FnSentence> result = null;
 		try (FnSentenceQueryFromLexUnitId query = new FnSentenceQueryFromLexUnitId(connection, luId))
 		{
 			query.execute();
@@ -85,7 +84,10 @@ public class FnSentence
 			{
 				final long sentenceId = query.getSentenceId();
 				final String text = query.getText();
-
+				if (result == null)
+				{
+					result = new ArrayList<>();
+				}
 				result.add(new FnSentence(sentenceId, text));
 			}
 		}

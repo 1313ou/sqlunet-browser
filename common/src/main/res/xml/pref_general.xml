@@ -83,4 +83,14 @@
 			app:singleLineTitle="false" />
 	</PreferenceCategory>
 
+	<PreferenceCategory android:title="@string/pref_misc_category">
+		<EditTextPreference
+			android:defaultValue="sql"
+			android:inputType="text"
+			android:key="pref_zip_entry"
+			android:summary="@string/pref_description_zip_entry"
+			android:title="@string/pref_title_zip_entry"
+			app:singleLineTitle="false" />
+	</PreferenceCategory>
+
 </PreferenceScreen>

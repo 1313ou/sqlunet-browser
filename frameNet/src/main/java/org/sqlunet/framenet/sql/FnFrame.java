@@ -35,11 +35,13 @@ public class FnFrame
 	/**
 	 * Semantic types
 	 */
+	@Nullable
 	public final List<FnSemType> semTypes;
 
 	/**
 	 * Related frames
 	 */
+	@Nullable
 	public final List<FnRelatedFrame> relatedFrames;
 
 	/**
@@ -51,7 +53,7 @@ public class FnFrame
 	 * @param semTypes        semtypes
 	 * @param relatedFrames   related frames
 	 */
-	FnFrame(final long frameId, final String frameName, final String frameDefinition, final List<FnSemType> semTypes, final List<FnRelatedFrame> relatedFrames)
+	FnFrame(final long frameId, final String frameName, final String frameDefinition, @Nullable final List<FnSemType> semTypes, @Nullable final List<FnRelatedFrame> relatedFrames)
 	{
 		this.frameId = frameId;
 		this.frameName = frameName;

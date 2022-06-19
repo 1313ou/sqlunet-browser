@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class BncData
@@ -66,11 +65,10 @@ public class BncData
 	@Nullable
 	public Float writtenDisp;
 
-	@NonNull
+	@Nullable
 	static public List<BncData> makeData(final SQLiteDatabase connection, final String targetWord)
 	{
-		final List<BncData> result = new ArrayList<>();
-
+		List<BncData> result = null;
 		try (BncQuery query = new BncQuery(connection, targetWord))
 		{
 			query.execute();
@@ -78,18 +76,20 @@ public class BncData
 			while (query.next())
 			{
 				final BncData data = query.getData();
+				if (result == null)
+				{
+					result = new ArrayList<>();
+				}
 				result.add(data);
 			}
 		}
 		return result;
 	}
 
-	@NonNull
-	@SuppressWarnings("boxing")
+	@Nullable
 	static public List<BncData> makeData(final SQLiteDatabase connection, final long targetWordId, @Nullable final Character targetPos)
 	{
-		final List<BncData> result = new ArrayList<>();
-
+		List<BncData> result = null;
 		try(BncQuery query = targetPos != null ? new BncQuery(connection, targetWordId, targetPos) : new BncQuery(connection, targetWordId))
 		{
 			query.execute();
@@ -97,6 +97,10 @@ public class BncData
 			while (query.next())
 			{
 				final BncData data = query.getData();
+				if (result == null)
+				{
+					result = new ArrayList<>();
+				}
 				result.add(data);
 			}
 		}

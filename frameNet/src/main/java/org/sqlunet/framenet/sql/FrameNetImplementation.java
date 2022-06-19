@@ -341,47 +341,50 @@ public class FrameNetImplementation implements FrameNetInterface
 	{
 		// lexunits
 		final List<FnLexUnit> lexUnits = this.queryFromFnWord ? FnLexUnit.makeFromFnWordId(connection, targetWordId, pos) : FnLexUnit.makeFromWordId(connection, targetWordId, pos);
-		for (final FnLexUnit lexUnit : lexUnits)
+		if (lexUnits != null)
 		{
-			// frame
-			final Node lexUnitNode = FnNodeFactory.makeFnLexunitNode(doc, parent, lexUnit);
-
-			// frame
-			assert lexUnit.frame != null;
-			final Node frameNode = FnNodeFactory.makeFnFrameNode(doc, lexUnitNode, lexUnit.frame, false);
-
-			// frame FEs
-			final List<FnFrameElement> fes = FnFrameElement.make(connection, lexUnit.frame.frameId);
-			//if (fes != null)
-			//{
-			for (final FnFrameElement fe : fes)
+			for (final FnLexUnit lexUnit : lexUnits)
 			{
-				FnNodeFactory.makeFnFENode(doc, frameNode, fe);
-			}
-			//}
+				// frame
+				final Node lexUnitNode = FnNodeFactory.makeFnLexunitNode(doc, parent, lexUnit);
 
-			// governors
-			final List<FnGovernor> governors = FnGovernor.make(connection, lexUnit.luId);
-			//if (governors != null)
-			//{
-			for (final FnGovernor governor : governors)
-			{
-				FnNodeFactory.makeFnGovernorNode(doc, lexUnitNode, governor);
-			}
-			//}
+				// frame
+				assert lexUnit.frame != null;
+				final Node frameNode = FnNodeFactory.makeFnFrameNode(doc, lexUnitNode, lexUnit.frame, false);
 
-			// sentences
-			final Node sentencesNode = FnNodeFactory.makeFnSentencesNode(doc, lexUnitNode);
-			final List<FnSentence> sentences = FnSentence.makeFromLexicalUnit(connection, lexUnit.luId);
-			//if (sentences != null)
-			//{
-			int j = 1;
-			for (final FnSentence sentence : sentences)
-			{
-				FnNodeFactory.makeFnSentenceNode(doc, sentencesNode, sentence, j);
-				j++;
+				// frame FEs
+				final List<FnFrameElement> fes = FnFrameElement.make(connection, lexUnit.frame.frameId);
+				if (fes != null)
+				{
+					for (final FnFrameElement fe : fes)
+					{
+						FnNodeFactory.makeFnFENode(doc, frameNode, fe);
+					}
+				}
+
+				// governors
+				final List<FnGovernor> governors = FnGovernor.make(connection, lexUnit.luId);
+				if (governors != null)
+				{
+					for (final FnGovernor governor : governors)
+					{
+						FnNodeFactory.makeFnGovernorNode(doc, lexUnitNode, governor);
+					}
+				}
+
+				// sentences
+				final Node sentencesNode = FnNodeFactory.makeFnSentencesNode(doc, lexUnitNode);
+				final List<FnSentence> sentences = FnSentence.makeFromLexicalUnit(connection, lexUnit.luId);
+				if (sentences != null)
+				{
+					int j = 1;
+					for (final FnSentence sentence : sentences)
+					{
+						FnNodeFactory.makeFnSentenceNode(doc, sentencesNode, sentence, j);
+						j++;
+					}
+				}
 			}
-			//}
 		}
 	}
 
@@ -414,13 +417,13 @@ public class FrameNetImplementation implements FrameNetInterface
 
 		// frame FEs
 		final List<FnFrameElement> fes = FnFrameElement.make(connection, frame.frameId);
-		//if (fes != null)
-		//{
-		for (final FnFrameElement fe : fes)
+		if (fes != null)
 		{
-			FnNodeFactory.makeFnFENode(doc, frameNode, fe);
+			for (final FnFrameElement fe : fes)
+			{
+				FnNodeFactory.makeFnFENode(doc, frameNode, fe);
+			}
 		}
-		//}
 	}
 
 	/**
@@ -457,15 +460,15 @@ public class FrameNetImplementation implements FrameNetInterface
 		// sentences
 		final Node sentencesNode = FnNodeFactory.makeFnSentencesNode(doc, lexUnitNode);
 		final List<FnSentence> sentences = FnSentence.makeFromLexicalUnit(connection, lexUnit.luId);
-		//if (sentences != null)
-		//{
-		int j = 1;
-		for (final FnSentence sentence : sentences)
+		if (sentences != null)
 		{
-			FnNodeFactory.makeFnSentenceNode(doc, sentencesNode, sentence, j);
-			j++;
+			int j = 1;
+			for (final FnSentence sentence : sentences)
+			{
+				FnNodeFactory.makeFnSentenceNode(doc, sentencesNode, sentence, j);
+				j++;
+			}
 		}
-		//}
 	}
 
 	/**

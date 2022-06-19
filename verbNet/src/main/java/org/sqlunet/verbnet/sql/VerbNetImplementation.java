@@ -270,51 +270,54 @@ public class VerbNetImplementation implements VerbNetInterface
 	{
 		// classes
 		final List<VnClassWithSense> vnClasses = VnClassWithSense.make(connection, targetWordId, targetSynsetId);
-		for (final VnClassWithSense vnClass : vnClasses)
+		if (vnClasses != null)
 		{
-			// class
-			final Node classNode = VnNodeFactory.makeVnClassWithSenseNode(doc, parent, vnClass);
-
-			if (vnClass.synsetId != 0)
+			for (final VnClassWithSense vnClass : vnClasses)
 			{
-				// sense node
-				final Node senseNode = NodeFactory.makeSenseNode(doc, classNode, vnClass.wordId, vnClass.synsetId, vnClass.senseNum);
+				// class
+				final Node classNode = VnNodeFactory.makeVnClassWithSenseNode(doc, parent, vnClass);
 
-				// synset nodes
-				final Node synsetNode = NodeFactory.makeSynsetNode(doc, senseNode, vnClass.synsetId, 0);
-
-				// gloss
-				NodeFactory.makeNode(doc, synsetNode, "definition", vnClass.definition);
-			}
-
-			// roles
-			if (roles)
-			{
-				final Node rolesNode = VnNodeFactory.makeVnRolesNode(doc, classNode);
-				final VnRoleSet roleSet = VnRoleSet.make(connection, vnClass.classId, targetWordId, targetSynsetId);
-				if (roleSet != null)
+				if (vnClass.synsetId != 0)
 				{
-					int j = 1;
-					for (final VnRole role : roleSet.roles)
+					// sense node
+					final Node senseNode = NodeFactory.makeSenseNode(doc, classNode, vnClass.wordId, vnClass.synsetId, vnClass.senseNum);
+
+					// synset nodes
+					final Node synsetNode = NodeFactory.makeSynsetNode(doc, senseNode, vnClass.synsetId, 0);
+
+					// gloss
+					NodeFactory.makeNode(doc, synsetNode, "definition", vnClass.definition);
+				}
+
+				// roles
+				if (roles)
+				{
+					final Node rolesNode = VnNodeFactory.makeVnRolesNode(doc, classNode);
+					final VnRoleSet roleSet = VnRoleSet.make(connection, vnClass.classId, targetWordId, targetSynsetId);
+					if (roleSet != null)
 					{
-						VnNodeFactory.makeVnRoleNode(doc, rolesNode, role, j);
-						j++;
+						int j = 1;
+						for (final VnRole role : roleSet.roles)
+						{
+							VnNodeFactory.makeVnRoleNode(doc, rolesNode, role, j);
+							j++;
+						}
 					}
 				}
-			}
 
-			// frames
-			if (frames)
-			{
-				final Node framesNode = VnNodeFactory.makeVnFramesNode(doc, classNode);
-				final VnFrameSet frameSet = VnFrameSet.make(connection, vnClass.classId, targetWordId, targetSynsetId);
-				if (frameSet != null)
+				// frames
+				if (frames)
 				{
-					int j = 1;
-					for (final VnFrame frame : frameSet.frames)
+					final Node framesNode = VnNodeFactory.makeVnFramesNode(doc, classNode);
+					final VnFrameSet frameSet = VnFrameSet.make(connection, vnClass.classId, targetWordId, targetSynsetId);
+					if (frameSet != null)
 					{
-						VnNodeFactory.makeVnFrameNode(doc, framesNode, frame, j);
-						j++;
+						int j = 1;
+						for (final VnFrame frame : frameSet.frames)
+						{
+							VnNodeFactory.makeVnFrameNode(doc, framesNode, frame, j);
+							j++;
+						}
 					}
 				}
 			}
