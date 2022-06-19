@@ -167,7 +167,7 @@ public class SetupFileFragment extends BaseTaskFragment
 						if (Permissions.check(activity))
 						{
 							final Intent intent2 = new Intent(activity, OperationActivity.class);
-							intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_UNZIP);
+							intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_UNZIP_ENTRY);
 							intent2.putExtra(OperationActivity.ARG_TYPES, new String[]{"application/zip"});
 							intent2.putExtra(OperationActivity.ARG_ZIP_ENTRY, Settings.getZipEntry(requireContext(), StorageSettings.getDbDownloadFile(requireContext())));
 							activity.startActivity(intent2);
@@ -273,6 +273,7 @@ public class SetupFileFragment extends BaseTaskFragment
 					break;
 
 				case UNZIP_URI:
+				case UNZIP_ENTRY_URI:
 					message = statusUnzip();
 					message.append(requireContext().getString(R.string.from_uri));
 					break;
