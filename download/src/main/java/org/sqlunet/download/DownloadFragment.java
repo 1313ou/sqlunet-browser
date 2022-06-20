@@ -443,7 +443,10 @@ public class DownloadFragment extends BaseDownloadFragment
 		final Intent intent = new Intent(this.appContext, Killer.class);
 		intent.setAction(getAction());
 		intent.putExtra(DownloadFragment.NOTIFICATION_ID, id);
-		final PendingIntent pendingIntent = PendingIntent.getBroadcast(this.appContext, (int) System.currentTimeMillis(), intent, PendingIntent.FLAG_UPDATE_CURRENT); // use System.currentTimeMillis() to have a unique ID for the pending intent
+		final int flags = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M ? //
+				PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE : //
+				PendingIntent.FLAG_UPDATE_CURRENT;
+		final PendingIntent pendingIntent = PendingIntent.getBroadcast(this.appContext, (int) System.currentTimeMillis(), intent, flags); // use System.currentTimeMillis() to have a unique ID for the pending intent
 		NotificationCompat.Action action = new NotificationCompat.Action.Builder(R.drawable.ic_notif_cancel, this.appContext.getString(R.string.action_cancel).toUpperCase(Locale.getDefault()), pendingIntent).build();
 		builder.addAction(action);
 
