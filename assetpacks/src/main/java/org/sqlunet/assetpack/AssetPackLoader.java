@@ -126,6 +126,8 @@ public class AssetPackLoader implements Cancelable
 
 									.addOnCompleteListener(fetchTask -> {
 
+										Log.i(TAG, "OnFetchCompleted");
+										/*
 										try
 										{
 											final AssetPackStates fetchAssetPackStates = fetchTask.getResult();
@@ -143,6 +145,7 @@ public class AssetPackLoader implements Cancelable
 										{
 											Log.e(TAG, "getResult() error", e);
 										}
+										*/
 									}) //
 									.addOnFailureListener(exception -> Log.i(TAG, "OnFetchFailure " + exception.getMessage())) //
 									.addOnSuccessListener(task2 -> {
