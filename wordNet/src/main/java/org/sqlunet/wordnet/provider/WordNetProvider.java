@@ -288,12 +288,12 @@ public class WordNetProvider extends BaseProvider
 
 	// Q U E R Y
 
-	@Nullable
-	@Override
-	public Cursor query(@NonNull final Uri uri, @Nullable final String[] projection, @Nullable final Bundle queryArgs, @Nullable final CancellationSignal cancellationSignal)
-	{
-		return super.query(uri, projection, queryArgs, cancellationSignal);
-	}
+	// @Nullable
+	// @Override
+	// public Cursor query(@NonNull final Uri uri, @Nullable final String[] projection, @Nullable final Bundle queryArgs, @Nullable final CancellationSignal cancellationSignal)
+	// {
+	// 	return super.query(uri, projection, queryArgs, cancellationSignal);
+	// }
 
 	/**
 	 * Query
@@ -329,9 +329,8 @@ public class WordNetProvider extends BaseProvider
 			throw new RuntimeException("Malformed URI " + uri);
 		}
 
-		Result result;
 		// MAIN
-		result = WordNetControl.queryMain(code, uri.getLastPathSegment(), projection0, selection0, selectionArgs0);
+		Result result = WordNetControl.queryMain(code, uri.getLastPathSegment(), projection0, selection0, selectionArgs0);
 		if (result == null)
 		{
 			// RELATIONS

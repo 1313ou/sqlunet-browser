@@ -266,9 +266,8 @@ public class FrameNetProvider extends BaseProvider
 			throw new RuntimeException("Malformed URI " + uri);
 		}
 
-		Result result;
 		// MAIN
-		result = FrameNetControl.queryMain(code, uri.getLastPathSegment(), projection0, selection0, selectionArgs0);
+		Result result = FrameNetControl.queryMain(code, uri.getLastPathSegment(), projection0, selection0, selectionArgs0);
 		if (result == null)
 		{
 			// TEXTSEARCH

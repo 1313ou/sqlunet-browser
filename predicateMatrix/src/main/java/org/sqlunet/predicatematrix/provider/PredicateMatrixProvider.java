@@ -121,10 +121,8 @@ public class PredicateMatrixProvider extends BaseProvider
 		}
 
 		Result result = PredicateMatrixControl.queryMain(code, uri.getLastPathSegment(), projection0, selection0, selectionArgs0);
-
 		if (result != null)
 		{
-
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, result.table, result.projection, result.selection, result.groupBy, null, sortOrder0, null);
 			logSql(sql, selectionArgs0);
 			if (BaseProvider.logSql)
