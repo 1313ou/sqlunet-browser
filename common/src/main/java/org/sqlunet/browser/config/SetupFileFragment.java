@@ -284,11 +284,13 @@ public class SetupFileFragment extends BaseTaskFragment
 
 				case MD5_URI:
 					message = statusMd5();
-					message.append(' ' + requireContext().getString(R.string.from_uri));
+					message.append(' ');
+					message.append(requireContext().getString(R.string.from_uri));
 					break;
 				case MD5_FILE:
 					message = statusMd5();
-					message.append(' ' + requireContext().getString(R.string.from_file));
+					message.append(' ');
+					message.append(requireContext().getString(R.string.from_file));
 					break;
 
 				case DOWNLOAD:
