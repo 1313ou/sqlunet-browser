@@ -110,14 +110,12 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 		return MenuHandler.menuDispatch(this, item);
 	}
 
-	/*
 	@Override
 	public boolean onPrepareOptionsMenu(final Menu menu)
 	{
-		MenuHandler.populateAssets(this, menu);
+		MenuHandler.onPrepareOptionsMenu(menu);
 		return super.onPrepareOptionsMenu(menu);
 	}
-	*/
 
 	// S E A R C H
 

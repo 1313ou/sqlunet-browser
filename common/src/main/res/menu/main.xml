@@ -12,6 +12,7 @@
 		app:showAsAction="never"
 		tools:ignore="AppCompatResource" />
 	<item
+		android:id="@+id/action_data"
 		android:title="@string/action_data"
 		app:showAsAction="never">
 		<menu>
@@ -25,60 +26,64 @@
 				android:title="@string/action_setup"
 				app:showAsAction="never"
 				tools:ignore="AppCompatResource" />
-			<item
-				android:id="@+id/action_drop"
-				android:title="@string/action_drop"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
-			<item
-				android:id="@+id/action_asset_deliver"
-				android:title="@string/action_asset_deliver"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
-			<item
-				android:id="@+id/action_asset_dispose"
-				android:title="@string/action_asset_dispose"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
-			<!--
-			<item
-				android:id="@+id/action_assets"
-				android:title="@string/action_assets"
-				app:showAsAction="never">
-				<menu>
-					<item
-						android:id="@+id/action_asset_deliver_primary"
-						android:title="@string/action_asset_deliver_primary"
-						app:showAsAction="never"
-						tools:ignore="AppCompatResource" />
-					<item
-						android:id="@+id/action_asset_dispose_primary"
-						android:title="@string/action_asset_dispose_primary"
-						app:showAsAction="never"
-						tools:ignore="AppCompatResource" />
-					<item
-						android:id="@+id/action_asset_deliver_alt"
-						android:title="@string/action_asset_deliver_alt"
-						app:showAsAction="never"
-						tools:ignore="AppCompatResource" />
-					<item
-						android:id="@+id/action_asset_dispose_alt"
-						android:title="@string/action_asset_dispose_alt"
-						app:showAsAction="never"
-						tools:ignore="AppCompatResource" />
-				</menu>
-			</item>
-			-->
-			<item
-				android:id="@+id/action_download"
-				android:title="@string/action_download"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
-			<item
-				android:id="@+id/action_update"
-				android:title="@string/action_update"
-				app:showAsAction="never"
-				tools:ignore="AppCompatResource" />
+
+			<group android:id="@+id/change_data">
+				<item
+					android:id="@+id/action_drop"
+					android:title="@string/action_drop"
+					app:showAsAction="never"
+					tools:ignore="AppCompatResource" />
+				<item
+					android:id="@+id/action_asset_deliver"
+					android:title="@string/action_asset_deliver"
+					app:showAsAction="never"
+					tools:ignore="AppCompatResource" />
+				<item
+					android:id="@+id/action_asset_dispose"
+					android:title="@string/action_asset_dispose"
+					app:showAsAction="never"
+					tools:ignore="AppCompatResource" />
+				<!--
+				<item
+					android:id="@+id/action_assets"
+					android:title="@string/action_assets"
+					app:showAsAction="never">
+					<menu>
+						<item
+							android:id="@+id/action_asset_deliver_primary"
+							android:title="@string/action_asset_deliver_primary"
+							app:showAsAction="never"
+							tools:ignore="AppCompatResource" />
+						<item
+							android:id="@+id/action_asset_dispose_primary"
+							android:title="@string/action_asset_dispose_primary"
+							app:showAsAction="never"
+							tools:ignore="AppCompatResource" />
+						<item
+							android:id="@+id/action_asset_deliver_alt"
+							android:title="@string/action_asset_deliver_alt"
+							app:showAsAction="never"
+							tools:ignore="AppCompatResource" />
+						<item
+							android:id="@+id/action_asset_dispose_alt"
+							android:title="@string/action_asset_dispose_alt"
+							app:showAsAction="never"
+							tools:ignore="AppCompatResource" />
+					</menu>
+				</item>
+				-->
+				<item
+					android:id="@+id/action_download"
+					android:title="@string/action_download"
+					app:showAsAction="never"
+					tools:ignore="AppCompatResource" />
+				<item
+					android:id="@+id/action_update"
+					android:title="@string/action_update"
+					app:showAsAction="never"
+					tools:ignore="AppCompatResource" />
+			</group>
+
 			<item
 				android:id="@+id/action_storage"
 				android:title="@string/action_storage"

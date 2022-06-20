@@ -71,7 +71,7 @@ public class SetupFileActivity extends AppCompatActivity
 	@Override
 	public boolean onPrepareOptionsMenu(final Menu menu)
 	{
-		MenuHandler.populateAssets(this, menu);
+		MenuHandler.onPrepareOptionsMenu(menu);
 		return super.onPrepareOptionsMenu(menu);
 	}
 	*/

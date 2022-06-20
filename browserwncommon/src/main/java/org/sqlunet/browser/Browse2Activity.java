@@ -64,7 +64,6 @@ public class Browse2Activity extends AbstractBrowse2Activity
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu)
 	{
-		// inflate the menu; this adds items to the type bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
@@ -75,12 +74,10 @@ public class Browse2Activity extends AbstractBrowse2Activity
 		return MenuHandler.menuDispatch(this, item);
 	}
 
-	/*
 	@Override
 	public boolean onPrepareOptionsMenu(final Menu menu)
 	{
-		MenuHandler.populateAssets(this, menu);
+		MenuHandler.onPrepareOptionsMenu(menu);
 		return super.onPrepareOptionsMenu(menu);
 	}
-	*/
 }
