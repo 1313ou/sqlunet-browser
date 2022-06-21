@@ -200,7 +200,7 @@ public class WordNetContract
 		String RECURSES = V.RECURSES;
 
 		String RECURSESSTR = RECURSES;
-		String RECURSESSELECT = "CASE WHEN " + RECURSES + " <> 0 THEN 'recurses' ELSE '' END) AS " + RECURSESSTR;
+		String RECURSESSELECT = "(CASE WHEN " + RECURSES + " <> 0 THEN 'recurses' ELSE '' END) AS " + RECURSESSTR;
 		/*
 		CREATE TABLE ${relations.table} (
 		${relations.relationid} INT         NOT NULL,
