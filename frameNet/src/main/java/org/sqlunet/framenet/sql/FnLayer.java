@@ -105,7 +105,7 @@ class FnLayer
 	static public List<FnLayer> makeFromAnnoSet(final SQLiteDatabase connection, final long annoSetId)
 	{
 		List<FnLayer> result = null;
-		try (FnLayerQueryFromAnnoSetId query = new FnLayerQueryFromAnnoSetId(connection, annoSetId);)
+		try (FnLayerQueryFromAnnoSetId query = new FnLayerQueryFromAnnoSetId(connection, annoSetId))
 		{
 			query.execute();
 

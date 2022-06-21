@@ -92,7 +92,7 @@ public class WebFragment extends Fragment
 		@Override
 		public String getDoc()
 		{
-			try (DataSource dataSource = new DataSource(StorageSettings.getDatabasePath(this.context));)
+			try (DataSource dataSource = new DataSource(StorageSettings.getDatabasePath(this.context)))
 			{
 				// data source
 				final SQLiteDatabase db = dataSource.getConnection();

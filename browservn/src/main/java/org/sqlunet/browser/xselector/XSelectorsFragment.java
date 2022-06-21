@@ -20,6 +20,7 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.SimpleCursorTreeAdapter;
 
+import org.sqlunet.browser.BaseSelectorsExpandableListFragment;
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.SqlunetViewModel;
 import org.sqlunet.browser.vn.R;
@@ -35,7 +36,6 @@ import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.app.local.ExpandableListFragment;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -44,7 +44,7 @@ import androidx.lifecycle.ViewModelProvider;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class XSelectorsFragment extends ExpandableListFragment
+public class XSelectorsFragment extends BaseSelectorsExpandableListFragment
 {
 	static private final String TAG = "XSelectorsF";
 
@@ -188,32 +188,14 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 */
 	private SqlunetViewModel pbFromWordIdModel;
 
-	/**
-	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
-	 */
-	public XSelectorsFragment()
-	{
-		Log.d(TAG, "lifecycle: Constructor (0) " + this);
-	}
-
 	// L I F E C Y C L E
 
 	// --activate--
-
-	//	@Override
-	//	public void onAttach(@NonNull final Context context)
-	//	{
-	//		super.onAttach(context);
-	//		Log.d(TAG, "lifecycle: onAttach (1) " + this);
-	//	}
 
 	@Override
 	public void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		Log.d(TAG, "lifecycle: onCreate (2) " + this);
-		//noinspection deprecation
-		this.setRetainInstance(false); // default
 
 		// arguments
 		Bundle args = getArguments();

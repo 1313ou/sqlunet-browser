@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.sqlunet.browser.BaseBrowse1Fragment;
 import org.sqlunet.browser.Browse2Activity;
 import org.sqlunet.browser.Browse2Fragment;
 import org.sqlunet.browser.Selectors;
@@ -27,7 +28,7 @@ import androidx.fragment.app.FragmentManager;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class Browse1Fragment extends Fragment implements SelectorsFragment.Listener
+public class Browse1Fragment extends BaseBrowse1Fragment implements SelectorsFragment.Listener
 {
 	// C R E A T I O N
 
@@ -71,8 +72,10 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 			{
 				browse2Fragment = new Browse2Fragment();
 				Bundle args2 = getArguments();
-				if(args2 == null)
+				if (args2 == null)
+				{
 					args2 = new Bundle();
+				}
 				args2.putBoolean(Browse2Fragment.ARG_ALT, false);
 
 				browse2Fragment.setArguments(args2);
@@ -124,6 +127,7 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 		}
 	}
 
+
 	// V I E W   D E T E C T I O N
 
 	/**
@@ -132,7 +136,7 @@ public class Browse1Fragment extends Fragment implements SelectorsFragment.Liste
 	 * @param view view
 	 * @return true if view is two-pane
 	 */
-	private boolean isTwoPane(@NonNull final View view)
+	protected boolean isTwoPane(@NonNull final View view)
 	{
 		// the detail view will be present only in the large-screen layouts
 		// if this view is present, then the activity should be in two-pane mode.

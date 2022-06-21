@@ -858,8 +858,7 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 					final Activity activity2 = getActivity();
 					if (activity2 != null && !isDetached() && !activity2.isFinishing() && !activity2.isDestroyed())
 					{
-						final String computedResult = (String) result;
-						boolean success = downloadedResult.equals(computedResult);
+						boolean success = downloadedResult.equals(result);
 						final SpannableStringBuilder sb = new SpannableStringBuilder();
 						Report.appendHeader(sb, getString(R.string.md5_downloaded));
 						sb.append('\n');
@@ -867,7 +866,7 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 						sb.append('\n');
 						Report.appendHeader(sb, getString(R.string.md5_computed));
 						sb.append('\n');
-						sb.append(computedResult == null ? getString(R.string.status_task_failed) : computedResult);
+						sb.append(result == null ? getString(R.string.status_task_failed) : result);
 						sb.append('\n');
 						Report.appendHeader(sb, getString(R.string.md5_compared));
 						sb.append('\n');

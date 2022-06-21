@@ -6,8 +6,6 @@ package org.sqlunet.sql;
 
 import android.database.sqlite.SQLiteDatabase;
 
-import java.io.Closeable;
-
 import androidx.annotation.NonNull;
 
 /**

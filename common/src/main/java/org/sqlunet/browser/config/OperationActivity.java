@@ -34,8 +34,6 @@ public class OperationActivity extends AppCompatActivity
 
 	public static final String ARG_ZIP_ENTRY = "arg_zip_entry";
 
-	private ActivityResultLauncher<Intent> launcher;
-
 	private final Consumer<Uri> consumer = uri -> {
 
 		ContentResolver resolver = getContentResolver();
@@ -83,7 +81,7 @@ public class OperationActivity extends AppCompatActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		launcher = SAFUtils.makeListener(this, consumer);
+		ActivityResultLauncher<Intent> launcher = SAFUtils.makeListener(this, consumer);
 		setContentView(R.layout.activity_operation);
 
 		String[] types = getIntent().getStringArrayExtra(ARG_TYPES);

@@ -528,7 +528,7 @@ public class ExecAsyncTask
 		 * Content resolver
 		 */
 		@NonNull
-		ContentResolver resolver;
+		final ContentResolver resolver;
 
 		/**
 		 * Task observer
@@ -838,7 +838,7 @@ public class ExecAsyncTask
 		 * Content resolver
 		 */
 		@NonNull
-		ContentResolver resolver;
+		final ContentResolver resolver;
 
 		/**
 		 * Task observer

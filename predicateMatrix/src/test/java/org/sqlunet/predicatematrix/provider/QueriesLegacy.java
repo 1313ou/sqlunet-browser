@@ -4,13 +4,13 @@ import org.sqlunet.predicatematrix.provider.PredicateMatrixControl.Result;
 
 public class QueriesLegacy
 {
-	public static Result queryLegacy(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
+	public static Result queryLegacy(final int code, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
-		return queryLegacyMain(code, uriLast, projection0, selection0, selectionArgs0);
+		return queryLegacyMain(code, projection0, selection0, selectionArgs0);
 	}
 
 	@SuppressWarnings("UnnecessaryLocalVariable")
-	public static Result queryLegacyMain(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
+	public static Result queryLegacyMain(final int code, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		String table;
 		String[] projection = projection0;

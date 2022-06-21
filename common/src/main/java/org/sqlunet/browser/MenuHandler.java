@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.bbou.donate.DonateActivity;
@@ -399,4 +400,25 @@ public class MenuHandler
 			menuItem.setTitle(title);
 		}
 	}
+
+	@SuppressWarnings("EmptyMethod")
+	public static void onPrepareOptionsMenu(@NonNull Menu menu)
+	{
+		//
+	}
+
+	public static void disableDataChange(@NonNull Menu menu)
+	{
+		// MenuHandler.populateAssets(this, menu);
+		MenuItem submenuItem = menu.findItem(R.id.action_data);
+		if (submenuItem != null)
+		{
+			Menu subMenu = submenuItem.getSubMenu();
+			if (subMenu != null)
+			{
+				subMenu.setGroupEnabled(R.id.change_data, false);
+			}
+		}
+	}
 }
+

@@ -8,8 +8,6 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-import java.io.Closeable;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 

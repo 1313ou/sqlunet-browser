@@ -345,11 +345,7 @@ class Mapping
 			final Relation relation = Mapping.relationsById.get(relationId);
 			return relation.recurses;
 		}
-		catch (@NonNull final IndexOutOfBoundsException e)
-		{
-			return false;
-		}
-		catch (@NonNull final NullPointerException e)
+		catch (@NonNull final IndexOutOfBoundsException | NullPointerException e)
 		{
 			return false;
 		}

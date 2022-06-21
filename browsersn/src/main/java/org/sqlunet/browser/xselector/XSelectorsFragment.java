@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.sqlunet.browser.BaseSelectorsFragment;
 import org.sqlunet.browser.sn.R;
 import org.sqlunet.browser.selector.CollocationSelectorPointer;
 import org.sqlunet.browser.selector.SelectorPointer;
@@ -17,14 +18,13 @@ import org.sqlunet.browser.selector.SnSelectorsFragment;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 /**
  * X selectors fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class XSelectorsFragment extends Fragment implements SelectorsFragment.Listener, SnSelectorsFragment.Listener
+public class XSelectorsFragment extends BaseSelectorsFragment implements SelectorsFragment.Listener, SnSelectorsFragment.Listener
 {
 	// static private final String TAG = "XSelectorsF";
 
@@ -37,13 +37,6 @@ public class XSelectorsFragment extends Fragment implements SelectorsFragment.Li
 	 * Sn collocation listener
 	 */
 	private SnSelectorsFragment.Listener snListener;
-
-	/**
-	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
-	 */
-	public XSelectorsFragment()
-	{
-	}
 
 	// V I E W
 

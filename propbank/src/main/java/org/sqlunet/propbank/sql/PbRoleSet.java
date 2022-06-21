@@ -135,7 +135,7 @@ class PbRoleSet
 	static public List<PbRoleSet> make(final SQLiteDatabase connection, final long roleSetId)
 	{
 		List<PbRoleSet> result = null;
-		try (PbRoleSetQuery query = new PbRoleSetQuery(connection, roleSetId);)
+		try (PbRoleSetQuery query = new PbRoleSetQuery(connection, roleSetId))
 		{
 			query.execute();
 

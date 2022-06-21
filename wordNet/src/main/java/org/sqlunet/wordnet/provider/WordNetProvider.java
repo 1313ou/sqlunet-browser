@@ -11,8 +11,6 @@ import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
-import android.os.Bundle;
-import android.os.CancellationSignal;
 import android.util.Log;
 
 import org.sqlunet.provider.BaseProvider;

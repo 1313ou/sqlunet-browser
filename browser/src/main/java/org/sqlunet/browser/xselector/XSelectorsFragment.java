@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.SimpleCursorTreeAdapter;
 import android.widget.TextView;
 
+import org.sqlunet.browser.BaseSelectorsExpandableListFragment;
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.R;
 import org.sqlunet.browser.SqlunetViewModel;
@@ -37,7 +38,6 @@ import java.util.Locale;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.app.local.ExpandableListFragment;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -46,7 +46,7 @@ import androidx.lifecycle.ViewModelProvider;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class XSelectorsFragment extends ExpandableListFragment
+public class XSelectorsFragment extends BaseSelectorsExpandableListFragment
 {
 	static private final String TAG = "XSelectorsF";
 
@@ -228,14 +228,6 @@ public class XSelectorsFragment extends ExpandableListFragment
 	 * FrameNet model
 	 */
 	private SqlunetViewModel fnFromWordIdModel;
-
-	/**
-	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
-	 */
-	public XSelectorsFragment()
-	{
-		Log.d(TAG, "lifecycle: Constructor (0) " + this);
-	}
 
 	// L I F E C Y C L E
 

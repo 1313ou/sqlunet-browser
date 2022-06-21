@@ -39,7 +39,7 @@ public class RunQueries
 
 	private static String toSql(final int code, final Module.ContentProviderSql providerSql)
 	{
-		PredicateMatrixControl.Result r = PredicateMatrixControl.queryMain(code, null, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
+		PredicateMatrixControl.Result r = PredicateMatrixControl.queryMain(code, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
 		if (r == null)
 		{
 			throw new IllegalArgumentException("Illegal query code: " + code);

@@ -209,24 +209,22 @@ public class Settings
 	 * @param context  context
 	 * @param fileData database file data
 	 */
-	public static void recordDb(@NonNull final Context context, final String fileData)
+	public static void recordDb(@NonNull final Context context, @Nullable final String fileData)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		final SharedPreferences.Editor edit = sharedPref.edit(); //
+
 		if (fileData != null)
 		{
-			if (fileData != null)
-			{
-				edit.putString(PREF_DB_NAME, fileData);
-			}
-			else
-			{
-				edit.remove(PREF_DB_NAME);
-			}
-			edit.remove(PREF_DB_DATE);
-			edit.remove(PREF_DB_SIZE);
-			edit.apply();
+			edit.putString(PREF_DB_NAME, fileData);
 		}
+		else
+		{
+			edit.remove(PREF_DB_NAME);
+		}
+		edit.remove(PREF_DB_DATE);
+		edit.remove(PREF_DB_SIZE);
+		edit.apply();
 	}
 
 	/**

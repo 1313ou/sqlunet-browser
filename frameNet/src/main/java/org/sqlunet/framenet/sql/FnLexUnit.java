@@ -239,7 +239,7 @@ public class FnLexUnit
 	static public List<FnLexUnit> makeFromFnWordId(final SQLiteDatabase connection, final long fnWordId, final Character pos)
 	{
 		List<FnLexUnit> result = null;
-		try (FnLexUnitQueryFromFnWordId query = new FnLexUnitQueryFromFnWordId(connection, true, fnWordId, pos);)
+		try (FnLexUnitQueryFromFnWordId query = new FnLexUnitQueryFromFnWordId(connection, true, fnWordId, pos))
 		{
 			query.execute();
 

@@ -156,23 +156,7 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 					final Constructor<?> cons = cl.getConstructor();
 					return (Fragment) cons.newInstance();
 				}
-				catch (ClassNotFoundException e)
-				{
-					Log.e(TAG, "Page fragment", e);
-				}
-				catch (NoSuchMethodException e)
-				{
-					Log.e(TAG, "Page fragment", e);
-				}
-				catch (java.lang.InstantiationException e)
-				{
-					Log.e(TAG, "Page fragment", e);
-				}
-				catch (IllegalAccessException e)
-				{
-					Log.e(TAG, "Page fragment", e);
-				}
-				catch (InvocationTargetException e)
+				catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e)
 				{
 					Log.e(TAG, "Page fragment", e);
 				}

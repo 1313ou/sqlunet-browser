@@ -409,10 +409,13 @@ public class FrameNetImplementation implements FrameNetInterface
 
 		// lexunits
 		final List<FnLexUnit> lexUnits = FnLexUnit.makeFromFrame(connection, targetFrameId);
-		for (final FnLexUnit lexUnit : lexUnits)
+		if (lexUnits != null)
 		{
-			// includes frame info
-			FnNodeFactory.makeFnLexunitNode(doc, frameNode, lexUnit);
+			for (final FnLexUnit lexUnit : lexUnits)
+			{
+				// includes frame info
+				FnNodeFactory.makeFnLexunitNode(doc, frameNode, lexUnit);
+			}
 		}
 
 		// frame FEs

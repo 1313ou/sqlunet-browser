@@ -59,6 +59,7 @@ public class Report
 	 * @param text text
 	 * @return spannable string builder
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	@NonNull
 	static public SpannableStringBuilder appendHeader(@NonNull SpannableStringBuilder sb, CharSequence text)
 	{

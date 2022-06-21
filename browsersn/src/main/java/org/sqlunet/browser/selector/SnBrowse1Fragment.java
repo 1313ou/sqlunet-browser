@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.sqlunet.browser.BaseBrowse1Fragment;
 import org.sqlunet.browser.Browse2Fragment;
 import org.sqlunet.browser.Selectors;
 import org.sqlunet.browser.SnBrowse2Activity;
@@ -26,7 +27,7 @@ import androidx.fragment.app.FragmentManager;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class SnBrowse1Fragment extends Fragment implements SnSelectorsFragment.Listener
+public class SnBrowse1Fragment extends BaseBrowse1Fragment implements SnSelectorsFragment.Listener
 {
 	// C R E A T I O N
 
