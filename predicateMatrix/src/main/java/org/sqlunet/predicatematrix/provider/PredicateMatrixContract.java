@@ -24,7 +24,7 @@ public class PredicateMatrixContract
 	static public final String AS_FNFRAMES = V.AS_FNFRAMES;
 	static public final String AS_FNFES = V.AS_FNFES;
 	static public final String AS_FNFETYPES = V.AS_FNFETYPES;
-	static public final String AS_FNLUS = V.AS_FNLUS;
+	// static public final String AS_FNLUS = V.AS_FNLUS;
 
 	public interface PredicateMatrix
 	{
@@ -50,8 +50,8 @@ public class PredicateMatrixContract
 
 		String FNWORDID = V.FNWORDID;
 		String FNFRAMEID = V.FN_FRAMEID;
-		String FNLUID = V.FN_LUID;
 		String FNFEID = V.FN_FEID;
+		// String FNLUID = V.FN_LUID;
 	}
 
 	public interface Pm extends PredicateMatrix
@@ -79,11 +79,11 @@ public class PredicateMatrixContract
 		String FNFETYPEID = V.FNFETYPEID;
 		String FNFRAME = V._FNFRAME;
 		String FNFRAMEDEFINITION = V._FNFRAMEDEFINITION;
-		String FNLEXUNIT = V._FNLEXUNIT;
-		String FNLUDEFINITION = V._FNLUDEFINITION;
-		String FNLUDICT = V._FNLUDICT;
 		String FNFETYPE = V._FNFETYPE;
 		String FNFEABBREV = V._FNFEABBREV;
 		String FNFEDEFINITION = V._FNFEDEFINITION;
+		//String FNLEXUNIT = V._FNLEXUNIT;
+		//String FNLUDEFINITION = V._FNLUDEFINITION;
+		//String FNLUDICT = V._FNLUDICT;
 	}
 }

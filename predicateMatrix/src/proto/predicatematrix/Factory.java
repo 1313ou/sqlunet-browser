@@ -54,8 +54,9 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 
 						"LEFT JOIN ${fn_frames.table} AS ${as_fnframes} ON ${pms.fn_frameid} = ${as_fnframes}.${fn_frames.fnframeid} " + //
 						"LEFT JOIN ${fn_fes.table} AS ${as_fnfes} ON ${pms.fn_feid} = ${as_fnfes}.${fn_fes.fnfeid} " + //
-						"LEFT JOIN ${fn_fetypes.table} AS ${as_fnfetypes} ON ${as_fnfes}.${fn_fetypes.fnfetypeid} = ${as_fnfetypes}.${fn_fetypes.fnfetypeid} " + //
-						"LEFT JOIN ${fn_lexunits.table} AS ${as_fnlus} ON ${pms.fn_luid} = ${as_fnlus}.${fn_lexunits.fnluid}";
+						"LEFT JOIN ${fn_fetypes.table} AS ${as_fnfetypes} ON ${as_fnfes}.${fn_fetypes.fnfetypeid} = ${as_fnfetypes}.${fn_fetypes.fnfetypeid}"
+						// + "LEFT JOIN ${fn_lexunits.table} AS ${as_fnlus} ON ${pms.fn_luid} = ${as_fnlus}.${fn_lexunits.fnluid}"
+				;
 				break;
 
 			default:

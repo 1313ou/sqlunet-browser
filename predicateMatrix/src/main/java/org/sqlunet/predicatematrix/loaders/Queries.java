@@ -65,13 +65,13 @@ public class Queries
 				PredicateMatrixContract.PredicateMatrix.FNFRAMEID, //
 				PredicateMatrixContract.Pm_X.FNFRAME, //
 				PredicateMatrixContract.Pm_X.FNFRAMEDEFINITION, //
-				PredicateMatrixContract.Pm_X.FNLEXUNIT, //
-				PredicateMatrixContract.Pm_X.FNLUDEFINITION, //
-				PredicateMatrixContract.Pm_X.FNLUDICT, //
 				PredicateMatrixContract.AS_FNFETYPES + '.' + PredicateMatrixContract.Pm_X.FNFETYPEID, //
 				PredicateMatrixContract.Pm_X.FNFETYPE, //
 				PredicateMatrixContract.Pm_X.FNFEABBREV, //
 				PredicateMatrixContract.Pm_X.FNFEDEFINITION, //
+				// PredicateMatrixContract.Pm_X.FNLEXUNIT, //
+				// PredicateMatrixContract.Pm_X.FNLUDEFINITION, //
+				// PredicateMatrixContract.Pm_X.FNLUDICT, //
 		};
 		return providerSql;
 	}
