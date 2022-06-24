@@ -2,9 +2,8 @@
 <!DOCTYPE resources [
 	<!ENTITY bbuser "semantikos">
 	<!ENTITY bbrepo "semantikos2">
-	<!ENTITY bbcommit "08f1038e74b8a2f403575ca8aa9d98ad76a310bc">
+	<!ENTITY bbcommit "3475ec71483fb24d10873bdacf755b65f526ad36">
 	]>
-
 <!--
   ~ Copyright (c) 2020. Bernard Bou <1313ou@gmail.com>.
   -->
