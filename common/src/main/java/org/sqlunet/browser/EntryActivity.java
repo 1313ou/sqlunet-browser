@@ -9,11 +9,13 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.sqlunet.browser.config.LoadActivity;
 import org.sqlunet.browser.config.SetupAsset;
 import org.sqlunet.browser.config.SetupDatabaseTasks;
 import org.sqlunet.browser.config.Status;
+import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
 
@@ -49,7 +51,7 @@ public class EntryActivity extends AppCompatActivity
 		long[] upgrade = Settings.isUpgrade(this); // upgrade[0]=recorded version, upgrade[1]=this build
 		if (upgrade[0] < upgrade[1])
 		{
-			if (upgrade[1] < 94)
+			if (upgrade[0] < 94)
 			{
 				boolean success = SetupDatabaseTasks.deleteDatabase(this, StorageSettings.getDatabasePath(this));
 				if (success)
@@ -61,6 +63,7 @@ public class EntryActivity extends AppCompatActivity
 					Log.e(TAG, "Error deleting database");
 				}
 				org.sqlunet.download.Settings.unrecordDb(this);
+				Toast.makeText(this, R.string.sqlunet2, Toast.LENGTH_LONG).show();
 			}
 
 			Settings.onUpgrade(this, upgrade[1]);
@@ -116,7 +119,7 @@ public class EntryActivity extends AppCompatActivity
 		final String clazz = Settings.getLaunchPref(this); // = "org.sqlunet.browser.MainActivity";
 		final Intent intent = new Intent();
 		intent.setClassName(this, clazz);
-		intent.addFlags(POST_INITIAL_TASK_FLAGS);
+		intent.addFlags(-POST_INITIAL_TASK_FLAGS);
 		startActivity(intent);
 		finish();
 	}
