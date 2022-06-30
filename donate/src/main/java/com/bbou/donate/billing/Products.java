@@ -26,15 +26,15 @@ import androidx.annotation.Nullable;
 /**
  * Static fields and methods useful for billing
  */
-public final class Skus
+public final class Products
 {
 	// SKUs for products: the donate (consumable)
 	@Nullable
 	private static String[] inAppSkus = null;
 
-	// SKUs for products: the donate (consumable)
+	// Ids for products: the donate (consumable)
 	@Nullable
-	public static String[] getInappSkus()
+	public static String[] getInappProducts()
 	{
 		return inAppSkus;
 	}

@@ -18,7 +18,7 @@ import android.widget.ImageButton;
 
 import com.android.billingclient.api.Purchase;
 import com.bbou.donate.billing.BillingManager;
-import com.bbou.donate.billing.Skus;
+import com.bbou.donate.billing.Products;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -40,7 +40,7 @@ import androidx.appcompat.widget.Toolbar;
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 @SuppressWarnings("WeakerAccess")
-public class DonateActivity extends AppCompatActivity implements BillingManager.BillingUpdatesListener
+public class DonateActivity extends AppCompatActivity implements BillingManager.BillingListener
 {
 	static private final String TAG = "DonateA";
 
@@ -54,16 +54,10 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 	private BillingManager billingManager;
 
 	/**
-	 * Purchases per sku
+	 * Product id to buttons
 	 */
 	@NonNull
-	private final Map<String, Purchase> productToPurchase = new HashMap<>();
-
-	/**
-	 * SKU to Buttons
-	 */
-	@NonNull
-	private final Map<String, ImageButton> productToButton = new HashMap<>();
+	private final Map<String, ImageButton> buttonsByProductId = new HashMap<>();
 
 	/**
 	 * Overlay drawable
@@ -87,11 +81,11 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 		overlay.setGravity(Gravity.TOP | Gravity.END);
 		this.overlay = overlay;
 
-		// init skus from resources
-		Skus.init(this);
-		final String[] inappSkus = Skus.getInappSkus();
-		assert inappSkus != null;
-		final int n = inappSkus.length;
+		// init product ids from resources
+		Products.init(this);
+		final String[] inappProducts = Products.getInappProducts();
+		assert inappProducts != null;
+		final int n = inappProducts.length;
 
 		// image buttons
 		final ImageButton[] buttons = new ImageButton[n];
@@ -103,25 +97,25 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 
 				int tag = Integer.parseInt((String) button.getTag());
 				Log.d(TAG, "clicked " + tag);
-				donate(inappSkus[tag]);
+				donate(inappProducts[tag]);
 			});
 			buttons[i].setOnLongClickListener((button) -> {
 
 				int tag = Integer.parseInt((String) button.getTag());
 				Log.d(TAG, "long clicked " + tag);
-				final String sku = inappSkus[tag];
+				final String productId = inappProducts[tag];
 				final StringBuilder sb = new StringBuilder();
-				final Purchase purchase = this.productToPurchase.get(sku);
+				final Purchase purchase = this.billingManager == null ? null : this.billingManager.productIdToPurchase(productId);
 				if (purchase != null)
 				{
 					Log.i(TAG, purchase.toString());
 					sb.append("Order ID: ");
 					sb.append(purchase.getOrderId());
 					sb.append('\n');
-					sb.append("SKUs: ");
-					for (String sku2 : purchase.getProducts())
+					sb.append("Products: ");
+					for (String productId2 : purchase.getProducts())
 					{
-						sb.append(sku2);
+						sb.append(productId2);
 						sb.append(' ');
 					}
 					sb.append('\n');
@@ -138,19 +132,19 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 				}
 				else
 				{
-					sb.append("SKU: ");
-					sb.append(sku);
+					sb.append("ProductId: ");
+					sb.append(productId);
 				}
 				inform(sb.toString());
 				return true;
 			});
 		}
 
-		// image buttons per sku
-		this.productToButton.clear();
+		// image buttons per product
+		this.buttonsByProductId.clear();
 		for (int i = 0; i < n; i++)
 		{
-			this.productToButton.put(Skus.getInappSkus()[i], buttons[i]);
+			this.buttonsByProductId.put(Products.getInappProducts()[i], buttons[i]);
 		}
 
 		// setup manager
@@ -196,20 +190,27 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 	// P U R C H A S E  L I S T E N E R
 
 	@Override
-	public void onPurchasesUpdated(@Nullable final List<Purchase> updatedPurchases)
+	public void onPurchaseFinished(final Purchase purchase)
 	{
-		Log.d(TAG, "onPurchasesUpdated()");
+		Log.d(TAG, "New purchase " + purchase.toString());
+		for (String productId : purchase.getProducts())
+		{
+			update(productId, true);
+		}
+	}
 
-		// reset data
-		this.productToPurchase.clear();
+	@Override
+	synchronized public void onPurchaseList(@Nullable final List<Purchase> updatedPurchases)
+	{
+		Log.d(TAG, "onPurchaseList()");
 
 		// reset all buttons and overlays
-		final String[] products = Skus.getInappSkus();
-		if (products != null)
+		final String[] productIds = Products.getInappProducts();
+		if (productIds != null)
 		{
-			for (String sku : products)
+			for (String productId : productIds)
 			{
-				update(sku, false);
+				update(productId, false);
 			}
 		}
 
@@ -218,22 +219,13 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 		{
 			Log.d(TAG, "Purchase count " + updatedPurchases.size());
 
-			// build data
+			// set buttons and overlays
 			for (Purchase purchase : updatedPurchases)
 			{
-				for (String sku : purchase.getProducts())
+				Log.d(TAG, "Owned " + purchase.toString());
+				for (String productId : purchase.getProducts())
 				{
-					this.productToPurchase.put(sku, purchase);
-				}
-			}
-
-			// set buttons and overlays
-			for (Purchase purchase : this.productToPurchase.values())
-			{
-				Log.d(TAG, "Update " + purchase.toString());
-				for (String sku : purchase.getProducts())
-				{
-					update(sku, true);
+					update(productId, true);
 				}
 			}
 		}
@@ -243,9 +235,50 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 		}
 	}
 
+	// C O N S U M E
+
+	public void consumeAll()
+	{
+		if (this.billingManager != null)
+		{
+			this.billingManager.consumeAll();
+		}
+	}
+
+	@Override
+	public void onConsumeFinished(final Purchase purchase)
+	{
+		Log.d(TAG, "onConsumeFinished() " + purchase);
+		if (purchase != null)
+		{
+			for (String productId : purchase.getProducts())
+			{
+				update(productId, false);
+			}
+		}
+	}
+
+	public void onConsume(View v)
+	{
+		Log.d(TAG, "onConsume()");
+		consumeAll();
+	}
+
+	// D O N A T E
+
+	private void donate(final String productId)
+	{
+		if (this.billingManager != null)
+		{
+			this.billingManager.initiatePurchaseFlow(productId);
+		}
+	}
+
+	// H E L P E R
+
 	private void update(final String productId, boolean isOwned)
 	{
-		final ImageButton imageButton = this.productToButton.get(productId);
+		final ImageButton imageButton = this.buttonsByProductId.get(productId);
 		if (imageButton != null)
 		{
 			int tag = Integer.parseInt((String) imageButton.getTag());
@@ -265,54 +298,6 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 			}
 		}
 	}
-
-	// C O N S U M E
-
-	public void onConsume(@SuppressWarnings("UnusedParameters") View v)
-	{
-		if (this.billingManager != null)
-		{
-			for (Purchase purchase : this.productToPurchase.values())
-			{
-				this.billingManager.consume(purchase);
-			}
-		}
-	}
-
-	@Override
-	public void onConsumeFinished(final String token, final int result)
-	{
-		Log.d(TAG, "onConsumeFinished() " + token);
-		if (this.billingManager != null)
-		{
-			// this.billingManager.queryPurchases();
-
-			for (Purchase purchase : this.productToPurchase.values())
-			{
-				if (purchase.getPurchaseToken().equals(token))
-				{
-					for (String productId : purchase.getProducts())
-					{
-						this.productToPurchase.remove(productId);
-						update(productId, false);
-					}
-					break;
-				}
-			}
-		}
-	}
-
-	// D O N A T E
-
-	private void donate(final String productId)
-	{
-		if (this.billingManager != null)
-		{
-			this.billingManager.initiatePurchaseFlow(productId);
-		}
-	}
-
-	// H E L P E R
 
 	@Nullable
 	private static Drawable getDrawable(@NonNull final Context context, @DrawableRes int resId)
@@ -342,7 +327,8 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 	@Override
 	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
 	{
-		if (item.getItemId() == R.id.action_donate_refresh && this.billingManager != null)
+		int id = item.getItemId();
+		if (id == R.id.action_donate_refresh && this.billingManager != null)
 		{
 			this.billingManager.queryPurchases();
 			return true;
