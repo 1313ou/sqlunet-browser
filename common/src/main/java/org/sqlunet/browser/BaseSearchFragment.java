@@ -107,6 +107,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	{
 		Log.d(BaseSearchFragment.TAG, "on create " + this + " from " + savedInstanceState);
 		super.onCreate(savedInstanceState);
+		// setHasOptionsMenu(true);
 	}
 
 	@SuppressWarnings("WeakerAccess")
@@ -163,6 +164,27 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 
 	// M E N U
 
+	/*
+	@Override
+	public void onCreateOptionsMenu(@NonNull final Menu menu, @NonNull final MenuInflater inflater)
+	{
+		Log.d(BaseSearchFragment.TAG, "onCreateOptionsMenu() " + menuId);
+
+		// inflate the menu; this adds items to the type bar if it is present.
+		menu.clear();
+		inflater.inflate(R.menu.main, menu);
+		inflater.inflate(this.menuId, menu);
+
+		// set up search
+		setupSearch(menu, getSearchInfo(requireActivity()));
+
+		// set spinner, searchitem
+		setupActionBar();
+
+		super.onCreateOptionsMenu(menu, inflater);
+	}
+	*/
+
 	@Override
 	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
@@ -177,6 +199,8 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 				Log.d(BaseSearchFragment.TAG, "onCreateMenu() " + menuId);
 
 				// inflate
+				menu.clear();
+				menuInflater.inflate(R.menu.main, menu);
 				menuInflater.inflate(menuId, menu);
 				Log.d(BaseSearchFragment.TAG, "onCreateMenu() size=" + menu.size());
 
@@ -200,7 +224,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 				//super.onPrepareMenu(menu);
 			}
 		}, this.getViewLifecycleOwner(), Lifecycle.State.RESUMED);
-		// host.invalidateMenu();
+		host.invalidateMenu();
 	}
 
 	// A C T I O N B A R
