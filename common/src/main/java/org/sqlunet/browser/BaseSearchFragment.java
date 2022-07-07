@@ -107,7 +107,6 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	{
 		Log.d(BaseSearchFragment.TAG, "on create " + this + " from " + savedInstanceState);
 		super.onCreate(savedInstanceState);
-		// setHasOptionsMenu(true);
 	}
 
 	@SuppressWarnings("WeakerAccess")
@@ -164,33 +163,30 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 
 	// M E N U
 
-	/*
 	@Override
-	public void onCreateOptionsMenu(@NonNull final Menu menu, @NonNull final MenuInflater inflater)
+	public void onDestroyView()
 	{
-		Log.d(BaseSearchFragment.TAG, "onCreateOptionsMenu() " + menuId);
+		super.onDestroyView();
 
-		// inflate the menu; this adds items to the type bar if it is present.
-		menu.clear();
-		inflater.inflate(R.menu.main, menu);
-		inflater.inflate(this.menuId, menu);
-
-		// set up search
-		setupSearch(menu, getSearchInfo(requireActivity()));
-
-		// set spinner, searchitem
-		setupActionBar();
-
-		super.onCreateOptionsMenu(menu, inflater);
+		// app bar
+		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
+		final ActionBar actionBar = activity.getSupportActionBar();
+		assert actionBar != null;
+		actionBar.show();
 	}
-	*/
 
 	@Override
 	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
 		super.onViewCreated(view, savedInstanceState);
 
-		final MenuHost host = requireActivity().<Toolbar>findViewById(R.id.toolbar);
+		// app bar
+		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
+		final ActionBar actionBar = activity.getSupportActionBar();
+		assert actionBar != null;
+		actionBar.hide();
+
+		final MenuHost host = requireActivity().<Toolbar>findViewById(R.id.toolbar_search);
 		host.addMenuProvider(new MenuProvider()
 		{
 			@Override
@@ -240,12 +236,8 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 
 		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
 
-		// app bar
-		//final ActionBar actionBar = activity.getSupportActionBar();
-		//assert actionBar != null;
-		//actionBar.hide();
-
-		final Toolbar toolbar = activity.findViewById(R.id.toolbar);
+		// toolbar
+		final Toolbar toolbar = activity.findViewById(R.id.toolbar_search);
 		assert toolbar != null;
 
 		// title
@@ -266,41 +258,6 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 
 		// spinner
 		setupSpinner();
-	}
-
-	/**
-	 * Set up action bar's custom view, its spinner, title, background
-	 */
-	public void setupActionBar()
-	{
-		Log.d(BaseSearchFragment.TAG, "set up specific action bar " + this);
-
-		// app bar
-		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
-		final ActionBar actionBar = activity.getSupportActionBar();
-		assert actionBar != null;
-
-		// title
-		actionBar.setSubtitle(R.string.app_subname);
-
-		// background
-		final int color = ColorUtils.fetchColor(activity, this.colorAttrId);
-		actionBar.setBackgroundDrawable(new ColorDrawable(color));
-
-		// action bar customized view
-		View customView = actionBar.getCustomView();
-		if (customView == null)
-		{
-			customView = getLayoutInflater().inflate(R.layout.actionbar_custom, null);
-			actionBar.setCustomView(customView);
-		}
-
-		// spinner
-		this.spinner = customView.findViewById(R.id.spinner);
-		setupSpinner();
-
-		// set up the action bar to show a custom layout
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
 	}
 
 	// S P I N N E R
