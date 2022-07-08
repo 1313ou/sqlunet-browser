@@ -186,6 +186,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		assert actionBar != null;
 		actionBar.hide();
 
+		// fragment bar
 		final MenuHost host = requireActivity().<Toolbar>findViewById(R.id.toolbar_search);
 		host.addMenuProvider(new MenuProvider()
 		{
@@ -223,7 +224,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		host.invalidateMenu();
 	}
 
-	// A C T I O N B A R
+	// T O O L B A R
 
 	/**
 	 * Set up toolbar's custom view, its spinner, title, background
@@ -242,6 +243,9 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 
 		// title
 		toolbar.setSubtitle(R.string.app_subname);
+
+		// nav
+		toolbar.setNavigationOnClickListener(v -> requireActivity().onBackPressed());
 
 		// background
 		final int color = ColorUtils.fetchColor(activity, this.colorAttrId);

@@ -10,6 +10,7 @@
 	android:layout_height="?attr/actionBarSize"
 	android:theme="?attr/actionBarTheme"
 	app:elevation="4dp"
+	app:navigationIcon="?android:attr/homeAsUpIndicator"
 	app:popupTheme="?attr/actionBarPopupTheme"
 	app:subtitle="@null"
 	app:title="@null"
