@@ -2,6 +2,7 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
+<!--
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
@@ -14,3 +15,25 @@
 		android:layout_height="match_parent" />
 
 </RelativeLayout>
+-->
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="org.sqlunet.browser.BrowsePredicateMatrixFragment">
+
+<com.google.android.material.appbar.AppBarLayout
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content">
+
+	<include layout="@layout/toolbar_search" />
+
+</com.google.android.material.appbar.AppBarLayout>
+
+<FrameLayout
+	android:id="@+id/container_predicatematrix"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
