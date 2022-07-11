@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	tools:context="org.sqlunet.browser.MainActivity">
+	<item
+		android:id="@+id/action_settings"
+		android:title="@string/action_settings"
+		app:showAsAction="never"
+		tools:ignore="AppCompatResource" />
+	<item
+		android:id="@+id/action_data"
+		android:title="@string/action_data"
+		app:showAsAction="never">
+		<menu>
+			<item
+				android:id="@+id/action_status"
+				android:title="@string/action_status"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+			<item
+				android:id="@+id/action_setup"
+				android:title="@string/action_setup"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+
+			<item
+				android:id="@+id/action_storage"
+				android:title="@string/action_storage"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+			<item
+				android:id="@+id/action_diagnostics"
+				android:title="@string/action_diagnostics"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+			<item
+				android:id="@+id/action_logs"
+				android:title="@string/action_logs"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+		</menu>
+	</item>
+
+	<item
+		android:title="@string/action_sql"
+		app:showAsAction="never">
+		<menu>
+			<item
+				android:id="@+id/action_sql_export"
+				android:title="@string/action_sql_export"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+			<item
+				android:id="@+id/action_sql_clear"
+				android:title="@string/action_sql_clear"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+		</menu>
+	</item>
+
+	<item
+		android:id="@+id/action_help"
+		android:title="@string/action_help"
+		app:showAsAction="never"
+		tools:ignore="AppCompatResource" />
+
+	<item
+		android:title="@string/action_about"
+		app:showAsAction="never">
+		<menu>
+			<item
+				android:id="@+id/action_credits"
+				android:title="@string/action_credits"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+			<item
+				android:id="@+id/action_rate"
+				android:title="@string/action_rate"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+			<item
+				android:id="@+id/action_other"
+				android:title="@string/title_activity_others"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+			<item
+				android:id="@+id/action_donate"
+				android:title="@string/title_activity_donate"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+		</menu>
+	</item>
+
+	<item
+		android:title="@string/action_app"
+		app:showAsAction="never">
+		<menu>
+			<item
+				android:id="@+id/action_provider_info"
+				android:title="@string/action_provider_info"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+			<item
+				android:id="@+id/action_appsettings"
+				android:title="@string/action_appsettings"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+			<item
+				android:id="@+id/action_quit"
+				android:title="@string/action_quit"
+				app:showAsAction="never"
+				tools:ignore="AppCompatResource" />
+		</menu>
+	</item>
+
+	<item
+		android:title="@string/action_theme"
+		app:showAsAction="never">
+		<menu>
+			<group
+				android:id="@+id/theme_group"
+				android:checkableBehavior="single">
+				<item
+					android:id="@+id/action_theme_system"
+					android:title="@string/action_theme_system" />
+				<item
+					android:id="@+id/action_theme_night"
+					android:title="@string/action_theme_night" />
+				<item
+					android:id="@+id/action_theme_day"
+					android:title="@string/action_theme_day" />
+			</group>
+		</menu>
+	</item>
+</menu>

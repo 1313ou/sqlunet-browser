@@ -46,6 +46,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.MenuHost;
 import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 
 /**
@@ -197,7 +198,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 
 				// inflate
 				menu.clear();
-				menuInflater.inflate(R.menu.main, menu);
+				menuInflater.inflate(R.menu.main_safedata, menu);
 				menuInflater.inflate(menuId, menu);
 				Log.d(BaseSearchFragment.TAG, "onCreateMenu() size=" + menu.size());
 
@@ -212,7 +213,10 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 			@Override
 			public boolean onMenuItemSelected(@NonNull final MenuItem menuItem)
 			{
-				return false;
+				boolean handled = onOptionsItemSelected(menuItem);
+				if(handled)
+					return true;
+				return MenuHandler.menuDispatch((AppCompatActivity) requireActivity(), menuItem);
 			}
 
 			public void onPrepareMenu(@NonNull Menu menu)
@@ -221,7 +225,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 				//super.onPrepareMenu(menu);
 			}
 		}, this.getViewLifecycleOwner(), Lifecycle.State.RESUMED);
-		host.invalidateMenu();
+		// host.invalidateMenu();
 	}
 
 	// T O O L B A R
@@ -245,7 +249,20 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		toolbar.setSubtitle(R.string.app_subname);
 
 		// nav
-		toolbar.setNavigationOnClickListener(v -> requireActivity().onBackPressed());
+		toolbar.setNavigationOnClickListener(v -> {
+
+			Log.d(TAG, "Navigation");
+			FragmentManager manager = getChildFragmentManager();
+			int count = manager.getBackStackEntryCount();
+			if (count == 0)
+			{
+				requireActivity().onBackPressed();
+			}
+			else
+			{
+				manager.popBackStack();
+			}
+		});
 
 		// background
 		final int color = ColorUtils.fetchColor(activity, this.colorAttrId);
