@@ -35,6 +35,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 /**
@@ -110,10 +111,13 @@ public class BrowseFragment extends BaseSearchFragment
 		Log.d(BrowseFragment.TAG, "BROWSE " + query);
 
 		// subtitle
-		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
-		final ActionBar actionBar = activity.getSupportActionBar();
-		assert actionBar != null;
-		actionBar.setSubtitle(query);
+		// final AppCompatActivity activity = (AppCompatActivity) requireActivity();
+		// final ActionBar actionBar = activity.getSupportActionBar();
+		// assert actionBar != null;
+		// actionBar.setSubtitle(query);
+		final Toolbar toolbar = requireActivity().findViewById(org.sqlunet.browser.common.R.id.toolbar_search);
+		assert toolbar != null;
+		toolbar.setSubtitle(query);
 
 		/*
 		// copy to target view
@@ -221,10 +225,8 @@ public class BrowseFragment extends BaseSearchFragment
 	@Override
 	protected boolean triggerFocusSearch()
 	{
-		//TODO
-		//final Fragment active = getChildFragmentManager().findFragmentById(R.id.container_browse);
-		//return active != null && "fragment_splash".equals(active.getTag());
-		return true;
+		final Fragment active = getChildFragmentManager().findFragmentById(R.id.container_browse);
+		return active != null && "fragment_splash".equals(active.getTag());
 	}
 
 	// I N T E N T / F R A G M E N T   F A C T O R Y

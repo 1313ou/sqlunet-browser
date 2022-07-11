@@ -233,10 +233,8 @@ public class BrowseFragment extends BaseSearchFragment
 	@Override
 	protected boolean triggerFocusSearch()
 	{
-		//TODO
-		//final Fragment active = getChildFragmentManager().findFragmentById(R.id.container_browse);
-		//return active != null && "fragment_splash".equals(active.getTag());
-		return true;
+		final Fragment active = getChildFragmentManager().findFragmentById(R.id.container_browse);
+		return active != null && "fragment_splash".equals(active.getTag());
 	}
 
 	// I N T E N T / F R A G M E N T   F A C T O R Y
