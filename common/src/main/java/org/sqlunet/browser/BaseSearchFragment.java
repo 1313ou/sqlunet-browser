@@ -110,6 +110,15 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		super.onCreate(savedInstanceState);
 	}
 
+	@Override
+	public void onResume()
+	{
+		Log.d(BaseSearchFragment.TAG, "on resume " + this);
+		super.onResume();
+	}
+
+	// V I E W
+
 	@SuppressWarnings("WeakerAccess")
 	@Nullable
 	@SuppressLint("InflateParams")
@@ -123,62 +132,10 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	}
 
 	@Override
-	public void onResume()
-	{
-		Log.d(BaseSearchFragment.TAG, "on resume " + this);
-		super.onResume();
-	}
-
-	// S A V E / R E S T O R E
-
-	@SuppressWarnings("WeakerAccess")
-	@Override
-	public void onSaveInstanceState(@NonNull final Bundle outState)
-	{
-		Log.d(BaseSearchFragment.TAG, "Save instance state");
-
-		// always call the superclass so it can save the view hierarchy state
-		super.onSaveInstanceState(outState);
-
-		// spinner
-		if (this.spinner != null)
-		{
-			// serialize the current dropdown position
-			final int position = this.spinner.getSelectedItemPosition();
-			outState.putInt(BaseSearchFragment.STATE_SPINNER, position);
-		}
-	}
-
-	@Override
-	public void onViewStateRestored(@Nullable final Bundle savedInstanceState)
-	{
-		super.onViewStateRestored(savedInstanceState);
-
-		// restore from saved instance
-		if (savedInstanceState != null && this.spinner != null)
-		{
-			final int selected = savedInstanceState.getInt(STATE_SPINNER);
-			this.spinner.setSelection(selected);
-		}
-	}
-
-	// M E N U
-
-	@Override
-	public void onDestroyView()
-	{
-		super.onDestroyView();
-
-		// app bar
-		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
-		final ActionBar actionBar = activity.getSupportActionBar();
-		assert actionBar != null;
-		actionBar.show();
-	}
-
-	@Override
 	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
+		Log.d(BaseSearchFragment.TAG, "on view created " + this + " from " + savedInstanceState);
+
 		super.onViewCreated(view, savedInstanceState);
 
 		// app bar
@@ -221,13 +178,20 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 				return MenuHandler.menuDispatch((AppCompatActivity) requireActivity(), menuItem);
 			}
 
-			public void onPrepareMenu(@NonNull Menu menu)
-			{
-				Log.d(BaseSearchFragment.TAG, "onPrepareMenu()");
-				//super.onPrepareMenu(menu);
-			}
 		}, this.getViewLifecycleOwner(), Lifecycle.State.RESUMED);
 		// host.invalidateMenu();
+	}
+
+	@Override
+	public void onDestroyView()
+	{
+		super.onDestroyView();
+
+		// app bar
+		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
+		final ActionBar actionBar = activity.getSupportActionBar();
+		assert actionBar != null;
+		actionBar.show();
 	}
 
 	// T O O L B A R
@@ -248,39 +212,40 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		assert toolbar != null;
 
 		// title
+		toolbar.setTitle(R.string.title_activity_browse);
 		toolbar.setSubtitle(R.string.app_subname);
 
 		// nav
 		toolbar.setNavigationOnClickListener(v -> {
 
-			FragmentManager manager = getChildFragmentManager();
+			final FragmentManager manager = getChildFragmentManager();
 			int count = manager.getBackStackEntryCount();
 			if (count >= 1)
 			{
 				for (int i = 0; i < count; i++)
 				{
-					Log.d(TAG, "Navigation: parent fragment " + i + ": " + manager.getBackStackEntryAt(i) + " " + manager.getBackStackEntryAt(i).getName() + " " + manager.getBackStackEntryAt(i).getId());
+					Log.d(TAG, "BackStack: child fragment [" + i + "]: " + manager.getBackStackEntryAt(i) + " " + manager.getBackStackEntryAt(i).getName() + " " + manager.getBackStackEntryAt(i).getId());
 				}
-				Log.d(TAG, "Navigation: child fragment popBackStack() " + manager.getBackStackEntryAt(count - 1));
+				Log.d(TAG, "BackStack: child fragment popBackStack() " + manager.getBackStackEntryAt(count - 1));
 				manager.popBackStack();
 			}
 			else
 			{
-				FragmentManager manager2 = getParentFragmentManager();
-				int count2 = manager2.getBackStackEntryCount();
-				if (count2 >= 1)
+				// FragmentManager manager2 = getParentFragmentManager();
+				// int count2 = manager2.getBackStackEntryCount();
+				// if (count2 >= 1)
+				// {
+				// 	for (int i = 0; i < count2; i++)
+				// 	{
+				// 		Log.d(TAG, "BackStack: parent fragment [" + i + "]: " + manager2.getBackStackEntryAt(i) + " " + manager2.getBackStackEntryAt(i).getName() + " " + manager2.getBackStackEntryAt(i).getId());
+				// 	}
+				//
+				// 	Log.d(TAG, "BackStack: parent fragment popBackStack() " + manager2.getBackStackEntryAt(count2 - 1));
+				// 	manager2.popBackStack();
+				// }
+				// else
 				{
-					for (int i = 0; i < count2; i++)
-					{
-						Log.d(TAG, "Navigation: parent fragment " + i + ": " + manager2.getBackStackEntryAt(i) + " " + manager2.getBackStackEntryAt(i).getName() + " " + manager2.getBackStackEntryAt(i).getId());
-					}
-
-					Log.d(TAG, "Navigation: parent fragment popBackStack() " + manager2.getBackStackEntryAt(count2 - 1));
-					manager2.popBackStack();
-				}
-				else
-				{
-					Log.d(TAG, "Navigation: activity onBackPressed()");
+					Log.d(TAG, "BackStack: activity onBackPressed()");
 					requireActivity().onBackPressed();
 				}
 			}
@@ -483,6 +448,39 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 			final InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
 			assert imm != null;
 			imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+		}
+	}
+
+	// S A V E / R E S T O R E
+
+	@SuppressWarnings("WeakerAccess")
+	@Override
+	public void onSaveInstanceState(@NonNull final Bundle outState)
+	{
+		Log.d(BaseSearchFragment.TAG, "Save instance state");
+
+		// always call the superclass so it can save the view hierarchy state
+		super.onSaveInstanceState(outState);
+
+		// spinner
+		if (this.spinner != null)
+		{
+			// serialize the current dropdown position
+			final int position = this.spinner.getSelectedItemPosition();
+			outState.putInt(BaseSearchFragment.STATE_SPINNER, position);
+		}
+	}
+
+	@Override
+	public void onViewStateRestored(@Nullable final Bundle savedInstanceState)
+	{
+		super.onViewStateRestored(savedInstanceState);
+
+		// restore from saved instance
+		if (savedInstanceState != null && this.spinner != null)
+		{
+			final int selected = savedInstanceState.getInt(STATE_SPINNER);
+			this.spinner.setSelection(selected);
 		}
 	}
 }
