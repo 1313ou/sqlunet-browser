@@ -94,7 +94,9 @@ public class BrowseFragment extends BaseSearchFragment
 			final Fragment fragment = new BrowseSplashFragment();
 			getChildFragmentManager() //
 					.beginTransaction() //
+					.setReorderingAllowed(true) //
 					.replace(R.id.container_browse, fragment, "fragment_splash") //
+					.addToBackStack("fragment_splash") //
 					.commit();
 		}
 
@@ -399,9 +401,10 @@ public class BrowseFragment extends BaseSearchFragment
 			}
 			getChildFragmentManager() //
 					.beginTransaction() //
+					.setReorderingAllowed(true) //
 					.replace(R.id.container_browse, fragment) //
+					.addToBackStack("fragment_browse")
 					.commit();
-
 		}
 	}
 

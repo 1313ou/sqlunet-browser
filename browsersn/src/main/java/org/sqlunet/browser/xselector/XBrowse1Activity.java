@@ -42,6 +42,7 @@ public class XBrowse1Activity extends AbstractBrowse1Activity
 			fragment.setArguments(getIntent().getExtras());
 			getSupportFragmentManager() //
 					.beginTransaction() //
+					.setReorderingAllowed(true) //
 					.replace(R.id.container_browse, fragment) //
 					.commit();
 		}

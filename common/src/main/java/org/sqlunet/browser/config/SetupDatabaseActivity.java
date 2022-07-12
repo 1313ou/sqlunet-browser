@@ -52,6 +52,7 @@ public class SetupDatabaseActivity extends AppCompatActivity
 		fragment.setArguments(getIntent().getExtras());
 		getSupportFragmentManager() //
 				.beginTransaction() //
+				.setReorderingAllowed(true) //
 				.replace(R.id.container_setup, fragment) //
 				.commit();
 	}

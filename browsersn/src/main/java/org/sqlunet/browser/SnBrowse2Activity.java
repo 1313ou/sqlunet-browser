@@ -48,6 +48,7 @@ public class SnBrowse2Activity extends AbstractBrowse1Activity
 		browse2Fragment.setArguments(args);
 		getSupportFragmentManager() //
 				.beginTransaction() //
+				.setReorderingAllowed(true) //
 				.replace(R.id.container_browse2, browse2Fragment, "snbrowse2") //
 				.commit();
 	}

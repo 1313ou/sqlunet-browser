@@ -39,6 +39,7 @@ public class SqlDialogFragment extends DialogFragment
 		final Fragment sqlFragment = new BaseSqlFragment();
 		getChildFragmentManager() //
 				.beginTransaction() //
+				.setReorderingAllowed(true) //
 				.replace(R.id.container_sql, sqlFragment) //
 				.commit();
 

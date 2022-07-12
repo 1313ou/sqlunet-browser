@@ -48,6 +48,7 @@ public class Browse2Activity extends AbstractBrowse2Activity
 		browse2Fragment.setArguments(args);
 		getSupportFragmentManager() //
 				.beginTransaction() //
+				.setReorderingAllowed(true) //
 				.replace(R.id.container_browse2, browse2Fragment, "browse2") //
 				.commit();
 	}

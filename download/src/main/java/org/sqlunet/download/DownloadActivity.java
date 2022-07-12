@@ -72,6 +72,7 @@ public class DownloadActivity extends AppCompatActivity implements OnComplete
 
 			getSupportFragmentManager() //
 					.beginTransaction() //
+					.setReorderingAllowed(true) //
 					.replace(R.id.container, downloadFragment) //
 					.commit();
 		}

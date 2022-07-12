@@ -77,6 +77,7 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements XSelectorsF
 				browse2Fragment.setArguments(args2);
 			}
 			manager.beginTransaction() //
+					.setReorderingAllowed(true) //
 					.replace(R.id.container_browse2, browse2Fragment, "browse2") //
 					.commit();
 		}

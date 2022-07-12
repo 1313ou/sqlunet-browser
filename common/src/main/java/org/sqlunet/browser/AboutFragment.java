@@ -39,6 +39,7 @@ public class AboutFragment extends Fragment
 		final Fragment fragment = new SourceFragment();
 		getChildFragmentManager() //
 				.beginTransaction() //
+				.setReorderingAllowed(true) //
 				.replace(R.id.container_source, fragment) //
 				.commit();
 

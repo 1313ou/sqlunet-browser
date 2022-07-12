@@ -214,8 +214,10 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 			public boolean onMenuItemSelected(@NonNull final MenuItem menuItem)
 			{
 				boolean handled = onOptionsItemSelected(menuItem);
-				if(handled)
+				if (handled)
+				{
 					return true;
+				}
 				return MenuHandler.menuDispatch((AppCompatActivity) requireActivity(), menuItem);
 			}
 
@@ -251,16 +253,36 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		// nav
 		toolbar.setNavigationOnClickListener(v -> {
 
-			Log.d(TAG, "Navigation");
 			FragmentManager manager = getChildFragmentManager();
 			int count = manager.getBackStackEntryCount();
-			if (count == 0)
+			if (count >= 1)
 			{
-				requireActivity().onBackPressed();
+				for (int i = 0; i < count; i++)
+				{
+					Log.d(TAG, "Navigation: parent fragment " + i + ": " + manager.getBackStackEntryAt(i) + " " + manager.getBackStackEntryAt(i).getName() + " " + manager.getBackStackEntryAt(i).getId());
+				}
+				Log.d(TAG, "Navigation: child fragment popBackStack() " + manager.getBackStackEntryAt(count - 1));
+				manager.popBackStack();
 			}
 			else
 			{
-				manager.popBackStack();
+				FragmentManager manager2 = getParentFragmentManager();
+				int count2 = manager2.getBackStackEntryCount();
+				if (count2 >= 1)
+				{
+					for (int i = 0; i < count2; i++)
+					{
+						Log.d(TAG, "Navigation: parent fragment " + i + ": " + manager2.getBackStackEntryAt(i) + " " + manager2.getBackStackEntryAt(i).getName() + " " + manager2.getBackStackEntryAt(i).getId());
+					}
+
+					Log.d(TAG, "Navigation: parent fragment popBackStack() " + manager2.getBackStackEntryAt(count2 - 1));
+					manager2.popBackStack();
+				}
+				else
+				{
+					Log.d(TAG, "Navigation: activity onBackPressed()");
+					requireActivity().onBackPressed();
+				}
 			}
 		});
 

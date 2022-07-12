@@ -63,7 +63,9 @@ public class SearchTextFragment extends BaseSearchFragment
 			final Fragment fragment = new SearchTextSplashFragment();
 			getChildFragmentManager() //
 					.beginTransaction() //
+					.setReorderingAllowed(true) //
 					.replace(R.id.container_searchtext, fragment) //
+					.addToBackStack("fragment_splash") //
 					.commit();
 		}
 
@@ -245,7 +247,9 @@ public class SearchTextFragment extends BaseSearchFragment
 		}
 		getChildFragmentManager() //
 				.beginTransaction() //
+				.setReorderingAllowed(true) //
 				.replace(R.id.container_searchtext, fragment) //
+				.addToBackStack("fragment_text") //
 				.commit();
 	}
 }

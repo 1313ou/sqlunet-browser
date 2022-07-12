@@ -78,7 +78,7 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 				int enable = Settings.getAllPref(context);
 
 				// transaction
-				final FragmentTransaction transaction = manager.beginTransaction();
+				final FragmentTransaction transaction = manager.beginTransaction().setReorderingAllowed(true);
 
 				// wordnet
 				if ((enable & Settings.ENABLE_WORDNET) != 0 && hasWordNet)
@@ -145,6 +145,7 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 
 				// detail fragment replace
 				manager.beginTransaction() //
+						.setReorderingAllowed(true) //
 						.replace(R.id.container_web, webFragment, "web") //
 						.commit();
 				break;

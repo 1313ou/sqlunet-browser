@@ -64,6 +64,7 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements XSelectorsF
 		selectorsFragment.setListener(this);
 		Log.d(TAG, "create 'browse1' fragment");
 		manager.beginTransaction() //
+				.setReorderingAllowed(true) //
 				.replace(R.id.container_xselectors, selectorsFragment, "browse1") //
 				.commit();
 
@@ -85,6 +86,7 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements XSelectorsF
 			}
 			Log.d(TAG, "create 'browse2' fragment");
 			manager.beginTransaction() //
+					.setReorderingAllowed(true) //
 					.replace(R.id.container_browse2, browse2Fragment, "browse2") //
 					.commit();
 		}
@@ -106,7 +108,7 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements XSelectorsF
 		final FragmentManager manager = getChildFragmentManager();
 		Fragment selectorsFragment = manager.findFragmentByTag("browse1");
 		Fragment browse2Fragment = manager.findFragmentByTag("browse2");
-		FragmentTransaction transaction = manager.beginTransaction();
+		FragmentTransaction transaction = manager.beginTransaction().setReorderingAllowed(true);
 		if (selectorsFragment != null)
 		{
 			Log.d(TAG, "destroy 'browse1' fragment");

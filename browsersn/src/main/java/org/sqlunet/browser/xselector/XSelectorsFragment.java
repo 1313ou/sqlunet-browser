@@ -73,6 +73,7 @@ public class XSelectorsFragment extends BaseSelectorsFragment implements Selecto
 			// Add the fragment to the fragment container layout
 			getChildFragmentManager() //
 					.beginTransaction() //
+					.setReorderingAllowed(true) //
 					.add(R.id.wnselectors, fragment, "wnselectors") //
 					.commit();
 		}
@@ -98,6 +99,7 @@ public class XSelectorsFragment extends BaseSelectorsFragment implements Selecto
 			// Add the fragment to the fragment container layout
 			getChildFragmentManager() //
 					.beginTransaction() //
+					.setReorderingAllowed(true) //
 					.add(R.id.snselectors, fragment, "snselectors") //
 					.commit();
 		}

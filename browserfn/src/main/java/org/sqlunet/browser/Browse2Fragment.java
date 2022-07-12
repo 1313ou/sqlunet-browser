@@ -52,7 +52,7 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 			case VIEW:
 
 				// transaction
-				final FragmentTransaction transaction = manager.beginTransaction();
+				final FragmentTransaction transaction = manager.beginTransaction().setReorderingAllowed(true);
 
 				// framenet
 				boolean enable = Settings.getFrameNetPref(context);
@@ -83,6 +83,7 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 
 				// detail fragment replace
 				manager.beginTransaction() //
+						.setReorderingAllowed(true) //
 						.replace(R.id.container_web, webFragment, "web") //
 						.commit();
 				break;

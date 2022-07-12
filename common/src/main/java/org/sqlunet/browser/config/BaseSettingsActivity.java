@@ -51,7 +51,10 @@ public abstract class BaseSettingsActivity extends AppCompatActivity implements 
 		if (savedInstanceState == null)
 		{
 			boolean initial = getIntent().getBooleanExtra(INITIAL_ARG, false);
-			fm.beginTransaction().replace(R.id.settings, initial ? new Header2Fragment() : new HeaderFragment()).commit();
+			fm.beginTransaction() //
+					.setReorderingAllowed(true) //
+					.replace(R.id.settings, initial ? new Header2Fragment() : new HeaderFragment()) //
+					.commit();
 			setTitle(R.string.title_settings);
 		}
 		else
@@ -176,7 +179,12 @@ public abstract class BaseSettingsActivity extends AppCompatActivity implements 
 		fragment.setTargetFragment(caller, 0);
 
 		// Replace the existing Fragment with the new Fragment
-		getSupportFragmentManager().beginTransaction().replace(R.id.settings, fragment).addToBackStack(null).commit();
+		getSupportFragmentManager() //
+				.beginTransaction() //
+				.setReorderingAllowed(true) //
+				.replace(R.id.settings, fragment) //
+				.addToBackStack(null) //
+				.commit();
 		return true;
 	}
 

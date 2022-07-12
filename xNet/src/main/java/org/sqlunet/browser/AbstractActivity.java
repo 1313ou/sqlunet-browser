@@ -59,6 +59,7 @@ abstract public class AbstractActivity extends AppCompatActivity
 			fragment.setArguments(getIntent().getExtras());
 			getSupportFragmentManager() //
 					.beginTransaction() //
+					.setReorderingAllowed(true) //
 					.replace(getContainerId(), fragment) //
 					.commit();
 		}

@@ -57,6 +57,7 @@ public class Browse1Fragment extends BaseBrowse1Fragment implements SelectorsFra
 		args1.putBoolean(Selectors.IS_TWO_PANE, isTwoPane);
 		selectorsFragment.setListeners(this);
 		manager.beginTransaction() //
+				.setReorderingAllowed(true) //
 				.replace(R.id.container_selectors, selectorsFragment, "browse1") //
 				.commit();
 
@@ -76,6 +77,7 @@ public class Browse1Fragment extends BaseBrowse1Fragment implements SelectorsFra
 				browse2Fragment.setArguments(args2);
 			}
 			manager.beginTransaction() //
+					.setReorderingAllowed(true) //
 					.replace(R.id.container_browse2, browse2Fragment, "browse2") //
 					.commit();
 		}

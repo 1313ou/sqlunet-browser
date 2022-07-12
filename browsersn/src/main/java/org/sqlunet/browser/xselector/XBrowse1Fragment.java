@@ -82,6 +82,7 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements SelectorsFr
 				browse2Fragment.setArguments(args2);
 			}
 			manager.beginTransaction() //
+					.setReorderingAllowed(true) //
 					.replace(R.id.container_browse2, browse2Fragment, "browse2") //
 					.commit();
 		}

@@ -42,6 +42,7 @@ public class TableActivity extends AppCompatActivity
 		fragment.setArguments(getIntent().getExtras());
 		getSupportFragmentManager() //
 				.beginTransaction() //
+				.setReorderingAllowed(true) //
 				.replace(R.id.container_table, fragment) //
 				.commit();
 	}

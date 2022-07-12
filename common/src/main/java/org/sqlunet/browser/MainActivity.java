@@ -61,10 +61,10 @@ public class MainActivity extends AppCompatActivity
 		// navigation top destinations
 		TypedArray array = getResources().obtainTypedArray(R.array.drawer_top_dest);
 		int len = array.length();
-		int[] topDest = new int[len];
+		int[] topDests = new int[len];
 		for (int i = 0; i < len; i++)
 		{
-			topDest[i] = array.getResourceId(i, 0);
+			topDests[i] = array.getResourceId(i, 0);
 		}
 		array.recycle();
 
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity
 		final DrawerLayout drawer = findViewById(R.id.drawer_layout);
 		final NavigationView navView = findViewById(R.id.nav_view);
 		final NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-		this.appBarConfiguration = new AppBarConfiguration.Builder(topDest).setOpenableLayout(drawer).build();
+		this.appBarConfiguration = new AppBarConfiguration.Builder(topDests).setOpenableLayout(drawer).build();
 		NavigationUI.setupActionBarWithNavController(this, navController, this.appBarConfiguration);
 		NavigationUI.setupWithNavController(navView, navController);
 	}

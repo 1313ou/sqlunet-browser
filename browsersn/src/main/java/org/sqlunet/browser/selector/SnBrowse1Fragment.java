@@ -56,6 +56,7 @@ public class SnBrowse1Fragment extends BaseBrowse1Fragment implements SnSelector
 		args1.putBoolean(Selectors.IS_TWO_PANE, isTwoPane);
 		selectorsFragment.setListeners(this);
 		manager.beginTransaction() //
+				.setReorderingAllowed(true) //
 				.replace(R.id.container_selectors, selectorsFragment, "snbrowse1") //
 				.commit();
 
@@ -75,6 +76,7 @@ public class SnBrowse1Fragment extends BaseBrowse1Fragment implements SnSelector
 				browse2Fragment.setArguments(args2);
 			}
 			manager.beginTransaction() //
+					.setReorderingAllowed(true) //
 					.replace(R.id.container_browse2, browse2Fragment, "browse2") //
 					.commit();
 		}

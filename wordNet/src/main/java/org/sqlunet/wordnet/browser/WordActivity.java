@@ -68,6 +68,7 @@ public class WordActivity extends AppCompatActivity
 				fragment.setArguments(args);
 			}
 			manager.beginTransaction() //
+					.setReorderingAllowed(true) //
 					.replace(R.id.container_word, fragment, "word") //
 					.commit();
 		}
