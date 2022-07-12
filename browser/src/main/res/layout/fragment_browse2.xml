@@ -6,7 +6,9 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:orientation="vertical"
+	app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
 	tools:keep="@layout/fragment_browse2">
 
 	<TextView
@@ -17,7 +19,7 @@
 		android:textSize="16sp"
 		android:visibility="visible" />
 
-	<FrameLayout
+	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/container_web"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent" />

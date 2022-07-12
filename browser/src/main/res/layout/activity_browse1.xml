@@ -15,7 +15,7 @@
 
 	</com.google.android.material.appbar.AppBarLayout>
 
-	<FrameLayout
+	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/container_browse"
 		android:layout_width="match_parent"
 		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"

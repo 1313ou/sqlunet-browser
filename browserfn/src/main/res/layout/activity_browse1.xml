@@ -1,10 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
@@ -13,15 +11,14 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content">
 
-		<include layout="@layout/toolbar_search"/>
+		<include layout="@layout/toolbar_search" />
 
 	</com.google.android.material.appbar.AppBarLayout>
 
-	<FrameLayout
+	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/container_browse"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-	</FrameLayout>
+		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

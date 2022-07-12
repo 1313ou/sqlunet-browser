@@ -10,13 +10,13 @@
                 tools:context="org.sqlunet.browser.xselector.XBrowse1Fragment">
 
 	<!-- x selectors -->
-	<FrameLayout
+	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/container_xselectors"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"/>
 
 	<!-- detail -->
-	<FrameLayout
+	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/container_browse2"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"

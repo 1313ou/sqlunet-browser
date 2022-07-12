@@ -18,7 +18,7 @@
 	<!--         android:textSize="30sp" -->
 	<!--         android:visibility="visible" /> -->
 
-	<FrameLayout
+	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/container_verbnet"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
 	<!--         android:textSize="30sp" -->
 	<!--         android:visibility="visible" /> -->
 
-	<FrameLayout
+	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/container_propbank"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
 	<!--         android:textSize="30sp" -->
 	<!--         android:visibility="visible" /> -->
 
-	<FrameLayout
+	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/container_wordnet"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"

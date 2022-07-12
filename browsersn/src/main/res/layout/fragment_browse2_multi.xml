@@ -9,19 +9,19 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-	<FrameLayout
+	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/container_wordnet"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		tools:ignore="InconsistentLayout"/>
 
-	<FrameLayout
+	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/container_syntagnet"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		tools:ignore="InconsistentLayout"/>
 
-	<FrameLayout
+	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/container_bnc"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"

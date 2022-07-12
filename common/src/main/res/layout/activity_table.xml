@@ -16,13 +16,11 @@
 
 	</com.google.android.material.appbar.AppBarLayout>
 
-	<FrameLayout
+	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/container_table"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-		tools:context="org.sqlunet.browser.config.TableActivity">
-
-	</FrameLayout>
+		tools:context="org.sqlunet.browser.config.TableActivity"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

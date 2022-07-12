@@ -6,6 +6,8 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
 	android:orientation="vertical">
 
 	<TextView
@@ -24,7 +26,7 @@
 	<!--         android:textSize="30sp" -->
 	<!--         android:visibility="visible" /> -->
 
-	<FrameLayout
+	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/container_wordnet"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
@@ -38,7 +40,7 @@
 	<!--         android:textSize="30sp" -->
 	<!--         android:visibility="visible" /> -->
 
-	<FrameLayout
+	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/container_verbnet"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
@@ -52,7 +54,7 @@
 	<!--         android:textSize="30sp" -->
 	<!--         android:visibility="visible" /> -->
 
-	<FrameLayout
+	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/container_propbank"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
@@ -66,7 +68,7 @@
 	<!--         android:textSize="30sp" -->
 	<!--         android:visibility="visible" /> -->
 
-	<FrameLayout
+	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/container_framenet"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
@@ -80,7 +82,7 @@
 	<!--         android:textSize="30sp" -->
 	<!--         android:visibility="visible" /> -->
 
-	<FrameLayout
+	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/container_bnc"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
