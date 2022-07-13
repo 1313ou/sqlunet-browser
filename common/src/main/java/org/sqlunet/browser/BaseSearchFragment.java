@@ -151,8 +151,6 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 			@Override
 			public void onCreateMenu(@NonNull final Menu menu, @NonNull final MenuInflater menuInflater)
 			{
-				Log.d(BaseSearchFragment.TAG, "onCreateMenu() " + menuId);
-
 				// inflate
 				menu.clear();
 				menuInflater.inflate(R.menu.main_safedata, menu);
@@ -187,6 +185,8 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	{
 		super.onDestroyView();
 
+		closeKeyboard();
+
 		// app bar
 		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
 		final ActionBar actionBar = activity.getSupportActionBar();
@@ -203,7 +203,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	@SuppressLint("InflateParams")
 	public void setupToolBar()
 	{
-		Log.d(BaseSearchFragment.TAG, "set up specific action bar " + this);
+		Log.d(BaseSearchFragment.TAG, "set up specific toolbar " + this);
 
 		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
 
