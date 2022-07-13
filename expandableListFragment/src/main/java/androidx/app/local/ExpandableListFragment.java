@@ -225,8 +225,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 	@Nullable
 	protected ExpandableListView getListView()
 	{
-		ensureList();
-		return this.mExpandableList;
+		return getExpandableListView();
 	}
 
 	/**
@@ -237,7 +236,14 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 	@Nullable
 	protected ExpandableListView getExpandableListView()
 	{
-		ensureList();
+		try
+		{
+			ensureList();
+		}
+		catch (IllegalStateException ise)
+		{
+			return null;
+		}
 		return this.mExpandableList;
 	}
 
