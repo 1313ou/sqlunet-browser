@@ -118,21 +118,4 @@ public class DownloadedPreferenceFragment extends PreferenceFragmentCompat
 			return true;
 		});
 	}
-
-	@SuppressWarnings("SameReturnValue")
-	@Override
-	public boolean onOptionsItemSelected(@NonNull MenuItem item)
-	{
-		final int itemId = item.getItemId();
-		if (itemId == android.R.id.home)
-		{
-			final Activity activity = getActivity();
-			if (activity != null)
-			{
-				startActivity(new Intent(activity, activity.getClass()));
-			}
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
 }

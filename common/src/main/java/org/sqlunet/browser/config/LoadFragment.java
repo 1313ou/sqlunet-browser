@@ -34,9 +34,7 @@ public class LoadFragment extends Fragment
 	 * Constructor
 	 */
 	public LoadFragment()
-	{
-		setHasOptionsMenu(true);
-	}
+	{}
 
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)

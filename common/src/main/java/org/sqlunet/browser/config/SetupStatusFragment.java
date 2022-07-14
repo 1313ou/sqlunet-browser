@@ -24,6 +24,7 @@ import android.widget.Toast;
 import org.sqlunet.browser.ColorUtils;
 import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.Info;
+import org.sqlunet.browser.MenuHandler;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
@@ -34,8 +35,13 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuHost;
+import androidx.core.view.MenuProvider;
 import androidx.core.widget.ImageViewCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Lifecycle;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
@@ -76,9 +82,7 @@ public class SetupStatusFragment extends Fragment implements Updatable
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */
 	public SetupStatusFragment()
-	{
-		setHasOptionsMenu(true);
-	}
+	{}
 
 	@Override
 	public void onCreate(@Nullable final Bundle savedInstanceState)
@@ -124,6 +128,39 @@ public class SetupStatusFragment extends Fragment implements Updatable
 			SetupStatusFragment.this.swipeRefreshLayout.setRefreshing(false);
 		});
 		return view;
+	}
+
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
+
+		// action bar
+		final MenuHost host = requireActivity().<Toolbar>findViewById(R.id.toolbar);
+		host.addMenuProvider(new MenuProvider()
+		{
+			@Override
+			public void onCreateMenu(@NonNull final Menu menu, @NonNull final MenuInflater menuInflater)
+			{
+				// inflate
+				menu.clear();
+				menuInflater.inflate(R.menu.main, menu);
+				menuInflater.inflate(R.menu.status, menu);
+			}
+
+			@Override
+			public boolean onMenuItemSelected(@NonNull final MenuItem menuItem)
+			{
+				boolean handled = onOptionsItemSelected(menuItem);
+				if (handled)
+				{
+					return true;
+				}
+				return MenuHandler.menuDispatch((AppCompatActivity) requireActivity(), menuItem);
+			}
+
+		}, this.getViewLifecycleOwner(), Lifecycle.State.RESUMED);
+		// host.invalidateMenu();
 	}
 
 	@Override
@@ -242,13 +279,7 @@ public class SetupStatusFragment extends Fragment implements Updatable
 
 	// M E N U
 
-	@Override
-	public void onCreateOptionsMenu(@NonNull final Menu menu, @NonNull final MenuInflater inflater)
-	{
-		// inflate the menu; this adds items to the type bar if it is present.
-		inflater.inflate(R.menu.status, menu);
-	}
-
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onOptionsItemSelected(@NonNull MenuItem item)
 	{

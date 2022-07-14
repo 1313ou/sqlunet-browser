@@ -17,15 +17,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.sqlunet.browser.MenuHandler;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.Storage;
 import org.sqlunet.settings.StorageReports;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuHost;
+import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Lifecycle;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 /**
@@ -44,9 +50,7 @@ public class StorageFragment extends Fragment
 	 * Constructor
 	 */
 	public StorageFragment()
-	{
-		setHasOptionsMenu(true);
-	}
+	{}
 
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
@@ -64,6 +68,39 @@ public class StorageFragment extends Fragment
 			StorageFragment.this.swipeRefreshLayout.setRefreshing(false);
 		});
 		return view;
+	}
+
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
+
+		// action bar
+		final MenuHost host = requireActivity().<Toolbar>findViewById(R.id.toolbar);
+		host.addMenuProvider(new MenuProvider()
+		{
+			@Override
+			public void onCreateMenu(@NonNull final Menu menu, @NonNull final MenuInflater menuInflater)
+			{
+				// inflate
+				menu.clear();
+				menuInflater.inflate(R.menu.main, menu);
+				menuInflater.inflate(R.menu.storage, menu);
+			}
+
+			@Override
+			public boolean onMenuItemSelected(@NonNull final MenuItem menuItem)
+			{
+				boolean handled = onOptionsItemSelected(menuItem);
+				if (handled)
+				{
+					return true;
+				}
+				return MenuHandler.menuDispatch((AppCompatActivity) requireActivity(), menuItem);
+			}
+
+		}, this.getViewLifecycleOwner(), Lifecycle.State.RESUMED);
+		// host.invalidateMenu();
 	}
 
 	@Override
@@ -107,13 +144,7 @@ public class StorageFragment extends Fragment
 
 	// M E N U
 
-	@Override
-	public void onCreateOptionsMenu(@NonNull final Menu menu, @NonNull final MenuInflater inflater)
-	{
-		// inflate the menu; this adds items to the type bar if it is present.
-		inflater.inflate(R.menu.storage, menu);
-	}
-
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onOptionsItemSelected(@NonNull MenuItem item)
 	{

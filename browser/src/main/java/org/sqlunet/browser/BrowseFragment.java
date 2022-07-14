@@ -54,10 +54,7 @@ import org.sqlunet.wordnet.provider.WordNetProvider;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.MenuHost;
 import androidx.fragment.app.Fragment;
 
 /**
@@ -141,6 +138,7 @@ public class BrowseFragment extends BaseSearchFragment
 
 	// M E N U
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
 	{

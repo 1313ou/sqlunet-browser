@@ -20,6 +20,7 @@ import android.widget.SpinnerAdapter;
 
 import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.Info;
+import org.sqlunet.browser.MenuHandler;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageReports;
@@ -31,7 +32,12 @@ import java.io.File;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuHost;
+import androidx.core.view.MenuProvider;
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.Lifecycle;
 
 import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_DOWNLOADER_ARG;
 import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
@@ -80,7 +86,6 @@ public class SetupFileFragment extends BaseTaskFragment
 	 */
 	public SetupFileFragment()
 	{
-		setHasOptionsMenu(true);
 		this.layoutId = R.layout.fragment_setup_file;
 	}
 
@@ -231,6 +236,39 @@ public class SetupFileFragment extends BaseTaskFragment
 		});
 
 		return view;
+	}
+
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
+
+		// action bar
+		final MenuHost host = requireActivity().<Toolbar>findViewById(R.id.toolbar);
+		host.addMenuProvider(new MenuProvider()
+		{
+			@Override
+			public void onCreateMenu(@NonNull final Menu menu, @NonNull final MenuInflater menuInflater)
+			{
+				// inflate
+				menu.clear();
+				menuInflater.inflate(R.menu.main, menu);
+				menuInflater.inflate(R.menu.setup_file, menu);
+			}
+
+			@Override
+			public boolean onMenuItemSelected(@NonNull final MenuItem menuItem)
+			{
+				boolean handled = onOptionsItemSelected(menuItem);
+				if (handled)
+				{
+					return true;
+				}
+				return MenuHandler.menuDispatch((AppCompatActivity) requireActivity(), menuItem);
+			}
+
+		}, this.getViewLifecycleOwner(), Lifecycle.State.RESUMED);
+		// host.invalidateMenu();
 	}
 
 	@NonNull
@@ -522,13 +560,7 @@ public class SetupFileFragment extends BaseTaskFragment
 
 	// M E NU
 
-	@Override
-	public void onCreateOptionsMenu(@NonNull final Menu menu, @NonNull final MenuInflater inflater)
-	{
-		inflater.inflate(R.menu.setup_file, menu);
-		super.onCreateOptionsMenu(menu, inflater);
-	}
-
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
 	{

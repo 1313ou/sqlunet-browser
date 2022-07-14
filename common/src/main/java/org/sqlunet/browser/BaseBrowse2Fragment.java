@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -60,8 +59,6 @@ public abstract class BaseBrowse2Fragment extends Fragment
 		super.onCreate(savedInstanceState);
 		//noinspection deprecation
 		this.setRetainInstance(false); // default
-		this.setHasOptionsMenu(true);
-		requireActivity().invalidateOptionsMenu();
 	}
 
 	@Override
@@ -115,13 +112,6 @@ public abstract class BaseBrowse2Fragment extends Fragment
 		Log.d(TAG, "Save instance state " + this);
 		super.onSaveInstanceState(outState);
 		outState.putParcelable(POINTER_STATE, this.pointer);
-	}
-
-	@Override
-	public void onPrepareOptionsMenu(@NonNull final Menu menu)
-	{
-		super.onPrepareOptionsMenu(menu);
-		MenuHandler.disableDataChange(menu);
 	}
 
 	/**

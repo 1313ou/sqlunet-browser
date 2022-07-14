@@ -165,6 +165,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 				setupToolBar();
 			}
 
+			@SuppressWarnings("deprecation")
 			@Override
 			public boolean onMenuItemSelected(@NonNull final MenuItem menuItem)
 			{

@@ -83,7 +83,7 @@ public class BrowseFragment extends BaseSearchFragment
 
 	// M E N U
 
-	@SuppressWarnings("SameReturnValue")
+	@SuppressWarnings({"deprecation","SameReturnValue"})
 	@Override
 	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
 	{

@@ -128,6 +128,7 @@ public class BrowseFragment extends BaseSearchFragment
 
 	// M E N U
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
 	{

@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
 
+import org.sqlunet.browser.MenuHandler;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.concurrency.Task;
 import org.sqlunet.concurrency.TaskObserver;
@@ -26,6 +27,12 @@ import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuHost;
+import androidx.core.view.MenuProvider;
+import androidx.lifecycle.Lifecycle;
 
 /**
  * Manage fragment
@@ -46,7 +53,6 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 	 */
 	public SetupDatabaseFragment()
 	{
-		setHasOptionsMenu(true);
 		this.layoutId = R.layout.fragment_setup_database;
 	}
 
@@ -113,6 +119,39 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 		return view;
 	}
 
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
+
+		// action bar
+		final MenuHost host = requireActivity().<Toolbar>findViewById(R.id.toolbar);
+		host.addMenuProvider(new MenuProvider()
+		{
+			@Override
+			public void onCreateMenu(@NonNull final Menu menu, @NonNull final MenuInflater menuInflater)
+			{
+				// inflate
+				menu.clear();
+				menuInflater.inflate(R.menu.main, menu);
+				menuInflater.inflate(R.menu.setup_database, menu);
+			}
+
+			@Override
+			public boolean onMenuItemSelected(@NonNull final MenuItem menuItem)
+			{
+				boolean handled = onOptionsItemSelected(menuItem);
+				if (handled)
+				{
+					return true;
+				}
+				return MenuHandler.menuDispatch((AppCompatActivity) requireActivity(), menuItem);
+			}
+
+		}, this.getViewLifecycleOwner(), Lifecycle.State.RESUMED);
+		// host.invalidateMenu();
+	}
+
 	// U P D A T E
 
 	@SuppressWarnings("EmptyMethod")
@@ -137,13 +176,7 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 
 	// M E NU
 
-	@Override
-	public void onCreateOptionsMenu(@NonNull final Menu menu, @NonNull final MenuInflater inflater)
-	{
-		inflater.inflate(R.menu.setup_database, menu);
-		super.onCreateOptionsMenu(menu, inflater);
-	}
-
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
 	{
