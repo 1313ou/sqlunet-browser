@@ -635,6 +635,7 @@ public class BillingManager
 	 * replace this method with "constant true" if they decompile/rebuild your app.
 	 * </p>
 	 */
+	@SuppressWarnings("BooleanMethodIsAlwaysInverted")
 	private boolean verifyValidSignature(@NonNull String signedData, String signature)
 	{
 		// Some sanity checks to see if the developer (that's you!) really followed the instructions to run this sample (don't put these checks on your app!)
