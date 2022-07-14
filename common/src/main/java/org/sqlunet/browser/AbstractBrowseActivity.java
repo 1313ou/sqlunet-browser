@@ -97,7 +97,7 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 
 	@SuppressWarnings("SameReturnValue")
 	@Override
-	public boolean onCreateOptionsMenu(final Menu menu)
+	public boolean onCreateOptionsMenu(@NonNull final Menu menu)
 	{
 		// inflate the menu; this adds items to the type bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
@@ -111,7 +111,7 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 	}
 
 	@Override
-	public boolean onPrepareOptionsMenu(final Menu menu)
+	public boolean onPrepareOptionsMenu(@NonNull final Menu menu)
 	{
 		MenuHandler.onPrepareOptionsMenu(menu);
 		return super.onPrepareOptionsMenu(menu);

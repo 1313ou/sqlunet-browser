@@ -81,7 +81,7 @@ public class Browse2Activity extends AbstractBrowse2Activity
 
 	@SuppressWarnings("SameReturnValue")
 	@Override
-	public boolean onCreateOptionsMenu(final Menu menu)
+	public boolean onCreateOptionsMenu(@NonNull final Menu menu)
 	{
 		// inflate the menu; this adds items to the type bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
@@ -95,7 +95,7 @@ public class Browse2Activity extends AbstractBrowse2Activity
 	}
 
 	@Override
-	public boolean onPrepareOptionsMenu(final Menu menu)
+	public boolean onPrepareOptionsMenu(@NonNull final Menu menu)
 	{
 		MenuHandler.onPrepareOptionsMenu(menu);
 		return super.onPrepareOptionsMenu(menu);

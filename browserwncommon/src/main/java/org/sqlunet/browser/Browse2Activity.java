@@ -62,7 +62,7 @@ public class Browse2Activity extends AbstractBrowse2Activity
 	// M E N U
 
 	@Override
-	public boolean onCreateOptionsMenu(final Menu menu)
+	public boolean onCreateOptionsMenu(@NonNull final Menu menu)
 	{
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
@@ -75,7 +75,7 @@ public class Browse2Activity extends AbstractBrowse2Activity
 	}
 
 	@Override
-	public boolean onPrepareOptionsMenu(final Menu menu)
+	public boolean onPrepareOptionsMenu(@NonNull final Menu menu)
 	{
 		MenuHandler.onPrepareOptionsMenu(menu);
 		return super.onPrepareOptionsMenu(menu);

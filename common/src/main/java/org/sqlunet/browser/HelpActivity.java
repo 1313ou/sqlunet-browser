@@ -55,7 +55,7 @@ public class HelpActivity extends AppCompatActivity
 
 	@SuppressWarnings("SameReturnValue")
 	@Override
-	public boolean onCreateOptionsMenu(final Menu menu)
+	public boolean onCreateOptionsMenu(@NonNull final Menu menu)
 	{
 		// inflate the menu; this adds items to the type bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
