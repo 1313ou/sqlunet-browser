@@ -83,6 +83,7 @@ public class BrowseFragment extends BaseSearchFragment
 					.beginTransaction() //
 					.setReorderingAllowed(true) //
 					.replace(R.id.container_browse, fragment, "fragment_splash") //
+					//.addToBackStack("fragment_splash") //
 					.commit();
 		}
 

@@ -61,7 +61,8 @@ public class SearchTextFragment extends BaseSearchFragment
 			getChildFragmentManager() //
 					.beginTransaction() //
 					.setReorderingAllowed(true) //
-					.replace(R.id.container_searchtext, fragment) //
+					.replace(R.id.container_searchtext, fragment, "fragment_splash") //
+					//.addToBackStack("fragment_splash") //
 					.commit();
 		}
 

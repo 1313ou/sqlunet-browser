@@ -90,8 +90,8 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 			getChildFragmentManager() //
 					.beginTransaction() //
 					.setReorderingAllowed(true) //
-					.replace(R.id.container_predicatematrix, fragment) //
-					.addToBackStack("fragment_splash") //
+					.replace(R.id.container_predicatematrix, fragment, "fragment_splash") //
+					// .addToBackStack("fragment_splash") //
 					.commit();
 		}
 
