@@ -46,6 +46,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.MenuHost;
 import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 
@@ -141,12 +142,15 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		// app bar
 		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
 		final ActionBar actionBar = activity.getSupportActionBar();
-		assert actionBar != null;
-		actionBar.hide();
+		if (actionBar != null)
+		{
+			actionBar.hide();
+		}
 
 		// fragment bar
-		final MenuHost host = requireActivity().<Toolbar>findViewById(R.id.toolbar_search);
-		host.addMenuProvider(new MenuProvider()
+		final Toolbar toolbar = requireActivity().<Toolbar>findViewById(R.id.toolbar_search);
+		assert toolbar != null;
+		toolbar.addMenuProvider(new MenuProvider()
 		{
 			@Override
 			public void onCreateMenu(@NonNull final Menu menu, @NonNull final MenuInflater menuInflater)
@@ -162,7 +166,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 
 				// set spinner, searchitem
 				//setupActionBar();
-				setupToolBar();
+				setupToolBar(toolbar);
 			}
 
 			@SuppressWarnings("deprecation")
@@ -178,7 +182,6 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 			}
 
 		}, this.getViewLifecycleOwner(), Lifecycle.State.RESUMED);
-		// host.invalidateMenu();
 	}
 
 	@Override
@@ -191,8 +194,10 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		// app bar
 		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
 		final ActionBar actionBar = activity.getSupportActionBar();
-		assert actionBar != null;
-		actionBar.show();
+		if (actionBar != null)
+		{
+			actionBar.show();
+		}
 	}
 
 	// T O O L B A R
@@ -202,16 +207,11 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	 */
 	@SuppressWarnings({"SameReturnValue", "WeakerAccess"})
 	@SuppressLint("InflateParams")
-	public void setupToolBar()
+	public void setupToolBar(final Toolbar toolbar)
 	{
 		Log.d(BaseSearchFragment.TAG, "set up specific toolbar " + this);
 
 		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
-
-		// toolbar
-		final Toolbar toolbar = activity.findViewById(R.id.toolbar_search);
-		assert toolbar != null;
-
 		// title
 		toolbar.setTitle(R.string.title_activity_browse);
 		toolbar.setSubtitle(R.string.app_subname);
