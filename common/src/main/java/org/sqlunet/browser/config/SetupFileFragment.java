@@ -31,6 +31,7 @@ import java.io.File;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -243,9 +244,21 @@ public class SetupFileFragment extends BaseTaskFragment
 	{
 		super.onViewCreated(view, savedInstanceState);
 
-		// action bar
-		final MenuHost host = requireActivity().<Toolbar>findViewById(R.id.toolbar);
-		host.addMenuProvider(new MenuProvider()
+		// activity
+		final AppCompatActivity activity = (AppCompatActivity)requireActivity();
+
+		// app bar
+		final ActionBar actionBar = activity.getSupportActionBar();
+		if (actionBar != null)
+		{
+			actionBar.hide();
+		}
+
+		// toolbar bar
+		final Toolbar toolbar = view.findViewById(R.id.toolbar_fragment);
+		assert toolbar != null;
+		toolbar.setTitle("FILE");
+		toolbar.addMenuProvider(new MenuProvider()
 		{
 			@Override
 			public void onCreateMenu(@NonNull final Menu menu, @NonNull final MenuInflater menuInflater)
@@ -268,7 +281,20 @@ public class SetupFileFragment extends BaseTaskFragment
 			}
 
 		}, this.getViewLifecycleOwner(), Lifecycle.State.RESUMED);
-		// host.invalidateMenu();
+	}
+
+	@Override
+	public void onDestroyView()
+	{
+		super.onDestroyView();
+
+		// app bar
+		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
+		final ActionBar actionBar = activity.getSupportActionBar();
+		if (actionBar != null)
+		{
+			actionBar.show();
+		}
 	}
 
 	@NonNull

@@ -20,8 +20,6 @@ import org.sqlunet.browser.common.R;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -87,7 +85,7 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 			// Also specify this Activity object, which implements the TabListener interface, as the callback (listener) for when
 			// this tab is selected.
 			tabLayout.addTab(tabLayout.newTab() //
-					.setTag(pagerAdapter.getItem(i)) //
+					.setTag(pagerAdapter.getFragmentClass(i)) //
 					.setContentDescription(pagerAdapter.getPageDescriptionId(i)) //
 					.setText(pagerAdapter.getPageTitleId(i)));
 		}
@@ -101,7 +99,8 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 		int position = tab.getPosition();
 		this.viewPager.setCurrentItem(position);
 
-		final Fragment fragment = (Fragment) tab.getTag();
+		final String fragmentClass = (String) tab.getTag();
+		final Fragment fragment = makeFragment(fragmentClass);
 		if (fragment instanceof Updatable)
 		{
 			final Updatable updatable = (Updatable) fragment;
@@ -123,45 +122,57 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 
 	}
 
+	@NonNull
+	private Fragment makeFragment(@Nullable final String fragmentClass)
+	{
+		Log.d(TAG, "Page fragment " + fragmentClass);
+		if (fragmentClass != null && !fragmentClass.isEmpty())
+		{
+			try
+			{
+				final Class<?> cl = Class.forName(fragmentClass);
+				final Constructor<?> cons = cl.getConstructor();
+				return (Fragment) cons.newInstance();
+			}
+			catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e)
+			{
+				Log.e(TAG, "Page fragment", e);
+			}
+		}
+		throw new IllegalArgumentException(fragmentClass);
+	}
+
 	/**
 	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
 	 * one of the sections/tabs/pages.
 	 */
 	private class SectionsPagerAdapter extends FragmentPagerAdapter
 	{
+		// @NonNull
+		// private final Fragment[] fragments;
+
 		@NonNull
-		private final Fragment[] fragments;
+		private final String[] fragmentClasses;
 
 		SectionsPagerAdapter(@NonNull final FragmentManager fragmentManager, @NonNull final Context context)
 		{
 			super(fragmentManager);
-			final List<Fragment> listOfFragments = new ArrayList<>();
+
 			final Resources res = context.getResources();
-			String[] fragmentClasses = res.getStringArray(R.array.fragment_class_setup_pages);
-			for (String fragmentClass : fragmentClasses)
-			{
-				listOfFragments.add(makeFragment(fragmentClass));
-			}
-			this.fragments = listOfFragments.toArray(new Fragment[0]);
+			fragmentClasses = res.getStringArray(R.array.fragment_class_setup_pages);
+
+			// final List<Fragment> listOfFragments = new ArrayList<>();
+			// for (String fragmentClass : fragmentClasses)
+			// {
+			// 	listOfFragments.add(makeFragment(fragmentClass));
+			// }
+			// this.fragments = listOfFragments.toArray(new Fragment[0]);
 		}
 
-		@Nullable
-		private Fragment makeFragment(@Nullable final String fragmentClass)
+		@NonNull
+		public String getFragmentClass(int i)
 		{
-			if (fragmentClass != null && !fragmentClass.isEmpty())
-			{
-				try
-				{
-					final Class<?> cl = Class.forName(fragmentClass);
-					final Constructor<?> cons = cl.getConstructor();
-					return (Fragment) cons.newInstance();
-				}
-				catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e)
-				{
-					Log.e(TAG, "Page fragment", e);
-				}
-			}
-			return null;
+			return fragmentClasses[i];
 		}
 
 		@SuppressWarnings({"WeakerAccess"})
@@ -169,14 +180,14 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 		@Override
 		public Fragment getItem(int position)
 		{
-			return this.fragments[position];
+			return makeFragment(fragmentClasses[position]);
 		}
 
 		@SuppressWarnings("WeakerAccess")
 		@Override
 		public int getCount()
 		{
-			return this.fragments.length;
+			return fragmentClasses.length;
 		}
 
 		@SuppressWarnings("WeakerAccess")

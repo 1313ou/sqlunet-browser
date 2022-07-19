@@ -2,52 +2,67 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:layout_centerHorizontal="true"
-	android:orientation="vertical"
-	tools:context="org.sqlunet.browser.config.SetupFileFragment">
+	android:layout_height="match_parent">
 
-	<LinearLayout
+	<com.google.android.material.appbar.AppBarLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
+		android:layout_height="wrap_content">
+
+		<include layout="@layout/toolbar_fragment" />
+
+	</com.google.android.material.appbar.AppBarLayout>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
 		android:layout_centerHorizontal="true"
-		android:layout_centerVertical="true"
 		android:orientation="vertical"
-		tools:ignore="UselessParent">
+		tools:context="org.sqlunet.browser.config.SetupFileFragment">
 
-		<Spinner
-			android:id="@+id/task_spinner"
-			android:layout_width="wrap_content"
+		<LinearLayout
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_gravity="center_horizontal"
-			android:layout_margin="10dp"
-			android:background="@android:color/transparent"
-			android:gravity="center" />
+			android:layout_centerHorizontal="true"
+			android:layout_centerVertical="true"
+			android:orientation="vertical"
+			tools:ignore="UselessParent">
 
-		<ImageButton
-			android:id="@+id/task_run"
-			style="@style/ActionButton"
-			android:layout_width="64dp"
-			android:layout_height="64dp"
-			android:layout_gravity="center_horizontal"
-			android:background="@drawable/bg_button_action"
-			android:contentDescription="@string/action_download"
-			android:src="@drawable/ic_run"
-			android:text="@string/action_run" />
+			<Spinner
+				android:id="@+id/task_spinner"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:layout_margin="10dp"
+				android:background="@android:color/transparent"
+				android:gravity="center" />
 
-		<TextView
-			android:id="@+id/task_status"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center_horizontal"
-			android:layout_marginBottom="20dp"
-			android:layout_marginEnd="50dp"
-			android:layout_marginStart="50dp"
-			android:layout_marginTop="20dp"
-			android:textIsSelectable="true" />
+			<ImageButton
+				android:id="@+id/task_run"
+				style="@style/ActionButton"
+				android:layout_width="64dp"
+				android:layout_height="64dp"
+				android:layout_gravity="center_horizontal"
+				android:background="@drawable/bg_button_action"
+				android:contentDescription="@string/action_download"
+				android:src="@drawable/ic_run"
+				android:text="@string/action_run" />
 
-	</LinearLayout>
-</RelativeLayout>
+			<TextView
+				android:id="@+id/task_status"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:layout_marginStart="50dp"
+				android:layout_marginTop="20dp"
+				android:layout_marginEnd="50dp"
+				android:layout_marginBottom="20dp"
+				android:textIsSelectable="true" />
+
+		</LinearLayout>
+
+	</RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -24,7 +24,7 @@
 
 		<androidx.fragment.app.FragmentContainerView
 			android:id="@+id/fragment_status"
-			android:name="org.sqlunet.browser.StatusFragment"
+			android:name="org.sqlunet.browser.config.SetupStatusFragment"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			tools:context="org.sqlunet.browser.StatusActivity"
