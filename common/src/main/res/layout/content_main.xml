@@ -8,7 +8,7 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	app:layout_behavior="@string/appbar_scrolling_view_behavior"
-	tools:showIn="@layout/main">
+	tools:showIn="@layout/activity_main_sub">
 
 	<!--<androidx.fragment.app.FragmentContainerView-->
 	<fragment
