@@ -1,31 +1,21 @@
 <!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:orientation="vertical"
-	android:paddingBottom="16dp"
-	android:paddingLeft="16dp"
-	android:paddingRight="16dp"
-	android:paddingTop="16dp"
-	android:weightSum="1"
-	tools:context="org.sqlunet.browser.SqlDialogFragment">
+	android:layout_height="match_parent">
 
-	<TextView
-		style="@android:style/TextAppearance.Small"
+	<com.google.android.material.appbar.AppBarLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center_horizontal"
-		android:text="@string/hint_sql"
-		android:textStyle="bold" />
+		android:layout_height="wrap_content">
+
+		<include layout="@layout/toolbar_fragment" />
+
+	</com.google.android.material.appbar.AppBarLayout>
 
 	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/container_sql"
 		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:layout_weight="1" />
+		android:layout_height="match_parent" />
 
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

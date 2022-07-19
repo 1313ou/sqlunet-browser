@@ -28,7 +28,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.MenuHost;
 import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
@@ -50,7 +49,8 @@ public class StorageFragment extends Fragment
 	 * Constructor
 	 */
 	public StorageFragment()
-	{}
+	{
+	}
 
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
@@ -75,9 +75,21 @@ public class StorageFragment extends Fragment
 	{
 		super.onViewCreated(view, savedInstanceState);
 
-		// action bar
-		final MenuHost host = requireActivity().<Toolbar>findViewById(R.id.toolbar);
-		host.addMenuProvider(new MenuProvider()
+		// activity
+		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
+
+		// app bar
+		final ActionBar actionBar = activity.getSupportActionBar();
+		if (actionBar != null)
+		{
+			actionBar.hide();
+		}
+
+		// toolbar bar
+		final Toolbar toolbar = activity.findViewById(R.id.toolbar_fragment);
+		assert toolbar != null;
+		toolbar.setTitle(R.string.title_storage);
+		toolbar.addMenuProvider(new MenuProvider()
 		{
 			@Override
 			public void onCreateMenu(@NonNull final Menu menu, @NonNull final MenuInflater menuInflater)
@@ -100,21 +112,30 @@ public class StorageFragment extends Fragment
 			}
 
 		}, this.getViewLifecycleOwner(), Lifecycle.State.RESUMED);
-		// host.invalidateMenu();
+
+		// nav
+		toolbar.setNavigationOnClickListener(v -> requireActivity().onBackPressed());
 	}
 
 	@Override
 	public void onResume()
 	{
 		super.onResume();
+		update();
+	}
 
+	@Override
+	public void onDestroyView()
+	{
+		super.onDestroyView();
+
+		// app bar
 		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
 		final ActionBar actionBar = activity.getSupportActionBar();
-		assert actionBar != null;
-		actionBar.setCustomView(null);
-		actionBar.setBackgroundDrawable(null);
-
-		update();
+		if (actionBar != null)
+		{
+			actionBar.show();
+		}
 	}
 
 	/**

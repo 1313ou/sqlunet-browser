@@ -28,14 +28,15 @@ import androidx.fragment.app.ListFragment;
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 @SuppressWarnings("WeakerAccess")
-public class BaseSqlFragment extends ListFragment
+public class SqlStatementsFragment extends ListFragment
 {
-	// static private final String TAG = "SqlF";
+	// static private final String TAG = "SqlStatementsF";
 
 	@Override
 	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
 		super.onViewCreated(view, savedInstanceState);
+
 		final ListView listView = this.getListView();
 		listView.setOnItemLongClickListener((av, v, pos, id) -> {
 

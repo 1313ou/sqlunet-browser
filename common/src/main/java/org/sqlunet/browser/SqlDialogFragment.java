@@ -34,9 +34,9 @@ public class SqlDialogFragment extends DialogFragment
 		assert dialog != null;
 		dialog.setTitle(R.string.title_dialog_sql);
 
-		@SuppressLint("InflateParams") final View view = inflater.inflate(R.layout.fragment_sql, container);
+		@SuppressLint("InflateParams") final View view = inflater.inflate(R.layout.fragment_sql_statements, container);
 
-		final Fragment sqlFragment = new BaseSqlFragment();
+		final Fragment sqlFragment = new SqlStatementsFragment();
 		getChildFragmentManager() //
 				.beginTransaction() //
 				.setReorderingAllowed(true) //

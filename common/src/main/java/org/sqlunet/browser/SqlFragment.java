@@ -8,10 +8,12 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 
 import org.sqlunet.browser.common.R;
 import org.sqlunet.provider.BaseProvider;
@@ -22,8 +24,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.MenuHost;
 import androidx.core.view.MenuProvider;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
 
 /**
@@ -31,10 +33,31 @@ import androidx.lifecycle.Lifecycle;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class SqlFragment extends BaseSqlFragment
+public class SqlFragment extends Fragment
 {
 	public SqlFragment()
 	{
+	}
+
+	@Nullable
+	@Override
+	public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable final Bundle savedInstanceState)
+	{
+		final View view = inflater.inflate(R.layout.fragment_sql, container, false);
+
+		if (savedInstanceState == null)
+		{
+			// splash fragment
+			final Fragment fragment = new SqlStatementsFragment();
+			getChildFragmentManager() //
+					.beginTransaction() //
+					.setReorderingAllowed(true) //
+					.replace(R.id.container_sql, fragment, "fragment_sql") //
+					//.addToBackStack("fragment_sql") //
+					.commit();
+		}
+
+		return view;
 	}
 
 	@Override
@@ -42,9 +65,21 @@ public class SqlFragment extends BaseSqlFragment
 	{
 		super.onViewCreated(view, savedInstanceState);
 
-		// action bar
-		final MenuHost host = requireActivity().<Toolbar>findViewById(R.id.toolbar);
-		host.addMenuProvider(new MenuProvider()
+		// activity
+		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
+
+		// app bar
+		final ActionBar actionBar = activity.getSupportActionBar();
+		if (actionBar != null)
+		{
+			actionBar.hide();
+		}
+
+		// toolbar bar
+		final Toolbar toolbar = view.findViewById(R.id.toolbar_fragment);
+		assert toolbar != null;
+		toolbar.setTitle("SQL");
+		toolbar.addMenuProvider(new MenuProvider()
 		{
 			@Override
 			public void onCreateMenu(@NonNull final Menu menu, @NonNull final MenuInflater menuInflater)
@@ -67,19 +102,23 @@ public class SqlFragment extends BaseSqlFragment
 			}
 
 		}, this.getViewLifecycleOwner(), Lifecycle.State.RESUMED);
-		// host.invalidateMenu();
+
+		// nav
+		toolbar.setNavigationOnClickListener(v -> requireActivity().onBackPressed());
 	}
 
 	@Override
-	public void onResume()
+	public void onDestroyView()
 	{
-		super.onResume();
+		super.onDestroyView();
 
+		// app bar
 		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
 		final ActionBar actionBar = activity.getSupportActionBar();
-		assert actionBar != null;
-		actionBar.setCustomView(null);
-		actionBar.setBackgroundDrawable(null);
+		if (actionBar != null)
+		{
+			actionBar.show();
+		}
 	}
 
 	// M E N U
