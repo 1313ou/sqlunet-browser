@@ -3,186 +3,171 @@
 <!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
-
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/swipe_refresh"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	tools:keep="@layout/fragment_status">
 
-	<com.google.android.material.appbar.AppBarLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
-
-		<include layout="@layout/toolbar_fragment" />
-
-	</com.google.android.material.appbar.AppBarLayout>
-
-	<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-		android:id="@+id/swipe_refresh"
+	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		tools:keep="@layout/fragment_status">
+		android:orientation="vertical"
+		android:weightSum="1">
 
-		<LinearLayout
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:layout_marginTop="12dp"
+			android:layout_marginBottom="12dp"
+			android:contentDescription="@string/app_name"
+			android:src="@mipmap/ic_launcher" />
+
+		<ScrollView
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:orientation="vertical"
-			android:weightSum="1">
+			android:layout_height="0dp"
+			android:layout_weight="1"
+			android:clipToPadding="false"
+			android:fillViewport="false"
+			android:orientation="vertical">
 
-			<ImageView
+			<GridLayout
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
-				android:layout_marginTop="12dp"
-				android:layout_marginBottom="12dp"
-				android:contentDescription="@string/app_name"
-				android:src="@mipmap/ic_launcher" />
+				android:layout_marginTop="20dp"
+				android:columnCount="2"
+				android:gravity="center_vertical"
+				android:orientation="horizontal"
+				android:paddingTop="20dp"
+				android:paddingBottom="20dp">
 
-			<ScrollView
-				android:layout_width="match_parent"
-				android:layout_height="0dp"
-				android:layout_weight="1"
-				android:clipToPadding="false"
-				android:fillViewport="false"
-				android:orientation="vertical">
+				<!-- database -->
 
-				<GridLayout
+				<TextView
+					style="@style/GridLabel"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
-					android:layout_gravity="center_horizontal"
-					android:layout_marginTop="20dp"
-					android:columnCount="2"
-					android:gravity="center_vertical"
-					android:orientation="horizontal"
-					android:paddingTop="20dp"
-					android:paddingBottom="20dp">
+					android:text="@string/status_database" />
 
-					<!-- database -->
+				<LinearLayout style="@style/GridData">
 
-					<TextView
-						style="@style/GridLabel"
+					<ImageView
+						android:id="@+id/status_database"
+						style="@style/GridStatusImage"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:text="@string/status_database" />
+						android:contentDescription="@string/status_database" />
 
-					<LinearLayout style="@style/GridData">
-
-						<ImageView
-							android:id="@+id/status_database"
-							style="@style/GridStatusImage"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:contentDescription="@string/status_database" />
-
-						<ImageButton
-							android:id="@+id/databaseButton"
-							style="@style/GridActionButton"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:contentDescription="@string/description_action_database"
-							android:src="@drawable/bn_download" />
-
-						<ImageButton
-							android:id="@+id/info_database"
-							style="@style/GridInfoButton"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:contentDescription="@string/description_info_database"
-							android:src="@drawable/bn_info" />
-
-					</LinearLayout>
-
-					<!-- indexes -->
-
-					<TextView
-						style="@style/GridLabel"
+					<ImageButton
+						android:id="@+id/databaseButton"
+						style="@style/GridActionButton"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:text="@string/status_indexes" />
+						android:contentDescription="@string/description_action_database"
+						android:src="@drawable/bn_download" />
 
-					<LinearLayout style="@style/GridData">
-
-						<ImageView
-							android:id="@+id/status_indexes"
-							style="@style/GridStatusImage"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:contentDescription="@string/status_indexes" />
-
-						<ImageButton
-							android:id="@+id/indexesButton"
-							style="@style/GridActionButton"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:contentDescription="@string/description_action_indexes"
-							android:src="@drawable/bn_setup" />
-
-					</LinearLayout>
-
-					<!-- searchtext verbnet -->
-
-					<TextView
-						style="@style/GridLabel"
+					<ImageButton
+						android:id="@+id/info_database"
+						style="@style/GridInfoButton"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:text="@string/status_searchtext_vn" />
+						android:contentDescription="@string/description_info_database"
+						android:src="@drawable/bn_info" />
 
-					<LinearLayout style="@style/GridData">
+				</LinearLayout>
 
-						<ImageView
-							android:id="@+id/status_searchtext_vn"
-							style="@style/GridStatusImage"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:contentDescription="@string/status_searchtext_vn"
-							tools:ignore="InconsistentLayout" />
+				<!-- indexes -->
 
-						<ImageButton
-							android:id="@+id/searchtextVnButton"
-							style="@style/GridActionButton"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:contentDescription="@string/description_action_searchtext_vn"
-							android:src="@drawable/bn_setup"
-							tools:ignore="InconsistentLayout" />
+				<TextView
+					style="@style/GridLabel"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/status_indexes" />
 
-					</LinearLayout>
+				<LinearLayout style="@style/GridData">
 
-					<!-- searchtext propbank -->
-
-					<TextView
-						style="@style/GridLabel"
+					<ImageView
+						android:id="@+id/status_indexes"
+						style="@style/GridStatusImage"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:text="@string/status_searchtext_pb" />
+						android:contentDescription="@string/status_indexes" />
 
-					<LinearLayout style="@style/GridData">
+					<ImageButton
+						android:id="@+id/indexesButton"
+						style="@style/GridActionButton"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:contentDescription="@string/description_action_indexes"
+						android:src="@drawable/bn_setup" />
 
-						<ImageView
-							android:id="@+id/status_searchtext_pb"
-							style="@style/GridStatusImage"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:contentDescription="@string/status_searchtext_pb"
-							tools:ignore="InconsistentLayout" />
+				</LinearLayout>
 
-						<ImageButton
-							android:id="@+id/searchtextPbButton"
-							style="@style/GridActionButton"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:contentDescription="@string/description_action_searchtext_pb"
-							android:src="@drawable/bn_setup"
-							tools:ignore="InconsistentLayout" />
+				<!-- searchtext verbnet -->
 
-					</LinearLayout>
+				<TextView
+					style="@style/GridLabel"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/status_searchtext_vn" />
 
-				</GridLayout>
+				<LinearLayout style="@style/GridData">
 
-			</ScrollView>
+					<ImageView
+						android:id="@+id/status_searchtext_vn"
+						style="@style/GridStatusImage"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:contentDescription="@string/status_searchtext_vn"
+						tools:ignore="InconsistentLayout" />
 
-		</LinearLayout>
+					<ImageButton
+						android:id="@+id/searchtextVnButton"
+						style="@style/GridActionButton"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:contentDescription="@string/description_action_searchtext_vn"
+						android:src="@drawable/bn_setup"
+						tools:ignore="InconsistentLayout" />
 
-	</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+				</LinearLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+				<!-- searchtext propbank -->
+
+				<TextView
+					style="@style/GridLabel"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/status_searchtext_pb" />
+
+				<LinearLayout style="@style/GridData">
+
+					<ImageView
+						android:id="@+id/status_searchtext_pb"
+						style="@style/GridStatusImage"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:contentDescription="@string/status_searchtext_pb"
+						tools:ignore="InconsistentLayout" />
+
+					<ImageButton
+						android:id="@+id/searchtextPbButton"
+						style="@style/GridActionButton"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:contentDescription="@string/description_action_searchtext_pb"
+						android:src="@drawable/bn_setup"
+						tools:ignore="InconsistentLayout" />
+
+				</LinearLayout>
+
+			</GridLayout>
+
+		</ScrollView>
+
+	</LinearLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

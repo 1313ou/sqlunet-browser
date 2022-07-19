@@ -132,71 +132,11 @@ public class SetupStatusFragment extends Fragment implements Updatable
 	}
 
 	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
-
-		// menu provider
-		final MenuProvider provider = new MenuProvider()
-		{
-			@Override
-			public void onCreateMenu(@NonNull final Menu menu, @NonNull final MenuInflater menuInflater)
-			{
-				// inflate
-				menu.clear();
-				menuInflater.inflate(R.menu.main, menu);
-				menuInflater.inflate(R.menu.status, menu);
-			}
-
-			@Override
-			public boolean onMenuItemSelected(@NonNull final MenuItem menuItem)
-			{
-				boolean handled = onOptionsItemSelected(menuItem);
-				if (handled)
-				{
-					return true;
-				}
-				return MenuHandler.menuDispatch((AppCompatActivity) requireActivity(), menuItem);
-			}
-		};
-
-		// toolbar bar
-		final Toolbar toolbar = view.findViewById(R.id.toolbar_fragment);
-		assert toolbar != null;
-		toolbar.setTitle("STATUS");
-		toolbar.addMenuProvider(provider, getViewLifecycleOwner(), Lifecycle.State.RESUMED);
-
-		// activity
-		final AppCompatActivity activity = (AppCompatActivity)requireActivity();
-
-		// app bar
-		final ActionBar actionBar = activity.getSupportActionBar();
-		if (actionBar != null)
-		{
-			actionBar.hide();
-		}
-	}
-
-	@Override
 	public void onResume()
 	{
 		super.onResume();
 
 		update();
-	}
-
-	@Override
-	public void onDestroyView()
-	{
-		super.onDestroyView();
-
-		// app bar
-		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
-		final ActionBar actionBar = activity.getSupportActionBar();
-		if (actionBar != null)
-		{
-			actionBar.show();
-		}
 	}
 
 	@Override
@@ -307,6 +247,7 @@ public class SetupStatusFragment extends Fragment implements Updatable
 
 	// M E N U
 
+	//TODO
 	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onOptionsItemSelected(@NonNull MenuItem item)

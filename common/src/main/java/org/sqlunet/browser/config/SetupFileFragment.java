@@ -239,64 +239,6 @@ public class SetupFileFragment extends BaseTaskFragment
 		return view;
 	}
 
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
-
-		// activity
-		final AppCompatActivity activity = (AppCompatActivity)requireActivity();
-
-		// app bar
-		final ActionBar actionBar = activity.getSupportActionBar();
-		if (actionBar != null)
-		{
-			actionBar.hide();
-		}
-
-		// toolbar bar
-		final Toolbar toolbar = view.findViewById(R.id.toolbar_fragment);
-		assert toolbar != null;
-		toolbar.setTitle("FILE");
-		toolbar.addMenuProvider(new MenuProvider()
-		{
-			@Override
-			public void onCreateMenu(@NonNull final Menu menu, @NonNull final MenuInflater menuInflater)
-			{
-				// inflate
-				menu.clear();
-				menuInflater.inflate(R.menu.main, menu);
-				menuInflater.inflate(R.menu.setup_file, menu);
-			}
-
-			@Override
-			public boolean onMenuItemSelected(@NonNull final MenuItem menuItem)
-			{
-				boolean handled = onOptionsItemSelected(menuItem);
-				if (handled)
-				{
-					return true;
-				}
-				return MenuHandler.menuDispatch((AppCompatActivity) requireActivity(), menuItem);
-			}
-
-		}, this.getViewLifecycleOwner(), Lifecycle.State.RESUMED);
-	}
-
-	@Override
-	public void onDestroyView()
-	{
-		super.onDestroyView();
-
-		// app bar
-		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
-		final ActionBar actionBar = activity.getSupportActionBar();
-		if (actionBar != null)
-		{
-			actionBar.show();
-		}
-	}
-
 	@NonNull
 	@Override
 	protected SpinnerAdapter makeAdapter()
@@ -582,57 +524,5 @@ public class SetupFileFragment extends BaseTaskFragment
 				getString(R.string.title_free), free, //
 				getString(R.string.title_status), getString(targetExists ? R.string.status_local_exists : R.string.status_local_not_exists));
 		return sb;
-	}
-
-	// M E NU
-
-	@SuppressWarnings("deprecation")
-	@Override
-	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
-	{
-		final Context context = requireContext();
-
-		// handle item selection
-		final int itemId = item.getItemId();
-		if (itemId == R.id.action_dirs)
-		{
-			final CharSequence message = StorageReports.reportStyledDirs(context);
-			new AlertDialog.Builder(context) //
-					.setTitle(R.string.action_dirs) //
-					.setMessage(message) //
-					.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
-					.show();
-		}
-		else if (itemId == R.id.action_storage_dirs)
-		{
-			final Pair<CharSequence[], CharSequence[]> dirs = StorageReports.getStyledStorageDirectoriesNamesValues(context);
-			final CharSequence message = StorageReports.namesValuesToReportStyled(dirs);
-			new AlertDialog.Builder(context) //
-					.setTitle(R.string.action_storage_dirs) //
-					.setMessage(message) //
-					.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
-					.show();
-		}
-		else if (itemId == R.id.action_cache_dirs)
-		{
-			final Pair<CharSequence[], CharSequence[]> dirs = StorageReports.getStyledCachesNamesValues(context);
-			final CharSequence message = StorageReports.namesValuesToReportStyled(dirs);
-			new AlertDialog.Builder(context) //
-					.setTitle(R.string.action_cache_dirs) //
-					.setMessage(message) //
-					.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
-					.show();
-		}
-		else if (itemId == R.id.action_download_dirs)
-		{
-			final Pair<CharSequence[], CharSequence[]> dirs = StorageReports.getStyledDownloadNamesValues(context);
-			final CharSequence message = StorageReports.namesValuesToReportStyled(dirs);
-			new AlertDialog.Builder(context) //
-					.setTitle(R.string.action_download_dirs) //
-					.setMessage(message) //
-					.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
-					.show();
-		}
-		return false;
 	}
 }

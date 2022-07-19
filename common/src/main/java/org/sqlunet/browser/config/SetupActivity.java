@@ -10,13 +10,18 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.material.tabs.TabLayout;
 
 import org.sqlunet.browser.EntryActivity;
+import org.sqlunet.browser.MenuHandler;
 import org.sqlunet.browser.common.R;
+import org.sqlunet.provider.ManagerContract;
+import org.sqlunet.provider.ProviderArgs;
+import org.sqlunet.settings.StorageReports;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -24,6 +29,7 @@ import java.lang.reflect.InvocationTargetException;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -239,6 +245,9 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 	{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.setup, menu);
+		getMenuInflater().inflate(R.menu.status, menu);
+		getMenuInflater().inflate(R.menu.setup_file, menu);
+		getMenuInflater().inflate(R.menu.setup_database, menu);
 		return true;
 	}
 
@@ -275,6 +284,56 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 			final Intent intent = new Intent(this, LogsActivity.class);
 			startActivity(intent);
 			return true;
+		}
+		else if (itemId == R.id.action_tables_and_indices)
+		{
+			Intent intent = ManagerContract.makeTablesAndIndexesIntent(this);
+			intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_dbobject);
+			startActivity(intent);
+			return true;
+		}
+		else if (MenuHandler.menuDispatch(this, item))
+		{
+			return true;
+		}
+		if (itemId == R.id.action_dirs)
+		{
+			final CharSequence message = StorageReports.reportStyledDirs(this);
+			new AlertDialog.Builder(this) //
+					.setTitle(R.string.action_dirs) //
+					.setMessage(message) //
+					.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
+					.show();
+		}
+		else if (itemId == R.id.action_storage_dirs)
+		{
+			final Pair<CharSequence[], CharSequence[]> dirs = StorageReports.getStyledStorageDirectoriesNamesValues(this);
+			final CharSequence message = StorageReports.namesValuesToReportStyled(dirs);
+			new AlertDialog.Builder(this) //
+					.setTitle(R.string.action_storage_dirs) //
+					.setMessage(message) //
+					.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
+					.show();
+		}
+		else if (itemId == R.id.action_cache_dirs)
+		{
+			final Pair<CharSequence[], CharSequence[]> dirs = StorageReports.getStyledCachesNamesValues(this);
+			final CharSequence message = StorageReports.namesValuesToReportStyled(dirs);
+			new AlertDialog.Builder(this) //
+					.setTitle(R.string.action_cache_dirs) //
+					.setMessage(message) //
+					.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
+					.show();
+		}
+		else if (itemId == R.id.action_download_dirs)
+		{
+			final Pair<CharSequence[], CharSequence[]> dirs = StorageReports.getStyledDownloadNamesValues(this);
+			final CharSequence message = StorageReports.namesValuesToReportStyled(dirs);
+			new AlertDialog.Builder(this) //
+					.setTitle(R.string.action_download_dirs) //
+					.setMessage(message) //
+					.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
+					.show();
 		}
 
 		return super.onOptionsItemSelected(item);

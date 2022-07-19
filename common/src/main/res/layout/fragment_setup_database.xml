@@ -2,60 +2,46 @@
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context="org.sqlunet.browser.config.SetupDatabaseFragment">
 
-	<com.google.android.material.appbar.AppBarLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+	<Spinner
+		android:id="@+id/task_spinner"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"
+		android:layout_centerVertical="true"
+		android:layout_margin="10dp"
+		android:background="@android:color/transparent"
+		android:gravity="center" />
 
-		<include layout="@layout/toolbar_fragment" />
+	<ImageButton
+		android:id="@+id/task_run"
+		style="@style/ActionButton"
+		android:layout_width="64dp"
+		android:layout_height="64dp"
+		android:layout_below="@+id/task_spinner"
+		android:layout_centerHorizontal="true"
+		android:layout_centerVertical="true"
+		android:background="@drawable/bg_button_action"
+		android:contentDescription="@string/action_download"
+		android:src="@drawable/ic_run"
+		android:text="@string/action_run" />
 
-	</com.google.android.material.appbar.AppBarLayout>
+	<TextView
+		android:id="@+id/task_status"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/task_run"
+		android:layout_centerHorizontal="true"
+		android:layout_marginStart="50dp"
+		android:layout_marginTop="20dp"
+		android:layout_marginEnd="50dp"
+		android:layout_marginBottom="20dp"
+		android:textIsSelectable="true" />
 
-	<RelativeLayout
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:orientation="vertical"
-		tools:context="org.sqlunet.browser.config.SetupDatabaseFragment">
-
-		<Spinner
-			android:id="@+id/task_spinner"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_centerHorizontal="true"
-			android:layout_centerVertical="true"
-			android:layout_margin="10dp"
-			android:background="@android:color/transparent"
-			android:gravity="center" />
-
-		<ImageButton
-			android:id="@+id/task_run"
-			style="@style/ActionButton"
-			android:layout_width="64dp"
-			android:layout_height="64dp"
-			android:layout_below="@+id/task_spinner"
-			android:layout_centerHorizontal="true"
-			android:layout_centerVertical="true"
-			android:background="@drawable/bg_button_action"
-			android:contentDescription="@string/action_download"
-			android:src="@drawable/ic_run"
-			android:text="@string/action_run" />
-
-		<TextView
-			android:id="@+id/task_status"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_below="@+id/task_run"
-			android:layout_centerHorizontal="true"
-			android:layout_marginStart="50dp"
-			android:layout_marginTop="20dp"
-			android:layout_marginEnd="50dp"
-			android:layout_marginBottom="20dp"
-			android:textIsSelectable="true" />
-
-	</RelativeLayout>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</RelativeLayout>

@@ -120,64 +120,6 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 		return view;
 	}
 
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
-
-		// activity
-		final AppCompatActivity activity = (AppCompatActivity)requireActivity();
-
-		// app bar
-		final ActionBar actionBar = activity.getSupportActionBar();
-		if (actionBar != null)
-		{
-			actionBar.hide();
-		}
-
-		// toolbar bar
-		final Toolbar toolbar = activity.findViewById(R.id.toolbar_fragment);
-		assert toolbar != null;
-		toolbar.setTitle("DATABASE");
-		toolbar.addMenuProvider(new MenuProvider()
-		{
-			@Override
-			public void onCreateMenu(@NonNull final Menu menu, @NonNull final MenuInflater menuInflater)
-			{
-				// inflate
-				menu.clear();
-				menuInflater.inflate(R.menu.main, menu);
-				menuInflater.inflate(R.menu.setup_database, menu);
-			}
-
-			@Override
-			public boolean onMenuItemSelected(@NonNull final MenuItem menuItem)
-			{
-				boolean handled = onOptionsItemSelected(menuItem);
-				if (handled)
-				{
-					return true;
-				}
-				return MenuHandler.menuDispatch((AppCompatActivity) requireActivity(), menuItem);
-			}
-
-		}, this.getViewLifecycleOwner(), Lifecycle.State.RESUMED);
-	}
-
-	@Override
-	public void onDestroyView()
-	{
-		super.onDestroyView();
-
-		// app bar
-		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
-		final ActionBar actionBar = activity.getSupportActionBar();
-		if (actionBar != null)
-		{
-			actionBar.show();
-		}
-	}
-
 	// U P D A T E
 
 	@SuppressWarnings("EmptyMethod")
@@ -198,29 +140,5 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 		adapter.setDropDownViewResource(R.layout.spinner_item_task_dropdown);
 
 		return adapter;
-	}
-
-	// M E NU
-
-	@SuppressWarnings("deprecation")
-	@Override
-	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
-	{
-		Intent intent;
-
-		// handle item selection
-		final int itemId = item.getItemId();
-		if (itemId == R.id.action_tables_and_indices)
-		{
-			intent = ManagerContract.makeTablesAndIndexesIntent(requireContext());
-			intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_dbobject);
-		}
-		else
-		{
-			return false;
-		}
-
-		startActivity(intent);
-		return true;
 	}
 }
