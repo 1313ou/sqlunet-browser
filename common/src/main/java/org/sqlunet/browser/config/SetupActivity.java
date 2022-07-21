@@ -16,7 +16,6 @@ import android.view.MenuItem;
 
 import com.google.android.material.tabs.TabLayout;
 
-import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.MenuHandler;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.provider.ManagerContract;
@@ -259,20 +258,11 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 		// as you specify a parent activity in AndroidManifest.xml.
 		final int itemId = item.getItemId();
 
-		// handle home
-		if (itemId == android.R.id.home)
+		if (MenuHandler.menuDispatch(this, item))
 		{
-			Log.d(TAG, "onHomePressed");
-			EntryActivity.rerun(this);
 			return true;
 		}
-		else if (itemId == R.id.action_settings)
-		{
-			final Intent intent = new Intent(this, SettingsActivity.class);
-			intent.addFlags(BaseSettingsActivity.SETTINGS_FLAGS);
-			startActivity(intent);
-			return true;
-		}
+
 		else if (itemId == R.id.action_diagnostics)
 		{
 			final Intent intent = new Intent(this, DiagnosticsActivity.class);
@@ -292,11 +282,7 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 			startActivity(intent);
 			return true;
 		}
-		else if (MenuHandler.menuDispatch(this, item))
-		{
-			return true;
-		}
-		if (itemId == R.id.action_dirs)
+		else if (itemId == R.id.action_dirs)
 		{
 			final CharSequence message = StorageReports.reportStyledDirs(this);
 			new AlertDialog.Builder(this) //
