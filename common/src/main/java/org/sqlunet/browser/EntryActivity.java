@@ -6,21 +6,19 @@ package org.sqlunet.browser;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.sqlunet.browser.common.R;
 import org.sqlunet.browser.config.LoadActivity;
 import org.sqlunet.browser.config.SetupAsset;
 import org.sqlunet.browser.config.SetupDatabaseTasks;
 import org.sqlunet.browser.config.Status;
-import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 /**
@@ -32,15 +30,6 @@ public class EntryActivity extends AppCompatActivity
 {
 	static private final String TAG = "EntryA";
 
-	public static final int INITIAL_TASK_FLAGS = 0;
-
-	public static final int POST_INITIAL_TASK_FLAGS = 0;
-
-	private static final int BRANCH_FLAGS = 0;
-
-	public static final int REENTER_FLAGS = Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK;
-
-	@RequiresApi(api = Build.VERSION_CODES.M)
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -119,7 +108,7 @@ public class EntryActivity extends AppCompatActivity
 		final String clazz = Settings.getLaunchPref(this); // = "org.sqlunet.browser.MainActivity";
 		final Intent intent = new Intent();
 		intent.setClassName(this, clazz);
-		intent.addFlags(-POST_INITIAL_TASK_FLAGS);
+		intent.addFlags(0);
 		startActivity(intent);
 		finish();
 	}
@@ -146,7 +135,7 @@ public class EntryActivity extends AppCompatActivity
 	private static void branchOffToLoad(@NonNull final AppCompatActivity activity)
 	{
 		final Intent intent = new Intent(activity, LoadActivity.class);
-		intent.addFlags(BRANCH_FLAGS);
+		intent.addFlags(0);
 		activity.startActivity(intent);
 	}
 
@@ -158,7 +147,7 @@ public class EntryActivity extends AppCompatActivity
 	static public void rerun(@NonNull final Context context)
 	{
 		final Intent intent = new Intent(context, EntryActivity.class);
-		intent.addFlags(REENTER_FLAGS);
+		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 		context.startActivity(intent);
 	}
 }

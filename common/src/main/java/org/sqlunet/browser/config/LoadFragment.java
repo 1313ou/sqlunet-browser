@@ -48,7 +48,7 @@ public class LoadFragment extends Fragment
 
 			Activity activity = requireActivity();
 			final Intent intent = new Intent(activity, AssetLoadActivity.class);
-			intent.addFlags(EntryActivity.INITIAL_TASK_FLAGS);
+			intent.addFlags(0);
 			activity.startActivity(intent);
 		});
 		final ImageButton downloadButton = view.findViewById(R.id.download);
@@ -58,7 +58,7 @@ public class LoadFragment extends Fragment
 			final Intent intent = new Intent(activity, DownloadActivity.class);
 			intent.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadSource(activity));
 			intent.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadTarget(activity));
-			intent.addFlags(EntryActivity.INITIAL_TASK_FLAGS);
+			intent.addFlags(0);
 			activity.startActivity(intent);
 		});
 		final Button cancelButton = view.findViewById(R.id.cancelButton);

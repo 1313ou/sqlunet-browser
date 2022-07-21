@@ -70,7 +70,7 @@ public class MenuHandler
 		if (itemId == R.id.action_main)
 		{
 			intent = new Intent(activity, MainActivity.class);
-			intent.addFlags(EntryActivity.POST_INITIAL_TASK_FLAGS);
+			intent.addFlags(0);
 		}
 
 		// status
@@ -111,7 +111,7 @@ public class MenuHandler
 		else if (itemId == R.id.action_settings)
 		{
 			intent = new Intent(activity, SettingsActivity.class);
-			intent.addFlags(EntryActivity.POST_INITIAL_TASK_FLAGS);
+			intent.addFlags(0);
 		}
 		else if (itemId == R.id.action_clear_settings)
 		{
@@ -119,7 +119,7 @@ public class MenuHandler
 			final SharedPreferences.Editor edit = prefs.edit();
 			edit.clear().apply();
 			intent = new Intent(activity, SettingsActivity.class);
-			intent.addFlags(EntryActivity.POST_INITIAL_TASK_FLAGS);
+			intent.addFlags(0);
 		}
 
 		// sql
@@ -169,6 +169,7 @@ public class MenuHandler
 			AppRate.rate(activity);
 			return true;
 		}
+
 		else
 		{
 			return menuDispatchCommon(activity, itemId);
@@ -197,21 +198,21 @@ public class MenuHandler
 		if (itemId == R.id.action_status)
 		{
 			intent = new Intent(activity, StatusActivity.class);
-			intent.addFlags(EntryActivity.INITIAL_TASK_FLAGS);
+			intent.addFlags(0);
 		}
 
 		// change data
 		else if (itemId == R.id.action_setup)
 		{
 			intent = new Intent(activity, SetupActivity.class);
-			intent.addFlags(EntryActivity.INITIAL_TASK_FLAGS);
+			intent.addFlags(0);
 		}
 		else if (itemId == R.id.action_download)
 		{
 			intent = new Intent(activity, DownloadActivity.class);
 			intent.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadSource(activity));
 			intent.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadTarget(activity));
-			intent.addFlags(EntryActivity.INITIAL_TASK_FLAGS);
+			intent.addFlags(0);
 		}
 
 		// settings
@@ -219,7 +220,7 @@ public class MenuHandler
 		{
 			intent = new Intent(activity, SettingsActivity.class);
 			intent.putExtra(INITIAL_ARG, true);
-			intent.addFlags(EntryActivity.INITIAL_TASK_FLAGS);
+			intent.addFlags(0);
 		}
 		else if (itemId == R.id.action_clear_settings)
 		{
@@ -227,7 +228,7 @@ public class MenuHandler
 			final SharedPreferences.Editor edit = prefs.edit();
 			edit.clear().apply();
 			intent = new Intent(activity, SettingsActivity.class);
-			intent.addFlags(EntryActivity.INITIAL_TASK_FLAGS);
+			intent.addFlags(0);
 		}
 
 		// others
@@ -283,6 +284,11 @@ public class MenuHandler
 			SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null, null);
 			return true;
 		}
+		else if (itemId == R.id.action_asset_dispose)
+		{
+			SetupAsset.disposeAsset(Settings.getAssetPack(activity), activity);
+			return true;
+		}
 		/*
 		else if (itemId == R.id.action_asset_deliver_primary)
 		{
@@ -311,13 +317,6 @@ public class MenuHandler
 			}
 			return true;
 		}
-		*/
-		else if (itemId == R.id.action_asset_dispose)
-		{
-			SetupAsset.disposeAsset(Settings.getAssetPack(activity), activity);
-			return true;
-		}
-		/*
 		else if (itemId == R.id.action_asset_dispose_primary)
 		{
 			SetupAsset.disposeAsset(activity.getString(R.string.asset_primary), activity);
@@ -363,6 +362,7 @@ public class MenuHandler
 			activity.finish();
 			return true;
 		}
+
 		else
 		{
 			return false;
@@ -371,6 +371,23 @@ public class MenuHandler
 		// start activity
 		activity.startActivity(intent);
 		return true;
+	}
+
+	/**
+	 * Dispatch menu item action, handle home
+	 *
+	 * @param activity activity
+	 * @param itemId   menu item id
+	 * @return true if processed/consumed
+	 */
+	static private boolean menuDispatchHome(@NonNull final AppCompatActivity activity, final int itemId)
+	{
+		if (itemId == android.R.id.home)
+		{
+			EntryActivity.rerun(activity);
+			return true;
+		}
+		return false;
 	}
 
 	/*
@@ -399,12 +416,6 @@ public class MenuHandler
 			String title = String.format(res.getString(formatId), res.getString(assetNameId));
 			menuItem.setTitle(title);
 		}
-	}
-
-	@SuppressWarnings("EmptyMethod")
-	public static void onPrepareOptionsMenu(@NonNull Menu menu)
-	{
-		//
 	}
 
 	public static void disableDataChange(@NonNull Menu menu)
