@@ -75,6 +75,10 @@ public class MainActivity extends AppCompatActivity
 		this.appBarConfiguration = new AppBarConfiguration.Builder(topDests).setOpenableLayout(drawer).build();
 		NavigationUI.setupActionBarWithNavController(this, navController, this.appBarConfiguration);
 		NavigationUI.setupWithNavController(navView, navController);
+
+		//navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+		//	Log.d(TAG, "Nav " + destination);
+		//});
 	}
 
 	@Override
@@ -159,13 +163,6 @@ public class MainActivity extends AppCompatActivity
 	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
 	{
 		return MenuHandler.menuDispatch(this, item);
-	}
-
-	@Override
-	public boolean onPrepareOptionsMenu(@NonNull final Menu menu)
-	{
-		MenuHandler.onPrepareOptionsMenu(menu);
-		return super.onPrepareOptionsMenu(menu);
 	}
 
 	// N A V
