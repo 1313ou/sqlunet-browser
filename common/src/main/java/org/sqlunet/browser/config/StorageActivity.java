@@ -57,13 +57,4 @@ public class StorageActivity extends AppCompatActivity
 	{
 		return MenuHandler.menuDispatch(this, item);
 	}
-
-	/*
-	@Override
-	public boolean onPrepareOptionsMenu(final Menu menu)
-	{
-		MenuHandler.onPrepareOptionsMenu(menu);
-		return super.onPrepareOptionsMenu(menu);
-	}
-	*/
 }
