@@ -89,7 +89,6 @@ public class SetupStatusFragment extends Fragment implements Updatable
 	public void onCreate(@Nullable final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-
 		this.activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
 			boolean success = result.getResultCode() == Activity.RESULT_OK;
 			Log.d(TAG, "Download " + (success ? "succeeded" : "failed"));

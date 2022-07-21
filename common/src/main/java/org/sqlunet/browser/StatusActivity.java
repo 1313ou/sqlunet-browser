@@ -59,23 +59,6 @@ public class StatusActivity extends AppCompatActivity
 	@Override
 	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
 	{
-		// handle home
-		if (item.getItemId() == android.R.id.home)
-		{
-			Log.d(TAG, "onHomePressed");
-			EntryActivity.rerun(this);
-			return true;
-		}
-
 		return MenuHandler.menuDispatch(this, item);
 	}
-
-	/*
-	@Override
-	public boolean onPrepareOptionsMenu(final Menu menu)
-	{
-		MenuHandler.populateAssets(this, menu);
-		return super.onPrepareOptionsMenu(menu);
-	}
-	*/
 }
