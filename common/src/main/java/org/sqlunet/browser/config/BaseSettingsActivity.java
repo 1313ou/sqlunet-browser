@@ -249,7 +249,7 @@ public abstract class BaseSettingsActivity extends AppCompatActivity implements 
 	{
 		final Intent restartIntent = getPackageManager().getLaunchIntentForPackage(getPackageName());
 		assert restartIntent != null;
-		restartIntent.addFlags(EntryActivity.REENTER_FLAGS);
+		restartIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 		startActivity(restartIntent);
 	}
 }
