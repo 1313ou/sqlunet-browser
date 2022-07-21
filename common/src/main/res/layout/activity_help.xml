@@ -16,20 +16,12 @@
 
 	</com.google.android.material.appbar.AppBarLayout>
 
-	<FrameLayout
+	<androidx.fragment.app.FragmentContainerView
+		android:id="@+id/fragment_help"
+		android:name="org.sqlunet.browser.HelpFragment"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-		tools:context="org.sqlunet.browser.HelpActivity"
-		tools:ignore="MergeRootFrame">
-
-		<androidx.fragment.app.FragmentContainerView
-			android:id="@+id/fragment_help"
-			android:name="org.sqlunet.browser.HelpFragment"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			tools:layout="@layout/fragment_help" />
-
-	</FrameLayout>
+		tools:layout="@layout/fragment_help" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

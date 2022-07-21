@@ -8,7 +8,6 @@
 	android:layout_height="match_parent"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:orientation="vertical"
-	app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
 	tools:keep="@layout/fragment_browse2">
 
 	<TextView

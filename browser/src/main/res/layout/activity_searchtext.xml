@@ -17,19 +17,12 @@
 
 	</com.google.android.material.appbar.AppBarLayout>
 
-	<FrameLayout
+	<androidx.fragment.app.FragmentContainerView
+		android:id="@+id/fragment_searchtext"
+		android:name="org.sqlunet.browser.SearchTextFragment"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-		tools:context="org.sqlunet.browser.SearchTextActivity">
-
-		<androidx.fragment.app.FragmentContainerView
-			android:id="@+id/fragment_searchtext"
-			android:name="org.sqlunet.browser.SearchTextFragment"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			tools:layout="@layout/fragment_searchtext" />
-
-	</FrameLayout>
+		tools:layout="@layout/fragment_searchtext" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

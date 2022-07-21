@@ -9,7 +9,6 @@
 	android:layout_height="match_parent"
 	android:baselineAligned="false"
 	android:orientation="horizontal"
-	app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
 	tools:context="org.sqlunet.browser.selector.Browse1Fragment">
 
 	<!-- selectors -->

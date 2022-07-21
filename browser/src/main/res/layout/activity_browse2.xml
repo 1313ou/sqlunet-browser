@@ -15,25 +15,10 @@
 
 	</com.google.android.material.appbar.AppBarLayout>
 
-	<androidx.core.widget.NestedScrollView
+	<androidx.fragment.app.FragmentContainerView
+		android:id="@+id/container_browse2"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
-		<!--
-		<androidx.fragment.app.FragmentContainerView
-			android:id="@+id/fragment_detail"
-			android:name="org.sqlunet.browser.Browse2Fragment"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			tools:layout="@layout/activity_browse2"/>
-		-->
-
-		<androidx.fragment.app.FragmentContainerView
-			android:id="@+id/container_browse2"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content" />
-
-	</androidx.core.widget.NestedScrollView>
+		android:layout_height="wrap_content"
+		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,10 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
@@ -15,24 +13,17 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content">
 
-		<include layout="@layout/toolbar"/>
+		<include layout="@layout/toolbar" />
 
 	</com.google.android.material.appbar.AppBarLayout>
 
-	<FrameLayout
+	<androidx.fragment.app.FragmentContainerView
+		android:id="@+id/fragment_status"
+		android:name="org.sqlunet.browser.fn.SetupFnStatusFragment"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-		tools:context="org.sqlunet.browser.StatusActivity">
-
-		<androidx.fragment.app.FragmentContainerView
-			android:id="@+id/fragment_status"
-			android:name="org.sqlunet.browser.fn.SetupFnStatusFragment"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			tools:context="org.sqlunet.browser.StatusActivity"
-			tools:layout="@layout/fragment_status"/>
-
-	</FrameLayout>
+		tools:context="org.sqlunet.browser.StatusActivity"
+		tools:layout="@layout/fragment_status" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
