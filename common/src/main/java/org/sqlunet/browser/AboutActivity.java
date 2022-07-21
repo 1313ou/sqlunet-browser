@@ -44,7 +44,6 @@ public class AboutActivity extends AppCompatActivity
 	@Override
 	public boolean onCreateOptionsMenu(@NonNull final Menu menu)
 	{
-		// inflate the menu; this adds items to the type bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
@@ -54,13 +53,4 @@ public class AboutActivity extends AppCompatActivity
 	{
 		return MenuHandler.menuDispatch(this, item);
 	}
-
-	/*
-	@Override
-	public boolean onPrepareOptionsMenu(final Menu menu)
-	{
-		MenuHandler.onPrepareOptionsMenu(menu);
-		return super.onPrepareOptionsMenu(menu);
-	}
-	*/
 }

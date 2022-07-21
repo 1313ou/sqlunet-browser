@@ -97,13 +97,6 @@ public abstract class AbstractSearchTextActivity<F extends BaseSearchFragment> e
 		return MenuHandler.menuDispatch(this, item);
 	}
 
-	@Override
-	public boolean onPrepareOptionsMenu(@NonNull final Menu menu)
-	{
-		MenuHandler.onPrepareOptionsMenu(menu);
-		return super.onPrepareOptionsMenu(menu);
-	}
-
 	// S E A R C H
 
 	/**
