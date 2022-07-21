@@ -30,9 +30,11 @@
 		android:title="@string/action_download_dirs"
 		app:showAsAction="never"
 		tools:ignore="AppCompatResource" />
+	<!--
 	<item
 		android:id="@+id/action_refresh"
 		android:title="@string/action_refresh"
 		app:showAsAction="never"
 		tools:ignore="AppCompatResource" />
+	-->
 </menu>

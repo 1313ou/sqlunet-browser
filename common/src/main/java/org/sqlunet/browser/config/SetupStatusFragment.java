@@ -12,9 +12,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -24,7 +21,6 @@ import android.widget.Toast;
 import org.sqlunet.browser.ColorUtils;
 import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.Info;
-import org.sqlunet.browser.MenuHandler;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
@@ -35,14 +31,8 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.MenuHost;
-import androidx.core.view.MenuProvider;
 import androidx.core.widget.ImageViewCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Lifecycle;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
@@ -83,7 +73,8 @@ public class SetupStatusFragment extends Fragment implements Updatable
 	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
 	 */
 	public SetupStatusFragment()
-	{}
+	{
+	}
 
 	@Override
 	public void onCreate(@Nullable final Bundle savedInstanceState)
@@ -246,7 +237,7 @@ public class SetupStatusFragment extends Fragment implements Updatable
 
 	// M E N U
 
-	//TODO
+	/*
 	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onOptionsItemSelected(@NonNull MenuItem item)
@@ -271,4 +262,5 @@ public class SetupStatusFragment extends Fragment implements Updatable
 		}
 		return true;
 	}
+	*/
 }

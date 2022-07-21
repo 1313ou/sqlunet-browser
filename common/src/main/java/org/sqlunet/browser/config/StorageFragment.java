@@ -212,18 +212,6 @@ public class StorageFragment extends Fragment
 					.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
 					.show();
 		}
-		else if (itemId == R.id.action_refresh)
-		{
-			// make sure that the SwipeRefreshLayout is displaying its refreshing indicator
-			if (!this.swipeRefreshLayout.isRefreshing())
-			{
-				this.swipeRefreshLayout.setRefreshing(true);
-			}
-			update();
-
-			// stop the refreshing indicator
-			this.swipeRefreshLayout.setRefreshing(false);
-		}
 		else if (item.getItemId() == R.id.action_copy)
 		{
 			final StringBuilder sb = new StringBuilder();
@@ -256,6 +244,18 @@ public class StorageFragment extends Fragment
 			assert clipboard != null;
 			clipboard.setPrimaryClip(clip);
 		}
+		// else if (itemId == R.id.action_refresh)
+		// {
+		// 	// make sure that the SwipeRefreshLayout is displaying its refreshing indicator
+		// 	if (!this.swipeRefreshLayout.isRefreshing())
+		// 	{
+		// 		this.swipeRefreshLayout.setRefreshing(true);
+		// 	}
+		// 	update();
+		//
+		// 	// stop the refreshing indicator
+		// 	this.swipeRefreshLayout.setRefreshing(false);
+		// }
 		else
 		{
 			return false;

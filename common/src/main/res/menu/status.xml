@@ -6,11 +6,6 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools">
 	<item
-		android:id="@+id/action_refresh"
-		android:title="@string/action_refresh"
-		app:showAsAction="never"
-		tools:ignore="AppCompatResource" />
-	<item
 		android:id="@+id/action_diagnostics"
 		android:title="@string/action_diagnostics"
 		app:showAsAction="never"
@@ -20,4 +15,11 @@
 		android:title="@string/action_logs"
 		app:showAsAction="never"
 		tools:ignore="AppCompatResource" />
+	<!--
+	<item
+		android:id="@+id/action_refresh"
+		android:title="@string/action_refresh"
+		app:showAsAction="never"
+		tools:ignore="AppCompatResource" />
+	-->
 </menu>
