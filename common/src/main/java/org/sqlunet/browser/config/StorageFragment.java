@@ -86,7 +86,7 @@ public class StorageFragment extends Fragment
 		}
 
 		// toolbar bar
-		final Toolbar toolbar = activity.findViewById(R.id.toolbar_fragment);
+		final Toolbar toolbar = view.findViewById(R.id.toolbar_fragment);
 		assert toolbar != null;
 		toolbar.setTitle(R.string.title_storage);
 		toolbar.addMenuProvider(new MenuProvider()

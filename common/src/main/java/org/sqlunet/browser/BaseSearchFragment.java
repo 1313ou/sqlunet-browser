@@ -148,7 +148,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		}
 
 		// fragment bar
-		final Toolbar toolbar = requireActivity().<Toolbar>findViewById(R.id.toolbar_search);
+		final Toolbar toolbar = view.findViewById(R.id.toolbar_search);
 		assert toolbar != null;
 		toolbar.addMenuProvider(new MenuProvider()
 		{
