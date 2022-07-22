@@ -424,47 +424,64 @@ public class DownloadFragment extends BaseDownloadFragment
 		}
 
 		// issue notification
-		Log.d(TAG, "Notification id=" + id + " type=" + type.name() + " " + notification);
-		manager.notify(id, notification);
+		if (notification != null)
+		{
+			Log.d(TAG, "Notification id=" + id + " type=" + type.name() + " " + notification);
+			manager.notify(id, notification);
+		}
 	}
 
+	@Nullable
 	private Notification makeNotificationStartOrUpdate(final String contentTitle, final String contentText, final int id)
 	{
-		// builder
-		final NotificationCompat.Builder builder = new NotificationCompat.Builder(this.appContext, CHANNEL_ID);
-		builder.setDefaults(NotificationCompat.DEFAULT_LIGHTS) //
-				.setSmallIcon(android.R.drawable.stat_sys_download) //
-				.setContentTitle(contentTitle) //
-				.setContentText(contentText) //
-		// .setColor(some color) //
-		;
+		try
+		{
+			// builder
+			final NotificationCompat.Builder builder = new NotificationCompat.Builder(this.appContext, CHANNEL_ID);
+			builder.setDefaults(NotificationCompat.DEFAULT_LIGHTS) //
+					.setSmallIcon(android.R.drawable.stat_sys_download) //
+					.setContentTitle(contentTitle) //
+					.setContentText(contentText) //
+			//.setColor(some color) //
+			;
 
-		// action
-		final Intent intent = new Intent(this.appContext, Killer.class);
-		intent.setAction(getAction());
-		intent.putExtra(DownloadFragment.NOTIFICATION_ID, id);
-		final int flags = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M ? //
-				PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE : //
-				PendingIntent.FLAG_UPDATE_CURRENT;
-		final PendingIntent pendingIntent = PendingIntent.getBroadcast(this.appContext, (int) System.currentTimeMillis(), intent, flags); // use System.currentTimeMillis() to have a unique ID for the pending intent
-		NotificationCompat.Action action = new NotificationCompat.Action.Builder(R.drawable.ic_notif_cancel, this.appContext.getString(R.string.action_cancel).toUpperCase(Locale.getDefault()), pendingIntent).build();
-		builder.addAction(action);
-
-		// build notification
-		return builder.build();
+			// action
+			final Intent intent = new Intent(this.appContext, Killer.class);
+			intent.setAction(getAction());
+			intent.putExtra(DownloadFragment.NOTIFICATION_ID, id);
+			final int flags = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M ? //
+					PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE : //
+					PendingIntent.FLAG_UPDATE_CURRENT;
+			final PendingIntent pendingIntent = PendingIntent.getBroadcast(this.appContext, (int) System.currentTimeMillis(), intent, flags); // use System.currentTimeMillis() to have a unique ID for the pending intent
+			NotificationCompat.Action action = new NotificationCompat.Action.Builder(R.drawable.ic_notif_cancel, this.appContext.getString(R.string.action_cancel).toUpperCase(Locale.getDefault()), pendingIntent).build();
+			builder.addAction(action);
+			return builder.build();
+		}
+		catch (SecurityException ignored)
+		{
+		}
+		return null;
 	}
 
+	@Nullable
 	private Notification makeNotificationFinish(final String contentTitle, final String contentText)
 	{
-		// builder
-		final NotificationCompat.Builder builder = new NotificationCompat.Builder(this.appContext, CHANNEL_ID);
-		builder.setDefaults(NotificationCompat.DEFAULT_LIGHTS) //
-				.setSmallIcon(android.R.drawable.stat_sys_download_done) //
-				.setContentTitle(contentTitle) //
-				.setContentText(contentText);
+		try
+		{
+			// builder
+			final NotificationCompat.Builder builder = new NotificationCompat.Builder(this.appContext, CHANNEL_ID);
+			builder.setDefaults(NotificationCompat.DEFAULT_LIGHTS) //
+					.setSmallIcon(android.R.drawable.stat_sys_download_done) //
+					.setContentTitle(contentTitle) //
+					.setContentText(contentText);
 
-		// build notification
-		return builder.build();
+			// build notification
+			return builder.build();
+		}
+		catch (SecurityException ignored)
+		{
+		}
+		return null;
 	}
 
 	private void initChannels()
