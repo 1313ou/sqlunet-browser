@@ -36,7 +36,7 @@
 
 	<fragment
 		android:id="@+id/nav_status"
-		android:name="org.sqlunet.browser.config.SetupStatusFragment"
+		android:name="org.sqlunet.browser.xn.SetupXnStatusFragment"
 		android:label="@string/nav_status"
 		tools:layout="@layout/fragment_status" />
 

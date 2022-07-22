@@ -3,6 +3,7 @@
 <!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
+
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/swipe_refresh"
