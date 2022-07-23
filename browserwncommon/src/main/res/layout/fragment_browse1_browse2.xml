@@ -12,7 +12,7 @@
               tools:context="org.sqlunet.browser.selector.Browse1Fragment">
 
 	<!-- selectors -->
-	<RelativeLayout
+	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/container_selectors"
 		android:layout_width="0dp"
 		android:layout_height="match_parent"
