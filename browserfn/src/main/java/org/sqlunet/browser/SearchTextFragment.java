@@ -162,4 +162,11 @@ public class SearchTextFragment extends BaseSearchFragment
 				.replace(R.id.container_searchtext, fragment) //
 				.commit();
 	}
+
+	@Override
+	protected boolean triggerFocusSearch()
+	{
+		Fragment active = getChildFragmentManager().findFragmentById(R.id.container_searchtext);
+		return active != null && "fragment_splash".equals(active.getTag());
+	}
 }

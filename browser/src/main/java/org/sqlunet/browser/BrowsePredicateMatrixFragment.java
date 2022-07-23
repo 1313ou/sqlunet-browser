@@ -304,4 +304,11 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 				.addToBackStack("fragment_pm") //
 				.commit();
 	}
+
+	@Override
+	protected boolean triggerFocusSearch()
+	{
+		Fragment active = getChildFragmentManager().findFragmentById(R.id.container_predicatematrix);
+		return active != null && "fragment_splash".equals(active.getTag());
+	}
 }
