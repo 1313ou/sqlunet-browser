@@ -250,4 +250,11 @@ public class SearchTextFragment extends BaseSearchFragment
 				.addToBackStack("fragment_text") //
 				.commit();
 	}
+
+	@Override
+	protected boolean triggerFocusSearch()
+	{
+		Fragment active = getChildFragmentManager().findFragmentById(R.id.container_searchtext);
+		return active != null && "fragment_splash".equals(active.getTag());
+	}
 }
