@@ -43,10 +43,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.MenuHost;
 import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 
@@ -114,8 +112,31 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	@Override
 	public void onResume()
 	{
-		Log.d(BaseSearchFragment.TAG, "on resume " + this);
 		super.onResume();
+
+		// app bar
+		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
+		final ActionBar actionBar = activity.getSupportActionBar();
+		if (actionBar != null)
+		{
+			actionBar.hide();
+		}
+	}
+
+	@Override
+	public void onPause()
+	{
+		super.onPause();
+
+		closeKeyboard();
+
+		// app bar
+		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
+		final ActionBar actionBar = activity.getSupportActionBar();
+		if (actionBar != null)
+		{
+			actionBar.show();
+		}
 	}
 
 	// V I E W
@@ -138,14 +159,6 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		Log.d(BaseSearchFragment.TAG, "on view created " + this + " from " + savedInstanceState);
 
 		super.onViewCreated(view, savedInstanceState);
-
-		// app bar
-		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
-		final ActionBar actionBar = activity.getSupportActionBar();
-		if (actionBar != null)
-		{
-			actionBar.hide();
-		}
 
 		// fragment bar
 		final Toolbar toolbar = view.findViewById(R.id.toolbar_search);
@@ -182,22 +195,6 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 			}
 
 		}, this.getViewLifecycleOwner(), Lifecycle.State.RESUMED);
-	}
-
-	@Override
-	public void onDestroyView()
-	{
-		super.onDestroyView();
-
-		closeKeyboard();
-
-		// app bar
-		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
-		final ActionBar actionBar = activity.getSupportActionBar();
-		if (actionBar != null)
-		{
-			actionBar.show();
-		}
 	}
 
 	// T O O L B A R

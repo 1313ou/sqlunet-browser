@@ -53,6 +53,37 @@ public class StorageFragment extends Fragment
 	}
 
 	@Override
+	public void onResume()
+	{
+		super.onResume();
+
+		// app bar
+		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
+		final ActionBar actionBar = activity.getSupportActionBar();
+		if (actionBar != null)
+		{
+			actionBar.hide();
+		}
+
+		update();
+	}
+
+
+	@Override
+	public void onPause()
+	{
+		super.onPause();
+
+		// app bar
+		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
+		final ActionBar actionBar = activity.getSupportActionBar();
+		if (actionBar != null)
+		{
+			actionBar.show();
+		}
+	}
+
+	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
 		// inflate
@@ -77,13 +108,6 @@ public class StorageFragment extends Fragment
 
 		// activity
 		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
-
-		// app bar
-		final ActionBar actionBar = activity.getSupportActionBar();
-		if (actionBar != null)
-		{
-			actionBar.hide();
-		}
 
 		// toolbar bar
 		final Toolbar toolbar = view.findViewById(R.id.toolbar_fragment);
@@ -115,27 +139,6 @@ public class StorageFragment extends Fragment
 
 		// nav
 		toolbar.setNavigationOnClickListener(v -> requireActivity().onBackPressed());
-	}
-
-	@Override
-	public void onResume()
-	{
-		super.onResume();
-		update();
-	}
-
-	@Override
-	public void onDestroyView()
-	{
-		super.onDestroyView();
-
-		// app bar
-		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
-		final ActionBar actionBar = activity.getSupportActionBar();
-		if (actionBar != null)
-		{
-			actionBar.show();
-		}
 	}
 
 	/**

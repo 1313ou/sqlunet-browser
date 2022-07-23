@@ -39,6 +39,34 @@ public class SqlFragment extends Fragment
 	{
 	}
 
+	@Override
+	public void onResume()
+	{
+		super.onResume();
+
+		// app bar
+		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
+		final ActionBar actionBar = activity.getSupportActionBar();
+		if (actionBar != null)
+		{
+			actionBar.hide();
+		}
+	}
+
+	@Override
+	public void onPause()
+	{
+		super.onPause();
+
+		// app bar
+		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
+		final ActionBar actionBar = activity.getSupportActionBar();
+		if (actionBar != null)
+		{
+			actionBar.show();
+		}
+	}
+
 	@Nullable
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable final Bundle savedInstanceState)
@@ -67,13 +95,6 @@ public class SqlFragment extends Fragment
 
 		// activity
 		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
-
-		// app bar
-		final ActionBar actionBar = activity.getSupportActionBar();
-		if (actionBar != null)
-		{
-			actionBar.hide();
-		}
 
 		// toolbar bar
 		final Toolbar toolbar = view.findViewById(R.id.toolbar_fragment);
@@ -105,20 +126,6 @@ public class SqlFragment extends Fragment
 
 		// nav
 		toolbar.setNavigationOnClickListener(v -> requireActivity().onBackPressed());
-	}
-
-	@Override
-	public void onDestroyView()
-	{
-		super.onDestroyView();
-
-		// app bar
-		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
-		final ActionBar actionBar = activity.getSupportActionBar();
-		if (actionBar != null)
-		{
-			actionBar.show();
-		}
 	}
 
 	// M E N U
