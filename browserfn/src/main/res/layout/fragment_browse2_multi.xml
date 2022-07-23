@@ -1,35 +1,40 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-	tools:keep="@layout/fragment_browse2_multi">
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
 
-	<!--     <TextView -->
-	<!--         android:id="@+id/label_framenet" -->
-	<!--         android:layout_width="match_parent" -->
-	<!--         android:layout_height="wrap_content" -->
-	<!--         android:text="@string/framenet" -->
-	<!--         android:textSize="30sp" -->
-	<!--         android:visibility="visible" /> -->
-
-	<androidx.fragment.app.FragmentContainerView
-		android:id="@+id/container_framenet"
+	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		tools:ignore="InconsistentLayout"/>
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		tools:keep="@layout/fragment_browse2_multi">
 
-	<!--     <TextView -->
-	<!--         android:id="@+id/label_bnc" -->
-	<!--         android:layout_width="match_parent" -->
-	<!--         android:layout_height="wrap_content" -->
-	<!--         android:text="@string/bnc" -->
-	<!--         android:textSize="30sp" -->
-	<!--         android:visibility="visible" /> -->
+		<!--     <TextView -->
+		<!--         android:id="@+id/label_framenet" -->
+		<!--         android:layout_width="match_parent" -->
+		<!--         android:layout_height="wrap_content" -->
+		<!--         android:text="@string/framenet" -->
+		<!--         android:textSize="30sp" -->
+		<!--         android:visibility="visible" /> -->
 
-</LinearLayout>
+		<androidx.fragment.app.FragmentContainerView
+			android:id="@+id/container_framenet"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			tools:ignore="InconsistentLayout" />
+
+		<!--     <TextView -->
+		<!--         android:id="@+id/label_bnc" -->
+		<!--         android:layout_width="match_parent" -->
+		<!--         android:layout_height="wrap_content" -->
+		<!--         android:text="@string/bnc" -->
+		<!--         android:textSize="30sp" -->
+		<!--         android:visibility="visible" /> -->
+
+	</LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
