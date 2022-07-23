@@ -22,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 /**
@@ -187,10 +188,9 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		Log.d(BrowsePredicateMatrixFragment.TAG, "PM SEARCH " + pointer);
 
 		// subtitle
-		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
-		final ActionBar actionBar = activity.getSupportActionBar();
-		assert actionBar != null;
-		actionBar.setSubtitle(query);
+		final Toolbar toolbar = requireActivity().findViewById(org.sqlunet.browser.common.R.id.toolbar_search);
+		assert toolbar != null;
+		toolbar.setSubtitle(query);
 
 		/*
 		// copy to target view
@@ -251,10 +251,9 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		Log.d(BrowsePredicateMatrixFragment.TAG, "PM SEARCH " + query);
 
 		// subtitle
-		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
-		final ActionBar actionBar = activity.getSupportActionBar();
-		assert actionBar != null;
-		actionBar.setSubtitle(query);
+		final Toolbar toolbar = requireActivity().findViewById(org.sqlunet.browser.common.R.id.toolbar_search);
+		assert toolbar != null;
+		toolbar.setSubtitle(query);
 
 		/*
 		// copy to target view

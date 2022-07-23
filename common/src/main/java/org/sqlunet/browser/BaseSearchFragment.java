@@ -209,6 +209,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		Log.d(BaseSearchFragment.TAG, "set up specific toolbar " + this);
 
 		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
+
 		// title
 		toolbar.setTitle(R.string.title_activity_browse);
 		toolbar.setSubtitle(R.string.app_subname);

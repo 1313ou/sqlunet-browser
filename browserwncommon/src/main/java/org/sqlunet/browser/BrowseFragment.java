@@ -160,10 +160,6 @@ public class BrowseFragment extends BaseSearchFragment
 		Log.d(BrowseFragment.TAG, "BROWSE " + query);
 
 		// subtitle
-		// final AppCompatActivity activity = (AppCompatActivity) requireActivity();
-		// final ActionBar actionBar = activity.getSupportActionBar();
-		// assert actionBar != null;
-		// actionBar.setSubtitle(query);
 		final Toolbar toolbar = requireActivity().findViewById(org.sqlunet.browser.common.R.id.toolbar_search);
 		assert toolbar != null;
 		toolbar.setSubtitle(query);
