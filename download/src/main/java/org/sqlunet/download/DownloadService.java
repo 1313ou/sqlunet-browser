@@ -139,12 +139,12 @@ public class DownloadService extends JobIntentService
 	private final BroadcastReceiver receiver = new BroadcastReceiver()
 	{
 		@Override
-		public void onReceive(final Context context, final Intent intent)
+		public void onReceive(final Context context, @NonNull final Intent intent)
 		{
 
 			String action = intent.getAction();
 			//Log.d(TAG, "Broadcast receiver caught " + action);
-			if (action.equals(ACTION_DOWNLOAD_CANCEL))
+			if (ACTION_DOWNLOAD_CANCEL.equals(action))
 			{
 				Log.d(TAG, "Cancel flagged through broadcast");
 				DownloadService.this.cancel = true;
@@ -597,7 +597,7 @@ public class DownloadService extends JobIntentService
 	 *
 	 * @param context context
 	 */
-	static public void kill(final Context context)
+	static public void kill(@NonNull final Context context)
 	{
 		final Intent broadcastIntent = new Intent();
 		broadcastIntent.setPackage(context.getPackageName());
