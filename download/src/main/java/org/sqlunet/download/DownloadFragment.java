@@ -71,7 +71,7 @@ public class DownloadFragment extends BaseDownloadFragment
 	protected Boolean success;
 
 	/**
-	 * Causes
+	 * Cause
 	 */
 	@Nullable
 	protected String cause;
@@ -125,6 +125,7 @@ public class DownloadFragment extends BaseDownloadFragment
 	/**
 	 * Action for the service
 	 */
+	@NonNull
 	protected String getAction()
 	{
 		return Killer.KILL_DOWNLOAD_SERVICE;
