@@ -36,7 +36,7 @@ public class MD5AsyncTaskChooser
 	 *
 	 * @param activity       activity
 	 * @param path           path
-	 * @param resultListener result listener
+	 * @param consumer consumer
 	 */
 	public static void md5(@NonNull final FragmentActivity activity, @NonNull final String path, final Consumer<String> resultListener)
 	{
@@ -47,7 +47,7 @@ public class MD5AsyncTaskChooser
 		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
 				.setTitle(activity.getString(R.string.action_md5)) //
 				.setMessage(path);
-		final Task<String, Number, String> task = new FileAsyncTask(observer, resultListener, 1000).md5FromFile();
+		final Task<String, Number, String> task = new FileAsyncTask(observer, consumer, 1000).md5FromFile();
 		task.execute(path);
 	}
 
