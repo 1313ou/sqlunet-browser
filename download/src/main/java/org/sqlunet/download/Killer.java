@@ -57,7 +57,7 @@ public class Killer extends BroadcastReceiver
 	 * @param context context
 	 * @param action  action
 	 */
-	static void kill(@NonNull final Context context, final String action)
+	static void kill(@NonNull final Context context, @NonNull final String action)
 	{
 		// stop service
 		if (action.equals(Killer.KILL_DOWNLOAD_SERVICE))
