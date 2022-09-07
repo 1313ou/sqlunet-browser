@@ -54,6 +54,7 @@ public class DownloadZipFragment extends DownloadFragment
 	/**
 	 * Action fro this service
 	 */
+	@NonNull
 	@Override
 	protected String getAction()
 	{
