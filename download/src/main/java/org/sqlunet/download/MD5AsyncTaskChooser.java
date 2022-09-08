@@ -38,7 +38,7 @@ public class MD5AsyncTaskChooser
 	 * @param path           path
 	 * @param consumer consumer
 	 */
-	public static void md5(@NonNull final FragmentActivity activity, @NonNull final String path, final Consumer<String> resultListener)
+	public static void md5(@NonNull final FragmentActivity activity, @NonNull final String path, final Consumer<String> consumer)
 	{
 		if (activity.isFinishing() || activity.isDestroyed())
 		{
