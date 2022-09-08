@@ -4,6 +4,7 @@
 	<!ENTITY bbrepo "semantikos2">
 	<!ENTITY bbcommit "4a16ec9d610af09b1e290b5aab6fce04558b153e">
 	]>
+
 <!--
   ~ Copyright (c) 2020. Bernard Bou <1313ou@gmail.com>.
   -->
@@ -12,6 +13,9 @@
 
 	<!-- site files -->
 	<string name="pref_default_download_dbfile" translatable="false" tools:keep="@string/pref_default_download_dbfile">sqlunet.db</string>
+	<string name="pref_default_download_sqlfile" translatable="false" tools:keep="@string/pref_default_download_sqlfile">sqlunet.sql.zip</string>
+	<string name="pref_default_entry_import" translatable="false" tools:keep="@string/pref_default_entry_import">sqlunet.sql</string>
+	<string name="pref_default_entry_index" translatable="false" tools:keep="@string/pref_default_entry_index">sqlunet-index.sql</string>
 
 	<!-- sites -->
 	<string name="pref_bitbucket_XX_site_url" translatable="false" tools:keep="@string/pref_bitbucket_XX_site_url">https://bitbucket.org/&bbuser;/&bbrepo;/raw/&bbcommit;</string>
