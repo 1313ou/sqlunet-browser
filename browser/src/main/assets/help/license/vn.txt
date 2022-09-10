@@ -1,5 +1,5 @@
 V E R B N E T
-http://verbs.colorado.edu/~mpalmer/projects/verbnet.html
+https://github.com/cu-clear/verbnet
 is licensed under the following terms:
 
 This software and database is being provided to you, the LICENSEE, by University of Colorado under the following license.  By obtaining, using and/or copying this software and database, you agree that you have read, understood, and will comply with these terms and conditions.:
