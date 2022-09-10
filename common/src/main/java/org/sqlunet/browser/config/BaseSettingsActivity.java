@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.common.R;
 
 import java.util.List;
@@ -32,8 +31,6 @@ public abstract class BaseSettingsActivity extends AppCompatActivity implements 
 	private static final String TITLE_TAG = "settingsActivityTitle";
 
 	public static final String INITIAL_ARG = "settings_header";
-
-	public static final int SETTINGS_FLAGS = 0;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState)

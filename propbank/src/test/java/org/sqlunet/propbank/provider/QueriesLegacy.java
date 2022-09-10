@@ -20,7 +20,7 @@ public class QueriesLegacy
 		return r;
 	}
 
-	public static Result queryLegacyMain(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
+	public static Result queryLegacyMain(final int code,  @SuppressWarnings("unused") final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		String table;
 		String selection = selection0;

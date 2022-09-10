@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.StorageSettings;
 

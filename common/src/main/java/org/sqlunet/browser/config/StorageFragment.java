@@ -106,9 +106,6 @@ public class StorageFragment extends Fragment
 	{
 		super.onViewCreated(view, savedInstanceState);
 
-		// activity
-		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
-
 		// toolbar bar
 		final Toolbar toolbar = view.findViewById(R.id.toolbar_fragment);
 		assert toolbar != null;

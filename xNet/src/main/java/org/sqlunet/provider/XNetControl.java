@@ -55,7 +55,7 @@ public class XNetControl
 	static protected final int WORDS_FNWORDS_FNFRAMES_1U2 = 334;
 	static protected final int SOURCES = 400;
 
-	public static Result queryMain(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
+	public static Result queryMain(final int code, @SuppressWarnings("unused") final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		String table;
 		String[] projection = projection0;

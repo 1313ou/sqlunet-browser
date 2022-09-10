@@ -8,7 +8,7 @@
 	<string name="action_exec_from_file">Execute from File</string>
 	<string name="action_exec_from_uri">Execute from Uri</string>
 	<string name="action_exec_from_zipped_uri">Execute from Uri (Zipped)</string>
-	<string name="status_executing">executing...</string>
+	<string name="status_executing">executing…</string>
 
 	<string-array name="sql_statement_titles">
 		<item>[SELECT OPERATION]</item>

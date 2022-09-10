@@ -5,7 +5,6 @@
 package org.sqlunet.browser;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -23,7 +22,7 @@ import androidx.appcompat.widget.Toolbar;
  */
 public class StatusActivity extends AppCompatActivity
 {
-	static private final String TAG = "StatusA";
+	// static private final String TAG = "StatusA";
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
