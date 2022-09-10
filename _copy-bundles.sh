@@ -60,11 +60,11 @@ echo -e "${G}${src}${Z} -> ${G}${dst}${Z}"
 
 mkdir -p ${dst}
 
-cp ${src}/distrib${m}.hsize ${dst}
-cp ${src}/distrib${m}.size ${dst}
-cp ${src}/distrib${m}.md5 ${dst}
-cp ${src}/sqlunet${m}.db.zip ${dst}
-cp ${src}/sqlunet${m}.db.zip.md5 ${dst}
+cp -p ${src}/distrib${m}.hsize ${dst}
+cp -p ${src}/distrib${m}.size ${dst}
+cp -p ${src}/distrib${m}.md5 ${dst}
+cp -p ${src}/sqlunet${m}.db.zip ${dst}
+cp -p ${src}/sqlunet${m}.db.zip.md5 ${dst}
 
 done
 
