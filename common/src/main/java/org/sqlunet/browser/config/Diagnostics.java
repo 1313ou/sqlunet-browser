@@ -8,11 +8,13 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Build;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -23,6 +25,8 @@ import org.sqlunet.browser.common.R;
 import org.sqlunet.concurrency.Task;
 import org.sqlunet.deploy.Deploy;
 import org.sqlunet.download.Settings;
+import org.sqlunet.provider.XNetContract;
+import org.sqlunet.provider.XSqlUNetProvider;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.settings.StorageUtils;
 
@@ -349,6 +353,25 @@ public class Diagnostics
 							sb.append('\n');
 						}
 					}
+
+					// M E T A
+
+					String[] meta = queryMeta(context);
+					if (meta != null)
+					{
+						sb.append('\n');
+						append(sb, "meta", new StyleSpan(Typeface.BOLD));
+						sb.append('\n');
+						sb.append("created: ");
+						sb.append(meta[0]);
+						sb.append('\n');
+						sb.append("size: ");
+						sb.append(meta[1]);
+						sb.append('\n');
+						sb.append("build: ");
+						sb.append(meta[2]);
+						sb.append('\n');
+					}
 				}
 				catch (@NonNull final SQLiteCantOpenDatabaseException e)
 				{
@@ -478,6 +501,45 @@ public class Diagnostics
 		sb.append('\n');
 
 		return sb;
+	}
+
+	private static String[] queryMeta(@NonNull Context context)
+	{
+		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(XNetContract.Meta.URI));
+		final String[] projection = {XNetContract.Meta.CREATED, XNetContract.Meta.DBSIZE, XNetContract.Meta.BUILD};
+		try
+		{
+			final Cursor cursor = context.getContentResolver().query(uri, projection, null, null, null);
+			if (cursor != null && cursor.moveToFirst())
+			{
+				String[] meta = new String[3];
+				int createdIndex = cursor.getColumnIndex(XNetContract.Meta.CREATED);
+				if (!cursor.isNull(createdIndex))
+				{
+					String created = cursor.getString(createdIndex);
+					meta[0] = created;
+				}
+				int sizeIndex = cursor.getColumnIndex(XNetContract.Meta.DBSIZE);
+				if (!cursor.isNull(sizeIndex))
+				{
+					long size = cursor.getLong(sizeIndex);
+					meta[1] = Long.toString(size);
+				}
+				int buildIndex = cursor.getColumnIndex(XNetContract.Meta.BUILD);
+				if (!cursor.isNull(buildIndex))
+				{
+					String build = cursor.getString(buildIndex);
+					meta[2] = build;
+				}
+				cursor.close();
+				return meta;
+			}
+		}
+		catch (Exception ignored)
+		{
+			//
+		}
+		return null;
 	}
 
 	@SuppressWarnings("SameReturnValue")

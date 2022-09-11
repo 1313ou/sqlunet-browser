@@ -131,6 +131,17 @@ public final class XNetContract
 		String REFERENCE = "reference";
 	}
 
+	// Meta
+
+	public interface Meta
+	{
+		String TABLE = Q.META.TABLE;
+		String URI = Meta.TABLE;
+		String CREATED = "created";
+		String DBSIZE = "dbsize";
+		String BUILD = "build";
+	}
+
 	// PredicateMatrix
 
 	public interface PredicateMatrix

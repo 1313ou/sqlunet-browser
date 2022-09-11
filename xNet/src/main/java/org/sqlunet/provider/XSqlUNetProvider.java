@@ -18,6 +18,7 @@ import org.sqlunet.provider.XNetContract.PredicateMatrix_FrameNet;
 import org.sqlunet.provider.XNetContract.PredicateMatrix_PropBank;
 import org.sqlunet.provider.XNetContract.PredicateMatrix_VerbNet;
 import org.sqlunet.provider.XNetContract.Sources;
+import org.sqlunet.provider.XNetContract.Meta;
 import org.sqlunet.provider.XNetContract.Words_FnWords_FnFrames_U;
 import org.sqlunet.provider.XNetContract.Words_FnWords_PbWords_VnWords;
 import org.sqlunet.provider.XNetContract.Words_PbWords_PbRoleSets;
@@ -69,6 +70,7 @@ public class XSqlUNetProvider extends BaseProvider
 		uriMatcher.addURI(AUTHORITY, Words_PbWords_PbRoleSets_U.URI, XNetControl.WORDS_PBWORDS_PBROLESETS_U);
 		uriMatcher.addURI(AUTHORITY, Words_FnWords_FnFrames_U.URI, XNetControl.WORDS_FNWORDS_FNFRAMES_U);
 		uriMatcher.addURI(AUTHORITY, XNetContract.Sources.URI, XNetControl.SOURCES);
+		uriMatcher.addURI(AUTHORITY, XNetContract.Meta.URI, XNetControl.META);
 	}
 
 	@NonNull
@@ -133,6 +135,8 @@ public class XSqlUNetProvider extends BaseProvider
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Words_FnWords_FnFrames_U.URI;
 			case XNetControl.SOURCES:
 				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Sources.URI;
+			case XNetControl.META:
+				return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + Meta.URI;
 			default:
 				throw new UnsupportedOperationException("Illegal MIME type");
 		}

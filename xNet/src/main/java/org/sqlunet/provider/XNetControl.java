@@ -54,6 +54,7 @@ public class XNetControl
 	static protected final int WORDS_FNWORDS_FNFRAMES_2 = 333;
 	static protected final int WORDS_FNWORDS_FNFRAMES_1U2 = 334;
 	static protected final int SOURCES = 400;
+	static protected final int META = 500;
 
 	public static Result queryMain(final int code, @SuppressWarnings("unused") final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
@@ -85,6 +86,10 @@ public class XNetControl
 
 			case XNetControl.SOURCES:
 				table = Q.SOURCES.TABLE;
+				break;
+
+			case XNetControl.META:
+				table = Q.META.TABLE;
 				break;
 
 			// J O I N S
