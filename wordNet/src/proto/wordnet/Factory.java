@@ -142,18 +142,20 @@ public class Factory implements Function<String,String[]>, Supplier<String[]>
 				break;
 
 			case WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS:
-				r.table = String.format("%s AS %s " + //
-								"LEFT JOIN %s AS %s USING (%s) " + //
-								"LEFT JOIN %s AS %s USING (%s,%s) " + //
-								"LEFT JOIN %s AS %s USING (%s) " + //
-								"LEFT JOIN %s AS %s USING (%s) " + //
-								"LEFT JOIN %s AS %s USING (%s)", //
-						"${words.table}", "${as_words}", //
-						"${senses.table}", "${as_senses}", "${words.wordid}", //
-						"${casedwords.table}", "${as_caseds}", "${casedwords.wordid}", "${casedwords.casedwordid}", //
-						"${synsets.table}", "${as_synsets}", "${synsets.synsetid}", //
-						"${poses.table}", "${as_poses}", "${poses.posid}", //
-						"${domains.table}", "${as_domains}", "${domains.domainid}");
+				r.table = String.format("%s AS %s " + // 1
+								"INNER JOIN %s AS %s USING (%s) " + // 2
+								"LEFT JOIN %s AS %s USING (%s) " + // 3
+								"LEFT JOIN %s AS %s USING (%s,%s) " + // 4
+								"LEFT JOIN %s AS %s USING (%s) " + // 5
+								"LEFT JOIN %s AS %s USING (%s) " + // 6
+								"LEFT JOIN %s AS %s USING (%s)", // 7
+						"${lexes.table}", "${as_lexes}", // 1
+						"${words.table}", "${as_words}", "${words.wordid}", // 2
+						"${senses.table}", "${as_senses}", "${words.wordid}", // 3
+						"${casedwords.table}", "${as_caseds}", "${casedwords.wordid}", "${casedwords.casedwordid}", // 4
+						"${synsets.table}", "${as_synsets}", "${synsets.synsetid}", // 5
+						"${poses.table}", "${as_poses}", "${poses.posid}", // 6
+						"${domains.table}", "${as_domains}", "${domains.domainid}"); // 7
 				break;
 
 			case WORDS_SENSES_CASEDWORDS_PRONUNCIATIONS_SYNSETS_POSES_DOMAINS:

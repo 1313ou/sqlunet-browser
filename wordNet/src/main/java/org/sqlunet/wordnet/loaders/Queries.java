@@ -9,7 +9,6 @@ public class Queries
 {
 	public static final String MORPHS = "morphs";
 	public static final String PRONUNCIATIONS = "pronunciations";
-	public static final String XPRONUNCIATION = "xpronunciations";
 
 	// B R O W S E R
 
@@ -34,8 +33,7 @@ public class Queries
 		};
 		providerSql.selection = WordNetContract.AS_WORDS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORD + " = ?"; ////
 		providerSql.selectionArgs = new String[]{word};
-		providerSql.sortBy = WordNetContract.AS_SYNSETS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT + " DESC";
-		// providerSql.sortBy = WordNetContract.AS_SYNSETS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM;
+		providerSql.sortBy = WordNetContract.AS_LEXES + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT + " DESC";
 		return providerSql;
 	}
 
@@ -61,8 +59,7 @@ public class Queries
 		};
 		providerSql.selection = WordNetContract.AS_WORDS + '.' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.WORD + " = ?"; ////
 		providerSql.selectionArgs = new String[]{word};
-		providerSql.sortBy = WordNetContract.AS_SYNSETS + '.' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POSID + ',' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.TAGCOUNT + " DESC";
-		// providerSql.sortBy = WordNetContract.AS_SYNSETS + '.' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POSID + ',' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SENSENUM;
+		providerSql.sortBy = WordNetContract.AS_LEXES + '.' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POSID + ',' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.TAGCOUNT + " DESC";
 		return providerSql;
 	}
 
@@ -84,7 +81,7 @@ public class Queries
 				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID + " AS _id"};
 		providerSql.selection = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(wordId)};
-		providerSql.sortBy = WordNetContract.AS_SYNSETS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + "," +  WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT + " DESC";
+		providerSql.sortBy = WordNetContract.AS_LEXES + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + "," + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT + " DESC";
 		return providerSql;
 	}
 
@@ -107,7 +104,7 @@ public class Queries
 				WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.SYNSETID + " AS _id"};
 		providerSql.selection = WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.WORDID + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(wordId)};
-		providerSql.sortBy = WordNetContract.AS_SYNSETS + '.' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POSID + "," +  WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.TAGCOUNT + " DESC";
+		providerSql.sortBy = WordNetContract.AS_LEXES + '.' + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.POSID + "," + WordNetContract.Words_Senses_CasedWords_Pronunciations_Synsets_Poses_Domains.TAGCOUNT + " DESC";
 		return providerSql;
 	}
 
@@ -143,7 +140,7 @@ public class Queries
 				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD};
 		providerSql.selection = WordNetContract.AS_WORDS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORD + " = ?";
 		providerSql.selectionArgs = new String[]{word};
-		providerSql.sortBy = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM;
+		providerSql.sortBy = WordNetContract.AS_LEXES + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT + " DESC ," + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM;
 		return providerSql;
 	}
 
@@ -166,7 +163,7 @@ public class Queries
 				WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD};
 		providerSql.selection = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID + " = ?";
 		providerSql.selectionArgs = new String[]{Long.toString(wordId)};
-		providerSql.sortBy = WordNetContract.AS_POSES + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM;
+		providerSql.sortBy = WordNetContract.AS_LEXES + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT + " DESC ," + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM;
 		return providerSql;
 	}
 
@@ -442,7 +439,7 @@ public class Queries
 		};
 		providerSql.selection = WordNetContract.AS_WORDS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORD + " = ?"; ////
 		providerSql.selectionArgs = new String[]{word};
-		providerSql.sortBy = WordNetContract.AS_SYNSETS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM;
+		providerSql.sortBy = WordNetContract.AS_LEXES + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM;
 		return providerSql;
 	}
 }

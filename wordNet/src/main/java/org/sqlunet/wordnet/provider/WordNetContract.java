@@ -18,6 +18,7 @@ public class WordNetContract
 	// A L I A S E S
 
 	// refers to actual table
+	public static final String AS_LEXES = V.AS_LEXES;
 	public static final String AS_WORDS = V.AS_WORDS;
 	public static final String AS_SENSES = V.AS_SENSES;
 	public static final String AS_SYNSETS = V.AS_SYNSETS;
