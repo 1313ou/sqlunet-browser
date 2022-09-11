@@ -365,6 +365,10 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 				r.table = "${sources.table}";
 				break;
 
+			case META:
+				r.table = "${meta.table}";
+				break;
+
 			// J O I N S
 
 			case WORDS_FNWORDS_PBWORDS_VNWORDS:
@@ -683,6 +687,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 		WORDS_FNWORDS_FNFRAMES_U, //
 		WORDS_FNWORDS_FNFRAMES_1, WORDS_FNWORDS_FNFRAMES_2, WORDS_FNWORDS_FNFRAMES_1U2, //
 		SOURCES,
+		META,
 	}
 
 	static class Result
