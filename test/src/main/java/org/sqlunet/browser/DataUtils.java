@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2022. Bernard Bou
+ */
+
 package org.sqlunet.browser;
 
 import android.content.Context;

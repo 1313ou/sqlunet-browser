@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2022. Bernard Bou
+ */
+
 package org.sqlunet.concurrency;
 
 import org.junit.Test;

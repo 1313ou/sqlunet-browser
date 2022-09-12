@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2022. Bernard Bou
+ */
+
 package org.sqlunet.provider;
 
 import org.sqlunet.xnet.provider.Q;

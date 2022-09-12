@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2022. Bernard Bou
+ */
+
 package org.sqlunet.speak;
 
 import android.os.Build;

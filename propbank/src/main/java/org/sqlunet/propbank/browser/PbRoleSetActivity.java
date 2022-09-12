@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+ * Copyright (c) 2022. Bernard Bou
  */
 
 package org.sqlunet.propbank.browser;

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2022. Bernard Bou
+ */
+
 package org.sqlunet.concurrency;
 
 public abstract class ObservedTask<Params, Progress extends Number, Result> extends Task<Params, Progress, Result>

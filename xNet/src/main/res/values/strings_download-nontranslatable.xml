@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><!DOCTYPE resources [	<!ENTITY bbuser "bbuser">	<!ENTITY bbrepo "bbrepo">	<!ENTITY bbcommit "xxxx">	]>
-
-<!--
-  ~ Copyright (c) 2020. Bernard Bou <1313ou@gmail.com>.
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2022. Bernard Bou
   -->
+
+<!DOCTYPE resources [	<!ENTITY bbuser "bbuser">	<!ENTITY bbrepo "bbrepo">	<!ENTITY bbcommit "xxxx">	]>
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 

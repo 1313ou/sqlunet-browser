@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2022. Bernard Bou
+  -->
+
 <!DOCTYPE resources [
 	<!ENTITY bbuser "semantikos3">
 	<!ENTITY bbrepo "semantikos23">
 	<!ENTITY bbcommit "d8f8e82aabb491d545322464f0b6dee6243582d2">
 	]>
-
-<!--
-  ~ Copyright (c) 2020. Bernard Bou <1313ou@gmail.com>.
-  -->
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 

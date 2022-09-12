@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2022. Bernard Bou
+ */
+
 package org.sqlunet.predicatematrix.provider;
 
 import org.sqlunet.predicatematrix.provider.PredicateMatrixControl.Result;

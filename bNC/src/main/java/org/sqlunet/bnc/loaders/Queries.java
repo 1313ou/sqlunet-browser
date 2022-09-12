@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2022. Bernard Bou
+ */
+
 package org.sqlunet.bnc.loaders;
 
 import org.sqlunet.bnc.provider.BNCContract.Words_BNCs;

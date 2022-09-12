@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2022. Bernard Bou
+ */
+
 package org.sqlunet.syntagnet.provider;
 
 import org.sqlunet.syntagnet.provider.SyntagNetControl.Result;

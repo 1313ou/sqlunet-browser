@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2022. Bernard Bou
+ */
+
 package org.sqlunet.syntagnet.loaders;
 
 import org.sqlunet.browser.Module;
