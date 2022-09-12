@@ -443,7 +443,7 @@ public class Queries
 		};
 		providerSql.selection = WordNetContract.AS_WORDS + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.WORD + " = ?"; ////
 		providerSql.selectionArgs = new String[]{word};
-		providerSql.sortBy = WordNetContract.AS_LEXES + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM;
+		providerSql.sortBy = WordNetContract.AS_LEXES + '.' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.POSID + ',' + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT + " DESC ," + WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM;
 		return providerSql;
 	}
 }

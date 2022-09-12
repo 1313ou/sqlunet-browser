@@ -47,7 +47,6 @@ public class Queries
 		providerSql.selection = XNetContract.AS_WORDS + '.' + XNetContract.Words_FnWords_PbWords_VnWords.WORD + " = ?";
 		providerSql.selectionArgs = new String[]{word};
 		providerSql.sortBy = XNetContract.AS_POSES + '.' + XNetContract.Words_FnWords_PbWords_VnWords.POS + ',' + XNetContract.Words_FnWords_PbWords_VnWords.TAGCOUNT + " DESC";
-		//providerSql.sortBy = XNetContract.AS_POSES + '.' + XNetContract.Words_FnWords_PbWords_VnWords.POS + ',' + XNetContract.Words_FnWords_PbWords_VnWords.SENSENUM;
 		return providerSql;
 	}
 
@@ -86,7 +85,6 @@ public class Queries
 		providerSql.selection = XNetContract.AS_WORDS + '.' + XNetContract.Words_FnWords_PbWords_VnWords.WORD + " = ?";
 		providerSql.selectionArgs = new String[]{word};
 		providerSql.sortBy = XNetContract.AS_POSES + '.' + XNetContract.Words_FnWords_PbWords_VnWords.POS + ',' + XNetContract.Words_FnWords_PbWords_VnWords.TAGCOUNT + " DESC";
-		//providerSql.sortBy = XNetContract.AS_POSES + '.' + XNetContract.Words_FnWords_PbWords_VnWords.POS + ',' + XNetContract.Words_FnWords_PbWords_VnWords.SENSENUM;
 		return providerSql;
 	}
 
