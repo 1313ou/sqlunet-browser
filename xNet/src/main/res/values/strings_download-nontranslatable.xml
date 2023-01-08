@@ -17,4 +17,8 @@
 	<!-- site files -->
 	<string name="pref_default_download_dbfile" translatable="false">sqlunet.db</string>
 
+	<!-- directory -->
+	<string name="pref_directory" translatable="false">https://sqlunet.github.io/resources/semantikos</string>
+	<string name="pref_directory_filter" translatable="false" />
+
 </resources>

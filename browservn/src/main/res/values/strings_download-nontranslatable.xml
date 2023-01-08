@@ -27,4 +27,8 @@
 		<item>@string/pref_sourceforge_XX_site_url</item>
 	</string-array>
 
+	<!-- directory -->
+	<string name="pref_directory" translatable="false">https://sqlunet.github.io/resources/semantikos</string>
+	<string name="pref_directory_filter" translatable="false">^vn.*$</string>
+
 </resources>
