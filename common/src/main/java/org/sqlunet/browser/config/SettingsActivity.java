@@ -13,6 +13,7 @@ import android.util.Pair;
 
 import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.common.R;
+import org.sqlunet.download.ResourcesDownloader;
 import org.sqlunet.preference.OpenEditTextPreference;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.settings.Settings;
@@ -355,8 +356,9 @@ public class SettingsActivity extends BaseSettingsActivity
 			assert downloaderPreference != null;
 			downloaderPreference.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
 
-			final Preference sitePreference = findPreference(Settings.PREF_DOWNLOAD_SITE);
+			final OpenEditTextPreference sitePreference = findPreference(Settings.PREF_DOWNLOAD_SITE);
 			assert sitePreference != null;
+			ResourcesDownloader.populateLists(requireContext(), sitePreference::addOptions);
 			sitePreference.setSummaryProvider(OpenEditTextPreference.SUMMARY_PROVIDER);
 
 			final Preference dbFilePreference = findPreference(Settings.PREF_DOWNLOAD_DBFILE);

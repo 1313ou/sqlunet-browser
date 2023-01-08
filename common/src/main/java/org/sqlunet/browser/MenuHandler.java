@@ -29,6 +29,7 @@ import org.sqlunet.browser.config.StorageActivity;
 import org.sqlunet.concurrency.TaskDialogObserver;
 import org.sqlunet.concurrency.TaskObserver;
 import org.sqlunet.download.FileDataDownloader;
+import org.sqlunet.download.ResourcesDownloader;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
@@ -104,6 +105,11 @@ public class MenuHandler
 			final String cache = StorageSettings.getCacheDir(activity);
 			final Intent downloadIntent = new Intent(activity, DownloadActivity.class);
 			FileDataDownloader.start(activity, name, downloadSourceUrl, downloadDest, downloadIntent, cache);
+			return true;
+		}
+		else if (itemId == R.id.action_resources_directory)
+		{
+			ResourcesDownloader.showResources(activity);
 			return true;
 		}
 
