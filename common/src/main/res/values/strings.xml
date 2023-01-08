@@ -31,6 +31,7 @@
 	<string name="action_update">Update</string>
 	<string name="action_sql">SQL</string>
 	<string name="action_diagnostics">Diagnostics</string>
+	<string name="action_resources_directory">Resources Directory</string>
 	<string name="action_logs">Logs</string>
 	<!-- setup -->
 	<string name="action_setup">Set up</string>

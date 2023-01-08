@@ -82,6 +82,11 @@
 					android:title="@string/action_update"
 					app:showAsAction="never"
 					tools:ignore="AppCompatResource" />
+				<item
+					android:id="@+id/action_resources_directory"
+					android:title="@string/action_resources_directory"
+					app:showAsAction="never"
+					tools:ignore="AppCompatResource" />
 			</group>
 
 			<item

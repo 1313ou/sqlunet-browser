@@ -23,6 +23,7 @@
 	<string name="action_md5">MD5</string>
 	<string name="action_md5_of_file">MD5 of</string>
 	<string name="action_md5_ask">MD5 &#8230;</string>
+	<string name="action_directory">Directory</string>
 
 	<!-- hint -->
 	<string name="hint_unzip_from_archive">Select the zip archive to unzip from</string>
@@ -102,6 +103,9 @@
 	<string name="status_task_done_toast">Task done</string>
 
 	<!--<string name="status_download_downloadable_content">Now downloading available content. Be patient.</string>-->
+
+	<!-- resource directory -->
+	<string name="resource_directory">Resource directory</string>
 
 	<!-- result -->
 	<string name="result_success">@android:string/ok</string>
