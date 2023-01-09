@@ -20,11 +20,11 @@ allprojects {
     }
 
     ext {
-        versionCode = 114
-        versionName = '2.114'
+        versionCode = 115
+        versionName = '2.115'
         minSdkVersion = 19
-        targetSdkVersion = 32
-        compileSdkVersion = 32
+        targetSdkVersion = 33
+        compileSdkVersion = 33
 
         appcompatVersion = '1.5.1'
         fragmentVersion = '1.5.5'
