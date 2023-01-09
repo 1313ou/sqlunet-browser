@@ -32,7 +32,7 @@ public class QueriesUnitTest
 		}
 	}
 
-	private void queriesLegacyAgainstProvider(final int code, @SuppressWarnings("SameParameterValue") final String uriLast, final String[] projection, @SuppressWarnings("SameParameterValue") final String selection, final String[] selectionArgs, @SuppressWarnings("SameParameterValue") final String sortOrder)
+	private void queriesLegacyAgainstProvider(final int code, @SuppressWarnings("SameParameterValue") final String uriLast, final String[] projection, @SuppressWarnings("SameParameterValue") final String selection, final String[] selectionArgs, @SuppressWarnings({"SameParameterValue", "unused"}) final String sortOrder)
 	{
 		Result r1 = QueriesLegacy.queryLegacy(code, uriLast, projection, selection, selectionArgs);
 		Result r2 = queryProvider(code, uriLast, projection, selection, selectionArgs);

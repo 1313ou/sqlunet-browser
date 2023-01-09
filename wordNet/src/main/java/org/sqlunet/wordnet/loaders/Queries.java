@@ -197,7 +197,7 @@ public class Queries
 		return providerSql;
 	}
 
-	public static Module.ContentProviderSql prepareSense(final long synsetId, final long wordId)
+	public static Module.ContentProviderSql prepareSense(final long synsetId, @SuppressWarnings("unused") final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
 		providerSql.providerUri = WordNetContract.Synsets_Poses_Domains.URI;

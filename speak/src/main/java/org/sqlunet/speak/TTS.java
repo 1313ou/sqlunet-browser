@@ -5,14 +5,18 @@
 package org.sqlunet.speak;
 
 import android.content.Context;
+import android.os.Build;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 import android.speech.tts.Voice;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Set;
+
+import androidx.annotation.RequiresApi;
 
 public class TTS
 {
@@ -82,10 +86,9 @@ public class TTS
 					return;
 				}
 			}
-			if (voiceName != null)
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && voiceName != null)
 			{
-				Voice voice;
-				voice = getVoice(voiceName);
+				Voice voice = getVoice(voiceName);
 				if (voice != null)
 				{
 					if (locale != null && voice.getLocale().getCountry().equals(locale.getCountry()))
@@ -144,10 +147,20 @@ public class TTS
 				}
 			});
 			Log.d(TAG, "pronounce " + written + " " + ipa + " " + '"' + text + '"');
-			tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, written + '_' + ipa);
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+			{
+				tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, written + '_' + ipa);
+			}
+			else
+			{
+				HashMap<String, String> params = new HashMap<>();
+				params.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, written + '_' + ipa);
+				tts.speak(text, TextToSpeech.QUEUE_FLUSH, params);
+			}
 		});
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 	private Voice getVoice(String voiceName)
 	{
 		Set<Voice> voices = tts.getVoices();

@@ -20,7 +20,8 @@
 		android:layout_marginEnd="50dp"
 		android:layout_marginBottom="10dp"
 		app:tint="?android:attr/colorForeground"
-		android:src="@drawable/ic_download_zip_source" />
+		android:src="@drawable/ic_download_zip_source"
+		android:contentDescription="@string/download_source" />
 
 	<TextView
 		android:id="@+id/src"

@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.sqlunet.syntagnet.provider.SyntagNetControl.Result;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class QueriesUnitTest
 {
@@ -59,6 +60,6 @@ public class QueriesUnitTest
 
 	private static boolean equals(Object a, Object b)
 	{
-		return (a == b) || (a != null && a.equals(b));
+		return Objects.equals(a, b);
 	}
 }

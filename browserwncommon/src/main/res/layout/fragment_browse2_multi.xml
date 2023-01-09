@@ -16,9 +16,11 @@
 			android:id="@+id/target"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:paddingLeft="4dp"
+			android:paddingStart="4dp"
+			android:paddingEnd="4dp"
 			android:textSize="16sp"
-			android:visibility="visible" />
+			android:visibility="visible"
+			tools:ignore="InconsistentLayout" />
 
 		<!--     <TextView -->
 		<!--         android:id="@+id/label_wordnet" -->

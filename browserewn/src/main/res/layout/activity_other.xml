@@ -71,7 +71,7 @@
 				android:contentDescription="@string/description_googleplay_grammarscope_syntaxnet"
 				android:src="@drawable/ic_googleplay"
 				android:visibility="visible"
-				tools:ignore="OnClick" />
+				tools:ignore="InconsistentLayout" />
 
 			<!-- grammarscope udpipe -->
 
@@ -117,7 +117,7 @@
 				android:contentDescription="@string/description_googleplay_grammarscope_udpipe"
 				android:src="@drawable/ic_googleplay"
 				android:visibility="visible"
-				tools:ignore="OnClick" />
+				tools:ignore="InconsistentLayout" />
 
 			<!-- treebolic wordnet -->
 
@@ -163,7 +163,7 @@
 				android:contentDescription="@string/description_googleplay_treebolicwordnet"
 				android:src="@drawable/ic_googleplay"
 				android:visibility="visible"
-				tools:ignore="OnClick" />
+				tools:ignore="InconsistentLayout" />
 
 			<!-- semantikos -->
 
@@ -209,7 +209,7 @@
 				android:contentDescription="@string/description_googleplay_semantikos"
 				android:src="@drawable/ic_googleplay"
 				android:visibility="visible"
-				tools:ignore="OnClick" />
+				tools:ignore="InconsistentLayout" />
 
 			<!-- semantikos wn -->
 
@@ -255,7 +255,7 @@
 				android:contentDescription="@string/description_googleplay_semantikos_wn"
 				android:src="@drawable/ic_googleplay"
 				android:visibility="visible"
-				tools:ignore="OnClick" />
+				tools:ignore="InconsistentLayout" />
 
 			<!-- semantikos vn -->
 
@@ -301,7 +301,7 @@
 				android:contentDescription="@string/description_googleplay_semantikos_vn"
 				android:src="@drawable/ic_googleplay"
 				android:visibility="visible"
-				tools:ignore="OnClick" />
+				tools:ignore="InconsistentLayout" />
 
 			<!-- semantikos fn -->
 
@@ -347,7 +347,7 @@
 				android:contentDescription="@string/description_googleplay_semantikos_fn"
 				android:src="@drawable/ic_googleplay"
 				android:visibility="visible"
-				tools:ignore="OnClick" />
+				tools:ignore="InconsistentLayout" />
 
 			<!-- semantikos sn -->
 
@@ -393,7 +393,7 @@
 				android:contentDescription="@string/description_googleplay_semantikos_sn"
 				android:src="@drawable/ic_googleplay"
 				android:visibility="visible"
-				tools:ignore="OnClick" />
+				tools:ignore="InconsistentLayout" />
 
 		</LinearLayout>
 

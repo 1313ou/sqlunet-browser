@@ -17,6 +17,8 @@ import org.sqlunet.bnc.provider.BNCControl.Result;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.sql.SqlFormatter;
 
+import java.util.Objects;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -153,6 +155,6 @@ public class BNCProvider extends BaseProvider
 
 	private static boolean equals(Object a, Object b)
 	{
-		return (a == b) || (a != null && a.equals(b));
+		return Objects.equals(a, b);
 	}
 }

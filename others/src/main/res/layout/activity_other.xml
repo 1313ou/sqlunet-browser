@@ -4,6 +4,7 @@
 
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 
@@ -68,7 +69,8 @@
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_grammarscope_syntaxnet"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible" />
+				android:visibility="visible"
+				tools:ignore="InconsistentLayout" />
 
 			<!-- grammarscope udpipe -->
 
@@ -113,7 +115,8 @@
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_grammarscope_udpipe"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible" />
+				android:visibility="visible"
+				tools:ignore="InconsistentLayout" />
 
 			<!-- treebolic wordnet -->
 
@@ -158,7 +161,8 @@
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_treebolicwordnet"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible" />
+				android:visibility="visible"
+				tools:ignore="InconsistentLayout" />
 
 			<!-- semantikos -->
 
@@ -203,7 +207,8 @@
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_semantikos"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible" />
+				android:visibility="visible"
+				tools:ignore="InconsistentLayout" />
 
 			<!-- semantikos wn -->
 
@@ -248,7 +253,8 @@
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_semantikos_wn"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible" />
+				android:visibility="visible"
+				tools:ignore="InconsistentLayout" />
 
 			<!-- semantikos ewn -->
 
@@ -293,7 +299,8 @@
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_semantikos_ewn"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible" />
+				android:visibility="visible"
+				tools:ignore="InconsistentLayout" />
 
 			<!-- semantikos vn -->
 
@@ -338,7 +345,8 @@
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_semantikos_vn"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible" />
+				android:visibility="visible"
+				tools:ignore="InconsistentLayout" />
 
 			<!-- semantikos fn -->
 
@@ -383,7 +391,8 @@
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_semantikos_fn"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible" />
+				android:visibility="visible"
+				tools:ignore="InconsistentLayout" />
 
 			<!-- semantikos sn -->
 
@@ -428,7 +437,8 @@
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_semantikos_sn"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible" />
+				android:visibility="visible"
+				tools:ignore="InconsistentLayout" />
 
 		</LinearLayout>
 

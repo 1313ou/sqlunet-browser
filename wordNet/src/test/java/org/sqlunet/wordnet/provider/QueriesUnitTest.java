@@ -9,6 +9,7 @@ import org.sqlunet.wordnet.provider.WordNetControl.Factory;
 import org.sqlunet.wordnet.provider.WordNetControl.Result;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -74,7 +75,7 @@ public class QueriesUnitTest
 		check(code, r1, r2);
 	}
 
-	public Result queryProvider(int code, @NonNull final String uriLast, final String[] projection0, @Nullable final String selection0, final String[] selectionArgs0, final String sortOrder0)
+	public Result queryProvider(int code, @NonNull final String uriLast, final String[] projection0, @Nullable final String selection0, final String[] selectionArgs0, @SuppressWarnings("unused") final String sortOrder0)
 	{
 		Result r = WordNetControl.queryMain(code, uriLast, projection0, selection0, selectionArgs0);
 		if (r == null)
@@ -105,6 +106,6 @@ public class QueriesUnitTest
 
 	private static boolean equals(Object a, Object b)
 	{
-		return (a == b) || (a != null && a.equals(b));
+		return Objects.equals(a, b);
 	}
 }

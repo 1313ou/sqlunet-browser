@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import androidx.annotation.RequiresApi;
+
 public class Discover
 {
 	static public final String TAG = "__VOICE__";
@@ -34,6 +36,7 @@ public class Discover
 
 	private TextToSpeech tts;
 
+	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 	public void discoverVoices(final Context context, final Consumer<List<Voice>> consumer)
 	{
 		this.tts = new TextToSpeech(context, status -> {
@@ -82,6 +85,7 @@ public class Discover
 		});
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 	public void discoverVoice(final Context context, final Consumer<Voice> consumer)
 	{
 		this.tts = new TextToSpeech(context, status -> {
@@ -145,6 +149,7 @@ public class Discover
 		});
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 	public void discoverLanguages(final Context context, final Consumer<List<Locale>> consumer)
 	{
 		this.tts = new TextToSpeech(context, status -> {

@@ -6,7 +6,7 @@
 <!DOCTYPE resources [
 	<!ENTITY bbuser "semantikos2">
 	<!ENTITY bbrepo "semantikos22">
-	<!ENTITY bbcommit "53e04fe21bc901ee15631873972445c2c8725652">
+	<!ENTITY bbcommit "797b41d8b6014968322c81f079769697d800c948">
 	]>
 
 <resources xmlns:tools="http://schemas.android.com/tools">

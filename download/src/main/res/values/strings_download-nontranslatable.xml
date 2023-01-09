@@ -4,7 +4,7 @@
 
 <!DOCTYPE resources [	<!ENTITY bbuser "bbuser">	<!ENTITY bbrepo "bbrepo">	<!ENTITY bbcommit "xxxx">	]>
 
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
 	<!-- directory -->
 	<string name="pref_directory" translatable="false">https://sqlunet.github.io/resources/semantikos</string>

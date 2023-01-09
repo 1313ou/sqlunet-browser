@@ -295,14 +295,7 @@ public class StorageReports
 
 		List<File> dirs = new ArrayList<>();
 		dirs.add(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS));
-		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT)
-		{
-			dirs.addAll(Arrays.asList(context.getExternalFilesDirs(Environment.DIRECTORY_DOWNLOADS)));
-		}
-		else
-		{
-			dirs.add(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS));
-		}
+		dirs.addAll(Arrays.asList(context.getExternalFilesDirs(Environment.DIRECTORY_DOWNLOADS)));
 		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP)
 		{
 			dirs.addAll(Arrays.asList(context.getExternalMediaDirs()));

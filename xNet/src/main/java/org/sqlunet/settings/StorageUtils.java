@@ -4,7 +4,6 @@
 
 package org.sqlunet.settings;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
@@ -25,7 +24,6 @@ import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
 /**
@@ -382,7 +380,6 @@ public class StorageUtils
 	 * @return list of storage directories
 	 */
 	@NonNull
-	@TargetApi(Build.VERSION_CODES.KITKAT)
 	static private List<Directory> getDirectories(@NonNull final Context context)
 	{
 		final List<Directory> result = new ArrayList<>();
@@ -768,7 +765,6 @@ public class StorageUtils
 	 * @return user id
 	 */
 	@NonNull
-	@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
 	static private String getUserId(@NonNull final Context context)
 	{
 		final UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
@@ -838,15 +834,7 @@ public class StorageUtils
 		try
 		{
 			final StatFs stat = new StatFs(path);
-			float bytes;
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2)
-			{
-				bytes = stat.getAvailableBlocksLong() * stat.getBlockSizeLong();
-			}
-			else
-			{
-				bytes = stat.getAvailableBlocks() * stat.getBlockSize();
-			}
+			final float bytes = stat.getBlockCountLong() * stat.getBlockSizeLong();
 			return bytes / (1024.f * 1024.f);
 		}
 		catch (Throwable e)
@@ -890,15 +878,7 @@ public class StorageUtils
 		try
 		{
 			final StatFs stat = new StatFs(path);
-			final float bytes;
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2)
-			{
-				bytes = stat.getBlockCountLong() * stat.getBlockSizeLong();
-			}
-			else
-			{
-				bytes = stat.getBlockCount() * stat.getBlockSize();
-			}
+			final float bytes = stat.getBlockCountLong() * stat.getBlockSizeLong();
 			return bytes / (1024.f * 1024.f);
 		}
 		catch (Throwable e)

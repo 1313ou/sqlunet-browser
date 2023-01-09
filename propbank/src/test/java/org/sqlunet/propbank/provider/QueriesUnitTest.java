@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.sqlunet.propbank.provider.PropBankControl.Result;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class QueriesUnitTest
 {
@@ -30,7 +31,7 @@ public class QueriesUnitTest
 		}
 	}
 
-	private void queriesLegacyAgainstProvider(final int code, @SuppressWarnings("SameParameterValue") final String uriLast, final String[] projection, @SuppressWarnings("SameParameterValue") final String selection, final String[] selectionArgs, @SuppressWarnings("SameParameterValue") final String sortOrder)
+	private void queriesLegacyAgainstProvider(final int code, @SuppressWarnings("SameParameterValue") final String uriLast, final String[] projection, @SuppressWarnings("SameParameterValue") final String selection, final String[] selectionArgs, @SuppressWarnings({"SameParameterValue", "unused"}) final String sortOrder)
 	{
 		Result r1 = QueriesLegacy.queryLegacy(code, uriLast, projection, selection, selectionArgs);
 		Result r2 = queryProvider(code, uriLast, projection, selection, selectionArgs);
@@ -77,6 +78,6 @@ public class QueriesUnitTest
 
 	private static boolean equals(Object a, Object b)
 	{
-		return (a == b) || (a != null && a.equals(b));
+		return Objects.equals(a, b);
 	}
 }

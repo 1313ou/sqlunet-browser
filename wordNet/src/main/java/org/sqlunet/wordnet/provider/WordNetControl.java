@@ -93,7 +93,8 @@ public class WordNetControl
 	@FunctionalInterface
 	public interface Factory
 	{
-		String make(String selection);
+		@SuppressWarnings("SameReturnValue")
+		String make(@SuppressWarnings("unused") String selection);
 	}
 
 	public static Result queryMain(int code, @NonNull final String uriLast, final String[] projection0, @Nullable final String selection0, final String[] selectionArgs0)
@@ -296,7 +297,7 @@ public class WordNetControl
 		return new Result(table, projection, selection, selectionArgs0, groupBy);
 	}
 
-	public static Result queryAnyRelations(int code, final String[] projection0, @Nullable final String selection0, final String[] selectionArgs0)
+	public static Result queryAnyRelations(int code, final String[] projection0, @SuppressWarnings("unused") @Nullable final String selection0, final String[] selectionArgs0)
 	{
 		if (code == ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET)
 		{
