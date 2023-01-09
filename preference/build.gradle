@@ -5,6 +5,7 @@
 apply plugin: 'com.android.library'
 
 android {
+
     namespace 'org.sqlunet.preference'
 
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -12,7 +13,14 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled true
     }
 
     buildTypes {
@@ -21,15 +29,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 }
 
 dependencies {
     implementation "androidx.appcompat:appcompat:$appcompatVersion"
     implementation 'androidx.preference:preference:1.2.0'
     implementation "com.google.android.material:material:$materialVersion"
+
+    coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:$desugaring"
 }

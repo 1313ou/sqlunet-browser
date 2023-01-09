@@ -5,6 +5,7 @@
 apply plugin: 'com.android.library'
 
 android {
+
     namespace 'com.bbou.others'
 
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -12,11 +13,13 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
+        multiDexEnabled true
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled true
     }
 
     buildTypes {
@@ -28,14 +31,17 @@ android {
 }
 
 dependencies {
+
     implementation "androidx.appcompat:appcompat:$appcompatVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     implementation "androidx.annotation:annotation:$annotationVersion"
     implementation "com.google.android.material:material:$materialVersion"
 
+    coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:$desugaring"
+
     testImplementation 'junit:junit:4.13.2'
 
-    androidTestImplementation('androidx.test.espresso:espresso-core:3.4.0', {
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.5.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 }

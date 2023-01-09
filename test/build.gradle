@@ -5,6 +5,7 @@
 apply plugin: 'com.android.library'
 
 android {
+
     namespace 'org.sqlunet.test'
 
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -29,8 +30,9 @@ android {
 }
 
 dependencies {
+
     implementation "androidx.annotation:annotation:$annotationVersion"
-    implementation 'androidx.test:core:1.4.0'
-    implementation 'androidx.test.espresso:espresso-core:3.4.0'
-    implementation 'androidx.test.espresso:espresso-contrib:3.4.0'
+    implementation 'androidx.test:core:1.5.0'
+    implementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation 'androidx.test.espresso:espresso-contrib:3.5.1'
 }

@@ -5,6 +5,7 @@
 apply plugin: 'com.android.library'
 
 android {
+
     namespace 'org.sqlunet.download'
 
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -12,11 +13,13 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
+        multiDexEnabled true
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled true
     }
 
     buildTypes {
@@ -37,4 +40,6 @@ dependencies {
     implementation 'androidx.preference:preference:1.2.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation "com.google.android.material:material:$materialVersion"
+
+    coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:$desugaring"
 }

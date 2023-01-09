@@ -7,17 +7,21 @@ apply plugin: 'androidx.navigation.safeargs'
 
 android {
 
+    namespace 'org.sqlunet.browser.common'
+
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled true
     }
 
     buildTypes {
@@ -26,10 +30,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
-    namespace 'org.sqlunet.browser.common'
 }
 
 dependencies {
+
     implementation project(path: ':expandableListFragment')
     implementation project(path: ':concurrency')
     implementation project(path: ':preference')
@@ -53,4 +57,6 @@ dependencies {
     implementation "androidx.annotation:annotation:$annotationVersion"
     implementation "com.google.android.material:material:$materialVersion"
     implementation 'com.google.android.play:core:1.10.3'
+
+    coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:$desugaring"
 }

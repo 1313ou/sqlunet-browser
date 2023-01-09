@@ -5,6 +5,7 @@
 apply plugin: 'com.android.library'
 
 android {
+
     namespace 'android.support.local.app'
 
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -12,13 +13,14 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled true
     }
 
     buildTypes {
@@ -34,6 +36,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appcompatVersion"
     implementation "androidx.annotation:annotation:$annotationVersion"
 
-    // Required for instrumented tests
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:$desugaring"
+
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }

@@ -8,6 +8,7 @@ plugins {
 }
 
 android {
+
     namespace 'org.sqlunet.treeview'
 
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -15,6 +16,7 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
+        multiDexEnabled true
         compileOptions {
             sourceCompatibility JavaVersion.VERSION_1_7
             targetCompatibility JavaVersion.VERSION_1_7
@@ -25,6 +27,7 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled true
     }
 
     buildTypes {
@@ -39,4 +42,6 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appcompatVersion"
     implementation 'androidx.preference:preference:1.2.0'
     implementation "androidx.annotation:annotation:$annotationVersion"
+
+    coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:$desugaring"
 }
