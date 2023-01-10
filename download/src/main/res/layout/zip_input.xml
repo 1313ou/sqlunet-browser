@@ -20,7 +20,8 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:ems="10"
-		android:inputType="text" />
+		android:inputType="text"
+		android:autofillHints="sqlunet.db" />
 
 	<TextView
 		android:id="@+id/textView"

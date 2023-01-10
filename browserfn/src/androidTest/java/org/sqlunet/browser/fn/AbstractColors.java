@@ -24,7 +24,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
 import static androidx.test.internal.runner.junit4.statement.UiThreadStatement.runOnUiThread;
-import static org.sqlunet.browser.fn.Colors.testColorsFromResources;
+import static org.sqlunet.browser.fn.ColorsTest.testColorsFromResources;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
@@ -43,18 +43,18 @@ abstract class AbstractColors extends TestCase
 	@Before
 	public void before() throws Throwable
 	{
-		this.context = Colors.getContext(getMode());
+		this.context = ColorsTest.getContext(getMode());
 		runOnUiThread(() -> {
 
 			AppCompatDelegate.setDefaultNightMode(getMode());
 			// Colors.dumpDefaultColors(this.context);
-			@ColorInt int[] defaultColors = Colors.getDefaultColorAttrs(this.context);
+			@ColorInt int[] defaultColors = ColorsTest.getDefaultColorAttrs(this.context);
 			Log.i(LOGTAG, String.format("Default color #%x on #%x", defaultColors[1], defaultColors[0]));
 		});
 	}
 
 	@Test
-	public void colorContrast() throws Colors.IllegalColorPair
+	public void colorContrast() throws ColorsTest.IllegalColorPair
 	{
 		assertTrue(NightMode.checkDarkMode(getMode()));
 		testColorsFromResources(this.context, org.sqlunet.browser.common.R.array.palette_ui, false);
@@ -72,7 +72,7 @@ abstract class AbstractColors extends TestCase
 			testColorsFromResources(this.context, org.sqlunet.xnet.R.array.palette, true);
 			testColorsFromResources(this.context, org.sqlunet.framenet.R.array.palette_fn, true);
 		}
-		catch (Colors.IllegalColorPair ce)
+		catch (ColorsTest.IllegalColorPair ce)
 		{
 			Log.e(getName(), ce.getMessage());
 			fail(ce.getMessage());
