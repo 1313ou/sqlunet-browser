@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.sqlunet.browser.MainActivity;
 import org.sqlunet.browser.Seq;
+import org.sqlunet.browser.sn.test.R;
 
 import androidx.annotation.NonNull;
 import androidx.test.core.app.ActivityScenario;
@@ -34,7 +35,7 @@ public class RunTextSearchTest extends TestCase
 			ActivityScenario.launch(MainActivity.class);
 
 		Seq.do_navigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_status);
-		Do.ensureTextSearchSetup(R.id.searchtextWnButton);
+		Do.ensureTextSearchSetup(org.sqlunet.browser.sn.R.id.searchtextWnButton);
 
 		Seq.do_navigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_search_text);
 	}

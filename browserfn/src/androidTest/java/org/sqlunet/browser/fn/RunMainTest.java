@@ -10,8 +10,9 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.sqlunet.browser.Seq;
 import org.sqlunet.browser.MainActivity;
+import org.sqlunet.browser.Seq;
+import org.sqlunet.browser.fn.test.R;
 
 import androidx.annotation.NonNull;
 import androidx.test.core.app.ActivityScenario;

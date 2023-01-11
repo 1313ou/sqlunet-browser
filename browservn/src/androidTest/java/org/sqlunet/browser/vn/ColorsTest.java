@@ -10,6 +10,7 @@ import android.util.Log;
 
 import junit.framework.TestCase;
 
+import org.sqlunet.browser.vn.test.R;
 import org.sqlunet.nightmode.NightMode;
 
 import androidx.annotation.ArrayRes;

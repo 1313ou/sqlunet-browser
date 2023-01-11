@@ -135,7 +135,8 @@ public class QueriesLegacy
 				break;
 
 			case WordNetControl.WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS:
-				table = "words AS " + WordNetContract.AS_WORDS + " " + //
+				table = "lexes AS " + WordNetContract.AS_LEXES + " " + //
+						"INNER JOIN words AS " + WordNetContract.AS_WORDS + " USING (wordid) " + //
 						"LEFT JOIN senses AS " + WordNetContract.AS_SENSES + " USING (wordid) " + //
 						"LEFT JOIN casedwords AS " + WordNetContract.AS_CASEDS + " USING (wordid,casedwordid) " + //
 						"LEFT JOIN synsets AS " + WordNetContract.AS_SYNSETS + " USING (synsetid) " + //

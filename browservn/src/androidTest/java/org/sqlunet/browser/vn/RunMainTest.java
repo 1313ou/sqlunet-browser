@@ -10,8 +10,9 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.sqlunet.browser.Seq;
 import org.sqlunet.browser.MainActivity;
+import org.sqlunet.browser.Seq;
+import org.sqlunet.browser.vn.test.R;
 
 import androidx.annotation.NonNull;
 import androidx.test.core.app.ActivityScenario;
@@ -31,7 +32,9 @@ public class RunMainTest extends TestCase
 	public void before()
 	{
 		if (Do.ensureDownloaded())
+		{
 			ActivityScenario.launch(MainActivity.class);
+		}
 
 		//Actions.do_navigate(R.id.drawer_layout, R.id.nav_view, "Browse");
 		Seq.do_navigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_search_browse);
