@@ -28,14 +28,6 @@
 			tools:ignore="InconsistentLayout" />
 
 		<!--     <TextView -->
-		<!--         android:id="@+id/label_bnc" -->
-		<!--         android:layout_width="match_parent" -->
-		<!--         android:layout_height="wrap_content" -->
-		<!--         android:text="@string/bnc" -->
-		<!--         android:textSize="30sp" -->
-		<!--         android:visibility="visible" /> -->
-
-		<!--     <TextView -->
 		<!--         android:id="@+id/label_propbank" -->
 		<!--         android:layout_width="match_parent" -->
 		<!--         android:layout_height="wrap_content" -->

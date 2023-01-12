@@ -15,8 +15,8 @@
 		<item>Prepare PropBank text search</item>
 		<item>Create WordNet indexes</item>
 		<item>Drop WordNet indexes</item>
-		<item>Create BNC indexes</item>
-		<item>Drop BNC indexes</item>
+		<!-- <item>Create BNC indexes</item>-->
+		<!-- <item>Drop BNC indexes</item>-->
 		<item>Create VerbNet indexes</item>
 		<item>Drop VerbNet indexes</item>
 		<item>Create PropBank indexes</item>
@@ -56,10 +56,10 @@
 			CREATE INDEX IF NOT EXISTS `pk_vtemplates` ON `vtemplates` (`templateid`);
 			CREATE INDEX IF NOT EXISTS `pk_lexes_morphs_wordid` ON `lexes_morphs` (`wordid`);
 			<!-- bnc -->
-			CREATE INDEX IF NOT EXISTS `k_bnc_bncs_wordid_posid` ON `bnc_bncs` (`wordid`,`posid`);
-			CREATE INDEX IF NOT EXISTS `k_bnc_spwrs_wordid_posid` ON `bnc_spwrs` (`wordid`,`posid`);
-			CREATE INDEX IF NOT EXISTS `k_bnc_convtasks_wordid_posid` ON `bnc_convtasks` (`wordid`,`posid`);
-			CREATE INDEX IF NOT EXISTS `k_bnc_imaginfs_wordid_posid` ON `bnc_imaginfs` (`wordid`,`posid`);
+			<!-- CREATE INDEX IF NOT EXISTS `k_bnc_bncs_wordid_posid` ON `bnc_bncs` (`wordid`,`posid`); -->
+			<!-- CREATE INDEX IF NOT EXISTS `k_bnc_spwrs_wordid_posid` ON `bnc_spwrs` (`wordid`,`posid`); -->
+			<!-- CREATE INDEX IF NOT EXISTS `k_bnc_convtasks_wordid_posid` ON `bnc_convtasks` (`wordid`,`posid`); -->
+			<!-- CREATE INDEX IF NOT EXISTS `k_bnc_imaginfs_wordid_posid` ON `bnc_imaginfs` (`wordid`,`posid`); -->
 			<!--verbnet -->
 			CREATE INDEX IF NOT EXISTS `pk_vn_classes` ON `vn_classes` (`classid`);
 			CREATE INDEX IF NOT EXISTS `k_vn_classes_frames_classid` ON `vn_classes_frames`(`classid`);
@@ -163,18 +163,22 @@
 			DROP INDEX IF EXISTS `pk_vframes`;
 			DROP INDEX IF EXISTS `pk_vtemplates`;
 			DROP INDEX IF EXISTS `pk_lexes_morphs_wordid`;</item>
+		<!-- bnc indexes -->
+		<!--
 		<item>
-			<!-- bnc indexes -->
 			CREATE INDEX IF NOT EXISTS `k_bnc_bncs_wordid_posid` ON `bnc_bncs` (`wordid`,`posid`);
 			CREATE INDEX IF NOT EXISTS `k_bnc_spwrs_wordid_posid` ON `bnc_spwrs` (`wordid`,`posid`);
 			CREATE INDEX IF NOT EXISTS `k_bnc_convtasks_wordid_posid` ON `bnc_convtasks` (`wordid`,`posid`);
 			CREATE INDEX IF NOT EXISTS `k_bnc_imaginfs_wordid_posid` ON `bnc_imaginfs` (`wordid`,`posid`);</item>
+		-->
+		<!-- drop bnc indexes -->
+		<!--
 		<item>
-			<!-- drop bnc indexes -->
 			DROP INDEX IF EXISTS `k_bnc_bncs_wordid_posid`;
 			DROP INDEX IF EXISTS `k_bnc_spwrs_wordid_posid`;
 			DROP INDEX IF EXISTS `k_bnc_convtasks_wordid_posid`;
 			DROP INDEX IF EXISTS `k_bnc_imaginfs_wordid_posid`;</item>
+		-->
 		<item>
 			<!-- verbnet indexes -->
 			CREATE INDEX IF NOT EXISTS `pk_vn_classes` ON `vn_classes` (`classid`);

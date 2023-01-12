@@ -115,10 +115,10 @@
 		<item>k_pb_args_exampleid</item>
 
 		<!-- bnc -->
-		<item>k_bnc_bncs_wordid_posid</item>
-		<item>k_bnc_spwrs_wordid_posid</item>
-		<item>k_bnc_convtasks_wordid_posid</item>
-		<item>k_bnc_imaginfs_wordid_posid</item>
+		<!-- <item>k_bnc_bncs_wordid_posid</item> -->
+		<!-- <item>k_bnc_spwrs_wordid_posid</item> -->
+		<!-- <item>k_bnc_convtasks_wordid_posid</item> -->
+		<!-- <item>k_bnc_imaginfs_wordid_posid</item> -->
 
 	</string-array>
 
