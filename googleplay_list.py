@@ -23,8 +23,8 @@ from oauth2client import client
 
 # Declare command-line flags.
 argparser = argparse.ArgumentParser(add_help=False)
-argparser.add_argument('package_name',
-                       help='The package name.')
+argparser.add_argument('--verbose', action='store_const', const=True, help='Verbose.')
+argparser.add_argument('package_name', help='The package name.')
 
 def main(argv):
     # Authenticate and construct service.
@@ -37,44 +37,50 @@ def main(argv):
         scope='https://www.googleapis.com/auth/androidpublisher')
 
     # Process flags and read their values.
+    verbose = flags.verbose
     package_name = flags.package_name
     print ('PACKAGE %s' % package_name)
 
     try:
+        
         # get edit id
         edit_request = service.edits().insert(body={}, packageName=package_name)
         result = edit_request.execute()
         edit_id = result['id']
 
-        # get apks
-        apks_result = service.edits().apks().list(
-            editId=edit_id,
-            packageName=package_name
-        ).execute()
+        if verbose:
+            # get apks
+            try:
+                apks_result = service.edits().apks().list(
+                    editId=edit_id,
+                    packageName=package_name
+                ).execute()
 
-        # iterate on apks
-        print ('APKs')
-        for apk in apks_result['apks']:
-            #print apk
-            print ('versionCode: %s, binary.sha1: %s' % (
-                apk['versionCode'], 
-                apk['binary']['sha1']
-            ))
+                # iterate on apks
+                print ('APKs')
+                for apk in apks_result['apks']:
+                    #print apk
+                    print ('versionCode: %s, binary.sha1: %s' % (
+                        apk['versionCode'], 
+                        apk['binary']['sha1']
+                    ))
+            except:
+                pass
 
-        # get bundles
-        bundles_result = service.edits().bundles().list(
-            editId=edit_id,
-            packageName=package_name
-        ).execute()
+            # get bundles
+            bundles_result = service.edits().bundles().list(
+                editId=edit_id,
+                packageName=package_name
+            ).execute()
 
-        # iterate on bundles
-        print ('BUNDLEs')
-        for bundle in bundles_result['bundles']:
-            #print bundle
-            print ( 'versionCode: %s, sha1: %s' % (
-                bundle['versionCode'],
-                bundle['sha1'],
-            ))
+            # iterate on bundles
+            print ('BUNDLEs')
+            for bundle in bundles_result['bundles']:
+                #print bundle
+                print ( 'versionCode: %s, sha1: %s' % (
+                    bundle['versionCode'],
+                    bundle['sha1'],
+                ))
 
         # get tracks
         tracks_result = service.edits().tracks().list(
@@ -86,15 +92,15 @@ def main(argv):
         print ('TRACKS')
         for track in tracks_result['tracks']:
             #print ( track)
-            print( 'track: %s' % (
+            print( '%12s' % (
                 track['track'])
             ),
             # iterate on track releases
             for release in track['releases']:
-                print ( 'release: %s, status: %s, versionCodes: %s' % (
+                print ( ' %8s, %10s, versionCodes: %s' % (
                     release['name'], 
                     release['status'], 
-                    release['versionCodes']
+                    map(str,release['versionCodes'])
               ))
 
     except client.AccessTokenRefreshError:
