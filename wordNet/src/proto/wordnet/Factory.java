@@ -144,16 +144,16 @@ public class Factory implements Function<String,String[]>, Supplier<String[]>
 			case WORDS_SENSES_CASEDWORDS_SYNSETS_POSES_DOMAINS:
 				r.table = String.format("%s AS %s " + // 1
 								"INNER JOIN %s AS %s USING (%s) " + // 2
-								"LEFT JOIN %s AS %s USING (%s) " + // 3
+								"LEFT JOIN %s AS %s USING (%s,%s) " + // 3
 								"LEFT JOIN %s AS %s USING (%s,%s) " + // 4
-								"LEFT JOIN %s AS %s USING (%s) " + // 5
+								"LEFT JOIN %s AS %s USING (%s,%s) " + // 5
 								"LEFT JOIN %s AS %s USING (%s) " + // 6
 								"LEFT JOIN %s AS %s USING (%s)", // 7
 						"${lexes.table}", "${as_lexes}", // 1
 						"${words.table}", "${as_words}", "${words.wordid}", // 2
-						"${senses.table}", "${as_senses}", "${words.wordid}", // 3
-						"${casedwords.table}", "${as_caseds}", "${casedwords.wordid}", "${casedwords.casedwordid}", // 4
-						"${synsets.table}", "${as_synsets}", "${synsets.synsetid}", // 5
+						"${casedwords.table}", "${as_caseds}", "${casedwords.wordid}", "${casedwords.casedwordid}", // 3
+						"${senses.table}", "${as_senses}", "${lexes.luid}", "${words.wordid}", // 4
+						"${synsets.table}", "${as_synsets}", "${synsets.synsetid}", "${poses.posid}", // 5
 						"${poses.table}", "${as_poses}", "${poses.posid}", // 6
 						"${domains.table}", "${as_domains}", "${domains.domainid}"); // 7
 				break;
@@ -162,19 +162,19 @@ public class Factory implements Function<String,String[]>, Supplier<String[]>
 				r.table = String.format("%s AS %s " + // 1
 								"INNER JOIN %s AS %s USING (%s) " + // 2
 								"LEFT JOIN %s AS %s USING (%s,%s) " + // 3
-								"LEFT JOIN %s AS %s USING (%s,%s) " + // 4
-								"LEFT JOIN %s USING (%s,%s) " + // 5
-								"LEFT JOIN %s AS %s USING (%s) " + // 6
-								"LEFT JOIN %s AS %s USING (%s) " + // 7
+								"LEFT JOIN %s USING (%s,%s,%s) " + // 4
+								"LEFT JOIN %s AS %s USING (%s) " + // 5
+								"LEFT JOIN %s AS %s USING (%s,%s) " + // 6
+								"LEFT JOIN %s AS %s USING (%s,%s) " + // 7
 								"LEFT JOIN %s AS %s USING (%s) " + // 8
 								"LEFT JOIN %s AS %s USING (%s)", // 9
 						"${lexes.table}", "${as_lexes}", // 1
 						"${words.table}", "${as_words}", "${words.wordid}", // 2
-						"${senses.table}", "${as_senses}", "${lexes.luid}", "${words.wordid}", // 3
-						"${casedwords.table}", "${as_caseds}", "${casedwords.wordid}", "${casedwords.casedwordid}", // 4
-						"${lexes_pronunciations.table}", "${lexes.luid}", "${words.wordid}", // 5
-						"${pronunciations.table}", "${as_pronunciations}", "${pronunciations.pronunciationid}", // 6
-						"${synsets.table}", "${as_synsets}", "${synsets.synsetid}", // 7
+						"${casedwords.table}", "${as_caseds}", "${casedwords.wordid}", "${casedwords.casedwordid}", // 3
+						"${lexes_pronunciations.table}", "${lexes.luid}", "${words.wordid}", "${poses.posid}", // 4
+						"${pronunciations.table}", "${as_pronunciations}", "${pronunciations.pronunciationid}", // 5
+						"${senses.table}", "${as_senses}", "${lexes.luid}", "${words.wordid}", // 6
+						"${synsets.table}", "${as_synsets}", "${synsets.synsetid}", "${poses.posid}", // 7
 						"${poses.table}", "${as_poses}", "${poses.posid}", // 8
 						"${domains.table}", "${as_domains}", "${domains.domainid}"); // 9
 				r.groupBy = "${senses.senseid}";
