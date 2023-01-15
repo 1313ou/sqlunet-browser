@@ -12,6 +12,8 @@ org.sqlunet.browser.sn
 
 source define_colors.sh
 
+echo -e "${M}build.gradle\n$(grep 'version' build.gradle)${Z}"
+
 for p in ${packages}; do
 	echo -e "${YELLOW}${p}${RESET}"
 	python2 googleplay_list.py ${p}

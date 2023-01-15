@@ -215,8 +215,10 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		toolbar.setSubtitle(R.string.app_subname);
 
 		// nav
+
 		toolbar.setNavigationOnClickListener(v -> {
 
+			//Log.d(TAG, "BackStack: onBackPressed() pressed");
 			final FragmentManager manager = getChildFragmentManager();
 			int count = manager.getBackStackEntryCount();
 			if (count >= 1)
@@ -230,19 +232,18 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 			}
 			else
 			{
-				// FragmentManager manager2 = getParentFragmentManager();
-				// int count2 = manager2.getBackStackEntryCount();
-				// if (count2 >= 1)
-				// {
-				// 	for (int i = 0; i < count2; i++)
-				// 	{
-				// 		Log.d(TAG, "BackStack: parent fragment [" + i + "]: " + manager2.getBackStackEntryAt(i) + " " + manager2.getBackStackEntryAt(i).getName() + " " + manager2.getBackStackEntryAt(i).getId());
-				// 	}
-				//
-				// 	Log.d(TAG, "BackStack: parent fragment popBackStack() " + manager2.getBackStackEntryAt(count2 - 1));
-				// 	manager2.popBackStack();
-				// }
-				// else
+				FragmentManager manager2 = getParentFragmentManager();
+				int count2 = manager2.getBackStackEntryCount();
+				if (count2 >= 1)
+				{
+					for (int i = 0; i < count2; i++)
+					{
+						Log.d(TAG, "BackStack: parent fragment [" + i + "]: " + manager2.getBackStackEntryAt(i) + " " + manager2.getBackStackEntryAt(i).getName() + " " + manager2.getBackStackEntryAt(i).getId());
+					}
+					Log.d(TAG, "BackStack: parent fragment popBackStack() " + manager2.getBackStackEntryAt(count2 - 1));
+					manager2.popBackStack();
+				}
+				else
 				{
 					Log.d(TAG, "BackStack: activity onBackPressed()");
 					requireActivity().onBackPressed();
