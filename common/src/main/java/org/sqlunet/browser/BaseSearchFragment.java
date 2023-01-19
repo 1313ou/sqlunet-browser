@@ -223,10 +223,10 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 			int count = manager.getBackStackEntryCount();
 			if (count >= 1)
 			{
-				for (int i = 0; i < count; i++)
-				{
-					Log.d(TAG, "BackStack: child fragment [" + i + "]: " + manager.getBackStackEntryAt(i) + " " + manager.getBackStackEntryAt(i).getName() + " " + manager.getBackStackEntryAt(i).getId());
-				}
+				// for (int i = 0; i < count; i++)
+				// {
+				// 	Log.d(TAG, "BackStack: child fragment [" + i + "]: " + manager.getBackStackEntryAt(i) + " " + manager.getBackStackEntryAt(i).getName() + " " + manager.getBackStackEntryAt(i).getId());
+				// }
 				Log.d(TAG, "BackStack: child fragment popBackStack() " + manager.getBackStackEntryAt(count - 1));
 				manager.popBackStack();
 			}
@@ -236,10 +236,10 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 				int count2 = manager2.getBackStackEntryCount();
 				if (count2 >= 1)
 				{
-					for (int i = 0; i < count2; i++)
-					{
-						Log.d(TAG, "BackStack: parent fragment [" + i + "]: " + manager2.getBackStackEntryAt(i) + " " + manager2.getBackStackEntryAt(i).getName() + " " + manager2.getBackStackEntryAt(i).getId());
-					}
+					// for (int i = 0; i < count2; i++)
+					// {
+					// 	Log.d(TAG, "BackStack: parent fragment [" + i + "]: " + manager2.getBackStackEntryAt(i) + " " + manager2.getBackStackEntryAt(i).getName() + " " + manager2.getBackStackEntryAt(i).getId());
+					// }
 					Log.d(TAG, "BackStack: parent fragment popBackStack() " + manager2.getBackStackEntryAt(count2 - 1));
 					manager2.popBackStack();
 				}
