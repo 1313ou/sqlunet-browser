@@ -51,8 +51,8 @@ def main(argv):
     # Process flags and read their values.
     package_name = flags.package_name
     aab_files = flags.aab_files
-    release_name=flags.release_name
-    recent_changes=flags.recent_changes
+    release_name = flags.release_name
+    recent_changes = flags.recent_changes
     print 'PACKAGE %s' % package_name
 
     try:
