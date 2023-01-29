@@ -37,6 +37,7 @@ argparser.add_argument('recent_changes',
 argparser.add_argument('aab_files',
                        nargs='*',
                        help='The path to the AAB files to upload.')
+argparser.add_argument('--draft', action='store_const', const=True, help='Draft.')
 
 def main(argv):
     # Authenticate and construct service.
@@ -53,6 +54,7 @@ def main(argv):
     aab_files = flags.aab_files
     release_name = flags.release_name
     recent_changes = flags.recent_changes
+    draft = flags.draft
     print 'PACKAGE %s' % package_name
 
     try:
@@ -84,10 +86,11 @@ def main(argv):
                     { u'language': 'en-US', u'text': recent_changes },
                     { u'language': 'en-GB', u'text': recent_changes },
                 ],
-                u'status': u'completed',
-            }]}).execute()    
-        print 'Track %s is set with releases: %s' % (
-            track_response['track'], str(track_response['releases']))
+                u'status': u'draft' if draft else u'completed',
+            }]}).execute()
+        if not draft:        
+        	print 'Track %s is set with releases: %s' % (
+        	    track_response['track'], str(track_response['releases']))
     
         commit_request = service.edits().commit(
             editId=edit_id, packageName=package_name).execute()
