@@ -34,6 +34,7 @@ android {
 }
 
 dependencies {
+
     implementation project(path: ':treeView')
     implementation project(path: ':concurrency')
     implementation project(path: ':nightmode')

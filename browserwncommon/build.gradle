@@ -79,8 +79,6 @@ dependencies {
 
     coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:$desugaring"
     implementation "androidx.multidex:multidex:2.0.1"
-    //TODO remove when bug fixed in appcompat:1.6.0
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
 
     // local unit tests (JUnit 4 framework)
     testImplementation 'junit:junit:4.13.2'

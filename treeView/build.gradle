@@ -39,6 +39,7 @@ android {
 }
 
 dependencies {
+
     implementation "androidx.appcompat:appcompat:$appcompatVersion"
     implementation 'androidx.preference:preference:1.2.0'
     implementation "androidx.annotation:annotation:$annotationVersion"

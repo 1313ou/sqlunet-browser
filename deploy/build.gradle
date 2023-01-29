@@ -34,7 +34,6 @@ dependencies {
 
     implementation project(path: ':concurrency')
 
-
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "androidx.appcompat:appcompat:$appcompatVersion"
 
