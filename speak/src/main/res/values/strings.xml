@@ -5,6 +5,7 @@
 
 <resources>
 	<string name="none">None</string>
+	<string name="pref_title_reset">Reset</string>
 
 	<string name="speak_header">Speak</string>
 	<string name="country_title">Country</string>
