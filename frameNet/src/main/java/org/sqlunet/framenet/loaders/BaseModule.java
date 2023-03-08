@@ -523,7 +523,7 @@ abstract public class BaseModule extends Module
 				// result
 				long targetFrameId = slot1 ? frame2Id : frame1Id;
 				final TreeNode memberNode = TreeFactory.makeLinkNode(sb, R.drawable.roleclass, false, new FnFrameLink(targetFrameId));
-				relatedNodes.put(FRAMERELATION_RANK[relationId], memberNode);
+				relatedNodes.put(FRAMERELATION_RANK[relationId - 1], memberNode);
 			}
 			while (cursor.moveToNext());
 
