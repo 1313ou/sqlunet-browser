@@ -4,8 +4,6 @@
 
 package org.sqlunet.speak;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.Voice;
@@ -20,7 +18,6 @@ import java.util.stream.Collectors;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.preference.PreferenceFragmentCompat;
-import androidx.preference.PreferenceManager;
 
 public class SpeakSettingsFragment extends PreferenceFragmentCompat
 {
@@ -40,10 +37,7 @@ public class SpeakSettingsFragment extends PreferenceFragmentCompat
 			voicePref.setEntries(new String[]{noneString});
 			voicePref.setEntryValues(new String[]{""});
 			voicePref.setSummaryProvider(pref2 -> prepareSummary((MultiSelectListPreference) pref2));
-			voicePref.setClickListener((v) -> {
-
-				voicePref.setValues(new HashSet<>());
-			});
+			voicePref.setClickListener((v) -> voicePref.setValues(new HashSet<>()));
 
 			new Discover().discoverVoices(getContext(), voices -> {
 

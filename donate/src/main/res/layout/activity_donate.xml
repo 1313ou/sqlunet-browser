@@ -144,7 +144,6 @@
 				android:layout_gravity="center_horizontal"
 				android:layout_marginTop="20dp"
 				android:contentDescription="@string/title_consume"
-				android:onClick="onConsume"
 				android:padding="10dp"
 				android:text="@string/title_consume"
 				android:visibility="visible" />

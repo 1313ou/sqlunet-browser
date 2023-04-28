@@ -343,6 +343,8 @@ public class TreeNode
 		{
 			path.append(node.getId());
 			node = node.parent;
+			assert node != null; // because node.parent was not null
+			// peek loop condition
 			if (node.parent != null)
 			{
 				path.append(NODES_ID_SEPARATOR);

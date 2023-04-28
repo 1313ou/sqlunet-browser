@@ -545,7 +545,7 @@ public class Diagnostics
 	@SuppressWarnings("SameReturnValue")
 	static private boolean canOpen(@NonNull final String path) throws SQLiteCantOpenDatabaseException
 	{
-		try (SQLiteDatabase db = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY))
+		try (@SuppressWarnings("unused") SQLiteDatabase db = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY))
 		{
 			return true;
 		}

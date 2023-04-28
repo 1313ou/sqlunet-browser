@@ -369,7 +369,7 @@ public class SnSelectorsFragment extends BaseSelectorsListFragment
 	private static Cursor augmentCursor(Cursor cursor, long wordid, String word)
 	{
 		// Create a MatrixCursor filled with the special rows to add.
-		MatrixCursor matrixCursor = new MatrixCursor(COLUMNS);
+		@SuppressWarnings("resource") MatrixCursor matrixCursor = new MatrixCursor(COLUMNS);
 
 		//	"_id",  WORD1ID,  WORD2ID,  SYNSET1ID,  SYNSET2ID,  WORD1,  WORD2,  POS1,  POS2
 		matrixCursor.addRow(new Object[]{Integer.MAX_VALUE, wordid, wordid, null, null, "* " + word + " *", "", null, null});

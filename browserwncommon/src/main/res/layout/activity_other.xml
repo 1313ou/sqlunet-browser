@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2022. Bernard Bou
   -->
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 
@@ -33,9 +32,9 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
+				android:layout_marginTop="25dp"
 				android:contentDescription="@string/description_logo_grammarscope_syntaxnet"
 				android:gravity="center_horizontal"
-				android:layout_marginTop="25dp"
 				android:padding="5dp"
 				android:src="@drawable/logo_grammarscope"
 				android:visibility="visible"/>
@@ -62,15 +61,16 @@
 				android:visibility="visible"/>
 
 			<ImageButton
+				android:id="@+id/on_market_grammarscope"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
 				android:layout_marginTop="10dp"
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_grammarscope_syntaxnet"
-				android:onClick="onMarketGrammarScope"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible"/>
+				android:visibility="visible"
+				tools:ignore="InconsistentLayout" />
 
 			<!-- grammarscope udpipe -->
 
@@ -78,9 +78,9 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
+				android:layout_marginTop="25dp"
 				android:contentDescription="@string/description_logo_grammarscope_udpipe"
 				android:gravity="center_horizontal"
-				android:layout_marginTop="25dp"
 				android:padding="5dp"
 				android:src="@drawable/logo_grammarscope_udpipe"
 				android:visibility="visible"/>
@@ -107,15 +107,16 @@
 				android:visibility="visible"/>
 
 			<ImageButton
+				android:id="@+id/on_market_grammarscope_udpipe"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
 				android:layout_marginTop="10dp"
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_grammarscope_udpipe"
-				android:onClick="onMarketGrammarScopeUDPipe"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible"/>
+				android:visibility="visible"
+				tools:ignore="InconsistentLayout" />
 
 			<!-- treebolic wordnet -->
 
@@ -123,9 +124,9 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
+				android:layout_marginTop="25dp"
 				android:contentDescription="@string/description_logo_treebolicwordnet"
 				android:gravity="center_horizontal"
-				android:layout_marginTop="25dp"
 				android:padding="5dp"
 				android:src="@drawable/logo_treebolicwordnet"
 				android:visibility="visible"/>
@@ -152,15 +153,16 @@
 				android:visibility="visible"/>
 
 			<ImageButton
+				android:id="@+id/on_market_treebolic_wordnet"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
 				android:layout_marginTop="20dp"
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_treebolicwordnet"
-				android:onClick="onMarketTreebolicWordNet"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible"/>
+				android:visibility="visible"
+				tools:ignore="InconsistentLayout" />
 
 			<!-- semantikos -->
 
@@ -197,15 +199,16 @@
 				android:visibility="visible"/>
 
 			<ImageButton
+				android:id="@+id/on_market_semantikos"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
 				android:layout_marginTop="20dp"
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_semantikos"
-				android:onClick="onMarketSemantikos"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible"/>
+				android:visibility="visible"
+				tools:ignore="InconsistentLayout" />
 
 			<!-- semantikos wn -->
 
@@ -242,15 +245,16 @@
 				android:visibility="visible"/>
 
 			<ImageButton
+				android:id="@+id/on_market_semantikos_wn"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
 				android:layout_marginTop="20dp"
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_semantikos_wn"
-				android:onClick="onMarketSemantikosWn"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible"/>
+				android:visibility="visible"
+				tools:ignore="InconsistentLayout" />
 
 			<!-- semantikos ewn -->
 
@@ -287,15 +291,16 @@
 				android:visibility="visible"/>
 
 			<ImageButton
+				android:id="@+id/on_market_semantikos_ewn"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
 				android:layout_marginTop="20dp"
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_semantikos_ewn"
-				android:onClick="onMarketSemantikosEWn"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible"/>
+				android:visibility="visible"
+				tools:ignore="InconsistentLayout" />
 
 			<!-- semantikos vn -->
 
@@ -332,15 +337,16 @@
 				android:visibility="visible"/>
 
 			<ImageButton
+				android:id="@+id/on_market_semantikos_vn"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
 				android:layout_marginTop="20dp"
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_semantikos_vn"
-				android:onClick="onMarketSemantikosVn"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible"/>
+				android:visibility="visible"
+				tools:ignore="InconsistentLayout" />
 
 			<!-- semantikos fn -->
 
@@ -377,15 +383,16 @@
 				android:visibility="visible"/>
 
 			<ImageButton
+				android:id="@+id/on_market_semantikos_fn"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
 				android:layout_marginTop="20dp"
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_semantikos_fn"
-				android:onClick="onMarketSemantikosFn"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible"/>
+				android:visibility="visible"
+				tools:ignore="InconsistentLayout" />
 
 			<!-- semantikos sn -->
 
@@ -422,15 +429,16 @@
 				android:visibility="visible"/>
 
 			<ImageButton
+				android:id="@+id/on_market_semantikos_sn"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
 				android:layout_marginTop="20dp"
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_semantikos_sn"
-				android:onClick="onMarketSemantikosSn"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible"/>
+				android:visibility="visible"
+				tools:ignore="InconsistentLayout" />
 
 		</LinearLayout>
 

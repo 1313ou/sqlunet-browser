@@ -14,6 +14,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.android.billingclient.api.Purchase;
@@ -152,6 +153,10 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 		{
 			this.billingManager = new BillingManager(this, this);
 		}
+
+		// consume button
+		final Button consumeButton = findViewById(R.id.consumeButton);
+		consumeButton.setOnClickListener(this::onConsume);
 
 		// toolbar
 		final Toolbar toolbar = findViewById(R.id.toolbar);
