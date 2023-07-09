@@ -8,7 +8,7 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:8.0.2'
-        classpath 'androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3'
+        classpath 'androidx.navigation:navigation-safe-args-gradle-plugin:2.6.0'
     }
 }
 
@@ -27,12 +27,12 @@ allprojects {
         compileSdkVersion = 33
 
         appcompatVersion = '1.6.1'
-        fragmentVersion = '1.5.5'
+        fragmentVersion = '1.6.0'
         lifecycleVersion = '2.2.0'
-        navVersion = '2.5.3'
-        materialVersion = '1.8.0'
+        navVersion = '2.6.0'
+        materialVersion = '1.9.0'
         annotationVersion = '1.6.0'
-        desugaring = '2.0.0'
+        desugaring = '2.0.3'
     }
 
     tasks.withType(JavaCompile) {
