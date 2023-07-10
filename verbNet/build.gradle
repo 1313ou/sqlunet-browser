@@ -48,17 +48,6 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
 }
 
-task dumpSourceSets() {
-    doLast {
-        android.sourceSets.each { srcSet ->
-            println "[" + srcSet.name + "]"
-            print "-->Source directories: " + srcSet.java.srcDirs + "\n"
-            print "-->Resource directories: " + srcSet.resources.srcDirs + "\n"
-            println ""
-        }
-    }
-}
-
 def protoSrcDir = new File(projectDir, "/src/proto")
 def generatedSrcDir = new File(buildDir, "generated/source/queries")
 
@@ -68,6 +57,17 @@ android {
 
         main {
             java.srcDirs += generatedSrcDir
+        }
+    }
+}
+
+task dumpSourceSets() {
+    doLast {
+        android.sourceSets.each { srcSet ->
+            println "[" + srcSet.name + "]"
+            print "-->Source directories: " + srcSet.java.srcDirs + "\n"
+            print "-->Resource directories: " + srcSet.resources.srcDirs + "\n"
+            println ""
         }
     }
 }
