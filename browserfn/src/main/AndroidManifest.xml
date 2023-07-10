@@ -33,7 +33,8 @@
 		android:theme="@style/MyTheme"
 		android:usesCleartextTraffic="true"
 		tools:ignore="GoogleAppIndexingWarning"
-		tools:targetApi="m">
+		tools:targetApi="m"
+		android:dataExtractionRules="@xml/data_extraction_rules">
 
 		<meta-data
 			android:name="com.google.android.backup.api_key"
