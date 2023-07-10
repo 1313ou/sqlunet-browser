@@ -799,7 +799,7 @@
 			</example>
 		</examples>
 
-		<see tag="entails"></see>
+		<see tag="entails" />
 
 	</link>
 
@@ -872,7 +872,7 @@
 			</example>
 		</examples>
 
-		<see tag="entailed"></see>
+		<see tag="entailed" />
 
 	</link>
 
@@ -990,7 +990,7 @@
 			</example>
 		</examples>
 
-		<see tag="causes"></see>
+		<see tag="causes" />
 
 	</link>
 
@@ -1107,7 +1107,7 @@
 			</example>
 		</examples>
 
-		<see tag="caused"></see>
+		<see tag="caused" />
 
 	</link>
 

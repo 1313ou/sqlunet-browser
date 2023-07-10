@@ -10,7 +10,7 @@
 
 		<activity
 			android:name=".DonateActivity"
-			android:label="@string/title_activity_donate"></activity>
+			android:label="@string/title_activity_donate" />
 
 	</application>
 

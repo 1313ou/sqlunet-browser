@@ -3,6 +3,6 @@
   -->
 
 <lint>
-	<issue id="IconDuplicates"></issue>
-	<issue id="UnusedResources"></issue>
+	<issue id="IconDuplicates" />
+	<issue id="UnusedResources" />
 </lint>

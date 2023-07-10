@@ -8,7 +8,7 @@
 
 		<activity
 			android:name=".OthersActivity"
-			android:label="@string/title_activity_others"></activity>
+			android:label="@string/title_activity_others" />
 
 	</application>
 

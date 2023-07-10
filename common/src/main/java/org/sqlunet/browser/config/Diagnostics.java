@@ -4,6 +4,7 @@
 
 package org.sqlunet.browser.config;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -82,6 +83,7 @@ public class Diagnostics
 	}
 
 	@NonNull
+	@SuppressLint("DiscouragedApi")
 	private static CharSequence report(@NonNull final Context context)
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();
