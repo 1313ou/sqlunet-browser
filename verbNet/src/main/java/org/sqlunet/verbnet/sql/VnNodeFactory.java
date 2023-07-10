@@ -246,7 +246,7 @@ class VnNodeFactory extends NodeFactory
 	/**
 	 * Syntax pattern
 	 */
-	static private final Pattern syntaxPattern = Pattern.compile("^([^\\s]+) ?(\\p{Upper}[\\p{Lower}_\\p{Upper}]*)? ?(.+)?");
+	static private final Pattern syntaxPattern = Pattern.compile("^(\\S+) ?(\\p{Upper}[\\p{Lower}_\\p{Upper}]*)? ?(.+)?");
 
 	/**
 	 * Make syntax nodes

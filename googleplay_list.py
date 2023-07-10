@@ -74,7 +74,7 @@ def main(argv):
             ).execute()
 
             # iterate on bundles
-            print ('BUNDLEs')
+            print ('BUNDLES')
             for bundle in bundles_result['bundles']:
                 #print bundle
                 print ( 'versionCode: %s, sha1: %s' % (
