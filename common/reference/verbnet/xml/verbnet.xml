@@ -124,7 +124,7 @@
 		name="Synset-specific"
 		id="vnsynsetspecific">
 		<img src="vnsynsetspecific.png" />
-		<description>Synset-specific. Some consructs are attached to specific senses.</description>
+		<description>Synset-specific. Some constructs are attached to specific senses.</description>
 	</concept>
 
 </concepts>

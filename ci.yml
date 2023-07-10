@@ -11,7 +11,7 @@ generate-dependency-graph:
     - name: Generate Dependency Graph
       run: ./gradlew projectDependencyGraph
 
-    - name: Commmit
+    - name: Commit
       run: |
         git config --local user.email 'action@github.com'
         git config --local user.name 'GitHub Action'

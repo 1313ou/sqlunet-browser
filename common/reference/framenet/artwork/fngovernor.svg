@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- Created with Inkscape (http://www.inkscape.org/) -->
 
-<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg"
-	xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="160" height="160" viewBox="0 0 160 160" id="svg6517" version="1.1"
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="160" height="160" viewBox="0 0 160 160" id="svg6517" version="1.1"
 	inkscape:version="0.91 r13725" sodipodi:docname="control.svg">
 	<defs id="defs6519">
 		<linearGradient id="linearGradient4123">
@@ -12,7 +11,7 @@
 			<stop id="stop4178" offset="0" style="stop-color:#505050;stop-opacity:1;" />
 			<stop id="stop4180" offset="1" style="stop-color:#646464;stop-opacity:1;" />
 		</linearGradient>
-		<clipPath clipPathUnits="userSpaceOnUse" id="clipPath4046-4">
+		<clipPath id="clipPath4046-4">
 			<g style="fill:#ff00ff;fill-opacity:1;stroke:none" inkscape:label="Layer 1" id="g4048-1" transform="matrix(0,-0.69444445,0.69379664,0,36.812604,681)">
 				<path sodipodi:nodetypes="sssssssss" inkscape:connector-curvature="0" id="path4050-4"
 					d="m 46.702703,898.22775 50.594594,0 C 138.16216,898.22775 144,904.06497 144,944.92583 l 0,50.73846 c 0,40.86071 -5.83784,46.69791 -46.702703,46.69791 l -50.594594,0 C 5.8378378,1042.3622 0,1036.525 0,995.66429 L 0,944.92583 C 0,904.06497 5.8378378,898.22775 46.702703,898.22775 Z"
@@ -36,13 +35,13 @@
 			<feComposite in="flood" in2="SourceGraphic" operator="in" result="composite1" id="feComposite954" />
 			<feGaussianBlur in="composite1" stdDeviation="1" result="blur" id="feGaussianBlur956" />
 			<feOffset dx="0" dy="1" result="offset" id="feOffset958" />
-			<feComposite in="SourceGraphic" in2="offset" operator="over" result="composite2" id="feComposite960" />
+			<feComposite in="SourceGraphic" in2="offset" result="composite2" id="feComposite960" />
 		</filter>
-		<clipPath clipPathUnits="userSpaceOnUse" id="clipPath6452">
+		<clipPath id="clipPath6452">
 			<path inkscape:connector-curvature="0" id="path6454" d="m 668,615 0,33 82,0 L 750,615 z m 24,17 0,-13 18.16435,-0.0804 0,13 L 726,632 l 0,13 -17.94589,0 0,-13"
 				style="color:#000000;fill:#00ffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:6;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" sodipodi:nodetypes="ccccccccccccc" />
 		</clipPath>
-		<clipPath clipPathUnits="userSpaceOnUse" id="clipPath1431">
+		<clipPath id="clipPath1431">
 			<path inkscape:connector-curvature="0" id="path1433" d="m 668,615 0,33 82,0 L 750,615 z m 24,17 0,-13 14.62581,0 0,13 19.37419,0 0,13 -14.72903,0 0,-13"
 				style="color:#000000;fill:#00ffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:6;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" sodipodi:nodetypes="ccccccccccccc" />
 		</clipPath>

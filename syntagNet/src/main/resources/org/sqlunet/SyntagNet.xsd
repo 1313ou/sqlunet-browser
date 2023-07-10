@@ -34,7 +34,7 @@
 	</xs:element>
 
 	<xs:element name='collocation'>
-		<xs:complexType mixed='false'>
+		<xs:complexType>
 			<xs:sequence>
 				<xs:element maxOccurs='2' minOccurs='2' ref='word' />
 				<xs:element maxOccurs='2' minOccurs='2' ref='synset' />
@@ -49,7 +49,7 @@
 	</xs:element>
 
 	<xs:element name='word'>
-		<xs:complexType mixed='false'>
+		<xs:complexType>
 			<xs:simpleContent>
 				<xs:extension base="xs:string">
 					<xs:attribute name='which' type='pairIdxType' use='required' />
@@ -60,7 +60,7 @@
 	</xs:element>
 
 	<xs:element name='synset'>
-		<xs:complexType mixed='false'>
+		<xs:complexType>
 			<xs:simpleContent>
 				<xs:extension base="xs:string">
 					<xs:attribute name='which' type='pairIdxType' use='required' />

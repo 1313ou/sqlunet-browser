@@ -72,16 +72,12 @@
        id="a"
        cx="102.14"
        cy="545.93"
-       r="135"
-       gradientUnits="userSpaceOnUse"
-       xlink:href="#e" />
+       r="135" xlink:href="#e" />
     <radialGradient
        id="b"
        cx="102.14"
        cy="545.93"
-       r="135"
-       gradientUnits="userSpaceOnUse"
-       xlink:href="#d" />
+       r="135" xlink:href="#d" />
   </defs>
   <metadata
      id="metadata28">

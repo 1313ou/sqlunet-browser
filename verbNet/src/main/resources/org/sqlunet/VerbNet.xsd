@@ -77,7 +77,7 @@
 	<xs:element name='sense'>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element maxOccurs='unbounded' minOccurs='1' ref='synset' />
+				<xs:element maxOccurs='unbounded' ref='synset' />
 			</xs:sequence>
 			<xs:attribute name='number' type='xs:integer' />
 			<xs:attribute name='wordid' type='xs:long' />
@@ -88,7 +88,7 @@
 	<xs:element name='synset'>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element maxOccurs='unbounded' minOccurs='1' ref='definition' />
+				<xs:element maxOccurs='unbounded' ref='definition' />
 			</xs:sequence>
 			<xs:attribute name='synsetid' type='xs:long' />
 		</xs:complexType>
