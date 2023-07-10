@@ -8,8 +8,6 @@
 	<string name="title_from">From</string>
 	<string name="title_to">To</string>
 	<string name="title_selection">Selection</string>
-	<string name="title_archive">Archive</string>
-	<string name="title_entry">Entry</string>
 	<string name="title_free">Free space</string>
 	<string name="title_operation">Operation</string>
 	<string name="title_status">Status</string>
@@ -17,49 +15,25 @@
 	<string name="title_storage">Storage</string>
 	<string name="title_external_storage_devices">External storage devices</string>
 	<string name="title_download_complete">Download completed</string>
-	<string name="title_download_failed">Download failed</string>
-
-	<string name="status_sqlzip">SQL archive status</string>
-	<string name="title_sqlzip">SQL archive</string>
-	<string name="download_sqlzip">Download SQL archive</string>
-	<string name="info_sqlzip">Info about SQL archive</string>
-
-	<string name="status_created">Database status</string>
-	<string name="title_created">Database</string>
-	<string name="create_database">Create database</string>
-	<string name="info_created">Info about database</string>
-
-	<string name="status_import">Import status</string>
-	<string name="title_import">Import</string>
-	<string name="execute_import">Import</string>
-	<string name="info_import">Info about import</string>
-
-	<string name="title_indexes">Indexes</string>
-	<string name="execute_indexes">Make indexes</string>
-	<string name="info_indexes">Info about indexes</string>
 
 	<string name="action_info">Info</string>
 
 	<string name="action_assets">Assets</string>
 	<string name="action_asset_deliver">Deliver asset</string>
 	<string name="action_asset_dispose">Dispose of asset</string>
-	<string name="action_asset_deliver_primary">Deliver primary asset</string>
-	<string name="action_asset_deliver_alt">Deliver alt asset</string>
-	<string name="action_asset_dispose_primary">Dispose of primary asset</string>
-	<string name="action_asset_dispose_alt">Dispose of alt asset</string>
-	<string name="action_asset_deliver_format">Deliver asset %1$s</string>
-	<string name="action_asset_dispose_format">Dispose of asset %1$s</string>
-	<string name="action_asset_deploy">Deploy asset</string>
-	<string name="action_asset_md5">Asset MD5</string>
+	<!-- <string name="action_asset_deliver_primary">Deliver primary asset</string> -->
+	<!-- <string name="action_asset_deliver_alt">Deliver alt asset</string> -->
+	<!-- <string name="action_asset_dispose_primary">Dispose of primary asset</string> -->
+	<!-- <string name="action_asset_dispose_alt">Dispose of alt asset</string> -->
+	<!-- <string name="action_asset_deliver_format">Deliver asset %1$s</string> -->
+	<!-- <string name="action_asset_dispose_format">Dispose of asset %1$s</string> -->
+	<!-- <string name="action_asset_deploy">Deploy asset</string> -->
+	<!-- <string name="action_asset_md5">Asset MD5</string> -->
 	<string name="action_asset_installed">Asset installed</string>
 
 	<string name="info_op_download_database">Download the ready-to-use database.</string>
-	<string name="info_op_download_sqlzip">Download the SQL statements bundled in a Zip archive file\nThe execution of these statements will build the database. The import process may be long.</string>
 	<string name="info_op_create_database">Create an empty database</string>
 	<string name="info_op_drop_database">Drop the database</string>
-	<string name="info_op_execute_import">Execute the import/insert statements to populate the database</string>
-	<string name="info_op_execute_indexes">Execute the indexing statements to speed up queries</string>
-	<string name="info_op_execute_entry">Entry named \'sql\'</string>
 	<string name="info_op_copy_database">Copy the database file</string>
 	<string name="info_op_unzip_database">Unzip the database file</string>
 	<string name="info_op_download_zipped_database">Download the zipped database file</string>
@@ -69,8 +43,8 @@
 	<string name="status_local_not_exists">The local file does not exist</string>
 	<string name="status_database_exists">The database file exists</string>
 	<string name="status_database_not_exists">The database file does not exist</string>
-	<string name="status_source_exists">The source file exists</string>
-	<string name="status_source_not_exists">The source file does not exist</string>
+	<!-- <string name="status_source_exists">The source file exists</string> -->
+	<!-- <string name="status_source_not_exists">The source file does not exist</string> -->
 	<string name="status_data_exists">The data exists</string>
 	<string name="status_data_not_exists">The data does not exist</string>
 

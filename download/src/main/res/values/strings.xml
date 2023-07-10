@@ -66,22 +66,7 @@
 	<string name="status_download_successful">successful</string>
 	<string name="status_download_fail">failed</string>
 	<string name="status_download_canceled">canceled</string>
-	<string name="status_download_error_cannot_resume">cannot resume</string>
-	<string name="status_download_error_device_not_found">device not found</string>
-	<string name="status_download_error_file_already_exists">file already exists</string>
-	<string name="status_download_error_file_error">file error</string>
-	<string name="status_download_error_http_data_error">http data error</string>
-	<string name="status_download_error_insufficient_space">insufficient space</string>
-	<string name="status_download_error_too_many_redirects">too many redirects</string>
-	<string name="status_download_error_unhandled_http_code">unhandled http code</string>
-	<string name="status_download_error_blocked">blocked</string>
-	<string name="status_download_error_unknown">error unknown</string>
 	<string name="status_download_null_exception">null source or destination</string>
-	<string name="status_download_exception">exception</string>
-	<string name="status_download_paused_queued_for_wifi">queued for wifi</string>
-	<string name="status_download_paused_unknown">unknown</string>
-	<string name="status_download_paused_waiting_for_network">waiting for network</string>
-	<string name="status_download_paused_waiting_to_retry">waiting to retry</string>
 	<string name="status_download_error_null_download_url">No download url</string>
 	<string name="status_download_error_unavailable_download_url">Unavailable download url</string>
 
@@ -90,7 +75,6 @@
 	<string name="status_md5_checking">MD5 checking</string>
 
 	<string name="status_error_no_file">no file</string>
-	<string name="status_error_reason_unknown">unknown reason</string>
 	<string name="status_error_invalid">invalid</string>
 
 	<string name="status_state_unknown">unknown state</string>
@@ -110,7 +94,6 @@
 	<!-- result -->
 	<string name="result_success">@android:string/ok</string>
 	<string name="result_fail">Fail</string>
-	<string name="result_is">Result is </string>
 	<string name="result_deleted">deleted</string>
 
 	<string name="format_storage_data" formatted="true">%1$s\nfree: %2$s capacity: %3$s (%4$.1f percent)</string>

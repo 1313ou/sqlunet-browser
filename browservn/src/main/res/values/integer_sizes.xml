@@ -6,16 +6,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<integer name='size_db_working_total' tools:keep='@string/size_db_working_total'>126230528</integer>
-	<integer name='size_core' tools:keep='@string/size_core'>51552256</integer>
-	<integer name='size_indexes' tools:keep='@string/size_indexes'>31916032</integer>
 	<integer name='size_searchtext' tools:keep='@string/size_searchtext'>42762240</integer>
-	<integer name='size_samples_sample_searchtext' tools:keep='@string/size_samples_sample_searchtext'>6090752</integer>
-	<integer name='size_synsets_definition_searchtext' tools:keep='@string/size_synsets_definition_searchtext'>19107840</integer>
-	<integer name='size_words_word_searchtext' tools:keep='@string/size_words_word_searchtext'>10559488</integer>
-	<integer name='size_vn_examples_example_searchtext' tools:keep='@string/size_vn_examples_example_searchtext'>344064</integer>
-	<integer name='size_vn_words_word_searchtext' tools:keep='@string/size_vn_words_word_searchtext'>253952</integer>
-	<integer name='size_pb_examples_text_searchtext' tools:keep='@string/size_pb_examples_text_searchtext'>6660096</integer>
-	<integer name='size_pb_words_word_searchtext' tools:keep='@string/size_pb_words_word_searchtext'>524288</integer>
 	<integer name='size_sqlunet_db' tools:keep='@string/size_sqlunet_db'>83464192</integer> <!-- sqlunet-vn.db -->
 	<integer name='size_sqlunet_db_zip' tools:keep='@string/size_sqlunet_db_zip'>35180044</integer> <!-- sqlunet-vn.db.zip -->
 

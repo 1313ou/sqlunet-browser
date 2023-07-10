@@ -16,6 +16,6 @@
 	<string name="status_task_failed">failed</string>
 	<string name="status_task_running">running</string>
 
-	<string name="items">items</string>
+	<!-- <string name="items">items</string> -->
 
 </resources>

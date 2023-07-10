@@ -6,12 +6,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<integer name='size_db_working_total' tools:keep='@string/size_db_working_total'>104734720</integer>
-	<integer name='size_core' tools:keep='@string/size_core'>41791488</integer>
-	<integer name='size_indexes' tools:keep='@string/size_indexes'>27963392</integer>
 	<integer name='size_searchtext' tools:keep='@string/size_searchtext'>34979840</integer>
-	<integer name='size_samples_sample_searchtext' tools:keep='@string/size_samples_sample_searchtext'>6090752</integer>
-	<integer name='size_synsets_definition_searchtext' tools:keep='@string/size_synsets_definition_searchtext'>19107840</integer>
-	<integer name='size_words_word_searchtext' tools:keep='@string/size_words_word_searchtext'>9781248</integer>
 	<integer name='size_sqlunet_db' tools:keep='@string/size_sqlunet_db'>69758976</integer> <!-- sqlunet-ewn.db -->
 	<integer name='size_sqlunet_db_zip' tools:keep='@string/size_sqlunet_db_zip'>28850618</integer> <!-- sqlunet-ewn.db.zip -->
 

@@ -150,6 +150,6 @@
 
 	<!-- SPEAK -->
 
-	<string name="pref_header_speak">Speak</string>
+	<string name="pref_header_speak" tools:keep="@string/pref_header_speak">Speak</string>
 
 </resources>

@@ -9,8 +9,6 @@
 
 	<string name="format_storage_data" formatted="true">%1$s\nfree: %2$s capacity: %3$s (%4$.1f percent)</string>
 
-	<string name="pref_default_cache" />
-
 <!--	<string name="label_info">Target info</string>-->
 <!--	<string name="label_contents">Contents</string>-->
 <!--	<string name="description_data_info">Data info</string>-->

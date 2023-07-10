@@ -5,7 +5,6 @@
 <resources>
 
 	<integer name="sql_statement_do_indexes_position">0</integer>
-	<string name="action_exec_from_file">Execute from File</string>
 	<string name="action_exec_from_uri">Execute from Uri</string>
 	<string name="action_exec_from_zipped_uri">Execute from Uri (Zipped)</string>
 	<string name="status_executing">executing…</string>

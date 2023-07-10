@@ -25,7 +25,7 @@
 	<string name="action_settings">Settings</string>
 	<string name="action_download_settings">Download settings</string>
 	<string name="action_status">Status</string>
-	<string name="action_refresh">Refresh</string>
+	<!-- <string name="action_refresh">Refresh</string> -->
 	<string name="action_copy">Copy</string>
 	<string name="action_drop">Drop</string>
 	<string name="action_update">Update</string>
@@ -48,7 +48,7 @@
 	<string name="action_download_dirs">Download dirs</string>
 	<string name="action_storage">Storage</string>
 	<string name="action_md5">MD5</string>
-	<string name="action_md5_of">MD5 of</string>
+	<!-- <string name="action_md5_of">MD5 of</string> -->
 	<string name="action_md5_ask">MD5 &#8230;</string>
 	<!-- run -->
 	<string name="action_run">Run</string>
@@ -90,7 +90,7 @@
 	<string name="title_activity_setup_database">Set up database</string>
 	<string name="title_activity_storage">Storage</string>
 	<string name="title_activity_update">Update</string>
-	<string name="title_activity_load">Load</string>
+	<!-- <string name="title_activity_load">Load</string> -->
 	<string name="title_activity_download">Download</string>
 	<string name="title_activity_assetload">Asset load</string>
 	<string name="title_activity_operation">Operation</string>
@@ -106,9 +106,6 @@
 	<string name="title_dialog_assetload">Asset pack delivery</string>
 	<string name="description_assetload">Load database from assets</string>
 
-	<!-- format -->
-	<string name="title_named_asset">Asset %1$s</string>
-
 	<!-- send -->
 	<string name="title_intentfilter_send_activity_browse">Semantikos</string>
 	<string name="title_intentfilter_send_activity_searchtext">Semantikos (Text)</string>
@@ -121,21 +118,6 @@
 	<string name="status_download_paused">paused</string>
 	<string name="status_download_successful">successful</string>
 	<string name="status_download_fail">failed</string>
-	<string name="status_download_error_cannot_resume">cannot resume</string>
-	<string name="status_download_error_device_not_found">device not found</string>
-	<string name="status_download_error_file_already_exists">file already exists</string>
-	<string name="status_download_error_file_error">file error</string>
-	<string name="status_download_error_http_data_error">http data error</string>
-	<string name="status_download_error_insufficient_space">insufficient space</string>
-	<string name="status_download_error_too_many_redirects">too many redirects</string>
-	<string name="status_download_error_unhandled_http_code">unhandled http code</string>
-	<string name="status_download_error_blocked">blocked</string>
-	<string name="status_download_error_unknown">error unknown</string>
-	<string name="status_download_exception">exception</string>
-	<string name="status_download_paused_queued_for_wifi">queued for wifi</string>
-	<string name="status_download_paused_unknown">unknown</string>
-	<string name="status_download_paused_waiting_for_network">waiting for network</string>
-	<string name="status_download_paused_waiting_to_retry">waiting to retry</string>
 	<string name="status_task_running">running</string>
 	<string name="status_task_done">done</string>
 	<string name="status_task_success">success</string>
@@ -143,7 +125,6 @@
 	<string name="status_task_start_toast">Task started</string>
 	<string name="status_task_done_toast">Task done</string>
 	<string name="status_viewer_failed">No viewer</string>
-	<string name="status_managing">Managing</string>
 	<string name="status_clipboard_copied">Copied to clipboard</string>
 	<string name="status_diagnostics_running">Running diagnostics…</string>
 	<string name="status_state_unknown" />

@@ -5,17 +5,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<integer name='size_db_working_total' tools:keep='@string/size_db_working_total'>757080064</integer>
-	<integer name='size_core' tools:keep='@string/size_core'>325677056</integer>
-	<integer name='size_indexes' tools:keep='@string/size_indexes'>267460608</integer>
 	<integer name='size_searchtext' tools:keep='@string/size_searchtext'>163942400</integer>
-	<integer name='size_samples_sample_searchtext' tools:keep='@string/size_samples_sample_searchtext'>6160384</integer>
-	<integer name='size_synsets_definition_searchtext' tools:keep='@string/size_synsets_definition_searchtext'>19107840</integer>
-	<integer name='size_words_word_searchtext' tools:keep='@string/size_words_word_searchtext'>10559488</integer>
-	<integer name='size_vn_examples_example_searchtext' tools:keep='@string/size_vn_examples_example_searchtext'>344064</integer>
-	<integer name='size_vn_words_word_searchtext' tools:keep='@string/size_vn_words_word_searchtext'>253952</integer>
-	<integer name='size_pb_examples_text_searchtext' tools:keep='@string/size_pb_examples_text_searchtext'>6660096</integer>
-	<integer name='size_pb_words_word_searchtext' tools:keep='@string/size_pb_words_word_searchtext'>524288</integer>
-	<integer name='size_fn_sentences_text_searchtext' tools:keep='@string/size_fn_sentences_text_searchtext'>121110528</integer>
 	<integer name='size_sqlunet_db' tools:keep='@string/size_sqlunet_db'>593149952</integer> <!-- sqlunet.db -->
 	<integer name='size_sqlunet_db_zip' tools:keep='@string/size_sqlunet_db_zip'>235249634</integer> <!-- sqlunet.db.zip -->
 
