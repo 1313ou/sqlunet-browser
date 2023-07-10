@@ -65,6 +65,12 @@ dependencies {
 
     implementation project(path: ':browserwncommon')
     implementation project(path: ':common')
+    implementation project(path: ':download')
+    implementation project(path: ':others')
+    implementation project(path: ':donate')
+    implementation project(path: ':xNet')
+    implementation project(path: ':wordNet')
+    implementation project(path: ':bNC')
 
     implementation "androidx.appcompat:appcompat:$appcompatVersion" // for resources validation
     implementation "com.google.android.material:material:$materialVersion" // for resource include
