@@ -5,7 +5,8 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<string name="syntagnet">SyntagNet</string>
+	<!-- <string name="syntagnet">SyntagNet</string>-->
+
 	<string name="syntagnet_collocations" tools:keep="@string/syntagnet_collocations">Collocations (SyntagNet)</string>
 	<string name="syntagnet_blurb" tools:keep="@string/syntagnet_blurb">&lt;b&gt;SyntagNet&lt;/b&gt;\nexplores collocations</string>
 	<string name="collocations">Collocations</string>

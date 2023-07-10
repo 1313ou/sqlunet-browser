@@ -36,10 +36,12 @@
 		<item name="android:textSize">12sp</item>
 	</style>
 
+<!--
 	<style name="Data.Pronunciation">
 		<item name="android:textColor">?attr/colorHighlight2OnBackground</item>
 		<item name="android:textSize">16sp</item>
 	</style>
+-->
 
 	<style name="Data.Definition">
 		<item name="android:textColor">?attr/colorHighlightOnBackground</item>

@@ -4,6 +4,7 @@
 
 package org.sqlunet.speak;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
 import android.speech.tts.TextToSpeech;
@@ -36,6 +37,7 @@ public class Discover
 
 	private TextToSpeech tts;
 
+	@SuppressLint("ObsoleteSdkInt")
 	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 	public void discoverVoices(final Context context, final Consumer<List<Voice>> consumer)
 	{
