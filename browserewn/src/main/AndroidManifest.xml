@@ -71,7 +71,8 @@
 
 		<activity
 			android:name="org.sqlunet.browser.MainActivity"
-			android:launchMode="singleTop">
+			android:launchMode="singleTop"
+			android:exported="true">
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH" />
 			</intent-filter>
@@ -85,7 +86,8 @@
 			android:label="@string/title_activity_browse"
 			android:launchMode="singleTop"
 			android:parentActivityName="org.sqlunet.browser.MainActivity"
-			tools:ignore="UnusedAttribute">
+			tools:ignore="UnusedAttribute"
+			android:exported="true">
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH" />
 			</intent-filter>
@@ -108,7 +110,8 @@
 			android:label="@string/title_activity_selector"
 			android:launchMode="singleTop"
 			android:parentActivityName="org.sqlunet.browser.MainActivity"
-			tools:ignore="UnusedAttribute">
+			tools:ignore="UnusedAttribute"
+			android:exported="true">
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH" />
 			</intent-filter>
@@ -122,7 +125,8 @@
 			android:label="@string/title_activity_searchtext"
 			android:launchMode="singleTop"
 			android:parentActivityName="org.sqlunet.browser.MainActivity"
-			tools:ignore="UnusedAttribute">
+			tools:ignore="UnusedAttribute"
+			android:exported="true">
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH" />
 			</intent-filter>
