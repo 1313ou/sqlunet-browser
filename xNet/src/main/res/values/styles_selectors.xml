@@ -5,12 +5,13 @@
 <resources>
 
 	<!--label -->
-	<!--
+
 	<style name="Label" parent="@android:style/TextAppearance.Small">
 		<item name="android:layout_marginLeft">8dp</item>
 		<item name="android:textSize">16sp</item>
 	</style>
 
+	<!--
 	<style name="Label.Contents">
 		<item name="android:visibility">gone</item>
 		<item name="android:textColor">?attr/colorSecondary</item>
