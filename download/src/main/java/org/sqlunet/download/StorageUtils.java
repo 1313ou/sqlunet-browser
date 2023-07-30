@@ -483,7 +483,7 @@ public class StorageUtils
 	 * Whether the dir qualifies as storage
 	 *
 	 * @param dir directory
-	 * @return true if it qualifies
+	 * @return error code if it qualifies
 	 */
 	static private int qualifies(@Nullable final File dir, @NonNull final DirType type)
 	{

@@ -679,7 +679,7 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	 * Get status
 	 *
 	 * @param progress progress result
-	 * @return true if finished
+	 * @return status code if finished
 	 */
 	abstract int getStatus(final Progress progress);
 
