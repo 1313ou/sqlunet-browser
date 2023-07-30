@@ -557,7 +557,7 @@ public class ObservedDeploy
 	 * @param task        async task
 	 * @param publisher   publisher
 	 * @param publishRate publish rate
-	 * @return true if successful
+	 * @return digest if successful
 	 */
 	@Nullable
 	static synchronized public String md5FromFile(@NonNull final String srcFile, @NonNull final Task<String, Number, String> task, @NonNull final Publisher publisher, final int publishRate)
@@ -613,7 +613,7 @@ public class ObservedDeploy
 	 * @param task        async task
 	 * @param publisher   publisher
 	 * @param publishRate publish rate
-	 * @return true if successful
+	 * @return digest if successful
 	 */
 	@Nullable
 	static synchronized public String md5FromUri(@NonNull final Uri uri, @NonNull final ContentResolver resolver, @NonNull final Task<Uri, Number, String> task, @NonNull final Publisher publisher, final int publishRate)
