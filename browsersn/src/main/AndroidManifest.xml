@@ -83,7 +83,7 @@
 
 		<activity
 			android:name="org.sqlunet.browser.BrowseActivity"
-			android:exported="false"
+			android:exported="true"
 			android:label="@string/title_activity_browse"
 			android:launchMode="singleTop"
 			android:parentActivityName="org.sqlunet.browser.MainActivity"
@@ -152,7 +152,7 @@
 
 		<activity
 			android:name="org.sqlunet.browser.SearchTextActivity"
-			android:exported="false"
+			android:exported="true"
 			android:label="@string/title_activity_searchtext"
 			android:launchMode="singleTop"
 			android:parentActivityName="org.sqlunet.browser.SearchTextActivity"
