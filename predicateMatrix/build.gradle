@@ -11,7 +11,7 @@ android {
 
     namespace 'org.sqlunet.predicatematrix'
 
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdk rootProject.ext.compileSdk
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
@@ -42,7 +42,7 @@ dependencies {
     implementation project(path: ':verbNet')
 
     implementation "androidx.appcompat:appcompat:$appcompatVersion"
-    implementation 'androidx.preference:preference:1.2.0'
+    implementation 'androidx.preference:preference:1.2.1'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     implementation "androidx.annotation:annotation:$annotationVersion"
 
@@ -52,7 +52,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
 }
 
-task dumpSourceSets() {
+tasks.register('dumpSourceSets') {
     doLast {
         android.sourceSets.each { srcSet ->
             println "[" + srcSet.name + "]"
@@ -95,7 +95,7 @@ querybuilder_args {
     instantiateDest = "org.sqlunet.predicatematrix.sql"
 }
 
-task generateAll {
+tasks.register('generateAll') {
     dependsOn('generateQV')
             .dependsOn('generateQ')
             .dependsOn('generateV')

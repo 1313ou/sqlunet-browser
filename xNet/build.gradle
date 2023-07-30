@@ -11,7 +11,7 @@ android {
 
     namespace 'org.sqlunet.xnet'
 
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdk rootProject.ext.compileSdk
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
@@ -41,7 +41,7 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "androidx.appcompat:appcompat:$appcompatVersion"
-    implementation 'androidx.preference:preference:1.2.0'
+    implementation 'androidx.preference:preference:1.2.1'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     implementation "androidx.annotation:annotation:$annotationVersion"
     implementation "com.google.android.material:material:$materialVersion"
@@ -69,7 +69,7 @@ android {
     }
 }
 
-task dumpSourceSets() {
+tasks.register('dumpSourceSets') {
     doLast {
         android.sourceSets.each { srcSet ->
             println "[" + srcSet.name + "]"
@@ -95,7 +95,7 @@ querybuilder_args {
     instantiateDest = "org.sqlunet.xnet.sql"
 }
 
-task generateAll {
+tasks.register('generateAll') {
     dependsOn('generateQV')
             .dependsOn('generateQ')
             .dependsOn('generateV')

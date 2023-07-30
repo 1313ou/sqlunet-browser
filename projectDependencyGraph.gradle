@@ -7,7 +7,7 @@
 // Run
 // ./gradlew projectDependencyGraph
 
-task projectDependencyGraph {
+tasks.register('projectDependencyGraph') {
     doLast {
         def dot = new File(rootProject.rootDir, 'project.dot')
         dot.parentFile.mkdirs()
@@ -51,7 +51,7 @@ task projectDependencyGraph {
                 javaProjects.add(project)
             }
 
-            project.configurations.all { config ->
+            project.configurations.configureEach { config ->
                 config.dependencies
                         .withType(ProjectDependency)
                         .collect { it.dependencyProject }

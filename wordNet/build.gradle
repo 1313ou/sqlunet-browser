@@ -10,7 +10,7 @@ plugins {
 android {
     namespace 'org.sqlunet.wordnet'
 
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdk rootProject.ext.compileSdk
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
@@ -65,7 +65,7 @@ android {
     }
 }
 
-task dumpSourceSets() {
+tasks.register('dumpSourceSets') {
     doLast {
         android.sourceSets.each { srcSet ->
             println "[" + srcSet.name + "]"
@@ -91,7 +91,7 @@ querybuilder_args {
     instantiateDest = "org.sqlunet.wordnet.sql"
 }
 
-task generateAll {
+tasks.register('generateAll') {
     dependsOn('generateQV')
             .dependsOn('generateQ')
             .dependsOn('generateV')

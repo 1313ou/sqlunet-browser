@@ -6,7 +6,7 @@ android {
 
     namespace 'org.sqlunet.speak'
 
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdk rootProject.ext.compileSdk
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
@@ -35,7 +35,7 @@ dependencies {
 
     implementation "androidx.appcompat:appcompat:$appcompatVersion"
     implementation "com.google.android.material:material:$materialVersion"
-    implementation 'androidx.preference:preference:1.2.0'
+    implementation 'androidx.preference:preference:1.2.1'
 
     coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:$desugaring"
 }
