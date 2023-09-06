@@ -1680,6 +1680,38 @@ abstract public class BaseModule extends Module
 				return R.drawable.ic_domain;
 			case 98:
 				return R.drawable.ic_domain_member;
+			case 99:
+				return R.drawable.ic_other;
+
+			case 100:
+				return R.drawable.ic_state;
+			case 101:
+				return R.drawable.ic_result;
+			case 102:
+				return R.drawable.ic_event;
+			case 110:
+				return R.drawable.ic_property;
+			case 120:
+				return R.drawable.ic_location;
+			case 121:
+				return R.drawable.ic_destination;
+			case 130:
+				return R.drawable.ic_agent;
+			case 131:
+				return R.drawable.ic_undergoer;
+			case 140:
+				return R.drawable.ic_uses;
+			case 141:
+				return R.drawable.ic_instrument;
+			case 142:
+				return R.drawable.ic_bymeansof;
+			case 150:
+				return R.drawable.ic_material;
+			case 160:
+				return R.drawable.ic_vehicle;
+			case 170:
+				return R.drawable.ic_bodypart;
+
 			default:
 				return R.drawable.error;
 		}
