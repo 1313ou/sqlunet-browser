@@ -12,7 +12,7 @@ android {
 
     namespace 'org.sqlunet.browser.ewn'
 
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdk rootProject.ext.compileSdk
 
     defaultConfig {
         applicationId "org.sqlunet.browser.ewn"

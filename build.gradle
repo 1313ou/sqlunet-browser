@@ -10,7 +10,7 @@ buildscript {
         mavenCentral()
         google()
         maven { url System.getenv('HOME') + "/.m2/repository/" }
-   }
+    }
 
     dependencies {
         classpath 'com.android.tools.build:gradle:8.1.0'
@@ -27,8 +27,8 @@ allprojects {
     }
 
     ext {
-        versionCode = 123
-        versionName = '2.123'
+        versionCode = 124
+        versionName = '2.124'
         minSdkVersion = 19
         targetSdkVersion = 33
         compileSdk = 33
@@ -51,6 +51,29 @@ allprojects {
 
 tasks.register('clean', Delete) {
     delete rootProject.buildDir
+}
+
+apply plugin: 'idea'
+idea {
+    module {
+        // excludeDirs += file('.idea')
+        excludeDirs += file('reference')
+        excludeDirs += file('captures')
+        excludeDirs += file('data')
+        excludeDirs += file('data2')
+        excludeDirs += file('tools')
+        excludeDirs += file('utils')
+        excludeDirs += file('dist')
+        excludeDirs += file('gradle')
+        println("modules")
+        project.rootProject.subprojects.each {
+
+            println("module $it @ " + it.projectDir)
+            ["artwork", "artwork-assets", "artwork-assets", "artwork-relations", "data"].each { it2 ->
+                excludeDirs += file("$it.projectDir/$it2")
+            }
+        }
+    }
 }
 
 apply from: file('projectDependencyGraph.gradle')
