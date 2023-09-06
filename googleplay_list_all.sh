@@ -1,6 +1,10 @@
 #!/bin/bash
 
 
+#
+# Copyright (c) 2023. Bernard Bou
+#
+
 packages="
 org.sqlunet.browser
 org.sqlunet.browser.fn

@@ -1,3 +1,7 @@
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="browserfn" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
     <module name="semantikos.browserfn" />

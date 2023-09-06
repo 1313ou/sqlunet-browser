@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#
+# Copyright (c) 2023. Bernard Bou
+#
+
 R='\u001b[31m'
 G='\u001b[32m'
 Y='\u001b[33m'

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#
+# Copyright (c) 2023. Bernard Bou
+#
+
 whereto=$1
 whereto=`readlink -m "${whereto}"`
 

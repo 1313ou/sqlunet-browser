@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#
+# Copyright (c) 2023. Bernard Bou
+#
+
 MAKE=true
 if [ "$1" == "-checkonly" ]; then
 	MAKE=

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#
+# Copyright (c) 2023. Bernard Bou
+#
+
 wherefrom="artwork"
 wherefrom=`readlink -m "${wherefrom}"`
 

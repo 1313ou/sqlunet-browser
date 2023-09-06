@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#
+# Copyright (c) 2023. Bernard Bou
+#
+
 source "./lib-artwork.sh"
 
 if [ -z "$1" ]; then

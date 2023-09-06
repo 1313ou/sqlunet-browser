@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#
+# Copyright (c) 2023. Bernard Bou
+#
+
 RED='\u001b[31m'
 GREEN='\u001b[32m'
 YELLOW='\u001b[33m'

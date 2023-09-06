@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#
+# Copyright (c) 2023. Bernard Bou
+#
+
 wherefrom="reference"
 wherefrom=`readlink -m "${wherefrom}"`
 

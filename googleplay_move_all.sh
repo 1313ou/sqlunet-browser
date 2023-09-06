@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#
+# Copyright (c) 2023. Bernard Bou
+#
+
 VERSION_CODE="$1"
 TRACK="$2"
 RELEASE_NAME="$3"

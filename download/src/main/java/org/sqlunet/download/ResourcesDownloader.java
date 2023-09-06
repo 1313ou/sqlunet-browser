@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou
  */
 
 package org.sqlunet.download;
@@ -249,7 +249,7 @@ public class ResourcesDownloader extends Task<String, Void, Collection<String[]>
 				@NonNull final List<String> labels = new ArrayList<>();
 				for (String[] row : resources)
 				{
-					// ewn	OEWN	2022	Bitbucket	https://bitbucket.org/semantikos2/semantikos22/raw/53e04fe21bc901ee15631873972445c2c8725652	zipped
+					// ewn	OEWN	2023	Bitbucket	https://bitbucket.org/semantikos2/semantikos22/raw/53e04fe21bc901ee15631873972445c2c8725652	zipped
 					final String value = row[4];
 					final String label = String.format("%s %s (%s %s)", row[1], row[2], row[3], row[5]);
 					values.add(value);

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#
+# Copyright (c) 2023. Bernard Bou
+#
+
 whereto="reference"
 whereto=`readlink -m "${whereto}"`
 mkdir -p "${whereto}"

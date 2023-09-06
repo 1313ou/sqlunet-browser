@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright (c) 2022. Bernard Bou
+  ~ Copyright (c) 2023. Bernard Bou
   -->
 
 <xsl:transform xmlns:xsl="http://www.w3.org/1999/XSL/Transform"

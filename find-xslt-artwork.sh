@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#
+# Copyright (c) 2023. Bernard Bou
+#
+
 thisdir="`dirname $(readlink -m $0)`"
 thisdir="$(readlink -m ${thisdir})"
 

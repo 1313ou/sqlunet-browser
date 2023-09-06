@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#
+# Copyright (c) 2023. Bernard Bou
+#
+
 #list devices
 #adb devices -l
 #device=ce12160c903ac05e0c	#samsung

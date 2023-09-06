@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#
+# Copyright (c) 2023. Bernard Bou
+#
+
 PACKAGE="$1"
 if [ -z "${PACKAGE}" ]; then
 	echo 'Missing package'

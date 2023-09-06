@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou
  */
 
 package org.sqlunet.model;

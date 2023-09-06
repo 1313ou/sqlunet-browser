@@ -1,5 +1,5 @@
 <?xml version="1.0"?><!--
-  ~ Copyright (c) 2022. Bernard Bou
+  ~ Copyright (c) 2023. Bernard Bou
   -->
 
 <xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace='http://org.sqlunet/sn' xmlns='http://org.sqlunet/sn' xsi:schemaLocation="http://org.sqlunet/sn ">
