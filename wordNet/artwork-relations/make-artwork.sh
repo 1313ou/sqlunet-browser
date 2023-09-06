@@ -14,7 +14,7 @@ MAGENTA='\u001b[35m'
 CYAN='\u001b[36m'
 RESET='\u001b[0m'
 
-list_fore="
+list_base="
 base_dom
 base_pos
 base
@@ -112,7 +112,7 @@ if [ ! -z "${to_png}" ]; then
 		echo "to png:${svg}"
 		png="_${svg%.svg}.png"
 		echo -e "${svg} -> ${bdir}/${png} @ resolution ${BLUE}${webres}${RESET}"
-		inkscape ${svg} --export-png=${bdir}/${png} -w ${webres} -h${webres} > /dev/null 2> /dev/null
+		inkscape ${svg} --export-type="png" --export-filename=${bdir}/${png} -w ${webres} -h ${webres} > /dev/null 2> /dev/null
 	done
 fi
 
@@ -152,7 +152,7 @@ for r in ${!res[@]}; do
 			echo "to png:${svg}"
 			png="_${svg%.svg}.png"
 			echo -e "${svg} -> ${bdir}/${png} @ resolution ${BLUE}${res[$r]}${RESET}"
-			inkscape ${svg} --export-png=${bdir}/${png} -w ${res[$r]} -h${res[$r]} > /dev/null 2> /dev/null
+			inkscape ${svg} -export-type="png" --export-filename=${bdir}/${png} -w ${res[$r]} -h ${res[$r]} > /dev/null 2> /dev/null
 		done
 	fi
 
