@@ -73,13 +73,13 @@ def hr(x):
 
 def out(rows):
 	for row in rows:
-		print("%-48s	%10s	%10s" % (row[0], row[1], hr(row[1])))
-	print("\n")
+		print("%-48s	%10s	%10s" % (row[0], row[1], hr(row[1])), file=sys. stderr)
+	print("\n", file=sys. stderr)
 
 def out1(rows):
 	for row in rows:
-		print("%-48s	%10s	%10s" % ('',row[0], hr(row[0])))
-	print("\n")
+		print("%-48s	%10s	%10s" % ('',row[0], hr(row[0])), file=sys. stderr)
+	print("\n", file=sys. stderr)
 
 collectedRaw=[]
 collectedHR=[]
@@ -101,62 +101,63 @@ def query(sql, consume):
 	consume(rows)
 	cursor.close()
 
-where="data2/"
-db=where+sys.argv[1]
-dbf=where+sys.argv[2]
-dbfz=where+sys.argv[3]
-extra=sys.argv[4:]
+where=sys.argv[1]
+db=where+sys.argv[2]
+dbf=where+sys.argv[3]
+dbfz=where+sys.argv[4]
+extra=sys.argv[5:]
 connection = sqlite3.connect(db)
 
-print("table sizes")
-query(sql_sizes, out)
+#print("table sizes", file=sys. stderr)
+#print("-----------", file=sys. stderr)
+#query(sql_sizes, out)
 
 #print("total size")
 query(sql_total_size, lambda r: outRes(r,
-	"<integer name='size_db_working_total' tools:keep='@string/size_db_working_total'>%s</integer>",
-	"<string name='hr_size_db_working_total' tools:keep='@string/hr_size_db_working_total'>%s</string>"))
+	"  <integer name='size_db_working_total' tools:keep='@string/size_db_working_total'>%s</integer>",
+	"  <string name='hr_size_db_working_total' tools:keep='@string/hr_size_db_working_total'>%s</string>"))
 
 #print("total table size")
 #query(sql_total_table_size, lambda r: outRes(r,
-#	"<integer name='size_tables' tools:keep='@string/size_tables'>%s</integer>",
-#	"<string name='hr_size_tables' tools:keep='@string/hr_size_tables'>%s</string>"))
+#	"  <integer name='size_tables' tools:keep='@string/size_tables'>%s</integer>",
+#	"  <string name='hr_size_tables' tools:keep='@string/hr_size_tables'>%s</string>"))
 
 #print("total_core table size")
-query(sql_total_nonfts_table_size, lambda r: outRes(r,
-	"<integer name='size_core' tools:keep='@string/size_core'>%s</integer>",
-	"<string name='hr_size_core' tools:keep='@string/hr_size_core'>%s</string>"))
+#query(sql_total_nonfts_table_size, lambda r: outRes(r,
+#	"  <integer name='size_core' tools:keep='@string/size_core'>%s</integer>",
+#	"  <string name='hr_size_core' tools:keep='@string/hr_size_core'>%s</string>"))
 
 #print("total indexes size")
-query(sql_total_index_size, lambda r: outRes(r,
-	"<integer name='size_indexes' tools:keep='@string/size_indexes'>%s</integer>",
-	"<string name='hr_size_indexes' tools:keep='@string/hr_size_indexes'>%s</string>"))
+#query(sql_total_index_size, lambda r: outRes(r,
+#	"  <integer name='size_indexes' tools:keep='@string/size_indexes'>%s</integer>",
+#	"  <string name='hr_size_indexes' tools:keep='@string/hr_size_indexes'>%s</string>"))
 
 #print("total fts table size")
 query(sql_total_fts_table_size, lambda r: outRes(r,
-	"<integer name='size_searchtext' tools:keep='@string/size_searchtext'>%s</integer>",
-	"<string name='hr_size_searchtext' tools:keep='@string/hr_size_searchtext'>%s</string>"))
+	"  <integer name='size_searchtext' tools:keep='@string/size_searchtext'>%s</integer>",
+	"  <string name='hr_size_searchtext' tools:keep='@string/hr_size_searchtext'>%s</string>"))
 
 for ts in extra:
 	extra = "name LIKE '%%%s%%'" % ts
 	sql = sql_total_fts_extra_table_size % extra
-	print(extra)
-	print(sql)
+	#print(extra)
+	#print(sql)
 	query(sql_total_fts_extra_table_size % extra, lambda r: outRes(r,
-		"<integer name='size_searchtext_%s' tools:keep='@string/size_searchtext_%s'>%%s</integer>" % (ts,ts),
-		"<string name='hr_size_searchtext_%s' tools:keep='@string/hr_size_searchtext_%s'>%%s</string>" % (ts,ts),))
+		"  <integer name='size_searchtext_%s' tools:keep='@string/size_searchtext_%s'>%%s</integer>" % (ts,ts),
+		"  <string name='hr_size_searchtext_%s' tools:keep='@string/hr_size_searchtext_%s'>%%s</string>" % (ts,ts),))
 
 filesizeRes(dbf,
-	"<integer name='size_sqlunet_db' tools:keep='@string/size_sqlunet_db'>%s</integer> <!-- %s -->",
-	"<string name='hr_size_sqlunet_db' tools:keep='@string/hr_size_sqlunet_db'>%s</string> <!-- %s -->")
+	"  <integer name='size_sqlunet_db' tools:keep='@string/size_sqlunet_db'>%s</integer> <!-- %s -->",
+	"  <string name='hr_size_sqlunet_db' tools:keep='@string/hr_size_sqlunet_db'>%s</string> <!-- %s -->")
 
 filesizeRes(dbfz,
-	"<integer name='size_sqlunet_db_zip' tools:keep='@string/size_sqlunet_db_zip'>%s</integer> <!-- %s -->",
-	"<string name='hr_size_sqlunet_db_zip' tools:keep='@string/hr_size_sqlunet_db_zip'>%s</string> <!-- %s -->")
+	"  <integer name='size_sqlunet_db_zip' tools:keep='@string/size_sqlunet_db_zip'>%s</integer> <!-- %s -->",
+	"  <string name='hr_size_sqlunet_db_zip' tools:keep='@string/hr_size_sqlunet_db_zip'>%s</string> <!-- %s -->")
 
 if __name__ == "__main__":
 
 	for s in collectedRaw:
 		print(s)
-	print()
-	for s in collectedHR:
-		print(s)
+	#print()
+	#for s in collectedHR:
+	#	print(s)

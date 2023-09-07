@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2023. Bernard Bou
-  -->
-
 <resources xmlns:tools="http://schemas.android.com/tools">
-
-	<integer name='size_db_working_total' tools:keep='@string/size_db_working_total'>104734720</integer>
-	<integer name='size_searchtext' tools:keep='@string/size_searchtext'>34979840</integer>
-	<integer name='size_sqlunet_db' tools:keep='@string/size_sqlunet_db'>69758976</integer> <!-- sqlunet-ewn.db -->
-	<integer name='size_sqlunet_db_zip' tools:keep='@string/size_sqlunet_db_zip'>28850618</integer> <!-- sqlunet-ewn.db.zip -->
-
+  <integer name='size_db_working_total' tools:keep='@string/size_db_working_total'>106610688</integer>
+  <integer name='size_searchtext' tools:keep='@string/size_searchtext'>34947072</integer>
+  <integer name='size_sqlunet_db' tools:keep='@string/size_sqlunet_db'>71667712</integer> <!-- sqlunet-ewn.db -->
+  <integer name='size_sqlunet_db_zip' tools:keep='@string/size_sqlunet_db_zip'>29387333</integer> <!-- sqlunet-ewn.db.zip -->
 </resources>
