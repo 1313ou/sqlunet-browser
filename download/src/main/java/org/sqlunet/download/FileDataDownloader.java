@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2023. Bernard Bou
- */
-
 package org.sqlunet.download;
 
 import android.app.Activity;
@@ -9,6 +5,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.sqlunet.download.R;
 import org.sqlunet.concurrency.Task;
 
 import java.net.HttpURLConnection;
@@ -60,7 +57,7 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 		{
 			// url
 			final URL url = new URL(urlString);
-			Log.d(TAG, "Get " + url);
+			Log.d(TAG, "Getting " + url);
 
 			// connection
 			URLConnection connection = url.openConnection();
@@ -206,20 +203,20 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 		final FileDataDownloader task = new FileDataDownloader(srcData -> {
 
 			// in-use downstream data
-			final long downDateValue = Settings.getDbDate(activity);
-			final long downSizeValue = Settings.getDbSize(activity);
+			final long downDateValue = Settings.getModelDate(activity);
+			final long downSizeValue = Settings.getModelSize(activity);
 			final Date downDate = downDateValue == -1 || downDateValue == 0 ? null : new Date(downDateValue);
 			final Long downSize = downSizeValue == -1 ? null : downSizeValue;
 
 			// in-use downstream recorded source data
-			final String downSource = Settings.getDbSource(activity);
-			final long downSourceDateValue = Settings.getDbSourceDate(activity);
-			final long downSourceSizeValue = Settings.getDbSourceSize(activity);
+			final String downSource = Settings.getModelSource(activity);
+			final long downSourceDateValue = Settings.getModelSourceDate(activity);
+			final long downSourceSizeValue = Settings.getModelSourceSize(activity);
 			final Date downSourceDate = downSourceDateValue == -1 || downSourceDateValue == 0 ? null : new Date(downSourceDateValue);
 			final Long downSourceSize = downSourceSizeValue == -1 ? null : downSourceSizeValue;
-			final String downSourceEtag = Settings.getDbSourceEtag(activity);
-			final String downSourceVersion = Settings.getDbSourceVersion(activity);
-			final String downSourceStaticVersion = Settings.getDbSourceStaticVersion(activity);
+			final String downSourceEtag = Settings.getModelSourceEtag(activity);
+			final String downSourceVersion = Settings.getModelSourceVersion(activity);
+			final String downSourceStaticVersion = Settings.getModelSourceStaticVersion(activity);
 
 			// upstream data from http connection
 			final Date srcDate = srcData == null ? null : srcData.getDate();
@@ -258,7 +255,8 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 
 			// to do if confirmed
 			intent.putExtra(BaseDownloadFragment.DOWNLOAD_FROM_ARG, downloadSourceUrl);
-			intent.putExtra(BaseDownloadFragment.DOWNLOAD_TO_ARG, downloadDest);
+			intent.putExtra(BaseDownloadFragment.DOWNLOAD_TO_ARG, cache);
+			intent.putExtra(BaseDownloadFragment.UNZIP_TO_ARG, downloadDest);
 			intent.putExtra(UpdateFragment.DOWNLOAD_INTENT_ARG, downloadIntent);
 
 			activity.startActivity(intent);

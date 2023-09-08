@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (c) 2023. Bernard Bou
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
 <resources>
@@ -16,7 +16,6 @@
 	<!-- M A I N -->
 
 	<!-- gray -->
-	<color name="shadow">#80202020</color>
 
 	<!-- button -->
 	<color name="action_button_color">#ff00ff</color>

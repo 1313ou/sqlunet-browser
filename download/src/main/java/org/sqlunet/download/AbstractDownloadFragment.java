@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
 package org.sqlunet.download;
@@ -22,6 +22,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.sqlunet.download.R;
+
 import java.io.File;
 
 import androidx.annotation.NonNull;
@@ -39,6 +41,8 @@ import androidx.fragment.app.FragmentActivity;
 abstract public class AbstractDownloadFragment extends Fragment implements View.OnClickListener
 {
 	static private final String TAG = "AbstractDownloadF";
+
+	// S T A T E   K E Y S
 
 	/**
 	 * Instance state key for download button
@@ -80,6 +84,8 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	 */
 	static private final String PROGRESS_STATUS_STATE = "progress_status_state";
 
+	// A R G U M E N T S
+
 	/**
 	 * Downloader argument
 	 */
@@ -100,72 +106,60 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	 */
 	static public final String UNZIP_TO_ARG = "unzip_to";
 
+	// S T A T U S
+
 	/**
-	 * Status
+	 * Status, describes download status
 	 */
 	enum Status
 	{
-		STATUS_PENDING(0x01, R.string.status_download_pending), // 1
-		STATUS_RUNNING(0x02, R.string.status_download_running), // 2
-		STATUS_PAUSED(0x04, R.string.status_download_paused), // 4
-		STATUS_SUCCESSFUL(0x08, R.string.status_download_successful), // 8
-		STATUS_FAILED(0x10, R.string.status_download_fail); // 16
-
-		final int mask;
+		STATUS_PENDING(R.string.status_download_pending), //
+		STATUS_RUNNING(R.string.status_download_running), //
+		STATUS_PAUSED(R.string.status_download_paused), //
+		STATUS_SUCCEEDED(R.string.status_download_successful), //
+		STATUS_FAILED(R.string.status_download_fail), //
+		STATUS_CANCELLED(R.string.status_download_cancelled);
 
 		final int res;
 
-		Status(int mask, int res)
+		Status(int res)
 		{
-			this.mask = mask;
 			this.res = res;
 		}
 
-		boolean test(long status)
-		{
-			return (status & this.mask) != 0;
-		}
-
-		static int toResId(@Nullable final Status status)
-		{
-			if (status == null)
-			{
-				return R.string.status_state_unknown;
-			}
-			return status.res;
-		}
-
-		@Nullable
-		static Status valueOf(int code)
-		{
-			for (Status status : values())
-			{
-				if (status.mask == code)
-				{
-					return status;
-				}
-			}
-			return null;
-		}
-
-		static boolean finished(long status)
-		{
-			return status == 0 || STATUS_SUCCESSFUL.test(status) || STATUS_FAILED.test(status);
-		}
-
-		/*
-		static boolean isSuccess(long status)
-		{
-			return STATUS_SUCCESSFUL.test(status);
-		}
+		/**
+		 * Make status string
+		 *
+		 * @param context context
+		 * @return status string
 		 */
+		@NonNull
+		public String toString(@NonNull final Context context)
+		{
+			return context.getString(this.res);
+		}
 	}
 
+	/**
+	 * Pair of downloaded / total
+	 */
 	static class Progress
 	{
 		long total;
 		long downloaded;
 	}
+
+	/**
+	 * Whether one download is in progress
+	 */
+	static private boolean isDownloading = false;
+
+	/**
+	 * Progress
+	 */
+	private Progress progress;
+
+	// D A T A
 
 	/**
 	 * Download uri
@@ -193,6 +187,8 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	 */
 	@Nullable
 	protected File unzipDir;
+
+	// W I D G E T S
 
 	/**
 	 * Progress bar
@@ -239,53 +235,16 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	 */
 	private Button md5Button;
 
-	/**
-	 * Result status
-	 */
-	private Progress progress;
-
-	/**
-	 * Result status
-	 */
-	private int status;
-
-	/**
-	 * Whether one download is in progress
-	 */
-	static private boolean isDownloading = false;
-
-	/**
-	 * Cached context
-	 * <p>
-	 * Uses:
-	 * context.getString(R.string.x)
-	 * PreferenceManager.getDefaultSharedPreferences(context)
-	 * new NotificationCompat.Builder(context, CHANNEL_ID)
-	 * context.getSystemService(Context.NOTIFICATION_SERVICE)
-	 * context.getPackageName()
-	 * LocalBroadcastManager.getInstance(context)
-	 * PendingIntent.getBroadcast(this.appContext,...)
-	 */
-	@SuppressWarnings("WeakerAccess")
-	protected Context appContext;
-
-	@SuppressWarnings({"EmptyMethod", "UnusedReturnValue"})
-	abstract protected void deploy();
-
-	abstract protected void record();
+	// A B S T R A C T  L A Y O U T
 
 	abstract protected int getResId();
 
-	@SuppressWarnings("WeakerAccess")
+	// L I F E C Y C L E
+
 	@Override
 	public void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		Log.d(TAG, "onCreate " + savedInstanceState + " " + this);
-
-		// context for threads that terminate after activity finishes
-		final Activity activity = requireActivity();
-		this.appContext = activity.getApplicationContext();
 
 		// arguments
 		final Bundle arguments = getArguments();
@@ -297,7 +256,7 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		this.downloadUrl = this.sourceUrl = fromArg;
 		if (this.downloadUrl == null || this.downloadUrl.isEmpty())
 		{
-			final String message = this.appContext.getString(R.string.status_download_error_null_download_url);
+			final String message = requireContext().getString(R.string.status_download_error_null_download_url);
 			warn(message);
 		}
 
@@ -309,16 +268,12 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 
 		// inits
 		this.progress = new Progress();
-		this.status = 0;
 	}
 
-	@SuppressWarnings("WeakerAccess")
 	@Nullable
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		Log.d(TAG, "onCreateView " + savedInstanceState + " " + this);
-
 		// view
 		final View view = inflater.inflate(getResId(), container, false);
 
@@ -335,21 +290,31 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		this.downloadButton = view.findViewById(R.id.downloadButton);
 		assert this.downloadButton != null;
 		this.downloadButton.setOnClickListener(this);
+
 		this.cancelButton = view.findViewById(R.id.cancelButton);
 		assert this.cancelButton != null;
 		this.cancelButton.setOnClickListener(v -> {
 			this.cancelButton.setVisibility(View.INVISIBLE);
+
 			cancel();
-			stopObserver();
+
+			stopProbeObserver();
+
 			isDownloading = false;
-			this.statusTextView.setText(R.string.status_download_canceled);
 		});
+
 		this.deployButton = view.findViewById(R.id.deployButton);
 		assert this.deployButton != null;
 		this.deployButton.setOnClickListener(v -> deploy());
+
 		this.md5Button = view.findViewById(R.id.md5Button);
 		assert this.md5Button != null;
 		this.md5Button.setOnClickListener(v -> md5());
+
+		Button showButton = view.findViewById(R.id.showButton);
+		assert showButton != null;
+		showButton.setOnClickListener(v -> show());
+
 
 		// source
 		final TextView srcView = view.findViewById(R.id.src);
@@ -430,7 +395,6 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		return view;
 	}
 
-	@SuppressWarnings("WeakerAccess")
 	@Override
 	public void onSaveInstanceState(@NonNull final Bundle outState)
 	{
@@ -446,7 +410,31 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		outState.putInt(PROGRESS_STATUS_STATE, this.progressStatus.getVisibility());
 	}
 
-	static private final Object lock = new Object();
+	@SuppressWarnings("WeakerAccess")
+	@Override
+	public void onResume()
+	{
+		super.onResume();
+
+		if (AbstractDownloadFragment.isDownloading)
+		{
+			Log.d(TAG, "Start probe observer");
+			startProbeObserver();
+		}
+	}
+
+	@SuppressWarnings("WeakerAccess")
+	@Override
+	public void onPause()
+	{
+		super.onPause();
+		Log.d(TAG, "Stop probe observer");
+		stopProbeObserver();
+	}
+
+	// C L I C K
+
+	static private final Object clickLock = new Object();
 
 	/**
 	 * Download button click
@@ -459,7 +447,7 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		if (id == R.id.downloadButton)
 		{
 			@SuppressWarnings("UnusedAssignment") boolean download = false;
-			synchronized (lock)
+			synchronized (clickLock)
 			{
 				download = !AbstractDownloadFragment.isDownloading;
 				if (download)
@@ -482,21 +470,19 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 					start();
 
 					// start progress
-					startObserver();
+					startProbeObserver();
 				}
 				catch (NullPointerException e)
 				{
 					Log.e(TAG, "While starting", e);
 					warn(getString(R.string.status_download_null_exception));
-					this.status = Status.STATUS_FAILED.mask;
-					onDone(false);
+					onDone(Status.STATUS_FAILED);
 				}
 				catch (Exception e)
 				{
 					Log.e(TAG, "While starting", e);
 					warn(e.getMessage());
-					this.status = getStatus(null);
-					onDone(false);
+					onDone(Status.STATUS_FAILED);
 				}
 			}
 		}
@@ -516,59 +502,55 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		}
 	}
 
+	// O P E R A T I O N S
+
 	/**
 	 * Start download
 	 */
 	abstract protected void start();
 
 	/**
+	 * Deploy tail operation
+	 */
+	abstract protected void deploy();
+
+	/**
+	 * Record downloading op
+	 */
+	abstract protected void record();
+
+	/**
+	 * Cleanup after download
+	 * @noinspection EmptyMethod
+	 */
+	abstract protected void cleanup();
+
+	/**
+	 * Show
+	 * @noinspection EmptyMethod
+	 */
+	abstract protected void show(); //TODO
+
+	/**
 	 * Cancel download
 	 */
 	abstract protected void cancel();
 
-	/**
-	 * Cleanup after download
-	 */
-	@SuppressWarnings("EmptyMethod")
-	abstract protected void cleanup();
-
-	// O B S E R V E R
-
-	@SuppressWarnings("WeakerAccess")
-	@Override
-	public void onResume()
-	{
-		super.onResume();
-
-		if (AbstractDownloadFragment.isDownloading)
-		{
-			Log.d(TAG, "Start observer");
-			startObserver();
-		}
-	}
-
-	@SuppressWarnings("WeakerAccess")
-	@Override
-	public void onPause()
-	{
-		super.onPause();
-		Log.d(TAG, "Stop observer");
-		stopObserver();
-	}
+	// P R O B E   O B S E R V E R
 
 	static private final long TIMELAPSE = 3000L;
 
 	/**
-	 * Observer
+	 * ProbeObserver
 	 */
-	class Observer implements Runnable
+	class ProbeObserver implements Runnable
 	{
-		boolean cancel = false;
+		boolean stop = false;
 
 		@Override
 		public void run()
 		{
-			Log.d(TAG, "Observer is alive");
+			Log.d(TAG, "Probe observer is alive");
 			while (true)
 			{
 				// terminate observer if fragment is not in resumed state
@@ -578,29 +560,28 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 				}
 
 				// status
-				AbstractDownloadFragment.this.status = getStatus(AbstractDownloadFragment.this.progress);
-				Log.d(TAG, "Status " + Long.toHexString(AbstractDownloadFragment.this.status) + "=" + Status.valueOf(AbstractDownloadFragment.this.status));
+				Status status = getStatus(AbstractDownloadFragment.this.progress);
+				Log.d(TAG, "Probe observer got status " + status);
 
 				// exit because task has ended
-				if (Status.finished(AbstractDownloadFragment.this.status))
+				if (status == Status.STATUS_FAILED)
 				{
-					if (Status.STATUS_FAILED.test(AbstractDownloadFragment.this.status))
-					{
-						cleanup();
-					}
-
-					//noinspection BreakStatement
+					cleanup();
+					break;
+				}
+				if (status == Status.STATUS_SUCCEEDED)
+				{
 					break;
 				}
 
 				// exit because task was cancelled
-				if (this.cancel)
+				if (this.stop)
 				{
 					break;
 				}
 
 				// observer update UI
-				observerUpdate();
+				probeObserverUpdate(status);
 
 				// sleep
 				try
@@ -613,47 +594,47 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 					//
 				}
 			}
-			Log.d(TAG, "Observer dies");
+			Log.d(TAG, "Probe observer dies");
 		}
 	}
 
 	/**
-	 * Observer
+	 * ProbeObserver
 	 */
-	private Observer observer;
+	private ProbeObserver probeObserver;
 
 	/**
-	 * Start observer thread
+	 * Start probe observer thread
 	 */
-	private void startObserver()
+	private void startProbeObserver()
 	{
-		this.observer = new Observer();
-		new Thread(this.observer).start();
+		this.probeObserver = new ProbeObserver();
+		new Thread(this.probeObserver).start();
 	}
 
 	/**
-	 * Stop observer thread
+	 * Stop probe observer thread
 	 */
-	private void stopObserver()
+	private void stopProbeObserver()
 	{
-		if (this.observer != null)
+		if (this.probeObserver != null)
 		{
-			this.observer.cancel = true;
+			this.probeObserver.stop = true;
 		}
 	}
 
 	/**
-	 * Observer update
+	 * Probe observer update
+	 *
+	 * @param status status
 	 */
-	private void observerUpdate()
+	private void probeObserverUpdate(@NonNull final Status status)
 	{
-		final boolean inProgress = Status.STATUS_RUNNING.test(this.status) || Status.STATUS_PAUSED.test(this.status);
+		final boolean inProgress = status == Status.STATUS_RUNNING || status == Status.STATUS_PAUSED;
 		final int progress100 = this.progress.total == 0 ? -1 : (int) (this.progress.downloaded * 100L / this.progress.total);
-		final String status = makeStatusString(this.status);
-		final String reason = getReason();
-		final String message = status + (reason == null ? "" : '\n' + reason);
 		final String count = Utils.countToStorageString(this.progress.downloaded);
-		Log.d(TAG, "Observer update " + message + ", " + progress100 + "% done");
+		final String message = buildStatusString(status);
+		Log.d(TAG, "Probe observer update " + message + ", " + progress100 + "% done");
 
 		final Activity activity = getActivity();
 		if (activity != null && !isDetached() && !activity.isFinishing() && !activity.isDestroyed())
@@ -661,8 +642,6 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 			activity.runOnUiThread(() -> {
 				if (inProgress)
 				{
-					//this.downloadButton.setVisibility(View.INVISIBLE);
-					//this.cancelButton.setVisibility(View.VISIBLE);
 					this.progressBar.setVisibility(View.VISIBLE);
 					this.progressStatus.setVisibility(View.VISIBLE);
 					this.progressBar.setProgress(progress100);
@@ -679,9 +658,9 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	 * Get status
 	 *
 	 * @param progress progress result
-	 * @return status code if finished
+	 * @return status code
 	 */
-	abstract int getStatus(final Progress progress);
+	abstract Status getStatus(final Progress progress);
 
 	/**
 	 * Get reason
@@ -691,33 +670,26 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	@Nullable
 	abstract String getReason();
 
+	/**
+	 * Build status message
+	 *
+	 * @param status status
+	 * @return message
+	 */
+	private String buildStatusString(final Status status)
+	{
+		if (status != Status.STATUS_SUCCEEDED)
+		{
+			final String reason = getReason();
+			if (reason != null)
+			{
+				return status.toString(requireContext()) + '\n' + reason;
+			}
+		}
+		return status.toString(requireContext());
+	}
+
 	// H E L P E R S
-
-	/**
-	 * Make status string
-	 *
-	 * @param statusCode status code
-	 * @return status string
-	 */
-	@NonNull
-	private String makeStatusString(int statusCode)
-	{
-		final Status status = Status.valueOf(statusCode);
-		final int statusResId = Status.toResId(status);
-		return makeString(statusResId);
-	}
-
-	/**
-	 * Make string
-	 *
-	 * @param resId res id
-	 * @return string
-	 */
-	@NonNull
-	String makeString(int resId)
-	{
-		return this.appContext.getString(resId);
-	}
 
 	/**
 	 * Warn
@@ -736,76 +708,76 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	/**
 	 * Event sink for download events fired by downloader
 	 *
-	 * @param success whether download was successful
+	 * @param status download status
 	 */
-	void onDone(final boolean success)
+	void onDone(final Status status)
 	{
-		Log.d(TAG, "OnDone " + success + " " + this);
+		Log.d(TAG, "OnDone " + status);
 
 		AbstractDownloadFragment.isDownloading = false;
 
-		// register if this is the database
-		if (success)
+		// register if this is the model
+		if (status == Status.STATUS_SUCCEEDED)
 		{
 			assert this.downloadedFile != null;
 			record();
 		}
+		boolean requiresDeploy = this.unzipDir != null;
 
 		// observer
-		stopObserver();
+		stopProbeObserver();
 
 		// UI
-		Log.d(TAG, "Update UI " + success);
+		requireActivity().runOnUiThread(() -> {
 
-		// progress
-		if (this.progressBar != null)
-		{
-			this.progressBar.setVisibility(View.INVISIBLE);
-		}
-		if (this.progressStatus != null)
-		{
-			this.progressStatus.setVisibility(View.INVISIBLE);
-		}
-		if (this.statusTextView != null)
-		{
-			final String status = makeStatusString(this.status);
-			final String reason = getReason();
-			final String message = status + (reason == null ? "" : '\n' + reason);
+			Log.d(TAG, "OnDone : Update UI " + status);
 
-			this.statusTextView.setText(success ? this.appContext.getString(R.string.status_download_successful) : message);
-			this.statusTextView.setVisibility(View.VISIBLE);
-		}
+			// progress
+			if (this.progressBar != null)
+			{
+				this.progressBar.setVisibility(View.INVISIBLE);
+			}
+			if (this.progressStatus != null)
+			{
+				this.progressStatus.setVisibility(View.INVISIBLE);
+			}
+			if (this.statusTextView != null)
+			{
+				String message = buildStatusString(status);
+				this.statusTextView.setText(message);
+				this.statusTextView.setVisibility(View.VISIBLE);
+			}
 
-		// buttons
-		if (this.downloadButton != null)
-		{
-			this.downloadButtonImageResId = success ? R.drawable.bn_download_ok : R.drawable.bn_download;
-			Drawable drawable = AppCompatResources.getDrawable(requireContext(), this.downloadButtonImageResId);
-			assert drawable != null;
-			DrawableCompat.setTint(drawable, Color.WHITE);
-			this.downloadButton.setImageDrawable(drawable);
-			this.downloadButtonBackgroundResId = success ? R.drawable.bg_button_ok : R.drawable.bg_button_err;
-			this.downloadButton.setBackgroundResource(this.downloadButtonBackgroundResId);
-			this.downloadButton.setEnabled(false);
-			this.downloadButton.setVisibility(View.VISIBLE);
-		}
-		this.cancelButton.setVisibility(View.GONE);
-		this.md5Button.setVisibility(success ? View.VISIBLE : View.GONE);
+			// buttons
+			if (this.downloadButton != null)
+			{
+				this.downloadButtonImageResId = status == Status.STATUS_SUCCEEDED ? R.drawable.bn_download_ok : R.drawable.bn_download;
+				Drawable drawable = AppCompatResources.getDrawable(requireContext(), this.downloadButtonImageResId);
+				assert drawable != null;
+				DrawableCompat.setTint(drawable, Color.WHITE);
+				this.downloadButton.setImageDrawable(drawable);
+				this.downloadButtonBackgroundResId = status == Status.STATUS_SUCCEEDED ? R.drawable.bg_button_ok : R.drawable.bg_button_err;
+				this.downloadButton.setBackgroundResource(this.downloadButtonBackgroundResId);
+				this.downloadButton.setEnabled(false);
+				this.downloadButton.setVisibility(View.VISIBLE);
+			}
+			this.cancelButton.setVisibility(View.GONE);
+			this.md5Button.setVisibility(status == Status.STATUS_SUCCEEDED ? View.VISIBLE : View.GONE);
 
-		// deploy button to complete task
-		boolean requiresDeploy = this.unzipDir != null;
-		this.deployButton.setVisibility(success && requiresDeploy ? View.VISIBLE : View.GONE);
+			// deploy button to complete task
+			this.deployButton.setVisibility(status == Status.STATUS_SUCCEEDED && requiresDeploy ? View.VISIBLE : View.GONE);
+		});
 
 		// invalidate
-		if (!success)
+		if (status != Status.STATUS_SUCCEEDED)
 		{
 			this.downloadedFile = null;
 		}
 
 		// complete
-		if (!success || !requiresDeploy)
+		if (status != Status.STATUS_SUCCEEDED || !requiresDeploy)
 		{
-			onComplete(success);
+			onComplete(status == Status.STATUS_SUCCEEDED);
 		}
 	}
 
@@ -816,7 +788,7 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	 */
 	void onComplete(final boolean success)
 	{
-		Log.d(TAG, "OnComplete " + success + " " + this);
+		Log.d(TAG, "OnComplete succeeded=" + success + " " + this);
 		OnComplete listener = (OnComplete) getActivity();
 		assert listener != null;
 		listener.onComplete(success);

@@ -1,8 +1,8 @@
 <!--
-  ~ Copyright (c) 2023. Bernard Bou
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 	<!-- labels -->
 	<string name="title_activity_download">Download</string>
 	<string name="title_activity_update">Update</string>
@@ -10,20 +10,23 @@
 
 	<!-- action -->
 	<string name="action_download">Download</string>
-	<string name="action_run">Run</string>
+	<string name="action_zip_download" tools:keep="@string/action_zip_download">Zip Download</string>
 	<string name="action_cancel">Cancel</string>
 	<string name="action_ok">OK</string>
 	<string name="action_abort">Abort</string>
 	<string name="action_dismiss">Dismiss</string>
 	<string name="action_show">Show</string>
 	<string name="action_deploy">Deploy</string>
-	<string name="action_copy_from_file">Copy database from &#8230;</string>
-	<string name="action_unzip_from_archive">Unzip database from &#8230;</string>
+	<string name="action_copy_from_file">Copy model from &#8230;</string>
+	<string name="action_unzip_from_archive">Unzip model from &#8230;</string>
 	<string name="action_update">Update</string>
 	<string name="action_md5">MD5</string>
 	<string name="action_md5_of_file">MD5 of</string>
 	<string name="action_md5_ask">MD5 &#8230;</string>
 	<string name="action_directory">Directory</string>
+
+	<!-- resource directory -->
+	<string name="resource_directory">Resource directory</string>
 
 	<!-- hint -->
 	<string name="hint_unzip_from_archive">Select the zip archive to unzip from</string>
@@ -33,19 +36,13 @@
 	<string name="hint_md5_of_file">Select the file to md5-checksum</string>
 
 	<!-- description -->
-	<string name="description_download">Download database</string>
-
-	<!-- service -->
-	<string name="service_downloader">service_downloader</string>
-	<string name="description_service_downloader">Downloader Service</string>
-	<string name="service_zip_downloader">service_zip downloader</string>
-	<string name="description_service_zip_downloader">Downloader ZIP Service</string>
+	<string name="description_download">Download model</string>
 
 	<!-- items -->
 	<string name="download_source">source</string>
 	<string name="download_dest">destination</string>
 	<string name="download_up">available source</string>
-	<string name="download_down">current database</string>
+	<string name="download_down">current model</string>
 	<string name="download_newer">source is possibly newer</string>
 	<string name="download_uptodate">source is up-to-date</string>
 
@@ -58,17 +55,17 @@
 	<string name="md5_downloaded">Downloaded</string>
 	<string name="md5_computed">Computed</string>
 	<string name="md5_compared">Compared</string>
-	<string name="md5_none">No possible candidate file in storage</string>
+	<string name="md5_none">No possible zipped model file in storage</string>
 
 	<string name="status_download_pending">pending</string>
 	<string name="status_download_running">running</string>
 	<string name="status_download_paused">paused</string>
 	<string name="status_download_successful">successful</string>
 	<string name="status_download_fail">failed</string>
-	<string name="status_download_canceled">canceled</string>
+	<string name="status_download_cancelled">cancelled</string>
 	<string name="status_download_null_exception">null source or destination</string>
 	<string name="status_download_error_null_download_url">No download url</string>
-	<string name="status_download_error_unavailable_download_url">Unavailable download url</string>
+	<string name="status_download_error_unavailable_download_url">Unavailable download url (model may be builtin)</string>
 
 	<string name="status_unzipping">unzipping</string>
 	<string name="status_copying">copying</string>
@@ -79,20 +76,19 @@
 
 	<string name="status_state_unknown">unknown state</string>
 
-	<string name="status_task_running">running</string>
-	<string name="status_task_done">done</string>
+	<!-- <string name="status_task_running">running</string> -->
+	<!-- <string name="status_task_done">done</string> -->
 	<string name="status_task_success">success</string>
 	<string name="status_task_failed">failed</string>
+
+	<!--
 	<string name="status_task_start_toast">Task started</string>
 	<string name="status_task_done_toast">Task done</string>
-
-	<!--<string name="status_download_downloadable_content">Now downloading available content. Be patient.</string>-->
-
-	<!-- resource directory -->
-	<string name="resource_directory">Resource directory</string>
+	-->
+	<string name="status_download_downloadable_content">Exploring available content…</string>
 
 	<!-- result -->
-	<string name="result_success">@android:string/ok</string>
+	<string name="result_success">Success</string>
 	<string name="result_fail">Fail</string>
 	<string name="result_deleted">deleted</string>
 

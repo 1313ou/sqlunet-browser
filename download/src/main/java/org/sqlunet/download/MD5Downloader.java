@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
 package org.sqlunet.download;
@@ -60,7 +60,7 @@ class MD5Downloader extends Task<String, Void, String>
 		{
 			// connect
 			final URL url = new URL(md5Arg);
-			Log.d(MD5Downloader.TAG, "Get " + url);
+			Log.d(TAG, "Getting " + url);
 			final URLConnection connection = url.openConnection();
 			connection.connect();
 
@@ -107,12 +107,12 @@ class MD5Downloader extends Task<String, Void, String>
 		catch (@NonNull final InterruptedException e)
 		{
 			this.exception = e;
-			Log.d(MD5Downloader.TAG, e.toString());
+			Log.d(TAG, e.toString());
 		}
 		catch (@NonNull final Exception e)
 		{
 			this.exception = e;
-			Log.e(MD5Downloader.TAG, "While downloading", e);
+			Log.e(TAG, "While downloading", e);
 		}
 		finally
 		{

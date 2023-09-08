@@ -1,26 +1,41 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
 package org.sqlunet.download;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+
+import org.sqlunet.download.R;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
- * Download Zip fragment
- * Interface between service and activity.
- * Service sends messages to this fragment's receiver.
+ * Download Zip Work fragment
+ * Interface between work and activity.
+ * Cancel messages are to be sent to this fragment's receiver.
  * Signals completion through the OnComplete callback in the activity.
- * Source and stream are zipped.
+ * This fragment uses a zipped file zip downloader core (only matched
+ * entries or all by default) are written to target directory location.
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 public class DownloadZipFragment extends DownloadFragment
 {
+	/**
+	 * Zip entry argument
+	 */
+	static public final String DOWNLOAD_ENTRY_ARG = "entry";
+
+	/**
+	 * Download source entry
+	 */
+	@SuppressWarnings("WeakerAccess")
+	@Nullable
+	protected String sourceEntry;
+
 	@Override
 	protected int getResId()
 	{
@@ -31,6 +46,10 @@ public class DownloadZipFragment extends DownloadFragment
 	public void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+
+		// arguments
+		final Bundle arguments = getArguments();
+		this.sourceEntry = arguments == null ? null : arguments.getString(DOWNLOAD_ENTRY_ARG);
 
 		// download source data
 		assert this.sourceUrl != null;
@@ -45,20 +64,53 @@ public class DownloadZipFragment extends DownloadFragment
 		}
 	}
 
+	/**
+	 * Start download
+	 */
 	@Override
-	protected void startService(@NonNull Context context, @NonNull Intent intent)
+	protected void start()
 	{
-		DownloadZipService.enqueueWork(context, intent);
+		synchronized (this)
+		{
+			Log.d(TAG, "Starting");
+			if (!this.downloading) // prevent recursion
+			{
+				// reset
+				this.success = null;
+				this.cancel = false;
+				this.exception = null;
+				this.cause = null;
+				this.progressDownloaded = 0;
+				this.progressTotal = 0;
+
+				// args
+				final String from = this.downloadUrl;
+				assert from != null;
+				assert this.downloadedFile != null;
+				final String to = this.downloadedFile.getAbsolutePath();
+				final String entry = this.sourceEntry;
+
+				// start job
+				start(from, entry, to);
+
+				// status
+				this.downloading = true; // set
+				return;
+			}
+		}
+		throw new RuntimeException("Already downloading");
 	}
 
 	/**
-	 * Action fro this service
+	 * Start
+	 *
+	 * @param fromUrl source zip url
+	 * @param entry   source zip entry
+	 * @param toFile  destination file
 	 */
-	@NonNull
-	@Override
-	protected String getAction()
+	protected void start(@NonNull final String fromUrl, @Nullable final String entry, @NonNull final String toFile)
 	{
-		return Killer.KILL_ZIP_DOWNLOAD_SERVICE;
+		this.uuid = DownloadZipWork.startWork(requireContext(), fromUrl, entry, toFile, this, this.observer);
 	}
 }
 

@@ -1,14 +1,18 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
 package org.sqlunet.download;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
 import android.util.Log;
+
+import org.sqlunet.download.R;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -30,15 +34,13 @@ public class StorageUtils
 	static private final String TAG = "StorageUtils";
 
 	/**
-	 * Database size
+	 * Model size
 	 */
-	static private float DATABASE_SIZE_MB = Float.NaN;
+	static private float MODEL_SIZE_MB = Float.NaN;
 
 	/*
 	 * Storage types
 	 */
-	//	enum StorageType
-	//	{PRIMARY_EMULATED, PRIMARY_PHYSICAL, SECONDARY}
 
 	/**
 	 * Directory type
@@ -192,16 +194,16 @@ public class StorageUtils
 			this.status = status;
 		}
 
-		/*
+		/**
 		 * Short string
 		 *
 		 * @return short string
 		 */
-		//		@NonNull
-		//		CharSequence toShortString()
-		//		{
-		//			return String.format(Locale.ENGLISH, "%s %s %s free", this.dir.type.toDisplay(), this.dir.file.getAbsolutePath(), mbToString(this.free));
-		//		}
+		@NonNull
+		CharSequence toShortString()
+		{
+			return String.format(Locale.ENGLISH, "%s %s %s free", this.dir.type.toDisplay(), this.dir.file.getAbsolutePath(), mbToString(this.free));
+		}
 
 		/**
 		 * Long string
@@ -318,16 +320,16 @@ public class StorageUtils
 		/**
 		 * Capacity test
 		 *
-		 * @return true if database fits in storage
+		 * @return true if model fits in storage
 		 */
 		boolean fitsIn(@NonNull final Context context)
 		{
-			if (Float.isNaN(DATABASE_SIZE_MB))
+			if (Float.isNaN(MODEL_SIZE_MB))
 			{
-				float size = context.getResources().getInteger(R.integer.size_db_working_total);
-				DATABASE_SIZE_MB = (size + size / 10F) / (1024F * 1024F);
+				float size = context.getResources().getInteger(R.integer.size_model_working_total);
+				MODEL_SIZE_MB = (size + size / 10F) / (1024F * 1024F);
 			}
-			return !Float.isNaN(this.free) && this.free >= DATABASE_SIZE_MB;
+			return !Float.isNaN(this.free) && this.free >= MODEL_SIZE_MB;
 		}
 	}
 
@@ -339,7 +341,9 @@ public class StorageUtils
 	 * @param context context
 	 * @return list of storage directories
 	 */
+	@SuppressLint("ObsoleteSdkInt")
 	@NonNull
+	@TargetApi(Build.VERSION_CODES.KITKAT)
 	static private List<Directory> getDirectories(@NonNull final Context context)
 	{
 		final List<Directory> result = new ArrayList<>();
@@ -360,51 +364,51 @@ public class StorageUtils
 
 		// application-specific secondary external storage or primary external
 		final File[] dirs = ContextCompat.getExternalFilesDirs(context, null);
-		if (dirs.length > 0)
-		{
-			// preferably secondary storage (index >= 1)
-			for (int i = 1; i < dirs.length; i++)
+			if (dirs.length > 0)
 			{
-				dir = dirs[i];
+				// preferably secondary storage (index >= 1)
+				for (int i = 1; i < dirs.length; i++)
+				{
+					dir = dirs[i];
+					if (dir != null)
+					{
+						result.add(new Directory(dir, DirType.APP_EXTERNAL_SECONDARY));
+					}
+				}
+
+				// primary storage (index == 0)
+				dir = dirs[0];
 				if (dir != null)
 				{
-					result.add(new Directory(dir, DirType.APP_EXTERNAL_SECONDARY));
+					result.add(new Directory(dir, DirType.APP_EXTERNAL_PRIMARY));
 				}
 			}
-
-			// primary storage (index == 0)
-			dir = dirs[0];
-			if (dir != null)
-			{
-				result.add(new Directory(dir, DirType.APP_EXTERNAL_PRIMARY));
-			}
-		}
 
 		// P U B L I C
 
 		// top-level public external storage directory
-		//		try
-		//		{
-		//			dir = Environment.getExternalStoragePublicDirectory(Settings.STORAGE_DB_DIR);
-		//			result.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY));
-		//		}
-		//		catch (@NonNull final Throwable e)
-		//		{
-		//			// top-level public in external
-		//			try
-		//			{
-		//				final File storage = Environment.getExternalStorageDirectory();
-		//				if (storage != null)
-		//				{
-		//					dir = new File(storage, Settings.STORAGE_DB_DIR);
-		//					result.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY));
-		//				}
-		//			}
-		//			catch (@NonNull final Throwable e2)
-		//			{
-		//				//
-		//			}
-		//		}
+//		try
+//		{
+//			dir = Environment.getExternalStoragePublicDirectory(Settings.STORAGE_DB_DIR);
+//			result.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY));
+//		}
+//		catch (@NonNull final Throwable e)
+//		{
+//			// top-level public in external
+//			try
+//			{
+//				final File storage = Environment.getExternalStorageDirectory();
+//				if (storage != null)
+//				{
+//					dir = new File(storage, Settings.STORAGE_DB_DIR);
+//					result.add(new Directory(dir, DirType.PUBLIC_EXTERNAL_PRIMARY));
+//				}
+//			}
+//			catch (@NonNull final Throwable e2)
+//			{
+//				//
+//			}
+//		}
 
 		// I N T E R N A L
 
@@ -483,8 +487,9 @@ public class StorageUtils
 	 * Whether the dir qualifies as storage
 	 *
 	 * @param dir directory
-	 * @return error code if it qualifies
+	 * @return code if it qualifies
 	 */
+	@SuppressLint("ObsoleteSdkInt")
 	static private int qualifies(@Nullable final File dir, @NonNull final DirType type)
 	{
 		int status = 0;
@@ -510,7 +515,7 @@ public class StorageUtils
 						final String state = Environment.getExternalStorageState(dir);
 						if (!Environment.MEDIA_MOUNTED.equals(state))
 						{
-							Log.d(StorageUtils.TAG, "storage state of " + dir + ": " + state);
+							Log.d(TAG, "Storage state of " + dir + ": " + state);
 							status |= StorageDirectory.NOT_MOUNTED;
 						}
 					}
@@ -554,38 +559,6 @@ public class StorageUtils
 	 * @param context context
 	 * @return map per type of external storage
 	 */
-	//	@NonNull
-	//	static Map<StorageType, File[]> getExternalStorages(@NonNull final Context context)
-	//	{
-	//		// result set of paths
-	//		final Map<StorageType, File[]> dirs = new EnumMap<>(StorageType.class);
-	//
-	//		// P R I M A R Y
-	//
-	//		// primary emulated
-	//		final File primaryEmulated = discoverPrimaryEmulatedExternalStorage(context);
-	//		if (primaryEmulated != null)
-	//		{
-	//			dirs.put(StorageType.PRIMARY_EMULATED, new File[]{primaryEmulated});
-	//		}
-	//
-	//		// primary physical
-	//		final File physicalEmulated = discoverPrimaryPhysicalExternalStorage();
-	//		if (physicalEmulated != null)
-	//		{
-	//			dirs.put(StorageType.PRIMARY_PHYSICAL, new File[]{physicalEmulated});
-	//		}
-	//
-	//		// S E C O N D A R Y
-	//
-	//		final File[] secondaryStorages = discoverSecondaryExternalStorage();
-	//		if (secondaryStorages != null && secondaryStorages.length > 0)
-	//		{
-	//			dirs.put(StorageType.SECONDARY, secondaryStorages);
-	//		}
-	//
-	//		return dirs;
-	//	}
 
 	/*
 	 * Select external storage
@@ -593,35 +566,6 @@ public class StorageUtils
 	 * @param context context
 	 * @return external storage directory
 	 */
-	//	@Nullable
-	//	static public String selectExternalStorage(@NonNull final Context context)
-	//	{
-	//		// S E C O N D A R Y
-	//
-	//		// all secondary sdcards split into array
-	//		final File[] secondaries = discoverSecondaryExternalStorage();
-	//		if (secondaries != null && secondaries.length > 0)
-	//		{
-	//			return secondaries[0].getAbsolutePath();
-	//		}
-	//
-	//		// P R I M A R Y
-	//
-	//		// primary emulated sdcard
-	//		final File primaryEmulated = discoverPrimaryEmulatedExternalStorage(context);
-	//		if (primaryEmulated != null)
-	//		{
-	//			return primaryEmulated.getAbsolutePath();
-	//		}
-	//
-	//		final File primaryPhysical = discoverPrimaryPhysicalExternalStorage();
-	//		if (primaryPhysical != null)
-	//		{
-	//			return primaryPhysical.getAbsolutePath();
-	//		}
-	//
-	//		return null;
-	//	}
 
 	/*
 	 * Discover primary emulated external storage directory
@@ -629,81 +573,46 @@ public class StorageUtils
 	 * @param context context
 	 * @return primary emulated external storage directory
 	 */
-	//	@Nullable
-	//	static private File discoverPrimaryEmulatedExternalStorage(@NonNull final Context context)
-	//	{
-	//		// primary emulated sdcard
-	//		final String emulatedStorageTarget = System.getenv("EMULATED_STORAGE_TARGET");
-	//		if (emulatedStorageTarget != null && !emulatedStorageTarget.isEmpty())
-	//		{
-	//			// device has emulated extStorage
-	//			// external extStorage paths should have userId burned into them
-	//			final String userId = StorageUtils.getUserId(context);
-	//
-	//			// /extStorage/emulated/0[1,2,...]
-	//			if (/*userId == null ||*/ userId.isEmpty())
-	//			{
-	//				return new File(emulatedStorageTarget);
-	//			}
-	//			else
-	//			{
-	//				return new File(emulatedStorageTarget + File.separatorChar + userId);
-	//			}
-	//		}
-	//		return null;
-	//	}
 
 	/*
 	 * Discover primary physical external storage directory
 	 *
 	 * @return primary physical external storage directory
 	 */
-	//	@Nullable
-	//	static private File discoverPrimaryPhysicalExternalStorage()
-	//	{
-	//		final String externalStorage = System.getenv("EXTERNAL_STORAGE");
-	//		// device has physical external extStorage; use plain paths.
-	//		if (externalStorage != null && !externalStorage.isEmpty())
-	//		{
-	//			return new File(externalStorage);
-	//		}
-	//
-	//		return null;
-	//	}
 
 	/*
 	 * Discover secondary external storage directories
 	 *
 	 * @return secondary external storage directories
 	 */
-	//	@Nullable
-	//	static private File[] discoverSecondaryExternalStorage()
-	//	{
-	//		// all secondary sdcards (all except primary) separated by ":"
-	//		String secondaryStoragesEnv = System.getenv("SECONDARY_STORAGE");
-	//		if ((secondaryStoragesEnv == null) || secondaryStoragesEnv.isEmpty())
-	//		{
-	//			secondaryStoragesEnv = System.getenv("EXTERNAL_SDCARD_STORAGE");
-	//		}
-	//
-	//		// addItem all secondary storages
-	//		if (secondaryStoragesEnv != null && !secondaryStoragesEnv.isEmpty())
-	//		{
-	//			// all secondary sdcards split into array
-	//			final String[] paths = secondaryStoragesEnv.split(File.pathSeparator);
-	//			final List<File> dirs = new ArrayList<>();
-	//			for (String path : paths)
-	//			{
-	//				final File dir = new File(path);
-	//				if (dir.exists())
-	//				{
-	//					dirs.add(dir);
-	//				}
-	//			}
-	//			return dirs.toArray(new File[0]);
-	//		}
-	//		return null;
-	//	}
+//	@Nullable
+//	static private File[] discoverSecondaryExternalStorage()
+//	{
+//		// all secondary sdcards (all except primary) separated by ":"
+//		String secondaryStoragesEnv = System.getenv("SECONDARY_STORAGE");
+//		if ((secondaryStoragesEnv == null) || secondaryStoragesEnv.isEmpty())
+//		{
+//			secondaryStoragesEnv = System.getenv("EXTERNAL_SDCARD_STORAGE");
+//		}
+//
+//		// addItem all secondary storages
+//		if (secondaryStoragesEnv != null && !secondaryStoragesEnv.isEmpty())
+//		{
+//			// all secondary sdcards split into array
+//			final String[] paths = secondaryStoragesEnv.split(File.pathSeparator);
+//			final List<File> dirs = new ArrayList<>();
+//			for (String path : paths)
+//			{
+//				final File dir = new File(path);
+//				if (dir.exists())
+//				{
+//					dirs.add(dir);
+//				}
+//			}
+//			return dirs.toArray(new File[0]);
+//		}
+//		return null;
+//	}
 
 	// Q U A L I F I E S
 
@@ -715,20 +624,20 @@ public class StorageUtils
 	 * @param context context
 	 * @return user id
 	 */
-	//	@NonNull
-	//	@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-	//	static private String getUserId(@NonNull final Context context)
-	//	{
-	//		final UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
-	//		if (null != manager)
-	//		{
-	//			UserHandle user = android.os.Process.myUserHandle();
-	//			long userSerialNumber = manager.getSerialNumberForUser(user);
-	//			// Log.d("USER", "userSerialNumber = " + userSerialNumber);
-	//			return Long.toString(userSerialNumber);
-	//		}
-	//		return "";
-	//	}
+//	@NonNull
+//	@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+//	static private String getUserId(@NonNull final Context context)
+//	{
+//		final UserManager manager = (UserManager) context.getSystemService(Context.USER_SERVICE);
+//		if (null != manager)
+//		{
+//			UserHandle user = android.os.Process.myUserHandle();
+//			long userSerialNumber = manager.getSerialNumberForUser(user);
+//			Log.d("USER", "userSerialNumber = " + userSerialNumber);
+//			return Long.toString(userSerialNumber);
+//		}
+//		return "";
+//	}
 
 	// C A P A C I T Y
 
@@ -783,12 +692,22 @@ public class StorageUtils
 	 * @param path path
 	 * @return free storage in megabytes
 	 */
+	@SuppressLint("ObsoleteSdkInt")
 	static private float storageFree(final String path)
 	{
 		try
 		{
 			final StatFs stat = new StatFs(path);
-			final float bytes = stat.getAvailableBlocksLong() * stat.getBlockSizeLong();
+			float bytes;
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2)
+			{
+				bytes = stat.getAvailableBlocksLong() * stat.getBlockSizeLong();
+			}
+			else
+			{
+				//noinspection deprecation
+				bytes = stat.getAvailableBlocks() * stat.getBlockSize();
+			}
 			return bytes / (1024.f * 1024.f);
 		}
 		catch (Throwable e)
@@ -827,13 +746,23 @@ public class StorageUtils
 	 * @param path path
 	 * @return storage capacity in megabytes
 	 */
+	@SuppressLint("ObsoleteSdkInt")
 	@SuppressWarnings({"WeakerAccess"})
 	static public float storageCapacity(final String path)
 	{
 		try
 		{
 			final StatFs stat = new StatFs(path);
-			final float bytes = stat.getBlockCountLong() * stat.getBlockSizeLong();
+			final float bytes;
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2)
+			{
+				bytes = stat.getBlockCountLong() * stat.getBlockSizeLong();
+			}
+			else
+			{
+				//noinspection deprecation
+				bytes = stat.getBlockCount() * stat.getBlockSize();
+			}
 			return bytes / (1024.f * 1024.f);
 		}
 		catch (Throwable e)

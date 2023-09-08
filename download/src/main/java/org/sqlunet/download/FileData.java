@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
 package org.sqlunet.download;
@@ -55,12 +55,12 @@ public class FileData
 	@NonNull
 	static public FileData getCurrent(@NonNull final Context context)
 	{
-		final String name = Settings.getDbName(context);
-		final long date = Settings.getDbDate(context);
-		final long size = Settings.getDbSize(context);
-		final String etag = Settings.getDbSourceEtag(context);
-		final String version = Settings.getDbSourceVersion(context);
-		final String staticVersion = Settings.getDbSourceStaticVersion(context);
+		final String name = Settings.getModelName(context);
+		final long date = Settings.getModelDate(context);
+		final long size = Settings.getModelSize(context);
+		final String etag = Settings.getModelSourceEtag(context);
+		final String version = Settings.getModelSourceVersion(context);
+		final String staticVersion = Settings.getModelSourceStaticVersion(context);
 		return new FileData(name, date, size, etag, version, staticVersion);
 	}
 
@@ -92,5 +92,22 @@ public class FileData
 	public String getStaticVersion()
 	{
 		return this.staticVersion;
+	}
+
+	public static void recordModel(@NonNull final Context context, @NonNull final File modelFile)
+	{
+		Settings.setModelName(context, modelFile.getName());
+		final FileData fileData = makeFileDataFrom(modelFile);
+		if (fileData != null)
+		{
+			if (fileData.date != -1)
+			{
+				Settings.setModelDate(context, fileData.date);
+			}
+			if (fileData.size != -1)
+			{
+				Settings.setModelSize(context, fileData.size);
+			}
+		}
 	}
 }

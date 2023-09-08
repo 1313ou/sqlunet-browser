@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (c) 2023. Bernard Bou
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -10,20 +10,19 @@
 
 	<com.google.android.material.appbar.AppBarLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:theme="?attr/actionBarPopupTheme">
+		android:layout_height="wrap_content">
 
 		<include layout="@layout/toolbar" />
 
 	</com.google.android.material.appbar.AppBarLayout>
 
-	<androidx.fragment.app.FragmentContainerView
+	<FrameLayout
 		android:id="@+id/container"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-		tools:context="org.sqlunet.download.DownloadActivity">
+		tools:ignore="MergeRootFrame">
 
-	</androidx.fragment.app.FragmentContainerView>
+	</FrameLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

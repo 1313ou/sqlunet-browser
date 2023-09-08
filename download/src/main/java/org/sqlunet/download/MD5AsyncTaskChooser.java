@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
 package org.sqlunet.download;
@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.sqlunet.download.R;
 import org.sqlunet.concurrency.Task;
 import org.sqlunet.concurrency.TaskDialogObserver;
 import org.sqlunet.concurrency.TaskObserver;
@@ -34,8 +35,8 @@ public class MD5AsyncTaskChooser
 	/**
 	 * MD5
 	 *
-	 * @param activity       activity
-	 * @param path           path
+	 * @param activity activity
+	 * @param path     path
 	 * @param consumer consumer
 	 */
 	public static void md5(@NonNull final FragmentActivity activity, @NonNull final String path, final Consumer<String> consumer)
@@ -58,7 +59,7 @@ public class MD5AsyncTaskChooser
 	 */
 	@SafeVarargs
 	static public void md5(@NonNull final FragmentActivity activity, final Pair<CharSequence[], CharSequence[]>... directories)
-	{
+		{
 		// collect
 		final RadioGroup input = Chooser.collectFiles(activity, directories);
 		if (input == null)
@@ -119,7 +120,7 @@ public class MD5AsyncTaskChooser
 			}
 		});
 		alert.setNegativeButton(R.string.action_cancel, (dialog, whichButton) -> {
-			// canceled.
+			// cancelled.
 		});
 		alert.show();
 	}

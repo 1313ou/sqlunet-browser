@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
 package org.sqlunet.download;
@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import org.sqlunet.download.R;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -22,6 +24,7 @@ import androidx.fragment.app.Fragment;
 
 import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
 import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_TO_ARG;
+import static org.sqlunet.download.BaseDownloadFragment.UNZIP_TO_ARG;
 
 /**
  * Update fragment.
@@ -107,7 +110,7 @@ public class UpdateFragment extends Fragment
 		final String downSourceStaticVersionArg = intent.getStringExtra(DOWN_SOURCE_STATIC_VERSION_ARG);
 
 		final boolean newerArg = intent.getBooleanExtra(NEWER_ARG, false);
-		final Intent downloadIntent = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? intent.getParcelableExtra(DOWNLOAD_INTENT_ARG, Intent.class) : intent.getParcelableExtra(DOWNLOAD_INTENT_ARG);
+		final Intent downloadIntent = intent.getParcelableExtra(DOWNLOAD_INTENT_ARG);
 
 		assert view != null;
 
@@ -124,7 +127,7 @@ public class UpdateFragment extends Fragment
 		upVersion.setText(upVersionArg);
 		upStaticVersion.setText(upStaticVersionArg);
 
-		final TextView downDb = view.findViewById(R.id.down_model);
+		final TextView downModel = view.findViewById(R.id.down_model);
 		final TextView downDate = view.findViewById(R.id.down_model_date);
 		final TextView downSize = view.findViewById(R.id.down_model_size);
 		final TextView downSource = view.findViewById(R.id.down_source);
@@ -133,7 +136,7 @@ public class UpdateFragment extends Fragment
 		final TextView downSourceEtag = view.findViewById(R.id.down_source_etag);
 		final TextView downSourceVersion = view.findViewById(R.id.down_source_version);
 		final TextView downSourceStaticVersion = view.findViewById(R.id.down_source_static_version);
-		downDb.setText(downNameArg);
+		downModel.setText(downNameArg);
 		downDate.setText(downDateArg);
 		downSize.setText(downSizeArg);
 		downSource.setText(downSourceArg);
@@ -157,7 +160,11 @@ public class UpdateFragment extends Fragment
 
 					final String downloadFromArg = intent.getStringExtra(DOWNLOAD_FROM_ARG);
 					final String downloadToArg = intent.getStringExtra(DOWNLOAD_TO_ARG);
-					update(context, downloadFromArg, downloadToArg, downloadIntent);
+					final String unzipToArg = intent.getStringExtra(UNZIP_TO_ARG);
+					assert downloadFromArg != null;
+					assert downloadToArg != null;
+					assert unzipToArg != null;
+					update(context, downloadFromArg, downloadToArg, unzipToArg, downloadIntent);
 					final Activity activity2 = getActivity();
 					if (activity2 != null)
 					{
@@ -174,11 +181,12 @@ public class UpdateFragment extends Fragment
 		return view;
 	}
 
-	static private void update(@NonNull final Context context, final String downloadFromArg, final String downloadToArg, @Nullable final Intent downloadIntent)
+	static private void update(@NonNull final Context context, @NonNull final String downloadFromArg, @NonNull final String downloadToArg, @NonNull final String unzipToArg, @Nullable final Intent downloadIntent)
 	{
 		final Intent intent = downloadIntent != null ? downloadIntent : new Intent(context, DownloadActivity.class);
 		intent.putExtra(DOWNLOAD_FROM_ARG, downloadFromArg);
 		intent.putExtra(DOWNLOAD_TO_ARG, downloadToArg);
+		intent.putExtra(UNZIP_TO_ARG, unzipToArg);
 		context.startActivity(intent);
 	}
 

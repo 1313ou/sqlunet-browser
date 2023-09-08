@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
 package org.sqlunet.download;
@@ -9,10 +9,11 @@ import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.net.Uri;
 
+import org.sqlunet.deploy.ObservedDeploy;
+import org.sqlunet.download.R;
 import org.sqlunet.concurrency.Task;
 import org.sqlunet.concurrency.TaskDialogObserver;
 import org.sqlunet.concurrency.TaskObserver;
-import org.sqlunet.deploy.ObservedDeploy;
 
 import java.io.File;
 
@@ -66,7 +67,7 @@ public class FileAsyncTask
 		return (Consumer<T>) consumer;
 	}
 
-	// C O R E
+	// CORE
 
 	static private class AsyncCopyFromUri extends Task<Uri, Number, Boolean> implements ObservedDeploy.Publisher
 	{
@@ -119,7 +120,7 @@ public class FileAsyncTask
 			Uri srcUriArg = params[0];
 
 			// outsource it to deploy
-			return ObservedDeploy.copyFromUri(srcUriArg, resolver, this.dest, this, this, this.publishRate);
+			return ObservedDeploy.copyFromUri(srcUriArg, resolver, dest, this, this, this.publishRate);
 		}
 
 		@Override
@@ -771,7 +772,7 @@ public class FileAsyncTask
 		}
 	}
 
-	// H E L P E R S
+	// HELPERS
 
 	// copy
 
@@ -807,7 +808,7 @@ public class FileAsyncTask
 	}
 
 	/**
-	 * Expand all from zip file
+	 * Expand all from zipfile
 	 */
 	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
@@ -893,7 +894,7 @@ public class FileAsyncTask
 
 			if (success)
 			{
-				Settings.recordDb(activity, new File(sourceFile));
+				Settings.recordModel(activity, new File(sourceFile));
 			}
 			if (whenDone != null)
 			{
@@ -902,7 +903,7 @@ public class FileAsyncTask
 		};
 		final Task<String, Number, Boolean> task = new FileAsyncTask(observer, consumer, 1000).unzipFromArchiveFile(dest);
 		task.execute(sourceFile);
-		observer.taskUpdate(activity.getString(org.sqlunet.download.R.string.status_unzipping));
+		observer.taskUpdate(activity.getString(R.string.status_unzipping));
 	}
 
 	/**
@@ -936,7 +937,7 @@ public class FileAsyncTask
 
 			if (success)
 			{
-				Settings.recordDb(activity, sourceUri.toString());
+				Settings.recordModel(activity, sourceUri.toString());
 			}
 			if (whenDone != null)
 			{
@@ -981,7 +982,7 @@ public class FileAsyncTask
 
 			if (success)
 			{
-				Settings.recordDb(activity, new File(sourceFile));
+				Settings.recordModel(activity, new File(sourceFile));
 			}
 			if (whenDone != null)
 			{
@@ -1026,7 +1027,7 @@ public class FileAsyncTask
 
 			if (success)
 			{
-				Settings.recordDb(activity, sourceUri.toString());
+				Settings.recordModel(activity, sourceUri.toString());
 			}
 			if (whenDone != null)
 			{
@@ -1071,7 +1072,7 @@ public class FileAsyncTask
 
 			if (success)
 			{
-				Settings.recordDb(activity, new File(sourceFile));
+				Settings.recordModel(activity, new File(sourceFile));
 			}
 			if (whenDone != null)
 			{
@@ -1114,7 +1115,7 @@ public class FileAsyncTask
 
 			if (success)
 			{
-				Settings.recordDb(activity, uri.toString());
+				Settings.recordModel(activity, uri.toString());
 			}
 			if (whenDone != null)
 			{

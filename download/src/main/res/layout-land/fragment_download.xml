@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2023. Bernard Bou
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -20,14 +20,14 @@
 		android:layout_marginEnd="50dp"
 		android:layout_marginBottom="10dp"
 		android:contentDescription="@string/download_source"
-		app:tint="?android:attr/colorForeground"
-		android:src="@drawable/ic_download_source" />
+		android:src="@drawable/ic_download_source"
+		app:tint="?android:attr/colorForeground" />
 
 	<TextView
 		android:id="@+id/src"
 		android:layout_width="wrap_content"
-		android:layout_below="@id/imgsrc"
 		android:layout_height="wrap_content"
+		android:layout_below="@id/imgsrc"
 		android:layout_centerHorizontal="true"
 		android:layout_marginStart="50dp"
 		android:layout_marginEnd="50dp"
@@ -40,9 +40,9 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_below="@id/src"
+		android:layout_centerHorizontal="true"
 		android:layout_marginTop="10dp"
 		android:layout_marginBottom="10dp"
-		android:layout_centerHorizontal="true"
 		android:orientation="horizontal">
 
 		<View
@@ -65,7 +65,8 @@
 				android:contentDescription="@string/description_download"
 				android:src="@drawable/bn_download"
 				android:text="@string/action_download"
-				android:visibility="invisible" />
+				android:visibility="visible"
+				app:tint="?attr/colorOnSecondary" />
 
 			<ProgressBar
 				android:id="@+id/progressBar"
@@ -110,8 +111,8 @@
 		android:layout_marginStart="50dp"
 		android:layout_marginEnd="50dp"
 		android:contentDescription="@string/download_dest"
-		app:tint="?android:attr/colorForeground"
-		android:src="@drawable/ic_download_dest" />
+		android:src="@drawable/ic_download_dest"
+		app:tint="?android:attr/colorForeground" />
 
 	<TextView
 		android:id="@+id/target"
@@ -152,7 +153,7 @@
 
 		<Button
 			android:id="@+id/cancelButton"
-			style="?android:attr/buttonBarButtonStyle"
+			style="@style/Widget.AppCompat.Button.Borderless.Colored"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="@string/action_cancel"
@@ -160,7 +161,7 @@
 
 		<Button
 			android:id="@+id/showButton"
-			style="?android:attr/buttonBarButtonStyle"
+			style="@style/Widget.AppCompat.Button.Borderless.Colored"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="@string/action_show"
@@ -168,7 +169,7 @@
 
 		<Button
 			android:id="@+id/md5Button"
-			style="?android:attr/buttonBarButtonStyle"
+			style="@style/Widget.AppCompat.Button.Borderless.Colored"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="@string/action_md5"
@@ -176,7 +177,7 @@
 
 		<Button
 			android:id="@+id/deployButton"
-			style="?android:attr/buttonBarButtonStyle"
+			style="@style/Widget.AppCompat.Button.Borderless.Colored"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:text="@string/action_deploy"

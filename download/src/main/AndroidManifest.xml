@@ -1,20 +1,15 @@
-<!--
-  ~ Copyright (c) 2023. Bernard Bou
-  -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools">
-
+	<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 	<uses-permission
 		android:name="android.permission.READ_EXTERNAL_STORAGE"
 		android:maxSdkVersion="32" />
 	<uses-permission
 		android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-		tools:ignore="ScopedStorage" />
+		android:maxSdkVersion="18" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.WAKE_LOCK" />
-	<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
 	<application
 		android:allowBackup="true"
@@ -28,31 +23,6 @@
 		<activity
 			android:name="org.sqlunet.download.UpdateActivity"
 			android:label="@string/title_activity_update" />
-
-		<receiver
-			android:name="org.sqlunet.download.Killer"
-			android:enabled="true"
-			android:exported="false">
-			<intent-filter>
-				<action android:name="kill_download_service" />
-			</intent-filter>
-		</receiver>
-
-		<service
-			android:name="org.sqlunet.download.DownloadService"
-			android:description="@string/description_service_downloader"
-			android:enabled="true"
-			android:exported="false"
-			android:label="@string/service_downloader"
-			android:permission="android.permission.BIND_JOB_SERVICE" />
-
-		<service
-			android:name="org.sqlunet.download.DownloadZipService"
-			android:description="@string/description_service_zip_downloader"
-			android:enabled="true"
-			android:exported="false"
-			android:label="@string/service_zip_downloader"
-			android:permission="android.permission.BIND_JOB_SERVICE" />
 
 	</application>
 </manifest>

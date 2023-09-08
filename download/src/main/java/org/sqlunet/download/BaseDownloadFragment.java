@@ -1,22 +1,20 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
 package org.sqlunet.download;
 
 import android.app.Activity;
-import android.os.Bundle;
 import android.util.Log;
 
+import org.sqlunet.deploy.Deploy;
+import org.sqlunet.download.R;
 import org.sqlunet.concurrency.ObservedDelegatingTask;
 import org.sqlunet.concurrency.Task;
 import org.sqlunet.concurrency.TaskDialogObserver;
 import org.sqlunet.concurrency.TaskObserver;
-import org.sqlunet.deploy.Deploy;
 
 import java.io.File;
-
-import androidx.annotation.Nullable;
 
 /**
  * Download activity
@@ -37,27 +35,18 @@ abstract public class BaseDownloadFragment extends AbstractDownloadFragment
 	 */
 	static public final String RENAME_TO_ARG = "rename_to";
 
-	/*
-	 * Rename source
-	 */
-	@Nullable
-	private String renameFrom;
+	private Runnable requestNew;
 
-	/*
-	 * Rename dest
-	 */
-	@Nullable
-	private String renameTo;
+	private Runnable requestKill;
 
-	@Override
-	public void onCreate(final Bundle savedInstanceState)
+	public void setRequestNew(final Runnable requestNew)
 	{
-		super.onCreate(savedInstanceState);
+		this.requestNew = requestNew;
+	}
 
-		// arguments
-		final Bundle arguments = getArguments();
-		this.renameFrom = arguments == null ? null : arguments.getString(RENAME_FROM_ARG);
-		this.renameTo = arguments == null ? null : arguments.getString(RENAME_TO_ARG);
+	public void setRequestKill(final Runnable requestKill)
+	{
+		this.requestKill = requestKill;
 	}
 
 	/**
@@ -76,17 +65,28 @@ abstract public class BaseDownloadFragment extends AbstractDownloadFragment
 		// guard against no unzip dir
 		if (this.unzipDir == null)
 		{
-			Log.e(TAG, "Null db dir, aborting deployment");
+			String modelDir = Settings.getModelDir(requireContext());
+			this.unzipDir = modelDir == null ? null : new File(modelDir);
+		}
+		if (this.unzipDir == null)
+		{
+			Log.e(TAG, "Null model dir, aborting deployment");
 			return;
 		}
 
 		// log
-		Log.d(TAG, "Deploy " + this.downloadedFile + '/' + this.renameFrom + " to " + this.unzipDir + '/' + this.renameTo);
+		Log.d(TAG, "Deploying " + this.downloadedFile + " to " + this.unzipDir);
 
 		// make sure unzip directory is clean
 		Deploy.emptyDirectory(this.unzipDir);
 
-		// observer to proceed with rename of database file, record and cleanup on successful task termination
+		// kill request
+		if (requestKill != null)
+		{
+			requestKill.run();
+		}
+
+		// observer to proceed with record, cleanup and broadcast on successful task termination
 		final TaskObserver.BaseObserver<Number> observer = new TaskObserver.BaseObserver<Number>() // guarded, level 1
 		{
 			@Override
@@ -96,21 +96,24 @@ abstract public class BaseDownloadFragment extends AbstractDownloadFragment
 
 				if (success && BaseDownloadFragment.this.downloadedFile != null)
 				{
-					if (BaseDownloadFragment.this.renameFrom != null && BaseDownloadFragment.this.renameTo != null && !BaseDownloadFragment.this.renameFrom.equals(BaseDownloadFragment.this.renameTo))
+					// record and delete downloaded file
+					// downloadedFile might become null within task
+					//noinspection ConstantConditions
+					if (BaseDownloadFragment.this.downloadedFile != null)
 					{
-						// rename
-						final File renameFromFile = new File(BaseDownloadFragment.this.unzipDir, renameFrom);
-						final File renameToFile = new File(BaseDownloadFragment.this.unzipDir, renameTo);
-						boolean result2 = renameFromFile.renameTo(renameToFile);
-						Log.d(TAG, "Rename " + renameFromFile + " to " + renameToFile + " : " + result2);
-
 						// record
-						Settings.recordDb(BaseDownloadFragment.this.appContext, renameToFile);
+						FileData.recordModel(requireContext(), BaseDownloadFragment.this.downloadedFile);
+
+						// cleanup
+						//noinspection ResultOfMethodCallIgnored
+						BaseDownloadFragment.this.downloadedFile.delete();
 					}
 
-					// cleanup
-					//noinspection ResultOfMethodCallIgnored
-					BaseDownloadFragment.this.downloadedFile.delete();
+					// new model
+					if (requestNew != null)
+					{
+						requestNew.run();
+					}
 				}
 
 				// signal
@@ -132,10 +135,10 @@ abstract public class BaseDownloadFragment extends AbstractDownloadFragment
 		{
 			// augment with a dialog observer if fragment is live
 			final TaskObserver.Observer<Number> fatObserver = new TaskDialogObserver<>(getParentFragmentManager()) // guarded, level 1
-					.setTitle(this.appContext.getString(R.string.action_unzip_from_archive)) //
+					.setTitle(requireContext().getString(R.string.action_unzip_from_archive)) //
 					.setMessage(this.downloadedFile.getName());
 			final Task<String, Number, Boolean> task = new ObservedDelegatingTask<>(baseTask, fatObserver);
-			task.execute(this.downloadedFile.getAbsolutePath());
+			task.execute(this.downloadedFile.getAbsolutePath(), this.unzipDir.getAbsolutePath());
 		}
 	}
 
@@ -145,6 +148,6 @@ abstract public class BaseDownloadFragment extends AbstractDownloadFragment
 	@Override
 	protected void record()
 	{
-		Settings.recordDb(requireContext(), this.downloadedFile);
+		Settings.recordModel(requireContext(), this.downloadedFile);
 	}
 }

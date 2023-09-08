@@ -1,12 +1,9 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
  */
 
 package org.sqlunet.download;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.PowerManager;
 import android.util.Log;
 
 import java.io.File;
@@ -16,6 +13,8 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.file.Files;
+import java.util.function.BiConsumer;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -23,15 +22,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /**
- * Download Zip service
+ * Download Zip Core
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class DownloadZipService extends DownloadService
+public class DownloadZipCore extends DownloadCore
 {
-	static private final String TAG = "DownloaderZipS";
-
-	static public final String ARG_ENTRY = "entry";
+	static private final String TAG = "DownloadDelegateZip";
 
 	/**
 	 * Zip entry
@@ -41,30 +38,50 @@ public class DownloadZipService extends DownloadService
 
 	/**
 	 * Constructor
+	 *
+	 * @param progressConsumer progress consumer
 	 */
-	public DownloadZipService()
+	public DownloadZipCore(@NonNull final BiConsumer<Long, Long> progressConsumer)
 	{
-		super();
+		super(progressConsumer);
 	}
 
-	// J O B
+	// W O R K
+
+	/**
+	 * Work
+	 *
+	 * @param fromUrl zip source	 * @param toFile  destination file
+	 *                url
+	 * @param entry   zip source entry
+	 * @return download data
+	 */
+	@Override
+	public DownloadData work(@Nullable final String fromUrl, @Nullable final String toFile, @Nullable final String entry) throws Exception
+	{
+		this.entry = entry;
+		return super.work(fromUrl, toFile, null);
+	}
+
+	// C O R E W O R K
 
 	/**
 	 * Download job
+	 *
+	 * @return download data
 	 */
 	@Override
-	protected void job() throws Exception
+	protected DownloadData job() throws Exception
 	{
 		// first
 		prerequisite();
-		final PowerManager.WakeLock wakelock = wakelock();
 
 		// dest file
 		final File outFile = new File(this.toFile + ".part");
-		long date = -1;
-		long size = -1;
-		@SuppressWarnings("UnusedAssignment") long zDate = -1;
-		@SuppressWarnings("UnusedAssignment") long zSize = -1;
+		long date;
+		long size;
+		long zDate;
+		long zSize;
 		String zEtag = null;
 		String zVersion = null;
 		String zStaticVersion = null;
@@ -75,7 +92,7 @@ public class DownloadZipService extends DownloadService
 		{
 			// connection
 			final URL url = new URL(this.fromUrl);
-			Log.d(TAG, "Get " + url);
+			Log.d(TAG, "Getting " + url);
 			URLConnection connection = url.openConnection();
 			connection.setConnectTimeout(TIMEOUT_S * 1000);
 			// connection.addRequestProperty("If-None-Match", "*"); // returns HTTP 304 Not Modified
@@ -92,6 +109,7 @@ public class DownloadZipService extends DownloadService
 				if (status == HttpURLConnection.HTTP_MOVED_TEMP || status == HttpURLConnection.HTTP_MOVED_PERM || status == HttpURLConnection.HTTP_SEE_OTHER)
 				{
 					// headers
+
 					// zDate = connection.getLastModified(); // new Date(date));
 					// zSize = connection.getContentLength();
 					zEtag = connection.getHeaderField("etag");
@@ -152,8 +170,8 @@ public class DownloadZipService extends DownloadService
 			// streams
 			try ( //
 			      InputStream is = connection.getInputStream(); //
-			      ZipInputStream zis = new ZipInputStream(is); //
-			      OutputStream os = new FileOutputStream(outFile)) //
+			      ZipInputStream zis = new ZipInputStream(is) //
+			)
 			{
 				// get the entry
 				ZipEntry entry;
@@ -162,22 +180,27 @@ public class DownloadZipService extends DownloadService
 					if (!entry.isDirectory())
 					{
 						final String entryName = entry.getName();
-						if (entryName.equals(this.entry))
+
+						// accept if filter unspecified
+						if (this.entry == null || entryName.matches(this.entry))
 						{
 							size = entry.getSize();
 							date = entry.getTime();
 
 							// copy
-							copyStreams(zis, os, size);
+							File entryOutFile = new File(outFile, entryName);
+							//noinspection IOStreamConstructor
+							try (OutputStream os = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O ? Files.newOutputStream(entryOutFile.toPath()) : new FileOutputStream(entryOutFile))
+							{
+								copyStreams(zis, os, size);
+							}
+
+							// date
+							setDate(entryOutFile, date);
+
 							zis.closeEntry();
 							done = true;
-							break;
 						}
-						//else
-						// consume
-						//{
-						//	copyStreams(zInput, null, zSize);
-						//}
 					}
 					zis.closeEntry();
 				}
@@ -189,60 +212,17 @@ public class DownloadZipService extends DownloadService
 			{
 				httpConnection.disconnect();
 			}
-			wakelock.release();
 		}
+		Log.d(TAG, "Downloaded " + outFile.getAbsolutePath());
 
-		// install and rename
-		Log.d(TAG, "Download done " + outFile.getAbsolutePath());
-		if (done && !this.cancel)
+		// tail
+		if (done)
 		{
-			Log.d(TAG, "Install " + outFile.getAbsolutePath());
-			install(outFile, date, size);
-			Settings.recordDbSource(this, this.fromUrl, zDate, zSize, zEtag, zVersion, zStaticVersion);
+			return new DownloadData(this.fromUrl, this.toFile, zDate, zSize, zEtag, zVersion, zStaticVersion);
 		}
 		else
 		{
 			throw new RuntimeException("Entry not found " + this.entry);
 		}
-	}
-
-	/**
-	 * Unmarshal arguments from intent
-	 *
-	 * @param intent intent passed to service
-	 * @return unmarshalled id
-	 */
-	protected int unmarshal(@NonNull final Intent intent)
-	{
-		int id = super.unmarshal(intent);
-
-		// entry argument
-		this.entry = intent.getStringExtra(DownloadZipService.ARG_ENTRY);
-		if (this.entry == null)
-		{
-			if (this.fromUrl != null)
-			{
-				int lastSlash = this.fromUrl.lastIndexOf('/');
-				if (lastSlash != -1)
-				{
-					this.entry = this.fromUrl.substring(lastSlash + 1);
-					if (this.entry.endsWith(".zip"))
-					{
-						this.entry = this.entry.substring(0, this.entry.length() - 4);
-					}
-				}
-			}
-		}
-		return id;
-	}
-
-	// S T A R T
-
-	/**
-	 * Convenience method for enqueuing work in to this service.
-	 */
-	public static void enqueueWork(@NonNull final Context context, @NonNull final Intent work)
-	{
-		enqueueWork(context, DownloadZipService.class, JOB_ID, work);
 	}
 }
