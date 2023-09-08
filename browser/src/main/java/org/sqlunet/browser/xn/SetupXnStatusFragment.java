@@ -161,7 +161,7 @@ public class SetupXnStatusFragment extends org.sqlunet.browser.config.SetupStatu
 								getString(R.string.verbnet), //
 								getString(R.string.propbank), //
 								getString(R.string.framenet)), //
-						String.format("%s (%s + %s + %s + %s)", //
+						String.format("%s", //
 								Utils.hrSize(R.integer.size_searchtext, requireContext())), //
 						String.format("%s %s %s", //
 								getString(R.string.size_expected), //
@@ -183,7 +183,7 @@ public class SetupXnStatusFragment extends org.sqlunet.browser.config.SetupStatu
 								getString(R.string.verbnet), //
 								getString(R.string.propbank), //
 								getString(R.string.framenet)), //
-						String.format("%s  (%s + %s + %s + %s)", //
+						String.format("%s", //
 								Utils.hrSize(R.integer.size_searchtext, requireContext())), //
 						String.format("%s %s", //
 								getString(R.string.size_expected), //
