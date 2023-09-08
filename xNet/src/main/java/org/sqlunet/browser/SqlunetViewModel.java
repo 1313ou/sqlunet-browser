@@ -10,7 +10,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.util.Log;
 
-import org.sqlunet.concurrency.Task;
+import com.bbou.concurrency.Task;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

@@ -9,9 +9,11 @@ import android.util.Pair;
 import android.widget.TextView;
 
 import org.sqlunet.browser.common.R;
-import org.sqlunet.download.FileAsyncTask;
-import org.sqlunet.download.FileAsyncTaskChooser;
-import org.sqlunet.download.MD5AsyncTaskChooser;
+import com.bbou.download.FileAsyncTask;
+import com.bbou.download.FileAsyncTaskChooser;
+import com.bbou.download.MD5AsyncTaskChooser;
+import com.bbou.download.Settings;
+
 import org.sqlunet.settings.StorageReports;
 import org.sqlunet.settings.StorageSettings;
 
@@ -86,7 +88,7 @@ public class Operations
 		final Pair<CharSequence[], CharSequence[]> downloadDirs = StorageReports.getStyledDownloadNamesValues(activity);
 		final Pair<CharSequence[], CharSequence[]> cachedDirs = StorageReports.getStyledCachesNamesValues(activity);
 		FileAsyncTaskChooser.copyFromFile(activity, StorageSettings.getDatabasePath(activity), downloadDirs, cachedDirs);
-		org.sqlunet.download.Settings.unrecordDb(activity);
+		Settings.unrecordDatapack(activity);
 	}
 
 	public static void unzip(@NonNull FragmentActivity activity)
@@ -94,7 +96,7 @@ public class Operations
 		final Pair<CharSequence[], CharSequence[]> downloadDirs = StorageReports.getStyledDownloadNamesValues(activity);
 		final Pair<CharSequence[], CharSequence[]> cachedDirs = StorageReports.getStyledCachesNamesValues(activity);
 		FileAsyncTaskChooser.unzipEntryFromArchive(activity, StorageSettings.getDatabasePath(activity), downloadDirs, cachedDirs);
-		org.sqlunet.download.Settings.unrecordDb(activity);
+		Settings.unrecordDatapack(activity);
 	}
 
 	public static void md5(@NonNull FragmentActivity activity)

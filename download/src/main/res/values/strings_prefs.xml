@@ -17,27 +17,28 @@
 		<item>Download Zip Worker</item>
 	</string-array>
 
-	<string name="pref_title_repo">Model repo</string>
-	<string name="pref_title_model_dir">Model directory</string>
+	<string name="pref_title_repo">Database repo</string>
+	<string name="pref_title_datapack_dir">Database directory</string>
 	<string name="pref_title_cache">Cache</string>
 
 	<string name="pref_header_downloaded">Downloaded</string>
-	<string name="pref_title_model_name">Model name</string>
-	<string name="pref_title_model_date">Model date</string>
-	<string name="pref_title_model_size">Model size</string>
-	<string name="pref_title_model_source">Model source</string>
-	<string name="pref_title_model_source_date">Model source date</string>
-	<string name="pref_title_model_source_size">Model source size</string>
-	<string name="pref_title_model_source_etag">Model source etag</string>
-	<string name="pref_title_model_source_version">Model source version</string>
-	<string name="pref_title_model_source_static_version">Model source static version</string>
-	<string name="pref_value_unrecorded">Unrecorded</string>
+	<string name="pref_title_datapack_name">Database name</string>
+	<string name="pref_title_datapack_date">Database date</string>
+	<string name="pref_title_datapack_size">Database size</string>
+	<string name="pref_title_datapack_source">Database source</string>
+	<string name="pref_title_datapack_source_date">Database source date</string>
+	<string name="pref_title_datapack_source_size">Database source size</string>
+	<string name="pref_title_datapack_source_etag">Database source etag</string>
+	<string name="pref_title_datapack_source_version">Database source version</string>
+	<string name="pref_title_datapack_source_static_version">Database source static version</string>
 
-	<string name="pref_model_category">Model</string>
+	<string name="pref_datapack_category">Database</string>
 	<string name="pref_source_category">Source</string>
 	<string name="pref_control_category">Control</string>
 
-	<string name="title_model_clear">Clear</string>
-	<string name="description_model_clear">Clear model info</string>
+	<string name="title_datapack_clear">Clear</string>
+	<string name="description_datapack_clear">Clear database info</string>
+
+	<string name="pref_value_unrecorded">Unrecorded</string>
 
 </resources>

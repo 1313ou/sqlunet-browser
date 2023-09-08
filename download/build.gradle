@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
 
-    namespace 'org.sqlunet.download'
+    namespace 'com.bbou.download'
 
     compileSdk rootProject.ext.compileSdk
 

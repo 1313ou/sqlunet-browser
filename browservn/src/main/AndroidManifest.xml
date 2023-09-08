@@ -288,7 +288,7 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.download.DownloadActivity"
+			android:name="com.bbou.download.DownloadActivity"
 			android:label="@string/title_activity_download"
 			android:launchMode="singleTop"
 			android:parentActivityName="org.sqlunet.browser.EntryActivity"
@@ -299,7 +299,7 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.download.UpdateActivity"
+			android:name="com.bbou.download.UpdateActivity"
 			android:label="@string/title_activity_update"
 			android:launchMode="singleTop"
 			android:parentActivityName="org.sqlunet.browser.EntryActivity">

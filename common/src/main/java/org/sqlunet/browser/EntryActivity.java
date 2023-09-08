@@ -51,7 +51,7 @@ public class EntryActivity extends AppCompatActivity
 				{
 					Log.e(TAG, "Error deleting database");
 				}
-				org.sqlunet.download.Settings.unrecordDb(this);
+				com.bbou.download.Settings.unrecordDatapack(this);
 				Toast.makeText(this, R.string.sqlunet2, Toast.LENGTH_LONG).show();
 			}
 

@@ -18,8 +18,8 @@ import com.google.android.play.core.assetpacks.model.AssetPackErrorCode;
 import com.google.android.play.core.assetpacks.model.AssetPackStatus;
 import com.google.android.play.core.tasks.RuntimeExecutionException;
 
-import org.sqlunet.concurrency.Cancelable;
-import org.sqlunet.concurrency.TaskObserver;
+import com.bbou.concurrency.Cancelable;
+import com.bbou.concurrency.TaskObserver;
 
 import java.io.File;
 import java.util.Collections;

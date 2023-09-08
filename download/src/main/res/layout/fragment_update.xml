@@ -7,7 +7,7 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context="org.sqlunet.download.UpdateActivity">
+	tools:context="com.bbou.download.UpdateActivity">
 
 	<LinearLayout
 		android:layout_width="match_parent"
@@ -84,19 +84,19 @@
 			android:textStyle="bold" />
 
 		<TextView
-			android:id="@+id/down_model"
+			android:id="@+id/down_datapack"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="@string/status_state_unknown" />
 
 		<TextView
-			android:id="@+id/down_model_size"
+			android:id="@+id/down_datapack_size"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="@string/status_state_unknown" />
 
 		<TextView
-			android:id="@+id/down_model_date"
+			android:id="@+id/down_datapack_date"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="@string/status_state_unknown" />

@@ -16,8 +16,8 @@ import android.widget.TextView;
 
 import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.common.R;
-import org.sqlunet.concurrency.Cancelable;
-import org.sqlunet.concurrency.TaskObserver;
+import com.bbou.concurrency.Cancelable;
+import com.bbou.concurrency.TaskObserver;
 import org.sqlunet.settings.Settings;
 
 import androidx.annotation.NonNull;

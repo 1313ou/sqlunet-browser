@@ -6,7 +6,7 @@ apply plugin: 'com.android.library'
 
 android {
 
-    namespace 'org.sqlunet.deploy'
+    namespace 'com.bbou.deploy'
 
     compileSdk rootProject.ext.compileSdk
 

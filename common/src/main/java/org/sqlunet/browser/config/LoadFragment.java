@@ -19,8 +19,8 @@ import org.sqlunet.settings.StorageSettings;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import static org.sqlunet.download.AbstractDownloadFragment.DOWNLOAD_FROM_ARG;
-import static org.sqlunet.download.AbstractDownloadFragment.DOWNLOAD_TO_ARG;
+import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_FROM_ARG;
+import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_TO_ARG;
 
 /**
  * Load fragment

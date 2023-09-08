@@ -23,9 +23,9 @@ import android.text.style.StyleSpan;
 
 import org.sqlunet.assetpack.AssetPackLoader;
 import org.sqlunet.browser.common.R;
-import org.sqlunet.concurrency.Task;
-import org.sqlunet.deploy.Deploy;
-import org.sqlunet.download.Settings;
+import com.bbou.concurrency.Task;
+import com.bbou.deploy.Deploy;
+import com.bbou.download.Settings;
 import org.sqlunet.provider.XNetContract;
 import org.sqlunet.provider.XSqlUNetProvider;
 import org.sqlunet.settings.StorageSettings;
@@ -387,15 +387,15 @@ public class Diagnostics
 
 		// RECORDED SOURCE
 
-		final String source = Settings.getDbSource(context);
-		final long sourceSize = Settings.getDbSourceSize(context);
-		final long sourceStamp = Settings.getDbSourceDate(context);
-		final String sourceEtag = Settings.getDbSourceEtag(context);
-		final String sourceVersion = Settings.getDbSourceVersion(context);
-		final String sourceStaticVersion = Settings.getDbSourceStaticVersion(context);
-		final String name = Settings.getDbName(context);
-		final long size = Settings.getDbSize(context);
-		final long stamp = Settings.getDbDate(context);
+		final String source = Settings.getDatapackSource(context);
+		final long sourceSize = Settings.getDatapackSourceSize(context);
+		final long sourceStamp = Settings.getDatapackSourceDate(context);
+		final String sourceEtag = Settings.getDatapackSourceEtag(context);
+		final String sourceVersion = Settings.getDatapackSourceVersion(context);
+		final String sourceStaticVersion = Settings.getDatapackSourceStaticVersion(context);
+		final String name = Settings.getDatapackName(context);
+		final long size = Settings.getDatapackSize(context);
+		final long stamp = Settings.getDatapackDate(context);
 
 		sb.append('\n');
 		append(sb, "source", new StyleSpan(Typeface.BOLD));
@@ -489,7 +489,7 @@ public class Diagnostics
 
 		// DOWNLOAD
 
-		final String dbDownloadSource = StorageSettings.getDbDownloadSource(context, org.sqlunet.download.Settings.Downloader.isZipDownloaderPref(context));
+		final String dbDownloadSource = StorageSettings.getDbDownloadSource(context, Settings.Downloader.isZipDownloaderPref(context));
 		final String dbDownloadTarget = StorageSettings.getDbDownloadTarget(context);
 
 		sb.append('\n');

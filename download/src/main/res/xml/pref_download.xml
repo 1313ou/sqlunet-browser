@@ -32,9 +32,9 @@
 		app:iconSpaceReserved="false" />
 
 	<Preference
-		android:key="pref_model_dir"
+		android:key="pref_datapack_dir"
 		android:selectable="false"
-		android:title="@string/pref_title_model_dir"
+		android:title="@string/pref_title_datapack_dir"
 		app:iconSpaceReserved="false" />
 
 </PreferenceScreen>

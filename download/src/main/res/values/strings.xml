@@ -17,12 +17,12 @@
 	<string name="action_dismiss">Dismiss</string>
 	<string name="action_show">Show</string>
 	<string name="action_deploy">Deploy</string>
-	<string name="action_copy_from_file">Copy model from &#8230;</string>
-	<string name="action_unzip_from_archive">Unzip model from &#8230;</string>
+	<string name="action_copy_from_file">Copy database from …</string>
+	<string name="action_unzip_from_archive">Unzip database from …</string>
 	<string name="action_update">Update</string>
 	<string name="action_md5">MD5</string>
 	<string name="action_md5_of_file">MD5 of</string>
-	<string name="action_md5_ask">MD5 &#8230;</string>
+	<string name="action_md5_ask">MD5 …</string>
 	<string name="action_directory">Directory</string>
 
 	<!-- resource directory -->
@@ -36,13 +36,13 @@
 	<string name="hint_md5_of_file">Select the file to md5-checksum</string>
 
 	<!-- description -->
-	<string name="description_download">Download model</string>
+	<string name="description_download">Download database</string>
 
 	<!-- items -->
 	<string name="download_source">source</string>
 	<string name="download_dest">destination</string>
 	<string name="download_up">available source</string>
-	<string name="download_down">current model</string>
+	<string name="download_down">current database</string>
 	<string name="download_newer">source is possibly newer</string>
 	<string name="download_uptodate">source is up-to-date</string>
 
@@ -55,7 +55,7 @@
 	<string name="md5_downloaded">Downloaded</string>
 	<string name="md5_computed">Computed</string>
 	<string name="md5_compared">Compared</string>
-	<string name="md5_none">No possible zipped model file in storage</string>
+	<string name="md5_none">No possible zipped database file in storage</string>
 
 	<string name="status_download_pending">pending</string>
 	<string name="status_download_running">running</string>
@@ -65,7 +65,7 @@
 	<string name="status_download_cancelled">cancelled</string>
 	<string name="status_download_null_exception">null source or destination</string>
 	<string name="status_download_error_null_download_url">No download url</string>
-	<string name="status_download_error_unavailable_download_url">Unavailable download url (model may be builtin)</string>
+	<string name="status_download_error_unavailable_download_url">Unavailable download url (database may be builtin)</string>
 
 	<string name="status_unzipping">unzipping</string>
 	<string name="status_copying">copying</string>

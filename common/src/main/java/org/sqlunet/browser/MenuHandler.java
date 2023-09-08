@@ -26,10 +26,10 @@ import org.sqlunet.browser.config.SetupAsset;
 import org.sqlunet.browser.config.SetupFileActivity;
 import org.sqlunet.browser.config.SetupFileFragment;
 import org.sqlunet.browser.config.StorageActivity;
-import org.sqlunet.concurrency.TaskDialogObserver;
-import org.sqlunet.concurrency.TaskObserver;
-import org.sqlunet.download.FileDataDownloader;
-import org.sqlunet.download.ResourcesDownloader;
+import com.bbou.concurrency.TaskDialogObserver;
+import com.bbou.concurrency.TaskObserver;
+import com.bbou.download.FileDataDownloader;
+import com.bbou.download.ResourcesDownloader;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
@@ -43,8 +43,8 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.PreferenceManager;
 
 import static org.sqlunet.browser.config.BaseSettingsActivity.INITIAL_ARG;
-import static org.sqlunet.download.AbstractDownloadFragment.DOWNLOAD_FROM_ARG;
-import static org.sqlunet.download.AbstractDownloadFragment.DOWNLOAD_TO_ARG;
+import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_FROM_ARG;
+import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_TO_ARG;
 
 /**
  * Main activity stub

@@ -17,9 +17,9 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import org.sqlunet.browser.common.R;
-import org.sqlunet.concurrency.Task;
-import org.sqlunet.concurrency.TaskDialogObserver;
-import org.sqlunet.concurrency.TaskObserver;
+import com.bbou.concurrency.Task;
+import com.bbou.concurrency.TaskDialogObserver;
+import com.bbou.concurrency.TaskObserver;
 
 import java.io.BufferedReader;
 import java.io.IOException;

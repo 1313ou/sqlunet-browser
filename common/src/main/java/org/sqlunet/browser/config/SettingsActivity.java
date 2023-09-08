@@ -13,7 +13,7 @@ import android.util.Pair;
 
 import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.common.R;
-import org.sqlunet.download.ResourcesDownloader;
+import com.bbou.download.ResourcesDownloader;
 import org.sqlunet.preference.OpenEditTextPreference;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.settings.Settings;

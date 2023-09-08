@@ -23,7 +23,7 @@
 
 		<androidx.fragment.app.FragmentContainerView
 			android:id="@+id/fragment_update"
-			android:name="org.sqlunet.download.UpdateFragment"
+			android:name="com.bbou.download.UpdateFragment"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			tools:layout="@layout/fragment_update" />

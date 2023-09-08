@@ -9,60 +9,60 @@
 	<!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to dismiss it. -->
 	<!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
 
-	<PreferenceCategory android:title="@string/pref_model_category">
+	<PreferenceCategory android:title="@string/pref_datapack_category">
 		<Preference
-			android:key="pref_model_name"
+			android:key="pref_datapack_name"
 			android:selectable="false"
-			android:title="@string/pref_title_model_name" />
+			android:title="@string/pref_title_datapack_name" />
 
 		<Preference
-			android:key="pref_model_date"
+			android:key="pref_datapack_date"
 			android:selectable="false"
-			android:title="@string/pref_title_model_date" />
+			android:title="@string/pref_title_datapack_date" />
 
 		<Preference
-			android:key="pref_model_size"
+			android:key="pref_datapack_size"
 			android:selectable="false"
-			android:title="@string/pref_title_model_size" />
+			android:title="@string/pref_title_datapack_size" />
 	</PreferenceCategory>
 
 	<PreferenceCategory android:title="@string/pref_source_category">
 		<Preference
-			android:key="pref_model_source"
+			android:key="pref_datapack_source"
 			android:selectable="false"
-			android:title="@string/pref_title_model_source" />
+			android:title="@string/pref_title_datapack_source" />
 
 		<Preference
-			android:key="pref_model_source_date"
+			android:key="pref_datapack_source_date"
 			android:selectable="false"
-			android:title="@string/pref_title_model_source_date" />
+			android:title="@string/pref_title_datapack_source_date" />
 
 		<Preference
-			android:key="pref_model_source_size"
+			android:key="pref_datapack_source_size"
 			android:selectable="false"
-			android:title="@string/pref_title_model_source_size" />
+			android:title="@string/pref_title_datapack_source_size" />
 
 		<Preference
-			android:key="pref_model_source_etag"
+			android:key="pref_datapack_source_etag"
 			android:selectable="false"
-			android:title="@string/pref_title_model_source_etag" />
+			android:title="@string/pref_title_datapack_source_etag" />
 
 		<Preference
-			android:key="pref_model_source_version"
+			android:key="pref_datapack_source_version"
 			android:selectable="false"
-			android:title="@string/pref_title_model_source_version" />
+			android:title="@string/pref_title_datapack_source_version" />
 
 		<Preference
-			android:key="pref_model_source_static_version"
+			android:key="pref_datapack_source_static_version"
 			android:selectable="false"
-			android:title="@string/pref_title_model_source_static_version" />
+			android:title="@string/pref_title_datapack_source_static_version" />
 	</PreferenceCategory>
 
 	<PreferenceCategory android:title="@string/pref_control_category">
 		<Preference
-			android:key="pref_model_clear"
-			android:summary="@string/description_model_clear"
-			android:title="@string/title_model_clear" />
+			android:key="pref_datapack_clear"
+			android:summary="@string/description_datapack_clear"
+			android:title="@string/title_datapack_clear" />
 	</PreferenceCategory>
 
 </PreferenceScreen>

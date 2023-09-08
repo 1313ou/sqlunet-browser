@@ -15,9 +15,9 @@ import com.google.android.play.core.assetpacks.AssetPackManagerFactory;
 
 import org.sqlunet.assetpack.AssetPackLoader;
 import org.sqlunet.browser.common.R;
-import org.sqlunet.concurrency.TaskObserver;
-import org.sqlunet.download.FileAsyncTask;
-import org.sqlunet.download.Settings;
+import com.bbou.concurrency.TaskObserver;
+import com.bbou.download.FileAsyncTask;
+import com.bbou.download.Settings;
 import org.sqlunet.settings.StorageSettings;
 
 import java.io.File;
@@ -100,7 +100,7 @@ public class SetupAsset
 						FileAsyncTask.launchUnzip(activity, observer2, zipFile, assetZipEntry, StorageSettings.getDatabasePath(activity), (result) -> {
 
 							org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
-							Settings.recordDbSource(activity, new File(new File(path, assetDir), assetZip).getAbsolutePath(), -1, -1, null, null, null);
+							Settings.recordDatapackSource(activity, new File(new File(path, assetDir), assetZip).getAbsolutePath(), -1, -1, null, null, null);
 							if (whenComplete != null)
 							{
 								whenComplete.run();
@@ -137,7 +137,7 @@ public class SetupAsset
 				FileAsyncTask.launchUnzip(activity, observer, zipFilePath, assetZipEntry, StorageSettings.getDatabasePath(activity), (result) -> {
 
 					org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
-					Settings.recordDbSource(activity, zipFilePath, -1, -1, null, null, null);
+					Settings.recordDatapackSource(activity, zipFilePath, -1, -1, null, null, null);
 					if (whenComplete != null)
 					{
 						whenComplete.run();

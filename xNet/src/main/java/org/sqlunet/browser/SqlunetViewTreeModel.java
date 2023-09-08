@@ -9,7 +9,7 @@ import android.app.Application;
 import android.database.Cursor;
 import android.net.Uri;
 
-import org.sqlunet.concurrency.Task;
+import com.bbou.concurrency.Task;
 import org.sqlunet.view.TreeOp;
 
 import androidx.annotation.NonNull;

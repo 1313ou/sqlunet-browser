@@ -17,6 +17,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.bbou.download.Settings;
+
 import org.sqlunet.browser.ColorUtils;
 import org.sqlunet.browser.Info;
 import org.sqlunet.browser.config.SetupDatabaseActivity;
@@ -95,7 +97,7 @@ public class SetupVnStatusFragment extends org.sqlunet.browser.config.SetupStatu
 			final Activity activity = requireActivity();
 			final String database = StorageSettings.getDatabasePath(activity);
 			final String free = StorageUtils.getFree(activity, database);
-			final String source = StorageSettings.getDbDownloadSource(activity, org.sqlunet.download.Settings.Downloader.isZipDownloaderPref(activity));
+			final String source = StorageSettings.getDbDownloadSource(activity, Settings.Downloader.isZipDownloaderPref(activity));
 			final int status = Status.status(activity);
 			final boolean existsDb = (status & Status.EXISTS) != 0;
 			final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;

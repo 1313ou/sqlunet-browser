@@ -5,6 +5,6 @@
 
 <resources>
 
-	<integer name="size_model_working_total">0</integer>
+	<integer name="size_datapack_working_total">0</integer>
 
 </resources>

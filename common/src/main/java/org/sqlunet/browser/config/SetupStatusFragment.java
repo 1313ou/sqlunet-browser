@@ -18,6 +18,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bbou.download.Settings;
+
 import org.sqlunet.browser.ColorUtils;
 import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.Info;
@@ -35,8 +37,8 @@ import androidx.core.widget.ImageViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
-import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_TO_ARG;
+import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
+import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_TO_ARG;
 
 /**
  * Base Status fragment
@@ -145,7 +147,7 @@ public class SetupStatusFragment extends Fragment implements Updatable
 	{
 		final Context context = requireContext();
 		final Intent intent = new Intent(context, DownloadActivity.class);
-		intent.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadSource(context, org.sqlunet.download.Settings.Downloader.isZipDownloaderPref(context)));
+		intent.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadSource(context, Settings.Downloader.isZipDownloaderPref(context)));
 		intent.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadTarget(context));
 		this.activityResultLauncher.launch(intent);
 	}
@@ -163,7 +165,7 @@ public class SetupStatusFragment extends Fragment implements Updatable
 		final Activity activity = requireActivity();
 		final String database = StorageSettings.getDatabasePath(activity);
 		final String free = StorageUtils.getFree(activity, database);
-		final String source = StorageSettings.getDbDownloadSource(activity, org.sqlunet.download.Settings.Downloader.isZipDownloaderPref(activity));
+		final String source = StorageSettings.getDbDownloadSource(activity, Settings.Downloader.isZipDownloaderPref(activity));
 		final int status = Status.status(activity);
 		final boolean existsDb = (status & Status.EXISTS) != 0;
 		final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;

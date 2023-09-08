@@ -27,12 +27,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 
-import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_DOWNLOADER_ARG;
-import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
-import static org.sqlunet.download.BaseDownloadFragment.DOWNLOAD_TO_ARG;
-import static org.sqlunet.download.BaseDownloadFragment.RENAME_FROM_ARG;
-import static org.sqlunet.download.BaseDownloadFragment.RENAME_TO_ARG;
-import static org.sqlunet.download.BaseDownloadFragment.UNZIP_TO_ARG;
+import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_DOWNLOADER_ARG;
+import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
+import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_TO_ARG;
+import static com.bbou.download.BaseDownloadFragment.RENAME_FROM_ARG;
+import static com.bbou.download.BaseDownloadFragment.RENAME_TO_ARG;
+import static com.bbou.download.BaseDownloadFragment.UNZIP_TO_ARG;
 
 /**
  * Set up fragment
@@ -123,7 +123,7 @@ public class SetupFileFragment extends BaseTaskFragment
 						SetupFileFragment.this.status.setText(R.string.status_task_running);
 						success = SetupDatabaseTasks.createDatabase(activity, StorageSettings.getDatabasePath(activity));
 						SetupFileFragment.this.status.setText(success ? R.string.status_task_done : R.string.status_task_failed);
-						org.sqlunet.download.Settings.unrecordDb(activity);
+						com.bbou.download.Settings.unrecordDatapack(activity);
 						break;
 
 					case DROP:
@@ -131,7 +131,7 @@ public class SetupFileFragment extends BaseTaskFragment
 							SetupFileFragment.this.status.setText(R.string.status_task_running);
 							boolean success1 = SetupDatabaseTasks.deleteDatabase(activity, StorageSettings.getDatabasePath(activity));
 							SetupFileFragment.this.status.setText(success1 ? R.string.status_task_done : R.string.status_task_failed);
-							org.sqlunet.download.Settings.unrecordDb(activity);
+							com.bbou.download.Settings.unrecordDatapack(activity);
 							EntryActivity.rerun(activity);
 						});
 						break;
@@ -207,7 +207,7 @@ public class SetupFileFragment extends BaseTaskFragment
 
 					case DOWNLOAD_ZIPPED:
 						final Intent intent3 = new Intent(activity, DownloadActivity.class);
-						intent3.putExtra(DOWNLOAD_DOWNLOADER_ARG, org.sqlunet.download.Settings.Downloader.DOWNLOAD.toString());
+						intent3.putExtra(DOWNLOAD_DOWNLOADER_ARG, com.bbou.download.Settings.Downloader.DOWNLOAD.toString());
 						intent3.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadZippedSource(activity));
 						intent3.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadZippedTarget(activity));
 						intent3.putExtra(UNZIP_TO_ARG, StorageSettings.getDataDir(activity));
@@ -467,7 +467,7 @@ public class SetupFileFragment extends BaseTaskFragment
 	private SpannableStringBuilder statusDownload()
 	{
 		final Context context = requireContext();
-		final String from = StorageSettings.getDbDownloadSource(context, org.sqlunet.download.Settings.Downloader.isZipDownloaderPref(context));
+		final String from = StorageSettings.getDbDownloadSource(context, com.bbou.download.Settings.Downloader.isZipDownloaderPref(context));
 		final String to = StorageSettings.getDbDownloadTarget(context);
 		final String free = StorageUtils.getFree(context, to);
 		final boolean targetExists = new File(to).exists();

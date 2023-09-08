@@ -6,7 +6,7 @@ package org.sqlunet.browser.web;
 
 import android.annotation.SuppressLint;
 
-import org.sqlunet.concurrency.Task;
+import com.bbou.concurrency.Task;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
