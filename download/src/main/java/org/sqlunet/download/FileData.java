@@ -55,12 +55,12 @@ public class FileData
 	@NonNull
 	static public FileData getCurrent(@NonNull final Context context)
 	{
-		final String name = Settings.getModelName(context);
-		final long date = Settings.getModelDate(context);
-		final long size = Settings.getModelSize(context);
-		final String etag = Settings.getModelSourceEtag(context);
-		final String version = Settings.getModelSourceVersion(context);
-		final String staticVersion = Settings.getModelSourceStaticVersion(context);
+		final String name = Settings.getDbName(context);
+		final long date = Settings.getDbDate(context);
+		final long size = Settings.getDbSize(context);
+		final String etag = Settings.getDbSourceEtag(context);
+		final String version = Settings.getDbSourceVersion(context);
+		final String staticVersion = Settings.getDbSourceStaticVersion(context);
 		return new FileData(name, date, size, etag, version, staticVersion);
 	}
 

@@ -13,8 +13,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
-import org.sqlunet.download.R;
-
 import java.util.UUID;
 
 import androidx.annotation.NonNull;
@@ -300,7 +298,7 @@ public class DownloadFragment extends BaseDownloadFragment
 				final String etag = data.getString(DownloadWork.ETAG);
 				final String version = data.getString(DownloadWork.VERSION);
 				final String staticVersion = data.getString(DownloadWork.STATIC_VERSION);
-				Settings.recordModelSource(requireContext(), fromUrl, date, size, etag, version, staticVersion);
+				Settings.recordDbSource(requireContext(), fromUrl, date, size, etag, version, staticVersion);
 
 				// fire notification
 				fireNotification(requireContext(), notificationId, Notifier.NotificationType.FINISH, true);

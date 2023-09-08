@@ -167,7 +167,7 @@ public class Settings
 	 * @return name
 	 */
 	@Nullable
-	static public String getModelName(@NonNull final Context context)
+	static public String getDbName(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = context.getSharedPreferences(PREFERENCES_MODEL, Context.MODE_PRIVATE);
 		return sharedPref.getString(Settings.PREF_MODEL_NAME, null);
@@ -191,7 +191,7 @@ public class Settings
 	 * @param context context
 	 * @return timestamp
 	 */
-	static public long getModelDate(@NonNull final Context context)
+	static public long getDbDate(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = context.getSharedPreferences(PREFERENCES_MODEL, Context.MODE_PRIVATE);
 		return sharedPref.getLong(Settings.PREF_MODEL_DATE, -1);
@@ -215,7 +215,7 @@ public class Settings
 	 * @param context context
 	 * @return size
 	 */
-	static public long getModelSize(@NonNull final Context context)
+	static public long getDbSize(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = context.getSharedPreferences(PREFERENCES_MODEL, Context.MODE_PRIVATE);
 		return sharedPref.getLong(Settings.PREF_MODEL_SIZE, -1);
@@ -240,7 +240,7 @@ public class Settings
 	 * @return model source (repo)
 	 */
 	@Nullable
-	public static String getModelSource(@NonNull final Context context)
+	public static String getDbSource(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = context.getSharedPreferences(PREFERENCES_MODEL, Context.MODE_PRIVATE);
 		return sharedPref.getString(Settings.PREF_MODEL_SOURCE, null);
@@ -252,7 +252,7 @@ public class Settings
 	 * @param context context
 	 * @return timestamp
 	 */
-	static public long getModelSourceDate(@NonNull final Context context)
+	static public long getDbSourceDate(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = context.getSharedPreferences(PREFERENCES_MODEL, Context.MODE_PRIVATE);
 		return sharedPref.getLong(Settings.PREF_MODEL_SOURCE_DATE, -1);
@@ -264,7 +264,7 @@ public class Settings
 	 * @param context context
 	 * @return size
 	 */
-	static public long getModelSourceSize(@NonNull final Context context)
+	static public long getDbSourceSize(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = context.getSharedPreferences(PREFERENCES_MODEL, Context.MODE_PRIVATE);
 		return sharedPref.getLong(Settings.PREF_MODEL_SOURCE_SIZE, -1);
@@ -277,7 +277,7 @@ public class Settings
 	 * @return etag
 	 */
 	@Nullable
-	public static String getModelSourceEtag(@NonNull final Context context)
+	public static String getDbSourceEtag(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = context.getSharedPreferences(PREFERENCES_MODEL, Context.MODE_PRIVATE);
 		return sharedPref.getString(Settings.PREF_MODEL_SOURCE_ETAG, null);
@@ -290,7 +290,7 @@ public class Settings
 	 * @return version
 	 */
 	@Nullable
-	public static String getModelSourceVersion(@NonNull final Context context)
+	public static String getDbSourceVersion(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = context.getSharedPreferences(PREFERENCES_MODEL, Context.MODE_PRIVATE);
 		return sharedPref.getString(Settings.PREF_MODEL_SOURCE_VERSION, null);
@@ -303,7 +303,7 @@ public class Settings
 	 * @return static version
 	 */
 	@Nullable
-	public static String getModelSourceStaticVersion(@NonNull final Context context)
+	public static String getDbSourceStaticVersion(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = context.getSharedPreferences(PREFERENCES_MODEL, Context.MODE_PRIVATE);
 		return sharedPref.getString(Settings.PREF_MODEL_SOURCE_STATIC_VERSION, null);
@@ -379,7 +379,7 @@ public class Settings
 	 *
 	 * @param context context
 	 */
-	public static void unrecordModel(@NonNull final Context context)
+	public static void unrecordDb(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = context.getSharedPreferences(PREFERENCES_MODEL, Context.MODE_PRIVATE);
 		final SharedPreferences.Editor edit = sharedPref.edit(); //
@@ -400,7 +400,7 @@ public class Settings
 	 * @param version       version
 	 * @param staticVersion staticVersion
 	 */
-	public static void recordModelSource(@NonNull final Context context, @Nullable final String source, final long date, final long size, @Nullable final String etag, @Nullable final String version, @Nullable final String staticVersion)
+	public static void recordDbSource(@NonNull final Context context, @Nullable final String source, final long date, final long size, @Nullable final String etag, @Nullable final String version, @Nullable final String staticVersion)
 	{
 		final SharedPreferences sharedPref = context.getSharedPreferences(PREFERENCES_MODEL, Context.MODE_PRIVATE);
 		final SharedPreferences.Editor edit = sharedPref.edit(); //
