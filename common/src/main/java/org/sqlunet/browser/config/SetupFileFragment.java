@@ -207,7 +207,7 @@ public class SetupFileFragment extends BaseTaskFragment
 
 					case DOWNLOAD_ZIPPED:
 						final Intent intent3 = new Intent(activity, DownloadActivity.class);
-						intent3.putExtra(DOWNLOAD_DOWNLOADER_ARG, org.sqlunet.download.Settings.Downloader.DOWNLOAD_SERVICE.toString());
+						intent3.putExtra(DOWNLOAD_DOWNLOADER_ARG, org.sqlunet.download.Settings.Downloader.DOWNLOAD.toString());
 						intent3.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadZippedSource(activity));
 						intent3.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadZippedTarget(activity));
 						intent3.putExtra(UNZIP_TO_ARG, StorageSettings.getDataDir(activity));
