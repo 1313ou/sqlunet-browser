@@ -107,7 +107,7 @@ public class UpdateFragment extends Fragment
 		final String downSourceStaticVersionArg = intent.getStringExtra(DOWN_SOURCE_STATIC_VERSION_ARG);
 
 		final boolean newerArg = intent.getBooleanExtra(NEWER_ARG, false);
-		final Intent downloadIntent = intent.getParcelableExtra(DOWNLOAD_INTENT_ARG);
+		final Intent downloadIntent = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? intent.getParcelableExtra(DOWNLOAD_INTENT_ARG, Intent.class) : intent.getParcelableExtra(DOWNLOAD_INTENT_ARG);
 
 		assert view != null;
 

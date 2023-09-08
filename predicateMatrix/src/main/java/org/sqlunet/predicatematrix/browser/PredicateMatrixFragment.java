@@ -48,7 +48,7 @@ public class PredicateMatrixFragment extends TreeFragment
 		final Bundle args = getArguments();
 		assert args != null;
 		final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
-		final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
+		final Parcelable pointer = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? args.getParcelable(ProviderArgs.ARG_QUERYPOINTER, Parcelable.class) : args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 		assert pointer != null;
 
 		// view mode

@@ -429,7 +429,7 @@ public class WebFragment extends Fragment
 		final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_ALL);
 
 		// pointer
-		final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
+		final Parcelable pointer = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? args.getParcelable(ProviderArgs.ARG_QUERYPOINTER, Parcelable.class) : args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 		Log.d(WebFragment.TAG, "ARG_POSITION query=" + pointer);
 
 		// hint
@@ -489,7 +489,7 @@ public class WebFragment extends Fragment
 			data = DomTransformer.docToXml(rootDomDoc);
 			if (BuildConfig.DEBUG)
 			{
-				LogUtils.writeLog(data, false, requireContext(),null);
+				LogUtils.writeLog(data, false, requireContext(), null);
 				final URL xsd = DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd");
 				assert xsd != null;
 				DomValidator.validateStrings(xsd, data);
@@ -568,8 +568,8 @@ public class WebFragment extends Fragment
 				final URL xsd = DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd");
 				assert xsd != null;
 				DomValidator.validateDocs(xsd, wnDomDoc, vnDomDoc, pbDomDoc);
-				LogUtils.writeLog(false, requireContext(),null, wnDomDoc, vnDomDoc, pbDomDoc);
-				LogUtils.writeLog(data, false, requireContext(),null);
+				LogUtils.writeLog(false, requireContext(), null, wnDomDoc, vnDomDoc, pbDomDoc);
+				LogUtils.writeLog(data, false, requireContext(), null);
 				Log.d(TAG, "output=\n" + data);
 			}
 		}

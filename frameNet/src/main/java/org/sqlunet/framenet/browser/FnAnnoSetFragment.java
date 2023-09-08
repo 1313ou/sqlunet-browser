@@ -67,7 +67,7 @@ public class FnAnnoSetFragment extends TreeFragment
 		if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER))
 		{
 			// pointer
-			final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
+			final Parcelable pointer = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? args.getParcelable(ProviderArgs.ARG_QUERYPOINTER, Parcelable.class) : args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 			final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
 
 			// root node

@@ -371,7 +371,7 @@ public class WebFragment extends Fragment
 		final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_ALL);
 
 		// pointer
-		final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
+		final Parcelable pointer = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? args.getParcelable(ProviderArgs.ARG_QUERYPOINTER, Parcelable.class) : args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 		Log.d(WebFragment.TAG, "query=" + pointer);
 
 		// hint

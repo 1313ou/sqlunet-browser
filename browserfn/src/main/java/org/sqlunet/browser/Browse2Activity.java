@@ -50,7 +50,7 @@ public class Browse2Activity extends AbstractBrowse2Activity
 		assert args != null;
 
 		//final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
-		final Parcelable pointer = args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
+		final Parcelable pointer = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? args.getParcelable(ProviderArgs.ARG_QUERYPOINTER, Parcelable.class) : args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
 		final Browse2Fragment fragment = (Browse2Fragment) getSupportFragmentManager().findFragmentById(R.id.fragment_detail);
 		assert fragment != null;
 		fragment.search(pointer, null, null, null, null);

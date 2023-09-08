@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.sqlunet.IPointer;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.Settings;
 
@@ -82,7 +83,7 @@ public abstract class BaseBrowse2Fragment extends Fragment
 		if (savedInstanceState != null)
 		{
 			Log.d(TAG, "restore instance state " + this);
-			this.pointer = savedInstanceState.getParcelable(POINTER_STATE);
+			this.pointer = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? savedInstanceState.getParcelable(POINTER_STATE, IPointer.class) : savedInstanceState.getParcelable(POINTER_STATE);
 		}
 
 		return view;

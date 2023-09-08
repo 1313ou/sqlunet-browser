@@ -80,7 +80,7 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		if (savedInstanceState != null)
 		{
 			this.query = savedInstanceState.getString(STATE_QUERY);
-			this.pointer = savedInstanceState.getParcelable(STATE_POINTER);
+			this.pointer = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? savedInstanceState.getParcelable(STATE_POINTER, PmRolePointer.class) : savedInstanceState.getParcelable(STATE_POINTER);
 		}
 		else
 		{
