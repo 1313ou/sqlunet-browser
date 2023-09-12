@@ -24,8 +24,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 
+import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_DOWNLOADER_ARG;
 import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_FROM_ARG;
 import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_TO_ARG;
+import static com.bbou.download.AbstractDownloadFragment.THEN_UNZIP_TO_ARG;
 import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_RENAME_FROM_ARG;
 import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_RENAME_TO_ARG;
 import static com.bbou.download.DownloadZipFragment.DOWNLOAD_ENTRY_ARG;
@@ -89,15 +91,15 @@ public class DownloadActivity extends com.bbou.download.DownloadActivity
 
 	public static Intent makeIntent(@NonNull final Context context)
 	{
+		return makeIntent(context, com.bbou.download.Settings.Downloader.DOWNLOAD_ZIP.toString().equals(Settings.getDownloaderPref(context)));
+	}
+
+	public static Intent makeIntent(@NonNull final Context context, boolean zipped)
+	{
 		String dbSrc = StorageSettings.getDbDownloadSource(context);
 		String dbDest = StorageSettings.getDbDownloadTarget(context);
 		Intent intent = new Intent(context, DownloadActivity.class);
-		if ("DOWNLOAD".equals(Settings.getDownloaderPref(context)))
-		{
-			intent.putExtra(DOWNLOAD_FROM_ARG, dbSrc);
-			intent.putExtra(DOWNLOAD_TO_ARG, dbDest);
-		}
-		else
+		if (zipped)
 		{
 			Uri src = Uri.parse(dbSrc);
 			String entry = src.getLastPathSegment();
@@ -109,6 +111,27 @@ public class DownloadActivity extends com.bbou.download.DownloadActivity
 			intent.putExtra(DOWNLOAD_RENAME_FROM_ARG, entry);
 			intent.putExtra(DOWNLOAD_RENAME_TO_ARG, name);
 		}
+		else
+		{
+			intent.putExtra(DOWNLOAD_FROM_ARG, dbSrc);
+			intent.putExtra(DOWNLOAD_TO_ARG, dbDest);
+		}
+		return intent;
+	}
+
+	public static Intent makeIntentWithDeploy(@NonNull final Context context, boolean zipped)
+	{
+		String dbSrc = StorageSettings.getDbDownloadSource(context);
+		String dbDest = StorageSettings.getDbDownloadTarget(context);
+		Intent intent = new Intent(context, DownloadActivity.class);
+
+
+		intent.putExtra(DOWNLOAD_DOWNLOADER_ARG, com.bbou.download.Settings.Downloader.DOWNLOAD.toString()); // force non zipped tranfer
+		intent.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadZippedSource(context)); // source archive
+		intent.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadZippedTarget(context)); // destinaiton archive
+		intent.putExtra(THEN_UNZIP_TO_ARG, StorageSettings.getDataDir(context)); // unzip destination directory
+		intent.putExtra(DOWNLOAD_RENAME_FROM_ARG, StorageSettings.getDbDownloadFile(context)); // rename
+		intent.putExtra(DOWNLOAD_RENAME_TO_ARG, StorageSettings.getDatabaseName(context)); // rename to
 		return intent;
 	}
 }

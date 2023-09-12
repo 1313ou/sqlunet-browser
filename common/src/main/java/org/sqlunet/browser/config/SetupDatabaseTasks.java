@@ -20,9 +20,6 @@ import java.util.Collection;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
-import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_TO_ARG;
-
 /**
  * Manage tasks
  *
