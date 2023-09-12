@@ -97,7 +97,6 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		return view;
 	}
 
-
 	// S A V E
 
 	@Override
