@@ -16,7 +16,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
@@ -107,9 +106,6 @@ public class UpdateFragment extends Fragment
 		final String downSourceVersionArg = intent.getStringExtra(DOWN_SOURCE_VERSION_ARG);
 		final String downSourceStaticVersionArg = intent.getStringExtra(DOWN_SOURCE_STATIC_VERSION_ARG);
 
-		final boolean newerArg = intent.getBooleanExtra(NEWER_ARG, false);
-		final Intent downloadIntent = intent.getParcelableExtra(DOWNLOAD_INTENT_ARG);
-
 		assert view != null;
 
 		final TextView upSrc = view.findViewById(R.id.up_src);
@@ -145,6 +141,7 @@ public class UpdateFragment extends Fragment
 		downSourceStaticVersion.setText(downSourceStaticVersionArg);
 
 		final TextView newer = view.findViewById(R.id.newer);
+		final boolean newerArg = intent.getBooleanExtra(NEWER_ARG, false);
 		if (newerArg)
 		{
 			newer.setTextColor(Color.BLUE);
@@ -162,6 +159,8 @@ public class UpdateFragment extends Fragment
 					assert downloadFromArg != null;
 					assert downloadToArg != null;
 					assert unzipToArg != null;
+					final Intent downloadIntent;
+					downloadIntent =android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? intent.getParcelableExtra(DOWNLOAD_INTENT_ARG, Intent.class) : intent.getParcelableExtra(DOWNLOAD_INTENT_ARG);
 					update(context, downloadFromArg, downloadToArg, unzipToArg, downloadIntent);
 					final Activity activity2 = getActivity();
 					if (activity2 != null)
@@ -179,13 +178,12 @@ public class UpdateFragment extends Fragment
 		return view;
 	}
 
-	static private void update(@NonNull final Context context, @NonNull final String downloadFromArg, @NonNull final String downloadToArg, @NonNull final String unzipToArg, @Nullable final Intent downloadIntent)
+	static private void update(@NonNull final Context context, @NonNull final String downloadFromArg, @NonNull final String downloadToArg, @NonNull final String unzipToArg, @NonNull final Intent downloadIntent)
 	{
-		final Intent intent = downloadIntent != null ? downloadIntent : new Intent(context, DownloadActivity.class);
-		intent.putExtra(DOWNLOAD_FROM_ARG, downloadFromArg);
-		intent.putExtra(DOWNLOAD_TO_ARG, downloadToArg);
-		intent.putExtra(UNZIP_TO_ARG, unzipToArg);
-		context.startActivity(intent);
+		downloadIntent.putExtra(DOWNLOAD_FROM_ARG, downloadFromArg);
+		downloadIntent.putExtra(DOWNLOAD_TO_ARG, downloadToArg);
+		downloadIntent.putExtra(UNZIP_TO_ARG, unzipToArg);
+		context.startActivity(downloadIntent);
 	}
 
 	/**

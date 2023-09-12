@@ -9,15 +9,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import org.sqlunet.broadcast.Broadcast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
-import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_DOWNLOADER_ARG;
 
 @FunctionalInterface
 interface OnComplete
@@ -40,7 +36,7 @@ public class DownloadActivity extends AppCompatActivity implements OnComplete
 		super.onCreate(savedInstanceState);
 
 		// downloader
-		final String overriddenDownloader = getIntent().getStringExtra(DOWNLOAD_DOWNLOADER_ARG);
+		final String overriddenDownloader = getIntent().getStringExtra(AbstractDownloadFragment.DOWNLOAD_DOWNLOADER_ARG);
 		final Settings.Downloader downloader = overriddenDownloader == null ? Settings.Downloader.getDownloaderFromPref(this) : Settings.Downloader.valueOf(overriddenDownloader);
 
 		// content
@@ -72,9 +68,27 @@ public class DownloadActivity extends AppCompatActivity implements OnComplete
 					break;
 			}
 			// pass arguments over to fragment
-			downloadFragment.setArguments(getIntent().getExtras());
-			downloadFragment.setRequestKill(() -> broadcastRequest(this, Broadcast.RequestType.KILL));
-			downloadFragment.setRequestNew(() -> broadcastRequest(this, Broadcast.RequestType.NEW));
+			Bundle args = getIntent().getExtras();
+			downloadFragment.setArguments(args);
+
+			if (args != null)
+			{
+				String broadcastAction = args.getString(AbstractDownloadFragment.BROADCAST_ACTION);
+				String broadcastRequestKey = args.getString(AbstractDownloadFragment.BROADCAST_REQUEST_KEY);
+				if (broadcastAction != null && !broadcastAction.isEmpty() && broadcastRequestKey != null && !broadcastRequestKey.isEmpty())
+				{
+					String broadcastKillRequestValue = args.getString(AbstractDownloadFragment.BROADCAST_KILL_REQUEST_VALUE);
+					if (broadcastKillRequestValue != null && !broadcastKillRequestValue.isEmpty())
+					{
+						downloadFragment.setRequestKill(() -> broadcastRequest(this, broadcastAction, broadcastRequestKey, broadcastKillRequestValue));
+					}
+					String broadcastNewRequestValue = args.getString(AbstractDownloadFragment.BROADCAST_NEW_REQUEST_VALUE);
+					if (broadcastNewRequestValue != null && !broadcastNewRequestValue.isEmpty())
+					{
+						downloadFragment.setRequestNew(() -> broadcastRequest(this, broadcastAction, broadcastRequestKey, broadcastNewRequestValue));
+					}
+				}
+			}
 
 			getSupportFragmentManager() //
 					.beginTransaction() //
@@ -102,14 +116,21 @@ public class DownloadActivity extends AppCompatActivity implements OnComplete
 		}
 	}
 
-	static private void broadcastRequest(@NonNull final Context context, @NonNull final Broadcast.RequestType request)
+	/**
+	 * Broadcast request
+	 *
+	 * @param context               context
+	 * @param broadcastAction       broadcast action
+	 * @param broadcastRequestKey   broadcast request arg key
+	 * @param broadcastRequestValue broadcast request arg value
+	 */
+	static private void broadcastRequest(@NonNull final Context context, @NonNull final String broadcastAction, @NonNull final String broadcastRequestKey, @NonNull final String broadcastRequestValue)
 	{
-		Log.d(TAG, "Send broadcast request " + request);
+		Log.d(TAG, "Send broadcast request " + broadcastRequestValue);
 		final Intent intent = new Intent();
 		intent.setPackage(context.getPackageName());
-		// intent.setComponent(new ComponentName(context.getPackageName(), "org.grammarscope.ProviderManager");
-		intent.setAction(Broadcast.BROADCAST_ACTION);
-		intent.putExtra(Broadcast.BROADCAST_ACTION_REQUEST, request.name());
+		intent.setAction(broadcastAction);
+		intent.putExtra(broadcastRequestKey, broadcastRequestValue);
 		context.sendBroadcast(intent);
 	}
 }

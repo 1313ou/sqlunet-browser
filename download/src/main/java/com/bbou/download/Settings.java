@@ -90,10 +90,6 @@ public class Settings
 	// clear button preference key
 	static public final String PREF_DATAPACK_CLEAR_BUTTON = "pref_datapack_clear";
 
-	// others
-	public static final String HINT_DATAPACK_ZIP = "sqlunet.zip";
-	public static final String HINT_DATAPACK_ZIP_ENTRY = "sqlunet.db";
-
 	// R E P O
 
 	@Nullable

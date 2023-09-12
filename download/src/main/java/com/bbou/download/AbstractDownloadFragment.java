@@ -100,9 +100,39 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	static public final String DOWNLOAD_TO_ARG = "download_to";
 
 	/**
+	 * Rename from argument
+	 */
+	static public final String RENAME_FROM_ARG = "rename_from";
+
+	/**
+	 * Rename to argument
+	 */
+	static public final String RENAME_TO_ARG = "rename_to";
+
+	/**
 	 * Unzip to argument
 	 */
 	static public final String UNZIP_TO_ARG = "unzip_to";
+
+	/**
+	 * Broadcast action
+	 */
+	static public final String BROADCAST_ACTION = "ACTION";
+
+	/**
+	 * Broadcast request key
+	 */
+	static public final String BROADCAST_REQUEST_KEY = "REQUEST";
+
+	/**
+	 * Broadcast kill (old datapack) request value
+	 */
+	static public final String BROADCAST_KILL_REQUEST_VALUE = "KILL";
+
+	/**
+	 * Broadcast new (datapack) request value
+	 */
+	static public final String BROADCAST_NEW_REQUEST_VALUE = "NEW";
 
 	// S T A T U S
 
@@ -181,6 +211,18 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	protected File downloadedFile;
 
 	/**
+	 * Rename source
+	 */
+	@Nullable
+	protected String renameFrom;
+
+	/**
+	 * Rename destination
+	 */
+	@Nullable
+	protected String renameTo;
+
+	/**
 	 * Unzip dir
 	 */
 	@Nullable
@@ -249,6 +291,8 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		final String fromArg = arguments == null ? null : arguments.getString(DOWNLOAD_FROM_ARG);
 		final String toArg = arguments == null ? null : arguments.getString(DOWNLOAD_TO_ARG);
 		final String unzipToArg = arguments == null ? null : arguments.getString(UNZIP_TO_ARG);
+		final String renameFromArg = arguments == null ? null : arguments.getString(RENAME_FROM_ARG);
+		final String renameToArg = arguments == null ? null : arguments.getString(RENAME_TO_ARG);
 
 		// download source data
 		this.downloadUrl = this.sourceUrl = fromArg;
@@ -260,6 +304,10 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 
 		// download dest data
 		this.downloadedFile = toArg != null ? new File(toArg) : null;
+
+		// rename
+		this.renameFrom = renameFromArg;
+		this.renameTo = renameToArg;
 
 		// unzip
 		this.unzipDir = unzipToArg != null ? new File(unzipToArg) : null;

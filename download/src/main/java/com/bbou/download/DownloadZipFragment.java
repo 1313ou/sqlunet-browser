@@ -89,7 +89,7 @@ public class DownloadZipFragment extends DownloadFragment
 				final String entry = this.sourceEntry;
 
 				// start job
-				start(from, entry, to);
+				start(from, entry, to, this.renameFrom, this.renameTo);
 
 				// status
 				this.downloading = true; // set
@@ -106,9 +106,9 @@ public class DownloadZipFragment extends DownloadFragment
 	 * @param entry   source zip entry
 	 * @param toFile  destination file
 	 */
-	protected void start(@NonNull final String fromUrl, @Nullable final String entry, @NonNull final String toFile)
+	protected void start(@NonNull final String fromUrl, @Nullable final String entry, @NonNull final String toFile, @Nullable final String renameFrom, @Nullable final String renameTo)
 	{
-		this.uuid = DownloadZipWork.startWork(requireContext(), fromUrl, entry, toFile, this, this.observer);
+		this.uuid = DownloadZipWork.startWork(requireContext(), fromUrl, entry, toFile, renameFrom, renameTo, this, this.observer);
 	}
 }
 

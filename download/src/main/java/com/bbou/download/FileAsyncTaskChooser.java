@@ -133,10 +133,11 @@ public class FileAsyncTaskChooser
 		}
 
 		// assemble composite input
+		final String defaultDatapackZipEntry = activity.getString(R.string.default_download_datapack_zipentry);
 		final LinearLayout input = (LinearLayout) activity.getLayoutInflater().inflate(R.layout.zip_input, null);
 		final EditText entryInput = input.findViewById(R.id.zip_entry);
-		entryInput.setText(Settings.HINT_DATAPACK_ZIP_ENTRY);
-		entryInput.setSelection(Settings.HINT_DATAPACK_ZIP_ENTRY.length());
+		entryInput.setText(defaultDatapackZipEntry);
+		entryInput.setSelection(defaultDatapackZipEntry.length());
 		input.addView(archiveInput1);
 
 		// display sources

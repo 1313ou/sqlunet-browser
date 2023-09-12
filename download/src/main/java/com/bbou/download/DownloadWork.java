@@ -32,6 +32,8 @@ public class DownloadWork
 	public static final String WORKER_TAG = "download";
 	public static final String ARG_FROM = "from_url";
 	public static final String ARG_TO = "to_file";
+	public static final String ARG_RENAME_FROM = "rename_from";
+	public static final String ARG_RENAME_TO = "rename_to";
 	static final String EXCEPTION = "download_exception";
 	static final String EXCEPTION_CAUSE = "download_exception_cause";
 	static final String PROGRESS = "download_progress";
@@ -85,12 +87,14 @@ public class DownloadWork
 			final Data inData = this.getInputData();
 			String fromUrl = inData.getString(ARG_FROM);
 			String toFile = inData.getString(ARG_TO);
+			String renameFrom = inData.getString(ARG_RENAME_FROM);
+			String renameTo = inData.getString(ARG_RENAME_TO);
 
 			// do the work
 			this.delegate = new DownloadCore(progressConsumer);
 			try
 			{
-				DownloadCore.DownloadData outData = this.delegate.work(fromUrl, toFile, null);
+				DownloadCore.DownloadData outData = this.delegate.work(fromUrl, toFile, renameFrom, renameTo, null);
 				Data outputData = new Data.Builder() //
 						.putString(ARG_FROM, outData.fromUrl) //
 						.putString(ARG_TO, outData.toFile) //

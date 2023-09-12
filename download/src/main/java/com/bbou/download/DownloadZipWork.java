@@ -58,12 +58,14 @@ public class DownloadZipWork extends DownloadWork
 			String fromUrl = inData.getString(ARG_FROM);
 			String entry = inData.getString(ARG_ENTRY);
 			String toFile = inData.getString(ARG_TO);
+			String renameFrom = inData.getString(ARG_RENAME_FROM);
+			String renameTo = inData.getString(ARG_RENAME_TO);
 
 			// do the work
 			this.delegate = new DownloadZipCore(progressConsumer);
 			try
 			{
-				DownloadCore.DownloadData outData = delegate.work(fromUrl, toFile, entry);
+				DownloadCore.DownloadData outData = delegate.work(fromUrl, toFile, renameFrom, renameTo, entry);
 				Data outputData = new Data.Builder() //
 						.putString(ARG_FROM, outData.fromUrl) //
 						.putString(ARG_TO, outData.toFile) //
@@ -94,14 +96,16 @@ public class DownloadZipWork extends DownloadWork
 	/**
 	 * Enqueuing work with observer
 	 *
-	 * @param context  context
-	 * @param fromUrl  url to download
-	 * @param toFile   file to save
-	 * @param owner    lifecycle owner
-	 * @param observer observer
+	 * @param context    context
+	 * @param fromUrl    url to download
+	 * @param toFile     file to save
+	 * @param renameFrom rename source
+	 * @param renameTo   rename destinaation
+	 * @param owner      lifecycle owner
+	 * @param observer   observer
 	 * @return work uuid
 	 */
-	public static UUID startWork(@NonNull final Context context, @NonNull final String fromUrl, @Nullable final String entry, @NonNull final String toFile, @NonNull final LifecycleOwner owner, @NonNull final Observer<WorkInfo> observer)
+	public static UUID startWork(@NonNull final Context context, @NonNull final String fromUrl, @Nullable final String entry, @NonNull final String toFile, @Nullable final String renameFrom, @Nullable final String renameTo, @NonNull final LifecycleOwner owner, @NonNull final Observer<WorkInfo> observer)
 	{
 		final WorkManager wm = WorkManager.getInstance(context);
 
@@ -110,6 +114,8 @@ public class DownloadZipWork extends DownloadWork
 				.putString(ARG_FROM, fromUrl) //
 				.putString(ARG_ENTRY, entry) //
 				.putString(ARG_TO, toFile) //
+				.putString(ARG_RENAME_FROM, renameFrom) //
+				.putString(ARG_RENAME_TO, renameTo) //
 				.build();
 		final WorkRequest downloadRequest = new OneTimeWorkRequest.Builder(DownloadZipWork.DownloadZipWorker.class) //
 				.setInputData(data) //

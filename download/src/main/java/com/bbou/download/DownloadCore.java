@@ -87,6 +87,18 @@ public class DownloadCore
 	protected String toFile;
 
 	/**
+	 * Rename source
+	 */
+	@Nullable
+	protected String renameFrom;
+
+	/**
+	 * Rename dest
+	 */
+	@Nullable
+	protected String renameTo;
+
+	/**
 	 * Cancel
 	 */
 	protected boolean cancel;
@@ -112,15 +124,19 @@ public class DownloadCore
 	/**
 	 * Work
 	 *
-	 * @param fromUrl source url
-	 * @param toFile  destination file
+	 * @param fromUrl    source url
+	 * @param toFile     destination file
+	 * @param renameFrom rename source
+	 * @param renameTo   rename destination
 	 * @return download data
 	 */
-	public DownloadData work(@Nullable final String fromUrl, @Nullable final String toFile, @Nullable final String unused) throws Exception
+	public DownloadData work(@NonNull final String fromUrl, @NonNull final String toFile, @Nullable final String renameFrom, @Nullable final String renameTo, @Nullable final String unused) throws Exception
 	{
 		// arguments
 		this.fromUrl = fromUrl;
 		this.toFile = toFile;
+		this.renameFrom = renameFrom;
+		this.renameTo = renameTo;
 
 		// do job
 		this.cancel = false;
@@ -164,6 +180,7 @@ public class DownloadCore
 		String staticVersion = null;
 
 		final File outFile = new File(this.toFile + ".part");
+		final File tempOutFile = new File(this.toFile);
 		HttpURLConnection httpConnection = null;
 		try
 		{
@@ -245,10 +262,23 @@ public class DownloadCore
 			//noinspection IOStreamConstructor
 			try ( //
 			      InputStream is = new BufferedInputStream(connection.getInputStream(), CHUNK_SIZE); //
-			      OutputStream os = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O ? Files.newOutputStream(outFile.toPath()) : new FileOutputStream(outFile)) //
+			      OutputStream os = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O ? Files.newOutputStream(tempOutFile.toPath()) : new FileOutputStream(tempOutFile)) //
 			{
 				copyStreams(is, os, size);
 			}
+
+			// rename temp to target
+			tempOutFile.renameTo(outFile);
+
+			// optional rename
+			if (this.renameFrom!= null && this.renameTo != null)
+			{
+				File renamed = new File(outFile.getParent(), this.renameTo);
+				outFile.renameTo(renamed);
+			}
+
+			// date
+			setDate(outFile, date);
 		}
 		finally
 		{

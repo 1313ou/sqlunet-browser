@@ -51,16 +51,18 @@ public class DownloadZipCore extends DownloadCore
 	/**
 	 * Work
 	 *
-	 * @param fromUrl zip source	 * @param toFile  destination file
-	 *                url
-	 * @param entry   zip source entry
+	 * @param fromUrl    zip source	 * @param toFile  destination file
+	 *                   url
+	 * @param renameFrom rename source
+	 * @param renameTo   rename destination
+	 * @param entry      zip source entry
 	 * @return download data
 	 */
 	@Override
-	public DownloadData work(@Nullable final String fromUrl, @Nullable final String toFile, @Nullable final String entry) throws Exception
+	public DownloadData work(@NonNull final String fromUrl, @NonNull final String toFile, @Nullable final String renameFrom, @Nullable final String renameTo, @Nullable final String entry) throws Exception
 	{
 		this.entry = entry;
-		return super.work(fromUrl, toFile, null);
+		return super.work(fromUrl, toFile, renameFrom, renameTo, null);
 	}
 
 	// C O R E W O R K
@@ -77,7 +79,7 @@ public class DownloadZipCore extends DownloadCore
 		prerequisite();
 
 		// dest file
-		final File outFile = new File(this.toFile + ".part");
+		final File outFile = new File(this.toFile);
 		long date;
 		long size;
 		long zDate;
@@ -188,11 +190,23 @@ public class DownloadZipCore extends DownloadCore
 							date = entry.getTime();
 
 							// copy
+							File tempOutFile = new File(outFile, entryName + ".part");
 							File entryOutFile = new File(outFile, entryName);
+
 							//noinspection IOStreamConstructor
-							try (OutputStream os = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O ? Files.newOutputStream(entryOutFile.toPath()) : new FileOutputStream(entryOutFile))
+							try (OutputStream os = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O ? Files.newOutputStream(tempOutFile.toPath()) : new FileOutputStream(tempOutFile))
 							{
 								copyStreams(zis, os, size);
+							}
+
+							// rename temp to target
+							tempOutFile.renameTo(entryOutFile);
+
+							// optional rename
+							if (entryName.equals(this.renameFrom) && this.renameTo != null)
+							{
+								File renamed = new File(outFile, this.renameTo);
+								entryOutFile.renameTo(renamed);
 							}
 
 							// date

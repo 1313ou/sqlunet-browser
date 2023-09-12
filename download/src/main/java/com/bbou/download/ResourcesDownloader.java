@@ -193,8 +193,8 @@ public class ResourcesDownloader extends Task<String, Void, Collection<String[]>
 	 */
 	public static void showResources(@NonNull final Activity activity)
 	{
-		final String url = activity.getString(R.string.pref_directory);
-		final String filter = activity.getString(R.string.pref_directory_filter);
+		final String url = activity.getString(R.string.resources_directory);
+		final String filter = activity.getString(R.string.resources_directory_filter);
 
 		new ResourcesDownloader(resources -> {
 
@@ -238,8 +238,8 @@ public class ResourcesDownloader extends Task<String, Void, Collection<String[]>
 	 */
 	public static void populateLists(@NonNull final Context context, @NonNull final BiConsumer<List<String>, List<String>> consumer)
 	{
-		final String url = context.getString(R.string.pref_directory);
-		final String filter = context.getString(R.string.pref_directory_filter);
+		final String url = context.getString(R.string.resources_directory);
+		final String filter = context.getString(R.string.resources_directory_filter);
 
 		new ResourcesDownloader(resources -> {
 

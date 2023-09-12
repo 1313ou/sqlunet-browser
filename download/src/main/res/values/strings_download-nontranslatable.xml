@@ -2,12 +2,17 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<!DOCTYPE resources [	<!ENTITY bbuser "bbuser">	<!ENTITY bbrepo "bbrepo">	<!ENTITY bbcommit "xxxx">	]>
+<!DOCTYPE resources [    <!ENTITY bbuser "bbuser">    <!ENTITY bbrepo "bbrepo">    <!ENTITY bbcommit "xxxx">    ]>
 
 <resources>
 
-	<!-- directory -->
-	<string name="pref_directory" translatable="false">https://sqlunet.github.io/resources/semantikos</string>
-	<string name="pref_directory_filter" translatable="false" />
+	<!-- repo -->
+	<string name="default_download_repo" translatable="false">http://192.168.1.10</string>
+	<string name="default_download_datapack_file" translatable="false">datapack.zip</string>
+	<string name="default_download_datapack_zipentry" translatable="false">datapack.data</string>
+
+	<!-- resources (repos) -->
+	<string name="resources_directory" translatable="false">https://192.168.1.10/resources</string>
+	<string name="resources_directory_filter" translatable="false" />
 
 </resources>

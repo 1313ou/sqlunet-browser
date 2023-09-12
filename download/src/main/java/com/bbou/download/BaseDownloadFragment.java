@@ -5,6 +5,7 @@
 package com.bbou.download;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.bbou.concurrency.ObservedDelegatingTask;
@@ -14,6 +15,8 @@ import com.bbou.concurrency.TaskObserver;
 import com.bbou.deploy.Deploy;
 
 import java.io.File;
+
+import androidx.annotation.Nullable;
 
 /**
  * Download activity
@@ -27,22 +30,61 @@ abstract public class BaseDownloadFragment extends AbstractDownloadFragment
 	/**
 	 * Rename from argument
 	 */
-	static public final String RENAME_FROM_ARG = "rename_from";
+	static public final String DOWNLOAD_RENAME_FROM_ARG = "rename_from";
 
 	/**
 	 * Rename to argument
 	 */
-	static public final String RENAME_TO_ARG = "rename_to";
+	static public final String DOWNLOAD_RENAME_TO_ARG = "rename_to";
 
+	/**
+	 * Rename source
+	 */
+	@Nullable
+	protected String renameFrom;
+
+	/**
+	 * Rename dest
+	 */
+	@Nullable
+	protected String renameTo;
+
+	@Override
+	public void onCreate(final Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+
+		// arguments
+		final Bundle arguments = getArguments();
+		this.renameFrom = arguments == null ? null : arguments.getString(DOWNLOAD_RENAME_FROM_ARG);
+		this.renameTo = arguments == null ? null : arguments.getString(DOWNLOAD_RENAME_TO_ARG);
+	}
+
+	/**
+	 * New data available request runnable, run when new data becomes available
+	 */
 	private Runnable requestNew;
 
+	/**
+	 * Kill old data request runnable, run when old data should be discarded
+	 */
 	private Runnable requestKill;
 
+	/**
+	 * Set new data available request runnable
+	 *
+	 * @param requestNew new data available request runnable
+	 */
 	public void setRequestNew(final Runnable requestNew)
 	{
 		this.requestNew = requestNew;
 	}
 
+	/**
+	 * Set kill old data request runnable
+	 *
+	 * @param requestKill new data available request runnable
+	 */
 	public void setRequestKill(final Runnable requestKill)
 	{
 		this.requestKill = requestKill;
@@ -100,6 +142,15 @@ abstract public class BaseDownloadFragment extends AbstractDownloadFragment
 					//noinspection ConstantConditions
 					if (BaseDownloadFragment.this.downloadedFile != null)
 					{
+						if (BaseDownloadFragment.this.renameFrom != null && BaseDownloadFragment.this.renameTo != null && !BaseDownloadFragment.this.renameFrom.equals(BaseDownloadFragment.this.renameTo))
+						{
+							// rename
+							final File renameFromFile = new File(BaseDownloadFragment.this.unzipDir, renameFrom);
+							final File renameToFile = new File(BaseDownloadFragment.this.unzipDir, renameTo);
+							boolean result2 = renameFromFile.renameTo(renameToFile);
+							Log.d(TAG, "Rename " + renameFromFile + " to " + renameToFile + " : " + result2);
+						}
+
 						// record
 						FileData.recordDatapack(requireContext(), BaseDownloadFragment.this.downloadedFile);
 

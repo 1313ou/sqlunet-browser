@@ -172,7 +172,7 @@ public class ContentDownloader extends Task<String, Void, String[]>
 	/**
 	 * Content
 	 */
-	static public void content(@NonNull Activity activity)
+	static public void content(@NonNull final Activity activity, @NonNull final String downloadBroadcastAction, @NonNull final String downloadBroadcastRequestKey, @NonNull final String downloadBroadcastKillRequestValue, @NonNull final String downloadBroadcastNewRequestValue)
 	{
 		Toast.makeText(activity, R.string.status_download_downloadable_content, Toast.LENGTH_SHORT).show();
 
@@ -210,7 +210,7 @@ public class ContentDownloader extends Task<String, Void, String[]>
 			{
 				alert.setItems(result, (dialog, which) -> {
 					final String item = result[which];
-					startDownload(activity2, item);
+					startDownload(activity2, item, downloadBroadcastAction, downloadBroadcastRequestKey, downloadBroadcastKillRequestValue, downloadBroadcastNewRequestValue);
 				});
 			}
 			alert.show();
@@ -223,18 +223,24 @@ public class ContentDownloader extends Task<String, Void, String[]>
 	 * @param context context
 	 * @param target  target
 	 */
-	static private void startDownload(@NonNull final Context context, final String target)
+	static private void startDownload(@NonNull final Context context, @NonNull final String target, @NonNull final String downloadBroadcastAction, @NonNull final String downloadBroadcastRequestKey, @NonNull final String downloadBroadcastKillRequestValue, @NonNull final String downloadBroadcastNewRequestValue)
 	{
 		final String repo = Settings.getRepoPref(context);
 		final String cache = Settings.getCachePref(context);
 		final String datapackDir = Settings.getDatapackDir(context);
 		final String downloader = Settings.getDownloaderPref(context);
 
-		final Intent intent = new Intent(context, DownloadActivity.class);
-		intent.putExtra(AbstractDownloadFragment.DOWNLOAD_FROM_ARG, repo + '/' + target + ".zip");
-		intent.putExtra(AbstractDownloadFragment.DOWNLOAD_TO_ARG, cache + '/' + target + ".zip");
-		intent.putExtra(AbstractDownloadFragment.UNZIP_TO_ARG, datapackDir);
-		intent.putExtra(AbstractDownloadFragment.DOWNLOAD_DOWNLOADER_ARG, downloader);
-		context.startActivity(intent);
+		final Intent downloadIntent = new Intent(context, DownloadActivity.class);
+		downloadIntent.putExtra(AbstractDownloadFragment.DOWNLOAD_FROM_ARG, repo + '/' + target + ".zip");
+		downloadIntent.putExtra(AbstractDownloadFragment.DOWNLOAD_TO_ARG, cache + '/' + target + ".zip");
+		downloadIntent.putExtra(AbstractDownloadFragment.UNZIP_TO_ARG, datapackDir);
+		downloadIntent.putExtra(AbstractDownloadFragment.DOWNLOAD_DOWNLOADER_ARG, downloader);
+
+		downloadIntent.putExtra(AbstractDownloadFragment.BROADCAST_ACTION, downloadBroadcastAction);
+		downloadIntent.putExtra(AbstractDownloadFragment.BROADCAST_REQUEST_KEY, downloadBroadcastRequestKey);
+		downloadIntent.putExtra(AbstractDownloadFragment.BROADCAST_KILL_REQUEST_VALUE, downloadBroadcastKillRequestValue);
+		downloadIntent.putExtra(AbstractDownloadFragment.BROADCAST_NEW_REQUEST_VALUE, downloadBroadcastNewRequestValue);
+
+		context.startActivity(downloadIntent);
 	}
 }

@@ -16,7 +16,7 @@
 		app:iconSpaceReserved="false" />
 
 	<EditTextPreference
-		android:defaultValue="@string/default_repo"
+		android:defaultValue="@string/default_download_repo"
 		android:inputType="text|textUri"
 		android:key="pref_repo"
 		android:maxLines="1"
