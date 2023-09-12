@@ -119,16 +119,12 @@ public class DownloadActivity extends com.bbou.download.DownloadActivity
 		return intent;
 	}
 
-	public static Intent makeIntentWithDeploy(@NonNull final Context context, boolean zipped)
+	public static Intent makeIntentWithDeploy(@NonNull final Context context)
 	{
-		String dbSrc = StorageSettings.getDbDownloadSource(context);
-		String dbDest = StorageSettings.getDbDownloadTarget(context);
 		Intent intent = new Intent(context, DownloadActivity.class);
-
-
-		intent.putExtra(DOWNLOAD_DOWNLOADER_ARG, com.bbou.download.Settings.Downloader.DOWNLOAD.toString()); // force non zipped tranfer
+		intent.putExtra(DOWNLOAD_DOWNLOADER_ARG, com.bbou.download.Settings.Downloader.DOWNLOAD.toString()); // force non zipped transfer
 		intent.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadZippedSource(context)); // source archive
-		intent.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadZippedTarget(context)); // destinaiton archive
+		intent.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadZippedTarget(context)); // destination archive
 		intent.putExtra(THEN_UNZIP_TO_ARG, StorageSettings.getDataDir(context)); // unzip destination directory
 		intent.putExtra(DOWNLOAD_RENAME_FROM_ARG, StorageSettings.getDbDownloadFile(context)); // rename
 		intent.putExtra(DOWNLOAD_RENAME_TO_ARG, StorageSettings.getDatabaseName(context)); // rename to

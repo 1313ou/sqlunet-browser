@@ -28,7 +28,6 @@
 	</string-array>
 
 	<!-- directory -->
-	<string name="resouces_directory" translatable="false">https://sqlunet.github.io/resources/semantikos</string>
 	<string name="resources_directory_filter" translatable="false">^xn.*$</string>
 
 </resources>

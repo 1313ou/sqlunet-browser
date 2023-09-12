@@ -72,6 +72,16 @@ idea {
             ["artwork", "artwork-assets", "artwork-assets", "artwork-relations", "data"].each { it2 ->
                 excludeDirs += file("$it.projectDir/$it2")
             }
+            /*
+            ["artwork", "artwork-assets", "artwork-relations", "data"].each { it2 ->
+                fileTree("$it.projectDir").visit { file ->
+                    if (file.isDirectory() && file.name == "$it2") {
+                        println(file)
+                        excludeDirs += file
+                    }
+                }
+            }
+             */
         }
     }
 }

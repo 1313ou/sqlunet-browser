@@ -37,9 +37,6 @@ import androidx.core.widget.ImageViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
-import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_TO_ARG;
-
 /**
  * Base Status fragment
  *

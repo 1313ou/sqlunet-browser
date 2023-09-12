@@ -94,6 +94,8 @@ public class DownloadWork
 			this.delegate = new DownloadCore(progressConsumer);
 			try
 			{
+				assert fromUrl != null;
+				assert toFile != null;
 				DownloadCore.DownloadData outData = this.delegate.work(fromUrl, toFile, renameFrom, renameTo, null);
 				Data outputData = new Data.Builder() //
 						.putString(ARG_FROM, outData.fromUrl) //

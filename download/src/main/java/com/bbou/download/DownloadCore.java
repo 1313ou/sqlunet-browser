@@ -179,6 +179,7 @@ public class DownloadCore
 		String version = null;
 		String staticVersion = null;
 
+		assert this.toFile != null;
 		final File outFile = new File(this.toFile + ".part");
 		final File tempOutFile = new File(this.toFile);
 		HttpURLConnection httpConnection = null;
@@ -268,12 +269,14 @@ public class DownloadCore
 			}
 
 			// rename temp to target
+			//noinspection ResultOfMethodCallIgnored
 			tempOutFile.renameTo(outFile);
 
 			// optional rename
 			if (this.renameFrom!= null && this.renameTo != null)
 			{
 				File renamed = new File(outFile.getParent(), this.renameTo);
+				//noinspection ResultOfMethodCallIgnored
 				outFile.renameTo(renamed);
 			}
 

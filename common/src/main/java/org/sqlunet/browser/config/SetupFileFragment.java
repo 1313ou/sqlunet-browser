@@ -197,7 +197,7 @@ public class SetupFileFragment extends BaseTaskFragment
 						break;
 
 					case DOWNLOAD_ZIPPED:
-						final Intent intent3 = DownloadActivity.makeIntentWithDeploy(activity,  true);
+						final Intent intent3 = DownloadActivity.makeIntentWithDeploy(activity);
 						activity.startActivity(intent3);
 						break;
 

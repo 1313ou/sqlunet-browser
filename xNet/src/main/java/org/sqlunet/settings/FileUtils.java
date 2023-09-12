@@ -13,6 +13,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -71,7 +72,8 @@ class FileUtils
 			{
 				return false;
 			}
-			try (OutputStream os = new FileOutputStream(f))
+			//noinspection IOStreamConstructor
+			try (OutputStream os = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O ? Files.newOutputStream(f.toPath()) : new FileOutputStream(f))
 			{
 				FileUtils.copyFile(is, os);
 				return true;

@@ -65,6 +65,8 @@ public class DownloadZipWork extends DownloadWork
 			this.delegate = new DownloadZipCore(progressConsumer);
 			try
 			{
+				assert fromUrl != null;
+				assert toFile != null;
 				DownloadCore.DownloadData outData = delegate.work(fromUrl, toFile, renameFrom, renameTo, entry);
 				Data outputData = new Data.Builder() //
 						.putString(ARG_FROM, outData.fromUrl) //
@@ -100,7 +102,7 @@ public class DownloadZipWork extends DownloadWork
 	 * @param fromUrl    url to download
 	 * @param toFile     file to save
 	 * @param renameFrom rename source
-	 * @param renameTo   rename destinaation
+	 * @param renameTo   rename destination
 	 * @param owner      lifecycle owner
 	 * @param observer   observer
 	 * @return work uuid

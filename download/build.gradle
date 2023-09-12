@@ -29,7 +29,6 @@ android {
 dependencies {
     implementation project(path: ':deploy')
     implementation project(path: ':concurrency')
-    implementation project(path: ':broadcast')
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.core:core:1.12.0'

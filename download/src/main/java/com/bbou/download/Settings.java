@@ -64,8 +64,8 @@ public class Settings
 	static public final String PREF_DOWNLOADER = "pref_downloader";
 
 	// preference names
-	static public final String PREFERENCES_DEVICE = "org.grammarscope_preferences_device";
-	static public final String PREFERENCES_DATAPACK = "org.grammarscope_preferences_datapack";
+	static public final String PREFERENCES_DEVICE = "preferences_device";
+	static public final String PREFERENCES_DATAPACK = "preferences_datapack";
 
 	// general prefs
 	static public final String PREF_REPO = "pref_repo";

@@ -35,7 +35,7 @@ public class Notifier
 	/**
 	 * Channel id key
 	 */
-	static private final String CHANNEL_ID = "grammarscope_download_notification_channel";
+	static private final String CHANNEL_ID = "download_notification_channel";
 
 	enum NotificationType
 	{

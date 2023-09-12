@@ -7,7 +7,6 @@ package org.sqlunet.browser;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.net.Uri;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.view.Menu;
@@ -36,8 +35,6 @@ import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.sql.SqlFormatter;
 
-import java.io.File;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -47,9 +44,6 @@ import androidx.preference.PreferenceManager;
 
 import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_FROM_ARG;
 import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_TO_ARG;
-import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_RENAME_FROM_ARG;
-import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_RENAME_TO_ARG;
-import static com.bbou.download.DownloadZipFragment.DOWNLOAD_ENTRY_ARG;
 import static org.sqlunet.browser.config.BaseSettingsActivity.INITIAL_ARG;
 
 /**

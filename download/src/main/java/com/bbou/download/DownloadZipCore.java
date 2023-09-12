@@ -79,6 +79,7 @@ public class DownloadZipCore extends DownloadCore
 		prerequisite();
 
 		// dest file
+		assert this.toFile != null;
 		final File outFile = new File(this.toFile);
 		long date;
 		long size;
@@ -200,12 +201,14 @@ public class DownloadZipCore extends DownloadCore
 							}
 
 							// rename temp to target
+							//noinspection ResultOfMethodCallIgnored
 							tempOutFile.renameTo(entryOutFile);
 
 							// optional rename
 							if (entryName.equals(this.renameFrom) && this.renameTo != null)
 							{
 								File renamed = new File(outFile, this.renameTo);
+								//noinspection ResultOfMethodCallIgnored
 								entryOutFile.renameTo(renamed);
 							}
 

@@ -15,6 +15,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -184,9 +186,10 @@ public class Deploy
 		{
 			return false;
 		}
+		//noinspection IOStreamConstructor
 		try ( //
 		      InputStream is = getter.get(fromPath); //
-		      OutputStream os = new FileOutputStream(toPath) //
+		      OutputStream os = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O ? Files.newOutputStream(Paths.get(toPath)) : new FileOutputStream(toPath)//
 		)
 		{
 			copyStreams(is, os);
@@ -216,9 +219,10 @@ public class Deploy
 		{
 			return false;
 		}
+		//noinspection IOStreamConstructor
 		try ( //
-		      InputStream is = new FileInputStream(fromPath); //
-		      OutputStream os = new FileOutputStream(toPath)) //
+		      InputStream is = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O ? Files.newInputStream(Paths.get(fromPath)) : new FileInputStream(fromPath); //
+		      OutputStream os = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O ? Files.newOutputStream(Paths.get(toPath)) : new FileOutputStream(toPath)) //
 		{
 			copyStreams(is, os);
 			return true;
