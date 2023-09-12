@@ -337,15 +337,6 @@
 				android:value=".MainActivity"/>
 		</activity>
 
-		<receiver
-			android:name="org.sqlunet.download.Killer"
-			android:enabled="true"
-			android:exported="false">
-			<intent-filter>
-				<action android:name="kill_download_service"/>
-			</intent-filter>
-		</receiver>
-
 		<provider
 			android:name="org.sqlunet.provider.ManagerProvider"
 			android:authorities="@string/manager_authority"
@@ -361,15 +352,6 @@
 			android:exported="false"
 			tools:ignore="ExportedContentProvider">
 		</provider>
-
-		<service
-			android:name="org.sqlunet.download.DownloadService"
-			android:description="@string/description_service_downloader"
-			android:enabled="true"
-			android:exported="false"
-			android:icon="@mipmap/ic_launcher"
-			android:label="@string/service_downloader">
-		</service>
 
 	</application>
     -->
