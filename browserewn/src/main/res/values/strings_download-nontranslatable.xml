@@ -12,7 +12,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<!-- site files -->
-	<string name="pref_default_download_dbfile" translatable="false" tools:keep="@string/pref_default_download_dbfile">sqlunet-ewn.db</string>
+	<string name="default_download_datapack_file" translatable="false" tools:keep="@string/pref_default_download_dbfile">sqlunet-ewn.db</string>
 	<string name="pref_default_download_sqlfile" translatable="false" tools:keep="@string/pref_default_download_sqlfile">sqlunet-ewn.sql.zip</string>
 	<string name="pref_default_entry_import" translatable="false" tools:keep="@string/pref_default_entry_import">sqlunet-ewn.sql</string>
 	<string name="pref_default_entry_index" translatable="false" tools:keep="@string/pref_default_entry_index">sqlunet-ewn-index.sql</string>
@@ -28,7 +28,7 @@
 	</string-array>
 
 	<!-- directory -->
-	<string name="pref_directory" translatable="false">https://sqlunet.github.io/resources/semantikos</string>
-	<string name="pref_directory_filter" translatable="false">^ewn.*$</string>
+	<string name="resouces_directory" translatable="false">https://sqlunet.github.io/resources/semantikos</string>
+	<string name="resources_directory_filter" translatable="false">^ewn.*$</string>
 
 </resources>
