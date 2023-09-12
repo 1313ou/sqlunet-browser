@@ -233,7 +233,7 @@ public class ContentDownloader extends Task<String, Void, String[]>
 		final Intent downloadIntent = new Intent(context, DownloadActivity.class);
 		downloadIntent.putExtra(AbstractDownloadFragment.DOWNLOAD_FROM_ARG, repo + '/' + target + ".zip");
 		downloadIntent.putExtra(AbstractDownloadFragment.DOWNLOAD_TO_ARG, cache + '/' + target + ".zip");
-		downloadIntent.putExtra(AbstractDownloadFragment.UNZIP_TO_ARG, datapackDir);
+		downloadIntent.putExtra(AbstractDownloadFragment.THEN_UNZIP_TO_ARG, datapackDir);
 		downloadIntent.putExtra(AbstractDownloadFragment.DOWNLOAD_DOWNLOADER_ARG, downloader);
 
 		downloadIntent.putExtra(AbstractDownloadFragment.BROADCAST_ACTION, downloadBroadcastAction);

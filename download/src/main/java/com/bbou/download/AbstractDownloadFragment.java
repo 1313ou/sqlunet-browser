@@ -112,7 +112,7 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	/**
 	 * Unzip to argument
 	 */
-	static public final String UNZIP_TO_ARG = "unzip_to";
+	static public final String THEN_UNZIP_TO_ARG = "unzip_to";
 
 	/**
 	 * Broadcast action
@@ -290,7 +290,7 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		final Bundle arguments = getArguments();
 		final String fromArg = arguments == null ? null : arguments.getString(DOWNLOAD_FROM_ARG);
 		final String toArg = arguments == null ? null : arguments.getString(DOWNLOAD_TO_ARG);
-		final String unzipToArg = arguments == null ? null : arguments.getString(UNZIP_TO_ARG);
+		final String unzipToArg = arguments == null ? null : arguments.getString(THEN_UNZIP_TO_ARG);
 		final String renameFromArg = arguments == null ? null : arguments.getString(RENAME_FROM_ARG);
 		final String renameToArg = arguments == null ? null : arguments.getString(RENAME_TO_ARG);
 

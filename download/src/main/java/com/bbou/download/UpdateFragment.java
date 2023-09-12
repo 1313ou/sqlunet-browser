@@ -21,7 +21,7 @@ import androidx.fragment.app.Fragment;
 
 import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
 import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_TO_ARG;
-import static com.bbou.download.BaseDownloadFragment.UNZIP_TO_ARG;
+import static com.bbou.download.BaseDownloadFragment.THEN_UNZIP_TO_ARG;
 
 /**
  * Update fragment.
@@ -155,7 +155,7 @@ public class UpdateFragment extends Fragment
 
 					final String downloadFromArg = intent.getStringExtra(DOWNLOAD_FROM_ARG);
 					final String downloadToArg = intent.getStringExtra(DOWNLOAD_TO_ARG);
-					final String unzipToArg = intent.getStringExtra(UNZIP_TO_ARG);
+					final String unzipToArg = intent.getStringExtra(THEN_UNZIP_TO_ARG);
 					assert downloadFromArg != null;
 					assert downloadToArg != null;
 					assert unzipToArg != null;
@@ -182,7 +182,7 @@ public class UpdateFragment extends Fragment
 	{
 		downloadIntent.putExtra(DOWNLOAD_FROM_ARG, downloadFromArg);
 		downloadIntent.putExtra(DOWNLOAD_TO_ARG, downloadToArg);
-		downloadIntent.putExtra(UNZIP_TO_ARG, unzipToArg);
+		downloadIntent.putExtra(THEN_UNZIP_TO_ARG, unzipToArg);
 		context.startActivity(downloadIntent);
 	}
 
