@@ -7,12 +7,17 @@ package org.sqlunet.browser;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.bbou.concurrency.TaskDialogObserver;
+import com.bbou.concurrency.TaskObserver;
 import com.bbou.donate.DonateActivity;
+import com.bbou.download.FileDataDownloader;
+import com.bbou.download.ResourcesDownloader;
 import com.bbou.others.OthersActivity;
 import com.bbou.rate.AppRate;
 
@@ -26,14 +31,12 @@ import org.sqlunet.browser.config.SetupAsset;
 import org.sqlunet.browser.config.SetupFileActivity;
 import org.sqlunet.browser.config.SetupFileFragment;
 import org.sqlunet.browser.config.StorageActivity;
-import com.bbou.concurrency.TaskDialogObserver;
-import com.bbou.concurrency.TaskObserver;
-import com.bbou.download.FileDataDownloader;
-import com.bbou.download.ResourcesDownloader;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.sql.SqlFormatter;
+
+import java.io.File;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,9 +45,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.PreferenceManager;
 
-import static org.sqlunet.browser.config.BaseSettingsActivity.INITIAL_ARG;
 import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_FROM_ARG;
 import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_TO_ARG;
+import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_RENAME_FROM_ARG;
+import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_RENAME_TO_ARG;
+import static com.bbou.download.DownloadZipFragment.DOWNLOAD_ENTRY_ARG;
+import static org.sqlunet.browser.config.BaseSettingsActivity.INITIAL_ARG;
 
 /**
  * Main activity stub
@@ -92,14 +98,12 @@ public class MenuHandler
 		}
 		else if (itemId == R.id.action_download)
 		{
-			intent = new Intent(activity, DownloadActivity.class);
-			intent.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadSource(activity));
-			intent.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadTarget(activity));
+			intent = DownloadActivity.makeIntent(activity);
 		}
 		else if (itemId == R.id.action_update)
 		{
 			BaseProvider.closeProviders(activity);
-			final String name = activity.getResources().getString(R.string.pref_default_download_dbfile);
+			final String name = activity.getResources().getString(R.string.default_download_datapack_file);
 			final String downloadSourceUrl = StorageSettings.getDbDownloadSource(activity);
 			final String downloadDest = StorageSettings.getDatabasePath(activity);
 			final String cache = StorageSettings.getCacheDir(activity);

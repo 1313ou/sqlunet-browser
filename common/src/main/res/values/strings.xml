@@ -35,10 +35,6 @@
 	<string name="action_logs">Logs</string>
 	<!-- setup -->
 	<string name="action_setup">Set up</string>
-	<!-- setup from file -->
-	<string name="action_copy_from_file">Copy database from &#8230;</string>
-	<string name="action_unzip_from_archive">Unzip database from &#8230;</string>
-	<string name="action_unzip_from_asset">Unzip database from asset</string>
 	<!-- database info -->
 	<string name="action_tables_and_indices">Tables and Indices</string>
 	<!-- file info -->
@@ -149,11 +145,11 @@
 	<string name="gloss_download">Download database from external site.</string>
 	<string name="gloss_asset_delivery_message">Database is being delivered as an asset pack.\nThis may take some time.</string>
 
-	<!-- service -->
-	<string name="service_downloader">service_downloader</string>
-	<string name="service_zip_downloader">service_zip_downloader</string>
-	<string name="description_service_downloader">Downloader Service</string>
-	<string name="description_service_zip_downloader">Zip Downloader Service</string>
+	<!-- downloader -->
+	<string name="downloader">downloader</string>
+	<string name="zip_downloader">zip_downloader</string>
+	<string name="description_downloader">Downloader</string>
+	<string name="description_zip_downloader">Zip Downloader</string>
 
 	<!-- misc -->
 	<string name="hint_search">Search</string>

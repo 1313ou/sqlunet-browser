@@ -146,9 +146,7 @@ public class SetupStatusFragment extends Fragment implements Updatable
 	protected void download()
 	{
 		final Context context = requireContext();
-		final Intent intent = new Intent(context, DownloadActivity.class);
-		intent.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadSource(context, Settings.Downloader.isZipDownloaderPref(context)));
-		intent.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadTarget(context));
+		final Intent intent = DownloadActivity.makeIntent(context);
 		this.activityResultLauncher.launch(intent);
 	}
 

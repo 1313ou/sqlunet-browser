@@ -14,13 +14,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import org.sqlunet.browser.common.R;
-import org.sqlunet.settings.StorageSettings;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
-import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_FROM_ARG;
-import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_TO_ARG;
 
 /**
  * Load fragment
@@ -54,9 +50,7 @@ public class LoadFragment extends Fragment
 		downloadButton.setOnClickListener((v) -> {
 
 			Activity activity = requireActivity();
-			final Intent intent = new Intent(activity, DownloadActivity.class);
-			intent.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadSource(activity));
-			intent.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadTarget(activity));
+			final Intent intent = DownloadActivity.makeIntent(activity);
 			intent.addFlags(0);
 			activity.startActivity(intent);
 		});

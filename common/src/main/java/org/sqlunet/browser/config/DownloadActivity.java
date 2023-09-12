@@ -4,6 +4,9 @@
 
 package org.sqlunet.browser.config;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -12,10 +15,20 @@ import android.view.MenuItem;
 import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.MenuHandler;
 import org.sqlunet.browser.common.R;
+import org.sqlunet.settings.Settings;
+import org.sqlunet.settings.StorageSettings;
+
+import java.io.File;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+
+import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_FROM_ARG;
+import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_TO_ARG;
+import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_RENAME_FROM_ARG;
+import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_RENAME_TO_ARG;
+import static com.bbou.download.DownloadZipFragment.DOWNLOAD_ENTRY_ARG;
 
 /**
  * Download activity
@@ -72,5 +85,30 @@ public class DownloadActivity extends com.bbou.download.DownloadActivity
 			return true;
 		}
 		return MenuHandler.menuDispatchWhenCantRun(this, item);
+	}
+
+	public static Intent makeIntent(@NonNull final Context context)
+	{
+		String dbSrc = StorageSettings.getDbDownloadSource(context);
+		String dbDest = StorageSettings.getDbDownloadTarget(context);
+		Intent intent = new Intent(context, DownloadActivity.class);
+		if ("DOWNLOAD".equals(Settings.getDownloaderPref(context)))
+		{
+			intent.putExtra(DOWNLOAD_FROM_ARG, dbSrc);
+			intent.putExtra(DOWNLOAD_TO_ARG, dbDest);
+		}
+		else
+		{
+			Uri src = Uri.parse(dbSrc);
+			String entry = src.getLastPathSegment();
+			File dest = new File(dbDest);
+			String name = dest.getName();
+			intent.putExtra(DOWNLOAD_FROM_ARG, dbSrc);
+			intent.putExtra(DOWNLOAD_ENTRY_ARG, entry);
+			intent.putExtra(DOWNLOAD_TO_ARG, dest.getParent());
+			intent.putExtra(DOWNLOAD_RENAME_FROM_ARG, entry);
+			intent.putExtra(DOWNLOAD_RENAME_TO_ARG, name);
+		}
+		return intent;
 	}
 }

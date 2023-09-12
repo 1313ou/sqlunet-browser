@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<resources>
+	<string name="pref_title_repo">Database repo</string>
+	<string name="pref_title_datapack_dir">Database directory</string>
+
+	<string name="pref_title_datapack_name">Database name</string>
+	<string name="pref_title_datapack_date">Database date</string>
+	<string name="pref_title_datapack_size">Database size</string>
+	<string name="pref_title_datapack_source">Database source</string>
+	<string name="pref_title_datapack_source_date">Database source date</string>
+	<string name="pref_title_datapack_source_size">Database source size</string>
+	<string name="pref_title_datapack_source_etag">Database source etag</string>
+	<string name="pref_title_datapack_source_version">Database source version</string>
+	<string name="pref_title_datapack_source_static_version">Database source static version</string>
+
+	<string name="pref_datapack_category">Database</string>
+
+	<string name="description_datapack_clear">Clear database info</string>
+
+</resources>

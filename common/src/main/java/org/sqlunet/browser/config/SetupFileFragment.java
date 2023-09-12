@@ -30,8 +30,8 @@ import androidx.fragment.app.FragmentActivity;
 import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_DOWNLOADER_ARG;
 import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
 import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_TO_ARG;
-import static com.bbou.download.BaseDownloadFragment.RENAME_FROM_ARG;
-import static com.bbou.download.BaseDownloadFragment.RENAME_TO_ARG;
+import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_RENAME_FROM_ARG;
+import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_RENAME_TO_ARG;
 import static com.bbou.download.BaseDownloadFragment.UNZIP_TO_ARG;
 
 /**
@@ -199,7 +199,7 @@ public class SetupFileFragment extends BaseTaskFragment
 						break;
 
 					case DOWNLOAD:
-						final Intent intent2 = new Intent(activity, DownloadActivity.class);
+						final Intent intent2 = new Intent(activity,  DownloadActivity.class);
 						intent2.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadSource(activity));
 						intent2.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadTarget(activity));
 						activity.startActivity(intent2);
@@ -211,8 +211,8 @@ public class SetupFileFragment extends BaseTaskFragment
 						intent3.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadZippedSource(activity));
 						intent3.putExtra(DOWNLOAD_TO_ARG, StorageSettings.getDbDownloadZippedTarget(activity));
 						intent3.putExtra(UNZIP_TO_ARG, StorageSettings.getDataDir(activity));
-						intent3.putExtra(RENAME_FROM_ARG, StorageSettings.getDbDownloadFile(activity));
-						intent3.putExtra(RENAME_TO_ARG, StorageSettings.getDatabaseName(activity));
+						intent3.putExtra(DOWNLOAD_RENAME_FROM_ARG, StorageSettings.getDbDownloadFile(activity));
+						intent3.putExtra(DOWNLOAD_RENAME_TO_ARG, StorageSettings.getDatabaseName(activity));
 						activity.startActivity(intent3);
 						break;
 

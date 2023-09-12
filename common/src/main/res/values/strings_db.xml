@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<resources>
+
+	<string name="action_copy_from_file">Copy database from …</string>
+	<string name="action_unzip_from_archive">Unzip database from …</string>
+	<string name="action_unzip_from_asset">Unzip database from asset</string>
+
+	<string name="description_download">Download database</string>
+
+	<string name="md5_none">No possible zipped database file in storage</string>
+	<string name="status_download_error_unavailable_download_url">Unavailable download url (database may be builtin)</string>
+
+</resources>

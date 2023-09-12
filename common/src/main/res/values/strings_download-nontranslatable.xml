@@ -4,6 +4,13 @@
 
 <resources>
 
-	<string name="pref_default_download_dbfile" translatable="false">sqlunet.db</string>
+	<!-- repo -->
+	<string name="default_download_repo" translatable="false">https://sqlunet.github.io/semantikos</string>
+	<string name="default_download_datapack_file" translatable="false">sqlunet.zip</string>
+	<string name="default_download_datapack_zipentry" translatable="false">sqlunet.db</string>
+
+	<!-- resources (repos) -->
+	<string name="resources_directory" translatable="false">https://sqlunet.github.io/resources/semantikos</string>
+	<string name="resources_directory_filter" translatable="false" />
 
 </resources>

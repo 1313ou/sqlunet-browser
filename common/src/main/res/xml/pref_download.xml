@@ -28,7 +28,7 @@
 		android:title="@string/pref_title_downloader" />
 
 	<EditTextPreference
-		android:defaultValue="@string/pref_default_download_dbfile"
+		android:defaultValue="@string/default_download_datapack_file"
 		android:key="pref_download_dbfile"
 		android:summary="@string/pref_description_download_dbfile"
 		android:title="@string/pref_title_download_dbfile" />

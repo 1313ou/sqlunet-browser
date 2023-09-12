@@ -121,13 +121,13 @@
 	<!-- Downloader -->
 	<string name="pref_title_downloader">Downloader</string>
 	<string-array name="pref_downloader_titles">
-		<item>Zip download service</item>
-		<item>Download service</item>
+		<item>Zip download</item>
+		<item>Download</item>
 	</string-array>
-	<string name="pref_default_downloader">DOWNLOAD_ZIP_SERVICE</string>
+	<string name="pref_default_downloader">DOWNLOAD_ZIP</string>
 	<string-array name="pref_downloader_values">
 		<item>@string/pref_default_downloader</item>
-		<item>DOWNLOAD_SERVICE</item>
+		<item>DOWNLOAD</item>
 	</string-array>
 	<string name="pref_description_downloader">Downloader</string>
 
