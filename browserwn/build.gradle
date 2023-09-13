@@ -81,13 +81,13 @@ dependencies {
     // local unit tests (JUnit 4 framework)
 
     // instrumented tests
-    androidTestImplementation project(path: ':common')
-    androidTestImplementation project(path: ':xNet')
-    androidTestImplementation project(path: ':wordNet')
-    androidTestImplementation project(path: ':bNC')
-    androidTestImplementation project(path: ':browserwncommon')
+    // androidTestImplementation project(path: ':common')
+    // androidTestImplementation project(path: ':xNet')
+    // androidTestImplementation project(path: ':wordNet')
+    // androidTestImplementation project(path: ':bNC')
+    // androidTestImplementation project(path: ':browserwncommon')
+    // androidTestImplementation project(path: ':nightmode')
     androidTestImplementation project(path: ':test')
-    androidTestImplementation project(path: ':nightmode')
     androidTestImplementation 'junit:junit:4.13.2'
     androidTestImplementation "androidx.annotation:annotation:$annotationVersion"
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
