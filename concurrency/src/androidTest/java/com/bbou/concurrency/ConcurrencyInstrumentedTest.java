@@ -1,10 +1,9 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>.
  */
 
 package com.bbou.concurrency;
 
-import com.bbou.concurrency.Task;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -28,7 +27,7 @@ public class ConcurrencyInstrumentedTest
 		final Task<Integer, String, Long> task = new Task<Integer, String, Long>()
 		{
 			@Override
-			protected Long doInBackground(@NonNull final Integer... params)
+			protected final Long doInBackground(@NonNull final Integer... params)
 			{
 				long s = 0;
 				for (Integer param : params)

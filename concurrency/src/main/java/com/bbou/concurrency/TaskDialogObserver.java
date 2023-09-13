@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>.
  */
 
 package com.bbou.concurrency;
@@ -184,7 +184,7 @@ public class TaskDialogObserver<Progress extends Number> extends TaskObserver.Ba
 			builder.setView(view);
 			builder.setNegativeButton(R.string.action_cancel, (dialog, whichButton) -> {
 
-				// canceled.
+				// cancelled.
 				boolean result = this.task != null && this.task.cancel(true);
 				Log.d(TAG, "Cancel task @" + (this.task == null ? "null" : Integer.toHexString(this.task.hashCode())) + ' ' + result);
 				this.dismiss();
