@@ -159,8 +159,7 @@ public class UpdateFragment extends Fragment
 					assert downloadFromArg != null;
 					assert downloadToArg != null;
 					assert unzipToArg != null;
-					final Intent downloadIntent;
-					downloadIntent =android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? intent.getParcelableExtra(DOWNLOAD_INTENT_ARG, Intent.class) : intent.getParcelableExtra(DOWNLOAD_INTENT_ARG);
+					final Intent downloadIntent = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? intent.getParcelableExtra(DOWNLOAD_INTENT_ARG, Intent.class) : intent.getParcelableExtra(DOWNLOAD_INTENT_ARG);
 					update(context, downloadFromArg, downloadToArg, unzipToArg, downloadIntent);
 					final Activity activity2 = getActivity();
 					if (activity2 != null)
