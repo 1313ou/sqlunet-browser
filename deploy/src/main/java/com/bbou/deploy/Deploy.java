@@ -7,6 +7,8 @@ package com.bbou.deploy;
 import android.net.Uri;
 import android.util.Log;
 
+import com.bbou.concurrency.Task;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,11 +22,13 @@ import java.nio.file.Paths;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 
 import androidx.annotation.NonNull;
@@ -39,10 +43,134 @@ public class Deploy
 	public interface InputStreamGetter
 	{
 		@NonNull
-		InputStream get(String path);
+		InputStream get(String path) throws IOException;
+	}
+
+	/**
+	 * Fast check data storage
+	 *
+	 * @param toDir dir (throws RuntimeException if operation cannot succeed)
+	 */
+	static public void fastCheck(@NonNull final File toDir)
+	{
+		if (!toDir.exists())
+		{
+			throw new RuntimeException("Does not exist " + toDir.getAbsolutePath());
+		}
+		if (!toDir.isDirectory())
+		{
+			throw new RuntimeException("Is not a directory " + toDir.getAbsolutePath());
+		}
+		final String[] dirContent = toDir.list();
+		if (dirContent == null || dirContent.length == 0)
+		{
+			throw new RuntimeException("Is empty " + toDir.getAbsolutePath());
+		}
+	}
+
+	/**
+	 * Check data storage
+	 *
+	 * @param toDir dir (throws RuntimeException if operation cannot succeed)
+	 */
+	static synchronized public void check(@NonNull final File toDir)
+	{
+		fastCheck(toDir);
+		md5(toDir);
+	}
+
+	/**
+	 * Deploy to data storage (throws RuntimeException if operation cannot succeed)
+	 *
+	 * @param toDir  dir
+	 * @param lang   default language, used if asset has to be expanded
+	 * @param getter input stream getter, used if asset has to be expanded
+	 * @return dir
+	 */
+	@NonNull
+	@SuppressWarnings("UnusedReturnValue")
+	static synchronized public File deploy(@NonNull final File toDir, @SuppressWarnings("SameParameterValue") final String lang, @NonNull final InputStreamGetter getter)
+	{
+		if (!toDir.exists())
+		{
+			//noinspection ResultOfMethodCallIgnored
+			toDir.mkdirs();
+		}
+		if (toDir.isDirectory())
+		{
+			final String[] dirContent = toDir.list();
+			if (dirContent == null || dirContent.length == 0)
+			{
+				// expand asset
+				expandZipFile(lang + ".zip", toDir, false, getter);
+			}
+
+			// check
+			md5(toDir);
+			return toDir;
+		}
+		throw new RuntimeException("Inconsistent dir " + toDir);
+	}
+
+	/**
+	 * Redeploy to data storage
+	 *
+	 * @param toDir  dir
+	 * @param lang   default language, used if asset has to be expanded
+	 * @param getter input stream getter, used if asset has to be expanded
+	 */
+	static synchronized public void redeploy(@NonNull final File toDir, @NonNull final String lang, @NonNull final InputStreamGetter getter)
+	{
+		emptyDirectory(toDir);
+		File[] dirContent = toDir.listFiles();
+		if (dirContent == null)
+		{
+			throw new RuntimeException("Null directory");
+		}
+		if (dirContent.length != 0)
+		{
+			throw new RuntimeException("Incomplete removal of previous data");
+		}
+
+		deploy(toDir, lang, getter);
+		dirContent = toDir.listFiles();
+		if (dirContent == null)
+		{
+			throw new RuntimeException("Null directory");
+		}
+		if (dirContent.length == 0)
+		{
+			throw new RuntimeException("Failed deployment of data for " + lang);
+		}
+		File tag = new File(toDir, lang);
+		if (!tag.exists())
+		{
+			throw new RuntimeException("Incomplete data (lang tag missing)" + lang);
+		}
 	}
 
 	// E X P A N D
+
+	/**
+	 * Expand asset file
+	 *
+	 * @param fromPath zip source path
+	 * @param flatten  flatten hierarchy (may lead to overwrites)
+	 * @param getter   input stream getter
+	 * @return uri of dest dir
+	 */
+	@Nullable
+	@SuppressWarnings({"UnusedReturnValue"})
+	static private Uri expandZipFile(final String fromPath, @NonNull final File toDir, @SuppressWarnings("SameParameterValue") final boolean flatten, @NonNull final InputStreamGetter getter)
+	{
+		//noinspection ResultOfMethodCallIgnored
+		toDir.mkdirs();
+		if (expandZip(fromPath, toDir.getAbsolutePath(), flatten, getter))
+		{
+			return Uri.fromFile(toDir);
+		}
+		return null;
+	}
 
 	/**
 	 * Expand file to path
@@ -140,6 +268,318 @@ public class Deploy
 		return toDir;
 	}
 
+	/**
+	 * Buffer size
+	 */
+	static private final int CHUNK_SIZE = 1024;
+
+	public interface Publisher
+	{
+		void publish(long current, long total);
+	}
+
+	/**
+	 * Copy from file
+	 *
+	 * @param srcFile     source file
+	 * @param destFile    destination file
+	 * @param task        async task
+	 * @param publisher   publisher
+	 * @param publishRate publish rate
+	 * @return true if successful
+	 */
+	static synchronized public boolean copyFromFile(@NonNull final String srcFile, final String destFile, @NonNull final Task<String, Long, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
+	{
+		Log.d(TAG, "Copying from " + srcFile + " to " + destFile);
+
+		File sourceFile = new File(srcFile);
+		long length = sourceFile.length();
+
+		try (FileInputStream is = new FileInputStream(srcFile); FileOutputStream os = new FileOutputStream(destFile))
+		{
+
+			final byte[] buffer = new byte[CHUNK_SIZE];
+			long byteCount = 0;
+			int chunkCount = 0;
+			int readCount;
+			while ((readCount = is.read(buffer)) != -1)
+			{
+				// write
+				os.write(buffer, 0, readCount);
+
+				// count
+				byteCount += readCount;
+				chunkCount++;
+
+				// publish
+				if ((chunkCount % publishRate) == 0)
+				{
+					publisher.publish(byteCount, length);
+				}
+
+				// interrupt/cancel hook
+				if (Thread.interrupted() || task.isCancelled() || Thread.interrupted())
+				{
+					//noinspection BreakStatement
+					break;
+				}
+			}
+			publisher.publish(byteCount, length);
+			return true;
+		}
+		catch (@NonNull final Exception e)
+		{
+			Log.e(TAG, "While copying", e);
+		}
+		return false;
+	}
+
+	/**
+	 * Unzip entries from archive
+	 *
+	 * @param srcArchive  source archive
+	 * @param destDir     destination dir
+	 * @param task        async task
+	 * @param publisher   publisher
+	 * @param publishRate publish rate
+	 * @return true if successful
+	 */
+	static synchronized public boolean unzipFromArchive(final String srcArchive, final String destDir, @NonNull final Task<String, Long, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
+	{
+		Log.d(TAG, "Expanding from " + srcArchive + " to " + destDir);
+
+		ZipFile zipFile = null;
+
+		try
+		{
+			// zip
+			zipFile = new ZipFile(srcArchive);
+			Enumeration<? extends ZipEntry> zipEntries = zipFile.entries();
+			while (zipEntries.hasMoreElements())
+			{
+				final ZipEntry zipEntry = zipEntries.nextElement();
+				// Log.d(TAG, "Expand zip entry  " + zipEntry.getName());
+				if (zipEntry.isDirectory())
+				{
+					continue;
+				}
+
+				// out
+				final File outFile = new File(destDir + '/' + zipEntry.getName());
+				// Log.d(TAG, outFile + " exist=" + outFile.exists());
+
+				// create all non exists folders else you will hit FileNotFoundException for compressed folder
+				final String parent = outFile.getParent();
+				if (parent != null)
+				{
+					final File dir = new File(parent);
+					boolean created = dir.mkdirs();
+					Log.d(TAG, "Created : " + dir + " result=" + created + " exists=" + dir.exists());
+				}
+
+				// input
+				try (InputStream is = zipFile.getInputStream(zipEntry); FileOutputStream os = new FileOutputStream(outFile))
+				{
+					long length = zipEntry.getSize();
+
+					// copy
+					final byte[] buffer = new byte[CHUNK_SIZE];
+					long byteCount = 0;
+					int chunkCount = 0;
+					int readCount;
+					while ((readCount = is.read(buffer)) != -1)
+					{
+						// write
+						os.write(buffer, 0, readCount);
+
+						// count
+						byteCount += readCount;
+						chunkCount++;
+
+						// publish
+						if ((chunkCount % publishRate) == 0)
+						{
+							publisher.publish(byteCount, length);
+						}
+
+						// interrupt/cancel hook
+						if (Thread.interrupted() || task.isCancelled())
+						{
+							//noinspection BreakStatement
+							break;
+						}
+					}
+					publisher.publish(byteCount, length);
+				}
+				catch (IOException e1)
+				{
+					Log.e(TAG, "While executing from archive", e1);
+				}
+				Log.d(TAG, "Created : " + outFile + " exists=" + outFile.exists());
+			}
+			return true;
+		}
+		catch (IOException e1)
+		{
+			Log.e(TAG, "While executing from archive", e1);
+		}
+		finally
+		{
+			if (zipFile != null)
+			{
+				try
+				{
+					zipFile.close();
+				}
+				catch (IOException e)
+				{
+					Log.e(TAG, "While closing archive", e);
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Unzip entry from archive
+	 *
+	 * @param srcArchive  source archive
+	 * @param srcEntry    source entry
+	 * @param destFile    destination file
+	 * @param task        async task
+	 * @param publisher   publisher
+	 * @param publishRate publish rate
+	 * @return true if successful
+	 */
+	static synchronized public boolean unzipEntryFromArchive(final String srcArchive, final String srcEntry, final String destFile, @NonNull final Task<String, Long, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
+	{
+		Log.d(TAG, "Expanding from " + srcArchive + " (entry " + srcEntry + ") to " + destFile);
+
+		ZipFile zipFile = null;
+		try
+		{
+			zipFile = new ZipFile(srcArchive);
+			final ZipEntry zipEntry = zipFile.getEntry(srcEntry);
+			if (zipEntry == null)
+			{
+				throw new IOException("Zip entry not found " + srcEntry);
+			}
+
+			try (InputStream is = zipFile.getInputStream(zipEntry); FileOutputStream os = new FileOutputStream(destFile))
+			{
+				long length = zipEntry.getSize();
+
+				final byte[] buffer = new byte[CHUNK_SIZE];
+				long byteCount = 0;
+				int chunkCount = 0;
+				int readCount;
+				while ((readCount = is.read(buffer)) != -1)
+				{
+					// write
+					os.write(buffer, 0, readCount);
+
+					// count
+					byteCount += readCount;
+					chunkCount++;
+
+					// publish
+					if ((chunkCount % publishRate) == 0)
+					{
+						publisher.publish(byteCount, length);
+					}
+
+					// interrupt/cancel hook
+					if (Thread.interrupted() || task.isCancelled())
+					{
+						//noinspection BreakStatement
+						break;
+					}
+				}
+				publisher.publish(byteCount, length);
+				return true;
+			}
+			catch (IOException e1)
+			{
+				Log.e(TAG, "While executing from archive", e1);
+			}
+		}
+		catch (IOException e)
+		{
+			return false;
+		}
+		finally
+		{
+			if (zipFile != null)
+			{
+				try
+				{
+					zipFile.close();
+				}
+				catch (IOException e)
+				{
+					Log.e(TAG, "While closing archive", e);
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * MD5 from file
+	 *
+	 * @param srcFile     source file
+	 * @param task        async task
+	 * @param publisher   publisher
+	 * @param publishRate publish rate
+	 * @return digest if successful
+	 */
+	@Nullable
+	static synchronized public String md5FromFile(@NonNull final String srcFile, @NonNull final Task<String, Long, String> task, @NonNull final Publisher publisher, final int publishRate)
+	{
+		Log.d(TAG, "MD5summing " + srcFile);
+		try
+		{
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			File sourceFile = new File(srcFile);
+			long length = sourceFile.length();
+			try (FileInputStream fis = new FileInputStream(srcFile); DigestInputStream dis = new DigestInputStream(fis, md))
+			{
+
+				final byte[] buffer = new byte[CHUNK_SIZE];
+				long byteCount = 0;
+				int chunkCount = 0;
+				@SuppressWarnings("UnusedAssignment") int readCount = 0;
+
+				// read decorated stream (dis) to EOF as normal
+				while ((readCount = dis.read(buffer)) != -1)
+				{
+					// count
+					byteCount += readCount;
+					chunkCount++;
+
+					// publish
+					if ((chunkCount % publishRate) == 0)
+					{
+						publisher.publish(byteCount, length);
+					}
+
+					// interrupt/cancel hook
+					if (Thread.interrupted() || task.isCancelled())
+					{
+						//noinspection BreakStatement
+						break;
+					}
+				}
+				byte[] digest = md.digest();
+				return digestToString(digest);
+			}
+		}
+		catch (@NonNull NoSuchAlgorithmException | IOException e)
+		{
+			return null;
+		}
+	}
+
 	// C O P Y
 
 	/**
@@ -220,7 +660,8 @@ public class Deploy
 		//noinspection IOStreamConstructor
 		try ( //
 		      InputStream is = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O ? Files.newInputStream(Paths.get(fromPath)) : new FileInputStream(fromPath); //
-		      OutputStream os = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O ? Files.newOutputStream(Paths.get(toPath)) : new FileOutputStream(toPath)) //
+		      OutputStream os = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O ? Files.newOutputStream(Paths.get(toPath)) : new FileOutputStream(toPath) //
+		)
 		{
 			copyStreams(is, os);
 			return true;
@@ -232,10 +673,10 @@ public class Deploy
 	}
 
 	/**
-	 * Copy in stream to out stream
+	 * Copy instream to outstream
 	 *
-	 * @param is in stream
-	 * @param os out stream
+	 * @param is instream
+	 * @param os outstream
 	 * @throws IOException io exception
 	 */
 	@SuppressWarnings("WeakerAccess")
@@ -249,6 +690,68 @@ public class Deploy
 		}
 	}
 
+	// D E L E T E
+
+	/**
+	 * Empty directory recursively.
+	 *
+	 * @param dir file.
+	 */
+	static synchronized public void emptyDirectory(@NonNull final File dir)
+	{
+		if (dir.isDirectory())
+		{
+			File[] childFiles = dir.listFiles();
+			if (childFiles != null && childFiles.length > 0)
+			{
+				// Directory has other files. Need to delete them first
+				for (File childFile : childFiles)
+				{
+					// Recursively delete the files
+					zap(childFile);
+				}
+			}
+		}
+		File[] dirContent = dir.listFiles();
+		if (dirContent == null)
+		{
+			throw new RuntimeException("Null directory");
+		}
+		if (dirContent.length != 0)
+		{
+			throw new RuntimeException("Cannot empty " + dir);
+		}
+	}
+
+	/**
+	 * Delete this file or dir recursively.
+	 *
+	 * @param file file.
+	 */
+	@SuppressWarnings("ResultOfMethodCallIgnored")
+	static private void zap(@NonNull final File file)
+	{
+		if (file.isDirectory())
+		{
+			File[] childFiles = file.listFiles();
+			if (childFiles != null && childFiles.length > 0)
+			{
+				// Directory has other files. Need to delete them first
+				for (File childFile : childFiles)
+				{
+					// Recursively delete the files
+					zap(childFile);
+				}
+			}
+			// Directory is empty.
+		}
+		//else
+		//{
+		// Regular file.
+		//}
+		file.delete();
+	}
+
 	// M D 5
 
 	static private final int MD5_CHUNK_SIZE = 1024;
@@ -258,7 +761,7 @@ public class Deploy
 	/**
 	 * Scan directory recursively (throws RuntimeException if anything goes wrong)
 	 *
-	 * @param dir dir.
+	 * @param dir dir
 	 */
 	static private void md5(@NonNull final File dir)
 	{
@@ -295,9 +798,9 @@ public class Deploy
 	}
 
 	/**
-	 * Empty directory recursively (throws RuntimeException if anything goes wrong)
+	 * Scan directory recursively (throws RuntimeException if anything goes wrong).
 	 *
-	 * @param file file.
+	 * @param file file
 	 */
 	static private void md5Scan(@NonNull final File file, @NonNull final Map<String, String> map)
 	{
@@ -385,63 +888,5 @@ public class Deploy
 			sb.append(Integer.toString((b & 0xff) + 0x100, 16).substring(1));
 		}
 		return sb.toString();
-	}
-
-	// D E L E T E
-
-	/**
-	 * Empty directory recursively.
-	 *
-	 * @param dir file.
-	 */
-	static synchronized public void emptyDirectory(@NonNull final File dir)
-	{
-		if (dir.isDirectory())
-		{
-			File[] childFiles = dir.listFiles();
-			if (childFiles != null && childFiles.length > 0)
-			{
-				// Directory has other files. Need to delete them first
-				for (File childFile : childFiles)
-				{
-					// Recursively delete the files
-					zap(childFile);
-				}
-			}
-		}
-		File[] dirContent = dir.listFiles();
-		if (dirContent == null)
-		{
-			throw new RuntimeException("Null directory");
-		}
-		if (dirContent.length != 0)
-		{
-			throw new RuntimeException("Cannot empty " + dir);
-		}
-	}
-
-	/**
-	 * Delete this file or dir recursively.
-	 *
-	 * @param file file.
-	 */
-	@SuppressWarnings("ResultOfMethodCallIgnored")
-	static private void zap(@NonNull final File file)
-	{
-		if (file.isDirectory())
-		{
-			File[] childFiles = file.listFiles();
-			if (childFiles != null && childFiles.length > 0)
-			{
-				// Directory has other files. Need to delete them first
-				for (File childFile : childFiles)
-				{
-					// Recursively delete the files
-					zap(childFile);
-				}
-			}
-			// Directory is empty.
-		}
-		file.delete();
 	}
 }
