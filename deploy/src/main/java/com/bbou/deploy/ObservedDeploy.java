@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>.
  */
 
 package com.bbou.deploy;
@@ -55,12 +55,13 @@ public class ObservedDeploy
 	 */
 	static synchronized public boolean copyFromUri(@NonNull final Uri srcUri, @NonNull final ContentResolver resolver, @NonNull final String destFile, @NonNull final Task<Uri, Number, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
 	{
-		Log.d(ObservedDeploy.TAG, "Copy from " + srcUri + " to " + destFile);
+		Log.d(TAG, "Copying from " + srcUri + " to " + destFile);
 
 		try ( //
 		      InputStream is = resolver.openInputStream(srcUri); //
 		      FileOutputStream os = new FileOutputStream(destFile)) //
 		{
+			assert is != null;
 			final byte[] buffer = new byte[CHUNK_SIZE];
 			long byteCount = 0;
 			int chunkCount = 0;
@@ -109,7 +110,7 @@ public class ObservedDeploy
 	 */
 	static synchronized public boolean copyFromFile(@NonNull final String srcFile, @NonNull final String destFile, @NonNull final Task<String, Number, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
 	{
-		Log.d(ObservedDeploy.TAG, "Copy from " + srcFile + " to " + destFile);
+		Log.d(TAG, "Copying from " + srcFile + " to " + destFile);
 
 		File sourceFile = new File(srcFile);
 		long length = sourceFile.length();
@@ -166,7 +167,7 @@ public class ObservedDeploy
 	 */
 	static synchronized public boolean unzipFromArchiveFile(@NonNull final String srcArchive, @NonNull final String destDir, @NonNull final Task<String, Number, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
 	{
-		Log.d(ObservedDeploy.TAG, "Expand from " + srcArchive + " to " + destDir);
+		Log.d(TAG, "Expanding from " + srcArchive + " to " + destDir);
 
 		try (ZipFile zipFile = new ZipFile(srcArchive))
 		{
@@ -174,7 +175,7 @@ public class ObservedDeploy
 			while (zipEntries.hasMoreElements())
 			{
 				final ZipEntry zipEntry = zipEntries.nextElement();
-				//Log.d(Deploy.TAG, "Expand zip entry  " + zipEntry.getName());
+				// Log.d(TAG, "Expanding zip entry  " + zipEntry.getName());
 				if (zipEntry.isDirectory())
 				{
 					continue;
@@ -190,7 +191,7 @@ public class ObservedDeploy
 				{
 					final File dir = new File(parent);
 					boolean created = dir.mkdirs();
-					Log.d(TAG, dir + " created=" + created + " exists=" + dir.exists());
+					Log.d(TAG, "Created : " + dir + " result=" + created + " exists=" + dir.exists());
 				}
 
 				// input
@@ -237,7 +238,7 @@ public class ObservedDeploy
 
 				if (outFile.exists())
 				{
-					Log.d(TAG, outFile + " exist=" + outFile.exists());
+					Log.d(TAG, "Created : " + outFile + " exists=" + outFile.exists());
 					long stamp = zipEntry.getTime();
 					//noinspection ResultOfMethodCallIgnored
 					outFile.setLastModified(stamp);
@@ -264,7 +265,7 @@ public class ObservedDeploy
 	 */
 	static synchronized public boolean unzipFromArchiveUri(@NonNull final Uri srcUri, @NonNull final ContentResolver resolver, @NonNull final String destDir, @NonNull final Task<Uri, Number, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
 	{
-		Log.d(ObservedDeploy.TAG, "Expand from " + srcUri + " to " + destDir);
+		Log.d(TAG, "Expanding from " + srcUri + " to " + destDir);
 
 		try ( //
 		      InputStream is = resolver.openInputStream(srcUri); //
@@ -274,7 +275,7 @@ public class ObservedDeploy
 			ZipEntry zipEntry;
 			while ((zipEntry = zis.getNextEntry()) != null)
 			{
-				//Log.d(Deploy.TAG, "Expand zip entry  " + zipEntry.getName());
+				// Log.d(TAG, "Expanding zip entry  " + zipEntry.getName());
 				if (zipEntry.isDirectory())
 				{
 					continue;
@@ -290,7 +291,7 @@ public class ObservedDeploy
 				{
 					final File dir = new File(parent);
 					boolean created = dir.mkdirs();
-					Log.d(TAG, dir + " created=" + created + " exists=" + dir.exists());
+					Log.d(TAG, "Created : " + dir + " result=" + created + " exists=" + dir.exists());
 				}
 
 				// input
@@ -335,7 +336,7 @@ public class ObservedDeploy
 
 				if (outFile.exists())
 				{
-					Log.d(TAG, outFile + " exist=" + outFile.exists());
+					Log.d(TAG, "Created : " + outFile + " exists=" + outFile.exists());
 					long stamp = zipEntry.getTime();
 					//noinspection ResultOfMethodCallIgnored
 					outFile.setLastModified(stamp);
@@ -363,7 +364,7 @@ public class ObservedDeploy
 	 */
 	static synchronized public boolean unzipEntryFromArchiveFile(@NonNull final String srcArchive, @NonNull final String srcEntry, @NonNull final String destFile, @NonNull final Task<String, Number, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
 	{
-		Log.d(ObservedDeploy.TAG, "Expand from " + srcArchive + " (entry " + srcEntry + ") to " + destFile);
+		Log.d(TAG, "Expanding from " + srcArchive + " (entry " + srcEntry + ") to " + destFile);
 
 		try (ZipFile zipFile = new ZipFile(srcArchive))
 		{
@@ -384,7 +385,7 @@ public class ObservedDeploy
 			{
 				final File dir = new File(parent);
 				boolean created = dir.mkdirs();
-				Log.d(TAG, dir + " created=" + created + " exists=" + dir.exists());
+				Log.d(TAG, "Created : " + dir + " result=" + created + " exists=" + dir.exists());
 			}
 
 			// unzip
@@ -431,7 +432,7 @@ public class ObservedDeploy
 			// inherit time stamp and return
 			if (outFile.exists())
 			{
-				Log.d(TAG, outFile + " exist=" + outFile.exists());
+				Log.d(TAG, "Created : " + outFile + " exist=" + outFile.exists());
 				long stamp = zipEntry.getTime();
 				//noinspection ResultOfMethodCallIgnored
 				outFile.setLastModified(stamp);
@@ -458,7 +459,7 @@ public class ObservedDeploy
 	 */
 	static synchronized public boolean unzipEntryFromArchiveUri(@NonNull final Uri srcUri, @NonNull final String srcEntry, @NonNull final ContentResolver resolver, @NonNull final String destFile, @NonNull final Task<Uri, Number, Boolean> task, @NonNull final Publisher publisher, final int publishRate)
 	{
-		Log.d(ObservedDeploy.TAG, "Expand from " + srcUri + " (entry " + srcEntry + ") to " + destFile);
+		Log.d(TAG, "Expanding from " + srcUri + " (entry " + srcEntry + ") to " + destFile);
 
 		try ( //
 		      InputStream is = resolver.openInputStream(srcUri); //
@@ -468,7 +469,7 @@ public class ObservedDeploy
 			ZipEntry zipEntry;
 			while ((zipEntry = zis.getNextEntry()) != null)
 			{
-				//Log.d(Deploy.TAG, "Expand zip entry  " + zipEntry.getName());
+				// Log.d(TAG, "Expanding zip entry  " + zipEntry.getName());
 				// entry
 				if (zipEntry.isDirectory())
 				{
@@ -489,7 +490,7 @@ public class ObservedDeploy
 				{
 					final File dir = new File(parent);
 					boolean created = dir.mkdirs();
-					Log.d(TAG, dir + " created=" + created + " exists=" + dir.exists());
+					Log.d(TAG, "Created : " + dir + " result=" + created + " exists=" + dir.exists());
 				}
 
 				// unzip
@@ -535,7 +536,7 @@ public class ObservedDeploy
 				// inherit time stamp and return
 				if (outFile.exists())
 				{
-					Log.d(TAG, outFile + " exist=" + outFile.exists());
+					Log.d(TAG, "Created : " + outFile + " exists=" + outFile.exists());
 					long stamp = zipEntry.getTime();
 					//noinspection ResultOfMethodCallIgnored
 					outFile.setLastModified(stamp);
