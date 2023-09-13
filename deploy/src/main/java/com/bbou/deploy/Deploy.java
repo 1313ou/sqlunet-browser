@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>.
  */
 
 package com.bbou.deploy;
@@ -117,11 +117,9 @@ public class Deploy
 							{
 								File dir = new File(parent);
 								boolean created = dir.mkdirs();
-								Log.d(TAG, dir + " created=" + created + " exists=" + dir.exists());
+								Log.d(TAG, "Created : " + dir + " result=" + created + " exists=" + dir.exists());
 							}
-							Log.d(TAG, "Unzipped : " + outFile);
-
-							// output
+							Log.d(TAG, "Created : " + outFile);
 
 							// copy
 							try (FileOutputStream os = new FileOutputStream(outFile))
