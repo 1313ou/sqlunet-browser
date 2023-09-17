@@ -20,8 +20,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_FROM_ARG;
-import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_TO_ARG;
 import static com.bbou.download.BaseDownloadFragment.THEN_UNZIP_TO_ARG;
+import static com.bbou.download.DownloadFragment.DOWNLOAD_TO_FILE_ARG;
 
 /**
  * Update fragment.
@@ -154,7 +154,7 @@ public class UpdateFragment extends Fragment
 				confirm(context, R.string.title_activity_update, R.string.askUpdate, () -> {
 
 					final String downloadFromArg = intent.getStringExtra(DOWNLOAD_FROM_ARG);
-					final String downloadToArg = intent.getStringExtra(DOWNLOAD_TO_ARG);
+					final String downloadToArg = intent.getStringExtra(DOWNLOAD_TO_FILE_ARG);
 					final String unzipToArg = intent.getStringExtra(THEN_UNZIP_TO_ARG);
 					assert downloadFromArg != null;
 					assert downloadToArg != null;
@@ -180,7 +180,7 @@ public class UpdateFragment extends Fragment
 	static private void update(@NonNull final Context context, @NonNull final String downloadFromArg, @NonNull final String downloadToArg, @NonNull final String unzipToArg, @NonNull final Intent downloadIntent)
 	{
 		downloadIntent.putExtra(DOWNLOAD_FROM_ARG, downloadFromArg);
-		downloadIntent.putExtra(DOWNLOAD_TO_ARG, downloadToArg);
+		downloadIntent.putExtra(DOWNLOAD_TO_FILE_ARG, downloadToArg);
 		downloadIntent.putExtra(THEN_UNZIP_TO_ARG, unzipToArg);
 		context.startActivity(downloadIntent);
 	}

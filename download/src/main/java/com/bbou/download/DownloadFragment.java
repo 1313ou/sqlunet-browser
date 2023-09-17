@@ -4,27 +4,30 @@
 
 package com.bbou.download;
 
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
-import java.util.UUID;
+import com.bbou.concurrency.ObservedDelegatingTask;
+import com.bbou.concurrency.Task;
+import com.bbou.concurrency.TaskDialogObserver;
+import com.bbou.concurrency.TaskObserver;
+import com.bbou.deploy.Deploy;
+
+import java.io.File;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.work.Data;
-import androidx.work.WorkInfo;
-import androidx.work.WorkInfo.State;
-
+import androidx.fragment.app.FragmentActivity;
 
 /**
- * Download Work fragment.
+ * Download fragment using DownloadWork.
  * Interface between work and activity.
  * Cancel messages are to be sent to this fragment's receiver.
  * Signals completion through the OnComplete callback in the activity.
@@ -39,93 +42,40 @@ public class DownloadFragment extends BaseDownloadFragment
 	/**
 	 * Log tag
 	 */
-	static protected final String TAG = "DownloadF";
-
-	// S T A T U S
+	static private final String TAG = "DownloadF";
 
 	/**
-	 * Result
+	 * To argument
+	 */
+	static public final String DOWNLOAD_TO_FILE_ARG = "download_to_file";
+
+	/**
+	 * Destination file or dir
 	 */
 	@Nullable
-	protected Boolean success;
+	private File toFile;
 
 	/**
-	 * Cancel pending
-	 */
-	protected boolean cancel;
-
-	/**
-	 * Cause
+	 * Unzip dir
 	 */
 	@Nullable
-	protected String cause;
+	private File unzipDir;
 
-	/**
-	 * Exception
-	 */
-	@Nullable
-	protected String exception;
+	// A R G U M E N T S
 
-	/**
-	 * Downloading flag (prevents re-entrance)
-	 */
-	protected boolean downloading = false;
-
-	/**
-	 * Downloaded progress when status was read
-	 */
-	long progressDownloaded = 0;
-
-	/**
-	 * Total progress when status was read
-	 */
-	long progressTotal = 0;
-
-	// L A Y O U T
-
-	/**
-	 * Layout
-	 */
-	@Override
-	protected int getResId()
+	protected void unmarshal()
 	{
-		return R.layout.fragment_download;
-	}
+		// arguments
+		final Bundle arguments = getArguments();
+		final String toFileArg = arguments == null ? null : arguments.getString(DOWNLOAD_TO_FILE_ARG);
+		final String unzipToArg = arguments == null ? null : arguments.getString(THEN_UNZIP_TO_ARG);
 
-	// L I F E C Y C L E
-
-	@Override
-	public void onCreate(final Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-
-		// main receiver
-		Log.d(TAG, "Register main receiver");
-
-		final IntentFilter intentFilter = new IntentFilter();
-		intentFilter.addAction(ACTION_DOWNLOAD_CANCEL);
-		intentFilter.addCategory(Intent.CATEGORY_DEFAULT);
-
-		ContextCompat.registerReceiver(requireContext(), this.cancelReceiver, intentFilter, ContextCompat.RECEIVER_NOT_EXPORTED);
-
-		// notifications
-		Notifier.initChannels(requireContext());
-	}
-
-	@Override
-	public void onDestroy()
-	{
-		super.onDestroy();
-
-		// main receiver
-		Log.d(TAG, "Unregister main receiver");
-		requireContext().unregisterReceiver(this.cancelReceiver);
+		// download dest data
+		this.toFile = toFileArg != null ? new File(toFileArg) : null;
+		this.unzipDir = unzipToArg != null ? new File(unzipToArg) : null;
 	}
 
 	// C O N T R O L
-
-	@Nullable
-	protected UUID uuid;
 
 	/**
 	 * Start download
@@ -149,8 +99,8 @@ public class DownloadFragment extends BaseDownloadFragment
 				// args
 				final String from = this.downloadUrl;
 				assert from != null;
-				assert this.downloadedFile != null;
-				final String to = this.downloadedFile.getAbsolutePath();
+				assert this.toFile != null;
+				final String to = this.toFile.getAbsolutePath();
 
 				// start job
 				start(from, to);
@@ -175,254 +125,46 @@ public class DownloadFragment extends BaseDownloadFragment
 		this.uuid = DownloadWork.startWork(requireContext(), fromUrl, toFile, this, observer);
 	}
 
-	/**
-	 * Cancel download
-	 */
-	protected void cancel()
-	{
-		this.cancel = true;
-		if (this.uuid != null)
-		{
-			DownloadWork.stopWork(requireContext(), uuid);
-		}
-	}
-
-	@Override
-	protected void show()
-	{
-	}
-
-	// S T A T U S
+	// L A Y O U T
 
 	/**
-	 * Download status translation to the abstract layer
-	 *
-	 * @param progress container to return progress as well
+	 * Layout
 	 */
 	@Override
-	synchronized protected Status getStatus(@Nullable final Progress progress)
+	protected int getResId()
 	{
-		// progress
-		if (progress != null)
-		{
-			progress.downloaded = this.progressDownloaded;
-			progress.total = this.progressTotal;
-		}
+		return R.layout.fragment_download;
+	}
 
-		// status
-		if (this.cancel)
+	// S E T   D E S T I N A T I O N
+
+	protected void setDestination(@NonNull final View view)
+	{
+		final TextView targetView = view.findViewById(R.id.target);
+		final TextView targetView2 = view.findViewById(R.id.target2);
+		final TextView targetView3 = view.findViewById(R.id.target3);
+		final TextView targetView4 = view.findViewById(R.id.target4);
+		final TextView targetView5 = view.findViewById(R.id.target5);
+		if (targetView2 != null && targetView3 != null)
 		{
-			return Status.STATUS_CANCELLED;
-		}
-		else if (this.downloading)
-		{
-			return Status.STATUS_RUNNING;
+			targetView3.setText(this.toFile != null ? this.toFile.getName() : "");
+			File parent = this.toFile != null ? this.toFile.getParentFile() : null;
+			targetView2.setText(parent != null ? parent.getName() : "");
+			targetView.setText(parent != null ? parent.getParent() : "");
 		}
 		else
 		{
-			if (this.success == null)
-			{
-				return Status.STATUS_PENDING;
-			}
-			else
-			{
-				return this.exception == null && this.success ? Status.STATUS_SUCCEEDED : Status.STATUS_FAILED;
-			}
+			targetView.setText(this.toFile != null ? this.toFile.getAbsolutePath() : "");
+		}
+		if (targetView4 != null && targetView5 != null && this.unzipDir != null)
+		{
+			String deployTo = getString(R.string.deploy_dest, this.unzipDir.getParent());
+			targetView4.setText(deployTo);
+			targetView5.setText(this.unzipDir.getName());
 		}
 	}
 
-	/**
-	 * Download reason
-	 */
-	@Nullable
-	@Override
-	protected String getReason()
-	{
-		if (this.exception != null)
-		{
-			return this.exception;
-		}
-		if (this.cause != null)
-		{
-			return this.cause;
-		}
-		return null;
-	}
-
-	// O B S E R V E
-
-	protected final androidx.lifecycle.Observer<WorkInfo> observer = (wi) -> {
-
-		// progress
-		if (this.downloading) // drop event if not
-		{
-			Data data = wi.getProgress();
-			progressDownloaded = data.getLong(DownloadWork.PROGRESS, 0);
-			progressTotal = data.getLong(DownloadWork.TOTAL, 0);
-			float progress = (float) progressDownloaded / progressTotal;
-			fireNotification(requireContext(), notificationId, Notifier.NotificationType.UPDATE, progress);
-			Log.d(TAG, "Observed progress " + progressDownloaded + '/' + progressTotal);
-		}
-
-		// state
-		State state = wi.getState();
-		switch (state)
-		{
-			// the WorkRequest is enqueued and eligible to run when its Constraints are met and resources are available
-			case ENQUEUED:
-				Log.d(TAG, "Observed enqueued");
-				break;
-
-			// the WorkRequest is currently being executed.
-			case RUNNING:
-				Log.d(TAG, "Observed running");
-				this.downloading = true; // confirm
-				fireNotification(requireContext(), notificationId, Notifier.NotificationType.START);
-				break;
-
-			// the WorkRequest has completed in a successful state.
-			case SUCCEEDED:
-				Log.d(TAG, "Observed succeeded");
-
-				// state
-				this.downloading = false;
-				this.success = true;
-				this.exception = null;
-				this.cause = null;
-
-				// record
-				final Data data = wi.getOutputData();
-				final String fromUrl = data.getString(DownloadWork.ARG_FROM);
-				final long date = data.getLong(DownloadWork.DATE, -1);
-				final long size = data.getLong(DownloadWork.SIZE, -1);
-				final String etag = data.getString(DownloadWork.ETAG);
-				final String version = data.getString(DownloadWork.VERSION);
-				final String staticVersion = data.getString(DownloadWork.STATIC_VERSION);
-				Settings.recordDatapackSource(requireContext(), fromUrl, date, size, etag, version, staticVersion);
-
-				// fire notification
-				fireNotification(requireContext(), notificationId, Notifier.NotificationType.FINISH, true);
-
-				// fire onDone
-				onDone(Status.STATUS_SUCCEEDED);
-				break;
-
-			// the WorkRequest has completed in a failure state.
-			// All dependent work will also be marked as {@code #FAILED} and will never run.
-			case FAILED:
-				Log.d(TAG, "Observed failed");
-
-				// state
-				this.downloading = false; // release
-				final Data errData = wi.getOutputData();
-				this.success = false;
-				this.exception = errData.getString(DownloadWork.EXCEPTION);
-				this.cause = errData.getString(DownloadWork.EXCEPTION_CAUSE);
-
-				// fire notification
-				fireNotification(requireContext(), notificationId, Notifier.NotificationType.FINISH, false);
-
-				// fire onDone
-				onDone(Status.STATUS_FAILED);
-				break;
-
-			// the WorkRequest is currently blocked because its prerequisites haven't finished successfully.
-			case BLOCKED:
-				Log.d(TAG, "Observed block");
-				break;
-
-			// the WorkRequest has been cancelled and will not execute.
-			// All dependent work will also be marked as #CANCELLED and will not run.
-			case CANCELLED:
-				Log.d(TAG, "Observed cancel");
-
-				// state
-				this.downloading = false;
-				this.success = false;
-				this.cancel = true;
-				this.exception = null;
-				this.cause = null;
-
-				// fire notification
-				fireNotification(requireContext(), notificationId, Notifier.NotificationType.CANCEL, false);
-
-				// fire onDone
-				onDone(Status.STATUS_CANCELLED);
-				break;
-		}
-	};
-
-	// C A N C E L   B R O A D C A S T / R E C E I V E R
-
-	public static final String ACTION_DOWNLOAD_CANCEL = "action_cancel_download";
-
-	/**
-	 * Broadcast receiver for cancel events
-	 */
-	@NonNull
-	private final BroadcastReceiver cancelReceiver = new BroadcastReceiver()
-	{
-		@Override
-		public void onReceive(final Context context, @NonNull final Intent intent)
-		{
-
-			Log.d(TAG, "Received broadcast request");
-			String action = intent.getAction();
-			if (ACTION_DOWNLOAD_CANCEL.equals(action))
-			{
-				Log.d(TAG, "Received cancel broadcast request");
-
-				// do
-				cancel();
-			}
-		}
-	};
-
-	public static Intent makeCancelIntent(@NonNull final Context context, int notificationId)
-	{
-		final Intent intent = new Intent();
-		intent.setPackage(context.getApplicationContext().getPackageName());
-		intent.setAction(ACTION_DOWNLOAD_CANCEL);
-		intent.addCategory(Intent.CATEGORY_DEFAULT);
-		intent.putExtra(DownloadFragment.NOTIFICATION_ID, notificationId);
-		return intent;
-	}
-
-	public static PendingIntent makePendingIntent(@NonNull final Context context, @NonNull final Intent intent)
-	{
-		final int uid = (int) System.currentTimeMillis();
-		final int flags = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M ? //
-				PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_CANCEL_CURRENT : //
-				PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_CANCEL_CURRENT;
-		return PendingIntent.getBroadcast(context, uid, intent, flags);
-	}
-
-	public static void requestCancel(@NonNull final Context context, int notificationId)
-	{
-		Intent intent = DownloadFragment.makeCancelIntent(context, notificationId);
-		Log.d(TAG, "Sending cancel request (broadcast intent)");
-		context.sendBroadcast(intent);
-	}
-
-	public static void requestPendingCancel(@NonNull final Context context, int notificationId)
-	{
-		try
-		{
-			Intent intent = DownloadFragment.makeCancelIntent(context, notificationId);
-			PendingIntent pendingIntent = DownloadFragment.makePendingIntent(context, intent);
-			Log.d(TAG, "Pending intent " + pendingIntent);
-			Log.d(TAG, "Pending intent creator package " + pendingIntent.getCreatorPackage());
-			Log.d(TAG, "Sending cancel request (sent pending intent)");
-			// pendingIntent.send();
-			pendingIntent.send(1313, (pendingIntent1, intent1, resultCode, resultData, resultExtras) -> Log.d(TAG, "Sent pending intent " + resultCode), null);
-		}
-		catch (PendingIntent.CanceledException e)
-		{
-			throw new RuntimeException(e);
-		}
-	}
-
-	// H E L P E R
+	// A B S T R A C T
 
 	/**
 	 * Cleanup download
@@ -433,17 +175,224 @@ public class DownloadFragment extends BaseDownloadFragment
 	{
 	}
 
+	// D E P L O Y
+
+	/**
+	 * Deploy
+	 */
+	@Override
+	protected void deploy()
+	{
+		// guard against no downloaded file
+		if (this.toFile == null)
+		{
+			Log.e(TAG, "Deploy failure: no downloaded file");
+			return;
+		}
+
+		// guard against no unzip dir
+		if (this.unzipDir == null)
+		{
+			String datapackDir = Settings.getDatapackDir(requireContext());
+			this.unzipDir = datapackDir == null ? null : new File(datapackDir);
+		}
+		if (this.unzipDir == null)
+		{
+			Log.e(TAG, "Null datapack dir, aborting deployment");
+			return;
+		}
+
+		// log
+		Log.d(TAG, "Deploying " + this.toFile + " to " + this.unzipDir);
+
+		// make sure unzip directory is clean
+		Deploy.emptyDirectory(this.unzipDir);
+
+		// kill request
+		if (this.requestKill != null)
+		{
+			this.requestKill.run();
+		}
+
+		// observer to proceed with record, cleanup and broadcast on successful task termination
+		final TaskObserver.BaseObserver<Number> unzipObserver = new TaskObserver.BaseObserver<Number>() // guarded, level 1
+		{
+			@Override
+			public void taskFinish(final boolean success)
+			{
+				super.taskFinish(success);
+
+				if (success && DownloadFragment.this.toFile != null)
+				{
+					// record and delete downloaded file
+					// downloadedFile might become null within task
+					//noinspection ConstantConditions
+					if (DownloadFragment.this.toFile != null)
+					{
+						if (DownloadFragment.this.renameFrom != null && DownloadFragment.this.renameTo != null && !DownloadFragment.this.renameFrom.equals(DownloadFragment.this.renameTo))
+						{
+							// rename
+							final File renameFromFile = new File(DownloadFragment.this.unzipDir, DownloadFragment.this.renameFrom);
+							final File renameToFile = new File(DownloadFragment.this.unzipDir, DownloadFragment.this.renameTo);
+							boolean result2 = renameFromFile.renameTo(renameToFile);
+							Log.d(TAG, "Rename " + renameFromFile + " to " + renameToFile + " : " + result2);
+						}
+
+						// record
+						FileData.recordDatapack(requireContext(), DownloadFragment.this.toFile);
+
+						// cleanup
+						//noinspection ResultOfMethodCallIgnored
+						DownloadFragment.this.toFile.delete();
+					}
+
+					// new datapack
+					if (DownloadFragment.this.requestNew != null)
+					{
+						DownloadFragment.this.requestNew.run();
+					}
+				}
+
+				// signal
+				onComplete(success);
+			}
+		};
+
+		// unzip as base task
+		assert this.unzipDir != null;
+		final Task<String, Number, Boolean> baseTask = new FileAsyncTask(unzipObserver, null, 1000).unzipFromArchiveFile(this.unzipDir.getAbsolutePath());
+
+		// run task
+		final Activity activity = getActivity();
+		if (activity == null || isDetached() || activity.isFinishing() || activity.isDestroyed())
+		{
+			// guard against finished/destroyed activity
+			assert this.toFile != null;
+			assert this.unzipDir != null;
+			baseTask.execute(this.toFile.getAbsolutePath(), this.unzipDir.getAbsolutePath());
+		}
+		else
+		{
+			// augment with a dialog observer if fragment is live
+			assert this.toFile != null;
+			final TaskObserver.Observer<Number> fatObserver = new TaskDialogObserver<>(getParentFragmentManager()) // guarded, level 1
+					.setTitle(requireContext().getString(R.string.action_unzip_from_archive)) //
+					.setMessage(this.toFile.getName());
+			final Task<String, Number, Boolean> task = new ObservedDelegatingTask<>(baseTask, fatObserver);
+			task.execute(this.toFile.getAbsolutePath(), this.unzipDir.getAbsolutePath());
+		}
+	}
+
+	// M D 5
+
+	/**
+	 * MD5 check
+	 */
+	protected void md5()
+	{
+		final String from = this.sourceUrl + ".md5";
+		final Uri uri = Uri.parse(this.sourceUrl);
+		final String sourceFile = uri.getLastPathSegment();
+		final String targetFile = this.toFile == null ? "?" : this.toFile.getName();
+		new MD5Downloader(downloadedResult -> {
+
+			final FragmentActivity activity = getActivity();
+			if (activity == null || isDetached() || activity.isFinishing() || activity.isDestroyed())
+			{
+				return;
+			}
+
+			if (downloadedResult == null)
+			{
+				new AlertDialog.Builder(activity) // guarded, level 2
+						.setTitle(getString(R.string.action_md5) + " of " + targetFile) //
+						.setMessage(R.string.status_task_failed) //
+						.show();
+			}
+			else
+			{
+				assert this.toFile != null;
+				final String localPath = this.toFile.getAbsolutePath();
+
+				MD5AsyncTaskChooser.md5(activity, localPath, result -> {
+
+					final Activity activity2 = getActivity();
+					if (activity2 != null && !isDetached() && !activity2.isFinishing() && !activity2.isDestroyed())
+					{
+						boolean success = downloadedResult.equals(result);
+						final SpannableStringBuilder sb = new SpannableStringBuilder();
+						Report.appendHeader(sb, getString(R.string.md5_downloaded));
+						sb.append('\n');
+						sb.append(downloadedResult);
+						sb.append('\n');
+						Report.appendHeader(sb, getString(R.string.md5_computed));
+						sb.append('\n');
+						sb.append(result == null ? getString(R.string.status_task_failed) : result);
+						sb.append('\n');
+						Report.appendHeader(sb, getString(R.string.md5_compared));
+						sb.append('\n');
+						sb.append(getString(success ? R.string.status_task_success : R.string.status_task_failed));
+
+						new AlertDialog.Builder(activity2) // guarded, level 3
+								.setTitle(getString(R.string.action_md5_of_file) + ' ' + targetFile) //
+								.setMessage(sb) //
+								.show();
+					}
+				});
+			}
+		}).execute(from, sourceFile);
+	}
+
+	// E V E N T S
+
+	/**
+	 * Event sink for download events fired by downloader
+	 *
+	 * @param status download status
+	 */
+	@Override
+	void onDone(final Status status)
+	{
+		Log.d(TAG, "OnDone " + status);
+
+		//super.onDone(status);
+
+		// register if this is the datapack
+		if (status == Status.STATUS_SUCCEEDED)
+		{
+			if (this.toFile != null)
+			{
+				Settings.recordDatapackFile(requireContext(), this.toFile);
+			}
+		}
+		boolean requiresDeploy = this.unzipDir != null;
+
+		// UI
+		requireActivity().runOnUiThread(() -> {
+
+			endUI(status);
+
+			// md5
+			this.md5Button.setVisibility(status == Status.STATUS_SUCCEEDED ? View.VISIBLE : View.GONE);
+
+			// deploy button to complete task
+			this.deployButton.setVisibility(status == Status.STATUS_SUCCEEDED && requiresDeploy ? View.VISIBLE : View.GONE);
+		});
+
+		// invalidate
+		if (status != Status.STATUS_SUCCEEDED)
+		{
+			this.toFile = null;
+		}
+
+		// complete
+		if (status != Status.STATUS_SUCCEEDED || !requiresDeploy)
+		{
+			onComplete(status == Status.STATUS_SUCCEEDED);
+		}
+	}
+
 	// N O T I F I C A T I O N
-
-	/**
-	 * Notification id key
-	 */
-	static public final String NOTIFICATION_ID = "notification_id";
-
-	/**
-	 * Id for the current notification
-	 */
-	static private int notificationId = 0;
 
 	/**
 	 * Fire UI notification
@@ -456,7 +405,7 @@ public class DownloadFragment extends BaseDownloadFragment
 	protected void fireNotification(@NonNull final Context context, int notificationId, @NonNull final Notifier.NotificationType type, final Object... args)
 	{
 		final String from = Uri.parse(this.downloadUrl).getHost();
-		final String to = this.downloadedFile == null ? context.getString(R.string.result_deleted) : this.downloadedFile.getName();
+		final String to = this.toFile == null ? context.getString(R.string.result_deleted) : this.toFile.getName();
 		String contentText = from + '→' + to;
 		Notifier.fireNotification(context, notificationId, type, contentText, args);
 	}

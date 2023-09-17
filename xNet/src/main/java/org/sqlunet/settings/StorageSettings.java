@@ -71,12 +71,11 @@ public class StorageSettings
 	/**
 	 * Get database name
 	 *
-	 * @param context context
 	 * @return database name
 	 */
 	@NonNull
 	@SuppressWarnings("SameReturnValue")
-	static public String getDatabaseName(@NonNull final Context context)
+	static public String getDatabaseName()
 	{
 		return Storage.DBFILE;
 	}
@@ -93,6 +92,18 @@ public class StorageSettings
 	static public String getCacheDir(@NonNull final Context context)
 	{
 		return Storage.getCacheDir(context);
+	}
+
+	/**
+	 * Get data cache temp file
+	 *
+	 * @param context context
+	 * @return data cache
+	 */
+	@NonNull
+	static public String getCacheZipFile(@NonNull final Context context)
+	{
+		return Storage.getCacheDir(context) + File.separatorChar + "temp.zip";
 	}
 
 	// D O W N L O A D
@@ -115,7 +126,7 @@ public class StorageSettings
 		}
 
 		// set to default value
-		value = context.getResources().getString(R.string.pref_default_download_site_url);
+		value = context.getResources().getString(R.string.default_download_site_url);
 
 		// store value in preferences
 		sharedPref.edit().putString(StorageSettings.PREF_DOWNLOAD_SITE, value).apply();
@@ -143,7 +154,7 @@ public class StorageSettings
 		}
 
 		// set to default value
-		value = context.getResources().getString(R.string.pref_default_download_dbfile);
+		value = context.getResources().getString(R.string.default_download_datapack_file);
 
 		// store value in preferences
 		sharedPref.edit().putString(StorageSettings.PREF_DOWNLOAD_DBFILE, value).apply();

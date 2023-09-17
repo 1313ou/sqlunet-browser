@@ -6,15 +6,17 @@
 
 	<string name="pref_header_download">Download</string>
 
-	<string name="pref_title_downloader">Downloader</string>
-	<string name="pref_default_downloader">DOWNLOAD</string>
-	<string-array name="pref_downloader_values">
-		<item>@string/pref_default_downloader</item>
+	<string name="title_downloader">Downloader</string>
+	<string name="default_downloader">DOWNLOAD</string>
+	<string-array name="downloader_values">
+		<item>@string/default_downloader</item>
 		<item>DOWNLOAD_ZIP</item>
+		<item>DOWNLOAD_ZIP_THEN_UNZIP</item>
 	</string-array>
-	<string-array name="pref_downloader_titles">
-		<item>Download worker</item>
-		<item>Download Zip Worker</item>
+	<string-array name="downloader_titles">
+		<item>Download</item>
+		<item>Download zipped stream and unzip</item>
+		<item>Download zipped data then unzip</item>
 	</string-array>
 
 	<string name="pref_title_repo">Datapack repo</string>

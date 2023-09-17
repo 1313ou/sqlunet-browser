@@ -5,13 +5,11 @@
 package com.bbou.download;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,23 +20,57 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.File;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 
 /**
- * Download activity
+ * Proto aownload fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 abstract public class AbstractDownloadFragment extends Fragment implements View.OnClickListener
 {
 	static private final String TAG = "AbstractDownloadF";
+
+	// A R G U M E N T   K E Y S
+
+	/**
+	 * Downloader argument
+	 */
+	static public final String DOWNLOAD_DOWNLOADER_ARG = "download_downloader";
+
+	/**
+	 * From argument
+	 */
+	static public final String DOWNLOAD_FROM_ARG = "download_from";
+
+	/**
+	 * Rename from argument
+	 */
+	static public final String RENAME_FROM_ARG = "rename_from";
+
+	/**
+	 * Rename to argument
+	 */
+	static public final String RENAME_TO_ARG = "rename_to";
+
+	/**
+	 * Unzip to argument
+	 */
+	static public final String THEN_UNZIP_TO_ARG = "unzip_to";
+
+	/**
+	 * Rename from argument
+	 */
+	static public final String DOWNLOAD_RENAME_FROM_ARG = "rename_from";
+
+	/**
+	 * Rename to argument
+	 */
+	static public final String DOWNLOAD_RENAME_TO_ARG = "rename_to";
 
 	// S T A T E   K E Y S
 
@@ -82,37 +114,7 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	 */
 	static private final String PROGRESS_STATUS_STATE = "progress_status_state";
 
-	// A R G U M E N T S
-
-	/**
-	 * Downloader argument
-	 */
-	static public final String DOWNLOAD_DOWNLOADER_ARG = "download_downloader";
-
-	/**
-	 * From argument
-	 */
-	static public final String DOWNLOAD_FROM_ARG = "download_from";
-
-	/**
-	 * To argument
-	 */
-	static public final String DOWNLOAD_TO_ARG = "download_to";
-
-	/**
-	 * Rename from argument
-	 */
-	static public final String RENAME_FROM_ARG = "rename_from";
-
-	/**
-	 * Rename to argument
-	 */
-	static public final String RENAME_TO_ARG = "rename_to";
-
-	/**
-	 * Unzip to argument
-	 */
-	static public final String THEN_UNZIP_TO_ARG = "unzip_to";
+	// B R O A C A S T
 
 	/**
 	 * Broadcast action
@@ -204,13 +206,6 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	protected String sourceUrl;
 
 	/**
-	 * Destination file
-	 */
-	@SuppressWarnings("WeakerAccess")
-	@Nullable
-	protected File downloadedFile;
-
-	/**
 	 * Rename source
 	 */
 	@Nullable
@@ -222,62 +217,52 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	@Nullable
 	protected String renameTo;
 
-	/**
-	 * Unzip dir
-	 */
-	@Nullable
-	protected File unzipDir;
-
 	// W I D G E T S
 
 	/**
 	 * Progress bar
 	 */
-	private ProgressBar progressBar;
+	protected ProgressBar progressBar;
 
 	/**
 	 * Progress status view
 	 */
-	private TextView progressStatus;
+	protected TextView progressStatus;
 
 	/**
 	 * Status view
 	 */
-	private TextView statusTextView;
+	protected TextView statusTextView;
 
 	/**
 	 * Download button
 	 */
-	private ImageButton downloadButton;
+	protected ImageButton downloadButton;
 
 	/**
 	 * Saved resource id of image applied to download button
 	 */
-	private int downloadButtonImageResId;
+	protected int downloadButtonImageResId;
 
 	/**
 	 * Saved resource id of background applied to download button
 	 */
-	private int downloadButtonBackgroundResId;
+	protected int downloadButtonBackgroundResId;
 
 	/**
 	 * Cancel downloads button
 	 */
-	private Button cancelButton;
+	protected Button cancelButton;
 
 	/**
 	 * MD5 button
 	 */
-	private Button deployButton;
+	protected Button deployButton;
 
 	/**
 	 * MD5 button
 	 */
-	private Button md5Button;
-
-	// A B S T R A C T  L A Y O U T
-
-	abstract protected int getResId();
+	protected Button md5Button;
 
 	// L I F E C Y C L E
 
@@ -289,8 +274,6 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		// arguments
 		final Bundle arguments = getArguments();
 		final String fromArg = arguments == null ? null : arguments.getString(DOWNLOAD_FROM_ARG);
-		final String toArg = arguments == null ? null : arguments.getString(DOWNLOAD_TO_ARG);
-		final String unzipToArg = arguments == null ? null : arguments.getString(THEN_UNZIP_TO_ARG);
 		final String renameFromArg = arguments == null ? null : arguments.getString(RENAME_FROM_ARG);
 		final String renameToArg = arguments == null ? null : arguments.getString(RENAME_TO_ARG);
 
@@ -302,15 +285,9 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 			warn(message);
 		}
 
-		// download dest data
-		this.downloadedFile = toArg != null ? new File(toArg) : null;
-
 		// rename
 		this.renameFrom = renameFromArg;
 		this.renameTo = renameToArg;
-
-		// unzip
-		this.unzipDir = unzipToArg != null ? new File(unzipToArg) : null;
 
 		// inits
 		this.progress = new Progress();
@@ -357,10 +334,9 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		assert this.md5Button != null;
 		this.md5Button.setOnClickListener(v -> md5());
 
-		Button showButton = view.findViewById(R.id.showButton);
+		final Button showButton = view.findViewById(R.id.showButton);
 		assert showButton != null;
 		showButton.setOnClickListener(v -> show());
-
 
 		// source
 		final TextView srcView = view.findViewById(R.id.src);
@@ -398,23 +374,11 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		{
 			srcView.setText(this.downloadUrl);
 		}
-		// destination
-		final TextView targetView = view.findViewById(R.id.target);
-		final TextView targetView2 = view.findViewById(R.id.target2);
-		final TextView targetView3 = view.findViewById(R.id.target3);
-		if (targetView2 != null && targetView3 != null)
-		{
-			targetView3.setText(this.downloadedFile != null ? this.downloadedFile.getName() : "");
-			File parent = this.downloadedFile != null ? this.downloadedFile.getParentFile() : null;
-			targetView2.setText(parent != null ? parent.getName() : "");
-			targetView.setText(parent != null ? parent.getParent() : "");
-		}
-		else
-		{
-			targetView.setText(this.downloadedFile != null ? this.downloadedFile.getAbsolutePath() : "");
-		}
 
 		// destination
+		setDestination(view);
+
+		// status
 		this.statusTextView.setText("");
 
 		if (savedInstanceState != null)
@@ -435,11 +399,13 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		}
 		else
 		{
-			this.initialState();
+			this.initUI();
 		}
 
 		return view;
 	}
+
+	abstract protected void setDestination(@NonNull final View view);
 
 	@Override
 	public void onSaveInstanceState(@NonNull final Bundle outState)
@@ -478,6 +444,10 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		stopProbeObserver();
 	}
 
+	// A B S T R A C T  L A Y O U T
+
+	abstract protected int getResId();
+
 	// C L I C K
 
 	static private final Object clickLock = new Object();
@@ -503,12 +473,7 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 			}
 			if (download)
 			{
-				this.downloadButton.setEnabled(false);
-				this.downloadButton.setVisibility(View.INVISIBLE);
-				this.progressBar.setVisibility(View.VISIBLE);
-				this.progressStatus.setVisibility(View.VISIBLE);
-				this.cancelButton.setVisibility(View.VISIBLE);
-				this.statusTextView.setText("");
+				startUI();
 
 				try
 				{
@@ -534,20 +499,6 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		}
 	}
 
-	/**
-	 * Initial state
-	 */
-	private void initialState()
-	{
-		if (!AbstractDownloadFragment.isDownloading)
-		{
-			this.downloadButton.setVisibility(View.VISIBLE);
-			this.progressBar.setVisibility(View.INVISIBLE);
-			this.progressStatus.setVisibility(View.INVISIBLE);
-			this.cancelButton.setVisibility(View.GONE);
-		}
-	}
-
 	// O P E R A T I O N S
 
 	/**
@@ -561,9 +512,9 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	abstract protected void deploy();
 
 	/**
-	 * Record downloading op
+	 * Md5 operation
 	 */
-	abstract protected void record();
+	abstract protected void md5();
 
 	/**
 	 * Cleanup after download
@@ -583,6 +534,43 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	 * Cancel download
 	 */
 	abstract protected void cancel();
+
+	// S T A T U S
+
+	/**
+	 * Get status
+	 *
+	 * @param progress progress result
+	 * @return status code
+	 */
+	abstract Status getStatus(final Progress progress);
+
+	/**
+	 * Get reason
+	 *
+	 * @return reason
+	 */
+	@Nullable
+	abstract String getReason();
+
+	/**
+	 * Build status message
+	 *
+	 * @param status status
+	 * @return message
+	 */
+	protected String buildStatusString(final Status status)
+	{
+		if (status != Status.STATUS_SUCCEEDED)
+		{
+			final String reason = getReason();
+			if (reason != null)
+			{
+				return status.toString(requireContext()) + '\n' + reason;
+			}
+		}
+		return status.toString(requireContext());
+	}
 
 	// P R O B E   O B S E R V E R
 
@@ -700,44 +688,82 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		}
 	}
 
-	// S T A T U S
+	// H E L P E R S
 
 	/**
-	 * Get status
-	 *
-	 * @param progress progress result
-	 * @return status code
+	 * Initial UI state
 	 */
-	abstract Status getStatus(final Progress progress);
-
-	/**
-	 * Get reason
-	 *
-	 * @return reason
-	 */
-	@Nullable
-	abstract String getReason();
-
-	/**
-	 * Build status message
-	 *
-	 * @param status status
-	 * @return message
-	 */
-	private String buildStatusString(final Status status)
+	private void initUI()
 	{
-		if (status != Status.STATUS_SUCCEEDED)
+		if (!AbstractDownloadFragment.isDownloading)
 		{
-			final String reason = getReason();
-			if (reason != null)
-			{
-				return status.toString(requireContext()) + '\n' + reason;
-			}
+			this.downloadButton.setVisibility(View.VISIBLE);
+			this.progressBar.setVisibility(View.INVISIBLE);
+			this.progressStatus.setVisibility(View.INVISIBLE);
+			this.cancelButton.setVisibility(View.GONE);
 		}
-		return status.toString(requireContext());
 	}
 
-	// H E L P E R S
+	/**
+	 * Start UI state
+	 */
+	private void startUI()
+	{
+		// buttons
+		this.downloadButton.setEnabled(false);
+		this.downloadButton.setVisibility(View.INVISIBLE);
+		this.cancelButton.setVisibility(View.VISIBLE);
+
+		// progress
+		this.progressBar.setVisibility(View.VISIBLE);
+		this.progressStatus.setVisibility(View.VISIBLE);
+
+		// status
+		this.statusTextView.setText("");
+	}
+
+	/**
+	 * End UI state
+	 *
+	 * @param status status
+	 */
+	protected void endUI(final Status status)
+	{
+		Log.d(TAG, "Update UI " + status);
+
+		// progress
+		if (this.progressBar != null)
+		{
+			this.progressBar.setVisibility(View.INVISIBLE);
+		}
+		if (this.progressStatus != null)
+		{
+			this.progressStatus.setVisibility(View.INVISIBLE);
+		}
+
+		// status
+		if (this.statusTextView != null)
+		{
+			String message = buildStatusString(status);
+			this.statusTextView.setText(message);
+			this.statusTextView.setVisibility(View.VISIBLE);
+		}
+
+		// buttons
+		if (this.downloadButton != null)
+		{
+			this.downloadButtonImageResId = status == Status.STATUS_SUCCEEDED ? R.drawable.bn_download_ok : R.drawable.bn_download;
+			Drawable drawable = AppCompatResources.getDrawable(requireContext(), this.downloadButtonImageResId);
+			assert drawable != null;
+			DrawableCompat.setTint(drawable, Color.WHITE);
+			this.downloadButton.setImageDrawable(drawable);
+			this.downloadButtonBackgroundResId = status == Status.STATUS_SUCCEEDED ? R.drawable.bg_button_ok : R.drawable.bg_button_err;
+			this.downloadButton.setBackgroundResource(this.downloadButtonBackgroundResId);
+			this.downloadButton.setEnabled(false);
+			this.downloadButton.setVisibility(View.VISIBLE);
+		}
+		this.cancelButton.setVisibility(View.GONE);
+	}
 
 	/**
 	 * Warn
@@ -758,72 +784,22 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	 *
 	 * @param status download status
 	 */
-	void onDone(final Status status)
+	abstract void onDone(final Status status);
+
+	void onDone0(final Status status)
 	{
 		Log.d(TAG, "OnDone " + status);
 
 		AbstractDownloadFragment.isDownloading = false;
 
-		// register if this is the datapack
-		if (status == Status.STATUS_SUCCEEDED)
-		{
-			assert this.downloadedFile != null;
-			record();
-		}
-		boolean requiresDeploy = this.unzipDir != null;
-
 		// observer
 		stopProbeObserver();
 
 		// UI
-		requireActivity().runOnUiThread(() -> {
-
-			Log.d(TAG, "OnDone : Update UI " + status);
-
-			// progress
-			if (this.progressBar != null)
-			{
-				this.progressBar.setVisibility(View.INVISIBLE);
-			}
-			if (this.progressStatus != null)
-			{
-				this.progressStatus.setVisibility(View.INVISIBLE);
-			}
-			if (this.statusTextView != null)
-			{
-				String message = buildStatusString(status);
-				this.statusTextView.setText(message);
-				this.statusTextView.setVisibility(View.VISIBLE);
-			}
-
-			// buttons
-			if (this.downloadButton != null)
-			{
-				this.downloadButtonImageResId = status == Status.STATUS_SUCCEEDED ? R.drawable.bn_download_ok : R.drawable.bn_download;
-				Drawable drawable = AppCompatResources.getDrawable(requireContext(), this.downloadButtonImageResId);
-				assert drawable != null;
-				DrawableCompat.setTint(drawable, Color.WHITE);
-				this.downloadButton.setImageDrawable(drawable);
-				this.downloadButtonBackgroundResId = status == Status.STATUS_SUCCEEDED ? R.drawable.bg_button_ok : R.drawable.bg_button_err;
-				this.downloadButton.setBackgroundResource(this.downloadButtonBackgroundResId);
-				this.downloadButton.setEnabled(false);
-				this.downloadButton.setVisibility(View.VISIBLE);
-			}
-			this.cancelButton.setVisibility(View.GONE);
-			this.md5Button.setVisibility(status == Status.STATUS_SUCCEEDED ? View.VISIBLE : View.GONE);
-
-			// deploy button to complete task
-			this.deployButton.setVisibility(status == Status.STATUS_SUCCEEDED && requiresDeploy ? View.VISIBLE : View.GONE);
-		});
-
-		// invalidate
-		if (status != Status.STATUS_SUCCEEDED)
-		{
-			this.downloadedFile = null;
-		}
+		requireActivity().runOnUiThread(() -> endUI(status));
 
 		// complete
-		if (status != Status.STATUS_SUCCEEDED || !requiresDeploy)
+		if (status != Status.STATUS_SUCCEEDED)
 		{
 			onComplete(status == Status.STATUS_SUCCEEDED);
 		}
@@ -837,68 +813,9 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	void onComplete(final boolean success)
 	{
 		Log.d(TAG, "OnComplete succeeded=" + success + " " + this);
+
 		OnComplete listener = (OnComplete) getActivity();
 		assert listener != null;
 		listener.onComplete(success);
-	}
-
-	// M D 5
-
-	/**
-	 * MD5 check
-	 */
-	private void md5()
-	{
-		final String from = this.sourceUrl + ".md5";
-		final Uri uri = Uri.parse(this.sourceUrl);
-		final String sourceFile = uri.getLastPathSegment();
-		final String targetFile = this.downloadedFile == null ? "?" : this.downloadedFile.getName();
-		new MD5Downloader(downloadedResult -> {
-
-			final FragmentActivity activity = getActivity();
-			if (activity == null || isDetached() || activity.isFinishing() || activity.isDestroyed())
-			{
-				return;
-			}
-
-			if (downloadedResult == null)
-			{
-				new AlertDialog.Builder(activity) // guarded, level 2
-						.setTitle(getString(R.string.action_md5) + " of " + targetFile) //
-						.setMessage(R.string.status_task_failed) //
-						.show();
-			}
-			else
-			{
-				assert this.downloadedFile != null;
-				final String localPath = this.downloadedFile.getAbsolutePath();
-
-				MD5AsyncTaskChooser.md5(activity, localPath, result -> {
-
-					final Activity activity2 = getActivity();
-					if (activity2 != null && !isDetached() && !activity2.isFinishing() && !activity2.isDestroyed())
-					{
-						boolean success = downloadedResult.equals(result);
-						final SpannableStringBuilder sb = new SpannableStringBuilder();
-						Report.appendHeader(sb, getString(R.string.md5_downloaded));
-						sb.append('\n');
-						sb.append(downloadedResult);
-						sb.append('\n');
-						Report.appendHeader(sb, getString(R.string.md5_computed));
-						sb.append('\n');
-						sb.append(result == null ? getString(R.string.status_task_failed) : result);
-						sb.append('\n');
-						Report.appendHeader(sb, getString(R.string.md5_compared));
-						sb.append('\n');
-						sb.append(getString(success ? R.string.status_task_success : R.string.status_task_failed));
-
-						new AlertDialog.Builder(activity2) // guarded, level 3
-								.setTitle(getString(R.string.action_md5_of_file) + ' ' + targetFile) //
-								.setMessage(sb) //
-								.show();
-					}
-				});
-			}
-		}).execute(from, sourceFile);
 	}
 }

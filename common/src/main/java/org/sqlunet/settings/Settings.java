@@ -196,7 +196,7 @@ public class Settings
 		String result = sharedPref.getString(Settings.PREF_LAUNCH, null);
 		if (result == null)
 		{
-			result = context.getString(R.string.pref_default_launch);
+			result = context.getString(R.string.default_launch);
 		}
 		return result;
 	}

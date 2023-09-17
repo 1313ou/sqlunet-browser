@@ -12,19 +12,20 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<!-- site files -->
-	<string name="default_download_datapack_file" translatable="false" tools:keep="@string/pref_default_download_dbfile">sqlunet-wn.db</string>
-	<string name="pref_default_download_sqlfile" translatable="false" tools:keep="@string/pref_default_download_sqlfile">sqlunet-wn.sql.zip</string>
-	<string name="pref_default_entry_import" translatable="false" tools:keep="@string/pref_default_entry_import">sqlunet-wn.sql</string>
-	<string name="pref_default_entry_index" translatable="false" tools:keep="@string/pref_default_entry_index">sqlunet-wn-index.sql</string>
+	<string name="default_download_datapack_file" translatable="false" tools:keep="@string/default_download_datapack_file">sqlunet-wn.db</string>
+	<string name="default_download_datapack_zipentry" translatable="false">sqlunet-wn.db</string>
+	<string name="default_download_sqlfile" translatable="false" tools:keep="@string/default_download_sqlfile">sqlunet-wn.sql.zip</string>
+	<string name="default_entry_import" translatable="false" tools:keep="@string/default_entry_import">sqlunet-wn.sql</string>
+	<string name="default_entry_index" translatable="false" tools:keep="@string/default_entry_index">sqlunet-wn-index.sql</string>
 
 	<!-- sites -->
-	<string name="pref_bitbucket_31_site_url" translatable="false" tools:keep="@string/pref_bitbucket_31_site_url">https://bitbucket.org/&bbuser;/&bbrepo;/raw/&bbcommit;</string>
-	<string name="pref_sourceforge_31_site_url" translatable="false" tools:keep="@string/pref_sourceforge_31_site_url">https://sourceforge.net/projects/sqlunet/files/semantikos2/2</string>
+	<string name="bitbucket_31_site_url" translatable="false" tools:keep="@string/bitbucket_31_site_url">https://bitbucket.org/&bbuser;/&bbrepo;/raw/&bbcommit;</string>
+	<string name="sourceforge_31_site_url" translatable="false" tools:keep="@string/sourceforge_31_site_url">https://sourceforge.net/projects/sqlunet/files/semantikos2/2</string>
 
-	<string name="pref_default_download_site_url" translatable="false" tools:keep="@string/pref_default_download_site_url">@string/pref_bitbucket_31_site_url</string>
-	<string-array name="pref_download_site_urls" translatable="false" tools:ignore="InconsistentArrays" tools:keep="@array/pref_download_site_urls">
-		<item>@string/pref_bitbucket_31_site_url</item>
-		<item>@string/pref_sourceforge_31_site_url</item>
+	<string name="default_download_site_url" translatable="false" tools:keep="@string/default_download_site_url">@string/bitbucket_31_site_url</string>
+	<string-array name="download_site_urls" translatable="false" tools:ignore="InconsistentArrays" tools:keep="@array/download_site_urls">
+		<item>@string/bitbucket_31_site_url</item>
+		<item>@string/sourceforge_31_site_url</item>
 	</string-array>
 
 	<!-- directory -->

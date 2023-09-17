@@ -7,7 +7,7 @@
 	app:title="@string/pref_header_general">
 
 	<ListPreference
-		android:defaultValue="@string/pref_default_launch"
+		android:defaultValue="@string/default_launch"
 		android:entries="@array/pref_launch_list_titles"
 		android:entryValues="@array/pref_launch_list_values"
 		android:key="pref_launch"

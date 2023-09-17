@@ -24,12 +24,12 @@ public class Settings
 	{
 		DOWNLOAD, //
 
-		DOWNLOAD_ZIP;
+		DOWNLOAD_ZIP; //
 
 		@NonNull
 		public static String zipDownloaderSource(@NonNull final Context context, @NonNull final String source)
 		{
-			if (Settings.Downloader.isZipDownloaderPref(context) && !source.endsWith(".zip"))
+			if (isZipDownloaderPref(context) && !source.endsWith(".zip"))
 			{
 				return source + ".zip";
 			}
@@ -311,7 +311,7 @@ public class Settings
 	 * @param context      context
 	 * @param datapackFile datapack file
 	 */
-	public static void recordDatapack(@NonNull final Context context, final File datapackFile)
+	public static void recordDatapackFile(@NonNull final Context context, final File datapackFile)
 	{
 		final SharedPreferences sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE);
 		final SharedPreferences.Editor edit = sharedPref.edit(); //
@@ -352,7 +352,7 @@ public class Settings
 	 * @param context     context
 	 * @param datapackUri datapack uri
 	 */
-	public static void recordDatapack(@NonNull final Context context, final String datapackUri)
+	public static void recordDatapackUri(@NonNull final Context context, final String datapackUri)
 	{
 		final SharedPreferences sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE);
 		final SharedPreferences.Editor edit = sharedPref.edit(); //

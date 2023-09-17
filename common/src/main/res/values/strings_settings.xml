@@ -22,9 +22,9 @@
 		<item>Browse</item>
 		<item>Search text</item>
 	</string-array>
-	<string name="pref_default_launch">org.sqlunet.browser.MainActivity</string>
+	<string name="default_launch">org.sqlunet.browser.MainActivity</string>
 	<string-array name="pref_launch_list_values" tools:ignore="InconsistentArrays">
-		<item>@string/pref_default_launch</item>
+		<item>@string/default_launch</item>
 		<item>org.sqlunet.browser.BrowseActivity</item>
 		<item>org.sqlunet.browser.SearchTextActivity</item>
 	</string-array>
@@ -119,15 +119,17 @@
 	<string name="pref_header_download">Download</string>
 
 	<!-- Downloader -->
-	<string name="pref_title_downloader">Downloader</string>
-	<string-array name="pref_downloader_titles">
-		<item>Zip download</item>
+	<string name="title_downloader">Downloader</string>
+	<string-array name="downloader_titles">
+		<item>Download zipped stream and unzip</item>
 		<item>Download</item>
+		<item>Download zipped data then unzip</item>
 	</string-array>
-	<string name="pref_default_downloader">DOWNLOAD_ZIP</string>
-	<string-array name="pref_downloader_values">
-		<item>@string/pref_default_downloader</item>
+	<string name="default_downloader">DOWNLOAD_ZIP</string>
+	<string-array name="downloader_values">
+		<item>@string/default_downloader</item>
 		<item>DOWNLOAD</item>
+		<item>DOWNLOAD_ZIP_THEN_UNZIP</item>
 	</string-array>
 	<string name="pref_description_downloader">Downloader</string>
 

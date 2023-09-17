@@ -5,7 +5,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 	<!-- sites -->
-	<string-array name="pref_download_site_labels" tools:ignore="InconsistentArrays" tools:keep="@array/pref_download_site_labels">
+	<string-array name="download_site_labels" tools:ignore="InconsistentArrays" tools:keep="@array/download_site_labels">
 		<item>FrameNet core (Bitbucket, zipped) </item>
 		<item>FrameNet core (Sourceforge, zipped) </item>
 	</string-array>

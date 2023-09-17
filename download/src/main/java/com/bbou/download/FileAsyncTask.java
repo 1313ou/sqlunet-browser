@@ -893,7 +893,7 @@ public class FileAsyncTask
 
 			if (success)
 			{
-				Settings.recordDatapack(activity, new File(sourceFile));
+				Settings.recordDatapackFile(activity, new File(sourceFile));
 			}
 			if (whenDone != null)
 			{
@@ -936,7 +936,7 @@ public class FileAsyncTask
 
 			if (success)
 			{
-				Settings.recordDatapack(activity, sourceUri.toString());
+				Settings.recordDatapackUri(activity, sourceUri.toString());
 			}
 			if (whenDone != null)
 			{
@@ -981,7 +981,7 @@ public class FileAsyncTask
 
 			if (success)
 			{
-				Settings.recordDatapack(activity, new File(sourceFile));
+				Settings.recordDatapackFile(activity, new File(sourceFile));
 			}
 			if (whenDone != null)
 			{
@@ -1026,7 +1026,7 @@ public class FileAsyncTask
 
 			if (success)
 			{
-				Settings.recordDatapack(activity, sourceUri.toString());
+				Settings.recordDatapackUri(activity, sourceUri.toString());
 			}
 			if (whenDone != null)
 			{
@@ -1071,7 +1071,7 @@ public class FileAsyncTask
 
 			if (success)
 			{
-				Settings.recordDatapack(activity, new File(sourceFile));
+				Settings.recordDatapackFile(activity, new File(sourceFile));
 			}
 			if (whenDone != null)
 			{
@@ -1104,17 +1104,17 @@ public class FileAsyncTask
 	 *
 	 * @param activity activity
 	 * @param observer observer
-	 * @param uri      source uri
+	 * @param sourceUri      source uri
 	 * @param dest     database path
 	 * @param whenDone to run when done
 	 */
-	public static void launchCopy(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final Uri uri, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
+	public static void launchCopy(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final Uri sourceUri, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
 	{
 		final Consumer<Boolean> consumer = success -> {
 
 			if (success)
 			{
-				Settings.recordDatapack(activity, uri.toString());
+				Settings.recordDatapackUri(activity, sourceUri.toString());
 			}
 			if (whenDone != null)
 			{
@@ -1122,8 +1122,8 @@ public class FileAsyncTask
 			}
 		};
 		final Task<Uri, Number, Boolean> task = new FileAsyncTask(observer, consumer, 1000).copyFromUri(activity.getContentResolver(), dest);
-		task.execute(uri);
-		observer.taskUpdate(activity.getString(R.string.status_copying) + ' ' + uri);
+		task.execute(sourceUri);
+		observer.taskUpdate(activity.getString(R.string.status_copying) + ' ' + sourceUri);
 	}
 
 	// md5

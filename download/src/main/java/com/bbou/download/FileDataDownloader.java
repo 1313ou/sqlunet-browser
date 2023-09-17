@@ -258,7 +258,7 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 
 			// to do if confirmed
 			intent.putExtra(BaseDownloadFragment.DOWNLOAD_FROM_ARG, downloadSourceUrl);
-			intent.putExtra(BaseDownloadFragment.DOWNLOAD_TO_ARG, cache);
+			intent.putExtra(DownloadFragment.DOWNLOAD_TO_FILE_ARG, cache);
 			intent.putExtra(BaseDownloadFragment.THEN_UNZIP_TO_ARG, downloadDest);
 			intent.putExtra(UpdateFragment.DOWNLOAD_INTENT_ARG, downloadIntent);
 

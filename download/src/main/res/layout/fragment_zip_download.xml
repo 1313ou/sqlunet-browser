@@ -173,12 +173,24 @@
 		android:layout_height="wrap_content"
 		android:layout_below="@+id/target2"
 		android:layout_centerHorizontal="true"
+		android:layout_marginTop="20dp"
 		android:layout_marginStart="50dp"
 		android:layout_marginEnd="50dp"
 		android:scrollHorizontally="true"
 		android:singleLine="true"
 		android:text="@string/download_dest"
-		android:textStyle="bold"
+		tools:ignore="InconsistentLayout" />
+
+	<TextView
+		android:id="@+id/target4"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/target3"
+		android:layout_centerHorizontal="true"
+		android:layout_marginStart="50dp"
+		android:layout_marginEnd="50dp"
+		android:scrollHorizontally="true"
+		android:singleLine="true"
 		tools:ignore="InconsistentLayout" />
 
 	<TextView
