@@ -94,7 +94,7 @@ public class FileData
 		return this.staticVersion;
 	}
 
-	public static void recordDatapack(@NonNull final Context context, @NonNull final File datapackFile)
+	public static void recordDatapackFile(@NonNull final Context context, @NonNull final File datapackFile)
 	{
 		Settings.setDatapackName(context, datapackFile.getName());
 		final FileData fileData = makeFileDataFrom(datapackFile);

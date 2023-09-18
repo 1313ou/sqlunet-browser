@@ -203,6 +203,25 @@ public class DownloadZipFragment extends BaseDownloadFragment
 			endUI(status);
 		});
 
+		// success
+		if (status == Status.STATUS_SUCCEEDED)
+		{
+			// register if this is the datapack
+			Settings.recordDatapackFile(requireContext(), this.toDir);
+
+			// kill request
+			if (this.requestKill != null)
+			{
+				this.requestKill.run();
+			}
+
+			// new datapack
+			if (this.requestNew != null)
+			{
+				this.requestNew.run();
+			}
+		}
+
 		// complete
 		onComplete(status != Status.STATUS_SUCCEEDED);
 	}

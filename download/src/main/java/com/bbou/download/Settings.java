@@ -314,35 +314,49 @@ public class Settings
 	public static void recordDatapackFile(@NonNull final Context context, final File datapackFile)
 	{
 		final SharedPreferences sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE);
-		final SharedPreferences.Editor edit = sharedPref.edit(); //
-		final FileData fileData = FileData.makeFileDataFrom(datapackFile);
-		if (fileData != null)
+		final SharedPreferences.Editor edit = sharedPref.edit();
+		if (datapackFile.isDirectory())
 		{
-			if (fileData.name != null)
-			{
-				edit.putString(PREF_DATAPACK_NAME, fileData.name);
-			}
-			else
-			{
-				edit.remove(PREF_DATAPACK_NAME);
-			}
-			if (fileData.date != -1)
-			{
-				edit.putLong(PREF_DATAPACK_DATE, fileData.date);
-			}
-			else
-			{
-				edit.remove(PREF_DATAPACK_DATE);
-			}
-			if (fileData.size != -1)
-			{
-				edit.putLong(PREF_DATAPACK_SIZE, fileData.size);
-			}
-			else
-			{
-				edit.remove(PREF_DATAPACK_SIZE);
-			}
+			edit.putString(PREF_DATAPACK_NAME, datapackFile.getName());
+			edit.remove(PREF_DATAPACK_DATE);
+			edit.putLong(PREF_DATAPACK_SIZE, datapackFile.listFiles().length);
 			edit.apply();
+		}
+		else
+		{
+			final FileData fileData = FileData.makeFileDataFrom(datapackFile);
+			if (fileData != null)
+			{
+				if (fileData.name != null)
+				{
+					edit.putString(PREF_DATAPACK_NAME, fileData.name);
+				}
+				else
+				{
+					edit.remove(PREF_DATAPACK_NAME);
+				}
+				if (fileData.date != -1)
+				{
+					edit.putLong(PREF_DATAPACK_DATE, fileData.date);
+				}
+				else
+				{
+					edit.remove(PREF_DATAPACK_DATE);
+				}
+				if (fileData.size != -1)
+				{
+					edit.putLong(PREF_DATAPACK_SIZE, fileData.size);
+				}
+				else
+				{
+					edit.remove(PREF_DATAPACK_SIZE);
+				}
+				edit.apply();
+			}
+			else
+			{
+				edit.clear();
+			}
 		}
 	}
 

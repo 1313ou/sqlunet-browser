@@ -220,30 +220,27 @@ public class DownloadFragment extends BaseDownloadFragment
 			@Override
 			public void taskFinish(final boolean success)
 			{
+
 				super.taskFinish(success);
 
-				if (success && DownloadFragment.this.toFile != null)
+				if (success)
 				{
-					// record and delete downloaded file
-					// downloadedFile might become null within task
-					//noinspection ConstantConditions
+					// delete downloaded file
 					if (DownloadFragment.this.toFile != null)
 					{
-						if (DownloadFragment.this.renameFrom != null && DownloadFragment.this.renameTo != null && !DownloadFragment.this.renameFrom.equals(DownloadFragment.this.renameTo))
-						{
-							// rename
-							final File renameFromFile = new File(DownloadFragment.this.unzipDir, DownloadFragment.this.renameFrom);
-							final File renameToFile = new File(DownloadFragment.this.unzipDir, DownloadFragment.this.renameTo);
-							boolean result2 = renameFromFile.renameTo(renameToFile);
-							Log.d(TAG, "Rename " + renameFromFile + " to " + renameToFile + " : " + result2);
-						}
-
-						// record
-						FileData.recordDatapack(requireContext(), DownloadFragment.this.toFile);
-
 						// cleanup
 						//noinspection ResultOfMethodCallIgnored
 						DownloadFragment.this.toFile.delete();
+					}
+
+					// rename
+					if (DownloadFragment.this.renameFrom != null && DownloadFragment.this.renameTo != null && !DownloadFragment.this.renameFrom.equals(DownloadFragment.this.renameTo))
+					{
+						// rename
+						final File renameFromFile = new File(DownloadFragment.this.unzipDir, DownloadFragment.this.renameFrom);
+						final File renameToFile = new File(DownloadFragment.this.unzipDir, DownloadFragment.this.renameTo);
+						boolean result2 = renameFromFile.renameTo(renameToFile);
+						Log.d(TAG, "Rename " + renameFromFile + " to " + renameToFile + " : " + result2);
 					}
 
 					// new datapack

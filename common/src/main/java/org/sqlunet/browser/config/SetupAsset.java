@@ -89,18 +89,18 @@ public class SetupAsset
 					if (packLocation != null)
 					{
 						final String path = packLocation.assetsPath();
-						final String zipFile = new File(new File(path, assetDir), assetZip).getAbsolutePath();
+						final String zipFilePath = new File(new File(path, assetDir), assetZip).getAbsolutePath();
 
 						//final TaskObserver.Observer<Number> observer2 = new TaskDialogObserver<>(activity.getSupportFragmentManager());
 						@NonNull final TaskObserver.Observer<Number> observer2 = observer;
 						observer2 //
 								.setTitle(activity.getString(R.string.action_unzip_from_asset)) //
-								.setMessage(zipFile);
+								.setMessage(zipFilePath);
 
-						FileAsyncTask.launchUnzip(activity, observer2, zipFile, assetZipEntry, StorageSettings.getDatabasePath(activity), (result) -> {
+						FileAsyncTask.launchUnzip(activity, observer2, zipFilePath, assetZipEntry, StorageSettings.getDatabasePath(activity), (result) -> {
 
 							org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
-							Settings.recordDatapackSource(activity, new File(new File(path, assetDir), assetZip).getAbsolutePath(), -1, -1, null, null, null);
+							Settings.recordDatapackSource(activity, zipFilePath, -1, -1, null, null, null);
 							if (whenComplete != null)
 							{
 								whenComplete.run();
