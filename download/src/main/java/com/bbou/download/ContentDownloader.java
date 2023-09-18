@@ -203,8 +203,8 @@ public class ContentDownloader extends Task<String, Void, String[]>
 
 			if (result == null)
 			{
-				alert.setIcon(R.drawable.ic_error);
-				alert.setMessage(R.string.status_task_failed);
+				alert.setIconAttribute(android.R.attr.alertDialogIcon) //
+						.setMessage(R.string.status_task_failed);
 			}
 			else
 			{
