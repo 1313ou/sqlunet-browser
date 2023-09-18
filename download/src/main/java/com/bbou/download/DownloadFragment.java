@@ -355,7 +355,7 @@ public class DownloadFragment extends BaseDownloadFragment
 	{
 		Log.d(TAG, "OnDone " + status);
 
-		//super.onDone(status);
+		super.onDone(status);
 
 		// register if this is the datapack
 		if (status == Status.STATUS_SUCCEEDED)

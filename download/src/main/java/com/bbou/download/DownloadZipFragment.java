@@ -198,7 +198,7 @@ public class DownloadZipFragment extends BaseDownloadFragment
 	{
 		Log.d(TAG, "OnDone " + status);
 
-		// super.onDone(status);
+		super.onDone(status);
 
 		// UI
 		requireActivity().runOnUiThread(() -> {
@@ -223,7 +223,7 @@ public class DownloadZipFragment extends BaseDownloadFragment
 	protected void fireNotification(@NonNull final Context context, int notificationId, @NonNull final Notifier.NotificationType type, final Object... args)
 	{
 		final String from = Uri.parse(this.downloadUrl).getHost();
-		final String to = this.toDir == null ? context.getString(R.string.result_deleted) : this.toDir.getName();
+		final String to = this.toDir.getName();
 		String contentText = from + '→' + to;
 		Notifier.fireNotification(context, notificationId, type, contentText, args);
 	}

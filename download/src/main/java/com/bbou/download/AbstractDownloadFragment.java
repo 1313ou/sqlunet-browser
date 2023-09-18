@@ -428,7 +428,7 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	{
 		super.onResume();
 
-		if (AbstractDownloadFragment.isDownloading)
+		if (isDownloading)
 		{
 			Log.d(TAG, "Start probe observer");
 			startProbeObserver();
@@ -462,16 +462,16 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		final int id = view.getId();
 		if (id == R.id.downloadButton)
 		{
-			@SuppressWarnings("UnusedAssignment") boolean download = false;
+			boolean wasNotDownloading;
 			synchronized (clickLock)
 			{
-				download = !AbstractDownloadFragment.isDownloading;
-				if (download)
+				wasNotDownloading = !isDownloading;
+				if (wasNotDownloading)
 				{
-					AbstractDownloadFragment.isDownloading = true;
+					isDownloading = true;
 				}
 			}
-			if (download)
+			if (wasNotDownloading)
 			{
 				startUI();
 
@@ -695,12 +695,19 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	 */
 	private void initUI()
 	{
-		if (!AbstractDownloadFragment.isDownloading)
+		if (!isDownloading)
 		{
 			this.downloadButton.setVisibility(View.VISIBLE);
 			this.progressBar.setVisibility(View.INVISIBLE);
 			this.progressStatus.setVisibility(View.INVISIBLE);
 			this.cancelButton.setVisibility(View.GONE);
+		}
+		else
+		{
+			this.downloadButton.setVisibility(View.INVISIBLE);
+			this.progressBar.setVisibility(View.VISIBLE);
+			this.progressStatus.setVisibility(View.VISIBLE);
+			this.cancelButton.setVisibility(View.VISIBLE);
 		}
 	}
 
@@ -784,25 +791,9 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	 *
 	 * @param status download status
 	 */
-	abstract void onDone(final Status status);
-
-	void onDone0(final Status status)
+	void onDone(final Status status)
 	{
-		Log.d(TAG, "OnDone " + status);
-
-		AbstractDownloadFragment.isDownloading = false;
-
-		// observer
-		stopProbeObserver();
-
-		// UI
-		requireActivity().runOnUiThread(() -> endUI(status));
-
-		// complete
-		if (status != Status.STATUS_SUCCEEDED)
-		{
-			onComplete(status == Status.STATUS_SUCCEEDED);
-		}
+		isDownloading = false;
 	}
 
 	/**
