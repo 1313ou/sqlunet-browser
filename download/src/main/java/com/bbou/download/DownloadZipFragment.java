@@ -5,10 +5,9 @@
 package com.bbou.download;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -17,8 +16,6 @@ import java.io.File;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.graphics.drawable.DrawableCompat;
 
 /**
  * Download fragment using DownloadZipWork
@@ -154,17 +151,17 @@ public class DownloadZipFragment extends BaseDownloadFragment
 		targetView.setText(this.toDir != null ? this.toDir.getAbsolutePath() : "");
 		if (targetView2 != null)
 		{
-			String selectEntry = getString(R.string.select_zip_entry, this.sourceEntry == null ? "*" : this.sourceEntry);
+			CharSequence selectEntry = new SpannableStringBuilder(getText(R.string.select_zip_entry)).append(this.sourceEntry == null ? "*" : this.sourceEntry);
 			targetView2.setText(selectEntry);
 		}
 		if (targetView3 != null && this.renameFrom != null)
 		{
-			String from = getString(R.string.rename_source, this.renameFrom);
+			CharSequence from = new SpannableStringBuilder(getText(R.string.rename_source)).append(this.renameFrom);
 			targetView3.setText(from);
 		}
 		if (targetView4 != null && this.renameTo != null)
 		{
-			String to = getString(R.string.rename_dest, this.renameTo);
+			CharSequence to = new SpannableStringBuilder(getText(R.string.rename_dest)).append(this.renameTo);
 			targetView4.setText(to);
 		}
 	}
@@ -223,6 +220,7 @@ public class DownloadZipFragment extends BaseDownloadFragment
 	protected void fireNotification(@NonNull final Context context, int notificationId, @NonNull final Notifier.NotificationType type, final Object... args)
 	{
 		final String from = Uri.parse(this.downloadUrl).getHost();
+		assert this.toDir != null;
 		final String to = this.toDir.getName();
 		String contentText = from + '→' + to;
 		Notifier.fireNotification(context, notificationId, type, contentText, args);

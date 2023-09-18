@@ -147,10 +147,10 @@ public class DownloadFragment extends BaseDownloadFragment
 		final TextView targetView5 = view.findViewById(R.id.target5);
 		if (targetView2 != null && targetView3 != null)
 		{
-			targetView3.setText(this.toFile != null ? this.toFile.getName() : "");
 			File parent = this.toFile != null ? this.toFile.getParentFile() : null;
-			targetView2.setText(parent != null ? parent.getName() : "");
 			targetView.setText(parent != null ? parent.getParent() : "");
+			targetView2.setText(parent != null ? parent.getName() : "");
+			targetView3.setText(this.toFile != null ? this.toFile.getName() : "");
 		}
 		else
 		{
@@ -158,7 +158,7 @@ public class DownloadFragment extends BaseDownloadFragment
 		}
 		if (targetView4 != null && targetView5 != null && this.unzipDir != null)
 		{
-			String deployTo = getString(R.string.deploy_dest, this.unzipDir.getParent());
+			CharSequence deployTo = new SpannableStringBuilder(getText(R.string.deploy_dest)).append(this.unzipDir.getParent() + '/');
 			targetView4.setText(deployTo);
 			targetView5.setText(this.unzipDir.getName());
 		}
@@ -279,6 +279,7 @@ public class DownloadFragment extends BaseDownloadFragment
 					.setTitle(requireContext().getString(R.string.action_unzip_from_archive)) //
 					.setMessage(this.toFile.getName());
 			final Task<String, Number, Boolean> task = new ObservedDelegatingTask<>(baseTask, fatObserver);
+			assert this.unzipDir != null;
 			task.execute(this.toFile.getAbsolutePath(), this.unzipDir.getAbsolutePath());
 		}
 	}

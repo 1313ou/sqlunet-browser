@@ -45,10 +45,10 @@
 	<string name="download_down">current datapack</string>
 	<string name="download_newer">source is possibly newer</string>
 	<string name="download_uptodate">source is up-to-date</string>
-	<string name="select_zip_entry">select zip entry %s</string>
-	<string name="rename_source">then rename %s</string>
-	<string name="rename_dest">to %s</string>
-	<string name="deploy_dest">then deploy to %s</string>
+	<string name="select_zip_entry"><b>select</b> zip entry </string>
+	<string name="rename_source"><b>then rename</b> </string>
+	<string name="rename_dest"><b>to</b> </string>
+	<string name="deploy_dest"><b>then deploy to</b> </string>
 
 	<!-- dialog -->
 	<string name="yes">Yes</string>

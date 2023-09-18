@@ -16,7 +16,7 @@
 		android:layout_height="wrap_content"
 		android:layout_centerHorizontal="true"
 		android:layout_marginStart="50dp"
-		android:layout_marginTop="25dp"
+		android:layout_marginTop="20dp"
 		android:layout_marginEnd="50dp"
 		android:layout_marginBottom="10dp"
 		android:contentDescription="@string/download_source"
@@ -41,7 +41,7 @@
 		android:layout_height="wrap_content"
 		android:layout_below="@id/src"
 		android:layout_centerHorizontal="true"
-		android:layout_marginTop="10dp"
+		android:layout_marginTop="0dp"
 		android:layout_marginBottom="10dp"
 		android:orientation="horizontal">
 
@@ -121,11 +121,42 @@
 		android:layout_below="@+id/imgtarget"
 		android:layout_centerHorizontal="true"
 		android:layout_marginStart="50dp"
-		android:layout_marginTop="10dp"
+		android:layout_marginTop="0dp"
 		android:layout_marginEnd="50dp"
 		android:scrollHorizontally="true"
 		android:singleLine="true"
 		android:text="@string/download_dest" />
+
+	<LinearLayout
+		android:id="@+id/deploy"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/target"
+		android:layout_centerHorizontal="true"
+		android:layout_marginTop="20dp"
+		android:layout_marginBottom="10dp"
+		android:orientation="horizontal">
+
+		<TextView
+			android:id="@+id/target4"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="5dp"
+			android:scrollHorizontally="true"
+			android:singleLine="true"
+			tools:ignore="InconsistentLayout" />
+
+		<TextView
+			android:id="@+id/target5"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="5dp"
+			android:layout_marginEnd="50dp"
+			android:scrollHorizontally="true"
+			android:singleLine="true"
+			tools:ignore="InconsistentLayout" />
+
+	</LinearLayout>
 
 	<TextView
 		android:id="@+id/status"
