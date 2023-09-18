@@ -80,7 +80,7 @@ public class Notifier
 				notification = makeNotificationFinish(context, contentTitle, contentText);
 
 				// cancel previous
-				// manager.cancel(notificationId);
+				manager.cancel(notificationId);
 				break;
 
 			case CANCEL:
