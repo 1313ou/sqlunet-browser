@@ -51,18 +51,18 @@ public class DownloadZipCore extends DownloadCore
 	/**
 	 * Work
 	 *
-	 * @param fromUrl    zip source	 * @param toFile  destination file
-	 *                   url
+	 * @param fromUrl    zip source
+	 * @param toDir      destination dir
 	 * @param renameFrom rename source
 	 * @param renameTo   rename destination
 	 * @param entry      zip source entry
 	 * @return download data
 	 */
 	@Override
-	public DownloadData work(@NonNull final String fromUrl, @NonNull final String toFile, @Nullable final String renameFrom, @Nullable final String renameTo, @Nullable final String entry) throws Exception
+	public DownloadData work(@NonNull final String fromUrl, @NonNull final String toDir, @Nullable final String renameFrom, @Nullable final String renameTo, @Nullable final String entry) throws Exception
 	{
 		this.entry = entry;
-		return super.work(fromUrl, toFile, renameFrom, renameTo, null);
+		return super.work(fromUrl, toDir, renameFrom, renameTo, null);
 	}
 
 	// C O R E W O R K
