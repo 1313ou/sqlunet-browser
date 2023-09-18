@@ -33,7 +33,7 @@ public class Utils
 	static public void confirm(@NonNull final Context context, @StringRes final int titleId, @StringRes final int askId, @NonNull final Runnable runnable)
 	{
 		new AlertDialog.Builder(context) //
-				.setIcon(android.R.drawable.ic_dialog_alert) //
+				.setIconAttribute(android.R.attr.alertDialogIcon) //
 				.setTitle(titleId) //
 				.setMessage(askId) //
 				.setPositiveButton(R.string.yes, (dialog, which) -> runnable.run()).setNegativeButton(R.string.no, null).show();
