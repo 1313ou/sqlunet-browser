@@ -42,8 +42,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.PreferenceManager;
 
-import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_FROM_ARG;
-import static com.bbou.download.DownloadFragment.DOWNLOAD_TO_FILE_ARG;
 import static org.sqlunet.browser.config.BaseSettingsActivity.INITIAL_ARG;
 
 /**
