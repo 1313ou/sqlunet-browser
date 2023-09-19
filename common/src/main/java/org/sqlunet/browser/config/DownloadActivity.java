@@ -93,8 +93,7 @@ public class DownloadActivity extends com.bbou.download.DownloadActivity
 
 	public static Intent makeIntent(@NonNull final Context context)
 	{
-		String pref = Settings.getDownloaderPref(context);
-		String type = pref;
+		String type = Settings.getDownloaderPref(context);
 		if (type == null)
 		{
 			type = "DOWNLOAD";
