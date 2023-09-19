@@ -490,13 +490,13 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 					// start progress
 					startProbeObserver();
 				}
-				catch (NullPointerException e)
+				catch (@NonNull NullPointerException e)
 				{
 					Log.e(TAG, "While starting", e);
 					warn(getString(R.string.status_download_null_exception));
 					onDone(Status.STATUS_FAILED);
 				}
-				catch (Exception e)
+				catch (@NonNull Exception e)
 				{
 					Log.e(TAG, "While starting", e);
 					warn(e.getMessage());
