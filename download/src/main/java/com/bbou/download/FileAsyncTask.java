@@ -891,10 +891,6 @@ public class FileAsyncTask
 	{
 		final Consumer<Boolean> consumer = success -> {
 
-			if (success)
-			{
-				Settings.recordDatapackFile(activity, new File(sourceFile));
-			}
 			if (whenDone != null)
 			{
 				whenDone.accept(success);
@@ -979,10 +975,6 @@ public class FileAsyncTask
 	{
 		final Consumer<Boolean> consumer = success -> {
 
-			if (success)
-			{
-				Settings.recordDatapackFile(activity, new File(sourceFile));
-			}
 			if (whenDone != null)
 			{
 				whenDone.accept(success);
@@ -1069,10 +1061,6 @@ public class FileAsyncTask
 	{
 		final Consumer<Boolean> consumer = success -> {
 
-			if (success)
-			{
-				Settings.recordDatapackFile(activity, new File(sourceFile));
-			}
 			if (whenDone != null)
 			{
 				whenDone.accept(success);
