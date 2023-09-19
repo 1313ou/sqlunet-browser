@@ -499,7 +499,8 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 				catch (@NonNull Exception e)
 				{
 					Log.e(TAG, "While starting", e);
-					warn(e.getMessage());
+					String message = e.getMessage();
+					warn(message == null ? e.getClass().getName() : message);
 					onDone(Status.STATUS_FAILED);
 				}
 			}
