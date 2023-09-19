@@ -20,6 +20,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
@@ -71,6 +73,11 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	 * Rename to argument
 	 */
 	static public final String DOWNLOAD_RENAME_TO_ARG = "rename_to";
+
+	/**
+	 * Target file
+	 */
+	static public final String DOWNLOAD_TARGET_FILE_ARG = "target_file";
 
 	// S T A T E   K E Y S
 
@@ -794,6 +801,14 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	void onDone(final Status status)
 	{
 		isDownloading = false;
+
+		// record
+		assert getArguments() != null;
+		String target = getArguments().getString(DOWNLOAD_TARGET_FILE_ARG);
+		if (target != null && Status.STATUS_SUCCEEDED == status)
+		{
+			Settings.recordDatapackFile(requireContext(), new File(target));
+		}
 	}
 
 	/**
