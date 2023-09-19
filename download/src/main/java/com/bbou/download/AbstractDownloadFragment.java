@@ -29,7 +29,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 
 /**
- * Proto aownload fragment
+ * Proto download fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
