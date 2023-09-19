@@ -195,20 +195,12 @@ public class DownloadZipFragment extends BaseDownloadFragment
 	{
 		Log.d(TAG, "OnDone " + status);
 
-		super.onDone(status);
-
 		// UI
-		requireActivity().runOnUiThread(() -> {
-
-			endUI(status);
-		});
+		requireActivity().runOnUiThread(() -> endUI(status));
 
 		// success
 		if (status == Status.STATUS_SUCCEEDED)
 		{
-			// register if this is the datapack
-			Settings.recordDatapackFile(requireContext(), this.toDir);
-
 			// kill request
 			if (this.requestKill != null)
 			{
@@ -221,6 +213,8 @@ public class DownloadZipFragment extends BaseDownloadFragment
 				this.requestNew.run();
 			}
 		}
+
+		super.onDone(status);
 
 		// complete
 		onComplete(status != Status.STATUS_SUCCEEDED);

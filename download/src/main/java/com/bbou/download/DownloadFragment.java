@@ -158,7 +158,7 @@ public class DownloadFragment extends BaseDownloadFragment
 		}
 		if (targetView4 != null && targetView5 != null && this.unzipDir != null)
 		{
-			CharSequence deployTo = new SpannableStringBuilder(getText(R.string.deploy_dest)).append(this.unzipDir.getParent() + '/');
+			CharSequence deployTo = new SpannableStringBuilder(getText(R.string.deploy_dest)).append(this.unzipDir.getParent()).append(String.valueOf('/'));
 			targetView4.setText(deployTo);
 			targetView5.setText(this.unzipDir.getName());
 		}
@@ -353,16 +353,7 @@ public class DownloadFragment extends BaseDownloadFragment
 	{
 		Log.d(TAG, "OnDone " + status);
 
-		super.onDone(status);
-
-		// register if this is the datapack
-		if (status == Status.STATUS_SUCCEEDED)
-		{
-			if (this.toFile != null)
-			{
-				Settings.recordDatapackFile(requireContext(), this.toFile);
-			}
-		}
+		// deploy
 		boolean requiresDeploy = this.unzipDir != null;
 
 		// UI
@@ -382,6 +373,8 @@ public class DownloadFragment extends BaseDownloadFragment
 		{
 			this.toFile = null;
 		}
+
+		super.onDone(status);
 
 		// complete
 		if (status != Status.STATUS_SUCCEEDED || !requiresDeploy)
