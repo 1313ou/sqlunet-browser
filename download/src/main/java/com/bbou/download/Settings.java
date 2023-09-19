@@ -311,10 +311,18 @@ public class Settings
 	 * @param context      context
 	 * @param datapackFile datapack file
 	 */
-	public static void recordDatapackFile(@NonNull final Context context, final File datapackFile)
+	public static void recordDatapackFile(@NonNull final Context context, @NonNull final File datapackFile)
 	{
 		final SharedPreferences sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE);
 		final SharedPreferences.Editor edit = sharedPref.edit();
+		if (!datapackFile.exists())
+		{
+			edit.remove(PREF_DATAPACK_NAME);
+			edit.remove(PREF_DATAPACK_DATE);
+			edit.remove(PREF_DATAPACK_SIZE);
+			edit.apply();
+			return;
+		}
 		if (datapackFile.isDirectory())
 		{
 			edit.putString(PREF_DATAPACK_NAME, datapackFile.getName());

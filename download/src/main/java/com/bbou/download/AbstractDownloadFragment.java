@@ -782,12 +782,28 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	/**
 	 * Warn
 	 */
-	private void warn(final CharSequence message)
+	private void warn(@NonNull final CharSequence message)
 	{
 		final Activity activity = getActivity();
 		if (activity != null && !isDetached() && !activity.isFinishing() && !activity.isDestroyed())
 		{
 			activity.runOnUiThread(() -> Toast.makeText(activity, message, Toast.LENGTH_LONG).show());
+		}
+	}
+
+	// R E C O R D
+
+	protected void record()
+	{
+		Bundle arguments = getArguments();
+		if (arguments != null)
+		{
+			String target = arguments.getString(DOWNLOAD_TARGET_FILE_ARG);
+			if (target != null)
+			{
+				Settings.recordDatapackFile(requireContext(), new File(target));
+				Log.d(TAG,"Recorded " + target);
+			}
 		}
 	}
 
@@ -803,11 +819,9 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		isDownloading = false;
 
 		// record
-		assert getArguments() != null;
-		String target = getArguments().getString(DOWNLOAD_TARGET_FILE_ARG);
-		if (target != null && Status.STATUS_SUCCEEDED == status)
+		if (Status.STATUS_SUCCEEDED == status)
 		{
-			Settings.recordDatapackFile(requireContext(), new File(target));
+			record();
 		}
 	}
 

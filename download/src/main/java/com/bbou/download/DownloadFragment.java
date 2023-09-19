@@ -243,6 +243,9 @@ public class DownloadFragment extends BaseDownloadFragment
 						Log.d(TAG, "Rename " + renameFromFile + " to " + renameToFile + " : " + result2);
 					}
 
+					// record
+					record();
+
 					// new datapack
 					if (DownloadFragment.this.requestNew != null)
 					{
