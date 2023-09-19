@@ -145,12 +145,6 @@
 	<string name="gloss_download">Download database from external site.</string>
 	<string name="gloss_asset_delivery_message">Database is being delivered as an asset pack.\nThis may take some time.</string>
 
-	<!-- downloader -->
-	<string name="downloader">downloader</string>
-	<string name="zip_downloader">zip_downloader</string>
-	<string name="description_downloader">Downloader</string>
-	<string name="description_zip_downloader">Zip Downloader</string>
-
 	<!-- misc -->
 	<string name="hint_search">Search</string>
 	<string name="hint_searchtext">Text search</string>
