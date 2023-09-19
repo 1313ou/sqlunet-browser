@@ -327,7 +327,8 @@ public class Settings
 		{
 			edit.putString(PREF_DATAPACK_NAME, datapackFile.getName());
 			edit.remove(PREF_DATAPACK_DATE);
-			edit.putLong(PREF_DATAPACK_SIZE, datapackFile.listFiles().length);
+			File[] files = datapackFile.listFiles();
+			edit.putLong(PREF_DATAPACK_SIZE, files == null ? 0 : files.length);
 			edit.apply();
 		}
 		else
