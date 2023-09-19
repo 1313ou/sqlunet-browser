@@ -188,7 +188,7 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 	 * @param name               name of file to be downloaded
 	 * @param downloadSourceUrl0 download source url
 	 * @param downloadDest       download destination
-	 * @param downloadIntent     downloader intent (activity)
+	 * @param downloadIntent     downloader intent (activity launched if update is requested)
 	 * @param cache              cache
 	 */
 	static public void start(@NonNull final Activity activity, @Nullable final String name, @Nullable final String downloadSourceUrl0, final String downloadDest, final Intent downloadIntent, final String cache)
