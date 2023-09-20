@@ -84,7 +84,8 @@ public class SetupWnStatusFragment extends org.sqlunet.browser.config.SetupStatu
 			final Activity activity = requireActivity();
 			final String database = StorageSettings.getDatabasePath(activity);
 			final String free = StorageUtils.getFree(activity, database);
-			final String source = StorageSettings.getDbDownloadSource(activity, Settings.Downloader.isZipDownloaderPref(activity));
+			final com.bbou.download.Settings.Mode mode = com.bbou.download.Settings.Mode.getModePref(activity);
+			final String source = StorageSettings.getDbDownloadSource(activity, mode == com.bbou.download.Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == com.bbou.download.Settings.Mode.DOWNLOAD_ZIP);
 			final int status = Status.status(activity);
 			final boolean existsDb = (status & Status.EXISTS) != 0;
 			final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;

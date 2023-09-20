@@ -142,7 +142,8 @@ public class SetupXnStatusFragment extends org.sqlunet.browser.config.SetupStatu
 			final Activity activity = requireActivity();
 			final String database = StorageSettings.getDatabasePath(activity);
 			final String free = StorageUtils.getFree(activity, database);
-			final String source = StorageSettings.getDbDownloadSource(activity, Settings.Downloader.isZipDownloaderPref(activity));
+			final com.bbou.download.Settings.Mode mode = com.bbou.download.Settings.Mode.getModePref(activity);
+			final String source = StorageSettings.getDbDownloadSource(activity, mode == com.bbou.download.Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == com.bbou.download.Settings.Mode.DOWNLOAD_ZIP);
 			final int status = org.sqlunet.browser.config.Status.status(activity);
 			final boolean existsDb = (status & org.sqlunet.browser.config.Status.EXISTS) != 0;
 			final boolean existsTables = (status & org.sqlunet.browser.config.Status.EXISTS_TABLES) != 0;

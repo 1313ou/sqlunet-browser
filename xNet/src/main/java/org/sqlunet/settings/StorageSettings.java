@@ -28,7 +28,7 @@ public class StorageSettings
 
 	// download preferences
 
-	static public final String PREF_DOWNLOADER = "pref_downloader";
+	static public final String PREF_DOWNLOAD_MODE = "pref_download_mode";
 	static public final String PREF_DOWNLOAD_SITE = "pref_download_site";
 	static public final String PREF_DOWNLOAD_DBFILE = "pref_download_dbfile";
 

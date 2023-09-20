@@ -452,7 +452,8 @@ public class SetupFileFragment extends BaseTaskFragment
 	private SpannableStringBuilder statusDownload()
 	{
 		final Context context = requireContext();
-		final String from = StorageSettings.getDbDownloadSource(context, com.bbou.download.Settings.Downloader.isZipDownloaderPref(context));
+		final com.bbou.download.Settings.Mode mode = com.bbou.download.Settings.Mode.getModePref(context);
+		final String from = StorageSettings.getDbDownloadSource(context, mode == com.bbou.download.Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == com.bbou.download.Settings.Mode.DOWNLOAD_ZIP);
 		final String to = StorageSettings.getDbDownloadTarget(context);
 		final String free = StorageUtils.getFree(context, to);
 		final boolean targetExists = new File(to).exists();

@@ -46,7 +46,7 @@ public class Settings
 	static public final String PREF_DB_DATE = "pref_db_date";
 	static public final String PREF_DB_SIZE = "pref_db_size";
 	static public final String PREF_STORAGE = StorageSettings.PREF_STORAGE;
-	static public final String PREF_DOWNLOADER = StorageSettings.PREF_DOWNLOADER;
+	static public final String PREF_DOWNLOAD_MODE = StorageSettings.PREF_DOWNLOAD_MODE;
 	static public final String PREF_DOWNLOAD_SITE = StorageSettings.PREF_DOWNLOAD_SITE;
 	static public final String PREF_DOWNLOAD_DBFILE = StorageSettings.PREF_DOWNLOAD_DBFILE;
 	static public final String PREF_CACHE = StorageSettings.PREF_CACHE;
@@ -352,7 +352,7 @@ public class Settings
 	static public String getDownloaderPref(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		return sharedPref.getString(Settings.PREF_DOWNLOADER, null);
+		return sharedPref.getString(Settings.PREF_DOWNLOAD_MODE, null);
 	}
 
 
@@ -549,7 +549,7 @@ public class Settings
 				// .clear()
 
 				// clear some settings
-				.remove(PREF_DOWNLOADER) //
+				.remove(PREF_DOWNLOAD_MODE) //
 				.remove(PREF_DOWNLOAD_SITE) //
 				.remove(PREF_DOWNLOAD_DBFILE) //
 

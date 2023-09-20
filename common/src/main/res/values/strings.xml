@@ -165,7 +165,7 @@
 	<!-- download items -->
 	<string name="download_source">source</string>
 	<string name="download_up">available source</string>
-	<string name="download_newer">source is possibly newer</string>
+	<string name="download_newer">source database is possibly newer</string>
 	<string name="download_down">current database</string>
 	<string name="download_dest">destination</string>
 	<string name="md5_downloaded">Downloaded</string>

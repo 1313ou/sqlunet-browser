@@ -12,20 +12,19 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.bbou.download.Settings.Downloader;
+import com.bbou.download.Settings.Mode;
 
 import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.MenuHandler;
 import org.sqlunet.browser.common.R;
-import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 
-import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_DOWNLOADER_ARG;
 import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_FROM_ARG;
+import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_MODE_ARG;
 import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_TARGET_FILE_ARG;
 import static com.bbou.download.AbstractDownloadFragment.THEN_UNZIP_TO_ARG;
 import static com.bbou.download.BaseDownloadFragment.DOWNLOAD_RENAME_FROM_ARG;
@@ -93,20 +92,21 @@ public class DownloadActivity extends com.bbou.download.DownloadActivity
 
 	public static Intent makeIntent(@NonNull final Context context)
 	{
-		String type = Settings.getDownloaderPref(context);
+		com.bbou.download.Settings.Mode type = com.bbou.download.Settings.Mode.getModePref(context);
 		if (type == null)
 		{
-			type = "DOWNLOAD";
+			type = com.bbou.download.Settings.Mode.DOWNLOAD_ZIP;
 		}
 		switch (type)
 		{
-			default:
-			case "DOWNLOAD":
+			case DOWNLOAD:
 				return makeIntentPlainDownload(context);
-			case "DOWNLOAD_ZIP":
+			case DOWNLOAD_ZIP:
 				return makeIntentZipDownload(context);
-			case "DOWNLOAD_ZIP_THEN_UNZIP":
+			case DOWNLOAD_ZIP_THEN_UNZIP:
 				return makeIntentDownloadThenDeploy(context);
+			default:
+				throw new RuntimeException(type.toString());
 		}
 	}
 
@@ -114,7 +114,7 @@ public class DownloadActivity extends com.bbou.download.DownloadActivity
 	{
 		String dbTarget = StorageSettings.getDbDownloadTarget(context);
 		Intent intent = new Intent(context, DownloadActivity.class);
-		intent.putExtra(DOWNLOAD_DOWNLOADER_ARG, Downloader.DOWNLOAD.toString()); // plain transfer
+		intent.putExtra(DOWNLOAD_MODE_ARG, Mode.DOWNLOAD.toString()); // plain transfer
 		intent.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadSource(context)); // source file
 		intent.putExtra(DOWNLOAD_TO_FILE_ARG, dbTarget); // dest file
 		intent.putExtra(DOWNLOAD_TARGET_FILE_ARG, dbTarget); // target file
@@ -126,7 +126,7 @@ public class DownloadActivity extends com.bbou.download.DownloadActivity
 		String zipEntry = Uri.parse(StorageSettings.getDbDownloadSource(context)).getLastPathSegment();
 		String dbName = StorageSettings.getDatabaseName();
 		Intent intent = new Intent(context, DownloadActivity.class);
-		intent.putExtra(DOWNLOAD_DOWNLOADER_ARG, Downloader.DOWNLOAD_ZIP.toString()); // zipped transfer
+		intent.putExtra(DOWNLOAD_MODE_ARG, Mode.DOWNLOAD_ZIP.toString()); // zipped transfer
 		intent.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadZippedSource(context)); // source archive
 		intent.putExtra(DOWNLOAD_ENTRY_ARG, zipEntry); // zip entry
 		intent.putExtra(DOWNLOAD_TO_DIR_ARG, StorageSettings.getDataDir(context)); // dest directory
@@ -139,7 +139,7 @@ public class DownloadActivity extends com.bbou.download.DownloadActivity
 	public static Intent makeIntentDownloadThenDeploy(@NonNull final Context context)
 	{
 		Intent intent = new Intent(context, DownloadActivity.class);
-		intent.putExtra(DOWNLOAD_DOWNLOADER_ARG, Downloader.DOWNLOAD.toString()); // plain transfer
+		intent.putExtra(DOWNLOAD_MODE_ARG, Mode.DOWNLOAD_ZIP_THEN_UNZIP.toString()); // zip transfer then unzip
 		intent.putExtra(DOWNLOAD_FROM_ARG, StorageSettings.getDbDownloadZippedSource(context)); // source archive
 		intent.putExtra(DOWNLOAD_TO_FILE_ARG, StorageSettings.getDbDownloadZippedTarget(context)); // destination archive
 		intent.putExtra(THEN_UNZIP_TO_ARG, StorageSettings.getDataDir(context)); // unzip destination directory

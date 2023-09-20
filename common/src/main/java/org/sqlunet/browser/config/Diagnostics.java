@@ -21,11 +21,12 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.StyleSpan;
 
-import org.sqlunet.assetpack.AssetPackLoader;
-import org.sqlunet.browser.common.R;
 import com.bbou.concurrency.Task;
 import com.bbou.deploy.Deploy;
 import com.bbou.download.Settings;
+
+import org.sqlunet.assetpack.AssetPackLoader;
+import org.sqlunet.browser.common.R;
 import org.sqlunet.provider.XNetContract;
 import org.sqlunet.provider.XSqlUNetProvider;
 import org.sqlunet.settings.StorageSettings;
@@ -489,7 +490,8 @@ public class Diagnostics
 
 		// DOWNLOAD
 
-		final String dbDownloadSource = StorageSettings.getDbDownloadSource(context, Settings.Downloader.isZipDownloaderPref(context));
+		final Settings.Mode mode = Settings.Mode.getModePref(context);
+		final String dbDownloadSource = StorageSettings.getDbDownloadSource(context, mode == Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Settings.Mode.DOWNLOAD_ZIP);
 		final String dbDownloadTarget = StorageSettings.getDbDownloadTarget(context);
 
 		sb.append('\n');
