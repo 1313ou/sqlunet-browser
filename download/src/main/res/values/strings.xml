@@ -43,8 +43,8 @@
 	<string name="download_dest">destination</string>
 	<string name="download_up">available source</string>
 	<string name="download_down">current datapack</string>
-	<string name="download_newer">source is possibly newer</string>
-	<string name="download_uptodate">source is up-to-date</string>
+	<string name="download_newer">source datapack is possibly newer</string>
+	<string name="download_uptodate">current datapack is up-to-date</string>
 	<string name="select_zip_entry"><b>select</b> zip entry </string>
 	<string name="rename_source"><b>then rename</b> </string>
 	<string name="rename_dest"><b>to</b> </string>
@@ -54,6 +54,15 @@
 	<string name="yes">Yes</string>
 	<string name="no">No</string>
 	<string name="askUpdate">Do you wish to update ?</string>
+
+	<!-- info -->
+	<string name="local_date">local date</string>
+	<string name="local_size">local size</string>
+	<string name="date">date</string>
+	<string name="size">size</string>
+	<string name="etag">etag</string>
+	<string name="version">version</string>
+	<string name="static_version">static version</string>
 
 	<!-- status -->
 	<string name="md5_downloaded">Downloaded</string>

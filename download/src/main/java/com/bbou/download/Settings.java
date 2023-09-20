@@ -26,42 +26,58 @@ public class Settings
 
 		DOWNLOAD_ZIP; //
 
-		@NonNull
-		public static String zipDownloaderSource(@NonNull final Context context, @NonNull final String source)
+		public BaseDownloadFragment toFragment()
 		{
-			if (isZipDownloaderPref(context) && !source.endsWith(".zip"))
+			switch (this)
 			{
-				return source + ".zip";
-			}
-			return source;
-		}
+				case DOWNLOAD:
+					return new DownloadFragment();
 
-		public static boolean isZipDownloaderPref(@NonNull final Context context)
+				case DOWNLOAD_ZIP:
+					return new DownloadZipFragment();
+			}
+			throw new RuntimeException();
+		}
+	}
+
+	public enum Mode
+	{
+		DOWNLOAD, DOWNLOAD_ZIP, DOWNLOAD_ZIP_THEN_UNZIP;
+
+		@Nullable
+		public static String getModePrefString(@NonNull final Context context)
 		{
-			Downloader dl = Downloader.getDownloaderFromPref(context);
-			return dl.equals(DOWNLOAD_ZIP);
+			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+			return sharedPref.getString(Settings.PREF_DOWNLOAD_MODE, null);
 		}
 
 		@Nullable
-		public static String getDownloaderPrefString(@NonNull final Context context)
+		public static Mode getModePref(@NonNull final Context context)
 		{
-			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-			return sharedPref.getString(Settings.PREF_DOWNLOADER, null);
+			final String str = getModePrefString(context);
+			if (str == null)
+			{
+				return null;
+			}
+			return Mode.valueOf(str);
 		}
 
-		public static Downloader getDownloaderFromPref(@NonNull final Context context)
+		public Downloader toDownloader()
 		{
-			final String preferredDownloader = getDownloaderPrefString(context);
-			if (preferredDownloader == null)
+			switch (this)
 			{
-				return DOWNLOAD;
+				case DOWNLOAD:
+				case DOWNLOAD_ZIP_THEN_UNZIP:
+					return Downloader.DOWNLOAD;
+				case DOWNLOAD_ZIP:
+					return Downloader.DOWNLOAD_ZIP;
 			}
-			return Downloader.valueOf(preferredDownloader);
+			throw new RuntimeException();
 		}
 	}
 
 	// downloader preference key
-	static public final String PREF_DOWNLOADER = "pref_downloader";
+	static public final String PREF_DOWNLOAD_MODE = "pref_download_mode";
 
 	// preference names
 	static public final String PREFERENCES_DEVICE = "preferences_device";
@@ -111,19 +127,6 @@ public class Settings
 			editor.putString(Settings.PREF_REPO, repo);
 		}
 		editor.apply();
-	}
-
-	/**
-	 * Downloader type
-	 *
-	 * @param context context
-	 * @return downloader type
-	 */
-	@Nullable
-	public static String getDownloaderPref(@NonNull final Context context)
-	{
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		return sharedPref.getString(Settings.PREF_DOWNLOADER, null);
 	}
 
 	// D E V I C E
@@ -325,10 +328,9 @@ public class Settings
 		}
 		if (datapackFile.isDirectory())
 		{
-			edit.putString(PREF_DATAPACK_NAME, datapackFile.getName());
+			edit.remove(PREF_DATAPACK_NAME);
 			edit.remove(PREF_DATAPACK_DATE);
-			File[] files = datapackFile.listFiles();
-			edit.putLong(PREF_DATAPACK_SIZE, files == null ? 0 : files.length);
+			edit.remove(PREF_DATAPACK_SIZE);
 			edit.apply();
 		}
 		else

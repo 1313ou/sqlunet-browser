@@ -42,7 +42,7 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	/**
 	 * Downloader argument
 	 */
-	static public final String DOWNLOAD_DOWNLOADER_ARG = "download_downloader";
+	static public final String DOWNLOAD_MODE_ARG = "download_mode";
 
 	/**
 	 * From argument
@@ -206,13 +206,6 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	protected String downloadUrl;
 
 	/**
-	 * Download source uri (may differ, entry if zip stream)
-	 */
-	@SuppressWarnings("WeakerAccess")
-	@Nullable
-	protected String sourceUrl;
-
-	/**
 	 * Rename source
 	 */
 	@Nullable
@@ -285,7 +278,7 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		final String renameToArg = arguments == null ? null : arguments.getString(RENAME_TO_ARG);
 
 		// download source data
-		this.downloadUrl = this.sourceUrl = fromArg;
+		this.downloadUrl = fromArg;
 		if (this.downloadUrl == null || this.downloadUrl.isEmpty())
 		{
 			final String message = requireContext().getString(R.string.status_download_error_null_download_url);

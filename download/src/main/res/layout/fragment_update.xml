@@ -35,37 +35,98 @@
 			android:id="@+id/up_src"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/status_state_unknown" />
+			android:text="@string/status_state_unknown"
+			android:textStyle="italic" />
 
-		<TextView
-			android:id="@+id/up_size"
+		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/status_state_unknown" />
+			android:orientation="horizontal">
 
-		<TextView
-			android:id="@+id/up_date"
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:paddingEnd="5dp"
+				android:text="@string/size" />
+
+			<TextView
+				android:id="@+id/up_size"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/status_state_unknown" />
+		</LinearLayout>
+
+		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/status_state_unknown" />
+			android:orientation="horizontal">
 
-		<TextView
-			android:id="@+id/up_etag"
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:paddingEnd="5dp"
+				android:text="@string/date" />
+
+			<TextView
+				android:id="@+id/up_date"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/status_state_unknown" />
+		</LinearLayout>
+
+		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/status_state_unknown" />
+			android:orientation="horizontal">
 
-		<TextView
-			android:id="@+id/up_version"
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:paddingEnd="5dp"
+				android:text="@string/etag" />
+
+			<TextView
+				android:id="@+id/up_etag"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/status_state_unknown" />
+		</LinearLayout>
+
+		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/status_state_unknown" />
+			android:orientation="horizontal">
 
-		<TextView
-			android:id="@+id/up_static_version"
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:paddingEnd="5dp"
+				android:text="@string/version" />
+
+			<TextView
+				android:id="@+id/up_version"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/status_state_unknown" />
+		</LinearLayout>
+
+		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/status_state_unknown" />
+			android:orientation="horizontal">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:paddingEnd="5dp"
+				android:text="@string/static_version" />
+
+			<TextView
+				android:id="@+id/up_static_version"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/status_state_unknown" />
+		</LinearLayout>
 
 		<ImageView
 			android:layout_width="wrap_content"
@@ -90,52 +151,138 @@
 			android:text="@string/status_state_unknown" />
 
 		<TextView
-			android:id="@+id/down_datapack_size"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/status_state_unknown" />
-
-		<TextView
-			android:id="@+id/down_datapack_date"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/status_state_unknown" />
-
-		<TextView
 			android:id="@+id/down_source"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/status_state_unknown" />
+			android:text="@string/status_state_unknown"
+			android:textStyle="italic" />
 
-		<TextView
-			android:id="@+id/down_source_size"
+		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/status_state_unknown" />
+			android:orientation="horizontal">
 
-		<TextView
-			android:id="@+id/down_source_date"
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:paddingEnd="5dp"
+				android:text="@string/local_size" />
+
+			<TextView
+				android:id="@+id/down_datapack_size"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/status_state_unknown" />
+		</LinearLayout>
+
+		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/status_state_unknown" />
+			android:orientation="horizontal">
 
-		<TextView
-			android:id="@+id/down_source_etag"
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:paddingEnd="5dp"
+				android:text="@string/local_date" />
+
+			<TextView
+				android:id="@+id/down_datapack_date"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/status_state_unknown" />
+		</LinearLayout>
+
+		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/status_state_unknown" />
+			android:orientation="horizontal">
 
-		<TextView
-			android:id="@+id/down_source_version"
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:paddingEnd="5dp"
+				android:text="@string/size" />
+
+			<TextView
+				android:id="@+id/down_source_size"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/status_state_unknown" />
+		</LinearLayout>
+
+		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/status_state_unknown" />
+			android:orientation="horizontal">
 
-		<TextView
-			android:id="@+id/down_source_static_version"
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:paddingEnd="5dp"
+				android:text="@string/date" />
+
+			<TextView
+				android:id="@+id/down_source_date"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/status_state_unknown" />
+		</LinearLayout>
+
+		<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/status_state_unknown" />
+			android:orientation="horizontal">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:paddingEnd="5dp"
+				android:text="@string/etag" />
+
+			<TextView
+				android:id="@+id/down_source_etag"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/status_state_unknown" />
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:paddingEnd="5dp"
+				android:text="@string/version" />
+
+			<TextView
+				android:id="@+id/down_source_version"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/status_state_unknown" />
+		</LinearLayout>
+
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:paddingEnd="5dp"
+				android:text="@string/static_version" />
+
+			<TextView
+				android:id="@+id/down_source_static_version"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/status_state_unknown" />
+		</LinearLayout>
 
 		<TextView
 			android:id="@+id/newer"

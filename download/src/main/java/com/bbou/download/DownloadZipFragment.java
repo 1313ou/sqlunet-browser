@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.bbou.deploy.Deploy;
+
 import java.io.File;
 
 import androidx.annotation.NonNull;
@@ -68,15 +70,10 @@ public class DownloadZipFragment extends BaseDownloadFragment
 		this.sourceEntry = sourceEntryArg;
 
 		// adjust source data
-		assert this.sourceUrl != null;
-		if (this.sourceUrl.endsWith(".zip"))
-		{
-			this.sourceUrl = this.sourceUrl.substring(0, this.sourceUrl.length() - 4);
-		}
 		assert this.downloadUrl != null;
-		if (!this.downloadUrl.endsWith(".zip"))
+		if (!this.downloadUrl.endsWith(Deploy.ZIP_EXTENSION))
 		{
-			this.downloadUrl += ".zip";
+			this.downloadUrl += Deploy.ZIP_EXTENSION;
 		}
 	}
 
@@ -217,7 +214,7 @@ public class DownloadZipFragment extends BaseDownloadFragment
 		super.onDone(status);
 
 		// complete
-		onComplete(status != Status.STATUS_SUCCEEDED);
+		onComplete(status == Status.STATUS_SUCCEEDED);
 	}
 
 	// N O T I F I C A T I O N

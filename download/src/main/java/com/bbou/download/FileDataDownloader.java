@@ -186,21 +186,18 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 	 *
 	 * @param activity           launching activity
 	 * @param name               name of file to be downloaded
-	 * @param downloadSourceUrl0 download source url
-	 * @param downloadDest       download destination
+	 * @param downloadSourceUrl  download source url
 	 * @param downloadIntent     downloader intent (activity launched if update is requested)
-	 * @param cache              cache
 	 */
-	static public void start(@NonNull final Activity activity, @Nullable final String name, @Nullable final String downloadSourceUrl0, final String downloadDest, final Intent downloadIntent, final String cache)
+	static public void start(@NonNull final Activity activity, @Nullable final String name, @Nullable final String downloadSourceUrl, final Intent downloadIntent)
 	{
 		// download source data
-		if (name == null || downloadSourceUrl0 == null || downloadSourceUrl0.isEmpty())
+		if (name == null || downloadSourceUrl == null || downloadSourceUrl.isEmpty())
 		{
 			final String message = activity.getString(R.string.status_download_error_unavailable_download_url);
 			activity.runOnUiThread(() -> Toast.makeText(activity, message, Toast.LENGTH_LONG).show());
 			return;
 		}
-		final String downloadSourceUrl = Settings.Downloader.zipDownloaderSource(activity, downloadSourceUrl0);
 
 		// download source data (acquired by task)
 		final FileDataDownloader task = new FileDataDownloader(srcData -> {
@@ -235,6 +232,7 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 
 			// start update activity
 			final Intent intent = new Intent(activity, UpdateActivity.class);
+
 			// result
 			intent.putExtra(UpdateFragment.UP_SOURCE_ARG, downloadSourceUrl);
 			intent.putExtra(UpdateFragment.UP_DATE_ARG, srcDate == null ? "n/a" : srcDate.toString());
@@ -244,7 +242,6 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 			intent.putExtra(UpdateFragment.UP_STATIC_VERSION_ARG, srcStaticVersion == null ? "n/a" : srcStaticVersion);
 
 			intent.putExtra(UpdateFragment.DOWN_NAME_ARG, name);
-			intent.putExtra(UpdateFragment.DOWN_TARGET_ARG, cache + '/' + name);
 			intent.putExtra(UpdateFragment.DOWN_DATE_ARG, downDate == null ? "n/a" : downDate.toString());
 			intent.putExtra(UpdateFragment.DOWN_SIZE_ARG, downSize == null ? "n/a" : downSize + " bytes");
 			intent.putExtra(UpdateFragment.DOWN_SOURCE_ARG, downSource);
@@ -257,9 +254,6 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 			intent.putExtra(UpdateFragment.NEWER_ARG, !same && (newer || srcNewer));
 
 			// to do if confirmed
-			intent.putExtra(BaseDownloadFragment.DOWNLOAD_FROM_ARG, downloadSourceUrl);
-			intent.putExtra(DownloadFragment.DOWNLOAD_TO_FILE_ARG, cache);
-			intent.putExtra(BaseDownloadFragment.THEN_UNZIP_TO_ARG, downloadDest);
 			intent.putExtra(UpdateFragment.DOWNLOAD_INTENT_ARG, downloadIntent);
 
 			activity.startActivity(intent);

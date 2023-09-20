@@ -15,8 +15,8 @@
 	</string-array>
 	<string-array name="downloader_titles">
 		<item>Download</item>
-		<item>Download zipped stream and unzip</item>
-		<item>Download zipped data then unzip</item>
+		<item>Download and unzip zipped stream</item>
+		<item>Download zipped file then unzip it</item>
 	</string-array>
 
 	<string name="pref_title_repo">Datapack repo</string>

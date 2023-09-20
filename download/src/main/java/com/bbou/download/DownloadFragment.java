@@ -291,8 +291,8 @@ public class DownloadFragment extends BaseDownloadFragment
 	 */
 	protected void md5()
 	{
-		final String from = this.sourceUrl + ".md5";
-		final Uri uri = Uri.parse(this.sourceUrl);
+		final String from = this.downloadUrl + Deploy.MD5_EXTENSION;
+		final Uri uri = Uri.parse(this.downloadUrl);
 		final String sourceFile = uri.getLastPathSegment();
 		final String targetFile = this.toFile == null ? "?" : this.toFile.getName();
 		new MD5Downloader(downloadedResult -> {

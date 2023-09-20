@@ -36,8 +36,15 @@ public class DownloadActivity extends AppCompatActivity implements OnComplete
 		super.onCreate(savedInstanceState);
 
 		// downloader
-		final String overriddenDownloader = getIntent().getStringExtra(AbstractDownloadFragment.DOWNLOAD_DOWNLOADER_ARG);
-		final Settings.Downloader downloader = overriddenDownloader == null ? Settings.Downloader.getDownloaderFromPref(this) : Settings.Downloader.valueOf(overriddenDownloader);
+		final String overriddenMode = getIntent().getStringExtra(AbstractDownloadFragment.DOWNLOAD_MODE_ARG);
+		// if (overriddenMode == null)
+		// {
+		// 	throw new RuntimeException("Unspecified mode");
+		// }
+		final Settings.Mode mode = overriddenMode == null ? Settings.Mode.getModePref(this) : Settings.Mode.valueOf(overriddenMode);
+		assert mode != null;
+		final Settings.Downloader downloader = mode.toDownloader();
+		assert downloader != null;
 
 		// content
 		setContentView(R.layout.activity_download);
@@ -56,17 +63,8 @@ public class DownloadActivity extends AppCompatActivity implements OnComplete
 		if (savedInstanceState == null)
 		{
 			// fragment
-			BaseDownloadFragment downloadFragment = null;
-			switch (downloader)
-			{
-				case DOWNLOAD:
-					downloadFragment = new DownloadFragment();
-					break;
+			BaseDownloadFragment downloadFragment = downloader.toFragment();
 
-				case DOWNLOAD_ZIP:
-					downloadFragment = new DownloadZipFragment();
-					break;
-			}
 			// pass arguments over to fragment
 			Bundle args = getIntent().getExtras();
 			downloadFragment.setArguments(args);

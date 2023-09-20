@@ -39,6 +39,10 @@ public class Deploy
 {
 	static private final String TAG = "Deploy";
 
+	public static final String ZIP_EXTENSION = ".zip";
+
+	public static final String MD5_EXTENSION = ".md5";
+
 	@FunctionalInterface
 	public interface InputStreamGetter
 	{
@@ -102,7 +106,7 @@ public class Deploy
 			if (dirContent == null || dirContent.length == 0)
 			{
 				// expand asset
-				expandZipFile(lang + ".zip", toDir, false, getter);
+				expandZipFile(lang + ZIP_EXTENSION, toDir, false, getter);
 			}
 
 			// check
