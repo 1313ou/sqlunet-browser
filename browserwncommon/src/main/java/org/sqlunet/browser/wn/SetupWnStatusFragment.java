@@ -17,8 +17,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-import com.bbou.download.Settings;
-
 import org.sqlunet.browser.ColorUtils;
 import org.sqlunet.browser.Info;
 import org.sqlunet.browser.config.SetupDatabaseActivity;
@@ -85,7 +83,7 @@ public class SetupWnStatusFragment extends org.sqlunet.browser.config.SetupStatu
 			final String database = StorageSettings.getDatabasePath(activity);
 			final String free = StorageUtils.getFree(activity, database);
 			final com.bbou.download.Settings.Mode mode = com.bbou.download.Settings.Mode.getModePref(activity);
-			final String source = StorageSettings.getDbDownloadSource(activity, mode == com.bbou.download.Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == com.bbou.download.Settings.Mode.DOWNLOAD_ZIP);
+			final String source = StorageSettings.getDbDownloadSourcePath(activity, mode == com.bbou.download.Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == com.bbou.download.Settings.Mode.DOWNLOAD_ZIP);
 			final int status = Status.status(activity);
 			final boolean existsDb = (status & Status.EXISTS) != 0;
 			final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;

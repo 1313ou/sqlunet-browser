@@ -32,7 +32,7 @@ public class StorageSettings
 	static public final String PREF_DOWNLOAD_SITE = "pref_download_site";
 	static public final String PREF_DOWNLOAD_DBFILE = "pref_download_dbfile";
 
-	// D A T A B A S E
+	// L O C A L   D A T A B A S E
 
 	/**
 	 * Get database directory
@@ -57,18 +57,6 @@ public class StorageSettings
 	}
 
 	/**
-	 * Get database path
-	 *
-	 * @param context context
-	 * @return database path
-	 */
-	@NonNull
-	static public String getDatabasePath(@NonNull final Context context)
-	{
-		return getDataDir(context) + File.separatorChar + Storage.DBFILE;
-	}
-
-	/**
 	 * Get database name
 	 *
 	 * @return database name
@@ -78,6 +66,18 @@ public class StorageSettings
 	static public String getDatabaseName()
 	{
 		return Storage.DBFILE;
+	}
+
+	/**
+	 * Get database path
+	 *
+	 * @param context context
+	 * @return database path
+	 */
+	@NonNull
+	static public String getDatabasePath(@NonNull final Context context)
+	{
+		return getDataDir(context) + File.separatorChar + getDatabaseName();
 	}
 
 	// C A C H E
@@ -95,15 +95,15 @@ public class StorageSettings
 	}
 
 	/**
-	 * Get data cache temp file
+	 * Get download db zipped target
 	 *
 	 * @param context context
-	 * @return data cache
+	 * @return cached target
 	 */
 	@NonNull
-	static public String getCacheZipFile(@NonNull final Context context)
+	static public String getCachedZippedPath(@NonNull final Context context)
 	{
-		return Storage.getCacheDir(context) + File.separatorChar + "temp.zip";
+		return getCacheDir(context) + File.separatorChar + getDbDownloadZipName(context);
 	}
 
 	// D O W N L O A D
@@ -119,22 +119,20 @@ public class StorageSettings
 	{
 		// test if already in preferences
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		String value = sharedPref.getString(StorageSettings.PREF_DOWNLOAD_SITE, null);
+		String value = sharedPref.getString(PREF_DOWNLOAD_SITE, null);
 		if (value != null)
 		{
 			return value;
 		}
 
-		// set to default value
+		// set to default value read from resources
 		value = context.getResources().getString(R.string.default_download_site_url);
 
 		// store value in preferences
-		sharedPref.edit().putString(StorageSettings.PREF_DOWNLOAD_SITE, value).apply();
+		sharedPref.edit().putString(PREF_DOWNLOAD_SITE, value).apply();
 
 		return value;
 	}
-
-	// D A T A B A S E
 
 	/**
 	 * Get download db file
@@ -143,83 +141,76 @@ public class StorageSettings
 	 * @return download db file
 	 */
 	@NonNull
-	static public String getDbDownloadFile(@NonNull final Context context)
+	static public String getDbDownloadName(@NonNull final Context context)
 	{
 		// test if already already in preferences
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		String value = sharedPref.getString(StorageSettings.PREF_DOWNLOAD_DBFILE, null);
+		String value = sharedPref.getString(PREF_DOWNLOAD_DBFILE, null);
 		if (value != null)
 		{
 			return value;
 		}
 
-		// set to default value
+		// set to default value read from resources
 		value = context.getResources().getString(R.string.default_download_datapack_file);
 
 		// store value in preferences
-		sharedPref.edit().putString(StorageSettings.PREF_DOWNLOAD_DBFILE, value).apply();
+		sharedPref.edit().putString(PREF_DOWNLOAD_DBFILE, value).apply();
 
 		return value;
 	}
 
 	/**
-	 * Get download db source
+	 * Get download db file
+	 *
+	 * @param context context
+	 * @return download db zip file
+	 */
+	@NonNull
+	static public String getDbDownloadZipName(@NonNull final Context context)
+	{
+		return zipped(getDbDownloadName(context));
+	}
+
+	/**
+	 * Get download db source file
 	 *
 	 * @param context context
 	 * @return download db source
 	 */
 	@NonNull
-	static public String getDbDownloadSource(@NonNull final Context context)
+	static public String getDbDownloadSourcePath(@NonNull final Context context)
 	{
-		return StorageSettings.getDownloadSite(context) + '/' + StorageSettings.getDbDownloadFile(context);
+		return getDownloadSite(context) + '/' + getDbDownloadName(context);
 	}
 
 	/**
 	 * Get download db zipped source
 	 *
 	 * @param context context
-	 * @return download db source
+	 * @return download db zip source
 	 */
 	@NonNull
-	static public String getDbDownloadZippedSource(@NonNull final Context context)
+	static public String getDbDownloadZippedSourcePath(@NonNull final Context context)
 	{
-		return StorageSettings.getDbDownloadSource(context) + ".zip";
+		return zipped(getDbDownloadSourcePath(context));
 	}
 
 	/**
 	 * Get download db source as per downloader
 	 *
-	 * @param context       context
-	 * @param zipDownloader whether downloader is zip downloader
-	 * @return download db source
+	 * @param context context
+	 * @param zipped  whether downloader needs zipped file or stream
+	 * @return download db zip source
 	 */
 	@NonNull
-	static public String getDbDownloadSource(@NonNull final Context context, boolean zipDownloader)
+	static public String getDbDownloadSourcePath(@NonNull final Context context, boolean zipped)
 	{
-		return zipDownloader ? StorageSettings.getDbDownloadZippedSource(context) : StorageSettings.getDbDownloadSource(context);
+		return zipped ? getDbDownloadZippedSourcePath(context) : getDbDownloadSourcePath(context);
 	}
 
-	/**
-	 * Get download db target
-	 *
-	 * @param context context
-	 * @return download db target
-	 */
-	@NonNull
-	static public String getDbDownloadTarget(@NonNull final Context context)
+	static private String zipped(@NonNull final String unzipped)
 	{
-		return getDataDir(context) + File.separatorChar + Storage.DBFILE;
-	}
-
-	/**
-	 * Get download db zipped target
-	 *
-	 * @param context context
-	 * @return download db target
-	 */
-	@NonNull
-	static public String getDbDownloadZippedTarget(@NonNull final Context context)
-	{
-		return StorageSettings.getCacheDir(context) + File.separatorChar + Storage.DBFILEZIP;
+		return unzipped + ".zip";
 	}
 }

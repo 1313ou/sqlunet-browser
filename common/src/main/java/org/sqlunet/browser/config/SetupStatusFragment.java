@@ -143,7 +143,7 @@ public class SetupStatusFragment extends Fragment implements Updatable
 	protected void download()
 	{
 		final Context context = requireContext();
-		final Intent intent = DownloadActivity.makeIntent(context);
+		final Intent intent = DownloadIntentFactory.makeIntent(context);
 		this.activityResultLauncher.launch(intent);
 	}
 
@@ -161,7 +161,7 @@ public class SetupStatusFragment extends Fragment implements Updatable
 		final String database = StorageSettings.getDatabasePath(activity);
 		final String free = StorageUtils.getFree(activity, database);
 		final Settings.Mode mode = Settings.Mode.getModePref(activity);
-		final String source = StorageSettings.getDbDownloadSource(activity, mode == Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Settings.Mode.DOWNLOAD_ZIP);
+		final String source = StorageSettings.getDbDownloadSourcePath(activity, mode == Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Settings.Mode.DOWNLOAD_ZIP);
 		final int status = Status.status(activity);
 		final boolean existsDb = (status & Status.EXISTS) != 0;
 		final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;

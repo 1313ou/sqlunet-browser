@@ -155,7 +155,7 @@ public class SetupFileFragment extends BaseTaskFragment
 							final Intent intent2 = new Intent(activity, OperationActivity.class);
 							intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_UNZIP_ENTRY);
 							intent2.putExtra(OperationActivity.ARG_TYPES, new String[]{"application/zip"});
-							intent2.putExtra(OperationActivity.ARG_ZIP_ENTRY, Settings.getZipEntry(requireContext(), StorageSettings.getDbDownloadFile(requireContext())));
+							intent2.putExtra(OperationActivity.ARG_ZIP_ENTRY, Settings.getZipEntry(requireContext(), StorageSettings.getDbDownloadName(requireContext())));
 							activity.startActivity(intent2);
 						}
 						break;
@@ -192,12 +192,12 @@ public class SetupFileFragment extends BaseTaskFragment
 						break;
 
 					case DOWNLOAD:
-						final Intent intent2 = DownloadActivity.makeIntent(activity);
+						final Intent intent2 = DownloadIntentFactory.makeIntent(activity);
 						activity.startActivity(intent2);
 						break;
 
 					case DOWNLOAD_ZIPPED:
-						final Intent intent3 = DownloadActivity.makeIntentDownloadThenDeploy(activity);
+						final Intent intent3 = DownloadIntentFactory.makeIntentDownloadThenDeploy(activity);
 						activity.startActivity(intent3);
 						break;
 
@@ -453,8 +453,8 @@ public class SetupFileFragment extends BaseTaskFragment
 	{
 		final Context context = requireContext();
 		final com.bbou.download.Settings.Mode mode = com.bbou.download.Settings.Mode.getModePref(context);
-		final String from = StorageSettings.getDbDownloadSource(context, mode == com.bbou.download.Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == com.bbou.download.Settings.Mode.DOWNLOAD_ZIP);
-		final String to = StorageSettings.getDbDownloadTarget(context);
+		final String from = StorageSettings.getDbDownloadSourcePath(context, mode == com.bbou.download.Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == com.bbou.download.Settings.Mode.DOWNLOAD_ZIP);
+		final String to = StorageSettings.getDatabasePath(context);
 		final String free = StorageUtils.getFree(context, to);
 		final boolean targetExists = new File(to).exists();
 
@@ -481,8 +481,8 @@ public class SetupFileFragment extends BaseTaskFragment
 	private SpannableStringBuilder statusDownloadZipped()
 	{
 		final Context context = requireContext();
-		final String from = StorageSettings.getDbDownloadZippedSource(context);
-		final String to = StorageSettings.getDbDownloadZippedTarget(context);
+		final String from = StorageSettings.getDbDownloadZippedSourcePath(context);
+		final String to = StorageSettings.getCachedZippedPath(context);
 		final String free = StorageUtils.getFree(context, to);
 		final boolean targetExists = new File(to).exists();
 

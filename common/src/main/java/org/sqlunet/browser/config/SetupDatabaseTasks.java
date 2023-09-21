@@ -95,7 +95,7 @@ public class SetupDatabaseTasks
 		final boolean success = SetupDatabaseTasks.deleteDatabase(context, StorageSettings.getDatabasePath(context));
 		if (success)
 		{
-			final Intent intent = DownloadActivity.makeIntent(context);
+			final Intent intent = DownloadIntentFactory.makeIntent(context);
 			context.startActivity(intent);
 		}
 	}

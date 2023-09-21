@@ -7,7 +7,6 @@ package org.sqlunet.browser;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.net.Uri;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.view.Menu;
@@ -16,8 +15,6 @@ import android.view.MenuItem;
 import com.bbou.concurrency.TaskDialogObserver;
 import com.bbou.concurrency.TaskObserver;
 import com.bbou.donate.DonateActivity;
-import com.bbou.download.AbstractDownloadFragment;
-import com.bbou.download.DownloadFragment;
 import com.bbou.download.FileDataDownloader;
 import com.bbou.download.ResourcesDownloader;
 import com.bbou.others.OthersActivity;
@@ -25,7 +22,7 @@ import com.bbou.rate.AppRate;
 
 import org.sqlunet.browser.common.R;
 import org.sqlunet.browser.config.DiagnosticsActivity;
-import org.sqlunet.browser.config.DownloadActivity;
+import org.sqlunet.browser.config.DownloadIntentFactory;
 import org.sqlunet.browser.config.LogsActivity;
 import org.sqlunet.browser.config.SettingsActivity;
 import org.sqlunet.browser.config.SetupActivity;
@@ -35,7 +32,6 @@ import org.sqlunet.browser.config.SetupFileFragment;
 import org.sqlunet.browser.config.StorageActivity;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.settings.Settings;
-import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.sql.SqlFormatter;
 
 import androidx.annotation.NonNull;
@@ -93,22 +89,12 @@ public class MenuHandler
 		}
 		else if (itemId == R.id.action_download)
 		{
-			intent = DownloadActivity.makeIntent(activity);
+			intent = DownloadIntentFactory.makeIntent(activity);
 		}
 		else if (itemId == R.id.action_update)
 		{
 			BaseProvider.closeProviders(activity);
-
-			final String downloadSourceUrl = StorageSettings.getDbDownloadSource(activity); // com.bbou.download.Settings.getDatapackSource(activity);
-			final String name = Uri.parse(downloadSourceUrl).getLastPathSegment(); //activity.getResources().getString(R.string.default_download_datapack_file);
-			final String cache = com.bbou.download.Settings.getCachePref(activity);
-
-			final Intent downloadIntent = DownloadActivity.makeIntent(activity);
-			downloadIntent.putExtra(AbstractDownloadFragment.DOWNLOAD_FROM_ARG, downloadSourceUrl);
-			downloadIntent.putExtra(DownloadFragment.DOWNLOAD_TO_FILE_ARG, cache + '/' + name);
-			downloadIntent.putExtra(DownloadFragment.DOWNLOAD_TARGET_FILE_ARG, cache + '/' + name);
-			FileDataDownloader.start(activity, name, downloadSourceUrl, downloadIntent);
-
+			FileDataDownloader.start(activity, DownloadIntentFactory.makeUpdateIntent(activity));
 			return true;
 		}
 		else if (itemId == R.id.action_resources_directory)
@@ -219,7 +205,7 @@ public class MenuHandler
 		}
 		else if (itemId == R.id.action_download)
 		{
-			intent = DownloadActivity.makeIntent(activity);
+			intent = DownloadIntentFactory.makeIntent(activity);
 			intent.addFlags(0);
 		}
 

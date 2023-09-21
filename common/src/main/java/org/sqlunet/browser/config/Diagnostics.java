@@ -491,8 +491,8 @@ public class Diagnostics
 		// DOWNLOAD
 
 		final Settings.Mode mode = Settings.Mode.getModePref(context);
-		final String dbDownloadSource = StorageSettings.getDbDownloadSource(context, mode == Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Settings.Mode.DOWNLOAD_ZIP);
-		final String dbDownloadTarget = StorageSettings.getDbDownloadTarget(context);
+		final String dbDownloadSource = StorageSettings.getDbDownloadSourcePath(context, mode == Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Settings.Mode.DOWNLOAD_ZIP);
+		final String dbDownloadTarget = StorageSettings.getDatabasePath(context);
 
 		sb.append('\n');
 		append(sb, "download", new StyleSpan(Typeface.BOLD));

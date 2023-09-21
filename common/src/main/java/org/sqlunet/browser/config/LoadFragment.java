@@ -50,7 +50,7 @@ public class LoadFragment extends Fragment
 		downloadButton.setOnClickListener((v) -> {
 
 			Activity activity = requireActivity();
-			final Intent intent = DownloadActivity.makeIntent(activity);
+			final Intent intent = DownloadIntentFactory.makeIntent(activity);
 			intent.addFlags(0);
 			activity.startActivity(intent);
 		});
