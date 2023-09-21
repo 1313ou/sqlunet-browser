@@ -6,6 +6,7 @@ package com.bbou.download;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -184,15 +185,17 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 	/**
 	 * Start file data downloading
 	 *
-	 * @param activity           launching activity
-	 * @param name               name of file to be downloaded
-	 * @param downloadSourceUrl  download source url
-	 * @param downloadIntent     downloader intent (activity launched if update is requested)
+	 * @param activity       launching activity
+	 * @param downloadIntent downloader intent (activity launched if update is requested)
 	 */
-	static public void start(@NonNull final Activity activity, @Nullable final String name, @Nullable final String downloadSourceUrl, final Intent downloadIntent)
+	static public void start(@NonNull final Activity activity, final Intent downloadIntent)
 	{
+		// unmarshal arguments
+		@Nullable final String downloadSourceUrl = downloadIntent.getStringExtra(AbstractDownloadFragment.DOWNLOAD_FROM_ARG);
+		@Nullable final String name = Uri.parse(downloadSourceUrl).getLastPathSegment();
+
 		// download source data
-		if (name == null || downloadSourceUrl == null || downloadSourceUrl.isEmpty())
+		if (downloadSourceUrl == null || downloadSourceUrl.isEmpty() || name == null)
 		{
 			final String message = activity.getString(R.string.status_download_error_unavailable_download_url);
 			activity.runOnUiThread(() -> Toast.makeText(activity, message, Toast.LENGTH_LONG).show());
