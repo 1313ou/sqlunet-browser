@@ -134,12 +134,22 @@ public class UpdateFragment extends Fragment
 		downSourceVersion.setText(downSourceVersionArg);
 		downSourceStaticVersion.setText(downSourceStaticVersionArg);
 
-		final TextView newer = view.findViewById(R.id.newer);
 		final boolean newerArg = intent.getBooleanExtra(NEWER_ARG, false);
+		final TextView newer = view.findViewById(R.id.newer);
 		if (newerArg)
 		{
 			newer.setTextColor(Color.BLUE);
 			newer.setText(R.string.download_newer);
+		}
+		else
+		{
+			newer.setTextColor(Color.GREEN);
+			newer.setText(R.string.download_uptodate);
+		}
+
+		// proceed with update button
+		if (newerArg)
+		{
 			final ImageButton button = view.findViewById(R.id.update);
 			button.setVisibility(View.VISIBLE);
 			button.setOnClickListener(v -> {
@@ -156,11 +166,6 @@ public class UpdateFragment extends Fragment
 					}
 				});
 			});
-		}
-		else
-		{
-			newer.setTextColor(Color.GREEN);
-			newer.setText(R.string.download_uptodate);
 		}
 		return view;
 	}
