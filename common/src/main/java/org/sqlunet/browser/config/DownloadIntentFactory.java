@@ -61,8 +61,7 @@ public class DownloadIntentFactory
 	public static Intent makeIntentPlainDownload(@NonNull final Context context, final String dbSource)
 	{
 		final String dbDest = StorageSettings.getDatabasePath(context);
-
-		Intent intent = new Intent(context, DownloadActivity.class);
+		final Intent intent = new Intent(context, DownloadActivity.class);
 		intent.putExtra(DOWNLOAD_MODE_ARG, Settings.Mode.DOWNLOAD.toString()); // plain transfer
 		intent.putExtra(DOWNLOAD_FROM_ARG, dbSource); // source file
 		intent.putExtra(DOWNLOAD_TO_FILE_ARG, dbDest); // dest file
@@ -72,18 +71,17 @@ public class DownloadIntentFactory
 
 	public static Intent makeIntentZipDownload(@NonNull final Context context)
 	{
-		String dbZipSource = StorageSettings.getDbDownloadZippedSourcePath(context);
+		final String dbZipSource = StorageSettings.getDbDownloadZippedSourcePath(context);
 		return makeIntentZipDownload(context, dbZipSource);
 	}
 
 	public static Intent makeIntentZipDownload(@NonNull final Context context, final String dbZipSource)
 	{
-		String dbZipEntry = StorageSettings.getDbDownloadName(context);
-		String dbDestDir = StorageSettings.getDataDir(context);
-		String dbName = StorageSettings.getDatabaseName();
-		String dbTarget = StorageSettings.getDatabasePath(context);
-
-		Intent intent = new Intent(context, DownloadActivity.class);
+		final String dbZipEntry = StorageSettings.getDbDownloadName(context);
+		final String dbDestDir = StorageSettings.getDataDir(context);
+		final String dbName = StorageSettings.getDatabaseName();
+		final String dbTarget = StorageSettings.getDatabasePath(context);
+		final Intent intent = new Intent(context, DownloadActivity.class);
 		intent.putExtra(DOWNLOAD_MODE_ARG, Settings.Mode.DOWNLOAD_ZIP.toString()); // zipped transfer
 		intent.putExtra(DOWNLOAD_FROM_ARG, dbZipSource); // source archive
 		intent.putExtra(DOWNLOAD_TO_DIR_ARG, dbDestDir); // dest directory
@@ -96,19 +94,18 @@ public class DownloadIntentFactory
 
 	public static Intent makeIntentDownloadThenDeploy(@NonNull final Context context)
 	{
-		String dbZipSource = StorageSettings.getDbDownloadZippedSourcePath(context);
-		String dbZipDest = StorageSettings.getCachedZippedPath(context);
+		final String dbZipSource = StorageSettings.getDbDownloadZippedSourcePath(context);
+		final String dbZipDest = StorageSettings.getCachedZippedPath(context);
 		return makeIntentDownloadThenDeploy(context, dbZipSource, dbZipDest);
 	}
 
 	public static Intent makeIntentDownloadThenDeploy(@NonNull final Context context, final String dbZipSource, final String dbZipDest)
 	{
-		String dbDir = StorageSettings.getDataDir(context);
-		String dbRenameFrom = StorageSettings.getDbDownloadName(context);
-		String dbRenameTo = StorageSettings.getDatabaseName();
-		String dbTarget = StorageSettings.getDatabasePath(context);
-
-		Intent intent = new Intent(context, DownloadActivity.class);
+		final String dbDir = StorageSettings.getDataDir(context);
+		final String dbRenameFrom = StorageSettings.getDbDownloadName(context);
+		final String dbRenameTo = StorageSettings.getDatabaseName();
+		final String dbTarget = StorageSettings.getDatabasePath(context);
+		final Intent intent = new Intent(context, DownloadActivity.class);
 		intent.putExtra(DOWNLOAD_MODE_ARG, Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP.toString()); // zip transfer then unzip
 		intent.putExtra(DOWNLOAD_FROM_ARG, dbZipSource); // source archive
 		intent.putExtra(DOWNLOAD_TO_FILE_ARG, dbZipDest); // destination archive
@@ -129,12 +126,12 @@ public class DownloadIntentFactory
 		}
 
 		// source has zip extension
-		Settings.Mode type = Settings.Mode.getModePref(context);
-		if (type == null)
+		Settings.Mode mode = Settings.Mode.getModePref(context);
+		if (mode == null)
 		{
-			type = Settings.Mode.DOWNLOAD_ZIP;
+			mode = Settings.Mode.DOWNLOAD_ZIP;
 		}
-		switch (type)
+		switch (mode)
 		{
 			case DOWNLOAD_ZIP_THEN_UNZIP:
 				final String name = Uri.parse(downloadSourceUrl).getLastPathSegment();
@@ -146,11 +143,11 @@ public class DownloadIntentFactory
 				return makeIntentZipDownload(context, downloadSourceUrl);
 
 			case DOWNLOAD:
-				throw new RuntimeException(type.toString());
+				throw new RuntimeException(mode.toString());
 				// return makeIntentPlainDownload(context, downloadSourceUrl);
 
 			default:
-				throw new RuntimeException(type.toString());
+				throw new RuntimeException(mode.toString());
 		}
 	}
 }

@@ -343,13 +343,13 @@ public class Settings
 	}
 
 	/**
-	 * Get preferred downloader
+	 * Get preferred download mode
 	 *
 	 * @param context context
-	 * @return preferred downloader
+	 * @return preferred download mode
 	 */
 	@Nullable
-	static public String getDownloaderPref(@NonNull final Context context)
+	static public String getDownloadModePref(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getString(Settings.PREF_DOWNLOAD_MODE, null);

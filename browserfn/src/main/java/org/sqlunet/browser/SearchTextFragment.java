@@ -84,7 +84,7 @@ public class SearchTextFragment extends BaseSearchFragment
 		}
 
 		// log
-		Log.d(SearchTextFragment.TAG, "Search text " + query);
+		Log.d(TAG, "Search text " + query);
 
 		// subtitle
 		final Toolbar toolbar = requireActivity().findViewById(org.sqlunet.browser.common.R.id.toolbar_search);

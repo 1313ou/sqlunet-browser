@@ -260,7 +260,7 @@ public class FrameNetProvider extends BaseProvider
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI
 		final int code = FrameNetProvider.uriMatcher.match(uri);
-		Log.d(FrameNetProvider.TAG + "URI", String.format("%s (code %s)", uri, code));
+		Log.d(TAG + "URI", String.format("%s (code %s)", uri, code));
 		if (code == UriMatcher.NO_MATCH)
 		{
 			throw new RuntimeException("Malformed URI " + uri);

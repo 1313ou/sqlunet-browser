@@ -195,7 +195,7 @@ public class WebFragment extends Fragment
 
 						case ProviderArgs.ARG_QUERYTYPE_WORD:
 							@SuppressWarnings("TypeMayBeWeakened") final WordPointer wordPointer = (WordPointer) pointer;
-							Log.d(WebFragment.TAG, "ARG_POSITION word=" + wordPointer);
+							Log.d(TAG, "ARG_POSITION word=" + wordPointer);
 							if (wordPointer != null && Settings.Source.WORDNET.test(sources))
 							{
 								wnDomDoc = new WordNetImplementation().queryWordDoc(db, wordPointer.getWordId());
@@ -204,7 +204,7 @@ public class WebFragment extends Fragment
 
 						case ProviderArgs.ARG_QUERYTYPE_SYNSET:
 							@SuppressWarnings("TypeMayBeWeakened") final SynsetPointer synsetPointer = (SynsetPointer) pointer;
-							Log.d(WebFragment.TAG, "ARG_POSITION synset=" + synsetPointer);
+							Log.d(TAG, "ARG_POSITION synset=" + synsetPointer);
 							if (synsetPointer != null && Settings.Source.WORDNET.test(sources))
 							{
 								wnDomDoc = new WordNetImplementation().querySynsetDoc(db, synsetPointer.getSynsetId());
@@ -213,7 +213,7 @@ public class WebFragment extends Fragment
 
 						case ProviderArgs.ARG_QUERYTYPE_COLLOCATION:
 							final SnCollocationPointer collocationPointer = (SnCollocationPointer) pointer;
-							Log.d(WebFragment.TAG, "ARG_POSITION collocation=" + collocationPointer);
+							Log.d(TAG, "ARG_POSITION collocation=" + collocationPointer);
 							if (collocationPointer != null && Settings.Source.SYNTAGNET.test(sources))
 							{
 								snDomDoc = new SyntagNetImplementation().queryCollocationDoc(db, collocationPointer.getId());
@@ -227,7 +227,7 @@ public class WebFragment extends Fragment
 			}
 			catch (@NonNull final Exception e)
 			{
-				Log.e(WebFragment.TAG, "getDoc", e);
+				Log.e(TAG, "getDoc", e);
 			}
 			return null;
 		}
@@ -306,7 +306,7 @@ public class WebFragment extends Fragment
 		this.model = new ViewModelProvider(this).get("web(doc)", WebModel.class);
 		this.model.getData().observe(getViewLifecycleOwner(), doc -> {
 
-			Log.d(WebFragment.TAG, "onLoadFinished");
+			Log.d(TAG, "onLoadFinished");
 			final String mimeType = xml ? "text/xml" : "text/html";
 			final String baseUrl = "file:///android_asset/";
 			WebFragment.this.webview.loadDataWithBaseURL(baseUrl, doc, mimeType, "utf-8", null);
@@ -350,14 +350,14 @@ public class WebFragment extends Fragment
 
 			private boolean handleUrl(@NonNull final Uri uri)
 			{
-				Log.d(WebFragment.TAG, "Uri " + uri);
+				Log.d(TAG, "Uri " + uri);
 				try
 				{
 					final String query = URLDecoder.decode(uri.getQuery(), "UTF-8");
 					final String[] target = query.split("=");
 					final String name = target[0];
 					final String value = target[1];
-					Log.d(WebFragment.TAG, "QUERY " + query + " name=" + name + " value=" + value);
+					Log.d(TAG, "QUERY " + query + " name=" + name + " value=" + value);
 					final Intent targetIntent = new Intent(requireContext(), WebActivity.class);
 					if ("word".equals(name)) //
 					{
@@ -393,7 +393,7 @@ public class WebFragment extends Fragment
 								pointer = new SnCollocationPointer(id);
 								break;
 							default:
-								Log.e(WebFragment.TAG, "Ill-formed Uri: " + uri);
+								Log.e(TAG, "Ill-formed Uri: " + uri);
 								return false;
 						}
 
@@ -408,7 +408,7 @@ public class WebFragment extends Fragment
 				}
 				catch (@NonNull final Exception e)
 				{
-					Log.e(WebFragment.TAG, "Error while loading Uri: " + uri, e);
+					Log.e(TAG, "Error while loading Uri: " + uri, e);
 				}
 				return false;
 			}
@@ -443,7 +443,7 @@ public class WebFragment extends Fragment
 
 		// pointer
 		final Parcelable pointer = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? args.getParcelable(ProviderArgs.ARG_QUERYPOINTER, Parcelable.class) : args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
-		Log.d(WebFragment.TAG, "ARG_POSITION query=" + pointer);
+		Log.d(TAG, "ARG_POSITION query=" + pointer);
 
 		// hint
 		final String posString = args.getString(ProviderArgs.ARG_HINTPOS);
@@ -451,7 +451,7 @@ public class WebFragment extends Fragment
 
 		// text
 		final String data = args.getString(ProviderArgs.ARG_QUERYSTRING);
-		Log.d(WebFragment.TAG, "ARG_POSITION data=" + data);
+		Log.d(TAG, "ARG_POSITION data=" + data);
 
 		// load the contents
 		this.model.loadData(new WebDocumentStringLoader(requireContext(), pointer, pos, type, data, sources, xml));

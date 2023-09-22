@@ -321,7 +321,7 @@ public class WordNetProvider extends BaseProvider
 		}
 
 		final int code = WordNetProvider.uriMatcher.match(uri);
-		Log.d(WordNetProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code));
+		Log.d(TAG + "URI", String.format("%s (code %s)\n", uri, code));
 		if (code == UriMatcher.NO_MATCH)
 		{
 			throw new RuntimeException("Malformed URI " + uri);
@@ -346,8 +346,8 @@ public class WordNetProvider extends BaseProvider
 			logSql(sql, selectionArgs0);
 			if (BaseProvider.logSql)
 			{
-				Log.d(WordNetProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
-				Log.d(WordNetProvider.TAG + "ARG", BaseProvider.argsToString(result.selectionArgs == null ? selectionArgs0 : result.selectionArgs));
+				Log.d(TAG + "SQL", SqlFormatter.format(sql).toString());
+				Log.d(TAG + "ARG", BaseProvider.argsToString(result.selectionArgs == null ? selectionArgs0 : result.selectionArgs));
 			}
 
 			// do query

@@ -352,9 +352,9 @@ public class SettingsActivity extends BaseSettingsActivity
 			addPreferencesFromResource(R.xml.pref_download);
 
 			// bind the summaries to their values.
-			final Preference downloaderPreference = findPreference(Settings.PREF_DOWNLOAD_MODE);
-			assert downloaderPreference != null;
-			downloaderPreference.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
+			final Preference downloadModePreference = findPreference(Settings.PREF_DOWNLOAD_MODE);
+			assert downloadModePreference != null;
+			downloadModePreference.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
 
 			final OpenEditTextPreference sitePreference = findPreference(Settings.PREF_DOWNLOAD_SITE);
 			assert sitePreference != null;

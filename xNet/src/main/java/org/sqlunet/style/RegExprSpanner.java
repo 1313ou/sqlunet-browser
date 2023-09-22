@@ -145,7 +145,7 @@ public class RegExprSpanner extends Spanner
 						return;
 					}
 
-					// Log.d(SpanReplacer.TAG, '"' + matcher.group(i + 1) + '"');
+					// Log.d(TAG, '"' + matcher.group(i + 1) + '"');
 					final int start = from + matcher.start(i + 1);
 					final int end = from + matcher.end(i + 1);
 					if (end - start > 0)

@@ -114,7 +114,7 @@ public class PredicateMatrixProvider extends BaseProvider
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI
 		final int code = PredicateMatrixProvider.uriMatcher.match(uri);
-		Log.d(PredicateMatrixProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code));
+		Log.d(TAG + "URI", String.format("%s (code %s)\n", uri, code));
 		if (code == UriMatcher.NO_MATCH)
 		{
 			throw new RuntimeException("Malformed URI " + uri);
@@ -127,8 +127,8 @@ public class PredicateMatrixProvider extends BaseProvider
 			logSql(sql, selectionArgs0);
 			if (BaseProvider.logSql)
 			{
-				Log.d(PredicateMatrixProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
-				Log.d(PredicateMatrixProvider.TAG + "ARGS", BaseProvider.argsToString(result.selectionArgs == null ? selectionArgs0 : result.selectionArgs));
+				Log.d(TAG + "SQL", SqlFormatter.format(sql).toString());
+				Log.d(TAG + "ARGS", BaseProvider.argsToString(result.selectionArgs == null ? selectionArgs0 : result.selectionArgs));
 			}
 
 			// do query

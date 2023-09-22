@@ -169,7 +169,7 @@ public class ExecAsyncTask
 					// exec
 					db.execSQL(sql);
 					successCount++;
-					Log.d(ExecAsyncTask.TAG, "SQL " + sql);
+					Log.d(TAG, "SQL " + sql);
 
 					// publish
 					if (total % this.publishRate == 0)
@@ -316,7 +316,7 @@ public class ExecAsyncTask
 		protected Boolean doInBackground(final String... params)
 		{
 			final String archiveArg = params[1];
-			Log.d(ExecAsyncTask.TAG, archiveArg + '!' + entry + " -> " + dataBase);
+			Log.d(TAG, archiveArg + '!' + entry + " -> " + dataBase);
 
 			// wake lock
 			assert this.powerManager != null;
@@ -583,7 +583,7 @@ public class ExecAsyncTask
 		protected Boolean doInBackground(final Uri... params)
 		{
 			final Uri uri = params[0];
-			Log.d(ExecAsyncTask.TAG, uri.toString() + " -> " + dataBase);
+			Log.d(TAG, uri.toString() + " -> " + dataBase);
 			if (!resolver.getType(uri).startsWith("text/plain"))
 			{
 				Log.e(TAG, "Illegal mime type " + resolver.getType(uri));
@@ -894,7 +894,7 @@ public class ExecAsyncTask
 		protected Boolean doInBackground(final Uri... params)
 		{
 			final Uri uri = params[0];
-			Log.d(ExecAsyncTask.TAG, uri.toString() + '!' + entry + " -> " + dataBase);
+			Log.d(TAG, uri.toString() + '!' + entry + " -> " + dataBase);
 			if (!resolver.getType(uri).startsWith("application/zip"))
 			{
 				Log.e(TAG, "Illegal mime type " + resolver.getType(uri));

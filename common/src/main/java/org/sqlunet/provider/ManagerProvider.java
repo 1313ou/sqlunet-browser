@@ -112,7 +112,7 @@ public class ManagerProvider extends BaseProvider
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI
 		final int code = ManagerProvider.uriMatcher.match(uri);
-		// Log.d(ManagerProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code));
+		// Log.d(TAG + "URI", String.format("%s (code %s)\n", uri, code));
 		String table;
 		switch (code)
 		{
@@ -129,8 +129,8 @@ public class ManagerProvider extends BaseProvider
 		//{
 		// final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
 		// logSql(sql, selectionArgs);
-		// Log.d(ManagerProvider.TAG + "SQL", SqlFormatter.format(sql).toString());
-		// Log.d(ManagerProvider.TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
+		// Log.d(TAG + "SQL", SqlFormatter.format(sql).toString());
+		// Log.d(TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
 		//}
 
 		// do query
@@ -141,7 +141,7 @@ public class ManagerProvider extends BaseProvider
 		catch (SQLiteException e)
 		{
 			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, null, null, sortOrder, null);
-			Log.d(ManagerProvider.TAG + "SQL", sql);
+			Log.d(TAG + "SQL", sql);
 			Log.e(TAG, "Manager provider query failed", e);
 			return null;
 		}

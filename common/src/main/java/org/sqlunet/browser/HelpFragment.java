@@ -69,7 +69,7 @@ public class HelpFragment extends Fragment
 				public void onReceivedError(final WebView webView, final int errorCode, final String description, final String failingUrl)
 				{
 					super.onReceivedError(webView, errorCode, description, failingUrl);
-					Log.e(HelpFragment.TAG, failingUrl + ':' + description + ',' + errorCode);
+					Log.e(TAG, failingUrl + ':' + description + ',' + errorCode);
 				}
 
 				@TargetApi(Build.VERSION_CODES.N)
@@ -80,7 +80,7 @@ public class HelpFragment extends Fragment
 					{
 						super.onReceivedError(webView, request, error);
 					}
-					Log.e(HelpFragment.TAG, error.toString());
+					Log.e(TAG, error.toString());
 				}
 
 				@Override

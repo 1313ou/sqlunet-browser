@@ -143,7 +143,7 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 			{
 				final Settings.PMMode mode = Settings.PMMode.values()[position];
 				final boolean hasChanged = mode.setPref(requireContext());
-				Log.d(BrowsePredicateMatrixFragment.TAG, "mode=" + mode.name() + " has changed=" + hasChanged);
+				Log.d(TAG, "mode=" + mode.name() + " has changed=" + hasChanged);
 
 				// restart
 				if (hasChanged)
@@ -182,7 +182,7 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		}
 
 		// log
-		Log.d(BrowsePredicateMatrixFragment.TAG, "PM SEARCH " + pointer);
+		Log.d(TAG, "PM SEARCH " + pointer);
 
 		// subtitle
 		final Toolbar toolbar = requireActivity().findViewById(org.sqlunet.browser.common.R.id.toolbar_search);
@@ -245,7 +245,7 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		}
 
 		// log
-		Log.d(BrowsePredicateMatrixFragment.TAG, "PM SEARCH " + query);
+		Log.d(TAG, "PM SEARCH " + query);
 
 		// subtitle
 		final Toolbar toolbar = requireActivity().findViewById(org.sqlunet.browser.common.R.id.toolbar_search);

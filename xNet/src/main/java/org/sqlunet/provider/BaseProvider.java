@@ -219,7 +219,7 @@ public abstract class BaseProvider extends ContentProvider
 		{
 			this.db = openReadOnly(path, SQLiteDatabase.OPEN_READONLY);
 			assert this.db != null;
-			Log.d(BaseProvider.TAG, "Opened by " + this.getClass() + " content provider: " + this.db.getPath());
+			Log.d(TAG, "Opened by " + this.getClass() + " content provider: " + this.db.getPath());
 		}
 		catch (@NonNull final SQLiteCantOpenDatabaseException e)
 		{
@@ -237,7 +237,7 @@ public abstract class BaseProvider extends ContentProvider
 		{
 			this.db = openReadOnly(path, SQLiteDatabase.OPEN_READWRITE);
 			assert this.db != null;
-			Log.d(BaseProvider.TAG, "Opened by " + this.getClass() + " content provider: " + this.db.getPath());
+			Log.d(TAG, "Opened by " + this.getClass() + " content provider: " + this.db.getPath());
 		}
 		catch (@NonNull final SQLiteCantOpenDatabaseException e)
 		{
@@ -270,7 +270,7 @@ public abstract class BaseProvider extends ContentProvider
 	@Override
 	public void shutdown()
 	{
-		Log.d(BaseProvider.TAG, "Shutdown " + this.getClass());
+		Log.d(TAG, "Shutdown " + this.getClass());
 		// super.shutdown();
 		close();
 	}
@@ -280,7 +280,7 @@ public abstract class BaseProvider extends ContentProvider
 	public boolean refresh(final Uri uri, @Nullable final Bundle args, @Nullable final CancellationSignal cancellationSignal)
 	{
 		super.refresh(uri, args, cancellationSignal);
-		Log.d(BaseProvider.TAG, "Refresh " + this.getClass());
+		Log.d(TAG, "Refresh " + this.getClass());
 		close();
 		return true;
 	}
@@ -290,7 +290,7 @@ public abstract class BaseProvider extends ContentProvider
 	@Override
 	public Bundle call(@NonNull final String method, final String arg, final Bundle extras)
 	{
-		Log.d(BaseProvider.TAG, "Called '" + method + "' on " + this.getClass());
+		Log.d(TAG, "Called '" + method + "' on " + this.getClass());
 		if (CALLED_REFRESH_METHOD.equals(method))
 		{
 			close();
@@ -317,7 +317,7 @@ public abstract class BaseProvider extends ContentProvider
 				this.db.close();
 				this.db = null;
 			}
-			Log.d(BaseProvider.TAG, "Close " + this.getClass() + " content provider: " + path);
+			Log.d(TAG, "Close " + this.getClass() + " content provider: " + path);
 		}
 	}
 

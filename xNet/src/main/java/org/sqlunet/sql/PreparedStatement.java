@@ -109,8 +109,8 @@ public class PreparedStatement
 		final String[] args = toSelectionArgs();
 		if (PreparedStatement.logSql)
 		{
-			Log.d(PreparedStatement.TAG + "SQL", SqlFormatter.format(this.sql).toString());
-			Log.d(PreparedStatement.TAG + "ARGS", TextUtils.join(",", args));
+			Log.d(TAG + "SQL", SqlFormatter.format(this.sql).toString());
+			Log.d(TAG + "ARGS", TextUtils.join(",", args));
 		}
 		try
 		{

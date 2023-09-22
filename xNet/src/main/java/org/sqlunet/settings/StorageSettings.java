@@ -197,10 +197,10 @@ public class StorageSettings
 	}
 
 	/**
-	 * Get download db source as per downloader
+	 * Get download db source as per download mode
 	 *
 	 * @param context context
-	 * @param zipped  whether downloader needs zipped file or stream
+	 * @param zipped  whether download mode needs zipped file or stream
 	 * @return download db zip source
 	 */
 	@NonNull

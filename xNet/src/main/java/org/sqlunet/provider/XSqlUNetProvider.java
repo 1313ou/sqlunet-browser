@@ -172,7 +172,7 @@ public class XSqlUNetProvider extends BaseProvider
 
 		// choose the table to query and a sort order based on the code returned for the incoming URI
 		final int code = XSqlUNetProvider.uriMatcher.match(uri);
-		Log.d(XSqlUNetProvider.TAG + "URI", String.format("%s (code %s)\n", uri, code));
+		Log.d(TAG + "URI", String.format("%s (code %s)\n", uri, code));
 		if (code == UriMatcher.NO_MATCH)
 		{
 			throw new RuntimeException("Malformed URI " + uri);

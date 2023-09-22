@@ -55,7 +55,7 @@ class HomeImageView extends AppCompatImageView
 
 			float x = event.getX();
 			float y = event.getY();
-			Log.i(HomeImageView.TAG, "TOUCH x=" + x + " y=" + y);
+			Log.i(TAG, "TOUCH x=" + x + " y=" + y);
 
 			Rect rect = new Rect();
 			rect.left = getLeft();
@@ -90,7 +90,7 @@ class HomeImageView extends AppCompatImageView
 				}
 			}
 			int ring = i;
-			Log.d(HomeImageView.TAG, "ring=" + ring);
+			Log.d(TAG, "ring=" + ring);
 
 			for (i = 0; i < HomeImageView.pies.length; i++)
 			{
@@ -102,7 +102,7 @@ class HomeImageView extends AppCompatImageView
 				}
 			}
 			int pie = i % 3;
-			Log.d(HomeImageView.TAG, "pie=" + pie);
+			Log.d(TAG, "pie=" + pie);
 
 			int messageId = 0;
 			switch (ring)

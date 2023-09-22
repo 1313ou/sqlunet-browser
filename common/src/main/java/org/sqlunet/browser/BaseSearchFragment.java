@@ -99,13 +99,13 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	 */
 	public BaseSearchFragment()
 	{
-		Log.d(BaseSearchFragment.TAG, "constructor " + this);
+		Log.d(TAG, "constructor " + this);
 	}
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState)
 	{
-		Log.d(BaseSearchFragment.TAG, "on create " + this + " from " + savedInstanceState);
+		Log.d(TAG, "on create " + this + " from " + savedInstanceState);
 		super.onCreate(savedInstanceState);
 	}
 
@@ -147,7 +147,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
 	{
-		Log.d(BaseSearchFragment.TAG, "on create view " + this + " from " + savedInstanceState);
+		Log.d(TAG, "on create view " + this + " from " + savedInstanceState);
 
 		// view
 		return inflater.inflate(this.layoutId, container, false);
@@ -156,7 +156,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	@Override
 	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
-		Log.d(BaseSearchFragment.TAG, "on view created " + this + " from " + savedInstanceState);
+		Log.d(TAG, "on view created " + this + " from " + savedInstanceState);
 
 		super.onViewCreated(view, savedInstanceState);
 
@@ -172,7 +172,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 				menu.clear();
 				menuInflater.inflate(R.menu.main_safedata, menu);
 				menuInflater.inflate(menuId, menu);
-				Log.d(BaseSearchFragment.TAG, "onCreateMenu() size=" + menu.size());
+				Log.d(TAG, "onCreateMenu() size=" + menu.size());
 
 				// set up search
 				setupSearch(menu, getSearchInfo(requireActivity()));
@@ -206,7 +206,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	@SuppressLint("InflateParams")
 	public void setupToolBar(final Toolbar toolbar)
 	{
-		Log.d(BaseSearchFragment.TAG, "set up specific toolbar " + this);
+		Log.d(TAG, "set up specific toolbar " + this);
 
 		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
 
@@ -457,7 +457,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	@Override
 	public void onSaveInstanceState(@NonNull final Bundle outState)
 	{
-		Log.d(BaseSearchFragment.TAG, "Save instance state");
+		Log.d(TAG, "Save instance state");
 
 		// always call the superclass so it can save the view hierarchy state
 		super.onSaveInstanceState(outState);

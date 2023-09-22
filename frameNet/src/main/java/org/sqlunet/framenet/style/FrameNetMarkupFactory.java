@@ -134,7 +134,7 @@ public class FrameNetMarkupFactory implements MarkupSpanner.SpanFactory
 	@Override
 	public Object makeSpans(@NonNull final String selector, final long flags)
 	{
-		// Log.d(FrameNetMarkupFactory.TAG, selector + ' ' + flags);
+		// Log.d(TAG, selector + ' ' + flags);
 		final SpanPosition position = SpanPosition.valueOf(flags);
 		if (position != null)
 		{

@@ -138,7 +138,7 @@ public class WebFragment extends Fragment
 
 						case ProviderArgs.ARG_QUERYTYPE_WORD:
 							@SuppressWarnings("TypeMayBeWeakened") final WordPointer wordPointer = (WordPointer) this.pointer;
-							Log.d(WebFragment.TAG, "word=" + wordPointer);
+							Log.d(TAG, "word=" + wordPointer);
 							if (wordPointer != null && Settings.Source.WORDNET.test(this.sources))
 							{
 								wnDomDoc = new WordNetImplementation().queryWordDoc(db, wordPointer.getWordId());
@@ -147,7 +147,7 @@ public class WebFragment extends Fragment
 
 						case ProviderArgs.ARG_QUERYTYPE_SYNSET:
 							@SuppressWarnings("TypeMayBeWeakened") final SynsetPointer synsetPointer = (SynsetPointer) this.pointer;
-							Log.d(WebFragment.TAG, "synset=" + synsetPointer);
+							Log.d(TAG, "synset=" + synsetPointer);
 							if (synsetPointer != null && Settings.Source.WORDNET.test(this.sources))
 							{
 								wnDomDoc = new WordNetImplementation().querySynsetDoc(db, synsetPointer.getSynsetId());
@@ -161,7 +161,7 @@ public class WebFragment extends Fragment
 			}
 			catch (@NonNull final Exception e)
 			{
-				Log.e(WebFragment.TAG, "getDoc", e);
+				Log.e(TAG, "getDoc", e);
 			}
 			return null;
 		}
@@ -240,7 +240,7 @@ public class WebFragment extends Fragment
 		final boolean xml = Settings.getXmlPref(requireContext());
 		this.model = new ViewModelProvider(this).get("wn:web(doc)", WebModel.class);
 		this.model.getData().observe(getViewLifecycleOwner(), doc -> {
-			Log.d(WebFragment.TAG, "onLoadFinished");
+			Log.d(TAG, "onLoadFinished");
 			final String mimeType = xml ? "text/xml" : "text/html";
 			final String baseUrl = "file:///android_asset/";
 			WebFragment.this.webview.loadDataWithBaseURL(baseUrl, doc, mimeType, "utf-8", null);
@@ -285,14 +285,14 @@ public class WebFragment extends Fragment
 
 			private boolean handleUrl(@NonNull final Uri uri)
 			{
-				Log.d(WebFragment.TAG, "Uri " + uri);
+				Log.d(TAG, "Uri " + uri);
 				try
 				{
 					final String query = URLDecoder.decode(uri.getQuery(), "UTF-8");
 					final String[] target = query.split("=");
 					final String name = target[0];
 					final String value = target[1];
-					Log.d(WebFragment.TAG, "QUERY " + query + " name=" + name + " value=" + value);
+					Log.d(TAG, "QUERY " + query + " name=" + name + " value=" + value);
 					final Intent targetIntent = new Intent(requireContext(), WebActivity.class);
 					if ("word".equals(name)) //
 					{
@@ -324,7 +324,7 @@ public class WebFragment extends Fragment
 								pointer = new SynsetPointer(id);
 								break;
 							default:
-								Log.e(WebFragment.TAG, "Ill-formed Uri: " + uri);
+								Log.e(TAG, "Ill-formed Uri: " + uri);
 								return false;
 						}
 
@@ -339,7 +339,7 @@ public class WebFragment extends Fragment
 				}
 				catch (@NonNull final Exception e)
 				{
-					Log.e(WebFragment.TAG, "Error while loading Uri: " + uri, e);
+					Log.e(TAG, "Error while loading Uri: " + uri, e);
 				}
 				return false;
 			}
@@ -372,7 +372,7 @@ public class WebFragment extends Fragment
 
 		// pointer
 		final Parcelable pointer = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? args.getParcelable(ProviderArgs.ARG_QUERYPOINTER, Parcelable.class) : args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
-		Log.d(WebFragment.TAG, "query=" + pointer);
+		Log.d(TAG, "query=" + pointer);
 
 		// hint
 		final String posString = args.getString(ProviderArgs.ARG_HINTPOS);
@@ -380,7 +380,7 @@ public class WebFragment extends Fragment
 
 		// text
 		final String data = args.getString(ProviderArgs.ARG_QUERYSTRING);
-		Log.d(WebFragment.TAG, "data=" + data);
+		Log.d(TAG, "data=" + data);
 
 		// load the contents
 		this.model.loadData(new WebDocumentStringLoader(requireContext(), type, data, pointer, pos, sources, xml));

@@ -110,7 +110,7 @@ public class BrowseFragment extends BaseSearchFragment
 		}
 
 		// log
-		Log.d(BrowseFragment.TAG, "BROWSE " + query);
+		Log.d(TAG, "BROWSE " + query);
 
 		// subtitle
 		final Toolbar toolbar = requireActivity().findViewById(org.sqlunet.browser.common.R.id.toolbar_search);
@@ -202,7 +202,7 @@ public class BrowseFragment extends BaseSearchFragment
 		}
 
 		// menuDispatch
-		Log.d(BrowseFragment.TAG, "Search " + args);
+		Log.d(TAG, "Search " + args);
 		if (targetIntent != null)
 		{
 			targetIntent.putExtras(args);

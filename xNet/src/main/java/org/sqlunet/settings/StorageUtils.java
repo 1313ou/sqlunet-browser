@@ -720,7 +720,7 @@ public class StorageUtils
 						final String state = Environment.getExternalStorageState(dir);
 						if (!Environment.MEDIA_MOUNTED.equals(state))
 						{
-							Log.d(StorageUtils.TAG, "storage state of " + dir + ": " + state);
+							Log.d(TAG, "storage state of " + dir + ": " + state);
 							status |= StorageDirectory.NOT_MOUNTED;
 						}
 					}
