@@ -36,9 +36,9 @@ public class DownloadPreferenceFragment extends PreferenceFragmentCompat
 		assert repoPreference != null;
 		repoPreference.setSummaryProvider(STRING_SUMMARY_PROVIDER);
 
-		final Preference downloaderPreference = findPreference(Settings.PREF_DOWNLOAD_MODE);
-		assert downloaderPreference != null;
-		downloaderPreference.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
+		final Preference downloadModePreference = findPreference(Settings.PREF_DOWNLOAD_MODE);
+		assert downloadModePreference != null;
+		downloadModePreference.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
 
 		final Preference cachePreference = findPreference(Settings.PREF_CACHE);
 		assert cachePreference != null;

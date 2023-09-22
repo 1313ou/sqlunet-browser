@@ -148,7 +148,7 @@ public class UpdateFragment extends Fragment
 		}
 
 		// proceed with update button
-		if (newerArg)
+		//TODO if (newerArg)
 		{
 			final ImageButton button = view.findViewById(R.id.update);
 			button.setVisibility(View.VISIBLE);

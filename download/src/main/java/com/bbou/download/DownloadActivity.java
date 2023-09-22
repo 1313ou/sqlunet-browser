@@ -35,7 +35,7 @@ public class DownloadActivity extends AppCompatActivity implements OnComplete
 	{
 		super.onCreate(savedInstanceState);
 
-		// downloader
+		// download mode to dowloader
 		final String overriddenMode = getIntent().getStringExtra(AbstractDownloadFragment.DOWNLOAD_MODE_ARG);
 		// if (overriddenMode == null)
 		// {

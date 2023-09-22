@@ -169,7 +169,7 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 	}
 
 	/**
-	 * SizeDownloader listener
+	 * File data downloader listener
 	 */
 	@FunctionalInterface
 	interface Listener
@@ -186,7 +186,7 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 	 * Start file data downloading
 	 *
 	 * @param activity       launching activity
-	 * @param downloadIntent downloader intent (activity launched if update is requested)
+	 * @param downloadIntent download intent (activity launched if update is requested)
 	 */
 	static public void start(@NonNull final Activity activity, final Intent downloadIntent)
 	{

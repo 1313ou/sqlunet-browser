@@ -6,6 +6,7 @@ package com.bbou.download;
 
 import android.util.Log;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -172,7 +173,7 @@ public class DownloadZipCore extends DownloadCore
 
 			// streams
 			try ( //
-			      InputStream is = connection.getInputStream(); //
+			      InputStream is = new BufferedInputStream(connection.getInputStream(), CHUNK_SIZE); //
 			      ZipInputStream zis = new ZipInputStream(is) //
 			)
 			{

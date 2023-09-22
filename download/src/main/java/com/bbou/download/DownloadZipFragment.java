@@ -211,6 +211,12 @@ public class DownloadZipFragment extends BaseDownloadFragment
 			}
 		}
 
+		// record
+		if (Status.STATUS_SUCCEEDED == status)
+		{
+			record();
+		}
+
 		super.onDone(status);
 
 		// complete

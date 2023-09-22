@@ -40,7 +40,7 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	// A R G U M E N T   K E Y S
 
 	/**
-	 * Downloader argument
+	 * Download mode argument
 	 */
 	static public final String DOWNLOAD_MODE_ARG = "download_mode";
 
@@ -811,12 +811,6 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	void onDone(final Status status)
 	{
 		isDownloading = false;
-
-		// record
-		if (Status.STATUS_SUCCEEDED == status)
-		{
-			record();
-		}
 	}
 
 	/**

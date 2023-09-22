@@ -225,6 +225,9 @@ public class DownloadFragment extends BaseDownloadFragment
 
 				if (success)
 				{
+					// record
+					record();
+
 					// delete downloaded file
 					if (DownloadFragment.this.toFile != null)
 					{
@@ -242,9 +245,6 @@ public class DownloadFragment extends BaseDownloadFragment
 						boolean result2 = renameFromFile.renameTo(renameToFile);
 						Log.d(TAG, "Rename " + renameFromFile + " to " + renameToFile + " : " + result2);
 					}
-
-					// record
-					record();
 
 					// new datapack
 					if (DownloadFragment.this.requestNew != null)
@@ -375,6 +375,12 @@ public class DownloadFragment extends BaseDownloadFragment
 		if (status != Status.STATUS_SUCCEEDED)
 		{
 			this.toFile = null;
+		}
+
+		// record
+		if (Status.STATUS_SUCCEEDED == status && !requiresDeploy)
+		{
+			record();
 		}
 
 		super.onDone(status);

@@ -6,14 +6,14 @@
 
 	<string name="pref_header_download">Download</string>
 
-	<string name="title_downloader">Downloader</string>
-	<string name="default_downloader">DOWNLOAD</string>
-	<string-array name="downloader_values">
-		<item>@string/default_downloader</item>
+	<string name="title_download_mode">Download mode</string>
+	<string name="default_download_mode">DOWNLOAD</string>
+	<string-array name="download_mode_values">
+		<item>@string/default_download_mode</item>
 		<item>DOWNLOAD_ZIP</item>
 		<item>DOWNLOAD_ZIP_THEN_UNZIP</item>
 	</string-array>
-	<string-array name="downloader_titles">
+	<string-array name="download_mode_titles">
 		<item>Download</item>
 		<item>Download and unzip zipped stream</item>
 		<item>Download zipped file then unzip it</item>

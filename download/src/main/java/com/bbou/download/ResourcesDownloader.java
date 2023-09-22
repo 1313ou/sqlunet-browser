@@ -29,7 +29,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /**
- * Resource directory downloader task
+ * Resources downloader task
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -70,7 +70,7 @@ public class ResourcesDownloader extends Task<String, Void, Collection<String[]>
 		{
 			// connect
 			final URL url = new URL(resArg);
-			Log.d(ResourcesDownloader.TAG, "Get " + url);
+			Log.d(TAG, "Get " + url);
 			final URLConnection connection = url.openConnection();
 			connection.connect();
 
@@ -128,12 +128,12 @@ public class ResourcesDownloader extends Task<String, Void, Collection<String[]>
 		catch (@NonNull final InterruptedException e)
 		{
 			this.exception = e;
-			Log.d(ResourcesDownloader.TAG, e.toString());
+			Log.d(TAG, e.toString());
 		}
 		catch (@NonNull final Exception e)
 		{
 			this.exception = e;
-			Log.e(ResourcesDownloader.TAG, "While downloading", e);
+			Log.e(TAG, "While downloading", e);
 		}
 		finally
 		{
@@ -173,7 +173,7 @@ public class ResourcesDownloader extends Task<String, Void, Collection<String[]>
 	}
 
 	/**
-	 * ResourceDownloader listener
+	 * Resources downloader listener
 	 */
 	@FunctionalInterface
 	public interface Listener

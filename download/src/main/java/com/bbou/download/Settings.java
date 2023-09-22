@@ -40,6 +40,9 @@ public class Settings
 		}
 	}
 
+	/**
+	 * Download modes
+	 */
 	public enum Mode
 	{
 		DOWNLOAD, DOWNLOAD_ZIP, DOWNLOAD_ZIP_THEN_UNZIP;
@@ -76,7 +79,7 @@ public class Settings
 		}
 	}
 
-	// downloader preference key
+	// download mode preference key
 	static public final String PREF_DOWNLOAD_MODE = "pref_download_mode";
 
 	// preference names
@@ -320,7 +323,7 @@ public class Settings
 		final SharedPreferences.Editor edit = sharedPref.edit();
 		if (!datapackFile.exists())
 		{
-			edit.remove(PREF_DATAPACK_NAME);
+			edit.putString(PREF_DATAPACK_NAME, datapackFile.getName());
 			edit.remove(PREF_DATAPACK_DATE);
 			edit.remove(PREF_DATAPACK_SIZE);
 			edit.apply();

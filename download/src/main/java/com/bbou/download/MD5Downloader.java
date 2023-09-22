@@ -152,7 +152,7 @@ class MD5Downloader extends Task<String, Void, String>
 	}
 
 	/**
-	 * MD5Downloader listener
+	 * MD5 downloader listener
 	 */
 	@FunctionalInterface
 	public interface Listener

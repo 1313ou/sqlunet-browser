@@ -31,8 +31,13 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_FROM_ARG;
+import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_MODE_ARG;
+import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_TARGET_FILE_ARG;
+import static com.bbou.download.DownloadFragment.DOWNLOAD_TO_FILE_ARG;
+
 /**
- * Content Downloader task
+ * Content downloader task
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
@@ -155,7 +160,7 @@ public class ContentDownloader extends Task<String, Void, String[]>
 	}
 
 	/**
-	 * MD5Downloader listener
+	 * Content downloader listener
 	 */
 	@SuppressWarnings("WeakerAccess")
 	public interface Listener
@@ -182,18 +187,78 @@ public class ContentDownloader extends Task<String, Void, String[]>
 	 */
 	static private void startDownload(@NonNull final Context context, @NonNull final String name, @NonNull final Intent downloadIntent, @NonNull final String downloadBroadcastAction, @NonNull final String downloadBroadcastRequestKey, @NonNull final String downloadBroadcastKillRequestValue, @NonNull final String downloadBroadcastNewRequestValue)
 	{
-		final String repo = Settings.getRepoPref(context);
-		final String cache = Settings.getCachePref(context);
 		final String target = name.endsWith(Deploy.ZIP_EXTENSION) ? name : name + Deploy.ZIP_EXTENSION;
-
-		downloadIntent.putExtra(AbstractDownloadFragment.DOWNLOAD_FROM_ARG, repo + '/' + target);
-		downloadIntent.putExtra(DownloadFragment.DOWNLOAD_TO_FILE_ARG, cache + '/' + target);
+		addTargetToIntent(context, downloadIntent, target);
 		downloadIntent.putExtra(AbstractDownloadFragment.BROADCAST_ACTION, downloadBroadcastAction);
 		downloadIntent.putExtra(AbstractDownloadFragment.BROADCAST_REQUEST_KEY, downloadBroadcastRequestKey);
 		downloadIntent.putExtra(AbstractDownloadFragment.BROADCAST_KILL_REQUEST_VALUE, downloadBroadcastKillRequestValue);
 		downloadIntent.putExtra(AbstractDownloadFragment.BROADCAST_NEW_REQUEST_VALUE, downloadBroadcastNewRequestValue);
 
 		context.startActivity(downloadIntent);
+	}
+
+	public static Intent addTargetToIntent(@NonNull final Context context, @NonNull final Intent intent, @NonNull final String name)
+	{
+		final String mode = intent.getStringExtra(DOWNLOAD_MODE_ARG);
+		assert mode != null;
+		if (mode.equals(Settings.Mode.DOWNLOAD.toString()))
+		{
+			return addTargetToIntentPlainDownload(context, intent, name);
+		}
+		else if (mode.equals(Settings.Mode.DOWNLOAD_ZIP.toString()))
+		{
+			return addTargetToIntentZipDownload(context, intent, name);
+		}
+		else if (mode.equals(Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP.toString()))
+		{
+			return addTargetToIntentZipDownloadThenDeploy(context, intent, name);
+		}
+		throw new RuntimeException(mode);
+	}
+
+	public static Intent addTargetToIntentPlainDownload(@NonNull final Context context, @NonNull final Intent intent, @NonNull final String name)
+	{
+		String target = name;
+		final String repo = Settings.getRepoPref(context);
+		target = repo + '/' + target;
+		final String dest = Settings.getDatapackDir(context);
+		target = dest + '/' + target;
+		intent.putExtra(DOWNLOAD_FROM_ARG, target); // source archive
+		intent.putExtra(DOWNLOAD_TO_FILE_ARG, dest); // dest file
+		intent.putExtra(DOWNLOAD_TARGET_FILE_ARG, dest); // target file
+		return intent;
+	}
+
+	public static Intent addTargetToIntentZipDownload(@NonNull final Context context, @NonNull final Intent intent, @NonNull final String name)
+	{
+		String target = name;
+		if (!target.endsWith(Deploy.ZIP_EXTENSION))
+		{
+			target += Deploy.ZIP_EXTENSION;
+		}
+		final String repo = Settings.getRepoPref(context);
+		target = repo + '/' + target;
+		intent.putExtra(DOWNLOAD_FROM_ARG, target); // source archive
+		intent.putExtra(DOWNLOAD_TARGET_FILE_ARG, name); // target file
+		return intent;
+	}
+
+	public static Intent addTargetToIntentZipDownloadThenDeploy(@NonNull final Context context, @NonNull final Intent intent, @NonNull final String name)
+	{
+		String target = name;
+		if (!target.endsWith(Deploy.ZIP_EXTENSION))
+		{
+			target += Deploy.ZIP_EXTENSION;
+		}
+		final String repo = Settings.getRepoPref(context);
+		final String repoTarget = repo + '/' + target;
+		final String cache = Settings.getCachePref(context);
+		final String cachedTarget = cache + '/' + target;
+
+		intent.putExtra(DOWNLOAD_FROM_ARG, repoTarget); // source archive
+		intent.putExtra(DOWNLOAD_TO_FILE_ARG, cachedTarget); // destination archive
+		intent.putExtra(AbstractDownloadFragment.DOWNLOAD_TARGET_FILE_ARG, cachedTarget); // target file
+		return intent;
 	}
 
 	/**
