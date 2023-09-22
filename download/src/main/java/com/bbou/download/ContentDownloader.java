@@ -197,6 +197,7 @@ public class ContentDownloader extends Task<String, Void, String[]>
 		context.startActivity(downloadIntent);
 	}
 
+	/** @noinspection UnusedReturnValue*/
 	public static Intent addTargetToIntent(@NonNull final Context context, @NonNull final Intent intent, @NonNull final String name)
 	{
 		final String mode = intent.getStringExtra(DOWNLOAD_MODE_ARG);
