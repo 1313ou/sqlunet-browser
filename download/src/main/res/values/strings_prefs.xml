@@ -29,6 +29,7 @@
 	<string name="pref_title_datapack_size">Datapack size</string>
 	<string name="pref_title_datapack_source">Datapack source</string>
 	<string name="pref_title_datapack_source_date">Datapack source date</string>
+	<string name="pref_title_datapack_source_type">Datapack source type</string>
 	<string name="pref_title_datapack_source_size">Datapack source size</string>
 	<string name="pref_title_datapack_source_etag">Datapack source etag</string>
 	<string name="pref_title_datapack_source_version">Datapack source version</string>

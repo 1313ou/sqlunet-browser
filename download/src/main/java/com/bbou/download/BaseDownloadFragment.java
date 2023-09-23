@@ -212,7 +212,7 @@ abstract public class BaseDownloadFragment extends AbstractDownloadFragment
 				final String etag = data.getString(DownloadWork.ETAG);
 				final String version = data.getString(DownloadWork.VERSION);
 				final String staticVersion = data.getString(DownloadWork.STATIC_VERSION);
-				Settings.recordDatapackSource(requireContext(), fromUrl, date, size, etag, version, staticVersion);
+				Settings.recordDatapackSource(requireContext(), fromUrl, date, size, etag, version, staticVersion, "download");
 
 				// fire notification
 				fireNotification(requireContext(), notificationId, Notifier.NotificationType.FINISH, true);

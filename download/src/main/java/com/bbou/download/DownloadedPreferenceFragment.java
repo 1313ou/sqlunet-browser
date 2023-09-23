@@ -63,6 +63,10 @@ public class DownloadedPreferenceFragment extends PreferenceFragmentCompat
 		assert sourcePreference != null;
 		sourcePreference.setSummary(DATAPACK_STRING_SUMMARY_PROVIDER.provideSummary(sourcePreference));
 
+		final Preference sourceTypePreference = findPreference(Settings.PREF_DATAPACK_SOURCE_TYPE);
+		assert sourceTypePreference != null;
+		sourceTypePreference.setSummary(DATAPACK_STRING_SUMMARY_PROVIDER.provideSummary(sourceTypePreference));
+
 		final Preference sourceDatePreference = findPreference(Settings.PREF_DATAPACK_SOURCE_DATE);
 		assert sourceDatePreference != null;
 		sourceDatePreference.setSummary(DATAPACK_DATE_SUMMARY_PROVIDER.provideSummary(sourceDatePreference));

@@ -100,7 +100,7 @@ public class SetupAsset
 						FileAsyncTask.launchUnzip(activity, observer2, zipFilePath, assetZipEntry, StorageSettings.getDatabasePath(activity), (result) -> {
 
 							org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
-							Settings.recordDatapackSource(activity, zipFilePath, -1, -1, null, null, null);
+							Settings.recordDatapackSource(activity, zipFilePath, -1, -1, null, null, null, "asset");
 							if (whenComplete != null)
 							{
 								whenComplete.run();
@@ -137,7 +137,7 @@ public class SetupAsset
 				FileAsyncTask.launchUnzip(activity, observer, zipFilePath, assetZipEntry, StorageSettings.getDatabasePath(activity), (result) -> {
 
 					org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
-					Settings.recordDatapackSource(activity, zipFilePath, -1, -1, null, null, null);
+					Settings.recordDatapackSource(activity, zipFilePath, -1, -1, null, null, null, "asset");
 					if (whenComplete != null)
 					{
 						whenComplete.run();

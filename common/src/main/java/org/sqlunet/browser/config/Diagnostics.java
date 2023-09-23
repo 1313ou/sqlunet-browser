@@ -394,6 +394,7 @@ public class Diagnostics
 		final String sourceEtag = Settings.getDatapackSourceEtag(context);
 		final String sourceVersion = Settings.getDatapackSourceVersion(context);
 		final String sourceStaticVersion = Settings.getDatapackSourceStaticVersion(context);
+		final String sourceType = Settings.getDatapackSourceType(context);
 		final String name = Settings.getDatapackName(context);
 		final long size = Settings.getDatapackSize(context);
 		final long stamp = Settings.getDatapackDate(context);
@@ -403,6 +404,9 @@ public class Diagnostics
 		sb.append('\n');
 		sb.append("recorded source: ");
 		sb.append(source == null ? "null" : source);
+		sb.append('\n');
+		sb.append("recorded source type: ");
+		sb.append(sourceType == null ? "null" : sourceType);
 		sb.append('\n');
 		sb.append("recorded source size: ");
 		sb.append(sourceSize == -1 ? "null" : Long.toString(sourceSize));

@@ -105,6 +105,7 @@ public class Settings
 	static public final String PREF_DATAPACK_SOURCE_ETAG = "pref_datapack_source_etag";
 	static public final String PREF_DATAPACK_SOURCE_VERSION = "pref_datapack_source_version";
 	static public final String PREF_DATAPACK_SOURCE_STATIC_VERSION = "pref_datapack_source_static_version";
+	static public final String PREF_DATAPACK_SOURCE_TYPE = "pref_datapack_source_type";
 
 	// clear button preference key
 	static public final String PREF_DATAPACK_CLEAR_BUTTON = "pref_datapack_clear";
@@ -312,6 +313,19 @@ public class Settings
 	}
 
 	/**
+	 * Get datapack source type
+	 *
+	 * @param context context
+	 * @return type
+	 */
+	@Nullable
+	public static String getDatapackSourceType(@NonNull final Context context)
+	{
+		final SharedPreferences sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE);
+		return sharedPref.getString(Settings.PREF_DATAPACK_SOURCE_TYPE, null);
+	}
+
+	/**
 	 * Record datapack info
 	 *
 	 * @param context      context
@@ -423,8 +437,10 @@ public class Settings
 	 * @param etag          etag
 	 * @param version       version
 	 * @param staticVersion staticVersion
+	 * @param staticVersion staticVersion
+	 * @param sourceType    source type ("download", "asset", ...)
 	 */
-	public static void recordDatapackSource(@NonNull final Context context, @Nullable final String source, final long date, final long size, @Nullable final String etag, @Nullable final String version, @Nullable final String staticVersion)
+	public static void recordDatapackSource(@NonNull final Context context, @Nullable final String source, final long date, final long size, @Nullable final String etag, @Nullable final String version, @Nullable final String staticVersion, @Nullable final String sourceType)
 	{
 		final SharedPreferences sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE);
 		final SharedPreferences.Editor edit = sharedPref.edit(); //
@@ -476,6 +492,14 @@ public class Settings
 		{
 			edit.remove(PREF_DATAPACK_SOURCE_STATIC_VERSION);
 		}
+		if (sourceType != null)
+		{
+			edit.putString(PREF_DATAPACK_SOURCE_TYPE, sourceType);
+		}
+		else
+		{
+			edit.remove(PREF_DATAPACK_SOURCE_TYPE);
+		}
 		edit.apply();
 	}
 
@@ -494,6 +518,7 @@ public class Settings
 				.remove(Settings.PREF_DATAPACK_SOURCE_ETAG) //
 				.remove(Settings.PREF_DATAPACK_SOURCE_VERSION) //
 				.remove(Settings.PREF_DATAPACK_SOURCE_STATIC_VERSION) //
+				.remove(Settings.PREF_DATAPACK_SOURCE_TYPE) //
 				.apply();
 	}
 }

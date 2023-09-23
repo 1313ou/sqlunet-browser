@@ -287,6 +287,7 @@ public class SettingsActivity extends BaseSettingsActivity
 			// inflate
 			addPreferencesFromResource(R.xml.pref_database2);
 
+			// db file
 			final Preference dbFilePreference = findPreference(Settings.PREF_DB_FILE);
 			assert dbFilePreference != null;
 			String storage = StorageSettings.getDatabasePath(requireContext());
@@ -302,9 +303,10 @@ public class SettingsActivity extends BaseSettingsActivity
 				return false;
 			});
 
-			// required if no 'entries' and 'entryValues' in XML
+			// storage
 			final Preference storagePreference = findPreference(Settings.PREF_STORAGE);
 			assert storagePreference != null;
+			// required if no 'entries' and 'entryValues' in XML
 			populateStoragePreference(requireContext(), storagePreference);
 			storagePreference.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
 			final Preference.OnPreferenceChangeListener listener1 = storagePreference.getOnPreferenceChangeListener();

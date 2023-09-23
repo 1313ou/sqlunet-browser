@@ -46,7 +46,7 @@
 	<string name="download_newer">source datapack is possibly newer</string>
 	<string name="download_uptodate">current datapack is up-to-date</string>
 	<string name="select_zip_entry"><b>select</b> zip entry </string>
-	<string name="rename_source"><b>then rename</b> </string>
+	<string name="rename_source"><b>rename</b> </string>
 	<string name="rename_dest"><b>to</b> </string>
 	<string name="deploy_dest"><b>then deploy to</b> </string>
 
