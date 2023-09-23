@@ -119,7 +119,7 @@ public class DownloadIntentFactory
 	public static Intent makeUpdateIntent(@NonNull final Context context)
 	{
 		final String downloadSourceType = Settings.getDatapackSourceType(context);
-		final String downloadSourceUrl = "download".equals(downloadSourceType) ? Settings.getDatapackSource(context) : StorageSettings.getDbDownloadSourcePath(context);
+		final String downloadSourceUrl = "download".equals(downloadSourceType) ? Settings.getDatapackSource(context) : StorageSettings.getDbDownloadZippedSourcePath(context);
 		assert downloadSourceUrl != null;
 		if (!downloadSourceUrl.endsWith(Deploy.ZIP_EXTENSION)) //
 		{
