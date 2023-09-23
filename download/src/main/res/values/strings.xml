@@ -63,6 +63,9 @@
 	<string name="etag">etag</string>
 	<string name="version">version</string>
 	<string name="static_version">static version</string>
+	<string name="na">n/a</string>
+	<string name="unsourced">unsourced</string>
+	<string name="bytes">bytes</string>
 
 	<!-- status -->
 	<string name="md5_downloaded">Downloaded</string>

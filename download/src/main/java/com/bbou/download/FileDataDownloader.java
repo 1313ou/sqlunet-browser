@@ -237,22 +237,24 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 			final Intent intent = new Intent(activity, UpdateActivity.class);
 
 			// result
+			final String na = activity.getString(R.string.na);
+			final String bytes = activity.getString(R.string.bytes);
 			intent.putExtra(UpdateFragment.UP_SOURCE_ARG, downloadSourceUrl);
-			intent.putExtra(UpdateFragment.UP_DATE_ARG, srcDate == null ? "n/a" : srcDate.toString());
-			intent.putExtra(UpdateFragment.UP_SIZE_ARG, srcSize == null ? "n/a" : srcSize + " bytes");
-			intent.putExtra(UpdateFragment.UP_ETAG_ARG, srcEtag == null ? "n/a" : srcEtag);
-			intent.putExtra(UpdateFragment.UP_VERSION_ARG, srcVersion == null ? "n/a" : srcVersion);
-			intent.putExtra(UpdateFragment.UP_STATIC_VERSION_ARG, srcStaticVersion == null ? "n/a" : srcStaticVersion);
+			intent.putExtra(UpdateFragment.UP_DATE_ARG, srcDate == null ? na : srcDate.toString());
+			intent.putExtra(UpdateFragment.UP_SIZE_ARG, srcSize == null ? na : srcSize + " " + bytes);
+			intent.putExtra(UpdateFragment.UP_ETAG_ARG, srcEtag == null ? na : srcEtag);
+			intent.putExtra(UpdateFragment.UP_VERSION_ARG, srcVersion == null ? na : srcVersion);
+			intent.putExtra(UpdateFragment.UP_STATIC_VERSION_ARG, srcStaticVersion == null ? na : srcStaticVersion);
 
 			intent.putExtra(UpdateFragment.DOWN_NAME_ARG, name);
-			intent.putExtra(UpdateFragment.DOWN_DATE_ARG, downDate == null ? "n/a" : downDate.toString());
-			intent.putExtra(UpdateFragment.DOWN_SIZE_ARG, downSize == null ? "n/a" : downSize + " bytes");
-			intent.putExtra(UpdateFragment.DOWN_SOURCE_ARG, downSource);
-			intent.putExtra(UpdateFragment.DOWN_SOURCE_DATE_ARG, downSourceDate == null ? "n/a" : downSourceDate.toString());
-			intent.putExtra(UpdateFragment.DOWN_SOURCE_SIZE_ARG, downSourceSize == null ? "n/a" : downSourceSize + " bytes");
-			intent.putExtra(UpdateFragment.DOWN_SOURCE_ETAG_ARG, downSourceEtag == null ? "n/a" : downSourceEtag);
-			intent.putExtra(UpdateFragment.DOWN_SOURCE_VERSION_ARG, downSourceVersion == null ? "n/a" : downSourceVersion);
-			intent.putExtra(UpdateFragment.DOWN_SOURCE_STATIC_VERSION_ARG, downSourceVersion == null ? "n/a" : downSourceStaticVersion);
+			intent.putExtra(UpdateFragment.DOWN_DATE_ARG, downDate == null ? na : downDate.toString());
+			intent.putExtra(UpdateFragment.DOWN_SIZE_ARG, downSize == null ? na : downSize + " " + bytes);
+			intent.putExtra(UpdateFragment.DOWN_SOURCE_ARG, downSource == null ? activity.getString(R.string.unsourced) : downSource);
+			intent.putExtra(UpdateFragment.DOWN_SOURCE_DATE_ARG, downSourceDate == null ? na : downSourceDate.toString());
+			intent.putExtra(UpdateFragment.DOWN_SOURCE_SIZE_ARG, downSourceSize == null ? na : downSourceSize + " " + bytes);
+			intent.putExtra(UpdateFragment.DOWN_SOURCE_ETAG_ARG, downSourceEtag == null ? na : downSourceEtag);
+			intent.putExtra(UpdateFragment.DOWN_SOURCE_VERSION_ARG, downSourceVersion == null ? na : downSourceVersion);
+			intent.putExtra(UpdateFragment.DOWN_SOURCE_STATIC_VERSION_ARG, downSourceVersion == null ? na : downSourceStaticVersion);
 
 			intent.putExtra(UpdateFragment.NEWER_ARG, !same && (newer || srcNewer));
 

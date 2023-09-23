@@ -116,18 +116,18 @@ public class UpdateFragment extends Fragment
 		upStaticVersion.setText(upStaticVersionArg);
 
 		final TextView downDatapack = view.findViewById(R.id.down_datapack);
+		final TextView downSource = view.findViewById(R.id.down_source);
 		final TextView downDate = view.findViewById(R.id.down_datapack_date);
 		final TextView downSize = view.findViewById(R.id.down_datapack_size);
-		final TextView downSource = view.findViewById(R.id.down_source);
 		final TextView downSourceDate = view.findViewById(R.id.down_source_date);
 		final TextView downSourceSize = view.findViewById(R.id.down_source_size);
 		final TextView downSourceEtag = view.findViewById(R.id.down_source_etag);
 		final TextView downSourceVersion = view.findViewById(R.id.down_source_version);
 		final TextView downSourceStaticVersion = view.findViewById(R.id.down_source_static_version);
 		downDatapack.setText(downNameArg);
+		downSource.setText(downSourceArg);
 		downDate.setText(downDateArg);
 		downSize.setText(downSizeArg);
-		downSource.setText(downSourceArg);
 		downSourceDate.setText(downSourceDateArg);
 		downSourceSize.setText(downSourceSizeArg);
 		downSourceEtag.setText(downSourceEtagArg);
@@ -148,7 +148,7 @@ public class UpdateFragment extends Fragment
 		}
 
 		// proceed with update button
-		//TODO if (newerArg)
+		// if (newerArg) // do not depend on newer flag
 		{
 			final ImageButton button = view.findViewById(R.id.update);
 			button.setVisibility(View.VISIBLE);

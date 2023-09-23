@@ -437,7 +437,6 @@ public class Settings
 	 * @param etag          etag
 	 * @param version       version
 	 * @param staticVersion staticVersion
-	 * @param staticVersion staticVersion
 	 * @param sourceType    source type ("download", "asset", ...)
 	 */
 	public static void recordDatapackSource(@NonNull final Context context, @Nullable final String source, final long date, final long size, @Nullable final String etag, @Nullable final String version, @Nullable final String staticVersion, @Nullable final String sourceType)
