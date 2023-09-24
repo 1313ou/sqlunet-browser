@@ -34,9 +34,12 @@ public class Factories
 
 	static public final SpanFactory dataFactory = flags -> spans(Colors.dataBackColor, Colors.dataForeColor, new StyleSpan(Typeface.ITALIC));
 
+
 	static public final SpanFactory definitionFactory = flags -> spans(Colors.definitionBackColor, Colors.definitionForeColor, new StyleSpan(Typeface.ITALIC));
 
 	static public final SpanFactory exampleFactory = flags -> spans(Colors.exampleBackColor, Colors.exampleForeColor, new StyleSpan(Typeface.ITALIC));
+
+	static public final SpanFactory relationFactory = flags -> spans(Colors.relationBackColor, Colors.relationForeColor, new StyleSpan(Typeface.ITALIC));
 
 	static public final SpanFactory wordFactory = flags -> spans(Colors.wordBackColor, Colors.wordForeColor, new StyleSpan(Typeface.BOLD));
 

@@ -43,6 +43,9 @@ public class Colors
 	static public int exampleBackColor = Color.TRANSPARENT;
 	static public int exampleForeColor = Color.TRANSPARENT;
 
+	static public int relationBackColor = Color.TRANSPARENT;
+	static public int relationForeColor = Color.TRANSPARENT;
+
 	static public int dataBackColor = Color.TRANSPARENT;
 	static public int dataForeColor = Color.TRANSPARENT;
 
@@ -126,6 +129,9 @@ public class Colors
 
 		exampleBackColor = palette[i++];
 		exampleForeColor = palette[i++];
+
+		relationBackColor = palette[i++];
+		relationForeColor = palette[i++];
 
 		dataBackColor = palette[i++];
 		dataForeColor = palette[i++];

@@ -25,5 +25,7 @@ public class WordNetFactories
 
 	static public final SpanFactory sampleFactory = Factories.exampleFactory;
 
+	static public final SpanFactory relationFactory = Factories.relationFactory;
+
 	static public final SpanFactory dataFactory = Factories.dataFactory;
 }
