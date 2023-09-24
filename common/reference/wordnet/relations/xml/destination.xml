@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<link
+	name="Destination"
+	id="destination"
+	type="lexical"
+	reflexive="false"
+	r="true">
+
+	<img src="destination.png" />
+
+	<description>
+		<span>Morpho-semantic Destination</span>
+	</description>
+
+	<examples>
+		<example>
+			<from>classify</from>
+			<to>class</to>
+		</example>
+		<example>
+			<from>trust</from>
+			<to>trustee</to>
+		</example>
+	</examples>
+
+</link>

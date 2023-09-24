@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<link
+	name="Instrument"
+	id="instrument"
+	type="lexical"
+	reflexive="false"
+	r="true">
+
+	<img src="instrument.png" />
+
+	<description>
+		<span>Morpho-semantic Instrument</span>
+	</description>
+
+	<examples>
+		<example>
+			<from>air-condition</from>
+			<to>air-conditioner</to>
+		</example>
+		<example>
+			<from>axe</from>
+			<to>axe</to>
+		</example>
+	</examples>
+
+</link>

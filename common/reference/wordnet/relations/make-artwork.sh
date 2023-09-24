@@ -22,12 +22,13 @@ adv="adjderived"
 deriv="derivation"
 misc="alsosee pertainym synonym"
 domain="domain domain.member domain.topic domain.member.topic domain.region domain.member.region domain.term domain.member.term exemplifies is_exemplified_by"
+morph="state result event property location destination agent undergoer uses instrument bymeansof material vehicle bodypart"
 
 pos="pos pos.n pos.v pos.a pos.s pos.r"
 utils="focus category sense synonym synset members links item other ${pos}"
 utils2="reflexive semantic lexical"
 
-l1="${hierarchy} ${lex} ${verb} ${adj} ${adv} ${deriv} ${misc} ${domain} ${utils}"
+l1="${hierarchy} ${lex} ${verb} ${adj} ${adv} ${deriv} ${misc} ${domain} ${morph} ${utils}"
 l2="${l1} ${utils2}"
 #echo $l1
 #echo $l2
@@ -38,6 +39,6 @@ l2="${l1} ${utils2}"
 res=30
 for img in ${l2}; do
 	echo "make ${img}.png -> ${whereto}/${img}.png"
-	inkscape ${wherefrom}/${img}.svg --export-png=${whereto}/${img}.png -h${res} > /dev/null 2> /dev/null
+	inkscape ${wherefrom}/${img}.svg --export-type="png" --export-filename=${whereto}/${img}.png -h ${res} #> /dev/null 2> /dev/null
 done
 cp menu.png ${whereto}

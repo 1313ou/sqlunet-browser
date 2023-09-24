@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<link
+	name="Property"
+	id="property"
+	type="lexical"
+	reflexive="false"
+	r="true">
+
+	<img src="property.png" />
+
+	<description>
+		<span>Morpho-semantic Property</span>
+	</description>
+
+	<examples>
+		<example>
+			<from>adhere</from>
+			<to>adhesion</to>
+		</example>
+		<example>
+			<from>attract</from>
+			<to>attraction</to>
+		</example>
+	</examples>
+
+</link>

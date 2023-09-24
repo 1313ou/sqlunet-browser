@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<link
+	name="State"
+	id="state"
+	type="lexical"
+	reflexive="false"
+	r="true">
+
+	<img src="state.png" />
+
+	<description>
+		<span>Morpho-semantic State</span>
+	</description>
+
+	<examples>
+		<example>
+			<from>abase</from>
+			<to>abasement</to>
+		</example>
+		<example>
+			<from>abhor</from>
+			<to>abhorrence</to>
+		</example>
+	</examples>
+
+</link>

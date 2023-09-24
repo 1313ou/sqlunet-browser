@@ -35,8 +35,8 @@
      inkscape:window-height="824"
      id="namedview21"
      showgrid="false"
-     inkscape:zoom="0.76367188"
-     inkscape:cx="206.89514"
+     inkscape:zoom="0.38183594"
+     inkscape:cx="196.41944"
      inkscape:cy="-62.85422"
      inkscape:window-x="26"
      inkscape:window-y="23"
@@ -483,11 +483,7 @@
          transform="translate(0,19.96825)"
          id="g31448-3"><g
            transform="matrix(1,0,0,0.99801946,0,21.076212)"
-           id="g31450-6" /></g></g></g><polygon
-     fill="#d6d6d6"
-     points="113.152,769.956 121.864,765.097 1342.547,765.068 1342.547,765.87 122.073,765.9 112.35,771.322 112.35,765.899 85.353,765.87 85.354,765.068 113.152,765.098 "
-     id="polygon18934"
-     transform="translate(-1894.0684,-865.93049)" /><style
+           id="g31450-6" /></g></g></g><style
      type="text/css"
      id="style8-0">
       .Border { fill: lightGray; stroke: black; stroke-width: 4; }

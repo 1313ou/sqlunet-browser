@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<link
+	name="BodyPart"
+	id="bodypart"
+	type="lexical"
+	reflexive="false"
+	r="true">
+
+	<img src="bodypart.png" />
+
+	<description>
+		<span>Morpho-semantic BodyPart</span>
+	</description>
+
+	<examples>
+		<example>
+			<from>feel</from>
+			<to>feeler</to>
+		</example>
+		<example>
+			<from>finger</from>
+			<to>finger</to>
+		</example>
+	</examples>
+
+</link>

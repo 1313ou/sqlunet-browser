@@ -7,6 +7,7 @@
 source "./lib-artwork.sh"
 
 if [ -z "$1" ]; then
+	echo "Specify dir"
 	exit 1
 fi
 wherefrom="$1/artwork"

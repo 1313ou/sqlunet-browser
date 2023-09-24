@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<link
+	name="Uses"
+	id="uses"
+	type="lexical"
+	reflexive="false"
+	r="true">
+
+	<img src="uses.png" />
+
+	<description>
+		<span>Morpho-semantic Uses</span>
+	</description>
+
+	<examples>
+		<example>
+			<from>carpet</from>
+			<to>carpet</to>
+		</example>
+		<example>
+			<from>cement</from>
+			<to>cement</to>
+		</example>
+	</examples>
+
+</link>

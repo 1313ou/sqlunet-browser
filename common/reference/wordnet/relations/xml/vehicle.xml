@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<link
+	name="Vehicle"
+	id="vehicle"
+	type="lexical"
+	reflexive="false"
+	r="true">
+
+	<img src="vehicle.png" />
+
+	<description>
+		<span>Morpho-semantic Vehicle</span>
+	</description>
+
+	<examples>
+		<example>
+			<from>bus</from>
+			<to>bus</to>
+		</example>
+		<example>
+			<from>ferry</from>
+			<to>ferry</to>
+		</example>
+	</examples>
+
+</link>

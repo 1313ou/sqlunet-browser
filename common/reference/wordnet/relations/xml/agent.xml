@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<link
+	name="Agent"
+	id="agent"
+	type="lexical"
+	reflexive="false"
+	r="true">
+
+	<img src="agent.png" />
+
+	<description>
+		<span>Morpho-semantic Agent</span>
+	</description>
+
+	<examples>
+		<example>
+			<from>abduct</from>
+			<to>abductor</to>
+		</example>
+		<example>
+			<from>absorb</from>
+			<to>absorber</to>
+		</example>
+	</examples>
+
+</link>

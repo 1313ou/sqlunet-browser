@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<link
+	name="Material"
+	id="material"
+	type="lexical"
+	reflexive="false"
+	r="true">
+
+	<img src="material.png" />
+
+	<description>
+		<span>Morpho-semantic Material</span>
+	</description>
+
+	<examples>
+		<example>
+			<from>paper</from>
+			<to>paper</to>
+		</example>
+		<example>
+			<from>thin</from>
+			<to>thinner</to>
+		</example>
+	</examples>
+
+</link>

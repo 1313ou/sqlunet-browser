@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<link
+	name="ByMeansOf"
+	id="bymeansof"
+	type="lexical"
+	reflexive="false"
+	r="true">
+
+	<img src="bymeansof.png" />
+
+	<description>
+		<span>Morpho-semantic ByMeansOf</span>
+	</description>
+
+	<examples>
+		<example>
+			<from>acidify</from>
+			<to>acid</to>
+		</example>
+		<example>
+			<from>argue</from>
+			<to>argument</to>
+		</example>
+	</examples>
+
+</link>

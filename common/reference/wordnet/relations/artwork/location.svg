@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="128"
+   height="128"
+   id="svg2"
+   version="1.1"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="location.svg"
+   xml:space="preserve"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"><defs
+     id="defs4" /><sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.959798"
+     inkscape:cx="50.255089"
+     inkscape:cy="68.185296"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1354"
+     inkscape:window-height="816"
+     inkscape:window-x="26"
+     inkscape:window-y="23"
+     inkscape:window-maximized="0"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" /><metadata
+     id="metadata7"><rdf:RDF><cc:Work
+         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-956.36217)"><path
+       inkscape:connector-curvature="0"
+       d="m 126.19041,1020.3019 a 61.936159,62.241953 0 0 1 -123.8723155,0 61.936159,62.241953 0 1 1 123.8723155,0 z"
+       style="fill:#34d0fc;fill-opacity:1;fill-rule:nonzero;stroke:#0044d8;stroke-width:2.67872;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path1873" /><path
+       d="m 63.485406,992.0095 c -11.62078,0 -20.892679,9.3956 -20.892679,20.8927 0,13.1043 12.362532,31.5245 18.172922,39.4365 1.359879,1.978 4.203261,1.978 5.686764,0 5.68677,-7.7884 18.17292,-26.3322 18.17292,-39.4365 -0.24725,-11.4971 -9.64277,-20.8927 -21.139927,-20.8927 z m 0,30.9064 c -5.563139,0 -10.137276,-4.5742 -10.137276,-10.1373 0,-5.5632 4.574137,-10.1373 10.137276,-10.1373 5.563137,0 10.137277,4.5741 10.137277,10.1373 0.12363,5.6867 -4.45051,10.1373 -10.137277,10.1373 z"
+       id="path148"
+       style="stroke-width:1" /></g></svg>

@@ -22,8 +22,7 @@ fi
 whereto=`readlink -m "${whereto}"`
 mkdir -p ${whereto}
 
-in="hypernym.xml hyponym.xml holonym.xml meronym.xml antonym.xml similar.xml causes.xml caused.xml entails.xml entailed.xml attribute.xml pertainym.xml derivation.xml adjderived.xml participle.xml alsosee.xml verbgroup.xml domain.xml member.xml"
-
+in="hypernym.xml hyponym.xml holonym.xml meronym.xml antonym.xml similar.xml causes.xml caused.xml entails.xml entailed.xml attribute.xml pertainym.xml derivation.xml adjderived.xml participle.xml alsosee.xml verbgroup.xml domain.xml member.xml state.xml result.xml event.xml property.xml location.xml destination.xml agent.xml undergoer.xml uses.xml instrument.xml bymeansof.xml material.xml vehicle.xml bodypart.xml"
 xsl="link2html.xsl"
 xsl_index="links2html.xsl"
 xsl_selector="links2selector.xsl"

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<link
+	name="Result"
+	id="result"
+	type="lexical"
+	reflexive="false"
+	r="true">
+
+	<img src="result.png" />
+
+	<description>
+		<span>Morpho-semantic Result</span>
+	</description>
+
+	<examples>
+		<example>
+			<from>abbreviate</from>
+			<to>abbreviation</to>
+		</example>
+		<example>
+			<from>absorb</from>
+			<to>absorption</to>
+		</example>
+	</examples>
+
+</link>
