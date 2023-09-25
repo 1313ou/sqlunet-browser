@@ -34,8 +34,8 @@ android {
 dependencies {
 
     implementation "androidx.appcompat:appcompat:$appcompatVersion"
+    implementation "androidx.preference:preference:$preferenceVersion"
     implementation "com.google.android.material:material:$materialVersion"
-    implementation 'androidx.preference:preference:1.2.1'
 
     coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:$desugaring"
 }

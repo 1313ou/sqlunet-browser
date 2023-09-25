@@ -42,7 +42,7 @@ dependencies {
     implementation project(path: ':verbNet')
 
     implementation "androidx.appcompat:appcompat:$appcompatVersion"
-    implementation 'androidx.preference:preference:1.2.1'
+    implementation "androidx.preference:preference:$preferenceVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     implementation "androidx.annotation:annotation:$annotationVersion"
 
