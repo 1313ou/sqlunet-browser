@@ -115,9 +115,12 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements SelectorsFr
 		{
 			// in single-pane mode, simply start the detail activity for the selected item ID.
 			final int recurse = Settings.getRecursePref(requireContext());
+			final Bundle parameters = Settings.getRenderParametersPref(requireContext());
+
 			final Bundle args = new Bundle();
 			args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse);
+			args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters);
 			args.putString(ProviderArgs.ARG_HINTWORD, word);
 			args.putString(ProviderArgs.ARG_HINTCASED, cased);
 			args.putString(ProviderArgs.ARG_HINTPRONUNCIATION, pronunciation);

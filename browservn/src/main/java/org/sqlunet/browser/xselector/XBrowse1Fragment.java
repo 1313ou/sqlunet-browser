@@ -109,9 +109,12 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements XSelectorsF
 		else
 		{
 			// in single-pane mode, simply start the detail activity for the selected item ID.
+			final Bundle parameters = org.sqlunet.browser.vn.Settings.getRenderParametersPref(requireContext());
+
 			final Bundle args = new Bundle();
 			args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			args.putInt(ProviderArgs.ARG_QUERYRECURSE, 0);
+			args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters);
 			args.putString(ProviderArgs.ARG_HINTWORD, word);
 			args.putString(ProviderArgs.ARG_HINTCASED, cased);
 			args.putString(ProviderArgs.ARG_HINTPRONUNCIATION, pronunciation);

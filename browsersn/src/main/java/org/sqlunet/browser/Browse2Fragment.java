@@ -57,10 +57,13 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 
 		// args
 		final int recurse = Settings.getRecursePref(context);
+		final Bundle parameters = Settings.getRenderParametersPref(requireContext());
+
 		final Bundle args = new Bundle();
 		args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, this.pointer);
 		args.putString(ProviderArgs.ARG_HINTPOS, this.pos);
 		args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse);
+		args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters);
 
 		//
 		boolean hasWordNet = true;

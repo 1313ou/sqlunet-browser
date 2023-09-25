@@ -136,6 +136,9 @@ public class BrowseFragment extends BaseSearchFragment
 		{
 			final long id = Long.parseLong(query.substring(3));
 
+			// parameters
+			final Bundle parameters = Settings.getRenderParametersPref(requireContext());
+
 			// wordnet
 			if (query.startsWith("#ws"))
 			{
@@ -143,6 +146,7 @@ public class BrowseFragment extends BaseSearchFragment
 				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
 				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, synsetPointer);
 				args.putInt(ProviderArgs.ARG_QUERYRECURSE, 0);
+				args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters);
 
 				targetIntent = makeDetailIntent(SynsetActivity.class);
 			}
@@ -152,6 +156,7 @@ public class BrowseFragment extends BaseSearchFragment
 				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_WORD);
 				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, wordPointer);
 				args.putInt(ProviderArgs.ARG_QUERYRECURSE, 0);
+				args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters);
 
 				targetIntent = makeDetailIntent(WordActivity.class);
 			}

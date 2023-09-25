@@ -188,11 +188,15 @@ public class BrowseFragment extends BaseSearchFragment
 			// wordnet
 			if (query.startsWith("#ws"))
 			{
+				// parameters
 				final int recurse = Settings.getRecursePref(requireContext());
+				final Bundle parameters = Settings.getRenderParametersPref(requireContext());
+
 				final Parcelable synsetPointer = new SynsetPointer(id);
 				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
 				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, synsetPointer);
 				args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse);
+				args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters);
 
 				targetIntent = makeDetailIntent(SynsetActivity.class);
 			}
@@ -214,22 +218,29 @@ public class BrowseFragment extends BaseSearchFragment
 			final String id = query.substring(3);
 			if (query.startsWith("#wk"))
 			{
+				// parameters
 				final int recurse = Settings.getRecursePref(requireContext());
+				final Bundle parameters = Settings.getRenderParametersPref(requireContext());
+
 				final Parcelable senseKeyPointer = new SenseKeyPointer(id);
 				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SENSE);
 				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, senseKeyPointer);
 				args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse);
+				args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters);
 
 				targetIntent = makeDetailIntent(SenseKeyActivity.class);
 			}
 		}
 		else
 		{
+			// parameters
 			final int recurse = Settings.getRecursePref(requireContext());
+			final Bundle parameters = Settings.getRenderParametersPref(requireContext());
 
 			// search for string
 			args.putString(ProviderArgs.ARG_QUERYSTRING, query);
 			args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse);
+			args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters);
 
 			//targetIntent = makeSelectorIntent();
 			fragment = makeSelectorFragment();

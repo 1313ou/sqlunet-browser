@@ -48,8 +48,8 @@ import org.sqlunet.wordnet.browser.SynsetActivity;
 import org.sqlunet.wordnet.browser.WordActivity;
 import org.sqlunet.wordnet.provider.WordNetContract.AdjPositions;
 import org.sqlunet.wordnet.provider.WordNetContract.Domains;
-import org.sqlunet.wordnet.provider.WordNetContract.Relations;
 import org.sqlunet.wordnet.provider.WordNetContract.Poses;
+import org.sqlunet.wordnet.provider.WordNetContract.Relations;
 import org.sqlunet.wordnet.provider.WordNetProvider;
 
 import androidx.annotation.NonNull;
@@ -234,8 +234,9 @@ public class BrowseFragment extends BaseSearchFragment
 		}
 		*/
 
-		// recurse
+		// parameters
 		final int recurse = Settings.getRecursePref(requireContext());
+		final Bundle parameters = Settings.getRenderParametersPref(requireContext());
 
 		// menuDispatch as per query prefix
 		@SuppressWarnings("TooBroadScope") Fragment fragment = null;
@@ -252,6 +253,7 @@ public class BrowseFragment extends BaseSearchFragment
 				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
 				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, synsetPointer);
 				args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse);
+				args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters);
 
 				targetIntent = makeDetailIntent(SynsetActivity.class);
 			}
@@ -261,6 +263,7 @@ public class BrowseFragment extends BaseSearchFragment
 				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_WORD);
 				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, wordPointer);
 				args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse);
+				args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters);
 
 				targetIntent = makeDetailIntent(WordActivity.class);
 			}
@@ -358,6 +361,7 @@ public class BrowseFragment extends BaseSearchFragment
 				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SENSE);
 				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, senseKeyPointer);
 				args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse);
+				args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters);
 
 				targetIntent = makeDetailIntent(SenseKeyActivity.class);
 			}
@@ -367,6 +371,7 @@ public class BrowseFragment extends BaseSearchFragment
 			// search for string
 			args.putString(ProviderArgs.ARG_QUERYSTRING, query);
 			args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse);
+			args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters);
 
 			//targetIntent = makeSelectorIntent();
 			fragment = makeSelectorFragment();
