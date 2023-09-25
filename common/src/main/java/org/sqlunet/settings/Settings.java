@@ -13,10 +13,12 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 
 import org.sqlunet.browser.common.R;
 import org.sqlunet.browser.config.SetupAsset;
 import org.sqlunet.provider.BaseProvider;
+import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.sql.PreparedStatement;
 
 import androidx.annotation.LayoutRes;
@@ -52,6 +54,8 @@ public class Settings
 	static public final String PREF_CACHE = StorageSettings.PREF_CACHE;
 	static public final String PREF_ZIP_ENTRY = "pref_zip_entry";
 	static public final String PREF_TWO_PANES = "pref_two_panes";
+	static public final String PREF_DISPLAY_SEM_RELATION_NAME = "pref_display_sem_relation_name";
+	static public final String PREF_DISPLAY_LEX_RELATION_NAME = "pref_display_lex_relation_name";
 	static private final String PREF_VERSION = "org.sqlunet.browser.version";
 
 	// D I S P L A Y
@@ -268,6 +272,34 @@ public class Settings
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		sharedPref.edit().putInt(Settings.PREF_TEXTSEARCH_MODE, value).apply();
+	}
+
+	/**
+	 * Get render  parameters
+	 *
+	 * @param context context
+	 * @return bundle
+	 */
+	@Nullable
+	public static Bundle getRenderParametersPref(final Context context)
+	{
+		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+		boolean displaySemRelationName = sharedPref.getBoolean(PREF_DISPLAY_SEM_RELATION_NAME, true);
+		boolean displayLexRelationName = sharedPref.getBoolean(PREF_DISPLAY_LEX_RELATION_NAME, true);
+		if (displaySemRelationName && displayLexRelationName)
+		{
+			return null;
+		}
+		Bundle bundle = new Bundle();
+		if (!displaySemRelationName)
+		{
+			bundle.putBoolean(ProviderArgs.ARG_RENDER_DISPLAY_SEM_RELATION_NAME_KEY, displaySemRelationName);
+		}
+		if (!displayLexRelationName)
+		{
+			bundle.putBoolean(ProviderArgs.ARG_RENDER_DISPLAY_LEX_RELATION_NAME_KEY, displayLexRelationName);
+		}
+		return bundle;
 	}
 
 	/**

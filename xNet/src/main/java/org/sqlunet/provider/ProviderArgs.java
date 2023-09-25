@@ -14,16 +14,10 @@ public final class ProviderArgs
 	// intent type
 	static public final String ACTION_QUERY = "org.sqlunet.browser.QUERY";
 
-	// donate
+	// parameters
 	static public final String ARG_QUERYPOINTER = "QUERYPOINTER";
 	static public final String ARG_QUERYSTRING = "QUERYSTRING";
 	static public final String ARG_QUERYRECURSE = "QUERYRECURSE";
-	static public final String ARG_HINTWORDID = "HINTWORDID";
-	static public final String ARG_HINTWORD = "HINTWORD";
-	static public final String ARG_HINTCASED = "HINTCASED";
-	static public final String ARG_HINTPRONUNCIATION = "HINTPRONUNCIATION";
-	static public final String ARG_HINTPOS = "HINTPOS";
-
 	// type
 	static public final String ARG_QUERYTYPE = "QUERYTYPE";
 	static public final int ARG_QUERYTYPE_ALL = 0;
@@ -55,4 +49,16 @@ public final class ProviderArgs
 	static public final String ARG_QUERYLAYOUT = "QUERYLAYOUT";
 	static public final String ARG_QUERYSORT = "QUERYSORT";
 	static public final String ARG_QUERYFILTER = "QUERYFILTER";
+
+	// render
+	static public final String ARG_RENDERPARAMETERS = "RENDERPARAMETERS";
+	static public final String ARG_RENDER_DISPLAY_SEM_RELATION_NAME_KEY = "display_sem_relation_name_key";
+	static public final String ARG_RENDER_DISPLAY_LEX_RELATION_NAME_KEY ="display_lex_relation_name_key";
+
+	// hints
+	static public final String ARG_HINTWORDID = "HINTWORDID";
+	static public final String ARG_HINTWORD = "HINTWORD";
+	static public final String ARG_HINTCASED = "HINTCASED";
+	static public final String ARG_HINTPRONUNCIATION = "HINTPRONUNCIATION";
+	static public final String ARG_HINTPOS = "HINTPOS";
 }
