@@ -200,8 +200,9 @@ public class TextFragment extends AbstractTableFragment
 
 					if ("synset".equals(subtarget))
 					{
-						// recursion
+						// parameters
 						final int recurse = Settings.getRecursePref(requireContext());
+						final Bundle parameters = Settings.getRenderParametersPref(requireContext());
 
 						// target
 						final int colIdx = cursor.getColumnIndex("synsetid");
@@ -217,6 +218,7 @@ public class TextFragment extends AbstractTableFragment
 						targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
 						targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, synsetPointer);
 						targetIntent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse);
+						targetIntent.putExtra(ProviderArgs.ARG_RENDERPARAMETERS, parameters);
 
 						// start
 						startActivity(targetIntent);

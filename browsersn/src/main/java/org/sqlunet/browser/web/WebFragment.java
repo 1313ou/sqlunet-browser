@@ -397,10 +397,14 @@ public class WebFragment extends Fragment
 								return false;
 						}
 
+						// parameters
 						final int recurse = Settings.getRecursePref(requireContext());
+						final Bundle parameters = Settings.getRenderParametersPref(requireContext());
+
 						targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, type);
 						targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 						targetIntent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse);
+						targetIntent.putExtra(ProviderArgs.ARG_RENDERPARAMETERS, parameters);
 					}
 					targetIntent.setAction(ProviderArgs.ACTION_QUERY);
 					startActivity(targetIntent);
