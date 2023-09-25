@@ -1,0 +1,25 @@
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	app:title="@string/pref_header_wordnet">
+
+	<PreferenceCategory android:title="@string/pref_wordnet_category">
+		<SwitchPreferenceCompat
+			android:defaultValue="false"
+			android:key="pref_display_sem_relation_name"
+			android:summary="@string/pref_description_display_sem_relation_name"
+			android:title="@string/pref_title_display_sem_relation_name"
+			app:singleLineTitle="false" />
+
+		<SwitchPreferenceCompat
+			android:defaultValue="false"
+			android:key="pref_display_lex_relation_name"
+			android:summary="@string/pref_description_display_lex_relation_name"
+			android:title="@string/pref_title_display_lex_relation_name"
+			app:singleLineTitle="false" />
+	</PreferenceCategory>
+
+</PreferenceScreen>
