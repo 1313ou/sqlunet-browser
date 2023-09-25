@@ -6,7 +6,6 @@ package org.sqlunet.browser.wn;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;

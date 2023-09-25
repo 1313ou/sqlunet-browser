@@ -293,11 +293,11 @@ public class Settings
 		Bundle bundle = new Bundle();
 		if (!displaySemRelationName)
 		{
-			bundle.putBoolean(ProviderArgs.ARG_RENDER_DISPLAY_SEM_RELATION_NAME_KEY, displaySemRelationName);
+			bundle.putBoolean(ProviderArgs.ARG_RENDER_DISPLAY_SEM_RELATION_NAME_KEY, false);
 		}
 		if (!displayLexRelationName)
 		{
-			bundle.putBoolean(ProviderArgs.ARG_RENDER_DISPLAY_LEX_RELATION_NAME_KEY, displayLexRelationName);
+			bundle.putBoolean(ProviderArgs.ARG_RENDER_DISPLAY_LEX_RELATION_NAME_KEY, false);
 		}
 		return bundle;
 	}
