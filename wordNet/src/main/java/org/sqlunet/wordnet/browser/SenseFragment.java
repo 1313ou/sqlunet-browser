@@ -5,6 +5,7 @@
 package org.sqlunet.wordnet.browser;
 
 import org.sqlunet.browser.Module;
+import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.wordnet.R;
 import org.sqlunet.wordnet.loaders.SenseModule;
 
@@ -32,6 +33,10 @@ public class SenseFragment extends SynsetFragment
 	{
 		final SenseModule module = new SenseModule(this);
 		module.setMaxRecursionLevel(this.maxRecursion);
+		if (this.parameters != null)
+		{
+			module.setDisplayRelationNames(this.parameters.getBoolean(ProviderArgs.ARG_RENDER_DISPLAY_SEM_RELATION_NAME_KEY, true), this.parameters.getBoolean(ProviderArgs.ARG_RENDER_DISPLAY_LEX_RELATION_NAME_KEY, true));
+		}
 		return module;
 	}
 }

@@ -18,6 +18,9 @@ import org.sqlunet.wordnet.loaders.SynsetModule;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import static org.sqlunet.provider.ProviderArgs.ARG_RENDER_DISPLAY_LEX_RELATION_NAME_KEY;
+import static org.sqlunet.provider.ProviderArgs.ARG_RENDER_DISPLAY_SEM_RELATION_NAME_KEY;
+
 /**
  * A fragment representing a synset.
  *
@@ -43,6 +46,11 @@ public class SynsetFragment extends TreeFragment
 	int maxRecursion;
 
 	/**
+	 * Parameters
+	 */
+	Bundle parameters;
+
+	/**
 	 * Constructor
 	 */
 	public SynsetFragment()
@@ -64,6 +72,7 @@ public class SynsetFragment extends TreeFragment
 		assert args != null;
 		final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
 		this.maxRecursion = args.containsKey(ProviderArgs.ARG_QUERYRECURSE) ? args.getInt(ProviderArgs.ARG_QUERYRECURSE) : -1;
+		this.parameters = args.containsKey(ProviderArgs.ARG_RENDERPARAMETERS) ? args.getBundle(ProviderArgs.ARG_RENDERPARAMETERS) : null;
 
 		// saved state
 		if (savedInstanceState != null)
@@ -103,10 +112,14 @@ public class SynsetFragment extends TreeFragment
 	 */
 	@SuppressWarnings("WeakerAccess")
 	@NonNull
-	Module makeModule()
+	protected Module makeModule()
 	{
 		final SynsetModule module = new SynsetModule(this);
 		module.setMaxRecursionLevel(this.maxRecursion);
+		if (this.parameters != null)
+		{
+			module.setDisplayRelationNames(this.parameters.getBoolean(ARG_RENDER_DISPLAY_SEM_RELATION_NAME_KEY, true), this.parameters.getBoolean(ARG_RENDER_DISPLAY_LEX_RELATION_NAME_KEY, true));
+		}
 		module.setExpand(this.expand);
 		return module;
 	}
