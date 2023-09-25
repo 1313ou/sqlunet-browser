@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.SpannableStringBuilder;
 
@@ -75,6 +76,8 @@ import static org.sqlunet.view.TreeOp.TreeOpCode.UPDATE;
  */
 abstract public class BaseModule extends Module
 {
+	private static final char TARGET_MEMBER_CHAR = '*';
+
 	// Resources
 
 	@NonNull
@@ -100,6 +103,16 @@ abstract public class BaseModule extends Module
 
 	@NonNull
 	private final Drawable morphDrawable;
+
+	/**
+	 * Whether to display semantic relation names
+	 */
+	private boolean displaySemRelationName = true;
+
+	/**
+	 * Whether to display lexical relation names
+	 */
+	private boolean displayLexRelationName = true;
 
 	/**
 	 * Whether members2 are grouped
@@ -271,6 +284,18 @@ abstract public class BaseModule extends Module
 	public void setMembersGrouped(final boolean membersGrouped)
 	{
 		this.membersGrouped = membersGrouped;
+	}
+
+	/**
+	 * Set display relation names
+	 *
+	 * @param displaySemRelationName display semantic relation name
+	 * @param displayLexRelationName display lexical relation name
+	 */
+	public void setDisplayRelationNames(final boolean displaySemRelationName, final boolean displayLexRelationName)
+	{
+		this.displaySemRelationName = displaySemRelationName;
+		this.displayLexRelationName = displayLexRelationName;
 	}
 
 	// W O R D
@@ -938,7 +963,7 @@ abstract public class BaseModule extends Module
 			final TreeOps changedList = new TreeOps(NEWTREE, parent);
 
 			final int idRelationId = cursor.getColumnIndex(Relations.RELATIONID);
-			// final int idRelation = cursor.getColumnIndex(Relations.RELATION);
+			final int idRelation = cursor.getColumnIndex(Relations.RELATION);
 			final int idTargetSynsetId = cursor.getColumnIndex(V.SYNSET2ID);
 			final int idTargetDefinition = cursor.getColumnIndex(V.DEFINITION2);
 			final int idTargetMembers = cursor.getColumnIndex(AnyRelations_Senses_Words_X.MEMBERS2);
@@ -951,7 +976,7 @@ abstract public class BaseModule extends Module
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 				final int relationId = cursor.getInt(idRelationId);
-				//final String relation = cursor.getString(idRelation);
+				final String relation = cursor.getString(idRelation);
 
 				final long targetSynsetId = cursor.getLong(idTargetSynsetId);
 				final String targetDefinition = cursor.getString(idTargetDefinition);
@@ -960,9 +985,14 @@ abstract public class BaseModule extends Module
 				final String targetWord = cursor.isNull(idTargetWord) ? null : cursor.getString(idTargetWord);
 				final Long targetWordId = cursor.isNull(idTargetWordId) ? null : cursor.getLong(idTargetWordId);
 
+				if (targetWordId == null && displaySemRelationName || targetWordId != null && displayLexRelationName)
+				{
+					Spanner.append(sb, relation, 0, WordNetFactories.relationFactory);
+					sb.append(' ');
+				}
 				if (targetWord != null)
 				{
-					targetMembers = targetMembers.replaceAll("\\b" + targetWord + "\\b", targetWord + '*');
+					targetMembers = targetMembers.replaceAll("\\b" + targetWord + "\\b", targetWord + TARGET_MEMBER_CHAR);
 				}
 				Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
 				sb.append(' ');
@@ -1026,8 +1056,8 @@ abstract public class BaseModule extends Module
 		{
 			final TreeOps changedList = new TreeOps(NEWTREE, parent);
 
-			// final int idRelation = cursor.getColumnIndex(Relations.RELATION);
 			final int idRelationId = cursor.getColumnIndex(Relations.RELATIONID);
+			final int idRelation = cursor.getColumnIndex(Relations.RELATION);
 			final int idTargetSynsetId = cursor.getColumnIndex(V.SYNSET2ID);
 			final int idTargetDefinition = cursor.getColumnIndex(V.DEFINITION2);
 			final int idTargetMembers = cursor.getColumnIndex(SemRelations_Synsets_Words_X.MEMBERS2);
@@ -1037,13 +1067,18 @@ abstract public class BaseModule extends Module
 			{
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
 
-				// final String relation = cursor.getString(idRelation);
 				final int relationId = cursor.getInt(idRelationId);
+				final String relation = cursor.getString(idRelation);
 				final long targetSynsetId = cursor.getLong(idTargetSynsetId);
 				final String targetDefinition = cursor.getString(idTargetDefinition);
 				final String targetMembers = cursor.getString(idTargetMembers);
 				final boolean relationCanRecurse = cursor.getInt(idRecurses) != 0;
 
+				if (displaySemRelationName)
+				{
+					Spanner.append(sb, relation, 0, WordNetFactories.relationFactory);
+					sb.append(' ');
+				}
 				Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
 				sb.append(' ');
 				Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
@@ -1204,7 +1239,7 @@ abstract public class BaseModule extends Module
 				String targetMembers = cursor.getString(idTargetMembers);
 				if (targetWord != null)
 				{
-					targetMembers = targetMembers.replaceAll("\\b" + targetWord + "\\b", targetWord + '*');
+					targetMembers = targetMembers.replaceAll("\\b" + targetWord + "\\b", targetWord + TARGET_MEMBER_CHAR);
 				}
 
 				if (sb.length() != 0)
@@ -1270,8 +1305,8 @@ abstract public class BaseModule extends Module
 		{
 			final TreeOps changedList = new TreeOps(NEWTREE, parent);
 
-			// final int idRelation = cursor.getColumnIndex(Relations.RELATION);
 			final int idRelationId = cursor.getColumnIndex(Relations.RELATIONID);
+			final int idRelation = cursor.getColumnIndex(Relations.RELATION);
 			final int idTargetSynsetId = cursor.getColumnIndex(V.SYNSET2ID);
 			final int idTargetDefinition = cursor.getColumnIndex(V.DEFINITION2);
 			final int idTargetMembers = cursor.getColumnIndex(LexRelations_Senses_Words_X.MEMBERS2);
@@ -1283,18 +1318,24 @@ abstract public class BaseModule extends Module
 				final SpannableStringBuilder sb = new SpannableStringBuilder();
 
 				final int relationId = cursor.getInt(idRelationId);
+				final String relation = cursor.getString(idRelation);
 				final long targetSynsetId = cursor.getLong(idTargetSynsetId);
 				final String targetDefinition = cursor.getString(idTargetDefinition);
 				final String targetWord = cursor.getString(idTargetWord);
 				String targetMembers = cursor.getString(idTargetMembers);
 				if (targetWord != null)
 				{
-					targetMembers = targetMembers.replaceAll("\\b" + targetWord + "\\b", targetWord + '*');
+					targetMembers = targetMembers.replaceAll("\\b" + targetWord + "\\b", targetWord + TARGET_MEMBER_CHAR);
 				}
 
 				if (sb.length() != 0)
 				{
 					sb.append('\n');
+				}
+				if (displayLexRelationName)
+				{
+					Spanner.append(sb, relation, 0, WordNetFactories.relationFactory);
+					sb.append(' ');
 				}
 				Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
 				sb.append(' ');
@@ -1968,6 +2009,9 @@ abstract public class BaseModule extends Module
 
 		final int recurse;
 
+		@Nullable
+		final Bundle parameters;
+
 		/**
 		 * Constructor
 		 *
@@ -1980,6 +2024,8 @@ abstract public class BaseModule extends Module
 			super(synsetId);
 			this.fragment = fragment;
 			this.recurse = recurse;
+			final Bundle args = fragment.getArguments();
+			this.parameters = args == null ? null : args.getBundle(ProviderArgs.ARG_RENDERPARAMETERS);
 		}
 
 		@Override
@@ -1996,6 +2042,7 @@ abstract public class BaseModule extends Module
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.putExtra(ProviderArgs.ARG_QUERYRECURSE, this.recurse);
+			intent.putExtra(ProviderArgs.ARG_RENDERPARAMETERS, this.parameters);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
 			context.startActivity(intent);
 		}
@@ -2038,6 +2085,7 @@ abstract public class BaseModule extends Module
 		 *
 		 * @param synsetId synset id
 		 * @param wordId   word id
+		 * @param recurse  recurse
 		 * @param fragment fragment
 		 */
 		public BaseSenseLink(final long synsetId, final long wordId, final int recurse, final Fragment fragment)
@@ -2060,6 +2108,7 @@ abstract public class BaseModule extends Module
 			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
 			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
 			intent.putExtra(ProviderArgs.ARG_QUERYRECURSE, this.recurse);
+			intent.putExtra(ProviderArgs.ARG_RENDERPARAMETERS, this.parameters);
 			intent.setAction(ProviderArgs.ACTION_QUERY);
 			context.startActivity(intent);
 		}
