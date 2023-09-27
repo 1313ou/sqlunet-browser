@@ -15,7 +15,7 @@
 	r="true"
 	s="true">
 
-	<img src="domain.member.png" />
+	<img src="domain_member.png" />
 
 	<description>
 		<span>Domain of synset</span>
@@ -26,68 +26,68 @@
 			<from>cooking</from>
 			<to>marinate</to>
 			<gloss>domain member topic</gloss>
-			<img src="domain.member.topic.png" />
+			<img src="domain_member_topic.png" />
 		</example>
 		<example>
 			<from>cooking</from>
 			<to>reduce</to>
 			<gloss>domain member topic</gloss>
-			<img src="domain.member.topic.png" />
+			<img src="domain_member_topic.png" />
 		</example>
 		<example>
 			<from>cooking</from>
 			<to>bake</to>
 			<gloss>domain member topic</gloss>
-			<img src="domain.member.topic.png" />
+			<img src="domain_member_topic.png" />
 		</example>
 		<example>
 			<from>cooking</from>
 			<to>souse</to>
 			<gloss>domain member topic</gloss>
-			<img src="domain.member.topic.png" />
+			<img src="domain_member_topic.png" />
 		</example>
 		<example>
 			<from>music</from>
 			<to>sing</to>
 			<gloss>domain member topic</gloss>
-			<img src="domain.member.topic.png" />
+			<img src="domain_member_topic.png" />
 		</example>
 		<example>
 			<from>music</from>
 			<to>psalm</to>
 			<gloss>domain member topic</gloss>
-			<img src="domain.member.topic.png" />
+			<img src="domain_member_topic.png" />
 		</example>
 		<example>
 			<from>music</from>
 			<to>hymn</to>
 			<gloss>domain member topic</gloss>
-			<img src="domain.member.topic.png" />
+			<img src="domain_member_topic.png" />
 		</example>
 		<example>
 			<from>music</from>
 			<to>choir</to>
 			<gloss>domain member topic</gloss>
-			<img src="domain.member.topic.png" />
+			<img src="domain_member_topic.png" />
 		</example>
 
 		<example>
 			<from>chili con carne</from>
 			<to>Mexico</to>
 			<gloss>domain member region</gloss>
-			<img src="domain.member.region.png" />
+			<img src="domain_member_region.png" />
 		</example>
 		<example>
 			<from>taco</from>
 			<to>Mexico</to>
 			<gloss>domain member region</gloss>
-			<img src="domain.member.region.png" />
+			<img src="domain_member_region.png" />
 		</example>
 		<example>
 			<from>burrito</from>
 			<to>Mexico</to>
 			<gloss>domain member region</gloss>
-			<img src="domain.member.region.png" />
+			<img src="domain_member_region.png" />
 		</example>
 
 		<example>

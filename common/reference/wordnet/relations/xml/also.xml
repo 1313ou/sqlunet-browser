@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<link
+	name="Also See"
+	id="alsosee"
+	type="both"
+	v="true"
+	a="true">
+
+	<img src="also.png" />
+
+	<description>
+		<span>See also</span>
+	</description>
+
+	<examples>
+		<example>
+			<from>scarce</from>
+			<to>stingy</to>
+		</example>
+		<example>
+			<from>scarce</from>
+			<to>scrimpy</to>
+		</example>
+		<example>
+			<from>acceptable</from>
+			<to>satisfactory</to>
+		</example>
+		<example>
+			<from>unacceptable</from>
+			<to>satisfactory</to>
+		</example>
+		<example>
+			<from>unacceptable</from>
+			<to>unwelcome</to>
+		</example>
+		<example>
+			<from>accessible</from>
+			<to>convenient</to>
+		</example>
+
+		<example>
+			<from>breathe</from>
+			<to>breathe out</to>
+		</example>
+		<example>
+			<from>breathe</from>
+			<to>breathe in</to>
+		</example>
+		<example>
+			<from>cough</from>
+			<to>cough up</to>
+		</example>
+		<example>
+			<from>cough</from>
+			<to>cough out</to>
+		</example>
+		<example>
+			<from>act</from>
+			<to>act up</to>
+		</example>
+		<example>
+			<from>sleep</from>
+			<to>sleep in</to>
+		</example>
+		<example>
+			<from>sleep</from>
+			<to>sleep late</to>
+		</example>
+	</examples>
+
+</link>
+

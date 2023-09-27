@@ -5,7 +5,7 @@
   -->
 
 <link
-	name="ByMeansOf"
+	name="By Means Of"
 	id="bymeansof"
 	type="lexical"
 	reflexive="false"
@@ -14,7 +14,7 @@
 	<img src="bymeansof.png" />
 
 	<description>
-		<span>Morpho-semantic ByMeansOf</span>
+		<span>Morpho-semantic By Means Of</span>
 	</description>
 
 	<examples>

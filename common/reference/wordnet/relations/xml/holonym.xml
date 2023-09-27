@@ -54,49 +54,49 @@
 			<from>wing</from>
 			<to>bird</to>
 			<gloss>component-object</gloss>
-			<img src="part.holonym.png" />
+			<img src="part_holonym.png" />
 		</example>
 		<example>
 			<from>mouth</from>
 			<to>face</to>
 			<gloss>component-object</gloss>
-			<img src="part.holonym.png" />
+			<img src="part_holonym.png" />
 		</example>
 		<example>
 			<from>arm</from>
 			<to>body</to>
 			<gloss>object-component</gloss>
-			<img src="part.holonym.png" />
+			<img src="part_holonym.png" />
 		</example>
 		<example>
 			<from>handle</from>
 			<to>door</to>
 			<gloss>object-component</gloss>
-			<img src="part.holonym.png" />
+			<img src="part_holonym.png" />
 		</example>
 		<example>
 			<from>branch</from>
 			<to>tree</to>
 			<gloss>component-object</gloss>
-			<img src="part.holonym.png" />
+			<img src="part_holonym.png" />
 		</example>
 		<example>
 			<from>tree</from>
 			<to>forest</to>
 			<gloss>member-collection</gloss>
-			<img src="member.holonym.png" />
+			<img src="member_holonym.png" />
 		</example>
 		<example>
 			<from>oxygen</from>
 			<to>air</to>
 			<gloss>substance-object</gloss>
-			<img src="substance.holonym.png" />
+			<img src="substance_holonym.png" />
 		</example>
 		<example>
 			<from>olive</from>
 			<to>olive oil</to>
 			<gloss>substance-object</gloss>
-			<img src="substance.holonym.png" />
+			<img src="substance_holonym.png" />
 		</example>
 		<example>
 			<from>adolescence</from>

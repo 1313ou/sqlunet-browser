@@ -30,8 +30,8 @@
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1522"
-     inkscape:window-height="944"
+     inkscape:window-width="1256"
+     inkscape:window-height="480"
      inkscape:window-x="26"
      inkscape:window-y="23"
      inkscape:window-maximized="0"
@@ -57,7 +57,7 @@
     <path
        inkscape:connector-curvature="0"
        d="m 126.62809,1020.452 a 62.52732,62.487436 0 0 1 -125.054636,0 62.52732,62.487436 0 1 1 125.054636,0 z"
-       style="fill:#34d0fc;fill-opacity:1;fill-rule:nonzero;stroke:#0044d8;stroke-width:2.69678;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       style="fill:#ed969e;fill-opacity:1;fill-rule:nonzero;stroke:#e25563;stroke-width:2.69678;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="path1873" />
   </g>
 </svg>

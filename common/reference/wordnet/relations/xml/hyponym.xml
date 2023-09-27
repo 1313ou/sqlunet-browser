@@ -102,19 +102,19 @@
 			<from>group</from>
 			<to>the Great Lakes</to>
 			<gloss>instance hypernym</gloss>
-			<img src="instance.hyponym.png" />
+			<img src="instance_hyponym.png" />
 		</example>
 		<example>
 			<from>evacuation</from>
 			<to>Dunkirk</to>
 			<gloss>instance hypernym</gloss>
-			<img src="instance.hyponym.png" />
+			<img src="instance_hyponym.png" />
 		</example>
 		<example>
 			<from>revolution</from>
 			<to>French revolution</to>
 			<gloss>instance hypernym</gloss>
-			<img src="instance.hyponym.png" />
+			<img src="instance_hyponym.png" />
 		</example>
 
 		<example>

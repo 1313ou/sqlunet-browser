@@ -17,12 +17,17 @@ wherefrom=`readlink -m "${wherefrom}"`
 
 whereto="$1"
 if [ -z "${whereto}" ]; then
-	whereto="assets"
+	whereto="html"
 fi
 whereto=`readlink -m "${whereto}"`
 mkdir -p ${whereto}
 
-in="hypernym.xml hyponym.xml holonym.xml meronym.xml antonym.xml similar.xml causes.xml caused.xml entails.xml entailed.xml attribute.xml pertainym.xml derivation.xml adjderived.xml participle.xml alsosee.xml verbgroup.xml domain.xml member.xml state.xml result.xml event.xml property.xml location.xml destination.xml agent.xml undergoer.xml uses.xml instrument.xml bymeansof.xml material.xml vehicle.xml bodypart.xml"
+in_sem="hypernym.xml hyponym.xml holonym.xml meronym.xml similar.xml causes.xml caused.xml entails.xml entailed.xml attribute.xml similar.xml verbgroup.xml"
+in_lex="antonym.xml participle.xml pertainym.xml derivation.xml"
+in_both="also.xml"
+in_domain="domain.xml member.xml"
+in_morph="state.xml result.xml event.xml property.xml location.xml destination.xml agent.xml undergoer.xml uses.xml instrument.xml bymeansof.xml material.xml vehicle.xml bodypart.xml"
+in="${in_sem} ${in_lex} ${in_both} ${in_domain} ${in_morph}"
 xsl="link2html.xsl"
 xsl_index="links2html.xsl"
 xsl_selector="links2selector.xsl"

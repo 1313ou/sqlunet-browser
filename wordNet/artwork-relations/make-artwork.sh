@@ -4,6 +4,7 @@ thisdir="`dirname $(readlink -m $0)`"
 thisdir="$(readlink -m ${thisdir})"
 dirres=../src/main/res
 dirassets=../src/main/assets
+dirreference=../../common/reference/wordnet/relations/assets
 dirapp=..
 dirsrc=composite
 
@@ -19,37 +20,40 @@ declare -A relations
 relations=(
 [gen]="
 relations"
+
 [sem]="
-also
-attribute
-causes
-caused
-entails
-entailed
-holonym
 hypernym
 hyponym
 instance_hypernym
 instance_hyponym
-member_holonym
-member_meronym
+holonym
 meronym
 part_holonym
-participle
 part_meronym
-pertainym
-similar
+member_holonym
+member_meronym
 substance_holonym
-substance_meronym"
+substance_meronym
+causes
+caused
+entails
+entailed
+attribute
+similar
+verb_group"
+
 [lex]="
 antonym
-similar
-also
 participle
 pertainym
 derivation
-exemplifies
-exemplified"
+adjderived"
+
+[both]="
+also
+other
+"
+
 [dom]="
 domain
 domain_member
@@ -61,6 +65,7 @@ domain_term
 domain_member_term
 exemplifies
 exemplified"
+
 [morph]="
 state
 result
@@ -76,26 +81,29 @@ bymeansof
 material
 vehicle
 bodypart"
+
 [pos]="
-pos
 pos_n
 pos_v
 pos_a
 pos_r
-pos_s"
+pos_s
+pos"
+
 )
 
 # res
 declare -A res
 res=([mdpi]=16 [hdpi]=24 [xhdpi]=32 [xxhdpi]=48 [xxxhdpi]=64)
 webres=16
+referenceres=30
 
 function svg2png(){
 	local r="$1"
 	local from="$2"
 	local to="$3"
 	echo -e ". ${B}${from} -> ${to}${Z} ${C}@${r}${Z}"
-	inkscape -h ${r} --export-filename "$(readlink -m ${to})" "$(readlink -m ${from})"
+	/snap/bin/inkscape -h ${r} --export-filename "$(readlink -m ${to})" "$(readlink -m ${from})"
 }
 
 function list_svg2png(){
@@ -127,9 +135,16 @@ function lists_svg2png(){
 	done
 }
 
+# R E F E R E N C E
+
+echo -e "${M}Reference${Z} ${B}$r ${webres}${Z}"
+dirdest="${dirreference}/images"
+mkdir -p ${dirdest}
+lists_svg2png ${referenceres} "${dirsrc}" "${dirdest}" ""
+
 # A S S E T S
 
-echo -e "${M}WEBRESOLUTION${Z} ${B}$r ${webres}${Z}"
+echo -e "${M}Assets${Z} ${B}$r ${webres}${Z}"
 dirdest="${dirassets}/images/wordnet"
 mkdir -p ${dirdest}
 lists_svg2png ${webres} "${dirsrc}" "${dirdest}" ""
@@ -138,7 +153,7 @@ lists_svg2png ${webres} "${dirsrc}" "${dirdest}" ""
 
 for r in ${!res[@]}; do
 	rv=${res[$r]}
-	echo -e "${M}RESOLUTION${Z} ${B}$r ${res[$r]}${Z}"
+	echo -e "${M}Resources${Z} ${B}$r ${res[$r]}${Z}"
 	dirdest="${dirres}/drawable-${r}"
 	mkdir -p ${dirdest}
 	lists_svg2png "${rv}" "${dirsrc}" "${dirdest}" "ic_"

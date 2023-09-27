@@ -92,31 +92,31 @@
 			<from>Dien Bien Phu</from>
 			<to>siege</to>
 			<gloss>instance hypernym</gloss>
-			<img src="instance.hypernym.png" />
+			<img src="instance_hypernym.png" />
 		</example>
 		<example>
 			<from>Korean war</from>
 			<to>war</to>
 			<gloss>instance hypernym</gloss>
-			<img src="instance.hypernym.png" />
+			<img src="instance_hypernym.png" />
 		</example>
 		<example>
 			<from>Chartres cathedral</from>
 			<to>cathedral</to>
 			<gloss>instance hypernym</gloss>
-			<img src="instance.hypernym.png" />
+			<img src="instance_hypernym.png" />
 		</example>
 		<example>
 			<from>Carnegie Mellon University</from>
 			<to>university</to>
 			<gloss>instance hypernym</gloss>
-			<img src="instance.hypernym.png" />
+			<img src="instance_hypernym.png" />
 		</example>
 		<example>
 			<from>Mayflower</from>
 			<to>ship</to>
 			<gloss>instance hypernym</gloss>
-			<img src="instance.hypernym.png" />
+			<img src="instance_hypernym.png" />
 		</example>
 	</examples>
 	>

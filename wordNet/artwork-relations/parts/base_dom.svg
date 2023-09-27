@@ -27,13 +27,13 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1485"
-     inkscape:window-height="991"
+     inkscape:window-width="1256"
+     inkscape:window-height="779"
      id="namedview31"
      showgrid="false"
      inkscape:zoom="5.2591067"
-     inkscape:cx="49.533127"
-     inkscape:cy="60.37147"
+     inkscape:cx="49.6282"
+     inkscape:cy="62.082787"
      inkscape:window-x="26"
      inkscape:window-y="23"
      inkscape:window-maximized="0"
@@ -56,7 +56,7 @@
      id="defs3" />
   <path
      inkscape:connector-curvature="0"
-     style="fill:#ff00ff;fill-opacity:1;stroke:#800080;stroke-width:3.86401;stroke-opacity:1"
+     style="fill:#00c8fc;fill-opacity:1;stroke:#008cec;stroke-width:3.86401;stroke-opacity:1"
      id="path2964"
      d="M 64.09073,2.8362815 2.8977093,64.102592 64.09073,125.36891 125.28378,64.102592 Z" />
 </svg>

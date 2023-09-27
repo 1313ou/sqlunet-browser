@@ -5,7 +5,7 @@
   -->
 
 <link
-	name="BodyPart"
+	name="Body Part"
 	id="bodypart"
 	type="lexical"
 	reflexive="false"
@@ -14,7 +14,7 @@
 	<img src="bodypart.png" />
 
 	<description>
-		<span>Morpho-semantic BodyPart</span>
+		<span>Morpho-semantic Body Part</span>
 	</description>
 
 	<examples>
