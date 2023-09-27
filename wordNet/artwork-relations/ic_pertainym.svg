@@ -2,23 +2,23 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.0"
    width="128"
    height="128"
    id="svg2"
-   inkscape:version="0.48.5 r10040"
-   sodipodi:docname="pertainym.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="ic_pertainym.svg"
    inkscape:export-filename="pertainym.png"
    inkscape:export-xdpi="11.25"
-   inkscape:export-ydpi="11.25">
+   inkscape:export-ydpi="11.25"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <metadata
      id="metadata23">
     <rdf:RDF>
@@ -40,17 +40,20 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="462"
-     inkscape:window-height="409"
+     inkscape:window-width="1256"
+     inkscape:window-height="480"
      id="namedview21"
      showgrid="false"
      inkscape:zoom="0.76367188"
-     inkscape:cx="23.68504"
-     inkscape:cy="116.37852"
-     inkscape:window-x="351"
-     inkscape:window-y="34"
+     inkscape:cx="23.570332"
+     inkscape:cy="116.5422"
+     inkscape:window-x="26"
+     inkscape:window-y="23"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg2" />
+     inkscape:current-layer="svg2"
+     inkscape:showpageshadow="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#d1d1d1" />
   <defs
      id="defs5">
     <linearGradient
@@ -124,14 +127,14 @@
   </defs>
   <text
      xml:space="preserve"
-     style="font-size:118.43122864px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial Black;-inkscape-font-specification:'Arial Black, Bold'"
-     x="23.702293"
-     y="99.949532"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:0%;font-family:'Arial Black';-inkscape-font-specification:'Arial Black, Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+     x="26.136175"
+     y="97.639938"
      id="text2995"
-     sodipodi:linespacing="125%"
      transform="scale(1.0205358,0.97987744)"><tspan
        sodipodi:role="line"
        id="tspan3021"
-       x="23.702293"
-       y="99.949532">ϵ</tspan></text>
+       x="26.136175"
+       y="97.639938"
+       style="font-size:118.431px;line-height:1.25">ϵ</tspan></text>
 </svg>

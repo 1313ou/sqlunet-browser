@@ -2,20 +2,20 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="96"
-   height="96"
+   width="128"
+   height="128"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.5 r10040"
-   sodipodi:docname="adjderived.svg">
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="ic_adjderived.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <defs
      id="defs4">
     <linearGradient
@@ -23,7 +23,6 @@
        xlink:href="#linearGradient11875"
        id="linearGradient26791"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="translate(0,-5.2343748e-6)"
        x1="48"
        y1="1052.3622"
        x2="48"
@@ -152,16 +151,19 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="3.959798"
-     inkscape:cx="32.658205"
-     inkscape:cy="57.490015"
+     inkscape:cx="37.501913"
+     inkscape:cy="60.482883"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="855"
-     inkscape:window-height="1026"
-     inkscape:window-x="759"
-     inkscape:window-y="34"
-     inkscape:window-maximized="0" />
+     inkscape:window-width="1589"
+     inkscape:window-height="893"
+     inkscape:window-x="26"
+     inkscape:window-y="23"
+     inkscape:window-maximized="0"
+     inkscape:showpageshadow="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#d1d1d1" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -170,7 +172,6 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -179,29 +180,33 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-956.36217)">
-    <text
-       xml:space="preserve"
-       style="font-size:92.70543671px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       x="925.47583"
-       y="538.83246"
-       id="text3068"
-       sodipodi:linespacing="125%"
-       transform="matrix(0.53183942,0.53263061,-0.90009565,0.97883211,0,0)"><tspan
-         sodipodi:role="line"
-         id="tspan3070"
+    <g
+       id="g196"
+       transform="matrix(1.1834722,0,0,1.1635319,5.2140351,-151.53839)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
          x="925.47583"
-         y="538.83246">➡</tspan></text>
-    <text
-       transform="matrix(0.53183942,0.53263061,-0.90009565,0.97883211,0,0)"
-       sodipodi:linespacing="125%"
-       id="text3070"
-       y="524.64978"
-       x="893.93231"
-       style="font-size:55.61208344px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-       xml:space="preserve"><tspan
-         sodipodi:role="line"
-         id="tspan3074"
+         y="538.83246"
+         id="text3068"
+         transform="matrix(0.53183942,0.53263061,-0.90009565,0.97883211,0,0)"><tspan
+           sodipodi:role="line"
+           id="tspan3070"
+           x="925.47583"
+           y="538.83246"
+           style="font-size:92.7054px;line-height:1.25;font-family:sans-serif">➡</tspan></text>
+      <text
+         transform="matrix(0.53183942,0.53263061,-0.90009565,0.97883211,0,0)"
+         id="text3070"
+         y="524.64978"
          x="893.93231"
-         y="524.64978">a</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:sans-serif;-inkscape-font-specification:Sans;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+         xml:space="preserve"><tspan
+           sodipodi:role="line"
+           id="tspan3074"
+           x="893.93231"
+           y="524.64978"
+           style="font-size:55.6121px;line-height:1.25;font-family:sans-serif">a</tspan></text>
+    </g>
   </g>
 </svg>

@@ -2,20 +2,20 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="96"
-   height="96"
+   width="128"
+   height="128"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.5 r10040"
-   sodipodi:docname="derivation.svg">
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="ic_derivation.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <defs
      id="defs4">
     <linearGradient
@@ -35,7 +35,6 @@
        xlink:href="#linearGradient11875"
        id="linearGradient26791"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="translate(0,-5.2343748e-6)"
        x1="48"
        y1="1052.3622"
        x2="48"
@@ -173,16 +172,19 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="3.959798"
-     inkscape:cx="28.389459"
-     inkscape:cy="57.490015"
+     inkscape:cx="28.284271"
+     inkscape:cy="59.093923"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1039"
-     inkscape:window-height="806"
-     inkscape:window-x="881"
-     inkscape:window-y="172"
-     inkscape:window-maximized="0" />
+     inkscape:window-width="1256"
+     inkscape:window-height="770"
+     inkscape:window-x="26"
+     inkscape:window-y="23"
+     inkscape:window-maximized="0"
+     inkscape:showpageshadow="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#d1d1d1" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -191,7 +193,6 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -202,15 +203,15 @@
      transform="translate(0,-956.36217)">
     <text
        xml:space="preserve"
-       style="font-size:92.70543671px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       x="913.03589"
-       y="539.01611"
+       style="font-style:normal;font-weight:normal;font-size:15.881px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.32341"
+       x="927.81213"
+       y="547.04028"
        id="text3068-7"
-       sodipodi:linespacing="125%"
        transform="matrix(0.53183942,0.53263061,-0.90009565,0.97883211,0,0)"><tspan
          sodipodi:role="line"
          id="tspan3070-6"
-         x="913.03589"
-         y="539.01611">➡</tspan></text>
+         x="927.81213"
+         y="547.04028"
+         style="font-size:122.688px;line-height:1.25;font-family:sans-serif;stroke-width:1.32341">➡</tspan></text>
   </g>
 </svg>

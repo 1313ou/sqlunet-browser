@@ -2,23 +2,23 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.0"
    width="128"
    height="128"
    id="svg2"
-   inkscape:version="0.48.5 r10040"
-   sodipodi:docname="meronym.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="ic_meronym.svg"
    inkscape:export-filename="meronym.png"
    inkscape:export-xdpi="11.25"
-   inkscape:export-ydpi="11.25">
+   inkscape:export-ydpi="11.25"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <metadata
      id="metadata23">
     <rdf:RDF>
@@ -40,17 +40,20 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="946"
-     inkscape:window-height="603"
+     inkscape:window-width="1256"
+     inkscape:window-height="480"
      id="namedview21"
      showgrid="false"
      inkscape:zoom="2.1599903"
-     inkscape:cx="43.7699"
-     inkscape:cy="64"
-     inkscape:window-x="351"
-     inkscape:window-y="34"
+     inkscape:cx="43.981679"
+     inkscape:cy="63.889176"
+     inkscape:window-x="26"
+     inkscape:window-y="23"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg2" />
+     inkscape:current-layer="svg2"
+     inkscape:showpageshadow="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#d1d1d1" />
   <defs
      id="defs5">
     <linearGradient
@@ -103,7 +106,7 @@
   </defs>
   <path
      style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none"
-     d="m 36.126584,26.615755 c -6.925031,0 -12.5,5.574969 -12.5,12.5 l 0,56.9375 c 0,6.925035 5.574969,12.500005 12.5,12.500005 l 56.9375,0 c 6.925026,0 12.499996,-5.57497 12.499996,-12.500005 l 0,-56.9375 c 0,-6.925031 -5.57497,-12.5 -12.499996,-12.5 l -56.9375,0 z m 22.718749,28.25 31.843751,0 c 3.873322,0 7,3.095428 7,6.96875 l 0,31.84375 c 0,3.873322 -3.126678,7.000005 -7,7.000005 l -31.843751,0 c -3.873321,0 -6.999999,-3.126683 -6.999999,-7.000005 l 0,-31.84375 c 0,-3.873322 3.126678,-6.96875 6.999999,-6.96875 z"
+     d="m 35.531252,23.031245 c -6.925031,0 -12.5,5.574969 -12.5,12.5 v 56.9375 c 0,6.925039 5.574969,12.500005 12.5,12.500005 h 56.9375 c 6.925026,0 12.499998,-5.574966 12.499998,-12.500005 v -56.9375 c 0,-6.925031 -5.574972,-12.5 -12.499998,-12.5 z m 22.718749,28.25 h 31.843751 c 3.873322,0 7,3.095428 7,6.96875 v 31.84375 c 0,3.873322 -3.126678,7.00001 -7,7.00001 H 58.250001 c -3.873321,0 -6.999999,-3.126688 -6.999999,-7.00001 v -31.84375 c 0,-3.873322 3.126678,-6.96875 6.999999,-6.96875 z"
      id="rect3903"
      inkscape:connector-curvature="0" />
 </svg>

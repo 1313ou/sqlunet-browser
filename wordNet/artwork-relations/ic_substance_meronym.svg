@@ -2,23 +2,23 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.0"
    width="128"
    height="128"
    id="svg2"
-   inkscape:version="0.48.5 r10040"
-   sodipodi:docname="substance.meronym.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="ic_substance_meronym.svg"
    inkscape:export-filename="substance.meronym.png"
    inkscape:export-xdpi="11.25"
-   inkscape:export-ydpi="11.25">
+   inkscape:export-ydpi="11.25"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <metadata
      id="metadata23">
     <rdf:RDF>
@@ -45,12 +45,15 @@
      id="namedview21"
      showgrid="false"
      inkscape:zoom="2.1599903"
-     inkscape:cx="40.382955"
-     inkscape:cy="64"
-     inkscape:window-x="1141"
-     inkscape:window-y="249"
+     inkscape:cx="40.277959"
+     inkscape:cy="64.120658"
+     inkscape:window-x="26"
+     inkscape:window-y="23"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg2" />
+     inkscape:current-layer="svg2"
+     inkscape:showpageshadow="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#d1d1d1" />
   <defs
      id="defs5">
     <linearGradient
@@ -148,20 +151,24 @@
          style="stop-color:white;stop-opacity:1" />
     </linearGradient>
   </defs>
-  <text
-     xml:space="preserve"
-     style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-     x="64.352135"
-     y="87.259079"
-     id="text3091"
-     sodipodi:linespacing="125%"><tspan
-       sodipodi:role="line"
-       id="tspan3093"
+  <g
+     id="g207"
+     transform="translate(-0.815104,-0.110826)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        x="64.352135"
-       y="87.259079">s</tspan></text>
-  <path
-     inkscape:connector-curvature="0"
-     id="rect3903"
-     d="m 36.346358,23.142072 c -6.925031,0 -12.5,5.574969 -12.5,12.5 l 0,56.9375 c 0,6.925035 5.574969,12.500008 12.5,12.500008 l 56.937501,0 c 6.925021,0 12.499991,-5.574973 12.499991,-12.500008 l 0,-56.9375 c 0,-6.925031 -5.57497,-12.5 -12.499991,-12.5 l -56.937501,0 z m 22.718749,28.25 31.843752,0 c 3.87332,0 7,3.095428 7,6.96875 l 0,31.84375 c 0,3.873322 -3.12668,7.000005 -7,7.000005 l -31.843752,0 c -3.873321,0 -6.999999,-3.126683 -6.999999,-7.000005 l 0,-31.84375 c 0,-3.873322 3.126678,-6.96875 6.999999,-6.96875 z"
-     style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+       y="87.259079"
+       id="text3091"><tspan
+         sodipodi:role="line"
+         id="tspan3093"
+         x="64.352135"
+         y="87.259079"
+         style="font-size:40px;line-height:1.25;font-family:sans-serif">s</tspan></text>
+    <path
+       inkscape:connector-curvature="0"
+       id="rect3903"
+       d="m 36.346358,23.142072 c -6.925031,0 -12.5,5.574969 -12.5,12.5 v 56.9375 c 0,6.925035 5.574969,12.500008 12.5,12.500008 h 56.937501 c 6.925021,0 12.499991,-5.574973 12.499991,-12.500008 v -56.9375 c 0,-6.925031 -5.57497,-12.5 -12.499991,-12.5 z m 22.718749,28.25 h 31.843752 c 3.87332,0 7,3.095428 7,6.96875 v 31.84375 c 0,3.873322 -3.12668,7.000005 -7,7.000005 H 59.065107 c -3.873321,0 -6.999999,-3.126683 -6.999999,-7.000005 v -31.84375 c 0,-3.873322 3.126678,-6.96875 6.999999,-6.96875 z"
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+  </g>
 </svg>

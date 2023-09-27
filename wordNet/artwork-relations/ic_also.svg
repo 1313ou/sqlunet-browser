@@ -2,23 +2,23 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.0"
    width="128"
    height="128"
    id="svg2"
-   inkscape:version="0.48.5 r10040"
-   sodipodi:docname="also.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="ic_also.svg"
    inkscape:export-filename="also.png"
    inkscape:export-xdpi="11.25"
-   inkscape:export-ydpi="11.25">
+   inkscape:export-ydpi="11.25"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <metadata
      id="metadata23">
     <rdf:RDF>
@@ -40,17 +40,20 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1036"
-     inkscape:window-height="567"
+     inkscape:window-width="1256"
+     inkscape:window-height="480"
      id="namedview21"
      showgrid="false"
      inkscape:zoom="0.76367188"
-     inkscape:cx="-147.47826"
-     inkscape:cy="64"
-     inkscape:window-x="875"
-     inkscape:window-y="272"
+     inkscape:cx="-147.96931"
+     inkscape:cy="64.163682"
+     inkscape:window-x="26"
+     inkscape:window-y="23"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg2" />
+     inkscape:current-layer="svg2"
+     inkscape:showpageshadow="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#d1d1d1" />
   <defs
      id="defs5">
     <linearGradient
@@ -124,6 +127,6 @@
   </defs>
   <path
      id="path2997"
-     d="m 28.736569,28.4092 v 82.63939 H 39.066483 V 28.4092 H 28.736569 z m 20.659848,0 V 69.728895 H 70.056264 V 80.058828 H 111.37595 L 90.716112,59.719212 111.37595,38.739133 H 80.386178 V 28.4092 H 49.396417 z"
+     d="M 22.68031,22.680305 V 105.3197 H 33.010224 V 22.680305 Z m 20.659848,0 V 64 H 64.000005 V 74.329933 H 105.31969 L 84.659852,53.990317 105.31969,33.010238 H 74.329919 V 22.680305 Z"
      inkscape:connector-curvature="0" />
 </svg>

@@ -2,23 +2,23 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.0"
    width="128"
    height="128"
    id="svg2"
-   inkscape:version="0.91 r13725"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
    sodipodi:docname="ic_instance_hyponym.svg"
    inkscape:export-filename="instance.hyponym.png"
    inkscape:export-xdpi="11.25"
-   inkscape:export-ydpi="11.25">
+   inkscape:export-ydpi="11.25"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <metadata
      id="metadata23">
     <rdf:RDF>
@@ -45,12 +45,15 @@
      id="namedview21"
      showgrid="false"
      inkscape:zoom="0.76367188"
-     inkscape:cx="-63.761914"
-     inkscape:cy="64"
-     inkscape:window-x="98"
-     inkscape:window-y="183"
+     inkscape:cx="-64.163682"
+     inkscape:cy="64.818414"
+     inkscape:window-x="26"
+     inkscape:window-y="23"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg2" />
+     inkscape:current-layer="svg2"
+     inkscape:showpageshadow="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#d1d1d1" />
   <defs
      id="defs5">
     <linearGradient
@@ -122,16 +125,23 @@
        fy="65.015877"
        r="54.179893" />
   </defs>
-  <path
-     id="path3012"
-     d="M 65.568071,106.02213 113.39976,53.156715 94.466521,34.281447 64.571701,67.322328 33.016281,35.863548 15.079401,55.688075 65.568071,106.02213 z"
-     inkscape:connector-curvature="0"
-     inkscape:transform-center-x="170.23018"
-     inkscape:transform-center-y="10.475703" />
-  <circle
-     style="opacity:0.98999999;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#d3d3d3;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-     id="path8076"
-     cx="64.163681"
-     cy="31.099745"
-     r="15.713555" />
+  <g
+     id="g266"
+     transform="translate(-0.2395805,3.2958403)">
+    <g
+       id="g261">
+      <path
+         id="path3012"
+         d="M 65.568071,106.02213 113.39976,53.156715 94.466521,34.281447 64.571701,67.322328 33.016281,35.863548 15.079401,55.688075 Z"
+         inkscape:connector-curvature="0"
+         inkscape:transform-center-x="170.23018"
+         inkscape:transform-center-y="10.475703" />
+      <circle
+         style="opacity:0.99;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="path8076"
+         cx="64.163681"
+         cy="31.099745"
+         r="15.713555" />
+    </g>
+  </g>
 </svg>

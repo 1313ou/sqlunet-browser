@@ -2,23 +2,23 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.0"
    width="128"
    height="128"
    id="svg2"
-   inkscape:version="0.48.5 r10040"
-   sodipodi:docname="part.meronym.svg"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="ic_part_meronym.svg"
    inkscape:export-filename="part.meronym.png"
    inkscape:export-xdpi="11.25"
-   inkscape:export-ydpi="11.25">
+   inkscape:export-ydpi="11.25"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <metadata
      id="metadata23">
     <rdf:RDF>
@@ -45,12 +45,15 @@
      id="namedview21"
      showgrid="false"
      inkscape:zoom="2.1599903"
-     inkscape:cx="-29.524766"
-     inkscape:cy="64"
-     inkscape:window-x="1013"
-     inkscape:window-y="569"
+     inkscape:cx="-29.629763"
+     inkscape:cy="64.120658"
+     inkscape:window-x="26"
+     inkscape:window-y="23"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg2" />
+     inkscape:current-layer="svg2"
+     inkscape:showpageshadow="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#d1d1d1" />
   <defs
      id="defs5">
     <linearGradient
@@ -148,20 +151,24 @@
          style="stop-color:white;stop-opacity:1" />
     </linearGradient>
   </defs>
-  <text
-     xml:space="preserve"
-     style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-     x="60.769276"
-     y="84.602913"
-     id="text3091"
-     sodipodi:linespacing="125%"><tspan
-       sodipodi:role="line"
-       id="tspan3137"
+  <g
+     id="g261"
+     transform="translate(0.5737885,-0.5737885)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:sans-serif;-inkscape-font-specification:Sans;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
        x="60.769276"
-       y="84.602913">p</tspan></text>
-  <path
-     inkscape:connector-curvature="0"
-     id="rect3903"
-     d="m 34.957462,23.605037 c -6.925031,0 -12.499999,5.574969 -12.499999,12.5 l 0,56.937499 c 0,6.925035 5.574968,12.500004 12.499999,12.500004 l 56.9375,0 c 6.925026,0 12.499998,-5.574969 12.499998,-12.500004 l 0,-56.937499 c 0,-6.925031 -5.574972,-12.5 -12.499998,-12.5 l -56.9375,0 z m 22.718749,28.249999 31.843751,0 c 3.873322,0 7,3.095428 7,6.96875 l 0,31.84375 c 0,3.873322 -3.126678,7.000005 -7,7.000005 l -31.843751,0 c -3.873321,0 -6.999999,-3.126683 -6.999999,-7.000005 l 0,-31.84375 c 0,-3.873322 3.126678,-6.96875 6.999999,-6.96875 z"
-     style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+       y="84.602913"
+       id="text3091"><tspan
+         sodipodi:role="line"
+         id="tspan3137"
+         x="60.769276"
+         y="84.602913"
+         style="font-size:40px;line-height:1.25;font-family:sans-serif">p</tspan></text>
+    <path
+       inkscape:connector-curvature="0"
+       id="rect3903"
+       d="m 34.957462,23.605037 c -6.925031,0 -12.499999,5.574969 -12.499999,12.5 v 56.937499 c 0,6.925035 5.574968,12.500004 12.499999,12.500004 h 56.9375 c 6.925026,0 12.499998,-5.574969 12.499998,-12.500004 V 36.105037 c 0,-6.925031 -5.574972,-12.5 -12.499998,-12.5 z m 22.718749,28.249999 h 31.843751 c 3.873322,0 7,3.095428 7,6.96875 v 31.84375 c 0,3.873322 -3.126678,7.000005 -7,7.000005 H 57.676211 c -3.873321,0 -6.999999,-3.126683 -6.999999,-7.000005 v -31.84375 c 0,-3.873322 3.126678,-6.96875 6.999999,-6.96875 z"
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+  </g>
 </svg>

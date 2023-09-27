@@ -2,12 +2,12 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="96"
-   height="96"
+   width="128"
+   height="128"
    id="svg2"
    version="1.1"
    inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
-   sodipodi:docname="base_morph.svg"
+   sodipodi:docname="base_lex.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -25,18 +25,18 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="3.959798"
-     inkscape:cx="53.790623"
-     inkscape:cy="68.185296"
+     inkscape:cx="59.472731"
+     inkscape:cy="71.594561"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1354"
-     inkscape:window-height="816"
+     inkscape:window-width="1683"
+     inkscape:window-height="907"
      inkscape:window-x="26"
      inkscape:window-y="23"
      inkscape:window-maximized="0"
-     inkscape:showpageshadow="2"
-     inkscape:pagecheckerboard="0"
+     inkscape:showpageshadow="0"
+     inkscape:pagecheckerboard="1"
      inkscape:deskcolor="#d1d1d1" />
   <metadata
      id="metadata7">
@@ -46,7 +46,6 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -57,8 +56,8 @@
      transform="translate(0,-956.36217)">
     <path
        inkscape:connector-curvature="0"
-       d="m 94.563097,1004.5135 a 46.366805,46.595729 0 0 1 -92.7336056,0 46.366805,46.595729 0 1 1 92.7336056,0 z"
-       style="fill:#34d0fc;fill-opacity:1;fill-rule:nonzero;stroke:#0044d8;stroke-width:2.00535321;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 126.61597,1020.4399 a 62.615821,62.607997 0 0 1 -125.2316375,0 62.615821,62.607997 0 1 1 125.2316375,0 z"
+       style="fill:#d35f5f;fill-opacity:1;fill-rule:nonzero;stroke:#c83737;stroke-width:2.70129;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="path1873" />
   </g>
 </svg>
