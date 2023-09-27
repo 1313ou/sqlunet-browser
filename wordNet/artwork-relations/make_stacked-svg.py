@@ -14,7 +14,8 @@ in_fore=sys.argv[3]
 #print(in_base)
 
 # Get the config
-CONFIG["svg.file_path"] = "."
+CONFIG["svg.file_path"] = "parts"
+CONFIG["figure.save_path"] = "composite"
 dim="128px"
 base_scale=1.
 fore_scale=1.

@@ -16,10 +16,10 @@ M='\u001b[35m'
 C='\u001b[36m'
 Z='\u001b[0m'
 
-fore="
+gen="
 relations"
 
-fore_sem="
+sem="
 also
 attribute
 causes
@@ -42,7 +42,7 @@ similar
 substance_holonym
 substance_meronym"
 
-fore_lex="
+lex="
 antonym
 similar
 also
@@ -52,7 +52,7 @@ derivation
 exemplifies
 exemplified"
 
-fore_dom="
+dom="
 domain
 domain_member
 domain_topic
@@ -64,7 +64,7 @@ domain_member_term
 exemplifies
 exemplified"
 
-fore_morph="
+morph="
 state
 result
 event
@@ -80,7 +80,7 @@ material
 vehicle
 bodypart"
 
-fore_pos="
+pos="
 pos_n
 pos_v
 pos_a
@@ -90,12 +90,12 @@ pos"
 
 declare -A backtofore
 backtofore=(
-[base]="$fore" 
-[base_sem]="$fore_sem" 
-[base_lex]="$fore_lex" 
-[base_dom]="$fore_dom" 
-[base_morph]="$fore_morph" 
-[base_pos]="$fore_pos"
+[base]="$gen" 
+[base_sem]="$sem" 
+[base_lex]="$lex" 
+[base_dom]="$dom" 
+[base_morph]="$morph" 
+[base_pos]="$pos"
 )
 
 # composite
@@ -108,7 +108,7 @@ for b in ${!backtofore[@]}; do
 	#echo -e "${M}${b}${Z} ${B}${fs}${Z}"
 	for f in ${fs}; do 
 		echo -e " ${B}${f}${Z}"
-		python3 make_stacked-svg.py "${d}/${f}.svg" "${b}.svg" "ic_${f}.svg"
+		python3 make_stacked-svg.py "${f}.svg" "${b}.svg" "fore_${f}.svg"
 	done
 	echo
 done

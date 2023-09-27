@@ -102,13 +102,15 @@ function list_svg2png(){
 	local r="$1"
 	local srcdir="$2"
 	local destdir="$3"
+	local prefix="$4"
+	shift
 	shift
 	shift
 	shift
 	local list="$*"
 	echo -e "${G}${list}${Z}"
 	for e in ${list}; do
-		svg2png "${r}" "${srcdir}/${e}.svg" "${destdir}/${e}.png"
+		svg2png "${r}" "${srcdir}/${e}.svg" "${destdir}/${prefix}${e}.png"
 	done
 }
 
@@ -116,10 +118,11 @@ function lists_svg2png(){
 	local r="$1"
 	local srcdir="$2"
 	local destdir="$3"
+	local prefix="$4"
 	for k in ${!relations[@]}; do
 		vs=${relations[$k]}
 		echo -e "- ${M}${k} ${C}${vs}${Z}"
-		list_svg2png "${r}" "${srcdir}" "${destdir}" ${vs}
+		list_svg2png "${r}" "${srcdir}" "${destdir}" "${prefix}" ${vs}
 		echo
 	done
 }
@@ -129,7 +132,7 @@ function lists_svg2png(){
 echo -e "${M}WEBRESOLUTION${Z} ${B}$r ${webres}${Z}"
 dirdest="${dirassets}/images/wordnet"
 mkdir -p ${dirdest}
-lists_svg2png ${webres} "${dirsrc}" "${dirdest}"
+lists_svg2png ${webres} "${dirsrc}" "${dirdest}" ""
 
 # R E S O U R C E S
 
@@ -138,6 +141,6 @@ for r in ${!res[@]}; do
 	echo -e "${M}RESOLUTION${Z} ${B}$r ${res[$r]}${Z}"
 	dirdest="${dirres}/drawable-${r}"
 	mkdir -p ${dirdest}
-	lists_svg2png "${rv}" "${dirsrc}" "${dirdest}"
+	lists_svg2png "${rv}" "${dirsrc}" "${dirdest}" "ic_"
 done
 
