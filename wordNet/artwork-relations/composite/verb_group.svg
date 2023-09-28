@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='ASCII' standalone='yes'?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="128.0px" viewBox="0 0 128.0 128.0" height="128.0px">
+  <g>
+    <g transform="translate(0, 0) scale(1.0 1.0) "><defs id="defs4"/>
+  <sodipodi:namedview xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:zoom="3.959798" inkscape:cx="57.957502" inkscape:cy="69.574256" inkscape:document-units="px" inkscape:current-layer="layer1" showgrid="false" inkscape:window-width="1759" inkscape:window-height="833" inkscape:window-x="26" inkscape:window-y="23" inkscape:window-maximized="0" inkscape:showpageshadow="0" inkscape:pagecheckerboard="1" inkscape:deskcolor="#d1d1d1"/>
+  <metadata xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" id="metadata7">
+    <rdf:RDF>
+      <cc:Work rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1" transform="translate(0,-956.36217)">
+    <path inkscape:connector-curvature="0" d="m 126.47391,1020.3479 a 62.451566,62.498492 0 0 1 -124.9031269,0 62.451566,62.498492 0 1 1 124.9031269,0 z" style="fill:#ffa500;fill-opacity:1;fill-rule:nonzero;stroke:#ff8c00;stroke-width:2.69538;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" id="path1873"/>
+  </g>
+</g>
+    <g transform="translate(0, 0) scale(1.0 1.0) "><metadata xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" id="metadata23">
+    <rdf:RDF>
+      <cc:Work rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-width="1256" inkscape:window-height="480" id="namedview21" showgrid="false" inkscape:zoom="0.76367188" inkscape:cx="23.570332" inkscape:cy="116.5422" inkscape:window-x="26" inkscape:window-y="23" inkscape:window-maximized="0" inkscape:current-layer="svg2" inkscape:showpageshadow="0" inkscape:pagecheckerboard="1" inkscape:deskcolor="#d1d1d1"/>
+  <defs xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" id="defs5">
+    <linearGradient id="linearGradient2816">
+      <stop style="stop-color:#f07836;stop-opacity:1;" offset="0" id="stop2818"/>
+      <stop style="stop-color:white;stop-opacity:1" offset="1" id="stop2820"/>
+    </linearGradient>
+    <linearGradient id="linearGradient2794">
+      <stop style="stop-color:#545454;stop-opacity:1" offset="0" id="stop2796"/>
+      <stop style="stop-color:#545454;stop-opacity:1" offset="0.9464286" id="stop2804"/>
+      <stop style="stop-color:#c5c5c5;stop-opacity:0" offset="1" id="stop2798"/>
+    </linearGradient>
+    <radialGradient inkscape:collect="always" xlink:href="#linearGradient2794" id="radialGradient3841" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.69631731,0,0,0.73642635,28.332992,17.546143)" cx="62.984127" cy="65.015877" fx="62.984127" fy="65.015877" r="54.179893"/>
+    <linearGradient inkscape:collect="always" xlink:href="#linearGradient2816" id="linearGradient3843" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.69631731,0,0,0.73642635,28.971376,23.90669)" x1="31.5" y1="63" x2="31.5" y2="12"/>
+    <linearGradient inkscape:collect="always" xlink:href="#linearGradient2816" id="linearGradient3061" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.89419004,0,0,0.50191997,9.6878701,-0.29570749)" x1="31.5" y1="63" x2="31.5" y2="12"/>
+    <radialGradient inkscape:collect="always" xlink:href="#linearGradient2794" id="radialGradient3065" gradientUnits="userSpaceOnUse" gradientTransform="matrix(1.0578729,0,0,1.1181378,-2.9853126,-10.795733)" cx="62.984127" cy="65.015877" fx="62.984127" fy="65.015877" r="54.179893"/>
+  </defs>
+  <text xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xml:space="preserve" style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Arial Black';-inkscape-font-specification:'Arial Black,';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none" x="26.307543" y="98.876602" id="text2995" transform="scale(1.0416358,0.96002845)"><tspan sodipodi:role="line" id="tspan2997" x="26.307543" y="98.876602" style="font-size:90px;line-height:1.25">V</tspan></text>
+</g>
+  </g>
+</svg>
