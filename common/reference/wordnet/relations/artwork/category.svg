@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="128"
+   height="128"
+   id="svg2"
+   version="1.1"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="category.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <title
+     id="title3672">Star</title>
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.5"
+     inkscape:cx="-90"
+     inkscape:cy="351"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:snap-grids="false"
+     inkscape:snap-to-guides="false"
+     inkscape:snap-nodes="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1113"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:showpageshadow="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#d1d1d1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Star</dc:title>
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:date>2010-6-19=1389-3-29</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Alinn</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:publisher>
+          <cc:Agent>
+            <dc:title>openclipart.org</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title />
+          </cc:Agent>
+        </dc:rights>
+        <dc:description>Taftish.wordpress.com</dc:description>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(32.729058,-142.25739)">
+    <path
+       sodipodi:type="star"
+       style="fill:#0000cd;fill-opacity:0.969163;fill-rule:evenodd;stroke:none"
+       id="path3590"
+       sodipodi:sides="5"
+       sodipodi:cx="125.71429"
+       sodipodi:cy="389.50504"
+       sodipodi:r1="378.39618"
+       sodipodi:r2="202.21327"
+       sodipodi:arg1="0.66766559"
+       sodipodi:arg2="1.2959841"
+       inkscape:flatsided="false"
+       inkscape:rounded="0.36"
+       inkscape:randomized="0"
+       d="m 422.85714,623.79075 c -54.7195,69.40033 -157.20751,-63.643 -242.269,-39.66026 C 95.526639,608.11323 77.630425,775.0984 -5.282474,744.50295 -88.19537,713.9075 6.6658185,575.32296 -42.428569,501.83574 -91.522958,428.34852 -255.86552,462.92947 -252.38902,374.6201 -248.91251,286.31074 -87.797059,333.70411 -33.077563,264.30377 21.641934,194.90344 -62.031142,49.290469 23.030356,25.307728 108.09185,1.3249879 112.80549,169.20024 195.71838,199.79569 c 82.9129,30.59545 195.54266,-93.97925 244.63705,-20.49203 49.09439,73.48721 -109.10788,129.84645 -112.58438,218.15582 -3.47651,88.30936 149.80558,156.93093 95.08609,226.33127 z"
+       transform="matrix(0.14008326,0,0,0.14008326,17.448055,152.24098)" />
+  </g>
+</svg>
