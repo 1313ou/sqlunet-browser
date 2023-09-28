@@ -1,178 +1,130 @@
-<!--
-  ~ Copyright (c) 2023. Bernard Bou
-  -->
-
 <!DOCTYPE html SYSTEM "about:legacy-compat">
 <HTML>
-<HEAD>
-	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<TITLE>Relations</TITLE>
-	<LINK rel="stylesheet" type="text/css" href="style.css">
-</HEAD>
-<BODY>
-<TABLE class="links">
-	<TR class="link" name="link" id="hyponym">
-		<TD>
-			<TABLE>
-				<TR>
-					<TD class="linkimage"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD>
-					<TD class="linkheader"><SPAN class="name">Hyponym/Troponym</SPAN></TD>
-				</TR>
-				<TR>
-					<TD colspan="2">
-						<DIV class="description">
-							<span>Subordinate (i.e. more specific). The specific term used to designate a member of a class.</span>
-						</DIV>
-						<DIV class="description">
-							<span>A verb expressing a specific manner elaboration of another verb. Manner name (a word that denotes a manner of doing something).</span>
-						</DIV>
-					</TD>
-				</TR>
-				<TR>
-					<TD colspan="2">
-						<DIV class="logical">
-							<DIV class="def">
-<span>
+    <HEAD>
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <TITLE>Relations</TITLE>
+        <LINK rel="stylesheet" type="text/css" href="style.css">
+    </HEAD>
+    <BODY>
+        <TABLE class="relations">
+            <TR class="relation" name="relation" id="hyponym">
+                <TD>
+                    <TABLE>
+                        <TR>
+                            <TD class="relationimage"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD><TD class="relationheader"><SPAN class="name">Hyponym/Troponym</SPAN></TD>
+                        </TR>
+                        <TR>
+                            <TD colspan="2">
+                                <DIV class="description">
+                                    <span>Subordinate (i.e. more specific). The specific term used to designate a member of a class.</span>
+                                </DIV>
+                                <DIV class="description">
+                                    <span>A verb expressing a specific manner elaboration of another verb. Manner name (a word that denotes a manner of doing something).</span>
+                                </DIV>
+                            </TD>
+                        </TR>
+                        <TR>
+                            <TD colspan="2">
+                                <DIV class="logical">
+                                    <DIV class="def">
+                                        <span>
 				<b>X</b>
 				is a hyponym of
 				<b>Y</b>
-			</span> iff
-							</DIV>
-							<DIV class="cond"> &rarr; <span>
+			</span>iff
+                                    </DIV>
+                                    <DIV class="cond">
+                                        &rarr;<span>
 				<b>X</b>
 				is a (kind of)
 				<b>Y</b>
 			</span>
-							</DIV>
-						</DIV>
-						<DIV class="logical">
-							<DIV class="def">
-<span>
+                                    </DIV>
+                                </DIV>
+                                <DIV class="logical">
+                                    <DIV class="def">
+                                        <span>
 				<b>X</b>
 				is a troponym of
 				<b>Y</b>
-			</span> iff
-							</DIV>
-							<DIV class="cond"> &rarr; <span>
+			</span>iff
+                                    </DIV>
+                                    <DIV class="cond">
+                                        &rarr;<span>
 				to
 				<b>X</b>
 				is to
 				<b>Y</b>
 				in some manner
 			</span>
-							</DIV>
-						</DIV>
-					</TD>
-				</TR>
-				<TR>
-					<TD colspan="2">
-						<DIV class="features">
-							<IMG class="featureimage" src="./images/semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="./images/pos.n.png" alt="noun" title="noun"><IMG class="featureimage" src="./images/pos.v.png" alt="verb"
-							                                                                                                                                                                      title="verb"></DIV>
-					</TD>
-				</TR>
-				<TR>
-					<TD colspan="2">
-						<DIV class="examples">
-							<TABLE class="exampletable">
-								<TR>
-									<TD class="from">tree</TD>
-									<TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD>
-									<TD class="to">oak</TD>
-									<TD class="gloss">an oak is a kind of tree</TD>
-								</TR>
-								<TR>
-									<TD class="from">plant</TD>
-									<TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD>
-									<TD class="to">tree</TD>
-									<TD class="gloss">a tree is a kind of plant</TD>
-								</TR>
-								<TR>
-									<TD class="from">tree</TD>
-									<TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD>
-									<TD class="to">oak</TD>
-									<TD class="gloss">a oak is a kind of tree</TD>
-								</TR>
-								<TR>
-									<TD class="from">roadster</TD>
-									<TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD>
-									<TD class="to">car</TD>
-									<TD class="gloss">a roadster is a kind of car</TD>
-								</TR>
-								<TR>
-									<TD class="from">car</TD>
-									<TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD>
-									<TD class="to">motor vehicle</TD>
-									<TD class="gloss">a car is a kind of motor vehicle</TD>
-								</TR>
-								<TR>
-									<TD class="from">motor vehicle</TD>
-									<TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD>
-									<TD class="to">wheeled vehicle</TD>
-									<TD class="gloss">a motor vehicle is a kind of wheeled vehicle</TD>
-								</TR>
-								<TR>
-									<TD class="from">dwelling</TD>
-									<TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD>
-									<TD class="to">house</TD>
-									<TD class="gloss">a house is a kind of dwelling</TD>
-								</TR>
-								<TR>
-									<TD class="from">disatisfaction</TD>
-									<TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD>
-									<TD class="to">disappointment</TD>
-									<TD class="gloss">disappointment is a kind of disatisfaction</TD>
-								</TR>
-								<TR>
-									<TD class="from">group</TD>
-									<TD class="rel"><IMG src="./images/instance.hyponym.png" alt="Hyponym/Troponym"></TD>
-									<TD class="to">the Great Lakes</TD>
-									<TD class="gloss">instance hypernym</TD>
-								</TR>
-								<TR>
-									<TD class="from">evacuation</TD>
-									<TD class="rel"><IMG src="./images/instance.hyponym.png" alt="Hyponym/Troponym"></TD>
-									<TD class="to">Dunkirk</TD>
-									<TD class="gloss">instance hypernym</TD>
-								</TR>
-								<TR>
-									<TD class="from">revolution</TD>
-									<TD class="rel"><IMG src="./images/instance.hyponym.png" alt="Hyponym/Troponym"></TD>
-									<TD class="to">French revolution</TD>
-									<TD class="gloss">instance hypernym</TD>
-								</TR>
-								<TR>
-									<TD class="from">walk</TD>
-									<TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD>
-									<TD class="to">amble</TD>
-									<TD class="gloss">to amble is to walk in some manner</TD>
-								</TR>
-								<TR>
-									<TD class="from">walk</TD>
-									<TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD>
-									<TD class="to">march</TD>
-									<TD class="gloss">to march is to walk in some manner</TD>
-								</TR>
-								<TR>
-									<TD class="from">say</TD>
-									<TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD>
-									<TD class="to">lisp</TD>
-									<TD class="gloss">to lisp is to say in some manner</TD>
-								</TR>
-								<TR>
-									<TD class="from">hit</TD>
-									<TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD>
-									<TD class="to">slam</TD>
-									<TD class="gloss">to slam is to hit in some manner</TD>
-								</TR>
-							</TABLE>
-						</DIV>
-					</TD>
-				</TR>
-			</TABLE>
-		</TD>
-	</TR>
-</TABLE>
-<BR>
-</BODY>
+                                    </DIV>
+                                </DIV>
+                            </TD>
+                        </TR>
+                        <TR>
+                            <TD colspan="2">
+                                <DIV class="features">
+                                    <IMG class="featureimage" src="./images/semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="./images/pos_n.png" alt="noun" title="noun"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
+                                </DIV>
+                            </TD>
+                        </TR>
+                        <TR>
+                            <TD colspan="2">
+                                <DIV class="examples">
+                                    <TABLE class="exampletable">
+                                        <TR>
+                                            <TD class="from">tree</TD><TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">oak</TD><TD class="gloss">an oak is a kind of tree</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">plant</TD><TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">tree</TD><TD class="gloss">a tree is a kind of plant</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">tree</TD><TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">oak</TD><TD class="gloss">a oak is a kind of tree</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">roadster</TD><TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">car</TD><TD class="gloss">a roadster is a kind of car</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">car</TD><TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">motor vehicle</TD><TD class="gloss">a car is a kind of motor vehicle</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">motor vehicle</TD><TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">wheeled vehicle</TD><TD class="gloss">a motor vehicle is a kind of wheeled vehicle</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">dwelling</TD><TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">house</TD><TD class="gloss">a house is a kind of dwelling</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">disatisfaction</TD><TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">disappointment</TD><TD class="gloss">disappointment is a kind of disatisfaction</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">group</TD><TD class="rel"><IMG src="./images/instance_hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">the Great Lakes</TD><TD class="gloss">instance hypernym</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">evacuation</TD><TD class="rel"><IMG src="./images/instance_hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">Dunkirk</TD><TD class="gloss">instance hypernym</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">revolution</TD><TD class="rel"><IMG src="./images/instance_hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">French revolution</TD><TD class="gloss">instance hypernym</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">walk</TD><TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">amble</TD><TD class="gloss">to amble is to walk in some manner</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">walk</TD><TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">march</TD><TD class="gloss">to march is to walk in some manner</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">say</TD><TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">lisp</TD><TD class="gloss">to lisp is to say in some manner</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">hit</TD><TD class="rel"><IMG src="./images/hyponym.png" alt="Hyponym/Troponym"></TD><TD class="to">slam</TD><TD class="gloss">to slam is to hit in some manner</TD>
+                                        </TR>
+                                    </TABLE>
+                                </DIV>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                </TD>
+            </TR>
+        </TABLE>
+        <BR>
+    </BODY>
 </HTML>

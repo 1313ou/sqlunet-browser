@@ -1,128 +1,92 @@
-<!--
-  ~ Copyright (c) 2023. Bernard Bou
-  -->
-
 <!DOCTYPE html SYSTEM "about:legacy-compat">
 <HTML>
-<HEAD>
-	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<TITLE>Relations</TITLE>
-	<LINK rel="stylesheet" type="text/css" href="style.css">
-</HEAD>
-<BODY>
-<TABLE class="links">
-	<TR class="link" name="link" id="attribute">
-		<TD>
-			<TABLE>
-				<TR>
-					<TD class="linkimage"><IMG src="./images/attribute.png" alt="Attribute"></TD>
-					<TD class="linkheader"><SPAN class="name">Attribute</SPAN></TD>
-				</TR>
-				<TR>
-					<TD colspan="2">
-						<DIV class="description">
-							<span>Attribute</span>
-						</DIV>
-					</TD>
-				</TR>
-				<TR>
-					<TD colspan="2"></TD>
-				</TR>
-				<TR>
-					<TD colspan="2">
-						<DIV class="features">
-							<IMG class="featureimage" src="./images/semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="./images/reflexive.png" alt="reflexive" title="reflexive"><IMG class="featureimage" src="./images/pos.n.png"
-							                                                                                                                                                                                    alt="noun" title="noun"><IMG
-								class="featureimage" src="./images/pos.a.png" alt="adj" title="adjective"></DIV>
-					</TD>
-				</TR>
-				<TR>
-					<TD colspan="2">
-						<DIV class="examples">
-							<TABLE class="exampletable">
-								<TR>
-									<TD class="from">emotionality</TD>
-									<TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD>
-									<TD class="to">cold</TD>
-								</TR>
-								<TR>
-									<TD class="from">emotionality</TD>
-									<TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD>
-									<TD class="to">warm</TD>
-								</TR>
-								<TR>
-									<TD class="from">emotionality</TD>
-									<TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD>
-									<TD class="to">cool</TD>
-								</TR>
-								<TR>
-									<TD class="from">beauty</TD>
-									<TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD>
-									<TD class="to">beautiful</TD>
-								</TR>
-								<TR>
-									<TD class="from">beauty</TD>
-									<TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD>
-									<TD class="to">ugly</TD>
-								</TR>
-								<TR>
-									<TD class="from">morality</TD>
-									<TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD>
-									<TD class="to">immoral</TD>
-								</TR>
-								<TR>
-									<TD class="from">morality</TD>
-									<TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD>
-									<TD class="to">pure</TD>
-								</TR>
-								<TR>
-									<TD class="from">morality</TD>
-									<TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD>
-									<TD class="to">impure</TD>
-								</TR>
-								<TR>
-									<TD class="from">age</TD>
-									<TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD>
-									<TD class="to">old</TD>
-								</TR>
-								<TR>
-									<TD class="from">age</TD>
-									<TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD>
-									<TD class="to">new</TD>
-								</TR>
-								<TR>
-									<TD class="from">strength</TD>
-									<TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD>
-									<TD class="to">strong</TD>
-								</TR>
-								<TR>
-									<TD class="from">strength</TD>
-									<TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD>
-									<TD class="to">weak</TD>
-								</TR>
-								<TR>
-									<TD class="from">quantity</TD>
-									<TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD>
-									<TD class="to">abundant</TD>
-								</TR>
-								<TR>
-									<TD class="from">quantity</TD>
-									<TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD>
-									<TD class="to">scarce</TD>
-								</TR>
-								<TR>
-									<TD class="from">quantity</TD>
-									<TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD>
-									<TD class="to">sufficient</TD>
-								</TR>
-							</TABLE>
-						</DIV>
-					</TD>
-				</TR>
-			</TABLE>
-		</TD>
-	</TR>
-</TABLE>
-<BR>
-</BODY>
+    <HEAD>
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <TITLE>Relations</TITLE>
+        <LINK rel="stylesheet" type="text/css" href="style.css">
+    </HEAD>
+    <BODY>
+        <TABLE class="relations">
+            <TR class="relation" name="relation" id="attribute">
+                <TD>
+                    <TABLE>
+                        <TR>
+                            <TD class="relationimage"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="relationheader"><SPAN class="name">Attribute</SPAN></TD>
+                        </TR>
+                        <TR>
+                            <TD colspan="2">
+                                <DIV class="description">
+                                    <span>Attribute</span>
+                                </DIV>
+                            </TD>
+                        </TR>
+                        <TR>
+                            <TD colspan="2"></TD>
+                        </TR>
+                        <TR>
+                            <TD colspan="2">
+                                <DIV class="features">
+                                    <IMG class="featureimage" src="./images/semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="./images/reflexive.png" alt="reflexive" title="reflexive"><IMG class="featureimage" src="./images/pos_n.png" alt="noun" title="noun"><IMG class="featureimage" src="./images/pos_a.png" alt="adj" title="adjective">
+                                </DIV>
+                            </TD>
+                        </TR>
+                        <TR>
+                            <TD colspan="2">
+                                <DIV class="examples">
+                                    <TABLE class="exampletable">
+                                        <TR>
+                                            <TD class="from">emotionality</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">cold</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">emotionality</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">warm</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">emotionality</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">cool</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">beauty</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">beautiful</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">beauty</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">ugly</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">morality</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">immoral</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">morality</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">pure</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">morality</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">impure</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">age</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">old</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">age</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">new</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">strength</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">strong</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">strength</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">weak</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">quantity</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">abundant</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">quantity</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">scarce</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">quantity</TD><TD class="rel"><IMG src="./images/attribute.png" alt="Attribute"></TD><TD class="to">sufficient</TD>
+                                        </TR>
+                                    </TABLE>
+                                </DIV>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                </TD>
+            </TR>
+        </TABLE>
+        <BR>
+    </BODY>
 </HTML>

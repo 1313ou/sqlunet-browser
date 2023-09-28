@@ -1,140 +1,89 @@
-<!--
-  ~ Copyright (c) 2023. Bernard Bou
-  -->
-
 <!DOCTYPE html SYSTEM "about:legacy-compat">
 <HTML>
-<HEAD>
-	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<TITLE>Relations</TITLE>
-	<LINK rel="stylesheet" type="text/css" href="style.css">
-</HEAD>
-<BODY>
-<TABLE class="links">
-	<TR class="link" name="link" id="member">
-		<TD>
-			<TABLE>
-				<TR>
-					<TD class="linkimage"><IMG src="./images/domain.member.png" alt="Domain Member"></TD>
-					<TD class="linkheader"><SPAN class="name">Domain Member</SPAN></TD>
-				</TR>
-				<TR>
-					<TD colspan="2">
-						<DIV class="description">
-							<span>Domain of synset</span>
-						</DIV>
-					</TD>
-				</TR>
-				<TR>
-					<TD colspan="2"></TD>
-				</TR>
-				<TR>
-					<TD colspan="2">
-						<DIV class="features">
-							<IMG class="featureimage" src="./images/semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos.n.png"
-							                                                                                                                                                                              alt="noun" title="noun"><IMG class="featureimage"
-							                                                                                                                                                                                                           src="./images/pos.v.png"
-							                                                                                                                                                                                                           alt="verb" title="verb"><IMG
-								class="featureimage" src="./images/pos.a.png" alt="adj" title="adjective"><IMG class="featureimage" src="./images/pos.r.png" alt="adv" title="adverb"><IMG class="featureimage" src="./images/pos.s.png" alt="satellite"
-							                                                                                                                                                               title="satellite adj"></DIV>
-					</TD>
-				</TR>
-				<TR>
-					<TD colspan="2">
-						<DIV class="examples">
-							<TABLE class="exampletable">
-								<TR>
-									<TD class="from">cooking</TD>
-									<TD class="rel"><IMG src="./images/domain.member.topic.png" alt="Domain Member"></TD>
-									<TD class="to">marinate</TD>
-									<TD class="gloss">domain member topic</TD>
-								</TR>
-								<TR>
-									<TD class="from">cooking</TD>
-									<TD class="rel"><IMG src="./images/domain.member.topic.png" alt="Domain Member"></TD>
-									<TD class="to">reduce</TD>
-									<TD class="gloss">domain member topic</TD>
-								</TR>
-								<TR>
-									<TD class="from">cooking</TD>
-									<TD class="rel"><IMG src="./images/domain.member.topic.png" alt="Domain Member"></TD>
-									<TD class="to">bake</TD>
-									<TD class="gloss">domain member topic</TD>
-								</TR>
-								<TR>
-									<TD class="from">cooking</TD>
-									<TD class="rel"><IMG src="./images/domain.member.topic.png" alt="Domain Member"></TD>
-									<TD class="to">souse</TD>
-									<TD class="gloss">domain member topic</TD>
-								</TR>
-								<TR>
-									<TD class="from">music</TD>
-									<TD class="rel"><IMG src="./images/domain.member.topic.png" alt="Domain Member"></TD>
-									<TD class="to">sing</TD>
-									<TD class="gloss">domain member topic</TD>
-								</TR>
-								<TR>
-									<TD class="from">music</TD>
-									<TD class="rel"><IMG src="./images/domain.member.topic.png" alt="Domain Member"></TD>
-									<TD class="to">psalm</TD>
-									<TD class="gloss">domain member topic</TD>
-								</TR>
-								<TR>
-									<TD class="from">music</TD>
-									<TD class="rel"><IMG src="./images/domain.member.topic.png" alt="Domain Member"></TD>
-									<TD class="to">hymn</TD>
-									<TD class="gloss">domain member topic</TD>
-								</TR>
-								<TR>
-									<TD class="from">music</TD>
-									<TD class="rel"><IMG src="./images/domain.member.topic.png" alt="Domain Member"></TD>
-									<TD class="to">choir</TD>
-									<TD class="gloss">domain member topic</TD>
-								</TR>
-								<TR>
-									<TD class="from">chili con carne</TD>
-									<TD class="rel"><IMG src="./images/domain.member.region.png" alt="Domain Member"></TD>
-									<TD class="to">Mexico</TD>
-									<TD class="gloss">domain member region</TD>
-								</TR>
-								<TR>
-									<TD class="from">taco</TD>
-									<TD class="rel"><IMG src="./images/domain.member.region.png" alt="Domain Member"></TD>
-									<TD class="to">Mexico</TD>
-									<TD class="gloss">domain member region</TD>
-								</TR>
-								<TR>
-									<TD class="from">burrito</TD>
-									<TD class="rel"><IMG src="./images/domain.member.region.png" alt="Domain Member"></TD>
-									<TD class="to">Mexico</TD>
-									<TD class="gloss">domain member region</TD>
-								</TR>
-								<TR>
-									<TD class="from">portmanteau word</TD>
-									<TD class="rel"><IMG src="./images/exemplified.png" alt="Domain Member"></TD>
-									<TD class="to">motel</TD>
-									<TD class="gloss">is exemplified by</TD>
-								</TR>
-								<TR>
-									<TD class="from">plural</TD>
-									<TD class="rel"><IMG src="./images/exemplified.png" alt="Domain Member"></TD>
-									<TD class="to">high jinx</TD>
-									<TD class="gloss">is exemplified by</TD>
-								</TR>
-								<TR>
-									<TD class="from">idiom</TD>
-									<TD class="rel"><IMG src="./images/exemplified.png" alt="Domain Member"></TD>
-									<TD class="to">like clockwork</TD>
-									<TD class="gloss">is exemplified by</TD>
-								</TR>
-							</TABLE>
-						</DIV>
-					</TD>
-				</TR>
-			</TABLE>
-		</TD>
-	</TR>
-</TABLE>
-<BR>
-</BODY>
+    <HEAD>
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <TITLE>Relations</TITLE>
+        <LINK rel="stylesheet" type="text/css" href="style.css">
+    </HEAD>
+    <BODY>
+        <TABLE class="relations">
+            <TR class="relation" name="relation" id="member">
+                <TD>
+                    <TABLE>
+                        <TR>
+                            <TD class="relationimage"><IMG src="./images/domain_member.png" alt="Domain Member"></TD><TD class="relationheader"><SPAN class="name">Domain Member</SPAN></TD>
+                        </TR>
+                        <TR>
+                            <TD colspan="2">
+                                <DIV class="description">
+                                    <span>Domain of synset</span>
+                                </DIV>
+                            </TD>
+                        </TR>
+                        <TR>
+                            <TD colspan="2"></TD>
+                        </TR>
+                        <TR>
+                            <TD colspan="2">
+                                <DIV class="features">
+                                    <IMG class="featureimage" src="./images/semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_n.png" alt="noun" title="noun"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb"><IMG class="featureimage" src="./images/pos_a.png" alt="adj" title="adjective"><IMG class="featureimage" src="./images/pos_r.png" alt="adv" title="adverb"><IMG class="featureimage" src="./images/pos_s.png" alt="satellite" title="satellite adj">
+                                </DIV>
+                            </TD>
+                        </TR>
+                        <TR>
+                            <TD colspan="2">
+                                <DIV class="examples">
+                                    <TABLE class="exampletable">
+                                        <TR>
+                                            <TD class="from">cooking</TD><TD class="rel"><IMG src="./images/domain_member_topic.png" alt="Domain Member"></TD><TD class="to">marinate</TD><TD class="gloss">domain member topic</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">cooking</TD><TD class="rel"><IMG src="./images/domain_member_topic.png" alt="Domain Member"></TD><TD class="to">reduce</TD><TD class="gloss">domain member topic</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">cooking</TD><TD class="rel"><IMG src="./images/domain_member_topic.png" alt="Domain Member"></TD><TD class="to">bake</TD><TD class="gloss">domain member topic</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">cooking</TD><TD class="rel"><IMG src="./images/domain_member_topic.png" alt="Domain Member"></TD><TD class="to">souse</TD><TD class="gloss">domain member topic</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">music</TD><TD class="rel"><IMG src="./images/domain_member_topic.png" alt="Domain Member"></TD><TD class="to">sing</TD><TD class="gloss">domain member topic</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">music</TD><TD class="rel"><IMG src="./images/domain_member_topic.png" alt="Domain Member"></TD><TD class="to">psalm</TD><TD class="gloss">domain member topic</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">music</TD><TD class="rel"><IMG src="./images/domain_member_topic.png" alt="Domain Member"></TD><TD class="to">hymn</TD><TD class="gloss">domain member topic</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">music</TD><TD class="rel"><IMG src="./images/domain_member_topic.png" alt="Domain Member"></TD><TD class="to">choir</TD><TD class="gloss">domain member topic</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">chili con carne</TD><TD class="rel"><IMG src="./images/domain_member_region.png" alt="Domain Member"></TD><TD class="to">Mexico</TD><TD class="gloss">domain member region</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">taco</TD><TD class="rel"><IMG src="./images/domain_member_region.png" alt="Domain Member"></TD><TD class="to">Mexico</TD><TD class="gloss">domain member region</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">burrito</TD><TD class="rel"><IMG src="./images/domain_member_region.png" alt="Domain Member"></TD><TD class="to">Mexico</TD><TD class="gloss">domain member region</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">portmanteau word</TD><TD class="rel"><IMG src="./images/exemplified.png" alt="Domain Member"></TD><TD class="to">motel</TD><TD class="gloss">is exemplified by</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">plural</TD><TD class="rel"><IMG src="./images/exemplified.png" alt="Domain Member"></TD><TD class="to">high jinx</TD><TD class="gloss">is exemplified by</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">idiom</TD><TD class="rel"><IMG src="./images/exemplified.png" alt="Domain Member"></TD><TD class="to">like clockwork</TD><TD class="gloss">is exemplified by</TD>
+                                        </TR>
+                                    </TABLE>
+                                </DIV>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                </TD>
+            </TR>
+        </TABLE>
+        <BR>
+    </BODY>
 </HTML>
