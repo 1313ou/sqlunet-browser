@@ -4,7 +4,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Hypernym"
 	id="hypernym"
 	type="semantic"
@@ -124,4 +124,4 @@
 	<see tag="hyponym">(the inverse relation for nouns)</see>
 	<see tag="troponym">(the inverse relation for verbs)</see>
 
-</link>
+</relation>

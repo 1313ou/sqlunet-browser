@@ -4,7 +4,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Derivation"
 	id="derivation"
 	type="lexical"
@@ -53,5 +53,5 @@
 		</example>
 	</examples>
 
-</link>
+</relation>
 

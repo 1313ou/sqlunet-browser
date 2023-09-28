@@ -9,19 +9,22 @@ wherefrom=`readlink -m "${wherefrom}"`
 
 whereto="$1"
 if [ -z "${whereto}" ]; then
-	whereto="assets/images"
+	whereto="html/images"
 fi
 whereto=`readlink -m "${whereto}"`
 mkdir -p ${whereto}
 
-pos="pos pos.n pos.v pos.a pos.s pos.r"
-utils="focus category sense synonym synset members links item other ${pos}"
+utils1="focus category sense synset members relations item"
 utils2="reflexive semantic lexical"
 
-l2="${l1} ${utils2}"
-res=30
-for img in ${l2}; do
-	echo "make ${img}.png -> ${whereto}/${img}.png"
-	inkscape ${wherefrom}/${img}.svg --export-type="png" --export-filename=${whereto}/${img}.png -h ${res} #> /dev/null 2> /dev/null
+utils="${utils1} ${utils2}"
+r=30
+d=${whereto}
+aspect=h
+for img in ${utils}; do
+	png=${img}.png
+	svg=${wherefrom}/${img}.svg
+	echo "make ${png} -> ${d}/${png}"
+	$INKSCAPE --export-type="png" --export-filename=${d}/${png} -${aspect} ${r} ${svg} > /dev/null # 2> /dev/null
 done
 cp menu.png ${whereto}

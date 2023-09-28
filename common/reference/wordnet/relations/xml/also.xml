@@ -4,7 +4,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Also See"
 	id="alsosee"
 	type="both"
@@ -73,5 +73,5 @@
 		</example>
 	</examples>
 
-</link>
+</relation>
 

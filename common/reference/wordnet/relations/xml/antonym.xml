@@ -4,7 +4,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Direct antonym"
 	id="antonym"
 	type="lexical"
@@ -158,5 +158,5 @@
 
 	<see tag="similar">(among adjectives)</see>
 
-</link>
+</relation>
 

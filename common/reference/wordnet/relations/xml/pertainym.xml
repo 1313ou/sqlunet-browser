@@ -4,7 +4,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Pertainym"
 	id="pertainym"
 	type="lexical"
@@ -74,5 +74,5 @@
 		</example>
 	</examples>
 
-</link>
+</relation>
 

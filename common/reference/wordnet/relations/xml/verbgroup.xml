@@ -4,7 +4,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Verb Group"
 	id="verbgroup"
 	type="semantic"
@@ -47,4 +47,4 @@
 		</example>
 	</examples>
 
-</link>
+</relation>

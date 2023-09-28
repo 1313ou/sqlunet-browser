@@ -4,7 +4,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Entails"
 	id="entails"
 	type="semantic"
@@ -119,4 +119,4 @@
 
 	<see tag="causes" />
 
-</link>
+</relation>

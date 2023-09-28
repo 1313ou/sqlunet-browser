@@ -2,7 +2,7 @@
 
 <!-- RELATIONS 2 HTML - (C) 2020 Author: Bernard Bou -->
 <xsl:transform version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<xsl:import href='link2html.xsl' />
+	<xsl:import href='relation2html.xsl' />
 	<xsl:output method="html" indent="yes" encoding="UTF-8" doctype-system="about:legacy-compat" />
 
 	<xsl:template match="/">
@@ -17,7 +17,7 @@
 function select(tag)
 {
 		var maindoc=document;
-		var all=maindoc.getElementsByName('link');
+		var all=maindoc.getElementsByName('relation');
 		for(i=0;i<all.length;i++)
 		{
 			var e=all[i];
@@ -58,7 +58,7 @@ function menu()
 						<TD style='vertical-align: top;'>
 							<DIV class="main">
 								<TABLE>
-									<xsl:apply-templates select=".//link" />
+									<xsl:apply-templates select=".//relation" />
 								</TABLE>
 							</DIV>
 						</TD>
@@ -70,7 +70,7 @@ function menu()
 
 	<xsl:template name="build_toc">
 		<xsl:param name="title" />
-		<xsl:for-each select=".//link">
+		<xsl:for-each select=".//relation">
 			<TR class='selector'>
 				<xsl:attribute name="onclick">javascript:select('<xsl:value-of select="./@id" />');
 				</xsl:attribute>

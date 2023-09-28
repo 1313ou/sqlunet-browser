@@ -4,7 +4,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Domain Member"
 	id="member"
 	type="both"
@@ -111,5 +111,5 @@
 
 	</examples>
 
-</link>
+</relation>
 

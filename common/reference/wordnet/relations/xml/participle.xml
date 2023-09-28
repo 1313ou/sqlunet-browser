@@ -4,7 +4,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Participle"
 	id="participle"
 	type="lexical"
@@ -35,5 +35,5 @@
 		</example>
 	</examples>
 
-</link>
+</relation>
 

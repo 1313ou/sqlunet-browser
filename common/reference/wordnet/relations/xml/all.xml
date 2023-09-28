@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<links>
+<relations>
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Hypernym"
 	id="hypernym"
 	type="semantic"
@@ -125,13 +125,13 @@
 	<see tag="hyponym">(the inverse relation for nouns)</see>
 	<see tag="troponym">(the inverse relation for verbs)</see>
 
-</link>
+</relation>
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Hyponym/Troponym"
 	id="hyponym"
 	type="semantic"
@@ -269,14 +269,14 @@
 
 	<see tag="hypernym">(the inverse relation)</see>
 
-</link>
+</relation>
 
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Holonym"
 	id="holonym"
 	type="semantic"
@@ -389,13 +389,13 @@
 
 	<see tag="meronym">(the inverse relation)</see>
 
-</link>
+</relation>
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Meronym"
 	id="meronym"
 	type="semantic"
@@ -507,13 +507,13 @@
 
 	<see tag="holonym">(the inverse relation)</see>
 
-</link>
+</relation>
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Similar"
 	id="similar"
 	type="semantic"
@@ -591,14 +591,14 @@
 		</example>
 	</examples>
 
-</link>
+</relation>
 
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Causes"
 	id="causes"
 	type="semantic"
@@ -668,14 +668,14 @@
 
 	<see tag="entails" />
 
-</link>
+</relation>
 
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Caused"
 	id="caused"
 	type="semantic"
@@ -745,14 +745,14 @@
 
 	<see tag="entailed" />
 
-</link>
+</relation>
 
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Entails"
 	id="entails"
 	type="semantic"
@@ -867,13 +867,13 @@
 
 	<see tag="causes" />
 
-</link>
+</relation>
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Entailed"
 	id="entailed"
 	type="semantic"
@@ -988,13 +988,13 @@
 
 	<see tag="caused" />
 
-</link>
+</relation>
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Attribute"
 	id="attribute"
 	type="semantic"
@@ -1072,14 +1072,14 @@
 		</example>
 	</examples>
 
-</link>
+</relation>
 
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Similar"
 	id="similar"
 	type="semantic"
@@ -1157,14 +1157,14 @@
 		</example>
 	</examples>
 
-</link>
+</relation>
 
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Verb Group"
 	id="verbgroup"
 	type="semantic"
@@ -1207,13 +1207,13 @@
 		</example>
 	</examples>
 
-</link>
+</relation>
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Direct antonym"
 	id="antonym"
 	type="lexical"
@@ -1367,14 +1367,14 @@
 
 	<see tag="similar">(among adjectives)</see>
 
-</link>
+</relation>
 
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Participle"
 	id="participle"
 	type="lexical"
@@ -1405,14 +1405,14 @@
 		</example>
 	</examples>
 
-</link>
+</relation>
 
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Pertainym"
 	id="pertainym"
 	type="lexical"
@@ -1482,14 +1482,14 @@
 		</example>
 	</examples>
 
-</link>
+</relation>
 
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Derivation"
 	id="derivation"
 	type="lexical"
@@ -1538,14 +1538,14 @@
 		</example>
 	</examples>
 
-</link>
+</relation>
 
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Also See"
 	id="alsosee"
 	type="both"
@@ -1614,14 +1614,14 @@
 		</example>
 	</examples>
 
-</link>
+</relation>
 
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Domain"
 	id="domain"
 	type="both"
@@ -1716,14 +1716,14 @@
 
 	</examples>
 
-</link>
+</relation>
 
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Domain Member"
 	id="member"
 	type="both"
@@ -1830,19 +1830,19 @@
 
 	</examples>
 
-</link>
+</relation>
 
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="State"
 	id="state"
 	type="lexical"
 	reflexive="false"
-	r="true">
+	v="true">
 
 	<img src="state.png" />
 
@@ -1861,18 +1861,18 @@
 		</example>
 	</examples>
 
-</link>
+</relation>
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Result"
 	id="result"
 	type="lexical"
 	reflexive="false"
-	r="true">
+	v="true">
 
 	<img src="result.png" />
 
@@ -1891,18 +1891,18 @@
 		</example>
 	</examples>
 
-</link>
+</relation>
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Event"
 	id="event"
 	type="lexical"
 	reflexive="false"
-	r="true">
+	v="true">
 
 	<img src="event.png" />
 
@@ -1921,18 +1921,18 @@
 		</example>
 	</examples>
 
-</link>
+</relation>
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Property"
 	id="property"
 	type="lexical"
 	reflexive="false"
-	r="true">
+	v="true">
 
 	<img src="property.png" />
 
@@ -1951,18 +1951,18 @@
 		</example>
 	</examples>
 
-</link>
+</relation>
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Location"
 	id="location"
 	type="lexical"
 	reflexive="false"
-	r="true">
+	v="true">
 
 	<img src="location.png" />
 
@@ -1981,18 +1981,18 @@
 		</example>
 	</examples>
 
-</link>
+</relation>
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Destination"
 	id="destination"
 	type="lexical"
 	reflexive="false"
-	r="true">
+	v="true">
 
 	<img src="destination.png" />
 
@@ -2011,18 +2011,18 @@
 		</example>
 	</examples>
 
-</link>
+</relation>
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Agent"
 	id="agent"
 	type="lexical"
 	reflexive="false"
-	r="true">
+	v="true">
 
 	<img src="agent.png" />
 
@@ -2041,18 +2041,18 @@
 		</example>
 	</examples>
 
-</link>
+</relation>
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Undergoer"
 	id="undergoer"
 	type="lexical"
 	reflexive="false"
-	r="true">
+	v="true">
 
 	<img src="undergoer.png" />
 
@@ -2071,18 +2071,18 @@
 		</example>
 	</examples>
 
-</link>
+</relation>
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Uses"
 	id="uses"
 	type="lexical"
 	reflexive="false"
-	r="true">
+	v="true">
 
 	<img src="uses.png" />
 
@@ -2101,18 +2101,18 @@
 		</example>
 	</examples>
 
-</link>
+</relation>
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Instrument"
 	id="instrument"
 	type="lexical"
 	reflexive="false"
-	r="true">
+	v="true">
 
 	<img src="instrument.png" />
 
@@ -2131,18 +2131,18 @@
 		</example>
 	</examples>
 
-</link>
+</relation>
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="By Means Of"
 	id="bymeansof"
 	type="lexical"
 	reflexive="false"
-	r="true">
+	v="true">
 
 	<img src="bymeansof.png" />
 
@@ -2161,18 +2161,18 @@
 		</example>
 	</examples>
 
-</link>
+</relation>
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Material"
 	id="material"
 	type="lexical"
 	reflexive="false"
-	r="true">
+	v="true">
 
 	<img src="material.png" />
 
@@ -2191,18 +2191,18 @@
 		</example>
 	</examples>
 
-</link>
+</relation>
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Vehicle"
 	id="vehicle"
 	type="lexical"
 	reflexive="false"
-	r="true">
+	v="true">
 
 	<img src="vehicle.png" />
 
@@ -2221,18 +2221,18 @@
 		</example>
 	</examples>
 
-</link>
+</relation>
 
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Body Part"
 	id="bodypart"
 	type="lexical"
 	reflexive="false"
-	r="true">
+	v="true">
 
 	<img src="bodypart.png" />
 
@@ -2251,5 +2251,5 @@
 		</example>
 	</examples>
 
-</link>
-</links>
+</relation>
+</relations>

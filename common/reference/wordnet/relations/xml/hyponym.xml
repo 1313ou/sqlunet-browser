@@ -4,7 +4,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Hyponym/Troponym"
 	id="hyponym"
 	type="semantic"
@@ -142,5 +142,5 @@
 
 	<see tag="hypernym">(the inverse relation)</see>
 
-</link>
+</relation>
 

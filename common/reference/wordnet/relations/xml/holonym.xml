@@ -4,7 +4,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Holonym"
 	id="holonym"
 	type="semantic"
@@ -117,4 +117,4 @@
 
 	<see tag="meronym">(the inverse relation)</see>
 
-</link>
+</relation>

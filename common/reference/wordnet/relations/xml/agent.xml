@@ -4,12 +4,12 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Agent"
 	id="agent"
 	type="lexical"
 	reflexive="false"
-	r="true">
+	v="true">
 
 	<img src="agent.png" />
 
@@ -28,4 +28,4 @@
 		</example>
 	</examples>
 
-</link>
+</relation>

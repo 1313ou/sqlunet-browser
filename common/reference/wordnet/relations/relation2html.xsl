@@ -15,16 +15,16 @@
 				<LINK rel="stylesheet" type="text/css" href="style.css" />
 			</HEAD>
 			<BODY>
-				<TABLE class="links">
-					<xsl:apply-templates select=".//link" />
+				<TABLE class="relations">
+					<xsl:apply-templates select=".//relation" />
 				</TABLE>
 				<BR />
 			</BODY>
 		</HTML>
 	</xsl:template>
 
-	<xsl:template match="link">
-		<TR class="link" name="link">
+	<xsl:template match="relation">
+		<TR class="relation" name="relation">
 			<xsl:attribute name="id">
 				<xsl:value-of select="./@id" />
 			</xsl:attribute>
@@ -32,7 +32,7 @@
 				<TABLE>
 
 					<TR>
-						<TD class="linkimage">
+						<TD class="relationimage">
 							<IMG>
 								<xsl:attribute name="src">
 									<xsl:copy-of select="$imagedir" />
@@ -43,7 +43,7 @@
 								</xsl:attribute>
 							</IMG>
 						</TD>
-						<TD class="linkheader">
+						<TD class="relationheader">
 							<SPAN class="name">
 								<xsl:value-of select="./@name" />
 							</SPAN>
@@ -145,7 +145,7 @@
 									<IMG class="featureimage">
 										<xsl:attribute name="src">
 											<xsl:copy-of select="$imagedir" />
-											<xsl:value-of select="'pos.n.png'" />
+											<xsl:value-of select="'pos_n.png'" />
 										</xsl:attribute>
 										<xsl:attribute name="alt">
 											<xsl:value-of select="'noun'" />
@@ -159,7 +159,7 @@
 									<IMG class="featureimage">
 										<xsl:attribute name="src">
 											<xsl:copy-of select="$imagedir" />
-											<xsl:value-of select="'pos.v.png'" />
+											<xsl:value-of select="'pos_v.png'" />
 										</xsl:attribute>
 										<xsl:attribute name="alt">
 											<xsl:value-of select="'verb'" />
@@ -173,7 +173,7 @@
 									<IMG class="featureimage">
 										<xsl:attribute name="src">
 											<xsl:copy-of select="$imagedir" />
-											<xsl:value-of select="'pos.a.png'" />
+											<xsl:value-of select="'pos_a.png'" />
 										</xsl:attribute>
 										<xsl:attribute name="alt">
 											<xsl:value-of select="'adj'" />
@@ -187,7 +187,7 @@
 									<IMG class="featureimage">
 										<xsl:attribute name="src">
 											<xsl:copy-of select="$imagedir" />
-											<xsl:value-of select="'pos.r.png'" />
+											<xsl:value-of select="'pos_r.png'" />
 										</xsl:attribute>
 										<xsl:attribute name="alt">
 											<xsl:value-of select="'adv'" />
@@ -201,7 +201,7 @@
 									<IMG class="featureimage">
 										<xsl:attribute name="src">
 											<xsl:copy-of select="$imagedir" />
-											<xsl:value-of select="'pos.s.png'" />
+											<xsl:value-of select="'pos_s.png'" />
 										</xsl:attribute>
 										<xsl:attribute name="alt">
 											<xsl:value-of select="'satellite'" />

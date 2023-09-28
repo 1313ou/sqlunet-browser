@@ -28,18 +28,18 @@ in_both="also.xml"
 in_domain="domain.xml member.xml"
 in_morph="state.xml result.xml event.xml property.xml location.xml destination.xml agent.xml undergoer.xml uses.xml instrument.xml bymeansof.xml material.xml vehicle.xml bodypart.xml"
 in="${in_sem} ${in_lex} ${in_both} ${in_domain} ${in_morph}"
-xsl="link2html.xsl"
-xsl_index="links2html.xsl"
-xsl_selector="links2selector.xsl"
-xsl_toc="links2toc.xsl"
+xsl="relation2html.xsl"
+xsl_index="relations2html.xsl"
+xsl_selector="relations2selector.xsl"
+xsl_toc="relations2toc.xsl"
 
 # merge all *.xml files into all.xml
 echo '<?xml version="1.0" encoding="UTF-8"?>' > ${wherefrom}/all.xml 
-echo '<links>' >> ${wherefrom}/all.xml 
+echo '<relations>' >> ${wherefrom}/all.xml
 for xml in $in; do
 	grep -v '<\?xml.*'  ${wherefrom}/${xml} 
 done >> ${wherefrom}/all.xml 
-echo '</links>' >> ${wherefrom}/all.xml
+echo '</relations>' >> ${wherefrom}/all.xml
 
 # transform all *.xml files into *.html
 for xml in $in all.xml; do

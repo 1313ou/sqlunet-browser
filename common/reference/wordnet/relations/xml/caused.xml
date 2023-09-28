@@ -4,7 +4,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Caused"
 	id="caused"
 	type="semantic"
@@ -74,5 +74,5 @@
 
 	<see tag="entailed" />
 
-</link>
+</relation>
 

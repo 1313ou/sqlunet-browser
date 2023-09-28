@@ -4,7 +4,7 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<link
+<relation
 	name="Derived from adjective"
 	id="adjderived"
 	type="lexical"
@@ -32,5 +32,5 @@
 		</example>
 	</examples>
 
-</link>
+</relation>
 
