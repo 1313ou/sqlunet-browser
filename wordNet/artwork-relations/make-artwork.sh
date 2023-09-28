@@ -4,7 +4,7 @@ thisdir="`dirname $(readlink -m $0)`"
 thisdir="$(readlink -m ${thisdir})"
 dirres=../src/main/res
 dirassets=../src/main/assets
-dirreference=../../common/reference/wordnet/relations/assets
+dirreference=../../common/reference/wordnet/relations/html
 dirapp=..
 dirsrc=composite
 
@@ -137,14 +137,14 @@ function lists_svg2png(){
 
 # R E F E R E N C E
 
-echo -e "${M}Reference${Z} ${B}$r ${webres}${Z}"
+echo -e "${Y}Reference${Z} ${B}$r ${webres}${Z}"
 dirdest="${dirreference}/images"
 mkdir -p ${dirdest}
 lists_svg2png ${referenceres} "${dirsrc}" "${dirdest}" ""
 
 # A S S E T S
 
-echo -e "${M}Assets${Z} ${B}$r ${webres}${Z}"
+echo -e "${Y}Assets${Z} ${B}$r ${webres}${Z}"
 dirdest="${dirassets}/images/wordnet"
 mkdir -p ${dirdest}
 lists_svg2png ${webres} "${dirsrc}" "${dirdest}" ""

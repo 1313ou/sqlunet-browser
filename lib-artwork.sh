@@ -50,7 +50,7 @@ function make_png(){
 			local png="${svg%.svg}${suffix}.png"
 			echo -e -n "${svg} -> ${d}/${png} @ ${BLUE}${aspect}${r}${RESET}"
 			echo
-			inkscape ${svg} --export-type="png" --export-filename=${d}/${png} -${aspect} ${r} > /dev/null 2> /dev/null
+			$INKSCAPE --export-type="png" --export-filename=${d}/${png} -${aspect} ${r} ${svg} > /dev/null # 2> /dev/null
 			if [ -e "${d}/${png}" ]; then
 				echo -e " ${GREEN}OK${RESET}"
 			else
