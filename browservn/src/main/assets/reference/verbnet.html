@@ -1,304 +1,327 @@
-<!--
-  ~ Copyright (c) 2023. Bernard Bou
-  -->
-
 <!DOCTYPE html SYSTEM "about:legacy-compat">
 <HTML>
-<HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<TITLE>VerbNet</TITLE>
-<LINK rel="stylesheet" type="text/css" href="style.css">
-</HEAD>
-<BODY>
-<H1>VerbNet</H1>
-<TABLE class="concepts">
-<TR class="concept" name="concept" id="vnclass">
-<TD>
-<TABLE class="expand">
-<TR class="expand">
-<TD class="expand">
-<TABLE class="expand">
-<TR>
-<TD class="headerimage" colspan="1"><IMG src="./images/vnclass.png" alt="Class"></TD><TD class="headertitle"><SPAN class="conceptname">Class</SPAN></TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-<TR class="expand">
-<TD class="expand">
-<DIV class="description">A class. VerbNet groups verbs according to shared syntactic behaviors, thereby revealing generalizations of verb behavior. VerbNet is inspired by Beth Levin&rsquo;s classification of verb classes and their syntactic alternations. According to Levin&rsquo;s work, members within a single verb class participate in shared types of alternations, such as the locative alternation (spray verbs) or the causative alternation (wrinkle verbs) etc., because of an underlying shared semantic meaning. Thus, although the basis of VerbNet classification is syntactic, the verbs of a given class do share semantic regularities as well because, as Levin hypothesized, the syntactic behavior of a verb is largely determined by its meaning. Each individual class is hierarchical in the sense that classes may include one or more subclasses.</DIV>
-</TD>
-</TR>
-<TR class="expand">
-<TD class="expand">
-<DIV class="examples">
-<TABLE class="exampletable">
-<TR>
-<TD class="example">give-13.1</TD>
-</TR>
-<TR>
-<TD class="example">give-13.1-1</TD>
-</TR>
-</TABLE>
-</DIV>
-</TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-<TR class="concept" name="concept" id="vnmember">
-<TD>
-<TABLE class="expand">
-<TR class="expand">
-<TD class="expand">
-<TABLE class="expand">
-<TR>
-<TD class="headerimage" colspan="1"><IMG src="./images/vnmember.png" alt="Members"></TD><TD class="headertitle"><SPAN class="conceptname">Members</SPAN></TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-<TR class="expand">
-<TD class="expand">
-<DIV class="description">Member</DIV>
-</TD>
-</TR>
-<TR class="expand">
-<TD class="expand">
-<DIV class="examples">
-<TABLE class="exampletable">
-<TR>
-<TD class="example">lend</TD>
-</TR>
-<TR>
-<TD class="example">loan</TD>
-</TR>
-<TR>
-<TD class="example">pass</TD>
-</TR>
-<TR>
-<TD class="example">peddle</TD>
-</TR>
-<TR>
-<TD class="example">refund</TD>
-</TR>
-<TR>
-<TD class="example">render</TD>
-</TR>
-</TABLE>
-</DIV>
-</TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-<TR class="concept" name="concept" id="vnrole">
-<TD>
-<TABLE class="expand">
-<TR class="expand">
-<TD class="expand">
-<TABLE class="expand">
-<TR>
-<TD class="headerimage" colspan="1"><IMG src="./images/vnrole.png" alt="Role"></TD><TD class="headertitle"><SPAN class="conceptname">Role</SPAN></TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-<TR class="expand">
-<TD class="expand">
-<DIV class="description">Thematic roles refer to the semantic relationship between a predicate and its arguments.  VerbNet makes use of a hierarchical thematic roleset.</DIV>
-</TD>
-</TR>
-<TR class="expand">
-<TD class="expand">
-<DIV class="examples">
-<DIV class="context">In the context of the <SPAN class="keyword">give-13.1</SPAN>class:</DIV>
-<TABLE class="exampletable">
-<TR>
-<TD class="example">agent [+animate | +organization]</TD>
-</TR>
-<TR>
-<TD class="example">theme</TD>
-</TR>
-<TR>
-<TD class="example">recipient  [+animate | +organization]</TD>
-</TR>
-</TABLE>
-</DIV>
-</TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-<TR class="concept" name="concept" id="vnrestr">
-<TD>
-<TABLE class="expand">
-<TR class="expand">
-<TD class="expand">
-<TABLE class="expand">
-<TR>
-<TD class="headerimage" colspan="1"><IMG src="./images/vnrestr.png" alt="Selectional Restrictions"></TD><TD class="headertitle"><SPAN class="conceptname">Selectional Restrictions</SPAN></TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-<TR class="expand">
-<TD class="expand">
-<DIV class="description">Selectional Restrictions. Each thematic role listed in a class may optionally be further characterized by certain selectional restrictions, which provide more information about the nature of a given role.</DIV>
-</TD>
-</TR>
-<TR class="expand">
-<TD class="expand">
-<DIV class="examples">
-<DIV class="context">In the context of the <SPAN class="keyword">give-13.1 agent</SPAN>role:</DIV>
-<TABLE class="exampletable">
-<TR>
-<TD class="example">[+animate | +organization]</TD>
-</TR>
-</TABLE>
-</DIV>
-</TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-<TR class="concept" name="concept" id="vnframe">
-<TD>
-<TABLE class="expand">
-<TR class="expand">
-<TD class="expand">
-<TABLE class="expand">
-<TR>
-<TD class="headerimage" colspan="1"><IMG src="./images/vnframe.png" alt="Frame"></TD><TD class="headertitle"><SPAN class="conceptname">Frame</SPAN></TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-<TR class="expand">
-<TD class="expand">
-<DIV class="description">The Frames consist of syntactic constructions, example sentences, and the semantic roles mapped to syntactic arguments. They provide a description of the different surface realizations and diathesis alternations allowed for the members of the class.</DIV>
-</TD>
-</TR>
-<TR class="expand">
-<TD class="expand">
-<DIV class="examples">
-<DIV class="context">In the context of the <SPAN class="keyword">NP V PP.destination</SPAN>role:</DIV>
-<TABLE class="exampletable">
-<TR>
-<TD class="example">
-	EXAMPLE Paint sprayed onto the wall.
-	SYNTAX Theme V {{+loc | +dir | +dest_conf}} Destination
-	SEMANTICS motion(during(E),Theme) not(Prep(start(E), Theme, Destination)) Prep(end(E), Theme, Destination)
-</TD>
-</TR>
-</TABLE>
-</DIV>
-</TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-<TR class="concept" name="concept" id="vnsyntax">
-<TD>
-<TABLE class="expand">
-<TR class="expand">
-<TD class="expand">
-<TABLE class="expand">
-<TR>
-<TD class="headerimage" colspan="1"><IMG src="./images/vnsyntax.png" alt="Syntax"></TD><TD class="headertitle"><SPAN class="conceptname">Syntax</SPAN></TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-<TR class="expand">
-<TD class="expand">
-<DIV class="description">Syntactic constructions</DIV>
-</TD>
-</TR>
-<TR class="expand">
-<TD class="expand">
-<DIV class="examples">
-<DIV class="context">In the context of the <SPAN class="keyword">NP V PP.destination</SPAN>role with<SPAN class="keyword">Paint sprayed onto the wall.</SPAN>example:</DIV>
-<TABLE class="exampletable">
-<TR>
-<TD class="example">Theme V {{+loc | +dir | +dest_conf}} Destination</TD>
-</TR>
-</TABLE>
-</DIV>
-<DIV class="examples">
-<DIV class="context">In the context of the <SPAN class="keyword">NP V NP PP.destination-Conative</SPAN>role with<SPAN class="keyword">Jessica squirted water at me.</SPAN>example:</DIV>
-<TABLE class="exampletable">
-<TR>
-<TD class="example">Agent V Theme at Destination</TD>
-</TR>
-</TABLE>
-</DIV>
-</TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-<TR class="concept" name="concept" id="vnsemantics">
-<TD>
-<TABLE class="expand">
-<TR class="expand">
-<TD class="expand">
-<TABLE class="expand">
-<TR>
-<TD class="headerimage" colspan="1"><IMG src="./images/vnsemantics.png" alt="Semantics"></TD><TD class="headertitle"><SPAN class="conceptname">Semantics</SPAN></TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-<TR class="expand">
-<TD class="expand">
-<DIV class="description">Semantic predicates indicate how the participants are involved in the event.</DIV>
-</TD>
-</TR>
-<TR class="expand">
-<TD class="expand">
-<DIV class="examples">
-<DIV class="context">In the context of the <SPAN class="keyword">NP V PP.destination</SPAN>with<SPAN class="keyword">Paint sprayed onto the wall.</SPAN>example:</DIV>
-<TABLE class="exampletable">
-<TR>
-<TD class="example">motion(during(E),Theme) not(Prep(start(E), Theme, Destination)) Prep(end(E), Theme, Destination)</TD>
-</TR>
-</TABLE>
-</DIV>
-<DIV class="examples">
-<DIV class="context">In the context of the <SPAN class="keyword">NP V NP PP.destination-Conative</SPAN>with<SPAN class="keyword">Jessica squirted water at me.</SPAN>example:</DIV>
-<TABLE class="exampletable">
-<TR>
-<TD class="example">motion(during(E), Theme)) not(location(start(E), Theme, Destination)) cause(Agent, E)</TD>
-</TR>
-</TABLE>
-</DIV>
-</TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-<TR class="concept" name="concept" id="vnsynsetspecific">
-<TD>
-<TABLE class="expand">
-<TR class="expand">
-<TD class="expand">
-<TABLE class="expand">
-<TR>
-<TD class="headerimage" colspan="1"><IMG src="./images/vnsynsetspecific.png" alt="Synset-specific"></TD><TD class="headertitle"><SPAN class="conceptname">Synset-specific</SPAN></TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-<TR class="expand">
-<TD class="expand">
-<DIV class="description">Synset-specific. Some constructs are attached to specific senses.</DIV>
-</TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-</TABLE>
-<BR>
-</BODY>
+    <HEAD>
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <TITLE>VerbNet</TITLE>
+        <LINK rel="stylesheet" type="text/css" href="style.css">
+    </HEAD>
+    <BODY>
+        <H1>VerbNet</H1>
+        <TABLE class="concepts">
+            <TR class="concept" name="concept" id="vnclass">
+                <TD>
+                    <TABLE class="expand">
+                        <TR class="expand">
+                            <TD class="expand">
+                                <TABLE class="expand">
+                                    <TR>
+                                        <TD class="headerimage" colspan="1"><IMG src="./images/vnclass.png" alt="Class"></TD><TD class="headertitle"><SPAN class="conceptname">Class</SPAN></TD>
+                                    </TR>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                        <TR class="expand">
+                            <TD class="expand">
+                                <DIV class="description">A class. VerbNet groups verbs according to shared syntactic behaviors, thereby revealing generalizations of verb behavior. VerbNet is inspired by Beth Levin&rsquo;s classification of verb classes and their syntactic alternations. According
+			to Levin&rsquo;s work, members within a single verb class participate in shared types of alternations, such as the locative alternation (spray verbs) or the causative alternation (wrinkle verbs) etc., because of an underlying shared semantic
+			meaning. Thus, although the basis of VerbNet classification is syntactic, the verbs of a given class do share semantic regularities as well because, as Levin hypothesized, the syntactic behavior of a verb is largely determined by its meaning.
+			Each individual class is hierarchical in the sense that classes may include one or more subclasses.
+		</DIV>
+                            </TD>
+                        </TR>
+                        <TR class="expand">
+                            <TD class="expand">
+                                <DIV class="examples">
+                                    <TABLE class="exampletable">
+                                        <TR>
+                                            <TD class="example">give-13.1</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="example">give-13.1-1</TD>
+                                        </TR>
+                                    </TABLE>
+                                </DIV>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                </TD>
+            </TR>
+            <TR class="concept" name="concept" id="vnmember">
+                <TD>
+                    <TABLE class="expand">
+                        <TR class="expand">
+                            <TD class="expand">
+                                <TABLE class="expand">
+                                    <TR>
+                                        <TD class="headerimage" colspan="1"><IMG src="./images/vnmember.png" alt="Members"></TD><TD class="headertitle"><SPAN class="conceptname">Members</SPAN></TD>
+                                    </TR>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                        <TR class="expand">
+                            <TD class="expand">
+                                <DIV class="description">Member</DIV>
+                            </TD>
+                        </TR>
+                        <TR class="expand">
+                            <TD class="expand">
+                                <DIV class="examples">
+                                    <TABLE class="exampletable">
+                                        <TR>
+                                            <TD class="example">lend</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="example">loan</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="example">pass</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="example">peddle</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="example">refund</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="example">render</TD>
+                                        </TR>
+                                    </TABLE>
+                                </DIV>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                </TD>
+            </TR>
+            <TR class="concept" name="concept" id="vnrole">
+                <TD>
+                    <TABLE class="expand">
+                        <TR class="expand">
+                            <TD class="expand">
+                                <TABLE class="expand">
+                                    <TR>
+                                        <TD class="headerimage" colspan="1"><IMG src="./images/vnrole.png" alt="Role"></TD><TD class="headertitle"><SPAN class="conceptname">Role</SPAN></TD>
+                                    </TR>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                        <TR class="expand">
+                            <TD class="expand">
+                                <DIV class="description">Thematic roles refer to the semantic relationship between a predicate and its arguments. VerbNet makes use of a hierarchical thematic roleset.</DIV>
+                            </TD>
+                        </TR>
+                        <TR class="expand">
+                            <TD class="expand">
+                                <DIV class="examples">
+                                    <DIV class="context">
+                                        In the context of the<SPAN class="keyword">give-13.1</SPAN>class:
+				
+                                    </DIV>
+                                    <TABLE class="exampletable">
+                                        <TR>
+                                            <TD class="example">agent [+animate | +organization]</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="example">theme</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="example">recipient [+animate | +organization]</TD>
+                                        </TR>
+                                    </TABLE>
+                                </DIV>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                </TD>
+            </TR>
+            <TR class="concept" name="concept" id="vnrestr">
+                <TD>
+                    <TABLE class="expand">
+                        <TR class="expand">
+                            <TD class="expand">
+                                <TABLE class="expand">
+                                    <TR>
+                                        <TD class="headerimage" colspan="1"><IMG src="./images/vnrestr.png" alt="Selectional Restrictions"></TD><TD class="headertitle"><SPAN class="conceptname">Selectional Restrictions</SPAN></TD>
+                                    </TR>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                        <TR class="expand">
+                            <TD class="expand">
+                                <DIV class="description">Selectional Restrictions. Each thematic role listed in a class may optionally be further characterized by certain selectional restrictions, which provide more information about the nature of a given role.</DIV>
+                            </TD>
+                        </TR>
+                        <TR class="expand">
+                            <TD class="expand">
+                                <DIV class="examples">
+                                    <DIV class="context">
+                                        In the context of the<SPAN class="keyword">give-13.1 agent</SPAN>role:
+				
+                                    </DIV>
+                                    <TABLE class="exampletable">
+                                        <TR>
+                                            <TD class="example">[+animate | +organization]</TD>
+                                        </TR>
+                                    </TABLE>
+                                </DIV>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                </TD>
+            </TR>
+            <TR class="concept" name="concept" id="vnframe">
+                <TD>
+                    <TABLE class="expand">
+                        <TR class="expand">
+                            <TD class="expand">
+                                <TABLE class="expand">
+                                    <TR>
+                                        <TD class="headerimage" colspan="1"><IMG src="./images/vnframe.png" alt="Frame"></TD><TD class="headertitle"><SPAN class="conceptname">Frame</SPAN></TD>
+                                    </TR>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                        <TR class="expand">
+                            <TD class="expand">
+                                <DIV class="description">The Frames consist of syntactic constructions, example sentences, and the semantic roles mapped to syntactic arguments. They provide a description of the different surface realizations and diathesis alternations allowed for the
+			members of the class.
+		</DIV>
+                            </TD>
+                        </TR>
+                        <TR class="expand">
+                            <TD class="expand">
+                                <DIV class="examples">
+                                    <DIV class="context">
+                                        In the context of the<SPAN class="keyword">NP V PP.destination</SPAN>role:
+				
+                                    </DIV>
+                                    <TABLE class="exampletable">
+                                        <TR>
+                                            <TD class="example">
+				EXAMPLE Paint sprayed onto the wall.
+				SYNTAX Theme V {{+loc | +dir | +dest_conf}} Destination
+				SEMANTICS motion(during(E),Theme) not(Prep(start(E), Theme, Destination)) Prep(end(E), Theme, Destination)
+			</TD>
+                                        </TR>
+                                    </TABLE>
+                                </DIV>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                </TD>
+            </TR>
+            <TR class="concept" name="concept" id="vnsyntax">
+                <TD>
+                    <TABLE class="expand">
+                        <TR class="expand">
+                            <TD class="expand">
+                                <TABLE class="expand">
+                                    <TR>
+                                        <TD class="headerimage" colspan="1"><IMG src="./images/vnsyntax.png" alt="Syntax"></TD><TD class="headertitle"><SPAN class="conceptname">Syntax</SPAN></TD>
+                                    </TR>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                        <TR class="expand">
+                            <TD class="expand">
+                                <DIV class="description">Syntactic constructions</DIV>
+                            </TD>
+                        </TR>
+                        <TR class="expand">
+                            <TD class="expand">
+                                <DIV class="examples">
+                                    <DIV class="context">
+                                        In the context of the<SPAN class="keyword">NP V PP.destination</SPAN>role with<SPAN class="keyword">Paint sprayed onto the wall.</SPAN>example:
+				
+                                    </DIV>
+                                    <TABLE class="exampletable">
+                                        <TR>
+                                            <TD class="example">Theme V {{+loc | +dir | +dest_conf}} Destination</TD>
+                                        </TR>
+                                    </TABLE>
+                                </DIV>
+                                <DIV class="examples">
+                                    <DIV class="context">
+                                        In the context of the<SPAN class="keyword">NP V NP PP.destination-Conative</SPAN>role with<SPAN class="keyword">Jessica squirted water at me.</SPAN>example:
+				
+                                    </DIV>
+                                    <TABLE class="exampletable">
+                                        <TR>
+                                            <TD class="example">Agent V Theme at Destination</TD>
+                                        </TR>
+                                    </TABLE>
+                                </DIV>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                </TD>
+            </TR>
+            <TR class="concept" name="concept" id="vnsemantics">
+                <TD>
+                    <TABLE class="expand">
+                        <TR class="expand">
+                            <TD class="expand">
+                                <TABLE class="expand">
+                                    <TR>
+                                        <TD class="headerimage" colspan="1"><IMG src="./images/vnsemantics.png" alt="Semantics"></TD><TD class="headertitle"><SPAN class="conceptname">Semantics</SPAN></TD>
+                                    </TR>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                        <TR class="expand">
+                            <TD class="expand">
+                                <DIV class="description">Semantic predicates indicate how the participants are involved in the event.</DIV>
+                            </TD>
+                        </TR>
+                        <TR class="expand">
+                            <TD class="expand">
+                                <DIV class="examples">
+                                    <DIV class="context">
+                                        In the context of the<SPAN class="keyword">NP V PP.destination</SPAN>with<SPAN class="keyword">Paint sprayed onto the wall.</SPAN>example:
+				
+                                    </DIV>
+                                    <TABLE class="exampletable">
+                                        <TR>
+                                            <TD class="example">motion(during(E),Theme) not(Prep(start(E), Theme, Destination)) Prep(end(E), Theme, Destination)</TD>
+                                        </TR>
+                                    </TABLE>
+                                </DIV>
+                                <DIV class="examples">
+                                    <DIV class="context">
+                                        In the context of the<SPAN class="keyword">NP V NP PP.destination-Conative</SPAN>with<SPAN class="keyword">Jessica squirted water at me.</SPAN>example:
+				
+                                    </DIV>
+                                    <TABLE class="exampletable">
+                                        <TR>
+                                            <TD class="example">motion(during(E), Theme)) not(location(start(E), Theme, Destination)) cause(Agent, E)</TD>
+                                        </TR>
+                                    </TABLE>
+                                </DIV>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                </TD>
+            </TR>
+            <TR class="concept" name="concept" id="vnsynsetspecific">
+                <TD>
+                    <TABLE class="expand">
+                        <TR class="expand">
+                            <TD class="expand">
+                                <TABLE class="expand">
+                                    <TR>
+                                        <TD class="headerimage" colspan="1"><IMG src="./images/vnsynsetspecific.png" alt="Synset-specific"></TD><TD class="headertitle"><SPAN class="conceptname">Synset-specific</SPAN></TD>
+                                    </TR>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                        <TR class="expand">
+                            <TD class="expand">
+                                <DIV class="description">Synset-specific. Some constructs are attached to specific senses.</DIV>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                </TD>
+            </TR>
+        </TABLE>
+        <BR>
+    </BODY>
 </HTML>

@@ -17,7 +17,7 @@ body {
 
 /******* hyperlink and anchor tag styles *******/
 
-a:link,a:visited {
+a:relation,a:visited {
 	text-decoration: none;
 }
 
@@ -45,15 +45,15 @@ a:hover {
 	color: orange;
 }
 
-.link {
+.relation {
 	visibility: visible;
 	margin-bottom: 100px;
 }
 
-.linkheader {
+.relationheader {
 }
 
-.linkimage {
+.relationimage {
 	width: 36px;
 }
 

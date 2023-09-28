@@ -1,252 +1,288 @@
-<!--
-  ~ Copyright (c) 2023. Bernard Bou
-  -->
-
 <!DOCTYPE html SYSTEM "about:legacy-compat">
 <HTML>
-<HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<TITLE>PropBank</TITLE>
-<LINK rel="stylesheet" type="text/css" href="style.css">
-</HEAD>
-<BODY>
-<H1>PropBank</H1>
-<TABLE class="concepts">
-<TR class="concept" name="concept" id="pbroleset">
-<TD>
-<TABLE class="expand">
-<TR class="expand">
-<TD class="expand">
-<TABLE class="expand">
-<TR>
-<TD class="headerimage" colspan="1"><IMG src="./images/pbroleset.png" alt="Role Set"></TD><TD class="headertitle"><SPAN class="conceptname">Role Set</SPAN></TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-<TR class="expand">
-<TD class="expand">
-<DIV class="description">The set of roles attached to a predicate verb.</DIV>
-</TD>
-</TR>
-<TR class="expand">
-<TD class="expand">
-<DIV class="examples">
-<DIV class="context">In the context of the <SPAN class="keyword">rise</SPAN>predicate:</DIV>
-<TABLE class="exampletable">
-<TR>
-<TD class="example">rise.01</TD>
-</TR>
-</TABLE>
-</DIV>
-</TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-<TR class="concept" name="concept" id="pbpredicate">
-<TD>
-<TABLE class="expand">
-<TR class="expand">
-<TD class="expand">
-<TABLE class="expand">
-<TR>
-<TD class="headerimage" colspan="1"><IMG src="./images/pbpredicate.png" alt="Predicate"></TD><TD class="headertitle"><SPAN class="conceptname">Predicate</SPAN></TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-<TR class="expand">
-<TD class="expand">
-<DIV class="description">The predicate verb</DIV>
-</TD>
-</TR>
-<TR class="expand">
-<TD class="expand">
-<DIV class="examples">
-<DIV class="context">In the context of the <SPAN class="keyword">The sales rose.</SPAN>example:</DIV>
-<TABLE class="exampletable">
-<TR>
-<TD class="example">rose</TD>
-</TR>
-</TABLE>
-</DIV>
-</TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-<TR class="concept" name="concept" id="pbrole">
-<TD>
-<TABLE class="expand">
-<TR class="expand">
-<TD class="expand">
-<TABLE class="expand">
-<TR>
-<TD class="headerimage" colspan="1"><IMG src="./images/pbrole.png" alt="Role"></TD><TD class="headertitle"><SPAN class="conceptname">Role</SPAN></TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-<TR class="expand">
-<TD class="expand">
-<DIV class="description">Roles in the role set seen as arguments to predicate</DIV>
-</TD>
-</TR>
-<TR class="expand">
-<TD class="expand">
-<DIV class="examples">
-<DIV class="context">In the context of the <SPAN class="keyword">rise.01</SPAN>role set:</DIV>
-<TABLE class="exampletable">
-<TR>
-<TD class="example">Arg0 </TD>
-</TR>
-<TR>
-<TD class="example">Arg1 </TD>
-</TR>
-<TR>
-<TD class="example">Arg2 </TD>
-</TR>
-<TR>
-<TD class="example">Arg3 </TD>
-</TR>
-<TR>
-<TD class="example">Arg4 </TD>
-</TR>
-<TR>
-<TD class="example">Arg5 </TD>
-</TR>
-</TABLE>
-</DIV>
-</TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-<TR class="concept" name="concept" id="pbtheta">
-<TD>
-<TABLE class="expand">
-<TR class="expand">
-<TD class="expand">
-<TABLE class="expand">
-<TR>
-<TD class="headerimage" colspan="1"><IMG src="./images/pbtheta.png" alt="Theta"></TD><TD class="headertitle"><SPAN class="conceptname">Theta</SPAN></TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-<TR class="expand">
-<TD class="expand">
-<DIV class="description">Another name given to the argument role.</DIV>
-</TD>
-</TR>
-<TR class="expand">
-<TD class="expand">
-<DIV class="examples">
-<DIV class="context">In the context of the <SPAN class="keyword">Arg-1</SPAN>role:</DIV>
-<TABLE class="exampletable">
-<TR>
-<TD class="example">Theme</TD>
-</TR>
-</TABLE>
-</DIV>
-<DIV class="examples">
-<DIV class="context">In the context of the <SPAN class="keyword">Arg-2</SPAN>role:</DIV>
-<TABLE class="exampletable">
-<TR>
-<TD class="example">Extent</TD>
-</TR>
-</TABLE>
-</DIV>
-<DIV class="examples">
-<DIV class="context">In the context of the <SPAN class="keyword">Arg-3</SPAN>role:</DIV>
-<TABLE class="exampletable">
-<TR>
-<TD class="example">Initial location</TD>
-</TR>
-</TABLE>
-</DIV>
-<DIV class="examples">
-<DIV class="context">In the context of the <SPAN class="keyword">Arg-4</SPAN>role:</DIV>
-<TABLE class="exampletable">
-<TR>
-<TD class="example">Destination</TD>
-</TR>
-</TABLE>
-</DIV>
-</TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-<TR class="concept" name="concept" id="pbalias">
-<TD>
-<TABLE class="expand">
-<TR class="expand">
-<TD class="expand">
-<TABLE class="expand">
-<TR>
-<TD class="headerimage" colspan="1"><IMG src="./images/pbalias.png" alt="Alias"></TD><TD class="headertitle"><SPAN class="conceptname">Alias</SPAN></TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-<TR class="expand">
-<TD class="expand">
-<DIV class="description">Aliases in VerbNet or FrameNet</DIV>
-</TD>
-</TR>
-<TR class="expand">
-<TD class="expand">
-<DIV class="examples">
-<DIV class="context">In the context of the <SPAN class="keyword">abandon (v.)</SPAN>roleset:</DIV>
-<TABLE class="exampletable">
-<TR>
-<TD class="example">Quitting_a_place (FrameNet)</TD>
-</TR>
-<TR>
-<TD class="example">Departing (FrameNet)</TD>
-</TR>
-</TABLE>
-</DIV>
-</TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-<TR class="concept" name="concept" id="pbtrace">
-<TD>
-<TABLE class="expand">
-<TR class="expand">
-<TD class="expand">
-<TABLE class="expand">
-<TR>
-<TD class="headerimage" colspan="1"><IMG src="./images/pbtrace.png" alt="Trace"></TD><TD class="headertitle"><SPAN class="conceptname">Trace</SPAN></TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-<TR class="expand">
-<TD class="expand">
-<DIV class="description">The trace (left by 'movement')</DIV>
-</TD>
-</TR>
-<TR class="expand">
-<TD class="expand">
-<DIV class="examples">
-<DIV class="context">In the context of the <SPAN class="keyword">I want to eat ice-cream</SPAN>sentence:</DIV>
-<TABLE class="exampletable">
-<TR>
-<TD class="example">Arg0:Irel:wantArg1:[*T* to eat ice-cream]</TD>
-</TR>
-</TABLE>
-</DIV>
-</TD>
-</TR>
-</TABLE>
-</TD>
-</TR>
-</TABLE>
-<BR>
-</BODY>
+    <HEAD>
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <TITLE>PropBank</TITLE>
+        <LINK rel="stylesheet" type="text/css" href="style.css">
+    </HEAD>
+    <BODY>
+        <H1>PropBank</H1>
+        <TABLE class="concepts">
+            <TR class="concept" name="concept" id="pbroleset">
+                <TD>
+                    <TABLE class="expand">
+                        <TR class="expand">
+                            <TD class="expand">
+                                <TABLE class="expand">
+                                    <TR>
+                                        <TD class="headerimage" colspan="1"><IMG src="./images/pbroleset.png" alt="Role Set"></TD><TD class="headertitle"><SPAN class="conceptname">Role Set</SPAN></TD>
+                                    </TR>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                        <TR class="expand">
+                            <TD class="expand">
+                                <DIV class="description">The set of roles attached to a predicate verb.</DIV>
+                            </TD>
+                        </TR>
+                        <TR class="expand">
+                            <TD class="expand">
+                                <DIV class="examples">
+                                    <DIV class="context">
+                                        In the context of the<SPAN class="keyword">rise</SPAN>predicate:
+				
+                                    </DIV>
+                                    <TABLE class="exampletable">
+                                        <TR>
+                                            <TD class="example">rise.01</TD>
+                                        </TR>
+                                    </TABLE>
+                                </DIV>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                </TD>
+            </TR>
+            <TR class="concept" name="concept" id="pbpredicate">
+                <TD>
+                    <TABLE class="expand">
+                        <TR class="expand">
+                            <TD class="expand">
+                                <TABLE class="expand">
+                                    <TR>
+                                        <TD class="headerimage" colspan="1"><IMG src="./images/pbpredicate.png" alt="Predicate"></TD><TD class="headertitle"><SPAN class="conceptname">Predicate</SPAN></TD>
+                                    </TR>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                        <TR class="expand">
+                            <TD class="expand">
+                                <DIV class="description">The predicate verb</DIV>
+                            </TD>
+                        </TR>
+                        <TR class="expand">
+                            <TD class="expand">
+                                <DIV class="examples">
+                                    <DIV class="context">
+                                        In the context of the<SPAN class="keyword">The sales rose.</SPAN>example:
+				
+                                    </DIV>
+                                    <TABLE class="exampletable">
+                                        <TR>
+                                            <TD class="example">rose</TD>
+                                        </TR>
+                                    </TABLE>
+                                </DIV>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                </TD>
+            </TR>
+            <TR class="concept" name="concept" id="pbrole">
+                <TD>
+                    <TABLE class="expand">
+                        <TR class="expand">
+                            <TD class="expand">
+                                <TABLE class="expand">
+                                    <TR>
+                                        <TD class="headerimage" colspan="1"><IMG src="./images/pbrole.png" alt="Role"></TD><TD class="headertitle"><SPAN class="conceptname">Role</SPAN></TD>
+                                    </TR>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                        <TR class="expand">
+                            <TD class="expand">
+                                <DIV class="description">Roles in the role set seen as arguments to predicate</DIV>
+                            </TD>
+                        </TR>
+                        <TR class="expand">
+                            <TD class="expand">
+                                <DIV class="examples">
+                                    <DIV class="context">
+                                        In the context of the<SPAN class="keyword">rise.01</SPAN>role set:
+				
+                                    </DIV>
+                                    <TABLE class="exampletable">
+                                        <TR>
+                                            <TD class="example">Arg0
+				
+			</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="example">Arg1
+				
+			</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="example">Arg2
+				
+			</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="example">Arg3
+				
+			</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="example">Arg4
+				
+			</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="example">Arg5
+				
+			</TD>
+                                        </TR>
+                                    </TABLE>
+                                </DIV>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                </TD>
+            </TR>
+            <TR class="concept" name="concept" id="pbtheta">
+                <TD>
+                    <TABLE class="expand">
+                        <TR class="expand">
+                            <TD class="expand">
+                                <TABLE class="expand">
+                                    <TR>
+                                        <TD class="headerimage" colspan="1"><IMG src="./images/pbtheta.png" alt="Theta"></TD><TD class="headertitle"><SPAN class="conceptname">Theta</SPAN></TD>
+                                    </TR>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                        <TR class="expand">
+                            <TD class="expand">
+                                <DIV class="description">Another name given to the argument role.</DIV>
+                            </TD>
+                        </TR>
+                        <TR class="expand">
+                            <TD class="expand">
+                                <DIV class="examples">
+                                    <DIV class="context">
+                                        In the context of the<SPAN class="keyword">Arg-1</SPAN>role:
+				
+                                    </DIV>
+                                    <TABLE class="exampletable">
+                                        <TR>
+                                            <TD class="example">Theme</TD>
+                                        </TR>
+                                    </TABLE>
+                                </DIV>
+                                <DIV class="examples">
+                                    <DIV class="context">
+                                        In the context of the<SPAN class="keyword">Arg-2</SPAN>role:
+				
+                                    </DIV>
+                                    <TABLE class="exampletable">
+                                        <TR>
+                                            <TD class="example">Extent</TD>
+                                        </TR>
+                                    </TABLE>
+                                </DIV>
+                                <DIV class="examples">
+                                    <DIV class="context">
+                                        In the context of the<SPAN class="keyword">Arg-3</SPAN>role:
+				
+                                    </DIV>
+                                    <TABLE class="exampletable">
+                                        <TR>
+                                            <TD class="example">Initial location</TD>
+                                        </TR>
+                                    </TABLE>
+                                </DIV>
+                                <DIV class="examples">
+                                    <DIV class="context">
+                                        In the context of the<SPAN class="keyword">Arg-4</SPAN>role:
+				
+                                    </DIV>
+                                    <TABLE class="exampletable">
+                                        <TR>
+                                            <TD class="example">Destination</TD>
+                                        </TR>
+                                    </TABLE>
+                                </DIV>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                </TD>
+            </TR>
+            <TR class="concept" name="concept" id="pbalias">
+                <TD>
+                    <TABLE class="expand">
+                        <TR class="expand">
+                            <TD class="expand">
+                                <TABLE class="expand">
+                                    <TR>
+                                        <TD class="headerimage" colspan="1"><IMG src="./images/pbalias.png" alt="Alias"></TD><TD class="headertitle"><SPAN class="conceptname">Alias</SPAN></TD>
+                                    </TR>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                        <TR class="expand">
+                            <TD class="expand">
+                                <DIV class="description">Aliases in VerbNet or FrameNet</DIV>
+                            </TD>
+                        </TR>
+                        <TR class="expand">
+                            <TD class="expand">
+                                <DIV class="examples">
+                                    <DIV class="context">
+                                        In the context of the<SPAN class="keyword">abandon (v.)</SPAN>roleset:
+				
+                                    </DIV>
+                                    <TABLE class="exampletable">
+                                        <TR>
+                                            <TD class="example">Quitting_a_place (FrameNet)</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="example">Departing (FrameNet)</TD>
+                                        </TR>
+                                    </TABLE>
+                                </DIV>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                </TD>
+            </TR>
+            <TR class="concept" name="concept" id="pbtrace">
+                <TD>
+                    <TABLE class="expand">
+                        <TR class="expand">
+                            <TD class="expand">
+                                <TABLE class="expand">
+                                    <TR>
+                                        <TD class="headerimage" colspan="1"><IMG src="./images/pbtrace.png" alt="Trace"></TD><TD class="headertitle"><SPAN class="conceptname">Trace</SPAN></TD>
+                                    </TR>
+                                </TABLE>
+                            </TD>
+                        </TR>
+                        <TR class="expand">
+                            <TD class="expand">
+                                <DIV class="description">The trace (left by 'movement')</DIV>
+                            </TD>
+                        </TR>
+                        <TR class="expand">
+                            <TD class="expand">
+                                <DIV class="examples">
+                                    <DIV class="context">
+                                        In the context of the<SPAN class="keyword">I want to eat ice-cream</SPAN>sentence:
+				
+                                    </DIV>
+                                    <TABLE class="exampletable">
+                                        <TR>
+                                            <TD class="example">Arg0:Irel:wantArg1:[*T* to eat ice-cream]
+			</TD>
+                                        </TR>
+                                    </TABLE>
+                                </DIV>
+                            </TD>
+                        </TR>
+                    </TABLE>
+                </TD>
+            </TR>
+        </TABLE>
+        <BR>
+    </BODY>
 </HTML>
