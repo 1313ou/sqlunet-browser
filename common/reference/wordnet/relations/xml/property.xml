@@ -9,15 +9,20 @@
 	id="property"
 	type="lexical"
 	reflexive="false"
-	v="true">
+	v="true"
+	n="true">
 
 	<img src="property.png" />
 
 	<description>
-		<span>Morpho-semantic Property</span>
+		<span>Derivational relation connecting verb and noun senses, with semantic type <strong>Property</strong></span>
 	</description>
 
 	<examples>
+		<example>
+			<from>cool</from>
+			<to>cool</to>
+		</example>
 		<example>
 			<from>adhere</from>
 			<to>adhesion</to>

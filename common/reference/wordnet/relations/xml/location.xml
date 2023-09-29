@@ -9,15 +9,20 @@
 	id="location"
 	type="lexical"
 	reflexive="false"
-	v="true">
-
+	v="true"
+	n="true">
+	
 	<img src="location.png" />
 
 	<description>
-		<span>Morpho-semantic Location</span>
+		<span>Derivational relation connecting verb and noun senses, with semantic type <strong>Location</strong></span>
 	</description>
 
 	<examples>
+		<example>
+			<from>bath</from>
+			<to>bath</to>
+		</example>
 		<example>
 			<from>burn</from>
 			<to>burn</to>

@@ -9,15 +9,20 @@
 	id="material"
 	type="lexical"
 	reflexive="false"
-	v="true">
+	v="true"
+	n="true">
 
 	<img src="material.png" />
 
 	<description>
-		<span>Morpho-semantic Material</span>
+		<span>Derivational relation connecting verb and noun senses, with semantic type <strong>Material</strong></span>
 	</description>
 
 	<examples>
+		<example>
+			<from>insulate</from>
+			<to>insulator</to>
+		</example>
 		<example>
 			<from>paper</from>
 			<to>paper</to>

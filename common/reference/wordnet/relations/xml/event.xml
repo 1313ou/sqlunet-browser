@@ -9,15 +9,20 @@
 	id="event"
 	type="lexical"
 	reflexive="false"
-	v="true">
+	v="true"
+	n="true">
 
 	<img src="event.png" />
 
 	<description>
-		<span>Morpho-semantic Event</span>
+		<span>Derivational relation connecting verb and noun senses, with semantic type <strong>Event</strong> (in essence an identity or equality relation)</span>
 	</description>
 
 	<examples>
+		<example>
+			<from>employ</from>
+			<to>employment</to>
+		</example>
 		<example>
 			<from>abandon</from>
 			<to>abandonment</to>

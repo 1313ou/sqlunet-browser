@@ -9,15 +9,20 @@
 	id="state"
 	type="lexical"
 	reflexive="false"
-	v="true">
+	v="true"
+	n="true">
 
 	<img src="state.png" />
 
 	<description>
-		<span>Morpho-semantic State</span>
+		<span>Derivational relation connecting verb and noun senses, with semantic type <strong>State</strong></span>
 	</description>
 
 	<examples>
+		<example>
+			<from>transcend</from>
+			<to>transcendence</to>
+		</example>
 		<example>
 			<from>abase</from>
 			<to>abasement</to>

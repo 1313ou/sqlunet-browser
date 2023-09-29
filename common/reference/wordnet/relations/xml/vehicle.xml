@@ -9,15 +9,20 @@
 	id="vehicle"
 	type="lexical"
 	reflexive="false"
-	v="true">
+	v="true"
+	n="true">
 
 	<img src="vehicle.png" />
 
 	<description>
-		<span>Morpho-semantic Vehicle</span>
+		<span>Derivational relation connecting verb and noun senses, with semantic type <strong>Vehicle</strong></span>
 	</description>
 
 	<examples>
+		<example>
+			<from>kayak</from>
+			<to>kayak</to>
+		</example>
 		<example>
 			<from>bus</from>
 			<to>bus</to>

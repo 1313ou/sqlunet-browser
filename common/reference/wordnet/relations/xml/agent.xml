@@ -9,15 +9,20 @@
 	id="agent"
 	type="lexical"
 	reflexive="false"
-	v="true">
+	v="true"
+	n="true">
 
 	<img src="agent.png" />
 
 	<description>
-		<span>Morpho-semantic Agent</span>
+		<span>Derivational relation connecting verb and noun senses, with semantic type <strong>Agent</strong></span>
 	</description>
 
 	<examples>
+		<example>
+			<from>employ</from>
+			<to>employer</to>
+		</example>
 		<example>
 			<from>abduct</from>
 			<to>abductor</to>

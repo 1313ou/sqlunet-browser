@@ -9,15 +9,20 @@
 	id="undergoer"
 	type="lexical"
 	reflexive="false"
-	v="true">
+	v="true"
+	n="true">
 
 	<img src="undergoer.png" />
 
 	<description>
-		<span>Morpho-semantic Undergoer</span>
+		<span>Derivational relation connecting verb and noun senses, with semantic type <strong>Undergoer</strong></span>
 	</description>
 
 	<examples>
+		<example>
+			<from>employ</from>
+			<to>employee</to>
+		</example>
 		<example>
 			<from>address</from>
 			<to>adressee</to>

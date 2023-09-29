@@ -12,10 +12,10 @@ function select(tag)
 		for(i=0;i<all.length;i++)
 		{
 			var e=all[i];
-			e.style.visibility='collapse';
+			e.style.display='none';
 		}
 		var e=maindoc.getElementById(tag);
-		e.style.visibility='visible';
+		e.style.display='block';
 }
 function menu()
 {
@@ -1247,8 +1247,7 @@ function menu()
                                                 <DIV class="description">
                                                     <span>
 			A pair of words between which there is an opposition relation. Antonymy is a
-			<strong>lexical relation</strong>
-			, not a semantic one.
+			<strong>lexical relation</strong>, not a semantic one.
 			<em>Heavy</em>
 			and
 			<em>light</em>
@@ -1759,7 +1758,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="description">
-                                                    <span>Morpho-semantic State</span>
+                                                    <span>Derivational relation connecting verb and noun senses, with semantic type <strong>State</strong></span>
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -1769,7 +1768,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="features">
-                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
+                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_n.png" alt="noun" title="noun"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -1777,6 +1776,9 @@ function menu()
                                             <TD colspan="2">
                                                 <DIV class="examples">
                                                     <TABLE class="exampletable">
+                                                        <TR>
+                                                            <TD class="from">transcend</TD><TD class="rel"><IMG src="./images/state.png" alt="State"></TD><TD class="to">transcendence</TD>
+                                                        </TR>
                                                         <TR>
                                                             <TD class="from">abase</TD><TD class="rel"><IMG src="./images/state.png" alt="State"></TD><TD class="to">abasement</TD>
                                                         </TR>
@@ -1799,7 +1801,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="description">
-                                                    <span>Morpho-semantic Result</span>
+                                                    <span>Derivational relation connecting verb and noun senses, with semantic type <strong>Result</strong></span>
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -1809,7 +1811,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="features">
-                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
+                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_n.png" alt="noun" title="noun"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -1817,6 +1819,9 @@ function menu()
                                             <TD colspan="2">
                                                 <DIV class="examples">
                                                     <TABLE class="exampletable">
+                                                        <TR>
+                                                            <TD class="from">liquify</TD><TD class="rel"><IMG src="./images/result.png" alt="Result"></TD><TD class="to">liquid</TD>
+                                                        </TR>
                                                         <TR>
                                                             <TD class="from">abbreviate</TD><TD class="rel"><IMG src="./images/result.png" alt="Result"></TD><TD class="to">abbreviation</TD>
                                                         </TR>
@@ -1839,7 +1844,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="description">
-                                                    <span>Morpho-semantic Event</span>
+                                                    <span>Derivational relation connecting verb and noun senses, with semantic type <strong>Event</strong> (in essence an identity or equality relation)</span>
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -1849,7 +1854,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="features">
-                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
+                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_n.png" alt="noun" title="noun"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -1857,6 +1862,9 @@ function menu()
                                             <TD colspan="2">
                                                 <DIV class="examples">
                                                     <TABLE class="exampletable">
+                                                        <TR>
+                                                            <TD class="from">employ</TD><TD class="rel"><IMG src="./images/event.png" alt="Event"></TD><TD class="to">employment</TD>
+                                                        </TR>
                                                         <TR>
                                                             <TD class="from">abandon</TD><TD class="rel"><IMG src="./images/event.png" alt="Event"></TD><TD class="to">abandonment</TD>
                                                         </TR>
@@ -1879,7 +1887,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="description">
-                                                    <span>Morpho-semantic Property</span>
+                                                    <span>Derivational relation connecting verb and noun senses, with semantic type <strong>Property</strong></span>
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -1889,7 +1897,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="features">
-                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
+                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_n.png" alt="noun" title="noun"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -1897,6 +1905,9 @@ function menu()
                                             <TD colspan="2">
                                                 <DIV class="examples">
                                                     <TABLE class="exampletable">
+                                                        <TR>
+                                                            <TD class="from">cool</TD><TD class="rel"><IMG src="./images/property.png" alt="Property"></TD><TD class="to">cool</TD>
+                                                        </TR>
                                                         <TR>
                                                             <TD class="from">adhere</TD><TD class="rel"><IMG src="./images/property.png" alt="Property"></TD><TD class="to">adhesion</TD>
                                                         </TR>
@@ -1919,7 +1930,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="description">
-                                                    <span>Morpho-semantic Location</span>
+                                                    <span>Derivational relation connecting verb and noun senses, with semantic type <strong>Location</strong></span>
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -1929,7 +1940,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="features">
-                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
+                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_n.png" alt="noun" title="noun"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -1937,6 +1948,9 @@ function menu()
                                             <TD colspan="2">
                                                 <DIV class="examples">
                                                     <TABLE class="exampletable">
+                                                        <TR>
+                                                            <TD class="from">bath</TD><TD class="rel"><IMG src="./images/location.png" alt="Location"></TD><TD class="to">bath</TD>
+                                                        </TR>
                                                         <TR>
                                                             <TD class="from">burn</TD><TD class="rel"><IMG src="./images/location.png" alt="Location"></TD><TD class="to">burn</TD>
                                                         </TR>
@@ -1959,7 +1973,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="description">
-                                                    <span>Morpho-semantic Destination</span>
+                                                    <span>Derivational relation connecting verb and noun senses, with semantic type <strong>Destination</strong></span>
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -1969,7 +1983,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="features">
-                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
+                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_n.png" alt="noun" title="noun"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -1977,6 +1991,9 @@ function menu()
                                             <TD colspan="2">
                                                 <DIV class="examples">
                                                     <TABLE class="exampletable">
+                                                        <TR>
+                                                            <TD class="from">tee</TD><TD class="rel"><IMG src="./images/destination.png" alt="Destination"></TD><TD class="to">tee</TD>
+                                                        </TR>
                                                         <TR>
                                                             <TD class="from">classify</TD><TD class="rel"><IMG src="./images/destination.png" alt="Destination"></TD><TD class="to">class</TD>
                                                         </TR>
@@ -1999,7 +2016,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="description">
-                                                    <span>Morpho-semantic Agent</span>
+                                                    <span>Derivational relation connecting verb and noun senses, with semantic type <strong>Agent</strong></span>
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -2009,7 +2026,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="features">
-                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
+                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_n.png" alt="noun" title="noun"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -2017,6 +2034,9 @@ function menu()
                                             <TD colspan="2">
                                                 <DIV class="examples">
                                                     <TABLE class="exampletable">
+                                                        <TR>
+                                                            <TD class="from">employ</TD><TD class="rel"><IMG src="./images/agent.png" alt="Agent"></TD><TD class="to">employer</TD>
+                                                        </TR>
                                                         <TR>
                                                             <TD class="from">abduct</TD><TD class="rel"><IMG src="./images/agent.png" alt="Agent"></TD><TD class="to">abductor</TD>
                                                         </TR>
@@ -2039,7 +2059,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="description">
-                                                    <span>Morpho-semantic Undergoer</span>
+                                                    <span>Derivational relation connecting verb and noun senses, with semantic type <strong>Undergoer</strong></span>
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -2049,7 +2069,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="features">
-                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
+                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_n.png" alt="noun" title="noun"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -2057,6 +2077,9 @@ function menu()
                                             <TD colspan="2">
                                                 <DIV class="examples">
                                                     <TABLE class="exampletable">
+                                                        <TR>
+                                                            <TD class="from">employ</TD><TD class="rel"><IMG src="./images/undergoer.png" alt="Undergoer"></TD><TD class="to">employee</TD>
+                                                        </TR>
                                                         <TR>
                                                             <TD class="from">address</TD><TD class="rel"><IMG src="./images/undergoer.png" alt="Undergoer"></TD><TD class="to">adressee</TD>
                                                         </TR>
@@ -2079,7 +2102,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="description">
-                                                    <span>Morpho-semantic Uses</span>
+                                                    <span>Derivational relation connecting verb and noun senses, with semantic type <strong>Uses</strong></span>
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -2089,7 +2112,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="features">
-                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
+                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_n.png" alt="noun" title="noun"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -2097,6 +2120,9 @@ function menu()
                                             <TD colspan="2">
                                                 <DIV class="examples">
                                                     <TABLE class="exampletable">
+                                                        <TR>
+                                                            <TD class="from">harness</TD><TD class="rel"><IMG src="./images/uses.png" alt="Uses"></TD><TD class="to">harness</TD>
+                                                        </TR>
                                                         <TR>
                                                             <TD class="from">carpet</TD><TD class="rel"><IMG src="./images/uses.png" alt="Uses"></TD><TD class="to">carpet</TD>
                                                         </TR>
@@ -2119,7 +2145,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="description">
-                                                    <span>Morpho-semantic Instrument</span>
+                                                    <span>Derivational relation connecting verb and noun senses, with semantic type <strong>Instrument</strong></span>
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -2129,7 +2155,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="features">
-                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
+                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_n.png" alt="noun" title="noun"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -2137,6 +2163,9 @@ function menu()
                                             <TD colspan="2">
                                                 <DIV class="examples">
                                                     <TABLE class="exampletable">
+                                                        <TR>
+                                                            <TD class="from">poke</TD><TD class="rel"><IMG src="./images/instrument.png" alt="Instrument"></TD><TD class="to">poker</TD>
+                                                        </TR>
                                                         <TR>
                                                             <TD class="from">air-condition</TD><TD class="rel"><IMG src="./images/instrument.png" alt="Instrument"></TD><TD class="to">air-conditioner</TD>
                                                         </TR>
@@ -2159,7 +2188,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="description">
-                                                    <span>Morpho-semantic By Means Of</span>
+                                                    <span>Derivational relation connecting verb and noun senses, with semantic type <strong>By Means Of</strong></span>
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -2169,7 +2198,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="features">
-                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
+                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_n.png" alt="noun" title="noun"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -2177,6 +2206,9 @@ function menu()
                                             <TD colspan="2">
                                                 <DIV class="examples">
                                                     <TABLE class="exampletable">
+                                                        <TR>
+                                                            <TD class="from">dilate</TD><TD class="rel"><IMG src="./images/bymeansof.png" alt="By Means Of"></TD><TD class="to">dilator</TD>
+                                                        </TR>
                                                         <TR>
                                                             <TD class="from">acidify</TD><TD class="rel"><IMG src="./images/bymeansof.png" alt="By Means Of"></TD><TD class="to">acid</TD>
                                                         </TR>
@@ -2199,7 +2231,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="description">
-                                                    <span>Morpho-semantic Material</span>
+                                                    <span>Derivational relation connecting verb and noun senses, with semantic type <strong>Material</strong></span>
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -2209,7 +2241,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="features">
-                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
+                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_n.png" alt="noun" title="noun"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -2217,6 +2249,9 @@ function menu()
                                             <TD colspan="2">
                                                 <DIV class="examples">
                                                     <TABLE class="exampletable">
+                                                        <TR>
+                                                            <TD class="from">insulate</TD><TD class="rel"><IMG src="./images/material.png" alt="Material"></TD><TD class="to">insulator</TD>
+                                                        </TR>
                                                         <TR>
                                                             <TD class="from">paper</TD><TD class="rel"><IMG src="./images/material.png" alt="Material"></TD><TD class="to">paper</TD>
                                                         </TR>
@@ -2239,7 +2274,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="description">
-                                                    <span>Morpho-semantic Vehicle</span>
+                                                    <span>Derivational relation connecting verb and noun senses, with semantic type <strong>Vehicle</strong></span>
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -2249,7 +2284,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="features">
-                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
+                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_n.png" alt="noun" title="noun"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -2257,6 +2292,9 @@ function menu()
                                             <TD colspan="2">
                                                 <DIV class="examples">
                                                     <TABLE class="exampletable">
+                                                        <TR>
+                                                            <TD class="from">kayak</TD><TD class="rel"><IMG src="./images/vehicle.png" alt="Vehicle"></TD><TD class="to">kayak</TD>
+                                                        </TR>
                                                         <TR>
                                                             <TD class="from">bus</TD><TD class="rel"><IMG src="./images/vehicle.png" alt="Vehicle"></TD><TD class="to">bus</TD>
                                                         </TR>
@@ -2279,7 +2317,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="description">
-                                                    <span>Morpho-semantic Body Part</span>
+                                                    <span>Derivational relation connecting verb and noun senses, with semantic type <strong>Body Part</strong></span>
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -2289,7 +2327,7 @@ function menu()
                                         <TR>
                                             <TD colspan="2">
                                                 <DIV class="features">
-                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
+                                                    <IMG class="featureimage" src="./images/lexical.png" alt="lexical" title="lexical"><IMG class="featureimage" src="./images/pos_n.png" alt="noun" title="noun"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
                                                 </DIV>
                                             </TD>
                                         </TR>
@@ -2297,6 +2335,9 @@ function menu()
                                             <TD colspan="2">
                                                 <DIV class="examples">
                                                     <TABLE class="exampletable">
+                                                        <TR>
+                                                            <TD class="from">abduct</TD><TD class="rel"><IMG src="./images/bodypart.png" alt="Body Part"></TD><TD class="to">abductor</TD>
+                                                        </TR>
                                                         <TR>
                                                             <TD class="from">feel</TD><TD class="rel"><IMG src="./images/bodypart.png" alt="Body Part"></TD><TD class="to">feeler</TD>
                                                         </TR>

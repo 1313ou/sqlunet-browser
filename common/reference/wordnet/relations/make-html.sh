@@ -15,9 +15,14 @@ Z='\u001b[0m'
 wherefrom="xml"
 wherefrom=`readlink -m "${wherefrom}"`
 
+if [ "-31" == "$1" ]; then
+	wn31="31"
+	shift
+fi
+
 whereto="$1"
 if [ -z "${whereto}" ]; then
-	whereto="html"
+	whereto="html${wn31}"
 fi
 whereto=`readlink -m "${whereto}"`
 mkdir -p ${whereto}
@@ -27,7 +32,11 @@ in_lex="antonym.xml participle.xml pertainym.xml derivation.xml"
 in_both="also.xml"
 in_domain="domain.xml member.xml"
 in_morph="state.xml result.xml event.xml property.xml location.xml destination.xml agent.xml undergoer.xml uses.xml instrument.xml bymeansof.xml material.xml vehicle.xml bodypart.xml"
-in="${in_sem} ${in_lex} ${in_both} ${in_domain} ${in_morph}"
+in="${in_sem} ${in_lex} ${in_both} ${in_domain}"
+if [ -z "${wn31}" ]; then
+	in="${in} ${in_morph}"
+fi
+
 xsl="relation2html.xsl"
 xsl_index="relations2html.xsl"
 xsl_selector="relations2selector.xsl"
@@ -50,13 +59,13 @@ for xml in $in all.xml; do
 	fi
 done
 
-# specific index.html
-echo -e "${M}XST all.xml to index.html${Z}"
-if ! ./xsl-transform.sh ${wherefrom}/all.xml ${whereto}/index.html ${xsl_index} html; then
+# index0.html
+echo -e "${M}XST all.xml to index0.html${Z}"
+if ! ./xsl-transform.sh ${wherefrom}/all.xml ${whereto}/index0.html ${xsl_index} html; then
 	echo -e "${R}XST ${xml}${Z}"
 fi
 
-# specific index.html
+# selector.html
 echo -e "${M}XST all.xml to selector.html${Z}"
 if ! ./xsl-transform.sh ${wherefrom}/all.xml ${whereto}/selector.html ${xsl_selector} html; then
 	echo -e "${R}XST ${xml}${Z}"
@@ -66,9 +75,11 @@ if ! ./xsl-transform.sh ${wherefrom}/all.xml ${whereto}/toc.html ${xsl_toc} html
 	echo -e "${R}XST ${xml}${Z}"
 fi
 
-cat ${whereto}/index.html |
+# (android) index.html
+cat ${whereto}/index0.html |
 sed "s/e.style.visibility='collapse'/e.style.display='none'/g" |
-sed "s/e.style.visibility='visible'/e.style.display='block'/g" > ${whereto}/android-index.html
+sed "s/e.style.visibility='visible'/e.style.display='block'/g" > ${whereto}/index.html
+rm ${whereto}/index0.html
 
-cp index*.html ${whereto}
+#cp index*.html ${whereto}
 cp style.css ${whereto}

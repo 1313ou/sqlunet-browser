@@ -9,15 +9,20 @@
 	id="instrument"
 	type="lexical"
 	reflexive="false"
-	v="true">
+	v="true"
+	n="true">
 
 	<img src="instrument.png" />
 
 	<description>
-		<span>Morpho-semantic Instrument</span>
+		<span>Derivational relation connecting verb and noun senses, with semantic type <strong>Instrument</strong></span>
 	</description>
 
 	<examples>
+		<example>
+			<from>poke</from>
+			<to>poker</to>
+		</example>
 		<example>
 			<from>air-condition</from>
 			<to>air-conditioner</to>

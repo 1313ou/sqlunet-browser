@@ -9,15 +9,20 @@
 	id="destination"
 	type="lexical"
 	reflexive="false"
-	v="true">
+	v="true"
+	n="true">
 
 	<img src="destination.png" />
 
 	<description>
-		<span>Morpho-semantic Destination</span>
+		<span>Derivational relation connecting verb and noun senses, with semantic type <strong>Destination</strong></span>
 	</description>
 
 	<examples>
+		<example>
+			<from>tee</from>
+			<to>tee</to>
+		</example>
 		<example>
 			<from>classify</from>
 			<to>class</to>

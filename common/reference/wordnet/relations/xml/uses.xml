@@ -9,15 +9,20 @@
 	id="uses"
 	type="lexical"
 	reflexive="false"
-	v="true">
+	v="true"
+	n="true">
 
 	<img src="uses.png" />
 
 	<description>
-		<span>Morpho-semantic Uses</span>
+		<span>Derivational relation connecting verb and noun senses, with semantic type <strong>Uses</strong></span>
 	</description>
 
 	<examples>
+		<example>
+			<from>harness</from>
+			<to>harness</to>
+		</example>
 		<example>
 			<from>carpet</from>
 			<to>carpet</to>

@@ -9,15 +9,20 @@
 	id="bymeansof"
 	type="lexical"
 	reflexive="false"
-	v="true">
+	v="true"
+	n="true">
 
 	<img src="bymeansof.png" />
 
 	<description>
-		<span>Morpho-semantic By Means Of</span>
+		<span>Derivational relation connecting verb and noun senses, with semantic type <strong>By Means Of</strong></span>
 	</description>
 
 	<examples>
+		<example>
+			<from>dilate</from>
+			<to>dilator</to>
+		</example>
 		<example>
 			<from>acidify</from>
 			<to>acid</to>
