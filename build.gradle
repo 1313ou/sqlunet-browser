@@ -13,7 +13,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.1.1'
+        classpath 'com.android.tools.build:gradle:8.1.2'
         classpath 'androidx.navigation:navigation-safe-args-gradle-plugin:2.7.3'
     }
 }
@@ -27,8 +27,8 @@ allprojects {
     }
 
     ext {
-        versionCode = 131
-        versionName = '2.131'
+        versionCode = 132
+        versionName = '2.132'
         minSdkVersion = 19
         targetSdkVersion = 33
         compileSdk = 34
