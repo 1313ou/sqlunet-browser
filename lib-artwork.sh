@@ -39,18 +39,19 @@ function make_png(){
 	local list="$1"
 	local r=$2
 	local aspect=$3
-	local d="$4"
+	local d="$(readlink -m $4)"
 	local suffix="$5"
 	mkdir -p ${d}
 	if [ "${aspect}" == "" ]; then
 		aspect=h
 	fi
-	for svg in ${list}; do
+	for e in ${list}; do
+		svg="${thisdir}/${e}"
 		if [ -e "${svg}" ]; then
-			local png="${svg%.svg}${suffix}.png"
-			echo -e -n "${svg} -> ${d}/${png} @ ${BLUE}${aspect}${r}${RESET}"
+			local png="${e%.svg}${suffix}.png"
+			echo -e -n "${MAGENTA}${svg}${RESET} -> ${d}/${png} @ ${BLUE}${aspect}${r}${RESET}"
 			echo
-			$INKSCAPE --export-type="png" --export-filename=${d}/${png} -${aspect} ${r} ${svg} > /dev/null # 2> /dev/null
+			$INKSCAPE --export-type="png" --export-filename=${d}/${png} -${aspect} ${r} ${svg} #> /dev/null # 2> /dev/null
 			if [ -e "${d}/${png}" ]; then
 				echo -e " ${GREEN}OK${RESET}"
 			else
