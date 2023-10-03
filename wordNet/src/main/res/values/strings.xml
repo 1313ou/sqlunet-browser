@@ -20,8 +20,8 @@
 	<string name="wordnet_members_" tools:keep="@string/wordnet_members_">Members</string>
 	<string name="wordnet_samples_" tools:keep="@string/wordnet_samples_">Samples</string>
 	<string name="wordnet_relations_" tools:keep="@string/wordnet_relations_">Relations</string>
-	<string name="wordnet_up_" tools:keep="@string/wordnet_up_">Up</string>
-	<string name="wordnet_down_" tools:keep="@string/wordnet_down_">Down</string>
+	<string name="wordnet_up_" tools:keep="@string/wordnet_up_">↑ Up</string> <!-- ⮤⇧↑↖↥↰↸⇈⏶ -->
+	<string name="wordnet_down_" tools:keep="@string/wordnet_down_">↓ Down</string> <!-- ⮦⇩↓↙↧↲⇊⏷ -->
 	<string name="wordnet_verbframes_" tools:keep="@string/wordnet_verbframes_">Verb Frames</string>
 	<string name="wordnet_verbtemplates_" tools:keep="@string/wordnet_verbtemplates_">Verb Templates</string>
 	<string name="wordnet_adjpositions_" tools:keep="@string/wordnet_adjpositions_">Adj. Positions</string>

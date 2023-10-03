@@ -120,7 +120,7 @@ public class SynsetModule extends BaseModule
 			if (this.expand)
 			{
 				Link link = new RelationLink(this.synsetId, this.maxRecursion, this.fragment);
-				TreeFactory.makeLinkHotQueryNode(this.relationsLabel, R.drawable.ic_relations, false, new RelationsQuery(this.synsetId, 0), link).addTo(parent);
+				TreeFactory.makeLinkHotQueryNode(this.relationsLabel, R.drawable.ic_relations, false, new RelationsQuery(this.synsetId, 0), link, 0).addTo(parent);
 			}
 			else
 			{

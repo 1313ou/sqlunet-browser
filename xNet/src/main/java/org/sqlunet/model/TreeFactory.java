@@ -25,6 +25,8 @@ import org.sqlunet.treeview.control.TextController;
 import org.sqlunet.treeview.control.TreeController;
 import org.sqlunet.treeview.model.TreeNode;
 
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 
 /**
@@ -198,12 +200,13 @@ public class TreeFactory
 	 * @param breakExpand break expand flag
 	 * @param query       query
 	 * @param link        link
+	 * @param buttonImageRes image drawable id for button, 0 for default
 	 * @return created node
 	 */
 	@NonNull
-	static public TreeNode makeLinkHotQueryNode(@NonNull final CharSequence text, final int icon, final boolean breakExpand, final Query query, final Link link)
+	static public TreeNode makeLinkHotQueryNode(@NonNull final CharSequence text, @DrawableRes final int icon, final boolean breakExpand, final Query query, final Link link, @DrawableRes final int buttonImageRes)
 	{
-		final HotQueryController controller = new LinkHotQueryController(breakExpand);
+		final HotQueryController controller = new LinkHotQueryController(breakExpand, buttonImageRes);
 		final TreeNode result = new TreeNode(new CompositeValue(text, icon, query, link), controller);
 
 		final Handler handler = new Handler(Looper.getMainLooper());
@@ -220,12 +223,13 @@ public class TreeFactory
 	 * @param breakExpand break expand flag
 	 * @param query       query
 	 * @param link        link
+	 * @param buttonImageRes image drawable id for button, 0 for default
 	 * @return created node
 	 */
 	@NonNull
-	static public TreeNode makeLinkQueryNode(@NonNull final CharSequence text, final int icon, final boolean breakExpand, final Query query, final Link link)
+	static public TreeNode makeLinkQueryNode(@NonNull final CharSequence text, @DrawableRes final int icon, final boolean breakExpand, final Query query, final Link link, @DrawableRes final int buttonImageRes)
 	{
-		return new TreeNode(new CompositeValue(text, icon, query, link), new LinkQueryController(breakExpand));
+		return new TreeNode(new CompositeValue(text, icon, query, link), new LinkQueryController(breakExpand, buttonImageRes));
 	}
 
 	// H E L P E R S

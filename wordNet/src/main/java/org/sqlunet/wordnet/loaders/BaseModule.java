@@ -1029,7 +1029,7 @@ abstract public class BaseModule extends Module
 				// recursion
 				if (relationCanRecurse)
 				{
-					final TreeNode relationsNode = TreeFactory.makeLinkQueryNode(sb, getRelationRes(relationId), false, new SubRelationsQuery(targetSynsetId, relationId, BaseModule.this.maxRecursion), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion, this.fragment)).addTo(parent);
+					final TreeNode relationsNode = TreeFactory.makeLinkQueryNode(sb, getRelationRes(relationId), false, new SubRelationsQuery(targetSynsetId, relationId, BaseModule.this.maxRecursion), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion, this.fragment), 0).addTo(parent);
 					changedList.add(NEWCHILD, relationsNode);
 				}
 				else
@@ -1114,7 +1114,7 @@ abstract public class BaseModule extends Module
 				// recursion
 				if (relationCanRecurse)
 				{
-					final TreeNode relationsNode = TreeFactory.makeLinkQueryNode(sb, getRelationRes(relationId), false, new SubRelationsQuery(targetSynsetId, relationId, BaseModule.this.maxRecursion), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion, this.fragment)).addTo(parent);
+					final TreeNode relationsNode = TreeFactory.makeLinkQueryNode(sb, getRelationRes(relationId), false, new SubRelationsQuery(targetSynsetId, relationId, BaseModule.this.maxRecursion), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion, this.fragment), 0).addTo(parent);
 					changedList.add(NEWCHILD, relationsNode);
 				}
 				else
@@ -1194,7 +1194,7 @@ abstract public class BaseModule extends Module
 					if (recurseLevel > 1)
 					{
 						final int newRecurseLevel = recurseLevel - 1;
-						final TreeNode relationsNode = TreeFactory.makeLinkQueryNode(sb, getRelationRes(relationId), false, new SubRelationsQuery(targetSynsetId, relationId, newRecurseLevel), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion, this.fragment)).addTo(parent);
+						final TreeNode relationsNode = TreeFactory.makeLinkQueryNode(sb, getRelationRes(relationId), false, new SubRelationsQuery(targetSynsetId, relationId, newRecurseLevel), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion, this.fragment), 0).addTo(parent);
 						changedList.add(NEWCHILD, relationsNode);
 					}
 					else
