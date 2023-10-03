@@ -10,7 +10,7 @@
    enable-background="new 4 4 24 24"
    xml:space="preserve"
    inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
-   sodipodi:docname="link_relation.svg"
+   sodipodi:docname="ic_link_relation.svg"
    width="64"
    height="48"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -41,12 +41,12 @@
    guidetolerance="10"
    inkscape:pageopacity="0"
    inkscape:pageshadow="2"
-   inkscape:window-width="1495"
-   inkscape:window-height="788"
+   inkscape:window-width="1256"
+   inkscape:window-height="480"
    id="namedview5"
    showgrid="false"
    inkscape:zoom="2.4583333"
-   inkscape:cx="103.72881"
+   inkscape:cx="103.9322"
    inkscape:cy="-10.983051"
    inkscape:window-x="26"
    inkscape:window-y="23"
@@ -130,11 +130,11 @@
 	<g
    id="g8231"
    transform="matrix(1.2545447,0,0,1.2545447,91.263045,-82.501168)"
-   style="fill:#3366cc"><path
+   style="fill:#7800a0"><path
      id="path15388"
      d="m -32.609637,73.643771 c -0.867744,-1.225149 -2.298802,-2.025774 -3.914436,-2.025774 l -26.367908,0.02421 c -2.64638,0 -4.79416,2.123576 -4.79416,4.769955 l 0,23.970818 c 0,2.64878 2.14778,4.77044 4.79416,4.77044 l 26.367908,0.024 c 1.615634,0 3.046692,-0.79823 3.914436,-2.0229 L -22.141578,88.397813 -32.609637,73.644011 Z"
      inkscape:connector-curvature="0"
-     style="fill:#3366cc;fill-opacity:0.99215686;stroke-width:0.2;stroke-linejoin:round" /></g>
+     style="fill:#7800a0;fill-opacity:0.99215686;stroke-width:0.2;stroke-linejoin:round" /></g>
 	<g
    style="fill-rule:evenodd;stroke-width:28.22200012;stroke-linejoin:round"
    class="Master_Slide"
