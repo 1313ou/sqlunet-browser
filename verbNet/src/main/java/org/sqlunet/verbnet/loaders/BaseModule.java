@@ -70,7 +70,13 @@ abstract class BaseModule extends Module
 	@NonNull
 	private final VerbNetSemanticsSpanner semanticsSpanner;
 
-	// drawables
+	// Resources
+
+	protected final String membersLabel;
+	protected final String groupLabel;
+	protected final String rolesLabel;
+	protected final String framesLabel;
+	protected final String examplesLabel;
 
 	/**
 	 * Drawable for class
@@ -156,6 +162,12 @@ abstract class BaseModule extends Module
 
 		// drawables
 		final Context context = BaseModule.this.fragment.requireContext();
+		this.membersLabel = context.getString(R.string.verbnet_members_);
+		this.groupLabel = context.getString(R.string.verbnet_group_);
+		this.rolesLabel = context.getString(R.string.verbnet_roles_);
+		this.framesLabel = context.getString(R.string.verbnet_frames_);
+		this.examplesLabel = context.getString(R.string.verbnet_examples_);
+
 		this.drawableClass = Spanner.getDrawable(context, R.drawable.roleclass);
 		this.drawableMember = Spanner.getDrawable(context, R.drawable.member);
 		this.drawableRoles = Spanner.getDrawable(context, R.drawable.roles);
@@ -242,9 +254,9 @@ abstract class BaseModule extends Module
 			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
 
 			// sub nodes
-			final TreeNode membersNode = TreeFactory.makeHotQueryNode("Members", R.drawable.members, false, new MembersQuery(classId)).addTo(parent);
-			final TreeNode rolesNode = TreeFactory.makeHotQueryNode("Roles", R.drawable.roles, false, new RolesQuery(classId)).addTo(parent);
-			final TreeNode framesNode = TreeFactory.makeQueryNode("Frames", R.drawable.vnframe, false, new FramesQuery(classId)).addTo(parent);
+			final TreeNode membersNode = TreeFactory.makeHotQueryNode(this.membersLabel, R.drawable.members, false, new MembersQuery(classId)).addTo(parent);
+			final TreeNode rolesNode = TreeFactory.makeHotQueryNode(this.rolesLabel, R.drawable.roles, false, new RolesQuery(classId)).addTo(parent);
+			final TreeNode framesNode = TreeFactory.makeQueryNode(this.framesLabel, R.drawable.vnframe, false, new FramesQuery(classId)).addTo(parent);
 
 			// changed
 			changed = TreeOp.seq(NEWMAIN, node, NEWEXTRA, membersNode, NEWEXTRA, rolesNode, NEWEXTRA, framesNode, NEWTREE, parent);
@@ -561,7 +573,7 @@ abstract class BaseModule extends Module
 			}
 			else if (items.length > 1)
 			{
-				final TreeNode groupingsNode = TreeFactory.makeIconTextNode("Group", R.drawable.member, false).addTo(parent);
+				final TreeNode groupingsNode = TreeFactory.makeIconTextNode(this.groupLabel, R.drawable.member, false).addTo(parent);
 				boolean first = true;
 				for (final String item : items)
 				{

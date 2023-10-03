@@ -10,7 +10,6 @@ import org.sqlunet.HasPos;
 import org.sqlunet.HasSynsetId;
 import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.model.TreeFactory;
-import org.sqlunet.treeview.control.Link;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.wordnet.R;
 
@@ -18,12 +17,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 /**
- * Module for WordNet synset
+ * Module for WordNet relation
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
 
-public class SynsetModule extends BaseModule
+public class RelationModule extends BaseModule
 {
 	/**
 	 * Synset id
@@ -47,7 +46,7 @@ public class SynsetModule extends BaseModule
 	 *
 	 * @param fragment fragment
 	 */
-	public SynsetModule(@NonNull final TreeFragment fragment)
+	public RelationModule(@NonNull final TreeFragment fragment)
 	{
 		super(fragment);
 		this.expand = true;
@@ -85,55 +84,31 @@ public class SynsetModule extends BaseModule
 		}
 	}
 
+	private static final int HYPERNYM = 1;
+	private static final int HYPONYM = 2;
+
 	@Override
 	public void process(@NonNull final TreeNode parent)
 	{
 		if (this.synsetId != null && this.synsetId != 0)
 		{
-			// anchor nodes
-			final TreeNode synsetNode = TreeFactory.makeTextNode(this.synsetLabel, false).addTo(parent);
-			final TreeNode membersNode = TreeFactory.makeIconTextNode(this.membersLabel, R.drawable.members, false).addTo(parent);
-
-			// synset
-			synset(this.synsetId, synsetNode, false);
-
-			// members2
-			members(this.synsetId, membersNode);
-
-			// special
-			if (this.pos != null)
-			{
-				switch (this.pos)
-				{
-					case 'v':
-						this.vFrames(this.synsetId, parent);
-						this.vTemplates(this.synsetId, parent);
-						break;
-
-					case 'a':
-						this.adjPosition(this.synsetId, parent);
-						break;
-				}
-			}
-
-			// relations and samples
+			// up relations
 			if (this.expand)
 			{
-				Link link = new RelationLink(this.synsetId, this.maxRecursion, this.fragment);
-				TreeFactory.makeLinkHotQueryNode(this.relationsLabel, R.drawable.ic_relations, false, new RelationsQuery(this.synsetId, 0), link).addTo(parent);
+				TreeFactory.makeHotQueryNode(this.upLabel, R.drawable.ic_relations, false, new SubRelationsQuery(this.synsetId, HYPERNYM, 0)).addTo(parent);
 			}
 			else
 			{
-				TreeFactory.makeQueryNode(this.relationsLabel, R.drawable.ic_relations, false, new RelationsQuery(this.synsetId, 0)).addTo(parent);
+				TreeFactory.makeQueryNode(this.upLabel, R.drawable.ic_relations, false, new SubRelationsQuery(this.synsetId, HYPERNYM, 0)).addTo(parent);
 			}
-
+			// down relations
 			if (this.expand)
 			{
-				TreeFactory.makeHotQueryNode(this.samplesLabel, R.drawable.sample, false, new SamplesQuery(this.synsetId)).addTo(parent);
+				TreeFactory.makeHotQueryNode(this.downLabel, R.drawable.ic_relations, false, new SubRelationsQuery(this.synsetId, HYPONYM, 0)).addTo(parent);
 			}
 			else
 			{
-				TreeFactory.makeQueryNode(this.samplesLabel, R.drawable.sample, false, new SamplesQuery(this.synsetId)).addTo(parent);
+				TreeFactory.makeQueryNode(this.downLabel, R.drawable.ic_relations, false, new SubRelationsQuery(this.synsetId, HYPONYM, 0)).addTo(parent);
 			}
 		}
 		else

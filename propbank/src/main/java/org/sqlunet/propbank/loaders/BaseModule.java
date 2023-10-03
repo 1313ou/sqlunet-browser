@@ -52,6 +52,9 @@ abstract class BaseModule extends Module
 {
 	// resources
 
+	protected final String rolesLabel;
+	protected final String examplesLabel;
+
 	/**
 	 * Drawable for roleSets
 	 */
@@ -132,6 +135,10 @@ abstract class BaseModule extends Module
 
 		// drawables
 		final Context context = BaseModule.this.fragment.requireContext();
+
+		this.rolesLabel = context.getString(R.string.propbank_roles_);
+		this.examplesLabel = context.getString(R.string.propbank_examples_);
+
 		this.roleSetDrawable = Spanner.getDrawable(context, R.drawable.roleclass);
 		this.rolesDrawable = Spanner.getDrawable(context, R.drawable.roles);
 		this.relationDrawable = Spanner.getDrawable(context, R.drawable.relation);
@@ -221,8 +228,8 @@ abstract class BaseModule extends Module
 			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
 
 			// sub nodes
-			final TreeNode rolesNode = TreeFactory.makeHotQueryNode("Roles", R.drawable.roles, false, new RolesQuery(roleSetId)).addTo(parent);
-			final TreeNode examplesNode = TreeFactory.makeQueryNode("Examples", R.drawable.sample, false, new ExamplesQuery(roleSetId)).addTo(parent);
+			final TreeNode rolesNode = TreeFactory.makeHotQueryNode(this.rolesLabel, R.drawable.roles, false, new RolesQuery(roleSetId)).addTo(parent);
+			final TreeNode examplesNode = TreeFactory.makeQueryNode(this.examplesLabel, R.drawable.sample, false, new ExamplesQuery(roleSetId)).addTo(parent);
 
 			changed = TreeOp.seq(NEWMAIN, node, NEWEXTRA, rolesNode, NEWEXTRA, examplesNode, NEWTREE, parent);
 		}
@@ -289,9 +296,9 @@ abstract class BaseModule extends Module
 				changedList.add(NEWCHILD, node);
 
 				// sub nodes
-				final TreeNode rolesNode = TreeFactory.makeHotQueryNode("Roles", R.drawable.roles, false, new RolesQuery(roleSetId)).addTo(parent);
+				final TreeNode rolesNode = TreeFactory.makeHotQueryNode(this.rolesLabel, R.drawable.roles, false, new RolesQuery(roleSetId)).addTo(parent);
 				changedList.add(NEWCHILD, rolesNode);
-				final TreeNode examplesNode = TreeFactory.makeQueryNode("Examples", R.drawable.sample, false, new ExamplesQuery(roleSetId)).addTo(parent);
+				final TreeNode examplesNode = TreeFactory.makeQueryNode(this.examplesLabel, R.drawable.sample, false, new ExamplesQuery(roleSetId)).addTo(parent);
 				changedList.add(NEWCHILD, examplesNode);
 			}
 			while (cursor.moveToNext());

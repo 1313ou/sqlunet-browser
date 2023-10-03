@@ -59,8 +59,8 @@ public class SenseModule extends SynsetModule
 		if (this.wordId != null && this.wordId != 0 && this.synsetId != null && this.synsetId != 0)
 		{
 			// anchor nodes
-			final TreeNode synsetNode = TreeFactory.makeTextNode("Sense", false).addTo(parent);
-			final TreeNode membersNode = TreeFactory.makeIconTextNode("Members", R.drawable.members, false).addTo(parent);
+			final TreeNode synsetNode = TreeFactory.makeTextNode(this.senseLabel, false).addTo(parent);
+			final TreeNode membersNode = TreeFactory.makeIconTextNode(this.membersLabel, R.drawable.members, false).addTo(parent);
 
 			// synset
 			synset(this.synsetId, synsetNode, false);
@@ -69,27 +69,27 @@ public class SenseModule extends SynsetModule
 			members(this.synsetId, membersNode);
 
 			// morph
-			final TreeNode morphsNode = TreeFactory.makeTreeNode("Morphs", R.drawable.morph, false).addTo(parent);
+			final TreeNode morphsNode = TreeFactory.makeTreeNode(this.morphsLabel, R.drawable.morph, false).addTo(parent);
 			morphs(this.wordId, morphsNode);
 
 			// relations and samples
 			if (this.expand)
 			{
 				Link link = new RelationLink(this.synsetId, this.maxRecursion, this.fragment);
-				TreeFactory.makeLinkHotQueryNode("Relations", R.drawable.ic_relations, false, new RelationsQuery(this.synsetId, this.wordId), link).addTo(parent);
+				TreeFactory.makeLinkHotQueryNode(this.relationsLabel, R.drawable.ic_relations, false, new RelationsQuery(this.synsetId, this.wordId), link).addTo(parent);
 			}
 			else
 			{
-				TreeFactory.makeQueryNode("Relations", R.drawable.ic_relations, false, new RelationsQuery(this.synsetId, this.wordId)).addTo(parent);
+				TreeFactory.makeQueryNode(this.relationsLabel, R.drawable.ic_relations, false, new RelationsQuery(this.synsetId, this.wordId)).addTo(parent);
 			}
 
 			if (this.expand)
 			{
-				TreeFactory.makeHotQueryNode("Samples", R.drawable.sample, false, new SamplesQuery(this.synsetId)).addTo(parent);
+				TreeFactory.makeHotQueryNode(this.samplesLabel, R.drawable.sample, false, new SamplesQuery(this.synsetId)).addTo(parent);
 			}
 			else
 			{
-				TreeFactory.makeQueryNode("Samples", R.drawable.sample, false, new SamplesQuery(this.synsetId)).addTo(parent);
+				TreeFactory.makeQueryNode(this.samplesLabel, R.drawable.sample, false, new SamplesQuery(this.synsetId)).addTo(parent);
 			}
 
 			// special
@@ -98,23 +98,23 @@ public class SenseModule extends SynsetModule
 				switch (this.pos)
 				{
 					case 'v':
-						final TreeNode vframesNode = TreeFactory.makeTreeNode("Verb frames", R.drawable.verbframe, false).addTo(parent);
-						final TreeNode vtemplatesNode = TreeFactory.makeTreeNode("Verb templates", R.drawable.verbtemplate, false).addTo(parent);
+						final TreeNode vframesNode = TreeFactory.makeTreeNode(this.verbFramesLabel, R.drawable.verbframe, false).addTo(parent);
+						final TreeNode vtemplatesNode = TreeFactory.makeTreeNode(this.verbTemplatesLabel, R.drawable.verbtemplate, false).addTo(parent);
 						vFrames(this.synsetId, this.wordId, vframesNode);
 						vTemplates(this.synsetId, this.wordId, vtemplatesNode);
 						break;
 
 					case 'a':
-						final TreeNode adjpositionsNode = TreeFactory.makeTreeNode("Adj positions", R.drawable.adjposition, false).addTo(parent);
+						final TreeNode adjpositionsNode = TreeFactory.makeTreeNode(this.adjPositionsLabel, R.drawable.adjposition, false).addTo(parent);
 						adjPosition(this.synsetId, this.wordId, adjpositionsNode);
 						break;
 				}
 			}
 			else
 			{
-				final TreeNode vframesNode = TreeFactory.makeTreeNode("Verb frames", R.drawable.verbframe, false).addTo(parent);
-				final TreeNode vtemplatesNode = TreeFactory.makeTreeNode("Verb templates", R.drawable.verbtemplate, false).addTo(parent);
-				final TreeNode adjpositionsNode = TreeFactory.makeTreeNode("Adj positions", R.drawable.adjposition, false).addTo(parent);
+				final TreeNode vframesNode = TreeFactory.makeTreeNode(this.verbFramesLabel, R.drawable.verbframe, false).addTo(parent);
+				final TreeNode vtemplatesNode = TreeFactory.makeTreeNode(this.verbTemplatesLabel, R.drawable.verbtemplate, false).addTo(parent);
+				final TreeNode adjpositionsNode = TreeFactory.makeTreeNode(this.adjPositionsLabel, R.drawable.adjposition, false).addTo(parent);
 				vFrames(this.synsetId, this.wordId, vframesNode);
 				vTemplates(this.synsetId, this.wordId, vtemplatesNode);
 				adjPosition(this.synsetId, this.wordId, adjpositionsNode);

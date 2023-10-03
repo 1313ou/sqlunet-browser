@@ -29,6 +29,7 @@ import org.sqlunet.wordnet.R;
 import org.sqlunet.wordnet.SensePointer;
 import org.sqlunet.wordnet.SynsetPointer;
 import org.sqlunet.wordnet.WordPointer;
+import org.sqlunet.wordnet.browser.RelationActivity;
 import org.sqlunet.wordnet.browser.SynsetActivity;
 import org.sqlunet.wordnet.browser.WordActivity;
 import org.sqlunet.wordnet.provider.V;
@@ -79,6 +80,19 @@ abstract public class BaseModule extends Module
 	private static final char TARGET_MEMBER_CHAR = '*';
 
 	// Resources
+	protected final String wordLabel;
+	protected final String senseLabel;
+	protected final String synsetLabel;
+	protected final String sensesLabel;
+	protected final String membersLabel;
+	protected final String samplesLabel;
+	protected final String relationsLabel;
+	protected final String upLabel;
+	protected final String downLabel;
+	protected final String verbFramesLabel;
+	protected final String verbTemplatesLabel;
+	protected final String adjPositionsLabel;
+	protected final String morphsLabel;
 
 	@NonNull
 	private final Drawable synsetDrawable;
@@ -122,7 +136,7 @@ abstract public class BaseModule extends Module
 	/**
 	 * Max relation recursion
 	 */
-	private int maxRecursion = Integer.MAX_VALUE;
+	protected int maxRecursion = Integer.MAX_VALUE;
 
 	// View models
 
@@ -184,6 +198,20 @@ abstract public class BaseModule extends Module
 
 		// drawables
 		final Context context = BaseModule.this.fragment.requireContext();
+		this.wordLabel = context.getString(R.string.wordnet_word_);
+		this.senseLabel = context.getString(R.string.wordnet_sense_);
+		this.synsetLabel = context.getString(R.string.wordnet_synset_);
+		this.sensesLabel = context.getString(R.string.wordnet_senses_);
+		this.membersLabel = context.getString(R.string.wordnet_members_);
+		this.samplesLabel = context.getString(R.string.wordnet_samples_);
+		this.upLabel = context.getString(R.string.wordnet_up_);
+		this.relationsLabel = context.getString(R.string.wordnet_relations_);
+		this.downLabel = context.getString(R.string.wordnet_down_);
+		this.verbFramesLabel = context.getString(R.string.wordnet_verbframes_);
+		this.verbTemplatesLabel = context.getString(R.string.wordnet_verbtemplates_);
+		this.adjPositionsLabel = context.getString(R.string.wordnet_adjpositions_);
+		this.morphsLabel = context.getString(R.string.wordnet_morphs_);
+
 		this.synsetDrawable = Spanner.getDrawable(context, R.drawable.synset);
 		this.memberDrawable = Spanner.getDrawable(context, R.drawable.synsetmember);
 		this.definitionDrawable = Spanner.getDrawable(context, R.drawable.definition);
@@ -511,7 +539,7 @@ abstract public class BaseModule extends Module
 			final long synsetId = cursor.getLong(idSynsetId);
 
 			// sub nodes
-			final TreeNode wordNode = TreeFactory.makeTextNode("Word", false).addTo(parent);
+			final TreeNode wordNode = TreeFactory.makeTextNode(wordLabel, false).addTo(parent);
 
 			// word
 			word(wordId, wordNode, false);
@@ -569,8 +597,8 @@ abstract public class BaseModule extends Module
 			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
 
 			// subnodes
-			final TreeNode relationsNode = TreeFactory.makeHotQueryNode("Relations", R.drawable.ic_relations, false, new RelationsQuery(synsetId, wordId)).addTo(parent);
-			final TreeNode samplesNode = TreeFactory.makeHotQueryNode("Samples", R.drawable.sample, false, new SamplesQuery(synsetId)).addTo(parent);
+			final TreeNode relationsNode = TreeFactory.makeHotQueryNode(relationsLabel, R.drawable.ic_relations, false, new RelationsQuery(synsetId, wordId)).addTo(parent);
+			final TreeNode samplesNode = TreeFactory.makeHotQueryNode(samplesLabel, R.drawable.sample, false, new SamplesQuery(synsetId)).addTo(parent);
 
 			changed = TreeOp.seq(NEWMAIN, node, NEWEXTRA, relationsNode, NEWEXTRA, samplesNode, NEWTREE, parent);
 		}
@@ -2070,6 +2098,61 @@ abstract public class BaseModule extends Module
 		SynsetLink(final long synsetId, final int recurse, final Fragment fragment)
 		{
 			super(synsetId, recurse, fragment);
+		}
+	}
+
+	/**
+	 * Relations link data
+	 */
+	public static class RelationLink extends Link
+	{
+		protected final Fragment fragment;
+
+		final int recurse;
+
+		@Nullable
+		final Bundle parameters;
+
+		/**
+		 * Constructor
+		 *
+		 * @param synsetId synset id
+		 * @param recurse  max recursion level
+		 * @param fragment fragment
+		 */
+		public RelationLink(final long synsetId, final int recurse, final Fragment fragment)
+		{
+			super(synsetId);
+			this.fragment = fragment;
+			this.recurse = recurse;
+			final Bundle args = fragment.getArguments();
+			this.parameters = args == null ? null : args.getBundle(ProviderArgs.ARG_RENDERPARAMETERS);
+		}
+
+		@Override
+		public void process()
+		{
+			final Context context = this.fragment.getContext();
+			if (context == null)
+			{
+				return;
+			}
+
+			final Parcelable pointer = new SynsetPointer(this.id);
+			final Intent intent = new Intent(context, RelationActivity.class);
+			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
+			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
+			intent.putExtra(ProviderArgs.ARG_QUERYRECURSE, this.recurse);
+			intent.putExtra(ProviderArgs.ARG_RENDERPARAMETERS, this.parameters);
+			intent.setAction(ProviderArgs.ACTION_QUERY);
+			context.startActivity(intent);
+		}
+
+		@NonNull
+		@Override
+		public String toString()
+		{
+			return "relation for " + this.id;
 		}
 	}
 

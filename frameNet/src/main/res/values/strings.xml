@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
@@ -13,6 +12,15 @@
 	<string name="framenet_annosets_for_valenceunit" tools:keep="@string/framenet_annosets_for_valenceunit">Annotation sets for Valence unit (FrameNet)</string>
 	<string name="framenet_annosets_for_pattern" tools:keep="@string/framenet_annosets_for_pattern">Annotation sets for Pattern (FrameNet)</string>
 	<string name="framenet_blurb" tools:keep="@string/framenet_blurb">&lt;b&gt;FrameNet&lt;/b&gt;\nexplores semantic roles</string>
+
+	<string name="framenet_frame_" tools:keep="@string/framenet_frame_">Frame</string>
+	<string name="framenet_lexunits_" tools:keep="@string/framenet_lexunits_">Lex Units</string>
+	<string name="framenet_fes_" tools:keep="@string/framenet_fes_">Frame Elements</string>
+	<string name="framenet_related_" tools:keep="@string/framenet_related_">Related</string>
+	<string name="framenet_realizations_" tools:keep="@string/framenet_realizations_">Realizations</string>
+	<string name="framenet_grouprealizations_" tools:keep="@string/framenet_grouprealizations_">Group Realizations</string>
+	<string name="framenet_governors_" tools:keep="@string/framenet_governors_">Governors</string>
+	<string name="framenet_sentences_" tools:keep="@string/framenet_sentences_">Sentences</string>
 
 	<string name="title_activity_fnframe">FrameNet Frame</string>
 	<string name="title_activity_fnlexunit">FrameNet LexUnit</string>

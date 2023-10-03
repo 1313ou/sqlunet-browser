@@ -112,6 +112,15 @@ abstract public class BaseModule extends Module
 
 	// resources
 
+	protected final String frameLabel;
+	protected final String lexunitsLabel;
+	protected final String fesLabel;
+	protected final String relatedLabel;
+	protected final String realizationsLabel;
+	protected final String grouprealizationsLabel;
+	protected final String governorsLabel;
+	protected final String sentencesLabel;
+
 	/**
 	 * Drawable for frame
 	 */
@@ -222,6 +231,15 @@ abstract public class BaseModule extends Module
 
 		// drawables
 		final Context context = this.fragment.requireContext();
+		this.frameLabel = context.getString(R.string.framenet_frame_);
+		this.lexunitsLabel = context.getString(R.string.framenet_lexunits_);
+		this.fesLabel = context.getString(R.string.framenet_fes_);
+		this.relatedLabel = context.getString(R.string.framenet_related_);
+		this.realizationsLabel = context.getString(R.string.framenet_realizations_);
+		this.grouprealizationsLabel = context.getString(R.string.framenet_grouprealizations_);
+		this.governorsLabel = context.getString(R.string.framenet_governors_);
+		this.sentencesLabel = context.getString(R.string.framenet_sentences_);
+
 		this.frameDrawable = Spanner.getDrawable(context, R.drawable.roleclass);
 		this.feDrawable = Spanner.getDrawable(context, R.drawable.role);
 		this.lexunitDrawable = Spanner.getDrawable(context, R.drawable.member);
@@ -373,9 +391,9 @@ abstract public class BaseModule extends Module
 			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
 
 			// sub nodes
-			final TreeNode fesNode = TreeFactory.makeHotQueryNode("Frame Elements", R.drawable.roles, false, new FEsQuery(frameId)).addTo(parent);
-			final TreeNode lexUnitsNode = TreeFactory.makeHotQueryNode("Lex Units", R.drawable.members, false, new LexUnitsQuery(frameId)).addTo(parent);
-			final TreeNode relatedNode = TreeFactory.makeQueryNode("Related", R.drawable.roleclass, false, new RelatedQuery(frameId)).addTo(parent);
+			final TreeNode fesNode = TreeFactory.makeHotQueryNode(this.fesLabel, R.drawable.roles, false, new FEsQuery(frameId)).addTo(parent);
+			final TreeNode lexUnitsNode = TreeFactory.makeHotQueryNode(this.lexunitsLabel, R.drawable.members, false, new LexUnitsQuery(frameId)).addTo(parent);
+			final TreeNode relatedNode = TreeFactory.makeQueryNode(this.relatedLabel, R.drawable.roleclass, false, new RelatedQuery(frameId)).addTo(parent);
 
 			changed = TreeOp.seq(NEWMAIN, node, NEWEXTRA, fesNode, NEWEXTRA, lexUnitsNode, NEWEXTRA, relatedNode, NEWTREE, parent);
 		}
@@ -768,7 +786,7 @@ abstract public class BaseModule extends Module
 
 				if (withFes)
 				{
-					final TreeNode fesNode = TreeFactory.makeQueryNode("Frame Elements", R.drawable.roles, false, new FEsQuery(frameId)).addTo(parent);
+					final TreeNode fesNode = TreeFactory.makeQueryNode(this.fesLabel, R.drawable.roles, false, new FEsQuery(frameId)).addTo(parent);
 					changedList.add(NEWCHILD, fesNode);
 				}
 			}
@@ -779,13 +797,13 @@ abstract public class BaseModule extends Module
 			}
 
 			// sub nodes
-			final TreeNode realizationsNode = TreeFactory.makeQueryNode("Realizations", R.drawable.realization, false, new RealizationsQuery(luId)).addTo(parent);
+			final TreeNode realizationsNode = TreeFactory.makeQueryNode(this.realizationsLabel, R.drawable.realization, false, new RealizationsQuery(luId)).addTo(parent);
 			changedList.add(NEWCHILD, realizationsNode);
-			final TreeNode groupRealizationsNode = TreeFactory.makeQueryNode("Group realizations", R.drawable.grouprealization, false, new GroupRealizationsQuery(luId)).addTo(parent);
+			final TreeNode groupRealizationsNode = TreeFactory.makeQueryNode(this.grouprealizationsLabel, R.drawable.grouprealization, false, new GroupRealizationsQuery(luId)).addTo(parent);
 			changedList.add(NEWCHILD, groupRealizationsNode);
-			final TreeNode governorsNode = TreeFactory.makeQueryNode("Governors", R.drawable.governor, false, new GovernorsQuery(luId)).addTo(parent);
+			final TreeNode governorsNode = TreeFactory.makeQueryNode(this.governorsLabel, R.drawable.governor, false, new GovernorsQuery(luId)).addTo(parent);
 			changedList.add(NEWCHILD, governorsNode);
-			final TreeNode sentencesNode = TreeFactory.makeQueryNode("Sentences", R.drawable.sentence, false, new SentencesForLexUnitQuery(luId)).addTo(parent);
+			final TreeNode sentencesNode = TreeFactory.makeQueryNode(this.sentencesLabel, R.drawable.sentence, false, new SentencesForLexUnitQuery(luId)).addTo(parent);
 			changedList.add(NEWCHILD, sentencesNode);
 
 			changed = changedList.toArray();
@@ -859,9 +877,9 @@ abstract public class BaseModule extends Module
 				// frame
 				if (withFrame)
 				{
-					final TreeNode frameNode = TreeFactory.makeQueryNode("Frame", R.drawable.roleclass, false, new FrameQuery(frameId)).addTo(luNode);
+					final TreeNode frameNode = TreeFactory.makeQueryNode(this.frameLabel, R.drawable.roleclass, false, new FrameQuery(frameId)).addTo(luNode);
 					changedList.add(NEWCHILD, frameNode);
-					final TreeNode fesNode = TreeFactory.makeQueryNode("Frame Elements", R.drawable.roles, false, new FEsQuery(frameId)).addTo(luNode);
+					final TreeNode fesNode = TreeFactory.makeQueryNode(this.fesLabel, R.drawable.roles, false, new FEsQuery(frameId)).addTo(luNode);
 					changedList.add(NEWCHILD, fesNode);
 				}
 
@@ -910,13 +928,13 @@ abstract public class BaseModule extends Module
 				changedList.add(NEWCHILD, extraNode);
 
 				// sub nodes
-				final TreeNode realizationsNode = TreeFactory.makeQueryNode("Realizations", R.drawable.realization, false, new RealizationsQuery(luId)).addTo(luNode);
+				final TreeNode realizationsNode = TreeFactory.makeQueryNode(this.realizationsLabel, R.drawable.realization, false, new RealizationsQuery(luId)).addTo(luNode);
 				changedList.add(NEWCHILD, realizationsNode);
-				final TreeNode groupRealizationsNode = TreeFactory.makeQueryNode("Group realizations", R.drawable.grouprealization, false, new GroupRealizationsQuery(luId)).addTo(luNode);
+				final TreeNode groupRealizationsNode = TreeFactory.makeQueryNode(this.grouprealizationsLabel, R.drawable.grouprealization, false, new GroupRealizationsQuery(luId)).addTo(luNode);
 				changedList.add(NEWCHILD, groupRealizationsNode);
-				final TreeNode governorsNode = TreeFactory.makeQueryNode("Governors", R.drawable.governor, false, new GovernorsQuery(luId)).addTo(luNode);
+				final TreeNode governorsNode = TreeFactory.makeQueryNode(this.governorsLabel, R.drawable.governor, false, new GovernorsQuery(luId)).addTo(luNode);
 				changedList.add(NEWCHILD, governorsNode);
-				final TreeNode sentencesNode = TreeFactory.makeQueryNode("Sentences", R.drawable.sentence, false, new SentencesForLexUnitQuery(luId)).addTo(luNode);
+				final TreeNode sentencesNode = TreeFactory.makeQueryNode(this.sentencesLabel, R.drawable.sentence, false, new SentencesForLexUnitQuery(luId)).addTo(luNode);
 				changedList.add(NEWCHILD, sentencesNode);
 			}
 			while (cursor.moveToNext());
@@ -1027,17 +1045,17 @@ abstract public class BaseModule extends Module
 				changedList.add(NEWCHILD, node);
 
 				// sub nodes
-				final TreeNode frameNode = TreeFactory.makeHotQueryNode("Frame", R.drawable.roleclass, false, new FrameQuery(frameId)).addTo(parent);
+				final TreeNode frameNode = TreeFactory.makeHotQueryNode(this.frameLabel, R.drawable.roleclass, false, new FrameQuery(frameId)).addTo(parent);
 				changedList.add(NEWCHILD, frameNode);
-				final TreeNode fesNode = TreeFactory.makeQueryNode("Frame Elements", R.drawable.roles, false, new FEsQuery(frameId)).addTo(parent);
+				final TreeNode fesNode = TreeFactory.makeQueryNode(this.fesLabel, R.drawable.roles, false, new FEsQuery(frameId)).addTo(parent);
 				changedList.add(NEWCHILD, fesNode);
-				final TreeNode realizationsNode = TreeFactory.makeQueryNode("Realizations", R.drawable.realization, false, new RealizationsQuery(luId)).addTo(parent);
+				final TreeNode realizationsNode = TreeFactory.makeQueryNode(this.realizationsLabel, R.drawable.realization, false, new RealizationsQuery(luId)).addTo(parent);
 				changedList.add(NEWCHILD, realizationsNode);
-				final TreeNode groupRealizationsNode = TreeFactory.makeQueryNode("Group realizations", R.drawable.grouprealization, false, new GroupRealizationsQuery(luId)).addTo(parent);
+				final TreeNode groupRealizationsNode = TreeFactory.makeQueryNode(this.grouprealizationsLabel, R.drawable.grouprealization, false, new GroupRealizationsQuery(luId)).addTo(parent);
 				changedList.add(NEWCHILD, groupRealizationsNode);
-				final TreeNode governorsNode = TreeFactory.makeQueryNode("Governors", R.drawable.governor, false, new GovernorsQuery(luId)).addTo(parent);
+				final TreeNode governorsNode = TreeFactory.makeQueryNode(this.governorsLabel, R.drawable.governor, false, new GovernorsQuery(luId)).addTo(parent);
 				changedList.add(NEWCHILD, governorsNode);
-				final TreeNode sentencesNode = TreeFactory.makeQueryNode("Sentences", R.drawable.sentence, false, new SentencesForLexUnitQuery(luId)).addTo(parent);
+				final TreeNode sentencesNode = TreeFactory.makeQueryNode(this.sentencesLabel, R.drawable.sentence, false, new SentencesForLexUnitQuery(luId)).addTo(parent);
 				changedList.add(NEWCHILD, sentencesNode);
 			}
 			while (cursor.moveToNext());
