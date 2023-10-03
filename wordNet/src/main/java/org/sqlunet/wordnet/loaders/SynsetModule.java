@@ -10,6 +10,7 @@ import org.sqlunet.HasPos;
 import org.sqlunet.HasSynsetId;
 import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.model.TreeFactory;
+import org.sqlunet.treeview.control.Link;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.wordnet.R;
 
@@ -118,7 +119,8 @@ public class SynsetModule extends BaseModule
 			// relations and samples
 			if (this.expand)
 			{
-				TreeFactory.makeHotQueryNode("Relations", R.drawable.ic_relations, false, new RelationsQuery(this.synsetId, 0)).addTo(parent);
+				Link link = new RelationLink(this.synsetId, this.maxRecursion, this.fragment);
+				TreeFactory.makeLinkHotQueryNode("Relations", R.drawable.ic_relations, false, new RelationsQuery(this.synsetId, 0), link).addTo(parent);
 			}
 			else
 			{
@@ -127,7 +129,7 @@ public class SynsetModule extends BaseModule
 
 			if (this.expand)
 			{
-				TreeFactory.makeQueryNode("Samples", R.drawable.sample, false, new SamplesQuery(this.synsetId)).addTo(parent);
+				TreeFactory.makeHotQueryNode("Samples", R.drawable.sample, false, new SamplesQuery(this.synsetId)).addTo(parent);
 			}
 			else
 			{

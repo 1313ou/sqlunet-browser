@@ -14,6 +14,7 @@ import org.sqlunet.treeview.control.HotQueryController;
 import org.sqlunet.treeview.control.IconTextController;
 import org.sqlunet.treeview.control.LeafController;
 import org.sqlunet.treeview.control.Link;
+import org.sqlunet.treeview.control.LinkHotQueryController;
 import org.sqlunet.treeview.control.LinkLeafController;
 import org.sqlunet.treeview.control.LinkNodeController;
 import org.sqlunet.treeview.control.LinkQueryController;
@@ -182,6 +183,28 @@ public class TreeFactory
 	{
 		final HotQueryController controller = new HotQueryController(breakExpand);
 		final TreeNode result = new TreeNode(new CompositeValue(text, icon, query), controller);
+
+		final Handler handler = new Handler(Looper.getMainLooper());
+		handler.post(controller::processQuery);
+
+		return result;
+	}
+
+	/**
+	 * Make hot (self-triggered) query node
+	 *
+	 * @param text        label text
+	 * @param icon        icon
+	 * @param breakExpand break expand flag
+	 * @param query       query
+	 * @param link        link
+	 * @return created node
+	 */
+	@NonNull
+	static public TreeNode makeLinkHotQueryNode(@NonNull final CharSequence text, final int icon, final boolean breakExpand, final Query query, final Link link)
+	{
+		final HotQueryController controller = new LinkHotQueryController(breakExpand);
+		final TreeNode result = new TreeNode(new CompositeValue(text, icon, query, link), controller);
 
 		final Handler handler = new Handler(Looper.getMainLooper());
 		handler.post(controller::processQuery);

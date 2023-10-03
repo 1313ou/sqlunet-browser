@@ -9,6 +9,7 @@ import android.os.Parcelable;
 import org.sqlunet.HasWordId;
 import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.model.TreeFactory;
+import org.sqlunet.treeview.control.Link;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.wordnet.R;
 
@@ -74,7 +75,8 @@ public class SenseModule extends SynsetModule
 			// relations and samples
 			if (this.expand)
 			{
-				TreeFactory.makeHotQueryNode("Relations", R.drawable.ic_relations, false, new RelationsQuery(this.synsetId, this.wordId)).addTo(parent);
+				Link link = new RelationLink(this.synsetId, this.maxRecursion, this.fragment);
+				TreeFactory.makeLinkHotQueryNode("Relations", R.drawable.ic_relations, false, new RelationsQuery(this.synsetId, this.wordId), link).addTo(parent);
 			}
 			else
 			{

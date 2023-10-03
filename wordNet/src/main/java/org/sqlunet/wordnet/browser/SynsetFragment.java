@@ -125,7 +125,7 @@ public class SynsetFragment extends TreeFragment
 	}
 
 	/**
-	 * Set expandContainer
+	 * Set expand container
 	 */
 	public void setExpand(final boolean expand)
 	{

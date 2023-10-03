@@ -4,7 +4,7 @@ source "./lib-artwork.sh"
 
 icon_list="ic_collapsed.svg ic_expanded.svg ic_leaf.svg"
 icon2_list="error.svg info.svg item.svg"
-things_list="definition.svg domain.svg link.svg members.svg member.svg pos.svg relation.svg
+things_list="definition.svg domain.svg link.svg link_relation.svg members.svg member.svg pos.svg relation.svg
 role1.svg role2.svg roleclass.svg roles.svg role.svg rolex2.svg rolex.svg 
 sample.svg sentence.svg
 synsetmember.svg synset.svg"

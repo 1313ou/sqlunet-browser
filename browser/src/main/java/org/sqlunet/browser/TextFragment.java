@@ -244,7 +244,6 @@ public class TextFragment extends AbstractTableFragment
 					}
 					break;
 				case "vn":
-					//
 				{
 					final int idClasses = cursor.getColumnIndex(VerbNetContract.Lookup_VnExamples_X.CLASSES);
 					final String classes = cursor.getString(idClasses);
@@ -270,7 +269,6 @@ public class TextFragment extends AbstractTableFragment
 					break;
 				}
 				case "pb":
-					//
 				{
 					final int idRoleSets = cursor.getColumnIndex(PropBankContract.Lookup_PbExamples_X.ROLESETS);
 					final String roleSets = cursor.getString(idRoleSets);
@@ -296,7 +294,6 @@ public class TextFragment extends AbstractTableFragment
 					break;
 				}
 				case "fn":
-					//
 				{
 					final int idFrames = cursor.getColumnIndex(FrameNetContract.Lookup_FTS_FnSentences_X.FRAMES);
 					final int idLexUnits = cursor.getColumnIndex(FrameNetContract.Lookup_FTS_FnSentences_X.LEXUNITS);
