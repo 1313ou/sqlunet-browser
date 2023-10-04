@@ -27,7 +27,7 @@ public class MoreController extends Controller<CompositeValue>
 	/**
 	 * Resource used (changed by derived classes)
 	 */
-	private final int layoutRes = R.layout.layout_more_2;
+	private final int layoutRes = Controller.V2 ? R.layout.layout_more_2 : R.layout.layout_more;
 
 	/**
 	 * Constructor

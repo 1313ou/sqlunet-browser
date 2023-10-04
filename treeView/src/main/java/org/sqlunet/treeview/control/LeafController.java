@@ -27,7 +27,7 @@ public class LeafController extends Controller<CompositeValue>
 	/**
 	 * Resource used (changed by derived classes)
 	 */
-	int layoutRes = R.layout.layout_leaf_2;
+	protected int layoutRes = Controller.V2 ? R.layout.layout_leaf_2 : R.layout.layout_leaf;
 
 	/**
 	 * Constructor

@@ -21,6 +21,8 @@ import androidx.annotation.Nullable;
  */
 public abstract class Controller<E>
 {
+	protected static final boolean V2 = true;
+
 	// M O D E L
 
 	/**

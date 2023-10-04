@@ -23,7 +23,7 @@ public class QueryController extends TreeController
 	public QueryController(final boolean breakExpand)
 	{
 		super(breakExpand);
-		this.layoutRes = R.layout.layout_query_2;
+		this.layoutRes = Controller.V2 ? R.layout.layout_query_2 : R.layout.layout_query;
 	}
 
 	@Override

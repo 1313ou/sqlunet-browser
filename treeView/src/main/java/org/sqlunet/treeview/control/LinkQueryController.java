@@ -39,7 +39,7 @@ public class LinkQueryController extends ColdQueryController
 	public LinkQueryController(final boolean breakExpand, @DrawableRes final int buttonImageRes)
 	{
 		super(breakExpand);
-		this.layoutRes = R.layout.layout_tree_link_2;
+		this.layoutRes = Controller.V2 ? R.layout.layout_tree_link_2 : R.layout.layout_tree_link;
 		this.buttonImageRes = buttonImageRes;
 	}
 
