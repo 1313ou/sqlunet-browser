@@ -29,7 +29,7 @@ public class LinkTreeController extends TreeController
 	public LinkTreeController(final boolean breakExpand)
 	{
 		super(breakExpand);
-		this.layoutRes = R.layout.layout_tree_link;
+		this.layoutRes = R.layout.layout_tree_link_2;
 	}
 
 	@NonNull

@@ -40,7 +40,7 @@ public class LinkNodeController extends Controller<CompositeValue>
 	public View createNodeView(@NonNull final Context context, final TreeNode node, @NonNull final CompositeValue value)
 	{
 		final LayoutInflater inflater = LayoutInflater.from(context);
-		@SuppressLint("InflateParams") final View view = inflater.inflate(R.layout.layout_node_link, null, false);
+		@SuppressLint("InflateParams") final View view = inflater.inflate(R.layout.layout_node_link_2, null, false);
 		assert view != null;
 
 		// icon
