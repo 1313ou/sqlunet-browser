@@ -23,6 +23,8 @@
 		android:layout_marginStart="@dimen/margin_value_start"
 		android:layout_marginEnd="@dimen/margin_value_end"
 		android:layout_weight="1"
+		android:ellipsize="end"
+		android:maxLines="@integer/lines_row"
 		android:textIsSelectable="true" />
 
 	<ImageView

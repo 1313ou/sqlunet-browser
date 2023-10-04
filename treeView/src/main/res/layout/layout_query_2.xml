@@ -39,7 +39,7 @@
 		android:layout_marginEnd="@dimen/margin_value_end"
 		android:layout_weight="1"
 		android:ellipsize="end"
-		android:maxLines="10"
+		android:maxLines="@integer/lines_row"
 		android:textIsSelectable="true"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toEndOf="@+id/node_icon"
