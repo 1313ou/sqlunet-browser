@@ -1,13 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) 2023. Bernard Bou
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:minHeight="10dp"
-              android:orientation="horizontal">
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:minHeight="@dimen/height_row_min"
+	android:orientation="horizontal">
 
 	<ImageView
 		android:id="@+id/junction_icon"
@@ -16,7 +15,7 @@
 		android:layout_gravity="top"
 		android:contentDescription="@string/hint_tree"
 		android:gravity="center_vertical"
-		android:src="@drawable/ic_query_collapsed"/>
+		android:src="@drawable/ic_query_collapsed" />
 
 	<ImageView
 		android:id="@+id/node_icon"
@@ -24,17 +23,15 @@
 		android:layout_height="wrap_content"
 		android:layout_gravity="top"
 		android:contentDescription="@string/hint_icon"
-		android:gravity="center_vertical"/>
+		android:gravity="center_vertical" />
 
 	<TextView
 		android:id="@+id/node_value"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
-		android:layout_marginEnd="10dp"
-		android:layout_marginLeft="10dp"
-		android:layout_marginRight="10dp"
-		android:layout_marginStart="10dp"
+		android:layout_marginStart="@dimen/margin_value_start"
+		android:layout_marginEnd="@dimen/margin_value_end"
 		android:layout_weight="1"
-		android:textIsSelectable="true"/>
+		android:textIsSelectable="true" />
 
 </LinearLayout>
