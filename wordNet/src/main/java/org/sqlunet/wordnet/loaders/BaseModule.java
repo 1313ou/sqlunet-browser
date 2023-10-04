@@ -1148,18 +1148,20 @@ abstract public class BaseModule extends Module
 	 *
 	 * @param synsetId                synset id
 	 * @param relationId              relation id
+	 * @param recurseLevel            recurse level
+	 * @param hot                     whether query is executed immediately
 	 * @param parent                  parent node
 	 * @param deadendParentIfNoResult mark parent node as deadend if there is no result
 	 */
-	private void semRelations(final long synsetId, final int relationId, final int recurseLevel, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean deadendParentIfNoResult)
+	private void semRelations(final long synsetId, final int relationId, final int recurseLevel, final boolean hot, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean deadendParentIfNoResult)
 	{
 		final ContentProviderSql sql = Queries.prepareSemRelations(synsetId, relationId);
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
-		this.semRelationsFromSynsetIdRelationIdModel.loadData(uri, sql, cursor -> semRelationsFromSynsetIdRelationIdCursorToTreeModel(cursor, relationId, recurseLevel, parent, deadendParentIfNoResult));
+		this.semRelationsFromSynsetIdRelationIdModel.loadData(uri, sql, cursor -> semRelationsFromSynsetIdRelationIdCursorToTreeModel(cursor, relationId, recurseLevel, hot, parent, deadendParentIfNoResult));
 	}
 
 	@NonNull
-	private TreeOp[] semRelationsFromSynsetIdRelationIdCursorToTreeModel(@NonNull final Cursor cursor, final int relationId, final int recurseLevel, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
+	private TreeOp[] semRelationsFromSynsetIdRelationIdCursorToTreeModel(@NonNull final Cursor cursor, final int relationId, final int recurseLevel, final boolean hot, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
 	{
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
@@ -1194,7 +1196,9 @@ abstract public class BaseModule extends Module
 					if (recurseLevel > 1)
 					{
 						final int newRecurseLevel = recurseLevel - 1;
-						final TreeNode relationsNode = TreeFactory.makeLinkQueryNode(sb, getRelationRes(relationId), false, new SubRelationsQuery(targetSynsetId, relationId, newRecurseLevel), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion, this.fragment), 0).addTo(parent);
+						final TreeNode relationsNode = hot ?
+								TreeFactory.makeLinkHotQueryNode(sb, getRelationRes(relationId), false, new SubRelationsQuery(targetSynsetId, relationId, newRecurseLevel, true), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion, this.fragment), 0).addTo(parent) :
+								TreeFactory.makeLinkQueryNode(sb, getRelationRes(relationId), false, new SubRelationsQuery(targetSynsetId, relationId, newRecurseLevel), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion, this.fragment), 0).addTo(parent);
 						changedList.add(NEWCHILD, relationsNode);
 					}
 					else
@@ -1911,6 +1915,27 @@ abstract public class BaseModule extends Module
 		final int recurseLevel;
 
 		/**
+		 * Hot
+		 */
+		final boolean hot;
+
+		/**
+		 * Constructor
+		 *
+		 * @param synsetId     synset id
+		 * @param relationId   relation id
+		 * @param recurseLevel recurse level
+		 * @param hot          whether result nodes are hot queries
+		 */
+		SubRelationsQuery(final long synsetId, final int relationId, final int recurseLevel, final boolean hot)
+		{
+			super(synsetId);
+			this.relationId = relationId;
+			this.recurseLevel = recurseLevel;
+			this.hot = hot;
+		}
+
+		/**
 		 * Constructor
 		 *
 		 * @param synsetId     synset id
@@ -1919,15 +1944,13 @@ abstract public class BaseModule extends Module
 		 */
 		SubRelationsQuery(final long synsetId, final int relationId, final int recurseLevel)
 		{
-			super(synsetId);
-			this.relationId = relationId;
-			this.recurseLevel = recurseLevel;
+			this(synsetId, relationId, recurseLevel, false);
 		}
 
 		@Override
 		public void process(@NonNull final TreeNode node)
 		{
-			semRelations(this.id, this.relationId, recurseLevel, node, true);
+			semRelations(this.id, this.relationId, recurseLevel, hot, node, true);
 		}
 
 		@NonNull

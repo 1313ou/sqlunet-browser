@@ -95,20 +95,20 @@ public class RelationModule extends BaseModule
 			// up relations
 			if (this.expand)
 			{
-				TreeFactory.makeHotQueryNode(this.upLabel, R.drawable.ic_relations, false, new SubRelationsQuery(this.synsetId, HYPERNYM, this.maxRecursion)).addTo(parent);
+				TreeFactory.makeHotQueryNode(this.upLabel, R.drawable.ic_relations, false, new SubRelationsQuery(this.synsetId, HYPERNYM, this.maxRecursion, true)).addTo(parent);
 			}
 			else
 			{
-				TreeFactory.makeQueryNode(this.upLabel, R.drawable.ic_relations, false, new SubRelationsQuery(this.synsetId, HYPERNYM, this.maxRecursion)).addTo(parent);
+				TreeFactory.makeQueryNode(this.upLabel, R.drawable.ic_relations, false, new SubRelationsQuery(this.synsetId, HYPERNYM, this.maxRecursion, false)).addTo(parent);
 			}
 			// down relations
 			if (this.expand)
 			{
-				TreeFactory.makeHotQueryNode(this.downLabel, R.drawable.ic_relations, false, new SubRelationsQuery(this.synsetId, HYPONYM, this.maxRecursion)).addTo(parent);
+				TreeFactory.makeHotQueryNode(this.downLabel, R.drawable.ic_relations, false, new SubRelationsQuery(this.synsetId, HYPONYM, this.maxRecursion, false)).addTo(parent);
 			}
 			else
 			{
-				TreeFactory.makeQueryNode(this.downLabel, R.drawable.ic_relations, false, new SubRelationsQuery(this.synsetId, HYPONYM, this.maxRecursion)).addTo(parent);
+				TreeFactory.makeQueryNode(this.downLabel, R.drawable.ic_relations, false, new SubRelationsQuery(this.synsetId, HYPONYM, this.maxRecursion, false)).addTo(parent);
 			}
 		}
 		else
