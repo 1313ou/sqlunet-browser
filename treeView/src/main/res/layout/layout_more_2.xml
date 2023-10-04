@@ -15,7 +15,7 @@
 		android:layout_gravity="top"
 		android:contentDescription="@string/hint_leaf"
 		android:gravity="center_vertical"
-		android:src="@drawable/ic_deadend"
+		android:src="@drawable/ic_more"
 		app:layout_constraintEnd_toStartOf="@+id/node_icon"
 		app:layout_constraintStart_toStartOf="parent"
 		app:layout_constraintTop_toTopOf="parent" />
@@ -41,22 +41,8 @@
 		android:ellipsize="end"
 		android:maxLines="10"
 		android:textIsSelectable="true"
-		app:layout_constraintEnd_toStartOf="@+id/node_link"
-		app:layout_constraintStart_toEndOf="@+id/node_icon"
-		app:layout_constraintTop_toTopOf="parent" />
-
-	<ImageView
-		android:id="@+id/node_link"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="top"
-		android:layout_marginStart="@dimen/margin_link_start"
-		android:layout_marginEnd="@dimen/margin_link_end"
-		android:contentDescription="@string/hint_link"
-		android:gravity="center_vertical"
-		android:src="@drawable/ic_link"
 		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toEndOf="@+id/node_value"
+		app:layout_constraintStart_toEndOf="@+id/node_icon"
 		app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
