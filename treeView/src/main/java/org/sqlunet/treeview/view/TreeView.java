@@ -215,6 +215,7 @@ public class TreeView
 		contentView.setFocusableInTouchMode(true);
 		contentView.setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
 		contentView.setVisibility(View.GONE);
+		contentView.setVisibility(View.GONE);
 		view.addView(contentView);
 
 		// root
