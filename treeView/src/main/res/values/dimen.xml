@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
-  <dimen name='height_row_min'>10dp</dimen>
+<resources>
+	<dimen name='padding_tree_child_offset'>12dp</dimen>
 
-  <dimen name='margin_value_start'>10dp</dimen>
-  <dimen name='margin_value_end'>10dp</dimen>
-  <dimen name='margin_link_start'>0dp</dimen>
-  <dimen name='margin_link_end'>5dp</dimen>
+	<dimen name='height_row_min'>10dp</dimen>
+	<dimen name='width_row_min'>0dp</dimen>
+
+	<dimen name='margin_value_start'>10dp</dimen>
+	<dimen name='margin_value_end'>10dp</dimen>
+	<dimen name='margin_link_start'>0dp</dimen>
+	<dimen name='margin_link_end'>5dp</dimen>
 </resources>

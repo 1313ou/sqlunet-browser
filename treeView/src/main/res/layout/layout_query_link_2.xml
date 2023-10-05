@@ -6,7 +6,8 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:minHeight="@dimen/height_row_min">
+	android:minHeight="@dimen/height_row_min"
+	android:weightSum="1">
 
 	<ImageView
 		android:id="@+id/junction_icon"
@@ -43,7 +44,8 @@
 		android:textIsSelectable="true"
 		app:layout_constraintEnd_toStartOf="@+id/node_link"
 		app:layout_constraintStart_toEndOf="@+id/node_icon"
-		app:layout_constraintTop_toTopOf="parent" />
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintWidth_min="@dimen/width_row_min" />
 
 	<ImageView
 		android:id="@+id/node_link"

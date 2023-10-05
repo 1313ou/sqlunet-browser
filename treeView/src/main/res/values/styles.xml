@@ -11,7 +11,7 @@
 <!--	</style>-->
 
 	<style name="TreeNodeStyleCustom">
-		<item name="android:paddingLeft">20dp</item>
+		<item name="android:paddingLeft">@dimen/padding_tree_child_offset</item>
 		<!-- <item name="android:background">#FFFFFF00</item> -->
 		<!-- <item name="android:showDividers">middle</item> -->
 		<!-- <item name="android:divider">@android:drawable/divider_horizontal_bright</item> -->
