@@ -23,7 +23,7 @@ public class HotQueryController extends QueryController
 	public HotQueryController(final boolean breakExpand)
 	{
 		super(breakExpand);
-		this.layoutRes = Controller.V2 ? R.layout.layout_query_2 : R.layout.layout_query;
+		this.layoutRes = R.layout.layout_query;
 	}
 
 	@Override

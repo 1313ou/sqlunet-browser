@@ -34,7 +34,7 @@ public class TreeController extends Controller<CompositeValue>
 	/**
 	 * Resource used (changed by derived classes)
 	 */
-	int layoutRes = Controller.V2 ? R.layout.layout_tree_2 : R.layout.layout_tree;
+	int layoutRes = R.layout.layout_tree;
 
 	/**
 	 * Constructor

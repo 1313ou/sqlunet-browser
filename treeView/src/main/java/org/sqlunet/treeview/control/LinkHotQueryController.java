@@ -32,7 +32,7 @@ public class LinkHotQueryController extends HotQueryController
 	public LinkHotQueryController(final boolean breakExpand, @DrawableRes final int buttonImageRes)
 	{
 		super(breakExpand);
-		this.layoutRes = Controller.V2 ? R.layout.layout_query_link_2 : R.layout.layout_query_link;
+		this.layoutRes = R.layout.layout_query_link;
 		this.buttonImageRes = buttonImageRes;
 	}
 

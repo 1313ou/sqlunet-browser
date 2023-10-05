@@ -29,7 +29,7 @@ public class LinkLeafController extends LeafController
 	public LinkLeafController(final boolean breakExpand)
 	{
 		super(breakExpand);
-		this.layoutRes = Controller.V2 ? R.layout.layout_leaf_link_2 : R.layout.layout_leaf_link;
+		this.layoutRes = R.layout.layout_leaf_link;
 	}
 
 	@NonNull
