@@ -90,7 +90,6 @@ abstract public class TreeFragment extends Fragment
 		// tree
 		// Log.d(TAG, "Create treeview");
 		this.treeView = new TreeView(requireContext(), this.treeRoot);
-		this.treeView.setDefaultContainerStyle(R.style.TreeNodeStyleCustom); // R.style.TreeNodeStyleDivided
 		treeContainer.addView(this.treeView.makeView());
 
 		// saved state

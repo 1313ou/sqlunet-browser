@@ -4,10 +4,13 @@
 
 package org.sqlunet.treeview.view;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +20,7 @@ import org.sqlunet.treeview.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StyleableRes;
 
 /**
  * SubtreeView (Tree node wrapper view)
@@ -32,6 +36,11 @@ public class SubtreeView extends LinearLayout
 	 * Container style
 	 */
 	private final int containerStyle;
+
+	/**
+	 * Tree padding / indentation / offset (to parent) factor to apply to fault value
+	 */
+	private final float treeIndentFactor;
 
 	/**
 	 * Node label view
@@ -52,31 +61,34 @@ public class SubtreeView extends LinearLayout
 	 */
 	public SubtreeView(final Context context)
 	{
-		this(context, -1, new View(context));
+		this(context, -1, 0, new View(context));
 	}
 
 	/**
 	 * Constructor
 	 *
-	 * @param context        context
-	 * @param containerStyle container style
+	 * @param context          context
+	 * @param containerStyle   container style
+	 * @param treeIndentFactor tree indent factor to apply to default value
 	 */
-	public SubtreeView(final Context context, final int containerStyle)
+	public SubtreeView(final Context context, final int containerStyle, float treeIndentFactor)
 	{
-		this(context, containerStyle, new View(context));
+		this(context, containerStyle, treeIndentFactor, new View(context));
 	}
 
 	/**
 	 * Constructor
 	 *
-	 * @param context        context
-	 * @param containerStyle container style
-	 * @param nodeView       node view (group)
+	 * @param context          context
+	 * @param containerStyle   container style
+	 * @param treeIndentFactor tree indent factor to apply to default value
+	 * @param nodeView         node view (group)
 	 */
-	public SubtreeView(final Context context, final int containerStyle, @NonNull final View nodeView)
+	public SubtreeView(final Context context, final int containerStyle, float treeIndentFactor, @NonNull final View nodeView)
 	{
 		super(context);
 		this.containerStyle = containerStyle;
+		this.treeIndentFactor = treeIndentFactor;
 		this.nodeView = nodeView;
 		init(context);
 	}
@@ -84,15 +96,17 @@ public class SubtreeView extends LinearLayout
 	/**
 	 * Constructor
 	 *
-	 * @param context        context
-	 * @param attrs          attributes
-	 * @param containerStyle container style
-	 * @param nodeView       node view (group)
+	 * @param context          context
+	 * @param attrs            attributes
+	 * @param containerStyle   container style
+	 * @param treeIndentFactor tree indent factor to apply to default value
+	 * @param nodeView         node view (group)
 	 */
-	public SubtreeView(final Context context, final AttributeSet attrs, final int containerStyle, @NonNull final View nodeView)
+	public SubtreeView(final Context context, final AttributeSet attrs, final int containerStyle, float treeIndentFactor, @NonNull final View nodeView)
 	{
 		super(context, attrs);
 		this.containerStyle = containerStyle;
+		this.treeIndentFactor = treeIndentFactor;
 		this.nodeView = nodeView;
 		init(context);
 	}
@@ -100,16 +114,18 @@ public class SubtreeView extends LinearLayout
 	/**
 	 * Constructor
 	 *
-	 * @param context        context
-	 * @param attrs          attributes
-	 * @param defStyleAttr   def style attribute
-	 * @param containerStyle container style
-	 * @param nodeView       node view (group)
+	 * @param context          context
+	 * @param attrs            attributes
+	 * @param defStyleAttr     def style attribute
+	 * @param containerStyle   container style
+	 * @param treeIndentFactor tree indent factor to apply to default value
+	 * @param nodeView         node view (group)
 	 */
-	public SubtreeView(final Context context, final AttributeSet attrs, final int defStyleAttr, final int containerStyle, @NonNull final View nodeView)
+	public SubtreeView(final Context context, final AttributeSet attrs, final int defStyleAttr, final int containerStyle, float treeIndentFactor, @NonNull final View nodeView)
 	{
 		super(context, attrs, defStyleAttr);
 		this.containerStyle = containerStyle;
+		this.treeIndentFactor = treeIndentFactor;
 		this.nodeView = nodeView;
 		init(context);
 	}
@@ -117,18 +133,20 @@ public class SubtreeView extends LinearLayout
 	/**
 	 * Constructor
 	 *
-	 * @param context        context
-	 * @param attrs          attributes
-	 * @param defStyleAttr   def style attribute
-	 * @param defStyleRes    def style resource
-	 * @param containerStyle container style
-	 * @param nodeView       node view (group)
+	 * @param context          context
+	 * @param attrs            attributes
+	 * @param defStyleAttr     def style attribute
+	 * @param defStyleRes      def style resource
+	 * @param containerStyle   container style
+	 * @param treeIndentFactor tree indent factor to apply to default value
+	 * @param nodeView         node view (group)
 	 */
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	public SubtreeView(final Context context, final AttributeSet attrs, final int defStyleAttr, final int defStyleRes, final int containerStyle, @NonNull final View nodeView)
+	public SubtreeView(final Context context, final AttributeSet attrs, final int defStyleAttr, final int defStyleRes, final int containerStyle, float treeIndentFactor, @NonNull final View nodeView)
 	{
 		super(context, attrs, defStyleAttr, defStyleRes);
 		this.containerStyle = containerStyle;
+		this.treeIndentFactor = treeIndentFactor;
 		this.nodeView = nodeView;
 		init(context);
 	}
@@ -136,6 +154,7 @@ public class SubtreeView extends LinearLayout
 	/**
 	 * Init
 	 */
+	@SuppressLint("ResourceType")
 	private void init(final Context context)
 	{
 		setOrientation(LinearLayout.VERTICAL);
@@ -152,7 +171,22 @@ public class SubtreeView extends LinearLayout
 		nodeChildrenContainer.setId(R.id.node_children);
 		nodeChildrenContainer.setOrientation(LinearLayout.VERTICAL);
 		nodeChildrenContainer.setVisibility(View.GONE);
-		this.childrenContainer = nodeChildrenContainer;
+		if (this.treeIndentFactor != 0)
+		{
+			@StyleableRes int[] attrs = {android.R.attr.paddingStart, android.R.attr.paddingLeft};
+			TypedArray ta = containerContext.obtainStyledAttributes(this.containerStyle, attrs);
+			int defaultValue = ta.getDimensionPixelSize(0, 0);
+			if (defaultValue == 0)
+			{
+				defaultValue = ta.getDimensionPixelSize(1, 0);
+			}
+			ta.recycle();
+
+			int value = (int) (defaultValue * this.treeIndentFactor);
+			// Log.d("INDENT ", "default " + defaultValue + " new " + value + " factor " + this.treeIndentFactor);
+
+			nodeChildrenContainer.setPadding(value, 0, 0, 0);
+		} this.childrenContainer = nodeChildrenContainer;
 
 		addView(this.childrenContainer);
 	}

@@ -82,7 +82,7 @@ public abstract class Controller<E>
 
 	@SuppressWarnings("unchecked")
 	@Nullable
-	public SubtreeView createView(@NonNull final Context context, final int containerStyle)
+	public SubtreeView createView(@NonNull final Context context, final int containerStyle, final float treeIndentFactor)
 	{
 		// node view
 		//noinspection unchecked
@@ -90,7 +90,7 @@ public abstract class Controller<E>
 		assert this.nodeView != null;
 
 		// wrapper
-		this.subtreeView = new SubtreeView(context, containerStyle, this.nodeView);
+		this.subtreeView = new SubtreeView(context, containerStyle, treeIndentFactor, this.nodeView);
 		this.subtreeView.setTag(this.node);
 
 		// children view

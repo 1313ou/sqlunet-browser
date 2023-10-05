@@ -79,6 +79,8 @@ public class TreeView
 
 	static private final String PREF_USE_ANIMATION = "pref_use_animation";
 
+	static private final String PREF_TREE_INDENT = "pref_tree_indent";
+
 	/**
 	 * Root node
 	 */
@@ -104,6 +106,11 @@ public class TreeView
 	 * Container style applies to root
 	 */
 	private boolean containerStyleAppliesToRoot;
+
+	/**
+	 * Tree indent factor to apply to default value
+	 */
+	private float treeIndentFactor;
 
 	/**
 	 * Node click listener
@@ -140,6 +147,9 @@ public class TreeView
 		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		this.useAnimation = prefs.getBoolean(PREF_USE_ANIMATION, true);
 		this.use2dScroll = prefs.getBoolean(PREF_SCROLL_2D, false);
+		this.treeIndentFactor = prefs.getInt(PREF_TREE_INDENT, 0) / 100F;
+		this.containerStyle = R.style.TreeNodeStyleCustom; // R.style.TreeNodeStyleDivided
+		this.containerStyleAppliesToRoot = false;
 	}
 
 	// R O O T
@@ -214,7 +224,6 @@ public class TreeView
 		contentView.setFocusable(true);
 		contentView.setFocusableInTouchMode(true);
 		contentView.setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
-		contentView.setVisibility(View.GONE);
 		contentView.setVisibility(View.GONE);
 		view.addView(contentView);
 
@@ -394,7 +403,7 @@ public class TreeView
 		SubtreeView subtreeView = controller.getSubtreeView();
 		if (subtreeView == null)
 		{
-			subtreeView = controller.createView(this.context, this.containerStyle);
+			subtreeView = controller.createView(this.context, this.containerStyle, this.treeIndentFactor);
 		}
 		final SubtreeView view = subtreeView;
 
@@ -949,6 +958,16 @@ public class TreeView
 	{
 		this.containerStyle = defaultStyle;
 		this.containerStyleAppliesToRoot = appliesToRoot;
+	}
+
+	/**
+	 * Set tree child indent
+	 *
+	 * @param treeIndentFactor Tree indent factor to apply to default value
+	 */
+	public void setIndent(final float treeIndentFactor)
+	{
+		this.treeIndentFactor = treeIndentFactor;
 	}
 
 	// C L I C K
