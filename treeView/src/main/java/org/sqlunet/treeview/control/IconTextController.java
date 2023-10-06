@@ -33,11 +33,22 @@ public class IconTextController extends Controller<Object>
 	@Override
 	public View createNodeView(@NonNull final Context context, final TreeNode node, final Object value)
 	{
-		final CompositeValue data = (CompositeValue) value;
 		final TextView textView = new TextView(context);
-		textView.setText(data.text);
-		textView.setCompoundDrawablePadding(10);
-		textView.setCompoundDrawablesWithIntrinsicBounds(data.icon, 0, 0, 0);
+		if (value instanceof CompositeValue)
+		{
+			final CompositeValue data = (CompositeValue) value;
+			textView.setText(data.text);
+			textView.setCompoundDrawablePadding(10);
+			textView.setCompoundDrawablesWithIntrinsicBounds(data.icon, 0, 0, 0);
+		}
+		else if (value instanceof CharSequence)
+		{
+			textView.setText((CharSequence) value);
+		}
+		else
+		{
+			throw new IllegalArgumentException(value.toString());
+		}
 		return textView;
 	}
 }

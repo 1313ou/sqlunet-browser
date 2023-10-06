@@ -17,7 +17,7 @@ import androidx.annotation.NonNull;
  *
  * @author Bogdan Melnychuk on 2/11/15.
  */
-public class TextController extends Controller<CharSequence>
+public class TextController extends Controller<Object>
 {
 	/**
 	 * Constructor
@@ -31,10 +31,24 @@ public class TextController extends Controller<CharSequence>
 
 	@NonNull
 	@Override
-	public View createNodeView(@NonNull final Context context, final TreeNode node, final CharSequence value)
+	public View createNodeView(@NonNull final Context context, final TreeNode node, final Object value)
 	{
 		final TextView textView = new TextView(context);
-		textView.setText(value);
+		if (value instanceof CompositeValue)
+		{
+			final CompositeValue data = (CompositeValue) value;
+			textView.setText(data.text);
+			textView.setCompoundDrawablePadding(10);
+			textView.setCompoundDrawablesWithIntrinsicBounds(data.icon, 0, 0, 0);
+		}
+		else if (value instanceof CharSequence)
+		{
+			textView.setText((CharSequence) value);
+		}
+		else
+		{
+			throw new IllegalArgumentException(value.toString());
+		}
 		return textView;
 	}
 }
