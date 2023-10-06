@@ -12,7 +12,6 @@ import org.sqlunet.treeview.R;
 import org.sqlunet.treeview.model.TreeNode;
 
 import androidx.annotation.DrawableRes;
-import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.content.res.AppCompatResources;
 

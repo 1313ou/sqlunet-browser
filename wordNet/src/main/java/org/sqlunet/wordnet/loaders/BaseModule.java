@@ -813,6 +813,7 @@ abstract public class BaseModule extends Module
 	 * @param parent      parent node
 	 * @param concatQuery whether query returns members concat and not distinct rows
 	 * @param addNewNode  whether to addItem to (or set) node
+	 * @noinspection SameParameterValue
 	 */
 	void memberSet(final long synsetId, @NonNull final TreeNode parent, final boolean concatQuery, final boolean addNewNode)
 	{

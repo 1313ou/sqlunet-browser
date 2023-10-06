@@ -13,7 +13,6 @@ import org.sqlunet.model.TreeFactory;
 import org.sqlunet.treeview.control.RootController;
 import org.sqlunet.treeview.model.TreeNode;
 import org.sqlunet.treeview.view.TreeView;
-import org.sqlunet.xnet.R;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;

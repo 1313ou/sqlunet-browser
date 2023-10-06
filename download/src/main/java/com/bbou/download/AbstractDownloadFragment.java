@@ -509,6 +509,7 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 
 	/**
 	 * Deploy tail operation
+	 * @noinspection EmptyMethod
 	 */
 	abstract protected void deploy();
 

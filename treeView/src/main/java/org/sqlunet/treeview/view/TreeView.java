@@ -100,7 +100,7 @@ public class TreeView
 	/**
 	 * Container style
 	 */
-	private int containerStyle = 0;
+	private int containerStyle;
 
 	/**
 	 * Container style applies to root

@@ -291,7 +291,9 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 				final String html = getString(R.string.error_entry_not_found, "<b>" + this.word + "</b>");
 				final CharSequence message = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N ? Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY) : Html.fromHtml(html);
 				// Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
-				Snackbar.make(getView(), message, Snackbar.LENGTH_SHORT).show();
+				final View view = getView();
+				assert view != null;
+				Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show();
 			}
 			else
 			{
