@@ -92,6 +92,17 @@ public class RelationModule extends BaseModule
 	{
 		if (this.synsetId != null && this.synsetId != 0)
 		{
+			// anchor nodes
+			final TreeNode synsetNode = TreeFactory.makeTextNode(this.senseLabel, false).addTo(parent);
+			final TreeNode membersNode = TreeFactory.makeIconTextNode(this.membersLabel, R.drawable.members, false).addTo(parent);
+
+			// synset
+			synset(this.synsetId, synsetNode, false);
+
+			// members
+			// members(this.synsetId, membersNode);
+			memberSet(this.synsetId, membersNode, true, false);
+
 			// up relations
 			if (this.expand)
 			{
