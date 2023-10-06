@@ -129,11 +129,6 @@ abstract public class BaseModule extends Module
 	private boolean displayLexRelationName = true;
 
 	/**
-	 * Whether members2 are grouped
-	 */
-	private boolean membersGrouped = false;
-
-	/**
 	 * Max relation recursion
 	 */
 	protected int maxRecursion = Integer.MAX_VALUE;
@@ -248,10 +243,10 @@ abstract public class BaseModule extends Module
 		this.synsetFromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.synset(synsetid)", SqlunetViewTreeModel.class);
 		this.synsetFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
-		this.membersFromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.members2(synsetid)", SqlunetViewTreeModel.class);
+		this.membersFromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.members(synsetid)", SqlunetViewTreeModel.class);
 		this.membersFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
-		this.members2FromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.members2(synsetid)", SqlunetViewTreeModel.class);
+		this.members2FromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.memberSet(synsetid)", SqlunetViewTreeModel.class);
 		this.members2FromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
 
 		this.samplesfromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.samples(synsetid)", SqlunetViewTreeModel.class);
@@ -302,16 +297,6 @@ abstract public class BaseModule extends Module
 	public void setMaxRecursionLevel(final int maxRecursion)
 	{
 		this.maxRecursion = maxRecursion == -1 ? Integer.MAX_VALUE : maxRecursion;
-	}
-
-	/**
-	 * Set member grouping
-	 *
-	 * @param membersGrouped member grouping flag
-	 */
-	public void setMembersGrouped(final boolean membersGrouped)
-	{
-		this.membersGrouped = membersGrouped;
 	}
 
 	/**
@@ -379,7 +364,7 @@ abstract public class BaseModule extends Module
 			}
 			else
 			{
-				TreeFactory.setTextNode(parent, sb);
+				TreeFactory.setTextNode(parent, sb, R.drawable.member);
 				changed = TreeOp.seq(UPDATE, parent);
 			}
 		}
@@ -628,7 +613,7 @@ abstract public class BaseModule extends Module
 	@SuppressWarnings("UnusedReturnValue")
 	private SpannableStringBuilder sense(@NonNull final SpannableStringBuilder sb, final long synsetId, final CharSequence posName, final CharSequence domain, final CharSequence definition, final int tagCount, @Nullable final CharSequence cased)
 	{
-		synset_head(sb, synsetId, posName, domain);
+		synsetHead(sb, synsetId, posName, domain);
 
 		if (cased != null && cased.length() > 0)
 		{
@@ -644,7 +629,7 @@ abstract public class BaseModule extends Module
 		}
 
 		sb.append('\n');
-		synset_definition(sb, definition);
+		synsetDefinition(sb, definition);
 
 		return sb;
 	}
@@ -694,7 +679,7 @@ abstract public class BaseModule extends Module
 			}
 			else
 			{
-				TreeFactory.setTextNode(parent, sb);
+				TreeFactory.setTextNode(parent, sb); //, R.drawable.synset);
 				changed = TreeOp.seq(UPDATE, parent);
 			}
 		}
@@ -722,9 +707,9 @@ abstract public class BaseModule extends Module
 	@SuppressWarnings("UnusedReturnValue")
 	private SpannableStringBuilder synset(@NonNull final SpannableStringBuilder sb, final long synsetId, final CharSequence posName, final CharSequence domain, final CharSequence definition)
 	{
-		synset_head(sb, synsetId, posName, domain);
+		synsetHead(sb, synsetId, posName, domain);
 		sb.append('\n');
-		synset_definition(sb, definition);
+		synsetDefinition(sb, definition);
 		return sb;
 	}
 
@@ -739,7 +724,7 @@ abstract public class BaseModule extends Module
 	 */
 	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
-	private SpannableStringBuilder synset_head(@NonNull final SpannableStringBuilder sb, final long synsetId, final CharSequence posName, final CharSequence domain)
+	private SpannableStringBuilder synsetHead(@NonNull final SpannableStringBuilder sb, final long synsetId, final CharSequence posName, final CharSequence domain)
 	{
 		Spanner.appendImage(sb, BaseModule.this.posDrawable);
 		sb.append(' ');
@@ -762,7 +747,7 @@ abstract public class BaseModule extends Module
 	 */
 	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
-	private SpannableStringBuilder synset_definition(@NonNull final SpannableStringBuilder sb, final CharSequence definition)
+	private SpannableStringBuilder synsetDefinition(@NonNull final SpannableStringBuilder sb, final CharSequence definition)
 	{
 		Spanner.appendImage(sb, BaseModule.this.definitionDrawable);
 		sb.append(' ');
@@ -788,14 +773,6 @@ abstract public class BaseModule extends Module
 	@NonNull
 	private TreeOp[] membersCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
-		if (BaseModule.this.membersGrouped)
-		{
-			if (cursor.getCount() > 1)
-			{
-				throw new RuntimeException("Unexpected number of rows");
-			}
-		}
-
 		TreeOp[] changed;
 		if (cursor.moveToFirst())
 		{
@@ -830,22 +807,23 @@ abstract public class BaseModule extends Module
 	}
 
 	/**
-	 * Members
+	 * Members as one set in one node
 	 *
-	 * @param synsetId   synset id
-	 * @param parent     parent node
-	 * @param addNewNode whether to addItem to (or set) node
+	 * @param synsetId    synset id
+	 * @param parent      parent node
+	 * @param concatQuery whether query returns members concat and not distinct rows
+	 * @param addNewNode  whether to addItem to (or set) node
 	 */
-	void members2(final long synsetId, @NonNull final TreeNode parent, final boolean addNewNode)
+	void memberSet(final long synsetId, @NonNull final TreeNode parent, final boolean concatQuery, final boolean addNewNode)
 	{
-		final ContentProviderSql sql = Queries.prepareMembers2(synsetId, BaseModule.this.membersGrouped);
+		final ContentProviderSql sql = Queries.prepareMembers2(synsetId, concatQuery);
 		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
-		this.members2FromSynsetIdModel.loadData(uri, sql, cursor -> members2CursorToTreeModel(cursor, parent, addNewNode));
+		this.members2FromSynsetIdModel.loadData(uri, sql, cursor -> memberSetCursorToTreeModel(cursor, parent, concatQuery, addNewNode));
 	}
 
-	private TreeOp[] members2CursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean addNewNode)
+	private TreeOp[] memberSetCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean concatQuery, final boolean addNewNode)
 	{
-		if (BaseModule.this.membersGrouped)
+		if (concatQuery)
 		{
 			if (cursor.getCount() > 1)
 			{
@@ -857,10 +835,12 @@ abstract public class BaseModule extends Module
 		if (cursor.moveToFirst())
 		{
 			final SpannableStringBuilder sb = new SpannableStringBuilder();
-			if (BaseModule.this.membersGrouped)
+			if (concatQuery)
 			{
 				final int idMembers = cursor.getColumnIndex(Senses_Words.MEMBERS);
-				sb.append(cursor.getString(idMembers));
+				sb.append('{');
+				Spanner.append(sb, cursor.getString(idMembers), 0, WordNetFactories.membersFactory);
+				sb.append('}');
 			}
 			else
 			{
@@ -872,8 +852,8 @@ abstract public class BaseModule extends Module
 					{
 						sb.append('\n');
 					}
-					Spanner.appendImage(sb, BaseModule.this.memberDrawable);
-					sb.append(' ');
+					//Spanner.appendImage(sb, BaseModule.this.memberDrawable);
+					//sb.append(' ');
 					Spanner.append(sb, word, 0, WordNetFactories.membersFactory);
 				}
 				while (cursor.moveToNext());
@@ -887,7 +867,7 @@ abstract public class BaseModule extends Module
 			}
 			else
 			{
-				TreeFactory.setTextNode(parent, sb);
+				TreeFactory.setTextNode(parent, sb, R.drawable.members);
 				changed = TreeOp.seq(UPDATE, parent);
 			}
 		}
@@ -951,7 +931,7 @@ abstract public class BaseModule extends Module
 			}
 			else
 			{
-				TreeFactory.setTextNode(parent, sb);
+				TreeFactory.setTextNode(parent, sb, R.drawable.sample);
 				changed = TreeOp.seq(UPDATE, parent);
 			}
 		}
