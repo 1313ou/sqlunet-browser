@@ -125,6 +125,9 @@
 	<string name="status_diagnostics_running">Running diagnostics…</string>
 	<string name="status_state_unknown" />
 
+	<!-- error -->
+	<string name="error_entry_not_found">Entry not found for %1$s</string>
+
 	<!-- pages -->
 	<string name="title_page_setup_status">Status</string>
 	<string name="title_page_setup_file">File</string>

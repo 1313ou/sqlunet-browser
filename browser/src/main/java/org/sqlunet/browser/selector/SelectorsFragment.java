@@ -7,6 +7,7 @@ package org.sqlunet.browser.selector;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.sqlunet.browser.BaseSelectorsListFragment;
 import org.sqlunet.browser.Module;
@@ -298,10 +301,20 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 		this.dataModel = new ViewModelProvider(this).get("selectors(word)", SqlunetViewModel.class);
 		this.dataModel.getData().observe(getViewLifecycleOwner(), cursor -> {
 
-			// pass on to list adapter
-			final CursorAdapter adapter = (CursorAdapter) getListAdapter();
-			assert adapter != null;
-			adapter.swapCursor(cursor);
+			if (cursor == null || cursor.getCount() <= 0)
+			{
+				final String html = getString(R.string.error_entry_not_found, "<b>" + this.word + "</b>");
+				final CharSequence message = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N ? Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY) : Html.fromHtml(html);
+				// Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
+				Snackbar.make(getView(), message, Snackbar.LENGTH_SHORT).show();
+			}
+			else
+			{
+				// pass on to list adapter
+				final CursorAdapter adapter = (CursorAdapter) getListAdapter();
+				assert adapter != null;
+				adapter.swapCursor(cursor);
+			}
 		});
 
 		// position model
