@@ -65,7 +65,7 @@ public class SenseModule extends SynsetModule
 			// synset
 			synset(this.synsetId, synsetNode, false);
 
-			// members2
+			// member set
 			members(this.synsetId, membersNode);
 
 			// morph
