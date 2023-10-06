@@ -58,7 +58,7 @@ public class RelationFragment extends TreeFragment
 		this.expand = true;
 		this.layoutId = R.layout.fragment_relation;
 		this.treeContainerId = R.id.data_contents;
-		this.headerId = R.string.wordnet_relations;
+		this.headerId = R.string.wordnet_tree;
 		this.iconId = R.drawable.wordnet;
 	}
 

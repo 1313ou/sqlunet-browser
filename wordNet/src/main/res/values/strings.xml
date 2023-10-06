@@ -11,6 +11,7 @@
 	<string name="wordnet_synsets" tools:keep="@string/wordnet_synsets">Synsets (WordNet)</string>
 	<string name="wordnet_sensekeys" tools:keep="@string/wordnet_sensekeys">SenseKeys (WordNet)</string>
 	<string name="wordnet_relations" tools:keep="@string/wordnet_relations">Relations (WordNet)</string>
+	<string name="wordnet_tree" tools:keep="@string/wordnet_tree">WordNet tree</string>
 	<string name="wordnet_blurb" tools:keep="@string/wordnet_blurb">&lt;b&gt;WordNet&lt;/b&gt;\ngroups English words into sets of synonyms called synsets,\nand records relations among these synonym sets or their members</string>
 
 	<string name="wordnet_word_" tools:keep="@string/wordnet_word_">Word</string>
