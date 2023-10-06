@@ -8,16 +8,16 @@
 	<color name="thetaBackColor">#FFFFFF</color>
 	<color name="thetaForeColor">#000000</color>
 
-	<color name="relationBackColor">#FFFFFF</color>
-	<color name="relationForeColor">#000000</color>
+	<color name="pbrelationBackColor">#FFFFFF</color>
+	<color name="pbrelationForeColor">#000000</color>
 
 	<array name="palette_pb">
 
 		<item>@color/thetaBackColor</item>
 		<item>@color/thetaForeColor</item>
 
-		<item>@color/relationBackColor</item>
-		<item>@color/relationForeColor</item>
+		<item>@color/pbrelationBackColor</item>
+		<item>@color/pbrelationForeColor</item>
 
 	</array>
 

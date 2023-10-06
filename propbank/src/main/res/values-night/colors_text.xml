@@ -8,7 +8,7 @@
 	<color name="thetaBackColor">#00000000</color>
 	<color name="thetaForeColor">#5A5ACA</color>
 
-	<color name="relationBackColor">#00000000</color>
-	<color name="relationForeColor">#CCCCCC</color>
+	<color name="pbrelationBackColor">#00000000</color>
+	<color name="pbrelationForeColor">#CCCCCC</color>
 
 </resources>
