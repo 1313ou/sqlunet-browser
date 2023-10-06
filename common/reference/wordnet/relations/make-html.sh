@@ -27,7 +27,7 @@ fi
 whereto=`readlink -m "${whereto}"`
 mkdir -p ${whereto}
 
-in_sem="hypernym.xml hyponym.xml holonym.xml meronym.xml similar.xml causes.xml caused.xml entails.xml entailed.xml attribute.xml similar.xml verbgroup.xml"
+in_sem="hypernym.xml hyponym.xml holonym.xml meronym.xml causes.xml caused.xml entails.xml entailed.xml attribute.xml similar.xml verbgroup.xml"
 in_lex="antonym.xml participle.xml pertainym.xml derivation.xml"
 in_both="also.xml"
 in_domain="domain.xml member.xml"
