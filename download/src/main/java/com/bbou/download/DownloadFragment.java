@@ -276,12 +276,13 @@ public class DownloadFragment extends BaseDownloadFragment
 			// augment with a dialog observer if fragment is live
 			assert this.toFile != null;
 			final String fileName = this.toFile.getName();
+			final String filePath = this.toFile.getAbsolutePath();
 			final TaskObserver.Observer<Number> fatObserver = new TaskDialogObserver<>(getParentFragmentManager()) // guarded, level 1
 					.setTitle(requireContext().getString(R.string.action_unzip_from_archive)) //
 					.setMessage(fileName);
 			final Task<String, Number, Boolean> task = new ObservedDelegatingTask<>(baseTask, fatObserver);
 			assert this.unzipDir != null;
-			task.execute(this.toFile.getAbsolutePath(), this.unzipDir.getAbsolutePath());
+			task.execute(filePath, this.unzipDir.getAbsolutePath());
 		}
 	}
 

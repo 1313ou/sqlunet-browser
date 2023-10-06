@@ -47,6 +47,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:paddingEnd="5dp"
+				android:paddingStart="0dp"
 				android:text="@string/size" />
 
 			<TextView
@@ -65,6 +66,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:paddingEnd="5dp"
+				android:paddingStart="0dp"
 				android:text="@string/date" />
 
 			<TextView
@@ -83,6 +85,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:paddingEnd="5dp"
+				android:paddingStart="0dp"
 				android:text="@string/etag" />
 
 			<TextView
@@ -101,6 +104,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:paddingEnd="5dp"
+				android:paddingStart="0dp"
 				android:text="@string/version" />
 
 			<TextView
@@ -119,6 +123,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:paddingEnd="5dp"
+				android:paddingStart="0dp"
 				android:text="@string/static_version" />
 
 			<TextView
@@ -166,6 +171,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:paddingEnd="5dp"
+				android:paddingStart="0dp"
 				android:text="@string/local_size" />
 
 			<TextView
@@ -184,6 +190,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:paddingEnd="5dp"
+				android:paddingStart="0dp"
 				android:text="@string/local_date" />
 
 			<TextView
@@ -202,6 +209,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:paddingEnd="5dp"
+				android:paddingStart="0dp"
 				android:text="@string/size" />
 
 			<TextView
@@ -220,6 +228,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:paddingEnd="5dp"
+				android:paddingStart="0dp"
 				android:text="@string/date" />
 
 			<TextView
@@ -238,6 +247,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:paddingEnd="5dp"
+				android:paddingStart="0dp"
 				android:text="@string/etag" />
 
 			<TextView
@@ -256,6 +266,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:paddingEnd="5dp"
+				android:paddingStart="0dp"
 				android:text="@string/version" />
 
 			<TextView
@@ -275,6 +286,7 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:paddingEnd="5dp"
+				android:paddingStart="0dp"
 				android:text="@string/static_version" />
 
 			<TextView
