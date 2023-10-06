@@ -4,8 +4,10 @@ source "./lib-artwork.sh"
 
 icon_list="alias.svg theta.svg trace.svg"
 asset_list=""
+search_list="ic_search_pbexample.svg"
 
 make_res "${icon_list}" 16
+make_res "${search_list}" 32
 
 rm ${dirassets}/images/propbank/*
 make_icon "${asset_list}" 16 "${dirassets}/images/propbank"
