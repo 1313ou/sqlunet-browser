@@ -10,6 +10,11 @@
 		app:key="pref_header_general"
 		app:title="@string/pref_header_general" />
 	<Preference
+		app:fragment="org.sqlunet.treeview.settings.TreePreferenceFragment"
+		app:icon="@drawable/ic_settings_tree"
+		app:key="pref_header_tree"
+		app:title="@string/pref_header_tree" />
+	<Preference
 		app:fragment="org.sqlunet.browser.config.SettingsActivity$FilterPreferenceFragment"
 		app:icon="@drawable/ic_settings_filter"
 		app:key="pref_header_filter"

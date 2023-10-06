@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
+  -->
+
+<resources>
+
+	<string name="pref_header_tree">Tree</string>
+	<string name="pref_tree_category">Tree options</string>
+
+	<!-- Tree ident -->
+	<string name="pref_title_tree_indent">Tree indentation</string>
+	<string name="pref_description_tree_indent">Tree child indentation factor in %</string>
+
+	<!-- Scroll 2D -->
+	<string name="pref_title_scroll_2d">Scroll 2D</string>
+	<string name="pref_description_scroll_2d">Tree views scroll both ways</string>
+
+	<!-- Use animation -->
+	<string name="pref_title_use_animation">Use animation</string>
+	<string name="pref_description_use_animation">Tree views use animation</string>
+
+</resources>
