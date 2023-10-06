@@ -6,7 +6,6 @@ package org.sqlunet.model;
 
 import android.os.Handler;
 import android.os.Looper;
-import android.text.SpannableStringBuilder;
 
 import org.sqlunet.treeview.control.ColdQueryController;
 import org.sqlunet.treeview.control.CompositeValue;
@@ -26,7 +25,6 @@ import org.sqlunet.treeview.control.TreeController;
 import org.sqlunet.treeview.model.TreeNode;
 
 import androidx.annotation.DrawableRes;
-import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 
 /**
@@ -195,11 +193,11 @@ public class TreeFactory
 	/**
 	 * Make hot (self-triggered) query node
 	 *
-	 * @param text        label text
-	 * @param icon        icon
-	 * @param breakExpand break expand flag
-	 * @param query       query
-	 * @param link        link
+	 * @param text           label text
+	 * @param icon           icon
+	 * @param breakExpand    break expand flag
+	 * @param query          query
+	 * @param link           link
 	 * @param buttonImageRes image drawable id for button, 0 for default
 	 * @return created node
 	 */
@@ -218,11 +216,11 @@ public class TreeFactory
 	/**
 	 * Make link query node
 	 *
-	 * @param text        label text
-	 * @param icon        icon
-	 * @param breakExpand break expand flag
-	 * @param query       query
-	 * @param link        link
+	 * @param text           label text
+	 * @param icon           icon
+	 * @param breakExpand    break expand flag
+	 * @param query          query
+	 * @param link           link
 	 * @param buttonImageRes image drawable id for button, 0 for default
 	 * @return created node
 	 */
@@ -246,8 +244,13 @@ public class TreeFactory
 		node.setEnabled(false);
 	}
 
-	public static void setTextNode(@NonNull final TreeNode node, final SpannableStringBuilder sb)
+	public static void setTextNode(@NonNull final TreeNode node, final CharSequence text)
 	{
-		node.setValue(sb);
+		node.setValue(text);
+	}
+
+	public static void setTextNode(@NonNull final TreeNode node, @NonNull final CharSequence text, @DrawableRes final int icon)
+	{
+		node.setValue(new CompositeValue(text, icon, null, null));
 	}
 }
