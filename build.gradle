@@ -14,7 +14,7 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:8.1.2'
-        classpath 'androidx.navigation:navigation-safe-args-gradle-plugin:2.7.3'
+        classpath 'androidx.navigation:navigation-safe-args-gradle-plugin:2.7.4'
     }
 }
 
@@ -36,9 +36,9 @@ allprojects {
         appcompatVersion = '1.6.1'
         fragmentVersion = '1.6.1'
         lifecycleVersion = '2.2.0'
-        navVersion = '2.7.3'
+        navVersion = '2.7.4'
         preferenceVersion = '1.2.1'
-        materialVersion = '1.9.0'
+        materialVersion = '1.10.0'
         annotationVersion = '1.6.0'
         desugaring = '2.0.3'
     }

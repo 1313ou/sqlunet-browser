@@ -20,7 +20,6 @@ import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.TextView;
 
 import org.sqlunet.browser.sn.R;
-import org.sqlunet.browser.sn.Settings;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.style.Factories;
 import org.sqlunet.style.RegExprSpanner;

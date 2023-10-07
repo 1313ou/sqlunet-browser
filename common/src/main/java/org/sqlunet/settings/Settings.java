@@ -13,12 +13,10 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
 
 import org.sqlunet.browser.common.R;
 import org.sqlunet.browser.config.SetupAsset;
 import org.sqlunet.provider.BaseProvider;
-import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.sql.PreparedStatement;
 
 import androidx.annotation.LayoutRes;
