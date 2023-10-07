@@ -56,8 +56,8 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 		final FragmentManager manager = getChildFragmentManager();
 
 		// args
-		final int recurse = Settings.getRecursePref(context);
-		final Bundle parameters = Settings.getRenderParametersPref(requireContext());
+		final int recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(context);
+		final Bundle parameters = org.sqlunet.wordnet.settings.Settings.getRenderParametersPref(requireContext());
 
 		final Bundle args = new Bundle();
 		args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, this.pointer);

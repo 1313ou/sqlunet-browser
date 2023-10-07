@@ -8,20 +8,6 @@
 
 	<PreferenceCategory android:title="@string/pref_tree_category">
 
-		<SwitchPreferenceCompat
-			android:defaultValue="false"
-			android:key="pref_scroll_2d"
-			android:summary="@string/pref_description_scroll_2d"
-			android:title="@string/pref_title_scroll_2d"
-			app:singleLineTitle="false" />
-
-		<SwitchPreferenceCompat
-			android:defaultValue="true"
-			android:key="pref_use_animation"
-			android:summary="@string/pref_description_use_animation"
-			android:title="@string/pref_title_use_animation"
-			app:singleLineTitle="false" />
-
 		<SeekBarPreference
 			android:defaultValue="100"
 			android:key="pref_tree_indent"
@@ -30,6 +16,29 @@
 			android:title="@string/pref_title_tree_indent"
 			app:min="30"
 			app:showSeekBarValue="true" />
+
+		<SeekBarPreference
+			android:defaultValue="100"
+			android:key="pref_tree_row_min_height"
+			android:max="400"
+			android:summary="@string/pref_description_tree_row_min_height"
+			android:title="@string/pref_title_tree_row_min_height"
+			app:min="100"
+			app:showSeekBarValue="true" />
+
+		<SwitchPreferenceCompat
+			android:defaultValue="true"
+			android:key="pref_use_animation"
+			android:summary="@string/pref_description_use_animation"
+			android:title="@string/pref_title_use_animation"
+			app:singleLineTitle="false" />
+
+		<SwitchPreferenceCompat
+			android:defaultValue="false"
+			android:key="pref_scroll_2d"
+			android:summary="@string/pref_description_scroll_2d"
+			android:title="@string/pref_title_scroll_2d"
+			app:singleLineTitle="false" />
 
 	</PreferenceCategory>
 

@@ -44,9 +44,9 @@ public class LinkQueryController extends ColdQueryController
 
 	@NonNull
 	@Override
-	public View createNodeView(@NonNull final Context context, @NonNull final TreeNode node, @NonNull final CompositeValue value)
+	public View createNodeView(@NonNull final Context context, @NonNull final TreeNode node, @NonNull final CompositeValue value, final int minHeight)
 	{
-		final View view = super.createNodeView(context, node, value);
+		final View view = super.createNodeView(context, node, value, minHeight);
 
 		// link button and listener
 		final ImageView hotLink = view.findViewById(R.id.node_link);

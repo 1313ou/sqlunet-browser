@@ -189,8 +189,8 @@ public class BrowseFragment extends BaseSearchFragment
 			if (query.startsWith("#ws"))
 			{
 				// parameters
-				final int recurse = Settings.getRecursePref(requireContext());
-				final Bundle parameters = Settings.getRenderParametersPref(requireContext());
+				final int recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(requireContext());
+				final Bundle parameters = org.sqlunet.wordnet.settings.Settings.getRenderParametersPref(requireContext());
 
 				final Parcelable synsetPointer = new SynsetPointer(id);
 				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
@@ -219,8 +219,8 @@ public class BrowseFragment extends BaseSearchFragment
 			if (query.startsWith("#wk"))
 			{
 				// parameters
-				final int recurse = Settings.getRecursePref(requireContext());
-				final Bundle parameters = Settings.getRenderParametersPref(requireContext());
+				final int recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(requireContext());
+				final Bundle parameters = org.sqlunet.wordnet.settings.Settings.getRenderParametersPref(requireContext());
 
 				final Parcelable senseKeyPointer = new SenseKeyPointer(id);
 				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SENSE);
@@ -234,8 +234,8 @@ public class BrowseFragment extends BaseSearchFragment
 		else
 		{
 			// parameters
-			final int recurse = Settings.getRecursePref(requireContext());
-			final Bundle parameters = Settings.getRenderParametersPref(requireContext());
+			final int recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(requireContext());
+			final Bundle parameters = org.sqlunet.wordnet.settings.Settings.getRenderParametersPref(requireContext());
 
 			// search for string
 			args.putString(ProviderArgs.ARG_QUERYSTRING, query);

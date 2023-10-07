@@ -82,15 +82,15 @@ public abstract class Controller<E>
 
 	@SuppressWarnings("unchecked")
 	@Nullable
-	public SubtreeView createView(@NonNull final Context context, final int containerStyle, final float treeIndentFactor)
+	public SubtreeView createView(@NonNull final Context context, final int containerStyle, final int treeIndent, final int treeRowMinHeight)
 	{
 		// node view
 		//noinspection unchecked
-		this.nodeView = createNodeView(context, this.node, (E) this.node.getValue());
+		this.nodeView = createNodeView(context, this.node, (E) this.node.getValue(), treeRowMinHeight);
 		assert this.nodeView != null;
 
 		// wrapper
-		this.subtreeView = new SubtreeView(context, containerStyle, treeIndentFactor, this.nodeView);
+		this.subtreeView = new SubtreeView(context, containerStyle, treeIndent, this.nodeView);
 		this.subtreeView.setTag(this.node);
 
 		// children view
@@ -126,12 +126,14 @@ public abstract class Controller<E>
 	/**
 	 * Create node view
 	 *
-	 * @param node  node
-	 * @param value value
+	 * @param context   context
+	 * @param node      node
+	 * @param value     value
+	 * @param minHeight min height
 	 * @return node view
 	 */
 	@Nullable
-	public abstract View createNodeView(@NonNull final Context context, final TreeNode node, final E value);
+	public abstract View createNodeView(@NonNull final Context context, final TreeNode node, final E value, final int minHeight);
 
 	/**
 	 * Get node view

@@ -49,11 +49,15 @@ public class TreeController extends Controller<CompositeValue>
 	@SuppressWarnings("WeakerAccess")
 	@NonNull
 	@Override
-	public View createNodeView(@NonNull final Context context, @NonNull final TreeNode node, @NonNull final CompositeValue value)
+	public View createNodeView(@NonNull final Context context, @NonNull final TreeNode node, @NonNull final CompositeValue value, final int minHeight)
 	{
 		final LayoutInflater inflater = LayoutInflater.from(context);
 		@SuppressLint("InflateParams") final View view = inflater.inflate(this.layoutRes, null, false);
 		assert view != null;
+		if (minHeight > 0)
+		{
+			view.setMinimumHeight(minHeight);
+		}
 
 		// junction icon (arrow)
 		this.junctionView = view.findViewById(R.id.junction_icon);

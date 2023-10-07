@@ -20,6 +20,14 @@
 			android:summary="@string/pref_description_display_lex_relation_name"
 			android:title="@string/pref_title_display_lex_relation_name"
 			app:singleLineTitle="false" />
+
+		<EditTextPreference
+			android:defaultValue="-1"
+			android:key="pref_relation_recurse"
+			android:inputType="number"
+			android:summary="@string/pref_description_relation_recursion"
+			android:title="@string/pref_title_relation_recursion" />
+
 	</PreferenceCategory>
 
 </PreferenceScreen>

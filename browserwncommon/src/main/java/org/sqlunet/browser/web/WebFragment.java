@@ -329,8 +329,8 @@ public class WebFragment extends Fragment
 						}
 
 						// parameters
-						final int recurse = Settings.getRecursePref(requireContext());
-						final Bundle parameters = Settings.getRenderParametersPref(requireContext());
+						final int recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(requireContext());
+						final Bundle parameters = org.sqlunet.wordnet.settings.Settings.getRenderParametersPref(requireContext());
 
 						targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, type);
 						targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);

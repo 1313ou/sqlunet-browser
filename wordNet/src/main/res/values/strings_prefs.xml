@@ -7,6 +7,8 @@
 	<string name="pref_title_display_lex_relation_name">Lexical relation name</string>
 	<string name="pref_description_display_sem_relation_name">Display semantic relation name (icon will be shown)</string>
 	<string name="pref_description_display_lex_relation_name">Display lexical relation name (icon will be shown)</string>
+	<string name="pref_title_relation_recursion">Relation max recursion</string>
+	<string name="pref_description_relation_recursion">Relation max recursion level (-1=unbounded, 0=none)</string>
 
 	<string name="pref_wordnet_category">WordNet</string>
 	<string name="pref_header_wordnet">WordNet</string>

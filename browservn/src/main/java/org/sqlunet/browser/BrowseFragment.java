@@ -137,7 +137,7 @@ public class BrowseFragment extends BaseSearchFragment
 			final long id = Long.parseLong(query.substring(3));
 
 			// parameters
-			final Bundle parameters = Settings.getRenderParametersPref(requireContext());
+			final Bundle parameters = org.sqlunet.wordnet.settings.Settings.getRenderParametersPref(requireContext());
 
 			// wordnet
 			if (query.startsWith("#ws"))

@@ -37,11 +37,15 @@ public class LinkNodeController extends Controller<CompositeValue>
 
 	@NonNull
 	@Override
-	public View createNodeView(@NonNull final Context context, final TreeNode node, @NonNull final CompositeValue value)
+	public View createNodeView(@NonNull final Context context, final TreeNode node, @NonNull final CompositeValue value, final int minHeight)
 	{
 		final LayoutInflater inflater = LayoutInflater.from(context);
 		@SuppressLint("InflateParams") final View view = inflater.inflate(R.layout.layout_node_link, null, false);
 		assert view != null;
+		if (minHeight > 0)
+		{
+			view.setMinimumHeight(minHeight);
+		}
 
 		// icon
 		final ImageView iconView = view.findViewById(R.id.node_icon);

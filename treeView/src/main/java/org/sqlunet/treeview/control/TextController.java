@@ -31,9 +31,14 @@ public class TextController extends Controller<Object>
 
 	@NonNull
 	@Override
-	public View createNodeView(@NonNull final Context context, final TreeNode node, final Object value)
+	public View createNodeView(@NonNull final Context context, final TreeNode node, final Object value, final int minHeight)
 	{
 		final TextView textView = new TextView(context);
+		if (minHeight > 0)
+		{
+			textView.setMinimumHeight(minHeight);
+		}
+
 		if (value instanceof CompositeValue)
 		{
 			final CompositeValue data = (CompositeValue) value;

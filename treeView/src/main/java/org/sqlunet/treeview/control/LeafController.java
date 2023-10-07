@@ -4,6 +4,7 @@
 
 package org.sqlunet.treeview.control;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,10 +42,15 @@ public class LeafController extends Controller<CompositeValue>
 
 	@NonNull
 	@Override
-	public View createNodeView(@NonNull final Context context, final TreeNode node, @NonNull final CompositeValue value)
+	public View createNodeView(@NonNull final Context context, final TreeNode node, @NonNull final CompositeValue value, final int treeRowMinHeight)
 	{
 		final LayoutInflater inflater = LayoutInflater.from(context);
-		final View view = inflater.inflate(this.layoutRes, null, false);
+		@SuppressLint("InflateParams") final View view = inflater.inflate(this.layoutRes, null, false);
+		assert view != null;
+		if (treeRowMinHeight > 0)
+		{
+			view.setMinimumHeight(treeRowMinHeight);
+		}
 
 		// junction
 		// final ImageView junctionView = (ImageView) view.findViewById(R.id.junction_icon);

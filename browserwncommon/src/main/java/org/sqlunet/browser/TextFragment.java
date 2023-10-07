@@ -174,8 +174,8 @@ public class TextFragment extends AbstractTableFragment
 				if ("synset".equals(subtarget))
 				{
 					// parameters
-					final int recurse = Settings.getRecursePref(requireContext());
-					final Bundle parameters = Settings.getRenderParametersPref(requireContext());
+					final int recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(requireContext());
+					final Bundle parameters = org.sqlunet.wordnet.settings.Settings.getRenderParametersPref(requireContext());
 
 					// target
 					final int colIdx = cursor.getColumnIndex("synsetid");

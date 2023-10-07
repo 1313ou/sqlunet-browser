@@ -33,11 +33,5 @@
 		android:key="pref_enable_bnc"
 		android:summary="@string/pref_description_enable_bnc"
 		android:title="@string/pref_title_enable_bnc" />
-	<EditTextPreference
-		android:defaultValue="-1"
-		android:key="pref_relation_recurse"
-		android:inputType="number"
-		android:summary="@string/pref_description_relation_recursion"
-		android:title="@string/pref_title_relation_recursion" />
 
 </PreferenceScreen>

@@ -29,7 +29,7 @@ public class RootController extends Controller<Void>
 
 	@Nullable
 	@Override
-	public View createNodeView(@NonNull final Context context, final TreeNode node, final Void value)
+	public View createNodeView(@NonNull final Context context, final TreeNode node, final Void value, final int minHeight)
 	{
 		return null;
 	}

@@ -34,9 +34,9 @@ public class LinkLeafController extends LeafController
 
 	@NonNull
 	@Override
-	public View createNodeView(@NonNull final Context context, final TreeNode node, @NonNull final CompositeValue value)
+	public View createNodeView(@NonNull final Context context, final TreeNode node, @NonNull final CompositeValue value, final int minHeight)
 	{
-		final View view = super.createNodeView(context, node, value);
+		final View view = super.createNodeView(context, node, value, minHeight);
 
 		// link listener
 		final View hotLink = view.findViewById(R.id.node_link);

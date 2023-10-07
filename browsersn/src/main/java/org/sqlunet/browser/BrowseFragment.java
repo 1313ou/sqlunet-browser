@@ -224,8 +224,8 @@ public class BrowseFragment extends BaseSearchFragment
 		*/
 
 		// parameters
-		final int recurse = Settings.getRecursePref(requireContext());
-		final Bundle parameters = Settings.getRenderParametersPref(requireContext());
+		final int recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(requireContext());
+		final Bundle parameters = org.sqlunet.wordnet.settings.Settings.getRenderParametersPref(requireContext());
 
 		// menuDispatch as per query prefix
 		@SuppressWarnings("TooBroadScope") Fragment fragment = null;

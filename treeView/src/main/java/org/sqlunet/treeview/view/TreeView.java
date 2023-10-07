@@ -6,8 +6,10 @@ package org.sqlunet.treeview.view;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.TypedArray;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
@@ -24,6 +26,7 @@ import org.sqlunet.treeview.control.CompositeValue;
 import org.sqlunet.treeview.control.Controller;
 import org.sqlunet.treeview.control.RootController;
 import org.sqlunet.treeview.model.TreeNode;
+import org.sqlunet.treeview.settings.Settings;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,6 +37,7 @@ import java.util.Set;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
+import androidx.annotation.StyleableRes;
 import androidx.core.widget.NestedScrollView;
 import androidx.preference.PreferenceManager;
 
@@ -75,12 +79,6 @@ public class TreeView
 
 	static private final float ANIMATION_DP_PER_MS = 3.f;
 
-	static private final String PREF_SCROLL_2D = "pref_scroll_2d";
-
-	static private final String PREF_USE_ANIMATION = "pref_use_animation";
-
-	static private final String PREF_TREE_INDENT = "pref_tree_indent";
-
 	/**
 	 * Root node
 	 */
@@ -110,7 +108,12 @@ public class TreeView
 	/**
 	 * Tree indent factor to apply to default value
 	 */
-	private float treeIndentFactor;
+	private final int treeIndent;
+
+	/**
+	 * Tree row min height
+	 */
+	private final int treeRowMinHeight;
 
 	/**
 	 * Node click listener
@@ -144,11 +147,14 @@ public class TreeView
 	{
 		this.root = root;
 		this.context = context;
-		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-		this.useAnimation = prefs.getBoolean(PREF_USE_ANIMATION, true);
-		this.use2dScroll = prefs.getBoolean(PREF_SCROLL_2D, false);
-		this.treeIndentFactor = prefs.getInt(PREF_TREE_INDENT, 0) / 100F;
 		this.containerStyle = R.style.TreeNodeStyleCustom; // R.style.TreeNodeStyleDivided
+
+		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		this.useAnimation = prefs.getBoolean(Settings.PREF_USE_ANIMATION, true);
+		this.use2dScroll = prefs.getBoolean(Settings.PREF_SCROLL_2D, false);
+		final ContextThemeWrapper containerContext = new ContextThemeWrapper(context, this.containerStyle);
+		this.treeIndent = computeIndent(containerContext, Settings.getTreeIndent(prefs));
+		this.treeRowMinHeight = computeRowMinHeight(containerContext, Settings.getTreeRowMinHeight(prefs));
 		this.containerStyleAppliesToRoot = false;
 	}
 
@@ -263,7 +269,7 @@ public class TreeView
 			subtreeView.removeNodeView(nodeView);
 
 			// new node view
-			final View newNodeView = controller.createNodeView(this.context, node, node.getValue());
+			final View newNodeView = controller.createNodeView(this.context, node, node.getValue(), this.treeRowMinHeight);
 			assert newNodeView != null;
 			controller.setNodeView(newNodeView);
 
@@ -403,7 +409,7 @@ public class TreeView
 		SubtreeView subtreeView = controller.getSubtreeView();
 		if (subtreeView == null)
 		{
-			subtreeView = controller.createView(this.context, this.containerStyle, this.treeIndentFactor);
+			subtreeView = controller.createView(this.context, this.containerStyle, this.treeIndent, this.treeRowMinHeight);
 		}
 		final SubtreeView view = subtreeView;
 
@@ -961,13 +967,47 @@ public class TreeView
 	}
 
 	/**
-	 * Set tree child indent
+	 * Compute tree child indent
 	 *
-	 * @param treeIndentFactor Tree indent factor to apply to default value
+	 * @param factor Tree indent factor to apply to default value
 	 */
-	public void setIndent(final float treeIndentFactor)
+	@SuppressLint("ResourceType")
+	public int computeIndent(final Context context, final float factor)
 	{
-		this.treeIndentFactor = treeIndentFactor;
+		if (factor != -1F)
+		{
+			@StyleableRes int[] attrs = {android.R.attr.paddingStart, android.R.attr.paddingLeft};
+			TypedArray ta = context.obtainStyledAttributes(this.containerStyle, attrs);
+			int defaultValue = ta.getDimensionPixelSize(0, 0);
+			if (defaultValue == 0)
+			{
+				defaultValue = ta.getDimensionPixelSize(1, 0);
+			}
+			ta.recycle();
+
+			int value = (int) (defaultValue * factor);
+			Log.d("INDENT ", "default " + defaultValue + " new " + value + " factor " + factor);
+			return value;
+		}
+		return -1;
+	}
+
+	/**
+	 * Compute tree row min height
+	 *
+	 * @param factor Tree row min height factor to apply to default value
+	 */
+	@SuppressLint("ResourceType")
+	public int computeRowMinHeight(final Context context, final float factor)
+	{
+		if (factor != -1F)
+		{
+			int defaultValue = context.getResources().getDimensionPixelSize(R.dimen.height_row_min);
+			int value = (int) (defaultValue * factor);
+			Log.d("ROW HEIGHT ", "default " + defaultValue + " new " + value + " factor " + factor);
+			return value;
+		}
+		return -1;
 	}
 
 	// C L I C K

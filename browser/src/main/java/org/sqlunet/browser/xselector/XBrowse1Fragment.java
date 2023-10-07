@@ -146,8 +146,8 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements XSelectorsF
 		else
 		{
 			// in single-pane mode, simply start the detail activity for the selected item ID.
-			final int recurse = Settings.getRecursePref(requireContext());
-			final Bundle parameters = Settings.getRenderParametersPref(requireContext());
+			final int recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(requireContext());
+			final Bundle parameters = org.sqlunet.wordnet.settings.Settings.getRenderParametersPref(requireContext());
 
 			final Bundle args = new Bundle();
 			args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer);
