@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -38,30 +39,31 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 import androidx.annotation.StyleableRes;
-import androidx.core.widget.NestedScrollView;
+import androidx.core.util.Pair;
 import androidx.preference.PreferenceManager;
 
 import static android.view.ViewGroup.FOCUS_BLOCK_DESCENDANTS;
 
 /* @formatter:off */
 /*
-NestedScrollView/ScrollView2D
-	LinearLayout id/treeview
-		SubtreeView
-			RelativeLayout id/node_label
-				LinearLayout
-					AppCompatImageView id/node_junction
-					AppCompatImageView id/node_icon
-					AppCompatTextView id/node_value
-			LinearLayout id/node_children
-				SubtreeView
-					RelativeLayout id/node_label
-						TextView
-					LinearLayout id/node_children
-				SubtreeView
-					RelativeLayout id/node_label
-						TextView
-					LinearLayout id/node_children
+NestedScrollView, wrapper bottom
+	(HorizontalScrollView)  wrapper bottom
+		LinearLayout id/tree_view
+			SubtreeView
+				RelativeLayout id/node_label
+					LinearLayout
+						AppCompatImageView id/node_junction
+						AppCompatImageView id/node_icon
+						AppCompatTextView id/node_value
+				LinearLayout id/node_children
+					SubtreeView
+						RelativeLayout id/node_label
+							TextView
+						LinearLayout id/node_children
+					SubtreeView
+						RelativeLayout id/node_label
+							TextView
+						LinearLayout id/node_children
  */
 /* @formatter:on */
 
@@ -71,9 +73,9 @@ NestedScrollView/ScrollView2D
  * @author Bogdan Melnychuk on 2/10/15.
  * @author Bernard Bou
  */
-public class TreeView
+public class TreeViewFactory
 {
-	private static final String TAG = "TreeView";
+	private static final String TAG = "TreeViewFactory";
 
 	static private final String NODES_PATH_SEPARATOR = ";";
 
@@ -85,9 +87,9 @@ public class TreeView
 	private final TreeNode root;
 
 	/**
-	 * (Top) scroll view
+	 * (Top) tree view, immediately above root, a nested scroll view or horizontal scroll view
 	 */
-	private View view;
+	private View treeView;
 
 	/**
 	 * Context
@@ -130,11 +132,6 @@ public class TreeView
 	 */
 	private final boolean useAnimation;
 
-	/**
-	 * Use 2D scrolling
-	 */
-	private final boolean use2dScroll;
-
 	// C O N S T R U C T O R
 
 	/**
@@ -143,7 +140,7 @@ public class TreeView
 	 * @param context context
 	 * @param root    root
 	 */
-	public TreeView(@NonNull final Context context, final TreeNode root)
+	public TreeViewFactory(@NonNull final Context context, final TreeNode root)
 	{
 		this.root = root;
 		this.context = context;
@@ -151,7 +148,6 @@ public class TreeView
 
 		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		this.useAnimation = prefs.getBoolean(Settings.PREF_USE_ANIMATION, true);
-		this.use2dScroll = prefs.getBoolean(Settings.PREF_SCROLL_2D, false);
 		final ContextThemeWrapper containerContext = new ContextThemeWrapper(context, this.containerStyle);
 		this.treeIndent = computeIndent(containerContext, Settings.getTreeIndent(prefs));
 		this.treeRowMinHeight = computeRowMinHeight(containerContext, Settings.getTreeRowMinHeight(prefs));
@@ -177,44 +173,39 @@ public class TreeView
 	 *
 	 * @return top (scrolling) view
 	 */
-	public View getView()
+	public View getTreeView()
 	{
-		return view;
+		return treeView;
 	}
 
 	/**
 	 * View factory
 	 *
+	 * @param use2dScroll horizontal and vertical scrolling
 	 * @return view
 	 */
 	@NonNull
-	public View makeView()
+	public View makeTreeView(@NonNull final LayoutInflater inflater, final boolean use2dScroll)
 	{
-		return makeView(0);
+		return makeTreeView(inflater, use2dScroll, 0);
 	}
 
 	/**
 	 * View factory
 	 *
-	 * @param style style
+	 * @param use2dScroll horizontal and vertical scrolling
+	 * @param style       style
 	 * @return view
 	 */
 	@NonNull
-	private View makeView(@SuppressWarnings("SameParameterValue") final int style)
+	private View makeTreeView(@NonNull final LayoutInflater inflater, final boolean use2dScroll, @SuppressWarnings("SameParameterValue") final int style)
 	{
 		// Log.d(TAG, "Make tree view");
 
 		// top scrollview
-		final ViewGroup view;
-		if (style > 0)
-		{
-			final ContextThemeWrapper newContext = new ContextThemeWrapper(this.context, style);
-			view = this.use2dScroll ? new ScrollView2D(newContext) : new NestedScrollView(newContext);
-		}
-		else
-		{
-			view = this.use2dScroll ? new ScrollView2D(this.context) : new NestedScrollView(this.context);
-		}
+		final Pair<View, ViewGroup> wrapper = makeWrapper(inflater, use2dScroll, style);
+		final View containerView = wrapper.first;
+		final ViewGroup anchor = wrapper.second;
 
 		// context
 		Context containerContext = this.context;
@@ -231,7 +222,7 @@ public class TreeView
 		contentView.setFocusableInTouchMode(true);
 		contentView.setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
 		contentView.setVisibility(View.GONE);
-		view.addView(contentView);
+		anchor.addView(contentView);
 
 		// root
 		final RootController rootController = (RootController) this.root.getController();
@@ -239,9 +230,32 @@ public class TreeView
 		rootController.setContentView(contentView);
 
 		// keep reference
-		this.view = view;
+		this.treeView = anchor;
 
-		return view;
+		return containerView;
+	}
+
+	/**
+	 * Make wrapper
+	 * A hierarchy of views to wrap the tree node, usually a single NestedScrollView or NestedScrollView|HorizontalScrollView, that
+	 * - offers the tree wrapped as a view for inclusion in a fragment (upwards) and
+	 * - offers an anchor point to tree content (downwards).
+	 *
+	 * @param inflater    inflater
+	 * @param use2dScroll whether to use 2D scrolling
+	 * @param style       style
+	 * @return pair consisting of the wrapped top view and bottom anchor group view; they may be identical
+	 */
+	private Pair<View, ViewGroup> makeWrapper(@NonNull final LayoutInflater inflater, final boolean use2dScroll, final int style)
+	{
+		@NonNull Context context = this.context;
+		if (style > 0)
+		{
+			context = new ContextThemeWrapper(context, style);
+		}
+		View top = inflater.inflate(use2dScroll ? R.layout.layout_top_2d : R.layout.layout_top, null, false);
+		ViewGroup anchor = top.findViewById(R.id.tree_view_anchor);
+		return new Pair<>(top, anchor);
 	}
 
 	// M O D I F Y
@@ -541,7 +555,7 @@ public class TreeView
 	{
 		final TreeNode parent = node.getParent();
 		assert parent != null;
-		if (TreeView.isExpanded(parent))
+		if (TreeViewFactory.isExpanded(parent))
 		{
 			return insertNodeView(parent, node);
 		}
@@ -618,8 +632,8 @@ public class TreeView
 		{
 			return false;
 		}
-		TreeView.this.view.scrollTo(0, y);
-		//((NestedScrollView)TreeView.this.view).smoothScrollTo(0, y);
+		TreeViewFactory.this.treeView.scrollTo(0, y);
+		//((NestedScrollView)TreeViewFactory.this.view).smoothScrollTo(0, y);
 		return true;
 	}
 
@@ -627,12 +641,12 @@ public class TreeView
 	{
 		int y = view.getTop();
 		View parent = (View) view.getParent();
-		while (parent != this.view)
+		while (parent != this.treeView)
 		{
 			y += parent.getTop();
 			parent = (View) parent.getParent();
 		}
-		return (int) (y + this.view.getTranslationY());
+		return (int) (y + this.treeView.getTranslationY());
 	}
 
 	// E X P A N D  /  C O L L A P S E
