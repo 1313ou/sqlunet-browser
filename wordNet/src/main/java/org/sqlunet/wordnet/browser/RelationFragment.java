@@ -124,6 +124,12 @@ public class RelationFragment extends TreeFragment
 		return module;
 	}
 
+	@Override
+	protected boolean getScroll2D()
+	{
+		return true;
+	}
+
 	/**
 	 * Set expand container
 	 */
