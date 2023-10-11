@@ -187,23 +187,10 @@ public class TreeViewer
 	@NonNull
 	public View makeTreeView(@NonNull final LayoutInflater inflater, final boolean use2dScroll)
 	{
-		return makeTreeView(inflater, use2dScroll, 0);
-	}
-
-	/**
-	 * View factory
-	 *
-	 * @param use2dScroll horizontal and vertical scrolling
-	 * @param style       style
-	 * @return view
-	 */
-	@NonNull
-	private View makeTreeView(@NonNull final LayoutInflater inflater, final boolean use2dScroll, @SuppressWarnings("SameParameterValue") final int style)
-	{
 		// Log.d(TAG, "Make tree view");
 
 		// top scrollview
-		final Pair<View, ViewGroup> wrapper = makeWrapper(inflater, use2dScroll, style);
+		final Pair<View, ViewGroup> wrapper = makeWrapper(inflater, use2dScroll);
 		final View containerView = wrapper.first;
 		final ViewGroup anchor = wrapper.second;
 
@@ -243,16 +230,10 @@ public class TreeViewer
 	 *
 	 * @param inflater    inflater
 	 * @param use2dScroll whether to use 2D scrolling
-	 * @param style       style
 	 * @return pair consisting of the wrapped top view and bottom anchor group view; they may be identical
 	 */
-	private Pair<View, ViewGroup> makeWrapper(@NonNull final LayoutInflater inflater, final boolean use2dScroll, final int style)
+	private Pair<View, ViewGroup> makeWrapper(@NonNull final LayoutInflater inflater, final boolean use2dScroll)
 	{
-		@NonNull Context context = this.context;
-		if (style > 0)
-		{
-			context = new ContextThemeWrapper(context, style);
-		}
 		View top = inflater.inflate(use2dScroll ? R.layout.layout_top_2d : R.layout.layout_top, null, false);
 		ViewGroup anchor = top.findViewById(R.id.tree_view_anchor);
 		return new Pair<>(top, anchor);
