@@ -20,6 +20,7 @@ import org.sqlunet.browser.xn.Settings;
 import org.sqlunet.provider.ProviderArgs;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -36,7 +37,7 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements XSelectorsF
 	// C R E A T I O N
 
 	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
 		Log.d(TAG, "lifecycle: onCreate");
 

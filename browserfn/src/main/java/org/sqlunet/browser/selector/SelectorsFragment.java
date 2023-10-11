@@ -118,7 +118,7 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 	}
 
 	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
 		Log.d(TAG, "lifecycle: onCreateView (3) " + this);
 		return inflater.inflate(R.layout.fragment_selectors, container, false);

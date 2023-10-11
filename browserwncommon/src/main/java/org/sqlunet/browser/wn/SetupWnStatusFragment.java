@@ -29,6 +29,7 @@ import org.sqlunet.settings.StorageUtils;
 import java.io.File;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.widget.ImageViewCompat;
 
 /**
@@ -54,7 +55,7 @@ public class SetupWnStatusFragment extends org.sqlunet.browser.config.SetupStatu
 	}
 
 	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
 		// view
 		final View view = super.onCreateView(inflater, container, savedInstanceState);

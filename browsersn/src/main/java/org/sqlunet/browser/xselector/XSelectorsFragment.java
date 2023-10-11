@@ -41,7 +41,7 @@ public class XSelectorsFragment extends BaseSelectorsFragment implements Selecto
 	// V I E W
 
 	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
 		return inflater.inflate(R.layout.fragment_xselectors, container, false);
 	}

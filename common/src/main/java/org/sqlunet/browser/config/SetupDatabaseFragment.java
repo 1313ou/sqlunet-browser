@@ -21,6 +21,7 @@ import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Manage fragment
@@ -45,7 +46,7 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 	}
 
 	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
 		final View view = super.onCreateView(inflater, container, savedInstanceState);
 

@@ -25,6 +25,7 @@ import android.widget.Toast;
 import org.sqlunet.browser.common.R;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -50,7 +51,7 @@ public class HelpFragment extends Fragment
 
 	@SuppressLint("SetJavaScriptEnabled")
 	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
 		try
 		{

@@ -58,7 +58,7 @@ public class AssetLoadFragment extends Fragment implements TaskObserver.Observer
 	}
 
 	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
 		return inflater.inflate(R.layout.fragment_assetload, container, false);
 	}

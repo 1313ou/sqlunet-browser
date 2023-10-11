@@ -145,7 +145,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	@Nullable
 	@SuppressLint("InflateParams")
 	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
 		Log.d(TAG, "on create view " + this + " from " + savedInstanceState);
 

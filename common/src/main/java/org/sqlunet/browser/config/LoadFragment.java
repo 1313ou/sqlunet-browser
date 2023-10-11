@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import org.sqlunet.browser.common.R;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 /**
@@ -32,7 +33,7 @@ public class LoadFragment extends Fragment
 	{}
 
 	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
 		// inflate
 		final View view = inflater.inflate(R.layout.fragment_load, container, false);

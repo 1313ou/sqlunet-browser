@@ -28,7 +28,7 @@ public class SqlDialogFragment extends DialogFragment
 {
 	@Nullable
 	@Override
-	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
 		final Dialog dialog = getDialog();
 		assert dialog != null;

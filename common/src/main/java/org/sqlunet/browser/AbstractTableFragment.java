@@ -54,7 +54,7 @@ public abstract class AbstractTableFragment extends ListFragment
 	abstract protected ViewBinder makeViewBinder();
 
 	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
 		// view
 		final View view = inflater.inflate(R.layout.fragment_table, container, false);

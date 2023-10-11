@@ -186,7 +186,7 @@ public class ExpandableListFragment extends Fragment implements ExpandableListVi
 	 */
 	@Nullable
 	@Override
-	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
 		return inflater.inflate(R.layout.expandable_list_fragment, container, false);
 	}
