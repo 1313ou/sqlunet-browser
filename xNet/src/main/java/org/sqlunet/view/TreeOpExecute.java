@@ -11,7 +11,7 @@ import org.sqlunet.browser.TreeFragment;
 import org.sqlunet.treeview.control.CompositeValue;
 import org.sqlunet.treeview.control.Controller;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.view.TreeView;
+import org.sqlunet.treeview.view.TreeViewer;
 import org.sqlunet.view.TreeOp.TreeOpCode;
 
 import androidx.annotation.NonNull;
@@ -44,7 +44,7 @@ public class TreeOpExecute
 
 	private void execImpl(@NonNull final TreeOp[] ops)
 	{
-		final TreeView treeView = this.fragment.getTreeView();
+		final TreeViewer treeView = this.fragment.getTreeViewer();
 		if (treeView == null)
 		{
 			return;
@@ -64,7 +64,7 @@ public class TreeOpExecute
 		}
 	}
 
-	private void execOp(@NonNull final TreeOp op, @NonNull final TreeView treeView, final int levels)
+	private void execOp(@NonNull final TreeOp op, @NonNull final TreeViewer treeViewer, final int levels)
 	{
 		final TreeOpCode code = op.getCode();
 		final TreeNode node = op.getNode();
@@ -82,10 +82,10 @@ public class TreeOpExecute
 			case NEWTREE:
 			{
 				// Log.d(TAG, "vvv " + op.getCode() + " " + node.toString());
-				final View view = treeView.expandNode(node, -1, false, false);
+				final View view = treeViewer.expandNode(node, -1, false, false);
 				if (node.getController().takeEnsureVisible())
 				{
-					treeView.ensureVisible(view);
+					treeViewer.ensureVisible(view);
 				}
 			}
 			break;
@@ -100,10 +100,10 @@ public class TreeOpExecute
 			case NEWUNIQUE:
 			{
 				// Log.d(TAG, "... " + op.getCode() + " " + node.toString());
-				final View view = treeView.newNodeView(node, levels);
+				final View view = treeViewer.newNodeView(node, levels);
 				if (node.getController().takeEnsureVisible())
 				{
-					treeView.ensureVisible(view);
+					treeViewer.ensureVisible(view);
 				}
 			}
 			break;
@@ -111,10 +111,10 @@ public class TreeOpExecute
 			case UPDATE:
 			{
 				// Log.d(TAG, "!!! " + op.getCode() + " " + node.toString());
-				final View view = treeView.update(node);
+				final View view = treeViewer.update(node);
 				if (node.getController().takeEnsureVisible() && view != null)
 				{
-					treeView.ensureVisible(view);
+					treeViewer.ensureVisible(view);
 				}
 			}
 			break;
@@ -123,10 +123,10 @@ public class TreeOpExecute
 			{
 				final Controller<?> controller = node.getController();
 				final ViewGroup childrenView = controller.getChildrenView();
-				if (childrenView != null && TreeView.isExpanded(node))
+				if (childrenView != null && TreeViewer.isExpanded(node))
 				{
 					// Log.d(TAG, "^^^ " + op.getCode() + " " + node.toString());
-					treeView.collapseNode(node, true);
+					treeViewer.collapseNode(node, true);
 				}
 			}
 			break;
@@ -134,7 +134,7 @@ public class TreeOpExecute
 			case REMOVE:
 			{
 				// Log.d(TAG, "--- " + op.getCode() + " " + node.toString());
-				treeView.remove(node);
+				treeViewer.remove(node);
 			}
 			break;
 
@@ -143,7 +143,7 @@ public class TreeOpExecute
 			case DEADEND:
 			{
 				// Log.d(TAG, "xxx " + op.getCode() + " " + node.toString());
-				treeView.deadend(node);
+				treeViewer.deadend(node);
 			}
 			break;
 

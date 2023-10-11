@@ -4,6 +4,7 @@
 
 package org.sqlunet.browser;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,13 +13,15 @@ import android.view.ViewGroup;
 import org.sqlunet.model.TreeFactory;
 import org.sqlunet.treeview.control.RootController;
 import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.treeview.view.TreeView;
+import org.sqlunet.treeview.settings.Settings;
+import org.sqlunet.treeview.view.TreeViewer;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 
 /**
  * A fragment representing a synset.
@@ -39,7 +42,7 @@ abstract public class TreeFragment extends Fragment
 	 * Tree view
 	 */
 	@Nullable
-	private TreeView treeView;
+	private TreeViewer treeViewer;
 
 	// Data
 
@@ -87,17 +90,25 @@ abstract public class TreeFragment extends Fragment
 		final ViewGroup treeContainer = view.findViewById(this.treeContainerId);
 
 		// tree
-		// Log.d(TAG, "Create treeview");
-		this.treeView = new TreeView(requireContext(), this.treeRoot);
-		treeContainer.addView(this.treeView.makeView());
+		// Log.d(TAG, "Create tree");
+		boolean use2dScroll = getScroll2D();
+		this.treeViewer = new TreeViewer(requireContext(), this.treeRoot);
+		final View treeview = this.treeViewer.makeTreeView(inflater, use2dScroll);
+		treeContainer.addView(treeview);
 
 		// saved state
 		//if (savedInstanceState != null)
 		//{
-			// Log.d(TAG, "Restore instance state " + this);
+		// Log.d(TAG, "Restore instance state " + this);
 		//}
 
 		return view;
+	}
+
+	protected boolean getScroll2D()
+	{
+		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(requireContext());
+		return prefs.getBoolean(Settings.PREF_SCROLL_2D, false);
 	}
 
 	@Override
@@ -105,8 +116,8 @@ abstract public class TreeFragment extends Fragment
 	{
 		super.onStart();
 		// Log.d(TAG, "Expand treeview");
-		assert this.treeView != null;
-		this.treeView.expandAll();
+		assert this.treeViewer != null;
+		this.treeViewer.expandAll();
 	}
 
 	@Override
@@ -117,8 +128,8 @@ abstract public class TreeFragment extends Fragment
 	}
 
 	@Nullable
-	public TreeView getTreeView()
+	public TreeViewer getTreeViewer()
 	{
-		return this.treeView;
+		return this.treeViewer;
 	}
 }

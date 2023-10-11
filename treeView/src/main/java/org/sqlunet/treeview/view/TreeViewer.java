@@ -68,14 +68,14 @@ NestedScrollView, wrapper bottom
 /* @formatter:on */
 
 /**
- * Tree view
+ * Tree viewer, makes and manages tree view
  *
  * @author Bogdan Melnychuk on 2/10/15.
  * @author Bernard Bou
  */
-public class TreeViewFactory
+public class TreeViewer
 {
-	private static final String TAG = "TreeViewFactory";
+	private static final String TAG = "TreeViewer";
 
 	static private final String NODES_PATH_SEPARATOR = ";";
 
@@ -140,7 +140,7 @@ public class TreeViewFactory
 	 * @param context context
 	 * @param root    root
 	 */
-	public TreeViewFactory(@NonNull final Context context, final TreeNode root)
+	public TreeViewer(@NonNull final Context context, final TreeNode root)
 	{
 		this.root = root;
 		this.context = context;
@@ -555,7 +555,7 @@ public class TreeViewFactory
 	{
 		final TreeNode parent = node.getParent();
 		assert parent != null;
-		if (TreeViewFactory.isExpanded(parent))
+		if (TreeViewer.isExpanded(parent))
 		{
 			return insertNodeView(parent, node);
 		}
@@ -632,8 +632,8 @@ public class TreeViewFactory
 		{
 			return false;
 		}
-		TreeViewFactory.this.treeView.scrollTo(0, y);
-		//((NestedScrollView)TreeViewFactory.this.view).smoothScrollTo(0, y);
+		TreeViewer.this.treeView.scrollTo(0, y);
+		//((NestedScrollView)TreeViewer.this.view).smoothScrollTo(0, y);
 		return true;
 	}
 
