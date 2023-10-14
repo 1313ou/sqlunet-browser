@@ -4,6 +4,7 @@
 
 package com.bbou.others;
 
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -127,20 +128,24 @@ public class OthersActivity extends AppCompatActivity
 		install(getString(R.string.semantikos_sn_uri));
 	}
 
-	private void install(final String uri)
+	static public void install(final String uri, @NonNull Activity activity)
 	{
 		final Intent goToMarket = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(uri));
 		try
 		{
-			startActivity(goToMarket);
+			activity.startActivity(goToMarket);
 		}
 		catch (@NonNull final ActivityNotFoundException e)
 		{
-			String message = getString(R.string.market_fail);
+			String message = activity.getString(R.string.market_fail);
 			message += ' ';
 			message += uri;
-			Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+			Toast.makeText(activity, message, Toast.LENGTH_LONG).show();
 		}
+	}
+	private void install(final String uri)
+	{
+		install(uri, this);
 	}
 
 	static private boolean isAppInstalled(@NonNull final String uri, @NonNull final Context context)

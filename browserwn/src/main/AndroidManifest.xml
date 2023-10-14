@@ -70,7 +70,7 @@
 			android:noHistory="true" />
 
 		<activity
-			android:name="org.sqlunet.browser.MainActivity"
+			android:name="org.sqlunet.browser.wn.MainActivity"
 			android:exported="false"
 			android:launchMode="singleTop">
 			<intent-filter>

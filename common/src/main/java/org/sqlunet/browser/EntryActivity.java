@@ -105,7 +105,7 @@ public class EntryActivity extends AppCompatActivity
 		}
 
 		// switch as per preferred launch mode
-		final String clazz = Settings.getLaunchPref(this); // = "org.sqlunet.browser.MainActivity";
+		final String clazz = Settings.getLaunchPref(this); // = "org.sqlunet.browser.MainActivity" or overriding "org.sqlunet.browser.wn.MainActivity";
 		final Intent intent = new Intent();
 		intent.setClassName(this, clazz);
 		intent.addFlags(0);

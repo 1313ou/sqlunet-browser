@@ -552,6 +552,7 @@ public class Settings
 				.remove(PREF_DOWNLOAD_MODE) //
 				.remove(PREF_DOWNLOAD_SITE) //
 				.remove(PREF_DOWNLOAD_DBFILE) //
+				.remove(PREF_LAUNCH) //
 
 				// flag as 'has run'
 				.putLong(Settings.PREF_VERSION, build) //
