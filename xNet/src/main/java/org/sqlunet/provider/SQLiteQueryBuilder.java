@@ -99,6 +99,7 @@ public class SQLiteQueryBuilder
 		}
 	}
 
+	@NonNull
 	private String computeSingleProjection(@NonNull String userColumn)
 	{
 		// When no mapping provided, anything goes
@@ -271,6 +272,7 @@ public class SQLiteQueryBuilder
 		mDistinct = b;
 	}
 
+	@NonNull
 	public String buildUnionSubQuery(
 			String typeDiscriminatorColumn,
 			@NonNull String[] unionColumns,

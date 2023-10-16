@@ -125,6 +125,7 @@ public class Settings extends org.sqlunet.settings.Settings
 	 * @param context context
 	 * @return preferred selector type
 	 */
+	@NonNull
 	static public Selector getXSelectorPref(@NonNull final Context context)
 	{
 		return Selector.getPref(context);

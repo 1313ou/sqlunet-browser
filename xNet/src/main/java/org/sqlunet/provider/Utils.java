@@ -88,6 +88,7 @@ public class Utils
 	 * FROM TABLE2
 	 * WHERE (#{selection})
 	 */
+	@NonNull
 	private static String makeEmbeddedQuery(final String table1, final String table2, //
 			final String[] table1Projection, final String[] table2Projection, //
 			final String[] unionProjection, final String selection, //
@@ -142,6 +143,7 @@ public class Utils
 	 * @param tag              tag
 	 * @return union sql
 	 */
+	@NonNull
 	static String makeQuerySql(final String table1, final String table2, //
 			final String[] table1Projection, final String[] table2Projection, //
 			final String[] unionProjection, @NonNull final String[] projection, //
@@ -199,6 +201,7 @@ public class Utils
 	 * @param tag              tag
 	 * @return union sql
 	 */
+	@NonNull
 	static String makeQuerySql0(final String table1, final String table2, //
 			final String[] table1Projection, final String[] table2Projection, //
 			final String[] unionProjection, @NonNull final String[] projection, //

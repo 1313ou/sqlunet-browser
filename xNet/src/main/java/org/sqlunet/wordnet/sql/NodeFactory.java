@@ -58,6 +58,7 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 * @param synsetId is the synset id
 	 * @return newly created node
 	 */
+	@NonNull
 	static public Element makeSenseNode(@NonNull final Document doc, final Node parent, final long wordId, final long synsetId, final int senseIdx)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "sense", null);
@@ -123,6 +124,7 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 * @param level        is the recursion level
 	 * @return newly created node
 	 */
+	@NonNull
 	static public Node makeRelationNode(@NonNull final Document doc, final Node parent, final String relationType, final int level)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, relationType, null);

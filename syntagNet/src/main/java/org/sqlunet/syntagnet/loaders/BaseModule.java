@@ -152,6 +152,7 @@ abstract class BaseModule extends Module
 		this.collocationsFromWordModel.loadData(uri, sql, cursor -> collocationsCursorToTreeModel(cursor, parent));
 	}
 
+	@NonNull
 	private TreeOp[] collocationCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (cursor.getCount() > 1)

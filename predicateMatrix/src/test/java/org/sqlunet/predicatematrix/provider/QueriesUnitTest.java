@@ -39,6 +39,7 @@ public class QueriesUnitTest
 		check(code, r1, r2);
 	}
 
+	@Nullable
 	public static Result queryProvider(final int code, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		return queryProviderMain(code, projection0, selection0, selectionArgs0);

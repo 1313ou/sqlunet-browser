@@ -41,6 +41,7 @@ public class QueriesUnitTest
 		check(code, r1, r2);
 	}
 
+	@Nullable
 	public static Result queryProvider(final int code, @NonNull final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		Result r = queryProviderMain(code, uriLast, projection0, selection0, selectionArgs0);

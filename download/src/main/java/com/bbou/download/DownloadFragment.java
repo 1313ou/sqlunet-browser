@@ -354,7 +354,7 @@ public class DownloadFragment extends BaseDownloadFragment
 	 * @param status download status
 	 */
 	@Override
-	void onDone(final Status status)
+	void onDone(@NonNull final Status status)
 	{
 		Log.d(TAG, "OnDone " + status);
 

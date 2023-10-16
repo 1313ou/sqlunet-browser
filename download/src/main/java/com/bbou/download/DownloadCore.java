@@ -168,6 +168,7 @@ public class DownloadCore
 	 *
 	 * @return download data
 	 */
+	@NonNull
 	protected DownloadData job() throws Exception
 	{
 		// first

@@ -121,6 +121,7 @@ class VnNodeFactory extends NodeFactory
 	 * @param parent is the parent node to attach this node to
 	 * @return newly created node
 	 */
+	@NonNull
 	static public Node makeVnRolesNode(@NonNull final Document doc, final Node parent)
 	{
 		return NodeFactory.makeNode(doc, parent, "themroles", null);
@@ -158,6 +159,7 @@ class VnNodeFactory extends NodeFactory
 	 * @param parent is the parent node to attach this node to
 	 * @return newly created node
 	 */
+	@NonNull
 	static public Node makeVnFramesNode(@NonNull final Document doc, final Node parent)
 	{
 		return NodeFactory.makeNode(doc, parent, "frames", null);
@@ -340,6 +342,7 @@ class VnNodeFactory extends NodeFactory
 	 * @param flag   is the synset's flag
 	 * @return newly created node
 	 */
+	@NonNull
 	static public Node makeSynsetNodeFlagged(@NonNull final Document doc, final Node parent, final int size, final long id, final boolean flag)
 	{
 		final Element element = NodeFactory.makeSynsetNode(doc, parent, id, size);

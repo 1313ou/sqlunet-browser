@@ -27,6 +27,7 @@ import static com.bbou.download.DownloadZipFragment.DOWNLOAD_TO_DIR_ARG;
 
 public class DownloadIntentFactory
 {
+	@NonNull
 	public static Intent makeIntent(@NonNull final Context context)
 	{
 		Settings.Mode type = Settings.Mode.getModePref(context);

@@ -562,6 +562,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * @param parent org.w3c.dom.Node walk will attach results to
 	 * @param synset synset whose data are to be processed
 	 */
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
 	static private Node walkSynsetHeader(@NonNull final Document doc, final Node parent, @NonNull final Synset synset)
 	{
@@ -582,6 +583,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * @param parent     org.w3c.dom.Node walk will attach results to
 	 * @param synset     synset whose data are to be processed
 	 */
+	@NonNull
 	static private Node walkSynset(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, @NonNull final Synset synset)
 	{
 		// synset words

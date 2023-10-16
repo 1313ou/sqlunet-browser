@@ -210,6 +210,7 @@ public class Settings
 	 * @param context context
 	 * @return preferred selector view mode
 	 */
+	@NonNull
 	static public SelectorViewMode getSelectorViewModePref(@NonNull final Context context)
 	{
 		return SelectorViewMode.getPref(context);
@@ -221,6 +222,7 @@ public class Settings
 	 * @param context context
 	 * @return preferred detail view mode
 	 */
+	@NonNull
 	static public DetailViewMode getDetailViewModePref(@NonNull final Context context)
 	{
 		return DetailViewMode.getPref(context);
@@ -232,6 +234,7 @@ public class Settings
 	 * @param context context
 	 * @return preferred selector type
 	 */
+	@NonNull
 	static public Selector getSelectorPref(@NonNull final Context context)
 	{
 		return Selector.getPref(context);

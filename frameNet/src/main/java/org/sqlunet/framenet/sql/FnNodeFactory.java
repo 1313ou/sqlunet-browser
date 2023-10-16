@@ -185,6 +185,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param parent parent node to attach this node to
 	 * @return newly created node
 	 */
+	@NonNull
 	static public Node makeFnSentencesNode(@NonNull final Document doc, final Node parent)
 	{
 		return NodeFactory.makeNode(doc, parent, "sentences", null);
@@ -197,6 +198,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param parent parent node to attach this node to
 	 * @param i      the ith
 	 */
+	@NonNull
 	static public Node makeFnSentenceNode(@NonNull final Document doc, final Node parent, @NonNull final FnSentence sentence, final int i)
 	{
 		return FnNodeFactory.makeFnSentenceNode(doc, parent, sentence.text, sentence.sentenceId, i);
@@ -246,6 +248,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param annoSet annoSet
 	 * @return annoSet node
 	 */
+	@NonNull
 	static public Node makeFnAnnoSetNode(@NonNull final Document doc, final Node parent, @NonNull final FnAnnoSet annoSet)
 	{
 		return FnNodeFactory.makeFnAnnoSetNode(doc, parent, annoSet.annoSetId);

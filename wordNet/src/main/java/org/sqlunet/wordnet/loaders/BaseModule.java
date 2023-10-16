@@ -2049,6 +2049,7 @@ abstract public class BaseModule extends Module
 	 */
 	public static class BaseSynsetLink extends Link
 	{
+		@NonNull
 		protected final Fragment fragment;
 
 		final int recurse;
@@ -2122,6 +2123,7 @@ abstract public class BaseModule extends Module
 	 */
 	public static class RelationLink extends Link
 	{
+		@NonNull
 		protected final Fragment fragment;
 
 		final int recurse;
