@@ -90,6 +90,20 @@
 			<item>participle</item>
 			<item>causes</item>
 			<item>is caused by</item>
+			<item>state</item>
+      <item>result</item>
+      <item>event</item>
+      <item>property</item>
+      <item>location</item>
+      <item>destination</item>
+      <item>agent</item>
+      <item>undergoer</item>
+      <item>uses</item>
+      <item>instrument</item>
+      <item>by means of</item>
+      <item>material</item>
+      <item>vehicle</item>
+      <item>body part</item>
 		</items>
 	</concept>
 
