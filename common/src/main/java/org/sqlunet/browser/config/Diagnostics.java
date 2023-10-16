@@ -67,7 +67,7 @@ public class Diagnostics
 
 		@NonNull
 		@Override
-		protected CharSequence doInBackground(final Context... params)
+		protected CharSequence doInBackground(@NonNull final Context... params)
 		{
 			final Context context = params[0];
 			return report(context);
@@ -511,6 +511,7 @@ public class Diagnostics
 		return sb;
 	}
 
+	@Nullable
 	private static String[] queryMeta(@NonNull Context context)
 	{
 		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(XNetContract.Meta.URI));

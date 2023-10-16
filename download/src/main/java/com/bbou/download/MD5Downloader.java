@@ -51,7 +51,7 @@ class MD5Downloader extends Task<String, Void, String>
 
 	@Nullable
 	@Override
-	protected String doInBackground(final String... params)
+	protected String doInBackground(@NonNull final String... params)
 	{
 		final String md5Arg = params[0];
 		final String targetArg = params[1];

@@ -25,6 +25,7 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 * @param value  is the part-of-speech
 	 * @return newly created node
 	 */
+	@NonNull
 	static public Node makePosNode(@NonNull final Document doc, final Node parent, final String value)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "pos", null);
@@ -40,6 +41,7 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 * @param value  domain
 	 * @return newly created node
 	 */
+	@NonNull
 	static public Node makeDomainNode(@NonNull final Document doc, final Node parent, final String value)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "domain", null);
@@ -83,6 +85,7 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 * @param size     is the synset's size (the number of words in the synset)
 	 * @return newly created element
 	 */
+	@NonNull
 	static public Element makeSynsetNode(@NonNull final Document doc, final Node parent, final long synsetId, final int size)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "synset", null);
@@ -103,6 +106,7 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 * @param id     is the word id
 	 * @return newly created node
 	 */
+	@NonNull
 	static public Node makeWordNode(@NonNull final Document doc, final Node parent, final String word, final long id)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "word", word);
@@ -138,6 +142,7 @@ public class NodeFactory extends org.sqlunet.sql.NodeFactory
 	 * @param level        is the recursion level
 	 * @return newly created node
 	 */
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
 	static public Node makeMoreRelationNode(@NonNull final Document doc, final Node parent, final String relationType, final int level)
 	{

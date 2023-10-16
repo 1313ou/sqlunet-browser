@@ -455,6 +455,7 @@ public class WebFragment extends Fragment
 	 * @param pbDomDoc   propbank document
 	 * @return string
 	 */
+	@NonNull
 	private String docsToString(@SuppressWarnings("UnusedParameters") final String word,  //
 			final boolean xml,  //
 			final boolean isSelector,  //

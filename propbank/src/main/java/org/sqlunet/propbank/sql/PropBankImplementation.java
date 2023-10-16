@@ -179,6 +179,7 @@ public class PropBankImplementation implements PropBankInterface
 	 * @param word       target word
 	 * @return PropBank selector data as DOM document
 	 */
+	@NonNull
 	@Override
 	public Document querySelectorDoc(final SQLiteDatabase connection, final String word)
 	{
@@ -212,6 +213,7 @@ public class PropBankImplementation implements PropBankInterface
 	 * @param word       target word
 	 * @return PropBank data as DOM document
 	 */
+	@NonNull
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final String word)
 	{
@@ -244,6 +246,7 @@ public class PropBankImplementation implements PropBankInterface
 	 * @param pos        pos to build query from
 	 * @return PropBank data as DOM document
 	 */
+	@NonNull
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final long wordId, final Character pos)
 	{
@@ -277,6 +280,7 @@ public class PropBankImplementation implements PropBankInterface
 	 * @param pos        pos to build query from
 	 * @return PropBank role set data as DOM document
 	 */
+	@NonNull
 	@Override
 	public Document queryRoleSetDoc(final SQLiteDatabase connection, final long roleSetId, final Character pos)
 	{

@@ -195,7 +195,7 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 	// P U R C H A S E  L I S T E N E R
 
 	@Override
-	public void onPurchaseFinished(final Purchase purchase)
+	public void onPurchaseFinished(@NonNull final Purchase purchase)
 	{
 		Log.d(TAG, "New purchase " + purchase.toString());
 		for (String productId : purchase.getProducts())
@@ -251,7 +251,7 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 	}
 
 	@Override
-	public void onConsumeFinished(final Purchase purchase)
+	public void onConsumeFinished(@Nullable final Purchase purchase)
 	{
 		Log.d(TAG, "onConsumeFinished() " + purchase);
 		if (purchase != null)
@@ -271,7 +271,7 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 
 	// D O N A T E
 
-	private void donate(final String productId)
+	private void donate(@NonNull final String productId)
 	{
 		if (this.billingManager != null)
 		{

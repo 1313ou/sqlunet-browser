@@ -7,6 +7,8 @@ package org.sqlunet.provider;
 import org.sqlunet.xnet.provider.Q;
 import org.sqlunet.xnet.provider.V;
 
+import androidx.annotation.Nullable;
+
 /**
  * XNet query control
  *
@@ -60,6 +62,7 @@ public class XNetControl
 	static protected final int SOURCES = 400;
 	static protected final int META = 500;
 
+	@Nullable
 	public static Result queryMain(final int code, @SuppressWarnings("unused") final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		String table;

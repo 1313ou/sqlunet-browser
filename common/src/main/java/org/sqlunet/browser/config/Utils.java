@@ -45,6 +45,7 @@ public class Utils
 
 	static private final String[] units = {"B", "KB", "MB", "GB"};
 
+	@NonNull
 	@SuppressLint("DefaultLocale")
 	static private String hrSize(long x0)
 	{
@@ -60,7 +61,8 @@ public class Utils
 		return String.format(f, Math.round(x), "TB");
 	}
 
-	static public String hrSize(@IntegerRes int id, final Context context)
+	@NonNull
+	static public String hrSize(@IntegerRes int id, @NonNull final Context context)
 	{
 		long x = context.getResources().getInteger(id);
 		return hrSize(x);

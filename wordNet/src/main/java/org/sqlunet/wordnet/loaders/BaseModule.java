@@ -328,6 +328,7 @@ abstract public class BaseModule extends Module
 		this.wordModel.loadData(uri, sql, cursor -> wordCursorToTreeModel(cursor, parent, addNewNode));
 	}
 
+	@NonNull
 	private TreeOp[] wordCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
 	{
 		if (cursor.getCount() > 1)
@@ -468,6 +469,7 @@ abstract public class BaseModule extends Module
 		this.senseFromSenseIdModel.loadData(uri, sql, cursor -> senseFromSenseIdCursorToTreeModel(cursor, parent));
 	}
 
+	@NonNull
 	private TreeOp[] senseFromSenseIdCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (cursor.getCount() > 1)
@@ -509,6 +511,7 @@ abstract public class BaseModule extends Module
 		this.senseFromSenseKeyModel.loadData(uri, sql, cursor -> senseFromSenseKeyCursorToTreeModel(cursor, parent));
 	}
 
+	@NonNull
 	private TreeOp[] senseFromSenseKeyCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (cursor.getCount() > 1)
@@ -557,6 +560,7 @@ abstract public class BaseModule extends Module
 		this.senseFromSynsetIdWordIdModel.loadData(uri, sql, cursor -> senseFromSynsetIdWordIdCursorToTreeModel(cursor, synsetId, wordId, parent));
 	}
 
+	@NonNull
 	private TreeOp[] senseFromSynsetIdWordIdCursorToTreeModel(@NonNull final Cursor cursor, final long synsetId, final long wordId, @NonNull final TreeNode parent)
 	{
 		if (cursor.getCount() > 1)
@@ -650,6 +654,7 @@ abstract public class BaseModule extends Module
 		this.synsetFromSynsetIdModel.loadData(uri, sql, cursor -> synsetCursorToTreeModel(cursor, synsetId, parent, addNewNode));
 	}
 
+	@NonNull
 	private TreeOp[] synsetCursorToTreeModel(@NonNull final Cursor cursor, final long synsetId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
 	{
 		if (cursor.getCount() > 1)
@@ -822,6 +827,7 @@ abstract public class BaseModule extends Module
 		this.members2FromSynsetIdModel.loadData(uri, sql, cursor -> memberSetCursorToTreeModel(cursor, parent, concatQuery, addNewNode));
 	}
 
+	@NonNull
 	private TreeOp[] memberSetCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean concatQuery, final boolean addNewNode)
 	{
 		if (concatQuery)
@@ -898,6 +904,7 @@ abstract public class BaseModule extends Module
 		this.samplesfromSynsetIdModel.loadData(uri, sql, cursor -> samplesCursorToTreeModel(cursor, parent, addNewNode));
 	}
 
+	@NonNull
 	private TreeOp[] samplesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
 	{
 		TreeOp[] changed;
@@ -1406,6 +1413,7 @@ abstract public class BaseModule extends Module
 		this.vFramesFromSynsetIdWordIdModel.loadData(uri, sql, cursor -> vframesCursorToTreeModel(cursor, parent));
 	}
 
+	@NonNull
 	private TreeOp[] vframesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;
@@ -1457,6 +1465,7 @@ abstract public class BaseModule extends Module
 		this.vTemplatesFromSynsetIdModel.loadData(uri, sql, cursor -> vTemplatesCursorToTreeModel(cursor, parent));
 	}
 
+	@NonNull
 	private TreeOp[] vTemplatesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;
@@ -1507,6 +1516,7 @@ abstract public class BaseModule extends Module
 		this.vTemplatesFromSynsetIdWordIdModel.loadData(uri, sql, cursor -> vTemplatesFromSynsetIdWordIdCursorToTreeModel(cursor, parent));
 	}
 
+	@NonNull
 	private TreeOp[] vTemplatesFromSynsetIdWordIdCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;
@@ -1573,6 +1583,7 @@ abstract public class BaseModule extends Module
 		this.adjPositionFromSynsetIdWordIdModel.loadData(uri, sql, cursor -> adjPositionCursorToTreeModel(cursor, parent));
 	}
 
+	@NonNull
 	private TreeOp[] adjPositionCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;
@@ -1624,6 +1635,7 @@ abstract public class BaseModule extends Module
 		this.morphsFromWordIdModel.loadData(uri, sql, cursor -> morphsCursorToTreeModel(cursor, parent));
 	}
 
+	@NonNull
 	private TreeOp[] morphsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;
@@ -2051,7 +2063,7 @@ abstract public class BaseModule extends Module
 		 * @param recurse  max recursion level
 		 * @param fragment fragment
 		 */
-		public BaseSynsetLink(final long synsetId, final int recurse, final Fragment fragment)
+		public BaseSynsetLink(final long synsetId, final int recurse, @NonNull final Fragment fragment)
 		{
 			super(synsetId);
 			this.fragment = fragment;
@@ -2099,7 +2111,7 @@ abstract public class BaseModule extends Module
 		 * @param recurse  max recursion level
 		 * @param fragment fragment
 		 */
-		SynsetLink(final long synsetId, final int recurse, final Fragment fragment)
+		SynsetLink(final long synsetId, final int recurse, @NonNull final Fragment fragment)
 		{
 			super(synsetId, recurse, fragment);
 		}
@@ -2124,7 +2136,7 @@ abstract public class BaseModule extends Module
 		 * @param recurse  max recursion level
 		 * @param fragment fragment
 		 */
-		public RelationLink(final long synsetId, final int recurse, final Fragment fragment)
+		public RelationLink(final long synsetId, final int recurse, @NonNull final Fragment fragment)
 		{
 			super(synsetId);
 			this.fragment = fragment;
@@ -2175,7 +2187,7 @@ abstract public class BaseModule extends Module
 		 * @param recurse  recurse
 		 * @param fragment fragment
 		 */
-		public BaseSenseLink(final long synsetId, final long wordId, final int recurse, final Fragment fragment)
+		public BaseSenseLink(final long synsetId, final long wordId, final int recurse, @NonNull final Fragment fragment)
 		{
 			super(synsetId, recurse, fragment);
 			this.wordId = wordId;
@@ -2221,7 +2233,7 @@ abstract public class BaseModule extends Module
 		 * @param recurse  max recursion level
 		 * @param fragment fragment
 		 */
-		SenseLink(final long synsetId, final long wordId, final int recurse, final Fragment fragment)
+		SenseLink(final long synsetId, final long wordId, final int recurse, @NonNull final Fragment fragment)
 		{
 			super(synsetId, wordId, recurse, fragment);
 		}

@@ -456,7 +456,7 @@ public class StorageReports
 
 	@SafeVarargs
 	@NonNull
-	static public CharSequence namesValuesToReportStyled(final Pair<CharSequence[], CharSequence[]>... directories)
+	static public CharSequence namesValuesToReportStyled(@NonNull final Pair<CharSequence[], CharSequence[]>... directories)
 	{
 		@SuppressWarnings("TypeMayBeWeakened") final SpannableStringBuilder sb = new SpannableStringBuilder();
 		for (Pair<CharSequence[], CharSequence[]> namesValues : directories)

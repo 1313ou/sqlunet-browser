@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Objects;
 
+import androidx.annotation.NonNull;
+
 public class SqlProcessor
 {
 	@FunctionalInterface
@@ -18,7 +20,8 @@ public class SqlProcessor
 	{
 		void accept(T t) throws SQLException;
 
-		default Consumer<T> andThen(Consumer<? super T> after)
+		@NonNull
+		default Consumer<T> andThen(@NonNull Consumer<? super T> after)
 		{
 			Objects.requireNonNull(after);
 			return (T t) -> {
@@ -59,7 +62,7 @@ public class SqlProcessor
 		});
 	}
 
-	public static void connect(String db, Consumer<Connection> consumer) throws SQLException
+	public static void connect(String db, @NonNull Consumer<Connection> consumer) throws SQLException
 	{
 		String url = "jdbc:sqlite:" + db;
 		try (Connection conn = DriverManager.getConnection(url))

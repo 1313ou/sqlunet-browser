@@ -71,7 +71,7 @@ public class ContentDownloader extends Task<String, Void, String[]>
 
 	@Nullable
 	@Override
-	protected String[] doInBackground(final String... params)
+	protected String[] doInBackground(@NonNull final String... params)
 	{
 		final String srcArg = params[0];
 		try
@@ -198,6 +198,7 @@ public class ContentDownloader extends Task<String, Void, String[]>
 	}
 
 	/** @noinspection UnusedReturnValue*/
+	@NonNull
 	public static Intent addTargetToIntent(@NonNull final Context context, @NonNull final Intent intent, @NonNull final String name)
 	{
 		final String mode = intent.getStringExtra(DOWNLOAD_MODE_ARG);
@@ -217,6 +218,7 @@ public class ContentDownloader extends Task<String, Void, String[]>
 		throw new RuntimeException(mode);
 	}
 
+	@NonNull
 	public static Intent addTargetToIntentPlainDownload(@NonNull final Context context, @NonNull final Intent intent, @NonNull final String name)
 	{
 		String target = name;
@@ -230,6 +232,7 @@ public class ContentDownloader extends Task<String, Void, String[]>
 		return intent;
 	}
 
+	@NonNull
 	public static Intent addTargetToIntentZipDownload(@NonNull final Context context, @NonNull final Intent intent, @NonNull final String name)
 	{
 		String target = name;
@@ -244,6 +247,7 @@ public class ContentDownloader extends Task<String, Void, String[]>
 		return intent;
 	}
 
+	@NonNull
 	public static Intent addTargetToIntentZipDownloadThenDeploy(@NonNull final Context context, @NonNull final Intent intent, @NonNull final String name)
 	{
 		String target = name;

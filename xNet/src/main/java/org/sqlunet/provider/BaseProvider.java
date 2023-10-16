@@ -38,6 +38,7 @@ public abstract class BaseProvider extends ContentProvider
 
 	// C O N T E N T   P R O V I D E R   A U T H O R I T Y
 
+	@NonNull
 	static protected String makeAuthority(final String configKey)
 	{
 		try
@@ -386,6 +387,7 @@ public abstract class BaseProvider extends ContentProvider
 	 * @param items      items to addItem to projection
 	 * @return augmented projection
 	 */
+	@NonNull
 	public static String[] appendProjection(@Nullable final String[] projection, @NonNull final String... items)
 	{
 		String[] projection2;
@@ -418,6 +420,7 @@ public abstract class BaseProvider extends ContentProvider
 	 * @param items      items to addItem to projection
 	 * @return augmented projection
 	 */
+	@NonNull
 	static String[] prependProjection(@Nullable final String[] projection, @NonNull @SuppressWarnings("SameParameterValue") final String... items)
 	{
 		String[] projection2;

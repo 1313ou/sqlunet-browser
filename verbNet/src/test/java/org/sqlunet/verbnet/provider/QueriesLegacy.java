@@ -8,8 +8,11 @@ import android.app.SearchManager;
 
 import org.sqlunet.verbnet.provider.VerbNetControl.Result;
 
+import androidx.annotation.Nullable;
+
 public class QueriesLegacy
 {
+	@Nullable
 	public static Result queryLegacy(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		Result r = queryLegacyMain(code, uriLast, projection0, selection0, selectionArgs0);
@@ -24,6 +27,7 @@ public class QueriesLegacy
 		return r;
 	}
 
+	@Nullable
 	@SuppressWarnings("UnnecessaryLocalVariable")
 	public static Result queryLegacyMain(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
@@ -108,6 +112,7 @@ public class QueriesLegacy
 		return new Result(table, projection, selection, selectionArgs, groupBy);
 	}
 
+	@Nullable
 	public static Result queryLegacySearch(final int code, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		String table;
@@ -135,6 +140,7 @@ public class QueriesLegacy
 		return new Result(table, projection0, selection0, selectionArgs0, groupBy);
 	}
 
+	@Nullable
 	public static Result queryLegacySuggest(final int code, final String uriLast)
 	{
 		String table;

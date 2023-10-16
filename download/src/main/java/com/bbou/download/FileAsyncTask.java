@@ -112,7 +112,7 @@ public class FileAsyncTask
 		@NonNull
 		@SuppressWarnings("boxing")
 		@Override
-		protected Boolean doInBackground(final Uri... params)
+		protected Boolean doInBackground(@NonNull final Uri... params)
 		{
 			Uri srcUriArg = params[0];
 
@@ -197,7 +197,7 @@ public class FileAsyncTask
 		@NonNull
 		@SuppressWarnings("boxing")
 		@Override
-		protected Boolean doInBackground(final String... params)
+		protected Boolean doInBackground(@NonNull final String... params)
 		{
 			String srcFileArg = params[0];
 
@@ -282,7 +282,7 @@ public class FileAsyncTask
 		@NonNull
 		@Override
 		@SuppressWarnings("boxing")
-		protected Boolean doInBackground(final String... params)
+		protected Boolean doInBackground(@NonNull final String... params)
 		{
 			String srcArchiveArg = params[0];
 
@@ -297,7 +297,7 @@ public class FileAsyncTask
 		}
 
 		@Override
-		protected void onProgressUpdate(final Number... params)
+		protected void onProgressUpdate(@NonNull final Number... params)
 		{
 			this.observer.taskProgress(params[0], params[1], null);
 		}
@@ -371,7 +371,7 @@ public class FileAsyncTask
 		@NonNull
 		@Override
 		@SuppressWarnings("boxing")
-		protected Boolean doInBackground(final Uri... params)
+		protected Boolean doInBackground(@NonNull final Uri... params)
 		{
 			Uri srcArchiveArg = params[0];
 
@@ -386,7 +386,7 @@ public class FileAsyncTask
 		}
 
 		@Override
-		protected void onProgressUpdate(final Number... params)
+		protected void onProgressUpdate(@NonNull final Number... params)
 		{
 			this.observer.taskProgress(params[0], params[1], null);
 		}
@@ -462,7 +462,7 @@ public class FileAsyncTask
 		@NonNull
 		@Override
 		@SuppressWarnings("boxing")
-		protected Boolean doInBackground(final String... params)
+		protected Boolean doInBackground(@NonNull final String... params)
 		{
 			String srcArchiveArg = params[0];
 
@@ -477,7 +477,7 @@ public class FileAsyncTask
 		}
 
 		@Override
-		protected void onProgressUpdate(final Number... params)
+		protected void onProgressUpdate(@NonNull final Number... params)
 		{
 			this.observer.taskProgress(params[0], params[1], null);
 		}
@@ -560,7 +560,7 @@ public class FileAsyncTask
 		@NonNull
 		@Override
 		@SuppressWarnings("boxing")
-		protected Boolean doInBackground(final Uri... params)
+		protected Boolean doInBackground(@NonNull final Uri... params)
 		{
 			Uri srcArchiveArg = params[0];
 
@@ -575,7 +575,7 @@ public class FileAsyncTask
 		}
 
 		@Override
-		protected void onProgressUpdate(final Number... params)
+		protected void onProgressUpdate(@NonNull final Number... params)
 		{
 			this.observer.taskProgress(params[0], params[1], null);
 		}
@@ -636,7 +636,7 @@ public class FileAsyncTask
 
 		@Nullable
 		@Override
-		protected String doInBackground(final String... params)
+		protected String doInBackground(@NonNull final String... params)
 		{
 			String srcFileArg = params[0];
 
@@ -651,7 +651,7 @@ public class FileAsyncTask
 		}
 
 		@Override
-		protected void onProgressUpdate(final Number... params)
+		protected void onProgressUpdate(@NonNull final Number... params)
 		{
 			this.observer.taskProgress(params[0], params[1], null);
 		}
@@ -722,7 +722,7 @@ public class FileAsyncTask
 
 		@Nullable
 		@Override
-		protected String doInBackground(final Uri... params)
+		protected String doInBackground(@NonNull final Uri... params)
 		{
 			Uri uriArg = params[0];
 
@@ -737,7 +737,7 @@ public class FileAsyncTask
 		}
 
 		@Override
-		protected void onProgressUpdate(final Number... params)
+		protected void onProgressUpdate(@NonNull final Number... params)
 		{
 			this.observer.taskProgress(params[0], params[1], null);
 		}

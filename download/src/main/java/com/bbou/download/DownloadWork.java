@@ -144,6 +144,7 @@ public class DownloadWork
 	 * @param observer observer
 	 * @return work uuid
 	 */
+	@NonNull
 	public static UUID startWork(@NonNull final Context context, @NonNull final String fromUrl, @NonNull final String toFile, @NonNull final LifecycleOwner owner, @NonNull final Observer<WorkInfo> observer)
 	{
 		final WorkManager wm = WorkManager.getInstance(context);

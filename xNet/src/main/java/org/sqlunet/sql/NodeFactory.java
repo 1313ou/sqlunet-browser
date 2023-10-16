@@ -31,6 +31,7 @@ public class NodeFactory
 	 * @param text     is the node's text content
 	 * @return newly created node
 	 */
+	@NonNull
 	static public Element makeNode(@NonNull final Document document, @Nullable final Node parent, final String name, final String text)
 	{
 		final Element element = document.createElement(name);
@@ -56,6 +57,7 @@ public class NodeFactory
 	 * @param text     is the node's text content
 	 * @return newly created node
 	 */
+	@NonNull
 	static public Element makeNode(@NonNull final Document document, final Node parent, final String name, final String text, final String ns)
 	{
 		final Element node = makeNode(document, parent, name, text);

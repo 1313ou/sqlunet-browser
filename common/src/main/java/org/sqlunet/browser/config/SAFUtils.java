@@ -31,7 +31,8 @@ public class SAFUtils
 
 	// L I S T E N E R
 
-	public static ActivityResultLauncher<Intent> makeListener(final AppCompatActivity activity, final Consumer<Uri> consumer)
+	@NonNull
+	public static ActivityResultLauncher<Intent> makeListener(@NonNull final AppCompatActivity activity, @NonNull final Consumer<Uri> consumer)
 	{
 		return activity.registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
 
@@ -158,7 +159,7 @@ public class SAFUtils
 	// I N P U T S T R E A M
 
 	@Nullable
-	public static <R> R applyInputStream(@NonNull Uri uri, final ContentResolver resolver, @NonNull final Function<InputStream, R> f) throws IOException
+	public static <R> R applyInputStream(@NonNull Uri uri, @NonNull final ContentResolver resolver, @NonNull final Function<InputStream, R> f) throws IOException
 	{
 		try (InputStream is = resolver.openInputStream(uri))
 		{

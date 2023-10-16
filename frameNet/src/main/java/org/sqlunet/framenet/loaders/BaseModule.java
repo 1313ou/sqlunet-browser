@@ -341,6 +341,7 @@ abstract public class BaseModule extends Module
 		this.frameFromFrameIdModel.loadData(uri, sql, cursor -> frameCursorToTreeModel(cursor, frameId, parent));
 	}
 
+	@NonNull
 	private TreeOp[] frameCursorToTreeModel(@NonNull final Cursor cursor, final long frameId, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;
@@ -1631,6 +1632,7 @@ abstract public class BaseModule extends Module
 		this.annoSetFromAnnoSetIdModel.loadData(uri, sql, cursor -> annoSetCursorToTreeModel(cursor, parent, withSentence));
 	}
 
+	@NonNull
 	private TreeOp[] annoSetCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean withSentence)
 	{
 		TreeOp[] changed;

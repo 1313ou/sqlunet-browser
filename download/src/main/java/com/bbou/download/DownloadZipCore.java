@@ -73,6 +73,7 @@ public class DownloadZipCore extends DownloadCore
 	 *
 	 * @return download data
 	 */
+	@NonNull
 	@Override
 	protected DownloadData job() throws Exception
 	{

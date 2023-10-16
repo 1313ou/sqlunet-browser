@@ -42,6 +42,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * @param word       target word
 	 * @return WordNet selector data as DOM document
 	 */
+	@NonNull
 	@Override
 	public Document querySelectorDoc(final SQLiteDatabase connection, final String word)
 	{
@@ -78,6 +79,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * @param recurse       determines if queries are to follow relations recursively
 	 * @return WordNet data as a DOM Document
 	 */
+	@NonNull
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final String word, final boolean withRelations, final boolean recurse)
 	{
@@ -101,6 +103,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * @param recurse       determines if queries are to follow relations recursively
 	 * @return WordNet data as a DOM Document
 	 */
+	@NonNull
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final long wordId, @Nullable final Long synsetId, final boolean withRelations, final boolean recurse)
 	{
@@ -144,6 +147,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * @param recurse       determines if queries are to follow relations recursively
 	 * @return WordNet data as DOM document
 	 */
+	@NonNull
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final String word, final String posName, final String domainName, final String relationName, final boolean withRelations, final boolean recurse)
 	{
@@ -195,6 +199,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * @param wordId     target word id
 	 * @return WordNet word data as DOM document
 	 */
+	@NonNull
 	@Override
 	public Document queryWordDoc(final SQLiteDatabase connection, final long wordId)
 	{
@@ -250,6 +255,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * @param synsetId   target synset id
 	 * @return WordNet synset data as DOM document
 	 */
+	@NonNull
 	@Override
 	public Document querySenseDoc(final SQLiteDatabase connection, final long wordId, final long synsetId)
 	{
@@ -297,6 +303,7 @@ public class WordNetImplementation implements WordNetInterface
 	 * @param synsetId   target synset id
 	 * @return WordNet synset data as DOM document
 	 */
+	@NonNull
 	@Override
 	public Document querySynsetDoc(final SQLiteDatabase connection, final long synsetId)
 	{

@@ -114,6 +114,7 @@ abstract public class Task<Params, Progress, Result> implements Cancelable
 
 	private static MultiplexingHandler<?, ?, ?> handler;
 
+	@NonNull
 	private static Handler getHandler()
 	{
 		synchronized (Task.class)

@@ -561,7 +561,8 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	 * @param status status
 	 * @return message
 	 */
-	protected String buildStatusString(final Status status)
+	@NonNull
+	protected String buildStatusString(@NonNull final Status status)
 	{
 		if (status != Status.STATUS_SUCCEEDED)
 		{
@@ -736,7 +737,7 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	 *
 	 * @param status status
 	 */
-	protected void endUI(final Status status)
+	protected void endUI(@NonNull final Status status)
 	{
 		Log.d(TAG, "Update UI " + status);
 

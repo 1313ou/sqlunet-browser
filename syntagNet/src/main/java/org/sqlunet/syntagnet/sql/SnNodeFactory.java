@@ -71,6 +71,7 @@ class SnNodeFactory extends NodeFactory
 	 * @param collocation is the collocation information
 	 * @param i           the ith collocation
 	 */
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
 	static public Node makeCollocationNode(@NonNull final Document doc, final Node parent, @NonNull final Collocation.WithDefinitionAndPos collocation, final int i)
 	{
@@ -109,6 +110,7 @@ class SnNodeFactory extends NodeFactory
 	 * @param collocation is the collocation information
 	 * @param i           the ith collocation
 	 */
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
 	static public Node makeSelectorCollocationNode(@NonNull final Document doc, final Node parent, @NonNull final Collocation collocation, final int i)
 	{

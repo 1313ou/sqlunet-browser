@@ -564,6 +564,7 @@ public class WebFragment extends Fragment
 	 * @param bncDomDoc  bnc document
 	 * @return string
 	 */
+	@NonNull
 	private String docsToString(@SuppressWarnings("UnusedParameters") final String word,  //
 			final boolean xml,  //
 			final boolean isSelector,  //

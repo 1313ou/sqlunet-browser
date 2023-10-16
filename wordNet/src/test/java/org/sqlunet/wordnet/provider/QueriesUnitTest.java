@@ -75,6 +75,7 @@ public class QueriesUnitTest
 		check(code, r1, r2);
 	}
 
+	@Nullable
 	public Result queryProvider(int code, @NonNull final String uriLast, final String[] projection0, @Nullable final String selection0, final String[] selectionArgs0, @SuppressWarnings("unused") final String sortOrder0)
 	{
 		Result r = WordNetControl.queryMain(code, uriLast, projection0, selection0, selectionArgs0);

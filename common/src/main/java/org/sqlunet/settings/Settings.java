@@ -69,6 +69,7 @@ public class Settings
 		 * @param context context
 		 * @return preferred selector view mode
 		 */
+		@NonNull
 		static SelectorViewMode getPref(@NonNull final Context context)
 		{
 			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
@@ -100,6 +101,7 @@ public class Settings
 		 * @param context context
 		 * @return preferred selector mode
 		 */
+		@NonNull
 		static DetailViewMode getPref(@NonNull final Context context)
 		{
 			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
@@ -163,6 +165,7 @@ public class Settings
 		 * @param context context
 		 * @return preferred selector mode
 		 */
+		@NonNull
 		public static Selector getPref(@NonNull final Context context)
 		{
 			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
@@ -369,7 +372,7 @@ public class Settings
 		return sharedPref.getString(Settings.PREF_CACHE, null);
 	}
 
-	public static String getZipEntry(final Context context, final String defaultValue)
+	public static String getZipEntry(@NonNull final Context context, final String defaultValue)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		return sharedPref.getString(Settings.PREF_ZIP_ENTRY, defaultValue);

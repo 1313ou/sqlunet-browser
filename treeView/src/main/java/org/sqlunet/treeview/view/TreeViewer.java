@@ -232,6 +232,7 @@ public class TreeViewer
 	 * @param use2dScroll whether to use 2D scrolling
 	 * @return pair consisting of the wrapped top view and bottom anchor group view; they may be identical
 	 */
+	@NonNull
 	private Pair<View, ViewGroup> makeWrapper(@NonNull final LayoutInflater inflater, final boolean use2dScroll)
 	{
 		View top = inflater.inflate(use2dScroll ? R.layout.layout_top_2d : R.layout.layout_top, null, false);
@@ -967,7 +968,7 @@ public class TreeViewer
 	 * @param factor Tree indent factor to apply to default value
 	 */
 	@SuppressLint("ResourceType")
-	public int computeIndent(final Context context, final float factor)
+	public int computeIndent(@NonNull final Context context, final float factor)
 	{
 		if (factor != -1F)
 		{
@@ -993,7 +994,7 @@ public class TreeViewer
 	 * @param factor Tree row min height factor to apply to default value
 	 */
 	@SuppressLint("ResourceType")
-	public int computeRowMinHeight(final Context context, final float factor)
+	public int computeRowMinHeight(@NonNull final Context context, final float factor)
 	{
 		if (factor != -1F)
 		{

@@ -147,7 +147,7 @@ public class ExecAsyncTask
 
 		@NonNull
 		@Override
-		protected final Boolean doInBackground(final String[]... params)
+		protected final Boolean doInBackground(@NonNull final String[]... params)
 		{
 			final String[] sqlArgs = params[0];
 
@@ -313,7 +313,7 @@ public class ExecAsyncTask
 		@NonNull
 		@Override
 		@SuppressWarnings("boxing")
-		protected Boolean doInBackground(final String... params)
+		protected Boolean doInBackground(@NonNull final String... params)
 		{
 			final String archiveArg = params[1];
 			Log.d(TAG, archiveArg + '!' + entry + " -> " + dataBase);
@@ -580,7 +580,7 @@ public class ExecAsyncTask
 		@NonNull
 		@Override
 		@SuppressWarnings("boxing")
-		protected Boolean doInBackground(final Uri... params)
+		protected Boolean doInBackground(@NonNull final Uri... params)
 		{
 			final Uri uri = params[0];
 			Log.d(TAG, uri.toString() + " -> " + dataBase);
@@ -762,7 +762,7 @@ public class ExecAsyncTask
 	 * Execute sql statements from zip file
 	 */
 	@NonNull
-	public Task<Uri, Number, Boolean> fromUri(@NonNull final String dataBase, final ContentResolver resolver)
+	public Task<Uri, Number, Boolean> fromUri(@NonNull final String dataBase, @NonNull final ContentResolver resolver)
 	{
 		final PowerManager powerManager = (PowerManager) ExecAsyncTask.this.activity.getSystemService(Context.POWER_SERVICE);
 		final Window window = ExecAsyncTask.this.activity.getWindow();
@@ -777,7 +777,7 @@ public class ExecAsyncTask
 	 * @param databasePath database path
 	 * @param whenDone     to run when done
 	 */
-	public static void launchExecUri(final FragmentActivity activity, final Uri uri, final String databasePath, final Consumer<Boolean> whenDone)
+	public static void launchExecUri(@NonNull final FragmentActivity activity, @NonNull final Uri uri, @NonNull final String databasePath, final Consumer<Boolean> whenDone)
 	{
 		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
 				.setTitle(activity.getString(R.string.action_exec_from_uri)) //
@@ -891,7 +891,7 @@ public class ExecAsyncTask
 		@NonNull
 		@Override
 		@SuppressWarnings("boxing")
-		protected Boolean doInBackground(final Uri... params)
+		protected Boolean doInBackground(@NonNull final Uri... params)
 		{
 			final Uri uri = params[0];
 			Log.d(TAG, uri.toString() + '!' + entry + " -> " + dataBase);
@@ -1091,7 +1091,7 @@ public class ExecAsyncTask
 	 * @param resolver content resolver
 	 */
 	@NonNull
-	public Task<Uri, Number, Boolean> fromArchiveUri(@NonNull final String dataBase, @NonNull final String entry, final ContentResolver resolver)
+	public Task<Uri, Number, Boolean> fromArchiveUri(@NonNull final String dataBase, @NonNull final String entry, @NonNull final ContentResolver resolver)
 	{
 		final PowerManager powerManager = (PowerManager) ExecAsyncTask.this.activity.getSystemService(Context.POWER_SERVICE);
 		final Window window = ExecAsyncTask.this.activity.getWindow();
@@ -1169,7 +1169,7 @@ public class ExecAsyncTask
 
 		@Nullable
 		@Override
-		protected Boolean doInBackground(String... params)
+		protected Boolean doInBackground(@NonNull String... params)
 		{
 			final String databasePathArg = params[0];
 			final String tempDirArg = params[1];

@@ -7,6 +7,7 @@ package org.sqlunet.framenet.loaders;
 import org.sqlunet.browser.Module;
 import org.sqlunet.framenet.provider.FrameNetContract;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class Queries
@@ -21,6 +22,7 @@ public class Queries
 	 */
 	public static final String ISLIKE = "islike";
 
+	@NonNull
 	public static Module.ContentProviderSql prepareSelect(final String word)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -43,6 +45,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareFrame(final long frameId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -61,6 +64,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareRelatedFrames(final long frameId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -78,6 +82,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareFesForFrame(final int frameId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -98,6 +103,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareLexUnit(final long luId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -118,6 +124,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareLexUnitsForFrame(final long frameId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -138,6 +145,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareLexUnitsForWordAndPos(final long wordId, @Nullable final Character pos)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -160,6 +168,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareGovernorsForLexUnit(final long luId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -177,6 +186,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareRealizationsForLexicalUnit(final long luId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -198,6 +208,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareGroupRealizationsForLexUnit(final long luId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -217,6 +228,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareSentence(final long sentenceId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -230,6 +242,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareSentencesForLexUnit(final long luId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -260,6 +273,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareSentencesForPattern(final long patternId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -275,6 +289,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareSentencesForValenceUnit(final long vuId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -290,6 +305,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareAnnoSet(final long annoSetId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -307,6 +323,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareAnnoSetsForGovernor(final long governorId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -322,6 +339,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareAnnoSetsForPattern(final long patternId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -340,6 +358,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareAnnoSetsForValenceUnit(final long vuId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -358,6 +377,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareLayersForSentence(final long sentenceId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();

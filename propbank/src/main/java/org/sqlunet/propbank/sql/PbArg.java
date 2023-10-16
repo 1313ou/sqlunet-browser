@@ -6,6 +6,8 @@ package org.sqlunet.propbank.sql;
 
 import java.util.Locale;
 
+import androidx.annotation.NonNull;
+
 /**
  * Argument
  *
@@ -61,7 +63,7 @@ class PbArg
 	 *
 	 * @param argFields argument fields
 	 */
-	public PbArg(final String... argFields)
+	public PbArg(@NonNull final String... argFields)
 	{
 		this(argFields[0], "*".equals(argFields[1]) ? //
 				null : argFields[1], argFields[2].toLowerCase(Locale.ENGLISH), "*".equals(argFields[3]) ? //

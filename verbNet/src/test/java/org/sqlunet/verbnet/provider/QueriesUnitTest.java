@@ -10,6 +10,9 @@ import org.sqlunet.verbnet.provider.VerbNetControl.Result;
 import java.util.Arrays;
 import java.util.Objects;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 public class QueriesUnitTest
 {
 	private final int[] codes = {VerbNetControl.VNCLASS1, VerbNetControl.VNCLASSES, VerbNetControl.VNCLASSES_X_BY_VNCLASS, VerbNetControl.WORDS_VNCLASSES, VerbNetControl.VNCLASSES_VNMEMBERS_X_BY_WORD, VerbNetControl.VNCLASSES_VNROLES_X_BY_VNROLE, VerbNetControl.VNCLASSES_VNFRAMES_X_BY_VNFRAME, VerbNetControl.LOOKUP_FTS_EXAMPLES, VerbNetControl.LOOKUP_FTS_EXAMPLES_X, VerbNetControl.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE, VerbNetControl.SUGGEST_WORDS, VerbNetControl.SUGGEST_FTS_WORDS,};
@@ -31,14 +34,14 @@ public class QueriesUnitTest
 		}
 	}
 
-	private void queriesLegacyAgainstProvider(final int code, @SuppressWarnings("SameParameterValue") final String uriLast, final String[] projection, @SuppressWarnings("SameParameterValue") final String selection, final String[] selectionArgs, @SuppressWarnings({"SameParameterValue", "unused"}) final String sortOrder)
+	private void queriesLegacyAgainstProvider(final int code, @NonNull @SuppressWarnings("SameParameterValue") final String uriLast, final String[] projection, @SuppressWarnings("SameParameterValue") final String selection, final String[] selectionArgs, @SuppressWarnings({"SameParameterValue", "unused"}) final String sortOrder)
 	{
 		Result r1 = QueriesLegacy.queryLegacy(code, uriLast, projection, selection, selectionArgs);
 		Result r2 = queryProvider(code, uriLast, projection, selection, selectionArgs);
 		check(code, r1, r2);
 	}
 
-	public static Result queryProvider(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
+	public static Result queryProvider(final int code, @NonNull final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		Result r = queryProviderMain(code, uriLast, projection0, selection0, selectionArgs0);
 		if (r == null)
@@ -52,22 +55,25 @@ public class QueriesUnitTest
 		return r;
 	}
 
-	public static Result queryProviderMain(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
+	@Nullable
+	public static Result queryProviderMain(final int code, @NonNull final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		return VerbNetControl.queryMain(code, uriLast, projection0, selection0, selectionArgs0);
 	}
 
+	@Nullable
 	public static Result queryProviderSearch(final int code, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		return VerbNetControl.querySearch(code, projection0, selection0, selectionArgs0);
 	}
 
-	public static Result queryProviderSuggest(final int code, final String uriLast)
+	@Nullable
+	public static Result queryProviderSuggest(final int code, @NonNull final String uriLast)
 	{
 		return VerbNetControl.querySuggest(code, uriLast);
 	}
 
-	private void check(final int code, final Result r1, final Result r2)
+	private void check(final int code, @NonNull final Result r1, @NonNull final Result r2)
 	{
 		assert equals(r1.table, r2.table) : "Code=" + code + "\n" + r1.table + "\n!=\n" + r2.table;
 		assert Arrays.equals(r1.projection, r2.projection) : "Code=" + code + "\n" + Arrays.toString(r1.projection) + "\n!=\n" + Arrays.toString(r2.projection);

@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -76,6 +77,7 @@ public class LogsActivity extends AppCompatActivity
 		fab.setEnabled(true);
 	}
 
+	@NonNull
 	private static String readFile(File file)
 	{
 		StringBuilder sb = new StringBuilder();

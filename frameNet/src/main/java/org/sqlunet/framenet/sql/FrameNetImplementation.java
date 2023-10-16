@@ -43,6 +43,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param pos        the pos to build query from
 	 * @return FrameNet selector data as DOM document
 	 */
+	@NonNull
 	@Override
 	public Document querySelectorDoc(final SQLiteDatabase connection, final String word, final Character pos)
 	{
@@ -78,6 +79,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param pos        the pos to build query from
 	 * @return FrameNet data as DOM document
 	 */
+	@NonNull
 	@SuppressWarnings("WeakerAccess")
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final String word, final Character pos)
@@ -116,6 +118,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param pos        the pos to build query from
 	 * @return FrameNet data as DOM document
 	 */
+	@NonNull
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final long wordId, final Character pos)
 	{
@@ -151,6 +154,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param pos        the pos to build query from
 	 * @return FrameNet frame data as DOM document
 	 */
+	@NonNull
 	@Override
 	public Document queryFrameDoc(final SQLiteDatabase connection, final long frameId, final Character pos)
 	{
@@ -185,6 +189,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param luId       the luId to build query from
 	 * @return FrameNet lexunit data as DOM document
 	 */
+	@NonNull
 	@Override
 	public Document queryLexUnitDoc(final SQLiteDatabase connection, final long luId)
 	{
@@ -218,6 +223,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param sentenceId the sentence id to build query from
 	 * @return FrameNet sentence data as DOM document
 	 */
+	@NonNull
 	public Document querySentenceDoc(final SQLiteDatabase connection, final long sentenceId)
 	{
 		final Document doc = DomFactory.makeDocument();
@@ -249,6 +255,7 @@ public class FrameNetImplementation implements FrameNetInterface
 	 * @param annoSetId  the annoSetId to build query from
 	 * @return FrameNet annoSet data as DOM document
 	 */
+	@NonNull
 	public Document queryAnnoSetDoc(final SQLiteDatabase connection, final long annoSetId)
 	{
 		final Document doc = DomFactory.makeDocument();

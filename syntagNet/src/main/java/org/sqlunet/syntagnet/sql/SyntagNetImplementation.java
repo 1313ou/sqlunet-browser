@@ -176,6 +176,7 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	 * @param word       target word
 	 * @return SyntagNet selector data as DOM document
 	 */
+	@NonNull
 	@Override
 	public Document querySelectorDoc(final SQLiteDatabase connection, final String word)
 	{
@@ -209,6 +210,7 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	 * @param word       target word
 	 * @return SyntagNet data as DOM document
 	 */
+	@NonNull
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, @NonNull final String word)
 	{
@@ -242,6 +244,7 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	 * @param pos        pos to build query from (nullable)
 	 * @return SyntagNet data as DOM document
 	 */
+	@NonNull
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final long wordId, @Nullable Long synsetId, @Nullable final Character pos)
 	{
@@ -275,6 +278,7 @@ public class SyntagNetImplementation implements SyntagNetInterface
 		return DomTransformer.docToString(doc);
 	}
 
+	@NonNull
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final long wordId, @Nullable final Long synsetId, final long word2Id, @Nullable final Long synset2Id)
 	{
@@ -306,6 +310,7 @@ public class SyntagNetImplementation implements SyntagNetInterface
 	 * @param collocationId collocation to build query from
 	 * @return SyntagNet collocation data as DOM document
 	 */
+	@NonNull
 	@Override
 	public Document queryCollocationDoc(final SQLiteDatabase connection, final long collocationId)
 	{

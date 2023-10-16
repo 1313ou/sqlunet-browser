@@ -209,6 +209,7 @@ public class StorageSettings
 		return zipped ? getDbDownloadZippedSourcePath(context) : getDbDownloadSourcePath(context);
 	}
 
+	@NonNull
 	static private String zipped(@NonNull final String unzipped)
 	{
 		return unzipped + ".zip";

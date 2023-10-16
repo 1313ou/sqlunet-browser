@@ -15,6 +15,7 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.preference.PreferenceFragmentCompat;
@@ -72,31 +73,35 @@ public class SpeakSettingsFragment extends PreferenceFragmentCompat
 		}
 	}
 
+	@NonNull
 	@RequiresApi(api = Build.VERSION_CODES.N)
-	private List<String> prepareVoiceValues(List<Voice> voices)
+	private List<String> prepareVoiceValues(@NonNull List<Voice> voices)
 	{
 		return voices.stream().map(Voice::getName).collect(Collectors.toList());
 	}
 
+	@NonNull
 	@RequiresApi(api = Build.VERSION_CODES.N)
-	private List<String> prepareVoiceLabels(List<Voice> voices)
+	private List<String> prepareVoiceLabels(@NonNull List<Voice> voices)
 	{
 		return voices.stream().map(voice -> voice.getName() + " " + (voice.isNetworkConnectionRequired() ? "N" : "L")).collect(Collectors.toList());
 	}
 
+	@NonNull
 	@RequiresApi(api = Build.VERSION_CODES.N)
-	private List<String> prepareLocaleValues(List<Locale> locales)
+	private List<String> prepareLocaleValues(@NonNull List<Locale> locales)
 	{
 		return locales.stream().map(Locale::getCountry).collect(Collectors.toList());
 	}
 
+	@NonNull
 	@RequiresApi(api = Build.VERSION_CODES.N)
-	private List<String> prepareLocaleLabels(List<Locale> locales)
+	private List<String> prepareLocaleLabels(@NonNull List<Locale> locales)
 	{
 		return locales.stream().map(locale -> locale.getCountry() + " " + locale.getLanguage()).collect(Collectors.toList());
 	}
 
-	private CharSequence prepareSummary(MultiSelectListPreference pref)
+	private CharSequence prepareSummary(@NonNull MultiSelectListPreference pref)
 	{
 		final String noneString = requireContext().getString(R.string.none);
 		List<String> titles = new ArrayList<>();

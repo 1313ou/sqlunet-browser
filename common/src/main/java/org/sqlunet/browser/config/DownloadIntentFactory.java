@@ -37,6 +37,7 @@ public class DownloadIntentFactory
 		return makeIntent(context, type);
 	}
 
+	@NonNull
 	public static Intent makeIntent(@NonNull final Context context, @NonNull final Settings.Mode type)
 	{
 		switch (type)
@@ -52,12 +53,14 @@ public class DownloadIntentFactory
 		}
 	}
 
+	@NonNull
 	public static Intent makeIntentPlainDownload(@NonNull final Context context)
 	{
 		final String dbSource = StorageSettings.getDbDownloadSourcePath(context);
 		return makeIntentPlainDownload(context, dbSource);
 	}
 
+	@NonNull
 	public static Intent makeIntentPlainDownload(@NonNull final Context context, final String dbSource)
 	{
 		final String dbDest = StorageSettings.getDatabasePath(context);
@@ -69,12 +72,14 @@ public class DownloadIntentFactory
 		return intent;
 	}
 
+	@NonNull
 	public static Intent makeIntentZipDownload(@NonNull final Context context)
 	{
 		final String dbZipSource = StorageSettings.getDbDownloadZippedSourcePath(context);
 		return makeIntentZipDownload(context, dbZipSource);
 	}
 
+	@NonNull
 	public static Intent makeIntentZipDownload(@NonNull final Context context, final String dbZipSource)
 	{
 		final String dbZipEntry = StorageSettings.getDbDownloadName(context);
@@ -92,6 +97,7 @@ public class DownloadIntentFactory
 		return intent;
 	}
 
+	@NonNull
 	public static Intent makeIntentDownloadThenDeploy(@NonNull final Context context)
 	{
 		final String dbZipSource = StorageSettings.getDbDownloadZippedSourcePath(context);
@@ -99,6 +105,7 @@ public class DownloadIntentFactory
 		return makeIntentDownloadThenDeploy(context, dbZipSource, dbZipDest);
 	}
 
+	@NonNull
 	public static Intent makeIntentDownloadThenDeploy(@NonNull final Context context, final String dbZipSource, final String dbZipDest)
 	{
 		final String dbDir = StorageSettings.getDataDir(context);
@@ -116,6 +123,7 @@ public class DownloadIntentFactory
 		return intent;
 	}
 
+	@NonNull
 	public static Intent makeUpdateIntent(@NonNull final Context context)
 	{
 		final String downloadSourceType = Settings.getDatapackSourceType(context);

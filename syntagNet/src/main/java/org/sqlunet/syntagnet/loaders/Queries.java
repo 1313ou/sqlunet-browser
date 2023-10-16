@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 
 public class Queries
 {
+	@NonNull
 	public static Module.ContentProviderSql prepareSnSelect(final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -36,6 +37,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareCollocation(final long collocationId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -58,6 +60,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareCollocations(final Long word1Id, @Nullable final Long word2Id, final Long synset1Id, final Long synset2Id)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -86,6 +89,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareCollocations(final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -103,6 +107,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareCollocations(final String word)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();

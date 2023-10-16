@@ -10,6 +10,9 @@ import org.sqlunet.propbank.provider.PropBankControl.Result;
 import java.util.Arrays;
 import java.util.Objects;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 public class QueriesUnitTest
 {
 	private final int[] codes = {PropBankControl.PBROLESET, PropBankControl.PBROLESETS, PropBankControl.PBROLESETS_X, PropBankControl.PBROLESETS_X_BY_ROLESET, PropBankControl.WORDS_PBROLESETS, PropBankControl.PBROLESETS_PBROLES, PropBankControl.PBROLESETS_PBEXAMPLES, PropBankControl.PBROLESETS_PBEXAMPLES_BY_EXAMPLE, PropBankControl.LOOKUP_FTS_EXAMPLES, PropBankControl.LOOKUP_FTS_EXAMPLES_X, PropBankControl.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE, PropBankControl.SUGGEST_WORDS, PropBankControl.SUGGEST_FTS_WORDS,};
@@ -31,14 +34,14 @@ public class QueriesUnitTest
 		}
 	}
 
-	private void queriesLegacyAgainstProvider(final int code, @SuppressWarnings("SameParameterValue") final String uriLast, final String[] projection, @SuppressWarnings("SameParameterValue") final String selection, final String[] selectionArgs, @SuppressWarnings({"SameParameterValue", "unused"}) final String sortOrder)
+	private void queriesLegacyAgainstProvider(final int code, @NonNull @SuppressWarnings("SameParameterValue") final String uriLast, final String[] projection, @SuppressWarnings("SameParameterValue") final String selection, final String[] selectionArgs, @SuppressWarnings({"SameParameterValue", "unused"}) final String sortOrder)
 	{
 		Result r1 = QueriesLegacy.queryLegacy(code, uriLast, projection, selection, selectionArgs);
 		Result r2 = queryProvider(code, uriLast, projection, selection, selectionArgs);
 		check(code, r1, r2);
 	}
 
-	public static Result queryProvider(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
+	public static Result queryProvider(final int code, @NonNull final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		Result r = queryProviderMain(code, uriLast, projection0, selection0, selectionArgs0);
 		if (r == null)
@@ -52,22 +55,25 @@ public class QueriesUnitTest
 		return r;
 	}
 
+	@Nullable
 	public static Result queryProviderMain(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		return PropBankControl.queryMain(code, uriLast, projection0, selection0, selectionArgs0);
 	}
 
+	@Nullable
 	public static Result queryProviderSearch(final int code, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		return PropBankControl.querySearch(code, projection0, selection0, selectionArgs0);
 	}
 
-	public static Result queryProviderSuggest(final int code, final String uriLast)
+	@Nullable
+	public static Result queryProviderSuggest(final int code, @NonNull final String uriLast)
 	{
 		return PropBankControl.querySuggest(code, uriLast);
 	}
 
-	private void check(final int code, final Result r1, final Result r2)
+	private void check(final int code, @NonNull final Result r1, @NonNull final Result r2)
 	{
 		assert equals(r1.table, r2.table) : "Code=" + code + "\n" + r1.table + "\n!=\n" + r2.table;
 		assert Arrays.equals(r1.projection, r2.projection) : "Code=" + code + "\n" + Arrays.toString(r1.projection) + "\n!=\n" + Arrays.toString(r2.projection);

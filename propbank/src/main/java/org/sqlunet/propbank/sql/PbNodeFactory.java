@@ -71,6 +71,7 @@ class PbNodeFactory extends NodeFactory
 	 * @param roleSet is the roleSet information
 	 * @param i       the ith roleSet
 	 */
+	@NonNull
 	static public Node makePbRoleSetNode(@NonNull final Document doc, final Node parent, @NonNull final PbRoleSet roleSet, final int i)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "roleset", null);
@@ -93,6 +94,7 @@ class PbNodeFactory extends NodeFactory
 	 * @param parent is the parent node to attach this node to
 	 * @param role   is the role information
 	 */
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
 	static public Node makePbRoleNode(@NonNull final Document doc, final Node parent, @NonNull final PbRole role)
 	{
@@ -105,6 +107,7 @@ class PbNodeFactory extends NodeFactory
 		return element;
 	}
 
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
 	static public Node makePbExampleNode(@NonNull final Document doc, final Node parent, @NonNull final PbExample example)
 	{

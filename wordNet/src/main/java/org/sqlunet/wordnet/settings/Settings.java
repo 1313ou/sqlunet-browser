@@ -51,7 +51,7 @@ public class Settings
 	 * @return bundle
 	 */
 	@Nullable
-	public static Bundle getRenderParametersPref(final Context context)
+	public static Bundle getRenderParametersPref(@NonNull final Context context)
 	{
 		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		boolean displaySemRelationName = sharedPref.getBoolean(PREF_DISPLAY_SEM_RELATION_NAME, true);

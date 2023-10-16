@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 public class Discover
@@ -39,7 +40,7 @@ public class Discover
 
 	@SuppressLint("ObsoleteSdkInt")
 	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-	public void discoverVoices(final Context context, final Consumer<List<Voice>> consumer)
+	public void discoverVoices(final Context context, @NonNull final Consumer<List<Voice>> consumer)
 	{
 		this.tts = new TextToSpeech(context, status -> {
 
@@ -88,7 +89,7 @@ public class Discover
 	}
 
 	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-	public void discoverVoice(final Context context, final Consumer<Voice> consumer)
+	public void discoverVoice(final Context context, @NonNull final Consumer<Voice> consumer)
 	{
 		this.tts = new TextToSpeech(context, status -> {
 
@@ -109,7 +110,7 @@ public class Discover
 		});
 	}
 
-	public void discoverEngines(final Context context, final Consumer<List<TextToSpeech.EngineInfo>> consumer)
+	public void discoverEngines(final Context context, @NonNull final Consumer<List<TextToSpeech.EngineInfo>> consumer)
 	{
 		this.tts = new TextToSpeech(context, status -> {
 
@@ -130,7 +131,7 @@ public class Discover
 		});
 	}
 
-	public void discoverEngine(final Context context, final Consumer<String> consumer)
+	public void discoverEngine(final Context context, @NonNull final Consumer<String> consumer)
 	{
 		this.tts = new TextToSpeech(context, status -> {
 
@@ -152,7 +153,7 @@ public class Discover
 	}
 
 	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-	public void discoverLanguages(final Context context, final Consumer<List<Locale>> consumer)
+	public void discoverLanguages(final Context context, @NonNull final Consumer<List<Locale>> consumer)
 	{
 		this.tts = new TextToSpeech(context, status -> {
 

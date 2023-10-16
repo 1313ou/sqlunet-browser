@@ -7,8 +7,11 @@ package org.sqlunet.predicatematrix.loaders;
 import org.sqlunet.browser.Module;
 import org.sqlunet.predicatematrix.provider.PredicateMatrixContract;
 
+import androidx.annotation.NonNull;
+
 public class Queries
 {
+	@NonNull
 	public static Module.ContentProviderSql preparePmFromWord(final String word, final String sortBy)
 	{
 		final Module.ContentProviderSql providerSql = preparePm();
@@ -18,6 +21,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql preparePmFromWordGrouped(final String word, final String sortBy)
 	{
 		final Module.ContentProviderSql providerSql = preparePm();
@@ -27,6 +31,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql preparePmFromRoleId(final long pmRoleId, final String sortBy)
 	{
 		final Module.ContentProviderSql providerSql = preparePm();
@@ -36,6 +41,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	private static Module.ContentProviderSql preparePm()
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();

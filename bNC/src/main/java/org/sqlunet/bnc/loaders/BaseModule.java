@@ -146,6 +146,7 @@ public class BaseModule extends Module
 		this.bncFromWordIdModel.loadData(uri, sql, cursor -> bncCursorToTreeModel(cursor, parent));
 	}
 
+	@NonNull
 	private TreeOp[] bncCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;

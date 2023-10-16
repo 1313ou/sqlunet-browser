@@ -11,6 +11,8 @@ import org.sqlunet.test.SqlProcessor;
 
 import java.sql.SQLException;
 
+import androidx.annotation.NonNull;
+
 public class RunQueriesTest
 {
 	@Test
@@ -29,7 +31,7 @@ public class RunQueriesTest
 		process(processor, Queries.prepareWordXSelectVn("w"));
 	}
 
-	private void process(final SqlProcessor processor, final Module.ContentProviderSql providerSql) throws SQLException
+	private void process(@NonNull final SqlProcessor processor, @NonNull final Module.ContentProviderSql providerSql) throws SQLException
 	{
 		System.out.println("URI: " + providerSql.providerUri);
 		final int code = uriToCode(providerSql.providerUri);
@@ -45,7 +47,8 @@ public class RunQueriesTest
 		}
 	}
 
-	private static String toSql(final int code, final Module.ContentProviderSql providerSql)
+	@NonNull
+	private static String toSql(final int code, @NonNull final Module.ContentProviderSql providerSql)
 	{
 		XNetControl.Result r = XNetControl.queryMain(code, null, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
 		if (r == null)
@@ -55,7 +58,7 @@ public class RunQueriesTest
 		return SQLiteQueryBuilder.buildQueryString(false, r.table, r.projection, r.selection, r.groupBy, null, r.orderBy, null);
 	}
 
-	private int uriToCode(final String providerUri)
+	private int uriToCode(@NonNull final String providerUri)
 	{
 		switch (providerUri)
 		{

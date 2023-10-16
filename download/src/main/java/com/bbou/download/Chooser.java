@@ -11,6 +11,7 @@ import android.widget.RadioGroup;
 import java.io.File;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 
 /**
@@ -27,8 +28,9 @@ public class Chooser
 	 *
 	 * @param directories directory names-values array
 	 */
+	@Nullable
 	@SafeVarargs
-	static public RadioGroup collectFiles(@NonNull final FragmentActivity activity, final Pair<CharSequence[], CharSequence[]>... directories)
+	static public RadioGroup collectFiles(@NonNull final FragmentActivity activity, @NonNull final Pair<CharSequence[], CharSequence[]>... directories)
 	{
 		final RadioGroup group = new RadioGroup(activity);
 

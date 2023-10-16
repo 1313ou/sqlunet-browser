@@ -26,6 +26,7 @@ public class Settings
 
 		DOWNLOAD_ZIP; //
 
+		@NonNull
 		public BaseDownloadFragment toFragment()
 		{
 			switch (this)
@@ -65,6 +66,7 @@ public class Settings
 			return Mode.valueOf(str);
 		}
 
+		@NonNull
 		public Downloader toDownloader()
 		{
 			switch (this)
@@ -394,7 +396,7 @@ public class Settings
 	 * @param context     context
 	 * @param datapackUri datapack uri
 	 */
-	public static void recordDatapackUri(@NonNull final Context context, final String datapackUri)
+	public static void recordDatapackUri(@NonNull final Context context, @Nullable final String datapackUri)
 	{
 		final SharedPreferences sharedPref = context.getSharedPreferences(PREFERENCES_DATAPACK, Context.MODE_PRIVATE);
 		final SharedPreferences.Editor edit = sharedPref.edit(); //

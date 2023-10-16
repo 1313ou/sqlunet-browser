@@ -220,6 +220,7 @@ abstract class BaseModule extends Module
 		this.vnClassFromClassIdModel.loadData(uri, sql, cursor -> vnClassCursorToTreeModel(cursor, classId, parent));
 	}
 
+	@NonNull
 	private TreeOp[] vnClassCursorToTreeModel(@NonNull final Cursor cursor, final long classId, @NonNull final TreeNode parent)
 	{
 		if (cursor.getCount() > 1)
@@ -403,6 +404,7 @@ abstract class BaseModule extends Module
 		this.vnRolesFromClassIdModel.loadData(uri, sql, cursor -> vnRolesCursorToTreeModel(cursor, parent));
 	}
 
+	@NonNull
 	private TreeOp[] vnRolesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;
@@ -468,6 +470,7 @@ abstract class BaseModule extends Module
 		this.vnFramesFromClassIdModel.loadData(uri, sql, cursor -> vnFramesToView(cursor, parent));
 	}
 
+	@NonNull
 	private TreeOp[] vnFramesToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;

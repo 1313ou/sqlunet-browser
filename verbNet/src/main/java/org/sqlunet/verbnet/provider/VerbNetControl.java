@@ -6,6 +6,9 @@ package org.sqlunet.verbnet.provider;
 
 import android.app.SearchManager;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 /**
  * VerbNet query control
  *
@@ -51,7 +54,8 @@ public class VerbNetControl
 		}
 	}
 
-	public static Result queryMain(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
+	@Nullable
+	public static Result queryMain(final int code, @NonNull final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		String table;
 		String selection = selection0;
@@ -110,6 +114,7 @@ public class VerbNetControl
 		return new Result(table, projection0, selection, selectionArgs0, groupBy);
 	}
 
+	@Nullable
 	public static Result querySearch(final int code, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		String table;
@@ -136,7 +141,8 @@ public class VerbNetControl
 		return new Result(table, projection0, selection0, selectionArgs0, groupBy);
 	}
 
-	public static Result querySuggest(final int code, final String uriLast)
+	@Nullable
+	public static Result querySuggest(final int code, @NonNull final String uriLast)
 	{
 		String table;
 		String[] projection;

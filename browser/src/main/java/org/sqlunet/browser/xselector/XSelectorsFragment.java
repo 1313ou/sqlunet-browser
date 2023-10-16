@@ -449,7 +449,7 @@ public class XSelectorsFragment extends BaseSelectorsExpandableListFragment
 			}
 
 			@Override
-			public void setViewText(final TextView v, final String text)
+			public void setViewText(@NonNull final TextView v, @Nullable final String text)
 			{
 				/*
 				int id = v.getId();

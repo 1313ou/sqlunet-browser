@@ -161,6 +161,7 @@ abstract class BaseModule extends Module
 		return collocationsCursorToTreeModel(cursor, parent);
 	}
 
+	@NonNull
 	private TreeOp[] collocationsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;

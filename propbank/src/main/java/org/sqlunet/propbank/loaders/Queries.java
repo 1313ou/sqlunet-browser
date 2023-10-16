@@ -7,8 +7,11 @@ package org.sqlunet.propbank.loaders;
 import org.sqlunet.browser.Module;
 import org.sqlunet.propbank.provider.PropBankContract;
 
+import androidx.annotation.NonNull;
+
 public class Queries
 {
+	@NonNull
 	public static Module.ContentProviderSql prepareRoleSet(final long roleSetId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -24,6 +27,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareRoleSets(final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -39,6 +43,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareRoles(final int roleSetId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -55,6 +60,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareExamples(final int roleSetId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();

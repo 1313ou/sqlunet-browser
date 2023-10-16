@@ -46,7 +46,7 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 
 	@Nullable
 	@Override
-	protected FileData doInBackground(final String... params)
+	protected FileData doInBackground(@NonNull final String... params)
 	{
 		final String urlString = params[0];
 
@@ -188,7 +188,7 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 	 * @param activity       launching activity
 	 * @param downloadIntent download intent (activity launched if update is requested)
 	 */
-	static public void start(@NonNull final Activity activity, final Intent downloadIntent)
+	static public void start(@NonNull final Activity activity, @NonNull final Intent downloadIntent)
 	{
 		// unmarshal arguments
 		@Nullable final String downloadSourceUrl = downloadIntent.getStringExtra(AbstractDownloadFragment.DOWNLOAD_FROM_ARG);

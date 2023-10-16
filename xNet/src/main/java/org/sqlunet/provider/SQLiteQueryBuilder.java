@@ -11,19 +11,25 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 public class SQLiteQueryBuilder
 {
 	private static final Pattern sAggregationPattern = Pattern.compile("(?i)(AVG|COUNT|MAX|MIN|SUM|TOTAL|GROUP_CONCAT)\\((.+)\\)");
 	public static final String _COUNT = "_count";
 
 	private String mTables = "";
+	@Nullable
 	private StringBuilder mWhereClause = null;  // lazily created
 	private boolean mDistinct;
+	@Nullable
 	private final Map<String, String> mProjectionMap = null;
+	@Nullable
 	private final Collection<Pattern> mProjectionGreylist = null;
 	private int mStrictFlags;
 
-	static boolean isEmpty(CharSequence s)
+	static boolean isEmpty(@Nullable CharSequence s)
 	{
 		return s == null || s.length() == 0;
 	}
@@ -33,7 +39,8 @@ public class SQLiteQueryBuilder
 		mTables = inTables;
 	}
 
-	public String buildQuery(String[] projectionIn, String selection, String groupBy, String having, String sortOrder, String limit)
+	@NonNull
+	public String buildQuery(@NonNull String[] projectionIn, String selection, String groupBy, String having, String sortOrder, String limit)
 	{
 		String[] projection = computeProjection(projectionIn);
 		String where = computeWhere(selection);
@@ -41,7 +48,8 @@ public class SQLiteQueryBuilder
 		return buildQueryString(mDistinct, mTables, projection, where, groupBy, having, sortOrder, limit);
 	}
 
-	public String[] computeProjection(String[] projectionIn)
+	@Nullable
+	public String[] computeProjection(@NonNull String[] projectionIn)
 	{
 		if (projectionIn.length > 0)
 		{
@@ -77,7 +85,8 @@ public class SQLiteQueryBuilder
 		return null;
 	}
 
-	private String computeSingleProjectionOrThrow(String userColumn)
+	@NonNull
+	private String computeSingleProjectionOrThrow(@NonNull String userColumn)
 	{
 		final String column = computeSingleProjection(userColumn);
 		if (column != null)
@@ -90,7 +99,7 @@ public class SQLiteQueryBuilder
 		}
 	}
 
-	private String computeSingleProjection(String userColumn)
+	private String computeSingleProjection(@NonNull String userColumn)
 	{
 		// When no mapping provided, anything goes
 		//noinspection ConstantConditions
@@ -147,7 +156,7 @@ public class SQLiteQueryBuilder
 		return null;
 	}
 
-	private static String maybeWithOperator(String operator, String column)
+	private static String maybeWithOperator(@Nullable String operator, String column)
 	{
 		if (operator != null)
 		{
@@ -159,6 +168,7 @@ public class SQLiteQueryBuilder
 		}
 	}
 
+	@Nullable
 	String computeWhere(String selection)
 	{
 		final boolean hasInternal = mWhereClause != null && mWhereClause.length() > 0;
@@ -187,7 +197,8 @@ public class SQLiteQueryBuilder
 		}
 	}
 
-	public static String buildQueryString(boolean distinct, String tables, String[] columns, String where, String groupBy, String having, String orderBy, String limit)
+	@NonNull
+	public static String buildQueryString(boolean distinct, String tables, @Nullable String[] columns, String where, String groupBy, String having, String orderBy, String limit)
 	{
 		if (isEmpty(groupBy) && !isEmpty(having))
 		{
@@ -220,14 +231,14 @@ public class SQLiteQueryBuilder
 		return query.toString();
 	}
 
-	public void appendWhere(CharSequence inWhere) {
+	public void appendWhere(@NonNull CharSequence inWhere) {
 		if (mWhereClause == null) {
 			mWhereClause = new StringBuilder(inWhere.length() + 16);
 		}
 		mWhereClause.append(inWhere);
 	}
 
-	public static void appendColumns(StringBuilder s, String[] columns)
+	public static void appendColumns(@NonNull StringBuilder s, @NonNull String[] columns)
 	{
 		int n = columns.length;
 
@@ -246,7 +257,7 @@ public class SQLiteQueryBuilder
 		s.append(' ');
 	}
 
-	private static void appendClause(StringBuilder s, String name, String clause)
+	private static void appendClause(@NonNull StringBuilder s, String name, String clause)
 	{
 		if (!isEmpty(clause))
 		{
@@ -262,8 +273,8 @@ public class SQLiteQueryBuilder
 
 	public String buildUnionSubQuery(
 			String typeDiscriminatorColumn,
-			String[] unionColumns,
-			Set<String> columnsPresentInTable,
+			@NonNull String[] unionColumns,
+			@NonNull Set<String> columnsPresentInTable,
 			int computedColumnsOffset,
 			String typeDiscriminatorValue,
 			String selection,
@@ -291,7 +302,8 @@ public class SQLiteQueryBuilder
 				null /* limit */);
 	}
 
-	public String buildUnionQuery(String[] subQueries, String sortOrder, String limit) {
+	@NonNull
+	public String buildUnionQuery(@NonNull String[] subQueries, String sortOrder, String limit) {
 		StringBuilder query = new StringBuilder(128);
 		int subQueryCount = subQueries.length;
 		String unionOperator = mDistinct ? " UNION " : " UNION ALL ";

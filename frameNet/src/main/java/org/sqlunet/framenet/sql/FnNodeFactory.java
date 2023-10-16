@@ -75,6 +75,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param parent  parent node to attach this node to
 	 * @param lexUnit frame information
 	 */
+	@NonNull
 	static public Node makeFnLexunitNode(@NonNull final Document doc, final Node parent, @NonNull final FnLexUnit lexUnit)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "lexunit", null);
@@ -93,6 +94,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param removeEx whether to remove <ex> element
 	 * @return newly created node
 	 */
+	@NonNull
 	static public Node makeFnFrameNode(@NonNull final Document doc, final Node parent, @NonNull final FnFrame frame, final boolean removeEx)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "frame", null);
@@ -143,6 +145,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param fe     FE
 	 * @return newly created node
 	 */
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
 	static public Node makeFnFENode(@NonNull final Document doc, final Node parent, @NonNull final FnFrameElement fe)
 	{
@@ -164,6 +167,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param governor governor
 	 * @return newly created node
 	 */
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
 	static public Node makeFnGovernorNode(@NonNull final Document doc, final Node parent, @NonNull final FnGovernor governor)
 	{
@@ -205,6 +209,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param parent parent node to attach this node to
 	 * @param i      the ith
 	 */
+	@NonNull
 	static private Node makeFnSentenceNode(@NonNull final Document doc, final Node parent, final String text, final long sentenceId, final int i)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "sentence", null);
@@ -225,6 +230,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param annoSetId annoSetId
 	 * @return annoSet node
 	 */
+	@NonNull
 	static public Node makeFnAnnoSetNode(@NonNull final Document doc, final Node parent, final long annoSetId)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "annoset", null);
@@ -252,6 +258,7 @@ class FnNodeFactory extends NodeFactory
 	 * @param layer target layer
 	 * @return layer node
 	 */
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
 	static public Node makeFnLayerNode(@NonNull final Document doc, final Node parent, @NonNull final FnLayer layer)
 	{

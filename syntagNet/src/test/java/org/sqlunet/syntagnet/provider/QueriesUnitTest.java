@@ -10,6 +10,9 @@ import org.sqlunet.syntagnet.provider.SyntagNetControl.Result;
 import java.util.Arrays;
 import java.util.Objects;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 public class QueriesUnitTest
 {
 	private final int[] codes = {SyntagNetControl.COLLOCATIONS, SyntagNetControl.COLLOCATIONS_X};
@@ -44,12 +47,13 @@ public class QueriesUnitTest
 		return queryProviderMain(code, uriLast, projection0, selection0, selectionArgs0);
 	}
 
+	@Nullable
 	public static Result queryProviderMain(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		return SyntagNetControl.queryMain(code, uriLast, projection0, selection0, selectionArgs0);
 	}
 
-	private void check(final int code, final Result r1, final Result r2)
+	private void check(final int code, @NonNull final Result r1, @NonNull final Result r2)
 	{
 		assert equals(r1.table, r2.table) : "Code=" + code + "\n" + r1.table + "\n!=\n" + r2.table;
 		assert Arrays.equals(r1.projection, r2.projection) : "Code=" + code + "\n" + Arrays.toString(r1.projection) + "\n!=\n" + Arrays.toString(r2.projection);

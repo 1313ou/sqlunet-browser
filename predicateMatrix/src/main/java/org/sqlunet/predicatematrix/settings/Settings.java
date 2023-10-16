@@ -31,6 +31,7 @@ public class Settings
 		 * @param context context
 		 * @return mode preference
 		 */
+		@NonNull
 		static public PMMode getPref(@NonNull final Context context)
 		{
 			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);

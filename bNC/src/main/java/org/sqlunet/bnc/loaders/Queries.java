@@ -7,10 +7,12 @@ package org.sqlunet.bnc.loaders;
 import org.sqlunet.bnc.provider.BNCContract.Words_BNCs;
 import org.sqlunet.browser.Module;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class Queries
 {
+	@NonNull
 	public static Module.ContentProviderSql prepareBnc(final long wordId, @Nullable final Character pos)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();

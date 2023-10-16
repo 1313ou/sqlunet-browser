@@ -12,6 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class Pronunciation implements Comparable<Pronunciation>
 {
@@ -63,7 +64,7 @@ public class Pronunciation implements Comparable<Pronunciation>
 		return p1.ipa.compareTo(p2.ipa);
 	};
 
-	private static int priority(final String s)
+	private static int priority(@NonNull final String s)
 	{
 		switch (s)
 		{
@@ -89,7 +90,8 @@ public class Pronunciation implements Comparable<Pronunciation>
 		return variety == null ? String.format("/%s/", ipa) : String.format("[%s] /%s/", variety, ipa);
 	}
 
-	public static String[] toStrings(final List<Pronunciation> pronunciations)
+	@NonNull
+	public static String[] toStrings(@NonNull final List<Pronunciation> pronunciations)
 	{
 		int n = pronunciations.size();
 		String[] result = new String[n];
@@ -104,7 +106,7 @@ public class Pronunciation implements Comparable<Pronunciation>
 
 	private static final Pattern PATTERN2 = Pattern.compile("/(.*)/");
 
-	public static List<Pronunciation> pronunciations(final String pronunciationBundle)
+	public static List<Pronunciation> pronunciations(@Nullable final String pronunciationBundle)
 	{
 		if (pronunciationBundle == null)
 		{
@@ -136,7 +138,7 @@ public class Pronunciation implements Comparable<Pronunciation>
 		return result;
 	}
 
-	public static String sortedPronunciations(String pronunciationBundle)
+	public static String sortedPronunciations(@Nullable String pronunciationBundle)
 	{
 		if (pronunciationBundle == null)
 		{

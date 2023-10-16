@@ -18,7 +18,8 @@ import androidx.annotation.Nullable;
  */
 public class QueriesLegacy
 {
-	public static Result queryLegacy(int code, @NonNull final String uriLast, final String[] projection0, @Nullable final String selection0, final String[] selectionArgs0, @SuppressWarnings("unused") final String sortOrder0, final Factory subqueryFactory)
+	@Nullable
+	public static Result queryLegacy(int code, @NonNull final String uriLast, final String[] projection0, @Nullable final String selection0, final String[] selectionArgs0, @SuppressWarnings("unused") final String sortOrder0, @NonNull final Factory subqueryFactory)
 	{
 		String table;
 		String[] projection = projection0;

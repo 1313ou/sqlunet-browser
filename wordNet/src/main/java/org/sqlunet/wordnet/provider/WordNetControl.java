@@ -97,6 +97,7 @@ public class WordNetControl
 		String make(@SuppressWarnings("unused") String selection);
 	}
 
+	@Nullable
 	public static Result queryMain(int code, @NonNull final String uriLast, final String[] projection0, @Nullable final String selection0, final String[] selectionArgs0)
 	{
 		String table;
@@ -297,6 +298,7 @@ public class WordNetControl
 		return new Result(table, projection, selection, selectionArgs0, groupBy);
 	}
 
+	@Nullable
 	public static Result queryAnyRelations(int code, final String[] projection0, @SuppressWarnings("unused") @Nullable final String selection0, final String[] selectionArgs0)
 	{
 		if (code == ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET)
@@ -308,6 +310,7 @@ public class WordNetControl
 		return null;
 	}
 
+	@Nullable
 	public static Result querySearch(int code, final String[] projection0, @Nullable final String selection0, final String[] selectionArgs0)
 	{
 		String table;
@@ -331,6 +334,7 @@ public class WordNetControl
 		return new Result(table, projection0, selection0, selectionArgs0, null);
 	}
 
+	@Nullable
 	public static Result querySuggest(int code, @NonNull final String uriLast)
 	{
 		String table;

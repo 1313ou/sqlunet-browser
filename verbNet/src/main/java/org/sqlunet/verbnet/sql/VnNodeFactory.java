@@ -83,6 +83,7 @@ class VnNodeFactory extends NodeFactory
 	 * @param vnClass is the class
 	 * @return newly created node
 	 */
+	@NonNull
 	static public Node makeVnClassNode(@NonNull final Document doc, final Node parent, @NonNull final VnClass vnClass)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "vnclass", null);
@@ -97,6 +98,7 @@ class VnNodeFactory extends NodeFactory
 	 * @param parent  is the parent node to attach this node to
 	 * @param vnClass is the vn class with sense
 	 */
+	@NonNull
 	static public Node makeVnClassWithSenseNode(@NonNull final Document doc, final Node parent, @NonNull final VnClassWithSense vnClass)
 	{
 		final Element element = NodeFactory.makeNode(doc, parent, "vnclass", null);
@@ -133,6 +135,7 @@ class VnNodeFactory extends NodeFactory
 	 * @param i      is the indexOf
 	 * @return newly created node
 	 */
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
 	static public Node makeVnRoleNode(@NonNull final Document doc, final Node parent, @NonNull final VnRole role, final int i)
 	{
@@ -169,6 +172,7 @@ class VnNodeFactory extends NodeFactory
 	 * @param i      is the rank
 	 * @return newly created node
 	 */
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
 	static public Node makeVnFrameNode(@NonNull final Document doc, final Node parent, @NonNull final VnFrame frame, final int i)
 	{

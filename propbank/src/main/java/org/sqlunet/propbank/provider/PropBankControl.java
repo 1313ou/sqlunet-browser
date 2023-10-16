@@ -8,6 +8,9 @@ import android.app.SearchManager;
 
 import org.sqlunet.propbank.provider.PropBankContract.PbRoleSets_X;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 /**
  * PropBank query control
  *
@@ -54,6 +57,7 @@ public class PropBankControl
 		}
 	}
 
+	@Nullable
 	public static Result queryMain(final int code, @SuppressWarnings("unused") final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		String table;
@@ -119,6 +123,7 @@ public class PropBankControl
 		return new Result(table, projection0, selection, selectionArgs0, groupBy);
 	}
 
+	@Nullable
 	public static Result querySearch(final int code, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		String table;
@@ -145,7 +150,8 @@ public class PropBankControl
 		return new Result(table, projection0, selection0, selectionArgs0, groupBy);
 	}
 
-	public static Result querySuggest(final int code, final String uriLast)
+	@Nullable
+	public static Result querySuggest(final int code, @NonNull final String uriLast)
 	{
 		String table;
 		String[] projection;

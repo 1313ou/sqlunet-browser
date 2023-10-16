@@ -4,6 +4,8 @@
 
 package org.sqlunet.bnc.provider;
 
+import androidx.annotation.Nullable;
+
 /**
  * BNC query control
  *
@@ -35,6 +37,7 @@ public class BNCControl
 		}
 	}
 
+	@Nullable
 	public static Result queryMain(final int code, @SuppressWarnings("unused") final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		String table;

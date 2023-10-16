@@ -292,6 +292,7 @@ abstract public class BaseDownloadFragment extends AbstractDownloadFragment
 		}
 	};
 
+	@NonNull
 	public static Intent makeCancelIntent(@NonNull final Context context, int notificationId)
 	{
 		final Intent intent = new Intent();
@@ -363,6 +364,7 @@ abstract public class BaseDownloadFragment extends AbstractDownloadFragment
 	 *
 	 * @param progress container to return progress as well
 	 */
+	@NonNull
 	@Override
 	synchronized protected Status getStatus(@Nullable final Progress progress)
 	{

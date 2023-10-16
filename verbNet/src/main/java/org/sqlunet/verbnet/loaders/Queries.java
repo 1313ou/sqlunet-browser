@@ -7,10 +7,12 @@ package org.sqlunet.verbnet.loaders;
 import org.sqlunet.browser.Module;
 import org.sqlunet.verbnet.provider.VerbNetContract;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class Queries
 {
+	@NonNull
 	public static Module.ContentProviderSql prepareVnClass(final long classId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -25,6 +27,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareVnClasses(final long wordId, @Nullable final Long synsetId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -54,6 +57,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareVnMembers(final int classId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -72,6 +76,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareVnRoles(final int classId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -87,6 +92,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareVnFrames(final int classId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();

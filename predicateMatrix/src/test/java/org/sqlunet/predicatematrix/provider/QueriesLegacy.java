@@ -6,13 +6,17 @@ package org.sqlunet.predicatematrix.provider;
 
 import org.sqlunet.predicatematrix.provider.PredicateMatrixControl.Result;
 
+import androidx.annotation.Nullable;
+
 public class QueriesLegacy
 {
+	@Nullable
 	public static Result queryLegacy(final int code, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		return queryLegacyMain(code, projection0, selection0, selectionArgs0);
 	}
 
+	@Nullable
 	@SuppressWarnings("UnnecessaryLocalVariable")
 	public static Result queryLegacyMain(final int code, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{

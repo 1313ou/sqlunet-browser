@@ -204,7 +204,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	 */
 	@SuppressWarnings({"SameReturnValue", "WeakerAccess"})
 	@SuppressLint("InflateParams")
-	public void setupToolBar(final Toolbar toolbar)
+	public void setupToolBar(@NonNull final Toolbar toolbar)
 	{
 		Log.d(TAG, "set up specific toolbar " + this);
 
@@ -326,6 +326,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 				return view;
 			}
 
+			@NonNull
 			@Override
 			public View getDropDownView(final int position, final View convertView, @NonNull final ViewGroup parent)
 			{

@@ -61,7 +61,7 @@ public class ResourcesDownloader extends Task<String, Void, Collection<String[]>
 
 	@Nullable
 	@Override
-	protected Collection<String[]> doInBackground(final String... params)
+	protected Collection<String[]> doInBackground(@NonNull final String... params)
 	{
 		final String resArg = params[0];
 		final String lineFilter = params.length < 2 ? null : params[1];

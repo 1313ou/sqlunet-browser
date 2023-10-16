@@ -9,6 +9,8 @@ import org.sqlunet.provider.XNetContract;
 import org.sqlunet.wordnet.provider.V;
 import org.sqlunet.wordnet.provider.WordNetContract;
 
+import androidx.annotation.NonNull;
+
 public class Queries
 {
 	public static final String MORPHS = "morphs";
@@ -16,6 +18,7 @@ public class Queries
 
 	// B R O W S E R
 
+	@NonNull
 	public static Module.ContentProviderSql prepareWordSelect(final String word)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -41,6 +44,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareWordXSelect(final String word)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -67,6 +71,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareWnXSelect(final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -89,6 +94,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareWnPronunciationXSelect(final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -112,6 +118,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareWord(final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -125,6 +132,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareSenses(final String word)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -148,6 +156,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareSenses(final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -171,6 +180,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareSense(final long senseId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -184,6 +194,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareSense(final String senseKey)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -197,6 +208,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareSense(final long synsetId, @SuppressWarnings("unused") final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -211,6 +223,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareSynset(final long synsetId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -225,6 +238,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareMembers(final long synsetId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -236,6 +250,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareMembers2(final long synsetId, final boolean membersGrouped)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -248,6 +263,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareSamples(final long synsetId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -262,6 +278,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareRelations(final long synsetId, final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -282,6 +299,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareSemRelations(final long synsetId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -299,6 +317,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareSemRelations(final long synsetId, final int relationId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -315,6 +334,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareLexRelations(final long synsetId, final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -333,6 +353,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareLexRelations(final long synsetId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -350,6 +371,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareVFrames(final long synsetId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -360,6 +382,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareVFrames(final long synsetId, final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -370,6 +393,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareVTemplates(final long synsetId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -380,6 +404,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareVTemplates(final long synsetId, final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -390,6 +415,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareAdjPosition(final long synsetId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -400,6 +426,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareAdjPosition(final long synsetId, final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -410,6 +437,7 @@ public class Queries
 		return providerSql;
 	}
 
+	@NonNull
 	public static Module.ContentProviderSql prepareMorphs(final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -422,6 +450,7 @@ public class Queries
 
 	// S N   B R O W S E R
 
+	@NonNull
 	public static Module.ContentProviderSql prepareSelectSn(final String word)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();

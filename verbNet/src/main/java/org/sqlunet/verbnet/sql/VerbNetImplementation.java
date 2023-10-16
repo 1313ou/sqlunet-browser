@@ -34,6 +34,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	 * @param word       target word
 	 * @return VerbNet selector data as DOM document
 	 */
+	@NonNull
 	@Override
 	public Document querySelectorDoc(final SQLiteDatabase connection, final String word)
 	{
@@ -67,6 +68,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	 * @param word       target word
 	 * @return VerbNet data as DOM document
 	 */
+	@NonNull
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final String word)
 	{
@@ -100,6 +102,7 @@ public class VerbNetImplementation implements VerbNetInterface
 	 * @param pos        pos to build query from
 	 * @return VerbNet data as DOM document
 	 */
+	@NonNull
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final long wordId, final Long synsetId, final Character pos)
 	{
@@ -128,6 +131,7 @@ public class VerbNetImplementation implements VerbNetInterface
 
 	// class
 
+	@NonNull
 	@Override
 	public Document queryClassDoc(final SQLiteDatabase connection, final long classId, final Character pos)
 	{

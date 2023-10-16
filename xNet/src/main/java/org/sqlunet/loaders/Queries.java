@@ -7,6 +7,8 @@ package org.sqlunet.loaders;
 import org.sqlunet.browser.Module;
 import org.sqlunet.provider.XNetContract;
 
+import androidx.annotation.NonNull;
+
 public class Queries
 {
 	public static final String PRONUNCIATIONS = "pronunciations";
@@ -22,6 +24,7 @@ public class Queries
 	 *
 	 * @param word word
 	 */
+	@NonNull
 	public static Module.ContentProviderSql prepareWordSelect(final String word)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -55,6 +58,7 @@ public class Queries
 	 *
 	 * @param word word
 	 */
+	@NonNull
 	public static Module.ContentProviderSql prepareWordPronunciationSelect(final String word)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -93,6 +97,7 @@ public class Queries
 	 *
 	 * @param word word
 	 */
+	@NonNull
 	public static Module.ContentProviderSql prepareWordXSelect(final String word)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -115,6 +120,7 @@ public class Queries
 	 *
 	 * @param word word
 	 */
+	@NonNull
 	public static Module.ContentProviderSql prepareWordPronunciationXSelect(final String word)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -142,6 +148,7 @@ public class Queries
 	 *
 	 * @param wordId word id
 	 */
+	@NonNull
 	public static Module.ContentProviderSql prepareVnXSelect(final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -169,6 +176,7 @@ public class Queries
 	 *
 	 * @param wordId word id
 	 */
+	@NonNull
 	public static Module.ContentProviderSql preparePbXSelect(final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -197,6 +205,7 @@ public class Queries
 	 *
 	 * @param wordId word id
 	 */
+	@NonNull
 	public static Module.ContentProviderSql prepareFnXSelect(final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -226,6 +235,7 @@ public class Queries
 	 *
 	 * @param word word
 	 */
+	@NonNull
 	public static Module.ContentProviderSql prepareWordXSelectVn(final String word)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -247,6 +257,7 @@ public class Queries
 	 *
 	 * @param wordId word id
 	 */
+	@NonNull
 	public static Module.ContentProviderSql prepareVnXSelectVn(final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();
@@ -274,6 +285,7 @@ public class Queries
 	 *
 	 * @param wordId word id
 	 */
+	@NonNull
 	public static Module.ContentProviderSql preparePbSelectVn(final long wordId)
 	{
 		final Module.ContentProviderSql providerSql = new Module.ContentProviderSql();

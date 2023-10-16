@@ -382,7 +382,7 @@ public class WordNetProvider extends BaseProvider
 	 * @param selection0 input selection
 	 * @return all relations subquery
 	 */
-	private String makeAnyRelationsSubQuery(final String selection0)
+	private String makeAnyRelationsSubQuery(@NonNull final String selection0)
 	{
 		final String semTable = SemRelations.TABLE;
 		final String lexTable = LexRelations.TABLE;

@@ -30,6 +30,7 @@ public class Utils
 	 * @param tag              tag
 	 * @return result
 	 */
+	@NonNull
 	static Result makeUnionQuery(final String table1, final String table2, //
 			final String[] table1Projection, final String[] table2Projection, //
 			final String[] unionProjection, //
@@ -167,7 +168,8 @@ public class Utils
 		return embeddingQueryBuilder.buildQuery(resultProjection, null, groupBy, null, sortOrder, null);
 	}
 
-	public static String makeGroupBys(String[] groupBys0, String[] projection)
+	@NonNull
+	public static String makeGroupBys(String[] groupBys0, @NonNull String[] projection)
 	{
 		// group by
 		String[] groupBys = groupBys0;
@@ -264,7 +266,8 @@ public class Utils
 	 * @param tokens    tokens
 	 * @return joined
 	 */
-	private static String join(@SuppressWarnings("SameParameterValue") final CharSequence delimiter, final CharSequence[] tokens)
+	@NonNull
+	private static String join(@SuppressWarnings("SameParameterValue") final CharSequence delimiter, @NonNull final CharSequence[] tokens)
 	{
 		final int length = tokens.length;
 		if (length == 0)
@@ -287,6 +290,7 @@ public class Utils
 	 * @param selectionArgs selection arguments
 	 * @return cursor
 	 */
+	@NonNull
 	static String[] unfoldSelectionArgs(@NonNull final String... selectionArgs)
 	{
 		final String[] selectionArgs2 = new String[2 * selectionArgs.length];

@@ -107,6 +107,7 @@ public class DownloadZipWork extends DownloadWork
 	 * @param observer   observer
 	 * @return work uuid
 	 */
+	@NonNull
 	public static UUID startWork(@NonNull final Context context, @NonNull final String fromUrl, @Nullable final String entry, @NonNull final String toFile, @Nullable final String renameFrom, @Nullable final String renameTo, @NonNull final LifecycleOwner owner, @NonNull final Observer<WorkInfo> observer)
 	{
 		final WorkManager wm = WorkManager.getInstance(context);

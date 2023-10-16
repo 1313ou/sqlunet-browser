@@ -10,6 +10,9 @@ import org.sqlunet.framenet.provider.FrameNetControl.Result;
 import java.util.Arrays;
 import java.util.Objects;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 public class QueriesUnitTest
 {
 	private final int[] codes = {FrameNetControl.LEXUNIT, FrameNetControl.LEXUNITS, FrameNetControl.LEXUNITS_X_BY_LEXUNIT, FrameNetControl.FRAME, FrameNetControl.FRAMES, FrameNetControl.FRAMES_X_BY_FRAME, FrameNetControl.FRAMES_RELATED, FrameNetControl.SENTENCE, FrameNetControl.SENTENCES, FrameNetControl.ANNOSET, FrameNetControl.ANNOSETS, FrameNetControl.SENTENCES_LAYERS_X, FrameNetControl.ANNOSETS_LAYERS_X, FrameNetControl.PATTERNS_LAYERS_X, FrameNetControl.VALENCEUNITS_LAYERS_X, FrameNetControl.PATTERNS_SENTENCES, FrameNetControl.VALENCEUNITS_SENTENCES, FrameNetControl.GOVERNORS_ANNOSETS, FrameNetControl.WORDS_LEXUNITS_FRAMES, FrameNetControl.LEXUNITS_OR_FRAMES, FrameNetControl.FRAMES_FES, FrameNetControl.FRAMES_FES_BY_FE, FrameNetControl.LEXUNITS_SENTENCES, FrameNetControl.LEXUNITS_SENTENCES_BY_SENTENCE, FrameNetControl.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS, FrameNetControl.LEXUNITS_SENTENCES_ANNOSETS_LAYERS_LABELS_BY_SENTENCE, FrameNetControl.LEXUNITS_GOVERNORS, FrameNetControl.LEXUNITS_REALIZATIONS, FrameNetControl.LEXUNITS_REALIZATIONS_BY_REALIZATION, FrameNetControl.LEXUNITS_GROUPREALIZATIONS, FrameNetControl.LEXUNITS_GROUPREALIZATIONS_BY_PATTERN, FrameNetControl.LOOKUP_FTS_WORDS, FrameNetControl.LOOKUP_FTS_SENTENCES, FrameNetControl.LOOKUP_FTS_SENTENCES_X, FrameNetControl.LOOKUP_FTS_SENTENCES_X_BY_SENTENCE, FrameNetControl.SUGGEST_WORDS, FrameNetControl.SUGGEST_FTS_WORDS,};
@@ -53,22 +56,25 @@ public class QueriesUnitTest
 		return r;
 	}
 
+	@Nullable
 	public static Result queryProviderMain(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		return FrameNetControl.queryMain(code, uriLast, projection0, selection0, selectionArgs0);
 	}
 
+	@Nullable
 	public static Result queryProviderSearch(final int code, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		return FrameNetControl.querySearch(code, projection0, selection0, selectionArgs0);
 	}
 
+	@Nullable
 	public static Result queryProviderSuggest(final int code, final String uriLast)
 	{
 		return FrameNetControl.querySuggest(code, uriLast);
 	}
 
-	private void check(final int code, final Result r1, final Result r2)
+	private void check(final int code, @NonNull final Result r1, @NonNull final Result r2)
 	{
 		assert equals(r1.table, r2.table) : "Code=" + code + "\n" + r1.table + "\n!=\n" + r2.table;
 		assert Arrays.equals(r1.projection, r2.projection) : "Code=" + code + "\n" + Arrays.toString(r1.projection) + "\n!=\n" + Arrays.toString(r2.projection);

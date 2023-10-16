@@ -113,7 +113,7 @@ abstract class BaseModule extends Module
 	 * @param displayer displayer
 	 */
 	@SuppressWarnings("UnusedReturnValue")
-	void fromWord(final String word, final TreeNode parent, final Displayer displayer)
+	void fromWord(final String word, final TreeNode parent, @NonNull final Displayer displayer)
 	{
 		final ContentProviderSql sql = Queries.preparePmFromWord(word, displayer.getRequiredOrder());
 		new PmProcessOnIteration(parent, displayer).run(sql, this.fragment);
@@ -141,7 +141,7 @@ abstract class BaseModule extends Module
 	 * @param displayer displayer
 	 */
 	@SuppressWarnings("UnusedReturnValue")
-	void fromRoleId(final long pmRoleId, final TreeNode parent, final Displayer displayer)
+	void fromRoleId(final long pmRoleId, final TreeNode parent, @NonNull final Displayer displayer)
 	{
 		final ContentProviderSql sql = Queries.preparePmFromRoleId(pmRoleId, displayer.getRequiredOrder());
 		new PmProcessOnIteration(parent, displayer).run(sql, this.fragment);
@@ -704,7 +704,7 @@ abstract class BaseModule extends Module
 		}
 
 		@SuppressWarnings("WeakerAccess")
-		public void run(final ContentProviderSql sql, final TreeFragment fragment)
+		public void run(@NonNull final ContentProviderSql sql, final TreeFragment fragment)
 		{
 			final Uri uri = Uri.parse(PredicateMatrixProvider.makeUri(sql.providerUri));
 			BaseModule.this.model.loadData(uri, sql, cursor -> pmCursorToTreeModel(cursor, parent));

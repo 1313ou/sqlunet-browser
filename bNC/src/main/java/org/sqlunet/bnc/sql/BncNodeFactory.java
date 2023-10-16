@@ -50,6 +50,7 @@ class BncNodeFactory extends NodeFactory
 	 * @param data   is the BNC data
 	 * @param i      the ith BNC data
 	 */
+	@NonNull
 	@SuppressWarnings("UnusedReturnValue")
 	static public Node makeBncNode(@NonNull final Document doc, final Node parent, @NonNull final BncData data, final int i)
 	{

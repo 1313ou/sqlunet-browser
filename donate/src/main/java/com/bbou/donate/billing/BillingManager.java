@@ -301,7 +301,7 @@ public class BillingManager
 	 *
 	 * @param productId product id
 	 */
-	public void initiatePurchaseFlow(final String productId)
+	public void initiatePurchaseFlow(@NonNull final String productId)
 	{
 		executeServiceRequest(() -> {
 

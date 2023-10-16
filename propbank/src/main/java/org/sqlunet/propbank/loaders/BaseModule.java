@@ -185,6 +185,7 @@ abstract class BaseModule extends Module
 		this.pbRoleSetFromRoleSetIdModel.loadData(uri, sql, cursor -> roleSetCursorToTreeModel(cursor, roleSetId, parent));
 	}
 
+	@NonNull
 	private TreeOp[] roleSetCursorToTreeModel(@NonNull final Cursor cursor, final long roleSetId, @NonNull final TreeNode parent)
 	{
 		if (cursor.getCount() > 1)
@@ -329,6 +330,7 @@ abstract class BaseModule extends Module
 		this.rolesFromRoleSetIdModel.loadData(uri, sql, cursor -> rolesCursorToTreeModel(cursor, parent));
 	}
 
+	@NonNull
 	private TreeOp[] rolesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;
@@ -417,6 +419,7 @@ abstract class BaseModule extends Module
 		this.examplesFromRoleSetIdModel.loadData(uri, sql, cursor -> examplesCursorToTreeModel(cursor, parent));
 	}
 
+	@NonNull
 	private TreeOp[] examplesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		TreeOp[] changed;

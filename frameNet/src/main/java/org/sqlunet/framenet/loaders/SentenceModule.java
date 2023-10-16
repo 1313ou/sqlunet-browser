@@ -108,6 +108,7 @@ public class SentenceModule extends BaseModule
 		this.sentenceFromSentenceIdModel.loadData(uri, sql, cursor -> sentenceCursorToTreeModel(cursor, parent));
 	}
 
+	@NonNull
 	private TreeOp[] sentenceCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
 	{
 		if (cursor.getCount() > 1)

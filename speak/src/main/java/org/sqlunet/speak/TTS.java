@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Set;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 public class TTS
@@ -24,7 +25,7 @@ public class TTS
 
 	static public final Locale DEFAULT_LOCALE = Locale.UK;
 
-	static private Locale toLocale(final String locale)
+	static private Locale toLocale(@Nullable final String locale)
 	{
 		if (locale == null)
 		{
@@ -64,7 +65,7 @@ public class TTS
 
 	private TextToSpeech tts;
 
-	public TTS(final Context context, final String written, final String ipa, final Locale locale, final String voiceName)
+	public TTS(final Context context, final String written, final String ipa, @Nullable final Locale locale, @Nullable final String voiceName)
 	{
 		this.tts = new TextToSpeech(context, status -> {
 
@@ -160,6 +161,7 @@ public class TTS
 		});
 	}
 
+	@Nullable
 	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 	private Voice getVoice(String voiceName)
 	{

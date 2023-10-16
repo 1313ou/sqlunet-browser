@@ -196,7 +196,7 @@ public class Colors
 	}
 
 	@NonNull
-	public static int[] getColors(@NonNull final Context context, @ColorRes final int... colorIds)
+	public static int[] getColors(@NonNull final Context context, @NonNull @ColorRes final int... colorIds)
 	{
 		int[] result = new int[colorIds.length];
 		for (int i = 0; i < colorIds.length; i++)
@@ -209,7 +209,7 @@ public class Colors
 	static public final int NOT_DEFINED = 0xAAAAAAAA;
 
 	@NonNull
-	static public int[] getColorAttrs(@NonNull final Context context, @StyleRes int themeId, @StyleableRes int... resIds)
+	static public int[] getColorAttrs(@NonNull final Context context, @StyleRes int themeId, @NonNull @StyleableRes int... resIds)
 	{
 		TypedArray a = context.getTheme().obtainStyledAttributes(themeId, resIds);
 

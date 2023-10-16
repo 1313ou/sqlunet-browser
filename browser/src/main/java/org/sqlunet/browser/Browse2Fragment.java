@@ -29,6 +29,7 @@ import org.sqlunet.wordnet.browser.SenseFragment;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -243,6 +244,7 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 	 *
 	 * @return styled string
 	 */
+	@NonNull
 	private CharSequence toTarget()
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();

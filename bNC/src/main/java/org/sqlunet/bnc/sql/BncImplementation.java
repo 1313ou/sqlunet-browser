@@ -32,6 +32,7 @@ public class BncImplementation implements BncInterface
 	 * @param word       the target word
 	 * @return BNC data as DOM document
 	 */
+	@NonNull
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final String word)
 	{
@@ -64,6 +65,7 @@ public class BncImplementation implements BncInterface
 	 * @param pos        the pos to build query from (null if any)
 	 * @return BNC data as DOM document
 	 */
+	@NonNull
 	@Override
 	public Document queryDoc(final SQLiteDatabase connection, final long wordId, final Character pos)
 	{

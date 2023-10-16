@@ -6,13 +6,17 @@ package org.sqlunet.provider;
 
 import org.sqlunet.provider.XNetControl.Result;
 
+import androidx.annotation.Nullable;
+
 public class QueriesLegacy
 {
+	@Nullable
 	public static Result queryLegacy(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
 		return queryLegacyMain(code, uriLast, projection0, selection0, selectionArgs0);
 	}
 
+	@Nullable
 	@SuppressWarnings("UnnecessaryLocalVariable")
 	public static Result queryLegacyMain(final int code, @SuppressWarnings("unused") final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
 	{
