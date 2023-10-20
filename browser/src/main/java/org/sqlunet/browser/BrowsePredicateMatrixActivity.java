@@ -52,12 +52,14 @@ public class BrowsePredicateMatrixActivity extends AbstractBrowseActivity<Browse
 		{
 			// search query submit (SEARCH) or suggestion selection (when a suggested item is selected) (VIEW)
 			final String query = intent.getStringExtra(SearchManager.QUERY);
-			assert this.fragment != null;
-			if (isActionView)
+			if (query != null && this.fragment != null)
 			{
-				this.fragment.clearQuery();
+				if (isActionView)
+				{
+					this.fragment.clearQuery();
+				}
+				this.fragment.search(query);
 			}
-			this.fragment.search(query);
 			return;
 		}
 		else if (Intent.ACTION_SEND.equals(action))
@@ -66,9 +68,8 @@ public class BrowsePredicateMatrixActivity extends AbstractBrowseActivity<Browse
 			if ("text/plain".equals(type))
 			{
 				final String query = intent.getStringExtra(Intent.EXTRA_TEXT);
-				if (query != null)
+				if (query != null && this.fragment != null)
 				{
-					assert this.fragment != null;
 					this.fragment.search(query);
 					return;
 				}
@@ -85,10 +86,9 @@ public class BrowsePredicateMatrixActivity extends AbstractBrowseActivity<Browse
 				if (ProviderArgs.ARG_QUERYTYPE_PM == type || ProviderArgs.ARG_QUERYTYPE_PMROLE == type)
 				{
 					final Parcelable pointer = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? args.getParcelable(ProviderArgs.ARG_QUERYPOINTER, Parcelable.class) : args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
-					if (pointer instanceof PmRolePointer)
+					if (pointer instanceof PmRolePointer && this.fragment != null)
 					{
 						final PmRolePointer rolePointer = (PmRolePointer) pointer;
-						assert this.fragment != null;
 						this.fragment.search(rolePointer);
 					}
 				}
