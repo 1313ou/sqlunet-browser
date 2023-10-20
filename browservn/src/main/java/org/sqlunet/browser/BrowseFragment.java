@@ -21,6 +21,7 @@ import org.sqlunet.browser.web.WebActivity;
 import org.sqlunet.browser.web.WebFragment;
 import org.sqlunet.browser.xselector.XBrowse1Activity;
 import org.sqlunet.browser.xselector.XBrowse1Fragment;
+import org.sqlunet.history.History;
 import org.sqlunet.propbank.PbRoleSetPointer;
 import org.sqlunet.propbank.browser.PbRoleSetActivity;
 import org.sqlunet.provider.ProviderArgs;
@@ -116,9 +117,13 @@ public class BrowseFragment extends BaseSearchFragment
 		assert toolbar != null;
 		toolbar.setSubtitle(query);
 
+		// history
+		History.recordQuery(requireContext(), query);
+
 		/*
 		// copy to target view
 		final View view = getView();
+		if (view != null)
 		{
 			final TextView targetView = (TextView) view.findViewById(R.id.targetView);
 			if (targetView != null)

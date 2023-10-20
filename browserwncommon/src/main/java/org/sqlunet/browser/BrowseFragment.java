@@ -21,6 +21,7 @@ import org.sqlunet.browser.web.WebActivity;
 import org.sqlunet.browser.web.WebFragment;
 import org.sqlunet.browser.wn.Settings;
 import org.sqlunet.browser.wn.lib.R;
+import org.sqlunet.history.History;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.wordnet.SenseKeyPointer;
 import org.sqlunet.wordnet.SynsetPointer;
@@ -30,8 +31,8 @@ import org.sqlunet.wordnet.browser.SynsetActivity;
 import org.sqlunet.wordnet.browser.WordActivity;
 import org.sqlunet.wordnet.provider.WordNetContract.AdjPositions;
 import org.sqlunet.wordnet.provider.WordNetContract.Domains;
-import org.sqlunet.wordnet.provider.WordNetContract.Relations;
 import org.sqlunet.wordnet.provider.WordNetContract.Poses;
+import org.sqlunet.wordnet.provider.WordNetContract.Relations;
 import org.sqlunet.wordnet.provider.WordNetProvider;
 
 import androidx.annotation.NonNull;
@@ -163,6 +164,9 @@ public class BrowseFragment extends BaseSearchFragment
 		final Toolbar toolbar = requireActivity().findViewById(org.sqlunet.browser.common.R.id.toolbar_search);
 		assert toolbar != null;
 		toolbar.setSubtitle(query);
+
+		// history
+		History.recordQuery(requireContext(), query);
 
 		/*
 		// copy to target view

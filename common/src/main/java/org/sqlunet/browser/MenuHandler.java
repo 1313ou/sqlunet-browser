@@ -30,6 +30,7 @@ import org.sqlunet.browser.config.SetupAsset;
 import org.sqlunet.browser.config.SetupFileActivity;
 import org.sqlunet.browser.config.SetupFileFragment;
 import org.sqlunet.browser.config.StorageActivity;
+import org.sqlunet.history.HistoryActivity;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.sql.SqlFormatter;
@@ -144,6 +145,10 @@ public class MenuHandler
 		}
 
 		// others
+		else if (itemId == R.id.action_history)
+		{
+			intent = new Intent(activity, HistoryActivity.class);
+		}
 		else if (itemId == R.id.action_help)
 		{
 			intent = new Intent(activity, HelpActivity.class);

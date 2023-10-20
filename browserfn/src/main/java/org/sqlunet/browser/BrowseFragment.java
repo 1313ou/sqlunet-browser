@@ -29,6 +29,7 @@ import org.sqlunet.framenet.browser.FnAnnoSetActivity;
 import org.sqlunet.framenet.browser.FnFrameActivity;
 import org.sqlunet.framenet.browser.FnLexUnitActivity;
 import org.sqlunet.framenet.browser.FnSentenceActivity;
+import org.sqlunet.history.History;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.settings.Settings;
 
@@ -117,9 +118,13 @@ public class BrowseFragment extends BaseSearchFragment
 		assert toolbar != null;
 		toolbar.setSubtitle(query);
 
+		// history
+		History.recordQuery(requireContext(), query);
+
 		/*
 		// copy to target view
 		final View view = getView();
+		if (view != null)
 		{
 			final TextView targetView = (TextView) view.findViewById(R.id.targetView);
 			if (targetView != null)
