@@ -82,6 +82,7 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 	protected void onNewIntent(@NonNull final Intent intent)
 	{
 		super.onNewIntent(intent);
+		setIntent(intent);
 		handleSearchIntent(intent);
 	}
 
@@ -131,7 +132,6 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 				{
 					this.fragment.clearQuery();
 				}
-
 				this.fragment.search(query);
 			}
 		}

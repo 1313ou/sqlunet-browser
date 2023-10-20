@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity
 	protected void onNewIntent(@NonNull final Intent intent)
 	{
 		super.onNewIntent(intent);
+		setIntent(intent);
 		handleSearchIntent(intent);
 	}
 

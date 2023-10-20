@@ -69,6 +69,7 @@ public abstract class AbstractSearchTextActivity<F extends BaseSearchFragment> e
 	protected void onNewIntent(@NonNull final Intent intent)
 	{
 		super.onNewIntent(intent);
+		setIntent(intent);
 		handleSearchIntent(intent);
 	}
 
@@ -112,9 +113,8 @@ public abstract class AbstractSearchTextActivity<F extends BaseSearchFragment> e
 		{
 			// search query submit (SEARCH) or suggestion selection (when a suggested item is selected) (VIEW)
 			final String query = intent.getStringExtra(SearchManager.QUERY);
-			if (query != null)
+			if (query != null && this.fragment != null)
 			{
-				assert this.fragment != null;
 				if (isActionView)
 				{
 					this.fragment.clearQuery();
@@ -128,9 +128,8 @@ public abstract class AbstractSearchTextActivity<F extends BaseSearchFragment> e
 			if ("text/plain".equals(type))
 			{
 				final String query = intent.getStringExtra(Intent.EXTRA_TEXT);
-				if (query != null)
+				if (query != null && this.fragment != null)
 				{
-					assert this.fragment != null;
 					this.fragment.search(query);
 				}
 			}
