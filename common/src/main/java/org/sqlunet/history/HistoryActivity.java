@@ -4,16 +4,14 @@
 
 package org.sqlunet.history;
 
-import android.annotation.TargetApi;
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SearchRecentSuggestionsProvider;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.os.Build;
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
+import android.os.ParcelFileDescriptor;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -32,11 +30,18 @@ import org.sqlunet.browser.common.R;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.Writer;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -45,7 +50,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.app.LoaderManager.LoaderCallbacks;
 import androidx.loader.content.Loader;
-import androidx.preference.PreferenceManager;
 
 /**
  * History activity
@@ -60,17 +64,7 @@ public class HistoryActivity extends AppCompatActivity implements LoaderCallback
 	/**
 	 * Export/import text file
 	 */
-	private static final String LISTFILE = "semantikos_list.txt";
-
-	/**
-	 * Write permission request code
-	 */
-	private static final int EXTERNALSTORAGE_WRITEPERMSREQUESTCODE = 1111;
-
-	/**
-	 * Read permission request code
-	 */
-	private static final int EXTERNALSTORAGE_READPERMSREQUESTCODE = 1112;
+	private static final String HISTORY_FILE = "semantikos_search_history.txt";
 
 	/**
 	 * Cursor loader id
@@ -87,6 +81,7 @@ public class HistoryActivity extends AppCompatActivity implements LoaderCallback
 	 */
 	private CursorAdapter adapter;
 
+	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
@@ -126,6 +121,9 @@ public class HistoryActivity extends AppCompatActivity implements LoaderCallback
 		// swipe
 		final SwipeGestureListener gestureListener = new SwipeGestureListener();
 		this.listView.setOnTouchListener(gestureListener);
+
+		// launchers
+		registerLaunchers();
 
 		// initializes the cursor loader
 		LoaderManager.getInstance(this).initLoader(HistoryActivity.LOADER_ID, null, this);
@@ -180,7 +178,10 @@ public class HistoryActivity extends AppCompatActivity implements LoaderCallback
 	@Override
 	public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 	{
-		this.adapter.swapCursor(null);
+		//noinspection EmptyTryBlock
+		try (Cursor ignored = this.adapter.swapCursor(null))
+		{
+		}
 	}
 
 	// C L I C K
@@ -279,113 +280,90 @@ public class HistoryActivity extends AppCompatActivity implements LoaderCallback
 		}
 	}
 
-	// P E R M I S S I O N S
-
-	static private final String WRITEPERMISSION = "android.permission.WRITE_EXTERNAL_STORAGE";
-
-	static private final String READPERMISSION = "android.permission.READ_EXTERNAL_STORAGE";
-
-	@TargetApi(Build.VERSION_CODES.M)
-	private void requestPermissions(int permsRequestCode, @NonNull final String... permissions)
-	{
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-		{
-			requestPermissions(permissions, permsRequestCode);
-		}
-	}
-
-	@Override
-	public void onRequestPermissionsResult(final int permsRequestCode, @NonNull final String[] permissions, @NonNull final int[] grantResults)
-	{
-		super.onRequestPermissionsResult(permsRequestCode, permissions, grantResults);
-		switch (permsRequestCode)
-		{
-			case EXTERNALSTORAGE_WRITEPERMSREQUESTCODE:
-				boolean writeAccepted = grantResults[1] == PackageManager.PERMISSION_GRANTED;
-				Log.i(TAG, "External storage write: " + writeAccepted);
-				if (writeAccepted)
-				{
-					doExportHistory();
-				}
-				break;
-			case EXTERNALSTORAGE_READPERMSREQUESTCODE:
-				boolean readAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-				Log.i(TAG, "External storage read: " + readAccepted);
-				if (readAccepted)
-				{
-					doImportHistory();
-				}
-				break;
-			default:
-				break;
-		}
-	}
-
-	@SuppressWarnings("BooleanMethodIsAlwaysInverted")
-	@TargetApi(Build.VERSION_CODES.M)
-	private boolean hasPermission(@NonNull String permission)
-	{
-		//noinspection SimplifiableIfStatement
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-		{
-			return (checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED);
-		}
-		return true;
-	}
-
-	private boolean shouldAskPermission(String permission)
-	{
-		final SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-		return (sharedPrefs.getBoolean(permission, true));
-	}
-
-	private void markPermissionAsAsked(@NonNull final String... permissions)
-	{
-		final SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-		final Editor editor = sharedPrefs.edit();
-		for (String permission : permissions)
-		{
-			editor.putBoolean(permission, false);
-		}
-		editor.apply();
-	}
-
 	// I M P O R T / E X P O R T
+
+	private static final String MIME_TYPE = "text/plain";
 
 	/**
 	 * Export history
 	 */
 	private void exportHistory()
 	{
-		if (!HistoryActivity.isExternalStorageWritable())
-		{
-			return;
-		}
+		exportLauncher.launch(MIME_TYPE);
+	}
 
-		if (!hasPermission(WRITEPERMISSION))
+	/**
+	 * Import history
+	 */
+	private void importHistory()
+	{
+		importLauncher.launch(new String[]{MIME_TYPE});
+	}
+
+	// D O C U M E N T   I N T E R F A C E
+
+	// You can do the assignment inside onAttach or onCreate, i.e, before the activity is displayed
+	private ActivityResultLauncher<String> exportLauncher;
+
+	private ActivityResultLauncher<String[]> importLauncher;
+
+	private void registerLaunchers()
+	{
+		final ActivityResultContract<String, Uri> createContract = new ActivityResultContracts.CreateDocument(MIME_TYPE)
 		{
-			if (shouldAskPermission(WRITEPERMISSION))
+			@NonNull
+			@Override
+			public Intent createIntent(@NonNull final Context context, @NonNull final String input)
 			{
-				requestPermissions(EXTERNALSTORAGE_WRITEPERMSREQUESTCODE, READPERMISSION, WRITEPERMISSION);
-				markPermissionAsAsked(READPERMISSION, WRITEPERMISSION);
+				final Intent intent = super.createIntent(context, input);
+				intent.putExtra(Intent.EXTRA_TITLE, HISTORY_FILE);
+				//intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, pickerInitialUri);
+				return intent;
 			}
-			return;
-		}
+		};
+		this.exportLauncher = registerForActivityResult(createContract, uri -> {
 
-		doExportHistory();
+			// The result data contains a URI for the document or directory that the user selected.
+			if (uri != null)
+			{
+				doExportHistory(uri);
+			}
+		});
+
+		final ActivityResultContract<String[], Uri> openContract = new ActivityResultContracts.OpenDocument()
+		{
+			@NonNull
+			@Override
+			public Intent createIntent(@NonNull final Context context, @NonNull final String[] input)
+			{
+				final Intent intent = super.createIntent(context, input);
+				intent.putExtra(Intent.EXTRA_TITLE, HISTORY_FILE);
+				//intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, pickerInitialUri);
+				return intent;
+			}
+		};
+		this.importLauncher = registerForActivityResult(openContract, uri -> {
+
+			// The result data contains a URIs for the document or directory that the user selected.
+			if (uri != null)
+			{
+				doImportHistory(uri);
+			}
+		});
 	}
 
 	/**
 	 * Export history
 	 */
-	private void doExportHistory()
+	private void doExportHistory(@NonNull final Uri uri)
 	{
-		final File exportFile = new File(Environment.getExternalStorageDirectory(), HistoryActivity.LISTFILE);
-		Log.d(HistoryActivity.TAG, "Exporting to " + exportFile.getPath());
-		try
+		Log.d(HistoryActivity.TAG, "Exporting to " + uri);
+		try ( //
+		      final ParcelFileDescriptor pfd = getContentResolver().openFileDescriptor(uri, "w"); //
+		      final OutputStream fileOutputStream = new FileOutputStream(pfd.getFileDescriptor());//
+		      final Writer writer = new OutputStreamWriter(fileOutputStream);//
+		      final BufferedWriter bw = new BufferedWriter(writer))
 		{
-			final FileWriter writer = new FileWriter(exportFile);
-			final BufferedWriter bw = new BufferedWriter(writer);
 			final SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this, SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES);
 			final Cursor cursor = suggestions.cursor();
 			assert cursor != null;
@@ -400,83 +378,41 @@ public class HistoryActivity extends AppCompatActivity implements LoaderCallback
 				}
 				while (cursor.moveToNext());
 			}
-			bw.close();
 			cursor.close();
-			Log.i(HistoryActivity.TAG, "Exported to " + exportFile.getPath());
-			Toast.makeText(this, getResources().getText(R.string.title_history_export) + " " + exportFile.getPath(), Toast.LENGTH_SHORT).show();
+			Log.i(HistoryActivity.TAG, "Exported to " + uri);
+			Toast.makeText(this, getResources().getText(R.string.title_history_export) + " " + uri, Toast.LENGTH_SHORT).show();
 		}
 		catch (@NonNull final IOException e)
 		{
 			Log.e(HistoryActivity.TAG, "While writing", e);
-			Toast.makeText(this, getResources().getText(R.string.error_export) + " " + exportFile.getPath(), Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, getResources().getText(R.string.error_export) + " " + uri, Toast.LENGTH_SHORT).show();
 		}
 	}
 
 	/**
 	 * Import history
 	 */
-	private void importHistory()
+	private void doImportHistory(@NonNull final Uri uri)
 	{
-		if (!HistoryActivity.isExternalStorageReadable())
+		Log.d(HistoryActivity.TAG, "Importing from " + uri);
+		try ( //
+		      final InputStream is = getContentResolver().openInputStream(uri); //
+		      final Reader reader = new InputStreamReader(is); //
+		      final BufferedReader br = new BufferedReader(reader) //
+		)
 		{
-			return;
-		}
-
-		if (!hasPermission(READPERMISSION))
-		{
-			if (shouldAskPermission(READPERMISSION))
-			{
-				requestPermissions(EXTERNALSTORAGE_READPERMSREQUESTCODE, READPERMISSION, WRITEPERMISSION);
-				markPermissionAsAsked(READPERMISSION, WRITEPERMISSION);
-			}
-			return;
-		}
-
-		doImportHistory();
-	}
-
-	/**
-	 * Import history
-	 */
-	private void doImportHistory()
-	{
-		final File importFile = new File(Environment.getExternalStorageDirectory(), HistoryActivity.LISTFILE);
-		Log.d(HistoryActivity.TAG, "Importing from " + importFile.getPath());
-		try
-		{
-			final FileReader reader = new FileReader(importFile);
-			final BufferedReader br = new BufferedReader(reader);
 			String line;
 			while ((line = br.readLine()) != null)
 			{
 				History.recordQuery(this, line.trim());
 			}
-			br.close();
-			Log.i(HistoryActivity.TAG, "Imported from " + importFile.getPath());
-			Toast.makeText(this, getResources().getText(R.string.title_history_import) + " " + importFile.getPath(), Toast.LENGTH_SHORT).show();
+			Log.i(HistoryActivity.TAG, "Imported from " + uri);
+			Toast.makeText(this, getResources().getText(R.string.title_history_import) + " " + uri, Toast.LENGTH_SHORT).show();
 		}
 		catch (@NonNull final IOException e)
 		{
 			Log.e(HistoryActivity.TAG, "While reading", e);
-			Toast.makeText(this, getResources().getText(R.string.error_import) + " " + importFile.getPath(), Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, getResources().getText(R.string.error_import) + " " + uri, Toast.LENGTH_SHORT).show();
 		}
-	}
-
-	/**
-	 * Checks if external storage is available for read and write
-	 */
-	private static boolean isExternalStorageWritable()
-	{
-		final String state = Environment.getExternalStorageState();
-		return Environment.MEDIA_MOUNTED.equals(state);
-	}
-
-	/**
-	 * Checks if external storage is available to at least read
-	 */
-	private static boolean isExternalStorageReadable()
-	{
-		final String state = Environment.getExternalStorageState();
-		return Environment.MEDIA_MOUNTED.equals(state) || Environment.MEDIA_MOUNTED_READ_ONLY.equals(state);
 	}
 }
