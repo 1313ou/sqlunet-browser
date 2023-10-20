@@ -359,28 +359,33 @@ public class HistoryActivity extends AppCompatActivity implements LoaderCallback
 	{
 		Log.d(HistoryActivity.TAG, "Exporting to " + uri);
 		try ( //
-		      final ParcelFileDescriptor pfd = getContentResolver().openFileDescriptor(uri, "w"); //
-		      final OutputStream fileOutputStream = new FileOutputStream(pfd.getFileDescriptor());//
-		      final Writer writer = new OutputStreamWriter(fileOutputStream);//
-		      final BufferedWriter bw = new BufferedWriter(writer))
+		      final ParcelFileDescriptor pfd = getContentResolver().openFileDescriptor(uri, "w") //
+		)
 		{
-			final SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this, SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES);
-			final Cursor cursor = suggestions.cursor();
-			assert cursor != null;
-			if (cursor.moveToFirst())
+			assert pfd != null;
+			try(
+			final OutputStream fileOutputStream = new FileOutputStream(pfd.getFileDescriptor());//
+			final Writer writer = new OutputStreamWriter(fileOutputStream);//
+			final BufferedWriter bw = new BufferedWriter(writer))
 			{
-				do
+				final SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this, SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES);
+				final Cursor cursor = suggestions.cursor();
+				assert cursor != null;
+				if (cursor.moveToFirst())
 				{
-					final int dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1);
-					assert dataIdx != -1;
-					final String data = cursor.getString(dataIdx);
-					bw.write(data + '\n');
+					do
+					{
+						final int dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1);
+						assert dataIdx != -1;
+						final String data = cursor.getString(dataIdx);
+						bw.write(data + '\n');
+					}
+					while (cursor.moveToNext());
 				}
-				while (cursor.moveToNext());
+				cursor.close();
+				Log.i(HistoryActivity.TAG, "Exported to " + uri);
+				Toast.makeText(this, getResources().getText(R.string.title_history_export) + " " + uri, Toast.LENGTH_SHORT).show();
 			}
-			cursor.close();
-			Log.i(HistoryActivity.TAG, "Exported to " + uri);
-			Toast.makeText(this, getResources().getText(R.string.title_history_export) + " " + uri, Toast.LENGTH_SHORT).show();
 		}
 		catch (@NonNull final IOException e)
 		{
