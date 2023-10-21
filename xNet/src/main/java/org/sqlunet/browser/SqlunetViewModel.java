@@ -25,6 +25,7 @@ public class SqlunetViewModel extends AndroidViewModel
 	@FunctionalInterface
 	public interface PostProcessor
 	{
+		/** @noinspection unused*/
 		void postProcess(@NonNull final Cursor cursor);
 	}
 

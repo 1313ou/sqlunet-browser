@@ -405,7 +405,6 @@ public class WordNetProvider extends BaseProvider
 				AnyRelations.WORD2ID, //
 				AnyRelations.SYNSET2ID, //
 		};
-		assert selection0 != null;
 		final String[] selections = selection0.split("/\\*\\*/\\|/\\*\\*/");
 		return makeQuery(semTable, //
 				lexTable, //

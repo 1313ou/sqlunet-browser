@@ -72,6 +72,7 @@ public class AssetLoadActivity extends AppCompatActivity
 		return MenuHandler.menuDispatchWhenCantRun(this, item);
 	}
 
+	/** @noinspection deprecation*/
 	@Override
 	public void onBackPressed()
 	{

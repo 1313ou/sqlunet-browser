@@ -215,7 +215,6 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		toolbar.setSubtitle(R.string.app_subname);
 
 		// nav
-
 		toolbar.setNavigationOnClickListener(v -> {
 
 			//Log.d(TAG, "BackStack: onBackPressed() pressed");
@@ -246,7 +245,8 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 				else
 				{
 					Log.d(TAG, "BackStack: activity onBackPressed()");
-					requireActivity().onBackPressed();
+					// requireActivity().onBackPressed();
+					requireActivity().getOnBackPressedDispatcher().onBackPressed();
 				}
 			}
 		});
@@ -365,12 +365,8 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		}
 
 		final Settings.Selector selectorMode = Settings.Selector.getPref(requireContext());
-		if (selectorMode != null)
-		{
-			return selectorMode.ordinal();
-		}
+		return selectorMode.ordinal();
 
-		return 0;
 	}
 
 	// S E A R C H V I E W

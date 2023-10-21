@@ -88,15 +88,7 @@ public class SQLiteQueryBuilder
 	@NonNull
 	private String computeSingleProjectionOrThrow(@NonNull String userColumn)
 	{
-		final String column = computeSingleProjection(userColumn);
-		if (column != null)
-		{
-			return column;
-		}
-		else
-		{
-			throw new IllegalArgumentException("Invalid column " + userColumn);
-		}
+		return computeSingleProjection(userColumn);
 	}
 
 	@NonNull

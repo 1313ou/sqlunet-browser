@@ -120,10 +120,7 @@ public class BrowseFragment extends BaseSearchFragment
 
 		// saved selector mode
 		final Settings.Selector selectorMode = Settings.Selector.getPref(requireContext());
-		if (selectorMode != null)
-		{
-			this.spinner.setSelection(selectorMode.ordinal());
-		}
+		this.spinner.setSelection(selectorMode.ordinal());
 	}
 
 	// M E N U

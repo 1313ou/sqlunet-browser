@@ -44,7 +44,6 @@ public class DownloadActivity extends AppCompatActivity implements OnComplete
 		final Settings.Mode mode = overriddenMode == null ? Settings.Mode.getModePref(this) : Settings.Mode.valueOf(overriddenMode);
 		assert mode != null;
 		final Settings.Downloader downloader = mode.toDownloader();
-		assert downloader != null;
 
 		// content
 		setContentView(R.layout.activity_download);

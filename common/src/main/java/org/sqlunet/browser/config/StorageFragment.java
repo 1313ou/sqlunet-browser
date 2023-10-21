@@ -135,7 +135,8 @@ public class StorageFragment extends Fragment
 		}, this.getViewLifecycleOwner(), Lifecycle.State.RESUMED);
 
 		// nav
-		toolbar.setNavigationOnClickListener(v -> requireActivity().onBackPressed());
+		// toolbar.setNavigationOnClickListener(v -> requireActivity().onBackPressed());
+		toolbar.setNavigationOnClickListener(v -> requireActivity().getOnBackPressedDispatcher().onBackPressed());
 	}
 
 	/**

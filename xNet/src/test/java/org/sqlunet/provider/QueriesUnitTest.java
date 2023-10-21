@@ -10,7 +10,6 @@ import org.sqlunet.provider.XNetControl.Result;
 import java.util.Arrays;
 import java.util.Objects;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class QueriesUnitTest
@@ -33,6 +32,7 @@ public class QueriesUnitTest
 		{
 			System.out.println("CODE: " + code);
 			Result r = QueriesLegacy.queryLegacy(code, uriLast, projection, selection, selectionArgs);
+			assert r != null;
 			System.out.println("table :" + r.table);
 			System.out.println("projection :" + Arrays.toString(r.projection));
 			System.out.println("selection :" + r.selection);
@@ -79,8 +79,10 @@ public class QueriesUnitTest
 		return XNetControl.queryMain(code, uriLast, projection0, selection0, selectionArgs0);
 	}
 
-	private void check(final int code, @NonNull final Result r1, @NonNull final Result r2)
+	private void check(final int code, @Nullable final Result r1, @Nullable final Result r2)
 	{
+		assert r1 != null;
+		assert r2 != null;
 		assert equals(r1.table, r2.table) : "Code=" + code + " table " + "\n" + r1.table + "\n!=\n" + r2.table;
 		assert Arrays.equals(r1.projection, r2.projection) : "Code=" + code + " projection " + "\n" + Arrays.toString(r1.projection) + "\n!=\n" + Arrays.toString(r2.projection);
 		assert equals(r1.selection, r2.selection) : "Code=" + code + " selection " + "\n" + r1.selection + "\n!=\n" + r2.selection;

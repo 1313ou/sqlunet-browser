@@ -49,7 +49,7 @@ public class RunQueriesTest
 	@NonNull
 	private static String toSql(final int code, @NonNull final Module.ContentProviderSql providerSql)
 	{
-		VerbNetControl.Result r = VerbNetControl.queryMain(code, null, providerSql.projection, providerSql.selection, providerSql.selectionArgs);
+		VerbNetControl.Result r = VerbNetControl.queryMain(code, "", providerSql.projection, providerSql.selection, providerSql.selectionArgs);
 		if (r == null)
 		{
 			// TEXTSEARCH

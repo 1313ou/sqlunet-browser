@@ -131,6 +131,7 @@ public class BrowseFragment extends BaseSearchFragment
 
 		// saved selector mode
 		final Settings.Selector selectorMode = Settings.Selector.getPref(requireContext());
+		//noinspection ConstantValue
 		if (selectorMode != null)
 		{
 			this.spinner.setSelection(selectorMode.ordinal());

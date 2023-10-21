@@ -197,7 +197,7 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 	@Override
 	public void onPurchaseFinished(@NonNull final Purchase purchase)
 	{
-		Log.d(TAG, "New purchase " + purchase.toString());
+		Log.d(TAG, "New purchase " + purchase);
 		for (String productId : purchase.getProducts())
 		{
 			update(productId, true);

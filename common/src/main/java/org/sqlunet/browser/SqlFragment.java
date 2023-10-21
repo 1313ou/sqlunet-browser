@@ -122,7 +122,8 @@ public class SqlFragment extends Fragment
 		}, this.getViewLifecycleOwner(), Lifecycle.State.RESUMED);
 
 		// nav
-		toolbar.setNavigationOnClickListener(v -> requireActivity().onBackPressed());
+		// toolbar.setNavigationOnClickListener(v -> requireActivity().onBackPressed());
+		toolbar.setNavigationOnClickListener(v -> requireActivity().getOnBackPressedDispatcher().onBackPressed());
 	}
 
 	// M E N U

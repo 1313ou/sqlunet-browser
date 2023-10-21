@@ -128,6 +128,7 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 
 		// saved mode
 		final Settings.PMMode mode = Settings.PMMode.getPref(requireContext());
+		//noinspection ConstantValue
 		if (mode != null)
 		{
 			// no listener yet
