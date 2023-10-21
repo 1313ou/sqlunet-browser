@@ -46,13 +46,16 @@ import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.MenuHost;
+import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Lifecycle;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.app.LoaderManager.LoaderCallbacks;
 import androidx.loader.content.Loader;
 
 /**
- * History activity
+ * History fragment
  *
  * @author Bernard Bou
  * @noinspection WeakerAccess
@@ -88,8 +91,6 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 
 		// launchers
 		registerLaunchers();
-
-		setHasOptionsMenu(true);
 	}
 
 	@Override
@@ -98,7 +99,7 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 		final View view = inflater.inflate(R.layout.fragment_history, container, false);
 
 		// list adapter bound to the cursor
-		this.adapter = new SimpleCursorAdapter(this, // context
+		this.adapter = new SimpleCursorAdapter(requireContext(), // context
 				R.layout.item_history, // row template to use android.R.layout.simple_list_item_1
 				null, // empty cursor to bind to
 				new String[]{SearchRecentSuggestions.SuggestionColumns.DISPLAY1}, // cursor columns to bind to
@@ -124,34 +125,44 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 		return view;
 	}
 
-
-	@SuppressWarnings("SameReturnValue")
 	@Override
-	public boolean onCreateOptionsMenu(@NonNull final Menu menu, @NonNull final MenuInflater inflater)
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
-		inflater.inflate(R.menu.history, menu);
-		return true;
-	}
+		super.onViewCreated(view, savedInstanceState);
 
-	@Override
-	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
-	{
-		int itemId = item.getItemId();
-		if (itemId == R.id.action_history_export)
+		// Add menu items without using the Fragment Menu APIs
+		// Note how we can tie the MenuProvider to the viewLifecycleOwner and an optional Lifecycle.State (here, RESUMED) to indicate when the menu should be visible
+		MenuHost menuHost = requireActivity();
+		menuHost.addMenuProvider(new MenuProvider()
 		{
-			exportHistory();
-		}
-		else if (itemId == R.id.action_history_import)
-		{
-			importHistory();
-		}
-		else if (itemId == R.id.action_history_clear)
-		{
-			final android.provider.SearchRecentSuggestions suggestions = new android.provider.SearchRecentSuggestions(requireContext(), SearchRecentSuggestions.getAuthority(requireContext()), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES);
-			suggestions.clearHistory();
-			return true;
-		}
-		return false;
+			@Override
+			public void onCreateMenu(@NonNull final Menu menu, @NonNull final MenuInflater menuInflater)
+			{
+				// Add menu items here
+				menuInflater.inflate(R.menu.history, menu);
+			}
+
+			@Override
+			public boolean onMenuItemSelected(@NonNull final MenuItem item)
+			{
+				int itemId = item.getItemId();
+				if (itemId == R.id.action_history_export)
+				{
+					exportHistory();
+				}
+				else if (itemId == R.id.action_history_import)
+				{
+					importHistory();
+				}
+				else if (itemId == R.id.action_history_clear)
+				{
+					final android.provider.SearchRecentSuggestions suggestions = new android.provider.SearchRecentSuggestions(requireContext(), SearchRecentSuggestions.getAuthority(requireContext()), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES);
+					suggestions.clearHistory();
+					return true;
+				}
+				return false;
+			}
+		}, getViewLifecycleOwner(), Lifecycle.State.RESUMED);
 	}
 
 	@NonNull

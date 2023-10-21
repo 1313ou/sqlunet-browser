@@ -55,6 +55,10 @@
 			android:icon="@drawable/ic_sql"
 			android:title="@string/nav_sql" />
 		<item
+			android:id="@+id/nav_history"
+			android:icon="@drawable/ic_history"
+			android:title="@string/nav_history" />
+		<item
 			android:id="@+id/nav_help"
 			android:icon="@drawable/ic_help"
 			android:title="@string/nav_help" />
