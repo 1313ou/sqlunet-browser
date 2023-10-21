@@ -165,6 +165,8 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 		}, getViewLifecycleOwner(), Lifecycle.State.RESUMED);
 	}
 
+	// L O A D E R
+
 	@NonNull
 	@Override
 	public Loader<Cursor> onCreateLoader(final int loaderID, final Bundle args)

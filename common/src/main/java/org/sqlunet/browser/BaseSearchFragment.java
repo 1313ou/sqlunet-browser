@@ -62,7 +62,6 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	 */
 	static private final String STATE_SPINNER = "selected_mode";
 
-
 	// C O M P O N E N T S
 
 	/**
