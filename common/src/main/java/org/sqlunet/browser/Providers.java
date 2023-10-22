@@ -19,6 +19,7 @@ import org.sqlunet.style.Spanner;
 import java.io.IOException;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -55,16 +56,7 @@ class Providers
 					}
 					try
 					{
-						sb //
-								.append(provider.name) //;
-								.append('\n');
-						Spanner.append(sb, activity.getString(R.string.provider_authority), 0, Factories.boldFactory) //
-								.append(':') //
-								.append(' ') //
-								.append(provider.authority) //;
-								.append('\n')  //
-								.append('\n')  //
-						;
+						build(sb, provider.name, null, null, activity.getString(R.string.provider_authority), provider.authority, null, null);
 					}
 					catch (IOException e)
 					{
@@ -86,7 +78,7 @@ class Providers
 		{
 			final String suggestAuthority = info.getSuggestAuthority();
 			final String suggestPath = info.getSuggestPath();
-			final String suggestPack = info.getSuggestPackage();
+			final String suggestPkg = info.getSuggestPackage();
 
 			// message
 			try
@@ -94,18 +86,7 @@ class Providers
 				Spanner.append(sb, activity.getString(R.string.suggestions), 0, Factories.boldFactory) //
 						.append('\n')//
 						.append('\n');
-				Spanner.append(sb, activity.getString(R.string.suggestion_provider_pack), 0, Factories.boldFactory) //
-						.append(' ') //
-						.append(suggestPack) //
-						.append('\n');
-				Spanner.append(sb, activity.getString(R.string.suggestion_provider_authority), 0, Factories.boldFactory) //
-						.append(' ') //
-						.append(suggestAuthority) //
-						.append('\n');
-				Spanner.append(sb, activity.getString(R.string.suggestion_provider_path), 0, Factories.boldFactory) //
-						.append(' ') //
-						.append(suggestPath) //
-				;
+				build(sb, null, activity.getString(R.string.suggestion_provider_pack), suggestPkg, activity.getString(R.string.suggestion_provider_authority), suggestAuthority, activity.getString(R.string.suggestion_provider_path), suggestPath);
 			}
 			catch (IOException e)
 			{
@@ -119,5 +100,47 @@ class Providers
 				.setMessage(sb) //
 				.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /* canceled */ }) //
 				.show();
+	}
+
+	/** @noinspection UnusedReturnValue*/
+	private static SpannableStringBuilder build(final SpannableStringBuilder sb, @Nullable final String name, @Nullable final String pkgLabel, @Nullable final String pkg, @NonNull final String authorityLabel, @NonNull final String authority, @Nullable final String pathLabel, @Nullable final String path) throws IOException
+	{
+		if (name != null)
+		{
+			// name
+			sb //
+					.append(name) //;
+					.append('\n');
+		}
+
+		// package
+		if (pkg != null)
+		{
+			Spanner.append(sb, pkgLabel, 0, Factories.boldFactory) //
+					.append(' ') //
+					.append(pkg) //
+					.append('\n');
+
+		}
+
+		// authority
+		Spanner.append(sb, authorityLabel, 0, Factories.boldFactory) //
+				.append(':') //
+				.append(' ') //
+				.append(authority) //;
+				.append('\n');
+
+		// package
+		if (path != null)
+		{
+			Spanner.append(sb, pathLabel, 0, Factories.boldFactory) //
+					.append(' ') //
+					.append(path) //
+					.append('\n');
+		}
+
+		sb.append('\n');
+
+		return sb;
 	}
 }
