@@ -9,9 +9,11 @@
 	<string name="wordnet_authority" translatable="false">org.sqlunet.wordnet.sn.provider</string>
 	<string name="syntagnet_authority" translatable="false">org.sqlunet.syntagnet.sn.provider</string>
 	<string name="bnc_authority" translatable="false">org.sqlunet.bnc.sn.provider</string>
+	<string name="history_authority" translatable="false">org.sqlunet.history.sn.provider</string>
 
 	<string-array name="provider_authorities" tools:ignore="InconsistentArrays" tools:keep="@array/provider_authorities">
 		<item>@string/manager_authority</item>
+		<item>@string/history_authority</item>
 		<item>@string/xsqlunet_authority</item>
 		<item>@string/wordnet_authority</item>
 		<item>@string/syntagnet_authority</item>

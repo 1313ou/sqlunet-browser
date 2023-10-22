@@ -447,7 +447,7 @@
 
 		<provider
 			android:name="org.sqlunet.history.SearchSuggestionsProvider"
-			android:authorities="@string/searchRecentSuggestAuthority"
+			android:authorities="@string/history_authority"
 			android:exported="false" />
 
 	</application>

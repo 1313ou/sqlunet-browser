@@ -5,6 +5,6 @@
 <resources>
 
 	<!-- authority -->
-	<string name="searchRecentSuggestAuthority" translatable="false">org.semantikos.recent.provider</string>
+	<string name="history_authority" translatable="false">org.semantikos.history.provider</string>
 
 </resources>

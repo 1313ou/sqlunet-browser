@@ -128,6 +128,6 @@ public class SearchRecentSuggestions
 	@NonNull
 	static public String getAuthority(@NonNull final Context context)
 	{
-		return context.getString(R.string.searchRecentSuggestAuthority);
+		return context.getString(R.string.history_authority);
 	}
 }
