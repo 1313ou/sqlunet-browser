@@ -2,9 +2,18 @@
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<androidx.fragment.app.FragmentContainerView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:id="@+id/container_sql"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/swipe_refresh"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+	app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+	tools:context="org.sqlunet.browser.config.StorageActivity">
+
+	<androidx.fragment.app.FragmentContainerView
+		android:id="@+id/container_sql"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent" />
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

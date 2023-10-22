@@ -57,7 +57,7 @@ public class SqlStatementsFragment extends ListFragment
 		update();
 	}
 
-	private void update()
+	void update()
 	{
 		final Context context = getContext();
 		if (context != null)

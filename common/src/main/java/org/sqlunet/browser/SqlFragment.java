@@ -26,6 +26,7 @@ import androidx.core.view.MenuHost;
 import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 /**
  * Sql fragment
@@ -44,6 +45,21 @@ public class SqlFragment extends Fragment
 	{
 		final View view = inflater.inflate(R.layout.fragment_sql, container, false);
 
+		// swipe refresh layout
+		final SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
+		swipeRefreshLayout.setOnRefreshListener(() -> {
+
+			Fragment fragment = getChildFragmentManager().findFragmentByTag("fragment_sql");
+			if (fragment instanceof SqlStatementsFragment)
+			{
+				SqlStatementsFragment sqlStatementsFragment = (SqlStatementsFragment) fragment;
+				sqlStatementsFragment.update();
+			}
+			// stop the refreshing indicator
+			swipeRefreshLayout.setRefreshing(false);
+		});
+
+		// sub fragment
 		if (savedInstanceState == null)
 		{
 			// splash fragment
