@@ -216,7 +216,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		// nav
 		toolbar.setNavigationOnClickListener(v -> {
 
-			//Log.d(TAG, "BackStack: onBackPressed() pressed");
+			//Log.d(TAG, "BackStack: onBackPressed() pressed, the navigation button at the start of the toolbar was clicked");
 			final FragmentManager manager = getChildFragmentManager();
 			int count = manager.getBackStackEntryCount();
 			if (count >= 1)
@@ -244,7 +244,6 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 				else
 				{
 					Log.d(TAG, "BackStack: activity onBackPressed()");
-					// requireActivity().onBackPressed();
 					requireActivity().getOnBackPressedDispatcher().onBackPressed();
 				}
 			}
