@@ -21,9 +21,8 @@ import org.sqlunet.sql.SqlFormatter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuHost;
 import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
@@ -37,34 +36,6 @@ public class SqlFragment extends Fragment
 {
 	public SqlFragment()
 	{
-	}
-
-	@Override
-	public void onResume()
-	{
-		super.onResume();
-
-		// app bar
-		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
-		final ActionBar actionBar = activity.getSupportActionBar();
-		if (actionBar != null)
-		{
-			actionBar.hide();
-		}
-	}
-
-	@Override
-	public void onPause()
-	{
-		super.onPause();
-
-		// app bar
-		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
-		final ActionBar actionBar = activity.getSupportActionBar();
-		if (actionBar != null)
-		{
-			actionBar.show();
-		}
 	}
 
 	@Nullable
@@ -81,7 +52,6 @@ public class SqlFragment extends Fragment
 					.beginTransaction() //
 					.setReorderingAllowed(true) //
 					.replace(R.id.container_sql, fragment, "fragment_sql") //
-					//.addToBackStack("fragment_sql") //
 					.commit();
 		}
 
@@ -93,11 +63,9 @@ public class SqlFragment extends Fragment
 	{
 		super.onViewCreated(view, savedInstanceState);
 
-		// toolbar bar
-		final Toolbar toolbar = view.findViewById(R.id.toolbar_fragment);
-		assert toolbar != null;
-		toolbar.setTitle("SQL");
-		toolbar.addMenuProvider(new MenuProvider()
+		// menu
+		final MenuHost menuHost = requireActivity();
+		menuHost.addMenuProvider(new MenuProvider()
 		{
 			@Override
 			public void onCreateMenu(@NonNull final Menu menu, @NonNull final MenuInflater menuInflater)
@@ -111,41 +79,24 @@ public class SqlFragment extends Fragment
 			@Override
 			public boolean onMenuItemSelected(@NonNull final MenuItem menuItem)
 			{
-				boolean handled = onOptionsItemSelected(menuItem);
-				if (handled)
+				if (menuItem.getItemId() == R.id.action_copy)
 				{
+					final StringBuilder sb = new StringBuilder();
+					final CharSequence[] sqls = BaseProvider.sqlBuffer.reverseItems();
+					for (CharSequence sql : sqls)
+					{
+						sb.append(SqlFormatter.styledFormat(sql));
+						sb.append(";\n");
+					}
+					final ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
+					final ClipData clip = ClipData.newPlainText("SQL", sb);
+					assert clipboard != null;
+					clipboard.setPrimaryClip(clip);
 					return true;
 				}
 				return MenuHandler.menuDispatch((AppCompatActivity) requireActivity(), menuItem);
 			}
 
 		}, this.getViewLifecycleOwner(), Lifecycle.State.RESUMED);
-
-		// nav
-		// toolbar.setNavigationOnClickListener(v -> requireActivity().onBackPressed());
-		toolbar.setNavigationOnClickListener(v -> requireActivity().getOnBackPressedDispatcher().onBackPressed());
-	}
-
-	// M E N U
-
-	@SuppressWarnings("deprecation")
-	@Override
-	public boolean onOptionsItemSelected(@NonNull MenuItem item)
-	{
-		if (item.getItemId() == R.id.action_copy)
-		{
-			final StringBuilder sb = new StringBuilder();
-			final CharSequence[] sqls = BaseProvider.sqlBuffer.reverseItems();
-			for (CharSequence sql : sqls)
-			{
-				sb.append(SqlFormatter.styledFormat(sql));
-				sb.append(";\n");
-			}
-			final ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
-			final ClipData clip = ClipData.newPlainText("SQL", sb);
-			assert clipboard != null;
-			clipboard.setPrimaryClip(clip);
-		}
-		return false;
 	}
 }
