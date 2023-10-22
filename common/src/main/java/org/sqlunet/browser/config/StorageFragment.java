@@ -8,6 +8,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -28,6 +29,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuHost;
 import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
@@ -56,31 +58,7 @@ public class StorageFragment extends Fragment
 	public void onResume()
 	{
 		super.onResume();
-
-		// app bar
-		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
-		final ActionBar actionBar = activity.getSupportActionBar();
-		if (actionBar != null)
-		{
-			actionBar.hide();
-		}
-
 		update();
-	}
-
-
-	@Override
-	public void onPause()
-	{
-		super.onPause();
-
-		// app bar
-		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
-		final ActionBar actionBar = activity.getSupportActionBar();
-		if (actionBar != null)
-		{
-			actionBar.show();
-		}
 	}
 
 	@Override
@@ -106,11 +84,9 @@ public class StorageFragment extends Fragment
 	{
 		super.onViewCreated(view, savedInstanceState);
 
-		// toolbar bar
-		final Toolbar toolbar = view.findViewById(R.id.toolbar_fragment);
-		assert toolbar != null;
-		toolbar.setTitle(R.string.title_storage);
-		toolbar.addMenuProvider(new MenuProvider()
+		// menu
+		final MenuHost menuHost = requireActivity();
+		menuHost.addMenuProvider(new MenuProvider()
 		{
 			@Override
 			public void onCreateMenu(@NonNull final Menu menu, @NonNull final MenuInflater menuInflater)
@@ -124,19 +100,103 @@ public class StorageFragment extends Fragment
 			@Override
 			public boolean onMenuItemSelected(@NonNull final MenuItem menuItem)
 			{
-				boolean handled = onOptionsItemSelected(menuItem);
-				if (handled)
+				final Context context = requireContext();
+
+				// handle item selection
+				final int itemId = menuItem.getItemId();
+				if (itemId == R.id.action_dirs)
 				{
+					final CharSequence message = StorageReports.reportStyledDirs(context);
+					new AlertDialog.Builder(context) //
+							.setTitle(R.string.action_dirs) //
+							.setMessage(message) //
+							.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
+							.show();
 					return true;
+				}
+				else if (itemId == R.id.action_storage_dirs)
+				{
+					final Pair<CharSequence[], CharSequence[]> dirs = StorageReports.getStyledStorageDirectoriesNamesValues(context);
+					final CharSequence message = StorageReports.namesValuesToReportStyled(dirs);
+					new AlertDialog.Builder(context) //
+							.setTitle(R.string.action_storage_dirs) //
+							.setMessage(message) //
+							.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
+							.show();
+					return true;
+				}
+				else if (itemId == R.id.action_cache_dirs)
+				{
+					final Pair<CharSequence[], CharSequence[]> dirs = StorageReports.getStyledCachesNamesValues(context);
+					final CharSequence message = StorageReports.namesValuesToReportStyled(dirs);
+					new AlertDialog.Builder(context) //
+							.setTitle(R.string.action_cache_dirs) //
+							.setMessage(message) //
+							.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
+							.show();
+					return true;
+				}
+				else if (itemId == R.id.action_download_dirs)
+				{
+					final Pair<CharSequence[], CharSequence[]> dirs = StorageReports.getStyledDownloadNamesValues(context);
+					final CharSequence message = StorageReports.namesValuesToReportStyled(dirs);
+					new AlertDialog.Builder(context) //
+							.setTitle(R.string.action_download_dirs) //
+							.setMessage(message) //
+							.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
+							.show();
+					return true;
+				}
+				else if (itemId == R.id.action_copy)
+				{
+					final StringBuilder sb = new StringBuilder();
+
+					// view
+					final View view = getView();
+					assert view != null;
+
+					// db
+					sb.append(getString(R.string.title_database));
+					sb.append('\n');
+					sb.append(Storage.getSqlUNetStorage(context).getAbsolutePath());
+					sb.append('\n');
+					sb.append('\n');
+
+					// storage
+					sb.append(getString(R.string.title_storage));
+					sb.append('\n');
+					sb.append(StorageReports.reportStorageDirectories(context));
+					//sb.append('\n');
+
+					// storage devices
+					sb.append(getString(R.string.title_external_storage_devices));
+					sb.append('\n');
+					sb.append(StorageReports.reportExternalStorage(context));
+					//sb.append('\n');
+
+					final ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
+					final ClipData clip = ClipData.newPlainText("Storage", sb);
+					assert clipboard != null;
+					clipboard.setPrimaryClip(clip);
+					return true;
+				}
+				else if (itemId == R.id.action_refresh)
+				{
+					// make sure that the SwipeRefreshLayout is displaying its refreshing indicator
+					if (!swipeRefreshLayout.isRefreshing())
+					{
+						swipeRefreshLayout.setRefreshing(true);
+					}
+					update();
+
+					// stop the refreshing indicator
+					swipeRefreshLayout.setRefreshing(false);
+				 return true;
 				}
 				return MenuHandler.menuDispatch((AppCompatActivity) requireActivity(), menuItem);
 			}
 
 		}, this.getViewLifecycleOwner(), Lifecycle.State.RESUMED);
-
-		// nav
-		// toolbar.setNavigationOnClickListener(v -> requireActivity().onBackPressed());
-		toolbar.setNavigationOnClickListener(v -> requireActivity().getOnBackPressedDispatcher().onBackPressed());
 	}
 
 	/**
@@ -144,6 +204,8 @@ public class StorageFragment extends Fragment
 	 */
 	private void update()
 	{
+		Log.d("REFRESH","refresh");
+
 		// view
 		final View view = getView();
 		assert view != null;
@@ -162,105 +224,5 @@ public class StorageFragment extends Fragment
 		// storage devices
 		final TextView storageDevices = view.findViewById(R.id.storage_devices);
 		storageDevices.setText(StorageReports.reportStyledExternalStorage(context));
-	}
-
-	// M E N U
-
-	@SuppressWarnings("deprecation")
-	@Override
-	public boolean onOptionsItemSelected(@NonNull MenuItem item)
-	{
-		final Context context = requireContext();
-
-		// handle item selection
-		final int itemId = item.getItemId();
-		if (itemId == R.id.action_dirs)
-		{
-			final CharSequence message = StorageReports.reportStyledDirs(context);
-			new AlertDialog.Builder(context) //
-					.setTitle(R.string.action_dirs) //
-					.setMessage(message) //
-					.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
-					.show();
-		}
-		else if (itemId == R.id.action_storage_dirs)
-		{
-			final Pair<CharSequence[], CharSequence[]> dirs = StorageReports.getStyledStorageDirectoriesNamesValues(context);
-			final CharSequence message = StorageReports.namesValuesToReportStyled(dirs);
-			new AlertDialog.Builder(context) //
-					.setTitle(R.string.action_storage_dirs) //
-					.setMessage(message) //
-					.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
-					.show();
-		}
-		else if (itemId == R.id.action_cache_dirs)
-		{
-			final Pair<CharSequence[], CharSequence[]> dirs = StorageReports.getStyledCachesNamesValues(context);
-			final CharSequence message = StorageReports.namesValuesToReportStyled(dirs);
-			new AlertDialog.Builder(context) //
-					.setTitle(R.string.action_cache_dirs) //
-					.setMessage(message) //
-					.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
-					.show();
-		}
-		else if (itemId == R.id.action_download_dirs)
-		{
-			final Pair<CharSequence[], CharSequence[]> dirs = StorageReports.getStyledDownloadNamesValues(context);
-			final CharSequence message = StorageReports.namesValuesToReportStyled(dirs);
-			new AlertDialog.Builder(context) //
-					.setTitle(R.string.action_download_dirs) //
-					.setMessage(message) //
-					.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
-					.show();
-		}
-		else if (item.getItemId() == R.id.action_copy)
-		{
-			final StringBuilder sb = new StringBuilder();
-
-			// view
-			final View view = getView();
-			assert view != null;
-
-			// db
-			sb.append(getString(R.string.title_database));
-			sb.append('\n');
-			sb.append(Storage.getSqlUNetStorage(context).getAbsolutePath());
-			sb.append('\n');
-			sb.append('\n');
-
-			// storage
-			sb.append(getString(R.string.title_storage));
-			sb.append('\n');
-			sb.append(StorageReports.reportStorageDirectories(context));
-			//sb.append('\n');
-
-			// storage devices
-			sb.append(getString(R.string.title_external_storage_devices));
-			sb.append('\n');
-			sb.append(StorageReports.reportExternalStorage(context));
-			//sb.append('\n');
-
-			final ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
-			final ClipData clip = ClipData.newPlainText("Storage", sb);
-			assert clipboard != null;
-			clipboard.setPrimaryClip(clip);
-		}
-		// else if (itemId == R.id.action_refresh)
-		// {
-		// 	// make sure that the SwipeRefreshLayout is displaying its refreshing indicator
-		// 	if (!this.swipeRefreshLayout.isRefreshing())
-		// 	{
-		// 		this.swipeRefreshLayout.setRefreshing(true);
-		// 	}
-		// 	update();
-		//
-		// 	// stop the refreshing indicator
-		// 	this.swipeRefreshLayout.setRefreshing(false);
-		// }
-		else
-		{
-			return false;
-		}
-		return true;
 	}
 }

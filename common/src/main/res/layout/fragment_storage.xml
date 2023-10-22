@@ -3,84 +3,71 @@
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/swipe_refresh"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
 	tools:context="org.sqlunet.browser.config.StorageActivity">
 
-	<com.google.android.material.appbar.AppBarLayout
+	<ScrollView
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="match_parent">
 
-		<include layout="@layout/toolbar_fragment" />
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal"
+			android:gravity="center_vertical"
+			android:orientation="vertical"
+			android:paddingLeft="@dimen/activity_horizontal_padding"
+			android:paddingTop="@dimen/activity_vertical_padding"
+			android:paddingRight="@dimen/activity_horizontal_padding"
+			android:paddingBottom="@dimen/activity_vertical_padding">
 
-	</com.google.android.material.appbar.AppBarLayout>
-
-	<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-		android:id="@+id/swipe_refresh"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
-		<ScrollView
-			android:layout_width="match_parent"
-			android:layout_height="match_parent">
-
-			<LinearLayout
-				android:layout_width="wrap_content"
+			<TextView
+				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_gravity="center_horizontal"
-				android:gravity="center_vertical"
-				android:orientation="vertical"
-				android:paddingLeft="@dimen/activity_horizontal_padding"
-				android:paddingTop="@dimen/activity_vertical_padding"
-				android:paddingRight="@dimen/activity_horizontal_padding"
-				android:paddingBottom="@dimen/activity_vertical_padding">
+				android:text="@string/title_database"
+				android:textStyle="bold" />
 
-				<TextView
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:text="@string/title_database"
-					android:textStyle="bold" />
+			<TextView
+				android:id="@+id/database"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp" />
 
-				<TextView
-					android:id="@+id/database"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginTop="10dp" />
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="25dp"
+				android:text="@string/title_storage"
+				android:textStyle="bold" />
 
-				<TextView
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginTop="25dp"
-					android:text="@string/title_storage"
-					android:textStyle="bold" />
+			<TextView
+				android:id="@+id/storage"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp" />
 
-				<TextView
-					android:id="@+id/storage"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginTop="10dp" />
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="25dp"
+				android:text="@string/title_external_storage_devices"
+				android:textStyle="bold" />
 
-				<TextView
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginTop="25dp"
-					android:text="@string/title_external_storage_devices"
-					android:textStyle="bold" />
+			<TextView
+				android:id="@+id/storage_devices"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp" />
 
-				<TextView
-					android:id="@+id/storage_devices"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginTop="10dp" />
+		</LinearLayout>
 
-			</LinearLayout>
+	</ScrollView>
 
-		</ScrollView>
-
-	</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
