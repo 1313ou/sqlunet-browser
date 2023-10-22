@@ -65,16 +65,6 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 	private static final String TAG = "HistoryF";
 
 	/**
-	 * Export/import text file
-	 */
-	private static final String HISTORY_FILE = "semantikos_search_history.txt";
-
-	/**
-	 * Cursor loader id
-	 */
-	private static final int LOADER_ID = 2222;
-
-	/**
 	 * List view
 	 */
 	private ListView listView;
@@ -120,7 +110,7 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 		this.listView.setOnTouchListener(gestureListener);
 
 		// initializes the cursor loader
-		LoaderManager.getInstance(this).initLoader(HistoryFragment.LOADER_ID, null, this);
+		LoaderManager.getInstance(this).initLoader(LOADER_ID, null, this);
 
 		return view;
 	}
@@ -132,20 +122,19 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 
 		// Add menu items without using the Fragment Menu APIs
 		// Note how we can tie the MenuProvider to the viewLifecycleOwner and an optional Lifecycle.State (here, RESUMED) to indicate when the menu should be visible
-		MenuHost menuHost = requireActivity();
+		final MenuHost menuHost = requireActivity();
 		menuHost.addMenuProvider(new MenuProvider()
 		{
 			@Override
 			public void onCreateMenu(@NonNull final Menu menu, @NonNull final MenuInflater menuInflater)
 			{
-				// Add menu items here
 				menuInflater.inflate(R.menu.history, menu);
 			}
 
 			@Override
-			public boolean onMenuItemSelected(@NonNull final MenuItem item)
+			public boolean onMenuItemSelected(@NonNull final MenuItem menuItem)
 			{
-				int itemId = item.getItemId();
+				int itemId = menuItem.getItemId();
 				if (itemId == R.id.action_history_export)
 				{
 					exportHistory();
@@ -166,6 +155,11 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 	}
 
 	// L O A D E R
+
+	/**
+	 * Cursor loader id
+	 */
+	private static final int LOADER_ID = 2222;
 
 	@NonNull
 	@Override
@@ -238,7 +232,7 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 				return false;
 			}
 
-			final int position = HistoryFragment.this.listView.pointToPosition(Math.round(e1.getX()), Math.round(e1.getY()));
+			final int position = listView.pointToPosition(Math.round(e1.getX()), Math.round(e1.getY()));
 
 			if (Math.abs(e1.getY() - e2.getY()) <= SwipeGestureListener.SWIPE_MAX_OFF_PATH)
 			{
@@ -247,7 +241,7 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 					if (e2.getX() - e1.getX() > SwipeGestureListener.SWIPE_MIN_DISTANCE)
 					{
 						// final SimpleCursorAdapter adapter = (SimpleCursorAdapter) listView.getAdapter();
-						final Cursor cursor = HistoryFragment.this.adapter.getCursor();
+						final Cursor cursor = adapter.getCursor();
 						if (!cursor.isAfterLast())
 						{
 							if (cursor.moveToPosition(position))
@@ -263,7 +257,7 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 								final SearchRecentSuggestions suggestions = new SearchRecentSuggestions(requireContext(), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES);
 								suggestions.delete(itemId);
 								final Cursor cursor2 = suggestions.cursor();
-								HistoryFragment.this.adapter.swapCursor(cursor2);
+								adapter.swapCursor(cursor2);
 
 								Toast.makeText(requireContext(), getResources().getString(R.string.title_history_deleted) + ' ' + data, Toast.LENGTH_SHORT).show();
 								return true;
@@ -289,6 +283,11 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 	}
 
 	// I M P O R T / E X P O R T
+
+	/**
+	 * Export/import text file
+	 */
+	private static final String HISTORY_FILE = "semantikos_search_history.txt";
 
 	private static final String MIME_TYPE = "text/plain";
 
@@ -390,13 +389,13 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 					while (cursor.moveToNext());
 				}
 				cursor.close();
-				Log.i(HistoryFragment.TAG, "Exported to " + uri);
+				Log.i(TAG, "Exported to " + uri);
 				Toast.makeText(requireContext(), getResources().getText(R.string.title_history_export) + " " + uri, Toast.LENGTH_SHORT).show();
 			}
 		}
 		catch (@NonNull final IOException e)
 		{
-			Log.e(HistoryFragment.TAG, "While writing", e);
+			Log.e(TAG, "While writing", e);
 			Toast.makeText(requireContext(), getResources().getText(R.string.error_export) + " " + uri, Toast.LENGTH_SHORT).show();
 		}
 	}
@@ -406,7 +405,7 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 	 */
 	private void doImportHistory(@NonNull final Uri uri)
 	{
-		Log.d(HistoryFragment.TAG, "Importing from " + uri);
+		Log.d(TAG, "Importing from " + uri);
 		try ( //
 		      final InputStream is = requireContext().getContentResolver().openInputStream(uri); //
 		      final Reader reader = new InputStreamReader(is); //
@@ -418,12 +417,12 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 			{
 				History.recordQuery(requireContext(), line.trim());
 			}
-			Log.i(HistoryFragment.TAG, "Imported from " + uri);
+			Log.i(TAG, "Imported from " + uri);
 			Toast.makeText(requireContext(), getResources().getText(R.string.title_history_import) + " " + uri, Toast.LENGTH_SHORT).show();
 		}
 		catch (@NonNull final IOException e)
 		{
-			Log.e(HistoryFragment.TAG, "While reading", e);
+			Log.e(TAG, "While reading", e);
 			Toast.makeText(requireContext(), getResources().getText(R.string.error_import) + " " + uri, Toast.LENGTH_SHORT).show();
 		}
 	}

@@ -20,7 +20,6 @@ import androidx.appcompat.widget.Toolbar;
  */
 public class HistoryActivity extends AppCompatActivity
 {
-
 	@Override
 	protected void onCreate(final Bundle savedInstanceState)
 	{
