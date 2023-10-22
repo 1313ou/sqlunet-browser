@@ -14,6 +14,7 @@
 		<item>@id/nav_storage</item>
 		<item>@id/nav_settings</item>
 		<item>@id/nav_sql</item>
+		<item>@id/nav_history</item>
 		<item>@id/nav_help</item>
 		<item>@id/nav_about</item>
 	</array>
