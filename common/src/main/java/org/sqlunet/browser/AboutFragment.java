@@ -13,8 +13,6 @@ import org.sqlunet.browser.common.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 /**
@@ -45,17 +43,5 @@ public class AboutFragment extends Fragment
 				.commit();
 
 		return view;
-	}
-
-	@Override
-	public void onResume()
-	{
-		super.onResume();
-
-		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
-		final ActionBar actionBar = activity.getSupportActionBar();
-		assert actionBar != null;
-		actionBar.setCustomView(null);
-		actionBar.setBackgroundDrawable(null);
 	}
 }

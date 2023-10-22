@@ -12,7 +12,7 @@
 	android:paddingRight="16dp"
 	android:paddingTop="16dp"
 	android:weightSum="1"
-	tools:context="org.sqlunet.browser.AboutFragment">
+	tools:context="org.sqlunet.browser.AboutActivity">
 
 	<ImageView
 		android:layout_width="wrap_content"
