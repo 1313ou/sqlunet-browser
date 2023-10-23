@@ -7,6 +7,7 @@ package org.sqlunet.history;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SearchRecentSuggestionsProvider;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.BaseColumns;
@@ -17,6 +18,7 @@ import org.sqlunet.browser.common.R;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.loader.content.CursorLoader;
+import androidx.preference.PreferenceManager;
 
 /**
  * Search recent suggestion. Access to suggestions provider, after standard SearchRecentSuggestions which has private members and can hardly be extended.
@@ -32,7 +34,7 @@ public class SearchRecentSuggestions
 	public static class SuggestionColumns implements BaseColumns
 	{
 		public static final String DISPLAY1 = "display1";
-		public static final String DISPLAY2 = "display2";
+		// public static final String DISPLAY2 = "display2";
 		public static final String QUERY = "query";
 		public static final String DATE = "date";
 	}
@@ -62,6 +64,8 @@ public class SearchRecentSuggestions
 		this.mSuggestionsUri = Uri.parse("content://" + mAuthority + "/suggestions");
 	}
 
+	// Q U E R Y
+
 	/**
 	 * Get cursor
 	 *
@@ -73,10 +77,10 @@ public class SearchRecentSuggestions
 		final ContentResolver contentResolver = this.mContext.getContentResolver();
 		try
 		{
-			final String[] projection = {SuggestionColumns.DISPLAY1, "_id"};
-			//final String selection = null; // "SELECT " + SuggestionColumns.DISPLAY1 + " FROM suggestions";
-			//final String[] selectionArgs = null; // {};
-			final String sortOrder = SuggestionColumns.DATE + " DESC";
+			final String[] projection = {/*"DISTINCT " +*/ SuggestionColumns.DISPLAY1, "_id"};
+			final String sortOrder = getSortOrder();
+			// final String selection = getSelection();
+			// final String[] selectionArgs = null; // {};
 			return contentResolver.query(this.mSuggestionsUri, projection, null, null, sortOrder);
 		}
 		catch (@NonNull final RuntimeException e)
@@ -94,12 +98,25 @@ public class SearchRecentSuggestions
 	@NonNull
 	public CursorLoader cursorLoader()
 	{
-		final String[] projection = {SuggestionColumns.DISPLAY1, "_id"};
-		//final String selection = null; // "SELECT " + SuggestionColumns.DISPLAY1 + " FROM suggestions";
-		//final String[] selectionArgs = null; // {};
-		final String sortOrder = SuggestionColumns.DATE + " DESC";
+		final String[] projection = {/* "DISTINCT " +*/ SuggestionColumns.DISPLAY1, "_id"};
+		final String sortOrder = getSortOrder();
+		// final String selection = getSelection();
+		// final String[] selectionArgs = null; // {};
 		return new CursorLoader(this.mContext, this.mSuggestionsUri, projection, null, null, sortOrder);
 	}
+
+	// S O R T
+
+	private static final String PREF_KEY_HISTORY_SORT_BY_DATE = "pref_history_sort_by_date";
+
+	private String getSortOrder()
+	{
+		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+		final boolean byDate = prefs.getBoolean(PREF_KEY_HISTORY_SORT_BY_DATE, true);
+		return byDate ? SuggestionColumns.DATE + " DESC" : SuggestionColumns.DISPLAY1 + " ASC";
+	}
+
+	// D E L E T E
 
 	/**
 	 * Delete item by _id
@@ -118,6 +135,8 @@ public class SearchRecentSuggestions
 			Log.e(SearchRecentSuggestions.TAG, "While deleting suggestion", e);
 		}
 	}
+
+	// A U T H O R I T Y
 
 	@NonNull
 	private String getAuthority()

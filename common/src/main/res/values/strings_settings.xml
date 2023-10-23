@@ -12,6 +12,7 @@
 
 	<!-- GENERAL -->
 	<string name="pref_header_general">General</string>
+	<string name="pref_activity_category">Activity</string>
 	<string name="pref_view_control_category">View Control</string>
 
 	<!-- Launch -->
@@ -74,6 +75,8 @@
 	<string name="pref_misc_category">Miscellaneous.</string>
 	<string name="pref_title_zip_entry">Zip entry</string>
 	<string name="pref_description_zip_entry">Zip entry name used in unzip operations</string>
+	<string name="pref_title_history_sort_by_date">Sort history by date</string>
+	<string name="pref_description_history_sort_by_date">Sort history by date or by query</string>
 
 	<!-- FILTER -->
 

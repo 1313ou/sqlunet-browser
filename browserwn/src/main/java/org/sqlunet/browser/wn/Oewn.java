@@ -23,21 +23,15 @@ public class Oewn
 	private static final String PREF_KEY_LAUNCH_TIMES = "android_launch_times";
 	private static final int HOW_OFTEN = 10;
 
-
 	public static void hook(@NonNull final Activity activity)
 	{
-		final SharedPreferences prefs = getPreferences(activity);
+		final SharedPreferences prefs = activity.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
 		int launchTimes = prefs.getInt(PREF_KEY_LAUNCH_TIMES, 0);
 		if (launchTimes % HOW_OFTEN == 1)
 		{
 			suggestOewn(activity);
 		}
 		prefs.edit().putInt(PREF_KEY_LAUNCH_TIMES, launchTimes + 1).apply();
-	}
-
-	private static SharedPreferences getPreferences(@NonNull Context context)
-	{
-		return context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
 	}
 
 	private static void suggestOewn(@NonNull final Activity activity)

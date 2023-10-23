@@ -6,15 +6,17 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	app:title="@string/pref_header_general">
 
-	<ListPreference
-		android:defaultValue="@string/default_launch"
-		android:entries="@array/pref_launch_list_titles"
-		android:entryValues="@array/pref_launch_list_values"
-		android:key="pref_launch"
-		android:negativeButtonText="@null"
-		android:positiveButtonText="@null"
-		android:summary="@string/pref_description_launch"
-		android:title="@string/pref_title_launch" />
+	<PreferenceCategory android:title="@string/pref_activity_category">
+		<ListPreference
+			android:defaultValue="@string/default_launch"
+			android:entries="@array/pref_launch_list_titles"
+			android:entryValues="@array/pref_launch_list_values"
+			android:key="pref_launch"
+			android:negativeButtonText="@null"
+			android:positiveButtonText="@null"
+			android:summary="@string/pref_description_launch"
+			android:title="@string/pref_title_launch" />
+	</PreferenceCategory>
 
 	<PreferenceCategory android:title="@string/pref_view_control_category">
 		<ListPreference
@@ -76,6 +78,13 @@
 			android:key="pref_zip_entry"
 			android:summary="@string/pref_description_zip_entry"
 			android:title="@string/pref_title_zip_entry"
+			app:singleLineTitle="false" />
+
+		<SwitchPreferenceCompat
+			android:defaultValue="true"
+			android:key="pref_history_sort_by_date"
+			android:summary="@string/pref_description_history_sort_by_date"
+			android:title="@string/pref_title_history_sort_by_date"
 			app:singleLineTitle="false" />
 	</PreferenceCategory>
 
