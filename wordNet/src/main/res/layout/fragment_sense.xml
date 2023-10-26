@@ -8,7 +8,7 @@
             android:id="@+id/senseScrollView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context="org.sqlunet.wordnet.browser.SenseFragment">
+            tools:context="org.sqlunet.wordnet.browser.SenseActivity">
 
 	<LinearLayout
 		android:layout_width="match_parent"

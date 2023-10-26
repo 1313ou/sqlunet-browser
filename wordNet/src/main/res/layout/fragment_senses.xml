@@ -12,6 +12,6 @@
           android:choiceMode="singleChoice"
 
           tools:listitem="@layout/item_sense"
-          tools:context="org.sqlunet.wordnet.browser.SensesFragment"/>
+          tools:context="org.sqlunet.wordnet.browser.SensesActivity"/>
 
 	<!-- android:listSelector="@drawable/listitem_selector" -->
