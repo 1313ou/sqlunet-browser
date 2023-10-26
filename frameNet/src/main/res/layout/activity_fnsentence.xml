@@ -23,6 +23,6 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-		tools:context="org.sqlunet.framenet.browser.FnSentenceFragment"/>
+		tools:context="org.sqlunet.framenet.browser.FnSentenceActivity"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

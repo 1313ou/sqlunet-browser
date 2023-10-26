@@ -21,6 +21,6 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-		tools:context="org.sqlunet.propbank.browser.PbRoleSetFragment" />
+		tools:context="org.sqlunet.propbank.browser.PbRoleSetActivity" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
