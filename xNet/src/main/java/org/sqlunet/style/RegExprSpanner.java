@@ -8,6 +8,7 @@ import android.text.SpannableStringBuilder;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 import androidx.annotation.NonNull;
 
@@ -114,7 +115,17 @@ public class RegExprSpanner extends Spanner
 		 */
 		SpanReplacer(@NonNull final String regexpr, final SpanFactory... factories)
 		{
-			this.pattern = Pattern.compile(regexpr, Pattern.MULTILINE);
+			Pattern p;
+			try
+			{
+				p = Pattern.compile(regexpr, Pattern.MULTILINE);
+			}
+			catch (PatternSyntaxException pse)
+			{
+				String regexpr2 = "";
+				p = Pattern.compile(regexpr2, Pattern.MULTILINE);
+			}
+			this.pattern = p;
 			this.spanFactories = factories;
 		}
 
