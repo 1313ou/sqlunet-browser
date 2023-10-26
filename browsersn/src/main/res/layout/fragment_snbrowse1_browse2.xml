@@ -9,7 +9,7 @@
               android:layout_height="match_parent"
               android:baselineAligned="false"
               android:orientation="horizontal"
-              tools:context="org.sqlunet.browser.selector.SnBrowse1Fragment">
+              tools:context="org.sqlunet.browser.selector.SnBrowse1Activity">
 
 	<!-- selectors -->
 	<androidx.fragment.app.FragmentContainerView
