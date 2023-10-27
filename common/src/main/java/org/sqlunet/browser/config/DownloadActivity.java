@@ -16,6 +16,7 @@ import org.sqlunet.browser.common.R;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.core.view.MenuCompat;
 
 /**
  * Download activity
@@ -58,6 +59,7 @@ public class DownloadActivity extends com.bbou.download.DownloadActivity
 	{
 		// inflate the menu; this adds items to the type bar if it is present.
 		getMenuInflater().inflate(R.menu.initialize, menu);
+		MenuCompat.setGroupDividerEnabled(menu, true);
 		return true;
 	}
 

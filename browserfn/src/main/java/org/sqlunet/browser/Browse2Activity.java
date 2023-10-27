@@ -15,6 +15,7 @@ import org.sqlunet.provider.ProviderArgs;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuCompat;
 
 /**
  * Detail activity
@@ -63,6 +64,7 @@ public class Browse2Activity extends AbstractBrowse2Activity
 	{
 		// inflate the menu; this adds items to the type bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
+		MenuCompat.setGroupDividerEnabled(menu, true);
 		return true;
 	}
 

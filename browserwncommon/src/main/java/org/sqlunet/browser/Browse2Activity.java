@@ -15,6 +15,7 @@ import org.sqlunet.provider.ProviderArgs;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuCompat;
 
 /**
  * Detail activity
@@ -65,6 +66,7 @@ public class Browse2Activity extends AbstractBrowse2Activity
 	public boolean onCreateOptionsMenu(@NonNull final Menu menu)
 	{
 		getMenuInflater().inflate(R.menu.main, menu);
+		MenuCompat.setGroupDividerEnabled(menu, true);
 		return true;
 	}
 

@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuCompat;
 
 /**
  * Abstract search text activity
@@ -89,6 +90,7 @@ public abstract class AbstractSearchTextActivity<F extends BaseSearchFragment> e
 	{
 		// inflate the menu; this adds items to the type bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
+		MenuCompat.setGroupDividerEnabled(menu, true);
 		return true;
 	}
 

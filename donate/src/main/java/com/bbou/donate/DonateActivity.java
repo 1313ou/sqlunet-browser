@@ -34,6 +34,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuCompat;
 
 /**
  * Donate
@@ -326,6 +327,7 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 	{
 		// inflate the menu; this adds items to the type bar if it is present.
 		getMenuInflater().inflate(R.menu.donate, menu);
+		MenuCompat.setGroupDividerEnabled(menu, true);
 		return true;
 	}
 
