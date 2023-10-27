@@ -22,6 +22,7 @@ import org.sqlunet.sql.SqlFormatter;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuCompat;
 import androidx.core.view.MenuHost;
 import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
@@ -90,6 +91,7 @@ public class SqlFragment extends Fragment
 				menu.clear();
 				menuInflater.inflate(R.menu.main, menu);
 				menuInflater.inflate(R.menu.sql, menu);
+				MenuCompat.setGroupDividerEnabled(menu, true);
 			}
 
 			@Override

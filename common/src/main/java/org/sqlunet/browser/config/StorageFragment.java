@@ -26,6 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuCompat;
 import androidx.core.view.MenuHost;
 import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
@@ -93,6 +94,7 @@ public class StorageFragment extends Fragment
 				menu.clear();
 				menuInflater.inflate(R.menu.main, menu);
 				menuInflater.inflate(R.menu.storage, menu);
+				MenuCompat.setGroupDividerEnabled(menu, true);
 			}
 
 			@Override
