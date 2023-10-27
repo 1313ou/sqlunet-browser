@@ -46,6 +46,7 @@ import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.MenuCompat;
 import androidx.core.view.MenuHost;
 import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
@@ -129,6 +130,7 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 			public void onCreateMenu(@NonNull final Menu menu, @NonNull final MenuInflater menuInflater)
 			{
 				menuInflater.inflate(R.menu.history, menu);
+				MenuCompat.setGroupDividerEnabled(menu, true);MenuCompat.setGroupDividerEnabled(menu, true);
 			}
 
 			@Override
