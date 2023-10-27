@@ -10,6 +10,7 @@
 	tools:context="org.sqlunet.browser.StatusActivity">
 
 	<com.google.android.material.appbar.AppBarLayout
+		android:id="@+id/appbar_layout"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content">
 
