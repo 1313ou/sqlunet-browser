@@ -177,7 +177,6 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 				setupSearch(menu, getSearchInfo(requireActivity()));
 
 				// set spinner, searchitem
-				//setupActionBar();
 				setupToolBar(toolbar);
 			}
 
