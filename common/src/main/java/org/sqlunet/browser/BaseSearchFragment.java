@@ -39,10 +39,10 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.MenuRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuCompat;
 import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -63,6 +63,11 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	static private final String STATE_SPINNER = "selected_mode";
 
 	// C O M P O N E N T S
+
+	/**
+	 * Menu provider
+	 */
+	MenuProvider menuProvider;
 
 	/**
 	 * Search view
@@ -108,36 +113,6 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		super.onCreate(savedInstanceState);
 	}
 
-	@Override
-	public void onResume()
-	{
-		super.onResume();
-
-		// app bar
-		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
-		final ActionBar actionBar = activity.getSupportActionBar();
-		if (actionBar != null)
-		{
-			actionBar.hide();
-		}
-	}
-
-	@Override
-	public void onPause()
-	{
-		super.onPause();
-
-		closeKeyboard();
-
-		// app bar
-		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
-		final ActionBar actionBar = activity.getSupportActionBar();
-		if (actionBar != null)
-		{
-			actionBar.show();
-		}
-	}
-
 	// V I E W
 
 	@SuppressWarnings("WeakerAccess")
@@ -159,10 +134,10 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 
 		super.onViewCreated(view, savedInstanceState);
 
-		// fragment bar
-		final Toolbar toolbar = view.findViewById(R.id.toolbar_search);
+		// menu provider
+		final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
 		assert toolbar != null;
-		toolbar.addMenuProvider(new MenuProvider()
+		this.menuProvider = new MenuProvider()
 		{
 			@Override
 			public void onCreateMenu(@NonNull final Menu menu, @NonNull final MenuInflater menuInflater)
@@ -171,6 +146,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 				menu.clear();
 				menuInflater.inflate(R.menu.main_safedata, menu);
 				menuInflater.inflate(menuId, menu);
+				MenuCompat.setGroupDividerEnabled(menu, true);
 				Log.d(TAG, "onCreateMenu() size=" + menu.size());
 
 				// set up search
@@ -193,7 +169,23 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 				return MenuHandler.menuDispatch((AppCompatActivity) requireActivity(), menuItem);
 			}
 
-		}, this.getViewLifecycleOwner(), Lifecycle.State.RESUMED);
+		};
+
+		toolbar.addMenuProvider(this.menuProvider, this.getViewLifecycleOwner(), Lifecycle.State.RESUMED);
+	}
+
+	@Override
+	public void onResume()
+	{
+		super.onResume();
+	}
+
+	@Override
+	public void onPause()
+	{
+		super.onPause();
+
+		closeKeyboard();
 	}
 
 	// T O O L B A R
@@ -215,6 +207,11 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 
 		// nav
 		toolbar.setNavigationOnClickListener(v -> {
+
+			if (isAdded())
+			{
+				return;
+			}
 
 			//Log.d(TAG, "BackStack: onBackPressed() pressed, the navigation button at the start of the toolbar was clicked");
 			final FragmentManager manager = getChildFragmentManager();
