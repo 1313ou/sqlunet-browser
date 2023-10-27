@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.MenuCompat;
 
 /**
  * Help activity
@@ -58,6 +59,7 @@ public class HelpActivity extends AppCompatActivity
 	public boolean onCreateOptionsMenu(@NonNull final Menu menu)
 	{
 		getMenuInflater().inflate(R.menu.main, menu);
+		MenuCompat.setGroupDividerEnabled(menu, true);
 		return true;
 	}
 
