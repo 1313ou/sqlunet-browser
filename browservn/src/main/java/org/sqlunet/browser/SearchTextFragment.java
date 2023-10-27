@@ -122,7 +122,7 @@ public class SearchTextFragment extends BaseSearchFragment
 		Log.d(TAG, "Search text " + query);
 
 		// subtitle
-		final Toolbar toolbar = requireActivity().findViewById(org.sqlunet.browser.common.R.id.toolbar_search);
+		final Toolbar toolbar = requireActivity().findViewById(org.sqlunet.browser.common.R.id.toolbar);
 		assert toolbar != null;
 		toolbar.setSubtitle(query);
 
