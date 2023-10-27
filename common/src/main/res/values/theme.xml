@@ -4,6 +4,7 @@
 
 <resources>
 
+	<!-- <style name="MyBaseTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar" /> -->
 	<style name="MyBaseTheme" parent="Theme.AppCompat.DayNight.NoActionBar" />
 
 	<style name="MyXBaseTheme" parent="MyBaseTheme" />
