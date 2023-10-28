@@ -33,6 +33,8 @@ public class SearchTextFragment extends BaseSearchFragment
 {
 	static private final String TAG = "SearchTextF";
 
+	static public final String FRAGMENT_TAG = "text";
+
 	// C R E A T I O N
 
 	/**
@@ -56,11 +58,12 @@ public class SearchTextFragment extends BaseSearchFragment
 		{
 			// splash fragment
 			final Fragment fragment = new SearchTextSplashFragment();
+			assert isAdded();
 			getChildFragmentManager() //
 					.beginTransaction() //
 					.setReorderingAllowed(true) //
-					.replace(R.id.container_searchtext, fragment, "fragment_splash") //
-					//.addToBackStack("fragment_splash") //
+					.replace(R.id.container_searchtext, fragment, SplashFragment.FRAGMENT_TAG) //
+					//.addToBackStack(SplashFragment.FRAGMENT_TAG) //
 					.commit();
 		}
 
@@ -201,14 +204,19 @@ public class SearchTextFragment extends BaseSearchFragment
 		getChildFragmentManager() //
 				.beginTransaction() //
 				.setReorderingAllowed(true) //
-				.replace(R.id.container_searchtext, fragment) //
+				.replace(R.id.container_searchtext, fragment, FRAGMENT_TAG) //
+				.addToBackStack(FRAGMENT_TAG) //
 				.commit();
 	}
 
 	@Override
 	protected boolean triggerFocusSearch()
 	{
+		if (!isAdded())
+		{
+			return false;
+		}
 		Fragment active = getChildFragmentManager().findFragmentById(R.id.container_searchtext);
-		return active != null && "fragment_splash".equals(active.getTag());
+		return active != null && SplashFragment.FRAGMENT_TAG.equals(active.getTag());
 	}
 }

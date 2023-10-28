@@ -31,6 +31,7 @@ import androidx.fragment.app.Fragment;
 public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 {
 	static private final String TAG = "BrowsePmF";
+	static public final String FRAGMENT_TAG = "predicatematrix";
 
 	/**
 	 * Saved query
@@ -86,11 +87,12 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		{
 			// splash fragment
 			final Fragment fragment = new BrowsePredicateMatrixSplashFragment();
+			assert isAdded();
 			getChildFragmentManager() //
 					.beginTransaction() //
 					.setReorderingAllowed(true) //
-					.replace(R.id.container_predicatematrix, fragment, "fragment_splash") //
-					// .addToBackStack("fragment_splash") //
+					.replace(R.id.container_predicatematrix, fragment, SplashFragment.FRAGMENT_TAG) //
+					// .addToBackStack(SplashFragment.FRAGMENT_TAG) //
 					.commit();
 		}
 
@@ -222,8 +224,8 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		getChildFragmentManager() //
 				.beginTransaction() //
 				.setReorderingAllowed(true) //
-				.replace(R.id.container_predicatematrix, fragment) //
-				.addToBackStack("fragment_pm") //
+				.replace(R.id.container_predicatematrix, fragment, BrowsePredicateMatrixFragment.FRAGMENT_TAG) //
+				.addToBackStack(BrowsePredicateMatrixFragment.FRAGMENT_TAG) //
 				.commit();
 	}
 
@@ -297,15 +299,19 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		getChildFragmentManager() //
 				.beginTransaction() //
 				.setReorderingAllowed(true) //
-				.replace(R.id.container_predicatematrix, fragment) //
-				.addToBackStack("fragment_pm") //
+				.replace(R.id.container_predicatematrix, fragment, BrowsePredicateMatrixFragment.FRAGMENT_TAG) //
+				.addToBackStack(BrowsePredicateMatrixFragment.FRAGMENT_TAG) //
 				.commit();
 	}
 
 	@Override
 	protected boolean triggerFocusSearch()
 	{
+		if (!isAdded())
+		{
+			return false;
+		}
 		Fragment active = getChildFragmentManager().findFragmentById(R.id.container_predicatematrix);
-		return active != null && "fragment_splash".equals(active.getTag());
+		return active != null && SplashFragment.FRAGMENT_TAG.equals(active.getTag());
 	}
 }

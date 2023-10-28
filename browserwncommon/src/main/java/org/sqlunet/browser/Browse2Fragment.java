@@ -88,11 +88,11 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 					final SenseFragment senseFragment = new SenseFragment();
 					senseFragment.setArguments(args);
 					senseFragment.setExpand(false);
-					transaction.replace(R.id.container_wordnet, senseFragment, "wordnet");
+					transaction.replace(R.id.container_wordnet, senseFragment, SenseFragment.FRAGMENT_TAG);
 				}
 				else
 				{
-					final Fragment senseFragment = manager.findFragmentByTag("wordnet");
+					final Fragment senseFragment = manager.findFragmentByTag(SenseFragment.FRAGMENT_TAG);
 					if (senseFragment != null)
 					{
 						transaction.remove(senseFragment);
@@ -106,11 +106,11 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 					// labelView.setVisibility(View.VISIBLE);
 					final Fragment bncFragment = new BNCFragment();
 					bncFragment.setArguments(args);
-					transaction.replace(R.id.container_bnc, bncFragment, "bnc");
+					transaction.replace(R.id.container_bnc, bncFragment, BNCFragment.FRAGMENT_TAG);
 				}
 				else
 				{
-					final Fragment bncFragment = manager.findFragmentByTag("bnc");
+					final Fragment bncFragment = manager.findFragmentByTag(BNCFragment.FRAGMENT_TAG);
 					if (bncFragment != null)
 					{
 						transaction.remove(bncFragment);
@@ -128,7 +128,7 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 				// detail fragment replace
 				manager.beginTransaction() //
 						.setReorderingAllowed(true) //
-						.replace(R.id.container_web, webFragment, "web") //
+						.replace(R.id.container_web, webFragment, WebFragment.FRAGMENT_TAG) //
 						.commit();
 				break;
 		}

@@ -65,11 +65,6 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	// C O M P O N E N T S
 
 	/**
-	 * Menu provider
-	 */
-	MenuProvider menuProvider;
-
-	/**
 	 * Search view
 	 */
 	private SearchView searchView;
@@ -134,10 +129,12 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 
 		super.onViewCreated(view, savedInstanceState);
 
-		// menu provider
+		// toolbar
 		final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
 		assert toolbar != null;
-		this.menuProvider = new MenuProvider()
+
+		// menu provider
+		final MenuProvider menuProvider = new MenuProvider()
 		{
 			@Override
 			public void onCreateMenu(@NonNull final Menu menu, @NonNull final MenuInflater menuInflater)
@@ -153,7 +150,6 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 				setupSearch(menu, getSearchInfo(requireActivity()));
 
 				// set spinner, searchitem
-				//setupActionBar();
 				setupToolBar(toolbar);
 			}
 
@@ -170,8 +166,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 			}
 
 		};
-
-		toolbar.addMenuProvider(this.menuProvider, this.getViewLifecycleOwner(), Lifecycle.State.RESUMED);
+		toolbar.addMenuProvider(menuProvider, this.getViewLifecycleOwner(), Lifecycle.State.RESUMED);
 	}
 
 	@Override
@@ -205,24 +200,23 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		toolbar.setTitle(R.string.title_activity_browse);
 		toolbar.setSubtitle(R.string.app_subname);
 
+		// background
+		final int color = ColorUtils.fetchColor(activity, this.colorAttrId);
+		toolbar.setBackground(new ColorDrawable(color));
+
 		// nav
 		toolbar.setNavigationOnClickListener(v -> {
 
-			if (isAdded())
+			Log.d(TAG, "BackStack: onBackPressed() pressed, the navigation button at the start of the toolbar was clicked");
+			if (!isAdded())
 			{
 				return;
 			}
-
-			//Log.d(TAG, "BackStack: onBackPressed() pressed, the navigation button at the start of the toolbar was clicked");
 			final FragmentManager manager = getChildFragmentManager();
 			int count = manager.getBackStackEntryCount();
 			if (count >= 1)
 			{
-				// for (int i = 0; i < count; i++)
-				// {
-				// 	Log.d(TAG, "BackStack: child fragment [" + i + "]: " + manager.getBackStackEntryAt(i) + " " + manager.getBackStackEntryAt(i).getName() + " " + manager.getBackStackEntryAt(i).getId());
-				// }
-				Log.d(TAG, "BackStack: child fragment popBackStack() " + manager.getBackStackEntryAt(count - 1));
+				Log.d(TAG, dumpBackStack(manager, "child"));
 				manager.popBackStack();
 			}
 			else
@@ -231,24 +225,16 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 				int count2 = manager2.getBackStackEntryCount();
 				if (count2 >= 1)
 				{
-					// for (int i = 0; i < count2; i++)
-					// {
-					// 	Log.d(TAG, "BackStack: parent fragment [" + i + "]: " + manager2.getBackStackEntryAt(i) + " " + manager2.getBackStackEntryAt(i).getName() + " " + manager2.getBackStackEntryAt(i).getId());
-					// }
-					Log.d(TAG, "BackStack: parent fragment popBackStack() " + manager2.getBackStackEntryAt(count2 - 1));
+					Log.d(TAG, dumpBackStack(manager2, "parent"));
 					manager2.popBackStack();
 				}
 				else
 				{
-					Log.d(TAG, "BackStack: activity onBackPressed()");
+					Log.d(TAG, "BackStack: activity onBackPressed() - none");
 					requireActivity().getOnBackPressedDispatcher().onBackPressed();
 				}
 			}
 		});
-
-		// background
-		final int color = ColorUtils.fetchColor(activity, this.colorAttrId);
-		toolbar.setBackground(new ColorDrawable(color));
 
 		// toolbar customized view
 		this.spinner = toolbar.findViewById(R.id.spinner);
@@ -261,6 +247,31 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 
 		// spinner
 		setupSpinner();
+	}
+
+	private String dumpBackStack(@NonNull final FragmentManager manager, @NonNull final String type)
+	{
+		StringBuilder sb = new StringBuilder();
+		int count = manager.getBackStackEntryCount();
+		for (int i = 0; i < count; i++)
+		{
+			sb.append("BackStack: ") //
+					.append(type) //
+					.append(" fragment [") //
+					.append(i) //
+					.append("]: ") //
+					.append(manager.getBackStackEntryAt(i)) //
+					.append(' ') //
+					.append(manager.getBackStackEntryAt(i).getName()) //
+					.append(' ') //
+					.append(manager.getBackStackEntryAt(i).getId()); //
+			sb.append('\n');
+		}
+		sb.append("BackStack: ") //
+				.append(type) //
+				.append(" fragment popBackStack() ") //
+				.append(manager.getBackStackEntryAt(count - 1));
+		return sb.toString();
 	}
 
 	// S P I N N E R

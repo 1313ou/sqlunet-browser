@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.sqlunet.browser.BaseBrowse1Fragment;
+import org.sqlunet.browser.BaseBrowse2Fragment;
+import org.sqlunet.browser.BaseSelectorsFragment;
 import org.sqlunet.browser.Browse2Activity;
 import org.sqlunet.browser.Browse2Fragment;
 import org.sqlunet.browser.R;
@@ -46,11 +48,11 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements XSelectorsF
 		boolean isTwoPane = isTwoPane(view);
 
 		// manager
+		assert isAdded();
 		final FragmentManager manager = getChildFragmentManager();
 
 		// selector fragment
-		XSelectorsFragment selectorsFragment;
-		selectorsFragment = (XSelectorsFragment) manager.findFragmentByTag("browse1");
+		XSelectorsFragment selectorsFragment = (XSelectorsFragment) manager.findFragmentByTag(BaseSelectorsFragment.FRAGMENT_TAG);
 		if (selectorsFragment == null)
 		{
 			selectorsFragment = new XSelectorsFragment();
@@ -63,10 +65,11 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements XSelectorsF
 		}
 		args1.putBoolean(Selectors.IS_TWO_PANE, isTwoPane);
 		selectorsFragment.setListener(this);
-		Log.d(TAG, "create 'browse1' fragment");
+		Log.d(TAG, "create 'selectors' fragment");
 		manager.beginTransaction() //
 				.setReorderingAllowed(true) //
-				.replace(R.id.container_xselectors, selectorsFragment, "browse1") //
+				.replace(R.id.container_xselectors, selectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG) //
+				.addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG) //
 				.commit();
 
 		// two-pane specific set up
@@ -76,8 +79,7 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements XSelectorsF
 			selectorsFragment.setActivateOnItemClick(true);
 
 			// detail fragment (rigid layout)
-			Fragment browse2Fragment;
-			browse2Fragment = manager.findFragmentByTag("browse2");
+			Fragment browse2Fragment = manager.findFragmentByTag(BaseBrowse2Fragment.FRAGMENT_TAG);
 			if (browse2Fragment == null)
 			{
 				browse2Fragment = new Browse2Fragment();
@@ -88,7 +90,8 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements XSelectorsF
 			Log.d(TAG, "create 'browse2' fragment");
 			manager.beginTransaction() //
 					.setReorderingAllowed(true) //
-					.replace(R.id.container_browse2, browse2Fragment, "browse2") //
+					.replace(R.id.container_browse2, browse2Fragment, BaseBrowse2Fragment.FRAGMENT_TAG) //
+					.addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG) //
 					.commit();
 		}
 
@@ -105,14 +108,19 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements XSelectorsF
 	public void destroyFragments()
 	{
 		super.onDestroy();
+
 		// remove fragments so that they will not be restored
+		if (!isAdded())
+		{
+			return;
+		}
 		final FragmentManager manager = getChildFragmentManager();
-		Fragment selectorsFragment = manager.findFragmentByTag("browse1");
-		Fragment browse2Fragment = manager.findFragmentByTag("browse2");
+		Fragment selectorsFragment = manager.findFragmentByTag(BaseSelectorsFragment.FRAGMENT_TAG);
+		Fragment browse2Fragment = manager.findFragmentByTag(BaseBrowse2Fragment.FRAGMENT_TAG);
 		FragmentTransaction transaction = manager.beginTransaction().setReorderingAllowed(true);
 		if (selectorsFragment != null)
 		{
-			Log.d(TAG, "destroy 'browse1' fragment");
+			Log.d(TAG, "destroy 'selectors' fragment");
 			transaction.remove(selectorsFragment);
 		}
 		if (browse2Fragment != null)

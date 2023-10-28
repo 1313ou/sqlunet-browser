@@ -27,6 +27,8 @@ public class VerbNetFragment extends TreeFragment
 {
 	// static private final String TAG = "VerbNetF";
 
+	static public final String FRAGMENT_TAG = "verbnet";
+
 	/**
 	 * Constructor
 	 */

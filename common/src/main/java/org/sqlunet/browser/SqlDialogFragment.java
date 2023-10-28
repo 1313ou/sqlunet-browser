@@ -37,6 +37,7 @@ public class SqlDialogFragment extends DialogFragment
 		@SuppressLint("InflateParams") final View view = inflater.inflate(R.layout.fragment_sql_statements, container);
 
 		final Fragment sqlFragment = new SqlStatementsFragment();
+		assert isAdded();
 		getChildFragmentManager() //
 				.beginTransaction() //
 				.setReorderingAllowed(true) //

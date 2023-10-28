@@ -79,11 +79,12 @@ public class BrowseFragment extends BaseSearchFragment
 		{
 			// splash fragment
 			final Fragment fragment = new BrowseSplashFragment();
+			assert isAdded();
 			getChildFragmentManager() //
 					.beginTransaction() //
 					.setReorderingAllowed(true) //
-					.replace(R.id.container_browse, fragment, "fragment_splash") //
-					//.addToBackStack("fragment_splash") //
+					.replace(R.id.container_browse, fragment, SplashFragment.FRAGMENT_TAG) //
+					//.addToBackStack(SplashFragment.FRAGMENT_TAG) //
 					.commit();
 		}
 
@@ -291,7 +292,6 @@ public class BrowseFragment extends BaseSearchFragment
 
 			//targetIntent = makeSelectorIntent();
 			fragment = makeSelectorFragment();
-			//fragment = new Test1Fragment();
 		}
 
 		// menuDispatch
@@ -318,17 +318,21 @@ public class BrowseFragment extends BaseSearchFragment
 			getChildFragmentManager() //
 					.beginTransaction() //
 					.setReorderingAllowed(true) //
-					.replace(R.id.container_browse, fragment) //
+					.replace(R.id.container_browse, fragment, BaseSelectorsFragment.FRAGMENT_TAG) //
+					.addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG)
 					.commit();
-
 		}
 	}
 
 	@Override
 	protected boolean triggerFocusSearch()
 	{
+		if (!isAdded())
+		{
+			return false;
+		}
 		final Fragment active = getChildFragmentManager().findFragmentById(R.id.container_browse);
-		return active != null && "fragment_splash".equals(active.getTag());
+		return active != null && SplashFragment.FRAGMENT_TAG.equals(active.getTag());
 	}
 
 	// I N T E N T / F R A G M E N T   F A C T O R Y

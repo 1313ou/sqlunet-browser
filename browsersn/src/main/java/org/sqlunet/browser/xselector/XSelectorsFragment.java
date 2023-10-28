@@ -71,10 +71,11 @@ public class XSelectorsFragment extends BaseSelectorsFragment implements Selecto
 			fragment.setListeners(this.wnListener, this);
 
 			// Add the fragment to the fragment container layout
+			assert isAdded();
 			getChildFragmentManager() //
 					.beginTransaction() //
 					.setReorderingAllowed(true) //
-					.add(R.id.wnselectors, fragment, "wnselectors") //
+					.add(R.id.wnselectors, fragment, "wn" + BaseSelectorsFragment.FRAGMENT_TAG) //
 					.commit();
 		}
 
@@ -97,10 +98,11 @@ public class XSelectorsFragment extends BaseSelectorsFragment implements Selecto
 			fragment.setListeners(this.snListener, this);
 
 			// Add the fragment to the fragment container layout
+			assert isAdded();
 			getChildFragmentManager() //
 					.beginTransaction() //
 					.setReorderingAllowed(true) //
-					.add(R.id.snselectors, fragment, "snselectors") //
+					.add(R.id.snselectors, fragment, "sn" + BaseSelectorsFragment.FRAGMENT_TAG) //
 					.commit();
 		}
 	}
@@ -126,7 +128,7 @@ public class XSelectorsFragment extends BaseSelectorsFragment implements Selecto
 		{
 			return;
 		}
-		SnSelectorsFragment f = (SnSelectorsFragment) getChildFragmentManager().findFragmentByTag("snselectors");
+		SnSelectorsFragment f = (SnSelectorsFragment) getChildFragmentManager().findFragmentByTag("sn" + BaseSelectorsFragment.FRAGMENT_TAG);
 		if (f != null)
 		{
 			f.deactivate();
@@ -140,7 +142,7 @@ public class XSelectorsFragment extends BaseSelectorsFragment implements Selecto
 		{
 			return;
 		}
-		SelectorsFragment f = (SelectorsFragment) getChildFragmentManager().findFragmentByTag("wnselectors");
+		SelectorsFragment f = (SelectorsFragment) getChildFragmentManager().findFragmentByTag("wn" + BaseSelectorsFragment.FRAGMENT_TAG);
 		if (f != null)
 		{
 			f.deactivate();

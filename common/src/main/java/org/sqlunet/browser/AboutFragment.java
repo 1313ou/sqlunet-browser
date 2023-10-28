@@ -36,6 +36,7 @@ public class AboutFragment extends Fragment
 
 		// fragment
 		final Fragment fragment = new SourceFragment();
+		assert isAdded();
 		getChildFragmentManager() //
 				.beginTransaction() //
 				.setReorderingAllowed(true) //

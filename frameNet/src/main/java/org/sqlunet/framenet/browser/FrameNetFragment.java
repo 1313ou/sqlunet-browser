@@ -27,6 +27,8 @@ public class FrameNetFragment extends TreeFragment
 {
 	// static private final String TAG = "FrameNetF";
 
+	static public final String FRAGMENT_TAG = "framenet";
+
 	/**
 	 * Constructor
 	 */

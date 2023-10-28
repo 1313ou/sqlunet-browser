@@ -123,11 +123,11 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 					final SenseFragment senseFragment = new SenseFragment();
 					senseFragment.setArguments(args);
 					senseFragment.setExpand(wordNetOnly(this.pointer));
-					transaction.replace(R.id.container_wordnet, senseFragment, "wordnet");
+					transaction.replace(R.id.container_wordnet, senseFragment, SenseFragment.FRAGMENT_TAG);
 				}
 				else
 				{
-					final Fragment senseFragment = manager.findFragmentByTag("wordnet");
+					final Fragment senseFragment = manager.findFragmentByTag(SenseFragment.FRAGMENT_TAG);
 					if (senseFragment != null)
 					{
 						transaction.remove(senseFragment);
@@ -141,11 +141,11 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 					// labelView.setVisibility(View.VISIBLE);
 					final Fragment verbnetFragment = new VerbNetFragment();
 					verbnetFragment.setArguments(args);
-					transaction.replace(R.id.container_verbnet, verbnetFragment, "verbnet");
+					transaction.replace(R.id.container_verbnet, verbnetFragment, VerbNetFragment.FRAGMENT_TAG);
 				}
 				else
 				{
-					final Fragment verbnetFragment = manager.findFragmentByTag("verbnet");
+					final Fragment verbnetFragment = manager.findFragmentByTag(VerbNetFragment.FRAGMENT_TAG);
 					if (verbnetFragment != null)
 					{
 						transaction.remove(verbnetFragment);
@@ -159,11 +159,11 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 					// labelView.setVisibility(View.VISIBLE);
 					final Fragment propbankFragment = new PropBankFragment();
 					propbankFragment.setArguments(args);
-					transaction.replace(R.id.container_propbank, propbankFragment, "propbank");
+					transaction.replace(R.id.container_propbank, propbankFragment, PropBankFragment.FRAGMENT_TAG);
 				}
 				else
 				{
-					final Fragment propbankFragment = manager.findFragmentByTag("propbank");
+					final Fragment propbankFragment = manager.findFragmentByTag(PropBankFragment.FRAGMENT_TAG);
 					if (propbankFragment != null)
 					{
 						transaction.remove(propbankFragment);
@@ -177,11 +177,11 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 					// labelView.setVisibility(View.VISIBLE);
 					final Fragment framenetFragment = new FrameNetFragment();
 					framenetFragment.setArguments(args);
-					transaction.replace(R.id.container_framenet, framenetFragment, "framenet");
+					transaction.replace(R.id.container_framenet, framenetFragment, FrameNetFragment.FRAGMENT_TAG);
 				}
 				else
 				{
-					final Fragment framenetFragment = manager.findFragmentByTag("framenet");
+					final Fragment framenetFragment = manager.findFragmentByTag(FrameNetFragment.FRAGMENT_TAG);
 					if (framenetFragment != null)
 					{
 						transaction.remove(framenetFragment);
@@ -195,11 +195,11 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 					// labelView.setVisibility(View.VISIBLE);
 					final Fragment bncFragment = new BNCFragment();
 					bncFragment.setArguments(args);
-					transaction.replace(R.id.container_bnc, bncFragment, "bnc");
+					transaction.replace(R.id.container_bnc, bncFragment, BNCFragment.FRAGMENT_TAG);
 				}
 				else
 				{
-					final Fragment bncFragment = manager.findFragmentByTag("bnc");
+					final Fragment bncFragment = manager.findFragmentByTag(BNCFragment.FRAGMENT_TAG);
 					if (bncFragment != null)
 					{
 						transaction.remove(bncFragment);
@@ -217,7 +217,7 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 				// detail fragment replace
 				manager.beginTransaction() //
 						.setReorderingAllowed(true) //
-						.replace(R.id.container_web, webFragment, "web") //
+						.replace(R.id.container_web, webFragment, WebFragment.FRAGMENT_TAG) //
 						.commit();
 				break;
 		}

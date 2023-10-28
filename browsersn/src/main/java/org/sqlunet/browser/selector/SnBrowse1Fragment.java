@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.sqlunet.browser.BaseBrowse1Fragment;
+import org.sqlunet.browser.BaseBrowse2Fragment;
+import org.sqlunet.browser.BaseSelectorsFragment;
 import org.sqlunet.browser.Browse2Fragment;
 import org.sqlunet.browser.Selectors;
 import org.sqlunet.browser.SnBrowse2Activity;
@@ -40,10 +42,11 @@ public class SnBrowse1Fragment extends BaseBrowse1Fragment implements SnSelector
 		boolean isTwoPane = isTwoPane(view);
 
 		// manager
+		assert isAdded();
 		final FragmentManager manager = getChildFragmentManager();
 
 		// selector fragment
-		SnSelectorsFragment selectorsFragment = (SnSelectorsFragment) manager.findFragmentByTag("snbrowse1");
+		SnSelectorsFragment selectorsFragment = (SnSelectorsFragment) manager.findFragmentByTag(BaseSelectorsFragment.FRAGMENT_TAG);
 		if (selectorsFragment == null)
 		{
 			selectorsFragment = new SnSelectorsFragment();
@@ -58,7 +61,8 @@ public class SnBrowse1Fragment extends BaseBrowse1Fragment implements SnSelector
 		selectorsFragment.setListeners(this);
 		manager.beginTransaction() //
 				.setReorderingAllowed(true) //
-				.replace(R.id.container_selectors, selectorsFragment, "snbrowse1") //
+				.replace(R.id.container_selectors, selectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG) //
+				.addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG) //
 				.commit();
 
 		// two-pane specific set up
@@ -68,7 +72,7 @@ public class SnBrowse1Fragment extends BaseBrowse1Fragment implements SnSelector
 			// selectorsFragment.setActivateOnItemClick(true);
 
 			// detail fragment (rigid layout)
-			Fragment browse2Fragment = manager.findFragmentByTag("browse2");
+			Fragment browse2Fragment = manager.findFragmentByTag(BaseBrowse2Fragment.FRAGMENT_TAG);
 			if (browse2Fragment == null)
 			{
 				browse2Fragment = new Browse2Fragment();
@@ -78,7 +82,8 @@ public class SnBrowse1Fragment extends BaseBrowse1Fragment implements SnSelector
 			}
 			manager.beginTransaction() //
 					.setReorderingAllowed(true) //
-					.replace(R.id.container_browse2, browse2Fragment, "browse2") //
+					.replace(R.id.container_browse2, browse2Fragment, BaseBrowse2Fragment.FRAGMENT_TAG) //
+					.addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG) //
 					.commit();
 		}
 

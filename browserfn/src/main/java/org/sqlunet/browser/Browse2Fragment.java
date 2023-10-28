@@ -13,6 +13,7 @@ import org.sqlunet.browser.web.WebFragment;
 import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.framenet.browser.FnFrameFragment;
 import org.sqlunet.framenet.browser.FnLexUnitFragment;
+import org.sqlunet.framenet.browser.FrameNetFragment;
 import org.sqlunet.provider.ProviderArgs;
 
 import androidx.fragment.app.Fragment;
@@ -62,11 +63,11 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 					// labelView.setVisibility(View.VISIBLE);
 					final Fragment framenetFragment = (this.pointer instanceof FnFramePointer) ? new FnFrameFragment() : new FnLexUnitFragment();
 					framenetFragment.setArguments(args);
-					transaction.replace(R.id.container_framenet, framenetFragment, "framenet");
+					transaction.replace(R.id.container_framenet, framenetFragment, FrameNetFragment.FRAGMENT_TAG);
 				}
 				else
 				{
-					final Fragment framenetFragment = manager.findFragmentByTag("framenet");
+					final Fragment framenetFragment = manager.findFragmentByTag(FrameNetFragment.FRAGMENT_TAG);
 					if (framenetFragment != null)
 					{
 						transaction.remove(framenetFragment);
@@ -84,7 +85,7 @@ public class Browse2Fragment extends BaseBrowse2Fragment
 				// detail fragment replace
 				manager.beginTransaction() //
 						.setReorderingAllowed(true) //
-						.replace(R.id.container_web, webFragment, "web") //
+						.replace(R.id.container_web, webFragment, WebFragment.FRAGMENT_TAG) //
 						.commit();
 				break;
 		}

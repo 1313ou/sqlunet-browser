@@ -49,7 +49,8 @@ public class WebActivity extends AppCompatActivity
 			getSupportFragmentManager() //
 					.beginTransaction() //
 					.setReorderingAllowed(true) //
-					.replace(R.id.container_web, fragment) //
+					.replace(R.id.container_web, fragment, WebFragment.FRAGMENT_TAG) //
+					.addToBackStack(WebFragment.FRAGMENT_TAG) //
 					.commit();
 		}
 	}

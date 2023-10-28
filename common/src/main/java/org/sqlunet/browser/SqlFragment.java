@@ -36,6 +36,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
  */
 public class SqlFragment extends Fragment
 {
+	static public final String FRAGMENT_TAG = "sql";
+
 	public SqlFragment()
 	{
 	}
@@ -50,7 +52,11 @@ public class SqlFragment extends Fragment
 		final SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
 		swipeRefreshLayout.setOnRefreshListener(() -> {
 
-			Fragment fragment = getChildFragmentManager().findFragmentByTag("fragment_sql");
+			if (!isAdded())
+			{
+				return;
+			}
+			Fragment fragment = getChildFragmentManager().findFragmentByTag(FRAGMENT_TAG);
 			if (fragment instanceof SqlStatementsFragment)
 			{
 				SqlStatementsFragment sqlStatementsFragment = (SqlStatementsFragment) fragment;
@@ -65,10 +71,12 @@ public class SqlFragment extends Fragment
 		{
 			// splash fragment
 			final Fragment fragment = new SqlStatementsFragment();
+			assert isAdded();
 			getChildFragmentManager() //
 					.beginTransaction() //
 					.setReorderingAllowed(true) //
-					.replace(R.id.container_sql, fragment, "fragment_sql") //
+					.replace(R.id.container_sql, fragment, FRAGMENT_TAG) //
+					.addToBackStack(FRAGMENT_TAG) //
 					.commit();
 		}
 

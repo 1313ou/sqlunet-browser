@@ -29,6 +29,8 @@ public abstract class BaseBrowse2Fragment extends Fragment
 {
 	static private final String TAG = "Browse2F";
 
+	static public final String FRAGMENT_TAG = "browse2";
+
 	static private final String POINTER_STATE = "pointer";
 
 	@Nullable

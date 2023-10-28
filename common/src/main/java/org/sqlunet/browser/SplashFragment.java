@@ -22,6 +22,8 @@ abstract public class SplashFragment extends Fragment
 {
 	// static private final String TAG = "SplashF";
 
+	static public final String FRAGMENT_TAG = "splash";
+
 	/**
 	 * Layout id set bu super class
 	 */

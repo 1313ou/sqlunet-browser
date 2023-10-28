@@ -72,6 +72,8 @@ public class WebFragment extends Fragment
 {
 	static private final String TAG = "WebF";
 
+	static public final String FRAGMENT_TAG = "web";
+
 	static private final String SQLUNET_NS = "http://org.sqlunet";
 
 	private class WebDocumentStringLoader implements DocumentStringLoader
