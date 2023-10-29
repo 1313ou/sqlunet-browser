@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Spinner;
 
 import org.sqlunet.browser.sn.R;
 import org.sqlunet.browser.sn.Settings;
@@ -71,15 +72,15 @@ public class SearchTextFragment extends BaseSearchFragment
 	// S P I N N E R
 
 	@Override
-	protected void setupSpinner()
+	protected void setupSpinner(@NonNull final Spinner spinner)
 	{
-		this.spinner.setVisibility(View.VISIBLE);
+		spinner.setVisibility(View.VISIBLE);
 
 		// apply spinner adapter
-		this.spinner.setAdapter(getSpinnerAdapter());
+		spinner.setAdapter(getSpinnerAdapter());
 
 		// spinner listener
-		this.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+		spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
 		{
 			@Override
 			public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
@@ -96,7 +97,7 @@ public class SearchTextFragment extends BaseSearchFragment
 
 		// spinner position
 		final int position = Settings.getSearchModePref(requireContext());
-		this.spinner.setSelection(position);
+		spinner.setSelection(position);
 	}
 
 	// S E A R C H
