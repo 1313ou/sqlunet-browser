@@ -65,14 +65,16 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	// C O M P O N E N T S
 
 	/**
-	 * Search view
+	 * Search view -held in search menuitem) that holds query
 	 */
+	@Nullable
 	private SearchView searchView;
 
 	/**
-	 * Action bar mode spinner
+	 * Action bar search mode spinner
 	 */
-	Spinner spinner;
+	@Nullable
+	private Spinner spinner;
 
 	// R E S O U R C E S
 
@@ -110,15 +112,12 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 
 	// V I E W
 
-	@SuppressWarnings("WeakerAccess")
-	@Nullable
 	@SuppressLint("InflateParams")
+	@Nullable
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
 		Log.d(TAG, "onCreateView() " + this + " from " + savedInstanceState);
-
-		// view
 		return inflater.inflate(this.layoutId, container, false);
 	}
 
@@ -126,7 +125,6 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
 		Log.d(TAG, "onViewCreated() " + this + " from " + savedInstanceState);
-
 		super.onViewCreated(view, savedInstanceState);
 
 		// toolbar
@@ -144,10 +142,14 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 				menuInflater.inflate(R.menu.main_safedata, menu);
 				menuInflater.inflate(menuId, menu);
 				MenuCompat.setGroupDividerEnabled(menu, true);
-				Log.d(TAG, "onCreateMenu() size=" + menu.size());
+				Log.d(TAG, "MenuProvider: onCreateMenu() size=" + menu.size());
 
-				// set up search
-				setupSearch(menu, getSearchInfo(requireActivity()));
+				// set up search view
+				BaseSearchFragment.this.searchView = getSearchView(menu);
+				if (BaseSearchFragment.this.searchView != null)
+				{
+					setupSearchView(BaseSearchFragment.this.searchView, getSearchInfo(requireActivity()));
+				}
 
 				// set spinner, searchitem
 				setupToolBar(toolbar);
@@ -164,7 +166,6 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 				}
 				return MenuHandler.menuDispatch((AppCompatActivity) requireActivity(), menuItem);
 			}
-
 		};
 		toolbar.addMenuProvider(menuProvider, this.getViewLifecycleOwner(), Lifecycle.State.RESUMED);
 	}
@@ -181,12 +182,13 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 
 	/**
 	 * Set up toolbar's custom view, its spinner, title, background
+	 *
+	 * @param toolbar toolbar
 	 */
-	@SuppressWarnings({"SameReturnValue", "WeakerAccess"})
 	@SuppressLint("InflateParams")
 	public void setupToolBar(@NonNull final Toolbar toolbar)
 	{
-		Log.d(TAG, "Set up specific toolbar " + this);
+		Log.d(TAG, "Toolbar: set up " + this);
 
 		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
 
@@ -199,6 +201,15 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		toolbar.setBackground(new ColorDrawable(color));
 
 		// nav
+		toolbar.setNavigationOnClickListener(v -> {
+			if (!isAdded())
+			{
+				return;
+			}
+			Log.d(TAG, dumpBackStack(getChildFragmentManager(), "child"));
+			Log.d(TAG, dumpBackStack(getParentFragmentManager(), "parent"));
+		});
+		/*
 		toolbar.setNavigationOnClickListener(v -> {
 
 			Log.d(TAG, "BackStack: onBackPressed() pressed, the navigation button at the start of the toolbar was clicked");
@@ -229,54 +240,124 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 				}
 			}
 		});
+		*/
 
-		// toolbar customized view
+		// spinner
 		this.spinner = toolbar.findViewById(R.id.spinner);
 		if (this.spinner == null)
 		{
-			View customView = getLayoutInflater().inflate(R.layout.actionbar_custom, null);
+			// toolbar customized view if toolbar does not contain spinner
+			final View customView = getLayoutInflater().inflate(R.layout.actionbar_custom, null);
 			toolbar.addView(customView);
 			this.spinner = toolbar.findViewById(R.id.spinner);
 		}
-
-		// spinner
-		setupSpinner();
+		if (this.spinner != null)
+		{
+			setupSpinner(this.spinner);
+		}
 	}
 
-	private String dumpBackStack(@NonNull final FragmentManager manager, @NonNull final String type)
+	// S E A R C H V I E W
+
+	@Nullable
+	private SearchView getSearchView(@NonNull final Menu menu)
 	{
-		StringBuilder sb = new StringBuilder();
-		int count = manager.getBackStackEntryCount();
-		for (int i = 0; i < count; i++)
+		// menu item
+		final MenuItem searchMenuItem = menu.findItem(R.id.search);
+		if (searchMenuItem == null)
 		{
-			sb.append("BackStack: ") //
-					.append(type) //
-					.append(" fragment [") //
-					.append(i) //
-					.append("]: ") //
-					.append(manager.getBackStackEntryAt(i)) //
-					.append(' ') //
-					.append(manager.getBackStackEntryAt(i).getName()) //
-					.append(' ') //
-					.append(manager.getBackStackEntryAt(i).getId()); //
-			sb.append('\n');
+			return null;
 		}
-		sb.append("BackStack: ") //
-				.append(type) //
-				.append(" fragment popBackStack() ") //
-				.append(manager.getBackStackEntryAt(count - 1));
-		return sb.toString();
+		// search view
+		return (SearchView) searchMenuItem.getActionView();
+	}
+
+	/**
+	 * Set up search view
+	 *
+	 * @param searchView     search view
+	 * @param searchableInfo searchable info
+	 */
+	private void setupSearchView(@NonNull final SearchView searchView, @Nullable final SearchableInfo searchableInfo)
+	{
+		// search view
+		searchView.setSearchableInfo(searchableInfo);
+		searchView.setIconifiedByDefault(true);
+		searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
+		{
+			@Override
+			public boolean onQueryTextSubmit(final String query)
+			{
+				clearQuery();
+				return false;
+			}
+
+			@Override
+			public boolean onQueryTextChange(final String newText)
+			{
+				return false;
+			}
+		});
+
+		// trigger focus
+		if (triggerFocusSearch())
+		{
+			new Handler(Looper.getMainLooper()).postDelayed(() -> searchView.setIconified(false), 1500);
+		}
+	}
+
+	@Nullable
+	private SearchableInfo getSearchInfo(@NonNull final Activity activity)
+	{
+		final ComponentName componentName = activity.getComponentName();
+		final SearchManager searchManager = (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
+		assert searchManager != null;
+		return searchManager.getSearchableInfo(componentName);
+	}
+
+	protected boolean triggerFocusSearch()
+	{
+		return true;
+	}
+
+	public void clearQuery()
+	{
+		if (this.searchView != null)
+		{
+			this.searchView.clearFocus();
+			this.searchView.setFocusable(false);
+			this.searchView.setQuery("", false);
+			this.searchView.setIconified(true);
+			closeKeyboard();
+		}
+	}
+
+	private void closeKeyboard()
+	{
+		// activity
+		final Activity activity = requireActivity();
+
+		// view
+		final View view = activity.getCurrentFocus();
+		if (view != null)
+		{
+			final InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+			assert imm != null;
+			imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+		}
 	}
 
 	// S P I N N E R
 
 	/**
 	 * Set up spinner
+	 *
+	 * @param spinner spinner
 	 */
 	@SuppressWarnings("WeakerAccess")
-	protected void setupSpinner()
+	protected void setupSpinner(@NonNull final Spinner spinner)
 	{
-		this.spinner.setVisibility(View.GONE);
+		spinner.setVisibility(View.GONE);
 	}
 
 	/**
@@ -366,86 +447,6 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 
 		final Settings.Selector selectorMode = Settings.Selector.getPref(requireContext());
 		return selectorMode.ordinal();
-
-	}
-
-	// S E A R C H V I E W
-
-	private SearchableInfo getSearchInfo(@NonNull final Activity activity)
-	{
-		final ComponentName componentName = activity.getComponentName();
-		final SearchManager searchManager = (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
-		assert searchManager != null;
-		return searchManager.getSearchableInfo(componentName);
-	}
-
-	/**
-	 * Set up search view
-	 *
-	 * @param menu           menu
-	 * @param searchableInfo searchable info
-	 */
-	private void setupSearch(@NonNull final Menu menu, @NonNull final SearchableInfo searchableInfo)
-	{
-		// menu item
-		final MenuItem searchMenuItem = menu.findItem(R.id.search);
-
-		// search view
-		this.searchView = (SearchView) searchMenuItem.getActionView();
-		this.searchView.setSearchableInfo(searchableInfo);
-		this.searchView.setIconifiedByDefault(true);
-		this.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
-		{
-			@Override
-			public boolean onQueryTextSubmit(final String query)
-			{
-				clearQuery();
-				return false;
-			}
-
-			@Override
-			public boolean onQueryTextChange(final String newText)
-			{
-				return false;
-			}
-		});
-
-		if (triggerFocusSearch())
-		{
-			new Handler(Looper.getMainLooper()).postDelayed(() -> this.searchView.setIconified(false), 1500);
-		}
-	}
-
-	protected boolean triggerFocusSearch()
-	{
-		return true;
-	}
-
-	public void clearQuery()
-	{
-		if (this.searchView != null)
-		{
-			this.searchView.clearFocus();
-			this.searchView.setFocusable(false);
-			this.searchView.setQuery("", false);
-			this.searchView.setIconified(true);
-			closeKeyboard();
-		}
-	}
-
-	private void closeKeyboard()
-	{
-		// activity
-		final Activity activity = requireActivity();
-
-		// view
-		final View view = activity.getCurrentFocus();
-		if (view != null)
-		{
-			final InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-			assert imm != null;
-			imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-		}
 	}
 
 	// S A V E / R E S T O R E
@@ -479,5 +480,35 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 			final int selected = savedInstanceState.getInt(STATE_SPINNER);
 			this.spinner.setSelection(selected);
 		}
+	}
+
+	// B A C K S T A C K   H E L P E R
+
+	private String dumpBackStack(@NonNull final FragmentManager manager, @NonNull final String type)
+	{
+		StringBuilder sb = new StringBuilder();
+		int count = manager.getBackStackEntryCount();
+		for (int i = 0; i < count; i++)
+		{
+			FragmentManager.BackStackEntry entry = manager.getBackStackEntryAt(i);
+			sb.append("BackStack: ") //
+					.append(type) //
+					.append('\n') //
+					.append("[") //
+					.append(i) //
+					.append("]: ") //
+					.append(entry.getName()) //
+					.append(' ') //
+					.append(entry.getId()) //
+					.append(' ') //
+					.append(entry.getClass().getName());
+		}
+		// sb.append('\n');
+		// sb.append("BackStack: ") //
+		// 		.append(type) //
+		//		.append('\n') //
+		// 		.append(" popBackStack() ") //
+		// 		.append(manager.getBackStackEntryAt(count - 1));
+		return sb.toString();
 	}
 }
