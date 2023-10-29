@@ -11,8 +11,7 @@
 	android:paddingTop="16dp"
 	android:paddingRight="16dp"
 	android:paddingBottom="16dp"
-	android:weightSum="1"
-	tools:context="org.sqlunet.browser.SqlStatementsActivity">
+	android:weightSum="1">
 
 	<TextView
 		style="@android:style/TextAppearance.Small"
