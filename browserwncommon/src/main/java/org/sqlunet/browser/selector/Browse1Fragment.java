@@ -63,7 +63,7 @@ public class Browse1Fragment extends BaseBrowse1Fragment implements SelectorsFra
 		manager.beginTransaction() //
 				.setReorderingAllowed(true) //
 				.replace(R.id.container_selectors, selectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG) //
-				.addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG) //
+				// .addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG) //
 				.commit();
 
 		// two-pane specific set up
@@ -89,7 +89,7 @@ public class Browse1Fragment extends BaseBrowse1Fragment implements SelectorsFra
 			manager.beginTransaction() //
 					.setReorderingAllowed(true) //
 					.replace(R.id.container_browse2, browse2Fragment, BaseBrowse2Fragment.FRAGMENT_TAG) //
-					.addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG) //
+					// .addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG) //
 					.commit();
 		}
 

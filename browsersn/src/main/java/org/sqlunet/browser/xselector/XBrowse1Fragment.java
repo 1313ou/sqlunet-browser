@@ -67,7 +67,7 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements SelectorsFr
 		xSelectorsFragment.setListener(this, this);
 		manager.beginTransaction() //
 				.replace(R.id.container_xselectors, xSelectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG) //
-				.addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG) //
+				// .addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG) //
 				.commit();
 
 		// two-pane specific set up
@@ -89,7 +89,7 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements SelectorsFr
 			manager.beginTransaction() //
 					.setReorderingAllowed(true) //
 					.replace(R.id.container_browse2, browse2Fragment, BaseBrowse2Fragment.FRAGMENT_TAG) //
-					.addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG) //
+					// .addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG) //
 					.commit();
 		}
 

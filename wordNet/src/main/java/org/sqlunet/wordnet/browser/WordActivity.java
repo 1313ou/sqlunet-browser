@@ -70,7 +70,7 @@ public class WordActivity extends AppCompatActivity
 			manager.beginTransaction() //
 					.setReorderingAllowed(true) //
 					.replace(R.id.container_word, fragment, WordFragment.FRAGMENT_TAG) //
-					.addToBackStack(WordFragment.FRAGMENT_TAG) //
+					// .addToBackStack(WordFragment.FRAGMENT_TAG) //
 					.commit();
 		}
 	}

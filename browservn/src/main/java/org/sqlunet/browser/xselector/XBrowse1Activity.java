@@ -45,7 +45,7 @@ public class XBrowse1Activity extends AbstractBrowse1Activity
 					.beginTransaction() //
 					.setReorderingAllowed(true) //
 					.replace(R.id.container_browse, fragment, BaseBrowse1Fragment.FRAGMENT_TAG) //
-					.addToBackStack(BaseBrowse1Fragment.FRAGMENT_TAG) //
+					// .addToBackStack(BaseBrowse1Fragment.FRAGMENT_TAG) //
 					.commit();
 		}
 	}

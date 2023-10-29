@@ -56,7 +56,7 @@ public class Browse2Activity extends AbstractBrowse2Activity
 		manager.beginTransaction() //
 				.setReorderingAllowed(true) //
 				.replace(R.id.container_browse2, browse2Fragment, BaseBrowse2Fragment.FRAGMENT_TAG) //
-				.addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG) //
+				// .addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG) //
 				.commit();
 	}
 

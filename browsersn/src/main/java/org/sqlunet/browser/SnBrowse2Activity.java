@@ -51,7 +51,7 @@ public class SnBrowse2Activity extends AbstractBrowse1Activity
 				.beginTransaction() //
 				.setReorderingAllowed(true) //
 				.replace(R.id.container_browse2, browse2Fragment, BaseBrowse2Fragment.FRAGMENT_TAG) //
-				.addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG) //
+				// .addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG) //
 				.commit();
 	}
 

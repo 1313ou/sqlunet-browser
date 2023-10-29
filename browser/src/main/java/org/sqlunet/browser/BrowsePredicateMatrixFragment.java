@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Spinner;
 
 import org.sqlunet.Word;
 import org.sqlunet.predicatematrix.PmRolePointer;
@@ -121,12 +122,12 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 	// S P I N N E R
 
 	@Override
-	protected void setupSpinner()
+	protected void setupSpinner(@NonNull final Spinner spinner)
 	{
-		this.spinner.setVisibility(View.VISIBLE);
+		spinner.setVisibility(View.VISIBLE);
 
 		// apply spinner adapter
-		this.spinner.setAdapter(getSpinnerAdapter());
+		spinner.setAdapter(getSpinnerAdapter());
 
 		// saved mode
 		final Settings.PMMode mode = Settings.PMMode.getPref(requireContext());
@@ -134,12 +135,12 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		if (mode != null)
 		{
 			// no listener yet
-			this.spinner.setOnItemSelectedListener(null);
-			this.spinner.setSelection(mode.ordinal());
+			spinner.setOnItemSelectedListener(null);
+			spinner.setSelection(mode.ordinal());
 		}
 
 		// spinner listener
-		this.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+		spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
 		{
 			@Override
 			public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
