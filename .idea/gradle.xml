@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="jbr-17" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/assetpacks" />
+            <option value="$PROJECT_DIR$/bNC" />
+            <option value="$PROJECT_DIR$/browser" />
+            <option value="$PROJECT_DIR$/browserewn" />
+            <option value="$PROJECT_DIR$/browserfn" />
+            <option value="$PROJECT_DIR$/browsersn" />
+            <option value="$PROJECT_DIR$/browservn" />
+            <option value="$PROJECT_DIR$/browserwn" />
+            <option value="$PROJECT_DIR$/browserwncommon" />
+            <option value="$PROJECT_DIR$/common" />
+            <option value="$PROJECT_DIR$/concurrency" />
+            <option value="$PROJECT_DIR$/db_ewn_asset" />
+            <option value="$PROJECT_DIR$/db_wn31_asset" />
+            <option value="$PROJECT_DIR$/dbewn_ewn_asset" />
+            <option value="$PROJECT_DIR$/dbfn_ewn_asset" />
+            <option value="$PROJECT_DIR$/dbfn_wn31_asset" />
+            <option value="$PROJECT_DIR$/dbsn_ewn_asset" />
+            <option value="$PROJECT_DIR$/dbsn_wn31_asset" />
+            <option value="$PROJECT_DIR$/dbvn_ewn_asset" />
+            <option value="$PROJECT_DIR$/dbvn_wn31_asset" />
+            <option value="$PROJECT_DIR$/dbwn_wn31_asset" />
+            <option value="$PROJECT_DIR$/deploy" />
+            <option value="$PROJECT_DIR$/donate" />
+            <option value="$PROJECT_DIR$/download" />
+            <option value="$PROJECT_DIR$/expandableListFragment" />
+            <option value="$PROJECT_DIR$/frameNet" />
+            <option value="$PROJECT_DIR$/nightmode" />
+            <option value="$PROJECT_DIR$/others" />
+            <option value="$PROJECT_DIR$/predicateMatrix" />
+            <option value="$PROJECT_DIR$/preference" />
+            <option value="$PROJECT_DIR$/propbank" />
+            <option value="$PROJECT_DIR$/rate" />
+            <option value="$PROJECT_DIR$/speak" />
+            <option value="$PROJECT_DIR$/syntagNet" />
+            <option value="$PROJECT_DIR$/test" />
+            <option value="$PROJECT_DIR$/test-sql" />
+            <option value="$PROJECT_DIR$/treeView" />
+            <option value="$PROJECT_DIR$/verbNet" />
+            <option value="$PROJECT_DIR$/wordNet" />
+            <option value="$PROJECT_DIR$/xNet" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
