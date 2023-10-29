@@ -409,7 +409,8 @@ public class BrowseFragment extends BaseSearchFragment
 					.beginTransaction() //
 					.setReorderingAllowed(true) //
 					.replace(R.id.container_browse, fragment, BaseSelectorsFragment.FRAGMENT_TAG) //
-					.addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG).commit();
+					.addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG) //
+					.commit();
 		}
 	}
 

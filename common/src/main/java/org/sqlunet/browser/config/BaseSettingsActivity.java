@@ -182,7 +182,7 @@ public abstract class BaseSettingsActivity extends AppCompatActivity implements 
 				.beginTransaction() //
 				.setReorderingAllowed(true) //
 				.replace(R.id.settings, fragment) //
-				.addToBackStack(null) //
+				.addToBackStack("settings") //
 				.commit();
 		return true;
 	}
