@@ -18,7 +18,7 @@ public class BaseSelectorsListFragment extends ListFragment
 	 */
 	public BaseSelectorsListFragment()
 	{
-		Log.d(TAG, "lifecycle: Constructor (0) " + this);
+		Log.d(TAG, "Lifecycle: Constructor (0) " + this);
 	}
 
 	// L I F E C Y C L E
@@ -29,14 +29,14 @@ public class BaseSelectorsListFragment extends ListFragment
 	//	public void onAttach(@NonNull final Context context)
 	//	{
 	//		super.onAttach(context);
-	//		Log.d(TAG, "lifecycle: onAttach (1) " + this);
+	//		Log.d(TAG, "Lifecycle: onAttach (1) " + this);
 	//	}
 
 	@Override
 	public void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		Log.d(TAG, "lifecycle: onCreate (2) " + this);
+		Log.d(TAG, "Lifecycle: onCreate (2) " + this);
 		//noinspection deprecation
 		this.setRetainInstance(false); // default
 	}

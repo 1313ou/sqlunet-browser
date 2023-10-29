@@ -214,7 +214,7 @@ public class XSelectorsFragment extends BaseSelectorsExpandableListFragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		Log.d(TAG, "lifecycle: onCreateView (3) " + this);
+		Log.d(TAG, "Lifecycle: onCreateView (3) " + this);
 		return inflater.inflate(R.layout.fragment_xselectors, container, false);
 	}
 
@@ -222,7 +222,7 @@ public class XSelectorsFragment extends BaseSelectorsExpandableListFragment
 	public void onViewCreated(@NonNull final View view0, @Nullable final Bundle savedInstanceState)
 	{
 		super.onViewCreated(view0, savedInstanceState);
-		Log.d(TAG, "lifecycle: onViewCreated (4) " + this);
+		Log.d(TAG, "Lifecycle: onViewCreated (4) " + this);
 
 		// when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
 		final ExpandableListView view = getListView();
@@ -241,14 +241,14 @@ public class XSelectorsFragment extends BaseSelectorsExpandableListFragment
 	//	public void onActivityCreated(@Nullable final Bundle savedInstanceState)
 	//	{
 	//		super.onActivityCreated(savedInstanceState);
-	//		Log.d(TAG, "lifecycle: onActivityCreated (5) " + this);
+	//		Log.d(TAG, "Lifecycle: onActivityCreated (5) " + this);
 	//	}
 
 	@Override
 	public void onStart()
 	{
 		super.onStart();
-		Log.d(TAG, "lifecycle: onStart (6) " + this);
+		Log.d(TAG, "Lifecycle: onStart (6) " + this);
 
 		// load the contents
 		// final MutableLiveData<Cursor> idLiveData = wordIdFromWordModel.getMutableData();
@@ -267,34 +267,34 @@ public class XSelectorsFragment extends BaseSelectorsExpandableListFragment
 	//	public void onStop()
 	//	{
 	//		super.onStop();
-	//		Log.d(TAG, "lifecycle: onStop(-4) " + this);
+	//		Log.d(TAG, "Lifecycle: onStop(-4) " + this);
 	//	}
 
 	// @Override
 	// public void onDestroyView()
 	// {
 	// 	super.onDestroyView();
-	// 	Log.d(TAG, "lifecycle: onDestroyView (-3) " + this);
+	// 	Log.d(TAG, "Lifecycle: onDestroyView (-3) " + this);
 	// }
 
 	//	@Override
 	//	public void onDestroy()
 	//	{
 	//		super.onDestroy();
-	//		Log.d(TAG, "lifecycle: onDestroy (-2) " + this);
+	//		Log.d(TAG, "Lifecycle: onDestroy (-2) " + this);
 	//	}
 
 	//	@Override
 	//	public void onDetach()
 	//	{
 	//		super.onDetach();
-	//		Log.d(TAG, "lifecycle: onDetach (-1) " + this);
+	//		Log.d(TAG, "Lifecycle: onDetach (-1) " + this);
 	//	}
 
 	@Override
 	public void onSaveInstanceState(@NonNull final Bundle outState)
 	{
-		Log.d(TAG, "lifecycle: onSaveInstanceState (2) " + this);
+		Log.d(TAG, "Lifecycle: onSaveInstanceState (2) " + this);
 		super.onSaveInstanceState(outState);
 
 		// serialize and persist the activated group state
@@ -323,7 +323,7 @@ public class XSelectorsFragment extends BaseSelectorsExpandableListFragment
 	public void onViewStateRestored(@Nullable Bundle savedInstanceState)
 	{
 		super.onViewStateRestored(savedInstanceState);
-		Log.d(TAG, "lifecycle: onViewStateRestored " + this);
+		Log.d(TAG, "Lifecycle: onViewStateRestored " + this);
 		this.restoredGroupState = savedInstanceState != null ? savedInstanceState.getInt(STATE_GROUPS) : null;
 	}
 

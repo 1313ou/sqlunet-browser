@@ -20,14 +20,14 @@ public class BaseSelectorsFragment extends Fragment
 	 */
 	public BaseSelectorsFragment()
 	{
-		Log.d(TAG, "lifecycle: Constructor (0) " + this);
+		Log.d(TAG, "Lifecycle: Constructor (0) " + this);
 	}
 
 	@Override
 	public void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		Log.d(TAG, "lifecycle: onCreate (2) " + this);
+		Log.d(TAG, "Lifecycle: onCreate (2) " + this);
 		//noinspection deprecation
 		this.setRetainInstance(false); // default
 	}

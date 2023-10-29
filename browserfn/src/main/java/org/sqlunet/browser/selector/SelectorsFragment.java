@@ -120,7 +120,7 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		Log.d(TAG, "lifecycle: onCreateView (3) " + this);
+		Log.d(TAG, "Lifecycle: onCreateView (3) " + this);
 		return inflater.inflate(R.layout.fragment_selectors, container, false);
 	}
 
@@ -128,7 +128,7 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
 		super.onViewCreated(view, savedInstanceState);
-		Log.d(TAG, "lifecycle: onViewCreated (4) " + this);
+		Log.d(TAG, "Lifecycle: onViewCreated (4) " + this);
 
 		// when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
 		getListView().setChoiceMode(this.activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
@@ -142,7 +142,7 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 	//	public void onActivityCreated(@Nullable final Bundle savedInstanceState)
 	//	{
 	//		super.onActivityCreated(savedInstanceState);
-	//		Log.d(TAG, "lifecycle: onActivityCreated (5) " + this);
+	//		Log.d(TAG, "Lifecycle: onActivityCreated (5) " + this);
 	//	}
 
 	@Override
@@ -150,7 +150,7 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 	{
 		super.onStart();
 
-		Log.d(TAG, "lifecycle: onStart (6) " + this);
+		Log.d(TAG, "Lifecycle: onStart (6) " + this);
 
 		// load the contents
 		// final MutableLiveData<Cursor> idLiveData = dataModel.getMutableData();
@@ -169,28 +169,28 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 	//	public void onStop()
 	//	{
 	//		super.onStop();
-	//		Log.d(TAG, "lifecycle: onStop(-4) " + this);
+	//		Log.d(TAG, "Lifecycle: onStop(-4) " + this);
 	//	}
 
 	//	@Override
 	//	public void onDestroyView()
 	//	{
 	//		super.onDestroyView();
-	//		Log.d(TAG, "lifecycle: onDestroyView (-3) " + this);
+	//		Log.d(TAG, "Lifecycle: onDestroyView (-3) " + this);
 	//	}
 
 	//	@Override
 	//	public void onDestroy()
 	//	{
 	//		super.onDestroy();
-	//		Log.d(TAG, "lifecycle: onDestroy (-2) " + this);
+	//		Log.d(TAG, "Lifecycle: onDestroy (-2) " + this);
 	//	}
 
 	//	@Override
 	//	public void onDetach()
 	//	{
 	//		super.onDetach();
-	//		Log.d(TAG, "lifecycle: onDetach (-1) " + this);
+	//		Log.d(TAG, "Lifecycle: onDetach (-1) " + this);
 	//	}
 
 	// H E L P E R S

@@ -34,7 +34,7 @@ public class EntryActivity extends AppCompatActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		Log.d(TAG, "lifecycle: OnCreate()");
+		Log.d(TAG, "Lifecycle: OnCreate()");
 
 		// clear (some/all) settings on first run of this version
 		long[] upgrade = Settings.isUpgrade(this); // upgrade[0]=recorded version, upgrade[1]=this build
@@ -72,14 +72,14 @@ public class EntryActivity extends AppCompatActivity
 	protected void onNewIntent(final Intent intent)
 	{
 		super.onNewIntent(intent);
-		Log.d(TAG, "lifecycle: OnNewIntent()");
+		Log.d(TAG, "Lifecycle: OnNewIntent()");
 	}
 
 	@Override
 	protected void onResume()
 	{
 		super.onResume();
-		Log.d(TAG, "lifecycle: OnResume()");
+		Log.d(TAG, "Lifecycle: OnResume()");
 
 		dispatch();
 	}
@@ -88,7 +88,7 @@ public class EntryActivity extends AppCompatActivity
 	protected void onDestroy()
 	{
 		super.onDestroy();
-		Log.d(TAG, "lifecycle: onDestroy()");
+		Log.d(TAG, "Lifecycle: onDestroy()");
 	}
 
 	/**

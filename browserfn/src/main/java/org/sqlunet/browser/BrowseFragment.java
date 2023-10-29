@@ -112,7 +112,7 @@ public class BrowseFragment extends BaseSearchFragment
 		}
 
 		// log
-		Log.d(TAG, "BROWSE " + query);
+		Log.d(TAG, "browse " + query);
 
 		// subtitle
 		final Toolbar toolbar = requireActivity().findViewById(org.sqlunet.browser.common.R.id.toolbar);

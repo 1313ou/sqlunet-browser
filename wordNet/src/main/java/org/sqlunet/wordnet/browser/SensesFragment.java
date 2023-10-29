@@ -95,7 +95,7 @@ public class SensesFragment extends ListFragment
 	 */
 	public SensesFragment()
 	{
-		Log.d(TAG, "lifecycle: Constructor (0) " + this);
+		Log.d(TAG, "Lifecycle: Constructor (0) " + this);
 	}
 
 	// L I F E C Y C L E
@@ -106,7 +106,7 @@ public class SensesFragment extends ListFragment
 	public void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		Log.d(TAG, "lifecycle: onCreate (2) " + this);
+		Log.d(TAG, "Lifecycle: onCreate (2) " + this);
 		//noinspection deprecation
 		this.setRetainInstance(false); // default
 
@@ -131,7 +131,7 @@ public class SensesFragment extends ListFragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		Log.d(TAG, "lifecycle: onCreateView (3) " + this);
+		Log.d(TAG, "Lifecycle: onCreateView (3) " + this);
 		return inflater.inflate(R.layout.fragment_senses, container, false);
 	}
 
@@ -139,7 +139,7 @@ public class SensesFragment extends ListFragment
 	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
 		super.onViewCreated(view, savedInstanceState);
-		Log.d(TAG, "lifecycle: onViewCreated (4) " + this);
+		Log.d(TAG, "Lifecycle: onViewCreated (4) " + this);
 
 		// when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
 		getListView().setChoiceMode(this.activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
@@ -153,7 +153,7 @@ public class SensesFragment extends ListFragment
 	public void onStart()
 	{
 		super.onStart();
-		Log.d(TAG, "lifecycle: onStart (6) " + this);
+		Log.d(TAG, "Lifecycle: onStart (6) " + this);
 		senses();
 	}
 

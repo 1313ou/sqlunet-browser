@@ -98,13 +98,13 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	 */
 	public BaseSearchFragment()
 	{
-		Log.d(TAG, "constructor " + this);
+		Log.d(TAG, "Constructor " + this);
 	}
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState)
 	{
-		Log.d(TAG, "on create " + this + " from " + savedInstanceState);
+		Log.d(TAG, "onCreate() " + this + " from " + savedInstanceState);
 		super.onCreate(savedInstanceState);
 	}
 
@@ -116,7 +116,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		Log.d(TAG, "on create view " + this + " from " + savedInstanceState);
+		Log.d(TAG, "onCreateView() " + this + " from " + savedInstanceState);
 
 		// view
 		return inflater.inflate(this.layoutId, container, false);
@@ -125,7 +125,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	@Override
 	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
-		Log.d(TAG, "on view created " + this + " from " + savedInstanceState);
+		Log.d(TAG, "onViewCreated() " + this + " from " + savedInstanceState);
 
 		super.onViewCreated(view, savedInstanceState);
 
@@ -170,12 +170,6 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	}
 
 	@Override
-	public void onResume()
-	{
-		super.onResume();
-	}
-
-	@Override
 	public void onPause()
 	{
 		super.onPause();
@@ -192,7 +186,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	@SuppressLint("InflateParams")
 	public void setupToolBar(@NonNull final Toolbar toolbar)
 	{
-		Log.d(TAG, "set up specific toolbar " + this);
+		Log.d(TAG, "Set up specific toolbar " + this);
 
 		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
 
