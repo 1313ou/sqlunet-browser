@@ -89,9 +89,6 @@ public class MainActivity extends AppCompatActivity
 
 		// check hook
 		EntryActivity.branchOffToLoadIfCantRun(this);
-
-		// handle sent intent
-		handleSearchIntent(getIntent());
 	}
 
 	@Override
@@ -144,7 +141,7 @@ public class MainActivity extends AppCompatActivity
 				}
 
 				// search query submit or suggestion selection (when a suggested item is selected)
-				Log.d(TAG, "search " + query);
+				Log.d(TAG, "Search intent having query " + query);
 				searchFragment.search(query);
 			}
 		}
