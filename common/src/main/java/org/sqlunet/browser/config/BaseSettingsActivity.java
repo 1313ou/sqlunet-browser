@@ -121,7 +121,7 @@ public abstract class BaseSettingsActivity extends AppCompatActivity implements 
 	{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.settings, menu);
-		MenuCompat.setGroupDividerEnabled(menu, true);
+		// MenuCompat.setGroupDividerEnabled(menu, true);
 		return true;
 	}
 

@@ -66,7 +66,7 @@ public class Browse2Activity extends AbstractBrowse2Activity
 	public boolean onCreateOptionsMenu(@NonNull final Menu menu)
 	{
 		getMenuInflater().inflate(R.menu.main, menu);
-		MenuCompat.setGroupDividerEnabled(menu, true);
+		// MenuCompat.setGroupDividerEnabled(menu, true);
 		return true;
 	}
 
