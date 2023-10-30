@@ -130,7 +130,7 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 			public void onCreateMenu(@NonNull final Menu menu, @NonNull final MenuInflater menuInflater)
 			{
 				menuInflater.inflate(R.menu.history, menu);
-				MenuCompat.setGroupDividerEnabled(menu, true);MenuCompat.setGroupDividerEnabled(menu, true);
+				// MenuCompat.setGroupDividerEnabled(menu, true);
 			}
 
 			@Override
