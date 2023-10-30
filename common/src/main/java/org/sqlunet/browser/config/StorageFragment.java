@@ -94,7 +94,7 @@ public class StorageFragment extends Fragment
 				menu.clear();
 				menuInflater.inflate(R.menu.main, menu);
 				menuInflater.inflate(R.menu.storage, menu);
-				MenuCompat.setGroupDividerEnabled(menu, true);
+				// MenuCompat.setGroupDividerEnabled(menu, true);
 			}
 
 			@Override

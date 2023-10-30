@@ -99,7 +99,7 @@ public class SqlFragment extends Fragment
 				menu.clear();
 				menuInflater.inflate(R.menu.main, menu);
 				menuInflater.inflate(R.menu.sql, menu);
-				MenuCompat.setGroupDividerEnabled(menu, true);
+				// MenuCompat.setGroupDividerEnabled(menu, true);
 			}
 
 			@Override

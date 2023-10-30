@@ -59,7 +59,7 @@ public class SetupFileActivity extends AppCompatActivity
 	public boolean onCreateOptionsMenu(@NonNull final Menu menu)
 	{
 		getMenuInflater().inflate(R.menu.main, menu);
-		MenuCompat.setGroupDividerEnabled(menu, true);
+		// MenuCompat.setGroupDividerEnabled(menu, true);
 		return true;
 	}
 
