@@ -42,7 +42,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.MenuCompat;
+import androidx.core.view.MenuHost;
 import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -129,7 +129,6 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 
 		// toolbar
 		final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
-		assert toolbar != null;
 
 		// menu provider
 		final MenuProvider menuProvider = new MenuProvider()
@@ -141,17 +140,16 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 				menu.clear();
 				menuInflater.inflate(R.menu.main_safedata, menu);
 				menuInflater.inflate(menuId, menu);
-				MenuCompat.setGroupDividerEnabled(menu, true);
+				// MenuCompat.setGroupDividerEnabled(menu, true);
 				Log.d(TAG, "MenuProvider: onCreateMenu() size=" + menu.size());
 
 				// set up search view
 				BaseSearchFragment.this.searchView = getSearchView(menu);
-				if (BaseSearchFragment.this.searchView != null)
-				{
-					setupSearchView(BaseSearchFragment.this.searchView, getSearchInfo(requireActivity()));
-				}
+				assert BaseSearchFragment.this.searchView != null; // must have
+				setupSearchView(BaseSearchFragment.this.searchView, getSearchInfo(requireActivity()));
 
 				// set spinner, searchitem
+				assert toolbar != null; // must have
 				setupToolBar(toolbar);
 			}
 
@@ -167,7 +165,9 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 				return MenuHandler.menuDispatch((AppCompatActivity) requireActivity(), menuItem);
 			}
 		};
-		toolbar.addMenuProvider(menuProvider, this.getViewLifecycleOwner(), Lifecycle.State.RESUMED);
+
+		final MenuHost menuHost = requireActivity();
+		menuHost.addMenuProvider(menuProvider, getViewLifecycleOwner(), Lifecycle.State.RESUMED);
 	}
 
 	@Override
