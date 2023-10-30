@@ -76,7 +76,7 @@ public class SqlFragment extends Fragment
 					.beginTransaction() //
 					.setReorderingAllowed(true) //
 					.replace(R.id.container_sql_statements, fragment, FRAGMENT_TAG) //
-					.addToBackStack(FRAGMENT_TAG) //
+					// .addToBackStack(FRAGMENT_TAG) //
 					.commit();
 		}
 

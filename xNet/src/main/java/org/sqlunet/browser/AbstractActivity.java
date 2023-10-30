@@ -61,7 +61,8 @@ abstract public class AbstractActivity extends AppCompatActivity
 					.beginTransaction() //
 					.setReorderingAllowed(true) //
 					.replace(getContainerId(), fragment) //
-					.addToBackStack(fragment.getTag() == null ? "tagless" : fragment.getTag()).commit();
+					// .addToBackStack(fragment.getTag() == null ? "tagless" : fragment.getTag()) //
+					.commit();
 		}
 	}
 

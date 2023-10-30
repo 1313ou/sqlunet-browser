@@ -201,6 +201,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		toolbar.setBackground(new ColorDrawable(color));
 
 		// nav
+		/*
 		toolbar.setNavigationOnClickListener(v -> {
 			if (!isAdded())
 			{
@@ -209,7 +210,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 			Log.d(TAG, dumpBackStack(getChildFragmentManager(), "child"));
 			Log.d(TAG, dumpBackStack(getParentFragmentManager(), "parent"));
 		});
-		/*
+		*/
 		toolbar.setNavigationOnClickListener(v -> {
 
 			Log.d(TAG, "BackStack: onBackPressed() pressed, the navigation button at the start of the toolbar was clicked");
@@ -240,7 +241,6 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 				}
 			}
 		});
-		*/
 
 		// spinner
 		this.spinner = toolbar.findViewById(R.id.spinner);
@@ -260,7 +260,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	// S E A R C H V I E W
 
 	@Nullable
-	private SearchView getSearchView(@NonNull final Menu menu)
+	private static SearchView getSearchView(@NonNull final Menu menu)
 	{
 		// menu item
 		final MenuItem searchMenuItem = menu.findItem(R.id.search);
@@ -288,7 +288,8 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 			@Override
 			public boolean onQueryTextSubmit(final String query)
 			{
-				clearQuery();
+				clearSearchView(searchView);
+				closeKeyboard();
 				return false;
 			}
 
@@ -307,7 +308,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	}
 
 	@Nullable
-	private SearchableInfo getSearchInfo(@NonNull final Activity activity)
+	private static SearchableInfo getSearchInfo(@NonNull final Activity activity)
 	{
 		final ComponentName componentName = activity.getComponentName();
 		final SearchManager searchManager = (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
@@ -322,13 +323,18 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 
 	public void clearQuery()
 	{
-		if (this.searchView != null)
+		clearSearchView(this.searchView);
+		closeKeyboard();
+	}
+
+	private static void clearSearchView(@NonNull final SearchView searchView)
+	{
+		if (searchView != null)
 		{
-			this.searchView.clearFocus();
-			this.searchView.setFocusable(false);
-			this.searchView.setQuery("", false);
-			this.searchView.setIconified(true);
-			closeKeyboard();
+			searchView.clearFocus();
+			searchView.setFocusable(false);
+			searchView.setQuery("", false);
+			searchView.setIconified(true);
 		}
 	}
 
