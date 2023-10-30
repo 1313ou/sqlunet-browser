@@ -34,14 +34,14 @@ public class SqlDialogFragment extends DialogFragment
 		assert dialog != null;
 		dialog.setTitle(R.string.title_dialog_sql);
 
-		@SuppressLint("InflateParams") final View view = inflater.inflate(R.layout.fragment_sql_statements, container);
+		@SuppressLint("InflateParams") final View view = inflater.inflate(R.layout.fragment_sql_dialog, container);
 
-		final Fragment sqlFragment = new SqlStatementsFragment();
+		final Fragment fragment = new SqlStatementsFragment();
 		assert isAdded();
 		getChildFragmentManager() //
 				.beginTransaction() //
 				.setReorderingAllowed(true) //
-				.replace(R.id.container_sql, sqlFragment) //
+				.replace(R.id.container_sql_statements, fragment) //
 				.commit();
 
 		return view;

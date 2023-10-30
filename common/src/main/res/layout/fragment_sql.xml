@@ -12,7 +12,7 @@
 	tools:context="org.sqlunet.browser.config.StorageActivity">
 
 	<androidx.fragment.app.FragmentContainerView
-		android:id="@+id/container_sql"
+		android:id="@+id/container_sql_statements"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent" />
 
