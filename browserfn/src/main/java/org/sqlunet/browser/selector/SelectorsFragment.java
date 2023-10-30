@@ -134,7 +134,7 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 		getListView().setChoiceMode(this.activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
 
 		// data view models
-		Log.d(TAG, "make models");
+		Log.d(TAG, "Make models");
 		makeModels();
 	}
 

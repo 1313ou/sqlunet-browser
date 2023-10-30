@@ -145,7 +145,7 @@ public class SensesFragment extends ListFragment
 		getListView().setChoiceMode(this.activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
 
 		// data view models
-		Log.d(TAG, "make models");
+		Log.d(TAG, "Make models");
 		makeModels();
 	}
 
@@ -169,7 +169,7 @@ public class SensesFragment extends ListFragment
 	@NonNull
 	private ListAdapter makeAdapter()
 	{
-		Log.d(TAG, "make adapter");
+		Log.d(TAG, "Make adapter");
 		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(requireContext(), R.layout.item_sense, null, //
 				new String[]{ //
 						WordNetContract.Poses.POS, //

@@ -342,7 +342,7 @@ public class XSelectorsFragment extends BaseSelectorsExpandableListFragment
 		groupCursor.moveToFirst();
 
 		// adapter
-		Log.d(TAG, "make adapter");
+		Log.d(TAG, "Make adapter");
 		return new SimpleCursorTreeAdapter(requireContext(), groupCursor, R.layout.item_group_xselector, groupFrom, groupTo, R.layout.item_xselector, childFrom, childTo)
 		{
 			@Nullable
@@ -472,7 +472,7 @@ public class XSelectorsFragment extends BaseSelectorsExpandableListFragment
 	 */
 	private void makeModels()
 	{
-		Log.d(TAG, "make models");
+		Log.d(TAG, "Make models");
 
 		final LifecycleOwner owner = getViewLifecycleOwner();
 		this.wordIdFromWordModel = new ViewModelProvider(this).get("vn:xselectors.wordid(word)", SqlunetViewModel.class);
