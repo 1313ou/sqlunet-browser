@@ -14,6 +14,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.sqlunet.browser.MainActivity;
+import org.sqlunet.nightmode.NightMode;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -55,25 +56,25 @@ abstract class AbstractColors extends TestCase
 	@Test
 	public void colorContrast() throws ColorsTest.IllegalColorPair
 	{
-		assertTrue(ColorsTest.checkDarkMode(getMode()));
-		testColorsFromResources(this.context, org.sqlunet.browser.common.R.array.palette_ui, false);
-		testColorsFromResources(this.context, org.sqlunet.xnet.R.array.palette, false);
-		testColorsFromResources(this.context, org.sqlunet.wordnet.R.array.palette_wn, false);
-		testColorsFromResources(this.context, org.sqlunet.verbnet.R.array.palette_vn, false);
-		testColorsFromResources(this.context, org.sqlunet.propbank.R.array.palette_pb, false);
+		assertTrue(NightMode.checkDarkMode(getMode()));
+		testColorsFromResources(this.context, R.array.palette_ui, false);
+		testColorsFromResources(this.context, R.array.palette, false);
+		testColorsFromResources(this.context, R.array.palette_wn, false);
+		testColorsFromResources(this.context, R.array.palette_vn, false);
+		testColorsFromResources(this.context, R.array.palette_pb, false);
 	}
 
 	@Test
 	public void colorContrastXNet()
 	{
-		assertTrue(ColorsTest.checkDarkMode(getMode()));
+		assertTrue(NightMode.checkDarkMode(getMode()));
 		try
 		{
-			testColorsFromResources(this.context, org.sqlunet.browser.common.R.array.palette_ui, true);
-			testColorsFromResources(this.context, org.sqlunet.xnet.R.array.palette, true);
-			testColorsFromResources(this.context, org.sqlunet.wordnet.R.array.palette_wn, true);
-			testColorsFromResources(this.context, org.sqlunet.verbnet.R.array.palette_vn, true);
-			testColorsFromResources(this.context, org.sqlunet.propbank.R.array.palette_pb, true);
+			testColorsFromResources(this.context, R.array.palette_ui, true);
+			testColorsFromResources(this.context, R.array.palette, true);
+			testColorsFromResources(this.context, R.array.palette_wn, true);
+			testColorsFromResources(this.context, R.array.palette_vn, true);
+			testColorsFromResources(this.context, R.array.palette_pb, true);
 		}
 		catch (ColorsTest.IllegalColorPair ce)
 		{

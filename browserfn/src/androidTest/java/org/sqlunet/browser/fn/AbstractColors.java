@@ -57,9 +57,9 @@ abstract class AbstractColors extends TestCase
 	public void colorContrast() throws ColorsTest.IllegalColorPair
 	{
 		assertTrue(NightMode.checkDarkMode(getMode()));
-		testColorsFromResources(this.context, org.sqlunet.browser.common.R.array.palette_ui, false);
-		testColorsFromResources(this.context, org.sqlunet.xnet.R.array.palette, false);
-		testColorsFromResources(this.context, org.sqlunet.framenet.R.array.palette_fn, false);
+		testColorsFromResources(this.context, R.array.palette_ui, false);
+		testColorsFromResources(this.context, R.array.palette, false);
+		testColorsFromResources(this.context, R.array.palette_fn, false);
 	}
 
 	@Test
@@ -68,9 +68,9 @@ abstract class AbstractColors extends TestCase
 		assertTrue(NightMode.checkDarkMode(getMode()));
 		try
 		{
-			testColorsFromResources(this.context, org.sqlunet.browser.common.R.array.palette_ui, true);
-			testColorsFromResources(this.context, org.sqlunet.xnet.R.array.palette, true);
-			testColorsFromResources(this.context, org.sqlunet.framenet.R.array.palette_fn, true);
+			testColorsFromResources(this.context, R.array.palette_ui, true);
+			testColorsFromResources(this.context, R.array.palette, true);
+			testColorsFromResources(this.context, R.array.palette_fn, true);
 		}
 		catch (ColorsTest.IllegalColorPair ce)
 		{
