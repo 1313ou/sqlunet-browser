@@ -1356,6 +1356,7 @@
       <entry_point TYPE="field" FQNAME="org.sqlunet.browser.vn.Application TAG" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.browser.sn.Application TAG" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.browser.PositionViewModel TAG" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.BaseDownloadFragment requestKill" />
     </entry_points>
     <pattern value="org.sqlunet.browser.AbstractApplication" method="dumpTasks" />
     <pattern value="org.sqlunet.browser.AbstractApplication" method="isNightMode" />
@@ -2571,6 +2572,194 @@
     <pattern value="org.sqlunet.verbnet.provider.VerbNetContract.Words_VnClasses" />
     <pattern value="org.sqlunet.browser.xselector.XSelectorPointer" />
     <pattern value="org.sqlunet.provider.XSqlUNetProvider" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule" method="annoSetCursorToTreeModel" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.AnnoSetQuery" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule" method="annoSetsCursor1ToTreeModel" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule" method="annoSetsCursor2ToTreeModel" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule" method="annoSetsCursor3ToTreeModel" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.AnnoSetsForGovernorQuery" />
+    <pattern value="org.sqlunet.speak.TTS$1" />
+    <pattern value="org.sqlunet.style.RegExprSpanner" method="append" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncCopyFromFile" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncCopyFromUri" />
+    <pattern value="org.sqlunet.browser.config.Diagnostics.AsyncDiagnostics" />
+    <pattern value="org.sqlunet.browser.config.Diagnostics.AsyncDiagnostics" method="AsyncDiagnostics" />
+    <pattern value="org.sqlunet.browser.config.ExecAsyncTask.AsyncExecuteFromArchiveUri" />
+    <pattern value="org.sqlunet.browser.config.ExecAsyncTask.AsyncExecuteFromSql" />
+    <pattern value="org.sqlunet.browser.config.ExecAsyncTask.AsyncExecuteFromUri" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncMd5FromUri" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncUnzipEntryFromArchiveUri" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncUnzipFromArchiveUri" />
+    <pattern value="org.sqlunet.bnc.loaders.BaseModule" />
+    <pattern value="org.sqlunet.propbank.loaders.BaseModule" />
+    <pattern value="org.sqlunet.bnc.loaders.BaseModule" method="bncCursorToTreeModel" />
+    <pattern value="org.sqlunet.verbnet.loaders.ClassFromWordModule" />
+    <pattern value="org.sqlunet.treeview.control.LinkTreeController" method="createNodeView" />
+    <pattern value="org.sqlunet.browser.config.Diagnostics" />
+    <pattern value="org.sqlunet.browser.config.Diagnostics.AsyncDiagnostics" method="doInBackground" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncCopyFromFile" method="doInBackground" />
+    <pattern value="org.sqlunet.browser.config.ExecAsyncTask.AsyncExecuteFromSql" method="doInBackground" />
+    <pattern value="org.sqlunet.browser.config.ExecAsyncTask.AsyncExecuteFromUri" method="doInBackground" />
+    <pattern value="org.sqlunet.browser.config.ExecAsyncTask.AsyncExecuteFromArchiveUri" method="doInBackground" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncCopyFromUri" method="doInBackground" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncUnzipFromArchiveUri" method="doInBackground" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncUnzipEntryFromArchiveUri" method="doInBackground" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncMd5FromUri" method="doInBackground" />
+    <pattern value="org.sqlunet.predicatematrix.loaders.BaseModule.PmProcessGrouped" method="endProcess" />
+    <pattern value="org.sqlunet.propbank.loaders.BaseModule" method="examplesCursorToTreeModel" />
+    <pattern value="org.sqlunet.propbank.loaders.BaseModule.ExamplesQuery" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule" method="fesCursorToTreeModel" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.FEsQuery" />
+    <pattern value="com.bbou.download.FileAsyncTask" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.FnFrameLink" />
+    <pattern value="org.sqlunet.predicatematrix.loaders.BaseModule.FnFrameLink" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.FnLexUnitLink" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.FnSentenceLink" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule" method="frameCursorToTreeModel" />
+    <pattern value="org.sqlunet.framenet.style.FrameNetFrameProcessor" />
+    <pattern value="org.sqlunet.framenet.style.FrameNetFrameProcessor" method="FrameNetFrameProcessor" />
+    <pattern value="org.sqlunet.framenet.style.FrameNetProcessor" />
+    <pattern value="org.sqlunet.framenet.style.FrameNetProcessor" method="FrameNetProcessor" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.FrameQuery" />
+    <pattern value="org.sqlunet.browser.xn.Settings" method="getBncPref" />
+    <pattern value="org.sqlunet.browser.xn.Settings" method="getFrameNetPref" />
+    <pattern value="org.sqlunet.browser.sn.ColorsDayTest" method="getMode" />
+    <pattern value="org.sqlunet.browser.ColorsDayTest" method="getMode" />
+    <pattern value="org.sqlunet.browser.ewn.ColorsDayTest" method="getMode" />
+    <pattern value="org.sqlunet.browser.fn.ColorsDayTest" method="getMode" />
+    <pattern value="org.sqlunet.browser.wn.ColorsDayTest" method="getMode" />
+    <pattern value="org.sqlunet.browser.vn.ColorsDayTest" method="getMode" />
+    <pattern value="org.sqlunet.browser.sn.ColorsNightTest" method="getMode" />
+    <pattern value="org.sqlunet.browser.ColorsNightTest" method="getMode" />
+    <pattern value="org.sqlunet.browser.ewn.ColorsNightTest" method="getMode" />
+    <pattern value="org.sqlunet.browser.fn.ColorsNightTest" method="getMode" />
+    <pattern value="org.sqlunet.browser.wn.ColorsNightTest" method="getMode" />
+    <pattern value="org.sqlunet.browser.vn.ColorsNightTest" method="getMode" />
+    <pattern value="org.sqlunet.browser.xn.Settings" method="getPropBankPref" />
+    <pattern value="org.sqlunet.browser.xn.Settings" method="getVerbNetPref" />
+    <pattern value="org.sqlunet.browser.xn.Settings" method="getWordNetPref" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule" method="governorsCursorToTreeModel" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.GovernorsQuery" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule" method="groupRealizationsCursorToTreeModel" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.GroupRealizationsQuery" />
+    <pattern value="org.sqlunet.browser.wn.Status" />
+    <pattern value="org.sqlunet.browser.vn.Status" />
+    <pattern value="org.sqlunet.browser.sn.Status" />
+    <pattern value="org.sqlunet.browser.fn.Status" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule" method="layersCursorToTreeModel" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule" method="lexUnitCursorToTreeModel" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule" method="lexUnitsCursorToTreeModel" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule" method="lexUnitsFromWordIdPosCursorToTreeModel" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.LexUnitsQuery" />
+    <pattern value="org.sqlunet.treeview.control.LinkTreeController" />
+    <pattern value="org.sqlunet.browser.selector.SelectorsFragment.Listener" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncCopyFromUri" method="onCancelled" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncCopyFromFile" method="onCancelled" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncUnzipFromArchiveUri" method="onCancelled" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncUnzipEntryFromArchiveUri" method="onCancelled" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncMd5FromUri" method="onCancelled" />
+    <pattern value="org.sqlunet.speak.TTS$1" method="onError" />
+    <pattern value="org.sqlunet.browser.config.ExecAsyncTask.AsyncExecuteFromSql" method="onPostExecute" />
+    <pattern value="org.sqlunet.browser.config.ExecAsyncTask.AsyncExecuteFromUri" method="onPostExecute" />
+    <pattern value="org.sqlunet.browser.config.ExecAsyncTask.AsyncExecuteFromArchiveUri" method="onPostExecute" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncCopyFromUri" method="onPostExecute" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncCopyFromFile" method="onPostExecute" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncUnzipFromArchiveUri" method="onPostExecute" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncUnzipEntryFromArchiveUri" method="onPostExecute" />
+    <pattern value="org.sqlunet.browser.config.Diagnostics.AsyncDiagnostics" method="onPostExecute" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncMd5FromUri" method="onPostExecute" />
+    <pattern value="org.sqlunet.browser.config.ExecAsyncTask.AsyncExecuteFromSql" method="onPreExecute" />
+    <pattern value="org.sqlunet.browser.config.ExecAsyncTask.AsyncExecuteFromUri" method="onPreExecute" />
+    <pattern value="org.sqlunet.browser.config.ExecAsyncTask.AsyncExecuteFromArchiveUri" method="onPreExecute" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncCopyFromUri" method="onPreExecute" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncCopyFromFile" method="onPreExecute" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncUnzipFromArchiveUri" method="onPreExecute" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncUnzipEntryFromArchiveUri" method="onPreExecute" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncMd5FromUri" method="onPreExecute" />
+    <pattern value="org.sqlunet.browser.config.ExecAsyncTask.AsyncExecuteFromSql" method="onProgressUpdate" />
+    <pattern value="org.sqlunet.browser.config.ExecAsyncTask.AsyncExecuteFromUri" method="onProgressUpdate" />
+    <pattern value="org.sqlunet.browser.config.ExecAsyncTask.AsyncExecuteFromArchiveUri" method="onProgressUpdate" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncCopyFromUri" method="onProgressUpdate" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncCopyFromFile" method="onProgressUpdate" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncUnzipFromArchiveUri" method="onProgressUpdate" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncUnzipEntryFromArchiveUri" method="onProgressUpdate" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncMd5FromUri" method="onProgressUpdate" />
+    <pattern value="org.sqlunet.predicatematrix.loaders.BaseModule.PbRoleSetLink" />
+    <pattern value="org.sqlunet.predicatematrix.loaders.BaseModule.PmProcessGrouped" />
+    <pattern value="org.sqlunet.predicatematrix.loaders.BaseModule.PmProcessOnIteration" />
+    <pattern value="org.sqlunet.predicatematrix.loaders.BaseModule.PmRole" />
+    <pattern value="org.sqlunet.browser.PositionViewModel" method="PositionViewModel" />
+    <pattern value="org.sqlunet.style.Preprocessor" />
+    <pattern value="org.sqlunet.style.Preprocessor" method="Preprocessor" />
+    <pattern value="org.sqlunet.predicatematrix.loaders.BaseModule.VnClassLink" method="process" />
+    <pattern value="org.sqlunet.predicatematrix.loaders.BaseModule.PbRoleSetLink" method="process" />
+    <pattern value="org.sqlunet.predicatematrix.loaders.BaseModule.FnFrameLink" method="process" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.FnFrameLink" method="process" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.FnLexUnitLink" method="process" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.FnSentenceLink" method="process" />
+    <pattern value="org.sqlunet.wordnet.loaders.BaseModule.RelationLink" method="process" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.FrameQuery" method="process" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.RelatedQuery" method="process" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.LexUnitsQuery" method="process" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.FEsQuery" method="process" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.GovernorsQuery" method="process" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.RealizationsQuery" method="process" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.GroupRealizationsQuery" method="process" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.SentencesForPatternQuery" method="process" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.SentencesForValenceUnitQuery" method="process" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.SentencesForLexUnitQuery" method="process" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.AnnoSetQuery" method="process" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.AnnoSetsForGovernorQuery" method="process" />
+    <pattern value="org.sqlunet.propbank.loaders.BaseModule.RolesQuery" method="process" />
+    <pattern value="org.sqlunet.propbank.loaders.BaseModule.ExamplesQuery" method="process" />
+    <pattern value="org.sqlunet.predicatematrix.loaders.BaseModule.PmProcessGrouped" method="process" />
+    <pattern value="org.sqlunet.predicatematrix.loaders.BaseModule.PmProcessOnIteration" method="process" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncCopyFromUri" method="publish" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncCopyFromFile" method="publish" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncUnzipFromArchiveUri" method="publish" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncUnzipEntryFromArchiveUri" method="publish" />
+    <pattern value="com.bbou.download.FileAsyncTask.AsyncMd5FromUri" method="publish" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule" method="realizationsCursorToTreeModel" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.RealizationsQuery" />
+    <pattern value="org.sqlunet.style.RegExprSpanner" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule" method="relatedFramesCursorToTreeModel" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.RelatedQuery" />
+    <pattern value="org.sqlunet.wordnet.loaders.BaseModule.RelationLink" />
+    <pattern value="org.sqlunet.style.Preprocessor.Replacer" />
+    <pattern value="org.sqlunet.style.Preprocessor.Replacer" method="Replacer" />
+    <pattern value="org.sqlunet.propbank.loaders.BaseModule" method="rolesCursorToTreeModel" />
+    <pattern value="org.sqlunet.propbank.loaders.BaseModule" method="roleSetCursorToTreeModel" />
+    <pattern value="org.sqlunet.propbank.loaders.BaseModule" method="roleSetsCursorToTreeModel" />
+    <pattern value="org.sqlunet.propbank.loaders.BaseModule.RolesQuery" />
+    <pattern value="org.sqlunet.history.SearchRecentSuggestions" method="SearchRecentSuggestions" />
+    <pattern value="org.sqlunet.browser.config.SetupActivity.SectionsPagerAdapter" />
+    <pattern value="org.sqlunet.browser.config.SetupActivity.SectionsPagerAdapter" method="SectionsPagerAdapter" />
+    <pattern value="org.sqlunet.framenet.loaders.SentenceModule" method="sentenceCursorToTreeModel" />
+    <pattern value="org.sqlunet.framenet.loaders.SentenceModule" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule" method="sentencesCursor1ToTreeModel" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule" method="sentencesCursor2ToTreeModel" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule" method="sentencesCursor3ToTreeModel" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.SentencesForLexUnitQuery" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.SentencesForPatternQuery" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule.SentencesForValenceUnitQuery" />
+    <pattern value="org.sqlunet.browser.xn.Settings.Source" method="set" />
+    <pattern value="org.sqlunet.browser.xn.Settings" />
+    <pattern value="org.sqlunet.browser.xn.Settings.Source" />
+    <pattern value="org.sqlunet.history.HistoryFragment.SwipeGestureListener" />
+    <pattern value="org.sqlunet.history.HistoryFragment.SwipeGestureListener" method="SwipeGestureListener" />
+    <pattern value="com.bbou.concurrency.TaskToastObserver.WithStatus" method="taskFinish" />
+    <pattern value="com.bbou.concurrency.TaskToastObserver.WithStatus" method="taskStart" />
+    <pattern value="com.bbou.concurrency.TaskToastObserver.WithStatus" method="taskUpdate" />
+    <pattern value="org.sqlunet.predicatematrix.loaders.BaseModule.PmRole" method="toData" />
+    <pattern value="org.sqlunet.verbnet.style.VerbNetSemanticsProcessor" />
+    <pattern value="org.sqlunet.verbnet.style.VerbNetSemanticsProcessor" method="VerbNetSemanticsProcessor" />
+    <pattern value="org.sqlunet.verbnet.style.VerbNetSemanticsSpanner" />
+    <pattern value="org.sqlunet.verbnet.style.VerbNetSemanticsSpanner" method="VerbNetSemanticsSpanner" />
+    <pattern value="org.sqlunet.verbnet.style.VerbNetSyntaxSpanner" />
+    <pattern value="org.sqlunet.verbnet.style.VerbNetSyntaxSpanner" method="VerbNetSyntaxSpanner" />
+    <pattern value="org.sqlunet.verbnet.loaders.ClassFromWordModule" method="vnClassesCursorToTreeModel" />
+    <pattern value="org.sqlunet.predicatematrix.loaders.BaseModule.VnClassLink" />
+    <pattern value="com.bbou.concurrency.TaskToastObserver.WithStatus" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="androidx.annotation.Nullable" />

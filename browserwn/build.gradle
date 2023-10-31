@@ -88,8 +88,8 @@ dependencies {
     // androidTestImplementation project(path: ':browserwncommon')
     // androidTestImplementation project(path: ':nightmode')
     androidTestImplementation project(path: ':common')
-    androidTestImplementation project(path: ':test')
     androidTestImplementation project(path: ':nightmode')
+    androidTestImplementation project(path: ':test')
     androidTestImplementation 'junit:junit:4.13.2'
     androidTestImplementation "androidx.annotation:annotation:$annotationVersion"
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
