@@ -201,46 +201,36 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		toolbar.setBackground(new ColorDrawable(color));
 
 		// nav
-		/*
-		toolbar.setNavigationOnClickListener(v -> {
-			if (!isAdded())
-			{
-				return;
-			}
-			Log.d(TAG, dumpBackStack(getChildFragmentManager(), "child"));
-			Log.d(TAG, dumpBackStack(getParentFragmentManager(), "parent"));
-		});
-		*/
-		toolbar.setNavigationOnClickListener(v -> {
-
-			Log.d(TAG, "BackStack: onBackPressed() pressed, the navigation button at the start of the toolbar was clicked");
-			if (!isAdded())
-			{
-				return;
-			}
-			final FragmentManager manager = getChildFragmentManager();
-			int count = manager.getBackStackEntryCount();
-			if (count >= 1)
-			{
-				Log.d(TAG, dumpBackStack(manager, "child"));
-				manager.popBackStack();
-			}
-			else
-			{
-				FragmentManager manager2 = getParentFragmentManager();
-				int count2 = manager2.getBackStackEntryCount();
-				if (count2 >= 1)
-				{
-					Log.d(TAG, dumpBackStack(manager2, "parent"));
-					manager2.popBackStack();
-				}
-				else
-				{
-					Log.d(TAG, "BackStack: activity onBackPressed() - none");
-					requireActivity().getOnBackPressedDispatcher().onBackPressed();
-				}
-			}
-		});
+//		toolbar.setNavigationOnClickListener(v -> {
+//
+//			if (!isAdded())
+//			{
+//				return;
+//			}
+//			Log.d(TAG, "BackStack: navigation button clicked");
+//			final FragmentManager manager = getChildFragmentManager();
+//			int count = manager.getBackStackEntryCount();
+//			if (count >= 1)
+//			{
+//				Log.d(TAG, dumpBackStack(manager, "child"));
+//				manager.popBackStack();
+//			}
+//			else
+//			{
+//				FragmentManager manager2 = getParentFragmentManager();
+//				int count2 = manager2.getBackStackEntryCount();
+//				if (count2 >= 1)
+//				{
+//					Log.d(TAG, dumpBackStack(manager2, "parent"));
+//					manager2.popBackStack();
+//				}
+//				else
+//				{
+//					Log.d(TAG, "BackStack: activity onBackPressed() - none");
+//					requireActivity().getOnBackPressedDispatcher().onBackPressed();
+//				}
+//			}
+//		});
 
 		// spinner
 		this.spinner = toolbar.findViewById(R.id.spinner);
