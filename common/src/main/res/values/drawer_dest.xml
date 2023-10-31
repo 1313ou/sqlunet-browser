@@ -6,8 +6,8 @@
 
 	<array name="drawer_top_dest" tools:ignore="InconsistentArrays">
 		<item>@id/nav_home</item>
-		<item>@id/nav_search_browse</item>
-		<item>@id/nav_search_text</item>
+<!--		<item>@id/nav_search_browse</item>-->
+<!--		<item>@id/nav_search_text</item>-->
 		<item>@id/nav_status</item>
 		<item>@id/nav_setup</item>
 		<item>@id/nav_storage</item>
