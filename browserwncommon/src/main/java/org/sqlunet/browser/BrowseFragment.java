@@ -158,13 +158,11 @@ public class BrowseFragment extends BaseSearchFragment
 			return;
 		}
 
+		// super
+		super.search(query);
+
 		// log
 		Log.d(TAG, "Browse '" + query + '\'');
-
-		// subtitle
-		final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
-		assert toolbar != null;
-		toolbar.setSubtitle(query);
 
 		// history
 		History.recordQuery(requireContext(), query);

@@ -159,8 +159,6 @@ public class BrowseFragment extends BaseSearchFragment
 		{
 			intent = new Intent(context, TableActivity.class);
 			intent.putExtra(ProviderArgs.ARG_QUERYURI, WordNetProvider.makeUri(AdjPositions.URI));
-			intent.putExtra(ProviderArgs.ARG_QUERYID, AdjPositions.POSITIONID);
-			intent.putExtra(ProviderArgs.ARG_QUERYITEMS, new String[]{AdjPositions.POSITIONID, AdjPositions.POSITION});
 			intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table2);
 		}
 		else if (R.id.action_table_relations == itemId)
@@ -202,13 +200,11 @@ public class BrowseFragment extends BaseSearchFragment
 			return;
 		}
 
+		// super
+		super.search(query);
+
 		// log
 		Log.d(TAG, "Browse '" + query + '\'');
-
-		// subtitle
-		final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
-		assert toolbar != null;
-		toolbar.setSubtitle(query);
 
 		// history
 		History.recordQuery(requireContext(), query);

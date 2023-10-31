@@ -32,6 +32,7 @@ import androidx.fragment.app.Fragment;
 public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 {
 	static private final String TAG = "BrowsePmF";
+
 	static public final String FRAGMENT_TAG = "predicatematrix";
 
 	/**
@@ -185,13 +186,11 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 			return;
 		}
 
+		// super
+		super.search(query);
+
 		// log
 		Log.d(TAG, "Search PM " + pointer);
-
-		// subtitle
-		final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
-		assert toolbar != null;
-		toolbar.setSubtitle(query);
 
 		/*
 		// copy to target view
@@ -248,13 +247,11 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 			return;
 		}
 
+		// super
+		super.search(query);
+
 		// log
 		Log.d(TAG, "Search PM " + query);
-
-		// subtitle
-		final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
-		assert toolbar != null;
-		toolbar.setSubtitle(query);
 
 		/*
 		// copy to target view

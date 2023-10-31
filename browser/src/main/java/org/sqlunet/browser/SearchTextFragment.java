@@ -125,13 +125,11 @@ public class SearchTextFragment extends BaseSearchFragment
 			return;
 		}
 
+		// super
+		super.search(query);
+
 		// log
 		Log.d(TAG, "Search text " + query);
-
-		// subtitle
-		final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
-		assert toolbar != null;
-		toolbar.setSubtitle(query);
 
 		/*
 		// copy to target view
