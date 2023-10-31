@@ -13,6 +13,7 @@ public class BaseBrowse1Fragment extends Fragment
 {
 	@SuppressWarnings("unused")
 	static private final String TAG = "Browse1F";
+
 	static public final String FRAGMENT_TAG = "browse1";
 
 	@Override

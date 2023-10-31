@@ -24,7 +24,7 @@ import static org.sqlunet.nightmode.NightMode.nightModeToString;
 
 abstract public class AbstractApplication extends Application
 {
-	static private final String LOG = "AApplication";
+	static private final String LOG = "AbstractApp";
 
 	@Override
 	public void onCreate()

@@ -23,7 +23,7 @@ import androidx.fragment.app.Fragment;
 public class AboutFragment extends Fragment
 {
 	/**
-	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
+	 * Mandatory empty constructor for the fragment manager to instantiate the fragment.
 	 */
 	public AboutFragment()
 	{

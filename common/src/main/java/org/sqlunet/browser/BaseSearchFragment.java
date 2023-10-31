@@ -323,19 +323,17 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 
 	public void clearQuery()
 	{
+		assert this.searchView != null;
 		clearSearchView(this.searchView);
 		closeKeyboard();
 	}
 
 	private static void clearSearchView(@NonNull final SearchView searchView)
 	{
-		if (searchView != null)
-		{
-			searchView.clearFocus();
-			searchView.setFocusable(false);
-			searchView.setQuery("", false);
-			searchView.setIconified(true);
-		}
+		searchView.clearFocus();
+		searchView.setFocusable(false);
+		searchView.setQuery("", false);
+		searchView.setIconified(true);
 	}
 
 	private void closeKeyboard()
