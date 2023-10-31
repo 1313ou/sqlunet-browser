@@ -62,6 +62,11 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	 */
 	static private final String STATE_SPINNER = "selected_mode";
 
+	// Q U E R Y
+
+	@Nullable
+	protected String query;
+
 	// C O M P O N E N T S
 
 	/**
@@ -108,6 +113,20 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	{
 		Log.d(TAG, "onCreate() " + this + " from " + savedInstanceState);
 		super.onCreate(savedInstanceState);
+
+		final FragmentManager manager = getChildFragmentManager();
+		manager.addOnBackStackChangedListener(() -> {
+
+			final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
+			if (manager.getBackStackEntryCount() > 0)
+			{
+				toolbar.setSubtitle(query);
+			}
+			else
+			{
+				toolbar.setSubtitle(R.string.app_subname);
+			}
+		});
 	}
 
 	// V I E W
@@ -194,7 +213,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 
 		// title
 		toolbar.setTitle(R.string.title_activity_browse);
-		toolbar.setSubtitle(R.string.app_subname);
+		// toolbar.setSubtitle(R.string.app_subname);
 
 		// background
 		final int color = ColorUtils.fetchColor(activity, this.colorAttrId);
@@ -202,36 +221,36 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 
 		// nav
 		// this breaks behaviour of drawer toggle
-//		toolbar.setNavigationOnClickListener(v -> {
-//
-//			if (!isAdded())
-//			{
-//				return;
-//			}
-//			Log.d(TAG, "BackStack: navigation button clicked");
-//			final FragmentManager manager = getChildFragmentManager();
-//			int count = manager.getBackStackEntryCount();
-//			if (count >= 1)
-//			{
-//				Log.d(TAG, dumpBackStack(manager, "child"));
-//				manager.popBackStack();
-//			}
-//			else
-//			{
-//				FragmentManager manager2 = getParentFragmentManager();
-//				int count2 = manager2.getBackStackEntryCount();
-//				if (count2 >= 1)
-//				{
-//					Log.d(TAG, dumpBackStack(manager2, "parent"));
-//					manager2.popBackStack();
-//				}
-//				else
-//				{
-//					Log.d(TAG, "BackStack: activity onBackPressed() - none");
-//					requireActivity().getOnBackPressedDispatcher().onBackPressed();
-//				}
-//			}
-//		});
+		//		toolbar.setNavigationOnClickListener(v -> {
+		//
+		//			if (!isAdded())
+		//			{
+		//				return;
+		//			}
+		//			Log.d(TAG, "BackStack: navigation button clicked");
+		//			final FragmentManager manager = getChildFragmentManager();
+		//			int count = manager.getBackStackEntryCount();
+		//			if (count >= 1)
+		//			{
+		//				Log.d(TAG, dumpBackStack(manager, "child"));
+		//				manager.popBackStack();
+		//			}
+		//			else
+		//			{
+		//				FragmentManager manager2 = getParentFragmentManager();
+		//				int count2 = manager2.getBackStackEntryCount();
+		//				if (count2 >= 1)
+		//				{
+		//					Log.d(TAG, dumpBackStack(manager2, "parent"));
+		//					manager2.popBackStack();
+		//				}
+		//				else
+		//				{
+		//					Log.d(TAG, "BackStack: activity onBackPressed() - none");
+		//					requireActivity().getOnBackPressedDispatcher().onBackPressed();
+		//				}
+		//			}
+		//		});
 
 		// spinner
 		this.spinner = toolbar.findViewById(R.id.spinner);
@@ -314,8 +333,10 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 
 	public void clearQuery()
 	{
-		assert this.searchView != null;
-		clearSearchView(this.searchView);
+		if (this.searchView != null)
+		{
+			clearSearchView(this.searchView);
+		}
 		closeKeyboard();
 	}
 
@@ -442,6 +463,17 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 
 		final Settings.Selector selectorMode = Settings.Selector.getPref(requireContext());
 		return selectorMode.ordinal();
+	}
+
+	// S E A R C H   L I S T E N E R
+	public void search(final String query)
+	{
+		this.query = query;
+
+		// subtitle
+		// final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
+		// assert toolbar != null;
+		// toolbar.setSubtitle(query);
 	}
 
 	// S A V E / R E S T O R E
