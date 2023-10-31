@@ -186,10 +186,10 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		}
 
 		// log
-		Log.d(TAG, "PM SEARCH " + pointer);
+		Log.d(TAG, "Search PM " + pointer);
 
 		// subtitle
-		final Toolbar toolbar = requireActivity().findViewById(org.sqlunet.browser.common.R.id.toolbar);
+		final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
 		assert toolbar != null;
 		toolbar.setSubtitle(query);
 
@@ -249,10 +249,10 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		}
 
 		// log
-		Log.d(TAG, "PM SEARCH " + query);
+		Log.d(TAG, "Search PM " + query);
 
 		// subtitle
-		final Toolbar toolbar = requireActivity().findViewById(org.sqlunet.browser.common.R.id.toolbar);
+		final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
 		assert toolbar != null;
 		toolbar.setSubtitle(query);
 
