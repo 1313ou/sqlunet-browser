@@ -5,10 +5,8 @@
 package org.sqlunet.browser.vn;
 
 import android.content.Context;
-import android.util.Log;
 
 import org.sqlunet.browser.AbstractApplication;
-import org.sqlunet.nightmode.NightMode;
 import org.sqlunet.style.Colors;
 
 import androidx.annotation.NonNull;

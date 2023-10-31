@@ -15,7 +15,6 @@ import org.sqlunet.provider.ProviderArgs;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.MenuCompat;
 
 /**
  * Detail activity

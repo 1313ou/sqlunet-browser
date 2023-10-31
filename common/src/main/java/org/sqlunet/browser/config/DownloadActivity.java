@@ -16,7 +16,6 @@ import org.sqlunet.browser.common.R;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-import androidx.core.view.MenuCompat;
 
 /**
  * Download activity

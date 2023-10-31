@@ -201,6 +201,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		toolbar.setBackground(new ColorDrawable(color));
 
 		// nav
+		// this breaks behaviour of drawer toggle
 //		toolbar.setNavigationOnClickListener(v -> {
 //
 //			if (!isAdded())

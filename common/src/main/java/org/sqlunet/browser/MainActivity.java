@@ -25,7 +25,6 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.MenuCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -77,9 +76,7 @@ public class MainActivity extends AppCompatActivity
 		NavigationUI.setupActionBarWithNavController(this, navController, this.appBarConfiguration);
 		NavigationUI.setupWithNavController(navView, navController);
 
-		navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-			Log.d(TAG, "Nav: to " + destination);
-		});
+		navController.addOnDestinationChangedListener((controller, destination, arguments) -> Log.d(TAG, "Nav: to " + destination));
 	}
 
 	@Override

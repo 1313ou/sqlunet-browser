@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
@@ -1320,6 +1321,41 @@
       <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.loaders.BaseModule sensesLabel" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.history.SearchRecentSuggestions.SuggestionColumns DISPLAY2" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.history.SearchRecentSuggestions.SuggestionColumns QUERY" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.fn.AbstractColors activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.wn.AbstractColors activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.AbstractColors activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.vn.AbstractColors activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.ewn.AbstractColors activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.sn.AbstractColors activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.RunBrowseFlatTest activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.sn.RunBrowseFlatTest activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.RunBrowseTreeTest activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.fn.RunDownloadTest activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.wn.RunDownloadTest activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.RunDownloadTest activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.vn.RunDownloadTest activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.ewn.RunDownloadTest activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.sn.RunDownloadTest activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.RunMainFlatTest activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.sn.RunMainFlatTest activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.fn.RunMainTest activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.wn.RunMainTest activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.vn.RunMainTest activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.ewn.RunMainTest activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.RunMainTreeTest activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.fn.RunTextSearchTest activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.wn.RunTextSearchTest activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.RunTextSearchTest activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.vn.RunTextSearchTest activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.ewn.RunTextSearchTest activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.sn.RunTextSearchTest activityScenarioRule" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.RunXSelectTreeTest activityScenarioRule" />
+      <entry_point TYPE="method" FQNAME="org.sqlunet.speak.TTS$1 void onError(java.lang.String utteranceId)" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.wn.Application TAG" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.fn.Application TAG" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.vn.Application TAG" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.sn.Application TAG" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.PositionViewModel TAG" />
     </entry_points>
     <pattern value="org.sqlunet.browser.AbstractApplication" method="dumpTasks" />
     <pattern value="org.sqlunet.browser.AbstractApplication" method="isNightMode" />
@@ -1937,6 +1973,604 @@
     <pattern value="org.sqlunet.treeview.view.TreeViewer" method="setDefaultNodeClickListener" />
     <pattern value="org.sqlunet.treeview.view.TreeViewer" method="setNodeValue" />
     <pattern value="org.sqlunet.treeview.view.TreeViewer" method="setSelectable" />
+    <pattern value="org.sqlunet.browser.AboutActivity" />
+    <pattern value="org.sqlunet.browser.AboutFragment" />
+    <pattern value="org.sqlunet.browser.AboutFragment" method="AboutFragment" />
+    <pattern value="org.sqlunet.browser.AbstractActivity" />
+    <pattern value="org.sqlunet.browser.AbstractApplication" />
+    <pattern value="org.sqlunet.browser.AbstractBrowse1Activity" />
+    <pattern value="org.sqlunet.browser.AbstractBrowse2Activity" />
+    <pattern value="org.sqlunet.browser.AbstractBrowseActivity" />
+    <pattern value="org.sqlunet.browser.AbstractColors" />
+    <pattern value="org.sqlunet.browser.ewn.AbstractColors" />
+    <pattern value="org.sqlunet.browser.fn.AbstractColors" />
+    <pattern value="org.sqlunet.browser.sn.AbstractColors" />
+    <pattern value="org.sqlunet.browser.vn.AbstractColors" />
+    <pattern value="org.sqlunet.browser.wn.AbstractColors" />
+    <pattern value="org.sqlunet.browser.AbstractSearchTextActivity" />
+    <pattern value="org.sqlunet.browser.AbstractTableFragment" />
+    <pattern value="org.sqlunet.framenet.provider.FrameNetContract.AnnoSets" />
+    <pattern value="org.sqlunet.framenet.provider.FrameNetContract.AnnoSets_Layers_X" />
+    <pattern value="com.bbou.download.DownloadFragment$1" />
+    <pattern value="org.sqlunet.browser.xselector.XSelectorPointer$1" />
+    <pattern value="com.bbou.concurrency.DoAsyncThen$1" />
+    <pattern value="com.bbou.concurrency.DoAsyncThen$7" />
+    <pattern value="org.sqlunet.browser.SqlunetViewModel$1" />
+    <pattern value="org.sqlunet.browser.SqlunetViewTreeModel$1" />
+    <pattern value="org.sqlunet.browser.web.WebModel$1" />
+    <pattern value="org.sqlunet.browser.web.WebFragment$1" />
+    <pattern value="org.sqlunet.browser.config.AssetLoadActivity" />
+    <pattern value="org.sqlunet.browser.config.AssetLoadFragment" />
+    <pattern value="org.sqlunet.browser.config.AssetLoadFragment" method="AssetLoadFragment" />
+    <pattern value="org.sqlunet.browser.config.ExecAsyncTask.AsyncExecuteFromArchiveFile" />
+    <pattern value="org.sqlunet.browser.config.ExecAsyncTask.AsyncVacuum" />
+    <pattern value="org.sqlunet.preference.AutoEditTextPreference" />
+    <pattern value="org.sqlunet.browser.BaseBrowse1Fragment" />
+    <pattern value="org.sqlunet.browser.BaseBrowse2Fragment" />
+    <pattern value="org.sqlunet.framenet.loaders.BaseModule" />
+    <pattern value="org.sqlunet.syntagnet.loaders.BaseModule" />
+    <pattern value="org.sqlunet.verbnet.loaders.BaseModule" />
+    <pattern value="org.sqlunet.provider.BaseProvider" />
+    <pattern value="org.sqlunet.browser.BaseSearchFragment" />
+    <pattern value="org.sqlunet.browser.BaseSearchFragment" method="BaseSearchFragment" />
+    <pattern value="org.sqlunet.browser.BaseSelectorsExpandableListFragment" />
+    <pattern value="org.sqlunet.browser.BaseSelectorsExpandableListFragment" method="BaseSelectorsExpandableListFragment" />
+    <pattern value="org.sqlunet.browser.BaseSelectorsFragment" />
+    <pattern value="org.sqlunet.browser.BaseSelectorsFragment" method="BaseSelectorsFragment" />
+    <pattern value="org.sqlunet.browser.BaseSelectorsListFragment" />
+    <pattern value="org.sqlunet.browser.BaseSelectorsListFragment" method="BaseSelectorsListFragment" />
+    <pattern value="org.sqlunet.browser.config.BaseSettingsActivity" />
+    <pattern value="org.sqlunet.browser.config.BaseTaskFragment" />
+    <pattern value="org.sqlunet.browser.fn.AbstractColors" method="before" />
+    <pattern value="org.sqlunet.browser.wn.AbstractColors" method="before" />
+    <pattern value="org.sqlunet.browser.AbstractColors" method="before" />
+    <pattern value="org.sqlunet.browser.vn.AbstractColors" method="before" />
+    <pattern value="org.sqlunet.browser.ewn.AbstractColors" method="before" />
+    <pattern value="org.sqlunet.browser.sn.AbstractColors" method="before" />
+    <pattern value="org.sqlunet.browser.RunBrowseFlatTest" method="before" />
+    <pattern value="org.sqlunet.browser.sn.RunBrowseFlatTest" method="before" />
+    <pattern value="org.sqlunet.browser.RunBrowseTreeTest" method="before" />
+    <pattern value="org.sqlunet.browser.RunMainFlatTest" method="before" />
+    <pattern value="org.sqlunet.browser.sn.RunMainFlatTest" method="before" />
+    <pattern value="org.sqlunet.browser.fn.RunMainTest" method="before" />
+    <pattern value="org.sqlunet.browser.wn.RunMainTest" method="before" />
+    <pattern value="org.sqlunet.browser.vn.RunMainTest" method="before" />
+    <pattern value="org.sqlunet.browser.ewn.RunMainTest" method="before" />
+    <pattern value="org.sqlunet.browser.RunMainTreeTest" method="before" />
+    <pattern value="org.sqlunet.browser.fn.RunTextSearchTest" method="before" />
+    <pattern value="org.sqlunet.browser.wn.RunTextSearchTest" method="before" />
+    <pattern value="org.sqlunet.browser.RunTextSearchTest" method="before" />
+    <pattern value="org.sqlunet.browser.vn.RunTextSearchTest" method="before" />
+    <pattern value="org.sqlunet.browser.ewn.RunTextSearchTest" method="before" />
+    <pattern value="org.sqlunet.browser.sn.RunTextSearchTest" method="before" />
+    <pattern value="org.sqlunet.browser.RunXSelectTreeTest" method="before" />
+    <pattern value="org.sqlunet.bnc.provider.BNCContract" />
+    <pattern value="org.sqlunet.bnc.browser.BNCFragment" />
+    <pattern value="org.sqlunet.bnc.browser.BNCFragment" method="BNCFragment" />
+    <pattern value="org.sqlunet.bnc.sql.BncImplementation" />
+    <pattern value="org.sqlunet.bnc.provider.BNCProvider" />
+    <pattern value="org.sqlunet.bnc.provider.BNCContract.BNCs" />
+    <pattern value="org.sqlunet.browser.selector.Browse1Activity" />
+    <pattern value="org.sqlunet.browser.selector.Browse1Fragment" />
+    <pattern value="org.sqlunet.browser.Browse2Activity" />
+    <pattern value="org.sqlunet.browser.Browse2Fragment" />
+    <pattern value="org.sqlunet.browser.BrowseActivity" />
+    <pattern value="org.sqlunet.browser.BrowseFragment" />
+    <pattern value="org.sqlunet.browser.BrowseFragment" method="BrowseFragment" />
+    <pattern value="org.sqlunet.browser.BrowsePredicateMatrixActivity" />
+    <pattern value="org.sqlunet.browser.BrowsePredicateMatrixFragment" />
+    <pattern value="org.sqlunet.browser.BrowsePredicateMatrixFragment" method="BrowsePredicateMatrixFragment" />
+    <pattern value="org.sqlunet.browser.BrowsePredicateMatrixSplashFragment" />
+    <pattern value="org.sqlunet.browser.BrowsePredicateMatrixSplashFragment" method="BrowsePredicateMatrixSplashFragment" />
+    <pattern value="org.sqlunet.browser.BrowseSplashFragment" />
+    <pattern value="org.sqlunet.browser.BrowseSplashFragment" method="BrowseSplashFragment" />
+    <pattern value="org.sqlunet.browser.xn.Status" method="canRun" />
+    <pattern value="org.sqlunet.syntagnet.browser.CollocationActivity" />
+    <pattern value="org.sqlunet.syntagnet.browser.CollocationFragment" />
+    <pattern value="org.sqlunet.syntagnet.browser.CollocationFragment" method="CollocationFragment" />
+    <pattern value="org.sqlunet.syntagnet.loaders.CollocationFromWordIdModule" />
+    <pattern value="org.sqlunet.syntagnet.loaders.CollocationModule" />
+    <pattern value="org.sqlunet.browser.selector.CollocationSelectorPointer" />
+    <pattern value="org.sqlunet.syntagnet.loaders.CollocationsModule" />
+    <pattern value="org.sqlunet.browser.fn.AbstractColors" method="colorContrast" />
+    <pattern value="org.sqlunet.browser.wn.AbstractColors" method="colorContrast" />
+    <pattern value="org.sqlunet.browser.AbstractColors" method="colorContrast" />
+    <pattern value="org.sqlunet.browser.vn.AbstractColors" method="colorContrast" />
+    <pattern value="org.sqlunet.browser.ewn.AbstractColors" method="colorContrast" />
+    <pattern value="org.sqlunet.browser.sn.AbstractColors" method="colorContrast" />
+    <pattern value="org.sqlunet.browser.fn.AbstractColors" method="colorContrastXNet" />
+    <pattern value="org.sqlunet.browser.wn.AbstractColors" method="colorContrastXNet" />
+    <pattern value="org.sqlunet.browser.AbstractColors" method="colorContrastXNet" />
+    <pattern value="org.sqlunet.browser.vn.AbstractColors" method="colorContrastXNet" />
+    <pattern value="org.sqlunet.browser.ewn.AbstractColors" method="colorContrastXNet" />
+    <pattern value="org.sqlunet.browser.sn.AbstractColors" method="colorContrastXNet" />
+    <pattern value="org.sqlunet.framenet.style.Colors" />
+    <pattern value="org.sqlunet.style.Colors" />
+    <pattern value="org.sqlunet.browser.ColorsDayTest" />
+    <pattern value="org.sqlunet.browser.ewn.ColorsDayTest" />
+    <pattern value="org.sqlunet.browser.fn.ColorsDayTest" />
+    <pattern value="org.sqlunet.browser.sn.ColorsDayTest" />
+    <pattern value="org.sqlunet.browser.vn.ColorsDayTest" />
+    <pattern value="org.sqlunet.browser.wn.ColorsDayTest" />
+    <pattern value="org.sqlunet.browser.ColorsNightTest" />
+    <pattern value="org.sqlunet.browser.ewn.ColorsNightTest" />
+    <pattern value="org.sqlunet.browser.fn.ColorsNightTest" />
+    <pattern value="org.sqlunet.browser.sn.ColorsNightTest" />
+    <pattern value="org.sqlunet.browser.vn.ColorsNightTest" />
+    <pattern value="org.sqlunet.browser.wn.ColorsNightTest" />
+    <pattern value="org.sqlunet.browser.ColorsTest" />
+    <pattern value="org.sqlunet.browser.ewn.ColorsTest" />
+    <pattern value="org.sqlunet.browser.fn.ColorsTest" />
+    <pattern value="org.sqlunet.browser.sn.ColorsTest" />
+    <pattern value="org.sqlunet.browser.vn.ColorsTest" />
+    <pattern value="org.sqlunet.browser.wn.ColorsTest" />
+    <pattern value="org.sqlunet.browser.ColorUtils" />
+    <pattern value="com.bbou.concurrency.ConcurrencyInstrumentedTest" />
+    <pattern value="com.bbou.concurrency.ConcurrencyUnitTest" />
+    <pattern value="org.sqlunet.test.SqlProcessor.Consumer" />
+    <pattern value="org.sqlunet.browser.ContainerUtils" />
+    <pattern value="com.bbou.download.ContentDownloader" />
+    <pattern value="org.sqlunet.browser.Module.ContentProviderSql" />
+    <pattern value="org.sqlunet.treeview.control.Controller" />
+    <pattern value="org.sqlunet.browser.xselector.XSelectorPointer$1" method="createFromParcel" />
+    <pattern value="org.sqlunet.provider.CursorDump" />
+    <pattern value="org.sqlunet.sql.DataSource" />
+    <pattern value="org.sqlunet.browser.DataUtils" />
+    <pattern value="com.bbou.deploy.Deploy" />
+    <pattern value="org.sqlunet.browser.config.DiagnosticsActivity" />
+    <pattern value="com.bbou.rate.DialogOptions" />
+    <pattern value="org.sqlunet.wordnet.provider.WordNetContract.Dict" />
+    <pattern value="org.sqlunet.speak.Discover" />
+    <pattern value="org.sqlunet.predicatematrix.loaders.BaseModule.Displayer" />
+    <pattern value="org.sqlunet.sql.DocumentFragmentParser" />
+    <pattern value="com.bbou.concurrency.DoAsyncThen$7" method="doInBackground" />
+    <pattern value="org.sqlunet.browser.SqlunetViewModel$1" method="doInBackground" />
+    <pattern value="org.sqlunet.browser.SqlunetViewTreeModel$1" method="doInBackground" />
+    <pattern value="org.sqlunet.browser.web.WebModel$1" method="doInBackground" />
+    <pattern value="com.bbou.concurrency.DoAsyncThen$1" method="doInBackground" />
+    <pattern value="org.sqlunet.dom.DomValidator" />
+    <pattern value="com.bbou.donate.DonateActivity" />
+    <pattern value="org.sqlunet.browser.fn.RunDownloadTest" method="download" />
+    <pattern value="org.sqlunet.browser.wn.RunDownloadTest" method="download" />
+    <pattern value="org.sqlunet.browser.RunDownloadTest" method="download" />
+    <pattern value="org.sqlunet.browser.vn.RunDownloadTest" method="download" />
+    <pattern value="org.sqlunet.browser.ewn.RunDownloadTest" method="download" />
+    <pattern value="org.sqlunet.browser.sn.RunDownloadTest" method="download" />
+    <pattern value="com.bbou.download.DownloadActivity" />
+    <pattern value="org.sqlunet.browser.config.DownloadActivity" />
+    <pattern value="com.bbou.download.DownloadedPreferenceFragment" />
+    <pattern value="com.bbou.download.DownloadFragment" />
+    <pattern value="com.bbou.download.DownloadPreferenceFragment" />
+    <pattern value="com.bbou.download.DownloadZipFragment" />
+    <pattern value="org.sqlunet.browser.BaseSearchFragment" method="dumpBackStack" />
+    <pattern value="org.sqlunet.browser.EntryActivity" />
+    <pattern value="org.sqlunet.browser.config.ExecAsyncTask" />
+    <pattern value="androidx.app.local.ExpandableListFragment" />
+    <pattern value="androidx.app.local.ExpandableListFragment" method="ExpandableListFragment" />
+    <pattern value="org.sqlunet.style.Factories" />
+    <pattern value="org.sqlunet.browser.ColorUtils" method="fetchColor" />
+    <pattern value="com.bbou.download.FileAsyncTaskChooser" />
+    <pattern value="com.bbou.download.FileData" />
+    <pattern value="org.sqlunet.settings.FileUtils" />
+    <pattern value="org.sqlunet.framenet.browser.FnAnnoSetActivity" />
+    <pattern value="org.sqlunet.framenet.browser.FnAnnoSetFragment" />
+    <pattern value="org.sqlunet.framenet.browser.FnAnnoSetFragment" method="FnAnnoSetFragment" />
+    <pattern value="org.sqlunet.framenet.FnAnnoSetPointer" />
+    <pattern value="org.sqlunet.framenet.sql.FnAnnoSetQuery" />
+    <pattern value="org.sqlunet.framenet.browser.FnFrameActivity" />
+    <pattern value="org.sqlunet.framenet.sql.FnFrameElement" />
+    <pattern value="org.sqlunet.framenet.browser.FnFrameFragment" />
+    <pattern value="org.sqlunet.framenet.browser.FnFrameFragment" method="FnFrameFragment" />
+    <pattern value="org.sqlunet.framenet.FnFramePointer" />
+    <pattern value="org.sqlunet.framenet.sql.FnFrameQuery" />
+    <pattern value="org.sqlunet.framenet.sql.FnLexUnit" />
+    <pattern value="org.sqlunet.framenet.browser.FnLexUnitActivity" />
+    <pattern value="org.sqlunet.framenet.browser.FnLexUnitFragment" />
+    <pattern value="org.sqlunet.framenet.browser.FnLexUnitFragment" method="FnLexUnitFragment" />
+    <pattern value="org.sqlunet.framenet.FnLexUnitPointer" />
+    <pattern value="org.sqlunet.framenet.sql.FnLexUnitQuery" />
+    <pattern value="org.sqlunet.framenet.sql.FnLexUnitQueryFromFrameId" />
+    <pattern value="org.sqlunet.framenet.FnPatternPointer" />
+    <pattern value="org.sqlunet.framenet.browser.FnSentenceActivity" />
+    <pattern value="org.sqlunet.framenet.browser.FnSentenceFragment" />
+    <pattern value="org.sqlunet.framenet.browser.FnSentenceFragment" method="FnSentenceFragment" />
+    <pattern value="org.sqlunet.framenet.FnSentencePointer" />
+    <pattern value="org.sqlunet.framenet.sql.FnSentenceQuery" />
+    <pattern value="org.sqlunet.framenet.FnValenceUnitPointer" />
+    <pattern value="org.sqlunet.framenet.provider.FrameNetContract" />
+    <pattern value="org.sqlunet.framenet.browser.FrameNetFragment" />
+    <pattern value="org.sqlunet.framenet.browser.FrameNetFragment" method="FrameNetFragment" />
+    <pattern value="org.sqlunet.framenet.sql.FrameNetImplementation" />
+    <pattern value="org.sqlunet.framenet.sql.FrameNetInterface" />
+    <pattern value="org.sqlunet.framenet.provider.FrameNetProvider" />
+    <pattern value="org.sqlunet.framenet.style.FrameNetSpanner" />
+    <pattern value="org.sqlunet.framenet.provider.FrameNetContract.Frames" />
+    <pattern value="org.sqlunet.framenet.provider.FrameNetContract.Frames_FEs" />
+    <pattern value="org.sqlunet.framenet.provider.FrameNetContract.Frames_X" />
+    <pattern value="com.bbou.concurrency.DoAsyncThen.Function" />
+    <pattern value="com.bbou.concurrency.DoAsyncThen.Function1" />
+    <pattern value="org.sqlunet.browser.web.WebFragment$1" method="handleUrl" />
+    <pattern value="org.sqlunet.Has2Pos" />
+    <pattern value="org.sqlunet.HasXId" />
+    <pattern value="org.sqlunet.browser.config.BaseSettingsActivity.Header2Fragment" />
+    <pattern value="org.sqlunet.browser.config.BaseSettingsActivity.HeaderFragment" />
+    <pattern value="org.sqlunet.browser.HelpActivity" />
+    <pattern value="org.sqlunet.browser.HelpFragment" />
+    <pattern value="org.sqlunet.browser.HelpFragment" method="HelpFragment" />
+    <pattern value="org.sqlunet.history.HistoryActivity" />
+    <pattern value="org.sqlunet.history.HistoryFragment" />
+    <pattern value="org.sqlunet.browser.HomeFragment" />
+    <pattern value="org.sqlunet.browser.xn.HomeFragment" />
+    <pattern value="org.sqlunet.browser.xn.HomeFragment" method="HomeFragment" />
+    <pattern value="org.sqlunet.browser.HomeFragment" method="HomeFragment" />
+    <pattern value="org.sqlunet.browser.xn.HomeImageView" />
+    <pattern value="org.sqlunet.browser.xn.HomeImageView" method="HomeImageView" />
+    <pattern value="org.sqlunet.browser.config.LoadActivity" />
+    <pattern value="org.sqlunet.browser.config.LogsActivity" />
+    <pattern value="org.sqlunet.browser.MainActivity" />
+    <pattern value="org.sqlunet.browser.wn.MainActivity" />
+    <pattern value="org.sqlunet.browser.config.OperationActivity" />
+    <pattern value="org.sqlunet.propbank.browser.PbRoleSetActivity" />
+    <pattern value="org.sqlunet.provider.QueriesUnitTest" />
+    <pattern value="org.sqlunet.wordnet.provider.QueriesUnitTest" />
+    <pattern value="org.sqlunet.verbnet.provider.QueriesUnitTest" />
+    <pattern value="org.sqlunet.syntagnet.provider.QueriesUnitTest" />
+    <pattern value="org.sqlunet.propbank.provider.QueriesUnitTest" />
+    <pattern value="org.sqlunet.framenet.provider.QueriesUnitTest" />
+    <pattern value="org.sqlunet.bnc.provider.QueriesUnitTest" />
+    <pattern value="org.sqlunet.wordnet.browser.RelationActivity" />
+    <pattern value="org.sqlunet.browser.sn.RunBrowseFlatTest" />
+    <pattern value="org.sqlunet.browser.RunBrowseFlatTest" />
+    <pattern value="org.sqlunet.browser.RunBrowseTreeTest" />
+    <pattern value="org.sqlunet.browser.wn.RunDownloadTest" />
+    <pattern value="org.sqlunet.browser.vn.RunDownloadTest" />
+    <pattern value="org.sqlunet.browser.sn.RunDownloadTest" />
+    <pattern value="org.sqlunet.browser.fn.RunDownloadTest" />
+    <pattern value="org.sqlunet.browser.ewn.RunDownloadTest" />
+    <pattern value="org.sqlunet.browser.RunDownloadTest" />
+    <pattern value="org.sqlunet.browser.sn.RunMainFlatTest" />
+    <pattern value="org.sqlunet.browser.RunMainFlatTest" />
+    <pattern value="org.sqlunet.browser.wn.RunMainTest" />
+    <pattern value="org.sqlunet.browser.vn.RunMainTest" />
+    <pattern value="org.sqlunet.browser.fn.RunMainTest" />
+    <pattern value="org.sqlunet.browser.ewn.RunMainTest" />
+    <pattern value="org.sqlunet.browser.RunMainTreeTest" />
+    <pattern value="org.sqlunet.provider.RunQueriesTest" />
+    <pattern value="org.sqlunet.wordnet.provider.RunQueriesTest" />
+    <pattern value="org.sqlunet.verbnet.provider.RunQueriesTest" />
+    <pattern value="org.sqlunet.syntagnet.provider.RunQueriesTest" />
+    <pattern value="org.sqlunet.propbank.provider.RunQueriesTest" />
+    <pattern value="org.sqlunet.predicatematrix.provider.RunQueriesTest" />
+    <pattern value="org.sqlunet.framenet.provider.RunQueriesTest" />
+    <pattern value="org.sqlunet.bnc.provider.RunQueriesTest" />
+    <pattern value="org.sqlunet.browser.wn.RunTextSearchTest" />
+    <pattern value="org.sqlunet.browser.vn.RunTextSearchTest" />
+    <pattern value="org.sqlunet.browser.sn.RunTextSearchTest" />
+    <pattern value="org.sqlunet.browser.fn.RunTextSearchTest" />
+    <pattern value="org.sqlunet.browser.ewn.RunTextSearchTest" />
+    <pattern value="org.sqlunet.browser.RunTextSearchTest" />
+    <pattern value="org.sqlunet.browser.RunXSelectTreeTest" />
+    <pattern value="org.sqlunet.browser.SearchTextActivity" />
+    <pattern value="org.sqlunet.browser.selector.SelectorsFragment" />
+    <pattern value="org.sqlunet.wordnet.browser.SenseActivity" />
+    <pattern value="org.sqlunet.wordnet.browser.SenseKeyActivity" />
+    <pattern value="org.sqlunet.browser.config.SetupActivity" />
+    <pattern value="org.sqlunet.browser.config.SetupDatabaseActivity" />
+    <pattern value="org.sqlunet.browser.config.SetupFileActivity" />
+    <pattern value="org.sqlunet.browser.selector.SnBrowse1Activity" />
+    <pattern value="org.sqlunet.browser.selector.SnBrowse1Fragment" />
+    <pattern value="org.sqlunet.browser.SnBrowse2Activity" />
+    <pattern value="org.sqlunet.browser.selector.SnSelectorsFragment" />
+    <pattern value="org.sqlunet.browser.SourceFragment" />
+    <pattern value="org.sqlunet.speak.SpeakSettingsFragment" />
+    <pattern value="org.sqlunet.browser.SqlStatementsFragment" />
+    <pattern value="org.sqlunet.browser.StatusActivity" />
+    <pattern value="org.sqlunet.browser.config.StorageActivity" />
+    <pattern value="org.sqlunet.wordnet.browser.SynsetActivity" />
+    <pattern value="org.sqlunet.browser.config.TableActivity" />
+    <pattern value="org.sqlunet.browser.config.TestFragment" />
+    <pattern value="org.sqlunet.treeview.settings.TreePreferenceFragment" />
+    <pattern value="com.bbou.download.UpdateActivity" />
+    <pattern value="org.sqlunet.verbnet.browser.VnClassActivity" />
+    <pattern value="org.sqlunet.browser.web.WebActivity" />
+    <pattern value="org.sqlunet.wordnet.browser.WordActivity" />
+    <pattern value="org.sqlunet.wordnet.browser.WordNetSettingsFragment" />
+    <pattern value="org.sqlunet.browser.xselector.XBrowse1Activity" />
+    <pattern value="org.sqlunet.browser.xselector.XBrowse1Fragment" />
+    <pattern value="org.sqlunet.IPointer" />
+    <pattern value="org.sqlunet.verbnet.loaders.BaseModule" method="items" />
+    <pattern value="org.sqlunet.wordnet.loaders.BaseModule.LexRelationsQuery" />
+    <pattern value="org.sqlunet.speak.LexUnit" />
+    <pattern value="org.sqlunet.framenet.provider.FrameNetContract.LexUnits" />
+    <pattern value="org.sqlunet.framenet.provider.FrameNetContract.LexUnits_FEGroupRealizations_Patterns_ValenceUnits" />
+    <pattern value="org.sqlunet.framenet.provider.FrameNetContract.LexUnits_FERealizations_ValenceUnits" />
+    <pattern value="org.sqlunet.framenet.provider.FrameNetContract.LexUnits_Sentences" />
+    <pattern value="org.sqlunet.framenet.provider.FrameNetContract.LexUnits_Sentences_AnnoSets_Layers_Labels" />
+    <pattern value="org.sqlunet.framenet.provider.FrameNetContract.LexUnits_X" />
+    <pattern value="org.sqlunet.speak.ListPreference" />
+    <pattern value="org.sqlunet.browser.web.WebFragment" method="load" />
+    <pattern value="org.sqlunet.browser.web.WebModel" method="loadData" />
+    <pattern value="org.sqlunet.browser.SqlunetViewModel" method="loadData" />
+    <pattern value="org.sqlunet.browser.SqlunetViewTreeModel" method="loadData" />
+    <pattern value="org.sqlunet.browser.config.LoadFragment" />
+    <pattern value="org.sqlunet.browser.config.LoadFragment" method="LoadFragment" />
+    <pattern value="org.sqlunet.framenet.provider.FrameNetContract.Lookup_FTS_FnSentences" />
+    <pattern value="org.sqlunet.framenet.provider.FrameNetContract.Lookup_FTS_FnSentences_X" />
+    <pattern value="org.sqlunet.framenet.provider.FrameNetContract.Lookup_FTS_FnWords" />
+    <pattern value="org.sqlunet.propbank.provider.PropBankContract.Lookup_PbExamples" />
+    <pattern value="org.sqlunet.propbank.provider.PropBankContract.Lookup_PbExamples_X" />
+    <pattern value="org.sqlunet.verbnet.provider.VerbNetContract.Lookup_VnExamples" />
+    <pattern value="org.sqlunet.verbnet.provider.VerbNetContract.Lookup_VnExamples_X" />
+    <pattern value="org.sqlunet.provider.ManagerProvider" />
+    <pattern value="org.sqlunet.style.MarkupSpanner" />
+    <pattern value="org.sqlunet.browser.Matchers" />
+    <pattern value="org.sqlunet.browser.MenuHandler" />
+    <pattern value="org.sqlunet.browser.Module" />
+    <pattern value="org.sqlunet.speak.MultiSelectListPreference" />
+    <pattern value="org.sqlunet.browser.xselector.XSelectorPointer$1" method="newArray" />
+    <pattern value="com.bbou.concurrency.ConcurrencyUnitTest" method="newTask" />
+    <pattern value="org.sqlunet.nightmode.NightMode" />
+    <pattern value="com.bbou.download.Notifier" />
+    <pattern value="com.bbou.concurrency.ObservedDelegatingTask" />
+    <pattern value="com.bbou.concurrency.ObservedTask" />
+    <pattern value="org.sqlunet.browser.SqlunetViewModel$1" method="onPostExecute" />
+    <pattern value="com.bbou.concurrency.DoAsyncThen$7" method="onPostExecute" />
+    <pattern value="org.sqlunet.browser.web.WebModel$1" method="onPostExecute" />
+    <pattern value="org.sqlunet.browser.SqlunetViewTreeModel$1" method="onPostExecute" />
+    <pattern value="com.bbou.concurrency.DoAsyncThen$1" method="onPostExecute" />
+    <pattern value="org.sqlunet.preference.OpenEditTextPreference" />
+    <pattern value="com.bbou.others.OthersActivity" />
+    <pattern value="org.sqlunet.framenet.provider.FrameNetContract.Patterns_Layers_X" />
+    <pattern value="org.sqlunet.propbank.sql.PbRoleQueryFromRoleSetId" />
+    <pattern value="org.sqlunet.propbank.browser.PbRoleSetFragment" />
+    <pattern value="org.sqlunet.propbank.browser.PbRoleSetFragment" method="PbRoleSetFragment" />
+    <pattern value="org.sqlunet.propbank.PbRoleSetPointer" />
+    <pattern value="org.sqlunet.propbank.sql.PbRoleSetQuery" />
+    <pattern value="org.sqlunet.propbank.provider.PropBankContract.PbRoleSets" />
+    <pattern value="org.sqlunet.propbank.provider.PropBankContract.PbWords" />
+    <pattern value="org.sqlunet.predicatematrix.provider.PredicateMatrixContract.Pm" />
+    <pattern value="org.sqlunet.predicatematrix.provider.PredicateMatrixContract.Pm_X" />
+    <pattern value="org.sqlunet.predicatematrix.PmRolePointer" />
+    <pattern value="org.sqlunet.Pointer" />
+    <pattern value="org.sqlunet.browser.PositionViewModel" />
+    <pattern value="org.sqlunet.browser.selector.PosSelectorPointer" />
+    <pattern value="org.sqlunet.browser.selector.PosSelectorPointer" method="PosSelectorPointer" />
+    <pattern value="org.sqlunet.browser.SqlunetViewModel.PostProcessor" method="postProcess" />
+    <pattern value="org.sqlunet.browser.SqlunetViewModel.PostProcessor" />
+    <pattern value="org.sqlunet.predicatematrix.provider.PredicateMatrixContract.PredicateMatrix" />
+    <pattern value="org.sqlunet.predicatematrix.provider.PredicateMatrixContract" />
+    <pattern value="org.sqlunet.predicatematrix.browser.PredicateMatrixFragment" />
+    <pattern value="org.sqlunet.predicatematrix.browser.PredicateMatrixFragment" method="PredicateMatrixFragment" />
+    <pattern value="org.sqlunet.predicatematrix.provider.PredicateMatrixProvider" />
+    <pattern value="com.bbou.concurrency.TaskDialogObserver.ProgressDialogFragment" />
+    <pattern value="com.bbou.concurrency.TaskDialogObserver.ProgressDialogFragment" method="ProgressDialogFragment" />
+    <pattern value="org.sqlunet.speak.Pronunciation" />
+    <pattern value="org.sqlunet.propbank.provider.PropBankContract" />
+    <pattern value="org.sqlunet.propbank.browser.PropBankFragment" />
+    <pattern value="org.sqlunet.propbank.browser.PropBankFragment" method="PropBankFragment" />
+    <pattern value="org.sqlunet.propbank.sql.PropBankImplementation" />
+    <pattern value="org.sqlunet.propbank.sql.PropBankInterface" />
+    <pattern value="org.sqlunet.propbank.provider.PropBankProvider" />
+    <pattern value="org.sqlunet.provider.ProviderArgs" />
+    <pattern value="org.sqlunet.loaders.Queries" />
+    <pattern value="org.sqlunet.wordnet.provider.QueriesUnitTest" method="queriesLegacyAgainstNew" />
+    <pattern value="org.sqlunet.verbnet.provider.QueriesUnitTest" method="queriesLegacyAgainstProvider" />
+    <pattern value="org.sqlunet.provider.QueriesUnitTest" method="queriesLegacyAgainstProvider" />
+    <pattern value="org.sqlunet.wordnet.provider.QueriesUnitTest" method="queriesLegacyAgainstProvider" />
+    <pattern value="org.sqlunet.syntagnet.provider.QueriesUnitTest" method="queriesLegacyAgainstProvider" />
+    <pattern value="org.sqlunet.bnc.provider.QueriesUnitTest" method="queriesLegacyAgainstProvider" />
+    <pattern value="org.sqlunet.predicatematrix.provider.QueriesUnitTest" method="queriesLegacyAgainstProvider" />
+    <pattern value="org.sqlunet.framenet.provider.QueriesUnitTest" method="queriesLegacyAgainstProvider" />
+    <pattern value="org.sqlunet.propbank.provider.QueriesUnitTest" method="queriesLegacyAgainstProvider" />
+    <pattern value="org.sqlunet.wordnet.provider.QueriesUnitTest" method="queriesNewAgainstProvider" />
+    <pattern value="org.sqlunet.provider.QueriesUnitTest" method="queriesUnion" />
+    <pattern value="org.sqlunet.provider.QueriesUnitTest" method="queriesUnionLegacyAgainstProvider" />
+    <pattern value="org.sqlunet.predicatematrix.provider.QueriesUnitTest" />
+    <pattern value="org.sqlunet.wordnet.sql.Related" />
+    <pattern value="org.sqlunet.wordnet.sql.Relation" />
+    <pattern value="org.sqlunet.wordnet.browser.RelationFragment" />
+    <pattern value="org.sqlunet.wordnet.browser.RelationFragment" method="RelationFragment" />
+    <pattern value="org.sqlunet.wordnet.loaders.RelationModule" />
+    <pattern value="com.bbou.download.Report" />
+    <pattern value="org.sqlunet.speak.ResettableMultiSelectListPreference" />
+    <pattern value="com.bbou.download.ResourcesDownloader" />
+    <pattern value="org.sqlunet.verbnet.provider.RunQueriesTest" method="runQueries" />
+    <pattern value="org.sqlunet.provider.RunQueriesTest" method="runQueries" />
+    <pattern value="org.sqlunet.wordnet.provider.RunQueriesTest" method="runQueries" />
+    <pattern value="org.sqlunet.syntagnet.provider.RunQueriesTest" method="runQueries" />
+    <pattern value="org.sqlunet.bnc.provider.RunQueriesTest" method="runQueries" />
+    <pattern value="org.sqlunet.predicatematrix.provider.RunQueriesTest" method="runQueries" />
+    <pattern value="org.sqlunet.framenet.provider.RunQueriesTest" method="runQueries" />
+    <pattern value="org.sqlunet.propbank.provider.RunQueriesTest" method="runQueries" />
+    <pattern value="org.sqlunet.browser.config.SAFUtils" />
+    <pattern value="org.sqlunet.browser.RunTextSearchTest" method="searchFnRun" />
+    <pattern value="org.sqlunet.browser.RunTextSearchTest" method="searchPbRun" />
+    <pattern value="org.sqlunet.browser.vn.RunTextSearchTest" method="searchPbRun" />
+    <pattern value="org.sqlunet.history.SearchRecentSuggestions" />
+    <pattern value="org.sqlunet.browser.RunBrowseFlatTest" method="searchRun" />
+    <pattern value="org.sqlunet.browser.sn.RunBrowseFlatTest" method="searchRun" />
+    <pattern value="org.sqlunet.browser.RunBrowseTreeTest" method="searchRun" />
+    <pattern value="org.sqlunet.browser.RunMainFlatTest" method="searchRun" />
+    <pattern value="org.sqlunet.browser.sn.RunMainFlatTest" method="searchRun" />
+    <pattern value="org.sqlunet.browser.fn.RunMainTest" method="searchRun" />
+    <pattern value="org.sqlunet.browser.wn.RunMainTest" method="searchRun" />
+    <pattern value="org.sqlunet.browser.vn.RunMainTest" method="searchRun" />
+    <pattern value="org.sqlunet.browser.ewn.RunMainTest" method="searchRun" />
+    <pattern value="org.sqlunet.browser.RunMainTreeTest" method="searchRun" />
+    <pattern value="org.sqlunet.browser.RunXSelectTreeTest" method="searchRun" />
+    <pattern value="org.sqlunet.history.SearchSuggestionsProvider" />
+    <pattern value="org.sqlunet.history.SearchSuggestionsProvider" method="SearchSuggestionsProvider" />
+    <pattern value="org.sqlunet.browser.SearchTextFragment" />
+    <pattern value="org.sqlunet.browser.SearchTextFragment" method="SearchTextFragment" />
+    <pattern value="org.sqlunet.browser.SearchTextSplashFragment" />
+    <pattern value="org.sqlunet.browser.SearchTextSplashFragment" method="SearchTextSplashFragment" />
+    <pattern value="org.sqlunet.browser.fn.RunTextSearchTest" method="searchVnRun" />
+    <pattern value="org.sqlunet.browser.RunTextSearchTest" method="searchVnRun" />
+    <pattern value="org.sqlunet.browser.vn.RunTextSearchTest" method="searchVnRun" />
+    <pattern value="org.sqlunet.browser.wn.RunTextSearchTest" method="searchWnDefinitionsRun" />
+    <pattern value="org.sqlunet.browser.RunTextSearchTest" method="searchWnDefinitionsRun" />
+    <pattern value="org.sqlunet.browser.ewn.RunTextSearchTest" method="searchWnDefinitionsRun" />
+    <pattern value="org.sqlunet.browser.sn.RunTextSearchTest" method="searchWnDefinitionsRun" />
+    <pattern value="org.sqlunet.browser.wn.RunTextSearchTest" method="searchWnSamplesRun" />
+    <pattern value="org.sqlunet.browser.RunTextSearchTest" method="searchWnSamplesRun" />
+    <pattern value="org.sqlunet.browser.ewn.RunTextSearchTest" method="searchWnSamplesRun" />
+    <pattern value="org.sqlunet.browser.sn.RunTextSearchTest" method="searchWnSamplesRun" />
+    <pattern value="org.sqlunet.browser.wn.RunTextSearchTest" method="searchWnWordsRun" />
+    <pattern value="org.sqlunet.browser.RunTextSearchTest" method="searchWnWordsRun" />
+    <pattern value="org.sqlunet.browser.ewn.RunTextSearchTest" method="searchWnWordsRun" />
+    <pattern value="org.sqlunet.browser.sn.RunTextSearchTest" method="searchWnWordsRun" />
+    <pattern value="org.sqlunet.settings.Settings.Selector" />
+    <pattern value="org.sqlunet.browser.selector.SelectorPointer" />
+    <pattern value="org.sqlunet.browser.selector.SelectorPointer" method="SelectorPointer" />
+    <pattern value="org.sqlunet.wordnet.loaders.BaseModule.SemRelationsQuery" />
+    <pattern value="org.sqlunet.wordnet.browser.SenseFragment" />
+    <pattern value="org.sqlunet.wordnet.browser.SenseFragment" method="SenseFragment" />
+    <pattern value="org.sqlunet.wordnet.browser.SenseKeyFragment" />
+    <pattern value="org.sqlunet.wordnet.browser.SenseKeyFragment" method="SenseKeyFragment" />
+    <pattern value="org.sqlunet.wordnet.SenseKeyPointer" />
+    <pattern value="org.sqlunet.wordnet.SensePointer" />
+    <pattern value="org.sqlunet.wordnet.browser.SensesFragment" />
+    <pattern value="org.sqlunet.wordnet.browser.SensesFragment" method="SensesFragment" />
+    <pattern value="org.sqlunet.framenet.provider.FrameNetContract.Sentences_Layers_X" />
+    <pattern value="org.sqlunet.browser.Seq" />
+    <pattern value="org.sqlunet.settings.Settings.Selector" method="setPref" />
+    <pattern value="com.bbou.download.Settings" />
+    <pattern value="org.sqlunet.browser.vn.Settings" />
+    <pattern value="org.sqlunet.browser.wn.Settings" />
+    <pattern value="org.sqlunet.settings.Settings" />
+    <pattern value="org.sqlunet.browser.config.SettingsActivity" />
+    <pattern value="org.sqlunet.browser.config.SetupDatabaseFragment" />
+    <pattern value="org.sqlunet.browser.config.SetupDatabaseFragment" method="SetupDatabaseFragment" />
+    <pattern value="org.sqlunet.browser.config.SetupDatabaseTasks" />
+    <pattern value="org.sqlunet.browser.config.SetupFileFragment" />
+    <pattern value="org.sqlunet.browser.config.SetupFileFragment" method="SetupFileFragment" />
+    <pattern value="org.sqlunet.browser.fn.SetupFnStatusFragment" />
+    <pattern value="org.sqlunet.browser.fn.SetupFnStatusFragment" method="SetupFnStatusFragment" />
+    <pattern value="org.sqlunet.browser.sn.SetupSnStatusFragment" />
+    <pattern value="org.sqlunet.browser.sn.SetupSnStatusFragment" method="SetupSnStatusFragment" />
+    <pattern value="org.sqlunet.browser.config.SetupStatusFragment" />
+    <pattern value="org.sqlunet.browser.config.SetupStatusFragment" method="SetupStatusFragment" />
+    <pattern value="org.sqlunet.browser.vn.SetupVnStatusFragment" />
+    <pattern value="org.sqlunet.browser.vn.SetupVnStatusFragment" method="SetupVnStatusFragment" />
+    <pattern value="org.sqlunet.browser.wn.SetupWnStatusFragment" />
+    <pattern value="org.sqlunet.browser.wn.SetupWnStatusFragment" method="SetupWnStatusFragment" />
+    <pattern value="org.sqlunet.browser.xn.SetupXnStatusFragment" />
+    <pattern value="org.sqlunet.browser.xn.SetupXnStatusFragment" method="SetupXnStatusFragment" />
+    <pattern value="org.sqlunet.browser.web.WebFragment$1" method="shouldOverrideUrlLoading" />
+    <pattern value="org.sqlunet.treeview.control.SimpleController" />
+    <pattern value="org.sqlunet.syntagnet.SnCollocationPointer" />
+    <pattern value="org.sqlunet.syntagnet.provider.SyntagNetContract.SnCollocations" />
+    <pattern value="org.sqlunet.syntagnet.sql.SnNodeFactory" />
+    <pattern value="org.sqlunet.browser.wn.Settings.Source" />
+    <pattern value="org.sqlunet.style.Spanner" />
+    <pattern value="org.sqlunet.browser.SplashFragment" />
+    <pattern value="org.sqlunet.browser.SplashFragment" method="SplashFragment" />
+    <pattern value="org.sqlunet.browser.SqlFragment" />
+    <pattern value="org.sqlunet.browser.SqlFragment" method="SqlFragment" />
+    <pattern value="org.sqlunet.provider.SQLiteQueryBuilder" />
+    <pattern value="org.sqlunet.test.SqlProcessor" />
+    <pattern value="org.sqlunet.browser.SqlunetViewModel" />
+    <pattern value="org.sqlunet.browser.SqlunetViewTreeModel" />
+    <pattern value="org.sqlunet.browser.xn.Status" />
+    <pattern value="org.sqlunet.settings.Storage" />
+    <pattern value="org.sqlunet.settings.StorageUtils.StorageDirectory" />
+    <pattern value="org.sqlunet.browser.config.StorageFragment" />
+    <pattern value="org.sqlunet.browser.config.StorageFragment" method="StorageFragment" />
+    <pattern value="com.bbou.download.StorageReports" />
+    <pattern value="org.sqlunet.settings.StorageReports" />
+    <pattern value="org.sqlunet.settings.StorageSettings" />
+    <pattern value="com.bbou.download.StorageUtils" />
+    <pattern value="org.sqlunet.settings.StorageUtils" />
+    <pattern value="com.bbou.rate.StoreType" />
+    <pattern value="org.sqlunet.preference.StringSavedState" />
+    <pattern value="org.sqlunet.treeview.view.SubtreeView" />
+    <pattern value="org.sqlunet.framenet.provider.FrameNetContract.Suggest_FnWords" />
+    <pattern value="org.sqlunet.framenet.provider.FrameNetContract.Suggest_FTS_FnWords" />
+    <pattern value="org.sqlunet.propbank.provider.PropBankContract.Suggest_FTS_PbWords" />
+    <pattern value="org.sqlunet.verbnet.provider.VerbNetContract.Suggest_FTS_VnWords" />
+    <pattern value="org.sqlunet.propbank.provider.PropBankContract.Suggest_PbWords" />
+    <pattern value="org.sqlunet.verbnet.provider.VerbNetContract.Suggest_VnWords" />
+    <pattern value="org.sqlunet.history.SearchRecentSuggestions.SuggestionColumns" />
+    <pattern value="org.sqlunet.wordnet.sql.Synset" />
+    <pattern value="org.sqlunet.wordnet.browser.SynsetFragment" />
+    <pattern value="org.sqlunet.wordnet.browser.SynsetFragment" method="SynsetFragment" />
+    <pattern value="org.sqlunet.wordnet.SynsetPointer" />
+    <pattern value="org.sqlunet.wordnet.sql.SynsetsQueryFromWordId" />
+    <pattern value="org.sqlunet.wordnet.sql.SynsetsQueryFromWordIdAndCondition" />
+    <pattern value="org.sqlunet.syntagnet.provider.SyntagNetContract" />
+    <pattern value="org.sqlunet.syntagnet.browser.SyntagNetFragment" />
+    <pattern value="org.sqlunet.syntagnet.browser.SyntagNetFragment" method="SyntagNetFragment" />
+    <pattern value="org.sqlunet.syntagnet.sql.SyntagNetImplementation" />
+    <pattern value="org.sqlunet.syntagnet.sql.SyntagNetInterface" />
+    <pattern value="org.sqlunet.syntagnet.provider.SyntagNetProvider" />
+    <pattern value="org.sqlunet.browser.config.TableFragment" />
+    <pattern value="org.sqlunet.browser.config.TableFragment" method="TableFragment" />
+    <pattern value="com.bbou.concurrency.Task" />
+    <pattern value="com.bbou.concurrency.TaskDialogObserver" />
+    <pattern value="com.bbou.download.DownloadFragment$1" method="taskFinish" />
+    <pattern value="com.bbou.concurrency.TaskProgressDialogObserver" />
+    <pattern value="com.bbou.concurrency.TaskProgressDialogObserver" method="TaskProgressDialogObserver" />
+    <pattern value="com.bbou.concurrency.TaskToastObserver" />
+    <pattern value="org.sqlunet.browser.TextFragment" />
+    <pattern value="org.sqlunet.browser.TextFragment" method="TextFragment" />
+    <pattern value="org.sqlunet.browser.TreeFragment" />
+    <pattern value="org.sqlunet.treeview.model.TreeNode" />
+    <pattern value="org.sqlunet.treeview.model.TreeNode.TreeNodeClickListener" />
+    <pattern value="org.sqlunet.view.TreeOpExecute" />
+    <pattern value="org.sqlunet.treeview.view.TreeViewer" />
+    <pattern value="org.sqlunet.speak.TTS" />
+    <pattern value="org.sqlunet.speak.TTS" method="TTS" />
+    <pattern value="org.sqlunet.browser.TextFragment.TypedPointer" />
+    <pattern value="com.bbou.download.UpdateFragment" />
+    <pattern value="com.bbou.download.UpdateFragment" method="UpdateFragment" />
+    <pattern value="com.bbou.concurrency.ConcurrencyInstrumentedTest" method="useTask" />
+    <pattern value="org.sqlunet.framenet.Utils" />
+    <pattern value="org.sqlunet.provider.Utils" />
+    <pattern value="org.sqlunet.sql.Utils" />
+    <pattern value="org.sqlunet.browser.config.ExecAsyncTask" method="vacuum" />
+    <pattern value="org.sqlunet.framenet.provider.FrameNetContract.ValenceUnits_Layers_X" />
+    <pattern value="org.sqlunet.verbnet.provider.VerbNetContract" />
+    <pattern value="org.sqlunet.verbnet.browser.VerbNetFragment" />
+    <pattern value="org.sqlunet.verbnet.browser.VerbNetFragment" method="VerbNetFragment" />
+    <pattern value="org.sqlunet.verbnet.sql.VerbNetImplementation" />
+    <pattern value="org.sqlunet.verbnet.sql.VerbNetInterface" />
+    <pattern value="org.sqlunet.verbnet.provider.VerbNetProvider" />
+    <pattern value="org.sqlunet.verbnet.sql.VnClass" />
+    <pattern value="org.sqlunet.verbnet.provider.VerbNetContract.VnClasses" />
+    <pattern value="org.sqlunet.verbnet.provider.VerbNetContract.VnClasses_X" />
+    <pattern value="org.sqlunet.verbnet.browser.VnClassFragment" />
+    <pattern value="org.sqlunet.verbnet.browser.VnClassFragment" method="VnClassFragment" />
+    <pattern value="org.sqlunet.verbnet.VnClassPointer" />
+    <pattern value="org.sqlunet.verbnet.sql.VnClassQuery" />
+    <pattern value="org.sqlunet.verbnet.sql.VnClassWithSense" />
+    <pattern value="org.sqlunet.verbnet.sql.VnFrameQueryFromClassId" />
+    <pattern value="org.sqlunet.verbnet.sql.VnFrameQueryFromClassIdAndSense" />
+    <pattern value="org.sqlunet.verbnet.sql.VnNodeFactory" />
+    <pattern value="org.sqlunet.verbnet.sql.VnRoleQueryFromClassId" />
+    <pattern value="org.sqlunet.verbnet.sql.VnRoleQueryFromClassIdAndSense" />
+    <pattern value="org.sqlunet.verbnet.provider.VerbNetContract.VnWords" />
+    <pattern value="org.sqlunet.browser.Wait" />
+    <pattern value="org.sqlunet.browser.WaitUntilText" />
+    <pattern value="org.sqlunet.browser.web.WebFragment.WebDocumentStringLoader" />
+    <pattern value="org.sqlunet.browser.web.WebFragment" />
+    <pattern value="org.sqlunet.browser.web.WebFragment" method="WebFragment" />
+    <pattern value="org.sqlunet.browser.web.WebModel" />
+    <pattern value="com.bbou.concurrency.TaskToastObserver.WithProgress" />
+    <pattern value="org.sqlunet.Word" />
+    <pattern value="org.sqlunet.wordnet.browser.WordFragment" />
+    <pattern value="org.sqlunet.wordnet.browser.WordFragment" method="WordFragment" />
+    <pattern value="org.sqlunet.wordnet.sql.WordNetImplementation" />
+    <pattern value="org.sqlunet.wordnet.sql.WordNetInterface" />
+    <pattern value="org.sqlunet.wordnet.provider.WordNetProvider" />
+    <pattern value="org.sqlunet.wordnet.WordPointer" />
+    <pattern value="org.sqlunet.framenet.provider.FrameNetContract.Words" />
+    <pattern value="org.sqlunet.wordnet.provider.WordNetContract.Words" />
+    <pattern value="org.sqlunet.bnc.provider.BNCContract.Words_BNCs" />
+    <pattern value="org.sqlunet.framenet.provider.FrameNetContract.Words_LexUnits_Frames" />
+    <pattern value="org.sqlunet.propbank.provider.PropBankContract.Words_PbRoleSets" />
+    <pattern value="org.sqlunet.verbnet.provider.VerbNetContract.Words_VnClasses" />
+    <pattern value="org.sqlunet.browser.xselector.XSelectorPointer" />
+    <pattern value="org.sqlunet.provider.XSqlUNetProvider" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="androidx.annotation.Nullable" />
