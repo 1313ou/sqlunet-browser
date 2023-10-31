@@ -24,7 +24,7 @@ public class PositionViewModel extends ViewModel
 
 	public void setPosition(int position)
 	{
-		Log.d(TAG, "setPosition " + position);
+		// Log.d(TAG, "setPosition " + position);
 		this.savedStateHandle.set("position", position);
 	}
 

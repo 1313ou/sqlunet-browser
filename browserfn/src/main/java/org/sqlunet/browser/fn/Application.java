@@ -27,7 +27,7 @@ public class Application extends AbstractApplication
 	@Override
 	public void setAllColorsFromResources(@NonNull final Context context)
 	{
-		Log.d(TAG, "setColors " + NightMode.nightModeToString(this));
+		// Log.d(TAG, "setColors " + NightMode.nightModeToString(this));
 		Colors.setColorsFromResources(context);
 		org.sqlunet.framenet.style.Colors.setColorsFromResources(context);
 	}
