@@ -77,9 +77,9 @@ public class MainActivity extends AppCompatActivity
 		NavigationUI.setupActionBarWithNavController(this, navController, this.appBarConfiguration);
 		NavigationUI.setupWithNavController(navView, navController);
 
-		//navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-		//	Log.d(TAG, "Nav " + destination);
-		//});
+		navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+			Log.d(TAG, "Nav: to " + destination);
+		});
 	}
 
 	@Override
