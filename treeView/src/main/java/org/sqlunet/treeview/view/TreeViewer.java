@@ -982,7 +982,7 @@ public class TreeViewer
 			ta.recycle();
 
 			int value = (int) (defaultValue * factor);
-			Log.d("INDENT ", "default " + defaultValue + " new " + value + " factor " + factor);
+			Log.d(TAG, "indent default=" + defaultValue + " new=" + value + " factor=" + factor);
 			return value;
 		}
 		return -1;
@@ -1000,7 +1000,7 @@ public class TreeViewer
 		{
 			int defaultValue = context.getResources().getDimensionPixelSize(R.dimen.height_row_min);
 			int value = (int) (defaultValue * factor);
-			Log.d("ROW HEIGHT ", "default " + defaultValue + " new " + value + " factor " + factor);
+			Log.d(TAG, "row height default=" + defaultValue + " new=" + value + " factor=" + factor);
 			return value;
 		}
 		return -1;
