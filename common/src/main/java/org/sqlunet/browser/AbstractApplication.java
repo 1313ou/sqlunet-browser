@@ -9,8 +9,10 @@ import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Build;
+import android.os.StrictMode;
 import android.util.Log;
 
+import org.sqlunet.browser.common.BuildConfig;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.nightmode.NightMode;
 import org.sqlunet.settings.Settings;
@@ -29,6 +31,7 @@ abstract public class AbstractApplication extends Application
 	@Override
 	public void onCreate()
 	{
+		// setStrictMode();
 		super.onCreate();
 		Settings.initializeDisplayPrefs(this);
 	}
@@ -43,6 +46,25 @@ abstract public class AbstractApplication extends Application
 	}
 
 	abstract public void setAllColorsFromResources(@NonNull final Context newContext);
+
+	private void setStrictMode()
+	{
+		if (BuildConfig.DEBUG)
+		{
+			StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder() //
+					.detectDiskReads() //
+					.detectDiskWrites() //
+					.detectNetwork()   // or .detectAll() for all detectable problems
+					.penaltyLog() //
+					.build());
+			StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder() //
+					.detectLeakedSqlLiteObjects() //
+					.detectLeakedClosableObjects() //
+					.penaltyLog() //
+					.penaltyDeath() //
+					.build());
+		}
+	}
 
 	// T A S K S
 
