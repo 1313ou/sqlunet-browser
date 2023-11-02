@@ -1189,7 +1189,7 @@ public class ExecAsyncTask
 		}
 
 		@Override
-		protected void onPostExecute(Boolean result)
+		protected void onPostExecute(final Boolean result)
 		{
 			if (this.observer != null)
 			{
