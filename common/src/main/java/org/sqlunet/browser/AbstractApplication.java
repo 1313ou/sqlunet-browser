@@ -47,6 +47,9 @@ abstract public class AbstractApplication extends Application
 
 	abstract public void setAllColorsFromResources(@NonNull final Context newContext);
 
+	/**
+	 * Strict mode debugging
+	 */
 	private void setStrictMode()
 	{
 		if (BuildConfig.DEBUG)
