@@ -76,16 +76,12 @@ public abstract class AbstractTableFragment extends ListFragment
 	}
 
 	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
-		makeModels();
-	}
-
-	@Override
 	public void onStart()
 	{
 		super.onStart();
+
+		// models
+		makeModels(); // sets cursor
 
 		// args
 		final Bundle args = getArguments();
@@ -180,6 +176,18 @@ public abstract class AbstractTableFragment extends ListFragment
 		this.model.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
 	}
 
+	@Override
+	public void onStop()
+	{
+		super.onStop();
+
+		CursorAdapter adapter = (CursorAdapter) getListAdapter();
+		if (adapter != null)
+		{
+			adapter.changeCursor(null);
+		}
+	}
+
 	/**
 	 * Make view models
 	 */
@@ -190,10 +198,7 @@ public abstract class AbstractTableFragment extends ListFragment
 
 			final CursorAdapter adapter = (CursorAdapter) getListAdapter();
 			assert adapter != null;
-			//noinspection EmptyTryBlock
-			try (Cursor ignored = adapter.swapCursor(cursor))
-			{
-			}
+			adapter.changeCursor(cursor);
 		});
 	}
 

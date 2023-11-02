@@ -143,10 +143,6 @@ public class SensesFragment extends ListFragment
 
 		// when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
 		getListView().setChoiceMode(this.activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
-
-		// data view models
-		Log.d(TAG, "Make models");
-		makeModels();
 	}
 
 	@Override
@@ -154,10 +150,28 @@ public class SensesFragment extends ListFragment
 	{
 		super.onStart();
 		Log.d(TAG, "Lifecycle: onStart (6) " + this);
+
+		// data view models
+		Log.d(TAG, "Make models");
+		makeModels(); // sets cursor
+
+		// data
 		senses();
 	}
 
 	// --deactivate--
+
+	@Override
+	public void onStop()
+	{
+		super.onStop();
+		Log.d(TAG, "Lifecycle: onStop(-4) " + this);
+		CursorAdapter adapter = (CursorAdapter) getListAdapter();
+		if (adapter != null)
+		{
+			adapter.changeCursor(null);
+		}
+	}
 
 	// H E L P E R S
 
@@ -251,10 +265,7 @@ public class SensesFragment extends ListFragment
 			// pass on to list adapter
 			final CursorAdapter adapter = (CursorAdapter) getListAdapter();
 			assert adapter != null;
-			//noinspection EmptyTryBlock
-			try (Cursor ignored = adapter.swapCursor(cursor))
-			{
-			}
+			adapter.changeCursor(cursor);
 		});
 
 		// position model

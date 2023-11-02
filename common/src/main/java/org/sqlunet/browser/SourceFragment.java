@@ -7,6 +7,7 @@ package org.sqlunet.browser;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CursorAdapter;
 import android.widget.ListAdapter;
@@ -48,22 +49,29 @@ public class SourceFragment extends ListFragment
 	}
 
 	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
-		makeModels();
-	}
-
-	@Override
 	public void onStart()
 	{
 		super.onStart();
+
+		// models
+		makeModels(); // sets cursor
 
 		// load the contents
 		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(Sources.URI));
 		final String[] projection = {Sources.ID + " AS _id", Sources.NAME, Sources.VERSION, Sources.URL, Sources.PROVIDER, Sources.REFERENCE};
 		final String sortOrder = Sources.ID;
 		this.model.loadData(uri, projection, null, null, sortOrder, null);
+	}
+
+	@Override
+	public void onStop()
+	{
+		super.onStop();
+		CursorAdapter adapter = (CursorAdapter) getListAdapter();
+		if (adapter != null)
+		{
+			adapter.changeCursor(null);
+		}
 	}
 
 	/**
@@ -76,10 +84,7 @@ public class SourceFragment extends ListFragment
 
 			final CursorAdapter adapter = (CursorAdapter) getListAdapter();
 			assert adapter != null;
-			//noinspection EmptyTryBlock
-			try (Cursor ignored = adapter.swapCursor(cursor))
-			{
-			}
+			adapter.changeCursor(cursor);
 		});
 	}
 }

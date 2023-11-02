@@ -168,12 +168,17 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 
 	// --deactivate--
 
-	//	@Override
-	//	public void onStop()
-	//	{
-	//		super.onStop();
-	//		Log.d(TAG, "Lifecycle: onStop(-4) " + this);
-	//	}
+	@Override
+	public void onStop()
+	{
+		super.onStop();
+		Log.d(TAG, "Lifecycle: onStop(-4) " + this);
+		CursorAdapter adapter = (CursorAdapter) getListAdapter();
+		if (adapter != null)
+		{
+			adapter.changeCursor(null);
+		}
+	}
 
 	//	@Override
 	//	public void onDestroyView()
@@ -308,10 +313,7 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 				// pass on to list adapter
 				final CursorAdapter adapter = (CursorAdapter) getListAdapter();
 				assert adapter != null;
-				//noinspection EmptyTryBlock
-				try (Cursor ignored = adapter.swapCursor(cursor))
-				{
-				}
+				adapter.changeCursor(cursor);
 			}
 		});
 
