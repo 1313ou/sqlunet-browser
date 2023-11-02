@@ -7,6 +7,9 @@
       <option name="METHOD_MATCHER_CONFIG" value="java.util.Formatter,format,java.io.Writer,append,com.google.common.base.Preconditions,checkNotNull,org.hibernate.Session,close,java.io.PrintWriter,printf,java.io.PrintStream,printf,android.content.res.Resources,obtainTypedArray,android.content.res.Resources.Theme,obtainStyledAttributes,android.content.Context,obtainStyledAttributes,androidx.test.core.app.ActivityScenario,launch" />
     </inspection_tool>
     <inspection_tool class="CheckEmptyScriptTag" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="CheckTagEmptyBody" enabled="true" level="WARNING" enabled_by_default="false">
+      <scope name="Project Files" level="WARNING" enabled="true" />
+    </inspection_tool>
     <inspection_tool class="ClangTidy" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="ClangdErrorsAndWarnings" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="Clazy" enabled="false" level="WARNING" enabled_by_default="false" />
@@ -69,5 +72,8 @@
     <inspection_tool class="UnusedValue" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="ValueMayNotFitIntoReceiver" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="VirtualCallInCtorOrDtor" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="XmlHighlighting" enabled="true" level="ERROR" enabled_by_default="false">
+      <scope name="Project Files" level="ERROR" enabled="true" />
+    </inspection_tool>
   </profile>
 </component>

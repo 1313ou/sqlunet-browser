@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
@@ -2759,6 +2760,10 @@
     <pattern value="org.sqlunet.verbnet.loaders.ClassFromWordModule" method="vnClassesCursorToTreeModel" />
     <pattern value="org.sqlunet.predicatematrix.loaders.BaseModule.VnClassLink" />
     <pattern value="com.bbou.concurrency.TaskToastObserver.WithStatus" />
+    <pattern value="org.sqlunet.predicatematrix.loaders.BaseModule" method="capitalize1" />
+    <pattern value="org.sqlunet.browser.SearchListener" method="search" />
+    <pattern value="org.sqlunet.browser.SearchListener" />
+    <pattern value="org.sqlunet.browser.AbstractApplication" method="setStrictMode" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="androidx.annotation.Nullable" />
