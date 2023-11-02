@@ -146,9 +146,6 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		Log.d(TAG, "onViewCreated() " + this + " from " + savedInstanceState);
 		super.onViewCreated(view, savedInstanceState);
 
-		// toolbar
-		final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
-
 		// menu provider
 		final MenuProvider menuProvider = new MenuProvider()
 		{
@@ -167,7 +164,9 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 				assert BaseSearchFragment.this.searchView != null; // must have
 				setupSearchView(BaseSearchFragment.this.searchView, getSearchInfo(requireActivity()));
 
-				// set spinner, searchitem
+				// toolbar
+				// set spinner, searchview
+				final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
 				assert toolbar != null; // must have
 				setupToolBar(toolbar);
 			}
