@@ -170,10 +170,11 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 	// --deactivate--
 
 	@Override
-	public void onStop()
+	public void onDestroyView()
 	{
-		super.onStop();
-		Log.d(TAG, "Lifecycle: onStop(-4) " + this);
+		super.onDestroyView();
+		Log.d(TAG, "Lifecycle: onDestroyView(-3) " + this);
+
 		CursorAdapter adapter = (CursorAdapter) getListAdapter();
 		if (adapter != null)
 		{

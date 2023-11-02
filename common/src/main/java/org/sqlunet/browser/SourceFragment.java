@@ -59,9 +59,10 @@ public class SourceFragment extends ListFragment
 	}
 
 	@Override
-	public void onStop()
+	public void onDestroyView()
 	{
-		super.onStop();
+		super.onDestroyView();
+
 		CursorAdapter adapter = (CursorAdapter) getListAdapter();
 		if (adapter != null)
 		{

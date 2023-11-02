@@ -476,9 +476,12 @@ public class XSelectorsFragment extends BaseSelectorsExpandableListFragment
 
 		final LifecycleOwner owner = getViewLifecycleOwner();
 		this.wordIdFromWordModel = new ViewModelProvider(this).get("vn:xselectors.wordid(word)", SqlunetViewModel.class);
-		this.wordIdFromWordModel.getData().observe(owner, unusedCursor -> {
+		this.wordIdFromWordModel.getData().observe(owner, cursor -> {
 
-			unusedCursor.close();
+			if (cursor != null)
+			{
+				cursor.close();
+			}
 			this.wordIdFromWordModel.getData().removeObservers(this);
 
 			final ExpandableListAdapter adapter = makeAdapter();
