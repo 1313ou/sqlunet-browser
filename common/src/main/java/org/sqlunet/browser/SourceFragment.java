@@ -4,11 +4,8 @@
 
 package org.sqlunet.browser;
 
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.CursorAdapter;
 import android.widget.ListAdapter;
 import android.widget.SimpleCursorAdapter;
@@ -17,8 +14,6 @@ import org.sqlunet.browser.common.R;
 import org.sqlunet.provider.XNetContract.Sources;
 import org.sqlunet.provider.XSqlUNetProvider;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.ListFragment;
 import androidx.lifecycle.ViewModelProvider;
 

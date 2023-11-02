@@ -22,7 +22,6 @@ import org.sqlunet.verbnet.provider.VerbNetProvider;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 /**
