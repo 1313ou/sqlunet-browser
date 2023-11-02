@@ -4,6 +4,7 @@
 
 package org.sqlunet.browser;
 
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -75,7 +76,10 @@ public class SourceFragment extends ListFragment
 
 			final CursorAdapter adapter = (CursorAdapter) getListAdapter();
 			assert adapter != null;
-			adapter.swapCursor(cursor);
+			//noinspection EmptyTryBlock
+			try (Cursor ignored = adapter.swapCursor(cursor))
+			{
+			}
 		});
 	}
 }

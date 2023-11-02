@@ -190,8 +190,10 @@ public abstract class AbstractTableFragment extends ListFragment
 
 			final CursorAdapter adapter = (CursorAdapter) getListAdapter();
 			assert adapter != null;
-			adapter.swapCursor(cursor);
-			((CursorAdapter) getListAdapter()).swapCursor(cursor);
+			//noinspection EmptyTryBlock
+			try (Cursor ignored = adapter.swapCursor(cursor))
+			{
+			}
 		});
 	}
 

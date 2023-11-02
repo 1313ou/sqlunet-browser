@@ -358,7 +358,10 @@ public class SnSelectorsFragment extends BaseSelectorsListFragment
 				// pass on to list adapter
 				final CursorAdapter adapter = (CursorAdapter) getListAdapter();
 				assert adapter != null;
-				adapter.swapCursor(cursor2);
+				//noinspection EmptyTryBlock
+				try (Cursor ignored = adapter.swapCursor(cursor2))
+				{
+				}
 			}
 		});
 

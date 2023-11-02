@@ -175,14 +175,17 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 	public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 	{
 		cursor.moveToFirst();
-		this.adapter.swapCursor(cursor);
+		//noinspection EmptyTryBlock
+		try (Cursor ignored = adapter.swapCursor(cursor))
+		{
+		}
 	}
 
 	@Override
 	public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 	{
 		//noinspection EmptyTryBlock
-		try (Cursor ignored = this.adapter.swapCursor(null))
+		try (Cursor ignored = adapter.swapCursor(null))
 		{
 		}
 	}
@@ -258,7 +261,10 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 								final SearchRecentSuggestions suggestions = new SearchRecentSuggestions(requireContext(), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES);
 								suggestions.delete(itemId);
 								final Cursor cursor2 = suggestions.cursor();
-								adapter.swapCursor(cursor2);
+								//noinspection EmptyTryBlock
+								try (Cursor ignored = adapter.swapCursor(cursor2))
+								{
+								}
 
 								Toast.makeText(requireContext(), getResources().getString(R.string.title_history_deleted) + ' ' + data, Toast.LENGTH_SHORT).show();
 								return true;
