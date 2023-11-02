@@ -27,8 +27,8 @@ allprojects {
     }
 
     ext {
-        versionCode = 140
-        versionName = '2.140'
+        versionCode = 141
+        versionName = '2.141'
         minSdkVersion = 19
         targetSdkVersion = 33
         compileSdk = 34
@@ -70,8 +70,10 @@ idea {
         project.rootProject.subprojects.each {
 
             println("module $it @ " + it.projectDir)
-            ["artwork", "artwork-assets", "artwork-assets", "artwork-relations", "data"].each { it2 ->
-                excludeDirs += file("$it.projectDir/$it2")
+            ["artwork", "artwork-assets", "artwork-assets", "artwork-relations", "data"].each { it2 -> {
+                def folder = file( "$it.projectDir/$it2" )
+                if (folder.isDirectory() && folder.exists()) excludeDirs += folder
+                }
             }
             /*
             ["artwork", "artwork-assets", "artwork-relations", "data"].each { it2 ->
