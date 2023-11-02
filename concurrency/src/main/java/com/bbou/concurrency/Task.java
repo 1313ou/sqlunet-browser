@@ -261,20 +261,20 @@ abstract public class Task<Params, Progress, Result> implements Cancelable
 	 * @param params parameters
 	 */
 	@Nullable
-	protected abstract Result doInBackground(Params[] params);
+	protected abstract Result doInBackground(final Params[] params);
 
 	protected void onPreExecute()
 	{
 	}
 
 	@SuppressWarnings("UnusedReturnValue")
-	protected void onPostExecute(Result result)
+	protected void onPostExecute(final Result result)
 	{
 	}
 
 	// C A N C E L
 
-	protected void onCancelled(Result result)
+	protected void onCancelled(final Result result)
 	{
 		this.onCancelled();
 	}
@@ -289,7 +289,7 @@ abstract public class Task<Params, Progress, Result> implements Cancelable
 	}
 
 	@Override
-	public final boolean cancel(boolean mayInterruptIfRunning)
+	public final boolean cancel(final boolean mayInterruptIfRunning)
 	{
 		this.cancelled.set(true);
 		return this.future.cancel(mayInterruptIfRunning);
@@ -302,7 +302,7 @@ abstract public class Task<Params, Progress, Result> implements Cancelable
 		return this.future.get();
 	}
 
-	public final Result get(long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException
+	public final Result get(final long timeout, final TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException
 	{
 		return this.future.get(timeout, unit);
 	}
@@ -315,12 +315,12 @@ abstract public class Task<Params, Progress, Result> implements Cancelable
 	 * @param values progress values
 	 */
 	@SuppressWarnings("UnusedReturnValue")
-	protected void onProgressUpdate(Progress[] values)
+	protected void onProgressUpdate(final Progress[] values)
 	{
 	}
 
 	@SafeVarargs
-	protected final void publishProgress(Progress... values)
+	protected final void publishProgress(final Progress... values)
 	{
 		if (!this.isCancelled())
 		{
@@ -333,14 +333,14 @@ abstract public class Task<Params, Progress, Result> implements Cancelable
 	@NonNull
 	@SafeVarargs
 	@SuppressWarnings("UnusedReturnValue")
-	public final Task<Params, Progress, Result> execute(Params... params)
+	public final Task<Params, Progress, Result> execute(final Params... params)
 	{
 		return this.executeOnExecutor(defaultExecutor, params);
 	}
 
 	@NonNull
 	@SafeVarargs
-	public final Task<Params, Progress, Result> executeOnExecutor(@NonNull Executor exec, Params... params)
+	public final Task<Params, Progress, Result> executeOnExecutor(@NonNull final Executor exec, final Params... params)
 	{
 		if (this.status != Task.Status.PENDING)
 		{
@@ -369,7 +369,7 @@ abstract public class Task<Params, Progress, Result> implements Cancelable
 		defaultExecutor.execute(runnable);
 	}
 
-	private void postResultIfNotInvoked(Result result)
+	private void postResultIfNotInvoked(final Result result)
 	{
 		boolean wasTaskInvoked = this.taskInvoked.get();
 		if (!wasTaskInvoked)
@@ -378,7 +378,7 @@ abstract public class Task<Params, Progress, Result> implements Cancelable
 		}
 	}
 
-	private void postResult(Result result)
+	private void postResult(final Result result)
 	{
 		Message message = getHandler().obtainMessage(MESSAGE_POST_RESULT, new Pair<>(this.forward, result));
 		message.sendToTarget();
