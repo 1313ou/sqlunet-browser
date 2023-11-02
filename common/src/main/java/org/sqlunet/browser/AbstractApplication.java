@@ -31,7 +31,8 @@ abstract public class AbstractApplication extends Application
 	@Override
 	public void onCreate()
 	{
-		// setStrictMode();
+		// setThreadStrictMode();
+		// setVmStrictMode();
 		super.onCreate();
 		Settings.initializeDisplayPrefs(this);
 	}
@@ -48,9 +49,25 @@ abstract public class AbstractApplication extends Application
 	abstract public void setAllColorsFromResources(@NonNull final Context newContext);
 
 	/**
-	 * Strict mode debugging
+	 * Strict mode for VM
 	 */
-	private void setStrictMode()
+	private void setVmStrictMode()
+	{
+		if (BuildConfig.DEBUG)
+		{
+			StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder() //
+					.detectLeakedSqlLiteObjects() //
+					.detectLeakedClosableObjects() //
+					.penaltyLog() //
+					.penaltyDeath() //
+					.build());
+		}
+	}
+
+	/**
+	 * Strict mode for threads
+	 */
+	private void setThreadStrictMode()
 	{
 		if (BuildConfig.DEBUG)
 		{
@@ -59,12 +76,6 @@ abstract public class AbstractApplication extends Application
 					.detectDiskWrites() //
 					.detectNetwork()   // or .detectAll() for all detectable problems
 					.penaltyLog() //
-					.build());
-			StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder() //
-					.detectLeakedSqlLiteObjects() //
-					.detectLeakedClosableObjects() //
-					.penaltyLog() //
-					.penaltyDeath() //
 					.build());
 		}
 	}
