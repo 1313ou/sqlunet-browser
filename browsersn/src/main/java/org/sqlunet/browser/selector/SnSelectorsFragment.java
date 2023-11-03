@@ -226,19 +226,6 @@ public class SnSelectorsFragment extends BaseSelectorsListFragment
 
 	// --deactivate--
 
-	@Override
-	public void onDestroyView()
-	{
-		super.onDestroyView();
-		Log.d(TAG, "Lifecycle: onDestroyView(-3) " + this);
-
-		CursorAdapter adapter = (CursorAdapter) getListAdapter();
-		if (adapter != null)
-		{
-			adapter.changeCursor(null);
-		}
-	}
-
 	//	@Override
 	//	public void onDestroyView()
 	//	{
@@ -246,12 +233,18 @@ public class SnSelectorsFragment extends BaseSelectorsListFragment
 	//		Log.d(TAG, "Lifecycle: onDestroyView (-3) " + this);
 	//	}
 
-	//	@Override
-	//	public void onDestroy()
-	//	{
-	//		super.onDestroy();
-	//		Log.d(TAG, "Lifecycle: onDestroy (-2) " + this);
-	//	}
+	@Override
+	public void onDestroy()
+	{
+		super.onDestroy();
+		Log.d(TAG, "Lifecycle: onDestroy (-2) " + this);
+
+		CursorAdapter adapter = (CursorAdapter) getListAdapter();
+		if (adapter != null)
+		{
+			adapter.changeCursor(null);
+		}
+	}
 
 	//	@Override
 	//	public void onDetach()

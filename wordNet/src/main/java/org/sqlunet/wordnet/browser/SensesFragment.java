@@ -162,10 +162,10 @@ public class SensesFragment extends ListFragment
 	// --deactivate--
 
 	@Override
-	public void onDestroyView()
+	public void onDestroy()
 	{
-		super.onDestroyView();
-		Log.d(TAG, "Lifecycle: onDestroyView(-3) " + this);
+		super.onDestroy();
+		Log.d(TAG, "Lifecycle: onDestroy (-2) " + this);
 
 		CursorAdapter adapter = (CursorAdapter) getListAdapter();
 		if (adapter != null)

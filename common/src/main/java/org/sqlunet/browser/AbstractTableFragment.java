@@ -177,9 +177,9 @@ public abstract class AbstractTableFragment extends ListFragment
 	}
 
 	@Override
-	public void onDestroyView()
+	public void onDestroy()
 	{
-		super.onDestroyView();
+		super.onDestroy();
 
 		CursorAdapter adapter = (CursorAdapter) getListAdapter();
 		if (adapter != null)
