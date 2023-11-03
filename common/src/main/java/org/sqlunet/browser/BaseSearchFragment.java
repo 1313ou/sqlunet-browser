@@ -117,8 +117,11 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		final FragmentManager manager = getChildFragmentManager();
 		manager.addOnBackStackChangedListener(() -> {
 
+			int count = manager.getBackStackEntryCount();
+			Log.d(TAG, "BackStack: " + count);
 			final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
-			if (manager.getBackStackEntryCount() > 0)
+			assert toolbar != null;
+			if (count > 0)
 			{
 				toolbar.setSubtitle(query);
 			}
@@ -194,6 +197,16 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		super.onPause();
 
 		closeKeyboard();
+	}
+
+	@Override
+	public void onDestroyView()
+	{
+		super.onDestroyView();
+
+		final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
+		assert toolbar != null;
+		toolbar.setSubtitle(R.string.app_subname);
 	}
 
 	// T O O L B A R
