@@ -1,9 +1,10 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
 package org.sqlunet.browser.selector;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -99,9 +100,17 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 	// --activate--
 
 	@Override
+	public void onAttach(@NonNull final Context context)
+	{
+		super.onAttach(context);
+		Log.d(TAG, "Lifecycle: onAttach (1) " + this);
+	}
+
+	@Override
 	public void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		Log.d(TAG, "Lifecycle: onCreate (2) " + this);
 
 		// arguments
 		Bundle args = getArguments();
@@ -142,12 +151,12 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 		makeModels();
 	}
 
-	//	@Override
-	//	public void onActivityCreated(@Nullable final Bundle savedInstanceState)
-	//	{
-	//		super.onActivityCreated(savedInstanceState);
-	//		Log.d(TAG, "Lifecycle: onActivityCreated (5) " + this);
-	//	}
+	@Override
+	public void onActivityCreated(@Nullable final Bundle savedInstanceState)
+	{
+		super.onActivityCreated(savedInstanceState);
+		Log.d(TAG, "Lifecycle: onActivityCreated (5) " + this);
+	}
 
 	@Override
 	public void onStart()
@@ -168,19 +177,19 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 
 	// --deactivate--
 
-	//	@Override
-	//	public void onStop()
-	//	{
-	//		super.onStop();
-	//		Log.d(TAG, "Lifecycle: onStop(-4) " + this);
-	//	}
+	@Override
+	public void onStop()
+	{
+		super.onStop();
+		Log.d(TAG, "Lifecycle: onStop(-4) " + this);
+	}
 
-	//	@Override
-	//	public void onDestroyView()
-	//	{
-	//		super.onDestroyView();
-	//		Log.d(TAG, "Lifecycle: onDestroyView (-3) " + this);
-	//	}
+	@Override
+	public void onDestroyView()
+	{
+		super.onDestroyView();
+		Log.d(TAG, "Lifecycle: onDestroyView (-3) " + this);
+	}
 
 	@Override
 	public void onDestroy()
@@ -195,12 +204,12 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 		}
 	}
 
-	//	@Override
-	//	public void onDetach()
-	//	{
-	//		super.onDetach();
-	//		Log.d(TAG, "Lifecycle: onDetach (-1) " + this);
-	//	}
+	@Override
+	public void onDetach()
+	{
+		super.onDetach();
+		Log.d(TAG, "Lifecycle: onDetach (-1) " + this);
+	}
 
 	// H E L P E R S
 
