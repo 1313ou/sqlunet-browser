@@ -223,8 +223,8 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		getChildFragmentManager() //
 				.beginTransaction() //
 				.setReorderingAllowed(true) //
-				.replace(R.id.container_predicatematrix, fragment, BrowsePredicateMatrixFragment.FRAGMENT_TAG) //
-				.addToBackStack(BrowsePredicateMatrixFragment.FRAGMENT_TAG) //
+				.replace(R.id.container_predicatematrix, fragment, FRAGMENT_TAG) //
+				.addToBackStack(FRAGMENT_TAG) //
 				.commit();
 	}
 
@@ -296,8 +296,8 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		getChildFragmentManager() //
 				.beginTransaction() //
 				.setReorderingAllowed(true) //
-				.replace(R.id.container_predicatematrix, fragment, BrowsePredicateMatrixFragment.FRAGMENT_TAG) //
-				.addToBackStack(BrowsePredicateMatrixFragment.FRAGMENT_TAG) //
+				.replace(R.id.container_predicatematrix, fragment, FRAGMENT_TAG) //
+				.addToBackStack(FRAGMENT_TAG) //
 				.commit();
 	}
 

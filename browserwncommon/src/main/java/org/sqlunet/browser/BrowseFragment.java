@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CursorAdapter;
 
 import org.sqlunet.browser.config.TableActivity;
 import org.sqlunet.browser.selector.Browse1Activity;
@@ -299,7 +298,7 @@ public class BrowseFragment extends BaseSearchFragment
 			args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters);
 
 			//targetIntent = makeSelectorIntent();
-			fragment = makeSelectorFragment();
+			fragment = makeOverviewFragment();
 		}
 
 		// menuDispatch
@@ -326,8 +325,9 @@ public class BrowseFragment extends BaseSearchFragment
 			getChildFragmentManager() //
 					.beginTransaction() //
 					.setReorderingAllowed(true) //
-					.replace(R.id.container_browse, fragment, BaseSelectorsFragment.FRAGMENT_TAG) //
-					.addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG).commit();
+					.replace(R.id.container_browse, fragment, BaseBrowse1Fragment.FRAGMENT_TAG) //
+					.addToBackStack(BaseBrowse1Fragment.FRAGMENT_TAG) //
+					.commit();
 		}
 	}
 
@@ -345,12 +345,12 @@ public class BrowseFragment extends BaseSearchFragment
 	// I N T E N T / F R A G M E N T   F A C T O R Y
 
 	/**
-	 * Fragment factory
+	 * Browse1/Web fragment factory
 	 *
 	 * @return fragment
 	 */
 	@Nullable
-	private Fragment makeSelectorFragment()
+	private Fragment makeOverviewFragment()
 	{
 		// context
 		final Context context = requireContext();

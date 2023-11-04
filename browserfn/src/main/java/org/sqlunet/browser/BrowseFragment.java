@@ -200,7 +200,7 @@ public class BrowseFragment extends BaseSearchFragment
 			args.putString(ProviderArgs.ARG_QUERYSTRING, query);
 
 			//targetIntent = makeSelectorIntent();
-			fragment = makeSelectorFragment();
+			fragment = makeOverviewFragment();
 		}
 
 		// menuDispatch
@@ -227,8 +227,8 @@ public class BrowseFragment extends BaseSearchFragment
 			getChildFragmentManager() //
 					.beginTransaction() //
 					.setReorderingAllowed(true) //
-					.replace(R.id.container_browse, fragment, BaseSelectorsFragment.FRAGMENT_TAG) //
-					.addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG)
+					.replace(R.id.container_browse, fragment, BaseBrowse1Fragment.FRAGMENT_TAG) //
+					.addToBackStack(BaseBrowse1Fragment.FRAGMENT_TAG)
 					.commit();
 		}
 	}
@@ -247,12 +247,12 @@ public class BrowseFragment extends BaseSearchFragment
 	// I N T E N T / F R A G M E N T   F A C T O R Y
 
 	/**
-	 * Fragment factory
+	 * Browse1/Web fragment factory
 	 *
 	 * @return fragment
 	 */
 	@Nullable
-	private Fragment makeSelectorFragment()
+	private Fragment makeOverviewFragment()
 	{
 		// context
 		final Context context = requireContext();
