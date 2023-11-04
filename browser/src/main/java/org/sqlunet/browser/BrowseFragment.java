@@ -19,7 +19,7 @@ import android.widget.Spinner;
 
 import org.sqlunet.browser.config.TableActivity;
 import org.sqlunet.browser.selector.Browse1Activity;
-import org.sqlunet.browser.selector.Browse1Fragment;
+import org.sqlunet.browser.xn.selector.Browse1Fragment;
 import org.sqlunet.browser.web.WebActivity;
 import org.sqlunet.browser.web.WebFragment;
 import org.sqlunet.browser.xn.Settings;

@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser.selector;
+package org.sqlunet.browser.xn.selector;
 
 import android.database.Cursor;
 import android.net.Uri;
@@ -26,12 +26,15 @@ import com.google.android.material.snackbar.Snackbar;
 import org.sqlunet.browser.BaseSelectorsListFragment;
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.PositionViewModel;
-import org.sqlunet.browser.Selectors;
+import org.sqlunet.browser.R;
 import org.sqlunet.browser.SqlunetViewModel;
-import org.sqlunet.browser.sn.R;
+import org.sqlunet.browser.selector.PosSelectorPointer;
+import org.sqlunet.browser.selector.SelectorPointer;
+import org.sqlunet.loaders.Queries;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains;
-import org.sqlunet.wordnet.provider.WordNetProvider;
+import org.sqlunet.provider.XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords;
+import org.sqlunet.provider.XSqlUNetProvider;
+import org.sqlunet.speak.Pronunciation;
 
 import java.util.Locale;
 
@@ -67,9 +70,9 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 	private boolean activateOnItemClick = true;
 
 	/**
-	 * The fragment's current callbacks, which are notified of list item clicks.
+	 * The fragment's current callback, which is notified of list item clicks.
 	 */
-	private Listener[] listeners;
+	private Listener listener;
 
 	/**
 	 * Search query
@@ -80,7 +83,7 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 	/**
 	 * Word id
 	 */
-	private long wordId = -1;
+	private long wordId;
 
 	/**
 	 * Data view model
@@ -104,9 +107,6 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 		// arguments
 		Bundle args = getArguments();
 		assert args != null;
-
-		// activate on click
-		this.activateOnItemClick = args.getBoolean(Selectors.IS_TWO_PANE, false);
 
 		// target word
 		String query = args.getString(ProviderArgs.ARG_QUERYSTRING);
@@ -209,35 +209,51 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 		Log.d(TAG, "Make adapter");
 		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(requireContext(), R.layout.item_selector, null, //
 				new String[]{ //
-						Words_Senses_CasedWords_Synsets_Poses_Domains.POSID, //
-						Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN, //
-						Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION, //
-						Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD, //
-						Words_Senses_CasedWords_Synsets_Poses_Domains.SENSENUM, //
-						Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEKEY, //
-						Words_Senses_CasedWords_Synsets_Poses_Domains.LEXID, //
-						Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT, //
-						Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID, //
-						Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID, //
-						Words_Senses_CasedWords_Synsets_Poses_Domains.SENSEID, //
+						Words_Pronunciations_FnWords_PbWords_VnWords.POS, //
+						Words_Pronunciations_FnWords_PbWords_VnWords.SENSENUM, //
+						Words_Pronunciations_FnWords_PbWords_VnWords.DOMAIN, //
+						Words_Pronunciations_FnWords_PbWords_VnWords.DEFINITION, //
+						Words_Pronunciations_FnWords_PbWords_VnWords.CASED, //
+						Words_Pronunciations_FnWords_PbWords_VnWords.PRONUNCIATIONS, //
+						Words_Pronunciations_FnWords_PbWords_VnWords.TAGCOUNT, //
+						Words_Pronunciations_FnWords_PbWords_VnWords.LUID, //
+						Words_Pronunciations_FnWords_PbWords_VnWords.SENSEKEY, //
+						Words_Pronunciations_FnWords_PbWords_VnWords.WORDID, //
+						Words_Pronunciations_FnWords_PbWords_VnWords.SYNSETID, //
+						Words_Pronunciations_FnWords_PbWords_VnWords.SENSEID, //
+						Words_Pronunciations_FnWords_PbWords_VnWords.VNWORDID, //
+						Words_Pronunciations_FnWords_PbWords_VnWords.PBWORDID, //
+						Words_Pronunciations_FnWords_PbWords_VnWords.FNWORDID, //
 				}, //
 				new int[]{ //
 						R.id.pos, //
+						R.id.sensenum, //
 						R.id.domain, //
 						R.id.definition, //
 						R.id.cased, //
-						R.id.sensenum, //
-						R.id.sensekey, //
-						R.id.lexid, //
+						R.id.pronunciation, //
 						R.id.tagcount, //
+						R.id.lexid, //
+						R.id.sensekey, //
 						R.id.wordid, //
 						R.id.synsetid, //
 						R.id.senseid, //
+						R.id.vnwordid, //
+						R.id.pbwordid, //
+						R.id.fnwordid, //
 				}, 0);
 
 		adapter.setViewBinder((view, cursor, columnIndex) -> {
 
 			String text = cursor.getString(columnIndex);
+
+			// pronunciation
+			if (view.getId() == R.id.pronunciation)
+			{
+				text = Pronunciation.sortedPronunciations(text);
+			}
+
+			// visibility
 			if (text == null)
 			{
 				view.setVisibility(View.GONE);
@@ -248,6 +264,7 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 				view.setVisibility(View.VISIBLE);
 			}
 
+			// type of view
 			if (view instanceof TextView)
 			{
 				((TextView) view).setText(text);
@@ -321,8 +338,8 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 	private void load()
 	{
 		// load the contents
-		final Module.ContentProviderSql sql = org.sqlunet.wordnet.loaders.Queries.prepareSelectSn(SelectorsFragment.this.word);
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
+		final Module.ContentProviderSql sql = Queries.prepareWordPronunciationSelect(this.word);
+		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(sql.providerUri));
 		this.dataModel.loadData(uri, sql, this::wordIdFromWordPostProcess);
 	}
 
@@ -335,22 +352,23 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 	{
 		if (cursor.moveToFirst())
 		{
-			final int idWordId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID);
+			final int idWordId = cursor.getColumnIndex(Words_Pronunciations_FnWords_PbWords_VnWords.WORDID);
 			this.wordId = cursor.getLong(idWordId);
 		}
-		// cursor.close()
+		// cursor.close();
 	}
 
 	// L I S T E N E R
 
 	/**
-	 * Set listeners
+	 * Set listener
 	 *
-	 * @param listeners listeners
+	 * @param listener listener
 	 */
-	public void setListeners(final Listener... listeners)
+	@SuppressWarnings("WeakerAccess")
+	public void setListener(final Listener listener)
 	{
-		this.listeners = listeners;
+		this.listener = listener;
 	}
 
 	// C L I C K
@@ -382,7 +400,7 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 	{
 		this.positionModel.setPosition(position);
 
-		if (this.listeners != null)
+		if (this.listener != null)
 		{
 			final SimpleCursorAdapter adapter = (SimpleCursorAdapter) getListAdapter();
 			assert adapter != null;
@@ -391,36 +409,23 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 			if (cursor.moveToPosition(position))
 			{
 				// column indexes
-				final int idSynsetId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID);
-				final int idPos = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.POS);
-				final int idCased = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD);
+				final int idSynsetId = cursor.getColumnIndex(Words_Pronunciations_FnWords_PbWords_VnWords.SYNSETID);
+				final int idPos = cursor.getColumnIndex(Words_Pronunciations_FnWords_PbWords_VnWords.POS);
+				final int idCased = cursor.getColumnIndex(Words_Pronunciations_FnWords_PbWords_VnWords.CASED);
+				final int idPronunciation = cursor.getColumnIndex(Words_Pronunciations_FnWords_PbWords_VnWords.PRONUNCIATIONS);
 
 				// retrieve
 				final long synsetId = cursor.isNull(idSynsetId) ? 0 : cursor.getLong(idSynsetId);
 				final String pos = cursor.getString(idPos);
 				final String cased = cursor.getString(idCased);
-				final String pronunciation = null;
+				final String pronunciation = cursor.getString(idPronunciation);
 
 				// pointer
 				final SelectorPointer pointer = new PosSelectorPointer(synsetId, this.wordId, pos.charAt(0));
 
 				// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
-				for (Listener listener : this.listeners)
-				{
-					//noinspection ConstantConditions
-					listener.onItemSelected(pointer, this.word, cased, pronunciation, pos);
-				}
+				this.listener.onItemSelected(pointer, this.word, cased, pronunciation, pos);
 			}
 		}
-	}
-
-	/**
-	 * Deactivate all
-	 */
-	public void deactivate()
-	{
-		final ListView listView = getListView();
-		listView.clearChoices();
-		listView.requestLayout();
 	}
 }

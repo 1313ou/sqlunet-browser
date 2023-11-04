@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser.xselector;
+package org.sqlunet.browser.xn.selector;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,10 +15,11 @@ import org.sqlunet.browser.BaseBrowse2Fragment;
 import org.sqlunet.browser.BaseSelectorsFragment;
 import org.sqlunet.browser.Browse2Activity;
 import org.sqlunet.browser.Browse2Fragment;
+import org.sqlunet.browser.R;
 import org.sqlunet.browser.Selectors;
-import org.sqlunet.browser.vn.R;
+import org.sqlunet.browser.selector.SelectorPointer;
+import org.sqlunet.browser.xn.Settings;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.settings.Settings;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,11 +27,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 /**
- * X selector fragment
+ * Selector fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class XBrowse1Fragment extends BaseBrowse1Fragment implements XSelectorsFragment.Listener
+public class Browse1Fragment extends BaseBrowse1Fragment implements SelectorsFragment.Listener
 {
 	// C R E A T I O N
 
@@ -38,30 +39,30 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements XSelectorsF
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
 		// view
-		final View view = inflater.inflate(Settings.getPaneLayout(R.layout.fragment_xbrowse_first, R.layout.fragment_xbrowse1, R.layout.fragment_xbrowse1_browse2), container, false);
+		final View view = inflater.inflate(Settings.getPaneLayout(R.layout.fragment_browse_first, R.layout.fragment_browse1, R.layout.fragment_browse1_browse2), container, false);
 		boolean isTwoPane = isTwoPane(view);
 
 		// manager
 		assert isAdded();
 		final FragmentManager manager = getChildFragmentManager();
 
-		// x selector fragment
-		// transaction on selectors pane
-		XSelectorsFragment xSelectorsFragment = (XSelectorsFragment) manager.findFragmentByTag(BaseSelectorsFragment.FRAGMENT_TAG);
-		if (xSelectorsFragment == null)
+		// selector fragment
+		SelectorsFragment selectorsFragment = (SelectorsFragment) manager.findFragmentByTag(BaseSelectorsFragment.FRAGMENT_TAG);
+		if (selectorsFragment == null)
 		{
-			xSelectorsFragment = new XSelectorsFragment();
-			xSelectorsFragment.setArguments(getArguments());
+			selectorsFragment = new SelectorsFragment();
+			selectorsFragment.setArguments(getArguments());
 		}
-		Bundle args1 = xSelectorsFragment.getArguments();
+		Bundle args1 = selectorsFragment.getArguments();
 		if (args1 == null)
 		{
 			args1 = new Bundle();
 		}
 		args1.putBoolean(Selectors.IS_TWO_PANE, isTwoPane);
-		xSelectorsFragment.setListener(this);
+		selectorsFragment.setListener(this);
 		manager.beginTransaction() //
-				.replace(R.id.container_xselectors, xSelectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG) //
+				.setReorderingAllowed(true) //
+				.replace(R.id.container_selectors, selectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG) //
 				// .addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG) //
 				.commit();
 
@@ -69,12 +70,11 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements XSelectorsF
 		if (isTwoPane)
 		{
 			// in two-pane mode, list items should be given the 'activated' state when touched.
-			xSelectorsFragment.setActivateOnItemClick(true);
+			selectorsFragment.setActivateOnItemClick(true);
 
 			// detail fragment (rigid layout)
-			Fragment browse2Fragment;
-			// browse2Fragment = manager.findFragmentByTag(BaseBrowse2Fragment.FRAGMENT_TAG);
-			// if (browse2Fragment == null)
+			Fragment browse2Fragment = manager.findFragmentByTag(BaseBrowse2Fragment.FRAGMENT_TAG);
+			if (browse2Fragment == null)
 			{
 				browse2Fragment = new Browse2Fragment();
 				final Bundle args2 = new Bundle();
@@ -94,10 +94,10 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements XSelectorsF
 	// I T E M S E L E C T I O N H A N D L I N G
 
 	/**
-	 * Callback method indicating that the item with the given ID was selected.
+	 * Callback method from {@link SelectorsFragment.Listener} indicating that the item with the given ID was selected.
 	 */
 	@Override
-	public void onItemSelected(final XSelectorPointer pointer, final String word, final String cased, final String pronunciation, final String pos)
+	public void onItemSelected(final SelectorPointer pointer, final String word, final String cased, final String pronunciation, final String pos)
 	{
 		final View view = getView();
 		assert view != null;

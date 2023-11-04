@@ -20,7 +20,7 @@ import org.sqlunet.browser.vn.Settings.Selector;
 import org.sqlunet.browser.web.WebActivity;
 import org.sqlunet.browser.web.WebFragment;
 import org.sqlunet.browser.xselector.XBrowse1Activity;
-import org.sqlunet.browser.xselector.XBrowse1Fragment;
+import org.sqlunet.browser.vn.xselector.XBrowse1Fragment;
 import org.sqlunet.history.History;
 import org.sqlunet.propbank.PbRoleSetPointer;
 import org.sqlunet.propbank.browser.PbRoleSetActivity;

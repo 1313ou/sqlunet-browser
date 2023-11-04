@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser.xselector;
+package org.sqlunet.browser.vn.xselector;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,13 +16,10 @@ import org.sqlunet.browser.BaseSelectorsFragment;
 import org.sqlunet.browser.Browse2Activity;
 import org.sqlunet.browser.Browse2Fragment;
 import org.sqlunet.browser.Selectors;
-import org.sqlunet.browser.selector.CollocationSelectorPointer;
-import org.sqlunet.browser.selector.SelectorPointer;
-import org.sqlunet.browser.selector.SelectorsFragment;
-import org.sqlunet.browser.selector.SnSelectorsFragment;
-import org.sqlunet.browser.sn.R;
-import org.sqlunet.browser.sn.Settings;
+import org.sqlunet.browser.vn.R;
+import org.sqlunet.browser.xselector.XSelectorPointer;
 import org.sqlunet.provider.ProviderArgs;
+import org.sqlunet.settings.Settings;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,7 +31,7 @@ import androidx.fragment.app.FragmentManager;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class XBrowse1Fragment extends BaseBrowse1Fragment implements SelectorsFragment.Listener, SnSelectorsFragment.Listener
+public class XBrowse1Fragment extends BaseBrowse1Fragment implements XSelectorsFragment.Listener
 {
 	// C R E A T I O N
 
@@ -51,9 +48,8 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements SelectorsFr
 
 		// x selector fragment
 		// transaction on selectors pane
-		XSelectorsFragment xSelectorsFragment;
-		//xSelectorsFragment = (XSelectorsFragment) manager.findFragmentByTag(BaseSelectorsFragment.FRAGMENT_TAG);
-		//if (xSelectorsFragment == null)
+		XSelectorsFragment xSelectorsFragment = (XSelectorsFragment) manager.findFragmentByTag(BaseSelectorsFragment.FRAGMENT_TAG);
+		if (xSelectorsFragment == null)
 		{
 			xSelectorsFragment = new XSelectorsFragment();
 			xSelectorsFragment.setArguments(getArguments());
@@ -64,7 +60,7 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements SelectorsFr
 			args1 = new Bundle();
 		}
 		args1.putBoolean(Selectors.IS_TWO_PANE, isTwoPane);
-		xSelectorsFragment.setListener(this, this);
+		xSelectorsFragment.setListener(this);
 		manager.beginTransaction() //
 				.replace(R.id.container_xselectors, xSelectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG) //
 				// .addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG) //
@@ -74,7 +70,7 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements SelectorsFr
 		if (isTwoPane)
 		{
 			// in two-pane mode, list items should be given the 'activated' state when touched.
-			// xSelectorsFragment.setActivateOnItemClick(true);
+			xSelectorsFragment.setActivateOnItemClick(true);
 
 			// detail fragment (rigid layout)
 			Fragment browse2Fragment;
@@ -99,10 +95,10 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements SelectorsFr
 	// I T E M S E L E C T I O N H A N D L I N G
 
 	/**
-	 * Callback method from {@link SelectorsFragment.Listener} indicating that the item with the given ID was selected.
+	 * Callback method indicating that the item with the given ID was selected.
 	 */
 	@Override
-	public void onItemSelected(@NonNull final SelectorPointer pointer, final String word, final String cased, final String pronunciation, final String pos)
+	public void onItemSelected(final XSelectorPointer pointer, final String word, final String cased, final String pronunciation, final String pos)
 	{
 		final View view = getView();
 		assert view != null;
@@ -131,34 +127,7 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements SelectorsFr
 			args.putString(ProviderArgs.ARG_HINTCASED, cased);
 			args.putString(ProviderArgs.ARG_HINTPRONUNCIATION, pronunciation);
 			args.putString(ProviderArgs.ARG_HINTPOS, pos);
-			final Intent intent = new Intent(requireContext(), Browse2Activity.class);
-			intent.putExtras(args);
-			startActivity(intent);
-		}
-	}
 
-	@Override
-	public void onItemSelected(final CollocationSelectorPointer pointer)
-	{
-		final View view = getView();
-		assert view != null;
-		if (isTwoPane(view))
-		{
-			// in two-pane mode, show the detail view in this activity by adding or replacing the detail fragment using a fragment transaction.
-			if (!isAdded())
-			{
-				return;
-			}
-			final Browse2Fragment fragment = (Browse2Fragment) getChildFragmentManager().findFragmentById(R.id.container_browse2);
-			assert fragment != null;
-			fragment.search(pointer, null, null, null, null);
-		}
-		else
-		{
-			// in single-pane mode, simply start the detail activity for the selected item ID.
-			final Bundle args = new Bundle();
-			args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer);
-			args.putBoolean(Browse2Fragment.ARG_ALT, true);
 			final Intent intent = new Intent(requireContext(), Browse2Activity.class);
 			intent.putExtras(args);
 			startActivity(intent);

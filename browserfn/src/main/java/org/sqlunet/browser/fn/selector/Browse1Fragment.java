@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser.selector;
+package org.sqlunet.browser.fn.selector;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,15 +10,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.sqlunet.Pointer;
 import org.sqlunet.browser.BaseBrowse1Fragment;
 import org.sqlunet.browser.BaseBrowse2Fragment;
 import org.sqlunet.browser.BaseSelectorsFragment;
+import org.sqlunet.browser.Browse2Activity;
 import org.sqlunet.browser.Browse2Fragment;
 import org.sqlunet.browser.Selectors;
-import org.sqlunet.browser.SnBrowse2Activity;
-import org.sqlunet.browser.sn.R;
-import org.sqlunet.browser.sn.Settings;
+import org.sqlunet.browser.fn.R;
 import org.sqlunet.provider.ProviderArgs;
+import org.sqlunet.settings.Settings;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,7 +31,7 @@ import androidx.fragment.app.FragmentManager;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class SnBrowse1Fragment extends BaseBrowse1Fragment implements SnSelectorsFragment.Listener
+public class Browse1Fragment extends BaseBrowse1Fragment implements SelectorsFragment.Listener
 {
 	// C R E A T I O N
 
@@ -38,7 +39,7 @@ public class SnBrowse1Fragment extends BaseBrowse1Fragment implements SnSelector
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
 		// view
-		final View view = inflater.inflate(Settings.getPaneLayout(R.layout.fragment_snbrowse_first, R.layout.fragment_snbrowse1, R.layout.fragment_snbrowse1_browse2), container, false);
+		final View view = inflater.inflate(Settings.getPaneLayout(R.layout.fragment_browse_first, R.layout.fragment_browse1, R.layout.fragment_browse1_browse2), container, false);
 		boolean isTwoPane = isTwoPane(view);
 
 		// manager
@@ -46,10 +47,10 @@ public class SnBrowse1Fragment extends BaseBrowse1Fragment implements SnSelector
 		final FragmentManager manager = getChildFragmentManager();
 
 		// selector fragment
-		SnSelectorsFragment selectorsFragment = (SnSelectorsFragment) manager.findFragmentByTag(BaseSelectorsFragment.FRAGMENT_TAG);
+		SelectorsFragment selectorsFragment = (SelectorsFragment) manager.findFragmentByTag(BaseSelectorsFragment.FRAGMENT_TAG);
 		if (selectorsFragment == null)
 		{
-			selectorsFragment = new SnSelectorsFragment();
+			selectorsFragment = new SelectorsFragment();
 			selectorsFragment.setArguments(getArguments());
 		}
 		Bundle args1 = selectorsFragment.getArguments();
@@ -58,7 +59,7 @@ public class SnBrowse1Fragment extends BaseBrowse1Fragment implements SnSelector
 			args1 = new Bundle();
 		}
 		args1.putBoolean(Selectors.IS_TWO_PANE, isTwoPane);
-		selectorsFragment.setListeners(this);
+		selectorsFragment.setListener(this);
 		manager.beginTransaction() //
 				.setReorderingAllowed(true) //
 				.replace(R.id.container_selectors, selectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG) //
@@ -69,7 +70,7 @@ public class SnBrowse1Fragment extends BaseBrowse1Fragment implements SnSelector
 		if (isTwoPane)
 		{
 			// in two-pane mode, list items should be given the 'activated' state when touched.
-			// selectorsFragment.setActivateOnItemClick(true);
+			selectorsFragment.setActivateOnItemClick(true);
 
 			// detail fragment (rigid layout)
 			Fragment browse2Fragment = manager.findFragmentByTag(BaseBrowse2Fragment.FRAGMENT_TAG);
@@ -93,11 +94,10 @@ public class SnBrowse1Fragment extends BaseBrowse1Fragment implements SnSelector
 	// I T E M S E L E C T I O N H A N D L I N G
 
 	/**
-	 * Callback method from {@link SnSelectorsFragment.Listener} indicating that the item with the given ID was selected.
+	 * Callback method indicating that the item with the given ID was selected.
 	 */
-
 	@Override
-	public void onItemSelected(final CollocationSelectorPointer pointer)
+	public void onItemSelected(final Pointer pointer, final String word, final long wordId)
 	{
 		final View view = getView();
 		assert view != null;
@@ -110,20 +110,17 @@ public class SnBrowse1Fragment extends BaseBrowse1Fragment implements SnSelector
 			}
 			final Browse2Fragment fragment = (Browse2Fragment) getChildFragmentManager().findFragmentById(R.id.container_browse2);
 			assert fragment != null;
-			fragment.search(pointer, null, null ,null, null);
+			fragment.search(pointer, null, null, null,null);
 		}
 		else
 		{
 			// in single-pane mode, simply start the detail activity for the selected item ID.
-			final int recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(requireContext());
-			final Bundle parameters = org.sqlunet.wordnet.settings.Settings.getRenderParametersPref(requireContext());
-
 			final Bundle args = new Bundle();
 			args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer);
-			args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse);
-			args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters);
+			args.putString(ProviderArgs.ARG_HINTWORD, word);
+			args.putLong(ProviderArgs.ARG_HINTWORDID, wordId);
 
-			final Intent intent = new Intent(requireContext(), SnBrowse2Activity.class);
+			final Intent intent = new Intent(requireContext(), Browse2Activity.class);
 			intent.putExtras(args);
 			startActivity(intent);
 		}

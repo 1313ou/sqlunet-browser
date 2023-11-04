@@ -9,6 +9,7 @@ import android.os.Bundle;
 import org.sqlunet.browser.AbstractBrowse1Activity;
 import org.sqlunet.browser.BaseBrowse1Fragment;
 import org.sqlunet.browser.R;
+import org.sqlunet.browser.xn.selector.Browse1Fragment;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;

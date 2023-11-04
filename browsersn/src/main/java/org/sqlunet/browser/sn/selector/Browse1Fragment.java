@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser.selector;
+package org.sqlunet.browser.sn.selector;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,9 +15,10 @@ import org.sqlunet.browser.BaseBrowse2Fragment;
 import org.sqlunet.browser.BaseSelectorsFragment;
 import org.sqlunet.browser.Browse2Activity;
 import org.sqlunet.browser.Browse2Fragment;
-import org.sqlunet.browser.R;
 import org.sqlunet.browser.Selectors;
-import org.sqlunet.browser.xn.Settings;
+import org.sqlunet.browser.selector.SelectorPointer;
+import org.sqlunet.browser.sn.R;
+import org.sqlunet.browser.sn.Settings;
 import org.sqlunet.provider.ProviderArgs;
 
 import androidx.annotation.NonNull;
@@ -46,6 +47,7 @@ public class Browse1Fragment extends BaseBrowse1Fragment implements SelectorsFra
 		final FragmentManager manager = getChildFragmentManager();
 
 		// selector fragment
+		// transaction on selectors pane
 		SelectorsFragment selectorsFragment = (SelectorsFragment) manager.findFragmentByTag(BaseSelectorsFragment.FRAGMENT_TAG);
 		if (selectorsFragment == null)
 		{
@@ -58,7 +60,7 @@ public class Browse1Fragment extends BaseBrowse1Fragment implements SelectorsFra
 			args1 = new Bundle();
 		}
 		args1.putBoolean(Selectors.IS_TWO_PANE, isTwoPane);
-		selectorsFragment.setListener(this);
+		selectorsFragment.setListeners(this);
 		manager.beginTransaction() //
 				.setReorderingAllowed(true) //
 				.replace(R.id.container_selectors, selectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG) //

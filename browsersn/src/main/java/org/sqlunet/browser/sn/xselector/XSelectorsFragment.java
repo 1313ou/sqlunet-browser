@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser.xselector;
+package org.sqlunet.browser.sn.xselector;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,8 +13,8 @@ import org.sqlunet.browser.BaseSelectorsFragment;
 import org.sqlunet.browser.sn.R;
 import org.sqlunet.browser.selector.CollocationSelectorPointer;
 import org.sqlunet.browser.selector.SelectorPointer;
-import org.sqlunet.browser.selector.SelectorsFragment;
-import org.sqlunet.browser.selector.SnSelectorsFragment;
+import org.sqlunet.browser.sn.selector.SelectorsFragment;
+import org.sqlunet.browser.sn.selector.SnSelectorsFragment;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

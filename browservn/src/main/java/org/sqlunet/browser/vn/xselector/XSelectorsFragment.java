@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser.xselector;
+package org.sqlunet.browser.vn.xselector;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -25,6 +25,7 @@ import org.sqlunet.browser.Module;
 import org.sqlunet.browser.SqlunetViewModel;
 import org.sqlunet.browser.vn.R;
 import org.sqlunet.browser.vn.Settings;
+import org.sqlunet.browser.xselector.XSelectorPointer;
 import org.sqlunet.loaders.Queries;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.provider.XNetContract;
