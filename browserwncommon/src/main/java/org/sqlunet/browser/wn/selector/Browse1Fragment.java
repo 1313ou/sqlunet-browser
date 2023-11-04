@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser.selector;
+package org.sqlunet.browser.wn.selector;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +18,7 @@ import org.sqlunet.browser.Browse2Fragment;
 import org.sqlunet.browser.Selectors;
 import org.sqlunet.browser.wn.Settings;
 import org.sqlunet.browser.wn.lib.R;
+import org.sqlunet.browser.wn.selector.SelectorsFragment;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.wordnet.SensePointer;
 

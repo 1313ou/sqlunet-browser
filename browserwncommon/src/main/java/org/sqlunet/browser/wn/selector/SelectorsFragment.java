@@ -2,7 +2,7 @@
  * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser.selector;
+package org.sqlunet.browser.wn.selector;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -110,7 +110,7 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 	public void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		Log.d(TAG, "Lifecycle: onCreate (2) " + this);
+		Log.d(TAG, "Lifecycle: onCreate (2) " + this + " " + savedInstanceState);
 
 		// arguments
 		Bundle args = getArguments();
@@ -141,7 +141,7 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
 		super.onViewCreated(view, savedInstanceState);
-		Log.d(TAG, "Lifecycle: onViewCreated (4) " + this);
+		Log.d(TAG, "Lifecycle: onViewCreated (4) " + this + " " + savedInstanceState);
 
 		// when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
 		getListView().setChoiceMode(this.activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
@@ -155,7 +155,7 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 	public void onActivityCreated(@Nullable final Bundle savedInstanceState)
 	{
 		super.onActivityCreated(savedInstanceState);
-		Log.d(TAG, "Lifecycle: onActivityCreated (5) " + this);
+		Log.d(TAG, "Lifecycle: onActivityCreated (5) " + this + " " + savedInstanceState);
 	}
 
 	@Override
@@ -200,7 +200,10 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 		CursorAdapter adapter = (CursorAdapter) getListAdapter();
 		if (adapter != null)
 		{
+			Log.d(TAG, "Close cursor");
 			adapter.changeCursor(null);
+			Log.d(TAG, "Clear adapter");
+			setListAdapter(null);
 		}
 	}
 

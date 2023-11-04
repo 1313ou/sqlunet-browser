@@ -13,14 +13,15 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CursorAdapter;
 
 import org.sqlunet.browser.config.TableActivity;
 import org.sqlunet.browser.selector.Browse1Activity;
-import org.sqlunet.browser.selector.Browse1Fragment;
 import org.sqlunet.browser.web.WebActivity;
 import org.sqlunet.browser.web.WebFragment;
 import org.sqlunet.browser.wn.Settings;
 import org.sqlunet.browser.wn.lib.R;
+import org.sqlunet.browser.wn.selector.Browse1Fragment;
 import org.sqlunet.history.History;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.wordnet.SenseKeyPointer;
@@ -35,9 +36,12 @@ import org.sqlunet.wordnet.provider.WordNetContract.Poses;
 import org.sqlunet.wordnet.provider.WordNetContract.Relations;
 import org.sqlunet.wordnet.provider.WordNetProvider;
 
+import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 /**
  * Browse fragment
@@ -55,6 +59,7 @@ public class BrowseFragment extends BaseSearchFragment
 	 */
 	public BrowseFragment()
 	{
+		Log.d(TAG, "Lifecycle: Constructor (0) " + this);
 		this.layoutId = R.layout.fragment_browse;
 		this.menuId = R.menu.browse;
 		this.colorAttrId = R.attr.colorPrimary;
@@ -65,6 +70,7 @@ public class BrowseFragment extends BaseSearchFragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
+		Log.d(TAG, "Lifecycle: onCreateView (3) " + this);
 		final View view = super.onCreateView(inflater, container, savedInstanceState);
 
 		if (savedInstanceState == null)
@@ -81,6 +87,54 @@ public class BrowseFragment extends BaseSearchFragment
 		}
 
 		return view;
+	}
+
+	@Override
+	public void onDestroyView()
+	{
+		super.onDestroyView();
+		Log.d(TAG, "Lifecycle: onDestroyView (-3) " + this);
+		removeAllChildFragments(BaseSelectorsFragment.FRAGMENT_TAG);
+	}
+
+	@Override
+	public void onDestroy()
+	{
+		super.onDestroy();
+		Log.d(TAG, "Lifecycle: onDestroy (-2) " + this);
+	}
+
+	@Override
+	public void onDetach()
+	{
+		super.onDetach();
+		Log.d(TAG, "Lifecycle: onDetach (-1) " + this);
+	}
+
+	private void removeAllChildFragments(final String... childFragmentTags)
+	{
+		if (childFragmentTags != null && childFragmentTags.length > 0)
+		{
+			List<Fragment> childFragments = getChildFragmentManager().getFragments();
+			if (!childFragments.isEmpty())
+			{
+				FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+				for (Fragment childFragment : childFragments)
+				{
+					if (childFragment != null)
+					{
+						for (final String childFragmentTag : childFragmentTags)
+						{
+							if (childFragmentTag.equals(childFragment.getTag()))
+							{
+								transaction.remove(childFragment);
+							}
+						}
+					}
+				}
+				transaction.commitAllowingStateLoss();
+			}
+		}
 	}
 
 	// M E N U
@@ -273,8 +327,7 @@ public class BrowseFragment extends BaseSearchFragment
 					.beginTransaction() //
 					.setReorderingAllowed(true) //
 					.replace(R.id.container_browse, fragment, BaseSelectorsFragment.FRAGMENT_TAG) //
-					.addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG)
-					.commit();
+					.addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG).commit();
 		}
 	}
 
