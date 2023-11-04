@@ -105,13 +105,13 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	 */
 	public BaseSearchFragment()
 	{
-		Log.d(TAG, "Constructor " + this);
+		Log.d(TAG, "Lifecycle: Constructor (0) " + this);
 	}
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState)
 	{
-		Log.d(TAG, "onCreate() " + this + " from " + savedInstanceState);
+		Log.d(TAG, "Lifecycle: onCreate() (2) " + this + " from " + savedInstanceState);
 		super.onCreate(savedInstanceState);
 
 		final FragmentManager manager = getChildFragmentManager();
@@ -139,14 +139,14 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		Log.d(TAG, "onCreateView() " + this + " from " + savedInstanceState);
+		Log.d(TAG, "Lifecycle: onCreateView() (3) " + this + " from " + savedInstanceState);
 		return inflater.inflate(this.layoutId, container, false);
 	}
 
 	@Override
 	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
-		Log.d(TAG, "onViewCreated() " + this + " from " + savedInstanceState);
+		Log.d(TAG, "Lifecycle: onViewCreated() (4) " + this + " from " + savedInstanceState);
 		super.onViewCreated(view, savedInstanceState);
 
 		// menu provider
@@ -195,6 +195,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	public void onPause()
 	{
 		super.onPause();
+		Log.d(TAG, "Lifecycle: onPause (-5) " + this);
 
 		closeKeyboard();
 	}
@@ -203,6 +204,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	public void onDestroyView()
 	{
 		super.onDestroyView();
+		Log.d(TAG, "Lifecycle: onDestroyView (-3) " + this);
 
 		final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
 		assert toolbar != null;
@@ -219,7 +221,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	@SuppressLint("InflateParams")
 	public void setupToolBar(@NonNull final Toolbar toolbar)
 	{
-		Log.d(TAG, "Toolbar: set up " + this);
+		Log.d(TAG, "Toolbar: set up in " + this);
 
 		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
 
