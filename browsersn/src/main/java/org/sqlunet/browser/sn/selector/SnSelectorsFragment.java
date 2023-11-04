@@ -9,27 +9,17 @@ import android.database.MatrixCursor;
 import android.database.MergeCursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.Html;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import org.sqlunet.browser.BaseSelectorsListFragment;
 import org.sqlunet.browser.Module;
-import org.sqlunet.browser.PositionViewModel;
 import org.sqlunet.browser.Selectors;
-import org.sqlunet.browser.SqlunetViewModel;
 import org.sqlunet.browser.selector.CollocationSelectorPointer;
 import org.sqlunet.browser.sn.R;
 import org.sqlunet.provider.ProviderArgs;
@@ -43,8 +33,6 @@ import org.sqlunet.wordnet.provider.WordNetProvider;
 import java.util.Locale;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProvider;
 
 /**
  * Selector Fragment
@@ -57,16 +45,44 @@ public class SnSelectorsFragment extends BaseSelectorsListFragment
 	static private final String TAG = "SnSelectorsF";
 
 	/**
-	 * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
+	 * Word id
 	 */
-	@FunctionalInterface
-	public interface Listener
+	private long wordId = -1;
+
+	// L I F E C Y C L E
+
+	public SnSelectorsFragment()
 	{
-		/**
-		 * Callback for when an item has been selected.
-		 */
-		void onItemSelected(CollocationSelectorPointer pointer);
+		this.layoutId = R.layout.fragment_selectors;
+		this.viewModelKey = "snx:selectors(word)";
 	}
+
+	// --activate--
+
+	@Override
+	public void onCreate(final Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		Log.d(TAG, "Lifecycle: onCreate (2) " + this + " " + savedInstanceState);
+
+		// arguments
+		Bundle args = getArguments();
+		assert args != null;
+
+		// activate on click
+		this.activateOnItemClick = args.getBoolean(Selectors.IS_TWO_PANE, false);
+
+		// target word
+		String query = args.getString(ProviderArgs.ARG_QUERYSTRING);
+		if (query != null)
+		{
+			query = query.trim().toLowerCase(Locale.ENGLISH);
+		}
+		this.word = query;
+		this.wordId = queryId(query);
+	}
+
+	// A D A P T E R
 
 	/**
 	 * Columns
@@ -115,180 +131,9 @@ public class SnSelectorsFragment extends BaseSelectorsListFragment
 			//R.id.pos2, //
 	};
 
-	/**
-	 * Activate on click flag: in two-pane mode, list items should be given the 'activated' state when touched.
-	 */
-	private boolean activateOnItemClick = true;
-
-	/**
-	 * The fragment's current callbacks, which are notified of list item clicks.
-	 */
-	private Listener[] listeners;
-
-	/**
-	 * Search query
-	 */
-	@Nullable
-	private String word;
-
-	/**
-	 * Word id
-	 */
-	private long wordId = -1;
-
-	/**
-	 * Data view model
-	 */
-	private SqlunetViewModel dataModel;
-
-	/**
-	 * Position view model
-	 */
-	private PositionViewModel positionModel;
-
-	// L I F E C Y C L E
-
-	// --activate--
-
 	@Override
-	public void onCreate(final Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-
-		// arguments
-		Bundle args = getArguments();
-		assert args != null;
-
-		// activate on click
-		this.activateOnItemClick = args.getBoolean(Selectors.IS_TWO_PANE, false);
-
-		// target word
-		String query = args.getString(ProviderArgs.ARG_QUERYSTRING);
-		if (query != null)
-		{
-			query = query.trim().toLowerCase(Locale.ENGLISH);
-		}
-		this.word = query;
-		this.wordId = queryId(query);
-
-		// list adapter, with no data
-		ListAdapter adapter = makeAdapter();
-		setListAdapter(adapter);
-	}
-
-	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
-	{
-		Log.d(TAG, "Lifecycle: onCreateView (3) " + this);
-		return inflater.inflate(R.layout.fragment_snselectors, container, false);
-	}
-
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
-		Log.d(TAG, "Lifecycle: onViewCreated (4) " + this);
-
-		// when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
-		getListView().setChoiceMode(this.activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
-
-		// data view models
-		Log.d(TAG, "Make models");
-		makeModels();
-	}
-
-	//	@Override
-	//	public void onActivityCreated(@Nullable final Bundle savedInstanceState)
-	//	{
-	//		super.onActivityCreated(savedInstanceState);
-	//		Log.d(TAG, "Lifecycle: onActivityCreated (5) " + this);
-	//	}
-
-	@Override
-	public void onStart()
-	{
-		super.onStart();
-		Log.d(TAG, "Lifecycle: onStart (6) " + this);
-
-		// load the contents
-		if (this.wordId != -1)
-		{
-			// load the contents
-			// final MutableLiveData<Cursor> idLiveData = dataModel.getMutableData();
-			//  final Cursor idCursor = idLiveData.getValue();
-			//  if (idCursor != null && !idCursor.isClosed())
-			//  {
-			//   	idLiveData.setValue(idCursor);
-			//  }
-			//  else
-			load();
-		}
-	}
-
-	// --deactivate--
-
-	//	@Override
-	//	public void onDestroyView()
-	//	{
-	//		super.onDestroyView();
-	//		Log.d(TAG, "Lifecycle: onDestroyView (-3) " + this);
-	//	}
-
-	@Override
-	public void onDestroy()
-	{
-		super.onDestroy();
-		Log.d(TAG, "Lifecycle: onDestroy (-2) " + this);
-
-		CursorAdapter adapter = (CursorAdapter) getListAdapter();
-		if (adapter != null)
-		{
-			adapter.changeCursor(null);
-		}
-	}
-
-	//	@Override
-	//	public void onDetach()
-	//	{
-	//		super.onDetach();
-	//		Log.d(TAG, "Lifecycle: onDetach (-1) " + this);
-	//	}
-
-	// H E L P E R S
-
-	/**
-	 * Query word
-	 *
-	 * @param query query word
-	 * @return word id
-	 */
-	private long queryId(final String query)
-	{
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(Words.URI));
-		final String[] projection = {Words.WORDID,};
-		final String selection = Words.WORD + " = ?"; //
-		final String[] selectionArgs = {query};
-		try (Cursor cursor = requireContext().getContentResolver().query(uri, projection, selection, selectionArgs, null))
-		{
-			if (cursor != null)
-			{
-				if (cursor.moveToFirst())
-				{
-					final int idWordId = cursor.getColumnIndex(Words.WORDID);
-					return cursor.getLong(idWordId);
-				}
-			}
-		}
-		return -1;
-	}
-
-	/**
-	 * Make adapter
-	 *
-	 * @return adapter
-	 */
 	@NonNull
-	private ListAdapter makeAdapter()
+	protected CursorAdapter makeAdapter()
 	{
 		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(requireContext(), R.layout.item_snselector, null, //
 				DISPLAYED_COLUMNS, DISPLAYED_COLUMN_RES_IDS, 0);
@@ -331,45 +176,56 @@ public class SnSelectorsFragment extends BaseSelectorsListFragment
 		return adapter;
 	}
 
-	// V I E W M O D E L S
+	// L O A D
+
+	@Override
+	protected void load()
+	{
+		if (this.wordId == -1)
+		{
+			return;
+		}
+
+		final Module.ContentProviderSql sql = Queries.prepareSnSelect(SnSelectorsFragment.this.wordId);
+		final Uri uri = Uri.parse(SyntagNetProvider.makeUri(sql.providerUri));
+		this.dataModel.loadData(uri, sql, null);
+	}
+
+	// H E L P E R S
 
 	/**
-	 * Make view models
+	 * Query word
+	 *
+	 * @param query query word
+	 * @return word id
 	 */
-	private void makeModels()
+	private long queryId(final String query)
 	{
-		// data model
-		this.dataModel = new ViewModelProvider(this).get("snselectors(word)", SqlunetViewModel.class);
-		this.dataModel.getData().observe(getViewLifecycleOwner(), cursor -> {
-
-			if (cursor == null || cursor.getCount() <= 0)
+		final Uri uri = Uri.parse(WordNetProvider.makeUri(Words.URI));
+		final String[] projection = {Words.WORDID,};
+		final String selection = Words.WORD + " = ?"; //
+		final String[] selectionArgs = {query};
+		try (Cursor cursor = requireContext().getContentResolver().query(uri, projection, selection, selectionArgs, null))
+		{
+			if (cursor != null)
 			{
-				final String html = getString(R.string.error_entry_not_found, "<b>" + this.word + "</b>");
-				final CharSequence message = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N ? Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY) : Html.fromHtml(html);
-				// Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
-				final View view = getView();
-				assert view != null;
-				Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show();
+				if (cursor.moveToFirst())
+				{
+					final int idWordId = cursor.getColumnIndex(Words.WORDID);
+					return cursor.getLong(idWordId);
+				}
 			}
-			else
-			{
-				Cursor cursor2 = SnSelectorsFragment.augmentCursor(cursor, wordId, word);
+		}
+		return -1;
+	}
 
-				// pass on to list adapter
-				final CursorAdapter adapter = (CursorAdapter) getListAdapter();
-				assert adapter != null;
-				adapter.changeCursor(cursor2);
-			}
-		});
+	// V I E W M O D E L S
 
-		// position model
-		this.positionModel = new ViewModelProvider(this).get(PositionViewModel.class);
-		this.positionModel.getPositionLiveData().observe(getViewLifecycleOwner(), (position) -> {
-
-			Log.d(TAG, "Observed position change " + position);
-			getListView().setItemChecked(position, position != AdapterView.INVALID_POSITION);
-		});
-		this.positionModel.setPosition(AdapterView.INVALID_POSITION);
+	@Override
+	@NonNull
+	protected Cursor augmentCursor(Cursor cursor)
+	{
+		return augmentCursor(cursor, this.wordId, this.word);
 	}
 
 	/**
@@ -381,7 +237,7 @@ public class SnSelectorsFragment extends BaseSelectorsListFragment
 	 * @return augmented cursor
 	 */
 	@NonNull
-	private static Cursor augmentCursor(Cursor cursor, long wordid, String word)
+	private Cursor augmentCursor(Cursor cursor, long wordid, String word)
 	{
 		// Create a MatrixCursor filled with the special rows to add.
 		@SuppressWarnings("resource") MatrixCursor matrixCursor = new MatrixCursor(COLUMNS);
@@ -395,20 +251,24 @@ public class SnSelectorsFragment extends BaseSelectorsListFragment
 		return new MergeCursor(new Cursor[]{matrixCursor, cursor});
 	}
 
-	// L O A D
+	// C L I C K   L I S T E N E R
 
 	/**
-	 * Load data from word
+	 * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
 	 */
-	private void load()
+	@FunctionalInterface
+	public interface Listener
 	{
-		// load the contents
-		final Module.ContentProviderSql sql = Queries.prepareSnSelect(SnSelectorsFragment.this.wordId);
-		final Uri uri = Uri.parse(SyntagNetProvider.makeUri(sql.providerUri));
-		this.dataModel.loadData(uri, sql, null);
+		/**
+		 * Callback for when an item has been selected.
+		 */
+		void onItemSelected(CollocationSelectorPointer pointer);
 	}
 
-	// L I S T E N E R
+	/**
+	 * The fragment's current callbacks, which are notified of list item clicks.
+	 */
+	private Listener[] listeners;
 
 	/**
 	 * Set listeners
@@ -420,29 +280,17 @@ public class SnSelectorsFragment extends BaseSelectorsListFragment
 		this.listeners = listeners;
 	}
 
-	// C L I C K
-
 	@Override
-	public void onListItemClick(@NonNull final ListView listView, @NonNull final View view, final int position, final long id)
-	{
-		super.onListItemClick(listView, view, position, id);
-		activate(position);
-	}
-
-	/**
-	 * Activate item at position
-	 *
-	 * @param position position
-	 */
-	private void activate(int position)
+	protected void activate(int position)
 	{
 		this.positionModel.setPosition(position);
 
 		if (this.listeners != null)
 		{
-			final SimpleCursorAdapter adapter = (SimpleCursorAdapter) getListAdapter();
+			final SimpleCursorAdapter adapter = (SimpleCursorAdapter) this.adapter;
 			assert adapter != null;
 			final Cursor cursor = adapter.getCursor();
+			assert cursor != null;
 			if (cursor.moveToPosition(position))
 			{
 				// column indexes
@@ -480,7 +328,7 @@ public class SnSelectorsFragment extends BaseSelectorsListFragment
 	 */
 	public void deactivate()
 	{
-		final ListView listView = getListView();
+		final ListView listView = this.listView;
 		listView.clearChoices();
 		listView.requestLayout();
 	}
