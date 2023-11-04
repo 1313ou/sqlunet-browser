@@ -609,7 +609,7 @@ public class TreeViewer
 	private boolean scrollTo(@NonNull final View view)
 	{
 		int y = getPosition(view);
-		// Log.d(TAG, "SCROLL " + y + " " + view);
+		// Log.d(TAG, "Scroll: to " + y + " " + view);
 		if (y == 0)
 		{
 			return false;
@@ -694,11 +694,7 @@ public class TreeViewer
 	@Nullable
 	public View expandNode(@NonNull final TreeNode node, final int levels, final boolean fireHotNodes, final boolean overrideBreakExpand)
 	{
-		// Log.d(TAG, "Expand node " + node);
-		//if (isNodeWithCompositeValueText(node, "Agent Agent"))
-		//{
-		//	Log.d(TAG, "XXX " + " " + node);
-		//}
+		// Log.d(TAG, "Expand node: " + node);
 
 		// children view group
 		final Controller<?> controller = node.getController();

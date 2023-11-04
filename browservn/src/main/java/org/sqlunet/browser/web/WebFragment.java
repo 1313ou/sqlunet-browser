@@ -184,7 +184,7 @@ public class WebFragment extends Fragment
 
 						case ProviderArgs.ARG_QUERYTYPE_WORD:
 							@SuppressWarnings("TypeMayBeWeakened") final WordPointer wordPointer = (WordPointer) pointer;
-							Log.d(TAG, "ARG_POSITION word=" + wordPointer);
+							Log.d(TAG, "ArgPosition: word=" + wordPointer);
 							if (wordPointer != null && Settings.Source.WORDNET.test(sources))
 							{
 								wnDomDoc = new WordNetImplementation().queryWordDoc(db, wordPointer.getWordId());
@@ -193,7 +193,7 @@ public class WebFragment extends Fragment
 
 						case ProviderArgs.ARG_QUERYTYPE_SYNSET:
 							@SuppressWarnings("TypeMayBeWeakened") final SynsetPointer synsetPointer = (SynsetPointer) pointer;
-							Log.d(TAG, "ARG_POSITION synset=" + synsetPointer);
+							Log.d(TAG, "ArgPosition: synset=" + synsetPointer);
 							if (synsetPointer != null && Settings.Source.WORDNET.test(sources))
 							{
 								wnDomDoc = new WordNetImplementation().querySynsetDoc(db, synsetPointer.getSynsetId());
@@ -202,7 +202,7 @@ public class WebFragment extends Fragment
 
 						case ProviderArgs.ARG_QUERYTYPE_VNCLASS:
 							final VnClassPointer vnclassPointer = (VnClassPointer) pointer;
-							Log.d(TAG, "ARG_POSITION vnclass=" + vnclassPointer);
+							Log.d(TAG, "ArgPosition: vnclass=" + vnclassPointer);
 							if (vnclassPointer != null && Settings.Source.VERBNET.test(sources))
 							{
 								vnDomDoc = new VerbNetImplementation().queryClassDoc(db, vnclassPointer.getId(), null);
@@ -211,7 +211,7 @@ public class WebFragment extends Fragment
 
 						case ProviderArgs.ARG_QUERYTYPE_PBROLESET:
 							final PbRoleSetPointer pbroleSetPointer = (PbRoleSetPointer) pointer;
-							Log.d(TAG, "ARG_POSITION pbroleset=" + pbroleSetPointer);
+							Log.d(TAG, "ArgPosition: pbroleset=" + pbroleSetPointer);
 							if (pbroleSetPointer != null && Settings.Source.PROPBANK.test(sources))
 							{
 								pbDomDoc = new PropBankImplementation().queryRoleSetDoc(db, pbroleSetPointer.getId(), null);
@@ -354,7 +354,7 @@ public class WebFragment extends Fragment
 					final String[] target = query.split("=");
 					final String name = target[0];
 					final String value = target[1];
-					Log.d(TAG, "QUERY " + query + " name=" + name + " value=" + value);
+					Log.d(TAG, "Query: " + query + " name=" + name + " value=" + value);
 					final Intent targetIntent = new Intent(requireContext(), WebActivity.class);
 					if ("word".equals(name)) //
 					{
@@ -432,7 +432,7 @@ public class WebFragment extends Fragment
 
 		// pointer
 		final Parcelable pointer = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? args.getParcelable(ProviderArgs.ARG_QUERYPOINTER, Parcelable.class) : args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
-		Log.d(TAG, "ARG_POSITION query=" + pointer);
+		Log.d(TAG, "ArgPosition: query=" + pointer);
 
 		// hint
 		final String posString = args.getString(ProviderArgs.ARG_HINTPOS);
@@ -440,7 +440,7 @@ public class WebFragment extends Fragment
 
 		// text
 		final String data = args.getString(ProviderArgs.ARG_QUERYSTRING);
-		Log.d(TAG, "ARG_POSITION data=" + data);
+		Log.d(TAG, "ArgPosition: data=" + data);
 
 		// load the contents
 		this.model.loadData(new WebDocumentStringLoader(context, pointer, pos, type, data, enable, xml));

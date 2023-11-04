@@ -1281,7 +1281,7 @@ abstract public class BaseModule extends Module
 				long feGroupId = cursor.getLong(idFEGRId);
 				final String groupRealizations = cursor.getString(idGroupRealizations);
 				final int patternId = cursor.getInt(idPatternId);
-				// Log.d(TAG, "GROUP REALIZATIONS " + feGroupId + ' ' + groupRealizations + ' ' + patternId);
+				// Log.d(TAG, "Group realizations: " + feGroupId + ' ' + groupRealizations + ' ' + patternId);
 				if (groupRealizations == null)
 				{
 					continue;
@@ -2632,7 +2632,7 @@ abstract public class BaseModule extends Module
 		@Override
 		public void process(final TreeNode node)
 		{
-			Log.d(TAG, "QUERY " + this.id);
+			Log.d(TAG, "Query: " + this.id);
 		}
 	}
 	*/

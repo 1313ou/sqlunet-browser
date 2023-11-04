@@ -170,7 +170,7 @@ public class TextFragment extends AbstractTableFragment
 	{
 		super.onListItemClick(listView, view, position, id);
 
-		Log.d(TAG, "CLICK id=" + id + " pos=" + position);
+		Log.d(TAG, "Click: id=" + id + " pos=" + position);
 
 		// cursor
 		final ListAdapter adapter = getListAdapter();
@@ -191,7 +191,7 @@ public class TextFragment extends AbstractTableFragment
 			{
 				final int idClasses = cursor.getColumnIndex(VerbNetContract.Lookup_VnExamples_X.CLASSES);
 				final String classes = cursor.getString(idClasses);
-				Log.d(TAG, "CLICK vn classes=" + classes);
+				Log.d(TAG, "Click: vn classes=" + classes);
 
 				final Pair<TypedPointer[], CharSequence[]> result = makeData(classes);
 				if (result.first.length > 1)
@@ -215,7 +215,7 @@ public class TextFragment extends AbstractTableFragment
 			{
 				final int idRoleSets = cursor.getColumnIndex(PropBankContract.Lookup_PbExamples_X.ROLESETS);
 				final String roleSets = cursor.getString(idRoleSets);
-				Log.d(TAG, "CLICK pb rolesets=" + roleSets);
+				Log.d(TAG, "Click: pb rolesets=" + roleSets);
 
 				final Pair<TypedPointer[], CharSequence[]> result = makeData(roleSets);
 				if (result.first.length > 1)

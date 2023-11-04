@@ -168,7 +168,7 @@ public class TextFragment extends AbstractTableFragment
 	{
 		super.onListItemClick(listView, view, position, id);
 
-		Log.d(TAG, "CLICK id=" + id + " pos=" + position);
+		Log.d(TAG, "Click: id=" + id + " pos=" + position);
 
 		// cursor
 		final ListAdapter adapter = getListAdapter();
@@ -193,9 +193,9 @@ public class TextFragment extends AbstractTableFragment
 				final String frames = cursor.getString(idFrames);
 				final String lexUnits = cursor.getString(idLexUnits);
 				final String sentence = "sentence@" + cursor.getString(idSentenceId);
-				Log.d(TAG, "CLICK fn frames=" + frames);
-				Log.d(TAG, "CLICK fn lexunits=" + lexUnits);
-				Log.d(TAG, "CLICK fn sentence=" + sentence);
+				Log.d(TAG, "Click: fn frames=" + frames);
+				Log.d(TAG, "Click: fn lexunits=" + lexUnits);
+				Log.d(TAG, "Click: fn sentence=" + sentence);
 
 				final Pair<TypedPointer[], CharSequence[]> result = makeData(frames, lexUnits, sentence);
 				if (result.first.length > 1)

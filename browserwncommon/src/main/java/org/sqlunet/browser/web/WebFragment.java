@@ -294,7 +294,7 @@ public class WebFragment extends Fragment
 					final String[] target = query.split("=");
 					final String name = target[0];
 					final String value = target[1];
-					Log.d(TAG, "QUERY " + query + " name=" + name + " value=" + value);
+					Log.d(TAG, "Query: " + query + " name=" + name + " value=" + value);
 					final Intent targetIntent = new Intent(requireContext(), WebActivity.class);
 					if ("word".equals(name)) //
 					{

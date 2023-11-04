@@ -455,7 +455,7 @@ public class XSelectorsFragment extends BaseSelectorsExpandableListFragment
 				int id = v.getId();
 				if (R.id.xpronunciation == id)
 				{
-					Log.d(TAG, "TEXT=" + text);
+					Log.d(TAG, "Text: " + text);
 				}
 				 */
 				if (text == null || text.isEmpty())
@@ -910,7 +910,7 @@ public class XSelectorsFragment extends BaseSelectorsExpandableListFragment
 
 		if (this.listener != null)
 		{
-			//Log.d(TAG, "CLICK on group=" + groupPosition + " child=" + childPosition + " id=" + id);
+			//Log.d(TAG, "Click: group=" + groupPosition + " child=" + childPosition + " id=" + id);
 			int index = listView.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition, childPosition));
 			listView.setItemChecked(index, true);
 

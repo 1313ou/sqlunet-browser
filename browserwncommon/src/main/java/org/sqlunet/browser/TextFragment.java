@@ -149,7 +149,7 @@ public class TextFragment extends AbstractTableFragment
 	{
 		super.onListItemClick(listView, view, position, id);
 
-		Log.d(TAG, "CLICK id=" + id + " pos=" + position);
+		Log.d(TAG, "Click: id=" + id + " pos=" + position);
 
 		// cursor
 		final ListAdapter adapter = getListAdapter();
@@ -179,7 +179,7 @@ public class TextFragment extends AbstractTableFragment
 					// target
 					final int colIdx = cursor.getColumnIndex("synsetid");
 					final long targetId = cursor.getLong(colIdx);
-					Log.d(TAG, "CLICK wn synset=" + targetId);
+					Log.d(TAG, "Click: wn synset=" + targetId);
 
 					// build pointer
 					final Parcelable synsetPointer = new SynsetPointer(targetId);
@@ -200,7 +200,7 @@ public class TextFragment extends AbstractTableFragment
 					// target
 					final int colIdx = cursor.getColumnIndex("wordid");
 					final long targetId = cursor.getLong(colIdx);
-					Log.d(TAG, "CLICK wn word=" + targetId);
+					Log.d(TAG, "Click: wn word=" + targetId);
 
 					// build pointer
 					final Parcelable wordPointer = new WordPointer(targetId);

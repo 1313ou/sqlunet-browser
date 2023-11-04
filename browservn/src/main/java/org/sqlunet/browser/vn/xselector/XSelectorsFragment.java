@@ -687,7 +687,7 @@ public class XSelectorsFragment extends BaseSelectorsExpandableListFragment
 
 		if (this.listener != null)
 		{
-			//Log.d(TAG, "CLICK on group=" + groupPosition + " child=" + childPosition + " id=" + id);
+			//Log.d(TAG, "Click: group=" + groupPosition + " child=" + childPosition + " id=" + id);
 			int index = listView.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition, childPosition));
 			listView.setItemChecked(index, true);
 

@@ -175,7 +175,7 @@ public class TextFragment extends AbstractTableFragment
 	{
 		super.onListItemClick(listView, view, position, id);
 
-		Log.d(TAG, "CLICK id=" + id + " pos=" + position);
+		Log.d(TAG, "Click: id=" + id + " pos=" + position);
 
 		// cursor
 		final ListAdapter adapter = getListAdapter();
@@ -206,7 +206,7 @@ public class TextFragment extends AbstractTableFragment
 						// target
 						final int colIdx = cursor.getColumnIndex("synsetid");
 						final long targetId = cursor.getLong(colIdx);
-						Log.d(TAG, "CLICK wn synset=" + targetId);
+						Log.d(TAG, "Click: wn synset=" + targetId);
 
 						// build pointer
 						final Parcelable synsetPointer = new SynsetPointer(targetId);
@@ -227,7 +227,7 @@ public class TextFragment extends AbstractTableFragment
 						// target
 						final int colIdx = cursor.getColumnIndex("wordid");
 						final long targetId = cursor.getLong(colIdx);
-						Log.d(TAG, "CLICK wn word=" + targetId);
+						Log.d(TAG, "Click: wn word=" + targetId);
 
 						// build pointer
 						final Parcelable wordPointer = new WordPointer(targetId);
@@ -246,7 +246,7 @@ public class TextFragment extends AbstractTableFragment
 				{
 					final int idClasses = cursor.getColumnIndex(VerbNetContract.Lookup_VnExamples_X.CLASSES);
 					final String classes = cursor.getString(idClasses);
-					Log.d(TAG, "CLICK vn classes=" + classes);
+					Log.d(TAG, "Click: vn classes=" + classes);
 
 					final Pair<TypedPointer[], CharSequence[]> result = makeData(classes);
 					if (result.first.length > 1)
@@ -271,7 +271,7 @@ public class TextFragment extends AbstractTableFragment
 				{
 					final int idRoleSets = cursor.getColumnIndex(PropBankContract.Lookup_PbExamples_X.ROLESETS);
 					final String roleSets = cursor.getString(idRoleSets);
-					Log.d(TAG, "CLICK pb rolesets=" + roleSets);
+					Log.d(TAG, "Click: pb rolesets=" + roleSets);
 
 					final Pair<TypedPointer[], CharSequence[]> result = makeData(roleSets);
 					if (result.first.length > 1)
@@ -300,9 +300,9 @@ public class TextFragment extends AbstractTableFragment
 					final String frames = cursor.getString(idFrames);
 					final String lexUnits = cursor.getString(idLexUnits);
 					final String sentence = "sentence@" + cursor.getString(idSentenceId);
-					Log.d(TAG, "CLICK fn frames=" + frames);
-					Log.d(TAG, "CLICK fn lexunits=" + lexUnits);
-					Log.d(TAG, "CLICK fn sentence=" + sentence);
+					Log.d(TAG, "Click: fn frames=" + frames);
+					Log.d(TAG, "Click: fn lexunits=" + lexUnits);
+					Log.d(TAG, "Click: fn sentence=" + sentence);
 
 					final Pair<TypedPointer[], CharSequence[]> result = makeData(frames, lexUnits, sentence);
 					if (result.first.length > 1)
