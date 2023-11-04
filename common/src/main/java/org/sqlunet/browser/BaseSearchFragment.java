@@ -496,7 +496,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	@Override
 	public void onSaveInstanceState(@NonNull final Bundle outState)
 	{
-		Log.d(TAG, "Save instance state");
+		Log.d(TAG, "State: Save instance state");
 
 		// always call the superclass so it can save the view hierarchy state
 		super.onSaveInstanceState(outState);
@@ -514,6 +514,8 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	public void onViewStateRestored(@Nullable final Bundle savedInstanceState)
 	{
 		super.onViewStateRestored(savedInstanceState);
+
+		Log.d(TAG, "State: Restore instance state from " + savedInstanceState);
 
 		// restore from saved instance
 		if (savedInstanceState != null && this.spinner != null)

@@ -29,7 +29,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 abstract public class BaseSelectorsListFragment extends Fragment implements AdapterView.OnItemClickListener
 {
-	static private final String TAG = "ASelectorsListF2";
+	static private final String TAG = "SelectorsListF";
 
 	/**
 	 * Search query
@@ -83,7 +83,7 @@ abstract public class BaseSelectorsListFragment extends Fragment implements Adap
 	public void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		Log.d(TAG, "Lifecycle: onCreate (2) " + this);
+		Log.d(TAG, "Lifecycle: onCreate (2) " + this + " from "  + savedInstanceState);
 	}
 
 	@Override
@@ -124,7 +124,7 @@ abstract public class BaseSelectorsListFragment extends Fragment implements Adap
 		Log.d(TAG, "Lifecycle: onStart (6) " + this);
 
 		// load data
-		Log.d(TAG, "Make models");
+		Log.d(TAG, "Load data");
 		load();
 	}
 

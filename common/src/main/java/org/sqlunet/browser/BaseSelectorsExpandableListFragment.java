@@ -25,7 +25,7 @@ public class BaseSelectorsExpandableListFragment extends ExpandableListFragment
 	public void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		Log.d(TAG, "Lifecycle: onCreate (2) " + this);
+		Log.d(TAG, "Lifecycle: onCreate (2) " + this + " from "  + savedInstanceState);
 		//noinspection deprecation
 		this.setRetainInstance(false); // default
 	}

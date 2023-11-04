@@ -201,7 +201,7 @@ public class SetupStatusFragment extends Fragment implements Updatable
 		if (context != null)
 		{
 			final int status = Status.status(context);
-			Log.d(TAG, "STATUS " + Status.toString(status));
+			Log.d(TAG, "Status: " + Status.toString(status));
 
 			// images
 			final Drawable okDrawable = ColorUtils.getDrawable(context, R.drawable.ic_ok);
