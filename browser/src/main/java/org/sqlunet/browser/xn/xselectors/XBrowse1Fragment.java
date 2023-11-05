@@ -42,7 +42,7 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements XSelectorsF
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		Log.d(TAG, "Lifecycle: onCreate");
+		super.onCreateView(inflater, container, savedInstanceState);
 
 		// view
 		final View view = inflater.inflate(Settings.getPaneLayout(R.layout.fragment_xbrowse_first, R.layout.fragment_xbrowse1, R.layout.fragment_xbrowse1_browse2), container, false);
@@ -97,13 +97,6 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements XSelectorsF
 		}
 
 		return view;
-	}
-
-	@Override
-	public void onDestroyView()
-	{
-		super.onDestroyView();
-		Log.d(TAG, "Lifecycle: onDestroy");
 	}
 
 	public void destroyFragments()
