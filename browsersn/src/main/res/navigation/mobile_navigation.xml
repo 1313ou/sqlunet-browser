@@ -19,13 +19,13 @@
 
 	<fragment
 		android:id="@+id/nav_search_browse"
-		android:name="org.sqlunet.browser.BrowseFragment"
+		android:name="org.sqlunet.browser.sn.BrowseFragment"
 		android:label="@string/nav_search_browse"
 		tools:layout="@layout/fragment_browse" />
 
 	<fragment
 		android:id="@+id/nav_search_text"
-		android:name="org.sqlunet.browser.SearchTextFragment"
+		android:name="org.sqlunet.browser.sn.SearchTextFragment"
 		android:label="@string/nav_search_text"
 		tools:layout="@layout/fragment_searchtext" />
 
