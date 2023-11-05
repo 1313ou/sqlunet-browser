@@ -541,7 +541,7 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	 * @param childFragmentTags removed children's tags
 	 * @noinspection SameParameterValue
 	 */
-	protected void removeAllChildFragment(final Fragment fragment, @Nullable final String tag, @IdRes final int where, final String... childFragmentTags)
+	private void removeAllChildFragment(final Fragment fragment, @Nullable final String tag, @IdRes final int where, final String... childFragmentTags)
 	{
 		Log.d(TAG, "Removing fragments " + Arrays.toString(childFragmentTags));
 		if (childFragmentTags != null && childFragmentTags.length > 0)
@@ -569,6 +569,15 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		}
 	}
 
+	/**
+	 * Remove children fragments with tags and insert given fragment with at given location
+	 *
+	 * @param fragment          new fragment
+	 * @param tag               new fragment's tag
+	 * @param where             new fragment's location
+	 * @param childFragmentTags removed children's tags
+	 * @noinspection SameParameterValue
+	 */
 	protected void beforeSaving(final Fragment fragment, @Nullable final String tag, @IdRes final int where, final String... childFragmentTags)
 	{
 		removeAllChildFragment(fragment, tag, where, childFragmentTags);
