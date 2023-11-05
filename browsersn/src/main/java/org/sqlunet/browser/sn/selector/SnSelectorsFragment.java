@@ -63,7 +63,6 @@ public class SnSelectorsFragment extends BaseSelectorsListFragment
 	public void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		Log.d(TAG, "Lifecycle: onCreate (2) " + this + " " + savedInstanceState);
 
 		// arguments
 		Bundle args = getArguments();
