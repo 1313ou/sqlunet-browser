@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
@@ -1356,6 +1357,10 @@
       <entry_point TYPE="field" FQNAME="org.sqlunet.browser.sn.Application TAG" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.browser.PositionViewModel TAG" />
       <entry_point TYPE="field" FQNAME="com.bbou.download.BaseDownloadFragment requestKill" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.xn.Status EXISTS_PREDICATEMATRIX" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.DownloadFragment TAG" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.DownloadFragment toFile" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.DownloadFragment unzipDir" />
     </entry_points>
     <pattern value="org.sqlunet.browser.AbstractApplication" method="dumpTasks" />
     <pattern value="org.sqlunet.browser.AbstractApplication" method="isNightMode" />
@@ -2763,6 +2768,90 @@
     <pattern value="org.sqlunet.browser.SearchListener" method="search" />
     <pattern value="org.sqlunet.browser.SearchListener" />
     <pattern value="org.sqlunet.browser.AbstractApplication" method="setStrictMode" />
+    <pattern value="org.sqlunet.browser.fn.selector.Browse1Fragment" />
+    <pattern value="org.sqlunet.browser.sn.selector.Browse1Fragment" />
+    <pattern value="org.sqlunet.browser.wn.selector.Browse1Fragment" />
+    <pattern value="org.sqlunet.browser.xn.selector.Browse1Fragment" />
+    <pattern value="org.sqlunet.browser.fn.Browse2Fragment" />
+    <pattern value="org.sqlunet.browser.sn.Browse2Fragment" />
+    <pattern value="org.sqlunet.browser.vn.Browse2Fragment" />
+    <pattern value="org.sqlunet.browser.wn.Browse2Fragment" />
+    <pattern value="org.sqlunet.browser.xn.Browse2Fragment" />
+    <pattern value="org.sqlunet.browser.fn.BrowseFragment" />
+    <pattern value="org.sqlunet.browser.sn.BrowseFragment" />
+    <pattern value="org.sqlunet.browser.vn.BrowseFragment" />
+    <pattern value="org.sqlunet.browser.wn.BrowseFragment" />
+    <pattern value="org.sqlunet.browser.xn.BrowseFragment" />
+    <pattern value="org.sqlunet.browser.xn.BrowseFragment" method="BrowseFragment" />
+    <pattern value="org.sqlunet.browser.sn.BrowseFragment" method="BrowseFragment" />
+    <pattern value="org.sqlunet.browser.wn.BrowseFragment" method="BrowseFragment" />
+    <pattern value="org.sqlunet.browser.vn.BrowseFragment" method="BrowseFragment" />
+    <pattern value="org.sqlunet.browser.fn.BrowseFragment" method="BrowseFragment" />
+    <pattern value="org.sqlunet.browser.xn.BrowsePredicateMatrixFragment" />
+    <pattern value="org.sqlunet.browser.xn.BrowsePredicateMatrixFragment" method="BrowsePredicateMatrixFragment" />
+    <pattern value="org.sqlunet.browser.xn.BrowsePredicateMatrixSplashFragment" />
+    <pattern value="org.sqlunet.browser.xn.BrowsePredicateMatrixSplashFragment" method="BrowsePredicateMatrixSplashFragment" />
+    <pattern value="org.sqlunet.browser.xn.xselectors.XBrowse1Fragment" method="destroyFragments" />
+    <pattern value="org.sqlunet.browser.xn.xselectors.XSelectorsFragment" method="expandAll" />
+    <pattern value="org.sqlunet.browser.vn.xselector.XSelectorsFragment" method="expandAll" />
+    <pattern value="org.sqlunet.HasSenseKey" />
+    <pattern value="org.sqlunet.browser.sn.selector.SnBrowse1Fragment" />
+    <pattern value="org.sqlunet.browser.vn.xselector.XBrowse1Fragment" />
+    <pattern value="org.sqlunet.browser.sn.xselector.XBrowse1Fragment" />
+    <pattern value="org.sqlunet.browser.xn.xselectors.XBrowse1Fragment" />
+    <pattern value="org.sqlunet.browser.vn.xselector.XSelectorsFragment" />
+    <pattern value="org.sqlunet.browser.sn.xselector.XSelectorsFragment" />
+    <pattern value="org.sqlunet.browser.xn.xselectors.XSelectorsFragment" />
+    <pattern value="org.sqlunet.browser.sn.TextFragment" method="makeDialog" />
+    <pattern value="org.sqlunet.browser.xn.BrowseFragment" method="makeSelectorIntent" />
+    <pattern value="org.sqlunet.browser.sn.BrowseFragment" method="makeSelectorIntent" />
+    <pattern value="org.sqlunet.browser.wn.BrowseFragment" method="makeSelectorIntent" />
+    <pattern value="org.sqlunet.browser.vn.BrowseFragment" method="makeSelectorIntent" />
+    <pattern value="org.sqlunet.browser.fn.BrowseFragment" method="makeSelectorIntent" />
+    <pattern value="org.sqlunet.browser.fn.SearchTextFragment" />
+    <pattern value="org.sqlunet.browser.sn.SearchTextFragment" />
+    <pattern value="org.sqlunet.browser.vn.SearchTextFragment" />
+    <pattern value="org.sqlunet.browser.wn.SearchTextFragment" />
+    <pattern value="org.sqlunet.browser.xn.SearchTextFragment" />
+    <pattern value="org.sqlunet.browser.xn.SearchTextFragment" method="SearchTextFragment" />
+    <pattern value="org.sqlunet.browser.vn.SearchTextFragment" method="SearchTextFragment" />
+    <pattern value="org.sqlunet.browser.sn.SearchTextFragment" method="SearchTextFragment" />
+    <pattern value="org.sqlunet.browser.wn.SearchTextFragment" method="SearchTextFragment" />
+    <pattern value="org.sqlunet.browser.fn.SearchTextFragment" method="SearchTextFragment" />
+    <pattern value="org.sqlunet.browser.fn.selector.SelectorsFragment" />
+    <pattern value="org.sqlunet.browser.sn.selector.SelectorsFragment" />
+    <pattern value="org.sqlunet.browser.wn.selector.SelectorsFragment" />
+    <pattern value="org.sqlunet.browser.xn.selector.SelectorsFragment" />
+    <pattern value="org.sqlunet.browser.xn.selector.SelectorsFragment" method="SelectorsFragment" />
+    <pattern value="org.sqlunet.browser.sn.selector.SelectorsFragment" method="SelectorsFragment" />
+    <pattern value="org.sqlunet.browser.wn.selector.SelectorsFragment" method="SelectorsFragment" />
+    <pattern value="org.sqlunet.browser.fn.selector.SelectorsFragment" method="SelectorsFragment" />
+    <pattern value="org.sqlunet.wordnet.SenseKeyPointer" method="SenseKeyPointer" />
+    <pattern value="org.sqlunet.browser.AbstractApplication" method="setThreadStrictMode" />
+    <pattern value="org.sqlunet.browser.AbstractApplication" method="setVmStrictMode" />
+    <pattern value="org.sqlunet.browser.sn.selector.SnSelectorsFragment" />
+    <pattern value="org.sqlunet.browser.sn.selector.SnSelectorsFragment" method="SnSelectorsFragment" />
+    <pattern value="org.sqlunet.browser.xn.Status" method="status" />
+    <pattern value="org.sqlunet.preference.StringSavedState" method="StringSavedState" />
+    <pattern value="org.sqlunet.browser.fn.TextFragment" />
+    <pattern value="org.sqlunet.browser.sn.TextFragment" />
+    <pattern value="org.sqlunet.browser.vn.TextFragment" />
+    <pattern value="org.sqlunet.browser.wn.TextFragment" />
+    <pattern value="org.sqlunet.browser.xn.TextFragment" />
+    <pattern value="org.sqlunet.browser.xn.TextFragment" method="TextFragment" />
+    <pattern value="org.sqlunet.browser.sn.TextFragment" method="TextFragment" />
+    <pattern value="org.sqlunet.browser.vn.TextFragment" method="TextFragment" />
+    <pattern value="org.sqlunet.browser.wn.TextFragment" method="TextFragment" />
+    <pattern value="org.sqlunet.browser.fn.TextFragment" method="TextFragment" />
+    <pattern value="org.sqlunet.Word" method="Word" />
+    <pattern value="org.sqlunet.browser.xn.selector.SelectorsFragment.Listener" />
+    <pattern value="org.sqlunet.browser.xn.Browse2Fragment" method="search" />
+    <pattern value="org.sqlunet.browser.fn.TextFragment.TypedPointer" />
+    <pattern value="org.sqlunet.browser.vn.TextFragment.TypedPointer" />
+    <pattern value="org.sqlunet.browser.xn.TextFragment.TypedPointer" />
+    <pattern value="org.sqlunet.browser.xn.TextFragment.TypedPointer" method="TypedPointer" />
+    <pattern value="org.sqlunet.browser.vn.TextFragment.TypedPointer" method="TypedPointer" />
+    <pattern value="org.sqlunet.browser.fn.TextFragment.TypedPointer" method="TypedPointer" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="androidx.annotation.Nullable" />
