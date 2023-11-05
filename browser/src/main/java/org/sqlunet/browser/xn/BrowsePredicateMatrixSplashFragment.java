@@ -1,8 +1,11 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser;
+package org.sqlunet.browser.xn;
+
+import org.sqlunet.browser.R;
+import org.sqlunet.browser.SplashFragment;
 
 /**
  * Browse PredicateMatrix splash fragment

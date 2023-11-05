@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser;
+package org.sqlunet.browser.xn;
 
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -14,6 +14,9 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 
 import org.sqlunet.Word;
+import org.sqlunet.browser.BaseSearchFragment;
+import org.sqlunet.browser.R;
+import org.sqlunet.browser.SplashFragment;
 import org.sqlunet.predicatematrix.PmRolePointer;
 import org.sqlunet.predicatematrix.browser.PredicateMatrixFragment;
 import org.sqlunet.predicatematrix.settings.Settings;
@@ -31,8 +34,6 @@ import androidx.fragment.app.Fragment;
 public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 {
 	static private final String TAG = "BrowsePmF";
-
-	static public final String FRAGMENT_TAG = "predicatematrix";
 
 	/**
 	 * Saved query
@@ -98,6 +99,16 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		}
 
 		return view;
+	}
+
+	@Override
+	public void onStop()
+	{
+		super.onStop();
+		Log.d(TAG, "Lifecycle: onStop (-4) " + this);
+
+		// remove data fragments and replace with splash before onSaveInstanceState takes place (between -3 and -4)
+		removeAllChildFragments(new BrowsePredicateMatrixSplashFragment(), SplashFragment.FRAGMENT_TAG, R.id.container_predicatematrix, PredicateMatrixFragment.FRAGMENT_TAG);
 	}
 
 	// S A V E
@@ -223,8 +234,8 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		getChildFragmentManager() //
 				.beginTransaction() //
 				.setReorderingAllowed(true) //
-				.replace(R.id.container_predicatematrix, fragment, FRAGMENT_TAG) //
-				.addToBackStack(FRAGMENT_TAG) //
+				.replace(R.id.container_predicatematrix, fragment, PredicateMatrixFragment.FRAGMENT_TAG) //
+				.addToBackStack(PredicateMatrixFragment.FRAGMENT_TAG) //
 				.commit();
 	}
 
@@ -296,8 +307,8 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 		getChildFragmentManager() //
 				.beginTransaction() //
 				.setReorderingAllowed(true) //
-				.replace(R.id.container_predicatematrix, fragment, FRAGMENT_TAG) //
-				.addToBackStack(FRAGMENT_TAG) //
+				.replace(R.id.container_predicatematrix, fragment, PredicateMatrixFragment.FRAGMENT_TAG) //
+				.addToBackStack(PredicateMatrixFragment.FRAGMENT_TAG) //
 				.commit();
 	}
 

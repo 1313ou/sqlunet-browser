@@ -1,9 +1,10 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser;
+package org.sqlunet.browser.sn;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -18,18 +19,23 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.TextView;
 
+import org.sqlunet.browser.AbstractTableFragment;
+import org.sqlunet.browser.sn.R;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.style.Factories;
 import org.sqlunet.style.RegExprSpanner;
 import org.sqlunet.style.Spanner.SpanFactory;
 import org.sqlunet.wordnet.SynsetPointer;
 import org.sqlunet.wordnet.WordPointer;
+import org.sqlunet.wordnet.browser.SynsetActivity;
+import org.sqlunet.wordnet.browser.WordActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 
 /**
  * Text result fragment
@@ -39,6 +45,8 @@ import androidx.annotation.Nullable;
 public class TextFragment extends AbstractTableFragment
 {
 	static private final String TAG = "TextF";
+
+	static public final String FRAGMENT_TAG = "text";
 
 	/**
 	 * Factories
@@ -81,7 +89,7 @@ public class TextFragment extends AbstractTableFragment
 	@Override
 	protected ViewBinder makeViewBinder()
 	{
-		// patterns (case-insensitive)
+		// pattern (case-insensitive)
 		final String[] patterns = toPatterns(this.query);
 
 		// spanner
@@ -185,7 +193,7 @@ public class TextFragment extends AbstractTableFragment
 					final Parcelable synsetPointer = new SynsetPointer(targetId);
 
 					// intent
-					final Intent targetIntent = new Intent(requireContext(), org.sqlunet.wordnet.browser.SynsetActivity.class);
+					final Intent targetIntent = new Intent(requireContext(), SynsetActivity.class);
 					targetIntent.setAction(ProviderArgs.ACTION_QUERY);
 					targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
 					targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, synsetPointer);
@@ -206,7 +214,7 @@ public class TextFragment extends AbstractTableFragment
 					final Parcelable wordPointer = new WordPointer(targetId);
 
 					// intent
-					final Intent targetIntent = new Intent(requireContext(), org.sqlunet.wordnet.browser.WordActivity.class);
+					final Intent targetIntent = new Intent(requireContext(), WordActivity.class);
 					targetIntent.setAction(ProviderArgs.ACTION_QUERY);
 					targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_WORD);
 					targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, wordPointer);
@@ -216,5 +224,21 @@ public class TextFragment extends AbstractTableFragment
 				}
 			}
 		}
+	}
+
+	/**
+	 * Make selection dialog
+	 *
+	 * @param listener click listener
+	 * @param choices  choices
+	 * @return dialog
+	 */
+	@NonNull
+	private AlertDialog makeDialog(final DialogInterface.OnClickListener listener, final CharSequence... choices)
+	{
+		return new AlertDialog.Builder(requireContext()) //
+				.setTitle(R.string.title_activity_searchtext) //
+				.setItems(choices, listener) //
+				.create();
 	}
 }

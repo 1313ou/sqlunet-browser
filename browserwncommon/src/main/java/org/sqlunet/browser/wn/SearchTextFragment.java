@@ -1,19 +1,24 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser;
+package org.sqlunet.browser.wn;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Spinner;
 
-import org.sqlunet.browser.fn.R;
-import org.sqlunet.framenet.provider.FrameNetContract.Lookup_FTS_FnSentences_X;
-import org.sqlunet.framenet.provider.FrameNetProvider;
+import org.sqlunet.browser.BaseSearchFragment;
+import org.sqlunet.browser.SearchTextSplashFragment;
+import org.sqlunet.browser.SplashFragment;
+import org.sqlunet.browser.wn.lib.R;
 import org.sqlunet.provider.ProviderArgs;
+import org.sqlunet.wordnet.provider.WordNetContract;
+import org.sqlunet.wordnet.provider.WordNetProvider;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,8 +32,6 @@ import androidx.fragment.app.Fragment;
 public class SearchTextFragment extends BaseSearchFragment
 {
 	static private final String TAG = "SearchTextF";
-
-	static public final String FRAGMENT_TAG = "text";
 
 	// C R E A T I O N
 
@@ -63,6 +66,47 @@ public class SearchTextFragment extends BaseSearchFragment
 		}
 
 		return view;
+	}
+
+	@Override
+	public void onStop()
+	{
+		super.onStop();
+		Log.d(TAG, "Lifecycle: onStop (-4) " + this);
+
+		// remove data fragments and replace with splash before onSaveInstanceState takes place (between -3 and -4)
+		removeAllChildFragments(new SearchTextSplashFragment(), SplashFragment.FRAGMENT_TAG, R.id.container_searchtext, TextFragment.FRAGMENT_TAG);
+	}
+
+	// S P I N N E R
+
+	@Override
+	protected void setupSpinner(@NonNull final Spinner spinner)
+	{
+		spinner.setVisibility(View.VISIBLE);
+
+		// apply spinner adapter
+		spinner.setAdapter(getSpinnerAdapter());
+
+		// spinner listener
+		spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+		{
+			@Override
+			public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
+			{
+				Settings.setSearchModePref(requireContext(), position);
+			}
+
+			@Override
+			public void onNothingSelected(final AdapterView<?> parentView)
+			{
+				//
+			}
+		});
+
+		// spinner position
+		final int modePosition = Settings.getSearchModePref(requireContext());
+		spinner.setSelection(modePosition);
 	}
 
 	// S E A R C H
@@ -118,21 +162,37 @@ public class SearchTextFragment extends BaseSearchFragment
 		String[] columns;
 		String[] hiddenColumns;
 		String database;
-		if (modePosition == 0)
+		switch (modePosition)
 		{
-			searchUri = FrameNetProvider.makeUri(Lookup_FTS_FnSentences_X.URI_BY_SENTENCE);
-			id = Lookup_FTS_FnSentences_X.SENTENCEID;
-			idType = "fnsentence";
-			target = Lookup_FTS_FnSentences_X.TEXT;
-			columns = new String[]{Lookup_FTS_FnSentences_X.TEXT};
-			hiddenColumns = new String[]{Lookup_FTS_FnSentences_X.SENTENCEID, //
-					"GROUP_CONCAT(DISTINCT  frame || '@' || frameid) AS " + Lookup_FTS_FnSentences_X.FRAMES, //
-					"GROUP_CONCAT(DISTINCT  lexunit || '@' || luid) AS " + Lookup_FTS_FnSentences_X.LEXUNITS};
-			database = "fn";
-		}
-		else
-		{
-			return;
+			case 0:
+				searchUri = WordNetProvider.makeUri(WordNetContract.Lookup_Definitions.URI);
+				id = WordNetContract.Lookup_Definitions.SYNSETID;
+				idType = "synset";
+				target = WordNetContract.Lookup_Definitions.DEFINITION;
+				columns = new String[]{WordNetContract.Lookup_Definitions.DEFINITION};
+				hiddenColumns = new String[]{WordNetContract.Lookup_Definitions.SYNSETID};
+				database = "wn";
+				break;
+			case 1:
+				searchUri = WordNetProvider.makeUri(WordNetContract.Lookup_Samples.URI);
+				id = WordNetContract.Lookup_Samples.SYNSETID;
+				idType = "synset";
+				target = WordNetContract.Lookup_Samples.SAMPLE;
+				columns = new String[]{WordNetContract.Lookup_Samples.SAMPLE};
+				hiddenColumns = new String[]{WordNetContract.Lookup_Samples.SYNSETID};
+				database = "wn";
+				break;
+			case 2:
+				searchUri = WordNetProvider.makeUri(WordNetContract.Lookup_Words.URI);
+				id = WordNetContract.Lookup_Words.WORDID;
+				idType = "word";
+				target = WordNetContract.Lookup_Words.WORD;
+				columns = new String[]{WordNetContract.Lookup_Words.WORD};
+				hiddenColumns = new String[]{WordNetContract.Lookup_Words.WORDID};
+				database = "wn";
+				break;
+			default:
+				return;
 		}
 
 		// parameters
@@ -157,8 +217,8 @@ public class SearchTextFragment extends BaseSearchFragment
 		getChildFragmentManager() //
 				.beginTransaction() //
 				.setReorderingAllowed(true) //
-				.replace(R.id.container_searchtext, fragment, FRAGMENT_TAG) //
-				.addToBackStack(FRAGMENT_TAG) //
+				.replace(R.id.container_searchtext, fragment, TextFragment.FRAGMENT_TAG) //
+				.addToBackStack(TextFragment.FRAGMENT_TAG) //
 				.commit();
 	}
 

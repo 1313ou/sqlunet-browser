@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser;
+package org.sqlunet.browser.wn;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.text.method.LinkMovementMethod;
 import android.util.Log;
 
 import org.sqlunet.bnc.browser.BNCFragment;
+import org.sqlunet.browser.BaseBrowse2Fragment;
 import org.sqlunet.browser.web.WebFragment;
 import org.sqlunet.browser.wn.Settings;
 import org.sqlunet.browser.wn.lib.R;

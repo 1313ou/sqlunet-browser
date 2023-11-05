@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser;
+package org.sqlunet.browser.xn;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,10 +12,11 @@ import android.text.method.LinkMovementMethod;
 import android.util.Log;
 
 import org.sqlunet.bnc.browser.BNCFragment;
+import org.sqlunet.browser.BaseBrowse2Fragment;
+import org.sqlunet.browser.R;
 import org.sqlunet.browser.web.WebFragment;
-import org.sqlunet.browser.xn.Settings;
 import org.sqlunet.browser.xselector.XSelectorPointer;
-import org.sqlunet.browser.xselector.XSelectorsFragment;
+import org.sqlunet.browser.xn.xselectors.XSelectorsFragment;
 import org.sqlunet.framenet.browser.FrameNetFragment;
 import org.sqlunet.propbank.browser.PropBankFragment;
 import org.sqlunet.provider.ProviderArgs;

@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser;
+package org.sqlunet.browser.xn;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -12,9 +12,17 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
-import org.sqlunet.browser.sn.R;
-import org.sqlunet.browser.sn.Settings;
+import org.sqlunet.browser.BaseSearchFragment;
+import org.sqlunet.browser.R;
+import org.sqlunet.browser.SearchTextSplashFragment;
+import org.sqlunet.browser.SplashFragment;
+import org.sqlunet.framenet.provider.FrameNetContract;
+import org.sqlunet.framenet.provider.FrameNetProvider;
+import org.sqlunet.propbank.provider.PropBankContract;
+import org.sqlunet.propbank.provider.PropBankProvider;
 import org.sqlunet.provider.ProviderArgs;
+import org.sqlunet.verbnet.provider.VerbNetContract;
+import org.sqlunet.verbnet.provider.VerbNetProvider;
 import org.sqlunet.wordnet.provider.WordNetContract;
 import org.sqlunet.wordnet.provider.WordNetProvider;
 
@@ -30,8 +38,6 @@ import androidx.fragment.app.Fragment;
 public class SearchTextFragment extends BaseSearchFragment
 {
 	static private final String TAG = "SearchTextF";
-
-	static public final String FRAGMENT_TAG = "text";
 
 	// C R E A T I O N
 
@@ -66,6 +72,16 @@ public class SearchTextFragment extends BaseSearchFragment
 		}
 
 		return view;
+	}
+
+	@Override
+	public void onStop()
+	{
+		super.onStop();
+		Log.d(TAG, "Lifecycle: onStop (-4) " + this);
+
+		// remove data fragments and replace with splash before onSaveInstanceState takes place (between -3 and -4)
+		removeAllChildFragments(new SearchTextSplashFragment(), SplashFragment.FRAGMENT_TAG, R.id.container_searchtext, TextFragment.FRAGMENT_TAG);
 	}
 
 	// S P I N N E R
@@ -119,11 +135,11 @@ public class SearchTextFragment extends BaseSearchFragment
 			return;
 		}
 
-		// log
-		Log.d(TAG, "Search text " + query);
-
 		// super
 		super.search(query);
+
+		// log
+		Log.d(TAG, "Search text " + query);
 
 		/*
 		// copy to target view
@@ -181,6 +197,37 @@ public class SearchTextFragment extends BaseSearchFragment
 				hiddenColumns = new String[]{WordNetContract.Lookup_Words.WORDID};
 				database = "wn";
 				break;
+			case 3:
+				searchUri = VerbNetProvider.makeUri(VerbNetContract.Lookup_VnExamples_X.URI);
+				id = VerbNetContract.Lookup_VnExamples_X.EXAMPLEID;
+				idType = "vnexample";
+				target = VerbNetContract.Lookup_VnExamples_X.EXAMPLE;
+				columns = new String[]{VerbNetContract.Lookup_VnExamples_X.EXAMPLE};
+				hiddenColumns = new String[]{ //
+						"GROUP_CONCAT(class || '@' || classid) AS " + VerbNetContract.Lookup_VnExamples_X.CLASSES};
+				database = "vn";
+				break;
+			case 4:
+				searchUri = PropBankProvider.makeUri(PropBankContract.Lookup_PbExamples_X.URI);
+				id = PropBankContract.Lookup_PbExamples_X.EXAMPLEID;
+				idType = "pbexample";
+				target = PropBankContract.Lookup_PbExamples_X.TEXT;
+				columns = new String[]{PropBankContract.Lookup_PbExamples_X.TEXT};
+				hiddenColumns = new String[]{ //
+						"GROUP_CONCAT(rolesetname ||'@'||rolesetid) AS " + PropBankContract.Lookup_PbExamples_X.ROLESETS};
+				database = "pb";
+				break;
+			case 5:
+				searchUri = FrameNetProvider.makeUri(FrameNetContract.Lookup_FTS_FnSentences_X.URI_BY_SENTENCE);
+				id = FrameNetContract.Lookup_FTS_FnSentences_X.SENTENCEID;
+				idType = "fnsentence";
+				target = FrameNetContract.Lookup_FTS_FnSentences_X.TEXT;
+				columns = new String[]{FrameNetContract.Lookup_FTS_FnSentences_X.TEXT};
+				hiddenColumns = new String[]{FrameNetContract.Lookup_FTS_FnSentences_X.SENTENCEID, //
+						"GROUP_CONCAT(DISTINCT  frame || '@' || frameid) AS " + FrameNetContract.Lookup_FTS_FnSentences_X.FRAMES, //
+						"GROUP_CONCAT(DISTINCT  lexunit || '@' || luid) AS " + FrameNetContract.Lookup_FTS_FnSentences_X.LEXUNITS};
+				database = "fn";
+				break;
 			default:
 				return;
 		}
@@ -207,8 +254,8 @@ public class SearchTextFragment extends BaseSearchFragment
 		getChildFragmentManager() //
 				.beginTransaction() //
 				.setReorderingAllowed(true) //
-				.replace(R.id.container_searchtext, fragment, FRAGMENT_TAG) //
-				.addToBackStack(FRAGMENT_TAG) //
+				.replace(R.id.container_searchtext, fragment, TextFragment.FRAGMENT_TAG) //
+				.addToBackStack(TextFragment.FRAGMENT_TAG) //
 				.commit();
 	}
 

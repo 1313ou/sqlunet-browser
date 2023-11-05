@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser;
+package org.sqlunet.browser.fn;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,23 +14,28 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.sqlunet.browser.vn.R;
-import org.sqlunet.browser.vn.Settings;
-import org.sqlunet.browser.vn.Settings.Selector;
+import org.sqlunet.browser.BaseBrowse1Fragment;
+import org.sqlunet.browser.BaseSearchFragment;
+import org.sqlunet.browser.BrowseSplashFragment;
+import org.sqlunet.browser.SplashFragment;
+import org.sqlunet.browser.fn.R;
+import org.sqlunet.browser.selector.Browse1Activity;
+import org.sqlunet.browser.fn.selector.Browse1Fragment;
 import org.sqlunet.browser.web.WebActivity;
 import org.sqlunet.browser.web.WebFragment;
-import org.sqlunet.browser.xselector.XBrowse1Activity;
-import org.sqlunet.browser.vn.xselector.XBrowse1Fragment;
+import org.sqlunet.framenet.FnAnnoSetPointer;
+import org.sqlunet.framenet.FnFramePointer;
+import org.sqlunet.framenet.FnLexUnitPointer;
+import org.sqlunet.framenet.FnPatternPointer;
+import org.sqlunet.framenet.FnSentencePointer;
+import org.sqlunet.framenet.FnValenceUnitPointer;
+import org.sqlunet.framenet.browser.FnAnnoSetActivity;
+import org.sqlunet.framenet.browser.FnFrameActivity;
+import org.sqlunet.framenet.browser.FnLexUnitActivity;
+import org.sqlunet.framenet.browser.FnSentenceActivity;
 import org.sqlunet.history.History;
-import org.sqlunet.propbank.PbRoleSetPointer;
-import org.sqlunet.propbank.browser.PbRoleSetActivity;
 import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.verbnet.VnClassPointer;
-import org.sqlunet.verbnet.browser.VnClassActivity;
-import org.sqlunet.wordnet.SynsetPointer;
-import org.sqlunet.wordnet.WordPointer;
-import org.sqlunet.wordnet.browser.SynsetActivity;
-import org.sqlunet.wordnet.browser.WordActivity;
+import org.sqlunet.settings.Settings;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -80,9 +85,19 @@ public class BrowseFragment extends BaseSearchFragment
 		return view;
 	}
 
+	@Override
+	public void onStop()
+	{
+		super.onStop();
+		Log.d(TAG, "Lifecycle: onStop (-4) " + this);
+
+		// remove data fragments and replace with splash before onSaveInstanceState takes place (between -3 and -4)
+		removeAllChildFragments(new BrowseSplashFragment(), SplashFragment.FRAGMENT_TAG, R.id.container_browse, BaseBrowse1Fragment.FRAGMENT_TAG);
+	}
+
 	// M E N U
 
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings({"deprecation","SameReturnValue"})
 	@Override
 	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
 	{
@@ -139,49 +154,54 @@ public class BrowseFragment extends BaseSearchFragment
 		{
 			final long id = Long.parseLong(query.substring(3));
 
-			// parameters
-			final Bundle parameters = org.sqlunet.wordnet.settings.Settings.getRenderParametersPref(requireContext());
-
-			// wordnet
-			if (query.startsWith("#ws"))
+			// framenet
+			if (query.startsWith("#ff"))
 			{
-				final Parcelable synsetPointer = new SynsetPointer(id);
-				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
-				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, synsetPointer);
-				args.putInt(ProviderArgs.ARG_QUERYRECURSE, 0);
-				args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters);
-
-				targetIntent = makeDetailIntent(SynsetActivity.class);
-			}
-			else if (query.startsWith("#ww"))
-			{
-				final Parcelable wordPointer = new WordPointer(id);
-				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_WORD);
-				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, wordPointer);
-				args.putInt(ProviderArgs.ARG_QUERYRECURSE, 0);
-				args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters);
-
-				targetIntent = makeDetailIntent(WordActivity.class);
-			}
-
-			// verbnet
-			else if (query.startsWith("#vc"))
-			{
-				final Parcelable framePointer = new VnClassPointer(id);
-				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_VNCLASS);
+				final Parcelable framePointer = new FnFramePointer(id);
+				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNFRAME);
 				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, framePointer);
 
-				targetIntent = makeDetailIntent(VnClassActivity.class);
+				targetIntent = makeDetailIntent(FnFrameActivity.class);
 			}
-
-			// propbank
-			else if (query.startsWith("#pr"))
+			else if (query.startsWith("#fl"))
 			{
-				final Parcelable roleSetPointer = new PbRoleSetPointer(id);
-				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_PBROLESET);
-				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, roleSetPointer);
+				final Parcelable lexunitPointer = new FnLexUnitPointer(id);
+				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT);
+				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, lexunitPointer);
 
-				targetIntent = makeDetailIntent(PbRoleSetActivity.class);
+				targetIntent = makeDetailIntent(FnLexUnitActivity.class);
+			}
+			else if (query.startsWith("#fs"))
+			{
+				final Parcelable sentencePointer = new FnSentencePointer(id);
+				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNSENTENCE);
+				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, sentencePointer);
+
+				targetIntent = makeDetailIntent(FnSentenceActivity.class);
+			}
+			else if (query.startsWith("#fa"))
+			{
+				final Parcelable annoSetPointer = new FnAnnoSetPointer(id);
+				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNANNOSET);
+				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, annoSetPointer);
+
+				targetIntent = makeDetailIntent(FnAnnoSetActivity.class);
+			}
+			else if (query.startsWith("#fp"))
+			{
+				final Parcelable patternPointer = new FnPatternPointer(id);
+				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNPATTERN);
+				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, patternPointer);
+
+				targetIntent = makeDetailIntent(FnAnnoSetActivity.class);
+			}
+			else if (query.startsWith("#fv"))
+			{
+				final Parcelable valenceunitPointer = new FnValenceUnitPointer(id);
+				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNVALENCEUNIT);
+				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, valenceunitPointer);
+
+				targetIntent = makeDetailIntent(FnAnnoSetActivity.class);
 			}
 
 			else
@@ -252,7 +272,7 @@ public class BrowseFragment extends BaseSearchFragment
 		final Context context = requireContext();
 
 		// type
-		final Selector selectorType = Settings.getXSelectorPref(context);
+		final Settings.Selector selectorType = Settings.getSelectorPref(context);
 
 		// mode
 		final Settings.SelectorViewMode selectorMode = Settings.getSelectorViewModePref(context);
@@ -260,9 +280,9 @@ public class BrowseFragment extends BaseSearchFragment
 		switch (selectorMode)
 		{
 			case VIEW:
-				if (selectorType == Selector.XSELECTOR)
+				if (selectorType == Settings.Selector.SELECTOR)
 				{
-					return new XBrowse1Fragment();
+					return new Browse1Fragment();
 				}
 				break;
 
@@ -288,7 +308,7 @@ public class BrowseFragment extends BaseSearchFragment
 		Intent intent = null;
 
 		// type
-		final Selector selectorType = Settings.getXSelectorPref(context);
+		final Settings.Selector selectorType = Settings.getSelectorPref(context);
 
 		// mode
 		final Settings.SelectorViewMode selectorMode = Settings.getSelectorViewModePref(context);
@@ -297,9 +317,9 @@ public class BrowseFragment extends BaseSearchFragment
 		{
 			case VIEW:
 				Class<?> intentClass = null;
-				if (selectorType == Selector.XSELECTOR)
+				if (selectorType == Settings.Selector.SELECTOR)
 				{
-					intentClass = XBrowse1Activity.class;
+					intentClass = Browse1Activity.class;
 				}
 				intent = new Intent(requireContext(), intentClass);
 				break;

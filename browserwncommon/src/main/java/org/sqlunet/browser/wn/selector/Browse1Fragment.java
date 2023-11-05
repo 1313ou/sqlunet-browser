@@ -14,11 +14,10 @@ import org.sqlunet.browser.BaseBrowse1Fragment;
 import org.sqlunet.browser.BaseBrowse2Fragment;
 import org.sqlunet.browser.BaseSelectorsFragment;
 import org.sqlunet.browser.Browse2Activity;
-import org.sqlunet.browser.Browse2Fragment;
+import org.sqlunet.browser.wn.Browse2Fragment;
 import org.sqlunet.browser.Selectors;
 import org.sqlunet.browser.wn.Settings;
 import org.sqlunet.browser.wn.lib.R;
-import org.sqlunet.browser.wn.selector.SelectorsFragment;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.wordnet.SensePointer;
 

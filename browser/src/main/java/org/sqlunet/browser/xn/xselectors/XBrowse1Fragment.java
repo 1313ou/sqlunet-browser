@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser.xselector;
+package org.sqlunet.browser.xn.xselectors;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,10 +15,11 @@ import org.sqlunet.browser.BaseBrowse1Fragment;
 import org.sqlunet.browser.BaseBrowse2Fragment;
 import org.sqlunet.browser.BaseSelectorsFragment;
 import org.sqlunet.browser.Browse2Activity;
-import org.sqlunet.browser.Browse2Fragment;
+import org.sqlunet.browser.xn.Browse2Fragment;
 import org.sqlunet.browser.R;
 import org.sqlunet.browser.Selectors;
 import org.sqlunet.browser.xn.Settings;
+import org.sqlunet.browser.xselector.XSelectorPointer;
 import org.sqlunet.provider.ProviderArgs;
 
 import androidx.annotation.NonNull;

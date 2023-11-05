@@ -1,14 +1,15 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser;
+package org.sqlunet.browser.sn;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
 
 import org.sqlunet.bnc.browser.BNCFragment;
+import org.sqlunet.browser.BaseBrowse2Fragment;
 import org.sqlunet.browser.selector.CollocationSelectorPointer;
 import org.sqlunet.browser.sn.R;
 import org.sqlunet.browser.sn.Settings;

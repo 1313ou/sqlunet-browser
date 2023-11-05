@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser;
+package org.sqlunet.browser.xn;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -27,7 +27,12 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.TextView;
 
-import org.sqlunet.browser.vn.R;
+import org.sqlunet.browser.AbstractTableFragment;
+import org.sqlunet.browser.R;
+import org.sqlunet.framenet.FnFramePointer;
+import org.sqlunet.framenet.FnLexUnitPointer;
+import org.sqlunet.framenet.FnSentencePointer;
+import org.sqlunet.framenet.provider.FrameNetContract;
 import org.sqlunet.propbank.PbRoleSetPointer;
 import org.sqlunet.propbank.browser.PbRoleSetActivity;
 import org.sqlunet.propbank.provider.PropBankContract;
@@ -39,6 +44,8 @@ import org.sqlunet.style.Spanner.SpanFactory;
 import org.sqlunet.verbnet.VnClassPointer;
 import org.sqlunet.verbnet.browser.VnClassActivity;
 import org.sqlunet.verbnet.provider.VerbNetContract;
+import org.sqlunet.wordnet.SynsetPointer;
+import org.sqlunet.wordnet.WordPointer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -60,6 +67,8 @@ import androidx.appcompat.content.res.AppCompatResources;
 public class TextFragment extends AbstractTableFragment
 {
 	static private final String TAG = "TextF";
+
+	static public final String FRAGMENT_TAG = "text";
 
 	/**
 	 * Factories
@@ -102,7 +111,7 @@ public class TextFragment extends AbstractTableFragment
 	@Override
 	protected ViewBinder makeViewBinder()
 	{
-		// patterns (case-insensitive)
+		// pattern (case-insensitive)
 		final String[] patterns = toPatterns(this.query);
 
 		// spanner
@@ -187,55 +196,138 @@ public class TextFragment extends AbstractTableFragment
 		if (database != null)
 		{
 			// wordnet
-			if ("vn".equals(database)) //
+			switch (database)
 			{
-				final int idClasses = cursor.getColumnIndex(VerbNetContract.Lookup_VnExamples_X.CLASSES);
-				final String classes = cursor.getString(idClasses);
-				Log.d(TAG, "Click: vn classes=" + classes);
+				case "wn":
+					String subtarget = args.getString(ProviderArgs.ARG_QUERYIDTYPE);
 
-				final Pair<TypedPointer[], CharSequence[]> result = makeData(classes);
-				if (result.first.length > 1)
+					if ("synset".equals(subtarget))
+					{
+						// parameters
+						final int recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(requireContext());
+						final Bundle parameters = org.sqlunet.wordnet.settings.Settings.getRenderParametersPref(requireContext());
+
+						// target
+						final int colIdx = cursor.getColumnIndex("synsetid");
+						final long targetId = cursor.getLong(colIdx);
+						Log.d(TAG, "Click: wn synset=" + targetId);
+
+						// build pointer
+						final Parcelable synsetPointer = new SynsetPointer(targetId);
+
+						// intent
+						final Intent targetIntent = new Intent(requireContext(), org.sqlunet.wordnet.browser.SynsetActivity.class);
+						targetIntent.setAction(ProviderArgs.ACTION_QUERY);
+						targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
+						targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, synsetPointer);
+						targetIntent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse);
+						targetIntent.putExtra(ProviderArgs.ARG_RENDERPARAMETERS, parameters);
+
+						// start
+						startActivity(targetIntent);
+					}
+					else if ("word".equals(subtarget))
+					{
+						// target
+						final int colIdx = cursor.getColumnIndex("wordid");
+						final long targetId = cursor.getLong(colIdx);
+						Log.d(TAG, "Click: wn word=" + targetId);
+
+						// build pointer
+						final Parcelable wordPointer = new WordPointer(targetId);
+
+						// intent
+						final Intent targetIntent = new Intent(requireContext(), org.sqlunet.wordnet.browser.WordActivity.class);
+						targetIntent.setAction(ProviderArgs.ACTION_QUERY);
+						targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_WORD);
+						targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, wordPointer);
+
+						// start
+						startActivity(targetIntent);
+					}
+					break;
+				case "vn":
 				{
-					final DialogInterface.OnClickListener listener = (dialog, which) -> {
-						// which argument contains the index position of the selected item
-						final TypedPointer typedPointer = result.first[which];
+					final int idClasses = cursor.getColumnIndex(VerbNetContract.Lookup_VnExamples_X.CLASSES);
+					final String classes = cursor.getString(idClasses);
+					Log.d(TAG, "Click: vn classes=" + classes);
+
+					final Pair<TypedPointer[], CharSequence[]> result = makeData(classes);
+					if (result.first.length > 1)
+					{
+						final DialogInterface.OnClickListener listener = (dialog, which) -> {
+							// which argument contains the index position of the selected item
+							final TypedPointer typedPointer = result.first[which];
+							startVn(typedPointer);
+						};
+
+						final AlertDialog dialog = makeDialog(listener, result.second);
+						dialog.show();
+					}
+					else if (result.first.length == 1)
+					{
+						final TypedPointer typedPointer = result.first[0];
 						startVn(typedPointer);
-					};
-
-					final AlertDialog dialog = makeDialog(listener, result.second);
-					dialog.show();
+					}
+					break;
 				}
-				else if (result.first.length == 1)
+				case "pb":
 				{
-					final TypedPointer typedPointer = result.first[0];
-					startVn(typedPointer);
-				}
-			}
-			else if ("pb".equals(database)) //
-			{
-				final int idRoleSets = cursor.getColumnIndex(PropBankContract.Lookup_PbExamples_X.ROLESETS);
-				final String roleSets = cursor.getString(idRoleSets);
-				Log.d(TAG, "Click: pb rolesets=" + roleSets);
+					final int idRoleSets = cursor.getColumnIndex(PropBankContract.Lookup_PbExamples_X.ROLESETS);
+					final String roleSets = cursor.getString(idRoleSets);
+					Log.d(TAG, "Click: pb rolesets=" + roleSets);
 
-				final Pair<TypedPointer[], CharSequence[]> result = makeData(roleSets);
-				if (result.first.length > 1)
-				{
-					final DialogInterface.OnClickListener listener = (dialog, which) -> {
-						// which argument contains the index position of the selected item
-						final TypedPointer typedPointer = result.first[which];
+					final Pair<TypedPointer[], CharSequence[]> result = makeData(roleSets);
+					if (result.first.length > 1)
+					{
+						final DialogInterface.OnClickListener listener = (dialog, which) -> {
+							// which argument contains the index position of the selected item
+							final TypedPointer typedPointer = result.first[which];
+							startPb(typedPointer);
+						};
+
+						final AlertDialog dialog = makeDialog(listener, result.second);
+						dialog.show();
+					}
+					else if (result.first.length == 1)
+					{
+						final TypedPointer typedPointer = result.first[0];
 						startPb(typedPointer);
-					};
-
-					final AlertDialog dialog = makeDialog(listener, result.second);
-					dialog.show();
+					}
+					break;
 				}
-				else if (result.first.length == 1)
+				case "fn":
 				{
-					final TypedPointer typedPointer = result.first[0];
-					startPb(typedPointer);
+					final int idFrames = cursor.getColumnIndex(FrameNetContract.Lookup_FTS_FnSentences_X.FRAMES);
+					final int idLexUnits = cursor.getColumnIndex(FrameNetContract.Lookup_FTS_FnSentences_X.LEXUNITS);
+					final int idSentenceId = cursor.getColumnIndex(FrameNetContract.Lookup_FTS_FnSentences_X.SENTENCEID);
+					final String frames = cursor.getString(idFrames);
+					final String lexUnits = cursor.getString(idLexUnits);
+					final String sentence = "sentence@" + cursor.getString(idSentenceId);
+					Log.d(TAG, "Click: fn frames=" + frames);
+					Log.d(TAG, "Click: fn lexunits=" + lexUnits);
+					Log.d(TAG, "Click: fn sentence=" + sentence);
+
+					final Pair<TypedPointer[], CharSequence[]> result = makeData(frames, lexUnits, sentence);
+					if (result.first.length > 1)
+					{
+						final DialogInterface.OnClickListener listener = (dialog, which) -> {
+							// which argument contains the index position of the selected item
+							final TypedPointer typedPointer = result.first[which];
+							startFn(typedPointer);
+						};
+
+						final AlertDialog dialog = makeDialog(listener, result.second);
+						dialog.show();
+					}
+					else if (result.first.length == 1)
+					{
+						final TypedPointer typedPointer = result.first[0];
+						startFn(typedPointer);
+					}
+					break;
 				}
 			}
-
 		}
 	}
 
@@ -284,6 +376,46 @@ public class TextFragment extends AbstractTableFragment
 			pointer = new PbRoleSetPointer(targetId);
 			targetIntent = new Intent(requireContext(), PbRoleSetActivity.class);
 			targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_PBROLESET);
+		}
+
+		// pass pointer
+		assert targetIntent != null;
+		targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
+		targetIntent.setAction(ProviderArgs.ACTION_QUERY);
+
+		// start
+		startActivity(targetIntent);
+	}
+
+	/**
+	 * Start FrameNet
+	 *
+	 * @param typedPointer typed pointer
+	 */
+	private void startFn(@NonNull final TypedPointer typedPointer)
+	{
+		final long targetId = typedPointer.id;
+		Intent targetIntent = null;
+		Parcelable pointer = null;
+
+		// intent, type, pointer
+		switch (typedPointer.type)
+		{
+			case 0:
+				pointer = new FnFramePointer(targetId);
+				targetIntent = new Intent(requireContext(), org.sqlunet.framenet.browser.FnFrameActivity.class);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNFRAME);
+				break;
+			case 1:
+				pointer = new FnLexUnitPointer(targetId);
+				targetIntent = new Intent(requireContext(), org.sqlunet.framenet.browser.FnLexUnitActivity.class);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT);
+				break;
+			case 2:
+				pointer = new FnSentencePointer(targetId);
+				targetIntent = new Intent(requireContext(), org.sqlunet.framenet.browser.FnSentenceActivity.class);
+				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNSENTENCE);
+				break;
 		}
 
 		// pass pointer

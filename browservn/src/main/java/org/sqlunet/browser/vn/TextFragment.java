@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser;
+package org.sqlunet.browser.vn;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -27,16 +27,19 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.TextView;
 
-import org.sqlunet.browser.fn.R;
-import org.sqlunet.framenet.FnFramePointer;
-import org.sqlunet.framenet.FnLexUnitPointer;
-import org.sqlunet.framenet.FnSentencePointer;
-import org.sqlunet.framenet.provider.FrameNetContract;
+import org.sqlunet.browser.AbstractTableFragment;
+import org.sqlunet.browser.vn.R;
+import org.sqlunet.propbank.PbRoleSetPointer;
+import org.sqlunet.propbank.browser.PbRoleSetActivity;
+import org.sqlunet.propbank.provider.PropBankContract;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.style.Colors;
 import org.sqlunet.style.Factories;
 import org.sqlunet.style.RegExprSpanner;
 import org.sqlunet.style.Spanner.SpanFactory;
+import org.sqlunet.verbnet.VnClassPointer;
+import org.sqlunet.verbnet.browser.VnClassActivity;
+import org.sqlunet.verbnet.provider.VerbNetContract;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,6 +61,8 @@ import androidx.appcompat.content.res.AppCompatResources;
 public class TextFragment extends AbstractTableFragment
 {
 	static private final String TAG = "TextF";
+
+	static public final String FRAGMENT_TAG = "text";
 
 	/**
 	 * Factories
@@ -185,25 +190,19 @@ public class TextFragment extends AbstractTableFragment
 		if (database != null)
 		{
 			// wordnet
-			if ("fn".equals(database)) //
+			if ("vn".equals(database)) //
 			{
-				final int idFrames = cursor.getColumnIndex(FrameNetContract.Lookup_FTS_FnSentences_X.FRAMES);
-				final int idLexUnits = cursor.getColumnIndex(FrameNetContract.Lookup_FTS_FnSentences_X.LEXUNITS);
-				final int idSentenceId = cursor.getColumnIndex(FrameNetContract.Lookup_FTS_FnSentences_X.SENTENCEID);
-				final String frames = cursor.getString(idFrames);
-				final String lexUnits = cursor.getString(idLexUnits);
-				final String sentence = "sentence@" + cursor.getString(idSentenceId);
-				Log.d(TAG, "Click: fn frames=" + frames);
-				Log.d(TAG, "Click: fn lexunits=" + lexUnits);
-				Log.d(TAG, "Click: fn sentence=" + sentence);
+				final int idClasses = cursor.getColumnIndex(VerbNetContract.Lookup_VnExamples_X.CLASSES);
+				final String classes = cursor.getString(idClasses);
+				Log.d(TAG, "Click: vn classes=" + classes);
 
-				final Pair<TypedPointer[], CharSequence[]> result = makeData(frames, lexUnits, sentence);
+				final Pair<TypedPointer[], CharSequence[]> result = makeData(classes);
 				if (result.first.length > 1)
 				{
 					final DialogInterface.OnClickListener listener = (dialog, which) -> {
 						// which argument contains the index position of the selected item
 						final TypedPointer typedPointer = result.first[which];
-						startFn(typedPointer);
+						startVn(typedPointer);
 					};
 
 					final AlertDialog dialog = makeDialog(listener, result.second);
@@ -212,41 +211,82 @@ public class TextFragment extends AbstractTableFragment
 				else if (result.first.length == 1)
 				{
 					final TypedPointer typedPointer = result.first[0];
-					startFn(typedPointer);
+					startVn(typedPointer);
 				}
 			}
+			else if ("pb".equals(database)) //
+			{
+				final int idRoleSets = cursor.getColumnIndex(PropBankContract.Lookup_PbExamples_X.ROLESETS);
+				final String roleSets = cursor.getString(idRoleSets);
+				Log.d(TAG, "Click: pb rolesets=" + roleSets);
+
+				final Pair<TypedPointer[], CharSequence[]> result = makeData(roleSets);
+				if (result.first.length > 1)
+				{
+					final DialogInterface.OnClickListener listener = (dialog, which) -> {
+						// which argument contains the index position of the selected item
+						final TypedPointer typedPointer = result.first[which];
+						startPb(typedPointer);
+					};
+
+					final AlertDialog dialog = makeDialog(listener, result.second);
+					dialog.show();
+				}
+				else if (result.first.length == 1)
+				{
+					final TypedPointer typedPointer = result.first[0];
+					startPb(typedPointer);
+				}
+			}
+
 		}
 	}
 
 	/**
-	 * Start FrameNet
+	 * Start VerbNet
 	 *
 	 * @param typedPointer typed pointer
 	 */
-	private void startFn(@NonNull final TypedPointer typedPointer)
+	private void startVn(@NonNull final TypedPointer typedPointer)
 	{
 		final long targetId = typedPointer.id;
 		Intent targetIntent = null;
 		Parcelable pointer = null;
 
 		// intent, type, pointer
-		switch (typedPointer.type)
+		if (typedPointer.type == 0)
 		{
-			case 0:
-				pointer = new FnFramePointer(targetId);
-				targetIntent = new Intent(requireContext(), org.sqlunet.framenet.browser.FnFrameActivity.class);
-				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNFRAME);
-				break;
-			case 1:
-				pointer = new FnLexUnitPointer(targetId);
-				targetIntent = new Intent(requireContext(), org.sqlunet.framenet.browser.FnLexUnitActivity.class);
-				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT);
-				break;
-			case 2:
-				pointer = new FnSentencePointer(targetId);
-				targetIntent = new Intent(requireContext(), org.sqlunet.framenet.browser.FnSentenceActivity.class);
-				targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNSENTENCE);
-				break;
+			pointer = new VnClassPointer(targetId);
+			targetIntent = new Intent(requireContext(), VnClassActivity.class);
+			targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_VNCLASS);
+		}
+
+		// pass pointer
+		assert targetIntent != null;
+		targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
+		targetIntent.setAction(ProviderArgs.ACTION_QUERY);
+
+		// start
+		startActivity(targetIntent);
+	}
+
+	/**
+	 * Start PropBank
+	 *
+	 * @param typedPointer typed pointer
+	 */
+	private void startPb(@NonNull final TypedPointer typedPointer)
+	{
+		final long targetId = typedPointer.id;
+		Intent targetIntent = null;
+		Parcelable pointer = null;
+
+		// intent, type, pointer
+		if (typedPointer.type == 0)
+		{
+			pointer = new PbRoleSetPointer(targetId);
+			targetIntent = new Intent(requireContext(), PbRoleSetActivity.class);
+			targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_PBROLESET);
 		}
 
 		// pass pointer

@@ -27,7 +27,7 @@ abstract public class SplashFragment extends Fragment
 	/**
 	 * Layout id set bu super class
 	 */
-	int layoutId;
+	protected int layoutId;
 
 	/**
 	 * Constructor
