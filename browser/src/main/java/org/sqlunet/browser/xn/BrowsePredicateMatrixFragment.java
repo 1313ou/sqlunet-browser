@@ -105,7 +105,6 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 	public void onStop()
 	{
 		super.onStop();
-		Log.d(TAG, "Lifecycle: onStop (-4) " + this);
 
 		// remove data fragments and replace with splash before onSaveInstanceState takes place (between -3 and -4)
 		beforeSaving(new BrowsePredicateMatrixSplashFragment(), SplashFragment.FRAGMENT_TAG, R.id.container_predicatematrix, PredicateMatrixFragment.FRAGMENT_TAG);
