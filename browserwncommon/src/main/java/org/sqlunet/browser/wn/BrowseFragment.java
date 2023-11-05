@@ -58,7 +58,7 @@ public class BrowseFragment extends BaseSearchFragment
 	 */
 	public BrowseFragment()
 	{
-		Log.d(TAG, "Lifecycle: Constructor (0) " + this);
+		super();
 		this.layoutId = R.layout.fragment_browse;
 		this.menuId = R.menu.browse;
 		this.colorAttrId = R.attr.colorPrimary;
@@ -69,7 +69,8 @@ public class BrowseFragment extends BaseSearchFragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		Log.d(TAG, "Lifecycle: onCreateView (3) " + this);
+		super.onCreateView(inflater, container, savedInstanceState);
+
 		final View view = super.onCreateView(inflater, container, savedInstanceState);
 
 		if (savedInstanceState == null)
@@ -92,31 +93,9 @@ public class BrowseFragment extends BaseSearchFragment
 	public void onStop()
 	{
 		super.onStop();
-		Log.d(TAG, "Lifecycle: onStop (-4) " + this);
 
 		// remove data fragments and replace with splash before onSaveInstanceState takes place (between -3 and -4)
 		beforeSaving(new BrowseSplashFragment(), SplashFragment.FRAGMENT_TAG, R.id.container_browse, BaseBrowse1Fragment.FRAGMENT_TAG);
-	}
-
-	@Override
-	public void onDestroyView()
-	{
-		super.onDestroyView();
-		Log.d(TAG, "Lifecycle: onDestroyView (-3) " + this);
-	}
-
-	@Override
-	public void onDestroy()
-	{
-		super.onDestroy();
-		Log.d(TAG, "Lifecycle: onDestroy (-2) " + this);
-	}
-
-	@Override
-	public void onDetach()
-	{
-		super.onDetach();
-		Log.d(TAG, "Lifecycle: onDetach (-1) " + this);
 	}
 
 	// M E N U
