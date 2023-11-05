@@ -22,7 +22,6 @@ import org.sqlunet.browser.config.TableActivity;
 import org.sqlunet.browser.selector.Browse1Activity;
 import org.sqlunet.browser.web.WebActivity;
 import org.sqlunet.browser.web.WebFragment;
-import org.sqlunet.browser.wn.Settings;
 import org.sqlunet.browser.wn.lib.R;
 import org.sqlunet.browser.wn.selector.Browse1Fragment;
 import org.sqlunet.history.History;
@@ -39,12 +38,9 @@ import org.sqlunet.wordnet.provider.WordNetContract.Poses;
 import org.sqlunet.wordnet.provider.WordNetContract.Relations;
 import org.sqlunet.wordnet.provider.WordNetProvider;
 
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 /**
  * Browse fragment
@@ -99,7 +95,7 @@ public class BrowseFragment extends BaseSearchFragment
 		Log.d(TAG, "Lifecycle: onStop (-4) " + this);
 
 		// remove data fragments and replace with splash before onSaveInstanceState takes place (between -3 and -4)
-		removeAllChildFragments(new BrowseSplashFragment(), SplashFragment.FRAGMENT_TAG, R.id.container_browse, BaseBrowse1Fragment.FRAGMENT_TAG);
+		beforeSaving(new BrowseSplashFragment(), SplashFragment.FRAGMENT_TAG, R.id.container_browse, BaseBrowse1Fragment.FRAGMENT_TAG);
 	}
 
 	@Override

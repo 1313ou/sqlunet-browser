@@ -74,7 +74,7 @@ public class SearchTextFragment extends BaseSearchFragment
 		Log.d(TAG, "Lifecycle: onStop (-4) " + this);
 
 		// remove data fragments and replace with splash before onSaveInstanceState takes place (between -3 and -4)
-		removeAllChildFragments(new SearchTextSplashFragment(), SplashFragment.FRAGMENT_TAG, R.id.container_searchtext, TextFragment.FRAGMENT_TAG);
+		beforeSaving(new SearchTextSplashFragment(), SplashFragment.FRAGMENT_TAG, R.id.container_searchtext, TextFragment.FRAGMENT_TAG);
 	}
 
 	// S P I N N E R

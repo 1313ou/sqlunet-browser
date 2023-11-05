@@ -539,8 +539,9 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	 * @param tag               new fragment's tag
 	 * @param where             new fragment's location
 	 * @param childFragmentTags removed children's tags
+	 * @noinspection SameParameterValue
 	 */
-	protected void removeAllChildFragments(final Fragment fragment, @Nullable String tag, @IdRes final int where, final String... childFragmentTags)
+	protected void removeAllChildFragment(final Fragment fragment, @Nullable final String tag, @IdRes final int where, final String... childFragmentTags)
 	{
 		Log.d(TAG, "Removing fragments " + Arrays.toString(childFragmentTags));
 		if (childFragmentTags != null && childFragmentTags.length > 0)
@@ -566,6 +567,11 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 				transaction.commitAllowingStateLoss();
 			}
 		}
+	}
+
+	protected void beforeSaving(final Fragment fragment, @Nullable final String tag, @IdRes final int where, final String... childFragmentTags)
+	{
+		removeAllChildFragment(fragment, tag, where, childFragmentTags);
 	}
 
 	// B A C K S T A C K   H E L P E R

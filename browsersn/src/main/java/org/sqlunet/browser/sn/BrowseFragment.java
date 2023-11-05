@@ -25,8 +25,6 @@ import org.sqlunet.browser.config.TableActivity;
 import org.sqlunet.browser.selector.Browse1Activity;
 import org.sqlunet.browser.sn.selector.Browse1Fragment;
 import org.sqlunet.browser.sn.selector.SnBrowse1Fragment;
-import org.sqlunet.browser.sn.R;
-import org.sqlunet.browser.sn.Settings;
 import org.sqlunet.browser.web.WebActivity;
 import org.sqlunet.browser.web.WebFragment;
 import org.sqlunet.browser.xselector.XBrowse1Activity;
@@ -102,7 +100,7 @@ public class BrowseFragment extends BaseSearchFragment
 		Log.d(TAG, "Lifecycle: onStop (-4) " + this);
 
 		// remove data fragments and replace with splash before onSaveInstanceState takes place (between -3 and -4)
-		removeAllChildFragments(new BrowseSplashFragment(), SplashFragment.FRAGMENT_TAG, R.id.container_browse, BaseBrowse1Fragment.FRAGMENT_TAG);
+		beforeSaving(new BrowseSplashFragment(), SplashFragment.FRAGMENT_TAG, R.id.container_browse, BaseBrowse1Fragment.FRAGMENT_TAG);
 	}
 
 	// S P I N N E R
