@@ -58,7 +58,7 @@ import androidx.lifecycle.Lifecycle;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-abstract public class BaseSearchFragment extends Fragment implements SearchListener
+abstract public class BaseSearchFragment extends LoggingFragment implements SearchListener
 {
 	static private final String TAG = "BaseSearchF";
 
@@ -105,18 +105,9 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 
 	// C R E A T I O N
 
-	/**
-	 * Constructor
-	 */
-	public BaseSearchFragment()
-	{
-		Log.d(TAG, "Lifecycle: Constructor (0) " + this);
-	}
-
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState)
 	{
-		Log.d(TAG, "Lifecycle: onCreate() (2) " + this + " from " + savedInstanceState);
 		super.onCreate(savedInstanceState);
 
 		final FragmentManager manager = getChildFragmentManager();
@@ -144,14 +135,14 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		Log.d(TAG, "Lifecycle: onCreateView() (3) " + this + " from " + savedInstanceState);
+		super.onCreateView(inflater, container, savedInstanceState);
+
 		return inflater.inflate(this.layoutId, container, false);
 	}
 
 	@Override
 	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
-		Log.d(TAG, "Lifecycle: onViewCreated() (4) " + this + " from " + savedInstanceState);
 		super.onViewCreated(view, savedInstanceState);
 
 		// menu provider
@@ -200,7 +191,6 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	public void onPause()
 	{
 		super.onPause();
-		Log.d(TAG, "Lifecycle: onPause (-5) " + this);
 
 		closeKeyboard();
 	}
@@ -209,7 +199,6 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	public void onDestroyView()
 	{
 		super.onDestroyView();
-		Log.d(TAG, "Lifecycle: onDestroyView (-3) " + this);
 
 		final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
 		assert toolbar != null;
@@ -501,8 +490,6 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	@Override
 	public void onSaveInstanceState(@NonNull final Bundle outState)
 	{
-		Log.d(TAG, "State: Save instance state");
-
 		// always call the superclass so it can save the view hierarchy state
 		super.onSaveInstanceState(outState);
 
@@ -519,8 +506,6 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	public void onViewStateRestored(@Nullable final Bundle savedInstanceState)
 	{
 		super.onViewStateRestored(savedInstanceState);
-
-		Log.d(TAG, "State: Restore instance state from " + savedInstanceState);
 
 		// restore from saved instance
 		if (savedInstanceState != null && this.spinner != null)
