@@ -34,19 +34,19 @@ public abstract class BaseBrowse2Fragment extends Fragment
 	static private final String POINTER_STATE = "pointer";
 
 	@Nullable
-	Parcelable pointer = null;
+	protected Parcelable pointer = null;
 
 	@Nullable
-	String word = null;
+	protected String word = null;
 
 	@Nullable
-	String cased = null;
+	protected String cased = null;
 
 	@Nullable
-	String pronunciation = null;
+	protected String pronunciation = null;
 
 	@Nullable
-	String pos = null;
+	protected String pos = null;
 
 	@SuppressWarnings("WeakerAccess")
 	protected int layoutId = R.layout.fragment_browse2_multi;

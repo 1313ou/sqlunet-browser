@@ -33,8 +33,12 @@ import android.widget.TextView;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.Settings;
 
+import java.util.Arrays;
+import java.util.List;
+
 import androidx.annotation.ArrayRes;
 import androidx.annotation.AttrRes;
+import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.MenuRes;
 import androidx.annotation.NonNull;
@@ -46,6 +50,7 @@ import androidx.core.view.MenuHost;
 import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Lifecycle;
 
 /**
@@ -84,19 +89,19 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 	// R E S O U R C E S
 
 	@LayoutRes
-	int layoutId;
+	protected int layoutId;
 
 	@MenuRes
-	int menuId;
+	protected int menuId;
 
 	@AttrRes
-	int colorAttrId;
+	protected int colorAttrId;
 
 	@ArrayRes
-	int spinnerLabels;
+	protected int spinnerLabels;
 
 	@ArrayRes
-	int spinnerIcons;
+	protected int spinnerIcons;
 
 	// C R E A T I O N
 
@@ -522,6 +527,44 @@ abstract public class BaseSearchFragment extends Fragment implements SearchListe
 		{
 			final int selected = savedInstanceState.getInt(STATE_SPINNER);
 			this.spinner.setSelection(selected);
+		}
+	}
+
+	// F R A G M E N T   M A N A G E M E N T
+
+	/**
+	 * Remove children fragments with tags and insert given fragment with at given location
+	 *
+	 * @param fragment          new fragment
+	 * @param tag               new fragment's tag
+	 * @param where             new fragment's location
+	 * @param childFragmentTags removed children's tags
+	 */
+	protected void removeAllChildFragments(final Fragment fragment, @Nullable String tag, @IdRes final int where, final String... childFragmentTags)
+	{
+		Log.d(TAG, "Removing fragments " + Arrays.toString(childFragmentTags));
+		if (childFragmentTags != null && childFragmentTags.length > 0)
+		{
+			List<Fragment> childFragments = getChildFragmentManager().getFragments();
+			if (!childFragments.isEmpty())
+			{
+				FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+				for (Fragment childFragment : childFragments)
+				{
+					if (childFragment != null)
+					{
+						for (final String childFragmentTag : childFragmentTags)
+						{
+							if (childFragmentTag.equals(childFragment.getTag()))
+							{
+								transaction.remove(childFragment);
+							}
+						}
+					}
+				}
+				transaction.replace(where, fragment, tag);
+				transaction.commitAllowingStateLoss();
+			}
 		}
 	}
 
