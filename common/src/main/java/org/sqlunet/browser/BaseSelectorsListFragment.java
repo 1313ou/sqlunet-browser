@@ -67,30 +67,15 @@ abstract public class BaseSelectorsListFragment extends Fragment implements Adap
 	 */
 	public BaseSelectorsListFragment()
 	{
-		Log.d(TAG, "Lifecycle: Constructor (0) " + this);
-	}
-
-	// --activate--
-
-	//	@Override
-	//	public void onAttach(@NonNull final Context context)
-	//	{
-	//		super.onAttach(context);
-	//		Log.d(TAG, "Lifecycle: onAttach (1) " + this);
-	//	}
-
-	@Override
-	public void onCreate(final Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-		Log.d(TAG, "Lifecycle: onCreate (2) " + this + " from "  + savedInstanceState);
+		super();
 	}
 
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
+		super.onCreateView(inflater, container, savedInstanceState);
+
 		final View view = inflater.inflate(this.layoutId, container, false);
-		Log.d(TAG, "Lifecycle: onCreateView (3) " + this);
 
 		// list adapter bound to the cursor
 		this.adapter = makeAdapter();
@@ -110,7 +95,6 @@ abstract public class BaseSelectorsListFragment extends Fragment implements Adap
 	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
 		super.onViewCreated(view, savedInstanceState);
-		Log.d(TAG, "Lifecycle: onViewCreated (4) " + this + " " + savedInstanceState);
 
 		// data view models
 		Log.d(TAG, "Make models");
@@ -121,41 +105,16 @@ abstract public class BaseSelectorsListFragment extends Fragment implements Adap
 	public void onStart()
 	{
 		super.onStart();
-		Log.d(TAG, "Lifecycle: onStart (6) " + this);
 
 		// load data
 		Log.d(TAG, "Load data");
 		load();
 	}
 
-	// @Override
-	// public void onActivityCreated(@Nullable final Bundle savedInstanceState)
-	// {
-	// 	super.onActivityCreated(savedInstanceState);
-	// 	Log.d(TAG, "Lifecycle: onActivityCreated (5) " + this + " " + savedInstanceState);
-	// }
-
-	// --deactivate--
-
-	@Override
-	public void onStop()
-	{
-		super.onStop();
-		Log.d(TAG, "Lifecycle: onStop(-4) " + this);
-	}
-
-	@Override
-	public void onDestroyView()
-	{
-		super.onDestroyView();
-		Log.d(TAG, "Lifecycle: onDestroyView (-3) " + this);
-	}
-
 	@Override
 	public void onDestroy()
 	{
 		super.onDestroy();
-		Log.d(TAG, "Lifecycle: onDestroy (-2) " + this);
 
 		CursorAdapter adapter = this.adapter;
 		if (adapter != null)
@@ -165,13 +124,6 @@ abstract public class BaseSelectorsListFragment extends Fragment implements Adap
 			Log.d(TAG, "Clear adapter");
 			this.adapter = null;
 		}
-	}
-
-	@Override
-	public void onDetach()
-	{
-		super.onDetach();
-		Log.d(TAG, "Lifecycle: onDetach (-1) " + this);
 	}
 
 	// A D A P T E R
