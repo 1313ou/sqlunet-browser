@@ -9,6 +9,7 @@ import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.sqlunet.browser.xn.Browse2Fragment;
 import org.sqlunet.provider.ProviderArgs;
 
 import androidx.annotation.NonNull;
