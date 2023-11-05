@@ -34,7 +34,7 @@ allprojects {
         compileSdk = 34
 
         appcompatVersion = '1.6.1'
-        fragmentVersion = '1.6.1'
+        fragmentVersion = '1.6.2'
         lifecycleVersion = '2.2.0'
         navVersion = '2.7.4'
         preferenceVersion = '1.2.1'
