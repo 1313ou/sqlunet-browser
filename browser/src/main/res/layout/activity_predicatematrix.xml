@@ -19,7 +19,7 @@
 
 	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/fragment_predicatematrix"
-		android:name="org.sqlunet.browser.BrowsePredicateMatrixFragment"
+		android:name="org.sqlunet.browser.xn.BrowsePredicateMatrixFragment"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
