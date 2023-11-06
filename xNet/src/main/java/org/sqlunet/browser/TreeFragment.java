@@ -116,15 +116,9 @@ abstract public class TreeFragment extends Fragment
 	{
 		super.onStart();
 		// Log.d(TAG, "Expand treeview");
+
 		assert this.treeViewer != null;
 		this.treeViewer.expandAll();
-	}
-
-	@Override
-	public void onSaveInstanceState(@NonNull final Bundle outState)
-	{
-		// Log.d(TAG, "Save instance state " + this);
-		super.onSaveInstanceState(outState);
 	}
 
 	@Nullable

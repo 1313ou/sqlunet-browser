@@ -108,6 +108,7 @@ public abstract class BaseSettingsActivity extends AppCompatActivity implements 
 	public void onSaveInstanceState(@NonNull Bundle outState)
 	{
 		super.onSaveInstanceState(outState);
+
 		// Save current activity title so we can set it again after a configuration change
 		outState.putCharSequence(TITLE_TAG, getTitle());
 	}

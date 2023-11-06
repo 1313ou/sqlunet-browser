@@ -565,7 +565,7 @@ abstract public class BaseSearchFragment extends LoggingFragment implements Sear
 	 */
 	protected void beforeSaving(final Fragment fragment, @Nullable final String tag, @IdRes final int where, final String... childFragmentTags)
 	{
-		removeAllChildFragment(fragment, tag, where, childFragmentTags);
+		// removeAllChildFragment(fragment, tag, where, childFragmentTags);
 	}
 
 	// B A C K S T A C K   H E L P E R
