@@ -75,10 +75,16 @@ abstract public class BaseSelectorsListFragment extends LoggingFragment implemen
 	{
 		super.onCreateView(inflater, container, savedInstanceState);
 
-		final View view = inflater.inflate(this.layoutId, container, false);
+		return inflater.inflate(this.layoutId, container, false);
+	}
+
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
 
 		// list adapter bound to the cursor
-		Log.d(TAG, "Make adapter. Lifecycle: onCreateView()");
+		Log.d(TAG, "Make adapter. Lifecycle: onViewCreated()");
 		this.adapter = makeAdapter();
 
 		// list view
@@ -88,14 +94,6 @@ abstract public class BaseSelectorsListFragment extends LoggingFragment implemen
 		this.listView.setAdapter(this.adapter);
 		this.listView.setChoiceMode(this.activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
 		this.listView.setOnItemClickListener(this);
-
-		return view;
-	}
-
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
 
 		// data view models
 		Log.d(TAG, "Make models. Lifecycle: onViewCreated()");
@@ -117,6 +115,7 @@ abstract public class BaseSelectorsListFragment extends LoggingFragment implemen
 	{
 		super.onDestroy();
 
+		// the cursor has been saved along with fragment state
 		CursorAdapter adapter = this.adapter;
 		if (adapter != null)
 		{
