@@ -83,15 +83,10 @@ abstract public class BaseSelectorsListFragment extends LoggingFragment implemen
 	{
 		super.onViewCreated(view, savedInstanceState);
 
-		// list adapter bound to the cursor
-		Log.d(TAG, "Make adapter. Lifecycle: onViewCreated()");
-		this.adapter = makeAdapter();
-
 		// list view
 		this.listView = view.findViewById(android.R.id.list);
 
 		// bind to adapter
-		this.listView.setAdapter(this.adapter);
 		this.listView.setChoiceMode(this.activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
 		this.listView.setOnItemClickListener(this);
 
@@ -105,9 +100,27 @@ abstract public class BaseSelectorsListFragment extends LoggingFragment implemen
 	{
 		super.onStart();
 
+		// list adapter bound to view
+		Log.d(TAG, "Make adapter. Lifecycle: onStart()");
+		this.adapter = makeAdapter();
+		Log.d(TAG, "Set listview adapter. Lifecycle: onStart()");
+		this.listView.setAdapter(this.adapter);
+
 		// load data
 		Log.d(TAG, "Load data. Lifecycle: onStart()");
 		load();
+	}
+
+	@Override
+	public void onStop()
+	{
+		super.onStop();
+
+		Log.d(TAG, "Nullify listview adapter. Lifecycle: onStop()");
+		this.listView.setAdapter(null);
+		// the cursor will be saved along with fragment state if any
+		Log.d(TAG, "Nullify adapter cursor. Lifecycle: onStop()");
+		this.adapter.swapCursor(null);
 	}
 
 	@Override
@@ -115,25 +128,29 @@ abstract public class BaseSelectorsListFragment extends LoggingFragment implemen
 	{
 		super.onDestroy();
 
-		// the cursor has been saved along with fragment state
-		CursorAdapter adapter = this.adapter;
-		if (adapter != null)
-		{
-			Log.d(TAG, "Close cursor. Lifecycle: onDestroy()");
-			adapter.changeCursor(null);
-			Log.d(TAG, "Clear adapter. Lifecycle: onDestroy()");
-			this.adapter = null;
-		}
+		destroyAdapter();
 	}
 
 	// A D A P T E R
-
-	abstract protected CursorAdapter makeAdapter();
 
 	/**
 	 * Load data from word
 	 */
 	abstract protected void load();
+
+	abstract protected CursorAdapter makeAdapter();
+
+	private void destroyAdapter()
+	{
+		// the cursor has been saved along with fragment state
+		if (this.adapter != null)
+		{
+			Log.d(TAG, "Close cursor.");
+			this.adapter.changeCursor(null);
+			Log.d(TAG, "Nullify adapter.");
+			this.adapter = null;
+		}
+	}
 
 	// V I E W M O D E L S
 
