@@ -7,7 +7,6 @@ package org.sqlunet.browser.fn.selector;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
@@ -38,7 +37,7 @@ import androidx.annotation.NonNull;
 @SuppressWarnings("WeakerAccess")
 public class SelectorsFragment extends BaseSelectorsListFragment
 {
-	static private final String TAG = "SelectorsF";
+	// static private final String TAG = "SelectorsF";
 
 	// L I F E C Y C L E
 
@@ -76,7 +75,6 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 	@NonNull
 	protected CursorAdapter makeAdapter()
 	{
-		Log.d(TAG, "Make adapter");
 		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(requireContext(), R.layout.item_selector, null, //
 				new String[]{ //
 						LexUnits_or_Frames.NAME, LexUnits_or_Frames.FRAMENAME, LexUnits_or_Frames.WORD, LexUnits_or_Frames.FNID, LexUnits_or_Frames.FNWORDID, LexUnits_or_Frames.WORDID, LexUnits_or_Frames.FRAMEID, LexUnits_or_Frames.ISFRAME, //

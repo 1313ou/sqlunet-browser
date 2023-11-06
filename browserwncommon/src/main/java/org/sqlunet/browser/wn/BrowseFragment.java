@@ -69,8 +69,6 @@ public class BrowseFragment extends BaseSearchFragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		super.onCreateView(inflater, container, savedInstanceState);
-
 		final View view = super.onCreateView(inflater, container, savedInstanceState);
 
 		if (savedInstanceState == null)

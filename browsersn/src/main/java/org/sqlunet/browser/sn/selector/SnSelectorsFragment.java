@@ -9,7 +9,6 @@ import android.database.MatrixCursor;
 import android.database.MergeCursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
@@ -42,7 +41,7 @@ import androidx.annotation.NonNull;
 @SuppressWarnings("WeakerAccess")
 public class SnSelectorsFragment extends BaseSelectorsListFragment
 {
-	static private final String TAG = "SnSelectorsF";
+	// static private final String TAG = "SnSelectorsF";
 
 	/**
 	 * Word id

@@ -27,7 +27,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-abstract public class BaseSelectorsListFragment extends Fragment implements AdapterView.OnItemClickListener
+abstract public class BaseSelectorsListFragment extends LoggingFragment implements AdapterView.OnItemClickListener
 {
 	static private final String TAG = "SelectorsListF";
 
@@ -78,6 +78,7 @@ abstract public class BaseSelectorsListFragment extends Fragment implements Adap
 		final View view = inflater.inflate(this.layoutId, container, false);
 
 		// list adapter bound to the cursor
+		Log.d(TAG, "Make adapter. Lifecycle: onCreateView()");
 		this.adapter = makeAdapter();
 
 		// list view
@@ -97,7 +98,7 @@ abstract public class BaseSelectorsListFragment extends Fragment implements Adap
 		super.onViewCreated(view, savedInstanceState);
 
 		// data view models
-		Log.d(TAG, "Make models");
+		Log.d(TAG, "Make models. Lifecycle: onViewCreated()");
 		makeModels();
 	}
 
@@ -107,7 +108,7 @@ abstract public class BaseSelectorsListFragment extends Fragment implements Adap
 		super.onStart();
 
 		// load data
-		Log.d(TAG, "Load data");
+		Log.d(TAG, "Load data. Lifecycle: onStart()");
 		load();
 	}
 
@@ -119,9 +120,9 @@ abstract public class BaseSelectorsListFragment extends Fragment implements Adap
 		CursorAdapter adapter = this.adapter;
 		if (adapter != null)
 		{
-			Log.d(TAG, "Close cursor");
+			Log.d(TAG, "Close cursor. Lifecycle: onDestroy()");
 			adapter.changeCursor(null);
-			Log.d(TAG, "Clear adapter");
+			Log.d(TAG, "Clear adapter. Lifecycle: onDestroy()");
 			this.adapter = null;
 		}
 	}
