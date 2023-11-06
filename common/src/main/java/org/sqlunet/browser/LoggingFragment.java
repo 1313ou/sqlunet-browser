@@ -102,6 +102,11 @@ abstract public class LoggingFragment extends Fragment
 		Log.d(TAG, "onStop() (-5) " + this);
 	}
 
+	/**
+	 * This method may be called at any time before onDestroy.
+	 * There are many situations where a fragment may be mostly torn down (such as when placed on the back stack with no UI showing),
+	 * but its state will not be saved until its owning activity actually needs to save its state.
+	 */
 	@Override
 	public void onSaveInstanceState(@NonNull final Bundle outState)
 	{
@@ -122,6 +127,7 @@ abstract public class LoggingFragment extends Fragment
 		super.onDestroy();
 		Log.d(TAG, "onDestroy() (-2) " + this);
 	}
+
 	@Override
 	public void onDetach()
 	{
