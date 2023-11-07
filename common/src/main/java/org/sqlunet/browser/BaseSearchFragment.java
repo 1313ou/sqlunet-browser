@@ -520,7 +520,7 @@ abstract public class BaseSearchFragment extends LoggingFragment implements Sear
 	 * @param tag               new fragment's tag
 	 * @param where             new fragment's location
 	 * @param childFragmentTags removed children's tags
-	 * @noinspection SameParameterValue
+	 * @noinspection SameParameterValue, EmptyMethod
 	 */
 	protected void beforeSaving(final Fragment fragment, @Nullable final String tag, @IdRes final int where, final String... childFragmentTags)
 	{

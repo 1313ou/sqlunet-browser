@@ -158,6 +158,15 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 		LoaderManager.getInstance(this).initLoader(LOADER_ID, null, this);
 	}
 
+	@Override
+	public void onDestroy()
+	{
+		super.onDestroy();
+
+		this.exportLauncher.unregister();
+		this.importLauncher.unregister();
+	}
+
 	// L O A D E R
 
 	/**

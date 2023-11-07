@@ -4,7 +4,6 @@
 
 package org.sqlunet.browser;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;

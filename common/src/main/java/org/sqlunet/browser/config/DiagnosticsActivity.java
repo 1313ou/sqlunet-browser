@@ -4,7 +4,6 @@
 
 package org.sqlunet.browser.config;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -12,6 +11,7 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import org.sqlunet.browser.Sender;
 import org.sqlunet.browser.common.R;
 
 import androidx.appcompat.app.ActionBar;
@@ -47,16 +47,7 @@ public class DiagnosticsActivity extends AppCompatActivity
 		// action button
 		final FloatingActionButton fab = findViewById(R.id.send_fab);
 		fab.setVisibility(View.GONE);
-		fab.setOnClickListener(view -> {
-
-			final Intent email = new Intent(Intent.ACTION_SEND);
-			email.putExtra(Intent.EXTRA_EMAIL, new String[]{"semantikos.org@gmail.com"});
-			email.putExtra(Intent.EXTRA_SUBJECT, "Semantikos diagnostics");
-			email.putExtra(Intent.EXTRA_TEXT, textView.getText());
-			email.setType("message/rfc822"); // prompts email client only
-
-			startActivity(Intent.createChooser(email, getString(R.string.title_dialog_select_email)));
-		});
+		fab.setOnClickListener(view -> Sender.send(this, "Semantikos diagnostics", textView.getText(), "semantikos.org@gmail.com"));
 
 		// diagnostics
 		// final String diagnostics = Diagnostics.report(this);
