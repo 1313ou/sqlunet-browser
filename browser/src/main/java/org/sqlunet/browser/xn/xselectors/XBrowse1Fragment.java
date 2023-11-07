@@ -44,8 +44,14 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements XSelectorsF
 	{
 		super.onCreateView(inflater, container, savedInstanceState);
 
-		// view
-		final View view = inflater.inflate(Settings.getPaneLayout(R.layout.fragment_xbrowse_first, R.layout.fragment_xbrowse1, R.layout.fragment_xbrowse1_browse2), container, false);
+		return inflater.inflate(Settings.getPaneLayout(R.layout.fragment_xbrowse_first, R.layout.fragment_xbrowse1, R.layout.fragment_xbrowse1_browse2), container, false);
+	}
+
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
+
 		boolean isTwoPane = isTwoPane(view);
 
 		// manager
@@ -95,34 +101,6 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements XSelectorsF
 					// .addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG) //
 					.commit();
 		}
-
-		return view;
-	}
-
-	public void destroyFragments()
-	{
-		super.onDestroy();
-
-		// remove fragments so that they will not be restored
-		if (!isAdded())
-		{
-			return;
-		}
-		final FragmentManager manager = getChildFragmentManager();
-		Fragment selectorsFragment = manager.findFragmentByTag(BaseSelectorsFragment.FRAGMENT_TAG);
-		Fragment browse2Fragment = manager.findFragmentByTag(BaseBrowse2Fragment.FRAGMENT_TAG);
-		FragmentTransaction transaction = manager.beginTransaction().setReorderingAllowed(true);
-		if (selectorsFragment != null)
-		{
-			Log.d(TAG, "destroy 'selectors' fragment");
-			transaction.remove(selectorsFragment);
-		}
-		if (browse2Fragment != null)
-		{
-			Log.d(TAG, "destroy 'browse2' fragment");
-			transaction.remove(browse2Fragment);
-		}
-		transaction.commit();
 	}
 
 	// I T E M S E L E C T I O N H A N D L I N G

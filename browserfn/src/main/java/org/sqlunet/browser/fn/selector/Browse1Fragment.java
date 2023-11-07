@@ -15,8 +15,8 @@ import org.sqlunet.browser.BaseBrowse1Fragment;
 import org.sqlunet.browser.BaseBrowse2Fragment;
 import org.sqlunet.browser.BaseSelectorsFragment;
 import org.sqlunet.browser.Browse2Activity;
-import org.sqlunet.browser.fn.Browse2Fragment;
 import org.sqlunet.browser.Selectors;
+import org.sqlunet.browser.fn.Browse2Fragment;
 import org.sqlunet.browser.fn.R;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.settings.Settings;
@@ -38,8 +38,14 @@ public class Browse1Fragment extends BaseBrowse1Fragment implements SelectorsFra
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		// view
-		final View view = inflater.inflate(Settings.getPaneLayout(R.layout.fragment_browse_first, R.layout.fragment_browse1, R.layout.fragment_browse1_browse2), container, false);
+		return inflater.inflate(Settings.getPaneLayout(R.layout.fragment_browse_first, R.layout.fragment_browse1, R.layout.fragment_browse1_browse2), container, false);
+	}
+
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
+
 		boolean isTwoPane = isTwoPane(view);
 
 		// manager
@@ -87,8 +93,6 @@ public class Browse1Fragment extends BaseBrowse1Fragment implements SelectorsFra
 					// .addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG) //
 					.commit();
 		}
-
-		return view;
 	}
 
 	// I T E M S E L E C T I O N H A N D L I N G
@@ -110,7 +114,7 @@ public class Browse1Fragment extends BaseBrowse1Fragment implements SelectorsFra
 			}
 			final Browse2Fragment fragment = (Browse2Fragment) getChildFragmentManager().findFragmentById(R.id.container_browse2);
 			assert fragment != null;
-			fragment.search(pointer, null, null, null,null);
+			fragment.search(pointer, null, null, null, null);
 		}
 		else
 		{

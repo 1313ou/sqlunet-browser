@@ -40,7 +40,6 @@ abstract public class SplashFragment extends Fragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		// view
 		return inflater.inflate(this.layoutId, container, false);
 	}
 }

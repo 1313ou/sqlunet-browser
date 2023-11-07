@@ -38,8 +38,13 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements XSelectorsF
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		// view
-		final View view = inflater.inflate(Settings.getPaneLayout(R.layout.fragment_xbrowse_first, R.layout.fragment_xbrowse1, R.layout.fragment_xbrowse1_browse2), container, false);
+		return inflater.inflate(Settings.getPaneLayout(R.layout.fragment_xbrowse_first, R.layout.fragment_xbrowse1, R.layout.fragment_xbrowse1_browse2), container, false);
+	}
+
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
 		boolean isTwoPane = isTwoPane(view);
 
 		// manager
@@ -88,8 +93,6 @@ public class XBrowse1Fragment extends BaseBrowse1Fragment implements XSelectorsF
 					// .addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG) //
 					.commit();
 		}
-
-		return view;
 	}
 
 	// I T E M S E L E C T I O N H A N D L I N G

@@ -63,8 +63,13 @@ abstract public class BaseTaskFragment extends Fragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		// view
-		final View view = inflater.inflate(this.layoutId, container, false);
+		return inflater.inflate(this.layoutId, container, false);
+	}
+
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
 
 		// task spinner
 		this.spinner = view.findViewById(R.id.task_spinner);
@@ -94,8 +99,6 @@ abstract public class BaseTaskFragment extends Fragment
 
 		// task run button
 		this.runButton = view.findViewById(R.id.task_run);
-
-		return view;
 	}
 
 	void select(final int position)

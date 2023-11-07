@@ -45,9 +45,15 @@ public class SqlFragment extends Fragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		final View view = inflater.inflate(R.layout.fragment_sql, container, false);
+		return inflater.inflate(R.layout.fragment_sql, container, false);
+	}
 
-		// swipe refresh layout
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
+
+		// swipe refresh
 		final SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
 		swipeRefreshLayout.setOnRefreshListener(() -> {
 
@@ -78,14 +84,6 @@ public class SqlFragment extends Fragment
 					// .addToBackStack(FRAGMENT_TAG) //
 					.commit();
 		}
-
-		return view;
-	}
-
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
 
 		// menu
 		final MenuHost menuHost = requireActivity();

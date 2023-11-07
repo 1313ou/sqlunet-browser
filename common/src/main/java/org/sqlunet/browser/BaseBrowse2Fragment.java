@@ -57,30 +57,32 @@ public abstract class BaseBrowse2Fragment extends Fragment
 	// C R E A T I O N
 
 	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
+	public void onCreate(@Nullable final Bundle savedInstanceState)
 	{
-		// mode
-		final Settings.DetailViewMode mode = Settings.getDetailViewModePref(requireContext());
-
-		// view
-		View view = null;
-		switch (mode)
-		{
-			case VIEW:
-				view = inflater.inflate(this.layoutId, container, false);
-				break;
-			case WEB:
-				view = inflater.inflate(R.layout.fragment_browse2, container, false);
-				break;
-		}
+		super.onCreate(savedInstanceState);
 
 		if (savedInstanceState != null)
 		{
 			Log.d(TAG, "restore instance state " + this);
 			this.pointer = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? savedInstanceState.getParcelable(POINTER_STATE, IPointer.class) : savedInstanceState.getParcelable(POINTER_STATE);
 		}
+	}
 
-		return view;
+	@Override
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
+	{
+		// mode
+		final Settings.DetailViewMode mode = Settings.getDetailViewModePref(requireContext());
+
+		// view
+		switch (mode)
+		{
+			case VIEW:
+				return inflater.inflate(this.layoutId, container, false);
+			case WEB:
+				return inflater.inflate(R.layout.fragment_browse2, container, false);
+		}
+		return null;
 	}
 
 	@Override

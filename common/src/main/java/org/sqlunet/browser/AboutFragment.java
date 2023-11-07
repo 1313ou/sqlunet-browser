@@ -32,7 +32,14 @@ public class AboutFragment extends Fragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		final View view = inflater.inflate(R.layout.fragment_about, container, false);
+		return inflater.inflate(R.layout.fragment_about, container, false);
+	}
+
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
+
 
 		// fragment
 		final Fragment fragment = new SourceFragment();
@@ -43,6 +50,5 @@ public class AboutFragment extends Fragment
 				.replace(R.id.container_source, fragment) //
 				.commit();
 
-		return view;
 	}
 }

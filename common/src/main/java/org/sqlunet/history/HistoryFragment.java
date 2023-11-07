@@ -86,7 +86,13 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		final View view = inflater.inflate(R.layout.fragment_history, container, false);
+		return inflater.inflate(R.layout.fragment_history, container, false);
+	}
+
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
 
 		// list adapter bound to the cursor
 		this.adapter = new SimpleCursorAdapter(requireContext(), // context
@@ -109,19 +115,7 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 		final SwipeGestureListener gestureListener = new SwipeGestureListener();
 		this.listView.setOnTouchListener(gestureListener);
 
-		// initializes the cursor loader
-		LoaderManager.getInstance(this).initLoader(LOADER_ID, null, this);
-
-		return view;
-	}
-
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
-
-		// Add menu items without using the Fragment Menu APIs
-		// Note how we can tie the MenuProvider to the viewLifecycleOwner and an optional Lifecycle.State (here, RESUMED) to indicate when the menu should be visible
+		// menu
 		final MenuHost menuHost = requireActivity();
 		menuHost.addMenuProvider(new MenuProvider()
 		{
@@ -153,6 +147,15 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 				return false;
 			}
 		}, getViewLifecycleOwner(), Lifecycle.State.RESUMED);
+	}
+
+	@Override
+	public void onStart()
+	{
+		super.onStart();
+
+		// initializes the cursor loader
+		LoaderManager.getInstance(this).initLoader(LOADER_ID, null, this);
 	}
 
 	// L O A D E R

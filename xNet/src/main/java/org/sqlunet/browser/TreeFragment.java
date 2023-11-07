@@ -81,26 +81,18 @@ abstract public class TreeFragment extends Fragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		// Log.d(TAG, "onCreateView() " + this);
-
 		// view
 		final View view = inflater.inflate(this.layoutId, container, false);
-
-		// container
-		final ViewGroup treeContainer = view.findViewById(this.treeContainerId);
 
 		// tree
 		// Log.d(TAG, "Create tree");
 		boolean use2dScroll = getScroll2D();
 		this.treeViewer = new TreeViewer(requireContext(), this.treeRoot);
 		final View treeview = this.treeViewer.makeTreeView(inflater, use2dScroll);
-		treeContainer.addView(treeview);
 
-		// saved state
-		//if (savedInstanceState != null)
-		//{
-		// Log.d(TAG, "Restore instance state " + this);
-		//}
+		// container
+		final ViewGroup treeContainer = view.findViewById(this.treeContainerId);
+		treeContainer.addView(treeview);
 
 		return view;
 	}

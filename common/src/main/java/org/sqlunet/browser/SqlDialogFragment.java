@@ -30,12 +30,20 @@ public class SqlDialogFragment extends DialogFragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
+		return inflater.inflate(R.layout.fragment_sql_dialog, container);
+	}
+
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
+
+		// title
 		final Dialog dialog = getDialog();
 		assert dialog != null;
 		dialog.setTitle(R.string.title_dialog_sql);
 
-		@SuppressLint("InflateParams") final View view = inflater.inflate(R.layout.fragment_sql_dialog, container);
-
+		// sub fragment
 		final Fragment fragment = new SqlStatementsFragment();
 		assert isAdded();
 		getChildFragmentManager() //
@@ -43,8 +51,6 @@ public class SqlDialogFragment extends DialogFragment
 				.setReorderingAllowed(true) //
 				.replace(R.id.container_sql_statements, fragment) //
 				.commit();
-
-		return view;
 	}
 
 	static void show(@NonNull final FragmentManager manager)

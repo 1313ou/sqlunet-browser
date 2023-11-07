@@ -39,17 +39,22 @@ public class HomeFragment extends Fragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		final View view = inflater.inflate(R.layout.fragment_home, container, false);
+		return inflater.inflate(R.layout.fragment_home, container, false);
+	}
 
-		FloatingActionButton fab = view.findViewById(R.id.fab);
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
+
+		// fab
+		final FloatingActionButton fab = view.findViewById(R.id.fab);
 		fab.setOnClickListener((v) -> {
 			final FragmentActivity activity = requireActivity();
 			final NavHostFragment navHostFragment = (NavHostFragment) activity.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
 			assert navHostFragment != null;
 			navHostFragment.getNavController().navigate(R.id.nav_search_browse);
 		});
-
-		return view;
 	}
 
 	@Override

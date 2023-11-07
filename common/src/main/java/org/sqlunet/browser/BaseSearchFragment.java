@@ -33,9 +33,6 @@ import android.widget.TextView;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.Settings;
 
-import java.util.Arrays;
-import java.util.List;
-
 import androidx.annotation.ArrayRes;
 import androidx.annotation.AttrRes;
 import androidx.annotation.IdRes;
@@ -50,7 +47,6 @@ import androidx.core.view.MenuHost;
 import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Lifecycle;
 
 /**
@@ -526,75 +522,8 @@ abstract public class BaseSearchFragment extends LoggingFragment implements Sear
 	 * @param childFragmentTags removed children's tags
 	 * @noinspection SameParameterValue
 	 */
-	private void removeAllChildFragment(final Fragment fragment, @Nullable final String tag, @IdRes final int where, final String... childFragmentTags)
-	{
-		Log.d(TAG, "Removing fragments " + Arrays.toString(childFragmentTags));
-		if (childFragmentTags != null && childFragmentTags.length > 0)
-		{
-			List<Fragment> childFragments = getChildFragmentManager().getFragments();
-			if (!childFragments.isEmpty())
-			{
-				FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-				for (Fragment childFragment : childFragments)
-				{
-					if (childFragment != null)
-					{
-						for (final String childFragmentTag : childFragmentTags)
-						{
-							if (childFragmentTag.equals(childFragment.getTag()))
-							{
-								transaction.remove(childFragment);
-							}
-						}
-					}
-				}
-				transaction.replace(where, fragment, tag);
-				transaction.commitAllowingStateLoss();
-			}
-		}
-	}
-
-	/**
-	 * Remove children fragments with tags and insert given fragment with at given location
-	 *
-	 * @param fragment          new fragment
-	 * @param tag               new fragment's tag
-	 * @param where             new fragment's location
-	 * @param childFragmentTags removed children's tags
-	 * @noinspection SameParameterValue
-	 */
 	protected void beforeSaving(final Fragment fragment, @Nullable final String tag, @IdRes final int where, final String... childFragmentTags)
 	{
-		// removeAllChildFragment(fragment, tag, where, childFragmentTags);
-	}
-
-	// B A C K S T A C K   H E L P E R
-
-	private String dumpBackStack(@NonNull final FragmentManager manager, @NonNull final String type)
-	{
-		StringBuilder sb = new StringBuilder();
-		int count = manager.getBackStackEntryCount();
-		for (int i = 0; i < count; i++)
-		{
-			FragmentManager.BackStackEntry entry = manager.getBackStackEntryAt(i);
-			sb.append("BackStack: ") //
-					.append(type) //
-					.append('\n') //
-					.append("[") //
-					.append(i) //
-					.append("]: ") //
-					.append(entry.getName()) //
-					.append(' ') //
-					.append(entry.getId()) //
-					.append(' ') //
-					.append(entry.getClass().getName());
-		}
-		// sb.append('\n');
-		// sb.append("BackStack: ") //
-		// 		.append(type) //
-		//		.append('\n') //
-		// 		.append(" popBackStack() ") //
-		// 		.append(manager.getBackStackEntryAt(count - 1));
-		return sb.toString();
+		// FragmentUtils.removeAllChildFragment(getChildFragmentManager(), fragment, tag, where, childFragmentTags);
 	}
 }

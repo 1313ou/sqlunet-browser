@@ -6,6 +6,7 @@ package org.sqlunet.browser;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.CursorAdapter;
 import android.widget.ListAdapter;
 import android.widget.SimpleCursorAdapter;
@@ -14,6 +15,8 @@ import org.sqlunet.browser.common.R;
 import org.sqlunet.provider.XNetContract.Sources;
 import org.sqlunet.provider.XSqlUNetProvider;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.ListFragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -30,9 +33,9 @@ public class SourceFragment extends ListFragment
 	private SqlunetViewModel model;
 
 	@Override
-	public void onCreate(final Bundle savedInstanceState)
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
-		super.onCreate(savedInstanceState);
+		super.onViewCreated(view, savedInstanceState);
 
 		// make cursor adapter
 		final String[] from = {Sources.NAME, Sources.VERSION, Sources.URL, Sources.PROVIDER, Sources.REFERENCE};

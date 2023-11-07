@@ -54,25 +54,28 @@ public abstract class AbstractTableFragment extends ListFragment
 	abstract protected ViewBinder makeViewBinder();
 
 	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
+	public void onCreate(@Nullable final Bundle savedInstanceState)
 	{
-		// view
-		final View view = inflater.inflate(R.layout.fragment_table, container, false);
-
-		// args
-		final Bundle args = getArguments();
-		assert args != null;
+		super.onCreate(savedInstanceState);
 
 		// query
-		final String queryArg = args.getString(ProviderArgs.ARG_QUERYARG);
 		if (VERBOSE)
 		{
+			// args
+			final Bundle args = getArguments();
+			assert args != null;
+
+			final String queryArg = args.getString(ProviderArgs.ARG_QUERYARG);
 			final String uriString = args.getString(ProviderArgs.ARG_QUERYURI);
 			final String selection = args.getString(ProviderArgs.ARG_QUERYFILTER);
 			Log.d(TAG, String.format("%s (filter: %s)(arg=%s)", uriString, selection, queryArg));
 		}
+	}
 
-		return view;
+	@Override
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
+	{
+		return inflater.inflate(R.layout.fragment_table, container, false);
 	}
 
 	@Override

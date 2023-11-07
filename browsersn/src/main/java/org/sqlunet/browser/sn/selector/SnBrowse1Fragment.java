@@ -13,10 +13,10 @@ import android.view.ViewGroup;
 import org.sqlunet.browser.BaseBrowse1Fragment;
 import org.sqlunet.browser.BaseBrowse2Fragment;
 import org.sqlunet.browser.BaseSelectorsFragment;
-import org.sqlunet.browser.sn.Browse2Fragment;
 import org.sqlunet.browser.Selectors;
 import org.sqlunet.browser.SnBrowse2Activity;
 import org.sqlunet.browser.selector.CollocationSelectorPointer;
+import org.sqlunet.browser.sn.Browse2Fragment;
 import org.sqlunet.browser.sn.R;
 import org.sqlunet.browser.sn.Settings;
 import org.sqlunet.provider.ProviderArgs;
@@ -38,8 +38,14 @@ public class SnBrowse1Fragment extends BaseBrowse1Fragment implements SnSelector
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		// view
-		final View view = inflater.inflate(Settings.getPaneLayout(R.layout.fragment_snbrowse_first, R.layout.fragment_snbrowse1, R.layout.fragment_snbrowse1_browse2), container, false);
+		return inflater.inflate(Settings.getPaneLayout(R.layout.fragment_snbrowse_first, R.layout.fragment_snbrowse1, R.layout.fragment_snbrowse1_browse2), container, false);
+	}
+
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
+
 		boolean isTwoPane = isTwoPane(view);
 
 		// manager
@@ -87,8 +93,6 @@ public class SnBrowse1Fragment extends BaseBrowse1Fragment implements SnSelector
 					// .addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG) //
 					.commit();
 		}
-
-		return view;
 	}
 
 	// I T E M S E L E C T I O N H A N D L I N G
@@ -111,7 +115,7 @@ public class SnBrowse1Fragment extends BaseBrowse1Fragment implements SnSelector
 			}
 			final Browse2Fragment fragment = (Browse2Fragment) getChildFragmentManager().findFragmentById(R.id.container_browse2);
 			assert fragment != null;
-			fragment.search(pointer, null, null ,null, null);
+			fragment.search(pointer, null, null, null, null);
 		}
 		else
 		{

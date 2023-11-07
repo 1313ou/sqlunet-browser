@@ -55,9 +55,21 @@ public class HelpFragment extends Fragment
 	{
 		try
 		{
-			// view
-			final View view = inflater.inflate(R.layout.fragment_help, container, false);
+			return inflater.inflate(R.layout.fragment_help, container, false);
+		}
+		catch (InflateException e)
+		{
+			Toast.makeText(requireContext(), "No WebView support", Toast.LENGTH_LONG).show();
+			return null;
+		}
+	}
 
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
+		if (getView() != null)
+		{
 			// web view
 			final WebView webView = view.findViewById(R.id.webView);
 			webView.clearCache(true);
@@ -125,13 +137,6 @@ public class HelpFragment extends Fragment
 			}
 			url += "index.html";
 			webView.loadUrl(url);
-
-			return view;
-		}
-		catch (InflateException e)
-		{
-			Toast.makeText(requireContext(), "No WebView support", Toast.LENGTH_LONG).show();
-			return null;
 		}
 	}
 

@@ -61,10 +61,15 @@ public class StorageFragment extends Fragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		// inflate
-		final View view = inflater.inflate(R.layout.fragment_storage, container, false);
+		return inflater.inflate(R.layout.fragment_storage, container, false);
+	}
 
-		// swipe refresh layout
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
+
+		// swipe refresh
 		this.swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
 		//this.swipeRefreshLayout.setColorSchemeResources(R.color.swipe_down_1_color, R.color.swipe_down_2_color);
 		this.swipeRefreshLayout.setOnRefreshListener(() -> {
@@ -73,14 +78,6 @@ public class StorageFragment extends Fragment
 			// stop the refreshing indicator
 			StorageFragment.this.swipeRefreshLayout.setRefreshing(false);
 		});
-
-		return view;
-	}
-
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
 
 		// menu
 		final MenuHost menuHost = requireActivity();
