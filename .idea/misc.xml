@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
@@ -1360,6 +1361,63 @@
       <entry_point TYPE="field" FQNAME="com.bbou.download.DownloadFragment TAG" />
       <entry_point TYPE="field" FQNAME="com.bbou.download.DownloadFragment toFile" />
       <entry_point TYPE="field" FQNAME="com.bbou.download.DownloadFragment unzipDir" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.config.SetupStatusFragment buttonDb" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.config.SetupStatusFragment buttonIndexes" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.BaseBrowse2Fragment cased" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.BaseSearchFragment colorAttrId" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.AbstractDownloadFragment deployButton" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.UpdateFragment DOWN_DATE_ARG" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.UpdateFragment DOWN_NAME_ARG" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.UpdateFragment DOWN_SIZE_ARG" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.UpdateFragment DOWN_SOURCE_ARG" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.UpdateFragment DOWN_SOURCE_DATE_ARG" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.UpdateFragment DOWN_SOURCE_ETAG_ARG" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.UpdateFragment DOWN_SOURCE_SIZE_ARG" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.UpdateFragment DOWN_SOURCE_STATIC_VERSION_ARG" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.UpdateFragment DOWN_SOURCE_VERSION_ARG" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.UpdateFragment DOWNLOAD_INTENT_ARG" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.AbstractDownloadFragment DOWNLOAD_RENAME_FROM_ARG" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.AbstractDownloadFragment DOWNLOAD_RENAME_TO_ARG" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.AbstractDownloadFragment.Progress downloaded" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.AbstractDownloadFragment downloadUrl" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.BaseBrowse2Fragment FRAGMENT_TAG" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.SplashFragment FRAGMENT_TAG" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.web.WebFragment FRAGMENT_TAG" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.config.SetupStatusFragment infoDatabaseButton" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.BaseBrowse2Fragment layoutId" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.BaseSearchFragment layoutId" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.BaseSelectorsListFragment layoutId" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.config.BaseTaskFragment layoutId" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.SplashFragment layoutId" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.browser.SynsetFragment maxRecursion" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.AbstractDownloadFragment md5Button" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.BaseSearchFragment menuId" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.UpdateFragment NEWER_ARG" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.wordnet.browser.SynsetFragment parameters" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.BaseBrowse2Fragment pointer" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.BaseBrowse2Fragment pos" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.BaseBrowse2Fragment pronunciation" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.config.BaseTaskFragment runButton" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.config.BaseTaskFragment spinner" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.BaseSearchFragment spinnerIcons" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.BaseSearchFragment spinnerLabels" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.config.BaseTaskFragment status" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.AbstractDownloadFragment.Status STATUS_CANCELLED" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.AbstractDownloadFragment.Status STATUS_FAILED" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.AbstractDownloadFragment.Status STATUS_PENDING" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.AbstractDownloadFragment.Status STATUS_RUNNING" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.BaseBrowse2Fragment targetView" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.AbstractDownloadFragment THEN_UNZIP_TO_ARG" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.AbstractDownloadFragment.Progress total" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.UpdateFragment UP_DATE_ARG" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.UpdateFragment UP_ETAG_ARG" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.UpdateFragment UP_SIZE_ARG" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.UpdateFragment UP_SOURCE_ARG" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.UpdateFragment UP_STATIC_VERSION_ARG" />
+      <entry_point TYPE="field" FQNAME="com.bbou.download.UpdateFragment UP_VERSION_ARG" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.BaseSelectorsListFragment viewModelKey" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.BaseBrowse2Fragment word" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.BaseSelectorsListFragment word" />
     </entry_points>
     <pattern value="org.sqlunet.browser.AbstractApplication" method="dumpTasks" />
     <pattern value="org.sqlunet.browser.AbstractApplication" method="isNightMode" />
@@ -2851,6 +2909,28 @@
     <pattern value="org.sqlunet.browser.xn.TextFragment.TypedPointer" method="TypedPointer" />
     <pattern value="org.sqlunet.browser.vn.TextFragment.TypedPointer" method="TypedPointer" />
     <pattern value="org.sqlunet.browser.fn.TextFragment.TypedPointer" method="TypedPointer" />
+    <pattern value="org.sqlunet.browser.BaseSearchFragment" method="beforeSaving" />
+    <pattern value="com.bbou.download.AbstractDownloadFragment" method="cancel" />
+    <pattern value="org.sqlunet.browser.BaseSearchFragment" method="clearQuery" />
+    <pattern value="org.sqlunet.browser.config.SetupStatusFragment" method="download" />
+    <pattern value="org.sqlunet.browser.FragmentUtils" method="dumpBackStack" />
+    <pattern value="com.bbou.download.AbstractDownloadFragment" method="endUI" />
+    <pattern value="org.sqlunet.browser.FragmentUtils" />
+    <pattern value="org.sqlunet.browser.BaseSearchFragment" method="getSearchModePosition" />
+    <pattern value="org.sqlunet.browser.BaseSearchFragment" method="getSpinnerAdapter" />
+    <pattern value="org.sqlunet.browser.TreeFragment" method="getTreeViewer" />
+    <pattern value="org.sqlunet.browser.config.SetupStatusFragment" method="index" />
+    <pattern value="org.sqlunet.browser.config.SetupStatusFragment" method="info" />
+    <pattern value="org.sqlunet.browser.LoggingFragment" />
+    <pattern value="org.sqlunet.browser.LoggingFragment" method="LoggingFragment" />
+    <pattern value="org.sqlunet.browser.MenuHandler" method="menuDispatchWhenCantRun" />
+    <pattern value="com.bbou.download.AbstractDownloadFragment" method="onComplete" />
+    <pattern value="com.bbou.download.AbstractDownloadFragment" method="onDone" />
+    <pattern value="com.bbou.download.AbstractDownloadFragment.Progress" />
+    <pattern value="com.bbou.download.AbstractDownloadFragment" method="record" />
+    <pattern value="org.sqlunet.browser.FragmentUtils" method="removeAllChildFragment" />
+    <pattern value="org.sqlunet.browser.BaseBrowse2Fragment" method="search" />
+    <pattern value="org.sqlunet.wordnet.browser.SynsetFragment" method="setExpand" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="androidx.annotation.Nullable" />
