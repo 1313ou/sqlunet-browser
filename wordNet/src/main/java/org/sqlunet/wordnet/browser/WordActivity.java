@@ -60,7 +60,7 @@ public class WordActivity extends AppCompatActivity
 		{
 			// create the word fragment, transmit intent's extras as parameters and addItem it to the activity using a fragment transaction
 			final FragmentManager manager = getSupportFragmentManager();
-			Fragment fragment = manager.findFragmentByTag("word");
+			Fragment fragment = manager.findFragmentByTag(WordFragment.FRAGMENT_TAG);
 			if (fragment == null)
 			{
 				fragment = new WordFragment();
@@ -69,7 +69,8 @@ public class WordActivity extends AppCompatActivity
 			}
 			manager.beginTransaction() //
 					.setReorderingAllowed(true) //
-					.replace(R.id.container_word, fragment, "word") //
+					.replace(R.id.container_word, fragment, WordFragment.FRAGMENT_TAG) //
+					// .addToBackStack(WordFragment.FRAGMENT_TAG) //
 					.commit();
 		}
 	}

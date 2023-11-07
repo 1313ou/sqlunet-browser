@@ -293,7 +293,7 @@ public class ContentDownloader extends Task<String, Void, String[]>
 			}
 			final AlertDialog.Builder alert = new AlertDialog.Builder(activity2); // guarded, level 2
 			LayoutInflater inflater = LayoutInflater.from(activity2);
-			@SuppressLint("InflateParams") View header = inflater.inflate(R.layout.content_header, null);
+			@SuppressLint("InflateParams") final View header = inflater.inflate(R.layout.content_header, null);
 			alert.setCustomTitle(header);
 			final TextView sourceView = header.findViewById(R.id.source);
 			sourceView.setText(targetFile);

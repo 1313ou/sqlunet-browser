@@ -10,4 +10,14 @@
 		android:title="@string/action_copy"
 		app:showAsAction="ifRoom"
 		tools:ignore="AppCompatResource" />
+	<item
+		android:id="@+id/action_sql_send"
+		android:title="@string/action_sql_send"
+		app:showAsAction="ifRoom"
+		tools:ignore="AppCompatResource" />
+	<item
+		android:id="@+id/action_sql_export"
+		android:title="@string/action_sql_export"
+		tools:ignore="AppCompatResource" />
+
 </menu>

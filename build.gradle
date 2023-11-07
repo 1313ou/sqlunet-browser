@@ -14,7 +14,7 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:8.1.2'
-        classpath 'androidx.navigation:navigation-safe-args-gradle-plugin:2.7.4'
+        classpath 'androidx.navigation:navigation-safe-args-gradle-plugin:2.7.5'
     }
 }
 
@@ -27,14 +27,14 @@ allprojects {
     }
 
     ext {
-        versionCode = 140
-        versionName = '2.140'
+        versionCode = 145
+        versionName = '2.145'
         minSdkVersion = 19
         targetSdkVersion = 33
         compileSdk = 34
 
         appcompatVersion = '1.6.1'
-        fragmentVersion = '1.6.1'
+        fragmentVersion = '1.6.2'
         lifecycleVersion = '2.2.0'
         navVersion = '2.7.4'
         preferenceVersion = '1.2.1'
@@ -70,8 +70,10 @@ idea {
         project.rootProject.subprojects.each {
 
             println("module $it @ " + it.projectDir)
-            ["artwork", "artwork-assets", "artwork-assets", "artwork-relations", "data"].each { it2 ->
-                excludeDirs += file("$it.projectDir/$it2")
+            ["artwork", "artwork-assets", "artwork-assets", "artwork-relations", "data"].each { it2 -> {
+                def folder = file( "$it.projectDir/$it2" )
+                if (folder.isDirectory() && folder.exists()) excludeDirs += folder
+                }
             }
             /*
             ["artwork", "artwork-assets", "artwork-relations", "data"].each { it2 ->

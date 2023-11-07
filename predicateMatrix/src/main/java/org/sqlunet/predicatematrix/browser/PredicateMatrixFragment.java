@@ -28,6 +28,8 @@ public class PredicateMatrixFragment extends TreeFragment
 {
 	// static private final String TAG = "PredicateMatrixF";
 
+	static public final String FRAGMENT_TAG = "predicatematrix";
+
 	/**
 	 * Constructor
 	 */

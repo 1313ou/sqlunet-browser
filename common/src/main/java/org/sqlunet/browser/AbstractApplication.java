@@ -9,8 +9,10 @@ import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Build;
+import android.os.StrictMode;
 import android.util.Log;
 
+import org.sqlunet.browser.common.BuildConfig;
 import org.sqlunet.browser.common.R;
 import org.sqlunet.nightmode.NightMode;
 import org.sqlunet.settings.Settings;
@@ -24,11 +26,13 @@ import static org.sqlunet.nightmode.NightMode.nightModeToString;
 
 abstract public class AbstractApplication extends Application
 {
-	static private final String LOG = "AApplication";
+	static private final String LOG = "AbstractApp";
 
 	@Override
 	public void onCreate()
 	{
+		// setThreadStrictMode();
+		// setVmStrictMode();
 		super.onCreate();
 		Settings.initializeDisplayPrefs(this);
 	}
@@ -43,6 +47,38 @@ abstract public class AbstractApplication extends Application
 	}
 
 	abstract public void setAllColorsFromResources(@NonNull final Context newContext);
+
+	/**
+	 * Strict mode for VM
+	 */
+	private void setVmStrictMode()
+	{
+		if (BuildConfig.DEBUG)
+		{
+			StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder() //
+					.detectLeakedSqlLiteObjects() //
+					.detectLeakedClosableObjects() //
+					.penaltyLog() //
+					.penaltyDeath() //
+					.build());
+		}
+	}
+
+	/**
+	 * Strict mode for threads
+	 */
+	private void setThreadStrictMode()
+	{
+		if (BuildConfig.DEBUG)
+		{
+			StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder() //
+					.detectDiskReads() //
+					.detectDiskWrites() //
+					.detectNetwork()   // or .detectAll() for all detectable problems
+					.penaltyLog() //
+					.build());
+		}
+	}
 
 	// T A S K S
 

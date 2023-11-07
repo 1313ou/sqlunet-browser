@@ -14,11 +14,5 @@ public class BaseBrowse1Fragment extends Fragment
 	@SuppressWarnings("unused")
 	static private final String TAG = "Browse1F";
 
-	@Override
-	public void onCreate(@Nullable final Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-		//noinspection deprecation
-		this.setRetainInstance(false); // default
-	}
+	static public final String FRAGMENT_TAG = "browse1";
 }

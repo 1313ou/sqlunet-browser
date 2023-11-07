@@ -9,6 +9,7 @@
 	android:layout_height="match_parent">
 
 	<com.google.android.material.appbar.AppBarLayout
+		android:id="@+id/appbar_layout"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content">
 
@@ -18,7 +19,7 @@
 
 	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/fragment_detail"
-		android:name="org.sqlunet.browser.Browse2Fragment"
+		android:name="org.sqlunet.browser.wn.Browse2Fragment"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"

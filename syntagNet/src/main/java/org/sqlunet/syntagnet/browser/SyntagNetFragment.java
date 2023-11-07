@@ -26,6 +26,8 @@ public class SyntagNetFragment extends TreeFragment
 {
 	// static private final String TAG = "SyntagNetF";
 
+	static public final String FRAGMENT_TAG = "syntagnet";
+
 	/**
 	 * Constructor
 	 */

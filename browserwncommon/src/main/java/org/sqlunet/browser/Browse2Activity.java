@@ -9,6 +9,7 @@ import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.sqlunet.browser.wn.Browse2Fragment;
 import org.sqlunet.browser.wn.lib.R;
 import org.sqlunet.provider.ProviderArgs;
 
@@ -65,6 +66,7 @@ public class Browse2Activity extends AbstractBrowse2Activity
 	public boolean onCreateOptionsMenu(@NonNull final Menu menu)
 	{
 		getMenuInflater().inflate(R.menu.main, menu);
+		// MenuCompat.setGroupDividerEnabled(menu, true);
 		return true;
 	}
 

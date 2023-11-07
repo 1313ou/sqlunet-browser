@@ -7,7 +7,9 @@ package org.sqlunet.browser.xselector;
 import android.os.Bundle;
 
 import org.sqlunet.browser.AbstractBrowse1Activity;
+import org.sqlunet.browser.BaseBrowse1Fragment;
 import org.sqlunet.browser.vn.R;
+import org.sqlunet.browser.vn.xselector.XBrowse1Fragment;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
@@ -43,7 +45,8 @@ public class XBrowse1Activity extends AbstractBrowse1Activity
 			getSupportFragmentManager() //
 					.beginTransaction() //
 					.setReorderingAllowed(true) //
-					.replace(R.id.container_browse, fragment) //
+					.replace(R.id.container_browse, fragment, BaseBrowse1Fragment.FRAGMENT_TAG) //
+					// .addToBackStack(BaseBrowse1Fragment.FRAGMENT_TAG) //
 					.commit();
 		}
 	}

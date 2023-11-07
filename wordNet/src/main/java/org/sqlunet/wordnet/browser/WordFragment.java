@@ -25,6 +25,8 @@ public class WordFragment extends TreeFragment
 {
 	// static private final String TAG = "WordF";
 
+	static public final String FRAGMENT_TAG = "word";
+
 	/**
 	 * Constructor
 	 */

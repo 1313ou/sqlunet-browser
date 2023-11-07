@@ -169,7 +169,7 @@ public class ExecAsyncTask
 					// exec
 					db.execSQL(sql);
 					successCount++;
-					Log.d(TAG, "SQL " + sql);
+					Log.d(TAG, "Sql: " + sql);
 
 					// publish
 					if (total % this.publishRate == 0)
@@ -1189,7 +1189,7 @@ public class ExecAsyncTask
 		}
 
 		@Override
-		protected void onPostExecute(Boolean result)
+		protected void onPostExecute(final Boolean result)
 		{
 			if (this.observer != null)
 			{

@@ -108,6 +108,7 @@ public abstract class BaseSettingsActivity extends AppCompatActivity implements 
 	public void onSaveInstanceState(@NonNull Bundle outState)
 	{
 		super.onSaveInstanceState(outState);
+
 		// Save current activity title so we can set it again after a configuration change
 		outState.putCharSequence(TITLE_TAG, getTitle());
 	}
@@ -120,6 +121,7 @@ public abstract class BaseSettingsActivity extends AppCompatActivity implements 
 	{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.settings, menu);
+		// MenuCompat.setGroupDividerEnabled(menu, true);
 		return true;
 	}
 
@@ -180,7 +182,7 @@ public abstract class BaseSettingsActivity extends AppCompatActivity implements 
 				.beginTransaction() //
 				.setReorderingAllowed(true) //
 				.replace(R.id.settings, fragment) //
-				.addToBackStack(null) //
+				.addToBackStack("settings") //
 				.commit();
 		return true;
 	}

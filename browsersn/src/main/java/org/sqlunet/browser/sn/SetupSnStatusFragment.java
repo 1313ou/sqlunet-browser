@@ -130,7 +130,7 @@ public class SetupSnStatusFragment extends org.sqlunet.browser.config.SetupStatu
 		if (context != null)
 		{
 			final int status = Status.status(context);
-			Log.d(TAG, "STATUS " + Status.toString(status));
+			Log.d(TAG, "Status: " + Status.toString(status));
 
 			final boolean existsDb = (status & Status.EXISTS) != 0;
 			final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;

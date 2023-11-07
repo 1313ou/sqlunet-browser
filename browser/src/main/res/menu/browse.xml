@@ -5,6 +5,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools">
+	<!-- <group> -->
 	<item
 		android:id="@+id/search"
 		android:iconifiedByDefault="true"
@@ -33,4 +34,5 @@
 		android:id="@+id/action_table_adjpositions"
 		android:title="@string/action_table_adjpositions"
 		app:showAsAction="never" />
+	<!-- </group> -->
 </menu>

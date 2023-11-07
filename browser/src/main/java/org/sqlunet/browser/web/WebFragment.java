@@ -72,6 +72,8 @@ public class WebFragment extends Fragment
 {
 	static private final String TAG = "WebF";
 
+	static public final String FRAGMENT_TAG = "web";
+
 	static private final String SQLUNET_NS = "http://org.sqlunet";
 
 	private class WebDocumentStringLoader implements DocumentStringLoader
@@ -211,7 +213,7 @@ public class WebFragment extends Fragment
 
 						case ProviderArgs.ARG_QUERYTYPE_WORD:
 							@SuppressWarnings("TypeMayBeWeakened") final WordPointer wordPointer = (WordPointer) pointer;
-							Log.d(TAG, "ARG_POSITION word=" + wordPointer);
+							Log.d(TAG, "ArgPosition: word=" + wordPointer);
 							if (wordPointer != null && Settings.Source.WORDNET.test(sources))
 							{
 								wnDomDoc = new WordNetImplementation().queryWordDoc(db, wordPointer.getWordId());
@@ -220,7 +222,7 @@ public class WebFragment extends Fragment
 
 						case ProviderArgs.ARG_QUERYTYPE_SYNSET:
 							@SuppressWarnings("TypeMayBeWeakened") final SynsetPointer synsetPointer = (SynsetPointer) pointer;
-							Log.d(TAG, "ARG_POSITION synset=" + synsetPointer);
+							Log.d(TAG, "ArgPosition: synset=" + synsetPointer);
 							if (synsetPointer != null && Settings.Source.WORDNET.test(sources))
 							{
 								wnDomDoc = new WordNetImplementation().querySynsetDoc(db, synsetPointer.getSynsetId());
@@ -229,7 +231,7 @@ public class WebFragment extends Fragment
 
 						case ProviderArgs.ARG_QUERYTYPE_VNCLASS:
 							final VnClassPointer vnclassPointer = (VnClassPointer) pointer;
-							Log.d(TAG, "ARG_POSITION vnclass=" + vnclassPointer);
+							Log.d(TAG, "ArgPosition: vnclass=" + vnclassPointer);
 							if (vnclassPointer != null && Settings.Source.VERBNET.test(sources))
 							{
 								vnDomDoc = new VerbNetImplementation().queryClassDoc(db, vnclassPointer.getId(), null);
@@ -238,7 +240,7 @@ public class WebFragment extends Fragment
 
 						case ProviderArgs.ARG_QUERYTYPE_PBROLESET:
 							final PbRoleSetPointer pbroleSetPointer = (PbRoleSetPointer) pointer;
-							Log.d(TAG, "ARG_POSITION fnframe=" + pbroleSetPointer);
+							Log.d(TAG, "ArgPosition: fnframe=" + pbroleSetPointer);
 							if (pbroleSetPointer != null && Settings.Source.PROPBANK.test(sources))
 							{
 								pbDomDoc = new PropBankImplementation().queryRoleSetDoc(db, pbroleSetPointer.getId(), null);
@@ -247,7 +249,7 @@ public class WebFragment extends Fragment
 
 						case ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT:
 							final FnLexUnitPointer lexunitPointer = (FnLexUnitPointer) pointer;
-							Log.d(TAG, "ARG_POSITION fnlexunit=" + lexunitPointer);
+							Log.d(TAG, "ArgPosition: fnlexunit=" + lexunitPointer);
 							if (lexunitPointer != null && Settings.Source.FRAMENET.test(sources))
 							{
 								fnDomDoc = new FrameNetImplementation(false).queryLexUnitDoc(db, lexunitPointer.getId());
@@ -256,7 +258,7 @@ public class WebFragment extends Fragment
 
 						case ProviderArgs.ARG_QUERYTYPE_FNFRAME:
 							final FnFramePointer framePointer = (FnFramePointer) pointer;
-							Log.d(TAG, "ARG_POSITION fnframe=" + framePointer);
+							Log.d(TAG, "ArgPosition: fnframe=" + framePointer);
 							if (framePointer != null && Settings.Source.FRAMENET.test(sources))
 							{
 								fnDomDoc = new FrameNetImplementation(false).queryFrameDoc(db, framePointer.getId(), null);
@@ -265,7 +267,7 @@ public class WebFragment extends Fragment
 
 						case ProviderArgs.ARG_QUERYTYPE_FNSENTENCE:
 							final FnSentencePointer sentencePointer = (FnSentencePointer) pointer;
-							Log.d(TAG, "ARG_POSITION fnsentence=" + sentencePointer);
+							Log.d(TAG, "ArgPosition: fnsentence=" + sentencePointer);
 							if (sentencePointer != null && Settings.Source.FRAMENET.test(sources))
 							{
 								fnDomDoc = new FrameNetImplementation(false).querySentenceDoc(db, sentencePointer.getId());
@@ -274,7 +276,7 @@ public class WebFragment extends Fragment
 
 						case ProviderArgs.ARG_QUERYTYPE_FNANNOSET:
 							final FnAnnoSetPointer annoSetPointer = (FnAnnoSetPointer) pointer;
-							Log.d(TAG, "ARG_POSITION fnannoset=" + annoSetPointer);
+							Log.d(TAG, "ArgPosition: fnannoset=" + annoSetPointer);
 							if (annoSetPointer != null && Settings.Source.FRAMENET.test(sources))
 							{
 								fnDomDoc = new FrameNetImplementation(false).queryAnnoSetDoc(db, annoSetPointer.getId());
@@ -331,13 +333,7 @@ public class WebFragment extends Fragment
 	{
 		try
 		{
-			// view
-			final View view = inflater.inflate(R.layout.fragment_web, container, false);
-
-			// webview
-			this.webview = view.findViewById(R.id.webView);
-
-			return view;
+			return inflater.inflate(R.layout.fragment_web, container, false);
 		}
 		catch (InflateException e)
 		{
@@ -350,6 +346,9 @@ public class WebFragment extends Fragment
 	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
 		super.onViewCreated(view, savedInstanceState);
+
+		// webview
+		this.webview = view.findViewById(R.id.webView);
 
 		// models
 		makeModels();
@@ -419,7 +418,7 @@ public class WebFragment extends Fragment
 					final String[] target = query.split("=");
 					final String name = target[0];
 					final String value = target[1];
-					Log.d(TAG, "QUERY " + query + " name=" + name + " value=" + value);
+					Log.d(TAG, "Query: " + query + " name=" + name + " value=" + value);
 					final Intent targetIntent = new Intent(requireContext(), WebActivity.class);
 					if ("word".equals(name)) //
 					{
@@ -537,7 +536,7 @@ public class WebFragment extends Fragment
 
 		// pointer
 		final Parcelable pointer = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? args.getParcelable(ProviderArgs.ARG_QUERYPOINTER, Parcelable.class) : args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
-		Log.d(TAG, "ARG_POSITION query=" + pointer);
+		Log.d(TAG, "ArgPosition: query=" + pointer);
 
 		// hint
 		final String posString = args.getString(ProviderArgs.ARG_HINTPOS);
@@ -545,7 +544,7 @@ public class WebFragment extends Fragment
 
 		// text
 		final String data = args.getString(ProviderArgs.ARG_QUERYSTRING);
-		Log.d(TAG, "ARG_POSITION data=" + data);
+		Log.d(TAG, "ArgPosition: data=" + data);
 
 		// load the contents
 		this.model.loadData(new WebDocumentStringLoader(requireContext(), pointer, pos, type, data, sources, xml));

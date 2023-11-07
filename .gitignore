@@ -1,6 +1,5 @@
 /HERE
 /build
-/.idea
 /.gradle
 /gradle
 /gradlew*
@@ -21,9 +20,15 @@
 /data2
 /captures
 /release
+/.idea/caches
+/.idea/libraries
+/.idea/modules
+/.idea/workspace.xml
+/.idea/tasks.xml
+**.iml
+**.iws
 **/build
 **/keystore*.properties
 **/strings_license-nontranslatable.xml
 **/androidpublisher.dat
 **/client_secrets.json
-**.iml

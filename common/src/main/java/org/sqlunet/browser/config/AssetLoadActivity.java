@@ -56,6 +56,7 @@ public class AssetLoadActivity extends AppCompatActivity
 	{
 		// inflate the menu; this adds items to the type bar if it is present.
 		getMenuInflater().inflate(R.menu.initialize, menu);
+		// MenuCompat.setGroupDividerEnabled(menu, true);
 		return true;
 	}
 

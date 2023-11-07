@@ -54,38 +54,37 @@ public abstract class AbstractTableFragment extends ListFragment
 	abstract protected ViewBinder makeViewBinder();
 
 	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
+	public void onCreate(@Nullable final Bundle savedInstanceState)
 	{
-		// view
-		final View view = inflater.inflate(R.layout.fragment_table, container, false);
-
-		// args
-		final Bundle args = getArguments();
-		assert args != null;
+		super.onCreate(savedInstanceState);
 
 		// query
-		final String queryArg = args.getString(ProviderArgs.ARG_QUERYARG);
 		if (VERBOSE)
 		{
+			// args
+			final Bundle args = getArguments();
+			assert args != null;
+
+			final String queryArg = args.getString(ProviderArgs.ARG_QUERYARG);
 			final String uriString = args.getString(ProviderArgs.ARG_QUERYURI);
 			final String selection = args.getString(ProviderArgs.ARG_QUERYFILTER);
 			Log.d(TAG, String.format("%s (filter: %s)(arg=%s)", uriString, selection, queryArg));
 		}
-
-		return view;
 	}
 
 	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		super.onViewCreated(view, savedInstanceState);
-		makeModels();
+		return inflater.inflate(R.layout.fragment_table, container, false);
 	}
 
 	@Override
 	public void onStart()
 	{
 		super.onStart();
+
+		// models
+		makeModels(); // sets cursor
 
 		// args
 		final Bundle args = getArguments();
@@ -180,6 +179,18 @@ public abstract class AbstractTableFragment extends ListFragment
 		this.model.loadData(uri, projection, selection, selectionArgs, sortOrder, null);
 	}
 
+	@Override
+	public void onDestroy()
+	{
+		super.onDestroy();
+
+		CursorAdapter adapter = (CursorAdapter) getListAdapter();
+		if (adapter != null)
+		{
+			adapter.changeCursor(null);
+		}
+	}
+
 	/**
 	 * Make view models
 	 */
@@ -190,8 +201,7 @@ public abstract class AbstractTableFragment extends ListFragment
 
 			final CursorAdapter adapter = (CursorAdapter) getListAdapter();
 			assert adapter != null;
-			adapter.swapCursor(cursor);
-			((CursorAdapter) getListAdapter()).swapCursor(cursor);
+			adapter.changeCursor(cursor);
 		});
 	}
 

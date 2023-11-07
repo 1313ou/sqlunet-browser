@@ -29,22 +29,24 @@ public abstract class BaseBrowse2Fragment extends Fragment
 {
 	static private final String TAG = "Browse2F";
 
+	static public final String FRAGMENT_TAG = "browse2";
+
 	static private final String POINTER_STATE = "pointer";
 
 	@Nullable
-	Parcelable pointer = null;
+	protected Parcelable pointer = null;
 
 	@Nullable
-	String word = null;
+	protected String word = null;
 
 	@Nullable
-	String cased = null;
+	protected String cased = null;
 
 	@Nullable
-	String pronunciation = null;
+	protected String pronunciation = null;
 
 	@Nullable
-	String pos = null;
+	protected String pos = null;
 
 	@SuppressWarnings("WeakerAccess")
 	protected int layoutId = R.layout.fragment_browse2_multi;
@@ -58,8 +60,12 @@ public abstract class BaseBrowse2Fragment extends Fragment
 	public void onCreate(@Nullable final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		//noinspection deprecation
-		this.setRetainInstance(false); // default
+
+		if (savedInstanceState != null)
+		{
+			Log.d(TAG, "restore instance state " + this);
+			this.pointer = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? savedInstanceState.getParcelable(POINTER_STATE, IPointer.class) : savedInstanceState.getParcelable(POINTER_STATE);
+		}
 	}
 
 	@Override
@@ -69,24 +75,14 @@ public abstract class BaseBrowse2Fragment extends Fragment
 		final Settings.DetailViewMode mode = Settings.getDetailViewModePref(requireContext());
 
 		// view
-		View view = null;
 		switch (mode)
 		{
 			case VIEW:
-				view = inflater.inflate(this.layoutId, container, false);
-				break;
+				return inflater.inflate(this.layoutId, container, false);
 			case WEB:
-				view = inflater.inflate(R.layout.fragment_browse2, container, false);
-				break;
+				return inflater.inflate(R.layout.fragment_browse2, container, false);
 		}
-
-		if (savedInstanceState != null)
-		{
-			Log.d(TAG, "restore instance state " + this);
-			this.pointer = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? savedInstanceState.getParcelable(POINTER_STATE, IPointer.class) : savedInstanceState.getParcelable(POINTER_STATE);
-		}
-
-		return view;
+		return null;
 	}
 
 	@Override
@@ -110,8 +106,8 @@ public abstract class BaseBrowse2Fragment extends Fragment
 	@Override
 	public void onSaveInstanceState(@NonNull Bundle outState)
 	{
-		Log.d(TAG, "Save instance state " + this);
 		super.onSaveInstanceState(outState);
+
 		outState.putParcelable(POINTER_STATE, this.pointer);
 	}
 

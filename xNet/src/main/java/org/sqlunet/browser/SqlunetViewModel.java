@@ -52,7 +52,7 @@ public class SqlunetViewModel extends AndroidViewModel
 	@SuppressWarnings("UnusedReturnValue")
 	public void loadData(@NonNull final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder, @Nullable final PostProcessor postProcessor)
 	{
-		Log.d(TAG, "load data " + uri);
+		Log.d(TAG, "Loading data for " + uri);
 		new Task<Void, Void, Cursor>()
 		{
 			@Nullable
@@ -60,7 +60,7 @@ public class SqlunetViewModel extends AndroidViewModel
 			protected Cursor doInBackground(Void... voids)
 			{
 				final Cursor cursor = getApplication().getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder);
-				Log.d(TAG, "loaded data for " + uri + " yielded cursor " + cursor);
+				Log.d(TAG, "Loaded data for " + uri + " yielded cursor " + cursor);
 				if (postProcessor != null && cursor != null)
 				{
 					postProcessor.postProcess(cursor);

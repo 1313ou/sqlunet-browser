@@ -22,10 +22,12 @@ abstract public class SplashFragment extends Fragment
 {
 	// static private final String TAG = "SplashF";
 
+	static public final String FRAGMENT_TAG = "splash";
+
 	/**
 	 * Layout id set bu super class
 	 */
-	int layoutId;
+	protected int layoutId;
 
 	/**
 	 * Constructor
@@ -38,7 +40,6 @@ abstract public class SplashFragment extends Fragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		// view
 		return inflater.inflate(this.layoutId, container, false);
 	}
 }

@@ -47,7 +47,7 @@ public class WebModel extends ViewModel
 			}
 
 			@Override
-			protected void onPostExecute(String treeNode)
+			protected void onPostExecute(final String treeNode)
 			{
 				data.setValue(treeNode);
 			}

@@ -10,8 +10,6 @@
           android:layout_height="wrap_content"
           android:layout_centerHorizontal="true"
           android:choiceMode="singleChoice"
-
-          tools:listitem="@layout/item_sense"
-          tools:context="org.sqlunet.wordnet.browser.SensesFragment"/>
+          tools:listitem="@layout/item_sense"/>
 
 	<!-- android:listSelector="@drawable/listitem_selector" -->

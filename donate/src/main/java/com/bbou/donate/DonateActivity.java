@@ -326,6 +326,7 @@ public class DonateActivity extends AppCompatActivity implements BillingManager.
 	{
 		// inflate the menu; this adds items to the type bar if it is present.
 		getMenuInflater().inflate(R.menu.donate, menu);
+		// MenuCompat.setGroupDividerEnabled(menu, true);
 		return true;
 	}
 

@@ -30,7 +30,6 @@
 	<string name="action_refresh">Refresh</string>
 	<string name="action_drop">Drop</string>
 	<string name="action_update">Update</string>
-	<string name="action_sql">SQL</string>
 	<string name="action_diagnostics">Diagnostics</string>
 	<string name="action_resources_directory">Resources Directory</string>
 	<string name="action_logs">Logs</string>
@@ -64,9 +63,11 @@
 	<string name="action_history_clear">Clear history</string>
 	<string name="action_history_export">Export history</string>
 	<string name="action_history_import">Import history</string>
-	<!-- misc -->
+	<!-- sql -->
 	<string name="action_sql_clear">Clear SQL statements</string>
+	<string name="action_sql_send">Send SQL statements</string>
 	<string name="action_sql_export">Export SQL statements</string>
+	<!-- misc -->
 	<string name="action_help">Help</string>
 	<string name="action_credits">Credits</string>
 	<string name="action_provider_info">Providers</string>

@@ -96,8 +96,13 @@ public class SetupStatusFragment extends Fragment implements Updatable
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		// view
-		final View view = inflater.inflate(R.layout.fragment_status, container, false);
+		return inflater.inflate(R.layout.fragment_status, container, false);
+	}
+
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
 
 		// images
 		this.imageDb = view.findViewById(R.id.status_database);
@@ -117,7 +122,6 @@ public class SetupStatusFragment extends Fragment implements Updatable
 			// stop the refreshing indicator
 			SetupStatusFragment.this.swipeRefreshLayout.setRefreshing(false);
 		});
-		return view;
 	}
 
 	@Override
@@ -201,7 +205,7 @@ public class SetupStatusFragment extends Fragment implements Updatable
 		if (context != null)
 		{
 			final int status = Status.status(context);
-			Log.d(TAG, "STATUS " + Status.toString(status));
+			Log.d(TAG, "Status: " + Status.toString(status));
 
 			// images
 			final Drawable okDrawable = ColorUtils.getDrawable(context, R.drawable.ic_ok);

@@ -247,6 +247,7 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 		getMenuInflater().inflate(R.menu.status, menu);
 		getMenuInflater().inflate(R.menu.setup_file, menu);
 		getMenuInflater().inflate(R.menu.setup_database, menu);
+		// MenuCompat.setGroupDividerEnabled(menu, true);
 		return true;
 	}
 

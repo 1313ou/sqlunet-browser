@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity
 		// info
 		Log.d(TAG, "Database:" + StorageSettings.getDatabasePath(getBaseContext()));
 
-		// content view
+		// content
 		setContentView(R.layout.activity_main);
 
 		// toolbar
@@ -76,9 +76,7 @@ public class MainActivity extends AppCompatActivity
 		NavigationUI.setupActionBarWithNavController(this, navController, this.appBarConfiguration);
 		NavigationUI.setupWithNavController(navView, navController);
 
-		//navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-		//	Log.d(TAG, "Nav " + destination);
-		//});
+		navController.addOnDestinationChangedListener((controller, destination, arguments) -> Log.d(TAG, "Nav: to " + destination));
 	}
 
 	@Override
@@ -88,9 +86,6 @@ public class MainActivity extends AppCompatActivity
 
 		// check hook
 		EntryActivity.branchOffToLoadIfCantRun(this);
-
-		// handle sent intent
-		handleSearchIntent(getIntent());
 	}
 
 	@Override
@@ -143,7 +138,7 @@ public class MainActivity extends AppCompatActivity
 				}
 
 				// search query submit or suggestion selection (when a suggested item is selected)
-				Log.d(TAG, "search " + query);
+				Log.d(TAG, "Search intent having query '" + query + '\'');
 				searchFragment.search(query);
 			}
 		}
@@ -157,6 +152,7 @@ public class MainActivity extends AppCompatActivity
 	{
 		// inflate the menu; this adds items to the type bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
+		// MenuCompat.setGroupDividerEnabled(menu, true);
 		return true;
 	}
 

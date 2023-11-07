@@ -62,6 +62,8 @@ public class WebFragment extends Fragment
 {
 	static private final String TAG = "WebF";
 
+	static public final String FRAGMENT_TAG = "web";
+
 	static private final String SQLUNET_NS = "http://org.sqlunet";
 
 	class WebDocumentStringLoader implements DocumentStringLoader
@@ -205,13 +207,7 @@ public class WebFragment extends Fragment
 	{
 		try
 		{
-			// view
-			final View view = inflater.inflate(R.layout.fragment_web, container, false);
-
-			// webview
-			this.webview = view.findViewById(R.id.webView);
-
-			return view;
+			return inflater.inflate(R.layout.fragment_web, container, false);
 		}
 		catch (InflateException e)
 		{
@@ -224,6 +220,9 @@ public class WebFragment extends Fragment
 	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
 		super.onViewCreated(view, savedInstanceState);
+
+		// webview
+		this.webview = view.findViewById(R.id.webView);
 
 		// models
 		makeModels();
@@ -292,7 +291,7 @@ public class WebFragment extends Fragment
 					final String[] target = query.split("=");
 					final String name = target[0];
 					final String value = target[1];
-					Log.d(TAG, "QUERY " + query + " name=" + name + " value=" + value);
+					Log.d(TAG, "Query: " + query + " name=" + name + " value=" + value);
 					final Intent targetIntent = new Intent(requireContext(), WebActivity.class);
 					if ("word".equals(name)) //
 					{

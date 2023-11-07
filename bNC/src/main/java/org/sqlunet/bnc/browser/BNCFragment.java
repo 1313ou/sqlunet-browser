@@ -25,6 +25,8 @@ public class BNCFragment extends TreeFragment
 {
 	// static private final String TAG = "BncF";
 
+	static public final String FRAGMENT_TAG = "bnc";
+
 	/**
 	 * Constructor
 	 */

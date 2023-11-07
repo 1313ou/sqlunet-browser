@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 
+import org.sqlunet.browser.xn.BrowsePredicateMatrixFragment;
 import org.sqlunet.predicatematrix.PmRolePointer;
 import org.sqlunet.provider.ProviderArgs;
 

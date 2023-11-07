@@ -18,6 +18,8 @@ import androidx.annotation.NonNull;
  */
 public class SenseFragment extends SynsetFragment
 {
+	static public final String FRAGMENT_TAG = "wordnet_sense";
+
 	/**
 	 * Constructor
 	 */

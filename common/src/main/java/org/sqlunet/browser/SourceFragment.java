@@ -33,9 +33,9 @@ public class SourceFragment extends ListFragment
 	private SqlunetViewModel model;
 
 	@Override
-	public void onCreate(final Bundle savedInstanceState)
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
-		super.onCreate(savedInstanceState);
+		super.onViewCreated(view, savedInstanceState);
 
 		// make cursor adapter
 		final String[] from = {Sources.NAME, Sources.VERSION, Sources.URL, Sources.PROVIDER, Sources.REFERENCE};
@@ -47,22 +47,30 @@ public class SourceFragment extends ListFragment
 	}
 
 	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
-		makeModels();
-	}
-
-	@Override
 	public void onStart()
 	{
 		super.onStart();
+
+		// models
+		makeModels(); // sets cursor
 
 		// load the contents
 		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(Sources.URI));
 		final String[] projection = {Sources.ID + " AS _id", Sources.NAME, Sources.VERSION, Sources.URL, Sources.PROVIDER, Sources.REFERENCE};
 		final String sortOrder = Sources.ID;
 		this.model.loadData(uri, projection, null, null, sortOrder, null);
+	}
+
+	@Override
+	public void onDestroy()
+	{
+		super.onDestroy();
+
+		CursorAdapter adapter = (CursorAdapter) getListAdapter();
+		if (adapter != null)
+		{
+			adapter.changeCursor(null);
+		}
 	}
 
 	/**
@@ -75,7 +83,7 @@ public class SourceFragment extends ListFragment
 
 			final CursorAdapter adapter = (CursorAdapter) getListAdapter();
 			assert adapter != null;
-			adapter.swapCursor(cursor);
+			adapter.changeCursor(cursor);
 		});
 	}
 }

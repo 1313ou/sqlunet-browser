@@ -297,8 +297,13 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		// view
-		final View view = inflater.inflate(getResId(), container, false);
+		return inflater.inflate(getResId(), container, false);
+	}
+
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
 
 		// components
 		this.progressBar = view.findViewById(R.id.progressBar);
@@ -401,8 +406,6 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 		{
 			this.initUI();
 		}
-
-		return view;
 	}
 
 	abstract protected void setDestination(@NonNull final View view);
@@ -509,6 +512,7 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 
 	/**
 	 * Deploy tail operation
+	 *
 	 * @noinspection EmptyMethod
 	 */
 	abstract protected void deploy();
@@ -798,7 +802,7 @@ abstract public class AbstractDownloadFragment extends Fragment implements View.
 			if (target != null)
 			{
 				Settings.recordDatapackFile(requireContext(), new File(target));
-				Log.d(TAG,"Recorded " + target);
+				Log.d(TAG, "Recorded " + target);
 			}
 		}
 	}

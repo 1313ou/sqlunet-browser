@@ -27,6 +27,8 @@ public class PropBankFragment extends TreeFragment
 {
 	// static private final String TAG = "PropBankF";
 
+	static public final String FRAGMENT_TAG = "propbank";
+
 	/**
 	 * Constructor
 	 */

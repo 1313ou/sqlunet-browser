@@ -9,6 +9,7 @@ import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.sqlunet.browser.xn.Browse2Fragment;
 import org.sqlunet.provider.ProviderArgs;
 
 import androidx.annotation.NonNull;
@@ -43,7 +44,7 @@ public class Browse2Activity extends AbstractBrowse2Activity
 
 		// fragment
 		final FragmentManager manager = getSupportFragmentManager();
-		Fragment browse2Fragment = manager.findFragmentByTag("browse2");
+		Fragment browse2Fragment = manager.findFragmentByTag(BaseBrowse2Fragment.FRAGMENT_TAG);
 		if (browse2Fragment == null)
 		{
 			browse2Fragment = new Browse2Fragment();
@@ -54,7 +55,8 @@ public class Browse2Activity extends AbstractBrowse2Activity
 		}
 		manager.beginTransaction() //
 				.setReorderingAllowed(true) //
-				.replace(R.id.container_browse2, browse2Fragment, "browse2") //
+				.replace(R.id.container_browse2, browse2Fragment, BaseBrowse2Fragment.FRAGMENT_TAG) //
+				// .addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG) //
 				.commit();
 	}
 
@@ -72,7 +74,7 @@ public class Browse2Activity extends AbstractBrowse2Activity
 		final String cased = args.getString(ProviderArgs.ARG_HINTCASED);
 		final String pronunciation = args.getString(ProviderArgs.ARG_HINTPRONUNCIATION);
 		final String pos = args.getString(ProviderArgs.ARG_HINTPOS);
-		final Browse2Fragment fragment = (Browse2Fragment) getSupportFragmentManager().findFragmentByTag("browse2");
+		final Browse2Fragment fragment = (Browse2Fragment) getSupportFragmentManager().findFragmentByTag(BaseBrowse2Fragment.FRAGMENT_TAG);
 		assert fragment != null;
 		fragment.search(pointer, word, cased, pronunciation, pos);
 	}
@@ -85,6 +87,7 @@ public class Browse2Activity extends AbstractBrowse2Activity
 	{
 		// inflate the menu; this adds items to the type bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
+		// MenuCompat.setGroupDividerEnabled(menu, true);
 		return true;
 	}
 

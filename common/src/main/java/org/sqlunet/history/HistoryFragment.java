@@ -86,7 +86,13 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		final View view = inflater.inflate(R.layout.fragment_history, container, false);
+		return inflater.inflate(R.layout.fragment_history, container, false);
+	}
+
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
 
 		// list adapter bound to the cursor
 		this.adapter = new SimpleCursorAdapter(requireContext(), // context
@@ -109,19 +115,7 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 		final SwipeGestureListener gestureListener = new SwipeGestureListener();
 		this.listView.setOnTouchListener(gestureListener);
 
-		// initializes the cursor loader
-		LoaderManager.getInstance(this).initLoader(LOADER_ID, null, this);
-
-		return view;
-	}
-
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
-
-		// Add menu items without using the Fragment Menu APIs
-		// Note how we can tie the MenuProvider to the viewLifecycleOwner and an optional Lifecycle.State (here, RESUMED) to indicate when the menu should be visible
+		// menu
 		final MenuHost menuHost = requireActivity();
 		menuHost.addMenuProvider(new MenuProvider()
 		{
@@ -129,6 +123,7 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 			public void onCreateMenu(@NonNull final Menu menu, @NonNull final MenuInflater menuInflater)
 			{
 				menuInflater.inflate(R.menu.history, menu);
+				// MenuCompat.setGroupDividerEnabled(menu, true);
 			}
 
 			@Override
@@ -154,6 +149,24 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 		}, getViewLifecycleOwner(), Lifecycle.State.RESUMED);
 	}
 
+	@Override
+	public void onStart()
+	{
+		super.onStart();
+
+		// initializes the cursor loader
+		LoaderManager.getInstance(this).initLoader(LOADER_ID, null, this);
+	}
+
+	@Override
+	public void onDestroy()
+	{
+		super.onDestroy();
+
+		this.exportLauncher.unregister();
+		this.importLauncher.unregister();
+	}
+
 	// L O A D E R
 
 	/**
@@ -174,16 +187,13 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 	public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
 	{
 		cursor.moveToFirst();
-		this.adapter.swapCursor(cursor);
+		adapter.changeCursor(cursor);
 	}
 
 	@Override
 	public void onLoaderReset(@NonNull final Loader<Cursor> loader)
 	{
-		//noinspection EmptyTryBlock
-		try (Cursor ignored = this.adapter.swapCursor(null))
-		{
-		}
+		adapter.changeCursor(null);
 	}
 
 	// C L I C K
@@ -240,7 +250,6 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 				{
 					if (e2.getX() - e1.getX() > SwipeGestureListener.SWIPE_MIN_DISTANCE)
 					{
-						// final SimpleCursorAdapter adapter = (SimpleCursorAdapter) listView.getAdapter();
 						final Cursor cursor = adapter.getCursor();
 						if (!cursor.isAfterLast())
 						{
@@ -257,7 +266,7 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 								final SearchRecentSuggestions suggestions = new SearchRecentSuggestions(requireContext(), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES);
 								suggestions.delete(itemId);
 								final Cursor cursor2 = suggestions.cursor();
-								adapter.swapCursor(cursor2);
+								adapter.changeCursor(cursor2);
 
 								Toast.makeText(requireContext(), getResources().getString(R.string.title_history_deleted) + ' ' + data, Toast.LENGTH_SHORT).show();
 								return true;

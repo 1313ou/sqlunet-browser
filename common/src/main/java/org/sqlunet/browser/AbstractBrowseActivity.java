@@ -102,6 +102,7 @@ public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> exten
 	{
 		// inflate the menu; this adds items to the type bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
+		// MenuCompat.setGroupDividerEnabled(menu, true);
 		return true;
 	}
 

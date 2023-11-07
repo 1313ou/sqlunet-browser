@@ -95,7 +95,7 @@ public class SensesFragment extends ListFragment
 	 */
 	public SensesFragment()
 	{
-		Log.d(TAG, "lifecycle: Constructor (0) " + this);
+		super();
 	}
 
 	// L I F E C Y C L E
@@ -106,9 +106,6 @@ public class SensesFragment extends ListFragment
 	public void onCreate(final Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		Log.d(TAG, "lifecycle: onCreate (2) " + this);
-		//noinspection deprecation
-		this.setRetainInstance(false); // default
 
 		// arguments
 		Bundle args = getArguments();
@@ -131,7 +128,8 @@ public class SensesFragment extends ListFragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		Log.d(TAG, "lifecycle: onCreateView (3) " + this);
+		super.onCreateView(inflater, container, savedInstanceState);
+
 		return inflater.inflate(R.layout.fragment_senses, container, false);
 	}
 
@@ -139,25 +137,37 @@ public class SensesFragment extends ListFragment
 	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
 		super.onViewCreated(view, savedInstanceState);
-		Log.d(TAG, "lifecycle: onViewCreated (4) " + this);
 
 		// when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
 		getListView().setChoiceMode(this.activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
-
-		// data view models
-		Log.d(TAG, "make models");
-		makeModels();
 	}
 
 	@Override
 	public void onStart()
 	{
 		super.onStart();
-		Log.d(TAG, "lifecycle: onStart (6) " + this);
+
+		// data view models
+		Log.d(TAG, "Make models");
+		makeModels(); // sets cursor
+
+		// data
 		senses();
 	}
 
 	// --deactivate--
+
+	@Override
+	public void onDestroy()
+	{
+		super.onDestroy();
+
+		CursorAdapter adapter = (CursorAdapter) getListAdapter();
+		if (adapter != null)
+		{
+			adapter.changeCursor(null);
+		}
+	}
 
 	// H E L P E R S
 
@@ -169,7 +179,7 @@ public class SensesFragment extends ListFragment
 	@NonNull
 	private ListAdapter makeAdapter()
 	{
-		Log.d(TAG, "make adapter");
+		Log.d(TAG, "Make adapter");
 		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(requireContext(), R.layout.item_sense, null, //
 				new String[]{ //
 						WordNetContract.Poses.POS, //
@@ -251,7 +261,7 @@ public class SensesFragment extends ListFragment
 			// pass on to list adapter
 			final CursorAdapter adapter = (CursorAdapter) getListAdapter();
 			assert adapter != null;
-			adapter.swapCursor(cursor);
+			adapter.changeCursor(cursor);
 		});
 
 		// position model

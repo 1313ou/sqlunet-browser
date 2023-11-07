@@ -4,6 +4,8 @@
 
 package org.sqlunet.browser;
 
+import org.sqlunet.browser.vn.BrowseFragment;
+
 /**
  * Browse activity
  *

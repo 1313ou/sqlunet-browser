@@ -540,7 +540,7 @@ public class Deploy
 	@Nullable
 	static synchronized public String md5FromFile(@NonNull final String srcFile, @NonNull final Task<String, Long, String> task, @NonNull final Publisher publisher, final int publishRate)
 	{
-		Log.d(TAG, "MD5summing " + srcFile);
+		Log.d(TAG, "Md5Summing: " + srcFile);
 		try
 		{
 			MessageDigest md = MessageDigest.getInstance("MD5");
@@ -845,7 +845,7 @@ public class Deploy
 				Log.e(TAG, "Altered " + path);
 				throw new RuntimeException("Altered " + path);
 			}
-			Log.d(TAG, "MD5 of " + path + " ok");
+			Log.d(TAG, "Md5: of " + path + " ok");
 		}
 	}
 
@@ -853,7 +853,7 @@ public class Deploy
 	@SuppressWarnings("StatementWithEmptyBody")
 	public static String computeDigest(@NonNull final String path)
 	{
-		// Log.d(TAG, "MD5 " + path);
+		// Log.d(TAG, "Md5 " + path);
 		MessageDigest md;
 		try
 		{

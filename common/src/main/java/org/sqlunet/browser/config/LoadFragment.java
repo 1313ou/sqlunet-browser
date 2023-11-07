@@ -35,8 +35,13 @@ public class LoadFragment extends Fragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		// inflate
-		final View view = inflater.inflate(R.layout.fragment_load, container, false);
+		return inflater.inflate(R.layout.fragment_load, container, false);
+	}
+
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
 
 		// buttons
 		final ImageButton assetLoadButton = view.findViewById(R.id.assetload);
@@ -57,6 +62,5 @@ public class LoadFragment extends Fragment
 		});
 		final Button cancelButton = view.findViewById(R.id.cancelButton);
 		cancelButton.setOnClickListener((v) -> requireActivity().finish());
-		return view;
 	}
 }

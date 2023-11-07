@@ -77,8 +77,13 @@ public class UpdateFragment extends Fragment
 	@Override
 	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
 	{
-		// inflate the layout for this fragment
-		View view = inflater.inflate(R.layout.fragment_update, container, false);
+		return inflater.inflate(R.layout.fragment_update, container, false);
+	}
+
+	@Override
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
+	{
+		super.onViewCreated(view, savedInstanceState);
 
 		// arguments
 		final Activity activity = requireActivity();
@@ -100,8 +105,6 @@ public class UpdateFragment extends Fragment
 		final String downSourceEtagArg = intent.getStringExtra(DOWN_SOURCE_ETAG_ARG);
 		final String downSourceVersionArg = intent.getStringExtra(DOWN_SOURCE_VERSION_ARG);
 		final String downSourceStaticVersionArg = intent.getStringExtra(DOWN_SOURCE_STATIC_VERSION_ARG);
-
-		assert view != null;
 
 		final TextView upSrc = view.findViewById(R.id.up_src);
 		final TextView upDate = view.findViewById(R.id.up_date);
@@ -168,7 +171,6 @@ public class UpdateFragment extends Fragment
 				});
 			});
 		}
-		return view;
 	}
 
 	/**
