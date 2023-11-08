@@ -9,17 +9,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 
 import org.sqlunet.browser.BaseBrowse1Fragment;
 import org.sqlunet.browser.BaseSearchFragment;
 import org.sqlunet.browser.BrowseSplashFragment;
 import org.sqlunet.browser.SplashFragment;
-import org.sqlunet.browser.selector.Browse1Activity;
 import org.sqlunet.browser.fn.selector.Browse1Fragment;
+import org.sqlunet.browser.selector.Browse1Activity;
 import org.sqlunet.browser.web.WebActivity;
 import org.sqlunet.browser.web.WebFragment;
 import org.sqlunet.framenet.FnAnnoSetPointer;
@@ -64,9 +62,9 @@ public class BrowseFragment extends BaseSearchFragment
 	}
 
 	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
-		final View view = super.onCreateView(inflater, container, savedInstanceState);
+		super.onViewCreated(view, savedInstanceState);
 
 		if (savedInstanceState == null)
 		{
@@ -80,8 +78,6 @@ public class BrowseFragment extends BaseSearchFragment
 					//.addToBackStack(SplashFragment.FRAGMENT_TAG) //
 					.commit();
 		}
-
-		return view;
 	}
 
 	@Override
@@ -95,7 +91,7 @@ public class BrowseFragment extends BaseSearchFragment
 
 	// M E N U
 
-	@SuppressWarnings({"deprecation","SameReturnValue"})
+	@SuppressWarnings({"deprecation", "SameReturnValue"})
 	@Override
 	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
 	{
@@ -240,8 +236,7 @@ public class BrowseFragment extends BaseSearchFragment
 					.beginTransaction() //
 					.setReorderingAllowed(true) //
 					.replace(R.id.container_browse, fragment, BaseBrowse1Fragment.FRAGMENT_TAG) //
-					.addToBackStack(BaseBrowse1Fragment.FRAGMENT_TAG)
-					.commit();
+					.addToBackStack(BaseBrowse1Fragment.FRAGMENT_TAG).commit();
 		}
 	}
 

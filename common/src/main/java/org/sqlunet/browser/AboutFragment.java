@@ -40,7 +40,6 @@ public class AboutFragment extends Fragment
 	{
 		super.onViewCreated(view, savedInstanceState);
 
-
 		// fragment
 		final Fragment fragment = new SourceFragment();
 		assert isAdded();

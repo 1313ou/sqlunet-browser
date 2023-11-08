@@ -7,9 +7,7 @@ package org.sqlunet.browser.config;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
 
@@ -46,9 +44,9 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 	}
 
 	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
-		final View view = super.onCreateView(inflater, container, savedInstanceState);
+		super.onViewCreated(view, savedInstanceState);
 
 		// args (relies on order of resources matching that of DO_)
 		Bundle args = getArguments();
@@ -104,8 +102,6 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 				task.execute(sqlStatements);
 			}
 		});
-
-		return view;
 	}
 
 	// U P D A T E

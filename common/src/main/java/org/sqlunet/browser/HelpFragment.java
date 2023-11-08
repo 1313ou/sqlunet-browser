@@ -69,6 +69,7 @@ public class HelpFragment extends Fragment
 	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
 		super.onViewCreated(view, savedInstanceState);
+
 		if (getView() != null)
 		{
 			// web view

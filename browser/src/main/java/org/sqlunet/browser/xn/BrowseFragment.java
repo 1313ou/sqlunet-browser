@@ -9,10 +9,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Spinner;
@@ -25,11 +23,11 @@ import org.sqlunet.browser.R;
 import org.sqlunet.browser.SplashFragment;
 import org.sqlunet.browser.config.TableActivity;
 import org.sqlunet.browser.selector.Browse1Activity;
-import org.sqlunet.browser.xn.selector.Browse1Fragment;
 import org.sqlunet.browser.web.WebActivity;
 import org.sqlunet.browser.web.WebFragment;
-import org.sqlunet.browser.xselector.XBrowse1Activity;
+import org.sqlunet.browser.xn.selector.Browse1Fragment;
 import org.sqlunet.browser.xn.xselectors.XBrowse1Fragment;
+import org.sqlunet.browser.xselector.XBrowse1Activity;
 import org.sqlunet.framenet.FnAnnoSetPointer;
 import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.framenet.FnLexUnitPointer;
@@ -87,10 +85,9 @@ public class BrowseFragment extends BaseSearchFragment
 	}
 
 	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
-		final View view = super.onCreateView(inflater, container, savedInstanceState);
-
+		super.onViewCreated(view, savedInstanceState);
 		if (savedInstanceState == null)
 		{
 			// splash fragment
@@ -102,10 +99,7 @@ public class BrowseFragment extends BaseSearchFragment
 					.replace(R.id.container_browse, fragment, SplashFragment.FRAGMENT_TAG) //
 					//.addToBackStack(SplashFragment.FRAGMENT_TAG) //
 					.commit();
-
 		}
-
-		return view;
 	}
 
 	@Override

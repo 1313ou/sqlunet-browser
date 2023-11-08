@@ -6,9 +6,7 @@ package org.sqlunet.browser.wn;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
@@ -48,9 +46,9 @@ public class SearchTextFragment extends BaseSearchFragment
 	}
 
 	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
-		final View view = super.onCreateView(inflater, container, savedInstanceState);
+		super.onViewCreated(view, savedInstanceState);
 
 		if (savedInstanceState == null)
 		{
@@ -64,8 +62,6 @@ public class SearchTextFragment extends BaseSearchFragment
 					//.addToBackStack(SplashFragment.FRAGMENT_TAG) //
 					.commit();
 		}
-
-		return view;
 	}
 
 	@Override

@@ -11,9 +11,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
@@ -55,11 +53,9 @@ public class SetupWnStatusFragment extends org.sqlunet.browser.config.SetupStatu
 	}
 
 	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
-		// view
-		final View view = super.onCreateView(inflater, container, savedInstanceState);
-		assert view != null;
+		super.onViewCreated(view, savedInstanceState);
 
 		// images
 		this.imageTextSearchWn = view.findViewById(R.id.status_searchtext_wn);
@@ -114,7 +110,6 @@ public class SetupWnStatusFragment extends org.sqlunet.browser.config.SetupStatu
 						getString(R.string.title_status), getString(R.string.status_database_not_exists));
 			}
 		});
-		return view;
 	}
 
 	// U P D A T E

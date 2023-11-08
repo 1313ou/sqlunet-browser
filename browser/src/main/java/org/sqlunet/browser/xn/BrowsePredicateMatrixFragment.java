@@ -7,9 +7,7 @@ package org.sqlunet.browser.xn;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
@@ -74,10 +72,9 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 	// R E S T O R E
 
 	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
-		// view
-		final View view = super.onCreateView(inflater, container, savedInstanceState);
+		super.onViewCreated(view, savedInstanceState);
 
 		// restore data
 		if (savedInstanceState != null)
@@ -97,8 +94,6 @@ public class BrowsePredicateMatrixFragment extends BaseSearchFragment
 					// .addToBackStack(SplashFragment.FRAGMENT_TAG) //
 					.commit();
 		}
-
-		return view;
 	}
 
 	@Override

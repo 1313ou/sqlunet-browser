@@ -9,10 +9,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Spinner;
@@ -25,10 +23,10 @@ import org.sqlunet.browser.config.TableActivity;
 import org.sqlunet.browser.selector.Browse1Activity;
 import org.sqlunet.browser.sn.selector.Browse1Fragment;
 import org.sqlunet.browser.sn.selector.SnBrowse1Fragment;
+import org.sqlunet.browser.sn.xselector.XBrowse1Fragment;
 import org.sqlunet.browser.web.WebActivity;
 import org.sqlunet.browser.web.WebFragment;
 import org.sqlunet.browser.xselector.XBrowse1Activity;
-import org.sqlunet.browser.sn.xselector.XBrowse1Fragment;
 import org.sqlunet.history.History;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.syntagnet.SnCollocationPointer;
@@ -41,8 +39,8 @@ import org.sqlunet.wordnet.browser.SynsetActivity;
 import org.sqlunet.wordnet.browser.WordActivity;
 import org.sqlunet.wordnet.provider.WordNetContract.AdjPositions;
 import org.sqlunet.wordnet.provider.WordNetContract.Domains;
-import org.sqlunet.wordnet.provider.WordNetContract.Relations;
 import org.sqlunet.wordnet.provider.WordNetContract.Poses;
+import org.sqlunet.wordnet.provider.WordNetContract.Relations;
 import org.sqlunet.wordnet.provider.WordNetProvider;
 
 import androidx.annotation.NonNull;
@@ -73,9 +71,9 @@ public class BrowseFragment extends BaseSearchFragment
 	}
 
 	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
-		final View view = super.onCreateView(inflater, container, savedInstanceState);
+		super.onViewCreated(view, savedInstanceState);
 
 		if (savedInstanceState == null)
 		{
@@ -89,8 +87,6 @@ public class BrowseFragment extends BaseSearchFragment
 					//.addToBackStack(SplashFragment.FRAGMENT_TAG) //
 					.commit();
 		}
-
-		return view;
 	}
 
 	@Override
@@ -326,8 +322,7 @@ public class BrowseFragment extends BaseSearchFragment
 					.beginTransaction() //
 					.setReorderingAllowed(true) //
 					.replace(R.id.container_browse, fragment, BaseBrowse1Fragment.FRAGMENT_TAG) //
-					.addToBackStack(BaseBrowse1Fragment.FRAGMENT_TAG)
-					.commit();
+					.addToBackStack(BaseBrowse1Fragment.FRAGMENT_TAG).commit();
 		}
 	}
 

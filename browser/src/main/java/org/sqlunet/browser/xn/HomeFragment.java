@@ -5,9 +5,7 @@
 package org.sqlunet.browser.xn;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import org.sqlunet.browser.R;
 
@@ -28,15 +26,13 @@ public class HomeFragment extends org.sqlunet.browser.HomeFragment
 	{
 	}
 
-	@Nullable
 	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
+	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{
-		final View view = super.onCreateView(inflater, container, savedInstanceState);
-		assert view != null;
+		super.onViewCreated(view, savedInstanceState);
+
 		final HomeImageView homeImage = view.findViewById(R.id.splash);
 		homeImage.init();
-		return view;
 	}
 }
 

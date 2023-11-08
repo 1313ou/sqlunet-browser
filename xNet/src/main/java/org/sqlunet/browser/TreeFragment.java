@@ -84,10 +84,12 @@ abstract public class TreeFragment extends Fragment
 		// view
 		final View view = inflater.inflate(this.layoutId, container, false);
 
-		// tree
+		// tree viewer
 		// Log.d(TAG, "Create tree");
-		boolean use2dScroll = getScroll2D();
 		this.treeViewer = new TreeViewer(requireContext(), this.treeRoot);
+
+		// tree view
+		boolean use2dScroll = getScroll2D();
 		final View treeview = this.treeViewer.makeTreeView(inflater, use2dScroll);
 
 		// container
