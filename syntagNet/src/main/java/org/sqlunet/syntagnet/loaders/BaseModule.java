@@ -42,15 +42,6 @@ import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
  */
 abstract class BaseModule extends Module
 {
-	// resources
-
-	/*
-	 * Drawable info
-	 */
-	//private final Drawable infoDrawable;
-
-	// agents
-
 	// view models
 
 	private SqlunetViewTreeModel collocationFromCollocationIdModel;
@@ -70,10 +61,6 @@ abstract class BaseModule extends Module
 
 		// models
 		makeModels();
-
-		// drawables
-		//final Context context = BaseModule.this.fragment.requireContext();
-		//this.infoDrawable = Spanner.getDrawable(context, R.drawable.info);
 	}
 
 	/**
