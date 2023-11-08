@@ -4,18 +4,20 @@
 # Copyright (c) 2023. Bernard Bou
 #
 
+ENV="JAVA_HOME=/opt/java/java17 "
+
 case "$1" in
 -clean)
 	echo "clean start"
-	./gradlew --stop
-	./gradlew clean
+	${ENV}./gradlew --stop
+	${ENV}./gradlew clean
 	;;
 *)
 	echo "resuming"
 	;;
 esac
 
-if ./gradlew bundleRelease; then
+if ${ENV}./gradlew bundleRelease; then
 	echo "success"
 else
 	echo "failed"
@@ -26,5 +28,5 @@ exit
 apps="browser browserfn browservn browserwn browserewn browsersn"
 for a in $apps; do
 	echo $a
-	./gradlew :${a}:bundleRelease
+	${ENV}./gradlew :${a}:bundleRelease
 done
