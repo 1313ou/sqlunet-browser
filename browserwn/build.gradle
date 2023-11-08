@@ -65,12 +65,13 @@ dependencies {
 
     implementation project(path: ':browserwncommon')
     implementation project(path: ':common')
-    implementation project(path: ':download')
     implementation project(path: ':others')
-    implementation project(path: ':donate')
-    implementation project(path: ':xNet')
+    // for manifest
     implementation project(path: ':wordNet')
     implementation project(path: ':bNC')
+    implementation project(path: ':xNet')
+    implementation project(path: ':download')
+    implementation project(path: ':donate')
 
     implementation "androidx.appcompat:appcompat:$appcompatVersion" // for resources validation
     implementation "com.google.android.material:material:$materialVersion" // for resource include
@@ -81,13 +82,9 @@ dependencies {
     // local unit tests (JUnit 4 framework)
 
     // instrumented tests
-    // androidTestImplementation project(path: ':common')
-    // androidTestImplementation project(path: ':xNet')
-    // androidTestImplementation project(path: ':wordNet')
-    // androidTestImplementation project(path: ':bNC')
-    // androidTestImplementation project(path: ':browserwncommon')
-    // androidTestImplementation project(path: ':nightmode')
     androidTestImplementation project(path: ':common')
+    androidTestImplementation project(path: ':browserwncommon')
+    androidTestImplementation project(path: ':xNet')
     androidTestImplementation project(path: ':nightmode')
     androidTestImplementation project(path: ':test')
     androidTestImplementation 'junit:junit:4.13.2'
@@ -98,13 +95,13 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     androidTestImplementation 'androidx.test.espresso:espresso-web:3.5.1'
     androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
-    
+
     constraints {
-    	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.7.20") {
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.7.20") {
             because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
-    	}
-    	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22") {
+        }
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22") {
             because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
-    	}
+        }
     }
 }
