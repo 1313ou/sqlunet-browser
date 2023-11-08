@@ -1,0 +1,32 @@
+/*
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
+ */
+
+apply plugin: 'idea'
+idea {
+    module {
+        // excludeDirs += file('.idea')
+        excludeDirs += file('reference')
+        excludeDirs += file('captures')
+        excludeDirs += file('data')
+        excludeDirs += file('data2')
+        excludeDirs += file('tools')
+        excludeDirs += file('utils')
+        excludeDirs += file('dist')
+        excludeDirs += file('gradle')
+
+        ["common"].each {
+
+            // println("module $it @ " + it)
+            ["artwork", "artwork-assets", "artwork-relations", "data"].each { it2 ->
+                fileTree("$it").visit { f ->
+                    if (f.isDirectory() && f.name == "$it2") {
+                        // println("EXCLUDE "+f)
+                        excludeDirs += file(f.file.absolutePath)
+                    }
+                }
+            }
+         }
+        excludeDirs.each {println("- $it")}
+   }
+}

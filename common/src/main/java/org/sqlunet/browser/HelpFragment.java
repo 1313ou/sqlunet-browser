@@ -64,6 +64,7 @@ public class HelpFragment extends Fragment
 		}
 	}
 
+	@SuppressLint("SetJavaScriptEnabled")
 	@Override
 	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
 	{

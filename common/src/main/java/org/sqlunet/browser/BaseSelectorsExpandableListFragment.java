@@ -4,9 +4,6 @@
 
 package org.sqlunet.browser;
 
-import android.os.Bundle;
-import android.util.Log;
-
 import androidx.app.local.ExpandableListFragment;
 
 public class BaseSelectorsExpandableListFragment extends ExpandableListFragment

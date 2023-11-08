@@ -9,5 +9,6 @@
 	android:layout_height="wrap_content"
 	android:layout_centerHorizontal="true"
 	android:choiceMode="singleChoice"
+	android:focusable="true"
 	android:listSelector="@drawable/listitem_selector"
 	tools:listitem="@layout/item_selector" />

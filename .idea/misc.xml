@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
@@ -1417,6 +1418,8 @@
       <entry_point TYPE="field" FQNAME="org.sqlunet.browser.BaseSelectorsListFragment viewModelKey" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.browser.BaseBrowse2Fragment word" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.browser.BaseSelectorsListFragment word" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.BaseSelectorsExpandableListFragment TAG" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.BaseSelectorsFragment TAG" />
     </entry_points>
     <pattern value="org.sqlunet.browser.AbstractApplication" method="dumpTasks" />
     <pattern value="org.sqlunet.browser.AbstractApplication" method="isNightMode" />
@@ -2930,6 +2933,13 @@
     <pattern value="org.sqlunet.browser.FragmentUtils" method="removeAllChildFragment" />
     <pattern value="org.sqlunet.browser.BaseBrowse2Fragment" method="search" />
     <pattern value="org.sqlunet.wordnet.browser.SynsetFragment" method="setExpand" />
+    <pattern value="org.sqlunet.browser.xn.xselectors.XSelectorsFragment.Listener" />
+    <pattern value="com.bbou.download.DownloadFragment" method="onDone" />
+    <pattern value="com.bbou.download.DownloadZipFragment" method="onDone" />
+    <pattern value="org.sqlunet.browser.vn.Browse2Fragment" method="search" />
+    <pattern value="org.sqlunet.browser.sn.Browse2Fragment" method="search" />
+    <pattern value="org.sqlunet.browser.wn.Browse2Fragment" method="search" />
+    <pattern value="org.sqlunet.browser.fn.Browse2Fragment" method="search" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="androidx.annotation.Nullable" />
