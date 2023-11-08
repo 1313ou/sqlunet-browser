@@ -120,6 +120,7 @@ abstract public class BaseSelectorsListFragment extends LoggingFragment implemen
 		this.listView.setAdapter(null);
 		// the cursor will be saved along with fragment state if any
 		Log.d(TAG, "Nullify adapter cursor but do not close cursor. Lifecycle: onStop()");
+		assert this.adapter != null;
 		//noinspection resource
 		this.adapter.swapCursor(null);
 	}
