@@ -44,6 +44,7 @@ abstract public class BaseSelectorsListFragment extends LoggingFragment implemen
 	/**
 	 * Cursor adapter
 	 */
+	@Nullable
 	protected CursorAdapter adapter;
 
 	/**
@@ -184,10 +185,11 @@ abstract public class BaseSelectorsListFragment extends LoggingFragment implemen
 		this.positionModel.setPosition(AdapterView.INVALID_POSITION);
 	}
 	@NonNull
-	protected Cursor augmentCursor(Cursor cursor) { return cursor; }
+	protected Cursor augmentCursor(@NonNull Cursor cursor) { return cursor; }
 
 	// O B S E R V E R S
 
+	@NonNull
 	protected Observer<Cursor> getCursorObserver()
 	{
 		return cursor -> {
@@ -210,6 +212,7 @@ abstract public class BaseSelectorsListFragment extends LoggingFragment implemen
 		};
 	}
 
+	@NonNull
 	protected Observer<Integer> getPositionObserver()
 	{
 		return position -> {

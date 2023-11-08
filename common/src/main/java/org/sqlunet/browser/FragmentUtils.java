@@ -30,7 +30,7 @@ public class FragmentUtils
 	 * @param childFragmentTags removed children's tags
 	 * @noinspection SameParameterValue
 	 */
-	public static void removeAllChildFragment(@NonNull final FragmentManager manager, final Fragment fragment, @Nullable final String tag, @IdRes final int where, final String... childFragmentTags)
+	public static void removeAllChildFragment(@NonNull final FragmentManager manager, @NonNull final Fragment fragment, @Nullable final String tag, @IdRes final int where, @Nullable final String... childFragmentTags)
 	{
 		Log.d(TAG, "Removing fragments " + Arrays.toString(childFragmentTags));
 		if (childFragmentTags != null && childFragmentTags.length > 0)
@@ -67,6 +67,7 @@ public class FragmentUtils
 	 * @param type    fragment manager type (child or parent)
 	 * @return dump string
 	 */
+	@NonNull
 	public static String dumpBackStack(@NonNull final FragmentManager manager, @NonNull final String type)
 	{
 		StringBuilder sb = new StringBuilder();

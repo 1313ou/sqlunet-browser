@@ -194,6 +194,7 @@ public class SqlFragment extends Fragment
 	/**
 	 * Export history
 	 */
+	@NonNull
 	private ActivityResultLauncher<String> registerExportLauncher()
 	{
 		final ActivityResultContract<String, Uri> createContract = new ActivityResultContracts.CreateDocument(MIME_TYPE)
@@ -258,6 +259,7 @@ public class SqlFragment extends Fragment
 
 	// F A C T O R Y
 
+	@NonNull
 	private static String textSqls()
 	{
 		final StringBuilder sb = new StringBuilder();
@@ -270,6 +272,7 @@ public class SqlFragment extends Fragment
 		return sb.toString();
 	}
 
+	@NonNull
 	private static CharSequence stylizedSqls()
 	{
 		final SpannableStringBuilder sb = new SpannableStringBuilder();

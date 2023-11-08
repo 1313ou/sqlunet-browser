@@ -103,7 +103,8 @@ class Providers
 	}
 
 	/** @noinspection UnusedReturnValue*/
-	private static SpannableStringBuilder build(final SpannableStringBuilder sb, @Nullable final String name, @Nullable final String pkgLabel, @Nullable final String pkg, @NonNull final String authorityLabel, @NonNull final String authority, @Nullable final String pathLabel, @Nullable final String path) throws IOException
+	@NonNull
+	private static SpannableStringBuilder build(@NonNull final SpannableStringBuilder sb, @Nullable final String name, @Nullable final String pkgLabel, @Nullable final String pkg, @NonNull final String authorityLabel, @NonNull final String authority, @Nullable final String pathLabel, @Nullable final String path) throws IOException
 	{
 		if (name != null)
 		{

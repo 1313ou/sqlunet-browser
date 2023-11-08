@@ -10,10 +10,11 @@ import android.content.Intent;
 import org.sqlunet.browser.common.R;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class Sender
 {
-	public static void send(@NonNull final Context context, @NonNull final String title, @NonNull final CharSequence content, final String... to)
+	public static void send(@NonNull final Context context, @NonNull final String title, @NonNull final CharSequence content, @Nullable final String... to)
 	{
 		final Intent sendIntent = new Intent(Intent.ACTION_SEND);
 		sendIntent.putExtra(Intent.EXTRA_SUBJECT, title);

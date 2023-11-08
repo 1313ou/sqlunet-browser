@@ -109,6 +109,7 @@ public class SearchRecentSuggestions
 
 	private static final String PREF_KEY_HISTORY_SORT_BY_DATE = "pref_history_sort_by_date";
 
+	@NonNull
 	private String getSortOrder()
 	{
 		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
