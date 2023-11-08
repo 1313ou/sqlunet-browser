@@ -221,7 +221,7 @@ public class SnSelectorsFragment extends BaseSelectorsListFragment
 
 	@Override
 	@NonNull
-	protected Cursor augmentCursor(Cursor cursor)
+	protected Cursor augmentCursor(@NonNull Cursor cursor)
 	{
 		return augmentCursor(cursor, this.wordId, this.word);
 	}
