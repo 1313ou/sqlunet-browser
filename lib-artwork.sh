@@ -4,13 +4,15 @@
 # Copyright (c) 2023. Bernard Bou
 #
 
-RED='\u001b[31m'
-GREEN='\u001b[32m'
-YELLOW='\u001b[33m'
-BLUE='\u001b[34m'
-MAGENTA='\u001b[35m'
-CYAN='\u001b[36m'
-RESET='\u001b[0m'
+DEBUG=true
+
+export R='\u001b[31m'
+export G='\u001b[32m'
+export Y='\u001b[33m'
+export B='\u001b[34m'
+export M='\u001b[35m'
+export C='\u001b[36m'
+export Z='\u001b[0m'
 
 thisdir="`dirname $(readlink -m $0)`"
 thisdir="$(readlink -m ${thisdir})"
@@ -27,7 +29,7 @@ function make_seq(){
 	r2=$((r0 * 2))
 	r3=$((r0 * 3))
 	r4=$((r0 * 4))
-	#echo -e "${CYAN}$r0 $r1 $r2 $r3 $r4${RESET}"
+	#echo -e "${C}$r0 $r1 $r2 $r3 $r4${Z}"
 }
 
 # list
@@ -49,19 +51,40 @@ function make_png(){
 		svg="${thisdir}/${e}"
 		if [ -e "${svg}" ]; then
 			local png="${e%.svg}${suffix}.png"
-			echo -e -n "${MAGENTA}${svg}${RESET} -> ${d}/${png} @ ${BLUE}${aspect}${r}${RESET}"
+			echo -e -n "${M}${svg}${Z} -> ${d}/${png} @ ${B}${aspect}${r}${Z}"
 			echo
 			$INKSCAPE --export-type="png" --export-filename=${d}/${png} -${aspect} ${r} ${svg} #> /dev/null # 2> /dev/null
 			if [ -e "${d}/${png}" ]; then
-				echo -e " ${GREEN}OK${RESET}"
+				echo -e " ${G}OK${Z}"
 			else
-				echo -e " ${RED}FAIL${RESET}"
+				echo -e " ${R}FAIL${Z}"
 			fi
 		else
-			echo -e "${svg} ${YELLOW}!EXISTS${RESET}"
+			echo -e "${svg} ${Y}!EXISTS${Z}"
 		fi
 	done
 }
+
+if [ ! -z "${DEBUG}" ]; then
+unset -f make_png
+function make_png(){
+	local list="$1"
+	local r=$2
+	local aspect=$3
+	local d="$(readlink -m $4)"
+	local suffix="$5"
+	for e in ${list}; do
+		svg="${thisdir}/${e}"
+		if [ ! -e "${svg}" ]; then
+			echo -e "${R} ${svg} SOURCE !EXISTS ${Z}"
+		fi
+		local png="${d}/${e%.svg}${suffix}.png"
+		if [ ! -e "${png}" ]; then
+			echo -e "${R} ${png} DEST !EXISTS ${Z}"
+		fi
+	done	
+}
+fi
 
 function make_pngs(){
 	local list="$1"
@@ -80,7 +103,7 @@ function make_pngs(){
 }
 
 function make_res(){
-	echo -e "${CYAN}drawables${RESET}"
+	echo -e "${C}drawables${Z}"
 	local list="$1"
 	local r0=$2
 	local aspect=$3
@@ -88,23 +111,34 @@ function make_res(){
 }
 
 function make_mipmap(){
-	echo -e "${CYAN}mipmaps${RESET}"
+	echo -e "${C}mipmaps${Z}"
 	local list="$1"
 	local r0=$2
 	local aspect=$3
 	make_pngs "${list}" ${r0} "${aspect}" "mipmap"
 }
 
-function make_asset(){
-	echo -e "${CYAN}asset${RESET}"
+function make_clear_asset(){
+	echo -e "${C}asset${Z}"
 	local list="$1"
 	local r0=$2
-	local aspect=$3
-	make_png "${list}" ${r0} "${aspect}" "${dirassets}"
+	local dir=$3
+	local aspect=$4
+	emptydir "${dir}"
+	make_png "${list}" ${r0} "${aspect}" "${dir}"
+}
+
+function make_asset(){
+	echo -e "${C}asset${Z}"
+	local list="$1"
+	local r0=$2
+	local dir=$3
+	local aspect=$4
+	make_png "${list}" ${r0} "${aspect}" "${dir}"
 }
 
 function make_icon(){
-	echo -e "${CYAN}icon${RESET}"
+	echo -e "${C}icon${Z}"
 	local list="$1"
 	local r0=$2
 	local dir=$3
@@ -113,7 +147,7 @@ function make_icon(){
 }
 
 function make_help(){
-	echo -e "${CYAN}help${RESET}"
+	echo -e "${C}help${Z}"
 	local list="$1"
 	local r0=$2
 	local aspect=$3
@@ -121,7 +155,7 @@ function make_help(){
 }
 
 function make_helpen(){
-	echo -e "${CYAN}help en${RESET}"
+	echo -e "${C}help en${Z}"
 	local list="$1"
 	local r0=$2
 	local aspect=$3
@@ -129,11 +163,16 @@ function make_helpen(){
 }
 
 function make_app(){
-	echo -e "${CYAN}app${RESET}"
+	echo -e "${C}app${Z}"
 	local list="$1"
 	local r0=$2
 	local aspect=$3
 	make_png "${list}" ${r0} "${aspect}" "${dirapp}" -app
+}
+
+function emptydir(){
+	local d="$1"
+	#echo rm ${d}/*
 }
 
 function check(){
@@ -145,16 +184,16 @@ DELAY=15
 function check_dir(){
 	local d=$1
 	d="$(readlink -m ${d})"
-	echo -e "${MAGENTA}${d}${RESET}"
+	echo -e "${M}${d}${Z}"
 	pushd "${d}" > /dev/null
 	if [ -e "./assets" ]; then
-		echo -en "${YELLOW}"
+		echo -en "${Y}"
 		find -L ./assets -name '*.png' -mmin +${DELAY}
-		echo -en "${RESET}"
+		echo -en "${Z}"
 	fi
-	echo -en "${RED}"
+	echo -en "${R}"
 	find -L ./res -name '*.png' -mmin +${DELAY}
-	echo -en "${RESET}"
+	echo -en "${Z}"
 	popd > /dev/null
 }
 
