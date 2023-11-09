@@ -20,6 +20,6 @@ make_help "logo.svg" 128
 make_help "sqlunet.svg" 384
 make_app "ic_launcher.svg" 512
 
-make_icon "logo.svg" 64 "${dirassets}/images"
+make_asset "logo.svg" 64 "${dirassets}/images"
 
 check
