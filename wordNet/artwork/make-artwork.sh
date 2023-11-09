@@ -15,7 +15,6 @@ make_res "${link_list}" 16
 make_res "${settings_list}" 24
 make_res "${search_list}" 32
 
-#rm ${dirassets}/images/wordnet/*
-make_icon "${asset_list}" 16 "${dirassets}/images/wordnet"
+make_clear_asset "${asset_list}" 16 "${dirassets}/images/wordnet"
 
 check
