@@ -4,7 +4,7 @@
 # Copyright (c) 2023. Bernard Bou
 #
 
-DEBUG=true
+DEBUG=
 
 export R='\u001b[31m'
 export G='\u001b[32m'
