@@ -7,7 +7,7 @@
 <lint>
 
 	<issue id="UnusedResources">
-		<ignore path="**/drawable-*/ic_search_fn*.png" />
+		<ignore path="**/drawable-*/ic_search_pm*.png" />
 	</issue>
 
 </lint>

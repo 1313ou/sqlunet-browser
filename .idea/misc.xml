@@ -2939,6 +2939,7 @@
     <pattern value="org.sqlunet.browser.sn.Browse2Fragment" method="search" />
     <pattern value="org.sqlunet.browser.wn.Browse2Fragment" method="search" />
     <pattern value="org.sqlunet.browser.fn.Browse2Fragment" method="search" />
+    <pattern value="org.sqlunet.browser.fn.Settings.Source" method="set" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="androidx.annotation.Nullable" />

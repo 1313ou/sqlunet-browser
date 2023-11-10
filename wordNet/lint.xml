@@ -1,7 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
+
 <!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
 <lint>
+
+	<!-- Ignore the UnusedResources issue for the given ids -->
+	<issue id="UnusedResources">
+		<!-- wordnet -->
+		<ignore path="**/drawable-*/ic_search_wn*.png" />
+		<ignore path="**/drawable-*/ic_settings_wordnet.png" />
+
+	</issue>
+
 </lint>

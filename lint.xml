@@ -7,11 +7,42 @@
 <lint>
 
 	<issue id="all">
-		<ignore path=".*\.svg"/>
+		<ignore path="*.svg" />
+		<!-- <ignore regexp=".*\.svg"/> -->
 	</issue>
 
 	<issue id="Typos">
-		<ignore path=".*\.svg"/>
+		<ignore path="*.svg" />
+		<!-- <ignore regexp=".*\.svg"/> -->
+	</issue>
+
+	<!-- Ignore the UnusedResources issue for the given ids -->
+	<issue id="UnusedResources">
+		<!-- expandable list fragment -->
+		<!-- not only matched against the path but also the error message -->
+		<ignore regexp="collapsed" />
+		<ignore regexp="expanded" />
+
+		<ignore path="**/drawable-*/ic_search_sn*.png" />
+		<ignore path="**/drawable-*/ic_search_vn*.png" />
+		<ignore path="**/drawable-*/ic_search_pb*.png" />
+		<ignore path="**/drawable-*/ic_search_fn*.png" />
+
+		<!-- wordnet -->
+		<ignore path="**/drawable-*/ic_search_wn*.png" />
+		<ignore path="**/drawable-*/ic_settings_wordnet.png" />
+
+		<!-- xnet -->
+		<ignore path="**/drawable-*/pos.png" />
+		<ignore path="**/drawable-*/roles.png" />
+		<ignore path="**/drawable-*/role.png" />
+		<ignore path="**/drawable-*/roleclass.png" />
+		<ignore path="**/drawable-*/members.png" />
+		<ignore path="**/drawable-*/member.png" />
+		<ignore path="**/drawable-*/relation.png" />
+		<ignore path="**/drawable-*/definition.png" />
+		<ignore path="**/drawable-*/sentence.png" />
+
 	</issue>
 
 </lint>

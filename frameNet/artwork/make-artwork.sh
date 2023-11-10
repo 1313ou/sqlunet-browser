@@ -12,4 +12,3 @@ make_res "${search_list}" 32
 make_clear_asset "${asset_list}" 16 "${dirassets}/images/framenet"
 
 check
-

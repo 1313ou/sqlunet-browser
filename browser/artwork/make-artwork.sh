@@ -6,7 +6,7 @@ launch_list="ic_launcher.svg ic_launcher_round.svg"
 logo_list="ic_logo.svg"
 splash_list="ic_splash.svg"
 supersplash_list="sqlunet.svg"
-icon_list="ic_xselector.svg ic_rows_bysynset.svg ic_rows_byrole.svg ic_roles_grouped.svg ic_rows_ungrouped.svg ic_search_wnword.svg ic_search_wndefinition.svg ic_search_wnsample.svg ic_search_vnexample.svg ic_search_pbexample.svg ic_search_fnsentence.svg"
+icon_list="ic_xselector.svg ic_rows_bysynset.svg ic_rows_byrole.svg ic_roles_grouped.svg ic_rows_ungrouped.svg"
 drawericon_list="ic_search_pm.svg"
 
 make_mipmap "${launch_list}" 48

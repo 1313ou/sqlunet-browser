@@ -6,7 +6,7 @@ launch_list="ic_launcher.svg ic_launcher_round.svg"
 logo_list="ic_logo.svg"
 splash_list="ic_splash.svg"
 supersplash_list="home.svg"
-icon_list="ic_xselector.svg ic_search_vnexample.svg ic_search_pbexample.svg"
+icon_list="ic_xselector.svg"
 
 make_mipmap "${launch_list}" 48
 make_res "${logo_list}" 64

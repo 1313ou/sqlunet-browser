@@ -1,5 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
-<lint />
+<lint>
+
+	<issue id="UnusedResources">
+
+		<!-- xnet -->
+		<ignore path="**/drawable-*/pos.png" />
+		<ignore path="**/drawable-*/roles.png" />
+		<ignore path="**/drawable-*/role.png" />
+		<ignore path="**/drawable-*/roleclass.png" />
+		<ignore path="**/drawable-*/members.png" />
+		<ignore path="**/drawable-*/member.png" />
+		<ignore path="**/drawable-*/relation.png" />
+		<ignore path="**/drawable-*/definition.png" />
+		<ignore path="**/drawable-*/sentence.png" />
+
+	</issue>
+
+</lint>
