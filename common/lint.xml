@@ -3,6 +3,13 @@
   -->
 
 <lint>
-	<issue id="IconDuplicates" />
-	<issue id="UnusedResources" />
+
+	<issue id="HtmlUnknownAttribute">
+		<ignore path="**/relations/index-*frames.html" />
+	</issue>
+
+	<issue id="HtmlUnknownTag">
+		<ignore path="**/relations/index-frames.html" />
+	</issue>
+
 </lint>

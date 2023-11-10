@@ -42,7 +42,18 @@
 		<ignore path="**/drawable-*/relation.png" />
 		<ignore path="**/drawable-*/definition.png" />
 		<ignore path="**/drawable-*/sentence.png" />
+	</issue>
 
+	<issue id="PropertyUnusedProperty">
+		<ignore path="**/Names*.properties" />
+	</issue>
+
+	<issue id="HtmlUnknownAttribute">
+		<ignore path="**/relations/index-*frames.html" />
+	</issue>
+
+	<issue id="HtmlUnknownTag">
+		<ignore path="**/relations/index-frames.html" />
 	</issue>
 
 </lint>
