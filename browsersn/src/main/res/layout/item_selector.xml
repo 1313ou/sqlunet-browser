@@ -1,16 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2023. Bernard Bou
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="?android:attr/activatedBackgroundIndicator"
-              android:orientation="vertical"
-              tools:context="org.sqlunet.browser.selector.Browse1Activity"
-              tools:ignore="Overdraw">
+	xmlns:tools="http://schemas.android.com/tools"
+	style="@style/ListItemStyle"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	tools:context="org.sqlunet.browser.selector.Browse1Activity"
+	tools:ignore="Overdraw">
 
 	<LinearLayout
 		android:layout_width="match_parent"
@@ -24,7 +23,7 @@
 			android:layout_gravity="center_vertical"
 			android:layout_marginEnd="5dp"
 			android:contentDescription="@string/description_row"
-			android:src="@drawable/ic_item"/>
+			android:src="@drawable/ic_item" />
 
 		<TextView
 			android:id="@+id/pos"
@@ -32,19 +31,19 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_vertical"
-			android:textIsSelectable="false"/>
+			android:textIsSelectable="false" />
 
 		<View
 			android:layout_width="0dp"
 			android:layout_height="0dp"
-			android:layout_weight="1"/>
+			android:layout_weight="1" />
 
 		<TextView
 			android:id="@+id/domain"
 			style="@style/Data.Domain"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textIsSelectable="false"/>
+			android:textIsSelectable="false" />
 	</LinearLayout>
 
 	<TextView
@@ -52,14 +51,14 @@
 		style="@style/Data.Cased"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:textIsSelectable="false"/>
+		android:textIsSelectable="false" />
 
 	<TextView
 		android:id="@+id/definition"
 		style="@style/Data.Definition"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:textIsSelectable="false"/>
+		android:textIsSelectable="false" />
 
 	<LinearLayout
 		android:layout_width="match_parent"
@@ -71,28 +70,28 @@
 			style="@style/Data.SenseNum"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textIsSelectable="false"/>
+			android:textIsSelectable="false" />
 
 		<TextView
 			android:id="@+id/sensekey"
 			style="@style/Data.SenseKey"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textIsSelectable="false"/>
+			android:textIsSelectable="false" />
 
 		<TextView
 			android:id="@+id/lexid"
 			style="@style/Data.LexId"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textIsSelectable="false"/>
+			android:textIsSelectable="false" />
 
 		<TextView
 			android:id="@+id/tagcount"
 			style="@style/Data.TagCount"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textIsSelectable="false"/>
+			android:textIsSelectable="false" />
 
 	</LinearLayout>
 
@@ -106,21 +105,21 @@
 			style="@style/Data.WordId"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textIsSelectable="false"/>
+			android:textIsSelectable="false" />
 
 		<TextView
 			android:id="@+id/synsetid"
 			style="@style/Data.SynsetId"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textIsSelectable="false"/>
+			android:textIsSelectable="false" />
 
 		<TextView
 			android:id="@+id/senseid"
 			style="@style/Data.SenseId"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:textIsSelectable="false"/>
+			android:textIsSelectable="false" />
 	</LinearLayout>
 
 </LinearLayout>

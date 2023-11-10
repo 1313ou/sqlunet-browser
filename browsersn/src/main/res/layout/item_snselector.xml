@@ -4,9 +4,9 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
+	style="@style/ListItemStyle"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:background="?android:attr/activatedBackgroundIndicator"
 	android:orientation="horizontal"
 	tools:context="org.sqlunet.browser.xselector.XBrowse1Activity"
 	tools:ignore="Overdraw">
@@ -18,54 +18,54 @@
 		android:orientation="horizontal">
 	-->
 
-		<ImageView
-			style="@style/Data.Icon"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center_vertical"
-			android:layout_marginEnd="5dp"
-			android:contentDescription="@string/description_row"
-			android:src="@drawable/ic_collocation" />
+	<ImageView
+		style="@style/Data.Icon"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_vertical"
+		android:layout_marginEnd="5dp"
+		android:contentDescription="@string/description_row"
+		android:src="@drawable/ic_collocation" />
 
-		<TextView
-			android:id="@+id/word1"
-			style="@style/Data.Collocation1"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:contentDescription="@string/word1"
-			android:textIsSelectable="false" />
+	<TextView
+		android:id="@+id/word1"
+		style="@style/Data.Collocation1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:contentDescription="@string/word1"
+		android:textIsSelectable="false" />
 
-		<!--		<View-->
-		<!--			android:layout_width="0dp"-->
-		<!--			android:layout_height="0dp"-->
-		<!--			android:layout_weight="1"/>-->
+	<!--		<View-->
+	<!--			android:layout_width="0dp"-->
+	<!--			android:layout_height="0dp"-->
+	<!--			android:layout_weight="1"/>-->
 
-		<TextView
-			android:id="@+id/word2"
-			style="@style/Data.Collocation2"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:contentDescription="@string/word2"
-			android:textIsSelectable="false" />
+	<TextView
+		android:id="@+id/word2"
+		style="@style/Data.Collocation2"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:contentDescription="@string/word2"
+		android:textIsSelectable="false" />
 
-		<View
-			android:layout_width="0dp"
-			android:layout_height="0dp"
-			android:layout_weight="1" />
+	<View
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:layout_weight="1" />
 
-		<TextView
-			android:id="@+id/pos1"
-			style="@style/Data.PosId"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:textIsSelectable="false" />
+	<TextView
+		android:id="@+id/pos1"
+		style="@style/Data.PosId"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textIsSelectable="false" />
 
-		<TextView
-			android:id="@+id/pos2"
-			style="@style/Data.PosId"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:textIsSelectable="false" />
+	<TextView
+		android:id="@+id/pos2"
+		style="@style/Data.PosId"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textIsSelectable="false" />
 
 	<!-- </LinearLayout> -->
 

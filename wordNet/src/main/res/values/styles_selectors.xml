@@ -57,13 +57,10 @@
 
 	<style name="Data.WnDefinition"/>
 
-	<style name="Senses">
-		<item name="android:layout_marginTop">6dp</item>
+	<!-- L I S T   I T E M -->
+
+	<style name="ListItemStyle">
 		<item name="android:background">?android:attr/activatedBackgroundIndicator</item>
-		<item name="android:paddingRight">0dp</item>
-		<item name="android:paddingLeft">0dp</item>
-		<item name="android:paddingBottom">8dp</item>
-		<item name="android:descendantFocusability">blocksDescendants</item>
 	</style>
 
 </resources>

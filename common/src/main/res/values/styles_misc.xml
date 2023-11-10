@@ -4,7 +4,7 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<!-- L I S T -->
+	<!-- L I S T  I T E M -->
 
 	<style name="ListItem">
 		<item name="android:layout_marginBottom">@dimen/list_vertical_margin</item>
@@ -40,9 +40,19 @@
 		<item name="android:textColor">?attr/colorOnSecondary</item>
 	</style>
 
-	<!-- S E A R C H -->
+	<!-- As Layout -->
+	<style name="ListItemStyle">
+		<item name="android:background">?android:attr/activatedBackgroundIndicator</item>
+	</style>
 
-	<style name="SearchItem" tools:ignore="UnusedResources">
+	<!-- As TextView -->
+	<style name="TextViewListItemStyle">
+		<item name="android:background">?android:attr/activatedBackgroundIndicator</item>
+	</style>
+
+	<!-- S E A R C H   T E X T -->
+
+	<style name="SearchTextItem" parent="TextViewListItemStyle" tools:ignore="UnusedResources">
 		<item name="android:textAppearance">?attr/textAppearanceListItemSmall</item>
 		<item name="android:gravity">center_vertical</item>
 		<item name="android:paddingLeft">?android:attr/listPreferredItemPaddingStart</item>
