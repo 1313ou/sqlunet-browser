@@ -6,7 +6,6 @@ package org.sqlunet.browser;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.CursorAdapter;
 import android.widget.ListAdapter;
@@ -71,7 +70,6 @@ public class SourceFragment extends ListFragment
 		final ListView listView = getListView();
 		final CursorAdapter adapter = (CursorAdapter) getListAdapter();
 
-		assert listView != null;
 		listView.setAdapter(null);
 		// the cursor will be saved along with fragment state if any
 		assert adapter != null;

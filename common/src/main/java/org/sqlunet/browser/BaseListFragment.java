@@ -189,7 +189,6 @@ public abstract class BaseListFragment extends ListFragment
 		final CursorAdapter adapter = (CursorAdapter) getListAdapter();
 
 		Log.d(TAG, "Nullify listview adapter. Lifecycle: onStop()");
-		assert listView != null;
 		listView.setAdapter(null);
 		// the cursor will be saved along with fragment state if any
 		Log.d(TAG, "Nullify adapter cursor but do not close cursor. Lifecycle: onStop()");
