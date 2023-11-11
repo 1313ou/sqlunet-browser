@@ -6,10 +6,8 @@
     <inspection_tool class="AutoCloseableResource" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="METHOD_MATCHER_CONFIG" value="java.util.Formatter,format,java.io.Writer,append,com.google.common.base.Preconditions,checkNotNull,org.hibernate.Session,close,java.io.PrintWriter,printf,java.io.PrintStream,printf,android.content.res.Resources,obtainTypedArray,android.content.res.Resources.Theme,obtainStyledAttributes,android.content.Context,obtainStyledAttributes,androidx.test.core.app.ActivityScenario,launch" />
     </inspection_tool>
-    <inspection_tool class="CheckEmptyScriptTag" enabled="false" level="WEAK WARNING" enabled_by_default="false" editorAttributes="INFO_ATTRIBUTES">
-      <scope name="Project Files" level="WARNING" enabled="false" />
-    </inspection_tool>
-    <inspection_tool class="CheckTagEmptyBody" enabled="true" level="WEAK WARNING" enabled_by_default="false" editorAttributes="INFO_ATTRIBUTES">
+    <inspection_tool class="CheckEmptyScriptTag" enabled="false" level="WEAK WARNING" enabled_by_default="false" />
+    <inspection_tool class="CheckTagEmptyBody" enabled="true" level="WEAK WARNING" enabled_by_default="false">
       <scope name="Project Files" level="WARNING" enabled="true" />
     </inspection_tool>
     <inspection_tool class="ClangTidy" enabled="false" level="WARNING" enabled_by_default="false" />
@@ -41,7 +39,9 @@
       </scope>
       <option name="myValues">
         <value>
-          <list size="0" />
+          <list size="1">
+            <item index="0" class="java.lang.String" itemvalue="name" />
+          </list>
         </value>
       </option>
       <option name="myCustomValuesEnabled" value="true" />
@@ -103,16 +103,6 @@
     <inspection_tool class="ResourceNotFound" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="SignednessMismatch" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="Simplify" enabled="false" level="WARNING" enabled_by_default="false" />
-    <inspection_tool class="SpellCheckingInspection" enabled="true" level="TYPO" enabled_by_default="false">
-      <scope name="Project Files" level="TYPO" enabled="true">
-        <option name="processCode" value="true" />
-        <option name="processLiterals" value="true" />
-        <option name="processComments" value="true" />
-      </scope>
-      <option name="processCode" value="true" />
-      <option name="processLiterals" value="true" />
-      <option name="processComments" value="true" />
-    </inspection_tool>
     <inspection_tool class="UnconstrainedVariableType" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="UnnecessaryModuleDependencyInspection" enabled="true" level="TEXT ATTRIBUTES" enabled_by_default="true" editorAttributes="Spurious">
       <scope name="Production" level="WARNING" enabled="true" />
