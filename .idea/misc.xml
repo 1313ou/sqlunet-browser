@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
@@ -2940,6 +2941,7 @@
     <pattern value="org.sqlunet.browser.wn.Browse2Fragment" method="search" />
     <pattern value="org.sqlunet.browser.fn.Browse2Fragment" method="search" />
     <pattern value="org.sqlunet.browser.fn.Settings.Source" method="set" />
+    <pattern value="org.sqlunet.browser.BaseListFragment" method="dump" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="androidx.annotation.Nullable" />
