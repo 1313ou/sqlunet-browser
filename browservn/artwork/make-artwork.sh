@@ -14,9 +14,6 @@ make_res "${splash_list}" 144
 make_res "${supersplash_list}" 400
 make_res "${icon_list}" 32
 
-make_help "logo.svg" 128
 make_app "ic_launcher.svg" 512
-
-make_asset "logo.svg" 64 "${dirassets}/images"
 
 check
