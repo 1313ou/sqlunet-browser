@@ -24,8 +24,6 @@ make_res "${drawericon_list}" 32
 make_res "${arrow_list}" 8
 make_res "${settings_list}" 24
 
-make_help "logo.svg" 128
-make_help "sqlunet.svg" 384
 make_app "ic_launcher.svg" 512
 
 check
