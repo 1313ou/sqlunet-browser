@@ -18,7 +18,7 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.TextView;
 
-import org.sqlunet.browser.AbstractTableFragment;
+import org.sqlunet.browser.BaseListFragment;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.style.Factories;
 import org.sqlunet.style.RegExprSpanner;
@@ -37,7 +37,7 @@ import androidx.annotation.Nullable;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class TextFragment extends AbstractTableFragment
+public class TextFragment extends BaseListFragment
 {
 	static private final String TAG = "TextF";
 

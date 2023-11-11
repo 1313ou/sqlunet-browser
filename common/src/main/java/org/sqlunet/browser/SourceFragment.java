@@ -6,9 +6,11 @@ package org.sqlunet.browser;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CursorAdapter;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 import org.sqlunet.browser.common.R;
@@ -59,6 +61,22 @@ public class SourceFragment extends ListFragment
 		final String[] projection = {Sources.ID + " AS _id", Sources.NAME, Sources.VERSION, Sources.URL, Sources.PROVIDER, Sources.REFERENCE};
 		final String sortOrder = Sources.ID;
 		this.model.loadData(uri, projection, null, null, sortOrder, null);
+	}
+
+	@Override
+	public void onStop()
+	{
+		super.onStop();
+
+		final ListView listView = getListView();
+		final CursorAdapter adapter = (CursorAdapter) getListAdapter();
+
+		assert listView != null;
+		listView.setAdapter(null);
+		// the cursor will be saved along with fragment state if any
+		assert adapter != null;
+		//noinspection resource
+		adapter.swapCursor(null);
 	}
 
 	@Override

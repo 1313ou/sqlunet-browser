@@ -130,7 +130,13 @@ abstract public class BaseSelectorsListFragment extends LoggingFragment implemen
 	{
 		super.onDestroy();
 
-		destroyAdapter();
+		if (this.adapter != null)
+		{
+			Log.d(TAG, "Close cursor.");
+			this.adapter.changeCursor(null);
+			Log.d(TAG, "Nullify adapter.");
+			this.adapter = null;
+		}
 	}
 
 	// A D A P T E R
@@ -141,18 +147,6 @@ abstract public class BaseSelectorsListFragment extends LoggingFragment implemen
 	abstract protected void load();
 
 	abstract protected CursorAdapter makeAdapter();
-
-	private void destroyAdapter()
-	{
-		// the cursor has been saved along with fragment state
-		if (this.adapter != null)
-		{
-			Log.d(TAG, "Close cursor.");
-			this.adapter.changeCursor(null);
-			Log.d(TAG, "Nullify adapter.");
-			this.adapter = null;
-		}
-	}
 
 	// V I E W M O D E L S
 
@@ -185,8 +179,12 @@ abstract public class BaseSelectorsListFragment extends LoggingFragment implemen
 		this.positionModel.getPositionLiveData().observe(getViewLifecycleOwner(), getPositionObserver());
 		this.positionModel.setPosition(AdapterView.INVALID_POSITION);
 	}
+
 	@NonNull
-	protected Cursor augmentCursor(@NonNull Cursor cursor) { return cursor; }
+	protected Cursor augmentCursor(@NonNull Cursor cursor)
+	{
+		return cursor;
+	}
 
 	// O B S E R V E R S
 

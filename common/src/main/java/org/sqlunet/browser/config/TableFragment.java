@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.SimpleCursorAdapter.ViewBinder;
 import android.widget.TextView;
 
-import org.sqlunet.browser.AbstractTableFragment;
+import org.sqlunet.browser.BaseListFragment;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,7 +19,7 @@ import androidx.annotation.Nullable;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class TableFragment extends AbstractTableFragment
+public class TableFragment extends BaseListFragment
 {
 	// static private final String TAG = "TableF";
 

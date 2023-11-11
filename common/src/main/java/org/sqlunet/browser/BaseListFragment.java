@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.SimpleCursorAdapter.ViewBinder;
 
@@ -34,9 +35,9 @@ import androidx.lifecycle.ViewModelProvider;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public abstract class AbstractTableFragment extends ListFragment
+public abstract class BaseListFragment extends ListFragment
 {
-	static private final String TAG = "AbstractTableF";
+	static private final String TAG = "BaseListF";
 
 	static private final boolean VERBOSE = true;
 
@@ -180,11 +181,29 @@ public abstract class AbstractTableFragment extends ListFragment
 	}
 
 	@Override
+	public void onStop()
+	{
+		super.onStop();
+
+		final ListView listView = getListView();
+		final CursorAdapter adapter = (CursorAdapter) getListAdapter();
+
+		Log.d(TAG, "Nullify listview adapter. Lifecycle: onStop()");
+		assert listView != null;
+		listView.setAdapter(null);
+		// the cursor will be saved along with fragment state if any
+		Log.d(TAG, "Nullify adapter cursor but do not close cursor. Lifecycle: onStop()");
+		assert adapter != null;
+		//noinspection resource
+		adapter.swapCursor(null);
+	}
+
+	@Override
 	public void onDestroy()
 	{
 		super.onDestroy();
 
-		CursorAdapter adapter = (CursorAdapter) getListAdapter();
+		final CursorAdapter adapter = (CursorAdapter) getListAdapter();
 		if (adapter != null)
 		{
 			adapter.changeCursor(null);
