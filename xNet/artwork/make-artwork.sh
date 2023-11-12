@@ -8,7 +8,7 @@ roleclass.svg roles.svg role.svg
 sample.svg sentence.svg"
 storage_list="ic_storage*.svg"
 domains_list="bnc.svg wordnet.svg verbnet.svg propbank.svg framenet.svg predicatematrix.svg syntagnet.svg"
-assets_list="${domains_list} item.svg pos.svg domain.svg synset.svg synsetmember.svg members.svg member.svg definition.svg roleclass.svg roles.svg role.svg rolex.svg sentence.svg sample.svg relation.svg"
+assets_list="${domains_list} item.svg pos.svg domain.svg synset.svg synsetmember.svg members.svg member.svg definition.svg roleclass.svg roles.svg role.svg rolex.svg rolex2.svg sentence.svg sample.svg relation.svg"
 
 make_res "${storage_list}" 24
 make_res "${icon_list}" 16

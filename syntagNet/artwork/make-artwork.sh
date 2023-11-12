@@ -2,7 +2,7 @@
 
 source "./lib-artwork.sh"
 
-icon_list="collocation.svg collocation1.svg collocation2.svg definition1.svg definition2.svg"
+icon_list="syntagnet.svg collocation.svg collocation1.svg collocation2.svg definition1.svg definition2.svg"
 asset_list="collocation.svg"
 
 make_res "${icon_list}" 16

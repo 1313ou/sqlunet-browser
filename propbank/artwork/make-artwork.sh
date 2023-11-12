@@ -2,7 +2,7 @@
 
 source "./lib-artwork.sh"
 
-icon_list="alias.svg theta.svg trace.svg"
+icon_list="propbank.svg alias.svg theta.svg trace.svg"
 asset_list=""
 search_list="ic_search_pbexample.svg"
 

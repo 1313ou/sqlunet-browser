@@ -2,7 +2,7 @@
 
 source "./lib-artwork.sh"
 
-icon_list="annoset.svg coreset.svg governor.svg grouprealization.svg layer.svg metadefinition.svg realization.svg semtype.svg"
+icon_list="framenet.svg role1.svg rolex.svg annoset.svg coreset.svg governor.svg grouprealization.svg layer.svg metadefinition.svg realization.svg semtype.svg"
 asset_list=""
 search_list="ic_search_fnsentence.svg"
 
