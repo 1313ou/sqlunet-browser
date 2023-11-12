@@ -160,7 +160,6 @@ abstract public class BaseSearchFragment extends LoggingFragment implements Sear
 				setupSearchView(BaseSearchFragment.this.searchView, getSearchInfo(requireActivity()));
 
 				// toolbar
-				// set spinner, searchview
 				final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
 				assert toolbar != null; // must have
 				setupToolBar(toolbar);
@@ -184,11 +183,25 @@ abstract public class BaseSearchFragment extends LoggingFragment implements Sear
 	}
 
 	@Override
+	public void onResume()
+	{
+		super.onResume();
+
+		// spinner, added to toolbar if it does not have one
+		BaseSearchFragment.this.spinner = ensureSpinner();
+		// acquire it
+		acquireSpinner(this.spinner);
+	}
+
+	@Override
 	public void onPause()
 	{
 		super.onPause();
 
 		closeKeyboard();
+
+		assert this.spinner != null;
+		releaseSpinner(this.spinner);
 	}
 
 	@Override
@@ -222,53 +235,6 @@ abstract public class BaseSearchFragment extends LoggingFragment implements Sear
 		// background
 		final int color = ColorUtils.fetchColor(activity, this.colorAttrId);
 		toolbar.setBackground(new ColorDrawable(color));
-
-		// nav
-		// this breaks behaviour of drawer toggle
-		//		toolbar.setNavigationOnClickListener(v -> {
-		//
-		//			if (!isAdded())
-		//			{
-		//				return;
-		//			}
-		//			Log.d(TAG, "BackStack: navigation button clicked");
-		//			final FragmentManager manager = getChildFragmentManager();
-		//			int count = manager.getBackStackEntryCount();
-		//			if (count >= 1)
-		//			{
-		//				Log.d(TAG, dumpBackStack(manager, "child"));
-		//				manager.popBackStack();
-		//			}
-		//			else
-		//			{
-		//				FragmentManager manager2 = getParentFragmentManager();
-		//				int count2 = manager2.getBackStackEntryCount();
-		//				if (count2 >= 1)
-		//				{
-		//					Log.d(TAG, dumpBackStack(manager2, "parent"));
-		//					manager2.popBackStack();
-		//				}
-		//				else
-		//				{
-		//					Log.d(TAG, "BackStack: activity onBackPressed() - none");
-		//					requireActivity().getOnBackPressedDispatcher().onBackPressed();
-		//				}
-		//			}
-		//		});
-
-		// spinner
-		this.spinner = toolbar.findViewById(R.id.spinner);
-		if (this.spinner == null)
-		{
-			// toolbar customized view if toolbar does not contain spinner
-			final View customView = getLayoutInflater().inflate(R.layout.actionbar_custom, null);
-			toolbar.addView(customView);
-			this.spinner = toolbar.findViewById(R.id.spinner);
-		}
-		if (this.spinner != null)
-		{
-			setupSpinner(this.spinner);
-		}
 	}
 
 	// S E A R C H V I E W
@@ -370,18 +336,65 @@ abstract public class BaseSearchFragment extends LoggingFragment implements Sear
 	// S P I N N E R
 
 	/**
-	 * Set up spinner
+	 * Get toolbar's spinner
+	 *
+	 * @return spinner
+	 */
+	private @NonNull Spinner getSpinner()
+	{
+		final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
+		assert toolbar != null; // must have
+		Spinner spinner = toolbar.findViewById(R.id.spinner);
+		assert spinner != null; // must have
+		return spinner;
+	}
+
+	/**
+	 * Ensure toolbar has a spinner
+	 *
+	 * @return spinner
+	 */
+	private @NonNull Spinner ensureSpinner()
+	{
+		final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
+		assert toolbar != null; // must have
+		Spinner spinner = toolbar.findViewById(R.id.spinner);
+		if (spinner == null)
+		{
+			// toolbar customized view if toolbar does not already contain spinner
+			final View customView = getLayoutInflater().inflate(R.layout.actionbar_custom, null); // raises "The specified child already has a parent" if toolbar
+			toolbar.addView(customView);
+			spinner = toolbar.findViewById(R.id.spinner);
+			assert spinner != null; // because actionbar_custom has a @+id/spinner
+		}
+		return spinner;
+	}
+
+	/**
+	 * Acquire the spinner
 	 *
 	 * @param spinner spinner
 	 */
-	@SuppressWarnings("WeakerAccess")
-	protected void setupSpinner(@NonNull final Spinner spinner)
+	protected void acquireSpinner(@NonNull final Spinner spinner)
 	{
+		// leave in limbo if spinner is not needed
+	}
+
+	/**
+	 * Release spinner
+	 *
+	 * @param spinner spinner
+	 */
+	private void releaseSpinner(@NonNull final Spinner spinner)
+	{
+		spinner.setSelection(0);
+		spinner.setOnItemSelectedListener(null);
+		spinner.setAdapter(null);
 		spinner.setVisibility(View.GONE);
 	}
 
 	/**
-	 * Set up spinner
+	 * Build spinner adapter
 	 */
 	@NonNull
 	@SuppressWarnings("WeakerAccess")
