@@ -77,10 +77,9 @@ abstract public class BaseSearchFragment extends LoggingFragment implements Sear
 	private SearchView searchView;
 
 	/**
-	 * Action bar search mode spinner
+	 * Stored between onViewStateRestored and onResume
 	 */
-	@Nullable
-	private Spinner spinner;
+	private int spinnerPosition;
 
 	// R E S O U R C E S
 
@@ -188,9 +187,9 @@ abstract public class BaseSearchFragment extends LoggingFragment implements Sear
 		super.onResume();
 
 		// spinner, added to toolbar if it does not have one
-		BaseSearchFragment.this.spinner = ensureSpinner();
+		Spinner spinner = ensureSpinner();
 		// acquire it
-		acquireSpinner(this.spinner);
+		acquireSpinner(spinner);
 	}
 
 	@Override
@@ -200,8 +199,9 @@ abstract public class BaseSearchFragment extends LoggingFragment implements Sear
 
 		closeKeyboard();
 
-		assert this.spinner != null;
-		releaseSpinner(this.spinner);
+		Spinner spinner = getSpinner();
+		assert spinner != null;
+		releaseSpinner(spinner);
 	}
 
 	@Override
@@ -378,6 +378,7 @@ abstract public class BaseSearchFragment extends LoggingFragment implements Sear
 	protected void acquireSpinner(@NonNull final Spinner spinner)
 	{
 		// leave in limbo if spinner is not needed
+		spinner.setSelection(this.spinnerPosition);
 	}
 
 	/**
@@ -473,9 +474,10 @@ abstract public class BaseSearchFragment extends LoggingFragment implements Sear
 	 */
 	protected int getSearchModePosition()
 	{
-		if (this.spinner != null)
+		Spinner spinner = getSpinner();
+		if (spinner != null)
 		{
-			return this.spinner.getSelectedItemPosition();
+			return spinner.getSelectedItemPosition();
 		}
 
 		final Settings.Selector selectorMode = Settings.Selector.getPref(requireContext());
@@ -503,10 +505,11 @@ abstract public class BaseSearchFragment extends LoggingFragment implements Sear
 		super.onSaveInstanceState(outState);
 
 		// spinner
-		if (this.spinner != null)
+		Spinner spinner = getSpinner();
+		if (spinner != null)
 		{
 			// serialize the current dropdown position
-			final int position = this.spinner.getSelectedItemPosition();
+			final int position = spinner.getSelectedItemPosition();
 			outState.putInt(BaseSearchFragment.STATE_SPINNER, position);
 		}
 	}
@@ -517,10 +520,10 @@ abstract public class BaseSearchFragment extends LoggingFragment implements Sear
 		super.onViewStateRestored(savedInstanceState);
 
 		// restore from saved instance
-		if (savedInstanceState != null && this.spinner != null)
+		if (savedInstanceState != null)
 		{
 			final int selected = savedInstanceState.getInt(STATE_SPINNER);
-			this.spinner.setSelection(selected);
+			this.spinnerPosition = selected;
 		}
 	}
 
