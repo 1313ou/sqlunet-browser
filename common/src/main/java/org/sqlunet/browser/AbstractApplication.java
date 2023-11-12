@@ -27,6 +27,7 @@ import static org.sqlunet.nightmode.NightMode.nightModeToString;
 abstract public class AbstractApplication extends Application
 {
 	static private final String LOG = "AbstractApp";
+	private static final boolean PENALTY_DEATH = false;
 
 	@Override
 	public void onCreate()
@@ -55,12 +56,15 @@ abstract public class AbstractApplication extends Application
 	{
 		if (BuildConfig.DEBUG)
 		{
-			StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder() //
+			StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder() //
 					.detectLeakedSqlLiteObjects() //
 					.detectLeakedClosableObjects() //
-					.penaltyLog() //
-					.penaltyDeath() //
-					.build());
+					.penaltyLog();
+			if (PENALTY_DEATH)
+			{
+				builder.penaltyDeath();
+			}
+			StrictMode.setVmPolicy(builder.build());
 		}
 	}
 
