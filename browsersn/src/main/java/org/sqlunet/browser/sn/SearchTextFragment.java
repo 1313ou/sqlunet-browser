@@ -77,6 +77,9 @@ public class SearchTextFragment extends BaseSearchFragment
 	@Override
 	protected void acquireSpinner(@NonNull final Spinner spinner)
 	{
+		// to set position
+		super.acquireSpinner(spinner);
+
 		spinner.setVisibility(View.VISIBLE);
 
 		// apply spinner adapter

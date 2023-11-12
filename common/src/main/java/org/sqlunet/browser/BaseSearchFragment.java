@@ -477,7 +477,11 @@ abstract public class BaseSearchFragment extends LoggingFragment implements Sear
 		Spinner spinner = getSpinner();
 		if (spinner != null)
 		{
-			return spinner.getSelectedItemPosition();
+			int position = spinner.getSelectedItemPosition();
+			if (position != -1)
+			{
+				return position;
+			}
 		}
 
 		final Settings.Selector selectorMode = Settings.Selector.getPref(requireContext());
