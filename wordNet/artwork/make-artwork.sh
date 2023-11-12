@@ -85,7 +85,7 @@ make_clear_asset "${asset_list}" 16 "${dirassets}/images/wordnet"
 
 #generated elsewhere
 
-for r in ${relation_list} ${extra_relation_list}; do
+for r in ${relation_list}; do
   touch "ic_${r}.svg"
  	for k in ${resnames}; do
   	d="${dirres}/drawable-${k}"
