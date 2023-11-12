@@ -9,6 +9,7 @@ supersplash_list="sqlunet.svg"
 icon_list="ic_xselector.svg ic_rows_bysynset.svg ic_rows_byrole.svg ic_roles_grouped.svg ic_rows_ungrouped.svg"
 drawericon_list="ic_search_pm.svg"
 asset_list="open.svg closed.svg error.svg pointer.svg"
+help_list="wordnet.svg bnc.svg syntagnet.svg verbnet.svg propbank.svg framenet.svg predicatematrix.svg"
 
 make_mipmap "${launch_list}" 48
 make_res "${logo_list}" 64
@@ -24,5 +25,10 @@ make_asset "logo.svg" 64 "${dirassets}/images"
 
 make_help "logo.svg" 128
 make_help "sqlunet.svg" 384
+make_help "${help_list}" 24
 
+#touch_asset_dir "images/wordnet"
+#touch_asset_dir "images/xnet"
+touch_asset_dir "images/verbnet"
+touch_help "selector_senses selector-wn selector-vn selector-pb selector-fn"
 check

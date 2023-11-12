@@ -187,6 +187,64 @@ if [ ! -z "${DEBUG}" ]; then
   }
 fi
 
+function touch_res(){
+ 	local list="$1"
+ 	local warnnotexists=$2
+  for i in ${list}; do
+    if [ -e "${i}.svg" ]; then
+      touch "${i}.svg"
+    fi
+    for k in ${resnames}; do
+      d="${dirres}/drawable-${k}"
+      f="${d}/${i}.png"
+      if [ -e "${f}" ]; then
+        touch "${f}"
+      else
+         [ ! -z "${warnnotexists}" ] || echo -e "${R}${f} !EXIST${Z}"
+      fi
+    done
+  done
+}
+
+function touch_asset(){
+ 	local list="$1"
+  for i in ${list}; do
+    if [ -e "${i}.svg" ]; then
+      touch "${i}.svg"
+    fi
+    d="${dirassets}"
+    f="${d}/${i}.png"
+    if [ -e "${f}" ]; then
+      touch "${f}"
+    else
+      echo -e "${R}${f} does not exist${Z}"
+    fi
+  done
+}
+
+function touch_help(){
+ 	local list="$1"
+  for i in ${list}; do
+    if [ -e "${i}.svg" ]; then
+      touch "${i}.svg"
+    fi
+    d="${dirhelp}"
+    f="${d}/${i}.png"
+    if [ -e "${f}" ]; then
+      touch "${f}"
+    else
+      echo -e "${R}${f} does not exist${Z}"
+    fi
+  done
+}
+
+function touch_asset_dir(){
+ 	local dir="$1"
+  for f in ${dirassets}/${dir}/*; do
+    touch "${f}"
+  done
+}
+
 function check(){
 	local d=../src/main
 	check_dir ${d}

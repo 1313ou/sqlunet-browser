@@ -70,29 +70,24 @@ link_list="ic_link_relation.svg"
 settings_list="ic_settings_wordnet.svg"
 search_list="ic_search_wnword.svg ic_search_wndefinition.svg ic_search_wnsample.svg"
 
-asset_list=""
-for r in ${relation_list} ${extra_relation_list}; do
-  asset_list="${asset_list} ${r}.svg"
-done
-
 make_res "${top_list}" 20
 make_res "${icon_list}" 16
 make_res "${link_list}" 16
 make_res "${settings_list}" 24
 make_res "${search_list}" 32
 
+asset_list=""
+for r in ${relation_list} ${extra_relation_list}; do
+  asset_list="${asset_list} ${r}.svg"
+done
 make_clear_asset "${asset_list}" 16 "${dirassets}/images/wordnet"
 
 #generated elsewhere
 
+res_list=""
 for r in ${relation_list}; do
-  touch "ic_${r}.svg"
- 	for k in ${resnames}; do
-  	d="${dirres}/drawable-${k}"
-  	f="${d}/ic_${r}.png"
-  	[ -e "${f}" ] || echo -e "${R}${f} does not exist${Z}"
-  	touch "${f}"
- 	done
+  res_list="${res_list} ic_${r}"
 done
+touch_res "${res_list}"
 
 check
