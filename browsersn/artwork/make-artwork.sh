@@ -8,7 +8,7 @@ splash_list="ic_splash.svg"
 supersplash_list="home.svg"
 icon_list="ic_xselector.svg ic_snselector.svg"
 smallicon_list="ic_collocation.svg"
-asset_list="wordnet.svg syntagnet.svg open.svg closed.svg error.svg pointer.svg"
+asset_list="open.svg closed.svg error.svg pointer.svg"
 
 make_mipmap "${launch_list}" 48
 make_res "${logo_list}" 64

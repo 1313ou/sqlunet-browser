@@ -6,7 +6,7 @@ launch_list="ic_launcher.svg ic_launcher_round.svg"
 logo_list="ic_logo.svg"
 splash_list="ic_splash.svg"
 supersplash_list="home.svg"
-asset_list="framenet.svg open.svg closed.svg error.svg pointer.svg"
+asset_list="open.svg closed.svg error.svg pointer.svg"
 
 make_mipmap "${launch_list}" 48
 make_res "${logo_list}" 64

@@ -4,6 +4,7 @@
 # Copyright (c) 2023. Bernard Bou
 #
 
+DEBUG=true
 DEBUG=
 
 export R='\u001b[31m'
@@ -31,6 +32,8 @@ function make_seq(){
 	r4=$((r0 * 4))
 	#echo -e "${C}$r0 $r1 $r2 $r3 $r4${Z}"
 }
+
+resnames="mdpi hdpi xhdpi xxhdpi xxxhdpi"
 
 # list
 # r resolution
@@ -60,30 +63,31 @@ function make_png(){
 				echo -e " ${R}FAIL${Z}"
 			fi
 		else
-			echo -e "${svg} ${Y}!EXISTS${Z}"
+			echo -e "${svg} ${R}!EXISTS${Z}"
 		fi
 	done
 }
 
 if [ ! -z "${DEBUG}" ]; then
-unset -f make_png
-function make_png(){
-	local list="$1"
-	local r=$2
-	local aspect=$3
-	local d="$(readlink -m $4)"
-	local suffix="$5"
-	for e in ${list}; do
-		svg="${thisdir}/${e}"
-		if [ ! -e "${svg}" ]; then
-			echo -e "${R} ${svg} SOURCE !EXISTS ${Z}"
-		fi
-		local png="${d}/${e%.svg}${suffix}.png"
-		if [ ! -e "${png}" ]; then
-			echo -e "${R} ${png} DEST !EXISTS ${Z}"
-		fi
-	done	
-}
+  unset -f make_png
+  function make_png(){
+    local list="$1"
+    local r=$2
+    local aspect=$3
+    local d="$(readlink -m $4)"
+    local suffix="$5"
+    for e in ${list}; do
+      svg="${thisdir}/${e}"
+      if [ ! -e "${svg}" ]; then
+        echo -e "${R} ${svg} SOURCE !EXISTS ${Z}"
+      fi
+      local png="${d}/${e%.svg}${suffix}.png"
+      if [ ! -e "${png}" ]; then
+        echo -e "${R} ${png} DEST !EXISTS ${Z}"
+      fi
+      touch "${png}"
+    done
+  }
 fi
 
 function make_pngs(){
@@ -172,28 +176,42 @@ function make_app(){
 
 function emptydir(){
 	local d="$1"
-	#echo rm ${d}/*
+	echo rm ${d}/*
 }
+
+if [ ! -z "${DEBUG}" ]; then
+  unset -f emptydir
+  function emptydir(){
+  	local d="$1"
+    [ -e "${d}" ] || echo -e "${R} ${d} DEST !EXISTS ${Z}"
+  }
+fi
 
 function check(){
 	local d=../src/main
-	#check_dir ${d}
+	check_dir ${d}
 }
 
+# find stale png files older than 15s
 DELAY=15
 function check_dir(){
 	local d=$1
 	d="$(readlink -m ${d})"
-	echo -e "${M}${d}${Z}"
+	echo -e "checking ${M}${d}${Z}"
 	pushd "${d}" > /dev/null
-	if [ -e "./assets" ]; then
-		echo -en "${Y}"
-		find -L ./assets -name '*.png' -mmin +${DELAY}
-		echo -en "${Z}"
-	fi
+
+	# resources
 	echo -en "${R}"
 	find -L ./res -name '*.png' -mmin +${DELAY}
 	echo -en "${Z}"
+
+	# assets
+  if [ -e "./assets" ]; then
+		echo -en "${R}"
+		find -L ./assets -name '*.png' -not -path '*/reference/*' -mmin +${DELAY}
+		echo -en "${Z}"
+	fi
+
 	popd > /dev/null
 }
 
