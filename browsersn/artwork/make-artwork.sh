@@ -27,7 +27,7 @@ make_help "logo.svg" 128
 make_help "sqlunet.svg" 384
 make_help "${help_list}" 24
 
-touch_help "selector-wn selector-sn selector_senses"
+touch_help "selector-wn selector-sn selector-senses"
 touch_asset_dir "images/syntagnet"
 touch_asset_dir "images/bnc"
 check

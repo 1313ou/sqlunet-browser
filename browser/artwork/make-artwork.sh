@@ -30,5 +30,5 @@ make_help "${help_list}" 24
 #touch_asset_dir "images/wordnet"
 #touch_asset_dir "images/xnet"
 touch_asset_dir "images/verbnet"
-touch_help "selector_senses selector-wn selector-vn selector-pb selector-fn"
+touch_help "selector-senses selector-wn selector-vn selector-pb selector-fn"
 check

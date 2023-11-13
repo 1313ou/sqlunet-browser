@@ -176,7 +176,7 @@ function make_app(){
 
 function emptydir(){
 	local d="$1"
-	echo rm ${d}/*
+	rm ${d}/*
 }
 
 if [ ! -z "${DEBUG}" ]; then
@@ -188,8 +188,8 @@ if [ ! -z "${DEBUG}" ]; then
 fi
 
 function touch_res(){
- 	local list="$1"
- 	local warnnotexists=$2
+  local list="$1"
+  local warnnotexists=$2
   for i in ${list}; do
     if [ -e "${i}.svg" ]; then
       touch "${i}.svg"
@@ -207,7 +207,7 @@ function touch_res(){
 }
 
 function touch_asset(){
- 	local list="$1"
+  local list="$1"
   for i in ${list}; do
     if [ -e "${i}.svg" ]; then
       touch "${i}.svg"
@@ -223,7 +223,7 @@ function touch_asset(){
 }
 
 function touch_help(){
- 	local list="$1"
+  local list="$1"
   for i in ${list}; do
     if [ -e "${i}.svg" ]; then
       touch "${i}.svg"
