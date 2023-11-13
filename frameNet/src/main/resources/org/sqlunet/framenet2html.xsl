@@ -19,7 +19,7 @@
 					<IMG class="treepix" src="images/closed.png" />
 				</SPAN>
 				<!-- data image -->
-				<IMG class="dataimg" src="images/xnet/framenet.png" />
+				<IMG class="dataimg" src="images/framenet/framenet.png" />
 				<SPAN class="domain">
 					<xsl:text><![CDATA[framenet]]></xsl:text>
 				</SPAN>
@@ -32,7 +32,7 @@
 					<IMG class="treepix" src="images/open.png" />
 				</SPAN>
 				<!-- data image -->
-				<IMG class="dataimg" src="images/xnet/framenet.png" />
+				<IMG class="dataimg" src="images/framenet/framenet.png" />
 				<SPAN class="domain">
 					<xsl:text><![CDATA[framenet]]></xsl:text>
 				</SPAN>

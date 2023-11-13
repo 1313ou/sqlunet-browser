@@ -20,7 +20,7 @@
 					<IMG class="treepix" src="images/closed.png" />
 				</SPAN>
 				<!-- data image -->
-				<IMG class="dataimg" src="images/xnet/verbnet.png" />
+				<IMG class="dataimg" src="images/verbnet/verbnet.png" />
 				<SPAN class="domain">
 					<xsl:text><![CDATA[verbnet]]></xsl:text>
 				</SPAN>
@@ -34,7 +34,7 @@
 					<IMG class="treepix" src="images/open.png" />
 				</SPAN>
 				<!-- data image -->
-				<IMG class="dataimg" src="images/xnet/verbnet.png" />
+				<IMG class="dataimg" src="images/verbnet/verbnet.png" />
 				<SPAN class="domain">
 					<xsl:text><![CDATA[verbnet]]></xsl:text>
 				</SPAN>

@@ -68,6 +68,12 @@ top_list="up.svg down.svg"
 icon_list="wordnet.svg synset.svg synsetmember.svg domain.svg morph.svg adjposition.svg verbtemplate.svg verbframe.svg error.svg"
 link_list="ic_link_relation.svg"
 settings_list="ic_settings_wordnet.svg"
+asset_list="closed.svg open.svg pointer.svg"
+asset_list_wordnet="wordnet.svg synset.svg domain.svg"
+for r in ${relation_list} ${extra_relation_list}; do
+  asset_list_wordnet="${asset_list_wordnet} ${r}.svg"
+done
+asset_list_xnet="pos.svg member.svg definition.svg sample.svg"
 search_list="ic_search_wnword.svg ic_search_wndefinition.svg ic_search_wnsample.svg"
 
 make_res "${top_list}" 20
@@ -76,11 +82,9 @@ make_res "${link_list}" 16
 make_res "${settings_list}" 24
 make_res "${search_list}" 32
 
-asset_list=""
-for r in ${relation_list} ${extra_relation_list}; do
-  asset_list="${asset_list} ${r}.svg"
-done
-make_clear_asset "${asset_list}" 16 "${dirassets}/images/wordnet"
+make_clear_asset "${asset_list}" 16 "${dirassets}/images"
+make_clear_asset "${asset_list_wordnet}" 16 "${dirassets}/images/wordnet"
+make_clear_asset "${asset_list_xnet}" 16 "${dirassets}/images/xnet"
 
 #generated elsewhere
 
@@ -91,3 +95,4 @@ done
 touch_res "${res_list}"
 
 check
+

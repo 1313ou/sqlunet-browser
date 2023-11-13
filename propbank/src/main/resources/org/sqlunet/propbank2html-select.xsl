@@ -18,7 +18,7 @@
 				<SPAN class="treejunction">
 					<IMG class="treepix" src="images/closed.png" />
 				</SPAN>
-				<IMG class="dataimg" src="images/xnet/propbank.png" />
+				<IMG class="dataimg" src="images/propbank/propbank.png" />
 				<SPAN class="domain">
 					<xsl:text><![CDATA[propbank]]></xsl:text>
 				</SPAN>
@@ -30,7 +30,7 @@
 				<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 					<IMG class="treepix" src="images/open.png" />
 				</SPAN>
-				<IMG class="dataimg" src="images/xnet/propbank.png" />
+				<IMG class="dataimg" src="images/propbank/propbank.png" />
 				<SPAN class="domain">
 					<xsl:text><![CDATA[propbank]]></xsl:text>
 				</SPAN>

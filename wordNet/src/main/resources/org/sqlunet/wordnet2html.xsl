@@ -20,7 +20,7 @@
 					<IMG class="treepix" src="images/closed.png" />
 				</SPAN>
 				<!-- data image -->
-				<IMG class="dataimg" src="images/xnet/wordnet.png" />
+				<IMG class="dataimg" src="images/wordnet/wordnet.png" />
 				<SPAN class="domain">
 					<xsl:text><![CDATA[wordnet]]></xsl:text>
 				</SPAN>
@@ -34,7 +34,7 @@
 					<IMG class="treepix" src="images/open.png" />
 				</SPAN>
 				<!-- data image -->
-				<IMG class="dataimg" src="images/xnet/wordnet.png" />
+				<IMG class="dataimg" src="images/wordnet/wordnet.png" />
 				<SPAN class="domain">
 					<xsl:text><![CDATA[wordnet]]></xsl:text>
 				</SPAN>
@@ -101,7 +101,7 @@
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 				<IMG class="treepix" src="images/open.png" />
 			</SPAN>
-			<IMG class="dataimg" src="images/xnet/domain.png" />
+			<IMG class="dataimg" src="images/wordnet/domain.png" />
 			<SPAN class="wndomain">
 				<xsl:value-of select="./@name" />
 			</SPAN>
@@ -118,7 +118,7 @@
 			<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 				<IMG class="treepix" src="images/open.png" />
 			</SPAN>
-			<IMG class="dataimg" src="images/xnet/synset.png" />
+			<IMG class="dataimg" src="images/wordnet/synset.png" />
 			<SPAN class="wnsense">
 				<xsl:text><![CDATA[sense]]></xsl:text>
 				<xsl:if test='./@number'>
@@ -143,7 +143,7 @@
 				</SPAN>
 			</xsl:if>
 			<xsl:if test='./@domain'>
-				<IMG class="dataimg" src="images/xnet/domain.png" />
+				<IMG class="dataimg" src="images/wordnet/domain.png" />
 				<SPAN class="wndomain">
 					<xsl:value-of select="./@domain" />
 				</SPAN>
@@ -190,7 +190,7 @@
 				</xsl:attribute>
 				<IMG class="dataimg" src="images/pointer.png" />
 			</A>
-			<IMG class="dataimg" src="images/xnet/synset.png" />
+			<IMG class="dataimg" src="images/wordnet/synset.png" />
 			<IMG class="dataimg" src="images/xnet/definition.png" />
 			<SPAN class="wndefinition">
 				<xsl:apply-templates select="./definition" />

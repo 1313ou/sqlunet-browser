@@ -19,7 +19,7 @@
 					<IMG class="treepix" src="images/closed.png" />
 				</SPAN>
 				<!-- data image -->
-				<IMG class="dataimg" src="images/xnet/bnc.png" />
+				<IMG class="dataimg" src="images/bnc/bnc.png" />
 				<SPAN class="domain">
 					<xsl:text><![CDATA[bnc]]></xsl:text>
 				</SPAN>
@@ -31,7 +31,7 @@
 				<SPAN class="treejunction" onclick="javascript:Tree.toggle(this);">
 					<IMG class="treepix" src="images/open.png" />
 				</SPAN>
-				<IMG class="dataimg" src="images/xnet/bnc.png" />
+				<IMG class="dataimg" src="images/bnc/bnc.png" />
 				<SPAN class="domain">
 					<xsl:text><![CDATA[bnc]]></xsl:text>
 				</SPAN>

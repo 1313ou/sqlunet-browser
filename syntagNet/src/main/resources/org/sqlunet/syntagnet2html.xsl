@@ -19,7 +19,7 @@
 					<IMG class="treepix" src="images/closed.png" />
 				</SPAN>
 				<!-- data image -->
-				<IMG class="dataimg" src="images/xnet/syntagnet.png" />
+				<IMG class="dataimg" src="images/syntagnet/syntagnet.png" />
 				<SPAN class="domain">
 					<xsl:text><![CDATA[syntagnet]]></xsl:text>
 				</SPAN>
@@ -32,7 +32,7 @@
 					<IMG class="treepix" src="images/open.png" />
 				</SPAN>
 				<!-- data image -->
-				<IMG class="dataimg" src="images/xnet/syntagnet.png" />
+				<IMG class="dataimg" src="images/syntagnet/syntagnet.png" />
 				<SPAN class="domain">
 					<xsl:text><![CDATA[syntagnet]]></xsl:text>
 				</SPAN>
