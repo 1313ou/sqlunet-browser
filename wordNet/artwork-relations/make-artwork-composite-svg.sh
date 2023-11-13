@@ -101,7 +101,7 @@ backtofore=(
 
 # composite
 d="${dircomposite}"
-mkdir -p ${d}
+mkdir -p "${d}"
 
 for b in ${!backtofore[@]}; do
 	echo -e "${M}${b}${Z}"
@@ -113,3 +113,6 @@ for b in ${!backtofore[@]}; do
 	done
 	echo
 done
+
+#optimize
+svgo "${d}"

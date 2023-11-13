@@ -14,7 +14,7 @@ source lib-artwork.sh
 
 # R E F E R E N C E
 
-echo -e "${Y}Reference${Z} ${B}$r ${webres}${Z}"
+echo -e "${Y}Reference${Z} ${B}$r ${referenceres}${Z}"
 dirdest="${dirreference}/images"
 mkdir -p ${dirdest}
 lists_svg2png${wn31} ${referenceres} "${dirsrc}" "${dirdest}" ""
