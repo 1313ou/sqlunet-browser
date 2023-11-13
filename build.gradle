@@ -27,8 +27,8 @@ allprojects {
     }
 
     ext {
-        versionCode = 146
-        versionName = '2.146'
+        versionCode = 147
+        versionName = '3.147'
         minSdkVersion = 19
         targetSdkVersion = 33
         compileSdk = 34
@@ -39,8 +39,8 @@ allprojects {
         navVersion = '2.7.5'
         preferenceVersion = '1.2.1'
         materialVersion = '1.10.0'
-        annotationVersion = '1.6.0'
-        desugaring = '2.0.3'
+        annotationVersion = '1.7.0'
+        desugaring = '2.0.4'
     }
 
     tasks.withType(JavaCompile).tap {
