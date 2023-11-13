@@ -95,7 +95,7 @@ function svg2png(){
 	local from="$2"
 	local to="$3"
 	echo -e ". ${B}${from} -> ${to}${Z} ${C}@${r}${Z}"
-	/snap/bin/inkscape -h ${r} --export-filename "$(readlink -m ${to})" "$(readlink -m ${from})"
+	$INKSCAPE -h ${r} --export-filename "$(readlink -m ${to})" "$(readlink -m ${from})"
 }
 
 function list_svg2png(){
