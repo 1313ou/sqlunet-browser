@@ -38,12 +38,15 @@ public class Oewn
 	{
 		final BaseTransientBottomBar.Behavior behavior = new BaseTransientBottomBar.Behavior();
 		behavior.setSwipeDirection(SwipeDismissBehavior.SWIPE_DIRECTION_ANY);
-		final View parentLayout = activity.findViewById(R.id.coord_layout); // view to find a parent from
-		final Snackbar snackbar = Snackbar.make(parentLayout, R.string.obsolete_app, Snackbar.LENGTH_INDEFINITE);
-		snackbar.setTextMaxLines(10) //
-				.setBackgroundTint(ContextCompat.getColor(activity, R.color.snackbar_oewn)) //
-				.setAction(R.string.obsolete_get_oewn, view -> OthersActivity.install(activity.getString(R.string.semantikos_ewn_uri), activity)) //
-				.setActionTextColor(ContextCompat.getColor(activity, android.R.color.white)) //
-				.setBehavior(behavior).show();
+		final View parentLayout = activity.findViewById(R.id.activity_main_sub); // view to find a parent from
+		if (parentLayout != null)
+		{
+			final Snackbar snackbar = Snackbar.make(parentLayout, R.string.obsolete_app, Snackbar.LENGTH_INDEFINITE);
+			snackbar.setTextMaxLines(10) //
+					.setBackgroundTint(ContextCompat.getColor(activity, R.color.snackbar_oewn)) //
+					.setAction(R.string.obsolete_get_oewn, view -> OthersActivity.install(activity.getString(R.string.semantikos_ewn_uri), activity)) //
+					.setActionTextColor(ContextCompat.getColor(activity, android.R.color.white)) //
+					.setBehavior(behavior).show();
+		}
 	}
 }

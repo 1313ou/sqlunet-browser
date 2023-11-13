@@ -11,9 +11,9 @@ import androidx.annotation.Nullable;
 public class MainActivity extends org.sqlunet.browser.MainActivity
 {
 	@Override
-	protected void onPostCreate(@Nullable final Bundle savedInstanceState)
+	protected void onStart()
 	{
-		super.onPostCreate(savedInstanceState);
+		super.onStart();
 		Oewn.hook(this);
 	}
 }
