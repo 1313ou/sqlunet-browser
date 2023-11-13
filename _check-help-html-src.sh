@@ -17,6 +17,6 @@ for m in $modules; do
   dir="${m}/src/main/assets/help"
   echo -e "${M}${dir}${Z}"
   pushd "${dir}" > /dev/null
-  while read f; do [ -e "${f}" ] || echo -e "${R}${f} !EXISTS{Z}"; done < <(findsrc)
+  while read f; do [ -e "${f}" ] || echo -e "${R}${f} !EXISTS${Z}"; done < <(findsrc)
   popd > /dev/null
 done
