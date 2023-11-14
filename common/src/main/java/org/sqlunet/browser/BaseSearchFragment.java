@@ -200,7 +200,7 @@ abstract public class BaseSearchFragment extends LoggingFragment implements Sear
 		closeKeyboard();
 
 		Spinner spinner = getSpinner();
-		assert spinner != null;
+		assert spinner != null; // after resume
 		releaseSpinner(spinner);
 	}
 
@@ -340,13 +340,11 @@ abstract public class BaseSearchFragment extends LoggingFragment implements Sear
 	 *
 	 * @return spinner
 	 */
-	private @NonNull Spinner getSpinner()
+	private @Nullable Spinner getSpinner()
 	{
 		final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
 		assert toolbar != null; // must have
-		Spinner spinner = toolbar.findViewById(R.id.spinner);
-		assert spinner != null; // must have
-		return spinner;
+		return toolbar.findViewById(R.id.spinner); // must be non null after resume
 	}
 
 	/**
@@ -362,7 +360,7 @@ abstract public class BaseSearchFragment extends LoggingFragment implements Sear
 		if (spinner == null)
 		{
 			// toolbar customized view if toolbar does not already contain spinner
-			final View customView = getLayoutInflater().inflate(R.layout.actionbar_custom, null); // raises "The specified child already has a parent" if toolbar
+			@SuppressLint("InflateParams") final View customView = getLayoutInflater().inflate(R.layout.actionbar_custom, null); // raises "The specified child already has a parent" if toolbar
 			toolbar.addView(customView);
 			spinner = toolbar.findViewById(R.id.spinner);
 			assert spinner != null; // because actionbar_custom has a @+id/spinner
@@ -526,8 +524,7 @@ abstract public class BaseSearchFragment extends LoggingFragment implements Sear
 		// restore from saved instance
 		if (savedInstanceState != null)
 		{
-			final int selected = savedInstanceState.getInt(STATE_SPINNER);
-			this.spinnerPosition = selected;
+			this.spinnerPosition = savedInstanceState.getInt(STATE_SPINNER);
 		}
 	}
 

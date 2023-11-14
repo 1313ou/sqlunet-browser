@@ -4,10 +4,6 @@
 
 package org.sqlunet.browser.wn;
 
-import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-
 public class MainActivity extends org.sqlunet.browser.MainActivity
 {
 	@Override

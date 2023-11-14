@@ -120,6 +120,9 @@
     <inspection_tool class="UnusedValue" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="ValueMayNotFitIntoReceiver" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="VirtualCallInCtorOrDtor" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="XmlDeprecatedElement" enabled="true" level="WEAK WARNING" enabled_by_default="true" editorAttributes="INFO_ATTRIBUTES">
+      <scope name="Project Files" level="WARNING" enabled="true" />
+    </inspection_tool>
     <inspection_tool class="XmlHighlighting" enabled="true" level="ERROR" enabled_by_default="false">
       <scope name="Project Files" level="ERROR" enabled="true" />
     </inspection_tool>

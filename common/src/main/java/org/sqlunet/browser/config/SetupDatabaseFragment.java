@@ -107,7 +107,7 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 	// U P D A T E
 
 	@SuppressWarnings("EmptyMethod")
-	private void update(@SuppressWarnings("unused") Boolean result)
+	private void update(@SuppressWarnings("unused") Boolean ignoredResult)
 	{
 	}
 
