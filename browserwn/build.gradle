@@ -73,6 +73,7 @@ dependencies {
     implementation project(path: ':download')
     implementation project(path: ':donate')
 
+    implementation "androidx.preference:preference:$preferenceVersion"
     implementation "androidx.appcompat:appcompat:$appcompatVersion" // for resources validation
     implementation "com.google.android.material:material:$materialVersion" // for resource include
 

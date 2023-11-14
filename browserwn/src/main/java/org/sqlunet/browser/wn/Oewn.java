@@ -16,11 +16,14 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
 public class Oewn
 {
 	private static final String PREF_FILE_NAME = "android_launches_pref_file";
 	private static final String PREF_KEY_LAUNCH_TIMES = "android_launch_times";
+	private static final String PREF_KEY_OEWN_NO_NOTICE = "pref_oewn_no_notice";
+
 	private static final int HOW_OFTEN = 10;
 
 	public static void hook(@NonNull final Activity activity)
@@ -29,7 +32,12 @@ public class Oewn
 		int launchTimes = prefs.getInt(PREF_KEY_LAUNCH_TIMES, 0);
 		if (launchTimes % HOW_OFTEN == 1)
 		{
-			suggestOewn(activity);
+			final SharedPreferences prefs2 = PreferenceManager.getDefaultSharedPreferences(activity);
+			boolean noNotice = prefs2.getBoolean(PREF_KEY_OEWN_NO_NOTICE, false);
+			if (!noNotice)
+			{
+				suggestOewn(activity);
+			}
 		}
 		prefs.edit().putInt(PREF_KEY_LAUNCH_TIMES, launchTimes + 1).apply();
 	}
