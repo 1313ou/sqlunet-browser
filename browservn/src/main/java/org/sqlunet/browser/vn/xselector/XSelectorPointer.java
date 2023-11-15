@@ -8,7 +8,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import org.sqlunet.HasXId;
-import org.sqlunet.browser.selector.SelectorPointer;
+import org.sqlunet.browser.vn.selector.SelectorPointer;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
