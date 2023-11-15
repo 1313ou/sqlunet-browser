@@ -440,10 +440,11 @@ public class XSelectorsFragment extends BaseSelectorsExpandableListFragment
 		this.wordIdFromWordModel = new ViewModelProvider(this).get("vn:xselectors.wordid(word)", SqlunetViewModel.class);
 		this.wordIdFromWordModel.getData().observe(owner, cursor -> {
 
-			if (cursor != null)
+			if (cursor != null && !cursor.isClosed())
 			{
 				cursor.close();
 			}
+
 			this.wordIdFromWordModel.getData().removeObservers(this);
 
 			final ExpandableListAdapter adapter = makeAdapter();
@@ -541,26 +542,26 @@ public class XSelectorsFragment extends BaseSelectorsExpandableListFragment
 		{
 			case GROUPID_VERBNET:
 			{
-				//				final MutableLiveData<Cursor> vnLiveData = this.vnFromWordIdModel.getMutableData();
-				//				final Cursor vnCursor = vnLiveData.getValue();
-				//				if (vnCursor != null && !vnCursor.isClosed())
-				//				{
-				//					vnLiveData.setValue(vnCursor);
-				//				}
-				//				else
+				//	final MutableLiveData<Cursor> vnLiveData = this.vnFromWordIdModel.getMutableData();
+				//	final Cursor vnCursor = vnLiveData.getValue();
+				//	if (vnCursor != null && !vnCursor.isClosed())
+				//	{
+				//		vnLiveData.setValue(vnCursor);
+				//	}
+				//	else
 				loadVn(this.wordId);
 			}
 			break;
 
 			case GROUPID_PROPBANK:
 			{
-				//				final MutableLiveData<Cursor> pbLiveData = this.pbFromWordIdModel.getMutableData();
-				//				final Cursor pbCursor = pbLiveData.getValue();
-				//				if (pbCursor != null && !pbCursor.isClosed())
-				//				{
-				//					pbLiveData.setValue(pbCursor);
-				//				}
-				//				else
+				//	final MutableLiveData<Cursor> pbLiveData = this.pbFromWordIdModel.getMutableData();
+				//	final Cursor pbCursor = pbLiveData.getValue();
+				//	if (pbCursor != null && !pbCursor.isClosed())
+				//	{
+				//		pbLiveData.setValue(pbCursor);
+				//	}
+				//	else
 				loadPb(this.wordId);
 			}
 			break;
