@@ -1,16 +1,18 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser;
+package org.sqlunet.browser.vn;
 
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import org.sqlunet.browser.fn.Browse2Fragment;
-import org.sqlunet.browser.fn.R;
+import org.sqlunet.browser.AbstractBrowse2Activity;
+import org.sqlunet.browser.MenuHandler;
+import org.sqlunet.browser.vn.Browse2Fragment;
+import org.sqlunet.browser.vn.R;
 import org.sqlunet.provider.ProviderArgs;
 
 import androidx.annotation.NonNull;

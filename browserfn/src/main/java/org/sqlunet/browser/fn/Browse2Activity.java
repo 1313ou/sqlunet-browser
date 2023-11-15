@@ -1,16 +1,18 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser;
+package org.sqlunet.browser.fn;
 
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import org.sqlunet.browser.sn.Browse2Fragment;
-import org.sqlunet.browser.sn.R;
+import org.sqlunet.browser.AbstractBrowse2Activity;
+import org.sqlunet.browser.MenuHandler;
+import org.sqlunet.browser.fn.Browse2Fragment;
+import org.sqlunet.browser.fn.R;
 import org.sqlunet.provider.ProviderArgs;
 
 import androidx.annotation.NonNull;
@@ -40,19 +42,6 @@ public class Browse2Activity extends AbstractBrowse2Activity
 		final ActionBar actionBar = getSupportActionBar();
 		assert actionBar != null;
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
-
-		// fragment
-		final Browse2Fragment browse2Fragment = new Browse2Fragment();
-		final boolean alt = getIntent().getBooleanExtra(Browse2Fragment.ARG_ALT, false);
-		final Bundle args = new Bundle();
-		args.putBoolean(Browse2Fragment.ARG_ALT, alt);
-		browse2Fragment.setArguments(args);
-		getSupportFragmentManager() //
-				.beginTransaction() //
-				.setReorderingAllowed(true) //
-				.replace(R.id.container_browse2, browse2Fragment, BaseBrowse2Fragment.FRAGMENT_TAG) //
-				// .addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG) //
-				.commit();
 	}
 
 	@Override
@@ -65,18 +54,13 @@ public class Browse2Activity extends AbstractBrowse2Activity
 
 		//final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
 		final Parcelable pointer = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? args.getParcelable(ProviderArgs.ARG_QUERYPOINTER, Parcelable.class) : args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
-		final String word = args.getString(ProviderArgs.ARG_HINTWORD);
-		final String cased = args.getString(ProviderArgs.ARG_HINTCASED);
-		final String pronunciation = args.getString(ProviderArgs.ARG_HINTPRONUNCIATION);
-		final String pos = args.getString(ProviderArgs.ARG_HINTPOS);
-		final Browse2Fragment fragment = (Browse2Fragment) getSupportFragmentManager().findFragmentByTag(BaseBrowse2Fragment.FRAGMENT_TAG);
+		final Browse2Fragment fragment = (Browse2Fragment) getSupportFragmentManager().findFragmentById(R.id.fragment_detail);
 		assert fragment != null;
-		fragment.search(pointer, word, cased, pronunciation, pos);
+		fragment.search(pointer, null, null, null, null);
 	}
 
 	// M E N U
 
-	@SuppressWarnings("SameReturnValue")
 	@Override
 	public boolean onCreateOptionsMenu(@NonNull final Menu menu)
 	{

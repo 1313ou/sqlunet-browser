@@ -1,22 +1,24 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser;
+package org.sqlunet.browser.sn;
 
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import org.sqlunet.browser.xn.Browse2Fragment;
+import org.sqlunet.browser.AbstractBrowse2Activity;
+import org.sqlunet.browser.BaseBrowse2Fragment;
+import org.sqlunet.browser.MenuHandler;
+import org.sqlunet.browser.sn.Browse2Fragment;
+import org.sqlunet.browser.sn.R;
 import org.sqlunet.provider.ProviderArgs;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 /**
  * Detail activity
@@ -43,17 +45,13 @@ public class Browse2Activity extends AbstractBrowse2Activity
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
 
 		// fragment
-		final FragmentManager manager = getSupportFragmentManager();
-		Fragment browse2Fragment = manager.findFragmentByTag(BaseBrowse2Fragment.FRAGMENT_TAG);
-		if (browse2Fragment == null)
-		{
-			browse2Fragment = new Browse2Fragment();
-			final boolean alt = getIntent().getBooleanExtra(Browse2Fragment.ARG_ALT, false);
-			final Bundle args = new Bundle();
-			args.putBoolean(Browse2Fragment.ARG_ALT, alt);
-			browse2Fragment.setArguments(args);
-		}
-		manager.beginTransaction() //
+		final Browse2Fragment browse2Fragment = new Browse2Fragment();
+		final boolean alt = getIntent().getBooleanExtra(Browse2Fragment.ARG_ALT, false);
+		final Bundle args = new Bundle();
+		args.putBoolean(Browse2Fragment.ARG_ALT, alt);
+		browse2Fragment.setArguments(args);
+		getSupportFragmentManager() //
+				.beginTransaction() //
 				.setReorderingAllowed(true) //
 				.replace(R.id.container_browse2, browse2Fragment, BaseBrowse2Fragment.FRAGMENT_TAG) //
 				// .addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG) //
