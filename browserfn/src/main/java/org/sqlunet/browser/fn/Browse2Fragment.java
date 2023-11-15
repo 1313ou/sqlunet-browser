@@ -8,9 +8,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import org.sqlunet.browser.BaseBrowse2Fragment;
-import org.sqlunet.browser.fn.R;
-import org.sqlunet.browser.fn.Settings;
-import org.sqlunet.browser.web.WebFragment;
+import org.sqlunet.browser.fn.web.WebFragment;
 import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.framenet.browser.FnFrameFragment;
 import org.sqlunet.framenet.browser.FnLexUnitFragment;

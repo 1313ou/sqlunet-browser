@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser.web;
+package org.sqlunet.browser.wn.web;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -27,12 +27,13 @@ import android.widget.Toast;
 
 import org.sqlunet.Pointer;
 import org.sqlunet.bnc.sql.BncImplementation;
-import org.sqlunet.browser.sn.selector.CollocationSelectorPointer;
-import org.sqlunet.browser.sn.BuildConfig;
-import org.sqlunet.browser.sn.DocumentTransformer;
-import org.sqlunet.browser.sn.R;
-import org.sqlunet.browser.sn.Settings;
-import org.sqlunet.browser.sn.xselector.XSelectorPointer;
+import org.sqlunet.browser.web.DocumentStringLoader;
+import org.sqlunet.browser.web.WebActivity;
+import org.sqlunet.browser.web.WebModel;
+import org.sqlunet.browser.wn.DocumentTransformer;
+import org.sqlunet.browser.wn.Settings;
+import org.sqlunet.browser.wn.lib.BuildConfig;
+import org.sqlunet.browser.wn.lib.R;
 import org.sqlunet.dom.DomFactory;
 import org.sqlunet.dom.DomTransformer;
 import org.sqlunet.dom.DomValidator;
@@ -41,8 +42,6 @@ import org.sqlunet.settings.LogUtils;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.sql.DataSource;
 import org.sqlunet.sql.NodeFactory;
-import org.sqlunet.syntagnet.SnCollocationPointer;
-import org.sqlunet.syntagnet.sql.SyntagNetImplementation;
 import org.sqlunet.wordnet.SensePointer;
 import org.sqlunet.wordnet.SynsetPointer;
 import org.sqlunet.wordnet.WordPointer;
@@ -70,31 +69,31 @@ public class WebFragment extends Fragment
 
 	static private final String SQLUNET_NS = "http://org.sqlunet";
 
-	private class WebDocumentStringLoader implements DocumentStringLoader
+	class WebDocumentStringLoader implements DocumentStringLoader
 	{
 		@NonNull
 		final Context context;
-		final Parcelable pointer;
-		final int type;
-		final String data;
-		final int sources;
-		final boolean xml;
-		final Character pos;
+		final private int type;
+		final private String data;
+		final private Parcelable pointer;
+		final private Character pos;
+		final private int sources;
+		final private boolean xml;
 
-		WebDocumentStringLoader(@NonNull final Context context, final Parcelable pointer, final Character pos, final int type, final String data, final int sources, final boolean xml)
+		WebDocumentStringLoader(@NonNull final Context context, final int type, final String data, final Parcelable pointer, final Character pos, final int sources, final boolean xml)
 		{
 			super();
 			this.context = context;
-			this.pointer = pointer;
-			this.type = type;
 			this.data = data;
+			this.type = type;
+			this.pointer = pointer;
+			this.pos = pos;
 			this.sources = sources;
 			this.xml = xml;
-			this.pos = pos;
 		}
 
 		@Nullable
-		@SuppressWarnings("boxing")
+		@SuppressWarnings({"boxing"})
 		@Override
 		public String getDoc()
 		{
@@ -106,126 +105,64 @@ public class WebFragment extends Fragment
 
 				// dom documents
 				Document wnDomDoc = null;
-				Document snDomDoc = null;
 				Document bncDomDoc = null;
 
 				// selector mode
-				final boolean isSelector = data != null;
+				final boolean isSelector = this.data != null;
 
 				// make documents
 				if (isSelector)
 				{
 					// this is a selector query
-					if (Settings.Source.WORDNET.test(sources))
+					if (Settings.Source.WORDNET.test(this.sources))
 					{
-						wnDomDoc = new WordNetImplementation().querySelectorDoc(db, data);
-					}
-					if (Settings.Source.SYNTAGNET.test(sources))
-					{
-						snDomDoc = new SyntagNetImplementation().querySelectorDoc(db, data);
+						wnDomDoc = new WordNetImplementation().querySelectorDoc(db, this.data);
 					}
 				}
 				else
 				{
 					// this is a detail query
-					switch (type)
+					switch (this.type)
 					{
 						case ProviderArgs.ARG_QUERYTYPE_ALL:
 							if (pointer != null)
 							{
-								if (pointer instanceof XSelectorPointer)
+								final SensePointer sense2Pointer = (SensePointer) this.pointer;
+								final long wordId = sense2Pointer.getWordId();
+								final Long synsetId = sense2Pointer.getSynsetId();
+								if (Settings.Source.WORDNET.test(this.sources))
 								{
-									final XSelectorPointer xPointer = (XSelectorPointer) pointer;
-									final String xSources = xPointer.getXSources();
-									final long wordId = xPointer.getWordId();
-									final long synsetId = xPointer.getSynsetId();
-									if (xSources == null || xSources.contains("wn")) //
-									{
-										wnDomDoc = new WordNetImplementation().querySenseDoc(db, wordId, synsetId);
-									}
-									if (Settings.Source.BNC.test(sources))
-									{
-										bncDomDoc = new BncImplementation().queryDoc(db, wordId, pos);
-									}
+									wnDomDoc = new WordNetImplementation().queryDoc(db, wordId, synsetId, true, false);
 								}
-								else if (pointer instanceof SnCollocationPointer)
+								if (Settings.Source.BNC.test(this.sources))
 								{
-									final SnCollocationPointer collocationPointer = (SnCollocationPointer) pointer;
-									final long collocationId = collocationPointer.getId();
-									snDomDoc = new SyntagNetImplementation().queryCollocationDoc(db, collocationId);
-								}
-								else if (pointer instanceof CollocationSelectorPointer)
-								{
-									final CollocationSelectorPointer selectorPointer = (CollocationSelectorPointer) pointer;
-									final long wordId = selectorPointer.getWordId();
-									final long synsetId = selectorPointer.getSynsetId();
-									final long word2Id = selectorPointer.getWord2Id();
-									final long synset2Id = selectorPointer.getSynset2Id();
-									if (Settings.Source.WORDNET.test(sources))
-									{
-										wnDomDoc = new WordNetImplementation().queryDoc(db, wordId, synsetId, true, false);
-									}
-									if (Settings.Source.SYNTAGNET.test(sources))
-									{
-										snDomDoc = new SyntagNetImplementation().queryDoc(db, wordId, synsetId, word2Id, synset2Id);
-									}
-									if (Settings.Source.BNC.test(sources))
-									{
-										bncDomDoc = new BncImplementation().queryDoc(db, wordId, pos);
-									}
-								}
-								else
-								{
-									final SensePointer sense2Pointer = (SensePointer) pointer;
-									final long wordId = sense2Pointer.getWordId();
-									final Long synsetId = sense2Pointer.getSynsetId();
-									if (Settings.Source.WORDNET.test(sources))
-									{
-										wnDomDoc = new WordNetImplementation().queryDoc(db, wordId, synsetId, true, false);
-									}
-									if (Settings.Source.SYNTAGNET.test(sources))
-									{
-										snDomDoc = new SyntagNetImplementation().queryDoc(db, wordId, synsetId, pos);
-									}
-									if (Settings.Source.BNC.test(sources))
-									{
-										bncDomDoc = new BncImplementation().queryDoc(db, wordId, pos);
-									}
+									bncDomDoc = new BncImplementation().queryDoc(db, wordId, pos);
 								}
 							}
 							break;
 
 						case ProviderArgs.ARG_QUERYTYPE_WORD:
-							@SuppressWarnings("TypeMayBeWeakened") final WordPointer wordPointer = (WordPointer) pointer;
-							Log.d(TAG, "ArgPosition: word=" + wordPointer);
-							if (wordPointer != null && Settings.Source.WORDNET.test(sources))
+							@SuppressWarnings("TypeMayBeWeakened") final WordPointer wordPointer = (WordPointer) this.pointer;
+							Log.d(TAG, "word=" + wordPointer);
+							if (wordPointer != null && Settings.Source.WORDNET.test(this.sources))
 							{
 								wnDomDoc = new WordNetImplementation().queryWordDoc(db, wordPointer.getWordId());
 							}
 							break;
 
 						case ProviderArgs.ARG_QUERYTYPE_SYNSET:
-							@SuppressWarnings("TypeMayBeWeakened") final SynsetPointer synsetPointer = (SynsetPointer) pointer;
-							Log.d(TAG, "ArgPosition: synset=" + synsetPointer);
-							if (synsetPointer != null && Settings.Source.WORDNET.test(sources))
+							@SuppressWarnings("TypeMayBeWeakened") final SynsetPointer synsetPointer = (SynsetPointer) this.pointer;
+							Log.d(TAG, "synset=" + synsetPointer);
+							if (synsetPointer != null && Settings.Source.WORDNET.test(this.sources))
 							{
 								wnDomDoc = new WordNetImplementation().querySynsetDoc(db, synsetPointer.getSynsetId());
-							}
-							break;
-
-						case ProviderArgs.ARG_QUERYTYPE_COLLOCATION:
-							final SnCollocationPointer collocationPointer = (SnCollocationPointer) pointer;
-							Log.d(TAG, "ArgPosition: collocation=" + collocationPointer);
-							if (collocationPointer != null && Settings.Source.SYNTAGNET.test(sources))
-							{
-								snDomDoc = new SyntagNetImplementation().queryCollocationDoc(db, collocationPointer.getId());
 							}
 							break;
 					}
 				}
 
 				// stringify
-				return docsToString(data, xml, isSelector, wnDomDoc, snDomDoc, bncDomDoc);
+				return docsToString(data, xml, isSelector, wnDomDoc, bncDomDoc);
 			}
 			catch (@NonNull final Exception e)
 			{
@@ -256,8 +193,9 @@ public class WebFragment extends Fragment
 	 */
 	private WebView webview;
 
-	// View model
-
+	/**
+	 * View model
+	 */
 	private WebModel model;
 
 	/**
@@ -302,9 +240,8 @@ public class WebFragment extends Fragment
 	private void makeModels()
 	{
 		final boolean xml = Settings.getXmlPref(requireContext());
-		this.model = new ViewModelProvider(this).get("web(doc)", WebModel.class);
+		this.model = new ViewModelProvider(this).get("wn:web(doc)", WebModel.class);
 		this.model.getData().observe(getViewLifecycleOwner(), doc -> {
-
 			Log.d(TAG, "onLoadFinished");
 			final String mimeType = xml ? "text/xml" : "text/html";
 			final String baseUrl = "file:///android_asset/";
@@ -316,6 +253,7 @@ public class WebFragment extends Fragment
 	/**
 	 * Load web view with data
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	@SuppressLint("SetJavaScriptEnabled")
 	private void load()
 	{
@@ -387,10 +325,6 @@ public class WebFragment extends Fragment
 								type = ProviderArgs.ARG_QUERYTYPE_SYNSET;
 								pointer = new SynsetPointer(id);
 								break;
-							case "collocationid":
-								type = ProviderArgs.ARG_QUERYTYPE_COLLOCATION;
-								pointer = new SnCollocationPointer(id);
-								break;
 							default:
 								Log.e(TAG, "Ill-formed Uri: " + uri);
 								return false;
@@ -419,23 +353,21 @@ public class WebFragment extends Fragment
 		this.webview.setWebViewClient(webClient);
 
 		// settings sources
+		Context context = requireContext();
+
 		int mask = 0;
-		if (Settings.getWordNetPref(requireContext()))
+		if (Settings.getWordNetPref(context))
 		{
 			mask = Settings.Source.WORDNET.set(mask);
 		}
-		if (Settings.getSyntagNetPref(requireContext()))
-		{
-			mask |= Settings.Source.SYNTAGNET.set(mask);
-		}
-		if (Settings.getBncPref(requireContext()))
+		if (Settings.getBncPref(context))
 		{
 			mask |= Settings.Source.BNC.set(mask);
 		}
 		final int sources = mask;
 
 		// settings output
-		final boolean xml = Settings.getXmlPref(requireContext());
+		final boolean xml = Settings.getXmlPref(context);
 
 		// unmarshal arguments
 		Bundle args = getArguments();
@@ -446,7 +378,7 @@ public class WebFragment extends Fragment
 
 		// pointer
 		final Parcelable pointer = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? args.getParcelable(ProviderArgs.ARG_QUERYPOINTER, Parcelable.class) : args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
-		Log.d(TAG, "ArgPosition: query=" + pointer);
+		Log.d(TAG, "query=" + pointer);
 
 		// hint
 		final String posString = args.getString(ProviderArgs.ARG_HINTPOS);
@@ -454,10 +386,10 @@ public class WebFragment extends Fragment
 
 		// text
 		final String data = args.getString(ProviderArgs.ARG_QUERYSTRING);
-		Log.d(TAG, "ArgPosition: data=" + data);
+		Log.d(TAG, "data=" + data);
 
 		// load the contents
-		this.model.loadData(new WebDocumentStringLoader(requireContext(), pointer, pos, type, data, sources, xml));
+		this.model.loadData(new WebDocumentStringLoader(requireContext(), type, data, pointer, pos, sources, xml));
 	}
 
 	/**
@@ -467,7 +399,6 @@ public class WebFragment extends Fragment
 	 * @param xml        assemble as xml (or document to be xslt-transformed if false)
 	 * @param isSelector is selector source
 	 * @param wnDomDoc   wordnet document
-	 * @param snDomDoc   syntagnet document
 	 * @param bncDomDoc  bnc document
 	 * @return string
 	 */
@@ -476,11 +407,9 @@ public class WebFragment extends Fragment
 			final boolean xml,  //
 			final boolean isSelector,  //
 			@Nullable final Document wnDomDoc,  //
-			@Nullable final Document snDomDoc,  //
 			@Nullable final Document bncDomDoc)
 	{
 		// LogUtils.writeLog(DomTransformer.docToXml(wnDomDoc), false, "wn_sqlunet.log");
-		// LogUtils.writeLog(DomTransformer.docToXml(snDomDoc), false, "sn_sqlunet.log");
 		// LogUtils.writeLog(DomTransformer.docToXml(bncDomDoc), false, "bnc_sqlunet.log");
 
 		String data;
@@ -493,10 +422,6 @@ public class WebFragment extends Fragment
 			{
 				rootDomDoc.getDocumentElement().appendChild(rootDomDoc.importNode(wnDomDoc.getFirstChild(), true));
 			}
-			if (snDomDoc != null)
-			{
-				rootDomDoc.getDocumentElement().appendChild(rootDomDoc.importNode(snDomDoc.getFirstChild(), true));
-			}
 			if (bncDomDoc != null)
 			{
 				rootDomDoc.getDocumentElement().appendChild(rootDomDoc.importNode(bncDomDoc.getFirstChild(), true));
@@ -505,7 +430,7 @@ public class WebFragment extends Fragment
 			data = DomTransformer.docToXml(rootDomDoc);
 			if (BuildConfig.DEBUG)
 			{
-				LogUtils.writeLog(data, false, requireContext(), null);
+				LogUtils.writeLog(data, false, requireContext(),null);
 				final URL xsd = DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd");
 				assert xsd != null;
 				DomValidator.validateStrings(xsd, data);
@@ -523,10 +448,6 @@ public class WebFragment extends Fragment
 			sb.append(STYLESHEET1).append("css/style.css").append(STYLESHEET2);
 			sb.append(STYLESHEET1).append("css/tree.css").append(STYLESHEET2);
 			sb.append(STYLESHEET1).append("css/wordnet.css").append(STYLESHEET2);
-			if (snDomDoc != null)
-			{
-				sb.append(STYLESHEET1).append("css/syntagnet.css").append(STYLESHEET2);
-			}
 			if (bncDomDoc != null)
 			{
 				sb.append(STYLESHEET1).append("css/bnc.css").append(STYLESHEET2);
@@ -537,10 +458,6 @@ public class WebFragment extends Fragment
 			sb.append(SCRIPT1).append("js/sarissa.js").append(SCRIPT2);
 			sb.append(SCRIPT1).append("js/ajax.js").append(SCRIPT2);
 			sb.append(SCRIPT1).append("js/wordnet.js").append(SCRIPT2);
-			if (snDomDoc != null)
-			{
-				sb.append(SCRIPT1).append("js/syntagnet.js'></script>");
-			}
 			if (bncDomDoc != null)
 			{
 				sb.append(SCRIPT1).append("js/bnc.js").append(SCRIPT2);
@@ -560,12 +477,6 @@ public class WebFragment extends Fragment
 				sb.append(new DocumentTransformer().docToHtml(wnDomDoc, Settings.Source.WORDNET.toString(), isSelector));
 				sb.append(ITEM2);
 			}
-			if (snDomDoc != null)
-			{
-				sb.append(ITEM1);
-				sb.append(new DocumentTransformer().docToHtml(snDomDoc, Settings.Source.SYNTAGNET.toString(), isSelector));
-				sb.append(ITEM2);
-			}
 			if (bncDomDoc != null)
 			{
 				sb.append(ITEM1);
@@ -583,8 +494,8 @@ public class WebFragment extends Fragment
 			{
 				final URL xsd = DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd");
 				assert xsd != null;
-				DomValidator.validateDocs(xsd, wnDomDoc, snDomDoc, bncDomDoc);
-				LogUtils.writeLog(false, requireContext(),null, wnDomDoc, snDomDoc, bncDomDoc);
+				DomValidator.validateDocs(xsd, wnDomDoc, bncDomDoc);
+				LogUtils.writeLog(false, requireContext(),null, wnDomDoc, bncDomDoc);
 				LogUtils.writeLog(data, false, requireContext(),null);
 				Log.d(TAG, "output=\n" + data);
 			}

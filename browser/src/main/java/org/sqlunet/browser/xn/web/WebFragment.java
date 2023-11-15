@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser.web;
+package org.sqlunet.browser.xn.web;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -29,6 +29,9 @@ import org.sqlunet.Pointer;
 import org.sqlunet.bnc.sql.BncImplementation;
 import org.sqlunet.browser.BuildConfig;
 import org.sqlunet.browser.R;
+import org.sqlunet.browser.web.DocumentStringLoader;
+import org.sqlunet.browser.web.WebActivity;
+import org.sqlunet.browser.web.WebModel;
 import org.sqlunet.browser.xn.DocumentTransformer;
 import org.sqlunet.browser.xn.Settings;
 import org.sqlunet.browser.xn.xselector.XSelectorPointer;

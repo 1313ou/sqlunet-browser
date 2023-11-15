@@ -7,6 +7,7 @@ package org.sqlunet.browser.web;
 import android.os.Bundle;
 
 import org.sqlunet.browser.fn.R;
+import org.sqlunet.browser.fn.web.WebFragment;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;

@@ -12,8 +12,7 @@ import android.util.Log;
 
 import org.sqlunet.bnc.browser.BNCFragment;
 import org.sqlunet.browser.BaseBrowse2Fragment;
-import org.sqlunet.browser.web.WebFragment;
-import org.sqlunet.browser.wn.Settings;
+import org.sqlunet.browser.wn.web.WebFragment;
 import org.sqlunet.browser.wn.lib.R;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.speak.Pronunciation;

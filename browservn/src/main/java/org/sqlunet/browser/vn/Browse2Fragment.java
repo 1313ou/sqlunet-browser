@@ -8,7 +8,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import org.sqlunet.browser.BaseBrowse2Fragment;
-import org.sqlunet.browser.web.WebFragment;
+import org.sqlunet.browser.vn.web.WebFragment;
 import org.sqlunet.browser.vn.xselector.XSelectorPointer;
 import org.sqlunet.browser.vn.xselector.XSelectorsFragment;
 import org.sqlunet.propbank.browser.PropBankFragment;

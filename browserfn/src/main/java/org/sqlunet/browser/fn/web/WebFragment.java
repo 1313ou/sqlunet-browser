@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser.web;
+package org.sqlunet.browser.fn.web;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -26,27 +26,26 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import org.sqlunet.Pointer;
-import org.sqlunet.browser.vn.BuildConfig;
-import org.sqlunet.browser.vn.DocumentTransformer;
-import org.sqlunet.browser.vn.R;
-import org.sqlunet.browser.vn.Settings;
-import org.sqlunet.browser.vn.xselector.XSelectorPointer;
+import org.sqlunet.browser.fn.BuildConfig;
+import org.sqlunet.browser.fn.DocumentTransformer;
+import org.sqlunet.browser.fn.R;
+import org.sqlunet.browser.fn.Settings;
+import org.sqlunet.browser.web.DocumentStringLoader;
+import org.sqlunet.browser.web.WebActivity;
+import org.sqlunet.browser.web.WebModel;
 import org.sqlunet.dom.DomFactory;
 import org.sqlunet.dom.DomTransformer;
 import org.sqlunet.dom.DomValidator;
-import org.sqlunet.propbank.PbRoleSetPointer;
-import org.sqlunet.propbank.sql.PropBankImplementation;
+import org.sqlunet.framenet.FnAnnoSetPointer;
+import org.sqlunet.framenet.FnFramePointer;
+import org.sqlunet.framenet.FnLexUnitPointer;
+import org.sqlunet.framenet.FnSentencePointer;
+import org.sqlunet.framenet.sql.FrameNetImplementation;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.settings.LogUtils;
 import org.sqlunet.settings.StorageSettings;
 import org.sqlunet.sql.DataSource;
 import org.sqlunet.sql.NodeFactory;
-import org.sqlunet.verbnet.VnClassPointer;
-import org.sqlunet.verbnet.sql.VerbNetImplementation;
-import org.sqlunet.wordnet.SensePointer;
-import org.sqlunet.wordnet.SynsetPointer;
-import org.sqlunet.wordnet.WordPointer;
-import org.sqlunet.wordnet.sql.WordNetImplementation;
 import org.w3c.dom.Document;
 
 import java.net.URL;
@@ -79,9 +78,8 @@ public class WebFragment extends Fragment
 		final String data;
 		final int sources;
 		final boolean xml;
-		final Character pos;
 
-		WebDocumentStringLoader(@NonNull final Context context, final Parcelable pointer, final Character pos, final int type, final String data, final int sources, final boolean xml)
+		WebDocumentStringLoader(@NonNull final Context context, final Parcelable pointer, final int type, final String data, final int sources, final boolean xml)
 		{
 			super();
 			this.context = context;
@@ -90,11 +88,9 @@ public class WebFragment extends Fragment
 			this.data = data;
 			this.sources = sources;
 			this.xml = xml;
-			this.pos = pos;
 		}
 
 		@Nullable
-		@SuppressWarnings({"boxing"})
 		@Override
 		public String getDoc()
 		{
@@ -102,12 +98,9 @@ public class WebFragment extends Fragment
 			{
 				// data source
 				final SQLiteDatabase db = dataSource.getConnection();
-				WordNetImplementation.init(db);
 
 				// dom documents
-				Document wnDomDoc = null;
-				Document vnDomDoc = null;
-				Document pbDomDoc = null;
+				Document fnDomDoc = null;
 
 				// selector mode
 				final boolean isSelector = this.data != null;
@@ -116,19 +109,9 @@ public class WebFragment extends Fragment
 				if (isSelector)
 				{
 					// this is a selector query
-					if (Settings.Source.WORDNET.test(sources))
+					if (Settings.Source.FRAMENET.test(sources))
 					{
-						wnDomDoc = new WordNetImplementation().querySelectorDoc(db, data);
-					}
-
-					if (Settings.Source.VERBNET.test(sources))
-					{
-						vnDomDoc = new VerbNetImplementation().querySelectorDoc(db, data);
-					}
-
-					if (Settings.Source.PROPBANK.test(sources))
-					{
-						pbDomDoc = new PropBankImplementation().querySelectorDoc(db, data);
+						fnDomDoc = new FrameNetImplementation(true).querySelectorDoc(db, data, null);
 					}
 				}
 				else
@@ -137,91 +120,58 @@ public class WebFragment extends Fragment
 					switch (this.type)
 					{
 						case ProviderArgs.ARG_QUERYTYPE_ALL:
-							if (pointer != null)
+							if (this.pointer != null)
 							{
-								if (pointer instanceof XSelectorPointer)
+								if (this.pointer instanceof Pointer)
 								{
-									final XSelectorPointer xPointer = (XSelectorPointer) pointer;
-									final String xSources = xPointer.getXSources();
-									final Long xClassId = xPointer.getXClassId();
-									// final Long xMemberId = xpointer.getXMemberId();
-									final long wordId = xPointer.getWordId();
-									final long synsetId = xPointer.getSynsetId();
-									if (xSources == null || xSources.contains("wn")) //
-									{
-										wnDomDoc = new WordNetImplementation().querySenseDoc(db, wordId, synsetId);
-									}
-									if ((xSources == null || xSources.contains("vn")) && xClassId != null) //
-									{
-										vnDomDoc = new VerbNetImplementation().queryClassDoc(db, xClassId, pos);
-									}
-									if ((xSources == null || xSources.contains("pb")) && xClassId != null) //
-									{
-										pbDomDoc = new PropBankImplementation().queryRoleSetDoc(db, xClassId, pos);
-									}
-								}
-								else
-								{
-									final SensePointer sense2Pointer = (SensePointer) pointer;
-									final long wordId = sense2Pointer.getWordId();
-									final Long synsetId = sense2Pointer.getSynsetId();
-									if (Settings.Source.WORDNET.test(sources))
-									{
-										wnDomDoc = new WordNetImplementation().queryDoc(db, wordId, synsetId, true, false);
-									}
-
-									if (Settings.Source.VERBNET.test(sources))
-									{
-										vnDomDoc = new VerbNetImplementation().queryDoc(db, wordId, synsetId, pos);
-									}
-									if (Settings.Source.PROPBANK.test(sources))
-									{
-										pbDomDoc = new PropBankImplementation().queryDoc(db, wordId, pos);
-									}
+									final Pointer xPointer = (Pointer) this.pointer;
+									final long id = xPointer.getId();
+									final boolean isFrame = xPointer instanceof FnFramePointer;
+									fnDomDoc = isFrame ? new FrameNetImplementation(true).queryFrameDoc(db, id, null) : new FrameNetImplementation(true).queryLexUnitDoc(db, id);
 								}
 							}
 							break;
 
-						case ProviderArgs.ARG_QUERYTYPE_WORD:
-							@SuppressWarnings("TypeMayBeWeakened") final WordPointer wordPointer = (WordPointer) pointer;
-							Log.d(TAG, "ArgPosition: word=" + wordPointer);
-							if (wordPointer != null && Settings.Source.WORDNET.test(sources))
+						case ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT:
+							final FnLexUnitPointer lexunitPointer = (FnLexUnitPointer) this.pointer;
+							Log.d(TAG, "ArgPosition: fnlexunit=" + lexunitPointer);
+							if (lexunitPointer != null && Settings.Source.FRAMENET.test(this.sources))
 							{
-								wnDomDoc = new WordNetImplementation().queryWordDoc(db, wordPointer.getWordId());
+								fnDomDoc = new FrameNetImplementation(true).queryLexUnitDoc(db, lexunitPointer.getId());
 							}
 							break;
 
-						case ProviderArgs.ARG_QUERYTYPE_SYNSET:
-							@SuppressWarnings("TypeMayBeWeakened") final SynsetPointer synsetPointer = (SynsetPointer) pointer;
-							Log.d(TAG, "ArgPosition: synset=" + synsetPointer);
-							if (synsetPointer != null && Settings.Source.WORDNET.test(sources))
+						case ProviderArgs.ARG_QUERYTYPE_FNFRAME:
+							final FnFramePointer framePointer = (FnFramePointer) this.pointer;
+							Log.d(TAG, "ArgPosition: fnframe=" + framePointer);
+							if (framePointer != null && Settings.Source.FRAMENET.test(this.sources))
 							{
-								wnDomDoc = new WordNetImplementation().querySynsetDoc(db, synsetPointer.getSynsetId());
+								fnDomDoc = new FrameNetImplementation(true).queryFrameDoc(db, framePointer.getId(), null);
 							}
 							break;
 
-						case ProviderArgs.ARG_QUERYTYPE_VNCLASS:
-							final VnClassPointer vnclassPointer = (VnClassPointer) pointer;
-							Log.d(TAG, "ArgPosition: vnclass=" + vnclassPointer);
-							if (vnclassPointer != null && Settings.Source.VERBNET.test(sources))
+						case ProviderArgs.ARG_QUERYTYPE_FNSENTENCE:
+							final FnSentencePointer sentencePointer = (FnSentencePointer) this.pointer;
+							Log.d(TAG, "ArgPosition: fnsentence=" + sentencePointer);
+							if (sentencePointer != null && Settings.Source.FRAMENET.test(this.sources))
 							{
-								vnDomDoc = new VerbNetImplementation().queryClassDoc(db, vnclassPointer.getId(), null);
+								fnDomDoc = new FrameNetImplementation(true).querySentenceDoc(db, sentencePointer.getId());
 							}
 							break;
 
-						case ProviderArgs.ARG_QUERYTYPE_PBROLESET:
-							final PbRoleSetPointer pbroleSetPointer = (PbRoleSetPointer) pointer;
-							Log.d(TAG, "ArgPosition: pbroleset=" + pbroleSetPointer);
-							if (pbroleSetPointer != null && Settings.Source.PROPBANK.test(sources))
+						case ProviderArgs.ARG_QUERYTYPE_FNANNOSET:
+							final FnAnnoSetPointer annoSetPointer = (FnAnnoSetPointer) this.pointer;
+							Log.d(TAG, "ArgPosition: fnannoset=" + annoSetPointer);
+							if (annoSetPointer != null && Settings.Source.FRAMENET.test(this.sources))
 							{
-								pbDomDoc = new PropBankImplementation().queryRoleSetDoc(db, pbroleSetPointer.getId(), null);
+								fnDomDoc = new FrameNetImplementation(true).queryAnnoSetDoc(db, annoSetPointer.getId());
 							}
 							break;
 					}
 				}
 
 				// stringify
-				return docsToString(this.data, this.xml, isSelector, wnDomDoc, vnDomDoc, pbDomDoc);
+				return docsToString(this.data, this.xml, isSelector, fnDomDoc);
 			}
 			catch (@NonNull final Exception e)
 			{
@@ -298,19 +248,20 @@ public class WebFragment extends Fragment
 	private void makeModels()
 	{
 		final boolean xml = Settings.getXmlPref(requireContext());
-		this.model = new ViewModelProvider(this).get("vn:web(doc)", WebModel.class);
+		this.model = new ViewModelProvider(this).get("fn:web(doc)", WebModel.class);
 		this.model.getData().observe(getViewLifecycleOwner(), doc -> {
 			Log.d(TAG, "onLoadFinished");
 			final String mimeType = xml ? "text/xml" : "text/html";
 			final String baseUrl = "file:///android_asset/";
 			WebFragment.this.webview.loadDataWithBaseURL(baseUrl, doc, mimeType, "utf-8", null);
-			//WebFragment.this.webview.loadUrl("_about:blank");
+			//WebFragment.this.webview.loadUrl("_about:blank");	}
 		});
 	}
 
 	/**
 	 * Load web view with data
 	 */
+	@SuppressWarnings("UnusedReturnValue")
 	@SuppressLint("SetJavaScriptEnabled")
 	private void load()
 	{
@@ -374,21 +325,21 @@ public class WebFragment extends Fragment
 
 						switch (name)
 						{
-							case "vnclassid":
-								type = ProviderArgs.ARG_QUERYTYPE_VNCLASS;
-								pointer = new VnClassPointer(id);
+							case "fnframeid":
+								type = ProviderArgs.ARG_QUERYTYPE_FNFRAME;
+								pointer = new FnFramePointer(id);
 								break;
-							case "pbrolesetid":
-								type = ProviderArgs.ARG_QUERYTYPE_PBROLESET;
-								pointer = new PbRoleSetPointer(id);
+							case "fnluid":
+								type = ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT;
+								pointer = new FnLexUnitPointer(id);
 								break;
-							case "wordid":
-								type = ProviderArgs.ARG_QUERYTYPE_WORD;
-								pointer = new WordPointer(id);
+							case "fnsentenceid":
+								type = ProviderArgs.ARG_QUERYTYPE_FNSENTENCE;
+								pointer = new FnSentencePointer(id);
 								break;
-							case "synsetid":
-								type = ProviderArgs.ARG_QUERYTYPE_SYNSET;
-								pointer = new SynsetPointer(id);
+							case "fnannosetid":
+								type = ProviderArgs.ARG_QUERYTYPE_FNANNOSET;
+								pointer = new FnAnnoSetPointer(id);
 								break;
 							default:
 								Log.e(TAG, "Ill-formed Uri: " + uri);
@@ -411,14 +362,16 @@ public class WebFragment extends Fragment
 		};
 		this.webview.setWebViewClient(webClient);
 
-		// context
-		final Context context = requireContext();
-
 		// settings sources
-		final int enable = Settings.getAllPref(context);
+		int mask = 0;
+		if (Settings.getFrameNetPref(requireContext()))
+		{
+			mask |= Settings.Source.FRAMENET.set(mask);
+		}
+		final int sources = mask;
 
 		// settings output
-		final boolean xml = Settings.getXmlPref(context);
+		final boolean xml = Settings.getXmlPref(requireContext());
 
 		// unmarshal arguments
 		Bundle args = getArguments();
@@ -432,15 +385,15 @@ public class WebFragment extends Fragment
 		Log.d(TAG, "ArgPosition: query=" + pointer);
 
 		// hint
-		final String posString = args.getString(ProviderArgs.ARG_HINTPOS);
-		final Character pos = posString == null ? null : posString.charAt(0);
+		//final String posString = args.getString(ProviderArgs.ARG_HINTPOS);
+		//final Character pos = posString == null ? null : posString.charAt(0);
 
 		// text
 		final String data = args.getString(ProviderArgs.ARG_QUERYSTRING);
 		Log.d(TAG, "ArgPosition: data=" + data);
 
 		// load the contents
-		this.model.loadData(new WebDocumentStringLoader(context, pointer, pos, type, data, enable, xml));
+		this.model.loadData(new WebDocumentStringLoader(requireContext(), pointer, type, data, sources, xml));
 	}
 
 	/**
@@ -449,22 +402,19 @@ public class WebFragment extends Fragment
 	 * @param word       query word
 	 * @param xml        assemble as xml (or document to be xslt-transformed if false)
 	 * @param isSelector is selector source
-	 * @param wnDomDoc   wordnet document
-	 * @param vnDomDoc   verbnet document
-	 * @param pbDomDoc   propbank document
+	 * @param fnDomDoc   framenet document
 	 * @return string
 	 */
 	@NonNull
 	private String docsToString(@SuppressWarnings("UnusedParameters") final String word,  //
 			final boolean xml,  //
 			final boolean isSelector,  //
-			@Nullable final Document wnDomDoc,  //
-			@Nullable final Document vnDomDoc,  //
-			@Nullable final Document pbDomDoc)
+			@Nullable final Document fnDomDoc)
 	{
 		// LogUtils.writeLog(DomTransformer.docToXml(wnDomDoc), false, "wn_sqlunet.log");
 		// LogUtils.writeLog(DomTransformer.docToXml(vnDomDoc), false, "vn_sqlunet.log");
 		// LogUtils.writeLog(DomTransformer.docToXml(pbDomDoc), false, "pb_sqlunet.log");
+		// LogUtils.writeLog(DomTransformer.docToXml(fnDomDoc), false, "fn_sqlunet.log");
 		// LogUtils.writeLog(DomTransformer.docToXml(bncDomDoc), false, "bnc_sqlunet.log");
 
 		String data;
@@ -473,17 +423,9 @@ public class WebFragment extends Fragment
 			// merge all into one
 			final Document rootDomDoc = DomFactory.makeDocument();
 			NodeFactory.makeRootNode(rootDomDoc, rootDomDoc, "sqlunet", null, WebFragment.SQLUNET_NS);
-			if (wnDomDoc != null)
+			if (fnDomDoc != null)
 			{
-				rootDomDoc.getDocumentElement().appendChild(rootDomDoc.importNode(wnDomDoc.getFirstChild(), true));
-			}
-			if (vnDomDoc != null)
-			{
-				rootDomDoc.getDocumentElement().appendChild(rootDomDoc.importNode(vnDomDoc.getFirstChild(), true));
-			}
-			if (pbDomDoc != null)
-			{
-				rootDomDoc.getDocumentElement().appendChild(rootDomDoc.importNode(pbDomDoc.getFirstChild(), true));
+				rootDomDoc.getDocumentElement().appendChild(rootDomDoc.importNode(fnDomDoc.getFirstChild(), true));
 			}
 
 			data = DomTransformer.docToXml(rootDomDoc);
@@ -507,13 +449,9 @@ public class WebFragment extends Fragment
 			sb.append(STYLESHEET1).append("css/style.css").append(STYLESHEET2);
 			sb.append(STYLESHEET1).append("css/tree.css").append(STYLESHEET2);
 			sb.append(STYLESHEET1).append("css/wordnet.css").append(STYLESHEET2);
-			if (vnDomDoc != null)
+			if (fnDomDoc != null)
 			{
-				sb.append(STYLESHEET1).append("css/verbnet.css").append(STYLESHEET2);
-			}
-			if (pbDomDoc != null)
-			{
-				sb.append(STYLESHEET1).append("css/propbank.css").append(STYLESHEET2);
+				sb.append(STYLESHEET1).append("css/framenet.css").append(STYLESHEET2);
 			}
 
 			// javascripts
@@ -521,13 +459,9 @@ public class WebFragment extends Fragment
 			sb.append(SCRIPT1).append("js/sarissa.js").append(SCRIPT2);
 			sb.append(SCRIPT1).append("js/ajax.js").append(SCRIPT2);
 			sb.append(SCRIPT1).append("js/wordnet.js").append(SCRIPT2);
-			if (vnDomDoc != null)
+			if (fnDomDoc != null)
 			{
-				sb.append(SCRIPT1).append("js/verbnet.js'></script>");
-			}
-			if (pbDomDoc != null)
-			{
-				sb.append(SCRIPT1).append("js/propbank.js").append(SCRIPT2);
+				sb.append(SCRIPT1).append("js/framenet.js").append(SCRIPT2);
 			}
 
 			// body
@@ -538,22 +472,10 @@ public class WebFragment extends Fragment
 
 			// xslt-transformed data
 			sb.append(LIST1);
-			if (vnDomDoc != null)
+			if (fnDomDoc != null)
 			{
 				sb.append(ITEM1);
-				sb.append(new DocumentTransformer().docToHtml(vnDomDoc, Settings.Source.VERBNET.toString(), isSelector));
-				sb.append(ITEM2);
-			}
-			if (pbDomDoc != null)
-			{
-				sb.append(ITEM1);
-				sb.append(new DocumentTransformer().docToHtml(pbDomDoc, Settings.Source.PROPBANK.toString(), isSelector));
-				sb.append(ITEM2);
-			}
-			if (wnDomDoc != null)
-			{
-				sb.append(ITEM1);
-				sb.append(new DocumentTransformer().docToHtml(wnDomDoc, Settings.Source.WORDNET.toString(), isSelector));
+				sb.append(new DocumentTransformer().docToHtml(fnDomDoc, Settings.Source.FRAMENET.toString(), isSelector));
 				sb.append(ITEM2);
 			}
 			sb.append(LIST2);
@@ -567,8 +489,8 @@ public class WebFragment extends Fragment
 			{
 				final URL xsd = DocumentTransformer.class.getResource("/org/sqlunet/SqlUNet.xsd");
 				assert xsd != null;
-				DomValidator.validateDocs(xsd, wnDomDoc, vnDomDoc, pbDomDoc);
-				LogUtils.writeLog(false, requireContext(), null, wnDomDoc, vnDomDoc, pbDomDoc);
+				DomValidator.validateDocs(xsd, fnDomDoc);
+				LogUtils.writeLog(false, requireContext(), null, fnDomDoc);
 				LogUtils.writeLog(data, false, requireContext(), null);
 				Log.d(TAG, "output=\n" + data);
 			}
