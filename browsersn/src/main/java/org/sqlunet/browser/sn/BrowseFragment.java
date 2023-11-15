@@ -20,7 +20,7 @@ import org.sqlunet.browser.BaseSearchFragment;
 import org.sqlunet.browser.BrowseSplashFragment;
 import org.sqlunet.browser.SplashFragment;
 import org.sqlunet.browser.config.TableActivity;
-import org.sqlunet.browser.selector.Browse1Activity;
+import org.sqlunet.browser.sn.selector.Browse1Activity;
 import org.sqlunet.browser.sn.selector.Browse1Fragment;
 import org.sqlunet.browser.sn.selector.SnBrowse1Fragment;
 import org.sqlunet.browser.sn.xselector.XBrowse1Fragment;

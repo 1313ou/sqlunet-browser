@@ -17,7 +17,7 @@ import org.sqlunet.browser.BaseSearchFragment;
 import org.sqlunet.browser.BrowseSplashFragment;
 import org.sqlunet.browser.SplashFragment;
 import org.sqlunet.browser.config.TableActivity;
-import org.sqlunet.browser.selector.Browse1Activity;
+import org.sqlunet.browser.wn.selector.Browse1Activity;
 import org.sqlunet.browser.wn.web.WebActivity;
 import org.sqlunet.browser.wn.web.WebFragment;
 import org.sqlunet.browser.wn.lib.R;

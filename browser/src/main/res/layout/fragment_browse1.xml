@@ -6,7 +6,7 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context="org.sqlunet.browser.selector.Browse1Activity">
+	tools:context="org.sqlunet.browser.xn.selector.Browse1Activity">
 
 	<!-- selectors -->
 	<androidx.fragment.app.FragmentContainerView

@@ -97,7 +97,7 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.browser.selector.Browse1Activity"
+			android:name="org.sqlunet.browser.wn.selector.Browse1Activity"
 			android:exported="false"
 			android:label="@string/title_activity_selector"
 			android:launchMode="singleTop"

@@ -1,15 +1,15 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser.selector;
+package org.sqlunet.browser.xn.selector;
 
 import android.os.Bundle;
 
 import org.sqlunet.browser.AbstractBrowse1Activity;
 import org.sqlunet.browser.BaseBrowse1Fragment;
-import org.sqlunet.browser.fn.R;
-import org.sqlunet.browser.fn.selector.Browse1Fragment;
+import org.sqlunet.browser.R;
+import org.sqlunet.browser.xn.selector.Browse1Fragment;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;

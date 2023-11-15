@@ -7,7 +7,7 @@
 	android:id="@+id/container_browse1"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context="org.sqlunet.browser.selector.Browse1Activity">
+	tools:context="org.sqlunet.browser.wn.selector.Browse1Activity">
 
 	<!-- selectors -->
 	<androidx.fragment.app.FragmentContainerView
