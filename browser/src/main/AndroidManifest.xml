@@ -304,7 +304,7 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.browser.web.WebActivity"
+			android:name="org.sqlunet.browser.xn.WebActivity"
 			android:label="@string/title_activity_web"
 			android:parentActivityName="org.sqlunet.browser.MainActivity"
 			tools:ignore="UnusedAttribute">

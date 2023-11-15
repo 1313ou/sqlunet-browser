@@ -30,7 +30,7 @@ import org.sqlunet.bnc.sql.BncImplementation;
 import org.sqlunet.browser.BuildConfig;
 import org.sqlunet.browser.R;
 import org.sqlunet.browser.web.DocumentStringLoader;
-import org.sqlunet.browser.web.WebActivity;
+import org.sqlunet.browser.xn.WebActivity;
 import org.sqlunet.browser.web.WebModel;
 import org.sqlunet.browser.xn.DocumentTransformer;
 import org.sqlunet.browser.xn.Settings;
