@@ -272,7 +272,6 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 								return true;
 							}
 						}
-						// do not close: cursor.close();
 					}
 				}
 			}

@@ -527,7 +527,6 @@ public class XSelectorsFragment extends BaseSelectorsExpandableListFragment
 			final int idWordId = cursor.getColumnIndex(Words_PbWords_VnWords.WORDID);
 			this.wordId = cursor.getLong(idWordId);
 		}
-		// cursor.close();
 	}
 
 	/**

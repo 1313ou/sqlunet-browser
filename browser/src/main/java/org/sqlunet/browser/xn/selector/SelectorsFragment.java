@@ -187,7 +187,6 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 			final int idWordId = cursor.getColumnIndex(Words_Pronunciations_FnWords_PbWords_VnWords.WORDID);
 			this.wordId = cursor.getLong(idWordId);
 		}
-		// cursor.close();
 	}
 
 	// C L I C K   L I S T E N E R

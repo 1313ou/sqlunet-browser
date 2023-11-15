@@ -299,7 +299,6 @@ public class SensesFragment extends ListFragment
 			final int idWordId = cursor.getColumnIndex(WordNetContract.Words.WORDID);
 			this.wordId = cursor.getLong(idWordId);
 		}
-		// cursor.close();
 	}
 
 	// L I S T E N E R

@@ -172,7 +172,6 @@ public class SelectorsFragment extends BaseSelectorsListFragment
 			final int idWordId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID);
 			this.wordId = cursor.getLong(idWordId);
 		}
-		// cursor.close()
 	}
 
 	// C L I C K   L I S T E N E R
