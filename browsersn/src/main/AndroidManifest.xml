@@ -121,7 +121,7 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.browser.selector.SnBrowse1Activity"
+			android:name=".SnBrowse1Activity"
 			android:exported="false"
 			android:label="@string/title_activity_selector"
 			android:launchMode="singleTop"
