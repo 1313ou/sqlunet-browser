@@ -516,9 +516,8 @@ public class Diagnostics
 	{
 		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(XNetContract.Meta.URI));
 		final String[] projection = {XNetContract.Meta.CREATED, XNetContract.Meta.DBSIZE, XNetContract.Meta.BUILD};
-		try
+		try (final Cursor cursor = context.getContentResolver().query(uri, projection, null, null, null))
 		{
-			final Cursor cursor = context.getContentResolver().query(uri, projection, null, null, null);
 			if (cursor != null && cursor.moveToFirst())
 			{
 				String[] meta = new String[3];
@@ -540,7 +539,6 @@ public class Diagnostics
 					String build = cursor.getString(buildIndex);
 					meta[2] = build;
 				}
-				cursor.close();
 				return meta;
 			}
 		}
