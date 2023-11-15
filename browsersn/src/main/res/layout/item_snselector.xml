@@ -8,7 +8,7 @@
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:orientation="horizontal"
-	tools:context="org.sqlunet.browser.xselector.XBrowse1Activity"
+	tools:context=".xselector.XBrowse1Activity"
 	tools:ignore="Overdraw">
 
 	<!--

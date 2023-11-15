@@ -136,7 +136,7 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.browser.xselector.XBrowse1Activity"
+			android:name=".xselector.XBrowse1Activity"
 			android:exported="false"
 			android:label="@string/title_activity_xselector"
 			android:launchMode="singleTop"

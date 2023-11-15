@@ -7,7 +7,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context="org.sqlunet.browser.xselector.XBrowse1Activity">
+                tools:context=".xselector.XBrowse1Activity">
 
 	<!-- x selectors -->
 	<FrameLayout

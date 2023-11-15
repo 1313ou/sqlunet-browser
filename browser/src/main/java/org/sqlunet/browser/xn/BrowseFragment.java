@@ -25,7 +25,7 @@ import org.sqlunet.browser.xn.selector.Browse1Activity;
 import org.sqlunet.browser.xn.web.WebFragment;
 import org.sqlunet.browser.xn.selector.Browse1Fragment;
 import org.sqlunet.browser.xn.xselector.XBrowse1Fragment;
-import org.sqlunet.browser.xselector.XBrowse1Activity;
+import org.sqlunet.browser.xn.xselector.XBrowse1Activity;
 import org.sqlunet.framenet.FnAnnoSetPointer;
 import org.sqlunet.framenet.FnFramePointer;
 import org.sqlunet.framenet.FnLexUnitPointer;
