@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser.xselector;
+package org.sqlunet.browser.vn.xselector;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -26,14 +26,6 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 
 	private static final int PROPBANKSOURCE = 0x00004;
 
-	private static final int FRAMENETSOURCE = 0x00008;
-
-	private static final int PMVERBNETSOURCE = 0x00020;
-
-	private static final int PMPROPBANKSOURCE = 0x00040;
-
-	private static final int PMFRAMENETSOURCE = 0x00080;
-
 	/**
 	 * xId : optional/nullable
 	 */
@@ -45,7 +37,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	private long xClassId;
 
 	/**
-	 * xId : (fn=lex unit that is member of frame) optional/nullable
+	 * xId : (vn=lex unit that is member of frame) optional/nullable
 	 */
 	private long xMemberId;
 
@@ -61,7 +53,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	private final long xMask;
 
 	/**
-	 * xGroup (0=wordnet, 1=verbnet, 2=propbank, 3=framenet, 4=bnc)
+	 * xGroup (0=wordnet, 1=verbnet, 2=propbank)
 	 */
 	private final int xGroup;
 
@@ -163,7 +155,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	}
 
 	/**
-	 * Get member id (fn=lex unit that is member of frame) id
+	 * Get member id (vn=lex unit that is member of frame) id
 	 *
 	 * @return role id
 	 */
@@ -252,7 +244,6 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 		{
 			mask |= WORDNETSOURCE;
 		}
-
 		if (xSources.contains("vn")) //
 		{
 			mask |= VERBNETSOURCE;
@@ -261,40 +252,6 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 		{
 			mask |= PROPBANKSOURCE;
 		}
-		if (xSources.contains("fn")) //
-		{
-			mask |= FRAMENETSOURCE;
-		}
-
-		if (xSources.contains("pmvn")) //
-		{
-			mask |= PMVERBNETSOURCE;
-		}
-		if (xSources.contains("pmpb")) //
-		{
-			mask |= PMPROPBANKSOURCE;
-		}
-		if (xSources.contains("pmfn")) //
-		{
-			mask |= PMFRAMENETSOURCE;
-		}
 		return mask;
-	}
-
-
-	/**
-	 * Determine whether WordNet is only source
-	 *
-	 * @return whether to expand
-	 */
-	public boolean wordNetOnly()
-	{
-		boolean result = true;
-		long mask = this.getXMask();
-		if ((mask & ~XSelectorPointer.WORDNETSOURCE) != 0)
-		{
-			result = false;
-		}
-		return result;
 	}
 }

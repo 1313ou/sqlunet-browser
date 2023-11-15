@@ -16,8 +16,6 @@ import android.widget.TextView;
 import org.sqlunet.browser.BaseSelectorsListFragment;
 import org.sqlunet.browser.Module;
 import org.sqlunet.browser.R;
-import org.sqlunet.browser.selector.PosSelectorPointer;
-import org.sqlunet.browser.selector.SelectorPointer;
 import org.sqlunet.loaders.Queries;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.provider.XNetContract.Words_Pronunciations_FnWords_PbWords_VnWords;

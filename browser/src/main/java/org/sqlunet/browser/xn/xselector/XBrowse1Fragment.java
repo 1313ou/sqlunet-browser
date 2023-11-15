@@ -19,7 +19,6 @@ import org.sqlunet.browser.R;
 import org.sqlunet.browser.Selectors;
 import org.sqlunet.browser.xn.Browse2Fragment;
 import org.sqlunet.browser.xn.Settings;
-import org.sqlunet.browser.xselector.XSelectorPointer;
 import org.sqlunet.provider.ProviderArgs;
 
 import androidx.annotation.NonNull;

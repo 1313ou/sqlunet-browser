@@ -31,7 +31,7 @@ import org.sqlunet.browser.BuildConfig;
 import org.sqlunet.browser.R;
 import org.sqlunet.browser.xn.DocumentTransformer;
 import org.sqlunet.browser.xn.Settings;
-import org.sqlunet.browser.xselector.XSelectorPointer;
+import org.sqlunet.browser.xn.xselector.XSelectorPointer;
 import org.sqlunet.dom.DomFactory;
 import org.sqlunet.dom.DomTransformer;
 import org.sqlunet.dom.DomValidator;

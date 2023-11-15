@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 
 import org.sqlunet.browser.BaseSelectorsFragment;
 import org.sqlunet.browser.sn.R;
-import org.sqlunet.browser.selector.CollocationSelectorPointer;
-import org.sqlunet.browser.selector.SelectorPointer;
+import org.sqlunet.browser.sn.selector.CollocationSelectorPointer;
+import org.sqlunet.browser.sn.selector.SelectorPointer;
 import org.sqlunet.browser.sn.selector.SelectorsFragment;
 import org.sqlunet.browser.sn.selector.SnSelectorsFragment;
 

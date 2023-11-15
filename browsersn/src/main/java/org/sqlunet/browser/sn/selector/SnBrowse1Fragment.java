@@ -15,7 +15,6 @@ import org.sqlunet.browser.BaseBrowse2Fragment;
 import org.sqlunet.browser.BaseSelectorsFragment;
 import org.sqlunet.browser.Selectors;
 import org.sqlunet.browser.SnBrowse2Activity;
-import org.sqlunet.browser.selector.CollocationSelectorPointer;
 import org.sqlunet.browser.sn.Browse2Fragment;
 import org.sqlunet.browser.sn.R;
 import org.sqlunet.browser.sn.Settings;

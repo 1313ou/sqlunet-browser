@@ -27,7 +27,6 @@ import org.sqlunet.browser.Module;
 import org.sqlunet.browser.R;
 import org.sqlunet.browser.SqlunetViewModel;
 import org.sqlunet.browser.xn.Settings;
-import org.sqlunet.browser.xselector.XSelectorPointer;
 import org.sqlunet.loaders.Queries;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.provider.XNetContract.Words_FnWords_PbWords_VnWords;

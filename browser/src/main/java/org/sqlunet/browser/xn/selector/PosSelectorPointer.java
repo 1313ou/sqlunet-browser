@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser.selector;
+package org.sqlunet.browser.xn.selector;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -21,8 +21,7 @@ public class PosSelectorPointer extends SelectorPointer implements HasPos
 	/**
 	 * POS
 	 */
-	@SuppressWarnings("WeakerAccess")
-	protected final Character pos;
+	private final Character pos;
 
 	/**
 	 * Static field used to regenerate object, individually or as arrays
@@ -49,8 +48,7 @@ public class PosSelectorPointer extends SelectorPointer implements HasPos
 	 *
 	 * @param parcel parcel
 	 */
-	@SuppressWarnings("WeakerAccess")
-	protected PosSelectorPointer(@NonNull Parcel parcel)
+	private PosSelectorPointer(@NonNull Parcel parcel)
 	{
 		super(parcel);
 		String posStr = parcel.readString();

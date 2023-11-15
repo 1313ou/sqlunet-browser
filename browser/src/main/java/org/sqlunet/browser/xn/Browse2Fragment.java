@@ -15,7 +15,7 @@ import org.sqlunet.bnc.browser.BNCFragment;
 import org.sqlunet.browser.BaseBrowse2Fragment;
 import org.sqlunet.browser.R;
 import org.sqlunet.browser.web.WebFragment;
-import org.sqlunet.browser.xselector.XSelectorPointer;
+import org.sqlunet.browser.xn.xselector.XSelectorPointer;
 import org.sqlunet.browser.xn.xselector.XSelectorsFragment;
 import org.sqlunet.framenet.browser.FrameNetFragment;
 import org.sqlunet.propbank.browser.PropBankFragment;

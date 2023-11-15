@@ -27,12 +27,12 @@ import android.widget.Toast;
 
 import org.sqlunet.Pointer;
 import org.sqlunet.bnc.sql.BncImplementation;
-import org.sqlunet.browser.selector.CollocationSelectorPointer;
+import org.sqlunet.browser.sn.selector.CollocationSelectorPointer;
 import org.sqlunet.browser.sn.BuildConfig;
 import org.sqlunet.browser.sn.DocumentTransformer;
 import org.sqlunet.browser.sn.R;
 import org.sqlunet.browser.sn.Settings;
-import org.sqlunet.browser.xselector.XSelectorPointer;
+import org.sqlunet.browser.sn.xselector.XSelectorPointer;
 import org.sqlunet.dom.DomFactory;
 import org.sqlunet.dom.DomTransformer;
 import org.sqlunet.dom.DomValidator;

@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser.xselector;
+package org.sqlunet.browser.sn.xselector;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import org.sqlunet.HasXId;
-import org.sqlunet.browser.selector.SelectorPointer;
+import org.sqlunet.browser.sn.selector.SelectorPointer;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,9 +22,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 {
 	private static final int WORDNETSOURCE = 0x00001;
 
-	private static final int VERBNETSOURCE = 0x00002;
-
-	private static final int PROPBANKSOURCE = 0x00004;
+	private static final int SYNTAGNETSOURCE = 0x00100;
 
 	/**
 	 * xId : optional/nullable
@@ -37,7 +35,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	private long xClassId;
 
 	/**
-	 * xId : (vn=lex unit that is member of frame) optional/nullable
+	 * xId : (member) optional/nullable
 	 */
 	private long xMemberId;
 
@@ -53,7 +51,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	private final long xMask;
 
 	/**
-	 * xGroup (0=wordnet, 1=verbnet, 2=propbank)
+	 * xGroup (0=wordnet, 2=syntagnet, 3=bnc)
 	 */
 	private final int xGroup;
 
@@ -155,7 +153,7 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 	}
 
 	/**
-	 * Get member id (vn=lex unit that is member of frame) id
+	 * Get member id
 	 *
 	 * @return role id
 	 */
@@ -244,14 +242,28 @@ public class XSelectorPointer extends SelectorPointer implements HasXId
 		{
 			mask |= WORDNETSOURCE;
 		}
-		if (xSources.contains("vn")) //
+
+		if (xSources.contains("sn")) //
 		{
-			mask |= VERBNETSOURCE;
-		}
-		if (xSources.contains("pb")) //
-		{
-			mask |= PROPBANKSOURCE;
+			mask |= SYNTAGNETSOURCE;
 		}
 		return mask;
+	}
+
+
+	/**
+	 * Determine whether WordNet is only source
+	 *
+	 * @return whether to expand
+	 */
+	public boolean wordNetOnly()
+	{
+		boolean result = true;
+		long mask = this.getXMask();
+		if ((mask & ~XSelectorPointer.WORDNETSOURCE) != 0)
+		{
+			result = false;
+		}
+		return result;
 	}
 }

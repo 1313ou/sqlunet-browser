@@ -17,7 +17,6 @@ import org.sqlunet.browser.Browse2Activity;
 import org.sqlunet.browser.Selectors;
 import org.sqlunet.browser.vn.Browse2Fragment;
 import org.sqlunet.browser.vn.R;
-import org.sqlunet.browser.xselector.XSelectorPointer;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.settings.Settings;
 
