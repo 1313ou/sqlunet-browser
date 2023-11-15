@@ -34,7 +34,6 @@ import org.sqlunet.browser.sn.R;
 import org.sqlunet.browser.sn.Settings;
 import org.sqlunet.browser.sn.xselector.XSelectorPointer;
 import org.sqlunet.browser.web.DocumentStringLoader;
-import org.sqlunet.browser.web.WebActivity;
 import org.sqlunet.browser.web.WebModel;
 import org.sqlunet.dom.DomFactory;
 import org.sqlunet.dom.DomTransformer;
