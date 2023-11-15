@@ -18,7 +18,7 @@ import org.sqlunet.browser.BrowseSplashFragment;
 import org.sqlunet.browser.SplashFragment;
 import org.sqlunet.browser.fn.selector.Browse1Fragment;
 import org.sqlunet.browser.selector.Browse1Activity;
-import org.sqlunet.browser.web.WebActivity;
+import org.sqlunet.browser.fn.web.WebActivity;
 import org.sqlunet.browser.fn.web.WebFragment;
 import org.sqlunet.framenet.FnAnnoSetPointer;
 import org.sqlunet.framenet.FnFramePointer;
