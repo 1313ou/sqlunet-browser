@@ -10,7 +10,6 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.sqlunet.browser.BrowseActivity;
 import org.sqlunet.browser.MainActivity;
 import org.sqlunet.browser.Seq;
 

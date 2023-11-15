@@ -17,7 +17,6 @@ import android.widget.Spinner;
 
 import org.sqlunet.browser.BaseBrowse1Fragment;
 import org.sqlunet.browser.BaseSearchFragment;
-import org.sqlunet.browser.BrowsePredicateMatrixActivity;
 import org.sqlunet.browser.BrowseSplashFragment;
 import org.sqlunet.browser.R;
 import org.sqlunet.browser.SplashFragment;

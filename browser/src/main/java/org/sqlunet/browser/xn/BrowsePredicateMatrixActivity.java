@@ -1,14 +1,16 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser;
+package org.sqlunet.browser.xn;
 
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 
+import org.sqlunet.browser.AbstractBrowseActivity;
+import org.sqlunet.browser.R;
 import org.sqlunet.browser.xn.BrowsePredicateMatrixFragment;
 import org.sqlunet.predicatematrix.PmRolePointer;
 import org.sqlunet.provider.ProviderArgs;

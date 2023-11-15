@@ -82,7 +82,7 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.browser.BrowseActivity"
+			android:name="org.sqlunet.browser.xn.BrowseActivity"
 			android:exported="true"
 			android:label="@string/title_activity_browse"
 			android:launchMode="singleTop"
@@ -280,11 +280,11 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.browser.BrowsePredicateMatrixActivity"
+			android:name="org.sqlunet.browser.xn.BrowsePredicateMatrixActivity"
 			android:exported="true"
 			android:label="@string/title_activity_predicatematrix"
 			android:launchMode="singleTop"
-			android:parentActivityName="org.sqlunet.browser.BrowsePredicateMatrixActivity"
+			android:parentActivityName="org.sqlunet.browser.xn.BrowsePredicateMatrixActivity"
 			tools:ignore="UnusedAttribute">
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH" />
