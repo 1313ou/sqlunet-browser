@@ -127,31 +127,30 @@ abstract public class Status
 				+ "WHEN " + ManagerContract.TablesAndIndices.TYPE + " = 'index' THEN '3' " //
 				+ "ELSE " + ManagerContract.TablesAndIndices.TYPE + " END ASC," //
 				+ ManagerContract.TablesAndIndices.NAME + " ASC";
-		final Cursor cursor = context.getContentResolver().query( //
+		try (final Cursor cursor = context.getContentResolver().query( //
 				Uri.parse(ManagerProvider.makeUri(TablesAndIndices.URI)), //
 				new String[]{TablesAndIndices.TYPE, TablesAndIndices.NAME}, // projection
 				"name NOT LIKE 'sqlite_%' AND name NOT LIKE 'android_%'", // selection criteria //
 				null, //
-				order);
-		List<String> result = null;
-		if (cursor != null)
+				order))
 		{
-			if (cursor.moveToFirst())
+			List<String> result = null;
+			if (cursor != null)
 			{
-				final int nameId = cursor.getColumnIndex(TablesAndIndices.NAME);
-				result = new ArrayList<>();
-				do
+				if (cursor.moveToFirst())
 				{
-					final String name = cursor.getString(nameId);
-					result.add(name);
+					final int nameId = cursor.getColumnIndex(TablesAndIndices.NAME);
+					result = new ArrayList<>();
+					do
+					{
+						final String name = cursor.getString(nameId);
+						result.add(name);
+					}
+					while (cursor.moveToNext());
 				}
-				while (cursor.moveToNext());
 			}
-
-			// done with cursor
-			cursor.close();
+			return result;
 		}
-		return result;
 	}
 
 	/**

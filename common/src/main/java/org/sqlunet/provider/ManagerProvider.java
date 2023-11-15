@@ -161,22 +161,21 @@ public class ManagerProvider extends BaseProvider
 		final String[] projection = {TablesAndIndices.TYPE, TablesAndIndices.NAME};
 		final String selection = TablesAndIndices.TYPE + " = 'table' AND name NOT IN ('sqlite_sequence', 'android_metadata' )";
 		final String[] selectionArgs = {};
-		final Cursor cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null);
-		if (cursor != null)
+		try (final Cursor cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null))
 		{
-			if (cursor.moveToFirst())
+			if (cursor != null)
 			{
-				final int idName = cursor.getColumnIndex(TablesAndIndices.NAME);
-				do
+				if (cursor.moveToFirst())
 				{
-					final String table = cursor.getString(idName);
-					tables.add(table);
+					final int idName = cursor.getColumnIndex(TablesAndIndices.NAME);
+					do
+					{
+						final String table = cursor.getString(idName);
+						tables.add(table);
+					}
+					while (cursor.moveToNext());
 				}
-				while (cursor.moveToNext());
 			}
-
-			// done with cursor
-			cursor.close();
 		}
 		return tables;
 	}

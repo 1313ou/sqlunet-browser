@@ -384,20 +384,21 @@ public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>
 			     final BufferedWriter bw = new BufferedWriter(writer))
 			{
 				final SearchRecentSuggestions suggestions = new SearchRecentSuggestions(requireContext(), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES);
-				final Cursor cursor = suggestions.cursor();
-				assert cursor != null;
-				if (cursor.moveToFirst())
+				try (final Cursor cursor = suggestions.cursor())
 				{
-					do
+					assert cursor != null;
+					if (cursor.moveToFirst())
 					{
-						final int dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1);
-						assert dataIdx != -1;
-						final String data = cursor.getString(dataIdx);
-						bw.write(data + '\n');
+						do
+						{
+							final int dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1);
+							assert dataIdx != -1;
+							final String data = cursor.getString(dataIdx);
+							bw.write(data + '\n');
+						}
+						while (cursor.moveToNext());
 					}
-					while (cursor.moveToNext());
 				}
-				cursor.close();
 				Log.i(TAG, "Exported to " + uri);
 				Toast.makeText(requireContext(), getResources().getText(R.string.title_history_export) + " " + uri, Toast.LENGTH_SHORT).show();
 			}
