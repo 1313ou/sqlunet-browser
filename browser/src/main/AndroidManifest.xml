@@ -256,11 +256,11 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.browser.SearchTextActivity"
+			android:name="org.sqlunet.browser.xn.SearchTextActivity"
 			android:exported="true"
 			android:label="@string/title_activity_searchtext"
 			android:launchMode="singleTop"
-			android:parentActivityName="org.sqlunet.browser.SearchTextActivity"
+			android:parentActivityName="org.sqlunet.browser.xn.SearchTextActivity"
 			tools:ignore="UnusedAttribute">
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH" />

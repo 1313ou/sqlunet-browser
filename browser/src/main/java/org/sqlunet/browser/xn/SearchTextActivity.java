@@ -1,10 +1,11 @@
 /*
- * Copyright (c) 2023. Bernard Bou
+ * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser;
+package org.sqlunet.browser.xn;
 
-import org.sqlunet.browser.wn.SearchTextFragment;
+import org.sqlunet.browser.AbstractSearchTextActivity;
+import org.sqlunet.browser.xn.SearchTextFragment;
 
 /**
  * Search text activity
