@@ -28,7 +28,6 @@ import android.widget.Toast;
 import org.sqlunet.Pointer;
 import org.sqlunet.bnc.sql.BncImplementation;
 import org.sqlunet.browser.web.DocumentStringLoader;
-import org.sqlunet.browser.web.WebActivity;
 import org.sqlunet.browser.web.WebModel;
 import org.sqlunet.browser.wn.DocumentTransformer;
 import org.sqlunet.browser.wn.Settings;
