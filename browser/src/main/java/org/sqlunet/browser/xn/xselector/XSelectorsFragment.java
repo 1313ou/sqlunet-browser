@@ -2,7 +2,7 @@
  * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.browser.xn.xselectors;
+package org.sqlunet.browser.xn.xselector;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -559,9 +559,13 @@ public class XSelectorsFragment extends BaseSelectorsExpandableListFragment
 
 		final LifecycleOwner owner = getViewLifecycleOwner();
 		this.wordIdFromWordModel = new ViewModelProvider(this).get("xselectors.wordid(word)", SqlunetViewModel.class);
-		this.wordIdFromWordModel.getData().observe(owner, unusedCursor -> {
+		this.wordIdFromWordModel.getData().observe(owner, cursor -> {
 
-			unusedCursor.close();
+			if (cursor != null && !cursor.isClosed())
+			{
+				cursor.close();
+			}
+
 			this.wordIdFromWordModel.getData().removeObservers(this);
 
 			final ExpandableListAdapter adapter = makeAdapter();
@@ -673,7 +677,6 @@ public class XSelectorsFragment extends BaseSelectorsExpandableListFragment
 
 	/**
 	 * Post processing, extraction of wordid from cursor
-	 * Closes cursor because it's no longer needed.
 	 *
 	 * @param cursor cursor
 	 */
@@ -699,26 +702,26 @@ public class XSelectorsFragment extends BaseSelectorsExpandableListFragment
 		{
 			case GROUPID_WORDNET:
 			{
-				//				final MutableLiveData<Cursor> wnLiveData = this.wnFromWordIdModel.getMutableData();
-				//				final Cursor wnCursor = wnLiveData.getValue();
-				//				if (wnCursor != null && !wnCursor.isClosed())
-				//				{
-				//					wnLiveData.setValue(wnCursor);
-				//				}
-				//				else
+				//	final MutableLiveData<Cursor> wnLiveData = this.wnFromWordIdModel.getMutableData();
+				//	final Cursor wnCursor = wnLiveData.getValue();
+				//	if (wnCursor != null && !wnCursor.isClosed())
+				//	{
+				//		wnLiveData.setValue(wnCursor);
+				//	}
+				//	else
 				loadWn(this.wordId);
 			}
 			break;
 
 			case GROUPID_VERBNET:
 			{
-				//				final MutableLiveData<Cursor> vnLiveData = this.vnFromWordIdModel.getMutableData();
-				//				final Cursor vnCursor = vnLiveData.getValue();
-				//				if (vnCursor != null && !vnCursor.isClosed())
-				//				{
-				//					vnLiveData.setValue(vnCursor);
-				//				}
-				//				else
+				//	final MutableLiveData<Cursor> vnLiveData = this.vnFromWordIdModel.getMutableData();
+				//	final Cursor vnCursor = vnLiveData.getValue();
+				//	if (vnCursor != null && !vnCursor.isClosed())
+				//	{
+				//		vnLiveData.setValue(vnCursor);
+				//	}
+				//	else
 				loadVn(this.wordId);
 			}
 			break;
