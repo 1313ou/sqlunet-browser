@@ -82,7 +82,7 @@
 		</activity>
 
 		<activity
-			android:name=".BrowseActivity"
+			android:name="org.sqlunet.browser.fn.BrowseActivity"
 			android:exported="true"
 			android:label="@string/title_activity_browse"
 			android:launchMode="singleTop"
@@ -106,7 +106,7 @@
 		</activity>
 
 		<activity
-			android:name=".selector.Browse1Activity"
+			android:name="org.sqlunet.browser.fn.selector.Browse1Activity"
 			android:exported="false"
 			android:label="@string/title_activity_selector"
 			android:launchMode="singleTop"
@@ -121,11 +121,11 @@
 		</activity>
 
 		<activity
-			android:name=".SearchTextActivity"
+			android:name="org.sqlunet.browser.fn.SearchTextActivity"
 			android:exported="true"
 			android:label="@string/title_activity_searchtext"
 			android:launchMode="singleTop"
-			android:parentActivityName=".SearchTextActivity"
+			android:parentActivityName="org.sqlunet.browser.fn.SearchTextActivity"
 			tools:ignore="UnusedAttribute">
 			<intent-filter>
 				<action android:name="android.intent.action.SEARCH" />
@@ -145,7 +145,7 @@
 		</activity>
 
 		<activity
-			android:name=".Browse2Activity"
+			android:name="org.sqlunet.browser.fn.Browse2Activity"
 			android:label="@string/title_activity_browse2"
 			android:parentActivityName="org.sqlunet.browser.MainActivity"
 			tools:ignore="UnusedAttribute">
@@ -165,7 +165,7 @@
 		</activity>
 
 		<activity
-			android:name=".web.WebActivity"
+			android:name="org.sqlunet.browser.fn.web.WebActivity"
 			android:label="@string/title_activity_web"
 			android:parentActivityName="org.sqlunet.browser.MainActivity"
 			tools:ignore="UnusedAttribute">

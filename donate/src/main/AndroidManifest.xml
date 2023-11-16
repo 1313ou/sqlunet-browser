@@ -9,7 +9,7 @@
 	<application>
 
 		<activity
-			android:name=".DonateActivity"
+			android:name="com.bbou.donate.DonateActivity"
 			android:label="@string/title_activity_donate" />
 
 	</application>

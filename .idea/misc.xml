@@ -1419,6 +1419,12 @@
       <entry_point TYPE="field" FQNAME="org.sqlunet.browser.BaseSelectorsListFragment word" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.browser.BaseSelectorsExpandableListFragment TAG" />
       <entry_point TYPE="field" FQNAME="org.sqlunet.browser.BaseSelectorsFragment TAG" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.sn.selector.CollocationSelectorPointer CREATOR" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.xn.selector.PosSelectorPointer CREATOR" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.sn.selector.PosSelectorPointer CREATOR" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.xn.xselector.XSelectorPointer CREATOR" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.sn.xselector.XSelectorPointer CREATOR" />
+      <entry_point TYPE="field" FQNAME="org.sqlunet.browser.vn.xselector.XSelectorPointer CREATOR" />
     </entry_points>
     <pattern value="org.sqlunet.browser.AbstractApplication" method="dumpTasks" />
     <pattern value="org.sqlunet.browser.AbstractApplication" method="isNightMode" />
@@ -2941,6 +2947,110 @@
     <pattern value="org.sqlunet.browser.fn.Browse2Fragment" method="search" />
     <pattern value="org.sqlunet.browser.fn.Settings.Source" method="set" />
     <pattern value="org.sqlunet.browser.BaseListFragment" method="dump" />
+    <pattern value="org.sqlunet.browser.BaseListFragment" />
+    <pattern value="org.sqlunet.browser.fn.selector.Browse1Activity" />
+    <pattern value="org.sqlunet.browser.sn.selector.Browse1Activity" />
+    <pattern value="org.sqlunet.browser.wn.selector.Browse1Activity" />
+    <pattern value="org.sqlunet.browser.xn.selector.Browse1Activity" />
+    <pattern value="org.sqlunet.browser.fn.Browse2Activity" />
+    <pattern value="org.sqlunet.browser.sn.Browse2Activity" />
+    <pattern value="org.sqlunet.browser.vn.Browse2Activity" />
+    <pattern value="org.sqlunet.browser.wn.Browse2Activity" />
+    <pattern value="org.sqlunet.browser.xn.Browse2Activity" />
+    <pattern value="org.sqlunet.browser.fn.BrowseActivity" />
+    <pattern value="org.sqlunet.browser.sn.BrowseActivity" />
+    <pattern value="org.sqlunet.browser.vn.BrowseActivity" />
+    <pattern value="org.sqlunet.browser.wn.BrowseActivity" />
+    <pattern value="org.sqlunet.browser.xn.BrowseActivity" />
+    <pattern value="org.sqlunet.browser.xn.BrowsePredicateMatrixActivity" />
+    <pattern value="org.sqlunet.browser.sn.selector.CollocationSelectorPointer" />
+    <pattern value="org.sqlunet.browser.sn.selector.CollocationSelectorPointer" method="CollocationSelectorPointer" />
+    <pattern value="org.sqlunet.browser.xn.xselector.XSelectorsFragment" method="expandAll" />
+    <pattern value="org.sqlunet.browser.sn.xselector.XSelectorPointer" method="getMask" />
+    <pattern value="org.sqlunet.browser.sn.selector.CollocationSelectorPointer" method="getPos2" />
+    <pattern value="org.sqlunet.browser.sn.xselector.XSelectorPointer" method="getXGroup" />
+    <pattern value="org.sqlunet.browser.xn.xselector.XSelectorPointer" method="getXId" />
+    <pattern value="org.sqlunet.browser.sn.xselector.XSelectorPointer" method="getXId" />
+    <pattern value="org.sqlunet.browser.vn.xselector.XSelectorPointer" method="getXId" />
+    <pattern value="org.sqlunet.browser.vn.xselector.XSelectorPointer" method="getXMask" />
+    <pattern value="org.sqlunet.browser.wn.SearchTextActivity" />
+    <pattern value="org.sqlunet.browser.vn.SearchTextActivity" />
+    <pattern value="org.sqlunet.browser.sn.SearchTextActivity" />
+    <pattern value="org.sqlunet.browser.fn.SearchTextActivity" />
+    <pattern value="org.sqlunet.browser.xn.SearchTextActivity" />
+    <pattern value="org.sqlunet.browser.sn.SnBrowse1Activity" />
+    <pattern value="org.sqlunet.browser.sn.SnBrowse2Activity" />
+    <pattern value="org.sqlunet.browser.wn.web.WebActivity" />
+    <pattern value="org.sqlunet.browser.vn.web.WebActivity" />
+    <pattern value="org.sqlunet.browser.sn.web.WebActivity" />
+    <pattern value="org.sqlunet.browser.fn.web.WebActivity" />
+    <pattern value="org.sqlunet.browser.xn.WebActivity" />
+    <pattern value="org.sqlunet.browser.vn.xselector.XBrowse1Activity" />
+    <pattern value="org.sqlunet.browser.sn.xselector.XBrowse1Activity" />
+    <pattern value="org.sqlunet.browser.xn.xselector.XBrowse1Activity" />
+    <pattern value="org.sqlunet.browser.xn.xselector.XBrowse1Fragment" />
+    <pattern value="org.sqlunet.browser.xn.xselector.XSelectorsFragment" />
+    <pattern value="org.sqlunet.browser.sn.selector.PosSelectorPointer" />
+    <pattern value="org.sqlunet.browser.xn.selector.PosSelectorPointer" />
+    <pattern value="org.sqlunet.browser.xn.selector.PosSelectorPointer" method="PosSelectorPointer" />
+    <pattern value="org.sqlunet.browser.sn.selector.PosSelectorPointer" method="PosSelectorPointer" />
+    <pattern value="org.sqlunet.browser.sn.selector.SelectorPointer" />
+    <pattern value="org.sqlunet.browser.vn.selector.SelectorPointer" />
+    <pattern value="org.sqlunet.browser.xn.selector.SelectorPointer" />
+    <pattern value="org.sqlunet.browser.vn.selector.SelectorPointer" method="SelectorPointer" />
+    <pattern value="org.sqlunet.browser.xn.selector.SelectorPointer" method="SelectorPointer" />
+    <pattern value="org.sqlunet.browser.sn.selector.SelectorPointer" method="SelectorPointer" />
+    <pattern value="org.sqlunet.browser.fn.Settings" />
+    <pattern value="org.sqlunet.browser.fn.Settings.Source" />
+    <pattern value="org.sqlunet.browser.fn.web.WebFragment" />
+    <pattern value="org.sqlunet.browser.sn.web.WebFragment" />
+    <pattern value="org.sqlunet.browser.vn.web.WebFragment" />
+    <pattern value="org.sqlunet.browser.wn.web.WebFragment" />
+    <pattern value="org.sqlunet.browser.xn.web.WebFragment" />
+    <pattern value="org.sqlunet.browser.wn.web.WebFragment" method="WebFragment" />
+    <pattern value="org.sqlunet.browser.vn.web.WebFragment" method="WebFragment" />
+    <pattern value="org.sqlunet.browser.sn.web.WebFragment" method="WebFragment" />
+    <pattern value="org.sqlunet.browser.fn.web.WebFragment" method="WebFragment" />
+    <pattern value="org.sqlunet.browser.xn.web.WebFragment" method="WebFragment" />
+    <pattern value="org.sqlunet.browser.sn.xselector.XSelectorPointer" />
+    <pattern value="org.sqlunet.browser.vn.xselector.XSelectorPointer" />
+    <pattern value="org.sqlunet.browser.xn.xselector.XSelectorPointer" />
+    <pattern value="org.sqlunet.browser.xn.xselector.XSelectorPointer" method="XSelectorPointer" />
+    <pattern value="org.sqlunet.browser.sn.xselector.XSelectorPointer" method="XSelectorPointer" />
+    <pattern value="org.sqlunet.browser.vn.xselector.XSelectorPointer" method="XSelectorPointer" />
+    <pattern value="org.sqlunet.provider.BaseProvider.CircularBuffer" />
+    <pattern value="org.sqlunet.provider.BaseProvider.CircularBuffer" method="CircularBuffer" />
+    <pattern value="org.sqlunet.browser.web.DocumentStringLoader" />
+    <pattern value="com.bbou.download.FileDataDownloader" method="doInBackground" />
+    <pattern value="com.bbou.download.FileDataDownloader" />
+    <pattern value="com.bbou.download.FileDataDownloader" method="FileDataDownloader" />
+    <pattern value="org.sqlunet.browser.web.DocumentStringLoader" method="getDoc" />
+    <pattern value="org.sqlunet.browser.fn.selector.SelectorsFragment.Listener" />
+    <pattern value="org.sqlunet.browser.sn.selector.SelectorsFragment.Listener" />
+    <pattern value="org.sqlunet.browser.sn.selector.SnSelectorsFragment.Listener" />
+    <pattern value="org.sqlunet.browser.vn.xselector.XSelectorsFragment.Listener" />
+    <pattern value="org.sqlunet.browser.wn.selector.SelectorsFragment.Listener" />
+    <pattern value="org.sqlunet.browser.xn.xselector.XSelectorsFragment.Listener" />
+    <pattern value="com.bbou.download.FileDataDownloader" method="onCancelled" />
+    <pattern value="com.bbou.download.FileDataDownloader" method="onPostExecute" />
+    <pattern value="org.sqlunet.browser.sn.Settings" />
+    <pattern value="org.sqlunet.browser.sn.Settings.Source" />
+    <pattern value="org.sqlunet.browser.sn.Settings.Source" method="Source" />
+    <pattern value="org.sqlunet.browser.fn.web.WebFragment.WebDocumentStringLoader" />
+    <pattern value="org.sqlunet.browser.sn.web.WebFragment.WebDocumentStringLoader" />
+    <pattern value="org.sqlunet.browser.vn.web.WebFragment.WebDocumentStringLoader" />
+    <pattern value="org.sqlunet.browser.wn.web.WebFragment.WebDocumentStringLoader" />
+    <pattern value="org.sqlunet.browser.xn.web.WebFragment.WebDocumentStringLoader" />
+    <pattern value="org.sqlunet.browser.wn.web.WebFragment.WebDocumentStringLoader" method="WebDocumentStringLoader" />
+    <pattern value="org.sqlunet.browser.vn.web.WebFragment.WebDocumentStringLoader" method="WebDocumentStringLoader" />
+    <pattern value="org.sqlunet.browser.sn.web.WebFragment.WebDocumentStringLoader" method="WebDocumentStringLoader" />
+    <pattern value="org.sqlunet.browser.xn.web.WebFragment.WebDocumentStringLoader" method="WebDocumentStringLoader" />
+    <pattern value="org.sqlunet.browser.fn.web.WebFragment.WebDocumentStringLoader" method="WebDocumentStringLoader" />
+    <pattern value="org.sqlunet.browser.xn.web.WebFragment.WebDocumentStringLoader" method="getDoc" />
+    <pattern value="org.sqlunet.browser.wn.web.WebFragment.WebDocumentStringLoader" method="getDoc" />
+    <pattern value="org.sqlunet.browser.vn.web.WebFragment.WebDocumentStringLoader" method="getDoc" />
+    <pattern value="org.sqlunet.browser.sn.web.WebFragment.WebDocumentStringLoader" method="getDoc" />
+    <pattern value="org.sqlunet.browser.fn.web.WebFragment.WebDocumentStringLoader" method="getDoc" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="androidx.annotation.Nullable" />
