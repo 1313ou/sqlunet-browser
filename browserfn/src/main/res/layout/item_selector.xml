@@ -8,7 +8,7 @@
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:orientation="vertical"
-	tools:context=".selector.Browse1Activity"
+	tools:context="org.sqlunet.browser.fn.selector.Browse1Activity"
 	tools:ignore="Overdraw">
 
 	<ImageView
