@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<resources>
+
+	<string name="activity_browse" translatable="false">org.sqlunet.browser.sn.BrowseActivity</string>
+	<string name="activity_searchtext" translatable="false">org.sqlunet.browser.sn.SearchTextActivity</string>
+
+</resources>
