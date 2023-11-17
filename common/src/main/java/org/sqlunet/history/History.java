@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SearchRecentSuggestionsProvider;
 
 import org.jetbrains.annotations.NotNull;
+import org.sqlunet.browser.common.R;
 
 import androidx.annotation.NonNull;
 
@@ -26,7 +27,9 @@ public class History
 	{
 		try
 		{
-			final Intent intent = new Intent(context, Class.forName("org.sqlunet.browser.BrowseActivity"));
+			final String browserClass = context.getString(R.string.activity_browse);
+			assert browserClass != null;
+			final Intent intent = new Intent(context, Class.forName(browserClass));
 			intent.setAction(Intent.ACTION_VIEW);
 			intent.putExtra(SearchManager.QUERY, query);
 			return intent;
