@@ -5,18 +5,6 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-	<!-- Launch -->
-	<string-array name="pref_launch_list_titles" tools:ignore="InconsistentArrays" tools:keep="@array/pref_launch_list_titles">
-		<item>Main</item>
-		<item>Browse</item>
-		<item>Search text</item>
-	</string-array>
-	<string-array name="pref_launch_list_values" tools:ignore="InconsistentArrays" tools:keep="@array/pref_launch_list_values">
-		<item>@string/default_launch</item>
-		<item>org.sqlunet.browser.BrowseActivity</item>
-		<item>org.sqlunet.browser.SearchTextActivity</item>
-	</string-array>
-
 	<!-- Filter -->
 	<string name="pref_title_enable_wordnet" tools:keep="@string/pref_title_enable_wordnet">Enable WordNet</string>
 	<string name="pref_description_enable_wordnet" tools:keep="@string/pref_description_enable_wordnet">Display WordNet information</string>

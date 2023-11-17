@@ -5,9 +5,6 @@
 <resources>
 
 	<!-- Override -->
-	<string name="default_launch">org.sqlunet.browser.wn.MainActivity</string>
-
-	<!-- Override -->
 	<string name="pref_title_oewn_no_notice">OEWN notice</string>
 	<string name="pref_description_oewn_no_notice">Do not show OEWN notice</string>
 

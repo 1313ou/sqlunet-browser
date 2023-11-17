@@ -11,12 +11,6 @@
 		<item>Browse PredicateMatrix</item>
 		<item>Search text</item>
 	</string-array>
-	<string-array name="pref_launch_list_values" tools:ignore="InconsistentArrays" tools:keep="@array/pref_launch_list_values">
-		<item>@string/default_launch</item>
-		<item>org.sqlunet.browser.BrowseActivity</item>
-		<item>org.sqlunet.browser.BrowsePredicateMatrixActivity</item>
-		<item>org.sqlunet.browser.SearchTextActivity</item>
-	</string-array>
 
 	<!-- Filter -->
 	<string name="pref_title_enable_wordnet" tools:keep="@string/pref_title_enable_wordnet">Enable WordNet</string>
