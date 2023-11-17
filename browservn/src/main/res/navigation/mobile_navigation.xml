@@ -66,7 +66,7 @@
 	<fragment
 		android:id="@+id/nav_help"
 		android:name="org.sqlunet.browser.HelpFragment"
-		android:label="@string/nav_sql"
+		android:label="@string/nav_help"
 		tools:layout="@layout/fragment_help" />
 
 	<fragment
