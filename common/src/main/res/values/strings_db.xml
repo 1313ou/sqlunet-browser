@@ -4,13 +4,12 @@
 
 <resources>
 
-	<string name="action_copy_from_file">Copy database from …</string>
-	<string name="action_unzip_from_archive">Unzip database from …</string>
-	<string name="action_unzip_from_asset">Unzip database from asset</string>
+	<string name="action_copy_datapack_from_file">Copy database from …</string>
+	<string name="action_unzip_datapack_from_archive">Unzip database from …</string>
+	<string name="action_unzip_datapack_from_asset">Unzip database from asset</string>
 
-	<string name="description_download">Download database</string>
+	<string name="description_download_datapack">Download database</string>
 
-	<string name="md5_none">No possible zipped database file in storage</string>
-	<string name="status_download_error_unavailable_download_url">Unavailable download url (database may be builtin)</string>
+	<string name="no_url">Unavailable download url (database may be builtin)</string>
 
 </resources>

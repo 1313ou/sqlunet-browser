@@ -871,7 +871,7 @@ public class FileAsyncTask
 	public static void launchUnzip(@NonNull final FragmentActivity activity, @NonNull final String sourceFile, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
 	{
 		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
-				.setTitle(activity.getString(R.string.action_unzip_from_archive)) //
+				.setTitle(activity.getString(R.string.action_unzip_datapack_from_archive)) //
 				.setMessage(sourceFile);
 		launchUnzip(activity, observer, sourceFile, dest, whenDone);
 	}
@@ -910,7 +910,7 @@ public class FileAsyncTask
 	public static void launchUnzip(@NonNull final FragmentActivity activity, @NonNull final Uri sourceUri, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
 	{
 		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
-				.setTitle(activity.getString(R.string.action_unzip_from_archive)) //
+				.setTitle(activity.getString(R.string.action_unzip_datapack_from_archive)) //
 				.setMessage(sourceUri.toString());
 		launchUnzip(activity, observer, sourceUri, dest, whenDone);
 	}
@@ -954,7 +954,7 @@ public class FileAsyncTask
 	public static void launchUnzip(@NonNull final FragmentActivity activity, @NonNull final String sourceFile, @NonNull final String zipEntry, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
 	{
 		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
-				.setTitle(activity.getString(R.string.action_unzip_from_archive)) //
+				.setTitle(activity.getString(R.string.action_unzip_datapack_from_archive)) //
 				.setMessage(sourceFile);
 		launchUnzip(activity, observer, sourceFile, zipEntry, dest, whenDone);
 	}
@@ -995,7 +995,7 @@ public class FileAsyncTask
 	public static void launchUnzip(@NonNull final FragmentActivity activity, @NonNull final Uri sourceUri, @NonNull final String zipEntry, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
 	{
 		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
-				.setTitle(activity.getString(R.string.action_unzip_from_archive)) //
+				.setTitle(activity.getString(R.string.action_unzip_datapack_from_archive)) //
 				.setMessage(sourceUri.toString());
 		launchUnzip(activity, observer, sourceUri, zipEntry, dest, whenDone);
 	}
@@ -1041,7 +1041,7 @@ public class FileAsyncTask
 	public static void launchCopy(@NonNull final FragmentActivity activity, @NonNull final String sourceFile, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
 	{
 		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
-				.setTitle(activity.getString(R.string.action_copy_from_file)) //
+				.setTitle(activity.getString(R.string.action_copy_datapack_from_file)) //
 				.setMessage(sourceFile);
 		launchCopy(activity, observer, sourceFile, dest, whenDone);
 	}
@@ -1080,7 +1080,7 @@ public class FileAsyncTask
 	public static void launchCopy(@NonNull final FragmentActivity activity, @NonNull final Uri uri, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
 	{
 		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
-				.setTitle(activity.getString(R.string.action_copy_from_file)) //
+				.setTitle(activity.getString(R.string.action_copy_datapack_from_file)) //
 				.setMessage(uri.toString());
 		launchCopy(activity, observer, uri, dest, whenDone);
 	}

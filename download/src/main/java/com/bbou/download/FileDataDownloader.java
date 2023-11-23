@@ -197,7 +197,7 @@ public class FileDataDownloader extends Task<String, Void, FileData>
 		// download source data
 		if (downloadSourceUrl == null || downloadSourceUrl.isEmpty() || name == null)
 		{
-			final String message = activity.getString(R.string.status_download_error_unavailable_download_url);
+			final String message = activity.getString(R.string.no_url);
 			activity.runOnUiThread(() -> Toast.makeText(activity, message, Toast.LENGTH_LONG).show());
 			return;
 		}

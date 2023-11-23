@@ -19,7 +19,7 @@
 		<item>Download zipped file then unzip it</item>
 	</string-array>
 
-	<string name="pref_title_repo">Datapack repo</string>
+	<string name="pref_title_datapack_repo">Datapack repo</string>
 	<string name="pref_title_datapack_dir">Datapack directory</string>
 	<string name="pref_title_cache">Cache</string>
 

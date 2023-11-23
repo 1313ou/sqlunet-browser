@@ -63,7 +63,7 @@ public class MD5AsyncTaskChooser
 		final RadioGroup input = Chooser.collectFiles(activity, directories);
 		if (input == null)
 		{
-			Toast.makeText(activity, R.string.md5_none, Toast.LENGTH_SHORT).show();
+			Toast.makeText(activity, R.string.no_datapack, Toast.LENGTH_SHORT).show();
 			return;
 		}
 

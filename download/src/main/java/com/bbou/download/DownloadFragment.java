@@ -278,7 +278,7 @@ public class DownloadFragment extends BaseDownloadFragment
 			final String fileName = this.toFile.getName();
 			final String filePath = this.toFile.getAbsolutePath();
 			final TaskObserver.Observer<Number> fatObserver = new TaskDialogObserver<>(getParentFragmentManager()) // guarded, level 1
-					.setTitle(requireContext().getString(R.string.action_unzip_from_archive)) //
+					.setTitle(requireContext().getString(R.string.action_unzip_datapack_from_archive)) //
 					.setMessage(fileName);
 			final Task<String, Number, Boolean> task = new ObservedDelegatingTask<>(baseTask, fatObserver);
 			assert this.unzipDir != null;

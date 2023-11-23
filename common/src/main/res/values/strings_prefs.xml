@@ -3,7 +3,7 @@
   -->
 
 <resources>
-	<string name="pref_title_repo">Database repo</string>
+	<string name="pref_title_datapack_repo">Database repo</string>
 	<string name="pref_title_datapack_dir">Database directory</string>
 
 	<string name="pref_title_datapack_name">Database name</string>

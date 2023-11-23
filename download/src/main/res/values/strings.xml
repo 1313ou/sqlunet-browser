@@ -17,8 +17,8 @@
 	<string name="action_dismiss">Dismiss</string>
 	<string name="action_show">Show</string>
 	<string name="action_deploy">Deploy</string>
-	<string name="action_copy_from_file">Copy datapack from …</string>
-	<string name="action_unzip_from_archive">Unzip datapack from …</string>
+	<string name="action_copy_datapack_from_file">Copy datapack from …</string>
+	<string name="action_unzip_datapack_from_archive">Unzip datapack from …</string>
 	<string name="action_update">Update</string>
 	<string name="action_md5">MD5</string>
 	<string name="action_md5_of_file">MD5 of</string>
@@ -36,7 +36,7 @@
 	<string name="hint_md5_of_file">Select the file to md5-checksum</string>
 
 	<!-- description -->
-	<string name="description_download">Download datapack</string>
+	<string name="description_download_datapack">Download datapack</string>
 
 	<!-- items -->
 	<string name="download_source">source</string>
@@ -71,7 +71,8 @@
 	<string name="md5_downloaded">Downloaded</string>
 	<string name="md5_computed">Computed</string>
 	<string name="md5_compared">Compared</string>
-	<string name="md5_none">No possible zipped datapack file in storage</string>
+
+	<string name="no_datapack">No datapack file</string>
 
 	<string name="status_download_pending">pending</string>
 	<string name="status_download_running">running</string>
@@ -81,7 +82,7 @@
 	<string name="status_download_cancelled">cancelled</string>
 	<string name="status_download_null_exception">null source or destination</string>
 	<string name="status_download_error_null_download_url">No download url</string>
-	<string name="status_download_error_unavailable_download_url">Unavailable download url (datapack may be builtin)</string>
+	<string name="no_url">Unavailable download url (datapack may be builtin)</string>
 
 	<string name="status_unzipping">unzipping</string>
 	<string name="status_copying">copying</string>
@@ -104,7 +105,7 @@
 	<string name="status_download_downloadable_content">Exploring available content…</string>
 
 	<!-- result -->
-	<string name="result_success">Success</string>
+	<string name="result_success" tools:ignore="UnusedResources">Success</string>
 	<string name="result_fail">Fail</string>
 	<string name="result_deleted">deleted</string>
 

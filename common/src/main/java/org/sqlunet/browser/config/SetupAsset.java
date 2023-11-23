@@ -94,7 +94,7 @@ public class SetupAsset
 						//final TaskObserver.Observer<Number> observer2 = new TaskDialogObserver<>(activity.getSupportFragmentManager());
 						@NonNull final TaskObserver.Observer<Number> observer2 = observer;
 						observer2 //
-								.setTitle(activity.getString(R.string.action_unzip_from_asset)) //
+								.setTitle(activity.getString(R.string.action_unzip_datapack_from_asset)) //
 								.setMessage(zipFilePath);
 
 						FileAsyncTask.launchUnzip(activity, observer2, zipFilePath, assetZipEntry, StorageSettings.getDatabasePath(activity), (result) -> {
@@ -132,7 +132,7 @@ public class SetupAsset
 			if (zipFile.exists())
 			{
 				observer //
-						.setTitle(activity.getString(R.string.action_unzip_from_asset)) //
+						.setTitle(activity.getString(R.string.action_unzip_datapack_from_asset)) //
 						.setMessage(zipFilePath);
 				FileAsyncTask.launchUnzip(activity, observer, zipFilePath, assetZipEntry, StorageSettings.getDatabasePath(activity), (result) -> {
 
@@ -146,7 +146,7 @@ public class SetupAsset
 			}
 			else
 			{
-				observer.setTitle(activity.getString(R.string.action_unzip_from_asset));
+				observer.setTitle(activity.getString(R.string.action_unzip_datapack_from_asset));
 				observer.setMessage(activity.getString(R.string.status_error_no_file) + ' ' + zipFilePath);
 			}
 		}

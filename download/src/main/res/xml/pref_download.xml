@@ -22,7 +22,7 @@
 		android:maxLines="1"
 		android:selectAllOnFocus="true"
 		android:singleLine="true"
-		android:title="@string/pref_title_repo"
+		android:title="@string/pref_title_datapack_repo"
 		app:iconSpaceReserved="false" />
 
 	<Preference

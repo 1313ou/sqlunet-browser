@@ -38,13 +38,13 @@ public class FileAsyncTaskChooser
 		final RadioGroup input = Chooser.collectFiles(activity, directories);
 		if (input == null)
 		{
-			Toast.makeText(activity, R.string.md5_none, Toast.LENGTH_SHORT).show();
+			Toast.makeText(activity, R.string.no_datapack, Toast.LENGTH_SHORT).show();
 			return;
 		}
 
 		// display sources
 		final AlertDialog.Builder alert = new AlertDialog.Builder(activity); // unguarded, level 1
-		alert.setTitle(R.string.action_copy_from_file);
+		alert.setTitle(R.string.action_copy_datapack_from_file);
 		alert.setMessage(R.string.hint_copy_from_file);
 		alert.setView(input);
 		alert.setPositiveButton(R.string.action_ok, (dialog, whichButton) -> {
@@ -83,13 +83,13 @@ public class FileAsyncTaskChooser
 		final RadioGroup input = Chooser.collectFiles(activity, directories);
 		if (input == null)
 		{
-			Toast.makeText(activity, R.string.md5_none, Toast.LENGTH_SHORT).show();
+			Toast.makeText(activity, R.string.no_datapack, Toast.LENGTH_SHORT).show();
 			return;
 		}
 
 		// display sources
 		final AlertDialog.Builder alert = new AlertDialog.Builder(activity); // unguarded, level 1
-		alert.setTitle(R.string.action_unzip_from_archive);
+		alert.setTitle(R.string.action_unzip_datapack_from_archive);
 		alert.setMessage(R.string.hint_unzip_from_archive);
 		alert.setView(input);
 		alert.setPositiveButton(R.string.action_ok, (dialog, whichButton) -> {
@@ -128,7 +128,7 @@ public class FileAsyncTaskChooser
 		final RadioGroup archiveInput1 = Chooser.collectFiles(activity, directories);
 		if (archiveInput1 == null)
 		{
-			Toast.makeText(activity, R.string.md5_none, Toast.LENGTH_SHORT).show();
+			Toast.makeText(activity, R.string.no_datapack, Toast.LENGTH_SHORT).show();
 			return;
 		}
 
@@ -142,7 +142,7 @@ public class FileAsyncTaskChooser
 
 		// display sources
 		final AlertDialog.Builder alert = new AlertDialog.Builder(activity); // unguarded, level 1
-		alert.setTitle(R.string.action_unzip_from_archive);
+		alert.setTitle(R.string.action_unzip_datapack_from_archive);
 		alert.setMessage(R.string.hint_unzip_from_archive);
 		alert.setView(input);
 		alert.setPositiveButton(R.string.action_ok, (dialog, whichButton) -> {
@@ -184,7 +184,7 @@ public class FileAsyncTaskChooser
 		final RadioGroup input = Chooser.collectFiles(activity, directories);
 		if (input == null)
 		{
-			Toast.makeText(activity, R.string.md5_none, Toast.LENGTH_SHORT).show();
+			Toast.makeText(activity, R.string.no_datapack, Toast.LENGTH_SHORT).show();
 			return;
 		}
 
