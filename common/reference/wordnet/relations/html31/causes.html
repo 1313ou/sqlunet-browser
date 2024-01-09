@@ -1,19 +1,23 @@
 <!DOCTYPE html SYSTEM "about:legacy-compat">
-<HTML>
+<HTML lang="en">
     <HEAD>
         <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <TITLE>Relations</TITLE>
-        <LINK rel="stylesheet" type="text/css" href="style.css">
+        <LINK rel="stylesheet" type="text/css" href="relations.css">
     </HEAD>
     <BODY>
-        <TABLE class="relations">
-            <TR class="relation" name="relation" id="causes">
-                <TD>
-                    <TABLE>
-                        <TR>
-                            <TD class="relationimage"><IMG src="./images/causes.png" alt="Causes"></TD><TD class="relationheader"><SPAN class="name">Causes</SPAN></TD>
+        <TABLE class="relations full-width">
+            <TR class="relation full-width" name="relation" id="causes">
+                <TD class="full-width">
+                    <TABLE class="full-width">
+                        <TR class="full-width">
+                            <TD colspan="2">
+                                <DIV class="relationheader">
+                                    <IMG class="relationimage" src="images/causes.png" alt="Causes"><SPAN class="relationname">Causes</SPAN>
+                                </DIV>
+                            </TD>
                         </TR>
-                        <TR>
+                        <TR class="full-width">
                             <TD colspan="2">
                                 <DIV class="description">
                                     <span>Causes</span>
@@ -24,54 +28,102 @@
                             <TD colspan="2">
                                 <DIV class="logical">
                                     <DIV class="def">
-                                        <span>
-				A verb
-				<b>X</b>
-				causes
-				<b>Y</b>
-			</span>iff
+                                        <span>A verb <b>C</b> causes <b>R</b></span> iff
                                     </DIV>
                                     <DIV class="cond">
-                                        &rarr;<span>
-				<b>X</b>
-				denotes the causation of the state or activity referred to by
-				<b>Y</b>
-			</span>
+                                        &rarr;<span><b>C</b> denotes the causation of the state or activity referred to by <b>R</b></span>
                                     </DIV>
                                 </DIV>
                             </TD>
                         </TR>
                         <TR>
-                            <TD colspan="2">
+                            <TD class="colfeatures">
                                 <DIV class="features">
-                                    <IMG class="featureimage" src="./images/semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="./images/pos_v.png" alt="verb" title="verb">
+                                    <IMG class="featureimage" src="images/feature_semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="images/pos_v.png" alt="verb" title="verb">
                                 </DIV>
+                            </TD><TD class="colother">
+                                <TABLE class="toright">
+                                    <TR>
+                                        <TD>
+                                            <DIV class="inverse">
+                                                inverse: <A href="caused.html">caused</A> <IMG class="otherimage" src="images/caused.png">
+                                            </DIV>
+                                        </TD>
+                                    </TR>
+                                    <TR>
+                                        <TD>
+                                            <DIV class="see">
+                                                <DIV class="see">
+                                                      see: <A href="entails.html">entails</A> <IMG class="inline-image" src="images/entails.png" alt="entails">
+                                                </DIV>
+                                            </DIV>
+                                        </TD>
+                                    </TR>
+                                </TABLE>
                             </TD>
+                        </TR>
+                        <TR>
+                            <TD colspan="2"></TD>
                         </TR>
                         <TR>
                             <TD colspan="2">
                                 <DIV class="examples">
                                     <TABLE class="exampletable">
                                         <TR>
-                                            <TD class="from">give</TD><TD class="rel"><IMG src="./images/causes.png" alt="Causes"></TD><TD class="to">have</TD><TD class="gloss">resultative</TD>
+                                            <TD class="fromguide"></TD><TD></TD><TD class="toguide">causes</TD><TD class="gloss"></TD>
                                         </TR>
                                         <TR>
-                                            <TD class="from">show</TD><TD class="rel"><IMG src="./images/causes.png" alt="Causes"></TD><TD class="to">see</TD><TD class="gloss">resultative</TD>
+                                            <TD class="fromguide">C</TD><TD></TD><TD class="toguide">R</TD><TD class="gloss"></TD>
                                         </TR>
                                         <TR>
-                                            <TD class="from">raise</TD><TD class="rel"><IMG src="./images/causes.png" alt="Causes"></TD><TD class="to">rise</TD><TD class="gloss">resultative</TD>
+                                            <TD class="from">give</TD><TD class="rel"><IMG src="images/causes.png" alt="Causes"></TD><TD class="to">have</TD><TD class="gloss">resultative</TD>
                                         </TR>
                                         <TR>
-                                            <TD class="from">teach</TD><TD class="rel"><IMG src="./images/causes.png" alt="Causes"></TD><TD class="to">learn</TD><TD class="gloss">resultative</TD>
+                                            <TD class="from">show</TD><TD class="rel"><IMG src="images/causes.png" alt="Causes"></TD><TD class="to">see</TD><TD class="gloss">resultative</TD>
                                         </TR>
                                         <TR>
-                                            <TD class="from">feed</TD><TD class="rel"><IMG src="./images/causes.png" alt="Causes"></TD><TD class="to">eat</TD><TD class="gloss">resultative</TD>
+                                            <TD class="from">raise</TD><TD class="rel"><IMG src="images/causes.png" alt="Causes"></TD><TD class="to">rise</TD><TD class="gloss">resultative</TD>
                                         </TR>
                                         <TR>
-                                            <TD class="from">scare</TD><TD class="rel"><IMG src="./images/causes.png" alt="Causes"></TD><TD class="to">fear</TD><TD class="gloss">resultative</TD>
+                                            <TD class="from">teach</TD><TD class="rel"><IMG src="images/causes.png" alt="Causes"></TD><TD class="to">learn</TD><TD class="gloss">resultative</TD>
                                         </TR>
                                         <TR>
-                                            <TD class="from">fell</TD><TD class="rel"><IMG src="./images/causes.png" alt="Causes"></TD><TD class="to">fall</TD><TD class="gloss">resultative</TD>
+                                            <TD class="from">feed</TD><TD class="rel"><IMG src="images/causes.png" alt="Causes"></TD><TD class="to">eat</TD><TD class="gloss">resultative</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">scare</TD><TD class="rel"><IMG src="images/causes.png" alt="Causes"></TD><TD class="to">fear</TD><TD class="gloss">resultative</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">fell</TD><TD class="rel"><IMG src="images/causes.png" alt="Causes"></TD><TD class="to">fall</TD><TD class="gloss">resultative</TD>
+                                        </TR>
+                                    </TABLE>
+                                </DIV>
+                            </TD>
+                        </TR>
+                        <TR>
+                            <TD colspan="2">
+                                <DIV class="phrases">
+                                    <TABLE class="phrasetable">
+                                        <TR>
+                                            <TD class="fromphrase">give</TD><TD class="phrase">causes</TD><TD class="tophrase">have</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="fromphrase">show</TD><TD class="phrase">causes</TD><TD class="tophrase">see</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="fromphrase">raise</TD><TD class="phrase">causes</TD><TD class="tophrase">rise</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="fromphrase">teach</TD><TD class="phrase">causes</TD><TD class="tophrase">learn</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="fromphrase">feed</TD><TD class="phrase">causes</TD><TD class="tophrase">eat</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="fromphrase">scare</TD><TD class="phrase">causes</TD><TD class="tophrase">fear</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="fromphrase">fell</TD><TD class="phrase">causes</TD><TD class="tophrase">fall</TD>
                                         </TR>
                                     </TABLE>
                                 </DIV>

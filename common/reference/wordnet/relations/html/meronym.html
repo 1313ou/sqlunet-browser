@@ -1,19 +1,23 @@
 <!DOCTYPE html SYSTEM "about:legacy-compat">
-<HTML>
+<HTML lang="en">
     <HEAD>
         <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <TITLE>Relations</TITLE>
-        <LINK rel="stylesheet" type="text/css" href="style.css">
+        <LINK rel="stylesheet" type="text/css" href="relations.css">
     </HEAD>
     <BODY>
-        <TABLE class="relations">
-            <TR class="relation" name="relation" id="meronym">
-                <TD>
-                    <TABLE>
-                        <TR>
-                            <TD class="relationimage"><IMG src="./images/meronym.png" alt="Meronym"></TD><TD class="relationheader"><SPAN class="name">Meronym</SPAN></TD>
+        <TABLE class="relations full-width">
+            <TR class="relation full-width" name="relation" id="meronym">
+                <TD class="full-width">
+                    <TABLE class="full-width">
+                        <TR class="full-width">
+                            <TD colspan="2">
+                                <DIV class="relationheader">
+                                    <IMG class="relationimage" src="images/meronym.png" alt="Meronym"><SPAN class="relationname">Meronym</SPAN>
+                                </DIV>
+                            </TD>
                         </TR>
-                        <TR>
+                        <TR class="full-width">
                             <TD colspan="2">
                                 <DIV class="description">
                                     <span>The name of a constituent part of, the substance of, or a member of something. Part name (a word that names a part of a larger whole).</span>
@@ -24,79 +28,122 @@
                             <TD colspan="2">
                                 <DIV class="logical">
                                     <DIV class="def">
-                                        <span>
-				<b>X</b>
-				is a meronym of
-				<b>Y</b>
-			</span>iff
+                                        <span><b>P/S/M</b> is a meronym of <b>W/O/C</b></span> iff
                                     </DIV>
                                     <DIV class="cond">
-                                        &rarr;<span>
-				<b>X</b>
-				is a part of
-				<b>Y</b>
-			</span>
+                                        &rarr;<span><b>P</b> is a part of <b>W</b></span>
                                     </DIV>
                                     <DIV class="cond">
-                                        &rarr;<span>
-				<b>X</b>
-				is a substance of
-				<b>Y</b>
-			</span>
+                                        &rarr;<span><b>S</b> is a substance of <b>O</b></span>
                                     </DIV>
                                     <DIV class="cond">
-                                        &rarr;<span>
-				<b>X</b>
-				is a member of
-				<b>Y</b>
-			</span>
+                                        &rarr;<span><b>M</b> is a member of <b>C</b></span>
                                     </DIV>
                                 </DIV>
                             </TD>
                         </TR>
                         <TR>
-                            <TD colspan="2">
+                            <TD class="colfeatures">
                                 <DIV class="features">
-                                    <IMG class="featureimage" src="./images/semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="./images/pos_n.png" alt="noun" title="noun">
+                                    <IMG class="featureimage" src="images/feature_semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="images/pos_n.png" alt="noun" title="noun">
                                 </DIV>
+                            </TD><TD class="colother">
+                                <TABLE class="toright">
+                                    <TR>
+                                        <TD>
+                                            <DIV class="inverse">
+                                                inverse: <A href="holonym.html">holonym</A> <IMG class="otherimage" src="images/holonym.png">
+                                            </DIV>
+                                        </TD>
+                                    </TR>
+                                    <TR>
+                                        <TD>
+                                            <DIV class="see"></DIV>
+                                        </TD>
+                                    </TR>
+                                </TABLE>
                             </TD>
+                        </TR>
+                        <TR>
+                            <TD colspan="2"></TD>
                         </TR>
                         <TR>
                             <TD colspan="2">
                                 <DIV class="examples">
                                     <TABLE class="exampletable">
                                         <TR>
-                                            <TD class="from">bird</TD><TD class="rel"><IMG src="./images/part_meronym.png" alt="Meronym"></TD><TD class="to">wing</TD><TD class="gloss">object-component</TD>
+                                            <TD class="fromguide"></TD><TD></TD><TD class="toguide">meronym</TD><TD class="gloss"></TD>
                                         </TR>
                                         <TR>
-                                            <TD class="from">face</TD><TD class="rel"><IMG src="./images/part_meronym.png" alt="Meronym"></TD><TD class="to">mouth</TD><TD class="gloss">object-component</TD>
+                                            <TD class="fromguide">W/O/C</TD><TD></TD><TD class="toguide">P/S/M</TD><TD class="gloss"></TD>
                                         </TR>
                                         <TR>
-                                            <TD class="from">body</TD><TD class="rel"><IMG src="./images/part_meronym.png" alt="Meronym"></TD><TD class="to">arm</TD><TD class="gloss">object-component</TD>
+                                            <TD class="fromguide">whole/object/collection</TD><TD></TD><TD class="toguide">part/substance/member</TD><TD class="gloss"></TD>
                                         </TR>
                                         <TR>
-                                            <TD class="from">door</TD><TD class="rel"><IMG src="./images/part_meronym.png" alt="Meronym"></TD><TD class="to">handle</TD><TD class="gloss">object-component</TD>
+                                            <TD class="from">bird</TD><TD class="rel"><IMG src="images/meronym_part.png" alt="Meronym"></TD><TD class="to">wing</TD><TD class="gloss">object-component</TD>
                                         </TR>
                                         <TR>
-                                            <TD class="from">tree</TD><TD class="rel"><IMG src="./images/part_meronym.png" alt="Meronym"></TD><TD class="to">branch</TD><TD class="gloss">object-component</TD>
+                                            <TD class="from">face</TD><TD class="rel"><IMG src="images/meronym_part.png" alt="Meronym"></TD><TD class="to">mouth</TD><TD class="gloss">object-component</TD>
                                         </TR>
                                         <TR>
-                                            <TD class="from">forest</TD><TD class="rel"><IMG src="./images/member_meronym.png" alt="Meronym"></TD><TD class="to">tree</TD><TD class="gloss">collection-member</TD>
+                                            <TD class="from">body</TD><TD class="rel"><IMG src="images/meronym_part.png" alt="Meronym"></TD><TD class="to">arm</TD><TD class="gloss">object-component</TD>
                                         </TR>
                                         <TR>
-                                            <TD class="from">air</TD><TD class="rel"><IMG src="./images/substance_meronym.png" alt="Meronym"></TD><TD class="to">oxygen</TD><TD class="gloss">object-substance</TD>
+                                            <TD class="from">door</TD><TD class="rel"><IMG src="images/meronym_part.png" alt="Meronym"></TD><TD class="to">handle</TD><TD class="gloss">object-component</TD>
                                         </TR>
                                         <TR>
-                                            <TD class="from">olive oil</TD><TD class="rel"><IMG src="./images/substance_meronym.png" alt="Meronym"></TD><TD class="to">olive</TD><TD class="gloss">object-substance</TD>
+                                            <TD class="from">tree</TD><TD class="rel"><IMG src="images/meronym_part.png" alt="Meronym"></TD><TD class="to">branch</TD><TD class="gloss">object-component</TD>
                                         </TR>
                                         <TR>
-                                            <TD class="from">cake</TD><TD class="rel"><IMG src="./images/meronym.png" alt="Meronym"></TD><TD class="to">slice</TD><TD class="gloss">mass-portion</TD>
+                                            <TD class="from">forest</TD><TD class="rel"><IMG src="images/meronym_member.png" alt="Meronym"></TD><TD class="to">tree</TD><TD class="gloss">collection-member</TD>
                                         </TR>
                                         <TR>
-                                            <TD class="from">growing up</TD><TD class="rel"><IMG src="./images/meronym.png" alt="Meronym"></TD><TD class="to">adolescence</TD><TD class="gloss">process-phase</TD>
+                                            <TD class="from">air</TD><TD class="rel"><IMG src="images/meronym_substance.png" alt="Meronym"></TD><TD class="to">oxygen</TD><TD class="gloss">object-substance</TD>
                                         </TR>
                                         <TR>
-                                            <TD class="from">shopping</TD><TD class="rel"><IMG src="./images/meronym.png" alt="Meronym"></TD><TD class="to">paying</TD><TD class="gloss">activity-feature</TD>
+                                            <TD class="from">olive oil</TD><TD class="rel"><IMG src="images/meronym_substance.png" alt="Meronym"></TD><TD class="to">olive</TD><TD class="gloss">object-substance</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">cake</TD><TD class="rel"><IMG src="images/meronym.png" alt="Meronym"></TD><TD class="to">slice</TD><TD class="gloss">mass-portion</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">growing up</TD><TD class="rel"><IMG src="images/meronym.png" alt="Meronym"></TD><TD class="to">adolescence</TD><TD class="gloss">process-phase</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">shopping</TD><TD class="rel"><IMG src="images/meronym.png" alt="Meronym"></TD><TD class="to">paying</TD><TD class="gloss">activity-feature</TD>
+                                        </TR>
+                                    </TABLE>
+                                </DIV>
+                            </TD>
+                        </TR>
+                        <TR>
+                            <TD colspan="2">
+                                <DIV class="phrases">
+                                    <TABLE class="phrasetable">
+                                        <TR>
+                                            <TD class="fromphrase">bird</TD><TD class="relphrase"><span>is a whole/system/complex/network/arrangement/construction of parts/components among which</span></TD><TD class="tophrase">wing</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="fromphrase">face</TD><TD class="relphrase"><span>is a whole/system/complex/network/arrangement/construction of parts/components among which</span></TD><TD class="tophrase">mouth</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="fromphrase">body</TD><TD class="relphrase"><span>is a whole/system/complex/network/arrangement/construction of parts/components among which</span></TD><TD class="tophrase">arm</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="fromphrase">door</TD><TD class="relphrase"><span>is a whole/system/complex/network/arrangement/construction of parts/components among which</span></TD><TD class="tophrase">handle</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="fromphrase">tree</TD><TD class="relphrase"><span>is a whole/system/complex/network/arrangement/construction of parts/components among which</span></TD><TD class="tophrase">branch</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="fromphrase">air</TD><TD class="relphrase"><span>is a concrete object made of</span></TD><TD class="tophrase">oxygen</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="fromphrase">olive oil</TD><TD class="relphrase"><span>is a concrete object made of</span></TD><TD class="tophrase">olive</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="fromphrase">forest</TD><TD class="relphrase"><span>is a collection of members among which</span></TD><TD class="tophrase">tree</TD>
                                         </TR>
                                     </TABLE>
                                 </DIV>

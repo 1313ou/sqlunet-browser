@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Uploads apk to alpha track and updates its listing properties."""
+""" Get properties."""
 
 import argparse
 import sys
@@ -91,7 +91,8 @@ def main(argv):
         # iterate on tracks
         print ('TRACKS')
         for track in tracks_result['tracks']:
-            #print ( track)
+            if not track.has_key('releases'):
+                continue
             print( '%12s' % (
                 track['track'])
             ),

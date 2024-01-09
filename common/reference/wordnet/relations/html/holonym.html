@@ -1,24 +1,26 @@
 <!DOCTYPE html SYSTEM "about:legacy-compat">
-<HTML>
+<HTML lang="en">
     <HEAD>
         <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <TITLE>Relations</TITLE>
-        <LINK rel="stylesheet" type="text/css" href="style.css">
+        <LINK rel="stylesheet" type="text/css" href="relations.css">
     </HEAD>
     <BODY>
-        <TABLE class="relations">
-            <TR class="relation" name="relation" id="holonym">
-                <TD>
-                    <TABLE>
-                        <TR>
-                            <TD class="relationimage"><IMG src="./images/holonym.png" alt="Holonym"></TD><TD class="relationheader"><SPAN class="name">Holonym</SPAN></TD>
+        <TABLE class="relations full-width">
+            <TR class="relation full-width" name="relation" id="holonym">
+                <TD class="full-width">
+                    <TABLE class="full-width">
+                        <TR class="full-width">
+                            <TD colspan="2">
+                                <DIV class="relationheader">
+                                    <IMG class="relationimage" src="images/holonym.png" alt="Holonym"><SPAN class="relationname">Holonym</SPAN>
+                                </DIV>
+                            </TD>
                         </TR>
-                        <TR>
+                        <TR class="full-width">
                             <TD colspan="2">
                                 <DIV class="description">
-                                    <span>The name of the whole of which the meronym names a part, a member or the substance. Whole name (a word that names the whole of which a given word is a
-			part).
-		</span>
+                                    <span>The name of the whole of which the meronym names a part, a member or the substance. Whole name (a word that names the whole of which a given word is a part).</span>
                                 </DIV>
                             </TD>
                         </TR>
@@ -26,79 +28,122 @@
                             <TD colspan="2">
                                 <DIV class="logical">
                                     <DIV class="def">
-                                        <span>
-				<b>X</b>
-				is a holonym of
-				<b>Y</b>
-			</span>iff
+                                        <span><b>W/O/C</b> is a holonym of <b>P/S/M</b></span> iff
                                     </DIV>
                                     <DIV class="cond">
-                                        &rarr;<span>
-				<b>Y</b>
-				is a part of
-				<b>X</b>
-			</span>
+                                        &rarr;<span><b>P</b> is a part of <b>W</b></span>
                                     </DIV>
                                     <DIV class="cond">
-                                        &rarr;<span>
-				<b>Y</b>
-				is a substance of
-				<b>X</b>
-			</span>
+                                        &rarr;<span><b>S</b> is a substance of <b>O</b> </span>
                                     </DIV>
                                     <DIV class="cond">
-                                        &rarr;<span>
-				<b>Y</b>
-				is a member of
-				<b>X</b>
-			</span>
+                                        &rarr;<span><b>M</b> is a member of <b>C</b> </span>
                                     </DIV>
                                 </DIV>
                             </TD>
                         </TR>
                         <TR>
-                            <TD colspan="2">
+                            <TD class="colfeatures">
                                 <DIV class="features">
-                                    <IMG class="featureimage" src="./images/semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="./images/pos_n.png" alt="noun" title="noun">
+                                    <IMG class="featureimage" src="images/feature_semantic.png" alt="semantic" title="semantic"><IMG class="featureimage" src="images/pos_n.png" alt="noun" title="noun">
                                 </DIV>
+                            </TD><TD class="colother">
+                                <TABLE class="toright">
+                                    <TR>
+                                        <TD>
+                                            <DIV class="inverse">
+                                                inverse: <A href="meronym.html">meronym</A> <IMG class="otherimage" src="images/meronym.png">
+                                            </DIV>
+                                        </TD>
+                                    </TR>
+                                    <TR>
+                                        <TD>
+                                            <DIV class="see"></DIV>
+                                        </TD>
+                                    </TR>
+                                </TABLE>
                             </TD>
+                        </TR>
+                        <TR>
+                            <TD colspan="2"></TD>
                         </TR>
                         <TR>
                             <TD colspan="2">
                                 <DIV class="examples">
                                     <TABLE class="exampletable">
                                         <TR>
-                                            <TD class="from">wing</TD><TD class="rel"><IMG src="./images/part_holonym.png" alt="Holonym"></TD><TD class="to">bird</TD><TD class="gloss">component-object</TD>
+                                            <TD class="fromguide"></TD><TD></TD><TD class="toguide">holonym</TD><TD class="gloss"></TD>
                                         </TR>
                                         <TR>
-                                            <TD class="from">mouth</TD><TD class="rel"><IMG src="./images/part_holonym.png" alt="Holonym"></TD><TD class="to">face</TD><TD class="gloss">component-object</TD>
+                                            <TD class="fromguide">P/S/M</TD><TD></TD><TD class="toguide">W</TD><TD class="gloss"></TD>
                                         </TR>
                                         <TR>
-                                            <TD class="from">arm</TD><TD class="rel"><IMG src="./images/part_holonym.png" alt="Holonym"></TD><TD class="to">body</TD><TD class="gloss">object-component</TD>
+                                            <TD class="fromguide">part/substance/member</TD><TD></TD><TD class="toguide">whole/object/collection</TD><TD class="gloss"></TD>
                                         </TR>
                                         <TR>
-                                            <TD class="from">handle</TD><TD class="rel"><IMG src="./images/part_holonym.png" alt="Holonym"></TD><TD class="to">door</TD><TD class="gloss">object-component</TD>
+                                            <TD class="from">wing</TD><TD class="rel"><IMG src="images/holonym_part.png" alt="Holonym"></TD><TD class="to">bird</TD><TD class="gloss">component-object</TD>
                                         </TR>
                                         <TR>
-                                            <TD class="from">branch</TD><TD class="rel"><IMG src="./images/part_holonym.png" alt="Holonym"></TD><TD class="to">tree</TD><TD class="gloss">component-object</TD>
+                                            <TD class="from">mouth</TD><TD class="rel"><IMG src="images/holonym_part.png" alt="Holonym"></TD><TD class="to">face</TD><TD class="gloss">component-object</TD>
                                         </TR>
                                         <TR>
-                                            <TD class="from">tree</TD><TD class="rel"><IMG src="./images/member_holonym.png" alt="Holonym"></TD><TD class="to">forest</TD><TD class="gloss">member-collection</TD>
+                                            <TD class="from">arm</TD><TD class="rel"><IMG src="images/holonym_part.png" alt="Holonym"></TD><TD class="to">body</TD><TD class="gloss">component-object</TD>
                                         </TR>
                                         <TR>
-                                            <TD class="from">oxygen</TD><TD class="rel"><IMG src="./images/substance_holonym.png" alt="Holonym"></TD><TD class="to">air</TD><TD class="gloss">substance-object</TD>
+                                            <TD class="from">handle</TD><TD class="rel"><IMG src="images/holonym_part.png" alt="Holonym"></TD><TD class="to">door</TD><TD class="gloss">object-component</TD>
                                         </TR>
                                         <TR>
-                                            <TD class="from">olive</TD><TD class="rel"><IMG src="./images/substance_holonym.png" alt="Holonym"></TD><TD class="to">olive oil</TD><TD class="gloss">substance-object</TD>
+                                            <TD class="from">branch</TD><TD class="rel"><IMG src="images/holonym_part.png" alt="Holonym"></TD><TD class="to">tree</TD><TD class="gloss">component-object</TD>
                                         </TR>
                                         <TR>
-                                            <TD class="from">adolescence</TD><TD class="rel"><IMG src="./images/holonym.png" alt="Holonym"></TD><TD class="to">growing up</TD><TD class="gloss">phase-process</TD>
+                                            <TD class="from">tree</TD><TD class="rel"><IMG src="images/holonym_member.png" alt="Holonym"></TD><TD class="to">forest</TD><TD class="gloss">member-collection</TD>
                                         </TR>
                                         <TR>
-                                            <TD class="from">slice</TD><TD class="rel"><IMG src="./images/holonym.png" alt="Holonym"></TD><TD class="to">cake</TD><TD class="gloss">portion-mass</TD>
+                                            <TD class="from">oxygen</TD><TD class="rel"><IMG src="images/holonym_substance.png" alt="Holonym"></TD><TD class="to">air</TD><TD class="gloss">substance-object</TD>
                                         </TR>
                                         <TR>
-                                            <TD class="from">paying</TD><TD class="rel"><IMG src="./images/holonym.png" alt="Holonym"></TD><TD class="to">shopping</TD><TD class="gloss">feature-activity</TD>
+                                            <TD class="from">cellulose</TD><TD class="rel"><IMG src="images/holonym_substance.png" alt="Holonym"></TD><TD class="to">paper</TD><TD class="gloss">substance-object</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">adolescence</TD><TD class="rel"><IMG src="images/holonym.png" alt="Holonym"></TD><TD class="to">growing up</TD><TD class="gloss">phase-process</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">slice</TD><TD class="rel"><IMG src="images/holonym.png" alt="Holonym"></TD><TD class="to">cake</TD><TD class="gloss">portion-mass</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="from">paying</TD><TD class="rel"><IMG src="images/holonym.png" alt="Holonym"></TD><TD class="to">shopping</TD><TD class="gloss">feature-activity</TD>
+                                        </TR>
+                                    </TABLE>
+                                </DIV>
+                            </TD>
+                        </TR>
+                        <TR>
+                            <TD colspan="2">
+                                <DIV class="phrases">
+                                    <TABLE class="phrasetable">
+                                        <TR>
+                                            <TD class="fromphrase">wing</TD><TD class="relphrase"><span>is a component of</span></TD><TD class="tophrase">bird</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="fromphrase">mouth</TD><TD class="relphrase"><span>is a component of</span></TD><TD class="tophrase">face</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="fromphrase">arm</TD><TD class="relphrase"><span>is a component of</span></TD><TD class="tophrase">body</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="fromphrase">handle</TD><TD class="relphrase"><span>is a component of</span></TD><TD class="tophrase">door</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="fromphrase">branch</TD><TD class="relphrase"><span>is a component of</span></TD><TD class="tophrase">tree</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="fromphrase">oxygen</TD><TD class="relphrase"><span>is a substance of</span></TD><TD class="tophrase">air</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="fromphrase">cellulose</TD><TD class="relphrase"><span>is a substance of</span></TD><TD class="tophrase">paper</TD>
+                                        </TR>
+                                        <TR>
+                                            <TD class="fromphrase">tree</TD><TD class="relphrase"><span>is a member of</span></TD><TD class="tophrase">forest</TD>
                                         </TR>
                                     </TABLE>
                                 </DIV>

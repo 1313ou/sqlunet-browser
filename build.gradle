@@ -13,7 +13,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.1.4'
+        classpath 'com.android.tools.build:gradle:8.2.1'
         classpath 'androidx.navigation:navigation-safe-args-gradle-plugin:2.7.5'
     }
 }
@@ -57,6 +57,8 @@ tasks.register('clean', Delete) {
 apply plugin: 'idea'
 idea {
     module {
+        println("$project @ " + project.projectDir)
+
         // excludeDirs += file('.idea')
         excludeDirs += file('reference')
         excludeDirs += file('captures')
@@ -66,9 +68,9 @@ idea {
         excludeDirs += file('utils')
         excludeDirs += file('dist')
         excludeDirs += file('gradle')
-        project.rootProject.subprojects.each {
+        project.subprojects.each {
 
-            println("module $it @ " + it.projectDir)
+            println("sub $it @ " + it.projectDir)
             ["artwork", "artwork-assets", "artwork-relations", "data"].each { it2 ->
                 fileTree("$it.projectDir").visit { f ->
                     if (f.isDirectory() && f.name == "$it2") {
