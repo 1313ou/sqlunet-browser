@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (c) 2023. Bernard Bou
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
 <resources>
 
 	<style name="HeaderText" parent="TextAppearance.AppCompat">
-		<!--		<item name="android:background">?attr/colorSecondary</item>-->
-		<!--		<item name="android:textColor">?attr/colorOnSecondary</item>-->
-		<item name="android:textColor">?attr/colorHighlightOnBackground</item>
+		<item name="android:textColor">?android:attr/textColorPrimary</item>
 	</style>
 
 	<style name="DescriptionText" parent="TextAppearance.AppCompat">
-		<!--		<item name="android:textColor">?attr/colorHighlightOnBackground</item>-->
+		<item name="android:textColor">?android:attr/textColorSecondary</item>
 	</style>
+
 </resources>

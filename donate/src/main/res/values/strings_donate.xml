@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (c) 2023. Bernard Bou
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
 <resources>
@@ -9,7 +9,6 @@
 	<string name="title_donate_3">Donate 10</string>
 	<string name="title_donate_4">Donate 20</string>
 	<string name="title_donate_5">Donate 50</string>
-	<!--<string name="title_owned">owned</string>-->
 	<string name="title_consume">Reset donations</string>
 	<string name="text_donate">If you like the app and think it deserves your contribution and you can afford it, please donate to support the developer\'s work</string>
 	<string name="action_donate_refresh">Refresh</string>

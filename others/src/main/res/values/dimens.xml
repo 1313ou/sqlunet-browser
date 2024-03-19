@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2020. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+	<dimen name="other_app_margin_top">30dp</dimen>
+	<dimen name="other_button_margin_top">5dp</dimen>
+	<dimen name="other_logo_padding">5dp</dimen>
+	<dimen name="other_text_padding">5dp</dimen>
+</resources>

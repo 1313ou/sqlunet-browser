@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (c) 2023. Bernard Bou
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -9,7 +9,6 @@
 	android:layout_height="match_parent">
 
 	<com.google.android.material.appbar.AppBarLayout
-		android:id="@+id/appbar_layout"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content">
 
@@ -33,10 +32,10 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
-				android:layout_marginTop="25dp"
+				android:layout_marginTop="@dimen/other_app_margin_top"
 				android:contentDescription="@string/description_logo_grammarscope_syntaxnet"
 				android:gravity="center_horizontal"
-				android:padding="5dp"
+				android:padding="@dimen/other_logo_padding"
 				android:src="@drawable/logo_grammarscope"
 				android:visibility="visible" />
 
@@ -46,7 +45,7 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
 				android:gravity="center_horizontal"
-				android:padding="5dp"
+				android:padding="@dimen/other_text_padding"
 				android:text="@string/title_grammarscope_syntaxnet"
 				android:textStyle="bold"
 				android:visibility="visible" />
@@ -57,7 +56,7 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
 				android:gravity="center_horizontal"
-				android:padding="5dp"
+				android:padding="@dimen/other_text_padding"
 				android:text="@string/text_grammarscope_syntaxnet"
 				android:visibility="visible" />
 
@@ -66,9 +65,31 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
-				android:layout_marginTop="10dp"
+				android:layout_marginTop="@dimen/other_button_margin_top"
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_grammarscope_syntaxnet"
+				android:src="@drawable/ic_googleplay"
+				android:visibility="visible"
+				tools:ignore="InconsistentLayout" />
+
+			<TextView
+				style="@style/DescriptionText"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:gravity="center_horizontal"
+				android:padding="@dimen/other_text_padding"
+				android:text="@string/text_grammarscope_premium"
+				android:visibility="visible" />
+
+			<ImageButton
+				android:id="@+id/on_market_grammarscope_premium"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:layout_marginTop="@dimen/other_button_margin_top"
+				android:background="@null"
+				android:contentDescription="@string/description_grammarscope_premium"
 				android:src="@drawable/ic_googleplay"
 				android:visibility="visible"
 				tools:ignore="InconsistentLayout" />
@@ -79,10 +100,10 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
-				android:layout_marginTop="25dp"
+				android:layout_marginTop="@dimen/other_app_margin_top"
 				android:contentDescription="@string/description_logo_grammarscope_udpipe"
 				android:gravity="center_horizontal"
-				android:padding="5dp"
+				android:padding="@dimen/other_logo_padding"
 				android:src="@drawable/logo_grammarscope_udpipe"
 				android:visibility="visible" />
 
@@ -92,7 +113,7 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
 				android:gravity="center_horizontal"
-				android:padding="5dp"
+				android:padding="@dimen/other_text_padding"
 				android:text="@string/title_grammarscope_udpipe"
 				android:textStyle="bold"
 				android:visibility="visible" />
@@ -103,7 +124,7 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
 				android:gravity="center_horizontal"
-				android:padding="5dp"
+				android:padding="@dimen/other_text_padding"
 				android:text="@string/text_grammarscope_udpipe"
 				android:visibility="visible" />
 
@@ -112,9 +133,31 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
-				android:layout_marginTop="10dp"
+				android:layout_marginTop="@dimen/other_button_margin_top"
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_grammarscope_udpipe"
+				android:src="@drawable/ic_googleplay"
+				android:visibility="visible"
+				tools:ignore="InconsistentLayout" />
+
+			<TextView
+				style="@style/DescriptionText"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:gravity="center_horizontal"
+				android:padding="@dimen/other_text_padding"
+				android:text="@string/text_grammarscope_premium"
+				android:visibility="visible" />
+
+			<ImageButton
+				android:id="@+id/on_market_grammarscope_udpipe_premium"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				android:layout_marginTop="@dimen/other_button_margin_top"
+				android:background="@null"
+				android:contentDescription="@string/description_grammarscope_udpipe_premium"
 				android:src="@drawable/ic_googleplay"
 				android:visibility="visible"
 				tools:ignore="InconsistentLayout" />
@@ -125,10 +168,10 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
-				android:layout_marginTop="25dp"
+				android:layout_marginTop="@dimen/other_app_margin_top"
 				android:contentDescription="@string/description_logo_treebolicwordnet"
 				android:gravity="center_horizontal"
-				android:padding="5dp"
+				android:padding="@dimen/other_logo_padding"
 				android:src="@drawable/logo_treebolicwordnet"
 				android:visibility="visible" />
 
@@ -138,7 +181,7 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
 				android:gravity="center_horizontal"
-				android:padding="5dp"
+				android:padding="@dimen/other_text_padding"
 				android:text="@string/title_treebolicwordnet"
 				android:textStyle="bold"
 				android:visibility="visible" />
@@ -149,7 +192,7 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
 				android:gravity="center_horizontal"
-				android:padding="5dp"
+				android:padding="@dimen/other_text_padding"
 				android:text="@string/text_treebolicwordnet"
 				android:visibility="visible" />
 
@@ -158,12 +201,11 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
-				android:layout_marginTop="20dp"
+				android:layout_marginTop="@dimen/other_button_margin_top"
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_treebolicwordnet"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible"
-				tools:ignore="InconsistentLayout" />
+				android:visibility="visible" />
 
 			<!-- semantikos -->
 
@@ -171,10 +213,10 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
-				android:layout_marginTop="25dp"
+				android:layout_marginTop="@dimen/other_app_margin_top"
 				android:contentDescription="@string/description_logo_semantikos"
 				android:gravity="center_horizontal"
-				android:padding="5dp"
+				android:padding="@dimen/other_logo_padding"
 				android:src="@drawable/logo_semantikos"
 				android:visibility="visible" />
 
@@ -184,7 +226,7 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
 				android:gravity="center_horizontal"
-				android:padding="5dp"
+				android:padding="@dimen/other_text_padding"
 				android:text="@string/title_semantikos"
 				android:textStyle="bold"
 				android:visibility="visible" />
@@ -195,7 +237,7 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
 				android:gravity="center_horizontal"
-				android:padding="5dp"
+				android:padding="@dimen/other_text_padding"
 				android:text="@string/text_semantikos"
 				android:visibility="visible" />
 
@@ -204,12 +246,11 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
-				android:layout_marginTop="20dp"
+				android:layout_marginTop="@dimen/other_button_margin_top"
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_semantikos"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible"
-				tools:ignore="InconsistentLayout" />
+				android:visibility="visible" />
 
 			<!-- semantikos wn -->
 
@@ -217,10 +258,10 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
-				android:layout_marginTop="25dp"
+				android:layout_marginTop="@dimen/other_app_margin_top"
 				android:contentDescription="@string/description_logo_semantikos_wn"
 				android:gravity="center_horizontal"
-				android:padding="5dp"
+				android:padding="@dimen/other_logo_padding"
 				android:src="@drawable/logo_semantikos_wn"
 				android:visibility="visible" />
 
@@ -230,7 +271,7 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
 				android:gravity="center_horizontal"
-				android:padding="5dp"
+				android:padding="@dimen/other_text_padding"
 				android:text="@string/title_semantikos_wn"
 				android:textStyle="bold"
 				android:visibility="visible" />
@@ -241,7 +282,7 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
 				android:gravity="center_horizontal"
-				android:padding="5dp"
+				android:padding="@dimen/other_text_padding"
 				android:text="@string/text_semantikos_wn"
 				android:visibility="visible" />
 
@@ -250,12 +291,11 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
-				android:layout_marginTop="20dp"
+				android:layout_marginTop="@dimen/other_button_margin_top"
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_semantikos_wn"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible"
-				tools:ignore="InconsistentLayout" />
+				android:visibility="visible" />
 
 			<!-- semantikos ewn -->
 
@@ -263,10 +303,10 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
-				android:layout_marginTop="25dp"
+				android:layout_marginTop="@dimen/other_app_margin_top"
 				android:contentDescription="@string/description_logo_semantikos_ewn"
 				android:gravity="center_horizontal"
-				android:padding="5dp"
+				android:padding="@dimen/other_logo_padding"
 				android:src="@drawable/logo_semantikos_ewn"
 				android:visibility="visible" />
 
@@ -276,7 +316,7 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
 				android:gravity="center_horizontal"
-				android:padding="5dp"
+				android:padding="@dimen/other_text_padding"
 				android:text="@string/title_semantikos_ewn"
 				android:textStyle="bold"
 				android:visibility="visible" />
@@ -287,7 +327,7 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
 				android:gravity="center_horizontal"
-				android:padding="5dp"
+				android:padding="@dimen/other_text_padding"
 				android:text="@string/text_semantikos_ewn"
 				android:visibility="visible" />
 
@@ -296,12 +336,11 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
-				android:layout_marginTop="20dp"
+				android:layout_marginTop="@dimen/other_button_margin_top"
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_semantikos_ewn"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible"
-				tools:ignore="InconsistentLayout" />
+				android:visibility="visible" />
 
 			<!-- semantikos vn -->
 
@@ -309,10 +348,10 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
-				android:layout_marginTop="25dp"
+				android:layout_marginTop="@dimen/other_app_margin_top"
 				android:contentDescription="@string/description_logo_semantikos_vn"
 				android:gravity="center_horizontal"
-				android:padding="5dp"
+				android:padding="@dimen/other_logo_padding"
 				android:src="@drawable/logo_semantikos_vn"
 				android:visibility="visible" />
 
@@ -322,7 +361,7 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
 				android:gravity="center_horizontal"
-				android:padding="5dp"
+				android:padding="@dimen/other_text_padding"
 				android:text="@string/title_semantikos_vn"
 				android:textStyle="bold"
 				android:visibility="visible" />
@@ -333,7 +372,7 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
 				android:gravity="center_horizontal"
-				android:padding="5dp"
+				android:padding="@dimen/other_text_padding"
 				android:text="@string/text_semantikos_vn"
 				android:visibility="visible" />
 
@@ -342,12 +381,11 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
-				android:layout_marginTop="20dp"
+				android:layout_marginTop="@dimen/other_button_margin_top"
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_semantikos_vn"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible"
-				tools:ignore="InconsistentLayout" />
+				android:visibility="visible" />
 
 			<!-- semantikos fn -->
 
@@ -355,10 +393,10 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
-				android:layout_marginTop="25dp"
+				android:layout_marginTop="@dimen/other_app_margin_top"
 				android:contentDescription="@string/description_logo_semantikos_fn"
 				android:gravity="center_horizontal"
-				android:padding="5dp"
+				android:padding="@dimen/other_logo_padding"
 				android:src="@drawable/logo_semantikos_fn"
 				android:visibility="visible" />
 
@@ -368,7 +406,7 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
 				android:gravity="center_horizontal"
-				android:padding="5dp"
+				android:padding="@dimen/other_text_padding"
 				android:text="@string/title_semantikos_fn"
 				android:textStyle="bold"
 				android:visibility="visible" />
@@ -379,7 +417,7 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
 				android:gravity="center_horizontal"
-				android:padding="5dp"
+				android:padding="@dimen/other_text_padding"
 				android:text="@string/text_semantikos_fn"
 				android:visibility="visible" />
 
@@ -388,12 +426,11 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
-				android:layout_marginTop="20dp"
+				android:layout_marginTop="@dimen/other_button_margin_top"
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_semantikos_fn"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible"
-				tools:ignore="InconsistentLayout" />
+				android:visibility="visible" />
 
 			<!-- semantikos sn -->
 
@@ -401,10 +438,10 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
-				android:layout_marginTop="25dp"
+				android:layout_marginTop="@dimen/other_app_margin_top"
 				android:contentDescription="@string/description_logo_semantikos_sn"
 				android:gravity="center_horizontal"
-				android:padding="5dp"
+				android:padding="@dimen/other_logo_padding"
 				android:src="@drawable/logo_semantikos_sn"
 				android:visibility="visible" />
 
@@ -414,7 +451,7 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
 				android:gravity="center_horizontal"
-				android:padding="5dp"
+				android:padding="@dimen/other_text_padding"
 				android:text="@string/title_semantikos_sn"
 				android:textStyle="bold"
 				android:visibility="visible" />
@@ -425,7 +462,7 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
 				android:gravity="center_horizontal"
-				android:padding="5dp"
+				android:padding="@dimen/other_text_padding"
 				android:text="@string/text_semantikos_sn"
 				android:visibility="visible" />
 
@@ -434,12 +471,11 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="center_horizontal"
-				android:layout_marginTop="20dp"
+				android:layout_marginTop="@dimen/other_button_margin_top"
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_semantikos_sn"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible"
-				tools:ignore="InconsistentLayout" />
+				android:visibility="visible" />
 
 		</LinearLayout>
 

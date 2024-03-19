@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (c) 2023. Bernard Bou
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
   -->
 
 <resources>
 
-	<!--<string name="title_others">Others</string>-->
+	<string name="title_others">Others</string>
 	<string name="title_activity_others">Others</string>
 
 	<string name="title_grammarscope_syntaxnet">GrammarScope (SyntaxNet)</string>
 	<string name="text_grammarscope_syntaxnet">GrammarScope (SyntaxNet) is a dependency parser. It parses sentences, analyses their syntactic structures (in the form of labelled dependencies) and displays its findings. It is powered by Google\'s SyntaxNet.</string>
-	<string name="description_logo_grammarscope_syntaxnet">GrammarScope (SyntaxNet)Logo</string>
+	<string name="description_logo_grammarscope_syntaxnet">GrammarScope (SyntaxNet) Logo</string>
 	<string name="description_googleplay_grammarscope_syntaxnet">GrammarScope (SyntaxNet) on GooglePlay</string>
 
 	<string name="title_grammarscope_udpipe">GrammarScope (UDPipe)</string>
 	<string name="text_grammarscope_udpipe">GrammarScope (UDPipe) is a dependency parser. It parses sentences, analyses their syntactic structures (in the form of labelled dependencies) and displays its findings. It is powered by UDPipe machine learning framework.</string>
 	<string name="description_logo_grammarscope_udpipe">GrammarScope UDPipe Logo</string>
 	<string name="description_googleplay_grammarscope_udpipe">GrammarScope UDPipe on GooglePlay</string>
+
+	<string name="text_grammarscope_premium">GrammarScope Premium offers text acquisition and OCR capabilities.</string>
+	<string name="description_grammarscope_premium">GrammarScope (SyntaxNet) Premium</string>
+	<string name="description_grammarscope_udpipe_premium">GrammarScope (UDPipe) Premium</string>
 
 	<string name="title_treebolicwordnet">Treebolic WordNet</string>
 	<string name="text_treebolicwordnet">For each word, a tree graph is built, based on WordNet® data, that captures the word\'s relations to other words. The relation types are those to be found in the WordNet database and include: \'more specific\', \'more generic\', \'causes\', \'entails\', \'similar to\', \'opposite of\', \'part of\', \'whole of\', etc…
@@ -50,7 +54,7 @@ Touch-dragging word nodes allows the user to interact with the display and to br
 	<string name="description_googleplay_semantikos_fn">Semantikos FrameNet on GooglePlay</string>
 
 	<string name="title_semantikos_sn">Semantikos SyntagNet</string>
-	<string name="text_semantikos_sn">Semantikos SyntagNet explores senses and collocations. Linguistic data from SyntagNet. Textual search on sample sentences.</string>
+	<string name="text_semantikos_sn">Semantikos SyntagNet explores senses and collocations of English. Linguistic data from SyntagNet. Textual search on sample sentences.</string>
 	<string name="description_logo_semantikos_sn">Semantikos SyntagNet Logo</string>
 	<string name="description_googleplay_semantikos_sn">Semantikos SyntagNet on GooglePlay</string>
 
