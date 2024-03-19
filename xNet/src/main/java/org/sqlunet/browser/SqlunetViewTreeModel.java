@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.net.Uri;
 
 import com.bbou.concurrency.Task;
+
 import org.sqlunet.view.TreeOp;
 
 import androidx.annotation.NonNull;
@@ -48,21 +49,21 @@ public class SqlunetViewTreeModel extends AndroidViewModel
 		{
 			@Nullable
 			@Override
-			protected TreeOp[] doInBackground(Void... voids)
+			public TreeOp[] doJob(Void ingored)
 			{
 				final Cursor cursor = getApplication().getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder);
 				return cursor == null ? null : treeConverter.cursorToTreeOps(cursor);
 			}
 
 			@Override
-			protected void onPostExecute(@Nullable TreeOp[] treeOps)
+			public void onDone(@Nullable TreeOp[] treeOps)
 			{
 				if (treeOps != null)
 				{
 					data.setValue(treeOps);
 				}
 			}
-		}.execute();
+		}.execute(null);
 	}
 
 	public void loadData(@NonNull final Uri uri, @NonNull final Module.ContentProviderSql sql, @NonNull final ToTreeOps treeConverter)

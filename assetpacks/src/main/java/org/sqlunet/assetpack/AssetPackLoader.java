@@ -8,6 +8,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 
+import com.bbou.concurrency.Cancelable;
+import com.bbou.concurrency.observe.TaskObserver;
 import com.google.android.play.core.assetpacks.AssetPackLocation;
 import com.google.android.play.core.assetpacks.AssetPackManager;
 import com.google.android.play.core.assetpacks.AssetPackManagerFactory;
@@ -18,9 +20,6 @@ import com.google.android.play.core.assetpacks.model.AssetPackErrorCode;
 import com.google.android.play.core.assetpacks.model.AssetPackStatus;
 import com.google.android.play.core.tasks.RuntimeExecutionException;
 
-import com.bbou.concurrency.Cancelable;
-import com.bbou.concurrency.TaskObserver;
-
 import java.io.File;
 import java.util.Collections;
 import java.util.Locale;
@@ -28,6 +27,7 @@ import java.util.Locale;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+import kotlin.Pair;
 
 public class AssetPackLoader implements Cancelable
 {
@@ -82,7 +82,7 @@ public class AssetPackLoader implements Cancelable
 	 * @return asset pack path if pack was installed
 	 */
 	@Nullable
-	public String assetPackDelivery(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @Nullable Runnable whenReady)
+	public String assetPackDelivery(@NonNull final Activity activity, @NonNull final TaskObserver<Pair<Number, Number>> observer, @Nullable Runnable whenReady)
 	{
 		// pack location
 		final AssetPackLocation packLocation = this.assetPackManager.getPackLocation(this.pack);
@@ -192,12 +192,12 @@ public class AssetPackLoader implements Cancelable
 		final Activity activity;
 
 		@NonNull
-		final TaskObserver.Observer<Number> observer;
+		final TaskObserver<Pair<Number, Number>> observer;
 
 		@Nullable
 		final Runnable whenReady;
 
-		Listener(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @Nullable Runnable whenReady)
+		Listener(@NonNull final Activity activity, @NonNull final TaskObserver<Pair<Number, Number>> observer, @Nullable Runnable whenReady)
 		{
 			this.activity = activity;
 			this.observer = observer;
@@ -225,7 +225,7 @@ public class AssetPackLoader implements Cancelable
 					long totalSize = state.totalBytesToDownload();
 					Log.i(TAG, "Status downloading progress " + String.format("%d / %d", downloaded, totalSize));
 					this.observer.taskUpdate(statusStr);
-					this.observer.taskProgress(downloaded, totalSize, null);
+					this.observer.taskProgress(new Pair<>(downloaded, totalSize));
 					break;
 
 				case AssetPackStatus.TRANSFERRING: // 100% downloaded and assets are being transferred. Notify user to wait until transfer is complete.
@@ -233,7 +233,7 @@ public class AssetPackLoader implements Cancelable
 					String percent2Str = String.format(Locale.getDefault(), "%d %%", percent2);
 					Log.i(TAG, "Status transferring progress " + percent2Str);
 					this.observer.taskUpdate(statusStr + ' ' + percent2Str);
-					this.observer.taskProgress(percent2, -1, "%");
+					this.observer.taskProgress(new Pair<>(percent2, -1));
 					break;
 
 				case AssetPackStatus.WAITING_FOR_WIFI: // The asset pack download is waiting for Wi-Fi to become available before proceeding.
@@ -388,7 +388,16 @@ public class AssetPackLoader implements Cancelable
 	{
 		Log.d(TAG, "User cancel");
 		AssetPackLoader.this.assetPackManager.cancel(Collections.singletonList(this.pack));
+		isCancelled = true;
 		return true;
+	}
+
+	private boolean isCancelled = false;
+
+	@Override
+	public boolean isCancelled()
+	{
+		return isCancelled;
 	}
 
 	/**

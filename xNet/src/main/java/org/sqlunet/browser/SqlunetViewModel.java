@@ -25,7 +25,9 @@ public class SqlunetViewModel extends AndroidViewModel
 	@FunctionalInterface
 	public interface PostProcessor
 	{
-		/** @noinspection unused*/
+		/**
+		 * @noinspection unused
+		 */
 		void postProcess(@NonNull final Cursor cursor);
 	}
 
@@ -55,9 +57,9 @@ public class SqlunetViewModel extends AndroidViewModel
 		Log.d(TAG, "Loading data for " + uri);
 		new Task<Void, Void, Cursor>()
 		{
-			@Nullable
 			@Override
-			protected Cursor doInBackground(Void... voids)
+			@Nullable
+			public Cursor doJob(@Nullable final Void unused)
 			{
 				final Cursor cursor = getApplication().getContentResolver().query(uri, projection, selection, selectionArgs, sortOrder);
 				Log.d(TAG, "Loaded data for " + uri + " yielded cursor " + cursor);
@@ -69,11 +71,11 @@ public class SqlunetViewModel extends AndroidViewModel
 			}
 
 			@Override
-			protected void onPostExecute(Cursor cursor)
+			public void onDone(@Nullable final Cursor cursor)
 			{
 				SqlunetViewModel.this.data.setValue(cursor);
 			}
-		}.execute();
+		}.execute(null);
 	}
 
 	public void loadData(@NonNull final Uri uri, @NonNull final Module.ContentProviderSql sql, @Nullable final PostProcessor postProcessor)
