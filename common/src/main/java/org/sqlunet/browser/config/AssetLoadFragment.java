@@ -14,10 +14,12 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bbou.concurrency.Cancelable;
+import com.bbou.concurrency.observe.TaskObserver;
+import com.bbou.download.storage.FormatUtils;
+
 import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.common.R;
-import com.bbou.concurrency.Cancelable;
-import com.bbou.concurrency.TaskObserver;
 import org.sqlunet.settings.Settings;
 
 import androidx.annotation.NonNull;
@@ -25,13 +27,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import kotlin.Pair;
 
 /**
  * About fragment
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class AssetLoadFragment extends Fragment implements TaskObserver.Observer<Number>
+public class AssetLoadFragment extends Fragment implements TaskObserver<Pair<Number, Number>>
 {
 	static private final String TAG = "AssetF";
 
@@ -133,12 +136,12 @@ public class AssetLoadFragment extends Fragment implements TaskObserver.Observer
 	}
 
 	@Override
-	public void taskProgress(@NonNull final Number progress, @NonNull final Number length, @Nullable String unit)
+	public void taskProgress(@NonNull final Pair<Number, Number> progress)
 	{
-		final long longProgress = progress.longValue();
-		final long longLength = length.longValue();
+		final long longProgress = progress.getFirst().longValue();
+		final long longLength = progress.getSecond().longValue();
 		final boolean indeterminate = longLength == -1L;
-		this.progressTextView.setText(TaskObserver.countToString(longProgress, longLength, unit));
+		this.progressTextView.setText(FormatUtils.formatAsInformationString(longProgress) + '/' + FormatUtils.formatAsInformationString(longLength));
 		this.progressBar.setIndeterminate(indeterminate);
 		if (!indeterminate)
 		{
@@ -155,16 +158,14 @@ public class AssetLoadFragment extends Fragment implements TaskObserver.Observer
 	}
 
 	@NonNull
-	@Override
-	public TaskObserver.Observer<Number> setTitle(@NonNull final CharSequence title)
+	public TaskObserver<Pair<Number, Number>> setTitle(@NonNull final CharSequence title)
 	{
 		this.titleTextView.setText(title);
 		return this;
 	}
 
 	@NonNull
-	@Override
-	public TaskObserver.Observer<Number> setMessage(@NonNull final CharSequence message)
+	public TaskObserver<Pair<Number, Number>> setMessage(@NonNull final CharSequence message)
 	{
 		this.messageTextView.setText(message);
 		return this;

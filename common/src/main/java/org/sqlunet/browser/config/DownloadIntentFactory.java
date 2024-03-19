@@ -8,22 +8,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
-import com.bbou.deploy.Deploy;
-import com.bbou.download.Settings;
+import com.bbou.deploy.workers.Deploy;
+import com.bbou.download.preference.Settings;
 
 import org.sqlunet.settings.StorageSettings;
 
 import androidx.annotation.NonNull;
 
-import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_FROM_ARG;
-import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_MODE_ARG;
-import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_RENAME_FROM_ARG;
-import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_RENAME_TO_ARG;
-import static com.bbou.download.AbstractDownloadFragment.DOWNLOAD_TARGET_FILE_ARG;
-import static com.bbou.download.AbstractDownloadFragment.THEN_UNZIP_TO_ARG;
-import static com.bbou.download.DownloadFragment.DOWNLOAD_TO_FILE_ARG;
-import static com.bbou.download.DownloadZipFragment.DOWNLOAD_ENTRY_ARG;
-import static com.bbou.download.DownloadZipFragment.DOWNLOAD_TO_DIR_ARG;
+import static com.bbou.download.Keys.DOWNLOAD_FROM_ARG;
+import static com.bbou.download.Keys.DOWNLOAD_MODE_ARG;
+import static com.bbou.download.Keys.DOWNLOAD_RENAME_FROM_ARG;
+import static com.bbou.download.Keys.DOWNLOAD_RENAME_TO_ARG;
+import static com.bbou.download.Keys.DOWNLOAD_TARGET_FILE_ARG;
+import static com.bbou.download.Keys.THEN_UNZIP_TO_ARG;
+import static com.bbou.download.Keys.DOWNLOAD_TO_FILE_ARG;
+import static com.bbou.download.Keys.DOWNLOAD_ENTRY_ARG;
+import static com.bbou.download.Keys.DOWNLOAD_TO_DIR_ARG;
 
 public class DownloadIntentFactory
 {

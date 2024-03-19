@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:padding="16dp"
+	android:orientation="vertical">
+
+	<TextView
+		android:id="@+id/title"
+		style="@android:style/TextAppearance.Medium"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:gravity="center" />
+
+	<TextView
+		android:id="@+id/message"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:layout_marginLeft="25dp"
+		android:layout_marginTop="16dp"
+		android:layout_marginRight="25dp"
+		android:gravity="center_horizontal" />
+
+	<ProgressBar
+		android:id="@+id/progressBar"
+		style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:layout_marginLeft="25dp"
+		android:layout_marginRight="25dp" />
+
+	<TextView
+		android:id="@+id/progressProgress"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:layout_marginLeft="25dp"
+		android:layout_marginTop="8dp"
+		android:layout_marginRight="25dp" />
+
+	<TextView
+		android:id="@+id/status"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:layout_marginLeft="25dp"
+		android:layout_marginTop="16dp"
+		android:layout_marginRight="25dp" />
+
+</LinearLayout>

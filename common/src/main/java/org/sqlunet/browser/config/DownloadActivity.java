@@ -23,7 +23,7 @@ import androidx.appcompat.app.ActionBar;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class DownloadActivity extends com.bbou.download.DownloadActivity
+public class DownloadActivity extends com.bbou.download.workers.DownloadActivity
 {
 	static private final String TAG = "DownloadA";
 

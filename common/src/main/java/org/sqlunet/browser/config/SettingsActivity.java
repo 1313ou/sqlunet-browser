@@ -13,7 +13,7 @@ import android.util.Pair;
 
 import org.sqlunet.browser.EntryActivity;
 import org.sqlunet.browser.common.R;
-import com.bbou.download.ResourcesDownloader;
+import com.bbou.download.workers.utils.ResourcesDownloader;
 import org.sqlunet.preference.OpenEditTextPreference;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.settings.Settings;
@@ -115,7 +115,7 @@ public class SettingsActivity extends BaseSettingsActivity
 	 */
 	static private void populateCacheListPreference(@NonNull final Context context, @NonNull final ListPreference listPref)
 	{
-		final Pair<CharSequence[], CharSequence[]> result = StorageReports.getStyledCachesNamesValues(context);
+		final Pair<CharSequence[], String[]> result = StorageReports.getStyledCachesNamesValues(context);
 		final CharSequence[] names = result.first;
 		final CharSequence[] values = result.second;
 

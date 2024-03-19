@@ -4,8 +4,6 @@
 
 package org.sqlunet.browser.web;
 
-import android.annotation.SuppressLint;
-
 import com.bbou.concurrency.Task;
 
 import androidx.annotation.NonNull;
@@ -14,7 +12,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-@SuppressWarnings("WeakerAccess")
 public class WebModel extends ViewModel
 {
 	/**
@@ -33,24 +30,23 @@ public class WebModel extends ViewModel
 		super();
 	}
 
-	@SuppressLint("StaticFieldLeak")
-	@SuppressWarnings("UnusedReturnValue")
 	public void loadData(@NonNull final DocumentStringLoader loader)
 	{
 		new Task<Void, Void, String>()
 		{
 			@Nullable
 			@Override
-			protected String doInBackground(Void... voids)
+			public String doJob(Void ignored)
 			{
 				return loader.getDoc();
 			}
 
 			@Override
-			protected void onPostExecute(final String treeNode)
+			public void onDone(final String treeNode)
 			{
 				data.setValue(treeNode);
 			}
-		}.execute();
+
+		}.execute(null);
 	}
 }

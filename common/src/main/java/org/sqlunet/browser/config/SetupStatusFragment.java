@@ -18,7 +18,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bbou.download.Settings;
+import com.bbou.download.preference.Settings;
 
 import org.sqlunet.browser.ColorUtils;
 import org.sqlunet.browser.EntryActivity;

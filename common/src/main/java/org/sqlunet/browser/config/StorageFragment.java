@@ -112,7 +112,7 @@ public class StorageFragment extends Fragment
 				}
 				else if (itemId == R.id.action_storage_dirs)
 				{
-					final Pair<CharSequence[], CharSequence[]> dirs = StorageReports.getStyledStorageDirectoriesNamesValues(context);
+					final Pair<CharSequence[], String[]> dirs = StorageReports.getStyledStorageDirectoriesNamesValues(context);
 					final CharSequence message = StorageReports.namesValuesToReportStyled(dirs);
 					new AlertDialog.Builder(context) //
 							.setTitle(R.string.action_storage_dirs) //
@@ -123,7 +123,7 @@ public class StorageFragment extends Fragment
 				}
 				else if (itemId == R.id.action_cache_dirs)
 				{
-					final Pair<CharSequence[], CharSequence[]> dirs = StorageReports.getStyledCachesNamesValues(context);
+					final Pair<CharSequence[], String[]> dirs = StorageReports.getStyledCachesNamesValues(context);
 					final CharSequence message = StorageReports.namesValuesToReportStyled(dirs);
 					new AlertDialog.Builder(context) //
 							.setTitle(R.string.action_cache_dirs) //
@@ -134,7 +134,7 @@ public class StorageFragment extends Fragment
 				}
 				else if (itemId == R.id.action_download_dirs)
 				{
-					final Pair<CharSequence[], CharSequence[]> dirs = StorageReports.getStyledDownloadNamesValues(context);
+					final Pair<CharSequence[], String[]> dirs = StorageReports.getStyledDownloadNamesValues(context);
 					final CharSequence message = StorageReports.namesValuesToReportStyled(dirs);
 					new AlertDialog.Builder(context) //
 							.setTitle(R.string.action_download_dirs) //

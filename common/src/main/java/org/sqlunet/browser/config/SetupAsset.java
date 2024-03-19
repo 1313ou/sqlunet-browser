@@ -8,6 +8,10 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.Toast;
 
+import com.bbou.concurrency.observe.TaskObserver;
+import com.bbou.deploy.workers.FileTasks;
+import com.bbou.download.DownloadData;
+import com.bbou.download.preference.Settings;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.play.core.assetpacks.AssetPackLocation;
 import com.google.android.play.core.assetpacks.AssetPackManager;
@@ -15,9 +19,6 @@ import com.google.android.play.core.assetpacks.AssetPackManagerFactory;
 
 import org.sqlunet.assetpack.AssetPackLoader;
 import org.sqlunet.browser.common.R;
-import com.bbou.concurrency.TaskObserver;
-import com.bbou.download.FileAsyncTask;
-import com.bbou.download.Settings;
 import org.sqlunet.settings.StorageSettings;
 
 import java.io.File;
@@ -25,16 +26,13 @@ import java.io.File;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
+import kotlin.Pair;
 
 public class SetupAsset
 {
 	static public final String PREF_ASSET_PRIMARY_DEFAULT = "pref_asset_primary_default";
 
 	static public final String PREF_ASSET_AUTO_CLEANUP = "pref_asset_auto_cleanup";
-
-	// public static final String ASSET_ARCHIVE_ENTRY = "sqlunet.db";
-
-	// public static final String TARGET_DB = "sqlunet.db";
 
 	/**
 	 * Deliver asset
@@ -50,7 +48,7 @@ public class SetupAsset
 	 */
 	@Nullable
 	@SuppressWarnings("UnusedReturnValue")
-	public static String deliverAsset(@NonNull final String assetPack, @NonNull final String assetDir, @NonNull final String assetZip, @NonNull final String assetZipEntry, @NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @Nullable Runnable whenComplete, @Nullable final View view)
+	public static String deliverAsset(@NonNull final String assetPack, @NonNull final String assetDir, @NonNull final String assetZip, @NonNull final String assetZipEntry, @NonNull final Activity activity, @NonNull final TaskObserver<Pair<Number, Number>> observer, @Nullable Runnable whenComplete, @Nullable final View view)
 	{
 		if (assetPack.isEmpty())
 		{
@@ -74,11 +72,6 @@ public class SetupAsset
 			Toast.makeText(activity, R.string.action_asset_deliver, Toast.LENGTH_SHORT).show();
 		}
 
-		// observer title and message
-		observer //
-				.setTitle(activity.getString(R.string.title_dialog_assetload)) //
-				.setMessage(activity.getString(R.string.gloss_asset_delivery_message));
-
 		// deliver asset (returns non null path if already installed)
 		final String path0 = new AssetPackLoader(activity, assetPack) //
 				.assetPackDelivery(activity, observer, () -> {
@@ -91,16 +84,10 @@ public class SetupAsset
 						final String path = packLocation.assetsPath();
 						final String zipFilePath = new File(new File(path, assetDir), assetZip).getAbsolutePath();
 
-						//final TaskObserver.Observer<Number> observer2 = new TaskDialogObserver<>(activity.getSupportFragmentManager());
-						@NonNull final TaskObserver.Observer<Number> observer2 = observer;
-						observer2 //
-								.setTitle(activity.getString(R.string.action_unzip_datapack_from_asset)) //
-								.setMessage(zipFilePath);
-
-						FileAsyncTask.launchUnzip(activity, observer2, zipFilePath, assetZipEntry, StorageSettings.getDatabasePath(activity), (result) -> {
+						FileTasks.launchUnzip(activity, observer, zipFilePath, assetZipEntry, StorageSettings.getDatabasePath(activity), (result) -> {
 
 							org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
-							Settings.recordDatapackSource(activity, zipFilePath, -1, -1, null, null, null, "asset");
+							Settings.recordDatapackSource(activity, new DownloadData(zipFilePath, null, null, null, null, null, null), "asset");
 							if (whenComplete != null)
 							{
 								whenComplete.run();
@@ -131,23 +118,15 @@ public class SetupAsset
 			final String zipFilePath = zipFile.getAbsolutePath();
 			if (zipFile.exists())
 			{
-				observer //
-						.setTitle(activity.getString(R.string.action_unzip_datapack_from_asset)) //
-						.setMessage(zipFilePath);
-				FileAsyncTask.launchUnzip(activity, observer, zipFilePath, assetZipEntry, StorageSettings.getDatabasePath(activity), (result) -> {
+				FileTasks.launchUnzip(activity, observer, zipFilePath, assetZipEntry, StorageSettings.getDatabasePath(activity), (result) -> {
 
 					org.sqlunet.assetpack.Settings.recordDbAsset(activity, assetPack);
-					Settings.recordDatapackSource(activity, zipFilePath, -1, -1, null, null, null, "asset");
+					Settings.recordDatapackSource(activity, new DownloadData(zipFilePath, null, null, null, null, null, null), "asset");
 					if (whenComplete != null)
 					{
 						whenComplete.run();
 					}
 				});
-			}
-			else
-			{
-				observer.setTitle(activity.getString(R.string.action_unzip_datapack_from_asset));
-				observer.setMessage(activity.getString(R.string.status_error_no_file) + ' ' + zipFilePath);
 			}
 		}
 		return path0;

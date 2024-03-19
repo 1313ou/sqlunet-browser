@@ -11,11 +11,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.bbou.concurrency.TaskDialogObserver;
-import com.bbou.concurrency.TaskObserver;
+import com.bbou.concurrency.observe.TaskDialogObserver;
+import com.bbou.concurrency.observe.TaskObserver;
 import com.bbou.donate.DonateActivity;
-import com.bbou.download.FileDataDownloader;
-import com.bbou.download.ResourcesDownloader;
+import com.bbou.download.workers.utils.FileDataDownloader;
+import com.bbou.download.workers.utils.ResourcesDownloader;
 import com.bbou.others.OthersActivity;
 import com.bbou.rate.AppRate;
 
@@ -39,6 +39,7 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.PreferenceManager;
+import kotlin.Pair;
 
 import static org.sqlunet.browser.config.BaseSettingsActivity.INITIAL_ARG;
 
@@ -93,12 +94,12 @@ public class MenuHandler
 		else if (itemId == R.id.action_update)
 		{
 			BaseProvider.closeProviders(activity);
-			FileDataDownloader.start(activity, DownloadIntentFactory.makeUpdateIntent(activity));
+			FileDataDownloader.Companion.start(activity, DownloadIntentFactory.makeUpdateIntent(activity));
 			return true;
 		}
 		else if (itemId == R.id.action_resources_directory)
 		{
-			ResourcesDownloader.showResources(activity);
+			ResourcesDownloader.Companion.showResources(activity);
 			return true;
 		}
 
@@ -256,9 +257,10 @@ public class MenuHandler
 			final String assetDir = Settings.getAssetPackDir(activity);
 			final String assetZip = Settings.getAssetPackZip(activity);
 			final String assetZipEntry = activity.getString(R.string.asset_zip_entry);
-			final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
+			final TaskObserver<Pair<Number, Number>> observer = new TaskDialogObserver<Pair<Number, Number>>(activity.getSupportFragmentManager()) //
 					.setTitle(activity.getString(R.string.title_dialog_assetload)) //
-					.setMessage(asset);
+					.setMessage(asset + '\n' + activity.getString(R.string.gloss_asset_delivery_message));
+
 			SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null, null);
 			return true;
 		}
@@ -274,7 +276,7 @@ public class MenuHandler
 			final String assetDir = activity.getString(R.string.asset_dir_primary);
 			final String assetZip = activity.getString(R.string.asset_zip_primary);
 			final String assetZipEntry = activity.getString(R.string.asset_zip_entry);
-			final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
+			final TaskObserver<Pair<Number, Number>> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
 					.setTitle(activity.getString(R.string.title_dialog_assetload)) //
 					.setMessage(asset);
 			SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null, null);
@@ -288,7 +290,7 @@ public class MenuHandler
 			final String assetZipEntry = activity.getString(R.string.asset_zip_entry);
 			if (!asset.isEmpty())
 			{
-				final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
+				final TaskObserver<Pair<Number, Number>> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) //
 						.setTitle(activity.getString(R.string.title_dialog_assetload)) //
 						.setMessage(asset);
 				SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null, null);

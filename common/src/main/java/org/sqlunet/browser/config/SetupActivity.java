@@ -294,7 +294,7 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 		}
 		else if (itemId == R.id.action_storage_dirs)
 		{
-			final Pair<CharSequence[], CharSequence[]> dirs = StorageReports.getStyledStorageDirectoriesNamesValues(this);
+			final Pair<CharSequence[], String[]> dirs = StorageReports.getStyledStorageDirectoriesNamesValues(this);
 			final CharSequence message = StorageReports.namesValuesToReportStyled(dirs);
 			new AlertDialog.Builder(this) //
 					.setTitle(R.string.action_storage_dirs) //
@@ -304,7 +304,7 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 		}
 		else if (itemId == R.id.action_cache_dirs)
 		{
-			final Pair<CharSequence[], CharSequence[]> dirs = StorageReports.getStyledCachesNamesValues(this);
+			final Pair<CharSequence[], String[]> dirs = StorageReports.getStyledCachesNamesValues(this);
 			final CharSequence message = StorageReports.namesValuesToReportStyled(dirs);
 			new AlertDialog.Builder(this) //
 					.setTitle(R.string.action_cache_dirs) //
@@ -314,7 +314,7 @@ public class SetupActivity extends AppCompatActivity implements TabLayout.OnTabS
 		}
 		else if (itemId == R.id.action_download_dirs)
 		{
-			final Pair<CharSequence[], CharSequence[]> dirs = StorageReports.getStyledDownloadNamesValues(this);
+			final Pair<CharSequence[], String[]> dirs = StorageReports.getStyledDownloadNamesValues(this);
 			final CharSequence message = StorageReports.namesValuesToReportStyled(dirs);
 			new AlertDialog.Builder(this) //
 					.setTitle(R.string.action_download_dirs) //

@@ -16,10 +16,11 @@ import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
-import org.sqlunet.browser.common.R;
 import com.bbou.concurrency.Task;
-import com.bbou.concurrency.TaskDialogObserver;
-import com.bbou.concurrency.TaskObserver;
+import com.bbou.concurrency.observe.TaskDialogObserver;
+import com.bbou.concurrency.observe.TaskObserver;
+
+import org.sqlunet.browser.common.R;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -33,6 +34,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.util.Consumer;
 import androidx.fragment.app.FragmentActivity;
+import kotlin.Pair;
 
 /**
  * Execution manager
@@ -59,18 +61,12 @@ public class ExecAsyncTask
 	 * Observer
 	 */
 	@Nullable
-	final private TaskObserver.Observer<Number> observer;
+	final private TaskObserver<Pair<Number, Number>> observer;
 
 	/**
 	 * Publish rate
 	 */
 	private final int publishRate;
-
-	/**
-	 * Unit
-	 */
-	@NonNull
-	private final String unit;
 
 	/**
 	 * Activity
@@ -86,13 +82,12 @@ public class ExecAsyncTask
 	 * @param observer    observer
 	 * @param publishRate publish rate
 	 */
-	public ExecAsyncTask(@NonNull final Activity activity, @Nullable final Consumer<Boolean> whenDone, @Nullable final TaskObserver.Observer<Number> observer, final int publishRate)
+	public ExecAsyncTask(@NonNull final Activity activity, @Nullable final Consumer<Boolean> whenDone, @Nullable final TaskObserver<Pair<Number, Number>> observer, final int publishRate)
 	{
 		this.activity = activity;
 		this.whenDone = whenDone;
 		this.observer = observer;
 		this.publishRate = publishRate;
-		this.unit = activity.getString(R.string.unit_statement);
 	}
 
 	// S Q L
@@ -100,7 +95,7 @@ public class ExecAsyncTask
 	/**
 	 * Sql executor
 	 */
-	static private class AsyncExecuteFromSql extends Task<String[], Number, Boolean>
+	static private class AsyncExecuteFromSql extends Task<String[], Pair<Number, Number>, Boolean>
 	{
 		/**
 		 * Data base path
@@ -118,12 +113,7 @@ public class ExecAsyncTask
 		 * Task observer
 		 */
 		@Nullable
-		final private TaskObserver.Observer<Number> observer;
-
-		/**
-		 * Unit
-		 */
-		private final String unit;
+		final private TaskObserver<Pair<Number, Number>> observer;
 
 		/**
 		 * Publish rate
@@ -136,31 +126,27 @@ public class ExecAsyncTask
 		 * @param observer    observer
 		 * @param publishRate publish rate
 		 */
-		AsyncExecuteFromSql(@NonNull final String dataBase, @Nullable final Consumer<Boolean> whenDone, @Nullable final TaskObserver.Observer<Number> observer, final int publishRate, final String unit)
+		AsyncExecuteFromSql(@NonNull final String dataBase, @Nullable final Consumer<Boolean> whenDone, @Nullable final TaskObserver<Pair<Number, Number>> observer, final int publishRate)
 		{
 			this.dataBase = dataBase;
 			this.whenDone = whenDone;
 			this.observer = observer;
 			this.publishRate = publishRate;
-			this.unit = unit;
 		}
 
 		@NonNull
 		@Override
-		protected final Boolean doInBackground(@NonNull final String[]... params)
+		public final Boolean doJob(@Nullable final String[] params)
 		{
-			final String[] sqlArgs = params[0];
-
+			assert params != null;
 			try (SQLiteDatabase db = SQLiteDatabase.openDatabase(dataBase, null, SQLiteDatabase.OPEN_READWRITE))
 			{
-				// database
-
 				// execute
-				final int total = sqlArgs.length;
+				final int total = params.length;
 				int successCount = 0;
 				for (int i = 0; i < total; i++)
 				{
-					final String sql = sqlArgs[i].trim();
+					final String sql = params[i].trim();
 					if (sql.isEmpty())
 					{
 						continue;
@@ -174,7 +160,7 @@ public class ExecAsyncTask
 					// publish
 					if (total % this.publishRate == 0)
 					{
-						publishProgress(i, total);
+						postProgress(new Pair<>(i, total));
 					}
 
 					// cooperative exit
@@ -189,7 +175,7 @@ public class ExecAsyncTask
 						break;
 					}
 				}
-				publishProgress(successCount, total);
+				postProgress(new Pair<>(successCount, total));
 				return true;
 			}
 			catch (@NonNull final Exception e)
@@ -200,7 +186,7 @@ public class ExecAsyncTask
 		}
 
 		@Override
-		protected void onPreExecute()
+		public void onPreExecute()
 		{
 			if (this.observer != null)
 			{
@@ -209,16 +195,16 @@ public class ExecAsyncTask
 		}
 
 		@Override
-		protected void onProgressUpdate(final Number... params)
+		public void onProgress(final Pair<Number, Number> progress)
 		{
 			if (this.observer != null)
 			{
-				this.observer.taskProgress(params[0], params[1], this.unit);
+				this.observer.taskProgress(progress);
 			}
 		}
 
 		@Override
-		protected void onPostExecute(final Boolean result)
+		public void onDone(final Boolean result)
 		{
 			if (this.observer != null)
 			{
@@ -236,14 +222,14 @@ public class ExecAsyncTask
 	 */
 	@NonNull
 	@SuppressWarnings({"UnusedReturnValue", "unchecked"})
-	public Task<String[], Number, Boolean> fromSql(@NonNull final String dataBase)
+	public Task<String[], Pair<Number, Number>, Boolean> fromSql(@NonNull final String dataBase)
 	{
-		return new AsyncExecuteFromSql(dataBase, this.whenDone, this.observer, this.publishRate, this.unit);
+		return new AsyncExecuteFromSql(dataBase, this.whenDone, this.observer, this.publishRate);
 	}
 
 	// A R C H I V E   F I L E
 
-	static private class AsyncExecuteFromArchiveFile extends Task<String, Number, Boolean>
+	static private class AsyncExecuteFromArchiveFile extends Task<String, Pair<Number, Number>, Boolean>
 	{
 		/**
 		 * Data base path
@@ -267,17 +253,12 @@ public class ExecAsyncTask
 		 * Task observer
 		 */
 		@Nullable
-		final private TaskObserver.Observer<Number> observer;
+		final private TaskObserver<Pair<Number, Number>> observer;
 
 		/**
 		 * Publish rate
 		 */
 		private final int publishRate;
-
-		/**
-		 * UNit
-		 */
-		private final String unit;
 
 		/**
 		 * Power manager
@@ -298,25 +279,23 @@ public class ExecAsyncTask
 		 * @param powerManager power manager
 		 * @param window       window
 		 */
-		AsyncExecuteFromArchiveFile(@NonNull final String dataBase, @NonNull final String entry, @Nullable final Consumer<Boolean> whenDone, @Nullable final TaskObserver.Observer<Number> observer, final int publishRate, final String unit, final PowerManager powerManager, final Window window)
+		AsyncExecuteFromArchiveFile(@NonNull final String dataBase, @NonNull final String entry, @Nullable final Consumer<Boolean> whenDone, @Nullable final TaskObserver<Pair<Number, Number>> observer, final int publishRate, final PowerManager powerManager, final Window window)
 		{
 			this.dataBase = dataBase;
 			this.entry = entry;
 			this.whenDone = whenDone;
 			this.observer = observer;
 			this.publishRate = publishRate;
-			this.unit = unit;
 			this.powerManager = powerManager;
 			this.window = window;
 		}
 
 		@NonNull
 		@Override
-		@SuppressWarnings("boxing")
-		protected Boolean doInBackground(@NonNull final String... params)
+		public Boolean doJob(@Nullable final String params)
 		{
-			final String archiveArg = params[1];
-			Log.d(TAG, archiveArg + '!' + entry + " -> " + dataBase);
+			Log.d(TAG, params + '!' + entry + " -> " + dataBase);
+			assert params != null;
 
 			// wake lock
 			assert this.powerManager != null;
@@ -326,7 +305,7 @@ public class ExecAsyncTask
 			boolean inTransaction = false;
 			try (SQLiteDatabase db = SQLiteDatabase.openDatabase(dataBase, null, SQLiteDatabase.CREATE_IF_NECESSARY))
 			{
-				try (ZipFile zipFile = new ZipFile(archiveArg))
+				try (ZipFile zipFile = new ZipFile(params))
 				{
 
 					// zip
@@ -420,7 +399,7 @@ public class ExecAsyncTask
 							{
 								if (count % this.publishRate == 0)
 								{
-									publishProgress(count, -1);
+									postProgress(new Pair<>(count, -1));
 								}
 							}
 
@@ -436,7 +415,7 @@ public class ExecAsyncTask
 								break;
 							}
 						}
-						publishProgress(successCount, count);
+						postProgress(new Pair<>(successCount, count));
 						return status;
 					}
 				}
@@ -464,7 +443,7 @@ public class ExecAsyncTask
 		}
 
 		@Override
-		protected void onPreExecute()
+		public void onPreExecute()
 		{
 			this.window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 			if (this.observer != null)
@@ -474,16 +453,16 @@ public class ExecAsyncTask
 		}
 
 		@Override
-		protected void onProgressUpdate(final Number... params)
+		public void onProgress(final Pair<Number, Number> progress)
 		{
 			if (this.observer != null)
 			{
-				this.observer.taskProgress(params[0], params[1], this.unit);
+				this.observer.taskProgress(progress);
 			}
 		}
 
 		@Override
-		protected void onPostExecute(final Boolean result)
+		public void onDone(final Boolean result)
 		{
 			this.window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 			if (this.observer != null)
@@ -501,16 +480,16 @@ public class ExecAsyncTask
 	 * Execute sql statements from zip file
 	 */
 	@NonNull
-	public Task<String, Number, Boolean> fromArchiveFile(@NonNull final String dataBase, @NonNull final String entry)
+	public Task<String, Pair<Number, Number>, Boolean> fromArchiveFile(@NonNull final String dataBase, @NonNull final String entry)
 	{
 		final PowerManager powerManager = (PowerManager) ExecAsyncTask.this.activity.getSystemService(Context.POWER_SERVICE);
 		final Window window = ExecAsyncTask.this.activity.getWindow();
-		return new AsyncExecuteFromArchiveFile(dataBase, entry, this.whenDone, this.observer, this.publishRate, this.unit, powerManager, window);
+		return new AsyncExecuteFromArchiveFile(dataBase, entry, this.whenDone, this.observer, this.publishRate, powerManager, window);
 	}
 
 	// U R I
 
-	static private class AsyncExecuteFromUri extends Task<Uri, Number, Boolean>
+	static private class AsyncExecuteFromUri extends Task<Uri, Pair<Number, Number>, Boolean>
 	{
 		/**
 		 * Data base path
@@ -534,17 +513,12 @@ public class ExecAsyncTask
 		 * Task observer
 		 */
 		@Nullable
-		final private TaskObserver.Observer<Number> observer;
+		final private TaskObserver<Pair<Number, Number>> observer;
 
 		/**
 		 * Publish rate
 		 */
 		private final int publishRate;
-
-		/**
-		 * UNit
-		 */
-		private final String unit;
 
 		/**
 		 * Power manager
@@ -565,28 +539,26 @@ public class ExecAsyncTask
 		 * @param powerManager power manager
 		 * @param window       window
 		 */
-		AsyncExecuteFromUri(@NonNull final String dataBase, @NonNull final ContentResolver resolver, @Nullable final Consumer<Boolean> whenDone, @Nullable final TaskObserver.Observer<Number> observer, final int publishRate, final String unit, final PowerManager powerManager, final Window window)
+		AsyncExecuteFromUri(@NonNull final String dataBase, @NonNull final ContentResolver resolver, @Nullable final Consumer<Boolean> whenDone, @Nullable final TaskObserver<Pair<Number, Number>> observer, final int publishRate, final PowerManager powerManager, final Window window)
 		{
 			this.dataBase = dataBase;
 			this.whenDone = whenDone;
 			this.resolver = resolver;
 			this.observer = observer;
 			this.publishRate = publishRate;
-			this.unit = unit;
 			this.powerManager = powerManager;
 			this.window = window;
 		}
 
 		@NonNull
 		@Override
-		@SuppressWarnings("boxing")
-		protected Boolean doInBackground(@NonNull final Uri... params)
+		public Boolean doJob(@Nullable final Uri params)
 		{
-			final Uri uri = params[0];
-			Log.d(TAG, uri.toString() + " -> " + dataBase);
-			if (!resolver.getType(uri).startsWith("text/plain"))
+			assert params != null;
+			Log.d(TAG, params + " -> " + dataBase);
+			if (!resolver.getType(params).startsWith("text/plain"))
 			{
-				Log.e(TAG, "Illegal mime type " + resolver.getType(uri));
+				Log.e(TAG, "Illegal mime type " + resolver.getType(params));
 				return false;
 			}
 
@@ -599,7 +571,7 @@ public class ExecAsyncTask
 			try (SQLiteDatabase db = SQLiteDatabase.openDatabase(dataBase, null, SQLiteDatabase.CREATE_IF_NECESSARY))
 			{
 				try ( // open the reader
-				      InputStream is = resolver.openInputStream(uri); //
+				      InputStream is = resolver.openInputStream(params); //
 				      InputStreamReader isr = new InputStreamReader(is); //
 				      BufferedReader reader = new BufferedReader(isr) //
 				)
@@ -682,7 +654,7 @@ public class ExecAsyncTask
 						{
 							if (count % this.publishRate == 0)
 							{
-								publishProgress(count, -1);
+								postProgress(new Pair<>(count, -1));
 							}
 						}
 
@@ -698,7 +670,7 @@ public class ExecAsyncTask
 							break;
 						}
 					}
-					publishProgress(successCount, count);
+					postProgress(new Pair<>(successCount, count));
 					return status;
 				}
 				catch (IOException e1)
@@ -725,7 +697,7 @@ public class ExecAsyncTask
 		}
 
 		@Override
-		protected void onPreExecute()
+		public void onPreExecute()
 		{
 			this.window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 			if (this.observer != null)
@@ -735,16 +707,16 @@ public class ExecAsyncTask
 		}
 
 		@Override
-		protected void onProgressUpdate(final Number... params)
+		public void onProgress(final Pair<Number, Number> progress)
 		{
 			if (this.observer != null)
 			{
-				this.observer.taskProgress(params[0], params[1], this.unit);
+				this.observer.taskProgress(progress);
 			}
 		}
 
 		@Override
-		protected void onPostExecute(final Boolean result)
+		public void onDone(final Boolean result)
 		{
 			this.window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 			if (this.observer != null)
@@ -762,11 +734,11 @@ public class ExecAsyncTask
 	 * Execute sql statements from zip file
 	 */
 	@NonNull
-	public Task<Uri, Number, Boolean> fromUri(@NonNull final String dataBase, @NonNull final ContentResolver resolver)
+	public Task<Uri, Pair<Number, Number>, Boolean> fromUri(@NonNull final String dataBase, @NonNull final ContentResolver resolver)
 	{
 		final PowerManager powerManager = (PowerManager) ExecAsyncTask.this.activity.getSystemService(Context.POWER_SERVICE);
 		final Window window = ExecAsyncTask.this.activity.getWindow();
-		return new AsyncExecuteFromUri(dataBase, resolver, this.whenDone, this.observer, this.publishRate, this.unit, powerManager, window);
+		return new AsyncExecuteFromUri(dataBase, resolver, this.whenDone, this.observer, this.publishRate, powerManager, window);
 	}
 
 	/**
@@ -779,8 +751,7 @@ public class ExecAsyncTask
 	 */
 	public static void launchExecUri(@NonNull final FragmentActivity activity, @NonNull final Uri uri, @NonNull final String databasePath, final Consumer<Boolean> whenDone)
 	{
-		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
-				.setTitle(activity.getString(R.string.action_exec_from_uri)) //
+		final TaskObserver<Pair<Number, Number>> observer = new TaskDialogObserver<Pair<Number, Number>>(activity.getSupportFragmentManager()).setTitle(activity.getString(R.string.action_exec_from_uri)) //
 				.setMessage(uri.toString());
 		launchExecUri(activity, observer, uri, databasePath, whenDone);
 	}
@@ -794,7 +765,7 @@ public class ExecAsyncTask
 	 * @param dest     database path
 	 * @param whenDone to run when done
 	 */
-	public static void launchExecUri(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final Uri uri, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
+	public static void launchExecUri(@NonNull final Activity activity, @NonNull final TaskObserver<Pair<Number, Number>> observer, @NonNull final Uri uri, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
 	{
 		final Consumer<Boolean> whenDone2 = (result) -> {
 
@@ -804,7 +775,7 @@ public class ExecAsyncTask
 			}
 		};
 
-		final Task<Uri, Number, Boolean> task = new ExecAsyncTask(activity, whenDone2, observer, 1000).fromUri(dest, activity.getContentResolver());
+		final Task<Uri, Pair<Number, Number>, Boolean> task = new ExecAsyncTask(activity, whenDone2, observer, 1000).fromUri(dest, activity.getContentResolver());
 		task.execute(uri);
 		observer.taskUpdate(activity.getString(R.string.status_executing));
 	}
@@ -814,7 +785,7 @@ public class ExecAsyncTask
 	/**
 	 * Sql executor
 	 */
-	static private class AsyncExecuteFromArchiveUri extends Task<Uri, Number, Boolean>
+	static private class AsyncExecuteFromArchiveUri extends Task<Uri, Pair<Number, Number>, Boolean>
 	{
 		/**
 		 * Data base path
@@ -844,17 +815,12 @@ public class ExecAsyncTask
 		 * Task observer
 		 */
 		@Nullable
-		final private TaskObserver.Observer<Number> observer;
+		final private TaskObserver<Pair<Number, Number>> observer;
 
 		/**
 		 * Publish rate
 		 */
 		private final int publishRate;
-
-		/**
-		 * UNit
-		 */
-		private final String unit;
 
 		/**
 		 * Power manager
@@ -875,7 +841,7 @@ public class ExecAsyncTask
 		 * @param powerManager power manager
 		 * @param window       window
 		 */
-		AsyncExecuteFromArchiveUri(@NonNull final String dataBase, @NonNull final String entry, @NonNull final ContentResolver resolver, @Nullable final Consumer<Boolean> whenDone, @Nullable final TaskObserver.Observer<Number> observer, final int publishRate, final String unit, final PowerManager powerManager, final Window window)
+		AsyncExecuteFromArchiveUri(@NonNull final String dataBase, @NonNull final String entry, @NonNull final ContentResolver resolver, @Nullable final Consumer<Boolean> whenDone, @Nullable final TaskObserver<Pair<Number, Number>> observer, final int publishRate, final PowerManager powerManager, final Window window)
 		{
 			this.dataBase = dataBase;
 			this.entry = entry;
@@ -883,21 +849,19 @@ public class ExecAsyncTask
 			this.resolver = resolver;
 			this.observer = observer;
 			this.publishRate = publishRate;
-			this.unit = unit;
 			this.powerManager = powerManager;
 			this.window = window;
 		}
 
 		@NonNull
 		@Override
-		@SuppressWarnings("boxing")
-		protected Boolean doInBackground(@NonNull final Uri... params)
+		public Boolean doJob(@Nullable final Uri params)
 		{
-			final Uri uri = params[0];
-			Log.d(TAG, uri.toString() + '!' + entry + " -> " + dataBase);
-			if (!resolver.getType(uri).startsWith("application/zip"))
+			assert params != null;
+			Log.d(TAG, params.toString() + '!' + entry + " -> " + dataBase);
+			if (!resolver.getType(params).startsWith("application/zip"))
 			{
-				Log.e(TAG, "Illegal mime type " + resolver.getType(uri));
+				Log.e(TAG, "Illegal mime type " + resolver.getType(params));
 				return false;
 			}
 
@@ -910,7 +874,7 @@ public class ExecAsyncTask
 			try (SQLiteDatabase db = SQLiteDatabase.openDatabase(dataBase, null, SQLiteDatabase.CREATE_IF_NECESSARY))
 			{
 				try ( //
-				      InputStream is = resolver.openInputStream(uri); //
+				      InputStream is = resolver.openInputStream(params); //
 				      ZipInputStream zis = new ZipInputStream(is); //
 				      InputStreamReader isr = new InputStreamReader(zis); BufferedReader reader = new BufferedReader(isr) //
 				)
@@ -1003,7 +967,7 @@ public class ExecAsyncTask
 							{
 								if (count % this.publishRate == 0)
 								{
-									publishProgress(count, -1);
+									postProgress(new Pair<>(count, -1));
 								}
 							}
 
@@ -1020,7 +984,7 @@ public class ExecAsyncTask
 							}
 						}
 
-						publishProgress(successCount, count);
+						postProgress(new Pair<>(successCount, count));
 						return status;
 					}
 					// found none
@@ -1050,7 +1014,7 @@ public class ExecAsyncTask
 		}
 
 		@Override
-		protected void onPreExecute()
+		public void onPreExecute()
 		{
 			this.window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 			if (this.observer != null)
@@ -1060,16 +1024,16 @@ public class ExecAsyncTask
 		}
 
 		@Override
-		protected void onProgressUpdate(final Number... params)
+		public void onProgress(final Pair<Number, Number> progress)
 		{
 			if (this.observer != null)
 			{
-				this.observer.taskProgress(params[0], params[1], this.unit);
+				this.observer.taskProgress(progress);
 			}
 		}
 
 		@Override
-		protected void onPostExecute(final Boolean result)
+		public void onDone(final Boolean result)
 		{
 			this.window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 			if (this.observer != null)
@@ -1091,11 +1055,11 @@ public class ExecAsyncTask
 	 * @param resolver content resolver
 	 */
 	@NonNull
-	public Task<Uri, Number, Boolean> fromArchiveUri(@NonNull final String dataBase, @NonNull final String entry, @NonNull final ContentResolver resolver)
+	public Task<Uri, Pair<Number, Number>, Boolean> fromArchiveUri(@NonNull final String dataBase, @NonNull final String entry, @NonNull final ContentResolver resolver)
 	{
 		final PowerManager powerManager = (PowerManager) ExecAsyncTask.this.activity.getSystemService(Context.POWER_SERVICE);
 		final Window window = ExecAsyncTask.this.activity.getWindow();
-		return new AsyncExecuteFromArchiveUri(dataBase, entry, resolver, this.whenDone, this.observer, this.publishRate, this.unit, powerManager, window);
+		return new AsyncExecuteFromArchiveUri(dataBase, entry, resolver, this.whenDone, this.observer, this.publishRate, powerManager, window);
 	}
 
 	/**
@@ -1108,8 +1072,7 @@ public class ExecAsyncTask
 	 */
 	public static void launchExecZippedUri(@NonNull final FragmentActivity activity, @NonNull final Uri uri, @NonNull String entry, @NonNull final String databasePath, @Nullable final Consumer<Boolean> whenDone)
 	{
-		final TaskObserver.Observer<Number> observer = new TaskDialogObserver<>(activity.getSupportFragmentManager()) // guarded, level 2
-				.setTitle(activity.getString(R.string.action_exec_from_uri)) //
+		final TaskObserver<Pair<Number, Number>> observer = new TaskDialogObserver<Pair<Number, Number>>(activity.getSupportFragmentManager()).setTitle(activity.getString(R.string.action_exec_from_uri)) //
 				.setMessage(uri.toString());
 		launchExecZippedUri(activity, observer, uri, entry, databasePath, whenDone);
 	}
@@ -1124,7 +1087,7 @@ public class ExecAsyncTask
 	 * @param dest      database path
 	 * @param whenDone  to run when done
 	 */
-	public static void launchExecZippedUri(@NonNull final Activity activity, @NonNull final TaskObserver.Observer<Number> observer, @NonNull final Uri sourceUri, @NonNull final String zipEntry, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
+	public static void launchExecZippedUri(@NonNull final Activity activity, @NonNull final TaskObserver<Pair<Number, Number>> observer, @NonNull final Uri sourceUri, @NonNull final String zipEntry, @NonNull final String dest, @Nullable final Consumer<Boolean> whenDone)
 	{
 		final Consumer<Boolean> whenDone2 = (result) -> {
 
@@ -1134,14 +1097,14 @@ public class ExecAsyncTask
 			}
 		};
 
-		final Task<Uri, Number, Boolean> task = new ExecAsyncTask(activity, whenDone2, observer, 1000).fromArchiveUri(dest, zipEntry, activity.getContentResolver());
+		final Task<Uri, Pair<Number, Number>, Boolean> task = new ExecAsyncTask(activity, whenDone2, observer, 1000).fromArchiveUri(dest, zipEntry, activity.getContentResolver());
 		task.execute(sourceUri);
 		observer.taskUpdate(activity.getString(R.string.status_executing) + ' ' + zipEntry);
 	}
 
 	// V A C U U M
 
-	static private class AsyncVacuum extends Task<String, Void, Boolean>
+	static private class AsyncVacuum extends Task<Pair<String, String>, Void, Boolean>
 	{
 		/**
 		 * Done listener
@@ -1153,7 +1116,7 @@ public class ExecAsyncTask
 		 * Task observer
 		 */
 		@Nullable
-		final private TaskObserver.Observer<Number> observer;
+		final private TaskObserver<Pair<Number, Number>> observer;
 
 		/**
 		 * Constructor
@@ -1161,7 +1124,7 @@ public class ExecAsyncTask
 		 * @param whenDone whenDone
 		 * @param observer observer
 		 */
-		AsyncVacuum(@Nullable final Consumer<Boolean> whenDone, @Nullable final TaskObserver.Observer<Number> observer)
+		AsyncVacuum(@Nullable final Consumer<Boolean> whenDone, @Nullable final TaskObserver<Pair<Number, Number>> observer)
 		{
 			this.whenDone = whenDone;
 			this.observer = observer;
@@ -1169,10 +1132,11 @@ public class ExecAsyncTask
 
 		@Nullable
 		@Override
-		protected Boolean doInBackground(@NonNull String... params)
+		public Boolean doJob(@Nullable Pair<String, String> params)
 		{
-			final String databasePathArg = params[0];
-			final String tempDirArg = params[1];
+			assert params != null;
+			final String databasePathArg = params.getFirst();
+			final String tempDirArg = params.getSecond();
 
 			// database
 			final SQLiteDatabase db = SQLiteDatabase.openDatabase(databasePathArg, null, SQLiteDatabase.OPEN_READWRITE);
@@ -1189,7 +1153,7 @@ public class ExecAsyncTask
 		}
 
 		@Override
-		protected void onPostExecute(final Boolean result)
+		public void onDone(final Boolean result)
 		{
 			if (this.observer != null)
 			{
@@ -1211,7 +1175,7 @@ public class ExecAsyncTask
 	@SuppressWarnings("unused")
 	void vacuum(final String database, final String tempDir)
 	{
-		final Task<String, Void, Boolean> task = new AsyncVacuum(this.whenDone, this.observer);
-		task.execute(database, tempDir);
+		final Task<Pair<String, String>, Void, Boolean> task = new AsyncVacuum(this.whenDone, this.observer);
+		task.execute(new Pair<>(database, tempDir));
 	}
 }

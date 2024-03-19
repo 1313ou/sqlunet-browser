@@ -114,7 +114,7 @@ public class SetupFileFragment extends BaseTaskFragment
 						SetupFileFragment.this.status.setText(R.string.status_task_running);
 						success = SetupDatabaseTasks.createDatabase(activity, StorageSettings.getDatabasePath(activity));
 						SetupFileFragment.this.status.setText(success ? R.string.status_task_done : R.string.status_task_failed);
-						com.bbou.download.Settings.unrecordDatapack(activity);
+						com.bbou.download.preference.Settings.unrecordDatapack(activity);
 						break;
 
 					case DROP:
@@ -122,7 +122,7 @@ public class SetupFileFragment extends BaseTaskFragment
 							SetupFileFragment.this.status.setText(R.string.status_task_running);
 							boolean success1 = SetupDatabaseTasks.deleteDatabase(activity, StorageSettings.getDatabasePath(activity));
 							SetupFileFragment.this.status.setText(success1 ? R.string.status_task_done : R.string.status_task_failed);
-							com.bbou.download.Settings.unrecordDatapack(activity);
+							com.bbou.download.preference.Settings.unrecordDatapack(activity);
 							EntryActivity.rerun(activity);
 						});
 						break;
@@ -448,8 +448,8 @@ public class SetupFileFragment extends BaseTaskFragment
 	private SpannableStringBuilder statusDownload()
 	{
 		final Context context = requireContext();
-		final com.bbou.download.Settings.Mode mode = com.bbou.download.Settings.Mode.getModePref(context);
-		final String from = StorageSettings.getDbDownloadSourcePath(context, mode == com.bbou.download.Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == com.bbou.download.Settings.Mode.DOWNLOAD_ZIP);
+		final com.bbou.download.preference.Settings.Mode mode = com.bbou.download.preference.Settings.Mode.getModePref(context);
+		final String from = StorageSettings.getDbDownloadSourcePath(context, mode == com.bbou.download.preference.Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == com.bbou.download.preference.Settings.Mode.DOWNLOAD_ZIP);
 		final String to = StorageSettings.getDatabasePath(context);
 		final String free = StorageUtils.getFree(context, to);
 		final boolean targetExists = new File(to).exists();

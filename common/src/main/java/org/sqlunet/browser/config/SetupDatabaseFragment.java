@@ -11,15 +11,17 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
 
-import org.sqlunet.browser.common.R;
 import com.bbou.concurrency.Task;
-import com.bbou.concurrency.TaskObserver;
-import com.bbou.concurrency.TaskToastObserver;
+import com.bbou.concurrency.observe.TaskObserver;
+import com.bbou.concurrency.observe.TaskToastObserver;
+
+import org.sqlunet.browser.common.R;
 import org.sqlunet.settings.Settings;
 import org.sqlunet.settings.StorageSettings;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import kotlin.Pair;
 
 /**
  * Manage fragment
@@ -97,8 +99,8 @@ public class SetupDatabaseFragment extends BaseTaskFragment
 				status.setText(R.string.status_task_running);
 				final String[] sqlStatements = sql.toString().split(";");
 				// Log.d(TAG, Arrays.toString(sqlStatements));
-				final TaskObserver.Observer<Number> observer = new TaskToastObserver.WithStatus<>(activity, status);
-				final Task<String[], Number, Boolean> task = new ExecAsyncTask(activity, this::update, observer, 1).fromSql(databasePath);
+				final TaskObserver<Pair<Number, Number>> observer = new TaskToastObserver.WithStatus<>(activity, status);
+				final Task<String[], Pair<Number, Number>, Boolean> task = new ExecAsyncTask(activity, this::update, observer, 1).fromSql(databasePath);
 				task.execute(sqlStatements);
 			}
 		});

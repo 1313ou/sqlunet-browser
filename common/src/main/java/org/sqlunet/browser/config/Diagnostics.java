@@ -22,8 +22,8 @@ import android.text.Spanned;
 import android.text.style.StyleSpan;
 
 import com.bbou.concurrency.Task;
-import com.bbou.deploy.Deploy;
-import com.bbou.download.Settings;
+import com.bbou.deploy.workers.Deploy;
+import com.bbou.download.preference.Settings;
 
 import org.sqlunet.assetpack.AssetPackLoader;
 import org.sqlunet.browser.common.R;
@@ -67,14 +67,14 @@ public class Diagnostics
 
 		@NonNull
 		@Override
-		protected CharSequence doInBackground(@NonNull final Context... params)
+		public CharSequence doJob(@Nullable final Context params)
 		{
-			final Context context = params[0];
-			return report(context);
+			assert params != null;
+			return report(params);
 		}
 
 		@Override
-		protected void onPostExecute(final CharSequence result)
+		public void onDone(final CharSequence result)
 		{
 			if (this.resultListener != null)
 			{
