@@ -47,7 +47,7 @@ android {
 
 dependencies {
 
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:${desugarVersion}")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:$desugarVersion")
 
     implementation("androidx.appcompat:appcompat:${appcompatVersion}")
     implementation("androidx.fragment:fragment-ktx:${fragmentVersion}")

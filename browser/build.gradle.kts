@@ -3,6 +3,7 @@ import java.util.Properties
 plugins {
     id("com.android.application")
     id("androidx.navigation.safeargs")
+    id("org.jetbrains.kotlin.android")
 }
 
 private val vCode by lazy { rootProject.extra["versionCode"] as Int }
@@ -77,9 +78,13 @@ android {
             signingConfig = signingConfigs.getByName("sqlunet")
         }
     }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
 }
 
 dependencies {
+    implementation("androidx.core:core-ktx:$coreVersion")
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:$desugarVersion")
 
     implementation(project(":common"))
@@ -103,10 +108,10 @@ dependencies {
     implementation(project(":bNC"))
 
     implementation("androidx.appcompat:appcompat:$appcompatVersion")
-    implementation("androidx.navigation:navigation-fragment:$navVersion")
-    implementation("androidx.navigation:navigation-ui:$navVersion")
+    implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
+    implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
-    implementation("androidx.preference:preference:$preferenceVersion")
+    implementation("androidx.preference:preference-ktx:$preferenceVersion")
     implementation("androidx.annotation:annotation:$annotationVersion")
     implementation("com.google.android.material:material:$materialVersion")
 

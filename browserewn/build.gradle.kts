@@ -3,6 +3,7 @@ import java.util.Properties
 plugins {
     id("com.android.application")
     id("androidx.navigation.safeargs")
+    id("org.jetbrains.kotlin.android")
 }
 
 private val vCode by lazy { rootProject.extra["versionCode"] as Int }
@@ -77,9 +78,13 @@ android {
             signingConfig = signingConfigs.getByName("sqlunet")
         }
     }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
 }
 
 dependencies {
+    implementation("androidx.core:core-ktx:$coreVersion")
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:$desugarVersion")
 
     implementation(project(":browserwncommon"))

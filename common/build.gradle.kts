@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("androidx.navigation.safeargs")
+    id("org.jetbrains.kotlin.android")
 }
 
 private val vCompileSdk by lazy { rootProject.extra["compileSdk"] as Int }
@@ -9,6 +10,7 @@ private val vTargetSdk by lazy { rootProject.extra["targetSdk"] as Int }
 private val appcompatVersion by lazy { rootProject.extra["appcompatVersion"] as String }
 private val fragmentVersion by lazy { rootProject.extra["fragmentVersion"] as String }
 private val navVersion by lazy { rootProject.extra["navVersion"] as String }
+private val lifecycleVersion by lazy { rootProject.extra["lifecycleVersion"] as String }
 private val lifecycleExtensionsVersion by lazy { rootProject.extra["lifecycleExtensionsVersion"] as String }
 private val preferenceVersion by lazy { rootProject.extra["preferenceVersion"] as String }
 private val constraintlayoutVersion by lazy { rootProject.extra["constraintlayoutVersion"] as String }
@@ -42,6 +44,9 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.txt")
         }
     }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
 }
 
 dependencies {
@@ -61,13 +66,15 @@ dependencies {
     implementation(project(":xNet"))
     implementation(project(":assetpacks"))
 
+    implementation("androidx.core:core-ktx:$coreVersion")
     implementation("androidx.appcompat:appcompat:$appcompatVersion")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-extensions:$lifecycleExtensionsVersion")
-    implementation("androidx.fragment:fragment:$fragmentVersion")
-    implementation("androidx.navigation:navigation-fragment:$navVersion")
-    implementation("androidx.navigation:navigation-ui:$navVersion")
+    implementation("androidx.fragment:fragment-ktx:$fragmentVersion")
+    implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
+    implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.preference:preference:$preferenceVersion")
+    implementation("androidx.preference:preference-ktx:$preferenceVersion")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation("androidx.annotation:annotation:$annotationVersion")
     implementation("com.google.android.material:material:$materialVersion")

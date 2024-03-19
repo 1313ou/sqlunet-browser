@@ -1,5 +1,6 @@
 plugins {
     id("com.android.library")
+    id("org.jetbrains.kotlin.android")
 }
 
 
@@ -7,6 +8,7 @@ private val vCompileSdk by lazy { rootProject.extra["compileSdk"] as Int }
 private val vMinSdk by lazy { rootProject.extra["minSdk"] as Int }
 private val vTargetSdk by lazy { rootProject.extra["targetSdk"] as Int }
 private val appcompatVersion by lazy { rootProject.extra["appcompatVersion"] as String }
+private val lifecycleVersion by lazy { rootProject.extra["lifecycleVersion"] as String }
 private val lifecycleExtensionsVersion by lazy { rootProject.extra["lifecycleExtensionsVersion"] as String }
 private val preferenceVersion by lazy { rootProject.extra["preferenceVersion"] as String }
 private val materialVersion by lazy { rootProject.extra["materialVersion"] as String }
@@ -40,12 +42,16 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
 }
 
 dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:$desugarVersion")
 
+    implementation("androidx.core:core-ktx:$coreVersion")
     implementation("androidx.appcompat:appcompat:$appcompatVersion")
-    implementation("androidx.preference:preference:$preferenceVersion")
+    implementation("androidx.preference:preference-ktx:$preferenceVersion")
     implementation("com.google.android.material:material:$materialVersion")
 }

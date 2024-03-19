@@ -50,7 +50,7 @@ android {
 }
 
 dependencies {
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:${desugarVersion}")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:$desugarVersion")
 
     implementation("androidx.core:core-ktx:${coreVersion}")
     implementation("androidx.appcompat:appcompat:${appcompatVersion}")

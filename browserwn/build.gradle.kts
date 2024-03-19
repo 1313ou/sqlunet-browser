@@ -3,6 +3,7 @@ import java.util.Properties
 plugins {
     id("com.android.application")
     id("androidx.navigation.safeargs")
+    id("org.jetbrains.kotlin.android")
 }
 
 private val vCode by lazy { rootProject.extra["versionCode"] as Int }
@@ -11,6 +12,7 @@ private val vCompileSdk by lazy { rootProject.extra["compileSdk"] as Int }
 private val vMinSdk by lazy { rootProject.extra["minSdk"] as Int }
 private val vTargetSdk by lazy { rootProject.extra["targetSdk"] as Int }
 private val appcompatVersion by lazy { rootProject.extra["appcompatVersion"] as String }
+private val lifecycleVersion by lazy { rootProject.extra["lifecycleVersion"] as String }
 private val lifecycleExtensionsVersion by lazy { rootProject.extra["lifecycleExtensionsVersion"] as String }
 private val navVersion by lazy { rootProject.extra["navVersion"] as String }
 private val preferenceVersion by lazy { rootProject.extra["preferenceVersion"] as String }
@@ -76,9 +78,13 @@ android {
             signingConfig = signingConfigs.getByName("sqlunet")
         }
     }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
 }
 
 dependencies {
+    implementation("androidx.core:core-ktx:$coreVersion")
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:$desugarVersion")
 
     implementation(project(":browserwncommon"))
@@ -92,7 +98,7 @@ dependencies {
     implementation(project(":download_common"))
     implementation(project(":donate"))
 
-    implementation("androidx.preference:preference:$preferenceVersion")
+    implementation("androidx.preference:preference-ktx:$preferenceVersion")
     implementation("androidx.appcompat:appcompat:$appcompatVersion") // for resources validation
     implementation("com.google.android.material:material:$materialVersion") // for resource include
 
@@ -108,7 +114,7 @@ dependencies {
     androidTestImplementation("androidx.test:runner:1.5.2")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation("androidx.test.espresso:espresso-web:3.5.1")
-    androidTestImplementation("androidx.test.uiautomator:uiautomator:2.2.0")
+    androidTestImplementation("androidx.test.uiautomator:uiautomator:2.3.0")
 
     constraints {
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.7.20") {

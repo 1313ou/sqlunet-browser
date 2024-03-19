@@ -1,12 +1,14 @@
 plugins {
     id("org.sqlunet.plugin.querybuilder") version "1.0.0"
     id("com.android.library")
+    id("org.jetbrains.kotlin.android")
 }
 
 private val vCompileSdk by lazy { rootProject.extra["compileSdk"] as Int }
 private val vMinSdk by lazy { rootProject.extra["minSdk"] as Int }
 private val vTargetSdk by lazy { rootProject.extra["targetSdk"] as Int }
 private val appcompatVersion by lazy { rootProject.extra["appcompatVersion"] as String }
+private val lifecycleVersion by lazy { rootProject.extra["lifecycleVersion"] as String }
 private val lifecycleExtensionsVersion by lazy { rootProject.extra["lifecycleExtensionsVersion"] as String }
 private val preferenceVersion by lazy { rootProject.extra["preferenceVersion"] as String }
 private val materialVersion by lazy { rootProject.extra["materialVersion"] as String }
@@ -45,10 +47,11 @@ dependencies {
     implementation(project(":xNet"))
     implementation(project(":treeView"))
 
+    implementation("androidx.core:core-ktx:$coreVersion")
     implementation("androidx.appcompat:appcompat:$appcompatVersion")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-extensions:$lifecycleExtensionsVersion")
-    implementation("androidx.lifecycle:lifecycle-extensions:$lifecycleExtensionsVersion")
-    implementation("androidx.preference:preference:$preferenceVersion")
+    implementation("androidx.preference:preference-ktx:$preferenceVersion")
     implementation("androidx.annotation:annotation:$annotationVersion")
     implementation("com.google.android.material:material:$materialVersion")
 
@@ -71,6 +74,9 @@ android {
         getByName("test") {
             java.srcDirs(generatedSrcDir)
         }
+    }
+    kotlinOptions {
+        jvmTarget = "17"
     }
 }
 
