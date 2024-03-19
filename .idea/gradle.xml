@@ -20,6 +20,7 @@
             <option value="$PROJECT_DIR$/browserwncommon" />
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/concurrency" />
+            <option value="$PROJECT_DIR$/coroutines" />
             <option value="$PROJECT_DIR$/db_ewn_asset" />
             <option value="$PROJECT_DIR$/db_wn31_asset" />
             <option value="$PROJECT_DIR$/dbewn_ewn_asset" />
@@ -33,6 +34,7 @@
             <option value="$PROJECT_DIR$/deploy" />
             <option value="$PROJECT_DIR$/donate" />
             <option value="$PROJECT_DIR$/download" />
+            <option value="$PROJECT_DIR$/download_common" />
             <option value="$PROJECT_DIR$/expandableListFragment" />
             <option value="$PROJECT_DIR$/frameNet" />
             <option value="$PROJECT_DIR$/nightmode" />
