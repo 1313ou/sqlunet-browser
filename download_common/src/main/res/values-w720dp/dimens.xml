@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+
+	<!-- Customization of dimensions originally defined in res/values/dimens.xml
+	(such as screen margins) for screens with more than 720dp of available width
+	(e.g. 10" tablets). -->
+	<dimen name="activity_horizontal_padding">64dp</dimen>
+
+	<dimen name="download_horizontal_margin">64dp</dimen>
+
+</resources>

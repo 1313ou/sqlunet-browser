@@ -1,0 +1,122 @@
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+	<!-- labels -->
+	<string name="title_activity_download">Download</string>
+	<string name="title_activity_update">Update</string>
+	<string name="title_download">Download</string>
+
+	<!-- action -->
+	<string name="action_download">Download</string>
+	<string name="action_zip_download" tools:keep="@string/action_zip_download">Zip Download</string>
+	<string name="action_cancel">Cancel</string>
+	<string name="action_ok">OK</string>
+	<string name="action_dismiss">Dismiss</string>
+	<string name="action_deploy">Deploy</string>
+	<string name="action_copy_datapack_from_file">Copy datapack from …</string>
+	<string name="action_unzip_datapack_from_archive">Unzip datapack from …</string>
+	<string name="action_update">Update</string>
+	<string name="action_md5">MD5</string>
+	<string name="action_md5_of_what">MD5 of %1$s</string>
+	<string name="action_md5_ask">MD5 …</string>
+	<string name="action_directory">Directory</string>
+
+	<!-- resource directory -->
+	<string name="resource_directory">Resource directory</string>
+
+	<!-- hint -->
+	<string name="hint_unzip_from_archive">Select the zip archive to unzip from</string>
+	<string name="hint_select_archive">Select the archive:</string>
+	<string name="hint_enter_archive_entry">Enter the archive entry:</string>
+	<string name="hint_copy_from_file">Select the file to copy from</string>
+	<string name="hint_md5_of_file">Select the file to md5-checksum</string>
+
+	<!-- description -->
+	<string name="description_download_datapack">Download datapack</string>
+
+	<!-- items -->
+	<string name="download_source">source</string>
+	<string name="download_source2">source2</string>
+	<string name="download_source3">source3</string>
+	<string name="download_zip_source">zip source</string>
+	<string name="download_dest">destination</string>
+	<string name="download_dest2">destination2</string>
+	<string name="download_dest3">destination3</string>
+	<string name="download_dest4">destination4</string>
+	<string name="download_dest5">destination5</string>
+	<string name="download_status">status</string>
+	<string name="download_up">available source</string>
+	<string name="download_down">current datapack</string>
+	<string name="download_newer">source datapack is possibly newer</string>
+	<string name="download_uptodate">current datapack is up-to-date</string>
+	<string name="select_zip_entry"><b>select</b> zip entry </string>
+	<string name="rename_source"><b>rename</b> </string>
+	<string name="rename_dest"><b>to</b> </string>
+	<string name="deploy_dest"><b>then deploy to</b> </string>
+
+	<!-- dialog -->
+	<string name="yes">Yes</string>
+	<string name="no">No</string>
+	<string name="askUpdate">Do you wish to update ?</string>
+
+	<!-- info -->
+	<string name="local_date">local date</string>
+	<string name="local_size">local size</string>
+	<string name="date">date</string>
+	<string name="size">size</string>
+	<string name="etag">etag</string>
+	<string name="version">version</string>
+	<string name="static_version">static version</string>
+	<string name="na">n/a</string>
+	<string name="unsourced">unsourced</string>
+	<string name="bytes">bytes</string>
+
+	<!-- status -->
+	<string name="md5_downloaded">Downloaded</string>
+	<string name="md5_computed">Computed</string>
+	<string name="md5_compared">Compared</string>
+
+	<string name="no_datapack">No datapack file</string>
+
+	<string name="status_download_pending">pending</string>
+	<string name="status_download_running">running</string>
+	<string name="status_download_paused">paused</string>
+	<string name="status_download_successful">successful</string>
+	<string name="status_download_fail">failed</string>
+	<string name="status_download_cancelled">cancelled</string>
+	<string name="status_download_null_exception">null source or destination</string>
+	<string name="status_download_error_null_download_url">No download url</string>
+	<string name="no_url">Unavailable download url (datapack may be builtin)</string>
+
+	<string name="status_unzipping">unzipping</string>
+	<string name="status_copying">copying</string>
+	<string name="status_md5_checking">MD5 checking</string>
+
+	<string name="status_error_no_file">no file</string>
+	<string name="status_error_invalid">invalid</string>
+
+	<string name="status_state_unknown">unknown state</string>
+
+	<!-- <string name="status_task_running">running</string> -->
+	<!-- <string name="status_task_done">done</string> -->
+	<string name="status_task_success">success</string>
+	<string name="status_task_failed">failed</string>
+
+	<!--
+	<string name="status_task_start_toast">Task started</string>
+	<string name="status_task_done_toast">Task done</string>
+	-->
+	<string name="status_download_downloadable_content">Exploring available content…</string>
+
+	<!-- result -->
+	<string name="result_success" tools:ignore="UnusedResources">Success</string>
+	<string name="result_fail">Fail</string>
+	<string name="result_deleted">deleted</string>
+
+	<!-- result -->
+	<string name="format_storage_data" formatted="true">%1$s\nfree: %2$s capacity: %3$s (%4$.1f percent)</string>
+
+</resources>

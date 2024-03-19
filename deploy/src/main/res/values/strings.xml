@@ -1,0 +1,26 @@
+<!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+	<!-- action -->
+	<string name="action_cancel">Cancel</string>
+	<string name="action_abort">Abort</string>
+	<string name="action_dismiss">Dismiss</string>
+	<string name="action_md5">MD5</string>
+	<string name="action_copy_datapack_from_file">Copy datapack from …</string>
+	<string name="action_unzip_datapack_from_archive">Unzip datapack from …</string>
+	<string name="action_md5_of_what">MD5 of %1$s</string>
+
+	<!-- status -->
+	<string name="status_unzipping">unzipping</string>
+	<string name="status_copying">copying</string>
+	<string name="status_md5_checking">MD5 checking</string>
+	<string name="status_task_failed">failed</string>
+
+	<!-- result -->
+	<string name="result_success" tools:ignore="UnusedResources">Success</string>
+	<string name="result_fail">Fail</string>
+
+</resources>

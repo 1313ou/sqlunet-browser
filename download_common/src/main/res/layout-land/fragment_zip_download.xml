@@ -1,0 +1,238 @@
+<!--
+  ~ Copyright (c) 2024. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<ImageButton
+		android:id="@+id/downloadButton"
+		style="@style/ActionButton"
+		android:layout_width="64dp"
+		android:layout_height="64dp"
+		android:background="@drawable/bg_button_action"
+		android:contentDescription="@string/description_download_datapack"
+		android:src="@drawable/bn_download"
+		android:text="@string/action_download"
+		android:visibility="visible"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.5"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_bias="0.25"
+		app:tint="?android:attr/colorForeground" />
+
+	<ProgressBar
+		android:id="@+id/progressBar"
+		style="@android:style/Widget.ProgressBar.Horizontal"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="@dimen/download_horizontal_margin"
+		android:layout_marginEnd="@dimen/download_horizontal_margin"
+		android:clickable="false"
+		android:focusable="false"
+		android:indeterminate="false"
+		android:max="100"
+		android:progress="0"
+		android:visibility="visible"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.0"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_bias="0.28" />
+
+	<TextView
+		android:id="@+id/progressStatus"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:clickable="false"
+		android:focusable="false"
+		android:text="@string/action_download"
+		android:textAppearance="?android:attr/textAppearanceSmall"
+		android:textColor="@android:color/white"
+		android:visibility="invisible"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.5"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_bias="0.28" />
+
+	<ImageView
+		android:id="@+id/imgsrc"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="@dimen/download_vertical_margin"
+		android:contentDescription="@string/download_zip_source"
+		android:src="@drawable/ic_download_zip_source"
+		app:layout_constraintBottom_toTopOf="@id/downloadButton"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.5"
+		app:layout_constraintStart_toStartOf="parent"
+		app:tint="?android:attr/colorForeground" />
+
+	<TextView
+		android:id="@+id/src"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="@dimen/download_horizontal_margin"
+		android:layout_marginEnd="@dimen/download_horizontal_margin"
+		android:layout_marginBottom="@dimen/download_vertical_margin"
+		android:scrollHorizontally="true"
+		android:singleLine="true"
+		android:text="@string/download_source"
+		android:textStyle="bold"
+		app:layout_constraintBottom_toTopOf="@id/imgsrc"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.5"
+		app:layout_constraintStart_toStartOf="parent" />
+
+	<ImageView
+		android:id="@+id/imgtarget"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="@dimen/download_vertical_margin"
+		android:contentDescription="@string/download_dest"
+		android:src="@drawable/ic_download_dest"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.5"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/downloadButton"
+		app:tint='?android:attr/colorForeground' />
+
+	<TextView
+		android:id="@+id/target"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="@dimen/download_horizontal_margin"
+		android:layout_marginTop="@dimen/download_vertical_margin"
+		android:layout_marginEnd="@dimen/download_horizontal_margin"
+		android:ellipsize="marquee"
+		android:focusable="true"
+		android:focusableInTouchMode="true"
+		android:freezesText="true"
+		android:marqueeRepeatLimit="marquee_forever"
+		android:scrollHorizontally="true"
+		android:singleLine="true"
+		android:text="@string/download_dest"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.5"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/imgtarget" />
+
+	<TextView
+		android:id="@+id/target2"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="@dimen/download_horizontal_margin"
+		android:layout_marginEnd="@dimen/download_horizontal_margin"
+		android:scrollHorizontally="true"
+		android:singleLine="true"
+		android:text="@string/download_dest2"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.5"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/target" />
+
+	<TextView
+		android:id="@+id/target3"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="@dimen/download_horizontal_margin"
+		android:layout_marginEnd="@dimen/download_horizontal_margin"
+		android:scrollHorizontally="true"
+		android:singleLine="true"
+		android:text="@string/download_dest3"
+		android:textStyle="bold"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.5"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/target2" />
+
+	<TextView
+		android:id="@+id/target4"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="@dimen/download_horizontal_margin"
+		android:layout_marginTop="@dimen/download_vertical_margin"
+		android:layout_marginEnd="@dimen/download_horizontal_margin"
+		android:scrollHorizontally="true"
+		android:singleLine="true"
+		android:text="@string/download_dest4"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.5"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/target3" />
+
+	<TextView
+		android:id="@+id/target5"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="@dimen/download_horizontal_margin"
+		android:layout_marginEnd="@dimen/download_horizontal_margin"
+		android:scrollHorizontally="true"
+		android:singleLine="true"
+		android:text="@string/download_dest5"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.5"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/target4" />
+
+	<TextView
+		android:id="@+id/status"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="@dimen/download_horizontal_margin"
+		android:layout_marginEnd="@dimen/download_horizontal_margin"
+		android:freezesText="true"
+		android:text="@string/download_status"
+		android:textAppearance="?android:attr/textAppearanceSmall"
+		android:textStyle="italic"
+		android:visibility="visible"
+		app:layout_constraintBottom_toTopOf="@id/buttons"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.5"
+		app:layout_constraintStart_toStartOf="parent" />
+
+	<LinearLayout
+		android:id="@+id/buttons"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:orientation="horizontal"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.5"
+		app:layout_constraintStart_toStartOf="parent">
+
+		<Button
+			android:id="@+id/cancelButton"
+			style="@style/Widget.AppCompat.Button.Borderless.Colored"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/action_cancel"
+			android:visibility="gone" />
+
+		<Button
+			android:id="@+id/md5Button"
+			style="@style/Widget.AppCompat.Button.Borderless.Colored"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/action_md5"
+			android:visibility="gone" />
+
+		<Button
+			android:id="@+id/deployButton"
+			style="@style/Widget.AppCompat.Button.Borderless.Colored"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/action_deploy"
+			android:visibility="gone" />
+
+	</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

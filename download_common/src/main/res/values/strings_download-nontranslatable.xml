@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2023. Bernard Bou
+  -->
+
+<!DOCTYPE resources [    <!ENTITY bbuser "bbuser">    <!ENTITY bbrepo "bbrepo">    <!ENTITY bbcommit "xxxx">    ]>
+
+<resources>
+
+	<!-- local target -->
+	<string name="default_target_file" translatable="false">data</string>
+
+	<!-- repo -->
+	<string name="default_download_repo" translatable="false">http://192.168.1.10</string>
+	<string name="default_download_datapack_zipentry" translatable="false">datapack.data</string>
+
+	<!-- resources (repos) -->
+	<string name="resources_directory" translatable="false">https://192.168.1.10/resources</string>
+	<string name="resources_directory_filter" translatable="false" />
+
+</resources>

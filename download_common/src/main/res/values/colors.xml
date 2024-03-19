@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2019. Bernard Bou <1313ou@gmail.com>.
+  -->
+
+<resources>
+
+	<!-- R A W -->
+
+	<!-- red -->
+	<color name="dark_red_color">#b32400</color>
+
+	<!-- green -->
+	<color name="dark_green_color">#008000</color>
+
+	<!-- M A I N -->
+
+	<!-- button -->
+	<color name="action_button_color">#ff00ff</color>
+	<color name="ok_button_color">@color/dark_green_color</color>
+	<color name="err_button_color">@color/dark_red_color</color>
+
+	<!-- report -->
+	<color name="storageTypeBackColor">#FFFF80</color>
+	<color name="storageTypeForeColor">#000000</color>
+
+	<color name="storageValueBackColor">#FFFFC0</color>
+	<color name="storageValueForeColor">#000000</color>
+
+	<color name="dirTypeBackColor">#800080</color>
+	<color name="dirTypeForeColor">#FFFFFF</color>
+
+	<color name="dirValueBackColor">#FFFFFF</color>
+	<color name="dirValueForeColor">#000080</color>
+
+	<color name="dirOkBackColor">#FFFFFF</color>
+	<color name="dirOkForeColor">#008000</color>
+
+	<color name="dirFailBackColor">#FFFFFF</color>
+	<color name="dirFailForeColor">#800000</color>
+
+	<array name="palette_storage">
+
+		<item>@color/storageTypeBackColor</item>
+		<item>@color/storageTypeForeColor</item>
+
+		<item>@color/storageValueBackColor</item>
+		<item>@color/storageValueForeColor</item>
+
+		<item>@color/dirTypeBackColor</item>
+		<item>@color/dirTypeForeColor</item>
+
+		<item>@color/dirValueBackColor</item>
+		<item>@color/dirValueForeColor</item>
+
+		<item>@color/dirOkBackColor</item>
+		<item>@color/dirOkForeColor</item>
+
+		<item>@color/dirFailBackColor</item>
+		<item>@color/dirFailForeColor</item>
+
+	</array>
+</resources>
