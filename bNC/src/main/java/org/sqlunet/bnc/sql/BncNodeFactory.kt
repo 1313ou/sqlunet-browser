@@ -1,99 +1,78 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.bnc.sql
 
-package org.sqlunet.bnc.sql;
-
-import org.sqlunet.sql.NodeFactory;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import org.sqlunet.sql.NodeFactory
+import org.w3c.dom.Document
+import org.w3c.dom.Node
 
 /**
  * DOM node factory
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class BncNodeFactory extends NodeFactory
-{
-	/**
-	 * Make BNC root node
-	 *
-	 * @param doc    is the DOM Document being built
-	 * @param wordId target word id
-	 * @param pos    target pos
-	 * @return newly created node
-	 */
-	@NonNull
-	static public Node makeBncRootNode(@NonNull final Document doc, final long wordId, @Nullable final Character pos)
-	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "bnc", null, BncImplementation.BNC_NS);
-		if (pos == null)
-		{
-			NodeFactory.addAttributes(rootNode, "wordid", Long.toString(wordId));
-		}
-		else
-		{
-			NodeFactory.addAttributes(rootNode, "wordid", Long.toString(wordId), "pos", Character.toString(pos));
-		}
-		return rootNode;
-	}
+internal object BncNodeFactory : NodeFactory() {
+    /**
+     * Make BNC root node
+     *
+     * @param doc    is the DOM Document being built
+     * @param wordId target word id
+     * @param pos    target pos
+     * @return newly created node
+     */
+    @JvmStatic
+    fun makeBncRootNode(doc: Document, wordId: Long, pos: Char?): Node {
+        val rootNode = makeNode(doc, doc, "bnc", null, BncImplementation.BNC_NS)
+        if (pos == null) {
+            addAttributes(rootNode, "wordid", wordId.toString())
+        } else {
+            addAttributes(rootNode, "wordid", wordId.toString(), "pos", Character.toString(pos))
+        }
+        return rootNode
+    }
 
-	/**
-	 * Make the BNC data node
-	 *
-	 * @param doc    is the DOM Document being built
-	 * @param parent is the parent node to attach this node to
-	 * @param data   is the BNC data
-	 * @param i      the ith BNC data
-	 */
-	@NonNull
-	@SuppressWarnings("UnusedReturnValue")
-	static public Node makeBncNode(@NonNull final Document doc, final Node parent, @NonNull final BncData data, final int i)
-	{
-		final Element element = NodeFactory.makeNode(doc, parent, "bncdata", null);
-		NodeFactory.makeAttribute(element, "ith", Integer.toString(i));
-		NodeFactory.makeAttribute(element, "pos", data.posName != null ? data.posName : data.pos);
+    /**
+     * Make the BNC data node
+     *
+     * @param doc    is the DOM Document being built
+     * @param parent is the parent node to attach this node to
+     * @param data   is the BNC data
+     * @param i      the ith BNC data
+     */
+    @JvmStatic
+    fun makeBncNode(doc: Document, parent: Node?, data: BncData, i: Int): Node {
+        val element = makeNode(doc, parent, "bncdata", null)
+        makeAttribute(element, "ith", i.toString())
+        makeAttribute(element, "pos", if (data.posName != null) data.posName else data.pos)
+        makeDataNode(doc, element, "freq", data.freq)
+        makeDataNode(doc, element, "range", data.range)
+        makeDataNode(doc, element, "disp", data.disp)
+        makeDataNode(doc, element, "convfreq", data.convFreq)
+        makeDataNode(doc, element, "convrange", data.convRange)
+        makeDataNode(doc, element, "convdisp", data.convDisp)
+        makeDataNode(doc, element, "taskfreq", data.taskFreq)
+        makeDataNode(doc, element, "taskrange", data.taskRange)
+        makeDataNode(doc, element, "taskdisp", data.taskDisp)
+        makeDataNode(doc, element, "imagfreq", data.imagFreq)
+        makeDataNode(doc, element, "imagrange", data.imagRange)
+        makeDataNode(doc, element, "imagdisp", data.imagDisp)
+        makeDataNode(doc, element, "inffreq", data.infFreq)
+        makeDataNode(doc, element, "infrange", data.infRange)
+        makeDataNode(doc, element, "infdisp", data.infDisp)
+        makeDataNode(doc, element, "spokenfreq", data.spokenFreq)
+        makeDataNode(doc, element, "spokenrange", data.spokenRange)
+        makeDataNode(doc, element, "spokendisp", data.spokenDisp)
+        makeDataNode(doc, element, "writtenfreq", data.writtenFreq)
+        makeDataNode(doc, element, "writtenrange", data.writtenRange)
+        makeDataNode(doc, element, "writtendisp", data.writtenDisp)
+        return element
+    }
 
-		BncNodeFactory.makeDataNode(doc, element, "freq", data.freq);
-		BncNodeFactory.makeDataNode(doc, element, "range", data.range);
-		BncNodeFactory.makeDataNode(doc, element, "disp", data.disp);
-
-		BncNodeFactory.makeDataNode(doc, element, "convfreq", data.convFreq);
-		BncNodeFactory.makeDataNode(doc, element, "convrange", data.convRange);
-		BncNodeFactory.makeDataNode(doc, element, "convdisp", data.convDisp);
-
-		BncNodeFactory.makeDataNode(doc, element, "taskfreq", data.taskFreq);
-		BncNodeFactory.makeDataNode(doc, element, "taskrange", data.taskRange);
-		BncNodeFactory.makeDataNode(doc, element, "taskdisp", data.taskDisp);
-
-		BncNodeFactory.makeDataNode(doc, element, "imagfreq", data.imagFreq);
-		BncNodeFactory.makeDataNode(doc, element, "imagrange", data.imagRange);
-		BncNodeFactory.makeDataNode(doc, element, "imagdisp", data.imagDisp);
-
-		BncNodeFactory.makeDataNode(doc, element, "inffreq", data.infFreq);
-		BncNodeFactory.makeDataNode(doc, element, "infrange", data.infRange);
-		BncNodeFactory.makeDataNode(doc, element, "infdisp", data.infDisp);
-
-		BncNodeFactory.makeDataNode(doc, element, "spokenfreq", data.spokenFreq);
-		BncNodeFactory.makeDataNode(doc, element, "spokenrange", data.spokenRange);
-		BncNodeFactory.makeDataNode(doc, element, "spokendisp", data.spokenDisp);
-
-		BncNodeFactory.makeDataNode(doc, element, "writtenfreq", data.writtenFreq);
-		BncNodeFactory.makeDataNode(doc, element, "writtenrange", data.writtenRange);
-		BncNodeFactory.makeDataNode(doc, element, "writtendisp", data.writtenDisp);
-		return element;
-	}
-
-	static private void makeDataNode(@NonNull final Document doc, final Node parent, final String name, @Nullable final Object object)
-	{
-		if (object == null)
-		{
-			return;
-		}
-		NodeFactory.makeNode(doc, parent, name, object.toString());
-	}
+    private fun makeDataNode(doc: Document, parent: Node, name: String, `object`: Any?) {
+        if (`object` == null) {
+            return
+        }
+        makeNode(doc, parent, name, `object`.toString())
+    }
 }

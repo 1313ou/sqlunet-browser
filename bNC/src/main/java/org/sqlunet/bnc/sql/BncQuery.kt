@@ -1,462 +1,118 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.bnc.sql
 
-package org.sqlunet.bnc.sql;
-
-import android.database.sqlite.SQLiteDatabase;
-
-import org.sqlunet.sql.DBQuery;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.database.sqlite.SQLiteDatabase
+import org.sqlunet.sql.DBQuery
 
 /**
  * BNC query
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param connection connection
+ * @param params     parameters
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class BncQuery extends DBQuery
-{
-	/**
-	 * <code>QUERY</code> is the SQL statement
-	 */
-	static private final String QUERY = SqLiteDialect.BNCQueryFromWordId;
+internal class BncQuery(connection: SQLiteDatabase?, vararg params: Any) : DBQuery(connection, if (params.size > 1) QUERYWITHPOS else QUERY) {
 
-	/**
-	 * <code>QUERYWITHPOS</code> is the SQL statement
-	 */
-	static private final String QUERYWITHPOS = SqLiteDialect.BNCQueryFromWordIdAndPos;
+    init {
+        setParams(*params)
+    }
 
-	/**
-	 * Constructor
-	 *
-	 * @param connection connection
-	 * @param params     parameters
-	 */
-	public BncQuery(final SQLiteDatabase connection, @NonNull final Object... params)
-	{
-		super(connection, params.length > 1 ? BncQuery.QUERYWITHPOS : BncQuery.QUERY);
-		setParams(params);
-	}
+    private val pos: String
+        get() = cursor!!.getString(0)
 
-	/**
-	 * Get the part-of-speech from the result set
-	 *
-	 * @return the part-of-speech from the result set
-	 */
-	private String getPos()
-	{
-		assert this.cursor != null;
-		return this.cursor.getString(0);
-	}
+    private val posName: String
+        get() = cursor!!.getString(1)
 
-	/**
-	 * Get the part-of-speech from the result set
-	 *
-	 * @return the part-of-speech from the result set
-	 */
-	private String getPosName()
-	{
-		assert this.cursor != null;
-		return this.cursor.getString(1);
-	}
+    private val freq: Int?
+        get() = if (cursor!!.isNull(2)) null else cursor!!.getInt(2)
 
-	/**
-	 * Get the frequency from the result set
-	 *
-	 * @return the frequency from the result set
-	 */
-	@Nullable
-	@SuppressWarnings("boxing")
-	private Integer getFreq()
-	{
-		assert this.cursor != null;
-		if (this.cursor.isNull(2))
-		{
-			return null;
-		}
-		return this.cursor.getInt(2);
-	}
+    private val range: Int?
+        get() = if (cursor!!.isNull(3)) null else cursor!!.getInt(3)
 
-	/**
-	 * Get the range from the result set
-	 *
-	 * @return the range from the result set
-	 */
-	@Nullable
-	@SuppressWarnings("boxing")
-	private Integer getRange()
-	{
-		assert this.cursor != null;
-		if (this.cursor.isNull(3))
-		{
-			return null;
-		}
-		return this.cursor.getInt(3);
-	}
+    private val disp: Float?
+        get() = if (cursor!!.isNull(4)) null else cursor!!.getFloat(4)
 
-	/**
-	 * Get the disp from the result set
-	 *
-	 * @return the disp from the result set
-	 */
-	@Nullable
-	@SuppressWarnings("boxing")
-	private Float getDisp()
-	{
-		assert this.cursor != null;
-		if (this.cursor.isNull(4))
-		{
-			return null;
-		}
-		return this.cursor.getFloat(4);
-	}
+    // conversation / task
 
-	// conversation / task
+    private val convFreq: Int?
+        get() = if (cursor!!.isNull(5)) null else cursor!!.getInt(5)
 
-	/**
-	 * Get the conversation frequency from the result set
-	 *
-	 * @return the conversation frequency from the result set
-	 */
-	@Nullable
-	@SuppressWarnings("boxing")
-	private Integer getConvFreq()
-	{
-		assert this.cursor != null;
-		if (this.cursor.isNull(5))
-		{
-			return null;
-		}
-		return this.cursor.getInt(5);
-	}
+    private val convRange: Int?
+        get() = if (cursor!!.isNull(6)) null else cursor!!.getInt(6)
 
-	/**
-	 * Get the conversation range from the result set
-	 *
-	 * @return the conversation range from the result set
-	 */
-	@Nullable
-	@SuppressWarnings("boxing")
-	private Integer getConvRange()
-	{
-		assert this.cursor != null;
-		if (this.cursor.isNull(6))
-		{
-			return null;
-		}
-		return this.cursor.getInt(6);
-	}
+    private val convDisp: Float?
+        get() = if (cursor!!.isNull(7)) null else cursor!!.getFloat(7)
 
-	/**
-	 * Get the conversation disp from the result set
-	 *
-	 * @return the conversation disp from the result set
-	 */
-	@Nullable
-	@SuppressWarnings("boxing")
-	private Float getConvDisp()
-	{
-		assert this.cursor != null;
-		if (this.cursor.isNull(7))
-		{
-			return null;
-		}
-		return this.cursor.getFloat(7);
-	}
+    private val taskFreq: Int?
+        get() = if (cursor!!.isNull(8)) null else cursor!!.getInt(8)
 
-	/**
-	 * Get the task frequency from the result set
-	 *
-	 * @return the task frequency from the result set
-	 */
-	@Nullable
-	@SuppressWarnings("boxing")
-	private Integer getTaskFreq()
-	{
-		assert this.cursor != null;
-		if (this.cursor.isNull(8))
-		{
-			return null;
-		}
-		return this.cursor.getInt(8);
-	}
+    private val taskRange: Int?
+        get() = if (cursor!!.isNull(9)) null else cursor!!.getInt(9)
 
-	/**
-	 * Get the task range from the result set
-	 *
-	 * @return the task range from the result set
-	 */
-	@Nullable
-	@SuppressWarnings("boxing")
-	private Integer getTaskRange()
-	{
-		assert this.cursor != null;
-		if (this.cursor.isNull(9))
-		{
-			return null;
-		}
-		return this.cursor.getInt(9);
-	}
+    private val taskDisp: Float?
+        get() = if (cursor!!.isNull(10)) null else cursor!!.getFloat(10)
 
-	/**
-	 * Get the task disp from the result set
-	 *
-	 * @return the disp from the result set
-	 */
-	@Nullable
-	@SuppressWarnings("boxing")
-	private Float getTaskDisp()
-	{
-		assert this.cursor != null;
-		if (this.cursor.isNull(10))
-		{
-			return null;
-		}
-		return this.cursor.getFloat(10);
-	}
+    // imagination / information
 
-	// imagination / information
+    private val imagFreq: Int?
+        get() = if (cursor!!.isNull(11)) null else cursor!!.getInt(11)
 
-	/**
-	 * Get the imagination frequency from the result set
-	 *
-	 * @return the imagination frequency from the result set
-	 */
-	@Nullable
-	@SuppressWarnings("boxing")
-	private Integer getImagFreq()
-	{
-		assert this.cursor != null;
-		if (this.cursor.isNull(11))
-		{
-			return null;
-		}
-		return this.cursor.getInt(11);
-	}
+    private val imagRange: Int?
+        get() = if (cursor!!.isNull(12)) null else cursor!!.getInt(12)
 
-	/**
-	 * Get the imagination range from the result set
-	 *
-	 * @return the imagination range from the result set
-	 */
-	@Nullable
-	@SuppressWarnings("boxing")
-	private Integer getImagRange()
-	{
-		assert this.cursor != null;
-		if (this.cursor.isNull(12))
-		{
-			return null;
-		}
-		return this.cursor.getInt(12);
-	}
+    private val imagDisp: Float?
+        get() = if (cursor!!.isNull(13)) null else cursor!!.getFloat(13)
 
-	/**
-	 * Get the imagination disp from the result set
-	 *
-	 * @return the imagination disp from the result set
-	 */
-	@Nullable
-	@SuppressWarnings("boxing")
-	private Float getImagDisp()
-	{
-		assert this.cursor != null;
-		if (this.cursor.isNull(13))
-		{
-			return null;
-		}
-		return this.cursor.getFloat(13);
-	}
+    private val infFreq: Int?
+        get() = if (cursor!!.isNull(14)) null else cursor!!.getInt(14)
 
-	/**
-	 * Get the information frequency from the result set
-	 *
-	 * @return the information frequency from the result set
-	 */
-	@Nullable
-	@SuppressWarnings("boxing")
-	private Integer getInfFreq()
-	{
-		assert this.cursor != null;
-		if (this.cursor.isNull(14))
-		{
-			return null;
-		}
-		return this.cursor.getInt(14);
-	}
+    private val infRange: Int?
+        get() = if (cursor!!.isNull(15)) null else cursor!!.getInt(15)
 
-	/**
-	 * Get the information range from the result set
-	 *
-	 * @return the information range from the result set
-	 */
-	@Nullable
-	@SuppressWarnings("boxing")
-	private Integer getInfRange()
-	{
-		assert this.cursor != null;
-		if (this.cursor.isNull(15))
-		{
-			return null;
-		}
-		return this.cursor.getInt(15);
-	}
+    private val infDisp: Float?
+        get() = if (cursor!!.isNull(16)) null else cursor!!.getFloat(16)
 
-	/**
-	 * Get the information disp from the result set
-	 *
-	 * @return the information from the result set
-	 */
-	@Nullable
-	@SuppressWarnings("boxing")
-	private Float getInfDisp()
-	{
-		assert this.cursor != null;
-		if (this.cursor.isNull(16))
-		{
-			return null;
-		}
-		return this.cursor.getFloat(16);
-	}
+    // spoken / written
 
-	// spoken / written
+    private val spokenFreq: Int?
+        get() = if (cursor!!.isNull(17)) null else cursor!!.getInt(17)
 
-	/**
-	 * Get the spoken frequency from the result set
-	 *
-	 * @return the spoken frequency from the result set
-	 */
-	@Nullable
-	@SuppressWarnings("boxing")
-	private Integer getSpokenFreq()
-	{
-		assert this.cursor != null;
-		if (this.cursor.isNull(17))
-		{
-			return null;
-		}
-		return this.cursor.getInt(17);
-	}
+    private val spokenRange: Int?
+        get() = if (cursor!!.isNull(18)) null else cursor!!.getInt(18)
 
-	/**
-	 * Get the spoken range from the result set
-	 *
-	 * @return the spoken range from the result set
-	 */
-	@Nullable
-	@SuppressWarnings("boxing")
-	private Integer getSpokenRange()
-	{
-		assert this.cursor != null;
-		if (this.cursor.isNull(18))
-		{
-			return null;
-		}
-		return this.cursor.getInt(18);
-	}
+    private val spokenDisp: Float?
+        get() = if (cursor!!.isNull(19)) null else cursor!!.getFloat(19)
 
-	/**
-	 * Get the spoken disp from the result set
-	 *
-	 * @return the spoken disp from the result set
-	 */
-	@Nullable
-	@SuppressWarnings("boxing")
-	private Float getSpokenDisp()
-	{
-		assert this.cursor != null;
-		if (this.cursor.isNull(19))
-		{
-			return null;
-		}
-		return this.cursor.getFloat(19);
-	}
+    private val writtenFreq: Int?
+        get() = if (cursor!!.isNull(20)) null else cursor!!.getInt(20)
 
-	/**
-	 * Get the written frequency from the result set
-	 *
-	 * @return the written frequency from the result set
-	 */
-	@Nullable
-	@SuppressWarnings("boxing")
-	private Integer getWrittenFreq()
-	{
-		assert this.cursor != null;
-		if (this.cursor.isNull(20))
-		{
-			return null;
-		}
-		return this.cursor.getInt(20);
-	}
+    private val writtenRange: Int?
+        get() = if (cursor!!.isNull(21)) null else cursor!!.getInt(21)
 
-	/**
-	 * Get the written range from the result set
-	 *
-	 * @return the written range from the result set
-	 */
-	@Nullable
-	@SuppressWarnings("boxing")
-	private Integer getWrittenRange()
-	{
-		assert this.cursor != null;
-		if (this.cursor.isNull(21))
-		{
-			return null;
-		}
-		return this.cursor.getInt(21);
-	}
+    private val writtenDisp: Float?
+        get() = if (cursor!!.isNull(22)) null else cursor!!.getFloat(22)
 
-	/**
-	 * Get the written disp from the result set
-	 *
-	 * @return the written disp from the result set
-	 */
-	@Nullable
-	@SuppressWarnings("boxing")
-	private Float getWrittenDisp()
-	{
-		assert this.cursor != null;
-		if (this.cursor.isNull(22))
-		{
-			return null;
-		}
-		return this.cursor.getFloat(22);
-	}
+    val data: BncData
+        get() {
+            return BncData(
+                pos, posName,
+                freq, range, disp, convFreq, convRange, convDisp, taskFreq, taskRange, taskDisp,
+                imagFreq, imagRange, imagDisp, infFreq, infRange, infDisp,
+                spokenFreq, spokenRange, spokenDisp, writtenFreq, writtenRange, writtenDisp
+            )
+        }
 
-	/**
-	 * Get the written disp from the result set
-	 *
-	 * @return the written from the result set
-	 */
-	@NonNull
-	public BncData getData()
-	{
-		final BncData data = new BncData();
-		data.pos = getPos();
-		data.posName = getPosName();
-		data.freq = getFreq();
-		data.range = getRange();
-		data.disp = getDisp();
-		data.convFreq = getConvFreq();
-		data.convRange = getConvRange();
-		data.convDisp = getConvDisp();
-		data.taskFreq = getTaskFreq();
-		data.taskRange = getTaskRange();
-		data.taskDisp = getTaskDisp();
-		data.imagFreq = getImagFreq();
-		data.imagRange = getImagRange();
-		data.imagDisp = getImagDisp();
-		data.infFreq = getInfFreq();
-		data.infRange = getInfRange();
-		data.infDisp = getInfDisp();
-		data.spokenFreq = getSpokenFreq();
-		data.spokenRange = getSpokenRange();
-		data.spokenDisp = getSpokenDisp();
-		data.writtenFreq = getWrittenFreq();
-		data.writtenRange = getWrittenRange();
-		data.writtenDisp = getWrittenDisp();
-		return data;
-	}
+    companion object {
+        /**
+         * `QUERY` is the SQL statement
+         */
+        private const val QUERY = SqLiteDialect.BNCQueryFromWordId
+
+        /**
+         * `QUERYWITHPOS` is the SQL statement
+         */
+        private const val QUERYWITHPOS = SqLiteDialect.BNCQueryFromWordIdAndPos
+    }
 }

@@ -1,64 +1,54 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.bnc.browser
 
-package org.sqlunet.bnc.browser;
-
-import android.os.Bundle;
-import android.os.Parcelable;
-
-import org.sqlunet.bnc.R;
-import org.sqlunet.bnc.loaders.BaseModule;
-import org.sqlunet.browser.Module;
-import org.sqlunet.browser.TreeFragment;
-import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.treeview.model.TreeNode;
-
-import androidx.annotation.Nullable;
+import android.os.Build
+import android.os.Bundle
+import android.os.Parcelable
+import org.sqlunet.bnc.R
+import org.sqlunet.bnc.loaders.BaseModule
+import org.sqlunet.browser.Module
+import org.sqlunet.browser.TreeFragment
+import org.sqlunet.provider.ProviderArgs
 
 /**
  * A fragment representing a lexunit.
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class BNCFragment extends TreeFragment
-{
-	// static private final String TAG = "BncF";
+class BNCFragment : TreeFragment() {
 
-	static public final String FRAGMENT_TAG = "bnc";
+   init {
+        layoutId = R.layout.fragment_bnc
+        treeContainerId = R.id.data_contents
+        headerId = R.string.bnc_frequencies
+        iconId = R.drawable.bnc
+    }
 
-	/**
-	 * Constructor
-	 */
-	public BNCFragment()
-	{
-		this.layoutId = R.layout.fragment_bnc;
-		this.treeContainerId = R.id.data_contents;
-		this.headerId = R.string.bnc_frequencies;
-		this.iconId = R.drawable.bnc;
-	}
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-	@Override
-	public void onCreate(@Nullable final Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
+        // query
+        val args = requireArguments()
+        val type = args.getInt(ProviderArgs.ARG_QUERYTYPE)
+        if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER)) {
 
-		// query
-		final Bundle args = getArguments();
-		assert args != null;
-		final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
-		if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER))
-		{
-			// pointer
-			final Parcelable pointer = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? args.getParcelable(ProviderArgs.ARG_QUERYPOINTER, Parcelable.class) : args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
+            // pointer
+            val pointer = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) args.getParcelable(ProviderArgs.ARG_QUERYPOINTER, Parcelable::class.java) else args.getParcelable(ProviderArgs.ARG_QUERYPOINTER)
 
-			// root node
-			final TreeNode queryNode = this.treeRoot.getChildren().iterator().next();
+            // root node
+            val queryNode = treeRoot.children.iterator().next()
 
-			// module
-			Module module = new BaseModule(this);
-			module.init(type, pointer);
-			module.process(queryNode);
-		}
-	}
+            // module
+            val module: Module = BaseModule(this)
+            module.init(type, pointer)
+            module.process(queryNode)
+        }
+    }
+
+    companion object {
+        // private const val TAG = "BncF"
+        const val FRAGMENT_TAG = "bnc"
+    }
 }

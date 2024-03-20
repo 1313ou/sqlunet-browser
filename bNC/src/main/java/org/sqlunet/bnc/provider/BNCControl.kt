@@ -1,72 +1,41 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
-
-package org.sqlunet.bnc.provider;
-
-import androidx.annotation.Nullable;
+package org.sqlunet.bnc.provider
 
 /**
  * BNC query control
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class BNCControl
-{
-	// table codes
-	static final int BNC = 11;
+object BNCControl {
 
-	// join tables
-	static final int WORDS_BNC = 100;
+    // table codes
+    const val BNC = 11
 
-	static public class Result
-	{
-		final String table;
-		final String[] projection;
-		final String selection;
-		final String[] selectionArgs;
-		final String groupBy;
+    // join tables
+    const val WORDS_BNC = 100
 
-		public Result(final String table, final String[] projection, final String selection, final String[] selectionArgs, final String groupBy)
-		{
-			this.table = table;
-			this.projection = projection;
-			this.selection = selection;
-			this.selectionArgs = selectionArgs;
-			this.groupBy = groupBy;
-		}
-	}
+    @JvmStatic
+    fun queryMain(code: Int, @Suppress("unused") uriLast: String?, projection0: Array<String>?, selection0: String?, selectionArgs0: Array<String>?): Result? {
+        val table: String
+        var selection = selection0
+        when (code) {
+            BNC -> {
+                table = Q.BNCS.TABLE
+                if (selection != null) {
+                    selection += " AND "
+                } else {
+                    selection = ""
+                }
+                selection += Q.BNCS.SELECTION
+            }
 
-	@Nullable
-	public static Result queryMain(final int code, @SuppressWarnings("unused") final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
-	{
-		String table;
-		String selection = selection0;
+            WORDS_BNC -> table = Q.WORDS_BNCS.TABLE
+            else -> return null
+        }
+        return Result(table, projection0, selection, selectionArgs0, null)
+    }
 
-		switch (code)
-		{
-			case BNC:
-				table = Q.BNCS.TABLE;
-				if (selection != null)
-				{
-					selection += " AND ";
-				}
-				else
-				{
-					selection = "";
-				}
-				selection += Q.BNCS.SELECTION;
-				break;
-
-			// J O I N S
-
-			case WORDS_BNC:
-				table = Q.WORDS_BNCS.TABLE;
-				break;
-
-			default:
-				return null;
-		}
-		return new Result(table, projection0, selection, selectionArgs0, null);
-	}
+    class Result(@JvmField val table: String, @JvmField val projection: Array<String>?, @JvmField val selection: String?, @JvmField val selectionArgs: Array<String>?, @JvmField val groupBy: String?)
 }
