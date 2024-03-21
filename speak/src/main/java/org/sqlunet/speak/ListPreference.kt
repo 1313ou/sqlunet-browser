@@ -1,39 +1,19 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.speak
 
-package org.sqlunet.speak;
+import android.content.Context
+import android.util.AttributeSet
+import androidx.preference.ListPreference
 
-import android.content.Context;
-import android.util.AttributeSet;
+class ListPreference : ListPreference {
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes)
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
+    constructor(context: Context) : super(context)
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-public class ListPreference extends androidx.preference.ListPreference
-{
-	public ListPreference(@NonNull final Context context, @Nullable final AttributeSet attrs, final int defStyleAttr, final int defStyleRes)
-	{
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
-
-	public ListPreference(@NonNull final Context context, @Nullable final AttributeSet attrs, final int defStyleAttr)
-	{
-		super(context, attrs, defStyleAttr);
-	}
-
-	public ListPreference(@NonNull final Context context, @Nullable final AttributeSet attrs)
-	{
-		super(context, attrs);
-	}
-
-	public ListPreference(@NonNull final Context context)
-	{
-		super(context);
-	}
-
-	public void notifyEntriesChanged()
-	{
-		notifyChanged();
-	}
+    fun notifyEntriesChanged() {
+        notifyChanged()
+    }
 }

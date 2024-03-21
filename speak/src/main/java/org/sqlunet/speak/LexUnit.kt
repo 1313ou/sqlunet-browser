@@ -1,25 +1,11 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.speak
 
-package org.sqlunet.speak;
+class LexUnit(val word: String, ipa: String, variety: String?) : Pronunciation(ipa, variety) {
 
-import androidx.annotation.NonNull;
-
-public class LexUnit extends Pronunciation
-{
-	final public String word;
-
-	public LexUnit(final String word, final String ipa, final String variety)
-	{
-		super(ipa, variety);
-		this.word = word;
-	}
-
-	@NonNull
-	@Override
-	public String toString()
-	{
-		return String.format("%s %s", word, super.toString());
-	}
+    override fun toString(): String {
+        return String.format("%s %s", word, super.toString())
+    }
 }

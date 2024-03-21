@@ -1,135 +1,99 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.speak
 
-package org.sqlunet.speak;
+import android.os.Build
+import android.os.Bundle
+import android.speech.tts.Voice
+import android.view.View
+import androidx.annotation.RequiresApi
+import androidx.preference.Preference
+import androidx.preference.Preference.SummaryProvider
+import androidx.preference.PreferenceFragmentCompat
+import java.util.Locale
+import java.util.stream.Collectors
 
-import android.os.Build;
-import android.os.Bundle;
-import android.speech.tts.Voice;
+class SpeakSettingsFragment : PreferenceFragmentCompat() {
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
-import java.util.stream.Collectors;
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        setPreferencesFromResource(R.xml.speak_preferences, rootKey)
+        val noneString = requireContext().getString(R.string.none)
+        val voicePref = findPreference<ResettableMultiSelectListPreference>(VOICE_PREF)
+        if (voicePref != null) {
+            voicePref.entries = arrayOf(noneString)
+            voicePref.entryValues = arrayOf("")
+            voicePref.setSummaryProvider(SummaryProvider { pref2: Preference -> prepareSummary(pref2 as MultiSelectListPreference) })
+            voicePref.setClickListener(View.OnClickListener { voicePref.setValues(HashSet()) })
+            Discover().discoverVoices(requireContext()) { voices ->
+                val voicesValues = prepareVoiceValues(voices)
+                voicePref.entryValues = voicesValues.toTypedArray<String>()
+                val voicesLabels = prepareVoiceLabels(voices)
+                voicePref.entries = voicesLabels.toTypedArray<String>()
+                voicePref.notifyEntriesChanged()
+            }
+        }
+        val countryPref = findPreference<ListPreference>(COUNTRY_PREF)
+        if (countryPref != null) {
+            countryPref.entries = arrayOf(noneString)
+            countryPref.entryValues = arrayOf("")
+            Discover().discoverLanguages(requireContext()) { locales ->
+                val localeValues = prepareLocaleValues(locales)
+                localeValues.add("")
+                countryPref.entryValues = localeValues.toTypedArray<String>()
+                val localeLabels = prepareLocaleLabels(locales)
+                localeLabels.add(noneString)
+                countryPref.entries = localeLabels.toTypedArray<String>()
+                countryPref.notifyEntriesChanged()
+            }
+        }
+    }
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.preference.PreferenceFragmentCompat;
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private fun prepareVoiceValues(voices: List<Voice>): List<String> {
+        return voices.stream().map { obj: Voice -> obj.name }.collect(Collectors.toList())
+    }
 
-public class SpeakSettingsFragment extends PreferenceFragmentCompat
-{
-	public static final String VOICE_PREF = "voice";
-	public static final String COUNTRY_PREF = "country";
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private fun prepareVoiceLabels(voices: List<Voice>): List<String> {
+        return voices.stream().map { voice: Voice -> voice.name + " " + if (voice.isNetworkConnectionRequired) "N" else "L" }.collect(Collectors.toList())
+    }
 
-	@RequiresApi(api = Build.VERSION_CODES.N)
-	public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey)
-	{
-		this.setPreferencesFromResource(R.xml.speak_preferences, rootKey);
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private fun prepareLocaleValues(locales: List<Locale>): MutableList<String> {
+        return locales.stream().map { obj: Locale -> obj.country }.collect(Collectors.toList())
+    }
 
-		final String noneString = requireContext().getString(R.string.none);
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private fun prepareLocaleLabels(locales: List<Locale>): MutableList<String> {
+        return locales.stream().map { locale: Locale -> locale.country + " " + locale.language }.collect(Collectors.toList())
+    }
 
-		final ResettableMultiSelectListPreference voicePref = this.findPreference(VOICE_PREF);
-		if (voicePref != null)
-		{
-			voicePref.setEntries(new String[]{noneString});
-			voicePref.setEntryValues(new String[]{""});
-			voicePref.setSummaryProvider(pref2 -> prepareSummary((MultiSelectListPreference) pref2));
-			voicePref.setClickListener((v) -> voicePref.setValues(new HashSet<>()));
+    private fun prepareSummary(pref: MultiSelectListPreference): CharSequence {
+        val noneString = requireContext().getString(R.string.none)
+        val titles: MutableList<String> = ArrayList()
+        val entryValues = pref.entryValues
+        val persisted = pref.getPersistedStringSet(null)
+        if (persisted != null) {
+            if (persisted.size == 0) {
+                return noneString
+            } else {
+                if (entryValues != null) {
+                    for ((i, value) in entryValues.withIndex()) {
+                        if (persisted.contains(value.toString())) {
+                            titles.add(entryValues[i].toString().substring(3))
+                        }
+                    }
+                }
+            }
+            return java.lang.String.join("\n", titles)
+        }
+        return noneString
+    }
 
-			new Discover().discoverVoices(getContext(), voices -> {
-
-				List<String> voicesValues = prepareVoiceValues(voices);
-				voicePref.setEntryValues(voicesValues.toArray(new String[0]));
-
-				List<String> voicesLabels = prepareVoiceLabels(voices);
-				voicePref.setEntries(voicesLabels.toArray(new String[0]));
-
-				voicePref.notifyEntriesChanged();
-			});
-		}
-
-		final ListPreference countryPref = this.findPreference(COUNTRY_PREF);
-		if (countryPref != null)
-		{
-			countryPref.setEntries(new String[]{noneString});
-			countryPref.setEntryValues(new String[]{""});
-
-			new Discover().discoverLanguages(getContext(), locales -> {
-
-				List<String> localeValues = prepareLocaleValues(locales);
-				localeValues.add("");
-				countryPref.setEntryValues(localeValues.toArray(new String[0]));
-
-				List<String> localeLabels = prepareLocaleLabels(locales);
-				localeLabels.add(noneString);
-				countryPref.setEntries(localeLabels.toArray(new String[0]));
-
-				countryPref.notifyEntriesChanged();
-			});
-		}
-	}
-
-	@NonNull
-	@RequiresApi(api = Build.VERSION_CODES.N)
-	private List<String> prepareVoiceValues(@NonNull List<Voice> voices)
-	{
-		return voices.stream().map(Voice::getName).collect(Collectors.toList());
-	}
-
-	@NonNull
-	@RequiresApi(api = Build.VERSION_CODES.N)
-	private List<String> prepareVoiceLabels(@NonNull List<Voice> voices)
-	{
-		return voices.stream().map(voice -> voice.getName() + " " + (voice.isNetworkConnectionRequired() ? "N" : "L")).collect(Collectors.toList());
-	}
-
-	@NonNull
-	@RequiresApi(api = Build.VERSION_CODES.N)
-	private List<String> prepareLocaleValues(@NonNull List<Locale> locales)
-	{
-		return locales.stream().map(Locale::getCountry).collect(Collectors.toList());
-	}
-
-	@NonNull
-	@RequiresApi(api = Build.VERSION_CODES.N)
-	private List<String> prepareLocaleLabels(@NonNull List<Locale> locales)
-	{
-		return locales.stream().map(locale -> locale.getCountry() + " " + locale.getLanguage()).collect(Collectors.toList());
-	}
-
-	private CharSequence prepareSummary(@NonNull MultiSelectListPreference pref)
-	{
-		final String noneString = requireContext().getString(R.string.none);
-		List<String> titles = new ArrayList<>();
-		CharSequence[] entryValues = pref.getEntryValues();
-		Set<String> persisted = pref.getPersistedStringSet(null);
-		if (persisted != null)
-		{
-			if (persisted.size() == 0)
-			{
-				return noneString;
-			}
-			else
-			{
-				if (entryValues != null)
-				{
-					int i = 0;
-					for (CharSequence value : entryValues)
-					{
-						if (persisted.contains(value.toString()))
-						{
-							titles.add(entryValues[i].toString().substring(3));
-						}
-						i++;
-					}
-				}
-			}
-			return String.join("\n", titles);
-		}
-		return noneString;
-	}
+    companion object {
+        const val VOICE_PREF = "voice"
+        const val COUNTRY_PREF = "country"
+    }
 }

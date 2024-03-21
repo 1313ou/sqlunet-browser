@@ -1,193 +1,111 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.speak
 
-package org.sqlunet.speak;
+import android.content.Context
+import android.os.Build
+import android.speech.tts.TextToSpeech
+import android.speech.tts.TextToSpeech.EngineInfo
+import android.speech.tts.TextToSpeech.OnInitListener
+import android.speech.tts.Voice
+import android.util.Log
+import androidx.annotation.RequiresApi
+import java.util.Locale
+import java.util.function.Consumer
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.os.Build;
-import android.speech.tts.TextToSpeech;
-import android.speech.tts.Voice;
-import android.util.Log;
+class Discover {
+    private var tts: TextToSpeech? = null
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    fun discoverVoices(context: Context, consumer: Consumer<List<Voice>>) {
+        tts = TextToSpeech(context, OnInitListener { status: Int ->
+            if (status != TextToSpeech.SUCCESS) {
+                Log.e(TAG, "Init failed")
+                return@OnInitListener
+            }
+            if (tts == null) {
+                Log.e(TAG, "Null TTS")
+                return@OnInitListener
+            }
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
+            val voices = tts!!.voices
+                .asSequence()
+                .filter { "en" == it.locale.language }
+                .toList()
+                .sortedWith { v1: Voice, v2: Voice -> v1.name.compareTo(v2.name) }
 
-public class Discover
-{
-	static public final String TAG = "__VOICE__";
+            consumer.accept(voices)
+        })
+    }
 
-	@FunctionalInterface
-	public interface Consumer<T>
-	{
-		/**
-		 * Performs this operation on the given argument.
-		 *
-		 * @param t the input argument
-		 */
-		void accept(T t);
-	}
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    fun discoverVoice(context: Context, consumer: Consumer<Voice>) {
+        tts = TextToSpeech(context, OnInitListener { status: Int ->
+            if (status != TextToSpeech.SUCCESS) {
+                Log.e(TAG, "Init failed")
+                return@OnInitListener
+            }
+            if (tts == null) {
+                Log.e(TAG, "Null TTS")
+                return@OnInitListener
+            }
+            val voice = tts!!.voice
+            consumer.accept(voice)
+        })
+    }
 
-	private TextToSpeech tts;
+    fun discoverEngines(context: Context, consumer: Consumer<List<EngineInfo>>) {
+        tts = TextToSpeech(context, OnInitListener { status: Int ->
+            if (status != TextToSpeech.SUCCESS) {
+                Log.e(TAG, "Init failed")
+                return@OnInitListener
+            }
+            if (tts == null) {
+                Log.e(TAG, "Null TTS")
+                return@OnInitListener
+            }
+            val engines = tts!!.engines
+            consumer.accept(engines)
+        })
+    }
 
-	@SuppressLint("ObsoleteSdkInt")
-	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-	public void discoverVoices(final Context context, @NonNull final Consumer<List<Voice>> consumer)
-	{
-		this.tts = new TextToSpeech(context, status -> {
+    fun discoverEngine(context: Context, consumer: Consumer<String>) {
+        tts = TextToSpeech(context, OnInitListener { status: Int ->
+            if (status != TextToSpeech.SUCCESS) {
+                Log.e(TAG, "Init failed")
+                return@OnInitListener
+            }
+            if (tts == null) {
+                Log.e(TAG, "Null TTS")
+                return@OnInitListener
+            }
+            val engine = tts!!.defaultEngine
+            consumer.accept(engine)
+        })
+    }
 
-			if (status != TextToSpeech.SUCCESS)
-			{
-				Log.e(TAG, "Init failed");
-				return;
-			}
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    fun discoverLanguages(context: Context, consumer: Consumer<List<Locale>>) {
+        tts = TextToSpeech(context, OnInitListener { status: Int ->
+            if (status != TextToSpeech.SUCCESS) {
+                Log.e(TAG, "Init failed")
+                return@OnInitListener
+            }
+            if (tts == null) {
+                Log.e(TAG, "Null TTS")
+                return@OnInitListener
+            }
+            val locales = tts!!.availableLanguages
+                .asSequence()
+                .filter { "en" == it.language }
+                .toList()
+                .sortedWith { l1: Locale, l2: Locale -> l1.country.compareTo(l2.country) }
+            consumer.accept(locales)
+        })
+    }
 
-			if (tts == null)
-			{
-				Log.e(TAG, "Null TTS");
-				return;
-			}
-
-			// tts.getVoices().stream().sequential().sorted(Comparator.comparing(Voice::getName)).filter(v -> "en".equals(v.getLocale().getLanguage())).forEach(voice -> consumer.apply(voice));
-
-			Set<Voice> allVoices = tts.getVoices();
-			List<Voice> voices = new ArrayList<>();
-			for (Voice voice : allVoices)
-			{
-				if ("en".equals(voice.getLocale().getLanguage()))
-				{
-					voices.add(voice);
-				}
-			}
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
-			{
-				Collections.sort(voices, Comparator.comparing(Voice::getName));
-			}
-			else
-			{
-				//noinspection ConstantConditions
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
-				{
-					Collections.sort(voices, Comparator.comparing(Voice::getName));
-				}
-				else
-				{
-					//noinspection ComparatorCombinators
-					Collections.sort(voices, (v1, v2) -> v1.getName().compareTo(v2.getName()));
-				}
-			}
-			consumer.accept(voices);
-		});
-	}
-
-	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-	public void discoverVoice(final Context context, @NonNull final Consumer<Voice> consumer)
-	{
-		this.tts = new TextToSpeech(context, status -> {
-
-			if (status != TextToSpeech.SUCCESS)
-			{
-				Log.e(TAG, "Init failed");
-				return;
-			}
-
-			if (tts == null)
-			{
-				Log.e(TAG, "Null TTS");
-				return;
-			}
-
-			Voice voice = tts.getVoice();
-			consumer.accept(voice);
-		});
-	}
-
-	public void discoverEngines(final Context context, @NonNull final Consumer<List<TextToSpeech.EngineInfo>> consumer)
-	{
-		this.tts = new TextToSpeech(context, status -> {
-
-			if (status != TextToSpeech.SUCCESS)
-			{
-				Log.e(TAG, "Init failed");
-				return;
-			}
-
-			if (tts == null)
-			{
-				Log.e(TAG, "Null TTS");
-				return;
-			}
-
-			List<TextToSpeech.EngineInfo> engines = tts.getEngines();
-			consumer.accept(engines);
-		});
-	}
-
-	public void discoverEngine(final Context context, @NonNull final Consumer<String> consumer)
-	{
-		this.tts = new TextToSpeech(context, status -> {
-
-			if (status != TextToSpeech.SUCCESS)
-			{
-				Log.e(TAG, "Init failed");
-				return;
-			}
-
-			if (tts == null)
-			{
-				Log.e(TAG, "Null TTS");
-				return;
-			}
-
-			String engine = tts.getDefaultEngine();
-			consumer.accept(engine);
-		});
-	}
-
-	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-	public void discoverLanguages(final Context context, @NonNull final Consumer<List<Locale>> consumer)
-	{
-		this.tts = new TextToSpeech(context, status -> {
-
-			if (status != TextToSpeech.SUCCESS)
-			{
-				Log.e(TAG, "Init failed");
-				return;
-			}
-
-			if (tts == null)
-			{
-				Log.e(TAG, "Null TTS");
-				return;
-			}
-
-			Set<Locale> allLocales = tts.getAvailableLanguages();
-			List<Locale> locales = new ArrayList<>();
-			for (Locale locale : allLocales)
-			{
-				if ("en".equals(locale.getLanguage()))
-				{
-					locales.add(locale);
-				}
-			}
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
-			{
-				Collections.sort(locales, Comparator.comparing(Locale::getCountry));
-			}
-			else
-			{
-				//noinspection ComparatorCombinators
-				Collections.sort(locales, (l1, l2) -> l1.getCountry().compareTo(l2.getCountry()));
-			}
-			consumer.accept(locales);
-		});
-	}
+    companion object {
+        const val TAG = "Voice"
+    }
 }

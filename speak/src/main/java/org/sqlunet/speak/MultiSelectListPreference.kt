@@ -1,39 +1,19 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.speak
 
-package org.sqlunet.speak;
+import android.content.Context
+import android.util.AttributeSet
+import androidx.preference.MultiSelectListPreference
 
-import android.content.Context;
-import android.util.AttributeSet;
+open class MultiSelectListPreference : MultiSelectListPreference {
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int) : super(context, attrs, defStyleAttr, defStyleRes)
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
+    constructor(context: Context) : super(context)
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-public class MultiSelectListPreference extends androidx.preference.MultiSelectListPreference
-{
-	public MultiSelectListPreference(@NonNull final Context context, @Nullable final AttributeSet attrs, final int defStyleAttr, final int defStyleRes)
-	{
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
-
-	public MultiSelectListPreference(@NonNull final Context context, @Nullable final AttributeSet attrs, final int defStyleAttr)
-	{
-		super(context, attrs, defStyleAttr);
-	}
-
-	public MultiSelectListPreference(@NonNull final Context context, @Nullable final AttributeSet attrs)
-	{
-		super(context, attrs);
-	}
-
-	public MultiSelectListPreference(@NonNull final Context context)
-	{
-		super(context);
-	}
-
-	public void notifyEntriesChanged()
-	{
-		notifyChanged();
-	}
+    fun notifyEntriesChanged() {
+        notifyChanged()
+    }
 }

@@ -1,150 +1,113 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.speak
 
-package org.sqlunet.speak;
+import java.util.regex.Pattern
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+open class Pronunciation(@JvmField val ipa: String, variety: String?) : Comparable<Pronunciation> {
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+    @JvmField
+    val variety: String?
 
-public class Pronunciation implements Comparable<Pronunciation>
-{
-	public final String ipa;
+    fun hasVariety(): Boolean {
+        return variety != null
+    }
 
-	public final String variety;
+    override fun compareTo(other: Pronunciation): Int {
+        return COMPARATOR.compare(this, other)
+    }
 
-	public Pronunciation(final String ipa, final String variety)
-	{
-		this.ipa = ipa;
-		this.variety = variety;
-	}
+    override fun toString(): String {
+        return if (variety == null) String.format("/%s/", ipa) else String.format("[%s] /%s/", variety, ipa)
+    }
 
-	public boolean hasVariety()
-	{
-		return variety != null;
-	}
+    init {
+        this.variety = variety!!
+    }
 
-	public static final Comparator<Pronunciation> COMPARATOR = (p1, p2) -> {
+    companion object {
+        val COMPARATOR = java.util.Comparator { p1: Pronunciation, p2: Pronunciation ->
+            if (p1.variety == null && p2.variety == null) {
+                return@Comparator 0
+            }
+            if (p1.variety == null) {
+                return@Comparator -1
+            }
+            if (p2.variety == null) {
+                return@Comparator 1
+            }
 
-		if (p1.variety == null && p2.variety == null)
-		{
-			return 0;
-		}
-		if (p1.variety == null)
-		{
-			return -1;
-		}
-		if (p2.variety == null)
-		{
-			return 1;
-		}
+            // priority
+            val priority1 = priority(p1.variety)
+            val priority2 = priority(p2.variety)
+            var c = priority1.compareTo(priority2)
+            if (c != 0) {
+                return@Comparator c
+            }
 
-		// priority
-		int priority1 = priority(p1.variety);
-		int priority2 = priority(p2.variety);
-		int c = Integer.compare(priority1, priority2);
-		if (c != 0)
-		{
-			return c;
-		}
+            // name
+            c = p1.variety.compareTo(p2.variety, ignoreCase = true)
+            if (c == 0) {
+                return@Comparator 0
+            }
+            p1.ipa.compareTo(p2.ipa)
+        }
 
-		// name
-		c = p1.variety.compareToIgnoreCase(p2.variety);
-		if (c == 0)
-		{
-			return 0;
-		}
-		return p1.ipa.compareTo(p2.ipa);
-	};
+        private fun priority(s: String): Int {
+            return when (s) {
+                "GB" -> -5
+                "US" -> -4
+                else -> 0
+            }
+        }
 
-	private static int priority(@NonNull final String s)
-	{
-		switch (s)
-		{
-			case "GB":
-				return -5;
-			case "US":
-				return -4;
-			default:
-				return 0;
-		}
-	}
+        private fun toStrings(pronunciations: List<Pronunciation>): Array<String?> {
+            val n = pronunciations.size
+            val result = arrayOfNulls<String>(n)
+            for (i in 0 until n) {
+                result[i] = pronunciations[i].toString()
+            }
+            return result
+        }
 
-	@Override
-	public int compareTo(final Pronunciation that)
-	{
-		return COMPARATOR.compare(this, that);
-	}
+        private val PATTERN = Pattern.compile("\\[(..)] /(.*)/")
 
-	@NonNull
-	@Override
-	public String toString()
-	{
-		return variety == null ? String.format("/%s/", ipa) : String.format("[%s] /%s/", variety, ipa);
-	}
+        private val PATTERN2 = Pattern.compile("/(.*)/")
 
-	@NonNull
-	public static String[] toStrings(@NonNull final List<Pronunciation> pronunciations)
-	{
-		int n = pronunciations.size();
-		String[] result = new String[n];
-		for (int i = 0; i < n; i++)
-		{
-			result[i] = pronunciations.get(i).toString();
-		}
-		return result;
-	}
+        @JvmStatic
+        fun pronunciations(pronunciationBundle: String?): List<Pronunciation>? {
+            if (pronunciationBundle == null) {
+                return null
+            }
+            val pronunciations = pronunciationBundle.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+            val result: MutableList<Pronunciation> = ArrayList()
+            for (pronunciation in pronunciations) {
+                val pronunciation2 = pronunciation.trim { it <= ' ' }
+                val m = PATTERN.matcher(pronunciation2)
+                if (m.find()) {
+                    val ipa = m.group(2)
+                    val country = m.group(1)
+                    result.add(Pronunciation(ipa!!, country))
+                } else {
+                    val m2 = PATTERN2.matcher(pronunciation2)
+                    if (m2.find()) {
+                        val ipa = m2.group(1)
+                        result.add(Pronunciation(ipa!!, null))
+                    }
+                }
+            }
+            result.sort()
+            return result
+        }
 
-	private static final Pattern PATTERN = Pattern.compile("\\[(..)\\] /(.*)/");
-
-	private static final Pattern PATTERN2 = Pattern.compile("/(.*)/");
-
-	public static List<Pronunciation> pronunciations(@Nullable final String pronunciationBundle)
-	{
-		if (pronunciationBundle == null)
-		{
-			return null;
-		}
-		String[] pronunciations = pronunciationBundle.split(",");
-		List<Pronunciation> result = new ArrayList<>();
-		for (String pronunciation : pronunciations)
-		{
-			pronunciation = pronunciation.trim();
-			Matcher m = PATTERN.matcher(pronunciation);
-			if (m.find())
-			{
-				String ipa = m.group(2);
-				String country = m.group(1);
-				result.add(new Pronunciation(ipa, country));
-			}
-			else
-			{
-				Matcher m2 = PATTERN2.matcher(pronunciation);
-				if (m2.find())
-				{
-					String ipa = m2.group(1);
-					result.add(new Pronunciation(ipa, null));
-				}
-			}
-		}
-		Collections.sort(result);
-		return result;
-	}
-
-	public static String sortedPronunciations(@Nullable String pronunciationBundle)
-	{
-		if (pronunciationBundle == null)
-		{
-			return null;
-		}
-		List<Pronunciation> pronunciations = pronunciations(pronunciationBundle);
-		return String.join(",", toStrings(pronunciations));
-	}
+        @JvmStatic
+        fun sortedPronunciations(pronunciationBundle: String?): String? {
+            if (pronunciationBundle == null) {
+                return null
+            }
+            val pronunciations = pronunciations(pronunciationBundle)
+            return java.lang.String.join(",", *toStrings(pronunciations!!))
+        }
+    }
 }
