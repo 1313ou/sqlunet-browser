@@ -8,7 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import org.sqlunet.dom.DomFactory;
 import org.sqlunet.dom.DomTransformer;
-import org.sqlunet.wordnet.sql.NodeFactory;
+import org.sqlunet.sql.NodeFactory;
+import org.sqlunet.wordnet.sql.WnNodeFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 

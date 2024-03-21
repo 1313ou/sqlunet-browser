@@ -9,7 +9,7 @@ import android.util.Pair;
 
 import org.sqlunet.dom.DomFactory;
 import org.sqlunet.dom.DomTransformer;
-import org.sqlunet.wordnet.sql.NodeFactory;
+import org.sqlunet.wordnet.sql.WnNodeFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
@@ -320,7 +320,7 @@ public class FrameNetImplementation implements FrameNetInterface
 		}
 
 		// word
-		NodeFactory.makeWordNode(doc, parent, targetWord, wordId);
+		WnNodeFactory.makeWordNode(doc, parent, targetWord, wordId);
 
 		// lexunits
 		for (final FnLexUnit lexUnit : lexUnits)

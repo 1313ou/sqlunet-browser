@@ -4,7 +4,8 @@
 
 package org.sqlunet.verbnet.sql;
 
-import org.sqlunet.wordnet.sql.NodeFactory;
+import org.sqlunet.sql.NodeFactory;
+import org.sqlunet.wordnet.sql.WnNodeFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -20,7 +21,7 @@ import androidx.annotation.Nullable;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-class VnNodeFactory extends NodeFactory
+class VnNodeFactory
 {
 	/**
 	 * Make VerbNet root node
@@ -345,7 +346,7 @@ class VnNodeFactory extends NodeFactory
 	@NonNull
 	static public Node makeSynsetNodeFlagged(@NonNull final Document doc, final Node parent, final int size, final long id, final boolean flag)
 	{
-		final Element element = NodeFactory.makeSynsetNode(doc, parent, id, size);
+		final Element element = WnNodeFactory.makeSynsetNode(doc, parent, id, size);
 		if (flag)
 		{
 			NodeFactory.makeAttribute(element, "flagged", "true");

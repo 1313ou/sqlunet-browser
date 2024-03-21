@@ -16,7 +16,7 @@ import androidx.annotation.NonNull;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-class SnNodeFactory extends NodeFactory
+class SnNodeFactory
 {
 	/**
 	 * Make SyntagNet root node

@@ -20,7 +20,7 @@ import androidx.annotation.Nullable;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-class FnNodeFactory extends NodeFactory
+class FnNodeFactory
 {
 	/**
 	 * Make root node

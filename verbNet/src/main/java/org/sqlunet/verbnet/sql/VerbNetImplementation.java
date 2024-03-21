@@ -8,7 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import org.sqlunet.dom.DomFactory;
 import org.sqlunet.dom.DomTransformer;
-import org.sqlunet.wordnet.sql.NodeFactory;
+import org.sqlunet.sql.NodeFactory;
+import org.sqlunet.wordnet.sql.WnNodeFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
@@ -226,7 +227,7 @@ public class VerbNetImplementation implements VerbNetInterface
 		}
 
 		// word
-		NodeFactory.makeWordNode(doc, parent, entry.word.word, entry.word.id);
+		WnNodeFactory.makeWordNode(doc, parent, entry.word.word, entry.word.id);
 
 		// iterate synsets
 		final List<VnSynset> synsets = entry.synsets;
@@ -252,7 +253,7 @@ public class VerbNetImplementation implements VerbNetInterface
 			}
 
 			// sense node
-			final Node senseNode = NodeFactory.makeSenseNode(doc, parent, entry.word.id, synset.synsetId, i++);
+			final Node senseNode = WnNodeFactory.makeSenseNode(doc, parent, entry.word.id, synset.synsetId, i++);
 
 			// verbnet nodes
 			VerbNetImplementation.walk(connection, doc, senseNode, entry.word.id, synset.synsetId, true, true);
@@ -284,10 +285,10 @@ public class VerbNetImplementation implements VerbNetInterface
 				if (vnClass.synsetId != 0)
 				{
 					// sense node
-					final Node senseNode = NodeFactory.makeSenseNode(doc, classNode, vnClass.wordId, vnClass.synsetId, vnClass.senseNum);
+					final Node senseNode = WnNodeFactory.makeSenseNode(doc, classNode, vnClass.wordId, vnClass.synsetId, vnClass.senseNum);
 
 					// synset nodes
-					final Node synsetNode = NodeFactory.makeSynsetNode(doc, senseNode, vnClass.synsetId, 0);
+					final Node synsetNode = WnNodeFactory.makeSynsetNode(doc, senseNode, vnClass.synsetId, 0);
 
 					// gloss
 					NodeFactory.makeNode(doc, synsetNode, "definition", vnClass.definition);

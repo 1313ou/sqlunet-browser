@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import org.sqlunet.dom.DomFactory;
 import org.sqlunet.dom.DomTransformer;
+import org.sqlunet.sql.NodeFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -211,7 +212,7 @@ public class WordNetImplementation implements WordNetInterface
 		// word
 		final Word word = Word.make(connection, wordId);
 		assert word != null;
-		final Node wordNode = NodeFactory.makeWordNode(doc, rootNode, word.word, word.id);
+		final Node wordNode = WnNodeFactory.makeWordNode(doc, rootNode, word.word, word.id);
 
 		final SynsetsQueryFromWordId query = new SynsetsQueryFromWordId(connection, wordId);
 		query.execute();
@@ -221,7 +222,7 @@ public class WordNetImplementation implements WordNetInterface
 			final Synset synset = new Synset(query);
 
 			// sense node
-			final Element senseElement = NodeFactory.makeSenseNode(doc, wordNode, wordId, synset.synsetId, 0);
+			final Element senseElement = WnNodeFactory.makeSenseNode(doc, wordNode, wordId, synset.synsetId, 0);
 			NodeFactory.addAttributes(senseElement, //
 					"pos", synset.getPosName(), //
 					"domain", synset.getDomainName());
@@ -264,7 +265,7 @@ public class WordNetImplementation implements WordNetInterface
 		NodeFactory.addAttributes(rootNode, //
 				"wordid", Long.toString(wordId), //
 				"synsetid", Long.toString(synsetId));
-		final Node senseNode = NodeFactory.makeSenseNode(doc, rootNode, wordId, synsetId, 0);
+		final Node senseNode = WnNodeFactory.makeSenseNode(doc, rootNode, wordId, synsetId, 0);
 
 		final SynsetQuery query = new SynsetQuery(connection, synsetId);
 		query.execute();
@@ -376,7 +377,7 @@ public class WordNetImplementation implements WordNetInterface
 			final String posName = synset.getPosName();
 			if (!posName.equals(pos))
 			{
-				posNode = NodeFactory.makePosNode(doc, parent, posName);
+				posNode = WnNodeFactory.makePosNode(doc, parent, posName);
 				pos = posName;
 				domain = null;
 			}
@@ -385,15 +386,15 @@ public class WordNetImplementation implements WordNetInterface
 			final String domainName = synset.getDomainName();
 			if (!domainName.equals(domain))
 			{
-				domainNode = NodeFactory.makeDomainNode(doc, posNode, domainName);
+				domainNode = WnNodeFactory.makeDomainNode(doc, posNode, domainName);
 				domain = domainName;
 			}
 
 			// sense node
-			final Node senseNode = NodeFactory.makeSenseNode(doc, domainNode, word.id, synset.synsetId, i + 1);
+			final Node senseNode = WnNodeFactory.makeSenseNode(doc, domainNode, word.id, synset.synsetId, i + 1);
 
 			// word node
-			NodeFactory.makeWordNode(doc, senseNode, word.word, word.id);
+			WnNodeFactory.makeWordNode(doc, senseNode, word.word, word.id);
 
 			// synset node
 			WordNetImplementation.walkSynset(connection, doc, senseNode, synset);
@@ -421,7 +422,7 @@ public class WordNetImplementation implements WordNetInterface
 		{
 			return;
 		}
-		NodeFactory.makeWordNode(doc, parent, word.word, word.id);
+		WnNodeFactory.makeWordNode(doc, parent, word.word, word.id);
 
 		// iterate synsets
 		final List<Synset> synsets = targetPosId == Mapping.ANYTYPE && targetDomainId == Mapping.ANYTYPE ?
@@ -443,7 +444,7 @@ public class WordNetImplementation implements WordNetInterface
 			final String posName = synset.getPosName();
 			if (!posName.equals(pos))
 			{
-				posNode = NodeFactory.makePosNode(doc, parent, posName);
+				posNode = WnNodeFactory.makePosNode(doc, parent, posName);
 				pos = posName;
 				domain = null;
 			}
@@ -452,12 +453,12 @@ public class WordNetImplementation implements WordNetInterface
 			final String domainName = synset.getDomainName();
 			if (!domainName.equals(domain))
 			{
-				domainNode = NodeFactory.makeDomainNode(doc, posNode, domainName);
+				domainNode = WnNodeFactory.makeDomainNode(doc, posNode, domainName);
 				domain = domainName;
 			}
 
 			// sense node
-			final Node senseNode = NodeFactory.makeSenseNode(doc, domainNode, word.id, synset.synsetId, i + 1);
+			final Node senseNode = WnNodeFactory.makeSenseNode(doc, domainNode, word.id, synset.synsetId, i + 1);
 
 			// synset nodes
 			final Node synsetNode = WordNetImplementation.walkSynset(connection, doc, senseNode, synset);
@@ -506,7 +507,7 @@ public class WordNetImplementation implements WordNetInterface
 				final String synsetPosName = synset.getPosName();
 				if (!synsetPosName.equals(posName))
 				{
-					posNode = NodeFactory.makePosNode(doc, parent, synsetPosName);
+					posNode = WnNodeFactory.makePosNode(doc, parent, synsetPosName);
 					posName = synsetPosName;
 				}
 
@@ -514,12 +515,12 @@ public class WordNetImplementation implements WordNetInterface
 				final String synsetDomainName = synset.getDomainName();
 				if (!synsetDomainName.equals(domainName))
 				{
-					domainNode = NodeFactory.makeDomainNode(doc, posNode, synsetDomainName);
+					domainNode = WnNodeFactory.makeDomainNode(doc, posNode, synsetDomainName);
 					domainName = synsetDomainName;
 				}
 
 				// sense node
-				final Node senseNode = NodeFactory.makeSenseNode(doc, domainNode, wordId, 0, ++i);
+				final Node senseNode = WnNodeFactory.makeSenseNode(doc, domainNode, wordId, 0, ++i);
 
 				// synset
 				final Node synsetNode = WordNetImplementation.walkSynset(connection, doc, senseNode, synset);
@@ -538,14 +539,14 @@ public class WordNetImplementation implements WordNetInterface
 
 			// pos node
 			final String posName = synset.getPosName();
-			final Node posNode = NodeFactory.makePosNode(doc, parent, posName);
+			final Node posNode = WnNodeFactory.makePosNode(doc, parent, posName);
 
 			// domain node
 			final String domainName = synset.getDomainName();
-			final Node domainNode = NodeFactory.makeDomainNode(doc, posNode, domainName);
+			final Node domainNode = WnNodeFactory.makeDomainNode(doc, posNode, domainName);
 
 			// sense node
-			final Node senseNode = NodeFactory.makeSenseNode(doc, domainNode, wordId, synsetId, 1);
+			final Node senseNode = WnNodeFactory.makeSenseNode(doc, domainNode, wordId, synsetId, 1);
 
 			// synset
 			final Node synsetNode = WordNetImplementation.walkSynset(connection, doc, senseNode, synset);
@@ -567,7 +568,7 @@ public class WordNetImplementation implements WordNetInterface
 	static private Node walkSynsetHeader(@NonNull final Document doc, final Node parent, @NonNull final Synset synset)
 	{
 		// anchor node
-		final Node synsetNode = NodeFactory.makeSynsetNode(doc, parent, synset.synsetId, 0);
+		final Node synsetNode = WnNodeFactory.makeSynsetNode(doc, parent, synset.synsetId, 0);
 
 		// gloss
 		NodeFactory.makeNode(doc, synsetNode, "definition", synset.definition);
@@ -590,7 +591,7 @@ public class WordNetImplementation implements WordNetInterface
 		final List<Word> words = synset.getSynsetWords(connection);
 
 		// anchor node
-		final Node synsetNode = NodeFactory.makeSynsetNode(doc, parent, synset.synsetId, words != null ? words.size() : 0);
+		final Node synsetNode = WnNodeFactory.makeSynsetNode(doc, parent, synset.synsetId, words != null ? words.size() : 0);
 
 		// words
 		if (words != null)
@@ -598,7 +599,7 @@ public class WordNetImplementation implements WordNetInterface
 			for (final Word word : words)
 			{
 				final String word2 = word.word.replace('_', ' ');
-				NodeFactory.makeWordNode(doc, synsetNode, word2, word.id);
+				WnNodeFactory.makeWordNode(doc, synsetNode, word2, word.id);
 			}
 		}
 
@@ -649,7 +650,7 @@ public class WordNetImplementation implements WordNetInterface
 				final String relationName = related.getRelationName();
 				if (!relationName.equals(currentRelationName))
 				{
-					relationNode = NodeFactory.makeRelationNode(doc, relationsNode, relationName, 0);
+					relationNode = WnNodeFactory.makeRelationNode(doc, relationsNode, relationName, 0);
 					currentRelationName = relationName;
 				}
 
@@ -682,8 +683,8 @@ public class WordNetImplementation implements WordNetInterface
 		// word in lex relations
 		if (related.wordId != 0)
 		{
-			parent = NodeFactory.makeSenseNode(doc, parent0, related.wordId, related.synsetId, 0);
-			NodeFactory.makeWordNode(doc, parent, related.word, related.wordId);
+			parent = WnNodeFactory.makeSenseNode(doc, parent0, related.wordId, related.synsetId, 0);
+			WnNodeFactory.makeWordNode(doc, parent, related.word, related.wordId);
 		}
 
 		// synset
@@ -699,7 +700,7 @@ public class WordNetImplementation implements WordNetInterface
 			// hyponym/all relations and source synset domain is tops
 			if ((targetRelationId == Mapping.hyponymId || targetRelationId == Mapping.instanceHyponymId) && recurseLevel >= WordNetImplementation.MAX_RECURSE_LEVEL)
 			{
-				NodeFactory.makeMoreRelationNode(doc, relationsNode, related.getRelationName(), recurseLevel);
+				WnNodeFactory.makeMoreRelationNode(doc, relationsNode, related.getRelationName(), recurseLevel);
 			}
 			else
 			{
@@ -720,7 +721,7 @@ public class WordNetImplementation implements WordNetInterface
 					final String relationName = subRelation.getRelationName();
 					if (!relationName.equals(currentSubRelationName))
 					{
-						subRelatedNode = NodeFactory.makeRelationNode(doc, relationsNode, relationName, recurseLevel);
+						subRelatedNode = WnNodeFactory.makeRelationNode(doc, relationsNode, relationName, recurseLevel);
 						currentSubRelationName = relationName;
 					}
 					WordNetImplementation.walkRelation(connection, doc, subRelatedNode, subRelation, wordId, recurseLevel + 1, targetRelationId);
