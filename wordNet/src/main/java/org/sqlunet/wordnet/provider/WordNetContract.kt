@@ -477,16 +477,22 @@ object WordNetContract {
     object Lookup_Words { // : Words
         const val TABLE = Q.LOOKUP_FTS_WORDS.TABLE
         const val URI = TABLE
+        const val WORDID = Words.WORDID
+        const val WORD = Words.WORD
     }
 
     object Lookup_Definitions { // : Synsets
         const val TABLE = Q.LOOKUP_FTS_DEFINITIONS.TABLE
         const val URI = TABLE
+        const val SYNSETID = Synsets.SYNSETID
+        const val DEFINITION = Synsets.DEFINITION
     }
 
     object Lookup_Samples { // : Samples
         const val TABLE = Q.LOOKUP_FTS_SAMPLES.TABLE
         const val URI = TABLE
+        const val SYNSETID = Samples.SYNSETID
+        const val SAMPLE = Samples.SAMPLE
     }
 
     // S U G G E S T

@@ -13,17 +13,7 @@ import org.sqlunet.sql.DBQuery
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-internal class RelatedsQueryFromSynsetIdAndRelationId(connection: SQLiteDatabase) : DBQuery(connection, QUERY) {
-
-    /**
-     * Set source type parameter in prepared statement
-     *
-     * @param type target synset type
-     */
-    fun setRelation(type: Int) {
-        statement.setInt(1, type)
-        statement.setInt(3, type)
-    }
+class RelatedsQueryFromSynsetIdAndRelationId(connection: SQLiteDatabase) : DBQuery(connection, QUERY) {
 
     /**
      * Relation type id
@@ -96,6 +86,15 @@ internal class RelatedsQueryFromSynsetIdAndRelationId(connection: SQLiteDatabase
         set(wordId) {
             statement.setLong(4, wordId)
             statement.setLong(5, wordId)
+        }
+
+    /**
+     * Set source type parameter in prepared statement
+     */
+    var fromRelationId: Int = 0
+        set(type) {
+            statement.setInt(1, type)
+            statement.setInt(3, type)
         }
 
     companion object {

@@ -14,7 +14,7 @@ import org.sqlunet.sql.DBQuery
  *
  * @author Bernard
  */
-internal class SynsetQuery(connection: SQLiteDatabase, synsetId: Long) : DBQuery(connection, QUERY) {
+class SynsetQuery(connection: SQLiteDatabase, synsetId: Long) : DBQuery(connection, QUERY) {
 
     init {
         setParams(synsetId)

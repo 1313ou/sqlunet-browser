@@ -318,7 +318,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * @param word   word
      * @param parent tree parent node
      */
-    protected fun senses(word: String?, parent: TreeNode) {
+    protected fun senses(word: String, parent: TreeNode) {
         // load the contents
         val sql = Queries.prepareSenses(word)
         val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
@@ -411,7 +411,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * @param senseKey sense key
      * @param parent   parent node
      */
-    fun sense(senseKey: String?, parent: TreeNode) {
+    fun sense(senseKey: String, parent: TreeNode) {
         // load the contents
         val sql = Queries.prepareSense(senseKey)
         val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
@@ -1379,22 +1379,18 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         }
     }
     // Q U E R I E S
+
     /**
      * Relations query
-     */
-    internal inner class RelationsQuery
-    /**
-     * Constructor
      *
      * @param synsetId synset id
      * @param wordId   word id
-     */(
+     */
+    internal inner class RelationsQuery(
         synsetId: Long,
-        /**
-         * Word id
-         */
         val wordId: Long,
     ) : Query(synsetId) {
+
         override fun process(node: TreeNode) {
             relations(id, wordId, node, true)
 
@@ -1412,14 +1408,11 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
     /**
      * Semantic Relation query
-     */
-    internal inner class SemRelationsQuery
-    /**
-     * Constructor
      *
      * @param synsetId synset id
      */
-        (synsetId: Long) : Query(synsetId) {
+    internal inner class SemRelationsQuery(synsetId: Long) : Query(synsetId) {
+
         override fun process(node: TreeNode) {
             semRelations(id, node, true)
         }
@@ -1431,20 +1424,15 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
     /**
      * Lexical Relation query
-     */
-    internal inner class LexRelationsQuery
-    /**
-     * Constructor
      *
      * @param synsetId synset id
      * @param wordId   word id
-     */(
+     */
+    internal inner class LexRelationsQuery(
         synsetId: Long,
-        /**
-         * Word id
-         */
         val wordId: Long,
     ) : Query(synsetId) {
+
         override fun process(node: TreeNode) {
             lexRelations(id, wordId, node, true)
         }

@@ -14,7 +14,7 @@ import org.sqlunet.sql.DBQuery
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-internal class SynsetsQueryFromWordIdAndCondition(connection: SQLiteDatabase, domainBased: Boolean) : DBQuery(connection, (if (domainBased) QUERYWITHDOMAIN else QUERYWITHPOS)) {
+class SynsetsQueryFromWordIdAndCondition(connection: SQLiteDatabase, domainBased: Boolean) : DBQuery(connection, (if (domainBased) QUERYWITHDOMAIN else QUERYWITHPOS)) {
 
     /**
      * Set word parameter in prepared SQL statement

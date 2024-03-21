@@ -93,9 +93,9 @@ internal object Mapping {
             DomainsQuery(connection).use { query ->
                 query.execute()
                 while (query.next()) {
-                    val id = query.getId()
-                    val pos = query.getPos()
-                    val name = query.getPosDomainName().replace(' ', '.')
+                    val id = query.id
+                    val pos = query.pos
+                    val name = query.posDomainName.replace(' ', '.')
                     val domain = Domain(id, pos, name)
                     domains.add(domain)
                     domainsByName[name] = domain
@@ -119,9 +119,9 @@ internal object Mapping {
             RelationsQuery(connection).use { query ->
                 query.execute()
                 while (query.next()) {
-                    val id = query.getId()
-                    val name = query.getName().replace(' ', '_').lowercase()
-                    val recurses = query.getRecurse()
+                    val id = query.id
+                    val name = query.name.replace(' ', '_').lowercase()
+                    val recurses = query.recurse
                     val relation = Relation(id, name, recurses)
                     relationsById.put(id, relation)
                     relationsByName[name] = relation

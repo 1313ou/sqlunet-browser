@@ -14,7 +14,7 @@ import org.sqlunet.wordnet.sql.Mapping.getRelationName
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-internal class Related : Synset {
+class Related : Synset {
 
     /**
      * `relationId` relation type id
@@ -49,16 +49,13 @@ internal class Related : Synset {
      * @param query query for synsets related to a given synset
      */
     constructor(query: RelatedsQueryFromSynsetId) : super(query) {
-        // construct synset
-
-        // relation data
-        val words = query.getWords()
-        val wordIds = query.getWordIds()
-        relationId = query.getRelationId()
+        val words = query.words
+        val wordIds = query.wordIds
+        relationId = query.relationId
         word = if (words == null) null else if (words.size == 1) words[0] else null
         wordId = if (wordIds == null) 0 else if (wordIds.size == 1) wordIds[0] else 0
-        fromSynsetId = query.getFromSynset()
-        fromWordId = query.getFromWord()
+        fromSynsetId = query.fromSynset
+        fromWordId = query.fromWord
     }
 
     /**
@@ -67,30 +64,23 @@ internal class Related : Synset {
      * @param query is a query for synsets related to a given synset through a given relation type id
      */
     constructor(query: RelatedsQueryFromSynsetIdAndRelationId) : super(query) {
-        // construct synset
-
-        // relation data
-        val words = query.getWords()
-        val wordIds = query.getWordIds()
-        relationId = query.getRelationId()
+        val words = query.words
+        val wordIds = query.wordIds
+        relationId = query.relationId
         word = if (words == null) null else if (words.size == 1) words[0] else null
         wordId = if (wordIds == null) 0 else if (wordIds.size == 1) wordIds[0] else 0
-        fromSynsetId = query.getFromSynset()
-        fromWordId = query.getFromWord()
+        fromSynsetId = query.fromSynset
+        fromWordId = query.fromWord
     }
 
+    /**
+     * Relation name
+     */
     val relationName: String
-        /**
-         * Get relation name
-         *
-         * @return relation name
-         */
         get() = getRelationName(relationId)
 
     /**
-     * Get whether relation can recurse
-     *
-     * @return true if the relation can recurse
+     * Whether relation can recurse
      */
     fun canRecurse(): Boolean {
         return canRecurse(relationId)
@@ -102,9 +92,9 @@ internal class Related : Synset {
     override fun getRelateds(connection: SQLiteDatabase, wordId: Long): List<Related>? {
         try {
             RelatedsQueryFromSynsetIdAndRelationId(connection).use { query ->
-                query.setFromSynset(synsetId)
-                query.setFromWord(wordId)
-                query.setRelation(relationId)
+                query.fromSynset = synsetId
+                query.fromWord = wordId
+                query.fromRelationId = relationId
                 query.execute()
                 val relateds: MutableList<Related> = ArrayList()
                 while (query.next()) {

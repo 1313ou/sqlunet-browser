@@ -34,18 +34,9 @@ class RelationModule(fragment: TreeFragment) : BaseModule(fragment) {
     var pos: Character? = null
 
     /**
-     * Expand flag
+     * Expand container flag
      */
     var expand = true
-
-    /**
-     * Set expandContainer
-     *
-     * @param expand expandContainer flag
-     */
-    fun setExpand(expand: Boolean) {
-        this.expand = expand
-    }
 
     override fun unmarshal(pointer: Parcelable) {
         synsetId = null

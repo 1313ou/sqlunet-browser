@@ -28,42 +28,42 @@ open class Synset : BasicSynset {
      * @param domainId   domain id
      * @param sample     sample
      */
-    protected constructor(synsetId: Long, definition: String?, domainId: Int, sample: String?) : super(synsetId, definition!!, domainId, sample!!)
+    constructor(synsetId: Long, definition: String?, domainId: Int, sample: String?) : super(synsetId, definition!!, domainId, sample!!)
 
     /**
      * Constructor from query for synsets
      *
      * @param query query for synsets
      */
-    constructor(query: SynsetsQueryFromWordId) : super(query.getSynsetId(), query.getDefinition(), query.getDomainId(), query.getSample())
+    constructor(query: SynsetsQueryFromWordId) : super(query.synsetId, query.definition, query.domainId, query.sample)
 
     /**
      * Constructor from query for synset
      *
      * @param query query for synset
      */
-    constructor(query: SynsetQuery) : super(query.getSynsetId(), query.getDefinition(), query.getDomainId(), query.getSample())
+    constructor(query: SynsetQuery) : super(query.synsetId, query.definition, query.domainId, query.sample)
 
     /**
      * Constructor from query for synsets of a given type
      *
      * @param query query for synsets of a given type
      */
-    constructor(query: SynsetsQueryFromWordIdAndCondition) : super(query.getSynsetId(), query.getDefinition(), query.getDomainId(), query.getSample())
+    constructor(query: SynsetsQueryFromWordIdAndCondition) : super(query.synsetId, query.definition, query.domainId, query.sample)
 
     /**
      * Constructor from query for related synsets
      *
      * @param query query for related synsets
      */
-    constructor(query: RelatedsQueryFromSynsetId) : super(query.getSynsetId(), query.getDefinition(), query.getDomainId(), query.getSamples())
+    internal constructor(query: RelatedsQueryFromSynsetId) : super(query.synsetId, query.definition, query.domainId, query.samples)
 
     /**
      * Constructor from query for synsets related through a given relation type id
      *
      * @param query query for synsets related through a given relation type id
      */
-    constructor(query: RelatedsQueryFromSynsetIdAndRelationId) : super(query.getSynsetId(), query.getDefinition(), query.getDomainId(), query.getSamples())
+    internal constructor(query: RelatedsQueryFromSynsetIdAndRelationId) : super(query.synsetId, query.definition, query.domainId, query.samples)
 
     /**
      * Get words in the synset as a list
@@ -77,8 +77,8 @@ open class Synset : BasicSynset {
                 query.execute()
                 val words: MutableList<Word> = ArrayList()
                 while (query.next()) {
-                    val word = query.getWord()
-                    val id = query.getId()
+                    val word = query.word
+                    val id = query.id
                     words.add(Word(word, id))
                 }
                 return words
@@ -125,8 +125,8 @@ open class Synset : BasicSynset {
     open fun getRelateds(connection: SQLiteDatabase, wordId: Long): List<Related>? {
         try {
             RelatedsQueryFromSynsetId(connection).use { query ->
-                query.setFromSynset(synsetId)
-                query.setFromWord(wordId)
+                query.fromSynset = synsetId
+                query.fromWord = wordId
                 query.execute()
                 val relateds: MutableList<Related> = ArrayList()
                 while (query.next()) {
@@ -152,9 +152,9 @@ open class Synset : BasicSynset {
     fun getTypedRelateds(connection: SQLiteDatabase, wordId: Long, relationId: Int): List<Related>? {
         try {
             RelatedsQueryFromSynsetIdAndRelationId(connection).use { query ->
-                query.setFromSynset(synsetId)
-                query.setFromWord(wordId)
-                query.setRelation(relationId)
+                query.fromSynset = synsetId
+                query.fromWord = wordId
+                query.fromRelationId = relationId
                 query.execute()
                 val relateds: MutableList<Related> = ArrayList()
                 while (query.next()) {

@@ -9,15 +9,13 @@ import org.sqlunet.sql.DBQuery
 /**
  * Query for synsets containing a given word
  *
+ * @param connection connection
+ * @param wordId     target word id
+ *
  * @author Bernard
  */
-internal class SynsetsQueryFromWordId(connection: SQLiteDatabase?, wordId: Long) : DBQuery(connection!!, QUERY) {
-    /**
-     * Constructor
-     *
-     * @param connection connection
-     * @param wordId     target word id
-     */
+class SynsetsQueryFromWordId(connection: SQLiteDatabase?, wordId: Long) : DBQuery(connection!!, QUERY) {
+
     init {
         setParams(wordId)
     }

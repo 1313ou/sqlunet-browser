@@ -13,7 +13,7 @@ import org.sqlunet.sql.DBQuery
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-internal class RelatedsQueryFromSynsetId(connection: SQLiteDatabase?) : DBQuery(connection!!, QUERY) {
+class RelatedsQueryFromSynsetId(connection: SQLiteDatabase?) : DBQuery(connection!!, QUERY) {
 
     /**
      * Relation type id

@@ -32,8 +32,7 @@ class SenseKeyModule(fragment: TreeFragment) : BaseModule(fragment) {
 
     override fun process(node: TreeNode) {
         if (senseKey != null && senseKey!!.isNotEmpty()) {
-            // synset
-            sense(senseKey, node)
+            sense(senseKey!!, node)
         } else {
             setNoResult(node)
         }

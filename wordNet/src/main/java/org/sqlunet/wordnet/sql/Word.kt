@@ -27,14 +27,14 @@ class Word : BasicWord {
      *
      * @param query database query
      */
-    private constructor(query: WordQuery) : super(query.getWord(), query.getId().toLong())
+    private constructor(query: WordQuery) : super(query.word, query.id.toLong())
 
     /**
      * Constructor
      *
      * @param query database query
      */
-    private constructor(query: WordQueryFromWord) : super(query.getWord(), query.getId().toLong())
+    private constructor(query: WordQueryFromWord) : super(query.word, query.id.toLong())
 
     /**
      * Get synsets containing a given word
@@ -101,7 +101,7 @@ class Word : BasicWord {
          * @return Word or null
          */
         @JvmStatic
-        fun make(connection: SQLiteDatabase, str: String?): Word? {
+        fun make(connection: SQLiteDatabase, str: String): Word? {
             try {
                 WordQueryFromWord(connection, str).use { query ->
                     query.execute()
