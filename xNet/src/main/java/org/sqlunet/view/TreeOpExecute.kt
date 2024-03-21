@@ -16,8 +16,10 @@ import org.sqlunet.view.TreeOp.TreeOpCode
  */
 class TreeOpExecute(private val fragment: TreeFragment) {
 
-    fun exec(ops: Array<TreeOp>) {
-        execImpl(ops)
+    fun exec(ops: Array<TreeOp>?) {
+        if (ops != null) {
+            execImpl(ops)
+        }
     }
 
     private fun noopImpl(ops: Array<TreeOp>) {}
@@ -89,7 +91,6 @@ class TreeOpExecute(private val fragment: TreeFragment) {
             }
 
             TreeOpCode.NOOP -> {}
-            else -> {}
         }
     }
 
