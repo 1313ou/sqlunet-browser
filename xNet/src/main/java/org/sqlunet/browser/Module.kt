@@ -15,8 +15,7 @@ abstract class Module protected constructor(@JvmField protected val fragment: Tr
 
     class ContentProviderSql {
 
-        @JvmField
-        var providerUri: String? = null
+        lateinit var providerUri: String
 
         @JvmField
         var projection: Array<String>? = null
@@ -32,7 +31,7 @@ abstract class Module protected constructor(@JvmField protected val fragment: Tr
 
         constructor()
 
-        constructor(providerUri: String?, projection: Array<String>, selection: String?, selectionArgs: Array<String>, sortBy: String?) {
+        constructor(providerUri: String, projection: Array<String>, selection: String?, selectionArgs: Array<String>, sortBy: String?) {
             this.providerUri = providerUri
             this.projection = projection
             this.selection = selection

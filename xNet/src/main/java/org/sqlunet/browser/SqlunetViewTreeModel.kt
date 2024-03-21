@@ -8,7 +8,6 @@ import android.app.Application
 import android.database.Cursor
 import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.bbou.concurrency.Task
 import org.sqlunet.browser.Module.ContentProviderSql
