@@ -52,7 +52,7 @@ public class FrameModule extends BaseModule
 		if (pointer instanceof FnFramePointer)
 		{
 			final FnFramePointer framePointer = (FnFramePointer) pointer;
-			this.frameId = framePointer.getId();
+			this.frameId = framePointer.id;
 		}
 		if (pointer instanceof HasXId)
 		{

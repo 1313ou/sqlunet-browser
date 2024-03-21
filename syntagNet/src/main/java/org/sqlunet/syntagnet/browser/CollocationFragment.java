@@ -50,14 +50,13 @@ public class CollocationFragment extends TreeFragment
 		if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER))
 		{
 			// pointer
-			final Parcelable pointer = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? args.getParcelable(ProviderArgs.ARG_QUERYPOINTER, Parcelable.class) : args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
+			final Parcelable pointer = getPointer(args);
 
 			// root node
 			final TreeNode queryNode = this.treeRoot.getChildren().iterator().next();
 
 			// module
 			final Module module = (pointer instanceof SnCollocationPointer) ? new CollocationModule(this) : new CollocationsModule(this);
-			//final Module module = type == ProviderArgs.ARG_QUERYTYPE_COLLOCATION ? new CollocationModule(this) : new CollocationsModule(this);
 			module.init(type, pointer);
 			module.process(queryNode);
 		}

@@ -43,7 +43,7 @@ public class AnnoSetFromPatternModule extends BaseModule
 		if (pointer instanceof FnPatternPointer)
 		{
 			final FnPatternPointer patternPointer = (FnPatternPointer) pointer;
-			this.patternId = patternPointer.getId();
+			this.patternId = patternPointer.id;
 		}
 	}
 

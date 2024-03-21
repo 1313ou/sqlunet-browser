@@ -79,7 +79,7 @@ public class SentenceModule extends BaseModule
 		if (pointer instanceof FnSentencePointer)
 		{
 			final FnSentencePointer sentencePointer = (FnSentencePointer) pointer;
-			this.sentenceId = sentencePointer.getId();
+			this.sentenceId = sentencePointer.id;
 		}
 	}
 

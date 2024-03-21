@@ -51,7 +51,7 @@ public class CollocationModule extends BaseModule
 		if (pointer instanceof SnCollocationPointer)
 		{
 			final SnCollocationPointer collocationPointer = (SnCollocationPointer) pointer;
-			this.collocationId = collocationPointer.getId();
+			this.collocationId = collocationPointer.id;
 		}
 	}
 

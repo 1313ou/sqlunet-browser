@@ -43,7 +43,7 @@ public class AnnoSetModule extends BaseModule
 		if (pointer instanceof FnAnnoSetPointer)
 		{
 			final FnAnnoSetPointer annoSetPointer = (FnAnnoSetPointer) pointer;
-			this.annoSetId = annoSetPointer.getId();
+			this.annoSetId = annoSetPointer.id;
 		}
 	}
 

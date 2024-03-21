@@ -50,7 +50,7 @@ public class PredicateRoleFromWordModule extends BaseModule
 		if (pointer instanceof Word)
 		{
 			Word word = (Word) pointer;
-			this.word = word.getWord();
+			this.word = word.word;
 		}
 	}
 

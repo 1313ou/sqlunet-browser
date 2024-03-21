@@ -48,7 +48,7 @@ public class PredicateRoleModule extends BaseModule
 		if (pointer instanceof PmRolePointer)
 		{
 			final PmRolePointer rolePointer = (PmRolePointer) pointer;
-			this.pmRoleId = rolePointer.getId();
+			this.pmRoleId = rolePointer.id;
 		}
 	}
 

@@ -43,7 +43,7 @@ public class AnnoSetFromValenceUnitModule extends BaseModule
 		if (pointer instanceof FnValenceUnitPointer)
 		{
 			final FnValenceUnitPointer valenceUnitPointer = (FnValenceUnitPointer) pointer;
-			this.vuId = valenceUnitPointer.getId();
+			this.vuId = valenceUnitPointer.id;
 		}
 	}
 
