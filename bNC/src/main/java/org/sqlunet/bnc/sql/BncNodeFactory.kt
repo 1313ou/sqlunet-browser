@@ -12,7 +12,7 @@ import org.w3c.dom.Node
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-internal object BncNodeFactory : NodeFactory() {
+internal object BncNodeFactory {
     /**
      * Make BNC root node
      *
@@ -23,11 +23,11 @@ internal object BncNodeFactory : NodeFactory() {
      */
     @JvmStatic
     fun makeBncRootNode(doc: Document, wordId: Long, pos: Char?): Node {
-        val rootNode = makeNode(doc, doc, "bnc", null, BncImplementation.BNC_NS)
+        val rootNode = NodeFactory.makeNode(doc, doc, "bnc", null, BncImplementation.BNC_NS)
         if (pos == null) {
-            addAttributes(rootNode, "wordid", wordId.toString())
+            NodeFactory.addAttributes(rootNode, "wordid", wordId.toString())
         } else {
-            addAttributes(rootNode, "wordid", wordId.toString(), "pos", Character.toString(pos))
+            NodeFactory.addAttributes(rootNode, "wordid", wordId.toString(), "pos", Character.toString(pos))
         }
         return rootNode
     }
@@ -42,9 +42,9 @@ internal object BncNodeFactory : NodeFactory() {
      */
     @JvmStatic
     fun makeBncNode(doc: Document, parent: Node?, data: BncData, i: Int): Node {
-        val element = makeNode(doc, parent, "bncdata", null)
-        makeAttribute(element, "ith", i.toString())
-        makeAttribute(element, "pos", if (data.posName != null) data.posName else data.pos)
+        val element = NodeFactory.makeNode(doc, parent, "bncdata", null)
+        NodeFactory.makeAttribute(element, "ith", i.toString())
+        NodeFactory.makeAttribute(element, "pos", if (data.posName != null) data.posName else data.pos)
         makeDataNode(doc, element, "freq", data.freq)
         makeDataNode(doc, element, "range", data.range)
         makeDataNode(doc, element, "disp", data.disp)
@@ -73,6 +73,6 @@ internal object BncNodeFactory : NodeFactory() {
         if (`object` == null) {
             return
         }
-        makeNode(doc, parent, name, `object`.toString())
+        NodeFactory.makeNode(doc, parent, name, `object`.toString())
     }
 }

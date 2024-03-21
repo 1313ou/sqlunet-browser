@@ -35,7 +35,7 @@ class BNCFragment : TreeFragment() {
         if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER)) {
 
             // pointer
-            val pointer = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) args.getParcelable(ProviderArgs.ARG_QUERYPOINTER, Parcelable::class.java) else args.getParcelable(ProviderArgs.ARG_QUERYPOINTER)
+            val pointer = getPointer(args)
 
             // root node
             val queryNode = treeRoot.children.iterator().next()

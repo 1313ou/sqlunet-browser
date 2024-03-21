@@ -31,7 +31,7 @@ class BaseModule(fragment: TreeFragment) : Module(fragment) {
     // Query
 
     private var wordId: Long? = null
-    private var pos: Char? = null
+    private var pos: Character? = null
 
     // Resources
 
@@ -80,7 +80,7 @@ class BaseModule(fragment: TreeFragment) : Module(fragment) {
      */
     private fun makeModels() {
         bncFromWordIdModel = ViewModelProvider(fragment)["bnc.bnc(wordid)", SqlunetViewTreeModel::class.java]
-        bncFromWordIdModel!!.data.observe(fragment) { data: Array<TreeOp?>? -> TreeOpExecute(fragment).exec(data!!) }
+        bncFromWordIdModel!!.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data!!) }
     }
 
     override fun unmarshal(pointer: Parcelable) {
@@ -114,14 +114,14 @@ class BaseModule(fragment: TreeFragment) : Module(fragment) {
      * @param pos    pos
      * @param parent parent node
      */
-    private fun bnc(wordId: Long, pos: Char?, parent: TreeNode) {
+    private fun bnc(wordId: Long, pos: Character?, parent: TreeNode) {
         val sql = prepareBnc(wordId, pos)
-        val uri = Uri.parse(makeUri(sql.providerUri))
+        val uri = Uri.parse(makeUri(sql.providerUri!!))
         bncFromWordIdModel!!.loadData(uri, sql) { cursor: Cursor -> bncCursorToTreeModel(cursor, parent) }
     }
 
-    private fun bncCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp?> {
-        val changed: Array<TreeOp?>
+    private fun bncCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
+        val changed: Array<TreeOp>
         val sb = SpannableStringBuilder()
         // if (cursor.getCount() > 1)
         // throw RuntimeException("Unexpected number of rows");

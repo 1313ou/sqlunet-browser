@@ -54,7 +54,7 @@ class BNCProvider : BaseProvider() {
             logSql(sql, *result.selectionArgs ?: arrayOf())
             if (logSql) {
                 Log.d(TAG + "SQL", SqlFormatter.format(sql).toString())
-                Log.d(TAG + "ARG", argsToString(*result.selectionArgs ?: arrayOf() ?: selectionArgs0))
+                Log.d(TAG + "ARG", argsToString(*result.selectionArgs ?: arrayOf()))
             }
 
             // do query

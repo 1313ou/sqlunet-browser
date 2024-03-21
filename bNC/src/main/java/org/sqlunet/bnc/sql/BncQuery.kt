@@ -13,7 +13,7 @@ import org.sqlunet.sql.DBQuery
  * @param params     parameters
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-internal class BncQuery(connection: SQLiteDatabase?, vararg params: Any) : DBQuery(connection, if (params.size > 1) QUERYWITHPOS else QUERY) {
+internal class BncQuery(connection: SQLiteDatabase, vararg params: Any) : DBQuery(connection, if (params.size > 1) QUERYWITHPOS else QUERY) {
 
     init {
         setParams(*params)
