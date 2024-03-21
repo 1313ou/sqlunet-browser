@@ -207,7 +207,7 @@ public class WebFragment extends Fragment
 							Log.d(TAG, "ArgPosition: vnclass=" + vnclassPointer);
 							if (vnclassPointer != null && Settings.Source.VERBNET.test(sources))
 							{
-								vnDomDoc = new VerbNetImplementation().queryClassDoc(db, vnclassPointer.getId(), null);
+								vnDomDoc = new VerbNetImplementation().queryClassDoc(db, vnclassPointer.id, null);
 							}
 							break;
 
@@ -216,7 +216,7 @@ public class WebFragment extends Fragment
 							Log.d(TAG, "ArgPosition: pbroleset=" + pbroleSetPointer);
 							if (pbroleSetPointer != null && Settings.Source.PROPBANK.test(sources))
 							{
-								pbDomDoc = new PropBankImplementation().queryRoleSetDoc(db, pbroleSetPointer.getId(), null);
+								pbDomDoc = new PropBankImplementation().queryRoleSetDoc(db, pbroleSetPointer.id, null);
 							}
 							break;
 					}

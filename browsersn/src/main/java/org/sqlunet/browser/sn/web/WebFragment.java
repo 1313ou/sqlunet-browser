@@ -153,7 +153,7 @@ public class WebFragment extends Fragment
 								else if (pointer instanceof SnCollocationPointer)
 								{
 									final SnCollocationPointer collocationPointer = (SnCollocationPointer) pointer;
-									final long collocationId = collocationPointer.getId();
+									final long collocationId = collocationPointer.id;
 									snDomDoc = new SyntagNetImplementation().queryCollocationDoc(db, collocationId);
 								}
 								else if (pointer instanceof CollocationSelectorPointer)
@@ -220,7 +220,7 @@ public class WebFragment extends Fragment
 							Log.d(TAG, "ArgPosition: collocation=" + collocationPointer);
 							if (collocationPointer != null && Settings.Source.SYNTAGNET.test(sources))
 							{
-								snDomDoc = new SyntagNetImplementation().queryCollocationDoc(db, collocationPointer.getId());
+								snDomDoc = new SyntagNetImplementation().queryCollocationDoc(db, collocationPointer.id);
 							}
 							break;
 					}

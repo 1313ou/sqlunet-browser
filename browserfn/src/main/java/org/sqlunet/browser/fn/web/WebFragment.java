@@ -124,7 +124,7 @@ public class WebFragment extends Fragment
 								if (this.pointer instanceof Pointer)
 								{
 									final Pointer xPointer = (Pointer) this.pointer;
-									final long id = xPointer.getId();
+									final long id = xPointer.id;
 									final boolean isFrame = xPointer instanceof FnFramePointer;
 									fnDomDoc = isFrame ? new FrameNetImplementation(true).queryFrameDoc(db, id, null) : new FrameNetImplementation(true).queryLexUnitDoc(db, id);
 								}
@@ -136,7 +136,7 @@ public class WebFragment extends Fragment
 							Log.d(TAG, "ArgPosition: fnlexunit=" + lexunitPointer);
 							if (lexunitPointer != null && Settings.Source.FRAMENET.test(this.sources))
 							{
-								fnDomDoc = new FrameNetImplementation(true).queryLexUnitDoc(db, lexunitPointer.getId());
+								fnDomDoc = new FrameNetImplementation(true).queryLexUnitDoc(db, lexunitPointer.id);
 							}
 							break;
 
@@ -145,7 +145,7 @@ public class WebFragment extends Fragment
 							Log.d(TAG, "ArgPosition: fnframe=" + framePointer);
 							if (framePointer != null && Settings.Source.FRAMENET.test(this.sources))
 							{
-								fnDomDoc = new FrameNetImplementation(true).queryFrameDoc(db, framePointer.getId(), null);
+								fnDomDoc = new FrameNetImplementation(true).queryFrameDoc(db, framePointer.id, null);
 							}
 							break;
 
@@ -154,7 +154,7 @@ public class WebFragment extends Fragment
 							Log.d(TAG, "ArgPosition: fnsentence=" + sentencePointer);
 							if (sentencePointer != null && Settings.Source.FRAMENET.test(this.sources))
 							{
-								fnDomDoc = new FrameNetImplementation(true).querySentenceDoc(db, sentencePointer.getId());
+								fnDomDoc = new FrameNetImplementation(true).querySentenceDoc(db, sentencePointer.id);
 							}
 							break;
 
@@ -163,7 +163,7 @@ public class WebFragment extends Fragment
 							Log.d(TAG, "ArgPosition: fnannoset=" + annoSetPointer);
 							if (annoSetPointer != null && Settings.Source.FRAMENET.test(this.sources))
 							{
-								fnDomDoc = new FrameNetImplementation(true).queryAnnoSetDoc(db, annoSetPointer.getId());
+								fnDomDoc = new FrameNetImplementation(true).queryAnnoSetDoc(db, annoSetPointer.id);
 							}
 							break;
 					}
