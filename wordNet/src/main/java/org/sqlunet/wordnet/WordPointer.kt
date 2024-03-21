@@ -1,71 +1,51 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.wordnet
 
-package org.sqlunet.wordnet;
-
-import android.os.Parcel;
-
-import org.sqlunet.HasWordId;
-import org.sqlunet.Pointer;
-
-import androidx.annotation.NonNull;
+import android.os.Parcel
+import android.os.Parcelable
+import org.sqlunet.HasWordId
+import org.sqlunet.Pointer
 
 /**
  * Parcelable word
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class WordPointer extends Pointer implements HasWordId
-{
-	/**
-	 * Static field used to regenerate object, individually or as arrays
-	 */
-	static public final Creator<WordPointer> CREATOR = new Creator<WordPointer>()
-	{
-		@NonNull
-		@Override
-		public WordPointer createFromParcel(@NonNull final Parcel parcel)
-		{
-			return new WordPointer(parcel);
-		}
+class WordPointer : Pointer, HasWordId {
 
-		@NonNull
-		@Override
-		public WordPointer[] newArray(final int size)
-		{
-			return new WordPointer[size];
-		}
-	};
+    /**
+     * Constructor from parcel, reads back fields IN THE ORDER they were written
+     */
+    private constructor(parcel: Parcel) : super(parcel)
 
-	/**
-	 * Constructor from parcel, reads back fields IN THE ORDER they were written
-	 */
-	private WordPointer(@NonNull final Parcel parcel)
-	{
-		super(parcel);
-	}
+    /**
+     * Constructor
+     *
+     * @param wordId word id
+     */
+    constructor(wordId: Long) : super(wordId)
 
-	/**
-	 * Constructor
-	 *
-	 * @param wordId word id
-	 */
-	public WordPointer(final long wordId)
-	{
-		super(wordId);
-	}
+    override fun getWordId(): Long {
+        return id
+    }
 
-	@Override
-	public long getWordId()
-	{
-		return this.id;
-	}
+    override fun toString(): String {
+        return "wordid=$id"
+    }
 
-	@NonNull
-	@Override
-	public String toString()
-	{
-		return "wordid=" + this.id;
-	}
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<WordPointer> {
+        override fun createFromParcel(parcel: Parcel): WordPointer {
+            return WordPointer(parcel)
+        }
+
+        override fun newArray(size: Int): Array<WordPointer?> {
+            return arrayOfNulls(size)
+        }
+    }
 }

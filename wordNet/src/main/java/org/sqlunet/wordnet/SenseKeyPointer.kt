@@ -1,90 +1,60 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.wordnet
 
-package org.sqlunet.wordnet;
-
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import org.sqlunet.HasSenseKey;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.os.Parcel
+import android.os.Parcelable
+import org.sqlunet.HasSenseKey
 
 /**
  * Parcelable sensekey
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class SenseKeyPointer implements Parcelable, HasSenseKey
-{
-	@Nullable
-	private final String senseKey;
+class SenseKeyPointer : Parcelable, HasSenseKey {
+    private val senseKey: String?
 
-	/**
-	 * Static field used to regenerate object, individually or as arrays
-	 */
-	static public final Creator<SenseKeyPointer> CREATOR = new Creator<SenseKeyPointer>()
-	{
-		@NonNull
-		@Override
-		public SenseKeyPointer createFromParcel(@NonNull final Parcel parcel)
-		{
-			return new SenseKeyPointer(parcel);
-		}
+    /**
+     * Constructor from parcel, reads back fields IN THE ORDER they were written
+     */
+    private constructor(parcel: Parcel) {
+        senseKey = parcel.readString()
+    }
 
-		@NonNull
-		@Override
-		public SenseKeyPointer[] newArray(final int size)
-		{
-			return new SenseKeyPointer[size];
-		}
-	};
+    /**
+     * Constructor
+     *
+     * @param senseKey sense key
+     */
+    constructor(senseKey: String?) {
+        this.senseKey = senseKey
+    }
 
-	/**
-	 * Constructor from parcel, reads back fields IN THE ORDER they were written
-	 */
-	private SenseKeyPointer(@NonNull final Parcel parcel)
-	{
-		this.senseKey = parcel.readString();
-	}
+    override fun getSenseKey(): String? {
+        return senseKey
+    }
 
-	/**
-	 * Constructor
-	 *
-	 * @param senseKey sense key
-	 */
-	public SenseKeyPointer(@Nullable final String senseKey)
-	{
-		this.senseKey = senseKey;
-	}
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(senseKey)
+    }
 
-	@Nullable
-	@Override
-	public String getSenseKey()
-	{
-		return this.senseKey;
-	}
+    override fun toString(): String {
+        return "sensekey=" +  //
+                senseKey
+    }
 
-	@Override
-	public void writeToParcel(@NonNull final Parcel parcel, final int flags)
-	{
-		parcel.writeString(this.senseKey);
-	}
+    override fun describeContents(): Int {
+        return 0
+    }
 
-	@SuppressWarnings("SameReturnValue")
-	@Override
-	public int describeContents()
-	{
-		return 0;
-	}
+    companion object CREATOR : Parcelable.Creator<SenseKeyPointer> {
+        override fun createFromParcel(parcel: Parcel): SenseKeyPointer {
+            return SenseKeyPointer(parcel)
+        }
 
-	@NonNull
-	@Override
-	public String toString()
-	{
-		return "sensekey=" + //
-				this.senseKey;
-	}
+        override fun newArray(size: Int): Array<SenseKeyPointer?> {
+            return arrayOfNulls(size)
+        }
+    }
 }

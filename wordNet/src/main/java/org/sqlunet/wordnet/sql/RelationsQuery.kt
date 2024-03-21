@@ -1,65 +1,42 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.wordnet.sql
 
-package org.sqlunet.wordnet.sql;
-
-import android.database.sqlite.SQLiteDatabase;
-
-import org.sqlunet.sql.DBQuery;
+import android.database.sqlite.SQLiteDatabase
+import org.sqlunet.sql.DBQuery
 
 /**
  * Query for a relation enumeration
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param connection connection
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class RelationsQuery extends DBQuery
-{
-	/**
-	 * <code>QUERY</code> is the SQL statement
-	 */
-	static private final String QUERY = SqLiteDialect.RelationsQuery;
+internal class RelationsQuery(connection: SQLiteDatabase) : DBQuery(connection, QUERY) {
 
-	/**
-	 * Constructor
-	 *
-	 * @param connection connection
-	 */
-	public RelationsQuery(final SQLiteDatabase connection)
-	{
-		super(connection, RelationsQuery.QUERY);
-	}
+    /**
+     * Relation id value from the result set
+     */
+    val id: Int
+        get() = cursor!!.getInt(0)
 
-	/**
-	 * Get the id from the result set
-	 *
-	 * @return the relation id value from the result set
-	 */
-	public int getId()
-	{
-		assert this.cursor != null;
-		return this.cursor.getInt(0);
-	}
+    /**
+     * Relation name value from the result set
+     */
+    val name: String
+        get() = cursor!!.getString(1)
 
-	/**
-	 * Get the name from the result set
-	 *
-	 * @return the relation name value from the result set
-	 */
-	public String getName()
-	{
-		assert this.cursor != null;
-		return this.cursor.getString(1);
-	}
+    /**
+     * Relation recurse capability value from the result set
+     */
+    val recurse: Boolean
+        get() = cursor!!.getInt(2) != 0
 
-	/**
-	 * Get the recurse capability from the result set
-	 *
-	 * @return the relation recurse capability value from the result set
-	 */
-	public boolean getRecurse()
-	{
-		assert this.cursor != null;
-		return this.cursor.getInt(2) != 0;
-	}
+    companion object {
+        /**
+         * `QUERY` is the SQL statement
+         */
+        private const val QUERY = SqLiteDialect.RelationsQuery
+    }
 }

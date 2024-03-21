@@ -1,56 +1,41 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.wordnet.sql
 
-package org.sqlunet.wordnet.sql;
-
-import android.database.sqlite.SQLiteDatabase;
-
-import org.sqlunet.sql.DBQuery;
+import android.database.sqlite.SQLiteDatabase
+import org.sqlunet.sql.DBQuery
 
 /**
  * Word query
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param connection connection
+ * @param word       is the word
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class WordQueryFromWord extends DBQuery
-{
-	/**
-	 * <code>QUERY</code> is the SQL statement
-	 */
-	static private final String QUERY = SqLiteDialect.WordQueryFromWord;
+internal class WordQueryFromWord(connection: SQLiteDatabase, word: String) : DBQuery(connection, QUERY) {
 
-	/**
-	 * Constructor
-	 *
-	 * @param connection connection
-	 * @param word       is the word
-	 */
-	public WordQueryFromWord(final SQLiteDatabase connection, final String word)
-	{
-		super(connection, WordQueryFromWord.QUERY);
-		setParams(word);
-	}
+    init {
+        setParams(word)
+    }
 
-	/**
-	 * Get the word id from the result set
-	 *
-	 * @return the word id value from the result set
-	 */
-	public int getId()
-	{
-		assert this.cursor != null;
-		return this.cursor.getInt(0);
-	}
+    /**
+     * Word id value from the result set
+     */
+    val id: Int
+        get() = cursor!!.getInt(0)
 
-	/**
-	 * Get the word from the result set
-	 *
-	 * @return the word string value from the result set
-	 */
-	public String getWord()
-	{
-		assert this.cursor != null;
-		return this.cursor.getString(1);
-	}
+    /**
+     * Word string value from the result set
+     */
+    val word: String
+        get() = cursor!!.getString(1)
+
+    companion object {
+        /**
+         * `QUERY` is the SQL statement
+         */
+        private const val QUERY = SqLiteDialect.WordQueryFromWord
+    }
 }

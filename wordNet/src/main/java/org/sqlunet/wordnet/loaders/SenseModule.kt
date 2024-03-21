@@ -1,128 +1,98 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.wordnet.loaders
 
-package org.sqlunet.wordnet.loaders;
-
-import android.os.Parcelable;
-
-import org.sqlunet.HasWordId;
-import org.sqlunet.browser.TreeFragment;
-import org.sqlunet.model.TreeFactory;
-import org.sqlunet.treeview.control.Link;
-import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.wordnet.R;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.os.Parcelable
+import org.sqlunet.HasWordId
+import org.sqlunet.browser.TreeFragment
+import org.sqlunet.model.TreeFactory.makeHotQueryNode
+import org.sqlunet.model.TreeFactory.makeIconTextNode
+import org.sqlunet.model.TreeFactory.makeLinkHotQueryNode
+import org.sqlunet.model.TreeFactory.makeQueryNode
+import org.sqlunet.model.TreeFactory.makeTextNode
+import org.sqlunet.model.TreeFactory.makeTreeNode
+import org.sqlunet.model.TreeFactory.setNoResult
+import org.sqlunet.treeview.control.Link
+import org.sqlunet.treeview.model.TreeNode
+import org.sqlunet.wordnet.R
 
 /**
  * Module for WordNet sense
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param fragment fragment
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
+class SenseModule(fragment: TreeFragment) : SynsetModule(fragment) {
+    /**
+     * Word id
+     */
+    private var wordId: Long? = null
 
-public class SenseModule extends SynsetModule
-{
-	/**
-	 * Word id
-	 */
-	@Nullable
-	private Long wordId;
+    override fun unmarshal(pointer: Parcelable) {
+        super.unmarshal(pointer)
+        wordId = null
+        if (pointer is HasWordId) {
+            val wordPointer = pointer as HasWordId
+            wordId = wordPointer.getWordId()
+        }
+    }
 
-	/**
-	 * Constructor
-	 *
-	 * @param fragment fragment
-	 */
-	public SenseModule(@NonNull final TreeFragment fragment)
-	{
-		super(fragment);
-	}
+    override fun process(node: TreeNode) {
+        if (wordId != null && wordId != 0L && synsetId != null && synsetId != 0L) {
+            // anchor nodes
+            val synsetNode = makeTextNode(senseLabel, false).addTo(node)
+            val membersNode = makeIconTextNode(membersLabel, R.drawable.members, false).addTo(node)
 
-	@Override
-	protected void unmarshal(final Parcelable pointer)
-	{
-		super.unmarshal(pointer);
+            // synset
+            synset(synsetId!!, synsetNode, false)
 
-		this.wordId = null;
-		if (pointer instanceof HasWordId)
-		{
-			final HasWordId wordPointer = (HasWordId) pointer;
-			this.wordId = wordPointer.getWordId();
-		}
-	}
+            // member set
+            members(synsetId!!, membersNode)
 
-	@Override
-	public void process(@NonNull final TreeNode parent)
-	{
-		if (this.wordId != null && this.wordId != 0 && this.synsetId != null && this.synsetId != 0)
-		{
-			// anchor nodes
-			final TreeNode synsetNode = TreeFactory.makeTextNode(this.senseLabel, false).addTo(parent);
-			final TreeNode membersNode = TreeFactory.makeIconTextNode(this.membersLabel, R.drawable.members, false).addTo(parent);
+            // morph
+            val morphsNode = makeTreeNode(morphsLabel, R.drawable.morph, false).addTo(node)
+            morphs(wordId!!, morphsNode)
 
-			// synset
-			synset(this.synsetId, synsetNode, false);
+            // relations and samples
+            if (expand) {
+                val link: Link = RelationLink(synsetId!!, maxRecursion, fragment)
+                makeLinkHotQueryNode(relationsLabel, R.drawable.ic_relations, false, RelationsQuery(synsetId!!, wordId!!), link, R.drawable.ic_link_relation).addTo(node)
+            } else {
+                makeQueryNode(relationsLabel, R.drawable.ic_relations, false, RelationsQuery(synsetId!!, wordId!!)).addTo(node)
+            }
+            if (expand) {
+                makeHotQueryNode(samplesLabel, R.drawable.sample, false, SamplesQuery(synsetId!!)).addTo(node)
+            } else {
+                makeQueryNode(samplesLabel, R.drawable.sample, false, SamplesQuery(synsetId!!)).addTo(node)
+            }
 
-			// member set
-			members(this.synsetId, membersNode);
+            // special
+            if (pos != null) {
+                when (pos!!.charValue()) {
+                    'v' -> {
+                        val vframesNode = makeTreeNode(verbFramesLabel, R.drawable.verbframe, false).addTo(node)
+                        val vtemplatesNode = makeTreeNode(verbTemplatesLabel, R.drawable.verbtemplate, false).addTo(node)
+                        vFrames(synsetId!!, wordId!!, vframesNode)
+                        vTemplates(synsetId!!, wordId!!, vtemplatesNode)
+                    }
 
-			// morph
-			final TreeNode morphsNode = TreeFactory.makeTreeNode(this.morphsLabel, R.drawable.morph, false).addTo(parent);
-			morphs(this.wordId, morphsNode);
-
-			// relations and samples
-			if (this.expand)
-			{
-				Link link = new RelationLink(this.synsetId, this.maxRecursion, this.fragment);
-				TreeFactory.makeLinkHotQueryNode(this.relationsLabel, R.drawable.ic_relations, false, new RelationsQuery(this.synsetId, this.wordId), link, R.drawable.ic_link_relation).addTo(parent);
-			}
-			else
-			{
-				TreeFactory.makeQueryNode(this.relationsLabel, R.drawable.ic_relations, false, new RelationsQuery(this.synsetId, this.wordId)).addTo(parent);
-			}
-
-			if (this.expand)
-			{
-				TreeFactory.makeHotQueryNode(this.samplesLabel, R.drawable.sample, false, new SamplesQuery(this.synsetId)).addTo(parent);
-			}
-			else
-			{
-				TreeFactory.makeQueryNode(this.samplesLabel, R.drawable.sample, false, new SamplesQuery(this.synsetId)).addTo(parent);
-			}
-
-			// special
-			if (this.pos != null)
-			{
-				switch (this.pos)
-				{
-					case 'v':
-						final TreeNode vframesNode = TreeFactory.makeTreeNode(this.verbFramesLabel, R.drawable.verbframe, false).addTo(parent);
-						final TreeNode vtemplatesNode = TreeFactory.makeTreeNode(this.verbTemplatesLabel, R.drawable.verbtemplate, false).addTo(parent);
-						vFrames(this.synsetId, this.wordId, vframesNode);
-						vTemplates(this.synsetId, this.wordId, vtemplatesNode);
-						break;
-
-					case 'a':
-						final TreeNode adjpositionsNode = TreeFactory.makeTreeNode(this.adjPositionsLabel, R.drawable.adjposition, false).addTo(parent);
-						adjPosition(this.synsetId, this.wordId, adjpositionsNode);
-						break;
-				}
-			}
-			else
-			{
-				final TreeNode vframesNode = TreeFactory.makeTreeNode(this.verbFramesLabel, R.drawable.verbframe, false).addTo(parent);
-				final TreeNode vtemplatesNode = TreeFactory.makeTreeNode(this.verbTemplatesLabel, R.drawable.verbtemplate, false).addTo(parent);
-				final TreeNode adjpositionsNode = TreeFactory.makeTreeNode(this.adjPositionsLabel, R.drawable.adjposition, false).addTo(parent);
-				vFrames(this.synsetId, this.wordId, vframesNode);
-				vTemplates(this.synsetId, this.wordId, vtemplatesNode);
-				adjPosition(this.synsetId, this.wordId, adjpositionsNode);
-			}
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-		}
-	}
+                    'a' -> {
+                        val adjpositionsNode = makeTreeNode(adjPositionsLabel, R.drawable.adjposition, false).addTo(node)
+                        adjPosition(synsetId!!, wordId!!, adjpositionsNode)
+                    }
+                }
+            } else {
+                val vframesNode = makeTreeNode(verbFramesLabel, R.drawable.verbframe, false).addTo(node)
+                val vtemplatesNode = makeTreeNode(verbTemplatesLabel, R.drawable.verbtemplate, false).addTo(node)
+                val adjpositionsNode = makeTreeNode(adjPositionsLabel, R.drawable.adjposition, false).addTo(node)
+                vFrames(synsetId!!, wordId!!, vframesNode)
+                vTemplates(synsetId!!, wordId!!, vtemplatesNode)
+                adjPosition(synsetId!!, wordId!!, adjpositionsNode)
+            }
+        } else {
+            setNoResult(node)
+        }
+    }
 }

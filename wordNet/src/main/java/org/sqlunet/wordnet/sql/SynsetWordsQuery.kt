@@ -1,57 +1,41 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.wordnet.sql
 
-package org.sqlunet.wordnet.sql;
-
-import android.database.sqlite.SQLiteDatabase;
-
-import org.sqlunet.sql.DBQuery;
+import android.database.sqlite.SQLiteDatabase
+import org.sqlunet.sql.DBQuery
 
 /**
  * Query for words in synset
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param connection connection
+ * @param synsetId   target synset id
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class SynsetWordsQuery extends DBQuery
-{
-	/**
-	 * <code>QUERY</code> is the SQL statement
-	 */
-	static private final String QUERY = SqLiteDialect.SynsetWordsQuery;
+internal class SynsetWordsQuery(connection: SQLiteDatabase, synsetId: Long) : DBQuery(connection, QUERY) {
 
-	/**
-	 * Constructor
-	 *
-	 * @param connection connection
-	 * @param synsetId   target synset id
-	 */
-	@SuppressWarnings("boxing")
-	public SynsetWordsQuery(final SQLiteDatabase connection, final long synsetId)
-	{
-		super(connection, SynsetWordsQuery.QUERY);
-		setParams(synsetId);
-	}
+    init {
+        setParams(synsetId)
+    }
 
-	/**
-	 * Get word in result set
-	 *
-	 * @return word in the result set
-	 */
-	public String getWord()
-	{
-		assert this.cursor != null;
-		return this.cursor.getString(0);
-	}
+    /**
+     * Get Word in the result set
+     */
+    val word: String
+        get() = cursor!!.getString(0)
 
-	/**
-	 * Get database id
-	 *
-	 * @return database id in the result set
-	 */
-	public long getId()
-	{
-		assert this.cursor != null;
-		return this.cursor.getLong(1);
-	}
+    /**
+     * Database id in the result set
+     */
+    val id: Long
+        get() = cursor!!.getLong(1)
+
+    companion object {
+        /**
+         * `QUERY` is the SQL statement
+         */
+        private const val QUERY = SqLiteDialect.SynsetWordsQuery
+    }
 }

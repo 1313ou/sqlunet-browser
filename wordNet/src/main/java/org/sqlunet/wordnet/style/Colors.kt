@@ -1,39 +1,34 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.wordnet.style
 
-package org.sqlunet.wordnet.style;
-
-import android.content.Context;
-import android.graphics.Color;
-
-import org.sqlunet.wordnet.R;
-
-import androidx.annotation.NonNull;
+import android.content.Context
+import android.graphics.Color
+import org.sqlunet.wordnet.R
 
 /**
  * Color values
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class Colors
-{
-	static public int membersBackColor = Color.TRANSPARENT;
-	static public int membersForeColor = Color.TRANSPARENT;
-
-	static public int wordBackColor = Color.TRANSPARENT;
-	static public int wordForeColor = Color.TRANSPARENT;
-
-	static public void setColorsFromResources(@NonNull final Context context)
-	{
-		// do not reorder : dependent on resource array order
-
-		int[] palette = context.getResources().getIntArray(R.array.palette_wn);
-		int i = 0;
-		membersBackColor = palette[i++];
-		membersForeColor = palette[i++];
-
-		wordBackColor = palette[i++];
-		wordForeColor = palette[i];
-	}
+object Colors {
+    @JvmField
+    var membersBackColor = Color.TRANSPARENT
+    @JvmField
+    var membersForeColor = Color.TRANSPARENT
+    @JvmField
+    var wordBackColor = Color.TRANSPARENT
+    @JvmField
+    var wordForeColor = Color.TRANSPARENT
+    @JvmStatic
+    fun setColorsFromResources(context: Context) {
+        // do not reorder : dependent on resource array order
+        val palette = context.resources.getIntArray(R.array.palette_wn)
+        var i = 0
+        membersBackColor = palette[i++]
+        membersForeColor = palette[i++]
+        wordBackColor = palette[i++]
+        wordForeColor = palette[i]
+    }
 }

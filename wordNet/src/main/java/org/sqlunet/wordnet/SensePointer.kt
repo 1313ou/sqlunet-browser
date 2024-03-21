@@ -1,93 +1,65 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.wordnet
 
-package org.sqlunet.wordnet;
-
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import org.sqlunet.HasWordId;
-
-import androidx.annotation.NonNull;
+import android.os.Parcel
+import android.os.Parcelable
+import org.sqlunet.HasWordId
 
 /**
  * Parcelable sense
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class SensePointer extends SynsetPointer implements HasWordId
-{
-	/**
-	 * Word id
-	 */
-	private final long wordId;
+open class SensePointer : SynsetPointer, HasWordId {
 
-	/**
-	 * Static field used to regenerate object, individually or as arrays
-	 */
-	static public final Parcelable.Creator<SensePointer> CREATOR = new Parcelable.Creator<SensePointer>()
-	{
-		@NonNull
-		@Override
-		public SensePointer createFromParcel(@NonNull final Parcel parcel)
-		{
-			return new SensePointer(parcel);
-		}
+    /**
+     * Word id
+     */
+    private val wordId: Long
 
-		@NonNull
-		@Override
-		public SensePointer[] newArray(final int size)
-		{
-			return new SensePointer[size];
-		}
-	};
+    /**
+     * Constructor from parcel, reads back fields IN THE ORDER they were written
+     */
+    protected constructor(parcel: Parcel) : super(parcel) {
+        wordId = parcel.readLong()
+    }
 
-	/**
-	 * Constructor from parcel, reads back fields IN THE ORDER they were written
-	 */
-	protected SensePointer(@NonNull final Parcel parcel)
-	{
-		super(parcel);
-		this.wordId = parcel.readLong();
-	}
+    /**
+     * Constructor
+     *
+     * @param synsetId synset id
+     * @param wordId   word id
+     */
+    constructor(synsetId: Long, wordId: Long) : super(synsetId) {
+        this.wordId = wordId
+    }
 
-	/**
-	 * Constructor
-	 *
-	 * @param synsetId synset id
-	 * @param wordId   word id
-	 */
-	public SensePointer(final long synsetId, final long wordId)
-	{
-		super(synsetId);
-		this.wordId = wordId;
-	}
+    override fun getWordId(): Long {
+        return wordId
+    }
 
-	@Override
-	public long getWordId()
-	{
-		return this.wordId;
-	}
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        super.writeToParcel(parcel, flags)
+        parcel.writeLong(wordId)
+    }
 
-	@Override
-	public void writeToParcel(@NonNull final Parcel parcel, final int flags)
-	{
-		super.writeToParcel(parcel, flags);
-		parcel.writeLong(this.wordId);
-	}
+    override fun toString(): String {
+        return super.toString() + ' ' + "wordid=" + wordId
+    }
 
-	@SuppressWarnings("SameReturnValue")
-	@Override
-	public int describeContents()
-	{
-		return 0;
-	}
+    override fun describeContents(): Int {
+        return 0
+    }
 
-	@NonNull
-	@Override
-	public String toString()
-	{
-		return super.toString() + ' ' + "wordid=" + this.wordId;
-	}
+    companion object CREATOR : Parcelable.Creator<SensePointer> {
+        override fun createFromParcel(parcel: Parcel): SensePointer {
+            return SensePointer(parcel)
+        }
+
+        override fun newArray(size: Int): Array<SensePointer?> {
+            return arrayOfNulls(size)
+        }
+    }
 }

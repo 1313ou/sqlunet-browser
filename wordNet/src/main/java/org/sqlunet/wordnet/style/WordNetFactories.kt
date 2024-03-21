@@ -1,31 +1,30 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.wordnet.style
 
-package org.sqlunet.wordnet.style;
-
-import android.graphics.Typeface;
-import android.text.style.StyleSpan;
-
-import org.sqlunet.style.Factories;
-import org.sqlunet.style.Spanner.SpanFactory;
+import android.graphics.Typeface
+import android.text.style.StyleSpan
+import org.sqlunet.style.Factories
+import org.sqlunet.style.Factories.spans
+import org.sqlunet.style.Spanner
 
 /**
  * WordNet span factories
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class WordNetFactories
-{
-	static public final SpanFactory membersFactory = flags -> Factories.spans(Colors.membersBackColor, Colors.membersForeColor, new StyleSpan(Typeface.BOLD));
-
-	static public final SpanFactory wordFactory = flags -> Factories.spans(Colors.wordBackColor, Colors.wordForeColor, new StyleSpan(Typeface.BOLD));
-
-	static public final SpanFactory definitionFactory = Factories.definitionFactory;
-
-	static public final SpanFactory sampleFactory = Factories.exampleFactory;
-
-	static public final SpanFactory relationFactory = Factories.relationFactory;
-
-	static public final SpanFactory dataFactory = Factories.dataFactory;
+object WordNetFactories {
+    @JvmField
+    val membersFactory = Spanner.SpanFactory { _: Long -> spans(Colors.membersBackColor, Colors.membersForeColor, StyleSpan(Typeface.BOLD)) }
+    @JvmField
+    val wordFactory = Spanner.SpanFactory { _: Long -> spans(Colors.wordBackColor, Colors.wordForeColor, StyleSpan(Typeface.BOLD)) }
+    @JvmField
+    val definitionFactory = Factories.definitionFactory
+    @JvmField
+    val sampleFactory = Factories.exampleFactory
+    @JvmField
+    val relationFactory = Factories.relationFactory
+    @JvmField
+    val dataFactory = Factories.dataFactory
 }

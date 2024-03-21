@@ -1,122 +1,82 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.wordnet.sql
 
-package org.sqlunet.wordnet.sql;
-
-import android.database.sqlite.SQLiteDatabase;
-
-import org.sqlunet.sql.DBQuery;
+import android.database.sqlite.SQLiteDatabase
+import org.sqlunet.sql.DBQuery
 
 /**
  * Query for synsets of a given part-of-speech or domain type and containing a given word
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param connection     connection
+ * @param domainBased is whether the query is domain based
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class SynsetsQueryFromWordIdAndCondition extends DBQuery
-{
-	/**
-	 * <code>QUERYWITHPOS</code> is the (part-of-speech based) SQL statement
-	 */
-	static private String QUERYWITHPOS;
+internal class SynsetsQueryFromWordIdAndCondition(connection: SQLiteDatabase, domainBased: Boolean) : DBQuery(connection, (if (domainBased) QUERYWITHDOMAIN else QUERYWITHPOS)) {
 
-	/**
-	 * <code>QUERYWITHDOMAIN</code> is the (domain based) SQL statement
-	 */
-	static private String QUERYWITHDOMAIN;
+    /**
+     * Set word parameter in prepared SQL statement
+     *
+     * @param wordId target word
+     */
+    fun setWordId(wordId: Long) {
+        statement.setLong(0, wordId)
+    }
 
-	/**
-	 * Init data (resources, ...)
-	 */
-	static void init()
-	{
-		SynsetsQueryFromWordIdAndCondition.QUERYWITHDOMAIN = SqLiteDialect.SynsetsQueryFromWordIdAndDomainId;
-		SynsetsQueryFromWordIdAndCondition.QUERYWITHPOS = SqLiteDialect.SynsetsQueryFromWordIdAndPos;
-	}
+    /**
+     * Set part-of-speech type parameter in prepared SQL statement
+     *
+     * @param type target part-of-speech type
+     */
+    fun setPosType(type: Int) {
+        val pos = Character.valueOf(type.toChar()).toString()
+        statement.setString(1, pos)
+    }
 
-	/**
-	 * Constructor
-	 *
-	 * @param connection     connection
-	 * @param domainBased is whether the query is domain based
-	 */
-	public SynsetsQueryFromWordIdAndCondition(final SQLiteDatabase connection, final boolean domainBased)
-	{
-		super(connection, domainBased ? SynsetsQueryFromWordIdAndCondition.QUERYWITHDOMAIN : SynsetsQueryFromWordIdAndCondition.QUERYWITHPOS);
-	}
+    /**
+     * Set domain type parameter in prepared SQL statement
+     *
+     * @param type target domain type
+     */
+    fun setDomainType(type: Int) {
+        statement.setInt(1, type)
+    }
 
-	/**
-	 * Set word parameter in prepared SQL statement
-	 *
-	 * @param wordId target word
-	 */
-	public void setWordId(final long wordId)
-	{
-		this.statement.setLong(0, wordId);
-	}
+    /**
+     * Synset id
+     */
+    val synsetId: Long
+        get() = cursor!!.getLong(0)
 
-	/**
-	 * Set part-of-speech type parameter in prepared SQL statement
-	 *
-	 * @param type target part-of-speech type
-	 */
-	public void setPosType(final int type)
-	{
-		final String pos = Character.valueOf((char) type).toString();
-		this.statement.setString(1, pos);
-	}
+    /**
+     * Synset definition
+     */
+    val definition: String
+        get() = cursor!!.getString(1)
 
-	/**
-	 * Set domain type parameter in prepared SQL statement
-	 *
-	 * @param type target domain type
-	 */
-	public void setDomainType(final int type)
-	{
-		this.statement.setInt(1, type);
-	}
+    /**
+     * Synset domain id
+     */
+    val domainId: Int
+        get() = cursor!!.getInt(2)
 
-	/**
-	 * Get synset id
-	 *
-	 * @return synset id
-	 */
-	public long getSynsetId()
-	{
-		assert this.cursor != null;
-		return this.cursor.getLong(0);
-	}
+    /**
+     * Sample data
+     */
+    val sample: String
+        get() = cursor!!.getString(3)
 
-	/**
-	 * Get synset definition
-	 *
-	 * @return definition
-	 */
-	public String getDefinition()
-	{
-		assert this.cursor != null;
-		return this.cursor.getString(1);
-	}
+    companion object {
+        /**
+         * `QUERYWITHPOS` is the (part-of-speech based) SQL statement
+         */
+        private const val QUERYWITHPOS: String = SqLiteDialect.SynsetsQueryFromWordIdAndDomainId
 
-	/**
-	 * Get synset domain id
-	 *
-	 * @return synset domain id
-	 */
-	public int getDomainId()
-	{
-		assert this.cursor != null;
-		return this.cursor.getInt(2);
-	}
-
-	/**
-	 * Get sample data
-	 *
-	 * @return samples in a semicolon-separated string
-	 */
-	public String getSample()
-	{
-		assert this.cursor != null;
-		return this.cursor.getString(3);
-	}
+        /**
+         * `QUERYWITHDOMAIN` is the (domain based) SQL statement
+         */
+        private const val QUERYWITHDOMAIN: String = SqLiteDialect.SynsetsQueryFromWordIdAndPos
+    }
 }

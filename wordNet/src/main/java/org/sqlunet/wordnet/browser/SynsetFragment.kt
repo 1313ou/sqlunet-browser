@@ -1,134 +1,111 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.wordnet.browser
 
-package org.sqlunet.wordnet.browser;
-
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
-
-import org.sqlunet.browser.Module;
-import org.sqlunet.browser.TreeFragment;
-import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.wordnet.R;
-import org.sqlunet.wordnet.loaders.SynsetModule;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import static org.sqlunet.provider.ProviderArgs.ARG_RENDER_DISPLAY_LEX_RELATION_NAME_KEY;
-import static org.sqlunet.provider.ProviderArgs.ARG_RENDER_DISPLAY_SEM_RELATION_NAME_KEY;
+import android.os.Bundle
+import android.util.Log
+import org.sqlunet.browser.Module
+import org.sqlunet.browser.TreeFragment
+import org.sqlunet.provider.ProviderArgs
+import org.sqlunet.provider.ProviderArgs.ARG_RENDER_DISPLAY_LEX_RELATION_NAME_KEY
+import org.sqlunet.provider.ProviderArgs.ARG_RENDER_DISPLAY_SEM_RELATION_NAME_KEY
+import org.sqlunet.wordnet.R
+import org.sqlunet.wordnet.loaders.SynsetModule
 
 /**
  * A fragment representing a synset.
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class SynsetFragment extends TreeFragment
-{
-	static private final String TAG = "SynsetF";
+open class SynsetFragment : TreeFragment() {
+    /**
+     * Whether to expandContainer
+     */
+    private var expand = true
 
-	/**
-	 * State of tree
-	 */
-	static private final String STATE_EXPAND = "state_expand";
+    /**
+     * Max recursion level
+     */
+    @JvmField
+    var maxRecursion = 0
 
-	/**
-	 * Whether to expandContainer
-	 */
-	private boolean expand;
+    /**
+     * Parameters
+     */
+    @JvmField
+    var parameters: Bundle? = null
 
-	/**
-	 * Max recursion level
-	 */
-	int maxRecursion;
+    init {
+        layoutId = R.layout.fragment_sense
+        treeContainerId = R.id.data_contents
+        headerId = R.string.wordnet_synsets
+        iconId = R.drawable.wordnet
+    }
 
-	/**
-	 * Parameters
-	 */
-	Bundle parameters;
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-	/**
-	 * Constructor
-	 */
-	public SynsetFragment()
-	{
-		this.expand = true;
-		this.layoutId = R.layout.fragment_sense;
-		this.treeContainerId = R.id.data_contents;
-		this.headerId = R.string.wordnet_synsets;
-		this.iconId = R.drawable.wordnet;
-	}
+        // query
+        val args = requireArguments()
+        val type = args.getInt(ProviderArgs.ARG_QUERYTYPE)
+        maxRecursion = if (args.containsKey(ProviderArgs.ARG_QUERYRECURSE)) args.getInt(ProviderArgs.ARG_QUERYRECURSE) else -1
+        parameters = if (args.containsKey(ProviderArgs.ARG_RENDERPARAMETERS)) args.getBundle(ProviderArgs.ARG_RENDERPARAMETERS) else null
 
-	@Override
-	public void onCreate(@Nullable final Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
+        // saved state
+        if (savedInstanceState != null) {
+            Log.d(TAG, "restore instance state $this")
+            expand = savedInstanceState.getBoolean(STATE_EXPAND)
+        }
 
-		// query
-		final Bundle args = getArguments();
-		assert args != null;
-		final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
-		this.maxRecursion = args.containsKey(ProviderArgs.ARG_QUERYRECURSE) ? args.getInt(ProviderArgs.ARG_QUERYRECURSE) : -1;
-		this.parameters = args.containsKey(ProviderArgs.ARG_RENDERPARAMETERS) ? args.getBundle(ProviderArgs.ARG_RENDERPARAMETERS) : null;
+        // load
+        if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER)) {
+            // pointer
+            val pointer = getPointer(args)
 
-		// saved state
-		if (savedInstanceState != null)
-		{
-			Log.d(TAG, "restore instance state " + this);
-			this.expand = savedInstanceState.getBoolean(STATE_EXPAND);
-		}
+            // root node
+            val queryNode = treeRoot.children.iterator().next()
 
-		// load
-		if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER))
-		{
-			// pointer
-			final Parcelable pointer = getPointer(args);
+            // module
+            val module = makeModule()
+            module.init(type, pointer)
+            module.process(queryNode)
+        }
+    }
 
-			// root node
-			final TreeNode queryNode = this.treeRoot.getChildren().iterator().next();
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean(STATE_EXPAND, expand)
+    }
 
-			// module
-			final Module module = makeModule();
-			module.init(type, pointer);
-			module.process(queryNode);
-		}
-	}
+    /**
+     * Module factory
+     *
+     * @return module
+     */
+    protected open fun makeModule(): Module {
+        val module = SynsetModule(this)
+        module.setMaxRecursionLevel(maxRecursion)
+        if (parameters != null) {
+            module.setDisplayRelationNames(parameters!!.getBoolean(ARG_RENDER_DISPLAY_SEM_RELATION_NAME_KEY, true), parameters!!.getBoolean(ARG_RENDER_DISPLAY_LEX_RELATION_NAME_KEY, true))
+        }
+        module.setExpand(expand)
+        return module
+    }
 
-	@Override
-	public void onSaveInstanceState(@NonNull final Bundle outState)
-	{
-		super.onSaveInstanceState(outState);
+    /**
+     * Set expand container
+     */
+    fun setExpand(expand: Boolean) {
+        this.expand = expand
+    }
 
-		outState.putBoolean(STATE_EXPAND, this.expand);
-	}
+    companion object {
+        private const val TAG = "SynsetF"
 
-	/**
-	 * Module factory
-	 *
-	 * @return module
-	 */
-	@SuppressWarnings("WeakerAccess")
-	@NonNull
-	protected Module makeModule()
-	{
-		final SynsetModule module = new SynsetModule(this);
-		module.setMaxRecursionLevel(this.maxRecursion);
-		if (this.parameters != null)
-		{
-			module.setDisplayRelationNames(this.parameters.getBoolean(ARG_RENDER_DISPLAY_SEM_RELATION_NAME_KEY, true), this.parameters.getBoolean(ARG_RENDER_DISPLAY_LEX_RELATION_NAME_KEY, true));
-		}
-		module.setExpand(this.expand);
-		return module;
-	}
-
-	/**
-	 * Set expand container
-	 */
-	public void setExpand(final boolean expand)
-	{
-		this.expand = expand;
-	}
+        /**
+         * State of tree
+         */
+        private const val STATE_EXPAND = "state_expand"
+    }
 }

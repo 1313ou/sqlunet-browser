@@ -1,175 +1,98 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.wordnet.sql
 
-package org.sqlunet.wordnet.sql;
-
-import android.database.sqlite.SQLiteDatabase;
-
-import org.sqlunet.sql.DBQuery;
-
-import androidx.annotation.Nullable;
+import android.database.sqlite.SQLiteDatabase
+import org.sqlunet.sql.DBQuery
 
 /**
  * Query for related synsets
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param connection connection
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class RelatedsQueryFromSynsetId extends DBQuery
-{
-	/**
-	 * <code>QUERY</code> SQL statement
-	 */
-	static private final String QUERY = SqLiteDialect.RelatedsQueryFromSynsetId;
+internal class RelatedsQueryFromSynsetId(connection: SQLiteDatabase?) : DBQuery(connection!!, QUERY) {
 
-	/**
-	 * Constructor
-	 *
-	 * @param connection connection
-	 */
-	public RelatedsQueryFromSynsetId(final SQLiteDatabase connection)
-	{
-		super(connection, RelatedsQueryFromSynsetId.QUERY);
-	}
+    /**
+     * Relation type id
+     */
+    val relationId: Int
+        get() = cursor!!.getInt(0)
 
-	/**
-	 * Set source synset parameter in prepared statement
-	 *
-	 * @param synsetId synset id
-	 */
-	public void setFromSynset(final long synsetId)
-	{
-		this.statement.setLong(0, synsetId);
-		this.statement.setLong(1, synsetId);
-	}
+    /**
+     * Synset id
+     */
+    val synsetId: Long
+        get() = cursor!!.getLong(1)
 
-	/**
-	 * Set source word parameter in prepared statement
-	 *
-	 * @param wordId word id or 0 if word is any in which case the query returns all lexical relations whatever the word
-	 */
-	public void setFromWord(final long wordId)
-	{
-		this.statement.setLong(2, wordId);
-		this.statement.setLong(3, wordId);
-	}
+    /**
+     * Synset definition
+     */
+    val definition: String
+        get() = cursor!!.getString(2)
 
-	// relationid, synsetid, definition, domainid, sampleset, word2id, word, synset1id, word1id
+    /**
+     * Synset domain id
+     */
+    val domainId: Int
+        get() = cursor!!.getInt(3)
 
-	/**
-	 * Get relation type id
-	 *
-	 * @return relation type id
-	 */
-	public int getRelationId()
-	{
-		assert this.cursor != null;
-		return this.cursor.getInt(0);
-	}
+    /**
+     * Samples in a bar-separated string
+     */
+    val samples: String
+        get() = cursor!!.getString(4)
 
-	/**
-	 * Get synset id
-	 *
-	 * @return synset id
-	 */
-	public long getSynsetId()
-	{
-		assert this.cursor != null;
-		return this.cursor.getLong(1);
-	}
+    /**
+     * Target word ids
+     */
+    val wordIds: LongArray?
+        get() {
+            val resultString = cursor!!.getString(5) ?: return null
+            val resultStrings = resultString.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+            val result = LongArray(resultStrings.size)
+            for (i in result.indices) {
+                result[i] = resultStrings[i].toLong()
+            }
+            return result
+        }
 
-	/**
-	 * Get synset definition
-	 *
-	 * @return definition
-	 */
-	public String getDefinition()
-	{
-		assert this.cursor != null;
-		return this.cursor.getString(2);
-	}
+    /**
+     * Target words
+     */
+    val words: Array<String>?
+        get() {
+            assert(cursor != null)
+            val results = cursor!!.getString(6) ?: return null
+            return results.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        }
 
-	/**
-	 * Get synset domain id
-	 *
-	 * @return synset domain id
-	 */
-	public int getDomainId()
-	{
-		assert this.cursor != null;
-		return this.cursor.getInt(3);
-	}
+    /**
+     * Source synset id
+     */
+    var fromSynset: Long
+        get() = cursor!!.getLong(7)
+        set(synsetId) {
+            statement.setLong(0, synsetId)
+            statement.setLong(1, synsetId)
+        }
 
-	/**
-	 * Get sample data
-	 *
-	 * @return samples in a bar-separated string
-	 */
-	public String getSamples()
-	{
-		assert this.cursor != null;
-		return this.cursor.getString(4);
-	}
+    /**
+     * Source word
+     */
+    var fromWord: Long
+        get() = cursor!!.getLong(8)
+        set(wordId) {
+            statement.setLong(2, wordId)
+            statement.setLong(3, wordId)
+        }
 
-	/**
-	 * Get target word ids
-	 *
-	 * @return source synset id
-	 */
-	@Nullable
-	public long[] getWordIds()
-	{
-		assert this.cursor != null;
-		final String resultString = this.cursor.getString(5);
-		if (resultString == null)
-		{
-			return null;
-		}
-		final String[] resultStrings = resultString.split(",");
-		final long[] result = new long[resultStrings.length];
-		for (int i = 0; i < result.length; i++)
-		{
-			result[i] = Long.parseLong(resultStrings[i]);
-		}
-		return result;
-	}
-
-	/**
-	 * Get target words
-	 *
-	 * @return source synset id
-	 */
-	@Nullable
-	public String[] getWords()
-	{
-		assert this.cursor != null;
-		final String results = this.cursor.getString(6);
-		if (results == null)
-		{
-			return null;
-		}
-		return results.split(",");
-	}
-
-	/**
-	 * Get source synset id
-	 *
-	 * @return source synset id
-	 */
-	public long getFromSynset()
-	{
-		assert this.cursor != null;
-		return this.cursor.getLong(7);
-	}
-
-	/**
-	 * Get source synset id
-	 *
-	 * @return source synset id
-	 */
-	public long getFromWord()
-	{
-		assert this.cursor != null;
-		return this.cursor.getLong(8);
-	}
+    companion object {
+        /**
+         * `QUERY` SQL statement
+         */
+        private const val QUERY = SqLiteDialect.RelatedsQueryFromSynsetId
+    }
 }

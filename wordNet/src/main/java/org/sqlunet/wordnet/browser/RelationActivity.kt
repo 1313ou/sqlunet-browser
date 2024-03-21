@@ -1,38 +1,26 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.wordnet.browser
 
-package org.sqlunet.wordnet.browser;
-
-import org.sqlunet.browser.AbstractActivity;
-import org.sqlunet.wordnet.R;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import androidx.fragment.app.Fragment
+import org.sqlunet.browser.AbstractActivity
+import org.sqlunet.wordnet.R
 
 /**
  * Synset activity
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class RelationActivity extends AbstractActivity
-{
-	@Override
-	protected int getLayoutId()
-	{
-		return R.layout.activity_relation;
-	}
+class RelationActivity : AbstractActivity() {
 
-	@Override
-	protected int getContainerId()
-	{
-		return R.id.container_relation;
-	}
+    override val layoutId: Int
+        get() = R.layout.activity_relation
 
-	@NonNull
-	@Override
-	protected Fragment makeFragment()
-	{
-		return new RelationFragment();
-	}
+    override val containerId: Int
+        get() = R.id.container_relation
+
+    override fun makeFragment(): Fragment {
+        return RelationFragment()
+    }
 }

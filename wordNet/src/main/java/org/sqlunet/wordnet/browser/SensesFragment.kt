@@ -1,372 +1,304 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.wordnet.browser
 
-package org.sqlunet.wordnet.browser;
-
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
-import android.widget.CursorAdapter;
-import android.widget.ImageView;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
-
-import org.sqlunet.browser.Module;
-import org.sqlunet.browser.PositionViewModel;
-import org.sqlunet.browser.SqlunetViewModel;
-import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.wordnet.R;
-import org.sqlunet.wordnet.SensePointer;
-import org.sqlunet.wordnet.loaders.Queries;
-import org.sqlunet.wordnet.provider.WordNetContract;
-import org.sqlunet.wordnet.provider.WordNetProvider;
-
-import java.util.Locale;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.ListFragment;
-import androidx.lifecycle.ViewModelProvider;
+import android.database.Cursor
+import android.net.Uri
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.AbsListView
+import android.widget.AdapterView
+import android.widget.CursorAdapter
+import android.widget.ImageView
+import android.widget.ListAdapter
+import android.widget.ListView
+import android.widget.SimpleCursorAdapter
+import android.widget.TextView
+import androidx.fragment.app.ListFragment
+import androidx.lifecycle.ViewModelProvider
+import org.sqlunet.browser.PositionViewModel
+import org.sqlunet.browser.SqlunetViewModel
+import org.sqlunet.provider.ProviderArgs
+import org.sqlunet.wordnet.R
+import org.sqlunet.wordnet.SensePointer
+import org.sqlunet.wordnet.loaders.Queries.prepareSenses
+import org.sqlunet.wordnet.provider.WordNetContract
+import org.sqlunet.wordnet.provider.WordNetProvider.Companion.makeUri
 
 /**
  * Senses selector fragment
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-@SuppressWarnings("WeakerAccess")
-public class SensesFragment extends ListFragment
-{
-	static private final String TAG = "SensesF";
+class SensesFragment : ListFragment() {
+    /**
+     * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
+     */
+    fun interface Listener {
+        /**
+         * Callback for when an item has been selected.
+         */
+        fun onItemSelected(sense: SensePointer?, word: String?, cased: String?, pos: String?)
+    }
 
-	/**
-	 * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
-	 */
-	@FunctionalInterface
-	public interface Listener
-	{
-		/**
-		 * Callback for when an item has been selected.
-		 */
-		void onItemSelected(SensePointer sense, String word, String cased, String pos);
-	}
+    /**
+     * Activate on click flag: in two-pane mode, list items should be given the 'activated' state when touched.
+     */
+    private var activateOnItemClick = true
 
-	/**
-	 * Activate on click flag: in two-pane mode, list items should be given the 'activated' state when touched.
-	 */
-	private boolean activateOnItemClick = true;
+    /**
+     * The fragment's current callback, which is notified of list item clicks.
+     */
+    private var listener: Listener? = null
 
-	/**
-	 * The fragment's current callback, which is notified of list item clicks.
-	 */
-	private Listener listener;
+    /**
+     * Search query
+     */
+    private var word: String? = null
 
-	/**
-	 * Search query
-	 */
-	@Nullable
-	private String word;
+    /**
+     * Word id
+     */
+    private var wordId: Long = 0
 
-	/**
-	 * Word id
-	 */
-	private long wordId;
+    /**
+     * Data view model
+     */
+    private var dataModel: SqlunetViewModel? = null
 
-	/**
-	 * Data view model
-	 */
-	private SqlunetViewModel dataModel;
+    /**
+     * Position view model
+     */
+    private var positionModel: PositionViewModel? = null
 
-	/**
-	 * Position view model
-	 */
-	private PositionViewModel positionModel;
+    // L I F E C Y C L E
 
-	/**
-	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
-	 */
-	public SensesFragment()
-	{
-		super();
-	}
+    // --activate--
 
-	// L I F E C Y C L E
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-	// --activate--
+        // arguments
+        val args = requireArguments()
 
-	@Override
-	public void onCreate(final Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
+        // target word
+        var query = args.getString(ProviderArgs.ARG_QUERYSTRING)
+        if (query != null) {
+            query = query.trim { it <= ' ' }.lowercase()
+        }
+        word = query
+        wordId = 0
 
-		// arguments
-		Bundle args = getArguments();
-		assert args != null;
+        // list adapter, with no data
+        val adapter = makeAdapter()
+        setListAdapter(adapter)
+    }
 
-		// target word
-		String query = args.getString(ProviderArgs.ARG_QUERYSTRING);
-		if (query != null)
-		{
-			query = query.trim().toLowerCase(Locale.ENGLISH);
-		}
-		this.word = query;
-		this.wordId = 0;
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
+        return inflater.inflate(R.layout.fragment_senses, container, false)
+    }
 
-		// list adapter, with no data
-		ListAdapter adapter = makeAdapter();
-		setListAdapter(adapter);
-	}
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
-	{
-		super.onCreateView(inflater, container, savedInstanceState);
+        // when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
+        getListView().setChoiceMode(if (activateOnItemClick) AbsListView.CHOICE_MODE_SINGLE else AbsListView.CHOICE_MODE_NONE)
+    }
 
-		return inflater.inflate(R.layout.fragment_senses, container, false);
-	}
+    override fun onStart() {
+        super.onStart()
 
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
+        // data view models
+        Log.d(TAG, "Make models")
+        makeModels() // sets cursor
 
-		// when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
-		getListView().setChoiceMode(this.activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
-	}
+        // data
+        senses()
+    }
 
-	@Override
-	public void onStart()
-	{
-		super.onStart();
+    // --deactivate--
 
-		// data view models
-		Log.d(TAG, "Make models");
-		makeModels(); // sets cursor
+    override fun onDestroy() {
+        super.onDestroy()
+        val adapter = listAdapter as CursorAdapter?
+        adapter?.changeCursor(null)
+    }
+    // H E L P E R S
+    /**
+     * Make adapter
+     *
+     * @return adapter
+     */
+    private fun makeAdapter(): ListAdapter {
+        Log.d(TAG, "Make adapter")
+        val adapter = SimpleCursorAdapter(
+            requireContext(), R.layout.item_sense, null, arrayOf( //
+                WordNetContract.Poses.POS,  //
+                WordNetContract.Senses.SENSENUM,  //
+                WordNetContract.Domains.DOMAIN,  //
+                WordNetContract.Synsets.DEFINITION,  //
+                WordNetContract.CasedWords.CASEDWORD,  //
+                WordNetContract.Senses.TAGCOUNT,  //
+                WordNetContract.Senses.LEXID,  //
+                WordNetContract.Senses.SENSEKEY,  //
+                WordNetContract.Words.WORDID,  //
+                WordNetContract.Synsets.SYNSETID,  //
+                WordNetContract.Senses.SENSEID
+            ), intArrayOf( //
+                R.id.pos,  //
+                R.id.sensenum,  //
+                R.id.domain,  //
+                R.id.definition,  //
+                R.id.cased,  //
+                R.id.tagcount,  //
+                R.id.lexid,  //
+                R.id.sensekey,  //
+                R.id.wordid,  //
+                R.id.synsetid,  //
+                R.id.senseid
+            ), 0
+        )
+        adapter.viewBinder = SimpleCursorAdapter.ViewBinder setViewBinder@{ view: View, cursor: Cursor, columnIndex: Int ->
+            val text = cursor.getString(columnIndex)
+            if (text == null) {
+                view.visibility = View.GONE
+                return@setViewBinder false
+            } else {
+                view.visibility = View.VISIBLE
+            }
+            when (view) {
 
-		// data
-		senses();
-	}
+                is TextView -> {
+                    view.text = text
+                    return@setViewBinder true
+                }
 
-	// --deactivate--
+                is ImageView -> {
+                    try {
+                        view.setImageResource(text.toInt())
+                        return@setViewBinder true
+                    } catch (nfe: NumberFormatException) {
+                        view.setImageURI(Uri.parse(text))
+                        return@setViewBinder true
+                    }
+                }
 
-	@Override
-	public void onDestroy()
-	{
-		super.onDestroy();
+                else -> {
+                    throw IllegalStateException(view.javaClass.getName() + " is not a view that can be bound by this SimpleCursorAdapter")
+                }
+            }
+        }
+        return adapter
+    }
 
-		CursorAdapter adapter = (CursorAdapter) getListAdapter();
-		if (adapter != null)
-		{
-			adapter.changeCursor(null);
-		}
-	}
+    // V I E W M O D E L S
 
-	// H E L P E R S
+    /**
+     * Make view models
+     */
+    private fun makeModels() {
+        // data model
+        dataModel = ViewModelProvider(this)["wn.senses(word)", SqlunetViewModel::class.java]
+        dataModel!!.getData().observe(getViewLifecycleOwner()) { cursor: Cursor? ->
+            // pass on to list adapter
+            val adapter = (listAdapter as CursorAdapter?)!!
+            adapter.changeCursor(cursor)
+        }
 
-	/**
-	 * Make adapter
-	 *
-	 * @return adapter
-	 */
-	@NonNull
-	private ListAdapter makeAdapter()
-	{
-		Log.d(TAG, "Make adapter");
-		final SimpleCursorAdapter adapter = new SimpleCursorAdapter(requireContext(), R.layout.item_sense, null, //
-				new String[]{ //
-						WordNetContract.Poses.POS, //
-						WordNetContract.Senses.SENSENUM, //
-						WordNetContract.Domains.DOMAIN, //
-						WordNetContract.Synsets.DEFINITION, //
-						WordNetContract.CasedWords.CASEDWORD, //
-						WordNetContract.Senses.TAGCOUNT, //
-						WordNetContract.Senses.LEXID, //
-						WordNetContract.Senses.SENSEKEY, //
-						WordNetContract.Words.WORDID, //
-						WordNetContract.Synsets.SYNSETID, //
-						WordNetContract.Senses.SENSEID, //
-				}, //
-				new int[]{ //
-						R.id.pos, //
-						R.id.sensenum, //
-						R.id.domain, //
-						R.id.definition, //
-						R.id.cased, //
-						R.id.tagcount, //
-						R.id.lexid, //
-						R.id.sensekey, //
-						R.id.wordid, //
-						R.id.synsetid, //
-						R.id.senseid, //
-				}, 0);
+        // position model
+        positionModel = ViewModelProvider(this)[PositionViewModel::class.java]
+        positionModel!!.positionLiveData.observe(getViewLifecycleOwner()) { position: Int ->
+            Log.d(TAG, "Observed position change $position")
+            getListView().setItemChecked(position, position != AdapterView.INVALID_POSITION)
+        }
+        positionModel!!.setPosition(AdapterView.INVALID_POSITION)
+    }
 
-		adapter.setViewBinder((view, cursor, columnIndex) -> {
+    // L O A D
 
-			String text = cursor.getString(columnIndex);
-			if (text == null)
-			{
-				view.setVisibility(View.GONE);
-				return false;
-			}
-			else
-			{
-				view.setVisibility(View.VISIBLE);
-			}
+    /**
+     * Load data from word
+     */
+    private fun senses() {
+        // load the contents
+        val sql = prepareSenses(word!!)
+        val uri = Uri.parse(makeUri(sql.providerUri!!))
+        dataModel!!.loadData(uri, sql) { cursor: Cursor -> wordIdFromWordPostProcess(cursor) }
+    }
 
-			if (view instanceof TextView)
-			{
-				((TextView) view).setText(text);
-				return true;
-			}
-			else if (view instanceof ImageView)
-			{
-				try
-				{
-					((ImageView) view).setImageResource(Integer.parseInt(text));
-					return true;
-				}
-				catch (@NonNull final NumberFormatException nfe)
-				{
-					((ImageView) view).setImageURI(Uri.parse(text));
-					return true;
-				}
-			}
-			else
-			{
-				throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter");
-			}
-		});
-		return adapter;
-	}
+    /**
+     * Post processing, extraction of wordid from cursor
+     *
+     * @param cursor cursor
+     */
+    private fun wordIdFromWordPostProcess(cursor: Cursor) {
+        if (cursor.moveToFirst()) {
+            val idWordId = cursor.getColumnIndex(WordNetContract.Words.WORDID)
+            wordId = cursor.getLong(idWordId)
+        }
+    }
 
-	// V I E W M O D E L S
+    // L I S T E N E R
 
-	/**
-	 * Make view models
-	 */
-	private void makeModels()
-	{
-		// data model
-		this.dataModel = new ViewModelProvider(this).get("wn.senses(word)", SqlunetViewModel.class);
-		this.dataModel.getData().observe(getViewLifecycleOwner(), cursor -> {
+    /**
+     * Set listener
+     *
+     * @param listener listener
+     */
+    fun setListener(listener: Listener?) {
+        this.listener = listener
+    }
+    // C L I C K
+    /**
+     * Turns on activate-on-click mode. When this mode is on, list items will be given the 'activated' state when touched.
+     *
+     * @param activateOnItemClick true if activate
+     */
+    fun setActivateOnItemClick(activateOnItemClick: Boolean) {
+        this.activateOnItemClick = activateOnItemClick
+    }
 
-			// pass on to list adapter
-			final CursorAdapter adapter = (CursorAdapter) getListAdapter();
-			assert adapter != null;
-			adapter.changeCursor(cursor);
-		});
+    override fun onListItemClick(listView: ListView, view: View, position: Int, id: Long) {
+        super.onListItemClick(listView, view, position, id)
+        activate(position)
+    }
 
-		// position model
-		this.positionModel = new ViewModelProvider(this).get(PositionViewModel.class);
-		this.positionModel.getPositionLiveData().observe(getViewLifecycleOwner(), (position) -> {
+    /**
+     * Activate item at position
+     *
+     * @param position position
+     */
+    private fun activate(position: Int) {
+        positionModel!!.setPosition(position)
+        if (listener != null) {
+            val adapter = (listAdapter as SimpleCursorAdapter?)!!
+            val cursor = adapter.cursor!!
+            if (cursor.moveToPosition(position)) {
+                // column indexes
+                val idSynsetId = cursor.getColumnIndex(WordNetContract.Synsets.SYNSETID)
+                val idPos = cursor.getColumnIndex(WordNetContract.Poses.POS)
+                val idCased = cursor.getColumnIndex(WordNetContract.CasedWords.CASEDWORD)
 
-			Log.d(TAG, "Observed position change " + position);
-			getListView().setItemChecked(position, position != AdapterView.INVALID_POSITION);
-		});
-		this.positionModel.setPosition(AdapterView.INVALID_POSITION);
-	}
+                // retrieve
+                val synsetId = if (cursor.isNull(idSynsetId)) 0 else cursor.getLong(idSynsetId)
+                val pos = cursor.getString(idPos)
+                val cased = cursor.getString(idCased)
 
-	// L O A D
+                // pointer
+                val pointer = SensePointer(synsetId, wordId)
 
-	/**
-	 * Load data from word
-	 */
-	private void senses()
-	{
-		// load the contents
-		final Module.ContentProviderSql sql = Queries.prepareSenses(word);
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
-		this.dataModel.loadData(uri, sql, this::wordIdFromWordPostProcess);
-	}
+                // notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
+                listener!!.onItemSelected(pointer, word, cased, pos)
+            }
+        }
+    }
 
-	/**
-	 * Post processing, extraction of wordid from cursor
-	 *
-	 * @param cursor cursor
-	 */
-	private void wordIdFromWordPostProcess(@NonNull final Cursor cursor)
-	{
-		if (cursor.moveToFirst())
-		{
-			final int idWordId = cursor.getColumnIndex(WordNetContract.Words.WORDID);
-			this.wordId = cursor.getLong(idWordId);
-		}
-	}
-
-	// L I S T E N E R
-
-	/**
-	 * Set listener
-	 *
-	 * @param listener listener
-	 */
-	@SuppressWarnings("WeakerAccess")
-	public void setListener(final Listener listener)
-	{
-		this.listener = listener;
-	}
-
-	// C L I C K
-
-	/**
-	 * Turns on activate-on-click mode. When this mode is on, list items will be given the 'activated' state when touched.
-	 *
-	 * @param activateOnItemClick true if activate
-	 */
-	@SuppressWarnings("WeakerAccess")
-	public void setActivateOnItemClick(@SuppressWarnings("SameParameterValue") final boolean activateOnItemClick)
-	{
-		this.activateOnItemClick = activateOnItemClick;
-	}
-
-	@Override
-	public void onListItemClick(@NonNull final ListView listView, @NonNull final View view, final int position, final long id)
-	{
-		super.onListItemClick(listView, view, position, id);
-		activate(position);
-	}
-
-	/**
-	 * Activate item at position
-	 *
-	 * @param position position
-	 */
-	private void activate(int position)
-	{
-		this.positionModel.setPosition(position);
-
-		if (this.listener != null)
-		{
-			final SimpleCursorAdapter adapter = (SimpleCursorAdapter) getListAdapter();
-			assert adapter != null;
-			final Cursor cursor = adapter.getCursor();
-			assert cursor != null;
-			if (cursor.moveToPosition(position))
-			{
-				// column indexes
-				final int idSynsetId = cursor.getColumnIndex(WordNetContract.Synsets.SYNSETID);
-				final int idPos = cursor.getColumnIndex(WordNetContract.Poses.POS);
-				final int idCased = cursor.getColumnIndex(WordNetContract.CasedWords.CASEDWORD);
-
-				// retrieve
-				final long synsetId = cursor.isNull(idSynsetId) ? 0 : cursor.getLong(idSynsetId);
-				final String pos = cursor.getString(idPos);
-				final String cased = cursor.getString(idCased);
-
-				// pointer
-				final SensePointer pointer = new SensePointer(synsetId, this.wordId);
-
-				// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
-				this.listener.onItemSelected(pointer, this.word, cased, pos);
-			}
-		}
-	}
+    companion object {
+        private const val TAG = "SensesF"
+    }
 }

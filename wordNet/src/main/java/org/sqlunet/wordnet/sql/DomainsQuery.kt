@@ -1,68 +1,42 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.wordnet.sql
 
-package org.sqlunet.wordnet.sql;
-
-import android.database.sqlite.SQLiteDatabase;
-
-import org.sqlunet.sql.DBQuery;
+import android.database.sqlite.SQLiteDatabase
+import org.sqlunet.sql.DBQuery
 
 /**
  * Query for domain enumeration
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param connection connection
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class DomainsQuery extends DBQuery
-{
-	/**
-	 * <code>QUERY</code> is the SQL statement
-	 */
-	static private final String QUERY = SqLiteDialect.DomainsQuery; // ;
+internal class DomainsQuery(connection: SQLiteDatabase) : DBQuery(connection, QUERY) {
 
-	/**
-	 * Constructor
-	 *
-	 * @param connection connection
-	 */
-	public DomainsQuery(final SQLiteDatabase connection)
-	{
-		super(connection, DomainsQuery.QUERY);
-	}
+    /**
+     * Domain id value from the result set
+     */
+    val id: Int
+        get() = cursor!!.getInt(0)
 
-	/**
-	 * Get the domain id from the result set
-	 *
-	 * @return the domain id value from the result set
-	 */
-	public int getId()
-	{
-		assert this.cursor != null;
-		return this.cursor.getInt(0);
-	}
+    /**
+     * Domain name (with pos prefix) from the result set
+     */
+    val posDomainName: String
+        get() = cursor!!.getString(1)
 
-	/**
-	 * Get the domain name (with pos prefix) from the result set
-	 *
-	 * @return the domain name (with pos prefix) from the result set
-	 */
-	public String getPosDomainName()
-	{
-		assert this.cursor != null;
-		return this.cursor.getString(1);
-	}
+    /**
+     * Part-of-speech value from the result set (in the range n,v,a,r)
+     */
+    val pos: Int
+        get() = cursor!!.getString(2)?.get(0)?.code ?: 0
 
-	/**
-	 * Get the part-of-speech code value from the result set
-	 *
-	 * @return the part-of-speech value from the result set (in the range n,v,a,r)
-	 */
-	public int getPos()
-	{
-		assert this.cursor != null;
-		String posStr = this.cursor.getString(2);
-		if (posStr != null)
-			return posStr.charAt(0);
-		return 0;
-	}
+    companion object {
+        /**
+         * `QUERY` is the SQL statement
+         */
+        private const val QUERY = SqLiteDialect.DomainsQuery
+    }
 }

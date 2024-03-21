@@ -1,130 +1,100 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.wordnet.loaders
 
-package org.sqlunet.wordnet.loaders;
-
-import android.os.Parcelable;
-
-import org.sqlunet.HasPos;
-import org.sqlunet.HasSynsetId;
-import org.sqlunet.browser.TreeFragment;
-import org.sqlunet.model.TreeFactory;
-import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.wordnet.R;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.os.Parcelable
+import org.sqlunet.HasPos
+import org.sqlunet.HasSynsetId
+import org.sqlunet.browser.TreeFragment
+import org.sqlunet.model.TreeFactory.makeHotQueryNode
+import org.sqlunet.model.TreeFactory.makeIconTextNode
+import org.sqlunet.model.TreeFactory.makeQueryNode
+import org.sqlunet.model.TreeFactory.makeTextNode
+import org.sqlunet.model.TreeFactory.setNoResult
+import org.sqlunet.treeview.model.TreeNode
+import org.sqlunet.wordnet.R
 
 /**
  * Module for WordNet relation
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param fragment fragment
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
+class RelationModule(fragment: TreeFragment) : BaseModule(fragment) {
+    /**
+     * Synset id
+     */
+    var synsetId: Long? = null
 
-public class RelationModule extends BaseModule
-{
-	/**
-	 * Synset id
-	 */
-	@Nullable
-	Long synsetId;
+    /**
+     * Pos
+     */
+    var pos: Character? = null
 
-	/**
-	 * Pos
-	 */
-	@Nullable
-	Character pos;
+    /**
+     * Expand flag
+     */
+    var expand = true
 
-	/**
-	 * Expand flag
-	 */
-	boolean expand;
+    /**
+     * Set expandContainer
+     *
+     * @param expand expandContainer flag
+     */
+    fun setExpand(expand: Boolean) {
+        this.expand = expand
+    }
 
-	/**
-	 * Constructor
-	 *
-	 * @param fragment fragment
-	 */
-	public RelationModule(@NonNull final TreeFragment fragment)
-	{
-		super(fragment);
-		this.expand = true;
-	}
+    override fun unmarshal(pointer: Parcelable) {
+        synsetId = null
+        pos = null
+        if (pointer is HasSynsetId) {
+            val synsetPointer = pointer as HasSynsetId
+            val value = synsetPointer.getSynsetId()
+            if (value != 0L) {
+                synsetId = value
+            }
+        }
+        if (pointer is HasPos) {
+            val posPointer = pointer as HasPos
+            pos = posPointer.getPos()
+        }
+    }
 
-	/**
-	 * Set expandContainer
-	 *
-	 * @param expand expandContainer flag
-	 */
-	public void setExpand(final boolean expand)
-	{
-		this.expand = expand;
-	}
+    override fun process(node: TreeNode) {
+        if (synsetId != null && synsetId != 0L) {
+            // anchor nodes
+            val synsetNode = makeTextNode(senseLabel, false).addTo(node)
+            val membersNode = makeIconTextNode(membersLabel, R.drawable.members, false).addTo(node)
 
-	@SuppressWarnings("WeakerAccess")
-	@Override
-	protected void unmarshal(final Parcelable pointer)
-	{
-		this.synsetId = null;
-		this.pos = null;
-		if (pointer instanceof HasSynsetId)
-		{
-			final HasSynsetId synsetPointer = (HasSynsetId) pointer;
-			long value = synsetPointer.getSynsetId();
-			if (value != 0)
-			{
-				this.synsetId = value;
-			}
-		}
-		if (pointer instanceof HasPos)
-		{
-			final HasPos posPointer = (HasPos) pointer;
-			this.pos = posPointer.getPos();
-		}
-	}
+            // synset
+            synset(synsetId!!, synsetNode, false)
 
-	private static final int HYPERNYM = 1;
-	private static final int HYPONYM = 2;
+            // members
+            // members(this.synsetId, membersNode);
+            memberSet(synsetId!!, membersNode, concatQuery = true, addNewNode = false)
 
-	@Override
-	public void process(@NonNull final TreeNode parent)
-	{
-		if (this.synsetId != null && this.synsetId != 0)
-		{
-			// anchor nodes
-			final TreeNode synsetNode = TreeFactory.makeTextNode(this.senseLabel, false).addTo(parent);
-			final TreeNode membersNode = TreeFactory.makeIconTextNode(this.membersLabel, R.drawable.members, false).addTo(parent);
+            // up relations
+            if (expand) {
+                makeHotQueryNode(upLabel, R.drawable.up, false, SubRelationsQuery(synsetId!!, HYPERNYM, maxRecursion, true)).addTo(node)
+            } else {
+                makeQueryNode(upLabel, R.drawable.up, false, SubRelationsQuery(synsetId!!, HYPERNYM, maxRecursion, false)).addTo(node)
+            }
+            // down relations
+            if (expand) {
+                makeHotQueryNode(downLabel, R.drawable.down, false, SubRelationsQuery(synsetId!!, HYPONYM, maxRecursion, false)).addTo(node)
+            } else {
+                makeQueryNode(downLabel, R.drawable.down, false, SubRelationsQuery(synsetId!!, HYPONYM, maxRecursion, false)).addTo(node)
+            }
+        } else {
+            setNoResult(node)
+        }
+    }
 
-			// synset
-			synset(this.synsetId, synsetNode, false);
-
-			// members
-			// members(this.synsetId, membersNode);
-			memberSet(this.synsetId, membersNode, true, false);
-
-			// up relations
-			if (this.expand)
-			{
-				TreeFactory.makeHotQueryNode(this.upLabel, R.drawable.up, false, new SubRelationsQuery(this.synsetId, HYPERNYM, this.maxRecursion, true)).addTo(parent);
-			}
-			else
-			{
-				TreeFactory.makeQueryNode(this.upLabel, R.drawable.up, false, new SubRelationsQuery(this.synsetId, HYPERNYM, this.maxRecursion, false)).addTo(parent);
-			}
-			// down relations
-			if (this.expand)
-			{
-				TreeFactory.makeHotQueryNode(this.downLabel, R.drawable.down, false, new SubRelationsQuery(this.synsetId, HYPONYM, this.maxRecursion, false)).addTo(parent);
-			}
-			else
-			{
-				TreeFactory.makeQueryNode(this.downLabel, R.drawable.down, false, new SubRelationsQuery(this.synsetId, HYPONYM, this.maxRecursion, false)).addTo(parent);
-			}
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-		}
-	}
+    companion object {
+        private const val HYPERNYM = 1
+        private const val HYPONYM = 2
+    }
 }

@@ -1,59 +1,37 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
-
-package org.sqlunet.wordnet.sql;
-
-import androidx.annotation.NonNull;
+package org.sqlunet.wordnet.sql
 
 /**
  * Domain, utility class to encapsulate domain data
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param id     domain id
+ * @param posId  part-of-speech id
+ * @param name   domain name
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class Domain
-{
-	/**
-	 * <code>id</code> domain id
-	 */
-	public final int id;
+internal class Domain(
+    @JvmField val id: Int,
+    @JvmField val posId: Int,
+    name: String,
+) {
+    @JvmField
+    val domainName: String
 
-	/**
-	 * <code>pos</code> pos id
-	 */
-	public final int posId;
+    init {
+        domainName = getDomainName(name)
+    }
 
-	/**
-	 * <code>domainName</code> domain name
-	 */
-	@NonNull
-	public final String domainName;
-
-	/**
-	 * Constructor
-	 *
-	 * @param id   domain id
-	 * @param pos  part-of-speech id
-	 * @param name domain name
-	 */
-	public Domain(final int id, final int pos, @NonNull final String name)
-	{
-		super();
-		this.id = id;
-		this.posId = pos;
-		this.domainName = getDomainName(name);
-	}
-
-	/**
-	 * Get domain name
-	 *
-	 * @param string full domain name
-	 * @return the domain name
-	 */
-	@NonNull
-	private String getDomainName(@NonNull final String string)
-	{
-		final int index = string.indexOf('.');
-		return index == -1 ? string : string.substring(index + 1);
-	}
+    /**
+     * Get domain name
+     *
+     * @param string full domain name
+     * @return the domain name
+     */
+    private fun getDomainName(string: String): String {
+        val index = string.indexOf('.')
+        return if (index == -1) string else string.substring(index + 1)
+    }
 }

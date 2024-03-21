@@ -1,177 +1,140 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.wordnet.sql
 
-package org.sqlunet.wordnet.sql;
-
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.database.SQLException
+import android.database.sqlite.SQLiteDatabase
+import android.util.Log
 
 /**
  * Word
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class Word extends BasicWord
-{
-	static private final String TAG = "Word";
+class Word : BasicWord {
 
-	/**
-	 * Word
-	 *
-	 * @param word word string
-	 * @param id   database id
-	 */
-	public Word(final String word, final long id)
-	{
-		super(word, id);
-	}
+    /**
+     * Word
+     *
+     * @param word word string
+     * @param id   database id
+     */
+    constructor(word: String?, id: Long) : super(word!!, id)
 
-	/**
-	 * Constructor
-	 *
-	 * @param query database query
-	 */
-	private Word(@NonNull final WordQuery query)
-	{
-		super(query.getWord(), query.getId());
-	}
+    /**
+     * Constructor
+     *
+     * @param query database query
+     */
+    private constructor(query: WordQuery) : super(query.getWord(), query.getId().toLong())
 
-	/**
-	 * Constructor
-	 *
-	 * @param query database query
-	 */
-	private Word(@NonNull final WordQueryFromWord query)
-	{
-		super(query.getWord(), query.getId());
-	}
+    /**
+     * Constructor
+     *
+     * @param query database query
+     */
+    private constructor(query: WordQueryFromWord) : super(query.getWord(), query.getId().toLong())
 
-	/**
-	 * Make word
-	 *
-	 * @param connection connection
-	 * @param str        target string
-	 * @return Word or null
-	 */
-	@Nullable
-	static public Word make(final SQLiteDatabase connection, final String str)
-	{
-		try (WordQueryFromWord query = new WordQueryFromWord(connection, str))
-		{
-			query.execute();
+    /**
+     * Get synsets containing a given word
+     *
+     * @param connection connection
+     * @return list of synsets containing a given word
+     */
+    fun getSynsets(connection: SQLiteDatabase): List<Synset>? {
+        try {
+            SynsetsQueryFromWordId(connection, id).use { query ->
+                query.execute()
+                val synsets: MutableList<Synset> = ArrayList()
+                while (query.next()) {
+                    val synset = Synset(query)
+                    synsets.add(synset)
+                }
+                return synsets
+            }
+        } catch (e: SQLException) {
+            Log.e(TAG, "While querying synsets", e)
+            return null
+        }
+    }
 
-			if (query.next())
-			{
-				return new Word(query);
-			}
-			return null;
-		}
-		catch (@NonNull final SQLException e)
-		{
-			Log.e(TAG, "While querying word", e);
-			return null;
-		}
-	}
+    /**
+     * Get synsets containing a given word and of a given part-of-speech or domain id
+     *
+     * @param connection  connection
+     * @param targetType  target type to restrict search to
+     * @param domainBased is whether the query is domain based
+     * @return list of synsets for a given word
+     */
+    fun getTypedSynsets(connection: SQLiteDatabase, targetType: Int, domainBased: Boolean): List<Synset>? {
+        try {
+            SynsetsQueryFromWordIdAndCondition(connection, domainBased).use { query ->
+                query.setWordId(id)
+                if (domainBased) {
+                    query.setDomainType(targetType)
+                } else {
+                    query.setPosType(targetType)
+                }
+                query.execute()
+                val synsets: MutableList<Synset> = ArrayList()
+                while (query.next()) {
+                    val synset = Synset(query)
+                    synsets.add(synset)
+                }
+                return synsets
+            }
+        } catch (e: SQLException) {
+            Log.e(TAG, "While querying typed synsets", e)
+            return null
+        }
+    }
 
-	/**
-	 * Make word
-	 *
-	 * @param connection connection
-	 * @param wordId     target id
-	 * @return Word or null
-	 */
-	@Nullable
-	static public Word make(final SQLiteDatabase connection, final long wordId)
-	{
-		try (WordQuery query = new WordQuery(connection, wordId))
-		{
-			query.execute();
+    companion object {
+        private const val TAG = "Word"
 
-			if (query.next())
-			{
-				return new Word(query);
-			}
-			return null;
-		}
-		catch (@NonNull final SQLException e)
-		{
-			Log.e(TAG, "While querying word", e);
-			return null;
-		}
-	}
+        /**
+         * Make word
+         *
+         * @param connection connection
+         * @param str        target string
+         * @return Word or null
+         */
+        @JvmStatic
+        fun make(connection: SQLiteDatabase, str: String?): Word? {
+            try {
+                WordQueryFromWord(connection, str).use { query ->
+                    query.execute()
+                    return if (query.next()) {
+                        Word(query)
+                    } else null
+                }
+            } catch (e: SQLException) {
+                Log.e(TAG, "While querying word", e)
+                return null
+            }
+        }
 
-	/**
-	 * Get synsets containing a given word
-	 *
-	 * @param connection connection
-	 * @return list of synsets containing a given word
-	 */
-	@Nullable
-	public List<Synset> getSynsets(final SQLiteDatabase connection)
-	{
-		try (SynsetsQueryFromWordId query = new SynsetsQueryFromWordId(connection, this.id))
-		{
-			query.execute();
-
-			List<Synset> synsets = new ArrayList<>();
-			while (query.next())
-			{
-				final Synset synset = new Synset(query);
-				synsets.add(synset);
-			}
-			return synsets;
-		}
-		catch (@NonNull final SQLException e)
-		{
-			Log.e(TAG, "While querying synsets", e);
-			return null;
-		}
-	}
-
-	/**
-	 * Get synsets containing a given word and of a given part-of-speech or domain id
-	 *
-	 * @param connection  connection
-	 * @param targetType  target type to restrict search to
-	 * @param domainBased is whether the query is domain based
-	 * @return list of synsets for a given word
-	 */
-	@Nullable
-	public List<Synset> getTypedSynsets(final SQLiteDatabase connection, final int targetType, final boolean domainBased)
-	{
-		try (SynsetsQueryFromWordIdAndCondition query = new SynsetsQueryFromWordIdAndCondition(connection, domainBased))
-		{
-			query.setWordId(this.id);
-			if (domainBased)
-			{
-				query.setDomainType(targetType);
-			}
-			else
-			{
-				query.setPosType(targetType);
-			}
-			query.execute();
-
-			List<Synset> synsets = new ArrayList<>();
-			while (query.next())
-			{
-				final Synset synset = new Synset(query);
-				synsets.add(synset);
-			}
-			return synsets;
-		}
-		catch (@NonNull final SQLException e)
-		{
-			Log.e(TAG, "While querying typed synsets", e);
-			return null;
-		}
-	}
+        /**
+         * Make word
+         *
+         * @param connection connection
+         * @param wordId     target id
+         * @return Word or null
+         */
+        @JvmStatic
+        fun make(connection: SQLiteDatabase, wordId: Long): Word? {
+            try {
+                WordQuery(connection, wordId).use { query ->
+                    query.execute()
+                    return if (query.next()) {
+                        Word(query)
+                    } else null
+                }
+            } catch (e: SQLException) {
+                Log.e(TAG, "While querying word", e)
+                return null
+            }
+        }
+    }
 }

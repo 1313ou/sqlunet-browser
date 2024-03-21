@@ -1,23 +1,18 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.wordnet.browser
 
-package org.sqlunet.wordnet.browser;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import androidx.fragment.app.Fragment
 
 /**
  * Sense activity
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class SenseKeyActivity extends SynsetActivity
-{
-	@NonNull
-	@Override
-	protected Fragment makeFragment()
-	{
-		return new SenseKeyFragment();
-	}
+class SenseKeyActivity : SynsetActivity() {
+
+    override fun makeFragment(): Fragment {
+        return SenseKeyFragment()
+    }
 }

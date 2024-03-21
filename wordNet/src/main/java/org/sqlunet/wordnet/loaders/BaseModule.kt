@@ -1,2243 +1,1645 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.wordnet.loaders
 
-package org.sqlunet.wordnet.loaders;
-
-import android.content.Context;
-import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.text.SpannableStringBuilder;
-
-import org.sqlunet.browser.Module;
-import org.sqlunet.browser.SqlunetViewTreeModel;
-import org.sqlunet.browser.TreeFragment;
-import org.sqlunet.model.TreeFactory;
-import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.style.Spanner;
-import org.sqlunet.treeview.control.Link;
-import org.sqlunet.treeview.control.Query;
-import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.view.TreeOp;
-import org.sqlunet.view.TreeOp.TreeOps;
-import org.sqlunet.view.TreeOpExecute;
-import org.sqlunet.wordnet.R;
-import org.sqlunet.wordnet.SensePointer;
-import org.sqlunet.wordnet.SynsetPointer;
-import org.sqlunet.wordnet.WordPointer;
-import org.sqlunet.wordnet.browser.RelationActivity;
-import org.sqlunet.wordnet.browser.SynsetActivity;
-import org.sqlunet.wordnet.browser.WordActivity;
-import org.sqlunet.wordnet.provider.V;
-import org.sqlunet.wordnet.provider.WordNetContract.AnyRelations_Senses_Words_X;
-import org.sqlunet.wordnet.provider.WordNetContract.Domains;
-import org.sqlunet.wordnet.provider.WordNetContract.LexRelations_Senses_Words_X;
-import org.sqlunet.wordnet.provider.WordNetContract.Lexes_Morphs;
-import org.sqlunet.wordnet.provider.WordNetContract.Poses;
-import org.sqlunet.wordnet.provider.WordNetContract.Relations;
-import org.sqlunet.wordnet.provider.WordNetContract.Samples;
-import org.sqlunet.wordnet.provider.WordNetContract.SemRelations_Synsets_Words_X;
-import org.sqlunet.wordnet.provider.WordNetContract.Senses;
-import org.sqlunet.wordnet.provider.WordNetContract.Senses_AdjPositions;
-import org.sqlunet.wordnet.provider.WordNetContract.Senses_VerbFrames;
-import org.sqlunet.wordnet.provider.WordNetContract.Senses_VerbTemplates;
-import org.sqlunet.wordnet.provider.WordNetContract.Senses_Words;
-import org.sqlunet.wordnet.provider.WordNetContract.Synsets;
-import org.sqlunet.wordnet.provider.WordNetContract.Words;
-import org.sqlunet.wordnet.provider.WordNetContract.Words_Lexes_Morphs;
-import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains;
-import org.sqlunet.wordnet.provider.WordNetProvider;
-import org.sqlunet.wordnet.style.WordNetFactories;
-
-import java.util.Locale;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-
-import static org.sqlunet.view.TreeOp.TreeOpCode.DEADEND;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWCHILD;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWEXTRA;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWMAIN;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWTREE;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWUNIQUE;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NOOP;
-import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
-import static org.sqlunet.view.TreeOp.TreeOpCode.UPDATE;
+import android.content.Intent
+import android.database.Cursor
+import android.graphics.drawable.Drawable
+import android.net.Uri
+import android.os.Bundle
+import android.os.Parcelable
+import android.text.SpannableStringBuilder
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import org.sqlunet.browser.Module
+import org.sqlunet.browser.SqlunetViewTreeModel
+import org.sqlunet.browser.TreeFragment
+import org.sqlunet.model.TreeFactory.makeHotQueryNode
+import org.sqlunet.model.TreeFactory.makeLeafNode
+import org.sqlunet.model.TreeFactory.makeLinkHotQueryNode
+import org.sqlunet.model.TreeFactory.makeLinkLeafNode
+import org.sqlunet.model.TreeFactory.makeLinkNode
+import org.sqlunet.model.TreeFactory.makeLinkQueryNode
+import org.sqlunet.model.TreeFactory.makeMoreNode
+import org.sqlunet.model.TreeFactory.makeTextNode
+import org.sqlunet.model.TreeFactory.setNoResult
+import org.sqlunet.model.TreeFactory.setTextNode
+import org.sqlunet.provider.ProviderArgs
+import org.sqlunet.style.Spanner.Companion.append
+import org.sqlunet.style.Spanner.Companion.appendImage
+import org.sqlunet.style.Spanner.Companion.getDrawable
+import org.sqlunet.treeview.control.Link
+import org.sqlunet.treeview.control.Query
+import org.sqlunet.treeview.model.TreeNode
+import org.sqlunet.view.TreeOp
+import org.sqlunet.view.TreeOp.Companion.seq
+import org.sqlunet.view.TreeOp.TreeOpCode
+import org.sqlunet.view.TreeOp.TreeOps
+import org.sqlunet.view.TreeOpExecute
+import org.sqlunet.wordnet.R
+import org.sqlunet.wordnet.SensePointer
+import org.sqlunet.wordnet.SynsetPointer
+import org.sqlunet.wordnet.WordPointer
+import org.sqlunet.wordnet.browser.RelationActivity
+import org.sqlunet.wordnet.browser.SynsetActivity
+import org.sqlunet.wordnet.browser.WordActivity
+import org.sqlunet.wordnet.provider.V
+import org.sqlunet.wordnet.provider.WordNetContract
+import org.sqlunet.wordnet.provider.WordNetContract.AnyRelations_Senses_Words_X
+import org.sqlunet.wordnet.provider.WordNetContract.Domains
+import org.sqlunet.wordnet.provider.WordNetContract.LexRelations_Senses_Words_X
+import org.sqlunet.wordnet.provider.WordNetContract.Lexes_Morphs
+import org.sqlunet.wordnet.provider.WordNetContract.Poses
+import org.sqlunet.wordnet.provider.WordNetContract.Relations
+import org.sqlunet.wordnet.provider.WordNetContract.Samples
+import org.sqlunet.wordnet.provider.WordNetContract.SemRelations_Synsets_Words_X
+import org.sqlunet.wordnet.provider.WordNetContract.Senses
+import org.sqlunet.wordnet.provider.WordNetContract.Senses_AdjPositions
+import org.sqlunet.wordnet.provider.WordNetContract.Senses_VerbFrames
+import org.sqlunet.wordnet.provider.WordNetContract.Senses_VerbTemplates
+import org.sqlunet.wordnet.provider.WordNetContract.Senses_Words
+import org.sqlunet.wordnet.provider.WordNetContract.Synsets
+import org.sqlunet.wordnet.provider.WordNetContract.Words_Lexes_Morphs
+import org.sqlunet.wordnet.provider.WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains
+import org.sqlunet.wordnet.provider.WordNetProvider
+import org.sqlunet.wordnet.style.WordNetFactories
+import java.util.Locale
 
 /**
  * Base module for WordNet
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param fragment fragment
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-abstract public class BaseModule extends Module
-{
-	private static final char TARGET_MEMBER_CHAR = '*';
-
-	// Resources
-	protected final String wordLabel;
-	protected final String senseLabel;
-	protected final String synsetLabel;
-	protected final String sensesLabel;
-	protected final String membersLabel;
-	protected final String samplesLabel;
-	protected final String relationsLabel;
-	protected final String upLabel;
-	protected final String downLabel;
-	protected final String verbFramesLabel;
-	protected final String verbTemplatesLabel;
-	protected final String adjPositionsLabel;
-	protected final String morphsLabel;
-
-	@NonNull
-	private final Drawable synsetDrawable;
-
-	@NonNull
-	private final Drawable memberDrawable;
-
-	@NonNull
-	private final Drawable definitionDrawable;
-
-	@NonNull
-	private final Drawable sampleDrawable;
-
-	@NonNull
-	private final Drawable posDrawable;
-
-	@NonNull
-	private final Drawable domainDrawable;
-
-	@NonNull
-	private final Drawable verbframeDrawable;
-
-	@NonNull
-	private final Drawable morphDrawable;
-
-	/**
-	 * Whether to display semantic relation names
-	 */
-	private boolean displaySemRelationName = true;
-
-	/**
-	 * Whether to display lexical relation names
-	 */
-	private boolean displayLexRelationName = true;
-
-	/**
-	 * Max relation recursion
-	 */
-	protected int maxRecursion = Integer.MAX_VALUE;
-
-	// View models
-
-	private SqlunetViewTreeModel wordModel;
-
-	private SqlunetViewTreeModel sensesFromWordModel;
-
-	private SqlunetViewTreeModel sensesFromWordIdModel;
-
-	private SqlunetViewTreeModel senseFromSenseIdModel;
-
-	private SqlunetViewTreeModel senseFromSenseKeyModel;
-
-	private SqlunetViewTreeModel senseFromSynsetIdWordIdModel;
-
-	private SqlunetViewTreeModel synsetFromSynsetIdModel;
-
-	private SqlunetViewTreeModel membersFromSynsetIdModel;
-
-	private SqlunetViewTreeModel members2FromSynsetIdModel;
-
-	private SqlunetViewTreeModel samplesfromSynsetIdModel;
-
-	private SqlunetViewTreeModel relationsFromSynsetIdWordIdModel;
-
-	private SqlunetViewTreeModel semRelationsFromSynsetIdModel;
-
-	private SqlunetViewTreeModel semRelationsFromSynsetIdRelationIdModel;
-
-	private SqlunetViewTreeModel lexRelationsFromSynsetIdWordIdModel;
-
-	private SqlunetViewTreeModel lexRelationsFromSynsetIdModel;
-
-	private SqlunetViewTreeModel vFramesFromSynsetIdModel;
-
-	private SqlunetViewTreeModel vFramesFromSynsetIdWordIdModel;
-
-	private SqlunetViewTreeModel vTemplatesFromSynsetIdModel;
-
-	private SqlunetViewTreeModel vTemplatesFromSynsetIdWordIdModel;
-
-	private SqlunetViewTreeModel adjPositionFromSynsetIdModel;
-
-	private SqlunetViewTreeModel adjPositionFromSynsetIdWordIdModel;
-
-	private SqlunetViewTreeModel morphsFromWordIdModel;
-
-	/**
-	 * Constructor
-	 *
-	 * @param fragment fragment
-	 */
-	BaseModule(@NonNull final TreeFragment fragment)
-	{
-		super(fragment);
-
-		// models
-		makeModels();
-
-		// drawables
-		final Context context = BaseModule.this.fragment.requireContext();
-		this.wordLabel = context.getString(R.string.wordnet_word_);
-		this.senseLabel = context.getString(R.string.wordnet_sense_);
-		this.synsetLabel = context.getString(R.string.wordnet_synset_);
-		this.sensesLabel = context.getString(R.string.wordnet_senses_);
-		this.membersLabel = context.getString(R.string.wordnet_members_);
-		this.samplesLabel = context.getString(R.string.wordnet_samples_);
-		this.upLabel = context.getString(R.string.wordnet_up_);
-		this.relationsLabel = context.getString(R.string.wordnet_relations_);
-		this.downLabel = context.getString(R.string.wordnet_down_);
-		this.verbFramesLabel = context.getString(R.string.wordnet_verbframes_);
-		this.verbTemplatesLabel = context.getString(R.string.wordnet_verbtemplates_);
-		this.adjPositionsLabel = context.getString(R.string.wordnet_adjpositions_);
-		this.morphsLabel = context.getString(R.string.wordnet_morphs_);
-
-		this.synsetDrawable = Spanner.getDrawable(context, R.drawable.synset);
-		this.memberDrawable = Spanner.getDrawable(context, R.drawable.synsetmember);
-		this.definitionDrawable = Spanner.getDrawable(context, R.drawable.definition);
-		this.sampleDrawable = Spanner.getDrawable(context, R.drawable.sample);
-		this.posDrawable = Spanner.getDrawable(context, R.drawable.pos);
-		this.domainDrawable = Spanner.getDrawable(context, R.drawable.domain);
-		this.verbframeDrawable = Spanner.getDrawable(context, R.drawable.verbframe);
-		this.morphDrawable = this.verbframeDrawable;
-	}
-
-	/**
-	 * Make view models
-	 */
-	private void makeModels()
-	{
-		this.wordModel = new ViewModelProvider(this.fragment).get("wn.word(wordid)", SqlunetViewTreeModel.class);
-		this.wordModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-
-		this.sensesFromWordModel = new ViewModelProvider(this.fragment).get("wn.senses(word)", SqlunetViewTreeModel.class);
-		this.sensesFromWordModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-
-		this.sensesFromWordIdModel = new ViewModelProvider(this.fragment).get("wn.senses(wordid)", SqlunetViewTreeModel.class);
-		this.sensesFromWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-
-		this.senseFromSenseIdModel = new ViewModelProvider(this.fragment).get("wn.sense(senseid)", SqlunetViewTreeModel.class);
-		this.senseFromSenseIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-
-		this.senseFromSenseKeyModel = new ViewModelProvider(this.fragment).get("wn.sense(sensekey)", SqlunetViewTreeModel.class);
-		this.senseFromSenseKeyModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-
-		this.senseFromSynsetIdWordIdModel = new ViewModelProvider(this.fragment).get("wn.sense(synsetid,wordid)", SqlunetViewTreeModel.class);
-		this.senseFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-
-		this.synsetFromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.synset(synsetid)", SqlunetViewTreeModel.class);
-		this.synsetFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-
-		this.membersFromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.members(synsetid)", SqlunetViewTreeModel.class);
-		this.membersFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-
-		this.members2FromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.memberSet(synsetid)", SqlunetViewTreeModel.class);
-		this.members2FromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-
-		this.samplesfromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.samples(synsetid)", SqlunetViewTreeModel.class);
-		this.samplesfromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-
-		this.relationsFromSynsetIdWordIdModel = new ViewModelProvider(this.fragment).get("wn.relations(synsetid,wordid)", SqlunetViewTreeModel.class);
-		this.relationsFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-
-		this.semRelationsFromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.semrelations(synsetid)", SqlunetViewTreeModel.class);
-		this.semRelationsFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-
-		this.semRelationsFromSynsetIdRelationIdModel = new ViewModelProvider(this.fragment).get("wn.semrelations(synsetid,relationid)", SqlunetViewTreeModel.class);
-		this.semRelationsFromSynsetIdRelationIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-
-		this.lexRelationsFromSynsetIdWordIdModel = new ViewModelProvider(this.fragment).get("wn.lexrelations(synsetid,wordid)", SqlunetViewTreeModel.class);
-		this.lexRelationsFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-
-		this.lexRelationsFromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.lexrelations(synsetid)", SqlunetViewTreeModel.class);
-		this.lexRelationsFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-
-		this.vFramesFromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.vframes(synsetid)", SqlunetViewTreeModel.class);
-		this.vFramesFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-
-		this.vFramesFromSynsetIdWordIdModel = new ViewModelProvider(this.fragment).get("wn.vframes(synsetid,wordid)", SqlunetViewTreeModel.class);
-		this.vFramesFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-
-		this.vTemplatesFromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.vtemplates(synsetid)", SqlunetViewTreeModel.class);
-		this.vTemplatesFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-
-		this.vTemplatesFromSynsetIdWordIdModel = new ViewModelProvider(this.fragment).get("wn.vtemplates(synsetid,wordid)", SqlunetViewTreeModel.class);
-		this.vTemplatesFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-
-		this.adjPositionFromSynsetIdModel = new ViewModelProvider(this.fragment).get("wn.adjposition(synsetid)", SqlunetViewTreeModel.class);
-		this.adjPositionFromSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-
-		this.adjPositionFromSynsetIdWordIdModel = new ViewModelProvider(this.fragment).get("wn.adjposition(synsetid,wordid)", SqlunetViewTreeModel.class);
-		this.adjPositionFromSynsetIdWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-
-		this.morphsFromWordIdModel = new ViewModelProvider(this.fragment).get("wn.morphs(wordid)", SqlunetViewTreeModel.class);
-		this.morphsFromWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-	}
-
-	/**
-	 * Set max recursion level
-	 *
-	 * @param maxRecursion max recursion level
-	 */
-	public void setMaxRecursionLevel(final int maxRecursion)
-	{
-		this.maxRecursion = maxRecursion == -1 ? Integer.MAX_VALUE : maxRecursion;
-	}
-
-	/**
-	 * Set display relation names
-	 *
-	 * @param displaySemRelationName display semantic relation name
-	 * @param displayLexRelationName display lexical relation name
-	 */
-	public void setDisplayRelationNames(final boolean displaySemRelationName, final boolean displayLexRelationName)
-	{
-		this.displaySemRelationName = displaySemRelationName;
-		this.displayLexRelationName = displayLexRelationName;
-	}
-
-	// W O R D
-
-	/**
-	 * Word
-	 *
-	 * @param wordId     word id
-	 * @param parent     tree parent node
-	 * @param addNewNode whether to addItem to (or set) node
-	 */
-	void word(final long wordId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
-	{
-		// load the contents
-		final ContentProviderSql sql = Queries.prepareWord(wordId);
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
-		this.wordModel.loadData(uri, sql, cursor -> wordCursorToTreeModel(cursor, parent, addNewNode));
-	}
-
-	@NonNull
-	private TreeOp[] wordCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
-	{
-		if (cursor.getCount() > 1)
-		{
-			throw new RuntimeException("Unexpected number of rows");
-		}
-
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			final SpannableStringBuilder sb = new SpannableStringBuilder();
-
-			// final int idWordId = cursor.getColumnIndex(Words.WORDID);
-			final int idWord = cursor.getColumnIndex(Words_Lexes_Morphs.WORD);
-			final int idMorphs = cursor.getColumnIndex(Words_Lexes_Morphs.MORPHS);
-			final String word = cursor.getString(idWord);
-			final String morphs = cursor.getString(idMorphs);
-
-			Spanner.appendImage(sb, BaseModule.this.memberDrawable);
-			sb.append(' ');
-			Spanner.append(sb, word, 0, WordNetFactories.wordFactory);
-
-			if (morphs != null && !morphs.isEmpty())
-			{
-				sb.append(' ');
-				Spanner.append(sb, morphs, 0, WordNetFactories.dataFactory);
-			}
-
-			// result
-			if (addNewNode)
-			{
-				final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-				changed = TreeOp.seq(NEWUNIQUE, node);
-			}
-			else
-			{
-				TreeFactory.setTextNode(parent, sb, R.drawable.member);
-				changed = TreeOp.seq(UPDATE, parent);
-			}
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(REMOVE, parent);
-		}
-
-		cursor.close();
-		return changed;
-	}
-
-	// S E N S E
-
-	/**
-	 * Senses from word
-	 *
-	 * @param word   word
-	 * @param parent tree parent node
-	 */
-	protected void senses(final String word, @NonNull final TreeNode parent)
-	{
-		// load the contents
-		final ContentProviderSql sql = Queries.prepareSenses(word);
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
-		this.sensesFromWordModel.loadData(uri, sql, cursor -> sensesCursorToTreeModel(cursor, parent));
-	}
-
-	/**
-	 * Senses from word id
-	 *
-	 * @param wordId word id
-	 * @param parent tree parent node
-	 */
-	void senses(final long wordId, @NonNull final TreeNode parent)
-	{
-		// load the contents
-		final ContentProviderSql sql = Queries.prepareSenses(wordId);
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
-		this.sensesFromWordIdModel.loadData(uri, sql, cursor -> sensesCursorToTreeModel(cursor, parent));
-	}
-
-	@NonNull
-	private TreeOp[] sensesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
-	{
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			final TreeOps changedList = new TreeOps(NEWTREE, parent);
-
-			final int idWordId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID);
-			final int idSynsetId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID);
-			final int idPosName = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.POS);
-			final int idDomain = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN);
-			final int idDefinition = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION);
-			final int idTagCount = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT);
-			final int idCased = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD);
-
-			do
-			{
-				final long wordId = cursor.getLong(idWordId);
-				final long synsetId = cursor.getLong(idSynsetId);
-				final String posName = cursor.getString(idPosName);
-				final String domain = cursor.getString(idDomain);
-				final String definition = cursor.getString(idDefinition);
-				final String cased = cursor.getString(idCased);
-				final int tagCount = cursor.getInt(idTagCount);
-
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-				sense(sb, synsetId, posName, domain, definition, tagCount, cased);
-
-				// result
-				final TreeNode synsetNode = TreeFactory.makeLinkNode(sb, R.drawable.synset, false, new SenseLink(synsetId, wordId, this.maxRecursion, this.fragment)).addTo(parent);
-				changedList.add(NEWCHILD, synsetNode);
-			}
-			while (cursor.moveToNext());
-			changed = changedList.toArray();
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(REMOVE, parent);
-		}
-
-		cursor.close();
-		return changed;
-	}
-
-	/**
-	 * Sense
-	 *
-	 * @param senseId sense id
-	 * @param parent  parent node
-	 */
-	public void sense(final long senseId, @NonNull final TreeNode parent)
-	{
-		// load the contents
-		final ContentProviderSql sql = Queries.prepareSense(senseId);
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
-		this.senseFromSenseIdModel.loadData(uri, sql, cursor -> senseFromSenseIdCursorToTreeModel(cursor, parent));
-	}
-
-	@NonNull
-	private TreeOp[] senseFromSenseIdCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
-	{
-		if (cursor.getCount() > 1)
-		{
-			throw new RuntimeException("Unexpected number of rows");
-		}
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			final int idWordId = cursor.getColumnIndex(Poses.POS);
-			final int idSynsetId = cursor.getColumnIndex(Synsets.DEFINITION);
-			final long wordId = cursor.getLong(idWordId);
-			final long synsetId = cursor.getLong(idSynsetId);
-
-			sense(synsetId, wordId, parent);
-			changed = TreeOp.seq(NOOP, parent);
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(REMOVE, parent);
-		}
-
-		cursor.close();
-		return changed;
-	}
-
-	/**
-	 * Sense
-	 *
-	 * @param senseKey sense key
-	 * @param parent   parent node
-	 */
-	void sense(final String senseKey, @NonNull final TreeNode parent)
-	{
-		// load the contents
-		final ContentProviderSql sql = Queries.prepareSense(senseKey);
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
-		this.senseFromSenseKeyModel.loadData(uri, sql, cursor -> senseFromSenseKeyCursorToTreeModel(cursor, parent));
-	}
-
-	@NonNull
-	private TreeOp[] senseFromSenseKeyCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
-	{
-		if (cursor.getCount() > 1)
-		{
-			throw new RuntimeException("Unexpected number of rows");
-		}
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			final int idWordId = cursor.getColumnIndex(Senses.WORDID);
-			final int idSynsetId = cursor.getColumnIndex(Senses.SYNSETID);
-			final long wordId = cursor.getLong(idWordId);
-			final long synsetId = cursor.getLong(idSynsetId);
-
-			// sub nodes
-			final TreeNode wordNode = TreeFactory.makeTextNode(wordLabel, false).addTo(parent);
-
-			// word
-			word(wordId, wordNode, false);
-			sense(synsetId, wordId, wordNode);
-
-			changed = TreeOp.seq(NOOP, parent, NEWUNIQUE, wordNode);
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(REMOVE, parent);
-		}
-
-		cursor.close();
-		return changed;
-	}
-
-	/**
-	 * Sense
-	 *
-	 * @param synsetId synset id
-	 * @param wordId   word id
-	 * @param parent   parent node
-	 */
-	private void sense(final long synsetId, final long wordId, @NonNull final TreeNode parent)
-	{
-		// load the contents
-		final ContentProviderSql sql = Queries.prepareSense(synsetId, wordId);
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
-		this.senseFromSynsetIdWordIdModel.loadData(uri, sql, cursor -> senseFromSynsetIdWordIdCursorToTreeModel(cursor, synsetId, wordId, parent));
-	}
-
-	@NonNull
-	private TreeOp[] senseFromSynsetIdWordIdCursorToTreeModel(@NonNull final Cursor cursor, final long synsetId, final long wordId, @NonNull final TreeNode parent)
-	{
-		if (cursor.getCount() > 1)
-		{
-			throw new RuntimeException("Unexpected number of rows");
-		}
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			final SpannableStringBuilder sb = new SpannableStringBuilder();
-			final int idPosName = cursor.getColumnIndex(Poses.POS);
-			final int idDomain = cursor.getColumnIndex(Domains.DOMAIN);
-			final int idDefinition = cursor.getColumnIndex(Synsets.DEFINITION);
-			final String posName = cursor.getString(idPosName);
-			final String domain = cursor.getString(idDomain);
-			final String definition = cursor.getString(idDefinition);
-
-			Spanner.appendImage(sb, BaseModule.this.synsetDrawable);
-			sb.append(' ');
-			synset(sb, synsetId, posName, domain, definition);
-
-			// attach result
-			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-
-			// subnodes
-			final TreeNode relationsNode = TreeFactory.makeHotQueryNode(relationsLabel, R.drawable.ic_relations, false, new RelationsQuery(synsetId, wordId)).addTo(parent);
-			final TreeNode samplesNode = TreeFactory.makeHotQueryNode(samplesLabel, R.drawable.sample, false, new SamplesQuery(synsetId)).addTo(parent);
-
-			changed = TreeOp.seq(NEWMAIN, node, NEWEXTRA, relationsNode, NEWEXTRA, samplesNode, NEWTREE, parent);
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(REMOVE, parent);
-		}
-
-		cursor.close();
-		return changed;
-	}
-
-	/**
-	 * Sense to string builder
-	 *
-	 * @param sb         string builder
-	 * @param synsetId   synset id
-	 * @param posName    pos
-	 * @param domain     domain
-	 * @param definition definition
-	 * @param tagCount   tag count
-	 * @param cased      cased
-	 * @return string builder
-	 */
-	@NonNull
-	@SuppressWarnings("UnusedReturnValue")
-	private SpannableStringBuilder sense(@NonNull final SpannableStringBuilder sb, final long synsetId, final CharSequence posName, final CharSequence domain, final CharSequence definition, final int tagCount, @Nullable final CharSequence cased)
-	{
-		synsetHead(sb, synsetId, posName, domain);
-
-		if (cased != null && cased.length() > 0)
-		{
-			Spanner.appendImage(sb, BaseModule.this.memberDrawable);
-			sb.append(' ');
-			Spanner.append(sb, cased, 0, WordNetFactories.wordFactory);
-			sb.append(' ');
-		}
-		if (tagCount > 0)
-		{
-			sb.append(' ');
-			Spanner.append(sb, "tagcount:" + tagCount, 0, WordNetFactories.dataFactory);
-		}
-
-		sb.append('\n');
-		synsetDefinition(sb, definition);
-
-		return sb;
-	}
-
-	// S Y N S E T
-
-	/**
-	 * Synset
-	 *
-	 * @param synsetId   synset id
-	 * @param parent     parent node
-	 * @param addNewNode whether to addItem to (or set) node
-	 */
-	void synset(final long synsetId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
-	{
-		final ContentProviderSql sql = Queries.prepareSynset(synsetId);
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
-		this.synsetFromSynsetIdModel.loadData(uri, sql, cursor -> synsetCursorToTreeModel(cursor, synsetId, parent, addNewNode));
-	}
-
-	@NonNull
-	private TreeOp[] synsetCursorToTreeModel(@NonNull final Cursor cursor, final long synsetId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
-	{
-		if (cursor.getCount() > 1)
-		{
-			throw new RuntimeException("Unexpected number of rows");
-		}
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			final SpannableStringBuilder sb = new SpannableStringBuilder();
-			final int idPosName = cursor.getColumnIndex(Poses.POS);
-			final int idDomain = cursor.getColumnIndex(Domains.DOMAIN);
-			final int idDefinition = cursor.getColumnIndex(Synsets.DEFINITION);
-			final String posName = cursor.getString(idPosName);
-			final String domain = cursor.getString(idDomain);
-			final String definition = cursor.getString(idDefinition);
-
-			Spanner.appendImage(sb, BaseModule.this.synsetDrawable);
-			sb.append(' ');
-			synset(sb, synsetId, posName, domain, definition);
-
-			// result
-			if (addNewNode)
-			{
-				final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-				changed = TreeOp.seq(NEWUNIQUE, node);
-			}
-			else
-			{
-				TreeFactory.setTextNode(parent, sb); //, R.drawable.synset);
-				changed = TreeOp.seq(UPDATE, parent);
-			}
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(addNewNode ? DEADEND : REMOVE, parent);
-		}
-
-		cursor.close();
-		return changed;
-	}
-
-	/**
-	 * Synset to string builder
-	 *
-	 * @param sb         string builder
-	 * @param synsetId   synset id
-	 * @param posName    pos
-	 * @param domain     domain
-	 * @param definition definition
-	 * @return string builder
-	 */
-	@NonNull
-	@SuppressWarnings("UnusedReturnValue")
-	private SpannableStringBuilder synset(@NonNull final SpannableStringBuilder sb, final long synsetId, final CharSequence posName, final CharSequence domain, final CharSequence definition)
-	{
-		synsetHead(sb, synsetId, posName, domain);
-		sb.append('\n');
-		synsetDefinition(sb, definition);
-		return sb;
-	}
-
-	/**
-	 * Synset head to string builder
-	 *
-	 * @param sb       string builder
-	 * @param synsetId synset id
-	 * @param posName  pos
-	 * @param domain   domain
-	 * @return string builder
-	 */
-	@NonNull
-	@SuppressWarnings("UnusedReturnValue")
-	private SpannableStringBuilder synsetHead(@NonNull final SpannableStringBuilder sb, final long synsetId, final CharSequence posName, final CharSequence domain)
-	{
-		Spanner.appendImage(sb, BaseModule.this.posDrawable);
-		sb.append(' ');
-		sb.append(posName);
-		sb.append(' ');
-		Spanner.appendImage(sb, BaseModule.this.domainDrawable);
-		sb.append(' ');
-		sb.append(domain);
-		sb.append(' ');
-		Spanner.append(sb, Long.toString(synsetId), 0, WordNetFactories.dataFactory);
-		return sb;
-	}
-
-	/**
-	 * Synset definition to string builder
-	 *
-	 * @param sb         string builder
-	 * @param definition definition
-	 * @return string builder
-	 */
-	@NonNull
-	@SuppressWarnings("UnusedReturnValue")
-	private SpannableStringBuilder synsetDefinition(@NonNull final SpannableStringBuilder sb, final CharSequence definition)
-	{
-		Spanner.appendImage(sb, BaseModule.this.definitionDrawable);
-		sb.append(' ');
-		Spanner.append(sb, definition, 0, WordNetFactories.definitionFactory);
-		return sb;
-	}
-
-	// M E M B E R S
-
-	/**
-	 * Members
-	 *
-	 * @param synsetId synset id
-	 * @param parent   parent node
-	 */
-	void members(final long synsetId, @NonNull final TreeNode parent)
-	{
-		final ContentProviderSql sql = Queries.prepareMembers(synsetId);
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
-		this.membersFromSynsetIdModel.loadData(uri, sql, cursor -> membersCursorToTreeModel(cursor, parent));
-	}
-
-	@NonNull
-	private TreeOp[] membersCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
-	{
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			final TreeOps changedList = new TreeOps(NEWTREE, parent);
-
-			final int idWordId = cursor.getColumnIndex(Senses_Words.WORDID);
-			final int idMember = cursor.getColumnIndex(Senses_Words.WORD);
-			// int i = 1;
-			do
-			{
-				final long wordId = cursor.getLong(idWordId);
-				final String member = cursor.getString(idMember);
-
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-				Spanner.append(sb, member, 0, WordNetFactories.membersFactory);
-
-				// result
-				final TreeNode memberNode = TreeFactory.makeLinkNode(sb, R.drawable.member, false, new WordLink(this.fragment, wordId)).addTo(parent);
-				changedList.add(NEWCHILD, memberNode);
-			}
-			while (cursor.moveToNext());
-			changed = changedList.toArray();
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(REMOVE, parent);
-		}
-
-		cursor.close();
-		return changed;
-	}
-
-	/**
-	 * Members as one set in one node
-	 *
-	 * @param synsetId    synset id
-	 * @param parent      parent node
-	 * @param concatQuery whether query returns members concat and not distinct rows
-	 * @param addNewNode  whether to addItem to (or set) node
-	 * @noinspection SameParameterValue
-	 */
-	void memberSet(final long synsetId, @NonNull final TreeNode parent, final boolean concatQuery, final boolean addNewNode)
-	{
-		final ContentProviderSql sql = Queries.prepareMembers2(synsetId, concatQuery);
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
-		this.members2FromSynsetIdModel.loadData(uri, sql, cursor -> memberSetCursorToTreeModel(cursor, parent, concatQuery, addNewNode));
-	}
-
-	@NonNull
-	private TreeOp[] memberSetCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean concatQuery, final boolean addNewNode)
-	{
-		if (concatQuery)
-		{
-			if (cursor.getCount() > 1)
-			{
-				throw new RuntimeException("Unexpected number of rows");
-			}
-		}
-
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			final SpannableStringBuilder sb = new SpannableStringBuilder();
-			if (concatQuery)
-			{
-				final int idMembers = cursor.getColumnIndex(Senses_Words.MEMBERS);
-				sb.append('{');
-				Spanner.append(sb, cursor.getString(idMembers), 0, WordNetFactories.membersFactory);
-				sb.append('}');
-			}
-			else
-			{
-				final int wordId = cursor.getColumnIndex(Words.WORD);
-				do
-				{
-					final String word = cursor.getString(wordId);
-					if (sb.length() != 0)
-					{
-						sb.append('\n');
-					}
-					//Spanner.appendImage(sb, BaseModule.this.memberDrawable);
-					//sb.append(' ');
-					Spanner.append(sb, word, 0, WordNetFactories.membersFactory);
-				}
-				while (cursor.moveToNext());
-			}
-
-			// result
-			if (addNewNode)
-			{
-				final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-				changed = TreeOp.seq(NEWUNIQUE, node);
-			}
-			else
-			{
-				TreeFactory.setTextNode(parent, sb, R.drawable.members);
-				changed = TreeOp.seq(UPDATE, parent);
-			}
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(addNewNode ? DEADEND : REMOVE, parent);
-		}
-
-		cursor.close();
-		return changed;
-	}
-
-	// S A M P L E S
-
-	/**
-	 * Samples
-	 *
-	 * @param synsetId   synset id
-	 * @param parent     parent node
-	 * @param addNewNode whether to addItem to (or set) node
-	 */
-	private void samples(final long synsetId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
-	{
-		final ContentProviderSql sql = Queries.prepareSamples(synsetId);
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
-		this.samplesfromSynsetIdModel.loadData(uri, sql, cursor -> samplesCursorToTreeModel(cursor, parent, addNewNode));
-	}
-
-	@NonNull
-	private TreeOp[] samplesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean addNewNode)
-	{
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			final int idSample = cursor.getColumnIndex(Samples.SAMPLE);
-
-			final SpannableStringBuilder sb = new SpannableStringBuilder();
-			do
-			{
-				final String sample = cursor.getString(idSample);
-				// final int sampleId = cursor.getInt(idSampleId);
-				if (sb.length() != 0)
-				{
-					sb.append('\n');
-				}
-				Spanner.appendImage(sb, BaseModule.this.sampleDrawable);
-				sb.append(' ');
-				// sb.append(Integer.toString(sampleId));
-				// sb.append(' ');
-				Spanner.append(sb, sample, 0, WordNetFactories.sampleFactory);
-				// final String formattedSample = String.format(Locale.ENGLISH, "[%d] %s", sampleId, sample);
-				// sb.append(formattedSample);
-			}
-			while (cursor.moveToNext());
-
-			// result
-			if (addNewNode)
-			{
-				final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-				changed = TreeOp.seq(NEWUNIQUE, node);
-			}
-			else
-			{
-				TreeFactory.setTextNode(parent, sb, R.drawable.sample);
-				changed = TreeOp.seq(UPDATE, parent);
-			}
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(addNewNode ? DEADEND : REMOVE, parent);
-		}
-
-		cursor.close();
-		return changed;
-	}
-
-	// R E L A T I O N S
-
-	/**
-	 * Relations (union)
-	 *
-	 * @param synsetId                synset id
-	 * @param wordId                  word id
-	 * @param parent                  parent node
-	 * @param deadendParentIfNoResult mark parent node as deadend if there is no result
-	 */
-	private void relations(final long synsetId, final long wordId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean deadendParentIfNoResult)
-	{
-		final ContentProviderSql sql = Queries.prepareRelations(synsetId, wordId);
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
-		this.relationsFromSynsetIdWordIdModel.loadData(uri, sql, cursor -> relationsCursorToTreeModel(cursor, parent, deadendParentIfNoResult));
-	}
-
-	@NonNull
-	private TreeOp[] relationsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
-	{
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			final TreeOps changedList = new TreeOps(NEWTREE, parent);
-
-			final int idRelationId = cursor.getColumnIndex(Relations.RELATIONID);
-			final int idRelation = cursor.getColumnIndex(Relations.RELATION);
-			final int idTargetSynsetId = cursor.getColumnIndex(V.SYNSET2ID);
-			final int idTargetDefinition = cursor.getColumnIndex(V.DEFINITION2);
-			final int idTargetMembers = cursor.getColumnIndex(AnyRelations_Senses_Words_X.MEMBERS2);
-			final int idRecurses = cursor.getColumnIndex(AnyRelations_Senses_Words_X.RECURSES);
-			final int idTargetWordId = cursor.getColumnIndex(V.WORD2ID);
-			final int idTargetWord = cursor.getColumnIndex(V.WORD2);
-
-			do
-			{
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-
-				final int relationId = cursor.getInt(idRelationId);
-				final String relation = cursor.getString(idRelation);
-
-				final long targetSynsetId = cursor.getLong(idTargetSynsetId);
-				final String targetDefinition = cursor.getString(idTargetDefinition);
-				String targetMembers = cursor.getString(idTargetMembers);
-				final boolean relationCanRecurse = !cursor.isNull(idRecurses) && cursor.getInt(idRecurses) != 0;
-				final String targetWord = cursor.isNull(idTargetWord) ? null : cursor.getString(idTargetWord);
-				final Long targetWordId = cursor.isNull(idTargetWordId) ? null : cursor.getLong(idTargetWordId);
-
-				if (targetWordId == null && displaySemRelationName || targetWordId != null && displayLexRelationName)
-				{
-					Spanner.append(sb, relation, 0, WordNetFactories.relationFactory);
-					sb.append(' ');
-				}
-				if (targetWord != null)
-				{
-					targetMembers = targetMembers.replaceAll("\\b" + targetWord + "\\b", targetWord + TARGET_MEMBER_CHAR);
-				}
-				Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
-				sb.append(' ');
-				Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
-
-				// recursion
-				if (relationCanRecurse)
-				{
-					final TreeNode relationsNode = TreeFactory.makeLinkQueryNode(sb, getRelationRes(relationId), false, new SubRelationsQuery(targetSynsetId, relationId, BaseModule.this.maxRecursion), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion, this.fragment), 0).addTo(parent);
-					changedList.add(NEWCHILD, relationsNode);
-				}
-				else
-				{
-					final TreeNode node = TreeFactory.makeLinkLeafNode(sb, getRelationRes(relationId), false, targetWordId == null ?
-							new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion, this.fragment) :
-							new SenseLink(targetSynsetId, targetWordId, BaseModule.this.maxRecursion, this.fragment)).addTo(parent);
-					changedList.add(NEWCHILD, node);
-				}
-			}
-			while (cursor.moveToNext());
-			changed = changedList.toArray();
-		}
-		else
-		{
-			if (deadendParentIfNoResult)
-			{
-				TreeFactory.setNoResult(parent);
-				changed = TreeOp.seq(DEADEND, parent);
-			}
-			else
-			{
-				changed = TreeOp.seq(NOOP, parent);
-			}
-		}
-
-		cursor.close();
-		return changed;
-	}
-
-	// S E M R E L A T I O N S
-
-	/**
-	 * Semantic relations
-	 *
-	 * @param synsetId                synset id
-	 * @param parent                  parent node
-	 * @param deadendParentIfNoResult mark parent node as deadend if there is no result
-	 */
-	private void semRelations(final long synsetId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean deadendParentIfNoResult)
-	{
-		final ContentProviderSql sql = Queries.prepareSemRelations(synsetId);
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
-		this.semRelationsFromSynsetIdModel.loadData(uri, sql, cursor -> semRelationsCursorToTreeModel(cursor, parent, deadendParentIfNoResult));
-	}
-
-	@NonNull
-	private TreeOp[] semRelationsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
-	{
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			final TreeOps changedList = new TreeOps(NEWTREE, parent);
-
-			final int idRelationId = cursor.getColumnIndex(Relations.RELATIONID);
-			final int idRelation = cursor.getColumnIndex(Relations.RELATION);
-			final int idTargetSynsetId = cursor.getColumnIndex(V.SYNSET2ID);
-			final int idTargetDefinition = cursor.getColumnIndex(V.DEFINITION2);
-			final int idTargetMembers = cursor.getColumnIndex(SemRelations_Synsets_Words_X.MEMBERS2);
-			final int idRecurses = cursor.getColumnIndex(SemRelations_Synsets_Words_X.RECURSES);
-
-			do
-			{
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-
-				final int relationId = cursor.getInt(idRelationId);
-				final String relation = cursor.getString(idRelation);
-				final long targetSynsetId = cursor.getLong(idTargetSynsetId);
-				final String targetDefinition = cursor.getString(idTargetDefinition);
-				final String targetMembers = cursor.getString(idTargetMembers);
-				final boolean relationCanRecurse = cursor.getInt(idRecurses) != 0;
-
-				if (displaySemRelationName)
-				{
-					Spanner.append(sb, relation, 0, WordNetFactories.relationFactory);
-					sb.append(' ');
-				}
-				Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
-				sb.append(' ');
-				Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
-
-				// recursion
-				if (relationCanRecurse)
-				{
-					final TreeNode relationsNode = TreeFactory.makeLinkQueryNode(sb, getRelationRes(relationId), false, new SubRelationsQuery(targetSynsetId, relationId, BaseModule.this.maxRecursion), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion, this.fragment), 0).addTo(parent);
-					changedList.add(NEWCHILD, relationsNode);
-				}
-				else
-				{
-					final TreeNode node = TreeFactory.makeLeafNode(sb, getRelationRes(relationId), false).addTo(parent);
-					changedList.add(NEWCHILD, node);
-				}
-			}
-			while (cursor.moveToNext());
-			changed = changedList.toArray();
-		}
-		else
-		{
-			if (deadendParentIfNoResult)
-			{
-				TreeFactory.setNoResult(parent);
-				changed = TreeOp.seq(DEADEND, parent);
-			}
-			else
-			{
-				changed = TreeOp.seq(NOOP, parent);
-			}
-		}
-
-		cursor.close();
-		return changed;
-	}
-
-	/**
-	 * Semantic relations
-	 *
-	 * @param synsetId                synset id
-	 * @param relationId              relation id
-	 * @param recurseLevel            recurse level
-	 * @param hot                     whether query is executed immediately
-	 * @param parent                  parent node
-	 * @param deadendParentIfNoResult mark parent node as deadend if there is no result
-	 */
-	private void semRelations(final long synsetId, final int relationId, final int recurseLevel, final boolean hot, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean deadendParentIfNoResult)
-	{
-		final ContentProviderSql sql = Queries.prepareSemRelations(synsetId, relationId);
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
-		this.semRelationsFromSynsetIdRelationIdModel.loadData(uri, sql, cursor -> semRelationsFromSynsetIdRelationIdCursorToTreeModel(cursor, relationId, recurseLevel, hot, parent, deadendParentIfNoResult));
-	}
-
-	@NonNull
-	private TreeOp[] semRelationsFromSynsetIdRelationIdCursorToTreeModel(@NonNull final Cursor cursor, final int relationId, final int recurseLevel, final boolean hot, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
-	{
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			final TreeOps changedList = new TreeOps(NEWTREE, parent);
-
-			// final int idRelationId = cursor.getColumnIndex(Relations.RELATIONID);
-			// final int idRelation = cursor.getColumnIndex(Relations.RELATION);
-			final int idTargetSynsetId = cursor.getColumnIndex(V.SYNSET2ID);
-			final int idTargetDefinition = cursor.getColumnIndex(V.DEFINITION2);
-			final int idTargetMembers = cursor.getColumnIndex(SemRelations_Synsets_Words_X.MEMBERS2);
-			final int idRecurses = cursor.getColumnIndex(SemRelations_Synsets_Words_X.RECURSES);
-
-			do
-			{
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-
-				// final int relationId = cursor.getInt(idRelationId);
-				// final String relation = cursor.getString(idRelation);
-				final long targetSynsetId = cursor.getLong(idTargetSynsetId);
-				final String targetDefinition = cursor.getString(idTargetDefinition);
-				final String targetMembers = cursor.getString(idTargetMembers);
-				final boolean relationCanRecurse = cursor.getInt(idRecurses) != 0;
-
-				Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
-				sb.append(' ');
-				Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
-
-				// recurse
-				if (relationCanRecurse)
-				{
-					if (recurseLevel > 1)
-					{
-						final int newRecurseLevel = recurseLevel - 1;
-						final TreeNode relationsNode = hot ?
-								TreeFactory.makeLinkHotQueryNode(sb, getRelationRes(relationId), false, new SubRelationsQuery(targetSynsetId, relationId, newRecurseLevel, true), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion, this.fragment), 0).addTo(parent) :
-								TreeFactory.makeLinkQueryNode(sb, getRelationRes(relationId), false, new SubRelationsQuery(targetSynsetId, relationId, newRecurseLevel), new SynsetLink(targetSynsetId, BaseModule.this.maxRecursion, this.fragment), 0).addTo(parent);
-						changedList.add(NEWCHILD, relationsNode);
-					}
-					else
-					{
-						final TreeNode moreNode = TreeFactory.makeMoreNode(sb, getRelationRes(relationId), false).addTo(parent);
-						changedList.add(NEWCHILD, moreNode);
-					}
-				}
-				else
-				{
-					final TreeNode node = TreeFactory.makeLeafNode(sb, getRelationRes(relationId), false).addTo(parent);
-					changedList.add(NEWCHILD, node);
-				}
-			}
-			while (cursor.moveToNext());
-			changed = changedList.toArray();
-		}
-		else
-		{
-			if (deadendParentIfNoResult)
-			{
-				TreeFactory.setNoResult(parent);
-				changed = TreeOp.seq(DEADEND, parent);
-			}
-			else
-			{
-				changed = TreeOp.seq(NOOP, parent);
-			}
-		}
-
-		cursor.close();
-		return changed;
-	}
-
-	// L E X R E L A T I O N S
-
-	/**
-	 * Lexical relations
-	 *
-	 * @param synsetId                synset id
-	 * @param parent                  parent
-	 * @param deadendParentIfNoResult mark parent node as deadend if there is no result
-	 */
-	void lexRelations(final long synsetId, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
-	{
-		final ContentProviderSql sql = Queries.prepareLexRelations(synsetId);
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
-		this.lexRelationsFromSynsetIdModel.loadData(uri, sql, cursor -> lexRelationsFromSynsetIdCursorToTreeModel(cursor, parent, deadendParentIfNoResult));
-	}
-
-	@NonNull
-	private TreeOp[] lexRelationsFromSynsetIdCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
-	{
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			final TreeOps changedList = new TreeOps(NEWTREE, parent);
-
-			final int idRelationId = cursor.getColumnIndex(Relations.RELATIONID);
-			final int idTargetDefinition = cursor.getColumnIndex(V.DEFINITION2);
-			final int idTargetMembers = cursor.getColumnIndex(LexRelations_Senses_Words_X.MEMBERS2);
-			final int idTargetWord = cursor.getColumnIndex(V.WORD2);
-
-			final SpannableStringBuilder sb = new SpannableStringBuilder();
-			do
-			{
-				final int relationId = cursor.getInt(idRelationId);
-				final String targetDefinition = cursor.getString(idTargetDefinition);
-				final String targetWord = cursor.getString(idTargetWord);
-				String targetMembers = cursor.getString(idTargetMembers);
-				if (targetWord != null)
-				{
-					targetMembers = targetMembers.replaceAll("\\b" + targetWord + "\\b", targetWord + TARGET_MEMBER_CHAR);
-				}
-
-				if (sb.length() != 0)
-				{
-					sb.append('\n');
-				}
-				Spanner.append(sb, targetWord, 0, WordNetFactories.wordFactory);
-				sb.append(" in ");
-				sb.append(' ');
-				sb.append('{');
-				Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
-				sb.append('}');
-				sb.append(' ');
-				Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
-
-				// attach result
-				final TreeNode relationNode = TreeFactory.makeLeafNode(sb, getRelationRes(relationId), false).addTo(parent);
-				changedList.add(NEWCHILD, relationNode);
-			}
-			while (cursor.moveToNext());
-
-			// attach result
-			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-			changedList.add(NEWCHILD, node);
-			changed = changedList.toArray();
-		}
-		else
-		{
-			if (deadendParentIfNoResult)
-			{
-				TreeFactory.setNoResult(parent);
-				changed = TreeOp.seq(DEADEND, parent);
-			}
-			else
-			{
-				changed = TreeOp.seq(NOOP, parent);
-			}
-		}
-		cursor.close();
-		return changed;
-	}
-
-	/**
-	 * Lexical relations
-	 *
-	 * @param synsetId                synset id
-	 * @param wordId                  word id
-	 * @param parent                  parent node
-	 * @param deadendParentIfNoResult mark parent node as deadend if there is no result
-	 */
-	private void lexRelations(final long synsetId, final long wordId, @NonNull final TreeNode parent, @SuppressWarnings("SameParameterValue") final boolean deadendParentIfNoResult)
-	{
-		final ContentProviderSql sql = Queries.prepareLexRelations(synsetId, wordId);
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
-		this.lexRelationsFromSynsetIdWordIdModel.loadData(uri, sql, cursor -> lexRelationsCursorToTreeModel(cursor, parent, deadendParentIfNoResult));
-	}
-
-	@NonNull
-	private TreeOp[] lexRelationsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent, final boolean deadendParentIfNoResult)
-	{
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			final TreeOps changedList = new TreeOps(NEWTREE, parent);
-
-			final int idRelationId = cursor.getColumnIndex(Relations.RELATIONID);
-			final int idRelation = cursor.getColumnIndex(Relations.RELATION);
-			final int idTargetSynsetId = cursor.getColumnIndex(V.SYNSET2ID);
-			final int idTargetDefinition = cursor.getColumnIndex(V.DEFINITION2);
-			final int idTargetMembers = cursor.getColumnIndex(LexRelations_Senses_Words_X.MEMBERS2);
-			final int idTargetWordId = cursor.getColumnIndex(V.WORD2ID);
-			final int idTargetWord = cursor.getColumnIndex(V.WORD2);
-
-			do
-			{
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-
-				final int relationId = cursor.getInt(idRelationId);
-				final String relation = cursor.getString(idRelation);
-				final long targetSynsetId = cursor.getLong(idTargetSynsetId);
-				final String targetDefinition = cursor.getString(idTargetDefinition);
-				final String targetWord = cursor.getString(idTargetWord);
-				String targetMembers = cursor.getString(idTargetMembers);
-				if (targetWord != null)
-				{
-					targetMembers = targetMembers.replaceAll("\\b" + targetWord + "\\b", targetWord + TARGET_MEMBER_CHAR);
-				}
-
-				if (sb.length() != 0)
-				{
-					sb.append('\n');
-				}
-				if (displayLexRelationName)
-				{
-					Spanner.append(sb, relation, 0, WordNetFactories.relationFactory);
-					sb.append(' ');
-				}
-				Spanner.append(sb, targetMembers, 0, WordNetFactories.membersFactory);
-				sb.append(' ');
-				Spanner.append(sb, targetDefinition, 0, WordNetFactories.definitionFactory);
-
-				// attach result
-				final TreeNode relationNode = TreeFactory.makeLinkLeafNode(sb, getRelationRes(relationId), false, new SenseLink(targetSynsetId, idTargetWordId, BaseModule.this.maxRecursion, this.fragment)).addTo(parent);
-				changedList.add(NEWCHILD, relationNode);
-			}
-			while (cursor.moveToNext());
-			changed = changedList.toArray();
-		}
-		else
-		{
-			if (deadendParentIfNoResult)
-			{
-				TreeFactory.setNoResult(parent);
-				changed = TreeOp.seq(DEADEND, parent);
-			}
-			else
-			{
-				changed = TreeOp.seq(NOOP, parent);
-			}
-		}
-		cursor.close();
-		return changed;
-	}
-
-	// V F R A M E S
-
-	/**
-	 * Verb frames
-	 *
-	 * @param synsetId synset id
-	 * @param parent   parent node
-	 */
-	void vFrames(final long synsetId, @NonNull final TreeNode parent)
-	{
-		final ContentProviderSql sql = Queries.prepareVFrames(synsetId);
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
-		this.vFramesFromSynsetIdModel.loadData(uri, sql, cursor -> vframesCursorToTreeModel(cursor, parent));
-	}
-
-	/**
-	 * Verb frames
-	 *
-	 * @param synsetId synset id
-	 * @param wordId   word id
-	 * @param parent   parent node
-	 */
-	void vFrames(final long synsetId, final long wordId, @NonNull final TreeNode parent)
-	{
-		final ContentProviderSql sql = Queries.prepareVFrames(synsetId, wordId);
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
-		this.vFramesFromSynsetIdWordIdModel.loadData(uri, sql, cursor -> vframesCursorToTreeModel(cursor, parent));
-	}
-
-	@NonNull
-	private TreeOp[] vframesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
-	{
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			final int vframeId = cursor.getColumnIndex(Senses_VerbFrames.FRAME);
-
-			final SpannableStringBuilder sb = new SpannableStringBuilder();
-			do
-			{
-				final String vframe = cursor.getString(vframeId);
-				final String formattedVframe = String.format(Locale.ENGLISH, "%s", vframe);
-				if (sb.length() != 0)
-				{
-					sb.append('\n');
-				}
-				Spanner.appendImage(sb, BaseModule.this.verbframeDrawable);
-				sb.append(' ');
-				sb.append(formattedVframe);
-			}
-			while (cursor.moveToNext());
-
-			// attach result
-			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-			changed = TreeOp.seq(NEWUNIQUE, node);
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(REMOVE, parent);
-		}
-
-		cursor.close();
-		return changed;
-	}
-
-	// V T E M P L A T E S
-
-	/**
-	 * Verb templates
-	 *
-	 * @param synsetId synset id
-	 * @param parent   parent node
-	 */
-	void vTemplates(final long synsetId, @NonNull final TreeNode parent)
-	{
-		final ContentProviderSql sql = Queries.prepareVTemplates(synsetId);
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
-		this.vTemplatesFromSynsetIdModel.loadData(uri, sql, cursor -> vTemplatesCursorToTreeModel(cursor, parent));
-	}
-
-	@NonNull
-	private TreeOp[] vTemplatesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
-	{
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			final int vTemplateId = cursor.getColumnIndex(Senses_VerbTemplates.TEMPLATE);
-
-			final SpannableStringBuilder sb = new SpannableStringBuilder();
-			do
-			{
-				final String vTemplate = cursor.getString(vTemplateId);
-				final String formattedVTemplate = String.format(Locale.ENGLISH, vTemplate, "[-]");
-				if (sb.length() != 0)
-				{
-					sb.append('\n');
-				}
-				Spanner.appendImage(sb, BaseModule.this.verbframeDrawable);
-				sb.append(' ');
-				sb.append(formattedVTemplate);
-			}
-			while (cursor.moveToNext());
-
-			// attach result
-			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-			changed = TreeOp.seq(NEWUNIQUE, node);
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(REMOVE, parent);
-		}
-
-		cursor.close();
-		return changed;
-	}
-
-	/**
-	 * Verb templates
-	 *
-	 * @param synsetId synset id
-	 * @param wordId   word id
-	 * @param parent   parent node
-	 */
-	void vTemplates(final long synsetId, final long wordId, @NonNull final TreeNode parent)
-	{
-		final ContentProviderSql sql = Queries.prepareVTemplates(synsetId, wordId);
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
-		this.vTemplatesFromSynsetIdWordIdModel.loadData(uri, sql, cursor -> vTemplatesFromSynsetIdWordIdCursorToTreeModel(cursor, parent));
-	}
-
-	@NonNull
-	private TreeOp[] vTemplatesFromSynsetIdWordIdCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
-	{
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			final String word = "---";
-			final int vTemplateId = cursor.getColumnIndex(Senses_VerbTemplates.TEMPLATE);
-
-			final SpannableStringBuilder sb = new SpannableStringBuilder();
-			do
-			{
-				final String vTemplate = cursor.getString(vTemplateId);
-				final String formattedVTemplate = String.format(Locale.ENGLISH, vTemplate, '[' + word + ']');
-				if (sb.length() != 0)
-				{
-					sb.append('\n');
-				}
-				Spanner.appendImage(sb, BaseModule.this.verbframeDrawable);
-				sb.append(' ');
-				sb.append(formattedVTemplate);
-			}
-			while (cursor.moveToNext());
-
-			// attach result
-			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-			changed = TreeOp.seq(NEWUNIQUE, node);
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(REMOVE, parent);
-		}
-
-		cursor.close();
-		return changed;
-	}
-
-	// A D J P O S I T I O N S
-
-	/**
-	 * Adjective positions
-	 *
-	 * @param synsetId synset id
-	 * @param parent   parent node
-	 */
-	void adjPosition(final long synsetId, @NonNull final TreeNode parent)
-	{
-		final ContentProviderSql sql = Queries.prepareAdjPosition(synsetId);
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
-		this.adjPositionFromSynsetIdModel.loadData(uri, sql, cursor -> adjPositionCursorToTreeModel(cursor, parent));
-	}
-
-	/**
-	 * Adjective positions
-	 *
-	 * @param synsetId synset id
-	 * @param wordId   word id
-	 * @param parent   parent node
-	 */
-	void adjPosition(final long synsetId, final long wordId, @NonNull final TreeNode parent)
-	{
-		final ContentProviderSql sql = Queries.prepareAdjPosition(synsetId, wordId);
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
-		this.adjPositionFromSynsetIdWordIdModel.loadData(uri, sql, cursor -> adjPositionCursorToTreeModel(cursor, parent));
-	}
-
-	@NonNull
-	private TreeOp[] adjPositionCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
-	{
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			final int positionId = cursor.getColumnIndex(Senses_AdjPositions.POSITION);
-
-			final SpannableStringBuilder sb = new SpannableStringBuilder();
-			do
-			{
-				final String position = cursor.getString(positionId);
-				final String formattedPosition = String.format(Locale.ENGLISH, "%s", position);
-				if (sb.length() != 0)
-				{
-					sb.append('\n');
-				}
-				Spanner.appendImage(sb, BaseModule.this.verbframeDrawable);
-				sb.append(' ');
-				sb.append(formattedPosition);
-			}
-			while (cursor.moveToNext());
-
-			// attach result
-			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-			changed = TreeOp.seq(NEWUNIQUE, node);
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(REMOVE, parent);
-		}
-
-		cursor.close();
-		return changed;
-	}
-
-	// M O R P H S
-
-	/**
-	 * Morphology
-	 *
-	 * @param wordId word id
-	 * @param parent parent node
-	 */
-	void morphs(final long wordId, @NonNull final TreeNode parent)
-	{
-		final ContentProviderSql sql = Queries.prepareMorphs(wordId);
-		final Uri uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri));
-		this.morphsFromWordIdModel.loadData(uri, sql, cursor -> morphsCursorToTreeModel(cursor, parent));
-	}
-
-	@NonNull
-	private TreeOp[] morphsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
-	{
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			final int morphId = cursor.getColumnIndex(Lexes_Morphs.MORPH);
-			final int posId = cursor.getColumnIndex(Lexes_Morphs.POSID);
-
-			final SpannableStringBuilder sb = new SpannableStringBuilder();
-			do
-			{
-				final String morph1 = cursor.getString(morphId);
-				final String pos1 = cursor.getString(posId);
-				final String formattedMorph = String.format(Locale.ENGLISH, "(%s) %s", pos1, morph1);
-				if (sb.length() != 0)
-				{
-					sb.append('\n');
-				}
-				Spanner.appendImage(sb, BaseModule.this.morphDrawable);
-				sb.append(' ');
-				sb.append(formattedMorph);
-			}
-			while (cursor.moveToNext());
-
-			// attach result
-			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-			changed = TreeOp.seq(NEWUNIQUE, node);
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(REMOVE, parent);
-		}
-
-		cursor.close();
-		return changed;
-	}
-
-	// H E L P E R S
-
-	/**
-	 * Match relation id to drawable resource id
-	 *
-	 * @param relationId relation id
-	 * @return kink res id
-	 */
-	private int getRelationRes(final int relationId)
-	{
-		switch (relationId)
-		{
-			case 1:
-				return R.drawable.ic_hypernym;
-			case 2:
-				return R.drawable.ic_hyponym;
-			case 3:
-				return R.drawable.ic_instance_hypernym;
-			case 4:
-				return R.drawable.ic_instance_hyponym;
-			case 11:
-				return R.drawable.ic_part_holonym;
-			case 12:
-				return R.drawable.ic_part_meronym;
-			case 13:
-				return R.drawable.ic_member_holonym;
-			case 14:
-				return R.drawable.ic_member_meronym;
-			case 15:
-				return R.drawable.ic_substance_holonym;
-			case 16:
-				return R.drawable.ic_substance_meronym;
-			case 21:
-				return R.drawable.ic_entails;
-			case 22:
-				return R.drawable.ic_entailed;
-			case 23:
-				return R.drawable.ic_causes;
-			case 24:
-				return R.drawable.ic_caused;
-			case 30:
-				return R.drawable.ic_antonym;
-			case 40:
-				return R.drawable.ic_similar;
-			case 50:
-				return R.drawable.ic_also;
-			case 60:
-				return R.drawable.ic_attribute;
-			case 70:
-				return R.drawable.ic_verb_group;
-			case 71:
-				return R.drawable.ic_participle;
-			case 80:
-				return R.drawable.ic_pertainym;
-			case 81:
-				return R.drawable.ic_derivation;
-			case 91:
-				return R.drawable.ic_domain_topic;
-			case 92:
-				return R.drawable.ic_domain_member_topic;
-			case 93:
-				return R.drawable.ic_domain_region;
-			case 94:
-				return R.drawable.ic_domain_member_region;
-			case 95:
-				return R.drawable.ic_exemplifies;
-			case 96:
-				return R.drawable.ic_exemplified;
-			case 97:
-				return R.drawable.ic_domain;
-			case 98:
-				return R.drawable.ic_domain_member;
-			case 99:
-				return R.drawable.ic_other;
-
-			case 100:
-				return R.drawable.ic_state;
-			case 101:
-				return R.drawable.ic_result;
-			case 102:
-				return R.drawable.ic_event;
-			case 110:
-				return R.drawable.ic_property;
-			case 120:
-				return R.drawable.ic_location;
-			case 121:
-				return R.drawable.ic_destination;
-			case 130:
-				return R.drawable.ic_agent;
-			case 131:
-				return R.drawable.ic_undergoer;
-			case 140:
-				return R.drawable.ic_uses;
-			case 141:
-				return R.drawable.ic_instrument;
-			case 142:
-				return R.drawable.ic_bymeansof;
-			case 150:
-				return R.drawable.ic_material;
-			case 160:
-				return R.drawable.ic_vehicle;
-			case 170:
-				return R.drawable.ic_bodypart;
-
-			default:
-				return R.drawable.error;
-		}
-	}
-
-	// Q U E R I E S
-
-	/**
-	 * Relations query
-	 */
-	class RelationsQuery extends Query
-	{
-		/**
-		 * Word id
-		 */
-		final long wordId;
-
-		/**
-		 * Constructor
-		 *
-		 * @param synsetId synset id
-		 * @param wordId   word id
-		 */
-		RelationsQuery(final long synsetId, final long wordId)
-		{
-			super(synsetId);
-			this.wordId = wordId;
-		}
-
-		@Override
-		public void process(@NonNull final TreeNode node)
-		{
-			relations(this.id, this.wordId, node, true);
-
-			// sem relations
-			//semRelations(this.id, node, false);
-
-			// lex relations
-			//lexRelations(this.id, this.wordId, node, false);
-		}
-
-		@NonNull
-		@Override
-		public String toString()
-		{
-			return "relations for " + this.id + ',' + this.wordId;
-		}
-	}
-
-	/**
-	 * Semantic Relation query
-	 */
-	class SemRelationsQuery extends Query
-	{
-		/**
-		 * Constructor
-		 *
-		 * @param synsetId synset id
-		 */
-		public SemRelationsQuery(final long synsetId)
-		{
-			super(synsetId);
-		}
-
-		@Override
-		public void process(@NonNull final TreeNode node)
-		{
-			semRelations(this.id, node, true);
-		}
-
-		@NonNull
-		@Override
-		public String toString()
-		{
-			return "semrelations for " + this.id;
-		}
-	}
-
-	/**
-	 * Lexical Relation query
-	 */
-	class LexRelationsQuery extends Query
-	{
-		/**
-		 * Word id
-		 */
-		final long wordId;
-
-		/**
-		 * Constructor
-		 *
-		 * @param synsetId synset id
-		 * @param wordId   word id
-		 */
-		public LexRelationsQuery(final long synsetId, final long wordId)
-		{
-			super(synsetId);
-			this.wordId = wordId;
-		}
-
-		@Override
-		public void process(@NonNull final TreeNode node)
-		{
-			lexRelations(this.id, this.wordId, node, true);
-		}
-
-		@NonNull
-		@Override
-		public String toString()
-		{
-			return "lexrelations for " + this.id + ',' + this.wordId;
-		}
-	}
-
-	/**
-	 * Sub relations of give type query
-	 */
-	class SubRelationsQuery extends Query
-	{
-		/**
-		 * Relation id
-		 */
-		final int relationId;
-
-		/**
-		 * Recurse level
-		 */
-		final int recurseLevel;
-
-		/**
-		 * Hot
-		 */
-		final boolean hot;
-
-		/**
-		 * Constructor
-		 *
-		 * @param synsetId     synset id
-		 * @param relationId   relation id
-		 * @param recurseLevel recurse level
-		 * @param hot          whether result nodes are hot queries
-		 */
-		SubRelationsQuery(final long synsetId, final int relationId, final int recurseLevel, final boolean hot)
-		{
-			super(synsetId);
-			this.relationId = relationId;
-			this.recurseLevel = recurseLevel;
-			this.hot = hot;
-		}
-
-		/**
-		 * Constructor
-		 *
-		 * @param synsetId     synset id
-		 * @param relationId   relation id
-		 * @param recurseLevel recurse level
-		 */
-		SubRelationsQuery(final long synsetId, final int relationId, final int recurseLevel)
-		{
-			this(synsetId, relationId, recurseLevel, false);
-		}
-
-		@Override
-		public void process(@NonNull final TreeNode node)
-		{
-			semRelations(this.id, this.relationId, recurseLevel, hot, node, true);
-		}
-
-		@NonNull
-		@Override
-		public String toString()
-		{
-			return "sub semrelations of type " + this.relationId + " for " + this.id + " at level " + this.recurseLevel;
-		}
-	}
-
-	/**
-	 * Samples query
-	 */
-	class SamplesQuery extends Query
-	{
-		/**
-		 * Constructor
-		 *
-		 * @param synsetId synset id
-		 */
-		SamplesQuery(final long synsetId)
-		{
-			super(synsetId);
-		}
-
-		@Override
-		public void process(@NonNull final TreeNode node)
-		{
-			samples(this.id, node, true);
-		}
-
-		@NonNull
-		@Override
-		public String toString()
-		{
-			return "samples for " + this.id;
-		}
-	}
-
-	/**
-	 * Word link data
-	 */
-	public static class BaseWordLink extends Link
-	{
-		protected final Fragment fragment;
-
-		/**
-		 * Constructor
-		 *
-		 * @param wordId   word id
-		 * @param fragment fragment
-		 */
-		public BaseWordLink(final long wordId, final Fragment fragment)
-		{
-			super(wordId);
-			this.fragment = fragment;
-		}
-
-		@Override
-		public void process()
-		{
-			final Context context = this.fragment.getContext();
-			if (context == null)
-			{
-				return;
-			}
-
-			final Parcelable pointer = new WordPointer(this.id);
-			final Intent intent = new Intent(context, WordActivity.class);
-			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_WORD);
-			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
-			intent.setAction(ProviderArgs.ACTION_QUERY);
-			context.startActivity(intent);
-		}
-
-		@NonNull
-		@Override
-		public String toString()
-		{
-			return "word for " + this.id;
-		}
-	}
-
-	/**
-	 * Word link data
-	 */
-	public static class WordLink extends BaseWordLink
-	{
-		/**
-		 * Constructor
-		 *
-		 * @param wordId   word id
-		 * @param fragment fragment
-		 */
-		WordLink(final Fragment fragment, final long wordId)
-		{
-			super(wordId, fragment);
-		}
-	}
-
-	/**
-	 * Synset link data
-	 */
-	public static class BaseSynsetLink extends Link
-	{
-		@NonNull
-		protected final Fragment fragment;
-
-		final int recurse;
-
-		@Nullable
-		final Bundle parameters;
-
-		/**
-		 * Constructor
-		 *
-		 * @param synsetId synset id
-		 * @param recurse  max recursion level
-		 * @param fragment fragment
-		 */
-		public BaseSynsetLink(final long synsetId, final int recurse, @NonNull final Fragment fragment)
-		{
-			super(synsetId);
-			this.fragment = fragment;
-			this.recurse = recurse;
-			final Bundle args = fragment.getArguments();
-			this.parameters = args == null ? null : args.getBundle(ProviderArgs.ARG_RENDERPARAMETERS);
-		}
-
-		@Override
-		public void process()
-		{
-			final Context context = this.fragment.getContext();
-			if (context == null)
-			{
-				return;
-			}
-
-			final Parcelable pointer = new SynsetPointer(this.id);
-			final Intent intent = new Intent(context, SynsetActivity.class);
-			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
-			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
-			intent.putExtra(ProviderArgs.ARG_QUERYRECURSE, this.recurse);
-			intent.putExtra(ProviderArgs.ARG_RENDERPARAMETERS, this.parameters);
-			intent.setAction(ProviderArgs.ACTION_QUERY);
-			context.startActivity(intent);
-		}
-
-		@NonNull
-		@Override
-		public String toString()
-		{
-			return "synset for " + this.id;
-		}
-	}
-
-	/**
-	 * Synset link data
-	 */
-	public static class SynsetLink extends BaseSynsetLink
-	{
-		/**
-		 * Constructor
-		 *
-		 * @param synsetId synset id
-		 * @param recurse  max recursion level
-		 * @param fragment fragment
-		 */
-		SynsetLink(final long synsetId, final int recurse, @NonNull final Fragment fragment)
-		{
-			super(synsetId, recurse, fragment);
-		}
-	}
-
-	/**
-	 * Relations link data
-	 */
-	public static class RelationLink extends Link
-	{
-		@NonNull
-		protected final Fragment fragment;
-
-		final int recurse;
-
-		@Nullable
-		final Bundle parameters;
-
-		/**
-		 * Constructor
-		 *
-		 * @param synsetId synset id
-		 * @param recurse  max recursion level
-		 * @param fragment fragment
-		 */
-		public RelationLink(final long synsetId, final int recurse, @NonNull final Fragment fragment)
-		{
-			super(synsetId);
-			this.fragment = fragment;
-			this.recurse = recurse;
-			final Bundle args = fragment.getArguments();
-			this.parameters = args == null ? null : args.getBundle(ProviderArgs.ARG_RENDERPARAMETERS);
-		}
-
-		@Override
-		public void process()
-		{
-			final Context context = this.fragment.getContext();
-			if (context == null)
-			{
-				return;
-			}
-
-			final Parcelable pointer = new SynsetPointer(this.id);
-			final Intent intent = new Intent(context, RelationActivity.class);
-			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
-			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
-			intent.putExtra(ProviderArgs.ARG_QUERYRECURSE, this.recurse);
-			intent.putExtra(ProviderArgs.ARG_RENDERPARAMETERS, this.parameters);
-			intent.setAction(ProviderArgs.ACTION_QUERY);
-			context.startActivity(intent);
-		}
-
-		@NonNull
-		@Override
-		public String toString()
-		{
-			return "relation for " + this.id;
-		}
-	}
-
-	/**
-	 * Sense link data
-	 */
-	public static class BaseSenseLink extends BaseSynsetLink
-	{
-		final private long wordId;
-
-		/**
-		 * Constructor
-		 *
-		 * @param synsetId synset id
-		 * @param wordId   word id
-		 * @param recurse  recurse
-		 * @param fragment fragment
-		 */
-		public BaseSenseLink(final long synsetId, final long wordId, final int recurse, @NonNull final Fragment fragment)
-		{
-			super(synsetId, recurse, fragment);
-			this.wordId = wordId;
-		}
-
-		@Override
-		public void process()
-		{
-			final Context context = this.fragment.getContext();
-			if (context == null)
-			{
-				return;
-			}
-
-			final Parcelable pointer = new SensePointer(this.id, this.wordId);
-			final Intent intent = new Intent(context, SynsetActivity.class);
-			intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET);
-			intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer);
-			intent.putExtra(ProviderArgs.ARG_QUERYRECURSE, this.recurse);
-			intent.putExtra(ProviderArgs.ARG_RENDERPARAMETERS, this.parameters);
-			intent.setAction(ProviderArgs.ACTION_QUERY);
-			context.startActivity(intent);
-		}
-
-		@NonNull
-		@Override
-		public String toString()
-		{
-			return "sense for " + this.id + ',' + this.wordId;
-		}
-	}
-
-	/**
-	 * Sense link data
-	 */
-	public static class SenseLink extends BaseSenseLink
-	{
-		/**
-		 * Constructor
-		 *
-		 * @param synsetId synset id
-		 * @param wordId   word id
-		 * @param recurse  max recursion level
-		 * @param fragment fragment
-		 */
-		SenseLink(final long synsetId, final long wordId, final int recurse, @NonNull final Fragment fragment)
-		{
-			super(synsetId, wordId, recurse, fragment);
-		}
-	}
+abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(fragment) {
+    // Resources
+    @JvmField
+    protected val wordLabel: String
+
+    @JvmField
+    protected val senseLabel: String
+
+    @JvmField
+    protected val synsetLabel: String
+
+    private val sensesLabel: String
+
+    @JvmField
+    protected val membersLabel: String
+
+    @JvmField
+    protected val samplesLabel: String
+
+    @JvmField
+    protected val relationsLabel: String
+
+    @JvmField
+    protected val upLabel: String
+
+    @JvmField
+    protected val downLabel: String
+
+    @JvmField
+    protected val verbFramesLabel: String
+
+    @JvmField
+    protected val verbTemplatesLabel: String
+
+    @JvmField
+    protected val adjPositionsLabel: String
+
+    @JvmField
+    protected val morphsLabel: String
+    private val synsetDrawable: Drawable
+    private val memberDrawable: Drawable
+    private val definitionDrawable: Drawable
+    private val sampleDrawable: Drawable
+    private val posDrawable: Drawable
+    private val domainDrawable: Drawable
+    private val verbframeDrawable: Drawable
+    private val morphDrawable: Drawable
+
+    /**
+     * Whether to display semantic relation names
+     */
+    private var displaySemRelationName = true
+
+    /**
+     * Whether to display lexical relation names
+     */
+    private var displayLexRelationName = true
+
+    /**
+     * Max relation recursion
+     */
+    @JvmField
+    protected var maxRecursion = Int.MAX_VALUE
+
+    // View models
+    private lateinit var wordModel: SqlunetViewTreeModel
+    private lateinit var sensesFromWordModel: SqlunetViewTreeModel
+    private lateinit var sensesFromWordIdModel: SqlunetViewTreeModel
+    private lateinit var senseFromSenseIdModel: SqlunetViewTreeModel
+    private lateinit var senseFromSenseKeyModel: SqlunetViewTreeModel
+    private lateinit var senseFromSynsetIdWordIdModel: SqlunetViewTreeModel
+    private lateinit var synsetFromSynsetIdModel: SqlunetViewTreeModel
+    private lateinit var membersFromSynsetIdModel: SqlunetViewTreeModel
+    private lateinit var members2FromSynsetIdModel: SqlunetViewTreeModel
+    private lateinit var samplesfromSynsetIdModel: SqlunetViewTreeModel
+    private lateinit var relationsFromSynsetIdWordIdModel: SqlunetViewTreeModel
+    private lateinit var semRelationsFromSynsetIdModel: SqlunetViewTreeModel
+    private lateinit var semRelationsFromSynsetIdRelationIdModel: SqlunetViewTreeModel
+    private lateinit var lexRelationsFromSynsetIdWordIdModel: SqlunetViewTreeModel
+    private lateinit var lexRelationsFromSynsetIdModel: SqlunetViewTreeModel
+    private lateinit var vFramesFromSynsetIdModel: SqlunetViewTreeModel
+    private lateinit var vFramesFromSynsetIdWordIdModel: SqlunetViewTreeModel
+    private lateinit var vTemplatesFromSynsetIdModel: SqlunetViewTreeModel
+    private lateinit var vTemplatesFromSynsetIdWordIdModel: SqlunetViewTreeModel
+    private lateinit var adjPositionFromSynsetIdModel: SqlunetViewTreeModel
+    private lateinit var adjPositionFromSynsetIdWordIdModel: SqlunetViewTreeModel
+    private lateinit var morphsFromWordIdModel: SqlunetViewTreeModel
+
+    init {
+
+        // models
+        makeModels()
+
+        // drawables
+        val context = this@BaseModule.fragment.requireContext()
+        wordLabel = context.getString(R.string.wordnet_word_)
+        senseLabel = context.getString(R.string.wordnet_sense_)
+        synsetLabel = context.getString(R.string.wordnet_synset_)
+        sensesLabel = context.getString(R.string.wordnet_senses_)
+        membersLabel = context.getString(R.string.wordnet_members_)
+        samplesLabel = context.getString(R.string.wordnet_samples_)
+        upLabel = context.getString(R.string.wordnet_up_)
+        relationsLabel = context.getString(R.string.wordnet_relations_)
+        downLabel = context.getString(R.string.wordnet_down_)
+        verbFramesLabel = context.getString(R.string.wordnet_verbframes_)
+        verbTemplatesLabel = context.getString(R.string.wordnet_verbtemplates_)
+        adjPositionsLabel = context.getString(R.string.wordnet_adjpositions_)
+        morphsLabel = context.getString(R.string.wordnet_morphs_)
+        synsetDrawable = getDrawable(context, R.drawable.synset)
+        memberDrawable = getDrawable(context, R.drawable.synsetmember)
+        definitionDrawable = getDrawable(context, R.drawable.definition)
+        sampleDrawable = getDrawable(context, R.drawable.sample)
+        posDrawable = getDrawable(context, R.drawable.pos)
+        domainDrawable = getDrawable(context, R.drawable.domain)
+        verbframeDrawable = getDrawable(context, R.drawable.verbframe)
+        morphDrawable = verbframeDrawable
+    }
+
+    /**
+     * Make view models
+     */
+    private fun makeModels() {
+        wordModel = ViewModelProvider(fragment)["wn.word(wordid)", SqlunetViewTreeModel::class.java]
+        wordModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        sensesFromWordModel = ViewModelProvider(fragment)["wn.senses(word)", SqlunetViewTreeModel::class.java]
+        sensesFromWordModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        sensesFromWordIdModel = ViewModelProvider(fragment)["wn.senses(wordid)", SqlunetViewTreeModel::class.java]
+        sensesFromWordIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        senseFromSenseIdModel = ViewModelProvider(fragment)["wn.sense(senseid)", SqlunetViewTreeModel::class.java]
+        senseFromSenseIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        senseFromSenseKeyModel = ViewModelProvider(fragment)["wn.sense(sensekey)", SqlunetViewTreeModel::class.java]
+        senseFromSenseKeyModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        senseFromSynsetIdWordIdModel = ViewModelProvider(fragment)["wn.sense(synsetid,wordid)", SqlunetViewTreeModel::class.java]
+        senseFromSynsetIdWordIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        synsetFromSynsetIdModel = ViewModelProvider(fragment)["wn.synset(synsetid)", SqlunetViewTreeModel::class.java]
+        synsetFromSynsetIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        membersFromSynsetIdModel = ViewModelProvider(fragment)["wn.members(synsetid)", SqlunetViewTreeModel::class.java]
+        membersFromSynsetIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        members2FromSynsetIdModel = ViewModelProvider(fragment)["wn.memberSet(synsetid)", SqlunetViewTreeModel::class.java]
+        members2FromSynsetIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        samplesfromSynsetIdModel = ViewModelProvider(fragment)["wn.samples(synsetid)", SqlunetViewTreeModel::class.java]
+        samplesfromSynsetIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        relationsFromSynsetIdWordIdModel = ViewModelProvider(fragment)["wn.relations(synsetid,wordid)", SqlunetViewTreeModel::class.java]
+        relationsFromSynsetIdWordIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        semRelationsFromSynsetIdModel = ViewModelProvider(fragment)["wn.semrelations(synsetid)", SqlunetViewTreeModel::class.java]
+        semRelationsFromSynsetIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        semRelationsFromSynsetIdRelationIdModel = ViewModelProvider(fragment)["wn.semrelations(synsetid,relationid)", SqlunetViewTreeModel::class.java]
+        semRelationsFromSynsetIdRelationIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        lexRelationsFromSynsetIdWordIdModel = ViewModelProvider(fragment)["wn.lexrelations(synsetid,wordid)", SqlunetViewTreeModel::class.java]
+        lexRelationsFromSynsetIdWordIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        lexRelationsFromSynsetIdModel = ViewModelProvider(fragment)["wn.lexrelations(synsetid)", SqlunetViewTreeModel::class.java]
+        lexRelationsFromSynsetIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        vFramesFromSynsetIdModel = ViewModelProvider(fragment)["wn.vframes(synsetid)", SqlunetViewTreeModel::class.java]
+        vFramesFromSynsetIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        vFramesFromSynsetIdWordIdModel = ViewModelProvider(fragment)["wn.vframes(synsetid,wordid)", SqlunetViewTreeModel::class.java]
+        vFramesFromSynsetIdWordIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        vTemplatesFromSynsetIdModel = ViewModelProvider(fragment)["wn.vtemplates(synsetid)", SqlunetViewTreeModel::class.java]
+        vTemplatesFromSynsetIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        vTemplatesFromSynsetIdWordIdModel = ViewModelProvider(fragment)["wn.vtemplates(synsetid,wordid)", SqlunetViewTreeModel::class.java]
+        vTemplatesFromSynsetIdWordIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        adjPositionFromSynsetIdModel = ViewModelProvider(fragment)["wn.adjposition(synsetid)", SqlunetViewTreeModel::class.java]
+        adjPositionFromSynsetIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        adjPositionFromSynsetIdWordIdModel = ViewModelProvider(fragment)["wn.adjposition(synsetid,wordid)", SqlunetViewTreeModel::class.java]
+        adjPositionFromSynsetIdWordIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        morphsFromWordIdModel = ViewModelProvider(fragment)["wn.morphs(wordid)", SqlunetViewTreeModel::class.java]
+        morphsFromWordIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+    }
+
+    /**
+     * Set max recursion level
+     *
+     * @param maxRecursion max recursion level
+     */
+    fun setMaxRecursionLevel(maxRecursion: Int) {
+        this.maxRecursion = if (maxRecursion == -1) Int.MAX_VALUE else maxRecursion
+    }
+
+    /**
+     * Set display relation names
+     *
+     * @param displaySemRelationName display semantic relation name
+     * @param displayLexRelationName display lexical relation name
+     */
+    fun setDisplayRelationNames(displaySemRelationName: Boolean, displayLexRelationName: Boolean) {
+        this.displaySemRelationName = displaySemRelationName
+        this.displayLexRelationName = displayLexRelationName
+    }
+    // W O R D
+    /**
+     * Word
+     *
+     * @param wordId     word id
+     * @param parent     tree parent node
+     * @param addNewNode whether to addItem to (or set) node
+     */
+    fun word(wordId: Long, parent: TreeNode, addNewNode: Boolean) {
+        // load the contents
+        val sql = Queries.prepareWord(wordId)
+        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        wordModel.loadData(uri, sql) { cursor: Cursor -> wordCursorToTreeModel(cursor, parent, addNewNode) }
+    }
+
+    private fun wordCursorToTreeModel(cursor: Cursor, parent: TreeNode, addNewNode: Boolean): Array<TreeOp> {
+        if (cursor.count > 1) {
+            throw RuntimeException("Unexpected number of rows")
+        }
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val sb = SpannableStringBuilder()
+
+            // final int idWordId = cursor.getColumnIndex(Words.WORDID);
+            val idWord = cursor.getColumnIndex(Words_Lexes_Morphs.WORD)
+            val idMorphs = cursor.getColumnIndex(Words_Lexes_Morphs.MORPHS)
+            val word = cursor.getString(idWord)
+            val morphs = cursor.getString(idMorphs)
+            appendImage(sb, memberDrawable)
+            sb.append(' ')
+            append(sb, word, 0, WordNetFactories.wordFactory)
+            if (morphs != null && morphs.isNotEmpty()) {
+                sb.append(' ')
+                append(sb, morphs, 0, WordNetFactories.dataFactory)
+            }
+
+            // result
+            changed = if (addNewNode) {
+                val node = makeTextNode(sb, false).addTo(parent)
+                seq(TreeOpCode.NEWUNIQUE, node)
+            } else {
+                setTextNode(parent, sb, R.drawable.member)
+                seq(TreeOpCode.UPDATE, parent)
+            }
+        } else {
+            setNoResult(parent)
+            changed = seq(TreeOpCode.REMOVE, parent)
+        }
+        cursor.close()
+        return changed
+    }
+    // S E N S E
+    /**
+     * Senses from word
+     *
+     * @param word   word
+     * @param parent tree parent node
+     */
+    protected fun senses(word: String?, parent: TreeNode) {
+        // load the contents
+        val sql = Queries.prepareSenses(word)
+        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        sensesFromWordModel.loadData(uri, sql) { cursor: Cursor -> sensesCursorToTreeModel(cursor, parent) }
+    }
+
+    /**
+     * Senses from word id
+     *
+     * @param wordId word id
+     * @param parent tree parent node
+     */
+    fun senses(wordId: Long, parent: TreeNode) {
+        // load the contents
+        val sql = Queries.prepareSenses(wordId)
+        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        sensesFromWordIdModel.loadData(uri, sql) { cursor: Cursor -> sensesCursorToTreeModel(cursor, parent) }
+    }
+
+    private fun sensesCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val changedList = TreeOps(TreeOpCode.NEWTREE, parent)
+            val idWordId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.WORDID)
+            val idSynsetId = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.SYNSETID)
+            val idPosName = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.POS)
+            val idDomain = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.DOMAIN)
+            val idDefinition = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.DEFINITION)
+            val idTagCount = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.TAGCOUNT)
+            val idCased = cursor.getColumnIndex(Words_Senses_CasedWords_Synsets_Poses_Domains.CASEDWORD)
+            do {
+                val wordId = cursor.getLong(idWordId)
+                val synsetId = cursor.getLong(idSynsetId)
+                val posName = cursor.getString(idPosName)
+                val domain = cursor.getString(idDomain)
+                val definition = cursor.getString(idDefinition)
+                val cased = cursor.getString(idCased)
+                val tagCount = cursor.getInt(idTagCount)
+                val sb = SpannableStringBuilder()
+                sense(sb, synsetId, posName, domain, definition, tagCount, cased)
+
+                // result
+                val synsetNode = makeLinkNode(sb, R.drawable.synset, false, SenseLink(synsetId, wordId, maxRecursion, fragment)).addTo(parent)
+                changedList.add(TreeOpCode.NEWCHILD, synsetNode)
+            } while (cursor.moveToNext())
+            changed = changedList.toArray()
+        } else {
+            setNoResult(parent)
+            changed = seq(TreeOpCode.REMOVE, parent)
+        }
+        cursor.close()
+        return changed
+    }
+
+    /**
+     * Sense
+     *
+     * @param senseId sense id
+     * @param parent  parent node
+     */
+    fun sense(senseId: Long, parent: TreeNode) {
+        // load the contents
+        val sql = Queries.prepareSense(senseId)
+        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        senseFromSenseIdModel.loadData(uri, sql) { cursor: Cursor -> senseFromSenseIdCursorToTreeModel(cursor, parent) }
+    }
+
+    private fun senseFromSenseIdCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
+        if (cursor.count > 1) {
+            throw RuntimeException("Unexpected number of rows")
+        }
+        val changed: Array<TreeOp> = if (cursor.moveToFirst()) {
+            val idWordId = cursor.getColumnIndex(Poses.POS)
+            val idSynsetId = cursor.getColumnIndex(Synsets.DEFINITION)
+            val wordId = cursor.getLong(idWordId)
+            val synsetId = cursor.getLong(idSynsetId)
+            sense(synsetId, wordId, parent)
+            seq(TreeOpCode.NOOP, parent)
+        } else {
+            setNoResult(parent)
+            seq(TreeOpCode.REMOVE, parent)
+        }
+        cursor.close()
+        return changed
+    }
+
+    /**
+     * Sense
+     *
+     * @param senseKey sense key
+     * @param parent   parent node
+     */
+    fun sense(senseKey: String?, parent: TreeNode) {
+        // load the contents
+        val sql = Queries.prepareSense(senseKey)
+        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        senseFromSenseKeyModel.loadData(uri, sql) { cursor: Cursor -> senseFromSenseKeyCursorToTreeModel(cursor, parent) }
+    }
+
+    private fun senseFromSenseKeyCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
+        if (cursor.count > 1) {
+            throw RuntimeException("Unexpected number of rows")
+        }
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val idWordId = cursor.getColumnIndex(Senses.WORDID)
+            val idSynsetId = cursor.getColumnIndex(Senses.SYNSETID)
+            val wordId = cursor.getLong(idWordId)
+            val synsetId = cursor.getLong(idSynsetId)
+
+            // sub nodes
+            val wordNode = makeTextNode(wordLabel, false).addTo(parent)
+
+            // word
+            word(wordId, wordNode, false)
+            sense(synsetId, wordId, wordNode)
+            changed = seq(TreeOpCode.NOOP, parent, TreeOpCode.NEWUNIQUE, wordNode)
+        } else {
+            setNoResult(parent)
+            changed = seq(TreeOpCode.REMOVE, parent)
+        }
+        cursor.close()
+        return changed
+    }
+
+    /**
+     * Sense
+     *
+     * @param synsetId synset id
+     * @param wordId   word id
+     * @param parent   parent node
+     */
+    private fun sense(synsetId: Long, wordId: Long, parent: TreeNode) {
+        // load the contents
+        val sql = Queries.prepareSense(synsetId, wordId)
+        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        senseFromSynsetIdWordIdModel.loadData(uri, sql) { cursor: Cursor -> senseFromSynsetIdWordIdCursorToTreeModel(cursor, synsetId, wordId, parent) }
+    }
+
+    private fun senseFromSynsetIdWordIdCursorToTreeModel(cursor: Cursor, synsetId: Long, wordId: Long, parent: TreeNode): Array<TreeOp> {
+        if (cursor.count > 1) {
+            throw RuntimeException("Unexpected number of rows")
+        }
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val sb = SpannableStringBuilder()
+            val idPosName = cursor.getColumnIndex(Poses.POS)
+            val idDomain = cursor.getColumnIndex(Domains.DOMAIN)
+            val idDefinition = cursor.getColumnIndex(Synsets.DEFINITION)
+            val posName = cursor.getString(idPosName)
+            val domain = cursor.getString(idDomain)
+            val definition = cursor.getString(idDefinition)
+            appendImage(sb, synsetDrawable)
+            sb.append(' ')
+            synset(sb, synsetId, posName, domain, definition)
+
+            // attach result
+            val node = makeTextNode(sb, false).addTo(parent)
+
+            // subnodes
+            val relationsNode = makeHotQueryNode(relationsLabel, R.drawable.ic_relations, false, RelationsQuery(synsetId, wordId)).addTo(parent)
+            val samplesNode = makeHotQueryNode(samplesLabel, R.drawable.sample, false, SamplesQuery(synsetId)).addTo(parent)
+            changed = seq(TreeOpCode.NEWMAIN, node, TreeOpCode.NEWEXTRA, relationsNode, TreeOpCode.NEWEXTRA, samplesNode, TreeOpCode.NEWTREE, parent)
+        } else {
+            setNoResult(parent)
+            changed = seq(TreeOpCode.REMOVE, parent)
+        }
+        cursor.close()
+        return changed
+    }
+
+    /**
+     * Sense to string builder
+     *
+     * @param sb         string builder
+     * @param synsetId   synset id
+     * @param posName    pos
+     * @param domain     domain
+     * @param definition definition
+     * @param tagCount   tag count
+     * @param cased      cased
+     * @return string builder
+     */
+    private fun sense(sb: SpannableStringBuilder, synsetId: Long, posName: CharSequence, domain: CharSequence, definition: CharSequence, tagCount: Int, cased: CharSequence?): SpannableStringBuilder {
+        synsetHead(sb, synsetId, posName, domain)
+        if (!cased.isNullOrEmpty()) {
+            appendImage(sb, memberDrawable)
+            sb.append(' ')
+            append(sb, cased, 0, WordNetFactories.wordFactory)
+            sb.append(' ')
+        }
+        if (tagCount > 0) {
+            sb.append(' ')
+            append(sb, "tagcount:$tagCount", 0, WordNetFactories.dataFactory)
+        }
+        sb.append('\n')
+        synsetDefinition(sb, definition)
+        return sb
+    }
+    // S Y N S E T
+    /**
+     * Synset
+     *
+     * @param synsetId   synset id
+     * @param parent     parent node
+     * @param addNewNode whether to addItem to (or set) node
+     */
+    fun synset(synsetId: Long, parent: TreeNode, addNewNode: Boolean) {
+        val sql = Queries.prepareSynset(synsetId)
+        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        synsetFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> synsetCursorToTreeModel(cursor, synsetId, parent, addNewNode) }
+    }
+
+    private fun synsetCursorToTreeModel(cursor: Cursor, synsetId: Long, parent: TreeNode, addNewNode: Boolean): Array<TreeOp> {
+        if (cursor.count > 1) {
+            throw RuntimeException("Unexpected number of rows")
+        }
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val sb = SpannableStringBuilder()
+            val idPosName = cursor.getColumnIndex(Poses.POS)
+            val idDomain = cursor.getColumnIndex(Domains.DOMAIN)
+            val idDefinition = cursor.getColumnIndex(Synsets.DEFINITION)
+            val posName = cursor.getString(idPosName)
+            val domain = cursor.getString(idDomain)
+            val definition = cursor.getString(idDefinition)
+            appendImage(sb, synsetDrawable)
+            sb.append(' ')
+            synset(sb, synsetId, posName, domain, definition)
+
+            // result
+            changed = if (addNewNode) {
+                val node = makeTextNode(sb, false).addTo(parent)
+                seq(TreeOpCode.NEWUNIQUE, node)
+            } else {
+                setTextNode(parent, sb) //, R.drawable.synset);
+                seq(TreeOpCode.UPDATE, parent)
+            }
+        } else {
+            setNoResult(parent)
+            changed = seq(if (addNewNode) TreeOpCode.DEADEND else TreeOpCode.REMOVE, parent)
+        }
+        cursor.close()
+        return changed
+    }
+
+    /**
+     * Synset to string builder
+     *
+     * @param sb         string builder
+     * @param synsetId   synset id
+     * @param posName    pos
+     * @param domain     domain
+     * @param definition definition
+     * @return string builder
+     */
+    private fun synset(sb: SpannableStringBuilder, synsetId: Long, posName: CharSequence, domain: CharSequence, definition: CharSequence): SpannableStringBuilder {
+        synsetHead(sb, synsetId, posName, domain)
+        sb.append('\n')
+        synsetDefinition(sb, definition)
+        return sb
+    }
+
+    /**
+     * Synset head to string builder
+     *
+     * @param sb       string builder
+     * @param synsetId synset id
+     * @param posName  pos
+     * @param domain   domain
+     * @return string builder
+     */
+    private fun synsetHead(sb: SpannableStringBuilder, synsetId: Long, posName: CharSequence, domain: CharSequence): SpannableStringBuilder {
+        appendImage(sb, posDrawable)
+        sb.append(' ')
+        sb.append(posName)
+        sb.append(' ')
+        appendImage(sb, domainDrawable)
+        sb.append(' ')
+        sb.append(domain)
+        sb.append(' ')
+        append(sb, synsetId.toString(), 0, WordNetFactories.dataFactory)
+        return sb
+    }
+
+    /**
+     * Synset definition to string builder
+     *
+     * @param sb         string builder
+     * @param definition definition
+     * @return string builder
+     */
+    private fun synsetDefinition(sb: SpannableStringBuilder, definition: CharSequence): SpannableStringBuilder {
+        appendImage(sb, definitionDrawable)
+        sb.append(' ')
+        append(sb, definition, 0, WordNetFactories.definitionFactory)
+        return sb
+    }
+    // M E M B E R S
+    /**
+     * Members
+     *
+     * @param synsetId synset id
+     * @param parent   parent node
+     */
+    fun members(synsetId: Long, parent: TreeNode) {
+        val sql = Queries.prepareMembers(synsetId)
+        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        membersFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> membersCursorToTreeModel(cursor, parent) }
+    }
+
+    private fun membersCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val changedList = TreeOps(TreeOpCode.NEWTREE, parent)
+            val idWordId = cursor.getColumnIndex(Senses_Words.WORDID)
+            val idMember = cursor.getColumnIndex(Senses_Words.WORD)
+            // int i = 1;
+            do {
+                val wordId = cursor.getLong(idWordId)
+                val member = cursor.getString(idMember)
+                val sb = SpannableStringBuilder()
+                append(sb, member, 0, WordNetFactories.membersFactory)
+
+                // result
+                val memberNode = makeLinkNode(sb, R.drawable.member, false, WordLink(fragment, wordId)).addTo(parent)
+                changedList.add(TreeOpCode.NEWCHILD, memberNode)
+            } while (cursor.moveToNext())
+            changed = changedList.toArray()
+        } else {
+            setNoResult(parent)
+            changed = seq(TreeOpCode.REMOVE, parent)
+        }
+        cursor.close()
+        return changed
+    }
+
+    /**
+     * Members as one set in one node
+     *
+     * @param synsetId    synset id
+     * @param parent      parent node
+     * @param concatQuery whether query returns members concat and not distinct rows
+     * @param addNewNode  whether to addItem to (or set) node
+     * @noinspection SameParameterValue
+     */
+    fun memberSet(synsetId: Long, parent: TreeNode, concatQuery: Boolean, addNewNode: Boolean) {
+        val sql = Queries.prepareMembers2(synsetId, concatQuery)
+        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        members2FromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> memberSetCursorToTreeModel(cursor, parent, concatQuery, addNewNode) }
+    }
+
+    private fun memberSetCursorToTreeModel(cursor: Cursor, parent: TreeNode, concatQuery: Boolean, addNewNode: Boolean): Array<TreeOp> {
+        if (concatQuery) {
+            if (cursor.count > 1) {
+                throw RuntimeException("Unexpected number of rows")
+            }
+        }
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val sb = SpannableStringBuilder()
+            if (concatQuery) {
+                val idMembers = cursor.getColumnIndex(Senses_Words.MEMBERS)
+                sb.append('{')
+                append(sb, cursor.getString(idMembers), 0, WordNetFactories.membersFactory)
+                sb.append('}')
+            } else {
+                val wordId = cursor.getColumnIndex(WordNetContract.Words.WORD)
+                do {
+                    val word = cursor.getString(wordId)
+                    if (sb.isNotEmpty()) {
+                        sb.append('\n')
+                    }
+                    //Spanner.appendImage(sb, BaseModule.this.memberDrawable);
+                    //sb.append(' ');
+                    append(sb, word, 0, WordNetFactories.membersFactory)
+                } while (cursor.moveToNext())
+            }
+
+            // result
+            changed = if (addNewNode) {
+                val node = makeTextNode(sb, false).addTo(parent)
+                seq(TreeOpCode.NEWUNIQUE, node)
+            } else {
+                setTextNode(parent, sb, R.drawable.members)
+                seq(TreeOpCode.UPDATE, parent)
+            }
+        } else {
+            setNoResult(parent)
+            changed = seq(if (addNewNode) TreeOpCode.DEADEND else TreeOpCode.REMOVE, parent)
+        }
+        cursor.close()
+        return changed
+    }
+    // S A M P L E S
+    /**
+     * Samples
+     *
+     * @param synsetId   synset id
+     * @param parent     parent node
+     * @param addNewNode whether to addItem to (or set) node
+     */
+    private fun samples(synsetId: Long, parent: TreeNode, addNewNode: Boolean) {
+        val sql = Queries.prepareSamples(synsetId)
+        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        samplesfromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> samplesCursorToTreeModel(cursor, parent, addNewNode) }
+    }
+
+    private fun samplesCursorToTreeModel(cursor: Cursor, parent: TreeNode, addNewNode: Boolean): Array<TreeOp> {
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val idSample = cursor.getColumnIndex(Samples.SAMPLE)
+            val sb = SpannableStringBuilder()
+            do {
+                val sample = cursor.getString(idSample)
+                // var sampleId = cursor.getInt(idSampleId)
+                if (sb.isNotEmpty()) {
+                    sb.append('\n')
+                }
+                appendImage(sb, sampleDrawable)
+                sb.append(' ')
+                // sb.append(sampleId)
+                // sb.append(' ')
+                append(sb, sample, 0, WordNetFactories.sampleFactory)
+                // var formattedSample = String.format(Locale.ENGLISH, "[%d] %s", sampleId, sample)
+                // sb.append(formattedSample)
+            } while (cursor.moveToNext())
+
+            // result
+            changed = if (addNewNode) {
+                val node = makeTextNode(sb, false).addTo(parent)
+                seq(TreeOpCode.NEWUNIQUE, node)
+            } else {
+                setTextNode(parent, sb, R.drawable.sample)
+                seq(TreeOpCode.UPDATE, parent)
+            }
+        } else {
+            setNoResult(parent)
+            changed = seq(if (addNewNode) TreeOpCode.DEADEND else TreeOpCode.REMOVE, parent)
+        }
+        cursor.close()
+        return changed
+    }
+    // R E L A T I O N S
+    /**
+     * Relations (union)
+     *
+     * @param synsetId                synset id
+     * @param wordId                  word id
+     * @param parent                  parent node
+     * @param deadendParentIfNoResult mark parent node as deadend if there is no result
+     */
+    private fun relations(synsetId: Long, wordId: Long, parent: TreeNode, deadendParentIfNoResult: Boolean) {
+        val sql = Queries.prepareRelations(synsetId, wordId)
+        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        relationsFromSynsetIdWordIdModel.loadData(uri, sql) { cursor: Cursor -> relationsCursorToTreeModel(cursor, parent, deadendParentIfNoResult) }
+    }
+
+    private fun relationsCursorToTreeModel(cursor: Cursor, parent: TreeNode, deadendParentIfNoResult: Boolean): Array<TreeOp> {
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val changedList = TreeOps(TreeOpCode.NEWTREE, parent)
+            val idRelationId = cursor.getColumnIndex(Relations.RELATIONID)
+            val idRelation = cursor.getColumnIndex(Relations.RELATION)
+            val idTargetSynsetId = cursor.getColumnIndex(V.SYNSET2ID)
+            val idTargetDefinition = cursor.getColumnIndex(V.DEFINITION2)
+            val idTargetMembers = cursor.getColumnIndex(AnyRelations_Senses_Words_X.MEMBERS2)
+            val idRecurses = cursor.getColumnIndex(AnyRelations_Senses_Words_X.RECURSES)
+            val idTargetWordId = cursor.getColumnIndex(V.WORD2ID)
+            val idTargetWord = cursor.getColumnIndex(V.WORD2)
+            do {
+                val sb = SpannableStringBuilder()
+                val relationId = cursor.getInt(idRelationId)
+                val relation = cursor.getString(idRelation)
+                val targetSynsetId = cursor.getLong(idTargetSynsetId)
+                val targetDefinition = cursor.getString(idTargetDefinition)
+                var targetMembers = cursor.getString(idTargetMembers)
+                val relationCanRecurse = !cursor.isNull(idRecurses) && cursor.getInt(idRecurses) != 0
+                val targetWord = if (cursor.isNull(idTargetWord)) null else cursor.getString(idTargetWord)
+                val targetWordId = if (cursor.isNull(idTargetWordId)) null else cursor.getLong(idTargetWordId)
+                if (targetWordId == null && displaySemRelationName || targetWordId != null && displayLexRelationName) {
+                    append(sb, relation, 0, WordNetFactories.relationFactory)
+                    sb.append(' ')
+                }
+                if (targetWord != null) {
+                    targetMembers = targetMembers.replace("\\b$targetWord\\b".toRegex(), targetWord + TARGET_MEMBER_CHAR)
+                }
+                append(sb, targetMembers, 0, WordNetFactories.membersFactory)
+                sb.append(' ')
+                append(sb, targetDefinition, 0, WordNetFactories.definitionFactory)
+
+                // recursion
+                if (relationCanRecurse) {
+                    val relationsNode = makeLinkQueryNode(sb, getRelationRes(relationId), false, SubRelationsQuery(targetSynsetId, relationId, maxRecursion), SynsetLink(targetSynsetId, maxRecursion, fragment), 0).addTo(parent)
+                    changedList.add(TreeOpCode.NEWCHILD, relationsNode)
+                } else {
+                    val node = makeLinkLeafNode(sb, getRelationRes(relationId), false, if (targetWordId == null) SynsetLink(targetSynsetId, maxRecursion, fragment) else SenseLink(targetSynsetId, targetWordId, maxRecursion, fragment)).addTo(parent)
+                    changedList.add(TreeOpCode.NEWCHILD, node)
+                }
+            } while (cursor.moveToNext())
+            changed = changedList.toArray()
+        } else {
+            changed = if (deadendParentIfNoResult) {
+                setNoResult(parent)
+                seq(TreeOpCode.DEADEND, parent)
+            } else {
+                seq(TreeOpCode.NOOP, parent)
+            }
+        }
+        cursor.close()
+        return changed
+    }
+    // S E M R E L A T I O N S
+    /**
+     * Semantic relations
+     *
+     * @param synsetId                synset id
+     * @param parent                  parent node
+     * @param deadendParentIfNoResult mark parent node as deadend if there is no result
+     */
+    private fun semRelations(synsetId: Long, parent: TreeNode, deadendParentIfNoResult: Boolean) {
+        val sql = Queries.prepareSemRelations(synsetId)
+        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        semRelationsFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> semRelationsCursorToTreeModel(cursor, parent, deadendParentIfNoResult) }
+    }
+
+    private fun semRelationsCursorToTreeModel(cursor: Cursor, parent: TreeNode, deadendParentIfNoResult: Boolean): Array<TreeOp> {
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val changedList = TreeOps(TreeOpCode.NEWTREE, parent)
+            val idRelationId = cursor.getColumnIndex(Relations.RELATIONID)
+            val idRelation = cursor.getColumnIndex(Relations.RELATION)
+            val idTargetSynsetId = cursor.getColumnIndex(V.SYNSET2ID)
+            val idTargetDefinition = cursor.getColumnIndex(V.DEFINITION2)
+            val idTargetMembers = cursor.getColumnIndex(SemRelations_Synsets_Words_X.MEMBERS2)
+            val idRecurses = cursor.getColumnIndex(SemRelations_Synsets_Words_X.RECURSES)
+            do {
+                val sb = SpannableStringBuilder()
+                val relationId = cursor.getInt(idRelationId)
+                val relation = cursor.getString(idRelation)
+                val targetSynsetId = cursor.getLong(idTargetSynsetId)
+                val targetDefinition = cursor.getString(idTargetDefinition)
+                val targetMembers = cursor.getString(idTargetMembers)
+                val relationCanRecurse = cursor.getInt(idRecurses) != 0
+                if (displaySemRelationName) {
+                    append(sb, relation, 0, WordNetFactories.relationFactory)
+                    sb.append(' ')
+                }
+                append(sb, targetMembers, 0, WordNetFactories.membersFactory)
+                sb.append(' ')
+                append(sb, targetDefinition, 0, WordNetFactories.definitionFactory)
+
+                // recursion
+                if (relationCanRecurse) {
+                    val relationsNode = makeLinkQueryNode(sb, getRelationRes(relationId), false, SubRelationsQuery(targetSynsetId, relationId, maxRecursion), SynsetLink(targetSynsetId, maxRecursion, fragment), 0).addTo(parent)
+                    changedList.add(TreeOpCode.NEWCHILD, relationsNode)
+                } else {
+                    val node = makeLeafNode(sb, getRelationRes(relationId), false).addTo(parent)
+                    changedList.add(TreeOpCode.NEWCHILD, node)
+                }
+            } while (cursor.moveToNext())
+            changed = changedList.toArray()
+        } else {
+            changed = if (deadendParentIfNoResult) {
+                setNoResult(parent)
+                seq(TreeOpCode.DEADEND, parent)
+            } else {
+                seq(TreeOpCode.NOOP, parent)
+            }
+        }
+        cursor.close()
+        return changed
+    }
+
+    /**
+     * Semantic relations
+     *
+     * @param synsetId                synset id
+     * @param relationId              relation id
+     * @param recurseLevel            recurse level
+     * @param hot                     whether query is executed immediately
+     * @param parent                  parent node
+     * @param deadendParentIfNoResult mark parent node as deadend if there is no result
+     */
+    private fun semRelations(synsetId: Long, relationId: Int, recurseLevel: Int, hot: Boolean, parent: TreeNode, deadendParentIfNoResult: Boolean) {
+        val sql = Queries.prepareSemRelations(synsetId, relationId)
+        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        semRelationsFromSynsetIdRelationIdModel.loadData(uri, sql) { cursor: Cursor -> semRelationsFromSynsetIdRelationIdCursorToTreeModel(cursor, relationId, recurseLevel, hot, parent, deadendParentIfNoResult) }
+    }
+
+    private fun semRelationsFromSynsetIdRelationIdCursorToTreeModel(cursor: Cursor, relationId: Int, recurseLevel: Int, hot: Boolean, parent: TreeNode, deadendParentIfNoResult: Boolean): Array<TreeOp> {
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val changedList = TreeOps(TreeOpCode.NEWTREE, parent)
+
+            // final int idRelationId = cursor.getColumnIndex(Relations.RELATIONID);
+            // final int idRelation = cursor.getColumnIndex(Relations.RELATION);
+            val idTargetSynsetId = cursor.getColumnIndex(V.SYNSET2ID)
+            val idTargetDefinition = cursor.getColumnIndex(V.DEFINITION2)
+            val idTargetMembers = cursor.getColumnIndex(SemRelations_Synsets_Words_X.MEMBERS2)
+            val idRecurses = cursor.getColumnIndex(SemRelations_Synsets_Words_X.RECURSES)
+            do {
+                val sb = SpannableStringBuilder()
+
+                // final int relationId = cursor.getInt(idRelationId);
+                // final String relation = cursor.getString(idRelation);
+                val targetSynsetId = cursor.getLong(idTargetSynsetId)
+                val targetDefinition = cursor.getString(idTargetDefinition)
+                val targetMembers = cursor.getString(idTargetMembers)
+                val relationCanRecurse = cursor.getInt(idRecurses) != 0
+                append(sb, targetMembers, 0, WordNetFactories.membersFactory)
+                sb.append(' ')
+                append(sb, targetDefinition, 0, WordNetFactories.definitionFactory)
+
+                // recurse
+                if (relationCanRecurse) {
+                    if (recurseLevel > 1) {
+                        val newRecurseLevel = recurseLevel - 1
+                        val relationsNode = if (hot) makeLinkHotQueryNode(
+                            sb,
+                            getRelationRes(relationId),
+                            false,
+                            SubRelationsQuery(targetSynsetId, relationId, newRecurseLevel, true),
+                            SynsetLink(targetSynsetId, maxRecursion, fragment),
+                            0
+                        ).addTo(parent) else makeLinkQueryNode(sb, getRelationRes(relationId), false, SubRelationsQuery(targetSynsetId, relationId, newRecurseLevel), SynsetLink(targetSynsetId, maxRecursion, fragment), 0).addTo(parent)
+                        changedList.add(TreeOpCode.NEWCHILD, relationsNode)
+                    } else {
+                        val moreNode = makeMoreNode(sb, getRelationRes(relationId), false).addTo(parent)
+                        changedList.add(TreeOpCode.NEWCHILD, moreNode)
+                    }
+                } else {
+                    val node = makeLeafNode(sb, getRelationRes(relationId), false).addTo(parent)
+                    changedList.add(TreeOpCode.NEWCHILD, node)
+                }
+            } while (cursor.moveToNext())
+            changed = changedList.toArray()
+        } else {
+            changed = if (deadendParentIfNoResult) {
+                setNoResult(parent)
+                seq(TreeOpCode.DEADEND, parent)
+            } else {
+                seq(TreeOpCode.NOOP, parent)
+            }
+        }
+        cursor.close()
+        return changed
+    }
+    // L E X R E L A T I O N S
+    /**
+     * Lexical relations
+     *
+     * @param synsetId                synset id
+     * @param parent                  parent
+     * @param deadendParentIfNoResult mark parent node as deadend if there is no result
+     */
+    fun lexRelations(synsetId: Long, parent: TreeNode, deadendParentIfNoResult: Boolean) {
+        val sql = Queries.prepareLexRelations(synsetId)
+        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        lexRelationsFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> lexRelationsFromSynsetIdCursorToTreeModel(cursor, parent, deadendParentIfNoResult) }
+    }
+
+    private fun lexRelationsFromSynsetIdCursorToTreeModel(cursor: Cursor, parent: TreeNode, deadendParentIfNoResult: Boolean): Array<TreeOp> {
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val changedList = TreeOps(TreeOpCode.NEWTREE, parent)
+            val idRelationId = cursor.getColumnIndex(Relations.RELATIONID)
+            val idTargetDefinition = cursor.getColumnIndex(V.DEFINITION2)
+            val idTargetMembers = cursor.getColumnIndex(LexRelations_Senses_Words_X.MEMBERS2)
+            val idTargetWord = cursor.getColumnIndex(V.WORD2)
+            val sb = SpannableStringBuilder()
+            do {
+                val relationId = cursor.getInt(idRelationId)
+                val targetDefinition = cursor.getString(idTargetDefinition)
+                val targetWord = cursor.getString(idTargetWord)
+                var targetMembers = cursor.getString(idTargetMembers)
+                if (targetWord != null) {
+                    targetMembers = targetMembers.replace("\\b$targetWord\\b".toRegex(), targetWord + TARGET_MEMBER_CHAR)
+                }
+                if (sb.isNotEmpty()) {
+                    sb.append('\n')
+                }
+                append(sb, targetWord, 0, WordNetFactories.wordFactory)
+                sb.append(" in ")
+                sb.append(' ')
+                sb.append('{')
+                append(sb, targetMembers, 0, WordNetFactories.membersFactory)
+                sb.append('}')
+                sb.append(' ')
+                append(sb, targetDefinition, 0, WordNetFactories.definitionFactory)
+
+                // attach result
+                val relationNode = makeLeafNode(sb, getRelationRes(relationId), false).addTo(parent)
+                changedList.add(TreeOpCode.NEWCHILD, relationNode)
+            } while (cursor.moveToNext())
+
+            // attach result
+            val node = makeTextNode(sb, false).addTo(parent)
+            changedList.add(TreeOpCode.NEWCHILD, node)
+            changed = changedList.toArray()
+        } else {
+            changed = if (deadendParentIfNoResult) {
+                setNoResult(parent)
+                seq(TreeOpCode.DEADEND, parent)
+            } else {
+                seq(TreeOpCode.NOOP, parent)
+            }
+        }
+        cursor.close()
+        return changed
+    }
+
+    /**
+     * Lexical relations
+     *
+     * @param synsetId                synset id
+     * @param wordId                  word id
+     * @param parent                  parent node
+     * @param deadendParentIfNoResult mark parent node as deadend if there is no result
+     */
+    private fun lexRelations(synsetId: Long, wordId: Long, parent: TreeNode, deadendParentIfNoResult: Boolean) {
+        val sql = Queries.prepareLexRelations(synsetId, wordId)
+        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        lexRelationsFromSynsetIdWordIdModel.loadData(uri, sql) { cursor: Cursor -> lexRelationsCursorToTreeModel(cursor, parent, deadendParentIfNoResult) }
+    }
+
+    private fun lexRelationsCursorToTreeModel(cursor: Cursor, parent: TreeNode, deadendParentIfNoResult: Boolean): Array<TreeOp> {
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val changedList = TreeOps(TreeOpCode.NEWTREE, parent)
+            val idRelationId = cursor.getColumnIndex(Relations.RELATIONID)
+            val idRelation = cursor.getColumnIndex(Relations.RELATION)
+            val idTargetSynsetId = cursor.getColumnIndex(V.SYNSET2ID)
+            val idTargetDefinition = cursor.getColumnIndex(V.DEFINITION2)
+            val idTargetMembers = cursor.getColumnIndex(LexRelations_Senses_Words_X.MEMBERS2)
+            val idTargetWordId = cursor.getColumnIndex(V.WORD2ID)
+            val idTargetWord = cursor.getColumnIndex(V.WORD2)
+            do {
+                val sb = SpannableStringBuilder()
+                val relationId = cursor.getInt(idRelationId)
+                val relation = cursor.getString(idRelation)
+                val targetSynsetId = cursor.getLong(idTargetSynsetId)
+                val targetDefinition = cursor.getString(idTargetDefinition)
+                val targetWord = cursor.getString(idTargetWord)
+                var targetMembers = cursor.getString(idTargetMembers)
+                if (targetWord != null) {
+                    targetMembers = targetMembers.replace("\\b$targetWord\\b".toRegex(), targetWord + TARGET_MEMBER_CHAR)
+                }
+                if (sb.isNotEmpty()) {
+                    sb.append('\n')
+                }
+                if (displayLexRelationName) {
+                    append(sb, relation, 0, WordNetFactories.relationFactory)
+                    sb.append(' ')
+                }
+                append(sb, targetMembers, 0, WordNetFactories.membersFactory)
+                sb.append(' ')
+                append(sb, targetDefinition, 0, WordNetFactories.definitionFactory)
+
+                // attach result
+                val relationNode = makeLinkLeafNode(sb, getRelationRes(relationId), false, SenseLink(targetSynsetId, idTargetWordId.toLong(), maxRecursion, fragment)).addTo(parent)
+                changedList.add(TreeOpCode.NEWCHILD, relationNode)
+            } while (cursor.moveToNext())
+            changed = changedList.toArray()
+        } else {
+            changed = if (deadendParentIfNoResult) {
+                setNoResult(parent)
+                seq(TreeOpCode.DEADEND, parent)
+            } else {
+                seq(TreeOpCode.NOOP, parent)
+            }
+        }
+        cursor.close()
+        return changed
+    }
+
+    // V F R A M E S
+
+    /**
+     * Verb frames
+     *
+     * @param synsetId synset id
+     * @param parent   parent node
+     */
+    fun vFrames(synsetId: Long, parent: TreeNode) {
+        val sql = Queries.prepareVFrames(synsetId)
+        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        vFramesFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> vframesCursorToTreeModel(cursor, parent) }
+    }
+
+    /**
+     * Verb frames
+     *
+     * @param synsetId synset id
+     * @param wordId   word id
+     * @param parent   parent node
+     */
+    fun vFrames(synsetId: Long, wordId: Long, parent: TreeNode) {
+        val sql = Queries.prepareVFrames(synsetId, wordId)
+        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        vFramesFromSynsetIdWordIdModel.loadData(uri, sql) { cursor: Cursor -> vframesCursorToTreeModel(cursor, parent) }
+    }
+
+    private fun vframesCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val vframeId = cursor.getColumnIndex(Senses_VerbFrames.FRAME)
+            val sb = SpannableStringBuilder()
+            do {
+                val vframe = cursor.getString(vframeId)
+                val formattedVframe = String.format(Locale.ENGLISH, "%s", vframe)
+                if (sb.isNotEmpty()) {
+                    sb.append('\n')
+                }
+                appendImage(sb, verbframeDrawable)
+                sb.append(' ')
+                sb.append(formattedVframe)
+            } while (cursor.moveToNext())
+
+            // attach result
+            val node = makeTextNode(sb, false).addTo(parent)
+            changed = seq(TreeOpCode.NEWUNIQUE, node)
+        } else {
+            setNoResult(parent)
+            changed = seq(TreeOpCode.REMOVE, parent)
+        }
+        cursor.close()
+        return changed
+    }
+    // V T E M P L A T E S
+    /**
+     * Verb templates
+     *
+     * @param synsetId synset id
+     * @param parent   parent node
+     */
+    fun vTemplates(synsetId: Long, parent: TreeNode) {
+        val sql = Queries.prepareVTemplates(synsetId)
+        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        vTemplatesFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> vTemplatesCursorToTreeModel(cursor, parent) }
+    }
+
+    private fun vTemplatesCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val vTemplateId = cursor.getColumnIndex(Senses_VerbTemplates.TEMPLATE)
+            val sb = SpannableStringBuilder()
+            do {
+                val vTemplate = cursor.getString(vTemplateId)
+                val formattedVTemplate = String.format(Locale.ENGLISH, vTemplate, "[-]")
+                if (sb.isNotEmpty()) {
+                    sb.append('\n')
+                }
+                appendImage(sb, verbframeDrawable)
+                sb.append(' ')
+                sb.append(formattedVTemplate)
+            } while (cursor.moveToNext())
+
+            // attach result
+            val node = makeTextNode(sb, false).addTo(parent)
+            changed = seq(TreeOpCode.NEWUNIQUE, node)
+        } else {
+            setNoResult(parent)
+            changed = seq(TreeOpCode.REMOVE, parent)
+        }
+        cursor.close()
+        return changed
+    }
+
+    /**
+     * Verb templates
+     *
+     * @param synsetId synset id
+     * @param wordId   word id
+     * @param parent   parent node
+     */
+    fun vTemplates(synsetId: Long, wordId: Long, parent: TreeNode) {
+        val sql = Queries.prepareVTemplates(synsetId, wordId)
+        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        vTemplatesFromSynsetIdWordIdModel.loadData(uri, sql) { cursor: Cursor -> vTemplatesFromSynsetIdWordIdCursorToTreeModel(cursor, parent) }
+    }
+
+    private fun vTemplatesFromSynsetIdWordIdCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val word = "---"
+            val vTemplateId = cursor.getColumnIndex(Senses_VerbTemplates.TEMPLATE)
+            val sb = SpannableStringBuilder()
+            do {
+                val vTemplate = cursor.getString(vTemplateId)
+                val formattedVTemplate = String.format(Locale.ENGLISH, vTemplate, "[$word]")
+                if (sb.isNotEmpty()) {
+                    sb.append('\n')
+                }
+                appendImage(sb, verbframeDrawable)
+                sb.append(' ')
+                sb.append(formattedVTemplate)
+            } while (cursor.moveToNext())
+
+            // attach result
+            val node = makeTextNode(sb, false).addTo(parent)
+            changed = seq(TreeOpCode.NEWUNIQUE, node)
+        } else {
+            setNoResult(parent)
+            changed = seq(TreeOpCode.REMOVE, parent)
+        }
+        cursor.close()
+        return changed
+    }
+    // A D J P O S I T I O N S
+    /**
+     * Adjective positions
+     *
+     * @param synsetId synset id
+     * @param parent   parent node
+     */
+    fun adjPosition(synsetId: Long, parent: TreeNode) {
+        val sql = Queries.prepareAdjPosition(synsetId)
+        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        adjPositionFromSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> adjPositionCursorToTreeModel(cursor, parent) }
+    }
+
+    /**
+     * Adjective positions
+     *
+     * @param synsetId synset id
+     * @param wordId   word id
+     * @param parent   parent node
+     */
+    fun adjPosition(synsetId: Long, wordId: Long, parent: TreeNode) {
+        val sql = Queries.prepareAdjPosition(synsetId, wordId)
+        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        adjPositionFromSynsetIdWordIdModel.loadData(uri, sql) { cursor: Cursor -> adjPositionCursorToTreeModel(cursor, parent) }
+    }
+
+    private fun adjPositionCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val positionId = cursor.getColumnIndex(Senses_AdjPositions.POSITION)
+            val sb = SpannableStringBuilder()
+            do {
+                val position = cursor.getString(positionId)
+                val formattedPosition = String.format(Locale.ENGLISH, "%s", position)
+                if (sb.isNotEmpty()) {
+                    sb.append('\n')
+                }
+                appendImage(sb, verbframeDrawable)
+                sb.append(' ')
+                sb.append(formattedPosition)
+            } while (cursor.moveToNext())
+
+            // attach result
+            val node = makeTextNode(sb, false).addTo(parent)
+            changed = seq(TreeOpCode.NEWUNIQUE, node)
+        } else {
+            setNoResult(parent)
+            changed = seq(TreeOpCode.REMOVE, parent)
+        }
+        cursor.close()
+        return changed
+    }
+    // M O R P H S
+    /**
+     * Morphology
+     *
+     * @param wordId word id
+     * @param parent parent node
+     */
+    fun morphs(wordId: Long, parent: TreeNode) {
+        val sql = Queries.prepareMorphs(wordId)
+        val uri = Uri.parse(WordNetProvider.makeUri(sql.providerUri))
+        morphsFromWordIdModel.loadData(uri, sql) { cursor: Cursor -> morphsCursorToTreeModel(cursor, parent) }
+    }
+
+    private fun morphsCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val morphId = cursor.getColumnIndex(Lexes_Morphs.MORPH)
+            val posId = cursor.getColumnIndex(Lexes_Morphs.POSID)
+            val sb = SpannableStringBuilder()
+            do {
+                val morph1 = cursor.getString(morphId)
+                val pos1 = cursor.getString(posId)
+                val formattedMorph = String.format(Locale.ENGLISH, "(%s) %s", pos1, morph1)
+                if (sb.isNotEmpty()) {
+                    sb.append('\n')
+                }
+                appendImage(sb, morphDrawable)
+                sb.append(' ')
+                sb.append(formattedMorph)
+            } while (cursor.moveToNext())
+
+            // attach result
+            val node = makeTextNode(sb, false).addTo(parent)
+            changed = seq(TreeOpCode.NEWUNIQUE, node)
+        } else {
+            setNoResult(parent)
+            changed = seq(TreeOpCode.REMOVE, parent)
+        }
+        cursor.close()
+        return changed
+    }
+    // H E L P E R S
+    /**
+     * Match relation id to drawable resource id
+     *
+     * @param relationId relation id
+     * @return kink res id
+     */
+    private fun getRelationRes(relationId: Int): Int {
+        return when (relationId) {
+            1 -> R.drawable.ic_hypernym
+            2 -> R.drawable.ic_hyponym
+            3 -> R.drawable.ic_instance_hypernym
+            4 -> R.drawable.ic_instance_hyponym
+            11 -> R.drawable.ic_part_holonym
+            12 -> R.drawable.ic_part_meronym
+            13 -> R.drawable.ic_member_holonym
+            14 -> R.drawable.ic_member_meronym
+            15 -> R.drawable.ic_substance_holonym
+            16 -> R.drawable.ic_substance_meronym
+            21 -> R.drawable.ic_entails
+            22 -> R.drawable.ic_entailed
+            23 -> R.drawable.ic_causes
+            24 -> R.drawable.ic_caused
+            30 -> R.drawable.ic_antonym
+            40 -> R.drawable.ic_similar
+            50 -> R.drawable.ic_also
+            60 -> R.drawable.ic_attribute
+            70 -> R.drawable.ic_verb_group
+            71 -> R.drawable.ic_participle
+            80 -> R.drawable.ic_pertainym
+            81 -> R.drawable.ic_derivation
+            91 -> R.drawable.ic_domain_topic
+            92 -> R.drawable.ic_domain_member_topic
+            93 -> R.drawable.ic_domain_region
+            94 -> R.drawable.ic_domain_member_region
+            95 -> R.drawable.ic_exemplifies
+            96 -> R.drawable.ic_exemplified
+            97 -> R.drawable.ic_domain
+            98 -> R.drawable.ic_domain_member
+            99 -> R.drawable.ic_other
+            100 -> R.drawable.ic_state
+            101 -> R.drawable.ic_result
+            102 -> R.drawable.ic_event
+            110 -> R.drawable.ic_property
+            120 -> R.drawable.ic_location
+            121 -> R.drawable.ic_destination
+            130 -> R.drawable.ic_agent
+            131 -> R.drawable.ic_undergoer
+            140 -> R.drawable.ic_uses
+            141 -> R.drawable.ic_instrument
+            142 -> R.drawable.ic_bymeansof
+            150 -> R.drawable.ic_material
+            160 -> R.drawable.ic_vehicle
+            170 -> R.drawable.ic_bodypart
+            else -> R.drawable.error
+        }
+    }
+    // Q U E R I E S
+    /**
+     * Relations query
+     */
+    internal inner class RelationsQuery
+    /**
+     * Constructor
+     *
+     * @param synsetId synset id
+     * @param wordId   word id
+     */(
+        synsetId: Long,
+        /**
+         * Word id
+         */
+        val wordId: Long,
+    ) : Query(synsetId) {
+        override fun process(node: TreeNode) {
+            relations(id, wordId, node, true)
+
+            // sem relations
+            //semRelations(this.id, node, false);
+
+            // lex relations
+            //lexRelations(this.id, this.wordId, node, false);
+        }
+
+        override fun toString(): String {
+            return "relations for $id,$wordId"
+        }
+    }
+
+    /**
+     * Semantic Relation query
+     */
+    internal inner class SemRelationsQuery
+    /**
+     * Constructor
+     *
+     * @param synsetId synset id
+     */
+        (synsetId: Long) : Query(synsetId) {
+        override fun process(node: TreeNode) {
+            semRelations(id, node, true)
+        }
+
+        override fun toString(): String {
+            return "semrelations for $id"
+        }
+    }
+
+    /**
+     * Lexical Relation query
+     */
+    internal inner class LexRelationsQuery
+    /**
+     * Constructor
+     *
+     * @param synsetId synset id
+     * @param wordId   word id
+     */(
+        synsetId: Long,
+        /**
+         * Word id
+         */
+        val wordId: Long,
+    ) : Query(synsetId) {
+        override fun process(node: TreeNode) {
+            lexRelations(id, wordId, node, true)
+        }
+
+        override fun toString(): String {
+            return "lexrelations for $id,$wordId"
+        }
+    }
+
+    /**
+     * Sub relations of give type query
+     *
+     * @param synsetId     synset id
+     * @param relationId   relation id
+     * @param recurseLevel recurse level
+     * @param hot          whether result nodes are hot queries
+     */
+    internal inner class SubRelationsQuery @JvmOverloads constructor(
+        synsetId: Long,
+        private val relationId: Int,
+        private val recurseLevel: Int,
+        private val hot: Boolean = false,
+    ) : Query(synsetId) {
+
+        override fun process(node: TreeNode) {
+            semRelations(id, relationId, recurseLevel, hot, node, true)
+        }
+
+        override fun toString(): String {
+            return "sub semrelations of type $relationId for $id at level $recurseLevel"
+        }
+    }
+
+    /**
+     * Samples query
+     */
+    internal inner class SamplesQuery
+
+    /**
+     * Constructor
+     *
+     * @param synsetId synset id
+     */
+        (synsetId: Long) : Query(synsetId) {
+        override fun process(node: TreeNode) {
+            samples(id, node, true)
+        }
+
+        override fun toString(): String {
+            return "samples for $id"
+        }
+    }
+
+    /**
+     * Word link data
+     *
+     * @param wordId   word id
+     * @param fragment fragment
+     */
+    open class BaseWordLink(wordId: Long, protected val fragment: Fragment) : Link(wordId) {
+
+        override fun process() {
+            val context = fragment.context ?: return
+            val pointer: Parcelable = WordPointer(id)
+            val intent = Intent(context, WordActivity::class.java)
+            intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_WORD)
+            intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer)
+            intent.setAction(ProviderArgs.ACTION_QUERY)
+            context.startActivity(intent)
+        }
+
+        override fun toString(): String {
+            return "word for $id"
+        }
+    }
+
+    /**
+     * Word link data
+     *
+     * @param wordId   word id
+     * @param fragment fragment
+     */
+    class WordLink internal constructor(fragment: Fragment, wordId: Long) : BaseWordLink(wordId, fragment)
+
+    /**
+     * Synset link data
+     *
+     * @param synsetId synset id
+     * @param recurse  max recursion level
+     * @param fragment fragment
+     */
+    open class BaseSynsetLink(synsetId: Long, val recurse: Int, protected val fragment: Fragment) : Link(synsetId) {
+        val parameters: Bundle?
+
+        init {
+            val args = fragment.arguments
+            parameters = args?.getBundle(ProviderArgs.ARG_RENDERPARAMETERS)
+        }
+
+        override fun process() {
+            val context = fragment.context ?: return
+            val pointer: Parcelable = SynsetPointer(id)
+            val intent = Intent(context, SynsetActivity::class.java)
+            intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET)
+            intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer)
+            intent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse)
+            intent.putExtra(ProviderArgs.ARG_RENDERPARAMETERS, parameters)
+            intent.setAction(ProviderArgs.ACTION_QUERY)
+            context.startActivity(intent)
+        }
+
+        override fun toString(): String {
+            return "synset for $id"
+        }
+    }
+
+    /**
+     * Synset link data
+     *
+     * @param synsetId synset id
+     * @param recurse  max recursion level
+     * @param fragment fragment
+     */
+    class SynsetLink internal constructor(synsetId: Long, recurse: Int, fragment: Fragment) : BaseSynsetLink(synsetId, recurse, fragment)
+
+    /**
+     * Relations link data
+     *
+     * @param synsetId synset id
+     * @param recurse  max recursion level
+     * @param fragment fragment
+     */
+    class RelationLink(synsetId: Long, val recurse: Int, private val fragment: Fragment) : Link(synsetId) {
+        val parameters: Bundle?
+
+        init {
+            val args = fragment.arguments
+            parameters = args?.getBundle(ProviderArgs.ARG_RENDERPARAMETERS)
+        }
+
+        override fun process() {
+            val context = fragment.context ?: return
+            val pointer: Parcelable = SynsetPointer(id)
+            val intent = Intent(context, RelationActivity::class.java)
+            intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET)
+            intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer)
+            intent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse)
+            intent.putExtra(ProviderArgs.ARG_RENDERPARAMETERS, parameters)
+            intent.setAction(ProviderArgs.ACTION_QUERY)
+            context.startActivity(intent)
+        }
+
+        override fun toString(): String {
+            return "relation for $id"
+        }
+    }
+
+    /**
+     * Sense link data
+     *
+     * @param synsetId synset id
+     * @param wordId   word id
+     * @param recurse  recurse
+     * @param fragment fragment
+     */
+    open class BaseSenseLink(synsetId: Long, private val wordId: Long, recurse: Int, fragment: Fragment) : BaseSynsetLink(synsetId, recurse, fragment) {
+
+        override fun process() {
+            val context = fragment.context ?: return
+            val pointer: Parcelable = SensePointer(id, wordId)
+            val intent = Intent(context, SynsetActivity::class.java)
+            intent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET)
+            intent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer)
+            intent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse)
+            intent.putExtra(ProviderArgs.ARG_RENDERPARAMETERS, parameters)
+            intent.setAction(ProviderArgs.ACTION_QUERY)
+            context.startActivity(intent)
+        }
+
+        override fun toString(): String {
+            return "sense for $id,$wordId"
+        }
+    }
+
+    /**
+     * Sense link data
+     *
+     * @param synsetId synset id
+     * @param wordId   word id
+     * @param recurse  max recursion level
+     * @param fragment fragment
+     */
+    class SenseLink internal constructor(synsetId: Long, wordId: Long, recurse: Int, fragment: Fragment) : BaseSenseLink(synsetId, wordId, recurse, fragment)
+
+    companion object {
+        private const val TARGET_MEMBER_CHAR = '*'
+    }
 }

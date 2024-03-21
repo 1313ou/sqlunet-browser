@@ -1,142 +1,125 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.wordnet.sql
 
-package org.sqlunet.wordnet.sql;
-
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.database.SQLException
+import android.database.sqlite.SQLiteDatabase
+import android.util.Log
+import org.sqlunet.wordnet.sql.Mapping.canRecurse
+import org.sqlunet.wordnet.sql.Mapping.getRelationName
 
 /**
  * Related, a related synset
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class Related extends Synset
-{
-	static private final String TAG = "Related";
+internal class Related : Synset {
 
-	/**
-	 * <code>relationId</code> relation type id
-	 */
-	private final int relationId;
+    /**
+     * `relationId` relation type id
+     */
+    private val relationId: Int
 
-	/**
-	 * <code>word</code> related word (lexrelations)
-	 */
-	@Nullable
-	public final String word;
+    /**
+     * `word` related word (lexrelations)
+     */
+    @JvmField
+    val word: String?
 
-	/**
-	 * <code>wordId</code> related word id (lexrelations)
-	 */
-	public final long wordId;
+    /**
+     * `wordId` related word id (lexrelations)
+     */
+    @JvmField
+    val wordId: Long
 
-	/**
-	 * <code>fromSynsetId</code> source synset id
-	 */
-	public final long fromSynsetId;
+    /**
+     * `fromSynsetId` source synset id
+     */
+    private val fromSynsetId: Long
 
-	/**
-	 * <code>fromWordId</code> source synset id
-	 */
-	public final long fromWordId;
+    /**
+     * `fromWordId` source synset id
+     */
+    private val fromWordId: Long
 
-	/**
-	 * Constructor from query for synsets related to a given synset
-	 *
-	 * @param query query for synsets related to a given synset
-	 */
-	public Related(@NonNull final RelatedsQueryFromSynsetId query)
-	{
-		// construct synset
-		super(query);
+    /**
+     * Constructor from query for synsets related to a given synset
+     *
+     * @param query query for synsets related to a given synset
+     */
+    constructor(query: RelatedsQueryFromSynsetId) : super(query) {
+        // construct synset
 
-		// relation data
-		final String[] words = query.getWords();
-		final long[] wordIds = query.getWordIds();
+        // relation data
+        val words = query.getWords()
+        val wordIds = query.getWordIds()
+        relationId = query.getRelationId()
+        word = if (words == null) null else if (words.size == 1) words[0] else null
+        wordId = if (wordIds == null) 0 else if (wordIds.size == 1) wordIds[0] else 0
+        fromSynsetId = query.getFromSynset()
+        fromWordId = query.getFromWord()
+    }
 
-		this.relationId = query.getRelationId();
-		this.word = words == null ? null : (words.length == 1 ? words[0] : null);
-		this.wordId = wordIds == null ? 0 : (wordIds.length == 1 ? wordIds[0] : 0);
-		this.fromSynsetId = query.getFromSynset();
-		this.fromWordId = query.getFromWord();
-	}
+    /**
+     * Constructor from query for synsets related to a given synset through a given relation type id
+     *
+     * @param query is a query for synsets related to a given synset through a given relation type id
+     */
+    constructor(query: RelatedsQueryFromSynsetIdAndRelationId) : super(query) {
+        // construct synset
 
-	/**
-	 * Constructor from query for synsets related to a given synset through a given relation type id
-	 *
-	 * @param query is a query for synsets related to a given synset through a given relation type id
-	 */
-	Related(@NonNull final RelatedsQueryFromSynsetIdAndRelationId query)
-	{
-		// construct synset
-		super(query);
+        // relation data
+        val words = query.getWords()
+        val wordIds = query.getWordIds()
+        relationId = query.getRelationId()
+        word = if (words == null) null else if (words.size == 1) words[0] else null
+        wordId = if (wordIds == null) 0 else if (wordIds.size == 1) wordIds[0] else 0
+        fromSynsetId = query.getFromSynset()
+        fromWordId = query.getFromWord()
+    }
 
-		// relation data
-		final String[] words = query.getWords();
-		final long[] wordIds = query.getWordIds();
+    val relationName: String
+        /**
+         * Get relation name
+         *
+         * @return relation name
+         */
+        get() = getRelationName(relationId)
 
-		this.relationId = query.getRelationId();
-		this.word = words == null ? null : (words.length == 1 ? words[0] : null);
-		this.wordId = wordIds == null ? 0 : (wordIds.length == 1 ? wordIds[0] : 0);
-		this.fromSynsetId = query.getFromSynset();
-		this.fromWordId = query.getFromWord();
-	}
+    /**
+     * Get whether relation can recurse
+     *
+     * @return true if the relation can recurse
+     */
+    fun canRecurse(): Boolean {
+        return canRecurse(relationId)
+    }
 
-	/**
-	 * Get relation name
-	 *
-	 * @return relation name
-	 */
-	public String getRelationName()
-	{
-		return Mapping.getRelationName(this.relationId);
-	}
+    /**
+     * Override : recurse only on relations of the same relation type
+     */
+    override fun getRelateds(connection: SQLiteDatabase, wordId: Long): List<Related>? {
+        try {
+            RelatedsQueryFromSynsetIdAndRelationId(connection).use { query ->
+                query.setFromSynset(synsetId)
+                query.setFromWord(wordId)
+                query.setRelation(relationId)
+                query.execute()
+                val relateds: MutableList<Related> = ArrayList()
+                while (query.next()) {
+                    val related = Related(query)
+                    relateds.add(related)
+                }
+                return relateds
+            }
+        } catch (e: SQLException) {
+            Log.e(TAG, "While querying", e)
+            return null
+        }
+    }
 
-	/**
-	 * Get whether relation can recurse
-	 *
-	 * @return true if the relation can recurse
-	 */
-	public boolean canRecurse()
-	{
-		return Mapping.canRecurse(this.relationId);
-	}
-
-	/**
-	 * Override : recurse only on relations of the same relation type
-	 */
-	@Nullable
-	@Override
-	public List<Related> getRelateds(final SQLiteDatabase connection, final long wordId)
-	{
-		try (RelatedsQueryFromSynsetIdAndRelationId query = new RelatedsQueryFromSynsetIdAndRelationId(connection))
-		{
-			query.setFromSynset(this.synsetId);
-			query.setFromWord(wordId);
-			query.setRelation(this.relationId);
-			query.execute();
-
-			List<Related> relateds = new ArrayList<>();
-			while (query.next())
-			{
-				final Related related = new Related(query);
-				relateds.add(related);
-			}
-			return relateds;
-		}
-		catch (@NonNull final SQLException e)
-		{
-			Log.e(TAG, "While querying", e);
-			return null;
-		}
-	}
+    companion object {
+        private const val TAG = "Related"
+    }
 }

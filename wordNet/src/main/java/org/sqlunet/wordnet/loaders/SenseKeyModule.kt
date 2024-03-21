@@ -1,65 +1,41 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.wordnet.loaders
 
-package org.sqlunet.wordnet.loaders;
-
-import android.os.Parcelable;
-
-import org.sqlunet.HasSenseKey;
-import org.sqlunet.browser.TreeFragment;
-import org.sqlunet.model.TreeFactory;
-import org.sqlunet.treeview.model.TreeNode;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.os.Parcelable
+import org.sqlunet.HasSenseKey
+import org.sqlunet.browser.TreeFragment
+import org.sqlunet.model.TreeFactory.setNoResult
+import org.sqlunet.treeview.model.TreeNode
 
 /**
  * Module for WordNet sense (from sensekey)
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param fragment fragment
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
+class SenseKeyModule(fragment: TreeFragment) : BaseModule(fragment) {
+    /**
+     * Sense key
+     */
+    private var senseKey: String? = null
 
-public class SenseKeyModule extends BaseModule
-{
-	/**
-	 * Sense key
-	 */
-	@Nullable
-	private String senseKey;
+    override fun unmarshal(pointer: Parcelable) {
+        senseKey = null
+        if (pointer is HasSenseKey) {
+            val sensePointer = pointer as HasSenseKey
+            senseKey = sensePointer.getSenseKey()
+        }
+    }
 
-	/**
-	 * Constructor
-	 *
-	 * @param fragment fragment
-	 */
-	public SenseKeyModule(@NonNull final TreeFragment fragment)
-	{
-		super(fragment);
-	}
-
-	@Override
-	protected void unmarshal(final Parcelable pointer)
-	{
-		this.senseKey = null;
-		if (pointer instanceof HasSenseKey)
-		{
-			final HasSenseKey sensePointer = (HasSenseKey) pointer;
-			this.senseKey = sensePointer.getSenseKey();
-		}
-	}
-
-	@Override
-	public void process(@NonNull final TreeNode parent)
-	{
-		if (this.senseKey != null && !this.senseKey.isEmpty())
-		{
-			// synset
-			sense(this.senseKey, parent);
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-		}
-	}
+    override fun process(node: TreeNode) {
+        if (senseKey != null && senseKey!!.isNotEmpty()) {
+            // synset
+            sense(senseKey, node)
+        } else {
+            setNoResult(node)
+        }
+    }
 }

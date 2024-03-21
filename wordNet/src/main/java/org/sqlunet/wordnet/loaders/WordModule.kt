@@ -1,76 +1,45 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.wordnet.loaders
 
-package org.sqlunet.wordnet.loaders;
-
-import android.os.Parcelable;
-
-import org.sqlunet.HasWordId;
-import org.sqlunet.browser.TreeFragment;
-import org.sqlunet.model.TreeFactory;
-import org.sqlunet.treeview.model.TreeNode;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.os.Parcelable
+import org.sqlunet.HasWordId
+import org.sqlunet.browser.TreeFragment
+import org.sqlunet.model.TreeFactory.makeTextNode
+import org.sqlunet.model.TreeFactory.setNoResult
+import org.sqlunet.treeview.model.TreeNode
 
 /**
  * Module for WordNet word
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param fragment fragment
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
+class WordModule(fragment: TreeFragment) : BaseModule(fragment) {
+    private var wordId: Long? = null
 
-public class WordModule extends BaseModule
-{
-	/**
-	 * Word id
-	 */
-	@Nullable
-	private Long wordId;
+    override fun unmarshal(pointer: Parcelable) {
+        wordId = null
+        if (pointer is HasWordId) {
+            val wordPointer = pointer as HasWordId
+            wordId = wordPointer.getWordId()
+        }
+    }
 
-	/**
-	 * Constructor
-	 *
-	 * @param fragment fragment
-	 */
-	public WordModule(@NonNull final TreeFragment fragment)
-	{
-		super(fragment);
-	}
+    override fun process(node: TreeNode) {
+        if (wordId != null && wordId != 0L) {
+            // sub nodes
+            val wordNode = makeTextNode(wordLabel, false).addTo(node)
 
-	@Override
-	protected void unmarshal(final Parcelable pointer)
-	{
-		this.wordId = null;
-		if (pointer instanceof HasWordId)
-		{
-			final HasWordId wordPointer = (HasWordId) pointer;
-			this.wordId = wordPointer.getWordId();
-		}
-	}
+            // word
+            word(wordId!!, wordNode, false)
 
-	@Override
-	public void process(@NonNull final TreeNode parent)
-	{
-		if (this.wordId != null && this.wordId != 0)
-		{
-			// sub nodes
-			final TreeNode wordNode = TreeFactory.makeTextNode(this.wordLabel, false).addTo(parent);
-
-			// word
-			word(this.wordId, wordNode, false);
-
-			// senses sub node
-			//final TreeNode sensesNode = TreeFactory.newTextNode("Senses", this.context);
-			//parent.addChild(sensesNode);
-
-			// senses
-			// senses(this.wordId, sensesNode);
-			senses(this.wordId, wordNode);
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-		}
-	}
+            // senses
+            senses(wordId!!, wordNode)
+        } else {
+            setNoResult(node)
+        }
+    }
 }
