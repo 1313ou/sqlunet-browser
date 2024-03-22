@@ -11,6 +11,7 @@ import android.os.Parcelable;
 
 import org.sqlunet.browser.AbstractBrowseActivity;
 import org.sqlunet.browser.R;
+import org.sqlunet.browser.UtilsKt;
 import org.sqlunet.browser.xn.BrowsePredicateMatrixFragment;
 import org.sqlunet.predicatematrix.PmRolePointer;
 import org.sqlunet.provider.ProviderArgs;
@@ -88,7 +89,7 @@ public class BrowsePredicateMatrixActivity extends AbstractBrowseActivity<Browse
 				final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
 				if (ProviderArgs.ARG_QUERYTYPE_PM == type || ProviderArgs.ARG_QUERYTYPE_PMROLE == type)
 				{
-					final Parcelable pointer = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? args.getParcelable(ProviderArgs.ARG_QUERYPOINTER, Parcelable.class) : args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
+					final Parcelable pointer = UtilsKt.getParcelable(args, ProviderArgs.ARG_QUERYPOINTER);
 					if (pointer instanceof PmRolePointer && this.fragment != null)
 					{
 						final PmRolePointer rolePointer = (PmRolePointer) pointer;

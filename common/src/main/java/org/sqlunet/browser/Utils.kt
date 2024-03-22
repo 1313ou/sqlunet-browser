@@ -4,6 +4,10 @@
 
 package org.sqlunet.browser
 
+import android.os.Build
+import android.os.Bundle
+import android.os.Parcelable
+
 /**
  * Safe cast.
  * It's up to the author to ensure it's sage
@@ -24,3 +28,9 @@ fun <T, U> safeCast(what: T): U {
 //     val z:U = safeCast(x)
 //     val w:Number = safeCast(x)
 // }
+
+fun getParcelable(args: Bundle, key: String): Parcelable?
+{
+    @Suppress("DEPRECATION")
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) args.getParcelable(key, Parcelable::class.java) else args.getParcelable(key)
+}

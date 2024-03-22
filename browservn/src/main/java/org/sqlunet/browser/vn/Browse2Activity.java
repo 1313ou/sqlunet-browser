@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 import org.sqlunet.browser.AbstractBrowse2Activity;
 import org.sqlunet.browser.MenuHandler;
+import org.sqlunet.browser.UtilsKt;
 import org.sqlunet.browser.vn.Browse2Fragment;
 import org.sqlunet.browser.vn.R;
 import org.sqlunet.provider.ProviderArgs;
@@ -53,7 +54,7 @@ public class Browse2Activity extends AbstractBrowse2Activity
 		assert args != null;
 
 		//final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
-		final Parcelable pointer = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? args.getParcelable(ProviderArgs.ARG_QUERYPOINTER, Parcelable.class) : args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
+		final Parcelable pointer = UtilsKt.getParcelable(args, ProviderArgs.ARG_QUERYPOINTER);
 		final Browse2Fragment fragment = (Browse2Fragment) getSupportFragmentManager().findFragmentById(R.id.fragment_detail);
 		assert fragment != null;
 		fragment.search(pointer, null, null, null, null);

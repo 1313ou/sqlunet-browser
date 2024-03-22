@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import org.sqlunet.browser.AbstractBrowse1Activity;
 import org.sqlunet.browser.BaseBrowse2Fragment;
 import org.sqlunet.browser.MenuHandler;
+import org.sqlunet.browser.UtilsKt;
 import org.sqlunet.browser.sn.Browse2Fragment;
 import org.sqlunet.browser.sn.R;
 import org.sqlunet.provider.ProviderArgs;
@@ -67,7 +68,7 @@ public class SnBrowse2Activity extends AbstractBrowse1Activity
 		assert args != null;
 
 		//final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
-		final Parcelable pointer = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? args.getParcelable(ProviderArgs.ARG_QUERYPOINTER, Parcelable.class) : args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
+		final Parcelable pointer = UtilsKt.getParcelable(args, ProviderArgs.ARG_QUERYPOINTER);
 		final String word = args.getString(ProviderArgs.ARG_HINTWORD);
 		final String cased = args.getString(ProviderArgs.ARG_HINTCASED);
 		final String pronunciation = args.getString(ProviderArgs.ARG_HINTPRONUNCIATION);

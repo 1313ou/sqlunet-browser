@@ -29,6 +29,7 @@ import org.sqlunet.Pointer;
 import org.sqlunet.bnc.sql.BncImplementation;
 import org.sqlunet.browser.BuildConfig;
 import org.sqlunet.browser.R;
+import org.sqlunet.browser.UtilsKt;
 import org.sqlunet.browser.web.DocumentStringLoader;
 import org.sqlunet.browser.web.WebModel;
 import org.sqlunet.browser.xn.DocumentTransformer;
@@ -537,7 +538,7 @@ public class WebFragment extends Fragment
 		final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_ALL);
 
 		// pointer
-		final Parcelable pointer = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? args.getParcelable(ProviderArgs.ARG_QUERYPOINTER, Parcelable.class) : args.getParcelable(ProviderArgs.ARG_QUERYPOINTER);
+		final Parcelable pointer = UtilsKt.getParcelable(args, ProviderArgs.ARG_QUERYPOINTER);
 		Log.d(TAG, "ArgPosition: query=" + pointer);
 
 		// hint
