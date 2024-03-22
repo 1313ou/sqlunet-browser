@@ -288,7 +288,7 @@ object SettingsActivity : BaseSettingsActivity() {
             val downloadModePreference = findPreference<Preference>(Settings.PREF_DOWNLOAD_MODE)!!
             downloadModePreference.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance())
             val sitePreference = findPreference<OpenEditTextPreference>(Settings.PREF_DOWNLOAD_SITE)!!
-            populateLists(requireContext(), BiConsumer<List<String>, List<String>> { xValues: List<String?>?, xLabels: List<String?>? -> sitePreference.addOptions(xValues, xLabels) })
+            populateLists(requireContext(), BiConsumer<List<String>, List<String>> { xValues: List<String>, xLabels: List<String> -> sitePreference.addOptions(xValues, xLabels) })
             sitePreference.setSummaryProvider(OpenEditTextPreference.SUMMARY_PROVIDER)
             val dbFilePreference = findPreference<Preference>(Settings.PREF_DOWNLOAD_DBFILE)!!
             dbFilePreference.setSummaryProvider(EditTextPreference.SimpleSummaryProvider.getInstance())
