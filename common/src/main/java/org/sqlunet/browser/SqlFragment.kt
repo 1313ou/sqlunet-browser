@@ -1,287 +1,238 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser
 
-package org.sqlunet.browser;
-
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.ParcelFileDescriptor;
-import android.text.SpannableStringBuilder;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
-import org.sqlunet.browser.common.R;
-import org.sqlunet.provider.BaseProvider;
-import org.sqlunet.sql.SqlFormatter;
-
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.MenuHost;
-import androidx.core.view.MenuProvider;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Lifecycle;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
+import android.text.SpannableStringBuilder
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import org.sqlunet.browser.MenuHandler.menuDispatch
+import org.sqlunet.browser.Sender.send
+import org.sqlunet.browser.common.R
+import org.sqlunet.provider.BaseProvider
+import org.sqlunet.sql.SqlFormatter.styledFormat
+import java.io.BufferedWriter
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.OutputStreamWriter
 
 /**
  * Sql fragment
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class SqlFragment extends Fragment
-{
-	static public final String TAG = "SqlF";
+class SqlFragment : Fragment() {
+    private var exportLauncher: ActivityResultLauncher<String>? = null
 
-	static public final String FRAGMENT_TAG = "sql";
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-	private ActivityResultLauncher<String> exportLauncher;
+        // launchers
+        exportLauncher = registerExportLauncher()
+    }
 
-	public SqlFragment()
-	{
-	}
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_sql, container, false)
+    }
 
-	@Override
-	public void onCreate(@Nullable final Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-		// launchers
-		this.exportLauncher = registerExportLauncher();
-	}
+        // swipe refresh
+        val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe_refresh)
+        swipeRefreshLayout.setOnRefreshListener {
+            if (!isAdded) {
+                return@setOnRefreshListener
+            }
+            val fragment = getChildFragmentManager().findFragmentByTag(FRAGMENT_TAG)
+            if (fragment is SqlStatementsFragment) {
+                fragment.update()
+            }
+            // stop the refreshing indicator
+            swipeRefreshLayout.isRefreshing = false
+        }
 
-	@Nullable
-	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
-	{
-		return inflater.inflate(R.layout.fragment_sql, container, false);
-	}
+        // sub fragment
+        if (savedInstanceState == null) {
+            // splash fragment
+            val fragment: Fragment = SqlStatementsFragment()
+            assert(isAdded)
+            getChildFragmentManager() //
+                .beginTransaction() //
+                .setReorderingAllowed(true) //
+                .replace(R.id.container_sql_statements, fragment, FRAGMENT_TAG) //
+                // .addToBackStack(FRAGMENT_TAG) //
+                .commit()
+        }
 
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
+        // menu
+        val menuHost: MenuHost = requireActivity()
+        menuHost.addMenuProvider(object : MenuProvider {
 
-		// swipe refresh
-		final SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
-		swipeRefreshLayout.setOnRefreshListener(() -> {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                // inflate
+                menu.clear()
+                menuInflater.inflate(R.menu.main, menu)
+                menuInflater.inflate(R.menu.sql, menu)
+                // MenuCompat.setGroupDividerEnabled(menu, true);
+            }
 
-			if (!isAdded())
-			{
-				return;
-			}
-			Fragment fragment = getChildFragmentManager().findFragmentByTag(FRAGMENT_TAG);
-			if (fragment instanceof SqlStatementsFragment)
-			{
-				SqlStatementsFragment sqlStatementsFragment = (SqlStatementsFragment) fragment;
-				sqlStatementsFragment.update();
-			}
-			// stop the refreshing indicator
-			swipeRefreshLayout.setRefreshing(false);
-		});
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                val itemId = menuItem.itemId
+                return when (itemId) {
+                    R.id.action_copy -> {
+                        val sqls = stylizedSqls()
+                        val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                        val clip = ClipData.newPlainText("SQL", sqls)
+                        clipboard.setPrimaryClip(clip)
+                        true
+                    }
 
-		// sub fragment
-		if (savedInstanceState == null)
-		{
-			// splash fragment
-			final Fragment fragment = new SqlStatementsFragment();
-			assert isAdded();
-			getChildFragmentManager() //
-					.beginTransaction() //
-					.setReorderingAllowed(true) //
-					.replace(R.id.container_sql_statements, fragment, FRAGMENT_TAG) //
-					// .addToBackStack(FRAGMENT_TAG) //
-					.commit();
-		}
+                    R.id.action_sql_export -> {
+                        export()
+                        true
+                    }
 
-		// menu
-		final MenuHost menuHost = requireActivity();
-		menuHost.addMenuProvider(new MenuProvider()
-		{
-			@Override
-			public void onCreateMenu(@NonNull final Menu menu, @NonNull final MenuInflater menuInflater)
-			{
-				// inflate
-				menu.clear();
-				menuInflater.inflate(R.menu.main, menu);
-				menuInflater.inflate(R.menu.sql, menu);
-				// MenuCompat.setGroupDividerEnabled(menu, true);
-			}
+                    R.id.action_sql_send -> {
+                        send(requireContext())
+                        true
+                    }
 
-			@Override
-			public boolean onMenuItemSelected(@NonNull final MenuItem menuItem)
-			{
-				int itemId = menuItem.getItemId();
-				if (itemId == R.id.action_copy)
-				{
-					final CharSequence sqls = stylizedSqls();
+                    R.id.action_sql_clear -> {
+                        BaseProvider.sqlBuffer.clear()
+                        true
+                    }
 
-					final ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
-					final ClipData clip = ClipData.newPlainText("SQL", sqls);
-					assert clipboard != null;
-					clipboard.setPrimaryClip(clip);
-					return true;
-				}
-				else if (itemId == R.id.action_sql_export)
-				{
-					export();
-					return true;
-				}
-				else if (itemId == R.id.action_sql_send)
-				{
-					SqlFragment.send(requireContext());
-					return true;
-				}
-				else if (itemId == R.id.action_sql_clear)
-				{
-					BaseProvider.sqlBuffer.clear();
-					return true;
-				}
-				else
-				{
-					return MenuHandler.menuDispatch((AppCompatActivity) requireActivity(), menuItem);
-				}
-			}
+                    else -> {
+                        menuDispatch((requireActivity() as AppCompatActivity), menuItem)
+                    }
+                }
+            }
+        }, getViewLifecycleOwner(), Lifecycle.State.RESUMED)
+    }
 
-		}, this.getViewLifecycleOwner(), Lifecycle.State.RESUMED);
-	}
+    override fun onDestroy() {
+        super.onDestroy()
+        exportLauncher!!.unregister()
+    }
 
-	@Override
-	public void onDestroy()
-	{
-		super.onDestroy();
+    /**
+     * Export history
+     */
+    private fun registerExportLauncher(): ActivityResultLauncher<String> {
 
-		this.exportLauncher.unregister();
-	}
+        val createContract = object : ActivityResultContracts.CreateDocument(MIME_TYPE) {
 
-	// S E N D
+            override fun createIntent(context: Context, input: String): Intent {
+                val intent: Intent = super.createIntent(context, input)
+                intent.putExtra(Intent.EXTRA_TITLE, SQL_FILE)
+                //intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, pickerInitialUri);
+                return intent
+            }
+        }
+        return registerForActivityResult(createContract) { uri: Uri? ->
+            // The result data contains a URI for the document or directory that the user selected.
+            if (uri != null) {
+                doExportSql(requireContext(), uri)
+            }
+        }
+    }
 
-	public static void send(@NonNull final Context context)
-	{
-		final CharSequence sqls = stylizedSqls();
-		Sender.send(context, "Semantikos SQL", sqls);
-	}
+    /**
+     * Export history
+     */
+    fun export() {
+        exportLauncher!!.launch(MIME_TYPE)
+    }
 
-	// I M P O R T / E X P O R T
+    companion object {
+        const val TAG = "SqlF"
+        const val FRAGMENT_TAG = "sql"
 
-	/**
-	 * Export/import text file
-	 */
-	private static final String SQL_FILE = "semantikos.sql";
+        // S E N D
 
-	private static final String MIME_TYPE = "text/plain";
+        fun send(context: Context) {
+            val sqls = stylizedSqls()
+            send(context, "Semantikos SQL", sqls)
+        }
 
-	/**
-	 * Export history
-	 */
-	@NonNull
-	private ActivityResultLauncher<String> registerExportLauncher()
-	{
-		final ActivityResultContract<String, Uri> createContract = new ActivityResultContracts.CreateDocument(MIME_TYPE)
-		{
-			@NonNull
-			@Override
-			public Intent createIntent(@NonNull final Context context, @NonNull final String input)
-			{
-				final Intent intent = super.createIntent(context, input);
-				intent.putExtra(Intent.EXTRA_TITLE, SQL_FILE);
-				//intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, pickerInitialUri);
-				return intent;
-			}
-		};
+        // I M P O R T / E X P O R T
 
-		return registerForActivityResult(createContract, uri -> {
+        /**
+         * Export/import text file
+         */
+        private const val SQL_FILE = "semantikos.sql"
 
-			// The result data contains a URI for the document or directory that the user selected.
-			if (uri != null)
-			{
-				doExportSql(requireContext(), uri);
-			}
-		});
-	}
+        /**
+         * Mimetype
+         */
+        private const val MIME_TYPE = "text/plain"
 
-	/**
-	 * Export history
-	 */
-	public void export()
-	{
-		this.exportLauncher.launch(MIME_TYPE);
-	}
+        /**
+         * Export Sql
+         */
+        private fun doExportSql(context: Context, uri: Uri) {
+            Log.d(TAG, "Exporting to $uri")
+            try {
+                context.contentResolver.openFileDescriptor(uri, "w").use { pfd ->
+                    assert(pfd != null)
+                    FileOutputStream(pfd!!.fileDescriptor).use { fileOutputStream ->
+                        OutputStreamWriter(fileOutputStream).use { writer ->
+                            BufferedWriter(writer).use { bw ->
+                                val sqls = textSqls()
+                                bw.write(sqls)
+                                Log.i(TAG, "Exported to $uri")
+                                Toast.makeText(context, context.resources.getText(R.string.title_history_export).toString() + " " + uri, Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+                }
+            } catch (e: IOException) {
+                Log.e(TAG, "While writing", e)
+                Toast.makeText(context, context.resources.getText(R.string.error_export).toString() + " " + uri, Toast.LENGTH_SHORT).show()
+            }
+        }
 
-	/**
-	 * Export Sql
-	 */
-	private static void doExportSql(@NonNull final Context context, @NonNull final Uri uri)
-	{
-		Log.d(TAG, "Exporting to " + uri);
-		try ( //
-		      final ParcelFileDescriptor pfd = context.getContentResolver().openFileDescriptor(uri, "w") //
-		)
-		{
-			assert pfd != null;
-			try (final OutputStream fileOutputStream = new FileOutputStream(pfd.getFileDescriptor());//
-			     final Writer writer = new OutputStreamWriter(fileOutputStream);//
-			     final BufferedWriter bw = new BufferedWriter(writer))
-			{
-				String sqls = textSqls();
-				bw.write(sqls);
+        // F A C T O R Y
 
-				Log.i(TAG, "Exported to " + uri);
-				Toast.makeText(context, context.getResources().getText(R.string.title_history_export) + " " + uri, Toast.LENGTH_SHORT).show();
-			}
-		}
-		catch (@NonNull final IOException e)
-		{
-			Log.e(TAG, "While writing", e);
-			Toast.makeText(context, context.getResources().getText(R.string.error_export) + " " + uri, Toast.LENGTH_SHORT).show();
-		}
-	}
+        private fun textSqls(): String {
+            val sb = StringBuilder()
+            val sqls = BaseProvider.sqlBuffer.reverseItems()
+            for (sql in sqls) {
+                sb.append(sql)
+                sb.append(";\n\n")
+            }
+            return sb.toString()
+        }
 
-	// F A C T O R Y
-
-	@NonNull
-	private static String textSqls()
-	{
-		final StringBuilder sb = new StringBuilder();
-		final CharSequence[] sqls = BaseProvider.sqlBuffer.reverseItems();
-		for (CharSequence sql : sqls)
-		{
-			sb.append(sql);
-			sb.append(";\n\n");
-		}
-		return sb.toString();
-	}
-
-	@NonNull
-	private static CharSequence stylizedSqls()
-	{
-		final SpannableStringBuilder sb = new SpannableStringBuilder();
-		final CharSequence[] sqls = BaseProvider.sqlBuffer.reverseItems();
-		for (CharSequence sql : sqls)
-		{
-			sb.append(SqlFormatter.styledFormat(sql));
-			sb.append(";\n\n");
-		}
-		return sb;
-	}
+        private fun stylizedSqls(): CharSequence {
+            val sb = SpannableStringBuilder()
+            val sqls = BaseProvider.sqlBuffer.reverseItems()
+            for (sql in sqls) {
+                sb.append(styledFormat(sql!!))
+                sb.append(";\n\n")
+            }
+            return sb
+        }
+    }
 }

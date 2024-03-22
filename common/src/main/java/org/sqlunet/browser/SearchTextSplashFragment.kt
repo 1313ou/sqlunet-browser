@@ -1,24 +1,18 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser
 
-package org.sqlunet.browser;
-
-import org.sqlunet.browser.common.R;
+import org.sqlunet.browser.common.R
 
 /**
  * Search text splash fragment
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class SearchTextSplashFragment extends SplashFragment
-{
-	/**
-	 * Constructor
-	 */
-	public SearchTextSplashFragment()
-	{
-		super();
-		this.layoutId = R.layout.fragment_splash_searchtext;
-	}
+class SearchTextSplashFragment : SplashFragment() {
+
+   init {
+        layoutId = R.layout.fragment_splash_searchtext
+    }
 }

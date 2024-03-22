@@ -1,66 +1,51 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser.config
 
-package org.sqlunet.browser.config;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
-
-import org.sqlunet.browser.common.R;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import android.app.Activity
+import android.content.Intent
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
+import androidx.fragment.app.Fragment
+import org.sqlunet.browser.common.R
+import org.sqlunet.browser.config.AssetLoadActivity
+import org.sqlunet.browser.config.DownloadIntentFactory.makeIntent
 
 /**
  * Load fragment
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class LoadFragment extends Fragment
-{
-	/**
-	 * Constructor
-	 */
-	public LoadFragment()
-	{}
+class LoadFragment : Fragment() {
 
-	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
-	{
-		return inflater.inflate(R.layout.fragment_load, container, false);
-	}
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_load, container, false)
+    }
 
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-		// buttons
-		final ImageButton assetLoadButton = view.findViewById(R.id.assetload);
-		assetLoadButton.setOnClickListener((v) -> {
-
-			Activity activity = requireActivity();
-			final Intent intent = new Intent(activity, AssetLoadActivity.class);
-			intent.addFlags(0);
-			activity.startActivity(intent);
-		});
-		final ImageButton downloadButton = view.findViewById(R.id.download);
-		downloadButton.setOnClickListener((v) -> {
-
-			Activity activity = requireActivity();
-			final Intent intent = DownloadIntentFactory.makeIntent(activity);
-			intent.addFlags(0);
-			activity.startActivity(intent);
-		});
-		final Button cancelButton = view.findViewById(R.id.cancelButton);
-		cancelButton.setOnClickListener((v) -> requireActivity().finish());
-	}
+        // buttons
+        val assetLoadButton = view.findViewById<ImageButton>(R.id.assetload)
+        assetLoadButton.setOnClickListener { v: View? ->
+            val activity: Activity = requireActivity()
+            val intent = Intent(activity, AssetLoadActivity::class.java)
+            intent.addFlags(0)
+            activity.startActivity(intent)
+        }
+        val downloadButton = view.findViewById<ImageButton>(R.id.download)
+        downloadButton.setOnClickListener { v: View? ->
+            val activity: Activity = requireActivity()
+            val intent = makeIntent(activity)
+            intent.addFlags(0)
+            activity.startActivity(intent)
+        }
+        val cancelButton = view.findViewById<Button>(R.id.cancelButton)
+        cancelButton.setOnClickListener { v: View? -> requireActivity().finish() }
+    }
 }

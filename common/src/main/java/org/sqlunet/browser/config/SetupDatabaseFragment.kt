@@ -1,130 +1,101 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser.config
 
-package org.sqlunet.browser.config;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.SpinnerAdapter;
-
-import com.bbou.concurrency.Task;
-import com.bbou.concurrency.observe.TaskObserver;
-import com.bbou.concurrency.observe.TaskToastObserver;
-
-import org.sqlunet.browser.common.R;
-import org.sqlunet.settings.Settings;
-import org.sqlunet.settings.StorageSettings;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import kotlin.Pair;
+import android.app.Activity
+import android.content.Intent
+import android.os.Bundle
+import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.SpinnerAdapter
+import com.bbou.concurrency.observe.TaskObserver
+import com.bbou.concurrency.observe.TaskToastObserver
+import org.sqlunet.browser.common.R
+import org.sqlunet.browser.config.OperationActivity
+import org.sqlunet.settings.Settings.Companion.getZipEntry
+import org.sqlunet.settings.StorageSettings.getDatabasePath
 
 /**
- * Manage fragment
+ * Manage database fragment
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class SetupDatabaseFragment extends BaseTaskFragment
-{
-	// static private final String TAG = "SetupDatabaseF";
+class SetupDatabaseFragment : BaseTaskFragment() {
 
-	/**
-	 * Initial spinner position
-	 */
-	static public final String ARG_POSITION = "position";
+    init {
+        layoutId = R.layout.fragment_setup_database
+    }
 
-	/**
-	 * Constructor
-	 */
-	public SetupDatabaseFragment()
-	{
-		this.layoutId = R.layout.fragment_setup_database;
-	}
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
+        // args (relies on order of resources matching that of DO_)
+        val args = arguments
+        if (args != null) {
+            val arg = args.getInt(ARG_POSITION)
+            if (arg > 0) {
+                spinner!!.setSelection(arg)
+            }
+        }
+        runButton!!.setOnClickListener { v: View? ->
 
-		// args (relies on order of resources matching that of DO_)
-		Bundle args = getArguments();
-		if (args != null)
-		{
-			final int arg = args.getInt(ARG_POSITION);
-			if (arg > 0)
-			{
-				this.spinner.setSelection(arg);
-			}
-		}
+            // skip first
+            val id = spinner!!.selectedItemId
+            if (id == 0L) {
+                return@setOnClickListener
+            }
 
-		this.runButton.setOnClickListener(v -> {
+            // database path
+            val activity: Activity = requireActivity()
+            val databasePath = getDatabasePath(activity.baseContext)
 
-			// skip first
-			final long id = spinner.getSelectedItemId();
-			if (id == 0)
-			{
-				return;
-			}
+            // sqls
+            val sqls = activity.resources.getTextArray(R.array.sql_statements_values)
 
-			// database path
-			final Activity activity = requireActivity();
-			final String databasePath = StorageSettings.getDatabasePath(activity.getBaseContext());
+            // execute
+            val sql = sqls[id.toInt()]
+            if (sql == null || "EXEC_URI" == sql.toString()) {
+                val intent2 = Intent(activity, OperationActivity::class.java)
+                intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_EXEC_SQL)
+                intent2.putExtra(OperationActivity.ARG_TYPES, arrayOf("application/sql", "text/plain"))
+                activity.startActivity(intent2)
+            } else if ("EXEC_ZIPPED_URI" == sql.toString()) {
+                val intent2 = Intent(activity, OperationActivity::class.java)
+                intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_EXEC_ZIPPED_SQL)
+                intent2.putExtra(OperationActivity.ARG_ZIP_ENTRY, getZipEntry(requireContext(), "sql"))
+                intent2.putExtra(OperationActivity.ARG_TYPES, arrayOf("application/zip"))
+                activity.startActivity(intent2)
+            } else {
+                status!!.setText(R.string.status_task_running)
+                val sqlStatements = sql.toString().split(";".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+                // Log.d(TAG, Arrays.toString(sqlStatements));
+                val observer: TaskObserver<Pair<Number, Number>> = TaskToastObserver.WithStatus(activity, status!!)
+                val task = ExecAsyncTask(activity, { ignoredResult: Boolean -> update(ignoredResult) }, observer, 1).fromSql(databasePath)
+                task.execute(sqlStatements)
+            }
+        }
+    }
 
-			// sqls
-			final CharSequence[] sqls = activity.getResources().getTextArray(R.array.sql_statements_values);
+    // U P D A T E
 
-			// execute
-			final CharSequence sql = sqls[(int) id];
-			if (sql == null || "EXEC_URI".equals(sql.toString()))
-			{
-				final Intent intent2 = new Intent(activity, OperationActivity.class);
-				intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_EXEC_SQL);
-				intent2.putExtra(OperationActivity.ARG_TYPES, new String[]{"application/sql", "text/plain"});
-				activity.startActivity(intent2);
-			}
-			else if ("EXEC_ZIPPED_URI".equals(sql.toString()))
-			{
-				final Intent intent2 = new Intent(activity, OperationActivity.class);
-				intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_EXEC_ZIPPED_SQL);
-				intent2.putExtra(OperationActivity.ARG_ZIP_ENTRY, Settings.getZipEntry(requireContext(), "sql"));
-				intent2.putExtra(OperationActivity.ARG_TYPES, new String[]{"application/zip"});
-				activity.startActivity(intent2);
-			}
-			else
-			{
-				status.setText(R.string.status_task_running);
-				final String[] sqlStatements = sql.toString().split(";");
-				// Log.d(TAG, Arrays.toString(sqlStatements));
-				final TaskObserver<Pair<Number, Number>> observer = new TaskToastObserver.WithStatus<>(activity, status);
-				final Task<String[], Pair<Number, Number>, Boolean> task = new ExecAsyncTask(activity, this::update, observer, 1).fromSql(databasePath);
-				task.execute(sqlStatements);
-			}
-		});
-	}
+    private fun update(@Suppress("unused") ignoredResult: Boolean) {}
 
-	// U P D A T E
+    // S P I N N E R
 
-	@SuppressWarnings("EmptyMethod")
-	private void update(@SuppressWarnings("unused") Boolean ignoredResult)
-	{
-	}
+    override fun makeAdapter(): SpinnerAdapter {
+        // create an ArrayAdapter using the string array and a default spinner layout
+        val adapter = ArrayAdapter.createFromResource(requireContext(), R.array.sql_statement_titles, R.layout.spinner_item_task)
 
-	// S P I N N E R
+        // specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(R.layout.spinner_item_task_dropdown)
+        return adapter
+    }
 
-	@NonNull
-	@Override
-	protected SpinnerAdapter makeAdapter()
-	{
-		// create an ArrayAdapter using the string array and a default spinner layout
-		final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(requireContext(), R.array.sql_statement_titles, R.layout.spinner_item_task);
-
-		// specify the layout to use when the list of choices appears
-		adapter.setDropDownViewResource(R.layout.spinner_item_task_dropdown);
-
-		return adapter;
-	}
+    companion object {
+        /**
+         * Initial spinner position key
+         */
+        const val ARG_POSITION = "position"
+    }
 }

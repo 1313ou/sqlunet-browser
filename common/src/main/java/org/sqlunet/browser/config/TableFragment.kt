@@ -1,74 +1,57 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser.config
 
-package org.sqlunet.browser.config;
-
-import android.net.Uri;
-import android.widget.ImageView;
-import android.widget.SimpleCursorAdapter.ViewBinder;
-import android.widget.TextView;
-
-import org.sqlunet.browser.BaseListFragment;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.database.Cursor
+import android.net.Uri
+import android.view.View
+import android.widget.ImageView
+import android.widget.SimpleCursorAdapter
+import android.widget.TextView
+import org.sqlunet.browser.BaseListFragment
 
 /**
  * A list fragment representing a table.
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class TableFragment extends BaseListFragment
-{
-	// static private final String TAG = "TableF";
+class TableFragment  // static private final String TAG = "TableF";
+/**
+ * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
+ */
+    : BaseListFragment() {
+    /**
+     * Make view binder
+     *
+     * @return ViewBinder
+     */
+    override fun makeViewBinder(): SimpleCursorAdapter.ViewBinder {
+        return SimpleCursorAdapter.ViewBinder { view: View, cursor: Cursor, columnIndex: Int ->
+            var value = cursor.getString(columnIndex)
+            if (value == null) {
+                value = ""
+            }
+            when (view) {
+                is TextView -> {
+                    view.text = value
+                    return@ViewBinder true
+                }
 
-	/**
-	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
-	 */
-	public TableFragment()
-	{
-		super();
-	}
+                is ImageView -> {
+                    try {
+                        view.setImageResource(value.toInt())
+                        return@ViewBinder true
+                    } catch (nfe: NumberFormatException) {
+                        view.setImageURI(Uri.parse(value))
+                        return@ViewBinder true
+                    }
+                }
 
-	/**
-	 * Make view binder
-	 *
-	 * @return ViewBinder
-	 */
-	@Nullable
-	@Override
-	protected ViewBinder makeViewBinder()
-	{
-		return (view, cursor, columnIndex) -> {
-			String value = cursor.getString(columnIndex);
-			if (value == null)
-			{
-				value = "";
-			}
-
-			if (view instanceof TextView)
-			{
-				((TextView) view).setText(value);
-				return true;
-			}
-			else if (view instanceof ImageView)
-			{
-				try
-				{
-					((ImageView) view).setImageResource(Integer.parseInt(value));
-					return true;
-				}
-				catch (@NonNull final NumberFormatException nfe)
-				{
-					((ImageView) view).setImageURI(Uri.parse(value));
-					return true;
-				}
-			}
-			else
-			{
-				throw new IllegalStateException(view.getClass().getName() + " is not a view that can be bound by this SimpleCursorAdapter");
-			}
-		};
-	}
+                else -> {
+                    throw IllegalStateException(view.javaClass.getName() + " is not a view that can be bound by this SimpleCursorAdapter")
+                }
+            }
+        }
+    }
 }

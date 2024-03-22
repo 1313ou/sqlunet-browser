@@ -1,351 +1,297 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser.config
 
-package org.sqlunet.browser.config;
-
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.SpannableStringBuilder;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.SpinnerAdapter;
-
-import org.sqlunet.browser.EntryActivity;
-import org.sqlunet.browser.Info;
-import org.sqlunet.browser.common.R;
-import org.sqlunet.settings.Settings;
-import org.sqlunet.settings.StorageSettings;
-import org.sqlunet.settings.StorageUtils;
-
-import java.io.File;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentActivity;
+import android.content.Intent
+import android.os.Bundle
+import android.text.SpannableStringBuilder
+import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.SpinnerAdapter
+import com.bbou.download.preference.Settings
+import com.bbou.download.preference.Settings.Mode.Companion.getModePref
+import com.bbou.download.preference.Settings.unrecordDatapack
+import org.sqlunet.browser.EntryActivity.Companion.rerun
+import org.sqlunet.browser.Info.build
+import org.sqlunet.browser.common.R
+import org.sqlunet.browser.config.DownloadIntentFactory.makeIntent
+import org.sqlunet.browser.config.DownloadIntentFactory.makeIntentDownloadThenDeploy
+import org.sqlunet.browser.config.Operations.copy
+import org.sqlunet.browser.config.Operations.md5
+import org.sqlunet.browser.config.Operations.unzip
+import org.sqlunet.browser.config.Permissions.check
+import org.sqlunet.browser.config.SetupDatabaseTasks.createDatabase
+import org.sqlunet.browser.config.SetupDatabaseTasks.deleteDatabase
+import org.sqlunet.browser.config.SetupDatabaseTasks.update
+import org.sqlunet.browser.config.Utils.confirm
+import org.sqlunet.browser.config.Utils.hrSize
+import org.sqlunet.settings.Settings.Companion.getZipEntry
+import org.sqlunet.settings.StorageSettings.getCachedZippedPath
+import org.sqlunet.settings.StorageSettings.getDatabasePath
+import org.sqlunet.settings.StorageSettings.getDbDownloadName
+import org.sqlunet.settings.StorageSettings.getDbDownloadSourcePath
+import org.sqlunet.settings.StorageSettings.getDbDownloadZippedSourcePath
+import org.sqlunet.settings.StorageUtils.getFree
+import java.io.File
 
 /**
  * Set up fragment
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class SetupFileFragment extends BaseTaskFragment
-{
-	//static private final String TAG = "SetupFileF";
+class SetupFileFragment : BaseTaskFragment() {
 
-	static public final String ARG = "operation";
+    /**
+     * Operations
+     */
+    enum class Operation {
+        CREATE,
+        DROP,
+        COPY_URI,
+        UNZIP_URI,
+        UNZIP_ENTRY_URI,
+        MD5_URI,
+        COPY_FILE,
+        UNZIP_FILE,
+        MD5_FILE,
+        DOWNLOAD,
+        DOWNLOAD_ZIPPED,
+        UPDATE;
 
-	/**
-	 * Operations
-	 */
-	public enum Operation
-	{
-		CREATE, DROP, COPY_URI, UNZIP_URI, UNZIP_ENTRY_URI, MD5_URI, COPY_FILE, UNZIP_FILE, MD5_FILE, DOWNLOAD, DOWNLOAD_ZIPPED, UPDATE;
+        companion object {
 
-		/**
-		 * Spinner operations
-		 */
-		static private CharSequence[] operations;
+            lateinit var operations: Array<CharSequence>
 
-		@Nullable
-		static Operation fromIndex(int index)
-		{
-			final CharSequence operation = Operation.operations[index];
-			if (operation.length() == 0)
-			{
-				return null;
-			}
-			return Operation.valueOf(operation.toString());
-		}
-	}
+            fun fromIndex(index: Int): Operation? {
+                val operation = operations[index]
+                return if (operation.isEmpty()) {
+                    null
+                } else valueOf(operation.toString())
+            }
+        }
+    }
 
-	/**
-	 * Constructor
-	 */
-	public SetupFileFragment()
-	{
-		this.layoutId = R.layout.fragment_setup_file;
-	}
+    init {
+        layoutId = R.layout.fragment_setup_file
+    }
 
-	@Override
-	public void onCreate(final Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-		// operations
-		Operation.operations = getResources().getTextArray(R.array.setup_files_values);
-	}
+        // operations
+        Operation.operations = resources.getTextArray(R.array.setup_files_values)
+    }
 
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-		// args (relies on order of resources matching that of DO_)
-		Bundle args = getArguments();
-		if (args != null)
-		{
-			final String arg = args.getString(ARG);
-			if (arg != null)
-			{
-				final Operation op = Operation.valueOf(arg);
-				this.spinner.setSelection(op.ordinal() + 1);
-			}
-		}
+        // args (relies on order of resources matching that of DO_)
+        val args = arguments
+        if (args != null) {
+            val arg = args.getString(ARG)
+            if (arg != null) {
+                val op = Operation.valueOf(arg)
+                spinner!!.setSelection(op.ordinal + 1)
+            }
+        }
+        runButton!!.setOnClickListener {
 
-		this.runButton.setOnClickListener(v -> {
-			// skip first
-			final long id = SetupFileFragment.this.spinner.getSelectedItemId();
-			if (id == 0)
-			{
-				return;
-			}
+            // skip first
+            val id = spinner!!.selectedItemId
+            if (id == 0L) {
+                return@setOnClickListener
+            }
 
-			// execute
-			boolean success;
-			final FragmentActivity activity = requireActivity();
-			final Operation op = Operation.fromIndex((int) id);
-			if (op != null)
-			{
-				switch (op)
-				{
-					case CREATE:
-						SetupFileFragment.this.status.setText(R.string.status_task_running);
-						success = SetupDatabaseTasks.createDatabase(activity, StorageSettings.getDatabasePath(activity));
-						SetupFileFragment.this.status.setText(success ? R.string.status_task_done : R.string.status_task_failed);
-						com.bbou.download.preference.Settings.unrecordDatapack(activity);
-						break;
+            // execute
+            val success: Boolean
+            val activity = requireActivity()
+            val op = Operation.fromIndex(id.toInt())
+            if (op != null) {
+                when (op) {
+                    Operation.CREATE -> {
+                        status!!.setText(R.string.status_task_running)
+                        success = createDatabase(activity, getDatabasePath(activity))
+                        status!!.setText(if (success) R.string.status_task_done else R.string.status_task_failed)
+                        unrecordDatapack(activity)
+                    }
 
-					case DROP:
-						Utils.confirm(activity, R.string.title_setup_drop, R.string.ask_drop, () -> {
-							SetupFileFragment.this.status.setText(R.string.status_task_running);
-							boolean success1 = SetupDatabaseTasks.deleteDatabase(activity, StorageSettings.getDatabasePath(activity));
-							SetupFileFragment.this.status.setText(success1 ? R.string.status_task_done : R.string.status_task_failed);
-							com.bbou.download.preference.Settings.unrecordDatapack(activity);
-							EntryActivity.rerun(activity);
-						});
-						break;
+                    Operation.DROP -> confirm(activity, R.string.title_setup_drop, R.string.ask_drop) {
+                        status!!.setText(R.string.status_task_running)
+                        val success1 = deleteDatabase(activity, getDatabasePath(activity))
+                        status!!.setText(if (success1) R.string.status_task_done else R.string.status_task_failed)
+                        unrecordDatapack(activity)
+                        rerun(activity)
+                    }
 
-					case COPY_URI:
-						if (Permissions.check(activity))
-						{
-							final Intent intent2 = new Intent(activity, OperationActivity.class);
-							intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_COPY);
-							intent2.putExtra(OperationActivity.ARG_TYPES, new String[]{"application/vnd.sqlite3"});
-							activity.startActivity(intent2);
-						}
-						break;
+                    Operation.COPY_URI -> if (check(activity)) {
+                        val intent2 = Intent(activity, OperationActivity::class.java)
+                        intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_COPY)
+                        intent2.putExtra(OperationActivity.ARG_TYPES, arrayOf("application/vnd.sqlite3"))
+                        activity.startActivity(intent2)
+                    }
 
-					case UNZIP_URI:
-						if (Permissions.check(activity))
-						{
-							final Intent intent2 = new Intent(activity, OperationActivity.class);
-							intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_UNZIP);
-							intent2.putExtra(OperationActivity.ARG_TYPES, new String[]{"application/zip"});
-							activity.startActivity(intent2);
-						}
-						break;
+                    Operation.UNZIP_URI -> if (check(activity)) {
+                        val intent2 = Intent(activity, OperationActivity::class.java)
+                        intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_UNZIP)
+                        intent2.putExtra(OperationActivity.ARG_TYPES, arrayOf("application/zip"))
+                        activity.startActivity(intent2)
+                    }
 
-					case UNZIP_ENTRY_URI:
-						if (Permissions.check(activity))
-						{
-							final Intent intent2 = new Intent(activity, OperationActivity.class);
-							intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_UNZIP_ENTRY);
-							intent2.putExtra(OperationActivity.ARG_TYPES, new String[]{"application/zip"});
-							intent2.putExtra(OperationActivity.ARG_ZIP_ENTRY, Settings.getZipEntry(requireContext(), StorageSettings.getDbDownloadName(requireContext())));
-							activity.startActivity(intent2);
-						}
-						break;
+                    Operation.UNZIP_ENTRY_URI -> if (check(activity)) {
+                        val intent2 = Intent(activity, OperationActivity::class.java)
+                        intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_UNZIP_ENTRY)
+                        intent2.putExtra(OperationActivity.ARG_TYPES, arrayOf("application/zip"))
+                        intent2.putExtra(OperationActivity.ARG_ZIP_ENTRY, getZipEntry(requireContext(), getDbDownloadName(requireContext())))
+                        activity.startActivity(intent2)
+                    }
 
-					case MD5_URI:
-						if (Permissions.check(activity))
-						{
-							final Intent intent2 = new Intent(activity, OperationActivity.class);
-							intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_MD5);
-							intent2.putExtra(OperationActivity.ARG_TYPES, new String[]{"*/*"});
-							activity.startActivity(intent2);
-						}
-						break;
+                    Operation.MD5_URI -> if (check(activity)) {
+                        val intent2 = Intent(activity, OperationActivity::class.java)
+                        intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_MD5)
+                        intent2.putExtra(OperationActivity.ARG_TYPES, arrayOf("*/*"))
+                        activity.startActivity(intent2)
+                    }
 
-					case COPY_FILE:
-						if (Permissions.check(activity))
-						{
-							Operations.copy(activity);
-						}
-						break;
+                    Operation.COPY_FILE -> if (check(activity)) {
+                        copy(activity)
+                    }
 
-					case UNZIP_FILE:
-						if (Permissions.check(activity))
-						{
-							Operations.unzip(activity);
-						}
-						break;
+                    Operation.UNZIP_FILE -> if (check(activity)) {
+                        unzip(activity)
+                    }
 
-					case MD5_FILE:
-						if (Permissions.check(activity))
-						{
-							Operations.md5(activity);
-						}
-						break;
+                    Operation.MD5_FILE -> if (check(activity)) {
+                        md5(activity)
+                    }
 
-					case DOWNLOAD:
-						final Intent intent2 = DownloadIntentFactory.makeIntent(activity);
-						activity.startActivity(intent2);
-						break;
+                    Operation.DOWNLOAD -> {
+                        val intent2 = makeIntent(activity)
+                        activity.startActivity(intent2)
+                    }
 
-					case DOWNLOAD_ZIPPED:
-						final Intent intent3 = DownloadIntentFactory.makeIntentDownloadThenDeploy(activity);
-						activity.startActivity(intent3);
-						break;
+                    Operation.DOWNLOAD_ZIPPED -> {
+                        val intent3 = makeIntentDownloadThenDeploy(activity)
+                        activity.startActivity(intent3)
+                    }
 
-					case UPDATE:
-						Utils.confirm(activity, R.string.title_setup_update, R.string.askUpdate, () -> SetupDatabaseTasks.update(activity));
-						break;
-				}
-			}
-		});
-	}
+                    Operation.UPDATE -> confirm(activity, R.string.title_setup_update, R.string.askUpdate) { update(activity) }
+                }
+            }
+        }
+    }
 
-	@NonNull
-	@Override
-	protected SpinnerAdapter makeAdapter()
-	{
-		// create an ArrayAdapter using the string array and a default spinner layout
-		final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(requireContext(), R.array.setup_files_titles, R.layout.spinner_item_task);
+    override fun makeAdapter(): SpinnerAdapter {
+        // create an ArrayAdapter using the string array and a default spinner layout
+        val adapter = ArrayAdapter.createFromResource(requireContext(), R.array.setup_files_titles, R.layout.spinner_item_task)
 
-		// specify the layout to use when the list of choices appears
-		adapter.setDropDownViewResource(R.layout.spinner_item_task_dropdown);
+        // specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(R.layout.spinner_item_task_dropdown)
+        return adapter
+    }
 
-		return adapter;
-	}
+    override fun select(position: Int) {
+        var message: SpannableStringBuilder? = null
+        val op = Operation.fromIndex(position)
+        if (op != null) {
+            when (op) {
+                Operation.CREATE -> message = statusCreate()
+                Operation.DROP -> message = statusDrop()
+                Operation.COPY_URI -> {
+                    message = statusCopy()
+                    message.append(requireContext().getString(R.string.from_uri))
+                }
 
-	@Override
-	protected void select(final int position)
-	{
-		SpannableStringBuilder message = null;
-		final Operation op = Operation.fromIndex(position);
-		if (op != null)
-		{
-			switch (op)
-			{
-				case CREATE:
-					message = statusCreate();
-					break;
+                Operation.COPY_FILE -> {
+                    message = statusCopy()
+                    message.append(requireContext().getString(R.string.from_file))
+                }
 
-				case DROP:
-					message = statusDrop();
-					break;
+                Operation.UNZIP_URI, Operation.UNZIP_ENTRY_URI -> {
+                    message = statusUnzip()
+                    message.append(requireContext().getString(R.string.from_uri))
+                }
 
-				case COPY_URI:
-					message = statusCopy();
-					message.append(requireContext().getString(R.string.from_uri));
-					break;
-				case COPY_FILE:
-					message = statusCopy();
-					message.append(requireContext().getString(R.string.from_file));
-					break;
+                Operation.UNZIP_FILE -> {
+                    message = statusUnzip()
+                    message.append(requireContext().getString(R.string.from_file))
+                }
 
-				case UNZIP_URI:
-				case UNZIP_ENTRY_URI:
-					message = statusUnzip();
-					message.append(requireContext().getString(R.string.from_uri));
-					break;
-				case UNZIP_FILE:
-					message = statusUnzip();
-					message.append(requireContext().getString(R.string.from_file));
-					break;
+                Operation.MD5_URI -> {
+                    message = statusMd5()
+                    message.append(' ')
+                    message.append(requireContext().getString(R.string.from_uri))
+                }
 
-				case MD5_URI:
-					message = statusMd5();
-					message.append(' ');
-					message.append(requireContext().getString(R.string.from_uri));
-					break;
-				case MD5_FILE:
-					message = statusMd5();
-					message.append(' ');
-					message.append(requireContext().getString(R.string.from_file));
-					break;
+                Operation.MD5_FILE -> {
+                    message = statusMd5()
+                    message.append(' ')
+                    message.append(requireContext().getString(R.string.from_file))
+                }
 
-				case DOWNLOAD:
-					message = statusDownload();
-					break;
+                Operation.DOWNLOAD -> message = statusDownload()
+                Operation.DOWNLOAD_ZIPPED -> message = statusDownloadZipped()
+                Operation.UPDATE -> message = statusUpdate()
+            }
+        }
+        status!!.text = message
+    }
 
-				case DOWNLOAD_ZIPPED:
-					message = statusDownloadZipped();
-					break;
+    /**
+     * Operation status for create
+     *
+     * @return status string
+     */
+    private fun statusCreate(): SpannableStringBuilder {
+        val context = requireContext()
+        val database = getDatabasePath(context)
+        val free = getFree(context, database)
+        val databaseExists = File(database).exists()
+        val sb = SpannableStringBuilder()
+        sb.append(getString(R.string.info_op_create_database))
+        sb.append("\n\n")
+        build(
+            sb,  //
+            getString(R.string.title_database), database,  //
+            getString(R.string.title_status), getString(if (databaseExists) R.string.status_database_exists else R.string.status_database_not_exists),  //
+            getString(R.string.title_free), free
+        )
+        return sb
+    }
 
-				case UPDATE:
-					message = statusUpdate();
-					break;
+    /**
+     * Operation status for create
+     *
+     * @return status string
+     */
+    private fun statusDrop(): SpannableStringBuilder {
+        val context = requireContext()
+        val database = getDatabasePath(context)
+        val free = getFree(context, database)
+        val databaseExists = File(database).exists()
+        val sb = SpannableStringBuilder()
+        sb.append(getString(R.string.info_op_drop_database))
+        sb.append("\n\n")
+        build(
+            sb,  //
+            getString(R.string.title_database), database,  //
+            getString(R.string.title_status), getString(if (databaseExists) R.string.status_database_exists else R.string.status_database_not_exists),  //
+            getString(R.string.title_free), free
+        )
+        return sb
+    }
 
-				default:
-					return;
-			}
-		}
-
-		SetupFileFragment.this.status.setText(message);
-	}
-
-	/**
-	 * Operation status for create
-	 *
-	 * @return status string
-	 */
-	@NonNull
-	private SpannableStringBuilder statusCreate()
-	{
-		final Context context = requireContext();
-		final String database = StorageSettings.getDatabasePath(context);
-		final String free = StorageUtils.getFree(context, database);
-		final boolean databaseExists = new File(database).exists();
-
-		final SpannableStringBuilder sb = new SpannableStringBuilder();
-		sb.append(getString(R.string.info_op_create_database));
-		sb.append("\n\n");
-		Info.build(sb, //
-				getString(R.string.title_database), database, //
-				getString(R.string.title_status), getString(databaseExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
-				getString(R.string.title_free), free);
-		return sb;
-	}
-
-	/**
-	 * Operation status for create
-	 *
-	 * @return status string
-	 */
-	@NonNull
-	private SpannableStringBuilder statusDrop()
-	{
-		final Context context = requireContext();
-		final String database = StorageSettings.getDatabasePath(context);
-		final String free = StorageUtils.getFree(context, database);
-		final boolean databaseExists = new File(database).exists();
-
-		final SpannableStringBuilder sb = new SpannableStringBuilder();
-		sb.append(getString(R.string.info_op_drop_database));
-		sb.append("\n\n");
-		Info.build(sb, //
-				getString(R.string.title_database), database, //
-				getString(R.string.title_status), getString(databaseExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
-				getString(R.string.title_free), free);
-		return sb;
-	}
-
-	/**
-	 * Operation status for copy from uri
-	 *
-	 * @return status string
-	 */
-	@NonNull
-	private SpannableStringBuilder statusCopy()
-	{
-		final Context context = requireContext();
-		final String database = StorageSettings.getDatabasePath(context);
-		final String free = StorageUtils.getFree(context, database);
-		final boolean databaseExists = new File(database).exists();
-		/*
+    /**
+     * Operation status for copy from uri
+     *
+     * @return status string
+     */
+    private fun statusCopy(): SpannableStringBuilder {
+        val context = requireContext()
+        val database = getDatabasePath(context)
+        val free = getFree(context, database)
+        val databaseExists = File(database).exists()
+        /*
 		String fromPath = Settings.getCachePref(context);
 		boolean sourceExists = false;
 		if (fromPath != null)
@@ -354,37 +300,36 @@ public class SetupFileFragment extends BaseTaskFragment
 			sourceExists = new File(fromPath).exists();
 		}
 		 */
+        val sb = SpannableStringBuilder()
+        sb.append(getString(R.string.info_op_copy_database))
+        sb.append("\n\n")
+        build(
+            sb,  //
+            getString(R.string.title_database), database,  //
+            getString(R.string.title_status), getString(if (databaseExists) R.string.status_database_exists else R.string.status_database_not_exists),  //
+            getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, requireContext()),  //
+            getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, requireContext()),  //
+            getString(R.string.title_free), free,  //
+            "\n", "",  //
+            getString(R.string.title_from),  //
+            // fromPath, //
+            // getString(R.string.title_status), getString(sourceExists ? R.string.status_source_exists : R.string.status_source_not_exists)
+            getString(R.string.title_selection)
+        )
+        return sb
+    }
 
-		final SpannableStringBuilder sb = new SpannableStringBuilder();
-		sb.append(getString(R.string.info_op_copy_database));
-		sb.append("\n\n");
-		Info.build(sb, //
-				getString(R.string.title_database), database, //
-				getString(R.string.title_status), getString(databaseExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
-				getString(R.string.size_expected), Utils.hrSize(R.integer.size_sqlunet_db, requireContext()), //
-				getString(R.string.size_expected) + ' ' + getString(R.string.total), Utils.hrSize(R.integer.size_db_working_total, requireContext()), //
-				getString(R.string.title_free), free, //
-				"\n", "", //
-				getString(R.string.title_from), //
-				// fromPath, //
-				// getString(R.string.title_status), getString(sourceExists ? R.string.status_source_exists : R.string.status_source_not_exists)
-				getString(R.string.title_selection));
-		return sb;
-	}
-
-	/**
-	 * Operation status for unzip
-	 *
-	 * @return status string
-	 */
-	@NonNull
-	private SpannableStringBuilder statusUnzip()
-	{
-		final Context context = requireContext();
-		final String database = StorageSettings.getDatabasePath(context);
-		final String free = StorageUtils.getFree(context, database);
-		final boolean databaseExists = new File(database).exists();
-		/*
+    /**
+     * Operation status for unzip
+     *
+     * @return status string
+     */
+    private fun statusUnzip(): SpannableStringBuilder {
+        val context = requireContext()
+        val database = getDatabasePath(context)
+        val free = getFree(context, database)
+        val databaseExists = File(database).exists()
+        /*
 		String fromPath = Settings.getCachePref(context);
 		boolean sourceExists = false;
 		if (fromPath != null)
@@ -393,105 +338,104 @@ public class SetupFileFragment extends BaseTaskFragment
 			sourceExists = new File(fromPath).exists();
 		}
 		*/
+        val sb = SpannableStringBuilder()
+        sb.append(getString(R.string.info_op_unzip_database))
+        sb.append("\n\n")
+        build(
+            sb,  //
+            getString(R.string.title_database), database,  //
+            getString(R.string.title_status), getString(if (databaseExists) R.string.status_database_exists else R.string.status_database_not_exists),  //
+            getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, requireContext()),  //
+            getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, requireContext()),  //
+            getString(R.string.title_free), free,  //
+            "\n", "",  //
+            getString(R.string.title_from),  //fromPath, //
+            //getString(R.string.title_status), getString(sourceExists ? R.string.status_source_exists : R.string.status_source_not_exists)
+            getString(R.string.title_selection)
+        )
+        return sb
+    }
 
-		final SpannableStringBuilder sb = new SpannableStringBuilder();
-		sb.append(getString(R.string.info_op_unzip_database));
-		sb.append("\n\n");
-		Info.build(sb, //
-				getString(R.string.title_database), database, //
-				getString(R.string.title_status), getString(databaseExists ? R.string.status_database_exists : R.string.status_database_not_exists), //
-				getString(R.string.size_expected), Utils.hrSize(R.integer.size_sqlunet_db, requireContext()), //
-				getString(R.string.size_expected) + ' ' + getString(R.string.total), Utils.hrSize(R.integer.size_db_working_total, requireContext()), //
-				getString(R.string.title_free), free, //
-				"\n", "", //
-				getString(R.string.title_from),
-				//fromPath, //
-				//getString(R.string.title_status), getString(sourceExists ? R.string.status_source_exists : R.string.status_source_not_exists)
-				getString(R.string.title_selection));
-		return sb;
-	}
+    /**
+     * Operation status for md5
+     *
+     * @return status string
+     */
+    private fun statusMd5(): SpannableStringBuilder {
+        val sb = SpannableStringBuilder()
+        sb.append(getString(R.string.info_op_md5))
+        return sb
+    }
 
-	/**
-	 * Operation status for md5
-	 *
-	 * @return status string
-	 */
-	@NonNull
-	private SpannableStringBuilder statusMd5()
-	{
-		final SpannableStringBuilder sb = new SpannableStringBuilder();
-		sb.append(getString(R.string.info_op_md5));
-		return sb;
-	}
+    /**
+     * Operation status for update database
+     *
+     * @return status string
+     */
+    private fun statusUpdate(): SpannableStringBuilder {
+        val sb = SpannableStringBuilder()
+        sb.append(getString(R.string.info_op_drop_database))
+        sb.append('\n')
+        sb.append(statusDownload())
+        return sb
+    }
 
-	/**
-	 * Operation status for update database
-	 *
-	 * @return status string
-	 */
-	@NonNull
-	private SpannableStringBuilder statusUpdate()
-	{
-		final SpannableStringBuilder sb = new SpannableStringBuilder();
-		sb.append(getString(R.string.info_op_drop_database));
-		sb.append('\n');
-		sb.append(statusDownload());
-		return sb;
-	}
+    /**
+     * Operation status for download database
+     *
+     * @return status string
+     */
+    private fun statusDownload(): SpannableStringBuilder {
+        val context = requireContext()
+        val mode = getModePref(context)
+        val from = getDbDownloadSourcePath(context, mode == Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Settings.Mode.DOWNLOAD_ZIP)
+        val to = getDatabasePath(context)
+        val free = getFree(context, to)
+        val targetExists = File(to).exists()
+        val sb = SpannableStringBuilder()
+        sb.append(getString(R.string.info_op_download_database))
+        sb.append("\n\n")
+        build(
+            sb,  //
+            getString(R.string.title_from), from,  //
+            "\n", "",  //
+            getString(R.string.title_to), to,  //
+            getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, requireContext()),  //
+            getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, requireContext()),  //
+            getString(R.string.title_free), free,  //
+            getString(R.string.title_status), getString(if (targetExists) R.string.status_local_exists else R.string.status_local_not_exists)
+        )
+        return sb
+    }
 
-	/**
-	 * Operation status for download database
-	 *
-	 * @return status string
-	 */
-	@NonNull
-	private SpannableStringBuilder statusDownload()
-	{
-		final Context context = requireContext();
-		final com.bbou.download.preference.Settings.Mode mode = com.bbou.download.preference.Settings.Mode.getModePref(context);
-		final String from = StorageSettings.getDbDownloadSourcePath(context, mode == com.bbou.download.preference.Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == com.bbou.download.preference.Settings.Mode.DOWNLOAD_ZIP);
-		final String to = StorageSettings.getDatabasePath(context);
-		final String free = StorageUtils.getFree(context, to);
-		final boolean targetExists = new File(to).exists();
+    /**
+     * Operation status for download zipped database
+     *
+     * @return status string
+     */
+    private fun statusDownloadZipped(): SpannableStringBuilder {
+        val context = requireContext()
+        val from = getDbDownloadZippedSourcePath(context)
+        val to = getCachedZippedPath(context)
+        val free = getFree(context, to)
+        val targetExists = File(to).exists()
+        val sb = SpannableStringBuilder()
+        sb.append(getString(R.string.info_op_download_zipped_database))
+        sb.append("\n\n")
+        build(
+            sb,  //
+            getString(R.string.title_from), from,  //
+            "\n", "",  //
+            getString(R.string.title_to), to,  //
+            getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db_zip, requireContext()),  //
+            getString(R.string.title_free), free,  //
+            getString(R.string.title_status), getString(if (targetExists) R.string.status_local_exists else R.string.status_local_not_exists)
+        )
+        return sb
+    }
 
-		final SpannableStringBuilder sb = new SpannableStringBuilder();
-		sb.append(getString(R.string.info_op_download_database));
-		sb.append("\n\n");
-		Info.build(sb, //
-				getString(R.string.title_from), from, //
-				"\n", "", //
-				getString(R.string.title_to), to, //
-				getString(R.string.size_expected), Utils.hrSize(R.integer.size_sqlunet_db, requireContext()), //
-				getString(R.string.size_expected) + ' ' + getString(R.string.total), Utils.hrSize(R.integer.size_db_working_total, requireContext()), //
-				getString(R.string.title_free), free, //
-				getString(R.string.title_status), getString(targetExists ? R.string.status_local_exists : R.string.status_local_not_exists));
-		return sb;
-	}
-
-	/**
-	 * Operation status for download zipped database
-	 *
-	 * @return status string
-	 */
-	@NonNull
-	private SpannableStringBuilder statusDownloadZipped()
-	{
-		final Context context = requireContext();
-		final String from = StorageSettings.getDbDownloadZippedSourcePath(context);
-		final String to = StorageSettings.getCachedZippedPath(context);
-		final String free = StorageUtils.getFree(context, to);
-		final boolean targetExists = new File(to).exists();
-
-		final SpannableStringBuilder sb = new SpannableStringBuilder();
-		sb.append(getString(R.string.info_op_download_zipped_database));
-		sb.append("\n\n");
-		Info.build(sb, //
-				getString(R.string.title_from), from, //
-				"\n", "", //
-				getString(R.string.title_to), to, //
-				getString(R.string.size_expected), Utils.hrSize(R.integer.size_sqlunet_db_zip, requireContext()), //
-				getString(R.string.title_free), free, //
-				getString(R.string.title_status), getString(targetExists ? R.string.status_local_exists : R.string.status_local_not_exists));
-		return sb;
-	}
+    companion object {
+        //static private final String TAG = "SetupFileF";
+        const val ARG = "operation"
+    }
 }

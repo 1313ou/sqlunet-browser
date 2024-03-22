@@ -1,268 +1,202 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser.config
 
-package org.sqlunet.browser.config;
-
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.Toast;
-
-import com.bbou.download.preference.Settings;
-
-import org.sqlunet.browser.ColorUtils;
-import org.sqlunet.browser.EntryActivity;
-import org.sqlunet.browser.Info;
-import org.sqlunet.browser.common.R;
-import org.sqlunet.settings.StorageSettings;
-import org.sqlunet.settings.StorageUtils;
-
-import java.io.File;
-
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.widget.ImageViewCompat;
-import androidx.fragment.app.Fragment;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import android.app.Activity
+import android.content.Intent
+import android.graphics.PorterDuff
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.widget.ImageViewCompat
+import androidx.fragment.app.Fragment
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.bbou.download.preference.Settings
+import com.bbou.download.preference.Settings.Mode.Companion.getModePref
+import org.sqlunet.browser.ColorUtils.getDrawable
+import org.sqlunet.browser.EntryActivity.Companion.rerun
+import org.sqlunet.browser.Info.info
+import org.sqlunet.browser.common.R
+import org.sqlunet.browser.config.DownloadIntentFactory.makeIntent
+import org.sqlunet.browser.config.Status.Companion.status
+import org.sqlunet.browser.config.Status.Companion.toString
+import org.sqlunet.browser.config.Utils.hrSize
+import org.sqlunet.settings.StorageSettings.getDatabasePath
+import org.sqlunet.settings.StorageSettings.getDbDownloadSourcePath
+import org.sqlunet.settings.StorageUtils.countToStorageString
+import org.sqlunet.settings.StorageUtils.getFree
+import java.io.File
 
 /**
  * Base Status fragment
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class SetupStatusFragment extends Fragment implements Updatable
-{
-	static private final String TAG = "SetupStatusF";
+open class SetupStatusFragment : Fragment(), Updatable {
+    private var imageDb: ImageView? = null
 
-	// components
+    private var imageIndexes: ImageView? = null
 
-	private ImageView imageDb;
+    @JvmField
+    protected var buttonDb: ImageButton? = null
 
-	private ImageView imageIndexes;
+    @JvmField
+    protected var buttonIndexes: ImageButton? = null
 
-	protected ImageButton buttonDb;
+    @JvmField
+    protected var infoDatabaseButton: ImageButton? = null
 
-	protected ImageButton buttonIndexes;
+    /**
+     * Activity result launcher
+     */
+    private var activityResultLauncher: ActivityResultLauncher<Intent>? = null
 
-	protected ImageButton infoDatabaseButton;
+    /**
+     * Swipe refresh layout
+     */
+    private var swipeRefreshLayout: SwipeRefreshLayout? = null
 
-	/**
-	 * Activity result launcher
-	 */
-	protected ActivityResultLauncher<Intent> activityResultLauncher;
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            val success = result.resultCode == Activity.RESULT_OK
+            Log.d(TAG, "Download " + if (success) "succeeded" else "failed")
+            update()
+            if (success) {
+                val context2 = requireContext()
+                Toast.makeText(context2, R.string.title_download_complete, Toast.LENGTH_SHORT).show()
+                rerun(context2)
+            }
+        }
+    }
 
-	/**
-	 * Swipe refresh layout
-	 */
-	private SwipeRefreshLayout swipeRefreshLayout;
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_status, container, false)
+    }
 
-	/**
-	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
-	 */
-	public SetupStatusFragment()
-	{
-	}
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-	@Override
-	public void onCreate(@Nullable final Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-		this.activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-			boolean success = result.getResultCode() == Activity.RESULT_OK;
-			Log.d(TAG, "Download " + (success ? "succeeded" : "failed"));
-			update();
-			if (success)
-			{
-				final Context context2 = requireContext();
-				Toast.makeText(context2, R.string.title_download_complete, Toast.LENGTH_SHORT).show();
-				EntryActivity.rerun(context2);
-			}
-		});
-	}
+        // images
+        imageDb = view.findViewById(R.id.status_database)
+        imageIndexes = view.findViewById(R.id.status_indexes)
 
-	@Nullable
-	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
-	{
-		return inflater.inflate(R.layout.fragment_status, container, false);
-	}
+        // buttons
+        buttonDb = view.findViewById(R.id.databaseButton)
+        buttonIndexes = view.findViewById(R.id.indexesButton)
+        infoDatabaseButton = view.findViewById(R.id.info_database)
 
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
+        // swipe refresh layout
+        swipeRefreshLayout = view.findViewById(R.id.swipe_refresh)
+        swipeRefreshLayout!!.setOnRefreshListener {
+            update()
+            swipeRefreshLayout!!.isRefreshing = false
+        }
+    }
 
-		// images
-		this.imageDb = view.findViewById(R.id.status_database);
-		this.imageIndexes = view.findViewById(R.id.status_indexes);
+    override fun onResume() {
+        super.onResume()
+        update()
+    }
 
-		// buttons
-		this.buttonDb = view.findViewById(R.id.databaseButton);
-		this.buttonIndexes = view.findViewById(R.id.indexesButton);
-		this.infoDatabaseButton = view.findViewById(R.id.info_database);
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (!hidden) {
+            update()
+        }
+    }
 
-		// swipe refresh layout
-		this.swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
-		// this.swipeRefreshLayout.setColorSchemeResources(R.color.swipe_down_1_color, R.color.swipe_down_2_color);
-		this.swipeRefreshLayout.setOnRefreshListener(() -> {
-			update();
+    protected fun download() {
+        val context = requireContext()
+        val intent = makeIntent(context)
+        activityResultLauncher!!.launch(intent)
+    }
 
-			// stop the refreshing indicator
-			SetupStatusFragment.this.swipeRefreshLayout.setRefreshing(false);
-		});
-	}
+    protected fun index() {
+        val index = resources.getInteger(R.integer.sql_statement_do_indexes_position)
+        val intent = Intent(requireContext(), SetupDatabaseActivity::class.java)
+        intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index)
+        startActivity(intent)
+    }
 
-	@Override
-	public void onResume()
-	{
-		super.onResume();
+    protected fun info() {
+        val activity: Activity = requireActivity()
+        val database = getDatabasePath(activity)
+        val free = getFree(activity, database)
+        val mode = getModePref(activity)
+        val source = getDbDownloadSourcePath(activity, mode == Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Settings.Mode.DOWNLOAD_ZIP)
+        val status = status(activity)
+        val existsDb = status and Status.EXISTS != 0
+        val existsTables = status and Status.EXISTS_TABLES != 0
+        if (existsDb) {
+            val size = File(database).length()
+            val hrSize = countToStorageString(size) + " (" + size + ')'
+            info(
+                activity, R.string.title_status,  //
+                getString(R.string.title_database), database,  //
+                getString(R.string.title_status), getString(R.string.status_database_exists),  //
+                getString(R.string.title_status), getString(if (existsTables) R.string.status_data_exists else R.string.status_data_not_exists),  //
+                getString(R.string.title_free), free,  //
+                getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, requireContext()),  //
+                getString(R.string.size_expected) + ' ' + getString(R.string.text_search), hrSize(R.integer.size_searchtext, requireContext()),  //
+                getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, requireContext()),  //
+                getString(R.string.size_current), hrSize
+            )
+        } else {
+            info(
+                activity, R.string.title_dialog_info_download,  //
+                getString(R.string.title_operation), getString(R.string.info_op_download_database),  //
+                getString(R.string.title_from), source,  //
+                getString(R.string.title_database), database,  //
+                getString(R.string.title_free), free,  //
+                getString(R.string.size_expected) + ' ' + getString(R.string.text_search), hrSize(R.integer.size_searchtext, requireContext()),  //
+                getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, requireContext()),  //
+                getString(R.string.title_status), getString(R.string.status_database_not_exists)
+            )
+        }
+    }
 
-		update();
-	}
+    // U P D A T E
 
-	@Override
-	public void onHiddenChanged(boolean hidden)
-	{
-		super.onHiddenChanged(hidden);
+    override fun update() {
+        val context = context
+        if (context != null) {
+            val status = status(context)
+            Log.d(TAG, "Status: " + toString(status))
 
-		// If we are becoming visible
-		if (!hidden)
-		{
-			update();
-		}
-	}
+            // images
+            val okDrawable = getDrawable(context, R.drawable.ic_ok)
+            val failDrawable = getDrawable(context, R.drawable.ic_fail)
+            val existsDb = status and Status.EXISTS != 0
+            val existsTables = status and Status.EXISTS_TABLES != 0
+            if (existsDb && existsTables) {
+                imageDb!!.setImageDrawable(okDrawable)
+                ImageViewCompat.setImageTintMode(imageDb!!, PorterDuff.Mode.SRC_IN)
+                buttonDb!!.setVisibility(View.GONE)
+                val existsIndexes = status and Status.EXISTS_INDEXES != 0
+                imageIndexes!!.setImageDrawable(if (existsIndexes) okDrawable else failDrawable)
+                ImageViewCompat.setImageTintMode(imageIndexes!!, if (existsIndexes) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
+                buttonIndexes!!.setVisibility(if (existsIndexes) View.GONE else View.VISIBLE)
+            } else {
+                imageDb!!.setImageDrawable(failDrawable)
+                ImageViewCompat.setImageTintMode(imageDb!!, PorterDuff.Mode.DST)
+                buttonDb!!.setVisibility(View.VISIBLE)
+                buttonIndexes!!.setVisibility(View.GONE)
+                imageIndexes!!.setImageResource(R.drawable.ic_unknown)
+            }
+        }
+    }
 
-	protected void download()
-	{
-		final Context context = requireContext();
-		final Intent intent = DownloadIntentFactory.makeIntent(context);
-		this.activityResultLauncher.launch(intent);
-	}
-
-	protected void index()
-	{
-		int index = getResources().getInteger(R.integer.sql_statement_do_indexes_position);
-		final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
-		intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-		startActivity(intent);
-	}
-
-	protected void info()
-	{
-		final Activity activity = requireActivity();
-		final String database = StorageSettings.getDatabasePath(activity);
-		final String free = StorageUtils.getFree(activity, database);
-		final Settings.Mode mode = Settings.Mode.getModePref(activity);
-		final String source = StorageSettings.getDbDownloadSourcePath(activity, mode == Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Settings.Mode.DOWNLOAD_ZIP);
-		final int status = Status.status(activity);
-		final boolean existsDb = (status & Status.EXISTS) != 0;
-		final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
-		if (existsDb)
-		{
-			final long size = new File(database).length();
-			final String hrSize = StorageUtils.countToStorageString(size) + " (" + size + ')';
-			Info.info(activity, R.string.title_status, //
-					getString(R.string.title_database), database, //
-					getString(R.string.title_status), getString(R.string.status_database_exists), //
-					getString(R.string.title_status), getString(existsTables ? R.string.status_data_exists : R.string.status_data_not_exists), //
-					getString(R.string.title_free), free, //
-					getString(R.string.size_expected), Utils.hrSize(R.integer.size_sqlunet_db, requireContext()), //
-					getString(R.string.size_expected) + ' ' + getString(R.string.text_search), Utils.hrSize(R.integer.size_searchtext, requireContext()), //
-					getString(R.string.size_expected) + ' ' + getString(R.string.total), Utils.hrSize(R.integer.size_db_working_total, requireContext()), //
-					getString(R.string.size_current), hrSize);
-		}
-		else
-		{
-			Info.info(activity, R.string.title_dialog_info_download, //
-					getString(R.string.title_operation), getString(R.string.info_op_download_database), //
-					getString(R.string.title_from), source, //
-					getString(R.string.title_database), database, //
-					getString(R.string.title_free), free, //
-					getString(R.string.size_expected) + ' ' + getString(R.string.text_search), Utils.hrSize(R.integer.size_searchtext, requireContext()), //
-					getString(R.string.size_expected) + ' ' + getString(R.string.total), Utils.hrSize(R.integer.size_db_working_total, requireContext()), //
-					getString(R.string.title_status), getString(R.string.status_database_not_exists));
-		}
-	}
-
-	// U P D A T E
-
-	@Override
-	public void update()
-	{
-		final Context context = getContext();
-		if (context != null)
-		{
-			final int status = Status.status(context);
-			Log.d(TAG, "Status: " + Status.toString(status));
-
-			// images
-			final Drawable okDrawable = ColorUtils.getDrawable(context, R.drawable.ic_ok);
-			final Drawable failDrawable = ColorUtils.getDrawable(context, R.drawable.ic_fail);
-
-			final boolean existsDb = (status & Status.EXISTS) != 0;
-			final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
-			if (existsDb && existsTables)
-			{
-				this.imageDb.setImageDrawable(okDrawable);
-				ImageViewCompat.setImageTintMode(this.imageDb, PorterDuff.Mode.SRC_IN);
-				this.buttonDb.setVisibility(View.GONE);
-
-				final boolean existsIndexes = (status & Status.EXISTS_INDEXES) != 0;
-
-				this.imageIndexes.setImageDrawable(existsIndexes ? okDrawable : failDrawable);
-				ImageViewCompat.setImageTintMode(this.imageIndexes, existsIndexes ? PorterDuff.Mode.SRC_IN : PorterDuff.Mode.DST);
-				this.buttonIndexes.setVisibility(existsIndexes ? View.GONE : View.VISIBLE);
-			}
-			else
-			{
-				this.imageDb.setImageDrawable(failDrawable);
-				ImageViewCompat.setImageTintMode(this.imageDb, PorterDuff.Mode.DST);
-				this.buttonDb.setVisibility(View.VISIBLE);
-
-				this.buttonIndexes.setVisibility(View.GONE);
-				this.imageIndexes.setImageResource(R.drawable.ic_unknown);
-			}
-		}
-	}
-
-	// M E N U
-
-	/*
-	@SuppressWarnings("deprecation")
-	@Override
-	public boolean onOptionsItemSelected(@NonNull MenuItem item)
-	{
-		// handle item selection
-		final int itemId = item.getItemId();
-		if (itemId == R.id.action_refresh)
-		{
-			// make sure that the SwipeRefreshLayout is displaying its refreshing indicator
-			if (!this.swipeRefreshLayout.isRefreshing())
-			{
-				this.swipeRefreshLayout.setRefreshing(true);
-			}
-			update();
-
-			// stop the refreshing indicator
-			this.swipeRefreshLayout.setRefreshing(false);
-		}
-		else
-		{
-			return false;
-		}
-		return true;
-	}
-	*/
+    companion object {
+        private const val TAG = "SetupStatusF"
+    }
 }

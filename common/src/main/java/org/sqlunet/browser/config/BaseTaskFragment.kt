@@ -1,108 +1,92 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser.config
 
-package org.sqlunet.browser.config;
-
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ImageButton;
-import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
-import android.widget.TextView;
-
-import org.sqlunet.browser.common.R;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ImageButton
+import android.widget.Spinner
+import android.widget.SpinnerAdapter
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import org.sqlunet.browser.common.R
 
 /**
  * Base task fragment
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-@SuppressWarnings("WeakerAccess")
-abstract public class BaseTaskFragment extends Fragment
-{
-	// static private final String TAG = "BaseTaskF";
+abstract class BaseTaskFragment : Fragment() {
 
-	/**
-	 * Action spinner
-	 */
-	Spinner spinner;
+    /**
+     * Action spinner
+     */
+    @JvmField
+    var spinner: Spinner? = null
 
-	/**
-	 * Status view
-	 */
-	TextView status;
+    /**
+     * Status view
+     */
+    @JvmField
+    var status: TextView? = null
 
-	/**
-	 * Run button
-	 */
-	ImageButton runButton;
+    /**
+     * Run button
+     */
+    @JvmField
+    var runButton: ImageButton? = null
 
-	/**
-	 * Layout id set by derived class
-	 */
-	int layoutId;
+    /**
+     * Layout id set by derived class
+     */
+    @JvmField
+    var layoutId = 0
 
-	/**
-	 * Make spinner
-	 *
-	 * @return spinner adapter
-	 */
-	@NonNull
-	abstract protected SpinnerAdapter makeAdapter();
+    /**
+     * Make spinner
+     *
+     * @return spinner adapter
+     */
+    protected abstract fun makeAdapter(): SpinnerAdapter
 
-	@Nullable
-	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
-	{
-		return inflater.inflate(this.layoutId, container, false);
-	}
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(layoutId, container, false)
+    }
 
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-		// task spinner
-		this.spinner = view.findViewById(R.id.task_spinner);
+        // task spinner
+        spinner = view.findViewById(R.id.task_spinner)
 
-		// adapter
-		final SpinnerAdapter adapter = makeAdapter();
+        // adapter
+        val adapter = makeAdapter()
 
-		// apply the adapter to the spinner
-		this.spinner.setAdapter(adapter);
-		this.spinner.setOnItemSelectedListener(new OnItemSelectedListener()
-		{
-			@Override
-			public void onItemSelected(final AdapterView<?> parent, final View view0, final int position, final long id)
-			{
-				select(position);
-			}
+        // apply the adapter to the spinner
+        spinner!!.setAdapter(adapter)
+        spinner!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
-			@Override
-			public void onNothingSelected(final AdapterView<?> parent)
-			{
-				select(-1);
-			}
-		});
+            override fun onItemSelected(parent: AdapterView<*>?, view0: View, position: Int, id: Long) {
+                select(position)
+            }
 
-		// task status view
-		this.status = view.findViewById(R.id.task_status);
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                select(-1)
+            }
+        }
 
-		// task run button
-		this.runButton = view.findViewById(R.id.task_run);
-	}
+        // task status view
+        status = view.findViewById(R.id.task_status)
 
-	void select(final int position)
-	{
-		BaseTaskFragment.this.status.setText("");
-	}
+        // task run button
+        runButton = view.findViewById(R.id.task_run)
+    }
+
+    open fun select(position: Int) {
+        status!!.text = ""
+    }
 }

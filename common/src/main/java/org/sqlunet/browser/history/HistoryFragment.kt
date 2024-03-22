@@ -1,58 +1,51 @@
 /*
  * Copyright (c) 2024. Bernard Bou <1313ou@gmail.com>
  */
+package org.sqlunet.browser.history
 
-package org.sqlunet.browser.history;
-
-import android.content.Context;
-import android.content.Intent;
-import android.content.SearchRecentSuggestionsProvider;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.ParcelFileDescriptor;
-import android.util.Log;
-import android.view.GestureDetector;
-import android.view.GestureDetector.SimpleOnGestureListener;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.View.OnTouchListener;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.CursorAdapter;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
-
-import org.sqlunet.browser.common.R;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Reader;
-import java.io.Writer;
-
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.view.MenuHost;
-import androidx.core.view.MenuProvider;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Lifecycle;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.app.LoaderManager.LoaderCallbacks;
-import androidx.loader.content.Loader;
+import android.content.Context
+import android.content.Intent
+import android.content.SearchRecentSuggestionsProvider
+import android.database.Cursor
+import android.net.Uri
+import android.os.Bundle
+import android.util.Log
+import android.view.GestureDetector
+import android.view.GestureDetector.SimpleOnGestureListener
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.MotionEvent
+import android.view.View
+import android.view.View.OnTouchListener
+import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemClickListener
+import android.widget.CursorAdapter
+import android.widget.ListView
+import android.widget.SimpleCursorAdapter
+import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.contract.ActivityResultContracts.CreateDocument
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.loader.app.LoaderManager
+import androidx.loader.content.Loader
+import org.sqlunet.browser.common.R
+import org.sqlunet.browser.history.History.makeSearchIntent
+import org.sqlunet.browser.history.History.recordQuery
+import org.sqlunet.browser.history.SearchRecentSuggestions.Companion.getAuthority
+import java.io.BufferedReader
+import java.io.BufferedWriter
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.InputStreamReader
+import java.io.OutputStreamWriter
+import kotlin.math.abs
 
 /**
  * History fragment
@@ -60,379 +53,304 @@ import androidx.loader.content.Loader;
  * @author Bernard Bou
  * @noinspection WeakerAccess
  */
-public class HistoryFragment extends Fragment implements LoaderCallbacks<Cursor>, AdapterView.OnItemClickListener
-{
-	private static final String TAG = "HistoryF";
+class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>, OnItemClickListener {
+    /**
+     * List view
+     */
+    private var listView: ListView? = null
 
-	/**
-	 * List view
-	 */
-	private ListView listView;
+    /**
+     * Cursor adapter
+     */
+    private var adapter: CursorAdapter? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-	/**
-	 * Cursor adapter
-	 */
-	private CursorAdapter adapter;
+        // launchers
+        registerLaunchers()
+    }
 
-	@Override
-	public void onCreate(@Nullable final Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_history, container, false)
+    }
 
-		// launchers
-		registerLaunchers();
-	}
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
-	{
-		return inflater.inflate(R.layout.fragment_history, container, false);
-	}
+        // list adapter bound to the cursor
+        adapter = SimpleCursorAdapter(
+            requireContext(),  // context
+            R.layout.item_history,  // row template to use android.R.layout.simple_list_item_1
+            null, arrayOf(SearchRecentSuggestions.SuggestionColumns.DISPLAY1), intArrayOf(android.R.id.text1),  // objects to bind to those columns
+            0
+        )
 
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
+        // list view
+        listView = view.findViewById(android.R.id.list)
 
-		// list adapter bound to the cursor
-		this.adapter = new SimpleCursorAdapter(requireContext(), // context
-				R.layout.item_history, // row template to use android.R.layout.simple_list_item_1
-				null, // empty cursor to bind to
-				new String[]{SearchRecentSuggestions.SuggestionColumns.DISPLAY1}, // cursor columns to bind to
-				new int[]{android.R.id.text1}, // objects to bind to those columns
-				0);
+        // bind to adapter
+        listView!!.setAdapter(adapter)
 
-		// list view
-		this.listView = view.findViewById(android.R.id.list);
+        // click listener
+        listView!!.onItemClickListener = this
 
-		// bind to adapter
-		this.listView.setAdapter(this.adapter);
+        // swipe
+        val gestureListener = SwipeGestureListener()
+        listView!!.setOnTouchListener(gestureListener)
 
-		// click listener
-		this.listView.setOnItemClickListener(this);
+        // menu
+        val menuHost: MenuHost = requireActivity()
+        menuHost.addMenuProvider(object : MenuProvider {
 
-		// swipe
-		final SwipeGestureListener gestureListener = new SwipeGestureListener();
-		this.listView.setOnTouchListener(gestureListener);
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.history, menu)
+                // MenuCompat.setGroupDividerEnabled(menu, true);
+            }
 
-		// menu
-		final MenuHost menuHost = requireActivity();
-		menuHost.addMenuProvider(new MenuProvider()
-		{
-			@Override
-			public void onCreateMenu(@NonNull final Menu menu, @NonNull final MenuInflater menuInflater)
-			{
-				menuInflater.inflate(R.menu.history, menu);
-				// MenuCompat.setGroupDividerEnabled(menu, true);
-			}
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                when (menuItem.itemId) {
+                    R.id.action_history_export -> {
+                        exportHistory()
+                    }
 
-			@Override
-			public boolean onMenuItemSelected(@NonNull final MenuItem menuItem)
-			{
-				int itemId = menuItem.getItemId();
-				if (itemId == R.id.action_history_export)
-				{
-					exportHistory();
-				}
-				else if (itemId == R.id.action_history_import)
-				{
-					importHistory();
-				}
-				else if (itemId == R.id.action_history_clear)
-				{
-					final android.provider.SearchRecentSuggestions suggestions = new android.provider.SearchRecentSuggestions(requireContext(), SearchRecentSuggestions.getAuthority(requireContext()), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES);
-					suggestions.clearHistory();
-					return true;
-				}
-				return false;
-			}
-		}, getViewLifecycleOwner(), Lifecycle.State.RESUMED);
-	}
+                    R.id.action_history_import -> {
+                        importHistory()
+                    }
 
-	@Override
-	public void onStart()
-	{
-		super.onStart();
+                    R.id.action_history_clear -> {
+                        val suggestions = android.provider.SearchRecentSuggestions(requireContext(), getAuthority(requireContext()), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
+                        suggestions.clearHistory()
+                        return true
+                    }
+                }
+                return false
+            }
+        }, getViewLifecycleOwner(), Lifecycle.State.RESUMED)
+    }
 
-		// initializes the cursor loader
-		LoaderManager.getInstance(this).initLoader(LOADER_ID, null, this);
-	}
+    override fun onStart() {
+        super.onStart()
 
-	@Override
-	public void onDestroy()
-	{
-		super.onDestroy();
+        // initializes the cursor loader
+        LoaderManager.getInstance(this).initLoader(LOADER_ID, null, this)
+    }
 
-		this.exportLauncher.unregister();
-		this.importLauncher.unregister();
-	}
+    override fun onDestroy() {
+        super.onDestroy()
+        exportLauncher!!.unregister()
+        importLauncher!!.unregister()
+    }
 
-	// L O A D E R
+    override fun onCreateLoader(loaderID: Int, args: Bundle?): Loader<Cursor> {
+        // assert loaderID == LOADER_ID;
+        val suggestions = SearchRecentSuggestions(requireContext(), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
+        return suggestions.cursorLoader()
+    }
 
-	/**
-	 * Cursor loader id
-	 */
-	private static final int LOADER_ID = 2222;
+    override fun onLoadFinished(loader: Loader<Cursor>, cursor: Cursor) {
+        cursor.moveToFirst()
+        adapter!!.changeCursor(cursor)
+    }
 
-	@NonNull
-	@Override
-	public Loader<Cursor> onCreateLoader(final int loaderID, final Bundle args)
-	{
-		// assert loaderID == LOADER_ID;
-		final SearchRecentSuggestions suggestions = new SearchRecentSuggestions(requireContext(), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES);
-		return suggestions.cursorLoader();
-	}
+    override fun onLoaderReset(loader: Loader<Cursor>) {
+        adapter!!.changeCursor(null)
+    }
 
-	@Override
-	public void onLoadFinished(@NonNull final Loader<Cursor> loader, @NonNull final Cursor cursor)
-	{
-		cursor.moveToFirst();
-		adapter.changeCursor(cursor);
-	}
+    // C L I C K
+    override fun onItemClick(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
+        Log.d(TAG, "Select $position")
+        val cursor = (listView!!.adapter as SimpleCursorAdapter).cursor
+        cursor.moveToPosition(position)
+        if (!cursor.isAfterLast) {
+            val dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1)
+            assert(dataIdx != -1)
+            val query = cursor.getString(dataIdx)
+            if (null != query) {
+                val intent = makeSearchIntent(requireContext(), query)
+                startActivity(intent)
+            }
+        }
+    }
 
-	@Override
-	public void onLoaderReset(@NonNull final Loader<Cursor> loader)
-	{
-		adapter.changeCursor(null);
-	}
+    // S W I P E
 
-	// C L I C K
+    private inner class SwipeGestureListener : SimpleOnGestureListener(), OnTouchListener {
 
-	@Override
-	public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id)
-	{
-		Log.d(TAG, "Select " + position);
-		final Cursor cursor = ((SimpleCursorAdapter) this.listView.getAdapter()).getCursor();
-		cursor.moveToPosition(position);
-		if (!cursor.isAfterLast())
-		{
-			final int dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1);
-			assert dataIdx != -1;
-			final String query = cursor.getString(dataIdx);
-			if (null != query)
-			{
-				final Intent intent = History.makeSearchIntent(requireContext(), query);
-				startActivity(intent);
-			}
-		}
-	}
+        private val gestureDetector: GestureDetector = GestureDetector(requireContext(), this)
 
-	// S W I P E
+        override fun onFling(e1: MotionEvent?, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
+            if (e1 == null) {
+                return false
+            }
+            val position = listView!!.pointToPosition(Math.round(e1.x), Math.round(e1.y))
+            if (abs((e1.y - e2.y).toDouble()) <= SWIPE_MAX_OFF_PATH) {
+                if (abs(velocityX.toDouble()) >= SWIPE_THRESHOLD_VELOCITY) {
+                    if (e2.x - e1.x > SWIPE_MIN_DISTANCE) {
+                        val cursor = adapter!!.cursor
+                        if (!cursor.isAfterLast) {
+                            if (cursor.moveToPosition(position)) {
+                                val itemIdIdx = cursor.getColumnIndex("_id")
+                                assert(itemIdIdx != -1)
+                                val itemId = cursor.getString(itemIdIdx)
+                                val dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1)
+                                assert(dataIdx != -1)
+                                val data = cursor.getString(dataIdx)
+                                val suggestions = SearchRecentSuggestions(requireContext(), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
+                                suggestions.delete(itemId)
+                                val cursor2 = suggestions.cursor()
+                                adapter!!.changeCursor(cursor2)
+                                Toast.makeText(requireContext(), resources.getString(R.string.title_history_deleted) + ' ' + data, Toast.LENGTH_SHORT).show()
+                                return true
+                            }
+                        }
+                    }
+                }
+            }
+            return super.onFling(e1, e2, velocityX, velocityY)
+        }
 
-	private class SwipeGestureListener extends SimpleOnGestureListener implements OnTouchListener
-	{
-		static final int SWIPE_MIN_DISTANCE = 120;
-		static final int SWIPE_MAX_OFF_PATH = 250;
-		static final int SWIPE_THRESHOLD_VELOCITY = 200;
+        override fun onTouch(view: View, event: MotionEvent): Boolean {
+            if (event.action == MotionEvent.ACTION_UP) {
+                view.performClick()
+            }
+            return gestureDetector.onTouchEvent(event)
+        }
+    }
 
-		@NonNull
-		private final GestureDetector gestureDetector;
+    /**
+     * Export history
+     */
+    private fun exportHistory() {
+        exportLauncher!!.launch(MIME_TYPE)
+    }
 
-		@SuppressWarnings("WeakerAccess")
-		public SwipeGestureListener()
-		{
-			this.gestureDetector = new GestureDetector(requireContext(), this);
-		}
+    /**
+     * Import history
+     */
+    private fun importHistory() {
+        importLauncher!!.launch(arrayOf(MIME_TYPE))
+    }
 
-		@Override
-		public boolean onFling(@Nullable final MotionEvent e1, @NonNull final MotionEvent e2, final float velocityX, final float velocityY)
-		{
-			if (e1 == null)
-			{
-				return false;
-			}
+    // D O C U M E N T   I N T E R F A C E
 
-			final int position = listView.pointToPosition(Math.round(e1.getX()), Math.round(e1.getY()));
+    // You can do the assignment inside onAttach or onCreate, i.e, before the activity is displayed
+    private var exportLauncher: ActivityResultLauncher<String>? = null
+    private var importLauncher: ActivityResultLauncher<Array<String>>? = null
 
-			if (Math.abs(e1.getY() - e2.getY()) <= SwipeGestureListener.SWIPE_MAX_OFF_PATH)
-			{
-				if (Math.abs(velocityX) >= SwipeGestureListener.SWIPE_THRESHOLD_VELOCITY)
-				{
-					if (e2.getX() - e1.getX() > SwipeGestureListener.SWIPE_MIN_DISTANCE)
-					{
-						final Cursor cursor = adapter.getCursor();
-						if (!cursor.isAfterLast())
-						{
-							if (cursor.moveToPosition(position))
-							{
-								final int itemIdIdx = cursor.getColumnIndex("_id");
-								assert itemIdIdx != -1;
-								final String itemId = cursor.getString(itemIdIdx);
+    private fun registerLaunchers() {
+        val createContract = object : CreateDocument(MIME_TYPE) {
 
-								final int dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1);
-								assert dataIdx != -1;
-								final String data = cursor.getString(dataIdx);
+            override fun createIntent(context: Context, input: String): Intent {
+                val intent: Intent = super.createIntent(context, input)
+                intent.putExtra(Intent.EXTRA_TITLE, HISTORY_FILE)
+                //intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, pickerInitialUri)
+                return intent
+            }
+        }
+        exportLauncher = registerForActivityResult(createContract) { uri: Uri? ->
+            // The result data contains a URI for the document or directory that the user selected.
+            uri?.let { doExportHistory(it) }
+        }
 
-								final SearchRecentSuggestions suggestions = new SearchRecentSuggestions(requireContext(), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES);
-								suggestions.delete(itemId);
-								final Cursor cursor2 = suggestions.cursor();
-								adapter.changeCursor(cursor2);
+        val openContract = object : ActivityResultContracts.OpenDocument() {
 
-								Toast.makeText(requireContext(), getResources().getString(R.string.title_history_deleted) + ' ' + data, Toast.LENGTH_SHORT).show();
-								return true;
-							}
-						}
-					}
-				}
-			}
+            override fun createIntent(context: Context, input: Array<String>): Intent {
+                val intent: Intent = super.createIntent(context, input)
+                intent.putExtra(Intent.EXTRA_TITLE, HISTORY_FILE)
+                //intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, pickerInitialUri)
+                return intent
+            }
+        }
+        importLauncher = registerForActivityResult(openContract) { uri: Uri? ->
 
-			return super.onFling(e1, e2, velocityX, velocityY);
-		}
+            // The result data contains a URIs for the document or directory that the user selected.
+            uri?.let { doImportHistory(it) }
+        }
+    }
 
-		@Override
-		public boolean onTouch(@NonNull final View view, @NonNull final MotionEvent event)
-		{
-			if (event.getAction() == MotionEvent.ACTION_UP)
-			{
-				view.performClick();
-			}
-			return this.gestureDetector.onTouchEvent(event);
-		}
-	}
+    /**
+     * Export history
+     */
+    private fun doExportHistory(uri: Uri) {
+        Log.d(TAG, "Exporting to $uri")
+        try {
+            requireContext().contentResolver.openFileDescriptor(uri, "w").use { pfd ->
+                assert(pfd != null)
+                FileOutputStream(pfd!!.fileDescriptor).use { fileOutputStream ->
+                    OutputStreamWriter(fileOutputStream).use { writer ->
+                        BufferedWriter(writer).use { bw ->
+                            val suggestions = SearchRecentSuggestions(requireContext(), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
+                            suggestions.cursor().use { cursor ->
+                                assert(cursor != null)
+                                if (cursor!!.moveToFirst()) {
+                                    do {
+                                        val dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1)
+                                        assert(dataIdx != -1)
+                                        val data = cursor.getString(dataIdx)
+                                        bw.write(data + '\n')
+                                    } while (cursor.moveToNext())
+                                }
+                            }
+                            Log.i(TAG, "Exported to $uri")
+                            Toast.makeText(requireContext(), resources.getText(R.string.title_history_export).toString() + " " + uri, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            }
+        } catch (e: IOException) {
+            Log.e(TAG, "While writing", e)
+            Toast.makeText(requireContext(), resources.getText(R.string.error_export).toString() + " " + uri, Toast.LENGTH_SHORT).show()
+        }
+    }
 
-	// I M P O R T / E X P O R T
+    /**
+     * Import history
+     */
+    private fun doImportHistory(uri: Uri) {
+        Log.d(TAG, "Importing from $uri")
+        try {
+            requireContext().contentResolver.openInputStream(uri).use { `is` ->
+                InputStreamReader(`is`).use { reader ->
+                    BufferedReader(reader).use { br ->
+                        var line: String
+                        while (br.readLine().also { line = it } != null) {
+                            recordQuery(requireContext(), line.trim { it <= ' ' })
+                        }
+                        Log.i(TAG, "Imported from $uri")
+                        Toast.makeText(requireContext(), resources.getText(R.string.title_history_import).toString() + " " + uri, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        } catch (e: IOException) {
+            Log.e(TAG, "While reading", e)
+            Toast.makeText(requireContext(), resources.getText(R.string.error_import).toString() + " " + uri, Toast.LENGTH_SHORT).show()
+        }
+    }
 
-	/**
-	 * Export/import text file
-	 */
-	private static final String HISTORY_FILE = "semantikos_search_history.txt";
+    companion object {
+        private const val TAG = "HistoryF"
 
-	private static final String MIME_TYPE = "text/plain";
+        const val SWIPE_MIN_DISTANCE = 120
+        const val SWIPE_MAX_OFF_PATH = 250
+        const val SWIPE_THRESHOLD_VELOCITY = 200
 
-	/**
-	 * Export history
-	 */
-	private void exportHistory()
-	{
-		exportLauncher.launch(MIME_TYPE);
-	}
+        // L O A D E R
 
-	/**
-	 * Import history
-	 */
-	private void importHistory()
-	{
-		importLauncher.launch(new String[]{MIME_TYPE});
-	}
+        /**
+         * Cursor loader id
+         */
+        private const val LOADER_ID = 2222
 
-	// D O C U M E N T   I N T E R F A C E
+        // I M P O R T / E X P O R T
 
-	// You can do the assignment inside onAttach or onCreate, i.e, before the activity is displayed
-	private ActivityResultLauncher<String> exportLauncher;
+        /**
+         * Export/import text file
+         */
+        private const val HISTORY_FILE = "semantikos_search_history.txt"
 
-	private ActivityResultLauncher<String[]> importLauncher;
-
-	private void registerLaunchers()
-	{
-		final ActivityResultContract<String, Uri> createContract = new ActivityResultContracts.CreateDocument(MIME_TYPE)
-		{
-			@NonNull
-			@Override
-			public Intent createIntent(@NonNull final Context context, @NonNull final String input)
-			{
-				final Intent intent = super.createIntent(context, input);
-				intent.putExtra(Intent.EXTRA_TITLE, HISTORY_FILE);
-				//intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, pickerInitialUri);
-				return intent;
-			}
-		};
-		this.exportLauncher = registerForActivityResult(createContract, uri -> {
-
-			// The result data contains a URI for the document or directory that the user selected.
-			if (uri != null)
-			{
-				doExportHistory(uri);
-			}
-		});
-
-		final ActivityResultContract<String[], Uri> openContract = new ActivityResultContracts.OpenDocument()
-		{
-			@NonNull
-			@Override
-			public Intent createIntent(@NonNull final Context context, @NonNull final String[] input)
-			{
-				final Intent intent = super.createIntent(context, input);
-				intent.putExtra(Intent.EXTRA_TITLE, HISTORY_FILE);
-				//intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, pickerInitialUri);
-				return intent;
-			}
-		};
-		this.importLauncher = registerForActivityResult(openContract, uri -> {
-
-			// The result data contains a URIs for the document or directory that the user selected.
-			if (uri != null)
-			{
-				doImportHistory(uri);
-			}
-		});
-	}
-
-	/**
-	 * Export history
-	 */
-	private void doExportHistory(@NonNull final Uri uri)
-	{
-		Log.d(HistoryFragment.TAG, "Exporting to " + uri);
-		try ( //
-		      final ParcelFileDescriptor pfd = requireContext().getContentResolver().openFileDescriptor(uri, "w") //
-		)
-		{
-			assert pfd != null;
-			try (final OutputStream fileOutputStream = new FileOutputStream(pfd.getFileDescriptor());//
-			     final Writer writer = new OutputStreamWriter(fileOutputStream);//
-			     final BufferedWriter bw = new BufferedWriter(writer))
-			{
-				final SearchRecentSuggestions suggestions = new SearchRecentSuggestions(requireContext(), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES);
-				try (final Cursor cursor = suggestions.cursor())
-				{
-					assert cursor != null;
-					if (cursor.moveToFirst())
-					{
-						do
-						{
-							final int dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1);
-							assert dataIdx != -1;
-							final String data = cursor.getString(dataIdx);
-							bw.write(data + '\n');
-						}
-						while (cursor.moveToNext());
-					}
-				}
-				Log.i(TAG, "Exported to " + uri);
-				Toast.makeText(requireContext(), getResources().getText(R.string.title_history_export) + " " + uri, Toast.LENGTH_SHORT).show();
-			}
-		}
-		catch (@NonNull final IOException e)
-		{
-			Log.e(TAG, "While writing", e);
-			Toast.makeText(requireContext(), getResources().getText(R.string.error_export) + " " + uri, Toast.LENGTH_SHORT).show();
-		}
-	}
-
-	/**
-	 * Import history
-	 */
-	private void doImportHistory(@NonNull final Uri uri)
-	{
-		Log.d(TAG, "Importing from " + uri);
-		try ( //
-		      final InputStream is = requireContext().getContentResolver().openInputStream(uri); //
-		      final Reader reader = new InputStreamReader(is); //
-		      final BufferedReader br = new BufferedReader(reader) //
-		)
-		{
-			String line;
-			while ((line = br.readLine()) != null)
-			{
-				History.recordQuery(requireContext(), line.trim());
-			}
-			Log.i(TAG, "Imported from " + uri);
-			Toast.makeText(requireContext(), getResources().getText(R.string.title_history_import) + " " + uri, Toast.LENGTH_SHORT).show();
-		}
-		catch (@NonNull final IOException e)
-		{
-			Log.e(TAG, "While reading", e);
-			Toast.makeText(requireContext(), getResources().getText(R.string.error_import) + " " + uri, Toast.LENGTH_SHORT).show();
-		}
-	}
+        /**
+         * Mimetype
+         */
+        private const val MIME_TYPE = "text/plain"
+    }
 }

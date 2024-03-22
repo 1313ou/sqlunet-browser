@@ -1,105 +1,83 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser
 
-package org.sqlunet.browser;
-
-import android.net.Uri;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.CursorAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
-
-import org.sqlunet.browser.common.R;
-import org.sqlunet.provider.XNetContract.Sources;
-import org.sqlunet.provider.XSqlUNetProvider;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.ListFragment;
-import androidx.lifecycle.ViewModelProvider;
+import android.database.Cursor
+import android.net.Uri
+import android.os.Bundle
+import android.view.View
+import android.widget.CursorAdapter
+import android.widget.ListAdapter
+import android.widget.SimpleCursorAdapter
+import androidx.fragment.app.ListFragment
+import androidx.lifecycle.ViewModelProvider
+import org.sqlunet.browser.common.R
+import org.sqlunet.provider.XNetContract
+import org.sqlunet.provider.XSqlUNetProvider.Companion.makeUri
 
 /**
  * A list fragment representing sources.
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class SourceFragment extends ListFragment
-{
-	/**
-	 * View model
-	 */
-	private SqlunetViewModel model;
+class SourceFragment : ListFragment() {
 
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
+    /**
+     * View model
+     */
+    private var model: SqlunetViewModel? = null
 
-		// make cursor adapter
-		final String[] from = {Sources.NAME, Sources.VERSION, Sources.URL, Sources.PROVIDER, Sources.REFERENCE};
-		final int[] to = {R.id.name, R.id.version, R.id.url, R.id.provider, R.id.reference};
-		final ListAdapter adapter = new SimpleCursorAdapter(requireContext(), R.layout.item_source, null, //
-				from, //
-				to, 0);
-		setListAdapter(adapter);
-	}
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-	@Override
-	public void onStart()
-	{
-		super.onStart();
+        // make cursor adapter
+        val from = arrayOf(XNetContract.Sources.NAME, XNetContract.Sources.VERSION, XNetContract.Sources.URL, XNetContract.Sources.PROVIDER, XNetContract.Sources.REFERENCE)
+        val to = intArrayOf(R.id.name, R.id.version, R.id.url, R.id.provider, R.id.reference)
+        val adapter: ListAdapter = SimpleCursorAdapter(
+            requireContext(), R.layout.item_source, null,  //
+            from,  //
+            to, 0
+        )
+        setListAdapter(adapter)
+    }
 
-		// models
-		makeModels(); // sets cursor
+    override fun onStart() {
+        super.onStart()
 
-		// load the contents
-		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(Sources.URI));
-		final String[] projection = {Sources.ID + " AS _id", Sources.NAME, Sources.VERSION, Sources.URL, Sources.PROVIDER, Sources.REFERENCE};
-		final String sortOrder = Sources.ID;
-		this.model.loadData(uri, projection, null, null, sortOrder, null);
-	}
+        // models
+        makeModels() // sets cursor
 
-	@Override
-	public void onStop()
-	{
-		super.onStop();
+        // load the contents
+        val uri = Uri.parse(makeUri(XNetContract.Sources.URI))
+        val projection = arrayOf(XNetContract.Sources.ID + " AS _id", XNetContract.Sources.NAME, XNetContract.Sources.VERSION, XNetContract.Sources.URL, XNetContract.Sources.PROVIDER, XNetContract.Sources.REFERENCE)
+        val sortOrder = XNetContract.Sources.ID
+        model!!.loadData(uri, projection, null, null, sortOrder, null)
+    }
 
-		final ListView listView = getListView();
-		final CursorAdapter adapter = (CursorAdapter) getListAdapter();
+    override fun onStop() {
+        super.onStop()
+        val listView = getListView()
+        val adapter = listAdapter as CursorAdapter?
+        listView.setAdapter(null)
+        assert(adapter != null)
+        adapter!!.swapCursor(null)
+    }
 
-		listView.setAdapter(null);
-		// the cursor will be saved along with fragment state if any
-		assert adapter != null;
-		//noinspection resource
-		adapter.swapCursor(null);
-	}
+    override fun onDestroy() {
+        super.onDestroy()
+        val adapter = listAdapter as CursorAdapter?
+        adapter?.changeCursor(null)
+    }
 
-	@Override
-	public void onDestroy()
-	{
-		super.onDestroy();
-
-		CursorAdapter adapter = (CursorAdapter) getListAdapter();
-		if (adapter != null)
-		{
-			adapter.changeCursor(null);
-		}
-	}
-
-	/**
-	 * Make view models
-	 */
-	private void makeModels()
-	{
-		this.model = new ViewModelProvider(this).get("sources", SqlunetViewModel.class);
-		this.model.getData().observe(getViewLifecycleOwner(), cursor -> {
-
-			final CursorAdapter adapter = (CursorAdapter) getListAdapter();
-			assert adapter != null;
-			adapter.changeCursor(cursor);
-		});
-	}
+    /**
+     * Make view models
+     */
+    private fun makeModels() {
+        model = ViewModelProvider(this)["sources", SqlunetViewModel::class.java]
+        model!!.getData().observe(getViewLifecycleOwner()) { cursor: Cursor? ->
+            val adapter = (listAdapter as CursorAdapter?)!!
+            adapter.changeCursor(cursor)
+        }
+    }
 }

@@ -1,173 +1,133 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser.config
 
-package org.sqlunet.browser.config;
-
-import android.content.Context;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-
-import com.bbou.concurrency.Cancelable;
-import com.bbou.concurrency.observe.TaskObserver;
-import com.bbou.download.storage.FormatUtils;
-
-import org.sqlunet.browser.EntryActivity;
-import org.sqlunet.browser.common.R;
-import org.sqlunet.settings.Settings;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import kotlin.Pair;
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ProgressBar
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.bbou.concurrency.Cancelable
+import com.bbou.concurrency.observe.TaskObserver
+import com.bbou.download.storage.FormatUtils.formatAsInformationString
+import org.sqlunet.browser.EntryActivity.Companion.rerun
+import org.sqlunet.browser.common.R
+import org.sqlunet.browser.config.SetupAsset.deliverAsset
+import org.sqlunet.settings.Settings.Companion.getAssetPack
+import org.sqlunet.settings.Settings.Companion.getAssetPackDir
+import org.sqlunet.settings.Settings.Companion.getAssetPackZip
 
 /**
  * About fragment
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class AssetLoadFragment extends Fragment implements TaskObserver<Pair<Number, Number>>
+class AssetLoadFragment : Fragment(), TaskObserver<Pair<Number, Number>>
 {
-	static private final String TAG = "AssetF";
+    private var titleTextView: TextView? = null
+    private var messageTextView: TextView? = null
+    private var progressBar: ProgressBar? = null
+    private var progressTextView: TextView? = null
+    private var statusTextView: TextView? = null
+    private var cancelButton: Button? = null
+    private var task: Cancelable? = null
 
-	private TextView titleTextView;
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_assetload, container, false)
+    }
 
-	private TextView messageTextView;
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-	private ProgressBar progressBar;
+        // find view components to control loading
+        titleTextView = view.findViewById(R.id.title)
+        messageTextView = view.findViewById(R.id.message)
+        statusTextView = view.findViewById(R.id.status)
+        progressBar = view.findViewById(R.id.progressBar)
+        progressTextView = view.findViewById(R.id.progressProgress)
+        cancelButton = view.findViewById(R.id.cancelButton)
+        cancelButton!!.setOnClickListener {
+            val result = task != null && task!!.cancel(true)
+            Log.d(TAG, "Cancel task @" + (if (task == null) "null" else Integer.toHexString(task.hashCode())) + ' ' + result)
+        }
 
-	private TextView progressTextView;
+        // load assets
+        val context = requireContext()
+        val asset = getAssetPack(context)
+        val assetDir = getAssetPackDir(context)
+        val assetZip = getAssetPackZip(context)
+        val assetZipEntry = context.getString(R.string.asset_zip_entry)
+        val whenComplete = Runnable {
 
-	private TextView statusTextView;
 
-	private Button cancelButton;
+            // avoid IllegalStateException on completion
+            val context2 = getContext()
+            if (context2 != null) {
+                rerun(context2)
+            }
+        }
+        deliverAsset(asset, assetDir, assetZip, assetZipEntry, requireActivity(), this, whenComplete, getView())
+    }
 
-	@Nullable
-	private Cancelable task;
+    override fun onResume() {
+        super.onResume()
+        val activity = requireActivity() as AppCompatActivity
+        val actionBar = activity.supportActionBar!!
+        actionBar.customView = null
+        actionBar.setBackgroundDrawable(null)
+    }
 
-	/**
-	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
-	 */
-	public AssetLoadFragment()
-	{
-	}
+    override fun taskStart(task: Cancelable) {
+        this.task = task
+        cancelButton!!.visibility = View.VISIBLE
+        progressBar!!.isIndeterminate = true
+        progressTextView!!.text = ""
+        messageTextView!!.text = ""
+    }
 
-	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
-	{
-		return inflater.inflate(R.layout.fragment_assetload, container, false);
-	}
+    override fun taskFinish(result: Boolean) {
+        task = null
+        cancelButton!!.visibility = View.GONE
+        progressBar!!.isIndeterminate = false
+        progressBar!!.setMax(100)
+        progressBar!!.progress = 100
+        messageTextView!!.setText(if (result) R.string.result_success else R.string.result_fail)
+    }
 
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
+    override fun taskProgress(progress: Pair<Number, Number>) {
+        val longProgress = progress.first.toLong()
+        val longLength = progress.second.toLong()
+        val indeterminate = longLength == -1L
+        progressTextView!!.text = formatAsInformationString(longProgress) + '/' + formatAsInformationString(longLength)
+        progressBar!!.isIndeterminate = indeterminate
+        if (!indeterminate) {
+            val percent = (longProgress * 100f / longLength).toInt()
+            progressBar!!.setMax(100)
+            progressBar!!.progress = percent
+        }
+    }
 
-		// find view components to control loading
-		this.titleTextView = view.findViewById(R.id.title);
-		this.messageTextView = view.findViewById(R.id.message);
-		this.statusTextView = view.findViewById(R.id.status);
-		this.progressBar = view.findViewById(R.id.progressBar);
-		this.progressTextView = view.findViewById(R.id.progressProgress);
-		this.cancelButton = view.findViewById(R.id.cancelButton);
-		this.cancelButton.setOnClickListener((v) -> {
+    override fun taskUpdate(status: CharSequence) {
+        statusTextView!!.text = status
+    }
 
-			boolean result = this.task != null && this.task.cancel(true);
-			Log.d(TAG, "Cancel task @" + (this.task == null ? "null" : Integer.toHexString(this.task.hashCode())) + ' ' + result);
-		});
+    fun setTitle(title: CharSequence): TaskObserver<Pair<Number, Number>> {
+        titleTextView!!.text = title
+        return this
+    }
 
-		// load assets
-		final Context context = requireContext();
-		final String asset = Settings.getAssetPack(context);
-		final String assetDir = Settings.getAssetPackDir(context);
-		final String assetZip = Settings.getAssetPackZip(context);
-		final String assetZipEntry = context.getString(R.string.asset_zip_entry);
-		final Runnable whenComplete = () -> {
+    fun setMessage(message: CharSequence): TaskObserver<Pair<Number, Number>> {
+        messageTextView!!.text = message
+        return this
+    }
 
-			// avoid IllegalStateException on completion
-			final Context context2 = getContext();
-			if (context2 != null)
-			{
-				EntryActivity.rerun(context2);
-			}
-		};
-		SetupAsset.deliverAsset(asset, assetDir, assetZip, assetZipEntry, requireActivity(), this, whenComplete, getView());
-	}
-
-	@Override
-	public void onResume()
-	{
-		super.onResume();
-
-		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
-		final ActionBar actionBar = activity.getSupportActionBar();
-		assert actionBar != null;
-		actionBar.setCustomView(null);
-		actionBar.setBackgroundDrawable(null);
-	}
-
-	@Override
-	public void taskStart(@NonNull final Cancelable task)
-	{
-		this.task = task;
-		this.cancelButton.setVisibility(View.VISIBLE);
-		this.progressBar.setIndeterminate(true);
-		this.progressTextView.setText("");
-		this.messageTextView.setText("");
-	}
-
-	@Override
-	public void taskFinish(final boolean success)
-	{
-		this.task = null;
-		this.cancelButton.setVisibility(View.GONE);
-		this.progressBar.setIndeterminate(false);
-		this.progressBar.setMax(100);
-		this.progressBar.setProgress(100);
-		this.messageTextView.setText(success ? R.string.result_success : R.string.result_fail);
-	}
-
-	@Override
-	public void taskProgress(@NonNull final Pair<Number, Number> progress)
-	{
-		final long longProgress = progress.getFirst().longValue();
-		final long longLength = progress.getSecond().longValue();
-		final boolean indeterminate = longLength == -1L;
-		this.progressTextView.setText(FormatUtils.formatAsInformationString(longProgress) + '/' + FormatUtils.formatAsInformationString(longLength));
-		this.progressBar.setIndeterminate(indeterminate);
-		if (!indeterminate)
-		{
-			final int percent = (int) ((longProgress * 100F) / longLength);
-			this.progressBar.setMax(100);
-			this.progressBar.setProgress(percent);
-		}
-	}
-
-	@Override
-	public void taskUpdate(@NonNull final CharSequence status)
-	{
-		this.statusTextView.setText(status);
-	}
-
-	@NonNull
-	public TaskObserver<Pair<Number, Number>> setTitle(@NonNull final CharSequence title)
-	{
-		this.titleTextView.setText(title);
-		return this;
-	}
-
-	@NonNull
-	public TaskObserver<Pair<Number, Number>> setMessage(@NonNull final CharSequence message)
-	{
-		this.messageTextView.setText(message);
-		return this;
-	}
+    companion object {
+        private const val TAG = "AssetF"
+    }
 }

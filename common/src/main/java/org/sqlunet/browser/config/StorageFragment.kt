@@ -1,222 +1,198 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser.config
 
-package org.sqlunet.browser.config;
-
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
-import android.os.Bundle;
-import android.util.Pair;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
-import org.sqlunet.browser.MenuHandler;
-import org.sqlunet.browser.common.R;
-import org.sqlunet.settings.Storage;
-import org.sqlunet.settings.StorageReports;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.MenuHost;
-import androidx.core.view.MenuProvider;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Lifecycle;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.DialogInterface
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import org.sqlunet.browser.MenuHandler.menuDispatch
+import org.sqlunet.browser.common.R
+import org.sqlunet.settings.Storage.getSqlUNetStorage
+import org.sqlunet.settings.StorageReports.getStyledCachesNamesValues
+import org.sqlunet.settings.StorageReports.getStyledDownloadNamesValues
+import org.sqlunet.settings.StorageReports.getStyledStorageDirectoriesNamesValues
+import org.sqlunet.settings.StorageReports.namesValuesToReportStyled
+import org.sqlunet.settings.StorageReports.reportExternalStorage
+import org.sqlunet.settings.StorageReports.reportStorageDirectories
+import org.sqlunet.settings.StorageReports.reportStyledDirs
+import org.sqlunet.settings.StorageReports.reportStyledExternalStorage
+import org.sqlunet.settings.StorageReports.reportStyledStorageDirectories
 
 /**
  * Storage fragment
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class StorageFragment extends Fragment
-{
-	/**
-	 * Swipe refresh layout
-	 */
-	private SwipeRefreshLayout swipeRefreshLayout;
+class StorageFragment : Fragment() {
 
-	/**
-	 * Constructor
-	 */
-	public StorageFragment()
-	{
-	}
+    /**
+     * Swipe refresh layout
+     */
+    private var swipeRefreshLayout: SwipeRefreshLayout? = null
 
-	@Override
-	public void onResume()
-	{
-		super.onResume();
-		update();
-	}
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_storage, container, false)
+    }
 
-	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
-	{
-		return inflater.inflate(R.layout.fragment_storage, container, false);
-	}
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
+        // swipe refresh
+        swipeRefreshLayout = view.findViewById(R.id.swipe_refresh)
+        swipeRefreshLayout!!.setOnRefreshListener {
+            update()
 
-		// swipe refresh
-		this.swipeRefreshLayout = view.findViewById(R.id.swipe_refresh);
-		//this.swipeRefreshLayout.setColorSchemeResources(R.color.swipe_down_1_color, R.color.swipe_down_2_color);
-		this.swipeRefreshLayout.setOnRefreshListener(() -> {
-			update();
+            // stop the refreshing indicator
+            swipeRefreshLayout!!.isRefreshing = false
+        }
 
-			// stop the refreshing indicator
-			StorageFragment.this.swipeRefreshLayout.setRefreshing(false);
-		});
+        // menu
+        val menuHost: MenuHost = requireActivity()
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                // inflate
+                menu.clear()
+                menuInflater.inflate(R.menu.main, menu)
+                menuInflater.inflate(R.menu.storage, menu)
+                // MenuCompat.setGroupDividerEnabled(menu, true);
+            }
 
-		// menu
-		final MenuHost menuHost = requireActivity();
-		menuHost.addMenuProvider(new MenuProvider()
-		{
-			@Override
-			public void onCreateMenu(@NonNull final Menu menu, @NonNull final MenuInflater menuInflater)
-			{
-				// inflate
-				menu.clear();
-				menuInflater.inflate(R.menu.main, menu);
-				menuInflater.inflate(R.menu.storage, menu);
-				// MenuCompat.setGroupDividerEnabled(menu, true);
-			}
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                val context = requireContext()
 
-			@Override
-			public boolean onMenuItemSelected(@NonNull final MenuItem menuItem)
-			{
-				final Context context = requireContext();
+                // handle item selection
+                val itemId = menuItem.itemId
+                when (itemId) {
+                    R.id.action_dirs -> {
+                        val message = reportStyledDirs(context)
+                        AlertDialog.Builder(context) //
+                            .setTitle(R.string.action_dirs) //
+                            .setMessage(message) //
+                            .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> } //
+                            .show()
+                        return true
+                    }
 
-				// handle item selection
-				final int itemId = menuItem.getItemId();
-				if (itemId == R.id.action_dirs)
-				{
-					final CharSequence message = StorageReports.reportStyledDirs(context);
-					new AlertDialog.Builder(context) //
-							.setTitle(R.string.action_dirs) //
-							.setMessage(message) //
-							.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
-							.show();
-					return true;
-				}
-				else if (itemId == R.id.action_storage_dirs)
-				{
-					final Pair<CharSequence[], String[]> dirs = StorageReports.getStyledStorageDirectoriesNamesValues(context);
-					final CharSequence message = StorageReports.namesValuesToReportStyled(dirs);
-					new AlertDialog.Builder(context) //
-							.setTitle(R.string.action_storage_dirs) //
-							.setMessage(message) //
-							.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
-							.show();
-					return true;
-				}
-				else if (itemId == R.id.action_cache_dirs)
-				{
-					final Pair<CharSequence[], String[]> dirs = StorageReports.getStyledCachesNamesValues(context);
-					final CharSequence message = StorageReports.namesValuesToReportStyled(dirs);
-					new AlertDialog.Builder(context) //
-							.setTitle(R.string.action_cache_dirs) //
-							.setMessage(message) //
-							.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
-							.show();
-					return true;
-				}
-				else if (itemId == R.id.action_download_dirs)
-				{
-					final Pair<CharSequence[], String[]> dirs = StorageReports.getStyledDownloadNamesValues(context);
-					final CharSequence message = StorageReports.namesValuesToReportStyled(dirs);
-					new AlertDialog.Builder(context) //
-							.setTitle(R.string.action_download_dirs) //
-							.setMessage(message) //
-							.setNegativeButton(R.string.action_dismiss, (dialog, whichButton) -> { /*canceled*/ }) //
-							.show();
-					return true;
-				}
-				else if (itemId == R.id.action_copy)
-				{
-					final StringBuilder sb = new StringBuilder();
+                    R.id.action_storage_dirs -> {
+                        val dirs = getStyledStorageDirectoriesNamesValues(context)
+                        val message = namesValuesToReportStyled(dirs)
+                        AlertDialog.Builder(context) //
+                            .setTitle(R.string.action_storage_dirs) //
+                            .setMessage(message) //
+                            .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> } //
+                            .show()
+                        return true
+                    }
 
-					// view
-					final View view = getView();
-					assert view != null;
+                    R.id.action_cache_dirs -> {
+                        val dirs = getStyledCachesNamesValues(context)
+                        val message = namesValuesToReportStyled(dirs)
+                        AlertDialog.Builder(context) //
+                            .setTitle(R.string.action_cache_dirs) //
+                            .setMessage(message) //
+                            .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> } //
+                            .show()
+                        return true
+                    }
 
-					// db
-					sb.append(getString(R.string.title_database));
-					sb.append('\n');
-					sb.append(Storage.getSqlUNetStorage(context).getAbsolutePath());
-					sb.append('\n');
-					sb.append('\n');
+                    R.id.action_download_dirs -> {
+                        val dirs = getStyledDownloadNamesValues(context)
+                        val message = namesValuesToReportStyled(dirs)
+                        AlertDialog.Builder(context) //
+                            .setTitle(R.string.action_download_dirs) //
+                            .setMessage(message) //
+                            .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> } //
+                            .show()
+                        return true
+                    }
 
-					// storage
-					sb.append(getString(R.string.title_storage));
-					sb.append('\n');
-					sb.append(StorageReports.reportStorageDirectories(context));
-					//sb.append('\n');
+                    R.id.action_copy -> {
+                        val sb = StringBuilder()
 
-					// storage devices
-					sb.append(getString(R.string.title_external_storage_devices));
-					sb.append('\n');
-					sb.append(StorageReports.reportExternalStorage(context));
-					//sb.append('\n');
+                        // db
+                        sb.append(getString(R.string.title_database))
+                            .append('\n')
+                            .append(getSqlUNetStorage(context).absolutePath)
+                            .append('\n')
+                            .append('\n')
 
-					final ClipboardManager clipboard = (ClipboardManager) requireContext().getSystemService(Context.CLIPBOARD_SERVICE);
-					final ClipData clip = ClipData.newPlainText("Storage", sb);
-					assert clipboard != null;
-					clipboard.setPrimaryClip(clip);
-					return true;
-				}
-				else if (itemId == R.id.action_refresh)
-				{
-					// make sure that the SwipeRefreshLayout is displaying its refreshing indicator
-					if (!swipeRefreshLayout.isRefreshing())
-					{
-						swipeRefreshLayout.setRefreshing(true);
-					}
-					update();
+                            // storage
+                            .append(getString(R.string.title_storage))
+                            .append('\n')
+                            .append(reportStorageDirectories(context))
 
-					// stop the refreshing indicator
-					swipeRefreshLayout.setRefreshing(false);
-					return true;
-				}
-				return MenuHandler.menuDispatch((AppCompatActivity) requireActivity(), menuItem);
-			}
+                            // storage devices
+                            .append(getString(R.string.title_external_storage_devices))
+                            .append('\n')
+                            .append(reportExternalStorage(context))
 
-		}, this.getViewLifecycleOwner(), Lifecycle.State.RESUMED);
-	}
+                        val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                        val clip = ClipData.newPlainText("Storage", sb)
+                        clipboard.setPrimaryClip(clip)
+                        return true
+                    }
 
-	/**
-	 * Update status
-	 */
-	private void update()
-	{
-		// view
-		final View view = getView();
-		assert view != null;
+                    R.id.action_refresh -> {
+                        // make sure that the SwipeRefreshLayout is displaying its refreshing indicator
+                        if (!swipeRefreshLayout!!.isRefreshing) {
+                            swipeRefreshLayout!!.isRefreshing = true
+                        }
+                        update()
 
-		// context
-		final Context context = requireContext();
+                        // stop the refreshing indicator
+                        swipeRefreshLayout!!.isRefreshing = false
+                        return true
+                    }
 
-		// db
-		final TextView db = view.findViewById(R.id.database);
-		db.setText(Storage.getSqlUNetStorage(context).getAbsolutePath());
+                    else -> return menuDispatch((requireActivity() as AppCompatActivity), menuItem)
+                }
+            }
+        }, getViewLifecycleOwner(), Lifecycle.State.RESUMED)
+    }
 
-		// storage
-		final TextView storage = view.findViewById(R.id.storage);
-		storage.setText(StorageReports.reportStyledStorageDirectories(context));
+    override fun onResume() {
+        super.onResume()
+        update()
+    }
 
-		// storage devices
-		final TextView storageDevices = view.findViewById(R.id.storage_devices);
-		storageDevices.setText(StorageReports.reportStyledExternalStorage(context));
-	}
+    /**
+     * Update status
+     */
+    private fun update() {
+
+        // view
+        val view = requireView()
+
+        // context
+        val context = requireContext()
+
+        // db
+        val db = view.findViewById<TextView>(R.id.database)
+        db.text = getSqlUNetStorage(context).absolutePath
+
+        // storage
+        val storage = view.findViewById<TextView>(R.id.storage)
+        storage.text = reportStyledStorageDirectories(context)
+
+        // storage devices
+        val storageDevices = view.findViewById<TextView>(R.id.storage_devices)
+        storageDevices.text = reportStyledExternalStorage(context)
+    }
 }

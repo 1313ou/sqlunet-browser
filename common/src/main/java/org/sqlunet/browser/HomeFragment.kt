@@ -1,72 +1,46 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser
 
-package org.sqlunet.browser;
-
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import org.sqlunet.browser.common.R;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.navigation.fragment.NavHostFragment;
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import org.sqlunet.browser.common.R
 
 /**
  * Home fragment
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class HomeFragment extends Fragment
-{
-	/**
-	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
-	 */
-	public HomeFragment()
-	{
-	}
+open class HomeFragment : Fragment() {
 
-	@Nullable
-	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
-	{
-		return inflater.inflate(R.layout.fragment_home, container, false);
-	}
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_home, container, false)
+    }
 
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-		// fab
-		final FloatingActionButton fab = view.findViewById(R.id.fab);
-		fab.setOnClickListener((v) -> {
-			final FragmentActivity activity = requireActivity();
-			final NavHostFragment navHostFragment = (NavHostFragment) activity.getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
-			assert navHostFragment != null;
-			navHostFragment.getNavController().navigate(R.id.nav_search_browse);
-		});
-	}
+        // fab
+        val fab = view.findViewById<FloatingActionButton>(R.id.fab)
+        fab.setOnClickListener { v: View? ->
+            val activity = requireActivity()
+            val navHostFragment = (activity.supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment?)!!
+            navHostFragment.navController.navigate(R.id.nav_search_browse)
+        }
+    }
 
-	@Override
-	public void onResume()
-	{
-		super.onResume();
-
-		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
-		final ActionBar actionBar = activity.getSupportActionBar();
-		assert actionBar != null;
-		actionBar.setCustomView(null);
-		actionBar.setBackgroundDrawable(null);
-	}
+    override fun onResume() {
+        super.onResume()
+        val activity = requireActivity() as AppCompatActivity
+        val actionBar = activity.supportActionBar!!
+        actionBar.customView = null
+        actionBar.setBackgroundDrawable(null)
+    }
 }
-

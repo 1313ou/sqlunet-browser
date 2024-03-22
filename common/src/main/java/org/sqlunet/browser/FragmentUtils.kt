@@ -21,7 +21,7 @@ object FragmentUtils {
      * @param childFragmentTags removed children's tags
      * @noinspection SameParameterValue
      */
-    fun removeAllChildFragment(manager: FragmentManager, fragment: Fragment, tag: String?, @IdRes where: Int, vararg childFragmentTags: String?) {
+    fun removeAllChildFragment(manager: FragmentManager, fragment: Fragment, tag: String?, @IdRes where: Int, vararg childFragmentTags: String) {
         Log.d(TAG, "Removing fragments " + childFragmentTags.contentToString())
         if (childFragmentTags.isNotEmpty()) {
             val childFragments = manager.fragments

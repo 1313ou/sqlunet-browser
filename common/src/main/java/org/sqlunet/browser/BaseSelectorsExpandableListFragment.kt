@@ -1,20 +1,13 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser
 
-package org.sqlunet.browser;
+import androidx.app.local.ExpandableListFragment
 
-import androidx.app.local.ExpandableListFragment;
+open class BaseSelectorsExpandableListFragment : ExpandableListFragment() {
 
-public class BaseSelectorsExpandableListFragment extends ExpandableListFragment
-{
-	static private final String TAG = "SelectorsXListF";
-
-	/**
-	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
-	 */
-	public BaseSelectorsExpandableListFragment()
-	{
-		super();
-	}
+    companion object {
+        private const val TAG = "SelectorsXListF"
+    }
 }

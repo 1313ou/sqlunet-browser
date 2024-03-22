@@ -1,245 +1,206 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser
 
-package org.sqlunet.browser;
+import android.database.Cursor
+import android.os.Build
+import android.os.Bundle
+import android.text.Html
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.AbsListView
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemClickListener
+import android.widget.CursorAdapter
+import android.widget.ListView
+import androidx.annotation.LayoutRes
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
+import org.sqlunet.browser.common.R
 
-import android.database.Cursor;
-import android.os.Bundle;
-import android.text.Html;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
-import android.widget.CursorAdapter;
-import android.widget.ListView;
+abstract class BaseSelectorsListFragment  : LoggingFragment(), OnItemClickListener {
+    /**
+     * Search query
+     */
+    @JvmField
+    protected var word: String? = null
 
-import com.google.android.material.snackbar.Snackbar;
+    /**
+     * List view
+     */
+    @JvmField
+    protected var listView: ListView? = null
 
-import org.sqlunet.browser.common.R;
+    /**
+     * Cursor adapter
+     */
+    @JvmField
+    protected var adapter: CursorAdapter? = null
 
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
+    /**
+     * Cursor loader id
+     */
+    @JvmField
+    @LayoutRes
+    protected var layoutId = 0
 
-abstract public class BaseSelectorsListFragment extends LoggingFragment implements AdapterView.OnItemClickListener
-{
-	static private final String TAG = "SelectorsListF";
+    /**
+     * Activate on click flag
+     */
+    @JvmField
+    protected var activateOnItemClick = true
 
-	/**
-	 * Search query
-	 */
-	@Nullable
-	protected String word;
+    // L I F E C Y C L E
 
-	/**
-	 * List view
-	 */
-	protected ListView listView;
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
+        return inflater.inflate(layoutId, container, false)
+    }
 
-	/**
-	 * Cursor adapter
-	 */
-	@Nullable
-	protected CursorAdapter adapter;
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-	/**
-	 * Cursor loader id
-	 */
-	@LayoutRes
-	protected int layoutId;
+        // list view
+        listView = view.findViewById(android.R.id.list)
 
-	/**
-	 * Activate on click flag
-	 */
-	protected boolean activateOnItemClick = true;
+        // bind to adapter
+        listView!!.setChoiceMode(if (activateOnItemClick) AbsListView.CHOICE_MODE_SINGLE else AbsListView.CHOICE_MODE_NONE)
+        listView!!.onItemClickListener = this
 
-	// L I F E C Y C L E
+        // data view models
+        Log.d(TAG, "Make models. Lifecycle: onViewCreated()")
+        makeModels()
+    }
 
-	// --constructor--
+    override fun onStart() {
+        super.onStart()
 
-	/**
-	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
-	 */
-	public BaseSelectorsListFragment()
-	{
-		super();
-	}
+        // list adapter bound to view
+        Log.d(TAG, "Make adapter. Lifecycle: onStart()")
+        adapter = makeAdapter()
+        Log.d(TAG, "Set listview adapter. Lifecycle: onStart()")
+        listView!!.setAdapter(adapter)
 
-	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
-	{
-		super.onCreateView(inflater, container, savedInstanceState);
+        // load data
+        Log.d(TAG, "Load data. Lifecycle: onStart()")
+        load()
+    }
 
-		return inflater.inflate(this.layoutId, container, false);
-	}
+    override fun onStop() {
+        super.onStop()
 
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
+        Log.d(TAG, "Nullify listview adapter. Lifecycle: onStop()")
+        listView!!.setAdapter(null)
+        // the cursor will be saved along with fragment state if any
+        Log.d(TAG, "Nullify adapter cursor but do not close cursor. Lifecycle: onStop()")
+        assert(adapter != null)
+        adapter!!.swapCursor(null)
+    }
 
-		// list view
-		this.listView = view.findViewById(android.R.id.list);
+    override fun onDestroy() {
+        super.onDestroy()
+        if (adapter != null) {
+            Log.d(TAG, "Close cursor.")
+            adapter!!.changeCursor(null)
+            Log.d(TAG, "Nullify adapter.")
+            adapter = null
+        }
+    }
 
-		// bind to adapter
-		this.listView.setChoiceMode(this.activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
-		this.listView.setOnItemClickListener(this);
+    // A D A P T E R
 
-		// data view models
-		Log.d(TAG, "Make models. Lifecycle: onViewCreated()");
-		makeModels();
-	}
+    /**
+     * Load data from word
+     */
+    protected abstract fun load()
 
-	@Override
-	public void onStart()
-	{
-		super.onStart();
+    protected abstract fun makeAdapter(): CursorAdapter?
 
-		// list adapter bound to view
-		Log.d(TAG, "Make adapter. Lifecycle: onStart()");
-		this.adapter = makeAdapter();
-		Log.d(TAG, "Set listview adapter. Lifecycle: onStart()");
-		this.listView.setAdapter(this.adapter);
+    // V I E W M O D E L S
 
-		// load data
-		Log.d(TAG, "Load data. Lifecycle: onStart()");
-		load();
-	}
+    /**
+     * Data view model
+     */
+    @JvmField
+    protected var dataModel: SqlunetViewModel? = null
 
-	@Override
-	public void onStop()
-	{
-		super.onStop();
+    /**
+     * Position view model
+     */
+    @JvmField
+    protected var positionModel: PositionViewModel? = null
 
-		Log.d(TAG, "Nullify listview adapter. Lifecycle: onStop()");
-		this.listView.setAdapter(null);
-		// the cursor will be saved along with fragment state if any
-		Log.d(TAG, "Nullify adapter cursor but do not close cursor. Lifecycle: onStop()");
-		assert this.adapter != null;
-		//noinspection resource
-		this.adapter.swapCursor(null);
-	}
+    /**
+     * View Model key
+     */
+    @JvmField
+    protected var viewModelKey: String? = null
 
-	@Override
-	public void onDestroy()
-	{
-		super.onDestroy();
+    /**
+     * Make view models
+     */
+    protected fun makeModels() {
 
-		if (this.adapter != null)
-		{
-			Log.d(TAG, "Close cursor.");
-			this.adapter.changeCursor(null);
-			Log.d(TAG, "Nullify adapter.");
-			this.adapter = null;
-		}
-	}
+        // data model
+        dataModel = ViewModelProvider(this)[viewModelKey!!, SqlunetViewModel::class.java]
+        dataModel!!.getData().observe(getViewLifecycleOwner(), cursorObserver)
 
-	// A D A P T E R
+        // position model
+        positionModel = ViewModelProvider(this)[PositionViewModel::class.java]
+        positionModel!!.positionLiveData.observe(getViewLifecycleOwner(), positionObserver)
+        positionModel!!.setPosition(AdapterView.INVALID_POSITION)
+    }
 
-	/**
-	 * Load data from word
-	 */
-	abstract protected void load();
+    protected open fun augmentCursor(cursor: Cursor): Cursor {
+        return cursor
+    }
 
-	abstract protected CursorAdapter makeAdapter();
+    // O B S E R V E R S
 
-	// V I E W M O D E L S
+    private val cursorObserver: Observer<in Cursor?>
+        get() = Observer { cursor: Cursor? ->
+            if (cursor == null || cursor.count <= 0) {
+                val html = getString(R.string.error_entry_not_found, "<b>$word</b>")
+                val message: CharSequence = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY) else Html.fromHtml(html)
+                // Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
+                val view = requireView()
+                Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show()
+            } else {
+                // pass on to list adapter
+                assert(adapter != null)
+                adapter!!.changeCursor(augmentCursor(cursor))
+            }
+        }
 
-	/**
-	 * Data view model
-	 */
-	protected SqlunetViewModel dataModel;
+    private val positionObserver: Observer<Int>
+        get() = Observer { position: Int ->
+            Log.d(TAG, "Observed position change $position")
+            listView!!.setItemChecked(position, position != AdapterView.INVALID_POSITION)
+        }
 
-	/**
-	 * Position view model
-	 */
-	protected PositionViewModel positionModel;
+    // C L I C K   L I S T E N E R
 
-	/**
-	 * View Model key
-	 */
-	protected String viewModelKey;
+    /**
+     * Turns on activate-on-click mode. When this mode is on, list items will be given the 'activated' state when touched.
+     *
+     * @param activateOnItemClick true if activate
+     */
+    fun setActivateOnItemClick(activateOnItemClick: Boolean) {
+        this.activateOnItemClick = activateOnItemClick
+    }
 
-	/**
-	 * Make view models
-	 */
-	protected void makeModels()
-	{
-		// data model
-		this.dataModel = new ViewModelProvider(this).get(this.viewModelKey, SqlunetViewModel.class);
-		this.dataModel.getData().observe(getViewLifecycleOwner(), getCursorObserver());
+    override fun onItemClick(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
+        Log.d(TAG, "Select $position")
+        activate(position)
+    }
 
-		// position model
-		this.positionModel = new ViewModelProvider(this).get(PositionViewModel.class);
-		this.positionModel.getPositionLiveData().observe(getViewLifecycleOwner(), getPositionObserver());
-		this.positionModel.setPosition(AdapterView.INVALID_POSITION);
-	}
+    protected abstract fun activate(position: Int)
 
-	@NonNull
-	protected Cursor augmentCursor(@NonNull Cursor cursor)
-	{
-		return cursor;
-	}
-
-	// O B S E R V E R S
-
-	@NonNull
-	protected Observer<Cursor> getCursorObserver()
-	{
-		return cursor -> {
-
-			if (cursor == null || cursor.getCount() <= 0)
-			{
-				final String html = getString(R.string.error_entry_not_found, "<b>" + this.word + "</b>");
-				final CharSequence message = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N ? Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY) : Html.fromHtml(html);
-				// Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
-				final View view = getView();
-				assert view != null;
-				Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show();
-			}
-			else
-			{
-				// pass on to list adapter
-				assert this.adapter != null;
-				this.adapter.changeCursor(augmentCursor(cursor));
-			}
-		};
-	}
-
-	@NonNull
-	protected Observer<Integer> getPositionObserver()
-	{
-		return position -> {
-
-			Log.d(TAG, "Observed position change " + position);
-			this.listView.setItemChecked(position, position != AdapterView.INVALID_POSITION);
-		};
-	}
-
-	// C L I C K   L I S T E N E R
-
-	/**
-	 * Turns on activate-on-click mode. When this mode is on, list items will be given the 'activated' state when touched.
-	 *
-	 * @param activateOnItemClick true if activate
-	 */
-	@SuppressWarnings("WeakerAccess")
-	public void setActivateOnItemClick(@SuppressWarnings("SameParameterValue") final boolean activateOnItemClick)
-	{
-		this.activateOnItemClick = activateOnItemClick;
-	}
-
-	@Override
-	public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id)
-	{
-		Log.d(TAG, "Select " + position);
-		activate(position);
-	}
-
-	abstract protected void activate(int position);
+    companion object {
+        private const val TAG = "SelectorsListF"
+    }
 }

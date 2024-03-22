@@ -1,546 +1,448 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser
 
-package org.sqlunet.browser;
-
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.SearchManager;
-import android.app.SearchableInfo;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.res.Resources;
-import android.content.res.TypedArray;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.Spinner;
-import android.widget.TextView;
-
-import org.sqlunet.browser.common.R;
-import org.sqlunet.settings.Settings;
-
-import androidx.annotation.ArrayRes;
-import androidx.annotation.AttrRes;
-import androidx.annotation.IdRes;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.MenuRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.MenuHost;
-import androidx.core.view.MenuProvider;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Lifecycle;
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.app.SearchManager
+import android.app.SearchableInfo
+import android.content.Context
+import android.graphics.drawable.ColorDrawable
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.ArrayAdapter
+import android.widget.BaseAdapter
+import android.widget.Spinner
+import android.widget.TextView
+import androidx.annotation.ArrayRes
+import androidx.annotation.AttrRes
+import androidx.annotation.IdRes
+import androidx.annotation.LayoutRes
+import androidx.annotation.MenuRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import org.sqlunet.browser.ColorUtils.fetchColor
+import org.sqlunet.browser.ColorUtils.getDrawable
+import org.sqlunet.browser.ColorUtils.tint
+import org.sqlunet.browser.MenuHandler.menuDispatch
+import org.sqlunet.browser.common.R
+import org.sqlunet.settings.Settings.Selector.Companion.getPref
 
 /**
  * Base search fragment
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-abstract public class BaseSearchFragment extends LoggingFragment implements SearchListener
-{
-	static private final String TAG = "BaseSearchF";
-
-	/**
-	 * Saved state of spinner
-	 */
-	static private final String STATE_SPINNER = "selected_mode";
-
-	// Q U E R Y
-
-	@Nullable
-	protected String query;
-
-	// C O M P O N E N T S
-
-	/**
-	 * Search view -held in search menuitem) that holds query
-	 */
-	@Nullable
-	private SearchView searchView;
-
-	/**
-	 * Stored between onViewStateRestored and onResume
-	 */
-	private int spinnerPosition;
-
-	// R E S O U R C E S
-
-	@LayoutRes
-	protected int layoutId;
-
-	@MenuRes
-	protected int menuId;
-
-	@AttrRes
-	protected int colorAttrId;
-
-	@ArrayRes
-	protected int spinnerLabels;
-
-	@ArrayRes
-	protected int spinnerIcons;
-
-	// C R E A T I O N
-
-	@Override
-	public void onCreate(@Nullable Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-
-		final FragmentManager manager = getChildFragmentManager();
-		manager.addOnBackStackChangedListener(() -> {
-
-			int count = manager.getBackStackEntryCount();
-			Log.d(TAG, "BackStack: " + count);
-			final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
-			assert toolbar != null;
-			if (count > 0)
-			{
-				toolbar.setSubtitle(query);
-			}
-			else
-			{
-				toolbar.setSubtitle(R.string.app_subname);
-			}
-		});
-	}
-
-	// V I E W
-
-	@SuppressLint("InflateParams")
-	@Nullable
-	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
-	{
-		super.onCreateView(inflater, container, savedInstanceState);
-
-		return inflater.inflate(this.layoutId, container, false);
-	}
-
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
-
-		// menu provider
-		final MenuProvider menuProvider = new MenuProvider()
-		{
-			@Override
-			public void onCreateMenu(@NonNull final Menu menu, @NonNull final MenuInflater menuInflater)
-			{
-				// inflate
-				menu.clear();
-				menuInflater.inflate(R.menu.main_safedata, menu);
-				menuInflater.inflate(menuId, menu);
-				// MenuCompat.setGroupDividerEnabled(menu, true);
-				Log.d(TAG, "MenuProvider: onCreateMenu() size=" + menu.size());
-
-				// set up search view
-				BaseSearchFragment.this.searchView = getSearchView(menu);
-				assert BaseSearchFragment.this.searchView != null; // must have
-				setupSearchView(BaseSearchFragment.this.searchView, getSearchInfo(requireActivity()));
-
-				// toolbar
-				final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
-				assert toolbar != null; // must have
-				setupToolBar(toolbar);
-			}
-
-			@SuppressWarnings("deprecation")
-			@Override
-			public boolean onMenuItemSelected(@NonNull final MenuItem menuItem)
-			{
-				boolean handled = onOptionsItemSelected(menuItem);
-				if (handled)
-				{
-					return true;
-				}
-				return MenuHandler.menuDispatch((AppCompatActivity) requireActivity(), menuItem);
-			}
-		};
-
-		final MenuHost menuHost = requireActivity();
-		menuHost.addMenuProvider(menuProvider, getViewLifecycleOwner(), Lifecycle.State.RESUMED);
-	}
-
-	@Override
-	public void onResume()
-	{
-		super.onResume();
-
-		// spinner, added to toolbar if it does not have one
-		Spinner spinner = ensureSpinner();
-		// acquire it
-		acquireSpinner(spinner);
-	}
-
-	@Override
-	public void onPause()
-	{
-		super.onPause();
-
-		closeKeyboard();
-
-		Spinner spinner = getSpinner();
-		assert spinner != null; // after resume
-		releaseSpinner(spinner);
-	}
-
-	@Override
-	public void onDestroyView()
-	{
-		super.onDestroyView();
-
-		final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
-		assert toolbar != null;
-		toolbar.setSubtitle(R.string.app_subname);
-	}
-
-	// T O O L B A R
-
-	/**
-	 * Set up toolbar's custom view, its spinner, title, background
-	 *
-	 * @param toolbar toolbar
-	 */
-	@SuppressLint("InflateParams")
-	public void setupToolBar(@NonNull final Toolbar toolbar)
-	{
-		Log.d(TAG, "Toolbar: set up in " + this);
-
-		final AppCompatActivity activity = (AppCompatActivity) requireActivity();
-
-		// title
-		toolbar.setTitle(R.string.title_activity_browse);
-		// toolbar.setSubtitle(R.string.app_subname);
-
-		// background
-		final int color = ColorUtils.fetchColor(activity, this.colorAttrId);
-		toolbar.setBackground(new ColorDrawable(color));
-	}
-
-	// S E A R C H V I E W
-
-	@Nullable
-	private static SearchView getSearchView(@NonNull final Menu menu)
-	{
-		// menu item
-		final MenuItem searchMenuItem = menu.findItem(R.id.search);
-		if (searchMenuItem == null)
-		{
-			return null;
-		}
-		// search view
-		return (SearchView) searchMenuItem.getActionView();
-	}
-
-	/**
-	 * Set up search view
-	 *
-	 * @param searchView     search view
-	 * @param searchableInfo searchable info
-	 */
-	private void setupSearchView(@NonNull final SearchView searchView, @Nullable final SearchableInfo searchableInfo)
-	{
-		// search view
-		searchView.setSearchableInfo(searchableInfo);
-		searchView.setIconifiedByDefault(true);
-		searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
-		{
-			@Override
-			public boolean onQueryTextSubmit(final String query)
-			{
-				clearSearchView(searchView);
-				closeKeyboard();
-				return false;
-			}
-
-			@Override
-			public boolean onQueryTextChange(final String newText)
-			{
-				return false;
-			}
-		});
-
-		// trigger focus
-		if (triggerFocusSearch())
-		{
-			new Handler(Looper.getMainLooper()).postDelayed(() -> searchView.setIconified(false), 1500);
-		}
-	}
-
-	@Nullable
-	private static SearchableInfo getSearchInfo(@NonNull final Activity activity)
-	{
-		final ComponentName componentName = activity.getComponentName();
-		final SearchManager searchManager = (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
-		assert searchManager != null;
-		return searchManager.getSearchableInfo(componentName);
-	}
-
-	protected boolean triggerFocusSearch()
-	{
-		return true;
-	}
-
-	public void clearQuery()
-	{
-		if (this.searchView != null)
-		{
-			clearSearchView(this.searchView);
-		}
-		closeKeyboard();
-	}
-
-	private static void clearSearchView(@NonNull final SearchView searchView)
-	{
-		searchView.clearFocus();
-		searchView.setFocusable(false);
-		searchView.setQuery("", false);
-		searchView.setIconified(true);
-	}
-
-	private void closeKeyboard()
-	{
-		// activity
-		final Activity activity = requireActivity();
-
-		// view
-		final View view = activity.getCurrentFocus();
-		if (view != null)
-		{
-			final InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-			assert imm != null;
-			imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-		}
-	}
-
-	// S P I N N E R
-
-	/**
-	 * Get toolbar's spinner
-	 *
-	 * @return spinner
-	 */
-	private @Nullable Spinner getSpinner()
-	{
-		final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
-		assert toolbar != null; // must have
-		return toolbar.findViewById(R.id.spinner); // must be non null after resume
-	}
-
-	/**
-	 * Ensure toolbar has a spinner
-	 *
-	 * @return spinner
-	 */
-	private @NonNull Spinner ensureSpinner()
-	{
-		final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
-		assert toolbar != null; // must have
-		Spinner spinner = toolbar.findViewById(R.id.spinner);
-		if (spinner == null)
-		{
-			// toolbar customized view if toolbar does not already contain spinner
-			@SuppressLint("InflateParams") final View customView = getLayoutInflater().inflate(R.layout.actionbar_custom, null); // raises "The specified child already has a parent" if toolbar
-			toolbar.addView(customView);
-			spinner = toolbar.findViewById(R.id.spinner);
-			assert spinner != null; // because actionbar_custom has a @+id/spinner
-		}
-		return spinner;
-	}
-
-	/**
-	 * Acquire the spinner
-	 *
-	 * @param spinner spinner
-	 */
-	protected void acquireSpinner(@NonNull final Spinner spinner)
-	{
-		// leave in limbo if spinner is not needed
-		spinner.setSelection(this.spinnerPosition);
-	}
-
-	/**
-	 * Release spinner
-	 *
-	 * @param spinner spinner
-	 */
-	private void releaseSpinner(@NonNull final Spinner spinner)
-	{
-		spinner.setSelection(0);
-		spinner.setOnItemSelectedListener(null);
-		spinner.setAdapter(null);
-		spinner.setVisibility(View.GONE);
-	}
-
-	/**
-	 * Build spinner adapter
-	 */
-	@NonNull
-	@SuppressWarnings("WeakerAccess")
-	protected BaseAdapter getSpinnerAdapter()
-	{
-		final Context context = requireContext();
-
-		// resources
-		final Resources resources = context.getResources();
-
-		// adapter values and icons
-		final CharSequence[] modeLabels = resources.getTextArray(this.spinnerLabels);
-		final TypedArray array = resources.obtainTypedArray(this.spinnerIcons);
-		int n = array.length();
-		final int[] modeIcons = new int[n];
-		for (int i = 0; i < n; i++)
-		{
-			modeIcons[i] = array.getResourceId(i, -1);
-		}
-		array.recycle();
-
-		// adapter
-		final ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(context, R.layout.spinner_item_actionbar, android.R.id.text1, modeLabels)
-		{
-			@NonNull
-			@Override
-			public View getView(final int position, final View convertView, @NonNull final ViewGroup parent)
-			{
-				final CharSequence rowItem = getItem(position);
-				assert rowItem != null;
-
-				final View view = super.getView(position, convertView, parent);
-				final TextView textView = view.findViewById(android.R.id.text1);
-				textView.setText("");
-				int resId = modeIcons[position];
-
-				final int color = ColorUtils.fetchColor(context, R.attr.colorOnPrimary);
-				final Drawable drawable = ColorUtils.getDrawable(context, resId);
-				ColorUtils.tint(color, drawable);
-
-				textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null);
-
-				return view;
-			}
-
-			@NonNull
-			@Override
-			public View getDropDownView(final int position, final View convertView, @NonNull final ViewGroup parent)
-			{
-				final CharSequence rowItem = getItem(position);
-				assert rowItem != null;
-
-				final View view = super.getDropDownView(position, convertView, parent);
-				final TextView textView = view.findViewById(android.R.id.text1);
-				textView.setText(rowItem);
-				int resId = modeIcons[position];
-
-				final int color = ColorUtils.fetchColor(context, R.attr.colorOnPrimary);
-				final Drawable drawable = ColorUtils.getDrawable(context, resId);
-				ColorUtils.tint(color, drawable);
-
-				textView.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null);
-
-				return view;
-			}
-		};
-		adapter.setDropDownViewResource(R.layout.spinner_item_actionbar_dropdown);
-
-		return adapter;
-	}
-
-	/**
-	 * Get search type position by peeking at spinner state or registry if spinner is still null
-	 *
-	 * @return search type position
-	 */
-	protected int getSearchModePosition()
-	{
-		Spinner spinner = getSpinner();
-		if (spinner != null)
-		{
-			int position = spinner.getSelectedItemPosition();
-			if (position != -1)
-			{
-				return position;
-			}
-		}
-
-		final Settings.Selector selectorMode = Settings.Selector.getPref(requireContext());
-		return selectorMode.ordinal();
-	}
-
-	// S E A R C H   L I S T E N E R
-	public void search(final String query)
-	{
-		this.query = query;
-
-		// subtitle
-		// final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
-		// assert toolbar != null;
-		// toolbar.setSubtitle(query);
-	}
-
-	// S A V E / R E S T O R E
-
-	@SuppressWarnings("WeakerAccess")
-	@Override
-	public void onSaveInstanceState(@NonNull final Bundle outState)
-	{
-		// always call the superclass so it can save the view hierarchy state
-		super.onSaveInstanceState(outState);
-
-		// spinner
-		Spinner spinner = getSpinner();
-		if (spinner != null)
-		{
-			// serialize the current dropdown position
-			final int position = spinner.getSelectedItemPosition();
-			outState.putInt(BaseSearchFragment.STATE_SPINNER, position);
-		}
-	}
-
-	@Override
-	public void onViewStateRestored(@Nullable final Bundle savedInstanceState)
-	{
-		super.onViewStateRestored(savedInstanceState);
-
-		// restore from saved instance
-		if (savedInstanceState != null)
-		{
-			this.spinnerPosition = savedInstanceState.getInt(STATE_SPINNER);
-		}
-	}
-
-	// F R A G M E N T   M A N A G E M E N T
-
-	/**
-	 * Remove children fragments with tags and insert given fragment with at given location
-	 *
-	 * @param fragment          new fragment
-	 * @param tag               new fragment's tag
-	 * @param where             new fragment's location
-	 * @param childFragmentTags removed children's tags
-	 * @noinspection SameParameterValue, EmptyMethod
-	 */
-	protected void beforeSaving(final Fragment fragment, @Nullable final String tag, @IdRes final int where, final String... childFragmentTags)
-	{
-		// FragmentUtils.removeAllChildFragment(getChildFragmentManager(), fragment, tag, where, childFragmentTags);
-	}
+abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
+
+    // Q U E R Y
+    protected var query: String? = null
+    // C O M P O N E N T S
+    /**
+     * Search view -held in search menuitem) that holds query
+     */
+    private var searchView: SearchView? = null
+
+    /**
+     * Stored between onViewStateRestored and onResume
+     */
+    private var spinnerPosition = 0
+
+    // R E S O U R C E S
+    @JvmField
+    @LayoutRes
+    protected var layoutId = 0
+
+    @JvmField
+    @MenuRes
+    protected var menuId = 0
+
+    @JvmField
+    @AttrRes
+    protected var colorAttrId = 0
+
+    @JvmField
+    @ArrayRes
+    protected var spinnerLabels = 0
+
+    @JvmField
+    @ArrayRes
+    protected var spinnerIcons = 0
+
+    // C R E A T I O N
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val manager = getChildFragmentManager()
+        manager.addOnBackStackChangedListener {
+            val count = manager.backStackEntryCount
+            Log.d(TAG, "BackStack: $count")
+            val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)!!
+            if (count > 0) {
+                toolbar.setSubtitle(query)
+            } else {
+                toolbar.setSubtitle(R.string.app_subname)
+            }
+        }
+    }
+
+    // V I E W
+
+    @SuppressLint("InflateParams")
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
+        return inflater.inflate(layoutId, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // menu provider
+        val menuProvider: MenuProvider = object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                // inflate
+                menu.clear()
+                menuInflater.inflate(R.menu.main_safedata, menu)
+                menuInflater.inflate(menuId, menu)
+                // MenuCompat.setGroupDividerEnabled(menu, true);
+                Log.d(TAG, "MenuProvider: onCreateMenu() size=" + menu.size())
+
+                // set up search view
+                searchView = getSearchView(menu)
+                assert(
+                    searchView != null // must have
+                )
+                setupSearchView(searchView!!, getSearchInfo(requireActivity()))
+
+                // toolbar
+                // must have
+                val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)!!
+                setupToolBar(toolbar)
+            }
+
+            @Suppress("deprecation")
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                val handled = onOptionsItemSelected(menuItem)
+                return if (handled) {
+                    true
+                } else menuDispatch((requireActivity() as AppCompatActivity), menuItem)
+            }
+        }
+        val menuHost: MenuHost = requireActivity()
+        menuHost.addMenuProvider(menuProvider, getViewLifecycleOwner(), Lifecycle.State.RESUMED)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        // spinner, added to toolbar if it does not have one
+        val spinner = ensureSpinner()
+        // acquire it
+        acquireSpinner(spinner)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        closeKeyboard()
+        // after resume
+        val spinner = spinner!!
+        releaseSpinner(spinner)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)!!
+        toolbar.setSubtitle(R.string.app_subname)
+    }
+
+    // T O O L B A R
+
+    /**
+     * Set up toolbar's custom view, its spinner, title, background
+     *
+     * @param toolbar toolbar
+     */
+    @SuppressLint("InflateParams")
+    fun setupToolBar(toolbar: Toolbar) {
+        Log.d(TAG, "Toolbar: set up in $this")
+        val activity = requireActivity() as AppCompatActivity
+
+        // title
+        toolbar.setTitle(R.string.title_activity_browse)
+        // toolbar.setSubtitle(R.string.app_subname);
+
+        // background
+        val color = fetchColor(activity, colorAttrId)
+        toolbar.background = ColorDrawable(color)
+    }
+
+    /**
+     * Set up search view
+     *
+     * @param searchView     search view
+     * @param searchableInfo searchable info
+     */
+    private fun setupSearchView(searchView: SearchView, searchableInfo: SearchableInfo?) {
+        // search view
+        searchView.setSearchableInfo(searchableInfo)
+        searchView.setIconifiedByDefault(true)
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                clearSearchView(searchView)
+                closeKeyboard()
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                return false
+            }
+        })
+
+        // trigger focus
+        if (triggerFocusSearch()) {
+            Handler(Looper.getMainLooper()).postDelayed({ searchView.isIconified = false }, 1500)
+        }
+    }
+
+    protected open fun triggerFocusSearch(): Boolean {
+        return true
+    }
+
+    fun clearQuery() {
+        if (searchView != null) {
+            clearSearchView(searchView!!)
+        }
+        closeKeyboard()
+    }
+
+    private fun closeKeyboard() {
+        // activity
+        val activity: Activity = requireActivity()
+
+        // view
+        val view = activity.currentFocus
+        if (view != null) {
+            val imm = (activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
+    }
+
+    // S P I N N E R
+
+    /**
+     * Toolbar's spinner
+     */
+    private val spinner: Spinner?
+        get() {
+            // must have
+            val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)!!
+            return toolbar.findViewById(R.id.spinner) // must be non null after resume
+        }
+
+    /**
+     * Ensure toolbar has a spinner
+     *
+     * @return spinner
+     */
+    private fun ensureSpinner(): Spinner {
+        // must have
+        val toolbar = requireActivity().findViewById<Toolbar>(R.id.toolbar)!!
+        var spinner = toolbar.findViewById<Spinner>(R.id.spinner)
+        if (spinner == null) {
+            // toolbar customized view if toolbar does not already contain spinner
+            @SuppressLint("InflateParams") val customView = getLayoutInflater().inflate(R.layout.actionbar_custom, null) // raises "The specified child already has a parent" if toolbar
+            toolbar.addView(customView)
+            spinner = toolbar.findViewById(R.id.spinner)
+            assert(
+                spinner != null // because actionbar_custom has a @+id/spinner
+            )
+        }
+        return spinner
+    }
+
+    /**
+     * Acquire the spinner
+     *
+     * @param spinner spinner
+     */
+    protected open fun acquireSpinner(spinner: Spinner) {
+        // leave in limbo if spinner is not needed
+        spinner.setSelection(spinnerPosition)
+    }
+
+    /**
+     * Release spinner
+     *
+     * @param spinner spinner
+     */
+    private fun releaseSpinner(spinner: Spinner) {
+        spinner.setSelection(0)
+        spinner.onItemSelectedListener = null
+        spinner.setAdapter(null)
+        spinner.visibility = View.GONE
+    }
+
+    /**
+     * Spinner adapter
+     */
+    protected val spinnerAdapter: BaseAdapter
+        get() {
+            val context = requireContext()
+
+            // resources
+            val resources = context.resources
+
+            // adapter values and icons
+            val modeLabels = resources.getTextArray(spinnerLabels)
+            val array = resources.obtainTypedArray(spinnerIcons)
+            val n = array.length()
+            val modeIcons = IntArray(n)
+            for (i in 0 until n) {
+                modeIcons[i] = array.getResourceId(i, -1)
+            }
+            array.recycle()
+
+            // adapter
+            val adapter = object : ArrayAdapter<CharSequence?>(context, R.layout.spinner_item_actionbar, android.R.id.text1, modeLabels) {
+
+                override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                    val view = super.getView(position, convertView, parent)
+                    val textView = view.findViewById<TextView>(android.R.id.text1)
+                    textView.text = ""
+                    val resId = modeIcons[position]
+                    val color = fetchColor(context, R.attr.colorOnPrimary)
+                    val drawable = getDrawable(context, resId)
+                    tint(color, drawable!!)
+                    textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
+                    return view
+                }
+
+                override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
+                    val rowItem = getItem(position)!!
+                    val view = super.getDropDownView(position, convertView, parent)
+                    val textView = view.findViewById<TextView>(android.R.id.text1)
+                    textView.text = rowItem
+                    val resId = modeIcons[position]
+                    val color = fetchColor(context, R.attr.colorOnPrimary)
+                    val drawable = getDrawable(context, resId)
+                    tint(color, drawable!!)
+                    textView.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null)
+                    return view
+                }
+            }
+            adapter.setDropDownViewResource(R.layout.spinner_item_actionbar_dropdown)
+            return adapter
+        }
+
+    /**
+     * Search type position, obtained by peeking at spinner state or registry if spinner is still null
+     */
+    protected val searchModePosition: Int
+        get() {
+            val spinner = spinner
+            if (spinner != null) {
+                val position = spinner.selectedItemPosition
+                if (position != -1) {
+                    return position
+                }
+            }
+            val selectorMode = getPref(requireContext())
+            return selectorMode.ordinal
+        }
+
+    // S E A R C H   L I S T E N E R
+
+    override fun search(query: String?) {
+        this.query = query
+
+        // subtitle
+        // final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
+        // assert toolbar != null;
+        // toolbar.setSubtitle(query);
+    }
+
+    // S A V E / R E S T O R E
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        // always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(outState)
+
+        // spinner
+        val spinner = spinner
+        if (spinner != null) {
+            // serialize the current dropdown position
+            val position = spinner.selectedItemPosition
+            outState.putInt(STATE_SPINNER, position)
+        }
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+
+        // restore from saved instance
+        if (savedInstanceState != null) {
+            spinnerPosition = savedInstanceState.getInt(STATE_SPINNER)
+        }
+    }
+
+    // F R A G M E N T   M A N A G E M E N T
+
+    /**
+     * Remove children fragments with tags and insert given fragment with at given location
+     *
+     * @param fragment          new fragment
+     * @param tag               new fragment's tag
+     * @param where             new fragment's location
+     * @param childFragmentTags removed children's tags
+     * @noinspection SameParameterValue, EmptyMethod
+     */
+    protected fun beforeSaving(fragment: Fragment, tag: String?, @IdRes where: Int, vararg childFragmentTags: String) {
+        //FragmentUtils.removeAllChildFragment(getChildFragmentManager(), fragment, tag, where, childFragmentTags);
+    }
+
+    companion object {
+        private const val TAG = "BaseSearchF"
+
+        /**
+         * Saved state of spinner
+         */
+        private const val STATE_SPINNER = "selected_mode"
+
+        // S E A R C H V I E W
+
+        private fun getSearchView(menu: Menu): SearchView? {
+            // menu item
+            val searchMenuItem = menu.findItem(R.id.search) ?: return null
+            // search view
+            return searchMenuItem.actionView as SearchView?
+        }
+
+        private fun getSearchInfo(activity: Activity): SearchableInfo? {
+            val componentName = activity.componentName
+            val searchManager = (activity.getSystemService(Context.SEARCH_SERVICE) as SearchManager)
+            return searchManager.getSearchableInfo(componentName)
+        }
+
+        private fun clearSearchView(searchView: SearchView) {
+            searchView.clearFocus()
+            searchView.isFocusable = false
+            searchView.setQuery("", false)
+            searchView.isIconified = true
+        }
+    }
 }

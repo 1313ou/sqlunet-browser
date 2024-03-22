@@ -1,45 +1,32 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser
 
-package org.sqlunet.browser;
-
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 
 /**
  * Splash fragment
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-abstract public class SplashFragment extends Fragment
-{
-	// static private final String TAG = "SplashF";
+abstract class SplashFragment : Fragment() {
 
-	static public final String FRAGMENT_TAG = "splash";
+    /**
+     * Layout id set bu super class
+     */
+    @JvmField
+    protected var layoutId = 0
 
-	/**
-	 * Layout id set bu super class
-	 */
-	protected int layoutId;
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(layoutId, container, false)
+    }
 
-	/**
-	 * Constructor
-	 */
-	public SplashFragment()
-	{
-		// Required empty public constructor
-	}
-
-	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
-	{
-		return inflater.inflate(this.layoutId, container, false);
-	}
+    companion object {
+        const val FRAGMENT_TAG = "splash"
+    }
 }

@@ -1,138 +1,103 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser
 
-package org.sqlunet.browser;
-
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
-import org.sqlunet.IPointer;
-import org.sqlunet.browser.common.R;
-import org.sqlunet.settings.Settings;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import android.os.Build
+import android.os.Bundle
+import android.os.Parcelable
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import org.sqlunet.IPointer
+import org.sqlunet.browser.common.R
+import org.sqlunet.settings.Settings.Companion.getDetailViewModePref
+import org.sqlunet.settings.Settings.DetailViewMode
 
 /**
  * A fragment representing a detail
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public abstract class BaseBrowse2Fragment extends Fragment
-{
-	static private final String TAG = "Browse2F";
+abstract class BaseBrowse2Fragment : Fragment() {
+    @JvmField
+    protected var pointer: Parcelable? = null
+    @JvmField
+    protected var word: String? = null
+    @JvmField
+    protected var cased: String? = null
+    @JvmField
+    protected var pronunciation: String? = null
+    @JvmField
+    protected var pos: String? = null
+    @JvmField
+    protected var layoutId = R.layout.fragment_browse2_multi
+    @JvmField
+    protected var targetView: TextView? = null
 
-	static public final String FRAGMENT_TAG = "browse2";
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (savedInstanceState != null) {
+            Log.d(TAG, "restore instance state $this")
+            pointer = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) savedInstanceState.getParcelable(POINTER_STATE, IPointer::class.java) else savedInstanceState.getParcelable(POINTER_STATE)
+        }
+    }
 
-	static private final String POINTER_STATE = "pointer";
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val mode = getDetailViewModePref(requireContext())
+        return when (mode) {
+            DetailViewMode.VIEW -> inflater.inflate(layoutId, container, false)
+            DetailViewMode.WEB -> inflater.inflate(R.layout.fragment_browse2, container, false)
+        }
+     }
 
-	@Nullable
-	protected Parcelable pointer = null;
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        targetView = view.findViewById(R.id.target)
+        requireActivity().invalidateOptionsMenu()
+    }
 
-	@Nullable
-	protected String word = null;
+    override fun onStart() {
+        super.onStart()
+        if (pointer != null) {
+            search()
+        }
+    }
 
-	@Nullable
-	protected String cased = null;
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable(POINTER_STATE, pointer)
+    }
 
-	@Nullable
-	protected String pronunciation = null;
+    /**
+     * Search
+     *
+     * @param pointer       pointer
+     * @param word          word
+     * @param cased         cased
+     * @param pronunciation pronunciation
+     * @param pos           pos
+     */
+    fun search(pointer: Parcelable?, word: String?, cased: String?, pronunciation: String?, pos: String?) {
+        this.pointer = pointer
+        this.word = word
+        this.cased = cased
+        this.pronunciation = pronunciation
+        this.pos = pos
+        search()
+    }
 
-	@Nullable
-	protected String pos = null;
+    /**
+     * Search
+     */
+    protected abstract fun search()
 
-	@SuppressWarnings("WeakerAccess")
-	protected int layoutId = R.layout.fragment_browse2_multi;
-
-	@Nullable
-	protected TextView targetView;
-
-	// C R E A T I O N
-
-	@Override
-	public void onCreate(@Nullable final Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-
-		if (savedInstanceState != null)
-		{
-			Log.d(TAG, "restore instance state " + this);
-			this.pointer = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU ? savedInstanceState.getParcelable(POINTER_STATE, IPointer.class) : savedInstanceState.getParcelable(POINTER_STATE);
-		}
-	}
-
-	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
-	{
-		// mode
-		final Settings.DetailViewMode mode = Settings.getDetailViewModePref(requireContext());
-
-		// view
-		switch (mode)
-		{
-			case VIEW:
-				return inflater.inflate(this.layoutId, container, false);
-			case WEB:
-				return inflater.inflate(R.layout.fragment_browse2, container, false);
-		}
-		return null;
-	}
-
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
-		targetView = view.findViewById(R.id.target);
-		requireActivity().invalidateOptionsMenu();
-	}
-
-	@Override
-	public void onStart()
-	{
-		super.onStart();
-		if (this.pointer != null)
-		{
-			search();
-		}
-	}
-
-	@Override
-	public void onSaveInstanceState(@NonNull Bundle outState)
-	{
-		super.onSaveInstanceState(outState);
-
-		outState.putParcelable(POINTER_STATE, this.pointer);
-	}
-
-	/**
-	 * Search
-	 *
-	 * @param pointer       pointer
-	 * @param word          word
-	 * @param cased         cased
-	 * @param pronunciation pronunciation
-	 * @param pos           pos
-	 */
-	public void search(final Parcelable pointer, final String word, final String cased, final String pronunciation, final String pos)
-	{
-		this.pointer = pointer;
-		this.word = word;
-		this.cased = cased;
-		this.pronunciation = pronunciation;
-		this.pos = pos;
-
-		search();
-	}
-
-	/**
-	 * Search
-	 */
-	abstract protected void search();
+    companion object {
+        private const val TAG = "Browse2F"
+        const val FRAGMENT_TAG = "browse2"
+        private const val POINTER_STATE = "pointer"
+    }
 }
