@@ -146,7 +146,7 @@
 		</activity>
 
 		<activity
-			android:name="org.sqlunet.history.HistoryActivity"
+			android:name="org.sqlunet.browser.history.HistoryActivity"
 			android:label="@string/title_activity_history"
 			android:parentActivityName="org.sqlunet.browser.MainActivity"
 			tools:ignore="UnusedAttribute">
@@ -389,7 +389,7 @@
 			tools:ignore="ExportedContentProvider" />
 
 		<provider
-			android:name="org.sqlunet.history.SearchSuggestionsProvider"
+			android:name="org.sqlunet.browser.history.SearchSuggestionsProvider"
 			android:authorities="@string/history_authority"
 			android:exported="false" />
 

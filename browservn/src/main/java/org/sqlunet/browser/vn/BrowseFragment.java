@@ -21,7 +21,7 @@ import org.sqlunet.browser.vn.xselector.XBrowse1Fragment;
 import org.sqlunet.browser.vn.web.WebActivity;
 import org.sqlunet.browser.vn.web.WebFragment;
 import org.sqlunet.browser.vn.xselector.XBrowse1Activity;
-import org.sqlunet.history.History;
+import org.sqlunet.browser.history.History;
 import org.sqlunet.propbank.PbRoleSetPointer;
 import org.sqlunet.propbank.browser.PbRoleSetActivity;
 import org.sqlunet.provider.ProviderArgs;

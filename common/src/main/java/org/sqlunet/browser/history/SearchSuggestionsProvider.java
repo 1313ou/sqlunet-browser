@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2019-2023. Bernard Bou
+ * Copyright (c) 2024. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.history;
+package org.sqlunet.browser.history;
 
 import android.content.Context;
 import android.content.SearchRecentSuggestionsProvider;

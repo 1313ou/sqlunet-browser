@@ -22,7 +22,7 @@ import org.sqlunet.browser.wn.web.WebActivity;
 import org.sqlunet.browser.wn.web.WebFragment;
 import org.sqlunet.browser.wn.lib.R;
 import org.sqlunet.browser.wn.selector.Browse1Fragment;
-import org.sqlunet.history.History;
+import org.sqlunet.browser.history.History;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.wordnet.SenseKeyPointer;
 import org.sqlunet.wordnet.SynsetPointer;

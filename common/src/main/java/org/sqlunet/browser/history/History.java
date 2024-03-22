@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
+ * Copyright (c) 2024. Bernard Bou <1313ou@gmail.com>
  */
 
-package org.sqlunet.history;
+package org.sqlunet.browser.history;
 
 import android.app.SearchManager;
 import android.content.Context;
@@ -48,7 +48,7 @@ public class History
 	 */
 	static public void recordQuery(@NonNull final Context context, final String query)
 	{
-		final android.provider.SearchRecentSuggestions suggestions = new android.provider.SearchRecentSuggestions(context, org.sqlunet.history.SearchRecentSuggestions.getAuthority(context), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES);
+		final android.provider.SearchRecentSuggestions suggestions = new android.provider.SearchRecentSuggestions(context, SearchRecentSuggestions.getAuthority(context), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES);
 		suggestions.saveRecentQuery(query, null);
 	}
 }

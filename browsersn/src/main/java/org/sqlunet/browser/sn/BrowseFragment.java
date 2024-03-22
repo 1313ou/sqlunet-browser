@@ -27,7 +27,7 @@ import org.sqlunet.browser.sn.xselector.XBrowse1Fragment;
 import org.sqlunet.browser.sn.web.WebActivity;
 import org.sqlunet.browser.sn.web.WebFragment;
 import org.sqlunet.browser.sn.xselector.XBrowse1Activity;
-import org.sqlunet.history.History;
+import org.sqlunet.browser.history.History;
 import org.sqlunet.provider.ProviderArgs;
 import org.sqlunet.syntagnet.SnCollocationPointer;
 import org.sqlunet.syntagnet.browser.CollocationActivity;

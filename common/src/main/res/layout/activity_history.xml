@@ -9,7 +9,7 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context="org.sqlunet.history.HistoryActivity">
+	tools:context="org.sqlunet.browser.history.HistoryActivity">
 
 	<com.google.android.material.appbar.AppBarLayout
 		android:id="@+id/appbar_layout"
@@ -22,11 +22,11 @@
 
 	<androidx.fragment.app.FragmentContainerView
 		android:id="@+id/fragment_history"
-		android:name="org.sqlunet.history.HistoryFragment"
+		android:name="org.sqlunet.browser.history.HistoryFragment"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-		tools:context="org.sqlunet.history.HistoryActivity"
+		tools:context="org.sqlunet.browser.history.HistoryActivity"
 		tools:layout="@layout/fragment_history" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

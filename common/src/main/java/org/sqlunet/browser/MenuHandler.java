@@ -29,7 +29,7 @@ import org.sqlunet.browser.config.SetupAsset;
 import org.sqlunet.browser.config.SetupFileActivity;
 import org.sqlunet.browser.config.SetupFileFragment;
 import org.sqlunet.browser.config.StorageActivity;
-import org.sqlunet.history.HistoryActivity;
+import org.sqlunet.browser.history.HistoryActivity;
 import org.sqlunet.provider.BaseProvider;
 import org.sqlunet.settings.Settings;
 

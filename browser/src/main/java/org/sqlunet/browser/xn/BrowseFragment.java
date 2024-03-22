@@ -37,7 +37,7 @@ import org.sqlunet.framenet.browser.FnAnnoSetActivity;
 import org.sqlunet.framenet.browser.FnFrameActivity;
 import org.sqlunet.framenet.browser.FnLexUnitActivity;
 import org.sqlunet.framenet.browser.FnSentenceActivity;
-import org.sqlunet.history.History;
+import org.sqlunet.browser.history.History;
 import org.sqlunet.predicatematrix.PmRolePointer;
 import org.sqlunet.propbank.PbRoleSetPointer;
 import org.sqlunet.propbank.browser.PbRoleSetActivity;
