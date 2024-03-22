@@ -1,78 +1,59 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.preference
 
-package org.sqlunet.preference;
-
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.preference.Preference;
+import android.os.Parcel
+import android.os.Parcelable
+import androidx.preference.Preference
 
 /**
  * Saved state
  */
-class StringSavedState extends Preference.BaseSavedState
-{
-	/**
-	 * The value
-	 */
-	@Nullable
-	String value;
+internal class StringSavedState : Preference.BaseSavedState {
 
-	/**
-	 * Constructor from superstate
-	 *
-	 * @param superState superstate
-	 */
-	@SuppressWarnings("WeakerAccess")
-	public StringSavedState(final Parcelable superState)
-	{
-		super(superState);
-	}
+    /**
+     * The value
+     */
+    @JvmField
+    var value: String? = null
 
-	/**
-	 * Constructor from parcel
-	 *
-	 * @param parcel source parcel
-	 */
-	@SuppressWarnings("WeakerAccess")
-	public StringSavedState(@NonNull final Parcel parcel)
-	{
-		super(parcel);
+    /**
+     * Constructor from superstate
+     *
+     * @param superState superstate
+     */
+    constructor(superState: Parcelable?) : super(superState)
 
-		// get the preference's value
-		this.value = parcel.readString();
-	}
+    /**
+     * Constructor from parcel
+     *
+     * @param parcel source parcel
+     */
+    constructor(parcel: Parcel) : super(parcel) {
 
-	@Override
-	public void writeToParcel(@NonNull final Parcel dest, final int flags)
-	{
-		super.writeToParcel(dest, flags);
+        // get the preference's value
+        value = parcel.readString()
+    }
 
-		// write the preference's value
-		dest.writeString(this.value);
-	}
+    override fun writeToParcel(dest: Parcel, flags: Int) {
+        super.writeToParcel(dest, flags)
 
-	/**
-	 * Standard creator object using an instance of this class
-	 */
-	public static final Creator<StringSavedState> CREATOR = new Creator<StringSavedState>()
-	{
-		@NonNull
-		@Override
-		public StringSavedState createFromParcel(@NonNull final Parcel in)
-		{
-			return new StringSavedState(in);
-		}
+        // write the preference's value
+        dest.writeString(value)
+    }
 
-		@NonNull
-		@Override
-		public StringSavedState[] newArray(final int size)
-		{
-			return new StringSavedState[size];
-		}
-	};
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<StringSavedState> {
+        override fun createFromParcel(parcel: Parcel): StringSavedState {
+            return StringSavedState(parcel)
+        }
+
+        override fun newArray(size: Int): Array<StringSavedState?> {
+            return arrayOfNulls(size)
+        }
+    }
 }

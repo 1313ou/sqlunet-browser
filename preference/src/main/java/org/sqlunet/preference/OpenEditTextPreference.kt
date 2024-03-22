@@ -1,430 +1,325 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.preference
 
-package org.sqlunet.preference;
-
-import android.content.Context;
-import android.content.res.TypedArray;
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.text.Editable;
-import android.util.AttributeSet;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-
-import java.util.Arrays;
-import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.preference.DialogPreference;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceDialogFragmentCompat;
-import androidx.preference.PreferenceFragmentCompat;
+import android.content.Context
+import android.content.res.TypedArray
+import android.os.Bundle
+import android.os.Parcelable
+import android.util.AttributeSet
+import android.view.View
+import android.widget.EditText
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
+import androidx.preference.DialogPreference
+import androidx.preference.Preference
+import androidx.preference.Preference.SummaryProvider
+import androidx.preference.PreferenceDialogFragmentCompat
+import androidx.preference.PreferenceFragmentCompat
+import java.util.Arrays
 
 /**
  * OpenEditTextPreference
  *
  * @author Bernard Bou
  */
-public class OpenEditTextPreference extends DialogPreference
-{
-	// V A L U E
+class OpenEditTextPreference : DialogPreference {
 
-	/**
-	 * Possible values
-	 */
-	private CharSequence[] values;
+    // V A L U E
 
-	/**
-	 * Possible entry enable
-	 */
-	private boolean[] enable;
+    /**
+     * Possible values
+     */
+    lateinit var values: Array<CharSequence>
 
-	/**
-	 * Value
-	 */
-	@Nullable
-	private String value;
+    /**
+     * Possible entry enable
+     */
+    private lateinit var enable: BooleanArray
 
-	// S E T T I N G S
+    /**
+     * Value
+     */
+    private var value: String? = null
 
-	/**
-	 * Possible labels
-	 */
-	private CharSequence[] labels;
+    // S E T T I N G S
 
-	/**
-	 * Extra values
-	 */
-	private List<String> xValues;
+    /**
+     * Possible labels
+     */
+    lateinit var labels: Array<CharSequence>
 
-	/**
-	 * Labels for extra values
-	 */
-	private List<String> xLabels;
+    /**
+     * Extra values
+     */
+    private var xValues: List<String>? = null
 
-	// C O N S T R U C T O R
+    /**
+     * Labels for extra values
+     */
+    private var xLabels: List<String>? = null
 
-	/**
-	 * Constructor
-	 *
-	 * @param context  context
-	 * @param attrs    attributes
-	 * @param defStyle def style
-	 */
-	public OpenEditTextPreference(@NonNull final Context context, @NonNull final AttributeSet attrs, final int defStyle)
-	{
-		super(context, attrs, defStyle);
+    // C O N S T R U C T O R
 
-		// attributes
-		init(context, attrs);
+    /**
+     * Constructor
+     *
+     * @param context  context
+     * @param attrs    attributes
+     * @param defStyle def style
+     */
+    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
 
-		// set up
-		setup();
-	}
+        // attributes
+        init(context, attrs)
 
-	/**
-	 * Constructor
-	 *
-	 * @param context context
-	 * @param attrs   attributes
-	 */
-	public OpenEditTextPreference(@NonNull final Context context, @NonNull final AttributeSet attrs)
-	{
-		super(context, attrs);
+        // set up
+        setup()
+    }
 
-		// attributes
-		init(context, attrs);
+    /**
+     * Constructor
+     *
+     * @param context context
+     * @param attrs   attributes
+     */
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
 
-		// set up
-		setup();
-	}
+        // attributes
+        init(context, attrs)
 
-	/**
-	 * Initialize
-	 *
-	 * @param context context
-	 * @param attrs   attributes
-	 */
-	private void init(@NonNull final Context context, @NonNull final AttributeSet attrs)
-	{
-		// obtain values through styled attributes
-		final TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.OpenEditTextPreference);
-		this.values = array.getTextArray(R.styleable.OpenEditTextPreference_values);
-		this.labels = array.getTextArray(R.styleable.OpenEditTextPreference_labels);
-		array.recycle();
+        // set up
+        setup()
+    }
 
-		// ensure not null
-		if (this.values == null)
-		{
-			this.values = new CharSequence[0];
-		}
-		if (this.labels == null)
-		{
-			this.labels = new CharSequence[0];
-		}
+    /**
+     * Initialize
+     *
+     * @param context context
+     * @param attrs   attributes
+     */
+    private fun init(context: Context, attrs: AttributeSet) {
+        // obtain values through styled attributes
+        val array = context.obtainStyledAttributes(attrs, R.styleable.OpenEditTextPreference)
+        values = array.getTextArray(R.styleable.OpenEditTextPreference_values)
+        labels = array.getTextArray(R.styleable.OpenEditTextPreference_labels)
+        array.recycle()
 
-		// enable all
-		this.enable = new boolean[this.values.length];
-		Arrays.fill(this.enable, true);
-	}
+        // enable all
+        enable = BooleanArray(values.size)
+        Arrays.fill(enable, true)
+    }
 
-	/**
-	 * Set up
-	 */
-	private void setup()
-	{
-		setDialogLayoutResource(R.layout.dialog_openedittext_pref);
-		setPositiveButtonText(android.R.string.ok);
-		setNegativeButtonText(android.R.string.cancel);
-		setDialogIcon(null);
-	}
+    /**
+     * Set up
+     */
+    private fun setup() {
+        dialogLayoutResource = R.layout.dialog_openedittext_pref
+        setPositiveButtonText(android.R.string.ok)
+        setNegativeButtonText(android.R.string.cancel)
+        dialogIcon = null
+    }
 
-	/**
-	 * Values Getter
-	 *
-	 * @return values
-	 */
-	public CharSequence[] getValues()
-	{
-		return this.values;
-	}
+    /**
+     * Enable Setter
+     *
+     * @param enables enable flags
+     */
+    fun setEnables(enables: BooleanArray) {
+        enable = enables
+    }
 
-	/**
-	 * Values Setter
-	 *
-	 * @param values values
-	 */
-	public void setValues(CharSequence[] values)
-	{
-		this.values = values;
-	}
+    /**
+     * Add options
+     *
+     * @param xValues extra values
+     * @param xLabels extra labels
+     */
+    fun addOptions(xValues: List<String>?, xLabels: List<String>?) {
+        this.xValues = xValues
+        this.xLabels = xLabels
+    }
 
-	/**
-	 * Labels Getter
-	 *
-	 * @return labels
-	 */
-	public CharSequence[] getLabels()
-	{
-		return this.labels;
-	}
+    // V A L U E
+    override fun onGetDefaultValue(array: TypedArray, index: Int): Any? {
+        return array.getString(index)
+    }
 
-	/**
-	 * Labels Setter
-	 *
-	 * @param labels labels
-	 */
-	public void setLabels(CharSequence[] labels)
-	{
-		this.values = labels;
-	}
+    override fun onSetInitialValue(defaultValue: Any?) {
+        setValue(getPersistedString(defaultValue as String?))
+    }
 
-	/**
-	 * Enable Setter
-	 *
-	 * @param enables enable flags
-	 */
-	public void setEnables(boolean[] enables)
-	{
-		this.enable = enables;
-	}
+    private fun setValue(newValue: String?) {
+        value = newValue
+        persistString(newValue)
+        notifyChanged()
+    }
 
-	/**
-	 * Add options
-	 *
-	 * @param xValues extra values
-	 * @param xLabels extra labels
-	 */
-	public void addOptions(final List<String> xValues, final List<String> xLabels)
-	{
-		this.xValues = xValues;
-		this.xLabels = xLabels;
-	}
+    // D I A L O G  F R A G M E N T
+    class OpenEditTextPreferenceDialogFragmentCompat : PreferenceDialogFragmentCompat() {
 
-	// V A L U E
+        private var editView: EditText? = null
+        private var optionsView: RadioGroup? = null
 
-	@Nullable
-	@Override
-	protected Object onGetDefaultValue(@NonNull final TypedArray array, final int index)
-	{
-		return array.getString(index);
-	}
+        override fun onBindDialogView(view: View) {
+            super.onBindDialogView(view)
 
-	@Override
-	protected void onSetInitialValue(final Object defaultValue)
-	{
-		setValue(getPersistedString((String) defaultValue));
-	}
+            // pref
+            val pref = getPreference() as OpenEditTextPreference
 
-	private void setValue(@Nullable final String newValue)
-	{
-		this.value = newValue;
-		persistString(newValue);
-		notifyChanged();
-	}
+            // edit text
+            editView = view.findViewById(R.id.openedit_text)
+            assert(editView != null)
+            editView!!.requestFocus()
 
-	// D I A L O G  F R A G M E N T
+            // populate with value
+            if (pref.value != null) {
+                editView!!.setText(pref.value)
+                // place cursor at the end
+                editView!!.setSelection(pref.value!!.length)
+            }
 
-	static public class OpenEditTextPreferenceDialogFragmentCompat extends PreferenceDialogFragmentCompat
-	{
-		@NonNull
-		@SuppressWarnings("WeakerAccess")
-		static public OpenEditTextPreferenceDialogFragmentCompat newInstance(@NonNull final OpenEditTextPreference pref)
-		{
-			final OpenEditTextPreferenceDialogFragmentCompat fragment = new OpenEditTextPreferenceDialogFragmentCompat();
-			final Bundle args = new Bundle();
-			args.putString(ARG_KEY, pref.getKey());
-			fragment.setArguments(args);
-			return fragment;
-		}
+            // options
+            optionsView = view.findViewById(R.id.openedit_options)
+            assert(optionsView != null)
 
-		private EditText editView;
+            // populate
+            optionsView!!.removeAllViews()
+            var i = 0
+            while (i < pref.values.size && i < pref.labels.size && i < pref.enable.size) {
+                val value = pref.values[i]
+                val label = pref.labels[i]
+                val enable = pref.enable[i]
+                val radioButton = RadioButton(requireContext())
+                radioButton.text = label
+                radioButton.tag = value
+                radioButton.setEnabled(enable)
+                optionsView!!.addView(radioButton)
+                i++
+            }
+            if (pref.xValues != null && pref.xLabels != null) {
+                var j = 0
+                while (j < pref.xValues!!.size && j < pref.xLabels!!.size) {
+                    val value: CharSequence = pref.xValues!![j]
+                    val label: CharSequence = pref.xLabels!![j]
+                    val enable = true
+                    val radioButton = RadioButton(requireContext())
+                    radioButton.text = label
+                    radioButton.tag = value
+                    radioButton.setEnabled(enable)
+                    optionsView!!.addView(radioButton)
+                    j++
+                }
+            }
 
-		private RadioGroup optionsView;
+            // check listener
+            optionsView!!.setOnCheckedChangeListener { _: RadioGroup?, checkedId: Int ->
+                if (checkedId == -1) {
+                    editView!!.setText("")
+                } else {
+                    val radioButton = optionsView!!.findViewById<RadioButton>(checkedId)
+                    val tag = radioButton.tag.toString()
+                    editView!!.setText(tag)
+                    editView!!.setSelection(tag.length)
+                }
+            }
+        }
 
-		@Override
-		protected void onBindDialogView(@NonNull View view)
-		{
-			super.onBindDialogView(view);
+        override fun onDialogClosed(positiveResult: Boolean) {
+            // when the user selects "OK", persist the new value
+            if (positiveResult) {
+                val editable = editView!!.getText()
+                val pref = getPreference() as OpenEditTextPreference
+                val newValue = editable?.toString()
+                if (pref.callChangeListener(newValue)) {
+                    pref.setValue(newValue)
+                }
+            }
+        }
 
-			// pref
-			final OpenEditTextPreference pref = (OpenEditTextPreference) getPreference();
+        companion object {
+            fun newInstance(pref: OpenEditTextPreference): OpenEditTextPreferenceDialogFragmentCompat {
+                val fragment = OpenEditTextPreferenceDialogFragmentCompat()
+                val args = Bundle()
+                args.putString(ARG_KEY, pref.key)
+                fragment.setArguments(args)
+                return fragment
+            }
+        }
+    }
 
-			// edit text
-			editView = view.findViewById(R.id.openedit_text);
-			assert editView != null;
-			editView.requestFocus();
+    // S T A T E
+    override fun onSaveInstanceState(): Parcelable? {
+        val superState = super.onSaveInstanceState()
 
-			// populate with value
-			if (pref.value != null)
-			{
-				editView.setText(pref.value);
-				// place cursor at the end
-				editView.setSelection(pref.value.length());
-			}
+        // check whether this Preference is persistent (continually saved)
+        if (isPersistent) // no need to save instance state since it's persistent, use superclass state
+        {
+            return superState
+        }
 
-			// options
-			optionsView = view.findViewById(R.id.openedit_options);
-			assert optionsView != null;
+        // create instance of custom BaseSavedState
+        val state = StringSavedState(superState)
 
-			// populate
-			optionsView.removeAllViews();
-			for (int i = 0; i < pref.values.length && i < pref.labels.length && i < pref.enable.length; i++)
-			{
-				final CharSequence value = pref.values[i];
-				final CharSequence label = pref.labels[i];
-				final boolean enable = pref.enable[i];
+        // set the state's value with the class member that holds current setting value
+        state.value = value
+        return state
+    }
 
-				final RadioButton radioButton = new RadioButton(requireContext());
-				radioButton.setText(label);
-				radioButton.setTag(value);
-				radioButton.setEnabled(enable);
-				optionsView.addView(radioButton);
-			}
-			if (pref.xValues != null && pref.xLabels != null)
-			{
-				for (int i = 0; i < pref.xValues.size() && i < pref.xLabels.size(); i++)
-				{
-					final CharSequence value = pref.xValues.get(i);
-					final CharSequence label = pref.xLabels.get(i);
-					final boolean enable = true;
+    override fun onRestoreInstanceState(state: Parcelable?) {
+        // check whether we saved the state in onSaveInstanceState
+        if (state == null || state.javaClass != StringSavedState::class.java) {
+            // didn't save the state, so call superclass
+            super.onRestoreInstanceState(state)
+            return
+        }
 
-					final RadioButton radioButton = new RadioButton(requireContext());
-					radioButton.setText(label);
-					radioButton.setTag(value);
-					radioButton.setEnabled(enable);
-					optionsView.addView(radioButton);
-				}
-			}
+        // cast state to custom BaseSavedState and pass to superclass
+        val savedState = state as StringSavedState
+        super.onRestoreInstanceState(savedState.superState)
 
-			// check listener
-			optionsView.setOnCheckedChangeListener((group, checkedId) -> {
-				if (checkedId == -1)
-				{
-					editView.setText("");
-				}
-				else
-				{
-					final RadioButton radioButton = optionsView.findViewById(checkedId);
-					final String tag = radioButton.getTag().toString();
-					editView.setText(tag);
-					editView.setSelection(tag.length());
-				}
-			});
-		}
+        // set this preference's widget to reflect the restored state
+        setValue(savedState.value)
+    }
 
-		@Override
-		public void onDialogClosed(final boolean positiveResult)
-		{
-			// when the user selects "OK", persist the new value
-			if (positiveResult)
-			{
-				final Editable editable = editView.getText();
-				final OpenEditTextPreference pref = (OpenEditTextPreference) getPreference();
-				final String newValue = editable == null ? null : editable.toString();
-				if (pref.callChangeListener(newValue))
-				{
-					pref.setValue(newValue);
-				}
-			}
-		}
-	}
+    companion object {
+        private const val DIALOG_FRAGMENT_TAG = "OpenEditTextPreference"
 
-	private static final String DIALOG_FRAGMENT_TAG = "OpenEditTextPreference";
+        /**
+         * onDisplayPreferenceDialog helper
+         *
+         * @param prefFragment preference fragment
+         * @param preference   preference
+         * @return false if not handled: call super.onDisplayPreferenceDialog(preference)
+         */
+        fun onDisplayPreferenceDialog(prefFragment: PreferenceFragmentCompat, preference: Preference?): Boolean {
+            val manager: FragmentManager = try {
+                prefFragment.getParentFragmentManager()
+            } catch (e: IllegalStateException) {
+                return false
+            }
+            if (manager.findFragmentByTag(DIALOG_FRAGMENT_TAG) != null) {
+                return true
+            }
+            if (preference is OpenEditTextPreference) {
+                val dialogFragment: DialogFragment = OpenEditTextPreferenceDialogFragmentCompat.newInstance(preference)
+                dialogFragment.setTargetFragment(prefFragment, 0)
+                dialogFragment.show(manager, DIALOG_FRAGMENT_TAG)
+                return true
+            }
+            return false
+        }
 
-	/**
-	 * onDisplayPreferenceDialog helper
-	 *
-	 * @param prefFragment preference fragment
-	 * @param preference   preference
-	 * @return false if not handled: call super.onDisplayPreferenceDialog(preference)
-	 */
-	@SuppressWarnings("BooleanMethodIsAlwaysInverted")
-	static public boolean onDisplayPreferenceDialog(@NonNull final PreferenceFragmentCompat prefFragment, final Preference preference)
-	{
-		final FragmentManager manager;
-		try
-		{
-			manager = prefFragment.getParentFragmentManager();
-		}
-		catch (IllegalStateException e)
-		{
-			return false;
-		}
-
-		if (manager.findFragmentByTag(DIALOG_FRAGMENT_TAG) != null)
-		{
-			return true;
-		}
-
-		if (preference instanceof OpenEditTextPreference)
-		{
-			final DialogFragment dialogFragment = OpenEditTextPreferenceDialogFragmentCompat.newInstance((OpenEditTextPreference) preference);
-			//noinspection deprecation
-			dialogFragment.setTargetFragment(prefFragment, 0);
-			dialogFragment.show(manager, DIALOG_FRAGMENT_TAG);
-			return true;
-		}
-		return false;
-	}
-
-	// S T A T E
-
-	@Override
-	protected Parcelable onSaveInstanceState()
-	{
-		final Parcelable superState = super.onSaveInstanceState();
-
-		// check whether this Preference is persistent (continually saved)
-		if (isPersistent())
-		// no need to save instance state since it's persistent, use superclass state
-		{
-			return superState;
-		}
-
-		// create instance of custom BaseSavedState
-		final StringSavedState state = new StringSavedState(superState);
-
-		// set the state's value with the class member that holds current setting value
-		state.value = this.value;
-		return state;
-	}
-
-	@Override
-	protected void onRestoreInstanceState(@Nullable final Parcelable state)
-	{
-		// check whether we saved the state in onSaveInstanceState
-		if (state == null || !state.getClass().equals(StringSavedState.class))
-		{
-			// didn't save the state, so call superclass
-			super.onRestoreInstanceState(state);
-			return;
-		}
-
-		// cast state to custom BaseSavedState and pass to superclass
-		final StringSavedState savedState = (StringSavedState) state;
-		super.onRestoreInstanceState(savedState.getSuperState());
-
-		// set this preference's widget to reflect the restored state
-		setValue(savedState.value);
-	}
-
-	// S U M M A R Y
-
-	/**
-	 * Summary provider
-	 */
-	static public final Preference.SummaryProvider<OpenEditTextPreference> SUMMARY_PROVIDER = (preference) -> {
-
-		final Context context = preference.getContext();
-		final String value = preference.getPersistedString(null);
-		return value == null ? context.getString(R.string.pref_value_default) : value;
-	};
+        /**
+         * Summary provider
+         */
+        val SUMMARY_PROVIDER = SummaryProvider { preference: OpenEditTextPreference ->
+            val context = preference.context
+            val value = preference.getPersistedString(null)
+            value ?: context.getString(R.string.pref_value_default)
+        }
+    }
 }
