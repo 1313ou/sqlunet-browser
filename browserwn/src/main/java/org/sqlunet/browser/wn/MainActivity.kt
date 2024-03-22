@@ -1,15 +1,14 @@
 /*
  * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
+package org.sqlunet.browser.wn
 
-package org.sqlunet.browser.wn;
+import org.sqlunet.browser.MainActivity
+import org.sqlunet.browser.wn.Oewn.hook
 
-public class MainActivity extends org.sqlunet.browser.MainActivity
-{
-	@Override
-	protected void onStart()
-	{
-		super.onStart();
-		Oewn.hook(this);
-	}
+class MainActivity : MainActivity() {
+    override fun onStart() {
+        super.onStart()
+        hook(this)
+    }
 }
