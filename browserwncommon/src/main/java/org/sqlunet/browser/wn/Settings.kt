@@ -1,119 +1,107 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser.wn
 
-package org.sqlunet.browser.wn;
-
-import android.content.Context;
-import android.content.SharedPreferences;
-
-import androidx.annotation.NonNull;
-import androidx.preference.PreferenceManager;
+import android.content.Context
+import androidx.preference.PreferenceManager
+import org.sqlunet.settings.Settings
 
 /**
  * Settings
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class Settings extends org.sqlunet.settings.Settings
-{
-	// preferences
+object Settings : Settings() {
 
-	static private final String PREF_ENABLE_WORDNET = "pref_enable_wordnet";
-	static private final String PREF_ENABLE_BNC = "pref_enable_bnc";
+    // preferences
+    private const val PREF_ENABLE_WORDNET = "pref_enable_wordnet"
+    private const val PREF_ENABLE_BNC = "pref_enable_bnc"
+    const val ENABLE_WORDNET = 0x1
+    const val ENABLE_BNC = 0x100
 
-	static public final int ENABLE_WORDNET = 0x1;
-	static public final int ENABLE_BNC = 0x100;
+    // P R E F E R E N C E   S H O R T C U T S
 
-	// D A T A
+    /**
+     * Get preferred enable aggregated flag
+     *
+     * @param context context
+     * @return preferred enable WordNet flag
+     */
+    @JvmStatic
+    fun getAllPref(context: Context): Int {
+        val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+        var result = 0
+        if (sharedPref.getBoolean(PREF_ENABLE_WORDNET, true)) {
+            result = result or ENABLE_WORDNET
+        }
+        if (sharedPref.getBoolean(PREF_ENABLE_BNC, true)) {
+            result = result or ENABLE_BNC
+        }
+        return result
+    }
 
-	/**
-	 * Source
-	 */
-	public enum Source
-	{WORDNET(0x1), BNC(0x2);
+    /**
+     * Get preferred enable WordNet flag
+     *
+     * @param context context
+     * @return preferred enable WordNet flag
+     */
+    @JvmStatic
+    fun getWordNetPref(context: Context): Boolean {
+        val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+        return sharedPref.getBoolean(PREF_ENABLE_WORDNET, true)
+    }
 
-		/**
-		 * Source mask
-		 */
-		final private int mask;
+    /**
+     * Get preferred enable BNC flag
+     *
+     * @param context context
+     * @return preferred enable BNC flag
+     */
+    @JvmStatic
+    fun getBncPref(context: Context): Boolean {
+        val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+        return sharedPref.getBoolean(PREF_ENABLE_BNC, true)
+    }
 
-		/**
-		 * Constructor
-		 *
-		 * @param mask mask
-		 */
-		Source(final int mask)
-		{
-			this.mask = mask;
-		}
+    // D A T A
 
-		/**
-		 * Set this source in sources
-		 *
-		 * @param sources sources to set
-		 * @return result
-		 */
-		public int set(final int sources)
-		{
-			return sources | this.mask;
-		}
+    /**
+     * Source
+     */
+    enum class Source
+    /**
+     * Constructor
+     *
+     * @param mask mask
+     */(
+        /**
+         * Source mask
+         */
+        private val mask: Int
+    ) {
+        WORDNET(0x1),
+        BNC(0x2);
 
-		/**
-		 * Test
-		 *
-		 * @param sources sources to test
-		 * @return true if this source is set
-		 */
-		public boolean test(final int sources)
-		{
-			return (sources & this.mask) != 0;
-		}}
+        /**
+         * Set this source in sources
+         *
+         * @param sources sources to set
+         * @return result
+         */
+        fun set(sources: Int): Int {
+            return sources or mask
+        }
 
-	// P R E F E R E N C E S H O R T C U T S
-
-	/**
-	 * Get preferred enable aggregated flag
-	 *
-	 * @param context context
-	 * @return preferred enable WordNet flag
-	 */
-	static public int getAllPref(@NonNull final Context context)
-	{
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		int result = 0;
-		if (sharedPref.getBoolean(Settings.PREF_ENABLE_WORDNET, true))
-		{
-			result |= ENABLE_WORDNET;
-		}
-		if (sharedPref.getBoolean(Settings.PREF_ENABLE_BNC, true))
-		{
-			result |= ENABLE_BNC;
-		}
-		return result;
-	}
-
-	/**
-	 * Get preferred enable WordNet flag
-	 *
-	 * @param context context
-	 * @return preferred enable WordNet flag
-	 */
-	static public boolean getWordNetPref(@NonNull final Context context)
-	{
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		return sharedPref.getBoolean(Settings.PREF_ENABLE_WORDNET, true);
-	}
-
-	/**
-	 * Get preferred enable BNC flag
-	 *
-	 * @param context context
-	 * @return preferred enable BNC flag
-	 */
-	static public boolean getBncPref(@NonNull final Context context)
-	{
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		return sharedPref.getBoolean(Settings.PREF_ENABLE_BNC, true);
-	}
+        /**
+         * Test
+         *
+         * @param sources sources to test
+         * @return true if this source is set
+         */
+        fun test(sources: Int): Boolean {
+            return sources and mask != 0
+        }
+    }
 }

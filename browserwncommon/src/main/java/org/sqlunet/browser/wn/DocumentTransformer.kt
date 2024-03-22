@@ -1,43 +1,34 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser.wn
 
-package org.sqlunet.browser.wn;
-
-import java.io.InputStream;
-
-import androidx.annotation.Nullable;
+import java.io.InputStream
 
 /**
  * XSL Transformer
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class DocumentTransformer extends org.sqlunet.browser.web.DocumentTransformer
-{
-	static private final String XSL_DIR = "/org/sqlunet/";
+class DocumentTransformer : org.sqlunet.browser.web.DocumentTransformer() {
 
-	/**
-	 * Get XSL file
-	 *
-	 * @param source     type of source
-	 * @param isSelector is selector source
-	 * @return XSL inputstream
-	 */
-	@Nullable
-	protected InputStream getXSLStream(final String source, final boolean isSelector)
-	{
-		String xsl = null;
-		Settings.Source from = Settings.Source.valueOf(source);
-		switch (from)
-		{
-			case WORDNET:
-				xsl = DocumentTransformer.XSL_DIR + (isSelector ? "wordnet2html-select.xsl" : "wordnet2html.xsl");
-				break;
-			case BNC:
-				xsl = DocumentTransformer.XSL_DIR + (isSelector ? "bnc2html-select.xsl" : "bnc2html.xsl");
-				break;
-		}
-		return DocumentTransformer.class.getResourceAsStream(xsl);
-	}
+    /**
+     * Get XSL file
+     *
+     * @param from     type of source
+     * @param isSelector is selector source
+     * @return XSL inputstream
+     */
+    override fun getXSLStream(from: String, isSelector: Boolean): InputStream? {
+        val source = Settings.Source.valueOf(from)
+        val xsl: String = when (source) {
+            Settings.Source.WORDNET -> XSL_DIR + (if (isSelector) "wordnet2html-select.xsl" else "wordnet2html.xsl")
+            Settings.Source.BNC -> XSL_DIR + (if (isSelector) "bnc2html-select.xsl" else "bnc2html.xsl")
+        }
+        return DocumentTransformer::class.java.getResourceAsStream(xsl)
+    }
+
+    companion object {
+        private const val XSL_DIR = "/org/sqlunet/"
+    }
 }

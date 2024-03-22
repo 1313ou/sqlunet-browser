@@ -1,233 +1,187 @@
 /*
  * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
+package org.sqlunet.browser.wn
 
-package org.sqlunet.browser.wn;
-
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Spinner;
-
-import org.sqlunet.browser.BaseSearchFragment;
-import org.sqlunet.browser.SearchTextSplashFragment;
-import org.sqlunet.browser.SplashFragment;
-import org.sqlunet.browser.wn.lib.R;
-import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.wordnet.provider.WordNetContract;
-import org.sqlunet.wordnet.provider.WordNetProvider;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.AdapterView
+import android.widget.Spinner
+import androidx.fragment.app.Fragment
+import org.sqlunet.browser.BaseSearchFragment
+import org.sqlunet.browser.SearchTextSplashFragment
+import org.sqlunet.browser.SplashFragment
+import org.sqlunet.browser.wn.lib.R
+import org.sqlunet.provider.ProviderArgs
+import org.sqlunet.settings.Settings
+import org.sqlunet.wordnet.provider.WordNetContract
+import org.sqlunet.wordnet.provider.WordNetProvider.Companion.makeUri
 
 /**
  * Search text fragment
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class SearchTextFragment extends BaseSearchFragment
-{
-	static private final String TAG = "SearchTextF";
+class SearchTextFragment : BaseSearchFragment() {
 
-	// C R E A T I O N
+    // C R E A T I O N
 
-	/**
-	 * Constructor
-	 */
-	public SearchTextFragment()
-	{
-		this.layoutId = R.layout.fragment_searchtext;
-		this.menuId = R.menu.searchtext;
-		this.colorAttrId = R.attr.colorPrimaryVariant;
-		this.spinnerLabels = R.array.searchtext_modes;
-		this.spinnerIcons = R.array.searchtext_icons;
-	}
+    init {
+        layoutId = R.layout.fragment_searchtext
+        menuId = R.menu.searchtext
+        colorAttrId = R.attr.colorPrimaryVariant
+        spinnerLabels = R.array.searchtext_modes
+        spinnerIcons = R.array.searchtext_icons
+    }
 
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (savedInstanceState == null) {
+            // splash fragment
+            val fragment: Fragment = SearchTextSplashFragment()
+            assert(isAdded)
+            getChildFragmentManager() //
+                .beginTransaction() //
+                .setReorderingAllowed(true) //
+                .replace(R.id.container_searchtext, fragment, SplashFragment.FRAGMENT_TAG) //
+                //.addToBackStack(SplashFragment.FRAGMENT_TAG) //
+                .commit()
+        }
+    }
 
-		if (savedInstanceState == null)
-		{
-			// splash fragment
-			final Fragment fragment = new SearchTextSplashFragment();
-			assert isAdded();
-			getChildFragmentManager() //
-					.beginTransaction() //
-					.setReorderingAllowed(true) //
-					.replace(R.id.container_searchtext, fragment, SplashFragment.FRAGMENT_TAG) //
-					//.addToBackStack(SplashFragment.FRAGMENT_TAG) //
-					.commit();
-		}
-	}
+    override fun onStop() {
+        super.onStop()
 
-	@Override
-	public void onStop()
-	{
-		super.onStop();
+        // remove data fragments and replace with splash before onSaveInstanceState takes place (between -3 and -4)
+        beforeSaving(SearchTextSplashFragment(), SplashFragment.FRAGMENT_TAG, R.id.container_searchtext, TextFragment.FRAGMENT_TAG)
+    }
 
-		// remove data fragments and replace with splash before onSaveInstanceState takes place (between -3 and -4)
-		beforeSaving(new SearchTextSplashFragment(), SplashFragment.FRAGMENT_TAG, R.id.container_searchtext, TextFragment.FRAGMENT_TAG);
-	}
+    // S P I N N E R
 
-	// S P I N N E R
+    override fun acquireSpinner(spinner: Spinner) {
+        // to set position
+        super.acquireSpinner(spinner)
+        spinner.visibility = View.VISIBLE
 
-	@Override
-	protected void acquireSpinner(@NonNull final Spinner spinner)
-	{
-		// to set position
-		super.acquireSpinner(spinner);
+        // apply spinner adapter
+        spinner.setAdapter(spinnerAdapter)
 
-		spinner.setVisibility(View.VISIBLE);
+        // spinner listener
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parentView: AdapterView<*>?, selectedItemView: View, position: Int, id: Long) {
+                Settings.setSearchModePref(requireContext(), position)
+            }
 
-		// apply spinner adapter
-		spinner.setAdapter(getSpinnerAdapter());
+            override fun onNothingSelected(parentView: AdapterView<*>?) {
+                //
+            }
+        }
 
-		// spinner listener
-		spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-		{
-			@Override
-			public void onItemSelected(final AdapterView<?> parentView, final View selectedItemView, final int position, final long id)
-			{
-				Settings.setSearchModePref(requireContext(), position);
-			}
+        // spinner position
+        val modePosition: Int = Settings.getSearchModePref(requireContext())
+        spinner.setSelection(modePosition)
+    }
 
-			@Override
-			public void onNothingSelected(final AdapterView<?> parentView)
-			{
-				//
-			}
-		});
+    // S E A R C H
 
-		// spinner position
-		final int modePosition = Settings.getSearchModePref(requireContext());
-		spinner.setSelection(modePosition);
-	}
+    /**
+     * Handle query
+     *
+     * @param query query
+     */
+    override fun search(query: String) {
+        val query2 = query.trim { it <= ' ' }
+        if (query2.isEmpty()) {
+            return
+        }
 
-	// S E A R C H
+        // super
+        super.search(query2)
 
-	/**
-	 * Handle query
-	 *
-	 * @param query0 query
-	 */
-	@Override
-	public void search(@Nullable final String query0)
-	{
-		if (query0 == null)
-		{
-			return;
-		}
-		final String query = query0.trim();
-		if (query.isEmpty())
-		{
-			return;
-		}
+        // log
+        Log.d(TAG, "Search text $query2")
 
-		// super
-		super.search(query);
+        // mode
+        val modePosition = searchModePosition
 
-		// log
-		Log.d(TAG, "Search text " + query);
+        // as per selected mode
+        val searchUri: String
+        val id: String
+        val idType: String
+        val target: String
+        val columns: Array<String>
+        val hiddenColumns: Array<String>
+        val database: String
+        when (modePosition) {
+            0 -> {
+                searchUri = makeUri(WordNetContract.Lookup_Definitions.URI)
+                id = WordNetContract.Lookup_Definitions.SYNSETID
+                idType = "synset"
+                target = WordNetContract.Lookup_Definitions.DEFINITION
+                columns = arrayOf(WordNetContract.Lookup_Definitions.DEFINITION)
+                hiddenColumns = arrayOf(WordNetContract.Lookup_Definitions.SYNSETID)
+                database = "wn"
+            }
 
-		/*
-		// copy to target view
-		final View view = getView();
-		if (view != null)
-		{
-			final TextView targetView = (TextView) view.findViewById(R.id.targetView);
-			if (targetView != null)
-			{
-				targetView.setText(query);
-			}
-		}
-		*/
+            1 -> {
+                searchUri = makeUri(WordNetContract.Lookup_Samples.URI)
+                id = WordNetContract.Lookup_Samples.SYNSETID
+                idType = "synset"
+                target = WordNetContract.Lookup_Samples.SAMPLE
+                columns = arrayOf(WordNetContract.Lookup_Samples.SAMPLE)
+                hiddenColumns = arrayOf(WordNetContract.Lookup_Samples.SYNSETID)
+                database = "wn"
+            }
 
-		// mode
-		final int modePosition = getSearchModePosition();
+            2 -> {
+                searchUri = makeUri(WordNetContract.Lookup_Words.URI)
+                id = WordNetContract.Lookup_Words.WORDID
+                idType = "word"
+                target = WordNetContract.Lookup_Words.WORD
+                columns = arrayOf(WordNetContract.Lookup_Words.WORD)
+                hiddenColumns = arrayOf(WordNetContract.Lookup_Words.WORDID)
+                database = "wn"
+            }
 
-		// status
-		// final CharSequence[] textSearches = getResources().getTextArray(R.array.searchtext_modes);
+            else -> return
+        }
 
-		// as per selected mode
-		String searchUri;
-		String id;
-		String idType;
-		String target;
-		String[] columns;
-		String[] hiddenColumns;
-		String database;
-		switch (modePosition)
-		{
-			case 0:
-				searchUri = WordNetProvider.makeUri(WordNetContract.Lookup_Definitions.URI);
-				id = WordNetContract.Lookup_Definitions.SYNSETID;
-				idType = "synset";
-				target = WordNetContract.Lookup_Definitions.DEFINITION;
-				columns = new String[]{WordNetContract.Lookup_Definitions.DEFINITION};
-				hiddenColumns = new String[]{WordNetContract.Lookup_Definitions.SYNSETID};
-				database = "wn";
-				break;
-			case 1:
-				searchUri = WordNetProvider.makeUri(WordNetContract.Lookup_Samples.URI);
-				id = WordNetContract.Lookup_Samples.SYNSETID;
-				idType = "synset";
-				target = WordNetContract.Lookup_Samples.SAMPLE;
-				columns = new String[]{WordNetContract.Lookup_Samples.SAMPLE};
-				hiddenColumns = new String[]{WordNetContract.Lookup_Samples.SYNSETID};
-				database = "wn";
-				break;
-			case 2:
-				searchUri = WordNetProvider.makeUri(WordNetContract.Lookup_Words.URI);
-				id = WordNetContract.Lookup_Words.WORDID;
-				idType = "word";
-				target = WordNetContract.Lookup_Words.WORD;
-				columns = new String[]{WordNetContract.Lookup_Words.WORD};
-				hiddenColumns = new String[]{WordNetContract.Lookup_Words.WORDID};
-				database = "wn";
-				break;
-			default:
-				return;
-		}
+        // parameters
+        val args = Bundle()
+        args.putString(ProviderArgs.ARG_QUERYURI, searchUri)
+        args.putString(ProviderArgs.ARG_QUERYID, id)
+        args.putString(ProviderArgs.ARG_QUERYIDTYPE, idType)
+        args.putStringArray(ProviderArgs.ARG_QUERYITEMS, columns)
+        args.putStringArray(ProviderArgs.ARG_QUERYHIDDENITEMS, hiddenColumns)
+        args.putString(ProviderArgs.ARG_QUERYFILTER, "$target MATCH ?")
+        args.putString(ProviderArgs.ARG_QUERYARG, query2)
+        args.putInt(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_searchtext)
+        args.putString(ProviderArgs.ARG_QUERYDATABASE, database)
 
-		// parameters
-		final Bundle args = new Bundle();
-		args.putString(ProviderArgs.ARG_QUERYURI, searchUri);
-		args.putString(ProviderArgs.ARG_QUERYID, id);
-		args.putString(ProviderArgs.ARG_QUERYIDTYPE, idType);
-		args.putStringArray(ProviderArgs.ARG_QUERYITEMS, columns);
-		args.putStringArray(ProviderArgs.ARG_QUERYHIDDENITEMS, hiddenColumns);
-		args.putString(ProviderArgs.ARG_QUERYFILTER, target + " MATCH ?");
-		args.putString(ProviderArgs.ARG_QUERYARG, query);
-		args.putInt(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_searchtext);
-		args.putString(ProviderArgs.ARG_QUERYDATABASE, database);
+        // fragment
+        val fragment: Fragment = TextFragment()
+        fragment.setArguments(args)
+        if (!isAdded) {
+            return
+        }
+        getChildFragmentManager() //
+            .beginTransaction() //
+            .setReorderingAllowed(true) //
+            .replace(R.id.container_searchtext, fragment, TextFragment.FRAGMENT_TAG) //
+            .addToBackStack(TextFragment.FRAGMENT_TAG) //
+            .commit()
+    }
 
-		// fragment
-		final Fragment fragment = new TextFragment();
-		fragment.setArguments(args);
-		if (!isAdded())
-		{
-			return;
-		}
-		getChildFragmentManager() //
-				.beginTransaction() //
-				.setReorderingAllowed(true) //
-				.replace(R.id.container_searchtext, fragment, TextFragment.FRAGMENT_TAG) //
-				.addToBackStack(TextFragment.FRAGMENT_TAG) //
-				.commit();
-	}
+    override fun triggerFocusSearch(): Boolean {
+        if (!isAdded) {
+            return false
+        }
+        val active = getChildFragmentManager().findFragmentById(R.id.container_searchtext)
+        return active != null && SplashFragment.FRAGMENT_TAG == active.tag
+    }
 
-	@Override
-	protected boolean triggerFocusSearch()
-	{
-		if (!isAdded())
-		{
-			return false;
-		}
-		Fragment active = getChildFragmentManager().findFragmentById(R.id.container_searchtext);
-		return active != null && SplashFragment.FRAGMENT_TAG.equals(active.getTag());
-	}
+    companion object {
+        private const val TAG = "SearchTextF"
+    }
 }
