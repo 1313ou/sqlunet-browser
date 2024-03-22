@@ -26,7 +26,7 @@ import org.sqlunet.treeview.view.TreeViewer
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 abstract class TreeFragment protected constructor() : Fragment() {
-    // static private final String TAG = "TreeF";
+
     /**
      * Tree model root
      */

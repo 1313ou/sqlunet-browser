@@ -22,7 +22,7 @@ abstract class DocumentTransformer {
      * @param isSelector is selector source
      * @return html
      */
-    fun docToHtml(doc: Document?, source: String?, isSelector: Boolean): String {
+    fun docToHtml(doc: Document, source: String, isSelector: Boolean): String {
         // Log.d(TAG, "to be transformed:" + DomTransformer.docToXml(doc));
         return try {
             docToString(doc, getXSLStream(source, isSelector), "html")
@@ -39,7 +39,7 @@ abstract class DocumentTransformer {
      * @param isSelector is selector source
      * @return XSL inputstream
      */
-    protected abstract fun getXSLStream(from: String?, isSelector: Boolean): InputStream?
+    protected abstract fun getXSLStream(from: String, isSelector: Boolean): InputStream?
 
     companion object {
         private const val TAG = "DocumentTransformer"

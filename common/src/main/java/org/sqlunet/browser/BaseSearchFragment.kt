@@ -51,8 +51,11 @@ import org.sqlunet.settings.Settings.Selector.Companion.getPref
 abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
     // Q U E R Y
-    protected var query: String? = null
+
+    protected lateinit var query: String
+
     // C O M P O N E N T S
+
     /**
      * Search view -held in search menuitem) that holds query
      */
@@ -367,7 +370,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
     // S E A R C H   L I S T E N E R
 
-    override fun search(query: String?) {
+    override fun search(query: String) {
         this.query = query
 
         // subtitle

@@ -26,8 +26,7 @@ abstract class BaseSelectorsListFragment  : LoggingFragment(), OnItemClickListen
     /**
      * Search query
      */
-    @JvmField
-    protected var word: String? = null
+    protected lateinit var word: String
 
     /**
      * List view

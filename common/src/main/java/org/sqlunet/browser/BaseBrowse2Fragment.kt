@@ -3,7 +3,6 @@
  */
 package org.sqlunet.browser
 
-import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
@@ -12,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import org.sqlunet.IPointer
 import org.sqlunet.browser.common.R
 import org.sqlunet.settings.Settings.Companion.getDetailViewModePref
 import org.sqlunet.settings.Settings.DetailViewMode
@@ -25,16 +23,22 @@ import org.sqlunet.settings.Settings.DetailViewMode
 abstract class BaseBrowse2Fragment : Fragment() {
     @JvmField
     protected var pointer: Parcelable? = null
+
     @JvmField
     protected var word: String? = null
+
     @JvmField
     protected var cased: String? = null
+
     @JvmField
     protected var pronunciation: String? = null
+
     @JvmField
     protected var pos: String? = null
+
     @JvmField
     protected var layoutId = R.layout.fragment_browse2_multi
+
     @JvmField
     protected var targetView: TextView? = null
 
@@ -42,7 +46,7 @@ abstract class BaseBrowse2Fragment : Fragment() {
         super.onCreate(savedInstanceState)
         if (savedInstanceState != null) {
             Log.d(TAG, "restore instance state $this")
-            pointer = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) savedInstanceState.getParcelable(POINTER_STATE, IPointer::class.java) else savedInstanceState.getParcelable(POINTER_STATE)
+            pointer = getParcelable(savedInstanceState, POINTER_STATE)
         }
     }
 
@@ -52,7 +56,7 @@ abstract class BaseBrowse2Fragment : Fragment() {
             DetailViewMode.VIEW -> inflater.inflate(layoutId, container, false)
             DetailViewMode.WEB -> inflater.inflate(R.layout.fragment_browse2, container, false)
         }
-     }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

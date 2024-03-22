@@ -109,7 +109,7 @@ open class MainActivity : AppCompatActivity() {
             if (isActionView || Intent.ACTION_SEARCH == action) {
 
                 // search query submit (SEARCH) or suggestion selection (when a suggested item is selected) (VIEW)
-                val query = intent.getStringExtra(SearchManager.QUERY)
+                val query = intent.getStringExtra(SearchManager.QUERY)!!
                 if (isActionView) {
                     fragment.clearQuery()
                 }
