@@ -1,427 +1,298 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.assetpack
 
-package org.sqlunet.assetpack;
+import android.app.Activity
+import android.content.Context
+import android.util.Log
+import androidx.core.content.ContextCompat
+import com.bbou.concurrency.Cancelable
+import com.bbou.concurrency.observe.TaskObserver
+import com.google.android.play.core.assetpacks.AssetPackManager
+import com.google.android.play.core.assetpacks.AssetPackManagerFactory
+import com.google.android.play.core.assetpacks.AssetPackState
+import com.google.android.play.core.assetpacks.AssetPackStateUpdateListener
+import com.google.android.play.core.assetpacks.AssetPackStates
+import com.google.android.play.core.assetpacks.model.AssetPackErrorCode
+import com.google.android.play.core.assetpacks.model.AssetPackStatus
+import com.google.android.play.core.tasks.RuntimeExecutionException
+import com.google.android.play.core.tasks.Task
+import java.io.File
+import java.util.Locale
 
-import android.app.Activity;
-import android.content.Context;
-import android.util.Log;
+/**
+ * Asset pack loader
+ *
+ * @param context context
+ * @param pack    asset pack name
+ */
+class AssetPackLoader(context: Context, private val pack: String) : Cancelable {
 
-import com.bbou.concurrency.Cancelable;
-import com.bbou.concurrency.observe.TaskObserver;
-import com.google.android.play.core.assetpacks.AssetPackLocation;
-import com.google.android.play.core.assetpacks.AssetPackManager;
-import com.google.android.play.core.assetpacks.AssetPackManagerFactory;
-import com.google.android.play.core.assetpacks.AssetPackState;
-import com.google.android.play.core.assetpacks.AssetPackStateUpdateListener;
-import com.google.android.play.core.assetpacks.AssetPackStates;
-import com.google.android.play.core.assetpacks.model.AssetPackErrorCode;
-import com.google.android.play.core.assetpacks.model.AssetPackStatus;
-import com.google.android.play.core.tasks.RuntimeExecutionException;
+    private val assetPackManager: AssetPackManager
+    private var waitForWifiConfirmationShown = false
 
-import java.io.File;
-import java.util.Collections;
-import java.util.Locale;
+    /**
+     * Asset pack path
+     *
+     * @return asset pack path if installed, null other wise
+     */
+    fun assetPackPathIfInstalled(): String? {
+        val packLocation = assetPackManager.getPackLocation(pack)
+        if (packLocation != null) {
+            val path = packLocation.assetsPath()
+            Log.d(TAG, "Asset path $path")
+            return path
+        }
+        return null
+    }
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import kotlin.Pair;
+    /**
+     * Asset pack delivery
+     *
+     * @param activity  activity
+     * @param observer  observer
+     * @param whenReady to run when ready
+     * @return asset pack path if pack was installed
+     */
+    fun assetPackDelivery(activity: Activity, observer: TaskObserver<Pair<Number, Number>>, whenReady: Runnable?): String? {
+        val packLocation = assetPackManager.getPackLocation(pack)
+        if (packLocation != null) {
+            val path = packLocation.assetsPath()
+            Log.d(TAG, "Asset path $path")
+            return path
+        }
 
-public class AssetPackLoader implements Cancelable
-{
-	private static final String TAG = "AssetPackLoader";
+        // observer
+        observer.taskStart(this)
 
-	@NonNull
-	private final String pack;
+        // listener
+        assetPackManager.registerListener(Listener(activity, observer, whenReady))
 
-	@NonNull
-	private final AssetPackManager assetPackManager;
+        // fetch if uninstalled
+        assetPackManager //
+            .getPackStates(listOf(pack)) //
+            .addOnCompleteListener { task: Task<AssetPackStates?> ->
+                try {
+                    // state
+                    val states = task.result
+                    val state = states.packStates()[pack]!!
+                    val status = state.status()
+                    Log.i(TAG, String.format("AssetPack %s status %s %d/%d %d%%", state.name(), statusToString(status), state.bytesDownloaded(), state.totalBytesToDownload(), state.transferProgressPercentage()))
+                    if (AssetPackStatus.NOT_INSTALLED == status || AssetPackStatus.CANCELED == status || AssetPackStatus.FAILED == status) {
+                        // do not eat error
+                        if (AssetPackStatus.FAILED == status) {
+                            val errorCode = state.errorCode()
+                            observer.taskUpdate(statusToString(status) + ' ' + errorToString(errorCode))
+                        }
 
-	private boolean waitForWifiConfirmationShown = false;
+                        // fetch
+                        // returns an AssetPackStates object containing a list of packs and their initial download states and sizes.
+                        // if an asset pack requested via fetch() is already downloading, the download status is returned and no additional download is started.
+                        /* val fetchTask0 : Task<AssetPackStates> = */
+                        assetPackManager.fetch(listOf(pack)) //
+                            .addOnCompleteListener { Log.i(TAG, "OnFetchCompleted") } //
+                            .addOnFailureListener { exception: Exception -> Log.i(TAG, "OnFetchFailure " + exception.message) } //
+                            .addOnSuccessListener {
+                                Log.i(TAG, "OnFetchSuccess ")
+                                val packLocation2 = assetPackManager.getPackLocation(pack)
+                                Log.i(TAG, "OnFetchSuccess, Path asset " + if (packLocation2 == null) "null" else packLocation2.assetsPath())
+                            }
+                    } else if (AssetPackStatus.COMPLETED == status) {
+                        val packLocation1 = assetPackManager.getPackLocation(pack)
+                        Log.i(TAG, "Status asset path " + if (packLocation1 == null) "null" else packLocation1.assetsPath())
+                        observer.taskUpdate(statusToString(status))
+                        observer.taskFinish(true)
+                        whenReady?.run()
+                    }
+                } catch (e: RuntimeExecutionException) {
+                    var message = e.message
+                    if (message == null) {
+                        message = "<unknown>"
+                    }
+                    Log.e(TAG, "Failure $message")
+                    observer.taskUpdate(message)
+                    observer.taskFinish(false)
+                }
+            }
+        return null
+    }
 
-	/**
-	 * Constructor
-	 *
-	 * @param context context
-	 * @param pack    asset pack name
-	 */
-	public AssetPackLoader(@NonNull final Context context, @NonNull final String pack)
-	{
-		this.assetPackManager = AssetPackManagerFactory.getInstance(context);
-		this.pack = pack;
-		dumpLocalTesting(context);
-	}
+    internal inner class Listener(val activity: Activity, private val observer: TaskObserver<Pair<Number, Number>>, private val whenReady: Runnable?) : AssetPackStateUpdateListener {
 
-	/**
-	 * Asset pack path
-	 *
-	 * @return asset pack path if installed, null other wise
-	 */
-	@Nullable
-	public String assetPackPathIfInstalled()
-	{
-		// pack location
-		final AssetPackLocation packLocation = this.assetPackManager.getPackLocation(this.pack);
-		if (packLocation != null)
-		{
-			final String path = packLocation.assetsPath();
-			Log.d(TAG, "Asset path " + path);
-			return path;
-		}
-		return null;
-	}
+        override fun onStateUpdate(state: AssetPackState) {
+            val status = state.status()
+            val statusStr = statusToString(status)
+            Log.d(TAG, "Status $statusStr")
+            when (status) {
+                AssetPackStatus.UNKNOWN, AssetPackStatus.NOT_INSTALLED, AssetPackStatus.PENDING -> // Asset pack state is not known.
+                    observer.taskUpdate(statusStr)
 
-	/**
-	 * Asset pack delivery
-	 *
-	 * @param activity  activity
-	 * @param observer  observer
-	 * @param whenReady to run when ready
-	 * @return asset pack path if pack was installed
-	 */
-	@Nullable
-	public String assetPackDelivery(@NonNull final Activity activity, @NonNull final TaskObserver<Pair<Number, Number>> observer, @Nullable Runnable whenReady)
-	{
-		// pack location
-		final AssetPackLocation packLocation = this.assetPackManager.getPackLocation(this.pack);
-		if (packLocation != null)
-		{
-			final String path = packLocation.assetsPath();
-			Log.d(TAG, "Asset path " + path);
-			return path;
-		}
+                AssetPackStatus.DOWNLOADING -> {
+                    val downloaded = state.bytesDownloaded()
+                    val totalSize = state.totalBytesToDownload()
+                    Log.i(TAG, "Status downloading progress " + String.format("%d / %d", downloaded, totalSize))
+                    observer.taskUpdate(statusStr)
+                    observer.taskProgress(Pair<Number, Number>(downloaded, totalSize))
+                }
 
-		// observer
-		observer.taskStart(this);
+                AssetPackStatus.TRANSFERRING -> {
+                    val percent2 = state.transferProgressPercentage()
+                    val percent2Str = String.format(Locale.getDefault(), "%d %%", percent2)
+                    Log.i(TAG, "Status transferring progress $percent2Str")
+                    observer.taskUpdate("$statusStr $percent2Str")
+                    observer.taskProgress(Pair<Number, Number>(percent2, -1))
+                }
 
-		// listener
-		this.assetPackManager.registerListener(new Listener(activity, observer, whenReady));
+                AssetPackStatus.WAITING_FOR_WIFI -> {
+                    observer.taskUpdate(statusStr)
+                    if (!waitForWifiConfirmationShown) {
+                        assetPackManager.showCellularDataConfirmation(activity).addOnSuccessListener { resultCode: Int ->
+                            if (resultCode == Activity.RESULT_OK) {
+                                Log.d(TAG, "Confirmation dialog has been accepted.")
+                            } else if (resultCode == Activity.RESULT_CANCELED) {
+                                Log.d(TAG, "Confirmation dialog has been denied by the user.")
+                            }
+                        }
+                        waitForWifiConfirmationShown = true
+                    }
+                }
 
-		// fetch if uninstalled
-		this.assetPackManager //
-				.getPackStates(Collections.singletonList(this.pack)) //
-				.addOnCompleteListener(task -> {
+                AssetPackStatus.COMPLETED -> {
+                    assetPackManager.unregisterListener(this)
+                    val packLocation1 = assetPackManager.getPackLocation(pack)
+                    Log.i(TAG, "Status asset path " + if (packLocation1 == null) "null" else packLocation1.assetsPath())
+                    observer.taskUpdate(statusStr)
+                    observer.taskFinish(true)
+                    whenReady?.run()
+                }
 
-					try
-					{
-						// state
-						final AssetPackStates states = task.getResult();
-						final AssetPackState state = states.packStates().get(this.pack);
-						assert state != null;
-						final int status = state.status();
-						Log.i(TAG, String.format("AssetPack %s status %s %d/%d %d%%", state.name(), statusToString(status), state.bytesDownloaded(), state.totalBytesToDownload(), state.transferProgressPercentage()));
+                AssetPackStatus.FAILED -> {
+                    assetPackManager.unregisterListener(this)
+                    val errorCode = state.errorCode()
+                    Log.e(TAG, "Status error " + errorCode + ' ' + errorToString(errorCode))
+                    observer.taskUpdate(statusStr)
+                    observer.taskFinish(false)
+                    observer.taskUpdate("Error " + errorToString(errorCode))
+                }
 
-						if (AssetPackStatus.NOT_INSTALLED == status || AssetPackStatus.CANCELED == status || AssetPackStatus.FAILED == status)
-						{
-							// do not eat error
-							if (AssetPackStatus.FAILED == status)
-							{
-								int errorCode = state.errorCode();
-								observer.taskUpdate(statusToString(status) + ' ' + errorToString(errorCode));
-							}
+                AssetPackStatus.CANCELED -> {
+                    assetPackManager.unregisterListener(this)
+                    val errorCode2 = state.errorCode()
+                    Log.i(TAG, "Status canceled " + errorCode2 + ' ' + errorToString(errorCode2))
+                    observer.taskUpdate(statusStr)
+                    observer.taskFinish(false)
+                }
+            }
+        }
+    }
 
-							// fetch
-							// returns an AssetPackStates object containing a list of packs and their initial download states and sizes.
-							// if an asset pack requested via fetch() is already downloading, the download status is returned and no additional download is started.
-							/* Task<AssetPackStates> fetchTask0 = */
-							this.assetPackManager.fetch(Collections.singletonList(this.pack)) //
+    /**
+     * Cancel operation
+     *
+     * @param mayInterruptIfRunning may interrupt if running
+     * @return true
+     */
+    override fun cancel(mayInterruptIfRunning: Boolean): Boolean {
+        Log.d(TAG, "User cancel")
+        assetPackManager.cancel(listOf(pack))
+        isCancelled = true
+        return true
+    }
 
-									.addOnCompleteListener(fetchTask -> {
+    private var isCancelled = false
 
-										Log.i(TAG, "OnFetchCompleted");
-										/*
-										try
-										{
-											final AssetPackStates fetchAssetPackStates = fetchTask.getResult();
-											final AssetPackState fetchAssetPackState = fetchAssetPackStates.packStates().get(this.pack);
-											assert fetchAssetPackState != null;
-											final int fetchStatus = fetchAssetPackState.status();
-											Log.i(TAG, "OnFetchCompleted " + statusToString(fetchStatus));
-											if (fetchStatus == AssetPackStatus.FAILED)
-											{
-												int errorCode = fetchAssetPackState.errorCode();
-												Log.e(TAG, "OnFetchCompleted with error " + errorCode + ' ' + errorToString(errorCode));
-											}
-										}
-										catch (RuntimeExecutionException e)
-										{
-											Log.e(TAG, "getResult() error", e);
-										}
-										*/
-									}) //
-									.addOnFailureListener(exception -> Log.i(TAG, "OnFetchFailure " + exception.getMessage())) //
-									.addOnSuccessListener(task2 -> {
+   init {
+        assetPackManager = AssetPackManagerFactory.getInstance(context)
+        dumpLocalTesting(context)
+    }
 
-										Log.i(TAG, "OnFetchSuccess ");
-										final AssetPackLocation packLocation2 = this.assetPackManager.getPackLocation(this.pack);
-										Log.i(TAG, "OnFetchSuccess, Path asset " + (packLocation2 == null ? "null" : packLocation2.assetsPath()));
-									});
-						}
-						else if (AssetPackStatus.COMPLETED == status)
-						{
-							final AssetPackLocation packLocation1 = AssetPackLoader.this.assetPackManager.getPackLocation(AssetPackLoader.this.pack);
-							Log.i(TAG, "Status asset path " + (packLocation1 == null ? "null" : packLocation1.assetsPath()));
-							observer.taskUpdate(statusToString(status));
-							observer.taskFinish(true);
-							if (whenReady != null)
-							{
-								whenReady.run();
-							}
-						}
-					}
-					catch (RuntimeExecutionException e)
-					{
-						String message = e.getMessage();
-						if (message == null)
-						{
-							message = "<unknown>";
-						}
-						Log.e(TAG, "Failure " + message);
-						observer.taskUpdate(message);
-						observer.taskFinish(false);
-					}
-				});
-		return null;
-	}
+    override fun isCancelled(): Boolean {
+        return isCancelled
+    }
 
-	class Listener implements AssetPackStateUpdateListener
-	{
-		@NonNull
-		final Activity activity;
+    companion object {
+        private const val TAG = "AssetPackLoader"
 
-		@NonNull
-		final TaskObserver<Pair<Number, Number>> observer;
+        /**
+         * Status to string
+         *
+         * @param status numeric status
+         * @return status string
+         */
+        private fun statusToString(status: Int): String {
+            when (status) {
+                AssetPackStatus.UNKNOWN -> return "unknown"
+                AssetPackStatus.PENDING -> return "pending"
+                AssetPackStatus.DOWNLOADING -> return "downloading"
+                AssetPackStatus.TRANSFERRING -> return "transferring"
+                AssetPackStatus.COMPLETED -> return "completed"
+                AssetPackStatus.FAILED -> return "failed"
+                AssetPackStatus.CANCELED -> return "canceled"
+                AssetPackStatus.WAITING_FOR_WIFI -> return "waiting for wifi"
+                AssetPackStatus.NOT_INSTALLED -> return "not installed"
+            }
+            return "illegal"
+        }
 
-		@Nullable
-		final Runnable whenReady;
+        /**
+         * Error to string
+         *
+         * @param error numeric static
+         * @return error string
+         */
+        private fun errorToString(error: Int): String {
+            when (error) {
+                AssetPackErrorCode.NO_ERROR -> return "no error"
+                AssetPackErrorCode.APP_UNAVAILABLE -> return "app unavailable"
+                AssetPackErrorCode.PACK_UNAVAILABLE -> return "pack unavailable"
+                AssetPackErrorCode.INVALID_REQUEST -> return "invalid request"
+                AssetPackErrorCode.DOWNLOAD_NOT_FOUND -> return "download not found"
+                AssetPackErrorCode.API_NOT_AVAILABLE -> return "api not available"
+                AssetPackErrorCode.NETWORK_ERROR -> return "network error"
+                AssetPackErrorCode.ACCESS_DENIED -> return "access denied"
+                AssetPackErrorCode.INSUFFICIENT_STORAGE -> return "insufficient storage"
+                AssetPackErrorCode.APP_NOT_OWNED -> return "app not owned (not acquired from Play)"
+                AssetPackErrorCode.INTERNAL_ERROR -> return "internal error"
+            }
+            return "unknown $error"
+        }
 
-		Listener(@NonNull final Activity activity, @NonNull final TaskObserver<Pair<Number, Number>> observer, @Nullable Runnable whenReady)
-		{
-			this.activity = activity;
-			this.observer = observer;
-			this.whenReady = whenReady;
-		}
+        /**
+         * Dispose of asset pack
+         *
+         * @param activity activity
+         * @param packs    packs to delete
+         */
+        fun assetPackRemove(activity: Activity, vararg packs: String) {
+            val assetPackManager = AssetPackManagerFactory.getInstance(activity)
+            for (pack in packs) {
+                if (pack.isNotEmpty()) {
+                    assetPackManager.removePack(pack) //
+                        .addOnCompleteListener { task3: Task<Void?> -> Log.d(TAG, "Remove success " + task3.isSuccessful) } //
+                        .addOnFailureListener { exception: Exception -> Log.e(TAG, "Remove failure " + exception.message) }
+                }
+            }
+        }
 
-		@Override
-		public void onStateUpdate(@NonNull final AssetPackState state)
-		{
-			int status = state.status();
-			String statusStr = statusToString(status);
-			Log.d(TAG, "Status " + statusStr);
-
-			switch (status)
-			{
-				case AssetPackStatus.UNKNOWN: // The pack has never been requested before.
-				case AssetPackStatus.NOT_INSTALLED: // Asset pack is not downloaded yet.
-				case AssetPackStatus.PENDING: // The asset pack download is pending and will be processed soon.
-					// Asset pack state is not known.
-					this.observer.taskUpdate(statusStr);
-					break;
-
-				case AssetPackStatus.DOWNLOADING:
-					long downloaded = state.bytesDownloaded();
-					long totalSize = state.totalBytesToDownload();
-					Log.i(TAG, "Status downloading progress " + String.format("%d / %d", downloaded, totalSize));
-					this.observer.taskUpdate(statusStr);
-					this.observer.taskProgress(new Pair<>(downloaded, totalSize));
-					break;
-
-				case AssetPackStatus.TRANSFERRING: // 100% downloaded and assets are being transferred. Notify user to wait until transfer is complete.
-					int percent2 = state.transferProgressPercentage();
-					String percent2Str = String.format(Locale.getDefault(), "%d %%", percent2);
-					Log.i(TAG, "Status transferring progress " + percent2Str);
-					this.observer.taskUpdate(statusStr + ' ' + percent2Str);
-					this.observer.taskProgress(new Pair<>(percent2, -1));
-					break;
-
-				case AssetPackStatus.WAITING_FOR_WIFI: // The asset pack download is waiting for Wi-Fi to become available before proceeding.
-					this.observer.taskUpdate(statusStr);
-					if (!AssetPackLoader.this.waitForWifiConfirmationShown)
-					{
-						AssetPackLoader.this.assetPackManager.showCellularDataConfirmation(this.activity).addOnSuccessListener(resultCode -> {
-
-							if (resultCode == Activity.RESULT_OK)
-							{
-								Log.d(TAG, "Confirmation dialog has been accepted.");
-							}
-							else if (resultCode == Activity.RESULT_CANCELED)
-							{
-								Log.d(TAG, "Confirmation dialog has been denied by the user.");
-							}
-						});
-						AssetPackLoader.this.waitForWifiConfirmationShown = true;
-					}
-					break;
-
-				case AssetPackStatus.COMPLETED: // Asset pack is ready to use.
-					AssetPackLoader.this.assetPackManager.unregisterListener(this);
-					final AssetPackLocation packLocation1 = AssetPackLoader.this.assetPackManager.getPackLocation(AssetPackLoader.this.pack);
-					Log.i(TAG, "Status asset path " + (packLocation1 == null ? "null" : packLocation1.assetsPath()));
-					this.observer.taskUpdate(statusStr);
-					this.observer.taskFinish(true);
-					if (this.whenReady != null)
-					{
-						this.whenReady.run();
-					}
-					break;
-
-				case AssetPackStatus.FAILED: // Request failed. Notify user.
-					AssetPackLoader.this.assetPackManager.unregisterListener(this);
-					int errorCode = state.errorCode();
-					Log.e(TAG, "Status error " + errorCode + ' ' + errorToString(errorCode));
-					this.observer.taskUpdate(statusStr);
-					this.observer.taskFinish(false);
-					this.observer.taskUpdate("Error " + errorToString(errorCode));
-					break;
-
-				case AssetPackStatus.CANCELED:  // Request canceled. Notify user.
-					AssetPackLoader.this.assetPackManager.unregisterListener(this);
-					int errorCode2 = state.errorCode();
-					Log.i(TAG, "Status canceled " + errorCode2 + ' ' + errorToString(errorCode2));
-					this.observer.taskUpdate(statusStr);
-					this.observer.taskFinish(false);
-					break;
-			}
-		}
-	}
-
-	/**
-	 * Status to string
-	 *
-	 * @param status numeric status
-	 * @return status string
-	 */
-	@NonNull
-	private static String statusToString(int status)
-	{
-		switch (status)
-		{
-			case AssetPackStatus.UNKNOWN:
-				return "unknown";
-			case AssetPackStatus.PENDING:
-				return "pending";
-			case AssetPackStatus.DOWNLOADING:
-				return "downloading";
-			case AssetPackStatus.TRANSFERRING:
-				return "transferring";
-			case AssetPackStatus.COMPLETED:
-				return "completed";
-			case AssetPackStatus.FAILED:
-				return "failed";
-			case AssetPackStatus.CANCELED:
-				return "canceled";
-			case AssetPackStatus.WAITING_FOR_WIFI:
-				return "waiting for wifi";
-			case AssetPackStatus.NOT_INSTALLED:
-				return "not installed";
-		}
-		return "illegal";
-	}
-
-	/**
-	 * Error to string
-	 *
-	 * @param error numeric static
-	 * @return error string
-	 */
-	@NonNull
-	private static String errorToString(int error)
-	{
-		switch (error)
-		{
-			case AssetPackErrorCode.NO_ERROR:
-				return "no error";
-			case AssetPackErrorCode.APP_UNAVAILABLE:
-				return "app unavailable";
-			case AssetPackErrorCode.PACK_UNAVAILABLE:
-				return "pack unavailable";
-			case AssetPackErrorCode.INVALID_REQUEST:
-				return "invalid request";
-			case AssetPackErrorCode.DOWNLOAD_NOT_FOUND:
-				return "download not found";
-			case AssetPackErrorCode.API_NOT_AVAILABLE:
-				return "api not available";
-			case AssetPackErrorCode.NETWORK_ERROR:
-				return "network error";
-			case AssetPackErrorCode.ACCESS_DENIED:
-				return "access denied";
-			case AssetPackErrorCode.INSUFFICIENT_STORAGE:
-				return "insufficient storage";
-			case AssetPackErrorCode.APP_NOT_OWNED:
-				return "app not owned (not acquired from Play)";
-			case AssetPackErrorCode.INTERNAL_ERROR:
-				return "internal error";
-		}
-		return "unknown " + error;
-	}
-
-	/**
-	 * Dispose of asset pack
-	 *
-	 * @param activity activity
-	 * @param packs    packs to delete
-	 */
-	public static void assetPackRemove(@NonNull final Activity activity, @NonNull final String... packs)
-	{
-		final AssetPackManager assetPackManager = AssetPackManagerFactory.getInstance(activity);
-		for (String pack : packs)
-		{
-			if (pack != null && !pack.isEmpty())
-			{
-				assetPackManager.removePack(pack) //
-						.addOnCompleteListener(task3 -> Log.d(TAG, "Remove success " + task3.isSuccessful())) //
-						.addOnFailureListener(exception -> Log.e(TAG, "Remove failure " + exception.getMessage()));
-			}
-		}
-	}
-
-	/**
-	 * Cancel operation
-	 *
-	 * @param mayInterruptIfRunning may interrupt if running
-	 * @return true
-	 */
-	@Override
-	public boolean cancel(final boolean mayInterruptIfRunning)
-	{
-		Log.d(TAG, "User cancel");
-		AssetPackLoader.this.assetPackManager.cancel(Collections.singletonList(this.pack));
-		isCancelled = true;
-		return true;
-	}
-
-	private boolean isCancelled = false;
-
-	@Override
-	public boolean isCancelled()
-	{
-		return isCancelled;
-	}
-
-	/**
-	 * Local testing dump
-	 *
-	 * @param context context
-	 */
-	static void dumpLocalTesting(@NonNull Context context)
-	{
-		final File[] ds = ContextCompat.getExternalFilesDirs(context, null);
-		for (File d : ds)
-		{
-			File dir = new File(d, "local_testing");
-			if (dir.exists() && dir.isDirectory())
-			{
-				String[] content = new File(d, "local_testing").list();
-				if (content != null)
-				{
-					for (String f : content)
-					{
-						Log.d(TAG, "exists " + f);
-					}
-				}
-			}
-		}
-	}
+        /**
+         * Local testing dump
+         *
+         * @param context context
+         */
+        fun dumpLocalTesting(context: Context) {
+            val ds = ContextCompat.getExternalFilesDirs(context, null)
+            for (d in ds) {
+                val dir = File(d, "local_testing")
+                if (dir.exists() && dir.isDirectory()) {
+                    val content = File(d, "local_testing").list()
+                    if (content != null) {
+                        for (f in content) {
+                            Log.d(TAG, "exists $f")
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

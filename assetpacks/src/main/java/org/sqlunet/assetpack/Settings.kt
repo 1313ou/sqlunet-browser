@@ -1,32 +1,21 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.assetpack
 
-package org.sqlunet.assetpack;
+import android.content.Context
+import androidx.preference.PreferenceManager
 
-import android.content.Context;
-import android.content.SharedPreferences;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.preference.PreferenceManager;
-
-public class Settings
-{
-	public static final String PREF_DB_ASSET = "pref_db_asset";
-
-	public static void recordDbAsset(@NonNull final Context context, @Nullable final String assetPack)
-	{
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		final SharedPreferences.Editor edit = sharedPref.edit(); //
-		if (assetPack != null)
-		{
-			edit.putString(PREF_DB_ASSET, assetPack);
-		}
-		else
-		{
-			edit.remove(PREF_DB_ASSET);
-		}
-		edit.apply();
-	}
+object Settings {
+    const val PREF_DB_ASSET = "pref_db_asset"
+    fun recordDbAsset(context: Context, assetPack: String?) {
+        val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+        val edit = sharedPref.edit() //
+        if (assetPack != null) {
+            edit.putString(PREF_DB_ASSET, assetPack)
+        } else {
+            edit.remove(PREF_DB_ASSET)
+        }
+        edit.apply()
+    }
 }
