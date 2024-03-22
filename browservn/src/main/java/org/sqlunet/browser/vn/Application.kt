@@ -1,34 +1,28 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser.vn
 
-package org.sqlunet.browser.vn;
+import android.content.Context
+import org.sqlunet.browser.AbstractApplication
+import org.sqlunet.style.Colors
 
-import android.content.Context;
+class Application : AbstractApplication() {
 
-import org.sqlunet.browser.AbstractApplication;
-import org.sqlunet.style.Colors;
+    override fun onCreate() {
+        super.onCreate()
+        setAllColorsFromResources(this)
+    }
 
-import androidx.annotation.NonNull;
+    override fun setAllColorsFromResources(newContext: Context) {
+        // Log.d(TAG, "setColors " + NightMode.nightModeToString(this))
+        Colors.setColorsFromResources(newContext)
+        org.sqlunet.verbnet.style.Colors.setColorsFromResources(newContext)
+        org.sqlunet.propbank.style.Colors.setColorsFromResources(newContext)
+        org.sqlunet.wordnet.style.Colors.setColorsFromResources(newContext)
+    }
 
-public class Application extends AbstractApplication
-{
-	static private final String TAG = "Application";
-
-	@Override
-	public void onCreate()
-	{
-		super.onCreate();
-		setAllColorsFromResources(this);
-	}
-
-	@Override
-	public void setAllColorsFromResources(@NonNull final Context context)
-	{
-		// Log.d(TAG, "setColors " + NightMode.nightModeToString(this));
-		Colors.setColorsFromResources(context);
-		org.sqlunet.verbnet.style.Colors.setColorsFromResources(context);
-		org.sqlunet.propbank.style.Colors.setColorsFromResources(context);
-		org.sqlunet.wordnet.style.Colors.setColorsFromResources(context);
-	}
+    companion object {
+        private const val TAG = "Application"
+    }
 }

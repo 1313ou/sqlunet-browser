@@ -1,40 +1,34 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser.xn
 
-package org.sqlunet.browser.xn;
+import android.content.Context
+import android.util.Log
+import org.sqlunet.browser.AbstractApplication
+import org.sqlunet.nightmode.NightMode.nightModeToString
+import org.sqlunet.style.Colors
 
-import android.content.Context;
-import android.util.Log;
+class Application : AbstractApplication() {
 
-import org.sqlunet.browser.AbstractApplication;
-import org.sqlunet.nightmode.NightMode;
-import org.sqlunet.style.Colors;
+    override fun onCreate() {
+        super.onCreate()
+        Settings.initializeSelectorPrefs(this)
+        setAllColorsFromResources(this)
+    }
 
-import androidx.annotation.NonNull;
+    override fun setAllColorsFromResources(newContext: Context) {
+        //Log.d(TAG, "DayNightMode: " + nightModeToString(this))
+        Colors.setColorsFromResources(newContext)
+        org.sqlunet.predicatematrix.style.Colors.setColorsFromResources(newContext)
+        org.sqlunet.wordnet.style.Colors.setColorsFromResources(newContext)
+        org.sqlunet.framenet.style.Colors.setColorsFromResources(newContext)
+        org.sqlunet.verbnet.style.Colors.setColorsFromResources(newContext)
+        org.sqlunet.propbank.style.Colors.setColorsFromResources(newContext)
+        org.sqlunet.bnc.style.Colors.setColorsFromResources(newContext)
+    }
 
-public class Application extends AbstractApplication
-{
-	static private final String TAG = "Application";
-
-	@Override
-	public void onCreate()
-	{
-		super.onCreate();
-		Settings.initializeSelectorPrefs(this);
-		setAllColorsFromResources(this);
-	}
-
-	@Override
-	public void setAllColorsFromResources(@NonNull final Context context)
-	{
-		Log.d(TAG, "DayNightMode: " + NightMode.nightModeToString(this));
-		Colors.setColorsFromResources(context);
-		org.sqlunet.predicatematrix.style.Colors.setColorsFromResources(context);
-		org.sqlunet.wordnet.style.Colors.setColorsFromResources(context);
-		org.sqlunet.framenet.style.Colors.setColorsFromResources(context);
-		org.sqlunet.verbnet.style.Colors.setColorsFromResources(context);
-		org.sqlunet.propbank.style.Colors.setColorsFromResources(context);
-		org.sqlunet.bnc.style.Colors.setColorsFromResources(context);
-	}
+    companion object {
+        private const val TAG = "Application"
+    }
 }

@@ -1,153 +1,122 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser
 
-package org.sqlunet.browser;
-
-import android.app.SearchManager;
-import android.content.Intent;
-import android.content.res.Configuration;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-
-import org.sqlunet.browser.common.R;
-import org.sqlunet.nightmode.NightMode;
-
-import androidx.annotation.IdRes;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import android.annotation.SuppressLint
+import android.app.SearchManager
+import android.content.Intent
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import androidx.annotation.IdRes
+import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import org.sqlunet.browser.common.R
+import org.sqlunet.nightmode.NightMode.createOverrideConfigurationForDayNight
 
 /**
  * Browse activity
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public abstract class AbstractBrowseActivity<F extends BaseSearchFragment> extends AppCompatActivity
-{
-	/**
-	 * Fragment
-	 */
-	@Nullable
-	protected F fragment;
+abstract class AbstractBrowseActivity<F : BaseSearchFragment?> : AppCompatActivity() {
 
-	@LayoutRes
-	protected int getLayoutId()
-	{
-		return R.layout.activity_browse;
-	}
+    /**
+     * Fragment
+     */
+    @JvmField
+    protected var fragment: F? = null
 
-	@IdRes
-	protected int getFragmentId()
-	{
-		return R.id.fragment_browse;
-	}
+    @get:LayoutRes
+    protected open val layoutId: Int
+        get() = R.layout.activity_browse
 
-	@SuppressWarnings("unchecked")
-	@Override
-	protected void onCreate(@Nullable final Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
+    @get:IdRes
+    protected open val fragmentId: Int
+        get() = R.id.fragment_browse
 
-		// content
-		setContentView(getLayoutId());
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-		// toolbar
-		final Toolbar toolbar = findViewById(R.id.toolbar);
-		setSupportActionBar(toolbar);
+        // content
+        setContentView(layoutId)
 
-		// fragment
-		if (savedInstanceState == null)
-		{
-			this.fragment = (F) getSupportFragmentManager().findFragmentById(getFragmentId());
-		}
-	}
+        // toolbar
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
-	@Override
-	protected void onResume()
-	{
-		super.onResume();
+        // fragment
+        if (savedInstanceState == null) {
+            fragment = safeCast(supportFragmentManager.findFragmentById(fragmentId))
+        }
+    }
 
-		// check hook
-		EntryActivity.branchOffToLoadIfCantRun(this);
+    override fun onResume() {
+        super.onResume()
 
-		// handle sent intent
-		handleSearchIntent(getIntent());
-	}
+        // check hook
+        EntryActivity.branchOffToLoadIfCantRun(this)
 
-	@Override
-	protected void onNewIntent(@NonNull final Intent intent)
-	{
-		super.onNewIntent(intent);
-		setIntent(intent);
-		handleSearchIntent(intent);
-	}
+        // handle sent intent
+        handleSearchIntent(intent)
+    }
 
-	@Override
-	protected void onNightModeChanged(final int mode)
-	{
-		super.onNightModeChanged(mode);
-		final Configuration overrideConfig = NightMode.createOverrideConfigurationForDayNight(this, mode);
-		getApplication().onConfigurationChanged(overrideConfig);
-	}
+    @SuppressLint("MissingSuperCall") // BUG
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        handleSearchIntent(intent)
+    }
 
-	// M E N U
+    override fun onNightModeChanged(mode: Int) {
+        super.onNightModeChanged(mode)
+        val overrideConfig = createOverrideConfigurationForDayNight(this, mode)
+        application.onConfigurationChanged(overrideConfig)
+    }
 
-	@SuppressWarnings("SameReturnValue")
-	@Override
-	public boolean onCreateOptionsMenu(@NonNull final Menu menu)
-	{
-		// inflate the menu; this adds items to the type bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		// MenuCompat.setGroupDividerEnabled(menu, true);
-		return true;
-	}
+    // M E N U
 
-	@Override
-	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
-	{
-		return MenuHandler.menuDispatch(this, item);
-	}
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // inflate the menu; this adds items to the type bar if it is present.
+        menuInflater.inflate(R.menu.main, menu)
+        // MenuCompat.setGroupDividerEnabled(menu, true);
+        return true
+    }
 
-	// S E A R C H
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return MenuHandler.menuDispatch(this, item)
+    }
 
-	/**
-	 * Handle intent dispatched by search view (either onCreate or onNewIntent if activity is single top)
-	 *
-	 * @param intent intent
-	 */
-	protected void handleSearchIntent(@NonNull final Intent intent)
-	{
-		final String action = intent.getAction();
-		final boolean isActionView = Intent.ACTION_VIEW.equals(action);
-		if (isActionView || Intent.ACTION_SEARCH.equals(action))
-		{
-			// search query submit (SEARCH) or suggestion selection (when a suggested item is selected) (VIEW)
-			final String query = intent.getStringExtra(SearchManager.QUERY);
-			if (query != null && this.fragment != null)
-			{
-				if (isActionView)
-				{
-					this.fragment.clearQuery();
-				}
-				this.fragment.search(query);
-			}
-		}
-		else if (Intent.ACTION_SEND.equals(action))
-		{
-			final String type = intent.getType();
-			if ("text/plain".equals(type))
-			{
-				final String query = intent.getStringExtra(Intent.EXTRA_TEXT);
-				if (query != null && this.fragment != null)
-				{
-					//this.fragment.clearQuery();
-					this.fragment.search(query);
-				}
-			}
-		}
-	}
+    // S E A R C H
+
+    /**
+     * Handle intent dispatched by search view (either onCreate or onNewIntent if activity is single top)
+     *
+     * @param intent intent
+     */
+    protected open fun handleSearchIntent(intent: Intent) {
+        val action = intent.action
+        val isActionView = Intent.ACTION_VIEW == action
+        if (isActionView || Intent.ACTION_SEARCH == action) {
+            // search query submit (SEARCH) or suggestion selection (when a suggested item is selected) (VIEW)
+            val query = intent.getStringExtra(SearchManager.QUERY)
+            if (query != null && fragment != null) {
+                if (isActionView) {
+                    fragment!!.clearQuery()
+                }
+                fragment!!.search(query)
+            }
+        } else if (Intent.ACTION_SEND == action) {
+            val type = intent.type
+            if ("text/plain" == type) {
+                val query = intent.getStringExtra(Intent.EXTRA_TEXT)
+                if (query != null && fragment != null) {
+                    //this.fragment.clearQuery();
+                    fragment!!.search(query)
+                }
+            }
+        }
+    }
 }

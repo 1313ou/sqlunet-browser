@@ -1,90 +1,77 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser.config
 
-package org.sqlunet.browser.config;
+import android.os.Bundle
+import android.view.View
+import android.widget.ProgressBar
+import android.widget.TextView
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import org.sqlunet.browser.Sender
+import org.sqlunet.browser.common.R
+import java.io.BufferedReader
+import java.io.File
+import java.io.FileReader
+import java.io.IOException
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+class LogsActivity : AppCompatActivity() {
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_logs)
 
-import org.sqlunet.browser.Sender;
-import org.sqlunet.browser.common.R;
+        // toolbar
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+        // set up the action bar
+        val actionBar = supportActionBar!!
+        actionBar.displayOptions = ActionBar.DISPLAY_SHOW_HOME or ActionBar.DISPLAY_HOME_AS_UP or ActionBar.DISPLAY_SHOW_TITLE
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+        // progress
+        val progress = findViewById<ProgressBar>(R.id.progress)
+        progress.isIndeterminate = true
 
-public class LogsActivity extends AppCompatActivity
-{
-	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
+        // text view
+        val textView = findViewById<TextView>(R.id.report)
+        textView.setText(R.string.status_diagnostics_running)
 
-		setContentView(R.layout.activity_logs);
+        // action button
+        val fab = findViewById<FloatingActionButton>(R.id.send_fab)
+        fab.visibility = View.GONE
+        fab.setOnClickListener { Sender.send(this, "Semantikos log", textView.getText(), "semantikos.org@gmail.com") }
 
-		// toolbar
-		Toolbar toolbar = findViewById(R.id.toolbar);
-		setSupportActionBar(toolbar);
+        // logs
+        val fileName: String? = null
+        val storage = cacheDir
+        val logFile = File(storage, fileName ?: "sqlunet.log")
+        val text = readFile(logFile)
+        textView.text = text
+        progress.isIndeterminate = false
+        progress.visibility = View.GONE
+        fab.visibility = View.VISIBLE
+        fab.setEnabled(true)
+    }
 
-		// set up the action bar
-		final ActionBar actionBar = getSupportActionBar();
-		assert actionBar != null;
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
-
-		// progress
-		final ProgressBar progress = findViewById(R.id.progress);
-		progress.setIndeterminate(true);
-
-		// text view
-		final TextView textView = findViewById(R.id.report);
-		textView.setText(R.string.status_diagnostics_running);
-
-		// action button
-		final FloatingActionButton fab = findViewById(R.id.send_fab);
-		fab.setVisibility(View.GONE);
-		fab.setOnClickListener(view -> Sender.send(this, "Semantikos log", textView.getText(), "semantikos.org@gmail.com"));
-
-		// logs
-		String fileName = null;
-		final File storage = getCacheDir();
-		//noinspection ConstantConditions
-		final File logFile = new File(storage, fileName != null ? fileName : "sqlunet.log");
-		final String text = readFile(logFile);
-		textView.setText(text);
-		progress.setIndeterminate(false);
-		progress.setVisibility(View.GONE);
-		fab.setVisibility(View.VISIBLE);
-		fab.setEnabled(true);
-	}
-
-	@NonNull
-	private static String readFile(File file)
-	{
-		StringBuilder sb = new StringBuilder();
-		try (BufferedReader br = new BufferedReader(new FileReader(file)))
-		{
-			String line;
-			while ((line = br.readLine()) != null)
-			{
-				sb.append(line);
-				sb.append('\n');
-			}
-			return sb.toString();
-		}
-		catch (IOException e)
-		{
-			return "Error " + e.getMessage();
-		}
-	}
+    companion object {
+        private fun readFile(file: File): String {
+            val sb = StringBuilder()
+            try {
+                BufferedReader(FileReader(file)).use { br ->
+                    var line: String?
+                    while (br.readLine().also { line = it } != null) {
+                        sb.append(line)
+                        sb.append('\n')
+                    }
+                    return sb.toString()
+                }
+            } catch (e: IOException) {
+                return "Error " + e.message
+            }
+        }
+    }
 }

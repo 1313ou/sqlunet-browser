@@ -1,32 +1,27 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser.fn
 
-package org.sqlunet.browser.fn;
+import android.content.Context
+import org.sqlunet.browser.AbstractApplication
+import org.sqlunet.framenet.style.Colors
+import org.sqlunet.style.Colors.setColorsFromResources
 
-import android.content.Context;
+class Application : AbstractApplication() {
 
-import org.sqlunet.browser.AbstractApplication;
-import org.sqlunet.style.Colors;
+    override fun onCreate() {
+        super.onCreate()
+        setAllColorsFromResources(this)
+    }
 
-import androidx.annotation.NonNull;
+    override fun setAllColorsFromResources(newContext: Context) {
+        // Log.d(TAG, "setColors " + NightMode.nightModeToString(this))
+        setColorsFromResources(newContext)
+        Colors.setColorsFromResources(newContext)
+    }
 
-public class Application extends AbstractApplication
-{
-	static private final String TAG = "Application";
-
-	@Override
-	public void onCreate()
-	{
-		super.onCreate();
-		setAllColorsFromResources(this);
-	}
-
-	@Override
-	public void setAllColorsFromResources(@NonNull final Context context)
-	{
-		// Log.d(TAG, "setColors " + NightMode.nightModeToString(this));
-		Colors.setColorsFromResources(context);
-		org.sqlunet.framenet.style.Colors.setColorsFromResources(context);
-	}
+    companion object {
+        private const val TAG = "Application"
+    }
 }

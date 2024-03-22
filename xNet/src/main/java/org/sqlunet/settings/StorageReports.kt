@@ -367,9 +367,10 @@ object StorageReports {
     }
 
     // S T Y L E D   R E P O R T S
+
     @JvmStatic
     @SafeVarargs
-    fun namesValuesToReportStyled(vararg directories: Pair<Array<CharSequence>, Array<String?>?>): CharSequence {
+    fun namesValuesToReportStyled(vararg directories: Pair<Array<CharSequence>, Array<String>>): CharSequence {
         val sb = SpannableStringBuilder()
         for (namesValues in directories) {
             val names = namesValues.first

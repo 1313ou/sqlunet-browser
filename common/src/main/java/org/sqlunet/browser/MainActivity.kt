@@ -1,173 +1,145 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser
 
-package org.sqlunet.browser;
+import android.annotation.SuppressLint
+import android.app.SearchManager
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI.navigateUp
+import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
+import androidx.navigation.ui.NavigationUI.setupWithNavController
+import com.bbou.rate.AppRate.Companion.invoke
+import com.google.android.material.navigation.NavigationView
+import org.sqlunet.browser.common.R
+import org.sqlunet.nightmode.NightMode.createOverrideConfigurationForDayNight
+import org.sqlunet.settings.StorageSettings.getDatabasePath
 
-import android.app.SearchManager;
-import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.TypedArray;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+/**
+ * Main activity
+ */
+open class MainActivity : AppCompatActivity() {
+    private var appBarConfiguration: AppBarConfiguration? = null
 
-import com.bbou.rate.AppRate;
-import com.google.android.material.navigation.NavigationView;
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-import org.sqlunet.browser.common.R;
-import org.sqlunet.nightmode.NightMode;
-import org.sqlunet.settings.StorageSettings;
+        // rate
+        invoke(this)
 
-import java.util.List;
+        // info
+        Log.d(TAG, "Database:" + getDatabasePath(baseContext))
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+        // content
+        setContentView(R.layout.activity_main)
 
-public class MainActivity extends AppCompatActivity
-{
-	static private final String TAG = "MainA";
+        // toolbar
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
-	private AppBarConfiguration appBarConfiguration;
+        // navigation top destinations
+        val array = getResources().obtainTypedArray(R.array.drawer_top_dest)
+        val len = array.length()
+        val topDests = IntArray(len)
+        for (i in 0 until len) {
+            topDests[i] = array.getResourceId(i, 0)
+        }
+        array.recycle()
 
-	@Override
-	protected void onCreate(final Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
+        // navigation
+        val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
+        val navView = findViewById<NavigationView>(R.id.nav_view)
+        val navController = findNavController(this, R.id.nav_host_fragment)
+        appBarConfiguration = AppBarConfiguration.Builder(*topDests).setOpenableLayout(drawer).build()
+        setupActionBarWithNavController(this, navController, appBarConfiguration!!)
+        setupWithNavController(navView, navController)
+        navController.addOnDestinationChangedListener { _: NavController?, destination: NavDestination, _: Bundle? -> Log.d(TAG, "Nav: to $destination") }
+    }
 
-		// rate
-		AppRate.invoke(this);
+    override fun onResume() {
+        super.onResume()
 
-		// info
-		Log.d(TAG, "Database:" + StorageSettings.getDatabasePath(getBaseContext()));
+        // check hook
+        EntryActivity.branchOffToLoadIfCantRun(this)
+    }
 
-		// content
-		setContentView(R.layout.activity_main);
+    @SuppressLint("MissingSuperCall") // BUG
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        handleSearchIntent(intent)
+    }
 
-		// toolbar
-		final Toolbar toolbar = findViewById(R.id.toolbar);
-		setSupportActionBar(toolbar);
+    override fun onNightModeChanged(mode: Int) {
+        super.onNightModeChanged(mode)
+        val overrideConfig = createOverrideConfigurationForDayNight(this, mode)
+        application.onConfigurationChanged(overrideConfig)
+    }
 
-		// navigation top destinations
-		TypedArray array = getResources().obtainTypedArray(R.array.drawer_top_dest);
-		int len = array.length();
-		int[] topDests = new int[len];
-		for (int i = 0; i < len; i++)
-		{
-			topDests[i] = array.getResourceId(i, 0);
-		}
-		array.recycle();
+    // S E A R C H
 
-		// navigation
-		final DrawerLayout drawer = findViewById(R.id.drawer_layout);
-		final NavigationView navView = findViewById(R.id.nav_view);
-		final NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-		this.appBarConfiguration = new AppBarConfiguration.Builder(topDests).setOpenableLayout(drawer).build();
-		NavigationUI.setupActionBarWithNavController(this, navController, this.appBarConfiguration);
-		NavigationUI.setupWithNavController(navView, navController);
+    /**
+     * Handle intent dispatched by search view (either onCreate or onNewIntent if activity is single top)
+     *
+     * @param intent intent
+     */
+    private fun handleSearchIntent(intent: Intent) {
+        val navHostFragment = (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment?)!!
+        if (!navHostFragment.isAdded) {
+            return
+        }
+        val manager = navHostFragment.getChildFragmentManager()
+        val fragments = manager.fragments
+        val fragment = fragments[0]
+        if (fragment is BaseSearchFragment) {
+            val action = intent.action
+            val isActionView = Intent.ACTION_VIEW == action
+            if (isActionView || Intent.ACTION_SEARCH == action) {
 
-		navController.addOnDestinationChangedListener((controller, destination, arguments) -> Log.d(TAG, "Nav: to " + destination));
-	}
+                // search query submit (SEARCH) or suggestion selection (when a suggested item is selected) (VIEW)
+                val query = intent.getStringExtra(SearchManager.QUERY)
+                if (isActionView) {
+                    fragment.clearQuery()
+                }
 
-	@Override
-	protected void onResume()
-	{
-		super.onResume();
+                // search query submit or suggestion selection (when a suggested item is selected)
+                Log.d(TAG, "Search intent having query '$query'")
+                fragment.search(query)
+            }
+        }
+    }
 
-		// check hook
-		EntryActivity.branchOffToLoadIfCantRun(this);
-	}
+    // M E N U
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // inflate the menu; this adds items to the type bar if it is present.
+        menuInflater.inflate(R.menu.main, menu)
+        // MenuCompat.setGroupDividerEnabled(menu, true);
+        return true
+    }
 
-	@Override
-	protected void onNewIntent(@NonNull final Intent intent)
-	{
-		super.onNewIntent(intent);
-		setIntent(intent);
-		handleSearchIntent(intent);
-	}
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return MenuHandler.menuDispatch(this, item)
+    }
 
-	@Override
-	protected void onNightModeChanged(final int mode)
-	{
-		super.onNightModeChanged(mode);
-		final Configuration overrideConfig = NightMode.createOverrideConfigurationForDayNight(this, mode);
-		getApplication().onConfigurationChanged(overrideConfig);
-	}
+    // N A V
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(this, R.id.nav_host_fragment)
+        return navigateUp(navController, appBarConfiguration!!) || super.onSupportNavigateUp()
+    }
 
-	// S E A R C H
-
-	/**
-	 * Handle intent dispatched by search view (either onCreate or onNewIntent if activity is single top)
-	 *
-	 * @param intent intent
-	 */
-	private void handleSearchIntent(@NonNull final Intent intent)
-	{
-		final NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
-		assert navHostFragment != null;
-		if (!navHostFragment.isAdded())
-		{
-			return;
-		}
-		final FragmentManager manager = navHostFragment.getChildFragmentManager();
-		final List<Fragment> fragments = manager.getFragments();
-		final Fragment fragment = fragments.get(0);
-		if (fragment instanceof BaseSearchFragment)
-		{
-			final String action = intent.getAction();
-			final boolean isActionView = Intent.ACTION_VIEW.equals(action);
-			if (isActionView || Intent.ACTION_SEARCH.equals(action))
-			{
-				final BaseSearchFragment searchFragment = (BaseSearchFragment) fragment;
-				// search query submit (SEARCH) or suggestion selection (when a suggested item is selected) (VIEW)
-				final String query = intent.getStringExtra(SearchManager.QUERY);
-
-				if (isActionView)
-				{
-					searchFragment.clearQuery();
-				}
-
-				// search query submit or suggestion selection (when a suggested item is selected)
-				Log.d(TAG, "Search intent having query '" + query + '\'');
-				searchFragment.search(query);
-			}
-		}
-	}
-
-	// M E N U
-
-	@SuppressWarnings("SameReturnValue")
-	@Override
-	public boolean onCreateOptionsMenu(@NonNull final Menu menu)
-	{
-		// inflate the menu; this adds items to the type bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		// MenuCompat.setGroupDividerEnabled(menu, true);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
-	{
-		return MenuHandler.menuDispatch(this, item);
-	}
-
-	// N A V
-
-	@Override
-	public boolean onSupportNavigateUp()
-	{
-		NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-		return NavigationUI.navigateUp(navController, this.appBarConfiguration) || super.onSupportNavigateUp();
-	}
+    companion object {
+        private const val TAG = "MainA"
+    }
 }

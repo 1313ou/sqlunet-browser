@@ -1,106 +1,93 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser
 
-package org.sqlunet.browser;
+import android.app.ActivityManager
+import android.app.Application
+import android.content.Context
+import android.content.res.Configuration
+import android.os.Build
+import android.os.StrictMode
+import android.os.StrictMode.ThreadPolicy
+import android.os.StrictMode.VmPolicy
+import android.util.Log
+import androidx.annotation.RequiresApi
+import org.sqlunet.browser.common.BuildConfig
+import org.sqlunet.browser.common.R
+import org.sqlunet.nightmode.NightMode.nightModeToString
+import org.sqlunet.nightmode.NightMode.wrapContext
+import org.sqlunet.settings.Settings
 
-import android.app.ActivityManager;
-import android.app.Application;
-import android.content.Context;
-import android.content.res.Configuration;
-import android.os.Build;
-import android.os.StrictMode;
-import android.util.Log;
+abstract class AbstractApplication : Application() {
 
-import org.sqlunet.browser.common.BuildConfig;
-import org.sqlunet.browser.common.R;
-import org.sqlunet.nightmode.NightMode;
-import org.sqlunet.settings.Settings;
+    override fun onCreate() {
+        // setThreadStrictMode();
+        // setVmStrictMode();
+        super.onCreate()
+        Settings.initializeDisplayPrefs(this)
+    }
 
-import java.util.List;
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        val newContext = wrapContext(this, newConfig, R.style.MyTheme)
+        Log.d(LOG, "onConfigurationChanged: " + nightModeToString(this) + " -> " + nightModeToString(newContext))
+        setAllColorsFromResources(newContext)
+    }
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
+    abstract fun setAllColorsFromResources(newContext: Context)
 
-import static org.sqlunet.nightmode.NightMode.nightModeToString;
+    /**
+     * Strict mode for VM
+     */
+    private fun setVmStrictMode() {
+        if (BuildConfig.DEBUG) {
+            val builder = VmPolicy.Builder() //
+                .detectLeakedSqlLiteObjects() //
+                .detectLeakedClosableObjects() //
+                .penaltyLog()
+            if (PENALTY_DEATH) {
+                builder.penaltyDeath()
+            }
+            StrictMode.setVmPolicy(builder.build())
+        }
+    }
 
-abstract public class AbstractApplication extends Application
-{
-	static private final String LOG = "AbstractApp";
-	private static final boolean PENALTY_DEATH = false;
+    /**
+     * Strict mode for threads
+     */
+    private fun setThreadStrictMode() {
+        if (BuildConfig.DEBUG) {
+            StrictMode.setThreadPolicy(
+                ThreadPolicy.Builder() //
+                    .detectDiskReads() //
+                    .detectDiskWrites() //
+                    .detectNetwork() // or .detectAll() for all detectable problems
+                    .penaltyLog() //
+                    .build()
+            )
+        }
+    }
 
-	@Override
-	public void onCreate()
-	{
-		// setThreadStrictMode();
-		// setVmStrictMode();
-		super.onCreate();
-		Settings.initializeDisplayPrefs(this);
-	}
+    // T A S K S
 
-	@Override
-	public void onConfigurationChanged(@NonNull final Configuration newConfig)
-	{
-		super.onConfigurationChanged(newConfig);
-		Context newContext = NightMode.wrapContext(this, newConfig, R.style.MyTheme);
-		Log.d(LOG, "onConfigurationChanged: " + nightModeToString(this) + " -> " + nightModeToString(newContext));
-		setAllColorsFromResources(newContext);
-	}
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    fun dumpTasks() {
+        dumpTasks(this.baseContext)
+    }
 
-	abstract public void setAllColorsFromResources(@NonNull final Context newContext);
+    companion object {
+        private const val LOG = "AbstractApp"
+        private const val PENALTY_DEATH = false
 
-	/**
-	 * Strict mode for VM
-	 */
-	private void setVmStrictMode()
-	{
-		if (BuildConfig.DEBUG)
-		{
-			StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder() //
-					.detectLeakedSqlLiteObjects() //
-					.detectLeakedClosableObjects() //
-					.penaltyLog();
-			if (PENALTY_DEATH)
-			{
-				builder.penaltyDeath();
-			}
-			StrictMode.setVmPolicy(builder.build());
-		}
-	}
-
-	/**
-	 * Strict mode for threads
-	 */
-	private void setThreadStrictMode()
-	{
-		if (BuildConfig.DEBUG)
-		{
-			StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder() //
-					.detectDiskReads() //
-					.detectDiskWrites() //
-					.detectNetwork()   // or .detectAll() for all detectable problems
-					.penaltyLog() //
-					.build());
-		}
-	}
-
-	// T A S K S
-
-	@RequiresApi(api = Build.VERSION_CODES.M)
-	public void dumpTasks()
-	{
-		dumpTasks(this.getBaseContext());
-	}
-
-	@RequiresApi(api = Build.VERSION_CODES.M)
-	static public void dumpTasks(@NonNull Context context)
-	{
-		final ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-		final List<ActivityManager.AppTask> tasks = manager.getAppTasks();
-		for (ActivityManager.AppTask task : tasks)
-		{
-			ActivityManager.RecentTaskInfo info = task.getTaskInfo();
-			Log.i("task", info.baseActivity.toString());
-		}
-	}
+        @RequiresApi(api = Build.VERSION_CODES.M)
+        fun dumpTasks(context: Context) {
+            val manager = context.getSystemService(ACTIVITY_SERVICE) as ActivityManager
+            val tasks = manager.getAppTasks()
+            for (task in tasks) {
+                val info = task.taskInfo
+                Log.i("task", info.baseActivity.toString())
+            }
+        }
+    }
 }

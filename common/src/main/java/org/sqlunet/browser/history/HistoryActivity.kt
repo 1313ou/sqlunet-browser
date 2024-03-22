@@ -1,16 +1,13 @@
 /*
  * Copyright (c) 2024. Bernard Bou <1313ou@gmail.com>
  */
+package org.sqlunet.browser.history
 
-package org.sqlunet.browser.history;
-
-import android.os.Bundle;
-
-import org.sqlunet.browser.common.R;
-
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import android.os.Bundle
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import org.sqlunet.browser.common.R
 
 /**
  * History activity
@@ -18,25 +15,22 @@ import androidx.appcompat.widget.Toolbar;
  * @author Bernard Bou
  * @noinspection WeakerAccess
  */
-public class HistoryActivity extends AppCompatActivity
-{
-	@Override
-	protected void onCreate(final Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
+class HistoryActivity : AppCompatActivity() {
 
-		// layout
-		setContentView(R.layout.activity_history);
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-		// toolbar
-		final Toolbar toolbar = findViewById(R.id.toolbar);
-		setSupportActionBar(toolbar);
+        // layout
+        setContentView(R.layout.activity_history)
 
-		// set up the action bar
-		final ActionBar actionBar = getSupportActionBar();
-		if (actionBar != null)
-		{
-			actionBar.setDisplayOptions(ActionBar.DISPLAY_USE_LOGO | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP);
-		}
-	}
+        // toolbar
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
+        // set up the action bar
+        val actionBar = supportActionBar
+        if (actionBar != null) {
+            actionBar.displayOptions = ActionBar.DISPLAY_USE_LOGO or ActionBar.DISPLAY_SHOW_TITLE or ActionBar.DISPLAY_SHOW_HOME or ActionBar.DISPLAY_HOME_AS_UP
+        }
+    }
 }

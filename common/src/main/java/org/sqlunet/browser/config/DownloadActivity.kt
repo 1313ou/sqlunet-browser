@@ -1,77 +1,63 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser.config
 
-package org.sqlunet.browser.config;
-
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-
-import org.sqlunet.browser.EntryActivity;
-import org.sqlunet.browser.MenuHandler;
-import org.sqlunet.browser.common.R;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
+import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+import androidx.appcompat.app.ActionBar
+import com.bbou.download.workers.DownloadActivity
+import org.sqlunet.browser.EntryActivity.Companion.rerun
+import org.sqlunet.browser.MenuHandler
+import org.sqlunet.browser.common.R
 
 /**
  * Download activity
  * Handles completion by re-entering application through entry activity.
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class DownloadActivity extends com.bbou.download.workers.DownloadActivity
-{
-	static private final String TAG = "DownloadA";
+class DownloadActivity : DownloadActivity() {
 
-	@Override
-	public void onCreate(@Nullable final Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
+    public override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-		// set up the action bar
-		final ActionBar actionBar = getSupportActionBar();
-		if (actionBar != null)
-		{
-			actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
-		}
-	}
+        // set up the action bar
+        val actionBar = supportActionBar
+        if (actionBar != null) {
+            actionBar.displayOptions = ActionBar.DISPLAY_SHOW_HOME or ActionBar.DISPLAY_HOME_AS_UP or ActionBar.DISPLAY_SHOW_TITLE
+        }
+    }
 
-	@Override
-	public void onComplete(final boolean success)
-	{
-		Log.d(TAG, "OnComplete " + success + " " + this);
-		if (success)
-		{
-			EntryActivity.rerun(this);
-		}
-	}
+    override fun onComplete(success: Boolean) {
+        Log.d(TAG, "OnComplete $success $this")
+        if (success) {
+            rerun(this)
+        }
+    }
 
-	// M E N U
+    // M E N U
 
-	@SuppressWarnings("SameReturnValue")
-	@Override
-	public boolean onCreateOptionsMenu(@NonNull final Menu menu)
-	{
-		// inflate the menu; this adds items to the type bar if it is present.
-		getMenuInflater().inflate(R.menu.initialize, menu);
-		// MenuCompat.setGroupDividerEnabled(menu, true);
-		return true;
-	}
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // inflate the menu; this adds items to the type bar if it is present.
+        menuInflater.inflate(R.menu.initialize, menu)
+        // MenuCompat.setGroupDividerEnabled(menu, true);
+        return true
+    }
 
-	@Override
-	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
-	{
-		// handle home
-		if (item.getItemId() == android.R.id.home)
-		{
-			Log.d(TAG, "onHomePressed");
-			EntryActivity.rerun(this);
-			return true;
-		}
-		return MenuHandler.menuDispatchWhenCantRun(this, item);
-	}
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // handle home
+        if (item.itemId == android.R.id.home) {
+            Log.d(TAG, "onHomePressed")
+            rerun(this)
+            return true
+        }
+        return MenuHandler.menuDispatchWhenCantRun(this, item)
+    }
+
+    companion object {
+        private const val TAG = "DownloadA"
+    }
 }

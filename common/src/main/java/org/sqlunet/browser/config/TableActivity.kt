@@ -1,49 +1,43 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser.config
 
-package org.sqlunet.browser.config;
-
-import android.os.Bundle;
-
-import org.sqlunet.browser.common.R;
-
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
+import android.os.Bundle
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
+import org.sqlunet.browser.common.R
 
 /**
  * An activity representing table.
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class TableActivity extends AppCompatActivity
-{
-	@Override
-	protected void onCreate(final Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
+class TableActivity : AppCompatActivity() {
 
-		// content
-		setContentView(R.layout.activity_table);
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-		// toolbar
-		final Toolbar toolbar = findViewById(R.id.toolbar);
-		setSupportActionBar(toolbar);
+        // content
+        setContentView(R.layout.activity_table)
 
-		// set up the action bar
-		final ActionBar actionBar = getSupportActionBar();
-		assert actionBar != null;
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
+        // toolbar
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
-		// fragment
-		final Fragment fragment = new TableFragment();
-		fragment.setArguments(getIntent().getExtras());
-		getSupportFragmentManager() //
-				.beginTransaction() //
-				.setReorderingAllowed(true) //
-				.replace(R.id.container_table, fragment) //
-				.commit();
-	}
+        // set up the action bar
+        val actionBar = supportActionBar!!
+        actionBar.displayOptions = ActionBar.DISPLAY_SHOW_HOME or ActionBar.DISPLAY_HOME_AS_UP or ActionBar.DISPLAY_SHOW_TITLE
+
+        // fragment
+        val fragment: Fragment = TableFragment()
+        fragment.setArguments(intent.extras)
+        supportFragmentManager //
+            .beginTransaction() //
+            .setReorderingAllowed(true) //
+            .replace(R.id.container_table, fragment) //
+            .commit()
+    }
 }
