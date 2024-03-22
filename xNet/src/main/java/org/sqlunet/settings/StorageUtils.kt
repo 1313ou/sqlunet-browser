@@ -287,7 +287,7 @@ object StorageUtils {
                     val state = Environment.getExternalStorageState(dir)
                     if (Environment.MEDIA_MOUNTED != state) {
                         Log.d(TAG, "storage state of $dir: $state")
-                        status = status or StorageDirectory.NOT_MOUNTED
+                        status = StorageDirectory.NOT_MOUNTED
                     }
                 } catch (e: Throwable) {
                     //

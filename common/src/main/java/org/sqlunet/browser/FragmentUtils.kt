@@ -1,92 +1,73 @@
 /*
  * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
+package org.sqlunet.browser
 
-package org.sqlunet.browser;
+import android.util.Log
+import androidx.annotation.IdRes
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 
-import android.util.Log;
+object FragmentUtils {
+    private const val TAG = "FragmentUtils"
 
-import java.util.Arrays;
-import java.util.List;
+    /**
+     * Remove children fragments with tags and insert given fragment with at given location
+     *
+     * @param manager           fragment manager
+     * @param fragment          new fragment to insert
+     * @param tag               new fragment's tag
+     * @param where             new fragment's location
+     * @param childFragmentTags removed children's tags
+     * @noinspection SameParameterValue
+     */
+    fun removeAllChildFragment(manager: FragmentManager, fragment: Fragment, tag: String?, @IdRes where: Int, vararg childFragmentTags: String?) {
+        Log.d(TAG, "Removing fragments " + childFragmentTags.contentToString())
+        if (childFragmentTags.isNotEmpty()) {
+            val childFragments = manager.fragments
+            if (childFragments.isNotEmpty()) {
+                val transaction = manager.beginTransaction()
+                for (childFragment in childFragments) {
+                    if (childFragment != null) {
+                        for (childFragmentTag in childFragmentTags) {
+                            if (childFragmentTag == childFragment.tag) {
+                                transaction.remove(childFragment)
+                            }
+                        }
+                    }
+                }
+                transaction.replace(where, fragment, tag)
+                transaction.commitAllowingStateLoss()
+            }
+        }
+    }
 
-import androidx.annotation.IdRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+    // B A C K S T A C K   H E L P E R
 
-public class FragmentUtils
-{
-	private static final String TAG = "FragmentUtils";
-
-	/**
-	 * Remove children fragments with tags and insert given fragment with at given location
-	 *
-	 * @param manager           fragment manager
-	 * @param fragment          new fragment to insert
-	 * @param tag               new fragment's tag
-	 * @param where             new fragment's location
-	 * @param childFragmentTags removed children's tags
-	 * @noinspection SameParameterValue
-	 */
-	public static void removeAllChildFragment(@NonNull final FragmentManager manager, @NonNull final Fragment fragment, @Nullable final String tag, @IdRes final int where, @Nullable final String... childFragmentTags)
-	{
-		Log.d(TAG, "Removing fragments " + Arrays.toString(childFragmentTags));
-		if (childFragmentTags != null && childFragmentTags.length > 0)
-		{
-			List<Fragment> childFragments = manager.getFragments();
-			if (!childFragments.isEmpty())
-			{
-				FragmentTransaction transaction = manager.beginTransaction();
-				for (Fragment childFragment : childFragments)
-				{
-					if (childFragment != null)
-					{
-						for (final String childFragmentTag : childFragmentTags)
-						{
-							if (childFragmentTag.equals(childFragment.getTag()))
-							{
-								transaction.remove(childFragment);
-							}
-						}
-					}
-				}
-				transaction.replace(where, fragment, tag);
-				transaction.commitAllowingStateLoss();
-			}
-		}
-	}
-
-	// B A C K S T A C K   H E L P E R
-
-	/**
-	 * Dump back stack for a fragment's manager
-	 *
-	 * @param manager fragment manager
-	 * @param type    fragment manager type (child or parent)
-	 * @return dump string
-	 */
-	@NonNull
-	public static String dumpBackStack(@NonNull final FragmentManager manager, @NonNull final String type)
-	{
-		StringBuilder sb = new StringBuilder();
-		int count = manager.getBackStackEntryCount();
-		for (int i = 0; i < count; i++)
-		{
-			FragmentManager.BackStackEntry entry = manager.getBackStackEntryAt(i);
-			sb.append("BackStack: ") //
-					.append(type) //
-					.append('\n') //
-					.append("[") //
-					.append(i) //
-					.append("]: ") //
-					.append(entry.getName()) //
-					.append(' ') //
-					.append(entry.getId()) //
-					.append(' ') //
-					.append(entry.getClass().getName());
-		}
-		return sb.toString();
-	}
+    /**
+     * Dump back stack for a fragment's manager
+     *
+     * @param manager fragment manager
+     * @param type    fragment manager type (child or parent)
+     * @return dump string
+     */
+    fun dumpBackStack(manager: FragmentManager, type: String): String {
+        val sb = StringBuilder()
+        val count = manager.backStackEntryCount
+        for (i in 0 until count) {
+            val entry = manager.getBackStackEntryAt(i)
+            sb.append("BackStack: ") //
+                .append(type) //
+                .append('\n') //
+                .append("[") //
+                .append(i) //
+                .append("]: ") //
+                .append(entry.name) //
+                .append(' ') //
+                .append(entry.id) //
+                .append(' ') //
+                .append(entry.javaClass.getName())
+        }
+        return sb.toString()
+    }
 }

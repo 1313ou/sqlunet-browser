@@ -1,163 +1,138 @@
 /*
  * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
+package org.sqlunet.browser.config
 
-package org.sqlunet.browser.config;
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import com.bbou.deploy.workers.Deploy
+import com.bbou.download.Keys.DOWNLOAD_ENTRY_ARG
+import com.bbou.download.Keys.DOWNLOAD_FROM_ARG
+import com.bbou.download.Keys.DOWNLOAD_MODE_ARG
+import com.bbou.download.Keys.DOWNLOAD_RENAME_FROM_ARG
+import com.bbou.download.Keys.DOWNLOAD_RENAME_TO_ARG
+import com.bbou.download.Keys.DOWNLOAD_TARGET_FILE_ARG
+import com.bbou.download.Keys.DOWNLOAD_TO_DIR_ARG
+import com.bbou.download.Keys.DOWNLOAD_TO_FILE_ARG
+import com.bbou.download.Keys.THEN_UNZIP_TO_ARG
+import com.bbou.download.preference.Settings
+import com.bbou.download.preference.Settings.Mode.Companion.getModePref
+import com.bbou.download.preference.Settings.getDatapackSource
+import com.bbou.download.preference.Settings.getDatapackSourceType
+import org.sqlunet.settings.StorageSettings.getCacheDir
+import org.sqlunet.settings.StorageSettings.getCachedZippedPath
+import org.sqlunet.settings.StorageSettings.getDataDir
+import org.sqlunet.settings.StorageSettings.getDatabaseName
+import org.sqlunet.settings.StorageSettings.getDatabasePath
+import org.sqlunet.settings.StorageSettings.getDbDownloadName
+import org.sqlunet.settings.StorageSettings.getDbDownloadSourcePath
+import org.sqlunet.settings.StorageSettings.getDbDownloadZippedSourcePath
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
+object DownloadIntentFactory {
 
-import com.bbou.deploy.workers.Deploy;
-import com.bbou.download.preference.Settings;
+    @JvmStatic
+    fun makeIntent(context: Context): Intent {
+        var type = getModePref(context)
+        if (type == null) {
+            type = Settings.Mode.DOWNLOAD_ZIP
+        }
+        return makeIntent(context, type)
+    }
 
-import org.sqlunet.settings.StorageSettings;
+    private fun makeIntent(context: Context, type: Settings.Mode): Intent {
+        return when (type) {
+            Settings.Mode.DOWNLOAD -> makeIntentPlainDownload(context)
+            Settings.Mode.DOWNLOAD_ZIP -> makeIntentZipDownload(context)
+            Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP -> makeIntentDownloadThenDeploy(context)
+            else -> throw RuntimeException(type.toString())
+        }
+    }
 
-import androidx.annotation.NonNull;
+    private fun makeIntentPlainDownload(context: Context): Intent {
+        val dbSource = getDbDownloadSourcePath(context)
+        return makeIntentPlainDownload(context, dbSource)
+    }
 
-import static com.bbou.download.Keys.DOWNLOAD_FROM_ARG;
-import static com.bbou.download.Keys.DOWNLOAD_MODE_ARG;
-import static com.bbou.download.Keys.DOWNLOAD_RENAME_FROM_ARG;
-import static com.bbou.download.Keys.DOWNLOAD_RENAME_TO_ARG;
-import static com.bbou.download.Keys.DOWNLOAD_TARGET_FILE_ARG;
-import static com.bbou.download.Keys.THEN_UNZIP_TO_ARG;
-import static com.bbou.download.Keys.DOWNLOAD_TO_FILE_ARG;
-import static com.bbou.download.Keys.DOWNLOAD_ENTRY_ARG;
-import static com.bbou.download.Keys.DOWNLOAD_TO_DIR_ARG;
+    private fun makeIntentPlainDownload(context: Context, dbSource: String?): Intent {
+        val dbDest = getDatabasePath(context)
+        val intent = Intent(context, DownloadActivity::class.java)
+        intent.putExtra(DOWNLOAD_MODE_ARG, Settings.Mode.DOWNLOAD.toString()) // plain transfer
+        intent.putExtra(DOWNLOAD_FROM_ARG, dbSource) // source file
+        intent.putExtra(DOWNLOAD_TO_FILE_ARG, dbDest) // dest file
+        intent.putExtra(DOWNLOAD_TARGET_FILE_ARG, dbDest) // target file
+        return intent
+    }
 
-public class DownloadIntentFactory
-{
-	@NonNull
-	public static Intent makeIntent(@NonNull final Context context)
-	{
-		Settings.Mode type = Settings.Mode.getModePref(context);
-		if (type == null)
-		{
-			type = Settings.Mode.DOWNLOAD_ZIP;
-		}
-		return makeIntent(context, type);
-	}
+    private fun makeIntentZipDownload(context: Context): Intent {
+        val dbZipSource = getDbDownloadZippedSourcePath(context)
+        return makeIntentZipDownload(context, dbZipSource)
+    }
 
-	@NonNull
-	public static Intent makeIntent(@NonNull final Context context, @NonNull final Settings.Mode type)
-	{
-		switch (type)
-		{
-			case DOWNLOAD:
-				return makeIntentPlainDownload(context);
-			case DOWNLOAD_ZIP:
-				return makeIntentZipDownload(context);
-			case DOWNLOAD_ZIP_THEN_UNZIP:
-				return makeIntentDownloadThenDeploy(context);
-			default:
-				throw new RuntimeException(type.toString());
-		}
-	}
+    private fun makeIntentZipDownload(context: Context, dbZipSource: String?): Intent {
+        val dbZipEntry = getDbDownloadName(context)
+        val dbDestDir = getDataDir(context)
+        val dbName = getDatabaseName()
+        val dbTarget = getDatabasePath(context)
+        val intent = Intent(context, DownloadActivity::class.java)
+        intent.putExtra(DOWNLOAD_MODE_ARG, Settings.Mode.DOWNLOAD_ZIP.toString()) // zipped transfer
+        intent.putExtra(DOWNLOAD_FROM_ARG, dbZipSource) // source archive
+        intent.putExtra(DOWNLOAD_TO_DIR_ARG, dbDestDir) // dest directory
+        intent.putExtra(DOWNLOAD_ENTRY_ARG, dbZipEntry) // zip entry
+        intent.putExtra(DOWNLOAD_RENAME_FROM_ARG, dbZipEntry) // rename from
+        intent.putExtra(DOWNLOAD_RENAME_TO_ARG, dbName) // rename to
+        intent.putExtra(DOWNLOAD_TARGET_FILE_ARG, dbTarget) // target file
+        return intent
+    }
 
-	@NonNull
-	public static Intent makeIntentPlainDownload(@NonNull final Context context)
-	{
-		final String dbSource = StorageSettings.getDbDownloadSourcePath(context);
-		return makeIntentPlainDownload(context, dbSource);
-	}
+    @JvmStatic
+    fun makeIntentDownloadThenDeploy(context: Context): Intent {
+        val dbZipSource = getDbDownloadZippedSourcePath(context)
+        val dbZipDest = getCachedZippedPath(context)
+        return makeIntentDownloadThenDeploy(context, dbZipSource, dbZipDest)
+    }
 
-	@NonNull
-	public static Intent makeIntentPlainDownload(@NonNull final Context context, final String dbSource)
-	{
-		final String dbDest = StorageSettings.getDatabasePath(context);
-		final Intent intent = new Intent(context, DownloadActivity.class);
-		intent.putExtra(DOWNLOAD_MODE_ARG, Settings.Mode.DOWNLOAD.toString()); // plain transfer
-		intent.putExtra(DOWNLOAD_FROM_ARG, dbSource); // source file
-		intent.putExtra(DOWNLOAD_TO_FILE_ARG, dbDest); // dest file
-		intent.putExtra(DOWNLOAD_TARGET_FILE_ARG, dbDest); // target file
-		return intent;
-	}
+    private fun makeIntentDownloadThenDeploy(context: Context, dbZipSource: String?, dbZipDest: String?): Intent {
+        val dbDir = getDataDir(context)
+        val dbRenameFrom = getDbDownloadName(context)
+        val dbRenameTo = getDatabaseName()
+        val dbTarget = getDatabasePath(context)
+        val intent = Intent(context, DownloadActivity::class.java)
+        intent.putExtra(DOWNLOAD_MODE_ARG, Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP.toString()) // zip transfer then unzip
+        intent.putExtra(DOWNLOAD_FROM_ARG, dbZipSource) // source archive
+        intent.putExtra(DOWNLOAD_TO_FILE_ARG, dbZipDest) // destination archive
+        intent.putExtra(THEN_UNZIP_TO_ARG, dbDir) // unzip destination directory
+        intent.putExtra(DOWNLOAD_RENAME_FROM_ARG, dbRenameFrom) // rename from
+        intent.putExtra(DOWNLOAD_RENAME_TO_ARG, dbRenameTo) // rename to
+        intent.putExtra(DOWNLOAD_TARGET_FILE_ARG, dbTarget) // target file
+        return intent
+    }
 
-	@NonNull
-	public static Intent makeIntentZipDownload(@NonNull final Context context)
-	{
-		final String dbZipSource = StorageSettings.getDbDownloadZippedSourcePath(context);
-		return makeIntentZipDownload(context, dbZipSource);
-	}
+    @JvmStatic
+    fun makeUpdateIntent(context: Context): Intent {
+        val downloadSourceType = getDatapackSourceType(context)
+        val downloadSourceUrl = (if ("download" == downloadSourceType) getDatapackSource(context) else getDbDownloadZippedSourcePath(context))!!
+        if (!downloadSourceUrl.endsWith(Deploy.ZIP_EXTENSION)) //
+        {
+            return makeIntentPlainDownload(context, downloadSourceUrl)
+        }
 
-	@NonNull
-	public static Intent makeIntentZipDownload(@NonNull final Context context, final String dbZipSource)
-	{
-		final String dbZipEntry = StorageSettings.getDbDownloadName(context);
-		final String dbDestDir = StorageSettings.getDataDir(context);
-		final String dbName = StorageSettings.getDatabaseName();
-		final String dbTarget = StorageSettings.getDatabasePath(context);
-		final Intent intent = new Intent(context, DownloadActivity.class);
-		intent.putExtra(DOWNLOAD_MODE_ARG, Settings.Mode.DOWNLOAD_ZIP.toString()); // zipped transfer
-		intent.putExtra(DOWNLOAD_FROM_ARG, dbZipSource); // source archive
-		intent.putExtra(DOWNLOAD_TO_DIR_ARG, dbDestDir); // dest directory
-		intent.putExtra(DOWNLOAD_ENTRY_ARG, dbZipEntry); // zip entry
-		intent.putExtra(DOWNLOAD_RENAME_FROM_ARG, dbZipEntry); // rename from
-		intent.putExtra(DOWNLOAD_RENAME_TO_ARG, dbName); // rename to
-		intent.putExtra(DOWNLOAD_TARGET_FILE_ARG, dbTarget); // target file
-		return intent;
-	}
+        // source has zip extension
+        var mode = getModePref(context)
+        if (mode == null) {
+            mode = Settings.Mode.DOWNLOAD_ZIP
+        }
+        return when (mode) {
+            Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP -> {
+                val name = Uri.parse(downloadSourceUrl).lastPathSegment
+                val cache = getCacheDir(context)
+                val cachePath = "$cache/$name"
+                makeIntentDownloadThenDeploy(context, downloadSourceUrl, cachePath)
+            }
 
-	@NonNull
-	public static Intent makeIntentDownloadThenDeploy(@NonNull final Context context)
-	{
-		final String dbZipSource = StorageSettings.getDbDownloadZippedSourcePath(context);
-		final String dbZipDest = StorageSettings.getCachedZippedPath(context);
-		return makeIntentDownloadThenDeploy(context, dbZipSource, dbZipDest);
-	}
-
-	@NonNull
-	public static Intent makeIntentDownloadThenDeploy(@NonNull final Context context, final String dbZipSource, final String dbZipDest)
-	{
-		final String dbDir = StorageSettings.getDataDir(context);
-		final String dbRenameFrom = StorageSettings.getDbDownloadName(context);
-		final String dbRenameTo = StorageSettings.getDatabaseName();
-		final String dbTarget = StorageSettings.getDatabasePath(context);
-		final Intent intent = new Intent(context, DownloadActivity.class);
-		intent.putExtra(DOWNLOAD_MODE_ARG, Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP.toString()); // zip transfer then unzip
-		intent.putExtra(DOWNLOAD_FROM_ARG, dbZipSource); // source archive
-		intent.putExtra(DOWNLOAD_TO_FILE_ARG, dbZipDest); // destination archive
-		intent.putExtra(THEN_UNZIP_TO_ARG, dbDir); // unzip destination directory
-		intent.putExtra(DOWNLOAD_RENAME_FROM_ARG, dbRenameFrom); // rename from
-		intent.putExtra(DOWNLOAD_RENAME_TO_ARG, dbRenameTo); // rename to
-		intent.putExtra(DOWNLOAD_TARGET_FILE_ARG, dbTarget); // target file
-		return intent;
-	}
-
-	@NonNull
-	public static Intent makeUpdateIntent(@NonNull final Context context)
-	{
-		final String downloadSourceType = Settings.getDatapackSourceType(context);
-		final String downloadSourceUrl = "download".equals(downloadSourceType) ? Settings.getDatapackSource(context) : StorageSettings.getDbDownloadZippedSourcePath(context);
-		assert downloadSourceUrl != null;
-		if (!downloadSourceUrl.endsWith(Deploy.ZIP_EXTENSION)) //
-		{
-			return makeIntentPlainDownload(context, downloadSourceUrl);
-		}
-
-		// source has zip extension
-		Settings.Mode mode = Settings.Mode.getModePref(context);
-		if (mode == null)
-		{
-			mode = Settings.Mode.DOWNLOAD_ZIP;
-		}
-		switch (mode)
-		{
-			case DOWNLOAD_ZIP_THEN_UNZIP:
-				final String name = Uri.parse(downloadSourceUrl).getLastPathSegment();
-				final String cache = StorageSettings.getCacheDir(context);
-				final String cachePath = cache + '/' + name;
-				return makeIntentDownloadThenDeploy(context, downloadSourceUrl, cachePath);
-
-			case DOWNLOAD_ZIP:
-				return makeIntentZipDownload(context, downloadSourceUrl);
-
-			case DOWNLOAD:
-				throw new RuntimeException(mode.toString());
-				// return makeIntentPlainDownload(context, downloadSourceUrl);
-
-			default:
-				throw new RuntimeException(mode.toString());
-		}
-	}
+            Settings.Mode.DOWNLOAD_ZIP -> makeIntentZipDownload(context, downloadSourceUrl)
+            Settings.Mode.DOWNLOAD -> throw RuntimeException(mode.toString())
+            else -> throw RuntimeException(mode.toString())
+        }
+    }
 }

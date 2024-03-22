@@ -1,594 +1,511 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.settings
 
-package org.sqlunet.settings;
-
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Build;
-
-import org.sqlunet.browser.common.R;
-import org.sqlunet.browser.config.SetupAsset;
-import org.sqlunet.provider.BaseProvider;
-import org.sqlunet.sql.PreparedStatement;
-
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.preference.PreferenceManager;
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
+import android.os.Build
+import android.provider.Settings
+import androidx.annotation.LayoutRes
+import androidx.preference.PreferenceManager
+import org.sqlunet.browser.common.R
+import org.sqlunet.browser.config.SetupAsset
+import org.sqlunet.provider.BaseProvider
+import org.sqlunet.provider.BaseProvider.Companion.resizeSql
+import org.sqlunet.sql.PreparedStatement
 
 /**
  * Settings
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-@SuppressWarnings("WeakerAccess")
-public class Settings
-{
-	// preferences
+open class Settings {
 
-	static public final String PREF_LAUNCH = "pref_launch";
-	static public final String PREF_SELECTOR = "pref_selector_mode"; // selector or xselector or ...
-	static public final String PREF_SELECTOR_MODE = "pref_selector_view_mode"; // view or web for selector fragment
-	static public final String PREF_DETAIL_MODE = "pref_detail_view_mode"; // view wor web for detail fragment
-	static public final String PREF_XML = "pref_xml";
-	static public final String PREF_TEXTSEARCH_MODE = "pref_searchtext_mode";
-	static public final String PREF_ASSET_PRIMARY_DEFAULT = SetupAsset.PREF_ASSET_PRIMARY_DEFAULT;
-	static public final String PREF_ASSET_AUTO_CLEANUP = SetupAsset.PREF_ASSET_AUTO_CLEANUP;
-	static public final String PREF_DB_FILE = "pref_db_file";
-	static public final String PREF_DB_DATE = "pref_db_date";
-	static public final String PREF_DB_SIZE = "pref_db_size";
-	static public final String PREF_STORAGE = StorageSettings.PREF_STORAGE;
-	static public final String PREF_DOWNLOAD_MODE = StorageSettings.PREF_DOWNLOAD_MODE;
-	static public final String PREF_DOWNLOAD_SITE = StorageSettings.PREF_DOWNLOAD_SITE;
-	static public final String PREF_DOWNLOAD_DBFILE = StorageSettings.PREF_DOWNLOAD_DBFILE;
-	static public final String PREF_CACHE = StorageSettings.PREF_CACHE;
-	static public final String PREF_ZIP_ENTRY = "pref_zip_entry";
-	static public final String PREF_TWO_PANES = "pref_two_panes";
-	static private final String PREF_VERSION = "org.sqlunet.browser.version";
+    // D I S P L A Y
 
-	// D I S P L A Y
+    /**
+     * Selector view modes
+     */
+    enum class SelectorViewMode {
+        VIEW,
+        WEB;
 
-	/**
-	 * Selector view modes
-	 */
-	public enum SelectorViewMode
-	{
-		VIEW, WEB;
+        companion object {
 
-		/**
-		 * Get selector preferred view mode
-		 *
-		 * @param context context
-		 * @return preferred selector view mode
-		 */
-		@NonNull
-		static SelectorViewMode getPref(@NonNull final Context context)
-		{
-			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-			final String mode_string = sharedPref.getString(Settings.PREF_SELECTOR_MODE, SelectorViewMode.VIEW.name());
-			SelectorViewMode mode;
-			try
-			{
-				mode = SelectorViewMode.valueOf(mode_string);
-			}
-			catch (@NonNull final Exception e)
-			{
-				mode = SelectorViewMode.VIEW;
-				sharedPref.edit().putString(Settings.PREF_SELECTOR_MODE, mode.name()).apply();
-			}
-			return mode;
-		}
-	}
+            /**
+             * Get selector preferred view mode
+             *
+             * @param context context
+             * @return preferred selector view mode
+             */
+            fun getPref(context: Context): SelectorViewMode {
+                val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+                val modeString = sharedPref.getString(PREF_SELECTOR_MODE, VIEW.name)
+                var mode: SelectorViewMode
+                try {
+                    mode = valueOf(modeString!!)
+                } catch (e: Exception) {
+                    mode = VIEW
+                    sharedPref.edit().putString(PREF_SELECTOR_MODE, mode.name).apply()
+                }
+                return mode
+            }
+        }
+    }
 
-	/**
-	 * Detail detail view modes
-	 */
-	public enum DetailViewMode
-	{
-		VIEW, WEB;
+    /**
+     * Detail detail view modes
+     */
+    enum class DetailViewMode {
+        VIEW,
+        WEB;
 
-		/**
-		 * Get preferred view mode
-		 *
-		 * @param context context
-		 * @return preferred selector mode
-		 */
-		@NonNull
-		static DetailViewMode getPref(@NonNull final Context context)
-		{
-			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-			final String mode_string = sharedPref.getString(Settings.PREF_DETAIL_MODE, DetailViewMode.VIEW.name());
-			DetailViewMode mode;
-			try
-			{
-				mode = DetailViewMode.valueOf(mode_string);
-			}
-			catch (@NonNull final Exception e)
-			{
-				mode = DetailViewMode.VIEW;
-				sharedPref.edit().putString(Settings.PREF_DETAIL_MODE, mode.name()).apply();
-			}
-			return mode;
-		}
-	}
+        companion object {
+            /**
+             * Get preferred view mode
+             *
+             * @param context context
+             * @return preferred selector mode
+             */
+            fun getPref(context: Context): DetailViewMode {
+                val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+                val modeString = sharedPref.getString(PREF_DETAIL_MODE, VIEW.name)
+                var mode: DetailViewMode
+                try {
+                    mode = valueOf(modeString!!)
+                } catch (e: Exception) {
+                    mode = VIEW
+                    sharedPref.edit().putString(PREF_DETAIL_MODE, mode.name).apply()
+                }
+                return mode
+            }
+        }
+    }
 
-	// P A N E  L A Y O U T   H O O K
+    // S E L E C T O R   T Y P E
 
-	public static int paneMode = 0;
+    /**
+     * Selectors
+     */
+    enum class Selector {
+        SELECTOR;
 
-	@LayoutRes
-	public static int getPaneLayout(@LayoutRes int defaultPaneLayout, @LayoutRes int onePaneLayout, @LayoutRes int twoPanesLayout)
-	{
-		switch (paneMode)
-		{
-			default:
-			case 0:
-				return defaultPaneLayout;
-			case 1:
-				return onePaneLayout;
-			case 2:
-				return twoPanesLayout;
-		}
-	}
+        /**
+         * Set this selector as preferred selector
+         *
+         * @param context context
+         */
+        fun setPref(context: Context) {
+            val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+            sharedPref.edit().putString(PREF_SELECTOR, name).apply()
+        }
 
-	// S E L E C T O R   T Y P E
+        companion object {
 
-	/**
-	 * Selectors
-	 */
-	public enum Selector
-	{
-		SELECTOR;
+            /**
+             * Get preferred mode
+             *
+             * @param context context
+             * @return preferred selector mode
+             */
+            @JvmStatic
+            fun getPref(context: Context): Selector {
+                val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+                val name = sharedPref.getString(PREF_SELECTOR, SELECTOR.name)
+                var mode: Selector
+                try {
+                    mode = valueOf(name!!)
+                } catch (e: Exception) {
+                    mode = SELECTOR
+                    sharedPref.edit().putString(PREF_SELECTOR, mode.name).apply()
+                }
+                return mode
+            }
+        }
+    }
 
-		/**
-		 * Set this selector as preferred selector
-		 *
-		 * @param context context
-		 */
-		public void setPref(@NonNull final Context context)
-		{
-			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-			sharedPref.edit().putString(Settings.PREF_SELECTOR, this.name()).apply();
-		}
+    companion object {
 
-		/**
-		 * Get preferred mode
-		 *
-		 * @param context context
-		 * @return preferred selector mode
-		 */
-		@NonNull
-		public static Selector getPref(@NonNull final Context context)
-		{
-			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-			final String name = sharedPref.getString(Settings.PREF_SELECTOR, Settings.Selector.SELECTOR.name());
-			Settings.Selector mode;
-			try
-			{
-				mode = Settings.Selector.valueOf(name);
-			}
-			catch (@NonNull final Exception e)
-			{
-				mode = Settings.Selector.SELECTOR;
-				sharedPref.edit().putString(Settings.PREF_SELECTOR, mode.name()).apply();
-			}
-			return mode;
-		}
-	}
+        // preferences
+        const val PREF_LAUNCH = "pref_launch"
+        const val PREF_SELECTOR = "pref_selector_mode" // selector or xselector or ...
+        const val PREF_SELECTOR_MODE = "pref_selector_view_mode" // view or web for selector fragment
+        const val PREF_DETAIL_MODE = "pref_detail_view_mode" // view wor web for detail fragment
+        const val PREF_XML = "pref_xml"
+        const val PREF_TEXTSEARCH_MODE = "pref_searchtext_mode"
+        const val PREF_ASSET_PRIMARY_DEFAULT = SetupAsset.PREF_ASSET_PRIMARY_DEFAULT
+        const val PREF_ASSET_AUTO_CLEANUP = SetupAsset.PREF_ASSET_AUTO_CLEANUP
+        const val PREF_DB_FILE = "pref_db_file"
+        const val PREF_DB_DATE = "pref_db_date"
+        const val PREF_DB_SIZE = "pref_db_size"
+        const val PREF_STORAGE = StorageSettings.PREF_STORAGE
+        const val PREF_DOWNLOAD_MODE = StorageSettings.PREF_DOWNLOAD_MODE
+        const val PREF_DOWNLOAD_SITE = StorageSettings.PREF_DOWNLOAD_SITE
+        const val PREF_DOWNLOAD_DBFILE = StorageSettings.PREF_DOWNLOAD_DBFILE
+        const val PREF_CACHE = StorageSettings.PREF_CACHE
+        const val PREF_ZIP_ENTRY = "pref_zip_entry"
+        const val PREF_TWO_PANES = "pref_two_panes"
+        private const val PREF_VERSION = "org.sqlunet.browser.version"
 
-	// P R E F E R E N C E   S H O R T C U T S
+        // P A N E  L A Y O U T   H O O K
 
-	/**
-	 * Get launch activity class
-	 *
-	 * @param context context
-	 * @return preferred launch activity class
-	 */
-	@NonNull
-	static public String getLaunchPref(@NonNull final Context context)
-	{
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		String result = sharedPref.getString(Settings.PREF_LAUNCH, null);
-		if (result == null)
-		{
-			result = context.getString(R.string.default_launch);
-		}
-		return result;
-	}
+        var paneMode = 0
 
-	/**
-	 * Get selector preferred view mode
-	 *
-	 * @param context context
-	 * @return preferred selector view mode
-	 */
-	@NonNull
-	static public SelectorViewMode getSelectorViewModePref(@NonNull final Context context)
-	{
-		return SelectorViewMode.getPref(context);
-	}
+        @JvmStatic
+        @LayoutRes
+        fun getPaneLayout(@LayoutRes defaultPaneLayout: Int, @LayoutRes onePaneLayout: Int, @LayoutRes twoPanesLayout: Int): Int {
+            return when (paneMode) {
+                0 -> defaultPaneLayout
+                1 -> onePaneLayout
+                2 -> twoPanesLayout
+                else -> defaultPaneLayout
+            }
+        }
 
-	/**
-	 * Get detail preferred view mode
-	 *
-	 * @param context context
-	 * @return preferred detail view mode
-	 */
-	@NonNull
-	static public DetailViewMode getDetailViewModePref(@NonNull final Context context)
-	{
-		return DetailViewMode.getPref(context);
-	}
+        // P R E F E R E N C E   S H O R T C U T S
 
-	/**
-	 * Get preferred selector type
-	 *
-	 * @param context context
-	 * @return preferred selector type
-	 */
-	@NonNull
-	static public Selector getSelectorPref(@NonNull final Context context)
-	{
-		return Selector.getPref(context);
-	}
+        /**
+         * Get launch activity class
+         *
+         * @param context context
+         * @return preferred launch activity class
+         */
+        fun getLaunchPref(context: Context): String {
+            val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+            var result = sharedPref.getString(PREF_LAUNCH, null)
+            if (result == null) {
+                result = context.getString(R.string.default_launch)
+            }
+            return result
+        }
 
-	/**
-	 * Get preferred XML output flag when view mode is WEB
-	 *
-	 * @param context context
-	 * @return preferred XML output flag when view mode is WEB
-	 */
-	static public boolean getXmlPref(@NonNull final Context context)
-	{
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		return sharedPref.getBoolean(Settings.PREF_XML, true);
-	}
+        /**
+         * Get selector preferred view mode
+         *
+         * @param context context
+         * @return preferred selector view mode
+         */
+        @JvmStatic
+        fun getSelectorViewModePref(context: Context): SelectorViewMode {
+            return SelectorViewMode.getPref(context)
+        }
 
-	/**
-	 * Get preferred search mode
-	 *
-	 * @param context context
-	 * @return preferred search mode
-	 */
-	static public int getSearchModePref(@NonNull final Context context)
-	{
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		return sharedPref.getInt(Settings.PREF_TEXTSEARCH_MODE, 0);
-	}
+        /**
+         * Get detail preferred view mode
+         *
+         * @param context context
+         * @return preferred detail view mode
+         */
+        @JvmStatic
+        fun getDetailViewModePref(context: Context): DetailViewMode {
+            return DetailViewMode.getPref(context)
+        }
 
-	/**
-	 * Set preferred search mode
-	 *
-	 * @param context context
-	 * @param value   preferred search mode
-	 */
-	static public void setSearchModePref(@NonNull final Context context, final int value)
-	{
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		sharedPref.edit().putInt(Settings.PREF_TEXTSEARCH_MODE, value).apply();
-	}
+        /**
+         * Get preferred selector type
+         *
+         * @param context context
+         * @return preferred selector type
+         */
+        @JvmStatic
+        fun getSelectorPref(context: Context): Selector {
+            return Selector.getPref(context)
+        }
 
-	/**
-	 * Get preferred asset pack
-	 *
-	 * @param context context
-	 * @return asset pack preference
-	 */
-	@NonNull
-	public static String getAssetPack(@NonNull final Context context)
-	{
-		final String primary = context.getString(R.string.asset_primary);
-		final String alt = context.getString(R.string.asset_alt);
-		if (alt.isEmpty())
-		{
-			return primary;
-		}
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-		final boolean isPrimaryDefault = prefs.getBoolean(PREF_ASSET_PRIMARY_DEFAULT, true);
-		return isPrimaryDefault ? primary : alt;
-	}
+        /**
+         * Get preferred XML output flag when view mode is WEB
+         *
+         * @param context context
+         * @return preferred XML output flag when view mode is WEB
+         */
+        @JvmStatic
+        fun getXmlPref(context: Context): Boolean {
+            val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+            return sharedPref.getBoolean(PREF_XML, true)
+        }
 
-	/**
-	 * Get preferred asset pack dir
-	 *
-	 * @param context context
-	 * @return asset pack dir preference
-	 */
-	@NonNull
-	public static String getAssetPackDir(@NonNull final Context context)
-	{
-		final String primary = context.getString(R.string.asset_dir_primary);
-		final String alt = context.getString(R.string.asset_dir_alt);
-		if (alt.isEmpty())
-		{
-			return primary;
-		}
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-		boolean isPrimaryDefault = prefs.getBoolean(PREF_ASSET_PRIMARY_DEFAULT, true);
-		return isPrimaryDefault ? primary : alt;
-	}
+        /**
+         * Get preferred search mode
+         *
+         * @param context context
+         * @return preferred search mode
+         */
+        @JvmStatic
+        fun getSearchModePref(context: Context): Int {
+            val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+            return sharedPref.getInt(PREF_TEXTSEARCH_MODE, 0)
+        }
 
-	/**
-	 * Get preferred asset pack zip
-	 *
-	 * @param context context
-	 * @return asset pack zip preference
-	 */
-	@NonNull
-	public static String getAssetPackZip(@NonNull final Context context)
-	{
-		final String primary = context.getString(R.string.asset_zip_primary);
-		final String alt = context.getString(R.string.asset_zip_alt);
-		if (alt.isEmpty())
-		{
-			return primary;
-		}
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-		boolean isPrimaryDefault = prefs.getBoolean(PREF_ASSET_PRIMARY_DEFAULT, true);
-		return isPrimaryDefault ? primary : alt;
-	}
+        /**
+         * Set preferred search mode
+         *
+         * @param context context
+         * @param value   preferred search mode
+         */
+        @JvmStatic
+        fun setSearchModePref(context: Context, value: Int) {
+            val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+            sharedPref.edit().putInt(PREF_TEXTSEARCH_MODE, value).apply()
+        }
 
-	/**
-	 * Get preferred asset pack auto cleanup flag
-	 *
-	 * @param context context
-	 * @return asset asset pack auto cleanup preference
-	 */
-	public static boolean getAssetAutoCleanup(@NonNull final Context context)
-	{
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-		return prefs.getBoolean(PREF_ASSET_AUTO_CLEANUP, true);
-	}
+        /**
+         * Get preferred asset pack
+         *
+         * @param context context
+         * @return asset pack preference
+         */
+        @JvmStatic
+        fun getAssetPack(context: Context): String {
+            val primary = context.getString(R.string.asset_primary)
+            val alt = context.getString(R.string.asset_alt)
+            if (alt.isEmpty()) {
+                return primary
+            }
+            val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+            val isPrimaryDefault = prefs.getBoolean(PREF_ASSET_PRIMARY_DEFAULT, true)
+            return if (isPrimaryDefault) primary else alt
+        }
 
-	/**
-	 * Get preferred download mode
-	 *
-	 * @param context context
-	 * @return preferred download mode
-	 */
-	@Nullable
-	static public String getDownloadModePref(@NonNull final Context context)
-	{
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		return sharedPref.getString(Settings.PREF_DOWNLOAD_MODE, null);
-	}
+        /**
+         * Get preferred asset pack dir
+         *
+         * @param context context
+         * @return asset pack dir preference
+         */
+        @JvmStatic
+        fun getAssetPackDir(context: Context): String {
+            val primary = context.getString(R.string.asset_dir_primary)
+            val alt = context.getString(R.string.asset_dir_alt)
+            if (alt.isEmpty()) {
+                return primary
+            }
+            val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+            val isPrimaryDefault = prefs.getBoolean(PREF_ASSET_PRIMARY_DEFAULT, true)
+            return if (isPrimaryDefault) primary else alt
+        }
 
+        /**
+         * Get preferred asset pack zip
+         *
+         * @param context context
+         * @return asset pack zip preference
+         */
+        @JvmStatic
+        fun getAssetPackZip(context: Context): String {
+            val primary = context.getString(R.string.asset_zip_primary)
+            val alt = context.getString(R.string.asset_zip_alt)
+            if (alt.isEmpty()) {
+                return primary
+            }
+            val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+            val isPrimaryDefault = prefs.getBoolean(PREF_ASSET_PRIMARY_DEFAULT, true)
+            return if (isPrimaryDefault) primary else alt
+        }
 
-	/**
-	 * Get preferred cache
-	 *
-	 * @param context context
-	 * @return preferred cache
-	 */
-	@Nullable
-	static public String getCachePref(@NonNull final Context context)
-	{
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		return sharedPref.getString(Settings.PREF_CACHE, null);
-	}
+        /**
+         * Get preferred asset pack auto cleanup flag
+         *
+         * @param context context
+         * @return asset asset pack auto cleanup preference
+         */
+        fun getAssetAutoCleanup(context: Context): Boolean {
+            val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+            return prefs.getBoolean(PREF_ASSET_AUTO_CLEANUP, true)
+        }
 
-	public static String getZipEntry(@NonNull final Context context, final String defaultValue)
-	{
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		return sharedPref.getString(Settings.PREF_ZIP_ENTRY, defaultValue);
-	}
+        /**
+         * Get preferred download mode
+         *
+         * @param context context
+         * @return preferred download mode
+         */
+        fun getDownloadModePref(context: Context): String? {
+            val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+            return sharedPref.getString(PREF_DOWNLOAD_MODE, null)
+        }
 
-	/**
-	 * Get db date
-	 *
-	 * @param context context
-	 * @return timestamp
-	 */
-	static public long getDbDate(@NonNull final Context context)
-	{
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		return sharedPref.getLong(Settings.PREF_DB_DATE, -1);
-	}
+        /**
+         * Get preferred cache
+         *
+         * @param context context
+         * @return preferred cache
+         */
+        fun getCachePref(context: Context): String? {
+            val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+            return sharedPref.getString(PREF_CACHE, null)
+        }
 
-	/**
-	 * Set db date
-	 *
-	 * @param context   context
-	 * @param timestamp timestamp
-	 */
-	static public void setDbDate(@NonNull final Context context, final long timestamp)
-	{
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		sharedPref.edit().putLong(Settings.PREF_DB_DATE, timestamp).apply();
-	}
+        @JvmStatic
+        fun getZipEntry(context: Context, defaultValue: String?): String? {
+            val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+            return sharedPref.getString(PREF_ZIP_ENTRY, defaultValue)
+        }
 
-	/**
-	 * Get db size
-	 *
-	 * @param context context
-	 * @return size
-	 */
-	static public long getDbSize(@NonNull final Context context)
-	{
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		return sharedPref.getLong(Settings.PREF_DB_SIZE, -1);
-	}
+        /**
+         * Get db date
+         *
+         * @param context context
+         * @return timestamp
+         */
+        fun getDbDate(context: Context): Long {
+            val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+            return sharedPref.getLong(PREF_DB_DATE, -1)
+        }
 
-	/**
-	 * Set db size
-	 *
-	 * @param context context
-	 * @param size    size
-	 */
-	static public void setDbSize(@NonNull final Context context, final long size)
-	{
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		sharedPref.edit().putLong(Settings.PREF_DB_SIZE, size).apply();
-	}
+        /**
+         * Set db date
+         *
+         * @param context   context
+         * @param timestamp timestamp
+         */
+        fun setDbDate(context: Context, timestamp: Long) {
+            val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+            sharedPref.edit().putLong(PREF_DB_DATE, timestamp).apply()
+        }
 
-	/**
-	 * Initialize display mode preferences
-	 *
-	 * @param context context
-	 */
-	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
-	static public void initializeDisplayPrefs(@NonNull final Context context)
-	{
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-		final Editor editor = sharedPref.edit();
+        /**
+         * Get db size
+         *
+         * @param context context
+         * @return size
+         */
+        fun getDbSize(context: Context): Long {
+            val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+            return sharedPref.getLong(PREF_DB_SIZE, -1)
+        }
 
-		final String viewwebMode_string = sharedPref.getString(Settings.PREF_SELECTOR_MODE, null);
-		if (viewwebMode_string == null)
-		{
-			editor.putString(Settings.PREF_SELECTOR_MODE, SelectorViewMode.VIEW.name());
-		}
+        /**
+         * Set db size
+         *
+         * @param context context
+         * @param size    size
+         */
+        fun setDbSize(context: Context, size: Long) {
+            val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+            sharedPref.edit().putLong(PREF_DB_SIZE, size).apply()
+        }
 
-		final String detailMode_string = sharedPref.getString(Settings.PREF_DETAIL_MODE, null);
-		if (detailMode_string == null)
-		{
-			editor.putString(Settings.PREF_DETAIL_MODE, DetailViewMode.VIEW.name());
-		}
+        /**
+         * Initialize display mode preferences
+         *
+         * @param context context
+         */
+        @SuppressLint("CommitPrefEdits", "ApplySharedPref")
+        fun initializeDisplayPrefs(context: Context) {
+            val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+            val editor = sharedPref.edit()
+            val viewwebModeString = sharedPref.getString(PREF_SELECTOR_MODE, null)
+            if (viewwebModeString == null) {
+                editor.putString(PREF_SELECTOR_MODE, SelectorViewMode.VIEW.name)
+            }
+            val detailModeString = sharedPref.getString(PREF_DETAIL_MODE, null)
+            if (detailModeString == null) {
+                editor.putString(PREF_DETAIL_MODE, DetailViewMode.VIEW.name)
+            }
+            editor.commit()
+        }
 
-		editor.commit();
-	}
+        /**
+         * Update globals
+         *
+         * @param context context
+         */
+        fun updateGlobals(context: Context) {
+            // globals
+            val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+            val logSql = sharedPref.getBoolean(BaseProvider.CircularBuffer.PREF_SQL_LOG, false)
+            PreparedStatement.logSql = logSql
+            BaseProvider.logSql = logSql
+            val sqlBufferCapacity = sharedPref.getString(BaseProvider.CircularBuffer.PREF_SQL_BUFFER_CAPACITY, null)
+            if (sqlBufferCapacity != null) {
+                try {
+                    val capacity = sqlBufferCapacity.toInt()
+                    if (capacity in 1..64) {
+                        resizeSql(capacity)
+                    } else {
+                        sharedPref.edit().remove(BaseProvider.CircularBuffer.PREF_SQL_BUFFER_CAPACITY).apply()
+                    }
+                } catch (e: Exception) {
+                    //
+                }
+            }
+            val twoPanes = sharedPref.getBoolean(PREF_TWO_PANES, false)
+            paneMode = if (twoPanes) 2 else 0
+        }
 
-	/**
-	 * Update globals
-	 *
-	 * @param context context
-	 */
-	static public void updateGlobals(@NonNull final Context context)
-	{
-		// globals
-		final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        /**
+         * Is upgrade
+         *
+         * @param context context
+         * @return [old build,new build]
+         */
+        fun isUpgrade(context: Context): LongArray {
+            // recorded version
+            val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+            val version: Long = try {
+                prefs.getLong(PREF_VERSION, -1)
+            } catch (e: ClassCastException) {
+                prefs.getInt(PREF_VERSION, -1).toLong()
+            }
 
-		final boolean logSql = sharedPref.getBoolean(BaseProvider.CircularBuffer.PREF_SQL_LOG, false);
-		PreparedStatement.logSql = logSql;
-		BaseProvider.logSql = logSql;
+            // build version
+            var build: Long = 0 //BuildConfig.VERSION_CODE;
+            try {
+                val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
+                build = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    packageInfo.longVersionCode
+                } else {
+                    packageInfo.versionCode.toLong()
+                }
+            } catch (ignored: PackageManager.NameNotFoundException) {
+                //
+            }
 
-		final String sqlBufferCapacity = sharedPref.getString(BaseProvider.CircularBuffer.PREF_SQL_BUFFER_CAPACITY, null);
-		if (sqlBufferCapacity != null)
-		{
-			try
-			{
-				int capacity = Integer.parseInt(sqlBufferCapacity);
-				if (capacity >= 1 && capacity <= 64)
-				{
-					BaseProvider.resizeSql(capacity);
-				}
-				else
-				{
-					sharedPref.edit().remove(BaseProvider.CircularBuffer.PREF_SQL_BUFFER_CAPACITY).apply();
-				}
-			}
-			catch (Exception e)
-			{
-				//
-			}
-		}
+            // result
+            return longArrayOf(version, build)
+        }
 
-		final boolean twoPanes = sharedPref.getBoolean(Settings.PREF_TWO_PANES, false);
-		Settings.paneMode = twoPanes ? 2 : 0;
-	}
+        /**
+         * Clear settings on upgrade
+         *
+         * @param context context
+         */
+        @SuppressLint("CommitPrefEdits", "ApplySharedPref")
+        fun onUpgrade(context: Context, build: Long) {
+            val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+            prefs //
+                .edit() //
+                // clear all settings
+                // .clear()
+                // clear some settings
+                .remove(PREF_DOWNLOAD_MODE) //
+                .remove(PREF_DOWNLOAD_SITE) //
+                .remove(PREF_DOWNLOAD_DBFILE) //
+                .remove(PREF_LAUNCH) //
+                // flag as 'has run'
+                .putLong(PREF_VERSION, build) //
+                .apply()
+        }
 
-	/**
-	 * Is upgrade
-	 *
-	 * @param context context
-	 * @return [old build,new build]
-	 */
-	@SuppressWarnings({"UnusedReturnValue"})
-	@NonNull
-	public static long[] isUpgrade(@NonNull final Context context)
-	{
-		// recorded version
-		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-		long version;
-		try
-		{
-			version = prefs.getLong(Settings.PREF_VERSION, -1);
-		}
-		catch (ClassCastException e)
-		{
-			version = prefs.getInt(Settings.PREF_VERSION, -1);
-		}
+        /**
+         * Application settings
+         *
+         * @param context context
+         * @param pkgName package name
+         */
+        @JvmStatic
+        fun applicationSettings(context: Context, pkgName: String) {
+            val intent = Intent()
 
-		// build version
-		long build = 0; //BuildConfig.VERSION_CODE;
-		try
-		{
-			final PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P)
-			{
-				build = packageInfo.getLongVersionCode();
-			}
-			else
-			{
-				build = packageInfo.versionCode;
-			}
-		}
-		catch (PackageManager.NameNotFoundException ignored)
-		{
-			//
-		}
+            intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+            intent.setData(Uri.parse("package:$pkgName"))
 
-		// result
-		return new long[]{version, build};
-	}
-
-	/**
-	 * Clear settings on upgrade
-	 *
-	 * @param context context
-	 */
-	@SuppressLint({"CommitPrefEdits", "ApplySharedPref"})
-	@SuppressWarnings({"UnusedReturnValue"})
-	public static void onUpgrade(@NonNull final Context context, long build)
-	{
-		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-		prefs //
-				.edit() //
-				// clear all settings
-				// .clear()
-
-				// clear some settings
-				.remove(PREF_DOWNLOAD_MODE) //
-				.remove(PREF_DOWNLOAD_SITE) //
-				.remove(PREF_DOWNLOAD_DBFILE) //
-				.remove(PREF_LAUNCH) //
-
-				// flag as 'has run'
-				.putLong(Settings.PREF_VERSION, build) //
-				.apply();
-	}
-
-	/**
-	 * Application settings
-	 *
-	 * @param context context
-	 * @param pkgName package name
-	 */
-	static public void applicationSettings(@NonNull final Context context, final String pkgName)
-	{
-		final Intent intent = new Intent();
-
-		// if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD)
-		// {
-		intent.setAction(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-		intent.setData(Uri.parse("package:" + pkgName));
-		// }
-		// else
-		// {
-		//	final String appPkgName = Build.VERSION.SDK_INT == Build.VERSION_CODES.FROYO ? "pkg" : "com.android.settings.ApplicationPkgName";
-		//	intent.setAction(Intent.ACTION_VIEW);
-		//	intent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails");
-		//	intent.putExtra(appPkgName, pkgName);
-		// }
-
-		// start activity
-		context.startActivity(intent);
-	}
+            // start activity
+            context.startActivity(intent)
+        }
+    }
 }

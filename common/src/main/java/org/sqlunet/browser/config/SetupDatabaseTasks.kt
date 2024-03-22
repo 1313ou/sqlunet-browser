@@ -1,144 +1,118 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser.config
 
-package org.sqlunet.browser.config;
-
-import android.content.ContentProvider;
-import android.content.ContentProviderClient;
-import android.content.Context;
-import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.Build;
-import android.util.Log;
-
-import org.sqlunet.browser.common.R;
-import org.sqlunet.settings.StorageSettings;
-
-import java.util.Collection;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.content.Context
+import android.os.Build
+import android.util.Log
+import org.sqlunet.browser.common.R
+import org.sqlunet.browser.config.DownloadIntentFactory.makeIntent
+import org.sqlunet.settings.StorageSettings.getDatabasePath
 
 /**
- * Manage tasks
+ * Manage database tasks
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class SetupDatabaseTasks
-{
-	static private final String TAG = "SetupDatabaseTasks";
+object SetupDatabaseTasks {
 
-	/**
-	 * Create database
-	 *
-	 * @param context      context
-	 * @param databasePath path
-	 * @return true if successful
-	 */
-	static public boolean createDatabase(@NonNull final Context context, final String databasePath)
-	{
-		try
-		{
-			final SQLiteDatabase db = context.openOrCreateDatabase(databasePath, Context.MODE_PRIVATE, null);
-			db.close();
-			return true;
-		}
-		catch (Exception e)
-		{
-			Log.e(TAG, "While creating database", e);
-		}
-		return false;
-	}
+    private const val TAG = "SetupDatabaseTasks"
 
-	/**
-	 * Delete database
-	 *
-	 * @param context      context
-	 * @param databasePath path
-	 * @return true if successful
-	 */
-	static public boolean deleteDatabase(@NonNull final Context context, final String databasePath)
-	{
-		// make sure you close all connections before deleting
-		final String[] authorities = context.getResources().getStringArray(R.array.provider_authorities);
-		for (String authority : authorities)
-		{
-			final ContentProviderClient client = context.getContentResolver().acquireContentProviderClient(authority);
-			assert client != null;
-			final ContentProvider provider = client.getLocalContentProvider();
-			assert provider != null;
-			provider.shutdown();
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N)
-			{
-				client.release();
-			}
-			else
-			{
-				client.close();
-			}
-		}
+    /**
+     * Create database
+     *
+     * @param context      context
+     * @param databasePath path
+     * @return true if successful
+     */
+    @JvmStatic
+    fun createDatabase(context: Context, databasePath: String?): Boolean {
+        try {
+            val db = context.openOrCreateDatabase(databasePath, Context.MODE_PRIVATE, null)
+            db.close()
+            return true
+        } catch (e: Exception) {
+            Log.e(TAG, "While creating database", e)
+        }
+        return false
+    }
 
-		// delete
-		boolean result = context.deleteDatabase(databasePath);
-		Log.d(TAG, "Dropping database: " + result);
-		return result;
-	}
+    /**
+     * Delete database
+     *
+     * @param context      context
+     * @param databasePath path
+     * @return true if successful
+     */
+    @JvmStatic
+    fun deleteDatabase(context: Context, databasePath: String?): Boolean {
+        // make sure you close all connections before deleting
+        val authorities = context.resources.getStringArray(R.array.provider_authorities)
+        for (authority in authorities) {
+            val client = context.contentResolver.acquireContentProviderClient(authority!!)!!
+            val provider = client.localContentProvider!!
+            provider.shutdown()
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+                client.release()
+            } else {
+                client.close()
+            }
+        }
 
-	/**
-	 * Update data
-	 *
-	 * @param context context
-	 */
-	static public void update(@NonNull final Context context)
-	{
-		final boolean success = SetupDatabaseTasks.deleteDatabase(context, StorageSettings.getDatabasePath(context));
-		if (success)
-		{
-			final Intent intent = DownloadIntentFactory.makeIntent(context);
-			context.startActivity(intent);
-		}
-	}
+        // delete
+        val result = context.deleteDatabase(databasePath)
+        Log.d(TAG, "Dropping database: $result")
+        return result
+    }
 
-	/**
-	 * Drop tables
-	 *
-	 * @param context      context
-	 * @param databasePath path
-	 * @param tables       tables to drop
-	 */
-	static public void dropAll(@NonNull final Context context, final String databasePath, @Nullable final Collection<String> tables)
-	{
-		if (tables != null && !tables.isEmpty())
-		{
-			final SQLiteDatabase db = context.openOrCreateDatabase(databasePath, Context.MODE_PRIVATE, null);
-			for (final String table : tables)
-			{
-				db.execSQL("DROP TABLE IF EXISTS " + table);
-				Log.d(TAG, table + ": dropped");
-			}
-			db.close();
-		}
-	}
+    /**
+     * Update data
+     *
+     * @param context context
+     */
+    @JvmStatic
+    fun update(context: Context) {
+        val success = deleteDatabase(context, getDatabasePath(context))
+        if (success) {
+            val intent = makeIntent(context)
+            context.startActivity(intent)
+        }
+    }
 
-	/**
-	 * Flush tables
-	 *
-	 * @param context      context
-	 * @param databasePath path
-	 * @param tables       tables to flush
-	 */
-	static public void flushAll(@NonNull final Context context, final String databasePath, @Nullable final Collection<String> tables)
-	{
-		if (tables != null && !tables.isEmpty())
-		{
-			final SQLiteDatabase db = context.openOrCreateDatabase(databasePath, Context.MODE_PRIVATE, null);
-			for (final String table : tables)
-			{
-				int deletedRows = db.delete(table, null, null);
-				Log.d(TAG, table + ": deleted " + deletedRows + " rows");
-			}
-			db.close();
-		}
-	}
+    /**
+     * Drop tables
+     *
+     * @param context      context
+     * @param databasePath path
+     * @param tables       tables to drop
+     */
+    fun dropAll(context: Context, databasePath: String?, tables: Collection<String>?) {
+        if (!tables.isNullOrEmpty()) {
+            val db = context.openOrCreateDatabase(databasePath, Context.MODE_PRIVATE, null)
+            for (table in tables) {
+                db.execSQL("DROP TABLE IF EXISTS $table")
+                Log.d(TAG, "$table: dropped")
+            }
+            db.close()
+        }
+    }
+
+    /**
+     * Flush tables
+     *
+     * @param context      context
+     * @param databasePath path
+     * @param tables       tables to flush
+     */
+    fun flushAll(context: Context, databasePath: String?, tables: Collection<String>?) {
+        if (!tables.isNullOrEmpty()) {
+            val db = context.openOrCreateDatabase(databasePath, Context.MODE_PRIVATE, null)
+            for (table in tables) {
+                val deletedRows = db.delete(table, null, null)
+                Log.d(TAG, "$table: deleted $deletedRows rows")
+            }
+            db.close()
+        }
+    }
 }

@@ -1,169 +1,114 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser.config
 
-package org.sqlunet.browser.config;
+import android.app.Activity
+import android.content.ContentResolver
+import android.content.Intent
+import android.net.Uri
+import android.provider.OpenableColumns
+import android.util.Log
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
+import androidx.arch.core.util.Function
+import androidx.core.util.Consumer
+import java.io.FileDescriptor
+import java.io.IOException
+import java.io.InputStream
 
-import android.app.Activity;
-import android.content.ContentResolver;
-import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.ParcelFileDescriptor;
-import android.provider.OpenableColumns;
-import android.util.Log;
+object SAFUtils {
+    private const val TAG = "SAFUtils"
 
-import java.io.FileDescriptor;
-import java.io.IOException;
-import java.io.InputStream;
+    // L I S T E N E R
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.arch.core.util.Function;
-import androidx.core.util.Consumer;
+    fun makeListener(activity: AppCompatActivity, consumer: Consumer<Uri?>): ActivityResultLauncher<Intent> {
+        return activity.registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val resultData = result.data
+                if (resultData != null) {
+                    val uri = resultData.data
+                    Log.i(TAG, "Uri: " + uri.toString())
+                    consumer.accept(uri)
+                }
+            }
+        }
+    }
 
-public class SAFUtils
-{
-	private static final String TAG = "SAFUtils";
+    // P I C K
 
-	// L I S T E N E R
+    fun pick(launcher: ActivityResultLauncher<Intent?>, vararg mimeTypes: String) {
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
 
-	@NonNull
-	public static ActivityResultLauncher<Intent> makeListener(@NonNull final AppCompatActivity activity, @NonNull final Consumer<Uri> consumer)
-	{
-		return activity.registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+        // Filter to only show results that can be "opened", such as a file (as opposed to a list of contacts or timezones)
+        intent.addCategory(Intent.CATEGORY_OPENABLE)
 
-			if (result.getResultCode() == Activity.RESULT_OK)
-			{
-				Intent resultData = result.getData();
-				if (resultData != null)
-				{
-					Uri uri = resultData.getData();
-					Log.i(TAG, "Uri: " + uri.toString());
+        // Filter to show only docs of selected type, using the image MIME data type.
+        // To search for all documents available via installed storage providers, it would be "*/*".
+        setType(intent, *mimeTypes)
+        launcher.launch(intent)
+    }
 
-					consumer.accept(uri);
-				}
-			}
-		});
-	}
+    private fun setType(intent: Intent, vararg mimeTypes: String?) {
+        intent.setType(if (mimeTypes.size == 1) mimeTypes[0] else "*/*")
+        if (mimeTypes.isNotEmpty()) {
+            intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes)
+        }
+    }
 
-	// P I C K
+    // Q U E R Y
 
-	public static void pick(@NonNull final ActivityResultLauncher<Intent> launcher, @NonNull final String... mimeTypes)
-	{
-		Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+    fun querySize(uri: Uri, resolver: ContentResolver): String? {
+        // The query, since it only applies to a single document, will only return one row. There's no need to filter, sort, or select fields, since we want all fields for one document.
+        resolver.query(uri, null, null, null, null, null).use { cursor ->
+            // moveToFirst() returns false if the cursor has 0 rows.  Very handy for "if there's anything to look at, look at it" conditionals.
+            if (cursor != null && cursor.moveToFirst()) {
+                val sizeIndex = cursor.getColumnIndex(OpenableColumns.SIZE)
+                // If the size is unknown, the value stored is null.
+                // But since an int can't be null in Java, the behavior is implementation-specific, which is just a fancy term for "unpredictable".
+                // So as a rule, check if it's null before assigning to an int.
+                // This will happen often: The storage API allows for remote files, whose size might not be locally known.
+                return if (!cursor.isNull(sizeIndex)) {
+                    // Technically the column stores an int, but cursor.getString() will do the conversion automatically.
+                    cursor.getString(sizeIndex)
+                } else {
+                    "N/A"
+                }
+            }
+        }
+        return "Error"
+    }
 
-		// Filter to only show results that can be "opened", such as a file (as opposed to a list of contacts or timezones)
-		intent.addCategory(Intent.CATEGORY_OPENABLE);
+    fun queryName(uri: Uri, resolver: ContentResolver): String? {
+        // The query, since it only applies to a single document, will only return one row. There's no need to filter, sort, or select fields, since we want all fields for one document.
+        resolver.query(uri, null, null, null, null, null).use { cursor ->
+            // moveToFirst() returns false if the cursor has 0 rows.  Very handy for "if there's anything to look at, look at it" conditionals.
+            if (cursor != null && cursor.moveToFirst()) {
+                // Note it's called "Display Name".  This is provider-specific, and might not necessarily be the file name.
+                val displayNameIdx = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+                return cursor.getString(displayNameIdx)
+            }
+        }
+        return "Error"
+    }
 
-		// Filter to show only docs of selected type, using the image MIME data type.
-		// To search for all documents available via installed storage providers, it would be "*/*".
-		setType(intent, mimeTypes);
+    fun getType(uri: Uri, resolver: ContentResolver): String? {
+        return resolver.getType(uri)
+    }
 
-		launcher.launch(intent);
-	}
+    // F I L E   D E S C R I P T O R
 
-	private static void setType(@NonNull final Intent intent, @Nullable final String... mimeTypes)
-	{
-		if (mimeTypes == null)
-		{
-			return;
-		}
+    @Throws(IOException::class)
+    fun <R> applyFileDescriptor(uri: Uri, resolver: ContentResolver, f: Function<FileDescriptor?, R>): R? {
+        resolver.openFileDescriptor(uri, "r").use { parcelFileDescriptor -> return f.apply(parcelFileDescriptor!!.fileDescriptor) }
+    }
 
-		// if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
-		// {
-		intent.setType(mimeTypes.length == 1 ? mimeTypes[0] : "*/*");
-		if (mimeTypes.length > 0)
-		{
-			intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
-		}
-		//}
-		// else
-		// {
-		// 	StringBuilder mimeTypesStr = new StringBuilder();
-		// 	for (String mimeType : mimeTypes)
-		// 	{
-		// 		mimeTypesStr.append(mimeType).append("|");
-		// 	}
-		// 	intent.setType(mimeTypesStr.substring(0, mimeTypesStr.length() - 1));
-		// }
-	}
+    // I N P U T S T R E A M
 
-	// Q U E R Y
-
-	@Nullable
-	public static String querySize(@NonNull final Uri uri, @NonNull final ContentResolver resolver)
-	{
-		// The query, since it only applies to a single document, will only return one row. There's no need to filter, sort, or select fields, since we want all fields for one document.
-		try (Cursor cursor = resolver.query(uri, null, null, null, null, null))
-		{
-			// moveToFirst() returns false if the cursor has 0 rows.  Very handy for "if there's anything to look at, look at it" conditionals.
-			if (cursor != null && cursor.moveToFirst())
-			{
-				int sizeIndex = cursor.getColumnIndex(OpenableColumns.SIZE);
-				// If the size is unknown, the value stored is null.
-				// But since an int can't be null in Java, the behavior is implementation-specific, which is just a fancy term for "unpredictable".
-				// So as a rule, check if it's null before assigning to an int.
-				// This will happen often: The storage API allows for remote files, whose size might not be locally known.
-				if (!cursor.isNull(sizeIndex))
-				{
-					// Technically the column stores an int, but cursor.getString() will do the conversion automatically.
-					return cursor.getString(sizeIndex);
-				}
-				else
-				{
-					return "N/A";
-				}
-			}
-		}
-		return "Error";
-	}
-
-	@Nullable
-	public static String queryName(@NonNull final Uri uri, @NonNull final ContentResolver resolver)
-	{
-		// The query, since it only applies to a single document, will only return one row. There's no need to filter, sort, or select fields, since we want all fields for one document.
-		try (Cursor cursor = resolver.query(uri, null, null, null, null, null))
-		{
-			// moveToFirst() returns false if the cursor has 0 rows.  Very handy for "if there's anything to look at, look at it" conditionals.
-			if (cursor != null && cursor.moveToFirst())
-			{
-				// Note it's called "Display Name".  This is provider-specific, and might not necessarily be the file name.
-				int displayNameIdx = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
-				return cursor.getString(displayNameIdx);
-			}
-		}
-		return "Error";
-	}
-
-	@Nullable
-	public static String getType(@NonNull final Uri uri, @NonNull final ContentResolver resolver)
-	{
-		return resolver.getType(uri);
-	}
-
-	// F I L E   D E S C R I P T O R
-
-	@Nullable
-	public static <R> R applyFileDescriptor(@NonNull final Uri uri, @NonNull final ContentResolver resolver, @NonNull final Function<FileDescriptor, R> f) throws IOException
-	{
-		try (ParcelFileDescriptor parcelFileDescriptor = resolver.openFileDescriptor(uri, "r"))
-		{
-			return f.apply(parcelFileDescriptor.getFileDescriptor());
-		}
-	}
-
-	// I N P U T S T R E A M
-
-	@Nullable
-	public static <R> R applyInputStream(@NonNull Uri uri, @NonNull final ContentResolver resolver, @NonNull final Function<InputStream, R> f) throws IOException
-	{
-		try (InputStream is = resolver.openInputStream(uri))
-		{
-			return f.apply(is);
-		}
-	}
+    @Throws(IOException::class)
+    fun <R> applyInputStream(uri: Uri, resolver: ContentResolver, f: Function<InputStream?, R>): R? {
+        resolver.openInputStream(uri).use { `is` -> return f.apply(`is`) }
+    }
 }

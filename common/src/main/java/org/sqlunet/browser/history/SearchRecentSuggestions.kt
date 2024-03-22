@@ -1,153 +1,124 @@
 /*
  * Copyright (c) 2024. Bernard Bou <1313ou@gmail.com>
  */
+package org.sqlunet.browser.history
 
-package org.sqlunet.browser.history;
-
-import android.content.ContentResolver;
-import android.content.Context;
-import android.content.SearchRecentSuggestionsProvider;
-import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.net.Uri;
-import android.provider.BaseColumns;
-import android.util.Log;
-
-import org.sqlunet.browser.common.R;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.loader.content.CursorLoader;
-import androidx.preference.PreferenceManager;
+import android.content.Context
+import android.content.SearchRecentSuggestionsProvider
+import android.database.Cursor
+import android.net.Uri
+import android.provider.BaseColumns
+import android.util.Log
+import androidx.loader.content.CursorLoader
+import androidx.preference.PreferenceManager
+import org.sqlunet.browser.common.R
 
 /**
  * Search recent suggestion. Access to suggestions provider, after standard SearchRecentSuggestions which has private members and can hardly be extended.
  *
+ * @param context context
+ * @param mode    item_mode
+ *
  * @author Bernard Bou
  */
-@SuppressWarnings("WeakerAccess")
-public class SearchRecentSuggestions
-{
-	static private final String TAG = "SearchRecentSuggestions";
+class SearchRecentSuggestions(context: Context, mode: Int) {
 
-	// a superset of all possible column names (need not all be in table)
-	public static class SuggestionColumns implements BaseColumns
-	{
-		public static final String DISPLAY1 = "display1";
-		// public static final String DISPLAY2 = "display2";
-		public static final String QUERY = "query";
-		public static final String DATE = "date";
-	}
+    // a superset of all possible column names (need not all be in table)
+    object SuggestionColumns : BaseColumns {
+        const val DISPLAY1 = "display1"
 
-	// client-provided configuration values
-	private final Context mContext;
-	private final Uri mSuggestionsUri;
+        // const val DISPLAY2 = "display2";
+        // const val QUERY = "query"
+        const val DATE = "date"
+    }
 
-	/**
-	 * Constructor
-	 *
-	 * @param context context
-	 * @param mode    item_mode
-	 */
-	public SearchRecentSuggestions(final Context context, @SuppressWarnings("SameParameterValue") final int mode)
-	{
-		if ((mode & SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES) == 0)
-		{
-			throw new IllegalArgumentException();
-		}
+    // client-provided configuration values
+    private val mContext: Context
+    private val mSuggestionsUri: Uri
 
-		// saved values
-		this.mContext = context;
-		String mAuthority = getAuthority();
+    // Q U E R Y
 
-		// derived values
-		this.mSuggestionsUri = Uri.parse("content://" + mAuthority + "/suggestions");
-	}
+    /**
+     * Get cursor
+     *
+     * @return cursor
+     */
+    fun cursor(): Cursor? {
+        val contentResolver = mContext.contentResolver
+        try {
+            val projection = arrayOf( /*"DISTINCT " +*/SuggestionColumns.DISPLAY1, "_id")
+            val sortOrder = sortOrder
+            // val selection = getSelection()
+            // val selectionArgs : Array<String>? = null
+            return contentResolver.query(mSuggestionsUri, projection, null, null, sortOrder)
+        } catch (e: RuntimeException) {
+            Log.e(TAG, "While getting cursor", e)
+        }
+        return null
+    }
 
-	// Q U E R Y
+    /**
+     * Get cursor loader
+     *
+     * @return cursor loader
+     */
+    fun cursorLoader(): CursorLoader {
+        val projection = arrayOf( /* "DISTINCT " +*/SuggestionColumns.DISPLAY1, "_id")
+        val sortOrder = sortOrder
+        // val selection = getSelection()
+        // val selectionArgs : Array<String>? = null
+        return CursorLoader(mContext, mSuggestionsUri, projection, null, null, sortOrder)
+    }
 
-	/**
-	 * Get cursor
-	 *
-	 * @return cursor
-	 */
-	@Nullable
-	public Cursor cursor()
-	{
-		final ContentResolver contentResolver = this.mContext.getContentResolver();
-		try
-		{
-			final String[] projection = {/*"DISTINCT " +*/ SuggestionColumns.DISPLAY1, "_id"};
-			final String sortOrder = getSortOrder();
-			// final String selection = getSelection();
-			// final String[] selectionArgs = null; // {};
-			return contentResolver.query(this.mSuggestionsUri, projection, null, null, sortOrder);
-		}
-		catch (@NonNull final RuntimeException e)
-		{
-			Log.e(SearchRecentSuggestions.TAG, "While getting cursor", e);
-		}
-		return null;
-	}
+    init {
+        require(mode and SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES != 0)
 
-	/**
-	 * Get cursor loader
-	 *
-	 * @return cursor loader
-	 */
-	@NonNull
-	public CursorLoader cursorLoader()
-	{
-		final String[] projection = {/* "DISTINCT " +*/ SuggestionColumns.DISPLAY1, "_id"};
-		final String sortOrder = getSortOrder();
-		// final String selection = getSelection();
-		// final String[] selectionArgs = null; // {};
-		return new CursorLoader(this.mContext, this.mSuggestionsUri, projection, null, null, sortOrder);
-	}
+        // saved values
+        mContext = context
+        val mAuthority = authority
 
-	// S O R T
+        // derived values
+        mSuggestionsUri = Uri.parse("content://$mAuthority/suggestions")
+    }
 
-	private static final String PREF_KEY_HISTORY_SORT_BY_DATE = "pref_history_sort_by_date";
+    private val sortOrder: String
+        get() {
+            val prefs = PreferenceManager.getDefaultSharedPreferences(mContext)
+            val byDate = prefs.getBoolean(PREF_KEY_HISTORY_SORT_BY_DATE, true)
+            return if (byDate) SuggestionColumns.DATE + " DESC" else SuggestionColumns.DISPLAY1 + " ASC"
+        }
 
-	@NonNull
-	private String getSortOrder()
-	{
-		final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
-		final boolean byDate = prefs.getBoolean(PREF_KEY_HISTORY_SORT_BY_DATE, true);
-		return byDate ? SuggestionColumns.DATE + " DESC" : SuggestionColumns.DISPLAY1 + " ASC";
-	}
+    // D E L E T E
 
-	// D E L E T E
+    /**
+     * Delete item by _id
+     */
+    fun delete(id: String) {
+        val selection = "_id = ?"
+        val selectArgs = arrayOf(id)
+        val cr = mContext.contentResolver
+        try {
+            cr.delete(mSuggestionsUri, selection, selectArgs)
+        } catch (e: RuntimeException) {
+            Log.e(TAG, "While deleting suggestion", e)
+        }
+    }
 
-	/**
-	 * Delete item by _id
-	 */
-	public void delete(final String id)
-	{
-		final String selection = "_id = ?";
-		final String[] selectArgs = new String[]{id};
-		final ContentResolver cr = this.mContext.getContentResolver();
-		try
-		{
-			cr.delete(this.mSuggestionsUri, selection, selectArgs);
-		}
-		catch (@NonNull final RuntimeException e)
-		{
-			Log.e(SearchRecentSuggestions.TAG, "While deleting suggestion", e);
-		}
-	}
+    // A U T H O R I T Y
 
-	// A U T H O R I T Y
+    private val authority: String
+        get() = getAuthority(mContext)
 
-	@NonNull
-	private String getAuthority()
-	{
-		return getAuthority(this.mContext);
-	}
+    companion object {
+        private const val TAG = "SearchRecentSuggestions"
 
-	@NonNull
-	static public String getAuthority(@NonNull final Context context)
-	{
-		return context.getString(R.string.history_authority);
-	}
+        @JvmStatic
+        fun getAuthority(context: Context): String {
+            return context.getString(R.string.history_authority)
+        }
+
+        // S O R T
+
+        private const val PREF_KEY_HISTORY_SORT_BY_DATE = "pref_history_sort_by_date"
+    }
 }

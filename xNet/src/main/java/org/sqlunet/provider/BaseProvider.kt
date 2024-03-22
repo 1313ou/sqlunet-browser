@@ -325,6 +325,26 @@ abstract class BaseProvider : ContentProvider() {
         }
 
         /**
+         * Convert args to string
+         *
+         * @param args args
+         * @return string
+         */
+        @JvmStatic
+        protected fun argsToString(args: Array<String>?): String {
+            val sb = StringBuilder()
+            if (!args.isNullOrEmpty()) {
+                for (s in args) {
+                    if (sb.isNotEmpty()) {
+                        sb.append(", ")
+                    }
+                    sb.append(s)
+                }
+            }
+            return sb.toString()
+        }
+
+        /**
          * Resize sql buffer
          *
          * @param capacity capacity

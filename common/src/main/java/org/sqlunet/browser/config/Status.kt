@@ -1,202 +1,160 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser.config
 
-package org.sqlunet.browser.config;
-
-import android.content.Context;
-import android.content.res.Resources;
-import android.database.Cursor;
-import android.net.Uri;
-import android.text.Editable;
-import android.text.SpannableStringBuilder;
-import android.util.Log;
-
-import org.sqlunet.browser.common.R;
-import org.sqlunet.provider.ManagerContract;
-import org.sqlunet.provider.ManagerContract.TablesAndIndices;
-import org.sqlunet.provider.ManagerProvider;
-import org.sqlunet.settings.StorageSettings;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.content.Context
+import android.net.Uri
+import android.text.Editable
+import android.text.SpannableStringBuilder
+import android.util.Log
+import org.sqlunet.browser.common.R
+import org.sqlunet.provider.ManagerContract.TablesAndIndices
+import org.sqlunet.provider.ManagerProvider
+import org.sqlunet.settings.StorageSettings.getDatabasePath
+import java.io.File
 
 /**
  * Database _status
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-abstract public class Status
-{
-	static private final String TAG = "Status";
+abstract class Status {
+    companion object {
+        private const val TAG = "Status"
 
-	// _status flags
+        // _status flags
+        const val EXISTS = 0x1
+        const val EXISTS_TABLES = 0x2
+        const val EXISTS_INDEXES = 0x10
 
-	static public final int EXISTS = 0x1;
+        /**
+         * Get _status
+         *
+         * @param context context
+         * @return _status
+         */
+        @JvmStatic
+        fun status(context: Context): Int {
+            if (existsDatabase(context)) {
+                var status = EXISTS
+                val res = context.resources
+                val requiredTables = res.getStringArray(R.array.required_tables)
+                val requiredIndexes = res.getStringArray(R.array.required_indexes)
+                val existingTablesAndIndexes: List<String>? = try {
+                    tablesAndIndexes(context)
+                } catch (e: Exception) {
+                    Log.e(TAG, "While getting _status", e)
+                    return status
+                }
+                val existsTables = contains(existingTablesAndIndexes, *requiredTables)
+                val existsIdx = contains(existingTablesAndIndexes, *requiredIndexes)
+                if (existsTables) {
+                    status = status or EXISTS_TABLES
+                }
+                if (existsIdx) {
+                    status = status or EXISTS_INDEXES
+                }
+                return status
+            }
+            return 0
+        }
 
-	static public final int EXISTS_TABLES = 0x2;
+        /**
+         * Can run _status
+         *
+         * @param context context
+         * @return true if app is ready to run
+         */
+        fun canRun(context: Context): Boolean {
+            val status = status(context)
+            return status and (EXISTS or EXISTS_TABLES or EXISTS_INDEXES) == EXISTS or EXISTS_TABLES or EXISTS_INDEXES
+        }
 
-	static public final int EXISTS_INDEXES = 0x10;
+        /**
+         * Test existence of database
+         *
+         * @param context context
+         * @return true if database exists
+         */
+        @JvmStatic
+        protected fun existsDatabase(context: Context): Boolean {
+            val databasePath = getDatabasePath(context)
+            val db = File(databasePath)
+            return db.exists() && db.isFile() && db.canWrite()
+        }
 
-	/**
-	 * Get _status
-	 *
-	 * @param context context
-	 * @return _status
-	 */
-	public static int status(@NonNull final Context context)
-	{
-		if (existsDatabase(context))
-		{
-			int status = EXISTS;
+        /**
+         * Get tables and indexes
+         *
+         * @param context context
+         * @return list of tables and indexes
+         */
+        @JvmStatic
+        fun tablesAndIndexes(context: Context): List<String>? {
+            val order = ("CASE " //
+                    + "WHEN " + TablesAndIndices.TYPE + " = 'table' THEN '1' " //
+                    + "WHEN " + TablesAndIndices.TYPE + " = 'view' THEN '2' " //
+                    + "WHEN " + TablesAndIndices.TYPE + " = 'index' THEN '3' " //
+                    + "ELSE " + TablesAndIndices.TYPE + " END ASC," //
+                    + TablesAndIndices.NAME + " ASC")
+            context.contentResolver.query( //
+                Uri.parse(ManagerProvider.makeUri(TablesAndIndices.URI)), arrayOf(TablesAndIndices.TYPE, TablesAndIndices.NAME),  // projection
+                "name NOT LIKE 'sqlite_%' AND name NOT LIKE 'android_%'",  // selection criteria //
+                null,  //
+                order
+            ).use { cursor ->
+                var result: MutableList<String>? = null
+                if (cursor != null) {
+                    if (cursor.moveToFirst()) {
+                        val nameId = cursor.getColumnIndex(TablesAndIndices.NAME)
+                        result = ArrayList()
+                        do {
+                            val name = cursor.getString(nameId)
+                            result.add(name)
+                        } while (cursor.moveToNext())
+                    }
+                }
+                return result
+            }
+        }
 
-			final Resources res = context.getResources();
-			final String[] requiredTables = res.getStringArray(R.array.required_tables);
-			final String[] requiredIndexes = res.getStringArray(R.array.required_indexes);
+        /**
+         * Test if targets are contained in tables and indexes
+         *
+         * @param tablesAndIndexes tables and indexes
+         * @param targets          targets
+         * @return true if targets are contained in tables and indexes
+         */
+        protected fun contains(tablesAndIndexes: Collection<String>?, vararg targets: String): Boolean {
+            if (tablesAndIndexes == null) {
+                return false
+            }
+            val result = tablesAndIndexes.containsAll(listOf(*targets))
+            if (!result) {
+                for (target in targets) {
+                    if (!tablesAndIndexes.contains(target)) {
+                        Log.e(TAG, "Absent $target")
+                    }
+                }
+            }
+            return result
+        }
 
-			List<String> existingTablesAndIndexes;
-			try
-			{
-				existingTablesAndIndexes = tablesAndIndexes(context);
-			}
-			catch (Exception e)
-			{
-				Log.e(TAG, "While getting _status", e);
-				return status;
-			}
-
-			boolean existsTables = contains(existingTablesAndIndexes, requiredTables);
-			boolean existsIdx = contains(existingTablesAndIndexes, requiredIndexes);
-
-			if (existsTables)
-			{
-				status |= EXISTS_TABLES;
-			}
-			if (existsIdx)
-			{
-				status |= EXISTS_INDEXES;
-			}
-			return status;
-		}
-		return 0;
-	}
-
-	/**
-	 * Can run _status
-	 *
-	 * @param context context
-	 * @return true if app is ready to run
-	 */
-	static public boolean canRun(@NonNull final Context context)
-	{
-		final int status = status(context);
-		return (status & (EXISTS | EXISTS_TABLES | EXISTS_INDEXES)) == (EXISTS | EXISTS_TABLES | EXISTS_INDEXES);
-	}
-
-	/**
-	 * Test existence of database
-	 *
-	 * @param context context
-	 * @return true if database exists
-	 */
-	static protected boolean existsDatabase(@NonNull final Context context)
-	{
-		final String databasePath = StorageSettings.getDatabasePath(context);
-		final File db = new File(databasePath);
-		return db.exists() && db.isFile() && db.canWrite();
-	}
-
-	/**
-	 * Get tables and indexes
-	 *
-	 * @param context context
-	 * @return list of tables and indexes
-	 */
-	@Nullable
-	static protected List<String> tablesAndIndexes(@NonNull final Context context)
-	{
-		final String order = "CASE " //
-				+ "WHEN " + ManagerContract.TablesAndIndices.TYPE + " = 'table' THEN '1' " //
-				+ "WHEN " + ManagerContract.TablesAndIndices.TYPE + " = 'view' THEN '2' " //
-				+ "WHEN " + ManagerContract.TablesAndIndices.TYPE + " = 'index' THEN '3' " //
-				+ "ELSE " + ManagerContract.TablesAndIndices.TYPE + " END ASC," //
-				+ ManagerContract.TablesAndIndices.NAME + " ASC";
-		try (final Cursor cursor = context.getContentResolver().query( //
-				Uri.parse(ManagerProvider.makeUri(TablesAndIndices.URI)), //
-				new String[]{TablesAndIndices.TYPE, TablesAndIndices.NAME}, // projection
-				"name NOT LIKE 'sqlite_%' AND name NOT LIKE 'android_%'", // selection criteria //
-				null, //
-				order))
-		{
-			List<String> result = null;
-			if (cursor != null)
-			{
-				if (cursor.moveToFirst())
-				{
-					final int nameId = cursor.getColumnIndex(TablesAndIndices.NAME);
-					result = new ArrayList<>();
-					do
-					{
-						final String name = cursor.getString(nameId);
-						result.add(name);
-					}
-					while (cursor.moveToNext());
-				}
-			}
-			return result;
-		}
-	}
-
-	/**
-	 * Test if targets are contained in tables and indexes
-	 *
-	 * @param tablesAndIndexes tables and indexes
-	 * @param targets          targets
-	 * @return true if targets are contained in tables and indexes
-	 */
-	static protected boolean contains(@Nullable final Collection<String> tablesAndIndexes, @NonNull final String... targets)
-	{
-		if (tablesAndIndexes == null)
-		{
-			return false;
-		}
-		boolean result = tablesAndIndexes.containsAll(Arrays.asList(targets));
-		if (!result)
-		{
-			for (String target : targets)
-			{
-				if (!tablesAndIndexes.contains(target))
-				{
-					Log.e(TAG, "Absent " + target);
-				}
-			}
-		}
-		return result;
-	}
-
-	@NonNull
-	static public CharSequence toString(int status)
-	{
-		final Editable sb = new SpannableStringBuilder();
-		sb.append(Integer.toHexString(status));
-		if ((status & EXISTS) != 0)
-		{
-			sb.append(" file");
-		}
-		if ((status & EXISTS_TABLES) != 0)
-		{
-			sb.append(" tables");
-		}
-		if ((status & EXISTS_INDEXES) != 0)
-		{
-			sb.append(" indexes");
-		}
-		return sb;
-	}
+        @JvmStatic
+        fun toString(status: Int): CharSequence {
+            val sb: Editable = SpannableStringBuilder()
+            sb.append(Integer.toHexString(status))
+            if (status and EXISTS != 0) {
+                sb.append(" file")
+            }
+            if (status and EXISTS_TABLES != 0) {
+                sb.append(" tables")
+            }
+            if (status and EXISTS_INDEXES != 0) {
+                sb.append(" indexes")
+            }
+            return sb
+        }
+    }
 }

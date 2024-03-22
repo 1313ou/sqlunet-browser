@@ -1,24 +1,18 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
-
-package org.sqlunet.browser.web;
-
-import androidx.annotation.Nullable;
+package org.sqlunet.browser.web
 
 /**
  * Document string loader
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-@FunctionalInterface
-public interface DocumentStringLoader
-{
-	/**
-	 * Get document
-	 *
-	 * @return document
-	 */
-	@Nullable
-	String getDoc();
+fun interface DocumentStringLoader {
+    /**
+     * Get document
+     *
+     * @return document
+     */
+    fun getDoc(): String?
 }

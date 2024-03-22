@@ -1,39 +1,25 @@
 /*
  * Copyright (c) 2024. Bernard Bou <1313ou@gmail.com>
  */
+package org.sqlunet.browser.history
 
-package org.sqlunet.browser.history;
-
-import android.content.Context;
-import android.content.SearchRecentSuggestionsProvider;
+import android.content.SearchRecentSuggestionsProvider
 
 /**
  * Recent suggestion provider
  *
  * @author Bernard Bou
  */
-public class SearchSuggestionsProvider extends SearchRecentSuggestionsProvider
-{
-	/**
-	 * Mode
-	 */
-	private final static int MODE = SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES;
+class SearchSuggestionsProvider : SearchRecentSuggestionsProvider() {
 
-	/**
-	 * Constructor
-	 */
-	@SuppressWarnings("EmptyMethod")
-	public SearchSuggestionsProvider()
-	{
-	}
+    override fun onCreate(): Boolean {
+        val context = context!!
+        val authority = SearchRecentSuggestions.getAuthority(context)
+        setupSuggestions(authority, MODE)
+        return super.onCreate()
+    }
 
-	@Override
-	public boolean onCreate()
-	{
-		final Context context = getContext();
-		assert context != null;
-		String authority = SearchRecentSuggestions.getAuthority(context);
-		setupSuggestions(authority, MODE);
-		return super.onCreate();
-	}
+    companion object {
+        private const val MODE = DATABASE_MODE_QUERIES
+    }
 }

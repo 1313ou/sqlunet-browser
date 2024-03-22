@@ -1,57 +1,47 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser.web
 
-package org.sqlunet.browser.web;
-
-import android.util.Log;
-
-import org.sqlunet.dom.DomTransformer;
-import org.w3c.dom.Document;
-
-import java.io.InputStream;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.util.Log
+import org.sqlunet.dom.DomTransformer.docToString
+import org.w3c.dom.Document
+import java.io.InputStream
 
 /**
  * XSL Transformer
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-abstract public class DocumentTransformer
-{
-	static private final String TAG = "DocumentTransformer";
+abstract class DocumentTransformer {
 
-	/**
-	 * Transform Document to HTML
-	 *
-	 * @param doc        doc
-	 * @param isSelector is selector source
-	 * @return html
-	 */
-	@NonNull
-	public String docToHtml(final Document doc, final String source, final boolean isSelector)
-	{
-		// Log.d(TAG, "to be transformed:" + DomTransformer.docToXml(doc));
-		try
-		{
-			return DomTransformer.docToString(doc, getXSLStream(source, isSelector), "html");
-		}
-		catch (@NonNull final Exception e)
-		{
-			Log.e(TAG, "While transforming doc to HTML", e);
-			return "error " + e;
-		}
-	}
+    /**
+     * Transform Document to HTML
+     *
+     * @param doc        doc
+     * @param isSelector is selector source
+     * @return html
+     */
+    fun docToHtml(doc: Document?, source: String?, isSelector: Boolean): String {
+        // Log.d(TAG, "to be transformed:" + DomTransformer.docToXml(doc));
+        return try {
+            docToString(doc, getXSLStream(source, isSelector), "html")
+        } catch (e: Exception) {
+            Log.e(TAG, "While transforming doc to HTML", e)
+            "error $e"
+        }
+    }
 
-	/**
-	 * Get XSL file
-	 *
-	 * @param from       type of source
-	 * @param isSelector is selector source
-	 * @return XSL inputstream
-	 */
-	@Nullable
-	abstract protected InputStream getXSLStream(final String from, final boolean isSelector);
+    /**
+     * Get XSL file
+     *
+     * @param from       type of source
+     * @param isSelector is selector source
+     * @return XSL inputstream
+     */
+    protected abstract fun getXSLStream(from: String?, isSelector: Boolean): InputStream?
+
+    companion object {
+        private const val TAG = "DocumentTransformer"
+    }
 }

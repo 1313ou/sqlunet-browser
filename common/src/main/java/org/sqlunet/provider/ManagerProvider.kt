@@ -1,182 +1,133 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.provider
 
-package org.sqlunet.provider;
-
-import android.content.Context;
-import android.content.UriMatcher;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteCantOpenDatabaseException;
-import android.database.sqlite.SQLiteException;
-import android.database.sqlite.SQLiteQueryBuilder;
-import android.net.Uri;
-import android.util.Log;
-
-import org.sqlunet.provider.ManagerContract.TablesAndIndices;
-
-import java.util.ArrayList;
-import java.util.Collection;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.content.Context
+import android.content.UriMatcher
+import android.database.Cursor
+import android.database.sqlite.SQLiteCantOpenDatabaseException
+import android.database.sqlite.SQLiteException
+import android.database.sqlite.SQLiteQueryBuilder
+import android.net.Uri
+import android.util.Log
+import org.sqlunet.provider.ManagerContract.TablesAndIndices
 
 /**
- * 5House-keeping) Manager provider
+ * (House-keeping) Manager provider
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class ManagerProvider extends BaseProvider
-{
-	static private final String TAG = "ManagerProvider";
+class ManagerProvider : BaseProvider() {
+    // M I M E
 
-	// C O N T E N T   P R O V I D E R   A U T H O R I T Y
+    override fun getType(uri: Uri): String {
+        if (uriMatcher.match(uri) == TABLES_AND_INDICES) {
+            return VENDOR + ".android.cursor.dir/" + VENDOR + '.' + AUTHORITY + '.' + TablesAndIndices.TABLE
+        }
+        throw UnsupportedOperationException("Illegal MIME type")
+    }
 
-	static private final String AUTHORITY = makeAuthority("manager_authority");
+    // Q U E R Y
 
-	// U R I M A T C H E R
+    override fun query(uri: Uri, projection: Array<String>?, selection: String?, selectionArgs: Array<String>?, sortOrder: String?): Cursor? {
 
-	static private final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+        if (db == null) {
+            try {
+                openReadWrite()
+            } catch (e: SQLiteCantOpenDatabaseException) {
+                return null
+            }
+        }
 
-	static
-	{
-		matchURIs();
-	}
+        // choose the table to query and a sort order based on the code returned for the incoming URI
+        val code = uriMatcher.match(uri)
+        // Log.d(TAG + "URI", String.format("%s (code %s)\n", uri, code))
+        val table: String? = when (code) {
+            TABLES_AND_INDICES -> uri.lastPathSegment
+            UriMatcher.NO_MATCH -> throw RuntimeException("Malformed URI $uri")
+            else -> throw RuntimeException("Malformed URI $uri")
+        }
 
-	// join codes
-	static private final int TABLES_AND_INDICES = 100;
+        //if (logSql) {
+        //    val sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, null, null, sortOrder, null)
+        //    logSql(sql, argsToString(selectionArgs));
+        //    Log.d(TAG + "SQL", SqlFormatter.format(sql).toString());
+        //    Log.d(TAG + "ARGS", argsToString(selectionArgs));
+        //}
 
-	private static void matchURIs()
-	{
-		ManagerProvider.uriMatcher.addURI(AUTHORITY, TablesAndIndices.TABLE, ManagerProvider.TABLES_AND_INDICES);
-	}
+        // do query
+        return try {
+            db!!.query(table, projection, selection, selectionArgs, null, null, sortOrder)
+        } catch (e: SQLiteException) {
+            val sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, null, null, sortOrder, null)
+            Log.d(TAG + "SQL", sql)
+            Log.e(TAG, "Manager provider query failed", e)
+            null
+        }
+    }
 
-	@NonNull
-	static public String makeUri(@SuppressWarnings("SameParameterValue") final String table)
-	{
-		return BaseProvider.SCHEME + AUTHORITY + '/' + table;
-	}
+    companion object {
+        private const val TAG = "ManagerProvider"
 
-	// C O N S T R U C T O R
+        // C O N T E N T   P R O V I D E R   A U T H O R I T Y
 
-	/**
-	 * Constructor
-	 */
-	public ManagerProvider()
-	{
-	}
+        private val AUTHORITY = makeAuthority("manager_authority")
 
-	// C L O S E
+        // U R I M A T C H E R
 
-	/**
-	 * Close provider
-	 *
-	 * @param context context
-	 */
-	static public void close(@NonNull final Context context)
-	{
-		final Uri uri = Uri.parse(BaseProvider.SCHEME + AUTHORITY);
-		closeProvider(context, uri);
-	}
+        private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
 
-	// M I M E
+        init {
+            matchURIs()
+        }
 
-	@NonNull
-	@Override
-	public String getType(@NonNull final Uri uri)
-	{
-		if (ManagerProvider.uriMatcher.match(uri) == TABLES_AND_INDICES)
-		{
-			return BaseProvider.VENDOR + ".android.cursor.dir/" + BaseProvider.VENDOR + '.' + AUTHORITY + '.' + TablesAndIndices.TABLE;
-		}
-		throw new UnsupportedOperationException("Illegal MIME type");
-	}
+        // join codes
+        private const val TABLES_AND_INDICES = 100
+        private fun matchURIs() {
+            uriMatcher.addURI(AUTHORITY, TablesAndIndices.TABLE, TABLES_AND_INDICES)
+        }
 
-	// Q U E R Y
+        fun makeUri(table: String): String {
+            return "$SCHEME$AUTHORITY/$table"
+        }
 
-	@Nullable
-	@Override
-	public Cursor query(@NonNull final Uri uri, final String[] projection, final String selection, final String[] selectionArgs, final String sortOrder)
-	{
-		if (this.db == null)
-		{
-			try
-			{
-				openReadWrite();
-			}
-			catch (SQLiteCantOpenDatabaseException e)
-			{
-				return null;
-			}
-		}
+        // C L O S E
 
-		// choose the table to query and a sort order based on the code returned for the incoming URI
-		final int code = ManagerProvider.uriMatcher.match(uri);
-		// Log.d(TAG + "URI", String.format("%s (code %s)\n", uri, code));
-		String table;
-		switch (code)
-		{
-			case TABLES_AND_INDICES:
-				table = uri.getLastPathSegment();
-				break;
+        /**
+         * Close provider
+         *
+         * @param context context
+         */
+        fun close(context: Context) {
+            val uri = Uri.parse(SCHEME + AUTHORITY)
+            closeProvider(context, uri)
+        }
 
-			default:
-			case UriMatcher.NO_MATCH:
-				throw new RuntimeException("Malformed URI " + uri);
-		}
-
-		//if (BaseProvider.logSql)
-		//{
-		// final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, groupBy, null, sortOrder, null);
-		// logSql(sql, selectionArgs);
-		// Log.d(TAG + "SQL", SqlFormatter.format(sql).toString());
-		// Log.d(TAG + "ARGS", BaseProvider.argsToString(selectionArgs));
-		//}
-
-		// do query
-		try
-		{
-			return this.db.query(table, projection, selection, selectionArgs, null, null, sortOrder);
-		}
-		catch (SQLiteException e)
-		{
-			final String sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, null, null, sortOrder, null);
-			Log.d(TAG + "SQL", sql);
-			Log.e(TAG, "Manager provider query failed", e);
-			return null;
-		}
-	}
-
-	/**
-	 * Get tables utility
-	 *
-	 * @param context context
-	 * @return collection of tables
-	 */
-	@NonNull
-	static public Collection<String> getTables(@NonNull final Context context)
-	{
-		final Collection<String> tables = new ArrayList<>();
-		final Uri uri = Uri.parse(makeUri(TablesAndIndices.URI));
-		final String[] projection = {TablesAndIndices.TYPE, TablesAndIndices.NAME};
-		final String selection = TablesAndIndices.TYPE + " = 'table' AND name NOT IN ('sqlite_sequence', 'android_metadata' )";
-		final String[] selectionArgs = {};
-		try (final Cursor cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null))
-		{
-			if (cursor != null)
-			{
-				if (cursor.moveToFirst())
-				{
-					final int idName = cursor.getColumnIndex(TablesAndIndices.NAME);
-					do
-					{
-						final String table = cursor.getString(idName);
-						tables.add(table);
-					}
-					while (cursor.moveToNext());
-				}
-			}
-		}
-		return tables;
-	}
+        /**
+         * Get tables utility
+         *
+         * @param context context
+         * @return collection of tables
+         */
+        fun getTables(context: Context): Collection<String> {
+            val tables: MutableCollection<String> = ArrayList()
+            val uri = Uri.parse(makeUri(TablesAndIndices.URI))
+            val projection = arrayOf(TablesAndIndices.TYPE, TablesAndIndices.NAME)
+            val selection = TablesAndIndices.TYPE + " = 'table' AND name NOT IN ('sqlite_sequence', 'android_metadata' )"
+            val selectionArgs = arrayOf<String>()
+            context.contentResolver.query(uri, projection, selection, selectionArgs, null).use { cursor ->
+                if (cursor != null) {
+                    if (cursor.moveToFirst()) {
+                        val idName = cursor.getColumnIndex(TablesAndIndices.NAME)
+                        do {
+                            val table = cursor.getString(idName)
+                            tables.add(table)
+                        } while (cursor.moveToNext())
+                    }
+                }
+            }
+            return tables
+        }
+    }
 }

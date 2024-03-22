@@ -1,70 +1,63 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser.config
 
-package org.sqlunet.browser.config;
-
-import android.annotation.SuppressLint;
-import android.content.Context;
-
-import org.sqlunet.browser.common.R;
-
-import androidx.annotation.IntegerRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
-import androidx.appcompat.app.AlertDialog;
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.DialogInterface
+import androidx.annotation.IntegerRes
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
+import org.sqlunet.browser.common.R
 
 /**
  * Utils
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-@SuppressWarnings("WeakerAccess")
-public class Utils
-{
-	/**
-	 * Confirm
-	 *
-	 * @param context  context
-	 * @param titleId  title resource id
-	 * @param askId    ask resource id
-	 * @param runnable run if confirmed
-	 */
-	static public void confirm(@NonNull final Context context, @StringRes final int titleId, @StringRes final int askId, @NonNull final Runnable runnable)
-	{
-		new AlertDialog.Builder(context) //
-				.setIconAttribute(android.R.attr.alertDialogIcon) //
-				.setTitle(titleId) //
-				.setMessage(askId) //
-				.setPositiveButton(R.string.yes, (dialog, which) -> runnable.run()).setNegativeButton(R.string.no, null).show();
-	}
+object Utils {
 
-	// Human-readable sizes
+    // Confirm
 
-	static private final String f = "%d %s";
+    /**
+     * Confirm
+     *
+     * @param context  context
+     * @param titleId  title resource id
+     * @param askId    ask resource id
+     * @param runnable run if confirmed
+     */
+    @JvmStatic
+    fun confirm(context: Context, @StringRes titleId: Int, @StringRes askId: Int, runnable: Runnable) {
+        AlertDialog.Builder(context) //
+            .setIconAttribute(android.R.attr.alertDialogIcon) //
+            .setTitle(titleId) //
+            .setMessage(askId) //
+            .setPositiveButton(R.string.yes) { _: DialogInterface?, _: Int -> runnable.run() }.setNegativeButton(R.string.no, null).show()
+    }
 
-	static private final String[] units = {"B", "KB", "MB", "GB"};
+    // Human-readable sizes
 
-	@NonNull
-	@SuppressLint("DefaultLocale")
-	static private String hrSize(long x0)
-	{
-		float x = x0;
-		for (String unit : units)
-		{
-			if (x > -1024.0 && x < 1024.0)
-			{
-				return String.format(f, Math.round(x), unit);
-			}
-			x /= 1024.0;
-		}
-		return String.format(f, Math.round(x), "TB");
-	}
+    private const val FORMAT = "%d %s"
 
-	@NonNull
-	static public String hrSize(@IntegerRes int id, @NonNull final Context context)
-	{
-		long x = context.getResources().getInteger(id);
-		return hrSize(x);
-	}
+    private val units = arrayOf("B", "KB", "MB", "GB")
+
+    @SuppressLint("DefaultLocale")
+    private fun hrSize(x0: Long): String {
+        var x = x0.toFloat()
+        for (unit in units) {
+            if (x > -1024.0 && x < 1024.0) {
+                return String.format(FORMAT, Math.round(x), unit)
+            }
+            x /= 1024.0f
+        }
+        return String.format(FORMAT, Math.round(x), "TB")
+    }
+
+    @JvmStatic
+    fun hrSize(@IntegerRes id: Int, context: Context): String {
+        val x = context.resources.getInteger(id).toLong()
+        return hrSize(x)
+    }
 }

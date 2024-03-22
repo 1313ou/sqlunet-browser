@@ -1,592 +1,483 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser.config
 
-package org.sqlunet.browser.config;
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
+import android.database.DatabaseUtils
+import android.database.sqlite.SQLiteCantOpenDatabaseException
+import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteException
+import android.graphics.Typeface
+import android.net.Uri
+import android.os.Build
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.style.StyleSpan
+import com.bbou.concurrency.Task
+import com.bbou.deploy.workers.Deploy.computeDigest
+import com.bbou.download.preference.Settings
+import com.bbou.download.preference.Settings.Mode.Companion.getModePref
+import com.bbou.download.preference.Settings.getDatapackDate
+import com.bbou.download.preference.Settings.getDatapackName
+import com.bbou.download.preference.Settings.getDatapackSize
+import com.bbou.download.preference.Settings.getDatapackSource
+import com.bbou.download.preference.Settings.getDatapackSourceDate
+import com.bbou.download.preference.Settings.getDatapackSourceEtag
+import com.bbou.download.preference.Settings.getDatapackSourceSize
+import com.bbou.download.preference.Settings.getDatapackSourceStaticVersion
+import com.bbou.download.preference.Settings.getDatapackSourceType
+import com.bbou.download.preference.Settings.getDatapackSourceVersion
+import org.sqlunet.assetpack.AssetPackLoader
+import org.sqlunet.browser.common.R
+import org.sqlunet.browser.config.Status.Companion.status
+import org.sqlunet.browser.config.Status.Companion.tablesAndIndexes
+import org.sqlunet.provider.XNetContract
+import org.sqlunet.provider.XSqlUNetProvider.Companion.makeUri
+import org.sqlunet.settings.StorageSettings.getDatabasePath
+import org.sqlunet.settings.StorageSettings.getDbDownloadSourcePath
+import org.sqlunet.settings.StorageUtils
+import org.sqlunet.settings.StorageUtils.mbToString
+import org.sqlunet.settings.StorageUtils.storageStats
+import java.io.File
+import java.util.Date
+import java.util.function.Consumer
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.res.Resources;
-import android.database.Cursor;
-import android.database.DatabaseUtils;
-import android.database.sqlite.SQLiteCantOpenDatabaseException;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-import android.graphics.Typeface;
-import android.net.Uri;
-import android.os.Build;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.style.StyleSpan;
+object Diagnostics {
 
-import com.bbou.concurrency.Task;
-import com.bbou.deploy.workers.Deploy;
-import com.bbou.download.preference.Settings;
+    @SuppressLint("DiscouragedApi")
+    private fun report(context: Context): CharSequence {
+        val sb = SpannableStringBuilder()
+        append(sb, "DIAGNOSTICS", StyleSpan(Typeface.BOLD))
+        sb.append('\n')
 
-import org.sqlunet.assetpack.AssetPackLoader;
-import org.sqlunet.browser.common.R;
-import org.sqlunet.provider.XNetContract;
-import org.sqlunet.provider.XSqlUNetProvider;
-import org.sqlunet.settings.StorageSettings;
-import org.sqlunet.settings.StorageUtils;
+        // APP
+        sb.append('\n')
+        append(sb, "app", StyleSpan(Typeface.BOLD))
+        sb.append('\n')
+        val packageName = context.applicationInfo.packageName
+        sb.append(packageName)
+        sb.append('\n')
+        val pInfo: PackageInfo
+        try {
+            pInfo = context.packageManager.getPackageInfo(packageName, 0)
+            val code = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) pInfo.longVersionCode else pInfo.versionCode.toLong()
+            sb.append("version: ")
+            sb.append(code.toString())
+            sb.append('\n')
+        } catch (e: PackageManager.NameNotFoundException) {
+            sb.append("package info: ")
+            sb.append(e.message)
+            sb.append('\n')
+        }
+        sb.append("api: ")
+        sb.append(Build.VERSION.SDK_INT.toString())
+        sb.append(' ')
+        sb.append(Build.VERSION.CODENAME)
+        sb.append('\n')
 
-import java.io.File;
-import java.util.Date;
-import java.util.List;
+        // DATABASE
+        val database = getDatabasePath(context)
+        sb.append('\n')
+        append(sb, "database", StyleSpan(Typeface.BOLD))
+        sb.append('\n')
+        sb.append("path: ")
+        sb.append(database)
+        sb.append('\n')
+        if (database.isNotEmpty()) {
+            val databaseFile = File(database)
+            val databaseExists = databaseFile.exists()
+            sb.append("exists: ")
+            sb.append(databaseExists.toString())
+            sb.append('\n')
+            val parent = databaseFile.getParent()!!
+            val dataStats = storageStats(parent)
+            val df = dataStats[StorageUtils.STORAGE_FREE]
+            val dc = dataStats[StorageUtils.STORAGE_CAPACITY]
+            val dp = dataStats[StorageUtils.STORAGE_OCCUPANCY]
+            sb.append("free: ")
+            sb.append(mbToString(df))
+            sb.append('\n')
+            sb.append("capacity: ")
+            sb.append(mbToString(dc))
+            sb.append('\n')
+            sb.append("occupancy: ")
+            sb.append(dp.toString())
+            sb.append('%')
+            sb.append('\n')
+            if (databaseExists) {
+                val databaseIsFile = databaseFile.isFile()
+                val databaseLastModified = databaseFile.lastModified()
+                val databaseSize = databaseFile.length()
+                val databaseCanRead = databaseFile.canRead()
+                sb.append("is file: ")
+                sb.append(databaseIsFile.toString())
+                sb.append('\n')
+                sb.append("size: ")
+                sb.append(databaseSize.toString())
+                sb.append('\n')
+                sb.append("last modified: ")
+                sb.append(if (databaseLastModified == -1L || databaseLastModified == 0L) "n/a" else Date(databaseLastModified).toString())
+                sb.append('\n')
+                sb.append("can read: ")
+                sb.append(databaseCanRead.toString())
+                sb.append('\n')
+                val md5 = computeDigest(database)
+                sb.append("md5: ")
+                sb.append(md5 ?: "null")
+                sb.append('\n')
+                sb.append("can open: ")
+                var databaseCanOpen = false
+                try {
+                    databaseCanOpen = canOpen(database)
+                    sb.append(databaseCanOpen.toString())
+                    sb.append('\n')
+                    val status = status(context)
+                    val existsDb = status and Status.EXISTS != 0
+                    val existsTables = status and Status.EXISTS_TABLES != 0
+                    if (existsDb) {
+                        // TABLES
+                        sb.append('\n')
+                        append(sb, "tables", StyleSpan(Typeface.BOLD))
+                        sb.append('\n')
+                        sb.append("tables exist: ")
+                        sb.append(existsTables.toString())
+                        sb.append('\n')
+                        val res = context.resources
+                        val requiredTables = res.getStringArray(R.array.required_tables)
+                        val requiredIndexes = res.getStringArray(R.array.required_indexes)
+                        val requiredPmTablesResId = res.getIdentifier("required_pm", "array", packageName)
+                        val requiredTSWnResId = res.getIdentifier("required_texts_wn", "array", packageName)
+                        val requiredTSVnResId = res.getIdentifier("required_texts_vn", "array", packageName)
+                        val requiredTSPbResId = res.getIdentifier("required_texts_pb", "array", packageName)
+                        val requiredTSFnResId = res.getIdentifier("required_texts_fn", "array", packageName)
+                        val requiredPmTables = if (requiredPmTablesResId == 0) null else res.getStringArray(requiredPmTablesResId)
+                        val requiredTSWn = if (requiredTSWnResId == 0) null else res.getStringArray(requiredTSWnResId)
+                        val requiredTSVn = if (requiredTSVnResId == 0) null else res.getStringArray(requiredTSVnResId)
+                        val requiredTSPb = if (requiredTSPbResId == 0) null else res.getStringArray(requiredTSPbResId)
+                        val requiredTSFn = if (requiredTSFnResId == 0) null else res.getStringArray(requiredTSFnResId)
+                        try {
+                            val existingTablesAndIndexes = tablesAndIndexes(context)
+                            if (existingTablesAndIndexes != null) {
+                                for (table in requiredTables) {
+                                    sb.append("table ")
+                                    sb.append(table)
+                                    sb.append(" exists: ")
+                                    val exists = existingTablesAndIndexes.contains(table)
+                                    sb.append(exists.toString())
+                                    if (exists) {
+                                        sb.append(" rows: ")
+                                        sb.append(rowCount(database, table).toString())
+                                    }
+                                    sb.append('\n')
+                                }
+                                sb.append('\n')
+                                for (index in requiredIndexes) {
+                                    sb.append("index ")
+                                    sb.append(index)
+                                    sb.append(": ")
+                                    sb.append(existingTablesAndIndexes.contains(index).toString())
+                                    sb.append('\n')
+                                }
+                                if (requiredPmTables != null) {
+                                    sb.append('\n')
+                                    for (table in requiredPmTables) {
+                                        sb.append("pm table ")
+                                        sb.append(table)
+                                        sb.append(" exists: ")
+                                        val exists = existingTablesAndIndexes.contains(table)
+                                        sb.append(exists.toString())
+                                        if (exists) {
+                                            sb.append(" rows: ")
+                                            sb.append(rowCount(database, table).toString())
+                                        }
+                                        sb.append('\n')
+                                    }
+                                }
+                                if (requiredTSWn != null) {
+                                    sb.append('\n')
+                                    for (table in requiredTSWn) {
+                                        sb.append("wn table ")
+                                        sb.append(table)
+                                        sb.append(" exists: ")
+                                        val exists = existingTablesAndIndexes.contains(table)
+                                        sb.append(exists.toString())
+                                        if (exists) {
+                                            sb.append(" rows: ")
+                                            sb.append(rowCount(database, table).toString())
+                                        }
+                                        sb.append('\n')
+                                    }
+                                }
+                                if (requiredTSVn != null) {
+                                    sb.append('\n')
+                                    for (table in requiredTSVn) {
+                                        sb.append("vn table ")
+                                        sb.append(table)
+                                        sb.append(" exists: ")
+                                        val exists = existingTablesAndIndexes.contains(table)
+                                        sb.append(exists.toString())
+                                        if (exists) {
+                                            sb.append(" rows: ")
+                                            sb.append(rowCount(database, table).toString())
+                                        }
+                                        sb.append('\n')
+                                    }
+                                }
+                                if (requiredTSPb != null) {
+                                    sb.append('\n')
+                                    for (table in requiredTSPb) {
+                                        sb.append("pb table ")
+                                        sb.append(table)
+                                        sb.append(" exists: ")
+                                        val exists = existingTablesAndIndexes.contains(table)
+                                        sb.append(exists.toString())
+                                        if (exists) {
+                                            sb.append(" rows: ")
+                                            sb.append(rowCount(database, table).toString())
+                                        }
+                                        sb.append('\n')
+                                    }
+                                }
+                                if (requiredTSFn != null) {
+                                    sb.append('\n')
+                                    for (table in requiredTSFn) {
+                                        sb.append("fn table ")
+                                        sb.append(table)
+                                        sb.append(" exists: ")
+                                        val exists = existingTablesAndIndexes.contains(table)
+                                        sb.append(exists.toString())
+                                        if (exists) {
+                                            sb.append(" rows: ")
+                                            sb.append(rowCount(database, table).toString())
+                                        }
+                                        sb.append('\n')
+                                    }
+                                }
+                            } else {
+                                sb.append("null existing tables or indexes")
+                                sb.append('\n')
+                            }
+                        } catch (e: Exception) {
+                            sb.append("cannot read tables or indexes: ")
+                            sb.append(e.message)
+                            sb.append('\n')
+                        }
+                    }
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+                    // M E T A
 
-@SuppressWarnings("WeakerAccess")
-public class Diagnostics
-{
-	@FunctionalInterface
-	interface ResultListener<T>
-	{
-		void onResult(T t);
-	}
+                    val meta = queryMeta(context)
+                    if (meta != null) {
+                        sb.append('\n')
+                        append(sb, "meta", StyleSpan(Typeface.BOLD))
+                        sb.append('\n')
+                        sb.append("created: ")
+                        sb.append(meta[0])
+                        sb.append('\n')
+                        sb.append("size: ")
+                        sb.append(meta[1])
+                        sb.append('\n')
+                        sb.append("build: ")
+                        sb.append(meta[2])
+                        sb.append('\n')
+                    }
+                } catch (e: SQLiteCantOpenDatabaseException) {
+                    sb.append(databaseCanOpen.toString())
+                    sb.append('\n')
+                    sb.append(e.message)
+                    sb.append('\n')
+                }
+            }
+        }
 
-	static public class AsyncDiagnostics extends Task<Context, Long, CharSequence>
-	{
-		/**
-		 * Result listener
-		 */
-		final private ResultListener<CharSequence> resultListener;
+        // RECORDED SOURCE
 
-		/**
-		 * Constructor
-		 *
-		 * @param resultListener result listener
-		 */
-		AsyncDiagnostics(final ResultListener<CharSequence> resultListener)
-		{
-			this.resultListener = resultListener;
-		}
+        val source = getDatapackSource(context)
+        val sourceSize = getDatapackSourceSize(context)
+        val sourceStamp = getDatapackSourceDate(context)
+        val sourceEtag = getDatapackSourceEtag(context)
+        val sourceVersion = getDatapackSourceVersion(context)
+        val sourceStaticVersion = getDatapackSourceStaticVersion(context)
+        val sourceType = getDatapackSourceType(context)
+        val name = getDatapackName(context)
+        val size = getDatapackSize(context)
+        val stamp = getDatapackDate(context)
+        sb.append('\n')
+        append(sb, "source", StyleSpan(Typeface.BOLD))
+        sb.append('\n')
+        sb.append("recorded source: ")
+        sb.append(source ?: "null")
+        sb.append('\n')
+        sb.append("recorded source type: ")
+        sb.append(sourceType ?: "null")
+        sb.append('\n')
+        sb.append("recorded source size: ")
+        sb.append(if (sourceSize == -1L) "null" else sourceSize.toString())
+        sb.append('\n')
+        sb.append("recorded source date: ")
+        sb.append(if (sourceStamp == -1L || sourceStamp == 0L) "null" else Date(sourceStamp).toString())
+        sb.append('\n')
+        sb.append("recorded source etag: ")
+        sb.append(sourceEtag ?: "null")
+        sb.append('\n')
+        sb.append("recorded source version: ")
+        sb.append(sourceVersion ?: "null")
+        sb.append('\n')
+        sb.append("recorded source static version: ")
+        sb.append(sourceStaticVersion ?: "null")
+        sb.append('\n')
+        sb.append("recorded name: ")
+        sb.append(name ?: "null")
+        sb.append('\n')
+        sb.append("recorded size: ")
+        sb.append(if (size == -1L) "null" else size.toString())
+        sb.append('\n')
+        sb.append("recorded date: ")
+        sb.append(if (stamp == -1L || stamp == 0L) "null" else Date(stamp).toString())
+        sb.append('\n')
 
-		@NonNull
-		@Override
-		public CharSequence doJob(@Nullable final Context params)
-		{
-			assert params != null;
-			return report(params);
-		}
+        // ASSET PACKS
+        val assetPack = context.getString(R.string.asset_primary)
+        val assetZip = context.getString(R.string.asset_zip_primary)
+        val assetDir = context.getString(R.string.asset_dir_primary)
+        sb.append('\n')
+        append(sb, "assets", StyleSpan(Typeface.BOLD))
+        sb.append('\n')
+        sb.append("primary asset pack: ")
+        sb.append(assetPack)
+        sb.append('\n')
+        sb.append("primary asset archive: ")
+        sb.append(assetDir)
+        sb.append('/')
+        sb.append(assetZip)
+        sb.append('\n')
+        val assetLocation = AssetPackLoader(context, assetPack).assetPackPathIfInstalled()
+        sb.append("primary asset ")
+        sb.append(assetPack)
+        if (assetLocation != null) {
+            sb.append(" installed at: ")
+            sb.append(assetLocation)
+        } else {
+            sb.append(" not installed")
+        }
+        sb.append('\n')
+        val altAssetPack = context.getString(R.string.asset_alt)
+        val altAssetDir = context.getString(R.string.asset_dir_alt)
+        val altAssetZip = context.getString(R.string.asset_zip_alt)
+        sb.append("alt asset pack: ")
+        if (altAssetPack.isNotEmpty()) {
+            sb.append(altAssetPack)
+            sb.append('\n')
+            sb.append("alt asset archive: ")
+            sb.append(altAssetDir)
+            sb.append('/')
+            sb.append(altAssetZip)
+            sb.append('\n')
+        }
+        val altAssetLocation = AssetPackLoader(context, altAssetPack).assetPackPathIfInstalled()
+        sb.append("alt asset ")
+        sb.append(altAssetPack)
+        if (altAssetLocation != null) {
+            sb.append(" installed at: ")
+            sb.append(altAssetLocation)
+        } else {
+            sb.append(" not installed")
+        }
+        sb.append('\n')
 
-		@Override
-		public void onDone(final CharSequence result)
-		{
-			if (this.resultListener != null)
-			{
-				this.resultListener.onResult(result);
-			}
-		}
-	}
+        // DOWNLOAD
+        val mode = getModePref(context)
+        val dbDownloadSource = getDbDownloadSourcePath(context, mode == Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Settings.Mode.DOWNLOAD_ZIP)
+        val dbDownloadTarget = getDatabasePath(context)
+        sb.append('\n')
+        append(sb, "download", StyleSpan(Typeface.BOLD))
+        sb.append('\n')
+        sb.append("download source: ")
+        sb.append(dbDownloadSource)
+        sb.append('\n')
+        sb.append("download target: ")
+        sb.append(dbDownloadTarget)
+        sb.append('\n')
+        return sb
+    }
 
-	@NonNull
-	@SuppressLint("DiscouragedApi")
-	private static CharSequence report(@NonNull final Context context)
-	{
-		final SpannableStringBuilder sb = new SpannableStringBuilder();
-		append(sb, "DIAGNOSTICS", new StyleSpan(Typeface.BOLD));
-		sb.append('\n');
+    private fun queryMeta(context: Context): Array<String?>? {
+        val uri = Uri.parse(makeUri(XNetContract.Meta.URI))
+        val projection = arrayOf(XNetContract.Meta.CREATED, XNetContract.Meta.DBSIZE, XNetContract.Meta.BUILD)
+        try {
+            context.contentResolver.query(uri, projection, null, null, null).use { cursor ->
+                if (cursor != null && cursor.moveToFirst()) {
+                    val meta = arrayOfNulls<String>(3)
+                    val createdIndex = cursor.getColumnIndex(XNetContract.Meta.CREATED)
+                    if (!cursor.isNull(createdIndex)) {
+                        val created = cursor.getString(createdIndex)
+                        meta[0] = created
+                    }
+                    val sizeIndex = cursor.getColumnIndex(XNetContract.Meta.DBSIZE)
+                    if (!cursor.isNull(sizeIndex)) {
+                        val size = cursor.getLong(sizeIndex)
+                        meta[1] = size.toString()
+                    }
+                    val buildIndex = cursor.getColumnIndex(XNetContract.Meta.BUILD)
+                    if (!cursor.isNull(buildIndex)) {
+                        val build = cursor.getString(buildIndex)
+                        meta[2] = build
+                    }
+                    return meta
+                }
+            }
+        } catch (ignored: Exception) {
+            //
+        }
+        return null
+    }
 
-		// APP
+    @Throws(SQLiteCantOpenDatabaseException::class)
+    private fun canOpen(path: String): Boolean {
+        SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY).use { return true }
+    }
 
-		sb.append('\n');
-		append(sb, "app", new StyleSpan(Typeface.BOLD));
-		sb.append('\n');
-		final String packageName = context.getApplicationInfo().packageName;
-		sb.append(packageName);
-		sb.append('\n');
+    @Throws(SQLiteException::class)
+    private fun rowCount(path: String, table: String): Long {
+        SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY).use { db -> return DatabaseUtils.queryNumEntries(db, table) }
+    }
 
-		final PackageInfo pInfo;
-		try
-		{
-			pInfo = context.getPackageManager().getPackageInfo(packageName, 0);
-			final long code = android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P ? pInfo.getLongVersionCode() : pInfo.versionCode;
-			sb.append("version: ");
-			sb.append(Long.toString(code));
-			sb.append('\n');
-		}
-		catch (PackageManager.NameNotFoundException e)
-		{
-			sb.append("package info: ");
-			sb.append(e.getMessage());
-			sb.append('\n');
-		}
+    /**
+     * Append text
+     *
+     * @param sb    spannable string builder
+     * @param text  text
+     * @param spans spans to apply
+     */
+    private fun append(sb: SpannableStringBuilder, text: CharSequence?, vararg spans: Any) {
+        if (text.isNullOrEmpty()) {
+            return
+        }
+        val from = sb.length
+        sb.append(text)
+        val to = sb.length
+        for (span in spans) {
+            sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        }
+    }
 
-		sb.append("api: ");
-		sb.append(Integer.toString(Build.VERSION.SDK_INT));
-		sb.append(' ');
-		sb.append(Build.VERSION.CODENAME);
-		sb.append('\n');
+    /**
+     * Async diagnostics
+     *
+     * @param consumer result listener
+     */
+    class AsyncDiagnostics internal constructor(private val consumer: Consumer<CharSequence?>) : Task<Context, Long, CharSequence>() {
 
-		// DATABASE
+        override fun doJob(params: Context?): CharSequence {
+            return report(params!!)
+        }
 
-		final String database = StorageSettings.getDatabasePath(context);
-
-		sb.append('\n');
-		append(sb, "database", new StyleSpan(Typeface.BOLD));
-		sb.append('\n');
-		sb.append("path: ");
-		sb.append(database);
-		sb.append('\n');
-
-		if (!database.isEmpty())
-		{
-			final File databaseFile = new File(database);
-			final boolean databaseExists = databaseFile.exists();
-
-			sb.append("exists: ");
-			sb.append(Boolean.toString(databaseExists));
-			sb.append('\n');
-
-			final String parent = databaseFile.getParent();
-			final float[] dataStats = StorageUtils.storageStats(parent);
-			final float df = dataStats[StorageUtils.STORAGE_FREE];
-			final float dc = dataStats[StorageUtils.STORAGE_CAPACITY];
-			final float dp = dataStats[StorageUtils.STORAGE_OCCUPANCY];
-			sb.append("free: ");
-			sb.append(StorageUtils.mbToString(df));
-			sb.append('\n');
-			sb.append("capacity: ");
-			sb.append(StorageUtils.mbToString(dc));
-			sb.append('\n');
-			sb.append("occupancy: ");
-			sb.append(Float.toString(dp));
-			sb.append('%');
-			sb.append('\n');
-
-			if (databaseExists)
-			{
-				final boolean databaseIsFile = databaseFile.isFile();
-				final long databaseLastModified = databaseFile.lastModified();
-				final long databaseSize = databaseFile.length();
-				final boolean databaseCanRead = databaseFile.canRead();
-
-				sb.append("is file: ");
-				sb.append(Boolean.toString(databaseIsFile));
-				sb.append('\n');
-
-				sb.append("size: ");
-				sb.append(Long.toString(databaseSize));
-				sb.append('\n');
-
-				sb.append("last modified: ");
-				sb.append(databaseLastModified == -1 || databaseLastModified == 0 ? "n/a" : new Date(databaseLastModified).toString());
-				sb.append('\n');
-
-				sb.append("can read: ");
-				sb.append(Boolean.toString(databaseCanRead));
-				sb.append('\n');
-
-				final String md5 = Deploy.computeDigest(database);
-				sb.append("md5: ");
-				sb.append(md5 == null ? "null" : md5);
-				sb.append('\n');
-
-				sb.append("can open: ");
-				boolean databaseCanOpen = false;
-				try
-				{
-					databaseCanOpen = canOpen(database);
-					sb.append(Boolean.toString(databaseCanOpen));
-					sb.append('\n');
-
-					final int status = Status.status(context);
-					final boolean existsDb = (status & Status.EXISTS) != 0;
-					final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
-					if (existsDb)
-					{
-						// TABLES
-
-						sb.append('\n');
-						append(sb, "tables", new StyleSpan(Typeface.BOLD));
-						sb.append('\n');
-						sb.append("tables exist: ");
-						sb.append(Boolean.toString(existsTables));
-						sb.append('\n');
-
-						final Resources res = context.getResources();
-						final String[] requiredTables = res.getStringArray(R.array.required_tables);
-						final String[] requiredIndexes = res.getStringArray(R.array.required_indexes);
-
-						final int requiredPmTablesResId = res.getIdentifier("required_pm", "array", packageName);
-						final int requiredTSWnResId = res.getIdentifier("required_texts_wn", "array", packageName);
-						final int requiredTSVnResId = res.getIdentifier("required_texts_vn", "array", packageName);
-						final int requiredTSPbResId = res.getIdentifier("required_texts_pb", "array", packageName);
-						final int requiredTSFnResId = res.getIdentifier("required_texts_fn", "array", packageName);
-
-						final String[] requiredPmTables = requiredPmTablesResId == 0 ? null : res.getStringArray(requiredPmTablesResId);
-						final String[] requiredTSWn = requiredTSWnResId == 0 ? null : res.getStringArray(requiredTSWnResId);
-						final String[] requiredTSVn = requiredTSVnResId == 0 ? null : res.getStringArray(requiredTSVnResId);
-						final String[] requiredTSPb = requiredTSPbResId == 0 ? null : res.getStringArray(requiredTSPbResId);
-						final String[] requiredTSFn = requiredTSFnResId == 0 ? null : res.getStringArray(requiredTSFnResId);
-
-						try
-						{
-							final List<String> existingTablesAndIndexes = Status.tablesAndIndexes(context);
-							if (existingTablesAndIndexes != null)
-							{
-								for (String table : requiredTables)
-								{
-									sb.append("table ");
-									sb.append(table);
-									sb.append(" exists: ");
-									boolean exists = existingTablesAndIndexes.contains(table);
-									sb.append(Boolean.toString(exists));
-									if (exists)
-									{
-										sb.append(" rows: ");
-										sb.append(Long.toString(rowCount(database, table)));
-									}
-									sb.append('\n');
-								}
-								sb.append('\n');
-								for (String index : requiredIndexes)
-								{
-									sb.append("index ");
-									sb.append(index);
-									sb.append(": ");
-									sb.append(Boolean.toString(existingTablesAndIndexes.contains(index)));
-									sb.append('\n');
-								}
-								if (requiredPmTables != null)
-								{
-									sb.append('\n');
-									for (String table : requiredPmTables)
-									{
-										sb.append("pm table ");
-										sb.append(table);
-										sb.append(" exists: ");
-										boolean exists = existingTablesAndIndexes.contains(table);
-										sb.append(Boolean.toString(exists));
-										if (exists)
-										{
-											sb.append(" rows: ");
-											sb.append(Long.toString(rowCount(database, table)));
-										}
-										sb.append('\n');
-									}
-								}
-								if (requiredTSWn != null)
-								{
-									sb.append('\n');
-									for (String table : requiredTSWn)
-									{
-										sb.append("wn table ");
-										sb.append(table);
-										sb.append(" exists: ");
-										boolean exists = existingTablesAndIndexes.contains(table);
-										sb.append(Boolean.toString(exists));
-										if (exists)
-										{
-											sb.append(" rows: ");
-											sb.append(Long.toString(rowCount(database, table)));
-										}
-										sb.append('\n');
-									}
-								}
-								if (requiredTSVn != null)
-								{
-									sb.append('\n');
-									for (String table : requiredTSVn)
-									{
-										sb.append("vn table ");
-										sb.append(table);
-										sb.append(" exists: ");
-										boolean exists = existingTablesAndIndexes.contains(table);
-										sb.append(Boolean.toString(exists));
-										if (exists)
-										{
-											sb.append(" rows: ");
-											sb.append(Long.toString(rowCount(database, table)));
-										}
-										sb.append('\n');
-									}
-								}
-								if (requiredTSPb != null)
-								{
-									sb.append('\n');
-									for (String table : requiredTSPb)
-									{
-										sb.append("pb table ");
-										sb.append(table);
-										sb.append(" exists: ");
-										boolean exists = existingTablesAndIndexes.contains(table);
-										sb.append(Boolean.toString(exists));
-										if (exists)
-										{
-											sb.append(" rows: ");
-											sb.append(Long.toString(rowCount(database, table)));
-										}
-										sb.append('\n');
-									}
-								}
-								if (requiredTSFn != null)
-								{
-									sb.append('\n');
-									for (String table : requiredTSFn)
-									{
-										sb.append("fn table ");
-										sb.append(table);
-										sb.append(" exists: ");
-										boolean exists = existingTablesAndIndexes.contains(table);
-										sb.append(Boolean.toString(exists));
-										if (exists)
-										{
-											sb.append(" rows: ");
-											sb.append(Long.toString(rowCount(database, table)));
-										}
-										sb.append('\n');
-									}
-								}
-							}
-							else
-							{
-								sb.append("null existing tables or indexes");
-								sb.append('\n');
-							}
-						}
-						catch (Exception e)
-						{
-							sb.append("cannot read tables or indexes: ");
-							sb.append(e.getMessage());
-							sb.append('\n');
-						}
-					}
-
-					// M E T A
-
-					String[] meta = queryMeta(context);
-					if (meta != null)
-					{
-						sb.append('\n');
-						append(sb, "meta", new StyleSpan(Typeface.BOLD));
-						sb.append('\n');
-						sb.append("created: ");
-						sb.append(meta[0]);
-						sb.append('\n');
-						sb.append("size: ");
-						sb.append(meta[1]);
-						sb.append('\n');
-						sb.append("build: ");
-						sb.append(meta[2]);
-						sb.append('\n');
-					}
-				}
-				catch (@NonNull final SQLiteCantOpenDatabaseException e)
-				{
-					sb.append(Boolean.toString(databaseCanOpen));
-					sb.append('\n');
-					sb.append(e.getMessage());
-					sb.append('\n');
-				}
-			}
-		}
-
-		// RECORDED SOURCE
-
-		final String source = Settings.getDatapackSource(context);
-		final long sourceSize = Settings.getDatapackSourceSize(context);
-		final long sourceStamp = Settings.getDatapackSourceDate(context);
-		final String sourceEtag = Settings.getDatapackSourceEtag(context);
-		final String sourceVersion = Settings.getDatapackSourceVersion(context);
-		final String sourceStaticVersion = Settings.getDatapackSourceStaticVersion(context);
-		final String sourceType = Settings.getDatapackSourceType(context);
-		final String name = Settings.getDatapackName(context);
-		final long size = Settings.getDatapackSize(context);
-		final long stamp = Settings.getDatapackDate(context);
-
-		sb.append('\n');
-		append(sb, "source", new StyleSpan(Typeface.BOLD));
-		sb.append('\n');
-		sb.append("recorded source: ");
-		sb.append(source == null ? "null" : source);
-		sb.append('\n');
-		sb.append("recorded source type: ");
-		sb.append(sourceType == null ? "null" : sourceType);
-		sb.append('\n');
-		sb.append("recorded source size: ");
-		sb.append(sourceSize == -1 ? "null" : Long.toString(sourceSize));
-		sb.append('\n');
-		sb.append("recorded source date: ");
-		sb.append(sourceStamp == -1 || sourceStamp == 0 ? "null" : new Date(sourceStamp).toString());
-		sb.append('\n');
-		sb.append("recorded source etag: ");
-		sb.append(sourceEtag == null ? "null" : sourceEtag);
-		sb.append('\n');
-		sb.append("recorded source version: ");
-		sb.append(sourceVersion == null ? "null" : sourceVersion);
-		sb.append('\n');
-		sb.append("recorded source static version: ");
-		sb.append(sourceStaticVersion == null ? "null" : sourceStaticVersion);
-		sb.append('\n');
-		sb.append("recorded name: ");
-		sb.append(name == null ? "null" : name);
-		sb.append('\n');
-		sb.append("recorded size: ");
-		sb.append(size == -1 ? "null" : Long.toString(size));
-		sb.append('\n');
-		sb.append("recorded date: ");
-		sb.append(stamp == -1 || stamp == 0 ? "null" : new Date(stamp).toString());
-		sb.append('\n');
-
-		// ASSET PACKS
-
-		final String assetPack = context.getString(R.string.asset_primary);
-		final String assetZip = context.getString(R.string.asset_zip_primary);
-		final String assetDir = context.getString(R.string.asset_dir_primary);
-
-		sb.append('\n');
-		append(sb, "assets", new StyleSpan(Typeface.BOLD));
-		sb.append('\n');
-		sb.append("primary asset pack: ");
-		sb.append(assetPack);
-		sb.append('\n');
-		sb.append("primary asset archive: ");
-		sb.append(assetDir);
-		sb.append('/');
-		sb.append(assetZip);
-		sb.append('\n');
-		String assetLocation = new AssetPackLoader(context, assetPack).assetPackPathIfInstalled();
-		sb.append("primary asset ");
-		sb.append(assetPack);
-		if (assetLocation != null)
-		{
-			sb.append(" installed at: ");
-			sb.append(assetLocation);
-		}
-		else
-		{
-			sb.append(" not installed");
-		}
-		sb.append('\n');
-
-		final String altAssetPack = context.getString(R.string.asset_alt);
-		final String altAssetDir = context.getString(R.string.asset_dir_alt);
-		final String altAssetZip = context.getString(R.string.asset_zip_alt);
-		sb.append("alt asset pack: ");
-		if (!altAssetPack.isEmpty())
-		{
-			sb.append(altAssetPack);
-			sb.append('\n');
-			sb.append("alt asset archive: ");
-			sb.append(altAssetDir);
-			sb.append('/');
-			sb.append(altAssetZip);
-			sb.append('\n');
-		}
-		String altAssetLocation = new AssetPackLoader(context, altAssetPack).assetPackPathIfInstalled();
-		sb.append("alt asset ");
-		sb.append(altAssetPack);
-		if (altAssetLocation != null)
-		{
-			sb.append(" installed at: ");
-			sb.append(altAssetLocation);
-		}
-		else
-		{
-			sb.append(" not installed");
-		}
-		sb.append('\n');
-
-		// DOWNLOAD
-
-		final Settings.Mode mode = Settings.Mode.getModePref(context);
-		final String dbDownloadSource = StorageSettings.getDbDownloadSourcePath(context, mode == Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Settings.Mode.DOWNLOAD_ZIP);
-		final String dbDownloadTarget = StorageSettings.getDatabasePath(context);
-
-		sb.append('\n');
-		append(sb, "download", new StyleSpan(Typeface.BOLD));
-		sb.append('\n');
-		sb.append("download source: ");
-		sb.append(dbDownloadSource);
-		sb.append('\n');
-		sb.append("download target: ");
-		sb.append(dbDownloadTarget);
-		sb.append('\n');
-
-		return sb;
-	}
-
-	@Nullable
-	private static String[] queryMeta(@NonNull Context context)
-	{
-		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(XNetContract.Meta.URI));
-		final String[] projection = {XNetContract.Meta.CREATED, XNetContract.Meta.DBSIZE, XNetContract.Meta.BUILD};
-		try (final Cursor cursor = context.getContentResolver().query(uri, projection, null, null, null))
-		{
-			if (cursor != null && cursor.moveToFirst())
-			{
-				String[] meta = new String[3];
-				int createdIndex = cursor.getColumnIndex(XNetContract.Meta.CREATED);
-				if (!cursor.isNull(createdIndex))
-				{
-					String created = cursor.getString(createdIndex);
-					meta[0] = created;
-				}
-				int sizeIndex = cursor.getColumnIndex(XNetContract.Meta.DBSIZE);
-				if (!cursor.isNull(sizeIndex))
-				{
-					long size = cursor.getLong(sizeIndex);
-					meta[1] = Long.toString(size);
-				}
-				int buildIndex = cursor.getColumnIndex(XNetContract.Meta.BUILD);
-				if (!cursor.isNull(buildIndex))
-				{
-					String build = cursor.getString(buildIndex);
-					meta[2] = build;
-				}
-				return meta;
-			}
-		}
-		catch (Exception ignored)
-		{
-			//
-		}
-		return null;
-	}
-
-	@SuppressWarnings("SameReturnValue")
-	static private boolean canOpen(@NonNull final String path) throws SQLiteCantOpenDatabaseException
-	{
-		try (@SuppressWarnings("unused") SQLiteDatabase db = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY))
-		{
-			return true;
-		}
-	}
-
-	static private long rowCount(@NonNull final String path, final String table) throws SQLiteException
-	{
-		try (SQLiteDatabase db = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY))
-		{
-			return DatabaseUtils.queryNumEntries(db, table);
-		}
-	}
-
-	/**
-	 * Append text
-	 *
-	 * @param sb    spannable string builder
-	 * @param text  text
-	 * @param spans spans to apply
-	 */
-	static private void append(@NonNull final SpannableStringBuilder sb, @Nullable final CharSequence text, @NonNull final Object... spans)
-	{
-		if (text == null || text.length() == 0)
-		{
-			return;
-		}
-
-		final int from = sb.length();
-		sb.append(text);
-		final int to = sb.length();
-
-		for (final Object span : spans)
-		{
-			sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-		}
-	}
+        override fun onDone(result: CharSequence?) {
+            consumer.accept(result)
+        }
+    }
 }

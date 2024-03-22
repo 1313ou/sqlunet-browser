@@ -1,52 +1,31 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser.web
 
-package org.sqlunet.browser.web;
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.bbou.concurrency.Task
 
-import com.bbou.concurrency.Task;
+class WebModel : ViewModel() {
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
+    private val data = MutableLiveData<String?>()
 
-public class WebModel extends ViewModel
-{
-	/**
-	 * Live data
-	 */
-	private final MutableLiveData<String> data = new MutableLiveData<>();
+    fun getData(): LiveData<String?> {
+        return data
+    }
 
-	@NonNull
-	public LiveData<String> getData()
-	{
-		return data;
-	}
+    fun loadData(loader: DocumentStringLoader) {
 
-	public WebModel()
-	{
-		super();
-	}
+        object : Task<Void?, Void, String?>() {
+            override fun doJob(params: Void?): String? {
+                return loader.getDoc()
+            }
 
-	public void loadData(@NonNull final DocumentStringLoader loader)
-	{
-		new Task<Void, Void, String>()
-		{
-			@Nullable
-			@Override
-			public String doJob(Void ignored)
-			{
-				return loader.getDoc();
-			}
-
-			@Override
-			public void onDone(final String treeNode)
-			{
-				data.setValue(treeNode);
-			}
-
-		}.execute(null);
-	}
+            override fun onDone(result: String?) {
+                data.value = result
+            }
+        }.execute(null)
+    }
 }

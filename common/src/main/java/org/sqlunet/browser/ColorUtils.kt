@@ -1,111 +1,88 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser
 
-package org.sqlunet.browser;
-
-import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.util.TypedValue;
-
-import androidx.annotation.AttrRes;
-import androidx.annotation.ColorInt;
-import androidx.annotation.ColorRes;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.graphics.drawable.DrawableCompat;
+import android.content.Context
+import android.content.res.Resources
+import android.content.res.Resources.Theme
+import android.graphics.drawable.Drawable
+import android.os.Build
+import android.util.TypedValue
+import androidx.annotation.AttrRes
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.graphics.drawable.DrawableCompat
 
 /**
  * Color utils
  *
  * @author Bernard Bou
  */
-public class ColorUtils
-{
-	static public void tint(int color, @NonNull final Drawable... drawables)
-	{
-		for (Drawable drawable : drawables)
-		{
-			if (drawable != null)
-			{
-				tint(drawable, color);
-			}
-		}
-	}
+object ColorUtils {
 
-	@SuppressWarnings("WeakerAccess")
-	static public void tint(@NonNull final Drawable drawable, int color)
-	{
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-		{
-			drawable.setTint(color);
-			//DrawableCompat.setTint(drawable, iconTint);
-		}
-		else
-		{
-			DrawableCompat.setTint(DrawableCompat.wrap(drawable), color);
-		}
-	}
+    @JvmStatic
+    fun tint(color: Int, vararg drawables: Drawable) {
+        for (drawable in drawables) {
+            tint(drawable, color)
+        }
+    }
 
-	@NonNull
-	static public int[] getColors(@NonNull final Context context, @NonNull int... colorRes)
-	{
-		int[] result = new int[colorRes.length];
-		for (int i = 0; i < colorRes.length; i++)
-		{
-			result[i] = getColor(context, colorRes[i]);
-		}
-		return result;
-	}
+    fun tint(drawable: Drawable, color: Int) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            drawable.setTint(color)
+            //DrawableCompat.setTint(drawable, iconTint);
+        } else {
+            DrawableCompat.setTint(DrawableCompat.wrap(drawable), color)
+        }
+    }
 
-	@ColorInt
-	static public int getColor(@NonNull final Context context, @ColorRes int colorRes)
-	{
-		final Resources res = context.getResources();
-		final Resources.Theme theme = context.getTheme();
-		return getColor(res, theme, colorRes);
-	}
+    fun getColors(context: Context, vararg colorRes: Int): IntArray {
+        val result = IntArray(colorRes.size)
+        for (i in colorRes.indices) {
+            result[i] = getColor(context, colorRes[i])
+        }
+        return result
+    }
 
-	@SuppressWarnings({"deprecation", "WeakerAccess"})
-	@ColorInt
-	static public int getColor(@NonNull final Resources res, final Resources.Theme theme, @ColorRes int colorRes)
-	{
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-		{
-			return res.getColor(colorRes, theme);
-		}
-		else
-		{
-			//noinspection deprecation
-			return res.getColor(colorRes);
-		}
-	}
+    @ColorInt
+    fun getColor(context: Context, @ColorRes colorRes: Int): Int {
+        val res = context.resources
+        val theme = context.theme
+        return getColor(res, theme, colorRes)
+    }
 
-	@Nullable
-	static public Drawable getDrawable(@NonNull final Context context, @DrawableRes int resId)
-	{
-		return AppCompatResources.getDrawable(context, resId);
-	}
+    @Suppress("deprecation")
+    @ColorInt
+    fun getColor(res: Resources, theme: Theme?, @ColorRes colorRes: Int): Int {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            res.getColor(colorRes, theme)
+        } else {
+            res.getColor(colorRes)
+        }
+    }
 
-	@ColorInt
-	static public int fetchColor(@NonNull final Context context, @AttrRes int attr)
-	{
-		final TypedValue typedValue = new TypedValue();
-		final Resources.Theme theme = context.getTheme();
-		theme.resolveAttribute(attr, typedValue, true);
-		return typedValue.data;
-	}
+    @JvmStatic
+    fun getDrawable(context: Context, @DrawableRes resId: Int): Drawable? {
+        return AppCompatResources.getDrawable(context, resId)
+    }
 
-	@ColorRes
-	static public int fetchColorRes(@NonNull final Context context, @AttrRes int attr)
-	{
-		final TypedValue typedValue = new TypedValue();
-		final Resources.Theme theme = context.getTheme();
-		theme.resolveAttribute(attr, typedValue, true);
-		return typedValue.resourceId;
-	}
+    @JvmStatic
+    @ColorInt
+    fun fetchColor(context: Context, @AttrRes attr: Int): Int {
+        val typedValue = TypedValue()
+        val theme = context.theme
+        theme.resolveAttribute(attr, typedValue, true)
+        return typedValue.data
+    }
+
+    @ColorRes
+    fun fetchColorRes(context: Context, @AttrRes attr: Int): Int {
+        val typedValue = TypedValue()
+        val theme = context.theme
+        theme.resolveAttribute(attr, typedValue, true)
+        return typedValue.resourceId
+    }
 }
