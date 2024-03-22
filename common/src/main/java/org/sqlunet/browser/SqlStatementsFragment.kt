@@ -27,7 +27,7 @@ class SqlStatementsFragment : ListFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val listView = getListView()
-        listView.setOnItemLongClickListener { av: AdapterView<*>, v: View?, pos: Int, id: Long ->
+        listView.setOnItemLongClickListener { av: AdapterView<*>, _: View?, pos: Int, _: Long ->
             val statement = av.adapter.getItem(pos) as CharSequence
             val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val clipData = ClipData.newPlainText("text", statement)

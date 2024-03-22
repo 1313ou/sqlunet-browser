@@ -151,7 +151,7 @@ class WordNetProvider : BaseProvider() {
             logSql(sql, *selectionArgs0!!)
             if (logSql) {
                 Log.d(TAG + "SQL", format(sql).toString())
-                Log.d(TAG + "ARG", argsToString(*(if (result.selectionArgs == null) selectionArgs0 else result.selectionArgs)!!))
+                Log.d(TAG + "ARG", argsToString(result.selectionArgs ?: selectionArgs0))
             }
 
             // do query

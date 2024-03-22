@@ -126,6 +126,7 @@ abstract class Status {
          * @param targets          targets
          * @return true if targets are contained in tables and indexes
          */
+        @JvmStatic
         protected fun contains(tablesAndIndexes: Collection<String>?, vararg targets: String): Boolean {
             if (tablesAndIndexes == null) {
                 return false

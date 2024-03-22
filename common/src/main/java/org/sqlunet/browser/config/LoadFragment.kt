@@ -32,20 +32,20 @@ class LoadFragment : Fragment() {
 
         // buttons
         val assetLoadButton = view.findViewById<ImageButton>(R.id.assetload)
-        assetLoadButton.setOnClickListener { v: View? ->
+        assetLoadButton.setOnClickListener {
             val activity: Activity = requireActivity()
             val intent = Intent(activity, AssetLoadActivity::class.java)
             intent.addFlags(0)
             activity.startActivity(intent)
         }
         val downloadButton = view.findViewById<ImageButton>(R.id.download)
-        downloadButton.setOnClickListener { v: View? ->
+        downloadButton.setOnClickListener {
             val activity: Activity = requireActivity()
             val intent = makeIntent(activity)
             intent.addFlags(0)
             activity.startActivity(intent)
         }
         val cancelButton = view.findViewById<Button>(R.id.cancelButton)
-        cancelButton.setOnClickListener { v: View? -> requireActivity().finish() }
+        cancelButton.setOnClickListener { requireActivity().finish() }
     }
 }

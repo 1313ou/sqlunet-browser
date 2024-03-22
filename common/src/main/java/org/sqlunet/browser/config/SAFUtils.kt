@@ -39,7 +39,7 @@ object SAFUtils {
 
     // P I C K
 
-    fun pick(launcher: ActivityResultLauncher<Intent?>, vararg mimeTypes: String) {
+    fun pick(launcher: ActivityResultLauncher<Intent>, vararg mimeTypes: String) {
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
 
         // Filter to only show results that can be "opened", such as a file (as opposed to a list of contacts or timezones)
@@ -51,7 +51,7 @@ object SAFUtils {
         launcher.launch(intent)
     }
 
-    private fun setType(intent: Intent, vararg mimeTypes: String?) {
+    private fun setType(intent: Intent, vararg mimeTypes: String) {
         intent.setType(if (mimeTypes.size == 1) mimeTypes[0] else "*/*")
         if (mimeTypes.isNotEmpty()) {
             intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes)

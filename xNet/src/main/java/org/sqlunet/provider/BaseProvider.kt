@@ -304,25 +304,25 @@ abstract class BaseProvider : ContentProvider() {
             return head + projection2
         }
 
-        /**
-         * Convert args to string
-         *
-         * @param args args
-         * @return string
-         */
-        @JvmStatic
-        protected fun argsToString(vararg args: String): String {
-            val sb = StringBuilder()
-            if (args.isNotEmpty()) {
-                for (s in args) {
-                    if (sb.isNotEmpty()) {
-                        sb.append(", ")
-                    }
-                    sb.append(s)
-                }
-            }
-            return sb.toString()
-        }
+        // /**
+        //  * Convert args to string
+        //  *
+        //  * @param args args
+        //  * @return string
+        //  */
+        // @JvmStatic
+        // protected fun argsToString(vararg args: String): String {
+        //     val sb = StringBuilder()
+        //     if (args.isNotEmpty()) {
+        //         for (s in args) {
+        //             if (sb.isNotEmpty()) {
+        //                 sb.append(", ")
+        //             }
+        //             sb.append(s)
+        //         }
+        //     }
+        //     return sb.toString()
+        // }
 
         /**
          * Convert args to string
@@ -331,7 +331,7 @@ abstract class BaseProvider : ContentProvider() {
          * @return string
          */
         @JvmStatic
-        protected fun argsToString(args: Array<String>?): String {
+        protected fun argsToString(args: Array<out String>?): String {
             val sb = StringBuilder()
             if (!args.isNullOrEmpty()) {
                 for (s in args) {

@@ -29,7 +29,7 @@ open class HomeFragment : Fragment() {
 
         // fab
         val fab = view.findViewById<FloatingActionButton>(R.id.fab)
-        fab.setOnClickListener { v: View? ->
+        fab.setOnClickListener {
             val activity = requireActivity()
             val navHostFragment = (activity.supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment?)!!
             navHostFragment.navController.navigate(R.id.nav_search_browse)

@@ -12,7 +12,6 @@ import android.widget.SpinnerAdapter
 import com.bbou.concurrency.observe.TaskObserver
 import com.bbou.concurrency.observe.TaskToastObserver
 import org.sqlunet.browser.common.R
-import org.sqlunet.browser.config.OperationActivity
 import org.sqlunet.settings.Settings.Companion.getZipEntry
 import org.sqlunet.settings.StorageSettings.getDatabasePath
 
@@ -38,7 +37,7 @@ class SetupDatabaseFragment : BaseTaskFragment() {
                 spinner!!.setSelection(arg)
             }
         }
-        runButton!!.setOnClickListener { v: View? ->
+        runButton!!.setOnClickListener {
 
             // skip first
             val id = spinner!!.selectedItemId
@@ -71,7 +70,7 @@ class SetupDatabaseFragment : BaseTaskFragment() {
                 val sqlStatements = sql.toString().split(";".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
                 // Log.d(TAG, Arrays.toString(sqlStatements));
                 val observer: TaskObserver<Pair<Number, Number>> = TaskToastObserver.WithStatus(activity, status!!)
-                val task = ExecAsyncTask(activity, { ignoredResult: Boolean -> update(ignoredResult) }, observer, 1).fromSql(databasePath)
+                val task = ExecAsyncTask(activity, { ignoredResult: Boolean -> update() }, observer, 1).fromSql(databasePath)
                 task.execute(sqlStatements)
             }
         }
@@ -79,7 +78,7 @@ class SetupDatabaseFragment : BaseTaskFragment() {
 
     // U P D A T E
 
-    private fun update(@Suppress("unused") ignoredResult: Boolean) {}
+    private fun update() {}
 
     // S P I N N E R
 

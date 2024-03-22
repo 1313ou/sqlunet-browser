@@ -207,7 +207,7 @@ class SetupActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
             AlertDialog.Builder(this) //
                 .setTitle(R.string.action_dirs) //
                 .setMessage(message) //
-                .setNegativeButton(R.string.action_dismiss) { dialog: DialogInterface?, whichButton: Int -> } //
+                .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> } //
                 .show()
         } else if (itemId == R.id.action_storage_dirs) {
             val dirs: Pair<Array<CharSequence>, Array<String>> = getStyledStorageDirectoriesNamesValues(this)
@@ -215,7 +215,7 @@ class SetupActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
             AlertDialog.Builder(this) //
                 .setTitle(R.string.action_storage_dirs) //
                 .setMessage(message) //
-                .setNegativeButton(R.string.action_dismiss) { dialog: DialogInterface?, whichButton: Int -> } //
+                .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> } //
                 .show()
         } else if (itemId == R.id.action_cache_dirs) {
             val dirs: Pair<Array<CharSequence>, Array<String>> = getStyledCachesNamesValues(this)
@@ -223,7 +223,7 @@ class SetupActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
             AlertDialog.Builder(this) //
                 .setTitle(R.string.action_cache_dirs) //
                 .setMessage(message) //
-                .setNegativeButton(R.string.action_dismiss) { dialog: DialogInterface?, whichButton: Int -> } //
+                .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> } //
                 .show()
         } else if (itemId == R.id.action_download_dirs) {
             val dirs: Pair<Array<CharSequence>, Array<String>> = getStyledDownloadNamesValues(this)
@@ -231,7 +231,7 @@ class SetupActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
             AlertDialog.Builder(this) //
                 .setTitle(R.string.action_download_dirs) //
                 .setMessage(message) //
-                .setNegativeButton(R.string.action_dismiss) { dialog: DialogInterface?, whichButton: Int -> } //
+                .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> } //
                 .show()
         }
         return super.onOptionsItemSelected(item)

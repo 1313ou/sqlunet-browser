@@ -87,7 +87,7 @@ class XSqlUNetProvider : BaseProvider() {
             logSql(sql, *(result.selectionArgs ?: selectionArgs0)!!)
             if (logSql) {
                 Log.d(TAG + "SQL", format(sql).toString())
-                Log.d(TAG + "ARG", argsToString(*(result.selectionArgs ?: selectionArgs0)!!))
+                Log.d(TAG + "ARG", argsToString(result.selectionArgs ?: selectionArgs0))
             }
 
             // do query
