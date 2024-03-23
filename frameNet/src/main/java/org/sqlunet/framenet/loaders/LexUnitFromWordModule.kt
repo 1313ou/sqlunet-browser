@@ -1,79 +1,53 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.framenet.loaders
 
-package org.sqlunet.framenet.loaders;
-
-import android.os.Parcelable;
-
-import org.sqlunet.HasPos;
-import org.sqlunet.HasWordId;
-import org.sqlunet.browser.TreeFragment;
-import org.sqlunet.model.TreeFactory;
-import org.sqlunet.treeview.model.TreeNode;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.os.Parcelable
+import org.sqlunet.HasPos
+import org.sqlunet.HasWordId
+import org.sqlunet.browser.TreeFragment
+import org.sqlunet.model.TreeFactory.setNoResult
+import org.sqlunet.treeview.model.TreeNode
 
 /**
  * Lex unit from word module
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param fragment containing fragment
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class LexUnitFromWordModule extends LexUnitModule
-{
-	/**
-	 * Word id
-	 */
-	@Nullable
-	private Long wordId;
+class LexUnitFromWordModule(fragment: TreeFragment) : LexUnitModule(fragment) {
 
-	/**
-	 * Pos
-	 */
-	@Nullable
-	private Character pos;
+    /**
+     * Word id
+     */
+    private var wordId: Long? = null
 
-	/**
-	 * Constructor
-	 *
-	 * @param fragment containing fragment
-	 */
-	public LexUnitFromWordModule(@NonNull final TreeFragment fragment)
-	{
-		super(fragment);
-	}
+    /**
+     * Pos
+     */
+    private var pos: Char? = null
 
-	@Override
-	protected void unmarshal(final Parcelable pointer)
-	{
-		super.unmarshal(pointer);
+    override fun unmarshal(pointer: Parcelable) {
+        super.unmarshal(pointer)
+        wordId = null
+        pos = null
+        if (pointer is HasWordId) {
+            val wordPointer = pointer as HasWordId
+            wordId = wordPointer.getWordId()
+        }
+        if (pointer is HasPos) {
+            val posPointer = pointer as HasPos
+            pos = posPointer.getPos().charValue()
+        }
+    }
 
-		this.wordId = null;
-		this.pos = null;
-		if (pointer instanceof HasWordId)
-		{
-			final HasWordId wordPointer = (HasWordId) pointer;
-			this.wordId = wordPointer.getWordId();
-		}
-		if (pointer instanceof HasPos)
-		{
-			final HasPos posPointer = (HasPos) pointer;
-			this.pos = posPointer.getPos();
-		}
-	}
-
-	@Override
-	public void process(@NonNull final TreeNode parent)
-	{
-		if (this.wordId != null /*&& this.pos != null*/)
-		{
-			// data
-			lexUnitsForWordAndPos(this.wordId, this.pos, parent);
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-		}
-	}
+    override fun process(node: TreeNode) {
+        if (wordId != null /*&& this.pos != null*/) {
+            lexUnitsForWordAndPos(wordId!!, pos, node)
+        } else {
+            setNoResult(node)
+        }
+    }
 }

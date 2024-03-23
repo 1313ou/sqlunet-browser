@@ -1,181 +1,151 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.verbnet.loaders
 
-package org.sqlunet.verbnet.loaders;
-
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.Parcelable;
-import android.text.SpannableStringBuilder;
-
-import org.sqlunet.HasSynsetId;
-import org.sqlunet.HasWordId;
-import org.sqlunet.browser.SqlunetViewTreeModel;
-import org.sqlunet.browser.TreeFragment;
-import org.sqlunet.model.TreeFactory;
-import org.sqlunet.style.Spanner;
-import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.verbnet.R;
-import org.sqlunet.verbnet.provider.VerbNetContract.Words_VnClasses;
-import org.sqlunet.verbnet.provider.VerbNetProvider;
-import org.sqlunet.verbnet.style.VerbNetFactories;
-import org.sqlunet.view.TreeOp;
-import org.sqlunet.view.TreeOp.TreeOps;
-import org.sqlunet.view.TreeOpExecute;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProvider;
-
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWCHILD;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWTREE;
-import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
+import android.database.Cursor
+import android.net.Uri
+import android.os.Parcelable
+import android.text.SpannableStringBuilder
+import androidx.lifecycle.ViewModelProvider
+import org.sqlunet.HasSynsetId
+import org.sqlunet.HasWordId
+import org.sqlunet.browser.SqlunetViewTreeModel
+import org.sqlunet.browser.TreeFragment
+import org.sqlunet.model.TreeFactory.makeHotQueryNode
+import org.sqlunet.model.TreeFactory.makeQueryNode
+import org.sqlunet.model.TreeFactory.makeTextNode
+import org.sqlunet.model.TreeFactory.setNoResult
+import org.sqlunet.style.Spanner.Companion.append
+import org.sqlunet.style.Spanner.Companion.appendImage
+import org.sqlunet.treeview.model.TreeNode
+import org.sqlunet.verbnet.R
+import org.sqlunet.verbnet.loaders.Queries.prepareVnClasses
+import org.sqlunet.verbnet.provider.VerbNetContract.Words_VnClasses
+import org.sqlunet.verbnet.provider.VerbNetProvider
+import org.sqlunet.verbnet.style.VerbNetFactories
+import org.sqlunet.view.TreeOp
+import org.sqlunet.view.TreeOp.Companion.seq
+import org.sqlunet.view.TreeOp.TreeOpCode
+import org.sqlunet.view.TreeOp.TreeOps
+import org.sqlunet.view.TreeOpExecute
 
 /**
  * VerbNet class from word/sense module
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param fragment fragment
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class ClassFromWordModule extends BaseModule
-{
-	/**
-	 * Word id
-	 */
-	@Nullable
-	private Long wordId;
+class ClassFromWordModule(fragment: TreeFragment) : BaseModule(fragment) {
 
-	/**
-	 * Synset id (null=ignore)
-	 */
-	@Nullable
-	private Long synsetId;
+    /**
+     * Word id
+     */
+    private var wordId: Long? = null
 
-	// View models
+    /**
+     * Synset id (null=ignore)
+     */
+    private var synsetId: Long? = null
 
-	private SqlunetViewTreeModel vnClassesFromWordIdSynsetIdModel;
+    // view models
 
-	/**
-	 * Constructor
-	 *
-	 * @param fragment fragment
-	 */
-	public ClassFromWordModule(@NonNull final TreeFragment fragment)
-	{
-		super(fragment);
+    private lateinit var vnClassesFromWordIdSynsetIdModel: SqlunetViewTreeModel
 
-		// models
-		makeModels();
-	}
+    init {
+        makeModels()
+    }
 
-	/**
-	 * Make view models
-	 */
-	private void makeModels()
-	{
-		this.vnClassesFromWordIdSynsetIdModel = new ViewModelProvider(this.fragment).get("vn.classes(wordid,synsetid)", SqlunetViewTreeModel.class);
-		this.vnClassesFromWordIdSynsetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-	}
+    /**
+     * Make view models
+     */
+    private fun makeModels() {
+        vnClassesFromWordIdSynsetIdModel = ViewModelProvider(fragment)["vn.classes(wordid,synsetid)", SqlunetViewTreeModel::class.java]
+        vnClassesFromWordIdSynsetIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+    }
 
-	@Override
-	protected void unmarshal(final Parcelable pointer)
-	{
-		this.wordId = null;
-		this.synsetId = null;
-		if (pointer instanceof HasWordId)
-		{
-			final HasWordId wordPointer = (HasWordId) pointer;
-			this.wordId = wordPointer.getWordId();
-		}
-		if (pointer instanceof HasSynsetId)
-		{
-			final HasSynsetId synsetPointer = (HasSynsetId) pointer;
-			this.synsetId = synsetPointer.getSynsetId();
-		}
-	}
+    override fun unmarshal(pointer: Parcelable) {
+        wordId = null
+        synsetId = null
+        if (pointer is HasWordId) {
+            val wordPointer = pointer as HasWordId
+            wordId = wordPointer.getWordId()
+        }
+        if (pointer is HasSynsetId) {
+            val synsetPointer = pointer as HasSynsetId
+            synsetId = synsetPointer.getSynsetId()
+        }
+    }
 
-	@Override
-	public void process(@NonNull final TreeNode parent)
-	{
-		if (this.wordId != null)
-		{
-			vnClasses(this.wordId, this.synsetId, parent);
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-		}
-	}
+    override fun process(node: TreeNode) {
+        if (wordId != null) {
+            vnClasses(wordId!!, synsetId, node)
+        } else {
+            setNoResult(node)
+        }
+    }
 
-	// L O A D E R S
+    // L O A D E R S
 
-	/**
-	 * Classes from word id and synset id
-	 *
-	 * @param wordId   word id
-	 * @param synsetId synset id (null or 0 means ignore)
-	 * @param parent   parent node
-	 */
-	private void vnClasses(final long wordId, @Nullable final Long synsetId, @NonNull final TreeNode parent)
-	{
-		final ContentProviderSql sql = Queries.prepareVnClasses(wordId, synsetId);
-		final Uri uri = Uri.parse(VerbNetProvider.makeUri(sql.providerUri));
-		this.vnClassesFromWordIdSynsetIdModel.loadData(uri, sql, cursor -> vnClassesCursorToTreeModel(cursor, parent));
-	}
+    /**
+     * Classes from word id and synset id
+     *
+     * @param wordId   word id
+     * @param synsetId synset id (null or 0 means ignore)
+     * @param parent   parent node
+     */
+    private fun vnClasses(wordId: Long, synsetId: Long?, parent: TreeNode) {
+        val sql = prepareVnClasses(wordId, synsetId)
+        val uri = Uri.parse(VerbNetProvider.makeUri(sql.providerUri))
+        vnClassesFromWordIdSynsetIdModel.loadData(uri, sql) { cursor: Cursor -> vnClassesCursorToTreeModel(cursor, parent) }
+    }
 
-	@NonNull
-	private TreeOp[] vnClassesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
-	{
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			final TreeOp.TreeOps changedList = new TreeOps(NEWTREE, parent);
+    private fun vnClassesCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val changedList = TreeOps(TreeOpCode.NEWTREE, parent)
 
-			// column indices
-			final int idClassId = cursor.getColumnIndex(Words_VnClasses.CLASSID);
-			final int idClass = cursor.getColumnIndex(Words_VnClasses.CLASS);
-			// final int idClassTag = cursor.getColumnIndex(Words_VnClasses.CLASSTAG);
+            // column indices
+            val idClassId = cursor.getColumnIndex(Words_VnClasses.CLASSID)
+            val idClass = cursor.getColumnIndex(Words_VnClasses.CLASS)
+            // val idClassTag = cursor.getColumnIndex(Words_VnClasses.CLASSTAG)
 
-			// read cursor
-			do
-			{
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
+            // read cursor
+            do {
+                val sb = SpannableStringBuilder()
 
-				// data
-				final int classId = cursor.getInt(idClassId);
-				final String vnClass = cursor.getString(idClass);
+                // data
+                val classId = cursor.getInt(idClassId)
+                val vnClass = cursor.getString(idClass)
 
-				// sb.append("[class]");
-				Spanner.appendImage(sb, ClassFromWordModule.this.drawableRoles);
-				sb.append(' ');
-				Spanner.append(sb, vnClass, 0, VerbNetFactories.classFactory);
-				// sb.append(" tag=");
-				// sb.append(cursor.getString(idClassTag));
-				sb.append(" id=");
-				sb.append(Integer.toString(classId));
+                // sb.append("[class]")
+                appendImage(sb, drawableRoles)
+                sb.append(' ')
+                append(sb, vnClass, 0, VerbNetFactories.classFactory)
+                // sb.append(" tag=")
+                // sb.append(cursor.getString(idClassTag))
+                sb.append(" id=")
+                sb.append(classId.toString())
 
-				// attach result
-				final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-				changedList.add(NEWCHILD, node);
+                // attach result
+                val node = makeTextNode(sb, false).addTo(parent)
+                changedList.add(TreeOpCode.NEWCHILD, node)
 
-				// sub nodes
-				final TreeNode membersNode = TreeFactory.makeHotQueryNode(this.membersLabel, R.drawable.members, false, new MembersQuery(classId)).addTo(parent);
-				changedList.add(NEWCHILD, membersNode);
-				final TreeNode rolesNode = TreeFactory.makeHotQueryNode(this.rolesLabel, R.drawable.roles, false, new RolesQuery(classId)).addTo(parent);
-				changedList.add(NEWCHILD, rolesNode);
-				final TreeNode framesNode = TreeFactory.makeQueryNode(this.framesLabel, R.drawable.vnframe, false, new FramesQuery(classId)).addTo(parent);
-				changedList.add(NEWCHILD, framesNode);
-			}
-			while (cursor.moveToNext());
-			changed = changedList.toArray();
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(REMOVE, parent);
-		}
-
-		cursor.close();
-		return changed;
-	}
+                // sub nodes
+                val membersNode = makeHotQueryNode(membersLabel, R.drawable.members, false, MembersQuery(classId.toLong())).addTo(parent)
+                changedList.add(TreeOpCode.NEWCHILD, membersNode)
+                val rolesNode = makeHotQueryNode(rolesLabel, R.drawable.roles, false, RolesQuery(classId.toLong())).addTo(parent)
+                changedList.add(TreeOpCode.NEWCHILD, rolesNode)
+                val framesNode = makeQueryNode(framesLabel, R.drawable.vnframe, false, FramesQuery(classId.toLong())).addTo(parent)
+                changedList.add(TreeOpCode.NEWCHILD, framesNode)
+            } while (cursor.moveToNext())
+            changed = changedList.toArray()
+        } else {
+            setNoResult(parent)
+            changed = seq(TreeOpCode.REMOVE, parent)
+        }
+        cursor.close()
+        return changed
+    }
 }

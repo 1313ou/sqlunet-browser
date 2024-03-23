@@ -1,85 +1,58 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.framenet.loaders
 
-package org.sqlunet.framenet.loaders;
-
-import android.os.Parcelable;
-
-import org.sqlunet.HasXId;
-import org.sqlunet.browser.TreeFragment;
-import org.sqlunet.framenet.FnFramePointer;
-import org.sqlunet.model.TreeFactory;
-import org.sqlunet.treeview.model.TreeNode;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.os.Parcelable
+import org.sqlunet.HasXId
+import org.sqlunet.browser.TreeFragment
+import org.sqlunet.framenet.FnFramePointer
+import org.sqlunet.model.TreeFactory.setNoResult
+import org.sqlunet.treeview.model.TreeNode
 
 /**
  * Frame module
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param fragment containing fragment
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class FrameModule extends BaseModule
-{
-	/**
-	 * Frame id
-	 */
-	@Nullable
-	private Long frameId;
+open class FrameModule(fragment: TreeFragment) : BaseModule(fragment) {
 
-	/**
-	 * Lex unit id
-	 */
-	@Nullable
-	private Long luId;
+    /**
+     * Frame id
+     */
+    private var frameId: Long? = null
 
-	/**
-	 * Constructor
-	 *
-	 * @param fragment containing fragment
-	 */
-	public FrameModule(@NonNull final TreeFragment fragment)
-	{
-		super(fragment);
-	}
+    /**
+     * Lex unit id
+     */
+    private var luId: Long? = null
 
-	@Override
-	protected void unmarshal(final Parcelable pointer)
-	{
-		this.frameId = null;
-		this.luId = null;
-		if (pointer instanceof FnFramePointer)
-		{
-			final FnFramePointer framePointer = (FnFramePointer) pointer;
-			this.frameId = framePointer.id;
-		}
-		if (pointer instanceof HasXId)
-		{
-			final HasXId xIdPointer = (HasXId) pointer;
-			final String xSources = xIdPointer.getXSources();
-			if (xSources == null || xSources.contains("fn")) //
-			{
-				this.frameId = xIdPointer.getXClassId();
-				this.luId = xIdPointer.getXMemberId();
-			}
-		}
-	}
+    override fun unmarshal(pointer: Parcelable) {
+        frameId = null
+        luId = null
+        if (pointer is FnFramePointer) {
+            frameId = pointer.id
+        }
+        if (pointer is HasXId) {
+            val xIdPointer = pointer as HasXId
+            val xSources = xIdPointer.getXSources()
+            if (xSources == null || xSources.contains("fn")) //
+            {
+                frameId = xIdPointer.getXClassId()
+                luId = xIdPointer.getXMemberId()
+            }
+        }
+    }
 
-	@Override
-	public void process(@NonNull final TreeNode parent)
-	{
-		if (this.luId != null)
-		{
-			lexUnit(this.luId, parent, true, false);
-		}
-		else if (this.frameId != null)
-		{
-			frame(this.frameId, parent);
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-		}
-	}
+    override fun process(node: TreeNode) {
+        if (luId != null) {
+            lexUnit(luId!!, node, withFrame = true, withFes = false)
+        } else if (frameId != null) {
+            frame(frameId!!, node)
+        } else {
+            setNoResult(node)
+        }
+    }
 }

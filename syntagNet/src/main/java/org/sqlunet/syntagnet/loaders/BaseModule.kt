@@ -37,7 +37,7 @@ import org.sqlunet.wordnet.loaders.BaseModule.BaseWordLink
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-internal abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
+abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
 
     // view models
 

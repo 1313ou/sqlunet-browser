@@ -1,70 +1,45 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.syntagnet.loaders
 
-package org.sqlunet.syntagnet.loaders;
-
-import android.os.Parcelable;
-
-import org.sqlunet.HasWordId;
-import org.sqlunet.browser.TreeFragment;
-import org.sqlunet.model.TreeFactory;
-import org.sqlunet.treeview.model.TreeNode;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.os.Parcelable
+import org.sqlunet.HasWordId
+import org.sqlunet.browser.TreeFragment
+import org.sqlunet.model.TreeFactory.setNoResult
+import org.sqlunet.treeview.model.TreeNode
 
 /**
  * Module for SyntagNet collocation from word
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param fragment fragment
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class CollocationFromWordIdModule extends BaseModule
-{
-	/**
-	 * Word id
-	 */
-	@Nullable
-	private Long wordId;
+class CollocationFromWordIdModule(fragment: TreeFragment) : BaseModule(fragment) {
 
-	/**
-	 * Constructor
-	 *
-	 * @param fragment fragment
-	 */
-	public CollocationFromWordIdModule(@NonNull final TreeFragment fragment)
-	{
-		super(fragment);
-	}
+    /**
+     * Word id
+     */
+    private var wordId: Long? = null
+    override fun isTargetSecond(word1Id: Long, word2Id: Long): Boolean {
+        return false
+    }
 
-	@Override
-	protected boolean isTargetSecond(final long word1Id, final long word2Id)
-	{
-		return false;
-	}
+    override fun unmarshal(pointer: Parcelable) {
+        wordId = null
+        if (pointer is HasWordId) {
+            val wordPointer = pointer as HasWordId
+            wordId = wordPointer.getWordId()
+        }
+    }
 
-	@Override
-	protected void unmarshal(final Parcelable pointer)
-	{
-		this.wordId = null;
-		if (pointer instanceof HasWordId)
-		{
-			final HasWordId wordPointer = (HasWordId) pointer;
-			this.wordId = wordPointer.getWordId();
-		}
-	}
-
-	@Override
-	public void process(@NonNull final TreeNode parent)
-	{
-		if (this.wordId != null && this.wordId != 0)
-		{
-			// data
-			collocations(this.wordId, parent);
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-		}
-	}
+    override fun process(node: TreeNode) {
+        if (wordId != null && wordId != 0L) {
+            // data
+            collocations(wordId!!, node)
+        } else {
+            setNoResult(node)
+        }
+    }
 }

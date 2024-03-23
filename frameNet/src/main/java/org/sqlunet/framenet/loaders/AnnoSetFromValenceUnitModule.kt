@@ -1,59 +1,38 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.framenet.loaders
 
-package org.sqlunet.framenet.loaders;
-
-import android.os.Parcelable;
-
-import org.sqlunet.browser.TreeFragment;
-import org.sqlunet.framenet.FnValenceUnitPointer;
-import org.sqlunet.treeview.model.TreeNode;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.os.Parcelable
+import org.sqlunet.browser.TreeFragment
+import org.sqlunet.framenet.FnValenceUnitPointer
+import org.sqlunet.treeview.model.TreeNode
 
 /**
  * AnnoSet from valence unit module
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param fragment containing fragment
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class AnnoSetFromValenceUnitModule extends BaseModule
-{
-	/**
-	 * Valence unit id
-	 */
-	@Nullable
-	private Long vuId;
+class AnnoSetFromValenceUnitModule(fragment: TreeFragment) : BaseModule(fragment) {
 
-	/**
-	 * Constructor
-	 *
-	 * @param fragment containing fragment
-	 */
-	public AnnoSetFromValenceUnitModule(@NonNull final TreeFragment fragment)
-	{
-		super(fragment);
-	}
+    /**
+     * Valence unit id
+     */
+    private var vuId: Long? = null
 
-	@Override
-	protected void unmarshal(final Parcelable pointer)
-	{
-		this.vuId = null;
-		if (pointer instanceof FnValenceUnitPointer)
-		{
-			final FnValenceUnitPointer valenceUnitPointer = (FnValenceUnitPointer) pointer;
-			this.vuId = valenceUnitPointer.id;
-		}
-	}
+    override fun unmarshal(pointer: Parcelable) {
+        vuId = null
+        if (pointer is FnValenceUnitPointer) {
+            vuId = pointer.id
+        }
+    }
 
-	@Override
-	public void process(@NonNull final TreeNode node)
-	{
-		if (this.vuId != null)
-		{
-			// data
-			annoSetsForValenceUnit(this.vuId, node);
-		}
-	}
+    override fun process(node: TreeNode) {
+        if (vuId != null) {
+            // data
+            annoSetsForValenceUnit(vuId!!, node)
+        }
+    }
 }

@@ -1,59 +1,37 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.framenet.loaders
 
-package org.sqlunet.framenet.loaders;
-
-import android.os.Parcelable;
-
-import org.sqlunet.browser.TreeFragment;
-import org.sqlunet.framenet.FnPatternPointer;
-import org.sqlunet.treeview.model.TreeNode;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.os.Parcelable
+import org.sqlunet.browser.TreeFragment
+import org.sqlunet.framenet.FnPatternPointer
+import org.sqlunet.treeview.model.TreeNode
 
 /**
  * AnnoSet from pattern module
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param fragment containing fragment
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class AnnoSetFromPatternModule extends BaseModule
-{
-	/**
-	 * Pattern id
-	 */
-	@Nullable
-	private Long patternId;
+class AnnoSetFromPatternModule(fragment: TreeFragment) : BaseModule(fragment) {
 
-	/**
-	 * Constructor
-	 *
-	 * @param fragment containing fragment
-	 */
-	public AnnoSetFromPatternModule(@NonNull final TreeFragment fragment)
-	{
-		super(fragment);
-	}
+    /**
+     * Pattern id
+     */
+    private var patternId: Long? = null
 
-	@Override
-	protected void unmarshal(final Parcelable pointer)
-	{
-		this.patternId = null;
-		if (pointer instanceof FnPatternPointer)
-		{
-			final FnPatternPointer patternPointer = (FnPatternPointer) pointer;
-			this.patternId = patternPointer.id;
-		}
-	}
+    override fun unmarshal(pointer: Parcelable) {
+        patternId = null
+        if (pointer is FnPatternPointer) {
+            patternId = pointer.id
+        }
+    }
 
-	@Override
-	public void process(@NonNull final TreeNode node)
-	{
-		if (this.patternId != null)
-		{
-			// data
-			annoSetsForPattern(this.patternId, node);
-		}
-	}
+    override fun process(node: TreeNode) {
+        if (patternId != null) {
+            annoSetsForPattern(patternId!!, node)
+        }
+    }
 }

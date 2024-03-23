@@ -46,7 +46,7 @@ import java.util.Arrays
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-internal abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
+abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
 
     // resources
 

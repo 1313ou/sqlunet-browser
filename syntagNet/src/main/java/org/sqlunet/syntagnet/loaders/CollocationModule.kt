@@ -1,70 +1,44 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.syntagnet.loaders
 
-package org.sqlunet.syntagnet.loaders;
-
-import android.os.Parcelable;
-
-import org.sqlunet.browser.TreeFragment;
-import org.sqlunet.model.TreeFactory;
-import org.sqlunet.syntagnet.SnCollocationPointer;
-import org.sqlunet.treeview.model.TreeNode;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.os.Parcelable
+import org.sqlunet.browser.TreeFragment
+import org.sqlunet.model.TreeFactory.setNoResult
+import org.sqlunet.syntagnet.SnCollocationPointer
+import org.sqlunet.treeview.model.TreeNode
 
 /**
  * Module for SyntagNet collocation from id
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param fragment fragment
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class CollocationModule extends BaseModule
-{
-	/**
-	 * Collocation id
-	 */
-	@Nullable
-	private Long collocationId;
+class CollocationModule(fragment: TreeFragment) : BaseModule(fragment) {
 
-	/**
-	 * Constructor
-	 *
-	 * @param fragment fragment
-	 */
-	public CollocationModule(@NonNull final TreeFragment fragment)
-	{
-		super(fragment);
-		this.collocationId = null;
-	}
+    /**
+     * Collocation id
+     */
+    private var collocationId: Long? = null
 
-	@Override
-	protected boolean isTargetSecond(final long word1Id, final long word2Id)
-	{
-		return false;
-	}
+    override fun isTargetSecond(word1Id: Long, word2Id: Long): Boolean {
+        return false
+    }
 
-	@Override
-	protected void unmarshal(final Parcelable pointer)
-	{
-		this.collocationId = null;
-		if (pointer instanceof SnCollocationPointer)
-		{
-			final SnCollocationPointer collocationPointer = (SnCollocationPointer) pointer;
-			this.collocationId = collocationPointer.id;
-		}
-	}
+    override fun unmarshal(pointer: Parcelable) {
+        collocationId = null
+        if (pointer is SnCollocationPointer) {
+            collocationId = pointer.id
+        }
+    }
 
-	@Override
-	public void process(@NonNull final TreeNode parent)
-	{
-		if (this.collocationId != null)
-		{
-			collocation(this.collocationId, parent);
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-		}
-	}
+    override fun process(node: TreeNode) {
+        if (collocationId != null) {
+            collocation(collocationId!!, node)
+        } else {
+            setNoResult(node)
+        }
+    }
 }
