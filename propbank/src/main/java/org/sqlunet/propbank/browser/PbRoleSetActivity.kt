@@ -1,39 +1,26 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.propbank.browser
 
-package org.sqlunet.propbank.browser;
-
-import org.sqlunet.browser.AbstractActivity;
-import org.sqlunet.propbank.R;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import androidx.fragment.app.Fragment
+import org.sqlunet.browser.AbstractActivity
+import org.sqlunet.propbank.R
 
 /**
  * PropBank role set activity
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class PbRoleSetActivity extends AbstractActivity
-{
-	@Override
-	protected int getLayoutId()
-	{
-		return R.layout.activity_pbroleset;
-	}
+class PbRoleSetActivity : AbstractActivity() {
 
-	@Override
-	protected int getContainerId()
-	{
-		return R.id.container_pbroleset;
-	}
+    override val layoutId: Int
+        get() = R.layout.activity_pbroleset
 
-	@NonNull
-	@Override
-	protected Fragment makeFragment()
-	{
-		return new PbRoleSetFragment();
-	}
+    override val containerId: Int
+        get() = R.id.container_pbroleset
+
+    override fun makeFragment(): Fragment {
+        return PbRoleSetFragment()
+    }
 }
-

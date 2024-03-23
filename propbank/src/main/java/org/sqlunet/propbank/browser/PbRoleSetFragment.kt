@@ -1,62 +1,46 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.propbank.browser
 
-package org.sqlunet.propbank.browser;
-
-import android.os.Bundle;
-import android.os.Parcelable;
-
-import org.sqlunet.browser.Module;
-import org.sqlunet.browser.TreeFragment;
-import org.sqlunet.propbank.R;
-import org.sqlunet.propbank.loaders.RoleSetModule;
-import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.treeview.model.TreeNode;
-
-import androidx.annotation.Nullable;
+import android.os.Bundle
+import org.sqlunet.browser.Module
+import org.sqlunet.browser.TreeFragment
+import org.sqlunet.propbank.R
+import org.sqlunet.propbank.loaders.RoleSetModule
+import org.sqlunet.provider.ProviderArgs
 
 /**
  * A fragment representing a PropBank role set
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class PbRoleSetFragment extends TreeFragment
-{
-	// static private final String TAG = "PbRoleSetF";
+class PbRoleSetFragment : TreeFragment() {
 
-	/**
-	 * Constructor
-	 */
-	public PbRoleSetFragment()
-	{
-		this.layoutId = R.layout.fragment_pbroleset;
-		this.treeContainerId = R.id.data_contents;
-		this.headerId = R.string.propbank_rolesets;
-		this.iconId = R.drawable.propbank;
-	}
+    init {
+        layoutId = R.layout.fragment_pbroleset
+        treeContainerId = R.id.data_contents
+        headerId = R.string.propbank_rolesets
+        iconId = R.drawable.propbank
+    }
 
-	@Override
-	public void onCreate(@Nullable final Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-		// query
-		final Bundle args = getArguments();
-		assert args != null;
-		final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
-		if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER))
-		{
-			// pointer
-			final Parcelable pointer = getPointer(args);
+        // query
+        val args = requireArguments()
+        val type = args.getInt(ProviderArgs.ARG_QUERYTYPE)
+        if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER)) {
+            // pointer
+            val pointer = getPointer(args)
 
-			// root node
-			final TreeNode queryNode = this.treeRoot.getChildren().iterator().next();
+            // root node
+            val queryNode = treeRoot.children.iterator().next()
 
-			// module
-			final Module module = new RoleSetModule(this);
-			module.init(type, pointer);
-			module.process(queryNode);
-		}
-	}
+            // module
+            val module: Module = RoleSetModule(this)
+            module.init(type, pointer)
+            module.process(queryNode)
+        }
+    }
 }

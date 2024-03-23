@@ -1,96 +1,64 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.framenet.browser
 
-package org.sqlunet.framenet.browser;
-
-import android.os.Bundle;
-import android.os.Parcelable;
-
-import org.sqlunet.browser.Module;
-import org.sqlunet.browser.TreeFragment;
-import org.sqlunet.framenet.R;
-import org.sqlunet.framenet.loaders.AnnoSetFromPatternModule;
-import org.sqlunet.framenet.loaders.AnnoSetFromValenceUnitModule;
-import org.sqlunet.framenet.loaders.AnnoSetModule;
-import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.treeview.model.TreeNode;
-
-import androidx.annotation.Nullable;
+import android.os.Bundle
+import org.sqlunet.browser.Module
+import org.sqlunet.browser.TreeFragment
+import org.sqlunet.framenet.R
+import org.sqlunet.framenet.loaders.AnnoSetFromPatternModule
+import org.sqlunet.framenet.loaders.AnnoSetFromValenceUnitModule
+import org.sqlunet.framenet.loaders.AnnoSetModule
+import org.sqlunet.provider.ProviderArgs
 
 /**
  * A fragment representing an annoSet.
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class FnAnnoSetFragment extends TreeFragment
-{
-	// static private final String TAG = "FnAnnoSetF";
+class FnAnnoSetFragment : TreeFragment() {
 
-	/**
-	 * Constructor
-	 */
-	public FnAnnoSetFragment()
-	{
-		this.layoutId = R.layout.fragment_fnannoset;
-		this.treeContainerId = R.id.data_contents;
-		this.iconId = R.drawable.annoset;
-		this.headerId = R.string.framenet_annosets;
+    init {
+        layoutId = R.layout.fragment_fnannoset
+        treeContainerId = R.id.data_contents
+        iconId = R.drawable.annoset
+        headerId = R.string.framenet_annosets
 
-		// header
-		final Bundle args = getArguments();
-		if (args != null)
-		{
-			final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
-			switch (type)
-			{
-				case ProviderArgs.ARG_QUERYTYPE_FNPATTERN:
-					this.headerId =  R.string.framenet_annosets_for_pattern;
-					break;
-				case ProviderArgs.ARG_QUERYTYPE_FNVALENCEUNIT:
-					this.headerId =  R.string.framenet_annosets_for_valenceunit;
-					break;
-				default:
-					break;
-			}
-		}
-	}
+        // header
+        val args = arguments
+        if (args != null) {
+            val type = args.getInt(ProviderArgs.ARG_QUERYTYPE)
+            when (type) {
+                ProviderArgs.ARG_QUERYTYPE_FNPATTERN -> headerId = R.string.framenet_annosets_for_pattern
+                ProviderArgs.ARG_QUERYTYPE_FNVALENCEUNIT -> headerId = R.string.framenet_annosets_for_valenceunit
+                else -> {}
+            }
+        }
+    }
 
-	@Override
-	public void onCreate(@Nullable final Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-		// query
-		final Bundle args = getArguments();
-		assert args != null;
-		if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER))
-		{
-			// pointer
-			final Parcelable pointer = getPointer(args);
-			final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
+        // query
+        val args = requireArguments()
+        if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER)) {
+            // pointer
+            val pointer = getPointer(args)
+            val type = args.getInt(ProviderArgs.ARG_QUERYTYPE)
 
-			// root node
-			final TreeNode queryNode = this.treeRoot.getChildren().iterator().next();
+            // root node
+            val queryNode = treeRoot.children.iterator().next()
 
-			// module
-			Module module;
-			switch (type)
-			{
-				case ProviderArgs.ARG_QUERYTYPE_FNANNOSET:
-					module = new AnnoSetModule(this);
-					break;
-				case ProviderArgs.ARG_QUERYTYPE_FNPATTERN:
-					module = new AnnoSetFromPatternModule(this);
-					break;
-				case ProviderArgs.ARG_QUERYTYPE_FNVALENCEUNIT:
-					module = new AnnoSetFromValenceUnitModule(this);
-					break;
-				default:
-					return;
-			}
-			module.init(type, pointer);
-			module.process(queryNode);
-		}
-	}
+            // module
+            val module: Module = when (type) {
+                ProviderArgs.ARG_QUERYTYPE_FNANNOSET -> AnnoSetModule(this)
+                ProviderArgs.ARG_QUERYTYPE_FNPATTERN -> AnnoSetFromPatternModule(this)
+                ProviderArgs.ARG_QUERYTYPE_FNVALENCEUNIT -> AnnoSetFromValenceUnitModule(this)
+                else -> return
+            }
+            module.init(type, pointer)
+            module.process(queryNode)
+        }
+    }
 }

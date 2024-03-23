@@ -1,38 +1,26 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.framenet.browser
 
-package org.sqlunet.framenet.browser;
-
-import org.sqlunet.browser.AbstractActivity;
-import org.sqlunet.framenet.R;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import androidx.fragment.app.Fragment
+import org.sqlunet.browser.AbstractActivity
+import org.sqlunet.framenet.R
 
 /**
  * Sentence activity
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class FnSentenceActivity extends AbstractActivity
-{
-	@Override
-	protected int getLayoutId()
-	{
-		return R.layout.activity_fnsentence;
-	}
+class FnSentenceActivity : AbstractActivity() {
 
-	@Override
-	protected int getContainerId()
-	{
-		return R.id.container_sentence;
-	}
+    override val layoutId: Int
+        get() = R.layout.activity_fnsentence
 
-	@NonNull
-	@Override
-	protected Fragment makeFragment()
-	{
-		return new FnSentenceFragment();
-	}
+    override val containerId: Int
+        get() = R.id.container_sentence
+
+    override fun makeFragment(): Fragment {
+        return FnSentenceFragment()
+    }
 }

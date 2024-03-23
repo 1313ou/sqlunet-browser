@@ -1,62 +1,46 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.verbnet.browser
 
-package org.sqlunet.verbnet.browser;
-
-import android.os.Bundle;
-import android.os.Parcelable;
-
-import org.sqlunet.browser.Module;
-import org.sqlunet.browser.TreeFragment;
-import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.verbnet.R;
-import org.sqlunet.verbnet.loaders.ClassModule;
-
-import androidx.annotation.Nullable;
+import android.os.Bundle
+import org.sqlunet.browser.Module
+import org.sqlunet.browser.TreeFragment
+import org.sqlunet.provider.ProviderArgs
+import org.sqlunet.verbnet.R
+import org.sqlunet.verbnet.loaders.ClassModule
 
 /**
  * A fragment representing a VerbNet class
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class VnClassFragment extends TreeFragment
-{
-	// static private final String TAG = "VnClassF";
+class VnClassFragment : TreeFragment() {
 
-	/**
-	 * Constructor
-	 */
-	public VnClassFragment()
-	{
-		this.layoutId = R.layout.fragment_vnclass;
-		this.treeContainerId = R.id.data_contents;
-		this.headerId = R.string.verbnet_classes;
-		this.iconId = R.drawable.verbnet;
-	}
+    init {
+        layoutId = R.layout.fragment_vnclass
+        treeContainerId = R.id.data_contents
+        headerId = R.string.verbnet_classes
+        iconId = R.drawable.verbnet
+    }
 
-	@Override
-	public void onCreate(@Nullable final Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-		// query
-		final Bundle args = getArguments();
-		assert args != null;
-		final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
-		if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER))
-		{
-			// pointer
-			final Parcelable pointer = getPointer(args);
+        // query
+        val args = requireArguments()
+        val type = args.getInt(ProviderArgs.ARG_QUERYTYPE)
+        if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER)) {
+            // pointer
+            val pointer = getPointer(args)
 
-			// root node
-			final TreeNode queryNode = this.treeRoot.getChildren().iterator().next();
+            // root node
+            val queryNode = treeRoot.children.iterator().next()
 
-			// module
-			final Module module = new ClassModule(this);
-			module.init(type, pointer);
-			module.process(queryNode);
-		}
-	}
+            // module
+            val module: Module = ClassModule(this)
+            module.init(type, pointer)
+            module.process(queryNode)
+        }
+    }
 }

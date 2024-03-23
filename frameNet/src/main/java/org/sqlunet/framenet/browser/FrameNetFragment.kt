@@ -1,66 +1,52 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.framenet.browser
 
-package org.sqlunet.framenet.browser;
-
-import android.os.Bundle;
-import android.os.Parcelable;
-
-import org.sqlunet.HasXId;
-import org.sqlunet.browser.Module;
-import org.sqlunet.browser.TreeFragment;
-import org.sqlunet.framenet.R;
-import org.sqlunet.framenet.loaders.FrameModule;
-import org.sqlunet.framenet.loaders.LexUnitFromWordModule;
-import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.treeview.model.TreeNode;
-
-import androidx.annotation.Nullable;
+import android.os.Bundle
+import org.sqlunet.HasXId
+import org.sqlunet.browser.Module
+import org.sqlunet.browser.TreeFragment
+import org.sqlunet.framenet.R
+import org.sqlunet.framenet.loaders.FrameModule
+import org.sqlunet.framenet.loaders.LexUnitFromWordModule
+import org.sqlunet.provider.ProviderArgs
 
 /**
  * A fragment representing a framenet search from a (word, pos)
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class FrameNetFragment extends TreeFragment
-{
-	// static private final String TAG = "FrameNetF";
+class FrameNetFragment : TreeFragment() {
 
-	static public final String FRAGMENT_TAG = "framenet";
+    init {
+        layoutId = R.layout.fragment_framenet
+        treeContainerId = R.id.data_contents
+        headerId = R.string.framenet_frames
+        iconId = R.drawable.framenet
+    }
 
-	/**
-	 * Constructor
-	 */
-	public FrameNetFragment()
-	{
-		this.layoutId = R.layout.fragment_framenet;
-		this.treeContainerId = R.id.data_contents;
-		this.headerId = R.string.framenet_frames;
-		this.iconId = R.drawable.framenet;
-	}
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-	@Override
-	public void onCreate(@Nullable final Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
+        // query
+        val args = requireArguments()
+        val type = args.getInt(ProviderArgs.ARG_QUERYTYPE)
+        if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER)) {
+            // pointer
+            val pointer = getPointer(args)
 
-		// query
-		final Bundle args = getArguments();
-		assert args != null;
-		final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
-		if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER))
-		{
-			// pointer
-			final Parcelable pointer = getPointer(args);
+            // root node
+            val queryNode = treeRoot.children.iterator().next()
 
-			// root node
-			final TreeNode queryNode = this.treeRoot.getChildren().iterator().next();
+            // module
+            val module: Module = if (pointer is HasXId) FrameModule(this) else LexUnitFromWordModule(this)
+            module.init(type, pointer)
+            module.process(queryNode)
+        }
+    }
 
-			// module
-			Module module = pointer instanceof HasXId ? new FrameModule(this) : new LexUnitFromWordModule(this);
-			module.init(type, pointer);
-			module.process(queryNode);
-		}
-	}
+    companion object {
+        const val FRAGMENT_TAG = "framenet"
+    }
 }

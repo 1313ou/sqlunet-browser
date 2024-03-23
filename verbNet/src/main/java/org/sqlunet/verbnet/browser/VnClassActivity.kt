@@ -1,38 +1,26 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.verbnet.browser
 
-package org.sqlunet.verbnet.browser;
-
-import org.sqlunet.browser.AbstractActivity;
-import org.sqlunet.verbnet.R;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import androidx.fragment.app.Fragment
+import org.sqlunet.browser.AbstractActivity
+import org.sqlunet.verbnet.R
 
 /**
  * VerbNet class activity
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class VnClassActivity extends AbstractActivity
-{
-	@Override
-	protected int getLayoutId()
-	{
-		return R.layout.activity_vnclass;
-	}
+class VnClassActivity : AbstractActivity() {
 
-	@Override
-	protected int getContainerId()
-	{
-		return R.id.container_vnclass;
-	}
+    override val layoutId: Int
+        get() = R.layout.activity_vnclass
 
-	@NonNull
-	@Override
-	protected Fragment makeFragment()
-	{
-		return new VnClassFragment();
-	}
+    override val containerId: Int
+        get() = R.id.container_vnclass
+
+    override fun makeFragment(): Fragment {
+        return VnClassFragment()
+    }
 }
