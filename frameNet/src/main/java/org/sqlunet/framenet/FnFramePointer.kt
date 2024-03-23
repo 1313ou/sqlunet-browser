@@ -1,58 +1,42 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.framenet
 
-package org.sqlunet.framenet;
-
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import org.sqlunet.Pointer;
-
-import androidx.annotation.NonNull;
+import android.os.Parcel
+import android.os.Parcelable
+import org.sqlunet.Pointer
 
 /**
  * Parcelable frame
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class FnFramePointer extends Pointer
-{
-	/**
-	 * Static field used to regenerate object, individually or as arrays
-	 */
-	static public final Parcelable.Creator<FnFramePointer> CREATOR = new Parcelable.Creator<FnFramePointer>()
-	{
-		@NonNull
-		@Override
-		public FnFramePointer createFromParcel(@NonNull final Parcel parcel)
-		{
-			return new FnFramePointer(parcel);
-		}
+class FnFramePointer : Pointer {
 
-		@NonNull
-		@Override
-		public FnFramePointer[] newArray(final int size)
-		{
-			return new FnFramePointer[size];
-		}
-	};
+    /**
+     * Constructor from parcel, reads back fields IN THE ORDER they were written
+     */
+    private constructor(parcel: Parcel) : super(parcel)
 
-	/**
-	 * Constructor from parcel, reads back fields IN THE ORDER they were written
-	 */
-	private FnFramePointer(@NonNull final Parcel parcel)
-	{
-		super(parcel);
-	}
+    /**
+     * Constructor
+     *
+     * @param frameId frame id
+     */
+    constructor(frameId: Long) : super(frameId)
 
-	/**
-	 * Constructor
-	 *
-	 * @param frameId frame id
-	 */
-	public FnFramePointer(final long frameId)
-	{
-		super(frameId);
-	}
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<FnFramePointer> {
+        override fun createFromParcel(parcel: Parcel): FnFramePointer {
+            return FnFramePointer(parcel)
+        }
+
+        override fun newArray(size: Int): Array<FnFramePointer?> {
+            return arrayOfNulls(size)
+        }
+    }
 }

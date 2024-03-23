@@ -1,58 +1,42 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.framenet
 
-package org.sqlunet.framenet;
-
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import org.sqlunet.Pointer;
-
-import androidx.annotation.NonNull;
+import android.os.Parcel
+import android.os.Parcelable
+import org.sqlunet.Pointer
 
 /**
  * Parcelable sentence
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class FnSentencePointer extends Pointer
-{
-	/**
-	 * Static field used to regenerate object, individually or as arrays
-	 */
-	static public final Parcelable.Creator<FnSentencePointer> CREATOR = new Parcelable.Creator<FnSentencePointer>()
-	{
-		@NonNull
-		@Override
-		public FnSentencePointer createFromParcel(@NonNull final Parcel parcel)
-		{
-			return new FnSentencePointer(parcel);
-		}
+class FnSentencePointer : Pointer {
 
-		@NonNull
-		@Override
-		public FnSentencePointer[] newArray(final int size)
-		{
-			return new FnSentencePointer[size];
-		}
-	};
+    /**
+     * Constructor from parcel, reads back fields IN THE ORDER they were written
+     */
+    private constructor(parcel: Parcel) : super(parcel)
 
-	/**
-	 * Constructor from parcel, reads back fields IN THE ORDER they were written
-	 */
-	private FnSentencePointer(@NonNull final Parcel parcel)
-	{
-		super(parcel);
-	}
+    /**
+     * Constructor
+     *
+     * @param sentenceId sentence id
+     */
+    constructor(sentenceId: Long) : super(sentenceId)
 
-	/**
-	 * Constructor
-	 *
-	 * @param sentenceId sentence id
-	 */
-	public FnSentencePointer(final long sentenceId)
-	{
-		super(sentenceId);
-	}
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<FnSentencePointer> {
+        override fun createFromParcel(parcel: Parcel): FnSentencePointer {
+            return FnSentencePointer(parcel)
+        }
+
+        override fun newArray(size: Int): Array<FnSentencePointer?> {
+            return arrayOfNulls(size)
+        }
+    }
 }

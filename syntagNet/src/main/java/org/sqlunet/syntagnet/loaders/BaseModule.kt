@@ -1,273 +1,239 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.syntagnet.loaders
 
-package org.sqlunet.syntagnet.loaders;
-
-import android.annotation.SuppressLint;
-import android.database.Cursor;
-import android.net.Uri;
-import android.text.SpannableStringBuilder;
-
-import org.sqlunet.browser.Module;
-import org.sqlunet.browser.SqlunetViewTreeModel;
-import org.sqlunet.browser.TreeFragment;
-import org.sqlunet.model.TreeFactory;
-import org.sqlunet.style.Spanner;
-import org.sqlunet.syntagnet.R;
-import org.sqlunet.syntagnet.provider.SyntagNetContract;
-import org.sqlunet.syntagnet.provider.SyntagNetContract.SnCollocations_X;
-import org.sqlunet.syntagnet.provider.SyntagNetProvider;
-import org.sqlunet.syntagnet.style.SyntagNetFactories;
-import org.sqlunet.treeview.control.Link;
-import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.view.TreeOp;
-import org.sqlunet.view.TreeOp.TreeOps;
-import org.sqlunet.view.TreeOpExecute;
-import org.sqlunet.wordnet.loaders.BaseModule.BaseSynsetLink;
-import org.sqlunet.wordnet.loaders.BaseModule.BaseWordLink;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProvider;
-
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWCHILD;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWTREE;
-import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
+import android.annotation.SuppressLint
+import android.database.Cursor
+import android.net.Uri
+import android.text.SpannableStringBuilder
+import androidx.lifecycle.ViewModelProvider
+import org.sqlunet.browser.Module
+import org.sqlunet.browser.SqlunetViewTreeModel
+import org.sqlunet.browser.TreeFragment
+import org.sqlunet.model.TreeFactory.makeLinkNode
+import org.sqlunet.model.TreeFactory.makeTreeNode
+import org.sqlunet.model.TreeFactory.setNoResult
+import org.sqlunet.style.Spanner.Companion.append
+import org.sqlunet.syntagnet.R
+import org.sqlunet.syntagnet.provider.SyntagNetContract
+import org.sqlunet.syntagnet.provider.SyntagNetContract.SnCollocations_X
+import org.sqlunet.syntagnet.provider.SyntagNetProvider
+import org.sqlunet.syntagnet.style.SyntagNetFactories
+import org.sqlunet.treeview.control.Link
+import org.sqlunet.treeview.model.TreeNode
+import org.sqlunet.view.TreeOp
+import org.sqlunet.view.TreeOp.Companion.seq
+import org.sqlunet.view.TreeOp.TreeOpCode
+import org.sqlunet.view.TreeOp.TreeOps
+import org.sqlunet.view.TreeOpExecute
+import org.sqlunet.wordnet.loaders.BaseModule.BaseSynsetLink
+import org.sqlunet.wordnet.loaders.BaseModule.BaseWordLink
 
 /**
  * Module for SyntagNet collocations
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param fragment fragment
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-abstract class BaseModule extends Module
-{
-	// view models
+internal abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
 
-	private SqlunetViewTreeModel collocationFromCollocationIdModel;
+    // view models
 
-	private SqlunetViewTreeModel collocationsFromWordIdModel;
+    private lateinit var collocationFromCollocationIdModel: SqlunetViewTreeModel
+    private lateinit var collocationsFromWordIdModel: SqlunetViewTreeModel
+    private lateinit var collocationsFromWordModel: SqlunetViewTreeModel
 
-	private SqlunetViewTreeModel collocationsFromWordModel;
+    init {
+        makeModels()
+    }
 
-	/**
-	 * Constructor
-	 *
-	 * @param fragment fragment
-	 */
-	BaseModule(@NonNull final TreeFragment fragment)
-	{
-		super(fragment);
+    /**
+     * Whether target comes second in collocation
+     */
+    protected abstract fun isTargetSecond(word1Id: Long, word2Id: Long): Boolean
 
-		// models
-		makeModels();
-	}
+    /**
+     * Make view models
+     */
+    private fun makeModels() {
+        collocationFromCollocationIdModel = ViewModelProvider(fragment)["sn.collocation(collocationid)", SqlunetViewTreeModel::class.java]
+        collocationFromCollocationIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        collocationsFromWordIdModel = ViewModelProvider(fragment)["sn.collocations(wordid)", SqlunetViewTreeModel::class.java]
+        collocationsFromWordIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        collocationsFromWordModel = ViewModelProvider(fragment)["sn.collocations(word)", SqlunetViewTreeModel::class.java]
+        collocationsFromWordModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+    }
 
-	/**
-	 * Whether target comes second in collocation
-	 */
-	abstract protected boolean isTargetSecond(final long word1Id, final long word2Id);
+    // C O L L O C A T I O N S
 
-	/**
-	 * Make view models
-	 */
-	private void makeModels()
-	{
-		this.collocationFromCollocationIdModel = new ViewModelProvider(this.fragment).get("sn.collocation(collocationid)", SqlunetViewTreeModel.class);
-		this.collocationFromCollocationIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
+    /**
+     * Collocation from id
+     *
+     * @param collocationId collocation id
+     * @param parent        parent node
+     */
+    fun collocation(collocationId: Long, parent: TreeNode) {
+        val sql = Queries.prepareCollocation(collocationId)
+        val uri = Uri.parse(SyntagNetProvider.makeUri(sql.providerUri))
+        collocationFromCollocationIdModel.loadData(uri, sql) { cursor: Cursor -> collocationCursorToTreeModel(cursor, parent) }
+    }
 
-		this.collocationsFromWordIdModel = new ViewModelProvider(this.fragment).get("sn.collocations(wordid)", SqlunetViewTreeModel.class);
-		this.collocationsFromWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
+    /**
+     * Collocation from ids
+     *
+     * @param word1Id   word 1 id
+     * @param word2Id   word 2 id
+     * @param synset1Id synset 1 id
+     * @param synset2Id synset 2 id
+     * @param parent    parent node
+     */
+    fun collocations(word1Id: Long?, word2Id: Long?, synset1Id: Long?, synset2Id: Long?, parent: TreeNode) {
+        val sql = Queries.prepareCollocations(word1Id, word2Id, synset1Id, synset2Id)
+        val uri = Uri.parse(SyntagNetProvider.makeUri(sql.providerUri))
+        collocationFromCollocationIdModel.loadData(uri, sql) { cursor: Cursor -> collocationsCursorToTreeModel(cursor, parent) }
+    }
 
-		this.collocationsFromWordModel = new ViewModelProvider(this.fragment).get("sn.collocations(word)", SqlunetViewTreeModel.class);
-		this.collocationsFromWordModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-	}
+    /**
+     * Collocations for word id
+     *
+     * @param wordId word id
+     * @param parent parent node
+     */
+    fun collocations(wordId: Long, parent: TreeNode) {
+        val sql = Queries.prepareCollocations(wordId)
+        val uri = Uri.parse(SyntagNetProvider.makeUri(sql.providerUri))
+        collocationsFromWordIdModel.loadData(uri, sql) { cursor: Cursor -> collocationsCursorToTreeModel(cursor, parent) }
+    }
 
-	// C O L L O C A T I O N S
+    /**
+     * Collocations for word
+     *
+     * @param word word	 * @param parent parent node
+     */
+    fun collocations(word: String?, parent: TreeNode) {
+        val sql = Queries.prepareCollocations(word)
+        val uri = Uri.parse(SyntagNetProvider.makeUri(sql.providerUri))
+        collocationsFromWordModel.loadData(uri, sql) { cursor: Cursor -> collocationsCursorToTreeModel(cursor, parent) }
+    }
 
-	/**
-	 * Collocation from id
-	 *
-	 * @param collocationId collocation id
-	 * @param parent        parent node
-	 */
-	void collocation(final long collocationId, @NonNull final TreeNode parent)
-	{
-		final ContentProviderSql sql = Queries.prepareCollocation(collocationId);
-		final Uri uri = Uri.parse(SyntagNetProvider.makeUri(sql.providerUri));
-		this.collocationFromCollocationIdModel.loadData(uri, sql, cursor -> collocationCursorToTreeModel(cursor, parent));
-	}
+    private fun collocationCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
+        if (cursor.count > 1) {
+            throw RuntimeException("Unexpected number of rows")
+        }
+        return collocationsCursorToTreeModel(cursor, parent)
+    }
 
-	/**
-	 * Collocation from ids
-	 *
-	 * @param word1Id   word 1 id
-	 * @param word2Id   word 2 id
-	 * @param synset1Id synset 1 id
-	 * @param synset2Id synset 2 id
-	 * @param parent    parent node
-	 */
-	void collocations(final Long word1Id, @Nullable final Long word2Id, final Long synset1Id, final Long synset2Id, @NonNull final TreeNode parent)
-	{
-		final ContentProviderSql sql = Queries.prepareCollocations(word1Id, word2Id, synset1Id, synset2Id);
-		final Uri uri = Uri.parse(SyntagNetProvider.makeUri(sql.providerUri));
-		this.collocationFromCollocationIdModel.loadData(uri, sql, cursor -> collocationsCursorToTreeModel(cursor, parent));
-	}
+    private fun collocationsCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val changedList = TreeOps(TreeOpCode.NEWTREE, parent)
 
-	/**
-	 * Collocations for word id
-	 *
-	 * @param wordId word id
-	 * @param parent parent node
-	 */
-	void collocations(final long wordId, @NonNull final TreeNode parent)
-	{
-		final ContentProviderSql sql = Queries.prepareCollocations(wordId);
-		final Uri uri = Uri.parse(SyntagNetProvider.makeUri(sql.providerUri));
-		this.collocationsFromWordIdModel.loadData(uri, sql, cursor -> collocationsCursorToTreeModel(cursor, parent));
-	}
+            // column indices
+            val idCollocationId = cursor.getColumnIndex(SnCollocations_X.COLLOCATIONID)
+            val idWord1Id = cursor.getColumnIndex(SnCollocations_X.WORD1ID)
+            val idWord2Id = cursor.getColumnIndex(SnCollocations_X.WORD2ID)
+            val idSynset1Id = cursor.getColumnIndex(SnCollocations_X.SYNSET1ID)
+            val idSynset2Id = cursor.getColumnIndex(SnCollocations_X.SYNSET2ID)
+            val idWord1 = cursor.getColumnIndex(SyntagNetContract.WORD1)
+            val idWord2 = cursor.getColumnIndex(SyntagNetContract.WORD2)
+            val idDefinition1 = cursor.getColumnIndex(SyntagNetContract.DEFINITION1)
+            val idDefinition2 = cursor.getColumnIndex(SyntagNetContract.DEFINITION2)
+            val idPos1 = cursor.getColumnIndex(SyntagNetContract.POS1)
+            val idPos2 = cursor.getColumnIndex(SyntagNetContract.POS2)
 
-	/**
-	 * Collocations for word
-	 *
-	 * @param word word	 * @param parent parent node
-	 */
-	void collocations(final String word, @NonNull final TreeNode parent)
-	{
-		final ContentProviderSql sql = Queries.prepareCollocations(word);
-		final Uri uri = Uri.parse(SyntagNetProvider.makeUri(sql.providerUri));
-		this.collocationsFromWordModel.loadData(uri, sql, cursor -> collocationsCursorToTreeModel(cursor, parent));
-	}
+            // read cursor
+            val isSingle = cursor.count == 1
+            do {
+                // data
+                val collocationId = cursor.getInt(idCollocationId)
+                val word1 = cursor.getString(idWord1)
+                val word2 = cursor.getString(idWord2)
+                val word1Id = cursor.getLong(idWord1Id)
+                val word2Id = cursor.getLong(idWord2Id)
+                val synset1Id = cursor.getLong(idSynset1Id)
+                val synset2Id = cursor.getLong(idSynset2Id)
+                val pos1 = cursor.getString(idPos1)
+                val pos2 = cursor.getString(idPos2)
+                val definition1 = cursor.getString(idDefinition1)
+                val definition2 = cursor.getString(idDefinition2)
+                val isTargetSecond = isTargetSecond(word1Id, word2Id)
+                makeContent(collocationId, word1, word2, word1Id, word2Id, synset1Id, synset2Id, pos1, pos2, definition1, definition2, isSingle, isTargetSecond, parent, changedList)
 
-	@NonNull
-	private TreeOp[] collocationCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
-	{
-		if (cursor.getCount() > 1)
-		{
-			throw new RuntimeException("Unexpected number of rows");
-		}
-		return collocationsCursorToTreeModel(cursor, parent);
-	}
+                // sub nodes
+                //TODO more node
+                //final TreeNode moreNode = TreeFactory.makeLinkHotQueryNode("More", R.drawable.more, false, new MoreQuery(collocationId)).addTo(parent);
+                //final TreeNode more2Node = TreeFactory.makeQueryNode("More2", R.drawable.more2, false, new More2Query(collocationId)).addTo(parent);
+                //changed = TreeOp.seq(NEWMAIN, node, NEWEXTRA, moreNode, NEWEXTRA, more2Node, NEWTREE, parent);
+            } while (cursor.moveToNext())
+            changed = changedList.toArray()
+        } else {
+            setNoResult(parent)
+            changed = seq(TreeOpCode.REMOVE, parent)
+        }
+        cursor.close()
+        return changed
+    }
 
-	@NonNull
-	private TreeOp[] collocationsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
-	{
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			final TreeOps changedList = new TreeOps(NEWTREE, parent);
+    @SuppressLint("DefaultLocale")
+    private fun makeContent(
+        collocationId: Int,  //
+        word1: String, word2: String,  //
+        word1Id: Long, word2Id: Long,  //
+        synset1Id: Long, synset2Id: Long,  //
+        pos1: String, pos2: String,  //
+        definition1: String, definition2: String,  //
+        isSingle: Boolean, isTargetSecond: Boolean, parent: TreeNode, changedList: TreeOps,
+    ) {
+        // header
+        val sbh = SpannableStringBuilder()
+        append(sbh, word1, 0, SyntagNetFactories.collocationFactory)
+        sbh.append(' ')
+        sbh.append(pos1)
+        sbh.append(' ')
+        append(sbh, word2, 0, SyntagNetFactories.collocationFactory)
+        sbh.append(' ')
+        sbh.append(pos2)
+        sbh.append(' ')
+        append(sbh, collocationId.toString(), 0, SyntagNetFactories.idsFactory)
 
-			// column indices
-			final int idCollocationId = cursor.getColumnIndex(SnCollocations_X.COLLOCATIONID);
-			final int idWord1Id = cursor.getColumnIndex(SnCollocations_X.WORD1ID);
-			final int idWord2Id = cursor.getColumnIndex(SnCollocations_X.WORD2ID);
-			final int idSynset1Id = cursor.getColumnIndex(SnCollocations_X.SYNSET1ID);
-			final int idSynset2Id = cursor.getColumnIndex(SnCollocations_X.SYNSET2ID);
-			final int idWord1 = cursor.getColumnIndex(SyntagNetContract.WORD1);
-			final int idWord2 = cursor.getColumnIndex(SyntagNetContract.WORD2);
-			final int idDefinition1 = cursor.getColumnIndex(SyntagNetContract.DEFINITION1);
-			final int idDefinition2 = cursor.getColumnIndex(SyntagNetContract.DEFINITION2);
-			final int idPos1 = cursor.getColumnIndex(SyntagNetContract.POS1);
-			final int idPos2 = cursor.getColumnIndex(SyntagNetContract.POS2);
+        // collocation
+        val collocationNode = makeTreeNode(sbh, R.drawable.collocation, !isSingle).addTo(parent)
+        changedList.add(TreeOpCode.NEWCHILD, collocationNode)
 
-			// read cursor
-			boolean isSingle = cursor.getCount() == 1;
-			do
-			{
-				// data
-				final int collocationId = cursor.getInt(idCollocationId);
-				final String word1 = cursor.getString(idWord1);
-				final String word2 = cursor.getString(idWord2);
-				final long word1Id = cursor.getLong(idWord1Id);
-				final long word2Id = cursor.getLong(idWord2Id);
-				final long synset1Id = cursor.getLong(idSynset1Id);
-				final long synset2Id = cursor.getLong(idSynset2Id);
-				final String pos1 = cursor.getString(idPos1);
-				final String pos2 = cursor.getString(idPos2);
-				final String definition1 = cursor.getString(idDefinition1);
-				final String definition2 = cursor.getString(idDefinition2);
-				boolean isTargetSecond = isTargetSecond(word1Id, word2Id);
+        // contents
 
-				makeContent(collocationId, word1, word2, word1Id, word2Id, synset1Id, synset2Id, pos1, pos2, definition1, definition2, isSingle, isTargetSecond, parent, changedList);
+        // collocation 1
+        val sb1w = SpannableStringBuilder()
+        append(sb1w, word1, 0, if (isTargetSecond) SyntagNetFactories.word2Factory else SyntagNetFactories.word1Factory)
+        val link1w: Link = BaseWordLink(word1Id, fragment)
+        val collocation1wNode = makeLinkNode(sb1w, if (isTargetSecond) R.drawable.collocation2 else R.drawable.collocation1, false, link1w).addTo(collocationNode)
+        changedList.add(TreeOpCode.NEWCHILD, collocation1wNode)
+        val sb1s = SpannableStringBuilder()
+        append(sb1s, definition1, 0, if (isTargetSecond) SyntagNetFactories.definition2Factory else SyntagNetFactories.definition1Factory)
+        val link1s: Link = BaseSynsetLink(synset1Id, Int.MAX_VALUE, fragment)
+        val collocation1sNode = makeLinkNode(sb1s, if (isTargetSecond) R.drawable.definition2 else R.drawable.definition1, false, link1s).addTo(collocationNode)
+        changedList.add(TreeOpCode.NEWCHILD, collocation1sNode)
 
-				// sub nodes
-				//TODO more node
-				//final TreeNode moreNode = TreeFactory.makeLinkHotQueryNode("More", R.drawable.more, false, new MoreQuery(collocationId)).addTo(parent);
-				//final TreeNode more2Node = TreeFactory.makeQueryNode("More2", R.drawable.more2, false, new More2Query(collocationId)).addTo(parent);
-				//changed = TreeOp.seq(NEWMAIN, node, NEWEXTRA, moreNode, NEWEXTRA, more2Node, NEWTREE, parent);
-			}
-			while (cursor.moveToNext());
-			changed = changedList.toArray();
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(REMOVE, parent);
-		}
+        // collocation 2
+        val sb2w = SpannableStringBuilder()
+        append(sb2w, word2, 0, if (isTargetSecond) SyntagNetFactories.word1Factory else SyntagNetFactories.word2Factory)
+        val link2w: Link = BaseWordLink(word2Id, fragment)
+        val collocation2wNode = makeLinkNode(sb2w, if (isTargetSecond) R.drawable.collocation1 else R.drawable.collocation2, false, link2w).addTo(collocationNode)
+        changedList.add(TreeOpCode.NEWCHILD, collocation2wNode)
+        val sb2s = SpannableStringBuilder()
+        append(sb2s, definition2, 0, if (isTargetSecond) SyntagNetFactories.definition1Factory else SyntagNetFactories.definition2Factory)
+        val link2s: Link = BaseSynsetLink(synset2Id, Int.MAX_VALUE, fragment)
+        val collocation2sNode = makeLinkNode(sb2s, if (isTargetSecond) R.drawable.definition1 else R.drawable.definition2, false, link2s).addTo(collocationNode)
+        changedList.add(TreeOpCode.NEWCHILD, collocation2sNode)
 
-		cursor.close();
-		return changed;
-	}
+        // ids
+        // val sbi = new SpannableStringBuilder()
+        // Spanner.appendImage(sbi, BaseModule.this.infoDrawable)
+        // Spanner.append(sbi, String.format(" %d %d , %d %d", word1Id, synset1Id, word2Id, synset2Id), 0, SyntagNetFactories.idsFactory)
 
-	@SuppressLint("DefaultLocale")
-	private void makeContent(final int collocationId, //
-			final String word1, final String word2,  //
-			final long word1Id, final long word2Id, //
-			final long synset1Id, final long synset2Id, //
-			final String pos1, final String pos2,  //
-			final String definition1, final String definition2, //
-			final boolean isSingle, final boolean isTargetSecond, @NonNull final TreeNode parent, @NonNull final TreeOps changedList)
-	{
-		// header
-		final SpannableStringBuilder sbh = new SpannableStringBuilder();
-		Spanner.append(sbh, word1, 0, SyntagNetFactories.collocationFactory);
-		sbh.append(' ');
-		sbh.append(pos1);
-		sbh.append(' ');
-		Spanner.append(sbh, word2, 0, SyntagNetFactories.collocationFactory);
-		sbh.append(' ');
-		sbh.append(pos2);
-		sbh.append(' ');
-		Spanner.append(sbh, Long.toString(collocationId), 0, SyntagNetFactories.idsFactory);
-
-		// collocation
-		final TreeNode collocationNode = TreeFactory.makeTreeNode(sbh, R.drawable.collocation, !isSingle).addTo(parent);
-		changedList.add(NEWCHILD, collocationNode);
-
-		// contents
-
-		// collocation 1
-		final SpannableStringBuilder sb1w = new SpannableStringBuilder();
-		Spanner.append(sb1w, word1, 0, isTargetSecond ? SyntagNetFactories.word2Factory : SyntagNetFactories.word1Factory);
-		final Link link1w = new BaseWordLink(word1Id, this.fragment);
-		final TreeNode collocation1wNode = TreeFactory.makeLinkNode(sb1w, isTargetSecond ? R.drawable.collocation2 : R.drawable.collocation1, false, link1w).addTo(collocationNode);
-		changedList.add(NEWCHILD, collocation1wNode);
-
-		final SpannableStringBuilder sb1s = new SpannableStringBuilder();
-		Spanner.append(sb1s, definition1, 0, isTargetSecond ? SyntagNetFactories.definition2Factory : SyntagNetFactories.definition1Factory);
-		final Link link1s = new BaseSynsetLink(synset1Id, Integer.MAX_VALUE, this.fragment);
-		final TreeNode collocation1sNode = TreeFactory.makeLinkNode(sb1s, isTargetSecond ? R.drawable.definition2 : R.drawable.definition1, false, link1s).addTo(collocationNode);
-		changedList.add(NEWCHILD, collocation1sNode);
-
-		// collocation 2
-		final SpannableStringBuilder sb2w = new SpannableStringBuilder();
-		Spanner.append(sb2w, word2, 0, isTargetSecond ? SyntagNetFactories.word1Factory : SyntagNetFactories.word2Factory);
-		final Link link2w = new BaseWordLink(word2Id, this.fragment);
-		final TreeNode collocation2wNode = TreeFactory.makeLinkNode(sb2w, isTargetSecond ? R.drawable.collocation1 : R.drawable.collocation2, false, link2w).addTo(collocationNode);
-		changedList.add(NEWCHILD, collocation2wNode);
-
-		final SpannableStringBuilder sb2s = new SpannableStringBuilder();
-		Spanner.append(sb2s, definition2, 0, isTargetSecond ? SyntagNetFactories.definition1Factory : SyntagNetFactories.definition2Factory);
-		final Link link2s = new BaseSynsetLink(synset2Id, Integer.MAX_VALUE, this.fragment);
-		final TreeNode collocation2sNode = TreeFactory.makeLinkNode(sb2s, isTargetSecond ? R.drawable.definition1 : R.drawable.definition2, false, link2s).addTo(collocationNode);
-		changedList.add(NEWCHILD, collocation2sNode);
-
-		// ids
-		//final SpannableStringBuilder sbi = new SpannableStringBuilder();
-		//Spanner.appendImage(sbi, BaseModule.this.infoDrawable);
-		//Spanner.append(sbi, String.format(" %d %d , %d %d", word1Id, synset1Id, word2Id, synset2Id), 0, SyntagNetFactories.idsFactory);
-
-		//final TreeNode extraNode = TreeFactory.makeTextNode(sbi, false).addTo(collocationNode);
-		//changedList.add(NEWCHILD, extraNode);
-	}
+        // val extraNode = TreeFactory.makeTextNode(sbi, false).addTo(collocationNode)
+        // changedList.add(NEWCHILD, extraNode)
+    }
 }

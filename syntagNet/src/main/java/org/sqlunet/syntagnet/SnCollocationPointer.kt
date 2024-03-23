@@ -1,60 +1,44 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.syntagnet
 
-package org.sqlunet.syntagnet;
-
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import org.sqlunet.Pointer;
-
-import androidx.annotation.NonNull;
+import android.os.Parcel
+import android.os.Parcelable
+import org.sqlunet.Pointer
 
 /**
  * Parcelable collocation pointer
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class SnCollocationPointer extends Pointer
-{
-	/**
-	 * Static field used to regenerate object, individually or as arrays
-	 */
-	static public final Parcelable.Creator<SnCollocationPointer> CREATOR = new Parcelable.Creator<SnCollocationPointer>()
-	{
-		@NonNull
-		@Override
-		public SnCollocationPointer createFromParcel(@NonNull final Parcel parcel)
-		{
-			return new SnCollocationPointer(parcel);
-		}
+class SnCollocationPointer : Pointer {
 
-		@NonNull
-		@Override
-		public SnCollocationPointer[] newArray(final int size)
-		{
-			return new SnCollocationPointer[size];
-		}
-	};
+    /**
+     * Constructor from parcel, reads back fields IN THE ORDER they were written
+     *
+     * @param parcel parcel
+     */
+    private constructor(parcel: Parcel) : super(parcel)
 
-	/**
-	 * Constructor from parcel, reads back fields IN THE ORDER they were written
-	 *
-	 * @param parcel parcel
-	 */
-	private SnCollocationPointer(@NonNull final Parcel parcel)
-	{
-		super(parcel);
-	}
+    /**
+     * Constructor
+     *
+     * @param collocationId collocation id
+     */
+    constructor(collocationId: Long) : super(collocationId)
 
-	/**
-	 * Constructor
-	 *
-	 * @param collocationId collocation id
-	 */
-	public SnCollocationPointer(final long collocationId)
-	{
-		super(collocationId);
-	}
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<SnCollocationPointer> {
+        override fun createFromParcel(parcel: Parcel): SnCollocationPointer {
+            return SnCollocationPointer(parcel)
+        }
+
+        override fun newArray(size: Int): Array<SnCollocationPointer?> {
+            return arrayOfNulls(size)
+        }
+    }
 }

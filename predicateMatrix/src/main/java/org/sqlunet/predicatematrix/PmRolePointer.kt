@@ -1,60 +1,44 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.predicatematrix
 
-package org.sqlunet.predicatematrix;
-
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import org.sqlunet.Pointer;
-
-import androidx.annotation.NonNull;
+import android.os.Parcel
+import android.os.Parcelable
+import org.sqlunet.Pointer
 
 /**
  * Parcelable PredicateMatrix role
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class PmRolePointer extends Pointer
-{
-	/**
-	 * Static field used to regenerate object, individually or as arrays
-	 */
-	static public final Parcelable.Creator<PmRolePointer> CREATOR = new Parcelable.Creator<PmRolePointer>()
-	{
-		@NonNull
-		@Override
-		public PmRolePointer createFromParcel(@NonNull final Parcel parcel)
-		{
-			return new PmRolePointer(parcel);
-		}
+class PmRolePointer : Pointer {
 
-		@NonNull
-		@Override
-		public PmRolePointer[] newArray(final int size)
-		{
-			return new PmRolePointer[size];
-		}
-	};
+    /**
+     * Constructor from parcel, reads back fields IN THE ORDER they were written
+     *
+     * @param parcel parcel
+     */
+    private constructor(parcel: Parcel) : super(parcel)
 
-	/**
-	 * Constructor from parcel, reads back fields IN THE ORDER they were written
-	 *
-	 * @param parcel parcel
-	 */
-	private PmRolePointer(@NonNull final Parcel parcel)
-	{
-		super(parcel);
-	}
+    /**
+     * Constructor
+     *
+     * @param roleId role id
+     */
+    constructor(roleId: Long) : super(roleId)
 
-	/**
-	 * Constructor
-	 *
-	 * @param roleId role id
-	 */
-	public PmRolePointer(final long roleId)
-	{
-		super(roleId);
-	}
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<PmRolePointer> {
+        override fun createFromParcel(parcel: Parcel): PmRolePointer {
+            return PmRolePointer(parcel)
+        }
+
+        override fun newArray(size: Int): Array<PmRolePointer?> {
+            return arrayOfNulls(size)
+        }
+    }
 }

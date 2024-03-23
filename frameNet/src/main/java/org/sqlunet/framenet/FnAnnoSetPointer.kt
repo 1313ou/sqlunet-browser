@@ -1,58 +1,42 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.framenet
 
-package org.sqlunet.framenet;
-
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import org.sqlunet.Pointer;
-
-import androidx.annotation.NonNull;
+import android.os.Parcel
+import android.os.Parcelable
+import org.sqlunet.Pointer
 
 /**
  * Parcelable annoSet
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class FnAnnoSetPointer extends Pointer
-{
-	/**
-	 * Static field used to regenerate object, individually or as arrays
-	 */
-	static public final Parcelable.Creator<FnAnnoSetPointer> CREATOR = new Parcelable.Creator<FnAnnoSetPointer>()
-	{
-		@NonNull
-		@Override
-		public FnAnnoSetPointer createFromParcel(@NonNull final Parcel parcel)
-		{
-			return new FnAnnoSetPointer(parcel);
-		}
+class FnAnnoSetPointer : Pointer {
 
-		@NonNull
-		@Override
-		public FnAnnoSetPointer[] newArray(final int size)
-		{
-			return new FnAnnoSetPointer[size];
-		}
-	};
+    /**
+     * Constructor from parcel, reads back fields IN THE ORDER they were written
+     */
+    private constructor(parcel: Parcel) : super(parcel)
 
-	/**
-	 * Constructor from parcel, reads back fields IN THE ORDER they were written
-	 */
-	private FnAnnoSetPointer(@NonNull final Parcel parcel)
-	{
-		super(parcel);
-	}
+    /**
+     * Constructor
+     *
+     * @param annoSetId annoSet id
+     */
+    constructor(annoSetId: Long) : super(annoSetId)
 
-	/**
-	 * Constructor
-	 *
-	 * @param annoSetId annoSet id
-	 */
-	public FnAnnoSetPointer(final long annoSetId)
-	{
-		super(annoSetId);
-	}
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<FnAnnoSetPointer> {
+        override fun createFromParcel(parcel: Parcel): FnAnnoSetPointer {
+            return FnAnnoSetPointer(parcel)
+        }
+
+        override fun newArray(size: Int): Array<FnAnnoSetPointer?> {
+            return arrayOfNulls(size)
+        }
+    }
 }

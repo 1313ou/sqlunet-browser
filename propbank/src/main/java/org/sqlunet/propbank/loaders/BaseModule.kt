@@ -1,597 +1,487 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.propbank.loaders
 
-package org.sqlunet.propbank.loaders;
-
-import android.content.Context;
-import android.database.Cursor;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.text.SpannableStringBuilder;
-
-import org.sqlunet.browser.Module;
-import org.sqlunet.browser.SqlunetViewTreeModel;
-import org.sqlunet.browser.TreeFragment;
-import org.sqlunet.model.TreeFactory;
-import org.sqlunet.propbank.R;
-import org.sqlunet.propbank.provider.PropBankContract;
-import org.sqlunet.propbank.provider.PropBankContract.PbRoleSets_PbExamples;
-import org.sqlunet.propbank.provider.PropBankContract.PbRoleSets_PbRoles;
-import org.sqlunet.propbank.provider.PropBankContract.PbRoleSets_X;
-import org.sqlunet.propbank.provider.PropBankContract.Words_PbRoleSets;
-import org.sqlunet.propbank.provider.PropBankProvider;
-import org.sqlunet.propbank.style.PropBankFactories;
-import org.sqlunet.propbank.style.PropBankSpanner;
-import org.sqlunet.style.Spanner;
-import org.sqlunet.treeview.control.Query;
-import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.view.TreeOp;
-import org.sqlunet.view.TreeOp.TreeOps;
-import org.sqlunet.view.TreeOpExecute;
-
-import java.util.Arrays;
-import java.util.Locale;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProvider;
-
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWCHILD;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWEXTRA;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWMAIN;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWTREE;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWUNIQUE;
-import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
+import android.database.Cursor
+import android.graphics.drawable.Drawable
+import android.net.Uri
+import android.text.SpannableStringBuilder
+import androidx.lifecycle.ViewModelProvider
+import org.sqlunet.browser.Module
+import org.sqlunet.browser.SqlunetViewTreeModel
+import org.sqlunet.browser.TreeFragment
+import org.sqlunet.model.TreeFactory.makeHotQueryNode
+import org.sqlunet.model.TreeFactory.makeQueryNode
+import org.sqlunet.model.TreeFactory.makeTextNode
+import org.sqlunet.model.TreeFactory.setNoResult
+import org.sqlunet.propbank.R
+import org.sqlunet.propbank.loaders.Queries.prepareExamples
+import org.sqlunet.propbank.loaders.Queries.prepareRoleSet
+import org.sqlunet.propbank.loaders.Queries.prepareRoleSets
+import org.sqlunet.propbank.loaders.Queries.prepareRoles
+import org.sqlunet.propbank.provider.PropBankContract.PbRoleSets_PbExamples
+import org.sqlunet.propbank.provider.PropBankContract.PbRoleSets_PbRoles
+import org.sqlunet.propbank.provider.PropBankContract.PbRoleSets_X
+import org.sqlunet.propbank.provider.PropBankContract.Words_PbRoleSets
+import org.sqlunet.propbank.provider.PropBankProvider
+import org.sqlunet.propbank.style.PropBankFactories
+import org.sqlunet.propbank.style.PropBankSpanner
+import org.sqlunet.style.Spanner.Companion.append
+import org.sqlunet.style.Spanner.Companion.appendImage
+import org.sqlunet.style.Spanner.Companion.getDrawable
+import org.sqlunet.treeview.control.Query
+import org.sqlunet.treeview.model.TreeNode
+import org.sqlunet.view.TreeOp
+import org.sqlunet.view.TreeOp.Companion.seq
+import org.sqlunet.view.TreeOp.TreeOpCode
+import org.sqlunet.view.TreeOp.TreeOps
+import org.sqlunet.view.TreeOpExecute
+import java.util.Arrays
 
 /**
  * Module for PropBank role sets
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param fragment fragment
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-abstract class BaseModule extends Module
-{
-	// resources
-
-	protected final String rolesLabel;
-	protected final String examplesLabel;
-
-	/**
-	 * Drawable for roleSets
-	 */
-	@NonNull
-	private final Drawable roleSetDrawable;
-
-	/**
-	 * Drawable for roles
-	 */
-	@NonNull
-	private final Drawable rolesDrawable;
-
-	/**
-	 * Drawable for relation
-	 */
-	@NonNull
-	private final Drawable relationDrawable;
-
-	/**
-	 * Drawable for role
-	 */
-	@NonNull
-	private final Drawable roleDrawable;
-
-	/**
-	 * Drawable for alias
-	 */
-	@NonNull
-	private final Drawable aliasDrawable;
-
-	/**
-	 * Drawable for theta role
-	 */
-	@NonNull
-	private final Drawable thetaDrawable;
-
-	/**
-	 * Drawable for definition
-	 */
-	@NonNull
-	private final Drawable definitionDrawable;
-
-	/**
-	 * Drawable for sample
-	 */
-	@NonNull
-	private final Drawable sampleDrawable;
-
-	// agents
-
-	/**
-	 * Spanner
-	 */
-	@NonNull
-	private final PropBankSpanner spanner;
-
-	// View models
-
-	private SqlunetViewTreeModel pbRoleSetFromRoleSetIdModel;
-
-	private SqlunetViewTreeModel roleSetsFromWordIdModel;
-
-	private SqlunetViewTreeModel rolesFromRoleSetIdModel;
-
-	private SqlunetViewTreeModel examplesFromRoleSetIdModel;
-
-	/**
-	 * Constructor
-	 *
-	 * @param fragment fragment
-	 */
-	BaseModule(@NonNull final TreeFragment fragment)
-	{
-		super(fragment);
-
-		// models
-		makeModels();
-
-		// drawables
-		final Context context = BaseModule.this.fragment.requireContext();
-
-		this.rolesLabel = context.getString(R.string.propbank_roles_);
-		this.examplesLabel = context.getString(R.string.propbank_examples_);
-
-		this.roleSetDrawable = Spanner.getDrawable(context, R.drawable.roleclass);
-		this.rolesDrawable = Spanner.getDrawable(context, R.drawable.roles);
-		this.relationDrawable = Spanner.getDrawable(context, R.drawable.relation);
-		this.roleDrawable = Spanner.getDrawable(context, R.drawable.role);
-		this.thetaDrawable = Spanner.getDrawable(context, R.drawable.theta);
-		this.aliasDrawable = Spanner.getDrawable(context, R.drawable.alias);
-		this.definitionDrawable = Spanner.getDrawable(context, R.drawable.definition);
-		this.sampleDrawable = Spanner.getDrawable(context, R.drawable.sample);
-
-		// spanner
-		this.spanner = new PropBankSpanner(context);
-	}
-
-	/**
-	 * Make view models
-	 */
-	private void makeModels()
-	{
-		this.pbRoleSetFromRoleSetIdModel = new ViewModelProvider(this.fragment).get("pb.roleset(rolesetid)", SqlunetViewTreeModel.class);
-		this.pbRoleSetFromRoleSetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-
-		this.roleSetsFromWordIdModel = new ViewModelProvider(this.fragment).get("pb.rolesets(wordid)", SqlunetViewTreeModel.class);
-		this.roleSetsFromWordIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-
-		this.rolesFromRoleSetIdModel = new ViewModelProvider(this.fragment).get("pb.roles(rolesetid)", SqlunetViewTreeModel.class);
-		this.rolesFromRoleSetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-
-		this.examplesFromRoleSetIdModel = new ViewModelProvider(this.fragment).get("pb.examples(rolesetid)", SqlunetViewTreeModel.class);
-		this.examplesFromRoleSetIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-	}
-
-	// R O L E   S E T S
-
-	/**
-	 * Role set from id
-	 *
-	 * @param roleSetId role set id
-	 * @param parent    parent node
-	 */
-	void roleSet(final long roleSetId, @NonNull final TreeNode parent)
-	{
-		final ContentProviderSql sql = Queries.prepareRoleSet(roleSetId);
-		final Uri uri = Uri.parse(PropBankProvider.makeUri(sql.providerUri));
-		this.pbRoleSetFromRoleSetIdModel.loadData(uri, sql, cursor -> roleSetCursorToTreeModel(cursor, roleSetId, parent));
-	}
-
-	@NonNull
-	private TreeOp[] roleSetCursorToTreeModel(@NonNull final Cursor cursor, final long roleSetId, @NonNull final TreeNode parent)
-	{
-		if (cursor.getCount() > 1)
-		{
-			throw new RuntimeException("Unexpected number of rows");
-		}
-
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			// column indices
-			// final int idRoleSetId = cursor.getColumnIndex(PbRoleSets_X.ROLESETID);
-			final int idRoleSetName = cursor.getColumnIndex(PbRoleSets_X.ROLESETNAME);
-			final int idRoleSetDesc = cursor.getColumnIndex(PbRoleSets_X.ROLESETDESC);
-			final int idRoleSetHead = cursor.getColumnIndex(PbRoleSets_X.ROLESETHEAD);
-			final int idAliases = cursor.getColumnIndex(PbRoleSets_X.ALIASES);
-
-			// read cursor
-			final SpannableStringBuilder sb = new SpannableStringBuilder();
-
-			// data
-			// final int roleSetId = cursor.getInt(idRoleSetId);
-
-			// roleSet
-			Spanner.appendImage(sb, BaseModule.this.roleSetDrawable);
-			sb.append(' ');
-			Spanner.append(sb, cursor.getString(idRoleSetName), 0, PropBankFactories.roleSetFactory);
-			sb.append(' ');
-			sb.append("head=");
-			sb.append(cursor.getString(idRoleSetHead));
-			sb.append('\n');
-			Spanner.appendImage(sb, BaseModule.this.aliasDrawable);
-			sb.append(cursor.getString(idAliases));
-			sb.append('\n');
-
-			// description
-			Spanner.appendImage(sb, BaseModule.this.definitionDrawable);
-			Spanner.append(sb, cursor.getString(idRoleSetDesc), 0, PropBankFactories.definitionFactory);
-
-			// attach result
-			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-
-			// sub nodes
-			final TreeNode rolesNode = TreeFactory.makeHotQueryNode(this.rolesLabel, R.drawable.roles, false, new RolesQuery(roleSetId)).addTo(parent);
-			final TreeNode examplesNode = TreeFactory.makeQueryNode(this.examplesLabel, R.drawable.sample, false, new ExamplesQuery(roleSetId)).addTo(parent);
-
-			changed = TreeOp.seq(NEWMAIN, node, NEWEXTRA, rolesNode, NEWEXTRA, examplesNode, NEWTREE, parent);
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(REMOVE, parent);
-		}
-
-		cursor.close();
-		return changed;
-	}
-
-	/**
-	 * Role sets for word id
-	 *
-	 * @param wordId word id
-	 * @param parent parent node
-	 */
-	void roleSets(final long wordId, @NonNull final TreeNode parent)
-	{
-		final ContentProviderSql sql = Queries.prepareRoleSets(wordId);
-		final Uri uri = Uri.parse(PropBankProvider.makeUri(sql.providerUri));
-		this.roleSetsFromWordIdModel.loadData(uri, sql, cursor -> roleSetsCursorToTreeModel(cursor, parent));
-	}
-
-	@NonNull
-	private TreeOp[] roleSetsCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
-	{
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			final TreeOp.TreeOps changedList = new TreeOps(NEWTREE, parent);
-
-			// column indices
-			final int idRoleSetId = cursor.getColumnIndex(Words_PbRoleSets.ROLESETID);
-			final int idRoleSetName = cursor.getColumnIndex(Words_PbRoleSets.ROLESETNAME);
-			final int idRoleSetDesc = cursor.getColumnIndex(Words_PbRoleSets.ROLESETDESC);
-			final int idRoleSetHead = cursor.getColumnIndex(Words_PbRoleSets.ROLESETHEAD);
-
-			// read cursor
-			do
-			{
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-
-				// data
-				final int roleSetId = cursor.getInt(idRoleSetId);
-
-				// roleSet
-				Spanner.appendImage(sb, BaseModule.this.rolesDrawable);
-				sb.append(' ');
-				Spanner.append(sb, cursor.getString(idRoleSetName), 0, PropBankFactories.roleSetFactory);
-				sb.append(' ');
-				sb.append("head=");
-				sb.append(cursor.getString(idRoleSetHead));
-				sb.append('\n');
-
-				// description
-				Spanner.appendImage(sb, BaseModule.this.definitionDrawable);
-				Spanner.append(sb, cursor.getString(idRoleSetDesc), 0, PropBankFactories.definitionFactory);
-
-				// attach result
-				final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-				changedList.add(NEWCHILD, node);
-
-				// sub nodes
-				final TreeNode rolesNode = TreeFactory.makeHotQueryNode(this.rolesLabel, R.drawable.roles, false, new RolesQuery(roleSetId)).addTo(parent);
-				changedList.add(NEWCHILD, rolesNode);
-				final TreeNode examplesNode = TreeFactory.makeQueryNode(this.examplesLabel, R.drawable.sample, false, new ExamplesQuery(roleSetId)).addTo(parent);
-				changedList.add(NEWCHILD, examplesNode);
-			}
-			while (cursor.moveToNext());
-			changed = changedList.toArray();
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(REMOVE, parent);
-		}
-
-		cursor.close();
-		return changed;
-	}
-
-	// R O L E S
-
-	/**
-	 * Roles in role set
-	 *
-	 * @param roleSetId role set id
-	 * @param parent    parent node
-	 */
-	private void roles(final int roleSetId, @NonNull final TreeNode parent)
-	{
-		final ContentProviderSql sql = Queries.prepareRoles(roleSetId);
-		final Uri uri = Uri.parse(PropBankProvider.makeUri(sql.providerUri));
-		this.rolesFromRoleSetIdModel.loadData(uri, sql, cursor -> rolesCursorToTreeModel(cursor, parent));
-	}
-
-	@NonNull
-	private TreeOp[] rolesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
-	{
-		TreeOp[] changed;
-		final SpannableStringBuilder sb = new SpannableStringBuilder();
-		if (cursor.moveToFirst())
-		{
-			// column indices
-			// final int idRoleId = cursor.getColumnIndex(PbRoleSets_PbRoles.ROLEID);
-			final int idRoleDescr = cursor.getColumnIndex(PbRoleSets_PbRoles.ROLEDESCR);
-			final int idFunc = cursor.getColumnIndex(PbRoleSets_PbRoles.FUNC);
-			final int idTheta = cursor.getColumnIndex(PbRoleSets_PbRoles.THETA);
-			final int idArgType = cursor.getColumnIndex(PropBankContract.PbRoleSets_PbRoles.ARGTYPE);
-
-			// read cursor
-			while (true)
-			{
-				// data
-
-				// n
-				sb.append(cursor.getString(idArgType));
-				sb.append(' ');
-
-				// role
-				Spanner.appendImage(sb, BaseModule.this.roleDrawable);
-				sb.append(' ');
-				Spanner.append(sb, capitalize1(cursor.getString(idRoleDescr)), 0, PropBankFactories.roleFactory);
-
-				// theta
-				String theta = cursor.getString(idTheta);
-				if (theta != null && !theta.isEmpty())
-				{
-					sb.append(' ');
-					Spanner.appendImage(sb, BaseModule.this.thetaDrawable);
-					sb.append(' ');
-					Spanner.append(sb, theta, 0, PropBankFactories.thetaFactory);
-				}
-
-				// func
-				if (!cursor.isNull(idFunc))
-				{
-					sb.append(' ');
-					sb.append("func=");
-					sb.append(Integer.toString(cursor.getInt(idFunc)));
-				}
-
-				// final int roleId = cursor.getInt(idRoleId);
-				// sb.append(" role id=");
-				// sb.append(Integer.toString(roleId));
-				// sb.append(' ');
-
-				if (!cursor.moveToNext())
-				{
-					//noinspection BreakStatement
-					break;
-				}
-
-				sb.append('\n');
-			}
-
-			// attach result
-			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-			changed = TreeOp.seq(NEWUNIQUE, node);
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(REMOVE, parent);
-		}
-
-		cursor.close();
-		return changed;
-	}
-
-	// E X A M P L E S
-
-	/**
-	 * Examples in role set
-	 *
-	 * @param roleSetId role set id
-	 * @param parent    parent node
-	 */
-	private void examples(final int roleSetId, @NonNull final TreeNode parent)
-	{
-		final ContentProviderSql sql = Queries.prepareExamples(roleSetId);
-		final Uri uri = Uri.parse(PropBankProvider.makeUri(sql.providerUri));
-		this.examplesFromRoleSetIdModel.loadData(uri, sql, cursor -> examplesCursorToTreeModel(cursor, parent));
-	}
-
-	@NonNull
-	private TreeOp[] examplesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
-	{
-		TreeOp[] changed;
-		final SpannableStringBuilder sb = new SpannableStringBuilder();
-
-		if (cursor.moveToFirst())
-		{
-			// column indices
-			final int idText = cursor.getColumnIndex(PbRoleSets_PbExamples.TEXT);
-			final int idRel = cursor.getColumnIndex(PbRoleSets_PbExamples.REL);
-			final int idArgs = cursor.getColumnIndex(PbRoleSets_PbExamples.ARGS);
-
-			// read cursor
-			while (true)
-			{
-				// text
-				String text = cursor.getString(idText);
-				Spanner.appendImage(sb, BaseModule.this.sampleDrawable);
-				Spanner.append(sb, text, 0, PropBankFactories.exampleFactory);
-				sb.append('\n');
-
-				// relation
-				sb.append('\t');
-				Spanner.appendImage(sb, BaseModule.this.relationDrawable);
-				sb.append(' ');
-				Spanner.append(sb, cursor.getString(idRel), 0, PropBankFactories.relationFactory);
-
-				// args
-				final String argsPack = cursor.getString(idArgs);
-				if (argsPack != null)
-				{
-					final String[] args = argsPack.split("\\|");
-					Arrays.sort(args);
-					for (final String arg : args)
-					{
-						final String[] fields = arg.split("~");
-						if (fields.length < 5)
-						{
-							sb.append(arg);
-							continue;
-						}
-
-						sb.append('\n');
-						sb.append('\t');
-
-						// n
-						sb.append(fields[0]);
-						sb.append(' ');
-
-						// role
-						Spanner.appendImage(sb, BaseModule.this.roleDrawable);
-						sb.append(' ');
-						Spanner.append(sb, capitalize1(fields[2]), 0, PropBankFactories.roleFactory);
-						sb.append(' ');
-
-						// theta
-						Spanner.appendImage(sb, BaseModule.this.thetaDrawable);
-						sb.append(' ');
-						Spanner.append(sb, fields[3], 0, PropBankFactories.thetaFactory);
-
-						// func
-						if (!fields[1].isEmpty())
-						{
-							// sb.append(" func=");
-							sb.append(' ');
-							sb.append(fields[1]);
-						}
-
-						// subtext
-						sb.append(' ');
-						// sb.append("subtext=");
-						sb.append(fields[4]);
-						// Spanner.append(sb, fields[4], 0, PropBankFactories.textFactory);
-					}
-				}
-
-				if (!cursor.moveToNext())
-				{
-					break;
-				}
-
-				sb.append('\n');
-			}
-
-			// extra format
-			BaseModule.this.spanner.setSpan(sb, 0, 0);
-
-			// attach result
-			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-			changed = TreeOp.seq(NEWUNIQUE, node);
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(REMOVE, parent);
-		}
-
-		cursor.close();
-		return changed;
-	}
-
-	// Q U E R I E S
-
-	/**
-	 * Role query
-	 */
-	private class RolesQuery extends Query
-	{
-		/**
-		 * Constructor
-		 *
-		 * @param roleSetId role set id
-		 */
-		RolesQuery(final long roleSetId)
-		{
-			super(roleSetId);
-		}
-
-		@Override
-		public void process(@NonNull final TreeNode node)
-		{
-			roles((int) this.id, node);
-		}
-
-		@NonNull
-		@Override
-		public String toString()
-		{
-			return "roles for roleset " + this.id;
-		}
-	}
-
-	/**
-	 * Examples query
-	 */
-	private class ExamplesQuery extends Query
-	{
-		/**
-		 * Constructor
-		 *
-		 * @param roleSetId role set id
-		 */
-		ExamplesQuery(final long roleSetId)
-		{
-			super(roleSetId);
-		}
-
-		@Override
-		public void process(@NonNull final TreeNode node)
-		{
-			examples((int) this.id, node);
-		}
-
-		@NonNull
-		@Override
-		public String toString()
-		{
-			return "examples for roleset " + this.id;
-		}
-	}
-
-	// H E L P E R S
-
-	/**
-	 * Utility to capitalize first character
-	 *
-	 * @param s string
-	 * @return string with capitalized first character
-	 */
-	@NonNull
-	private CharSequence capitalize1(@NonNull final String s)
-	{
-		return s.substring(0, 1).toUpperCase(Locale.ENGLISH) + s.substring(1);
-	}
+internal abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
+
+    // resources
+
+    private val rolesLabel: String
+
+    private val examplesLabel: String
+
+    /**
+     * Drawable for roleSets
+     */
+    private val roleSetDrawable: Drawable
+
+    /**
+     * Drawable for roles
+     */
+    private val rolesDrawable: Drawable
+
+    /**
+     * Drawable for relation
+     */
+    private val relationDrawable: Drawable
+
+    /**
+     * Drawable for role
+     */
+    private val roleDrawable: Drawable
+
+    /**
+     * Drawable for alias
+     */
+    private val aliasDrawable: Drawable
+
+    /**
+     * Drawable for theta role
+     */
+    private val thetaDrawable: Drawable
+
+    /**
+     * Drawable for definition
+     */
+    private val definitionDrawable: Drawable
+
+    /**
+     * Drawable for sample
+     */
+    private val sampleDrawable: Drawable
+
+    // agents
+
+    /**
+     * Spanner
+     */
+    private val spanner: PropBankSpanner
+
+    // view models
+
+    private lateinit var pbRoleSetFromRoleSetIdModel: SqlunetViewTreeModel
+    private lateinit var roleSetsFromWordIdModel: SqlunetViewTreeModel
+    private lateinit var rolesFromRoleSetIdModel: SqlunetViewTreeModel
+    private lateinit var examplesFromRoleSetIdModel: SqlunetViewTreeModel
+
+    init {
+
+        // models
+        makeModels()
+
+        // drawables
+        val context = this@BaseModule.fragment.requireContext()
+        rolesLabel = context.getString(R.string.propbank_roles_)
+        examplesLabel = context.getString(R.string.propbank_examples_)
+        roleSetDrawable = getDrawable(context, R.drawable.roleclass)
+        rolesDrawable = getDrawable(context, R.drawable.roles)
+        relationDrawable = getDrawable(context, R.drawable.relation)
+        roleDrawable = getDrawable(context, R.drawable.role)
+        thetaDrawable = getDrawable(context, R.drawable.theta)
+        aliasDrawable = getDrawable(context, R.drawable.alias)
+        definitionDrawable = getDrawable(context, R.drawable.definition)
+        sampleDrawable = getDrawable(context, R.drawable.sample)
+
+        // spanner
+        spanner = PropBankSpanner(context)
+    }
+
+    /**
+     * Make view models
+     */
+    private fun makeModels() {
+        pbRoleSetFromRoleSetIdModel = ViewModelProvider(fragment)["pb.roleset(rolesetid)", SqlunetViewTreeModel::class.java]
+        pbRoleSetFromRoleSetIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        roleSetsFromWordIdModel = ViewModelProvider(fragment)["pb.rolesets(wordid)", SqlunetViewTreeModel::class.java]
+        roleSetsFromWordIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        rolesFromRoleSetIdModel = ViewModelProvider(fragment)["pb.roles(rolesetid)", SqlunetViewTreeModel::class.java]
+        rolesFromRoleSetIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        examplesFromRoleSetIdModel = ViewModelProvider(fragment)["pb.examples(rolesetid)", SqlunetViewTreeModel::class.java]
+        examplesFromRoleSetIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+    }
+
+    // R O L E   S E T S
+
+    /**
+     * Role set from id
+     *
+     * @param roleSetId role set id
+     * @param parent    parent node
+     */
+    fun roleSet(roleSetId: Long, parent: TreeNode) {
+        val sql = prepareRoleSet(roleSetId)
+        val uri = Uri.parse(PropBankProvider.makeUri(sql.providerUri))
+        pbRoleSetFromRoleSetIdModel.loadData(uri, sql) { cursor: Cursor -> roleSetCursorToTreeModel(cursor, roleSetId, parent) }
+    }
+
+    private fun roleSetCursorToTreeModel(cursor: Cursor, roleSetId: Long, parent: TreeNode): Array<TreeOp> {
+        if (cursor.count > 1) {
+            throw RuntimeException("Unexpected number of rows")
+        }
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            // column indices
+            // final int idRoleSetId = cursor.getColumnIndex(PbRoleSets_X.ROLESETID);
+            val idRoleSetName = cursor.getColumnIndex(PbRoleSets_X.ROLESETNAME)
+            val idRoleSetDesc = cursor.getColumnIndex(PbRoleSets_X.ROLESETDESC)
+            val idRoleSetHead = cursor.getColumnIndex(PbRoleSets_X.ROLESETHEAD)
+            val idAliases = cursor.getColumnIndex(PbRoleSets_X.ALIASES)
+
+            // read cursor
+            val sb = SpannableStringBuilder()
+
+            // data
+            // final int roleSetId = cursor.getInt(idRoleSetId);
+
+            // roleSet
+            appendImage(sb, roleSetDrawable)
+            sb.append(' ')
+            append(sb, cursor.getString(idRoleSetName), 0, PropBankFactories.roleSetFactory)
+            sb.append(' ')
+            sb.append("head=")
+            sb.append(cursor.getString(idRoleSetHead))
+            sb.append('\n')
+            appendImage(sb, aliasDrawable)
+            sb.append(cursor.getString(idAliases))
+            sb.append('\n')
+
+            // description
+            appendImage(sb, definitionDrawable)
+            append(sb, cursor.getString(idRoleSetDesc), 0, PropBankFactories.definitionFactory)
+
+            // attach result
+            val node = makeTextNode(sb, false).addTo(parent)
+
+            // sub nodes
+            val rolesNode = makeHotQueryNode(rolesLabel, R.drawable.roles, false, RolesQuery(roleSetId)).addTo(parent)
+            val examplesNode = makeQueryNode(examplesLabel, R.drawable.sample, false, ExamplesQuery(roleSetId)).addTo(parent)
+            changed = seq(TreeOpCode.NEWMAIN, node, TreeOpCode.NEWEXTRA, rolesNode, TreeOpCode.NEWEXTRA, examplesNode, TreeOpCode.NEWTREE, parent)
+        } else {
+            setNoResult(parent)
+            changed = seq(TreeOpCode.REMOVE, parent)
+        }
+        cursor.close()
+        return changed
+    }
+
+    /**
+     * Role sets for word id
+     *
+     * @param wordId word id
+     * @param parent parent node
+     */
+    fun roleSets(wordId: Long, parent: TreeNode) {
+        val sql = prepareRoleSets(wordId)
+        val uri = Uri.parse(PropBankProvider.makeUri(sql.providerUri))
+        roleSetsFromWordIdModel.loadData(uri, sql) { cursor: Cursor -> roleSetsCursorToTreeModel(cursor, parent) }
+    }
+
+    private fun roleSetsCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val changedList = TreeOps(TreeOpCode.NEWTREE, parent)
+
+            // column indices
+            val idRoleSetId = cursor.getColumnIndex(Words_PbRoleSets.ROLESETID)
+            val idRoleSetName = cursor.getColumnIndex(Words_PbRoleSets.ROLESETNAME)
+            val idRoleSetDesc = cursor.getColumnIndex(Words_PbRoleSets.ROLESETDESC)
+            val idRoleSetHead = cursor.getColumnIndex(Words_PbRoleSets.ROLESETHEAD)
+
+            // read cursor
+            do {
+                val sb = SpannableStringBuilder()
+
+                // data
+                val roleSetId = cursor.getInt(idRoleSetId)
+
+                // roleSet
+                appendImage(sb, rolesDrawable)
+                sb.append(' ')
+                append(sb, cursor.getString(idRoleSetName), 0, PropBankFactories.roleSetFactory)
+                sb.append(' ')
+                sb.append("head=")
+                sb.append(cursor.getString(idRoleSetHead))
+                sb.append('\n')
+
+                // description
+                appendImage(sb, definitionDrawable)
+                append(sb, cursor.getString(idRoleSetDesc), 0, PropBankFactories.definitionFactory)
+
+                // attach result
+                val node = makeTextNode(sb, false).addTo(parent)
+                changedList.add(TreeOpCode.NEWCHILD, node)
+
+                // sub nodes
+                val rolesNode = makeHotQueryNode(rolesLabel, R.drawable.roles, false, RolesQuery(roleSetId.toLong())).addTo(parent)
+                changedList.add(TreeOpCode.NEWCHILD, rolesNode)
+                val examplesNode = makeQueryNode(examplesLabel, R.drawable.sample, false, ExamplesQuery(roleSetId.toLong())).addTo(parent)
+                changedList.add(TreeOpCode.NEWCHILD, examplesNode)
+            } while (cursor.moveToNext())
+            changed = changedList.toArray()
+        } else {
+            setNoResult(parent)
+            changed = seq(TreeOpCode.REMOVE, parent)
+        }
+        cursor.close()
+        return changed
+    }
+
+    // R O L E S
+
+    /**
+     * Roles in role set
+     *
+     * @param roleSetId role set id
+     * @param parent    parent node
+     */
+    private fun roles(roleSetId: Int, parent: TreeNode) {
+        val sql = prepareRoles(roleSetId)
+        val uri = Uri.parse(PropBankProvider.makeUri(sql.providerUri))
+        rolesFromRoleSetIdModel.loadData(uri, sql) { cursor: Cursor -> rolesCursorToTreeModel(cursor, parent) }
+    }
+
+    private fun rolesCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
+        val changed: Array<TreeOp>
+        val sb = SpannableStringBuilder()
+        if (cursor.moveToFirst()) {
+            // column indices
+            // final int idRoleId = cursor.getColumnIndex(PbRoleSets_PbRoles.ROLEID);
+            val idRoleDescr = cursor.getColumnIndex(PbRoleSets_PbRoles.ROLEDESCR)
+            val idFunc = cursor.getColumnIndex(PbRoleSets_PbRoles.FUNC)
+            val idTheta = cursor.getColumnIndex(PbRoleSets_PbRoles.THETA)
+            val idArgType = cursor.getColumnIndex(PbRoleSets_PbRoles.ARGTYPE)
+
+            // read cursor
+            while (true) {
+                // data
+
+                // n
+                sb.append(cursor.getString(idArgType))
+                sb.append(' ')
+
+                // role
+                appendImage(sb, roleDrawable)
+                sb.append(' ')
+                append(sb, capitalize1(cursor.getString(idRoleDescr)), 0, PropBankFactories.roleFactory)
+
+                // theta
+                val theta = cursor.getString(idTheta)
+                if (theta != null && theta.isNotEmpty()) {
+                    sb.append(' ')
+                    appendImage(sb, thetaDrawable)
+                    sb.append(' ')
+                    append(sb, theta, 0, PropBankFactories.thetaFactory)
+                }
+
+                // func
+                if (!cursor.isNull(idFunc)) {
+                    sb.append(' ')
+                    sb.append("func=")
+                    sb.append(cursor.getInt(idFunc).toString())
+                }
+
+                // final int roleId = cursor.getInt(idRoleId);
+                // sb.append(" role id=");
+                // sb.append(Integer.toString(roleId));
+                // sb.append(' ');
+                if (!cursor.moveToNext()) {
+                    break
+                }
+                sb.append('\n')
+            }
+
+            // attach result
+            val node = makeTextNode(sb, false).addTo(parent)
+            changed = seq(TreeOpCode.NEWUNIQUE, node)
+        } else {
+            setNoResult(parent)
+            changed = seq(TreeOpCode.REMOVE, parent)
+        }
+        cursor.close()
+        return changed
+    }
+
+    // E X A M P L E S
+
+    /**
+     * Examples in role set
+     *
+     * @param roleSetId role set id
+     * @param parent    parent node
+     */
+    private fun examples(roleSetId: Int, parent: TreeNode) {
+        val sql = prepareExamples(roleSetId)
+        val uri = Uri.parse(PropBankProvider.makeUri(sql.providerUri))
+        examplesFromRoleSetIdModel.loadData(uri, sql) { cursor: Cursor -> examplesCursorToTreeModel(cursor, parent) }
+    }
+
+    private fun examplesCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
+        val changed: Array<TreeOp>
+        val sb = SpannableStringBuilder()
+        if (cursor.moveToFirst()) {
+            // column indices
+            val idText = cursor.getColumnIndex(PbRoleSets_PbExamples.TEXT)
+            val idRel = cursor.getColumnIndex(PbRoleSets_PbExamples.REL)
+            val idArgs = cursor.getColumnIndex(PbRoleSets_PbExamples.ARGS)
+
+            // read cursor
+            while (true) {
+                // text
+                val text = cursor.getString(idText)
+                appendImage(sb, sampleDrawable)
+                append(sb, text, 0, PropBankFactories.exampleFactory)
+                sb.append('\n')
+
+                // relation
+                sb.append('\t')
+                appendImage(sb, relationDrawable)
+                sb.append(' ')
+                append(sb, cursor.getString(idRel), 0, PropBankFactories.relationFactory)
+
+                // args
+                val argsPack = cursor.getString(idArgs)
+                if (argsPack != null) {
+                    val args = argsPack.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+                    Arrays.sort(args)
+                    for (arg in args) {
+                        val fields = arg.split("~".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+                        if (fields.size < 5) {
+                            sb.append(arg)
+                            continue
+                        }
+                        sb.append('\n')
+                        sb.append('\t')
+
+                        // n
+                        sb.append(fields[0])
+                        sb.append(' ')
+
+                        // role
+                        appendImage(sb, roleDrawable)
+                        sb.append(' ')
+                        append(sb, capitalize1(fields[2]), 0, PropBankFactories.roleFactory)
+                        sb.append(' ')
+
+                        // theta
+                        appendImage(sb, thetaDrawable)
+                        sb.append(' ')
+                        append(sb, fields[3], 0, PropBankFactories.thetaFactory)
+
+                        // func
+                        if (fields[1].isNotEmpty()) {
+                            // sb.append(" func=");
+                            sb.append(' ')
+                            sb.append(fields[1])
+                        }
+
+                        // subtext
+                        sb.append(' ')
+                        // sb.append("subtext=");
+                        sb.append(fields[4])
+                        // Spanner.append(sb, fields[4], 0, PropBankFactories.textFactory);
+                    }
+                }
+                if (!cursor.moveToNext()) {
+                    break
+                }
+                sb.append('\n')
+            }
+
+            // extra format
+            spanner.setSpan(sb, 0, 0)
+
+            // attach result
+            val node = makeTextNode(sb, false).addTo(parent)
+            changed = seq(TreeOpCode.NEWUNIQUE, node)
+        } else {
+            setNoResult(parent)
+            changed = seq(TreeOpCode.REMOVE, parent)
+        }
+        cursor.close()
+        return changed
+    }
+
+    // Q U E R I E S
+
+    /**
+     * Role query
+     */
+    private inner class RolesQuery(roleSetId: Long) : Query(roleSetId) {
+        override fun process(node: TreeNode) {
+            roles(id.toInt(), node)
+        }
+
+        override fun toString(): String {
+            return "roles for roleset $id"
+        }
+    }
+
+    /**
+     * Examples query
+     */
+    private inner class ExamplesQuery(roleSetId: Long) : Query(roleSetId) {
+        override fun process(node: TreeNode) {
+            examples(id.toInt(), node)
+        }
+
+        override fun toString(): String {
+            return "examples for roleset $id"
+        }
+    }
+
+    // H E L P E R S
+
+    /**
+     * Utility to capitalize first character
+     *
+     * @param s string
+     * @return string with capitalized first character
+     */
+    private fun capitalize1(s: String): CharSequence {
+        return s.substring(0, 1).uppercase() + s.substring(1)
+    }
 }

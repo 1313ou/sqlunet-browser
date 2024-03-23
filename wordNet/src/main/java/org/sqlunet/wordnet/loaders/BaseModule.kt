@@ -74,7 +74,9 @@ import java.util.Locale
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(fragment) {
-    // Resources
+
+    // resources
+
     @JvmField
     protected val wordLabel: String
 
@@ -137,7 +139,8 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
     @JvmField
     protected var maxRecursion = Int.MAX_VALUE
 
-    // View models
+    // view models
+
     private lateinit var wordModel: SqlunetViewTreeModel
     private lateinit var sensesFromWordModel: SqlunetViewTreeModel
     private lateinit var sensesFromWordIdModel: SqlunetViewTreeModel
@@ -260,7 +263,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         this.displaySemRelationName = displaySemRelationName
         this.displayLexRelationName = displayLexRelationName
     }
+
     // W O R D
+
     /**
      * Word
      *
@@ -311,7 +316,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         cursor.close()
         return changed
     }
+
     // S E N S E
+
     /**
      * Senses from word
      *
@@ -518,7 +525,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         synsetDefinition(sb, definition)
         return sb
     }
+
     // S Y N S E T
+
     /**
      * Synset
      *
@@ -617,7 +626,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         append(sb, definition, 0, WordNetFactories.definitionFactory)
         return sb
     }
+
     // M E M B E R S
+
     /**
      * Members
      *
@@ -713,7 +724,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         cursor.close()
         return changed
     }
+
     // S A M P L E S
+
     /**
      * Samples
      *
@@ -762,7 +775,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         cursor.close()
         return changed
     }
+
     // R E L A T I O N S
+
     /**
      * Relations (union)
      *
@@ -831,7 +846,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         cursor.close()
         return changed
     }
+
     // S E M R E L A T I O N S
+
     /**
      * Semantic relations
      *
@@ -967,7 +984,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         cursor.close()
         return changed
     }
+
     // L E X R E L A T I O N S
+
     /**
      * Lexical relations
      *
@@ -1148,7 +1167,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         cursor.close()
         return changed
     }
+
     // V T E M P L A T E S
+
     /**
      * Verb templates
      *
@@ -1228,7 +1249,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         cursor.close()
         return changed
     }
+
     // A D J P O S I T I O N S
+
     /**
      * Adjective positions
      *
@@ -1280,7 +1303,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         cursor.close()
         return changed
     }
+
     // M O R P H S
+
     /**
      * Morphology
      *
@@ -1321,7 +1346,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         cursor.close()
         return changed
     }
+
     // H E L P E R S
+
     /**
      * Match relation id to drawable resource id
      *
@@ -1378,6 +1405,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             else -> R.drawable.error
         }
     }
+
     // Q U E R I E S
 
     /**
@@ -1395,10 +1423,10 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             relations(id, wordId, node, true)
 
             // sem relations
-            //semRelations(this.id, node, false);
+            //semRelations(this.id, node, false)
 
             // lex relations
-            //lexRelations(this.id, this.wordId, node, false);
+            //lexRelations(this.id, this.wordId, node, false)
         }
 
         override fun toString(): String {

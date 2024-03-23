@@ -15,7 +15,7 @@ import androidx.test.filters.LargeTest;
 public class ColorsNightTest extends AbstractColors
 {
 	@Override
-	int getMode()
+	public int getMode()
 	{
 		return AppCompatDelegate.MODE_NIGHT_YES;
 	}

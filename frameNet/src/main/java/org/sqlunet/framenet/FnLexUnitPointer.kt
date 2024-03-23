@@ -1,58 +1,42 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.framenet
 
-package org.sqlunet.framenet;
-
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import org.sqlunet.Pointer;
-
-import androidx.annotation.NonNull;
+import android.os.Parcel
+import android.os.Parcelable
+import org.sqlunet.Pointer
 
 /**
  * Parcelable lex unit
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class FnLexUnitPointer extends Pointer
-{
-	/**
-	 * Static field used to regenerate object, individually or as arrays
-	 */
-	static public final Parcelable.Creator<FnLexUnitPointer> CREATOR = new Parcelable.Creator<FnLexUnitPointer>()
-	{
-		@NonNull
-		@Override
-		public FnLexUnitPointer createFromParcel(@NonNull final Parcel parcel)
-		{
-			return new FnLexUnitPointer(parcel);
-		}
+class FnLexUnitPointer : Pointer {
 
-		@NonNull
-		@Override
-		public FnLexUnitPointer[] newArray(final int size)
-		{
-			return new FnLexUnitPointer[size];
-		}
-	};
+    /**
+     * Constructor from parcel, reads back fields IN THE ORDER they were written
+     */
+    private constructor(parcel: Parcel) : super(parcel)
 
-	/**
-	 * Constructor from parcel, reads back fields IN THE ORDER they were written
-	 */
-	private FnLexUnitPointer(@NonNull final Parcel parcel)
-	{
-		super(parcel);
-	}
+    /**
+     * Constructor
+     *
+     * @param luId lex unit id
+     */
+    constructor(luId: Long) : super(luId)
 
-	/**
-	 * Constructor
-	 *
-	 * @param luId lex unit id
-	 */
-	public FnLexUnitPointer(final long luId)
-	{
-		super(luId);
-	}
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<FnLexUnitPointer> {
+        override fun createFromParcel(parcel: Parcel): FnLexUnitPointer {
+            return FnLexUnitPointer(parcel)
+        }
+
+        override fun newArray(size: Int): Array<FnLexUnitPointer?> {
+            return arrayOfNulls(size)
+        }
+    }
 }

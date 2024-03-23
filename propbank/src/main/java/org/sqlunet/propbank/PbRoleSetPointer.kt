@@ -1,60 +1,43 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.propbank
 
-package org.sqlunet.propbank;
-
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import org.sqlunet.Pointer;
-
-import androidx.annotation.NonNull;
+import android.os.Parcel
+import android.os.Parcelable
+import org.sqlunet.Pointer
 
 /**
  * Parcelable role set pointer
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class PbRoleSetPointer extends Pointer
-{
-	/**
-	 * Static field used to regenerate object, individually or as arrays
-	 */
-	static public final Parcelable.Creator<PbRoleSetPointer> CREATOR = new Parcelable.Creator<PbRoleSetPointer>()
-	{
-		@NonNull
-		@Override
-		public PbRoleSetPointer createFromParcel(@NonNull final Parcel parcel)
-		{
-			return new PbRoleSetPointer(parcel);
-		}
+class PbRoleSetPointer : Pointer {
+    /**
+     * Constructor from parcel, reads back fields IN THE ORDER they were written
+     *
+     * @param parcel parcel
+     */
+    private constructor(parcel: Parcel) : super(parcel)
 
-		@NonNull
-		@Override
-		public PbRoleSetPointer[] newArray(final int size)
-		{
-			return new PbRoleSetPointer[size];
-		}
-	};
+    /**
+     * Constructor
+     *
+     * @param roleSetId role set id
+     */
+    constructor(roleSetId: Long) : super(roleSetId)
 
-	/**
-	 * Constructor from parcel, reads back fields IN THE ORDER they were written
-	 *
-	 * @param parcel parcel
-	 */
-	private PbRoleSetPointer(@NonNull final Parcel parcel)
-	{
-		super(parcel);
-	}
+    override fun describeContents(): Int {
+        return 0
+    }
 
-	/**
-	 * Constructor
-	 *
-	 * @param roleSetId role set id
-	 */
-	public PbRoleSetPointer(final long roleSetId)
-	{
-		super(roleSetId);
-	}
+    companion object CREATOR : Parcelable.Creator<PbRoleSetPointer> {
+        override fun createFromParcel(parcel: Parcel): PbRoleSetPointer {
+            return PbRoleSetPointer(parcel)
+        }
+
+        override fun newArray(size: Int): Array<PbRoleSetPointer?> {
+            return arrayOfNulls(size)
+        }
+    }
 }

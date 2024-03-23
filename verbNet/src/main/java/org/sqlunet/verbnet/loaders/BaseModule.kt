@@ -1,687 +1,547 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.verbnet.loaders
 
-package org.sqlunet.verbnet.loaders;
-
-import android.content.Context;
-import android.database.Cursor;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.text.SpannableStringBuilder;
-
-import org.sqlunet.browser.Module;
-import org.sqlunet.browser.SqlunetViewTreeModel;
-import org.sqlunet.browser.TreeFragment;
-import org.sqlunet.model.TreeFactory;
-import org.sqlunet.style.Spanner;
-import org.sqlunet.treeview.control.Query;
-import org.sqlunet.treeview.model.TreeNode;
-import org.sqlunet.verbnet.R;
-import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses;
-import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses_VnFrames_X;
-import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses_VnMembers_X;
-import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses_VnRoles_X;
-import org.sqlunet.verbnet.provider.VerbNetProvider;
-import org.sqlunet.verbnet.style.VerbNetFactories;
-import org.sqlunet.verbnet.style.VerbNetSemanticsProcessor;
-import org.sqlunet.verbnet.style.VerbNetSemanticsSpanner;
-import org.sqlunet.verbnet.style.VerbNetSyntaxSpanner;
-import org.sqlunet.view.TreeOp;
-import org.sqlunet.view.TreeOp.TreeOps;
-import org.sqlunet.view.TreeOpExecute;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProvider;
-
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWCHILD;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWEXTRA;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWMAIN;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWTREE;
-import static org.sqlunet.view.TreeOp.TreeOpCode.NEWUNIQUE;
-import static org.sqlunet.view.TreeOp.TreeOpCode.REMOVE;
+import android.database.Cursor
+import android.graphics.drawable.Drawable
+import android.net.Uri
+import android.text.SpannableStringBuilder
+import androidx.lifecycle.ViewModelProvider
+import org.sqlunet.browser.Module
+import org.sqlunet.browser.SqlunetViewTreeModel
+import org.sqlunet.browser.TreeFragment
+import org.sqlunet.model.TreeFactory.makeHotQueryNode
+import org.sqlunet.model.TreeFactory.makeIconTextNode
+import org.sqlunet.model.TreeFactory.makeLeafNode
+import org.sqlunet.model.TreeFactory.makeQueryNode
+import org.sqlunet.model.TreeFactory.makeTextNode
+import org.sqlunet.model.TreeFactory.makeTreeNode
+import org.sqlunet.model.TreeFactory.setNoResult
+import org.sqlunet.style.Spanner.Companion.append
+import org.sqlunet.style.Spanner.Companion.appendImage
+import org.sqlunet.style.Spanner.Companion.getDrawable
+import org.sqlunet.treeview.control.Query
+import org.sqlunet.treeview.model.TreeNode
+import org.sqlunet.verbnet.R
+import org.sqlunet.verbnet.loaders.Queries.prepareVnClass
+import org.sqlunet.verbnet.loaders.Queries.prepareVnFrames
+import org.sqlunet.verbnet.loaders.Queries.prepareVnMembers
+import org.sqlunet.verbnet.loaders.Queries.prepareVnRoles
+import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses
+import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses_VnFrames_X
+import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses_VnMembers_X
+import org.sqlunet.verbnet.provider.VerbNetContract.VnClasses_VnRoles_X
+import org.sqlunet.verbnet.provider.VerbNetProvider
+import org.sqlunet.verbnet.style.VerbNetFactories
+import org.sqlunet.verbnet.style.VerbNetSemanticsProcessor
+import org.sqlunet.verbnet.style.VerbNetSemanticsSpanner
+import org.sqlunet.verbnet.style.VerbNetSyntaxSpanner
+import org.sqlunet.view.TreeOp
+import org.sqlunet.view.TreeOp.Companion.seq
+import org.sqlunet.view.TreeOp.TreeOpCode
+import org.sqlunet.view.TreeOp.TreeOps
+import org.sqlunet.view.TreeOpExecute
 
 /**
  * VerbNet base module
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param fragment fragment
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-@SuppressWarnings("RedundantSuppression")
-abstract class BaseModule extends Module
-{
-	// agents
-
-	/**
-	 * Processor
-	 */
-	@NonNull
-	private final VerbNetSemanticsProcessor semanticsProcessor;
-
-	/**
-	 * Syntax spanner
-	 */
-	@NonNull
-	private final VerbNetSyntaxSpanner syntaxSpanner;
-
-	/**
-	 * Semantics
-	 */
-	@NonNull
-	private final VerbNetSemanticsSpanner semanticsSpanner;
-
-	// Resources
-
-	protected final String membersLabel;
-	protected final String groupLabel;
-	protected final String rolesLabel;
-	protected final String framesLabel;
-	protected final String examplesLabel;
-
-	/**
-	 * Drawable for class
-	 */
-	@NonNull
-	private final Drawable drawableClass;
-
-	/**
-	 * Drawable for member
-	 */
-	@NonNull
-	private final Drawable drawableMember;
-
-	/**
-	 * Drawable for role sets
-	 */
-	@NonNull
-	final Drawable drawableRoles;
-
-	/**
-	 * Drawable for role
-	 */
-	@NonNull
-	private final Drawable drawableRole;
-
-	/**
-	 * Drawable for frame
-	 */
-	@NonNull
-	private final Drawable drawableFrame;
-
-	/**
-	 * Drawable for syntax
-	 */
-	@NonNull
-	private final Drawable drawableSyntax;
-
-	/**
-	 * Drawable for semantics
-	 */
-	@NonNull
-	private final Drawable drawableSemantics;
-
-	/**
-	 * Drawable for example
-	 */
-	@NonNull
-	private final Drawable drawableExample;
-
-	/**
-	 * Drawable for definition
-	 */
-	@NonNull
-	private final Drawable drawableDefinition;
-
-	/**
-	 * Drawable for grouping
-	 */
-	@NonNull
-	private final Drawable drawableGrouping;
-
-	// View models
-
-	private SqlunetViewTreeModel vnClassFromClassIdModel;
-
-	private SqlunetViewTreeModel vnMembersFromClassIdModel;
-
-	private SqlunetViewTreeModel vnRolesFromClassIdModel;
-
-	private SqlunetViewTreeModel vnFramesFromClassIdModel;
-
-	/**
-	 * Constructor
-	 *
-	 * @param fragment fragment
-	 */
-	BaseModule(@NonNull final TreeFragment fragment)
-	{
-		super(fragment);
-
-		// models
-		makeModels();
-
-		// drawables
-		final Context context = BaseModule.this.fragment.requireContext();
-		this.membersLabel = context.getString(R.string.verbnet_members_);
-		this.groupLabel = context.getString(R.string.verbnet_group_);
-		this.rolesLabel = context.getString(R.string.verbnet_roles_);
-		this.framesLabel = context.getString(R.string.verbnet_frames_);
-		this.examplesLabel = context.getString(R.string.verbnet_examples_);
-
-		this.drawableClass = Spanner.getDrawable(context, R.drawable.roleclass);
-		this.drawableMember = Spanner.getDrawable(context, R.drawable.member);
-		this.drawableRoles = Spanner.getDrawable(context, R.drawable.roles);
-		this.drawableRole = Spanner.getDrawable(context, R.drawable.role);
-		this.drawableFrame = Spanner.getDrawable(context, R.drawable.vnframe);
-		this.drawableSyntax = Spanner.getDrawable(context, R.drawable.syntax);
-		this.drawableSemantics = Spanner.getDrawable(context, R.drawable.semantics);
-		this.drawableExample = Spanner.getDrawable(context, R.drawable.sample);
-		this.drawableDefinition = Spanner.getDrawable(context, R.drawable.definition);
-		this.drawableGrouping = Spanner.getDrawable(context, R.drawable.grouping);
-
-		// create processors and spanners
-		this.semanticsProcessor = new VerbNetSemanticsProcessor();
-		this.syntaxSpanner = new VerbNetSyntaxSpanner();
-		this.semanticsSpanner = new VerbNetSemanticsSpanner();
-	}
-
-	/**
-	 * Make view models
-	 */
-	private void makeModels()
-	{
-		this.vnClassFromClassIdModel = new ViewModelProvider(this.fragment).get("vn.class(classid)", SqlunetViewTreeModel.class);
-		this.vnClassFromClassIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-
-		this.vnMembersFromClassIdModel = new ViewModelProvider(this.fragment).get("vn.members(classid)", SqlunetViewTreeModel.class);
-		this.vnMembersFromClassIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-
-		this.vnRolesFromClassIdModel = new ViewModelProvider(this.fragment).get("vn.roles(classid)", SqlunetViewTreeModel.class);
-		this.vnRolesFromClassIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-
-		this.vnFramesFromClassIdModel = new ViewModelProvider(this.fragment).get("vn.frames(classid)", SqlunetViewTreeModel.class);
-		this.vnFramesFromClassIdModel.getData().observe(this.fragment, data -> new TreeOpExecute(this.fragment).exec(data));
-	}
-
-	// L O A D E R S
-
-	// vnClass
-
-	/**
-	 * VerbNet class
-	 *
-	 * @param classId class id
-	 * @param parent  parent node
-	 */
-	void vnClass(final long classId, @NonNull final TreeNode parent)
-	{
-		final ContentProviderSql sql = Queries.prepareVnClass(classId);
-		final Uri uri = Uri.parse(VerbNetProvider.makeUri(sql.providerUri));
-		this.vnClassFromClassIdModel.loadData(uri, sql, cursor -> vnClassCursorToTreeModel(cursor, classId, parent));
-	}
-
-	@NonNull
-	private TreeOp[] vnClassCursorToTreeModel(@NonNull final Cursor cursor, final long classId, @NonNull final TreeNode parent)
-	{
-		if (cursor.getCount() > 1)
-		{
-			throw new RuntimeException("Unexpected number of rows");
-		}
-
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			final SpannableStringBuilder sb = new SpannableStringBuilder();
-
-			// column indices
-			// final int idClassId = cursor.getColumnIndex(VnClasses_X.CLASSID);
-			final int idClass = cursor.getColumnIndex(VnClasses.CLASS);
-			// final int idClassTag = cursor.getColumnIndex(VnClasses.CLASSTAG);
-
-			// data
-			// final int classId = cursor.getInt(idClassId);
-			final String vnClass = cursor.getString(idClass);
-
-			// sb.append("[class]");
-			Spanner.appendImage(sb, BaseModule.this.drawableClass);
-			sb.append(' ');
-			Spanner.append(sb, vnClass, 0, VerbNetFactories.classFactory);
-			// sb.append(" tag=");
-			// sb.append(cursor.getString(idClassTag));
-			sb.append(" id=");
-			sb.append(Long.toString(classId));
-
-			// attach result
-			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-
-			// sub nodes
-			final TreeNode membersNode = TreeFactory.makeHotQueryNode(this.membersLabel, R.drawable.members, false, new MembersQuery(classId)).addTo(parent);
-			final TreeNode rolesNode = TreeFactory.makeHotQueryNode(this.rolesLabel, R.drawable.roles, false, new RolesQuery(classId)).addTo(parent);
-			final TreeNode framesNode = TreeFactory.makeQueryNode(this.framesLabel, R.drawable.vnframe, false, new FramesQuery(classId)).addTo(parent);
-
-			// changed
-			changed = TreeOp.seq(NEWMAIN, node, NEWEXTRA, membersNode, NEWEXTRA, rolesNode, NEWEXTRA, framesNode, NEWTREE, parent);
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(REMOVE, parent);
-		}
-
-		cursor.close();
-		return changed;
-	}
-
-	// vnMembers
-
-	/**
-	 * VerbNet members
-	 *
-	 * @param classId class id
-	 * @param parent  parent node
-	 */
-	private void vnMembers(final int classId, @NonNull final TreeNode parent)
-	{
-		final ContentProviderSql sql = Queries.prepareVnMembers(classId);
-		final Uri uri = Uri.parse(VerbNetProvider.makeUri(sql.providerUri));
-		this.vnMembersFromClassIdModel.loadData(uri, sql, cursor -> vnMembersCursorToTreeModel(cursor, parent));
-	}
-
-	@NonNull
-	private TreeOp[] vnMembersCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
-	{
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			final TreeOps changedList = new TreeOps(NEWTREE, parent);
-
-			// column indices
-			// final int idWordId = cursor.getColumnIndex(VnClasses_VnMembers_X.WORDID);
-			// final int idVnWordId = cursor.getColumnIndex(VnClasses_VnMembers_X.VNWORDID);
-			final int idWord = cursor.getColumnIndex(VnClasses_VnMembers_X.WORD);
-			final int idGroupings = cursor.getColumnIndex(VnClasses_VnMembers_X.GROUPINGS);
-			final int idDefinitions = cursor.getColumnIndex(VnClasses_VnMembers_X.DEFINITIONS);
-
-			do
-			{
-				final SpannableStringBuilder sb = new SpannableStringBuilder();
-
-				// member
-				// Spanner.appendImage(sb, BaseModule.this.drawableMember);
-				// sb.append(' ');
-				Spanner.append(sb, cursor.getString(idWord), 0, VerbNetFactories.memberFactory);
-
-				final String definitions = cursor.getString(idDefinitions);
-				final String groupings = cursor.getString(idGroupings);
-				if (definitions != null || groupings != null)
-				{
-					final TreeNode memberNode = TreeFactory.makeTreeNode(sb, R.drawable.member, false).addTo(parent);
-					changedList.add(NEWCHILD, memberNode);
-
-					final SpannableStringBuilder sb2 = new SpannableStringBuilder();
-
-					// definitions
-					boolean first = true;
-					if (definitions != null)
-					{
-						for (String definition : definitions.split("\\|"))
-						{
-							if (first)
-							{
-								first = false;
-							}
-							else
-							{
-								sb2.append('\n');
-							}
-
-							Spanner.appendImage(sb2, BaseModule.this.drawableDefinition);
-							sb2.append(' ');
-							Spanner.append(sb2, definition.trim(), 0, VerbNetFactories.definitionFactory);
-						}
-					}
-
-					// groupings
-					first = true;
-					if (groupings != null)
-					{
-						for (String grouping : groupings.split(","))
-						{
-							if (first)
-							{
-								if (sb2.length() > 0)
-								{
-									sb2.append('\n');
-								}
-								first = false;
-							}
-							else
-							{
-								sb2.append('\n');
-							}
-
-							Spanner.appendImage(sb2, BaseModule.this.drawableGrouping);
-							sb2.append(' ');
-							Spanner.append(sb2, grouping.trim(), 0, VerbNetFactories.groupingFactory);
-						}
-					}
-
-					// attach definition and groupings result
-					final TreeNode node = TreeFactory.makeTextNode(sb2, false).addTo(memberNode);
-					changedList.add(NEWCHILD, node);
-				}
-				else
-				{
-					final TreeNode node = TreeFactory.makeLeafNode(sb, R.drawable.member, false).addTo(parent);
-					changedList.add(NEWCHILD, node);
-				}
-			}
-			while (cursor.moveToNext());
-			changed = changedList.toArray();
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(REMOVE, parent);
-		}
-
-		cursor.close();
-		return changed;
-	}
-
-	// vnRoles
-
-	/**
-	 * VerbNet roles
-	 *
-	 * @param classId class id
-	 * @param parent  parent node
-	 */
-	private void vnRoles(final int classId, @NonNull final TreeNode parent)
-	{
-		final ContentProviderSql sql = Queries.prepareVnRoles(classId);
-		final Uri uri = Uri.parse(VerbNetProvider.makeUri(sql.providerUri));
-		this.vnRolesFromClassIdModel.loadData(uri, sql, cursor -> vnRolesCursorToTreeModel(cursor, parent));
-	}
-
-	@NonNull
-	private TreeOp[] vnRolesCursorToTreeModel(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
-	{
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			final SpannableStringBuilder sb = new SpannableStringBuilder();
-
-			// column indices
-			// final int idRoleId = cursor.getColumnIndex(VnClasses_VnRoles.ROLEID);
-			final int idRoleType = cursor.getColumnIndex(VnClasses_VnRoles_X.ROLETYPE);
-			final int idRestrs = cursor.getColumnIndex(VnClasses_VnRoles_X.RESTRS);
-
-			// read cursor
-			while (true)
-			{
-				// role
-				Spanner.appendImage(sb, BaseModule.this.drawableRole);
-				sb.append(' ');
-				Spanner.append(sb, cursor.getString(idRoleType), 0, VerbNetFactories.roleFactory);
-
-				// restr
-				final CharSequence restrs = cursor.getString(idRestrs);
-				if (restrs != null)
-				{
-					sb.append(' ');
-					Spanner.append(sb, restrs, 0, VerbNetFactories.restrsFactory);
-				}
-
-				// role id
-				// final int roleId = cursor.getInt(idRoleId);
-				// sb.append(" role id=");
-				// sb.append(Integer.toString(roleId));
-
-				if (!cursor.moveToNext())
-				{
-					//noinspection BreakStatement
-					break;
-				}
-
-				sb.append('\n');
-			}
-
-			// attach result
-			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-			changed = TreeOp.seq(NEWUNIQUE, node);
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(REMOVE, parent);
-		}
-
-		cursor.close();
-		return changed;
-	}
-
-	// vnFrames
-
-	private void vnFrames(final int classId, @NonNull final TreeNode parent)
-	{
-		final ContentProviderSql sql = Queries.prepareVnFrames(classId);
-		final Uri uri = Uri.parse(VerbNetProvider.makeUri(sql.providerUri));
-		this.vnFramesFromClassIdModel.loadData(uri, sql, cursor -> vnFramesToView(cursor, parent));
-	}
-
-	@NonNull
-	private TreeOp[] vnFramesToView(@NonNull final Cursor cursor, @NonNull final TreeNode parent)
-	{
-		TreeOp[] changed;
-		if (cursor.moveToFirst())
-		{
-			final SpannableStringBuilder sb = new SpannableStringBuilder();
-
-			// column indices
-			// final int idFrameId = cursor.getColumnIndex(VnClasses_VnFrames.FRAMEID);
-			final int idFrameName = cursor.getColumnIndex(VnClasses_VnFrames_X.FRAMENAME);
-			final int idFrameSubName = cursor.getColumnIndex(VnClasses_VnFrames_X.FRAMESUBNAME);
-			final int idSyntax = cursor.getColumnIndex(VnClasses_VnFrames_X.SYNTAX);
-			final int idSemantics = cursor.getColumnIndex(VnClasses_VnFrames_X.SEMANTICS);
-			final int idExamples = cursor.getColumnIndex(VnClasses_VnFrames_X.EXAMPLES);
-
-			// read cursor
-			while (true)
-			{
-				// frame
-				Spanner.appendImage(sb, BaseModule.this.drawableFrame);
-				sb.append(' ');
-				Spanner.append(sb, cursor.getString(idFrameName), 0, VerbNetFactories.frameFactory);
-				sb.append(' ');
-				Spanner.append(sb, cursor.getString(idFrameSubName), 0, VerbNetFactories.framesubnameFactory);
-
-				// frame id
-				// sb.append(Integer.toString(cursor.getInt(idFrameId)));
-				// sb.append('\n');
-
-				// syntax
-				final String syntax = cursor.getString(idSyntax);
-				for (final String line : syntax.split("\n")) //
-				{
-					sb.append('\n');
-					sb.append('\t');
-					Spanner.appendImage(sb, BaseModule.this.drawableSyntax);
-					BaseModule.this.syntaxSpanner.append(line, sb, 0);
-				}
-
-				// semantics
-				final String semantics = cursor.getString(idSemantics);
-				for (final String line : semantics.split("\n")) //
-				{
-					sb.append('\n');
-					sb.append('\t');
-					Spanner.appendImage(sb, BaseModule.this.drawableSemantics);
-					final CharSequence statement = BaseModule.this.semanticsProcessor.process(line);
-					BaseModule.this.semanticsSpanner.append(statement, sb, 0);
-				}
-
-				// examples
-				final String examplesConcat = cursor.getString(idExamples);
-				final String[] examples = examplesConcat.split("\\|");
-				for (final String example : examples)
-				{
-					sb.append('\n');
-					sb.append('\t');
-					Spanner.appendImage(sb, BaseModule.this.drawableExample);
-					Spanner.append(sb, example, 0, VerbNetFactories.exampleFactory);
-				}
-
-				if (!cursor.moveToNext())
-				{
-					//noinspection BreakStatement
-					break;
-				}
-				sb.append('\n');
-			}
-
-			// attach result
-			final TreeNode node = TreeFactory.makeTextNode(sb, false).addTo(parent);
-			changed = TreeOp.seq(NEWUNIQUE, node);
-		}
-		else
-		{
-			TreeFactory.setNoResult(parent);
-			changed = TreeOp.seq(REMOVE, parent);
-		}
-
-		cursor.close();
-		return changed;
-	}
-
-	/**
-	 * Groups
-	 *
-	 * @param group items concat with '|'
-	 * @return node
-	 */
-	@Nullable
-	@SuppressWarnings("unused")
-	protected TreeNode items(@NonNull final TreeNode parent, @Nullable final String group)
-	{
-		if (group != null)
-		{
-			final SpannableStringBuilder sb = new SpannableStringBuilder();
-			final String[] items = group.split("\\|");
-			if (items.length == 1)
-			{
-				Spanner.appendImage(sb, BaseModule.this.drawableMember);
-				Spanner.append(sb, items[0], 0, VerbNetFactories.memberFactory);
-				return TreeFactory.makeIconTextNode(sb, R.drawable.member, false).addTo(parent);
-			}
-			else if (items.length > 1)
-			{
-				final TreeNode groupingsNode = TreeFactory.makeIconTextNode(this.groupLabel, R.drawable.member, false).addTo(parent);
-				boolean first = true;
-				for (final String item : items)
-				{
-					if (first)
-					{
-						first = false;
-					}
-					else
-					{
-						sb.append('\n');
-					}
-					Spanner.appendImage(sb, BaseModule.this.drawableMember);
-					Spanner.append(sb, item, 0, VerbNetFactories.memberFactory);
-				}
-				final TreeNode childNode = TreeFactory.makeTextNode(sb, false).addTo(groupingsNode);
-				return groupingsNode;
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * Members query
-	 */
-	class MembersQuery extends Query
-	{
-		/**
-		 * Constructor
-		 *
-		 * @param classId class id
-		 */
-		MembersQuery(final long classId)
-		{
-			super(classId);
-		}
-
-		@Override
-		public void process(@NonNull final TreeNode node)
-		{
-			vnMembers((int) this.id, node);
-		}
-
-		@NonNull
-		@Override
-		public String toString()
-		{
-			return "members for " + this.id;
-		}
-	}
-
-	/**
-	 * Roles query
-	 */
-	class RolesQuery extends Query
-	{
-		/**
-		 * Constructor
-		 *
-		 * @param classId class id
-		 */
-		RolesQuery(final long classId)
-		{
-			super(classId);
-		}
-
-		@Override
-		public void process(@NonNull final TreeNode node)
-		{
-			vnRoles((int) this.id, node);
-		}
-
-		@NonNull
-		@Override
-		public String toString()
-		{
-			return "roles for " + this.id;
-		}
-	}
-
-	/**
-	 * Frames query
-	 */
-	class FramesQuery extends Query
-	{
-		/**
-		 * Constructor
-		 *
-		 * @param classId class id
-		 */
-		FramesQuery(final long classId)
-		{
-			super(classId);
-		}
-
-		@Override
-		public void process(@NonNull final TreeNode node)
-		{
-			vnFrames((int) this.id, node);
-		}
-
-		@NonNull
-		@Override
-		public String toString()
-		{
-			return "vnframes for " + this.id;
-		}
-	}
+internal abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
+
+    // agents
+
+    /**
+     * Processor
+     */
+    private val semanticsProcessor: VerbNetSemanticsProcessor
+
+    /**
+     * Syntax spanner
+     */
+    private val syntaxSpanner: VerbNetSyntaxSpanner
+
+    /**
+     * Semantics
+     */
+    private val semanticsSpanner: VerbNetSemanticsSpanner
+
+    // resources
+
+    @JvmField
+    protected val membersLabel: String
+    private val groupLabel: String
+
+    @JvmField
+    protected val rolesLabel: String
+
+    @JvmField
+    protected val framesLabel: String
+    private val examplesLabel: String
+
+    /**
+     * Drawable for class
+     */
+    private val drawableClass: Drawable
+
+    /**
+     * Drawable for member
+     */
+    private val drawableMember: Drawable
+
+    /**
+     * Drawable for role sets
+     */
+    @JvmField
+    val drawableRoles: Drawable
+
+    /**
+     * Drawable for role
+     */
+    private val drawableRole: Drawable
+
+    /**
+     * Drawable for frame
+     */
+    private val drawableFrame: Drawable
+
+    /**
+     * Drawable for syntax
+     */
+    private val drawableSyntax: Drawable
+
+    /**
+     * Drawable for semantics
+     */
+    private val drawableSemantics: Drawable
+
+    /**
+     * Drawable for example
+     */
+    private val drawableExample: Drawable
+
+    /**
+     * Drawable for definition
+     */
+    private val drawableDefinition: Drawable
+
+    /**
+     * Drawable for grouping
+     */
+    private val drawableGrouping: Drawable
+
+    // view models
+
+    private lateinit var vnClassFromClassIdModel: SqlunetViewTreeModel
+    private lateinit var vnMembersFromClassIdModel: SqlunetViewTreeModel
+    private lateinit var vnRolesFromClassIdModel: SqlunetViewTreeModel
+    private lateinit var vnFramesFromClassIdModel: SqlunetViewTreeModel
+
+    init {
+
+        // models
+        makeModels()
+
+        // drawables
+        val context = this@BaseModule.fragment.requireContext()
+        membersLabel = context.getString(R.string.verbnet_members_)
+        groupLabel = context.getString(R.string.verbnet_group_)
+        rolesLabel = context.getString(R.string.verbnet_roles_)
+        framesLabel = context.getString(R.string.verbnet_frames_)
+        examplesLabel = context.getString(R.string.verbnet_examples_)
+        drawableClass = getDrawable(context, R.drawable.roleclass)
+        drawableMember = getDrawable(context, R.drawable.member)
+        drawableRoles = getDrawable(context, R.drawable.roles)
+        drawableRole = getDrawable(context, R.drawable.role)
+        drawableFrame = getDrawable(context, R.drawable.vnframe)
+        drawableSyntax = getDrawable(context, R.drawable.syntax)
+        drawableSemantics = getDrawable(context, R.drawable.semantics)
+        drawableExample = getDrawable(context, R.drawable.sample)
+        drawableDefinition = getDrawable(context, R.drawable.definition)
+        drawableGrouping = getDrawable(context, R.drawable.grouping)
+
+        // create processors and spanners
+        semanticsProcessor = VerbNetSemanticsProcessor()
+        syntaxSpanner = VerbNetSyntaxSpanner()
+        semanticsSpanner = VerbNetSemanticsSpanner()
+    }
+
+    /**
+     * Make view models
+     */
+    private fun makeModels() {
+        vnClassFromClassIdModel = ViewModelProvider(fragment)["vn.class(classid)", SqlunetViewTreeModel::class.java]
+        vnClassFromClassIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        vnMembersFromClassIdModel = ViewModelProvider(fragment)["vn.members(classid)", SqlunetViewTreeModel::class.java]
+        vnMembersFromClassIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        vnRolesFromClassIdModel = ViewModelProvider(fragment)["vn.roles(classid)", SqlunetViewTreeModel::class.java]
+        vnRolesFromClassIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+        vnFramesFromClassIdModel = ViewModelProvider(fragment)["vn.frames(classid)", SqlunetViewTreeModel::class.java]
+        vnFramesFromClassIdModel.data.observe(fragment) { data: Array<TreeOp>? -> TreeOpExecute(fragment).exec(data) }
+    }
+
+    // L O A D E R S
+
+    // vnClass
+
+    /**
+     * VerbNet class
+     *
+     * @param classId class id
+     * @param parent  parent node
+     */
+    fun vnClass(classId: Long, parent: TreeNode) {
+        val sql = prepareVnClass(classId)
+        val uri = Uri.parse(VerbNetProvider.makeUri(sql.providerUri))
+        vnClassFromClassIdModel.loadData(uri, sql) { cursor: Cursor -> vnClassCursorToTreeModel(cursor, classId, parent) }
+    }
+
+    private fun vnClassCursorToTreeModel(cursor: Cursor, classId: Long, parent: TreeNode): Array<TreeOp> {
+        if (cursor.count > 1) {
+            throw RuntimeException("Unexpected number of rows")
+        }
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val sb = SpannableStringBuilder()
+
+            // column indices
+            // final int idClassId = cursor.getColumnIndex(VnClasses_X.CLASSID);
+            val idClass = cursor.getColumnIndex(VnClasses.CLASS)
+            // final int idClassTag = cursor.getColumnIndex(VnClasses.CLASSTAG);
+
+            // data
+            // final int classId = cursor.getInt(idClassId);
+            val vnClass = cursor.getString(idClass)
+
+            // sb.append("[class]");
+            appendImage(sb, drawableClass)
+            sb.append(' ')
+            append(sb, vnClass, 0, VerbNetFactories.classFactory)
+            // sb.append(" tag=");
+            // sb.append(cursor.getString(idClassTag));
+            sb.append(" id=")
+            sb.append(classId.toString())
+
+            // attach result
+            val node = makeTextNode(sb, false).addTo(parent)
+
+            // sub nodes
+            val membersNode = makeHotQueryNode(membersLabel, R.drawable.members, false, MembersQuery(classId)).addTo(parent)
+            val rolesNode = makeHotQueryNode(rolesLabel, R.drawable.roles, false, RolesQuery(classId)).addTo(parent)
+            val framesNode = makeQueryNode(framesLabel, R.drawable.vnframe, false, FramesQuery(classId)).addTo(parent)
+
+            // changed
+            changed = seq(TreeOpCode.NEWMAIN, node, TreeOpCode.NEWEXTRA, membersNode, TreeOpCode.NEWEXTRA, rolesNode, TreeOpCode.NEWEXTRA, framesNode, TreeOpCode.NEWTREE, parent)
+        } else {
+            setNoResult(parent)
+            changed = seq(TreeOpCode.REMOVE, parent)
+        }
+        cursor.close()
+        return changed
+    }
+
+    // vnMembers
+
+    /**
+     * VerbNet members
+     *
+     * @param classId class id
+     * @param parent  parent node
+     */
+    private fun vnMembers(classId: Int, parent: TreeNode) {
+        val sql = prepareVnMembers(classId)
+        val uri = Uri.parse(VerbNetProvider.makeUri(sql.providerUri))
+        vnMembersFromClassIdModel.loadData(uri, sql) { cursor: Cursor -> vnMembersCursorToTreeModel(cursor, parent) }
+    }
+
+    private fun vnMembersCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val changedList = TreeOps(TreeOpCode.NEWTREE, parent)
+
+            // column indices
+            // val idWordId = cursor.getColumnIndex(VnClasses_VnMembers_X.WORDID)
+            // val idVnWordId = cursor.getColumnIndex(VnClasses_VnMembers_X.VNWORDID)
+            val idWord = cursor.getColumnIndex(VnClasses_VnMembers_X.WORD)
+            val idGroupings = cursor.getColumnIndex(VnClasses_VnMembers_X.GROUPINGS)
+            val idDefinitions = cursor.getColumnIndex(VnClasses_VnMembers_X.DEFINITIONS)
+            do {
+                val sb = SpannableStringBuilder()
+
+                // member
+                // Spanner.appendImage(sb, BaseModule.this.drawableMember);
+                // sb.append(' ')
+                append(sb, cursor.getString(idWord), 0, VerbNetFactories.memberFactory)
+                val definitions = cursor.getString(idDefinitions)
+                val groupings = cursor.getString(idGroupings)
+                if (definitions != null || groupings != null) {
+                    val memberNode = makeTreeNode(sb, R.drawable.member, false).addTo(parent)
+                    changedList.add(TreeOpCode.NEWCHILD, memberNode)
+                    val sb2 = SpannableStringBuilder()
+
+                    // definitions
+                    var first = true
+                    if (definitions != null) {
+                        for (definition in definitions.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()) {
+                            if (first) {
+                                first = false
+                            } else {
+                                sb2.append('\n')
+                            }
+                            appendImage(sb2, drawableDefinition)
+                            sb2.append(' ')
+                            append(sb2, definition.trim { it <= ' ' }, 0, VerbNetFactories.definitionFactory)
+                        }
+                    }
+
+                    // groupings
+                    first = true
+                    if (groupings != null) {
+                        for (grouping in groupings.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()) {
+                            if (first) {
+                                if (sb2.isNotEmpty()) {
+                                    sb2.append('\n')
+                                }
+                                first = false
+                            } else {
+                                sb2.append('\n')
+                            }
+                            appendImage(sb2, drawableGrouping)
+                            sb2.append(' ')
+                            append(sb2, grouping.trim { it <= ' ' }, 0, VerbNetFactories.groupingFactory)
+                        }
+                    }
+
+                    // attach definition and groupings result
+                    val node = makeTextNode(sb2, false).addTo(memberNode)
+                    changedList.add(TreeOpCode.NEWCHILD, node)
+                } else {
+                    val node = makeLeafNode(sb, R.drawable.member, false).addTo(parent)
+                    changedList.add(TreeOpCode.NEWCHILD, node)
+                }
+            } while (cursor.moveToNext())
+            changed = changedList.toArray()
+        } else {
+            setNoResult(parent)
+            changed = seq(TreeOpCode.REMOVE, parent)
+        }
+        cursor.close()
+        return changed
+    }
+
+    // vnRoles
+
+    /**
+     * VerbNet roles
+     *
+     * @param classId class id
+     * @param parent  parent node
+     */
+    private fun vnRoles(classId: Int, parent: TreeNode) {
+        val sql = prepareVnRoles(classId)
+        val uri = Uri.parse(VerbNetProvider.makeUri(sql.providerUri))
+        vnRolesFromClassIdModel.loadData(uri, sql) { cursor: Cursor -> vnRolesCursorToTreeModel(cursor, parent) }
+    }
+
+    private fun vnRolesCursorToTreeModel(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val sb = SpannableStringBuilder()
+
+            // column indices
+            // final int idRoleId = cursor.getColumnIndex(VnClasses_VnRoles.ROLEID);
+            val idRoleType = cursor.getColumnIndex(VnClasses_VnRoles_X.ROLETYPE)
+            val idRestrs = cursor.getColumnIndex(VnClasses_VnRoles_X.RESTRS)
+
+            // read cursor
+            while (true) {
+                // role
+                appendImage(sb, drawableRole)
+                sb.append(' ')
+                append(sb, cursor.getString(idRoleType), 0, VerbNetFactories.roleFactory)
+
+                // restr
+                val restrs: CharSequence? = cursor.getString(idRestrs)
+                if (restrs != null) {
+                    sb.append(' ')
+                    append(sb, restrs, 0, VerbNetFactories.restrsFactory)
+                }
+
+                // role id
+                // final int roleId = cursor.getInt(idRoleId);
+                // sb.append(" role id=");
+                // sb.append(Integer.toString(roleId));
+                if (!cursor.moveToNext()) {
+                    break
+                }
+                sb.append('\n')
+            }
+
+            // attach result
+            val node = makeTextNode(sb, false).addTo(parent)
+            changed = seq(TreeOpCode.NEWUNIQUE, node)
+        } else {
+            setNoResult(parent)
+            changed = seq(TreeOpCode.REMOVE, parent)
+        }
+        cursor.close()
+        return changed
+    }
+
+    // vnFrames
+
+    private fun vnFrames(classId: Int, parent: TreeNode) {
+        val sql = prepareVnFrames(classId)
+        val uri = Uri.parse(VerbNetProvider.makeUri(sql.providerUri))
+        vnFramesFromClassIdModel.loadData(uri, sql) { cursor: Cursor -> vnFramesToView(cursor, parent) }
+    }
+
+    private fun vnFramesToView(cursor: Cursor, parent: TreeNode): Array<TreeOp> {
+        val changed: Array<TreeOp>
+        if (cursor.moveToFirst()) {
+            val sb = SpannableStringBuilder()
+
+            // column indices
+            // val idFrameId = cursor.getColumnIndex(VnClasses_VnFrames.FRAMEID)
+            val idFrameName = cursor.getColumnIndex(VnClasses_VnFrames_X.FRAMENAME)
+            val idFrameSubName = cursor.getColumnIndex(VnClasses_VnFrames_X.FRAMESUBNAME)
+            val idSyntax = cursor.getColumnIndex(VnClasses_VnFrames_X.SYNTAX)
+            val idSemantics = cursor.getColumnIndex(VnClasses_VnFrames_X.SEMANTICS)
+            val idExamples = cursor.getColumnIndex(VnClasses_VnFrames_X.EXAMPLES)
+
+            // read cursor
+            while (true) {
+                // frame
+                appendImage(sb, drawableFrame)
+                sb.append(' ')
+                append(sb, cursor.getString(idFrameName), 0, VerbNetFactories.frameFactory)
+                sb.append(' ')
+                append(sb, cursor.getString(idFrameSubName), 0, VerbNetFactories.framesubnameFactory)
+
+                // frame id
+                // sb.append(Integer.toString(cursor.getInt(idFrameId)))
+                // sb.append('\n')
+
+                // syntax
+                val syntax = cursor.getString(idSyntax)
+                for (line in syntax.split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())  //
+                {
+                    sb.append('\n')
+                    sb.append('\t')
+                    appendImage(sb, drawableSyntax)
+                    syntaxSpanner.append(line, sb, 0)
+                }
+
+                // semantics
+                val semantics = cursor.getString(idSemantics)
+                for (line in semantics.split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())  //
+                {
+                    sb.append('\n')
+                    sb.append('\t')
+                    appendImage(sb, drawableSemantics)
+                    val statement = semanticsProcessor.process(line)
+                    semanticsSpanner.append(statement, sb, 0)
+                }
+
+                // examples
+                val examplesConcat = cursor.getString(idExamples)
+                val examples = examplesConcat.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+                for (example in examples) {
+                    sb.append('\n')
+                    sb.append('\t')
+                    appendImage(sb, drawableExample)
+                    append(sb, example, 0, VerbNetFactories.exampleFactory)
+                }
+                if (!cursor.moveToNext()) {
+                    break
+                }
+                sb.append('\n')
+            }
+
+            // attach result
+            val node = makeTextNode(sb, false).addTo(parent)
+            changed = seq(TreeOpCode.NEWUNIQUE, node)
+        } else {
+            setNoResult(parent)
+            changed = seq(TreeOpCode.REMOVE, parent)
+        }
+        cursor.close()
+        return changed
+    }
+
+    /**
+     * Groups
+     *
+     * @param group items concat with '|'
+     * @return node
+     */
+    @Suppress("unused")
+    protected fun items(parent: TreeNode, group: String?): TreeNode? {
+        if (group != null) {
+            val sb = SpannableStringBuilder()
+            val items = group.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+            if (items.size == 1) {
+                appendImage(sb, drawableMember)
+                append(sb, items[0], 0, VerbNetFactories.memberFactory)
+                return makeIconTextNode(sb, R.drawable.member, false).addTo(parent)
+            } else if (items.size > 1) {
+                val groupingsNode = makeIconTextNode(groupLabel, R.drawable.member, false).addTo(parent)
+                var first = true
+                for (item in items) {
+                    if (first) {
+                        first = false
+                    } else {
+                        sb.append('\n')
+                    }
+                    appendImage(sb, drawableMember)
+                    append(sb, item, 0, VerbNetFactories.memberFactory)
+                }
+                makeTextNode(sb, false).addTo(groupingsNode)
+                return groupingsNode
+            }
+        }
+        return null
+    }
+
+    /**
+     * Members query
+     */
+    internal inner class MembersQuery(classId: Long) : Query(classId) {
+        override fun process(node: TreeNode) {
+            vnMembers(id.toInt(), node)
+        }
+
+        override fun toString(): String {
+            return "members for $id"
+        }
+    }
+
+    /**
+     * Roles query
+     */
+    internal inner class RolesQuery(classId: Long) : Query(classId) {
+        override fun process(node: TreeNode) {
+            vnRoles(id.toInt(), node)
+        }
+
+        override fun toString(): String {
+            return "roles for $id"
+        }
+    }
+
+    /**
+     * Frames query
+     */
+    internal inner class FramesQuery(classId: Long) : Query(classId) {
+        override fun process(node: TreeNode) {
+            vnFrames(id.toInt(), node)
+        }
+
+        override fun toString(): String {
+            return "vnframes for $id"
+        }
+    }
 }
