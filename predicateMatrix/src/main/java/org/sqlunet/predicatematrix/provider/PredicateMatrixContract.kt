@@ -1,89 +1,77 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
-
-package org.sqlunet.predicatematrix.provider;
+package org.sqlunet.predicatematrix.provider
 
 /**
  * PredicateMatrix provider contract
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class PredicateMatrixContract
-{
-	// A L I A S E S
+object PredicateMatrixContract {
 
-	static public final String AS_PMROLES = V.AS_PMROLES;
-	static public final String AS_PMPREDICATES = V.AS_PMPREDICATES;
-	static public final String AS_VNCLASSES = V.AS_VNCLASSES;
-	static public final String AS_VNROLES = V.AS_VNROLES;
-	static public final String AS_VNROLETYPES = V.AS_VNROLETYPES;
-	static public final String AS_PBROLESETS = V.AS_PBROLESETS;
-	static public final String AS_PBROLES = V.AS_PBROLES;
-	static public final String AS_PBARGS = V.AS_PBARGS;
-	static public final String AS_FNFRAMES = V.AS_FNFRAMES;
-	static public final String AS_FNFES = V.AS_FNFES;
-	static public final String AS_FNFETYPES = V.AS_FNFETYPES;
-	// static public final String AS_FNLUS = V.AS_FNLUS;
+    // A L I A S E S
 
-	public interface PredicateMatrix
-	{
-		String PMID = V.PMID;
-		String PMROLEID = V.PMROLEID;
-		String PMPREDICATEID = V.PREDICATEID;
-		String PMPREDICATE = V.PREDICATE;
-		String PMROLE = V.ROLE;
-		String PMPOS = V.POS;
-		String PMWSOURCE = V.WSOURCE;
+    const val AS_PMROLES = V.AS_PMROLES
+    const val AS_PMPREDICATES = V.AS_PMPREDICATES
+    const val AS_VNCLASSES = V.AS_VNCLASSES
+    const val AS_VNROLES = V.AS_VNROLES
+    const val AS_VNROLETYPES = V.AS_VNROLETYPES
+    const val AS_PBROLESETS = V.AS_PBROLESETS
+    const val AS_PBROLES = V.AS_PBROLES
+    const val AS_PBARGS = V.AS_PBARGS
+    const val AS_FNFRAMES = V.AS_FNFRAMES
+    const val AS_FNFES = V.AS_FNFES
+    const val AS_FNFETYPES = V.AS_FNFETYPES
+    // const val AS_FNLUS = V.AS_FNLUS
 
-		String WORD = V.WORD;
-		String WORDID = V.WORDID;
-		String SYNSETID = V.SYNSETID;
+    object PredicateMatrix {
+        const val PMID = V.PMID
+        const val PMROLEID = V.PMROLEID
+        const val PMPREDICATEID = V.PREDICATEID
+        const val PMPREDICATE = V.PREDICATE
+        const val PMROLE = V.ROLE
+        const val PMPOS = V.POS
+        const val PMWSOURCE = V.WSOURCE
+        const val WORD = V.WORD
+        const val WORDID = V.WORDID
+        const val SYNSETID = V.SYNSETID
+        const val VNWORDID = V.VNWORDID
+        const val VNCLASSID = V.VN_CLASSID
+        const val VNROLEID = V.VN_ROLEID
+        const val PBWORDID = V.PBWORDID
+        const val PBROLESETID = V.PB_ROLESETID
+        const val PBROLEID = V.PB_ROLEID
+        const val FNWORDID = V.FNWORDID
+        const val FNFRAMEID = V.FN_FRAMEID
+        const val FNFEID = V.FN_FEID
+        // const val FNLUID = V.FN_LUID
+    }
 
-		String VNWORDID = V.VNWORDID;
-		String VNCLASSID = V.VN_CLASSID;
-		String VNROLEID = V.VN_ROLEID;
+    object Pm { // : PredicateMatrix
+        const val TABLE = "pm_pms"
+        const val URI = TABLE
+    }
 
-		String PBWORDID = V.PBWORDID;
-		String PBROLESETID = V.PB_ROLESETID;
-		String PBROLEID = V.PB_ROLEID;
-
-		String FNWORDID = V.FNWORDID;
-		String FNFRAMEID = V.FN_FRAMEID;
-		String FNFEID = V.FN_FEID;
-		// String FNLUID = V.FN_LUID;
-	}
-
-	public interface Pm extends PredicateMatrix
-	{
-		String TABLE = "pm_pms";
-		String URI = TABLE;
-	}
-
-	public interface Pm_X extends PredicateMatrix
-	{
-		String URI = "pm_x";
-
-		String DEFINITION = V._DEFINITION;
-
-		String VNCLASS = V._CLASS;
-		String VNROLETYPEID = V._VNROLETYPEID;
-		String VNROLETYPE = V._VNROLETYPE;
-
-		String PBROLESETNAME = V._PBROLESETNAME;
-		String PBROLESETDESCR = V._PBROLESETDESCR;
-		String PBROLESETHEAD = V._PBROLESETHEAD;
-		String PBROLEDESCR = V._PBROLEDESCR;
-		String PBROLEARGTYPE = V._PBARGTYPE;
-
-		String FNFETYPEID = V.FNFETYPEID;
-		String FNFRAME = V._FNFRAME;
-		String FNFRAMEDEFINITION = V._FNFRAMEDEFINITION;
-		String FNFETYPE = V._FNFETYPE;
-		String FNFEABBREV = V._FNFEABBREV;
-		String FNFEDEFINITION = V._FNFEDEFINITION;
-		//String FNLEXUNIT = V._FNLEXUNIT;
-		//String FNLUDEFINITION = V._FNLUDEFINITION;
-		//String FNLUDICT = V._FNLUDICT;
-	}
+    object Pm_X { // : PredicateMatrix
+        const val URI = "pm_x"
+        const val DEFINITION = V._DEFINITION
+        const val VNCLASS = V._CLASS
+        const val VNROLETYPEID = V._VNROLETYPEID
+        const val VNROLETYPE = V._VNROLETYPE
+        const val PBROLESETNAME = V._PBROLESETNAME
+        const val PBROLESETDESCR = V._PBROLESETDESCR
+        const val PBROLESETHEAD = V._PBROLESETHEAD
+        const val PBROLEDESCR = V._PBROLEDESCR
+        const val PBROLEARGTYPE = V._PBARGTYPE
+        const val FNFETYPEID = V.FNFETYPEID
+        const val FNFRAME = V._FNFRAME
+        const val FNFRAMEDEFINITION = V._FNFRAMEDEFINITION
+        const val FNFETYPE = V._FNFETYPE
+        const val FNFEABBREV = V._FNFEABBREV
+        const val FNFEDEFINITION = V._FNFEDEFINITION
+        // const val FNLEXUNIT = V._FNLEXUNIT
+        // const val FNLUDEFINITION = V._FNLUDEFINITION
+        // const val FNLUDICT = V._FNLUDICT
+    }
 }

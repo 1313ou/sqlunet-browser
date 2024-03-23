@@ -1,72 +1,42 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
-
-package org.sqlunet.syntagnet.provider;
-
-import androidx.annotation.Nullable;
+package org.sqlunet.syntagnet.provider
 
 /**
  * SyntagNet query control
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class SyntagNetControl
-{
-	// table codes
-	static final int COLLOCATIONS = 10;
+object SyntagNetControl {
 
-	// join codes
-	static final int COLLOCATIONS_X = 100;
+    // table codes
+    const val COLLOCATIONS = 10
 
-	static public class Result
-	{
-		final String table;
-		final String[] projection;
-		final String selection;
-		final String[] selectionArgs;
-		final String groupBy;
+    // join codes
+    const val COLLOCATIONS_X = 100
 
-		public Result(final String table, final String[] projection, final String selection, final String[] selectionArgs, final String groupBy)
-		{
-			this.table = table;
-			this.projection = projection;
-			this.selection = selection;
-			this.selectionArgs = selectionArgs;
-			this.groupBy = groupBy;
-		}
-	}
+    @JvmStatic
+    fun queryMain(code: Int, @Suppress("unused") uriLast: String?, projection0: Array<String>?, selection0: String?, selectionArgs0: Array<String>?): Result? {
+        val table: String
+        var selection = selection0
+        when (code) {
 
-	@Nullable
-	public static Result queryMain(final int code, @SuppressWarnings("unused") final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
-	{
-		String table;
-		String selection = selection0;
+            COLLOCATIONS -> {
+                table = Q.COLLOCATIONS.TABLE
+                if (selection != null) {
+                    selection += " AND "
+                } else {
+                    selection = ""
+                }
+                selection += Q.COLLOCATIONS.SELECTION
+            }
 
-		switch (code)
-		{
-			case COLLOCATIONS:
-				table = Q.COLLOCATIONS.TABLE;
-				if (selection != null)
-				{
-					selection += " AND ";
-				}
-				else
-				{
-					selection = "";
-				}
-				selection += Q.COLLOCATIONS.SELECTION;
-				break;
+            COLLOCATIONS_X -> table = Q.COLLOCATIONS_X.TABLE
+            else -> return null
+        }
+        return Result(table, projection0, selection, selectionArgs0, null)
+    }
 
-			// J O I N S
-
-			case COLLOCATIONS_X:
-				table = Q.COLLOCATIONS_X.TABLE;
-				break;
-
-			default:
-				return null;
-		}
-		return new Result(table, projection0, selection, selectionArgs0, null);
-	}
+    class Result(@JvmField val table: String, @JvmField val projection: Array<String>?, @JvmField val selection: String?, @JvmField val selectionArgs: Array<String>?, @JvmField val groupBy: String?)
 }

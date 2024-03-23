@@ -51,7 +51,7 @@ class BNCProvider : BaseProvider() {
         val result = BNCControl.queryMain(code, uri.lastPathSegment, projection0, selection0, selectionArgs0)
         if (result != null) {
             val sql = SQLiteQueryBuilder.buildQueryString(false, result.table, result.projection, result.selection, result.groupBy, null, sortOrder0, null)
-            logSql(sql, *result.selectionArgs ?: arrayOf())
+            logSql(sql, *selectionArgs0 ?: arrayOf())
             if (logSql) {
                 Log.d(TAG + "SQL", SqlFormatter.format(sql).toString())
                 Log.d(TAG + "ARG", argsToString(result.selectionArgs ?: selectionArgs0))

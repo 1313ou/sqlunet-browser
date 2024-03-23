@@ -148,7 +148,7 @@ class WordNetProvider : BaseProvider() {
         // MAIN || RELATIONS || TEXTSEARCH
         if (result != null) {
             val sql = SQLiteQueryBuilder.buildQueryString(false, result.table, result.projection, result.selection, result.groupBy, null, sortOrder0, null)
-            logSql(sql, *selectionArgs0!!)
+            logSql(sql, *selectionArgs0 ?: arrayOf())
             if (logSql) {
                 Log.d(TAG + "SQL", format(sql).toString())
                 Log.d(TAG + "ARG", argsToString(result.selectionArgs ?: selectionArgs0))
@@ -156,7 +156,7 @@ class WordNetProvider : BaseProvider() {
 
             // do query
             try {
-                val cursor = db!!.rawQuery(sql, if (result.selectionArgs == null) selectionArgs0 else result.selectionArgs)
+                val cursor = db!!.rawQuery(sql, result.selectionArgs ?: selectionArgs0)
                 Log.d(TAG + "COUNT", cursor.count.toString() + " items")
                 return cursor
             } catch (e: SQLiteException) {

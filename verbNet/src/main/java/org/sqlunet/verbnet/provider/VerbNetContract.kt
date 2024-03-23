@@ -1,139 +1,127 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.verbnet.provider
 
-package org.sqlunet.verbnet.provider;
-
-import android.app.SearchManager;
+import android.app.SearchManager
 
 /**
  * VerbNet provider contract
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class VerbNetContract
-{
-	public interface VnWords
-	{
-		String TABLE = Q.WORDS.TABLE;
-		String URI = VnWords.TABLE;
-		String VNWORDID = V.VNWORDID;
-		String WORDID = V.WORDID;
-		String WORD = V.WORD;
-	}
+class VerbNetContract {
 
-	public interface VnClasses
-	{
-		String TABLE = Q.VNCLASSES.TABLE;
-		String URI = VnClasses.TABLE;
-		String URI1 = "vn_class1";
-		String WORDID = V.WORDID;
-		String POS = V.POSID;
-		String CLASSID = V.CLASSID;
-		String CLASS = V.CLASS;
-		String CLASSTAG = V.CLASSTAG;
-	}
+    object VnWords {
+        const val TABLE = Q.WORDS.TABLE
+        const val URI = TABLE
+        const val VNWORDID = V.VNWORDID
+        const val WORDID = V.WORDID
+        const val WORD = V.WORD
+    }
 
-	public interface VnClasses_X
-	{
-		String URI_BY_VNCLASS ="vnclasses_x_by_vnclass";
-		String WORDID = V.WORDID;
-		String POS = V.POSID;
-		String CLASSID = V.CLASSID;
-		String CLASS = V.CLASS;
-		String CLASSTAG = V.CLASSTAG;
-	}
+    object VnClasses {
+        const val TABLE = Q.VNCLASSES.TABLE
+        const val URI = TABLE
+        const val URI1 = "vn_class1"
+        const val WORDID = V.WORDID
+        const val POS = V.POSID
+        const val CLASSID = V.CLASSID
+        const val CLASS = V.CLASS
+        const val CLASSTAG = V.CLASSTAG
+    }
 
-	public interface Words_VnClasses
-	{
-		String TABLE = "words_vnclasses";
-		String URI = Words_VnClasses.TABLE;
-		String WORDID = V.WORDID;
-		String SYNSETID = V.SYNSETID;
-		String CLASSID = V.CLASSID;
-		String CLASS = V.CLASS;
-		String CLASSTAG = V.CLASSTAG;
-		String SENSENUM = V.SENSENUM;
-		String SENSEKEY = V.SENSEKEY;
-		String QUALITY = V.QUALITY;
-		String NULLSYNSET = V.NULLSYNSET;
-	}
+    object VnClasses_X {
+        const val URI_BY_VNCLASS = "vnclasses_x_by_vnclass"
+        const val WORDID = V.WORDID
+        const val POS = V.POSID
+        const val CLASSID = V.CLASSID
+        const val CLASS = V.CLASS
+        const val CLASSTAG = V.CLASSTAG
+    }
 
-	public interface VnClasses_VnMembers_X
-	{
-		String URI_BY_WORD = "vnclasses_vnmembers_x_by_word";
-		String CLASSID = V.CLASSID;
-		String VNWORDID = V.VNWORDID;
-		String WORDID = V.WORDID;
-		String WORD = V.WORD;
-		String DEFINITIONS = V.DEFINITIONS;
-		String GROUPINGS = V.GROUPINGS;
-		String DEFINITION = V.DEFINITION;
-		String GROUPING = V.GROUPING;
-	}
+    object Words_VnClasses {
+        const val TABLE = "words_vnclasses"
+        const val URI = TABLE
+        const val WORDID = V.WORDID
+        const val SYNSETID = V.SYNSETID
+        const val CLASSID = V.CLASSID
+        const val CLASS = V.CLASS
+        const val CLASSTAG = V.CLASSTAG
+        const val SENSENUM = V.SENSENUM
+        const val SENSEKEY = V.SENSEKEY
+        const val QUALITY = V.QUALITY
+        const val NULLSYNSET = V.NULLSYNSET
+    }
 
-	public interface VnClasses_VnRoles_X
-	{
-		String URI_BY_ROLE = "vnclasses_vnroles_x_by_vnrole";
-		String CLASSID = V.CLASSID;
-		String ROLEID = V.ROLEID;
-		String ROLETYPE = V.ROLETYPE;
-		String RESTRS = V.RESTRS;
-	}
+    object VnClasses_VnMembers_X {
+        const val URI_BY_WORD = "vnclasses_vnmembers_x_by_word"
+        const val CLASSID = V.CLASSID
+        const val VNWORDID = V.VNWORDID
+        const val WORDID = V.WORDID
+        const val WORD = V.WORD
+        const val DEFINITIONS = V.DEFINITIONS
+        const val GROUPINGS = V.GROUPINGS
+        const val DEFINITION = V.DEFINITION
+        const val GROUPING = V.GROUPING
+    }
 
-	public interface VnClasses_VnFrames_X
-	{
-		String URI_BY_FRAME = "vnclasses_vnframes_x_by_vnframe";
-		String CLASSID = V.CLASSID;
-		String FRAMEID = V.FRAMEID;
-		String FRAMENAME = V.FRAMENAME;
-		String FRAMESUBNAME = V.FRAMESUBNAME;
-		String SYNTAX = V.SYNTAX;
-		String SEMANTICS = V.SEMANTICS;
-		String NUMBER = V.NUMBER;
-		String XTAG = V.XTAG;
-		String EXAMPLE = V.EXAMPLE;
-		String EXAMPLES = V.EXAMPLES;
-	}
+    object VnClasses_VnRoles_X {
+        const val URI_BY_ROLE = "vnclasses_vnroles_x_by_vnrole"
+        const val CLASSID = V.CLASSID
+        const val ROLEID = V.ROLEID
+        const val ROLETYPE = V.ROLETYPE
+        const val RESTRS = V.RESTRS
+    }
 
-	public interface Lookup_VnExamples
-	{
-		String TABLE = Q.LOOKUP_FTS_EXAMPLES.TABLE;
-		String URI = TABLE;
-		String EXAMPLEID = V.EXAMPLEID;
-		String EXAMPLE = V.EXAMPLE;
-		String CLASSID = V.CLASSID;
-		String FRAMEID = V.FRAMEID;
-	}
+    object VnClasses_VnFrames_X {
+        const val URI_BY_FRAME = "vnclasses_vnframes_x_by_vnframe"
+        const val CLASSID = V.CLASSID
+        const val FRAMEID = V.FRAMEID
+        const val FRAMENAME = V.FRAMENAME
+        const val FRAMESUBNAME = V.FRAMESUBNAME
+        const val SYNTAX = V.SYNTAX
+        const val SEMANTICS = V.SEMANTICS
+        const val NUMBER = V.NUMBER
+        const val XTAG = V.XTAG
+        const val EXAMPLE = V.EXAMPLE
+        const val EXAMPLES = V.EXAMPLES
+    }
 
-	public interface Lookup_VnExamples_X
-	{
-		String URI = "fts_vnexamples_x";
-		String URI_BY_EXAMPLE = "fts_vnexamples_x_by_example";
-		String EXAMPLEID = V. EXAMPLEID;
-		String EXAMPLE =  V.EXAMPLE;
-		String CLASSID =  V.CLASSID;
-		String CLASS =  V.CLASS;
-		String FRAMEID =  V.FRAMEID;
-		String CLASSES =  V.CLASSES;
-		String FRAMES =  V.FRAMES;
-	}
+    object Lookup_VnExamples {
+        const val TABLE = Q.LOOKUP_FTS_EXAMPLES.TABLE
+        const val URI = TABLE
+        const val EXAMPLEID = V.EXAMPLEID
+        const val EXAMPLE = V.EXAMPLE
+        const val CLASSID = V.CLASSID
+        const val FRAMEID = V.FRAMEID
+    }
 
-	public interface Suggest_VnWords
-	{
-		String SEARCH_WORD_PATH = "suggest_vnword";
-		String URI = SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
-		String VNWORDID =  V.VNWORDID;
-		String WORDID =  V.WORDID;
-		String WORD =  V.WORD;
-	}
+    object Lookup_VnExamples_X {
+        const val URI = "fts_vnexamples_x"
+        const val URI_BY_EXAMPLE = "fts_vnexamples_x_by_example"
+        const val EXAMPLEID = V.EXAMPLEID
+        const val EXAMPLE = V.EXAMPLE
+        const val CLASSID = V.CLASSID
+        const val CLASS = V.CLASS
+        const val FRAMEID = V.FRAMEID
+        const val CLASSES = V.CLASSES
+        const val FRAMES = V.FRAMES
+    }
 
-	public interface Suggest_FTS_VnWords
-	{
-		String SEARCH_WORD_PATH = "suggest_fts_vnword";
-		String URI = SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY;
-		String VNWORDID =  V.VNWORDID;
-		String WORDID =  V.WORDID;
-		String WORD = V.WORD;
-	}
+    object Suggest_VnWords {
+        const val SEARCH_WORD_PATH = "suggest_vnword"
+        const val URI = SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY
+        const val VNWORDID = V.VNWORDID
+        const val WORDID = V.WORDID
+        const val WORD = V.WORD
+    }
+
+    object Suggest_FTS_VnWords {
+        const val SEARCH_WORD_PATH = "suggest_fts_vnword"
+        const val URI = SEARCH_WORD_PATH + "/" + SearchManager.SUGGEST_URI_PATH_QUERY
+        const val VNWORDID = V.VNWORDID
+        const val WORDID = V.WORDID
+        const val WORD = V.WORD
+    }
 }

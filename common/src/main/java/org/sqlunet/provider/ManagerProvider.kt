@@ -50,18 +50,18 @@ class ManagerProvider : BaseProvider() {
         }
 
         //if (logSql) {
-        //    val sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, null, null, sortOrder, null)
-        //    logSql(sql, argsToString(selectionArgs));
-        //    Log.d(TAG + "SQL", SqlFormatter.format(sql).toString());
-        //    Log.d(TAG + "ARGS", argsToString(selectionArgs));
+        //  val sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, null, null, sortOrder, null)
+        //  logSql(sql, argsToString(selectionArgs));
+        //  Log.d(TAG + "SQL", SqlFormatter.format(sql).toString());
+        //  Log.d(TAG + "ARGS", argsToString(selectionArgs));
         //}
 
         // do query
         return try {
             db!!.query(table, projection, selection, selectionArgs, null, null, sortOrder)
         } catch (e: SQLiteException) {
-            val sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, null, null, sortOrder, null)
-            Log.d(TAG + "SQL", sql)
+            val sql2 = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, null, null, sortOrder, null)
+            Log.d(TAG + "SQL", sql2)
             Log.e(TAG, "Manager provider query failed", e)
             null
         }

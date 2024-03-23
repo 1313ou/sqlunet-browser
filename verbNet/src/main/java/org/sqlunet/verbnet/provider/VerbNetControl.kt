@@ -1,189 +1,132 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.verbnet.provider
 
-package org.sqlunet.verbnet.provider;
-
-import android.app.SearchManager;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.app.SearchManager
 
 /**
  * VerbNet query control
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class VerbNetControl
-{
-	// table codes
-	static final int VNCLASS1 = 10;
-	static final int VNCLASSES = 11;
-	static final int VNCLASSES_X_BY_VNCLASS = 20;
+object VerbNetControl {
 
-	// join codes
-	static final int WORDS_VNCLASSES = 100;
-	static final int VNCLASSES_VNMEMBERS_X_BY_WORD = 110;
-	static final int VNCLASSES_VNROLES_X_BY_VNROLE = 120;
-	static final int VNCLASSES_VNFRAMES_X_BY_VNFRAME = 130;
+    // table codes
+    const val VNCLASS1 = 10
+    const val VNCLASSES = 11
+    const val VNCLASSES_X_BY_VNCLASS = 20
 
-	// search text codes
-	static final int LOOKUP_FTS_EXAMPLES = 501;
-	static final int LOOKUP_FTS_EXAMPLES_X = 511;
-	static final int LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE = 512;
+    // join codes
+    const val WORDS_VNCLASSES = 100
+    const val VNCLASSES_VNMEMBERS_X_BY_WORD = 110
+    const val VNCLASSES_VNROLES_X_BY_VNROLE = 120
+    const val VNCLASSES_VNFRAMES_X_BY_VNFRAME = 130
 
-	// suggest
-	static final int SUGGEST_WORDS = 601;
-	static final int SUGGEST_FTS_WORDS = 602;
+    // search text codes
+    const val LOOKUP_FTS_EXAMPLES = 501
+    const val LOOKUP_FTS_EXAMPLES_X = 511
+    const val LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE = 512
 
-	static public class Result
-	{
-		final String table;
-		final String[] projection;
-		final String selection;
-		final String[] selectionArgs;
-		final String groupBy;
+    // suggest
+    const val SUGGEST_WORDS = 601
+    const val SUGGEST_FTS_WORDS = 602
 
-		public Result(final String table, final String[] projection, final String selection, final String[] selectionArgs, final String groupBy)
-		{
-			this.table = table;
-			this.projection = projection;
-			this.selection = selection;
-			this.selectionArgs = selectionArgs;
-			this.groupBy = groupBy;
-		}
-	}
+    @JvmStatic
+    fun queryMain(code: Int, uriLast: String, projection0: Array<String>?, selection0: String?, selectionArgs0: Array<String>?): Result? {
+        val table: String
+        var selection = selection0
+        var groupBy: String? = null
+        when (code) {
+            VNCLASSES -> table = Q.VNCLASSES.TABLE
+            VNCLASSES_X_BY_VNCLASS -> {
+                table = Q.VNCLASSES_X_BY_VNCLASS.TABLE
+                groupBy = Q.VNCLASSES_X_BY_VNCLASS.GROUPBY
+            }
 
-	@Nullable
-	public static Result queryMain(final int code, @NonNull final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
-	{
-		String table;
-		String selection = selection0;
-		String groupBy = null;
+            VNCLASS1 -> {
+                table = Q.VNCLASS1.TABLE
+                if (selection != null) {
+                    selection += " AND "
+                } else {
+                    selection = ""
+                }
+                selection += Q.VNCLASS1.SELECTION.replace("#\\{uri_last\\}".toRegex(), uriLast)
+            }
 
-		switch (code)
-		{
-			case VNCLASSES:
-				table = Q.VNCLASSES.TABLE;
-				break;
+            WORDS_VNCLASSES -> table = Q.WORDS_VNCLASSES.TABLE
+            VNCLASSES_VNMEMBERS_X_BY_WORD -> {
+                table = Q.VNCLASSES_VNMEMBERS_X_BY_WORD.TABLE
+                groupBy = V.VNWORDID
+            }
 
-			case VNCLASSES_X_BY_VNCLASS:
-				table = Q.VNCLASSES_X_BY_VNCLASS.TABLE;
-				groupBy = Q.VNCLASSES_X_BY_VNCLASS.GROUPBY;
-				break;
+            VNCLASSES_VNROLES_X_BY_VNROLE -> {
+                table = Q.VNCLASSES_VNROLES_X_BY_VNROLE.TABLE
+                groupBy = V.ROLEID
+            }
 
-			// I T E M S
+            VNCLASSES_VNFRAMES_X_BY_VNFRAME -> {
+                table = Q.VNCLASSES_VNFRAMES_X_BY_VNFRAME.TABLE
+                groupBy = V.FRAMEID
+            }
 
-			case VNCLASS1:
-				table = Q.VNCLASS1.TABLE;
-				if (selection != null)
-				{
-					selection += " AND ";
-				}
-				else
-				{
-					selection = "";
-				}
-				selection += Q.VNCLASS1.SELECTION.replaceAll("#\\{uri_last\\}", uriLast);
-				break;
+            else -> return null
+        }
+        return Result(table, projection0, selection, selectionArgs0, groupBy)
+    }
 
-			// J O I N S
+    @JvmStatic
+    fun querySearch(code: Int, projection0: Array<String>?, selection0: String?, selectionArgs0: Array<String>?): Result? {
+        val table: String
+        var groupBy: String? = null
+        when (code) {
+            LOOKUP_FTS_EXAMPLES -> table = Q.LOOKUP_FTS_EXAMPLES.TABLE
+            LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE -> {
+                table = Q.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE.TABLE
+                groupBy = V.EXAMPLEID
+            }
 
-			case WORDS_VNCLASSES:
-				table = Q.WORDS_VNCLASSES.TABLE;
-				break;
+            LOOKUP_FTS_EXAMPLES_X -> table = Q.LOOKUP_FTS_EXAMPLES_X.TABLE
+            else -> return null
+        }
+        return Result(table, projection0, selection0, selectionArgs0, groupBy)
+    }
 
-			case VNCLASSES_VNMEMBERS_X_BY_WORD:
-				table = Q.VNCLASSES_VNMEMBERS_X_BY_WORD.TABLE;
-				groupBy = V.VNWORDID;
-				break;
+    @JvmStatic
+    fun querySuggest(code: Int, uriLast: String): Result? {
+        val table: String
+        val projection: Array<String>
+        val selection: String
+        val selectionArgs: Array<String>
+        when (code) {
+            SUGGEST_WORDS -> {
+                if (SearchManager.SUGGEST_URI_PATH_QUERY == uriLast) {
+                    return null
+                }
+                table = Q.SUGGEST_WORDS.TABLE
+                projection = Q.SUGGEST_WORDS.PROJECTION
+                projection[1] = projection[1].replace("#\\{suggest_text_1\\}".toRegex(), SearchManager.SUGGEST_COLUMN_TEXT_1)
+                projection[2] = projection[2].replace("#\\{suggest_query\\}".toRegex(), SearchManager.SUGGEST_COLUMN_QUERY)
+                selection = Q.SUGGEST_WORDS.SELECTION
+                selectionArgs = arrayOf(Q.SUGGEST_WORDS.ARGS[0].replace("#\\{uri_last\\}".toRegex(), uriLast))
+            }
 
-			case VNCLASSES_VNROLES_X_BY_VNROLE:
-				table = Q.VNCLASSES_VNROLES_X_BY_VNROLE.TABLE;
-				groupBy = V.ROLEID;
-				break;
+            SUGGEST_FTS_WORDS -> {
+                if (SearchManager.SUGGEST_URI_PATH_QUERY == uriLast) {
+                    return null
+                }
+                table = Q.SUGGEST_FTS_WORDS.TABLE
+                projection = Q.SUGGEST_FTS_WORDS.PROJECTION
+                projection[1] = projection[1].replace("#\\{suggest_text_1\\}".toRegex(), SearchManager.SUGGEST_COLUMN_TEXT_1)
+                projection[2] = projection[2].replace("#\\{suggest_query\\}".toRegex(), SearchManager.SUGGEST_COLUMN_QUERY)
+                selection = Q.SUGGEST_FTS_WORDS.SELECTION
+                selectionArgs = arrayOf(Q.SUGGEST_FTS_WORDS.ARGS[0].replace("#\\{uri_last\\}".toRegex(), uriLast))
+            }
 
-			case VNCLASSES_VNFRAMES_X_BY_VNFRAME:
-				table = Q.VNCLASSES_VNFRAMES_X_BY_VNFRAME.TABLE;
-				groupBy = V.FRAMEID;
-				break;
+            else -> return null
+        }
+        return Result(table, projection, selection, selectionArgs, null)
+    }
 
-			default:
-				return null;
-		}
-		return new Result(table, projection0, selection, selectionArgs0, groupBy);
-	}
-
-	@Nullable
-	public static Result querySearch(final int code, final String[] projection0, final String selection0, final String[] selectionArgs0)
-	{
-		String table;
-		String groupBy = null;
-
-		switch (code)
-		{
-			case LOOKUP_FTS_EXAMPLES:
-				table = Q.LOOKUP_FTS_EXAMPLES.TABLE;
-				break;
-
-			case LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE:
-				table = Q.LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE.TABLE;
-				groupBy = V.EXAMPLEID;
-				break;
-
-			case LOOKUP_FTS_EXAMPLES_X:
-				table = Q.LOOKUP_FTS_EXAMPLES_X.TABLE;
-				break;
-
-			default:
-				return null;
-		}
-		return new Result(table, projection0, selection0, selectionArgs0, groupBy);
-	}
-
-	@Nullable
-	public static Result querySuggest(final int code, @NonNull final String uriLast)
-	{
-		String table;
-		String[] projection;
-		String selection;
-		String[] selectionArgs;
-
-		switch (code)
-		{
-			case SUGGEST_WORDS:
-			{
-				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(uriLast))
-				{
-					return null;
-				}
-				table = Q.SUGGEST_WORDS.TABLE;
-				projection = Q.SUGGEST_WORDS.PROJECTION;
-				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}", SearchManager.SUGGEST_COLUMN_TEXT_1);
-				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}", SearchManager.SUGGEST_COLUMN_QUERY);
-				selection = Q.SUGGEST_WORDS.SELECTION;
-				selectionArgs = new String[]{Q.SUGGEST_WORDS.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
-				break;
-			}
-
-			case SUGGEST_FTS_WORDS:
-			{
-				if (SearchManager.SUGGEST_URI_PATH_QUERY.equals(uriLast))
-				{
-					return null;
-				}
-				table = Q.SUGGEST_FTS_WORDS.TABLE;
-				projection = Q.SUGGEST_FTS_WORDS.PROJECTION;
-				projection[1] = projection[1].replaceAll("#\\{suggest_text_1\\}", SearchManager.SUGGEST_COLUMN_TEXT_1);
-				projection[2] = projection[2].replaceAll("#\\{suggest_query\\}", SearchManager.SUGGEST_COLUMN_QUERY);
-				selection = Q.SUGGEST_FTS_WORDS.SELECTION;
-				selectionArgs = new String[]{Q.SUGGEST_FTS_WORDS.ARGS[0].replaceAll("#\\{uri_last\\}", uriLast)};
-				break;
-			}
-
-			default:
-				return null;
-		}
-		return new Result(table, projection, selection, selectionArgs, null);
-	}
+    class Result(@JvmField val table: String, @JvmField val projection: Array<String>?, @JvmField val selection: String?, @JvmField val selectionArgs: Array<String>?, @JvmField val groupBy: String?)
 }
