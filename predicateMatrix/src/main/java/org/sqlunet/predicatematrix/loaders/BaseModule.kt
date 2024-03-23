@@ -134,7 +134,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      * @param pmRole        PredicateMatrix role
      * @param pmPos         PredicateMatrix pos
      */
-    internal open class PmRole(
+    open class PmRole(
         val pmPredicateId: Long,
         val pmRoleId: Long,
         private val pmPredicate: String,
@@ -201,11 +201,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
     }
 
     /**
-     * PredicateMatrix row
-     */
-    internal class PmRow
-    /**
-     * Constructor
+     * PredicateMatrix row/role
      *
      * @param pmId          PredicateMatrix row id
      * @param pmPredicateId PredicateMatrix predicate id
@@ -213,13 +209,12 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      * @param pmPredicate   PredicateMatrix predicate
      * @param pmRole        PredicateMatrix role
      * @param pmPos         PredicateMatrix pos
-     */(
-        /**
-         * PredicateMatrix row id
-         */
+     */
+    class PmRow(
         private val pmId: Long,
         pmPredicateId: Long, pmRoleId: Long, pmPredicate: String, pmRole: String?, pmPos: String?,
     ) : PmRole(pmPredicateId, pmRoleId, pmPredicate, pmRole, pmPos) {
+
         override fun toString(): String {
             return '['.toString() + pmId.toString() + ']' + '-' + super.toString()
         }
@@ -235,7 +230,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      * @param synsetId   synset id
      * @param definition definition
      */
-    internal class WnData(val synsetId: Long, val definition: String) : Comparable<WnData> {
+    class WnData(val synsetId: Long, val definition: String) : Comparable<WnData> {
 
         override fun compareTo(other: WnData): Int {
             return if (synsetId != other.synsetId) {
@@ -267,7 +262,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      * @param vnClass   class
      * @param vnRole    role
      */
-    internal class VnData(
+    class VnData(
         val vnClassId: Long,
         val vnRoleId: Long,
         val vnClass: String?,
@@ -318,7 +313,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      * @param pbRole         role
      * @param pbRoleDescr    role description
      */
-    internal class PbData(
+    class PbData(
         val pbRoleSetId: Long,
         val pbRoleId: Long,
         val pbRoleSet: String?,
@@ -364,7 +359,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
     /**
      * FrameNet data
      */
-    internal class FnData
+    class FnData
     /**
      * Constructor
      *
@@ -715,7 +710,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
     /**
      * Abstract displayer
      */
-    internal abstract inner class Displayer {
+    abstract inner class Displayer {
         /**
          * Display
          *

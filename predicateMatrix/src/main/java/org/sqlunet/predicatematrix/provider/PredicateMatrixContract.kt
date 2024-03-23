@@ -70,6 +70,7 @@ object PredicateMatrixContract {
         const val FNFETYPE = V._FNFETYPE
         const val FNFEABBREV = V._FNFEABBREV
         const val FNFEDEFINITION = V._FNFEDEFINITION
+        const val PBROLEID = PredicateMatrix.PBROLEID
         // const val FNLEXUNIT = V._FNLEXUNIT
         // const val FNLUDEFINITION = V._FNLUDEFINITION
         // const val FNLUDICT = V._FNLUDICT

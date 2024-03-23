@@ -112,7 +112,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      *
      * @param word word	 * @param parent parent node
      */
-    fun collocations(word: String?, parent: TreeNode) {
+    fun collocations(word: String, parent: TreeNode) {
         val sql = Queries.prepareCollocations(word)
         val uri = Uri.parse(SyntagNetProvider.makeUri(sql.providerUri))
         collocationsFromWordModel.loadData(uri, sql) { cursor: Cursor -> collocationsCursorToTreeModel(cursor, parent) }
