@@ -1,40 +1,34 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.propbank.style
 
-package org.sqlunet.propbank.style;
-
-import android.content.Context;
-import android.graphics.Color;
-
-import org.sqlunet.propbank.R;
-
-import androidx.annotation.NonNull;
+import android.content.Context
+import android.graphics.Color
+import org.sqlunet.propbank.R
 
 /**
  * Color values
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class Colors
-{
-	static public int thetaBackColor = Color.TRANSPARENT;
-	static public int thetaForeColor = Color.TRANSPARENT;
+object Colors {
+    @JvmField
+    var thetaBackColor = Color.TRANSPARENT
+    @JvmField
+    var thetaForeColor = Color.TRANSPARENT
+    @JvmField
+    var relationBackColor = Color.TRANSPARENT
+    @JvmField
+    var relationForeColor = Color.TRANSPARENT
 
-	static public int relationBackColor = Color.TRANSPARENT;
-	static public int relationForeColor = Color.TRANSPARENT;
-
-	static public void setColorsFromResources(@NonNull final Context context)
-	{
-		// do not reorder : dependent on resource array order
-
-		int[] palette = context.getResources().getIntArray(R.array.palette_pb);
-		int i = 0;
-		thetaBackColor = palette[i++];
-		thetaForeColor = palette[i++];
-
-		relationBackColor = palette[i++];
-		//noinspection UnusedAssignment
-		relationForeColor = palette[i++];
-	}
+    fun setColorsFromResources(context: Context) {
+        // do not reorder : dependent on resource array order
+        val palette = context.resources.getIntArray(R.array.palette_pb)
+        var i = 0
+        thetaBackColor = palette[i++]
+        thetaForeColor = palette[i++]
+        relationBackColor = palette[i++]
+        relationForeColor = palette[i++]
+    }
 }

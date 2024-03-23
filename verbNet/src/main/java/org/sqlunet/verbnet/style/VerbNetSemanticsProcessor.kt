@@ -1,32 +1,22 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.verbnet.style
 
-package org.sqlunet.verbnet.style;
-
-import org.sqlunet.style.Preprocessor;
+import org.sqlunet.style.Preprocessor
 
 /**
  * VerbNet preprocessor
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class VerbNetSemanticsProcessor extends Preprocessor
-{
-	// static final String TAG = "VerbNetSemanticsProcessor";
-	/**
-	 * Replacers
-	 */
-	static private final String[] replacers = { //
-			// "([^\\(\n]*)\\((.*)\\)","<pred>$1</pred> ($2)",
-			// "(event:E|(?:start|end|result)\\(E\\))","<event>$1</event>"
-	};
+object VerbNetSemanticsProcessor : Preprocessor() {
 
-	/**
-	 * Constructor
-	 */
-	public VerbNetSemanticsProcessor()
-	{
-		super(VerbNetSemanticsProcessor.replacers);
-	}
+    /**
+     * Replacers
+     */
+    private val replacers = arrayOf<String>(
+        // "([^\\(\n]*)\\((.*)\\)","<pred>$1</pred> ($2)",
+        // "(event:E|(?:start|end|result)\\(E\\))","<event>$1</event>"
+    )
 }

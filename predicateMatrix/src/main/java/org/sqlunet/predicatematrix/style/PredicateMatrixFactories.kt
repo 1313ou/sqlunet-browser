@@ -1,35 +1,33 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.predicatematrix.style
 
-package org.sqlunet.predicatematrix.style;
+import android.graphics.Typeface
+import android.text.style.StyleSpan
+import org.sqlunet.style.Factories
+import org.sqlunet.style.Factories.spans
+import org.sqlunet.style.Spanner
 
-import android.graphics.Typeface;
-import android.text.style.StyleSpan;
+object PredicateMatrixFactories {
+    // name
+    val nameFactory = Spanner.SpanFactory { _: Long -> spans(Colors.predicateNameBackColor, Colors.predicateNameForeColor, StyleSpan(Typeface.BOLD)) }
 
-import org.sqlunet.style.Factories;
-import org.sqlunet.style.Spanner.SpanFactory;
+    // group
+    val groupFactory = Spanner.SpanFactory { _: Long -> spans(Colors.groupBackColor, Colors.groupForeColor, StyleSpan(Typeface.BOLD)) }
 
-public class PredicateMatrixFactories
-{
-	// name
-	static public final SpanFactory nameFactory = flags -> Factories.spans(Colors.predicateNameBackColor, Colors.predicateNameForeColor, new StyleSpan(Typeface.BOLD));
+    // definition
+    val definitionFactory = Factories.definitionFactory
 
-	// group
-	static public final SpanFactory groupFactory = flags -> Factories.spans(Colors.groupBackColor, Colors.groupForeColor, new StyleSpan(Typeface.BOLD));
+    // class
+    val classFactory = Factories.classFactory
 
-	// definition
-	static public final SpanFactory definitionFactory = Factories.definitionFactory;
+    // role
+    val roleFactory = Factories.roleFactory
 
-	// class
-	static public final SpanFactory classFactory = Factories.classFactory;
+    // role alias
+    val roleAliasFactory = Spanner.SpanFactory { _: Long -> spans(Colors.roleAliasBackColor, Colors.roleAliasForeColor, StyleSpan(Typeface.BOLD)) }
 
-	// role
-	static public final SpanFactory roleFactory = Factories.roleFactory;
-
-	// role alias
-	static public final SpanFactory roleAliasFactory = flags -> Factories.spans(Colors.roleAliasBackColor, Colors.roleAliasForeColor, new StyleSpan(Typeface.BOLD));
-
-	// data
-	static public final SpanFactory dataFactory = Factories.dataFactory;
+    // data
+    val dataFactory = Factories.dataFactory
 }

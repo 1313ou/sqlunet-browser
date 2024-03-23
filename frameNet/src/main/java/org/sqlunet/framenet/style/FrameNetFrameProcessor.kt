@@ -1,30 +1,21 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.framenet.style
 
-package org.sqlunet.framenet.style;
-
-import org.sqlunet.style.Preprocessor;
+import org.sqlunet.style.Preprocessor
 
 /**
  * FrameNet frame preprocessor
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class FrameNetFrameProcessor extends Preprocessor
-{
-	// static final String TAG = "FrameNetProcessor";
-	/**
-	 * Replacers for preprocessor
-	 */
-	static private final String[] replacers = { //
-			"<fex name=[\"']([^\"']+)[\"']>([^<]*)</fex>", "<fex>$2</fex> <xfen>[$1]</xfen>",};
+object FrameNetFrameProcessor : Preprocessor() {
 
-	/**
-	 * Constructor
-	 */
-	public FrameNetFrameProcessor()
-	{
-		super(FrameNetFrameProcessor.replacers);
-	}
+    /**
+     * Replacers for preprocessor
+     */
+    private val replacers = arrayOf( //
+        "<fex name=[\"']([^\"']+)[\"']>([^<]*)</fex>", "<fex>$2</fex> <xfen>[$1]</xfen>"
+    )
 }

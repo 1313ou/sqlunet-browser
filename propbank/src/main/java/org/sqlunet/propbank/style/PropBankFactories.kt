@@ -1,31 +1,25 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.propbank.style
 
-package org.sqlunet.propbank.style;
-
-import android.graphics.Typeface;
-import android.text.style.StyleSpan;
-
-import org.sqlunet.style.Factories;
-import org.sqlunet.style.Spanner.SpanFactory;
+import android.graphics.Typeface
+import android.text.style.StyleSpan
+import org.sqlunet.style.Factories
+import org.sqlunet.style.Factories.spans
+import org.sqlunet.style.Spanner
 
 /**
  * Span factories for PropBank
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class PropBankFactories
-{
-	static public final SpanFactory roleSetFactory = Factories.classFactory;
+object PropBankFactories {
 
-	static public final SpanFactory roleFactory = Factories.roleFactory;
-
-	static public final SpanFactory thetaFactory = flags -> Factories.spans(Colors.thetaBackColor, Colors.thetaForeColor, new StyleSpan(Typeface.BOLD));
-
-	static public final SpanFactory definitionFactory = Factories.definitionFactory;
-
-	static public final SpanFactory exampleFactory = Factories.exampleFactory;
-
-	static public final SpanFactory relationFactory = flags -> Factories.spans(Colors.relationBackColor, Colors.relationForeColor, new StyleSpan(Typeface.BOLD));
+    val roleSetFactory = Factories.classFactory
+    val roleFactory = Factories.roleFactory
+    val thetaFactory = Spanner.SpanFactory { _: Long -> spans(Colors.thetaBackColor, Colors.thetaForeColor, StyleSpan(Typeface.BOLD)) }
+    val definitionFactory = Factories.definitionFactory
+    val exampleFactory = Factories.exampleFactory
+    val relationFactory = Spanner.SpanFactory { _: Long -> spans(Colors.relationBackColor, Colors.relationForeColor, StyleSpan(Typeface.BOLD)) }
 }

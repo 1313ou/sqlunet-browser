@@ -1,72 +1,59 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.verbnet.style
 
-package org.sqlunet.verbnet.style;
-
-import android.graphics.Typeface;
-import android.text.style.StyleSpan;
-
-import org.sqlunet.style.Factories;
-import org.sqlunet.style.Spanner.SpanFactory;
-
-import androidx.annotation.Nullable;
+import android.graphics.Typeface
+import android.text.style.StyleSpan
+import org.sqlunet.style.Factories
+import org.sqlunet.style.Factories.spans
+import org.sqlunet.style.Spanner
 
 /**
  * VerbNet span factories
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class VerbNetFactories
-{
-	// class
+object VerbNetFactories {
 
-	static public final SpanFactory classFactory = Factories.classFactory;
+    // class
+    val classFactory = Factories.classFactory
 
-	// member
+    // member
+    val memberFactory = Factories.memberFactory
 
-	static public final SpanFactory memberFactory = Factories.memberFactory;
+    // definition
+    val definitionFactory = Factories.definitionFactory
 
-	// definition
+    // groupings
+    val groupingFactory = Spanner.SpanFactory { _: Long -> spans(Colors.groupingBackColor, Colors.groupingForeColor) }
 
-	static public final SpanFactory definitionFactory = Factories.definitionFactory;
+    // role
+    val roleFactory = Factories.roleFactory
+    @JvmField
+    val themroleFactory = Spanner.SpanFactory { _: Long -> spans(Colors.themroleBackColor, Colors.themroleForeColor) }
 
-	// groupings
+    // frame
+    val frameFactory = Spanner.SpanFactory { _: Long -> spans(Colors.vnFrameBackColor, Colors.vnFrameForeColor, StyleSpan(Typeface.BOLD)) }
+    val framesubnameFactory = Spanner.SpanFactory { _: Long -> spans(Colors.vnFrameSubnameBackColor, Colors.vnFrameSubnameForeColor) }
+    @JvmField
+    val catFactory = Spanner.SpanFactory { _: Long -> spans(Colors.catBackColor, Colors.catForeColor) }
+    @JvmField
+    val catValueFactory = Spanner.SpanFactory { _: Long -> spans(Colors.catValueBackColor, Colors.catValueForeColor) }
 
-	static public final SpanFactory groupingFactory = flags -> Factories.spans(Colors.groupingBackColor, Colors.groupingForeColor);
+    // semantics
+    @JvmField
+    val predicateFactory = Spanner.SpanFactory { _: Long -> spans(Colors.vnPredicateBackColor, Colors.vnPredicateForeColor) }
+    @JvmField
+    val argsFactory: Spanner.SpanFactory = Spanner.SpanFactory { _: Long -> null }
+    @JvmField
+    val constantFactory = Spanner.SpanFactory { _: Long -> spans(Colors.constantBackColor, Colors.constantForeColor) }
+    @JvmField
+    val eventFactory = Spanner.SpanFactory { _: Long -> spans(Colors.eventBackColor, Colors.eventForeColor) }
 
-	// role
+    // restrs
+    val restrsFactory = Spanner.SpanFactory { _: Long -> spans(Colors.restrBackColor, Colors.restrForeColor) }
 
-	static public final SpanFactory roleFactory = Factories.roleFactory;
-
-	static final SpanFactory themroleFactory = flags -> Factories.spans(Colors.themroleBackColor, Colors.themroleForeColor);
-
-	// frame
-
-	static public final SpanFactory frameFactory = flags -> Factories.spans(Colors.vnFrameBackColor, Colors.vnFrameForeColor, new StyleSpan(Typeface.BOLD));
-
-	static public final SpanFactory framesubnameFactory = flags -> Factories.spans(Colors.vnFrameSubnameBackColor, Colors.vnFrameSubnameForeColor);
-
-	static final SpanFactory catFactory = flags -> Factories.spans(Colors.catBackColor, Colors.catForeColor);
-
-	static final SpanFactory catValueFactory = flags -> Factories.spans(Colors.catValueBackColor, Colors.catValueForeColor);
-
-	// semantics
-
-	static final SpanFactory predicateFactory = flags -> Factories.spans(Colors.vnPredicateBackColor, Colors.vnPredicateForeColor);
-
-	@Nullable
-	static final SpanFactory argsFactory = flags -> null;
-
-	static final SpanFactory constantFactory = flags -> Factories.spans(Colors.constantBackColor, Colors.constantForeColor);
-
-	static final SpanFactory eventFactory = flags -> Factories.spans(Colors.eventBackColor, Colors.eventForeColor);
-
-	// restrs
-
-	static public final SpanFactory restrsFactory = flags -> Factories.spans(Colors.restrBackColor, Colors.restrForeColor);
-
-	// example
-
-	static public final SpanFactory exampleFactory = Factories.exampleFactory;
+    // example
+    val exampleFactory = Factories.exampleFactory
 }

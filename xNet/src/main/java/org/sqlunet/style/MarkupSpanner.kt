@@ -37,8 +37,8 @@ object MarkupSpanner : Spanner() {
             while (xmatcher.find()) {
                 val n = xmatcher.groupCount()
                 if (n == 3) {
-                    val headTag = xmatcher.group(1)
-                    val tailTag = xmatcher.group(3)
+                    val headTag = xmatcher.group(1)!!
+                    val tailTag = xmatcher.group(3)!!
 
                     // start
                     val startSpans = spanFactory.makeSpans(headTag, flags or SpanPosition.TAG1.flags().toLong())
@@ -67,8 +67,8 @@ object MarkupSpanner : Spanner() {
         while (matcher.find()) {
             val n = matcher.groupCount()
             if (n == 3) {
-                val headTag = matcher.group(1)
-                val tailTag = matcher.group(3)
+                val headTag = matcher.group(1)!!
+                val tailTag = matcher.group(3)!!
 
                 // <tag>
                 val startSpans = spanFactory.makeSpans(headTag, flags or SpanPosition.TAG1.flags().toLong())
@@ -116,7 +116,7 @@ object MarkupSpanner : Spanner() {
      * @author [Bernard Bou](mailto:1313ou@gmail.com)
      */
     fun interface SpanFactory {
-        fun makeSpans(selector: String?, flags: Long): Any?
+        fun makeSpans(selector: String, flags: Long): Any?
     }
 
     /**

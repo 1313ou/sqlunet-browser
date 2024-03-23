@@ -1,69 +1,52 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.framenet.style
 
-package org.sqlunet.framenet.style;
-
-import android.graphics.Typeface;
-import android.text.style.StyleSpan;
-
-import org.sqlunet.style.Factories;
-import org.sqlunet.style.Spanner.SpanFactory;
+import android.graphics.Typeface
+import android.text.style.StyleSpan
+import org.sqlunet.style.Factories
+import org.sqlunet.style.Factories.spans
+import org.sqlunet.style.Spanner
 
 /**
  * FrameNet span factories
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class FrameNetFactories
-{
-	static public final SpanFactory boldFactory = Factories.boldFactory;
+object FrameNetFactories {
+    val boldFactory = Factories.boldFactory
+    val dataFactory = Factories.dataFactory
 
-	static public final SpanFactory dataFactory = Factories.dataFactory;
+    // frame
+    val frameFactory = Factories.classFactory
+    val metaFrameDefinitionFactory = Spanner.SpanFactory { _: Long -> spans(Colors.metaFrameDefinitionBackColor, Colors.metaFrameDefinitionForeColor, StyleSpan(Typeface.ITALIC)) }
 
-	// frame
-	static public final SpanFactory frameFactory = Factories.classFactory;
+    // lex unit
+    val lexunitFactory = Factories.memberFactory
+    val definitionFactory = Factories.definitionFactory
 
-	static public final SpanFactory metaFrameDefinitionFactory = flags -> Factories.spans(Colors.metaFrameDefinitionBackColor, Colors.metaFrameDefinitionForeColor, new StyleSpan(Typeface.ITALIC));
+    // fe
+    val feFactory = Factories.roleFactory
+    val fe2Factory = Spanner.SpanFactory { _: Long -> spans(Colors.fe2BackColor, Colors.fe2ForeColor, StyleSpan(Typeface.BOLD)) }
+    val feAbbrevFactory = Spanner.SpanFactory { _: Long -> spans(Colors.feAbbrevBackColor, Colors.feAbbrevForeColor) }
+    val metaFeDefinitionFactory = Spanner.SpanFactory { _: Long -> spans(Colors.metaFeDefinitionBackColor, Colors.metaFeDefinitionForeColor, StyleSpan(Typeface.ITALIC)) }
 
-	// lex unit
-	static public final SpanFactory lexunitFactory = Factories.memberFactory;
+    // sentence
+    val sentenceFactory = Factories.exampleFactory
 
-	static public final SpanFactory definitionFactory = Factories.definitionFactory;
+    // governor
+    val governorTypeFactory = Spanner.SpanFactory { _: Long -> spans(Colors.governorTypeBackColor, Colors.governorTypeForeColor, StyleSpan(Typeface.BOLD)) }
+    val governorFactory = Spanner.SpanFactory { _: Long -> spans(Colors.governorBackColor, Colors.governorForeColor, StyleSpan(Typeface.BOLD)) }
 
-	// fe
-	static public final SpanFactory feFactory = Factories.roleFactory;
-
-	static public final SpanFactory fe2Factory = flags -> Factories.spans(Colors.fe2BackColor, Colors.fe2ForeColor, new StyleSpan(Typeface.BOLD));
-
-	static public final SpanFactory feAbbrevFactory = flags -> Factories.spans(Colors.feAbbrevBackColor, Colors.feAbbrevForeColor);
-
-	static public final SpanFactory metaFeDefinitionFactory = flags -> Factories.spans(Colors.metaFeDefinitionBackColor, Colors.metaFeDefinitionForeColor, new StyleSpan(Typeface.ITALIC));
-
-	// sentence
-	static public final SpanFactory sentenceFactory = Factories.exampleFactory;
-
-	// governor
-	static public final SpanFactory governorTypeFactory = flags -> Factories.spans(Colors.governorTypeBackColor, Colors.governorTypeForeColor, new StyleSpan(Typeface.BOLD));
-
-	static public final SpanFactory governorFactory = flags -> Factories.spans(Colors.governorBackColor, Colors.governorForeColor, new StyleSpan(Typeface.BOLD));
-
-	// annotations
-	static public final SpanFactory annoSetFactory = flags -> Factories.spans(Colors.annoSetBackColor, Colors.annoSetForeColor, new StyleSpan(Typeface.BOLD));
-
-	static public final SpanFactory layerTypeFactory = flags -> Factories.spans(Colors.layerTypeBackColor, Colors.layerTypeForeColor, new StyleSpan(Typeface.BOLD));
-
-	static public final SpanFactory labelFactory = flags -> Factories.spans(Colors.labelBackColor, Colors.labelForeColor, new StyleSpan(Typeface.BOLD));
-
-	static public final SpanFactory subtextFactory = flags -> Factories.spans(Colors.subtextBackColor, Colors.subtextForeColor, new StyleSpan(Typeface.ITALIC));
-
-	static public final SpanFactory targetFactory = flags -> Factories.spans(Colors.targetBackColor, Colors.targetForeColor, new StyleSpan(Typeface.BOLD));
-
-	static public final SpanFactory highlightTextFactory = flags -> Factories.spans(org.sqlunet.style.Colors.textHighlightBackColor, org.sqlunet.style.Colors.textHighlightForeColor, new StyleSpan(Typeface.NORMAL));
-
-	static public final SpanFactory targetHighlightTextFactory = flags -> Factories.spans(Colors.targetHighlightTextBackColor, Colors.targetHighlightTextForeColor, new StyleSpan(Typeface.BOLD));
-
-	static public final SpanFactory ptFactory = flags -> Factories.spans(Colors.ptBackColor, Colors.ptForeColor, new StyleSpan(Typeface.BOLD));
-
-	static public final SpanFactory gfFactory = flags -> Factories.spans(Colors.gfBackColor, Colors.gfForeColor);
+    // annotations
+    val annoSetFactory = Spanner.SpanFactory { _: Long -> spans(Colors.annoSetBackColor, Colors.annoSetForeColor, StyleSpan(Typeface.BOLD)) }
+    val layerTypeFactory = Spanner.SpanFactory { _: Long -> spans(Colors.layerTypeBackColor, Colors.layerTypeForeColor, StyleSpan(Typeface.BOLD)) }
+    val labelFactory = Spanner.SpanFactory { _: Long -> spans(Colors.labelBackColor, Colors.labelForeColor, StyleSpan(Typeface.BOLD)) }
+    val subtextFactory = Spanner.SpanFactory { _: Long -> spans(Colors.subtextBackColor, Colors.subtextForeColor, StyleSpan(Typeface.ITALIC)) }
+    val targetFactory = Spanner.SpanFactory { _: Long -> spans(Colors.targetBackColor, Colors.targetForeColor, StyleSpan(Typeface.BOLD)) }
+    val highlightTextFactory = Spanner.SpanFactory { _: Long -> spans(org.sqlunet.style.Colors.textHighlightBackColor, org.sqlunet.style.Colors.textHighlightForeColor, StyleSpan(Typeface.NORMAL)) }
+    val targetHighlightTextFactory = Spanner.SpanFactory { _: Long -> spans(Colors.targetHighlightTextBackColor, Colors.targetHighlightTextForeColor, StyleSpan(Typeface.BOLD)) }
+    val ptFactory = Spanner.SpanFactory { _: Long -> spans(Colors.ptBackColor, Colors.ptForeColor, StyleSpan(Typeface.BOLD)) }
+    val gfFactory = Spanner.SpanFactory { _: Long -> spans(Colors.gfBackColor, Colors.gfForeColor) }
 }
