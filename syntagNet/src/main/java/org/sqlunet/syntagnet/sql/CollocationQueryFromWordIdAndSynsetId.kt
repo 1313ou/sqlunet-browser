@@ -1,34 +1,29 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.syntagnet.sql
 
-package org.sqlunet.syntagnet.sql;
-
-import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatabase
 
 /**
  * SyntagNet Collocation query from word id and synset id
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param connection connection
+ * @param wordid     target word id
+ * @param synsetid   target synset id
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class CollocationQueryFromWordIdAndSynsetId extends BaseCollocationQuery
-{
-	/**
-	 * <code>QUERY</code> is the SQL statement
-	 */
-	static private final String QUERY = SqLiteDialect.SyntagNetCollocationQueryFromWordIdAndSynsetId;
+internal class CollocationQueryFromWordIdAndSynsetId(connection: SQLiteDatabase?, wordid: Long, synsetid: Long) : BaseCollocationQuery(connection, QUERY) {
 
-	/**
-	 * Constructor
-	 *
-	 * @param connection connection
-	 * @param wordid     target word id
-	 * @param synsetid   target synset id
-	 */
-	@SuppressWarnings("boxing")
-	public CollocationQueryFromWordIdAndSynsetId(final SQLiteDatabase connection, final long wordid, final long synsetid)
-	{
-		super(connection, CollocationQueryFromWordIdAndSynsetId.QUERY);
-		setParams(wordid, synsetid, wordid, synsetid);
-	}
+    init {
+        setParams(wordid, synsetid, wordid, synsetid)
+    }
+
+    companion object {
+        /**
+         * `QUERY` is the SQL statement
+         */
+        private const val QUERY = SqLiteDialect.SyntagNetCollocationQueryFromWordIdAndSynsetId
+    }
 }

@@ -1,310 +1,206 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.syntagnet.sql
 
-package org.sqlunet.syntagnet.sql;
-
-import android.database.sqlite.SQLiteDatabase;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import androidx.annotation.NonNull;
+import android.database.sqlite.SQLiteDatabase
 
 /**
  * SyntagNet collocation
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param word1Id   word 1 id
+ * @param word2Id   word 2 id
+ * @param synset1Id synset 1 id
+ * @param synset2Id synset 2 id
+ * @param word1     word 1
+ * @param word2     word 2
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class Collocation
-{
-	static class WithDefinitionAndPos extends Collocation
-	{
-		/**
-		 * POS 1
-		 */
-		@SuppressWarnings("WeakerAccess")
-		public final char pos1;
+internal open class Collocation private constructor(
+    @JvmField val collocationId: Long,
+    @JvmField val word1Id: Long,
+    @JvmField val word2Id: Long,
+    @JvmField val synset1Id: Long,
+    @JvmField val synset2Id: Long,
+    @JvmField val word1: String,
+    @JvmField val word2: String,
+) {
+    internal class WithDefinitionAndPos(
+        collocationId: Long, word1Id: Long, word2Id: Long, synset1Id: Long, synset2Id: Long, word1: String, word2: String,
+        @JvmField val pos1: Char,
+        @JvmField val pos2: Char,
+        @JvmField val definition1: String,
+        @JvmField val definition2: String,
+    ) : Collocation(collocationId, word1Id, word2Id, synset1Id, synset2Id, word1, word2) {
 
-		/**
-		 * POS 2
-		 */
-		@SuppressWarnings("WeakerAccess")
-		public final char pos2;
+        companion object {
 
-		/**
-		 * Definition 1
-		 */
-		@SuppressWarnings("WeakerAccess")
-		public final String definition1;
+            /**
+             * Make sets of SyntagNet collocations from query built from word
+             *
+             * @param connection connection
+             * @param targetWord is the word to build query from
+             * @return list of SyntagNet collocations
+             */
+            @JvmStatic
+            fun makeFromWord(connection: SQLiteDatabase?, targetWord: String?): List<WithDefinitionAndPos> {
+                val result: MutableList<WithDefinitionAndPos> = ArrayList()
+                CollocationQueryFromWord(connection, targetWord).use { query ->
+                    query.execute()
+                    while (query.next()) {
+                        val collocation = makeCollocationWithDefinitionAndPos(query)
+                        result.add(collocation)
+                    }
+                    return result
+                }
+            }
 
-		/**
-		 * Definition 2
-		 */
-		@SuppressWarnings("WeakerAccess")
-		public final String definition2;
+            /**
+             * Make sets of SyntagNet collocations from query built from word id
+             *
+             * @param connection   connection
+             * @param targetWordId is the word id to build query from
+             * @return list of SyntagNet collocations
+             */
+            @JvmStatic
+            fun makeFromWordId(connection: SQLiteDatabase?, targetWordId: Long): List<WithDefinitionAndPos> {
+                val result: MutableList<WithDefinitionAndPos> = ArrayList()
+                CollocationQueryFromWordId(connection, targetWordId).use { query ->
+                    query.execute()
+                    while (query.next()) {
+                        val collocation = makeCollocationWithDefinitionAndPos(query)
+                        result.add(collocation)
+                    }
+                }
+                return result
+            }
 
-		WithDefinitionAndPos(final long collocationId, final long word1Id, final long word2Id, final long synset1Id, final long synset2Id, final String word1, final String word2, final char pos1, final char pos2, final String definition1, final String definition2)
-		{
-			super(collocationId, word1Id, word2Id, synset1Id, synset2Id, word1, word2);
-			this.pos1 = pos1;
-			this.pos2 = pos2;
-			this.definition1 = definition1;
-			this.definition2 = definition2;
-		}
+            /**
+             * Make sets of SyntagNet collocations from query built from word ids
+             *
+             * @param connection    connection
+             * @param targetWordId  is the word id to build query from
+             * @param targetWord2Id is the word 2 id to build query from
+             * @return list of SyntagNet collocations
+             */
+            @JvmStatic
+            fun makeFromWordIds(connection: SQLiteDatabase?, targetWordId: Long, targetWord2Id: Long): List<WithDefinitionAndPos> {
+                val result: MutableList<WithDefinitionAndPos> = ArrayList()
+                CollocationQueryFromWordIds(connection, targetWordId, targetWord2Id).use { query ->
+                    query.execute()
+                    while (query.next()) {
+                        val collocation = makeCollocationWithDefinitionAndPos(query)
+                        result.add(collocation)
+                    }
+                }
+                return result
+            }
 
-		/**
-		 * Make sets of SyntagNet collocations from query built from word
-		 *
-		 * @param connection connection
-		 * @param targetWord is the word to build query from
-		 * @return list of SyntagNet collocations
-		 */
-		@NonNull
-		static List<Collocation.WithDefinitionAndPos> makeFromWord(final SQLiteDatabase connection, final String targetWord)
-		{
-			final List<Collocation.WithDefinitionAndPos> result = new ArrayList<>();
-			try (CollocationQueryFromWord query = new CollocationQueryFromWord(connection, targetWord))
-			{
-				query.execute();
+            /**
+             * Make sets of SyntagNet collocations from query built from word id ad synset id
+             *
+             * @param connection   connection
+             * @param targetWordId is the word id to build query from
+             * @return list of SyntagNet collocations
+             */
+            @JvmStatic
+            fun makeFromWordIdAndSynsetId(connection: SQLiteDatabase?, targetWordId: Long, targetSynsetId: Long): List<WithDefinitionAndPos> {
+                val result: MutableList<WithDefinitionAndPos> = ArrayList()
+                CollocationQueryFromWordIdAndSynsetId(connection, targetWordId, targetSynsetId).use { query ->
+                    query.execute()
+                    while (query.next()) {
+                        val collocation = makeCollocationWithDefinitionAndPos(query)
+                        result.add(collocation)
+                    }
+                }
+                return result
+            }
 
-				while (query.next())
-				{
-					Collocation.WithDefinitionAndPos collocation = makeCollocationWithDefinitionAndPos(query);
-					result.add(collocation);
-				}
-				return result;
-			}
-		}
+            /**
+             * Make sets of SyntagNet collocations from query built from word ids ad synset ids
+             *
+             * @param connection      connection
+             * @param targetWordId    is the word id to build query from
+             * @param targetWord2Id   is the word 2 id to build query from
+             * @param targetSynsetId  is the synset id to build query from
+             * @param targetSynset2Id is the synset 2 id to build query from
+             * @return list of SyntagNet collocations
+             */
+            @JvmStatic
+            fun makeFromWordIdAndSynsetIds(connection: SQLiteDatabase?, targetWordId: Long, targetSynsetId: Long, targetWord2Id: Long, targetSynset2Id: Long): List<WithDefinitionAndPos> {
+                val result: MutableList<WithDefinitionAndPos> = ArrayList()
+                CollocationQueryFromWordIdsAndSynsetIds(connection, targetWordId, targetSynsetId, targetWord2Id, targetSynset2Id).use { query ->
+                    query.execute()
+                    while (query.next()) {
+                        val collocation = makeCollocationWithDefinitionAndPos(query)
+                        result.add(collocation)
+                    }
+                }
+                return result
+            }
 
-		/**
-		 * Make sets of SyntagNet collocations from query built from word id
-		 *
-		 * @param connection   connection
-		 * @param targetWordId is the word id to build query from
-		 * @return list of SyntagNet collocations
-		 */
-		@NonNull
-		static List<Collocation.WithDefinitionAndPos> makeFromWordId(final SQLiteDatabase connection, final long targetWordId)
-		{
-			final List<Collocation.WithDefinitionAndPos> result = new ArrayList<>();
-			try (CollocationQueryFromWordId query = new CollocationQueryFromWordId(connection, targetWordId))
-			{
-				query.execute();
+            /**
+             * Make sets of SyntagNet collocations from query built from collocation id
+             *
+             * @param connection    connection
+             * @param collocationId is the collocation id to build query from
+             * @return list of SyntagNet collocations
+             */
+            @JvmStatic
+            fun make(connection: SQLiteDatabase?, collocationId: Long): List<WithDefinitionAndPos> {
+                val result: MutableList<WithDefinitionAndPos> = ArrayList()
+                CollocationQuery(connection, collocationId).use { query ->
+                    query.execute()
+                    while (query.next()) {
+                        val collocation = makeCollocationWithDefinitionAndPos(query)
+                        result.add(collocation)
+                    }
+                }
+                return result
+            }
 
-				while (query.next())
-				{
-					Collocation.WithDefinitionAndPos collocation = makeCollocationWithDefinitionAndPos(query);
-					result.add(collocation);
-				}
-			}
-			return result;
-		}
+            private fun makeCollocationWithDefinitionAndPos(query: BaseCollocationQuery): WithDefinitionAndPos {
+                val collocationId = query.getId()
+                val word1Id = query.getWord1Id()
+                val word2Id = query.getWord2Id()
+                val synset1Id = query.getSynset1Id()
+                val synset2Id = query.getSynset2Id()
+                val word1 = query.getWord1()
+                val word2 = query.getWord2()
+                val pos1 = query.getPos1()!!
+                val pos2 = query.getPos2()!!
+                val definition1 = query.getDefinition1()
+                val definition2 = query.getDefinition2()
+                return WithDefinitionAndPos(collocationId, word1Id, word2Id, synset1Id, synset2Id, word1, word2, pos1, pos2, definition1, definition2)
+            }
+        }
+    }
 
-		/**
-		 * Make sets of SyntagNet collocations from query built from word ids
-		 *
-		 * @param connection    connection
-		 * @param targetWordId  is the word id to build query from
-		 * @param targetWord2Id is the word 2 id to build query from
-		 * @return list of SyntagNet collocations
-		 */
-		@NonNull
-		static public List<WithDefinitionAndPos> makeFromWordIds(final SQLiteDatabase connection, final long targetWordId, final long targetWord2Id)
-		{
-			final List<Collocation.WithDefinitionAndPos> result = new ArrayList<>();
-			try (CollocationQueryFromWordIds query = new CollocationQueryFromWordIds(connection, targetWordId, targetWord2Id))
-			{
-				query.execute();
+    companion object {
 
-				while (query.next())
-				{
-					Collocation.WithDefinitionAndPos collocation = makeCollocationWithDefinitionAndPos(query);
-					result.add(collocation);
-				}
-			}
-			return result;
-		}
+        @JvmStatic
+        fun makeSelectorFromWord(connection: SQLiteDatabase?, targetWord: String?): List<Collocation> {
+            val result: MutableList<Collocation> = ArrayList()
+            CollocationQueryFromWord(connection, targetWord).use { query ->
+                query.execute()
+                while (query.next()) {
+                    val collocation = makeCollocation(query)
+                    result.add(collocation)
+                }
+                return result
+            }
+        }
 
-		/**
-		 * Make sets of SyntagNet collocations from query built from word id ad synset id
-		 *
-		 * @param connection   connection
-		 * @param targetWordId is the word id to build query from
-		 * @return list of SyntagNet collocations
-		 */
-		@NonNull
-		static List<Collocation.WithDefinitionAndPos> makeFromWordIdAndSynsetId(final SQLiteDatabase connection, final long targetWordId, final long targetSynsetId)
-		{
-			final List<Collocation.WithDefinitionAndPos> result = new ArrayList<>();
-			try (CollocationQueryFromWordIdAndSynsetId query = new CollocationQueryFromWordIdAndSynsetId(connection, targetWordId, targetSynsetId))
-			{
-				query.execute();
-
-				while (query.next())
-				{
-					Collocation.WithDefinitionAndPos collocation = makeCollocationWithDefinitionAndPos(query);
-					result.add(collocation);
-				}
-			}
-			return result;
-		}
-
-		/**
-		 * Make sets of SyntagNet collocations from query built from word ids ad synset ids
-		 *
-		 * @param connection      connection
-		 * @param targetWordId    is the word id to build query from
-		 * @param targetWord2Id   is the word 2 id to build query from
-		 * @param targetSynsetId  is the synset id to build query from
-		 * @param targetSynset2Id is the synset 2 id to build query from
-		 * @return list of SyntagNet collocations
-		 */
-		@NonNull
-		static public List<WithDefinitionAndPos> makeFromWordIdAndSynsetIds(final SQLiteDatabase connection, final long targetWordId, final long targetSynsetId, final long targetWord2Id, final long targetSynset2Id)
-		{
-			final List<Collocation.WithDefinitionAndPos> result = new ArrayList<>();
-			try (CollocationQueryFromWordIdsAndSynsetIds query = new CollocationQueryFromWordIdsAndSynsetIds(connection, targetWordId, targetSynsetId, targetWord2Id, targetSynset2Id))
-			{
-				query.execute();
-
-				while (query.next())
-				{
-					Collocation.WithDefinitionAndPos collocation = makeCollocationWithDefinitionAndPos(query);
-					result.add(collocation);
-				}
-			}
-			return result;
-		}
-
-		/**
-		 * Make sets of SyntagNet collocations from query built from collocation id
-		 *
-		 * @param connection    connection
-		 * @param collocationId is the collocation id to build query from
-		 * @return list of SyntagNet collocations
-		 */
-		@NonNull
-		static public List<Collocation.WithDefinitionAndPos> make(final SQLiteDatabase connection, final long collocationId)
-		{
-			final List<Collocation.WithDefinitionAndPos> result = new ArrayList<>();
-			try (CollocationQuery query = new CollocationQuery(connection, collocationId))
-			{
-				query.execute();
-
-				while (query.next())
-				{
-					Collocation.WithDefinitionAndPos collocation = makeCollocationWithDefinitionAndPos(query);
-					result.add(collocation);
-				}
-			}
-			return result;
-		}
-
-		@NonNull
-		private static Collocation.WithDefinitionAndPos makeCollocationWithDefinitionAndPos(@NonNull BaseCollocationQuery query)
-		{
-			final long collocationId = query.getId();
-			final long word1Id = query.getWord1Id();
-			final long word2Id = query.getWord2Id();
-			final long synset1Id = query.getSynset1Id();
-			final long synset2Id = query.getSynset2Id();
-			final String word1 = query.getWord1();
-			final String word2 = query.getWord2();
-			final Character pos1 = query.getPos1();
-			assert pos1 != null;
-			final Character pos2 = query.getPos2();
-			assert pos2 != null;
-			final String definition1 = query.getDefinition1();
-			final String definition2 = query.getDefinition2();
-			return new Collocation.WithDefinitionAndPos(collocationId, word1Id, word2Id, synset1Id, synset2Id, word1, word2, pos1, pos2, definition1, definition2);
-		}
-	}
-
-	/**
-	 * Id
-	 */
-	final long collocationId;
-
-	/**
-	 * Word1 Id
-	 */
-	final long word1Id;
-
-	/**
-	 * Word2 id
-	 */
-	final long word2Id;
-
-	/**
-	 * Synset2 id
-	 */
-	final long synset1Id;
-
-	/**
-	 * Synset2 id
-	 */
-	final long synset2Id;
-
-	/**
-	 * Word1
-	 */
-	final String word1;
-
-	/**
-	 * Word2
-	 */
-	final String word2;
-
-	/**
-	 * Constructor
-	 *
-	 * @param word1Id   word 1 id
-	 * @param word2Id   word 2 id
-	 * @param synset1Id synset 1 id
-	 * @param synset2Id synset 2 id
-	 * @param word1     word 1
-	 * @param word2     word 2
-	 */
-	private Collocation(final long collocationId, final long word1Id, final long word2Id, final long synset1Id, final long synset2Id, final String word1, final String word2)
-	{
-		super();
-		this.collocationId = collocationId;
-		this.word1Id = word1Id;
-		this.word2Id = word2Id;
-		this.synset1Id = synset1Id;
-		this.synset2Id = synset2Id;
-		this.word1 = word1;
-		this.word2 = word2;
-	}
-
-	@NonNull
-	public static List<Collocation> makeSelectorFromWord(final SQLiteDatabase connection, final String targetWord)
-	{
-		final List<Collocation> result = new ArrayList<>();
-		try (CollocationQueryFromWord query = new CollocationQueryFromWord(connection, targetWord))
-		{
-			query.execute();
-
-			while (query.next())
-			{
-				Collocation collocation = makeCollocation(query);
-				result.add(collocation);
-			}
-			return result;
-		}
-	}
-
-	@NonNull
-	private static Collocation makeCollocation(@NonNull BaseCollocationQuery query)
-	{
-		final long collocationId = query.getId();
-		final long word1Id = query.getWord1Id();
-		final long word2Id = query.getWord2Id();
-		final long synset1Id = query.getSynset1Id();
-		final long synset2Id = query.getSynset2Id();
-		final String word1 = query.getWord1();
-		final String word2 = query.getWord2();
-		return new Collocation(collocationId, word1Id, word2Id, synset1Id, synset2Id, word1, word2);
-	}
+        private fun makeCollocation(query: BaseCollocationQuery): Collocation {
+            val collocationId = query.getId()
+            val word1Id = query.getWord1Id()
+            val word2Id = query.getWord2Id()
+            val synset1Id = query.getSynset1Id()
+            val synset2Id = query.getSynset2Id()
+            val word1 = query.getWord1()
+            val word2 = query.getWord2()
+            return Collocation(collocationId, word1Id, word2Id, synset1Id, synset2Id, word1, word2)
+        }
+    }
 }

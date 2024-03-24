@@ -1,32 +1,28 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.syntagnet.sql
 
-package org.sqlunet.syntagnet.sql;
-
-import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatabase
 
 /**
  * SyntagNet collocations query from word
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param connection connection
+ * @param word       target word
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class CollocationQueryFromWord extends BaseCollocationQuery
-{
-	/**
-	 * <code>QUERY</code> is the SQL statement
-	 */
-	static private final String QUERY = SqLiteDialect.SyntagNetCollocationQueryFromWord;
+internal class CollocationQueryFromWord(connection: SQLiteDatabase, word: String) : BaseCollocationQuery(connection, QUERY) {
 
-	/**
-	 * Constructor
-	 *
-	 * @param connection connection
-	 * @param word       target word
-	 */
-	public CollocationQueryFromWord(final SQLiteDatabase connection, final String word)
-	{
-		super(connection, CollocationQueryFromWord.QUERY);
-		setParams(word, word);
-	}
+    init {
+        setParams(word, word)
+    }
+
+    companion object {
+        /**
+         * `QUERY` is the SQL statement
+         */
+        private const val QUERY = SqLiteDialect.SyntagNetCollocationQueryFromWord
+    }
 }

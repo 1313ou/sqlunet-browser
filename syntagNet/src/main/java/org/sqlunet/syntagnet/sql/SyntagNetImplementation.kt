@@ -1,357 +1,304 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.syntagnet.sql
 
-package org.sqlunet.syntagnet.sql;
-
-import android.database.sqlite.SQLiteDatabase;
-
-import org.sqlunet.dom.DomFactory;
-import org.sqlunet.dom.DomTransformer;
-import org.sqlunet.sql.NodeFactory;
-import org.sqlunet.wordnet.sql.WnNodeFactory;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-
-import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.database.sqlite.SQLiteDatabase
+import org.sqlunet.dom.DomFactory.makeDocument
+import org.sqlunet.dom.DomTransformer.docToString
+import org.sqlunet.sql.NodeFactory.makeNode
+import org.sqlunet.syntagnet.sql.Collocation.Companion.makeSelectorFromWord
+import org.sqlunet.syntagnet.sql.Collocation.WithDefinitionAndPos
+import org.sqlunet.syntagnet.sql.Collocation.WithDefinitionAndPos.Companion.make
+import org.sqlunet.syntagnet.sql.Collocation.WithDefinitionAndPos.Companion.makeFromWord
+import org.sqlunet.syntagnet.sql.Collocation.WithDefinitionAndPos.Companion.makeFromWordId
+import org.sqlunet.syntagnet.sql.Collocation.WithDefinitionAndPos.Companion.makeFromWordIdAndSynsetId
+import org.sqlunet.syntagnet.sql.Collocation.WithDefinitionAndPos.Companion.makeFromWordIdAndSynsetIds
+import org.sqlunet.syntagnet.sql.Collocation.WithDefinitionAndPos.Companion.makeFromWordIds
+import org.sqlunet.syntagnet.sql.SnNodeFactory.makeCollocationNode
+import org.sqlunet.syntagnet.sql.SnNodeFactory.makeSelectorCollocationNode
+import org.sqlunet.syntagnet.sql.SnNodeFactory.makeSnRootNode
+import org.w3c.dom.Document
+import org.w3c.dom.Node
 
 /**
  * Encapsulates SyntagNet query implementation
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class SyntagNetImplementation implements SyntagNetInterface
-{
-	static final String SN_NS = "http://org.sqlunet/sn";
+class SyntagNetImplementation : SyntagNetInterface {
 
-	// S E L E C T O R
+    /**
+     * Business method that returns SyntagNet selector data as DOM document
+     *
+     * @param connection connection
+     * @param word       target word
+     * @return SyntagNet selector data as DOM document
+     */
+    override fun querySelectorDoc(connection: SQLiteDatabase, word: String): Document {
+        val doc = makeDocument()
+        val rootNode = makeSnRootNode(doc, word)
+        walkSelector(connection, doc, rootNode, word)
+        return doc
+    }
 
-	/**
-	 * Perform queries for SyntagNet selector data from word
-	 *
-	 * @param connection connection
-	 * @param doc        org.w3c.dom.Document being built
-	 * @param parent     org.w3c.dom.Node the walk will attach results to
-	 * @param targetWord target word
-	 */
-	static private void walkSelector(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final String targetWord)
-	{
-		final List<Collocation> collocations = Collocation.makeSelectorFromWord(connection, targetWord);
+    /**
+     * Business method that returns SyntagNet selector data as XML
+     *
+     * @param connection connection
+     * @param word       target word
+     * @return SyntagNet selector data as XML
+     */
+    override fun querySelectorXML(connection: SQLiteDatabase, word: String): String {
+        val doc = querySelectorDoc(connection, word)
+        return docToString(doc)
+    }
 
-		// word
-		NodeFactory.makeNode(doc, parent, "word", targetWord);
+    /**
+     * Business method that returns SyntagNet data as DOM document from word
+     *
+     * @param connection connection
+     * @param word       target word
+     * @return SyntagNet data as DOM document
+     */
+    override fun queryDoc(connection: SQLiteDatabase, word: String): Document {
+        val doc = makeDocument()
+        val rootNode = makeSnRootNode(doc, word)
+        walk(connection, doc, rootNode, word)
+        return doc
+    }
 
-		// syntagnet nodes
-		SyntagNetImplementation.makeSelector(doc, parent, collocations);
-	}
+    /**
+     * Business method that returns SyntagNet data as XML from word
+     *
+     * @param connection connection
+     * @param word       target word
+     * @return SyntagNet data as XML
+     */
+    override fun queryXML(connection: SQLiteDatabase, word: String): String {
+        val doc = queryDoc(connection, word)
+        return docToString(doc)
+    }
 
-	/**
-	 * Perform queries for SyntagNet data from word
-	 *
-	 * @param connection connection
-	 * @param doc        org.w3c.dom.Document being built
-	 * @param parent     org.w3c.dom.Node the walk will attach results to
-	 * @param targetWord target word
-	 */
-	static private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final String targetWord)
-	{
-		final List<Collocation.WithDefinitionAndPos> collocations = Collocation.WithDefinitionAndPos.makeFromWord(connection, targetWord);
+    /**
+     * Business method that returns SyntagNet data as DOM document from word id
+     *
+     * @param connection connection
+     * @param wordId     word id to build query from
+     * @param synsetId   is the synset id to build query from (nullable)
+     * @param pos        pos to build query from (nullable)
+     * @return SyntagNet data as DOM document
+     */
+    override fun queryDoc(connection: SQLiteDatabase, wordId: Long, synsetId: Long?, pos: Char?): Document {
+        val doc = makeDocument()
+        val wordNode = makeSnRootNode(doc, wordId)
+        if (synsetId == null) {
+            walk(connection, doc, wordNode, wordId)
+        } else {
+            walk(connection, doc, wordNode, wordId, synsetId)
+        }
+        return doc
+    }
 
-		// word
-		NodeFactory.makeNode(doc, parent, "word", targetWord);
+    /**
+     * Business method that returns SyntagNet data as XML from word id
+     *
+     * @param connection connection
+     * @param wordId     target word id
+     * @param synsetId   is the synset id to build query from (nullable)
+     * @param pos        pos to build query from (nullable)
+     * @return SyntagNet data as XML
+     */
+    override fun queryXML(connection: SQLiteDatabase, wordId: Long, synsetId: Long?, pos: Char?): String {
+        val doc = queryDoc(connection, wordId, synsetId, pos)
+        return docToString(doc)
+    }
 
-		// collocations
-		int i = 1;
-		for (final Collocation.WithDefinitionAndPos collocation : collocations)
-		{
-			SnNodeFactory.makeCollocationNode(doc, parent, collocation, i++);
-		}
-	}
+    override fun queryDoc(connection: SQLiteDatabase, wordId: Long, synsetId: Long?, word2Id: Long, synset2Id: Long?): Document {
+        val doc = makeDocument()
+        val wordNode = makeSnRootNode(doc, wordId)
+        if (synsetId == null || synset2Id == null) {
+            walk2(connection, doc, wordNode, wordId, word2Id)
+        } else {
+            walk2(connection, doc, wordNode, wordId, synsetId, word2Id, synset2Id)
+        }
+        return doc
+    }
 
-	// D E T A I L
+    override fun queryXML(connection: SQLiteDatabase, wordId: Long, synsetId: Long?, word2Id: Long, synset2Id: Long?): String {
+        val doc = queryDoc(connection, wordId, synsetId, word2Id, synset2Id)
+        return docToString(doc)
+    }
 
-	/**
-	 * Perform queries for SyntagNet data from word id
-	 *
-	 * @param connection   data source
-	 * @param doc          org.w3c.dom.Document being built
-	 * @param parent       org.w3c.dom.Node the walk will attach results to
-	 * @param targetWordId target word id
-	 */
-	static private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long targetWordId)
-	{
-		// collocations
-		final List<Collocation.WithDefinitionAndPos> collocations = Collocation.WithDefinitionAndPos.makeFromWordId(connection, targetWordId);
-		walk(connection, doc, parent, collocations);
-	}
+    /**
+     * Business method that returns collocation data as DOM document from collocation id
+     *
+     * @param connection    connection
+     * @param collocationId collocation to build query from
+     * @return SyntagNet collocation data as DOM document
+     */
+    override fun queryCollocationDoc(connection: SQLiteDatabase, collocationId: Long): Document {
+        val doc = makeDocument()
+        val rootNode = makeSnRootNode(doc, collocationId)
+        walkCollocation(connection, doc, rootNode, collocationId)
+        return doc
+    }
 
-	/**
-	 * Perform queries for SyntagNet data from word id
-	 *
-	 * @param connection     data source
-	 * @param doc            org.w3c.dom.Document being built
-	 * @param parent         org.w3c.dom.Node the walk will attach results to
-	 * @param targetWordId   target word id
-	 * @param targetSynsetId target synset id
-	 */
-	private static void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long targetWordId, final long targetSynsetId)
-	{
-		// collocations
-		final List<Collocation.WithDefinitionAndPos> collocations = Collocation.WithDefinitionAndPos.makeFromWordIdAndSynsetId(connection, targetWordId, targetSynsetId);
-		walk(connection, doc, parent, collocations);
-	}
+    /**
+     * Business method that returns collocation data as XML from collocation id
+     *
+     * @param connection    connection
+     * @param collocationId collocation id to build query from
+     * @return SyntagNet collocation data as XML
+     */
+    override fun queryCollocationXML(connection: SQLiteDatabase, collocationId: Long): String {
+        val doc = queryCollocationDoc(connection, collocationId)
+        return docToString(doc)
+    }
 
-	/**
-	 * Perform queries for SyntagNet data from word id
-	 *
-	 * @param connection   data source
-	 * @param doc          org.w3c.dom.Document being built
-	 * @param parent       org.w3c.dom.Node the walk will attach results to
-	 * @param targetWordId target word id
-	 */
-	static private void walk2(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long targetWordId, final long targetWord2Id)
-	{
-		// collocations
-		final List<Collocation.WithDefinitionAndPos> collocations = Collocation.WithDefinitionAndPos.makeFromWordIds(connection, targetWordId, targetWord2Id);
-		walk(connection, doc, parent, collocations);
-	}
+    companion object {
+        const val SN_NS = "http://org.sqlunet/sn"
+        // S E L E C T O R
+        /**
+         * Perform queries for SyntagNet selector data from word
+         *
+         * @param connection connection
+         * @param doc        org.w3c.dom.Document being built
+         * @param parent     org.w3c.dom.Node the walk will attach results to
+         * @param targetWord target word
+         */
+        private fun walkSelector(connection: SQLiteDatabase, doc: Document, parent: Node, targetWord: String) {
+            val collocations = makeSelectorFromWord(connection, targetWord)
 
-	/**
-	 * Perform queries for SyntagNet data from word id
-	 *
-	 * @param connection     data source
-	 * @param doc            org.w3c.dom.Document being built
-	 * @param parent         org.w3c.dom.Node the walk will attach results to
-	 * @param targetWordId   target word id
-	 * @param targetSynsetId target synset id
-	 */
-	private static void walk2(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long targetWordId, final long targetSynsetId, final long targetWord2Id, final long targetSynset2Id)
-	{
-		// collocations
-		final List<Collocation.WithDefinitionAndPos> collocations = Collocation.WithDefinitionAndPos.makeFromWordIdAndSynsetIds(connection, targetWordId, targetSynsetId, targetWord2Id, targetSynset2Id);
-		walk(connection, doc, parent, collocations);
-	}
+            // word
+            makeNode(doc, parent, "word", targetWord)
 
-	/**
-	 * Perform queries for SyntagNet data from collocation id
-	 *
-	 * @param connection    data source
-	 * @param doc           org.w3c.dom.Document being built
-	 * @param parent        org.w3c.dom.Node the walk will attach results to
-	 * @param collocationId collocation id
-	 */
-	static private void walkCollocation(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long collocationId)
-	{
-		// collocations
-		final List<Collocation.WithDefinitionAndPos> collocations = Collocation.WithDefinitionAndPos.make(connection, collocationId);
-		walk(connection, doc, parent, collocations);
-	}
+            // syntagnet nodes
+            makeSelector(doc, parent, collocations)
+        }
 
-	/**
-	 * Query SyntagNet data from collocations
-	 *
-	 * @param connection   data source
-	 * @param doc          org.w3c.dom.Document being built
-	 * @param parent       org.w3c.dom.Node the walk will attach results to
-	 * @param collocations collocations
-	 */
-	static private void walk(@SuppressWarnings("UnusedParameters") final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, @NonNull final Iterable<Collocation.WithDefinitionAndPos> collocations)
-	{
-		int i = 1;
-		for (final Collocation.WithDefinitionAndPos collocation : collocations)
-		{
-			// collocation
-			SnNodeFactory.makeCollocationNode(doc, parent, collocation, i++);
-		}
-	}
+        /**
+         * Perform queries for SyntagNet data from word
+         *
+         * @param connection connection
+         * @param doc        org.w3c.dom.Document being built
+         * @param parent     org.w3c.dom.Node the walk will attach results to
+         * @param targetWord target word
+         */
+        private fun walk(connection: SQLiteDatabase, doc: Document, parent: Node, targetWord: String) {
+            val collocations = makeFromWord(connection, targetWord)
 
-	// I T E M S
+            // word
+            makeNode(doc, parent, "word", targetWord)
 
-	/**
-	 * Business method that returns SyntagNet selector data as DOM document
-	 *
-	 * @param connection connection
-	 * @param word       target word
-	 * @return SyntagNet selector data as DOM document
-	 */
-	@NonNull
-	@Override
-	public Document querySelectorDoc(final SQLiteDatabase connection, final String word)
-	{
-		final Document doc = DomFactory.makeDocument();
-		final Node rootNode = SnNodeFactory.makeSnRootNode(doc, word);
-		SyntagNetImplementation.walkSelector(connection, doc, rootNode, word);
-		return doc;
-	}
+            // collocations
+            var i = 1
+            for (collocation in collocations) {
+                makeCollocationNode(doc, parent, collocation, i++)
+            }
+        }
+        // D E T A I L
+        /**
+         * Perform queries for SyntagNet data from word id
+         *
+         * @param connection   data source
+         * @param doc          org.w3c.dom.Document being built
+         * @param parent       org.w3c.dom.Node the walk will attach results to
+         * @param targetWordId target word id
+         */
+        private fun walk(connection: SQLiteDatabase, doc: Document, parent: Node, targetWordId: Long) {
+            // collocations
+            val collocations = makeFromWordId(connection, targetWordId)
+            walk(connection, doc, parent, collocations)
+        }
 
-	/**
-	 * Business method that returns SyntagNet selector data as XML
-	 *
-	 * @param connection connection
-	 * @param word       target word
-	 * @return SyntagNet selector data as XML
-	 */
-	@NonNull
-	@Override
-	public String querySelectorXML(final SQLiteDatabase connection, final String word)
-	{
-		final Document doc = querySelectorDoc(connection, word);
-		return DomTransformer.docToString(doc);
-	}
+        /**
+         * Perform queries for SyntagNet data from word id
+         *
+         * @param connection     data source
+         * @param doc            org.w3c.dom.Document being built
+         * @param parent         org.w3c.dom.Node the walk will attach results to
+         * @param targetWordId   target word id
+         * @param targetSynsetId target synset id
+         */
+        private fun walk(connection: SQLiteDatabase, doc: Document, parent: Node, targetWordId: Long, targetSynsetId: Long) {
+            // collocations
+            val collocations = makeFromWordIdAndSynsetId(connection, targetWordId, targetSynsetId)
+            walk(connection, doc, parent, collocations)
+        }
 
-	// W A L K
+        /**
+         * Perform queries for SyntagNet data from word id
+         *
+         * @param connection   data source
+         * @param doc          org.w3c.dom.Document being built
+         * @param parent       org.w3c.dom.Node the walk will attach results to
+         * @param targetWordId target word id
+         */
+        private fun walk2(connection: SQLiteDatabase?, doc: Document, parent: Node, targetWordId: Long, targetWord2Id: Long) {
+            // collocations
+            val collocations = makeFromWordIds(connection, targetWordId, targetWord2Id)
+            walk(connection, doc, parent, collocations)
+        }
 
-	/**
-	 * Business method that returns SyntagNet data as DOM document from word
-	 *
-	 * @param connection connection
-	 * @param word       target word
-	 * @return SyntagNet data as DOM document
-	 */
-	@NonNull
-	@Override
-	public Document queryDoc(final SQLiteDatabase connection, @NonNull final String word)
-	{
-		final Document doc = DomFactory.makeDocument();
-		final Node rootNode = SnNodeFactory.makeSnRootNode(doc, word);
-		SyntagNetImplementation.walk(connection, doc, rootNode, word);
-		return doc;
-	}
+        /**
+         * Perform queries for SyntagNet data from word id
+         *
+         * @param connection     data source
+         * @param doc            org.w3c.dom.Document being built
+         * @param parent         org.w3c.dom.Node the walk will attach results to
+         * @param targetWordId   target word id
+         * @param targetSynsetId target synset id
+         */
+        private fun walk2(connection: SQLiteDatabase?, doc: Document, parent: Node, targetWordId: Long, targetSynsetId: Long, targetWord2Id: Long, targetSynset2Id: Long) {
+            // collocations
+            val collocations = makeFromWordIdAndSynsetIds(connection, targetWordId, targetSynsetId, targetWord2Id, targetSynset2Id)
+            walk(connection, doc, parent, collocations)
+        }
 
-	/**
-	 * Business method that returns SyntagNet data as XML from word
-	 *
-	 * @param connection connection
-	 * @param word       target word
-	 * @return SyntagNet data as XML
-	 */
-	@NonNull
-	@Override
-	public String queryXML(final SQLiteDatabase connection, @NonNull final String word)
-	{
-		final Document doc = queryDoc(connection, word);
-		return DomTransformer.docToString(doc);
-	}
+        /**
+         * Perform queries for SyntagNet data from collocation id
+         *
+         * @param connection    data source
+         * @param doc           org.w3c.dom.Document being built
+         * @param parent        org.w3c.dom.Node the walk will attach results to
+         * @param collocationId collocation id
+         */
+        private fun walkCollocation(connection: SQLiteDatabase?, doc: Document, parent: Node, collocationId: Long) {
+            // collocations
+            val collocations = make(connection, collocationId)
+            walk(connection, doc, parent, collocations)
+        }
 
-	/**
-	 * Business method that returns SyntagNet data as DOM document from word id
-	 *
-	 * @param connection connection
-	 * @param wordId     word id to build query from
-	 * @param synsetId   is the synset id to build query from (nullable)
-	 * @param pos        pos to build query from (nullable)
-	 * @return SyntagNet data as DOM document
-	 */
-	@NonNull
-	@Override
-	public Document queryDoc(final SQLiteDatabase connection, final long wordId, @Nullable Long synsetId, @Nullable final Character pos)
-	{
-		final Document doc = DomFactory.makeDocument();
-		final Node wordNode = SnNodeFactory.makeSnRootNode(doc, wordId);
-		if (synsetId == null)
-		{
-			SyntagNetImplementation.walk(connection, doc, wordNode, wordId);
-		}
-		else
-		{
-			SyntagNetImplementation.walk(connection, doc, wordNode, wordId, synsetId);
-		}
-		return doc;
-	}
+        /**
+         * Query SyntagNet data from collocations
+         *
+         * @param connection   data source
+         * @param doc          org.w3c.dom.Document being built
+         * @param parent       org.w3c.dom.Node the walk will attach results to
+         * @param collocations collocations
+         */
+        private fun walk(connection: SQLiteDatabase?, doc: Document, parent: Node, collocations: Iterable<WithDefinitionAndPos>) {
+            var i = 1
+            for (collocation in collocations) {
+                // collocation
+                makeCollocationNode(doc, parent, collocation, i++)
+            }
+        }
 
-	/**
-	 * Business method that returns SyntagNet data as XML from word id
-	 *
-	 * @param connection connection
-	 * @param wordId     target word id
-	 * @param synsetId   is the synset id to build query from (nullable)
-	 * @param pos        pos to build query from (nullable)
-	 * @return SyntagNet data as XML
-	 */
-	@NonNull
-	@Override
-	public String queryXML(final SQLiteDatabase connection, final long wordId, @Nullable Long synsetId, @Nullable final Character pos)
-	{
-		final Document doc = queryDoc(connection, wordId, synsetId, pos);
-		return DomTransformer.docToString(doc);
-	}
-
-	@NonNull
-	@Override
-	public Document queryDoc(final SQLiteDatabase connection, final long wordId, @Nullable final Long synsetId, final long word2Id, @Nullable final Long synset2Id)
-	{
-		final Document doc = DomFactory.makeDocument();
-		final Node wordNode = SnNodeFactory.makeSnRootNode(doc, wordId);
-		if (synsetId == null || synset2Id == null)
-		{
-			SyntagNetImplementation.walk2(connection, doc, wordNode, wordId, word2Id);
-		}
-		else
-		{
-			SyntagNetImplementation.walk2(connection, doc, wordNode, wordId, synsetId, word2Id, synset2Id);
-		}
-		return doc;
-	}
-
-	@NonNull
-	@Override
-	public String queryXML(final SQLiteDatabase connection, final long wordId, @Nullable final Long synsetId, final long word2Id, @Nullable final Long synset2Id)
-	{
-		final Document doc = queryDoc(connection, wordId, synsetId, word2Id, synset2Id);
-		return DomTransformer.docToString(doc);
-	}
-
-	/**
-	 * Business method that returns collocation data as DOM document from collocation id
-	 *
-	 * @param connection    connection
-	 * @param collocationId collocation to build query from
-	 * @return SyntagNet collocation data as DOM document
-	 */
-	@NonNull
-	@Override
-	public Document queryCollocationDoc(final SQLiteDatabase connection, final long collocationId)
-	{
-		final Document doc = DomFactory.makeDocument();
-		final Node rootNode = SnNodeFactory.makeSnRootNode(doc, collocationId);
-		SyntagNetImplementation.walkCollocation(connection, doc, rootNode, collocationId);
-		return doc;
-	}
-
-	// H E L P E R S
-
-	/**
-	 * Business method that returns collocation data as XML from collocation id
-	 *
-	 * @param connection    connection
-	 * @param collocationId collocation id to build query from
-	 * @return SyntagNet collocation data as XML
-	 */
-	@NonNull
-	@Override
-	public String queryCollocationXML(final SQLiteDatabase connection, final long collocationId)
-	{
-		final Document doc = queryCollocationDoc(connection, collocationId);
-		return DomTransformer.docToString(doc);
-	}
-
-	/**
-	 * Display query results for SyntagNet data from query result
-	 *
-	 * @param doc          org.w3c.dom.Document being built
-	 * @param parent       org.w3c.dom.Node the walk will attach results to
-	 * @param collocations collocations
-	 */
-	static private void makeSelector(@NonNull final Document doc, final Node parent, @NonNull final Iterable<Collocation> collocations)
-	{
-		int i = 1;
-		for (final Collocation collocation : collocations)
-		{
-			// collocation
-			SnNodeFactory.makeSelectorCollocationNode(doc, parent, collocation, i++);
-		}
-	}
+        /**
+         * Display query results for SyntagNet data from query result
+         *
+         * @param doc          org.w3c.dom.Document being built
+         * @param parent       org.w3c.dom.Node the walk will attach results to
+         * @param collocations collocations
+         */
+        private fun makeSelector(doc: Document, parent: Node, collocations: Iterable<Collocation>) {
+            var i = 1
+            for (collocation in collocations) {
+                // collocation
+                makeSelectorCollocationNode(doc, parent, collocation, i++)
+            }
+        }
+    }
 }
