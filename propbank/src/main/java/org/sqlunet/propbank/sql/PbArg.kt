@@ -1,72 +1,34 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
-
-package org.sqlunet.propbank.sql;
-
-import java.util.Locale;
-
-import androidx.annotation.NonNull;
+package org.sqlunet.propbank.sql
 
 /**
  * Argument
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param argType     n
+ * @param f           f
+ * @param description description
+ * @param vnTheta     VerbNet theta
+ * @param subText     sub text
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class PbArg
-{
-	/**
-	 * Argument type
-	 */
-	public final String argType;
-
-	/**
-	 * Argument f
-	 */
-	public final String f;
-
-	/**
-	 * Argument VerbNet theta
-	 */
-	public final String vnTheta;
-
-	/**
-	 * Argument description
-	 */
-	public final String description;
-
-	/**
-	 * Argument subtext
-	 */
-	public final String subText;
-
-	/**
-	 * Constructor
-	 *
-	 * @param argType     n
-	 * @param f           f
-	 * @param description description
-	 * @param vnTheta     VerbNet theta
-	 * @param subText     sub text
-	 */
-	private PbArg(final String argType, final String f, final String description, final String vnTheta, final String subText)
-	{
-		this.argType = argType;
-		this.f = f;
-		this.vnTheta = vnTheta;
-		this.description = description;
-		this.subText = subText;
-	}
-
-	/**
-	 * Constructor from argument fields
-	 *
-	 * @param argFields argument fields
-	 */
-	public PbArg(@NonNull final String... argFields)
-	{
-		this(argFields[0], "*".equals(argFields[1]) ? //
-				null : argFields[1], argFields[2].toLowerCase(Locale.ENGLISH), "*".equals(argFields[3]) ? //
-				null : argFields[3], argFields[4]);
-	}
+internal class PbArg private constructor(
+    @JvmField val argType: String,
+    @JvmField val f: String?,
+    @JvmField val description: String,
+    @JvmField val vnTheta: String?,
+    @JvmField val subText: String,
+) {
+    /**
+     * Constructor from argument fields
+     *
+     * @param argFields argument fields
+     */
+    constructor(vararg argFields: String) : this(
+        argFields[0], if ("*" == argFields[1]) //
+            null else argFields[1], argFields[2].lowercase(), if ("*" == argFields[3]) //
+            null else argFields[3], argFields[4]
+    )
 }

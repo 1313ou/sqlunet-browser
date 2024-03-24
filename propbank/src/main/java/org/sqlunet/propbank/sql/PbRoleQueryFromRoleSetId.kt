@@ -1,104 +1,68 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.propbank.sql
 
-package org.sqlunet.propbank.sql;
-
-import android.database.sqlite.SQLiteDatabase;
-
-import org.sqlunet.sql.DBQuery;
-
-import java.util.Locale;
-
-import androidx.annotation.NonNull;
+import android.database.sqlite.SQLiteDatabase
+import org.sqlunet.sql.DBQuery
 
 /**
  * PropBank roles query
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param connection connection
+ * @param roleSetId roleset id
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class PbRoleQueryFromRoleSetId extends DBQuery
-{
-	/**
-	 * <code>QUERY</code> is the SQL statement
-	 */
-	static private final String QUERY = SqLiteDialect.PropBankRolesQueryFromRoleSetId;
+internal class PbRoleQueryFromRoleSetId(connection: SQLiteDatabase?, roleSetId: Long) : DBQuery(connection!!, QUERY) {
 
-	/**
-	 * Constructor
-	 *
-	 * @param connection connection
-	 */
-	@SuppressWarnings("boxing")
-	public PbRoleQueryFromRoleSetId(final SQLiteDatabase connection, final long roleSetId)
-	{
-		super(connection, PbRoleQueryFromRoleSetId.QUERY);
-		setParams(roleSetId);
-	}
+    init {
+        setParams(roleSetId)
+    }
 
-	/**
-	 * Set id parameters in prepared SQL statement
-	 *
-	 * @param roleSetId target role set id
-	 */
-	public void setId(final long roleSetId)
-	{
-		this.statement.setLong(0, roleSetId);
-	}
+    /**
+     * Set id parameters in prepared SQL statement
+     *
+     * @param roleSetId target role set id
+     */
+    fun setId(roleSetId: Long) {
+        statement.setLong(0, roleSetId)
+    }
 
-	/**
-	 * Get the role id from the result set
-	 *
-	 * @return the role id from the result set
-	 */
-	public long getRoleId()
-	{
-		assert this.cursor != null;
-		return this.cursor.getLong(0);
-	}
+    /**
+     *Role id from the result set
+     */
+    val roleId: Long
+        get() = cursor!!.getLong(0)
 
-	/**
-	 * Get the role description from the result set
-	 *
-	 * @return the role description from the result set
-	 */
-	@NonNull
-	public String getRoleDescr()
-	{
-		assert this.cursor != null;
-		return this.cursor.getString(1).toLowerCase(Locale.ENGLISH);
-	}
+    /**
+     * Role description from the result set
+     */
+    val roleDescr: String
+        get() = cursor!!.getString(1).lowercase()
 
-	/**
-	 * Get role N
-	 *
-	 * @return role N
-	 */
-	public String getArgType()
-	{
-		assert this.cursor != null;
-		return this.cursor.getString(2);
-	}
+    /**
+     * Role N
+     */
+    val argType: String
+        get() = cursor!!.getString(2)
 
-	/**
-	 * Get role F
-	 *
-	 * @return role F
-	 */
-	public String getRoleFunc()
-	{
-		assert this.cursor != null;
-		return this.cursor.getString(3);
-	}
+    /**
+     * Role F
+     */
+    val roleFunc: String
+        get() = cursor!!.getString(3)
 
-	/**
-	 * Get role VerbNet theta
-	 *
-	 * @return role VerbNet theta
-	 */
-	public String getRoleTheta()
-	{
-		assert this.cursor != null;
-		return this.cursor.getString(4);
-	}
+    /**
+     * Role VerbNet theta
+     */
+    val roleTheta: String
+        get() = cursor!!.getString(4)
+
+    companion object {
+        /**
+         * `QUERY` is the SQL statement
+         */
+        private const val QUERY = SqLiteDialect.PropBankRolesQueryFromRoleSetId
+    }
 }

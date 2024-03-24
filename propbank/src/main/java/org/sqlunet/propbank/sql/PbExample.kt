@@ -1,122 +1,62 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.propbank.sql
 
-package org.sqlunet.propbank.sql;
-
-import android.database.sqlite.SQLiteDatabase;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import androidx.annotation.Nullable;
+import android.database.sqlite.SQLiteDatabase
 
 /**
  * Examples attached to a PropBank role set
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param exampleId is the example id
+ * @param text      is the text of the example
+ * @param rel       is the relation
+ * @param args      is the list of arguments
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class PbExample
-{
-	/**
-	 * Example id
-	 */
-	public final long exampleId;
+internal class PbExample private constructor(
+    @JvmField val exampleId: Long,
+    @JvmField val text: String,
+    @JvmField val rel: String,
+    @JvmField val args: List<PbArg>?,
+    @JvmField val aspect: String,
+    @JvmField val form: String,
+    @JvmField val tense: String,
+    @JvmField val voice: String,
+    @JvmField val person: String,
+) {
+    companion object {
 
-	/**
-	 * Text
-	 */
-	public final String text;
-
-	/**
-	 * Relation
-	 */
-	public final String rel;
-
-	/**
-	 * Arguments
-	 */
-	public final List<PbArg> args;
-
-	/**
-	 * Aspect
-	 */
-	public final String aspect;
-
-	/**
-	 * Form
-	 */
-	public final String form;
-
-	/**
-	 * Tense
-	 */
-	public final String tense;
-
-	/**
-	 * Voice
-	 */
-	public final String voice;
-
-	/**
-	 * Person
-	 */
-	public final String person;
-
-	/**
-	 * Constructor
-	 *
-	 * @param exampleId is the example id
-	 * @param text      is the text of the example
-	 * @param rel       is the relation
-	 * @param args      is the list of arguments
-	 */
-	private PbExample(final long exampleId, final String text, final String rel, final List<PbArg> args, final String aspect, final String form, final String tense, final String voice, final String person)
-	{
-		this.exampleId = exampleId;
-		this.text = text;
-		this.rel = rel;
-		this.args = args;
-		this.aspect = aspect;
-		this.form = form;
-		this.tense = tense;
-		this.voice = voice;
-		this.person = person;
-	}
-
-	/**
-	 * Make a list of examples from query built from roleSet id
-	 *
-	 * @param connection connection
-	 * @return list of PropBank examples
-	 */
-	@Nullable
-	static public List<PbExample> make(final SQLiteDatabase connection, final long roleSetId)
-	{
-		List<PbExample> result = null;
-		try (PbExampleQueryFromRoleSetId query = new PbExampleQueryFromRoleSetId(connection, roleSetId))
-		{
-			query.execute();
-
-			while (query.next())
-			{
-				// data from result set
-				final long exampleId = query.getExampleId();
-				final String text = query.getText();
-				final String rel = query.getRel();
-				final List<PbArg> args = query.getArgs();
-				final String aspect = query.getAspect();
-				final String form = query.getForm();
-				final String tense = query.getTense();
-				final String voice = query.getVoice();
-				final String person = query.getPerson();
-				if (result == null)
-				{
-					result = new ArrayList<>();
-				}
-				result.add(new PbExample(exampleId, text, rel, args, aspect, form, tense, voice, person));
-			}
-		}
-		return result;
-	}
+        /**
+         * Make a list of examples from query built from roleSet id
+         *
+         * @param connection connection
+         * @return list of PropBank examples
+         */
+        @JvmStatic
+        fun make(connection: SQLiteDatabase?, roleSetId: Long): List<PbExample?>? {
+            var result: MutableList<PbExample?>? = null
+            PbExampleQueryFromRoleSetId(connection, roleSetId).use { query ->
+                query.execute()
+                while (query.next()) {
+                    // data from result set
+                    val exampleId = query.getExampleId()
+                    val text = query.getText()
+                    val rel = query.getRel()
+                    val args = query.getArgs()
+                    val aspect = query.getAspect()
+                    val form = query.getForm()
+                    val tense = query.getTense()
+                    val voice = query.getVoice()
+                    val person = query.getPerson()
+                    if (result == null) {
+                        result = ArrayList()
+                    }
+                    result!!.add(PbExample(exampleId, text, rel, args, aspect, form, tense, voice, person))
+                }
+            }
+            return result
+        }
+    }
 }

@@ -27,5 +27,5 @@ open class BasicSynset protected constructor(
     /**
      * a string concatenating the synset's samples
      */
-    @JvmField val sample: String,
+    @JvmField val sample: String?,
 )

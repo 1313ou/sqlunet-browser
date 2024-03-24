@@ -1,162 +1,129 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.propbank.sql
 
-package org.sqlunet.propbank.sql;
-
-import org.sqlunet.sql.NodeFactory;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-
-import androidx.annotation.NonNull;
+import org.sqlunet.sql.NodeFactory.addAttributes
+import org.sqlunet.sql.NodeFactory.makeAttribute
+import org.sqlunet.sql.NodeFactory.makeNode
+import org.sqlunet.sql.NodeFactory.makeText
+import org.w3c.dom.Document
+import org.w3c.dom.Node
 
 /**
  * DOM node factory
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class PbNodeFactory
-{
-	/**
-	 * Make PropBank root node
-	 *
-	 * @param doc    is the DOM Document being built
-	 * @param wordId target word id
-	 * @return newly created node
-	 */
-	@NonNull
-	static public Node makePbRootNode(@NonNull final Document doc, final long wordId)
-	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "propbank", null, PropBankImplementation.PB_NS);
-		NodeFactory.addAttributes(rootNode, "wordid", Long.toString(wordId));
-		return rootNode;
-	}
+internal object PbNodeFactory {
 
-	/**
-	 * Make PropBank root node
-	 *
-	 * @param doc  is the DOM Document being built
-	 * @param word target word
-	 * @return newly created node
-	 */
-	@NonNull
-	static public Node makePbRootNode(@NonNull final Document doc, final String word)
-	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "propbank", null, PropBankImplementation.PB_NS);
-		NodeFactory.addAttributes(rootNode, "word", word);
-		return rootNode;
-	}
+    /**
+     * Make PropBank root node
+     *
+     * @param doc    is the DOM Document being built
+     * @param wordId target word id
+     * @return newly created node
+     */
+    @JvmStatic
+    fun makePbRootNode(doc: Document, wordId: Long): Node {
+        val rootNode = makeNode(doc, doc, "propbank", null, PropBankImplementation.PB_NS)
+        addAttributes(rootNode, "wordid", wordId.toString())
+        return rootNode
+    }
 
-	/**
-	 * Make PropBank root node
-	 *
-	 * @param doc       is the DOM Document being built
-	 * @param roleSetId target roleSet id
-	 * @return newly created node
-	 */
-	@NonNull
-	static public Node makePbRootRoleSetNode(@NonNull final Document doc, long roleSetId)
-	{
-		final Element rootNode = NodeFactory.makeNode(doc, doc, "propbank", null, PropBankImplementation.PB_NS);
-		NodeFactory.addAttributes(rootNode, "rolesetid", Long.toString(roleSetId));
-		return rootNode;
-	}
+    /**
+     * Make PropBank root node
+     *
+     * @param doc  is the DOM Document being built
+     * @param word target word
+     * @return newly created node
+     */
+    @JvmStatic
+    fun makePbRootNode(doc: Document, word: String?): Node {
+        val rootNode = makeNode(doc, doc, "propbank", null, PropBankImplementation.PB_NS)
+        addAttributes(rootNode, "word", word!!)
+        return rootNode
+    }
 
-	/**
-	 * Make the roleSet node
-	 *
-	 * @param doc     is the DOM Document being built
-	 * @param parent  is the parent node to attach this node to
-	 * @param roleSet is the roleSet information
-	 * @param i       the ith roleSet
-	 */
-	@NonNull
-	static public Node makePbRoleSetNode(@NonNull final Document doc, final Node parent, @NonNull final PbRoleSet roleSet, final int i)
-	{
-		final Element element = NodeFactory.makeNode(doc, parent, "roleset", null);
-		NodeFactory.makeAttribute(element, "num", Integer.toString(i));
-		NodeFactory.makeAttribute(element, "name", roleSet.roleSetName);
-		NodeFactory.makeAttribute(element, "rolesetid", Long.toString(roleSet.roleSetId));
-		NodeFactory.makeAttribute(element, "head", roleSet.roleSetHead);
-		if (roleSet.wordId != 0)
-		{
-			NodeFactory.makeAttribute(element, "wordid", Long.toString(roleSet.wordId));
-		}
-		NodeFactory.makeText(doc, element, roleSet.roleSetDescr);
-		return element;
-	}
+    /**
+     * Make PropBank root node
+     *
+     * @param doc       is the DOM Document being built
+     * @param roleSetId target roleSet id
+     * @return newly created node
+     */
+    @JvmStatic
+    fun makePbRootRoleSetNode(doc: Document, roleSetId: Long): Node {
+        val rootNode = makeNode(doc, doc, "propbank", null, PropBankImplementation.PB_NS)
+        addAttributes(rootNode, "rolesetid", roleSetId.toString())
+        return rootNode
+    }
 
-	/**
-	 * Make the roleSet node
-	 *
-	 * @param doc    is the DOM Document being built
-	 * @param parent is the parent node to attach this node to
-	 * @param role   is the role information
-	 */
-	@NonNull
-	@SuppressWarnings("UnusedReturnValue")
-	static public Node makePbRoleNode(@NonNull final Document doc, final Node parent, @NonNull final PbRole role)
-	{
-		final Element element = NodeFactory.makeNode(doc, parent, "role", null);
-		NodeFactory.makeAttribute(element, "roleid", Long.toString(role.roleId));
-		NodeFactory.makeAttribute(element, "argtype", role.argType);
-		NodeFactory.makeAttribute(element, "theta", role.roleTheta);
-		NodeFactory.makeAttribute(element, "func", role.roleFunc);
-		NodeFactory.makeText(doc, element, role.roleDescr);
-		return element;
-	}
+    /**
+     * Make the roleSet node
+     *
+     * @param doc     is the DOM Document being built
+     * @param parent  is the parent node to attach this node to
+     * @param roleSet is the roleSet information
+     * @param i       the ith roleSet
+     */
+    @JvmStatic
+    fun makePbRoleSetNode(doc: Document, parent: Node?, roleSet: PbRoleSet, i: Int): Node {
+        val element = makeNode(doc, parent, "roleset", null)
+        makeAttribute(element, "num", i.toString())
+        makeAttribute(element, "name", roleSet.roleSetName)
+        makeAttribute(element, "rolesetid", roleSet.roleSetId.toString())
+        makeAttribute(element, "head", roleSet.roleSetHead)
+        if (roleSet.wordId != 0L) {
+            makeAttribute(element, "wordid", roleSet.wordId.toString())
+        }
+        makeText(doc, element, roleSet.roleSetDescr)
+        return element
+    }
 
-	@NonNull
-	@SuppressWarnings("UnusedReturnValue")
-	static public Node makePbExampleNode(@NonNull final Document doc, final Node parent, @NonNull final PbExample example)
-	{
-		final Element element = NodeFactory.makeNode(doc, parent, "example", null);
-		NodeFactory.makeAttribute(element, "exampleid", Long.toString(example.exampleId));
-		if (example.aspect != null)
-		{
-			NodeFactory.makeAttribute(element, "aspect", example.aspect);
-		}
-		if (example.form != null)
-		{
-			NodeFactory.makeAttribute(element, "form", example.form);
-		}
-		if (example.tense != null)
-		{
-			NodeFactory.makeAttribute(element, "tense", example.tense);
-		}
-		if (example.voice != null)
-		{
-			NodeFactory.makeAttribute(element, "voice", example.voice);
-		}
-		if (example.person != null)
-		{
-			NodeFactory.makeAttribute(element, "person", example.person);
-		}
+    /**
+     * Make the roleSet node
+     *
+     * @param doc    is the DOM Document being built
+     * @param parent is the parent node to attach this node to
+     * @param role   is the role information
+     */
+    @JvmStatic
+    fun makePbRoleNode(doc: Document, parent: Node?, role: PbRole): Node {
+        val element = makeNode(doc, parent, "role", null)
+        makeAttribute(element, "roleid", role.roleId.toString())
+        makeAttribute(element, "argtype", role.argType)
+        makeAttribute(element, "theta", role.roleTheta)
+        makeAttribute(element, "func", role.roleFunc)
+        makeText(doc, element, role.roleDescr)
+        return element
+    }
 
-		NodeFactory.makeText(doc, element, example.text);
-		NodeFactory.makeNode(doc, element, "rel", example.rel);
-		if (example.args != null)
-		{
-			for (final PbArg arg : example.args)
-			{
-				final Element element3 = NodeFactory.makeNode(doc, element, "arg", null);
-				NodeFactory.makeAttribute(element3, "argtype", arg.argType);
-				if (arg.f != null)
-				{
-					NodeFactory.makeAttribute(element3, "f", arg.f);
-				}
-				if (arg.description != null)
-				{
-					NodeFactory.makeAttribute(element3, "descr", arg.description);
-				}
-				if (arg.vnTheta != null)
-				{
-					NodeFactory.makeAttribute(element3, "theta", arg.vnTheta);
-				}
-				NodeFactory.makeText(doc, element3, arg.subText);
-			}
-		}
-		return element;
-	}
+    @JvmStatic
+    fun makePbExampleNode(doc: Document, parent: Node?, example: PbExample): Node {
+        val element = makeNode(doc, parent, "example", null)
+        makeAttribute(element, "exampleid", example.exampleId.toString())
+        makeAttribute(element, "aspect", example.aspect)
+        makeAttribute(element, "form", example.form)
+        makeAttribute(element, "tense", example.tense)
+        makeAttribute(element, "voice", example.voice)
+        makeAttribute(element, "person", example.person)
+        makeText(doc, element, example.text)
+        makeNode(doc, element, "rel", example.rel)
+        if (example.args != null) {
+            for (arg in example.args) {
+                val element3 = makeNode(doc, element, "arg", null)
+                makeAttribute(element3, "argtype", arg.argType)
+                if (arg.f != null) {
+                    makeAttribute(element3, "f", arg.f)
+                }
+                makeAttribute(element3, "descr", arg.description)
+                if (arg.vnTheta != null) {
+                    makeAttribute(element3, "theta", arg.vnTheta)
+                }
+                makeText(doc, element3, arg.subText)
+            }
+        }
+        return element
+    }
 }

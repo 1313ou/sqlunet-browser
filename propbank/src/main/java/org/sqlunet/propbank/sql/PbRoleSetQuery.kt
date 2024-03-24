@@ -1,79 +1,56 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.propbank.sql
 
-package org.sqlunet.propbank.sql;
-
-import android.database.sqlite.SQLiteDatabase;
-
-import org.sqlunet.sql.DBQuery;
+import android.database.sqlite.SQLiteDatabase
+import org.sqlunet.sql.DBQuery
 
 /**
  * PropBank role sets query
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param connection connection
+ * @param roleSetId  target role set id
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class PbRoleSetQuery extends DBQuery
-{
-	/**
-	 * <code>QUERY</code> is the SQL statement
-	 */
-	static private final String QUERY = SqLiteDialect.PropBankRoleSetQuery;
+internal class PbRoleSetQuery(connection: SQLiteDatabase?, roleSetId: Long) : DBQuery(connection!!, QUERY) {
 
-	/**
-	 * Constructor
-	 *
-	 * @param connection connection
-	 * @param roleSetId  target role set id
-	 */
-	@SuppressWarnings("boxing")
-	public PbRoleSetQuery(final SQLiteDatabase connection, final long roleSetId)
-	{
-		super(connection, PbRoleSetQuery.QUERY);
-		setParams(roleSetId);
-	}
+    init {
+        setParams(roleSetId)
+    }
 
-	/**
-	 * Get the roleSet id from the result set
-	 *
-	 * @return the role set id from the result set
-	 */
-	public long getRoleSetId()
-	{
-		assert this.cursor != null;
-		return this.cursor.getLong(0);
-	}
+    /**
+     * Role set id from the result set
+     */
+    val roleSetId: Long
+        get() = cursor!!.getLong(0)
 
-	/**
-	 * Get the role set name from the result set
-	 *
-	 * @return the role set name from the result set
-	 */
-	public String getRoleSetName()
-	{
-		assert this.cursor != null;
-		return this.cursor.getString(1);
-	}
+    /**
+     * Role set name from the result set
+     */
+    val roleSetName: String
+        get() = cursor!!.getString(1)
 
-	/**
-	 * Get role set head
-	 *
-	 * @return roleSet head
-	 */
-	public String getRoleSetHead()
-	{
-		assert this.cursor != null;
-		return this.cursor.getString(2);
-	}
+    /**
+     *Role set head
+     */
+    val roleSetHead: String
+        get() = cursor!!.getString(2)
 
-	/**
-	 * Get role set description
-	 *
-	 * @return role set description
-	 */
-	public String getRoleSetDescr()
-	{
-		assert this.cursor != null;
-		return this.cursor.getString(3);
-	}
+    /**
+     * Role set description
+     *
+     * @return role set description
+     */
+    val roleSetDescr: String
+        get() = cursor!!.getString(3)
+
+
+    companion object {
+        /**
+         * `QUERY` is the SQL statement
+         */
+        private const val QUERY = SqLiteDialect.PropBankRoleSetQuery
+    }
 }
