@@ -1,68 +1,47 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.framenet.sql
 
-package org.sqlunet.framenet.sql;
-
-import android.database.sqlite.SQLiteDatabase;
-
-import org.sqlunet.sql.DBQuery;
+import android.database.sqlite.SQLiteDatabase
+import org.sqlunet.sql.DBQuery
 
 /**
  * FrameNet governor query
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param connection connection
+ * @param luId       target lex unit id
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class FnGovernorQueryFromLexUnitId extends DBQuery
-{
-	/**
-	 * <code>QUERY</code> is the SQL statement
-	 */
-	static private final String QUERY = SqLiteDialect.FrameNetGovernorQueryFromLexUnitId;
+internal class FnGovernorQueryFromLexUnitId(connection: SQLiteDatabase, luId: Long) : DBQuery(connection, QUERY) {
 
-	/**
-	 * Constructor
-	 *
-	 * @param connection connection
-	 * @param luId       target lex unit id
-	 */
-	@SuppressWarnings("boxing")
-	public FnGovernorQueryFromLexUnitId(final SQLiteDatabase connection, final long luId)
-	{
-		super(connection, FnGovernorQueryFromLexUnitId.QUERY);
-		setParams(luId);
-	}
+    init {
+        setParams(luId)
+    }
 
-	/**
-	 * Get the governor id from the result set
-	 *
-	 * @return the governor id from the result set
-	 */
-	public long getGovernorId()
-	{
-		assert this.cursor != null;
-		return this.cursor.getLong(0);
-	}
+    /**
+     * Governor id from the result set
+     */
+    val governorId: Long
+        get() = cursor!!.getLong(0)
 
-	/**
-	 * Get the word id from the result set
-	 *
-	 * @return the word id from the result set
-	 */
-	public long getWordId()
-	{
-		assert this.cursor != null;
-		return this.cursor.getLong(1);
-	}
+    /**
+     * Word id from the result set
+     */
+    val wordId: Long
+        get() = cursor!!.getLong(1)
 
-	/**
-	 * Get the governor from the result set
-	 *
-	 * @return the governor from the result set
-	 */
-	public String getGovernor()
-	{
-		assert this.cursor != null;
-		return this.cursor.getString(2);
-	}
+    /**
+     * Governor from the result set
+     */
+    val governor: String
+        get() = cursor!!.getString(2)
+
+    companion object {
+        /**
+         * `QUERY` is the SQL statement
+         */
+        private const val QUERY = SqLiteDialect.FrameNetGovernorQueryFromLexUnitId
+    }
 }

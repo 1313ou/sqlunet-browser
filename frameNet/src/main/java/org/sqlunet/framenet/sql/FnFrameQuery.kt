@@ -1,90 +1,62 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.framenet.sql
 
-package org.sqlunet.framenet.sql;
-
-import android.database.sqlite.SQLiteDatabase;
-
-import org.sqlunet.sql.DBQuery;
+import android.database.sqlite.SQLiteDatabase
+import org.sqlunet.sql.DBQuery
 
 /**
  * FrameNet frame query
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param connection connection
+ * @param frameId    target frame id
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class FnFrameQuery extends DBQuery
-{
-	/**
-	 * <code>QUERY</code> is the SQL statement
-	 */
-	static private final String QUERY = SqLiteDialect.FrameNetFrameQuery;
+internal class FnFrameQuery(connection: SQLiteDatabase, frameId: Long) : DBQuery(connection, QUERY) {
 
-	/**
-	 * Constructor
-	 *
-	 * @param connection connection
-	 * @param frameId    target frame id
-	 */
-	@SuppressWarnings("boxing")
-	public FnFrameQuery(final SQLiteDatabase connection, final long frameId)
-	{
-		super(connection, FnFrameQuery.QUERY);
-		setParams(frameId);
-	}
+    init {
+        setParams(frameId)
+    }
 
-	/**
-	 * Get the annoSetId from the result set
-	 *
-	 * @return the annoSetId from the result set
-	 */
-	public long getFrameId()
-	{
-		assert this.cursor != null;
-		return this.cursor.getInt(0);
-	}
+    /**
+     * Frame Id from the result set
+     */
+    val frameId: Long
+        get() = cursor!!.getInt(0).toLong()
 
-	/**
-	 * Get the frame from the result set
-	 *
-	 * @return the frame from the result set or null if none
-	 */
-	public String getFrame()
-	{
-		assert this.cursor != null;
-		return this.cursor.getString(1);
-	}
+    /**
+     * Frame from the result set
+     */
+    val frame: String
+        get() = cursor!!.getString(1)
 
-	/**
-	 * Get the frame description from the result set
-	 *
-	 * @return the frame description from the result set or null if none
-	 */
-	public String getFrameDescription()
-	{
-		assert this.cursor != null;
-		return this.cursor.getString(2);
-	}
+    /**
+     * Frame description from the result set
+     *
+     * @return the frame description from the result set
+     */
+    val frameDescription: String
+        get() = cursor!!.getString(2)
 
-	/**
-	 * Get the semtypes from the result set
-	 *
-	 * @return the the semtypes from the result set or null if none
-	 */
-	public String getSemTypes()
-	{
-		assert this.cursor != null;
-		return this.cursor.getString(3);
-	}
+    /**
+     * Semtypes from the result set
+     */
+    val semTypes: String
+        get() = cursor!!.getString(3)
 
-	/**
-	 * Get the related frames from the result set
-	 *
-	 * @return the related frames from the result set or null if none
-	 */
-	public String getRelatedFrames()
-	{
-		assert this.cursor != null;
-		return this.cursor.getString(4);
-	}
+    /**
+     * Get the related frames from the result set or null if none
+     */
+    val relatedFrames: String
+        get() = cursor!!.getString(4)
+
+    companion object {
+
+        /**
+         * `QUERY` is the SQL statement
+         */
+        private const val QUERY = SqLiteDialect.FrameNetFrameQuery
+    }
 }

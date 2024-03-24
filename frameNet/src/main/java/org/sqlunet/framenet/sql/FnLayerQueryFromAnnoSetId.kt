@@ -1,31 +1,24 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.framenet.sql
 
-package org.sqlunet.framenet.sql;
-
-import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatabase
 
 /**
  * FrameNet layer query from annoSet
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param connection      connection
+ * @param targetAnnoSetId target annoSet id
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class FnLayerQueryFromAnnoSetId extends FnLayerQuery
-{
-	/**
-	 * <code>QUERY</code> is the SQL statement
-	 */
-	static private final String QUERY = SqLiteDialect.FrameNetLayerQueryFromAnnoSetId;
+internal class FnLayerQueryFromAnnoSetId(connection: SQLiteDatabase, targetAnnoSetId: Long) : FnLayerQuery(connection, targetAnnoSetId, QUERY) {
 
-	/**
-	 * Constructor
-	 *
-	 * @param connection      connection
-	 * @param targetAnnoSetId target annoSet id
-	 */
-	public FnLayerQueryFromAnnoSetId(final SQLiteDatabase connection, final long targetAnnoSetId)
-	{
-		super(connection, targetAnnoSetId, FnLayerQueryFromAnnoSetId.QUERY);
-	}
+    companion object {
+        /**
+         * `QUERY` is the SQL statement
+         */
+        private const val QUERY = SqLiteDialect.FrameNetLayerQueryFromAnnoSetId
+    }
 }

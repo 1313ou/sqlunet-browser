@@ -1,57 +1,43 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.framenet.sql
 
-package org.sqlunet.framenet.sql;
-
-import android.database.sqlite.SQLiteDatabase;
-
-import org.sqlunet.sql.DBQuery;
+import android.database.sqlite.SQLiteDatabase
+import org.sqlunet.sql.DBQuery
 
 /**
  * FrameNet sentence query from lex unit
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param connection connection
+ * @param luId       target lex unit id
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class FnSentenceQueryFromLexUnitId extends DBQuery
-{
-	/**
-	 * <code>QUERY</code> is the SQL statement
-	 */
-	static private final String QUERY = SqLiteDialect.FrameNetSentencesQueryFromLexUnitId;
+internal class FnSentenceQueryFromLexUnitId(connection: SQLiteDatabase, luId: Long) : DBQuery(connection, QUERY) {
+    /**
+     * Constructor
+     */
+    init {
+        setParams(luId)
+    }
 
-	/**
-	 * Constructor
-	 *
-	 * @param connection connection
-	 * @param luId       target lex unit id
-	 */
-	@SuppressWarnings("boxing")
-	public FnSentenceQueryFromLexUnitId(final SQLiteDatabase connection, final long luId)
-	{
-		super(connection, FnSentenceQueryFromLexUnitId.QUERY);
-		setParams(luId);
-	}
+    /**
+     * Sentence id from the result set
+     */
+    val sentenceId: Long
+        get() = cursor!!.getLong(0)
 
-	/**
-	 * Get the governor id from the result set
-	 *
-	 * @return the governor id from the result set
-	 */
-	public long getSentenceId()
-	{
-		assert this.cursor != null;
-		return this.cursor.getLong(0);
-	}
+    /**
+     * Text from the result set
+     */
+    val text: String
+        get() = cursor!!.getString(1)
 
-	/**
-	 * Get the text from the result set
-	 *
-	 * @return the text from the result set
-	 */
-	public String getText()
-	{
-		assert this.cursor != null;
-		return this.cursor.getString(1);
-	}
+    companion object {
+        /**
+         * `QUERY` is the SQL statement
+         */
+        private const val QUERY = SqLiteDialect.FrameNetSentencesQueryFromLexUnitId
+    }
 }

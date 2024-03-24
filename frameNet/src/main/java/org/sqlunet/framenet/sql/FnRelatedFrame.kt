@@ -1,77 +1,44 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
-
-package org.sqlunet.framenet.sql;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import androidx.annotation.Nullable;
+package org.sqlunet.framenet.sql
 
 /**
  * Related frame
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param frameId   related frame id
+ * @param frameName related frame name
+ * @param relation  relation
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class FnRelatedFrame
-{
-	/**
-	 * Related frame id
-	 */
-	public final long frameId;
+class FnRelatedFrame private constructor(
+    @JvmField val frameId: Long,
+    @JvmField val frameName: String,
+    @JvmField val relation: String,
+) {
+    companion object {
 
-	/**
-	 * Related frame name
-	 */
-	public final String frameName;
-
-	/**
-	 * Relation
-	 */
-	public final String relation;
-
-	/**
-	 * Constructor
-	 *
-	 * @param frameId   related frame id
-	 * @param frameName related frame name
-	 * @param relation  relation
-	 */
-	private FnRelatedFrame(final long frameId, final String frameName, final String relation)
-	{
-		this.frameId = frameId;
-		this.frameName = frameName;
-		this.relation = relation;
-	}
-
-	/**
-	 * Make related frames from string
-	 *
-	 * @param relatedFramesString (id:rel|id:rel...)
-	 * @return list of related frames
-	 */
-	@Nullable
-	static public List<FnRelatedFrame> make(@Nullable final String relatedFramesString)
-	{
-		if (relatedFramesString == null)
-		{
-			return null;
-		}
-		List<FnRelatedFrame> result = null;
-		final String[] relatedFrames = relatedFramesString.split("\\|");
-		for (final String relatedFrame : relatedFrames)
-		{
-			if (result == null)
-			{
-				result = new ArrayList<>();
-			}
-			final String[] fields = relatedFrame.split(":");
-			final long frameId = Long.parseLong(fields[0]);
-			final String frameName = fields[1];
-			final String relation = fields[2];
-			result.add(new FnRelatedFrame(frameId, frameName, relation));
-		}
-		return result;
-	}
+        /**
+         * Make related frames from string
+         *
+         * @param relatedFramesString (id:rel|id:rel...)
+         * @return list of related frames
+         */
+        fun make(relatedFramesString: String): List<FnRelatedFrame>? {
+            var result: MutableList<FnRelatedFrame>? = null
+            val relatedFrames = relatedFramesString.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+            for (relatedFrame in relatedFrames) {
+                if (result == null) {
+                    result = ArrayList()
+                }
+                val fields = relatedFrame.split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+                val frameId = fields[0].toLong()
+                val frameName = fields[1]
+                val relation = fields[2]
+                result.add(FnRelatedFrame(frameId, frameName, relation))
+            }
+            return result
+        }
+    }
 }

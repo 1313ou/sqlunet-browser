@@ -1,64 +1,43 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.framenet.sql
 
-package org.sqlunet.framenet.sql;
-
-import android.database.sqlite.SQLiteDatabase;
-
-import androidx.annotation.Nullable;
+import android.database.sqlite.SQLiteDatabase
 
 /**
  * AnnoSet
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param annoSetId annoSet id
+ * @param sentence  sentence
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class FnAnnoSet
-{
-	/**
-	 * AnnoSet id
-	 */
-	public final long annoSetId;
+class FnAnnoSet private constructor(
+    @JvmField val annoSetId: Long,
+    @JvmField val sentence: FnSentence,
+) {
+    companion object {
 
-	/**
-	 * Sentence
-	 */
-	public final FnSentence sentence;
-
-	/**
-	 * Constructor
-	 *
-	 * @param annoSetId annoSet id
-	 * @param sentence  sentence
-	 */
-	private FnAnnoSet(final long annoSetId, final FnSentence sentence)
-	{
-		this.annoSetId = annoSetId;
-		this.sentence = sentence;
-	}
-
-	/**
-	 * Make annoSet
-	 *
-	 * @param connection connection
-	 * @param annoSetId  annoSet id
-	 * @return annoSet
-	 */
-	@Nullable
-	static public FnAnnoSet make(final SQLiteDatabase connection, final long annoSetId)
-	{
-		try (FnAnnoSetQuery query = new FnAnnoSetQuery(connection, annoSetId))
-		{
-			query.execute();
-
-			if (query.next())
-			{
-				final long sentenceId = query.getSentenceId();
-				final String text = query.getSentenceText();
-				final FnSentence sentence = new FnSentence(sentenceId, text);
-				return new FnAnnoSet(annoSetId, sentence);
-			}
-		}
-		return null;
-	}
+        /**
+         * Make annoSet
+         *
+         * @param connection connection
+         * @param annoSetId  annoSet id
+         * @return annoSet
+         */
+        @JvmStatic
+        fun make(connection: SQLiteDatabase, annoSetId: Long): FnAnnoSet? {
+            FnAnnoSetQuery(connection, annoSetId).use { query ->
+                query.execute()
+                if (query.next()) {
+                    val sentenceId = query.sentenceId
+                    val text = query.sentenceText
+                    val sentence = FnSentence(sentenceId, text)
+                    return FnAnnoSet(annoSetId, sentence)
+                }
+            }
+            return null
+        }
+    }
 }

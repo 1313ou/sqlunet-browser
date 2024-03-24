@@ -1,76 +1,46 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
-
-package org.sqlunet.framenet.sql;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+package org.sqlunet.framenet.sql
 
 /**
  * Label
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param from    from-indexOf
+ * @param to      to-indexOf
+ * @param label   label
+ * @param iType   i-type
+ * @param bgColor background color
+ * @param fgColor foreground color
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class FnLabel
-{
-	/**
-	 * From-indexOf
-	 */
-	public final String from;
+class FnLabel(
+    @JvmField val from: String,
+    @JvmField val to: String,
+    @JvmField val label: String,
+    @JvmField val iType: String,
+    bgColor: String?, fgColor: String?,
+) {
+    /**
+     * Background color
+     */
+    val bgColor: String?
 
-	/**
-	 * To-indexOf
-	 */
-	public final String to;
+    /**
+     * Foreground color
+     */
+    val fgColor: String?
 
-	/**
-	 * Label
-	 */
-	public final String label;
+    /**
+     * Constructor
+     */
+    init {
+        this.bgColor = if (bgColor != null && bgColor.isEmpty()) null else bgColor
+        this.fgColor = if (fgColor != null && fgColor.isEmpty()) null else fgColor
+    }
 
-	/**
-	 * I-type
-	 */
-	public final String iType;
-
-	/**
-	 * Background color
-	 */
-	@Nullable
-	public final String bgColor;
-
-	/**
-	 * Foreground color
-	 */
-	@Nullable
-	public final String fgColor;
-
-	/**
-	 * Constructor
-	 *
-	 * @param from    from-indexOf
-	 * @param to      to-indexOf
-	 * @param label   label
-	 * @param iType   i-type
-	 * @param bgColor background color
-	 * @param fgColor foreground color
-	 */
-	public FnLabel(final String from, final String to, final String label, final String iType, @Nullable final String bgColor, @Nullable final String fgColor)
-	{
-		super();
-		this.from = from;
-		this.to = to;
-		this.label = label;
-		this.iType = iType;
-		this.bgColor = bgColor != null && bgColor.isEmpty() ? null : bgColor;
-		this.fgColor = fgColor != null && fgColor.isEmpty() ? null : fgColor;
-	}
-
-	@NonNull
-	@Override
-	public String toString()
-	{
-		return this.label + '[' + this.from + ',' + this.to + "] type=" + this.iType;
-	}
+    override fun toString(): String {
+        return "$label[$from,$to] type=$iType"
+    }
 }

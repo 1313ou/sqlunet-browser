@@ -1,57 +1,43 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.framenet.sql
 
-package org.sqlunet.framenet.sql;
-
-import android.database.sqlite.SQLiteDatabase;
-
-import org.sqlunet.sql.DBQuery;
+import android.database.sqlite.SQLiteDatabase
+import org.sqlunet.sql.DBQuery
 
 /**
  * FrameNet sentence query
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @param connection connection
+ * @param sentenceId target sentence id
+ *
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class FnSentenceQuery extends DBQuery
-{
-	/**
-	 * <code>QUERY</code> is the SQL statement
-	 */
-	static private final String QUERY = SqLiteDialect.FrameNetSentenceQuery;
+internal class FnSentenceQuery(connection: SQLiteDatabase, sentenceId: Long) : DBQuery(connection, QUERY) {
+    /**
+     * Constructor
+     */
+    init {
+        setParams(sentenceId)
+    }
 
-	/**
-	 * Constructor
-	 *
-	 * @param connection connection
-	 * @param sentenceId target sentence id
-	 */
-	@SuppressWarnings("boxing")
-	public FnSentenceQuery(final SQLiteDatabase connection, final long sentenceId)
-	{
-		super(connection, FnSentenceQuery.QUERY);
-		setParams(sentenceId);
-	}
+    /**
+     * Sentence id from the result set
+     */
+    val sentenceId: Long
+        get() = cursor!!.getLong(0)
 
-	/**
-	 * Get the governor id from the result set
-	 *
-	 * @return the governor id from the result set
-	 */
-	public long getSentenceId()
-	{
-		assert this.cursor != null;
-		return this.cursor.getLong(0);
-	}
+    /**
+     * Text from the result set
+     */
+    val text: String
+        get() = cursor!!.getString(1)
 
-	/**
-	 * Get the text from the result set
-	 *
-	 * @return the text from the result set
-	 */
-	public String getText()
-	{
-		assert this.cursor != null;
-		return this.cursor.getString(1);
-	}
+    companion object {
+        /**
+         * `QUERY` is the SQL statement
+         */
+        private const val QUERY = SqLiteDialect.FrameNetSentenceQuery
+    }
 }

@@ -33,15 +33,15 @@ object Utils {
      * @return the labels from the result set
      */
     @JvmStatic
-    fun parseLabels(labelsString: String?): List<FnLabel?>? {
+    fun parseLabels(labelsString: String?): List<FnLabel>? {
         if (labelsString == null) {
             return null
         }
-        var result: MutableList<FnLabel?>? = null
+        var result: MutableList<FnLabel>? = null
         val labels = labelsString.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
         for (label in labels) {
             val fields = label.split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-            val from = if (fields.size < 1) null else fields[0]
+            val from = if (fields.isEmpty()) null else fields[0]
             val to = if (fields.size < 2) null else fields[1]
             val value = if (fields.size < 3) null else fields[2]
             val iType = if (fields.size < 4) null else fields[3]
@@ -50,7 +50,7 @@ object Utils {
             if (result == null) {
                 result = ArrayList()
             }
-            result.add(FnLabel(from, to, value, iType, bgColor, fgColor))
+            result.add(FnLabel(from!!, to!!, value!!, iType!!, bgColor, fgColor))
         }
         return result
     }

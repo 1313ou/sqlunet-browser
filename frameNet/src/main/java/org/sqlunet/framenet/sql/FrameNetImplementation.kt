@@ -1,606 +1,509 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.framenet.sql
 
-package org.sqlunet.framenet.sql;
-
-import android.database.sqlite.SQLiteDatabase;
-import android.util.Pair;
-
-import org.sqlunet.dom.DomFactory;
-import org.sqlunet.dom.DomTransformer;
-import org.sqlunet.wordnet.sql.WnNodeFactory;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-
-import java.util.List;
-
-import androidx.annotation.NonNull;
+import android.database.sqlite.SQLiteDatabase
+import org.sqlunet.dom.DomFactory.makeDocument
+import org.sqlunet.dom.DomTransformer.docToString
+import org.sqlunet.framenet.sql.FnLayer.Companion.makeFromAnnoSet
+import org.sqlunet.framenet.sql.FnLayer.Companion.makeFromSentence
+import org.sqlunet.framenet.sql.FnLexUnit.Companion.makeFromFnWord
+import org.sqlunet.framenet.sql.FnLexUnit.Companion.makeFromFnWordId
+import org.sqlunet.framenet.sql.FnLexUnit.Companion.makeFromFrame
+import org.sqlunet.framenet.sql.FnLexUnit.Companion.makeFromId
+import org.sqlunet.framenet.sql.FnLexUnit.Companion.makeFromWord
+import org.sqlunet.framenet.sql.FnLexUnit.Companion.makeFromWordId
+import org.sqlunet.framenet.sql.FnNodeFactory.makeFnAnnoSetNode
+import org.sqlunet.framenet.sql.FnNodeFactory.makeFnFENode
+import org.sqlunet.framenet.sql.FnNodeFactory.makeFnFrameNode
+import org.sqlunet.framenet.sql.FnNodeFactory.makeFnGovernorNode
+import org.sqlunet.framenet.sql.FnNodeFactory.makeFnLayerNode
+import org.sqlunet.framenet.sql.FnNodeFactory.makeFnLexunitNode
+import org.sqlunet.framenet.sql.FnNodeFactory.makeFnRootAnnoSetNode
+import org.sqlunet.framenet.sql.FnNodeFactory.makeFnRootFrameNode
+import org.sqlunet.framenet.sql.FnNodeFactory.makeFnRootLexUnitNode
+import org.sqlunet.framenet.sql.FnNodeFactory.makeFnRootNode
+import org.sqlunet.framenet.sql.FnNodeFactory.makeFnRootSentenceNode
+import org.sqlunet.framenet.sql.FnNodeFactory.makeFnSentenceNode
+import org.sqlunet.framenet.sql.FnNodeFactory.makeFnSentencesNode
+import org.sqlunet.framenet.sql.FnSentence.Companion.make
+import org.sqlunet.framenet.sql.FnSentence.Companion.makeFromLexicalUnit
+import org.sqlunet.wordnet.sql.WnNodeFactory.makeWordNode
+import org.w3c.dom.Document
+import org.w3c.dom.Node
 
 /**
  * Encapsulates FrameNet query implementation
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class FrameNetImplementation implements FrameNetInterface
-{
-	static public final String FN_NS = "http://org.sqlunet/fn";
+class FrameNetImplementation(private val queryFromFnWord: Boolean) : FrameNetInterface {
 
-	private final boolean queryFromFnWord;
+    // S E L E C T O R
+    /**
+     * Business method that returns FrameNet selector data as DOM document
+     *
+     * @param connection connection
+     * @param word       the target (fn) word
+     * @param pos        the pos to build query from
+     * @return FrameNet selector data as DOM document
+     */
+    override fun querySelectorDoc(connection: SQLiteDatabase, word: String, pos: Char?): Document {
+        val doc = makeDocument()
+        val rootNode = makeFnRootNode(doc, word, pos)
+        walkSelector(connection, doc, rootNode, word)
+        return doc
+    }
 
-	public FrameNetImplementation(final boolean queryFromFnWord)
-	{
-		this.queryFromFnWord = queryFromFnWord;
-	}
+    /**
+     * Business method that returns FrameNet selector data as XML
+     *
+     * @param connection connection
+     * @param word       the target (fn) word
+     * @param pos        the pos to build query from
+     * @return FrameNet selector data as XML
+     */
+    override fun querySelectorXML(connection: SQLiteDatabase, word: String, pos: Char?): String {
+        val doc = querySelectorDoc(connection, word, pos)
+        return docToString(doc)
+    }
 
-	// S E L E C T O R
+    // D E T A I L
 
-	/**
-	 * Business method that returns FrameNet selector data as DOM document
-	 *
-	 * @param connection connection
-	 * @param word       the target (fn) word
-	 * @param pos        the pos to build query from
-	 * @return FrameNet selector data as DOM document
-	 */
-	@NonNull
-	@Override
-	public Document querySelectorDoc(final SQLiteDatabase connection, final String word, final Character pos)
-	{
-		final Document doc = DomFactory.makeDocument();
-		final Node rootNode = FnNodeFactory.makeFnRootNode(doc, word, pos);
-		walkSelector(connection, doc, rootNode, word);
-		return doc;
-	}
+    /**
+     * Business method that returns FrameNet data as DOM document
+     *
+     * @param connection connection
+     * @param word       the target (fn) word
+     * @param pos        the pos to build query from
+     * @return FrameNet data as DOM document
+     */
+    override fun queryDoc(connection: SQLiteDatabase, word: String, pos: Char): Document {
+        val doc = makeDocument()
+        val rootNode = makeFnRootNode(doc, word, pos)
+        walk(connection, doc, rootNode, word)
+        return doc
+    }
 
-	/**
-	 * Business method that returns FrameNet selector data as XML
-	 *
-	 * @param connection connection
-	 * @param word       the target (fn) word
-	 * @param pos        the pos to build query from
-	 * @return FrameNet selector data as XML
-	 */
-	@NonNull
-	@Override
-	public String querySelectorXML(final SQLiteDatabase connection, final String word, final Character pos)
-	{
-		final Document doc = querySelectorDoc(connection, word, pos);
-		return DomTransformer.docToString(doc);
-	}
+    /**
+     * Business method that returns FrameNet data as XML
+     *
+     * @param connection connection
+     * @param word       the target (fn) word
+     * @param pos        the pos to build query from
+     * @return FrameNet data as XML
+     */
+    override fun queryXML(connection: SQLiteDatabase, word: String, pos: Char): String {
+        val doc = queryDoc(connection, word, pos)
+        return docToString(doc)
+    }
 
-	// D E T A I L
+    // I T E M S
 
-	/**
-	 * Business method that returns FrameNet data as DOM document
-	 *
-	 * @param connection connection
-	 * @param word       the target (fn) word
-	 * @param pos        the pos to build query from
-	 * @return FrameNet data as DOM document
-	 */
-	@NonNull
-	@SuppressWarnings("WeakerAccess")
-	@Override
-	public Document queryDoc(final SQLiteDatabase connection, final String word, final Character pos)
-	{
-		final Document doc = DomFactory.makeDocument();
-		final Node rootNode = FnNodeFactory.makeFnRootNode(doc, word, pos);
-		walk(connection, doc, rootNode, word);
-		return doc;
-	}
+    // word
 
-	/**
-	 * Business method that returns FrameNet data as XML
-	 *
-	 * @param connection connection
-	 * @param word       the target (fn) word
-	 * @param pos        the pos to build query from
-	 * @return FrameNet data as XML
-	 */
-	@NonNull
-	@Override
-	public String queryXML(final SQLiteDatabase connection, final String word, final Character pos)
-	{
-		final Document doc = queryDoc(connection, word, pos);
-		return DomTransformer.docToString(doc);
-	}
+    /**
+     * Business method that returns FrameNet data as DOM document
+     *
+     * @param connection connection
+     * @param wordId     the target (fn) word id to build query from
+     * @param pos        the pos to build query from
+     * @return FrameNet data as DOM document
+     */
+    override fun queryDoc(connection: SQLiteDatabase, wordId: Long, pos: Char): Document {
+        val doc = makeDocument()
+        val rootNode = makeFnRootNode(doc, wordId, pos)
+        walkWord(connection, doc, rootNode, wordId, pos)
+        return doc
+    }
 
-	// I T E M S
+    /**
+     * Business method that returns FrameNet data as XML
+     *
+     * @param connection connection
+     * @param wordId     the target (fn) word id
+     * @param pos        the pos to build query from
+     * @return FrameNet data as XML
+     */
+    override fun queryXML(connection: SQLiteDatabase, wordId: Long, pos: Char): String {
+        val doc = queryDoc(connection, wordId, pos)
+        return docToString(doc)
+    }
 
-	// word
+    // frame
 
-	/**
-	 * Business method that returns FrameNet data as DOM document
-	 *
-	 * @param connection connection
-	 * @param wordId     the target (fn) word id to build query from
-	 * @param pos        the pos to build query from
-	 * @return FrameNet data as DOM document
-	 */
-	@NonNull
-	@Override
-	public Document queryDoc(final SQLiteDatabase connection, final long wordId, final Character pos)
-	{
-		final Document doc = DomFactory.makeDocument();
-		final Node rootNode = FnNodeFactory.makeFnRootNode(doc, wordId, pos);
-		walkWord(connection, doc, rootNode, wordId, pos);
-		return doc;
-	}
+    /**
+     * Business method that returns frame data as DOM document
+     *
+     * @param connection connection
+     * @param frameId    the frame to build query from
+     * @param pos        the pos to build query from
+     * @return FrameNet frame data as DOM document
+     */
+    override fun queryFrameDoc(connection: SQLiteDatabase, frameId: Long, pos: Char?): Document {
+        val doc = makeDocument()
+        val rootNode = makeFnRootFrameNode(doc, frameId)
+        walkFrame(connection, doc, rootNode, frameId)
+        return doc
+    }
 
-	/**
-	 * Business method that returns FrameNet data as XML
-	 *
-	 * @param connection connection
-	 * @param wordId     the target (fn) word id
-	 * @param pos        the pos to build query from
-	 * @return FrameNet data as XML
-	 */
-	@NonNull
-	@Override
-	public String queryXML(final SQLiteDatabase connection, final long wordId, final Character pos)
-	{
-		final Document doc = queryDoc(connection, wordId, pos);
-		return DomTransformer.docToString(doc);
-	}
+    /**
+     * Business method that returns frame data as XML
+     *
+     * @param connection connection
+     * @param frameId    the frame to build query from
+     * @param pos        the pos to build query from
+     * @return FrameNet frame data as XML
+     */
+    override fun queryFrameXML(connection: SQLiteDatabase, frameId: Long, pos: Char?): String {
+        val doc = queryFrameDoc(connection, frameId, pos)
+        return docToString(doc)
+    }
 
-	// frame
+    // lexunit
 
-	/**
-	 * Business method that returns frame data as DOM document
-	 *
-	 * @param connection connection
-	 * @param frameId    the frame to build query from
-	 * @param pos        the pos to build query from
-	 * @return FrameNet frame data as DOM document
-	 */
-	@NonNull
-	@Override
-	public Document queryFrameDoc(final SQLiteDatabase connection, final long frameId, final Character pos)
-	{
-		final Document doc = DomFactory.makeDocument();
-		final Node rootNode = FnNodeFactory.makeFnRootFrameNode(doc, frameId);
-		FrameNetImplementation.walkFrame(connection, doc, rootNode, frameId);
-		return doc;
-	}
+    /**
+     * Business method that returns lexunit data as DOM document
+     *
+     * @param connection connection
+     * @param luId       the luId to build query from
+     * @return FrameNet lexunit data as DOM document
+     */
+    override fun queryLexUnitDoc(connection: SQLiteDatabase, luId: Long): Document {
+        val doc = makeDocument()
+        val rootNode = makeFnRootLexUnitNode(doc, luId)
+        walkLexUnit(connection, doc, rootNode, luId)
+        return doc
+    }
 
-	/**
-	 * Business method that returns frame data as XML
-	 *
-	 * @param connection connection
-	 * @param frameId    the frame to build query from
-	 * @param pos        the pos to build query from
-	 * @return FrameNet frame data as XML
-	 */
-	@NonNull
-	@Override
-	public String queryFrameXML(final SQLiteDatabase connection, final long frameId, final Character pos)
-	{
-		final Document doc = queryFrameDoc(connection, frameId, pos);
-		return DomTransformer.docToString(doc);
-	}
+    /**
+     * Business method that returns lexunit data as XML
+     *
+     * @param connection connection
+     * @param luId       the luId to build query from
+     * @return FrameNet lexunit data as XML
+     */
+    override fun queryLexUnitXML(connection: SQLiteDatabase, luId: Long): String {
+        val doc = queryLexUnitDoc(connection, luId)
+        return docToString(doc)
+    }
 
-	// lexunit
+    // sentence
 
-	/**
-	 * Business method that returns lexunit data as DOM document
-	 *
-	 * @param connection connection
-	 * @param luId       the luId to build query from
-	 * @return FrameNet lexunit data as DOM document
-	 */
-	@NonNull
-	@Override
-	public Document queryLexUnitDoc(final SQLiteDatabase connection, final long luId)
-	{
-		final Document doc = DomFactory.makeDocument();
-		final Node rootNode = FnNodeFactory.makeFnRootLexUnitNode(doc, luId);
-		FrameNetImplementation.walkLexUnit(connection, doc, rootNode, luId);
-		return doc;
-	}
+    /**
+     * Business method that returns sentence data as DOM document
+     *
+     * @param connection connection
+     * @param sentenceId the sentence id to build query from
+     * @return FrameNet sentence data as DOM document
+     */
+    fun querySentenceDoc(connection: SQLiteDatabase, sentenceId: Long): Document {
+        val doc = makeDocument()
+        val rootNode = makeFnRootSentenceNode(doc, sentenceId)
+        walkSentence(connection, doc, rootNode, sentenceId)
+        return doc
+    }
 
-	/**
-	 * Business method that returns lexunit data as XML
-	 *
-	 * @param connection connection
-	 * @param luId       the luId to build query from
-	 * @return FrameNet lexunit data as XML
-	 */
-	@NonNull
-	@Override
-	public String queryLexUnitXML(final SQLiteDatabase connection, final long luId)
-	{
-		final Document doc = queryLexUnitDoc(connection, luId);
-		return DomTransformer.docToString(doc);
-	}
+    /**
+     * Business method that returns sentence data as XML
+     *
+     * @param connection connection
+     * @param sentenceId the sentence id to build query from
+     * @return FrameNet sentence data as XML
+     */
+    fun querySentenceXML(connection: SQLiteDatabase, sentenceId: Long): String {
+        val doc = querySentenceDoc(connection, sentenceId)
+        return docToString(doc)
+    }
 
-	// sentence
+    // annoSet
 
-	/**
-	 * Business method that returns sentence data as DOM document
-	 *
-	 * @param connection connection
-	 * @param sentenceId the sentence id to build query from
-	 * @return FrameNet sentence data as DOM document
-	 */
-	@NonNull
-	public Document querySentenceDoc(final SQLiteDatabase connection, final long sentenceId)
-	{
-		final Document doc = DomFactory.makeDocument();
-		final Node rootNode = FnNodeFactory.makeFnRootSentenceNode(doc, sentenceId);
-		FrameNetImplementation.walkSentence(connection, doc, rootNode, sentenceId);
-		return doc;
-	}
+    /**
+     * Business method that returns annoSet data as DOM document
+     *
+     * @param connection connection
+     * @param annoSetId  the annoSetId to build query from
+     * @return FrameNet annoSet data as DOM document
+     */
+    fun queryAnnoSetDoc(connection: SQLiteDatabase, annoSetId: Long): Document {
+        val doc = makeDocument()
+        val rootNode = makeFnRootAnnoSetNode(doc, annoSetId)
+        walkAnnoSet(connection, doc, rootNode, annoSetId)
+        return doc
+    }
 
-	/**
-	 * Business method that returns sentence data as XML
-	 *
-	 * @param connection connection
-	 * @param sentenceId the sentence id to build query from
-	 * @return FrameNet sentence data as XML
-	 */
-	@NonNull
-	public String querySentenceXML(final SQLiteDatabase connection, final long sentenceId)
-	{
-		final Document doc = querySentenceDoc(connection, sentenceId);
-		return DomTransformer.docToString(doc);
-	}
+    /**
+     * Business method that returns annoSet data as XML
+     *
+     * @param connection connection
+     * @param annoSetId  the annoSetId to build query from
+     * @return FrameNet annoSet data as XML
+     */
+    fun queryAnnoSetXML(connection: SQLiteDatabase, annoSetId: Long): String {
+        val doc = queryAnnoSetDoc(connection, annoSetId)
+        return docToString(doc)
+    }
 
-	// annoSet
+    // W A L K
 
-	/**
-	 * Business method that returns annoSet data as DOM document
-	 *
-	 * @param connection connection
-	 * @param annoSetId  the annoSetId to build query from
-	 * @return FrameNet annoSet data as DOM document
-	 */
-	@NonNull
-	public Document queryAnnoSetDoc(final SQLiteDatabase connection, final long annoSetId)
-	{
-		final Document doc = DomFactory.makeDocument();
-		final Node rootNode = FnNodeFactory.makeFnRootAnnoSetNode(doc, annoSetId);
-		FrameNetImplementation.walkAnnoSet(connection, doc, rootNode, annoSetId);
-		return doc;
-	}
+    /**
+     * Perform queries for FrameNet selection data
+     *
+     * @param connection connection
+     * @param doc        the org.w3c.dom.Document being built
+     * @param parent     the org.w3c.dom.Node the walk will attach results to
+     * @param targetWord the target (fn) word
+     */
+    private fun walkSelector(connection: SQLiteDatabase, doc: Document, parent: Node, targetWord: String) {
+        val result = if (queryFromFnWord) makeFromFnWord(connection, targetWord) else makeFromWord(connection, targetWord)
+        val lexUnits = result.second ?: return
 
-	/**
-	 * Business method that returns annoSet data as XML
-	 *
-	 * @param connection connection
-	 * @param annoSetId  the annoSetId to build query from
-	 * @return FrameNet annoSet data as XML
-	 */
-	@NonNull
-	public String queryAnnoSetXML(final SQLiteDatabase connection, final long annoSetId)
-	{
-		final Document doc = queryAnnoSetDoc(connection, annoSetId);
-		return DomTransformer.docToString(doc);
-	}
+        // framenet nodes
+        makeSelector(doc, parent, lexUnits, true)
+    }
 
-	// W A L K
+    /**
+     * Perform queries for FrameNet data from word
+     *
+     * @param connection connection
+     * @param doc        the org.w3c.dom.Document being built
+     * @param parent     the org.w3c.dom.Node the walk will attach results to
+     * @param targetWord the target (fn) word
+     */
+    private fun walk(connection: SQLiteDatabase, doc: Document, parent: Node, targetWord: String) {
+        val result = if (queryFromFnWord) makeFromFnWord(connection, targetWord) else makeFromWord(connection, targetWord)
+        val wordId = result.first
+        val lexUnits = result.second ?: return
 
-	/**
-	 * Perform queries for FrameNet selection data
-	 *
-	 * @param connection connection
-	 * @param doc        the org.w3c.dom.Document being built
-	 * @param parent     the org.w3c.dom.Node the walk will attach results to
-	 * @param targetWord the target (fn) word
-	 */
-	private void walkSelector(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final String targetWord)
-	{
-		final Pair<Long, List<FnLexUnit>> result = this.queryFromFnWord ? FnLexUnit.makeFromFnWord(connection, targetWord) : FnLexUnit.makeFromWord(connection, targetWord);
-		final List<FnLexUnit> lexUnits = result.second;
-		if (lexUnits == null)
-		{
-			return;
-		}
+        // word
+        makeWordNode(doc, parent, targetWord, wordId)
 
-		// framenet nodes
-		FrameNetImplementation.makeSelector(doc, parent, lexUnits, true);
-	}
+        // lexunits
+        for (lexUnit in lexUnits) {
+            // lexunit
+            val lexUnitNode = makeFnLexunitNode(doc, parent, lexUnit!!)
 
-	/**
-	 * Perform queries for FrameNet data from word
-	 *
-	 * @param connection connection
-	 * @param doc        the org.w3c.dom.Document being built
-	 * @param parent     the org.w3c.dom.Node the walk will attach results to
-	 * @param targetWord the target (fn) word
-	 */
-	private void walk(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final String targetWord)
-	{
-		final Pair<Long, List<FnLexUnit>> result = this.queryFromFnWord ? FnLexUnit.makeFromFnWord(connection, targetWord) : FnLexUnit.makeFromWord(connection, targetWord);
-		final Long wordId = result.first;
-		final List<FnLexUnit> lexUnits = result.second;
-		if (lexUnits == null)
-		{
-			return;
-		}
+            // frame
+            val frame = lexUnit.frame!!
+            makeFnFrameNode(doc, lexUnitNode, frame, false)
+        }
+    }
 
-		// word
-		WnNodeFactory.makeWordNode(doc, parent, targetWord, wordId);
+    /**
+     * Perform queries for FrameNet data from (fn) word id
+     *
+     * @param connection   data source
+     * @param doc          the org.w3c.dom.Document being built
+     * @param parent       the org.w3c.dom.Node the walk will attach results to
+     * @param targetWordId the target (fn) word id
+     * @param pos          the target pos
+     */
+    private fun walkWord(connection: SQLiteDatabase, doc: Document, parent: Node, targetWordId: Long, pos: Char?) {
+        // lexunits
+        val lexUnits = if (queryFromFnWord) makeFromFnWordId(connection, targetWordId, pos) else makeFromWordId(connection, targetWordId, pos)
+        if (lexUnits != null) {
+            for (lexUnit in lexUnits) {
+                // frame
+                val lexUnitNode = makeFnLexunitNode(doc, parent, lexUnit!!)
+                assert(lexUnit.frame != null)
+                val frameNode = makeFnFrameNode(doc, lexUnitNode, lexUnit.frame!!, false)
 
-		// lexunits
-		for (final FnLexUnit lexUnit : lexUnits)
-		{
-			// lexunit
-			final Node lexUnitNode = FnNodeFactory.makeFnLexunitNode(doc, parent, lexUnit);
+                // frame FEs
+                val fes = FnFrameElement.make(connection, lexUnit.frame.frameId)
+                if (fes != null) {
+                    for (fe in fes) {
+                        makeFnFENode(doc, frameNode, fe!!)
+                    }
+                }
 
-			// frame
-			final FnFrame frame = lexUnit.frame;
-			assert frame != null;
-			FnNodeFactory.makeFnFrameNode(doc, lexUnitNode, frame, false);
-		}
-	}
+                // governors
+                val governors = FnGovernor.make(connection, lexUnit.luId)
+                if (governors != null) {
+                    for (governor in governors) {
+                        makeFnGovernorNode(doc, lexUnitNode, governor!!)
+                    }
+                }
 
-	/**
-	 * Perform queries for FrameNet data from (fn) word id
-	 *
-	 * @param connection   data source
-	 * @param doc          the org.w3c.dom.Document being built
-	 * @param parent       the org.w3c.dom.Node the walk will attach results to
-	 * @param targetWordId the target (fn) word id
-	 * @param pos          the target pos
-	 */
-	private void walkWord(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long targetWordId, final Character pos)
-	{
-		// lexunits
-		final List<FnLexUnit> lexUnits = this.queryFromFnWord ? FnLexUnit.makeFromFnWordId(connection, targetWordId, pos) : FnLexUnit.makeFromWordId(connection, targetWordId, pos);
-		if (lexUnits != null)
-		{
-			for (final FnLexUnit lexUnit : lexUnits)
-			{
-				// frame
-				final Node lexUnitNode = FnNodeFactory.makeFnLexunitNode(doc, parent, lexUnit);
+                // sentences
+                val sentencesNode = makeFnSentencesNode(doc, lexUnitNode)
+                val sentences = makeFromLexicalUnit(connection, lexUnit.luId)
+                if (sentences != null) {
+                    var j = 1
+                    for (sentence in sentences) {
+                        makeFnSentenceNode(doc, sentencesNode, sentence!!, j)
+                        j++
+                    }
+                }
+            }
+        }
+    }
 
-				// frame
-				assert lexUnit.frame != null;
-				final Node frameNode = FnNodeFactory.makeFnFrameNode(doc, lexUnitNode, lexUnit.frame, false);
+    companion object {
+        const val FN_NS = "http://org.sqlunet/fn"
 
-				// frame FEs
-				final List<FnFrameElement> fes = FnFrameElement.make(connection, lexUnit.frame.frameId);
-				if (fes != null)
-				{
-					for (final FnFrameElement fe : fes)
-					{
-						FnNodeFactory.makeFnFENode(doc, frameNode, fe);
-					}
-				}
+        /**
+         * Perform queries for FrameNet data from frame id
+         *
+         * @param connection    data source
+         * @param doc           the org.w3c.dom.Document being built
+         * @param parent        the org.w3c.dom.Node the walk will attach results to
+         * @param targetFrameId the target frame id
+         */
+        private fun walkFrame(connection: SQLiteDatabase, doc: Document, parent: Node, targetFrameId: Long) {
+            // frame
+            val frame = FnFrame.make(connection, targetFrameId) ?: return
+            val frameNode = makeFnFrameNode(doc, parent, frame, false)
 
-				// governors
-				final List<FnGovernor> governors = FnGovernor.make(connection, lexUnit.luId);
-				if (governors != null)
-				{
-					for (final FnGovernor governor : governors)
-					{
-						FnNodeFactory.makeFnGovernorNode(doc, lexUnitNode, governor);
-					}
-				}
+            // lexunits
+            val lexUnits = makeFromFrame(connection, targetFrameId)
+            if (lexUnits != null) {
+                for (lexUnit in lexUnits) {
+                    // includes frame info
+                    makeFnLexunitNode(doc, frameNode, lexUnit!!)
+                }
+            }
 
-				// sentences
-				final Node sentencesNode = FnNodeFactory.makeFnSentencesNode(doc, lexUnitNode);
-				final List<FnSentence> sentences = FnSentence.makeFromLexicalUnit(connection, lexUnit.luId);
-				if (sentences != null)
-				{
-					int j = 1;
-					for (final FnSentence sentence : sentences)
-					{
-						FnNodeFactory.makeFnSentenceNode(doc, sentencesNode, sentence, j);
-						j++;
-					}
-				}
-			}
-		}
-	}
+            // frame FEs
+            val fes = FnFrameElement.make(connection, frame.frameId)
+            if (fes != null) {
+                for (fe in fes) {
+                    makeFnFENode(doc, frameNode, fe!!)
+                }
+            }
+        }
 
-	/**
-	 * Perform queries for FrameNet data from frame id
-	 *
-	 * @param connection    data source
-	 * @param doc           the org.w3c.dom.Document being built
-	 * @param parent        the org.w3c.dom.Node the walk will attach results to
-	 * @param targetFrameId the target frame id
-	 */
-	static private void walkFrame(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long targetFrameId)
-	{
-		// frame
-		final FnFrame frame = FnFrame.make(connection, targetFrameId);
-		if (frame == null)
-		{
-			return;
-		}
+        /**
+         * Perform queries for FrameNet data from lexunit id
+         *
+         * @param connection data source
+         * @param doc        the org.w3c.dom.Document being built
+         * @param parent     the org.w3c.dom.Node the walk will attach results to
+         * @param luId       the target lexunit id
+         */
+        private fun walkLexUnit(connection: SQLiteDatabase, doc: Document, parent: Node, luId: Long) {
+            // lexunit
+            val lexUnit = makeFromId(connection, luId)!!
+            val lexUnitNode = makeFnLexunitNode(doc, parent, lexUnit)
+            assert(lexUnit.frame != null)
+            walkFrame(connection, doc, lexUnitNode, lexUnit.frame!!.frameId)
 
-		final Node frameNode = FnNodeFactory.makeFnFrameNode(doc, parent, frame, false);
+            // sentences
+            val sentencesNode = makeFnSentencesNode(doc, lexUnitNode)
+            val sentences = makeFromLexicalUnit(connection, lexUnit.luId)
+            if (sentences != null) {
+                var j = 1
+                for (sentence in sentences) {
+                    makeFnSentenceNode(doc, sentencesNode, sentence!!, j)
+                    j++
+                }
+            }
+        }
 
-		// lexunits
-		final List<FnLexUnit> lexUnits = FnLexUnit.makeFromFrame(connection, targetFrameId);
-		if (lexUnits != null)
-		{
-			for (final FnLexUnit lexUnit : lexUnits)
-			{
-				// includes frame info
-				FnNodeFactory.makeFnLexunitNode(doc, frameNode, lexUnit);
-			}
-		}
+        /**
+         * Perform queries for FrameNet data from sentence id
+         *
+         * @param connection data source
+         * @param doc        the org.w3c.dom.Document being built
+         * @param parent     the org.w3c.dom.Node the walk will attach results to
+         * @param sentenceId the target sentence id
+         */
+        private fun walkSentence(connection: SQLiteDatabase, doc: Document, parent: Node, sentenceId: Long) {
+            // sentence
+            val sentence = make(connection, sentenceId)!!
+            val sentenceNode = makeFnSentenceNode(doc, parent, sentence, 0)
 
-		// frame FEs
-		final List<FnFrameElement> fes = FnFrameElement.make(connection, frame.frameId);
-		if (fes != null)
-		{
-			for (final FnFrameElement fe : fes)
-			{
-				FnNodeFactory.makeFnFENode(doc, frameNode, fe);
-			}
-		}
-	}
+            // layers
+            walkLayersFromSentence(connection, doc, sentenceNode, sentenceId)
+        }
 
-	/**
-	 * Perform queries for FrameNet data from lexunit id
-	 *
-	 * @param connection data source
-	 * @param doc        the org.w3c.dom.Document being built
-	 * @param parent     the org.w3c.dom.Node the walk will attach results to
-	 * @param luId       the target lexunit id
-	 */
-	static private void walkLexUnit(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long luId)
-	{
-		// lexunit
-		final FnLexUnit lexUnit = FnLexUnit.makeFromId(connection, luId);
-		assert lexUnit != null;
-		final Node lexUnitNode = FnNodeFactory.makeFnLexunitNode(doc, parent, lexUnit);
+        /**
+         * Perform queries for FrameNet data from annoSet id
+         *
+         * @param connection data source
+         * @param doc        the org.w3c.dom.Document being built
+         * @param parent     the org.w3c.dom.Node the walk will attach results to
+         * @param annoSetId  the target annoSet id
+         */
+        private fun walkAnnoSet(connection: SQLiteDatabase, doc: Document, parent: Node, annoSetId: Long) {
+            // annoSet
+            val annoSet = FnAnnoSet.make(connection, annoSetId)!!
+            val sentenceNode = makeFnSentenceNode(doc, parent, annoSet.sentence, 0)
 
-		// frame FEs
-		/*
-		final List<FnFrameElement> fes = FnFrameElement.make(connection, lexUnit.frame.frameId);
-		if (fes != null)
-		{
-			for (final FnFrameElement fe : fes)
-			{
-				FnNodeFactory.makeFnFENode(doc, lexUnitNode, fe);
-			}
-		}
-		*/
+            // annoSet node
+            val annoSetNode = makeFnAnnoSetNode(doc, sentenceNode, annoSet)
 
-		// frame
-		assert lexUnit.frame != null;
-		walkFrame(connection, doc, lexUnitNode, lexUnit.frame.frameId);
+            // layers
+            walkLayersFromAnnoSet(connection, doc, annoSetNode, annoSetId)
+        }
 
-		// sentences
-		final Node sentencesNode = FnNodeFactory.makeFnSentencesNode(doc, lexUnitNode);
-		final List<FnSentence> sentences = FnSentence.makeFromLexicalUnit(connection, lexUnit.luId);
-		if (sentences != null)
-		{
-			int j = 1;
-			for (final FnSentence sentence : sentences)
-			{
-				FnNodeFactory.makeFnSentenceNode(doc, sentencesNode, sentence, j);
-				j++;
-			}
-		}
-	}
+        /**
+         * Perform queries for FrameNet layers data from annoSet id
+         *
+         * @param connection data source
+         * @param doc        the org.w3c.dom.Document being built
+         * @param parent     the org.w3c.dom.Node the walk will attach results to
+         * @param annoSetId  the target annoSet id
+         */
+        private fun walkLayersFromAnnoSet(connection: SQLiteDatabase, doc: Document, parent: Node, annoSetId: Long) {
+            // layers
+            val layers = makeFromAnnoSet(connection, annoSetId)
+            if (layers != null) {
+                for (layer in layers) {
+                    // layer
+                    makeFnLayerNode(doc, parent, layer!!)
+                }
+            }
+        }
 
-	/**
-	 * Perform queries for FrameNet data from sentence id
-	 *
-	 * @param connection data source
-	 * @param doc        the org.w3c.dom.Document being built
-	 * @param parent     the org.w3c.dom.Node the walk will attach results to
-	 * @param sentenceId the target sentence id
-	 */
-	static private void walkSentence(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long sentenceId)
-	{
-		// sentence
-		final FnSentence sentence = FnSentence.make(connection, sentenceId);
-		assert sentence != null;
-		final Node sentenceNode = FnNodeFactory.makeFnSentenceNode(doc, parent, sentence, 0);
+        /**
+         * Perform queries for FrameNet layers data from sentence id
+         *
+         * @param connection data source
+         * @param doc        the org.w3c.dom.Document being built
+         * @param parent     the org.w3c.dom.Node the walk will attach results to
+         * @param sentenceId the target sentence id
+         */
+        private fun walkLayersFromSentence(connection: SQLiteDatabase, doc: Document, parent: Node, sentenceId: Long) {
+            // layers
+            val layers = makeFromSentence(connection, sentenceId)
+            if (layers != null) {
+                var annoSetId: Long = -1
+                var annoSetNode: Node? = null
+                for (layer in layers) {
+                    if (annoSetId != layer.annoSetId) {
+                        annoSetNode = makeFnAnnoSetNode(doc, parent, layer.annoSetId)
+                        annoSetId = layer.annoSetId
+                    }
 
-		// layers
-		walkLayersFromSentence(connection, doc, sentenceNode, sentenceId);
-	}
+                    // layer
+                    makeFnLayerNode(doc, annoSetNode, layer)
+                }
+            }
+        }
 
-	/**
-	 * Perform queries for FrameNet data from annoSet id
-	 *
-	 * @param connection data source
-	 * @param doc        the org.w3c.dom.Document being built
-	 * @param parent     the org.w3c.dom.Node the walk will attach results to
-	 * @param annoSetId  the target annoSet id
-	 */
-	static private void walkAnnoSet(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long annoSetId)
-	{
-		// annoSet
-		final FnAnnoSet annoSet = FnAnnoSet.make(connection, annoSetId);
+        // H E L P E R S
 
-		// sentence node
-		assert annoSet != null;
-		final Node sentenceNode = FnNodeFactory.makeFnSentenceNode(doc, parent, annoSet.sentence, 0);
+        /**
+         * Make selector
+         *
+         * @param doc      the org.w3c.dom.Document being built
+         * @param parent   the org.w3c.dom.Document being built
+         * @param lexUnits lexunits
+         * @param doFrame  whether to include frame data
+         */
+        private fun makeSelector(doc: Document, parent: Node, lexUnits: Iterable<FnLexUnit?>, doFrame: Boolean) {
+            // lexunits
+            for (lexUnit in lexUnits) {
+                // lexunit
+                val lexUnitNode = makeFnLexunitNode(doc, parent, lexUnit!!)
 
-		// annoSet node
-		final Node annoSetNode = FnNodeFactory.makeFnAnnoSetNode(doc, sentenceNode, annoSet);
-
-		// layers
-		walkLayersFromAnnoSet(connection, doc, annoSetNode, annoSetId);
-	}
-
-	/**
-	 * Perform queries for FrameNet layers data from annoSet id
-	 *
-	 * @param connection data source
-	 * @param doc        the org.w3c.dom.Document being built
-	 * @param parent     the org.w3c.dom.Node the walk will attach results to
-	 * @param annoSetId  the target annoSet id
-	 */
-	static private void walkLayersFromAnnoSet(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long annoSetId)
-	{
-		// layers
-		final List<FnLayer> layers = FnLayer.makeFromAnnoSet(connection, annoSetId);
-		if (layers != null)
-		{
-			for (final FnLayer layer : layers)
-			{
-				// layer
-				FnNodeFactory.makeFnLayerNode(doc, parent, layer);
-			}
-		}
-	}
-
-	/**
-	 * Perform queries for FrameNet layers data from sentence id
-	 *
-	 * @param connection data source
-	 * @param doc        the org.w3c.dom.Document being built
-	 * @param parent     the org.w3c.dom.Node the walk will attach results to
-	 * @param sentenceId the target sentence id
-	 */
-	static private void walkLayersFromSentence(final SQLiteDatabase connection, @NonNull final Document doc, final Node parent, final long sentenceId)
-	{
-		// layers
-		final List<FnLayer> layers = FnLayer.makeFromSentence(connection, sentenceId);
-		if (layers != null)
-		{
-			long annoSetId = -1;
-			Node annoSetNode = null;
-			for (final FnLayer layer : layers)
-			{
-				if (annoSetId != layer.annoSetId)
-				{
-					annoSetNode = FnNodeFactory.makeFnAnnoSetNode(doc, parent, layer.annoSetId);
-					annoSetId = layer.annoSetId;
-				}
-
-				// layer
-				FnNodeFactory.makeFnLayerNode(doc, annoSetNode, layer);
-			}
-		}
-	}
-
-	// H E L P E R S
-
-	/**
-	 * Make selector
-	 *
-	 * @param doc      the org.w3c.dom.Document being built
-	 * @param parent   the org.w3c.dom.Document being built
-	 * @param lexUnits lexunits
-	 * @param doFrame  whether to include frame data
-	 */
-	static private void makeSelector(@NonNull final Document doc, final Node parent, @NonNull final Iterable<FnLexUnit> lexUnits, @SuppressWarnings("SameParameterValue") final boolean doFrame)
-	{
-		// lexunits
-		for (final FnLexUnit lexUnit : lexUnits)
-		{
-			// lexunit
-			final Node lexUnitNode = FnNodeFactory.makeFnLexunitNode(doc, parent, lexUnit);
-
-			// frame
-			if (doFrame)
-			{
-				final FnFrame frame = lexUnit.frame;
-				assert frame != null;
-				FnNodeFactory.makeFnFrameNode(doc, lexUnitNode, frame, true);
-			}
-		}
-	}
+                // frame
+                if (doFrame) {
+                    val frame = lexUnit.frame!!
+                    makeFnFrameNode(doc, lexUnitNode, frame, true)
+                }
+            }
+        }
+    }
 }

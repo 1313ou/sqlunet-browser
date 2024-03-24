@@ -335,7 +335,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
         // agents
         processor = FrameNetProcessor()
-        frameProcessor = FrameNetFrameProcessor()
+        frameProcessor = FrameNetFrameProcessor
         spanner = FrameNetSpanner(context)
     }
 
