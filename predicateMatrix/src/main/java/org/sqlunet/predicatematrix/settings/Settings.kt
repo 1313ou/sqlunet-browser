@@ -1,69 +1,64 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.predicatematrix.settings
 
-package org.sqlunet.predicatematrix.settings;
-
-import android.content.Context;
-import android.content.SharedPreferences;
-
-import androidx.annotation.NonNull;
-import androidx.preference.PreferenceManager;
+import android.content.Context
+import androidx.preference.PreferenceManager
 
 /**
  * Settings
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class Settings
-{
-	static private final String PREF_PM_MODE = "pref_pm_mode";
+object Settings {
+    private const val PREF_PM_MODE = "pref_pm_mode"
 
-	/**
-	 * Modes
-	 */
-	public enum PMMode
-	{ROLES, ROWS_GROUPED_BY_ROLE, ROWS_GROUPED_BY_SYNSET, ROWS;
+    /**
+     * Modes
+     */
+    enum class PMMode {
+        ROLES,
+        ROWS_GROUPED_BY_ROLE,
+        ROWS_GROUPED_BY_SYNSET,
+        ROWS;
 
-		/**
-		 * Get mode preference
-		 *
-		 * @param context context
-		 * @return mode preference
-		 */
-		@NonNull
-		static public PMMode getPref(@NonNull final Context context)
-		{
-			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-			final String mode_string = sharedPref.getString(Settings.PREF_PM_MODE, Settings.PMMode.ROLES.name());
-			Settings.PMMode mode;
-			try
-			{
-				mode = Settings.PMMode.valueOf(mode_string);
-			}
-			catch (@NonNull final Exception e)
-			{
-				mode = Settings.PMMode.ROLES;
-				sharedPref.edit().putString(Settings.PREF_PM_MODE, mode.name()).apply();
-			}
-			return mode;
-		}
+        /**
+         * Set preferred mode to this mode
+         *
+         * @param context context
+         * @return true if value has changed
+         */
+        fun setPref(context: Context): Boolean {
+            val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+            val prev = sharedPref.getString(PREF_PM_MODE, null)
+            if (name == prev) {
+                return false
+            }
+            sharedPref.edit().putString(PREF_PM_MODE, name).apply()
+            return true
+        }
 
-		/**
-		 * Set preferred mode to this mode
-		 *
-		 * @param context context
-		 * @return true if value has changed
-		 */
-		public boolean setPref(@NonNull final Context context)
-		{
-			final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-			final String prev = sharedPref.getString(Settings.PREF_PM_MODE, null);
-			if (this.name().equals(prev))
-			{
-				return false;
-			}
-			sharedPref.edit().putString(Settings.PREF_PM_MODE, this.name()).apply();
-			return true;
-		}}
+        companion object {
+            /**
+             * Get mode preference
+             *
+             * @param context context
+             * @return mode preference
+             */
+            @JvmStatic
+            fun getPref(context: Context): PMMode {
+                val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
+                val modeString = sharedPref.getString(PREF_PM_MODE, ROLES.name)
+                var mode: PMMode
+                try {
+                    mode = valueOf(modeString!!)
+                } catch (e: Exception) {
+                    mode = ROLES
+                    sharedPref.edit().putString(PREF_PM_MODE, mode.name).apply()
+                }
+                return mode
+            }
+        }
+    }
 }
