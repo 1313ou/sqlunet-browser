@@ -111,7 +111,7 @@ class PropBankImplementation : PropBankInterface {
      * @param pos        pos to build query from
      * @return PropBank role set data as DOM document
      */
-    override fun queryRoleSetDoc(connection: SQLiteDatabase, roleSetId: Long, pos: Char): Document {
+    override fun queryRoleSetDoc(connection: SQLiteDatabase, roleSetId: Long, pos: Char?): Document {
         val doc = makeDocument()
         val rootNode = makePbRootRoleSetNode(doc, roleSetId)
         walkRoleSet(connection, doc, rootNode, roleSetId)
@@ -126,7 +126,7 @@ class PropBankImplementation : PropBankInterface {
      * @param pos        pos to build query from
      * @return PropBank role set data as XML
      */
-    override fun queryRoleSetXML(connection: SQLiteDatabase, roleSetId: Long, pos: Char): String {
+    override fun queryRoleSetXML(connection: SQLiteDatabase, roleSetId: Long, pos: Char?): String {
         val doc = queryRoleSetDoc(connection, roleSetId, pos)
         return docToString(doc)
     }

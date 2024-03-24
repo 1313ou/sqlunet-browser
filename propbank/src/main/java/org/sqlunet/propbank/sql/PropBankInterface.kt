@@ -77,7 +77,7 @@ internal interface PropBankInterface {
      * @param pos        the pos to build query from
      * @return PropBank role set data as DOM document
      */
-    fun queryRoleSetDoc(connection: SQLiteDatabase, roleSetId: Long, pos: Char): Document?
+    fun queryRoleSetDoc(connection: SQLiteDatabase, roleSetId: Long, pos: Char?): Document?
 
     /**
      * Business method that returns role set data as XML from role set id
@@ -87,5 +87,5 @@ internal interface PropBankInterface {
      * @param pos        the pos to build query from
      * @return PropBank role set data as XML
      */
-    fun queryRoleSetXML(connection: SQLiteDatabase, roleSetId: Long, pos: Char): String
+    fun queryRoleSetXML(connection: SQLiteDatabase, roleSetId: Long, pos: Char?): String
 }

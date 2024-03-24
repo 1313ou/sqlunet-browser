@@ -35,21 +35,21 @@ internal class PbExample private constructor(
          * @return list of PropBank examples
          */
         @JvmStatic
-        fun make(connection: SQLiteDatabase?, roleSetId: Long): List<PbExample?>? {
+        fun make(connection: SQLiteDatabase, roleSetId: Long): List<PbExample?>? {
             var result: MutableList<PbExample?>? = null
             PbExampleQueryFromRoleSetId(connection, roleSetId).use { query ->
                 query.execute()
                 while (query.next()) {
                     // data from result set
-                    val exampleId = query.getExampleId()
-                    val text = query.getText()
-                    val rel = query.getRel()
-                    val args = query.getArgs()
-                    val aspect = query.getAspect()
-                    val form = query.getForm()
-                    val tense = query.getTense()
-                    val voice = query.getVoice()
-                    val person = query.getPerson()
+                    val exampleId = query.exampleId
+                    val text = query.text
+                    val rel = query.rel
+                    val args = query.args
+                    val aspect = query.aspect
+                    val form = query.form
+                    val tense = query.tense
+                    val voice = query.voice
+                    val person = query.person
                     if (result == null) {
                         result = ArrayList()
                     }

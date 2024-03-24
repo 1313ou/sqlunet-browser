@@ -14,7 +14,7 @@ import org.sqlunet.sql.DBQuery
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-internal class PbRoleSetQueryFromWord(connection: SQLiteDatabase?, word: String?) : DBQuery(connection!!, QUERY) {
+internal class PbRoleSetQueryFromWord(connection: SQLiteDatabase, word: String?) : DBQuery(connection!!, QUERY) {
     /**
      * Constructor
      */
