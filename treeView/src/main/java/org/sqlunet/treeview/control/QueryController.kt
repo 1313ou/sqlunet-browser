@@ -46,7 +46,6 @@ open class QueryController(breakExpand: Boolean) : TreeController(breakExpand) {
         get() {
             val value = node.value as CompositeValue?
             if (value != null) {
-                assert(value.payload != null)
                 return value.payload!![0] as Query
             }
             return null

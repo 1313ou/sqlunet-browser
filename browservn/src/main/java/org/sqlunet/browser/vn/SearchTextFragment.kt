@@ -40,7 +40,6 @@ class SearchTextFragment : BaseSearchFragment() {
         if (savedInstanceState == null) {
             // splash fragment
             val fragment: Fragment = SearchTextSplashFragment()
-            assert(isAdded)
             getChildFragmentManager() //
                 .beginTransaction() //
                 .setReorderingAllowed(true) //

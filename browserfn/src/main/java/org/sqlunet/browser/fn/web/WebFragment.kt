@@ -289,8 +289,8 @@ class WebFragment : Fragment() {
         Log.d(TAG, "ArgPosition: query=$pointer")
 
         // hint
-        //final String posString = args.getString(ProviderArgs.ARG_HINTPOS);
-        //final Character pos = posString == null ? null : posString.charAt(0);
+        // val posString = args.getString(ProviderArgs.ARG_HINTPOS)
+        // val pos = if (posString != null) posString[0] else null
 
         // text
         val data = args.getString(ProviderArgs.ARG_QUERYSTRING)
@@ -313,13 +313,13 @@ class WebFragment : Fragment() {
         word: String?,  //
         xml: Boolean,  //
         isSelector: Boolean,  //
-        fnDomDoc: Document?
+        fnDomDoc: Document?,
     ): String {
-        // LogUtils.writeLog(DomTransformer.docToXml(wnDomDoc), false, "wn_sqlunet.log");
-        // LogUtils.writeLog(DomTransformer.docToXml(vnDomDoc), false, "vn_sqlunet.log");
-        // LogUtils.writeLog(DomTransformer.docToXml(pbDomDoc), false, "pb_sqlunet.log");
-        // LogUtils.writeLog(DomTransformer.docToXml(fnDomDoc), false, "fn_sqlunet.log");
-        // LogUtils.writeLog(DomTransformer.docToXml(bncDomDoc), false, "bnc_sqlunet.log");
+        // LogUtils.writeLog(DomTransformer.docToXml(wnDomDoc), false, "wn_sqlunet.log")
+        // LogUtils.writeLog(DomTransformer.docToXml(vnDomDoc), false, "vn_sqlunet.log")
+        // LogUtils.writeLog(DomTransformer.docToXml(pbDomDoc), false, "pb_sqlunet.log")
+        // LogUtils.writeLog(DomTransformer.docToXml(fnDomDoc), false, "fn_sqlunet.log")
+        // LogUtils.writeLog(DomTransformer.docToXml(bncDomDoc), false, "bnc_sqlunet.log")
         val data: String
         if (xml) {
             // merge all into one

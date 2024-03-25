@@ -59,7 +59,6 @@ class BrowseFragment : BaseSearchFragment() {
         if (savedInstanceState == null) {
             // splash fragment
             val fragment: Fragment = BrowseSplashFragment()
-            assert(isAdded)
             getChildFragmentManager() //
                 .beginTransaction() //
                 .setReorderingAllowed(true) //
@@ -133,30 +132,29 @@ class BrowseFragment : BaseSearchFragment() {
      * @param query query
      */
     override fun search(query: String) {
-
-        val query2 = query.trim { it <= ' ' }
-        if (query2.isEmpty()) {
+        val trimmedQuery = query.trim { it <= ' ' }
+        if (trimmedQuery.isEmpty()) {
             return
         }
 
         // super
-        super.search(query2)
+        super.search(trimmedQuery)
 
         // log
-        Log.d(TAG, "Browse '$query2'")
+        Log.d(TAG, "Browse '$trimmedQuery'")
 
         // history
-        recordQuery(requireContext(), query2)
+        recordQuery(requireContext(), trimmedQuery)
 
         // menuDispatch as per query prefix
         var fragment: Fragment? = null
         var targetIntent: Intent? = null
         val args = Bundle()
-        if (query2.matches("#\\p{Lower}\\p{Lower}\\d+".toRegex())) {
-            val id = query2.substring(3).toLong()
+        if (trimmedQuery.matches("#\\p{Lower}\\p{Lower}\\d+".toRegex())) {
+            val id = trimmedQuery.substring(3).toLong()
 
             // wordnet
-            targetIntent = if (query2.startsWith("#ws")) {
+            targetIntent = if (trimmedQuery.startsWith("#ws")) {
                 // parameters
                 val recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(requireContext())
                 val parameters = org.sqlunet.wordnet.settings.Settings.getRenderParametersPref(requireContext())
@@ -166,7 +164,7 @@ class BrowseFragment : BaseSearchFragment() {
                 args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse)
                 args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters)
                 makeDetailIntent(SynsetActivity::class.java)
-            } else if (query2.startsWith("#ww")) {
+            } else if (trimmedQuery.startsWith("#ww")) {
                 val wordPointer: Parcelable = WordPointer(id)
                 args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_WORD)
                 args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, wordPointer)
@@ -175,9 +173,9 @@ class BrowseFragment : BaseSearchFragment() {
                 return
             }
         }
-        if (query2.matches("#\\p{Lower}\\p{Lower}[\\w:%]+".toRegex())) {
-            val id = query2.substring(3)
-            if (query2.startsWith("#wk")) {
+        if (trimmedQuery.matches("#\\p{Lower}\\p{Lower}[\\w:%]+".toRegex())) {
+            val id = trimmedQuery.substring(3)
+            if (trimmedQuery.startsWith("#wk")) {
                 // parameters
                 val recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(requireContext())
                 val parameters = org.sqlunet.wordnet.settings.Settings.getRenderParametersPref(requireContext())
@@ -194,7 +192,7 @@ class BrowseFragment : BaseSearchFragment() {
             val parameters = org.sqlunet.wordnet.settings.Settings.getRenderParametersPref(requireContext())
 
             // search for string
-            args.putString(ProviderArgs.ARG_QUERYSTRING, query2)
+            args.putString(ProviderArgs.ARG_QUERYSTRING, trimmedQuery)
             args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse)
             args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters)
 

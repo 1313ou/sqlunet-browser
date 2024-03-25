@@ -56,7 +56,6 @@ class XSelectorsFragment : BaseSelectorsFragment(), SelectorsFragment.Listener, 
 
             // Listeners
             fragment.setListeners(wnListener!!, this)
-            assert(isAdded)
             getChildFragmentManager() //
                 .beginTransaction() //
                 .setReorderingAllowed(true) //
@@ -78,7 +77,6 @@ class XSelectorsFragment : BaseSelectorsFragment(), SelectorsFragment.Listener, 
 
             // Listener
             fragment.setListeners(snListener!!, this)
-            assert(isAdded)
             getChildFragmentManager() //
                 .beginTransaction() //
                 .setReorderingAllowed(true) //

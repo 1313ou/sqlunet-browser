@@ -306,7 +306,6 @@ class FrameNetImplementation(private val queryFromFnWord: Boolean) : FrameNetInt
             for (lexUnit in lexUnits) {
                 // frame
                 val lexUnitNode = makeFnLexunitNode(doc, parent, lexUnit!!)
-                assert(lexUnit.frame != null)
                 val frameNode = makeFnFrameNode(doc, lexUnitNode, lexUnit.frame!!, false)
 
                 // frame FEs
@@ -385,7 +384,6 @@ class FrameNetImplementation(private val queryFromFnWord: Boolean) : FrameNetInt
             // lexunit
             val lexUnit = makeFromId(connection, luId)!!
             val lexUnitNode = makeFnLexunitNode(doc, parent, lexUnit)
-            assert(lexUnit.frame != null)
             walkFrame(connection, doc, lexUnitNode, lexUnit.frame!!.frameId)
 
             // sentences

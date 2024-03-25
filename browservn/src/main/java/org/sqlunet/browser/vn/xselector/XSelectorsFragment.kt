@@ -446,8 +446,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
 
                 // data
                 val wordId = wordId
-                assert(word != null)
-                val word = word
+                val word = word!!
                 val cased = if (this.word == this.word!!.lowercase()) null else this.word
                 val pronunciation: String? = null
                 val synsetId = if (cursor.isNull(idSynsetId)) 0 else cursor.getLong(idSynsetId)
@@ -618,9 +617,10 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
                 cursor.addRow(arrayOf<Any>(GROUPID_VERBNET, "verbnet", R.drawable.verbnet.toString()))
             }
             if (Settings.Source.PROPBANK.test(enable)) {
-                groupPositions[GROUPINDEX_PROPBANK] = position++
+                groupPositions[GROUPINDEX_PROPBANK] = position
                 cursor.addRow(arrayOf<Any>(GROUPID_PROPBANK, "propbank", R.drawable.propbank.toString()))
             }
+            // position++ if more
             return groupPositions
         }
     }

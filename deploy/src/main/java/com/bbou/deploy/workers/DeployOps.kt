@@ -102,7 +102,6 @@ object DeployOps {
         try {
             resolver.openInputStream(srcUri).use { `is` ->
                 FileOutputStream(destFile).use { os ->
-                    assert(`is` != null)
                     val buffer = ByteArray(CHUNK_SIZE)
                     var byteCount: Long = 0
                     var chunkCount = 0
@@ -152,7 +151,6 @@ object DeployOps {
         try {
             srcUrl.openStream().use { `is` ->
                 FileOutputStream(destFile).use { os ->
-                    assert(`is` != null)
                     val buffer = ByteArray(CHUNK_SIZE)
                     var byteCount: Long = 0
                     var chunkCount = 0

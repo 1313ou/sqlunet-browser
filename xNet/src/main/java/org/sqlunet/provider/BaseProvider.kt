@@ -73,7 +73,6 @@ abstract class BaseProvider : ContentProvider() {
         val path = StorageSettings.getDatabasePath(context)
         try {
             db = openReadOnly(path, SQLiteDatabase.OPEN_READONLY)
-            assert(db != null)
             Log.d(TAG, "Opened by " + this.javaClass + " content provider: " + db!!.path)
         } catch (e: SQLiteCantOpenDatabaseException) {
             Log.e(TAG, "Open failed by " + this.javaClass + " content provider: " + path, e)
@@ -87,7 +86,6 @@ abstract class BaseProvider : ContentProvider() {
         val path = StorageSettings.getDatabasePath(context)
         try {
             db = openReadOnly(path, SQLiteDatabase.OPEN_READWRITE)
-            assert(db != null)
             Log.d(TAG, "Opened by " + this.javaClass + " content provider: " + db!!.path)
         } catch (e: SQLiteCantOpenDatabaseException) {
             Log.e(TAG, "Open failed by " + this.javaClass + " content provider: " + path, e)

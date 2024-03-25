@@ -53,7 +53,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
         /**
          * Callback for when an item has been selected.
          */
-        fun onItemSelected(pointer: XSelectorPointer?, word: String?, cased: String?, pronunciation: String?, pos: String?)
+        fun onItemSelected(pointer: XSelectorPointer, word: String, cased: String?, pronunciation: String?, pos: String?)
     }
 
     /**
@@ -576,8 +576,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
 
                 // data
                 val wordId = wordId
-                assert(word != null)
-                val word = word
+                val word = word!!
                 val cased = if (this.word == this.word!!.lowercase()) null else this.word
                 val pronunciation = if (idXPronunciationId == -1) null else cursor.getString(idXPronunciationId)
                 val synsetId = if (cursor.isNull(idSynsetId)) 0 else cursor.getLong(idSynsetId)

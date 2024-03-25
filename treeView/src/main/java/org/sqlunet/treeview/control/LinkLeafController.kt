@@ -40,7 +40,6 @@ class LinkLeafController(breakExpand: Boolean) : LeafController(breakExpand) {
     private fun followLink() {
         val value = node.value as CompositeValue?
         if (value != null) {
-            assert(value.payload != null)
             val link = value.payload!![0] as Link
             link.process()
         }

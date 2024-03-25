@@ -18,6 +18,8 @@ open class PosSelectorPointer : SelectorPointer, HasPos {
      * POS
      */
     protected val pos: Char
+        @JvmName("getPosProperty")
+        get
 
     /**
      * Constructor from parcel
@@ -40,10 +42,6 @@ open class PosSelectorPointer : SelectorPointer, HasPos {
         this.pos = pos
     }
 
-    override fun getPos(): Character {
-        return Character(pos)
-    }
-
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         super.writeToParcel(parcel, flags)
         parcel.writeString(pos.toString())
@@ -51,6 +49,10 @@ open class PosSelectorPointer : SelectorPointer, HasPos {
 
     override fun describeContents(): Int {
         return 0
+    }
+
+    override fun getPos(): Char {
+        return pos
     }
 
     override fun toString(): String {

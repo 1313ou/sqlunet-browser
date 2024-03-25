@@ -37,7 +37,6 @@ class SearchTextFragment : BaseSearchFragment() {
         if (savedInstanceState == null) {
             // splash fragment
             val fragment: Fragment = SearchTextSplashFragment()
-            assert(isAdded)
             getChildFragmentManager() //
                 .beginTransaction() //
                 .setReorderingAllowed(true) //
@@ -88,7 +87,6 @@ class SearchTextFragment : BaseSearchFragment() {
      * @param query query
      */
     override fun search(query: String) {
-
         val trimmedQuery = query.trim { it <= ' ' }
         if (trimmedQuery.isEmpty()) {
             return
@@ -100,24 +98,11 @@ class SearchTextFragment : BaseSearchFragment() {
         // super
         super.search(trimmedQuery)
 
-        /*
-		// copy to target view
-		final View view = getView();
-		if (view != null)
-		{
-			final TextView targetView = (TextView) view.findViewById(R.id.targetView);
-			if (targetView != null)
-			{
-				targetView.setText(query);
-			}
-		}
-		*/
-
         // mode
         val modePosition = searchModePosition
 
         // status
-        // final CharSequence[] textSearches = getResources().getTextArray(R.array.searchtext_modes);
+        // var textSearches = getResources().getTextArray(R.array.searchtext_modes);
 
         // as per selected mode
         val searchUri: String

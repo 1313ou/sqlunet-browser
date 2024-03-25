@@ -122,7 +122,6 @@ class AutoEditTextPreference : DialogPreference {
 
             // edit text
             editView = view.findViewById(R.id.autoedit_text)
-            assert(editView != null)
             editView!!.requestFocus()
 
             // populate with value

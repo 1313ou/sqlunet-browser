@@ -70,7 +70,7 @@ class SenseModule(fragment: TreeFragment) : SynsetModule(fragment) {
 
             // special
             if (pos != null) {
-                when (pos!!.charValue()) {
+                when (pos!!) {
                     'v' -> {
                         val vframesNode = makeTreeNode(verbFramesLabel, R.drawable.verbframe, false).addTo(node)
                         val vtemplatesNode = makeTreeNode(verbTemplatesLabel, R.drawable.verbtemplate, false).addTo(node)

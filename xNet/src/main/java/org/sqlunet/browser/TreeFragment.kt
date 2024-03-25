@@ -95,7 +95,6 @@ abstract class TreeFragment protected constructor() : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        assert(treeViewer != null)
         treeViewer!!.expandAll()
     }
 }

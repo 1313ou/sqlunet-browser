@@ -1085,7 +1085,6 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     groupNode = makeTreeNode(sb1, R.drawable.grouprealization, false).addTo(parent)
                     changedList.add(TreeOpCode.NEWCHILD, groupNode)
                 }
-                assert(groupNode != null)
 
                 // group realization
                 parseGroupRealizations(groupRealizations, sb)
@@ -1610,7 +1609,6 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     changedList.add(TreeOpCode.NEWCHILD, annoSetNode)
                     currentAnnoSetId = annoSetId
                 }
-                assert(sb != null)
                 if (sb!!.isNotEmpty()) {
                     sb.append('\n')
                 }
@@ -1730,7 +1728,6 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         val isFrame = flags and FrameNetMarkupFactory.FEDEF.toLong() == 0L
         val texts = processor.split(text)
         val fields = arrayOfNulls<CharSequence>(texts.size)
-        assert(spanner != null)
         for (i in texts.indices) {
             val field = (if (isFrame) frameProcessor.process(texts[i]) else texts[i])!!
             if (i == 0) {

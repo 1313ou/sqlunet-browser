@@ -26,7 +26,6 @@ class AboutFragment : Fragment() {
 
         // fragment
         val fragment: Fragment = SourceFragment()
-        assert(isAdded)
         getChildFragmentManager() //
             .beginTransaction() //
             .setReorderingAllowed(true) //

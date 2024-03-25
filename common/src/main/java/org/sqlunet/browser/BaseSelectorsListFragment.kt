@@ -96,7 +96,6 @@ abstract class BaseSelectorsListFragment  : LoggingFragment(), OnItemClickListen
         listView!!.setAdapter(null)
         // the cursor will be saved along with fragment state if any
         Log.d(TAG, "Nullify adapter cursor but do not close cursor. Lifecycle: onStop()")
-        assert(adapter != null)
         adapter!!.swapCursor(null)
     }
 
@@ -170,7 +169,6 @@ abstract class BaseSelectorsListFragment  : LoggingFragment(), OnItemClickListen
                 Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show()
             } else {
                 // pass on to list adapter
-                assert(adapter != null)
                 adapter!!.changeCursor(augmentCursor(cursor))
             }
         }

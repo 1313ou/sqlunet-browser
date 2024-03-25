@@ -153,7 +153,6 @@ abstract class BaseListFragment : ListFragment() {
         listView.setAdapter(null)
         // the cursor will be saved along with fragment state if any
         Log.d(TAG, "Nullify adapter cursor but do not close cursor. Lifecycle: onStop()")
-        assert(adapter != null)
         adapter!!.swapCursor(null)
     }
 

@@ -74,7 +74,6 @@ class BrowseFragment : BaseSearchFragment() {
         if (savedInstanceState == null) {
             // splash fragment
             val fragment: Fragment = BrowseSplashFragment()
-            assert(isAdded)
             getChildFragmentManager() //
                 .beginTransaction() //
                 .setReorderingAllowed(true) //
@@ -174,19 +173,19 @@ class BrowseFragment : BaseSearchFragment() {
      * @param query query
      */
     override fun search(query: String) {
-        val query2 = query.trim { it <= ' ' }
-        if (query2.isEmpty()) {
+        val trimmedQuery = query.trim { it <= ' ' }
+        if (trimmedQuery.isEmpty()) {
             return
         }
 
         // super
-        super.search(query2)
+        super.search(trimmedQuery)
 
         // log
-        Log.d(TAG, "Browse '$query2'")
+        Log.d(TAG, "Browse '$trimmedQuery'")
 
         // history
-        recordQuery(requireContext(), query2)
+        recordQuery(requireContext(), trimmedQuery)
 
         // parameters
         val recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(requireContext())
@@ -196,65 +195,65 @@ class BrowseFragment : BaseSearchFragment() {
         var fragment: Fragment? = null
         var targetIntent: Intent? = null
         val args = Bundle()
-        if (query2.matches("#\\p{Lower}\\p{Lower}\\d+".toRegex())) {
-            val id = query2.substring(3).toLong()
+        if (trimmedQuery.matches("#\\p{Lower}\\p{Lower}\\d+".toRegex())) {
+            val id = trimmedQuery.substring(3).toLong()
 
             // wordnet
-            targetIntent = if (query2.startsWith("#ws")) {
+            targetIntent = if (trimmedQuery.startsWith("#ws")) {
                 val synsetPointer: Parcelable = SynsetPointer(id)
                 args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SYNSET)
                 args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, synsetPointer)
                 args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse)
                 args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters)
                 makeDetailIntent(SynsetActivity::class.java)
-            } else if (query2.startsWith("#ww")) {
+            } else if (trimmedQuery.startsWith("#ww")) {
                 val wordPointer: Parcelable = WordPointer(id)
                 args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_WORD)
                 args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, wordPointer)
                 args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse)
                 args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters)
                 makeDetailIntent(WordActivity::class.java)
-            } else if (query2.startsWith("#vc")) {
+            } else if (trimmedQuery.startsWith("#vc")) {
                 val framePointer: Parcelable = VnClassPointer(id)
                 args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_VNCLASS)
                 args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, framePointer)
                 makeDetailIntent(VnClassActivity::class.java)
-            } else if (query2.startsWith("#pr")) {
+            } else if (trimmedQuery.startsWith("#pr")) {
                 val roleSetPointer: Parcelable = PbRoleSetPointer(id)
                 args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_PBROLESET)
                 args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, roleSetPointer)
                 makeDetailIntent(PbRoleSetActivity::class.java)
-            } else if (query2.startsWith("#ff")) {
+            } else if (trimmedQuery.startsWith("#ff")) {
                 val framePointer: Parcelable = FnFramePointer(id)
                 args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNFRAME)
                 args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, framePointer)
                 makeDetailIntent(FnFrameActivity::class.java)
-            } else if (query2.startsWith("#fl")) {
+            } else if (trimmedQuery.startsWith("#fl")) {
                 val lexunitPointer: Parcelable = FnLexUnitPointer(id)
                 args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT)
                 args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, lexunitPointer)
                 makeDetailIntent(FnLexUnitActivity::class.java)
-            } else if (query2.startsWith("#fs")) {
+            } else if (trimmedQuery.startsWith("#fs")) {
                 val sentencePointer: Parcelable = FnSentencePointer(id)
                 args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNSENTENCE)
                 args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, sentencePointer)
                 makeDetailIntent(FnSentenceActivity::class.java)
-            } else if (query2.startsWith("#fa")) {
+            } else if (trimmedQuery.startsWith("#fa")) {
                 val annoSetPointer: Parcelable = FnAnnoSetPointer(id)
                 args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNANNOSET)
                 args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, annoSetPointer)
                 makeDetailIntent(FnAnnoSetActivity::class.java)
-            } else if (query2.startsWith("#fp")) {
+            } else if (trimmedQuery.startsWith("#fp")) {
                 val patternPointer: Parcelable = FnPatternPointer(id)
                 args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNPATTERN)
                 args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, patternPointer)
                 makeDetailIntent(FnAnnoSetActivity::class.java)
-            } else if (query2.startsWith("#fv")) {
+            } else if (trimmedQuery.startsWith("#fv")) {
                 val valenceunitPointer: Parcelable = FnValenceUnitPointer(id)
                 args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNVALENCEUNIT)
                 args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, valenceunitPointer)
                 makeDetailIntent(FnAnnoSetActivity::class.java)
-            } else if (query2.startsWith("#mr")) {
+            } else if (trimmedQuery.startsWith("#mr")) {
                 val rolePointer: Parcelable = PmRolePointer(id)
                 args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_PMROLE)
                 args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, rolePointer)
@@ -263,9 +262,9 @@ class BrowseFragment : BaseSearchFragment() {
                 return
             }
         }
-        if (query2.matches("#\\p{Lower}\\p{Lower}[\\w:%]+".toRegex())) {
-            val id = query2.substring(3)
-            if (query2.startsWith("#wk")) {
+        if (trimmedQuery.matches("#\\p{Lower}\\p{Lower}[\\w:%]+".toRegex())) {
+            val id = trimmedQuery.substring(3)
+            if (trimmedQuery.startsWith("#wk")) {
                 val senseKeyPointer: Parcelable = SenseKeyPointer(id)
                 args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_SENSE)
                 args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, senseKeyPointer)
@@ -275,7 +274,7 @@ class BrowseFragment : BaseSearchFragment() {
             }
         } else {
             // search for string
-            args.putString(ProviderArgs.ARG_QUERYSTRING, query2)
+            args.putString(ProviderArgs.ARG_QUERYSTRING, trimmedQuery)
             args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse)
             args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters)
 

@@ -26,7 +26,7 @@ class PosSelectorPointer : SelectorPointer, HasPos {
      */
     private constructor(parcel: Parcel) : super(parcel) {
         val posStr = parcel.readString()!!
-        pos = Character.valueOf(posStr[0])
+        pos = posStr[0]
     }
 
     /**
@@ -40,8 +40,8 @@ class PosSelectorPointer : SelectorPointer, HasPos {
         this.pos = pos
     }
 
-    override fun getPos(): Character {
-        return Character(pos)
+    override fun getPos(): Char {
+        return pos
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

@@ -20,56 +20,35 @@ class SynsetsQueryFromWordId(connection: SQLiteDatabase, wordId: Long) : DBQuery
         setParams(wordId)
     }
 
+    /**
+     * Synset id
+     */
     val synsetId: Long
-        /**
-         * Get synset id
-         *
-         * @return synset id
-         */
-        get() {
-            assert(cursor != null)
-            return cursor!!.getLong(0)
-        }
+        get() = cursor!!.getLong(0)
+
+    /**
+     * Synset definition
+     */
     val definition: String
-        /**
-         * Get synset definition
-         *
-         * @return definition
-         */
-        get() {
-            assert(cursor != null)
-            return cursor!!.getString(1)
-        }
+        get() = cursor!!.getString(1)
+
+    /**
+     * Synset pos id
+     */
     val pos: String
-        /**
-         * Get synset pos id
-         *
-         * @return pos
-         */
-        get() {
-            assert(cursor != null)
-            return cursor!!.getString(2)
-        }
+        get() = cursor!!.getString(2)
+
+    /**
+     * Synset domain id
+     */
     val domainId: Int
-        /**
-         * Get synset domain id
-         *
-         * @return synset domain id
-         */
-        get() {
-            assert(cursor != null)
-            return cursor!!.getInt(3)
-        }
+        get() = cursor!!.getInt(3)
+
+    /**
+     * Samples as a semicolon-separated string
+     */
     val sample: String
-        /**
-         * Get sample data
-         *
-         * @return samples as a semicolon-separated string
-         */
-        get() {
-            assert(cursor != null)
-            return cursor!!.getString(4)
-        }
+        get() = cursor!!.getString(4)
 
     companion object {
         /**

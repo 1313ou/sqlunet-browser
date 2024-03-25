@@ -58,7 +58,6 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
         } else {
             // splash fragment
             val fragment: Fragment = BrowsePredicateMatrixSplashFragment()
-            assert(isAdded)
             getChildFragmentManager() //
                 .beginTransaction() //
                 .setReorderingAllowed(true) //

@@ -40,7 +40,6 @@ class Browse2Fragment : BaseBrowse2Fragment() {
             return
         }
         val manager = getChildFragmentManager()
-        assert(targetView != null)
         targetView!!.movementMethod = LinkMovementMethod()
         targetView!!.text = toTarget()
 

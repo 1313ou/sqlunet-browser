@@ -64,7 +64,6 @@ class RelatedsQueryFromSynsetId(connection: SQLiteDatabase) : DBQuery(connection
      */
     val words: Array<String>?
         get() {
-            assert(cursor != null)
             val results = cursor!!.getString(6) ?: return null
             return results.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
         }

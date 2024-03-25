@@ -14,5 +14,5 @@ fun interface HasPos {
      *
      * @return pos
      */
-    fun getPos(): Character
+    fun getPos(): Char
 }

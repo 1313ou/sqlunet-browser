@@ -35,7 +35,7 @@ open class SynsetModule(fragment: TreeFragment) : BaseModule(fragment) {
      * Pos
      */
     @JvmField
-    var pos: Character? = null
+    var pos: Char? = null
 
     /**
      * Expand flag
@@ -82,7 +82,8 @@ open class SynsetModule(fragment: TreeFragment) : BaseModule(fragment) {
 
             // special
             if (pos != null) {
-                when (pos!!.charValue()) {
+                when (pos!!) {
+
                     'v' -> {
                         this.vFrames(synsetId!!, node)
                         this.vTemplates(synsetId!!, node)

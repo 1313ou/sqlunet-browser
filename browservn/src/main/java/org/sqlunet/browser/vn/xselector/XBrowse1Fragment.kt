@@ -37,7 +37,6 @@ class XBrowse1Fragment : BaseBrowse1Fragment(), XSelectorsFragment.Listener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val isTwoPane = isTwoPane(view)
-        assert(isAdded)
         val manager = getChildFragmentManager()
 
         // x selector fragment

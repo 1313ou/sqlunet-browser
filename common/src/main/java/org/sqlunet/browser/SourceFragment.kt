@@ -60,7 +60,6 @@ class SourceFragment : ListFragment() {
         val listView = getListView()
         val adapter = listAdapter as CursorAdapter?
         listView.setAdapter(null)
-        assert(adapter != null)
         adapter!!.swapCursor(null)
     }
 

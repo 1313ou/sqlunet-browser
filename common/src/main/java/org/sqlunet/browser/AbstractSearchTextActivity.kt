@@ -39,7 +39,6 @@ abstract class AbstractSearchTextActivity<F : BaseSearchFragment?> : AppCompatAc
         // fragment
         if (savedInstanceState == null) {
             fragment = safeCast(supportFragmentManager.findFragmentById(R.id.fragment_searchtext))
-            assert(fragment != null)
         }
     }
 

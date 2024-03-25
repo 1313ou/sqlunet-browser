@@ -17,7 +17,9 @@ open class SensePointer : SynsetPointer, HasWordId {
     /**
      * Word id
      */
-    private val wordId: Long
+    val wordId: Long
+        @JvmName("getWordIdProperty")
+        get
 
     /**
      * Constructor from parcel, reads back fields IN THE ORDER they were written
@@ -36,13 +38,13 @@ open class SensePointer : SynsetPointer, HasWordId {
         this.wordId = wordId
     }
 
-    override fun getWordId(): Long {
-        return wordId
-    }
-
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         super.writeToParcel(parcel, flags)
         parcel.writeLong(wordId)
+    }
+
+    override fun getWordId(): Long {
+        return wordId
     }
 
     override fun toString(): String {

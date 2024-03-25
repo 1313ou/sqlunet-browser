@@ -463,10 +463,7 @@ abstract class BaseDownloadFragment : Fragment() {
         val statusStr = status?.toString(requireContext()) ?: "unknown"
         if (status != Status.STATUS_SUCCEEDED) {
             if (reason != null) {
-                return """
-                    $statusStr
-                    $reason
-                    """.trimIndent()
+                return "$statusStr\n$reason"
             }
         }
         return statusStr

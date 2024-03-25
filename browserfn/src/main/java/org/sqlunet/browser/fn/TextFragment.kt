@@ -179,7 +179,6 @@ class TextFragment : BaseListFragment() {
                 targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNSENTENCE)
             }
         }
-        assert(targetIntent != null)
         targetIntent!!.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer)
         targetIntent.setAction(ProviderArgs.ACTION_QUERY)
 

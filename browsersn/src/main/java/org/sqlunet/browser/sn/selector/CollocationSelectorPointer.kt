@@ -75,6 +75,10 @@ class CollocationSelectorPointer : PosSelectorPointer, Has2SynsetId, Has2WordId,
         return word2Id
     }
 
+    override fun getPos(): Char {
+        return pos
+    }
+
     override fun getPos2(): Char? {
         return pos2
     }

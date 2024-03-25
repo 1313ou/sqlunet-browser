@@ -34,7 +34,6 @@ class XBrowse1Fragment : BaseBrowse1Fragment(), XSelectorsFragment.Listener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val isTwoPane = isTwoPane(view)
-        assert(isAdded)
         val manager = getChildFragmentManager()
 
         // selector fragment
@@ -83,7 +82,7 @@ class XBrowse1Fragment : BaseBrowse1Fragment(), XSelectorsFragment.Listener {
     /**
      * Callback method from [XSelectorsFragment.Listener] indicating that the item with the given ID was selected.
      */
-    override fun onItemSelected(pointer: XSelectorPointer, word: String, cased: String, pronunciation: String, pos: String) {
+    override fun onItemSelected(pointer: XSelectorPointer, word: String, cased: String?, pronunciation: String?, pos: String?) {
         val view = requireView()
         if (isTwoPane(view)) {
             // in two-pane mode, show the detail view in this activity by adding or replacing the detail fragment using a fragment transaction.

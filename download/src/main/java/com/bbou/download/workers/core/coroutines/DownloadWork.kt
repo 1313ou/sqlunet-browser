@@ -69,9 +69,6 @@ open class DownloadWork {
 
             // do the work
             return try {
-                assert(fromUrl != null)
-                assert(toFile != null)
-
                 coroutineScope {
                     withContext(Dispatchers.Default) {
 

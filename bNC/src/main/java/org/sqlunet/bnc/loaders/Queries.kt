@@ -9,7 +9,7 @@ import org.sqlunet.browser.Module.ContentProviderSql
 object Queries {
     
     @JvmStatic
-    fun prepareBnc(wordId: Long, pos: Character?): ContentProviderSql {
+    fun prepareBnc(wordId: Long, pos: Char?): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = Words_BNCs.URI
         providerSql.projection = arrayOf(
@@ -34,7 +34,7 @@ object Queries {
             Words_BNCs.BNCSPWRS + '.' + Words_BNCs.DISP2 + " AS " + Words_BNCs.BNCSPWRS + Words_BNCs.DISP2
         )
         providerSql.selection = if (pos == null) Words_BNCs.WORDID + " = ?" else Words_BNCs.WORDID + " = ? AND " + Words_BNCs.POSID + "= ?"
-        providerSql.selectionArgs = if (pos == null) arrayOf(wordId.toString()) else arrayOf(wordId.toString(), pos.charValue().toString())
+        providerSql.selectionArgs = if (pos == null) arrayOf(wordId.toString()) else arrayOf(wordId.toString(), pos.toString())
         return providerSql
     }
 }

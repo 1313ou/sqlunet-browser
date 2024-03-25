@@ -40,7 +40,6 @@ class SearchTextFragment : BaseSearchFragment() {
         if (savedInstanceState == null) {
             // splash fragment
             val fragment: Fragment = SearchTextSplashFragment()
-            assert(isAdded)
             getChildFragmentManager() //
                 .beginTransaction() //
                 .setReorderingAllowed(true) //
@@ -91,16 +90,16 @@ class SearchTextFragment : BaseSearchFragment() {
      * @param query query
      */
     override fun search(query: String) {
-        val query2 = query.trim { it <= ' ' }
-        if (query2.isEmpty()) {
+        val trimmedQuery = query.trim { it <= ' ' }
+        if (trimmedQuery.isEmpty()) {
             return
         }
 
         // super
-        super.search(query2)
+        super.search(trimmedQuery)
 
         // log
-        Log.d(TAG, "Search text $query2")
+        Log.d(TAG, "Search text $trimmedQuery")
 
         // mode
         val modePosition = searchModePosition
@@ -155,7 +154,7 @@ class SearchTextFragment : BaseSearchFragment() {
         args.putStringArray(ProviderArgs.ARG_QUERYITEMS, columns)
         args.putStringArray(ProviderArgs.ARG_QUERYHIDDENITEMS, hiddenColumns)
         args.putString(ProviderArgs.ARG_QUERYFILTER, "$target MATCH ?")
-        args.putString(ProviderArgs.ARG_QUERYARG, query2)
+        args.putString(ProviderArgs.ARG_QUERYARG, trimmedQuery)
         args.putInt(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_searchtext)
         args.putString(ProviderArgs.ARG_QUERYDATABASE, database)
 

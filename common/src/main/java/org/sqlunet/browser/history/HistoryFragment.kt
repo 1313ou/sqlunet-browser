@@ -142,7 +142,6 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>, OnIte
     }
 
     override fun onCreateLoader(loaderID: Int, args: Bundle?): Loader<Cursor> {
-        // assert loaderID == LOADER_ID;
         val suggestions = SearchRecentSuggestions(requireContext(), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
         return suggestions.cursorLoader()
     }
@@ -163,7 +162,6 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>, OnIte
         cursor.moveToPosition(position)
         if (!cursor.isAfterLast) {
             val dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1)
-            assert(dataIdx != -1)
             val query = cursor.getString(dataIdx)
             if (null != query) {
                 val intent = makeSearchIntent(requireContext(), query)
@@ -190,10 +188,8 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>, OnIte
                         if (!cursor.isAfterLast) {
                             if (cursor.moveToPosition(position)) {
                                 val itemIdIdx = cursor.getColumnIndex("_id")
-                                assert(itemIdIdx != -1)
                                 val itemId = cursor.getString(itemIdIdx)
                                 val dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1)
-                                assert(dataIdx != -1)
                                 val data = cursor.getString(dataIdx)
                                 val suggestions = SearchRecentSuggestions(requireContext(), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
                                 suggestions.delete(itemId)
@@ -275,17 +271,14 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>, OnIte
         Log.d(TAG, "Exporting to $uri")
         try {
             requireContext().contentResolver.openFileDescriptor(uri, "w").use { pfd ->
-                assert(pfd != null)
                 FileOutputStream(pfd!!.fileDescriptor).use { fileOutputStream ->
                     OutputStreamWriter(fileOutputStream).use { writer ->
                         BufferedWriter(writer).use { bw ->
                             val suggestions = SearchRecentSuggestions(requireContext(), SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES)
                             suggestions.cursor().use { cursor ->
-                                assert(cursor != null)
                                 if (cursor!!.moveToFirst()) {
                                     do {
                                         val dataIdx = cursor.getColumnIndex(SearchRecentSuggestions.SuggestionColumns.DISPLAY1)
-                                        assert(dataIdx != -1)
                                         val data = cursor.getString(dataIdx)
                                         bw.write(data + '\n')
                                     } while (cursor.moveToNext())

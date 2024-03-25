@@ -31,7 +31,7 @@ class BaseModule(fragment: TreeFragment) : Module(fragment) {
     // Query
 
     private var wordId: Long? = null
-    private var pos: Character? = null
+    private var pos: Char? = null
 
     // Resources
 
@@ -114,9 +114,9 @@ class BaseModule(fragment: TreeFragment) : Module(fragment) {
      * @param pos    pos
      * @param parent parent node
      */
-    private fun bnc(wordId: Long, pos: Character?, parent: TreeNode) {
+    private fun bnc(wordId: Long, pos: Char?, parent: TreeNode) {
         val sql = prepareBnc(wordId, pos)
-        val uri = Uri.parse(makeUri(sql.providerUri!!))
+        val uri = Uri.parse(makeUri(sql.providerUri))
         bncFromWordIdModel!!.loadData(uri, sql) { cursor: Cursor -> bncCursorToTreeModel(cursor, parent) }
     }
 

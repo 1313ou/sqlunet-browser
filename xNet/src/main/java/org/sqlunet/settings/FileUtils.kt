@@ -95,7 +95,6 @@ internal object FileUtils {
      */
     fun expandZipAssetFile(context: Context, fileName: String): Uri? {
         context.assets.use { assetManager ->
-            assert(assetManager != null)
             val dir = Storage.getSqlUNetStorage(context)
             dir.mkdirs()
             return if (expandZipAsset(assetManager, fileName, dir.absolutePath)) {

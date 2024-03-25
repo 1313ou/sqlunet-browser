@@ -31,6 +31,7 @@ class LexUnitFromWordModule(fragment: TreeFragment) : LexUnitModule(fragment) {
 
     override fun unmarshal(pointer: Parcelable) {
         super.unmarshal(pointer)
+
         wordId = null
         pos = null
         if (pointer is HasWordId) {
@@ -39,7 +40,7 @@ class LexUnitFromWordModule(fragment: TreeFragment) : LexUnitModule(fragment) {
         }
         if (pointer is HasPos) {
             val posPointer = pointer as HasPos
-            pos = posPointer.getPos().charValue()
+            pos = posPointer.getPos()
         }
     }
 

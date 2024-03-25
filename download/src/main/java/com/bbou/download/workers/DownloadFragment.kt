@@ -125,7 +125,6 @@ class DownloadFragment : DownloadBaseFragment() {
 
                 // args
                 val from = downloadUrl!!
-                assert(toFile != null)
                 val to = toFile!!.absolutePath
 
                 // start job
@@ -228,26 +227,21 @@ class DownloadFragment : DownloadBaseFragment() {
                 fireComplete(result)
             }
         }
-        assert(unzipDir != null)
         val baseTask = FileTasks(unzipObserver, null, 1000).unzipFromArchiveFile(unzipDir!!.absolutePath)
 
         // run task
         val activity: Activity? = activity
         // guard against finished/destroyed activity
         if (activity == null || isDetached || activity.isFinishing || activity.isDestroyed) {
-            assert(toFile != null)
-            assert(unzipDir != null)
             baseTask.execute(toFile!!.absolutePath)
         } else {
             // augment with a dialog observer if fragment is live
-            assert(toFile != null)
             val fileName = toFile!!.name
             val filePath = toFile!!.absolutePath
             val fatObserver = TaskDialogObserver<Pair<Number, Number>>(parentFragmentManager)
                 .setTitle(requireContext().getString(R.string.action_unzip_datapack_from_archive))
                 .setMessage(fileName)
             val task: Task<String, Pair<Number, Number>, Boolean> = ObservedDelegatingTask(baseTask, fatObserver)
-            assert(unzipDir != null)
             task.execute(filePath)
         }
     }
@@ -271,7 +265,6 @@ class DownloadFragment : DownloadBaseFragment() {
                     .setMessage(R.string.status_task_failed)
                     .show()
             } else {
-                assert(toFile != null)
                 val localPath = toFile!!.absolutePath
                 MD5.md5(activity, localPath) { result: String? ->
                     val activity2: Activity? = getActivity()

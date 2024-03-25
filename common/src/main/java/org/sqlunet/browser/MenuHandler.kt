@@ -42,6 +42,7 @@ import org.sqlunet.settings.Settings.Companion.getAssetPack
 import org.sqlunet.settings.Settings.Companion.getAssetPackDir
 import org.sqlunet.settings.Settings.Companion.getAssetPackZip
 
+
 /**
  * Menu dispatcher/handler
  *
@@ -60,38 +61,46 @@ object MenuHandler {
     fun menuDispatch(activity: AppCompatActivity, item: MenuItem): Boolean {
         val intent: Intent
 
-         // main
+        // main
         when (val itemId = item.itemId) {
             R.id.action_main -> {
                 intent = Intent(activity, MainActivity::class.java)
                 intent.addFlags(0)
             }
+
             R.id.action_status -> {
                 intent = Intent(activity, StatusActivity::class.java)
             }
+
             R.id.action_provider_info -> {
                 listProviders(activity)
                 return true
             }
+
             R.id.action_setup -> {
                 intent = Intent(activity, SetupActivity::class.java)
             }
+
             R.id.action_download -> {
                 intent = makeIntent(activity)
             }
+
             R.id.action_update -> {
                 closeProviders(activity)
                 start(activity, makeUpdateIntent(activity))
                 return true
             }
+
             R.id.action_resources_directory -> {
                 showResources(activity)
                 return true
             }
+
             R.id.action_settings -> {
                 intent = Intent(activity, SettingsActivity::class.java)
                 intent.addFlags(0)
             }
+
             R.id.action_clear_settings -> {
                 val prefs = PreferenceManager.getDefaultSharedPreferences(activity)
                 val edit = prefs.edit()
@@ -99,29 +108,37 @@ object MenuHandler {
                 intent = Intent(activity, SettingsActivity::class.java)
                 intent.addFlags(0)
             }
+
             R.id.action_sql_clear -> {
                 BaseProvider.sqlBuffer.clear()
                 return true
             }
+
             R.id.action_history -> {
                 intent = Intent(activity, HistoryActivity::class.java)
             }
+
             R.id.action_help -> {
                 intent = Intent(activity, HelpActivity::class.java)
             }
+
             R.id.action_credits -> {
                 intent = Intent(activity, AboutActivity::class.java)
             }
+
             R.id.action_donate -> {
                 intent = Intent(activity, DonateActivity::class.java)
             }
+
             R.id.action_other -> {
                 intent = Intent(activity, OthersActivity::class.java)
             }
+
             R.id.action_rate -> {
                 rate(activity)
                 return true
             }
+
             else -> {
                 return menuDispatchCommon(activity, itemId)
             }
@@ -149,19 +166,23 @@ object MenuHandler {
                 intent = Intent(activity, StatusActivity::class.java)
                 intent.addFlags(0)
             }
+
             R.id.action_setup -> {
                 intent = Intent(activity, SetupActivity::class.java)
                 intent.addFlags(0)
             }
+
             R.id.action_download -> {
                 intent = makeIntent(activity)
                 intent.addFlags(0)
             }
+
             R.id.action_download_settings -> {
                 intent = Intent(activity, SettingsActivity::class.java)
                 intent.putExtra(BaseSettingsActivity.INITIAL_ARG, true)
                 intent.addFlags(0)
             }
+
             R.id.action_clear_settings -> {
                 val prefs = PreferenceManager.getDefaultSharedPreferences(activity)
                 val edit = prefs.edit()
@@ -169,6 +190,7 @@ object MenuHandler {
                 intent = Intent(activity, SettingsActivity::class.java)
                 intent.addFlags(0)
             }
+
             else -> {
                 return menuDispatchCommon(activity, itemId)
             }
@@ -192,16 +214,20 @@ object MenuHandler {
             R.id.action_storage -> {
                 intent = Intent(activity, StorageActivity::class.java)
             }
+
             R.id.action_diagnostics -> {
                 intent = Intent(activity, DiagnosticsActivity::class.java)
             }
+
             R.id.action_logs -> {
                 intent = Intent(activity, LogsActivity::class.java)
             }
+
             R.id.action_drop -> {
                 intent = Intent(activity, SetupFileActivity::class.java)
                 intent.putExtra(SetupFileFragment.ARG, SetupFileFragment.Operation.DROP.toString())
             }
+
             R.id.action_asset_deliver -> {
                 val asset = getAssetPack(activity)
                 val assetDir = getAssetPackDir(activity)
@@ -209,42 +235,44 @@ object MenuHandler {
                 val assetZipEntry = activity.getString(R.string.asset_zip_entry)
                 val observer: TaskObserver<Pair<Number, Number>> = TaskDialogObserver<Pair<Number, Number>>(activity.supportFragmentManager) //
                     .setTitle(activity.getString(R.string.title_dialog_assetload)) //
-                    .setMessage(
-                        """
-        $asset
-        ${activity.getString(R.string.gloss_asset_delivery_message)}
-        """.trimIndent()
-                    )
+                    .setMessage("$asset\n${activity.getString(R.string.gloss_asset_delivery_message)}")
                 deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null, null)
                 return true
             }
+
             R.id.action_asset_dispose -> {
                 disposeAsset(getAssetPack(activity), activity)
                 return true
             }
+
             R.id.action_appsettings -> {
                 val appId = activity.packageName
                 applicationSettings(activity, appId)
                 return true
             }
+
             R.id.action_theme_system -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
                 return true
             }
+
             R.id.action_theme_night -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 Log.d("MenuHandler", "set night mode from " + activity.componentName)
                 return true
             }
+
             R.id.action_theme_day -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 Log.d("MenuHandler", "set day mode from " + activity.componentName)
                 return true
             }
+
             R.id.action_quit -> {
                 activity.finish()
                 return true
             }
+
             else -> {
                 return false
             }

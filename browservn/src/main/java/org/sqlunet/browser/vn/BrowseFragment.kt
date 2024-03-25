@@ -51,7 +51,6 @@ class BrowseFragment : BaseSearchFragment() {
         if (savedInstanceState == null) {
             // splash fragment
             val fragment: Fragment = BrowseSplashFragment()
-            assert(isAdded)
             getChildFragmentManager() //
                 .beginTransaction() //
                 .setReorderingAllowed(true) //
@@ -96,19 +95,6 @@ class BrowseFragment : BaseSearchFragment() {
 
         // history
         recordQuery(requireContext(), trimmedQuery)
-
-        /*
-		// copy to target view
-		final View view = getView();
-		if (view != null)
-		{
-			final TextView targetView = (TextView) view.findViewById(R.id.targetView);
-			if (targetView != null)
-			{
-				targetView.setText(query);
-			}
-		}
-		*/
 
         // menuDispatch as per query prefix
         var fragment: Fragment?

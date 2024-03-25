@@ -33,7 +33,7 @@ internal object FnNodeFactory {
         if (pos == null) {
             addAttributes(rootNode, "wordid", wordId.toString())
         } else {
-            addAttributes(rootNode, "wordid", wordId.toString(), "pos", Character.toString(pos))
+            addAttributes(rootNode, "wordid", wordId.toString(), "pos", pos.toString())
         }
         return rootNode
     }
@@ -52,7 +52,7 @@ internal object FnNodeFactory {
         if (pos == null) {
             addAttributes(rootNode, "word", word!!)
         } else {
-            addAttributes(rootNode, "word", word!!, "pos", Character.toString(pos))
+            addAttributes(rootNode, "word", word!!, "pos", pos.toString())
         }
         return rootNode
     }

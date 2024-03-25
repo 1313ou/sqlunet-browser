@@ -39,14 +39,13 @@ class XBrowse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener, SnSe
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val isTwoPane = isTwoPane(view)
-        assert(isAdded)
         val manager = getChildFragmentManager()
 
         // x selector fragment
         // transaction on selectors pane
         var xSelectorsFragment: XSelectorsFragment
-        //xSelectorsFragment = (XSelectorsFragment) manager.findFragmentByTag(BaseSelectorsFragment.FRAGMENT_TAG);
-        //if (xSelectorsFragment == null)
+        // xSelectorsFragment = (XSelectorsFragment) manager.findFragmentByTag(BaseSelectorsFragment.FRAGMENT_TAG)
+        // if (xSelectorsFragment == null)
         run {
             xSelectorsFragment = XSelectorsFragment()
             xSelectorsFragment.setArguments(arguments)
@@ -58,18 +57,18 @@ class XBrowse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener, SnSe
         args1.putBoolean(Selectors.IS_TWO_PANE, isTwoPane)
         xSelectorsFragment.setListener(this, this)
         manager.beginTransaction() //
-            .replace(R.id.container_xselectors, xSelectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG) //
-            // .addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG) //
+            .replace(R.id.container_xselectors, xSelectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG)
+            // .addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG)
             .commit()
 
         // two-pane specific set up
         if (isTwoPane) {
             // in two-pane mode, list items should be given the 'activated' state when touched.
-            // xSelectorsFragment.setActivateOnItemClick(true);
+            // xSelectorsFragment.setActivateOnItemClick(true)
 
             // detail fragment (rigid layout)
             var browse2Fragment: Fragment
-            // browse2Fragment = manager.findFragmentByTag(BaseBrowse2Fragment.FRAGMENT_TAG);
+            // browse2Fragment = manager.findFragmentByTag(BaseBrowse2Fragment.FRAGMENT_TAG)
             // if (browse2Fragment == null)
             run {
                 browse2Fragment = Browse2Fragment()

@@ -59,7 +59,6 @@ class DownloadZipFragment : DownloadBaseFragment() {
         val sourceEntryArg = arguments?.getString(DOWNLOAD_ENTRY_ARG)
         toDir = if (toDirArg != null) File(toDirArg) else null
         sourceEntry = sourceEntryArg
-        assert(downloadUrl != null)
         if (!downloadUrl!!.endsWith(Deploy.ZIP_EXTENSION)) {
             downloadUrl += Deploy.ZIP_EXTENSION
         }
@@ -111,7 +110,6 @@ class DownloadZipFragment : DownloadBaseFragment() {
 
                 // args
                 val from = downloadUrl!!
-                assert(toDir != null)
                 val to = toDir!!.absolutePath
                 val entry = sourceEntry
 
@@ -203,7 +201,6 @@ class DownloadZipFragment : DownloadBaseFragment() {
      */
     override fun fireNotification(context: Context, notificationId: Int, type: Notifier.NotificationType, vararg args: Any) {
         val from = Uri.parse(downloadUrl).host
-        assert(toDir != null)
         val to = toDir!!.name
         val contentText = "$from→$to"
         Notifier.fireNotification(context, notificationId, type, contentText, *args)

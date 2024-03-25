@@ -230,10 +230,7 @@ class ExecAsyncTask
                                             if (sql == null) {
                                                 sql = line
                                             } else {
-                                                sql += """
-                                
-                                $line
-                                """.trimIndent()
+                                                sql += '\n' + line
                                             }
 
                                             // wrap
@@ -414,10 +411,7 @@ class ExecAsyncTask
                                         if (sql == null) {
                                             sql = line
                                         } else {
-                                            sql += """
-                                
-                                $line
-                                """.trimIndent()
+                                            sql += '\n' + line
                                         }
 
                                         // wrap
@@ -615,10 +609,7 @@ class ExecAsyncTask
                                                 if (sql == null) {
                                                     sql = line
                                                 } else {
-                                                    sql += """
-                                    
-                                    $line
-                                    """.trimIndent()
+                                                    sql += '\n' + line
                                                 }
 
                                                 // wrap

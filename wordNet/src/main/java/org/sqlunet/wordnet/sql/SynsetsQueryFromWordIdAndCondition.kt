@@ -31,7 +31,7 @@ class SynsetsQueryFromWordIdAndCondition(connection: SQLiteDatabase, domainBased
      * @param type target part-of-speech type
      */
     fun setPosType(type: Int) {
-        val pos = Character.valueOf(type.toChar()).toString()
+        val pos = type.toChar().toString()
         statement.setString(1, pos)
     }
 

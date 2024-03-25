@@ -71,8 +71,6 @@ open class DownloadWork {
 
             // do the work
             return try {
-                assert(fromUrl != null)
-                assert(toFile != null)
                 val downloadData = delegate.work(fromUrl!!, toFile!!, renameFrom, renameTo, null)
                 val builder = downloadData.toData()
                 val outputData = builder

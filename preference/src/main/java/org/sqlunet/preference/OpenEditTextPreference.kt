@@ -172,7 +172,6 @@ class OpenEditTextPreference : DialogPreference {
 
             // edit text
             editView = view.findViewById(R.id.openedit_text)
-            assert(editView != null)
             editView!!.requestFocus()
 
             // populate with value
@@ -184,7 +183,6 @@ class OpenEditTextPreference : DialogPreference {
 
             // options
             optionsView = view.findViewById(R.id.openedit_options)
-            assert(optionsView != null)
 
             // populate
             optionsView!!.removeAllViews()

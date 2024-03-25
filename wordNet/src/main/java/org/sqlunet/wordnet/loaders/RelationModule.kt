@@ -23,6 +23,7 @@ import org.sqlunet.wordnet.R
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class RelationModule(fragment: TreeFragment) : BaseModule(fragment) {
+
     /**
      * Synset id
      */
@@ -31,7 +32,7 @@ class RelationModule(fragment: TreeFragment) : BaseModule(fragment) {
     /**
      * Pos
      */
-    var pos: Character? = null
+    var pos: Char? = null
 
     /**
      * Expand container flag

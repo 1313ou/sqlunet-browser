@@ -32,7 +32,6 @@ class SqlDialogFragment : DialogFragment() {
 
         // sub fragment
         val fragment: Fragment = SqlStatementsFragment()
-        assert(isAdded)
         getChildFragmentManager() //
             .beginTransaction() //
             .setReorderingAllowed(true) //

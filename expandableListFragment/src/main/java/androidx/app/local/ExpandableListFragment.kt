@@ -50,7 +50,6 @@ open class ExpandableListFragment : Fragment(), OnChildClickListener, OnGroupCol
      * Focus request
      */
     private val mRequestFocus = Runnable {
-        assert(mExpandableList != null)
         mExpandableList!!.focusableViewAvailable(mExpandableList)
     }
 
@@ -202,7 +201,6 @@ open class ExpandableListFragment : Fragment(), OnChildClickListener, OnGroupCol
      */
     fun setSelection(position: Int) {
         ensureList()
-        assert(mExpandableList != null)
         mExpandableList!!.setSelection(position)
     }
 
@@ -230,7 +228,6 @@ open class ExpandableListFragment : Fragment(), OnChildClickListener, OnGroupCol
     val selectedItemId: Long
         get() {
             ensureList()
-            assert(mExpandableList != null)
             return mExpandableList!!.selectedItemId
         }
 
@@ -239,7 +236,6 @@ open class ExpandableListFragment : Fragment(), OnChildClickListener, OnGroupCol
      */
     val selectedId: Long
         get() {
-            assert(mExpandableList != null)
             return mExpandableList!!.getSelectedId()
         }
 
@@ -249,7 +245,6 @@ open class ExpandableListFragment : Fragment(), OnChildClickListener, OnGroupCol
      * @param groupPosition The position of the group that should be selected.
      */
     fun setSelectedGroup(groupPosition: Int) {
-        assert(mExpandableList != null)
         mExpandableList!!.setSelectedGroup(groupPosition)
     }
 
@@ -263,7 +258,6 @@ open class ExpandableListFragment : Fragment(), OnChildClickListener, OnGroupCol
      * @return Whether the selection was successfully set on the child.
      */
     fun setSelectedChild(groupPosition: Int, childPosition: Int, shouldExpandGroup: Boolean): Boolean {
-        assert(mExpandableList != null)
         return mExpandableList!!.setSelectedChild(groupPosition, childPosition, shouldExpandGroup)
     }
 
@@ -304,7 +298,6 @@ open class ExpandableListFragment : Fragment(), OnChildClickListener, OnGroupCol
         checkNotNull(mStandardEmptyView) { "Can't be used with a custom content view" }
         mStandardEmptyView!!.text = text
         if (mEmptyText == null) {
-            assert(mExpandableList != null)
             mExpandableList!!.setEmptyView(mStandardEmptyView)
         }
         mEmptyText = text
@@ -346,7 +339,6 @@ open class ExpandableListFragment : Fragment(), OnChildClickListener, OnGroupCol
             return
         }
         mExpandableListShown = shown
-        assert(mExpandableListContainer != null)
         if (shown) {
             if (animate) {
                 mProgressContainer!!.startAnimation(AnimationUtils.loadAnimation(requireContext(), android.R.anim.fade_out))

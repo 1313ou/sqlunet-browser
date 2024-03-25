@@ -103,8 +103,6 @@ object DownloadZipWork : DownloadWork() {
 
             // do the work
             return try {
-                assert(fromUrl != null)
-                assert(toFile != null)
                 val downloadData = delegate.work(fromUrl!!, toFile!!, renameFrom, renameTo, entry)
                 val builder = downloadData.toData()
                 val outputData = builder

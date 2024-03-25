@@ -58,7 +58,6 @@ abstract class Controller<E> protected constructor(
 
         // node view
         nodeView = createNodeView(context, node, node.value as E?, treeRowMinHeight)
-        assert(nodeView != null)
 
         // wrapper
         subtreeView = SubtreeView(context, containerStyle, treeIndent, nodeView!!)

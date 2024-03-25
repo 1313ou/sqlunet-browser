@@ -76,7 +76,6 @@ class SqlFragment : Fragment() {
         if (savedInstanceState == null) {
             // splash fragment
             val fragment: Fragment = SqlStatementsFragment()
-            assert(isAdded)
             getChildFragmentManager() //
                 .beginTransaction() //
                 .setReorderingAllowed(true) //
@@ -195,7 +194,6 @@ class SqlFragment : Fragment() {
             Log.d(TAG, "Exporting to $uri")
             try {
                 context.contentResolver.openFileDescriptor(uri, "w").use { pfd ->
-                    assert(pfd != null)
                     FileOutputStream(pfd!!.fileDescriptor).use { fileOutputStream ->
                         OutputStreamWriter(fileOutputStream).use { writer ->
                             BufferedWriter(writer).use { bw ->

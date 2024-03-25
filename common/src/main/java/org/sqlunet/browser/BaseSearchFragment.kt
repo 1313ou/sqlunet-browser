@@ -127,9 +127,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
                 // set up search view
                 searchView = getSearchView(menu)
-                assert(
-                    searchView != null // must have
-                )
                 setupSearchView(searchView!!, getSearchInfo(requireActivity()))
 
                 // toolbar
@@ -271,9 +268,6 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
             @SuppressLint("InflateParams") val customView = getLayoutInflater().inflate(R.layout.actionbar_custom, null) // raises "The specified child already has a parent" if toolbar
             toolbar.addView(customView)
             spinner = toolbar.findViewById(R.id.spinner)
-            assert(
-                spinner != null // because actionbar_custom has a @+id/spinner
-            )
         }
         return spinner
     }

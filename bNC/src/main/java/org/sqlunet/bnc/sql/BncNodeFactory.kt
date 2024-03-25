@@ -27,7 +27,7 @@ internal object BncNodeFactory {
         if (pos == null) {
             NodeFactory.addAttributes(rootNode, "wordid", wordId.toString())
         } else {
-            NodeFactory.addAttributes(rootNode, "wordid", wordId.toString(), "pos", Character.toString(pos))
+            NodeFactory.addAttributes(rootNode, "wordid", wordId.toString(), "pos", pos.toString())
         }
         return rootNode
     }

@@ -235,10 +235,7 @@ open class Spanner {
          * @param tag      tag
          */
         fun insertTag(sb: SpannableStringBuilder, position: Int, tag: CharSequence) {
-            val insert = """
-                 $tag
-                 $EOEXPANDEDSTRING
-                 """.trimIndent()
+            val insert = "$tag\n$EOEXPANDEDSTRING"
             sb.insert(position, insert)
             val mark = position + tag.length + 1
             sb.setSpan(HiddenSpan(), mark, mark + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
