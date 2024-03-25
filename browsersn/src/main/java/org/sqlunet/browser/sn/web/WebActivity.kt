@@ -1,28 +1,27 @@
 /*
  * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
-package org.sqlunet.browser.sn
+package org.sqlunet.browser.sn.web
 
 import android.os.Bundle
 import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import org.sqlunet.browser.AbstractBrowse1Activity
-import org.sqlunet.browser.BaseBrowse1Fragment
-import org.sqlunet.browser.sn.selector.SnBrowse1Fragment
+import org.sqlunet.browser.sn.R
 
 /**
- * Selector activity
+ * An activity representing a web view.
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class SnBrowse1Activity : AbstractBrowse1Activity() {
+class WebActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // content
-        setContentView(R.layout.activity_snbrowse1)
+        // lay out
+        setContentView(R.layout.activity_web)
 
         // toolbar
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
@@ -37,13 +36,13 @@ class SnBrowse1Activity : AbstractBrowse1Activity() {
         // portrait to landscape). In this case, the fragment will automatically be re-added to its container so we don't need to manually addItem it.
         // @see http://developer.android.com/guide/components/fragments.html
         if (savedInstanceState == null) {
-            val fragment: Fragment = SnBrowse1Fragment()
+            val fragment: Fragment = WebFragment()
             fragment.setArguments(intent.extras)
             supportFragmentManager //
                 .beginTransaction() //
                 .setReorderingAllowed(true) //
-                .replace(R.id.container_browse, fragment, BaseBrowse1Fragment.FRAGMENT_TAG) //
-                // .addToBackStack(BaseBrowse1Fragment.FRAGMENT_TAG) //
+                .replace(R.id.container_web, fragment, WebFragment.FRAGMENT_TAG) //
+                // .addToBackStack(WebFragment.FRAGMENT_TAG) //
                 .commit()
         }
     }

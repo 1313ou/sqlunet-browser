@@ -1,98 +1,78 @@
 /*
  * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
+package org.sqlunet.browser.sn
 
-package org.sqlunet.browser.sn;
-
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.view.Menu;
-import android.view.MenuItem;
-
-import org.sqlunet.browser.AbstractBrowse1Activity;
-import org.sqlunet.browser.BaseBrowse2Fragment;
-import org.sqlunet.browser.MenuHandler;
-import org.sqlunet.browser.UtilsKt;
-import org.sqlunet.browser.sn.Browse2Fragment;
-import org.sqlunet.browser.sn.R;
-import org.sqlunet.provider.ProviderArgs;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.Toolbar;
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.widget.Toolbar
+import org.sqlunet.browser.AbstractBrowse1Activity
+import org.sqlunet.browser.BaseBrowse2Fragment
+import org.sqlunet.browser.MenuHandler.menuDispatch
+import org.sqlunet.browser.getParcelable
+import org.sqlunet.provider.ProviderArgs
 
 /**
  * Detail activity
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class SnBrowse2Activity extends AbstractBrowse1Activity
-{
-	@Override
-	protected void onCreate(final Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
+class SnBrowse2Activity : AbstractBrowse1Activity() {
 
-		// content
-		setContentView(R.layout.activity_browse2);
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-		// toolbar
-		final Toolbar toolbar = findViewById(R.id.toolbar);
-		setSupportActionBar(toolbar);
+        // content
+        setContentView(R.layout.activity_browse2)
 
-		// set up the action bar
-		final ActionBar actionBar = getSupportActionBar();
-		assert actionBar != null;
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
+        // toolbar
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
-		// fragment
-		final Browse2Fragment browse2Fragment = new Browse2Fragment();
-		final boolean alt = getIntent().getBooleanExtra(Browse2Fragment.ARG_ALT, true);
-		final Bundle args = new Bundle();
-		args.putBoolean(Browse2Fragment.ARG_ALT, alt);
-		browse2Fragment.setArguments(args);
-		getSupportFragmentManager() //
-				.beginTransaction() //
-				.setReorderingAllowed(true) //
-				.replace(R.id.container_browse2, browse2Fragment, BaseBrowse2Fragment.FRAGMENT_TAG) //
-				// .addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG) //
-				.commit();
-	}
+        // set up the action bar
+        val actionBar = supportActionBar!!
+        actionBar.displayOptions = ActionBar.DISPLAY_SHOW_HOME or ActionBar.DISPLAY_HOME_AS_UP or ActionBar.DISPLAY_SHOW_TITLE
 
-	@Override
-	protected void onPostResume()
-	{
-		super.onPostResume();
+        // fragment
+        val browse2Fragment = Browse2Fragment()
+        val alt = intent.getBooleanExtra(Browse2Fragment.ARG_ALT, true)
+        val args = Bundle()
+        args.putBoolean(Browse2Fragment.ARG_ALT, alt)
+        browse2Fragment.setArguments(args)
+        supportFragmentManager //
+            .beginTransaction() //
+            .setReorderingAllowed(true) //
+            .replace(R.id.container_browse2, browse2Fragment, BaseBrowse2Fragment.FRAGMENT_TAG) //
+            // .addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG) //
+            .commit()
+    }
 
-		final Bundle args = getIntent().getExtras();
-		assert args != null;
+    override fun onPostResume() {
+        super.onPostResume()
+        val args = intent.extras!!
 
-		//final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
-		final Parcelable pointer = UtilsKt.getParcelable(args, ProviderArgs.ARG_QUERYPOINTER);
-		final String word = args.getString(ProviderArgs.ARG_HINTWORD);
-		final String cased = args.getString(ProviderArgs.ARG_HINTCASED);
-		final String pronunciation = args.getString(ProviderArgs.ARG_HINTPRONUNCIATION);
-		final String pos = args.getString(ProviderArgs.ARG_HINTPOS);
-		final Browse2Fragment fragment = (Browse2Fragment) getSupportFragmentManager().findFragmentByTag(BaseBrowse2Fragment.FRAGMENT_TAG);
-		assert fragment != null;
-		fragment.search(pointer, word, cased, pronunciation, pos);
-	}
+        //final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
+        val pointer = getParcelable(args, ProviderArgs.ARG_QUERYPOINTER)
+        val word = args.getString(ProviderArgs.ARG_HINTWORD)
+        val cased = args.getString(ProviderArgs.ARG_HINTCASED)
+        val pronunciation = args.getString(ProviderArgs.ARG_HINTPRONUNCIATION)
+        val pos = args.getString(ProviderArgs.ARG_HINTPOS)
+        val fragment = (supportFragmentManager.findFragmentByTag(BaseBrowse2Fragment.FRAGMENT_TAG) as Browse2Fragment?)!!
+        fragment.search(pointer, word, cased, pronunciation, pos)
+    }
 
-	// M E N U
+    // M E N U
 
-	@SuppressWarnings("SameReturnValue")
-	@Override
-	public boolean onCreateOptionsMenu(@NonNull final Menu menu)
-	{
-		// inflate the menu; this adds items to the type bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		// MenuCompat.setGroupDividerEnabled(menu, true);
-		return true;
-	}
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // inflate the menu; this adds items to the type bar if it is present.
+        menuInflater.inflate(R.menu.main, menu)
+        // MenuCompat.setGroupDividerEnabled(menu, true);
+        return true
+    }
 
-	@Override
-	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
-	{
-		return MenuHandler.menuDispatch(this, item);
-	}
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return menuDispatch(this, item)
+    }
 }

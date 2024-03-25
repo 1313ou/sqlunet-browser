@@ -1,17 +1,13 @@
 /*
  * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
+package org.sqlunet.browser.sn
 
-package org.sqlunet.browser.sn;
-
-import org.sqlunet.browser.AbstractSearchTextActivity;
-import org.sqlunet.browser.sn.SearchTextFragment;
+import org.sqlunet.browser.AbstractSearchTextActivity
 
 /**
  * Search text activity
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class SearchTextActivity extends AbstractSearchTextActivity<SearchTextFragment>
-{
-}
+class SearchTextActivity : AbstractSearchTextActivity<SearchTextFragment?>()
