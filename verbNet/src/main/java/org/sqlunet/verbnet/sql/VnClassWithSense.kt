@@ -41,19 +41,19 @@ internal class VnClassWithSense private constructor(
          * @return list of VerbNet classes
          */
         @JvmStatic
-        fun make(connection: SQLiteDatabase?, wordId: Long, synsetId: Long?): List<VnClassWithSense?>? {
+        fun make(connection: SQLiteDatabase, wordId: Long, synsetId: Long?): List<VnClassWithSense?>? {
             var result: MutableList<VnClassWithSense?>? = null
             VnClassQueryFromSense(connection, wordId, synsetId).use { query ->
                 query.execute()
                 while (query.next()) {
-                    val className = query.getClassName()
-                    val classId = query.getClassId()
-                    val synsetSpecificFlag = query.getSynsetSpecific()
-                    val definition = query.getDefinition()
-                    val sensekey = query.getSenseKey()
-                    val sensenum = query.getSenseNum()
-                    val quality = query.getQuality()
-                    val groupings = query.getGroupings()
+                    val className = query.className
+                    val classId = query.classId
+                    val synsetSpecificFlag = query.synsetSpecific
+                    val definition = query.definition
+                    val sensekey = query.senseKey
+                    val sensenum = query.senseNum
+                    val quality = query.quality
+                    val groupings = query.groupings
                     if (result == null) {
                         result = ArrayList()
                     }

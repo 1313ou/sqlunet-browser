@@ -24,13 +24,13 @@ class VnRoleSet private constructor(
          * @return set of VerbNet roles
          */
         @JvmStatic
-        fun make(connection: SQLiteDatabase?, classId: Long): VnRoleSet? {
+        fun make(connection: SQLiteDatabase, classId: Long): VnRoleSet? {
             VnRoleQueryFromClassId(connection, classId).use { query ->
                 query.execute()
                 var roleSet: VnRoleSet? = null
                 while (query.next()) {
-                    val roleType = query.getRoleType()
-                    val selectionRestrictions = query.getSelectionRestriction()
+                    val roleType = query.roleType
+                    val selectionRestrictions = query.selectionRestriction
 
                     // new role
                     val role = VnRole(roleType, selectionRestrictions)
@@ -57,13 +57,13 @@ class VnRoleSet private constructor(
          * @return set of VerbNet roles
          */
         @JvmStatic
-        fun make(connection: SQLiteDatabase?, classId: Long, wordId: Long, synsetId: Long?): VnRoleSet? {
+        fun make(connection: SQLiteDatabase, classId: Long, wordId: Long, synsetId: Long?): VnRoleSet? {
             VnRoleQueryFromClassIdAndSense(connection, classId, wordId, synsetId).use { query ->
                 query.execute()
                 var roleSet: VnRoleSet? = null
                 while (query.next()) {
-                    val roleType = query.getRoleType()
-                    val selectionRestrictions = query.getSelectionRestriction()
+                    val roleType = query.roleType
+                    val selectionRestrictions = query.selectionRestriction
 
                     // new role
                     val role = VnRole(roleType, selectionRestrictions)

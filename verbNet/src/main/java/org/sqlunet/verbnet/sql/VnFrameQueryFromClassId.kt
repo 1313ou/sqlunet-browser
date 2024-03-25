@@ -14,7 +14,7 @@ import org.sqlunet.sql.DBQuery
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-internal class VnFrameQueryFromClassId(connection: SQLiteDatabase?, classId: Long) : DBQuery(connection!!, QUERY) {
+internal class VnFrameQueryFromClassId(connection: SQLiteDatabase, classId: Long) : DBQuery(connection!!, QUERY) {
 
     init {
         setParams(classId)

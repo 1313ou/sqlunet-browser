@@ -14,7 +14,7 @@ import org.sqlunet.sql.DBQuery
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-internal class VnClassQueryFromWordAndPos(connection: SQLiteDatabase, word: String) : DBQuery(connection, QUERY) {
+class VnClassQueryFromWordAndPos(connection: SQLiteDatabase, word: String) : DBQuery(connection, QUERY) {
 
     init {
         setParams(word)

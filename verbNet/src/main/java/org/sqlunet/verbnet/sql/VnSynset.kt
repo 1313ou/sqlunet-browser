@@ -12,7 +12,8 @@ import org.sqlunet.wordnet.sql.BasicSynset
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class VnSynset(query: VnClassQueryFromWordAndPos) : BasicSynset(query.getSynsetId(), query.getDefinition(), query.getDomainId(), null) {
+class VnSynset(query: VnClassQueryFromWordAndPos) : BasicSynset(query.synsetId, query.definition, query.domainId, null) {
+
     /**
      * `flag` is a selection flag used by some queries
      */
@@ -23,6 +24,6 @@ class VnSynset(query: VnClassQueryFromWordAndPos) : BasicSynset(query.getSynsetI
      * Constructor from query for synsets
      */
     init {
-        flag = query.getSynsetSpecific()
+        flag = query.synsetSpecific
     }
 }

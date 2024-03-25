@@ -44,7 +44,7 @@ internal open class Collocation private constructor(
              * @return list of SyntagNet collocations
              */
             @JvmStatic
-            fun makeFromWord(connection: SQLiteDatabase?, targetWord: String?): List<WithDefinitionAndPos> {
+            fun makeFromWord(connection: SQLiteDatabase, targetWord: String): List<WithDefinitionAndPos> {
                 val result: MutableList<WithDefinitionAndPos> = ArrayList()
                 CollocationQueryFromWord(connection, targetWord).use { query ->
                     query.execute()
@@ -64,7 +64,7 @@ internal open class Collocation private constructor(
              * @return list of SyntagNet collocations
              */
             @JvmStatic
-            fun makeFromWordId(connection: SQLiteDatabase?, targetWordId: Long): List<WithDefinitionAndPos> {
+            fun makeFromWordId(connection: SQLiteDatabase, targetWordId: Long): List<WithDefinitionAndPos> {
                 val result: MutableList<WithDefinitionAndPos> = ArrayList()
                 CollocationQueryFromWordId(connection, targetWordId).use { query ->
                     query.execute()
@@ -85,7 +85,7 @@ internal open class Collocation private constructor(
              * @return list of SyntagNet collocations
              */
             @JvmStatic
-            fun makeFromWordIds(connection: SQLiteDatabase?, targetWordId: Long, targetWord2Id: Long): List<WithDefinitionAndPos> {
+            fun makeFromWordIds(connection: SQLiteDatabase, targetWordId: Long, targetWord2Id: Long): List<WithDefinitionAndPos> {
                 val result: MutableList<WithDefinitionAndPos> = ArrayList()
                 CollocationQueryFromWordIds(connection, targetWordId, targetWord2Id).use { query ->
                     query.execute()
@@ -105,7 +105,7 @@ internal open class Collocation private constructor(
              * @return list of SyntagNet collocations
              */
             @JvmStatic
-            fun makeFromWordIdAndSynsetId(connection: SQLiteDatabase?, targetWordId: Long, targetSynsetId: Long): List<WithDefinitionAndPos> {
+            fun makeFromWordIdAndSynsetId(connection: SQLiteDatabase, targetWordId: Long, targetSynsetId: Long): List<WithDefinitionAndPos> {
                 val result: MutableList<WithDefinitionAndPos> = ArrayList()
                 CollocationQueryFromWordIdAndSynsetId(connection, targetWordId, targetSynsetId).use { query ->
                     query.execute()
@@ -128,7 +128,7 @@ internal open class Collocation private constructor(
              * @return list of SyntagNet collocations
              */
             @JvmStatic
-            fun makeFromWordIdAndSynsetIds(connection: SQLiteDatabase?, targetWordId: Long, targetSynsetId: Long, targetWord2Id: Long, targetSynset2Id: Long): List<WithDefinitionAndPos> {
+            fun makeFromWordIdAndSynsetIds(connection: SQLiteDatabase, targetWordId: Long, targetSynsetId: Long, targetWord2Id: Long, targetSynset2Id: Long): List<WithDefinitionAndPos> {
                 val result: MutableList<WithDefinitionAndPos> = ArrayList()
                 CollocationQueryFromWordIdsAndSynsetIds(connection, targetWordId, targetSynsetId, targetWord2Id, targetSynset2Id).use { query ->
                     query.execute()
@@ -148,7 +148,7 @@ internal open class Collocation private constructor(
              * @return list of SyntagNet collocations
              */
             @JvmStatic
-            fun make(connection: SQLiteDatabase?, collocationId: Long): List<WithDefinitionAndPos> {
+            fun make(connection: SQLiteDatabase, collocationId: Long): List<WithDefinitionAndPos> {
                 val result: MutableList<WithDefinitionAndPos> = ArrayList()
                 CollocationQuery(connection, collocationId).use { query ->
                     query.execute()
@@ -161,17 +161,17 @@ internal open class Collocation private constructor(
             }
 
             private fun makeCollocationWithDefinitionAndPos(query: BaseCollocationQuery): WithDefinitionAndPos {
-                val collocationId = query.getId()
-                val word1Id = query.getWord1Id()
-                val word2Id = query.getWord2Id()
-                val synset1Id = query.getSynset1Id()
-                val synset2Id = query.getSynset2Id()
-                val word1 = query.getWord1()
-                val word2 = query.getWord2()
-                val pos1 = query.getPos1()!!
-                val pos2 = query.getPos2()!!
-                val definition1 = query.getDefinition1()
-                val definition2 = query.getDefinition2()
+                val collocationId = query.id
+                val word1Id = query.word1Id
+                val word2Id = query.word2Id
+                val synset1Id = query.synset1Id
+                val synset2Id = query.synset2Id
+                val word1 = query.word1
+                val word2 = query.word2
+                val pos1 = query.pos1!!
+                val pos2 = query.pos2!!
+                val definition1 = query.definition1
+                val definition2 = query.definition2
                 return WithDefinitionAndPos(collocationId, word1Id, word2Id, synset1Id, synset2Id, word1, word2, pos1, pos2, definition1, definition2)
             }
         }
@@ -180,7 +180,7 @@ internal open class Collocation private constructor(
     companion object {
 
         @JvmStatic
-        fun makeSelectorFromWord(connection: SQLiteDatabase?, targetWord: String?): List<Collocation> {
+        fun makeSelectorFromWord(connection: SQLiteDatabase, targetWord: String): List<Collocation> {
             val result: MutableList<Collocation> = ArrayList()
             CollocationQueryFromWord(connection, targetWord).use { query ->
                 query.execute()
@@ -193,13 +193,13 @@ internal open class Collocation private constructor(
         }
 
         private fun makeCollocation(query: BaseCollocationQuery): Collocation {
-            val collocationId = query.getId()
-            val word1Id = query.getWord1Id()
-            val word2Id = query.getWord2Id()
-            val synset1Id = query.getSynset1Id()
-            val synset2Id = query.getSynset2Id()
-            val word1 = query.getWord1()
-            val word2 = query.getWord2()
+            val collocationId = query.id
+            val word1Id = query.word1Id
+            val word2Id = query.word2Id
+            val synset1Id = query.synset1Id
+            val synset2Id = query.synset2Id
+            val word1 = query.word1
+            val word2 = query.word2
             return Collocation(collocationId, word1Id, word2Id, synset1Id, synset2Id, word1, word2)
         }
     }

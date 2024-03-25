@@ -79,7 +79,7 @@ internal interface VerbNetInterface {
      * @param pos        pos to build query from
      * @return VerbNet class data as DOM document
      */
-    fun queryClassDoc(connection: SQLiteDatabase, classId: Long, pos: Char): Document?
+    fun queryClassDoc(connection: SQLiteDatabase, classId: Long, pos: Char?): Document?
 
     /**
      * Business method that returns class data as XML
@@ -89,5 +89,5 @@ internal interface VerbNetInterface {
      * @param pos        pos to build query from
      * @return VerbNet class data as XML
      */
-    fun queryClassXML(connection: SQLiteDatabase, classId: Long, pos: Char): String
+    fun queryClassXML(connection: SQLiteDatabase, classId: Long, pos: Char?): String
 }

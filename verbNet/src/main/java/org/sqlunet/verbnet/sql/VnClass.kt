@@ -32,8 +32,8 @@ class VnClass private constructor(
             VnClassQuery(connection, classId).use { query ->
                 query.execute()
                 if (query.next()) {
-                    val className = query.getClassName()
-                    val groupings = query.getGroupings()
+                    val className = query.className
+                    val groupings = query.groupings
                     return VnClass(className, classId, groupings)
                 }
             }

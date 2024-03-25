@@ -14,7 +14,7 @@ import org.sqlunet.sql.DBQuery
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-internal abstract class BaseCollocationQuery(connection: SQLiteDatabase?, query: String?) : DBQuery(connection!!, query!!) {
+internal abstract class BaseCollocationQuery(connection: SQLiteDatabase, query: String?) : DBQuery(connection, query!!) {
 
     // 1         2                 3          4               5
     // "word1id, w1.word AS word1, synset1id, s1.pos AS pos1, s1.definition AS definition1,"

@@ -26,23 +26,23 @@ class VnFrameSet private constructor(
          * @return set of frames
          */
         @JvmStatic
-        fun make(connection: SQLiteDatabase?, classId: Long, wordId: Long, synsetId: Long?): VnFrameSet? {
+        fun make(connection: SQLiteDatabase, classId: Long, wordId: Long, synsetId: Long?): VnFrameSet? {
             VnFrameQueryFromClassIdAndSense(connection, classId, wordId, synsetId).use { query ->
                 query.execute()
                 var frameSet: VnFrameSet? = null
                 while (query.next()) {
                     // data from result set
-                    // final long frameId = query.getFrameId();
-                    val number = query.getNumber()
-                    val xTag = query.getXTag()
-                    val description1 = query.getDescription1()
-                    val description2 = query.getDescription2()
-                    val syntax = query.getSyntax()
-                    val semantics = query.getSemantics()
-                    val concatExamples = query.getExample()
+                    // final long frameId = query.getFrameId()
+                    val number = query.number
+                    val xTag = query.xTag
+                    val description1 = query.description1
+                    val description2 = query.description2
+                    val syntax = query.syntax
+                    val semantics = query.semantics
+                    val concatExamples = query.example
                     val examples = concatExamples.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-                    // final float quality = query.getQuality();
-                    // final boolean synsetSpecific = query.getSynsetSpecific();
+                    // final float quality = query.quality
+                    // final boolean synsetSpecific = query.synsetSpecific
 
                     // frame
                     val frame = VnFrame(number, xTag, description1, description2, syntax, semantics, *examples)
@@ -67,20 +67,20 @@ class VnFrameSet private constructor(
          * @return set of frames
          */
         @JvmStatic
-        fun make(connection: SQLiteDatabase?, classId: Long): VnFrameSet? {
+        fun make(connection: SQLiteDatabase, classId: Long): VnFrameSet? {
             VnFrameQueryFromClassId(connection, classId).use { query ->
                 query.execute()
                 var frameSet: VnFrameSet? = null
                 while (query.next()) {
                     // data from result set
-                    // final long frameId = query.getFrameId();
-                    val number = query.getNumber()
-                    val xTag = query.getXTag()
-                    val description1 = query.getDescription1()
-                    val description2 = query.getDescription2()
-                    val syntax = query.getSyntax()
-                    val semantics = query.getSemantics()
-                    val exampleConcat = query.getExamples()
+                    // final long frameId = query.frameId
+                    val number = query.number
+                    val xTag = query.xTag
+                    val description1 = query.description1
+                    val description2 = query.description2
+                    val syntax = query.syntax
+                    val semantics = query.semantics
+                    val exampleConcat = query.examples
                     val examples = exampleConcat.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
                     // frame
                     val frame = VnFrame(number, xTag, description1, description2, syntax, semantics, *examples)

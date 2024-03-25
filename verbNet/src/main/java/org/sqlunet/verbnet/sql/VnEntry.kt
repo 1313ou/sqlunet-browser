@@ -27,20 +27,20 @@ class VnEntry private constructor(
          * @return new entry or null
          */
         @JvmStatic
-        fun make(connection: SQLiteDatabase?, word: String?): VnEntry? {
+        fun make(connection: SQLiteDatabase, word: String): VnEntry? {
             VnClassQueryFromWordAndPos(connection, word).use { query ->
                 query.execute()
                 var wordId: Long = 0
                 var synsets: MutableList<VnSynset>? = null
                 while (query.next()) {
-                    wordId = query.getWordId()
+                    wordId = query.wordId
                     if (synsets == null) {
                         synsets = ArrayList()
                     }
                     synsets.add(VnSynset(query))
                 }
                 if (wordId != 0L) {
-                    return VnEntry(BasicWord(word!!, wordId), synsets)
+                    return VnEntry(BasicWord(word, wordId), synsets)
                 }
             }
             return null

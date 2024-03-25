@@ -14,7 +14,7 @@ import android.database.sqlite.SQLiteDatabase
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-internal class CollocationQueryFromWordIds(connection: SQLiteDatabase?, wordid: Long, word2id: Long) : BaseCollocationQuery(connection, QUERY) {
+internal class CollocationQueryFromWordIds(connection: SQLiteDatabase, wordid: Long, word2id: Long) : BaseCollocationQuery(connection, QUERY) {
 
     init {
         setParams(wordid, word2id)

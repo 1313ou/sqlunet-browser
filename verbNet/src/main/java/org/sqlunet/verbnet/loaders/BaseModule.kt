@@ -164,9 +164,9 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
         drawableGrouping = getDrawable(context, R.drawable.grouping)
 
         // create processors and spanners
-        semanticsProcessor = VerbNetSemanticsProcessor()
-        syntaxSpanner = VerbNetSyntaxSpanner()
-        semanticsSpanner = VerbNetSemanticsSpanner()
+        semanticsProcessor = VerbNetSemanticsProcessor
+        syntaxSpanner = VerbNetSyntaxSpanner
+        semanticsSpanner = VerbNetSemanticsSpanner
     }
 
     /**
