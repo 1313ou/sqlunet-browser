@@ -1,92 +1,81 @@
 /*
  * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
+package org.sqlunet.browser.fn
 
-package org.sqlunet.browser.fn;
-
-import android.content.Context;
-import android.os.Bundle;
-
-import org.sqlunet.browser.BaseBrowse2Fragment;
-import org.sqlunet.browser.fn.web.WebFragment;
-import org.sqlunet.framenet.FnFramePointer;
-import org.sqlunet.framenet.browser.FnFrameFragment;
-import org.sqlunet.framenet.browser.FnLexUnitFragment;
-import org.sqlunet.framenet.browser.FrameNetFragment;
-import org.sqlunet.provider.ProviderArgs;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import org.sqlunet.browser.BaseBrowse2Fragment
+import org.sqlunet.browser.fn.web.WebFragment
+import org.sqlunet.framenet.FnFramePointer
+import org.sqlunet.framenet.browser.FnFrameFragment
+import org.sqlunet.framenet.browser.FnLexUnitFragment
+import org.sqlunet.framenet.browser.FrameNetFragment
+import org.sqlunet.provider.ProviderArgs
+import org.sqlunet.settings.Settings
 
 /**
  * A fragment representing a detail
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class Browse2Fragment extends BaseBrowse2Fragment
-{
-	public static final String ARG_ALT = "alt_arg";
+class Browse2Fragment : BaseBrowse2Fragment() {
 
-	/**
-	 * Search
-	 */
-	@Override
-	protected void search()
-	{
-		final Context context = requireContext();
-		if (!isAdded())
-		{
-			return;
-		}
-		final FragmentManager manager = getChildFragmentManager();
+    /**
+     * Search
+     */
+    override fun search() {
 
-		// args
-		final Bundle args = new Bundle();
-		args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, this.pointer);
+        val context = requireContext()
+        if (!isAdded) {
+            return
+        }
+        val manager = getChildFragmentManager()
 
-		// detail fragment
-		final Settings.DetailViewMode mode = Settings.getDetailViewModePref(context);
-		switch (mode)
-		{
-			case VIEW:
+        // args
+        val args = Bundle()
+        args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer)
 
-				// transaction
-				final FragmentTransaction transaction = manager.beginTransaction().setReorderingAllowed(true);
+        // detail fragment
+        val mode: Settings.DetailViewMode = Settings.getDetailViewModePref(context)
+        when (mode) {
+            Settings.DetailViewMode.VIEW -> {
 
-				// framenet
-				boolean enable = Settings.getFrameNetPref(context);
-				if (enable)
-				{
-					// final View labelView = findViewById(R.id.label_framenet);
-					// labelView.setVisibility(View.VISIBLE);
-					final Fragment framenetFragment = (this.pointer instanceof FnFramePointer) ? new FnFrameFragment() : new FnLexUnitFragment();
-					framenetFragment.setArguments(args);
-					transaction.replace(R.id.container_framenet, framenetFragment, FrameNetFragment.FRAGMENT_TAG);
-				}
-				else
-				{
-					final Fragment framenetFragment = manager.findFragmentByTag(FrameNetFragment.FRAGMENT_TAG);
-					if (framenetFragment != null)
-					{
-						transaction.remove(framenetFragment);
-					}
-				}
+                // transaction
+                val transaction = manager.beginTransaction().setReorderingAllowed(true)
 
-				transaction.commit();
-				break;
+                // framenet
+                val enable = org.sqlunet.browser.fn.Settings.getFrameNetPref(context)
+                if (enable) {
+                    // final View labelView = findViewById(R.id.label_framenet);
+                    // labelView.setVisibility(View.VISIBLE);
+                    val framenetFragment: Fragment = if (pointer is FnFramePointer) FnFrameFragment() else FnLexUnitFragment()
+                    framenetFragment.setArguments(args)
+                    transaction.replace(R.id.container_framenet, framenetFragment, FrameNetFragment.FRAGMENT_TAG)
+                } else {
+                    val framenetFragment = manager.findFragmentByTag(FrameNetFragment.FRAGMENT_TAG)
+                    if (framenetFragment != null) {
+                        transaction.remove(framenetFragment)
+                    }
+                }
+                transaction.commit()
+            }
 
-			case WEB:
-				// web fragment
-				final Fragment webFragment = new WebFragment();
-				webFragment.setArguments(args);
+            Settings.DetailViewMode.WEB -> {
+                // web fragment
+                val webFragment: Fragment = WebFragment()
+                webFragment.setArguments(args)
 
-				// detail fragment replace
-				manager.beginTransaction() //
-						.setReorderingAllowed(true) //
-						.replace(R.id.container_web, webFragment, WebFragment.FRAGMENT_TAG) //
-						.commit();
-				break;
-		}
-	}
+                // detail fragment replace
+                manager.beginTransaction() //
+                    .setReorderingAllowed(true) //
+                    .replace(R.id.container_web, webFragment, WebFragment.FRAGMENT_TAG) //
+                    .commit()
+            }
+        }
+    }
+
+    companion object {
+        const val ARG_ALT = "alt_arg"
+    }
 }

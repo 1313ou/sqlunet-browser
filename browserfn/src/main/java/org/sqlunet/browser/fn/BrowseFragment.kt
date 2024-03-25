@@ -1,360 +1,273 @@
 /*
  * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
+package org.sqlunet.browser.fn
 
-package org.sqlunet.browser.fn;
-
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-
-import org.sqlunet.browser.BaseBrowse1Fragment;
-import org.sqlunet.browser.BaseSearchFragment;
-import org.sqlunet.browser.BrowseSplashFragment;
-import org.sqlunet.browser.SplashFragment;
-import org.sqlunet.browser.fn.selector.Browse1Fragment;
-import org.sqlunet.browser.fn.selector.Browse1Activity;
-import org.sqlunet.browser.fn.web.WebActivity;
-import org.sqlunet.browser.fn.web.WebFragment;
-import org.sqlunet.framenet.FnAnnoSetPointer;
-import org.sqlunet.framenet.FnFramePointer;
-import org.sqlunet.framenet.FnLexUnitPointer;
-import org.sqlunet.framenet.FnPatternPointer;
-import org.sqlunet.framenet.FnSentencePointer;
-import org.sqlunet.framenet.FnValenceUnitPointer;
-import org.sqlunet.framenet.browser.FnAnnoSetActivity;
-import org.sqlunet.framenet.browser.FnFrameActivity;
-import org.sqlunet.framenet.browser.FnLexUnitActivity;
-import org.sqlunet.framenet.browser.FnSentenceActivity;
-import org.sqlunet.browser.history.History;
-import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.settings.Settings;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import android.content.Intent
+import android.os.Bundle
+import android.os.Parcelable
+import android.util.Log
+import android.view.MenuItem
+import android.view.View
+import androidx.fragment.app.Fragment
+import org.sqlunet.browser.BaseBrowse1Fragment
+import org.sqlunet.browser.BaseSearchFragment
+import org.sqlunet.browser.BrowseSplashFragment
+import org.sqlunet.browser.SplashFragment
+import org.sqlunet.browser.fn.selector.Browse1Activity
+import org.sqlunet.browser.fn.selector.Browse1Fragment
+import org.sqlunet.browser.fn.web.WebActivity
+import org.sqlunet.browser.fn.web.WebFragment
+import org.sqlunet.browser.history.History.recordQuery
+import org.sqlunet.framenet.FnAnnoSetPointer
+import org.sqlunet.framenet.FnFramePointer
+import org.sqlunet.framenet.FnLexUnitPointer
+import org.sqlunet.framenet.FnPatternPointer
+import org.sqlunet.framenet.FnSentencePointer
+import org.sqlunet.framenet.FnValenceUnitPointer
+import org.sqlunet.framenet.browser.FnAnnoSetActivity
+import org.sqlunet.framenet.browser.FnFrameActivity
+import org.sqlunet.framenet.browser.FnLexUnitActivity
+import org.sqlunet.framenet.browser.FnSentenceActivity
+import org.sqlunet.provider.ProviderArgs
+import org.sqlunet.settings.Settings
+import org.sqlunet.settings.Settings.Companion.getDetailViewModePref
+import org.sqlunet.settings.Settings.Companion.getSelectorPref
+import org.sqlunet.settings.Settings.Companion.getSelectorViewModePref
+import org.sqlunet.settings.Settings.DetailViewMode
+import org.sqlunet.settings.Settings.SelectorViewMode
 
 /**
  * Browse fragment
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class BrowseFragment extends BaseSearchFragment
-{
-	static private final String TAG = "BrowseF";
+class BrowseFragment : BaseSearchFragment() {
 
-	// C R E A T I O N
+    init {
+        layoutId = R.layout.fragment_browse
+        menuId = R.menu.browse
+        colorAttrId = R.attr.colorPrimary
+        spinnerLabels = R.array.selectors_names
+        spinnerIcons = R.array.selectors_icons
+    }
 
-	/**
-	 * Constructor
-	 */
-	public BrowseFragment()
-	{
-		this.layoutId = R.layout.fragment_browse;
-		this.menuId = R.menu.browse;
-		this.colorAttrId = R.attr.colorPrimary;
-		this.spinnerLabels = R.array.selectors_names;
-		this.spinnerIcons = R.array.selectors_icons;
-	}
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (savedInstanceState == null) {
+            // splash fragment
+            val fragment: Fragment = BrowseSplashFragment()
+            assert(isAdded)
+            getChildFragmentManager() //
+                .beginTransaction() //
+                .setReorderingAllowed(true) //
+                .replace(R.id.container_browse, fragment, SplashFragment.FRAGMENT_TAG) //
+                //.addToBackStack(SplashFragment.FRAGMENT_TAG) //
+                .commit()
+        }
+    }
 
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
+    override fun onStop() {
+        super.onStop()
 
-		if (savedInstanceState == null)
-		{
-			// splash fragment
-			final Fragment fragment = new BrowseSplashFragment();
-			assert isAdded();
-			getChildFragmentManager() //
-					.beginTransaction() //
-					.setReorderingAllowed(true) //
-					.replace(R.id.container_browse, fragment, SplashFragment.FRAGMENT_TAG) //
-					//.addToBackStack(SplashFragment.FRAGMENT_TAG) //
-					.commit();
-		}
-	}
+        // remove data fragments and replace with splash before onSaveInstanceState takes place (between -3 and -4)
+        beforeSaving(BrowseSplashFragment(), SplashFragment.FRAGMENT_TAG, R.id.container_browse, BaseBrowse1Fragment.FRAGMENT_TAG)
+    }
 
-	@Override
-	public void onStop()
-	{
-		super.onStop();
+    // M E N U
 
-		// remove data fragments and replace with splash before onSaveInstanceState takes place (between -3 and -4)
-		beforeSaving(new BrowseSplashFragment(), SplashFragment.FRAGMENT_TAG, R.id.container_browse, BaseBrowse1Fragment.FRAGMENT_TAG);
-	}
+    @Deprecated("Deprecated in Java")
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return false
+    }
 
-	// M E N U
+    // S E A R C H
 
-	@SuppressWarnings({"deprecation", "SameReturnValue"})
-	@Override
-	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
-	{
-		return false;
-	}
+    /**
+     * Handle search
+     *
+     * @param query query
+     */
+    override fun search(query: String) {
+        val trimmedQuery = query.trim { it <= ' ' }
+        if (trimmedQuery.isEmpty()) {
+            return
+        }
 
-	// S E A R C H
+        // super
+        super.search(trimmedQuery)
 
-	/**
-	 * Handle search
-	 *
-	 * @param query0 query
-	 */
-	@Override
-	public void search(@Nullable final String query0)
-	{
-		if (query0 == null)
-		{
-			return;
-		}
-		final String query = query0.trim();
-		if (query.isEmpty())
-		{
-			return;
-		}
+        // log
+        Log.d(TAG, "Browse '$trimmedQuery'")
 
-		// super
-		super.search(query);
+        // history
+        recordQuery(requireContext(), trimmedQuery)
 
-		// log
-		Log.d(TAG, "Browse '" + query + '\'');
+        // menuDispatch as per query prefix
+        var fragment: Fragment?
+        var targetIntent: Intent? = null
+        val args = Bundle()
+        if (trimmedQuery.matches("#\\p{Lower}\\p{Lower}\\d+".toRegex())) {
+            val id = trimmedQuery.substring(3).toLong()
 
-		// history
-		History.recordQuery(requireContext(), query);
+            // framenet
+            targetIntent = if (trimmedQuery.startsWith("#ff")) {
+                val framePointer: Parcelable = FnFramePointer(id)
+                args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNFRAME)
+                args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, framePointer)
+                makeDetailIntent(FnFrameActivity::class.java)
+            } else if (trimmedQuery.startsWith("#fl")) {
+                val lexunitPointer: Parcelable = FnLexUnitPointer(id)
+                args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT)
+                args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, lexunitPointer)
+                makeDetailIntent(FnLexUnitActivity::class.java)
+            } else if (trimmedQuery.startsWith("#fs")) {
+                val sentencePointer: Parcelable = FnSentencePointer(id)
+                args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNSENTENCE)
+                args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, sentencePointer)
+                makeDetailIntent(FnSentenceActivity::class.java)
+            } else if (trimmedQuery.startsWith("#fa")) {
+                val annoSetPointer: Parcelable = FnAnnoSetPointer(id)
+                args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNANNOSET)
+                args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, annoSetPointer)
+                makeDetailIntent(FnAnnoSetActivity::class.java)
+            } else if (trimmedQuery.startsWith("#fp")) {
+                val patternPointer: Parcelable = FnPatternPointer(id)
+                args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNPATTERN)
+                args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, patternPointer)
+                makeDetailIntent(FnAnnoSetActivity::class.java)
+            } else if (trimmedQuery.startsWith("#fv")) {
+                val valenceunitPointer: Parcelable = FnValenceUnitPointer(id)
+                args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNVALENCEUNIT)
+                args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, valenceunitPointer)
+                makeDetailIntent(FnAnnoSetActivity::class.java)
+            } else {
+                return
+            }
+        }
+        run {
 
-		/*
-		// copy to target view
-		final View view = getView();
-		if (view != null)
-		{
-			final TextView targetView = (TextView) view.findViewById(R.id.targetView);
-			if (targetView != null)
-			{
-				targetView.setText(query);
-			}
-		}
-		*/
+            // search for string
+            args.putString(ProviderArgs.ARG_QUERYSTRING, trimmedQuery)
 
-		// menuDispatch as per query prefix
-		@SuppressWarnings("TooBroadScope") Fragment fragment;
-		Intent targetIntent = null;
-		Bundle args = new Bundle();
-		if (query.matches("#\\p{Lower}\\p{Lower}\\d+"))
-		{
-			final long id = Long.parseLong(query.substring(3));
+            //targetIntent = makeSelectorIntent();
+            fragment = makeOverviewFragment()
+        }
 
-			// framenet
-			if (query.startsWith("#ff"))
-			{
-				final Parcelable framePointer = new FnFramePointer(id);
-				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNFRAME);
-				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, framePointer);
+        // menuDispatch
+        Log.d(TAG, "Search $args")
+        if (targetIntent != null) {
+            targetIntent.putExtras(args)
+            startActivity(targetIntent)
+            return
+        }
+        if (fragment != null) {
+            fragment!!.setArguments(args)
 
-				targetIntent = makeDetailIntent(FnFrameActivity.class);
-			}
-			else if (query.startsWith("#fl"))
-			{
-				final Parcelable lexunitPointer = new FnLexUnitPointer(id);
-				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT);
-				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, lexunitPointer);
+            // fragment
+            fragment!!.setArguments(args)
 
-				targetIntent = makeDetailIntent(FnLexUnitActivity.class);
-			}
-			else if (query.startsWith("#fs"))
-			{
-				final Parcelable sentencePointer = new FnSentencePointer(id);
-				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNSENTENCE);
-				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, sentencePointer);
+            // transaction
+            if (!isAdded) {
+                return
+            }
+            getChildFragmentManager() //
+                .beginTransaction() //
+                .setReorderingAllowed(true) //
+                .replace(R.id.container_browse, fragment!!, BaseBrowse1Fragment.FRAGMENT_TAG) //
+                .addToBackStack(BaseBrowse1Fragment.FRAGMENT_TAG).commit()
+        }
+    }
 
-				targetIntent = makeDetailIntent(FnSentenceActivity.class);
-			}
-			else if (query.startsWith("#fa"))
-			{
-				final Parcelable annoSetPointer = new FnAnnoSetPointer(id);
-				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNANNOSET);
-				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, annoSetPointer);
+    override fun triggerFocusSearch(): Boolean {
+        if (!isAdded) {
+            return false
+        }
+        val active = getChildFragmentManager().findFragmentById(R.id.container_browse)
+        return active != null && SplashFragment.FRAGMENT_TAG == active.tag
+    }
 
-				targetIntent = makeDetailIntent(FnAnnoSetActivity.class);
-			}
-			else if (query.startsWith("#fp"))
-			{
-				final Parcelable patternPointer = new FnPatternPointer(id);
-				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNPATTERN);
-				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, patternPointer);
+    // I N T E N T / F R A G M E N T   F A C T O R Y
 
-				targetIntent = makeDetailIntent(FnAnnoSetActivity.class);
-			}
-			else if (query.startsWith("#fv"))
-			{
-				final Parcelable valenceunitPointer = new FnValenceUnitPointer(id);
-				args.putInt(ProviderArgs.ARG_QUERYTYPE, ProviderArgs.ARG_QUERYTYPE_FNVALENCEUNIT);
-				args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, valenceunitPointer);
+    /**
+     * Browse1/Web fragment factory
+     *
+     * @return fragment
+     */
+    private fun makeOverviewFragment(): Fragment? {
+        // context
+        val context = requireContext()
 
-				targetIntent = makeDetailIntent(FnAnnoSetActivity.class);
-			}
+        // type
+        val selectorType = getSelectorPref(context)
 
-			else
-			{
-				return;
-			}
-		}
-		{
-			// search for string
-			args.putString(ProviderArgs.ARG_QUERYSTRING, query);
+        // mode
+        val selectorMode = getSelectorViewModePref(context)
+        when (selectorMode) {
+            SelectorViewMode.VIEW -> if (selectorType == Settings.Selector.SELECTOR) {
+                return Browse1Fragment()
+            }
 
-			//targetIntent = makeSelectorIntent();
-			fragment = makeOverviewFragment();
-		}
+            SelectorViewMode.WEB -> return WebFragment()
+        }
+        return null
+    }
 
-		// menuDispatch
-		Log.d(TAG, "Search " + args);
-		if (targetIntent != null)
-		{
-			targetIntent.putExtras(args);
-			startActivity(targetIntent);
-			return;
-		}
+    /**
+     * Make selector intent as per settings
+     *
+     * @return intent
+     */
+    private fun makeSelectorIntent(): Intent {
+        // context
+        val context = requireContext()
 
-		if (fragment != null)
-		{
-			fragment.setArguments(args);
+        // intent
+        var intent: Intent? = null
 
-			// fragment
-			fragment.setArguments(args);
+        // type
+        val selectorType = getSelectorPref(context)
 
-			// transaction
-			if (!isAdded())
-			{
-				return;
-			}
-			getChildFragmentManager() //
-					.beginTransaction() //
-					.setReorderingAllowed(true) //
-					.replace(R.id.container_browse, fragment, BaseBrowse1Fragment.FRAGMENT_TAG) //
-					.addToBackStack(BaseBrowse1Fragment.FRAGMENT_TAG).commit();
-		}
-	}
+        // mode
+        val selectorMode = getSelectorViewModePref(context)
+        when (selectorMode) {
+            SelectorViewMode.VIEW -> {
+                var intentClass: Class<*>? = null
+                if (selectorType == Settings.Selector.SELECTOR) {
+                    intentClass = Browse1Activity::class.java
+                }
+                intent = Intent(requireContext(), intentClass)
+            }
 
-	@Override
-	protected boolean triggerFocusSearch()
-	{
-		if (!isAdded())
-		{
-			return false;
-		}
-		final Fragment active = getChildFragmentManager().findFragmentById(R.id.container_browse);
-		return active != null && SplashFragment.FRAGMENT_TAG.equals(active.getTag());
-	}
+            SelectorViewMode.WEB -> intent = Intent(requireContext(), WebActivity::class.java)
+        }
+        intent.setAction(ProviderArgs.ACTION_QUERY)
+        return intent
+    }
 
-	// I N T E N T / F R A G M E N T   F A C T O R Y
+    /**
+     * Make detail intent as per settings
+     *
+     * @param intentClass intent class if WebActivity is not to be used
+     * @return intent
+     */
+    private fun makeDetailIntent(intentClass: Class<*>): Intent {
+        // context
+        val context = requireContext()
 
-	/**
-	 * Browse1/Web fragment factory
-	 *
-	 * @return fragment
-	 */
-	@Nullable
-	private Fragment makeOverviewFragment()
-	{
-		// context
-		final Context context = requireContext();
+        // mode
+        val detailMode = getDetailViewModePref(context)
 
-		// type
-		final Settings.Selector selectorType = Settings.getSelectorPref(context);
+        // intent
+        val intent: Intent = when (detailMode) {
+            DetailViewMode.VIEW -> Intent(context, intentClass)
+            DetailViewMode.WEB -> Intent(context, WebActivity::class.java)
+        }
+        intent.setAction(ProviderArgs.ACTION_QUERY)
+        return intent
+    }
 
-		// mode
-		final Settings.SelectorViewMode selectorMode = Settings.getSelectorViewModePref(context);
-
-		switch (selectorMode)
-		{
-			case VIEW:
-				if (selectorType == Settings.Selector.SELECTOR)
-				{
-					return new Browse1Fragment();
-				}
-				break;
-
-			case WEB:
-				return new WebFragment();
-		}
-
-		return null;
-	}
-
-	/**
-	 * Make selector intent as per settings
-	 *
-	 * @return intent
-	 */
-	@NonNull
-	private Intent makeSelectorIntent()
-	{
-		// context
-		final Context context = requireContext();
-
-		// intent
-		Intent intent = null;
-
-		// type
-		final Settings.Selector selectorType = Settings.getSelectorPref(context);
-
-		// mode
-		final Settings.SelectorViewMode selectorMode = Settings.getSelectorViewModePref(context);
-
-		switch (selectorMode)
-		{
-			case VIEW:
-				Class<?> intentClass = null;
-				if (selectorType == Settings.Selector.SELECTOR)
-				{
-					intentClass = Browse1Activity.class;
-				}
-				intent = new Intent(requireContext(), intentClass);
-				break;
-
-			case WEB:
-				intent = new Intent(requireContext(), WebActivity.class);
-				break;
-		}
-		intent.setAction(ProviderArgs.ACTION_QUERY);
-
-		return intent;
-	}
-
-	/**
-	 * Make detail intent as per settings
-	 *
-	 * @param intentClass intent class if WebActivity is not to be used
-	 * @return intent
-	 */
-	@NonNull
-	private Intent makeDetailIntent(final Class<?> intentClass)
-	{
-		// context
-		final Context context = requireContext();
-
-		// intent
-		Intent intent = null;
-
-		// mode
-		final Settings.DetailViewMode detailMode = Settings.getDetailViewModePref(context);
-		switch (detailMode)
-		{
-			case VIEW:
-				intent = new Intent(context, intentClass);
-				break;
-
-			case WEB:
-				intent = new Intent(context, WebActivity.class);
-				break;
-		}
-		intent.setAction(ProviderArgs.ACTION_QUERY);
-
-		return intent;
-	}
+    companion object {
+        private const val TAG = "BrowseF"
+    }
 }

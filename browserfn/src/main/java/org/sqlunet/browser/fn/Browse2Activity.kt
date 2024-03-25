@@ -1,79 +1,60 @@
 /*
  * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
+package org.sqlunet.browser.fn
 
-package org.sqlunet.browser.fn;
-
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.view.Menu;
-import android.view.MenuItem;
-
-import org.sqlunet.browser.AbstractBrowse2Activity;
-import org.sqlunet.browser.MenuHandler;
-import org.sqlunet.browser.UtilsKt;
-import org.sqlunet.browser.fn.Browse2Fragment;
-import org.sqlunet.browser.fn.R;
-import org.sqlunet.provider.ProviderArgs;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.Toolbar;
+import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.widget.Toolbar
+import org.sqlunet.browser.AbstractBrowse2Activity
+import org.sqlunet.browser.MenuHandler.menuDispatch
+import org.sqlunet.browser.getParcelable
+import org.sqlunet.provider.ProviderArgs
 
 /**
  * Detail activity
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class Browse2Activity extends AbstractBrowse2Activity
-{
-	@Override
-	protected void onCreate(final Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
+class Browse2Activity : AbstractBrowse2Activity() {
 
-		// content
-		setContentView(R.layout.activity_browse2);
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-		// toolbar
-		final Toolbar toolbar = findViewById(R.id.toolbar);
-		setSupportActionBar(toolbar);
+        // content
+        setContentView(R.layout.activity_browse2)
 
-		// set up the action bar
-		final ActionBar actionBar = getSupportActionBar();
-		assert actionBar != null;
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_HOME_AS_UP | ActionBar.DISPLAY_SHOW_TITLE);
-	}
+        // toolbar
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
-	@Override
-	protected void onPostResume()
-	{
-		super.onPostResume();
+        // set up the action bar
+        val actionBar = supportActionBar!!
+        actionBar.displayOptions = ActionBar.DISPLAY_SHOW_HOME or ActionBar.DISPLAY_HOME_AS_UP or ActionBar.DISPLAY_SHOW_TITLE
+    }
 
-		final Bundle args = getIntent().getExtras();
-		assert args != null;
+    override fun onPostResume() {
+        super.onPostResume()
+        val args = intent.extras!!
 
-		//final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
-		final Parcelable pointer = UtilsKt.getParcelable(args, ProviderArgs.ARG_QUERYPOINTER);
-		final Browse2Fragment fragment = (Browse2Fragment) getSupportFragmentManager().findFragmentById(R.id.fragment_detail);
-		assert fragment != null;
-		fragment.search(pointer, null, null, null, null);
-	}
+        //final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
+        val pointer = getParcelable(args, ProviderArgs.ARG_QUERYPOINTER)
+        val fragment = (supportFragmentManager.findFragmentById(R.id.fragment_detail) as Browse2Fragment?)!!
+        fragment.search(pointer, null, null, null, null)
+    }
 
-	// M E N U
+    // M E N U
 
-	@Override
-	public boolean onCreateOptionsMenu(@NonNull final Menu menu)
-	{
-		// inflate the menu; this adds items to the type bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		// MenuCompat.setGroupDividerEnabled(menu, true);
-		return true;
-	}
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // inflate the menu; this adds items to the type bar if it is present.
+        menuInflater.inflate(R.menu.main, menu)
+        // MenuCompat.setGroupDividerEnabled(menu, true);
+        return true
+    }
 
-	@Override
-	public boolean onOptionsItemSelected(@NonNull final MenuItem item)
-	{
-		return MenuHandler.menuDispatch(this, item);
-	}
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return menuDispatch(this, item)
+    }
 }
