@@ -81,7 +81,7 @@ abstract class AbstractBrowseActivity<F : BaseSearchFragment?> : AppCompatActivi
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // inflate the menu; this adds items to the type bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
-        // MenuCompat.setGroupDividerEnabled(menu, true);
+        // MenuCompat.setGroupDividerEnabled(menu, true)
         return true
     }
 
@@ -113,7 +113,7 @@ abstract class AbstractBrowseActivity<F : BaseSearchFragment?> : AppCompatActivi
             if ("text/plain" == type) {
                 val query = intent.getStringExtra(Intent.EXTRA_TEXT)
                 if (query != null && fragment != null) {
-                    //this.fragment.clearQuery();
+                    // this.fragment.clearQuery()
                     fragment!!.search(query)
                 }
             }

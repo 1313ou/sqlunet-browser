@@ -27,9 +27,9 @@ class RunMainFlatTest : TestCase() {
             ActivityScenario.launch(MainActivity::class.java)
         }
 
-        //Actions.do_navigate(R.id.drawer_layout, R.id.nav_view, "Browse");
+        //Actions.do_navigate(R.id.drawer_layout, R.id.nav_view, "Browse")
         Seq.do_navigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_search_browse)
-        //Actions.do_choose(R.id.spinner, "senses");
+        //Actions.do_choose(R.id.spinner, "senses")
         Seq.do_choose(R.id.spinner, 0)
     }
 

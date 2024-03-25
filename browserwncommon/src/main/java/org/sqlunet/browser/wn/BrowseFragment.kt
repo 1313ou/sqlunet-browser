@@ -196,7 +196,7 @@ class BrowseFragment : BaseSearchFragment() {
             args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse)
             args.putBundle(ProviderArgs.ARG_RENDERPARAMETERS, parameters)
 
-            //targetIntent = makeSelectorIntent();
+            //targetIntent = makeSelectorIntent()
             fragment = makeOverviewFragment()
         }
 

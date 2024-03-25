@@ -32,7 +32,7 @@ class VnFrameSet private constructor(
                 var frameSet: VnFrameSet? = null
                 while (query.next()) {
                     // data from result set
-                    // final long frameId = query.getFrameId()
+                    // var frameId = query.getFrameId()
                     val number = query.number
                     val xTag = query.xTag
                     val description1 = query.description1
@@ -41,8 +41,8 @@ class VnFrameSet private constructor(
                     val semantics = query.semantics
                     val concatExamples = query.example
                     val examples = concatExamples.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-                    // final float quality = query.quality
-                    // final boolean synsetSpecific = query.synsetSpecific
+                    // var quality = query.quality
+                    // var synsetSpecific = query.synsetSpecific
 
                     // frame
                     val frame = VnFrame(number, xTag, description1, description2, syntax, semantics, *examples)
@@ -73,7 +73,7 @@ class VnFrameSet private constructor(
                 var frameSet: VnFrameSet? = null
                 while (query.next()) {
                     // data from result set
-                    // final long frameId = query.frameId
+                    // var frameId = query.frameId
                     val number = query.number
                     val xTag = query.xTag
                     val description1 = query.description1

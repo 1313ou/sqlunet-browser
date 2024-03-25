@@ -164,7 +164,7 @@ abstract class BaseSelectorsListFragment  : LoggingFragment(), OnItemClickListen
             if (cursor == null || cursor.count <= 0) {
                 val html = getString(R.string.error_entry_not_found, "<b>$word</b>")
                 val message: CharSequence = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY) else Html.fromHtml(html)
-                // Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
+                // Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
                 val view = requireView()
                 Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show()
             } else {

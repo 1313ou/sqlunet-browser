@@ -96,7 +96,7 @@ object XNetControl {
                 projection = Q.WORDS_VNWORDS_VNCLASSES_2.PROJECTION
             }
 
-            WORDS_VNWORDS_VNCLASSES_1U2 -> table = Q.WORDS_VNWORDS_VNCLASSES_1U2.TABLE //.replaceAll("#\\{selection\\}", selection);
+            WORDS_VNWORDS_VNCLASSES_1U2 -> table = Q.WORDS_VNWORDS_VNCLASSES_1U2.TABLE //.replaceAll("#\\{selection\\}", selection)
 
             WORDS_VNWORDS_VNCLASSES_U -> {
                 table = Q.WORDS_VNWORDS_VNCLASSES_1U2.TABLE.replace("#\\{selection\\}".toRegex(), selection!!)
@@ -116,7 +116,7 @@ object XNetControl {
                 projection = Q.WORDS_PBWORDS_PBROLESETS_2.PROJECTION
             }
 
-            WORDS_PBWORDS_PBROLESETS_1U2 -> table = Q.WORDS_PBWORDS_PBROLESETS_1U2.TABLE //.replaceAll("#\\{selection\\}", selection);
+            WORDS_PBWORDS_PBROLESETS_1U2 -> table = Q.WORDS_PBWORDS_PBROLESETS_1U2.TABLE //.replaceAll("#\\{selection\\}", selection)
 
             WORDS_PBWORDS_PBROLESETS_U -> {
                 table = Q.WORDS_PBWORDS_PBROLESETS_1U2.TABLE.replace("#\\{selection\\}".toRegex(), selection!!)
@@ -136,7 +136,7 @@ object XNetControl {
                 projection = Q.WORDS_FNWORDS_FNFRAMES_2.PROJECTION
             }
 
-            WORDS_FNWORDS_FNFRAMES_1U2 -> table = Q.WORDS_FNWORDS_FNFRAMES_1U2.TABLE //.replaceAll("\\$\\{selection\\}", selection);
+            WORDS_FNWORDS_FNFRAMES_1U2 -> table = Q.WORDS_FNWORDS_FNFRAMES_1U2.TABLE //.replaceAll("\\$\\{selection\\}", selection)
             WORDS_FNWORDS_FNFRAMES_U -> {
                 table = Q.WORDS_FNWORDS_FNFRAMES_1U2.TABLE.replace("#\\{selection\\}".toRegex(), selection!!)
                 projection = BaseProvider.prependProjection(projection, "GROUP_CONCAT(DISTINCT source) AS sources")

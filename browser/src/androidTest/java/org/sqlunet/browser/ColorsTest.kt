@@ -39,7 +39,7 @@ object ColorsTest : TestCase() {
         val res = context.resources.getResourceName(paletteId)
         Log.i(TAG, "Palette " + context.resources.getResourceEntryName(paletteId) + " " + res)
         val defaultColors = getDefaultColorAttrs(context)
-        // Log.d(LOGTAG, String.format("Effective default colors #%x on #%x", defaultColors[1], defaultColors[0]));
+        // Log.d(LOGTAG, String.format("Effective default colors #%x on #%x", defaultColors[1], defaultColors[0]))
         val palette = context.resources.getIntArray(paletteId)
         var i = 0
         while (i < palette.size) {

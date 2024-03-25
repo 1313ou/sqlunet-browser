@@ -65,7 +65,7 @@ class RelationModule(fragment: TreeFragment) : BaseModule(fragment) {
             synset(synsetId!!, synsetNode, false)
 
             // members
-            // members(this.synsetId, membersNode);
+            // members(this.synsetId, membersNode)
             memberSet(synsetId!!, membersNode, concatQuery = true, addNewNode = false)
 
             // up relations

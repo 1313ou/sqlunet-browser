@@ -122,7 +122,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                 menu.clear()
                 menuInflater.inflate(R.menu.main_safedata, menu)
                 menuInflater.inflate(menuId, menu)
-                // MenuCompat.setGroupDividerEnabled(menu, true);
+                // MenuCompat.setGroupDividerEnabled(menu, true)
                 Log.d(TAG, "MenuProvider: onCreateMenu() size=" + menu.size())
 
                 // set up search view
@@ -184,7 +184,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
         // title
         toolbar.setTitle(R.string.title_activity_browse)
-        // toolbar.setSubtitle(R.string.app_subname);
+        // toolbar.setSubtitle(R.string.app_subname)
 
         // background
         val color = fetchColor(activity, colorAttrId)
@@ -408,7 +408,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      * @noinspection SameParameterValue, EmptyMethod
      */
     protected fun beforeSaving(fragment: Fragment, tag: String?, @IdRes where: Int, vararg childFragmentTags: String) {
-        //FragmentUtils.removeAllChildFragment(getChildFragmentManager(), fragment, tag, where, childFragmentTags);
+        //FragmentUtils.removeAllChildFragment(getChildFragmentManager(), fragment, tag, where, childFragmentTags)
     }
 
     companion object {

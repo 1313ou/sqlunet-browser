@@ -129,7 +129,7 @@ open class RegExprSpanner : Spanner {
                         return
                     }
 
-                    // Log.d(TAG, '"' + matcher.group(i + 1) + '"');
+                    // Log.d(TAG, '"' + matcher.group(i + 1) + '"')
                     val start = from + matcher.start(i + 1)
                     val end = from + matcher.end(i + 1)
                     if (end - start > 0) {

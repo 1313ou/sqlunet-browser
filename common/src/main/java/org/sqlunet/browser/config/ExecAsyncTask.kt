@@ -213,7 +213,7 @@ class ExecAsyncTask
                                             db.execSQL("PRAGMA journal_mode = OFF;")
                                         }
                                         // temp store
-                                        // db.execSQL("PRAGMA temp_store = FILE;");
+                                        // db.execSQL("PRAGMA temp_store = FILE;")
 
                                         // iterate through lines (assuming each insert has its own line and there's no other stuff)
                                         var status = true
@@ -394,7 +394,7 @@ class ExecAsyncTask
                                         db.execSQL("PRAGMA journal_mode = OFF;")
                                     }
                                     // temp store
-                                    // db.execSQL("PRAGMA temp_store = FILE;");
+                                    // db.execSQL("PRAGMA temp_store = FILE;")
 
                                     // iterate through lines (assuming each insert has its own line and there's no other stuff)
                                     var status = true
@@ -580,7 +580,7 @@ class ExecAsyncTask
                                 InputStreamReader(zis).use { isr ->
                                     BufferedReader(isr).use { reader ->
                                         // temp store
-                                        // db.execSQL("PRAGMA temp_store = FILE;");
+                                        // db.execSQL("PRAGMA temp_store = FILE;")
 
                                         // zip
                                         var zipEntry: ZipEntry

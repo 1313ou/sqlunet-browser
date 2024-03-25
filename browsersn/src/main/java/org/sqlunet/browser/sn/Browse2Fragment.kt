@@ -82,8 +82,8 @@ class Browse2Fragment : BaseBrowse2Fragment() {
 
                 // syntagnet
                 if (enable and org.sqlunet.browser.sn.Settings.ENABLE_SYNTAGNET != 0) {
-                    // final View labelView = findViewById(R.id.label_syntagnet);
-                    // labelView.setVisibility(View.VISIBLE);
+                    // var labelView = findViewById(R.id.label_syntagnet)
+                    // labelView.setVisibility(View.VISIBLE)
                     val syntagNetFragment: Fragment = SyntagNetFragment()
                     syntagNetFragment.setArguments(args)
                     transaction.replace(R.id.container_syntagnet, syntagNetFragment, SyntagNetFragment.FRAGMENT_TAG)
@@ -96,8 +96,8 @@ class Browse2Fragment : BaseBrowse2Fragment() {
 
                 // bnc
                 if (enable and org.sqlunet.browser.sn.Settings.ENABLE_BNC != 0) {
-                    // final View labelView = findViewById(R.id.label_bnc);
-                    // labelView.setVisibility(View.VISIBLE);
+                    // var labelView = findViewById(R.id.label_bnc)
+                    // labelView.setVisibility(View.VISIBLE)
                     val bncFragment: Fragment = BNCFragment()
                     bncFragment.setArguments(args)
                     transaction.replace(R.id.container_bnc, bncFragment, BNCFragment.FRAGMENT_TAG)

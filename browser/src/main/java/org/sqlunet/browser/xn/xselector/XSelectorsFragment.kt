@@ -151,11 +151,11 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
         super.onStart()
 
         // load the contents
-        // final MutableLiveData<Cursor> idLiveData = wordIdFromWordModel.getMutableData();
-        // final Cursor idCursor = idLiveData.getValue();
+        // var<Cursor> idLiveData = wordIdFromWordModel.getMutableData()
+        // var idCursor = idLiveData.getValue()
         // if (idCursor != null && !idCursor.isClosed())
         // {
-        //  	idLiveData.setValue(idCursor);
+        //  	idLiveData.setValue(idCursor)
         // }
         // else
         load()
@@ -227,7 +227,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
             }
 
             override fun onGroupCollapsed(groupPosition: Int) {
-                // super.onGroupCollapsed(groupPosition);
+                // super.onGroupCollapsed(groupPosition)
                 // prevent from deactivating cursor
             }
 
@@ -237,10 +237,10 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
 
             override fun setViewText(v: TextView, text: String?) {
                 /*
-				int id = v.getId();
+				int id = v.getId()
 				if (R.id.xpronunciation == id)
 				{
-					Log.d(TAG, "Text: " + text);
+					Log.d(TAG, "Text: " + text)
 				}
 				 */
                 if (text.isNullOrEmpty()) {
@@ -315,7 +315,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
         if (groupState == null || listAdapter == null) {
             return
         }
-        // final Handler handler = new Handler(Looper.getMainLooper());
+        // var handler = new Handler(Looper.getMainLooper());
         Log.d(TAG, "Restore saved position " + Integer.toHexString(groupState) + " " + this)
         val groupCount = listAdapter!!.groupCount
         for (i in 0 until groupCount) {
@@ -439,8 +439,8 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
         when (groupId) {
             GROUPID_WORDNET -> {
 
-                //	final MutableLiveData<Cursor> wnLiveData = this.wnFromWordIdModel.getMutableData();
-                //	final Cursor wnCursor = wnLiveData.getValue();
+                //	var<Cursor> wnLiveData = this.wnFromWordIdModel.getMutableData();
+                //	var wnCursor = wnLiveData.getValue();
                 //	if (wnCursor != null && !wnCursor.isClosed())
                 //	{
                 //		wnLiveData.setValue(wnCursor);
@@ -451,8 +451,8 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
 
             GROUPID_VERBNET -> {
 
-                //	final MutableLiveData<Cursor> vnLiveData = this.vnFromWordIdModel.getMutableData();
-                //	final Cursor vnCursor = vnLiveData.getValue();
+                //	var<Cursor> vnLiveData = this.vnFromWordIdModel.getMutableData();
+                //	var vnCursor = vnLiveData.getValue();
                 //	if (vnCursor != null && !vnCursor.isClosed())
                 //	{
                 //		vnLiveData.setValue(vnCursor);
@@ -463,8 +463,8 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
 
             GROUPID_PROPBANK -> {
 
-                //				final MutableLiveData<Cursor> pbLiveData = this.pbFromWordIdModel.getMutableData();
-                //				final Cursor pbCursor = pbLiveData.getValue();
+                //				var<Cursor> pbLiveData = this.pbFromWordIdModel.getMutableData();
+                //				var pbCursor = pbLiveData.getValue();
                 //				if (pbCursor != null && !pbCursor.isClosed())
                 //				{
                 //					pbLiveData.setValue(pbCursor);
@@ -475,8 +475,8 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
 
             GROUPID_FRAMENET -> {
 
-                //				final MutableLiveData<Cursor> fnLiveData = this.fnFromWordIdModel.getMutableData();
-                //				final Cursor fnCursor = fnLiveData.getValue();
+                //				var<Cursor> fnLiveData = this.fnFromWordIdModel.getMutableData();
+                //				var fnCursor = fnLiveData.getValue();
                 //				if (fnCursor != null && !fnCursor.isClosed())
                 //				{
                 //					fnLiveData.setValue(fnCursor);
@@ -572,7 +572,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
                 val idXMemberId = cursor.getColumnIndex(Words_XNet_U.XMEMBERID)
                 val idXPronunciationId = cursor.getColumnIndex(Words_XNet_U.XPRONUNCIATION)
                 val idXSources = cursor.getColumnIndex(Words_XNet_U.SOURCES)
-                // final int idWordId = cursor.getColumnIndex(Words_XNet_U.WORDID);
+                // var idWordId = cursor.getColumnIndex(Words_XNet_U.WORDID);
 
                 // data
                 val wordId = wordId

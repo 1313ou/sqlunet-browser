@@ -70,7 +70,7 @@ abstract class TreeFragment protected constructor() : Fragment() {
         val view = inflater.inflate(layoutId, container, false)
 
         // tree viewer
-        // Log.d(TAG, "Create tree");
+        // Log.d(TAG, "Create tree")
         treeViewer = TreeViewer(requireContext(), treeRoot)
 
         // tree view

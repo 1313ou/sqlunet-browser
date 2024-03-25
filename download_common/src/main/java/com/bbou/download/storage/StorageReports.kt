@@ -308,12 +308,12 @@ object StorageReports {
             }
             sb.append(dirToStyledString(context, dir))
             sb.append(' ')
-            //sb.append(styledFitsIn(dir));
-            //sb.append(' ');
+            //sb.append(styledFitsIn(dir))
+            //sb.append(' ')
             //if (dir.fitsIn())
             run {
-                //sb.append('|');
-                //sb.append(' ');
+                //sb.append('|')
+                //sb.append(' ')
                 sb.append(dirStatusToStyledString(dir))
             }
         }

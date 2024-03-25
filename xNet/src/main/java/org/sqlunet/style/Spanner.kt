@@ -27,7 +27,9 @@ import org.sqlunet.xnet.R
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 open class Spanner {
+
     // I N T E R F A C E S
+
     /**
      * Span factory
      *
@@ -45,7 +47,9 @@ open class Spanner {
     fun interface OnClickImage {
         fun onClickImage(sb: SpannableStringBuilder?, position: Int, collapsed: Boolean)
     }
+
     // H I D D E N S P A N
+
     /**
      * Hidden span
      *
@@ -135,7 +139,9 @@ open class Spanner {
                 }
             }
         }
+
         // I M A G E
+
         /**
          * Append spans
          *
@@ -162,7 +168,9 @@ open class Spanner {
             val span: Any = ImageSpan(drawable, DynamicDrawableSpan.ALIGN_BASELINE)
             appendImageSpans(sb, span)
         }
+
         // C L I C K A B L E
+
         /**
          * Append clickable image
          *
@@ -191,7 +199,7 @@ open class Spanner {
             val span2: ClickableSpan = object : ClickableSpan() {
                 @Synchronized
                 override fun onClick(view: View) {
-                    // Log.d(TAG, "Click image");
+                    // Log.d(TAG, "Click image")
                     val textView = view as TextView
                     val sb1 = textView.getText() as SpannableStringBuilder
                     val clickableStart = textView.selectionStart
@@ -250,7 +258,9 @@ open class Spanner {
         fun collapse(sb: SpannableStringBuilder, position: Int) {
             sb.delete(position, find(sb, position, EOEXPANDEDSTRING))
         }
+
         // T E X T
+
         /**
          * Append text
          *
@@ -330,7 +340,9 @@ open class Spanner {
                 sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             }
         }
+
         // H E L P E R S
+
         /**
          * Find delimiter
          *
@@ -362,49 +374,6 @@ open class Spanner {
             val drawable = AppCompatResources.getDrawable(context, resId)!!
             drawable.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
             return drawable
-        } // --Commented out by Inspection START (8/20/17 10:09 AM):
-        //	/**
-        //	 * Dump spannable string builder
-        //	 *
-        //	 * @param sb spannable string builder
-        //	 * @return string
-        //	 */
-        //	static public String dump(final SpannableStringBuilder sb)
-        //	{
-        //		final StringBuilder dump = new StringBuilder();
-        //		for (Object span : sb.getSpans(0, sb.length(), Object.class))
-        //		{
-        //			final int from = sb.getSpanStart(span);
-        //			final int to = sb.getSpanEnd(span);
-        //			final CharSequence sub = sb.subSequence(from, to);
-        //			final Class<?> clazz = span.getClass();
-        //			dump.append(sub).append(' ').append('[').append(from).append(',').append(to).append(']').append(' ').append(clazz).append(' ');
-        //			if (clazz.equals(BackgroundColorSpan.class))
-        //			{
-        //				final BackgroundColorSpan bSpan = (BackgroundColorSpan) span;
-        //				int color = bSpan.getBackgroundColor();
-        //				dump.append(Integer.toHexString(color));
-        //			}
-        //			else if (clazz.equals(ForegroundColorSpan.class))
-        //			{
-        //				final ForegroundColorSpan fSpan = (ForegroundColorSpan) span;
-        //				int color = fSpan.getForegroundColor();
-        //				dump.append(Integer.toHexString(color));
-        //			}
-        //			else if (clazz.equals(ImageSpan.class))
-        //			{
-        //				final ImageSpan iSpan = (ImageSpan) span;
-        //				dump.append(iSpan.getDrawable()).append(' ').append(iSpan.getSource());
-        //			}
-        //			else if (clazz.equals(HiddenSpan.class))
-        //			{
-        //				final HiddenSpan hSpan = (HiddenSpan) span;
-        //				dump.append(hSpan.toString());
-        //			}
-        //			dump.append('\n');
-        //		}
-        //		return dump.toString();
-        //	}
-        // --Commented out by Inspection STOP (8/20/17 10:09 AM)
+        }
     }
 }

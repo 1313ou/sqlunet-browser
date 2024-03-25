@@ -18,12 +18,14 @@ import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 
 object SpeakButton {
-    //private static final String TAG = "SpeakButton";
+
     /**
      * Collapsed marker
      */
     private const val COLLAPSED_CHAR = '@'
+
     // I M A G E
+
     /**
      * Append spans
      *
@@ -47,7 +49,9 @@ object SpeakButton {
             sb.setSpan(span, from, to, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         }
     }
+
     // C L I C K A B L E
+
     /**
      * Append clickable image
      *
@@ -66,7 +70,7 @@ object SpeakButton {
         val span2: ClickableSpan = object : ClickableSpan() {
             @Synchronized
             override fun onClick(view: View) {
-                // Log.d(TAG, "Click");
+                // Log.d(TAG, "Click")
                 listener.run()
             }
         }

@@ -39,7 +39,7 @@ class Browse2Activity : AbstractBrowse2Activity() {
         super.onPostResume()
         val args = intent.extras!!
 
-        //final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
+        //var type = args.getInt(ProviderArgs.ARG_QUERYTYPE)
         val pointer = getParcelable(args, ProviderArgs.ARG_QUERYPOINTER)
         val fragment = (supportFragmentManager.findFragmentById(R.id.fragment_detail) as Browse2Fragment?)!!
         fragment.search(pointer, null, null, null, null)
@@ -50,7 +50,7 @@ class Browse2Activity : AbstractBrowse2Activity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // inflate the menu; this adds items to the type bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
-        // MenuCompat.setGroupDividerEnabled(menu, true);
+        // MenuCompat.setGroupDividerEnabled(menu, true)
         return true
     }
 

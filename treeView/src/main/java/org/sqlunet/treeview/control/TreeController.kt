@@ -46,7 +46,7 @@ open class TreeController(breakExpand: Boolean) : Controller<CompositeValue?>(br
             markDeadend()
         } else {
             markCollapsed()
-            // junctionView!!.setImageResource(R.drawable.ic_collapsed);
+            // junctionView!!.setImageResource(R.drawable.ic_collapsed)
         }
 
         // icon + text

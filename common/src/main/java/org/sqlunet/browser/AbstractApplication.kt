@@ -22,8 +22,8 @@ import org.sqlunet.settings.Settings
 abstract class AbstractApplication : Application() {
 
     override fun onCreate() {
-        // setThreadStrictMode();
-        // setVmStrictMode();
+        // setThreadStrictMode()
+        // setVmStrictMode()
         super.onCreate()
         Settings.initializeDisplayPrefs(this)
     }

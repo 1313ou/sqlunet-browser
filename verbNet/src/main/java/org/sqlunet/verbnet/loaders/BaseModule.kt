@@ -208,20 +208,20 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             val sb = SpannableStringBuilder()
 
             // column indices
-            // final int idClassId = cursor.getColumnIndex(VnClasses_X.CLASSID);
+            // var idClassId = cursor.getColumnIndex(VnClasses_X.CLASSID)
             val idClass = cursor.getColumnIndex(VnClasses.CLASS)
-            // final int idClassTag = cursor.getColumnIndex(VnClasses.CLASSTAG);
+            // var idClassTag = cursor.getColumnIndex(VnClasses.CLASSTAG)
 
             // data
-            // final int classId = cursor.getInt(idClassId);
+            // var classId = cursor.getInt(idClassId)
             val vnClass = cursor.getString(idClass)
 
-            // sb.append("[class]");
+            // sb.append("[class]")
             appendImage(sb, drawableClass)
             sb.append(' ')
             append(sb, vnClass, 0, VerbNetFactories.classFactory)
-            // sb.append(" tag=");
-            // sb.append(cursor.getString(idClassTag));
+            // sb.append(" tag=")
+            // sb.append(cursor.getString(idClassTag))
             sb.append(" id=")
             sb.append(classId.toString())
 
@@ -272,7 +272,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 val sb = SpannableStringBuilder()
 
                 // member
-                // Spanner.appendImage(sb, BaseModule.this.drawableMember);
+                // Spanner.appendImage(sb, BaseModule.this.drawableMember)
                 // sb.append(' ')
                 append(sb, cursor.getString(idWord), 0, VerbNetFactories.memberFactory)
                 val definitions = cursor.getString(idDefinitions)
@@ -352,7 +352,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             val sb = SpannableStringBuilder()
 
             // column indices
-            // final int idRoleId = cursor.getColumnIndex(VnClasses_VnRoles.ROLEID);
+            // var idRoleId = cursor.getColumnIndex(VnClasses_VnRoles.ROLEID)
             val idRoleType = cursor.getColumnIndex(VnClasses_VnRoles_X.ROLETYPE)
             val idRestrs = cursor.getColumnIndex(VnClasses_VnRoles_X.RESTRS)
 
@@ -371,9 +371,9 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 }
 
                 // role id
-                // final int roleId = cursor.getInt(idRoleId);
-                // sb.append(" role id=");
-                // sb.append(Integer.toString(roleId));
+                // var roleId = cursor.getInt(idRoleId)
+                // sb.append(" role id=")
+                // sb.append(Integer.toString(roleId))
                 if (!cursor.moveToNext()) {
                     break
                 }

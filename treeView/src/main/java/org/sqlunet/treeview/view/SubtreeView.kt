@@ -117,7 +117,7 @@ class SubtreeView : LinearLayout {
     private fun init(context: Context?) {
         orientation = VERTICAL
         isFocusable = true
-        //setFocusable(View.FOCUSABLE);
+        //setFocusable(View.FOCUSABLE)
 
         // node view
         insertNodeView(nodeView)

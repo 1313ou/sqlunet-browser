@@ -213,7 +213,7 @@ object TreeFactory {
      */
     @JvmStatic
     fun setNoResult(node: TreeNode) {
-        // Log.d(TAG, "Deadend " + node);
+        // Log.d(TAG, "Deadend " + node)
         node.isDeadend = true
         node.isEnabled = false
     }

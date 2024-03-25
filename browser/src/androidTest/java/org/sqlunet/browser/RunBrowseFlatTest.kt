@@ -21,7 +21,7 @@ class RunBrowseFlatTest : TestCase() {
     var activityScenarioRule = ActivityScenarioRule(BrowseActivity::class.java)
     @Before
     fun before() {
-        //Actions.do_choose(R.id.spinner, "senses");
+        //Actions.do_choose(R.id.spinner, "senses")
         Seq.do_choose(R.id.spinner, 0)
     }
 

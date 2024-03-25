@@ -89,8 +89,8 @@ class Browse2Fragment : BaseBrowse2Fragment() {
 
                 // wordnet
                 if (enable and org.sqlunet.browser.xn.Settings.ENABLE_WORDNET != 0) {
-                    // final View labelView = findViewById(R.id.label_wordnet);
-                    // labelView.setVisibility(View.VISIBLE);
+                    // var labelView = findViewById(R.id.label_wordnet)
+                    // labelView.setVisibility(View.VISIBLE)
                     val senseFragment = SenseFragment()
                     senseFragment.setArguments(args)
                     senseFragment.setExpand(wordNetOnly(pointer))
@@ -104,8 +104,8 @@ class Browse2Fragment : BaseBrowse2Fragment() {
 
                 // verbnet
                 if (enable and org.sqlunet.browser.xn.Settings.ENABLE_VERBNET != 0) {
-                    // final View labelView = findViewById(R.id.label_verbnet);
-                    // labelView.setVisibility(View.VISIBLE);
+                    // var labelView = findViewById(R.id.label_verbnet)
+                    // labelView.setVisibility(View.VISIBLE)
                     val verbnetFragment: Fragment = VerbNetFragment()
                     verbnetFragment.setArguments(args)
                     transaction.replace(R.id.container_verbnet, verbnetFragment, VerbNetFragment.FRAGMENT_TAG)
@@ -118,8 +118,8 @@ class Browse2Fragment : BaseBrowse2Fragment() {
 
                 // propbank
                 if (enable and org.sqlunet.browser.xn.Settings.ENABLE_PROPBANK != 0) {
-                    // final View labelView = findViewById(R.id.label_propbank);
-                    // labelView.setVisibility(View.VISIBLE);
+                    // var labelView = findViewById(R.id.label_propbank)
+                    // labelView.setVisibility(View.VISIBLE)
                     val propbankFragment: Fragment = PropBankFragment()
                     propbankFragment.setArguments(args)
                     transaction.replace(R.id.container_propbank, propbankFragment, PropBankFragment.FRAGMENT_TAG)
@@ -132,8 +132,8 @@ class Browse2Fragment : BaseBrowse2Fragment() {
 
                 // framenet
                 if (enable and org.sqlunet.browser.xn.Settings.ENABLE_FRAMENET != 0) {
-                    // final View labelView = findViewById(R.id.label_framenet);
-                    // labelView.setVisibility(View.VISIBLE);
+                    // var labelView = findViewById(R.id.label_framenet)
+                    // labelView.setVisibility(View.VISIBLE)
                     val framenetFragment: Fragment = FrameNetFragment()
                     framenetFragment.setArguments(args)
                     transaction.replace(R.id.container_framenet, framenetFragment, FrameNetFragment.FRAGMENT_TAG)
@@ -146,8 +146,8 @@ class Browse2Fragment : BaseBrowse2Fragment() {
 
                 // bnc
                 if (enable and org.sqlunet.browser.xn.Settings.ENABLE_BNC != 0) {
-                    // final View labelView = findViewById(R.id.label_bnc);
-                    // labelView.setVisibility(View.VISIBLE);
+                    // var labelView = findViewById(R.id.label_bnc)
+                    // labelView.setVisibility(View.VISIBLE)
                     val bncFragment: Fragment = BNCFragment()
                     bncFragment.setArguments(args)
                     transaction.replace(R.id.container_bnc, bncFragment, BNCFragment.FRAGMENT_TAG)

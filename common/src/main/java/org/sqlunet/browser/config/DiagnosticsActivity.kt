@@ -43,7 +43,7 @@ class DiagnosticsActivity : AppCompatActivity() {
         fab.setOnClickListener { Sender.send(this, "Semantikos diagnostics", textView.getText(), "semantikos.org@gmail.com") }
 
         // diagnostics
-        // final String diagnostics = Diagnostics.report(this);
+        // var diagnostics = Diagnostics.report(this)
         AsyncDiagnostics { text: CharSequence? ->
             progress.isIndeterminate = false
             progress.visibility = View.GONE

@@ -12,7 +12,7 @@ object Queries {
     /**
      * Focused layer name
      */
-    private const val FOCUSLAYER = "FE" // "Target";
+    private const val FOCUSLAYER = "FE" // "Target"
 
     /**
      * Is like artifact column

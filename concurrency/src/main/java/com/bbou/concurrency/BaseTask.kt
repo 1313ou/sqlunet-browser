@@ -173,7 +173,7 @@ abstract class BaseTask<Params, Progress, Result> : Cancelable {
 
     /**
      * Get result. Awaits completion.
-     * The result can only be retrieved when the computation has completed;
+     * The result can only be retrieved when the computation has completed
      * the get methods will block if the computation has not yet completed.
      */
     @Throws(InterruptedException::class, ExecutionException::class)

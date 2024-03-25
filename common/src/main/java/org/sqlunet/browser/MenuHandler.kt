@@ -301,17 +301,17 @@ object MenuHandler {
     /*
 	static public void populateAssets(@NonNull Context context, @NonNull Menu menu)
 	{
-		MenuItem menuItem = menu.findItem(R.id.action_assets);
+		MenuItem menuItem = menu.findItem(R.id.action_assets)
 		if (menuItem != null)
 		{
-			Menu subMenu = menuItem.getSubMenu();
+			Menu subMenu = menuItem.getSubMenu()
 			if (subMenu != null)
 			{
-				final Resources res = context.getResources();
-				setAssetActionTitle(res, subMenu.findItem(R.id.action_asset_deliver_primary), R.string.action_asset_deliver_format, R.string.asset_primary_name);
-				setAssetActionTitle(res, subMenu.findItem(R.id.action_asset_dispose_primary), R.string.action_asset_dispose_format, R.string.asset_primary_name);
-				setAssetActionTitle(res, subMenu.findItem(R.id.action_asset_deliver_alt), R.string.action_asset_deliver_format, R.string.asset_alt_name);
-				setAssetActionTitle(res, subMenu.findItem(R.id.action_asset_dispose_alt), R.string.action_asset_dispose_format, R.string.asset_alt_name);
+				var res = context.getResources()
+				setAssetActionTitle(res, subMenu.findItem(R.id.action_asset_deliver_primary), R.string.action_asset_deliver_format, R.string.asset_primary_name)
+				setAssetActionTitle(res, subMenu.findItem(R.id.action_asset_dispose_primary), R.string.action_asset_dispose_format, R.string.asset_primary_name)
+				setAssetActionTitle(res, subMenu.findItem(R.id.action_asset_deliver_alt), R.string.action_asset_deliver_format, R.string.asset_alt_name)
+				setAssetActionTitle(res, subMenu.findItem(R.id.action_asset_dispose_alt), R.string.action_asset_dispose_format, R.string.asset_alt_name)
 			}
 		}
 	}
@@ -324,7 +324,7 @@ object MenuHandler {
     }
 
     fun disableDataChange(menu: Menu) {
-        // MenuHandler.populateAssets(this, menu);
+        // MenuHandler.populateAssets(this, menu)
         val submenuItem = menu.findItem(R.id.action_data)
         if (submenuItem != null) {
             val subMenu: Menu? = submenuItem.subMenu

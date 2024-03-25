@@ -288,7 +288,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         if (cursor.moveToFirst()) {
             val sb = SpannableStringBuilder()
 
-            // final int idWordId = cursor.getColumnIndex(Words.WORDID);
+            // var idWordId = cursor.getColumnIndex(Words.WORDID)
             val idWord = cursor.getColumnIndex(Words_Lexes_Morphs.WORD)
             val idMorphs = cursor.getColumnIndex(Words_Lexes_Morphs.MORPHS)
             val word = cursor.getString(idWord)
@@ -563,7 +563,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                 val node = makeTextNode(sb, false).addTo(parent)
                 seq(TreeOpCode.NEWUNIQUE, node)
             } else {
-                setTextNode(parent, sb) //, R.drawable.synset);
+                setTextNode(parent, sb) //, R.drawable.synset)
                 seq(TreeOpCode.UPDATE, parent)
             }
         } else {
@@ -647,7 +647,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val changedList = TreeOps(TreeOpCode.NEWTREE, parent)
             val idWordId = cursor.getColumnIndex(Senses_Words.WORDID)
             val idMember = cursor.getColumnIndex(Senses_Words.WORD)
-            // int i = 1;
+            // int i = 1
             do {
                 val wordId = cursor.getLong(idWordId)
                 val member = cursor.getString(idMember)
@@ -703,8 +703,8 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     if (sb.isNotEmpty()) {
                         sb.append('\n')
                     }
-                    //Spanner.appendImage(sb, BaseModule.this.memberDrawable);
-                    //sb.append(' ');
+                    //Spanner.appendImage(sb, BaseModule.this.memberDrawable)
+                    //sb.append(' ')
                     append(sb, word, 0, WordNetFactories.membersFactory)
                 } while (cursor.moveToNext())
             }
@@ -931,8 +931,8 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         if (cursor.moveToFirst()) {
             val changedList = TreeOps(TreeOpCode.NEWTREE, parent)
 
-            // final int idRelationId = cursor.getColumnIndex(Relations.RELATIONID);
-            // final int idRelation = cursor.getColumnIndex(Relations.RELATION);
+            // var idRelationId = cursor.getColumnIndex(Relations.RELATIONID)
+            // var idRelation = cursor.getColumnIndex(Relations.RELATION)
             val idTargetSynsetId = cursor.getColumnIndex(V.SYNSET2ID)
             val idTargetDefinition = cursor.getColumnIndex(V.DEFINITION2)
             val idTargetMembers = cursor.getColumnIndex(SemRelations_Synsets_Words_X.MEMBERS2)
@@ -940,8 +940,8 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             do {
                 val sb = SpannableStringBuilder()
 
-                // final int relationId = cursor.getInt(idRelationId);
-                // final String relation = cursor.getString(idRelation);
+                // var relationId = cursor.getInt(idRelationId)
+                // var relation = cursor.getString(idRelation)
                 val targetSynsetId = cursor.getLong(idTargetSynsetId)
                 val targetDefinition = cursor.getString(idTargetDefinition)
                 val targetMembers = cursor.getString(idTargetMembers)

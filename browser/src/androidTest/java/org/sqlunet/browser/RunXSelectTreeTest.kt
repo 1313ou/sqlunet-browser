@@ -21,7 +21,7 @@ class RunXSelectTreeTest : TestCase() {
     var activityScenarioRule = ActivityScenarioRule(BrowseActivity::class.java)
     @Before
     fun before() {
-        //Actions.do_choose(R.id.spinner, "grouped by source");
+        //Actions.do_choose(R.id.spinner, "grouped by source")
         Seq.do_choose(R.id.spinner, 1)
     }
 

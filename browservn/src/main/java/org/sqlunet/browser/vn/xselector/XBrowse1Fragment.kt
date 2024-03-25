@@ -64,7 +64,7 @@ class XBrowse1Fragment : BaseBrowse1Fragment(), XSelectorsFragment.Listener {
 
             // detail fragment (rigid layout)
             var browse2Fragment: Fragment
-            // browse2Fragment = manager.findFragmentByTag(BaseBrowse2Fragment.FRAGMENT_TAG);
+            // browse2Fragment = manager.findFragmentByTag(BaseBrowse2Fragment.FRAGMENT_TAG)
             // if (browse2Fragment == null)
             run {
                 browse2Fragment = Browse2Fragment()

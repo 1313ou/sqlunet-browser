@@ -85,8 +85,8 @@ class DownloadZipCore(progressConsumer: BiConsumer<Long, Long>) : DownloadCore(p
                 if (status == HttpURLConnection.HTTP_MOVED_TEMP || status == HttpURLConnection.HTTP_MOVED_PERM || status == HttpURLConnection.HTTP_SEE_OTHER) {
                     // headers
 
-                    // zDate = connection.getLastModified(); // new Date(date));
-                    // zSize = connection.getContentLength();
+                    // zDate = connection.getLastModified(); // new Date(date))
+                    // zSize = connection.getContentLength()
                     zEtag = connection.getHeaderField("etag")
                     zVersion = connection.getHeaderField("x-version")
                     zStaticVersion = connection.getHeaderField("x-static-version")
@@ -125,7 +125,7 @@ class DownloadZipCore(progressConsumer: BiConsumer<Long, Long>) : DownloadCore(p
 
             // headers
             Log.d(TAG, "Headers " + connection.headerFields)
-            zDate = connection.lastModified // new Date(date));
+            zDate = connection.lastModified // new Date(date))
             zSize = connection.contentLength.toLong()
             if (zEtag == null) {
                 zEtag = connection.getHeaderField("etag")

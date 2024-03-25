@@ -35,7 +35,7 @@ class AboutActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)
-        // MenuCompat.setGroupDividerEnabled(menu, true);
+        // MenuCompat.setGroupDividerEnabled(menu, true)
         return true
     }
 

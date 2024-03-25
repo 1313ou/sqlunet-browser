@@ -40,7 +40,7 @@ class Browse2Activity : AbstractBrowse2Activity() {
     override fun onPostResume() {
         super.onPostResume()
         val args = intent.extras!!
-        //final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
+        //var type = args.getInt(ProviderArgs.ARG_QUERYTYPE)
         val pointer = getParcelable(args, ProviderArgs.ARG_QUERYPOINTER)
         val word = args.getString(ProviderArgs.ARG_HINTWORD)
         val cased = args.getString(ProviderArgs.ARG_HINTCASED)
@@ -53,7 +53,7 @@ class Browse2Activity : AbstractBrowse2Activity() {
     // M E N U
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main, menu)
-        // MenuCompat.setGroupDividerEnabled(menu, true);
+        // MenuCompat.setGroupDividerEnabled(menu, true)
         return true
     }
 

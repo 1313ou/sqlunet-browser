@@ -121,7 +121,7 @@ class TreeViewer(
      * @return view
      */
     fun makeTreeView(inflater: LayoutInflater, use2dScroll: Boolean): View {
-        // Log.d(TAG, "Make tree view");
+        // Log.d(TAG, "Make tree view")
 
         // top scrollview
         val wrapper = makeWrapper(inflater, use2dScroll)
@@ -289,7 +289,7 @@ class TreeViewer(
      */
     @Synchronized
     private fun addSubtreeView(childrenView: ViewGroup, node: TreeNode, atIndex0: Int) {
-        // Log.d(TAG, "Insert subtree view at index " + atIndex + " for node " + node + " count=" + childrenView.getChildCount());
+        // Log.d(TAG, "Insert subtree view at index " + atIndex + " for node " + node + " count=" + childrenView.getChildCount())
         var atIndex = atIndex0
         val controller = node.controller
         var subtreeView = controller.subtreeView
@@ -328,7 +328,7 @@ class TreeViewer(
             if (atIndex == n) {
                 atIndex = -1
             } else if (atIndex > n) {
-                // Log.e(TAG, "Illegal index " + node + " " + atIndex + " on " + n);
+                // Log.e(TAG, "Illegal index " + node + " " + atIndex + " on " + n)
                 throw RuntimeException("Illegal index $node $atIndex on $n")
             }
         }
@@ -372,7 +372,7 @@ class TreeViewer(
      */
     @Synchronized
     private fun removeSubtreeView(node: TreeNode) {
-        // Log.d(TAG, "Remove subtree view for node " + node);
+        // Log.d(TAG, "Remove subtree view for node " + node)
         val parent = node.parent
         if (parent != null) {
             // view
@@ -453,12 +453,12 @@ class TreeViewer(
 
     private fun scrollTo(view: View): Boolean {
         val y = getPosition(view)
-        // Log.d(TAG, "Scroll: to " + y + " " + view);
+        // Log.d(TAG, "Scroll: to " + y + " " + view)
         if (y == 0) {
             return false
         }
         treeView!!.scrollTo(0, y)
-        //((NestedScrollView)TreeViewer.this.view).smoothScrollTo(0, y);
+        //((NestedScrollView)TreeViewer.this.view).smoothScrollTo(0, y)
         return true
     }
 
@@ -520,7 +520,7 @@ class TreeViewer(
      * @return subtree view
      */
     fun expandNode(node: TreeNode, levels: Int, fireHotNodes: Boolean, overrideBreakExpand: Boolean): View? {
-        // Log.d(TAG, "Expand node: " + node);
+        // Log.d(TAG, "Expand node: " + node)
 
         // children view group
         val controller = node.controller

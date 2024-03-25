@@ -59,8 +59,8 @@ class Browse2Fragment : BaseBrowse2Fragment() {
 
                 // verbnet
                 if (enable and org.sqlunet.browser.vn.Settings.ENABLE_VERBNET != 0) {
-                    // final View labelView = findViewById(R.id.label_verbnet);
-                    // labelView.setVisibility(View.VISIBLE);
+                    // var labelView = findViewById(R.id.label_verbnet)
+                    // labelView.setVisibility(View.VISIBLE)
                     val verbnetFragment: Fragment = VerbNetFragment()
                     verbnetFragment.setArguments(args)
                     transaction.replace(R.id.container_verbnet, verbnetFragment, VerbNetFragment.FRAGMENT_TAG)
@@ -73,8 +73,8 @@ class Browse2Fragment : BaseBrowse2Fragment() {
 
                 // propbank
                 if (enable and org.sqlunet.browser.vn.Settings.ENABLE_PROPBANK != 0) {
-                    // final View labelView = findViewById(R.id.label_propbank);
-                    // labelView.setVisibility(View.VISIBLE);
+                    // var labelView = findViewById(R.id.label_propbank)
+                    // labelView.setVisibility(View.VISIBLE)
                     val propbankFragment: Fragment = PropBankFragment()
                     propbankFragment.setArguments(args)
                     transaction.replace(R.id.container_propbank, propbankFragment, PropBankFragment.FRAGMENT_TAG)
@@ -87,8 +87,8 @@ class Browse2Fragment : BaseBrowse2Fragment() {
 
                 // wordnet
                 if (enable and org.sqlunet.browser.vn.Settings.ENABLE_WORDNET != 0) {
-                    // final View labelView = findViewById(R.id.label_wordnet);
-                    // labelView.setVisibility(View.VISIBLE);
+                    // var labelView = findViewById(R.id.label_wordnet)
+                    // labelView.setVisibility(View.VISIBLE)
                     val senseFragment = SenseFragment()
                     senseFragment.setArguments(args)
                     transaction.replace(R.id.container_wordnet, senseFragment, SenseFragment.FRAGMENT_TAG)

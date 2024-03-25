@@ -256,7 +256,7 @@ class Notifier {
                 Log.d(TAG, "Pending intent $pendingIntent")
                 Log.d(TAG, "Pending intent creator package " + pendingIntent.creatorPackage)
                 Log.d(TAG, "Sending cancel request (sent pending intent)")
-                // pendingIntent.send();
+                // pendingIntent.send()
                 pendingIntent.send(1313, { _: PendingIntent?, _: Intent?, resultCode: Int, _: String?, _: Bundle? -> Log.d(TAG, "Sent pending intent $resultCode") }, null)
             } catch (e: PendingIntent.CanceledException) {
                 throw RuntimeException(e)

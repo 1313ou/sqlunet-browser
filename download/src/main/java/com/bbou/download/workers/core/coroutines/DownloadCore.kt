@@ -130,8 +130,8 @@ open class DownloadCore(private val progressConsumer: BiConsumer<Long, Long>) {
                 if (status == HttpURLConnection.HTTP_MOVED_TEMP || status == HttpURLConnection.HTTP_MOVED_PERM || status == HttpURLConnection.HTTP_SEE_OTHER) {
                     // headers
 
-                    // date = connection.getLastModified();
-                    // size = connection.getContentLength();
+                    // date = connection.getLastModified()
+                    // size = connection.getContentLength()
                     etag = connection.getHeaderField("etag")
                     version = connection.getHeaderField("x-version")
                     staticVersion = connection.getHeaderField("x-static-version")
@@ -170,7 +170,7 @@ open class DownloadCore(private val progressConsumer: BiConsumer<Long, Long>) {
 
             // headers
             Log.d(TAG, "Headers " + connection.headerFields)
-            date = connection.lastModified // new Date(date));
+            date = connection.lastModified // new Date(date))
             size = connection.contentLength.toLong()
             if (etag == null) {
                 etag = connection.getHeaderField("etag")

@@ -45,7 +45,7 @@ class TextFragment : BaseListFragment() {
         val args = requireArguments()
 
         // search target
-        // final String database = args.getString(ProviderArgs.ARG_QUERYDATABASE);
+        // var database = args.getString(ProviderArgs.ARG_QUERYDATABASE)
         val queryArg = args.getString(ProviderArgs.ARG_QUERYARG)
         query = queryArg?.trim { it <= ' ' } ?: ""
         super.onCreate(savedInstanceState)
@@ -189,7 +189,7 @@ class TextFragment : BaseListFragment() {
                     continue
                 }
 
-                // Log.d(TAG, '<' + token + '>');
+                // Log.d(TAG, '<' + token + '>')
                 patterns.add("((?i)$token2)")
             }
             return patterns.toTypedArray<String>()

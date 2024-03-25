@@ -367,9 +367,9 @@ class WebFragment : Fragment() {
         snDomDoc: Document?,  
         bncDomDoc: Document?,
     ): String {
-        // LogUtils.writeLog(DomTransformer.docToXml(wnDomDoc), false, "wn_sqlunet.log");
-        // LogUtils.writeLog(DomTransformer.docToXml(snDomDoc), false, "sn_sqlunet.log");
-        // LogUtils.writeLog(DomTransformer.docToXml(bncDomDoc), false, "bnc_sqlunet.log");
+        // LogUtils.writeLog(DomTransformer.docToXml(wnDomDoc), false, "wn_sqlunet.log")
+        // LogUtils.writeLog(DomTransformer.docToXml(snDomDoc), false, "sn_sqlunet.log")
+        // LogUtils.writeLog(DomTransformer.docToXml(bncDomDoc), false, "bnc_sqlunet.log")
         val data: String
         if (xml) {
             // merge all into one

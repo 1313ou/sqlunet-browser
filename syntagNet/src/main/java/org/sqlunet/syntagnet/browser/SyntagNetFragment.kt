@@ -32,6 +32,7 @@ class SyntagNetFragment : TreeFragment() {
         val args = requireArguments()
         val type = args.getInt(ProviderArgs.ARG_QUERYTYPE)
         if (args.containsKey(ProviderArgs.ARG_QUERYPOINTER)) {
+
             // pointer
             val pointer = getPointer(args)
 
@@ -46,7 +47,6 @@ class SyntagNetFragment : TreeFragment() {
     }
 
     companion object {
-        // static private final String TAG = "SyntagNetF";
         const val FRAGMENT_TAG = "syntagnet"
     }
 }

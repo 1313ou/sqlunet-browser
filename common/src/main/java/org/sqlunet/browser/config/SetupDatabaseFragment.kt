@@ -68,7 +68,7 @@ class SetupDatabaseFragment : BaseTaskFragment() {
             } else {
                 status!!.setText(R.string.status_task_running)
                 val sqlStatements = sql.toString().split(";".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-                // Log.d(TAG, Arrays.toString(sqlStatements));
+                // Log.d(TAG, Arrays.toString(sqlStatements))
                 val observer: TaskObserver<Pair<Number, Number>> = TaskToastObserver.WithStatus(activity, status!!)
                 val task = ExecAsyncTask(activity, { ignoredResult: Boolean -> update() }, observer, 1).fromSql(databasePath)
                 task.execute(sqlStatements)

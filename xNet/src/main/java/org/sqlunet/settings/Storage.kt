@@ -79,7 +79,7 @@ object Storage {
             if (StorageUtils.DirType.AUTO.toString() != prefValue) {
                 val prefStorage = File(prefValue)
                 if (build(prefStorage)) {
-                    // Log.d(TAG, "Using defined pref " + prefStorage.getAbsolutePath());
+                    // Log.d(TAG, "Using defined pref " + prefStorage.getAbsolutePath())
                     return prefStorage
                 }
                 //  pref defined as invalid value
@@ -94,7 +94,7 @@ object Storage {
         {
             val autoStorage = context.filesDir
             Log.d(TAG, StorageUtils.DirType.AUTO.toDisplay() + ' ' + autoStorage.absolutePath)
-            return autoStorage // context.getDatabasePath(DBFILE).getParentFile();
+            return autoStorage // context.getDatabasePath(DBFILE).getParentFile()
         }
 
         // discover pref not defined || defined as auto but not marshmallow || defined as invalid value

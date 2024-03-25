@@ -134,11 +134,11 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
         super.onStart()
 
         // load the contents
-        // final MutableLiveData<Cursor> idLiveData = wordIdFromWordModel.getMutableData();
-        // final Cursor idCursor = idLiveData.getValue();
+        // var<Cursor> idLiveData = wordIdFromWordModel.getMutableData()
+        // var idCursor = idLiveData.getValue()
         // if (idCursor != null && !idCursor.isClosed())
         // {
-        //		idLiveData.setValue(idCursor);
+        //		idLiveData.setValue(idCursor)
         // }
         // else
         load()
@@ -208,7 +208,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
             }
 
             override fun onGroupCollapsed(groupPosition: Int) {
-                // super.onGroupCollapsed(groupPosition);
+                // super.onGroupCollapsed(groupPosition)
                 // prevent from deactivating cursor
             }
 
@@ -239,16 +239,16 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
         if (groupState == null || listAdapter == null) {
             return
         }
-        // final Handler handler = new Handler(Looper.getMainLooper());
+        // var handler = new Handler(Looper.getMainLooper())
         Log.d(TAG, "Restore saved position " + Integer.toHexString(groupState) + " " + this)
         val groupCount = listAdapter!!.groupCount
         for (i in 0 until groupCount) {
             if (groupState and (1 shl i) != 0) {
                 expand(i)
 
-                //int groupPosition = i;
-                //requireActivity().runOnUiThread(() -> expand(finalI));
-                //handler.postDelayed(() -> expand(groupPosition), 1500);
+                //int groupPosition = i
+                //requireActivity().runOnUiThread(() -> expand(finalI))
+                //handler.postDelayed(() -> expand(groupPosition), 1500)
             }
         }
     }
@@ -278,7 +278,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
         vnFromWordIdModel = ViewModelProvider(this)["vn:xselectors.vn(wordid)", SqlunetViewModel::class.java]
         vnFromWordIdModel!!.getData().observe(owner) { cursor: Cursor? ->
             if (cursor != null && vnFromWordIdModel!!.getData().hasActiveObservers()) {
-                // CursorDump.dumpXCursor(cursor);
+                // CursorDump.dumpXCursor(cursor)
 
                 // pass on to list adapter
                 val adapter = listAdapter as CursorTreeAdapter?
@@ -292,7 +292,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
         pbFromWordIdModel = ViewModelProvider(this)["vn:xselectors.pb(wordid)", SqlunetViewModel::class.java]
         pbFromWordIdModel!!.getData().observe(owner) { cursor: Cursor? ->
             if (cursor != null && pbFromWordIdModel!!.getData().hasActiveObservers()) {
-                // CursorDump.dumpXCursor(cursor);
+                // CursorDump.dumpXCursor(cursor)
 
                 // pass on to list adapter
                 val adapter = listAdapter as CursorTreeAdapter?
@@ -340,11 +340,11 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
         when (groupId) {
             GROUPID_VERBNET -> {
 
-                //	final MutableLiveData<Cursor> vnLiveData = this.vnFromWordIdModel.getMutableData();
-                //	final Cursor vnCursor = vnLiveData.getValue();
+                //	var<Cursor> vnLiveData = this.vnFromWordIdModel.getMutableData()
+                //	var vnCursor = vnLiveData.getValue()
                 //	if (vnCursor != null && !vnCursor.isClosed())
                 //	{
-                //		vnLiveData.setValue(vnCursor);
+                //		vnLiveData.setValue(vnCursor)
                 //	}
                 //	else
                 loadVn(wordId)
@@ -352,11 +352,11 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
 
             GROUPID_PROPBANK -> {
 
-                //	final MutableLiveData<Cursor> pbLiveData = this.pbFromWordIdModel.getMutableData();
-                //	final Cursor pbCursor = pbLiveData.getValue();
+                //	var<Cursor> pbLiveData = this.pbFromWordIdModel.getMutableData()
+                //	var pbCursor = pbLiveData.getValue()
                 //	if (pbCursor != null && !pbCursor.isClosed())
                 //	{
-                //		pbLiveData.setValue(pbCursor);
+                //		pbLiveData.setValue(pbCursor)
                 //	}
                 //	else
                 loadPb(wordId)
@@ -397,25 +397,6 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
         this.listener = listener
     }
 
-    // S E L E C T I O N   L I S T E N E R
-
-    /*
-	@Override
-	public void onGroupExpand(final int groupPosition)
-	{
-		super.onGroupExpand(groupPosition);
-		Log.d(TAG, "expand " + groupPosition);
-	}
-	*/
-    /*
-	@Override
-	public void onGroupCollapse(final int groupPosition)
-	{
-		super.onGroupCollapse(groupPosition);
-		Log.d(TAG, "collapse " + groupPosition);
-	}
-	*/
-
     // C L I C K
 
     /**
@@ -430,7 +411,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
     override fun onChildClick(parent: ExpandableListView, v: View, groupPosition: Int, childPosition: Int, id: Long): Boolean {
         super.onChildClick(parent, v, groupPosition, childPosition, id)
         if (listener != null) {
-            //Log.d(TAG, "Click: group=" + groupPosition + " child=" + childPosition + " id=" + id);
+            //Log.d(TAG, "Click: group=" + groupPosition + " child=" + childPosition + " id=" + id)
             val index = parent.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition, childPosition))
             parent.setItemChecked(index, true)
             val adapter = (listAdapter as CursorTreeAdapter?)!!
@@ -442,7 +423,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
                 val idXClassId = cursor.getColumnIndex(Words_XNet.XCLASSID)
                 val idXMemberId = cursor.getColumnIndex(Words_XNet.XMEMBERID)
                 val idXSources = cursor.getColumnIndex(Words_XNet.SOURCES)
-                // final int idWordId = cursor.getColumnIndex(Words_XNet.WORDID);
+                // var idWordId = cursor.getColumnIndex(Words_XNet.WORDID)
 
                 // data
                 val wordId = wordId
@@ -474,7 +455,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
                 listener!!.onItemSelected(pointer, word, cased, pronunciation, pos)
             }
             // cursor ownership is transferred  to adapter, so do not call
-            // cursor.close();
+            // cursor.close()
         }
         return true
     }

@@ -57,7 +57,7 @@ class Browse2Activity : AbstractBrowse2Activity() {
         super.onPostResume()
         val args = intent.extras!!
 
-        //final int type = args.getInt(ProviderArgs.ARG_QUERYTYPE);
+        //var type = args.getInt(ProviderArgs.ARG_QUERYTYPE)
         val pointer = getParcelable(args, ProviderArgs.ARG_QUERYPOINTER)
         val word = args.getString(ProviderArgs.ARG_HINTWORD)
         val cased = args.getString(ProviderArgs.ARG_HINTCASED)

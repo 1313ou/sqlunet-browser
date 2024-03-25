@@ -33,7 +33,7 @@ object ColorUtils {
     fun tint(drawable: Drawable, color: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             drawable.setTint(color)
-            //DrawableCompat.setTint(drawable, iconTint);
+            //DrawableCompat.setTint(drawable, iconTint)
         } else {
             DrawableCompat.setTint(DrawableCompat.wrap(drawable), color)
         }

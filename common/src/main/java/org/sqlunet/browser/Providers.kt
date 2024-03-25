@@ -88,7 +88,7 @@ internal object Providers {
         if (name != null) {
             // name
             sb 
-                .append(name) //;
+                .append(name)
                 .append('\n')
         }
 
@@ -104,7 +104,7 @@ internal object Providers {
         append(sb, authorityLabel, 0, Factories.boldFactory) 
             .append(':') 
             .append(' ') 
-            .append(authority) //;
+            .append(authority)
             .append('\n')
 
         // package

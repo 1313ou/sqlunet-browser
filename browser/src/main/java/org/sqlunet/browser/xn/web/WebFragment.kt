@@ -109,7 +109,7 @@ class WebFragment : Fragment() {
                                     val xPointer = pointer
                                     val xSources = xPointer.getXSources()
                                     val xClassId = xPointer.getXClassId()
-                                    // var xMemberId = xPointer.getXMemberId();
+                                    // var xMemberId = xPointer.getXMemberId()
                                     val wordId: Long = xPointer.wordId
                                     val synsetId = xPointer.getSynsetId()
                                     if (xSources == null || xSources.contains("wn"))

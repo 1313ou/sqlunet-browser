@@ -237,16 +237,16 @@ internal object VnNodeFactory {
         if (fields != null && fields.size == 3) {
             val categoryElement = makeNode(doc, parent, "cat", null)
             categoryElement.setAttribute("value", fields[0])
-            // categoryElement.setTextContent(fields[0]);
+            // categoryElement.setTextContent(fields[0])
             if (fields[1] != null) {
                 val valueElement = makeNode(doc, parent, "value", null)
                 valueElement.setAttribute("value", fields[1])
-                // valueElement.setTextContent(fields[1]);
+                // valueElement.setTextContent(fields[1])
             }
             if (fields[2] != null) {
                 val restrsElement = makeNode(doc, parent, "restrs", null)
                 restrsElement.setAttribute("value", fields[2])
-                // restrsElement.setTextContent(fields[2]);
+                // restrsElement.setTextContent(fields[2])
             }
         }
         return parent
@@ -281,7 +281,7 @@ internal object VnNodeFactory {
                 val argElement = makeNode(doc, parent, "arg", null)
                 argElement.setAttribute("value", arg)
                 argElement.setAttribute("argtype", i++.toString())
-                // argElement.setTextContent(arg);
+                // argElement.setTextContent(arg)
             }
         }
         return parent

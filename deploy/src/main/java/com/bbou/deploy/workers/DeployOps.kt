@@ -204,14 +204,14 @@ object DeployOps {
                 val zipEntries = zipFile.entries()
                 while (zipEntries.hasMoreElements()) {
                     val zipEntry = zipEntries.nextElement()
-                    // Log.d(TAG, "Expanding zip entry  " + zipEntry.getName());
+                    // Log.d(TAG, "Expanding zip entry  " + zipEntry.getName())
                     if (zipEntry.isDirectory) {
                         continue
                     }
 
                     // out
                     val outFile = File(destDir + '/' + zipEntry.name)
-                    // Log.d(TAG, outFile + " exist=" + outFile.exists());
+                    // Log.d(TAG, outFile + " exist=" + outFile.exists())
 
                     // create all non exists folders else you will hit FileNotFoundException for compressed folder
                     val parent = outFile.parent
@@ -456,7 +456,7 @@ object DeployOps {
 
                 // out
                 val outFile = File(destFile)
-                // Log.d(TAG, outFile + " exist=" + outFile.exists());
+                // Log.d(TAG, outFile + " exist=" + outFile.exists())
 
                 // create all non exists folders else you will hit FileNotFoundException for compressed folder
                 val parent = outFile.parent
@@ -541,7 +541,7 @@ object DeployOps {
 
                             // out
                             val outFile = File(destFile)
-                            // Log.d(TAG, outFile + " exist=" + outFile.exists());
+                            // Log.d(TAG, outFile + " exist=" + outFile.exists())
 
                             // create all non exists folders else you will hit FileNotFoundException for compressed folder
                             val parent = outFile.parent
@@ -627,7 +627,7 @@ object DeployOps {
 
                             // out
                             val outFile = File(destFile)
-                            // Log.d(TAG, outFile + " exist=" + outFile.exists());
+                            // Log.d(TAG, outFile + " exist=" + outFile.exists())
 
                             // create all non exists folders else you will hit FileNotFoundException for compressed folder
                             val parent = outFile.parent

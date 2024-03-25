@@ -102,7 +102,7 @@ class SearchTextFragment : BaseSearchFragment() {
         val modePosition = searchModePosition
 
         // status
-        // var textSearches = getResources().getTextArray(R.array.searchtext_modes);
+        // var textSearches = getResources().getTextArray(R.array.searchtext_modes)
 
         // as per selected mode
         val searchUri: String

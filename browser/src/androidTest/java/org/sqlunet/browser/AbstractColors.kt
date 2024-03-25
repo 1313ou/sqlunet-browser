@@ -34,7 +34,7 @@ abstract class AbstractColors : TestCase() {
         context = ColorsTest.getContext(mode)
         UiThreadStatement.runOnUiThread {
             AppCompatDelegate.setDefaultNightMode(mode)
-            // Colors.dumpDefaultColors(this.context);
+            // Colors.dumpDefaultColors(this.context)
             @ColorInt val defaultColors = ColorsTest.getDefaultColorAttrs(context!!)
             Log.i(LOGTAG, String.format("Default color #%x on #%x", defaultColors[1], defaultColors[0]))
         }

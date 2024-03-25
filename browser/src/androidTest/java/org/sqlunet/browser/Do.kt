@@ -31,7 +31,7 @@ internal object Do {
         Seq.do_click(R.id.databaseButton)
         // download activity
         Seq.do_click(R.id.downloadButton)
-        //Wait.until_not_text(R.id.status, Seq.getResourceString(R.string.status_task_running), 10);
+        //Wait.until_not_text(R.id.status, Seq.getResourceString(R.string.status_task_running), 10)
         WaitUntilText.changesFrom(R.id.status, Seq.getResourceString(R.string.status_task_running))
     }
 
@@ -47,7 +47,7 @@ internal object Do {
     private fun textSearchSetup(@IdRes buttonId: Int) {
         Seq.do_click(buttonId)
         Seq.do_click(R.id.task_run)
-        //Wait.until_not_text(R.id.task_status, Seq.getResourceString(R.string.status_task_running), 10);
+        //Wait.until_not_text(R.id.task_status, Seq.getResourceString(R.string.status_task_running), 10)
         WaitUntilText.changesFrom(R.id.task_status, Seq.getResourceString(R.string.status_task_running))
     }
 
@@ -57,7 +57,7 @@ internal object Do {
             Seq.do_typeSearch(R.id.search, word)
 
             // selector list
-            //Wait.until(android.R.id.list, 5);
+            //Wait.until(android.R.id.list, 5)
             WaitUntil.shown(android.R.id.list)
             val list = CoreMatchers.allOf(ViewMatchers.withId(android.R.id.list), CoreMatchers.instanceOf(ListView::class.java))
             Espresso.onView(list).check(ViewAssertions.matches(ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
@@ -83,7 +83,7 @@ internal object Do {
             Seq.do_typeSearch(R.id.search, word)
 
             // selector list
-            //Wait.until(android.R.id.list, 5);
+            //Wait.until(android.R.id.list, 5)
             WaitUntil.shown(android.R.id.list)
             val list = CoreMatchers.allOf(ViewMatchers.withId(android.R.id.list), CoreMatchers.instanceOf(ListView::class.java))
             Espresso.onView(list).check(ViewAssertions.matches(ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
@@ -127,7 +127,7 @@ internal object Do {
             Seq.do_typeSearch(R.id.search, word!!)
 
             // selector list
-            //Wait.until(android.R.id.list, 5);
+            //Wait.until(android.R.id.list, 5)
             WaitUntil.shown(android.R.id.list)
             val list = CoreMatchers.allOf(ViewMatchers.withId(android.R.id.list), CoreMatchers.instanceOf(ListView::class.java))
             Espresso.onView(list).check(ViewAssertions.matches(ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))

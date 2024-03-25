@@ -66,7 +66,7 @@ object DomValidator {
             val validator = makeValidator(xsdUrl)
             for (document in documents) {
                 // cannot make org.w3c.dom.Document and mf.org.w3c.dom.Document compatible
-                // DomValidator.validate(validator, new DOMSource(document));
+                // DomValidator.validate(validator, new DOMSource(document))
                 val string = DomTransformer.docToXml(document)
                 validate(validator, StreamSource(StringReader(string)))
             }
@@ -101,7 +101,7 @@ object DomValidator {
      */
     @Throws(SAXException::class)
     private fun makeValidator(xsdUrl: URL): Validator {
-        //final SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        //var schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI)
         val schemaFactory: SchemaFactory = XMLSchemaFactory()
         val schema = schemaFactory.newSchema(xsdUrl)
         val validator = schema.newValidator()

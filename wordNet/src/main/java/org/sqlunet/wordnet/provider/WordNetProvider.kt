@@ -346,7 +346,7 @@ class WordNetProvider : BaseProvider() {
             val table2ProjectionList = listOf(*projection2)
 
             // query 1
-            //final String actualSelection1 = makeSelectionAndInstantiateArgs(projection1, selection1, selection1Args);
+            //var actualSelection1 = makeSelectionAndInstantiateArgs(projection1, selection1, selection1Args)
             val actualSelection1 = makeSelection(projection1, selection1)
             val subQueryBuilder1 = SQLiteQueryBuilder()
             subQueryBuilder1.tables = table1
@@ -362,7 +362,7 @@ class WordNetProvider : BaseProvider() {
             )
 
             // query 2
-            //final String actualSelection2 = makeSelectionAndInstantiateArgs(projection2, selection2, selection2Args);
+            //var actualSelection2 = makeSelectionAndInstantiateArgs(projection2, selection2, selection2Args)
             val actualSelection2 = makeSelection(projection2, selection2)
             val subQueryBuilder2 = SQLiteQueryBuilder()
             subQueryBuilder2.tables = table2
@@ -381,7 +381,7 @@ class WordNetProvider : BaseProvider() {
             val uQueryBuilder = SQLiteQueryBuilder()
             uQueryBuilder.isDistinct = true
             return uQueryBuilder.buildUnionQuery(arrayOf(subQuery1, subQuery2), null, null)
-            //return embed(uQuery, projection, selection, groupBy, sortOrder);
+            //return embed(uQuery, projection, selection, groupBy, sortOrder)
         }
 
         private fun makeSelection(projection: Array<String>, selection: String): String {

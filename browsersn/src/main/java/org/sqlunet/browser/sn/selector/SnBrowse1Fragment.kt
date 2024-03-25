@@ -55,7 +55,7 @@ class SnBrowse1Fragment : BaseBrowse1Fragment(), SnSelectorsFragment.Listener {
         // two-pane specific set up
         if (isTwoPane) {
             // in two-pane mode, list items should be given the 'activated' state when touched.
-            // selectorsFragment.setActivateOnItemClick(true);
+            // selectorsFragment.setActivateOnItemClick(true)
 
             // detail fragment (rigid layout)
             var browse2Fragment = manager.findFragmentByTag(BaseBrowse2Fragment.FRAGMENT_TAG)

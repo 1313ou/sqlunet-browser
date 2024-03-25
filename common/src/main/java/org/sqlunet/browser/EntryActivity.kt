@@ -84,7 +84,7 @@ class EntryActivity : AppCompatActivity() {
         }
 
         // switch as per preferred launch mode
-        val clazz = Settings.getLaunchPref(this) // = "org.sqlunet.browser.MainActivity" or overriding "org.sqlunet.browser.wn.MainActivity";
+        val clazz = Settings.getLaunchPref(this) // = "org.sqlunet.browser.MainActivity" or overriding "org.sqlunet.browser.wn.MainActivity"
         val intent = Intent()
         intent.setClassName(this, clazz)
         intent.addFlags(0)

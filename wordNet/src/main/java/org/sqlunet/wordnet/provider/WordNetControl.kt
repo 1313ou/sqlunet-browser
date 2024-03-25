@@ -89,7 +89,7 @@ object WordNetControl {
                 } else {
                     selection = ""
                 }
-                //selection += Q.WORDID + " = " + uriLast;
+                //selection += Q.WORDID + " = " + uriLast
                 selection += Q.WORD1.SELECTION.replace("#\\{uri_last\\}".toRegex(), uriLast)
             }
 
@@ -100,7 +100,7 @@ object WordNetControl {
                 } else {
                     selection = ""
                 }
-                //selection += Q.SENSEID + " = " + uriLast;
+                //selection += Q.SENSEID + " = " + uriLast
                 selection += Q.SENSE1.SELECTION.replace("#\\{uri_last\\}".toRegex(), uriLast)
             }
 
@@ -111,7 +111,7 @@ object WordNetControl {
                 } else {
                     selection = ""
                 }
-                //selection += Q.SYNSETID + " = " + uriLast;
+                //selection += Q.SYNSETID + " = " + uriLast
                 selection += Q.SYNSET1.SELECTION.replace("#\\{uri_last\\}".toRegex(), uriLast)
             }
 

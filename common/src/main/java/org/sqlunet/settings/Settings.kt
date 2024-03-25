@@ -453,7 +453,7 @@ open class Settings {
             }
 
             // build version
-            var build: Long = 0 //BuildConfig.VERSION_CODE;
+            var build: Long = 0 //BuildConfig.VERSION_CODE
             try {
                 val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
                 build = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {

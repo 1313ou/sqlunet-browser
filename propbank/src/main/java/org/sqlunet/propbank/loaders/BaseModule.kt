@@ -165,7 +165,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
         val changed: Array<TreeOp>
         if (cursor.moveToFirst()) {
             // column indices
-            // final int idRoleSetId = cursor.getColumnIndex(PbRoleSets_X.ROLESETID);
+            // var idRoleSetId = cursor.getColumnIndex(PbRoleSets_X.ROLESETID)
             val idRoleSetName = cursor.getColumnIndex(PbRoleSets_X.ROLESETNAME)
             val idRoleSetDesc = cursor.getColumnIndex(PbRoleSets_X.ROLESETDESC)
             val idRoleSetHead = cursor.getColumnIndex(PbRoleSets_X.ROLESETHEAD)
@@ -175,7 +175,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
             val sb = SpannableStringBuilder()
 
             // data
-            // final int roleSetId = cursor.getInt(idRoleSetId);
+            // var roleSetId = cursor.getInt(idRoleSetId)
 
             // roleSet
             appendImage(sb, roleSetDrawable)
@@ -289,7 +289,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
         val sb = SpannableStringBuilder()
         if (cursor.moveToFirst()) {
             // column indices
-            // final int idRoleId = cursor.getColumnIndex(PbRoleSets_PbRoles.ROLEID);
+            // var idRoleId = cursor.getColumnIndex(PbRoleSets_PbRoles.ROLEID)
             val idRoleDescr = cursor.getColumnIndex(PbRoleSets_PbRoles.ROLEDESCR)
             val idFunc = cursor.getColumnIndex(PbRoleSets_PbRoles.FUNC)
             val idTheta = cursor.getColumnIndex(PbRoleSets_PbRoles.THETA)
@@ -324,10 +324,10 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                     sb.append(cursor.getInt(idFunc).toString())
                 }
 
-                // final int roleId = cursor.getInt(idRoleId);
-                // sb.append(" role id=");
-                // sb.append(Integer.toString(roleId));
-                // sb.append(' ');
+                // var roleId = cursor.getInt(idRoleId)
+                // sb.append(" role id=")
+                // sb.append(Integer.toString(roleId))
+                // sb.append(' ')
                 if (!cursor.moveToNext()) {
                     break
                 }
@@ -413,7 +413,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
 
                         // func
                         if (fields[1].isNotEmpty()) {
-                            // sb.append(" func=");
+                            // sb.append(" func=")
                             sb.append(' ')
                             sb.append(fields[1])
                         }

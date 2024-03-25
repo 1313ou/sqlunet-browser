@@ -96,7 +96,7 @@ class PreparedStatement(
      */
     override fun close() {
         // do not close database
-        // db.close();
+        // db.close()
     }
 
     /**

@@ -23,7 +23,7 @@ abstract class DocumentTransformer {
      * @return html
      */
     fun docToHtml(doc: Document, source: String, isSelector: Boolean): String {
-        // Log.d(TAG, "to be transformed:" + DomTransformer.docToXml(doc));
+        // Log.d(TAG, "to be transformed:" + DomTransformer.docToXml(doc))
         return try {
             docToString(doc, getXSLStream(source, isSelector), "html")
         } catch (e: Exception) {

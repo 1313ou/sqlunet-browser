@@ -41,7 +41,7 @@ abstract class BaseProvider : ContentProvider() {
         @Synchronized
         fun reverseItems(): Array<CharSequence?> {
             val n = size
-            // Log.d(TAG, "sql size " + n);
+            // Log.d(TAG, "sql size " + n)
             val array = arrayOfNulls<CharSequence>(n)
             val iter: MutableListIterator<CharSequence?> = listIterator()
             var i = n - 1
@@ -111,7 +111,7 @@ abstract class BaseProvider : ContentProvider() {
 
     override fun shutdown() {
         Log.d(TAG, "Shutdown " + this.javaClass)
-        // super.shutdown();
+        // super.shutdown()
         close()
     }
 
@@ -349,7 +349,7 @@ abstract class BaseProvider : ContentProvider() {
          */
         @JvmStatic
         fun resizeSql(capacity: Int) {
-            // Log.d(TAG, "Sql buffer capacity " + capacity);
+            // Log.d(TAG, "Sql buffer capacity " + capacity)
             sqlBuffer = CircularBuffer(capacity)
         }
     }

@@ -47,8 +47,8 @@ class Browse2Fragment : BaseBrowse2Fragment() {
                 // framenet
                 val enable = org.sqlunet.browser.fn.Settings.getFrameNetPref(context)
                 if (enable) {
-                    // final View labelView = findViewById(R.id.label_framenet);
-                    // labelView.setVisibility(View.VISIBLE);
+                    // var labelView = findViewById(R.id.label_framenet)
+                    // labelView.setVisibility(View.VISIBLE)
                     val framenetFragment: Fragment = if (pointer is FnFramePointer) FnFrameFragment() else FnLexUnitFragment()
                     framenetFragment.setArguments(args)
                     transaction.replace(R.id.container_framenet, framenetFragment, FrameNetFragment.FRAGMENT_TAG)

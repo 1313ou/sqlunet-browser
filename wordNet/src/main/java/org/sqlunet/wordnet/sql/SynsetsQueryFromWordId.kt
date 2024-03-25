@@ -54,6 +54,6 @@ class SynsetsQueryFromWordId(connection: SQLiteDatabase, wordId: Long) : DBQuery
         /**
          * `QUERY` is the SQL statement
          */
-        private const val QUERY = SqLiteDialect.SynsetsQueryFromWordId // ;
+        private const val QUERY = SqLiteDialect.SynsetsQueryFromWordId // 
     }
 }

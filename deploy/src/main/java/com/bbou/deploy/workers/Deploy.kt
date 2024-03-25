@@ -398,14 +398,14 @@ object Deploy {
                 val zipEntries = zipFile.entries()
                 while (zipEntries.hasMoreElements()) {
                     val zipEntry = zipEntries.nextElement()
-                    // Log.d(TAG, "Expand zip entry  " + zipEntry.getName());
+                    // Log.d(TAG, "Expand zip entry  " + zipEntry.getName())
                     if (zipEntry.isDirectory) {
                         continue
                     }
 
                     // out
                     val outFile = File(toPath + '/' + zipEntry.name)
-                    // Log.d(TAG, outFile + " exist=" + outFile.exists());
+                    // Log.d(TAG, outFile + " exist=" + outFile.exists())
 
                     // create all non exists folders else you will hit FileNotFoundException for compressed folder
                     val parent = outFile.parent
@@ -621,10 +621,10 @@ object Deploy {
         } else if (file.length() > 0 && file.name != "md5sum.txt") {
             val path = file.absolutePath
             val digest = computeDigest(path)
-            // Log.d(TAG, path + " " + digest);
+            // Log.d(TAG, path + " " + digest)
             if (!map.containsKey(path)) {
-                //Log.e(TAG, "Missing digest for " + path);
-                //throw new RuntimeException("Missing digest for " + path);
+                //Log.e(TAG, "Missing digest for " + path)
+                //throw new RuntimeException("Missing digest for " + path)
                 // not deemed critical by distributor
                 Log.d(TAG, "No digest for $path skipped")
                 return
@@ -644,7 +644,7 @@ object Deploy {
 
     @JvmStatic
     fun computeDigest(path: String): String? {
-        // Log.d(TAG, "MD5 " + path);
+        // Log.d(TAG, "MD5 " + path)
         val md: MessageDigest = try {
             MessageDigest.getInstance("MD5")
         } catch (e: NoSuchAlgorithmException) {

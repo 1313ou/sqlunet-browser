@@ -257,12 +257,12 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val sb = SpannableStringBuilder()
 
             // column indices
-            // final int idFrameId = cursor.getColumnIndex(Frames_X.FRAMEID);
+            // var idFrameId = cursor.getColumnIndex(Frames_X.FRAMEID)
             val idFrame = cursor.getColumnIndex(Frames_X.FRAME)
             val idFrameDefinition = cursor.getColumnIndex(Frames_X.FRAMEDEFINITION)
 
             // data
-            // final int frameId = cursor.getInt(idFrameId);
+            // var frameId = cursor.getInt(idFrameId)
 
             // frame
             appendImage(sb, frameDrawable)
@@ -366,7 +366,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val idFrame2Id = cursor.getColumnIndex("i2")
             val idFrame2 = cursor.getColumnIndex("f2")
             val idRelationId = cursor.getColumnIndex(Frames_Related.RELATIONID)
-            // final int idRelation = cursor.getColumnIndex(Frames_Related.RELATION);
+            // var idRelation = cursor.getColumnIndex(Frames_Related.RELATION)
             val relatedNodes: MutableMap<Int, TreeNode> = TreeMap()
             do {
                 val sb: Editable = SpannableStringBuilder()
@@ -568,7 +568,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val sb = SpannableStringBuilder()
 
             // column indices
-            // final int idLuId = cursor.getColumnIndex(LexUnits_X.LUID);
+            // var idLuId = cursor.getColumnIndex(LexUnits_X.LUID)
             val idLexUnit = cursor.getColumnIndex(LexUnits_X.LEXUNIT)
             val idDefinition = cursor.getColumnIndex(LexUnits_X.LUDEFINITION)
             val idDictionary = cursor.getColumnIndex(LexUnits_X.LUDICT)
@@ -578,7 +578,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val idFrame = cursor.getColumnIndex(LexUnits_X.FRAME)
 
             // data
-            // final int luId = cursor.getInt(idLuId);
+            // var luId = cursor.getInt(idLuId)
             val definition = cursor.getString(idDefinition)
             val dictionary = cursor.getString(idDictionary)
             val incorporatedFEType = cursor.getString(idIncorporatedFEType)
@@ -621,9 +621,9 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                     sb.append(definitionFields[0])
                     // if (definitionFields.length > 1)
                     // {
-                    // sb.append('\n');
-                    // sb.append('\t');
-                    // sb.append(definitionFields[1]);
+                    // sb.append('\n')
+                    // sb.append('\t')
+                    // sb.append(definitionFields[1])
                     // }
                 }
             }
@@ -682,7 +682,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             val changedList = TreeOps(TreeOpCode.NEWTREE, parent)
 
             // column indices
-            // final int idFrameId = cursor.getColumnIndex(LexUnits_X.FRAMEID);
+            // var idFrameId = cursor.getColumnIndex(LexUnits_X.FRAMEID);
             val idLuId = cursor.getColumnIndex(LexUnits_X.LUID)
             val idLexUnit = cursor.getColumnIndex(LexUnits_X.LEXUNIT)
             val idDefinition = cursor.getColumnIndex(LexUnits_X.LUDEFINITION)
@@ -694,7 +694,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             do {
                 val sb = SpannableStringBuilder()
 
-                // final int frameId = cursor.getInt(idFrameId);
+                // var frameId = cursor.getInt(idFrameId);
                 val luId = cursor.getLong(idLuId)
                 val lexUnit = cursor.getString(idLexUnit)
                 val definition = cursor.getString(idDefinition)
@@ -1258,14 +1258,14 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             // column indices
             val idAnnotationId = cursor.getColumnIndex(Patterns_Sentences.ANNOSETID)
             val idText = cursor.getColumnIndex(Patterns_Sentences.TEXT)
-            // final int idSentenceId = cursor.getColumnIndex(Patterns_Sentences.SENTENCEID);
+            // var idSentenceId = cursor.getColumnIndex(Patterns_Sentences.SENTENCEID);
 
             // read cursor
             do {
                 val sb = SpannableStringBuilder()
                 val annotationId = cursor.getLong(idAnnotationId)
                 val text = cursor.getString(idText)
-                // final long sentenceId = cursor.getLong(idSentenceId);
+                // var sentenceId = cursor.getLong(idSentenceId);
 
                 // sentence
                 append(sb, text, 0, FrameNetFactories.sentenceFactory)

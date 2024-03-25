@@ -157,7 +157,7 @@ class VerbNetImplementation : VerbNetInterface {
             val entry = make(connection, targetWord) ?: return
 
             // word
-            // NodeFactory.makeWordNode(doc, parent, entry.word.word, entry.word.id);
+            // NodeFactory.makeWordNode(doc, parent, entry.word.word, entry.word.id)
 
             // iterate synsets
             val synsets = entry.synsets ?: return

@@ -51,7 +51,7 @@ class FileDataDownloader(private val listener: Listener) : Task<String, Void, Fi
                 Log.d(TAG, "Response Code ... $status")
                 if (status == HttpURLConnection.HTTP_MOVED_TEMP || status == HttpURLConnection.HTTP_MOVED_PERM || status == HttpURLConnection.HTTP_SEE_OTHER) {
                     // headers
-                    date = connection.getLastModified() // new Date(date));
+                    date = connection.getLastModified() // new Date(date))
                     size = connection.getContentLength().toLong()
                     etag = connection.getHeaderField("etag")
                     version = connection.getHeaderField("x-version")
@@ -87,7 +87,7 @@ class FileDataDownloader(private val listener: Listener) : Task<String, Void, Fi
             }
             val name = url.file
             if (date <= 0) {
-                date = connection.lastModified // new Date(date));
+                date = connection.lastModified // new Date(date))
             }
             if (size <= 0) {
                 size = connection.contentLength.toLong()

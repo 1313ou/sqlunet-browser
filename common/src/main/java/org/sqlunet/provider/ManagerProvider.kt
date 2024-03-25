@@ -51,9 +51,9 @@ class ManagerProvider : BaseProvider() {
 
         //if (logSql) {
         //  val sql = SQLiteQueryBuilder.buildQueryString(false, table, projection, selection, null, null, sortOrder, null)
-        //  logSql(sql, argsToString(selectionArgs));
-        //  Log.d(TAG + "SQL", SqlFormatter.format(sql).toString());
-        //  Log.d(TAG + "ARGS", argsToString(selectionArgs));
+        //  logSql(sql, argsToString(selectionArgs))
+        //  Log.d(TAG + "SQL", SqlFormatter.format(sql).toString())
+        //  Log.d(TAG + "ARGS", argsToString(selectionArgs))
         //}
 
         // do query

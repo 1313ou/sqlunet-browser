@@ -93,7 +93,7 @@ class SqlFragment : Fragment() {
                 menu.clear()
                 menuInflater.inflate(R.menu.main, menu)
                 menuInflater.inflate(R.menu.sql, menu)
-                // MenuCompat.setGroupDividerEnabled(menu, true);
+                // MenuCompat.setGroupDividerEnabled(menu, true)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
@@ -145,7 +145,7 @@ class SqlFragment : Fragment() {
             override fun createIntent(context: Context, input: String): Intent {
                 val intent: Intent = super.createIntent(context, input)
                 intent.putExtra(Intent.EXTRA_TITLE, SQL_FILE)
-                //intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, pickerInitialUri);
+                //intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, pickerInitialUri)
                 return intent
             }
         }

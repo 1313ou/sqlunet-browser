@@ -91,12 +91,12 @@ internal class HomeImageView : AppCompatImageView {
                 val html = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) Html.fromHtml(message, 0) else Html.fromHtml(message)
                 //Log.i("Pick ", message);
 
-//				final Toast toast = Toast.makeText(getContext(), html, Toast.LENGTH_LONG);
-//				final View view = toast.getView();
+//				var toast = Toast.makeText(getContext(), html, Toast.LENGTH_LONG);
+//				var view = toast.getView();
 //				if (view != null)
 //				{
 //					view.setBackgroundResource(android.R.drawable.toast_frame);
-//					final TextView textView = view.findViewById(android.R.id.message);
+//					var textView = view.findViewById(android.R.id.message);
 //					textView.setBackgroundColor(Color.TRANSPARENT);
 //				}
 //				toast.show();

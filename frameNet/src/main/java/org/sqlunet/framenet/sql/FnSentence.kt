@@ -31,7 +31,7 @@ class FnSentence internal constructor(
             FnSentenceQuery(connection, sentenceId).use { query ->
                 query.execute()
                 if (query.next()) {
-                    // final long sentenceId = query.sentenceId
+                    // var sentenceId = query.sentenceId
                     val text = query.text
                     return FnSentence(sentenceId, text)
                 }

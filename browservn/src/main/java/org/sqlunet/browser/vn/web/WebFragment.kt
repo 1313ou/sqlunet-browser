@@ -94,7 +94,7 @@ class WebFragment : Fragment() {
                                     val xPointer = pointer
                                     val xSources = xPointer.getXSources()
                                     val xClassId = xPointer.getXClassId()
-                                    // final Long xMemberId = xpointer.getXMemberId();
+                                    // var xMemberId = xpointer.getXMemberId()
                                     val wordId = xPointer.getWordId()
                                     val synsetId = xPointer.getSynsetId()
                                     if (xSources == null || xSources.contains("wn"))
@@ -357,10 +357,10 @@ class WebFragment : Fragment() {
         vnDomDoc: Document?,
         pbDomDoc: Document?
     ): String {
-        // LogUtils.writeLog(DomTransformer.docToXml(wnDomDoc), false, "wn_sqlunet.log");
-        // LogUtils.writeLog(DomTransformer.docToXml(vnDomDoc), false, "vn_sqlunet.log");
-        // LogUtils.writeLog(DomTransformer.docToXml(pbDomDoc), false, "pb_sqlunet.log");
-        // LogUtils.writeLog(DomTransformer.docToXml(bncDomDoc), false, "bnc_sqlunet.log");
+        // LogUtils.writeLog(DomTransformer.docToXml(wnDomDoc), false, "wn_sqlunet.log")
+        // LogUtils.writeLog(DomTransformer.docToXml(vnDomDoc), false, "vn_sqlunet.log")
+        // LogUtils.writeLog(DomTransformer.docToXml(pbDomDoc), false, "pb_sqlunet.log")
+        // LogUtils.writeLog(DomTransformer.docToXml(bncDomDoc), false, "bnc_sqlunet.log")
         val data: String
         if (xml) {
             // merge all into one

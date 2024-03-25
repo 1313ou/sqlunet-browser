@@ -452,32 +452,32 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 val idPmRole = cursor.getColumnIndex(PredicateMatrixContract.PredicateMatrix.PMROLE)
                 val idPmPos = cursor.getColumnIndex(PredicateMatrixContract.PredicateMatrix.PMPOS)
 
-                // val idWord = cursor.getColumnIndex(PredicateMatrix.WORD);
+                // val idWord = cursor.getColumnIndex(PredicateMatrix.WORD)
                 val idSynsetId = cursor.getColumnIndex(PredicateMatrixContract.PredicateMatrix.SYNSETID)
                 val idDefinition = cursor.getColumnIndex(Pm_X.DEFINITION)
                 val idVnClassId = cursor.getColumnIndex(PredicateMatrixContract.PredicateMatrix.VNCLASSID)
                 val idVnClass = cursor.getColumnIndex(Pm_X.VNCLASS)
                 val idVnRoleTypeId = cursor.getColumnIndex(Pm_X.VNROLETYPEID)
                 val idVnRoleType = cursor.getColumnIndex(Pm_X.VNROLETYPE)
-                // val idVnRoleId = cursor.getColumnIndex(Pm_X.VNROLEID);
+                // val idVnRoleId = cursor.getColumnIndex(Pm_X.VNROLEID)
                 val idPbRoleSetId = cursor.getColumnIndex(PredicateMatrixContract.PredicateMatrix.PBROLESETID)
                 val idPbRoleSet = cursor.getColumnIndex(Pm_X.PBROLESETNAME)
                 val idPbRoleSetDescr = cursor.getColumnIndex(Pm_X.PBROLESETDESCR)
                 val idPbRoleId = cursor.getColumnIndex(Pm_X.PBROLEID)
                 val idPbRole = cursor.getColumnIndex(Pm_X.PBROLEARGTYPE)
                 val idPbRoleDescr = cursor.getColumnIndex(Pm_X.PBROLEDESCR)
-                // val idPbRoleSetHead = cursor.getColumnIndex(Pm_X.PBROLESETHEAD);
-                // val idPbRoleArgType = cursor.getColumnIndex(Pm_X.PBROLEARGTYPE);
+                // val idPbRoleSetHead = cursor.getColumnIndex(Pm_X.PBROLESETHEAD)
+                // val idPbRoleArgType = cursor.getColumnIndex(Pm_X.PBROLEARGTYPE)
                 val idFnFrameId = cursor.getColumnIndex(PredicateMatrixContract.PredicateMatrix.FNFRAMEID)
                 val idFnFrame = cursor.getColumnIndex(Pm_X.FNFRAME)
                 val idFnFeTypeId = cursor.getColumnIndex(Pm_X.FNFETYPEID)
                 val idFnFeType = cursor.getColumnIndex(Pm_X.FNFETYPE)
-                // val idFnFrameDefinition = cursor.getColumnIndex(Pm_X.FRAMEDEFINITION);
-                // val idFnLexUnit = cursor.getColumnIndex(Pm_X.LEXUNIT);
-                // val idFnLuDefinition = cursor.getColumnIndex(Pm_X.LUDEFINITION);
-                // val idFnLuDict = cursor.getColumnIndex(Pm_X.LUDICT);
-                // val idFnFeAbbrev = cursor.getColumnIndex(Pm_X.FEABBREV);
-                // val idFnFeDefinition = cursor.getColumnIndex(Pm_X.FEDEFINITION);
+                // val idFnFrameDefinition = cursor.getColumnIndex(Pm_X.FRAMEDEFINITION)
+                // val idFnLexUnit = cursor.getColumnIndex(Pm_X.LEXUNIT)
+                // val idFnLuDefinition = cursor.getColumnIndex(Pm_X.LUDEFINITION)
+                // val idFnLuDict = cursor.getColumnIndex(Pm_X.LUDICT)
+                // val idFnFeAbbrev = cursor.getColumnIndex(Pm_X.FEABBREV)
+                // val idFnFeDefinition = cursor.getColumnIndex(Pm_X.FEDEFINITION)
 
                 // read cursor
                 do {
@@ -490,7 +490,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                     val pmPos = cursor.getString(idPmPos)
                     val pmRow = PmRow(pmId, pmPredicateId, pmRoleId, pmPredicate, pmRole, pmPos)
 
-                    // final String word = cursor.getString(idWord);
+                    // var word = cursor.getString(idWord)
                     val synsetId = cursor.getLong(idSynsetId)
                     val definition = cursor.getString(idDefinition)
                     val wnData = WnData(synsetId, definition)
@@ -822,7 +822,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
          */
         private fun displayPmRow(parent: TreeNode, pmRow: PmRow, wnData: WnData?, changedList: TreeOps): TreeNode {
             val pmsb = SpannableStringBuilder()
-            // rolesb.append("predicate role ");
+            // rolesb.append("predicate role ")
             if (pmRow.pmRole != null) {
                 val rowName = pmRow.toRoleString()
                 append(pmsb, rowName, 0, PredicateMatrixFactories.nameFactory)

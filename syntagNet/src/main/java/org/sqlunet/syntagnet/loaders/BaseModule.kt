@@ -163,9 +163,9 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
 
                 // sub nodes
                 //TODO more node
-                //final TreeNode moreNode = TreeFactory.makeLinkHotQueryNode("More", R.drawable.more, false, new MoreQuery(collocationId)).addTo(parent);
-                //final TreeNode more2Node = TreeFactory.makeQueryNode("More2", R.drawable.more2, false, new More2Query(collocationId)).addTo(parent);
-                //changed = TreeOp.seq(NEWMAIN, node, NEWEXTRA, moreNode, NEWEXTRA, more2Node, NEWTREE, parent);
+                //var moreNode = TreeFactory.makeLinkHotQueryNode("More", R.drawable.more, false, new MoreQuery(collocationId)).addTo(parent)
+                //var more2Node = TreeFactory.makeQueryNode("More2", R.drawable.more2, false, new More2Query(collocationId)).addTo(parent)
+                //changed = TreeOp.seq(NEWMAIN, node, NEWEXTRA, moreNode, NEWEXTRA, more2Node, NEWTREE, parent)
             } while (cursor.moveToNext())
             changed = changedList.toArray()
         } else {

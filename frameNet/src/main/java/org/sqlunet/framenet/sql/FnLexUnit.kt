@@ -55,7 +55,7 @@ class FnLexUnit private constructor(
             FnLexUnitQuery(connection, luId).use { query ->
                 query.execute()
                 if (query.next()) {
-                    // final long luId = query.getLuId();
+                    // var luId = query.getLuId()
                     val lexUnit = query.lexUnit
                     val pos = query.pos
                     val definition = query.definition

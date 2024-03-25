@@ -178,7 +178,7 @@ class SetupActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
         menuInflater.inflate(R.menu.status, menu)
         menuInflater.inflate(R.menu.setup_file, menu)
         menuInflater.inflate(R.menu.setup_database, menu)
-        // MenuCompat.setGroupDividerEnabled(menu, true);
+        // MenuCompat.setGroupDividerEnabled(menu, true)
         return true
     }
 

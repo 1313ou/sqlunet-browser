@@ -149,7 +149,7 @@ class BrowseFragment : BaseSearchFragment() {
             // search for string
             args.putString(ProviderArgs.ARG_QUERYSTRING, trimmedQuery)
 
-            //targetIntent = makeSelectorIntent();
+            //targetIntent = makeSelectorIntent()
             fragment = makeOverviewFragment()
         }
 

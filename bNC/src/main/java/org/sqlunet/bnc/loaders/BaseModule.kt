@@ -124,7 +124,7 @@ class BaseModule(fragment: TreeFragment) : Module(fragment) {
         val changed: Array<TreeOp>
         val sb = SpannableStringBuilder()
         // if (cursor.getCount() > 1)
-        // throw RuntimeException("Unexpected number of rows");
+        // throw RuntimeException("Unexpected number of rows")
         if (cursor.moveToFirst()) {
             val idPos = cursor.getColumnIndexOrThrow(Words_BNCs.POSID)
             val idFreq = cursor.getColumnIndexOrThrow(Words_BNCs.FREQ)

@@ -75,7 +75,7 @@ abstract class BaseListFragment : ListFragment() {
         val selection = args.getString(ProviderArgs.ARG_QUERYFILTER)
         val queryArg = args.getString(ProviderArgs.ARG_QUERYARG)
         val layoutId = args.getInt(ProviderArgs.ARG_QUERYLAYOUT)
-        //final String database = args.getString(ProviderArgs.ARG_QUERYDATABASE);
+        // var database = args.getString(ProviderArgs.ARG_QUERYDATABASE)
 
         // adapter set up
         // from (database column names)

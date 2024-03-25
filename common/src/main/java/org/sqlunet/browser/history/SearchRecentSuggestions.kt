@@ -27,7 +27,7 @@ class SearchRecentSuggestions(context: Context, mode: Int) {
     object SuggestionColumns : BaseColumns {
         const val DISPLAY1 = "display1"
 
-        // const val DISPLAY2 = "display2";
+        // const val DISPLAY2 = "display2"
         // const val QUERY = "query"
         const val DATE = "date"
     }

@@ -247,7 +247,7 @@ object StorageUtils {
         val manager = context.getSystemService(Context.USER_SERVICE) as UserManager
         val user = Process.myUserHandle()
         val userSerialNumber = manager.getSerialNumberForUser(user)
-        // Log.d("USER", "userSerialNumber = " + userSerialNumber);
+        // Log.d("USER", "userSerialNumber = " + userSerialNumber)
         return userSerialNumber.toString()
     }
 

@@ -32,7 +32,7 @@ object LogUtils {
     fun writeLog(text: CharSequence?, append: Boolean, context: Context, fileName: String?): String? {
         val storage = context.cacheDir
         val logFile = File(storage, fileName ?: "sqlunet.log")
-        // Log.d(TAG, "log " + logFile.getAbsolutePath());
+        // Log.d(TAG, "log " + logFile.getAbsolutePath())
         try {
             logFile.createNewFile()
         } catch (e: IOException) {

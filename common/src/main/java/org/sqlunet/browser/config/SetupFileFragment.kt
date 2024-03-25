@@ -292,12 +292,12 @@ class SetupFileFragment : BaseTaskFragment() {
         val free = getFree(context, database)
         val databaseExists = File(database).exists()
         /*
-		String fromPath = Settings.getCachePref(context);
-		boolean sourceExists = false;
+		String fromPath = Settings.getCachePref(context)
+		boolean sourceExists = false
 		if (fromPath != null)
 		{
-			fromPath += File.separatorChar + Storage.DBFILE;
-			sourceExists = new File(fromPath).exists();
+			fromPath += File.separatorChar + Storage.DBFILE
+			sourceExists = new File(fromPath).exists()
 		}
 		 */
         val sb = SpannableStringBuilder()
@@ -330,12 +330,12 @@ class SetupFileFragment : BaseTaskFragment() {
         val free = getFree(context, database)
         val databaseExists = File(database).exists()
         /*
-		String fromPath = Settings.getCachePref(context);
-		boolean sourceExists = false;
+		String fromPath = Settings.getCachePref(context)
+		boolean sourceExists = false
 		if (fromPath != null)
 		{
-			fromPath += File.separatorChar + Storage.DBFILEZIP;
-			sourceExists = new File(fromPath).exists();
+			fromPath += File.separatorChar + Storage.DBFILEZIP
+			sourceExists = new File(fromPath).exists()
 		}
 		*/
         val sb = SpannableStringBuilder()
@@ -435,7 +435,6 @@ class SetupFileFragment : BaseTaskFragment() {
     }
 
     companion object {
-        //static private final String TAG = "SetupFileF";
         const val ARG = "operation"
     }
 }

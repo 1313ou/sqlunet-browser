@@ -402,12 +402,12 @@ object StorageReports {
             }
             sb.append(toStyledString(context, dir))
             sb.append(' ')
-            //sb.append(styledFitsIn(dir));
-            //sb.append(' ');
+            //sb.append(styledFitsIn(dir))
+            //sb.append(' ')
             //if (dir.fitsIn())
             run {
-                //sb.append('|');
-                //sb.append(' ');
+                //sb.append('|')
+                //sb.append(' ')
                 sb.append(styledStatus(dir))
             }
         }

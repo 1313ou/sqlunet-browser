@@ -104,7 +104,7 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>, OnIte
 
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menuInflater.inflate(R.menu.history, menu)
-                // MenuCompat.setGroupDividerEnabled(menu, true);
+                // MenuCompat.setGroupDividerEnabled(menu, true)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
