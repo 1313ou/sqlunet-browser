@@ -1,170 +1,145 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.browser.vn
 
-package org.sqlunet.browser.vn;
-
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-
-import org.sqlunet.browser.ColorUtils;
-import org.sqlunet.browser.Info;
-import org.sqlunet.browser.config.SetupDatabaseActivity;
-import org.sqlunet.browser.config.SetupDatabaseFragment;
-import org.sqlunet.browser.config.Utils;
-import org.sqlunet.settings.StorageSettings;
-import org.sqlunet.settings.StorageUtils;
-
-import java.io.File;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.widget.ImageViewCompat;
+import android.app.Activity
+import android.content.Intent
+import android.graphics.PorterDuff
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.ImageButton
+import android.widget.ImageView
+import androidx.core.widget.ImageViewCompat
+import com.bbou.download.preference.Settings
+import com.bbou.download.preference.Settings.Mode.Companion.getModePref
+import org.sqlunet.browser.ColorUtils.getDrawable
+import org.sqlunet.browser.Info.info
+import org.sqlunet.browser.config.SetupDatabaseActivity
+import org.sqlunet.browser.config.SetupDatabaseFragment
+import org.sqlunet.browser.config.SetupStatusFragment
+import org.sqlunet.browser.config.Utils.hrSize
+import org.sqlunet.browser.vn.Status.status
+import org.sqlunet.browser.vn.Status.toString
+import org.sqlunet.settings.StorageSettings.getDatabasePath
+import org.sqlunet.settings.StorageSettings.getDbDownloadSourcePath
+import org.sqlunet.settings.StorageUtils.countToStorageString
+import org.sqlunet.settings.StorageUtils.getFree
+import java.io.File
 
 /**
  * Setup Status fragment
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class SetupVnStatusFragment extends org.sqlunet.browser.config.SetupStatusFragment
-{
-	static private final String TAG = "SetupStatusF";
+class SetupVnStatusFragment : SetupStatusFragment() {
 
-	// components
+    // components
+    private var imageTextSearchVn: ImageView? = null
+    private var imageTextSearchPb: ImageView? = null
+    private var buttonTextSearchVn: ImageButton? = null
+    private var buttonTextSearchPb: ImageButton? = null
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-	private ImageView imageTextSearchVn;
+        // images
+        imageTextSearchVn = view.findViewById(R.id.status_searchtext_vn)
+        imageTextSearchPb = view.findViewById(R.id.status_searchtext_pb)
 
-	private ImageView imageTextSearchPb;
+        // buttons
+        buttonTextSearchVn = view.findViewById(R.id.searchtextVnButton)
+        buttonTextSearchPb = view.findViewById(R.id.searchtextPbButton)
 
-	private ImageButton buttonTextSearchVn;
+        // click listeners
+        buttonDb!!.setOnClickListener { download() }
+        buttonIndexes!!.setOnClickListener { index() }
+        infoDatabaseButton!!.setOnClickListener { info() }
+        buttonTextSearchVn!!.setOnClickListener {
+            val index = resources.getInteger(R.integer.sql_statement_do_ts_vn_position)
+            val intent = Intent(requireContext(), SetupDatabaseActivity::class.java)
+            intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index)
+            startActivity(intent)
+        }
+        buttonTextSearchPb!!.setOnClickListener {
+            val index = resources.getInteger(R.integer.sql_statement_do_ts_pb_position)
+            val intent = Intent(requireContext(), SetupDatabaseActivity::class.java)
+            intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index)
+            startActivity(intent)
+        }
+        infoDatabaseButton!!.setOnClickListener {
+            val activity: Activity = requireActivity()
+            val database = getDatabasePath(activity)
+            val free = getFree(activity, database)
+            val mode = getModePref(activity)
+            val source = getDbDownloadSourcePath(activity, mode == Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Settings.Mode.DOWNLOAD_ZIP)
+            val status = status(activity)
+            val existsDb = status and org.sqlunet.browser.config.Status.EXISTS != 0
+            val existsTables = status and org.sqlunet.browser.config.Status.EXISTS_TABLES != 0
+            if (existsDb) {
+                val size = File(database).length()
+                val hrSize = countToStorageString(size) + " (" + size + ')'
+                info(
+                    activity, R.string.title_status,  //
+                    getString(R.string.title_database), database,  //
+                    getString(R.string.title_status), getString(R.string.status_database_exists) + '-' + getString(if (existsTables) R.string.status_data_exists else R.string.status_data_not_exists),  //
+                    getString(R.string.title_free), free,  //
+                    getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, requireContext()),  //
+                    getString(R.string.size_expected) + ' ' + getString(R.string.text_search), hrSize(R.integer.size_searchtext, requireContext()),  //
+                    getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, requireContext()),  //
+                    getString(R.string.size_current), hrSize
+                )
+            } else {
+                info(
+                    activity, R.string.title_dialog_info_download,  //
+                    getString(R.string.title_operation), getString(R.string.info_op_download_database),  //
+                    getString(R.string.title_from), source,  //
+                    getString(R.string.title_database), database,  //
+                    getString(R.string.title_free), free,  //
+                    getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, requireContext()),  //
+                    getString(R.string.size_expected) + ' ' + getString(R.string.text_search), hrSize(R.integer.size_searchtext, requireContext()),  //
+                    getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, requireContext()),  //
+                    getString(R.string.title_status), getString(R.string.status_database_not_exists)
+                )
+            }
+        }
+    }
 
-	private ImageButton buttonTextSearchPb;
+    // U P D A T E
 
-	/**
-	 * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
-	 */
-	public SetupVnStatusFragment()
-	{
-	}
+    /**
+     * Update status
+     */
+    override fun update() {
+        super.update()
+        val context = context
+        if (context != null) {
+            val status = status(context)
+            Log.d(TAG, "Status: " + toString(status))
+            val existsDb = status and org.sqlunet.browser.config.Status.EXISTS != 0
+            val existsTables = status and org.sqlunet.browser.config.Status.EXISTS_TABLES != 0
+            if (existsDb && existsTables) {
+                // images
+                val okDrawable = getDrawable(context, R.drawable.ic_ok)
+                val failDrawable = getDrawable(context, R.drawable.ic_fail)
+                val existsTsVn = status and Status.EXISTS_TS_VN != 0
+                val existsTsPb = status and Status.EXISTS_TS_PB != 0
+                imageTextSearchVn!!.setImageDrawable(if (existsTsVn) okDrawable else failDrawable)
+                ImageViewCompat.setImageTintMode(imageTextSearchVn!!, if (existsTsPb) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
+                imageTextSearchPb!!.setImageDrawable(if (existsTsPb) okDrawable else failDrawable)
+                ImageViewCompat.setImageTintMode(imageTextSearchPb!!, if (existsTsPb) PorterDuff.Mode.SRC_IN else PorterDuff.Mode.DST)
+                buttonTextSearchVn!!.setVisibility(if (existsTsVn) View.GONE else View.VISIBLE)
+                buttonTextSearchPb!!.setVisibility(if (existsTsPb) View.GONE else View.VISIBLE)
+            } else {
+                buttonTextSearchVn!!.setVisibility(View.GONE)
+                imageTextSearchVn!!.setImageResource(R.drawable.ic_unknown)
+                buttonTextSearchPb!!.setVisibility(View.GONE)
+                imageTextSearchPb!!.setImageResource(R.drawable.ic_unknown)
+            }
+        }
+    }
 
-	@Override
-	public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view, savedInstanceState);
-
-		// images
-		this.imageTextSearchVn = view.findViewById(R.id.status_searchtext_vn);
-		this.imageTextSearchPb = view.findViewById(R.id.status_searchtext_pb);
-
-		// buttons
-		this.buttonTextSearchVn = view.findViewById(R.id.searchtextVnButton);
-		this.buttonTextSearchPb = view.findViewById(R.id.searchtextPbButton);
-
-		// click listeners
-		this.buttonDb.setOnClickListener(v -> download());
-		this.buttonIndexes.setOnClickListener(v -> index());
-		this.infoDatabaseButton.setOnClickListener(v -> info());
-		this.buttonTextSearchVn.setOnClickListener(v -> {
-
-			int index = getResources().getInteger(R.integer.sql_statement_do_ts_vn_position);
-			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
-			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-			startActivity(intent);
-		});
-		this.buttonTextSearchPb.setOnClickListener(v -> {
-
-			int index = getResources().getInteger(R.integer.sql_statement_do_ts_pb_position);
-			final Intent intent = new Intent(requireContext(), SetupDatabaseActivity.class);
-			intent.putExtra(SetupDatabaseFragment.ARG_POSITION, index);
-			startActivity(intent);
-		});
-
-		this.infoDatabaseButton.setOnClickListener(v -> {
-
-			final Activity activity = requireActivity();
-			final String database = StorageSettings.getDatabasePath(activity);
-			final String free = StorageUtils.getFree(activity, database);
-			final com.bbou.download.preference.Settings.Mode mode = com.bbou.download.preference.Settings.Mode.getModePref(activity);
-			final String source = StorageSettings.getDbDownloadSourcePath(activity, mode == com.bbou.download.preference.Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == com.bbou.download.preference.Settings.Mode.DOWNLOAD_ZIP);
-			final int status = Status.status(activity);
-			final boolean existsDb = (status & Status.EXISTS) != 0;
-			final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
-			if (existsDb)
-			{
-				final long size = new File(database).length();
-				final String hrSize = StorageUtils.countToStorageString(size) + " (" + size + ')';
-				Info.info(activity, R.string.title_status, //
-						getString(R.string.title_database), database, //
-						getString(R.string.title_status), getString(R.string.status_database_exists) + '-' + getString(existsTables ? R.string.status_data_exists : R.string.status_data_not_exists), //
-						getString(R.string.title_free), free, //
-						getString(R.string.size_expected), Utils.hrSize(R.integer.size_sqlunet_db, requireContext()), //
-						getString(R.string.size_expected) + ' ' + getString(R.string.text_search), Utils.hrSize(R.integer.size_searchtext, requireContext()), //
-						getString(R.string.size_expected) + ' ' + getString(R.string.total), Utils.hrSize(R.integer.size_db_working_total, requireContext()), //
-						getString(R.string.size_current), hrSize);
-			}
-			else
-			{
-				Info.info(activity, R.string.title_dialog_info_download, //
-						getString(R.string.title_operation), getString(R.string.info_op_download_database), //
-						getString(R.string.title_from), source, //
-						getString(R.string.title_database), database, //
-						getString(R.string.title_free), free, //
-						getString(R.string.size_expected), Utils.hrSize(R.integer.size_sqlunet_db, requireContext()), //
-						getString(R.string.size_expected) + ' ' + getString(R.string.text_search), Utils.hrSize(R.integer.size_searchtext, requireContext()), //
-						getString(R.string.size_expected) + ' ' + getString(R.string.total), Utils.hrSize(R.integer.size_db_working_total, requireContext()), //
-						getString(R.string.title_status), getString(R.string.status_database_not_exists));
-			}
-		});
-	}
-
-	// U P D A T E
-
-	/**
-	 * Update status
-	 */
-	@Override
-	public void update()
-	{
-		super.update();
-
-		final Context context = getContext();
-		if (context != null)
-		{
-			final int status = Status.status(context);
-			Log.d(TAG, "Status: " + Status.toString(status));
-
-			final boolean existsDb = (status & Status.EXISTS) != 0;
-			final boolean existsTables = (status & Status.EXISTS_TABLES) != 0;
-			if (existsDb && existsTables)
-			{
-				// images
-				final Drawable okDrawable = ColorUtils.getDrawable(context, R.drawable.ic_ok);
-				final Drawable failDrawable = ColorUtils.getDrawable(context, R.drawable.ic_fail);
-
-				final boolean existsTsVn = (status & Status.EXISTS_TS_VN) != 0;
-				final boolean existsTsPb = (status & Status.EXISTS_TS_PB) != 0;
-				this.imageTextSearchVn.setImageDrawable(existsTsVn ? okDrawable : failDrawable);
-				ImageViewCompat.setImageTintMode(this.imageTextSearchVn, existsTsPb ? PorterDuff.Mode.SRC_IN : PorterDuff.Mode.DST);
-				this.imageTextSearchPb.setImageDrawable(existsTsPb ? okDrawable : failDrawable);
-				ImageViewCompat.setImageTintMode(this.imageTextSearchPb, existsTsPb ? PorterDuff.Mode.SRC_IN : PorterDuff.Mode.DST);
-				this.buttonTextSearchVn.setVisibility(existsTsVn ? View.GONE : View.VISIBLE);
-				this.buttonTextSearchPb.setVisibility(existsTsPb ? View.GONE : View.VISIBLE);
-			}
-			else
-			{
-				this.buttonTextSearchVn.setVisibility(View.GONE);
-				this.imageTextSearchVn.setImageResource(R.drawable.ic_unknown);
-				this.buttonTextSearchPb.setVisibility(View.GONE);
-				this.imageTextSearchPb.setImageResource(R.drawable.ic_unknown);
-			}
-		}
-	}
+    companion object {
+        private const val TAG = "SetupStatusF"
+    }
 }

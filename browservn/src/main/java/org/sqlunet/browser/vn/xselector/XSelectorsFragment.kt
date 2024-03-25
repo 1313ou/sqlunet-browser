@@ -1,614 +1,405 @@
 /*
  * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
+package org.sqlunet.browser.vn.xselector
 
-package org.sqlunet.browser.vn.xselector;
-
-import android.content.Context;
-import android.database.Cursor;
-import android.database.MatrixCursor;
-import android.net.Uri;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
-import android.widget.CursorTreeAdapter;
-import android.widget.ExpandableListAdapter;
-import android.widget.ExpandableListView;
-import android.widget.SimpleCursorTreeAdapter;
-
-import org.sqlunet.browser.BaseSelectorsExpandableListFragment;
-import org.sqlunet.browser.Module;
-import org.sqlunet.browser.SqlunetViewModel;
-import org.sqlunet.browser.vn.R;
-import org.sqlunet.browser.vn.Settings;
-import org.sqlunet.loaders.Queries;
-import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.provider.XNetContract;
-import org.sqlunet.provider.XNetContract.Words_PbWords_VnWords;
-import org.sqlunet.provider.XNetContract.Words_XNet;
-import org.sqlunet.provider.XSqlUNetProvider;
-
-import java.util.Locale;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.ViewModelProvider;
+import android.content.Context
+import android.database.Cursor
+import android.database.MatrixCursor
+import android.net.Uri
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.AbsListView
+import android.widget.AdapterView
+import android.widget.CursorTreeAdapter
+import android.widget.ExpandableListAdapter
+import android.widget.ExpandableListView
+import android.widget.SimpleCursorTreeAdapter
+import androidx.lifecycle.ViewModelProvider
+import org.sqlunet.browser.BaseSelectorsExpandableListFragment
+import org.sqlunet.browser.SqlunetViewModel
+import org.sqlunet.browser.vn.R
+import org.sqlunet.browser.vn.Settings
+import org.sqlunet.browser.vn.Settings.getAllPref
+import org.sqlunet.browser.vn.xselector.XSelectorPointer.CREATOR.getMask
+import org.sqlunet.loaders.Queries.preparePbSelectVn
+import org.sqlunet.loaders.Queries.prepareVnXSelectVn
+import org.sqlunet.loaders.Queries.prepareWordXSelectVn
+import org.sqlunet.provider.ProviderArgs
+import org.sqlunet.provider.XNetContract.Words_PbWords_VnWords
+import org.sqlunet.provider.XNetContract.Words_XNet
+import org.sqlunet.provider.XSqlUNetProvider.Companion.makeUri
+import kotlin.math.floor
 
 /**
  * X selector fragment
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class XSelectorsFragment extends BaseSelectorsExpandableListFragment
-{
-	static private final String TAG = "XSelectorsF";
-
-	/**
-	 * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
-	 */
-	@FunctionalInterface
-	public interface Listener
-	{
-		/**
-		 * Callback for when an item has been selected.
-		 */
-		void onItemSelected(XSelectorPointer pointer, String word, String cased, String pronunciation, String pos);
-	}
-
-	/**
-	 * The (saved instance state) key representing the groups state.
-	 */
-	static private final String STATE_GROUPS = "groups_state";
-
-	/**
-	 * Activate on click flag
-	 */
-	private boolean activateOnItemClick = true;
-
-	/**
-	 * id column
-	 */
-	static private final String GROUPID_COLUMN = "_id";
-
-	/**
-	 * Name column
-	 */
-	static private final String GROUPNAME_COLUMN = "xn";
-
-	/**
-	 * Icon column
-	 */
-	static private final String GROUPICON_COLUMN = "xicon";
-
-	/**
-	 * First expanded group
-	 */
-	static public final int GROUP_POSITION_INITIAL = 0;
-
-	/**
-	 * VerbNet position index
-	 */
-	static public final int GROUPINDEX_VERBNET = 0;
-
-	/**
-	 * Propbank position index
-	 */
-	static public final int GROUPINDEX_PROPBANK = 1;
-
-	/**
-	 * VerbNet id for loader
-	 */
-	static public final int GROUPID_VERBNET = 2;
-
-	/**
-	 * Propbank id for loader
-	 */
-	static public final int GROUPID_PROPBANK = 3;
-
-	/**
-	 * Source fields for groups
-	 */
-	static private final String[] groupFrom = {GROUPNAME_COLUMN, GROUPICON_COLUMN,};
-
-	/**
-	 * Target resource for groups
-	 */
-	static private final int[] groupTo = {R.id.xn, R.id.xicon,};
-
-	/**
-	 * Source fields
-	 */
-	static private final int[] childTo = { //
-			R.id.wordid, //
-			R.id.synsetid, //
-			R.id.xid, //
-			R.id.xmemberid, //
-			R.id.xname, //
-			R.id.xheader, //
-			R.id.xinfo, //
-			R.id.xdefinition, //
-	};
-
-	/**
-	 * Target resource
-	 */
-	static private final String[] childFrom = {Words_XNet.WORDID, //
-			Words_XNet.SYNSETID, //
-			Words_XNet.XID, //
-			Words_XNet.XMEMBERID, //
-			Words_XNet.XNAME, //
-			Words_XNet.XHEADER, //
-			Words_XNet.XINFO, //
-			Words_XNet.XDEFINITION,};
-
-	/**
-	 * Group positions
-	 */
-	private int[] groupPositions;
-
-	/**
-	 * The current restored group state.
-	 */
-	@Nullable
-	private Integer restoredGroupState;
-
-	/**
-	 * The fragment's current callback object, which is notified of list item clicks.
-	 */
-	private Listener listener;
-
-	/**
-	 * Search query
-	 */
-	@Nullable
-	private String word;
-
-	/**
-	 * Word id
-	 */
-	private long wordId;
-
-	/**
-	 * Id view model
-	 */
-	private SqlunetViewModel wordIdFromWordModel;
-
-	/**
-	 * VerbNet model
-	 */
-	private SqlunetViewModel vnFromWordIdModel;
-
-	/**
-	 * PropBank model
-	 */
-	private SqlunetViewModel pbFromWordIdModel;
-
-	// L I F E C Y C L E
-
-	// --activate--
-
-	@Override
-	public void onCreate(final Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-
-		// arguments
-		Bundle args = getArguments();
-		assert args != null;
-
-		// target word
-		String query = args.getString(ProviderArgs.ARG_QUERYSTRING);
-		if (query != null)
-		{
-			query = query.trim().toLowerCase(Locale.ENGLISH);
-		}
-		this.word = query;
-		this.wordId = 0;
-	}
-
-	@Override
-	public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, @Nullable final Bundle savedInstanceState)
-	{
-		super.onCreateView(inflater, container, savedInstanceState);
-
-		return inflater.inflate(R.layout.fragment_xselectors, container, false);
-	}
-
-	@Override
-	public void onViewCreated(@NonNull final View view0, @Nullable final Bundle savedInstanceState)
-	{
-		super.onViewCreated(view0, savedInstanceState);
-
-		// when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
-		final ExpandableListView view = getListView();
-		assert view != null;
-		view.setChoiceMode(this.activateOnItemClick ? AbsListView.CHOICE_MODE_SINGLE : AbsListView.CHOICE_MODE_NONE);
-
-		// data view models
-		makeModels();
-
-		// adapter
-		final ExpandableListAdapter adapter = makeAdapter();
-		setListAdapter(adapter);
-	}
-
-	@Override
-	public void onStart()
-	{
-		super.onStart();
-
-		// load the contents
-		// final MutableLiveData<Cursor> idLiveData = wordIdFromWordModel.getMutableData();
-		// final Cursor idCursor = idLiveData.getValue();
-		// if (idCursor != null && !idCursor.isClosed())
-		// {
-		//		idLiveData.setValue(idCursor);
-		// }
-		// else
-		load();
-	}
-
-	@Override
-	public void onSaveInstanceState(@NonNull final Bundle outState)
-	{
-		super.onSaveInstanceState(outState);
-
-		// serialize and persist the activated group state
-		final ExpandableListView expandableListView = getExpandableListView();
-		if (expandableListView != null)
-		{
-			final ExpandableListAdapter adapter = getListAdapter();
-			if (adapter != null)
-			{
-				int groupCount = adapter.getGroupCount();
-				int groupState = 0;
-				for (int i = 0; i < groupCount; i++)
-				{
-					if (expandableListView.isGroupExpanded(i))
-					{
-						groupState |= (1 << i);
-					}
-				}
-				outState.putInt(STATE_GROUPS, groupState);
-				Log.d(TAG, "Saved group states " + Integer.toHexString(groupState) + " " + this);
-			}
-		}
-	}
-
-	@Override
-	public void onViewStateRestored(@Nullable Bundle savedInstanceState)
-	{
-		super.onViewStateRestored(savedInstanceState);
-
-		this.restoredGroupState = savedInstanceState != null ? savedInstanceState.getInt(STATE_GROUPS) : null;
-	}
-
-	// A D A P T E R
-
-	/**
-	 * Make adapter
-	 */
-	@NonNull
-	private ExpandableListAdapter makeAdapter()
-	{
-		// group cursor populated
-		Log.d(TAG, "make group cursor");
-		final MatrixCursor groupCursor = new MatrixCursor(new String[]{GROUPID_COLUMN, GROUPNAME_COLUMN, GROUPICON_COLUMN});
-		this.groupPositions = populateGroupCursor(requireContext(), groupCursor);
-		groupCursor.moveToFirst();
-
-		// adapter
-		Log.d(TAG, "Make adapter");
-		return new SimpleCursorTreeAdapter(requireContext(), groupCursor, R.layout.item_group_xselector, groupFrom, groupTo, R.layout.item_xselector, childFrom, childTo)
-		{
-			@Nullable
-			@Override
-			protected Cursor getChildrenCursor(@NonNull Cursor groupCursor)
-			{
-				// given the group, return a cursor for all the children within that group
-				String groupName = groupCursor.getString(groupCursor.getColumnIndexOrThrow(GROUPNAME_COLUMN));
-				Log.d(TAG, "getChildrenCursor(cursor) groupName= " + groupName);
-
-				// get cursor
-				Cursor cursor;
-				switch (groupName)
-				{
-					case "verbnet":
-						cursor = vnFromWordIdModel.getData().getValue();
-						break;
-					case "propbank":
-						cursor = pbFromWordIdModel.getData().getValue();
-						break;
-					default:
-						throw new IllegalArgumentException("Illegal group name " + groupName);
-				}
-				if (cursor != null && !cursor.isClosed())
-				{
-					return cursor;
-				}
-
-				// load
-				int groupId = groupCursor.getInt(groupCursor.getColumnIndexOrThrow(GROUPID_COLUMN));
-				Log.d(TAG, "getChildrenCursor(cursor) groupId=" + groupId);
-				startChildLoader(groupId);
-				return null; // set later when loader completes
-			}
-
-			@Override
-			public void onGroupCollapsed(final int groupPosition)
-			{
-				// super.onGroupCollapsed(groupPosition);
-				// prevent from deactivating cursor
-			}
-
-			@Override
-			public boolean isChildSelectable(int groupPosition, int childPosition)
-			{
-				return true;
-			}
-
-			@Nullable
-			@Override
-			public View getGroupView(final int groupPosition, final boolean isExpanded, final View convertView, final ViewGroup parent)
-			{
-				Cursor cursor = this.getCursor();
-				if (cursor == null)
-				{
-					return null;
-				}
-				return super.getGroupView(groupPosition, isExpanded, convertView, parent);
-			}
-		};
-	}
-
-	/**
-	 * Populate group cursor. Requires context to be available
-	 */
-	@NonNull
-	private static int[] populateGroupCursor(@NonNull final Context context, @NonNull final MatrixCursor cursor)
-	{
-		// fill groups
-		int position = 0;
-		int enable = Settings.getAllPref(context);
-
-		int[] groupPositions = new int[]{AdapterView.INVALID_POSITION, AdapterView.INVALID_POSITION};
-		if (Settings.Source.VERBNET.test(enable))
-		{
-			groupPositions[GROUPINDEX_VERBNET] = position++;
-			cursor.addRow(new Object[]{GROUPID_VERBNET, "verbnet", Integer.toString(R.drawable.verbnet)});
-		}
-		if (Settings.Source.PROPBANK.test(enable))
-		{
-			//noinspection UnusedAssignment
-			groupPositions[GROUPINDEX_PROPBANK] = position++;
-			cursor.addRow(new Object[]{GROUPID_PROPBANK, "propbank", Integer.toString(R.drawable.propbank)});
-		}
-		return groupPositions;
-	}
-
-	/**
-	 * Initialize groups
-	 */
-	private void initializeGroups()
-	{
-		// expand (triggers data loading)
-		Log.d(TAG, "expand group " + GROUP_POSITION_INITIAL + " " + this);
-		expand(GROUP_POSITION_INITIAL);
-	}
-
-	/**
-	 * Restore groups
-	 */
-	public void restoreGroups(@Nullable Integer groupState)
-	{
-		if (groupState == null || getListAdapter() == null)
-		{
-			return;
-		}
-		// final Handler handler = new Handler(Looper.getMainLooper());
-		Log.d(TAG, "Restore saved position " + Integer.toHexString(groupState) + " " + this);
-		int groupCount = getListAdapter().getGroupCount();
-		for (int i = 0; i < groupCount; i++)
-		{
-			if ((groupState & (1 << i)) != 0)
-			{
-				expand(i);
-
-				//int groupPosition = i;
-				//requireActivity().runOnUiThread(() -> expand(finalI));
-				//handler.postDelayed(() -> expand(groupPosition), 1500);
-			}
-		}
-	}
-
-	// V I E W M O D E L S
-
-	/**
-	 * Make view models
-	 */
-	private void makeModels()
-	{
-		Log.d(TAG, "Make models");
-
-		final LifecycleOwner owner = getViewLifecycleOwner();
-		this.wordIdFromWordModel = new ViewModelProvider(this).get("vn:xselectors.wordid(word)", SqlunetViewModel.class);
-		this.wordIdFromWordModel.getData().observe(owner, cursor -> {
-
-			if (cursor != null && !cursor.isClosed())
-			{
-				cursor.close();
-			}
-
-			this.wordIdFromWordModel.getData().removeObservers(this);
-
-			final ExpandableListAdapter adapter = makeAdapter();
-			setListAdapter(adapter);
-
-			if (this.restoredGroupState != null)
-			{
-				restoreGroups(this.restoredGroupState);
-			}
-			else
-			{
-				initializeGroups();
-			}
-		});
-
-		this.vnFromWordIdModel = new ViewModelProvider(this).get("vn:xselectors.vn(wordid)", SqlunetViewModel.class);
-		this.vnFromWordIdModel.getData().observe(owner, cursor -> {
-
-			if (cursor != null && this.vnFromWordIdModel.getData().hasActiveObservers())
-			{
-				// CursorDump.dumpXCursor(cursor);
-
-				// pass on to list adapter
-				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
-				if (adapter != null && this.groupPositions[GROUPINDEX_VERBNET] != AdapterView.INVALID_POSITION)
-				{
-					adapter.setChildrenCursor(this.groupPositions[GROUPINDEX_VERBNET], cursor);
-				}
-			}
-			else
-			{
-				Log.i(TAG, "VN none");
-			}
-		});
-
-		this.pbFromWordIdModel = new ViewModelProvider(this).get("vn:xselectors.pb(wordid)", SqlunetViewModel.class);
-		this.pbFromWordIdModel.getData().observe(owner, cursor -> {
-
-			if (cursor != null && this.pbFromWordIdModel.getData().hasActiveObservers())
-			{
-				// CursorDump.dumpXCursor(cursor);
-
-				// pass on to list adapter
-				final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
-				if (adapter != null && this.groupPositions[GROUPINDEX_PROPBANK] != AdapterView.INVALID_POSITION)
-				{
-					adapter.setChildrenCursor(this.groupPositions[GROUPINDEX_PROPBANK], cursor);
-				}
-			}
-			else
-			{
-				Log.i(TAG, "PB none");
-			}
-		});
-	}
-
-	// L O A D
-
-	/**
-	 * Load id from word
-	 */
-	private void load()
-	{
-		// load the contents
-		final Module.ContentProviderSql sql = Queries.prepareWordXSelectVn(XSelectorsFragment.this.word);
-		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(sql.providerUri));
-		this.wordIdFromWordModel.loadData(uri, sql, this::wordIdFromWordPostProcess);
-	}
-
-	/**
-	 * Post processing, extraction of wordid from cursor
-	 * Closes cursor because it's no longer needed.
-	 *
-	 * @param cursor cursor
-	 */
-	private void wordIdFromWordPostProcess(@NonNull final Cursor cursor)
-	{
-		if (cursor.moveToFirst())
-		{
-			final int idWordId = cursor.getColumnIndex(Words_PbWords_VnWords.WORDID);
-			this.wordId = cursor.getLong(idWordId);
-		}
-	}
-
-	/**
-	 * Start child loader for
-	 *
-	 * @param groupId group id
-	 */
-	private void startChildLoader(int groupId)
-	{
-		Log.d(TAG, "Invoking startChildLoader() for groupId=" + groupId);
-		switch (groupId)
-		{
-			case GROUPID_VERBNET:
-			{
-				//	final MutableLiveData<Cursor> vnLiveData = this.vnFromWordIdModel.getMutableData();
-				//	final Cursor vnCursor = vnLiveData.getValue();
-				//	if (vnCursor != null && !vnCursor.isClosed())
-				//	{
-				//		vnLiveData.setValue(vnCursor);
-				//	}
-				//	else
-				loadVn(this.wordId);
-			}
-			break;
-
-			case GROUPID_PROPBANK:
-			{
-				//	final MutableLiveData<Cursor> pbLiveData = this.pbFromWordIdModel.getMutableData();
-				//	final Cursor pbCursor = pbLiveData.getValue();
-				//	if (pbCursor != null && !pbCursor.isClosed())
-				//	{
-				//		pbLiveData.setValue(pbCursor);
-				//	}
-				//	else
-				loadPb(this.wordId);
-			}
-			break;
-
-			default:
-				break;
-		}
-	}
-
-	/**
-	 * Load VerbNet data
-	 *
-	 * @param wordId word id
-	 */
-	private void loadVn(final long wordId)
-	{
-		final Module.ContentProviderSql sql = Queries.prepareVnXSelectVn(wordId);
-		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(sql.providerUri));
-		this.vnFromWordIdModel.loadData(uri, sql, null);
-	}
-
-	/**
-	 * Load PropBank data
-	 *
-	 * @param wordId word id
-	 */
-	private void loadPb(final long wordId)
-	{
-		final Module.ContentProviderSql sql = Queries.preparePbSelectVn(wordId);
-		final Uri uri = Uri.parse(XSqlUNetProvider.makeUri(sql.providerUri));
-		this.pbFromWordIdModel.loadData(uri, sql, null);
-	}
-
-	// L I S T E N E R
-
-	/**
-	 * Set listener
-	 *
-	 * @param listener listener
-	 */
-	@SuppressWarnings("WeakerAccess")
-	public void setListener(final Listener listener)
-	{
-		this.listener = listener;
-	}
-
-	// S E L E C T I O N   L I S T E N E R
-
-	/*
+class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
+
+    /**
+     * A callback interface that all activities containing this fragment must implement. This mechanism allows activities to be notified of item selections.
+     */
+    fun interface Listener {
+        /**
+         * Callback for when an item has been selected.
+         */
+        fun onItemSelected(pointer: XSelectorPointer?, word: String?, cased: String?, pronunciation: String?, pos: String?)
+    }
+
+    /**
+     * Activate on click flag
+     */
+    private var activateOnItemClick = true
+
+    /**
+     * Group positions
+     */
+    private lateinit var groupPositions: IntArray
+
+    /**
+     * The current restored group state.
+     */
+    private var restoredGroupState: Int? = null
+
+    /**
+     * The fragment's current callback object, which is notified of list item clicks.
+     */
+    private var listener: Listener? = null
+
+    /**
+     * Search query
+     */
+    private var word: String? = null
+
+    /**
+     * Word id
+     */
+    private var wordId: Long = 0
+
+    /**
+     * Id view model
+     */
+    private var wordIdFromWordModel: SqlunetViewModel? = null
+
+    /**
+     * VerbNet model
+     */
+    private var vnFromWordIdModel: SqlunetViewModel? = null
+
+    /**
+     * PropBank model
+     */
+    private var pbFromWordIdModel: SqlunetViewModel? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // arguments
+        val args = requireArguments()
+
+        // target word
+        var query = args.getString(ProviderArgs.ARG_QUERYSTRING)
+        if (query != null) {
+            query = query.trim { it <= ' ' }.lowercase()
+        }
+        word = query
+        wordId = 0
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
+        return inflater.inflate(R.layout.fragment_xselectors, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // when setting CHOICE_MODE_SINGLE, ListView will automatically give items the 'activated' state when touched.
+        listView!!.setChoiceMode(if (activateOnItemClick) AbsListView.CHOICE_MODE_SINGLE else AbsListView.CHOICE_MODE_NONE)
+
+        // data view models
+        makeModels()
+
+        // adapter
+        val adapter = makeAdapter()
+        listAdapter = adapter
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        // load the contents
+        // final MutableLiveData<Cursor> idLiveData = wordIdFromWordModel.getMutableData();
+        // final Cursor idCursor = idLiveData.getValue();
+        // if (idCursor != null && !idCursor.isClosed())
+        // {
+        //		idLiveData.setValue(idCursor);
+        // }
+        // else
+        load()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        // serialize and persist the activated group state
+        val expandableListView = expandableListView
+        if (expandableListView != null) {
+            val adapter = listAdapter
+            if (adapter != null) {
+                val groupCount = adapter.groupCount
+                var groupState = 0
+                for (i in 0 until groupCount) {
+                    if (expandableListView.isGroupExpanded(i)) {
+                        groupState = groupState or (1 shl i)
+                    }
+                }
+                outState.putInt(STATE_GROUPS, groupState)
+                Log.d(TAG, "Saved group states " + Integer.toHexString(groupState) + " " + this)
+            }
+        }
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        restoredGroupState = savedInstanceState?.getInt(STATE_GROUPS)
+    }
+
+    // A D A P T E R
+
+    /**
+     * Make adapter
+     */
+    private fun makeAdapter(): ExpandableListAdapter {
+        // group cursor populated
+        Log.d(TAG, "make group cursor")
+        val groupCursor = MatrixCursor(arrayOf(GROUPID_COLUMN, GROUPNAME_COLUMN, GROUPICON_COLUMN))
+        groupPositions = populateGroupCursor(requireContext(), groupCursor)
+        groupCursor.moveToFirst()
+
+        // adapter
+        Log.d(TAG, "Make adapter")
+        return object : SimpleCursorTreeAdapter(requireContext(), groupCursor, R.layout.item_group_xselector, groupFrom, groupTo, R.layout.item_xselector, childFrom, childTo) {
+            override fun getChildrenCursor(groupCursor: Cursor): Cursor? {
+                // given the group, return a cursor for all the children within that group
+                val groupName = groupCursor.getString(groupCursor.getColumnIndexOrThrow(GROUPNAME_COLUMN))
+                Log.d(TAG, "getChildrenCursor(cursor) groupName= $groupName")
+
+                // get cursor
+                val cursor: Cursor? = when (groupName) {
+                    "verbnet" -> vnFromWordIdModel!!.getData().getValue()
+                    "propbank" -> pbFromWordIdModel!!.getData().getValue()
+                    else -> throw IllegalArgumentException("Illegal group name $groupName")
+                }
+                if (cursor != null && !cursor.isClosed) {
+                    return cursor
+                }
+
+                // load
+                val groupId = groupCursor.getInt(groupCursor.getColumnIndexOrThrow(GROUPID_COLUMN))
+                Log.d(TAG, "getChildrenCursor(cursor) groupId=$groupId")
+                startChildLoader(groupId)
+                return null // set later when loader completes
+            }
+
+            override fun onGroupCollapsed(groupPosition: Int) {
+                // super.onGroupCollapsed(groupPosition);
+                // prevent from deactivating cursor
+            }
+
+            override fun isChildSelectable(groupPosition: Int, childPosition: Int): Boolean {
+                return true
+            }
+
+            override fun getGroupView(groupPosition: Int, isExpanded: Boolean, convertView: View, parent: ViewGroup): View? {
+                this.cursor ?: return null
+                return super.getGroupView(groupPosition, isExpanded, convertView, parent)
+            }
+        }
+    }
+
+    /**
+     * Initialize groups
+     */
+    private fun initializeGroups() {
+        // expand (triggers data loading)
+        Log.d(TAG, "expand group $GROUP_POSITION_INITIAL $this")
+        expand(GROUP_POSITION_INITIAL)
+    }
+
+    /**
+     * Restore groups
+     */
+    private fun restoreGroups(groupState: Int?) {
+        if (groupState == null || listAdapter == null) {
+            return
+        }
+        // final Handler handler = new Handler(Looper.getMainLooper());
+        Log.d(TAG, "Restore saved position " + Integer.toHexString(groupState) + " " + this)
+        val groupCount = listAdapter!!.groupCount
+        for (i in 0 until groupCount) {
+            if (groupState and (1 shl i) != 0) {
+                expand(i)
+
+                //int groupPosition = i;
+                //requireActivity().runOnUiThread(() -> expand(finalI));
+                //handler.postDelayed(() -> expand(groupPosition), 1500);
+            }
+        }
+    }
+
+    // V I E W M O D E L S
+
+    /**
+     * Make view models
+     */
+    private fun makeModels() {
+        Log.d(TAG, "Make models")
+        val owner = getViewLifecycleOwner()
+        wordIdFromWordModel = ViewModelProvider(this)["vn:xselectors.wordid(word)", SqlunetViewModel::class.java]
+        wordIdFromWordModel!!.getData().observe(owner) { cursor: Cursor? ->
+            if (cursor != null && !cursor.isClosed) {
+                cursor.close()
+            }
+            wordIdFromWordModel!!.getData().removeObservers(this)
+            val adapter = makeAdapter()
+            listAdapter = adapter
+            if (restoredGroupState != null) {
+                restoreGroups(restoredGroupState)
+            } else {
+                initializeGroups()
+            }
+        }
+        vnFromWordIdModel = ViewModelProvider(this)["vn:xselectors.vn(wordid)", SqlunetViewModel::class.java]
+        vnFromWordIdModel!!.getData().observe(owner) { cursor: Cursor? ->
+            if (cursor != null && vnFromWordIdModel!!.getData().hasActiveObservers()) {
+                // CursorDump.dumpXCursor(cursor);
+
+                // pass on to list adapter
+                val adapter = listAdapter as CursorTreeAdapter?
+                if (adapter != null && groupPositions[GROUPINDEX_VERBNET] != AdapterView.INVALID_POSITION) {
+                    adapter.setChildrenCursor(groupPositions[GROUPINDEX_VERBNET], cursor)
+                }
+            } else {
+                Log.i(TAG, "VN none")
+            }
+        }
+        pbFromWordIdModel = ViewModelProvider(this)["vn:xselectors.pb(wordid)", SqlunetViewModel::class.java]
+        pbFromWordIdModel!!.getData().observe(owner) { cursor: Cursor? ->
+            if (cursor != null && pbFromWordIdModel!!.getData().hasActiveObservers()) {
+                // CursorDump.dumpXCursor(cursor);
+
+                // pass on to list adapter
+                val adapter = listAdapter as CursorTreeAdapter?
+                if (adapter != null && groupPositions[GROUPINDEX_PROPBANK] != AdapterView.INVALID_POSITION) {
+                    adapter.setChildrenCursor(groupPositions[GROUPINDEX_PROPBANK], cursor)
+                }
+            } else {
+                Log.i(TAG, "PB none")
+            }
+        }
+    }
+
+    // L O A D
+
+    /**
+     * Load id from word
+     */
+    private fun load() {
+        // load the contents
+        val sql = prepareWordXSelectVn(word!!)
+        val uri = Uri.parse(makeUri(sql.providerUri))
+        wordIdFromWordModel!!.loadData(uri, sql) { cursor: Cursor -> wordIdFromWordPostProcess(cursor) }
+    }
+
+    /**
+     * Post processing, extraction of wordid from cursor
+     * Closes cursor because it's no longer needed.
+     *
+     * @param cursor cursor
+     */
+    private fun wordIdFromWordPostProcess(cursor: Cursor) {
+        if (cursor.moveToFirst()) {
+            val idWordId = cursor.getColumnIndex(Words_PbWords_VnWords.WORDID)
+            wordId = cursor.getLong(idWordId)
+        }
+    }
+
+    /**
+     * Start child loader for
+     *
+     * @param groupId group id
+     */
+    private fun startChildLoader(groupId: Int) {
+        Log.d(TAG, "Invoking startChildLoader() for groupId=$groupId")
+        when (groupId) {
+            GROUPID_VERBNET -> {
+
+                //	final MutableLiveData<Cursor> vnLiveData = this.vnFromWordIdModel.getMutableData();
+                //	final Cursor vnCursor = vnLiveData.getValue();
+                //	if (vnCursor != null && !vnCursor.isClosed())
+                //	{
+                //		vnLiveData.setValue(vnCursor);
+                //	}
+                //	else
+                loadVn(wordId)
+            }
+
+            GROUPID_PROPBANK -> {
+
+                //	final MutableLiveData<Cursor> pbLiveData = this.pbFromWordIdModel.getMutableData();
+                //	final Cursor pbCursor = pbLiveData.getValue();
+                //	if (pbCursor != null && !pbCursor.isClosed())
+                //	{
+                //		pbLiveData.setValue(pbCursor);
+                //	}
+                //	else
+                loadPb(wordId)
+            }
+
+            else -> {}
+        }
+    }
+
+    /**
+     * Load VerbNet data
+     *
+     * @param wordId word id
+     */
+    private fun loadVn(wordId: Long) {
+        val sql = prepareVnXSelectVn(wordId)
+        val uri = Uri.parse(makeUri(sql.providerUri))
+        vnFromWordIdModel!!.loadData(uri, sql, null)
+    }
+
+    /**
+     * Load PropBank data
+     *
+     * @param wordId word id
+     */
+    private fun loadPb(wordId: Long) {
+        val sql = preparePbSelectVn(wordId)
+        val uri = Uri.parse(makeUri(sql.providerUri))
+        pbFromWordIdModel!!.loadData(uri, sql, null)
+    }
+    // L I S T E N E R
+    /**
+     * Set listener
+     *
+     * @param listener listener
+     */
+    fun setListener(listener: Listener?) {
+        this.listener = listener
+    }
+
+    // S E L E C T I O N   L I S T E N E R
+
+    /*
 	@Override
 	public void onGroupExpand(final int groupPosition)
 	{
@@ -616,8 +407,7 @@ public class XSelectorsFragment extends BaseSelectorsExpandableListFragment
 		Log.d(TAG, "expand " + groupPosition);
 	}
 	*/
-
-	/*
+    /*
 	@Override
 	public void onGroupCollapse(final int groupPosition)
 	{
@@ -626,136 +416,212 @@ public class XSelectorsFragment extends BaseSelectorsExpandableListFragment
 	}
 	*/
 
-	// C L I C K
+    // C L I C K
 
-	/**
-	 * Turns on activate-on-click mode. When this mode is on, list items will be given the 'activated' state when touched.
-	 *
-	 * @param activateOnItemClick true if activate
-	 */
-	@SuppressWarnings("WeakerAccess")
-	public void setActivateOnItemClick(@SuppressWarnings("SameParameterValue") final boolean activateOnItemClick)
-	{
-		this.activateOnItemClick = activateOnItemClick;
-	}
+    /**
+     * Turns on activate-on-click mode. When this mode is on, list items will be given the 'activated' state when touched.
+     *
+     * @param activateOnItemClick true if activate
+     */
+    fun setActivateOnItemClick(activateOnItemClick: Boolean) {
+        this.activateOnItemClick = activateOnItemClick
+    }
 
-	@SuppressWarnings({"boxing", "SameReturnValue"})
-	@Override
-	public boolean onChildClick(@NonNull final ExpandableListView listView, final View view, final int groupPosition, final int childPosition, final long id)
-	{
-		super.onChildClick(listView, view, groupPosition, childPosition, id);
+    override fun onChildClick(parent: ExpandableListView, v: View, groupPosition: Int, childPosition: Int, id: Long): Boolean {
+        super.onChildClick(parent, v, groupPosition, childPosition, id)
+        if (listener != null) {
+            //Log.d(TAG, "Click: group=" + groupPosition + " child=" + childPosition + " id=" + id);
+            val index = parent.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition, childPosition))
+            parent.setItemChecked(index, true)
+            val adapter = (listAdapter as CursorTreeAdapter?)!!
+            val cursor = adapter.getChild(groupPosition, childPosition)
+            if (!cursor.isAfterLast) {
+                // column indices
+                val idSynsetId = cursor.getColumnIndex(Words_XNet.SYNSETID)
+                val idXId = cursor.getColumnIndex(Words_XNet.XID)
+                val idXClassId = cursor.getColumnIndex(Words_XNet.XCLASSID)
+                val idXMemberId = cursor.getColumnIndex(Words_XNet.XMEMBERID)
+                val idXSources = cursor.getColumnIndex(Words_XNet.SOURCES)
+                // final int idWordId = cursor.getColumnIndex(Words_XNet.WORDID);
 
-		if (this.listener != null)
-		{
-			//Log.d(TAG, "Click: group=" + groupPosition + " child=" + childPosition + " id=" + id);
-			int index = listView.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition, childPosition));
-			listView.setItemChecked(index, true);
+                // data
+                val wordId = wordId
+                assert(word != null)
+                val word = word
+                val cased = if (this.word == this.word!!.lowercase()) null else this.word
+                val pronunciation: String? = null
+                val synsetId = if (cursor.isNull(idSynsetId)) 0 else cursor.getLong(idSynsetId)
+                val pos = synsetIdToPos(synsetId)
+                val xId = if (cursor.isNull(idXId)) 0 else cursor.getLong(idXId)
+                val xClassId = if (cursor.isNull(idXClassId)) 0 else cursor.getLong(idXClassId)
+                val xMemberId = if (cursor.isNull(idXMemberId)) 0 else cursor.getLong(idXMemberId)
+                val xSources = cursor.getString(idXSources)
+                val xMask = getMask(xSources)
+                if (groupPosition == AdapterView.INVALID_POSITION) {
+                    return false
+                }
+                var groupId = -1
+                if (groupPosition == groupPositions[GROUPINDEX_VERBNET]) {
+                    groupId = GROUPID_VERBNET
+                } else if (groupPosition == groupPositions[GROUPINDEX_PROPBANK]) {
+                    groupId = GROUPID_PROPBANK
+                }
 
-			final CursorTreeAdapter adapter = (CursorTreeAdapter) getListAdapter();
-			assert adapter != null;
-			final Cursor cursor = adapter.getChild(groupPosition, childPosition);
-			if (!cursor.isAfterLast())
-			{
-				// column indices
-				final int idSynsetId = cursor.getColumnIndex(XNetContract.Words_XNet.SYNSETID);
-				final int idXId = cursor.getColumnIndex(Words_XNet.XID);
-				final int idXClassId = cursor.getColumnIndex(Words_XNet.XCLASSID);
-				final int idXMemberId = cursor.getColumnIndex(Words_XNet.XMEMBERID);
-				final int idXSources = cursor.getColumnIndex(Words_XNet.SOURCES);
-				// final int idWordId = cursor.getColumnIndex(Words_XNet.WORDID);
+                // pointer
+                val pointer = XSelectorPointer(synsetId, wordId, xId, xClassId, xMemberId, xSources, xMask, groupId)
+                Log.d(TAG, "pointer=$pointer")
 
-				// data
-				final long wordId = this.wordId;
-				assert this.word != null;
-				final String word = this.word;
-				final String cased = this.word.equals(this.word.toLowerCase(Locale.ENGLISH)) ? null : this.word;
-				final String pronunciation = null;
-				final long synsetId = cursor.isNull(idSynsetId) ? 0 : cursor.getLong(idSynsetId);
-				final String pos = synsetIdToPos(synsetId);
-				final long xId = cursor.isNull(idXId) ? 0 : cursor.getLong(idXId);
-				final long xClassId = cursor.isNull(idXClassId) ? 0 : cursor.getLong(idXClassId);
-				final long xMemberId = cursor.isNull(idXMemberId) ? 0 : cursor.getLong(idXMemberId);
-				final String xSources = cursor.getString(idXSources);
-				final long xMask = XSelectorPointer.getMask(xSources);
+                // notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
+                listener!!.onItemSelected(pointer, word, cased, pronunciation, pos)
+            }
+            // cursor ownership is transferred  to adapter, so do not call
+            // cursor.close();
+        }
+        return true
+    }
 
-				if (groupPosition == AdapterView.INVALID_POSITION)
-				{
-					return false;
-				}
+    // E X P A N D
 
-				int groupId = -1;
-				if (groupPosition == this.groupPositions[GROUPINDEX_VERBNET])
-				{
-					groupId = GROUPID_VERBNET;
-				}
-				else if (groupPosition == this.groupPositions[GROUPINDEX_PROPBANK])
-				{
-					groupId = GROUPID_PROPBANK;
-				}
+    /**
+     * Expand all
+     */
+    private fun expandAll() {
+        val expandableListView = expandableListView
+        val adapter = listAdapter
+        if (expandableListView == null || adapter == null) {
+            return
+        }
+        val count = adapter.groupCount
+        for (position in 0 until count) {
+            expandableListView.expandGroup(position)
+        }
+    }
 
-				// pointer
-				final XSelectorPointer pointer = new XSelectorPointer(synsetId, wordId, xId, xClassId, xMemberId, xSources, xMask, groupId);
-				Log.d(TAG, "pointer=" + pointer);
+    // H E L P E R
 
-				// notify the active listener (the activity, if the fragment is attached to one) that an item has been selected
-				//noinspection ConstantConditions
-				this.listener.onItemSelected(pointer, word, cased, pronunciation, pos);
-			}
-			// cursor ownership is transferred  to adapter, so do not call
-			// cursor.close();
-		}
-		return true;
-	}
+    /**
+     * Extract pos from synset id number
+     *
+     * @param synsetId synset id
+     * @return pos
+     */
+    private fun synsetIdToPos(synsetId: Long?): String? {
+        if (synsetId == null) {
+            return null
+        }
+        val p = floor((synsetId / 100000000f).toDouble()).toInt()
+        return when (p) {
+            1 -> "n"
+            2 -> "v"
+            3 -> "a"
+            4 -> "r"
+            else -> null
+        }
+    }
 
-	// E X P A N D
+    companion object {
+        private const val TAG = "XSelectorsF"
 
-	/**
-	 * Expand all
-	 */
-	private void expandAll()
-	{
-		final ExpandableListView expandableListView = getExpandableListView();
-		final ExpandableListAdapter adapter = getListAdapter();
-		if (expandableListView == null || adapter == null)
-		{
-			return;
-		}
+        /**
+         * The (saved instance state) key representing the groups state.
+         */
+        private const val STATE_GROUPS = "groups_state"
 
-		int count = adapter.getGroupCount();
-		for (int position = 0; position < count; position++)
-		{
-			expandableListView.expandGroup(position);
-		}
-	}
+        /**
+         * id column
+         */
+        private const val GROUPID_COLUMN = "_id"
 
-	// H E L P E R
+        /**
+         * Name column
+         */
+        private const val GROUPNAME_COLUMN = "xn"
 
-	/**
-	 * Extract pos from synset id number
-	 *
-	 * @param synsetId synset id
-	 * @return pos
-	 */
-	@Nullable
-	private String synsetIdToPos(@Nullable final Long synsetId)
-	{
-		if (synsetId == null)
-		{
-			return null;
-		}
-		int p = (int) Math.floor(synsetId / 100000000F);
-		switch (p)
-		{
-			case 1:
-				return "n";
-			case 2:
-				return "v";
-			case 3:
-				return "a";
-			case 4:
-				return "r";
-			default:
-				return null;
-		}
-	}
+        /**
+         * Icon column
+         */
+        private const val GROUPICON_COLUMN = "xicon"
+
+        /**
+         * First expanded group
+         */
+        const val GROUP_POSITION_INITIAL = 0
+
+        /**
+         * VerbNet position index
+         */
+        const val GROUPINDEX_VERBNET = 0
+
+        /**
+         * Propbank position index
+         */
+        const val GROUPINDEX_PROPBANK = 1
+
+        /**
+         * VerbNet id for loader
+         */
+        const val GROUPID_VERBNET = 2
+
+        /**
+         * Propbank id for loader
+         */
+        const val GROUPID_PROPBANK = 3
+
+        /**
+         * Source fields for groups
+         */
+        private val groupFrom = arrayOf(GROUPNAME_COLUMN, GROUPICON_COLUMN)
+
+        /**
+         * Target resource for groups
+         */
+        private val groupTo = intArrayOf(R.id.xn, R.id.xicon)
+
+        /**
+         * Source fields
+         */
+        private val childTo = intArrayOf( //
+            R.id.wordid,  //
+            R.id.synsetid,  //
+            R.id.xid,  //
+            R.id.xmemberid,  //
+            R.id.xname,  //
+            R.id.xheader,  //
+            R.id.xinfo,  //
+            R.id.xdefinition
+        )
+
+        /**
+         * Target resource
+         */
+        private val childFrom = arrayOf(
+            Words_XNet.WORDID,  //
+            Words_XNet.SYNSETID,  //
+            Words_XNet.XID,  //
+            Words_XNet.XMEMBERID,  //
+            Words_XNet.XNAME,  //
+            Words_XNet.XHEADER,  //
+            Words_XNet.XINFO,  //
+            Words_XNet.XDEFINITION
+        )
+
+        /**
+         * Populate group cursor. Requires context to be available
+         */
+        private fun populateGroupCursor(context: Context, cursor: MatrixCursor): IntArray {
+            // fill groups
+            var position = 0
+            val enable = getAllPref(context)
+            val groupPositions = intArrayOf(AdapterView.INVALID_POSITION, AdapterView.INVALID_POSITION)
+            if (Settings.Source.VERBNET.test(enable)) {
+                groupPositions[GROUPINDEX_VERBNET] = position++
+                cursor.addRow(arrayOf<Any>(GROUPID_VERBNET, "verbnet", R.drawable.verbnet.toString()))
+            }
+            if (Settings.Source.PROPBANK.test(enable)) {
+                groupPositions[GROUPINDEX_PROPBANK] = position++
+                cursor.addRow(arrayOf<Any>(GROUPID_PROPBANK, "propbank", R.drawable.propbank.toString()))
+            }
+            return groupPositions
+        }
+    }
 }

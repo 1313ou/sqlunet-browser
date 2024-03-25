@@ -1,147 +1,121 @@
 /*
  * Copyright (c) 2023. Bernard Bou <1313ou@gmail.com>
  */
+package org.sqlunet.browser.vn
 
-package org.sqlunet.browser.vn;
-
-import android.content.Context;
-import android.os.Bundle;
-
-import org.sqlunet.browser.BaseBrowse2Fragment;
-import org.sqlunet.browser.vn.web.WebFragment;
-import org.sqlunet.browser.vn.xselector.XSelectorPointer;
-import org.sqlunet.browser.vn.xselector.XSelectorsFragment;
-import org.sqlunet.propbank.browser.PropBankFragment;
-import org.sqlunet.provider.ProviderArgs;
-import org.sqlunet.verbnet.browser.VerbNetFragment;
-import org.sqlunet.wordnet.browser.SenseFragment;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import org.sqlunet.browser.BaseBrowse2Fragment
+import org.sqlunet.browser.vn.web.WebFragment
+import org.sqlunet.browser.vn.xselector.XSelectorPointer
+import org.sqlunet.browser.vn.xselector.XSelectorsFragment
+import org.sqlunet.propbank.browser.PropBankFragment
+import org.sqlunet.provider.ProviderArgs
+import org.sqlunet.settings.Settings
+import org.sqlunet.verbnet.browser.VerbNetFragment
+import org.sqlunet.wordnet.browser.SenseFragment
 
 /**
  * A fragment representing a detail
  *
- * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
+ * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-public class Browse2Fragment extends BaseBrowse2Fragment
-{
-	public static final String ARG_ALT = "alt_arg";
+class Browse2Fragment : BaseBrowse2Fragment() {
 
-	/**
-	 * Search
-	 */
-	@Override
-	protected void search()
-	{
-		final Context context = requireContext();
-		if (!isAdded())
-		{
-			return;
-		}
-		final FragmentManager manager = getChildFragmentManager();
+    /**
+     * Search
+     */
+    override fun search() {
 
-		// args
-		final Bundle args = new Bundle();
-		args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, this.pointer);
+        val context = requireContext()
+        if (!isAdded) {
+            return
+        }
+        val manager = getChildFragmentManager()
 
-		// detail fragment
-		final Settings.DetailViewMode mode = Settings.getDetailViewModePref(context);
-		switch (mode)
-		{
-			case VIEW:
+        // args
+        val args = Bundle()
+        args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer)
 
-				int enable = Settings.getAllPref(context);
-				if (this.pointer instanceof XSelectorPointer)
-				{
-					// sections to disable
-					int mask = 0;
-					final XSelectorPointer xpointer = (XSelectorPointer) this.pointer;
-					final int groupId = xpointer.getXGroup();
-					switch (groupId)
-					{
-						case XSelectorsFragment.GROUPID_VERBNET:
-							mask = Settings.ENABLE_PROPBANK;
-							break;
-						case XSelectorsFragment.GROUPID_PROPBANK:
-							mask = Settings.ENABLE_VERBNET | Settings.ENABLE_WORDNET;
-							break;
-					}
-					enable &= ~mask;
-				}
+        // detail fragment
+        val mode: Settings.DetailViewMode = Settings.getDetailViewModePref(context)
+        when (mode) {
+            Settings.DetailViewMode.VIEW -> {
+                var enable = org.sqlunet.browser.vn.Settings.getAllPref(context)
+                if (pointer is XSelectorPointer) {
+                    // sections to disable
+                    var mask = 0
+                    val xpointer = pointer as XSelectorPointer?
+                    val groupId = xpointer!!.xGroup
+                    when (groupId) {
+                        XSelectorsFragment.GROUPID_VERBNET -> mask = org.sqlunet.browser.vn.Settings.ENABLE_PROPBANK
+                        XSelectorsFragment.GROUPID_PROPBANK -> mask = org.sqlunet.browser.vn.Settings.ENABLE_VERBNET or org.sqlunet.browser.vn.Settings.ENABLE_WORDNET
+                    }
+                    enable = enable and mask.inv()
+                }
 
-				// transaction
-				final FragmentTransaction transaction = manager.beginTransaction().setReorderingAllowed(true);
+                // transaction
+                val transaction = manager.beginTransaction().setReorderingAllowed(true)
 
-				// verbnet
-				if ((enable & Settings.ENABLE_VERBNET) != 0)
-				{
-					// final View labelView = findViewById(R.id.label_verbnet);
-					// labelView.setVisibility(View.VISIBLE);
-					final Fragment verbnetFragment = new VerbNetFragment();
-					verbnetFragment.setArguments(args);
-					transaction.replace(R.id.container_verbnet, verbnetFragment, VerbNetFragment.FRAGMENT_TAG);
-				}
-				else
-				{
-					final Fragment verbnetFragment = manager.findFragmentByTag(VerbNetFragment.FRAGMENT_TAG);
-					if (verbnetFragment != null)
-					{
-						transaction.remove(verbnetFragment);
-					}
-				}
+                // verbnet
+                if (enable and org.sqlunet.browser.vn.Settings.ENABLE_VERBNET != 0) {
+                    // final View labelView = findViewById(R.id.label_verbnet);
+                    // labelView.setVisibility(View.VISIBLE);
+                    val verbnetFragment: Fragment = VerbNetFragment()
+                    verbnetFragment.setArguments(args)
+                    transaction.replace(R.id.container_verbnet, verbnetFragment, VerbNetFragment.FRAGMENT_TAG)
+                } else {
+                    val verbnetFragment = manager.findFragmentByTag(VerbNetFragment.FRAGMENT_TAG)
+                    if (verbnetFragment != null) {
+                        transaction.remove(verbnetFragment)
+                    }
+                }
 
-				// propbank
-				if ((enable & Settings.ENABLE_PROPBANK) != 0)
-				{
-					// final View labelView = findViewById(R.id.label_propbank);
-					// labelView.setVisibility(View.VISIBLE);
-					final Fragment propbankFragment = new PropBankFragment();
-					propbankFragment.setArguments(args);
-					transaction.replace(R.id.container_propbank, propbankFragment, PropBankFragment.FRAGMENT_TAG);
-				}
-				else
-				{
-					final Fragment propbankFragment = manager.findFragmentByTag(PropBankFragment.FRAGMENT_TAG);
-					if (propbankFragment != null)
-					{
-						transaction.remove(propbankFragment);
-					}
-				}
+                // propbank
+                if (enable and org.sqlunet.browser.vn.Settings.ENABLE_PROPBANK != 0) {
+                    // final View labelView = findViewById(R.id.label_propbank);
+                    // labelView.setVisibility(View.VISIBLE);
+                    val propbankFragment: Fragment = PropBankFragment()
+                    propbankFragment.setArguments(args)
+                    transaction.replace(R.id.container_propbank, propbankFragment, PropBankFragment.FRAGMENT_TAG)
+                } else {
+                    val propbankFragment = manager.findFragmentByTag(PropBankFragment.FRAGMENT_TAG)
+                    if (propbankFragment != null) {
+                        transaction.remove(propbankFragment)
+                    }
+                }
 
-				// wordnet
-				if ((enable & Settings.ENABLE_WORDNET) != 0)
-				{
-					// final View labelView = findViewById(R.id.label_wordnet);
-					// labelView.setVisibility(View.VISIBLE);
-					final SenseFragment senseFragment = new SenseFragment();
-					senseFragment.setArguments(args);
-					transaction.replace(R.id.container_wordnet, senseFragment, SenseFragment.FRAGMENT_TAG);
-				}
-				else
-				{
-					final Fragment senseFragment = manager.findFragmentByTag(SenseFragment.FRAGMENT_TAG);
-					if (senseFragment != null)
-					{
-						transaction.remove(senseFragment);
-					}
-				}
+                // wordnet
+                if (enable and org.sqlunet.browser.vn.Settings.ENABLE_WORDNET != 0) {
+                    // final View labelView = findViewById(R.id.label_wordnet);
+                    // labelView.setVisibility(View.VISIBLE);
+                    val senseFragment = SenseFragment()
+                    senseFragment.setArguments(args)
+                    transaction.replace(R.id.container_wordnet, senseFragment, SenseFragment.FRAGMENT_TAG)
+                } else {
+                    val senseFragment = manager.findFragmentByTag(SenseFragment.FRAGMENT_TAG)
+                    if (senseFragment != null) {
+                        transaction.remove(senseFragment)
+                    }
+                }
+                transaction.commit()
+            }
 
-				transaction.commit();
-				break;
+            Settings.DetailViewMode.WEB -> {
+                // web fragment
+                val webFragment: Fragment = WebFragment()
+                webFragment.setArguments(args)
 
-			case WEB:
-				// web fragment
-				final Fragment webFragment = new WebFragment();
-				webFragment.setArguments(args);
+                // detail fragment replace
+                manager.beginTransaction() //
+                    .setReorderingAllowed(true) //
+                    .replace(R.id.container_web, webFragment, WebFragment.FRAGMENT_TAG) //
+                    .commit()
+            }
+        }
+    }
 
-				// detail fragment replace
-				manager.beginTransaction() //
-						.setReorderingAllowed(true) //
-						.replace(R.id.container_web, webFragment, WebFragment.FRAGMENT_TAG) //
-						.commit();
-				break;
-		}
-	}
+    companion object {
+        const val ARG_ALT = "alt_arg"
+    }
 }
