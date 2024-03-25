@@ -12,9 +12,9 @@ import org.sqlunet.style.RegExprSpanner
  */
 object VerbNetSemanticsSpanner : RegExprSpanner(
     arrayOf(
-        "([^\\(\n]*)\\((.*)\\)",  // predicate/args : 2 captures //
-        "event:((?:E|(?:start|end|result|during)\\(E\\)))",  // event arg : 1 capture //
-        "[\\( ]((?!event|E)[^\\(\\), \n]*)",  // role arg //
+        "([^\\(\n]*)\\((.*)\\)",  // predicate/args : 2 captures 
+        "event:((?:E|(?:start|end|result|during)\\(E\\)))",  // event arg : 1 capture 
+        "[\\( ]((?!event|E)[^\\(\\), \n]*)",  // role arg 
         "(constant\\:[^\\s,\\)]*)"
     ),
     arrayOf(

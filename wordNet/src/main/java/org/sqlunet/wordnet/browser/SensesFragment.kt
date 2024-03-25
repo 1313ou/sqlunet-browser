@@ -137,29 +137,29 @@ class SensesFragment : ListFragment() {
     private fun makeAdapter(): ListAdapter {
         Log.d(TAG, "Make adapter")
         val adapter = SimpleCursorAdapter(
-            requireContext(), R.layout.item_sense, null, arrayOf( //
-                WordNetContract.Poses.POS,  //
-                WordNetContract.Senses.SENSENUM,  //
-                WordNetContract.Domains.DOMAIN,  //
-                WordNetContract.Synsets.DEFINITION,  //
-                WordNetContract.CasedWords.CASEDWORD,  //
-                WordNetContract.Senses.TAGCOUNT,  //
-                WordNetContract.Senses.LEXID,  //
-                WordNetContract.Senses.SENSEKEY,  //
-                WordNetContract.Words.WORDID,  //
-                WordNetContract.Synsets.SYNSETID,  //
+            requireContext(), R.layout.item_sense, null, arrayOf( 
+                WordNetContract.Poses.POS,  
+                WordNetContract.Senses.SENSENUM,  
+                WordNetContract.Domains.DOMAIN,  
+                WordNetContract.Synsets.DEFINITION,  
+                WordNetContract.CasedWords.CASEDWORD,  
+                WordNetContract.Senses.TAGCOUNT,  
+                WordNetContract.Senses.LEXID,  
+                WordNetContract.Senses.SENSEKEY,  
+                WordNetContract.Words.WORDID,  
+                WordNetContract.Synsets.SYNSETID,  
                 WordNetContract.Senses.SENSEID
-            ), intArrayOf( //
-                R.id.pos,  //
-                R.id.sensenum,  //
-                R.id.domain,  //
-                R.id.definition,  //
-                R.id.cased,  //
-                R.id.tagcount,  //
-                R.id.lexid,  //
-                R.id.sensekey,  //
-                R.id.wordid,  //
-                R.id.synsetid,  //
+            ), intArrayOf( 
+                R.id.pos,  
+                R.id.sensenum,  
+                R.id.domain,  
+                R.id.definition,  
+                R.id.cased,  
+                R.id.tagcount,  
+                R.id.lexid,  
+                R.id.sensekey,  
+                R.id.wordid,  
+                R.id.synsetid,  
                 R.id.senseid
             ), 0
         )

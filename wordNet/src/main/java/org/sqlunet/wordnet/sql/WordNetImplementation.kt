@@ -75,9 +75,9 @@ class WordNetImplementation : WordNetInterface {
         val doc = makeDocument()
         val rootNode = makeNode(doc, doc, "wordnet", null, WN_NS)
         addAttributes(
-            rootNode,  //
-            "word", word,  //
-            "withRelations", withRelations.toString(),  //
+            rootNode,
+            "word", word,
+            "withRelations", withRelations.toString(),
             "recurse", recurse.toString()
         )
         walk(connection, word, doc, rootNode, withRelations, recurse, Mapping.ANYTYPE, Mapping.ANYTYPE, Mapping.ANYTYPE)
@@ -98,10 +98,10 @@ class WordNetImplementation : WordNetInterface {
         val doc = makeDocument()
         val rootNode = makeNode(doc, doc, "wordnet", null, WN_NS)
         addAttributes(
-            rootNode,  //
-            "wordid", wordId.toString(),  //
-            "synsetid", synsetId.toString(),  //
-            "withRelations", withRelations.toString(),  //
+            rootNode,
+            "wordid", wordId.toString(),
+            "synsetid", synsetId.toString(),
+            "withRelations", withRelations.toString(),
             "recurse", recurse.toString()
         )
         walkSense(connection, wordId, synsetId, doc, rootNode, withRelations, recurse, Mapping.ANYTYPE)
@@ -145,12 +145,12 @@ class WordNetImplementation : WordNetInterface {
         // fill document
         val rootNode = makeNode(doc, doc, "wordnet", null, WN_NS)
         addAttributes(
-            rootNode,  //
-            "word", word,  //
-            "pos", posName,  //
-            "domain", domainName,  //
-            "relation", relationName,  //
-            "withrelations", withRelations.toString(),  //
+            rootNode,
+            "word", word,
+            "pos", posName,
+            "domain", domainName,
+            "relation", relationName,
+            "withrelations", withRelations.toString(),
             "recurse", recurse.toString()
         )
         walk(connection, word, doc, rootNode, withRelations, recurse, posId, domainId, relationId)
@@ -458,13 +458,13 @@ class WordNetImplementation : WordNetInterface {
          * @param targetRelationId target relation type id
          */
         private fun walkSense(
-            connection: SQLiteDatabase,  //
-            wordId: Long,  //
-            synsetId: Long?,  //
-            doc: Document,  //
-            parent: Node,  //
-            withRelations: Boolean,  //
-            recurse: Boolean,  //
+            connection: SQLiteDatabase,
+            wordId: Long,
+            synsetId: Long?,
+            doc: Document,
+            parent: Node,
+            withRelations: Boolean,
+            recurse: Boolean,
             targetRelationId: Int,
         ) {
             if (synsetId == null) {

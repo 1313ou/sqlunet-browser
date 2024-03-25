@@ -97,15 +97,15 @@ class WebFragment : Fragment() {
                                     // final Long xMemberId = xpointer.getXMemberId();
                                     val wordId = xPointer.getWordId()
                                     val synsetId = xPointer.getSynsetId()
-                                    if (xSources == null || xSources.contains("wn")) //
+                                    if (xSources == null || xSources.contains("wn"))
                                     {
                                         wnDomDoc = WordNetImplementation().querySenseDoc(db, wordId, synsetId)
                                     }
-                                    if ((xSources == null || xSources.contains("vn")) && xClassId != null) //
+                                    if ((xSources == null || xSources.contains("vn")) && xClassId != null)
                                     {
                                         vnDomDoc = VerbNetImplementation().queryClassDoc(db, xClassId, pos)
                                     }
-                                    if ((xSources == null || xSources.contains("pb")) && xClassId != null) //
+                                    if ((xSources == null || xSources.contains("pb")) && xClassId != null)
                                     {
                                         pbDomDoc = PropBankImplementation().queryRoleSetDoc(db, xClassId, pos)
                                     }
@@ -252,7 +252,7 @@ class WebFragment : Fragment() {
                     val value = target[1]
                     Log.d(TAG, "Query: $query name=$name value=$value")
                     val targetIntent = Intent(requireContext(), WebActivity::class.java)
-                    if ("word" == name) //
+                    if ("word" == name)
                     {
                         targetIntent.putExtra(ProviderArgs.ARG_QUERYSTRING, value)
                     } else {
@@ -350,11 +350,11 @@ class WebFragment : Fragment() {
      * @return string
      */
     private fun docsToString(
-        word: String?,  //
-        xml: Boolean,  //
-        isSelector: Boolean,  //
-        wnDomDoc: Document?,  //
-        vnDomDoc: Document?,  //
+        word: String?,
+        xml: Boolean,
+        isSelector: Boolean,
+        wnDomDoc: Document?,
+        vnDomDoc: Document?,
         pbDomDoc: Document?
     ): String {
         // LogUtils.writeLog(DomTransformer.docToXml(wnDomDoc), false, "wn_sqlunet.log");

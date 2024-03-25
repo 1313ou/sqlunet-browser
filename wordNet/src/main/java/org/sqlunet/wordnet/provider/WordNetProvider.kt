@@ -184,36 +184,36 @@ class WordNetProvider : BaseProvider() {
     private fun makeAnyRelationsSubQuery(selection0: String): String {
         val semTable = SemRelations.TABLE
         val lexTable = LexRelations.TABLE
-        val projection1 = arrayOf( //
-            SemRelations.RELATIONID,  //
-            SemRelations.SYNSET1ID,  //
+        val projection1 = arrayOf( 
+            SemRelations.RELATIONID,  
+            SemRelations.SYNSET1ID,  
             SemRelations.SYNSET2ID
         )
-        val projection2 = arrayOf( //
-            LexRelations.RELATIONID,  //
-            LexRelations.WORD1ID,  //
-            LexRelations.SYNSET1ID,  //
-            LexRelations.WORD2ID,  //
+        val projection2 = arrayOf( 
+            LexRelations.RELATIONID,  
+            LexRelations.WORD1ID,  
+            LexRelations.SYNSET1ID,  
+            LexRelations.WORD2ID,  
             LexRelations.SYNSET2ID
         )
-        val unionProjection = arrayOf( //
-            AnyRelations.RELATIONID,  //
-            AnyRelations.WORD1ID,  //
-            AnyRelations.SYNSET1ID,  //
-            AnyRelations.WORD2ID,  //
+        val unionProjection = arrayOf( 
+            AnyRelations.RELATIONID,  
+            AnyRelations.WORD1ID,  
+            AnyRelations.SYNSET1ID,  
+            AnyRelations.WORD2ID,  
             AnyRelations.SYNSET2ID
         )
         val selections = selection0.split("/\\*\\*/\\|/\\*\\*/".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
         return makeQuery(
-            semTable,  //
-            lexTable,  //
-            projection1,  //
-            projection2,  //
-            unionProjection,  //
-            WordNetContract.RELATIONTYPE,  //
-            "sem",  //
-            "lex",  //
-            selections[0],  //
+            semTable,  
+            lexTable,  
+            projection1,  
+            projection2,  
+            unionProjection,  
+            WordNetContract.RELATIONTYPE,  
+            "sem",  
+            "lex",  
+            selections[0],  
             selections[1]
         )
     }

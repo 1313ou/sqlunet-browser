@@ -251,9 +251,9 @@ class SetupFileFragment : BaseTaskFragment() {
         sb.append(getString(R.string.info_op_create_database))
         sb.append("\n\n")
         build(
-            sb,  //
-            getString(R.string.title_database), database,  //
-            getString(R.string.title_status), getString(if (databaseExists) R.string.status_database_exists else R.string.status_database_not_exists),  //
+            sb,  
+            getString(R.string.title_database), database,  
+            getString(R.string.title_status), getString(if (databaseExists) R.string.status_database_exists else R.string.status_database_not_exists),  
             getString(R.string.title_free), free
         )
         return sb
@@ -273,9 +273,9 @@ class SetupFileFragment : BaseTaskFragment() {
         sb.append(getString(R.string.info_op_drop_database))
         sb.append("\n\n")
         build(
-            sb,  //
-            getString(R.string.title_database), database,  //
-            getString(R.string.title_status), getString(if (databaseExists) R.string.status_database_exists else R.string.status_database_not_exists),  //
+            sb,  
+            getString(R.string.title_database), database,  
+            getString(R.string.title_status), getString(if (databaseExists) R.string.status_database_exists else R.string.status_database_not_exists),  
             getString(R.string.title_free), free
         )
         return sb
@@ -304,15 +304,15 @@ class SetupFileFragment : BaseTaskFragment() {
         sb.append(getString(R.string.info_op_copy_database))
         sb.append("\n\n")
         build(
-            sb,  //
-            getString(R.string.title_database), database,  //
-            getString(R.string.title_status), getString(if (databaseExists) R.string.status_database_exists else R.string.status_database_not_exists),  //
-            getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, requireContext()),  //
-            getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, requireContext()),  //
-            getString(R.string.title_free), free,  //
-            "\n", "",  //
-            getString(R.string.title_from),  //
-            // fromPath, //
+            sb,  
+            getString(R.string.title_database), database,  
+            getString(R.string.title_status), getString(if (databaseExists) R.string.status_database_exists else R.string.status_database_not_exists),  
+            getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, requireContext()),  
+            getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, requireContext()),  
+            getString(R.string.title_free), free,  
+            "\n", "",  
+            getString(R.string.title_from),  
+            // fromPath, 
             // getString(R.string.title_status), getString(sourceExists ? R.string.status_source_exists : R.string.status_source_not_exists)
             getString(R.string.title_selection)
         )
@@ -342,14 +342,14 @@ class SetupFileFragment : BaseTaskFragment() {
         sb.append(getString(R.string.info_op_unzip_database))
         sb.append("\n\n")
         build(
-            sb,  //
-            getString(R.string.title_database), database,  //
-            getString(R.string.title_status), getString(if (databaseExists) R.string.status_database_exists else R.string.status_database_not_exists),  //
-            getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, requireContext()),  //
-            getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, requireContext()),  //
-            getString(R.string.title_free), free,  //
-            "\n", "",  //
-            getString(R.string.title_from),  //fromPath, //
+            sb,  
+            getString(R.string.title_database), database,  
+            getString(R.string.title_status), getString(if (databaseExists) R.string.status_database_exists else R.string.status_database_not_exists),  
+            getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, requireContext()),  
+            getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, requireContext()),  
+            getString(R.string.title_free), free,  
+            "\n", "",  
+            getString(R.string.title_from),  //fromPath, 
             //getString(R.string.title_status), getString(sourceExists ? R.string.status_source_exists : R.string.status_source_not_exists)
             getString(R.string.title_selection)
         )
@@ -396,13 +396,13 @@ class SetupFileFragment : BaseTaskFragment() {
         sb.append(getString(R.string.info_op_download_database))
         sb.append("\n\n")
         build(
-            sb,  //
-            getString(R.string.title_from), from,  //
-            "\n", "",  //
-            getString(R.string.title_to), to,  //
-            getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, requireContext()),  //
-            getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, requireContext()),  //
-            getString(R.string.title_free), free,  //
+            sb,  
+            getString(R.string.title_from), from,  
+            "\n", "",  
+            getString(R.string.title_to), to,  
+            getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db, requireContext()),  
+            getString(R.string.size_expected) + ' ' + getString(R.string.total), hrSize(R.integer.size_db_working_total, requireContext()),  
+            getString(R.string.title_free), free,  
             getString(R.string.title_status), getString(if (targetExists) R.string.status_local_exists else R.string.status_local_not_exists)
         )
         return sb
@@ -423,12 +423,12 @@ class SetupFileFragment : BaseTaskFragment() {
         sb.append(getString(R.string.info_op_download_zipped_database))
         sb.append("\n\n")
         build(
-            sb,  //
-            getString(R.string.title_from), from,  //
-            "\n", "",  //
-            getString(R.string.title_to), to,  //
-            getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db_zip, requireContext()),  //
-            getString(R.string.title_free), free,  //
+            sb,  
+            getString(R.string.title_from), from,  
+            "\n", "",  
+            getString(R.string.title_to), to,  
+            getString(R.string.size_expected), hrSize(R.integer.size_sqlunet_db_zip, requireContext()),  
+            getString(R.string.title_free), free,  
             getString(R.string.title_status), getString(if (targetExists) R.string.status_local_exists else R.string.status_local_not_exists)
         )
         return sb

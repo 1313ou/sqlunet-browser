@@ -42,9 +42,9 @@ abstract class AbstractApplication : Application() {
      */
     private fun setVmStrictMode() {
         if (BuildConfig.DEBUG) {
-            val builder = VmPolicy.Builder() //
-                .detectLeakedSqlLiteObjects() //
-                .detectLeakedClosableObjects() //
+            val builder = VmPolicy.Builder() 
+                .detectLeakedSqlLiteObjects() 
+                .detectLeakedClosableObjects() 
                 .penaltyLog()
             if (PENALTY_DEATH) {
                 builder.penaltyDeath()
@@ -59,11 +59,11 @@ abstract class AbstractApplication : Application() {
     private fun setThreadStrictMode() {
         if (BuildConfig.DEBUG) {
             StrictMode.setThreadPolicy(
-                ThreadPolicy.Builder() //
-                    .detectDiskReads() //
-                    .detectDiskWrites() //
+                ThreadPolicy.Builder() 
+                    .detectDiskReads() 
+                    .detectDiskWrites() 
                     .detectNetwork() // or .detectAll() for all detectable problems
-                    .penaltyLog() //
+                    .penaltyLog() 
                     .build()
             )
         }

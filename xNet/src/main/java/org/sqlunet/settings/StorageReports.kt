@@ -57,8 +57,8 @@ object StorageReports {
         // status
         val suitable = dir.status == 0 && dir.fitsIn(context)
         appendWithSpans(
-            sb, mbToString(dir.free), spans( //
-                if (suitable) Colors.dirOkBackColor else Colors.dirFailBackColor,  //
+            sb, mbToString(dir.free), spans( 
+                if (suitable) Colors.dirOkBackColor else Colors.dirFailBackColor,  
                 if (suitable) Colors.dirOkForeColor else Colors.dirFailForeColor
             )
         )
@@ -321,7 +321,7 @@ object StorageReports {
                     try {
                         sb.append(if (Environment.isExternalStorageEmulated(f)) "emulated" else "not-emulated")
                     } catch (e: Throwable) {
-                        //
+                        
                     }
                 }
                 sb.append('\n')
@@ -339,7 +339,7 @@ object StorageReports {
                     try {
                         sb.append(if (Environment.isExternalStorageEmulated(f)) "emulated" else "not-emulated")
                     } catch (e: Throwable) {
-                        //
+                        
                     }
                 }
                 sb.append('\n')
@@ -357,7 +357,7 @@ object StorageReports {
                     try {
                         sb.append(if (Environment.isExternalStorageEmulated(f)) "emulated" else "not-emulated")
                     } catch (e: Throwable) {
-                        //
+                        
                     }
                 }
                 sb.append('\n')
@@ -443,7 +443,7 @@ object StorageReports {
                     try {
                         sb.append(if (Environment.isExternalStorageEmulated(f)) "emulated" else "not-emulated")
                     } catch (e: Throwable) {
-                        //
+                        
                     }
                 }
                 sb.append('\n')
@@ -462,7 +462,7 @@ object StorageReports {
                 sb.append(' ')
                 try {
                     sb.append(if (Environment.isExternalStorageEmulated(f)) "emulated" else "not-emulated")
-                } catch (e: Throwable) { //
+                } catch (e: Throwable) { 
                 }
                 sb.append('\n')
             }
@@ -481,7 +481,7 @@ object StorageReports {
                 sb.append(' ')
                 try {
                     sb.append(if (Environment.isExternalStorageEmulated(f)) "emulated" else "not-emulated")
-                } catch (e: Throwable) { //
+                } catch (e: Throwable) { 
                 }
                 sb.append('\n')
             }

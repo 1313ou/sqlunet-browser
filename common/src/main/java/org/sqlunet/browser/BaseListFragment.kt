@@ -116,8 +116,8 @@ abstract class BaseListFragment : ListFragment() {
 
         // make cursor adapter
         val adapter = SimpleCursorAdapter(
-            requireContext(), layoutId, null,  //
-            from,  //
+            requireContext(), layoutId, null,  
+            from,  
             to, 0
         )
         adapter.viewBinder = makeViewBinder()

@@ -70,8 +70,8 @@ class AssetPackLoader(context: Context, private val pack: String) : Cancelable {
         assetPackManager.registerListener(Listener(activity, observer, whenReady))
 
         // fetch if uninstalled
-        assetPackManager //
-            .getPackStates(listOf(pack)) //
+        assetPackManager 
+            .getPackStates(listOf(pack)) 
             .addOnCompleteListener { task: Task<AssetPackStates?> ->
                 try {
                     // state
@@ -90,9 +90,9 @@ class AssetPackLoader(context: Context, private val pack: String) : Cancelable {
                         // returns an AssetPackStates object containing a list of packs and their initial download states and sizes.
                         // if an asset pack requested via fetch() is already downloading, the download status is returned and no additional download is started.
                         /* val fetchTask0 : Task<AssetPackStates> = */
-                        assetPackManager.fetch(listOf(pack)) //
-                            .addOnCompleteListener { Log.i(TAG, "OnFetchCompleted") } //
-                            .addOnFailureListener { exception: Exception -> Log.i(TAG, "OnFetchFailure " + exception.message) } //
+                        assetPackManager.fetch(listOf(pack)) 
+                            .addOnCompleteListener { Log.i(TAG, "OnFetchCompleted") } 
+                            .addOnFailureListener { exception: Exception -> Log.i(TAG, "OnFetchFailure " + exception.message) } 
                             .addOnSuccessListener {
                                 Log.i(TAG, "OnFetchSuccess ")
                                 val packLocation2 = assetPackManager.getPackLocation(pack)
@@ -268,8 +268,8 @@ class AssetPackLoader(context: Context, private val pack: String) : Cancelable {
             val assetPackManager = AssetPackManagerFactory.getInstance(activity)
             for (pack in packs) {
                 if (pack.isNotEmpty()) {
-                    assetPackManager.removePack(pack) //
-                        .addOnCompleteListener { task3: Task<Void?> -> Log.d(TAG, "Remove success " + task3.isSuccessful) } //
+                    assetPackManager.removePack(pack) 
+                        .addOnCompleteListener { task3: Task<Void?> -> Log.d(TAG, "Remove success " + task3.isSuccessful) } 
                         .addOnFailureListener { exception: Exception -> Log.e(TAG, "Remove failure " + exception.message) }
                 }
             }

@@ -56,7 +56,7 @@ class XBrowse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener, SnSe
         }
         args1.putBoolean(Selectors.IS_TWO_PANE, isTwoPane)
         xSelectorsFragment.setListener(this, this)
-        manager.beginTransaction() //
+        manager.beginTransaction() 
             .replace(R.id.container_xselectors, xSelectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG)
             // .addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG)
             .commit()
@@ -76,10 +76,10 @@ class XBrowse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener, SnSe
                 args2.putBoolean(Browse2Fragment.ARG_ALT, false)
                 browse2Fragment.setArguments(args2)
             }
-            manager.beginTransaction() //
-                .setReorderingAllowed(true) //
-                .replace(R.id.container_browse2, browse2Fragment, BaseBrowse2Fragment.FRAGMENT_TAG) //
-                // .addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG) //
+            manager.beginTransaction() 
+                .setReorderingAllowed(true) 
+                .replace(R.id.container_browse2, browse2Fragment, BaseBrowse2Fragment.FRAGMENT_TAG) 
+                // .addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG) 
                 .commit()
         }
     }

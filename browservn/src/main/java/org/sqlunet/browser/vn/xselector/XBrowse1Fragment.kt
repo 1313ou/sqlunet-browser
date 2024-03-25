@@ -52,9 +52,9 @@ class XBrowse1Fragment : BaseBrowse1Fragment(), XSelectorsFragment.Listener {
         }
         args1.putBoolean(Selectors.IS_TWO_PANE, isTwoPane)
         xSelectorsFragment.setListener(this)
-        manager.beginTransaction() //
-            .replace(R.id.container_xselectors, xSelectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG) //
-            // .addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG) //
+        manager.beginTransaction()
+            .replace(R.id.container_xselectors, xSelectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG)
+            // .addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG)
             .commit()
 
         // two-pane specific set up
@@ -72,10 +72,10 @@ class XBrowse1Fragment : BaseBrowse1Fragment(), XSelectorsFragment.Listener {
                 args2.putBoolean(Browse2Fragment.ARG_ALT, false)
                 browse2Fragment.setArguments(args2)
             }
-            manager.beginTransaction() //
-                .setReorderingAllowed(true) //
-                .replace(R.id.container_browse2, browse2Fragment, BaseBrowse2Fragment.FRAGMENT_TAG) //
-                // .addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG) //
+            manager.beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(R.id.container_browse2, browse2Fragment, BaseBrowse2Fragment.FRAGMENT_TAG)
+                // .addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG)
                 .commit()
         }
     }

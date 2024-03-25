@@ -58,11 +58,11 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
         } else {
             // splash fragment
             val fragment: Fragment = BrowsePredicateMatrixSplashFragment()
-            getChildFragmentManager() //
-                .beginTransaction() //
-                .setReorderingAllowed(true) //
-                .replace(R.id.container_predicatematrix, fragment, SplashFragment.FRAGMENT_TAG) //
-                // .addToBackStack(SplashFragment.FRAGMENT_TAG) //
+            getChildFragmentManager() 
+                .beginTransaction() 
+                .setReorderingAllowed(true) 
+                .replace(R.id.container_predicatematrix, fragment, SplashFragment.FRAGMENT_TAG) 
+                // .addToBackStack(SplashFragment.FRAGMENT_TAG) 
                 .commit()
         }
     }
@@ -124,7 +124,7 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
             }
 
             override fun onNothingSelected(parentView: AdapterView<*>?) {
-                //
+                
             }
         }
     }
@@ -162,11 +162,11 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
         if (!isAdded) {
             return
         }
-        getChildFragmentManager() //
-            .beginTransaction() //
-            .setReorderingAllowed(true) //
-            .replace(R.id.container_predicatematrix, fragment, PredicateMatrixFragment.FRAGMENT_TAG) //
-            .addToBackStack(PredicateMatrixFragment.FRAGMENT_TAG) //
+        getChildFragmentManager() 
+            .beginTransaction() 
+            .setReorderingAllowed(true) 
+            .replace(R.id.container_predicatematrix, fragment, PredicateMatrixFragment.FRAGMENT_TAG) 
+            .addToBackStack(PredicateMatrixFragment.FRAGMENT_TAG) 
             .commit()
     }
 
@@ -192,7 +192,7 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
         this.pointer = null
 
         // pointer
-        val pointer: Parcelable = if (trimmedQuery.startsWith("#mr")) //
+        val pointer: Parcelable = if (trimmedQuery.startsWith("#mr")) 
         {
             val roleId = trimmedQuery.substring(3).toLong()
             PmRolePointer(roleId)
@@ -211,11 +211,11 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
         if (!isAdded) {
             return
         }
-        getChildFragmentManager() //
-            .beginTransaction() //
-            .setReorderingAllowed(true) //
-            .replace(R.id.container_predicatematrix, fragment, PredicateMatrixFragment.FRAGMENT_TAG) //
-            .addToBackStack(PredicateMatrixFragment.FRAGMENT_TAG) //
+        getChildFragmentManager() 
+            .beginTransaction() 
+            .setReorderingAllowed(true) 
+            .replace(R.id.container_predicatematrix, fragment, PredicateMatrixFragment.FRAGMENT_TAG) 
+            .addToBackStack(PredicateMatrixFragment.FRAGMENT_TAG) 
             .commit()
     }
 

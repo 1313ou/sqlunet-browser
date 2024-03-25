@@ -76,11 +76,11 @@ class SqlFragment : Fragment() {
         if (savedInstanceState == null) {
             // splash fragment
             val fragment: Fragment = SqlStatementsFragment()
-            getChildFragmentManager() //
-                .beginTransaction() //
-                .setReorderingAllowed(true) //
-                .replace(R.id.container_sql_statements, fragment, FRAGMENT_TAG) //
-                // .addToBackStack(FRAGMENT_TAG) //
+            getChildFragmentManager() 
+                .beginTransaction() 
+                .setReorderingAllowed(true) 
+                .replace(R.id.container_sql_statements, fragment, FRAGMENT_TAG) 
+                // .addToBackStack(FRAGMENT_TAG) 
                 .commit()
         }
 

@@ -82,10 +82,10 @@ class StorageFragment : Fragment() {
                 when (itemId) {
                     R.id.action_dirs -> {
                         val message = reportStyledDirs(context)
-                        AlertDialog.Builder(context) //
-                            .setTitle(R.string.action_dirs) //
-                            .setMessage(message) //
-                            .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> } //
+                        AlertDialog.Builder(context)
+                            .setTitle(R.string.action_dirs)
+                            .setMessage(message)
+                            .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
                             .show()
                         return true
                     }
@@ -93,10 +93,10 @@ class StorageFragment : Fragment() {
                     R.id.action_storage_dirs -> {
                         val dirs = getStyledStorageDirectoriesNamesValues(context)
                         val message = namesValuesToReportStyled(dirs)
-                        AlertDialog.Builder(context) //
-                            .setTitle(R.string.action_storage_dirs) //
-                            .setMessage(message) //
-                            .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> } //
+                        AlertDialog.Builder(context)
+                            .setTitle(R.string.action_storage_dirs)
+                            .setMessage(message)
+                            .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
                             .show()
                         return true
                     }
@@ -104,10 +104,10 @@ class StorageFragment : Fragment() {
                     R.id.action_cache_dirs -> {
                         val dirs = getStyledCachesNamesValues(context)
                         val message = namesValuesToReportStyled(dirs)
-                        AlertDialog.Builder(context) //
-                            .setTitle(R.string.action_cache_dirs) //
-                            .setMessage(message) //
-                            .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> } //
+                        AlertDialog.Builder(context)
+                            .setTitle(R.string.action_cache_dirs)
+                            .setMessage(message)
+                            .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
                             .show()
                         return true
                     }
@@ -115,10 +115,10 @@ class StorageFragment : Fragment() {
                     R.id.action_download_dirs -> {
                         val dirs = getStyledDownloadNamesValues(context)
                         val message = namesValuesToReportStyled(dirs)
-                        AlertDialog.Builder(context) //
-                            .setTitle(R.string.action_download_dirs) //
-                            .setMessage(message) //
-                            .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> } //
+                        AlertDialog.Builder(context)
+                            .setTitle(R.string.action_download_dirs)
+                            .setMessage(message)
+                            .setNegativeButton(R.string.action_dismiss) { _: DialogInterface?, _: Int -> }
                             .show()
                         return true
                     }

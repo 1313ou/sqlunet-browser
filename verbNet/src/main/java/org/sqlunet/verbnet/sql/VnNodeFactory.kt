@@ -91,14 +91,14 @@ internal object VnNodeFactory {
     fun makeVnClassWithSenseNode(doc: Document, parent: Node?, vnClass: VnClassWithSense): Node {
         val element = makeNode(doc, parent, "vnclass", null)
         addAttributes(
-            element,  //
-            "name", vnClass.className,  //
-            "classid", vnClass.classId.toString(),  //
-            "wordid", vnClass.wordId.toString(),  //
-            "synsetid", vnClass.synsetId.toString(),  //
-            "sensenum", vnClass.senseNum.toString(),  //
-            "sensekey", vnClass.senseKey,  //
-            "groupings", vnClass.groupings,  //
+            element,  
+            "name", vnClass.className,  
+            "classid", vnClass.classId.toString(),  
+            "wordid", vnClass.wordId.toString(),  
+            "synsetid", vnClass.synsetId.toString(),  
+            "sensenum", vnClass.senseNum.toString(),  
+            "sensekey", vnClass.senseKey,  
+            "groupings", vnClass.groupings,  
             "quality", vnClass.quality.toString()
         )
         return element

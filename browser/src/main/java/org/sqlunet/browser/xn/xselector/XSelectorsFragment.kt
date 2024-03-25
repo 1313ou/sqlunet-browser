@@ -283,7 +283,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
                 } else if (R.id.pm == id) {
                     val fields2 = value.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
                     for (field2 in fields2) {
-                        if (field2.startsWith("pm")) //
+                        if (field2.startsWith("pm"))
                         {
                             v.setImageResource(R.drawable.predicatematrix)
                             v.setVisibility(View.VISIBLE)
@@ -741,36 +741,36 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
         /**
          * Source fields
          */
-        private val childTo = intArrayOf( //
-            R.id.wordid,  //
-            R.id.synsetid,  //
-            R.id.xid,  //
-            R.id.xmemberid,  //
-            R.id.xname,  //
-            R.id.xheader,  //
-            R.id.xinfo,  //
-            R.id.xpronunciation,  //
-            R.id.xdefinition,  //
-            R.id.xsourcestext,  //
-            R.id.xsources,  //
+        private val childTo = intArrayOf(
+            R.id.wordid,
+            R.id.synsetid,
+            R.id.xid,
+            R.id.xmemberid,
+            R.id.xname,
+            R.id.xheader,
+            R.id.xinfo,
+            R.id.xpronunciation,
+            R.id.xdefinition,
+            R.id.xsourcestext,
+            R.id.xsources,
             R.id.pm
         )
 
         /**
          * Target resource
          */
-        private val childFrom = arrayOf( //
-            Words_XNet_U.WORDID,  //
-            Words_XNet_U.SYNSETID,  //
-            Words_XNet_U.XID,  //
-            Words_XNet_U.XMEMBERID,  //
-            Words_XNet_U.XNAME,  //
-            Words_XNet_U.XHEADER,  //
-            Words_XNet_U.XINFO,  //
-            Words_XNet_U.XPRONUNCIATION,  //
-            Words_XNet_U.XDEFINITION,  //
-            Words_XNet_U.SOURCES,  //
-            Words_XNet_U.SOURCES,  //
+        private val childFrom = arrayOf(
+            Words_XNet_U.WORDID,
+            Words_XNet_U.SYNSETID,
+            Words_XNet_U.XID,
+            Words_XNet_U.XMEMBERID,
+            Words_XNet_U.XNAME,
+            Words_XNet_U.XHEADER,
+            Words_XNet_U.XINFO,
+            Words_XNet_U.XPRONUNCIATION,
+            Words_XNet_U.XDEFINITION,
+            Words_XNet_U.SOURCES,
+            Words_XNet_U.SOURCES,
             Words_XNet_U.SOURCES
         )
 

@@ -876,8 +876,8 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 vnsb.append(' ')
                 append(vnsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory)
             }
-            val result = if (vnData.vnClassId == 0L) //
-                makeLeafNode(vnsb, R.drawable.verbnet, false).addTo(parent) else  //
+            val result = if (vnData.vnClassId == 0L) 
+                makeLeafNode(vnsb, R.drawable.verbnet, false).addTo(parent) else  
                 makeLinkLeafNode(vnsb, R.drawable.verbnet, false, VnClassLink(vnData.vnClassId)).addTo(parent)
             changedList.add(TreeOpCode.NEWCHILD, result)
             return result
@@ -930,8 +930,8 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 pbsb.append(' ')
                 append(pbsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory)
             }
-            val result = if (pbData.pbRoleSetId == 0L) //
-                makeLeafNode(pbsb, R.drawable.propbank, false).addTo(parent) else  //
+            val result = if (pbData.pbRoleSetId == 0L) 
+                makeLeafNode(pbsb, R.drawable.propbank, false).addTo(parent) else  
                 makeLinkLeafNode(pbsb, R.drawable.propbank, false, PbRoleSetLink(pbData.pbRoleSetId)).addTo(parent)
             changedList.add(TreeOpCode.NEWCHILD, result)
             return result
@@ -976,8 +976,8 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
                 fnsb.append(' ')
                 append(fnsb, wnData.definition, 0, PredicateMatrixFactories.definitionFactory)
             }
-            val result = if (fnData.fnFrameId == 0L) //
-                makeLeafNode(fnsb, R.drawable.framenet, false).addTo(parent) else  //
+            val result = if (fnData.fnFrameId == 0L) 
+                makeLeafNode(fnsb, R.drawable.framenet, false).addTo(parent) else  
                 makeLinkLeafNode(fnsb, R.drawable.framenet, false, FnFrameLink(fnData.fnFrameId)).addTo(parent)
             changedList.add(TreeOpCode.NEWCHILD, result)
             return result

@@ -92,16 +92,16 @@ abstract class Status {
          */
         @JvmStatic
         fun tablesAndIndexes(context: Context): List<String>? {
-            val order = ("CASE " //
-                    + "WHEN " + TablesAndIndices.TYPE + " = 'table' THEN '1' " //
-                    + "WHEN " + TablesAndIndices.TYPE + " = 'view' THEN '2' " //
-                    + "WHEN " + TablesAndIndices.TYPE + " = 'index' THEN '3' " //
-                    + "ELSE " + TablesAndIndices.TYPE + " END ASC," //
+            val order = ("CASE " 
+                    + "WHEN " + TablesAndIndices.TYPE + " = 'table' THEN '1' " 
+                    + "WHEN " + TablesAndIndices.TYPE + " = 'view' THEN '2' " 
+                    + "WHEN " + TablesAndIndices.TYPE + " = 'index' THEN '3' " 
+                    + "ELSE " + TablesAndIndices.TYPE + " END ASC," 
                     + TablesAndIndices.NAME + " ASC")
-            context.contentResolver.query( //
+            context.contentResolver.query( 
                 Uri.parse(ManagerProvider.makeUri(TablesAndIndices.URI)), arrayOf(TablesAndIndices.TYPE, TablesAndIndices.NAME),  // projection
-                "name NOT LIKE 'sqlite_%' AND name NOT LIKE 'android_%'",  // selection criteria //
-                null,  //
+                "name NOT LIKE 'sqlite_%' AND name NOT LIKE 'android_%'",  // selection criteria 
+                null,  
                 order
             ).use { cursor ->
                 var result: MutableList<String>? = null

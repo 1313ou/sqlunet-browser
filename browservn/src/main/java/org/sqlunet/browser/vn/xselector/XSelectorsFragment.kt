@@ -579,14 +579,14 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
         /**
          * Source fields
          */
-        private val childTo = intArrayOf( //
-            R.id.wordid,  //
-            R.id.synsetid,  //
-            R.id.xid,  //
-            R.id.xmemberid,  //
-            R.id.xname,  //
-            R.id.xheader,  //
-            R.id.xinfo,  //
+        private val childTo = intArrayOf(
+            R.id.wordid,
+            R.id.synsetid,
+            R.id.xid,
+            R.id.xmemberid,
+            R.id.xname,
+            R.id.xheader,
+            R.id.xinfo,
             R.id.xdefinition
         )
 
@@ -594,13 +594,13 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
          * Target resource
          */
         private val childFrom = arrayOf(
-            Words_XNet.WORDID,  //
-            Words_XNet.SYNSETID,  //
-            Words_XNet.XID,  //
-            Words_XNet.XMEMBERID,  //
-            Words_XNet.XNAME,  //
-            Words_XNet.XHEADER,  //
-            Words_XNet.XINFO,  //
+            Words_XNet.WORDID,
+            Words_XNet.SYNSETID,
+            Words_XNet.XID,
+            Words_XNet.XMEMBERID,
+            Words_XNet.XNAME,
+            Words_XNet.XHEADER,
+            Words_XNet.XINFO,
             Words_XNet.XDEFINITION
         )
 

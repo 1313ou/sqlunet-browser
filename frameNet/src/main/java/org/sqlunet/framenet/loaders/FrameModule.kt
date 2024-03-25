@@ -38,7 +38,7 @@ open class FrameModule(fragment: TreeFragment) : BaseModule(fragment) {
         if (pointer is HasXId) {
             val xIdPointer = pointer as HasXId
             val xSources = xIdPointer.getXSources()
-            if (xSources == null || xSources.contains("fn")) //
+            if (xSources == null || xSources.contains("fn")) 
             {
                 frameId = xIdPointer.getXClassId()
                 luId = xIdPointer.getXMemberId()

@@ -238,7 +238,7 @@ internal object FnNodeFactory {
         if (layer.labels != null) {
             for (label in layer.labels) {
                 val element2 = makeNode(doc, element, "label", null)
-                if ("0" != label.from || "0" != label.to) //
+                if ("0" != label.from || "0" != label.to) 
                 {
                     makeAttribute(element2, "from", label.from)
                     makeAttribute(element2, "to", label.to)

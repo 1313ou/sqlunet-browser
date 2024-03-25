@@ -82,37 +82,37 @@ class SelectorsFragment : BaseSelectorsListFragment() {
 
     override fun makeAdapter(): CursorAdapter {
         val adapter = SimpleCursorAdapter(
-            requireContext(), R.layout.item_selector, null, arrayOf( //
-                Words_Pronunciations_FnWords_PbWords_VnWords.POS,  //
-                Words_Pronunciations_FnWords_PbWords_VnWords.SENSENUM,  //
-                Words_Pronunciations_FnWords_PbWords_VnWords.DOMAIN,  //
-                Words_Pronunciations_FnWords_PbWords_VnWords.DEFINITION,  //
-                Words_Pronunciations_FnWords_PbWords_VnWords.CASED,  //
-                Words_Pronunciations_FnWords_PbWords_VnWords.PRONUNCIATIONS,  //
-                Words_Pronunciations_FnWords_PbWords_VnWords.TAGCOUNT,  //
-                Words_Pronunciations_FnWords_PbWords_VnWords.LUID,  //
-                Words_Pronunciations_FnWords_PbWords_VnWords.SENSEKEY,  //
-                Words_Pronunciations_FnWords_PbWords_VnWords.WORDID,  //
-                Words_Pronunciations_FnWords_PbWords_VnWords.SYNSETID,  //
-                Words_Pronunciations_FnWords_PbWords_VnWords.SENSEID,  //
-                Words_Pronunciations_FnWords_PbWords_VnWords.VNWORDID,  //
-                Words_Pronunciations_FnWords_PbWords_VnWords.PBWORDID,  //
+            requireContext(), R.layout.item_selector, null, arrayOf(
+                Words_Pronunciations_FnWords_PbWords_VnWords.POS,
+                Words_Pronunciations_FnWords_PbWords_VnWords.SENSENUM,
+                Words_Pronunciations_FnWords_PbWords_VnWords.DOMAIN,
+                Words_Pronunciations_FnWords_PbWords_VnWords.DEFINITION,
+                Words_Pronunciations_FnWords_PbWords_VnWords.CASED,
+                Words_Pronunciations_FnWords_PbWords_VnWords.PRONUNCIATIONS,
+                Words_Pronunciations_FnWords_PbWords_VnWords.TAGCOUNT,
+                Words_Pronunciations_FnWords_PbWords_VnWords.LUID,
+                Words_Pronunciations_FnWords_PbWords_VnWords.SENSEKEY,
+                Words_Pronunciations_FnWords_PbWords_VnWords.WORDID,
+                Words_Pronunciations_FnWords_PbWords_VnWords.SYNSETID,
+                Words_Pronunciations_FnWords_PbWords_VnWords.SENSEID,
+                Words_Pronunciations_FnWords_PbWords_VnWords.VNWORDID,
+                Words_Pronunciations_FnWords_PbWords_VnWords.PBWORDID,
                 Words_Pronunciations_FnWords_PbWords_VnWords.FNWORDID
-            ), intArrayOf( //
-                R.id.pos,  //
-                R.id.sensenum,  //
-                R.id.domain,  //
-                R.id.definition,  //
-                R.id.cased,  //
-                R.id.pronunciation,  //
-                R.id.tagcount,  //
-                R.id.lexid,  //
-                R.id.sensekey,  //
-                R.id.wordid,  //
-                R.id.synsetid,  //
-                R.id.senseid,  //
-                R.id.vnwordid,  //
-                R.id.pbwordid,  //
+            ), intArrayOf(
+                R.id.pos,
+                R.id.sensenum,
+                R.id.domain,
+                R.id.definition,
+                R.id.cased,
+                R.id.pronunciation,
+                R.id.tagcount,
+                R.id.lexid,
+                R.id.sensekey,
+                R.id.wordid,
+                R.id.synsetid,
+                R.id.senseid,
+                R.id.vnwordid,
+                R.id.pbwordid,
                 R.id.fnwordid
             ), 0
         )

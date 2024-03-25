@@ -49,10 +49,10 @@ class XBrowse1Fragment : BaseBrowse1Fragment(), XSelectorsFragment.Listener {
         args1.putBoolean(Selectors.IS_TWO_PANE, isTwoPane)
         selectorsFragment.setListener(this)
         Log.d(TAG, "create 'selectors' fragment")
-        manager.beginTransaction() //
-            .setReorderingAllowed(true) //
-            .replace(R.id.container_xselectors, selectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG) //
-            // .addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG) //
+        manager.beginTransaction() 
+            .setReorderingAllowed(true) 
+            .replace(R.id.container_xselectors, selectorsFragment, BaseSelectorsFragment.FRAGMENT_TAG) 
+            // .addToBackStack(BaseSelectorsFragment.FRAGMENT_TAG) 
             .commit()
 
         // two-pane specific set up
@@ -69,10 +69,10 @@ class XBrowse1Fragment : BaseBrowse1Fragment(), XSelectorsFragment.Listener {
                 browse2Fragment.setArguments(args2)
             }
             Log.d(TAG, "create 'browse2' fragment")
-            manager.beginTransaction() //
-                .setReorderingAllowed(true) //
-                .replace(R.id.container_browse2, browse2Fragment, BaseBrowse2Fragment.FRAGMENT_TAG) //
-                // .addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG) //
+            manager.beginTransaction() 
+                .setReorderingAllowed(true) 
+                .replace(R.id.container_browse2, browse2Fragment, BaseBrowse2Fragment.FRAGMENT_TAG) 
+                // .addToBackStack(BaseBrowse2Fragment.FRAGMENT_TAG) 
                 .commit()
         }
     }

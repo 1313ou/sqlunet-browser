@@ -32,9 +32,9 @@ abstract class BaseSettingsActivity : AppCompatActivity(), PreferenceFragmentCom
         // fragment
         if (savedInstanceState == null) {
             val initial = intent.getBooleanExtra(INITIAL_ARG, false)
-            fm.beginTransaction() //
-                .setReorderingAllowed(true) //
-                .replace(R.id.settings, if (initial) Header2Fragment() else HeaderFragment()) //
+            fm.beginTransaction() 
+                .setReorderingAllowed(true) 
+                .replace(R.id.settings, if (initial) Header2Fragment() else HeaderFragment()) 
                 .commit()
             setTitle(R.string.title_settings)
         } else {
@@ -131,11 +131,11 @@ abstract class BaseSettingsActivity : AppCompatActivity(), PreferenceFragmentCom
         fragment.setTargetFragment(caller, 0)
 
         // Replace the existing Fragment with the new Fragment
-        supportFragmentManager //
-            .beginTransaction() //
-            .setReorderingAllowed(true) //
-            .replace(R.id.settings, fragment) //
-            .addToBackStack("settings") //
+        supportFragmentManager 
+            .beginTransaction() 
+            .setReorderingAllowed(true) 
+            .replace(R.id.settings, fragment) 
+            .addToBackStack("settings") 
             .commit()
         return true
     }

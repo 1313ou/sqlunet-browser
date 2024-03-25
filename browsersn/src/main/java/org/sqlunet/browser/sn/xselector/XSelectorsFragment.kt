@@ -56,10 +56,10 @@ class XSelectorsFragment : BaseSelectorsFragment(), SelectorsFragment.Listener, 
 
             // Listeners
             fragment.setListeners(wnListener!!, this)
-            getChildFragmentManager() //
-                .beginTransaction() //
-                .setReorderingAllowed(true) //
-                .add(R.id.wnselectors, fragment, "wn$FRAGMENT_TAG") //
+            getChildFragmentManager() 
+                .beginTransaction() 
+                .setReorderingAllowed(true) 
+                .add(R.id.wnselectors, fragment, "wn$FRAGMENT_TAG") 
                 .commit()
         }
         if (view.findViewById<View?>(R.id.snselectors) != null) {
@@ -77,10 +77,10 @@ class XSelectorsFragment : BaseSelectorsFragment(), SelectorsFragment.Listener, 
 
             // Listener
             fragment.setListeners(snListener!!, this)
-            getChildFragmentManager() //
-                .beginTransaction() //
-                .setReorderingAllowed(true) //
-                .add(R.id.snselectors, fragment, "sn$FRAGMENT_TAG") //
+            getChildFragmentManager() 
+                .beginTransaction() 
+                .setReorderingAllowed(true) 
+                .add(R.id.snselectors, fragment, "sn$FRAGMENT_TAG") 
                 .commit()
         }
     }

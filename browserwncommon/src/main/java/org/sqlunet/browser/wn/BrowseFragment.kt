@@ -59,11 +59,11 @@ class BrowseFragment : BaseSearchFragment() {
         if (savedInstanceState == null) {
             // splash fragment
             val fragment: Fragment = BrowseSplashFragment()
-            getChildFragmentManager() //
-                .beginTransaction() //
-                .setReorderingAllowed(true) //
-                .replace(R.id.container_browse, fragment, SplashFragment.FRAGMENT_TAG) //
-                //.addToBackStack(SplashFragment.FRAGMENT_TAG) //
+            getChildFragmentManager()
+                .beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(R.id.container_browse, fragment, SplashFragment.FRAGMENT_TAG)
+                //.addToBackStack(SplashFragment.FRAGMENT_TAG)
                 .commit()
         }
     }
@@ -217,11 +217,11 @@ class BrowseFragment : BaseSearchFragment() {
             if (!isAdded) {
                 return
             }
-            getChildFragmentManager() //
-                .beginTransaction() //
-                .setReorderingAllowed(true) //
-                .replace(R.id.container_browse, fragment, BaseBrowse1Fragment.FRAGMENT_TAG) //
-                .addToBackStack(BaseBrowse1Fragment.FRAGMENT_TAG) //
+            getChildFragmentManager()
+                .beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(R.id.container_browse, fragment, BaseBrowse1Fragment.FRAGMENT_TAG)
+                .addToBackStack(BaseBrowse1Fragment.FRAGMENT_TAG)
                 .commit()
         }
     }

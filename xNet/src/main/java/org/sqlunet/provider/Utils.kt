@@ -38,9 +38,9 @@ object Utils {
 
         // embedded
         val uQuery = makeEmbeddedQuery(
-            table1, table2,  //
-            table1Projection, table2Projection,  //
-            unionProjection, selection,  //
+            table1, table2,
+            table1Projection, table2Projection,
+            unionProjection, selection,
             tag
         )
 
@@ -83,9 +83,9 @@ object Utils {
      * WHERE (#{selection})
      */
     private fun makeEmbeddedQuery(
-        table1: String, table2: String,  //
-        table1Projection: Array<String>, table2Projection: Array<String>,  //
-        unionProjection: Array<String>, selection: String?,  //
+        table1: String, table2: String,
+        table1Projection: Array<String>, table2Projection: Array<String>,
+        unionProjection: Array<String>, selection: String?,
         tag: String,
     ): String {
         val actualUnionProjection = appendProjection(unionProjection, "source")
@@ -96,13 +96,13 @@ object Utils {
         val pmSubQueryBuilder = SQLiteQueryBuilder()
         pmSubQueryBuilder.setTables(table1)
         val pmSubquery = pmSubQueryBuilder.buildUnionSubQuery(
-            "source",  //
-            actualUnionProjection,  //
-            HashSet(table1ProjectionList),  //
-            0,  //
-            "pm$tag",  //
-            selection,  //
-            null,  //
+            "source",
+            actualUnionProjection,
+            HashSet(table1ProjectionList),
+            0,
+            "pm$tag",
+            selection,
+            null,
             null
         )
 
@@ -110,13 +110,13 @@ object Utils {
         val sqlunetSubQueryBuilder = SQLiteQueryBuilder()
         sqlunetSubQueryBuilder.setTables(table2)
         val sqlunetSubquery = sqlunetSubQueryBuilder.buildUnionSubQuery(
-            "source",  //
-            actualUnionProjection,  //
-            HashSet(table2ProjectionList),  //
-            0,  //
-            tag,  //
-            selection,  //
-            null,  //
+            "source",
+            actualUnionProjection,
+            HashSet(table2ProjectionList),
+            0,
+            tag,
+            selection,
+            null,
             null
         )
 
@@ -142,16 +142,16 @@ object Utils {
      * @return union sql
      */
     fun makeQuerySql(
-        table1: String, table2: String,  //
-        table1Projection: Array<String>, table2Projection: Array<String>,  //
-        unionProjection: Array<String>, projection: Array<String>,  //
-        selection: String?,  //
+        table1: String, table2: String,
+        table1Projection: Array<String>, table2Projection: Array<String>,
+        unionProjection: Array<String>, projection: Array<String>,
+        selection: String?,
         groupBys: Array<String>?, sortOrder: String?, tag: String,
     ): String {
         val embeddedQuery = makeEmbeddedQuery(
-            table1, table2,  //
-            table1Projection, table2Projection,  //
-            unionProjection, selection,  //
+            table1, table2,
+            table1Projection, table2Projection,
+            unionProjection, selection,
             tag
         )
 
@@ -196,10 +196,10 @@ object Utils {
      * @return union sql
      */
     fun makeQuerySql0(
-        table1: String, table2: String,  //
-        table1Projection: Array<String>, table2Projection: Array<String>,  //
-        unionProjection: Array<String>?, projection: Array<String>,  //
-        selection: String?,  //
+        table1: String, table2: String,
+        table1Projection: Array<String>, table2Projection: Array<String>,
+        unionProjection: Array<String>?, projection: Array<String>,
+        selection: String?,
         groupBys: Array<String>?, sortOrder: String?, tag: String,
     ): String {
         val actualUnionProjection = appendProjection(unionProjection, "source")
@@ -210,13 +210,13 @@ object Utils {
         val pmSubQueryBuilder = SQLiteQueryBuilder()
         pmSubQueryBuilder.setTables(table1)
         val pmSubquery = pmSubQueryBuilder.buildUnionSubQuery(
-            "source",  //
-            actualUnionProjection,  //
-            HashSet(table1ProjectionList),  //
-            0,  //
-            "pm$tag",  //
-            selection,  //
-            null,  //
+            "source",
+            actualUnionProjection,
+            HashSet(table1ProjectionList),
+            0,
+            "pm$tag",
+            selection,
+            null,
             null
         )
 
@@ -224,13 +224,13 @@ object Utils {
         val sqlunetSubQueryBuilder = SQLiteQueryBuilder()
         sqlunetSubQueryBuilder.setTables(table2)
         val sqlunetSubquery = sqlunetSubQueryBuilder.buildUnionSubQuery(
-            "source",  //
-            actualUnionProjection,  //
-            HashSet(table2ProjectionList),  //
-            0,  //
-            tag,  //
-            selection,  //
-            null,  //
+            "source",
+            actualUnionProjection,
+            HashSet(table2ProjectionList),
+            0,
+            tag,
+            selection,
+            null,
             null
         )
 

@@ -166,9 +166,9 @@ class Browse2Fragment : BaseBrowse2Fragment() {
                 webFragment.setArguments(args)
 
                 // detail fragment replace
-                manager.beginTransaction() //
-                    .setReorderingAllowed(true) //
-                    .replace(R.id.container_web, webFragment, WebFragment.FRAGMENT_TAG) //
+                manager.beginTransaction() 
+                    .setReorderingAllowed(true) 
+                    .replace(R.id.container_web, webFragment, WebFragment.FRAGMENT_TAG) 
                     .commit()
             }
         }

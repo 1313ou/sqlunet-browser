@@ -30,10 +30,10 @@ object Utils {
      */
     @JvmStatic
     fun confirm(context: Context, @StringRes titleId: Int, @StringRes askId: Int, runnable: Runnable) {
-        AlertDialog.Builder(context) //
-            .setIconAttribute(android.R.attr.alertDialogIcon) //
-            .setTitle(titleId) //
-            .setMessage(askId) //
+        AlertDialog.Builder(context) 
+            .setIconAttribute(android.R.attr.alertDialogIcon) 
+            .setTitle(titleId) 
+            .setMessage(askId) 
             .setPositiveButton(R.string.yes) { _: DialogInterface?, _: Int -> runnable.run() }.setNegativeButton(R.string.no, null).show()
     }
 

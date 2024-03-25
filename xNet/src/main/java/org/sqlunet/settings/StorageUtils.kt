@@ -48,7 +48,7 @@ object StorageUtils {
         val result: MutableList<Directory> = ArrayList()
 
         // A P P - S P E C I F I C - P O S S I B L Y   A D O P T E D
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) //
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) 
         {
             result.add(Directory(context.filesDir, DirType.AUTO))
         }
@@ -80,7 +80,7 @@ object StorageUtils {
         // I N T E R N A L
 
         // internal private storage
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) //
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) 
         {
             result.add(Directory(context.filesDir, DirType.APP_INTERNAL))
         }
@@ -290,7 +290,7 @@ object StorageUtils {
                         status = StorageDirectory.NOT_MOUNTED
                     }
                 } catch (e: Throwable) {
-                    //
+                    
                 }
 
                 DirType.APP_INTERNAL, DirType.AUTO -> {}

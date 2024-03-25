@@ -58,16 +58,16 @@ object CursorDump {
                 val xHeader = if (cursor.isNull(idXHeader)) null else cursor.getString(idXHeader)
                 val xInfo = if (cursor.isNull(idXInfo)) null else cursor.getString(idXInfo)
                 val definition = if (cursor.isNull(idXInfo)) null else cursor.getString(idDefinition)
-                val sources = if (cursor.isNull(idSources)) "" else  //
+                val sources = if (cursor.isNull(idSources)) "" else
                     cursor.getString(idSources)
                 Log.i(
-                    "xloader", "sources=" + sources +  //
-                            " wordid=" + wordId +  //
-                            " synsetid=" + synsetId +  //
-                            " xid=" + xId +  //
-                            " name=" + xName +  //
-                            " header=" + xHeader +  //
-                            " info=" + xInfo +  //
+                    "xloader", "sources=" + sources +
+                            " wordid=" + wordId +
+                            " synsetid=" + synsetId +
+                            " xid=" + xId +
+                            " name=" + xName +
+                            " header=" + xHeader +
+                            " info=" + xInfo +
                             " definition=" + definition
                 )
             } while (cursor.moveToNext())

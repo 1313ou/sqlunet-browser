@@ -56,16 +56,16 @@ object FragmentUtils {
         val count = manager.backStackEntryCount
         for (i in 0 until count) {
             val entry = manager.getBackStackEntryAt(i)
-            sb.append("BackStack: ") //
-                .append(type) //
-                .append('\n') //
-                .append("[") //
-                .append(i) //
-                .append("]: ") //
-                .append(entry.name) //
-                .append(' ') //
-                .append(entry.id) //
-                .append(' ') //
+            sb.append("BackStack: ") 
+                .append(type) 
+                .append('\n') 
+                .append("[") 
+                .append(i) 
+                .append("]: ") 
+                .append(entry.name) 
+                .append(' ') 
+                .append(entry.id) 
+                .append(' ') 
                 .append(entry.javaClass.getName())
         }
         return sb.toString()

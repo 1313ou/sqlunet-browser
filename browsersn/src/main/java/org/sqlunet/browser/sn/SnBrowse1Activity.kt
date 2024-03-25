@@ -39,11 +39,11 @@ class SnBrowse1Activity : AbstractBrowse1Activity() {
         if (savedInstanceState == null) {
             val fragment: Fragment = SnBrowse1Fragment()
             fragment.setArguments(intent.extras)
-            supportFragmentManager //
-                .beginTransaction() //
-                .setReorderingAllowed(true) //
-                .replace(R.id.container_browse, fragment, BaseBrowse1Fragment.FRAGMENT_TAG) //
-                // .addToBackStack(BaseBrowse1Fragment.FRAGMENT_TAG) //
+            supportFragmentManager 
+                .beginTransaction() 
+                .setReorderingAllowed(true) 
+                .replace(R.id.container_browse, fragment, BaseBrowse1Fragment.FRAGMENT_TAG) 
+                // .addToBackStack(BaseBrowse1Fragment.FRAGMENT_TAG) 
                 .commit()
         }
     }

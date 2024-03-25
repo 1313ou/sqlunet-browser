@@ -430,7 +430,7 @@ open class Settings {
                         sharedPref.edit().remove(BaseProvider.CircularBuffer.PREF_SQL_BUFFER_CAPACITY).apply()
                     }
                 } catch (e: Exception) {
-                    //
+                    
                 }
             }
             val twoPanes = sharedPref.getBoolean(PREF_TWO_PANES, false)
@@ -462,7 +462,7 @@ open class Settings {
                     packageInfo.versionCode.toLong()
                 }
             } catch (ignored: PackageManager.NameNotFoundException) {
-                //
+                
             }
 
             // result
@@ -477,17 +477,17 @@ open class Settings {
         @SuppressLint("CommitPrefEdits", "ApplySharedPref")
         fun onUpgrade(context: Context, build: Long) {
             val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-            prefs //
-                .edit() //
+            prefs 
+                .edit() 
                 // clear all settings
                 // .clear()
                 // clear some settings
-                .remove(PREF_DOWNLOAD_MODE) //
-                .remove(PREF_DOWNLOAD_SITE) //
-                .remove(PREF_DOWNLOAD_DBFILE) //
-                .remove(PREF_LAUNCH) //
+                .remove(PREF_DOWNLOAD_MODE) 
+                .remove(PREF_DOWNLOAD_SITE) 
+                .remove(PREF_DOWNLOAD_DBFILE) 
+                .remove(PREF_LAUNCH) 
                 // flag as 'has run'
-                .putLong(PREF_VERSION, build) //
+                .putLong(PREF_VERSION, build) 
                 .apply()
         }
 

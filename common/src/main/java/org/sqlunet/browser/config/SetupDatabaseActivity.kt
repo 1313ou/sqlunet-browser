@@ -40,10 +40,10 @@ class SetupDatabaseActivity : AppCompatActivity() {
         // fragment
         val fragment: Fragment = SetupDatabaseFragment()
         fragment.setArguments(intent.extras)
-        supportFragmentManager //
-            .beginTransaction() //
-            .setReorderingAllowed(true) //
-            .replace(R.id.container_setup, fragment) //
+        supportFragmentManager
+            .beginTransaction()
+            .setReorderingAllowed(true)
+            .replace(R.id.container_setup, fragment)
             .commit()
     }
 

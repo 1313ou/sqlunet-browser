@@ -57,7 +57,7 @@ open class Spanner {
      */
         : ReplacementSpan() {
         override fun draw(canvas: Canvas, arg1: CharSequence, arg2: Int, arg3: Int, arg4: Float, arg5: Int, arg6: Int, arg7: Int, arg8: Paint) {
-            //
+            
         }
 
         override fun getSize(paint: Paint, text: CharSequence, from: Int, to: Int, fm: FontMetricsInt?): Int {

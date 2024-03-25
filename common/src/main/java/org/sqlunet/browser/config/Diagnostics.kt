@@ -431,7 +431,7 @@ object Diagnostics {
                 }
             }
         } catch (ignored: Exception) {
-            //
+
         }
         return null
     }

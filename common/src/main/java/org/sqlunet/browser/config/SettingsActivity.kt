@@ -142,7 +142,7 @@ object SettingsActivity : BaseSettingsActivity() {
                             return@setOnPreferenceChangeListener true
                         }
                     } catch (e: Exception) {
-                        //
+
                     }
                 }
                 false
@@ -200,7 +200,7 @@ object SettingsActivity : BaseSettingsActivity() {
             dbFilePreference.setSummary(storage)
             dbFilePreference.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _: Preference?, newValue: Any? ->
                 var storage2 = newValue as String?
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && isAuto(storage2!!)) //
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && isAuto(storage2!!))
                 {
                     storage2 = requireContext().filesDir.absolutePath
                 }
@@ -237,7 +237,7 @@ object SettingsActivity : BaseSettingsActivity() {
             dbFilePreference.setSummary(storage)
             dbFilePreference.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _: Preference?, newValue: Any? ->
                 var storage2 = newValue as String?
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && isAuto(storage2!!)) //
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && isAuto(storage2!!))
                 {
                     storage2 = requireContext().filesDir.absolutePath
                 }

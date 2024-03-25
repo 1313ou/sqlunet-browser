@@ -94,7 +94,7 @@ class WebFragment : Fragment() {
                                     val xSources = xPointer.getXSources()
                                     val wordId = xPointer.getWordId()
                                     val synsetId = xPointer.getSynsetId()
-                                    if (xSources == null || xSources.contains("wn")) //
+                                    if (xSources == null || xSources.contains("wn")) 
                                     {
                                         wnDomDoc = WordNetImplementation().querySenseDoc(db, wordId, synsetId)
                                     }
@@ -254,7 +254,7 @@ class WebFragment : Fragment() {
                     val value = target[1]
                     Log.d(TAG, "Query: $query name=$name value=$value")
                     val targetIntent = Intent(requireContext(), WebActivity::class.java)
-                    if ("word" == name) //
+                    if ("word" == name) 
                     {
                         targetIntent.putExtra(ProviderArgs.ARG_QUERYSTRING, value)
                     } else {
@@ -360,11 +360,11 @@ class WebFragment : Fragment() {
      * @return string
      */
     private fun docsToString(
-        word: String?,  //
-        xml: Boolean,  //
-        isSelector: Boolean,  //
-        wnDomDoc: Document?,  //
-        snDomDoc: Document?,  //
+        word: String?,  
+        xml: Boolean,  
+        isSelector: Boolean,  
+        wnDomDoc: Document?,  
+        snDomDoc: Document?,  
         bncDomDoc: Document?,
     ): String {
         // LogUtils.writeLog(DomTransformer.docToXml(wnDomDoc), false, "wn_sqlunet.log");

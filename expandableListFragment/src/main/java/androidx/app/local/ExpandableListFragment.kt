@@ -392,7 +392,7 @@ open class ExpandableListFragment : Fragment(), OnChildClickListener, OnGroupCol
      * @param id       The row id of the item that was clicked
      */
     protected fun onListItemClick(l: ExpandableListView?, v: View?, position: Int, id: Long) {
-        //
+        
     }
 
     /**
@@ -409,14 +409,14 @@ open class ExpandableListFragment : Fragment(), OnChildClickListener, OnGroupCol
      * Override this for receiving callbacks when a group has been collapsed.
      */
     override fun onGroupCollapse(groupPosition: Int) {
-        //
+        
     }
 
     /**
      * Override this for receiving callbacks when a group has been expanded.
      */
     override fun onGroupExpand(groupPosition: Int) {
-        //
+        
     }
 
     /**
@@ -428,6 +428,6 @@ open class ExpandableListFragment : Fragment(), OnChildClickListener, OnGroupCol
      * {@inheritDoc}
      */
     override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenuInfo?) {
-        //
+        
     }
 }

@@ -317,10 +317,10 @@ class TreeNode(
     // S T R I N G I F Y
 
     override fun toString(): String {
-        return "#" + id + ' ' +  //
-                (if (value == null) "null" else '['.toString() + value.toString().replace('\n', '┃') + ']') + ' ' +  //
-                "controller=" + controller.javaClass.getSimpleName() + ' ' +  //
-                "parent=" + (if (parent == null) "none" else parent!!.id) + ' ' +  //
+        return "#" + id + ' ' +  
+                (if (value == null) "null" else '['.toString() + value.toString().replace('\n', '┃') + ']') + ' ' +  
+                "controller=" + controller.javaClass.getSimpleName() + ' ' +  
+                "parent=" + (if (parent == null) "none" else parent!!.id) + ' ' +  
                 "num children=" + children.size
     }
 

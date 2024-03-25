@@ -40,7 +40,7 @@ class SenseKeyPointer : Parcelable, HasSenseKey {
     }
 
     override fun toString(): String {
-        return "sensekey=" +  //
+        return "sensekey=" +
                 senseKey
     }
 

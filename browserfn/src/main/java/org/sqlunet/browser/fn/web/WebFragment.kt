@@ -213,7 +213,7 @@ class WebFragment : Fragment() {
                     val value = target[1]
                     Log.d(TAG, "Query: $query name=$name value=$value")
                     val targetIntent = Intent(requireContext(), WebActivity::class.java)
-                    if ("word" == name) //
+                    if ("word" == name) 
                     {
                         targetIntent.putExtra(ProviderArgs.ARG_QUERYSTRING, value)
                     } else {
@@ -310,9 +310,9 @@ class WebFragment : Fragment() {
      * @return string
      */
     private fun docsToString(
-        word: String?,  //
-        xml: Boolean,  //
-        isSelector: Boolean,  //
+        word: String?,  
+        xml: Boolean,  
+        isSelector: Boolean,  
         fnDomDoc: Document?,
     ): String {
         // LogUtils.writeLog(DomTransformer.docToXml(wnDomDoc), false, "wn_sqlunet.log")

@@ -37,10 +37,10 @@ class SetupFileActivity : AppCompatActivity() {
         // fragment
         val fragment: Fragment = SetupFileFragment()
         fragment.setArguments(intent.extras)
-        supportFragmentManager //
-            .beginTransaction() //
-            .setReorderingAllowed(true) //
-            .replace(R.id.container_setup, fragment) //
+        supportFragmentManager
+            .beginTransaction()
+            .setReorderingAllowed(true)
+            .replace(R.id.container_setup, fragment)
             .commit()
     }
 

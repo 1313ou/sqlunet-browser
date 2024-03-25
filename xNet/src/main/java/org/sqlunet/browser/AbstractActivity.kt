@@ -43,11 +43,11 @@ abstract class AbstractActivity : AppCompatActivity() {
             // create the sense fragment, transmit intent's extras as parameters and addItem it to the activity using a fragment transaction
             val fragment = makeFragment()
             fragment.setArguments(intent.extras)
-            supportFragmentManager //
-                .beginTransaction() //
-                .setReorderingAllowed(true) //
-                .replace(containerId, fragment) //
-                // .addToBackStack(fragment.getTag() == null ? "tagless" : fragment.getTag()) //
+            supportFragmentManager 
+                .beginTransaction() 
+                .setReorderingAllowed(true) 
+                .replace(containerId, fragment) 
+                // .addToBackStack(fragment.getTag() == null ? "tagless" : fragment.getTag()) 
                 .commit()
         }
     }

@@ -147,7 +147,7 @@ internal object FileUtils {
             while (entry != null) {
                 if (!entry.isDirectory) {
                     val entryName = entry.name
-                    if (!entryName.endsWith("MANIFEST.MF")) //
+                    if (!entryName.endsWith("MANIFEST.MF")) 
                     {
                         if (pathPrefixFilter.isNullOrEmpty() || entryName.startsWith(pathPrefixFilter)) {
                             // flatten zip hierarchy

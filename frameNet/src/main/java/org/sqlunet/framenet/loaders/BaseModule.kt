@@ -992,7 +992,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
                 // fe realizations
                 val fers = cursor.getString(idFers)
-                for (fer in fers.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())  //
+                for (fer in fers.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())  
                 {
                     // pt:gf:valenceUnit id
 
@@ -1572,7 +1572,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * @return changed nodes
      */
     private fun annoSets(
-        parent: TreeNode, cursor: Cursor,  //
+        parent: TreeNode, cursor: Cursor,  
         sentenceText: String?, idSentenceText: Int, idLayerType: Int, idRank: Int, idAnnotations: Int, idAnnoSetId: Int,
     ): Array<TreeOp> {
         val changed: Array<TreeOp>
@@ -1634,8 +1634,8 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
                         // label
                         append(
-                            sb, label.label, 0, if (isFE) //
-                                FrameNetFactories.feFactory else  //
+                            sb, label.label, 0, if (isFE) 
+                                FrameNetFactories.feFactory else  
                                 FrameNetFactories.labelFactory
                         )
                         sb.append(' ')
@@ -1653,8 +1653,8 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
                         }
                         val p = sb.length
                         append(
-                            sb, subtext, 0, if (isTarget) //
-                                FrameNetFactories.targetFactory else  //
+                            sb, subtext, 0, if (isTarget) 
+                                FrameNetFactories.targetFactory else  
                                 FrameNetFactories.subtextFactory
                         )
 
@@ -1746,11 +1746,11 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * @return processed layer name
      */
     private fun processLayer(name: CharSequence): CharSequence {
-        if ("FE".contentEquals(name)) //
+        if ("FE".contentEquals(name)) 
         {
             return "Frame element"
         }
-        if ("PT".contentEquals(name)) //
+        if ("PT".contentEquals(name)) 
         {
             return "Phrase type"
         }
@@ -1766,11 +1766,11 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * @return processed PT
      */
     private fun processPT(name: CharSequence): CharSequence {
-        if ("CNI".contentEquals(name)) //
+        if ("CNI".contentEquals(name)) 
         {
             return "constructional ∅"
         }
-        if ("DNI".contentEquals(name)) //
+        if ("DNI".contentEquals(name)) 
         {
             return "definite ∅"
         }
@@ -2015,7 +2015,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             VERBOSE = verbose
         }
 
-        private val FRAMERELATION_RANK = intArrayOf( //
+        private val FRAMERELATION_RANK = intArrayOf( 
             20,  // 1  - Has Subframe(s)
             11,  // 2  - Inherits from
             60,  // 3  - Is Causative of
@@ -2030,7 +2030,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
             21,  // 12 - Subframe of
             30
         )
-        private val FRAMERELATION_GLOSS = arrayOf( //
+        private val FRAMERELATION_GLOSS = arrayOf( 
             "%s has %s as subframe",  // 1  - Has Subframe(s)
             "%s inherits %s",  // 2  - Inherits from
             "%s is causative of %s",  // 3  - Is Causative of

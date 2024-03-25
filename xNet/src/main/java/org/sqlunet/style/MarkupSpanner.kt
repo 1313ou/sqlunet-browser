@@ -25,10 +25,10 @@ object MarkupSpanner : Spanner() {
      */
     @JvmStatic
     fun setSpan(
-        text: CharSequence,  //
-        sb: SpannableStringBuilder, spanFactory: SpanFactory,  //
-        flags: Long,  //
-        pattern: Pattern,  //
+        text: CharSequence,  
+        sb: SpannableStringBuilder, spanFactory: SpanFactory,  
+        flags: Long,  
+        pattern: Pattern,  
         vararg extraPatterns: Pattern
     ): CharSequence {
         // specific patterns

@@ -32,7 +32,7 @@ class ClassModule(fragment: TreeFragment) : BaseModule(fragment) {
         if (pointer is HasXId) {
             val xIdPointer = pointer as HasXId
             val xSources = xIdPointer.getXSources()
-            if (xSources == null || xSources.contains("vn")) //
+            if (xSources == null || xSources.contains("vn")) 
             {
                 classId = xIdPointer.getXClassId()
                 // var xMemberId = pointer.getXMemberId()

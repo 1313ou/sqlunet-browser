@@ -123,7 +123,7 @@ class TextFragment : BaseListFragment() {
         val database = args.getString(ProviderArgs.ARG_QUERYDATABASE)
         if (database != null) {
             // wordnet
-            if ("fn" == database) //
+            if ("fn" == database) 
             {
                 val idFrames = cursor.getColumnIndex(FrameNetContract.Lookup_FTS_FnSentences_X.FRAMES)
                 val idLexUnits = cursor.getColumnIndex(FrameNetContract.Lookup_FTS_FnSentences_X.LEXUNITS)
@@ -238,9 +238,9 @@ class TextFragment : BaseListFragment() {
      * @return dialog
      */
     private fun makeDialog(listener: DialogInterface.OnClickListener, vararg choices: CharSequence): AlertDialog {
-        return AlertDialog.Builder(requireContext()) //
-            .setTitle(R.string.title_activity_searchtext) //
-            .setItems(choices, listener) //
+        return AlertDialog.Builder(requireContext()) 
+            .setTitle(R.string.title_activity_searchtext) 
+            .setItems(choices, listener) 
             .create()
     }
 

@@ -19,7 +19,7 @@ import org.sqlunet.style.Spanner.SpanFactory
 class PropBankSpanner(context: Context) : RegExprSpanner(
     patterns,
     arrayOf(
-        arrayOf( //
+        arrayOf( 
             SpanFactory { _: Long -> ImageSpan(context, R.drawable.trace) },
             SpanFactory { _: Long -> HiddenSpan() })
     )

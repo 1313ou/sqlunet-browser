@@ -50,10 +50,10 @@ class WordActivity : AppCompatActivity() {
                 val args = intent.extras
                 fragment.setArguments(args)
             }
-            manager.beginTransaction() //
-                .setReorderingAllowed(true) //
-                .replace(R.id.container_word, fragment, WordFragment.FRAGMENT_TAG) //
-                // .addToBackStack(WordFragment.FRAGMENT_TAG) //
+            manager.beginTransaction() 
+                .setReorderingAllowed(true) 
+                .replace(R.id.container_word, fragment, WordFragment.FRAGMENT_TAG) 
+                // .addToBackStack(WordFragment.FRAGMENT_TAG) 
                 .commit()
         }
     }

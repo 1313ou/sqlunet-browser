@@ -112,7 +112,7 @@ object DownloadIntentFactory {
     fun makeUpdateIntent(context: Context): Intent {
         val downloadSourceType = getDatapackSourceType(context)
         val downloadSourceUrl = (if ("download" == downloadSourceType) getDatapackSource(context) else getDbDownloadZippedSourcePath(context))!!
-        if (!downloadSourceUrl.endsWith(Deploy.ZIP_EXTENSION)) //
+        if (!downloadSourceUrl.endsWith(Deploy.ZIP_EXTENSION)) 
         {
             return makeIntentPlainDownload(context, downloadSourceUrl)
         }

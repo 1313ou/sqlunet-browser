@@ -34,11 +34,11 @@ class SearchTextFragment : BaseSearchFragment() {
         if (savedInstanceState == null) {
             // splash fragment
             val fragment: Fragment = SearchTextSplashFragment()
-            getChildFragmentManager() //
-                .beginTransaction() //
-                .setReorderingAllowed(true) //
-                .replace(R.id.container_searchtext, fragment, SplashFragment.FRAGMENT_TAG) //
-                //.addToBackStack(SplashFragment.FRAGMENT_TAG) //
+            getChildFragmentManager()
+                .beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(R.id.container_searchtext, fragment, SplashFragment.FRAGMENT_TAG)
+                //.addToBackStack(SplashFragment.FRAGMENT_TAG)
                 .commit()
         }
     }
@@ -90,8 +90,8 @@ class SearchTextFragment : BaseSearchFragment() {
             target = Lookup_FTS_FnSentences_X.TEXT
             columns = arrayOf(Lookup_FTS_FnSentences_X.TEXT)
             hiddenColumns = arrayOf(
-                Lookup_FTS_FnSentences_X.SENTENCEID,  //
-                "GROUP_CONCAT(DISTINCT  frame || '@' || frameid) AS " + Lookup_FTS_FnSentences_X.FRAMES,  //
+                Lookup_FTS_FnSentences_X.SENTENCEID,
+                "GROUP_CONCAT(DISTINCT  frame || '@' || frameid) AS " + Lookup_FTS_FnSentences_X.FRAMES,
                 "GROUP_CONCAT(DISTINCT  lexunit || '@' || luid) AS " + Lookup_FTS_FnSentences_X.LEXUNITS
             )
             database = "fn"
@@ -117,11 +117,11 @@ class SearchTextFragment : BaseSearchFragment() {
         if (!isAdded) {
             return
         }
-        getChildFragmentManager() //
-            .beginTransaction() //
-            .setReorderingAllowed(true) //
-            .replace(R.id.container_searchtext, fragment, TextFragment.FRAGMENT_TAG) //
-            .addToBackStack(TextFragment.FRAGMENT_TAG) //
+        getChildFragmentManager()
+            .beginTransaction()
+            .setReorderingAllowed(true)
+            .replace(R.id.container_searchtext, fragment, TextFragment.FRAGMENT_TAG)
+            .addToBackStack(TextFragment.FRAGMENT_TAG)
             .commit()
     }
 
