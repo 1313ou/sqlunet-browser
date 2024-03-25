@@ -374,9 +374,8 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         this.query = query
 
         // subtitle
-        // final Toolbar toolbar = requireActivity().findViewById(R.id.toolbar);
-        // assert toolbar != null;
-        // toolbar.setSubtitle(query);
+        // var toolbar = requireActivity().findViewById(R.id.toolbar)
+        // toolbar.setSubtitle(query)
     }
 
     // S A V E / R E S T O R E

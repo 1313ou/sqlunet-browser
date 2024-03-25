@@ -54,12 +54,10 @@ import java.net.URLDecoder
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class WebFragment
-/**
- * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
- */
-    : Fragment() {
+class WebFragment : Fragment() {
+
     internal inner class WebDocumentStringLoader(val context: Context, private val type: Int, private val data: String?, private val pointer: Parcelable?, private val pos: Char, private val sources: Int, private val xml: Boolean) : DocumentStringLoader {
+
         override fun getDoc(): String? {
             try {
                 DataSource(getDatabasePath(context)).use { dataSource ->

@@ -33,14 +33,11 @@ import java.io.File
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class SetupWnStatusFragment
-/**
- * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
- */
-    : SetupStatusFragment() {
+class SetupWnStatusFragment : SetupStatusFragment() {
     // components
     private var imageTextSearchWn: ImageView? = null
     private var buttonTextSearchWn: ImageButton? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

@@ -92,8 +92,6 @@ class TextFragment : BaseListFragment() {
         }
     }
 
-    // C L I C K
-
     override fun onListItemClick(listView: ListView, view: View, position: Int, id: Long) {
         super.onListItemClick(listView, view, position, id)
         Log.d(TAG, "Click: id=$id pos=$position")
@@ -109,7 +107,6 @@ class TextFragment : BaseListFragment() {
         // search target
         val database = args.getString(ProviderArgs.ARG_QUERYDATABASE)
         if (database != null) {
-            // wordnet
             if ("wn" == database) {
                 val subtarget = args.getString(ProviderArgs.ARG_QUERYIDTYPE)
                 if ("synset" == subtarget) {

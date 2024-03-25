@@ -16,11 +16,8 @@ import org.sqlunet.browser.BaseListFragment
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class TableFragment  // static private final String TAG = "TableF";
-/**
- * Mandatory empty constructor for the fragment manager to instantiate the fragment (e.g. upon screen orientation changes).
- */
-    : BaseListFragment() {
+class TableFragment  : BaseListFragment() {
+
     /**
      * Make view binder
      *
