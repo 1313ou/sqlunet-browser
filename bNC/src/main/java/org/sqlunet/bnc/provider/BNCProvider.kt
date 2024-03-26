@@ -48,7 +48,7 @@ class BNCProvider : BaseProvider() {
         if (code == UriMatcher.NO_MATCH) {
             throw RuntimeException("Malformed URI $uri")
         }
-        val result = BNCControl.queryMain(code, uri.lastPathSegment, projection0, selection0, selectionArgs0)
+        val result = BNCControl.queryMain(code, projection0, selection0, selectionArgs0)
         if (result != null) {
             val sql = SQLiteQueryBuilder.buildQueryString(false, result.table, result.projection, result.selection, result.groupBy, null, sortOrder0, null)
             logSql(sql, *selectionArgs0 ?: arrayOf())

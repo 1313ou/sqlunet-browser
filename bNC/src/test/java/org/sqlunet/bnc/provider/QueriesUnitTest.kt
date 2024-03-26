@@ -1,71 +1,90 @@
 /*
  * Copyright (c) 2023. Bernard Bou
  */
+package org.sqlunet.bnc.provider
 
-package org.sqlunet.bnc.provider;
+import org.junit.Test
+import org.sqlunet.bnc.provider.BNCControl.queryMain
 
-import org.junit.Test;
-import org.sqlunet.bnc.provider.BNCControl.Result;
+class QueriesUnitTest {
 
-import java.util.Arrays;
-import java.util.Objects;
+    private val codes = intArrayOf(BNCControl.BNC, BNCControl.WORDS_BNC)
+    private val uriLast = "LAST"
+    private val projection = arrayOf("PROJ1", "PROJ2", "PROJ3")
+    private val selection = "SEL"
+    private val selectionArgs = arrayOf("ARG1", "ARG2", "ARG3")
+    private val sortOrder = "SORT"
 
-import androidx.annotation.Nullable;
+    @Test
+    fun queriesLegacyAgainstProvider() {
+        for (code in codes) {
+            queriesLegacyAgainstProvider(code, uriLast, projection, selection, selectionArgs, sortOrder)
+        }
+    }
 
-public class QueriesUnitTest
-{
-	private final int[] codes = {BNCControl.BNC, BNCControl.WORDS_BNC};
+    private fun queriesLegacyAgainstProvider(code: Int, uriLast: String, projection: Array<String>, selection: String, selectionArgs: Array<String>, @Suppress("unused") sortOrder: String) {
+        val r1 = QueriesLegacy.queryLegacy(code, uriLast, projection, selection, selectionArgs)
+        val r2 = queryProvider(code, uriLast, projection, selection, selectionArgs)
+        check(code, r1, r2)
+    }
 
-	@SuppressWarnings("FieldCanBeLocal")
-	private final String uriLast = "LAST";
-	private final String[] projection = {"PROJ1", "PROJ2", "PROJ3"};
-	@SuppressWarnings("FieldCanBeLocal")
-	private final String selection = "SEL";
-	private final String[] selectionArgs = {"ARG1", "ARG2", "ARG3"};
-	@SuppressWarnings("FieldCanBeLocal")
-	private final String sortOrder = "SORT";
+    private fun check(code: Int, r1: BNCControl.Result?, r2: BNCControl.Result?) {
+        assert(r1 != null)
+        assert(r2 != null)
+        assert(equals(r1!!.table, r2!!.table)) {
+            """
+            Code=$code
+            ${r1.table}
+            !=
+            ${r2.table}
+            """.trimIndent()
+        }
+        assert(r1.projection.contentEquals(r2.projection)) {
+            """
+            Code=$code
+            ${r1.projection.contentToString()}
+            !=
+            ${r2.projection.contentToString()}
+            """.trimIndent()
+        }
+        assert(equals(r1.selection, r2.selection)) {
+            """
+            Code=$code
+            ${r1.selection}
+            !=
+            ${r2.selection}
+            """.trimIndent()
+        }
+        assert(r1.selectionArgs.contentEquals(r2.selectionArgs)) {
+            """
+            Code=$code
+            ${r1.selectionArgs.contentToString()}
+            !=
+            ${r2.selectionArgs.contentToString()}
+            """.trimIndent()
+        }
+        assert(equals(r1.groupBy, r2.groupBy)) {
+            """
+            Code=$code
+            ${r1.groupBy}
+            !=
+            ${r2.groupBy}
+            """.trimIndent()
+        }
+    }
 
-	@Test
-	public void queriesLegacyAgainstProvider()
-	{
-		for (int code : codes)
-		{
-			queriesLegacyAgainstProvider(code, uriLast, projection, selection, selectionArgs, sortOrder);
-		}
-	}
+    companion object {
 
-	private void queriesLegacyAgainstProvider(final int code, @SuppressWarnings("SameParameterValue") final String uriLast, final String[] projection, @SuppressWarnings("SameParameterValue") final String selection, final String[] selectionArgs, @SuppressWarnings({"SameParameterValue","unused"}) final String sortOrder)
-	{
-		Result r1 = QueriesLegacy.queryLegacy(code, uriLast, projection, selection, selectionArgs);
-		Result r2 = queryProvider(code, uriLast, projection, selection, selectionArgs);
-		check(code, r1, r2);
-	}
+        fun queryProvider(code: Int, uriLast: String?, projection0: Array<String>?, selection0: String?, selectionArgs0: Array<String>?): BNCControl.Result? {
+            return queryProviderMain(code, uriLast, projection0, selection0, selectionArgs0)
+        }
 
-	@Nullable
-	public static Result queryProvider(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
-	{
-		return queryProviderMain(code, uriLast, projection0, selection0, selectionArgs0);
-	}
+        private fun queryProviderMain(code: Int, uriLast: String?, projection0: Array<String>?, selection0: String?, selectionArgs0: Array<String>?): BNCControl.Result? {
+            return queryMain(code, projection0, selection0, selectionArgs0)
+        }
 
-	@Nullable
-	public static Result queryProviderMain(final int code, final String uriLast, final String[] projection0, final String selection0, final String[] selectionArgs0)
-	{
-		return BNCControl.queryMain(code, uriLast, projection0, selection0, selectionArgs0);
-	}
-
-	private void check(final int code, @Nullable final Result r1, @Nullable final Result r2)
-	{
-		assert r1 != null;
-		assert r2 != null;
-		assert equals(r1.table, r2.table) : "Code=" + code + "\n" + r1.table + "\n!=\n" + r2.table;
-		assert Arrays.equals(r1.projection, r2.projection) : "Code=" + code + "\n" + Arrays.toString(r1.projection) + "\n!=\n" + Arrays.toString(r2.projection);
-		assert equals(r1.selection, r2.selection) : "Code=" + code + "\n" + r1.selection + "\n!=\n" + r2.selection;
-		assert Arrays.equals(r1.selectionArgs, r2.selectionArgs) : "Code=" + code + "\n" + Arrays.toString(r1.selectionArgs) + "\n!=\n" + Arrays.toString(r2.selectionArgs);
-		assert equals(r1.groupBy, r2.groupBy) : "Code=" + code + "\n" + r1.groupBy + "\n!=\n" + r2.groupBy;
-	}
-
-	private static boolean equals(Object a, Object b)
-	{
-		return Objects.equals(a, b);
-	}
+        private fun equals(a: Any?, b: Any?): Boolean {
+            return a == b
+        }
+    }
 }

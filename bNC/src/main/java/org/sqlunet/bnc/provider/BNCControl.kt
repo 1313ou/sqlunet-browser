@@ -17,7 +17,7 @@ object BNCControl {
     const val WORDS_BNC = 100
 
     @JvmStatic
-    fun queryMain(code: Int, uriLast: String?, projection0: Array<String>?, selection0: String?, selectionArgs0: Array<String>?): Result? {
+    fun queryMain(code: Int, projection0: Array<String>?, selection0: String?, selectionArgs0: Array<String>?): Result? {
         val table: String
         var selection = selection0
         when (code) {

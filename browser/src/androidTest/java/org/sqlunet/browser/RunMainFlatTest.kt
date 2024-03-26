@@ -28,9 +28,9 @@ class RunMainFlatTest : TestCase() {
         }
 
         //Actions.do_navigate(R.id.drawer_layout, R.id.nav_view, "Browse")
-        Seq.do_navigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_search_browse)
+        Seq.doNavigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_search_browse)
         //Actions.do_choose(R.id.spinner, "senses")
-        Seq.do_choose(R.id.spinner, 0)
+        Seq.doChoose(R.id.spinner, 0)
     }
 
     @Test

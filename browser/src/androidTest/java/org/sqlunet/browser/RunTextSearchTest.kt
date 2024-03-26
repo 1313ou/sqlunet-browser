@@ -27,12 +27,12 @@ class RunTextSearchTest : TestCase() {
         if (ensureDownloaded()) {
             ActivityScenario.launch(MainActivity::class.java)
         }
-        Seq.do_navigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_status)
+        Seq.doNavigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_status)
         ensureTextSearchSetup(org.sqlunet.browser.R.id.searchtextWnButton)
         ensureTextSearchSetup(org.sqlunet.browser.R.id.searchtextFnButton)
         ensureTextSearchSetup(org.sqlunet.browser.R.id.searchtextVnButton)
         ensureTextSearchSetup(org.sqlunet.browser.R.id.searchtextPbButton)
-        Seq.do_navigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_search_text)
+        Seq.doNavigate(R.id.drawer_layout, R.id.nav_view, R.id.nav_search_text)
     }
 
     @Test

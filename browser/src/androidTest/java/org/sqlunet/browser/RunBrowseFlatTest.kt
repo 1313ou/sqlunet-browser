@@ -22,7 +22,7 @@ class RunBrowseFlatTest : TestCase() {
     @Before
     fun before() {
         //Actions.do_choose(R.id.spinner, "senses")
-        Seq.do_choose(R.id.spinner, 0)
+        Seq.doChoose(R.id.spinner, 0)
     }
 
     @Test

@@ -35,7 +35,7 @@ object PropBankControl {
     const val SUGGEST_FTS_WORDS = 602
 
     @JvmStatic
-    fun queryMain(code: Int, uriLast: String?, projection0: Array<String>?, selection0: String?, selectionArgs0: Array<String>?): Result? {
+    fun queryMain(code: Int, projection0: Array<String>?, selection0: String?, selectionArgs0: Array<String>?): Result? {
         val table: String
         var selection = selection0
         var groupBy: String? = null

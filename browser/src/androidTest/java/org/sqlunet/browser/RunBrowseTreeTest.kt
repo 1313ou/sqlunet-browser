@@ -22,7 +22,7 @@ class RunBrowseTreeTest : TestCase() {
     @Before
     fun before() {
         //Actions.do_choose(R.id.spinner, "grouped by source")
-        Seq.do_choose(R.id.spinner, 1)
+        Seq.doChoose(R.id.spinner, 1)
     }
 
     @Test

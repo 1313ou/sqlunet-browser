@@ -21,6 +21,7 @@ import org.sqlunet.nightmode.NightMode.checkDarkMode
 @RunWith(AndroidJUnit4::class)
 @LargeTest
 abstract class AbstractColors : TestCase() {
+
     abstract val mode: Int
 
     @Rule
@@ -31,48 +32,50 @@ abstract class AbstractColors : TestCase() {
     @Before
     @Throws(Throwable::class)
     fun before() {
-        context = ColorsTest.getContext(mode)
+        context = ColorsLib.getContext(mode)
         UiThreadStatement.runOnUiThread {
             AppCompatDelegate.setDefaultNightMode(mode)
             // Colors.dumpDefaultColors(this.context)
-            @ColorInt val defaultColors = ColorsTest.getDefaultColorAttrs(context!!)
+            @ColorInt val defaultColors = ColorsLib.getDefaultColorAttrs(context!!)
             Log.i(LOGTAG, String.format("Default color #%x on #%x", defaultColors[1], defaultColors[0]))
         }
     }
 
     @Test
-    @Throws(ColorsTest.IllegalColorPair::class)
+    @Throws(ColorsLib.IllegalColorPair::class)
     fun colorContrast() {
         assertTrue(checkDarkMode(mode))
-        ColorsTest.testColorsFromResources(context!!, R.array.palette_ui, false)
-        ColorsTest.testColorsFromResources(context!!, R.array.palette, false)
-        ColorsTest.testColorsFromResources(context!!, R.array.palette_wn, false)
-        ColorsTest.testColorsFromResources(context!!, R.array.palette_fn, false)
-        ColorsTest.testColorsFromResources(context!!, R.array.palette_vn, false)
-        ColorsTest.testColorsFromResources(context!!, R.array.palette_pb, false)
-        ColorsTest.testColorsFromResources(context!!, R.array.palette_bnc, false)
-        ColorsTest.testColorsFromResources(context!!, R.array.palette_pm, false)
+        ColorsLib.testColorsFromResources(context!!, R.array.palette_ui, false)
+        ColorsLib.testColorsFromResources(context!!, R.array.palette, false)
+        ColorsLib.testColorsFromResources(context!!, R.array.palette_wn, false)
+        ColorsLib.testColorsFromResources(context!!, R.array.palette_fn, false)
+        ColorsLib.testColorsFromResources(context!!, R.array.palette_vn, false)
+        ColorsLib.testColorsFromResources(context!!, R.array.palette_pb, false)
+        ColorsLib.testColorsFromResources(context!!, R.array.palette_bnc, false)
+        ColorsLib.testColorsFromResources(context!!, R.array.palette_pm, false)
     }
 
     @Test
     fun colorContrastXNet() {
         assertTrue(checkDarkMode(mode))
         try {
-            ColorsTest.testColorsFromResources(context!!, R.array.palette_ui, true)
-            ColorsTest.testColorsFromResources(context!!, R.array.palette, true)
-            ColorsTest.testColorsFromResources(context!!, R.array.palette_wn, true)
-            ColorsTest.testColorsFromResources(context!!, R.array.palette_fn, true)
-            ColorsTest.testColorsFromResources(context!!, R.array.palette_vn, true)
-            ColorsTest.testColorsFromResources(context!!, R.array.palette_pb, true)
-            ColorsTest.testColorsFromResources(context!!, R.array.palette_bnc, true)
-            ColorsTest.testColorsFromResources(context!!, R.array.palette_pm, true)
-        } catch (ce: ColorsTest.IllegalColorPair) {
-            Log.e(name, ce.message!!)
+            ColorsLib.testColorsFromResources(context!!, R.array.palette_ui, true)
+            ColorsLib.testColorsFromResources(context!!, R.array.palette, true)
+            ColorsLib.testColorsFromResources(context!!, R.array.palette_wn, true)
+            ColorsLib.testColorsFromResources(context!!, R.array.palette_fn, true)
+            ColorsLib.testColorsFromResources(context!!, R.array.palette_vn, true)
+            ColorsLib.testColorsFromResources(context!!, R.array.palette_pb, true)
+            ColorsLib.testColorsFromResources(context!!, R.array.palette_bnc, true)
+            ColorsLib.testColorsFromResources(context!!, R.array.palette_pm, true)
+        }
+        catch (ce: ColorsLib.IllegalColorPair) {
+            Log.e(name, ce.message)
             fail(ce.message)
         }
     }
 
     companion object {
+
         private const val LOGTAG = "ColorsDay"
     }
 }

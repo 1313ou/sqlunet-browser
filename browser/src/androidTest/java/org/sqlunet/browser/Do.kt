@@ -28,9 +28,9 @@ internal object Do {
     }
 
     private fun download() {
-        Seq.do_click(R.id.databaseButton)
+        Seq.doClick(R.id.databaseButton)
         // download activity
-        Seq.do_click(R.id.downloadButton)
+        Seq.doClick(R.id.downloadButton)
         //Wait.until_not_text(R.id.status, Seq.getResourceString(R.string.status_task_running), 10)
         WaitUntilText.changesFrom(R.id.status, Seq.getResourceString(R.string.status_task_running))
     }
@@ -40,13 +40,13 @@ internal object Do {
         val notSet = ToBoolean.testAssertion(ViewMatchers.withId(buttonId), ViewAssertions.doesNotExist()) || ToBoolean.test(ViewMatchers.withId(buttonId), ViewMatchers.withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE))
         if (notSet) {
             textSearchSetup(buttonId)
-            Seq.do_pressBack()
+            Seq.doPressBack()
         }
     }
 
     private fun textSearchSetup(@IdRes buttonId: Int) {
-        Seq.do_click(buttonId)
-        Seq.do_click(R.id.task_run)
+        Seq.doClick(buttonId)
+        Seq.doClick(R.id.task_run)
         //Wait.until_not_text(R.id.task_status, Seq.getResourceString(R.string.status_task_running), 10)
         WaitUntilText.changesFrom(R.id.task_status, Seq.getResourceString(R.string.status_task_running))
     }
@@ -54,7 +54,7 @@ internal object Do {
     @JvmStatic
     fun searchRunFlat() {
         for (word in Objects.requireNonNull(DataUtils.getWordList())) {
-            Seq.do_typeSearch(R.id.search, word)
+            Seq.doTypeSearch(R.id.search, word)
 
             // selector list
             //Wait.until(android.R.id.list, 5)
@@ -72,7 +72,7 @@ internal object Do {
                     .perform( 
                         ViewActions.click() 
                     )
-                Seq.do_pressBack()
+                Seq.doPressBack()
             }
         }
     }
@@ -80,7 +80,7 @@ internal object Do {
     @JvmStatic
     fun searchRunTree() {
         for (word in Objects.requireNonNull(DataUtils.getWordList())) {
-            Seq.do_typeSearch(R.id.search, word)
+            Seq.doTypeSearch(R.id.search, word)
 
             // selector list
             //Wait.until(android.R.id.list, 5)
@@ -115,7 +115,7 @@ internal object Do {
                         .usingAdapterViewProtocol(AdapterViewProtocols.standardProtocol()).perform(
                             ViewActions.click() 
                         )
-                    Seq.do_pressBack()
+                    Seq.doPressBack()
                 }
             }
         }
@@ -124,7 +124,7 @@ internal object Do {
     @JvmStatic
     fun xselectorsRunTree() {
         for (word in Objects.requireNonNull(DataUtils.getWordList())) {
-            Seq.do_typeSearch(R.id.search, word!!)
+            Seq.doTypeSearch(R.id.search, word!!)
 
             // selector list
             //Wait.until(android.R.id.list, 5)
@@ -146,9 +146,9 @@ internal object Do {
 
     @JvmStatic
     fun textSearchRun(position: Int) {
-        Seq.do_choose(R.id.spinner, position)
+        Seq.doChoose(R.id.spinner, position)
         for (word in Objects.requireNonNull(DataUtils.getWordList())) {
-            Seq.do_typeSearch(R.id.search, word!!)
+            Seq.doTypeSearch(R.id.search, word!!)
         }
     }
 }

@@ -77,7 +77,7 @@ class PropBankProvider  // C O N S T R U C T O R
         }
         var result: PropBankControl.Result?
         // MAIN
-        result = queryMain(code, uri.lastPathSegment, projection0, selection0, selectionArgs0)
+        result = queryMain(code, projection0, selection0, selectionArgs0)
         if (result == null) {
             // TEXTSEARCH
             result = querySearch(code, projection0, selection0, selectionArgs0)

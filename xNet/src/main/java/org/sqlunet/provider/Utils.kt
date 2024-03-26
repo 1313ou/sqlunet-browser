@@ -31,7 +31,7 @@ object Utils {
         unionProjection: Array<String>,
         projection: Array<String>,
         selection: String?,
-        selectionArgs: Array<String>,
+        selectionArgs: Array<String>?,
         groupBys: Array<String>?,
         sortOrder: String?, tag: String,
     ): XNetControl.Result {
