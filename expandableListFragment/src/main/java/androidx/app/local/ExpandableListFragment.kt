@@ -391,8 +391,8 @@ open class ExpandableListFragment : Fragment(), OnChildClickListener, OnGroupCol
      * @param position The position of the view in the list
      * @param id       The row id of the item that was clicked
      */
-    protected fun onListItemClick(l: ExpandableListView?, v: View?, position: Int, id: Long) {
-        
+    private fun onListItemClick(l: ExpandableListView?, v: View?, position: Int, id: Long) {
+        // empty
     }
 
     /**

@@ -19,7 +19,7 @@ if [ -z "${whereto}" ]; then
 fi
 whereto=`readlink -m "${whereto}"`
 
-pushd "${wherefrom}" #> /dev/null
+pushd "${wherefrom}" > /dev/null
 mkdir -p "${whereto}"
 for f in *.svg; do
 	make_icon "${f}" 32 "${whereto}" h

@@ -110,7 +110,7 @@ class BrowseFragment : BaseSearchFragment() {
                 intent = Intent(requireContext(), TableActivity::class.java)
                 intent.putExtra(ProviderArgs.ARG_QUERYURI, makeUri(Relations.URI))
                 intent.putExtra(ProviderArgs.ARG_QUERYID, Relations.RELATIONID)
-                intent.putExtra(ProviderArgs.ARG_QUERYITEMS, arrayOf(Relations.RELATIONID, Relations.RELATION, Relations.RECURSESSELECT))
+                intent.putExtra(ProviderArgs.ARG_QUERYITEMS, arrayOf(Relations.RELATIONID, Relations.RELATION, Relations.RECURSES_SELECT))
                 intent.putExtra(ProviderArgs.ARG_QUERYSORT, Relations.RELATIONID + " ASC")
                 intent.putExtra(ProviderArgs.ARG_QUERYLAYOUT, R.layout.item_table3)
             }

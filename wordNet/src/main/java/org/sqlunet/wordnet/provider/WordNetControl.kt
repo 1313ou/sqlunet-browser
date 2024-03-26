@@ -165,7 +165,7 @@ object WordNetControl {
     }
 
     @JvmStatic
-    fun queryAnyRelations(code: Int, projection0: Array<String>?, @Suppress("unused") selection0: String?, selectionArgs0: Array<String>?): Result? {
+    fun queryAnyRelations(code: Int, projection0: Array<String>?, selection0: String?, selectionArgs0: Array<String>?): Result? {
         if (code == ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET) {
             val table = Q.ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET.TABLE
             val groupBy = Q.ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET.GROUPBY
@@ -248,6 +248,6 @@ object WordNetControl {
     class Result(@JvmField val table: String, @JvmField val projection: Array<String>?, @JvmField val selection: String?, @JvmField val selectionArgs: Array<String>?, @JvmField val groupBy: String?)
 
     fun interface Factory {
-        fun make(@Suppress("unused") selection: String?): String?
+        fun make(selection: String?): String?
     }
 }

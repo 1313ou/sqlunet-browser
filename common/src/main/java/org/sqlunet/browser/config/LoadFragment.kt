@@ -13,7 +13,6 @@ import android.widget.Button
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import org.sqlunet.browser.common.R
-import org.sqlunet.browser.config.AssetLoadActivity
 import org.sqlunet.browser.config.DownloadIntentFactory.makeIntent
 
 /**

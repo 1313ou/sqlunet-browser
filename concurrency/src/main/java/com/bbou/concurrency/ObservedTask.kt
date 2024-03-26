@@ -9,7 +9,6 @@ import com.bbou.concurrency.observe.TaskObserver
 /**
  * Task that hosts an observer fires events to its observer
  */
-@Suppress("unused")
 abstract class ObservedTask<Params, Progress : Pair<Number, Number>, Result>(private val observer: TaskObserver<Progress>) : Task<Params, Progress, Result>() {
 
     @CallSuper

@@ -408,7 +408,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      * @noinspection SameParameterValue, EmptyMethod
      */
     protected fun beforeSaving(fragment: Fragment, tag: String?, @IdRes where: Int, vararg childFragmentTags: String) {
-        //FragmentUtils.removeAllChildFragment(getChildFragmentManager(), fragment, tag, where, childFragmentTags)
+        // FragmentUtils.removeAllChildFragment(getChildFragmentManager(), fragment, tag, where, *childFragmentTags)
     }
 
     companion object {

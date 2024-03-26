@@ -34,7 +34,6 @@ open class TaskToastObserver<Progress : Pair<Number, Number>>(private val appCon
     /**
      * Toast + TextView observer
      */
-    @Suppress("unused")
     class WithStatus<Progress : Pair<Number, Number>>(appContext: Context, private val status: TextView) : TaskToastObserver<Progress>(appContext) {
 
         override fun taskStart(task: Cancelable) {

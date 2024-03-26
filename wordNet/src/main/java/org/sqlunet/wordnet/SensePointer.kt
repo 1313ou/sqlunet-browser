@@ -55,13 +55,17 @@ open class SensePointer : SynsetPointer, HasWordId {
         return 0
     }
 
-    companion object CREATOR : Parcelable.Creator<SensePointer> {
-        override fun createFromParcel(parcel: Parcel): SensePointer {
-            return SensePointer(parcel)
-        }
+    companion object {
 
-        override fun newArray(size: Int): Array<SensePointer?> {
-            return arrayOfNulls(size)
+        @JvmField
+        val CREATOR: Parcelable.Creator<SensePointer> = object : Parcelable.Creator<SensePointer> {
+            override fun createFromParcel(parcel: Parcel): SensePointer {
+                return SensePointer(parcel)
+            }
+
+            override fun newArray(size: Int): Array<SensePointer?> {
+                return arrayOfNulls(size)
+            }
         }
     }
 }

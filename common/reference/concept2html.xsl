@@ -9,7 +9,7 @@
 	<xsl:variable name="imagedir" select='"./images/"' />
 
 	<xsl:template match="/">
-		<HTML>
+		<HTML lang="en">
 			<HEAD>
 				<TITLE>
 					<xsl:value-of select="//concepts/@name" />

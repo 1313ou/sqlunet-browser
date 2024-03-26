@@ -478,7 +478,6 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      * @param group items concat with '|'
      * @return node
      */
-    @Suppress("unused")
     protected fun items(parent: TreeNode, group: String?): TreeNode? {
         if (group != null) {
             val sb = SpannableStringBuilder()

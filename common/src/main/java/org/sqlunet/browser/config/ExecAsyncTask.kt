@@ -764,7 +764,6 @@ class ExecAsyncTask
      * @param database database path
      * @param tempDir  temp directory
      */
-    @Suppress("unused")
     fun vacuum(database: String, tempDir: String) {
         val task: Task<Pair<String, String>, Void, Boolean> = AsyncVacuum(whenDone, observer)
         task.execute(Pair(database, tempDir))

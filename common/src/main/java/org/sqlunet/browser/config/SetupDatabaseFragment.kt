@@ -78,7 +78,9 @@ class SetupDatabaseFragment : BaseTaskFragment() {
 
     // U P D A T E
 
-    private fun update() {}
+    private fun update() {
+        // empty
+    }
 
     // S P I N N E R
 

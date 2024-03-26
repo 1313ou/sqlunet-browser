@@ -203,6 +203,7 @@
 	<concept
 		name="GF"
 		id="fngf">
+		<img src="fngf.png" />
 		<description>Grammatical Function. Describes the ways in which constituents in a sentence satisfy abstract grammatical requirements of the target word.</description>
 		<items>
 			<item>External</item>
@@ -214,6 +215,7 @@
 	<concept
 		name="PT"
 		id="fnpt">
+		<img src="fnpt.png" />
 		<description>Phrase Type.</description>
 		<items>
 			<item>NP</item>

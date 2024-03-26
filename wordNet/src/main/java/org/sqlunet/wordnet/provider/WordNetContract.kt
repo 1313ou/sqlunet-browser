@@ -187,8 +187,8 @@ object WordNetContract {
         const val RELATIONID = V.RELATIONID
         const val RELATION = V.RELATION
         const val RECURSES = V.RECURSES
-        const val RECURSESSTR = RECURSES
-        const val RECURSESSELECT = "(CASE WHEN $RECURSES <> 0 THEN 'recurses' ELSE '' END) AS $RECURSESSTR"
+        private const val RECURSES_STR = RECURSES
+        const val RECURSES_SELECT = "(CASE WHEN $RECURSES <> 0 THEN 'recurses' ELSE '' END) AS $RECURSES_STR"
         /*
         CREATE TABLE ${relations.table} (
         ${relations.relationid} INT         NOT NULL,

@@ -4,15 +4,16 @@
 package org.sqlunet.provider
 
 import java.util.regex.Pattern
-import kotlin.IllegalArgumentException
+
+private const val STRICT_FLAGS = 0
 
 class SQLiteQueryBuilder {
+
     private var mTables = ""
     private var mWhereClause: StringBuilder? = null // lazily created
     private var mDistinct = false
     private val mProjectionMap: Map<String, String>? = null
     private val mProjectionGreylist: Collection<Pattern>? = null
-    private val mStrictFlags = 0
 
     fun setTables(inTables: String) {
         mTables = inTables
@@ -37,9 +38,8 @@ class SQLiteQueryBuilder {
             val entryIter = entrySet.iterator()
             return Array(entrySet.size) {
                 val (_, value) = entryIter.next()
-
                 // Don't include the _count column when people ask for no projection.
-                //if (key == _COUNT) {
+                // if (key == "_count") {
                 //    value = null
                 //}
                 value
@@ -54,7 +54,6 @@ class SQLiteQueryBuilder {
 
     @Throws(IllegalArgumentException::class)
     private fun computeSingleProjection(userColumn0: String): String {
-
         // When no mapping provided, anything goes
         var userColumn = userColumn0
         if (mProjectionMap == null) {
@@ -62,7 +61,6 @@ class SQLiteQueryBuilder {
         }
         var operator: String? = null
         var column = mProjectionMap[userColumn]
-
         // When no direct match found, look for aggregation
         if (column == null) {
             val matcher = sAggregationPattern.matcher(userColumn)
@@ -75,11 +73,10 @@ class SQLiteQueryBuilder {
         if (column != null) {
             return maybeWithOperator(operator, column)
         }
-        if (mStrictFlags == 0 && (userColumn.contains(" AS ") || userColumn.contains(" as "))) {
+        if (STRICT_FLAGS == 0 && (userColumn.contains(" AS ") || userColumn.contains(" as "))) {
             /* A column alias already exist */
             return maybeWithOperator(operator, userColumn)
         }
-
         // If greylist is configured, we might be willing to let
         // this custom column bypass our strict checks.
         if (mProjectionGreylist != null) {
@@ -150,9 +147,9 @@ class SQLiteQueryBuilder {
                     "NULL AS $unionColumn"
         }
         return buildQuery(
-            projectionIn, selection, groupBy, having,
-            null /* sortOrder */,
-            null /* limit */
+                projectionIn, selection, groupBy, having,
+                null /* sortOrder */,
+                null /* limit */
         )
     }
 
@@ -172,6 +169,7 @@ class SQLiteQueryBuilder {
     }
 
     companion object {
+
         private val sAggregationPattern = Pattern.compile("(?i)(AVG|COUNT|MAX|MIN|SUM|TOTAL|GROUP_CONCAT)\\((.+)\\)")
 
         fun isEmpty(s: CharSequence?): Boolean {
