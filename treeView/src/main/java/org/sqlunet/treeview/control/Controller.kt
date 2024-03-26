@@ -12,11 +12,12 @@ import org.sqlunet.treeview.view.SubtreeView
 /**
  * Base controller
  *
- * * @param breakExpand whether this controller breaks expansion
+ * @param V value type
+ * @property isBreakExpand whether this controller breaks expansion
  *
  * @author Bogdan Melnychuk on 2/10/15.
  */
-abstract class Controller<E> protected constructor(
+abstract class Controller<V> protected constructor(
     var isBreakExpand: Boolean,
 ) {
 
@@ -57,7 +58,7 @@ abstract class Controller<E> protected constructor(
     fun createView(context: Context, containerStyle: Int, treeIndent: Int, treeRowMinHeight: Int): SubtreeView? {
 
         // node view
-        nodeView = createNodeView(context, node, node.value as E?, treeRowMinHeight)
+        nodeView = createNodeView(context, node, node.value as V?, treeRowMinHeight)
 
         // wrapper
         subtreeView = SubtreeView(context, containerStyle, treeIndent, nodeView!!)
@@ -79,7 +80,7 @@ abstract class Controller<E> protected constructor(
      * @param minHeight min height
      * @return node view
      */
-    abstract fun createNodeView(context: Context, node: TreeNode, value: E?, minHeight: Int): View?
+    abstract fun createNodeView(context: Context, node: TreeNode, value: V?, minHeight: Int): View?
 
     // I N I T
 
