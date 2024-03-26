@@ -57,7 +57,7 @@ internal object Do {
 
     @JvmStatic
     fun searchRunFlat() {
-        for (word in Objects.requireNonNull(DataUtils.getWordList())) {
+        for (word in DataUtils.wordList!!) {
             Seq.doTypeSearch(R.id.search, word)
             // selector list
             //Wait.until(android.R.id.list, (5));
@@ -84,8 +84,8 @@ internal object Do {
         if (position != -1) {
             Seq.doChoose(R.id.spinner, position)
         }
-        for (word in Objects.requireNonNull(DataUtils.getWordList())) {
-            Seq.doTypeSearch(R.id.search, word!!)
+        for (word in DataUtils.wordList!!) {
+            Seq.doTypeSearch(R.id.search, word)
         }
     }
 }

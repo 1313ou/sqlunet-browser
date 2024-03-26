@@ -53,7 +53,7 @@ internal object Do {
 
     @JvmStatic
     fun searchRunFlat() {
-        for (word in Objects.requireNonNull(DataUtils.getWordList())) {
+        for (word in DataUtils.wordList!!) {
             Seq.doTypeSearch(R.id.search, word)
 
             // selector list
@@ -79,7 +79,7 @@ internal object Do {
 
     @JvmStatic
     fun searchRunTree() {
-        for (word in Objects.requireNonNull(DataUtils.getWordList())) {
+        for (word in DataUtils.wordList!!) {
             Seq.doTypeSearch(R.id.search, word)
 
             // selector list
@@ -123,8 +123,8 @@ internal object Do {
 
     @JvmStatic
     fun xselectorsRunTree() {
-        for (word in Objects.requireNonNull(DataUtils.getWordList())) {
-            Seq.doTypeSearch(R.id.search, word!!)
+        for (word in DataUtils.wordList!!) {
+            Seq.doTypeSearch(R.id.search, word)
 
             // selector list
             //Wait.until(android.R.id.list, 5)
@@ -147,8 +147,8 @@ internal object Do {
     @JvmStatic
     fun textSearchRun(position: Int) {
         Seq.doChoose(R.id.spinner, position)
-        for (word in Objects.requireNonNull(DataUtils.getWordList())) {
-            Seq.doTypeSearch(R.id.search, word!!)
+        for (word in DataUtils.wordList!!) {
+            Seq.doTypeSearch(R.id.search, word)
         }
     }
 }
