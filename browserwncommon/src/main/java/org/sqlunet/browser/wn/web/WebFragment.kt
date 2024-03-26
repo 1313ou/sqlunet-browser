@@ -86,7 +86,7 @@ class WebFragment : Fragment() {
                                 val wordId = sense2Pointer!!.getWordId()
                                 val synsetId = sense2Pointer.getSynsetId()
                                 if (org.sqlunet.browser.wn.Settings.Source.WORDNET.test(sources)) {
-                                    wnDomDoc = WordNetImplementation().queryDoc(db, wordId, synsetId, true, false)
+                                    wnDomDoc = WordNetImplementation().queryDoc(db, wordId, synsetId, withRelations = true, recurse = false)
                                 }
                                 if (org.sqlunet.browser.wn.Settings.Source.BNC.test(sources)) {
                                     bncDomDoc = BncImplementation().queryDoc(db, wordId, pos)
@@ -157,7 +157,7 @@ class WebFragment : Fragment() {
      */
     private fun makeModels() {
         val xml: Boolean = Settings.getXmlPref(requireContext())
-        model = ViewModelProvider(this).get("wn:web(doc)", WebModel::class.java)
+        model = ViewModelProvider(this)["wn:web(doc)", WebModel::class.java]
         model!!.getData().observe(getViewLifecycleOwner()) { doc: String? ->
             Log.d(TAG, "onLoadFinished")
             val mimeType = if (xml) "text/xml" else "text/html"
@@ -281,7 +281,7 @@ class WebFragment : Fragment() {
 
         // hint
         val posString = args.getString(ProviderArgs.ARG_HINTPOS)!!
-        val pos = posString.get(0)
+        val pos = posString[0]
 
         // text
         val data = args.getString(ProviderArgs.ARG_QUERYSTRING)
@@ -302,7 +302,7 @@ class WebFragment : Fragment() {
      * @return string
      */
     private fun docsToString(
-        word: String?,  
+        @Suppress("unused") word: String?,
         xml: Boolean,  
         isSelector: Boolean,  
         wnDomDoc: Document?,  

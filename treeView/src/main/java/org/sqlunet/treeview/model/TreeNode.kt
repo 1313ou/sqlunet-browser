@@ -4,7 +4,6 @@
 package org.sqlunet.treeview.model
 
 import org.sqlunet.treeview.control.Controller
-import java.util.Collections
 
 /**
  * Tree node

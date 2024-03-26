@@ -39,76 +39,8 @@ import java.util.function.BiConsumer
  * See [ Android Design: Settings](http://developer.android.com/design/patterns/settings.html) for design guidelines and the
  * [Settings API Guide](http://developer.android.com/guide/topics/ui/settings.html) for more information on developing a Settings UI.
  */
-object SettingsActivity : BaseSettingsActivity() {
+class SettingsActivity : BaseSettingsActivity() {
 
-    // P O P U L A T E    L I S T S
-    /**
-     * Set storage preference
-     *
-     * @param context context
-     * @param pref    preference
-     */
-    private fun populateStoragePreference(context: Context, pref: Preference?) {
-        val listPreference = (pref as ListPreference?)!!
-        populateStorageListPreference(context, listPreference)
-        listPreference.onPreferenceClickListener = Preference.OnPreferenceClickListener {
-            populateStorageListPreference(context, listPreference)
-            false
-        }
-    }
-
-    /**
-     * Set cache preference
-     *
-     * @param context context
-     * @param pref    preference
-     */
-    private fun populateCachePreference(context: Context, pref: Preference) {
-        val listPreference = pref as ListPreference
-        populateCacheListPreference(context, listPreference)
-        listPreference.onPreferenceClickListener = Preference.OnPreferenceClickListener {
-            populateCacheListPreference(context, listPreference)
-            false
-        }
-    }
-
-    /**
-     * Set storage preference data
-     *
-     * @param context  context
-     * @param listPref pref
-     */
-    private fun populateStorageListPreference(context: Context, listPref: ListPreference) {
-        val namesValues: Pair<Array<CharSequence>, Array<CharSequence>> = getStyledStoragesNamesValues(context)
-        var entries = namesValues.first
-        var entryValues = namesValues.second
-        val defaultValue: CharSequence?
-        if (entries == null || entries.isEmpty() || entryValues == null || entryValues.isEmpty()) {
-            defaultValue = StorageUtils.AUTO
-            entryValues = arrayOf(defaultValue)
-            entries = arrayOf(StorageUtils.AUTO_LABEL)
-        } else {
-            defaultValue = entryValues[0]
-        }
-        listPref.entries = entries
-        listPref.setDefaultValue(defaultValue)
-        listPref.entryValues = entryValues
-    }
-
-    /**
-     * Set cache preference data
-     *
-     * @param context  context
-     * @param listPref pref
-     */
-    private fun populateCacheListPreference(context: Context, listPref: ListPreference) {
-        val result = getStyledCachesNamesValues(context)
-        val names = result.first
-        val values: Array<String> = result.second
-        listPref.entries = names
-        listPref.entryValues = values
-        listPref.setDefaultValue(values[0])
-    }
 
     // F R A G M E N T S
 
@@ -141,8 +73,7 @@ object SettingsActivity : BaseSettingsActivity() {
                             resizeSql(capacity)
                             return@setOnPreferenceChangeListener true
                         }
-                    } catch (e: Exception) {
-
+                    } catch (_: Exception) {
                     }
                 }
                 false
@@ -200,8 +131,7 @@ object SettingsActivity : BaseSettingsActivity() {
             dbFilePreference.setSummary(storage)
             dbFilePreference.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _: Preference?, newValue: Any? ->
                 var storage2 = newValue as String?
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && isAuto(storage2!!))
-                {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && isAuto(storage2!!)) {
                     storage2 = requireContext().filesDir.absolutePath
                 }
                 storage2 += File.separatorChar.toString() + Storage.DBFILE
@@ -237,8 +167,7 @@ object SettingsActivity : BaseSettingsActivity() {
             dbFilePreference.setSummary(storage)
             dbFilePreference.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _: Preference?, newValue: Any? ->
                 var storage2 = newValue as String?
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && isAuto(storage2!!))
-                {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && isAuto(storage2!!)) {
                     storage2 = requireContext().filesDir.absolutePath
                 }
                 storage2 += File.separatorChar.toString() + Storage.DBFILE
@@ -298,6 +227,79 @@ object SettingsActivity : BaseSettingsActivity() {
             if (!OpenEditTextPreference.onDisplayPreferenceDialog(this, preference)) {
                 super.onDisplayPreferenceDialog(preference)
             }
+        }
+    }
+
+    companion object {
+
+        // P O P U L A T E    L I S T S
+
+        /**
+         * Set storage preference
+         *
+         * @param context context
+         * @param pref    preference
+         */
+        private fun populateStoragePreference(context: Context, pref: Preference?) {
+            val listPreference = (pref as ListPreference?)!!
+            populateStorageListPreference(context, listPreference)
+            listPreference.onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                populateStorageListPreference(context, listPreference)
+                false
+            }
+        }
+
+        /**
+         * Set cache preference
+         *
+         * @param context context
+         * @param pref    preference
+         */
+        private fun populateCachePreference(context: Context, pref: Preference) {
+            val listPreference = pref as ListPreference
+            populateCacheListPreference(context, listPreference)
+            listPreference.onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                populateCacheListPreference(context, listPreference)
+                false
+            }
+        }
+
+        /**
+         * Set storage preference data
+         *
+         * @param context  context
+         * @param listPref pref
+         */
+        private fun populateStorageListPreference(context: Context, listPref: ListPreference) {
+            val namesValues: Pair<Array<CharSequence>, Array<CharSequence>> = getStyledStoragesNamesValues(context)
+            var entries = namesValues.first
+            var entryValues = namesValues.second
+            val defaultValue: CharSequence?
+            if (entries == null || entries.isEmpty() || entryValues == null || entryValues.isEmpty()) {
+                defaultValue = StorageUtils.AUTO
+                entryValues = arrayOf(defaultValue)
+                entries = arrayOf(StorageUtils.AUTO_LABEL)
+            } else {
+                defaultValue = entryValues[0]
+            }
+            listPref.entries = entries
+            listPref.setDefaultValue(defaultValue)
+            listPref.entryValues = entryValues
+        }
+
+        /**
+         * Set cache preference data
+         *
+         * @param context  context
+         * @param listPref pref
+         */
+        private fun populateCacheListPreference(context: Context, listPref: ListPreference) {
+            val result = getStyledCachesNamesValues(context)
+            val names = result.first
+            val values: Array<String> = result.second
+            listPref.entries = names
+            listPref.entryValues = values
+            listPref.setDefaultValue(values[0])
         }
     }
 }

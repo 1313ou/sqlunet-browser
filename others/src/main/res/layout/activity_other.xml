@@ -250,7 +250,8 @@
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_semantikos"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible" />
+				android:visibility="visible"
+				tools:ignore="InconsistentLayout" />
 
 			<!-- semantikos wn -->
 
@@ -385,7 +386,8 @@
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_semantikos_vn"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible" />
+				android:visibility="visible"
+				tools:ignore="InconsistentLayout" />
 
 			<!-- semantikos fn -->
 
@@ -430,7 +432,8 @@
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_semantikos_fn"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible" />
+				android:visibility="visible"
+				tools:ignore="InconsistentLayout" />
 
 			<!-- semantikos sn -->
 
@@ -475,7 +478,8 @@
 				android:background="@null"
 				android:contentDescription="@string/description_googleplay_semantikos_sn"
 				android:src="@drawable/ic_googleplay"
-				android:visibility="visible" />
+				android:visibility="visible"
+				tools:ignore="InconsistentLayout" />
 
 		</LinearLayout>
 

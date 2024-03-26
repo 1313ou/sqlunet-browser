@@ -4,9 +4,7 @@
 package org.sqlunet.browser.xn
 
 import android.content.Context
-import android.util.Log
 import org.sqlunet.browser.AbstractApplication
-import org.sqlunet.nightmode.NightMode.nightModeToString
 import org.sqlunet.style.Colors
 
 class Application : AbstractApplication() {

@@ -44,7 +44,7 @@ class TreeOpExecute(private val fragment: TreeFragment) {
             TreeOpCode.NEWTREE -> {
 
                 // Log.d(TAG, "vvv " + op.getCode() + " " + node.toString())
-                val view = treeViewer.expandNode(node, -1, false, false)
+                val view = treeViewer.expandNode(node, -1, fireHotNodes = false, overrideBreakExpand = false)
                 if (node.controller.takeEnsureVisible()) {
                     treeViewer.ensureVisible(view)
                 }

@@ -54,6 +54,7 @@ class TTS(context: Context?, written: String, ipa: String, locale: Locale?, voic
             val phoneme = String.format("<phoneme alphabet='IPA' ph='%s'>%s</phoneme>", ipa, written)
             val text = String.format("<speak xml:lang='%s'>%s.</speak>", locale, phoneme)
             tts.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
+
                 override fun onStart(s: String) {
                     Log.d(TAG, "start $s")
                 }
@@ -63,7 +64,7 @@ class TTS(context: Context?, written: String, ipa: String, locale: Locale?, voic
                     tts.shutdown()
                 }
 
-                 @Deprecated("Deprecated in Java")
+                 @Deprecated("Deprecated in Java", ReplaceWith("onError(utteranceId: String, errorCode: Int)"))
                  override fun onError(utteranceId: String) {
                     Log.e(TAG, "error $utteranceId")
                 }

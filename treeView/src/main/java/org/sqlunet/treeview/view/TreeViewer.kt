@@ -22,7 +22,6 @@ import androidx.core.util.Pair
 import androidx.preference.PreferenceManager
 import org.sqlunet.treeview.R
 import org.sqlunet.treeview.control.CompositeValue
-import org.sqlunet.treeview.control.Controller
 import org.sqlunet.treeview.control.RootController
 import org.sqlunet.treeview.model.TreeNode
 import org.sqlunet.treeview.model.TreeNode.TreeNodeClickListener

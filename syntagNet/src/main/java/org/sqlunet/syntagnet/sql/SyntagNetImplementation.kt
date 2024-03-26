@@ -209,7 +209,7 @@ class SyntagNetImplementation : SyntagNetInterface {
         private fun walk(connection: SQLiteDatabase, doc: Document, parent: Node, targetWordId: Long) {
             // collocations
             val collocations = makeFromWordId(connection, targetWordId)
-            walk(connection, doc, parent, collocations)
+            walk(doc, parent, collocations)
         }
 
         /**
@@ -224,7 +224,7 @@ class SyntagNetImplementation : SyntagNetInterface {
         private fun walk(connection: SQLiteDatabase, doc: Document, parent: Node, targetWordId: Long, targetSynsetId: Long) {
             // collocations
             val collocations = makeFromWordIdAndSynsetId(connection, targetWordId, targetSynsetId)
-            walk(connection, doc, parent, collocations)
+            walk(doc, parent, collocations)
         }
 
         /**
@@ -238,7 +238,7 @@ class SyntagNetImplementation : SyntagNetInterface {
         private fun walk2(connection: SQLiteDatabase, doc: Document, parent: Node, targetWordId: Long, targetWord2Id: Long) {
             // collocations
             val collocations = makeFromWordIds(connection, targetWordId, targetWord2Id)
-            walk(connection, doc, parent, collocations)
+            walk(doc, parent, collocations)
         }
 
         /**
@@ -253,7 +253,7 @@ class SyntagNetImplementation : SyntagNetInterface {
         private fun walk2(connection: SQLiteDatabase, doc: Document, parent: Node, targetWordId: Long, targetSynsetId: Long, targetWord2Id: Long, targetSynset2Id: Long) {
             // collocations
             val collocations = makeFromWordIdAndSynsetIds(connection, targetWordId, targetSynsetId, targetWord2Id, targetSynset2Id)
-            walk(connection, doc, parent, collocations)
+            walk(doc, parent, collocations)
         }
 
         /**
@@ -267,18 +267,17 @@ class SyntagNetImplementation : SyntagNetInterface {
         private fun walkCollocation(connection: SQLiteDatabase, doc: Document, parent: Node, collocationId: Long) {
             // collocations
             val collocations = make(connection, collocationId)
-            walk(connection, doc, parent, collocations)
+            walk(doc, parent, collocations)
         }
 
         /**
          * Query SyntagNet data from collocations
          *
-         * @param connection   data source
          * @param doc          org.w3c.dom.Document being built
          * @param parent       org.w3c.dom.Node the walk will attach results to
          * @param collocations collocations
          */
-        private fun walk(connection: SQLiteDatabase, doc: Document, parent: Node, collocations: Iterable<WithDefinitionAndPos>) {
+        private fun walk(doc: Document, parent: Node, collocations: Iterable<WithDefinitionAndPos>) {
             var i = 1
             for (collocation in collocations) {
                 // collocation

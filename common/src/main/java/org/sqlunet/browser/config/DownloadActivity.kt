@@ -8,7 +8,6 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
-import com.bbou.download.workers.DownloadActivity
 import org.sqlunet.browser.EntryActivity.Companion.rerun
 import org.sqlunet.browser.MenuHandler
 import org.sqlunet.browser.common.R
@@ -19,7 +18,7 @@ import org.sqlunet.browser.common.R
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class DownloadActivity : DownloadActivity() {
+class DownloadActivity : com.bbou.download.workers.DownloadActivity() {
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

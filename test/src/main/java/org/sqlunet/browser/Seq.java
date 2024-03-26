@@ -213,17 +213,14 @@ public class Seq
 	{
 		onView(withId(drawerLayoutId)) //
 				.perform(DrawerActions.open());
-
 		/*
-		boolean t = !Utils.testAssertion(withId(drawer_layout), doesNotExist());
-		t = Utils.test(withId(drawer_layout), isDisplayed());
-		t = !Utils.testAssertion(allOf(isDescendantOfA(withId(drawer_layout)), withText(targetText)), doesNotExist());
-		t = Utils.test(allOf(isDescendantOfA(withId(drawer_layout)), withText(targetText)), isDisplayed());
+		var t = !Utils.testAssertion(withId(drawer_layout), doesNotExist())
+		t = Utils.test(withId(drawer_layout), isDisplayed())
+		t = !Utils.testAssertion(allOf(isDescendantOfA(withId(drawer_layout)), withText(targetText)), doesNotExist())
+		t = Utils.test(allOf(isDescendantOfA(withId(drawer_layout)), withText(targetText)), isDisplayed())
 		*/
-
 		onView(withId(navViewId)) //
 				.perform(NavigationViewActions.navigateTo(targetId));
-
 		onView(withId(drawerLayoutId)) //
 				.perform(DrawerActions.close());
 	}

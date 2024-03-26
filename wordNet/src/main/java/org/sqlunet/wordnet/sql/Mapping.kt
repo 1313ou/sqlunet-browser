@@ -19,29 +19,29 @@ internal object Mapping {
     private const val TAG = "Mapping"
 
     /**
-     * `topsId` is a constant for Tops domain id
+     * ID for Tops domain
      */
-    const val topsId = 3
+    const val TOPS_ID = 3
 
     /**
-     * `hyponymId` is id for hyponym relation
+     * ID for hyponym relation
      */
-    const val hyponymId = 2
+    const val HYPONYM_ID = 2
 
     /**
-     * `instanceHyponymId` is id for instance hyponym relation
+     * ID for instance hyponym relation
      */
-    const val instanceHyponymId = 4
+    const val INSTANCE_HYPONYM_ID = 4
 
     /**
      * is the constant for unspecified search types (pos, domains, relations)
      */
-    const val ANYTYPE = -1
+    const val ANY_TYPE = -1
 
     /**
      * is the constant for non recursive queries
      */
-    const val NONRECURSIVE = -1
+    const val NON_RECURSIVE = -1
 
     /**
      * `domains` is an array of domains
@@ -175,14 +175,14 @@ internal object Mapping {
     @JvmStatic
     fun getDomainId(posName: String?, domainName: String?): Int {
         if (posName == null || domainName == null) {
-            return ANYTYPE
+            return ANY_TYPE
         }
         val fullName = "$posName.$domainName"
         return try {
             val domain = domainsByName[fullName]!!
             domain.id
         } catch (e: NullPointerException) {
-            ANYTYPE
+            ANY_TYPE
         }
     }
 
@@ -195,15 +195,15 @@ internal object Mapping {
     @JvmStatic
     fun getPosId(posName: String?): Int {
         if (posName == null) {
-            return ANYTYPE
+            return ANY_TYPE
         }
         when (posName) {
-            "noun" -> return 'n'.toInt()
-            "verb" -> return 'v'.toInt()
-            "adj" -> return 'a'.toInt()
-            "adv" -> return 'r'.toInt()
+            "noun" -> return 'n'.code
+            "verb" -> return 'v'.code
+            "adj" -> return 'a'.code
+            "adv" -> return 'r'.code
         }
-        return ANYTYPE
+        return ANY_TYPE
     }
 
     /**
@@ -213,11 +213,12 @@ internal object Mapping {
      * @return part-of-speech name or null if not found
      */
     private fun getPosName(posId: Int): String {
-        when (posId) {
-            'n'.toInt() -> return "noun"
-            'v'.toInt() -> return "verb"
-            'a'.toInt() -> return "adj"
-            'r'.toInt() -> return "adv"
+        val c = Char(posId)
+        when (c) {
+            'n' -> return "noun"
+            'v' -> return "verb"
+            'a' -> return "adj"
+            'r' -> return "adv"
         }
         throw IllegalArgumentException("" + posId)
     }
@@ -247,12 +248,12 @@ internal object Mapping {
     @JvmStatic
     fun getRelationId(relationName: String?): Int {
         return if (relationName == null) {
-            ANYTYPE
+            ANY_TYPE
         } else try {
             val relation = relationsByName[relationName]!!
             relation.id
         } catch (e: NullPointerException) {
-            ANYTYPE
+            ANY_TYPE
         }
     }
 

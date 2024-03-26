@@ -18,7 +18,7 @@ object PropBankContract {
     const val AS_RELATIONS = V.AS_RELATIONS
     const val AS_FUNCS = V.AS_FUNCS
     const val AS_ARGS = V.AS_ARGS
-    const val AS_WORDs = V.AS_WORDS
+    const val AS_WORDS = V.AS_WORDS
     const val AS_PBWORDS = V.AS_PBWORDS
     const val AS_MEMBERS = V.AS_MEMBERS
 

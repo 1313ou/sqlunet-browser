@@ -14,7 +14,7 @@ import org.sqlunet.sql.DBQuery
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-internal class PbRoleQueryFromRoleSetId(connection: SQLiteDatabase, roleSetId: Long) : DBQuery(connection!!, QUERY) {
+internal class PbRoleQueryFromRoleSetId(connection: SQLiteDatabase, roleSetId: Long) : DBQuery(connection, QUERY) {
 
     init {
         setParams(roleSetId)

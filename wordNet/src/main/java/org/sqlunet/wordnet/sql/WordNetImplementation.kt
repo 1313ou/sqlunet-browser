@@ -80,7 +80,7 @@ class WordNetImplementation : WordNetInterface {
             "withRelations", withRelations.toString(),
             "recurse", recurse.toString()
         )
-        walk(connection, word, doc, rootNode, withRelations, recurse, Mapping.ANYTYPE, Mapping.ANYTYPE, Mapping.ANYTYPE)
+        walk(connection, word, doc, rootNode, withRelations, recurse, Mapping.ANY_TYPE, Mapping.ANY_TYPE, Mapping.ANY_TYPE)
         return doc
     }
 
@@ -104,7 +104,7 @@ class WordNetImplementation : WordNetInterface {
             "withRelations", withRelations.toString(),
             "recurse", recurse.toString()
         )
-        walkSense(connection, wordId, synsetId, doc, rootNode, withRelations, recurse, Mapping.ANYTYPE)
+        walkSense(connection, wordId, synsetId, doc, rootNode, withRelations, recurse, Mapping.ANY_TYPE)
         return doc
     }
 
@@ -249,7 +249,7 @@ class WordNetImplementation : WordNetInterface {
             val synsetNode = walkSynset(connection, doc, senseNode, synset)
 
             // relations
-            walkSynsetRelations(connection, doc, synsetNode, synset, wordId, withRelations = true, recurse = true, Mapping.ANYTYPE)
+            walkSynsetRelations(connection, doc, synsetNode, synset, wordId, withRelations = true, recurse = true, Mapping.ANY_TYPE)
         }
         return doc
     }
@@ -286,7 +286,7 @@ class WordNetImplementation : WordNetInterface {
             val synsetNode = walkSynset(connection, doc, rootNode, synset)
 
             // relations
-            walkSynsetRelations(connection, doc, synsetNode, synset, 0, withRelations = true, recurse = true, Mapping.ANYTYPE)
+            walkSynsetRelations(connection, doc, synsetNode, synset, 0, withRelations = true, recurse = true, Mapping.ANY_TYPE)
         }
         return doc
     }
@@ -406,10 +406,10 @@ class WordNetImplementation : WordNetInterface {
             makeWordNode(doc, parent, word.word, word.id)
 
             // iterate synsets
-            val synsets = (if (targetPosId == Mapping.ANYTYPE && targetDomainId == Mapping.ANYTYPE) word.getSynsets(connection) else word.getTypedSynsets(
+            val synsets = (if (targetPosId == Mapping.ANY_TYPE && targetDomainId == Mapping.ANY_TYPE) word.getSynsets(connection) else word.getTypedSynsets(
                 connection,
-                if (targetDomainId == Mapping.ANYTYPE) targetPosId else targetDomainId,
-                targetDomainId != Mapping.ANYTYPE
+                if (targetDomainId == Mapping.ANY_TYPE) targetPosId else targetDomainId,
+                targetDomainId != Mapping.ANY_TYPE
             ))
                 ?: return
             var domain: String? = null
@@ -593,7 +593,7 @@ class WordNetImplementation : WordNetInterface {
                 val relationsNode: Node = makeNode(doc, parent, "relations", null)
 
                 // get related
-                val relateds = (if (targetRelationId == Mapping.ANYTYPE) synset.getRelateds(connection, wordId) else synset.getTypedRelateds(connection, wordId, targetRelationId)) ?: return
+                val relateds = (if (targetRelationId == Mapping.ANY_TYPE) synset.getRelateds(connection, wordId) else synset.getTypedRelateds(connection, wordId, targetRelationId)) ?: return
 
                 // iterate relations
                 var relationNode: Node? = null
@@ -608,7 +608,7 @@ class WordNetImplementation : WordNetInterface {
 
                     // recurse check
                     val recurse2 =
-                        if (recurse) if (synset.domainId == Mapping.topsId && (targetRelationId == Mapping.hyponymId || targetRelationId == Mapping.instanceHyponymId || targetRelationId == Mapping.ANYTYPE)) Mapping.NONRECURSIVE else 0 else Mapping.NONRECURSIVE
+                        if (recurse) if (synset.domainId == Mapping.TOPS_ID && (targetRelationId == Mapping.HYPONYM_ID || targetRelationId == Mapping.INSTANCE_HYPONYM_ID || targetRelationId == Mapping.ANY_TYPE)) Mapping.NON_RECURSIVE else 0 else Mapping.NON_RECURSIVE
 
                     // process relation
                     walkRelation(connection, doc, relationNode, related, wordId, recurse2, targetRelationId)
@@ -640,17 +640,17 @@ class WordNetImplementation : WordNetInterface {
             val synsetNode = walkSynset(connection, doc, parent, related)
 
             // recurse
-            if (recurseLevel != Mapping.NONRECURSIVE && related.canRecurse()) {
+            if (recurseLevel != Mapping.NON_RECURSIVE && related.canRecurse()) {
                 // relation node
                 val relationsNode: Node = makeNode(doc, synsetNode, "relations", null)
 
                 // stop recursion in case maximum level is reached and
                 // hyponym/all relations and source synset domain is tops
-                if ((targetRelationId == Mapping.hyponymId || targetRelationId == Mapping.instanceHyponymId) && recurseLevel >= MAX_RECURSE_LEVEL) {
+                if ((targetRelationId == Mapping.HYPONYM_ID || targetRelationId == Mapping.INSTANCE_HYPONYM_ID) && recurseLevel >= MAX_RECURSE_LEVEL) {
                     makeMoreRelationNode(doc, relationsNode, related.relationName, recurseLevel)
                 } else {
                     // get related
-                    val subRelated = (if (targetRelationId == Mapping.ANYTYPE) related.getRelateds(connection, wordId) else related.getTypedRelateds(connection, wordId, targetRelationId)) ?: return
+                    val subRelated = (if (targetRelationId == Mapping.ANY_TYPE) related.getRelateds(connection, wordId) else related.getTypedRelateds(connection, wordId, targetRelationId)) ?: return
 
                     // iterate subrelations
                     var subRelatedNode: Node? = null
@@ -674,7 +674,7 @@ class WordNetImplementation : WordNetInterface {
         @JvmStatic
         fun init(connection: SQLiteDatabase) {
             // do queries for static maps
-            initDomains(connection!!)
+            initDomains(connection)
             initRelations(connection)
         }
     }

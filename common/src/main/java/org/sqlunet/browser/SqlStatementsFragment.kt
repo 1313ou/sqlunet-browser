@@ -49,7 +49,7 @@ class SqlStatementsFragment : ListFragment() {
             for (i in sqls.indices) {
                 sqls[i] = styledFormat(sqls[i]!!)
             }
-            val adapter: ListAdapter = ArrayAdapter(context, R.layout.item_sql, android.R.id.text1, if (sqls.size > 0) sqls else arrayOf<CharSequence>("empty"))
+            val adapter: ListAdapter = ArrayAdapter(context, R.layout.item_sql, android.R.id.text1, if (sqls.isNotEmpty()) sqls else arrayOf<CharSequence>("empty"))
             setListAdapter(adapter)
         }
     }

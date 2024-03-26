@@ -289,10 +289,8 @@ object StorageUtils {
                         Log.d(TAG, "storage state of $dir: $state")
                         status = StorageDirectory.NOT_MOUNTED
                     }
-                } catch (e: Throwable) {
-                    
+                } catch (_: Throwable) {
                 }
-
                 DirType.APP_INTERNAL, DirType.AUTO -> {}
             }
         }

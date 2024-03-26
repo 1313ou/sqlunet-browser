@@ -49,7 +49,7 @@ dependencies {
     implementation(project(":deploy"))
     implementation(project(":concurrency"))
     implementation("androidx.appcompat:appcompat:$appcompatVersion")
-    implementation("androidx.preference:preference:$preferenceVersion")
+    implementation("androidx.preference:preference-ktx:$preferenceVersion")
     implementation("com.google.android.material:material:$materialVersion")
     implementation("com.google.android.play:core:1.10.3")
 

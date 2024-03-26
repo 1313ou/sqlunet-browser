@@ -3,9 +3,7 @@
  */
 package org.sqlunet.browser.wn
 
-import android.os.Build
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBar

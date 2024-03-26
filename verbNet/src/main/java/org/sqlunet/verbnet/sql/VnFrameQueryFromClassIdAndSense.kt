@@ -17,7 +17,7 @@ import java.sql.Types
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-internal class VnFrameQueryFromClassIdAndSense(connection: SQLiteDatabase, classId: Long, wordId: Long, synsetId: Long?) : DBQuery(connection!!, QUERY) {
+internal class VnFrameQueryFromClassIdAndSense(connection: SQLiteDatabase, classId: Long, wordId: Long, synsetId: Long?) : DBQuery(connection, QUERY) {
 
     init {
         setParams(classId, wordId)

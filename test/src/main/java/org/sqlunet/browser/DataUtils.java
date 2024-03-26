@@ -51,8 +51,7 @@ public class DataUtils
 
 	// S A M P L E S
 
-	// @Nullable
-	// static String[] WORD_LIST = {"abandon", "leave", "inveigle", "foist", "flounder", "flout"};
+	// var WORD_LIST = {"abandon", "leave", "inveigle", "foist", "flounder", "flout"}
 
 	@Nullable
 	static public String[] getWordList()

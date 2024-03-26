@@ -20,7 +20,7 @@ import androidx.fragment.app.Fragment
 abstract class LoggingFragment : Fragment() {
 
     init {
-        Log.d(TAG, "Constructor (0) $this")
+        Log.d(TAG, "Constructor (0) ${this::class}")
     }
 
     override fun onAttach(context: Context) {

@@ -173,7 +173,6 @@ class SQLiteQueryBuilder {
 
     companion object {
         private val sAggregationPattern = Pattern.compile("(?i)(AVG|COUNT|MAX|MIN|SUM|TOTAL|GROUP_CONCAT)\\((.+)\\)")
-        const val _COUNT = "_count"
 
         fun isEmpty(s: CharSequence?): Boolean {
             return s.isNullOrEmpty()

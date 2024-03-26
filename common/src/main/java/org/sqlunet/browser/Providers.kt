@@ -45,13 +45,11 @@ internal object Providers {
                     }
                     try {
                         build(sb, provider.name, null, null, activity.getString(R.string.provider_authority), provider.authority, null, null)
-                    } catch (e: IOException) {
-                        
+                    } catch (_: IOException) {
                     }
                 }
             }
-        } catch (e: PackageManager.NameNotFoundException) {
-            
+        } catch (_: PackageManager.NameNotFoundException) {
         }
 
         // suggestion (this activity may not be searchable)
@@ -68,8 +66,7 @@ internal object Providers {
                     .append('\n') 
                     .append('\n')
                 build(sb, null, activity.getString(R.string.suggestion_provider_pack), suggestPkg, activity.getString(R.string.suggestion_provider_authority), suggestAuthority, activity.getString(R.string.suggestion_provider_path), suggestPath)
-            } catch (e: IOException) {
-                
+            } catch (_: IOException) {
             }
         }
 

@@ -32,7 +32,7 @@ open class LexUnitModule(fragment: TreeFragment) : FrameModule(fragment) {
 
     override fun process(node: TreeNode) {
         if (luId != null) {
-            lexUnit(luId!!, node, true, false)
+            lexUnit(luId!!, node, withFrame = true, withFes = false)
         }
     }
 }

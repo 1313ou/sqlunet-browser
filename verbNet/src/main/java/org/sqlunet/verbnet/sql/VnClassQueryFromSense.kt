@@ -15,7 +15,7 @@ import org.sqlunet.sql.DBQuery
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-internal class VnClassQueryFromSense(connection: SQLiteDatabase, wordId: Long, synsetId: Long?) : DBQuery(connection!!, QUERY) {
+internal class VnClassQueryFromSense(connection: SQLiteDatabase, wordId: Long, synsetId: Long?) : DBQuery(connection, QUERY) {
 
     init {
         setParams(wordId, synsetId!!)

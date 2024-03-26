@@ -69,7 +69,7 @@ class BrowseFragment : BaseSearchFragment() {
 
     // M E N U
 
-    @Deprecated("Deprecated in Java")
+    @Deprecated("Deprecated in Java", ReplaceWith("Add a MenuHost"))
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return false
     }

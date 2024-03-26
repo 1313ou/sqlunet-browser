@@ -320,8 +320,7 @@ object StorageReports {
                     sb.append(' ')
                     try {
                         sb.append(if (Environment.isExternalStorageEmulated(f)) "emulated" else "not-emulated")
-                    } catch (e: Throwable) {
-                        
+                    } catch (_: Throwable) {
                     }
                 }
                 sb.append('\n')
@@ -338,8 +337,7 @@ object StorageReports {
                     sb.append(' ')
                     try {
                         sb.append(if (Environment.isExternalStorageEmulated(f)) "emulated" else "not-emulated")
-                    } catch (e: Throwable) {
-                        
+                    } catch (_: Throwable) {
                     }
                 }
                 sb.append('\n')
@@ -356,8 +354,7 @@ object StorageReports {
                     sb.append(' ')
                     try {
                         sb.append(if (Environment.isExternalStorageEmulated(f)) "emulated" else "not-emulated")
-                    } catch (e: Throwable) {
-                        
+                    } catch (_: Throwable) {
                     }
                 }
                 sb.append('\n')
@@ -442,8 +439,7 @@ object StorageReports {
                     sb.append(' ')
                     try {
                         sb.append(if (Environment.isExternalStorageEmulated(f)) "emulated" else "not-emulated")
-                    } catch (e: Throwable) {
-                        
+                    } catch (_: Throwable) {
                     }
                 }
                 sb.append('\n')
@@ -462,7 +458,7 @@ object StorageReports {
                 sb.append(' ')
                 try {
                     sb.append(if (Environment.isExternalStorageEmulated(f)) "emulated" else "not-emulated")
-                } catch (e: Throwable) { 
+                } catch (_: Throwable) {
                 }
                 sb.append('\n')
             }
@@ -481,7 +477,7 @@ object StorageReports {
                 sb.append(' ')
                 try {
                     sb.append(if (Environment.isExternalStorageEmulated(f)) "emulated" else "not-emulated")
-                } catch (e: Throwable) { 
+                } catch (_: Throwable) {
                 }
                 sb.append('\n')
             }

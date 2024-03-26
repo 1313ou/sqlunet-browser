@@ -227,7 +227,7 @@ class SensesFragment : ListFragment() {
     private fun senses() {
         // load the contents
         val sql = prepareSenses(word!!)
-        val uri = Uri.parse(makeUri(sql.providerUri!!))
+        val uri = Uri.parse(makeUri(sql.providerUri))
         dataModel!!.loadData(uri, sql) { cursor: Cursor -> wordIdFromWordPostProcess(cursor) }
     }
 

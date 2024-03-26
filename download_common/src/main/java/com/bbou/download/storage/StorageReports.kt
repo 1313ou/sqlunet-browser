@@ -13,6 +13,7 @@ import android.text.style.BackgroundColorSpan
 import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import com.bbou.download.common.R
 import java.io.File
@@ -30,6 +31,7 @@ object StorageReports {
      * @param context context
      * @return pair of names and values
      */
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun getStyledDownloadNamesValues(context: Context): Pair<Array<out CharSequence>, Array<String>> {
         val names: MutableList<CharSequence> = ArrayList()
         val values: MutableList<String> = ArrayList()
@@ -326,6 +328,7 @@ object StorageReports {
      * @param context context
      * @return report
      */
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun reportStyledExternalStorage(context: Context): CharSequence {
         val storages: Map<FormatUtils.StorageType, Array<File>> = StorageUtils.getExternalStorages(context)
         val physical = storages[FormatUtils.StorageType.PRIMARY_PHYSICAL]

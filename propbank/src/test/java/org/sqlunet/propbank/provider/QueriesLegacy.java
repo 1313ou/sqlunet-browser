@@ -68,7 +68,7 @@ public class QueriesLegacy
 				table = "pb_rolesets " + //
 						"LEFT JOIN pb_members AS " + PropBankContract.AS_MEMBERS + " USING (rolesetid) " + //
 						"LEFT JOIN pb_words AS " + PropBankContract.AS_PBWORDS + " USING (pbwordid) " + //
-						"LEFT JOIN words AS " + PropBankContract.AS_WORDs + " USING (wordid)";
+						"LEFT JOIN words AS " + PropBankContract.AS_WORDS + " USING (wordid)";
 				break;
 
 			case PropBankControl.WORDS_PBROLESETS:

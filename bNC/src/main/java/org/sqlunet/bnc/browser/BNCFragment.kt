@@ -3,9 +3,7 @@
  */
 package org.sqlunet.bnc.browser
 
-import android.os.Build
 import android.os.Bundle
-import android.os.Parcelable
 import org.sqlunet.bnc.R
 import org.sqlunet.bnc.loaders.BaseModule
 import org.sqlunet.browser.Module

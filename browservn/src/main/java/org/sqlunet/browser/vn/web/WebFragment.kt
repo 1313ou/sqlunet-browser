@@ -350,7 +350,7 @@ class WebFragment : Fragment() {
      * @return string
      */
     private fun docsToString(
-        word: String?,
+        @Suppress("unused") word: String?,
         xml: Boolean,
         isSelector: Boolean,
         wnDomDoc: Document?,

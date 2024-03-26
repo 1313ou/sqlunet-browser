@@ -135,19 +135,19 @@ open class Settings {
         const val PREF_SELECTOR = "pref_selector_mode" // selector or xselector or ...
         const val PREF_SELECTOR_MODE = "pref_selector_view_mode" // view or web for selector fragment
         const val PREF_DETAIL_MODE = "pref_detail_view_mode" // view wor web for detail fragment
-        const val PREF_XML = "pref_xml"
-        const val PREF_TEXTSEARCH_MODE = "pref_searchtext_mode"
-        const val PREF_ASSET_PRIMARY_DEFAULT = SetupAsset.PREF_ASSET_PRIMARY_DEFAULT
-        const val PREF_ASSET_AUTO_CLEANUP = SetupAsset.PREF_ASSET_AUTO_CLEANUP
+        private const val PREF_XML = "pref_xml"
+        private const val PREF_TEXTSEARCH_MODE = "pref_searchtext_mode"
+        private const val PREF_ASSET_PRIMARY_DEFAULT = SetupAsset.PREF_ASSET_PRIMARY_DEFAULT
+        private const val PREF_ASSET_AUTO_CLEANUP = SetupAsset.PREF_ASSET_AUTO_CLEANUP
         const val PREF_DB_FILE = "pref_db_file"
-        const val PREF_DB_DATE = "pref_db_date"
-        const val PREF_DB_SIZE = "pref_db_size"
+        private const val PREF_DB_DATE = "pref_db_date"
+        private const val PREF_DB_SIZE = "pref_db_size"
         const val PREF_STORAGE = StorageSettings.PREF_STORAGE
         const val PREF_DOWNLOAD_MODE = StorageSettings.PREF_DOWNLOAD_MODE
         const val PREF_DOWNLOAD_SITE = StorageSettings.PREF_DOWNLOAD_SITE
         const val PREF_DOWNLOAD_DBFILE = StorageSettings.PREF_DOWNLOAD_DBFILE
-        const val PREF_CACHE = StorageSettings.PREF_CACHE
-        const val PREF_ZIP_ENTRY = "pref_zip_entry"
+        private const val PREF_CACHE = StorageSettings.PREF_CACHE
+        private const val PREF_ZIP_ENTRY = "pref_zip_entry"
         const val PREF_TWO_PANES = "pref_two_panes"
         private const val PREF_VERSION = "org.sqlunet.browser.version"
 
@@ -429,8 +429,7 @@ open class Settings {
                     } else {
                         sharedPref.edit().remove(BaseProvider.CircularBuffer.PREF_SQL_BUFFER_CAPACITY).apply()
                     }
-                } catch (e: Exception) {
-                    
+                } catch (_: Exception) {
                 }
             }
             val twoPanes = sharedPref.getBoolean(PREF_TWO_PANES, false)

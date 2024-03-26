@@ -99,7 +99,7 @@ querybuilder_args {
     variables = arrayOf("Names.properties", "NamesExtra.properties")
     instantiates = arrayOf("SqLiteDialect.java")
 
-    outDir = "${generatedSrcDir}"
+    outDir = "$generatedSrcDir"
     v = "V"
     q = "Q"
     qv = "QV"

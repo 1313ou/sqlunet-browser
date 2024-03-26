@@ -14,7 +14,7 @@ import org.sqlunet.sql.DBQuery
  *
  * @author Bernard
  */
-class SynsetsQueryFromWordId(connection: SQLiteDatabase, wordId: Long) : DBQuery(connection!!, QUERY) {
+class SynsetsQueryFromWordId(connection: SQLiteDatabase, wordId: Long) : DBQuery(connection, QUERY) {
 
     init {
         setParams(wordId)
