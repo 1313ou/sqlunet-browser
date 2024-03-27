@@ -202,37 +202,6 @@ class TreeViewer(
     }
 
     /**
-     * Set node text
-     *
-     * @param node  node
-     * @param value character sequence
-     */
-    fun setNodeValue(node: TreeNode, value: CharSequence?) {
-        // delete node from parent if null value
-        if (value.isNullOrEmpty()) {
-            remove(node)
-            return
-        }
-
-        // update value
-        node.value = value
-
-        // update view
-        val controller = node.controller
-        val view = controller.nodeView
-        if (view != null) {
-            if (view is TextView) {
-                view.text = value
-            } else {
-                val textView = view.findViewById<TextView>(R.id.node_value)
-                if (textView != null) {
-                    textView.text = value
-                }
-            }
-        }
-    }
-
-    /**
      * Deadend
      *
      * @param node node
@@ -242,7 +211,9 @@ class TreeViewer(
         val controller = node.controller
         controller.deadend()
     }
+
     // A D D / R E M O V E
+
     /**
      * Add node to parent (both tree model and view)
      *
@@ -257,7 +228,8 @@ class TreeViewer(
         if (isExpanded(parent)) {
             val parentController = parent.controller
             val viewGroup = parentController.childrenView!!
-            /* int index = parent.indexOf(node); */addSubtreeView(viewGroup, node, -1)
+            /* var index = parent.indexOf(node); */
+            addSubtreeView(viewGroup, node, -1)
         }
     }
 

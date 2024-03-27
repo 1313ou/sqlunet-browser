@@ -3,6 +3,8 @@
  */
 package org.sqlunet.treeview.model
 
+import androidx.annotation.DrawableRes
+import org.sqlunet.treeview.control.CompositeValue
 import org.sqlunet.treeview.control.Controller
 
 /**
@@ -11,9 +13,20 @@ import org.sqlunet.treeview.control.Controller
  * @author Bogdan Melnychuk on 2/10/15.
  */
 class TreeNode(
-    @JvmField var value: Any?,
-    @JvmField val controller: Controller<*>,
+    @JvmField var text: CharSequence?,
+    @JvmField @DrawableRes var icon: Int? = null,
+    private val payload: Array<out Any?>? = null,
+    @JvmField var controller: Controller<*>,
+    var isCollapsible: Boolean,
 ) {
+
+    val value: Any?
+        get() = when {
+            text == null && icon == null && payload == null -> null
+            text != null && icon == null && payload == null -> text
+            else -> CompositeValue(text!!, icon!!, payload)
+        }
+
     /**
      * Id
      */
@@ -52,20 +65,17 @@ class TreeNode(
     var isSelectable = false
 
     /**
-     * Whether this node is collapsible
-     */
-    var isCollapsible = true
-
-    /**
      * Whether this node is deadend
      */
     var isDeadend = false
 
-    // C O N S T R U C T O R
+    // C O N S T R U C T O R S
 
-    constructor(value: Any?, controller: Controller<*>, collapsible: Boolean) : this(value, controller) {
-        isCollapsible = collapsible
-    }
+    constructor(controller: Controller<*>) : this(null, null, null, controller, true)
+
+    constructor(text: CharSequence, controller: Controller<*>, collapsible: Boolean) : this(text, null, null, controller, collapsible)
+
+    constructor(value: CompositeValue, controller: Controller<*>) : this(value.text, value.icon, value.payload, controller, true)
 
     init {
         children = ArrayList()
@@ -316,10 +326,10 @@ class TreeNode(
     // S T R I N G I F Y
 
     override fun toString(): String {
-        return "#" + id + ' ' +  
-                (if (value == null) "null" else '['.toString() + value.toString().replace('\n', '┃') + ']') + ' ' +  
-                "controller=" + controller.javaClass.getSimpleName() + ' ' +  
-                "parent=" + (if (parent == null) "none" else parent!!.id) + ' ' +  
+        return "#" + id + ' ' +
+                (if (value == null) "null" else '['.toString() + value.toString().replace('\n', '┃') + ']') + ' ' +
+                "controller=" + controller.javaClass.getSimpleName() + ' ' +
+                "parent=" + (if (parent == null) "none" else parent!!.id) + ' ' +
                 "num children=" + children.size
     }
 
@@ -373,6 +383,7 @@ class TreeNode(
     }
 
     companion object {
+
         private const val NODES_ID_SEPARATOR = ":"
     }
 }

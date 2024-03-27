@@ -41,7 +41,7 @@ object TreeFactory {
      */
     @JvmStatic
     fun makeTextNode(value: CharSequence, breakExpand: Boolean): TreeNode {
-        return TreeNode(value, TextController(breakExpand))
+        return TreeNode(value, null, null, TextController(breakExpand), false)
     }
 
     /**
@@ -54,7 +54,7 @@ object TreeFactory {
      */
     @JvmStatic
     fun makeIconTextNode(text: CharSequence, icon: Int, breakExpand: Boolean): TreeNode {
-        return TreeNode(CompositeValue(text, icon), IconTextController(breakExpand), false)
+        return TreeNode(text, icon, null, IconTextController(breakExpand), false)
     }
 
     /**
@@ -67,7 +67,7 @@ object TreeFactory {
      */
     @JvmStatic
     fun makeLeafNode(text: CharSequence, icon: Int, breakExpand: Boolean): TreeNode {
-        return TreeNode(CompositeValue(text, icon), LeafController(breakExpand), false)
+        return TreeNode(text, icon, null, LeafController(breakExpand), false)
     }
 
     /**
@@ -80,7 +80,7 @@ object TreeFactory {
      */
     @JvmStatic
     fun makeMoreNode(text: CharSequence, icon: Int, breakExpand: Boolean): TreeNode {
-        return TreeNode(CompositeValue(text, icon), MoreController(breakExpand), false)
+        return TreeNode(text, icon, null, MoreController(breakExpand), false)
     }
 
     /**
@@ -94,7 +94,7 @@ object TreeFactory {
      */
     @JvmStatic
     fun makeLinkNode(text: CharSequence, icon: Int, breakExpand: Boolean, link: Link?): TreeNode {
-        return TreeNode(CompositeValue(text, icon, link), LinkNodeController(breakExpand), false)
+        return TreeNode(text, icon, arrayOf(link), LinkNodeController(breakExpand), false)
     }
 
     /**
@@ -108,9 +108,11 @@ object TreeFactory {
      */
     @JvmStatic
     fun makeLinkLeafNode(text: CharSequence, icon: Int, breakExpand: Boolean, link: Link?): TreeNode {
-        return TreeNode(CompositeValue(text, icon, link), LinkLeafController(breakExpand))
+        return TreeNode(text, icon, arrayOf(link), LinkLeafController(breakExpand), false)
     }
+
     // TREE
+
     /**
      * Add tree node
      *
@@ -220,11 +222,12 @@ object TreeFactory {
 
     @JvmStatic
     fun setTextNode(node: TreeNode, text: CharSequence?) {
-        node.value = text
+        node.text = text
     }
 
     @JvmStatic
     fun setTextNode(node: TreeNode, text: CharSequence, @DrawableRes icon: Int) {
-        node.value = CompositeValue(text, icon, null, null)
+        node.text = text
+        node.icon = icon
     }
 }

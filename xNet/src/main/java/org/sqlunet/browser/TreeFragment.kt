@@ -31,7 +31,7 @@ abstract class TreeFragment protected constructor() : Fragment() {
      * Tree model root
      */
     @JvmField
-    protected val treeRoot: TreeNode = TreeNode(null, RootController())
+    protected val treeRoot: TreeNode = TreeNode(RootController())
 
     /**
      * Tree view
