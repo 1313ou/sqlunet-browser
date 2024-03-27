@@ -71,11 +71,9 @@ class TreeNode(
 
     // C O N S T R U C T O R S
 
-    constructor(controller: Controller<*>) : this(null, null, null, controller, true)
+    constructor(controller: Controller<*>) : this(null, null, null, controller, true) // root
 
     constructor(text: CharSequence, controller: Controller<*>, collapsible: Boolean) : this(text, null, null, controller, collapsible)
-
-    constructor(value: CompositeValue, controller: Controller<*>) : this(value.text, value.icon, value.payload, controller, true)
 
     init {
         children = ArrayList()

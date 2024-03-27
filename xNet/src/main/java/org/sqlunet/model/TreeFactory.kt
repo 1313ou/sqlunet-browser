@@ -7,7 +7,6 @@ import android.os.Handler
 import android.os.Looper
 import androidx.annotation.DrawableRes
 import org.sqlunet.treeview.control.ColdQueryController
-import org.sqlunet.treeview.control.CompositeValue
 import org.sqlunet.treeview.control.HotQueryController
 import org.sqlunet.treeview.control.IconTextController
 import org.sqlunet.treeview.control.LeafController
@@ -29,8 +28,6 @@ import org.sqlunet.treeview.model.TreeNode
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 object TreeFactory {
-    // private const val TAG = "TreeFactory"
-
     // NON-TREE (without tree junction icon)
     /**
      * Make text node
@@ -110,9 +107,7 @@ object TreeFactory {
     fun makeLinkLeafNode(text: CharSequence, icon: Int, breakExpand: Boolean, link: Link?): TreeNode {
         return TreeNode(text, icon, arrayOf(link), LinkLeafController(breakExpand), false)
     }
-
     // TREE
-
     /**
      * Add tree node
      *
@@ -123,7 +118,7 @@ object TreeFactory {
      */
     @JvmStatic
     fun makeTreeNode(value: CharSequence, icon: Int, breakExpand: Boolean): TreeNode {
-        return TreeNode(CompositeValue(value, icon), TreeController(breakExpand))
+        return TreeNode(value, icon, null, TreeController(breakExpand), true)
     }
 
     /**
@@ -137,7 +132,7 @@ object TreeFactory {
      */
     @JvmStatic
     fun makeLinkTreeNode(text: CharSequence, icon: Int, breakExpand: Boolean, link: Link?): TreeNode {
-        return TreeNode(CompositeValue(text, icon, link), LinkTreeController(breakExpand))
+        return TreeNode(text, icon, arrayOf(link), LinkTreeController(breakExpand), true)
     }
 
     /**
@@ -151,7 +146,7 @@ object TreeFactory {
      */
     @JvmStatic
     fun makeQueryNode(text: CharSequence, icon: Int, breakExpand: Boolean, query: Query?): TreeNode {
-        return TreeNode(CompositeValue(text, icon, query), ColdQueryController(breakExpand))
+        return TreeNode(text, icon, arrayOf(query), ColdQueryController(breakExpand), true)
     }
 
     /**
@@ -166,7 +161,7 @@ object TreeFactory {
     @JvmStatic
     fun makeHotQueryNode(text: CharSequence, icon: Int, breakExpand: Boolean, query: Query?): TreeNode {
         val controller = HotQueryController(breakExpand)
-        val result = TreeNode(CompositeValue(text, icon, query), controller)
+        val result = TreeNode(text, icon, arrayOf(query), controller, true)
         val handler = Handler(Looper.getMainLooper())
         handler.post { controller.processQuery() }
         return result
@@ -186,7 +181,7 @@ object TreeFactory {
     @JvmStatic
     fun makeLinkHotQueryNode(text: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean, query: Query?, link: Link?, @DrawableRes buttonImageRes: Int): TreeNode {
         val controller: HotQueryController = LinkHotQueryController(breakExpand, buttonImageRes)
-        val result = TreeNode(CompositeValue(text, icon, query, link), controller)
+        val result = TreeNode(text, icon, arrayOf(query, link), controller, true)
         val handler = Handler(Looper.getMainLooper())
         handler.post { controller.processQuery() }
         return result
@@ -205,7 +200,7 @@ object TreeFactory {
      */
     @JvmStatic
     fun makeLinkQueryNode(text: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean, query: Query?, link: Link?, @DrawableRes buttonImageRes: Int): TreeNode {
-        return TreeNode(CompositeValue(text, icon, query, link), LinkQueryController(breakExpand, buttonImageRes))
+        return TreeNode(text, icon, arrayOf(query, link), LinkQueryController(breakExpand, buttonImageRes), true)
     }
     // H E L P E R S
     /**
