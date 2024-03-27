@@ -5,13 +5,10 @@
       <entry key="android-sqlunet-as.semantikos.browser">
         <State />
       </entry>
+      <entry key="android-sqlunet-as.semantikos.browserewn">
+        <State />
+      </entry>
       <entry key="android-sqlunet-as.semantikos.browsersn">
-        <State />
-      </entry>
-      <entry key="android-sqlunet-as.semantikos.browserwncommon">
-        <State />
-      </entry>
-      <entry key="android-sqlunet-as.semantikos.common">
         <State />
       </entry>
     </value>
