@@ -84,7 +84,7 @@ class Browse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener {
     /**
      * Callback method indicating that the item with the given ID was selected.
      */
-    override fun onItemSelected(pointer: SensePointer, word: String, cased: String, pronunciation: String, pos: String) {
+    override fun onItemSelected(pointer: SensePointer, word: String, cased: String?, pronunciation: String?, pos: String) {
         val view = requireView()
         if (isTwoPane(view)) {
             // in two-pane mode, show the detail view in this activity by adding or replacing the detail fragment using a fragment transaction.

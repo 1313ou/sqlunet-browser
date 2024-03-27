@@ -148,7 +148,7 @@ class SelectorsFragment : BaseSelectorsListFragment() {
         /**
          * Callback for when an item has been selected.
          */
-        fun onItemSelected(pointer: SensePointer, word: String, cased: String, pronunciation: String, pos: String)
+        fun onItemSelected(pointer: SensePointer, word: String, cased: String?, pronunciation: String?, pos: String)
     }
 
     /**
@@ -173,7 +173,7 @@ class SelectorsFragment : BaseSelectorsListFragment() {
     override fun activate(position: Int) {
         positionModel!!.setPosition(position)
         if (listener != null) {
-            val adapter = (adapter as SimpleCursorAdapter?)!!
+            val adapter = adapter!! as SimpleCursorAdapter
             val cursor = adapter.cursor!!
             if (cursor.moveToPosition(position)) {
                 // column indexes
