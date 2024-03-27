@@ -54,7 +54,6 @@
 	<string name="action_dismiss">Dismiss</string>
 	<string name="action_cancel">Cancel</string>
 	<string name="action_ok">OK</string>
-	<string name="action_show">Show</string>
 	<!-- load -->
 	<string name="action_assetload">Asset load</string>
 	<string name="action_download">Download</string>
@@ -194,9 +193,6 @@
 	<string name="title_history_import">Imported from</string>
 	<string name="title_history_export">Exported to</string>
 	<string name="title_history_deleted">History deleted</string>
-
-	<!-- statement items -->
-	<string name="unit_statement">statements</string>
 
 	<!-- rows -->
 	<string name="description_row">row</string>

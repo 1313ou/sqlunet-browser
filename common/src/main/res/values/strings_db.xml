@@ -6,7 +6,6 @@
 
 	<string name="action_copy_datapack_from_file">Copy database from …</string>
 	<string name="action_unzip_datapack_from_archive">Unzip database from …</string>
-	<string name="action_unzip_datapack_from_asset">Unzip database from asset</string>
 
 	<string name="description_download_datapack">Download database</string>
 

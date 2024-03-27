@@ -4,7 +4,6 @@
 
 <resources>
 
-	<string name="title_others">Others</string>
 	<string name="title_activity_others">Others</string>
 
 	<string name="title_grammarscope_syntaxnet">GrammarScope (SyntaxNet)</string>
