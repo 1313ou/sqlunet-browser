@@ -3,6 +3,7 @@
  */
 package org.sqlunet.treeview.control
 
+import androidx.annotation.LayoutRes
 import org.sqlunet.treeview.R
 
 /**
@@ -13,20 +14,18 @@ import org.sqlunet.treeview.R
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 open class HotQueryController(breakExpand: Boolean) : QueryController(breakExpand) {
-
-    init {
-        layoutRes = R.layout.layout_query
-    }
+    @LayoutRes
+    override val layoutResId = R.layout.layout_query
 
     override fun markExpanded() {
-        junctionView!!.setImageResource(R.drawable.ic_hotquery_expanded)
+        junctionView.setImageResource(R.drawable.ic_hotquery_expanded)
     }
 
     override fun markCollapsed() {
-        junctionView!!.setImageResource(R.drawable.ic_hotquery_collapsed)
+        junctionView.setImageResource(R.drawable.ic_hotquery_collapsed)
     }
 
     override fun markDeadend() {
-        junctionView!!.setImageResource(R.drawable.ic_hotquery_deadend)
+        junctionView.setImageResource(R.drawable.ic_hotquery_deadend)
     }
 }

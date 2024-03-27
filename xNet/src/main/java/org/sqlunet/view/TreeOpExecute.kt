@@ -4,8 +4,6 @@
 package org.sqlunet.view
 
 import org.sqlunet.browser.TreeFragment
-import org.sqlunet.treeview.control.CompositeValue
-import org.sqlunet.treeview.model.TreeNode
 import org.sqlunet.treeview.view.TreeViewer
 import org.sqlunet.view.TreeOp.TreeOpCode
 
@@ -92,11 +90,6 @@ class TreeOpExecute(private val fragment: TreeFragment) {
 
             TreeOpCode.NOOP -> {}
         }
-    }
-
-    private fun isNodeWithCompositeValueText(node: TreeNode, text: String): Boolean {
-        val value = node.value
-        return value is CompositeValue && text == value.text.toString()
     }
 
     companion object {

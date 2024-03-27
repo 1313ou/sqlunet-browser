@@ -19,29 +19,18 @@ import org.sqlunet.treeview.model.TreeNode
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class LinkQueryController(breakExpand: Boolean, @DrawableRes buttonImageRes: Int) : ColdQueryController(breakExpand) {
+class LinkQueryController(breakExpand: Boolean, @DrawableRes private val buttonImageRes: Int) : ColdQueryController(breakExpand) {
 
-    /**
-     * Link button image resource id, may be 0
-     */
-    private val buttonImageRes: Int
+    override val layoutResId = R.layout.layout_tree_link
 
-    init {
-        layoutRes = R.layout.layout_tree_link
-        this.buttonImageRes = buttonImageRes
-    }
-
-    override fun createNodeView(context: Context, node: TreeNode, value: CompositeValue?, minHeight: Int): View {
-        val view = super.createNodeView(context, node, value, minHeight)
-
+    override fun createNodeView(context: Context, node: TreeNode, minHeight: Int): View {
+        val view = super.createNodeView(context, node, minHeight)
         // link button and listener
         val hotLink = view.findViewById<ImageView>(R.id.node_link)
-        if (hotLink != null) {
-            if (buttonImageRes != 0) {
-                hotLink.setImageDrawable(AppCompatResources.getDrawable(context, buttonImageRes))
-            }
-            hotLink.setOnClickListener { followLink() }
+        if (buttonImageRes != 0) {
+            hotLink.setImageDrawable(AppCompatResources.getDrawable(context, buttonImageRes))
         }
+        hotLink.setOnClickListener { followLink() }
         return view
     }
 
@@ -49,9 +38,8 @@ class LinkQueryController(breakExpand: Boolean, @DrawableRes buttonImageRes: Int
      * Follow link
      */
     private fun followLink() {
-        val value = node.value as CompositeValue?
-        if (value != null) {
-            val link = value.payload!![1] as Link
+        if (node.payload != null) {
+            val link = node.payload!![1] as Link
             link.process()
         }
     }

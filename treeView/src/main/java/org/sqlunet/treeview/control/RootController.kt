@@ -9,17 +9,17 @@ import android.view.ViewGroup
 import org.sqlunet.treeview.model.TreeNode
 import org.sqlunet.treeview.view.SubtreeView
 
-class RootController : Controller<Void?>(false) {
+class RootController : Controller(false) {
+
+    override fun createNodeView(context: Context, node: TreeNode, minHeight: Int): View? {
+        return null
+    }
 
     override var childrenView: ViewGroup? = null
         set(childrenView) {
             super.childrenView = childrenView
             field = childrenView
         }
-
-    override fun createNodeView(context: Context, node: TreeNode, value: Void?, minHeight: Int): View? {
-        return null
-    }
 
     override var subtreeView: SubtreeView?
         get() = if (childrenView != null && childrenView!!.childCount > 0) {

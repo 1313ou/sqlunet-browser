@@ -4,7 +4,6 @@
 package org.sqlunet.treeview.model
 
 import androidx.annotation.DrawableRes
-import org.sqlunet.treeview.control.CompositeValue
 import org.sqlunet.treeview.control.Controller
 
 /**
@@ -15,17 +14,10 @@ import org.sqlunet.treeview.control.Controller
 class TreeNode(
     @JvmField var text: CharSequence?,
     @JvmField @DrawableRes var icon: Int? = null,
-    private val payload: Array<out Any?>? = null,
-    @JvmField var controller: Controller<*>,
+    val payload: Array<out Any?>? = null,
+    @JvmField var controller: Controller,
     var isCollapsible: Boolean,
 ) {
-
-    val value: Any?
-        get() = when {
-            text == null && icon == null && payload == null -> null
-            text != null && icon == null && payload == null -> text
-            else -> CompositeValue(text!!, icon!!, payload)
-        }
 
     /**
      * Id
@@ -70,18 +62,15 @@ class TreeNode(
     var isDeadend = false
 
     // C O N S T R U C T O R S
+    constructor(controller: Controller) : this(null, null, null, controller, true) // root
 
-    constructor(controller: Controller<*>) : this(null, null, null, controller, true) // root
-
-    constructor(text: CharSequence, controller: Controller<*>, collapsible: Boolean) : this(text, null, null, controller, collapsible)
+    constructor(text: CharSequence, controller: Controller, collapsible: Boolean) : this(text, null, null, controller, collapsible)
 
     init {
         children = ArrayList()
         controller.attachNode(this)
     }
-
     // T R E E
-
     /**
      * Add this node to parent node
      *
@@ -300,9 +289,7 @@ class TreeNode(
             }
             return false
         }
-
     // A T T R I B U T E S
-
     /**
      * Get whether this node is selected
      *
@@ -322,13 +309,42 @@ class TreeNode(
     }
 
     // S T R I N G I F Y
-
     override fun toString(): String {
-        return "#" + id + ' ' +
-                (if (value == null) "null" else '['.toString() + value.toString().replace('\n', '┃') + ']') + ' ' +
-                "controller=" + controller.javaClass.getSimpleName() + ' ' +
-                "parent=" + (if (parent == null) "none" else parent!!.id) + ' ' +
-                "num children=" + children.size
+        val sb = StringBuilder()
+        sb
+                .append("#")
+                .append(id)
+                .append(' ')
+                .append('"')
+                .append(text)
+                .append('"')
+                .append(' ')
+        if (payload != null) {
+            sb
+                    .append("payload=")
+                    .append('{')
+            var first = true
+            for (obj in payload) {
+                if (first) {
+                    first = false
+                } else {
+                    sb.append(',')
+                }
+                sb.append(obj)
+            }
+            sb.append('}')
+        }
+        sb
+                .append("controller=")
+                .append(controller.javaClass.getSimpleName())
+                .append(' ')
+                .append("parent=")
+                .append(parent ?.id ?: "none")
+                .append(' ')
+        sb
+                .append("num children=")
+                .append(children.size)
+        return sb.toString()
     }
 
     fun toStringWithChildren(): String {
@@ -352,9 +368,7 @@ class TreeNode(
             child.toStringWithChildren(sb, level + 1)
         }
     }
-
     // C L I C K  L I S T E N E R
-
     /**
      * Set click listener
      *
@@ -375,9 +389,8 @@ class TreeNode(
          * Click event
          *
          * @param node  node
-         * @param value value
          */
-        fun onClick(node: TreeNode?, value: Any?)
+        fun onClick(node: TreeNode)
     }
 
     companion object {

@@ -6,21 +6,20 @@ package org.sqlunet.treeview.control
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import org.sqlunet.treeview.model.TreeNode
 import org.sqlunet.treeview.view.SubtreeView
 
 /**
  * Base controller
  *
- * @param V value type
  * @property isBreakExpand whether this controller breaks expansion
  *
  * @author Bogdan Melnychuk on 2/10/15.
  */
-abstract class Controller<V> protected constructor(
+abstract class Controller protected constructor(
     var isBreakExpand: Boolean,
 ) {
-
     // M O D E L
 
     /**
@@ -45,7 +44,6 @@ abstract class Controller<V> protected constructor(
     /**
      * Node view (node label)
      */
-    @JvmField
     var nodeView: View? = null
 
     /**
@@ -58,7 +56,7 @@ abstract class Controller<V> protected constructor(
     fun createView(context: Context, containerStyle: Int, treeIndent: Int, treeRowMinHeight: Int): SubtreeView? {
 
         // node view
-        nodeView = createNodeView(context, node, node.value as V?, treeRowMinHeight)
+        nodeView = createNodeView(context, node, treeRowMinHeight)
 
         // wrapper
         subtreeView = SubtreeView(context, containerStyle, treeIndent, nodeView!!)
@@ -76,11 +74,24 @@ abstract class Controller<V> protected constructor(
      *
      * @param context   context
      * @param node      node
-     * @param value     value
      * @param minHeight min height
      * @return node view
      */
-    abstract fun createNodeView(context: Context, node: TreeNode, value: V?, minHeight: Int): View?
+    open fun createNodeView(context: Context, node: TreeNode, minHeight: Int): View? {
+        val textView = TextView(context)
+        if (minHeight > 0) {
+            textView.setMinimumHeight(minHeight)
+        }
+        // text
+        textView.text = node.text
+
+        // icon
+        if (node.icon != null) {
+            textView.setCompoundDrawablePadding(10)
+            textView.setCompoundDrawablesWithIntrinsicBounds(node.icon!!, 0, 0, 0)
+        }
+        return textView
+    }
 
     // I N I T
 

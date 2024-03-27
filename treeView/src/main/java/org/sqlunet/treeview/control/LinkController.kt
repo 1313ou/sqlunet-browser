@@ -16,9 +16,9 @@ import org.sqlunet.treeview.model.TreeNode
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-class LinkLeafController(breakExpand: Boolean) : LeafController(breakExpand) {
+class LinkController(breakExpand: Boolean) : BaseResController(breakExpand) {
     @LayoutRes
-    override var layoutResId = R.layout.layout_leaf_link
+    override val layoutResId = R.layout.layout_node_link
 
     override fun createNodeView(context: Context, node: TreeNode, minHeight: Int): View {
         val view = super.createNodeView(context, node, minHeight)
@@ -26,10 +26,6 @@ class LinkLeafController(breakExpand: Boolean) : LeafController(breakExpand) {
         val hotLink = view.findViewById<View>(R.id.node_link)
         hotLink.setOnClickListener { followLink() }
         return view
-    }
-
-    override fun fire() {
-        followLink()
     }
 
     /**

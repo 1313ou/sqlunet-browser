@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.LayoutRes
 import org.sqlunet.treeview.R
 import org.sqlunet.treeview.model.TreeNode
 
@@ -19,27 +20,17 @@ import org.sqlunet.treeview.model.TreeNode
  *
  * @author Bogdan Melnychuk on 2/12/15.
  */
-open class TreeController(breakExpand: Boolean) : Controller<CompositeValue?>(breakExpand) {
+open class TreeController(breakExpand: Boolean) : BaseResController(breakExpand) {
+    @LayoutRes
+    override val layoutResId = R.layout.layout_tree
 
     /**
      * Junction view
      */
-    @JvmField
-    protected var junctionView: ImageView? = null
+    protected lateinit var junctionView: ImageView
 
-    /**
-     * Resource used (changed by derived classes)
-     */
-    @JvmField
-    var layoutRes = R.layout.layout_tree
-
-    override fun createNodeView(context: Context, node: TreeNode, value: CompositeValue?, minHeight: Int): View {
-        val inflater = LayoutInflater.from(context)
-        @SuppressLint("InflateParams") val view = inflater.inflate(layoutRes, null, false)!!
-        if (minHeight > 0) {
-            view.setMinimumHeight(minHeight)
-        }
-
+    override fun createNodeView(context: Context, node: TreeNode, minHeight: Int): View {
+        val view = super.createNodeView(context, node, minHeight)
         // junction icon (arrow)
         junctionView = view.findViewById(R.id.junction_icon)
         if (node.isDeadend) {
@@ -48,17 +39,6 @@ open class TreeController(breakExpand: Boolean) : Controller<CompositeValue?>(br
             markCollapsed()
             // junctionView!!.setImageResource(R.drawable.ic_collapsed)
         }
-
-        // icon + text
-        value?.let {
-            if (value.icon != 0) {
-                val iconView = view.findViewById<ImageView>(R.id.node_icon)
-                iconView.setImageResource(it.icon)
-            }
-            val valueView = view.findViewById<TextView>(R.id.node_value)
-            valueView.text = it.text
-        }
-
         return view
     }
 
@@ -83,14 +63,14 @@ open class TreeController(breakExpand: Boolean) : Controller<CompositeValue?>(br
     }
 
     protected open fun markExpanded() {
-        junctionView!!.setImageResource(R.drawable.ic_expanded)
+        junctionView.setImageResource(R.drawable.ic_expanded)
     }
 
     protected open fun markCollapsed() {
-        junctionView!!.setImageResource(R.drawable.ic_collapsed)
+        junctionView.setImageResource(R.drawable.ic_collapsed)
     }
 
     protected open fun markDeadend() {
-        junctionView!!.setImageResource(R.drawable.ic_deadend)
+        junctionView.setImageResource(R.drawable.ic_deadend)
     }
 }

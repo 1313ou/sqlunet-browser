@@ -13,7 +13,7 @@ import org.sqlunet.treeview.control.LeafController
 import org.sqlunet.treeview.control.Link
 import org.sqlunet.treeview.control.LinkHotQueryController
 import org.sqlunet.treeview.control.LinkLeafController
-import org.sqlunet.treeview.control.LinkNodeController
+import org.sqlunet.treeview.control.LinkController
 import org.sqlunet.treeview.control.LinkQueryController
 import org.sqlunet.treeview.control.LinkTreeController
 import org.sqlunet.treeview.control.MoreController
@@ -91,7 +91,7 @@ object TreeFactory {
      */
     @JvmStatic
     fun makeLinkNode(text: CharSequence, icon: Int, breakExpand: Boolean, link: Link?): TreeNode {
-        return TreeNode(text, icon, arrayOf(link), LinkNodeController(breakExpand), false)
+        return TreeNode(text, icon, arrayOf(link), LinkController(breakExpand), false)
     }
 
     /**

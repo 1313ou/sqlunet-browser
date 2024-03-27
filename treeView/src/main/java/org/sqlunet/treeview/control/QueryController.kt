@@ -3,6 +3,7 @@
  */
 package org.sqlunet.treeview.control
 
+import androidx.annotation.LayoutRes
 import org.sqlunet.treeview.R
 
 /**
@@ -11,23 +12,21 @@ import org.sqlunet.treeview.R
  * @param breakExpand whether this controller breaks expansion
  */
 open class QueryController(breakExpand: Boolean) : TreeController(breakExpand) {
+    @LayoutRes
+    override val layoutResId = R.layout.layout_query
 
     private var processed = false
 
-    init {
-        layoutRes = R.layout.layout_query
-    }
-
     override fun markExpanded() {
-        junctionView!!.setImageResource(R.drawable.ic_query_expanded)
+        junctionView.setImageResource(R.drawable.ic_query_expanded)
     }
 
     override fun markCollapsed() {
-        junctionView!!.setImageResource(R.drawable.ic_query_collapsed)
+        junctionView.setImageResource(R.drawable.ic_query_collapsed)
     }
 
     override fun markDeadend() {
-        junctionView!!.setImageResource(R.drawable.ic_query_deadend)
+        junctionView.setImageResource(R.drawable.ic_query_deadend)
     }
 
     /**
@@ -44,9 +43,8 @@ open class QueryController(breakExpand: Boolean) : TreeController(breakExpand) {
 
     private val query: Query?
         get() {
-            val value = node.value as CompositeValue?
-            if (value != null) {
-                return value.payload!![0] as Query
+            if (node.payload != null) {
+                return node.payload!![0] as Query
             }
             return null
         }

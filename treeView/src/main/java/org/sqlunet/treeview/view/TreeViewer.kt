@@ -15,13 +15,11 @@ import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.view.animation.LinearInterpolator
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.annotation.StyleRes
 import androidx.annotation.StyleableRes
 import androidx.core.util.Pair
 import androidx.preference.PreferenceManager
 import org.sqlunet.treeview.R
-import org.sqlunet.treeview.control.CompositeValue
 import org.sqlunet.treeview.control.RootController
 import org.sqlunet.treeview.model.TreeNode
 import org.sqlunet.treeview.model.TreeNode.TreeNodeClickListener
@@ -191,7 +189,7 @@ class TreeViewer(
             subtreeView.removeNodeView(nodeView)
 
             // new node view
-            val newNodeView = controller.createNodeView(context, node, node.value as Nothing?, treeRowMinHeight)!!
+            val newNodeView = controller.createNodeView(context, node, treeRowMinHeight)!!
             controller.nodeView = newNodeView
 
             // insert new node subtreeView
@@ -325,9 +323,9 @@ class TreeViewer(
 
             // click node listener if node has one
             if (node.clickListener != null) {
-                node.clickListener!!.onClick(node, node.value)
+                node.clickListener!!.onClick(node)
             } else if (nodeClickListener != null) {
-                nodeClickListener!!.onClick(node, node.value)
+                nodeClickListener!!.onClick(node)
             }
 
             // toggle node
@@ -476,10 +474,6 @@ class TreeViewer(
     }
 
     // P R I M I T I V E S
-    private fun isNodeWithCompositeValueText(node: TreeNode, text: String): Boolean {
-        val value = node.value
-        return value is CompositeValue && text == value.text.toString()
-    }
 
     /**
      * Expand node
@@ -691,57 +685,6 @@ class TreeViewer(
                 setSelectable(child, selectable)
             }
         }
-    }
-
-    // selected nodes
-
-    /**
-     * Get selected values that are instances of class
-     *
-     * @param valueClass value class
-     * @param <E>        value type
-     * @return values
-    </E> */
-    fun <E> getSelectedValues(valueClass: Class<E>): List<E> {
-        val result: MutableList<E> = ArrayList()
-        val selected = allSelected
-        for (node in selected) {
-            val value = node.value
-            if (value != null && value.javaClass == valueClass) {
-                @Suppress("UNCHECKED_CAST")
-                result.add(value as E)
-            }
-        }
-        return result
-    }
-
-    private val allSelected: List<TreeNode>
-        /**
-         * Get selected nodes
-         *
-         * @return selected nodes
-         */
-        get() = if (selectable) {
-            getAllSelected(this.root)
-        } else {
-            ArrayList()
-        }
-
-    /**
-     * Get selected nodes from node
-     *
-     * @param node node
-     * @return selected nodes
-     */
-    private fun getAllSelected(node: TreeNode): List<TreeNode> {
-        val result: MutableList<TreeNode> = ArrayList()
-        for (child in node.children) {
-            if (child.isSelected()) {
-                result.add(child)
-            }
-            result.addAll(getAllSelected(child))
-        }
-        return result
     }
 
     // select

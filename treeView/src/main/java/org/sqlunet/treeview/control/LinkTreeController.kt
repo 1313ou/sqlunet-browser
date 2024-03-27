@@ -5,6 +5,7 @@ package org.sqlunet.treeview.control
 
 import android.content.Context
 import android.view.View
+import androidx.annotation.LayoutRes
 import org.sqlunet.treeview.R
 import org.sqlunet.treeview.model.TreeNode
 
@@ -16,17 +17,14 @@ import org.sqlunet.treeview.model.TreeNode
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class LinkTreeController(breakExpand: Boolean) : TreeController(breakExpand) {
+    @LayoutRes
+    override val layoutResId = R.layout.layout_tree_link
 
-    init {
-        layoutRes = R.layout.layout_tree_link
-    }
-
-    override fun createNodeView(context: Context, node: TreeNode, value: CompositeValue?, minHeight: Int): View {
-        val view = super.createNodeView(context, node, value, minHeight)
-
+    override fun createNodeView(context: Context, node: TreeNode, minHeight: Int): View {
+        val view = super.createNodeView(context, node, minHeight)
         // link listener
         val hotLink = view.findViewById<View>(R.id.node_link)
-        hotLink?.setOnClickListener { followLink() }
+        hotLink.setOnClickListener { followLink() }
         return view
     }
 
@@ -34,9 +32,8 @@ class LinkTreeController(breakExpand: Boolean) : TreeController(breakExpand) {
      * Follow link
      */
     private fun followLink() {
-        val value = node.value as CompositeValue?
-        if (value != null) {
-            val link = value.payload!![0] as Link
+        if (node.payload != null) {
+            val link = node.payload!![0] as Link
             link.process()
         }
     }
