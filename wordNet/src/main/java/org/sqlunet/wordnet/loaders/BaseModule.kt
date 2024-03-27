@@ -1496,15 +1496,11 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
 
     /**
      * Samples query
-     */
-    internal inner class SamplesQuery
-
-    /**
-     * Constructor
      *
      * @param synsetId synset id
      */
-        (synsetId: Long) : Query(synsetId) {
+    internal inner class SamplesQuery(synsetId: Long) : Query(synsetId) {
+
         override fun process(node: TreeNode) {
             samples(id, node, true)
         }
