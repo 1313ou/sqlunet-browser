@@ -1785,6 +1785,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * Frame query
      */
     internal inner class FrameQuery(frameId: Long) : Query(frameId) {
+
         override fun process(node: TreeNode) {
             frame(id.toInt().toLong(), node)
         }
@@ -1798,6 +1799,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * Related frame query
      */
     internal inner class RelatedQuery(frameId: Long) : Query(frameId) {
+
         override fun process(node: TreeNode) {
             relatedFrames(id.toInt().toLong(), node)
         }
@@ -1811,6 +1813,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * Lex units query
      */
     internal inner class LexUnitsQuery(frameId: Long) : Query(frameId) {
+
         override fun process(node: TreeNode) {
             lexUnitsForFrame(id.toInt().toLong(), node, false)
         }
@@ -1824,6 +1827,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * Frame elements query
      */
     internal inner class FEsQuery(frameId: Long) : Query(frameId) {
+
         override fun process(node: TreeNode) {
             fesForFrame(id.toInt(), node)
         }
@@ -1837,6 +1841,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * Governors query
      */
     internal inner class GovernorsQuery(luId: Long) : Query(luId) {
+
         override fun process(node: TreeNode) {
             governorsForLexUnit(id, node)
         }
@@ -1850,6 +1855,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * Realizations query
      */
     internal inner class RealizationsQuery(luId: Long) : Query(luId) {
+
         override fun process(node: TreeNode) {
             realizationsForLexicalUnit(id, node)
         }
@@ -1863,6 +1869,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * Group realizations query
      */
     internal inner class GroupRealizationsQuery(luId: Long) : Query(luId) {
+
         override fun process(node: TreeNode) {
             groupRealizationsForLexUnit(id, node)
         }
@@ -1876,6 +1883,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * Sentences for pattern query
      */
     internal inner class SentencesForPatternQuery(patternId: Long) : Query(patternId) {
+
         override fun process(node: TreeNode) {
             sentencesForPattern(id, node)
         }
@@ -1889,6 +1897,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * Sentences for valence unit query
      */
     internal inner class SentencesForValenceUnitQuery(vuId: Long) : Query(vuId) {
+
         override fun process(node: TreeNode) {
             sentencesForValenceUnit(id, node)
         }
@@ -1902,6 +1911,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * Sentences for lex unit query
      */
     internal inner class SentencesForLexUnitQuery(luId: Long) : Query(luId) {
+
         override fun process(node: TreeNode) {
             sentencesForLexUnit(id, node)
         }
@@ -1915,6 +1925,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * AnnoSet query
      */
     internal inner class AnnoSetQuery(annoSetId: Long, private val withSentence: Boolean) : Query(annoSetId) {
+
         override fun process(node: TreeNode) {
             annoSet(id, node, withSentence)
         }
@@ -1928,6 +1939,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
      * AnnoSets for governor query
      */
     internal inner class AnnoSetsForGovernorQuery(governorId: Long) : Query(governorId) {
+
         override fun process(node: TreeNode) {
             annoSetsForGovernor(id, node)
         }

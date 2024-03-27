@@ -509,6 +509,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      * Members query
      */
     internal inner class MembersQuery(classId: Long) : Query(classId) {
+
         override fun process(node: TreeNode) {
             vnMembers(id.toInt(), node)
         }
@@ -522,6 +523,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      * Roles query
      */
     internal inner class RolesQuery(classId: Long) : Query(classId) {
+
         override fun process(node: TreeNode) {
             vnRoles(id.toInt(), node)
         }
@@ -535,6 +537,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      * Frames query
      */
     internal inner class FramesQuery(classId: Long) : Query(classId) {
+
         override fun process(node: TreeNode) {
             vnFrames(id.toInt(), node)
         }

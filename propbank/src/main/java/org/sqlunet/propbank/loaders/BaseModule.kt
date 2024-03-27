@@ -451,6 +451,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      * Role query
      */
     private inner class RolesQuery(roleSetId: Long) : Query(roleSetId) {
+
         override fun process(node: TreeNode) {
             roles(id.toInt(), node)
         }
@@ -464,6 +465,7 @@ abstract class BaseModule(fragment: TreeFragment) : Module(fragment) {
      * Examples query
      */
     private inner class ExamplesQuery(roleSetId: Long) : Query(roleSetId) {
+
         override fun process(node: TreeNode) {
             examples(id.toInt(), node)
         }

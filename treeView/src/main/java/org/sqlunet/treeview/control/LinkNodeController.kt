@@ -20,8 +20,8 @@ import org.sqlunet.treeview.model.TreeNode
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class LinkNodeController(breakExpand: Boolean) : Controller<CompositeValue?>(breakExpand) {
-    override fun createNodeView(context: Context, node: TreeNode, value: CompositeValue?, minHeight: Int): View {
 
+    override fun createNodeView(context: Context, node: TreeNode, value: CompositeValue?, minHeight: Int): View {
         val inflater = LayoutInflater.from(context)
         @SuppressLint("InflateParams") val view = inflater.inflate(R.layout.layout_node_link, null, false)!!
         if (minHeight > 0) {
