@@ -29,6 +29,18 @@ class CompositeValue {
     /**
      * Constructor
      *
+     * @param text label text
+     * @param icon extra icon
+     */
+    constructor(text: CharSequence, icon: Int) {
+        this.text = text
+        this.icon = icon
+        payload = null
+    }
+
+    /**
+     * Constructor
+     *
      * @param text    label text
      * @param icon    extra icon
      * @param payload payload
@@ -37,18 +49,6 @@ class CompositeValue {
         this.text = text
         this.icon = icon
         this.payload = payload
-    }
-
-    /**
-     * Constructor
-     *
-     * @param text label text
-     * @param icon extra icon
-     */
-    constructor(text: CharSequence, icon: Int) {
-        this.text = text
-        this.icon = icon
-        payload = null
     }
 
     // S T R I N G I F Y
