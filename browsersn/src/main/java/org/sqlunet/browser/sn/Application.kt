@@ -24,6 +24,5 @@ class Application : AbstractApplication() {
     }
 
     companion object {
-        private const val TAG = "Application"
     }
 }
