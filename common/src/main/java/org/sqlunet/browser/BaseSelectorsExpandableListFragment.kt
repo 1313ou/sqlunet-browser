@@ -8,6 +8,5 @@ import androidx.app.local.ExpandableListFragment
 open class BaseSelectorsExpandableListFragment : ExpandableListFragment() {
 
     companion object {
-        private const val TAG = "SelectorsXListF"
     }
 }

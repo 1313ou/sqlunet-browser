@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 open class BaseSelectorsFragment : Fragment() {
 
     companion object {
-        private const val TAG = "SelectorsF"
 
         const val FRAGMENT_TAG = "selectors"
     }
