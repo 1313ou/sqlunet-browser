@@ -351,9 +351,8 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
      */
     protected val searchModePosition: Int
         get() {
-            val spinner = spinner
             if (spinner != null) {
-                val position = spinner.selectedItemPosition
+                val position = spinner!!.selectedItemPosition
                 if (position != -1) {
                     return position
                 }
@@ -379,10 +378,9 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
         super.onSaveInstanceState(outState)
 
         // spinner
-        val spinner = spinner
         if (spinner != null) {
             // serialize the current dropdown position
-            val position = spinner.selectedItemPosition
+            val position = spinner!!.selectedItemPosition
             outState.putInt(STATE_SPINNER, position)
         }
     }
