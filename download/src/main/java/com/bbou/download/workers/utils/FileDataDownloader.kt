@@ -10,14 +10,14 @@ import android.util.Log
 import android.widget.Toast
 import com.bbou.concurrency.Task
 import com.bbou.download.Keys.DOWNLOAD_FROM_ARG
-import com.bbou.download.workers.UpdateStarter
+import com.bbou.download.UpdateActivity
 import com.bbou.download.UpdateFragment
-import java.net.HttpURLConnection
-import java.net.URL
-import java.util.Date
 import com.bbou.download.common.R
 import com.bbou.download.preference.Settings
 import com.bbou.download.utils.FileData
+import java.net.HttpURLConnection
+import java.net.URL
+import java.util.Date
 
 /**
  * File data downloader
@@ -188,7 +188,7 @@ class FileDataDownloader(private val listener: Listener) : Task<String, Void, Fi
                 val srcNewer = srcDate == null || downSourceDate == null || srcDate > downSourceDate // upstream src date from http connection is newer than recorded source date
 
                 // start update activity
-                val intent = Intent(activity, UpdateStarter::class.java)
+                val intent = Intent(activity, UpdateActivity::class.java)
 
                 // result
                 val na = activity.getString(R.string.na)
