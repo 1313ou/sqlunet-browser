@@ -28,11 +28,11 @@ class FnAnnoSet private constructor(
          */
         @JvmStatic
         fun make(connection: SQLiteDatabase, annoSetId: Long): FnAnnoSet? {
-            FnAnnoSetQuery(connection, annoSetId).use { query ->
-                query.execute()
-                if (query.next()) {
-                    val sentenceId = query.sentenceId
-                    val text = query.sentenceText
+            FnAnnoSetQuery(connection, annoSetId).use {
+                it.execute()
+                if (it.next()) {
+                    val sentenceId = it.sentenceId
+                    val text = it.sentenceText
                     val sentence = FnSentence(sentenceId, text)
                     return FnAnnoSet(annoSetId, sentence)
                 }

@@ -29,6 +29,7 @@ object Colors {
         thetaBackColor = palette[i++]
         thetaForeColor = palette[i++]
         relationBackColor = palette[i++]
-        relationForeColor = palette[i++]
+        relationForeColor = palette[i]
+        // increment i if colors added
     }
 }

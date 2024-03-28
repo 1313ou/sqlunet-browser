@@ -103,10 +103,10 @@ class OpenEditTextPreference : DialogPreference {
      */
     private fun init(context: Context, attrs: AttributeSet) {
         // obtain values through styled attributes
-        val array = context.obtainStyledAttributes(attrs, R.styleable.OpenEditTextPreference)
-        values = array.getTextArray(R.styleable.OpenEditTextPreference_values)
-        labels = array.getTextArray(R.styleable.OpenEditTextPreference_labels)
-        array.recycle()
+        context.obtainStyledAttributes(attrs, R.styleable.OpenEditTextPreference).use {
+            values = it.getTextArray(R.styleable.OpenEditTextPreference_values)
+            labels = it.getTextArray(R.styleable.OpenEditTextPreference_labels)
+        }
 
         // enable all
         enable = BooleanArray(values.size)

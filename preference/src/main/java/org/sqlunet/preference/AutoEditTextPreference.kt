@@ -79,9 +79,9 @@ class AutoEditTextPreference : DialogPreference {
      */
     private fun init(context: Context, attrs: AttributeSet) {
         // obtain values through styled attributes
-        val array = context.obtainStyledAttributes(attrs, R.styleable.AutoEditTextPreference)
-        values = array.getTextArray(R.styleable.AutoEditTextPreference_values)
-        array.recycle()
+        context.obtainStyledAttributes(attrs, R.styleable.AutoEditTextPreference).use {
+            values = it.getTextArray(R.styleable.AutoEditTextPreference_values)
+        }
     }
 
     /**

@@ -35,14 +35,14 @@ internal class FnLayer private constructor(
         @JvmStatic
         fun makeFromSentence(connection: SQLiteDatabase, sentenceId: Long): List<FnLayer>? {
             var result: MutableList<FnLayer>? = null
-            FnLayerQueryFromSentenceId(connection, sentenceId).use { query ->
-                query.execute()
-                while (query.next()) {
-                    val layerId = query.layerId
-                    val layerType = query.layerType
-                    val rank = query.rank
-                    val annoSetId = query.annoSetId
-                    val labels = query.labels
+            FnLayerQueryFromSentenceId(connection, sentenceId).use {
+                it.execute()
+                while (it.next()) {
+                    val layerId = it.layerId
+                    val layerType = it.layerType
+                    val rank = it.rank
+                    val annoSetId = it.annoSetId
+                    val labels = it.labels
                     if (result == null) {
                         result = ArrayList()
                     }
@@ -62,13 +62,13 @@ internal class FnLayer private constructor(
         @JvmStatic
         fun makeFromAnnoSet(connection: SQLiteDatabase, annoSetId: Long): List<FnLayer?>? {
             var result: MutableList<FnLayer?>? = null
-            FnLayerQueryFromAnnoSetId(connection, annoSetId).use { query ->
-                query.execute()
-                while (query.next()) {
-                    val layerId = query.layerId
-                    val layerType = query.layerType
-                    val rank = query.rank
-                    val labels = query.labels
+            FnLayerQueryFromAnnoSetId(connection, annoSetId).use {
+                it.execute()
+                while (it.next()) {
+                    val layerId = it.layerId
+                    val layerType = it.layerType
+                    val rank = it.rank
+                    val labels = it.labels
                     if (result == null) {
                         result = ArrayList()
                     }

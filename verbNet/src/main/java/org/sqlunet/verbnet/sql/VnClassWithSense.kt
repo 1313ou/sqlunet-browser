@@ -43,17 +43,17 @@ internal class VnClassWithSense private constructor(
         @JvmStatic
         fun make(connection: SQLiteDatabase, wordId: Long, synsetId: Long?): List<VnClassWithSense?>? {
             var result: MutableList<VnClassWithSense?>? = null
-            VnClassQueryFromSense(connection, wordId, synsetId).use { query ->
-                query.execute()
-                while (query.next()) {
-                    val className = query.className
-                    val classId = query.classId
-                    val synsetSpecificFlag = query.synsetSpecific
-                    val definition = query.definition
-                    val sensekey = query.senseKey
-                    val sensenum = query.senseNum
-                    val quality = query.quality
-                    val groupings = query.groupings
+            VnClassQueryFromSense(connection, wordId, synsetId).use {
+                it.execute()
+                while (it.next()) {
+                    val className = it.className
+                    val classId = it.classId
+                    val synsetSpecificFlag = it.synsetSpecific
+                    val definition = it.definition
+                    val sensekey = it.senseKey
+                    val sensenum = it.senseNum
+                    val quality = it.quality
+                    val groupings = it.groupings
                     if (result == null) {
                         result = ArrayList()
                     }

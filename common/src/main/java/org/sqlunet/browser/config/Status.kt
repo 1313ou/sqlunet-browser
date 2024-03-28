@@ -103,16 +103,16 @@ abstract class Status {
                 "name NOT LIKE 'sqlite_%' AND name NOT LIKE 'android_%'",  // selection criteria 
                 null,  
                 order
-            ).use { cursor ->
+            ).use {
                 var result: MutableList<String>? = null
-                if (cursor != null) {
-                    if (cursor.moveToFirst()) {
-                        val nameId = cursor.getColumnIndex(TablesAndIndices.NAME)
+                if (it != null) {
+                    if (it.moveToFirst()) {
+                        val nameId = it.getColumnIndex(TablesAndIndices.NAME)
                         result = ArrayList()
                         do {
-                            val name = cursor.getString(nameId)
+                            val name = it.getString(nameId)
                             result.add(name)
-                        } while (cursor.moveToNext())
+                        } while (it.moveToNext())
                     }
                 }
                 return result

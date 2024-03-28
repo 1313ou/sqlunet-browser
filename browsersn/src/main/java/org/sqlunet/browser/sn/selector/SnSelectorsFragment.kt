@@ -163,11 +163,11 @@ class SnSelectorsFragment : BaseSelectorsListFragment() {
         val projection = arrayOf(WordNetContract.Words.WORDID)
         val selection = WordNetContract.Words.WORD + " = ?" 
         val selectionArgs = arrayOf(query)
-        requireContext().contentResolver.query(uri, projection, selection, selectionArgs, null).use { cursor ->
-            if (cursor != null) {
-                if (cursor.moveToFirst()) {
-                    val idWordId = cursor.getColumnIndex(WordNetContract.Words.WORDID)
-                    return cursor.getLong(idWordId)
+        requireContext().contentResolver.query(uri, projection, selection, selectionArgs, null).use {
+            if (it != null) {
+                if (it.moveToFirst()) {
+                    val idWordId = it.getColumnIndex(WordNetContract.Words.WORDID)
+                    return it.getLong(idWordId)
                 }
             }
         }

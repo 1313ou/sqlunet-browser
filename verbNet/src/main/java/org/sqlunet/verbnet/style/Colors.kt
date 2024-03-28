@@ -77,6 +77,7 @@ object Colors {
         constantBackColor = palette[i++]
         constantForeColor = palette[i++]
         eventBackColor = palette[i++]
-        eventForeColor = palette[i++]
+        eventForeColor = palette[i]
+        // increment i if colors added
     }
 }

@@ -32,11 +32,11 @@ internal object FileUtils {
      * @return uri of copied file
      */
     fun copyAssetFile(context: Context, fileName: String): Uri? {
-        context.assets.use { assetManager ->
+        context.assets.use {
             val dir = Storage.getSqlUNetStorage(context)
             dir.mkdirs()
             val file = File(dir, fileName)
-            return if (copyAsset(assetManager, fileName, file.absolutePath)) {
+            return if (copyAsset(it, fileName, file.absolutePath)) {
                 Uri.fromFile(file)
             } else null
         }
@@ -58,8 +58,8 @@ internal object FileUtils {
                     return false
                 }
                 val os = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) Files.newOutputStream(f.toPath()) else FileOutputStream(f)
-                os.use { os2 ->
-                    copyFile(`is`, os2)
+                os.use {
+                    copyFile(`is`, it)
                     return true
                 }
             }
@@ -94,10 +94,10 @@ internal object FileUtils {
      * @return uri of dest dir
      */
     fun expandZipAssetFile(context: Context, fileName: String): Uri? {
-        context.assets.use { assetManager ->
+        context.assets.use {
             val dir = Storage.getSqlUNetStorage(context)
             dir.mkdirs()
-            return if (expandZipAsset(assetManager, fileName, dir.absolutePath)) {
+            return if (expandZipAsset(it, fileName, dir.absolutePath)) {
                 Uri.fromFile(dir)
             } else null
         }
@@ -113,8 +113,8 @@ internal object FileUtils {
      */
     private fun expandZipAsset(assetManager: AssetManager, assetPath: String, toPath: String): Boolean {
         try {
-            assetManager.open(assetPath).use { `is` ->
-                expandZip(`is`, null, File(toPath))
+            assetManager.open(assetPath).use {
+                expandZip(it, null, File(toPath))
                 return true
             }
         } catch (e: Exception) {

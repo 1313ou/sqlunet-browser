@@ -90,18 +90,19 @@ class ExecAsyncTask
         override fun doJob(params: Array<String>?): Boolean {
 
             try {
-                SQLiteDatabase.openDatabase(dataBase, null, SQLiteDatabase.OPEN_READWRITE).use { db ->
+                SQLiteDatabase.openDatabase(dataBase, null, SQLiteDatabase.OPEN_READWRITE).use {
+
                     // execute
                     val total = params!!.size
                     var successCount = 0
                     for (i in 0 until total) {
-                        val sql = params[i].trim { it <= ' ' }
+                        val sql = params[i].trim { c -> c <= ' ' }
                         if (sql.isEmpty()) {
                             continue
                         }
 
                         // exec
-                        db.execSQL(sql)
+                        it.execSQL(sql)
                         successCount++
                         Log.d(TAG, "Sql: $sql")
 

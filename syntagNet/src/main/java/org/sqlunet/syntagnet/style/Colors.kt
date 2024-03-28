@@ -52,6 +52,7 @@ object Colors {
         definition2BackColor = palette[i++]
         definition2ForeColor = palette[i++]
         idsBackColor = palette[i++]
-        idsForeColor = palette[i++]
+        idsForeColor = palette[i]
+        // increment i if colors added
     }
 }

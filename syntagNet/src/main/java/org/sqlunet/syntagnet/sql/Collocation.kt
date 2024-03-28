@@ -46,10 +46,10 @@ internal open class Collocation private constructor(
             @JvmStatic
             fun makeFromWord(connection: SQLiteDatabase, targetWord: String): List<WithDefinitionAndPos> {
                 val result: MutableList<WithDefinitionAndPos> = ArrayList()
-                CollocationQueryFromWord(connection, targetWord).use { query ->
-                    query.execute()
-                    while (query.next()) {
-                        val collocation = makeCollocationWithDefinitionAndPos(query)
+                CollocationQueryFromWord(connection, targetWord).use {
+                    it.execute()
+                    while (it.next()) {
+                        val collocation = makeCollocationWithDefinitionAndPos(it)
                         result.add(collocation)
                     }
                     return result
@@ -66,10 +66,10 @@ internal open class Collocation private constructor(
             @JvmStatic
             fun makeFromWordId(connection: SQLiteDatabase, targetWordId: Long): List<WithDefinitionAndPos> {
                 val result: MutableList<WithDefinitionAndPos> = ArrayList()
-                CollocationQueryFromWordId(connection, targetWordId).use { query ->
-                    query.execute()
-                    while (query.next()) {
-                        val collocation = makeCollocationWithDefinitionAndPos(query)
+                CollocationQueryFromWordId(connection, targetWordId).use {
+                    it.execute()
+                    while (it.next()) {
+                        val collocation = makeCollocationWithDefinitionAndPos(it)
                         result.add(collocation)
                     }
                 }
@@ -87,10 +87,10 @@ internal open class Collocation private constructor(
             @JvmStatic
             fun makeFromWordIds(connection: SQLiteDatabase, targetWordId: Long, targetWord2Id: Long): List<WithDefinitionAndPos> {
                 val result: MutableList<WithDefinitionAndPos> = ArrayList()
-                CollocationQueryFromWordIds(connection, targetWordId, targetWord2Id).use { query ->
-                    query.execute()
-                    while (query.next()) {
-                        val collocation = makeCollocationWithDefinitionAndPos(query)
+                CollocationQueryFromWordIds(connection, targetWordId, targetWord2Id).use {
+                    it.execute()
+                    while (it.next()) {
+                        val collocation = makeCollocationWithDefinitionAndPos(it)
                         result.add(collocation)
                     }
                 }
@@ -107,10 +107,10 @@ internal open class Collocation private constructor(
             @JvmStatic
             fun makeFromWordIdAndSynsetId(connection: SQLiteDatabase, targetWordId: Long, targetSynsetId: Long): List<WithDefinitionAndPos> {
                 val result: MutableList<WithDefinitionAndPos> = ArrayList()
-                CollocationQueryFromWordIdAndSynsetId(connection, targetWordId, targetSynsetId).use { query ->
-                    query.execute()
-                    while (query.next()) {
-                        val collocation = makeCollocationWithDefinitionAndPos(query)
+                CollocationQueryFromWordIdAndSynsetId(connection, targetWordId, targetSynsetId).use {
+                    it.execute()
+                    while (it.next()) {
+                        val collocation = makeCollocationWithDefinitionAndPos(it)
                         result.add(collocation)
                     }
                 }
@@ -130,10 +130,10 @@ internal open class Collocation private constructor(
             @JvmStatic
             fun makeFromWordIdAndSynsetIds(connection: SQLiteDatabase, targetWordId: Long, targetSynsetId: Long, targetWord2Id: Long, targetSynset2Id: Long): List<WithDefinitionAndPos> {
                 val result: MutableList<WithDefinitionAndPos> = ArrayList()
-                CollocationQueryFromWordIdsAndSynsetIds(connection, targetWordId, targetSynsetId, targetWord2Id, targetSynset2Id).use { query ->
-                    query.execute()
-                    while (query.next()) {
-                        val collocation = makeCollocationWithDefinitionAndPos(query)
+                CollocationQueryFromWordIdsAndSynsetIds(connection, targetWordId, targetSynsetId, targetWord2Id, targetSynset2Id).use {
+                    it.execute()
+                    while (it.next()) {
+                        val collocation = makeCollocationWithDefinitionAndPos(it)
                         result.add(collocation)
                     }
                 }
@@ -150,10 +150,10 @@ internal open class Collocation private constructor(
             @JvmStatic
             fun make(connection: SQLiteDatabase, collocationId: Long): List<WithDefinitionAndPos> {
                 val result: MutableList<WithDefinitionAndPos> = ArrayList()
-                CollocationQuery(connection, collocationId).use { query ->
-                    query.execute()
-                    while (query.next()) {
-                        val collocation = makeCollocationWithDefinitionAndPos(query)
+                CollocationQuery(connection, collocationId).use {
+                    it.execute()
+                    while (it.next()) {
+                        val collocation = makeCollocationWithDefinitionAndPos(it)
                         result.add(collocation)
                     }
                 }
@@ -182,10 +182,10 @@ internal open class Collocation private constructor(
         @JvmStatic
         fun makeSelectorFromWord(connection: SQLiteDatabase, targetWord: String): List<Collocation> {
             val result: MutableList<Collocation> = ArrayList()
-            CollocationQueryFromWord(connection, targetWord).use { query ->
-                query.execute()
-                while (query.next()) {
-                    val collocation = makeCollocation(query)
+            CollocationQueryFromWord(connection, targetWord).use {
+                it.execute()
+                while (it.next()) {
+                    val collocation = makeCollocation(it)
                     result.add(collocation)
                 }
                 return result

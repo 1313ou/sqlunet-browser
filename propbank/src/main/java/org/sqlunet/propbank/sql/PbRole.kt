@@ -35,14 +35,14 @@ internal class PbRole private constructor(
         @JvmStatic
         fun make(connection: SQLiteDatabase, roleSetId: Long): List<PbRole?>? {
             var result: MutableList<PbRole?>? = null
-            PbRoleQueryFromRoleSetId(connection, roleSetId).use { query ->
-                query.execute()
-                while (query.next()) {
-                    val roleId = query.roleId
-                    val roleDescr = query.roleDescr
-                    val roleArgType = query.argType
-                    val roleFunc = query.roleFunc
-                    val roleTheta = query.roleTheta
+            PbRoleQueryFromRoleSetId(connection, roleSetId).use {
+                it.execute()
+                while (it.next()) {
+                    val roleId = it.roleId
+                    val roleDescr = it.roleDescr
+                    val roleArgType = it.argType
+                    val roleFunc = it.roleFunc
+                    val roleTheta = it.roleTheta
                     if (result == null) {
                         result = ArrayList()
                     }

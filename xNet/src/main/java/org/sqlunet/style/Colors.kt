@@ -46,22 +46,31 @@ object Colors {
     // TEXT
     @JvmField
     var textBackColor = Color.TRANSPARENT
+
     @JvmField
     var textForeColor = Color.TRANSPARENT
+
     @JvmField
     var textNormalBackColor = Color.TRANSPARENT
+
     @JvmField
     var textNormalForeColor = Color.TRANSPARENT
+
     @JvmField
     var textHighlightBackColor = Color.TRANSPARENT
+
     @JvmField
     var textHighlightForeColor = Color.TRANSPARENT
+
     @JvmField
     var textDimmedBackColor = Color.TRANSPARENT
+
     @JvmField
     var textDimmedForeColor = Color.TRANSPARENT
+
     @JvmField
     var textMatchBackColor = Color.TRANSPARENT
+
     @JvmField
     var textMatchForeColor = Color.TRANSPARENT
 
@@ -76,26 +85,37 @@ object Colors {
     // REPORT
     @JvmField
     var storageTypeBackColor = Color.TRANSPARENT
+
     @JvmField
     var storageTypeForeColor = Color.TRANSPARENT
+
     @JvmField
     var storageValueBackColor = Color.TRANSPARENT
+
     @JvmField
     var storageValueForeColor = Color.TRANSPARENT
+
     @JvmField
     var dirTypeBackColor = Color.TRANSPARENT
+
     @JvmField
     var dirTypeForeColor = Color.TRANSPARENT
+
     @JvmField
     var dirValueBackColor = Color.TRANSPARENT
+
     @JvmField
     var dirValueForeColor = Color.TRANSPARENT
+
     @JvmField
     var dirOkBackColor = Color.TRANSPARENT
+
     @JvmField
     var dirOkForeColor = Color.TRANSPARENT
+
     @JvmField
     var dirFailBackColor = Color.TRANSPARENT
+
     @JvmField
     var dirFailForeColor = Color.TRANSPARENT
 
@@ -104,7 +124,6 @@ object Colors {
         // do not reorder : dependent on resource array order
         val palette = context.resources.getIntArray(R.array.palette)
         var i = 0
-
         // COMMON
         classBackColor = palette[i++]
         classForeColor = palette[i++]
@@ -128,7 +147,6 @@ object Colors {
         pronunciationForeColor = palette[i++]
         posBackColor = palette[i++]
         posForeColor = palette[i++]
-
         // TEXT
         textBackColor = palette[i++]
         textForeColor = palette[i++]
@@ -140,7 +158,6 @@ object Colors {
         textDimmedForeColor = palette[i++]
         textMatchBackColor = palette[i++]
         textMatchForeColor = palette[i++]
-
         // SQL
         sqlKeywordBackColor = palette[i++]
         sqlKeywordForeColor = palette[i++]
@@ -148,7 +165,6 @@ object Colors {
         sqlSlashForeColor = palette[i++]
         sqlQuestionMarkBackColor = palette[i++]
         sqlQuestionMarkForeColor = palette[i++]
-
         // REPORT
         storageTypeBackColor = palette[i++]
         storageTypeForeColor = palette[i++]
@@ -161,7 +177,8 @@ object Colors {
         dirOkBackColor = palette[i++]
         dirOkForeColor = palette[i++]
         dirFailBackColor = palette[i++]
-        dirFailForeColor = palette[i++]
+        dirFailForeColor = palette[i]
+        // increment i if colors added
     }
 
     fun getColors(context: Context, @ColorRes vararg colorIds: Int): IntArray {
@@ -176,12 +193,12 @@ object Colors {
 
     @JvmStatic
     fun getColorAttrs(context: Context, @StyleRes themeId: Int, @StyleableRes vararg resIds: Int): IntArray {
-        val a = context.theme.obtainStyledAttributes(themeId, resIds)
         val result = IntArray(resIds.size)
-        for (i in resIds.indices) {
-            result[i] = a.getColor(i, NOT_DEFINED)
+        context.theme.obtainStyledAttributes(themeId, resIds).use {
+            for (i in resIds.indices) {
+                result[i] = it.getColor(i, NOT_DEFINED)
+            }
         }
-        a.recycle()
         return result
     }
 
@@ -189,13 +206,13 @@ object Colors {
 
     @JvmStatic
     fun dumpColorAttrs(context: Context, @StyleRes themeId: Int, @StyleableRes vararg resIds: Int) {
-        val a = context.theme.obtainStyledAttributes(themeId, resIds)
-        for (i in 0 until a.length()) {
-            val name = context.resources.getResourceName(resIds[i])
-            val value = a.getColor(i, NOT_DEFINED)
-            Log.i(DUMP, String.format("Attr %s = %s", name, colorToString(value)))
+        context.theme.obtainStyledAttributes(themeId, resIds).use {
+            for (i in 0 until it.length()) {
+                val name = context.resources.getResourceName(resIds[i])
+                val value = it.getColor(i, NOT_DEFINED)
+                Log.i(DUMP, String.format("Attr %s = %s", name, colorToString(value)))
+            }
         }
-        a.recycle()
     }
 
     @JvmStatic

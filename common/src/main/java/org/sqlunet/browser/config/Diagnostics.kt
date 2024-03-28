@@ -396,22 +396,23 @@ object Diagnostics {
         val uri = Uri.parse(makeUri(XNetContract.Meta.URI))
         val projection = arrayOf(XNetContract.Meta.CREATED, XNetContract.Meta.DBSIZE, XNetContract.Meta.BUILD)
         try {
-            context.contentResolver.query(uri, projection, null, null, null).use { cursor ->
-                if (cursor != null && cursor.moveToFirst()) {
+            context.contentResolver.query(uri, projection, null, null, null).use {
+
+                if (it != null && it.moveToFirst()) {
                     val meta = arrayOfNulls<String>(3)
-                    val createdIndex = cursor.getColumnIndex(XNetContract.Meta.CREATED)
-                    if (!cursor.isNull(createdIndex)) {
-                        val created = cursor.getString(createdIndex)
+                    val createdIndex = it.getColumnIndex(XNetContract.Meta.CREATED)
+                    if (!it.isNull(createdIndex)) {
+                        val created = it.getString(createdIndex)
                         meta[0] = created
                     }
-                    val sizeIndex = cursor.getColumnIndex(XNetContract.Meta.DBSIZE)
-                    if (!cursor.isNull(sizeIndex)) {
-                        val size = cursor.getLong(sizeIndex)
+                    val sizeIndex = it.getColumnIndex(XNetContract.Meta.DBSIZE)
+                    if (!it.isNull(sizeIndex)) {
+                        val size = it.getLong(sizeIndex)
                         meta[1] = size.toString()
                     }
-                    val buildIndex = cursor.getColumnIndex(XNetContract.Meta.BUILD)
-                    if (!cursor.isNull(buildIndex)) {
-                        val build = cursor.getString(buildIndex)
+                    val buildIndex = it.getColumnIndex(XNetContract.Meta.BUILD)
+                    if (!it.isNull(buildIndex)) {
+                        val build = it.getString(buildIndex)
                         meta[2] = build
                     }
                     return meta
@@ -430,7 +431,7 @@ object Diagnostics {
 
     @Throws(SQLiteException::class)
     private fun rowCount(path: String, table: String): Long {
-        SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY).use { db -> return DatabaseUtils.queryNumEntries(db, table) }
+        SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY).use { return DatabaseUtils.queryNumEntries(it, table) }
     }
 
     /**

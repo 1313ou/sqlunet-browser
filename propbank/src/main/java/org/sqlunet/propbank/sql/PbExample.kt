@@ -37,19 +37,19 @@ internal class PbExample private constructor(
         @JvmStatic
         fun make(connection: SQLiteDatabase, roleSetId: Long): List<PbExample?>? {
             var result: MutableList<PbExample?>? = null
-            PbExampleQueryFromRoleSetId(connection, roleSetId).use { query ->
-                query.execute()
-                while (query.next()) {
+            PbExampleQueryFromRoleSetId(connection, roleSetId).use {
+                it.execute()
+                while (it.next()) {
                     // data from result set
-                    val exampleId = query.exampleId
-                    val text = query.text
-                    val rel = query.rel
-                    val args = query.args
-                    val aspect = query.aspect
-                    val form = query.form
-                    val tense = query.tense
-                    val voice = query.voice
-                    val person = query.person
+                    val exampleId = it.exampleId
+                    val text = it.text
+                    val rel = it.rel
+                    val args = it.args
+                    val aspect = it.aspect
+                    val form = it.form
+                    val tense = it.tense
+                    val voice = it.voice
+                    val person = it.person
                     if (result == null) {
                         result = ArrayList()
                     }

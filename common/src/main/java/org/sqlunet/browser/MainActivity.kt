@@ -36,23 +36,30 @@ open class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         // rate
         invoke(this)
+
         // info
         Log.d(TAG, "Database:" + StorageSettings.getDatabasePath(baseContext))
+
         // content
         setContentView(R.layout.activity_main)
+
         // toolbar
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
+
         // navigation top destinations
-        val array = getResources().obtainTypedArray(R.array.drawer_top_dest)
-        val len = array.length()
-        val topDests = IntArray(len)
-        for (i in 0 until len) {
-            topDests[i] = array.getResourceId(i, 0)
+        val topDests: IntArray
+        getResources().obtainTypedArray(R.array.drawer_top_dest).use {
+            val len = it.length()
+            topDests = IntArray(len)
+            for (i in 0 until len) {
+                topDests[i] = it.getResourceId(i, 0)
+            }
         }
-        array.recycle()
+
         // navigation
         val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
         val navView = findViewById<NavigationView>(R.id.nav_view)
@@ -81,7 +88,9 @@ open class MainActivity : AppCompatActivity() {
         val overrideConfig = createOverrideConfigurationForDayNight(this, mode)
         application.onConfigurationChanged(overrideConfig)
     }
+
     // S E A R C H
+
     /**
      * Handle intent dispatched by search view (either onCreate or onNewIntent if activity is single top)
      *

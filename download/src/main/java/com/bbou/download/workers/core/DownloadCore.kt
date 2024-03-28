@@ -184,8 +184,8 @@ open class DownloadCore(private val progressConsumer: BiConsumer<Long, Long>) {
             val is1 = BufferedInputStream(connection.getInputStream(), CHUNK_SIZE)
             val is2 = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) Files.newOutputStream(tempOutFile.toPath()) else FileOutputStream(tempOutFile)
             is1.use { `is` ->
-                is2.use { os ->
-                    copyStreams(`is`, os, size)
+                is2.use {
+                    copyStreams(`is`, it, size)
                 }
             }
 

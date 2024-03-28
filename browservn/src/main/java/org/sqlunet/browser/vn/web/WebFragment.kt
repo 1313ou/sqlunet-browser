@@ -61,9 +61,10 @@ class WebFragment : Fragment() {
     private inner class WebDocumentStringLoader(val context: Context, val pointer: Parcelable?, val pos: Char, val type: Int, val data: String?, val sources: Int, val xml: Boolean) : DocumentStringLoader {
         override fun getDoc(): String? {
             try {
-                DataSource(StorageSettings.getDatabasePath(context)).use { dataSource ->
+                DataSource(StorageSettings.getDatabasePath(context)).use {
+
                     // data source
-                    val db = dataSource.connection
+                    val db = it.connection
                     init(db)
 
                     // dom documents

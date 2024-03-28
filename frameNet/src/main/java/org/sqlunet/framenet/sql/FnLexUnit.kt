@@ -52,18 +52,18 @@ class FnLexUnit private constructor(
          */
         @JvmStatic
         fun makeFromId(connection: SQLiteDatabase, luId: Long): FnLexUnit? {
-            FnLexUnitQuery(connection, luId).use { query ->
-                query.execute()
-                if (query.next()) {
+            FnLexUnitQuery(connection, luId).use {
+                it.execute()
+                if (it.next()) {
                     // var luId = query.getLuId()
-                    val lexUnit = query.lexUnit
-                    val pos = query.pos
-                    val definition = query.definition
-                    val dictionary = query.dictionary
-                    val incorporatedFe = query.incorporatedFe
-                    val frameId = query.frameId
-                    val frame = query.frame
-                    val frameDescription = query.frameDescription
+                    val lexUnit = it.lexUnit
+                    val pos = it.pos
+                    val definition = it.definition
+                    val dictionary = it.dictionary
+                    val incorporatedFe = it.incorporatedFe
+                    val frameId = it.frameId
+                    val frame = it.frame
+                    val frameDescription = it.frameDescription
                     return FnLexUnit(luId, lexUnit, pos, definition, dictionary, incorporatedFe, frameId, frame, frameDescription)
                 }
             }
@@ -80,20 +80,20 @@ class FnLexUnit private constructor(
         @JvmStatic
         fun makeFromWord(connection: SQLiteDatabase, word: String): Pair<Long, List<FnLexUnit>?> {
             var result: MutableList<FnLexUnit>? = null
-            FnLexUnitQueryFromWord(connection, false, word).use { query ->
-                query.execute()
+            FnLexUnitQueryFromWord(connection, false, word).use {
+                it.execute()
                 var wordId: Long = 0
-                while (query.next()) {
-                    wordId = query.wordId
-                    val luId = query.luId
-                    val lexUnit = query.lexUnit
-                    val pos = query.pos
-                    val definition = query.lexUnitDefinition
-                    val dictionary = query.lexUnitDictionary
-                    val incorporatedFe = query.incorporatedFe
-                    val frameId = query.frameId
-                    val frame = query.frame
-                    val frameDefinition = query.frameDefinition
+                while (it.next()) {
+                    wordId = it.wordId
+                    val luId = it.luId
+                    val lexUnit = it.lexUnit
+                    val pos = it.pos
+                    val definition = it.lexUnitDefinition
+                    val dictionary = it.lexUnitDictionary
+                    val incorporatedFe = it.incorporatedFe
+                    val frameId = it.frameId
+                    val frame = it.frame
+                    val frameDefinition = it.frameDefinition
                     if (result == null) {
                         result = ArrayList()
                     }
@@ -113,20 +113,20 @@ class FnLexUnit private constructor(
         @JvmStatic
         fun makeFromFnWord(connection: SQLiteDatabase, fnWord: String?): Pair<Long, List<FnLexUnit?>?> {
             var result: MutableList<FnLexUnit?>? = null
-            FnLexUnitQueryFromFnWord(connection, true, fnWord).use { query ->
-                query.execute()
+            FnLexUnitQueryFromFnWord(connection, true, fnWord).use {
+                it.execute()
                 var fnWordId: Long = 0
-                while (query.next()) {
-                    fnWordId = query.fnWordId
-                    val luId = query.luId
-                    val lexUnit = query.lexUnit
-                    val pos = query.pos
-                    val definition = query.lexUnitDefinition
-                    val dictionary = query.lexUnitDictionary
-                    val incorporatedFe = query.incorporatedFe
-                    val frameId = query.frameId
-                    val frame = query.frame
-                    val frameDefinition = query.frameDefinition
+                while (it.next()) {
+                    fnWordId = it.fnWordId
+                    val luId = it.luId
+                    val lexUnit = it.lexUnit
+                    val pos = it.pos
+                    val definition = it.lexUnitDefinition
+                    val dictionary = it.lexUnitDictionary
+                    val incorporatedFe = it.incorporatedFe
+                    val frameId = it.frameId
+                    val frame = it.frame
+                    val frameDefinition = it.frameDefinition
                     if (result == null) {
                         result = ArrayList()
                     }
@@ -147,18 +147,18 @@ class FnLexUnit private constructor(
         @JvmStatic
         fun makeFromWordId(connection: SQLiteDatabase, wordId: Long, pos: Char?): List<FnLexUnit?>? {
             var result: MutableList<FnLexUnit?>? = null
-            FnLexUnitQueryFromWordId(connection, false, wordId, pos).use { query ->
-                query.execute()
-                while (query.next()) {
-                    val luId = query.luId
-                    val lexUnit = query.lexUnit
-                    val luPos = query.pos
-                    val definition = query.definition
-                    val dictionary = query.dictionary
-                    val incorporatedFe = query.incorporatedFe
-                    val frameId = query.frameId
-                    val frame = query.frame
-                    val frameDescription = query.frameDescription
+            FnLexUnitQueryFromWordId(connection, false, wordId, pos).use {
+                it.execute()
+                while (it.next()) {
+                    val luId = it.luId
+                    val lexUnit = it.lexUnit
+                    val luPos = it.pos
+                    val definition = it.definition
+                    val dictionary = it.dictionary
+                    val incorporatedFe = it.incorporatedFe
+                    val frameId = it.frameId
+                    val frame = it.frame
+                    val frameDescription = it.frameDescription
                     if (result == null) {
                         result = ArrayList()
                     }
@@ -179,18 +179,18 @@ class FnLexUnit private constructor(
         @JvmStatic
         fun makeFromFnWordId(connection: SQLiteDatabase, fnWordId: Long, pos: Char?): List<FnLexUnit?>? {
             var result: MutableList<FnLexUnit?>? = null
-            FnLexUnitQueryFromFnWordId(connection, true, fnWordId, pos).use { query ->
-                query.execute()
-                while (query.next()) {
-                    val luId = query.luId
-                    val lexUnit = query.lexUnit
-                    val luPos = query.pos
-                    val definition = query.definition
-                    val dictionary = query.dictionary
-                    val incorporatedFe = query.incorporatedFe
-                    val frameId = query.frameId
-                    val frame = query.frame
-                    val frameDescription = query.frameDescription
+            FnLexUnitQueryFromFnWordId(connection, true, fnWordId, pos).use {
+                it.execute()
+                while (it.next()) {
+                    val luId = it.luId
+                    val lexUnit = it.lexUnit
+                    val luPos = it.pos
+                    val definition = it.definition
+                    val dictionary = it.dictionary
+                    val incorporatedFe = it.incorporatedFe
+                    val frameId = it.frameId
+                    val frame = it.frame
+                    val frameDescription = it.frameDescription
                     if (result == null) {
                         result = ArrayList()
                     }
@@ -210,15 +210,15 @@ class FnLexUnit private constructor(
         @JvmStatic
         fun makeFromFrame(connection: SQLiteDatabase, frameId: Long): List<FnLexUnit?>? {
             var result: MutableList<FnLexUnit?>? = null
-            FnLexUnitQueryFromFrameId(connection, frameId).use { query ->
-                query.execute()
-                while (query.next()) {
-                    val luId = query.luId
-                    val lexUnit = query.lexUnit
-                    val pos = query.pos
-                    val definition = query.definition
-                    val dictionary = query.dictionary
-                    val incorporatedFe = query.incorporatedFe
+            FnLexUnitQueryFromFrameId(connection, frameId).use {
+                it.execute()
+                while (it.next()) {
+                    val luId = it.luId
+                    val lexUnit = it.lexUnit
+                    val pos = it.pos
+                    val definition = it.definition
+                    val dictionary = it.dictionary
+                    val incorporatedFe = it.incorporatedFe
                     if (result == null) {
                         result = ArrayList()
                     }

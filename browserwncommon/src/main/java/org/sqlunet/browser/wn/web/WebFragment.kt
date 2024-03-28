@@ -60,9 +60,10 @@ class WebFragment : Fragment() {
 
         override fun getDoc(): String? {
             try {
-                DataSource(StorageSettings.getDatabasePath(context)).use { dataSource ->
+                DataSource(StorageSettings.getDatabasePath(context)).use {
+
                     // data source
-                    val db = dataSource.connection
+                    val db = it.connection
                     init(db)
 
                     // dom documents

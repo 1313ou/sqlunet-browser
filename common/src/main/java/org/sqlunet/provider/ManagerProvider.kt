@@ -116,14 +116,14 @@ class ManagerProvider : BaseProvider() {
             val projection = arrayOf(TablesAndIndices.TYPE, TablesAndIndices.NAME)
             val selection = TablesAndIndices.TYPE + " = 'table' AND name NOT IN ('sqlite_sequence', 'android_metadata' )"
             val selectionArgs = arrayOf<String>()
-            context.contentResolver.query(uri, projection, selection, selectionArgs, null).use { cursor ->
-                if (cursor != null) {
-                    if (cursor.moveToFirst()) {
-                        val idName = cursor.getColumnIndex(TablesAndIndices.NAME)
+            context.contentResolver.query(uri, projection, selection, selectionArgs, null).use {
+                if (it != null) {
+                    if (it.moveToFirst()) {
+                        val idName = it.getColumnIndex(TablesAndIndices.NAME)
                         do {
-                            val table = cursor.getString(idName)
+                            val table = it.getString(idName)
                             tables.add(table)
-                        } while (cursor.moveToNext())
+                        } while (it.moveToNext())
                     }
                 }
             }

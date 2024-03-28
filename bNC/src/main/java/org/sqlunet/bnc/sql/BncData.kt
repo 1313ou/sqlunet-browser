@@ -58,10 +58,10 @@ data class BncData(
         @JvmStatic
         fun makeData(connection: SQLiteDatabase, targetWord: String): List<BncData?>? {
             var result: MutableList<BncData?>? = null
-            BncQuery(connection, targetWord).use { query ->
-                query.execute()
-                while (query.next()) {
-                    val data = query.data
+            BncQuery(connection, targetWord).use {
+                it.execute()
+                while (it.next()) {
+                    val data = it.data
                     if (result == null) {
                         result = ArrayList()
                     }
@@ -75,10 +75,10 @@ data class BncData(
         fun makeData(connection: SQLiteDatabase, targetWordId: Long, targetPos: Char?): List<BncData?>? {
             var result: MutableList<BncData?>? = null
             val bncQuery = if (targetPos != null) BncQuery(connection, targetWordId, targetPos) else BncQuery(connection, targetWordId)
-            bncQuery.use { query ->
-                query.execute()
-                while (query.next()) {
-                    val data = query.data
+            bncQuery.use {
+                it.execute()
+                while (it.next()) {
+                    val data = it.data
                     if (result == null) {
                         result = ArrayList()
                     }

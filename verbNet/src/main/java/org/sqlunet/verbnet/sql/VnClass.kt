@@ -29,11 +29,11 @@ class VnClass private constructor(
          */
         @JvmStatic
         fun make(connection: SQLiteDatabase, classId: Long): VnClass? {
-            VnClassQuery(connection, classId).use { query ->
-                query.execute()
-                if (query.next()) {
-                    val className = query.className
-                    val groupings = query.groupings
+            VnClassQuery(connection, classId).use { it ->
+                it.execute()
+                if (it.next()) {
+                    val className = it.className
+                    val groupings = it.groupings
                     return VnClass(className, classId, groupings)
                 }
             }

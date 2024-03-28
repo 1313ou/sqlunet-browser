@@ -31,12 +31,12 @@ internal class FnGovernor private constructor(
         @JvmStatic
         fun make(connection: SQLiteDatabase, luId: Long): List<FnGovernor?>? {
             var result: MutableList<FnGovernor?>? = null
-            FnGovernorQueryFromLexUnitId(connection, luId).use { query ->
-                query.execute()
-                while (query.next()) {
-                    val governorId = query.governorId
-                    val wordId = query.wordId
-                    val governor = query.governor
+            FnGovernorQueryFromLexUnitId(connection, luId).use {
+                it.execute()
+                while (it.next()) {
+                    val governorId = it.governorId
+                    val wordId = it.wordId
+                    val governor = it.governor
                     if (result == null) {
                         result = ArrayList()
                     }

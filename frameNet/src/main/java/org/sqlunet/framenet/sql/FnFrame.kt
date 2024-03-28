@@ -33,14 +33,14 @@ class FnFrame  internal constructor(
          */
         @JvmStatic
         fun make(connection: SQLiteDatabase, frameId: Long): FnFrame? {
-            FnFrameQuery(connection, frameId).use { query ->
-                query.execute()
-                if (query.next()) {
-                    val frameName = query.frame
-                    val frameDescription = query.frameDescription
+            FnFrameQuery(connection, frameId).use {
+                it.execute()
+                if (it.next()) {
+                    val frameName = it.frame
+                    val frameDescription = it.frameDescription
                     // val frameId = query.getFrameId()
-                    val semTypes = FnSemType.make(query.semTypes)
-                    val relatedFrames = FnRelatedFrame.make(query.relatedFrames)
+                    val semTypes = FnSemType.make(it.semTypes)
+                    val relatedFrames = FnRelatedFrame.make(it.relatedFrames)
                     return FnFrame(frameId, frameName, frameDescription, semTypes, relatedFrames)
                 }
             }

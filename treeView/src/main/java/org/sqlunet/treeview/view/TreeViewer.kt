@@ -599,13 +599,14 @@ class TreeViewer(
     @SuppressLint("ResourceType")
     fun computeIndent(context: Context, factor: Float): Int {
         if (factor != -1f) {
+            var defaultValue: Int
             @StyleableRes val attrs = intArrayOf(android.R.attr.paddingStart, android.R.attr.paddingLeft)
-            val ta = context.obtainStyledAttributes(containerStyle, attrs)
-            var defaultValue = ta.getDimensionPixelSize(0, 0)
-            if (defaultValue == 0) {
-                defaultValue = ta.getDimensionPixelSize(1, 0)
+            context.obtainStyledAttributes(containerStyle, attrs).use {
+                defaultValue = it.getDimensionPixelSize(0, 0)
+                 if (defaultValue == 0) {
+                    defaultValue = it.getDimensionPixelSize(1, 0)
+                }
             }
-            ta.recycle()
             val value = (defaultValue * factor).toInt()
             Log.d(TAG, "Indent default=$defaultValue new=$value factor=$factor")
             return value

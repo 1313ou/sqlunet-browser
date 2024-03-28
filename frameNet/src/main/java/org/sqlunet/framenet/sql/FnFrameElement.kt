@@ -55,18 +55,18 @@ internal class FnFrameElement private constructor(
         @JvmStatic
         fun make(connection: SQLiteDatabase, frameId: Long): List<FnFrameElement?>? {
             var result: MutableList<FnFrameElement?>? = null
-            FnFrameElementQueryFromFrameId(connection, frameId).use { query ->
-                query.execute()
-                while (query.next()) {
-                    val feTypeId = query.fETypeId
-                    val feType = query.fEType
-                    val feId = query.fEId
-                    val feDefinition = query.fEDefinition
-                    val feAbbrev = query.fEAbbrev
-                    val feCoreType = query.fECoreType
-                    val semTypes = query.semTypes
-                    val isCore = query.isCore
-                    val coreSet = query.coreSet
+            FnFrameElementQueryFromFrameId(connection, frameId).use {
+                it.execute()
+                while (it.next()) {
+                    val feTypeId = it.fETypeId
+                    val feType = it.fEType
+                    val feId = it.fEId
+                    val feDefinition = it.fEDefinition
+                    val feAbbrev = it.fEAbbrev
+                    val feCoreType = it.fECoreType
+                    val semTypes = it.semTypes
+                    val isCore = it.isCore
+                    val coreSet = it.coreSet
                     if (result == null) {
                         result = ArrayList()
                     }

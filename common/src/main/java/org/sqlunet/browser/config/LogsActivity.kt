@@ -61,9 +61,9 @@ class LogsActivity : AppCompatActivity() {
         private fun readFile(file: File): String {
             val sb = StringBuilder()
             try {
-                BufferedReader(FileReader(file)).use { br ->
+                BufferedReader(FileReader(file)).use { reader ->
                     var line: String?
-                    while (br.readLine().also { line = it } != null) {
+                    while (reader.readLine().also { line = it } != null) {
                         sb.append(line)
                         sb.append('\n')
                     }

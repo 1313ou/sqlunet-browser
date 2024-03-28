@@ -34,14 +34,14 @@ internal class PbRoleSet private constructor(
         @JvmStatic
         fun makeFromWord(connection: SQLiteDatabase, word: String?): List<PbRoleSet?>? {
             var result: MutableList<PbRoleSet?>? = null
-            PbRoleSetQueryFromWord(connection, word).use { query ->
-                query.execute()
-                while (query.next()) {
-                    val roleSetName = query.roleSetName
-                    val roleSetHead = query.roleSetHead
-                    val roleSetDescr = query.roleSetDescr
-                    val roleSetId = query.roleSetId
-                    val wordId = query.wordId
+            PbRoleSetQueryFromWord(connection, word).use {
+                it.execute()
+                while (it.next()) {
+                    val roleSetName = it.roleSetName
+                    val roleSetHead = it.roleSetHead
+                    val roleSetDescr = it.roleSetDescr
+                    val roleSetId = it.roleSetId
+                    val wordId = it.wordId
                     if (result == null) {
                         result = ArrayList()
                     }
@@ -61,13 +61,13 @@ internal class PbRoleSet private constructor(
         @JvmStatic
         fun makeFromWordId(connection: SQLiteDatabase, wordId: Long): List<PbRoleSet?>? {
             var result: MutableList<PbRoleSet?>? = null
-            PbRoleSetQueryFromWordId(connection, wordId).use { query ->
-                query.execute()
-                while (query.next()) {
-                    val roleSetName = query.roleSetName
-                    val roleSetHead = query.roleSetHead
-                    val roleSetDescr = query.roleSetDescr
-                    val roleSetId = query.roleSetId
+            PbRoleSetQueryFromWordId(connection, wordId).use {
+                it.execute()
+                while (it.next()) {
+                    val roleSetName = it.roleSetName
+                    val roleSetHead = it.roleSetHead
+                    val roleSetDescr = it.roleSetDescr
+                    val roleSetId = it.roleSetId
                     if (result == null) {
                         result = ArrayList()
                     }
@@ -87,12 +87,12 @@ internal class PbRoleSet private constructor(
         @JvmStatic
         fun make(connection: SQLiteDatabase, roleSetId: Long): List<PbRoleSet?>? {
             var result: MutableList<PbRoleSet?>? = null
-            PbRoleSetQuery(connection, roleSetId).use { query ->
-                query.execute()
-                while (query.next()) {
-                    val roleSetName = query.roleSetName
-                    val roleSetHead = query.roleSetHead
-                    val roleSetDescr = query.roleSetDescr
+            PbRoleSetQuery(connection, roleSetId).use {
+                it.execute()
+                while (it.next()) {
+                    val roleSetName = it.roleSetName
+                    val roleSetHead = it.roleSetHead
+                    val roleSetDescr = it.roleSetDescr
                     if (result == null) {
                         result = ArrayList()
                     }

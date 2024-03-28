@@ -28,11 +28,11 @@ class FnSentence internal constructor(
          */
         @JvmStatic
         fun make(connection: SQLiteDatabase, sentenceId: Long): FnSentence? {
-            FnSentenceQuery(connection, sentenceId).use { query ->
-                query.execute()
-                if (query.next()) {
+            FnSentenceQuery(connection, sentenceId).use {
+                it.execute()
+                if (it.next()) {
                     // var sentenceId = query.sentenceId
-                    val text = query.text
+                    val text = it.text
                     return FnSentence(sentenceId, text)
                 }
             }
@@ -49,11 +49,11 @@ class FnSentence internal constructor(
         @JvmStatic
         fun makeFromLexicalUnit(connection: SQLiteDatabase, luId: Long): List<FnSentence?>? {
             var result: MutableList<FnSentence?>? = null
-            FnSentenceQueryFromLexUnitId(connection, luId).use { query ->
-                query.execute()
-                while (query.next()) {
-                    val sentenceId = query.sentenceId
-                    val text = query.text
+            FnSentenceQueryFromLexUnitId(connection, luId).use {
+                it.execute()
+                while (it.next()) {
+                    val sentenceId = it.sentenceId
+                    val text = it.text
                     if (result == null) {
                         result = ArrayList()
                     }

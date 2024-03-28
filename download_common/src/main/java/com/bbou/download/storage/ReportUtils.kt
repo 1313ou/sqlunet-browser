@@ -249,5 +249,6 @@ object ReportUtils {
         dirOkForeColor = palette[i++]
         dirFailBackColor = palette[i++]
         dirFailForeColor = palette[i]
+        // increment i if colors added
     }
 }

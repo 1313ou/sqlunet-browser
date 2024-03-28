@@ -171,8 +171,8 @@ object Deploy {
             val is1 = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) Files.newInputStream(Paths.get(fromPath)) else FileInputStream(fromPath)
             val is2 = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) Files.newOutputStream(Paths.get(toPath)) else FileOutputStream(toPath)
             is1.use { `is` ->
-                is2.use { os ->
-                    copyStreams(`is`, os)
+                is2.use {
+                    copyStreams(`is`, it)
                     return true
                 }
             }
@@ -241,8 +241,8 @@ object Deploy {
         val length = sourceFile.length()
         try {
             FileInputStream(fromPath).use { `is` ->
-                FileOutputStream(toPath).use { os ->
-                    copyStreams(`is`, os, length, task, publisher, publishRate)
+                FileOutputStream(toPath).use {
+                    copyStreams(`is`, it, length, task, publisher, publishRate)
                     return true
                 }
             }
@@ -320,8 +320,8 @@ object Deploy {
         val toDir = File(toPath)
         toDir.mkdirs()
         try {
-            getter.getInputStream(fromPath).use { `is` ->
-                expandZipStream(`is`, null, toDir, flatten)
+            getter.getInputStream(fromPath).use {
+                expandZipStream(it, null, toDir, flatten)
                 return true
             }
         } catch (ignored: Exception) {

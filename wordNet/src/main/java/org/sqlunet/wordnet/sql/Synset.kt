@@ -73,12 +73,12 @@ open class Synset : BasicSynset {
      */
     fun getSynsetWords(connection: SQLiteDatabase): List<Word>? {
         try {
-            SynsetWordsQuery(connection, synsetId).use { query ->
-                query.execute()
+            SynsetWordsQuery(connection, synsetId).use {
+                it.execute()
                 val words: MutableList<Word> = ArrayList()
-                while (query.next()) {
-                    val word = query.word
-                    val id = query.id
+                while (it.next()) {
+                    val word = it.word
+                    val id = it.id
                     words.add(Word(word, id))
                 }
                 return words
@@ -124,13 +124,13 @@ open class Synset : BasicSynset {
      */
     open fun getRelateds(connection: SQLiteDatabase, wordId: Long): List<Related>? {
         try {
-            RelatedsQueryFromSynsetId(connection).use { query ->
-                query.fromSynset = synsetId
-                query.fromWord = wordId
-                query.execute()
+            RelatedsQueryFromSynsetId(connection).use {
+                it.fromSynset = synsetId
+                it.fromWord = wordId
+                it.execute()
                 val relateds: MutableList<Related> = ArrayList()
-                while (query.next()) {
-                    val related = Related(query)
+                while (it.next()) {
+                    val related = Related(it)
                     relateds.add(related)
                 }
                 return relateds
@@ -151,14 +151,14 @@ open class Synset : BasicSynset {
      */
     fun getTypedRelateds(connection: SQLiteDatabase, wordId: Long, relationId: Int): List<Related>? {
         try {
-            RelatedsQueryFromSynsetIdAndRelationId(connection).use { query ->
-                query.fromSynset = synsetId
-                query.fromWord = wordId
-                query.fromRelationId = relationId
-                query.execute()
+            RelatedsQueryFromSynsetIdAndRelationId(connection).use {
+                it.fromSynset = synsetId
+                it.fromWord = wordId
+                it.fromRelationId = relationId
+                it.execute()
                 val relateds: MutableList<Related> = ArrayList()
-                while (query.next()) {
-                    val related = Related(query)
+                while (it.next()) {
+                    val related = Related(it)
                     relateds.add(related)
                 }
                 return relateds

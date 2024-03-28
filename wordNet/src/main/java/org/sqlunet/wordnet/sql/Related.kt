@@ -91,14 +91,14 @@ class Related : Synset {
      */
     override fun getRelateds(connection: SQLiteDatabase, wordId: Long): List<Related>? {
         try {
-            RelatedsQueryFromSynsetIdAndRelationId(connection).use { query ->
-                query.fromSynset = synsetId
-                query.fromWord = wordId
-                query.fromRelationId = relationId
-                query.execute()
+            RelatedsQueryFromSynsetIdAndRelationId(connection).use {
+                it.fromSynset = synsetId
+                it.fromWord = wordId
+                it.fromRelationId = relationId
+                it.execute()
                 val relateds: MutableList<Related> = ArrayList()
-                while (query.next()) {
-                    val related = Related(query)
+                while (it.next()) {
+                    val related = Related(it)
                     relateds.add(related)
                 }
                 return relateds

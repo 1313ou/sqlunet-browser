@@ -306,13 +306,14 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
             // adapter values and icons
             val modeLabels = resources.getTextArray(spinnerLabels)
-            val array = resources.obtainTypedArray(spinnerIcons)
-            val n = array.length()
-            val modeIcons = IntArray(n)
-            for (i in 0 until n) {
-                modeIcons[i] = array.getResourceId(i, -1)
+            val modeIcons: IntArray
+            resources.obtainTypedArray(spinnerIcons).use {
+                val n = it.length()
+                modeIcons = IntArray(n)
+                for (i in 0 until n) {
+                    modeIcons[i] = it.getResourceId(i, -1)
+                }
             }
-            array.recycle()
 
             // adapter
             val adapter = object : ArrayAdapter<CharSequence?>(context, R.layout.spinner_item_actionbar, android.R.id.text1, modeLabels) {

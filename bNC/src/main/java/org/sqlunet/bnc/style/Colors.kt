@@ -22,6 +22,7 @@ object Colors {
         val palette = context.resources.getIntArray(R.array.palette_bnc)
         var i = 0
         bncHeaderBackColor = palette[i++]
-        bncHeaderForeColor = palette[i++]
+        bncHeaderForeColor = palette[i]
+        // increment i if colors added
     }
 }

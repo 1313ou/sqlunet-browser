@@ -44,11 +44,11 @@ class Word : BasicWord {
      */
     fun getSynsets(connection: SQLiteDatabase): List<Synset>? {
         try {
-            SynsetsQueryFromWordId(connection, id).use { query ->
-                query.execute()
+            SynsetsQueryFromWordId(connection, id).use {
+                it.execute()
                 val synsets: MutableList<Synset> = ArrayList()
-                while (query.next()) {
-                    val synset = Synset(query)
+                while (it.next()) {
+                    val synset = Synset(it)
                     synsets.add(synset)
                 }
                 return synsets
@@ -69,17 +69,17 @@ class Word : BasicWord {
      */
     fun getTypedSynsets(connection: SQLiteDatabase, targetType: Int, domainBased: Boolean): List<Synset>? {
         try {
-            SynsetsQueryFromWordIdAndCondition(connection, domainBased).use { query ->
-                query.setWordId(id)
+            SynsetsQueryFromWordIdAndCondition(connection, domainBased).use {
+                it.setWordId(id)
                 if (domainBased) {
-                    query.setDomainType(targetType)
+                    it.setDomainType(targetType)
                 } else {
-                    query.setPosType(targetType)
+                    it.setPosType(targetType)
                 }
-                query.execute()
+                it.execute()
                 val synsets: MutableList<Synset> = ArrayList()
-                while (query.next()) {
-                    val synset = Synset(query)
+                while (it.next()) {
+                    val synset = Synset(it)
                     synsets.add(synset)
                 }
                 return synsets
@@ -103,10 +103,10 @@ class Word : BasicWord {
         @JvmStatic
         fun make(connection: SQLiteDatabase, str: String): Word? {
             try {
-                WordQueryFromWord(connection, str).use { query ->
-                    query.execute()
-                    return if (query.next()) {
-                        Word(query)
+                WordQueryFromWord(connection, str).use {
+                    it.execute()
+                    return if (it.next()) {
+                        Word(it)
                     } else null
                 }
             } catch (e: SQLException) {
@@ -125,10 +125,10 @@ class Word : BasicWord {
         @JvmStatic
         fun make(connection: SQLiteDatabase, wordId: Long): Word? {
             try {
-                WordQuery(connection, wordId).use { query ->
-                    query.execute()
-                    return if (query.next()) {
-                        Word(query)
+                WordQuery(connection, wordId).use {
+                    it.execute()
+                    return if (it.next()) {
+                        Word(it)
                     } else null
                 }
             } catch (e: SQLException) {

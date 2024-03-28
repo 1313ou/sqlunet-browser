@@ -30,5 +30,6 @@ object Colors {
         membersForeColor = palette[i++]
         wordBackColor = palette[i++]
         wordForeColor = palette[i]
+        // increment i if colors added
     }
 }

@@ -35,6 +35,7 @@ object Colors {
         groupBackColor = palette[i++]
         groupForeColor = palette[i++]
         roleAliasBackColor = palette[i++]
-        roleAliasForeColor = palette[i++]
+        roleAliasForeColor = palette[i]
+        // increment i if colors added
     }
 }

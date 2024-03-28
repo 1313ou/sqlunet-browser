@@ -90,12 +90,12 @@ internal object Mapping {
     fun initDomains(connection: SQLiteDatabase) {
         // domain
         try {
-            DomainsQuery(connection).use { query ->
-                query.execute()
-                while (query.next()) {
-                    val id = query.id
-                    val pos = query.pos
-                    val name = query.posDomainName.replace(' ', '.')
+            DomainsQuery(connection).use {
+                it.execute()
+                while (it.next()) {
+                    val id = it.id
+                    val pos = it.pos
+                    val name = it.posDomainName.replace(' ', '.')
                     val domain = Domain(id, pos, name)
                     domains.add(domain)
                     domainsByName[name] = domain
@@ -116,12 +116,12 @@ internal object Mapping {
     @SuppressLint("DefaultLocale")
     fun initRelations(connection: SQLiteDatabase) {
         try {
-            RelationsQuery(connection).use { query ->
-                query.execute()
-                while (query.next()) {
-                    val id = query.id
-                    val name = query.name.replace(' ', '_').lowercase()
-                    val recurses = query.recurse
+            RelationsQuery(connection).use {
+                it.execute()
+                while (it.next()) {
+                    val id = it.id
+                    val name = it.name.replace(' ', '_').lowercase()
+                    val recurses = it.recurse
                     val relation = Relation(id, name, recurses)
                     relationsById.put(id, relation)
                     relationsByName[name] = relation

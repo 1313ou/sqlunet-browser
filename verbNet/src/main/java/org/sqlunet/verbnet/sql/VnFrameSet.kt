@@ -27,19 +27,19 @@ class VnFrameSet private constructor(
          */
         @JvmStatic
         fun make(connection: SQLiteDatabase, classId: Long, wordId: Long, synsetId: Long?): VnFrameSet? {
-            VnFrameQueryFromClassIdAndSense(connection, classId, wordId, synsetId).use { query ->
-                query.execute()
+            VnFrameQueryFromClassIdAndSense(connection, classId, wordId, synsetId).use {
+                it.execute()
                 var frameSet: VnFrameSet? = null
-                while (query.next()) {
+                while (it.next()) {
                     // data from result set
                     // var frameId = query.getFrameId()
-                    val number = query.number
-                    val xTag = query.xTag
-                    val description1 = query.description1
-                    val description2 = query.description2
-                    val syntax = query.syntax
-                    val semantics = query.semantics
-                    val concatExamples = query.example
+                    val number = it.number
+                    val xTag = it.xTag
+                    val description1 = it.description1
+                    val description2 = it.description2
+                    val syntax = it.syntax
+                    val semantics = it.semantics
+                    val concatExamples = it.example
                     val examples = concatExamples.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
                     // var quality = query.quality
                     // var synsetSpecific = query.synsetSpecific
@@ -68,19 +68,19 @@ class VnFrameSet private constructor(
          */
         @JvmStatic
         fun make(connection: SQLiteDatabase, classId: Long): VnFrameSet? {
-            VnFrameQueryFromClassId(connection, classId).use { query ->
-                query.execute()
+            VnFrameQueryFromClassId(connection, classId).use {
+                it.execute()
                 var frameSet: VnFrameSet? = null
-                while (query.next()) {
+                while (it.next()) {
                     // data from result set
                     // var frameId = query.frameId
-                    val number = query.number
-                    val xTag = query.xTag
-                    val description1 = query.description1
-                    val description2 = query.description2
-                    val syntax = query.syntax
-                    val semantics = query.semantics
-                    val exampleConcat = query.examples
+                    val number = it.number
+                    val xTag = it.xTag
+                    val description1 = it.description1
+                    val description2 = it.description2
+                    val syntax = it.syntax
+                    val semantics = it.semantics
+                    val exampleConcat = it.examples
                     val examples = exampleConcat.split("\\|".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
                     // frame
                     val frame = VnFrame(number, xTag, description1, description2, syntax, semantics, *examples)
