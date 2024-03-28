@@ -10,14 +10,13 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import org.sqlunet.bnc.browser.BNCFragment
 import org.sqlunet.browser.BaseBrowse2Fragment
-import org.sqlunet.browser.wn.WnSettings
 import org.sqlunet.browser.wn.lib.R
 import org.sqlunet.browser.wn.web.WebFragment
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.settings.Settings
 import org.sqlunet.speak.Pronunciation.Companion.pronunciations
-import org.sqlunet.speak.SpeakSettings
 import org.sqlunet.speak.SpeakButton.appendClickableImage
+import org.sqlunet.speak.SpeakSettings
 import org.sqlunet.speak.TTS.Companion.pronounce
 import org.sqlunet.style.Factories
 import org.sqlunet.style.Spanner.Companion.append

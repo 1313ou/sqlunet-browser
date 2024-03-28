@@ -23,7 +23,6 @@ import com.bbou.download.preference.Settings
 import com.bbou.download.preference.Settings.Mode
 import org.sqlunet.assetpack.AssetPackLoader
 import org.sqlunet.browser.common.R
-import org.sqlunet.browser.config.Status
 import org.sqlunet.provider.XNetContract
 import org.sqlunet.provider.XSqlUNetProvider.Companion.makeUri
 import org.sqlunet.settings.StorageSettings
