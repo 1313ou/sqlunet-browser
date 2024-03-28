@@ -9,7 +9,6 @@ import androidx.fragment.app.FragmentActivity
 import com.bbou.deploy.workers.FileTasks.Companion.launchCopy
 import com.bbou.deploy.workers.FileTasks.Companion.launchMd5
 import com.bbou.deploy.workers.FileTasks.Companion.launchUnzip
-import com.bbou.download.preference.Settings.unrecordDatapack
 import com.bbou.download.workers.choose.FileTaskChooser.copyFromFile
 import com.bbou.download.workers.choose.FileTaskChooser.unzipEntryFromArchive
 import com.bbou.download.workers.choose.MD5Chooser.md5
@@ -17,13 +16,12 @@ import org.sqlunet.browser.common.R
 import org.sqlunet.settings.StorageReports.getStyledCachesNamesValues
 import org.sqlunet.settings.StorageReports.getStyledDownloadNamesValues
 import org.sqlunet.settings.StorageReports.getStyledStorageDirectoriesNamesValues
-import org.sqlunet.settings.StorageSettings.getDataDir
-import org.sqlunet.settings.StorageSettings.getDatabasePath
+import org.sqlunet.settings.StorageSettings
 
 object Operations {
 
     fun copy(uri: Uri, activity: FragmentActivity) {
-        launchCopy(activity, uri, getDatabasePath(activity)) { result: Boolean ->
+        launchCopy(activity, uri, StorageSettings.getDatabasePath(activity)) { result: Boolean ->
             if (result) {
                 activity.finish()
             } else {
@@ -34,7 +32,7 @@ object Operations {
     }
 
     fun unzip(uri: Uri, activity: FragmentActivity) {
-        launchUnzip(activity, uri, getDataDir(activity)) { result: Boolean ->
+        launchUnzip(activity, uri, StorageSettings.getDataDir(activity)) { result: Boolean ->
             if (result) {
                 activity.finish()
             } else {
@@ -45,7 +43,7 @@ object Operations {
     }
 
     fun unzipEntry(uri: Uri, entry: String, activity: FragmentActivity) {
-        launchUnzip(activity, uri, entry, getDataDir(activity)) { result: Boolean ->
+        launchUnzip(activity, uri, entry, StorageSettings.getDataDir(activity)) { result: Boolean ->
             if (result) {
                 activity.finish()
             } else {
@@ -65,16 +63,16 @@ object Operations {
     fun copy(activity: FragmentActivity) {
         val downloadDirs = getStyledDownloadNamesValues(activity)
         val cachedDirs = getStyledCachesNamesValues(activity)
-        copyFromFile(activity, getDatabasePath(activity), mergeNamesValues(downloadDirs, cachedDirs))
-        unrecordDatapack(activity)
+        copyFromFile(activity, StorageSettings.getDatabasePath(activity), mergeNamesValues(downloadDirs, cachedDirs))
+        com.bbou.download.preference.Settings.unrecordDatapack(activity)
     }
 
     @JvmStatic
     fun unzip(activity: FragmentActivity) {
         val downloadDirs = getStyledDownloadNamesValues(activity)
         val cachedDirs = getStyledCachesNamesValues(activity)
-        unzipEntryFromArchive(activity, getDatabasePath(activity), mergeNamesValues(downloadDirs, cachedDirs))
-        unrecordDatapack(activity)
+        unzipEntryFromArchive(activity, StorageSettings.getDatabasePath(activity), mergeNamesValues(downloadDirs, cachedDirs))
+        com.bbou.download.preference.Settings.unrecordDatapack(activity)
     }
 
     @JvmStatic
@@ -101,7 +99,7 @@ object Operations {
     // exec
 
     fun execSql(uri: Uri, activity: FragmentActivity) {
-        ExecAsyncTask.launchExecUri(activity, uri, getDatabasePath(activity)) { result: Boolean ->
+        ExecAsyncTask.launchExecUri(activity, uri, StorageSettings.getDatabasePath(activity)) { result: Boolean ->
             if (result) {
                 activity.finish()
             } else {
@@ -112,7 +110,7 @@ object Operations {
     }
 
     fun execZippedSql(uri: Uri, entry: String, activity: FragmentActivity) {
-        ExecAsyncTask.launchExecZippedUri(activity, uri, entry, getDatabasePath(activity)) { result: Boolean ->
+        ExecAsyncTask.launchExecZippedUri(activity, uri, entry, StorageSettings.getDatabasePath(activity)) { result: Boolean ->
             if (result) {
                 activity.finish()
             } else {

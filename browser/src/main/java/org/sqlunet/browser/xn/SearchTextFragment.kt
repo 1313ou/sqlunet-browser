@@ -64,6 +64,8 @@ class SearchTextFragment : BaseSearchFragment() {
     override fun acquireSpinner(spinner: Spinner) {
         // to set position
         super.acquireSpinner(spinner)
+
+        // visible
         spinner.visibility = View.VISIBLE
 
         // apply spinner adapter

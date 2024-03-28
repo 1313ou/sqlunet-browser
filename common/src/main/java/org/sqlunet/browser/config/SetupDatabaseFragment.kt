@@ -12,8 +12,8 @@ import android.widget.SpinnerAdapter
 import com.bbou.concurrency.observe.TaskObserver
 import com.bbou.concurrency.observe.TaskToastObserver
 import org.sqlunet.browser.common.R
-import org.sqlunet.settings.Settings.Companion.getZipEntry
-import org.sqlunet.settings.StorageSettings.getDatabasePath
+import org.sqlunet.settings.Settings
+import org.sqlunet.settings.StorageSettings
 
 /**
  * Manage database fragment
@@ -47,7 +47,7 @@ class SetupDatabaseFragment : BaseTaskFragment() {
 
             // database path
             val activity: Activity = requireActivity()
-            val databasePath = getDatabasePath(activity.baseContext)
+            val databasePath = StorageSettings.getDatabasePath(activity.baseContext)
 
             // sqls
             val sqls = activity.resources.getTextArray(R.array.sql_statements_values)
@@ -62,7 +62,7 @@ class SetupDatabaseFragment : BaseTaskFragment() {
             } else if ("EXEC_ZIPPED_URI" == sql.toString()) {
                 val intent2 = Intent(activity, OperationActivity::class.java)
                 intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_EXEC_ZIPPED_SQL)
-                intent2.putExtra(OperationActivity.ARG_ZIP_ENTRY, getZipEntry(requireContext(), "sql"))
+                intent2.putExtra(OperationActivity.ARG_ZIP_ENTRY, Settings.getZipEntry(requireContext(), "sql"))
                 intent2.putExtra(OperationActivity.ARG_TYPES, arrayOf("application/zip"))
                 activity.startActivity(intent2)
             } else {

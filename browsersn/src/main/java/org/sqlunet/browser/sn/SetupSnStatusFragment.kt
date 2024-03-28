@@ -13,15 +13,14 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.core.widget.ImageViewCompat
 import com.bbou.download.preference.Settings
-import com.bbou.download.preference.Settings.Mode.Companion.getModePref
+import com.bbou.download.preference.Settings.Mode
 import org.sqlunet.browser.ColorUtils.getDrawable
 import org.sqlunet.browser.Info.info
 import org.sqlunet.browser.config.SetupDatabaseActivity
 import org.sqlunet.browser.config.SetupDatabaseFragment
 import org.sqlunet.browser.config.SetupStatusFragment
 import org.sqlunet.browser.config.Utils.hrSize
-import org.sqlunet.settings.StorageSettings.getDatabasePath
-import org.sqlunet.settings.StorageSettings.getDbDownloadSourcePath
+import org.sqlunet.settings.StorageSettings
 import org.sqlunet.settings.StorageUtils.countToStorageString
 import org.sqlunet.settings.StorageUtils.getFree
 import java.io.File
@@ -58,11 +57,11 @@ class SetupSnStatusFragment : SetupStatusFragment() {
         }
         infoDatabaseButton!!.setOnClickListener {
             val activity: Activity = requireActivity()
-            val database = getDatabasePath(activity)
+            val database = StorageSettings.getDatabasePath(activity)
             val free = getFree(activity, database)
-            val mode = getModePref(activity)
-            val source = getDbDownloadSourcePath(activity, mode == Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Settings.Mode.DOWNLOAD_ZIP)
-            val status = org.sqlunet.browser.config.Status.status(activity)
+            val mode = Mode.getModePref(activity)
+            val source = StorageSettings.getDbDownloadSourcePath(activity, mode == Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Settings.Mode.DOWNLOAD_ZIP)
+            val status = SnStatus.status(activity)
             val existsDb = status and org.sqlunet.browser.config.Status.EXISTS != 0
             val existsTables = status and org.sqlunet.browser.config.Status.EXISTS_TABLES != 0
             if (existsDb) {
@@ -103,12 +102,12 @@ class SetupSnStatusFragment : SetupStatusFragment() {
         super.update()
         val context = context
         if (context != null) {
-            val status = Status.status(context)
+            val status = SnStatus.status(context)
             Log.d(TAG, "Status: $status")
             val existsDb = status and org.sqlunet.browser.config.Status.EXISTS != 0
             val existsTables = status and org.sqlunet.browser.config.Status.EXISTS_TABLES != 0
             if (existsDb && existsTables) {
-                val existsTsWn = status and Status.EXISTS_TS_WN != 0
+                val existsTsWn = status and SnStatus.EXISTS_TS_WN != 0
 
                 // images
                 val okDrawable = getDrawable(context, R.drawable.ic_ok)

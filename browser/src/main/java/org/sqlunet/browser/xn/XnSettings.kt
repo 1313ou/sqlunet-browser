@@ -13,7 +13,7 @@ import org.sqlunet.settings.Settings
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-object Settings : Settings() {
+object XnSettings : Settings() {
 
     // preferences
     private const val PREF_ENABLE_WORDNET = "pref_enable_wordnet"

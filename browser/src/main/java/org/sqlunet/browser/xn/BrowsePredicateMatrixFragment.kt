@@ -18,7 +18,6 @@ import org.sqlunet.browser.SplashFragment
 import org.sqlunet.predicatematrix.PmRolePointer
 import org.sqlunet.predicatematrix.browser.PredicateMatrixFragment
 import org.sqlunet.predicatematrix.settings.Settings.PMMode
-import org.sqlunet.predicatematrix.settings.Settings.PMMode.Companion.getPref
 import org.sqlunet.provider.ProviderArgs
 
 /**
@@ -94,13 +93,16 @@ class BrowsePredicateMatrixFragment : BaseSearchFragment() {
     override fun acquireSpinner(spinner: Spinner) {
         // to set position
         super.acquireSpinner(spinner)
+
+        // visible
         spinner.visibility = View.VISIBLE
 
         // apply spinner adapter
         spinner.setAdapter(spinnerAdapter)
 
         // saved mode
-        val mode = getPref(requireContext())
+        val mode = PMMode.getPref(requireContext())
+
         // no listener yet
         spinner.onItemSelectedListener = null
         spinner.setSelection(mode.ordinal)

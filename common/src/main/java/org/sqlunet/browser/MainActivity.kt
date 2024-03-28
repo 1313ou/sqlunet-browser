@@ -25,30 +25,26 @@ import com.bbou.rate.AppRate.Companion.invoke
 import com.google.android.material.navigation.NavigationView
 import org.sqlunet.browser.common.R
 import org.sqlunet.nightmode.NightMode.createOverrideConfigurationForDayNight
-import org.sqlunet.settings.StorageSettings.getDatabasePath
+import org.sqlunet.settings.StorageSettings
 
 /**
  * Main activity
  */
 open class MainActivity : AppCompatActivity() {
+
     private var appBarConfiguration: AppBarConfiguration? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         // rate
         invoke(this)
-
         // info
-        Log.d(TAG, "Database:" + getDatabasePath(baseContext))
-
+        Log.d(TAG, "Database:" + StorageSettings.getDatabasePath(baseContext))
         // content
         setContentView(R.layout.activity_main)
-
         // toolbar
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
-
         // navigation top destinations
         val array = getResources().obtainTypedArray(R.array.drawer_top_dest)
         val len = array.length()
@@ -57,7 +53,6 @@ open class MainActivity : AppCompatActivity() {
             topDests[i] = array.getResourceId(i, 0)
         }
         array.recycle()
-
         // navigation
         val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
         val navView = findViewById<NavigationView>(R.id.nav_view)
@@ -70,7 +65,6 @@ open class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-
         // check hook
         EntryActivity.branchOffToLoadIfCantRun(this)
     }
@@ -87,9 +81,7 @@ open class MainActivity : AppCompatActivity() {
         val overrideConfig = createOverrideConfigurationForDayNight(this, mode)
         application.onConfigurationChanged(overrideConfig)
     }
-
     // S E A R C H
-
     /**
      * Handle intent dispatched by search view (either onCreate or onNewIntent if activity is single top)
      *
@@ -107,13 +99,11 @@ open class MainActivity : AppCompatActivity() {
             val action = intent.action
             val isActionView = Intent.ACTION_VIEW == action
             if (isActionView || Intent.ACTION_SEARCH == action) {
-
                 // search query submit (SEARCH) or suggestion selection (when a suggested item is selected) (VIEW)
                 val query = intent.getStringExtra(SearchManager.QUERY)!!
                 if (isActionView) {
                     fragment.clearQuery()
                 }
-
                 // search query submit or suggestion selection (when a suggested item is selected)
                 Log.d(TAG, "Search intent having query '$query'")
                 fragment.search(query)
@@ -140,6 +130,7 @@ open class MainActivity : AppCompatActivity() {
     }
 
     companion object {
+
         private const val TAG = "MainA"
     }
 }

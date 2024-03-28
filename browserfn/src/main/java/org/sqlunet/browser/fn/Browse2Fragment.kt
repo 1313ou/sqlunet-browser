@@ -45,7 +45,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
                 val transaction = manager.beginTransaction().setReorderingAllowed(true)
 
                 // framenet
-                val enable = org.sqlunet.browser.fn.Settings.getFrameNetPref(context)
+                val enable = org.sqlunet.browser.fn.FnSettings.getFrameNetPref(context)
                 if (enable) {
                     // var labelView = findViewById(R.id.label_framenet)
                     // labelView.setVisibility(View.VISIBLE)

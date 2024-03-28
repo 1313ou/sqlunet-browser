@@ -8,7 +8,7 @@ import android.os.Build
 import android.util.Log
 import org.sqlunet.browser.common.R
 import org.sqlunet.browser.config.DownloadIntentFactory.makeIntent
-import org.sqlunet.settings.StorageSettings.getDatabasePath
+import org.sqlunet.settings.StorageSettings
 
 /**
  * Manage database tasks
@@ -73,7 +73,7 @@ object SetupDatabaseTasks {
      */
     @JvmStatic
     fun update(context: Context) {
-        val success = deleteDatabase(context, getDatabasePath(context))
+        val success = deleteDatabase(context, StorageSettings.getDatabasePath(context))
         if (success) {
             val intent = makeIntent(context)
             context.startActivity(intent)

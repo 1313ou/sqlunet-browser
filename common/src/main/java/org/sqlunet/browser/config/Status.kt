@@ -11,7 +11,7 @@ import android.util.Log
 import org.sqlunet.browser.common.R
 import org.sqlunet.provider.ManagerContract.TablesAndIndices
 import org.sqlunet.provider.ManagerProvider
-import org.sqlunet.settings.StorageSettings.getDatabasePath
+import org.sqlunet.settings.StorageSettings
 import java.io.File
 
 /**
@@ -23,7 +23,7 @@ abstract class Status {
     companion object {
         private const val TAG = "Status"
 
-        // _status flags
+        // status flags
         const val EXISTS = 0x1
         const val EXISTS_TABLES = 0x2
         const val EXISTS_INDEXES = 0x10
@@ -79,7 +79,7 @@ abstract class Status {
          */
         @JvmStatic
         protected fun existsDatabase(context: Context): Boolean {
-            val databasePath = getDatabasePath(context)
+            val databasePath = StorageSettings.getDatabasePath(context)
             val db = File(databasePath)
             return db.exists() && db.isFile() && db.canWrite()
         }

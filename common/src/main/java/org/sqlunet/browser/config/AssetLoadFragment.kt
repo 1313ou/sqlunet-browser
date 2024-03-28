@@ -19,9 +19,7 @@ import com.bbou.download.storage.FormatUtils.formatAsInformationString
 import org.sqlunet.browser.EntryActivity.Companion.rerun
 import org.sqlunet.browser.common.R
 import org.sqlunet.browser.config.SetupAsset.deliverAsset
-import org.sqlunet.settings.Settings.Companion.getAssetPack
-import org.sqlunet.settings.Settings.Companion.getAssetPackDir
-import org.sqlunet.settings.Settings.Companion.getAssetPackZip
+import org.sqlunet.settings.Settings
 
 /**
  * About fragment
@@ -59,9 +57,9 @@ class AssetLoadFragment : Fragment(), TaskObserver<Pair<Number, Number>>
 
         // load assets
         val context = requireContext()
-        val asset = getAssetPack(context)
-        val assetDir = getAssetPackDir(context)
-        val assetZip = getAssetPackZip(context)
+        val asset = Settings.getAssetPack(context)
+        val assetDir = Settings.getAssetPackDir(context)
+        val assetZip = Settings.getAssetPackZip(context)
         val assetZipEntry = context.getString(R.string.asset_zip_entry)
         val whenComplete = Runnable {
 

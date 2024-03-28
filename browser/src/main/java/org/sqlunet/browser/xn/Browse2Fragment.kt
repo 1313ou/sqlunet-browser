@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import org.sqlunet.bnc.browser.BNCFragment
 import org.sqlunet.browser.BaseBrowse2Fragment
 import org.sqlunet.browser.R
-import org.sqlunet.browser.xn.Settings.getAllPref
 import org.sqlunet.browser.xn.web.WebFragment
 import org.sqlunet.browser.xn.xselector.XSelectorPointer
 import org.sqlunet.browser.xn.xselector.XSelectorsFragment
@@ -22,9 +21,8 @@ import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.settings.Settings
 import org.sqlunet.settings.Settings.DetailViewMode
 import org.sqlunet.speak.Pronunciation.Companion.pronunciations
-import org.sqlunet.speak.Settings.findCountry
-import org.sqlunet.speak.Settings.findVoiceFor
 import org.sqlunet.speak.SpeakButton.appendClickableImage
+import org.sqlunet.speak.SpeakSettings
 import org.sqlunet.speak.TTS.Companion.pronounce
 import org.sqlunet.style.Factories
 import org.sqlunet.style.Spanner.Companion.append
@@ -69,17 +67,17 @@ class Browse2Fragment : BaseBrowse2Fragment() {
         val mode: DetailViewMode = Settings.getDetailViewModePref(context)
         when (mode) {
             DetailViewMode.VIEW -> {
-                var enable = getAllPref(context)
+                var enable = XnSettings.getAllPref(context)
                 if (pointer is XSelectorPointer) {
                     // sections to disable
                     var mask = 0
                     val xpointer = pointer as XSelectorPointer?
                     val group = xpointer!!.xGroup
                     when (group) {
-                        XSelectorsFragment.GROUPID_WORDNET -> mask = org.sqlunet.browser.xn.Settings.ENABLE_VERBNET or org.sqlunet.browser.xn.Settings.ENABLE_PROPBANK or org.sqlunet.browser.xn.Settings.ENABLE_FRAMENET
-                        XSelectorsFragment.GROUPID_VERBNET -> mask = org.sqlunet.browser.xn.Settings.ENABLE_PROPBANK or org.sqlunet.browser.xn.Settings.ENABLE_FRAMENET
-                        XSelectorsFragment.GROUPID_PROPBANK -> mask = org.sqlunet.browser.xn.Settings.ENABLE_VERBNET or org.sqlunet.browser.xn.Settings.ENABLE_FRAMENET
-                        XSelectorsFragment.GROUPID_FRAMENET -> mask = org.sqlunet.browser.xn.Settings.ENABLE_VERBNET or org.sqlunet.browser.xn.Settings.ENABLE_PROPBANK
+                        XSelectorsFragment.GROUPID_WORDNET -> mask = org.sqlunet.browser.xn.XnSettings.ENABLE_VERBNET or org.sqlunet.browser.xn.XnSettings.ENABLE_PROPBANK or org.sqlunet.browser.xn.XnSettings.ENABLE_FRAMENET
+                        XSelectorsFragment.GROUPID_VERBNET -> mask = org.sqlunet.browser.xn.XnSettings.ENABLE_PROPBANK or org.sqlunet.browser.xn.XnSettings.ENABLE_FRAMENET
+                        XSelectorsFragment.GROUPID_PROPBANK -> mask = org.sqlunet.browser.xn.XnSettings.ENABLE_VERBNET or org.sqlunet.browser.xn.XnSettings.ENABLE_FRAMENET
+                        XSelectorsFragment.GROUPID_FRAMENET -> mask = org.sqlunet.browser.xn.XnSettings.ENABLE_VERBNET or org.sqlunet.browser.xn.XnSettings.ENABLE_PROPBANK
                     }
                     enable = enable and mask.inv()
                 }
@@ -88,7 +86,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
                 val transaction = manager.beginTransaction().setReorderingAllowed(true)
 
                 // wordnet
-                if (enable and org.sqlunet.browser.xn.Settings.ENABLE_WORDNET != 0) {
+                if (enable and org.sqlunet.browser.xn.XnSettings.ENABLE_WORDNET != 0) {
                     // var labelView = findViewById(R.id.label_wordnet)
                     // labelView.setVisibility(View.VISIBLE)
                     val senseFragment = SenseFragment()
@@ -103,7 +101,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
                 }
 
                 // verbnet
-                if (enable and org.sqlunet.browser.xn.Settings.ENABLE_VERBNET != 0) {
+                if (enable and org.sqlunet.browser.xn.XnSettings.ENABLE_VERBNET != 0) {
                     // var labelView = findViewById(R.id.label_verbnet)
                     // labelView.setVisibility(View.VISIBLE)
                     val verbnetFragment: Fragment = VerbNetFragment()
@@ -117,7 +115,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
                 }
 
                 // propbank
-                if (enable and org.sqlunet.browser.xn.Settings.ENABLE_PROPBANK != 0) {
+                if (enable and org.sqlunet.browser.xn.XnSettings.ENABLE_PROPBANK != 0) {
                     // var labelView = findViewById(R.id.label_propbank)
                     // labelView.setVisibility(View.VISIBLE)
                     val propbankFragment: Fragment = PropBankFragment()
@@ -131,7 +129,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
                 }
 
                 // framenet
-                if (enable and org.sqlunet.browser.xn.Settings.ENABLE_FRAMENET != 0) {
+                if (enable and org.sqlunet.browser.xn.XnSettings.ENABLE_FRAMENET != 0) {
                     // var labelView = findViewById(R.id.label_framenet)
                     // labelView.setVisibility(View.VISIBLE)
                     val framenetFragment: Fragment = FrameNetFragment()
@@ -145,7 +143,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
                 }
 
                 // bnc
-                if (enable and org.sqlunet.browser.xn.Settings.ENABLE_BNC != 0) {
+                if (enable and org.sqlunet.browser.xn.XnSettings.ENABLE_BNC != 0) {
                     // var labelView = findViewById(R.id.label_bnc)
                     // labelView.setVisibility(View.VISIBLE)
                     val bncFragment: Fragment = BNCFragment()
@@ -209,11 +207,11 @@ class Browse2Fragment : BaseBrowse2Fragment() {
             for (p in pronunciations!!) {
                 val label = p.toString()
                 val ipa = p.ipa
-                val country = if (p.variety == null) findCountry(requireContext()) else p.variety
+                val country = if (p.variety == null) SpeakSettings.findCountry(requireContext()) else p.variety
                 sb.append('\n')
                 appendClickableImage(sb, org.sqlunet.speak.R.drawable.ic_speak_button, label, {
                     Log.d("Speak", "")
-                    pronounce(requireContext(), word!!, ipa, country, findVoiceFor(country, requireContext()))
+                    pronounce(requireContext(), word!!, ipa, country,  SpeakSettings.findVoiceFor(country, requireContext()))
                 }, requireContext())
             }
         }

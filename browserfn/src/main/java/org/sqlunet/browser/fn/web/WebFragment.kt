@@ -42,7 +42,7 @@ import org.sqlunet.framenet.sql.FrameNetImplementation
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.settings.LogUtils.writeLog
 import org.sqlunet.settings.Settings
-import org.sqlunet.settings.StorageSettings.getDatabasePath
+import org.sqlunet.settings.StorageSettings
 import org.sqlunet.sql.DataSource
 import org.sqlunet.sql.NodeFactory.makeRootNode
 import org.w3c.dom.Document
@@ -58,7 +58,7 @@ class WebFragment : Fragment() {
     private inner class WebDocumentStringLoader(val context: Context, val pointer: Parcelable?, val type: Int, val data: String?, val sources: Int, val xml: Boolean) : DocumentStringLoader {
         override fun getDoc(): String? {
             try {
-                DataSource(getDatabasePath(context)).use { dataSource ->
+                DataSource(StorageSettings.getDatabasePath(context)).use { dataSource ->
                     // data source
                     val db = dataSource.connection
 
@@ -71,7 +71,7 @@ class WebFragment : Fragment() {
                     // make documents
                     if (isSelector) {
                         // this is a selector query
-                        if (org.sqlunet.browser.fn.Settings.Source.FRAMENET.test(sources)) {
+                        if (org.sqlunet.browser.fn.FnSettings.Source.FRAMENET.test(sources)) {
                             fnDomDoc = FrameNetImplementation(true).querySelectorDoc(db, data!!, null)
                         }
                     } else {
@@ -89,7 +89,7 @@ class WebFragment : Fragment() {
                             ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT -> {
                                 val lexunitPointer = pointer as FnLexUnitPointer?
                                 Log.d(TAG, "ArgPosition: fnlexunit=$lexunitPointer")
-                                if (lexunitPointer != null && org.sqlunet.browser.fn.Settings.Source.FRAMENET.test(sources)) {
+                                if (lexunitPointer != null && org.sqlunet.browser.fn.FnSettings.Source.FRAMENET.test(sources)) {
                                     fnDomDoc = FrameNetImplementation(true).queryLexUnitDoc(db, lexunitPointer.id)
                                 }
                             }
@@ -97,7 +97,7 @@ class WebFragment : Fragment() {
                             ProviderArgs.ARG_QUERYTYPE_FNFRAME -> {
                                 val framePointer = pointer as FnFramePointer?
                                 Log.d(TAG, "ArgPosition: fnframe=$framePointer")
-                                if (framePointer != null && org.sqlunet.browser.fn.Settings.Source.FRAMENET.test(sources)) {
+                                if (framePointer != null && org.sqlunet.browser.fn.FnSettings.Source.FRAMENET.test(sources)) {
                                     fnDomDoc = FrameNetImplementation(true).queryFrameDoc(db, framePointer.id, null)
                                 }
                             }
@@ -105,7 +105,7 @@ class WebFragment : Fragment() {
                             ProviderArgs.ARG_QUERYTYPE_FNSENTENCE -> {
                                 val sentencePointer = pointer as FnSentencePointer?
                                 Log.d(TAG, "ArgPosition: fnsentence=$sentencePointer")
-                                if (sentencePointer != null && org.sqlunet.browser.fn.Settings.Source.FRAMENET.test(sources)) {
+                                if (sentencePointer != null && org.sqlunet.browser.fn.FnSettings.Source.FRAMENET.test(sources)) {
                                     fnDomDoc = FrameNetImplementation(true).querySentenceDoc(db, sentencePointer.id)
                                 }
                             }
@@ -113,7 +113,7 @@ class WebFragment : Fragment() {
                             ProviderArgs.ARG_QUERYTYPE_FNANNOSET -> {
                                 val annoSetPointer = pointer as FnAnnoSetPointer?
                                 Log.d(TAG, "ArgPosition: fnannoset=$annoSetPointer")
-                                if (annoSetPointer != null && org.sqlunet.browser.fn.Settings.Source.FRAMENET.test(sources)) {
+                                if (annoSetPointer != null && org.sqlunet.browser.fn.FnSettings.Source.FRAMENET.test(sources)) {
                                     fnDomDoc = FrameNetImplementation(true).queryAnnoSetDoc(db, annoSetPointer.id)
                                 }
                             }
@@ -270,8 +270,8 @@ class WebFragment : Fragment() {
 
         // settings sources
         var mask = 0
-        if (org.sqlunet.browser.fn.Settings.getFrameNetPref(requireContext())) {
-            mask = mask or org.sqlunet.browser.fn.Settings.Source.FRAMENET.set(mask)
+        if (org.sqlunet.browser.fn.FnSettings.getFrameNetPref(requireContext())) {
+            mask = mask or org.sqlunet.browser.fn.FnSettings.Source.FRAMENET.set(mask)
         }
         val sources = mask
 
@@ -368,7 +368,7 @@ class WebFragment : Fragment() {
             sb.append(LIST1)
             if (fnDomDoc != null) {
                 sb.append(ITEM1)
-                sb.append(DocumentTransformer().docToHtml(fnDomDoc, org.sqlunet.browser.fn.Settings.Source.FRAMENET.toString(), isSelector))
+                sb.append(DocumentTransformer().docToHtml(fnDomDoc, org.sqlunet.browser.fn.FnSettings.Source.FRAMENET.toString(), isSelector))
                 sb.append(ITEM2)
             }
             sb.append(LIST2)

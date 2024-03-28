@@ -23,7 +23,7 @@ open class Pronunciation(@JvmField val ipa: String, variety: String?) : Comparab
     }
 
     init {
-        this.variety = variety!!
+        this.variety = variety
     }
 
     companion object {

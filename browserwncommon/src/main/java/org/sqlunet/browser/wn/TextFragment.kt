@@ -23,8 +23,7 @@ import org.sqlunet.wordnet.SynsetPointer
 import org.sqlunet.wordnet.WordPointer
 import org.sqlunet.wordnet.browser.SynsetActivity
 import org.sqlunet.wordnet.browser.WordActivity
-import org.sqlunet.wordnet.settings.Settings.getRecursePref
-import org.sqlunet.wordnet.settings.Settings.getRenderParametersPref
+import org.sqlunet.wordnet.settings.Settings
 
 /**
  * Text result fragment
@@ -112,8 +111,8 @@ class TextFragment : BaseListFragment() {
                 if ("synset" == subtarget) {
 
                     // parameters
-                    val recurse = getRecursePref(requireContext())
-                    val parameters = getRenderParametersPref(requireContext())
+                    val recurse = Settings.getRecursePref(requireContext())
+                    val parameters = Settings.getRenderParametersPref(requireContext())
 
                     // target
                     val colIdx = cursor.getColumnIndex("synsetid")

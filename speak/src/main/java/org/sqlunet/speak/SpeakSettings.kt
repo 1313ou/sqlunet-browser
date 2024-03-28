@@ -6,7 +6,7 @@ package org.sqlunet.speak
 import android.content.Context
 import androidx.preference.PreferenceManager
 
-object Settings {
+object SpeakSettings {
 
     @JvmStatic
     fun findCountry(context: Context): String? {

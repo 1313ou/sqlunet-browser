@@ -20,25 +20,13 @@ import android.text.style.StyleSpan
 import com.bbou.concurrency.Task
 import com.bbou.deploy.workers.Deploy.computeDigest
 import com.bbou.download.preference.Settings
-import com.bbou.download.preference.Settings.Mode.Companion.getModePref
-import com.bbou.download.preference.Settings.getDatapackDate
-import com.bbou.download.preference.Settings.getDatapackName
-import com.bbou.download.preference.Settings.getDatapackSize
-import com.bbou.download.preference.Settings.getDatapackSource
-import com.bbou.download.preference.Settings.getDatapackSourceDate
-import com.bbou.download.preference.Settings.getDatapackSourceEtag
-import com.bbou.download.preference.Settings.getDatapackSourceSize
-import com.bbou.download.preference.Settings.getDatapackSourceStaticVersion
-import com.bbou.download.preference.Settings.getDatapackSourceType
-import com.bbou.download.preference.Settings.getDatapackSourceVersion
+import com.bbou.download.preference.Settings.Mode
 import org.sqlunet.assetpack.AssetPackLoader
 import org.sqlunet.browser.common.R
-import org.sqlunet.browser.config.Status.Companion.status
-import org.sqlunet.browser.config.Status.Companion.tablesAndIndexes
+import org.sqlunet.browser.config.Status
 import org.sqlunet.provider.XNetContract
 import org.sqlunet.provider.XSqlUNetProvider.Companion.makeUri
-import org.sqlunet.settings.StorageSettings.getDatabasePath
-import org.sqlunet.settings.StorageSettings.getDbDownloadSourcePath
+import org.sqlunet.settings.StorageSettings
 import org.sqlunet.settings.StorageUtils
 import org.sqlunet.settings.StorageUtils.mbToString
 import org.sqlunet.settings.StorageUtils.storageStats
@@ -80,7 +68,7 @@ object Diagnostics {
         sb.append('\n')
 
         // DATABASE
-        val database = getDatabasePath(context)
+        val database = StorageSettings.getDatabasePath(context)
         sb.append('\n')
         append(sb, "database", StyleSpan(Typeface.BOLD))
         sb.append('\n')
@@ -135,7 +123,7 @@ object Diagnostics {
                     databaseCanOpen = canOpen(database)
                     sb.append(databaseCanOpen.toString())
                     sb.append('\n')
-                    val status = status(context)
+                    val status = Status.status(context)
                     val existsDb = status and Status.EXISTS != 0
                     val existsTables = status and Status.EXISTS_TABLES != 0
                     if (existsDb) {
@@ -160,7 +148,7 @@ object Diagnostics {
                         val requiredTSPb = if (requiredTSPbResId == 0) null else res.getStringArray(requiredTSPbResId)
                         val requiredTSFn = if (requiredTSFnResId == 0) null else res.getStringArray(requiredTSFnResId)
                         try {
-                            val existingTablesAndIndexes = tablesAndIndexes(context)
+                            val existingTablesAndIndexes = Status.tablesAndIndexes(context)
                             if (existingTablesAndIndexes != null) {
                                 for (table in requiredTables) {
                                     sb.append("table ")
@@ -296,16 +284,16 @@ object Diagnostics {
 
         // RECORDED SOURCE
 
-        val source = getDatapackSource(context)
-        val sourceSize = getDatapackSourceSize(context)
-        val sourceStamp = getDatapackSourceDate(context)
-        val sourceEtag = getDatapackSourceEtag(context)
-        val sourceVersion = getDatapackSourceVersion(context)
-        val sourceStaticVersion = getDatapackSourceStaticVersion(context)
-        val sourceType = getDatapackSourceType(context)
-        val name = getDatapackName(context)
-        val size = getDatapackSize(context)
-        val stamp = getDatapackDate(context)
+        val source = Settings.getDatapackSource(context)
+        val sourceSize = Settings.getDatapackSourceSize(context)
+        val sourceStamp = Settings.getDatapackSourceDate(context)
+        val sourceEtag = Settings.getDatapackSourceEtag(context)
+        val sourceVersion = Settings.getDatapackSourceVersion(context)
+        val sourceStaticVersion = Settings.getDatapackSourceStaticVersion(context)
+        val sourceType = Settings.getDatapackSourceType(context)
+        val name = Settings.getDatapackName(context)
+        val size = Settings.getDatapackSize(context)
+        val stamp = Settings.getDatapackDate(context)
         sb.append('\n')
         append(sb, "source", StyleSpan(Typeface.BOLD))
         sb.append('\n')
@@ -390,9 +378,9 @@ object Diagnostics {
         sb.append('\n')
 
         // DOWNLOAD
-        val mode = getModePref(context)
-        val dbDownloadSource = getDbDownloadSourcePath(context, mode == Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Settings.Mode.DOWNLOAD_ZIP)
-        val dbDownloadTarget = getDatabasePath(context)
+        val mode = Mode.getModePref(context)
+        val dbDownloadSource = StorageSettings.getDbDownloadSourcePath(context, mode == Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Settings.Mode.DOWNLOAD_ZIP)
+        val dbDownloadTarget = StorageSettings.getDatabasePath(context)
         sb.append('\n')
         append(sb, "download", StyleSpan(Typeface.BOLD))
         sb.append('\n')

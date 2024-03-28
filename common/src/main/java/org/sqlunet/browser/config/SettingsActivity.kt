@@ -24,7 +24,7 @@ import org.sqlunet.settings.Settings
 import org.sqlunet.settings.Storage
 import org.sqlunet.settings.StorageReports.getStyledCachesNamesValues
 import org.sqlunet.settings.StorageReports.getStyledStoragesNamesValues
-import org.sqlunet.settings.StorageSettings.getDatabasePath
+import org.sqlunet.settings.StorageSettings
 import org.sqlunet.settings.StorageUtils
 import org.sqlunet.settings.StorageUtils.isAuto
 import org.sqlunet.sql.PreparedStatement
@@ -127,7 +127,7 @@ class SettingsActivity : BaseSettingsActivity() {
 
             // db file
             val dbFilePreference = findPreference<Preference>(Settings.PREF_DB_FILE)!!
-            val storage = getDatabasePath(requireContext())
+            val storage = StorageSettings.getDatabasePath(requireContext())
             dbFilePreference.setSummary(storage)
             dbFilePreference.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _: Preference?, newValue: Any? ->
                 var storage2 = newValue as String?
@@ -163,7 +163,7 @@ class SettingsActivity : BaseSettingsActivity() {
 
             // db file
             val dbFilePreference = findPreference<Preference>(Settings.PREF_DB_FILE)!!
-            val storage = getDatabasePath(requireContext())
+            val storage = StorageSettings.getDatabasePath(requireContext())
             dbFilePreference.setSummary(storage)
             dbFilePreference.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _: Preference?, newValue: Any? ->
                 var storage2 = newValue as String?

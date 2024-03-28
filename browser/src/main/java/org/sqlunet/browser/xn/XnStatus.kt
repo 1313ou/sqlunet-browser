@@ -15,7 +15,7 @@ import org.sqlunet.browser.config.Status
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-internal object Status : Status() {
+internal object XnStatus : Status() {
     private const val TAG = "Status"
 
     // _status flags

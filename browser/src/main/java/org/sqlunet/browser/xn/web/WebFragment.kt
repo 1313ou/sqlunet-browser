@@ -45,7 +45,7 @@ import org.sqlunet.propbank.PbRoleSetPointer
 import org.sqlunet.propbank.sql.PropBankImplementation
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.settings.LogUtils.writeLog
-import org.sqlunet.settings.StorageSettings.getDatabasePath
+import org.sqlunet.settings.StorageSettings
 import org.sqlunet.sql.DataSource
 import org.sqlunet.sql.NodeFactory.makeRootNode
 import org.sqlunet.verbnet.VnClassPointer
@@ -53,8 +53,7 @@ import org.sqlunet.verbnet.sql.VerbNetImplementation
 import org.sqlunet.wordnet.SensePointer
 import org.sqlunet.wordnet.SynsetPointer
 import org.sqlunet.wordnet.WordPointer
-import org.sqlunet.wordnet.settings.Settings.getRecursePref
-import org.sqlunet.wordnet.settings.Settings.getRenderParametersPref
+import org.sqlunet.wordnet.settings.Settings
 import org.sqlunet.wordnet.sql.WordNetImplementation
 import org.sqlunet.wordnet.sql.WordNetImplementation.Companion.init
 import org.w3c.dom.Document
@@ -70,7 +69,7 @@ class WebFragment : Fragment() {
 
         override fun getDoc(): String? {
             try {
-                DataSource(getDatabasePath(context)).use { dataSource ->
+                DataSource(StorageSettings.getDatabasePath(context)).use { dataSource ->
 
                     // data source
                     val db = dataSource.connection
@@ -89,16 +88,16 @@ class WebFragment : Fragment() {
                     // make documents
                     if (isSelector) {
                         // this is a selector query
-                        if (org.sqlunet.browser.xn.Settings.Source.WORDNET.test(sources)) {
+                        if (org.sqlunet.browser.xn.XnSettings.Source.WORDNET.test(sources)) {
                             wnDomDoc = WordNetImplementation().querySelectorDoc(db, data!!)
                         }
-                        if (org.sqlunet.browser.xn.Settings.Source.VERBNET.test(sources)) {
+                        if (org.sqlunet.browser.xn.XnSettings.Source.VERBNET.test(sources)) {
                             vnDomDoc = VerbNetImplementation().querySelectorDoc(db, data!!)
                         }
-                        if (org.sqlunet.browser.xn.Settings.Source.PROPBANK.test(sources)) {
+                        if (org.sqlunet.browser.xn.XnSettings.Source.PROPBANK.test(sources)) {
                             pbDomDoc = PropBankImplementation().querySelectorDoc(db, data!!)
                         }
-                        if (org.sqlunet.browser.xn.Settings.Source.FRAMENET.test(sources)) {
+                        if (org.sqlunet.browser.xn.XnSettings.Source.FRAMENET.test(sources)) {
                             fnDomDoc = FrameNetImplementation(false).querySelectorDoc(db, data!!, null)
                         }
                     } else {
@@ -128,26 +127,26 @@ class WebFragment : Fragment() {
                                     {
                                         fnDomDoc = FrameNetImplementation(false).queryFrameDoc(db, xClassId, pos)
                                     }
-                                    if (org.sqlunet.browser.xn.Settings.Source.BNC.test(sources)) {
+                                    if (org.sqlunet.browser.xn.XnSettings.Source.BNC.test(sources)) {
                                         bncDomDoc = BncImplementation().queryDoc(db, wordId, pos)
                                     }
                                 } else {
                                     val sense2Pointer = pointer as SensePointer
                                     val wordId = sense2Pointer.getWordId()
                                     val synsetId = sense2Pointer.getSynsetId()
-                                    if (org.sqlunet.browser.xn.Settings.Source.WORDNET.test(sources)) {
+                                    if (org.sqlunet.browser.xn.XnSettings.Source.WORDNET.test(sources)) {
                                         wnDomDoc = WordNetImplementation().queryDoc(db, wordId, synsetId, withRelations = true, recurse = false)
                                     }
-                                    if (org.sqlunet.browser.xn.Settings.Source.VERBNET.test(sources)) {
+                                    if (org.sqlunet.browser.xn.XnSettings.Source.VERBNET.test(sources)) {
                                         vnDomDoc = VerbNetImplementation().queryDoc(db, wordId, synsetId, pos)
                                     }
-                                    if (org.sqlunet.browser.xn.Settings.Source.PROPBANK.test(sources)) {
+                                    if (org.sqlunet.browser.xn.XnSettings.Source.PROPBANK.test(sources)) {
                                         pbDomDoc = PropBankImplementation().queryDoc(db, wordId, pos)
                                     }
-                                    if (org.sqlunet.browser.xn.Settings.Source.FRAMENET.test(sources)) {
+                                    if (org.sqlunet.browser.xn.XnSettings.Source.FRAMENET.test(sources)) {
                                         fnDomDoc = FrameNetImplementation(false).queryDoc(db, wordId, pos)
                                     }
-                                    if (org.sqlunet.browser.xn.Settings.Source.BNC.test(sources)) {
+                                    if (org.sqlunet.browser.xn.XnSettings.Source.BNC.test(sources)) {
                                         bncDomDoc = BncImplementation().queryDoc(db, wordId, pos)
                                     }
                                 }
@@ -156,7 +155,7 @@ class WebFragment : Fragment() {
                             ProviderArgs.ARG_QUERYTYPE_WORD -> {
                                 val wordPointer = pointer as WordPointer?
                                 Log.d(TAG, "ArgPosition: word=$wordPointer")
-                                if (wordPointer != null && org.sqlunet.browser.xn.Settings.Source.WORDNET.test(sources)) {
+                                if (wordPointer != null && org.sqlunet.browser.xn.XnSettings.Source.WORDNET.test(sources)) {
                                     wnDomDoc = WordNetImplementation().queryWordDoc(db, wordPointer.getWordId())
                                 }
                             }
@@ -164,7 +163,7 @@ class WebFragment : Fragment() {
                             ProviderArgs.ARG_QUERYTYPE_SYNSET -> {
                                 val synsetPointer = pointer as SynsetPointer?
                                 Log.d(TAG, "ArgPosition: synset=$synsetPointer")
-                                if (synsetPointer != null && org.sqlunet.browser.xn.Settings.Source.WORDNET.test(sources)) {
+                                if (synsetPointer != null && org.sqlunet.browser.xn.XnSettings.Source.WORDNET.test(sources)) {
                                     wnDomDoc = WordNetImplementation().querySynsetDoc(db, synsetPointer.getSynsetId())
                                 }
                             }
@@ -172,7 +171,7 @@ class WebFragment : Fragment() {
                             ProviderArgs.ARG_QUERYTYPE_VNCLASS -> {
                                 val vnclassPointer = pointer as VnClassPointer?
                                 Log.d(TAG, "ArgPosition: vnclass=$vnclassPointer")
-                                if (vnclassPointer != null && org.sqlunet.browser.xn.Settings.Source.VERBNET.test(sources)) {
+                                if (vnclassPointer != null && org.sqlunet.browser.xn.XnSettings.Source.VERBNET.test(sources)) {
                                     vnDomDoc = VerbNetImplementation().queryClassDoc(db, vnclassPointer.id, null)
                                 }
                             }
@@ -180,7 +179,7 @@ class WebFragment : Fragment() {
                             ProviderArgs.ARG_QUERYTYPE_PBROLESET -> {
                                 val pbroleSetPointer = pointer as PbRoleSetPointer?
                                 Log.d(TAG, "ArgPosition: fnframe=$pbroleSetPointer")
-                                if (pbroleSetPointer != null && org.sqlunet.browser.xn.Settings.Source.PROPBANK.test(sources)) {
+                                if (pbroleSetPointer != null && org.sqlunet.browser.xn.XnSettings.Source.PROPBANK.test(sources)) {
                                     pbDomDoc = PropBankImplementation().queryRoleSetDoc(db, pbroleSetPointer.id, null)
                                 }
                             }
@@ -188,7 +187,7 @@ class WebFragment : Fragment() {
                             ProviderArgs.ARG_QUERYTYPE_FNLEXUNIT -> {
                                 val lexunitPointer = pointer as FnLexUnitPointer?
                                 Log.d(TAG, "ArgPosition: fnlexunit=$lexunitPointer")
-                                if (lexunitPointer != null && org.sqlunet.browser.xn.Settings.Source.FRAMENET.test(sources)) {
+                                if (lexunitPointer != null && org.sqlunet.browser.xn.XnSettings.Source.FRAMENET.test(sources)) {
                                     fnDomDoc = FrameNetImplementation(false).queryLexUnitDoc(db, lexunitPointer.id)
                                 }
                             }
@@ -196,7 +195,7 @@ class WebFragment : Fragment() {
                             ProviderArgs.ARG_QUERYTYPE_FNFRAME -> {
                                 val framePointer = pointer as FnFramePointer?
                                 Log.d(TAG, "ArgPosition: fnframe=$framePointer")
-                                if (framePointer != null && org.sqlunet.browser.xn.Settings.Source.FRAMENET.test(sources)) {
+                                if (framePointer != null && org.sqlunet.browser.xn.XnSettings.Source.FRAMENET.test(sources)) {
                                     fnDomDoc = FrameNetImplementation(false).queryFrameDoc(db, framePointer.id, null)
                                 }
                             }
@@ -204,7 +203,7 @@ class WebFragment : Fragment() {
                             ProviderArgs.ARG_QUERYTYPE_FNSENTENCE -> {
                                 val sentencePointer = pointer as FnSentencePointer?
                                 Log.d(TAG, "ArgPosition: fnsentence=$sentencePointer")
-                                if (sentencePointer != null && org.sqlunet.browser.xn.Settings.Source.FRAMENET.test(sources)) {
+                                if (sentencePointer != null && org.sqlunet.browser.xn.XnSettings.Source.FRAMENET.test(sources)) {
                                     fnDomDoc = FrameNetImplementation(false).querySentenceDoc(db, sentencePointer.id)
                                 }
                             }
@@ -212,7 +211,7 @@ class WebFragment : Fragment() {
                             ProviderArgs.ARG_QUERYTYPE_FNANNOSET -> {
                                 val annoSetPointer = pointer as FnAnnoSetPointer?
                                 Log.d(TAG, "ArgPosition: fnannoset=$annoSetPointer")
-                                if (annoSetPointer != null && org.sqlunet.browser.xn.Settings.Source.FRAMENET.test(sources)) {
+                                if (annoSetPointer != null && org.sqlunet.browser.xn.XnSettings.Source.FRAMENET.test(sources)) {
                                     fnDomDoc = FrameNetImplementation(false).queryAnnoSetDoc(db, annoSetPointer.id)
                                 }
                             }
@@ -374,8 +373,8 @@ class WebFragment : Fragment() {
                         }
 
                         // parameters
-                        val recurse = getRecursePref(requireContext())
-                        val parameters = getRenderParametersPref(requireContext())
+                        val recurse = Settings.getRecursePref(requireContext())
+                        val parameters = Settings.getRenderParametersPref(requireContext())
                         targetIntent.putExtra(ProviderArgs.ARG_QUERYTYPE, type)
                         targetIntent.putExtra(ProviderArgs.ARG_QUERYPOINTER, pointer)
                         targetIntent.putExtra(ProviderArgs.ARG_QUERYRECURSE, recurse)
@@ -394,20 +393,20 @@ class WebFragment : Fragment() {
 
         // settings sources
         var mask = 0
-        if (org.sqlunet.browser.xn.Settings.getWordNetPref(requireContext())) {
-            mask = org.sqlunet.browser.xn.Settings.Source.WORDNET.set(mask)
+        if (org.sqlunet.browser.xn.XnSettings.getWordNetPref(requireContext())) {
+            mask = org.sqlunet.browser.xn.XnSettings.Source.WORDNET.set(mask)
         }
-        if (org.sqlunet.browser.xn.Settings.getVerbNetPref(requireContext())) {
-            mask = mask or org.sqlunet.browser.xn.Settings.Source.VERBNET.set(mask)
+        if (org.sqlunet.browser.xn.XnSettings.getVerbNetPref(requireContext())) {
+            mask = mask or org.sqlunet.browser.xn.XnSettings.Source.VERBNET.set(mask)
         }
-        if (org.sqlunet.browser.xn.Settings.getPropBankPref(requireContext())) {
-            mask = mask or org.sqlunet.browser.xn.Settings.Source.PROPBANK.set(mask)
+        if (org.sqlunet.browser.xn.XnSettings.getPropBankPref(requireContext())) {
+            mask = mask or org.sqlunet.browser.xn.XnSettings.Source.PROPBANK.set(mask)
         }
-        if (org.sqlunet.browser.xn.Settings.getFrameNetPref(requireContext())) {
-            mask = mask or org.sqlunet.browser.xn.Settings.Source.FRAMENET.set(mask)
+        if (org.sqlunet.browser.xn.XnSettings.getFrameNetPref(requireContext())) {
+            mask = mask or org.sqlunet.browser.xn.XnSettings.Source.FRAMENET.set(mask)
         }
-        if (org.sqlunet.browser.xn.Settings.getBncPref(requireContext())) {
-            mask = mask or org.sqlunet.browser.xn.Settings.Source.BNC.set(mask)
+        if (org.sqlunet.browser.xn.XnSettings.getBncPref(requireContext())) {
+            mask = mask or org.sqlunet.browser.xn.XnSettings.Source.BNC.set(mask)
         }
         val sources = mask
 
@@ -542,27 +541,27 @@ class WebFragment : Fragment() {
             sb.append(LIST1)
             if (wnDomDoc != null) {
                 sb.append(ITEM1)
-                sb.append(DocumentTransformer().docToHtml(wnDomDoc, org.sqlunet.browser.xn.Settings.Source.WORDNET.toString(), isSelector))
+                sb.append(DocumentTransformer().docToHtml(wnDomDoc, org.sqlunet.browser.xn.XnSettings.Source.WORDNET.toString(), isSelector))
                 sb.append(ITEM2)
             }
             if (vnDomDoc != null) {
                 sb.append(ITEM1)
-                sb.append(DocumentTransformer().docToHtml(vnDomDoc, org.sqlunet.browser.xn.Settings.Source.VERBNET.toString(), isSelector))
+                sb.append(DocumentTransformer().docToHtml(vnDomDoc, org.sqlunet.browser.xn.XnSettings.Source.VERBNET.toString(), isSelector))
                 sb.append(ITEM2)
             }
             if (pbDomDoc != null) {
                 sb.append(ITEM1)
-                sb.append(DocumentTransformer().docToHtml(pbDomDoc, org.sqlunet.browser.xn.Settings.Source.PROPBANK.toString(), isSelector))
+                sb.append(DocumentTransformer().docToHtml(pbDomDoc, org.sqlunet.browser.xn.XnSettings.Source.PROPBANK.toString(), isSelector))
                 sb.append(ITEM2)
             }
             if (fnDomDoc != null) {
                 sb.append(ITEM1)
-                sb.append(DocumentTransformer().docToHtml(fnDomDoc, org.sqlunet.browser.xn.Settings.Source.FRAMENET.toString(), isSelector))
+                sb.append(DocumentTransformer().docToHtml(fnDomDoc, org.sqlunet.browser.xn.XnSettings.Source.FRAMENET.toString(), isSelector))
                 sb.append(ITEM2)
             }
             if (bncDomDoc != null) {
                 sb.append(ITEM1)
-                sb.append(DocumentTransformer().docToHtml(bncDomDoc, org.sqlunet.browser.xn.Settings.Source.BNC.toString(), isSelector))
+                sb.append(DocumentTransformer().docToHtml(bncDomDoc, org.sqlunet.browser.xn.XnSettings.Source.BNC.toString(), isSelector))
                 sb.append(ITEM2)
             }
             sb.append(LIST2)

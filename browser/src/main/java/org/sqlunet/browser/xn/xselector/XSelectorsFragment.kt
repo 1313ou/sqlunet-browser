@@ -24,8 +24,7 @@ import androidx.lifecycle.ViewModelProvider
 import org.sqlunet.browser.BaseSelectorsExpandableListFragment
 import org.sqlunet.browser.R
 import org.sqlunet.browser.SqlunetViewModel
-import org.sqlunet.browser.xn.Settings
-import org.sqlunet.browser.xn.Settings.getAllPref
+import org.sqlunet.browser.xn.XnSettings
 import org.sqlunet.browser.xn.xselector.XSelectorPointer.CREATOR.getMask
 import org.sqlunet.loaders.Queries.prepareFnXSelect
 import org.sqlunet.loaders.Queries.preparePbXSelect
@@ -780,21 +779,21 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
         private fun populateGroupCursor(context: Context, cursor: MatrixCursor): IntArray {
             // fill groups
             var position = 0
-            val enable = getAllPref(context)
+            val enable = XnSettings.getAllPref(context)
             val groupPositions = intArrayOf(AdapterView.INVALID_POSITION, AdapterView.INVALID_POSITION, AdapterView.INVALID_POSITION, AdapterView.INVALID_POSITION)
-            if (Settings.Source.WORDNET.test(enable)) {
+            if (XnSettings.Source.WORDNET.test(enable)) {
                 groupPositions[GROUPINDEX_WORDNET] = position++
                 cursor.addRow(arrayOf<Any>(GROUPID_WORDNET, "wordnet", R.drawable.wordnet.toString()))
             }
-            if (Settings.Source.VERBNET.test(enable)) {
+            if (XnSettings.Source.VERBNET.test(enable)) {
                 groupPositions[GROUPINDEX_VERBNET] = position++
                 cursor.addRow(arrayOf<Any>(GROUPID_VERBNET, "verbnet", R.drawable.verbnet.toString()))
             }
-            if (Settings.Source.PROPBANK.test(enable)) {
+            if (XnSettings.Source.PROPBANK.test(enable)) {
                 groupPositions[GROUPINDEX_PROPBANK] = position++
                 cursor.addRow(arrayOf<Any>(GROUPID_PROPBANK, "propbank", R.drawable.propbank.toString()))
             }
-            if (Settings.Source.FRAMENET.test(enable)) {
+            if (XnSettings.Source.FRAMENET.test(enable)) {
                 groupPositions[GROUPINDEX_FRAMENET] = position++
                 cursor.addRow(arrayOf<Any>(GROUPID_FRAMENET, "framenet", R.drawable.framenet.toString()))
             }

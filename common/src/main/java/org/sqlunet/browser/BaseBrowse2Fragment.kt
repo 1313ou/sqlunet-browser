@@ -12,7 +12,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import org.sqlunet.browser.common.R
-import org.sqlunet.settings.Settings.Companion.getDetailViewModePref
+import org.sqlunet.settings.Settings
 import org.sqlunet.settings.Settings.DetailViewMode
 
 /**
@@ -51,7 +51,7 @@ abstract class BaseBrowse2Fragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val mode = getDetailViewModePref(requireContext())
+        val mode = Settings.getDetailViewModePref(requireContext())
         return when (mode) {
             DetailViewMode.VIEW -> inflater.inflate(layoutId, container, false)
             DetailViewMode.WEB -> inflater.inflate(R.layout.fragment_browse2, container, false)

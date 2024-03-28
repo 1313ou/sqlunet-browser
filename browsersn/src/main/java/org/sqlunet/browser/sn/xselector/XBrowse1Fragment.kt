@@ -22,8 +22,6 @@ import org.sqlunet.browser.sn.selector.SelectorsFragment
 import org.sqlunet.browser.sn.selector.SnSelectorsFragment
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.settings.Settings
-import org.sqlunet.wordnet.settings.Settings.getRecursePref
-import org.sqlunet.wordnet.settings.Settings.getRenderParametersPref
 
 /**
  * X selector fragment
@@ -100,8 +98,8 @@ class XBrowse1Fragment : BaseBrowse1Fragment(), SelectorsFragment.Listener, SnSe
             fragment.search(pointer, word, cased, pronunciation, pos)
         } else {
             // in single-pane mode, simply start the detail activity for the selected item ID.
-            val recurse = getRecursePref(requireContext())
-            val parameters = getRenderParametersPref(requireContext())
+            val recurse = org.sqlunet.wordnet.settings.Settings.getRecursePref(requireContext())
+            val parameters = org.sqlunet.wordnet.settings.Settings.getRenderParametersPref(requireContext())
             val args = Bundle()
             args.putParcelable(ProviderArgs.ARG_QUERYPOINTER, pointer)
             args.putInt(ProviderArgs.ARG_QUERYRECURSE, recurse)

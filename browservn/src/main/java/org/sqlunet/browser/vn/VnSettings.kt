@@ -12,7 +12,7 @@ import org.sqlunet.settings.Settings
  *
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
-object Settings : Settings() {
+object VnSettings : Settings() {
 
     // preferences
 

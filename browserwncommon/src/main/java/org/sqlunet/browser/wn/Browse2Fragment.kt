@@ -10,14 +10,13 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import org.sqlunet.bnc.browser.BNCFragment
 import org.sqlunet.browser.BaseBrowse2Fragment
-import org.sqlunet.browser.wn.Settings.getAllPref
+import org.sqlunet.browser.wn.WnSettings
 import org.sqlunet.browser.wn.lib.R
 import org.sqlunet.browser.wn.web.WebFragment
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.settings.Settings
 import org.sqlunet.speak.Pronunciation.Companion.pronunciations
-import org.sqlunet.speak.Settings.findCountry
-import org.sqlunet.speak.Settings.findVoiceFor
+import org.sqlunet.speak.SpeakSettings
 import org.sqlunet.speak.SpeakButton.appendClickableImage
 import org.sqlunet.speak.TTS.Companion.pronounce
 import org.sqlunet.style.Factories
@@ -62,10 +61,10 @@ class Browse2Fragment : BaseBrowse2Fragment() {
 
                 // transaction
                 val transaction = manager.beginTransaction().setReorderingAllowed(true)
-                val enable = getAllPref(context)
+                val enable = WnSettings.getAllPref(context)
 
                 // wordnet
-                if (enable and org.sqlunet.browser.wn.Settings.ENABLE_WORDNET != 0) {
+                if (enable and org.sqlunet.browser.wn.WnSettings.ENABLE_WORDNET != 0) {
                     // val labelView: View = findViewById(R.id.label_wordnet)
                     // labelView.setVisibility(View.VISIBLE)
                     val senseFragment = SenseFragment()
@@ -80,7 +79,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
                 }
 
                 // bnc
-                if (enable and org.sqlunet.browser.wn.Settings.ENABLE_BNC != 0) {
+                if (enable and org.sqlunet.browser.wn.WnSettings.ENABLE_BNC != 0) {
                     // val labelView: View = findViewById(R.id.label_bnc)
                     // labelView.visibility = View.VISIBLE
                     val bncFragment: Fragment = BNCFragment()
@@ -131,11 +130,11 @@ class Browse2Fragment : BaseBrowse2Fragment() {
             for (p in pronunciations!!) {
                 val label = p.toString()
                 val ipa = p.ipa
-                val country = if (p.variety == null) findCountry(requireContext()) else p.variety
+                val country = if (p.variety == null) SpeakSettings.findCountry(requireContext()) else p.variety
                 sb.append('\n')
                 appendClickableImage(sb, org.sqlunet.speak.R.drawable.ic_speak_button, label, {
                     Log.d("Speak", "")
-                    pronounce(requireContext(), word!!, ipa, country, findVoiceFor(country, requireContext()))
+                    pronounce(requireContext(), word!!, ipa, country, SpeakSettings.findVoiceFor(country, requireContext()))
                 }, requireContext())
             }
         }

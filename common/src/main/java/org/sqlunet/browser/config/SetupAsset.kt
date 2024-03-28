@@ -11,14 +11,13 @@ import androidx.fragment.app.FragmentActivity
 import com.bbou.concurrency.observe.TaskObserver
 import com.bbou.deploy.workers.FileTasks.Companion.launchUnzip
 import com.bbou.download.DownloadData
-import com.bbou.download.preference.Settings.recordDatapackSource
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.play.core.assetpacks.AssetPackManagerFactory
 import org.sqlunet.assetpack.AssetPackLoader
 import org.sqlunet.assetpack.Settings
 import org.sqlunet.browser.common.R
 import org.sqlunet.browser.config.SetupDatabaseTasks.deleteDatabase
-import org.sqlunet.settings.StorageSettings.getDatabasePath
+import org.sqlunet.settings.StorageSettings
 import java.io.File
 
 object SetupAsset {
@@ -65,9 +64,9 @@ object SetupAsset {
                 if (packLocation != null) {
                     val path = packLocation.assetsPath()
                     val zipFilePath = File(File(path, assetDir), assetZip).absolutePath
-                    launchUnzip(activity, observer, zipFilePath, assetZipEntry, getDatabasePath(activity), Consumer { _: Boolean ->
+                    launchUnzip(activity, observer, zipFilePath, assetZipEntry, StorageSettings.getDatabasePath(activity), Consumer { _: Boolean ->
                         Settings.recordDbAsset(activity, assetPack)
-                        recordDatapackSource(activity, DownloadData(zipFilePath, null, null, null, null, null, null), "asset")
+                        com.bbou.download.preference.Settings.recordDatapackSource(activity, DownloadData(zipFilePath, null, null, null, null, null, null), "asset")
                         whenComplete?.run()
                     })
                 }
@@ -83,13 +82,13 @@ object SetupAsset {
                 Toast.makeText(activity, R.string.action_asset_installed, Toast.LENGTH_LONG).show()
             }
 
-            /* boolean success = */deleteDatabase(activity, getDatabasePath(activity))
+            /* boolean success = */deleteDatabase(activity, StorageSettings.getDatabasePath(activity))
             val zipFile = File(File(path0, assetDir), assetZip)
             val zipFilePath = zipFile.absolutePath
             if (zipFile.exists()) {
-                launchUnzip(activity, observer, zipFilePath, assetZipEntry, getDatabasePath(activity), Consumer {
+                launchUnzip(activity, observer, zipFilePath, assetZipEntry, StorageSettings.getDatabasePath(activity), Consumer {
                     Settings.recordDbAsset(activity, assetPack)
-                    recordDatapackSource(activity, DownloadData(zipFilePath, null, null, null, null, null, null), "asset")
+                    com.bbou.download.preference.Settings.recordDatapackSource(activity, DownloadData(zipFilePath, null, null, null, null, null, null), "asset")
                     whenComplete?.run()
                 })
             }

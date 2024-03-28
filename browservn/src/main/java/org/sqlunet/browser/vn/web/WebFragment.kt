@@ -39,7 +39,7 @@ import org.sqlunet.propbank.sql.PropBankImplementation
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.settings.LogUtils.writeLog
 import org.sqlunet.settings.Settings
-import org.sqlunet.settings.StorageSettings.getDatabasePath
+import org.sqlunet.settings.StorageSettings
 import org.sqlunet.sql.DataSource
 import org.sqlunet.sql.NodeFactory.makeRootNode
 import org.sqlunet.verbnet.VnClassPointer
@@ -61,7 +61,7 @@ class WebFragment : Fragment() {
     private inner class WebDocumentStringLoader(val context: Context, val pointer: Parcelable?, val pos: Char, val type: Int, val data: String?, val sources: Int, val xml: Boolean) : DocumentStringLoader {
         override fun getDoc(): String? {
             try {
-                DataSource(getDatabasePath(context)).use { dataSource ->
+                DataSource(StorageSettings.getDatabasePath(context)).use { dataSource ->
                     // data source
                     val db = dataSource.connection
                     init(db)
@@ -77,13 +77,13 @@ class WebFragment : Fragment() {
                     // make documents
                     if (isSelector) {
                         // this is a selector query
-                        if (org.sqlunet.browser.vn.Settings.Source.WORDNET.test(sources)) {
+                        if (org.sqlunet.browser.vn.VnSettings.Source.WORDNET.test(sources)) {
                             wnDomDoc = WordNetImplementation().querySelectorDoc(db, data!!)
                         }
-                        if (org.sqlunet.browser.vn.Settings.Source.VERBNET.test(sources)) {
+                        if (org.sqlunet.browser.vn.VnSettings.Source.VERBNET.test(sources)) {
                             vnDomDoc = VerbNetImplementation().querySelectorDoc(db, data!!)
                         }
-                        if (org.sqlunet.browser.vn.Settings.Source.PROPBANK.test(sources)) {
+                        if (org.sqlunet.browser.vn.VnSettings.Source.PROPBANK.test(sources)) {
                             pbDomDoc = PropBankImplementation().querySelectorDoc(db, data!!)
                         }
                     } else {
@@ -113,13 +113,13 @@ class WebFragment : Fragment() {
                                     val sense2Pointer = pointer as SensePointer
                                     val wordId = sense2Pointer.getWordId()
                                     val synsetId = sense2Pointer.getSynsetId()
-                                    if (org.sqlunet.browser.vn.Settings.Source.WORDNET.test(sources)) {
+                                    if (org.sqlunet.browser.vn.VnSettings.Source.WORDNET.test(sources)) {
                                         wnDomDoc = WordNetImplementation().queryDoc(db, wordId, synsetId, withRelations = true, recurse = false)
                                     }
-                                    if (org.sqlunet.browser.vn.Settings.Source.VERBNET.test(sources)) {
+                                    if (org.sqlunet.browser.vn.VnSettings.Source.VERBNET.test(sources)) {
                                         vnDomDoc = VerbNetImplementation().queryDoc(db, wordId, synsetId, pos)
                                     }
-                                    if (org.sqlunet.browser.vn.Settings.Source.PROPBANK.test(sources)) {
+                                    if (org.sqlunet.browser.vn.VnSettings.Source.PROPBANK.test(sources)) {
                                         pbDomDoc = PropBankImplementation().queryDoc(db, wordId, pos)
                                     }
                                 }
@@ -128,7 +128,7 @@ class WebFragment : Fragment() {
                             ProviderArgs.ARG_QUERYTYPE_WORD -> {
                                 val wordPointer = pointer as WordPointer?
                                 Log.d(TAG, "ArgPosition: word=$wordPointer")
-                                if (wordPointer != null && org.sqlunet.browser.vn.Settings.Source.WORDNET.test(sources)) {
+                                if (wordPointer != null && org.sqlunet.browser.vn.VnSettings.Source.WORDNET.test(sources)) {
                                     wnDomDoc = WordNetImplementation().queryWordDoc(db, wordPointer.getWordId())
                                 }
                             }
@@ -136,7 +136,7 @@ class WebFragment : Fragment() {
                             ProviderArgs.ARG_QUERYTYPE_SYNSET -> {
                                 val synsetPointer = pointer as SynsetPointer?
                                 Log.d(TAG, "ArgPosition: synset=$synsetPointer")
-                                if (synsetPointer != null && org.sqlunet.browser.vn.Settings.Source.WORDNET.test(sources)) {
+                                if (synsetPointer != null && org.sqlunet.browser.vn.VnSettings.Source.WORDNET.test(sources)) {
                                     wnDomDoc = WordNetImplementation().querySynsetDoc(db, synsetPointer.getSynsetId())
                                 }
                             }
@@ -144,7 +144,7 @@ class WebFragment : Fragment() {
                             ProviderArgs.ARG_QUERYTYPE_VNCLASS -> {
                                 val vnclassPointer = pointer as VnClassPointer?
                                 Log.d(TAG, "ArgPosition: vnclass=$vnclassPointer")
-                                if (vnclassPointer != null && org.sqlunet.browser.vn.Settings.Source.VERBNET.test(sources)) {
+                                if (vnclassPointer != null && org.sqlunet.browser.vn.VnSettings.Source.VERBNET.test(sources)) {
                                     vnDomDoc = VerbNetImplementation().queryClassDoc(db, vnclassPointer.id, null)
                                 }
                             }
@@ -152,7 +152,7 @@ class WebFragment : Fragment() {
                             ProviderArgs.ARG_QUERYTYPE_PBROLESET -> {
                                 val pbroleSetPointer = pointer as PbRoleSetPointer?
                                 Log.d(TAG, "ArgPosition: pbroleset=$pbroleSetPointer")
-                                if (pbroleSetPointer != null && org.sqlunet.browser.vn.Settings.Source.PROPBANK.test(sources)) {
+                                if (pbroleSetPointer != null && org.sqlunet.browser.vn.VnSettings.Source.PROPBANK.test(sources)) {
                                     pbDomDoc = PropBankImplementation().queryRoleSetDoc(db, pbroleSetPointer.id, null)
                                 }
                             }
@@ -311,7 +311,7 @@ class WebFragment : Fragment() {
         val context = requireContext()
 
         // settings sources
-        val enable = org.sqlunet.browser.vn.Settings.getAllPref(context)
+        val enable = org.sqlunet.browser.vn.VnSettings.getAllPref(context)
 
         // settings output
         val xml: Boolean = Settings.getXmlPref(context)
@@ -421,17 +421,17 @@ class WebFragment : Fragment() {
             sb.append(LIST1)
             if (vnDomDoc != null) {
                 sb.append(ITEM1)
-                sb.append(DocumentTransformer().docToHtml(vnDomDoc, org.sqlunet.browser.vn.Settings.Source.VERBNET.toString(), isSelector))
+                sb.append(DocumentTransformer().docToHtml(vnDomDoc, org.sqlunet.browser.vn.VnSettings.Source.VERBNET.toString(), isSelector))
                 sb.append(ITEM2)
             }
             if (pbDomDoc != null) {
                 sb.append(ITEM1)
-                sb.append(DocumentTransformer().docToHtml(pbDomDoc, org.sqlunet.browser.vn.Settings.Source.PROPBANK.toString(), isSelector))
+                sb.append(DocumentTransformer().docToHtml(pbDomDoc, org.sqlunet.browser.vn.VnSettings.Source.PROPBANK.toString(), isSelector))
                 sb.append(ITEM2)
             }
             if (wnDomDoc != null) {
                 sb.append(ITEM1)
-                sb.append(DocumentTransformer().docToHtml(wnDomDoc, org.sqlunet.browser.vn.Settings.Source.WORDNET.toString(), isSelector))
+                sb.append(DocumentTransformer().docToHtml(wnDomDoc, org.sqlunet.browser.vn.VnSettings.Source.WORDNET.toString(), isSelector))
                 sb.append(ITEM2)
             }
             sb.append(LIST2)

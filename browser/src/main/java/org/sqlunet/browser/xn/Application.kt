@@ -11,7 +11,7 @@ class Application : AbstractApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        Settings.initializeSelectorPrefs(this)
+        XnSettings.initializeSelectorPrefs(this)
         setAllColorsFromResources(this)
     }
 

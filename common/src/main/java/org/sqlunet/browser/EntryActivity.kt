@@ -10,14 +10,13 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.bbou.download.preference.Settings.unrecordDatapack
 import org.sqlunet.browser.common.R
 import org.sqlunet.browser.config.LoadActivity
 import org.sqlunet.browser.config.SetupAsset
 import org.sqlunet.browser.config.SetupDatabaseTasks
 import org.sqlunet.browser.config.Status
 import org.sqlunet.settings.Settings
-import org.sqlunet.settings.StorageSettings.getDatabasePath
+import org.sqlunet.settings.StorageSettings
 
 /**
  * Entry point activity
@@ -34,13 +33,13 @@ class EntryActivity : AppCompatActivity() {
         val upgrade = Settings.isUpgrade(this) // upgrade[0]=recorded version, upgrade[1]=this build
         if (upgrade[0] < upgrade[1]) {
             if (upgrade[0] < 94) {
-                val success = SetupDatabaseTasks.deleteDatabase(this, getDatabasePath(this))
+                val success = SetupDatabaseTasks.deleteDatabase(this, StorageSettings.getDatabasePath(this))
                 if (success) {
                     Log.d(TAG, "Deleted database")
                 } else {
                     Log.e(TAG, "Error deleting database")
                 }
-                unrecordDatapack(this)
+                com.bbou.download.preference.Settings.unrecordDatapack(this)
                 Toast.makeText(this, R.string.sqlunet2, Toast.LENGTH_LONG).show()
             }
             Settings.onUpgrade(this, upgrade[1])

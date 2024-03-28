@@ -21,17 +21,14 @@ import androidx.core.widget.ImageViewCompat
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bbou.download.preference.Settings
-import com.bbou.download.preference.Settings.Mode.Companion.getModePref
+import com.bbou.download.preference.Settings.Mode
 import org.sqlunet.browser.ColorUtils.getDrawable
 import org.sqlunet.browser.EntryActivity.Companion.rerun
 import org.sqlunet.browser.Info.info
 import org.sqlunet.browser.common.R
 import org.sqlunet.browser.config.DownloadIntentFactory.makeIntent
-import org.sqlunet.browser.config.Status.Companion.status
-import org.sqlunet.browser.config.Status.Companion.toString
 import org.sqlunet.browser.config.Utils.hrSize
-import org.sqlunet.settings.StorageSettings.getDatabasePath
-import org.sqlunet.settings.StorageSettings.getDbDownloadSourcePath
+import org.sqlunet.settings.StorageSettings
 import org.sqlunet.settings.StorageUtils.countToStorageString
 import org.sqlunet.settings.StorageUtils.getFree
 import java.io.File
@@ -130,11 +127,11 @@ open class SetupStatusFragment : Fragment(), Updatable {
 
     protected fun info() {
         val activity: Activity = requireActivity()
-        val database = getDatabasePath(activity)
+        val database = StorageSettings.getDatabasePath(activity)
         val free = getFree(activity, database)
-        val mode = getModePref(activity)
-        val source = getDbDownloadSourcePath(activity, mode == Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Settings.Mode.DOWNLOAD_ZIP)
-        val status = status(activity)
+        val mode = Mode.getModePref(activity)
+        val source = StorageSettings.getDbDownloadSourcePath(activity, mode == Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Settings.Mode.DOWNLOAD_ZIP)
+        val status = Status.status(activity)
         val existsDb = status and Status.EXISTS != 0
         val existsTables = status and Status.EXISTS_TABLES != 0
         if (existsDb) {
@@ -170,10 +167,10 @@ open class SetupStatusFragment : Fragment(), Updatable {
     override fun update() {
         val context = context
         if (context != null) {
-            val status = status(context)
-            Log.d(TAG, "Status: " + toString(status))
+            val status = Status.status(context)
+            Log.d(TAG, "Status: $status")
 
-            // images
+            // images.
             val okDrawable = getDrawable(context, R.drawable.ic_ok)
             val failDrawable = getDrawable(context, R.drawable.ic_fail)
             val existsDb = status and Status.EXISTS != 0

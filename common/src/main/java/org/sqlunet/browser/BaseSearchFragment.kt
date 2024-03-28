@@ -41,7 +41,7 @@ import org.sqlunet.browser.ColorUtils.getDrawable
 import org.sqlunet.browser.ColorUtils.tint
 import org.sqlunet.browser.MenuHandler.menuDispatch
 import org.sqlunet.browser.common.R
-import org.sqlunet.settings.Settings.Selector.Companion.getPref
+import org.sqlunet.settings.Settings.Selector
 
 /**
  * Base search fragment
@@ -357,7 +357,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
                     return position
                 }
             }
-            val selectorMode = getPref(requireContext())
+            val selectorMode = Selector.getPref(requireContext())
             return selectorMode.ordinal
         }
 

@@ -22,8 +22,7 @@ import androidx.lifecycle.ViewModelProvider
 import org.sqlunet.browser.BaseSelectorsExpandableListFragment
 import org.sqlunet.browser.SqlunetViewModel
 import org.sqlunet.browser.vn.R
-import org.sqlunet.browser.vn.Settings
-import org.sqlunet.browser.vn.Settings.getAllPref
+import org.sqlunet.browser.vn.VnSettings
 import org.sqlunet.browser.vn.xselector.XSelectorPointer.CREATOR.getMask
 import org.sqlunet.loaders.Queries.preparePbSelectVn
 import org.sqlunet.loaders.Queries.prepareVnXSelectVn
@@ -591,13 +590,13 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
         private fun populateGroupCursor(context: Context, cursor: MatrixCursor): IntArray {
             // fill groups
             var position = 0
-            val enable = getAllPref(context)
+            val enable = VnSettings.getAllPref(context)
             val groupPositions = intArrayOf(AdapterView.INVALID_POSITION, AdapterView.INVALID_POSITION)
-            if (Settings.Source.VERBNET.test(enable)) {
+            if (VnSettings.Source.VERBNET.test(enable)) {
                 groupPositions[GROUPINDEX_VERBNET] = position++
                 cursor.addRow(arrayOf<Any>(GROUPID_VERBNET, "verbnet", R.drawable.verbnet.toString()))
             }
-            if (Settings.Source.PROPBANK.test(enable)) {
+            if (VnSettings.Source.PROPBANK.test(enable)) {
                 groupPositions[GROUPINDEX_PROPBANK] = position
                 cursor.addRow(arrayOf<Any>(GROUPID_PROPBANK, "propbank", R.drawable.propbank.toString()))
             }

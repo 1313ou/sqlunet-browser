@@ -17,23 +17,14 @@ import com.bbou.download.Keys.DOWNLOAD_TO_DIR_ARG
 import com.bbou.download.Keys.DOWNLOAD_TO_FILE_ARG
 import com.bbou.download.Keys.THEN_UNZIP_TO_ARG
 import com.bbou.download.preference.Settings
-import com.bbou.download.preference.Settings.Mode.Companion.getModePref
-import com.bbou.download.preference.Settings.getDatapackSource
-import com.bbou.download.preference.Settings.getDatapackSourceType
-import org.sqlunet.settings.StorageSettings.getCacheDir
-import org.sqlunet.settings.StorageSettings.getCachedZippedPath
-import org.sqlunet.settings.StorageSettings.getDataDir
-import org.sqlunet.settings.StorageSettings.getDatabaseName
-import org.sqlunet.settings.StorageSettings.getDatabasePath
-import org.sqlunet.settings.StorageSettings.getDbDownloadName
-import org.sqlunet.settings.StorageSettings.getDbDownloadSourcePath
-import org.sqlunet.settings.StorageSettings.getDbDownloadZippedSourcePath
+import com.bbou.download.preference.Settings.Mode
+import org.sqlunet.settings.StorageSettings
 
 object DownloadIntentFactory {
 
     @JvmStatic
     fun makeIntent(context: Context): Intent {
-        var type = getModePref(context)
+        var type = Mode.getModePref(context)
         if (type == null) {
             type = Settings.Mode.DOWNLOAD_ZIP
         }
@@ -50,12 +41,12 @@ object DownloadIntentFactory {
     }
 
     private fun makeIntentPlainDownload(context: Context): Intent {
-        val dbSource = getDbDownloadSourcePath(context)
+        val dbSource = StorageSettings.getDbDownloadSourcePath(context)
         return makeIntentPlainDownload(context, dbSource)
     }
 
     private fun makeIntentPlainDownload(context: Context, dbSource: String?): Intent {
-        val dbDest = getDatabasePath(context)
+        val dbDest = StorageSettings.getDatabasePath(context)
         val intent = Intent(context, DownloadActivity::class.java)
         intent.putExtra(DOWNLOAD_MODE_ARG, Settings.Mode.DOWNLOAD.toString()) // plain transfer
         intent.putExtra(DOWNLOAD_FROM_ARG, dbSource) // source file
@@ -65,15 +56,15 @@ object DownloadIntentFactory {
     }
 
     private fun makeIntentZipDownload(context: Context): Intent {
-        val dbZipSource = getDbDownloadZippedSourcePath(context)
+        val dbZipSource = StorageSettings.getDbDownloadZippedSourcePath(context)
         return makeIntentZipDownload(context, dbZipSource)
     }
 
     private fun makeIntentZipDownload(context: Context, dbZipSource: String?): Intent {
-        val dbZipEntry = getDbDownloadName(context)
-        val dbDestDir = getDataDir(context)
-        val dbName = getDatabaseName()
-        val dbTarget = getDatabasePath(context)
+        val dbZipEntry = StorageSettings.getDbDownloadName(context)
+        val dbDestDir = StorageSettings.getDataDir(context)
+        val dbName = StorageSettings.getDatabaseName()
+        val dbTarget = StorageSettings.getDatabasePath(context)
         val intent = Intent(context, DownloadActivity::class.java)
         intent.putExtra(DOWNLOAD_MODE_ARG, Settings.Mode.DOWNLOAD_ZIP.toString()) // zipped transfer
         intent.putExtra(DOWNLOAD_FROM_ARG, dbZipSource) // source archive
@@ -87,16 +78,16 @@ object DownloadIntentFactory {
 
     @JvmStatic
     fun makeIntentDownloadThenDeploy(context: Context): Intent {
-        val dbZipSource = getDbDownloadZippedSourcePath(context)
-        val dbZipDest = getCachedZippedPath(context)
+        val dbZipSource = StorageSettings.getDbDownloadZippedSourcePath(context)
+        val dbZipDest = StorageSettings.getCachedZippedPath(context)
         return makeIntentDownloadThenDeploy(context, dbZipSource, dbZipDest)
     }
 
     private fun makeIntentDownloadThenDeploy(context: Context, dbZipSource: String?, dbZipDest: String?): Intent {
-        val dbDir = getDataDir(context)
-        val dbRenameFrom = getDbDownloadName(context)
-        val dbRenameTo = getDatabaseName()
-        val dbTarget = getDatabasePath(context)
+        val dbDir = StorageSettings.getDataDir(context)
+        val dbRenameFrom = StorageSettings.getDbDownloadName(context)
+        val dbRenameTo = StorageSettings.getDatabaseName()
+        val dbTarget = StorageSettings.getDatabasePath(context)
         val intent = Intent(context, DownloadActivity::class.java)
         intent.putExtra(DOWNLOAD_MODE_ARG, Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP.toString()) // zip transfer then unzip
         intent.putExtra(DOWNLOAD_FROM_ARG, dbZipSource) // source archive
@@ -110,22 +101,22 @@ object DownloadIntentFactory {
 
     @JvmStatic
     fun makeUpdateIntent(context: Context): Intent {
-        val downloadSourceType = getDatapackSourceType(context)
-        val downloadSourceUrl = (if ("download" == downloadSourceType) getDatapackSource(context) else getDbDownloadZippedSourcePath(context))!!
+        val downloadSourceType = Settings.getDatapackSourceType(context)
+        val downloadSourceUrl = (if ("download" == downloadSourceType) Settings.getDatapackSource(context) else StorageSettings.getDbDownloadZippedSourcePath(context))!!
         if (!downloadSourceUrl.endsWith(Deploy.ZIP_EXTENSION)) 
         {
             return makeIntentPlainDownload(context, downloadSourceUrl)
         }
 
         // source has zip extension
-        var mode = getModePref(context)
+        var mode = Mode.getModePref(context)
         if (mode == null) {
             mode = Settings.Mode.DOWNLOAD_ZIP
         }
         return when (mode) {
             Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP -> {
                 val name = Uri.parse(downloadSourceUrl).lastPathSegment
-                val cache = getCacheDir(context)
+                val cache = StorageSettings.getCacheDir(context)
                 val cachePath = "$cache/$name"
                 makeIntentDownloadThenDeploy(context, downloadSourceUrl, cachePath)
             }

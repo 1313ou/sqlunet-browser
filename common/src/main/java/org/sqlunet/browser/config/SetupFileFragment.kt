@@ -9,9 +9,7 @@ import android.text.SpannableStringBuilder
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.SpinnerAdapter
-import com.bbou.download.preference.Settings
-import com.bbou.download.preference.Settings.Mode.Companion.getModePref
-import com.bbou.download.preference.Settings.unrecordDatapack
+import com.bbou.download.preference.Settings.Mode
 import org.sqlunet.browser.EntryActivity.Companion.rerun
 import org.sqlunet.browser.Info.build
 import org.sqlunet.browser.common.R
@@ -26,12 +24,8 @@ import org.sqlunet.browser.config.SetupDatabaseTasks.deleteDatabase
 import org.sqlunet.browser.config.SetupDatabaseTasks.update
 import org.sqlunet.browser.config.Utils.confirm
 import org.sqlunet.browser.config.Utils.hrSize
-import org.sqlunet.settings.Settings.Companion.getZipEntry
-import org.sqlunet.settings.StorageSettings.getCachedZippedPath
-import org.sqlunet.settings.StorageSettings.getDatabasePath
-import org.sqlunet.settings.StorageSettings.getDbDownloadName
-import org.sqlunet.settings.StorageSettings.getDbDownloadSourcePath
-import org.sqlunet.settings.StorageSettings.getDbDownloadZippedSourcePath
+import org.sqlunet.settings.Settings
+import org.sqlunet.settings.StorageSettings
 import org.sqlunet.settings.StorageUtils.getFree
 import java.io.File
 
@@ -111,16 +105,16 @@ class SetupFileFragment : BaseTaskFragment() {
                 when (op) {
                     Operation.CREATE -> {
                         status!!.setText(R.string.status_task_running)
-                        success = createDatabase(activity, getDatabasePath(activity))
+                        success = createDatabase(activity, StorageSettings.getDatabasePath(activity))
                         status!!.setText(if (success) R.string.status_task_done else R.string.status_task_failed)
-                        unrecordDatapack(activity)
+                        com.bbou.download.preference.Settings.unrecordDatapack(activity)
                     }
 
                     Operation.DROP -> confirm(activity, R.string.title_setup_drop, R.string.ask_drop) {
                         status!!.setText(R.string.status_task_running)
-                        val success1 = deleteDatabase(activity, getDatabasePath(activity))
+                        val success1 = deleteDatabase(activity, StorageSettings.getDatabasePath(activity))
                         status!!.setText(if (success1) R.string.status_task_done else R.string.status_task_failed)
-                        unrecordDatapack(activity)
+                        com.bbou.download.preference.Settings.unrecordDatapack(activity)
                         rerun(activity)
                     }
 
@@ -142,7 +136,7 @@ class SetupFileFragment : BaseTaskFragment() {
                         val intent2 = Intent(activity, OperationActivity::class.java)
                         intent2.putExtra(OperationActivity.ARG_OP, OperationActivity.OP_UNZIP_ENTRY)
                         intent2.putExtra(OperationActivity.ARG_TYPES, arrayOf("application/zip"))
-                        intent2.putExtra(OperationActivity.ARG_ZIP_ENTRY, getZipEntry(requireContext(), getDbDownloadName(requireContext())))
+                        intent2.putExtra(OperationActivity.ARG_ZIP_ENTRY, Settings.getZipEntry(requireContext(), StorageSettings.getDbDownloadName(requireContext())))
                         activity.startActivity(intent2)
                     }
 
@@ -244,7 +238,7 @@ class SetupFileFragment : BaseTaskFragment() {
      */
     private fun statusCreate(): SpannableStringBuilder {
         val context = requireContext()
-        val database = getDatabasePath(context)
+        val database = StorageSettings.getDatabasePath(context)
         val free = getFree(context, database)
         val databaseExists = File(database).exists()
         val sb = SpannableStringBuilder()
@@ -266,7 +260,7 @@ class SetupFileFragment : BaseTaskFragment() {
      */
     private fun statusDrop(): SpannableStringBuilder {
         val context = requireContext()
-        val database = getDatabasePath(context)
+        val database = StorageSettings.getDatabasePath(context)
         val free = getFree(context, database)
         val databaseExists = File(database).exists()
         val sb = SpannableStringBuilder()
@@ -288,7 +282,7 @@ class SetupFileFragment : BaseTaskFragment() {
      */
     private fun statusCopy(): SpannableStringBuilder {
         val context = requireContext()
-        val database = getDatabasePath(context)
+        val database = StorageSettings.getDatabasePath(context)
         val free = getFree(context, database)
         val databaseExists = File(database).exists()
         /*
@@ -326,7 +320,7 @@ class SetupFileFragment : BaseTaskFragment() {
      */
     private fun statusUnzip(): SpannableStringBuilder {
         val context = requireContext()
-        val database = getDatabasePath(context)
+        val database = StorageSettings.getDatabasePath(context)
         val free = getFree(context, database)
         val databaseExists = File(database).exists()
         /*
@@ -387,9 +381,9 @@ class SetupFileFragment : BaseTaskFragment() {
      */
     private fun statusDownload(): SpannableStringBuilder {
         val context = requireContext()
-        val mode = getModePref(context)
-        val from = getDbDownloadSourcePath(context, mode == Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == Settings.Mode.DOWNLOAD_ZIP)
-        val to = getDatabasePath(context)
+        val mode = Mode.getModePref(context)
+        val from = StorageSettings.getDbDownloadSourcePath(context, mode == com.bbou.download.preference.Settings.Mode.DOWNLOAD_ZIP_THEN_UNZIP || mode == com.bbou.download.preference.Settings.Mode.DOWNLOAD_ZIP)
+        val to = StorageSettings.getDatabasePath(context)
         val free = getFree(context, to)
         val targetExists = File(to).exists()
         val sb = SpannableStringBuilder()
@@ -415,8 +409,8 @@ class SetupFileFragment : BaseTaskFragment() {
      */
     private fun statusDownloadZipped(): SpannableStringBuilder {
         val context = requireContext()
-        val from = getDbDownloadZippedSourcePath(context)
-        val to = getCachedZippedPath(context)
+        val from = StorageSettings.getDbDownloadZippedSourcePath(context)
+        val to = StorageSettings.getCachedZippedPath(context)
         val free = getFree(context, to)
         val targetExists = File(to).exists()
         val sb = SpannableStringBuilder()

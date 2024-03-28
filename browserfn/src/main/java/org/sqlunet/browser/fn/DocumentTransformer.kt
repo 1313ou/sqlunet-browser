@@ -20,8 +20,8 @@ class DocumentTransformer : org.sqlunet.browser.web.DocumentTransformer() {
      * @return XSL inputstream
      */
     override fun getXSLStream(from: String, isSelector: Boolean): InputStream? {
-        val source = Settings.Source.valueOf(from)
-        if (source == Settings.Source.FRAMENET) {
+        val source = FnSettings.Source.valueOf(from)
+        if (source == FnSettings.Source.FRAMENET) {
             val xsl = XSL_DIR + if (isSelector) "framenet2html-select.xsl" else "framenet2html.xsl"
             return DocumentTransformer::class.java.getResourceAsStream(xsl)
         }

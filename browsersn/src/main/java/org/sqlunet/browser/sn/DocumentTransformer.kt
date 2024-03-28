@@ -21,11 +21,11 @@ class DocumentTransformer : DocumentTransformer() {
      * @return XSL inputstream
      */
     override fun getXSLStream(from: String, isSelector: Boolean): InputStream? {
-        val source = Settings.Source.valueOf(from)
+        val source = SnSettings.Source.valueOf(from)
         val xsl: String = when (source) {
-            Settings.Source.WORDNET -> XSL_DIR + (if (isSelector) "wordnet2html-select.xsl" else "wordnet2html.xsl")
-            Settings.Source.SYNTAGNET -> XSL_DIR + (if (isSelector) "syntagnet2html-select.xsl" else "syntagnet2html.xsl")
-            Settings.Source.BNC -> XSL_DIR + (if (isSelector) "bnc2html-select.xsl" else "bnc2html.xsl")
+            SnSettings.Source.WORDNET -> XSL_DIR + (if (isSelector) "wordnet2html-select.xsl" else "wordnet2html.xsl")
+            SnSettings.Source.SYNTAGNET -> XSL_DIR + (if (isSelector) "syntagnet2html-select.xsl" else "syntagnet2html.xsl")
+            SnSettings.Source.BNC -> XSL_DIR + (if (isSelector) "bnc2html-select.xsl" else "bnc2html.xsl")
         }
         return DocumentTransformer::class.java.getResourceAsStream(xsl)
     }

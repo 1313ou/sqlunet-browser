@@ -37,11 +37,7 @@ import org.sqlunet.browser.config.StorageActivity
 import org.sqlunet.browser.history.HistoryActivity
 import org.sqlunet.provider.BaseProvider
 import org.sqlunet.provider.BaseProvider.Companion.closeProviders
-import org.sqlunet.settings.Settings.Companion.applicationSettings
-import org.sqlunet.settings.Settings.Companion.getAssetPack
-import org.sqlunet.settings.Settings.Companion.getAssetPackDir
-import org.sqlunet.settings.Settings.Companion.getAssetPackZip
-
+import org.sqlunet.settings.Settings
 
 /**
  * Menu dispatcher/handler
@@ -60,7 +56,6 @@ object MenuHandler {
     @JvmStatic
     fun menuDispatch(activity: AppCompatActivity, item: MenuItem): Boolean {
         val intent: Intent
-
         // main
         when (val itemId = item.itemId) {
             R.id.action_main -> {
@@ -143,7 +138,6 @@ object MenuHandler {
                 return menuDispatchCommon(activity, itemId)
             }
         }
-
         // start activity
         activity.startActivity(intent)
         return true
@@ -158,7 +152,6 @@ object MenuHandler {
      */
     fun menuDispatchWhenCantRun(activity: AppCompatActivity, item: MenuItem): Boolean {
         val intent: Intent
-
         // handle item selection
         // status
         when (val itemId = item.itemId) {
@@ -195,7 +188,6 @@ object MenuHandler {
                 return menuDispatchCommon(activity, itemId)
             }
         }
-
         // start activity
         activity.startActivity(intent)
         return true
@@ -229,25 +221,25 @@ object MenuHandler {
             }
 
             R.id.action_asset_deliver -> {
-                val asset = getAssetPack(activity)
-                val assetDir = getAssetPackDir(activity)
-                val assetZip = getAssetPackZip(activity)
+                val asset = Settings.getAssetPack(activity)
+                val assetDir = Settings.getAssetPackDir(activity)
+                val assetZip = Settings.getAssetPackZip(activity)
                 val assetZipEntry = activity.getString(R.string.asset_zip_entry)
                 val observer: TaskObserver<Pair<Number, Number>> = TaskDialogObserver<Pair<Number, Number>>(activity.supportFragmentManager)
-                    .setTitle(activity.getString(R.string.title_dialog_assetload))
-                    .setMessage("$asset\n${activity.getString(R.string.gloss_asset_delivery_message)}")
+                        .setTitle(activity.getString(R.string.title_dialog_assetload))
+                        .setMessage("$asset\n${activity.getString(R.string.gloss_asset_delivery_message)}")
                 deliverAsset(asset, assetDir, assetZip, assetZipEntry, activity, observer, null, null)
                 return true
             }
 
             R.id.action_asset_dispose -> {
-                disposeAsset(getAssetPack(activity), activity)
+                disposeAsset(Settings.getAssetPack(activity), activity)
                 return true
             }
 
             R.id.action_appsettings -> {
                 val appId = activity.packageName
-                applicationSettings(activity, appId)
+                Settings.applicationSettings(activity, appId)
                 return true
             }
 
@@ -277,7 +269,6 @@ object MenuHandler {
                 return false
             }
         }
-
         // start activity
         activity.startActivity(intent)
         return true

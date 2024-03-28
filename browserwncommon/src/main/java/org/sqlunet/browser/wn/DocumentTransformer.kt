@@ -20,10 +20,10 @@ class DocumentTransformer : org.sqlunet.browser.web.DocumentTransformer() {
      * @return XSL inputstream
      */
     override fun getXSLStream(from: String, isSelector: Boolean): InputStream? {
-        val source = Settings.Source.valueOf(from)
+        val source = WnSettings.Source.valueOf(from)
         val xsl: String = when (source) {
-            Settings.Source.WORDNET -> XSL_DIR + (if (isSelector) "wordnet2html-select.xsl" else "wordnet2html.xsl")
-            Settings.Source.BNC -> XSL_DIR + (if (isSelector) "bnc2html-select.xsl" else "bnc2html.xsl")
+            WnSettings.Source.WORDNET -> XSL_DIR + (if (isSelector) "wordnet2html-select.xsl" else "wordnet2html.xsl")
+            WnSettings.Source.BNC -> XSL_DIR + (if (isSelector) "bnc2html-select.xsl" else "bnc2html.xsl")
         }
         return DocumentTransformer::class.java.getResourceAsStream(xsl)
     }

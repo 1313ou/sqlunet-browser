@@ -31,9 +31,6 @@ import org.sqlunet.framenet.browser.FnLexUnitActivity
 import org.sqlunet.framenet.browser.FnSentenceActivity
 import org.sqlunet.provider.ProviderArgs
 import org.sqlunet.settings.Settings
-import org.sqlunet.settings.Settings.Companion.getDetailViewModePref
-import org.sqlunet.settings.Settings.Companion.getSelectorPref
-import org.sqlunet.settings.Settings.Companion.getSelectorViewModePref
 import org.sqlunet.settings.Settings.DetailViewMode
 import org.sqlunet.settings.Settings.SelectorViewMode
 
@@ -58,30 +55,25 @@ class BrowseFragment : BaseSearchFragment() {
             // splash fragment
             val fragment: Fragment = BrowseSplashFragment()
             getChildFragmentManager()
-                .beginTransaction()
-                .setReorderingAllowed(true)
-                .replace(R.id.container_browse, fragment, SplashFragment.FRAGMENT_TAG)
-                //.addToBackStack(SplashFragment.FRAGMENT_TAG)
-                .commit()
+                    .beginTransaction()
+                    .setReorderingAllowed(true)
+                    .replace(R.id.container_browse, fragment, SplashFragment.FRAGMENT_TAG)
+                    //.addToBackStack(SplashFragment.FRAGMENT_TAG)
+                    .commit()
         }
     }
 
     override fun onStop() {
         super.onStop()
-
         // remove data fragments and replace with splash before onSaveInstanceState takes place (between -3 and -4)
         beforeSaving(BrowseSplashFragment(), SplashFragment.FRAGMENT_TAG, R.id.container_browse, BaseBrowse1Fragment.FRAGMENT_TAG)
     }
-
     // M E N U
-
     @Deprecated("Deprecated in Java", ReplaceWith("Add a MenuHost"))
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return false
     }
-
     // S E A R C H
-
     /**
      * Handle search
      *
@@ -92,23 +84,18 @@ class BrowseFragment : BaseSearchFragment() {
         if (trimmedQuery.isEmpty()) {
             return
         }
-
         // super
         super.search(trimmedQuery)
-
         // log
         Log.d(TAG, "Browse '$trimmedQuery'")
-
         // history
         recordQuery(requireContext(), trimmedQuery)
-
         // menuDispatch as per query prefix
         var fragment: Fragment?
         var targetIntent: Intent? = null
         val args = Bundle()
         if (trimmedQuery.matches("#\\p{Lower}\\p{Lower}\\d+".toRegex())) {
             val id = trimmedQuery.substring(3).toLong()
-
             // framenet
             targetIntent = if (trimmedQuery.startsWith("#ff")) {
                 val framePointer: Parcelable = FnFramePointer(id)
@@ -145,14 +132,11 @@ class BrowseFragment : BaseSearchFragment() {
             }
         }
         run {
-
             // search for string
             args.putString(ProviderArgs.ARG_QUERYSTRING, trimmedQuery)
-
             //targetIntent = makeSelectorIntent()
             fragment = makeOverviewFragment()
         }
-
         // menuDispatch
         Log.d(TAG, "Search $args")
         if (targetIntent != null) {
@@ -162,19 +146,17 @@ class BrowseFragment : BaseSearchFragment() {
         }
         if (fragment != null) {
             fragment!!.setArguments(args)
-
             // fragment
             fragment!!.setArguments(args)
-
             // transaction
             if (!isAdded) {
                 return
             }
             getChildFragmentManager()
-                .beginTransaction()
-                .setReorderingAllowed(true)
-                .replace(R.id.container_browse, fragment!!, BaseBrowse1Fragment.FRAGMENT_TAG)
-                .addToBackStack(BaseBrowse1Fragment.FRAGMENT_TAG).commit()
+                    .beginTransaction()
+                    .setReorderingAllowed(true)
+                    .replace(R.id.container_browse, fragment!!, BaseBrowse1Fragment.FRAGMENT_TAG)
+                    .addToBackStack(BaseBrowse1Fragment.FRAGMENT_TAG).commit()
         }
     }
 
@@ -185,9 +167,7 @@ class BrowseFragment : BaseSearchFragment() {
         val active = getChildFragmentManager().findFragmentById(R.id.container_browse)
         return active != null && SplashFragment.FRAGMENT_TAG == active.tag
     }
-
     // I N T E N T / F R A G M E N T   F A C T O R Y
-
     /**
      * Browse1/Web fragment factory
      *
@@ -196,12 +176,10 @@ class BrowseFragment : BaseSearchFragment() {
     private fun makeOverviewFragment(): Fragment? {
         // context
         val context = requireContext()
-
         // type
-        val selectorType = getSelectorPref(context)
-
+        val selectorType = Settings.getSelectorPref(context)
         // mode
-        val selectorMode = getSelectorViewModePref(context)
+        val selectorMode = Settings.getSelectorViewModePref(context)
         when (selectorMode) {
             SelectorViewMode.VIEW -> if (selectorType == Settings.Selector.SELECTOR) {
                 return Browse1Fragment()
@@ -220,15 +198,12 @@ class BrowseFragment : BaseSearchFragment() {
     private fun makeSelectorIntent(): Intent {
         // context
         val context = requireContext()
-
         // intent
         var intent: Intent? = null
-
         // type
-        val selectorType = getSelectorPref(context)
-
+        val selectorType = Settings.getSelectorPref(context)
         // mode
-        val selectorMode = getSelectorViewModePref(context)
+        val selectorMode = Settings.getSelectorViewModePref(context)
         when (selectorMode) {
             SelectorViewMode.VIEW -> {
                 var intentClass: Class<*>? = null
@@ -253,10 +228,8 @@ class BrowseFragment : BaseSearchFragment() {
     private fun makeDetailIntent(intentClass: Class<*>): Intent {
         // context
         val context = requireContext()
-
         // mode
-        val detailMode = getDetailViewModePref(context)
-
+        val detailMode = Settings.getDetailViewModePref(context)
         // intent
         val intent: Intent = when (detailMode) {
             DetailViewMode.VIEW -> Intent(context, intentClass)
@@ -267,6 +240,7 @@ class BrowseFragment : BaseSearchFragment() {
     }
 
     companion object {
+
         private const val TAG = "BrowseF"
     }
 }

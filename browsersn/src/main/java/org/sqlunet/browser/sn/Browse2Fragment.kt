@@ -8,7 +8,6 @@ import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import org.sqlunet.bnc.browser.BNCFragment
 import org.sqlunet.browser.BaseBrowse2Fragment
-import org.sqlunet.browser.sn.Settings.getAllPref
 import org.sqlunet.browser.sn.selector.CollocationSelectorPointer
 import org.sqlunet.browser.sn.web.WebFragment
 import org.sqlunet.browser.sn.xselector.XSelectorPointer
@@ -60,13 +59,13 @@ class Browse2Fragment : BaseBrowse2Fragment() {
         val mode: Settings.DetailViewMode = Settings.getDetailViewModePref(context)
         when (mode) {
             Settings.DetailViewMode.VIEW -> {
-                val enable = getAllPref(context)
+                val enable = SnSettings.getAllPref(context)
 
                 // transaction
                 val transaction = manager.beginTransaction().setReorderingAllowed(true)
 
                 // wordnet
-                if (enable and org.sqlunet.browser.sn.Settings.ENABLE_WORDNET != 0 && hasWordNet) {
+                if (enable and org.sqlunet.browser.sn.SnSettings.ENABLE_WORDNET != 0 && hasWordNet) {
                     // var labelView = findViewById(R.id.label_wordnet)
                     // labelView.setVisibility(View.VISIBLE)
                     val senseFragment = SenseFragment()
@@ -81,7 +80,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
                 }
 
                 // syntagnet
-                if (enable and org.sqlunet.browser.sn.Settings.ENABLE_SYNTAGNET != 0) {
+                if (enable and org.sqlunet.browser.sn.SnSettings.ENABLE_SYNTAGNET != 0) {
                     // var labelView = findViewById(R.id.label_syntagnet)
                     // labelView.setVisibility(View.VISIBLE)
                     val syntagNetFragment: Fragment = SyntagNetFragment()
@@ -95,7 +94,7 @@ class Browse2Fragment : BaseBrowse2Fragment() {
                 }
 
                 // bnc
-                if (enable and org.sqlunet.browser.sn.Settings.ENABLE_BNC != 0) {
+                if (enable and org.sqlunet.browser.sn.SnSettings.ENABLE_BNC != 0) {
                     // var labelView = findViewById(R.id.label_bnc)
                     // labelView.setVisibility(View.VISIBLE)
                     val bncFragment: Fragment = BNCFragment()
