@@ -71,6 +71,7 @@ class TreeNode(
         children = ArrayList()
         controller.attachNode(this)
     }
+
     // T R E E
 
     /**
@@ -291,6 +292,7 @@ class TreeNode(
             }
             return false
         }
+
     // A T T R I B U T E S
 
     /**
@@ -372,7 +374,9 @@ class TreeNode(
             child.toStringWithChildren(sb, level + 1)
         }
     }
+
     // C L I C K  L I S T E N E R
+
     /**
      * Set click listener
      *
