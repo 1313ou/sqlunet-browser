@@ -202,6 +202,7 @@ object TreeFactory {
     fun makeLinkQueryNode(text: CharSequence, @DrawableRes icon: Int, breakExpand: Boolean, query: Query?, link: Link?, @DrawableRes buttonImageRes: Int): TreeNode {
         return TreeNode(text, icon, arrayOf(query, link), LinkQueryController(breakExpand, buttonImageRes), true)
     }
+
     // H E L P E R S
 
    /**

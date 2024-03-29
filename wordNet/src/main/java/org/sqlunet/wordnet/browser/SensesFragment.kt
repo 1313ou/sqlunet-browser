@@ -130,6 +130,7 @@ class SensesFragment : ListFragment() {
         val adapter = listAdapter as CursorAdapter?
         adapter?.changeCursor(null)
     }
+
     // H E L P E R S
 
    /**
@@ -256,6 +257,7 @@ class SensesFragment : ListFragment() {
     fun setListener(listener: Listener?) {
         this.listener = listener
     }
+
     // C L I C K
 
    /**

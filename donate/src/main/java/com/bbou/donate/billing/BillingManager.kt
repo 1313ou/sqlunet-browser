@@ -388,6 +388,7 @@ class BillingManager(activity: Activity, listener: BillingListener) {
             client!!.acknowledgePurchase(acknowledgePurchaseParams) { billingResult: BillingResult -> Log.d(TAG, "Acknowledged purchase: " + purchase + " response: " + billingResult.responseCode) }
         }
     }
+
     // C O N S U M E
 
    /**

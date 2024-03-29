@@ -1715,6 +1715,7 @@ abstract class BaseModule internal constructor(fragment: TreeFragment) : Module(
         cursor.close()
         return changed
     }
+
     // A G E N T S
 
    /**

@@ -161,6 +161,7 @@ abstract class BaseSettingsActivity : AppCompatActivity(), PreferenceFragmentCom
             setPreferencesFromResource(R.xml.pref_headers2, rootKey)
         }
     }
+
     // U T I L S
 
    /**

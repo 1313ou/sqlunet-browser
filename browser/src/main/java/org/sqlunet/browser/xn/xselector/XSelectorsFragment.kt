@@ -535,6 +535,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
         val uri = Uri.parse(XSqlUNetProvider.makeUri(sql.providerUri))
         fnFromWordIdModel!!.loadData(uri, sql, null)
     }
+
     // L I S T E N E R
 
    /**

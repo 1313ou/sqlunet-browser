@@ -75,6 +75,7 @@ class BrowseFragment : BaseSearchFragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return false
     }
+
     // S E A R C H
 
    /**
@@ -170,6 +171,7 @@ class BrowseFragment : BaseSearchFragment() {
         val active = getChildFragmentManager().findFragmentById(R.id.container_browse)
         return active != null && SplashFragment.FRAGMENT_TAG == active.tag
     }
+
     // I N T E N T / F R A G M E N T   F A C T O R Y
     /**
      * Browse1/Web fragment factory

@@ -159,6 +159,7 @@ class SyntagNetImplementation : SyntagNetInterface {
     companion object {
 
         const val SN_NS = "http://org.sqlunet/sn"
+
         // S E L E C T O R
 
        /**
@@ -199,6 +200,7 @@ class SyntagNetImplementation : SyntagNetInterface {
                 makeCollocationNode(doc, parent, collocation, i++)
             }
         }
+
         // D E T A I L
 
        /**

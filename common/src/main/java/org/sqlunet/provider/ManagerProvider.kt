@@ -19,6 +19,7 @@ import org.sqlunet.provider.ManagerContract.TablesAndIndices
  * @author [Bernard Bou](mailto:1313ou@gmail.com)
  */
 class ManagerProvider : BaseProvider() {
+
     // M I M E
 
     override fun getType(uri: Uri): String {

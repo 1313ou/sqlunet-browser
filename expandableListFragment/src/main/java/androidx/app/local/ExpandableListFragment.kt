@@ -136,6 +136,7 @@ open class ExpandableListFragment : Fragment(), OnChildClickListener, OnGroupCol
         // request focus
         mFocusHandler.post(mRequestFocus)
     }
+
     // L I F E C Y C L E   E V E N T S
 
     /**

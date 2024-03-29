@@ -93,6 +93,7 @@ class SetupWnStatusFragment : SetupStatusFragment() {
             }
         }
     }
+
     // U P D A T E
 
    /**
