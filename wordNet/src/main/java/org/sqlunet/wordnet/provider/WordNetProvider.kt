@@ -229,6 +229,7 @@ class WordNetProvider : BaseProvider() {
         private const val TAG = "WordNetProvider"
 
         // C O N T E N T   P R O V I D E R   A U T H O R I T Y
+
         private val AUTHORITY = makeAuthority("wordnet_authority")
 
         // U R I M A T C H E R

@@ -426,6 +426,7 @@ object Queries {
     }
 
     // S N   B R O W S E R
+
     @JvmStatic
     fun prepareSelectSn(word: String): ContentProviderSql {
         val providerSql = ContentProviderSql()

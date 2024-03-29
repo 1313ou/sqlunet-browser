@@ -147,6 +147,7 @@ abstract class BaseSettingsActivity : AppCompatActivity(), PreferenceFragmentCom
     }
 
     // H E A D E R   F R A G M E N T
+
     class HeaderFragment : PreferenceFragmentCompat() {
 
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {

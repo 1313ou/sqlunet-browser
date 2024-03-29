@@ -137,6 +137,7 @@ open class ExpandableListFragment : Fragment(), OnChildClickListener, OnGroupCol
         mFocusHandler.post(mRequestFocus)
     }
     // L I F E C Y C L E   E V E N T S
+
     /**
      * Provide default implementation to return a simple list view. Subclasses can override to replace with their own layout. If doing so, the returned view
      * hierarchy *must* have a ListView whose id is [android.R.id.list] and can optionally have a sibling view id

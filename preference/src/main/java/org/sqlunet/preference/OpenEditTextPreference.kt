@@ -160,6 +160,7 @@ class OpenEditTextPreference : DialogPreference {
     }
 
     // D I A L O G  F R A G M E N T
+
     class OpenEditTextPreferenceDialogFragmentCompat : PreferenceDialogFragmentCompat() {
 
         private var editView: EditText? = null

@@ -84,6 +84,7 @@ class SetupActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
     }
 
     // T A B  L I S T E N E R
+
     override fun onTabSelected(tab: TabLayout.Tab) {
         val position = tab.position
         viewPager.setCurrentItem(position)
