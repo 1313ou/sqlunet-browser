@@ -98,8 +98,6 @@ class TreeViewer(
      */
     private val useAnimation: Boolean
 
-    // C O N S T R U C T O R
-
     init {
         containerStyle = R.style.TreeNodeStyleCustom // R.style.TreeNodeStyleDivided
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)

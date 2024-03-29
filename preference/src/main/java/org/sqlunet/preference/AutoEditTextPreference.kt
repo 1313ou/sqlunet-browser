@@ -38,7 +38,7 @@ class AutoEditTextPreference : DialogPreference {
      */
     lateinit var values: Array<CharSequence>
 
-    // C O N S T R U C T O R
+    // C O N S T R U C T O R S
 
     /**
      * Constructor

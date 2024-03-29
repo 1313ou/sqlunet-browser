@@ -62,7 +62,7 @@ class OpenEditTextPreference : DialogPreference {
      */
     private var xLabels: List<String>? = null
 
-    // C O N S T R U C T O R
+    // C O N S T R U C T O R S
 
     /**
      * Constructor

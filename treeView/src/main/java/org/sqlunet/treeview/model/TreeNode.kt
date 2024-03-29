@@ -63,7 +63,7 @@ class TreeNode(
 
     // C O N S T R U C T O R S
 
-   constructor(controller: Controller) : this(null, null, null, controller, true) // root
+    constructor(controller: Controller) : this(null, null, null, controller, true) // root
 
     constructor(text: CharSequence, controller: Controller, collapsible: Boolean) : this(text, null, null, controller, collapsible)
 
@@ -73,7 +73,7 @@ class TreeNode(
     }
     // T R E E
 
-   /**
+    /**
      * Add this node to parent node
      *
      * @param parentNode parent node
@@ -293,7 +293,7 @@ class TreeNode(
         }
     // A T T R I B U T E S
 
-   /**
+    /**
      * Get whether this node is selected
      *
      * @return whether this node is selected
@@ -313,7 +313,7 @@ class TreeNode(
 
     // S T R I N G I F Y
 
-   override fun toString(): String {
+    override fun toString(): String {
         val sb = StringBuilder()
         sb
             .append("#")
