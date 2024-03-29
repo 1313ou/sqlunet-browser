@@ -85,7 +85,7 @@ abstract class BaseSettingsActivity : AppCompatActivity(), PreferenceFragmentCom
 
     // M E N U
 
-   override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.settings, menu)
         // MenuCompat.setGroupDividerEnabled(menu, true)
@@ -119,7 +119,7 @@ abstract class BaseSettingsActivity : AppCompatActivity(), PreferenceFragmentCom
 
     // U P
 
-   override fun onSupportNavigateUp(): Boolean {
+    override fun onSupportNavigateUp(): Boolean {
         val fm = supportFragmentManager
         return if (fm.popBackStackImmediate()) {
             true
@@ -128,7 +128,7 @@ abstract class BaseSettingsActivity : AppCompatActivity(), PreferenceFragmentCom
 
     // U T I L S
 
-   override fun onPreferenceStartFragment(caller: PreferenceFragmentCompat, pref: Preference): Boolean {
+    override fun onPreferenceStartFragment(caller: PreferenceFragmentCompat, pref: Preference): Boolean {
         // Instantiate the new fragment
         val fragmentClassName = pref.fragment!!
         val args = pref.getExtras()
@@ -164,7 +164,7 @@ abstract class BaseSettingsActivity : AppCompatActivity(), PreferenceFragmentCom
 
     // U T I L S
 
-   /**
+    /**
      * Reset settings
      */
     private fun resetSettings() {

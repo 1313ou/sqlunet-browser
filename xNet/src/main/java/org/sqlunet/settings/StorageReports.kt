@@ -266,7 +266,7 @@ object StorageReports {
 
     // D I R
 
-   private fun appendDir(sb: SpannableStringBuilder, header: CharSequence, dir: File?): SpannableStringBuilder {
+    private fun appendDir(sb: SpannableStringBuilder, header: CharSequence, dir: File?): SpannableStringBuilder {
         if (dir != null) {
             appendHeader(sb, header).append(' ').append(storageFreeAsString(dir)).append('\n').append(dir.absolutePath).append('\n')
         }
@@ -275,7 +275,7 @@ object StorageReports {
 
     // R E P O R T S
 
-   /**
+    /**
      * Report on external storage
      *
      * @param context context

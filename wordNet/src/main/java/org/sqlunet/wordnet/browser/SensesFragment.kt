@@ -133,7 +133,7 @@ class SensesFragment : ListFragment() {
 
     // H E L P E R S
 
-   /**
+    /**
      * Make adapter
      *
      * @return adapter
@@ -260,7 +260,7 @@ class SensesFragment : ListFragment() {
 
     // C L I C K
 
-   /**
+    /**
      * Turns on activate-on-click mode. When this mode is on, list items will be given the 'activated' state when touched.
      *
      * @param activateOnItemClick true if activate

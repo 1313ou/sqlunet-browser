@@ -234,7 +234,7 @@ class WordNetProvider : BaseProvider() {
 
         // U R I M A T C H E R
 
-       private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
+        private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
 
         init {
             matchURIs()

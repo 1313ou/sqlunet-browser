@@ -49,7 +49,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 
 			// I T E M
 
-		// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
+			// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
 			// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query
 
 			case PBROLESET1:
@@ -198,8 +198,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 
 	private enum Key
 	{
-		PBWORDS,
-		PBROLESETS, PBROLESETS_X, PBROLESETS_X_BY_ROLESET, //
+		PBWORDS, PBROLESETS, PBROLESETS_X, PBROLESETS_X_BY_ROLESET, //
 		PBROLESET1, //
 		PBROLESETS_PBROLES, PBROLESETS_PBEXAMPLES, PBROLESETS_PBEXAMPLES_BY_EXAMPLE, //
 		WORDS_PBROLESETS, LOOKUP_FTS_EXAMPLES, LOOKUP_FTS_EXAMPLES_X, LOOKUP_FTS_EXAMPLES_X_BY_EXAMPLE, //

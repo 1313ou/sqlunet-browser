@@ -39,7 +39,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 		{
 			// T A B L E
 
-		// table uri : last element is table
+			// table uri : last element is table
 
 			case LEXUNITS:
 				table = "${lexunits.table}";
@@ -63,7 +63,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 
 			// I T E M
 
-		// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
+			// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
 			// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query
 
 			case LEXUNIT1:
@@ -444,7 +444,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 						"${governors.table}", "${governors.governorid}", //
 						"${words.table}", "${words.fnwordid}", //
 						"${wnwords.table}", "${wnwords.wordid}" //
-						);
+				);
 				break;
 
 			case GOVERNORS_ANNOSETS:
@@ -572,13 +572,13 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 			default:
 				return null;
 		}
-		return new String[]	{ //
-						quote(table), //
-						projection == null ? null : "{" + Arrays.stream(projection).map(Factory::quote).collect(Collectors.joining(",")) + "}", //
-						quote(selection), //
-						selectionArgs == null ? null : "{" + Arrays.stream(selectionArgs).map(Factory::quote).collect(Collectors.joining(",")) + "}", //
-						quote(groupBy), //
-						quote(sortOrder)};
+		return new String[]{ //
+				quote(table), //
+				projection == null ? null : "{" + Arrays.stream(projection).map(Factory::quote).collect(Collectors.joining(",")) + "}", //
+				quote(selection), //
+				selectionArgs == null ? null : "{" + Arrays.stream(selectionArgs).map(Factory::quote).collect(Collectors.joining(",")) + "}", //
+				quote(groupBy), //
+				quote(sortOrder)};
 	}
 
 	@Override

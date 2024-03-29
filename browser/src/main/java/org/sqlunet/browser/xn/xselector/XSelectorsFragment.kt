@@ -538,7 +538,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
 
     // L I S T E N E R
 
-   /**
+    /**
      * Set listener
      *
      * @param listener listener
@@ -549,7 +549,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
 
     // C L I C K
 
-   /**
+    /**
      * Turns on activate-on-click mode. When this mode is on, list items will be given the 'activated' state when touched.
      *
      * @param activateOnItemClick true if activate

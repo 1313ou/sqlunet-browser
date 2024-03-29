@@ -55,12 +55,12 @@ allprojects {
     }
 
     gradle.projectsEvaluated {
-        tasks.withType < JavaCompile > {
+        tasks.withType<JavaCompile> {
             options.compilerArgs.addAll(arrayOf("-Xlint:deprecation", "-Xlint:unchecked"))
         }
     }
 
-    tasks.register < Delete > ("cleanroot") {
+    tasks.register<Delete>("cleanroot") {
         delete(rootProject.layout.buildDirectory.get().asFile)
     }
 }
@@ -70,29 +70,29 @@ idea {
         // println("$project @ " + project.projectDir)
 
         excludeDirs.addAll(
-                files(
-                        "reference",
-                        "captures",
-                        "data",
-                        "data2",
-                        "tools",
-                        "utils",
-                        "dist",
-                        "gradle",
-                )
+            files(
+                "reference",
+                "captures",
+                "data",
+                "data2",
+                "tools",
+                "utils",
+                "dist",
+                "gradle",
+            )
         )
 
         project.subprojects.forEach { p ->
             // println("sub $p @ ${p.projectDir}")
             listOf("artwork", "artwork-assets", "artwork-relations", "data")
-                    .forEach { excluded ->
-                        fileTree("${p.projectDir}").visit {
-                            if (isDirectory && name == excluded) {
-                                // println("EXCLUDE $this")
-                                excludeDirs.add(file(file.absolutePath))
-                            }
+                .forEach { excluded ->
+                    fileTree("${p.projectDir}").visit {
+                        if (isDirectory && name == excluded) {
+                            // println("EXCLUDE $this")
+                            excludeDirs.add(file(file.absolutePath))
                         }
                     }
+                }
         }
         //excludeDirs.forEach {
         // println("- $it")

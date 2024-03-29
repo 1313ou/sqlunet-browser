@@ -385,16 +385,14 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 				break;
 
 			case WORDS_PRONUNCIATIONS_FNWORDS_PBWORDS_VNWORDS:
-				r.table =
-						"${lexes.table} AS ${as_lexes} " + //
+				r.table = "${lexes.table} AS ${as_lexes} " + //
 						"INNER JOIN ${words.table} AS ${as_words} USING (${words.wordid}) " + //
 						"LEFT JOIN ${senses.table} AS ${as_senses} USING (${words.wordid},${lexes.luid}) " + //
 						"LEFT JOIN ${synsets.table} AS ${as_synsets} USING (${synsets.synsetid}) " + //
 						"LEFT JOIN ${poses.table} AS ${as_poses} USING (${poses.posid}) " + //
 						"LEFT JOIN ${casedwords.table} USING (${words.wordid},${casedwords.casedwordid}) " + //
 						"LEFT JOIN ${lexes_pronunciations.table} USING (${lexes.luid},${words.wordid}) " + //
-						"LEFT JOIN ${pronunciations.table} AS ${as_pronunciations} USING (${pronunciations.pronunciationid}) " +
-						"LEFT JOIN ${domains.table} USING (${domains.domainid}) " + //
+						"LEFT JOIN ${pronunciations.table} AS ${as_pronunciations} USING (${pronunciations.pronunciationid}) " + "LEFT JOIN ${domains.table} USING (${domains.domainid}) " + //
 						"LEFT JOIN ${fn_words.table} USING (${words.wordid}) " + //
 						"LEFT JOIN ${vn_words.table} USING (${words.wordid}) " + //
 						"LEFT JOIN ${pb_words.table} USING (${words.wordid})";
@@ -686,8 +684,7 @@ public class Factory implements Function<String, String[]>, Supplier<String[]>
 		WORDS_PBWORDS_PBROLESETS_1, WORDS_PBWORDS_PBROLESETS_2, WORDS_PBWORDS_PBROLESETS_1U2, //
 		WORDS_FNWORDS_FNFRAMES_U, //
 		WORDS_FNWORDS_FNFRAMES_1, WORDS_FNWORDS_FNFRAMES_2, WORDS_FNWORDS_FNFRAMES_1U2, //
-		SOURCES,
-		META,
+		SOURCES, META,
 	}
 
 	static class Result

@@ -68,7 +68,7 @@ abstract class BaseSearchFragment : LoggingFragment(), SearchListener {
 
     // R E S O U R C E S
 
-   @JvmField
+    @JvmField
     @LayoutRes
     protected var layoutId = 0
 

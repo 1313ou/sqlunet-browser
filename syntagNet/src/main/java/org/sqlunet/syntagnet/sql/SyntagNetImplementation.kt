@@ -162,7 +162,7 @@ class SyntagNetImplementation : SyntagNetInterface {
 
         // S E L E C T O R
 
-       /**
+        /**
          * Perform queries for SyntagNet selector data from word
          *
          * @param connection connection
@@ -203,7 +203,7 @@ class SyntagNetImplementation : SyntagNetInterface {
 
         // D E T A I L
 
-       /**
+        /**
          * Perform queries for SyntagNet data from word id
          *
          * @param connection   data source

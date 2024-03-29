@@ -205,7 +205,7 @@ object TreeFactory {
 
     // H E L P E R S
 
-   /**
+    /**
      * No results have been attached to this node
      *
      * @param node node

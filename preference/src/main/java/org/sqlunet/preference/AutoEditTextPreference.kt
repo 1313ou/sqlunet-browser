@@ -163,7 +163,7 @@ class AutoEditTextPreference : DialogPreference {
 
     // S T A T E
 
-   override fun onSaveInstanceState(): Parcelable? {
+    override fun onSaveInstanceState(): Parcelable? {
         val superState = super.onSaveInstanceState()
 
         // check whether this Preference is persistent (continually saved)

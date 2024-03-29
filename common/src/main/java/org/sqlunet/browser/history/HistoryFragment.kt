@@ -158,7 +158,7 @@ class HistoryFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor>, OnIte
 
     // C L I C K
 
-   override fun onItemClick(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
+    override fun onItemClick(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
         Log.d(TAG, "Select $position")
         val cursor = (listView!!.adapter as SimpleCursorAdapter).cursor
         cursor.moveToPosition(position)

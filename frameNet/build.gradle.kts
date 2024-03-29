@@ -43,7 +43,7 @@ android {
 }
 
 dependencies {
-     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:$desugarVersion")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:$desugarVersion")
 
     implementation(project(":xNet"))
     implementation(project(":treeView"))

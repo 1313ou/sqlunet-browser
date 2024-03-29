@@ -15,7 +15,7 @@ object Queries {
 
     // B R O W S E R
 
-   @JvmStatic
+    @JvmStatic
     fun prepareWordSelect(word: String): ContentProviderSql {
         val providerSql = ContentProviderSql()
         providerSql.providerUri = WordNetContract.Words_Senses_CasedWords_Synsets_Poses_Domains.URI

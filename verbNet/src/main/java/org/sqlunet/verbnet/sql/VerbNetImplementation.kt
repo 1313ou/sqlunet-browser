@@ -145,7 +145,7 @@ class VerbNetImplementation : VerbNetInterface {
 
         // W A L K
 
-       /**
+        /**
          * Perform queries for VerbNet selector data
          *
          * @param connection connection

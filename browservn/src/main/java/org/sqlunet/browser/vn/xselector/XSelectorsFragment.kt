@@ -390,7 +390,7 @@ class XSelectorsFragment : BaseSelectorsExpandableListFragment() {
 
     // L I S T E N E R
 
-   /**
+    /**
      * Set listener
      *
      * @param listener listener

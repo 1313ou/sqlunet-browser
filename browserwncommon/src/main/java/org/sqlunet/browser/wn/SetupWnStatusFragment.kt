@@ -96,7 +96,7 @@ class SetupWnStatusFragment : SetupStatusFragment() {
 
     // U P D A T E
 
-   /**
+    /**
      * Update status
      */
     override fun update() {

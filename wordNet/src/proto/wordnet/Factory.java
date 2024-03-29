@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  *
  * @author <a href="mailto:1313ou@gmail.com">Bernard Bou</a>
  */
-public class Factory implements Function<String,String[]>, Supplier<String[]>
+public class Factory implements Function<String, String[]>, Supplier<String[]>
 {
 	//# instantiated at runtime
 	static public final String URI_LAST = "#{uri_last}";
@@ -44,7 +44,7 @@ public class Factory implements Function<String,String[]>, Supplier<String[]>
 		{
 			// T A B L E
 
-		// table uri : last element is table
+			// table uri : last element is table
 
 			case LEXES:
 				r.table = "${lexes.table}";
@@ -97,7 +97,7 @@ public class Factory implements Function<String,String[]>, Supplier<String[]>
 
 			// I T E M
 
-		// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
+			// the incoming URI was for a single item because this URI was for a single row, the _ID value part is present.
 			// get the last path segment from the URI: this is the _ID value. then, append the value to the WHERE clause for the query
 
 			case WORD1:
@@ -244,20 +244,20 @@ public class Factory implements Function<String,String[]>, Supplier<String[]>
 			case ANYRELATIONS_SENSES_WORDS_X_BY_SYNSET:
 				Result q3 = apply(Key.ANYRELATIONS_QUERY);
 				r.table = String.format("( %s ) AS %s " + // 1
-								"INNER JOIN %s USING (%s) " + // 2
-								"INNER JOIN %s AS %s ON %s.%s = %s.%s " + // 3
-								"LEFT JOIN %s ON %s.%s = %s.%s " + // 4
-								"LEFT JOIN %s AS %s USING (%s) " + // 5
-								"LEFT JOIN %s AS %s ON %s.%s = %s.%s", // 6
-						SUBQUERY, "${as_relations}", // 1
-						"${relations.table}", "${relations.relationid}", // 2
+										"INNER JOIN %s USING (%s) " + // 2
+										"INNER JOIN %s AS %s ON %s.%s = %s.%s " + // 3
+										"LEFT JOIN %s ON %s.%s = %s.%s " + // 4
+										"LEFT JOIN %s AS %s USING (%s) " + // 5
+										"LEFT JOIN %s AS %s ON %s.%s = %s.%s", // 6
+								SUBQUERY, "${as_relations}", // 1
+								"${relations.table}", "${relations.relationid}", // 2
 								"${synsets.table}", "${as_synsets2}", "${as_relations}", "${anyrelations.synset2id}", "${as_synsets2}", "${synsets.synsetid}", // 3
-						"${senses.table}", "${as_synsets2}", "${synsets.synsetid}", "${senses.table}", "${senses.synsetid}", // 4
-						"${words.table}", "${as_words}", "${words.wordid}", //
+								"${senses.table}", "${as_synsets2}", "${synsets.synsetid}", "${senses.table}", "${senses.synsetid}", // 4
+								"${words.table}", "${as_words}", "${words.wordid}", //
 								"${words.table}", "${as_words2}", "${as_relations}", "${anyrelations.word2id}", "${as_words2}", "${words.wordid}") //
 						.replace(SUBQUERY, q3.table);
 				r.groupBy = String.format("%s,%s,%s,%s,%s,%s", "${synset2id}", "${relationtype}", "${relations.relation}", "${relations.relationid}", "${word2id}", "${word2}");
-			break;
+				break;
 
 			case SEMRELATIONS_SYNSETS:
 				r.table = String.format("%s AS %s " + //
@@ -475,9 +475,9 @@ public class Factory implements Function<String,String[]>, Supplier<String[]>
 		String sortOrder = null;
 
 		private static String quote(String str)
-	{
-		return str == null ? null : String.format("\"%s\"", str);
-	}
+		{
+			return str == null ? null : String.format("\"%s\"", str);
+		}
 
 		String[] toStrings()
 		{

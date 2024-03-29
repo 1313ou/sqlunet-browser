@@ -391,7 +391,7 @@ class BillingManager(activity: Activity, listener: BillingListener) {
 
     // C O N S U M E
 
-   /**
+    /**
      * Consume all purchases
      */
     fun consumeAll() {

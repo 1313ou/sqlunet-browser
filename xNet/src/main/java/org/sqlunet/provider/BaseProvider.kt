@@ -148,7 +148,7 @@ abstract class BaseProvider : ContentProvider() {
 
     // W R I T E O P E R A T I O N S
 
-   override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?): Int {
+    override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?): Int {
         throw UnsupportedOperationException("Read-only")
     }
 
